@@ -95,22 +95,22 @@
       },
       alertText: function(data, _, output) {
         if (data.cloud)
-          return output.knockbackOnYouCloud();
-        else if (data.churning)
-          return output.knockbackDiceStop();
-
-        return output.knockbackOnYou();
-      },
-      tts: function(data, _, output) {
-        if (data.cloud)
           return output.knockbackWithCloud();
         else if (data.churning)
           return output.knockbackWithDice();
 
         return output.knockback();
       },
+      tts: function(data, _, output) {
+        if (data.cloud)
+          return output.knockbackWithCloudTTS();
+        else if (data.churning)
+          return output.knockbackWithDiceTTS();
+
+        return output.knockbackTTS();
+      },
       outputStrings: {
-        knockbackOnYouCloud: {
+        knockbackWithCloud: {
           en: 'Knockback on you (cloud)',
           de: 'Rückstoss auf Dir (Wolke)',
           fr: 'Poussée sur VOUS (nuage)',
@@ -118,7 +118,7 @@
           cn: '击退点名（雷云）',
           ko: '넉백 대상자 (구름)',
         },
-        knockbackDiceStop: {
+        knockbackWithDice: {
           en: 'Knockback + dice (STOP)',
           de: 'Rückstoss + Würfel (STOPP)',
           fr: 'Poussée + dé (ARRÊTEZ)',
@@ -126,7 +126,7 @@
           cn: '击退+水泡（静止）',
           ko: '넉백 + 주사위 (가만히)',
         },
-        knockbackOnYou: {
+        knockback: {
           en: 'Knockback on YOU',
           de: 'Rückstoß auf DIR',
           fr: 'Poussée sur VOUS',
@@ -134,7 +134,7 @@
           cn: '击退点名',
           ko: '넉백 대상자',
         },
-        knockbackWithCloud: {
+        knockbackWithCloudTTS: {
           en: 'knockback with cloud',
           de: 'Rückstoß mit wolke',
           fr: 'Poussée avec nuage',
@@ -142,7 +142,7 @@
           cn: '雷云击退',
           ko: '넉백과 구름 장판',
         },
-        knockbackWithDice: {
+        knockbackWithDiceTTS: {
           en: 'Knockback with dice',
           de: 'Rückstoß mit Würfel',
           fr: 'Poussée avec dé',
@@ -150,7 +150,7 @@
           cn: '水泡击退',
           ko: '넉백과 주사위',
         },
-        knockback: {
+        knockbackTTS: {
           en: 'Knockback',
           de: 'Rückstoß',
           fr: 'Poussée',
@@ -168,18 +168,18 @@
       },
       alertText: function(data, _, output) {
         if (data.cloud)
-          return output.levinboltOnYouCloud();
+          return output.levinboltWithCloud();
 
         return output.levinboltOnYou();
       },
       tts: function(data, _, output) {
         if (data.cloud)
-          return output.boltWithCloud();
+          return output.levinboltWithCloudTTS();
 
-        return output.bolt();
+        return output.levinboltOnYouTTS();
       },
       outputStrings: {
-        levinboltOnYouCloud: {
+        levinboltWithCloud: {
           en: 'Levinbolt on you (cloud)',
           de: 'Blitz auf Dir (Wolke)',
           fr: 'Fulguration sur VOUS (nuage)',
@@ -195,7 +195,7 @@
           cn: '闪电点名',
           ko: '우레 대상자',
         },
-        boltWithCloud: {
+        levinboltWithCloudTTS: {
           en: 'bolt with cloud',
           de: 'blitz mit wolke',
           fr: 'foudre avec nuage',
@@ -203,7 +203,7 @@
           cn: '闪电带雷云',
           ko: '구름 번개',
         },
-        bolt: {
+        levinboltOnYouTTS: {
           en: 'bolt',
           de: 'blitz',
           fr: 'foudre',

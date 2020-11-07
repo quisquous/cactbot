@@ -780,13 +780,13 @@
         data.blackHoleCount++;
       },
       alarmText: function(data, _, output) {
-        return output.blackHoleNum6({ num: data.blackHoleCount });
+        return output.blackHole({ num: data.blackHoleCount });
       },
       tts: function(data, _, output) {
-        return output.blackHoleNum({ num: data.blackHoleCount });
+        return output.blackHoleTTS({ num: data.blackHoleCount });
       },
       outputStrings: {
-        blackHoleNum6: {
+        blackHole: {
           en: 'Black Hole ${num} / 6',
           de: 'Schwarzes Loch ${num} / 6',
           fr: 'Trou noir ${num} / 6',
@@ -794,7 +794,7 @@
           cn: '黑洞 ${num} / 6',
           ko: '블랙홀${num} / 6',
         },
-        blackHoleNum: {
+        blackHoleTTS: {
           en: 'Black Hole ${num}',
           de: 'Schwarzes Loch ${num}',
           fr: 'Trou noir ${num}',

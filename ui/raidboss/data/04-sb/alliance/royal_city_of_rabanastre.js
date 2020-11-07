@@ -40,7 +40,7 @@
       },
       infoText: function(data, _, output) {
         if (data.breathless >= 7)
-          return output.breathlessBreathless({ breathless: (data.breathless + 1) });
+          return output.breathless({ num: (data.breathless + 1) });
       },
       tts: function(data, _, output) {
         if (data.breathless == 6)
@@ -51,13 +51,13 @@
         data.breathless++;
       },
       outputStrings: {
-        breathlessBreathless: {
-          en: 'Breathless: ${breathless}',
-          de: 'Atemnot: ${breathless}',
-          fr: 'Suffocation :${breathless}',
-          ja: '呼吸困難 :${breathless}',
-          cn: '窒息层数:${breathless}',
-          ko: '호흡곤란: ${breathless}',
+        breathless: {
+          en: 'Breathless: ${num}',
+          de: 'Atemnot: ${num}',
+          fr: 'Suffocation :${num}',
+          ja: '呼吸困難 :${num}',
+          cn: '窒息层数:${num}',
+          ko: '호흡곤란: ${num}',
         },
         getInBubble: {
           en: 'Get In Bubble',

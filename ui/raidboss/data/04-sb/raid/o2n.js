@@ -93,22 +93,14 @@
       netRegexJa: NetRegexes.startsUsing({ id: '24FF', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '24FF', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '24FF', source: '카타스트로피', capture: false }),
-      infoText: (data, _, output) => output.goNorthSouth(),
-      tts: (data, _, output) => output.hundredGs(),
+      infoText: (data, _, output) => output.text(),
       outputStrings: {
-        goNorthSouth: {
+        text: {
           en: '-100 Gs: Go north/south',
           de: '-100G: Nach Norden/Süden',
           ja: '-100 G: 北/南へ',
           cn: '去北边/南边',
           ko: '중력 마이너스 100: 남/북쪽으로',
-        },
-        hundredGs: {
-          en: '100 gs',
-          de: '-100 G',
-          ja: 'マイナス100 G',
-          cn: '重力负100',
-          ko: '중력 마이너스 100',
         },
       },
     },
@@ -138,10 +130,6 @@
         if (data.levitating)
           return output.earthquake();
       },
-      tts: function(data, _, output) {
-        if (!data.levitating)
-          return output.levitate2();
-      },
       outputStrings: {
         earthquake: {
           en: 'Earthquake',
@@ -153,13 +141,6 @@
         levitate: {
           en: 'Levitate',
           de: 'Schweben',
-          ja: '浮上',
-          cn: '浮空',
-          ko: '공중부양',
-        },
-        levitate2: {
-          en: 'levitate',
-          de: 'schweben',
           ja: '浮上',
           cn: '浮空',
           ko: '공중부양',

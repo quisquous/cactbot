@@ -184,7 +184,7 @@
         if (data.role == 'tank' || data.role == 'healer')
           return output.spreadDpsGetTowers();
 
-        return output.spreadTankshealersGetTowers();
+        return output.spreadTanksHealersGetTowers();
       },
       outputStrings: {
         spreadDpsGetTowers: {
@@ -195,7 +195,7 @@
           cn: '分散（DPS踩塔）',
           ko: '산개 (딜러 기둥 처리)',
         },
-        spreadTankshealersGetTowers: {
+        spreadTanksHealersGetTowers: {
           en: 'Spread (tanks/healers get towers)',
           de: 'Verteilen (nicht in den Turm)',
           fr: 'Dispersion (Tanks/Healers prenez les tours)',
@@ -215,12 +215,12 @@
       },
       alarmText: function(data, _, output) {
         if (data.role == 'tank' || data.role == 'healer')
-          return output.getTowerTankhealerTowers();
+          return output.getTowerTankHealerTowers();
 
         return output.getTowerDpsTowers();
       },
       outputStrings: {
-        getTowerTankhealerTowers: {
+        getTowerTankHealerTowers: {
           en: 'Get Tower (tank/healer towers)',
           de: 'In den Turm',
           fr: 'Prenez votre tour (tours Tank/Healers)',

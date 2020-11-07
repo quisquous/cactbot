@@ -690,7 +690,7 @@
 
         return output.doubleAttackGetOut();
       },
-      tts: (data, _, output) => output.doubleAttack2(),
+      tts: (data, _, output) => output.doubleAttack(),
       outputStrings: {
         doubleAttack: {
           en: 'Double Attack',
@@ -704,12 +704,6 @@
           ja: 'ダブルアタック: 外へ',
           cn: '双重攻击：去外面',
         },
-        doubleAttack2: {
-          en: 'double attack',
-          de: 'Doppelangriff',
-          ja: 'ダブルアタック',
-          cn: '双重攻击',
-        },
       },
     },
     { // Grand Cross Alpha.
@@ -720,16 +714,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '242B', source: 'ネオエクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '242B', source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '242B', source: '네오 엑스데스', capture: false }),
-      infoText: (data, _, output) => output.grandCrossAlphaGoToMiddle(),
-      tts: (data, _, output) => output.goToMiddle(),
+      infoText: (data, _, output) => output.text(),
+      tts: (data, _, output) => output.tts(),
       outputStrings: {
-        grandCrossAlphaGoToMiddle: {
+        text: {
           en: 'Grand Cross Alpha: Go to middle',
           de: 'Supernova Alpha: In die Mitte',
           ja: 'グランドクロス・アルファ: 中央に',
           cn: '前往中间集合',
         },
-        goToMiddle: {
+        tts: {
           en: 'go to middle',
           de: 'In die Mitte',
           ja: '中央に',
@@ -747,54 +741,54 @@
       netRegexKo: NetRegexes.startsUsing({ id: '242C', source: '네오 엑스데스', capture: false }),
       infoText: function(data, _, output) {
         if (data.role == 'tank')
-          return output.grandCrossDeltaBeInFrontOfBoss();
+          return output.beInFront();
 
         if (data.role == 'healer')
-          return output.grandCrossDeltaBeOnSidesOfBoss();
+          return output.beOnSides();
 
-        return output.grandCrossDeltaInsideBoss();
+        return output.beInsideBoss();
       },
       tts: function(data, _, output) {
         if (data.role == 'tank')
-          return output.deltaBeInFront();
+          return output.beInFrontTTS();
 
         if (data.role == 'healer')
-          return output.deltaBeOnSides();
+          return output.beOnSidesTTS();
 
-        return output.deltaBeInsideBoss();
+        return output.beInsideBossTTS();
       },
       outputStrings: {
-        grandCrossDeltaBeInFrontOfBoss: {
+        beInFront: {
           en: 'Grand Cross Delta: Be in front of boss',
           de: 'Supernova Delta: Vor den Boss',
           ja: 'グランドクロス・デルタ: ボスの前に',
           cn: '站在boss前面',
         },
-        grandCrossDeltaBeOnSidesOfBoss: {
+        beOnSides: {
           en: 'Grand Cross Delta: Be on sides of boss',
           de: 'Supernova Delta: An die Seiten vom Boss',
           ja: 'グランドクロス・デルタ: ボスの横に',
           cn: '站在boss后面',
         },
-        grandCrossDeltaInsideBoss: {
+        beInsideBoss: {
           en: 'Grand Cross Delta: Inside boss',
           de: 'Supernvoa Delta: In den Boss',
           ja: 'グランドクロス・デルタ: ボスの真ん中に',
           cn: '站在boss中间',
         },
-        deltaBeInFront: {
+        beInFrontTTS: {
           en: 'delta: be in front',
           de: 'delta: vor den boss',
           ja: 'ボスの前に',
           cn: '去前面',
         },
-        deltaBeOnSides: {
+        beOnSidesTTS: {
           en: 'delta: be on sides',
           de: 'delta: an die seiten',
           ja: 'ボスの横に',
           cn: '去两侧',
         },
-        deltaBeInsideBoss: {
+        beInsideBossTTS: {
           en: 'delta: be inside boss',
           de: 'delta: in den boss',
           ja: 'ボスの真ん中に',
@@ -857,18 +851,11 @@
       condition: function(data, matches) {
         return matches.target == data.me && data.phase == 'delta';
       },
-      infoText: (data, _, output) => output.accelerationBomb(),
-      tts: (data, _, output) => output.bomb(),
+      infoText: (data, _, output) => output.text(),
       outputStrings: {
-        accelerationBomb: {
+        text: {
           en: 'Acceleration Bomb',
           de: 'Beschleunigungsbombe',
-          ja: '加速度爆弾',
-          cn: '加速度炸弹',
-        },
-        bomb: {
-          en: 'bomb',
-          de: 'bombe',
           ja: '加速度爆弾',
           cn: '加速度炸弹',
         },
@@ -883,20 +870,13 @@
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 5;
       },
-      alertText: (data, _, output) => output.shriekGetMidLookAway(),
-      tts: (data, _, output) => output.shriek(),
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
-        shriekGetMidLookAway: {
+        text: {
           en: 'shriek: get mid, look away',
           de: 'Schrei: Zur mitte und wegschauen',
           ja: '呪詛の叫声: 中へ、外に向け',
           cn: '石化点名',
-        },
-        shriek: {
-          en: 'shriek',
-          de: 'schrei',
-          ja: '呪詛の叫声',
-          cn: '石化',
         },
       },
     },
@@ -922,7 +902,6 @@
         else if (data.phase == 'omega')
           return output.waterStackUnderNeo();
       },
-      tts: (data, _, output) => output.waterStack(),
       outputStrings: {
         waterOnYou: {
           en: 'water on you',
@@ -935,12 +914,6 @@
           de: 'Wasser: Unter Neo stacken',
           ja: '水属性圧縮: ボスの下に頭割り',
           cn: '去下面',
-        },
-        waterStack: {
-          en: 'water stack',
-          de: 'Wasser stek',
-          ja: '頭割り',
-          cn: '水分摊',
         },
       },
     },
@@ -960,7 +933,6 @@
 
         return output.stackOnWater();
       },
-      tts: (data, _, output) => output.waterStack(),
       outputStrings: {
         stackOnWaterhealer: {
           en: 'Stack on ${waterHealer}',
@@ -974,12 +946,6 @@
           ja: '水持ちと頭割り',
           cn: '和水点名分摊',
         },
-        waterStack: {
-          en: 'water stack',
-          de: 'wasser stek',
-          ja: '頭割り',
-          cn: '水分摊',
-        },
       },
     },
     {
@@ -990,19 +956,12 @@
         return data.phase == 'delta' && matches.target == data.me && data.role != 'tank';
       },
       infoText: (data, _, output) => output.beyondDeath(),
-      tts: (data, _, output) => output.death(),
       outputStrings: {
         beyondDeath: {
           en: 'Beyond Death',
           de: 'Jenseis Des Jenseits',
           ja: '死の超越',
           cn: '超越死亡',
-        },
-        death: {
-          en: 'death',
-          de: 'tod',
-          ja: '死',
-          cn: '找死',
         },
       },
     },
@@ -1021,7 +980,6 @@
 
         return output.stackOnWater();
       },
-      tts: (data, _, output) => output.waterStack(),
       outputStrings: {
         stackUnderBossOnWaterhealer: {
           en: 'Stack under boss on ${waterHealer}',
@@ -1034,12 +992,6 @@
           de: 'Auf Wasser stacken',
           ja: '水と頭割り',
           cn: '和水点名分摊',
-        },
-        waterStack: {
-          en: 'water stack',
-          de: 'Wasser stek',
-          ja: '頭割り',
-          cn: '水分摊',
         },
       },
     },
@@ -1078,7 +1030,6 @@
       netRegexCn: NetRegexes.startsUsing({ id: '2417', source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2417', source: '네오 엑스데스', capture: false }),
       alertText: (data, _, output) => output.almagest(),
-      tts: (data, _, output) => output.almagest2(),
       run: function(data) {
         data.almagestCount = (data.almagestCount || 0) + 1;
       },
@@ -1086,12 +1037,6 @@
         almagest: {
           en: 'Almagest',
           de: 'Almagest',
-          ja: 'アルマゲスト',
-          cn: '大AOE',
-        },
-        almagest2: {
-          en: 'almagest',
-          de: 'almagest',
           ja: 'アルマゲスト',
           cn: '大AOE',
         },
@@ -1116,19 +1061,19 @@
       },
       infoText: function(data, _, output) {
         if (!data.flareTargets.includes(data.me))
-          return output.lightAndDarknessStack();
+          return output.stack();
       },
       tts: function(data, _, output) {
         if (data.flareTargets.includes(data.me))
-          return output.flareOnYou2();
+          return output.flareOnYou();
 
-        return output.stack();
+        return output.stackTTS();
       },
       run: function(data) {
         delete data.flareTargets;
       },
       outputStrings: {
-        lightAndDarknessStack: {
+        stack: {
           en: 'Light and Darkness: Stack',
           de: 'Licht und Dunkel: Stack',
           ja: 'ライト・アンド・ダークネス: 頭割り',
@@ -1140,13 +1085,7 @@
           ja: '自分にフレア',
           cn: '核爆点名',
         },
-        flareOnYou2: {
-          en: 'flare on you',
-          de: 'fleer auf dir',
-          ja: '自分にフレア',
-          cn: '核爆点名',
-        },
-        stack: {
+        stackTTS: {
           en: 'stack',
           de: 'stek',
           ja: '頭割り',

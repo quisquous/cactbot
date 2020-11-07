@@ -187,7 +187,7 @@
       netRegexKo: NetRegexes.startsUsing({ id: '2900', source: '케프카', capture: false }),
       alarmText: function(data, _, output) {
         if (data.role == 'tank')
-          return output.wingsBeNearfar();
+          return output.wingsBeNearFar();
       },
       infoText: function(data, _, output) {
         if (data.role != 'tank')
@@ -202,7 +202,7 @@
           ja: '近接最大レンジ タンクから離れ',
           cn: '最远距离',
         },
-        wingsBeNearfar: {
+        wingsBeNearFar: {
           en: 'Wings: Be Near/Far',
           fr: 'Ailes : être près/loin',
           de: 'Schwingen: Nah/Fern',

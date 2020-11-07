@@ -52,10 +52,6 @@
 
         return output.getOutOfFront();
       },
-      tts: function(data, _, output) {
-        if (data.role == 'tank' || data.role == 'healer')
-          return output.buster();
-      },
       outputStrings: {
         getOutOfFront: {
           en: 'Get out of front',
@@ -89,14 +85,6 @@
           cn: '换T！',
           ko: '탱 교대',
         },
-        buster: {
-          en: 'buster',
-          de: 'basta',
-          fr: 'tank buster',
-          ja: 'タンクバスター',
-          cn: '死刑',
-          ko: '탱버',
-        },
       },
     },
     {
@@ -108,15 +96,7 @@
       netRegexCn: NetRegexes.gainsEffect({ target: '月读', effectId: '5FF', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '츠쿠요미', effectId: '5FF', capture: false }),
       run: function(data) {
-        let moonInOut = {
-          en: 'Out',
-          de: 'Raus',
-          fr: 'Extérieur',
-          ja: '外へ',
-          cn: '远离',
-          ko: '밖',
-        };
-        data.moonInOut = moonInOut[data.displayLang] || moonInOut['en'];
+        data.moonIsOut = true;
       },
     },
     {
@@ -128,15 +108,7 @@
       netRegexCn: NetRegexes.gainsEffect({ target: '月读', effectId: '600', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '츠쿠요미', effectId: '600', capture: false }),
       run: function(data) {
-        let moonInOut = {
-          en: 'In',
-          de: 'Rein',
-          fr: 'Intérieur',
-          ja: '中へ',
-          cn: '靠近',
-          ko: '안',
-        };
-        data.moonInOut = moonInOut[data.displayLang] || moonInOut['en'];
+        data.moonIsOut = false;
       },
     },
     {
@@ -148,16 +120,26 @@
       netRegexCn: NetRegexes.startsUsing({ id: '2BDA', source: '月读', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2BDA', source: '츠쿠요미', capture: false }),
       infoText: function(data, _, output) {
-        return output.text({ moonInOut: data.moonInOut });
+        if (data.moonIsOut)
+          return output.leftAndOut();
+        return output.leftAndIn();
       },
       outputStrings: {
-        text: {
-          en: 'Left + ${moonInOut}',
-          fr: 'Gauche + ${moonInOut}',
-          de: 'Links + ${moonInOut}',
-          ja: '左へ + ${moonInOut}',
-          cn: '左边 + ${moonInOut}',
-          ko: '왼쪽 + ${moonInOut}',
+        leftAndOut: {
+          en: 'Left + Out',
+          fr: 'Gauche + Raus',
+          de: 'Links + Extérieur',
+          ja: '左へ + 外へ',
+          cn: '左边 + 远离',
+          ko: '왼쪽 + 밖',
+        },
+        leftAndIn: {
+          en: 'Left + In',
+          fr: 'Gauche + Rein',
+          de: 'Links + Intérieur',
+          ja: '左へ + 中へ',
+          cn: '左边 + 靠近',
+          ko: '왼쪽 + 안',
         },
       },
     },
@@ -170,16 +152,26 @@
       netRegexCn: NetRegexes.startsUsing({ id: '2BDB', source: '月读', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2BDB', source: '츠쿠요미', capture: false }),
       infoText: function(data, _, output) {
-        return output.text({ moonInOut: data.moonInOut });
+        if (data.moonIsOut)
+          return output.rightAndOut();
+        return output.rightAndIn();
       },
       outputStrings: {
-        text: {
-          en: 'Right + ${moonInOut}',
-          fr: 'Droite + ${moonInOut}',
-          de: 'Rechts + ${moonInOut}',
-          ja: '右へ + ${moonInOut}',
-          cn: '右边 + ${moonInOut}',
-          ko: '오른쪽 + ${moonInOut}',
+        rightAndOut: {
+          en: 'Right + Out',
+          fr: 'Droite + Raus',
+          de: 'Rechts + Extérieur',
+          ja: '右へ + 外へ',
+          cn: '右边 + 远离',
+          ko: '오른쪽 + 밖',
+        },
+        rightAndIn: {
+          en: 'Right + In',
+          fr: 'Droite + Rein',
+          de: 'Rechts + Intérieur',
+          ja: '右へ + 中へ',
+          cn: '右边 + 靠近',
+          ko: '오른쪽 + 안',
         },
       },
     },

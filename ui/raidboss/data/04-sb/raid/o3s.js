@@ -69,29 +69,19 @@
           if (data.holyTargets[i] == data.me)
             return output.getOut();
         }
-        return output.stackOnHolytargets({ holyTargets: data.holyTargets[1] });
+        return output.stackOnHoly({ holyTargets: data.holyTargets[1] });
       },
       infoText: function(data, _, output) {
         for (let i = 0; i < 4; ++i) {
           if (data.holyTargets[i] == data.me)
-            return output.othersStackOnHolytargets({ holyTargets: data.holyTargets[1] });
+            return output.othersStackOnHoly({ holyTargets: data.holyTargets[1] });
         }
-      },
-      tts: function(data, _, output) {
-        if (data.holyTargets[1] == data.me)
-          return output.stackOnYou2();
-
-        for (let i = 0; i < 4; ++i) {
-          if (data.holyTargets[i] == data.me)
-            return output.getOut2();
-        }
-        return output.stackOnHolytargets2({ holyTargets: data.holyTargets[1] });
       },
       run: function(data) {
         delete data.holyTargets;
       },
       outputStrings: {
-        othersStackOnHolytargets: {
+        othersStackOnHoly: {
           en: 'others stack on ${holyTargets}',
           de: 'andere stacken auf ${holyTargets}',
           ja: '他は${holyTargets}に頭割り',
@@ -105,7 +95,7 @@
           cn: '出去',
           ko: '밖으로',
         },
-        stackOnHolytargets: {
+        stackOnHoly: {
           en: 'Stack on ${holyTargets}',
           de: 'Stack auf ${holyTargets}',
           ja: '${holyTargets}に頭割り',
@@ -118,27 +108,6 @@
           ja: '自分に頭割り',
           cn: '分摊点名',
           ko: '쉐어징 대상자',
-        },
-        stackOnYou2: {
-          en: 'stack on you',
-          de: 'stack auf dir',
-          ja: '自分に頭割り',
-          cn: '分摊点名',
-          ko: '쉐어징 대상자',
-        },
-        getOut2: {
-          en: 'get out',
-          de: 'raus da',
-          ja: '出ていて',
-          cn: '出去',
-          ko: '밖으로',
-        },
-        stackOnHolytargets2: {
-          en: 'stack on ${holyTargets}',
-          de: 'stack auf ${holyTargets}',
-          ja: '${holyTargets}に頭割り',
-          cn: '分摊${holyTargets}',
-          ko: '${holyTargets} 쉐어징',
         },
       },
     },
@@ -349,17 +318,17 @@
         // spellblade holy -> waltz that ends the library phase.
         return data.phase != 3 || !data.seenHolyThisPhase;
       },
-      alertText: (data, _, output) => output.theQueensWaltzBooks(),
-      tts: (data, _, output) => output.books(),
+      alertText: (data, _, output) => output.text(),
+      tts: (data, _, output) => output.tts(),
       outputStrings: {
-        theQueensWaltzBooks: {
+        text: {
           en: 'The Queen\'s Waltz: Books',
           de: 'Tanz der Königin: Bücher',
           ja: '女王の舞い: 本',
           cn: '中间两排分格站位',
           ko: '여왕의 춤: 책',
         },
-        books: {
+        tts: {
           en: 'books',
           de: 'bücher',
           ja: '本',
@@ -376,17 +345,17 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2306', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2306', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2306', source: '할리카르나소스', capture: false }),
-      infoText: (data, _, output) => output.theQueensWaltzClock(),
-      tts: (data, _, output) => output.clock(),
+      infoText: (data, _, output) => output.text(),
+      tts: (data, _, output) => output.tts(),
       outputStrings: {
-        theQueensWaltzClock: {
+        text: {
           en: 'The Queen\'s Waltz: Clock',
           de: 'Tanz der Königin: Uhr',
           ja: '女王の舞い: 散開',
           cn: '万变水波站位',
           ko: '여왕의 춤: 산개',
         },
-        clock: {
+        tts: {
           en: 'clock',
           de: 'uhr',
           ja: '散開',
@@ -403,17 +372,17 @@
       netRegexJa: NetRegexes.startsUsing({ id: '230A', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '230A', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '230A', source: '할리카르나소스', capture: false }),
-      infoText: (data, _, output) => output.theQueensWaltzCrystalSquare(),
-      tts: (data, _, output) => output.blueSquare(),
+      infoText: (data, _, output) => output.text(),
+      tts: (data, _, output) => output.tts(),
       outputStrings: {
-        theQueensWaltzCrystalSquare: {
+        text: {
           en: 'The Queen\'s Waltz: Crystal Square',
           de: 'Tanz der Königin: Kristallfeld',
           ja: '女王の舞い: 床',
           cn: '站在蓝地板',
           ko: '여왕의 춤: 대지',
         },
-        blueSquare: {
+        tts: {
           en: 'blue square',
           de: 'blaues feld',
           ja: '青い床',
@@ -430,17 +399,17 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2308', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2308', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2308', source: '할리카르나소스', capture: false }),
-      infoText: (data, _, output) => output.theQueensWaltzTethers(),
-      tts: (data, _, output) => output.tethers(),
+      infoText: (data, _, output) => output.text(),
+      tts: (data, _, output) => output.tts(),
       outputStrings: {
-        theQueensWaltzTethers: {
+        text: {
           en: 'The Queen\'s Waltz: Tethers',
           de: 'Tanz der Königin: Ranken',
           ja: '女王の舞い: 茨',
           cn: '先集中后扯线',
           ko: '여왕의 춤: 가시',
         },
-        tethers: {
+        tts: {
           en: 'tethers',
           de: 'ranken',
           ja: '茨を引く',

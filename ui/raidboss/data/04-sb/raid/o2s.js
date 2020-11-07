@@ -65,22 +65,14 @@
       netRegexJa: NetRegexes.startsUsing({ id: '235E', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '235E', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '235E', source: '카타스트로피', capture: false }),
-      infoText: (data, _, output) => output.goNorthSouthLookAway(),
-      tts: (data, _, output) => output.hundredGs(),
+      infoText: (data, _, output) => output.text(),
       outputStrings: {
-        goNorthSouthLookAway: {
+        text: {
           en: '-100 Gs: Go north/south and look away',
           de: '-100G: Nach Norden/Süden und wegschauen',
           ja: '-100 G: 北/南へ、ボスを見ないで',
           cn: '前往南边/北边并背对boss',
           ko: '중력 마이너스 100: 남/북쪽에서 바깥쪽 보기',
-        },
-        hundredGs: {
-          en: '100 gs',
-          de: '-100 G',
-          ja: 'マイナス100 G',
-          cn: '重力负100',
-          ko: '중력 마이너스 100',
         },
       },
     },
@@ -198,9 +190,9 @@
       alertText: function(data, _, output) {
         if (data.myProbe) {
           if (!data.dpsProbe)
-            return output.maniacalProbeTanksHealers2();
+            return output.maniacalProbeTanksHealers();
 
-          return output.maniacalProbeDps2();
+          return output.maniacalProbeDps();
         }
       },
       infoText: function(data, _, output) {
@@ -232,20 +224,6 @@
           cn: 'DPS触手',
           ko: '촉수 난무: 딜러',
         },
-        maniacalProbeTanksHealers2: {
-          en: 'Maniacal Probe: Tanks & Healers',
-          de: 'Tentakeltanz: Tanks & Heiler',
-          ja: '触手乱舞: タンク/ヒーラー',
-          cn: 'T奶触手',
-          ko: '촉수 난무: 탱/힐',
-        },
-        maniacalProbeDps2: {
-          en: 'Maniacal Probe: DPS',
-          de: 'Tentakeltanz: DDs',
-          ja: '触手乱舞: DPS',
-          cn: 'DPS触手',
-          ko: '촉수 난무: 딜러',
-        },
         dpsProbe: {
           en: 'dps probe',
           de: 'dee dees tentakel',
@@ -269,10 +247,10 @@
         return matches.target == data.me;
       },
       delaySeconds: 9,
-      alarmText: (data, _, output) => output.unstableGravityElevateAndOutsideStack(),
+      alarmText: (data, _, output) => output.elevateOutsideStack(),
       tts: (data, _, output) => output.floatForBomb(),
       outputStrings: {
-        unstableGravityElevateAndOutsideStack: {
+        elevateOutsideStack: {
           en: 'Unstable Gravity: Elevate and outside stack',
           de: 'Schwerkraftschwankung: Schweben und außen stacken',
           ja: 'グラビティバースト: 浮上集合',

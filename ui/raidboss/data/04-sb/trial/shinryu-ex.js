@@ -453,7 +453,7 @@
         if (matches.target == data.me)
           return output.deathSentenceOnYou();
         else if (data.role == 'healer')
-          return output.deathSentenceOn2({ player: data.ShortName(matches.target) });
+          return output.deathSentenceOn({ player: data.ShortName(matches.target) });
       },
       infoText: function(data, matches, output) {
         if (matches.target != data.me && data.role == 'tank')
@@ -475,14 +475,6 @@
           ja: '自分にデスセンテンス',
           cn: '死刑点名',
           ko: '사형 선고 대상자',
-        },
-        deathSentenceOn2: {
-          en: 'Death Sentence on ${player}',
-          de: 'Todesurteil auf ${player}',
-          fr: 'Peine de mort sur ${player}',
-          ja: '${player}にデスセンテンス',
-          cn: '死刑点名${player}',
-          ko: '"${player}" 사형 선고',
         },
       },
     },

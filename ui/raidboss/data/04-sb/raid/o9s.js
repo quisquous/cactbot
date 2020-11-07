@@ -26,20 +26,14 @@
       netRegexKo: NetRegexes.startsUsing({ id: '3172', source: '카오스', capture: false }),
       alertText: function(data, _, output) {
         if (data.primordialCrust)
-          return output.dieOnFrontbackSides();
+          return output.dieOnFrontBack();
       },
       infoText: function(data, _, output) {
         if (!data.primordialCrust)
-          return output.sidesFrontback();
-      },
-      tts: function(data, _, output) {
-        if (data.primordialCrust)
-          return output.dieOnBack();
-
-        return output.goToSides();
+          return output.sides();
       },
       outputStrings: {
-        sidesFrontback: {
+        sides: {
           en: 'Sides -> Front/Back',
           de: 'Seiten -> Vorne/Hinten',
           fr: 'Côtés puis Devant/Derrière',
@@ -47,29 +41,13 @@
           cn: '左右 -> 前后',
           ko: '양옆 -> 앞뒤',
         },
-        dieOnFrontbackSides: {
+        dieOnFrontBack: {
           en: 'Die on Front/Back -> Sides',
           de: 'Stirb Vorne/Hinten -> Seiten',
           fr: 'Devant/Derrière puis Côtés',
           ja: '縦 -> 横で死ぬ',
           cn: '死：前后 -> 左右',
           ko: '앞뒤 -> 양옆 (디버프)',
-        },
-        dieOnBack: {
-          en: 'die on back',
-          de: 'hinten dran',
-          fr: 'aller derrière',
-          ja: '縦から',
-          cn: '前后找死',
-          ko: '뒤에서 맞기 (디버프)',
-        },
-        goToSides: {
-          en: 'go to sides',
-          de: 'an die Seiten',
-          fr: 'aller sur les cotés',
-          ja: '横から',
-          cn: '左右闪避',
-          ko: '양옆으로',
         },
       },
     },
@@ -83,20 +61,14 @@
       netRegexKo: NetRegexes.startsUsing({ id: '3173', source: '카오스', capture: false }),
       alertText: function(data, _, output) {
         if (data.primordialCrust)
-          return output.dieOnSidesFrontback();
+          return output.dieOnSides();
       },
       infoText: function(data, _, output) {
         if (!data.primordialCrust)
-          return output.frontbackSides();
-      },
-      tts: function(data, _, output) {
-        if (data.primordialCrust)
-          return output.dieOnSides();
-
-        return output.goToBack();
+          return output.frontBack();
       },
       outputStrings: {
-        frontbackSides: {
+        frontBack: {
           en: 'Front/Back -> Sides',
           de: 'Vorne/Hinten -> Seiten',
           fr: 'Devant/Derrière puis Côtés',
@@ -104,29 +76,13 @@
           cn: '前后 -> 左右',
           ko: '앞뒤 -> 양옆',
         },
-        dieOnSidesFrontback: {
+        dieOnSides: {
           en: 'Die on Sides -> Front/Back',
           de: 'Stirb an Seiten -> Vorne/Hinten',
           fr: 'Devant/Derrière puis Côtés',
           ja: '横 -> 縦で死ぬ',
           cn: '死：左右 -> 前后',
           ko: '양옆 -> 앞뒤 (디버프)',
-        },
-        dieOnSides: {
-          en: 'die on sides',
-          de: 'an die Seiten',
-          fr: 'aller sur les cotés',
-          ja: '横から',
-          cn: '左右找死',
-          ko: '양옆 (디버프)',
-        },
-        goToBack: {
-          en: 'go to back',
-          de: 'hinten dran',
-          fr: 'aller derrière',
-          ja: '縦から',
-          cn: '前后闪避',
-          ko: '뒤로 이동',
         },
       },
     },
@@ -150,7 +106,7 @@
       netRegexKo: NetRegexes.startsUsing({ id: '317D', source: '카오스', capture: false }),
       alarmText: function(data, _, output) {
         if (data.role == 'tank')
-          return output.orbTethers2();
+          return output.orbTethers();
       },
       infoText: function(data, _, output) {
         if (data.role == 'healer')
@@ -163,14 +119,6 @@
           fr: 'Récupérez l\'orbe',
           ja: '線出たよ',
           cn: '坦克接线注意治疗',
-          ko: '구슬 연결',
-        },
-        orbTethers2: {
-          en: 'Orb Tethers',
-          de: 'Kugel-Verbindungen',
-          fr: 'Récupérez l\'orbe',
-          ja: '線出たよ',
-          cn: '接线',
           ko: '구슬 연결',
         },
       },
