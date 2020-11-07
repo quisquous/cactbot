@@ -255,34 +255,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['28E8', '2912'], source: 'ケフカ' }),
       netRegexCn: NetRegexes.startsUsing({ id: ['28E8', '2912'], source: '凯夫卡' }),
       netRegexKo: NetRegexes.startsUsing({ id: ['28E8', '2912'], source: '케프카' }),
-      alertText: function(data, matches) {
-        if (matches.target != data.me)
-          return;
-
-        return {
-          en: 'Hyperdrive on YOU',
-          fr: 'Colonne de feu sur VOUS',
-          de: 'Hyperantrieb auf DIR',
-          ko: '하이퍼드라이브 대상자',
-          ja: '自分にハイパードライブ',
-          cn: '死刑点名',
-        };
-      },
-      infoText: function(data, matches) {
-        if (matches.target == data.me)
-          return;
-
-        if (data.role == 'healer' || data.role == 'tank') {
-          return {
-            en: 'Hyperdrive on ' + data.ShortName(matches.target),
-            fr: 'Colonne de feu sur ' + data.ShortName(matches.target),
-            de: 'Hyperantrieb auf ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 하이퍼드라이브',
-            ja: data.ShortName(matches.target) + 'にハイパードライブ',
-            cn: '死刑点名' + data.ShortName(matches.target),
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'O8S Indulgent Will',

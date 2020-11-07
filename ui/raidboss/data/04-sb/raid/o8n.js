@@ -13,28 +13,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '292E', source: 'ケフカ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '292E', source: '凯夫卡' }),
       netRegexKo: NetRegexes.startsUsing({ id: '292E', source: '케프카' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Hyperdrive on YOU',
-            fr: 'Colonne de feu sur VOUS',
-            de: 'Hyperantrieb auf DIR',
-            ja: '自分にハイパードライブ',
-            cn: '死刑点名',
-            ko: '하이퍼드라이브 대상자',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Hyperdrive on ' + data.ShortName(matches.target),
-            fr: 'Colonne de feu sur ' + data.ShortName(matches.target),
-            de: 'Hyperantrieb auf ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にハイパードライブ',
-            cn: '死刑点名' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 하이퍼드라이브',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'O8N Shockwave',
