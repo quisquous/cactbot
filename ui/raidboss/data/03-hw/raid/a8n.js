@@ -162,17 +162,20 @@
     {
       id: 'A8N Enumeration',
       netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         // 0040 = 2, 0041 = 3, 0042 = 4
         let count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
-        return {
-          en: data.ShortName(matches.target) + ': ' + count,
-          de: data.ShortName(matches.target) + ': ' + count,
-          fr: data.ShortName(matches.target) + ': ' + count,
-          ja: data.ShortName(matches.target) + ': ' + count,
-          cn: data.ShortName(matches.target) + '生命计算法: ' + count,
-          ko: data.ShortName(matches.target) + ': ' + count,
-        };
+        return output.text({ player: data.ShortName(matches.target), count: count });
+      },
+      outputStrings: {
+        text: {
+          en: '${player}: ${count}',
+          de: '${player}: ${count}',
+          fr: '${player}: ${count}',
+          ja: '${player}: ${count}',
+          cn: '${player}生命计算法: ${count}',
+          ko: '${player}: ${count}',
+        },
       },
     },
     {
@@ -269,29 +272,33 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '1750' }),
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '1750' }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '1750' }),
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         if (data.me != matches.target)
           return;
-        return {
+        return output.superJumpOnYou();
+      },
+      infoText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return;
+        return output.superJumpOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        superJumpOn: {
+          en: 'Super Jump on ${player}',
+          de: 'Supersprung auf ${player}',
+          fr: 'Super saut sur ${player}',
+          ja: '${player}にスーパージャンプ',
+          cn: '超级跳点${player}',
+          ko: '"${player}" 슈퍼 점프',
+        },
+        superJumpOnYou: {
           en: 'Super Jump on YOU',
           de: 'Supersprung auf DIR',
           fr: 'Super saut sur VOUS',
           ja: '自分にスーパージャンプ',
           cn: '超级跳点名',
           ko: '슈퍼 점프 대상자',
-        };
-      },
-      infoText: function(data, matches) {
-        if (data.me == matches.target)
-          return;
-        return {
-          en: 'Super Jump on ' + data.ShortName(matches.target),
-          de: 'Supersprung auf ' + data.ShortName(matches.target),
-          fr: 'Super saut sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にスーパージャンプ',
-          cn: '超级跳点' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '" 슈퍼 점프',
-        };
+        },
       },
     },
     {

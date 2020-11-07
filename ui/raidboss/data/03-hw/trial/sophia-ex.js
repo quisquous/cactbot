@@ -198,25 +198,29 @@ let callSafeDir = (callIndex) => {
       netRegexJa: NetRegexes.startsUsing({ id: '1988', source: '一の従者' }),
       netRegexCn: NetRegexes.startsUsing({ id: '1988', source: '信徒其一' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1988', source: '제1신도' }),
-      infoText: function(data, matches) {
-        if (Conditions.targetIsYou()) {
-          return {
-            en: 'Infusion on YOU',
-            de: 'Schneisenschläger auf DIR',
-            fr: 'Infusion sur VOUS',
-            ja: '自分に猛突進',
-            cn: '冲锋点名',
-            ko: '맹돌진 대상자',
-          };
-        }
-        return {
-          en: 'Infusion on ' + data.ShortName(matches.target),
-          de: 'Schneisenschläger auf ' + data.ShortName(matches.target),
-          fr: 'Infusion sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'に猛突進',
-          cn: '冲锋点' + data.ShortName(matches.target),
-          ko: '' + data.ShortName(matches.target) + ' 에게 맹돌진',
-        };
+      infoText: function(data, matches, output) {
+        if (Conditions.targetIsYou())
+          return output.infusionOnYou();
+
+        return output.infusionOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        infusionOnYou: {
+          en: 'Infusion on YOU',
+          de: 'Schneisenschläger auf DIR',
+          fr: 'Infusion sur VOUS',
+          ja: '自分に猛突進',
+          cn: '冲锋点名',
+          ko: '맹돌진 대상자',
+        },
+        infusionOn: {
+          en: 'Infusion on ${player}',
+          de: 'Schneisenschläger auf ${player}',
+          fr: 'Infusion sur ${player}',
+          ja: '${player}に猛突進',
+          cn: '冲锋点${player}',
+          ko: '${player} 에게 맹돌진',
+        },
       },
     },
     {

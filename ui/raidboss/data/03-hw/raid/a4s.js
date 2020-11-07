@@ -16,29 +16,31 @@
     {
       id: 'A4S Discord Marker',
       netRegex: NetRegexes.headMarker({ id: '00AE' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Orbs on YOU',
-            de: 'Orbs auf DIR',
-            fr: 'Orbes sur VOUS',
-            ja: '自分に玉',
-            cn: '球点名',
-            ko: '구슬 대상자',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.orbsOnYou();
       },
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Orbs on ' + data.ShortName(matches.target),
-            de: 'Orbs auf ' + data.ShortName(matches.target),
-            fr: 'Orbes sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'に玉',
-            cn: '球点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 구슬',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.orbsOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        orbsOn: {
+          en: 'Orbs on ${player}',
+          de: 'Orbs auf ${player}',
+          fr: 'Orbes sur ${player}',
+          ja: '${player}に玉',
+          cn: '球点${player}',
+          ko: '"${player}" 구슬',
+        },
+        orbsOnYou: {
+          en: 'Orbs on YOU',
+          de: 'Orbs auf DIR',
+          fr: 'Orbes sur VOUS',
+          ja: '自分に玉',
+          cn: '球点名',
+          ko: '구슬 대상자',
+        },
       },
     },
     {
@@ -48,15 +50,18 @@
       condition: function(data) {
         return data.CanStun();
       },
-      alertText: function(data, matches) {
-        return {
-          en: 'Stun ' + matches.target,
-          de: 'Unterbreche ' + matches.target,
-          fr: 'Stun ' + matches.target,
-          ja: 'スタン: ' + matches.target,
-          cn: '眩晕' + matches.target,
-          ko: matches.target + '기절 시키기',
-        };
+      alertText: function(data, matches, output) {
+        return output.text({ param: matches.target });
+      },
+      outputStrings: {
+        text: {
+          en: 'Stun ${param}',
+          de: 'Unterbreche ${param}',
+          fr: 'Stun ${param}',
+          ja: 'スタン: ${param}',
+          cn: '眩晕${param}',
+          ko: '${param}기절 시키기',
+        },
       },
     },
     {

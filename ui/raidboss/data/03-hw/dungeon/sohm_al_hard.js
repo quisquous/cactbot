@@ -58,15 +58,18 @@
       condition: function(data) {
         return data.CanCleanse();
       },
-      infoText: function(data, matches) {
-        return {
-          en: 'Cleanse ' + data.ShortName(matches.target),
-          de: 'Reinige ' + data.ShortName(matches.target),
-          fr: 'Guérison sur ' + data.ShortName(matches.target),
-          ja: 'エスナ：' + data.ShortName(matches.target),
-          cn: '康复' + data.ShortName(matches.target),
-          ko: '' + data.ShortName(matches.target) + '에스나',
-        };
+      infoText: function(data, matches, output) {
+        return output.text({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Cleanse ${player}',
+          de: 'Reinige ${player}',
+          fr: 'Guérison sur ${player}',
+          ja: 'エスナ：${player}',
+          cn: '康复${player}',
+          ko: '${player}에스나',
+        },
       },
     },
     {

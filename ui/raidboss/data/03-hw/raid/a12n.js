@@ -81,33 +81,37 @@
       id: 'A12N Heat And Solidarity',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       delaySeconds: 0.5,
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         // If the user was targeted for Assault, they shouldn't stack.
         // Unfortunately, Assault comes after the Shared Sentence marker in the log,
         // so we have to use the collect + delay construction to make calls.
         if (data.assault)
           return;
-        if (data.me == matches.target) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR sammeln',
-            fr: 'Package sur VOUS',
-            ja: '自分にスタック',
-            cn: '集合点名',
-            ko: '쉐어징 대상자',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Packez-vous sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にスタック',
-          cn: '靠近 ' + data.ShortName(matches.target) + '集合',
-          ko: '"' + data.ShortName(matches.target) + '" 쉐어징',
-        };
+        if (data.me == matches.target)
+          return output.stackOnYou();
+
+        return output.stackOn({ player: data.ShortName(matches.target) });
       },
       run: function(data) {
         delete data.assault;
+      },
+      outputStrings: {
+        stackOnYou: {
+          en: 'Stack on YOU',
+          de: 'Auf DIR sammeln',
+          fr: 'Package sur VOUS',
+          ja: '自分にスタック',
+          cn: '集合点名',
+          ko: '쉐어징 대상자',
+        },
+        stackOn: {
+          en: 'Stack on ${player}',
+          de: 'Auf ${player} sammeln',
+          fr: 'Packez-vous sur ${player}',
+          ja: '${player}にスタック',
+          cn: '靠近 ${player}集合',
+          ko: '"${player}" 쉐어징',
+        },
       },
     },
     {

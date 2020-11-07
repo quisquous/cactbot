@@ -252,43 +252,48 @@
       condition: function(data) {
         return data.CanCleanse();
       },
-      alertText: function(data, matches) {
-        return {
-          en: 'Throttle on ' + data.ShortName(matches.target),
-          de: 'Vollgas auf ' + data.ShortName(matches.target),
-          fr: 'Geôle liquide sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'に窒息',
-          cn: '窒息点' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '" 액체 감옥',
-        };
+      alertText: function(data, matches, output) {
+        return output.text({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Throttle on ${player}',
+          de: 'Vollgas auf ${player}',
+          fr: 'Geôle liquide sur ${player}',
+          ja: '${player}に窒息',
+          cn: '窒息点${player}',
+          ko: '"${player}" 액체 감옥',
+        },
       },
     },
     {
       id: 'A3S Fluid Claw',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
-      alarmText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Claw on YOU',
-            de: 'Klaue auf DIR',
-            fr: 'Griffe sur VOUS',
-            ja: '自分にフルイドクロー',
-            cn: '抓奶手点名',
-            ko: '액체 발톱 대상자',
-          };
-        }
+      alarmText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.clawOnYou();
       },
-      infoText: function(data, matches) {
-        if (data.me != matches.target) {
-          return {
-            en: 'Claw on ' + data.ShortName(matches.target),
-            de: 'Klaue auf ' + data.ShortName(matches.target),
-            fr: 'Griffe sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にフルイドクロー',
-            cn: '抓奶手点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 액체 발톱',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me != matches.target)
+          return output.clawOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        clawOn: {
+          en: 'Claw on ${player}',
+          de: 'Klaue auf ${player}',
+          fr: 'Griffe sur ${player}',
+          ja: '${player}にフルイドクロー',
+          cn: '抓奶手点${player}',
+          ko: '"${player}" 액체 발톱',
+        },
+        clawOnYou: {
+          en: 'Claw on YOU',
+          de: 'Klaue auf DIR',
+          fr: 'Griffe sur VOUS',
+          ja: '自分にフルイドクロー',
+          cn: '抓奶手点名',
+          ko: '액체 발톱 대상자',
+        },
       },
     },
     {

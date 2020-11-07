@@ -124,23 +124,27 @@ let bombLocation = (matches) => {
         data.bombCount++;
       },
       // We could give directions here, but "into / opposite spikey" is pretty succinct.
-      infoText: function(data) {
-        if (data.bombCount == 1) {
-          return {
-            en: 'Knock Bombs Into Spikey',
-            de: 'Bombe in die Spike-Bombe stoßen',
-            fr: 'Poussez les bombes dans la bombe à pointe',
-            ja: 'トゲ爆弾を飛ばす',
-            ko: '지뢰쪽으로 폭탄 밀기',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.bombCount == 1)
+          return output.knockBombsIntoSpikey();
+
+        return output.knockBombsOppositeSpikey();
+      },
+      outputStrings: {
+        knockBombsIntoSpikey: {
+          en: 'Knock Bombs Into Spikey',
+          de: 'Bombe in die Spike-Bombe stoßen',
+          fr: 'Poussez les bombes dans la bombe à pointe',
+          ja: 'トゲ爆弾を飛ばす',
+          ko: '지뢰쪽으로 폭탄 밀기',
+        },
+        knockBombsOppositeSpikey: {
           en: 'Knock Bombs Opposite Spikey',
           de: 'Bombe gegnüber der Spike-Bombe stoßen',
           fr: 'Poussez les bombes à l\'opposé de la bombe à pointe',
           ja: 'トゲ爆弾を対角に飛ばす',
           ko: '지뢰 반대쪽으로 폭탄 밀기',
-        };
+        },
       },
     },
     {
@@ -234,14 +238,17 @@ let bombLocation = (matches) => {
       condition: function(data) {
         return data.role === 'healer';
       },
-      infoText: function(data, matches) {
-        return {
-          en: 'Shield ' + data.ShortName(matches.target),
-          de: 'Schild ' + data.ShortName(matches.target),
-          fr: 'Bouclier sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にバリア',
-          ko: '"' + data.ShortName(matches.target) + '" 에게 보호막',
-        };
+      infoText: function(data, matches, output) {
+        return output.text({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Shield ${player}',
+          de: 'Schild ${player}',
+          fr: 'Bouclier sur ${player}',
+          ja: '${player}にバリア',
+          ko: '"${player}" 에게 보호막',
+        },
       },
     },
     {

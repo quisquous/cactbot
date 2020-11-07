@@ -54,29 +54,33 @@
         data.markers = data.markers || [];
         data.markers.push(matches.id);
       },
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (data.markers.length == 2) {
           let sameMarkers = data.markers[0] == data.markers[1];
           delete data.markers;
-          if (sameMarkers) {
-            return {
-              en: 'Close to boss',
-              de: 'Nahe zum Boss',
-              fr: 'Rapprochez-vous du boss',
-              ja: 'ボスに近づく',
-              cn: '靠近boss',
-              ko: '보스와 가까이 서기',
-            };
-          }
-          return {
-            en: 'Away from boss',
-            de: 'Weg vom Boss',
-            fr: 'Éloignez-vous du boss',
-            ja: 'ボスに離れ',
-            cn: '远离boss',
-            ko: '보스와 떨어지기',
-          };
+          if (sameMarkers)
+            return output.closeToBoss();
+
+          return output.awayFromBoss();
         }
+      },
+      outputStrings: {
+        closeToBoss: {
+          en: 'Close to boss',
+          de: 'Nahe zum Boss',
+          fr: 'Rapprochez-vous du boss',
+          ja: 'ボスに近づく',
+          cn: '靠近boss',
+          ko: '보스와 가까이 서기',
+        },
+        awayFromBoss: {
+          en: 'Away from boss',
+          de: 'Weg vom Boss',
+          fr: 'Éloignez-vous du boss',
+          ja: 'ボスに離れ',
+          cn: '远离boss',
+          ko: '보스와 떨어지기',
+        },
       },
     },
     {
@@ -147,27 +151,30 @@
       netRegexJa: NetRegexes.startsUsing({ id: '198D', source: 'メカノスクライブ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '198D', source: '自走人偶抄写员', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '198D', source: '기계 서기', capture: false }),
-      infoText: function(data) {
-        if (data.CanSilence()) {
-          return {
-            en: 'Interrupt Mechanoscribe',
-            de: 'unterbreche Mechanoscholar',
-            fr: 'Interrompez le Mécano-scribe',
-            ja: '沈黙：メカノスクライブ',
-            cn: '打断人偶',
-            ko: '기계 서기 차단',
-          };
-        }
-        if (data.CanStun()) {
-          return {
-            en: 'Stun Mechanoscribe',
-            de: 'betäube Mechanoscholar',
-            fr: 'Stun sur le Mécano-scribe',
-            ja: 'スタン：メカノスクライブ',
-            cn: '眩晕人偶',
-            ko: '기계 서기 기절',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (data.CanSilence())
+          return output.interruptMechanoscribe();
+
+        if (data.CanStun())
+          return output.stunMechanoscribe();
+      },
+      outputStrings: {
+        interruptMechanoscribe: {
+          en: 'Interrupt Mechanoscribe',
+          de: 'unterbreche Mechanoscholar',
+          fr: 'Interrompez le Mécano-scribe',
+          ja: '沈黙：メカノスクライブ',
+          cn: '打断人偶',
+          ko: '기계 서기 차단',
+        },
+        stunMechanoscribe: {
+          en: 'Stun Mechanoscribe',
+          de: 'betäube Mechanoscholar',
+          fr: 'Stun sur le Mécano-scribe',
+          ja: 'スタン：メカノスクライブ',
+          cn: '眩晕人偶',
+          ko: '기계 서기 기절',
+        },
       },
     },
     {

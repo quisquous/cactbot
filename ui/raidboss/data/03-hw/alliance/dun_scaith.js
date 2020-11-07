@@ -158,17 +158,19 @@
       id: 'Dun Scaith Scythe Drop',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       suppressSeconds: 5,
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Drop scythe outside',
-            de: 'Sense draußen ablegen',
-            fr: 'Posez à l\'extérieur',
-            ja: 'ブラックウインド、外に置く',
-            cn: '场地边缘放镰刀',
-            ko: '외곽으로',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Drop scythe outside',
+          de: 'Sense draußen ablegen',
+          fr: 'Posez à l\'extérieur',
+          ja: 'ブラックウインド、外に置く',
+          cn: '场地边缘放镰刀',
+          ko: '외곽으로',
+        },
       },
     },
     {
@@ -217,66 +219,74 @@
       netRegex: NetRegexes.startsUsing({ id: ['1C9F', '1CA0'], capture: false }),
       delaySeconds: 1,
       suppressSeconds: 5,
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (data.donut.length === 2) {
-          return {
-            en: 'Go To Any Untethered',
-            de: 'Gehe zu einem Unverbundenen',
-            ja: '線のないアトモスに近づく',
-            cn: '靠近无线小怪',
-            ko: '아트모스 근처로',
-          };
+          return output.goToAnyUntethered();
         } else if (data.sphere.length === 2) {
-          return {
-            en: 'Avoid All Untethered',
-            de: 'Vermeide alle Unverbundenen',
-            ja: '線のないアトモスに離れ',
-            cn: '远离无线小怪',
-            ko: '모든 아트모스 피하기',
-          };
+          return output.avoidAllUntethered();
         } else if (data.donut.length === 1) {
           // Wailing Atomos is blue, Cursing Atomos is yellow.
           // If there's exactly 1 Chakram, the other Atomos is irrelevant.
           // (Any Chakram Atomos is guaranteed to be safe.)
-          if (data.donut[0] === 'wailing') {
-            return {
-              en: 'Go to Untethered Blue',
-              de: 'Gehe zu dem nicht verbundenen blauem Atomos',
-              fr: 'Allez vers la Gueule bleue non-liée',
-              ja: '線のない青色アトモスに近づく',
-              cn: '靠近蓝色小怪',
-              ko: '파란 아트모스로 이동',
-            };
-          }
-          return {
-            en: 'Go to Untethered Yellow',
-            de: 'Gehe zu dem nicht verbundenen gelben Atomos',
-            fr: 'Allez vers la Gueule jaune non-liée',
-            ja: '線のない黄色アトモスに近づく',
-            cn: '靠近黄色小怪',
-            ko: '노란 아트모스로 이동',
-          };
+          if (data.donut[0] === 'wailing')
+            return output.goToUntetheredBlue();
+
+          return output.goToUntetheredYellow();
         }
         // If there's only a Sphere on the field, the other Atomos color isn't guaranteed safe.
         // Therefore we need to specify staying away from the Sphere-tethered Atomos.
-        if (data.sphere[0] === 'wailing') {
-          return {
-            en: 'Avoid Untethered Blue',
-            de: 'Weiche dem nicht verbundenen blauem Atomos aus',
-            fr: 'Evitez Gueule bleue non-liée',
-            ja: '線のない青色アトモスに離れ',
-            cn: '远离蓝色小怪',
-            ko: '파란 아트모스 피하기',
-          };
-        }
-        return {
+        if (data.sphere[0] === 'wailing')
+          return output.avoidUntetheredBlue();
+
+        return output.avoidUntetheredYellow();
+      },
+      outputStrings: {
+        goToAnyUntethered: {
+          en: 'Go To Any Untethered',
+          de: 'Gehe zu einem Unverbundenen',
+          ja: '線のないアトモスに近づく',
+          cn: '靠近无线小怪',
+          ko: '아트모스 근처로',
+        },
+        avoidAllUntethered: {
+          en: 'Avoid All Untethered',
+          de: 'Vermeide alle Unverbundenen',
+          ja: '線のないアトモスに離れ',
+          cn: '远离无线小怪',
+          ko: '모든 아트모스 피하기',
+        },
+        goToUntetheredBlue: {
+          en: 'Go to Untethered Blue',
+          de: 'Gehe zu dem nicht verbundenen blauem Atomos',
+          fr: 'Allez vers la Gueule bleue non-liée',
+          ja: '線のない青色アトモスに近づく',
+          cn: '靠近蓝色小怪',
+          ko: '파란 아트모스로 이동',
+        },
+        goToUntetheredYellow: {
+          en: 'Go to Untethered Yellow',
+          de: 'Gehe zu dem nicht verbundenen gelben Atomos',
+          fr: 'Allez vers la Gueule jaune non-liée',
+          ja: '線のない黄色アトモスに近づく',
+          cn: '靠近黄色小怪',
+          ko: '노란 아트모스로 이동',
+        },
+        avoidUntetheredBlue: {
+          en: 'Avoid Untethered Blue',
+          de: 'Weiche dem nicht verbundenen blauem Atomos aus',
+          fr: 'Evitez Gueule bleue non-liée',
+          ja: '線のない青色アトモスに離れ',
+          cn: '远离蓝色小怪',
+          ko: '파란 아트모스 피하기',
+        },
+        avoidUntetheredYellow: {
           en: 'Avoid Untethered Yellow',
           de: 'Weiche dem nicht verbundenen gelben Atomos aus',
           fr: 'Evitez Gueule jaune non-liée',
           ja: '線のない黄色アトモスに離れ',
           cn: '远离黄色小怪',
           ko: '노란 아트모스 피하기',
-        };
+        },
       },
     },
     {
@@ -359,17 +369,19 @@
     {
       id: 'Dun Scaith Prey Markers',
       netRegex: NetRegexes.gainsEffect({ effectId: '232' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Prey--Avoid party and keep moving',
-            de: 'Markiert - Weg von der Gruppe und bleib in Bewegung',
-            fr: 'Marquage - Evitez les autres et bougez',
-            ja: 'マーキング - 外に移動続ける',
-            cn: '离开人群并保持移动',
-            ko: '파티에게서 떨어지고 움직이기',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Prey--Avoid party and keep moving',
+          de: 'Markiert - Weg von der Gruppe und bleib in Bewegung',
+          fr: 'Marquage - Evitez les autres et bougez',
+          ja: 'マーキング - 外に移動続ける',
+          cn: '离开人群并保持移动',
+          ko: '파티에게서 떨어지고 움직이기',
+        },
       },
     },
     {
@@ -527,17 +539,19 @@
       id: 'Dun Scaith Nox Orbs',
       netRegex: NetRegexes.headMarker({ id: '005C' }),
       suppressSeconds: 5,
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Take orb outside',
-            de: 'Orb nach außen bringen',
-            fr: 'Prenez l\'orb à l\'extérieur',
-            ja: '黒い球体を外に引く',
-            cn: '把球带出人群，移动到球不再出现为止',
-            ko: '외곽으로 유도',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (matches.target == data.me)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Take orb outside',
+          de: 'Orb nach außen bringen',
+          fr: 'Prenez l\'orb à l\'extérieur',
+          ja: '黒い球体を外に引く',
+          cn: '把球带出人群，移动到球不再出现为止',
+          ko: '외곽으로 유도',
+        },
       },
     },
     {
@@ -634,25 +648,29 @@
     {
       id: 'Dun Scaith Hollow Night',
       netRegex: NetRegexes.headMarker({ id: '005B' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Gaze stack on YOU',
-            de: 'Blick-Sammeln auf DIR',
-            fr: 'Package sur VOUS',
-            ja: '自分に頭割り',
-            cn: '点名分摊',
-            ko: '시선 쉐어 대상자',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target) + ' and look away',
-          de: 'Sammeln bei ' + data.ShortName(matches.target) + ' und wewg schauen',
-          fr: 'Package sur ' + data.ShortName(matches.target) + ' et regardez ailleurs',
-          ja: data.ShortName(matches.target) + 'に頭割り、見ない',
-          cn: '靠近并背对' + data.ShortName(matches.target) + '分摊',
-          ko: data.ShortName(matches.target) + '쉐어, 바라보지않기',
-        };
+      alertText: function(data, matches, output) {
+        if (matches.target == data.me)
+          return output.gazeStackOnYou();
+
+        return output.stackOnAndLookAway({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        gazeStackOnYou: {
+          en: 'Gaze stack on YOU',
+          de: 'Blick-Sammeln auf DIR',
+          fr: 'Package sur VOUS',
+          ja: '自分に頭割り',
+          cn: '点名分摊',
+          ko: '시선 쉐어 대상자',
+        },
+        stackOnAndLookAway: {
+          en: 'Stack on ${player} and look away',
+          de: 'Sammeln bei ${player} und wewg schauen',
+          fr: 'Package sur ${player} et regardez ailleurs',
+          ja: '${player}に頭割り、見ない',
+          cn: '靠近并背对${player}分摊',
+          ko: '${player}쉐어, 바라보지않기',
+        },
       },
     },
     {
