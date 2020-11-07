@@ -57,12 +57,12 @@
       },
       infoText: function(data, matches) {
         return {
-          en: 'Cleanse ' + data.shortName(matches.target),
-          de: 'Reinige ' + data.shortName(matches.target),
-          fr: 'Guérison sur ' + data.shortName(matches.target),
+          en: 'Cleanse ' + data.ShortName(matches.target),
+          de: 'Reinige ' + data.ShortName(matches.target),
+          fr: 'Guérison sur ' + data.ShortName(matches.target),
           ja: 'エスナ：' + data.ShortName(matches.target),
-          cn: '康复' + data.shortName(matches.target),
-          ko: '' + data.shortName(matches.target) + '에스나',
+          cn: '康复' + data.ShortName(matches.target),
+          ko: '' + data.ShortName(matches.target) + '에스나',
         };
       },
     },
