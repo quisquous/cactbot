@@ -307,7 +307,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': '바하무트 프라임',
         'The Storm of Meracydia': '메라시디아의 폭풍',
@@ -333,7 +332,7 @@
         'MF Pepperoni': '메가플레어 원형 장판',
         'MF Share': '메가플레어 쉐어',
         'MF Spread': '메가플레어 산개',
-        'MF Tower': '메가플레어 기둥',
+        'MF Tower(\\(s\\))?': '메가플레어 기둥',
         'Marker': '징',
         'Tethers': '선',
         'Rage Of Bahamut': '용신의 포효',
