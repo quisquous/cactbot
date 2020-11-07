@@ -441,7 +441,7 @@
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
         if (matches.target != data.me)
           return;
-        return output.goToNum({ num: ['A', 'B', 'C'][data.naelDiveMarkerCount] });
+        return output.goToMarker({ marker: ['A', 'B', 'C'][data.naelDiveMarkerCount] });
       },
       outputStrings: {
         goToMarkerInDir: {
@@ -452,13 +452,13 @@
           cn: '去${marker} (在 ${dir}秒)',
           ko: '${marker}로 이동' + ' (in ${dir})',
         },
-        goToNum: {
-          en: 'Go To ${num}',
-          de: 'Gehe zu ${num}',
-          fr: 'Allez en ${num}',
-          ja: '${num}行くよ',
-          cn: '去${num}',
-          ko: '${num}로 이동',
+        goToMarker: {
+          en: 'Go To ${marker}',
+          de: 'Gehe zu ${marker}',
+          fr: 'Allez en ${marker}',
+          ja: '${marker}行くよ',
+          cn: '去${marker}',
+          ko: '${marker}로 이동',
         },
       },
     },
