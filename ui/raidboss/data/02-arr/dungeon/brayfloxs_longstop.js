@@ -144,11 +144,14 @@
       condition: function(data, matches) {
         return data.role === 'tank';
       },
-      alertText: {
-        en: 'Move Boss Out of Puddles',
-        de: 'Bewege den Boss aus der Fläche',
-        fr: 'Déplacez le boss hors des zones au sol',
-        cn: '把BOSS拉出圈圈',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move Boss Out of Puddles',
+          de: 'Bewege den Boss aus der Fläche',
+          fr: 'Déplacez le boss hors des zones au sol',
+          cn: '把BOSS拉出圈圈',
+        },
       },
     },
     {

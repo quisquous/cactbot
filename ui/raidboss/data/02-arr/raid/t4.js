@@ -15,12 +15,15 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'LOS Thrust',
-        de: 'LOS Gravitationsschlag',
-        fr: 'LOS Percée gravitationelle',
-        ja: 'グラビデカノン',
-        cn: '死刑',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'LOS Thrust',
+          de: 'LOS Gravitationsschlag',
+          fr: 'LOS Percée gravitationelle',
+          ja: 'グラビデカノン',
+          cn: '死刑',
+        },
       },
     },
     {
@@ -34,12 +37,15 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alarmText: {
-        en: 'LOS Pox',
-        de: 'LOS Pocken',
-        fr: 'LOS Vérole',
-        ja: 'ポックス',
-        cn: '血量上限降低',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'LOS Pox',
+          de: 'LOS Pocken',
+          fr: 'LOS Vérole',
+          ja: 'ポックス',
+          cn: '血量上限降低',
+        },
       },
     },
     {
@@ -51,12 +57,15 @@
       netRegexCn: NetRegexes.addedCombatant({ name: '亚拉戈发条骑士', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '알라그 태엽기사', capture: false }),
       suppressSeconds: 100000,
-      infoText: {
-        en: 'Magic on Soldier, Physical on Knights',
-        de: 'Magier auf Soldat, Physische auf Ritter',
-        fr: 'Magique sur Soldat, Physique sur Chevalier',
-        ja: '魔法はソルジャー、物理はナイト',
-        cn: '法系打士兵，物理打骑士',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Magic on Soldier, Physical on Knights',
+          de: 'Magier auf Soldat, Physische auf Ritter',
+          fr: 'Magique sur Soldat, Physique sur Chevalier',
+          ja: '魔法はソルジャー、物理はナイト',
+          cn: '法系打士兵，物理打骑士',
+        },
       },
     },
   ],

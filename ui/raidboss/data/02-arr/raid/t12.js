@@ -78,12 +78,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: 'B8C', source: 'フェニックス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: 'B8C', source: '不死鸟', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: 'B8C', source: '피닉스', capture: false }),
-      infoText: {
-        en: 'Blackfire Spread',
-        de: 'Schwarzfeuer verteilen',
-        fr: 'Flamme noire, dispersez-vous',
-        ja: '漆黒の炎、散開',
-        cn: '黑火分散',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Blackfire Spread',
+          de: 'Schwarzfeuer verteilen',
+          fr: 'Flamme noire, dispersez-vous',
+          ja: '漆黒の炎、散開',
+          cn: '黑火分散',
+        },
       },
     },
     {
@@ -92,12 +95,15 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Whitefire on YOU',
-        de: 'Weißfeuer auf DIR',
-        fr: 'Flamme blanche sur VOUS',
-        ja: '自分に白熱の炎',
-        cn: '白火点名',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Whitefire on YOU',
+          de: 'Weißfeuer auf DIR',
+          fr: 'Flamme blanche sur VOUS',
+          ja: '自分に白熱の炎',
+          cn: '白火点名',
+        },
       },
     },
     {
@@ -106,12 +112,15 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Bluefire Away',
-        de: 'Blaufeuer wegbringen',
-        fr: 'Flamme bleue, éloignez-vous',
-        ja: '青碧の炎、離れ',
-        cn: '蓝火远离',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bluefire Away',
+          de: 'Blaufeuer wegbringen',
+          fr: 'Flamme bleue, éloignez-vous',
+          ja: '青碧の炎、離れ',
+          cn: '蓝火远离',
+        },
       },
     },
     {

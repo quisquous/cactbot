@@ -20,13 +20,16 @@
       id: 'IfritNM Nail Add',
       regex: /Nail Add/,
       beforeSeconds: 0.5,
-      infoText: {
-        en: 'Kill Nail',
-        de: 'infernalische Fessel zerstören',
-        fr: 'Détruisez le clou',
-        ja: '炎獄の楔を討つ',
-        cn: '击杀火狱之楔',
-        ko: '말뚝 파괴하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Nail',
+          de: 'infernalische Fessel zerstören',
+          fr: 'Détruisez le clou',
+          ja: '炎獄の楔を討つ',
+          cn: '击杀火狱之楔',
+          ko: '말뚝 파괴하기',
+        },
       },
     },
   ],
