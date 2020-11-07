@@ -17,26 +17,32 @@
       id: 'T9 Dalamud Dive',
       regex: /Dalamud Dive/,
       beforeSeconds: 5,
-      infoText: {
-        en: 'Dive on Main Tank',
-        de: 'Sturz auf den Main Tank',
-        fr: 'Plongeon sur le Main Tank',
-        ja: 'MTに飛んでくる',
-        cn: '凶鸟跳点MT',
-        ko: '광역 탱버',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dive on Main Tank',
+          de: 'Sturz auf den Main Tank',
+          fr: 'Plongeon sur le Main Tank',
+          ja: 'MTに飛んでくる',
+          cn: '凶鸟跳点MT',
+          ko: '광역 탱버',
+        },
       },
     },
     {
       id: 'T9 Super Nova',
       regex: /Super Nova x3/,
       beforeSeconds: 4,
-      infoText: {
-        en: 'Bait Super Novas Outside',
-        de: 'Köder Supernova draußen',
-        fr: 'Attirez les Supernovas à l\'extérieur',
-        ja: 'スーパーノヴァを外に設置',
-        cn: '人群外放黑洞',
-        ko: '초신성 외곽으로 유도',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Super Novas Outside',
+          de: 'Köder Supernova draußen',
+          fr: 'Attirez les Supernovas à l\'extérieur',
+          ja: 'スーパーノヴァを外に設置',
+          cn: '人群外放黑洞',
+          ko: '초신성 외곽으로 유도',
+        },
       },
     },
   ],
@@ -51,13 +57,16 @@
         return matches.duration - 5;
       },
       durationSeconds: 5,
-      alarmText: {
-        en: 'Blight on YOU',
-        de: 'Pestschwinge auf DIR',
-        fr: 'Bile de rapace sur VOUS',
-        ja: '自分に凶鳥毒気',
-        cn: '毒气点名',
-        ko: '5초후 디버프 폭발',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Blight on YOU',
+          de: 'Pestschwinge auf DIR',
+          fr: 'Bile de rapace sur VOUS',
+          ja: '自分に凶鳥毒気',
+          cn: '毒气点名',
+          ko: '5초후 디버프 폭발',
+        },
       },
     },
     {
@@ -142,13 +151,16 @@
       condition: function(data) {
         return data.CanSilence();
       },
-      alertText: {
-        en: 'Silence Blue Golem',
-        de: 'Blauen Golem verstummen',
-        fr: 'Interrompez le Golem bleu',
-        ja: '沈黙：青ゴーレム',
-        cn: '沉默蓝色小怪',
-        ko: '파란골렘 기술끊기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Silence Blue Golem',
+          de: 'Blauen Golem verstummen',
+          fr: 'Interrompez le Golem bleu',
+          ja: '沈黙：青ゴーレム',
+          cn: '沉默蓝色小怪',
+          ko: '파란골렘 기술끊기',
+        },
       },
     },
     {
@@ -159,13 +171,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '83B', source: 'ネール・デウス・ダーナス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '83B', source: '奈尔·神·达纳斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '83B', source: '넬 데우스 다르누스', capture: false }),
-      alertText: {
-        en: 'Heavensfall',
-        de: 'Himmelssturz',
-        fr: 'Destruction universelle',
-        ja: '天地崩壊',
-        cn: '击退AOE',
-        ko: '천지붕괴',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Heavensfall',
+          de: 'Himmelssturz',
+          fr: 'Destruction universelle',
+          ja: '天地崩壊',
+          cn: '击退AOE',
+          ko: '천지붕괴',
+        },
       },
     },
     {
@@ -174,16 +189,19 @@
       condition: function(data, matches) {
         return data.me == matches.target && !data.garotte;
       },
-      infoText: {
-        en: 'Garotte on YOU',
-        de: 'Leicht fixierbar auf DIR',
-        fr: 'Sangle accélérée sur VOUS',
-        ja: '自分に拘束加速',
-        cn: '连坐点名',
-        ko: '구속 가속',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.garotte = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Garotte on YOU',
+          de: 'Leicht fixierbar auf DIR',
+          fr: 'Sangle accélérée sur VOUS',
+          ja: '自分に拘束加速',
+          cn: '连坐点名',
+          ko: '구속 가속',
+        },
       },
     },
     {
@@ -197,13 +215,16 @@
       condition: function(data) {
         return data.garotte;
       },
-      alarmText: {
-        en: 'Cleanse Garotte',
-        de: 'reinige Leicht fixierbar',
-        fr: 'Dissipez Sangle accélérée',
-        ja: '白い床に乗る',
-        cn: '踩白圈',
-        ko: '흰색 장판 밟기',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Cleanse Garotte',
+          de: 'reinige Leicht fixierbar',
+          fr: 'Dissipez Sangle accélérée',
+          ja: '白い床に乗る',
+          cn: '踩白圈',
+          ko: '흰색 장판 밟기',
+        },
       },
     },
     {
@@ -380,13 +401,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alarmText: {
-        en: 'Thunder on YOU',
-        de: 'Blitz auf DIR',
-        fr: 'Foudre sur VOUS',
-        ja: '自分にサンダー',
-        cn: '雷点名',
-        ko: '번개 대상자',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Thunder on YOU',
+          de: 'Blitz auf DIR',
+          fr: 'Foudre sur VOUS',
+          ja: '自分にサンダー',
+          cn: '雷点名',
+          ko: '번개 대상자',
+        },
       },
     },
     {

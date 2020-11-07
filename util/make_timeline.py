@@ -289,6 +289,10 @@ def main(args):
         ):
             continue
 
+        # if only combatants was specified and combatant not in the list
+        if args.only_combatant and entry["combatant"] not in args.only_combatant:
+            continue
+
         # Ignore aoe spam
         if entry["time"] == last_entry["time"] and entry["ability_id"] == last_entry["ability_id"]:
             continue
@@ -425,7 +429,14 @@ if __name__ == "__main__":
         "--ignore-combatant",
         nargs="*",
         default=[],
-        help="Combatant names to ignore, e.g. Aratama Soul",
+        help='Combatant names to ignore, e.g. "Aratama Soul"',
+    )
+    parser.add_argument(
+        "-oc",
+        "--only-combatant",
+        nargs="*",
+        default=[],
+        help='Only the listed combatants will generate timeline data, e.g. "Aratama Soul"',
     )
     parser.add_argument(
         "-p",

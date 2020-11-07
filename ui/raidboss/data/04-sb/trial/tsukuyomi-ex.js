@@ -64,7 +64,7 @@
             fr: 'Tank buster sur ' + data.ShortName(matches.target),
             ja: data.ShortName(matches.target) + 'にタンクバスター',
             cn: '死刑 点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(target) + '" 탱버',
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },

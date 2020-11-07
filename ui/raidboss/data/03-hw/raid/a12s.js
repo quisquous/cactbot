@@ -138,14 +138,13 @@
       },
       infoText: function(data, matches) {
         let partner = matches.source == data.me ? matches.target : matches.source;
-        let suffix = ' (' + data.ShortName(partner) + ')';
         return {
-          en: 'Close Tethers' + suffix,
-          de: 'Nahe Verbindungen' + suffix,
-          fr: 'Liens proches' + suffix,
-          ja: suffix + 'に近づく',
-          cn: '靠近连线' + suffix,
-          ko: '강제접근: 상대와 가까이 붙기' + suffix,
+          en: 'Close Tethers (' + data.ShortName(partner) + ')',
+          de: 'Nahe Verbindungen (' + data.ShortName(partner) + ')',
+          fr: 'Liens proches (' + data.ShortName(partner) + ')',
+          ja: '(' + data.ShortName(partner) + ')に近づく',
+          cn: '靠近连线 (' + data.ShortName(partner) + ')',
+          ko: '강제접근: 상대와 가까이 붙기 (' + data.ShortName(partner) + ')',
         };
       },
     },
@@ -157,14 +156,13 @@
       },
       alertText: function(data, matches) {
         let partner = matches.source == data.me ? matches.target : matches.source;
-        let suffix = ' (' + data.ShortName(partner) + ')';
         return {
-          en: 'Far Tethers' + suffix,
-          de: 'Entfernte Verbindungen' + suffix,
-          fr: 'Liens éloignés' + suffix,
-          ja: suffix + 'に離れ',
-          cn: '远离连线' + suffix,
-          ko: '접근금지: 상대와 떨어지기' + suffix,
+          en: 'Far Tethers (' + data.ShortName(partner) + ')',
+          de: 'Entfernte Verbindungen (' + data.ShortName(partner) + ')',
+          fr: 'Liens éloignés (' + data.ShortName(partner) + ')',
+          ja: ' (' + data.ShortName(partner) + ')に離れ',
+          cn: '远离连线 (' + data.ShortName(partner) + ')',
+          ko: '접근금지: 상대와 떨어지기 (' + data.ShortName(partner) + ')',
         };
       },
     },

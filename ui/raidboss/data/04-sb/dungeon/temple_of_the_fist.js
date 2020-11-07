@@ -153,12 +153,12 @@
       },
       infoText: function(data, matches) {
         return {
-          en: 'Heal ' + data.shortName(matches.target) + ' soon',
-          de: 'Bald ' + data.shortName(matches.target) + ' heilen',
-          fr: 'Soignez ' + data.shortName(matches.target) + ' bientôt',
+          en: 'Heal ' + data.ShortName(matches.target) + ' soon',
+          de: 'Bald ' + data.ShortName(matches.target) + ' heilen',
+          fr: 'Soignez ' + data.ShortName(matches.target) + ' bientôt',
           ja: 'すぐに' + data.ShortName(matches.target) + 'にヒール',
-          cn: '马上奶 ' + data.shortName(matches.target),
-          ko: '' + data.shortName(matches.target) + '힐 준비',
+          cn: '马上奶 ' + data.ShortName(matches.target),
+          ko: '' + data.ShortName(matches.target) + '힐 준비',
         };
       },
     },

@@ -83,13 +83,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Megaflare Stack',
-        de: 'Megaflare Sammeln',
-        fr: 'MégaBrasier, Packez-vous',
-        ja: 'メガフレア、集合',
-        cn: '百万核爆集合',
-        ko: '메가플레어 쉐어',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Megaflare Stack',
+          de: 'Megaflare Sammeln',
+          fr: 'MégaBrasier, Packez-vous',
+          ja: 'メガフレア、集合',
+          cn: '百万核爆集合',
+          ko: '메가플레어 쉐어',
+        },
       },
     },
     {
@@ -111,13 +114,16 @@
       condition: function(data, matches) {
         return data.me == matches.source;
       },
-      infoText: {
-        en: 'Tempest Tether on YOU',
-        de: 'Sturm Verbindung auf DIR',
-        fr: 'Liens de tempête sur VOUS',
-        ja: '自分にテンペストウィング',
-        cn: '风圈点名',
-        ko: '폭풍 줄 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tempest Tether on YOU',
+          de: 'Sturm Verbindung auf DIR',
+          fr: 'Liens de tempête sur VOUS',
+          ja: '自分にテンペストウィング',
+          cn: '风圈点名',
+          ko: '폭풍 줄 대상자',
+        },
       },
     },
     {

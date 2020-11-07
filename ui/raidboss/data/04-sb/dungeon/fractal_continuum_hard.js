@@ -204,10 +204,10 @@
         if (!data[partner])
           return;
         return {
-          en: 'Stack with ' + data.shortName(data[partner]),
-          de: 'Sammeln mit ' + data.shortName(data[partner]),
-          fr: 'Packez-vous avec ' + data.shortName(data[partner]),
-          cn: '靠近' + data.shortName(data[partner]) + '集合',
+          en: 'Stack with ' + data.ShortName(data[partner]),
+          de: 'Sammeln mit ' + data.ShortName(data[partner]),
+          fr: 'Packez-vous avec ' + data.ShortName(data[partner]),
+          cn: '靠近' + data.ShortName(data[partner]) + '集合',
         };
       },
     },

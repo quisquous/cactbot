@@ -132,14 +132,7 @@
       netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人に活を入れた.*?', capture: false }),
       netRegexCn: NetRegexes.gameNameLog({ line: '.*激励木人.*?', capture: false }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 힘을 불어넣습니다.*?', capture: false }),
-      alertText: {
-        en: 'PSYCH!!!',
-        de: 'AUF GEHTS!!!',
-        fr: 'MOTIVATION !!!',
-        ja: '活を入れる！！',
-        cn: '激励！！',
-        ko: '힘내라!!',
-      },
+      alertText: (data, _, output) => output.text(),
       groupTTS: {
         en: 'group psych',
         de: 'Gruppen auf gehts',
@@ -156,6 +149,16 @@
         cn: '激励',
         ko: '힘내라!',
       },
+      outputStrings: {
+        text: {
+          en: 'PSYCH!!!',
+          de: 'AUF GEHTS!!!',
+          fr: 'MOTIVATION !!!',
+          ja: '活を入れる！！',
+          cn: '激励！！',
+          ko: '힘내라!!',
+        },
+      },
     },
     {
       id: 'Test Laugh',
@@ -166,14 +169,7 @@
       netRegexCn: NetRegexes.gameNameLog({ line: '.*看着木人高声大笑.*?', capture: false }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 보고 폭소를 터뜨립니다.*?', capture: false }),
       suppressSeconds: 5,
-      alarmText: {
-        en: 'hahahahaha',
-        de: 'hahahahaha',
-        fr: 'hahahahaha',
-        ja: 'ハハハハハ',
-        cn: '2333333333',
-        ko: '푸하하하하핳',
-      },
+      alarmText: (data, _, output) => output.text(),
       groupTTS: {
         en: 'group laugh',
         de: 'Gruppenlache',
@@ -189,6 +185,16 @@
         ja: 'ハハハハハ',
         cn: '哈哈哈哈哈哈',
         ko: '푸하하하하핳',
+      },
+      outputStrings: {
+        text: {
+          en: 'hahahahaha',
+          de: 'hahahahaha',
+          fr: 'hahahahaha',
+          ja: 'ハハハハハ',
+          cn: '2333333333',
+          ko: '푸하하하하핳',
+        },
       },
     },
     {

@@ -43,11 +43,11 @@
           };
         }
         return {
-          en: 'Stack on ' + data.shortName(matches.target),
-          de: 'Sammeln auf ' + data.shortName(matches.target),
+          en: 'Stack on ' + data.ShortName(matches.target),
+          de: 'Sammeln auf ' + data.ShortName(matches.target),
           ja: data.ShortName(matches.target) + 'に集合',
-          cn: '靠近' + data.shortName(matches.target) + '集合',
-          ko: '' + data.shortName(matches.target) + ' 쉐어징',
+          cn: '靠近' + data.ShortName(matches.target) + '集合',
+          ko: '' + data.ShortName(matches.target) + ' 쉐어징',
         };
       },
     },

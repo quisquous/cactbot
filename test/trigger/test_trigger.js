@@ -509,6 +509,8 @@ const testOutputStrings = (file, contents) => {
         }
       }
 
+      const usedOutputStringEntries = new Set();
+
       // Now, we have an optional |outputStrings| and an optional |response|.
       // Verify that any function in |trigger| or |response| using |output|
       // has a corresponding key in |outputStrings|.  But hackily.
@@ -526,6 +528,7 @@ const testOutputStrings = (file, contents) => {
             errorFunc(`${file}: missing key '${key}' in '${trigger.id}' outputStrings`);
             return;
           }
+          usedOutputStringEntries.add(key);
           keys.push(key);
           return fullMatch;
         });
@@ -535,6 +538,15 @@ const testOutputStrings = (file, contents) => {
             if (!funcStr.match(`\\b${param}\\s*:`))
               errorFunc(`${file}: '${trigger.id}' does not define param '${param}' for outputStrings entry '${key}'`);
           }
+        }
+      }
+
+      // Responses can have unused output strings in some cases, such as ones
+      // that work with and without matching.
+      if (!response) {
+        for (const key in outputStrings) {
+          if (!usedOutputStringEntries.has(key))
+            errorFunc(`${file}: '${trigger.id}' has unused outputStrings entry '${key}'`);
         }
       }
     }

@@ -97,12 +97,15 @@
       regexCn: Regexes.hasHP({ name: '卡利亚', hp: '60', capture: false }),
       regexKo: Regexes.hasHP({ name: '칼리야', hp: '60', capture: false }),
       sound: 'Long',
-      infoText: {
-        en: 'Out of Middle',
-        de: 'Raus aus der Mitte',
-        fr: 'Hors du milieu',
-        ja: '中央から離れ',
-        cn: '离开中间',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Out of Middle',
+          de: 'Raus aus der Mitte',
+          fr: 'Hors du milieu',
+          ja: '中央から離れ',
+          cn: '离开中间',
+        },
       },
     },
     {
@@ -116,12 +119,15 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alarmText: {
-        en: 'Lightning on YOU',
-        de: 'Blitz auf DIR',
-        fr: 'Éclair sur VOUS',
-        ja: '自分にフォークライトニング',
-        cn: '雷点名',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Lightning on YOU',
+          de: 'Blitz auf DIR',
+          fr: 'Éclair sur VOUS',
+          ja: '自分にフォークライトニング',
+          cn: '雷点名',
+        },
       },
     },
     {
@@ -133,12 +139,15 @@
       netRegexCn: NetRegexes.ability({ id: 'B78', source: '卡利亚', capture: false }),
       netRegexKo: NetRegexes.ability({ id: 'B78', source: '칼리야', capture: false }),
       sound: 'Long',
-      infoText: {
-        en: 'Final Phase',
-        de: 'Finale Phase',
-        fr: 'Phase finale',
-        ja: 'フェイス３',
-        cn: 'P3',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Final Phase',
+          de: 'Finale Phase',
+          fr: 'Phase finale',
+          ja: 'フェイス３',
+          cn: 'P3',
+        },
       },
     },
     {

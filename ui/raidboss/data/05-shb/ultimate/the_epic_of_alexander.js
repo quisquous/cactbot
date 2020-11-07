@@ -78,11 +78,11 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
           if (data.liquidTank) {
             return {
               en: 'Tank Buster on ' + data.ShortName(data.liquidTank),
-              de: 'Tank buster',
+              de: 'Tank buster auf ' + data.ShortName(data.liquidTank),
               fr: 'Tank buster sur ' + data.ShortName(data.liquidTank),
-              ja: 'タンクバスター',
-              ko: '탱크버스터',
-              cn: '死刑 点' + data.ShortName(data.liquidTank),
+              ja: data.ShortName(data.liquidTank) + 'にタンクバスター',
+              cn: '死刑 点 ' + data.ShortName(data.liquidTank),
+              ko: '"' + data.ShortName(data.liquidTank) + '" 탱버',
             };
           }
           return {
