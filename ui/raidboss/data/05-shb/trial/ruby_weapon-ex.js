@@ -12,24 +12,30 @@
       id: 'RubyEx Magitek Meteor Behind',
       regex: /Magitek Meteor/,
       beforeSeconds: 4,
-      alertText: {
-        en: 'Hide Behind Meteor',
-        de: 'Hinter dem Meteor verstecken',
-        fr: 'Cachez-vous derrière le météore',
-        cn: '躲在陨石后',
-        ko: '운석 뒤에 숨기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hide Behind Meteor',
+          de: 'Hinter dem Meteor verstecken',
+          fr: 'Cachez-vous derrière le météore',
+          cn: '躲在陨石后',
+          ko: '운석 뒤에 숨기',
+        },
       },
     },
     {
       id: 'RubyEx Magitek Meteor Away',
       regex: /Magitek Meteor/,
       beforeSeconds: 0,
-      infoText: {
-        en: 'Away From Meteor',
-        de: 'Weg vom Meteor',
-        fr: 'Éloignez-vous du météore',
-        cn: '远离陨石',
-        ko: '운석에게서 멀어지기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away From Meteor',
+          de: 'Weg vom Meteor',
+          fr: 'Éloignez-vous du météore',
+          cn: '远离陨石',
+          ko: '운석에게서 멀어지기',
+        },
       },
     },
   ],
@@ -68,12 +74,15 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AD0', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AD0', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AD0', capture: false }),
-      infoText: {
-        en: 'Away from Lines',
-        de: 'Weg von den Linien',
-        fr: 'En dehors des sillons',
-        cn: '远离线',
-        ko: '선 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away from Lines',
+          de: 'Weg von den Linien',
+          fr: 'En dehors des sillons',
+          cn: '远离线',
+          ko: '선 피하기',
+        },
       },
     },
     {
@@ -84,12 +93,15 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4ACF', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4ACF', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4ACF', capture: false }),
-      alertText: {
-        en: 'Get On Lines',
-        de: 'Auf die Linien gehen',
-        fr: 'Sur les sillons',
-        cn: '靠近线',
-        ko: '선 위로 올라가기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get On Lines',
+          de: 'Auf die Linien gehen',
+          fr: 'Sur les sillons',
+          cn: '靠近线',
+          ko: '선 위로 올라가기',
+        },
       },
     },
     {
@@ -153,12 +165,15 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4B2D', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4B2D', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4B2D', capture: false }),
-      infoText: {
-        en: 'Enrage!',
-        de: 'Finalangriff!',
-        fr: 'Enrage !',
-        cn: '狂暴',
-        ko: '전멸기!',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Enrage!',
+          de: 'Finalangriff!',
+          fr: 'Enrage !',
+          cn: '狂暴',
+          ko: '전멸기!',
+        },
       },
     },
     {
@@ -314,12 +329,15 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AF0', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AF0', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AF0', capture: false }),
-      infoText: {
-        en: 'Away from Meteor!',
-        de: 'Weg vom Meteor!',
-        fr: 'Éloignez-vous du météore !',
-        cn: '远离陨石',
-        ko: '운석에게서 멀어지기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away from Meteor!',
+          de: 'Weg vom Meteor!',
+          fr: 'Éloignez-vous du météore !',
+          cn: '远离陨石',
+          ko: '운석에게서 멀어지기',
+        },
       },
     },
     {
@@ -332,12 +350,15 @@
       netRegexKo: NetRegexes.ability({ source: '루비 웨폰', id: '4AB6', capture: false }),
       condition: (data) => data.role == 'tank',
       delaySeconds: 11.5,
-      alarmText: {
-        en: 'Stand in Meteor Tankbuster',
-        de: 'Stehe im Meteor - Tankbuster',
-        fr: 'Tank buster, Restez dans la comète',
-        cn: '接刀',
-        ko: '운석 막기',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand in Meteor Tankbuster',
+          de: 'Stehe im Meteor - Tankbuster',
+          fr: 'Tank buster, Restez dans la comète',
+          cn: '接刀',
+          ko: '운석 막기',
+        },
       },
     },
     {
@@ -350,24 +371,30 @@
       netRegexKo: NetRegexes.ability({ source: '루비 웨폰', id: '4AB6', capture: false }),
       condition: (data) => data.role != 'tank',
       delaySeconds: 13,
-      alertText: {
-        en: 'Kill Meteor Adds',
-        de: 'Besiege die Meteor Adds',
-        fr: 'Tuez les comètes',
-        cn: '击杀陨石',
-        ko: '운석 부수기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Meteor Adds',
+          de: 'Besiege die Meteor Adds',
+          fr: 'Tuez les comètes',
+          cn: '击杀陨石',
+          ko: '운석 부수기',
+        },
       },
     },
     {
       id: 'RubyEx Bradamante',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Avoid tanks with laser',
-        de: 'Tanks nicht mit dem Laser treffen',
-        fr: 'Évitez les tanks avec votre laser',
-        cn: '躲开坦克激光',
-        ko: '레이저 대상자 - 탱커 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid tanks with laser',
+          de: 'Tanks nicht mit dem Laser treffen',
+          fr: 'Évitez les tanks avec votre laser',
+          cn: '躲开坦克激光',
+          ko: '레이저 대상자 - 탱커 피하기',
+        },
       },
     },
     {

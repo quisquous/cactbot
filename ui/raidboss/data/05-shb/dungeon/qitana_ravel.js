@@ -39,13 +39,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3C8B', source: '洛查特尔', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3C8B', source: '로차틀', capture: false }),
       delaySeconds: 5,
-      infoText: {
-        en: 'Look for pillar',
-        de: 'Auf die Pfeiler schauen',
-        fr: 'Cherchez les piliers',
-        ja: '光った像見ながら身を隠して',
-        cn: '找柱子躲',
-        ko: '빛나는 기둥 위치확인',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look for pillar',
+          de: 'Auf die Pfeiler schauen',
+          fr: 'Cherchez les piliers',
+          ja: '光った像見ながら身を隠して',
+          cn: '找柱子躲',
+          ko: '빛나는 기둥 위치확인',
+        },
       },
     },
     {
@@ -58,13 +61,16 @@
       netRegexKo: NetRegexes.startsUsing({ id: '3C8D', source: '로차틀', capture: false }),
       delaySeconds: 6,
       durationSeconds: 6,
-      infoText: {
-        en: 'Stay on left flank',
-        de: 'Auf seiner linken Seite stehen',
-        fr: 'Restez sur le flanc gauche',
-        ja: 'ボスの左側へ',
-        cn: '左侧翼躲避',
-        ko: '보스 왼쪽 측면으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stay on left flank',
+          de: 'Auf seiner linken Seite stehen',
+          fr: 'Restez sur le flanc gauche',
+          ja: 'ボスの左側へ',
+          cn: '左侧翼躲避',
+          ko: '보스 왼쪽 측면으로',
+        },
       },
     },
     {
@@ -77,13 +83,16 @@
       netRegexKo: NetRegexes.startsUsing({ id: '3C8E', source: '로차틀', capture: false }),
       delaySeconds: 6,
       durationSeconds: 6,
-      infoText: {
-        en: 'Stay on right flank',
-        de: 'Auf seiner rechten Seite stehen',
-        fr: 'Restez sur le flanc droit',
-        ja: 'ボスの右側へ',
-        cn: '右侧翼躲避',
-        ko: '보스 오른쪽 측면으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stay on right flank',
+          de: 'Auf seiner rechten Seite stehen',
+          fr: 'Restez sur le flanc droit',
+          ja: 'ボスの右側へ',
+          cn: '右侧翼躲避',
+          ko: '보스 오른쪽 측면으로',
+        },
       },
     },
     {
@@ -162,13 +171,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Run Away From Boss',
-        de: 'Renn weg vom Boss',
-        fr: 'Courez loin du boss',
-        ja: 'ボスから離れ',
-        cn: '远离Boss',
-        ko: '보스와 거리 벌리기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Run Away From Boss',
+          de: 'Renn weg vom Boss',
+          fr: 'Courez loin du boss',
+          ja: 'ボスから離れ',
+          cn: '远离Boss',
+          ko: '보스와 거리 벌리기',
+        },
       },
     },
     {
@@ -177,13 +189,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Drop Poison Outside',
-        de: 'Gift am Rand ablegen',
-        fr: 'Déposez le poison à l\'extérieur',
-        ja: '遠くに捨て',
-        cn: '远处放毒',
-        ko: '독 장판을 바깥 쪽에 버리기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop Poison Outside',
+          de: 'Gift am Rand ablegen',
+          fr: 'Déposez le poison à l\'extérieur',
+          ja: '遠くに捨て',
+          cn: '远处放毒',
+          ko: '독 장판을 바깥 쪽에 버리기',
+        },
       },
     },
     {
@@ -199,13 +214,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3CA1', source: 'エロース', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3CA1', source: '艾洛斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CA1', source: '에로스', capture: false }),
-      alertText: {
-        en: 'Spread to Sides',
-        de: 'Auf die Seiten verteilen',
-        fr: 'Dispersez-vous sur les côtés',
-        ja: '横に散開',
-        cn: '两侧分散',
-        ko: '좌우 측면으로 산개',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spread to Sides',
+          de: 'Auf die Seiten verteilen',
+          fr: 'Dispersez-vous sur les côtés',
+          ja: '横に散開',
+          cn: '两侧分散',
+          ko: '좌우 측면으로 산개',
+        },
       },
     },
   ],

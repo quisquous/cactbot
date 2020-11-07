@@ -90,14 +90,17 @@
       // This cast is 5 seconds, so don't muddy the back/front call.
       // But also don't wait too long to give directions?
       delaySeconds: 2,
-      infoText: {
-        // Sorry, there are no mirror colors in the logs (YET),
-        // and so this is the best that can be done.
-        en: 'Go Back, Red Mirror Side',
-        de: 'Nach Hinten gehen, Seite des roten Spiegels',
-        fr: 'Allez derrière, côté miroir rouge',
-        cn: '去后面，红镜子侧',
-        ko: '빨간 거울 방향 구석으로 이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          // Sorry, there are no mirror colors in the logs (YET),
+          // and so this is the best that can be done.
+          en: 'Go Back, Red Mirror Side',
+          de: 'Nach Hinten gehen, Seite des roten Spiegels',
+          fr: 'Allez derrière, côté miroir rouge',
+          cn: '去后面，红镜子侧',
+          ko: '빨간 거울 방향 구석으로 이동',
+        },
       },
     },
     {
@@ -113,12 +116,15 @@
       },
       // See comments on Biting Frost First Mirror above.
       delaySeconds: 2,
-      infoText: {
-        en: 'Go Front, Green Mirror Side',
-        de: 'Nach Vorne gehen, Seite des grünen Spiegels',
-        fr: 'Allez devant, côté miroir vert',
-        cn: '去前面，绿镜子侧',
-        ko: '초록 거울 방향 구석으로 이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go Front, Green Mirror Side',
+          de: 'Nach Vorne gehen, Seite des grünen Spiegels',
+          fr: 'Allez devant, côté miroir vert',
+          cn: '去前面，绿镜子侧',
+          ko: '초록 거울 방향 구석으로 이동',
+        },
       },
     },
     {
@@ -130,12 +136,15 @@
       netRegexCn: NetRegexes.ability({ source: '冰面镜', id: '4DB[78]', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '얼음 거울', id: '4DB[78]', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'Swap Sides',
-        de: 'Seiten wechseln',
-        fr: 'Changez de côté',
-        cn: '换边',
-        ko: '반대로 이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Swap Sides',
+          de: 'Seiten wechseln',
+          fr: 'Changez de côté',
+          cn: '换边',
+          ko: '반대로 이동',
+        },
       },
     },
     {
@@ -246,12 +255,15 @@
         return data.CanCleanse();
       },
       suppressSeconds: 1,
-      infoText: {
-        en: 'Cleanse',
-        de: 'Reinigen',
-        fr: 'Guérison',
-        cn: '驱散',
-        ko: '에스나',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Cleanse',
+          de: 'Reinigen',
+          fr: 'Guérison',
+          cn: '驱散',
+          ko: '에스나',
+        },
       },
     },
     {
@@ -301,24 +313,30 @@
       netRegex: NetRegexes.gainsEffect({ effectId: '8CD' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 1,
-      infoText: {
-        en: 'Chain on YOU',
-        de: 'Kette auf DIR',
-        fr: 'Chaîne sur VOUS',
-        cn: '连线点名',
-        ko: '사슬 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Chain on YOU',
+          de: 'Kette auf DIR',
+          fr: 'Chaîne sur VOUS',
+          cn: '连线点名',
+          ko: '사슬 대상자',
+        },
       },
     },
     {
       id: 'E8S Holy Light',
       netRegex: NetRegexes.tether({ id: '0002' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Orb on YOU',
-        de: 'Orb auf DIR',
-        fr: 'Orbe sur VOUS',
-        cn: '拉球点名',
-        ko: '구슬 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Orb on YOU',
+          de: 'Orb auf DIR',
+          fr: 'Orbe sur VOUS',
+          cn: '拉球点名',
+          ko: '구슬 대상자',
+        },
       },
     },
     {
@@ -641,12 +659,15 @@
         return data.CanCleanse();
       },
       suppressSeconds: 1,
-      infoText: {
-        en: 'Cleanse DPS Only',
-        de: 'Nur DPS reinigen',
-        fr: 'Guérison => DPS seulement',
-        cn: '驱散DPS',
-        ko: '딜러만 에스나',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Cleanse DPS Only',
+          de: 'Nur DPS reinigen',
+          fr: 'Guérison => DPS seulement',
+          cn: '驱散DPS',
+          ko: '딜러만 에스나',
+        },
       },
     },
     {
@@ -658,12 +679,15 @@
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D7E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D7E', capture: false }),
       condition: (data) => data.role == 'tank',
-      alertText: {
-        en: 'Tank Stack in Tower',
-        de: 'Auf Tank im Turm sammeln',
-        fr: 'Package tanks dans les tours',
-        cn: '坦克塔内分摊',
-        ko: '탱커 쉐어',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Stack in Tower',
+          de: 'Auf Tank im Turm sammeln',
+          fr: 'Package tanks dans les tours',
+          cn: '坦克塔内分摊',
+          ko: '탱커 쉐어',
+        },
       },
     },
     {
@@ -675,12 +699,15 @@
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D7F', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D7F', capture: false }),
       condition: (data) => data.role == 'tank',
-      alertText: {
-        en: 'Tank Spread in Tower',
-        de: 'Tank im Turm verteilen',
-        fr: 'Dispersion tanks dans les tours',
-        cn: '坦克塔内分散',
-        ko: '탱커 산개',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Spread in Tower',
+          de: 'Tank im Turm verteilen',
+          fr: 'Dispersion tanks dans les tours',
+          cn: '坦克塔内分散',
+          ko: '탱커 산개',
+        },
       },
     },
   ],

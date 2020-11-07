@@ -19,11 +19,14 @@
       netRegexDe: NetRegexes.gameLog({ line: 'Du hast einen? verhüllten? (?:Nutzbaum|Vegetation|Steinbruch|Lagerstätte)? der Güte.*?', capture: false }),
       netRegexCn: NetRegexes.gameLog({ line: '在(?:东|南|西|北|东北|东南|西北|西南)+感知到了80级的梦幻的(?:矿脉|石场|良材|草场)！.*?', capture: false }),
       netRegexKo: NetRegexes.gameLog({ line: '(?:동|서|남|북)+쪽에 레벨 80 환상의 (?:광맥|바위터|성목|약초밭)(?:이|가) 있습니다!.*?', capture: false }),
-      alertText: {
-        en: 'Found clouded gather point',
-        de: 'Verhüllte Sammlerstelle gefunden',
-        cn: '梦幻采集点刷了！冲鸭！！',
-        ko: '환상의 광맥/성목 발견',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Found clouded gather point',
+          de: 'Verhüllte Sammlerstelle gefunden',
+          cn: '梦幻采集点刷了！冲鸭！！',
+          ko: '환상의 광맥/성목 발견',
+        },
       },
     },
     {
@@ -32,11 +35,14 @@
       netRegexDe: NetRegexes.gameLog({ line: '.*\ue0bbDas Diadem *?', capture: false }),
       netRegexCn: NetRegexes.gameLog({ line: '.*\ue0bb云冠群岛 .*?', capture: false }),
       netRegexKo: NetRegexes.gameLog({ line: '.*\ue0bb디아뎀 제도 .*?', capture: false }),
-      infoText: {
-        en: 'Check coordinate on chat',
-        de: 'Überprüfe die Koordinaten im Chat',
-        cn: '检查聊天栏中的坐标',
-        ko: '디아뎀 좌표 채팅 올라옴',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Check coordinate on chat',
+          de: 'Überprüfe die Koordinaten im Chat',
+          cn: '检查聊天栏中的坐标',
+          ko: '디아뎀 좌표 채팅 올라옴',
+        },
       },
     },
   ],

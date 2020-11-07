@@ -56,13 +56,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D45', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D45', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D45', source: '티타니아', capture: false }),
-      infoText: {
-        en: 'Water Positions',
-        de: 'Wasser Positionen',
-        fr: 'Positions pour l\'eau',
-        ja: 'ポジションへ',
-        cn: '水毒',
-        ko: '물 장판 위치',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Water Positions',
+          de: 'Wasser Positionen',
+          fr: 'Positions pour l\'eau',
+          ja: 'ポジションへ',
+          cn: '水毒',
+          ko: '물 장판 위치',
+        },
       },
     },
     {
@@ -74,13 +77,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D47', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D47', source: '티타니아', capture: false }),
       delaySeconds: 6,
-      alertText: {
-        en: 'Stack In Puddles',
-        de: 'In einer Fläche sammeln',
-        fr: 'Packez-vous dans les Flaques d\'eau',
-        ja: '水の輪に集合',
-        cn: '水圈集合',
-        ko: '장판에 모이기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack In Puddles',
+          de: 'In einer Fläche sammeln',
+          fr: 'Packez-vous dans les Flaques d\'eau',
+          ja: '水の輪に集合',
+          cn: '水圈集合',
+          ko: '장판에 모이기',
+        },
       },
     },
     {
@@ -101,13 +107,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D2A', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D2A', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2A', source: '티타니아', capture: false }),
-      infoText: {
-        en: 'Get Middle, Shiva Circles',
-        de: 'In die Mitte, Shiva Kreise',
-        fr: 'Allez au milieu, cercles de Shiva',
-        ja: 'シヴァの輪っか',
-        cn: '中间集合, 九连环',
-        ko: '시바 얼음 장판',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Middle, Shiva Circles',
+          de: 'In die Mitte, Shiva Kreise',
+          fr: 'Allez au milieu, cercles de Shiva',
+          ja: 'シヴァの輪っか',
+          cn: '中间集合, 九连环',
+          ko: '시바 얼음 장판',
+        },
       },
     },
     {
@@ -140,13 +149,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D2E', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D2E', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2E', source: '티타니아', capture: false }),
-      infoText: {
-        en: 'Avoid Roots',
-        de: 'Ranken vermeiden',
-        fr: 'Évitez les Racines',
-        ja: '根系から避け',
-        cn: '躲避树根',
-        ko: '뿌리 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Roots',
+          de: 'Ranken vermeiden',
+          fr: 'Évitez les Racines',
+          ja: '根系から避け',
+          cn: '躲避树根',
+          ko: '뿌리 피하기',
+        },
       },
     },
     {
@@ -178,13 +190,16 @@
       netRegexJa: NetRegexes.ability({ id: '3D42', source: 'パック', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '3D42', source: '帕克', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3D42', source: '요정의 권속', capture: false }),
-      alertText: {
-        en: 'Diagonal Knockback Soon',
-        de: 'diagonaler Knockback bald',
-        fr: 'Poussée en diagonale bientôt',
-        ja: '対角に飛ぶ',
-        cn: '对角击退准备',
-        ko: '곧 대각선 넉백',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Diagonal Knockback Soon',
+          de: 'diagonaler Knockback bald',
+          fr: 'Poussée en diagonale bientôt',
+          ja: '対角に飛ぶ',
+          cn: '对角击退准备',
+          ko: '곧 대각선 넉백',
+        },
       },
     },
     {

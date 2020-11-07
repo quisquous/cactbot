@@ -87,13 +87,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '414D', source: 'ハーデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '414D', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '414D', source: '하데스', capture: false }),
-      alertText: {
-        en: 'Dodge Giant Circles',
-        de: 'Weiche dem großen Kreis aus',
-        fr: 'Évitez les cercles géants',
-        ja: '降ったサークルを避け',
-        cn: '躲避大圈',
-        ko: '대형장판피하기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dodge Giant Circles',
+          de: 'Weiche dem großen Kreis aus',
+          fr: 'Évitez les cercles géants',
+          ja: '降ったサークルを避け',
+          cn: '躲避大圈',
+          ko: '대형장판피하기',
+        },
       },
     },
     {
@@ -155,13 +158,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Cleanse Doom In Circle',
-        de: 'Entferne Verhängnis mit den Kreisen',
-        fr: 'Purifiez-vous du Glas dans le cercle',
-        ja: '光った輪を踏む、死の宣告を消す',
-        cn: '踩光圈',
-        ko: '모든 장판을 밟으세요',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Cleanse Doom In Circle',
+          de: 'Entferne Verhängnis mit den Kreisen',
+          fr: 'Purifiez-vous du Glas dans le cercle',
+          ja: '光った輪を踏む、死の宣告を消す',
+          cn: '踩光圈',
+          ko: '모든 장판을 밟으세요',
+        },
       },
     },
     {
@@ -172,13 +178,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4166', source: 'ハーデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4166', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4166', source: '하데스', capture: false }),
-      infoText: {
-        en: 'Right Knockback',
-        de: 'Rechter Knockback',
-        fr: 'Poussée à droite',
-        ja: '東／右からノックバック',
-        cn: '右侧击退',
-        ko: '오른쪽 넉백',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Right Knockback',
+          de: 'Rechter Knockback',
+          fr: 'Poussée à droite',
+          ja: '東／右からノックバック',
+          cn: '右侧击退',
+          ko: '오른쪽 넉백',
+        },
       },
     },
     {
@@ -189,13 +198,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4165', source: 'ハーデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4165', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4165', source: '하데스', capture: false }),
-      infoText: {
-        en: 'Left Knockback',
-        de: 'Linker Knockback',
-        fr: 'Poussée à gauche',
-        ja: '西／左からノックバック',
-        cn: '左侧击退',
-        ko: '왼쪽 넉백',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Left Knockback',
+          de: 'Linker Knockback',
+          fr: 'Poussée à gauche',
+          ja: '西／左からノックバック',
+          cn: '左侧击退',
+          ko: '왼쪽 넉백',
+        },
       },
     },
     {
@@ -209,13 +221,16 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'Tank Busters',
-        de: 'Tank Buster',
-        fr: 'Tank buster',
-        ja: 'タンクバスター',
-        cn: '坦克死刑',
-        ko: '탱크버스터',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Busters',
+          de: 'Tank Buster',
+          fr: 'Tank buster',
+          ja: 'タンクバスター',
+          cn: '坦克死刑',
+          ko: '탱크버스터',
+        },
       },
     },
     {
@@ -224,13 +239,16 @@
       condition: function(data, matches) {
         return data.neoHades && data.me == matches.target;
       },
-      alertText: {
-        en: 'Tank Buster Spread',
-        de: 'Tank Buster verteilen',
-        fr: 'Tank buster, dispersez-vous',
-        ja: 'タンクバスター、散開',
-        cn: '坦克死刑分散',
-        ko: '탱버 산개',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Buster Spread',
+          de: 'Tank Buster verteilen',
+          fr: 'Tank buster, dispersez-vous',
+          ja: 'タンクバスター、散開',
+          cn: '坦克死刑分散',
+          ko: '탱버 산개',
+        },
       },
     },
     {
@@ -239,13 +257,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Drop Marker Outside',
-        de: 'Marker außen ablegen',
-        fr: 'Déposez la marque à l\'extérieur',
-        ja: '外周に安置',
-        cn: '外侧放点名',
-        ko: '외곽으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop Marker Outside',
+          de: 'Marker außen ablegen',
+          fr: 'Déposez la marque à l\'extérieur',
+          ja: '外周に安置',
+          cn: '外侧放点名',
+          ko: '외곽으로',
+        },
       },
     },
     {
@@ -254,13 +275,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alarmText: {
-        en: 'Fetters on YOU',
-        de: 'Fessel auf DIR',
-        fr: 'Entraves sur VOUS',
-        ja: '自分に拘束',
-        cn: '锁链点名',
-        ko: '선 대상자',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Fetters on YOU',
+          de: 'Fessel auf DIR',
+          fr: 'Entraves sur VOUS',
+          ja: '自分に拘束',
+          cn: '锁链点名',
+          ko: '선 대상자',
+        },
       },
     },
     {
@@ -289,13 +313,16 @@
         return !data.seenLifeInCaptivity;
       },
       delaySeconds: 2,
-      infoText: {
-        en: 'Kill Jail',
-        de: 'Gefängniss zerstören',
-        fr: 'Tuez la prison',
-        ja: 'ジェイルに攻撃',
-        cn: '攻击牢狱',
-        ko: '감옥',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Jail',
+          de: 'Gefängniss zerstören',
+          fr: 'Tuez la prison',
+          ja: 'ジェイルに攻撃',
+          cn: '攻击牢狱',
+          ko: '감옥',
+        },
       },
     },
     {
@@ -312,13 +339,16 @@
       condition: function(data, matches) {
         return !data.neoHades && data.me == matches.target;
       },
-      alertText: {
-        en: 'Spread (Don\'t Stack!)',
-        de: 'Verteilen (Ohne stacken)',
-        fr: 'Dispersez-vous (Pas de package !)',
-        ja: '散開（重ならないように）',
-        cn: '分散（不要重合!）',
-        ko: '산개（모이지마세요!）',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spread (Don\'t Stack!)',
+          de: 'Verteilen (Ohne stacken)',
+          fr: 'Dispersez-vous (Pas de package !)',
+          ja: '散開（重ならないように）',
+          cn: '分散（不要重合!）',
+          ko: '산개（모이지마세요!）',
+        },
       },
     },
     {

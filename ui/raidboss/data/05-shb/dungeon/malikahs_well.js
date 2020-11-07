@@ -30,13 +30,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3CE7', source: 'グレーター・アルマジロ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3CE7', source: '大犰狳', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CE7', source: '거대 아르마딜로', capture: false }),
-      infoText: {
-        en: 'Melee Knockback',
-        de: 'Nahkämpfer Rückstoß',
-        fr: 'Poussée au CaC',
-        ja: '近接最大距離ノックバック',
-        cn: '近战击退',
-        ko: '근거리 넉백',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Melee Knockback',
+          de: 'Nahkämpfer Rückstoß',
+          fr: 'Poussée au CaC',
+          ja: '近接最大距離ノックバック',
+          cn: '近战击退',
+          ko: '근거리 넉백',
+        },
       },
     },
     {

@@ -64,12 +64,15 @@
       condition: function(data, matches) {
         return data.me == matches.source;
       },
-      alertText: {
-        en: 'Tank Laser on YOU',
-        de: 'Tank Laser auf DIR',
-        fr: 'Tank laser sur VOUS',
-        cn: '坦克射线点名',
-        ko: '탱 레이저 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Laser on YOU',
+          de: 'Tank Laser auf DIR',
+          fr: 'Tank laser sur VOUS',
+          cn: '坦克射线点名',
+          ko: '탱 레이저 대상자',
+        },
       },
     },
     {
@@ -91,12 +94,15 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Drop Puddle, Run Middle',
-        de: 'Flächen ablegen, danach in die Mitte',
-        fr: 'Déposez les zones au sol, courez au milieu',
-        cn: '放圈，回中央',
-        ko: '장판 깔고 중앙으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop Puddle, Run Middle',
+          de: 'Flächen ablegen, danach in die Mitte',
+          fr: 'Déposez les zones au sol, courez au milieu',
+          cn: '放圈，回中央',
+          ko: '장판 깔고 중앙으로',
+        },
       },
     },
     {

@@ -20,13 +20,16 @@
       id: 'ShivaUn Icebrand',
       regex: /Icebrand/,
       beforeSeconds: 5,
-      alertText: {
-        en: 'Party Share Tankbuster',
-        de: 'Tankbuster mit der Gruppe Teilen',
-        fr: 'Partagez le Tank buster avec le groupe',
-        ja: '頭割りタンクバスター',
-        cn: '团队分摊死刑',
-        ko: '파티 쉐어 탱버',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Party Share Tankbuster',
+          de: 'Tankbuster mit der Gruppe Teilen',
+          fr: 'Partagez le Tank buster avec le groupe',
+          ja: '頭割りタンクバスター',
+          cn: '团队分摊死刑',
+          ko: '파티 쉐어 탱버',
+        },
       },
     },
     {
@@ -220,26 +223,32 @@
       netRegex: NetRegexes.headMarker({ id: '001A' }),
       condition: Conditions.targetIsYou(),
       // Responses.knockback does not quite give the 'laser cleave' aspect here.
-      alarmText: {
-        en: 'Knockback Laser on YOU',
-        de: 'Rückstoß-Laser auf DIR',
-        fr: 'Poussée-Laser sur VOUS',
-        ja: '自分にノックバックレザー',
-        cn: '击退激光点名',
-        ko: '넉백 레이저 대상자',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Knockback Laser on YOU',
+          de: 'Rückstoß-Laser auf DIR',
+          fr: 'Poussée-Laser sur VOUS',
+          ja: '自分にノックバックレザー',
+          cn: '击退激光点名',
+          ko: '넉백 레이저 대상자',
+        },
       },
     },
     {
       id: 'ShivaUn Avalanche Marker Other',
       netRegex: NetRegexes.headMarker({ id: '001A' }),
       condition: Conditions.targetIsNotYou(),
-      infoText: {
-        en: 'Avoid Laser',
-        de: 'Laser ausweichen',
-        fr: 'Évitez le laser',
-        ja: 'ノックバックレザーを避け',
-        cn: '躲避击退激光',
-        ko: '레이저 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Laser',
+          de: 'Laser ausweichen',
+          fr: 'Évitez le laser',
+          ja: 'ノックバックレザーを避け',
+          cn: '躲避击退激光',
+          ko: '레이저 피하기',
+        },
       },
     },
     {

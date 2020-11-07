@@ -57,22 +57,28 @@
       netRegexDe: NetRegexes.startsUsing({ source: '813P: Bollwerk', id: '5073', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: '813P : Avec Unité Rempart', id: '5073', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '８１３Ｐ：拠点防衛ユニット装備', id: '5073', capture: false }),
-      alertText: {
-        en: 'Go To Narrow Intersection',
-        de: 'Geh zu der nahen Überschneidung',
-        fr: 'Allez sur l\'intersection étroite',
-        ko: '조금 겹친 곳으로 이동',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go To Narrow Intersection',
+          de: 'Geh zu der nahen Überschneidung',
+          fr: 'Allez sur l\'intersection étroite',
+          ko: '조금 겹친 곳으로 이동',
+        },
       },
     },
     {
       id: 'Puppet Aegis Aerial Support Surface Laser',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: (data, matches) => data.me === matches.target && data.phase !== 'superior',
-      alarmText: {
-        en: 'Chasing Laser: Get Away',
-        de: 'Verfolgende Laser: Weg gehen',
-        fr: 'Soutien aérien : Évitez',
-        ko: '추격 레이저: 이동',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Chasing Laser: Get Away',
+          de: 'Verfolgende Laser: Weg gehen',
+          fr: 'Soutien aérien : Évitez',
+          ko: '추격 레이저: 이동',
+        },
       },
     },
     {
@@ -123,11 +129,14 @@
       // This is more a "if you haven't done this ever or in a while, here's a reminder."
       // Tell it once, but as this repeats nearly continously forever, only say it once.
       suppressSeconds: 9999,
-      infoText: {
-        en: 'Dodge into ring gap',
-        de: 'In die Lücke des Ringes ausweichen',
-        fr: 'Esquivez en vous plaçant dans l\'ouverture',
-        ko: '고리 사이로 이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dodge into ring gap',
+          de: 'In die Lücke des Ringes ausweichen',
+          fr: 'Esquivez en vous plaçant dans l\'ouverture',
+          ko: '고리 사이로 이동',
+        },
       },
     },
     {
@@ -217,11 +226,14 @@
       id: 'Puppet Superior Incendiary Bombing',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: (data, matches) => data.me === matches.target && data.phase === 'superior',
-      alertText: {
-        en: 'Fire Puddle on YOU',
-        de: 'Feuer Fläche auf DIR',
-        fr: 'Zone au sol de feu sur VOUS',
-        ko: '불 장판 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Fire Puddle on YOU',
+          de: 'Feuer Fläche auf DIR',
+          fr: 'Zone au sol de feu sur VOUS',
+          ko: '불 장판 대상자',
+        },
       },
     },
     {
@@ -229,11 +241,14 @@
       // Note: no 1B marker for this???
       netRegex: NetRegexes.startsUsing({ id: '4FB4', capture: false }),
       suppressSeconds: 5,
-      alertText: {
-        en: 'Line Stack (Point Outside)',
-        de: 'Auf einer Linie sammeln (nach außen zeigen)',
-        fr: 'Package en ligne (orientez vers l\'extérieur)',
-        ko: '쉐어 레이저 (밖으로 유도)',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Line Stack (Point Outside)',
+          de: 'Auf einer Linie sammeln (nach außen zeigen)',
+          fr: 'Package en ligne (orientez vers l\'extérieur)',
+          ko: '쉐어 레이저 (밖으로 유도)',
+        },
       },
     },
     {
@@ -244,11 +259,14 @@
       netRegex: NetRegexes.startsUsing({ id: '4FAB', capture: false }),
       delaySeconds: 3,
       suppressSeconds: 5,
-      alertText: {
-        en: 'Dodge Sword Charges',
-        de: 'Schwerteransturm ausweichen',
-        fr: 'Esquivez les charges',
-        ko: '돌진 피하기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dodge Sword Charges',
+          de: 'Schwerteransturm ausweichen',
+          fr: 'Esquivez les charges',
+          ko: '돌진 피하기',
+        },
       },
     },
     {
@@ -369,11 +387,14 @@
       netRegexDe: NetRegexes.startsUsing({ source: '905P: Läufer', id: '4FED', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: '905P : Avec Unité Terrestre Lourde', id: '4FED', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '９０５Ｐ：重陸戦ユニット装備', id: '4FED', capture: false }),
-      alertText: {
-        en: 'Get Outside Upper Laser',
-        de: 'Raus aus dem oberen Laser',
-        fr: 'Éloignez-vous des lasers supérieurs',
-        ko: '높은 레이저 쪽 밖으로 이동',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Outside Upper Laser',
+          de: 'Raus aus dem oberen Laser',
+          fr: 'Éloignez-vous des lasers supérieurs',
+          ko: '높은 레이저 쪽 밖으로 이동',
+        },
       },
     },
     {
@@ -390,11 +411,14 @@
       id: 'Puppet Heavy Unconventional Voltage',
       netRegex: NetRegexes.headMarker({ id: '00AC' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Voltage cleave on YOU',
-        de: 'Spannungs-Cleave auf DIR',
-        fr: 'Arcs : Cleave sur VOUS',
-        ko: '전압 장판 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Voltage cleave on YOU',
+          de: 'Spannungs-Cleave auf DIR',
+          fr: 'Arcs : Cleave sur VOUS',
+          ko: '전압 장판 대상자',
+        },
       },
     },
     {
@@ -471,22 +495,28 @@
       netRegexFr: NetRegexes.startsUsing({ source: '905P : Avec Unité Terrestre Lourde', id: '4FEC', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '９０５Ｐ：重陸戦ユニット装備', id: '4FEC', capture: false }),
       // TODO: should this say "towers"? or...something else to indicate variable people needed?
-      alertText: {
-        en: 'Turn Towers Blue',
-        de: 'Türme zu Blau ändern',
-        fr: 'Changez les tours en bleu',
-        ko: '장판이 파랑색이 되도록 들어가기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Turn Towers Blue',
+          de: 'Türme zu Blau ändern',
+          fr: 'Changez les tours en bleu',
+          ko: '장판이 파랑색이 되도록 들어가기',
+        },
       },
     },
     {
       id: 'Puppet Hallway Targeted Laser',
       netRegex: NetRegexes.headMarker({ id: '00A4' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Laser on YOU',
-        de: 'Laser auf DIR',
-        fr: 'Laser sur VOUS',
-        ko: '레이저 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Laser on YOU',
+          de: 'Laser auf DIR',
+          fr: 'Laser sur VOUS',
+          ko: '레이저 대상자',
+        },
       },
     },
     {
@@ -641,13 +671,16 @@
       netRegexFr: NetRegexes.startsUsing({ source: '2P : Amalgame', id: '51A6', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '２Ｐ：融合体', id: '51A6', capture: false }),
       delaySeconds: 4,
-      infoText: {
-        en: 'Get Towers',
-        de: 'Türme nehmen',
-        fr: 'Prenez les tours',
-        ja: '塔を踏む',
-        ko: '장판 들어가기',
-        cn: '踩塔',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Towers',
+          de: 'Türme nehmen',
+          fr: 'Prenez les tours',
+          ja: '塔を踏む',
+          ko: '장판 들어가기',
+          cn: '踩塔',
+        },
       },
     },
     {
@@ -658,11 +691,14 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ポッド：融合体', id: '541B', capture: false }),
       suppressSeconds: 2,
       // TODO: maybe this could be smarter and we could tell you where to go??
-      infoText: {
-        en: 'Avoid Lasers',
-        de: 'Laser ausweichen',
-        fr: 'Évitez les lasers',
-        ko: '레이저 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Lasers',
+          de: 'Laser ausweichen',
+          fr: 'Évitez les lasers',
+          ko: '레이저 피하기',
+        },
       },
     },
     {
@@ -674,11 +710,14 @@
       suppressSeconds: 2,
       // TODO: have only seen this happen for the guaranteed Puppet In at 6250.7 with 4 clones.
       // TODO: can this happen at other times??
-      alertText: {
-        en: 'Get Under Clone Corner',
-        de: 'Unter den Klon in einer Ecke gehen',
-        fr: 'Allez dans un coin sous un clone',
-        ko: '구석의 분신 아래로 이동',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Under Clone Corner',
+          de: 'Unter den Klon in einer Ecke gehen',
+          fr: 'Allez dans un coin sous un clone',
+          ko: '구석의 분신 아래로 이동',
+        },
       },
     },
     {
@@ -692,11 +731,14 @@
       // at corners and then teleport to two cardinals across from each other with fake
       // teleports on the other cardinals.
       // TODO: fix this if these clones can go to corners.
-      alertText: {
-        en: 'Get Under Cardinal Clone',
-        de: 'Unter den Klon in einer der Himmelsrichtungen gehen',
-        fr: 'Allez sous un clone sur un point cardinal',
-        ko: '분신 아래로 이동',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Under Cardinal Clone',
+          de: 'Unter den Klon in einer der Himmelsrichtungen gehen',
+          fr: 'Allez sous un clone sur un point cardinal',
+          ko: '분신 아래로 이동',
+        },
       },
     },
     {
@@ -709,11 +751,14 @@
       // Have seen this be either:
       // * 4 clones teleporting around the outside of the arena (corner to corner)
       // * 4 clones teleporting in (to cardinals)
-      alertText: {
-        en: 'Away From Clones',
-        de: 'Weg von den Klonen',
-        fr: 'Éloignez-vous des clones',
-        ko: '분신에게서 떨어지기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away From Clones',
+          de: 'Weg von den Klonen',
+          fr: 'Éloignez-vous des clones',
+          ko: '분신에게서 떨어지기',
+        },
       },
     },
   ],
