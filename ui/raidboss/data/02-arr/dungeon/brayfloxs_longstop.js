@@ -11,9 +11,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1FA', source: 'グレート・イエローペリカン' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FA', source: '노란 왕사다새' }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FA', source: '大黄鹈鹕' }),
-      condition: function(data, matches) {
-        return data.CanStun();
-      },
+      condition: (data) => data.CanStun(),
       response: Responses.stun('info'),
     },
     {
@@ -71,9 +69,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '205', source: 'アッシュドレイク' }),
       netRegexKo: NetRegexes.startsUsing({ id: '205', source: '잿빛도마뱀' }),
       netRegexCn: NetRegexes.startsUsing({ id: '205', source: '白烬火蛟' }),
-      condition: function(data, matches) {
-        return data.CanStun();
-      },
+      condition: (data) => data.CanStun(),
       response: Responses.stun('info'),
     },
     {
@@ -90,9 +86,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D8', source: 'インフェルノドレイク' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D8', source: '지옥불 도마뱀' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D8', source: '狱炎火蛟' }),
-      condition: function(data, matches) {
-        return data.CanStun();
-      },
+      condition: (data) => data.CanStun(),
       response: Responses.stun('info'),
     },
     {
@@ -132,9 +126,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '22F', source: 'アイアタル' }),
       netRegexKo: NetRegexes.startsUsing({ id: '22F', source: '아이아타르' }),
       netRegexCn: NetRegexes.startsUsing({ id: '22F', source: '阿杰特' }),
-      condition: function(data, matches) {
-        return data.CanStun();
-      },
+      condition: (data) => data.CanStun(),
       response: Responses.stun('info'),
     },
     {

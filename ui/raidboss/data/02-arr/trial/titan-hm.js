@@ -32,9 +32,7 @@
       id: 'TitanHm Tumult',
       regex: /Tumult/,
       beforeSeconds: 5,
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
   ],
@@ -42,9 +40,7 @@
     {
       id: 'TitanHm Damage Down',
       netRegex: NetRegexes.gainsEffect({ effectId: '3E' }),
-      condition: function(data) {
-        return data.CanCleanse();
-      },
+      condition: (data) => data.CanCleanse(),
       infoText: function(data, matches) {
         return {
           en: 'Cleanse ' + data.ShortName(matches.target),

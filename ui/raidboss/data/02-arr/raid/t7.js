@@ -12,10 +12,8 @@
       netRegexJa: NetRegexes.startsUsing({ id: '860', source: 'プロトキマイラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '860', source: '原型奇美拉', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '860', source: '프로토 키마이라', capture: false }),
-      condition: function(data) {
-        // TODO: is this silenceable in 5.0?
-        return data.CanStun() || data.CanSilence();
-      },
+      // TODO: is this silenceable in 5.0?
+      condition: (data) => data.CanStun() || data.CanSilence(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -35,10 +33,8 @@
       netRegexJa: NetRegexes.startsUsing({ id: '861', source: 'プロトキマイラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '861', source: '原型奇美拉', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '861', source: '프로토 키마이라', capture: false }),
-      condition: function(data) {
-        // TODO: is this silenceable in 5.0?
-        return data.CanStun() || data.CanSilence();
-      },
+      // TODO: is this silenceable in 5.0?
+      condition: (data) => data.CanStun() || data.CanSilence(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
