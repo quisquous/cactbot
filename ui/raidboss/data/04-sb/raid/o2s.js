@@ -411,7 +411,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': '카타스트로피',
       },
@@ -419,7 +418,9 @@
         '-100 Gs': '중력 -100',
         '(?<!-)100 Gs': '중력 100',
         'Antilight': '암흑광',
+        '(?<!Epi)center': '중앙',
         'Death\'s Gaze': '사신의 눈동자',
+        'Double Stack': '이중쉐어',
         'Earthquake': '대지진',
         'Epicenter': '진원 생성',
         'Evilsphere': '악의 세력권',
@@ -427,7 +428,9 @@
         'Gravitational Wave': '중력파',
         'Long Drop': '자유낙하',
         'Paranormal Wave': '저주 파동',
+        'Probes': '촉수 유도',
         'Unstable Gravity': '중력 폭발',
+        'T/H': '탱/힐',
       },
     },
   ],
