@@ -81,6 +81,16 @@
 249 "Sizzlebeam"
 258 "Sizzlespark" #can be skipped
 266 "Bomb x1" sync /Added new combatant Bomb/ window 50 jump 561
+267 ""
+267 ""
+267 ""
+267 ""
+267 ""
+267 ""
+267 ""
+267 ""
+267 ""
+267 ""
  
 ############################################ 
 ################# Version 2 - Phase 1 
@@ -158,6 +168,15 @@
 917 "Sizzlespark"
 923 "Bombs / Sizzlebeam" sync /Added new combatant Bomb/ window 20 jump 1326
 924 "" sync /Quickthinx Allthoughts uses Sizzlebeam/ window 20 jump 1526
+924 ""
+924 ""
+924 ""
+924 ""
+924 ""
+924 ""
+924 ""
+924 ""
+924 ""
  
 ############################################ 
 ################# Version 2 - Phase 3 
