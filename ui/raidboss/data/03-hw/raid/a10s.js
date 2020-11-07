@@ -20,13 +20,16 @@
       regex: /Gobbie Adds/,
       beforeSeconds: 0,
       suppressSeconds: 1,
-      infoText: {
-        en: 'Hit Adds With Weight Trap',
-        de: 'Adds mit Gewichtsfalle treffen',
-        fr: 'Frappez les Adds avec le Piège à poids',
-        ja: '鉄球ギミックを使って雑魚を倒す',
-        cn: '使用铁锤陷阱击中小怪',
-        ko: '철퇴 함정으로 쫄 맞추기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hit Adds With Weight Trap',
+          de: 'Adds mit Gewichtsfalle treffen',
+          fr: 'Frappez les Adds avec le Piège à poids',
+          ja: '鉄球ギミックを使って雑魚を倒す',
+          cn: '使用铁锤陷阱击中小怪',
+          ko: '철퇴 함정으로 쫄 맞추기',
+        },
       },
     },
   ],
@@ -39,13 +42,16 @@
       netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1AB2', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1AB2', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AB2', capture: false }),
-      infoText: {
-        en: 'Floor Spikes',
-        de: 'Boden-Stachel',
-        fr: 'Pics au sol',
-        ja: '罠: 棘',
-        cn: '地刺陷阱',
-        ko: '가시 함정',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Floor Spikes',
+          de: 'Boden-Stachel',
+          fr: 'Pics au sol',
+          ja: '罠: 棘',
+          cn: '地刺陷阱',
+          ko: '가시 함정',
+        },
       },
     },
     {
@@ -56,13 +62,16 @@
       netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1AB1', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1AB1', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AB1', capture: false }),
-      infoText: {
-        en: 'Frost Lasers',
-        de: 'Eislaser',
-        fr: 'Lasers de glace',
-        ja: '罠: 氷',
-        cn: '冰晶陷阱',
-        ko: '얼음화살 함정',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Frost Lasers',
+          de: 'Eislaser',
+          fr: 'Lasers de glace',
+          ja: '罠: 氷',
+          cn: '冰晶陷阱',
+          ko: '얼음화살 함정',
+        },
       },
     },
     {
@@ -73,13 +82,16 @@
       netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1AB0', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1AB0', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AB0', capture: false }),
-      infoText: {
-        en: 'Ceiling Weight',
-        de: 'Gewichte von der Decke',
-        fr: 'Poids du plafond',
-        ja: '罠: 鉄球',
-        cn: '铁球陷阱',
-        ko: '철퇴 함정',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Ceiling Weight',
+          de: 'Gewichte von der Decke',
+          fr: 'Poids du plafond',
+          ja: '罠: 鉄球',
+          cn: '铁球陷阱',
+          ko: '철퇴 함정',
+        },
       },
     },
     {
@@ -246,13 +258,16 @@
       id: 'A10S Brighteyes Prey Marker',
       netRegex: NetRegexes.headMarker({ id: '0029' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Prey on YOU',
-        de: 'Makierung auf DIR',
-        fr: 'Marquage sur VOUS',
-        ja: '自分に狙い目',
-        cn: '火圈点名',
-        ko: '징 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Prey on YOU',
+          de: 'Makierung auf DIR',
+          fr: 'Marquage sur VOUS',
+          ja: '自分に狙い目',
+          cn: '火圈点名',
+          ko: '징 대상자',
+        },
       },
     },
     {
@@ -263,13 +278,16 @@
         return data.me == matches.target && !data.seenBrighteyes;
       },
       delaySeconds: 5,
-      infoText: {
-        en: 'Pass Prey',
-        de: 'Makierung weitergeben',
-        fr: 'Passez le marquage',
-        ja: '狙い目を渡す',
-        cn: '传递点名',
-        ko: '징 넘김',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Pass Prey',
+          de: 'Makierung weitergeben',
+          fr: 'Passez le marquage',
+          ja: '狙い目を渡す',
+          cn: '传递点名',
+          ko: '징 넘김',
+        },
       },
     },
     {
@@ -280,13 +298,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: '傭兵のレイムプリクス', id: '1A92', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '佣兵雷姆普里克斯', id: '1A92', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '용병 레임브릭스', id: '1A92', capture: false }),
-      infoText: {
-        en: 'Hit Floor Trap',
-        de: 'Aktiviere Bodenfalle',
-        fr: 'Activez le Piège au sol',
-        ja: '棘を踏む',
-        cn: '踩地刺陷阱',
-        ko: '가시함정 밟기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hit Floor Trap',
+          de: 'Aktiviere Bodenfalle',
+          fr: 'Activez le Piège au sol',
+          ja: '棘を踏む',
+          cn: '踩地刺陷阱',
+          ko: '가시함정 밟기',
+        },
       },
     },
     {
@@ -307,13 +328,16 @@
       netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1A8F', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1A8F', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1A8F', capture: false }),
-      infoText: {
-        en: 'Hit Boss With Ice',
-        de: 'Boss mit Eis treffen',
-        fr: 'Frappez le boss avec la Glace',
-        ja: '氷を踏む',
-        cn: '踩冰晶陷阱',
-        ko: '보스에게 얼음함정 맞히기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hit Boss With Ice',
+          de: 'Boss mit Eis treffen',
+          fr: 'Frappez le boss avec la Glace',
+          ja: '氷を踏む',
+          cn: '踩冰晶陷阱',
+          ko: '보스에게 얼음함정 맞히기',
+        },
       },
     },
   ],

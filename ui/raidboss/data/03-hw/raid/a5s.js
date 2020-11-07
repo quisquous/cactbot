@@ -52,11 +52,14 @@ let bombLocation = (matches) => {
       regex: /Boost/,
       beforeSeconds: 10,
       suppressSeconds: 1,
-      alertText: {
-        en: 'Bird Soon (Purple)',
-        de: 'Vogel bald (Lila)',
-        fr: 'Oiseau bientôt (Violet)',
-        ja: 'まもなく鳥に変化 (紫の薬)',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bird Soon (Purple)',
+          de: 'Vogel bald (Lila)',
+          fr: 'Oiseau bientôt (Violet)',
+          ja: 'まもなく鳥に変化 (紫の薬)',
+        },
       },
     },
     {
@@ -64,11 +67,14 @@ let bombLocation = (matches) => {
       regex: /Bomb's Away/,
       beforeSeconds: 10,
       suppressSeconds: 1,
-      alertText: {
-        en: 'Gorilla Soon (Red)',
-        de: 'Gorilla bald (Rot)',
-        fr: 'Gorille bientôt (Rouge)',
-        ja: 'まもなくゴリラに変化 (赤の薬)',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Gorilla Soon (Red)',
+          de: 'Gorilla bald (Rot)',
+          fr: 'Gorille bientôt (Rouge)',
+          ja: 'まもなくゴリラに変化 (赤の薬)',
+        },
       },
     },
     {
@@ -76,11 +82,14 @@ let bombLocation = (matches) => {
       regex: /Disorienting Groan/,
       beforeSeconds: 1,
       suppressSeconds: 1,
-      infoText: {
-        en: 'refresh debuff in puddle soon',
-        de: 'Debuff in der Fläche bald erneuern',
-        fr: 'Rafraîchissez le debuff dans la zone au sol bientôt',
-        ja: 'デバフを癒す',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'refresh debuff in puddle soon',
+          de: 'Debuff in der Fläche bald erneuern',
+          fr: 'Rafraîchissez le debuff dans la zone au sol bientôt',
+          ja: 'デバフを癒す',
+        },
       },
     },
   ],
@@ -208,12 +217,15 @@ let bombLocation = (matches) => {
       id: 'A5S Prey',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Get Away',
-        de: 'Weg gehen',
-        fr: 'Éloignez-vous',
-        ja: '外へ',
-        ko: '멀리 떨어지기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Away',
+          de: 'Weg gehen',
+          fr: 'Éloignez-vous',
+          ja: '外へ',
+          ko: '멀리 떨어지기',
+        },
       },
     },
     {
@@ -236,12 +248,15 @@ let bombLocation = (matches) => {
       id: 'A5S Glupgloop',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      alarmText: {
-        en: 'GLOOPYGLOOP~',
-        de: 'GLOOPYGLOOP~',
-        fr: 'Gobacide gluant',
-        ja: '強酸性劇物薬',
-        ko: '강산성 극약',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'GLOOPYGLOOP~',
+          de: 'GLOOPYGLOOP~',
+          fr: 'Gobacide gluant',
+          ja: '強酸性劇物薬',
+          ko: '강산성 극약',
+        },
       },
     },
     {
@@ -275,12 +290,15 @@ let bombLocation = (matches) => {
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       suppressSeconds: 30,
-      alertText: {
-        en: 'Cleanse (Green)',
-        de: 'Reinigen (Grün)',
-        fr: 'Purifiez-vous (Vert)',
-        ja: 'エスナ (緑の薬)',
-        ko: '디버프 해제 (초록)',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Cleanse (Green)',
+          de: 'Reinigen (Grün)',
+          fr: 'Purifiez-vous (Vert)',
+          ja: 'エスナ (緑の薬)',
+          ko: '디버프 해제 (초록)',
+        },
       },
     },
     {
@@ -296,12 +314,15 @@ let bombLocation = (matches) => {
       netRegexCn: NetRegexes.ability({ source: '哥布林奇美拉', id: '366' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 100,
-      alertText: {
-        en: 'Break Tether (Blue)',
-        de: 'Verbindungen brechen (Blau)',
-        fr: 'Cassez le lien (Bleu)',
-        ja: '線を断つ (青の薬)',
-        ko: '선 끊기 (파랑)',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Break Tether (Blue)',
+          de: 'Verbindungen brechen (Blau)',
+          fr: 'Cassez le lien (Bleu)',
+          ja: '線を断つ (青の薬)',
+          ko: '선 끊기 (파랑)',
+        },
       },
     },
     {

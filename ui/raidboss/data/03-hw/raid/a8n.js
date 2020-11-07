@@ -23,13 +23,16 @@
       id: 'A8N Super Jump Soon',
       regex: /Super Jump/,
       beforeSeconds: 8,
-      infoText: {
-        en: 'Bait Super Jump',
-        de: 'Supersprung ködern',
-        fr: 'Attirez le Super saut',
-        ja: 'スーパージャンプを誘導',
-        cn: '引导超级跳',
-        ko: '슈퍼 점프',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Super Jump',
+          de: 'Supersprung ködern',
+          fr: 'Attirez le Super saut',
+          ja: 'スーパージャンプを誘導',
+          cn: '引导超级跳',
+          ko: '슈퍼 점프',
+        },
       },
     },
   ],
@@ -43,13 +46,16 @@
       netRegexCn: NetRegexes.startsUsing({ source: '突击者', id: '1732', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '맹습자', id: '1732', capture: false }),
       // Insert sound effect from Arthars here.
-      alertText: {
-        en: 'Megabeamu~',
-        de: 'Megalaser~',
-        fr: 'Mégarayon~',
-        ja: 'メガビーム～',
-        cn: '巨型光束炮~',
-        ko: '고출력 광선~',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Megabeamu~',
+          de: 'Megalaser~',
+          fr: 'Mégarayon~',
+          ja: 'メガビーム～',
+          cn: '巨型光束炮~',
+          ko: '고출력 광선~',
+        },
       },
     },
     {
@@ -60,13 +66,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '174F', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '174F', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '174F', capture: false }),
-      alertText: {
-        en: 'Megabeamu~!',
-        de: 'Megalaser~!',
-        fr: 'Mégarayon~ !',
-        ja: 'メガビーム～',
-        cn: '巨型光束炮~!',
-        ko: '고출력 광선~!',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Megabeamu~!',
+          de: 'Megalaser~!',
+          fr: 'Mégarayon~ !',
+          ja: 'メガビーム～',
+          cn: '巨型光束炮~!',
+          ko: '고출력 광선~!',
+        },
       },
     },
     {
@@ -80,13 +89,16 @@
       condition: function(data) {
         return data.role == 'dps' || data.job == 'BLU';
       },
-      infoText: {
-        en: 'Kill Regulators',
-        de: 'Dampfregler besiegen',
-        fr: 'Tuez les Régulateurs',
-        ja: 'スチームジャッジを倒す',
-        cn: '击杀小怪',
-        ko: '증기 감독 없애기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Regulators',
+          de: 'Dampfregler besiegen',
+          fr: 'Tuez les Régulateurs',
+          ja: 'スチームジャッジを倒す',
+          cn: '击杀小怪',
+          ko: '증기 감독 없애기',
+        },
       },
     },
     {
@@ -107,13 +119,16 @@
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
-      alertText: {
-        en: 'Get High',
-        de: 'Geh nach Oben',
-        fr: 'Montez',
-        ja: '高い床に乗る',
-        cn: '上高台',
-        ko: '높은곳으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get High',
+          de: 'Geh nach Oben',
+          fr: 'Montez',
+          ja: '高い床に乗る',
+          cn: '上高台',
+          ko: '높은곳으로',
+        },
       },
     },
     {
@@ -122,13 +137,16 @@
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
-      alertText: {
-        en: 'Get Down',
-        de: 'Geh nach Unten',
-        fr: 'Descendez',
-        ja: '低い床に乗る',
-        cn: '下低台',
-        ko: '낮은곳으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Down',
+          de: 'Geh nach Unten',
+          fr: 'Descendez',
+          ja: '低い床に乗る',
+          cn: '下低台',
+          ko: '낮은곳으로',
+        },
       },
     },
     {
@@ -213,10 +231,13 @@
       id: 'A8N Long Needle Active Tank',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       condition: (data) => data.me === data.bruteTank && data.bruteTankOut,
-      alertText: {
-        en: 'Don\'t Stack! (tank cleave)',
-        de: 'Nicht Sammeln! (Tank Cleave)',
-        cn: '别去集合！（坦克顺劈）',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Don\'t Stack! (tank cleave)',
+          de: 'Nicht Sammeln! (Tank Cleave)',
+          cn: '别去集合！（坦克顺劈）',
+        },
       },
     },
     {
@@ -277,26 +298,32 @@
       id: 'A8N Mirage Marker',
       netRegex: NetRegexes.headMarker({ id: '0008' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Mirage on YOU',
-        de: 'Mirage auf DIR',
-        fr: 'Mirage sur VOUS',
-        ja: '自分にミラージュ',
-        cn: '分身点名',
-        ko: '환영 징 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mirage on YOU',
+          de: 'Mirage auf DIR',
+          fr: 'Mirage sur VOUS',
+          ja: '自分にミラージュ',
+          cn: '分身点名',
+          ko: '환영 징 대상자',
+        },
       },
     },
     {
       id: 'A8N Ice Missile Marker',
       netRegex: NetRegexes.headMarker({ id: '0043' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Ice Missile on YOU',
-        de: 'Eis-Rakete auf DIR',
-        fr: 'Missile de glace sur VOUS',
-        ja: '自分にアイスミサイル',
-        cn: '冰点名',
-        ko: '얼음 미사일 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Ice Missile on YOU',
+          de: 'Eis-Rakete auf DIR',
+          fr: 'Missile de glace sur VOUS',
+          ja: '自分にアイスミサイル',
+          cn: '冰点名',
+          ko: '얼음 미사일 대상자',
+        },
       },
     },
     {
@@ -308,10 +335,13 @@
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '1749', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '1749', capture: false }),
       suppressSeconds: 5,
-      alertText: {
-        en: 'Avoid Mirage Dashes',
-        de: 'Weiche den Replikant Ansturm aus',
-        cn: '躲避分身冲锋',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Mirage Dashes',
+          de: 'Weiche den Replikant Ansturm aus',
+          cn: '躲避分身冲锋',
+        },
       },
     },
   ],
