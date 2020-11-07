@@ -50,9 +50,7 @@
     {
       id: 'T9 Raven Blight You',
       netRegex: NetRegexes.gainsEffect({ effectId: '1CA' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: function(data, matches) {
         return matches.duration - 5;
       },
@@ -72,9 +70,7 @@
     {
       id: 'T9 Raven Blight Not You',
       netRegex: NetRegexes.gainsEffect({ effectId: '1CA' }),
-      condition: function(data, matches) {
-        return data.me != matches.target;
-      },
+      condition: Conditions.targetIsNotYou(),
       delaySeconds: function(data, matches) {
         return matches.duration - 5;
       },
@@ -93,17 +89,13 @@
     {
       id: 'T9 Meteor',
       netRegex: NetRegexes.headMarker({ id: '000[7A9]' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou(),
     },
     {
       id: 'T9 Meteor Stream',
       netRegex: NetRegexes.headMarker({ id: '0008' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -398,9 +390,7 @@
       netRegexJa: NetRegexes.ability({ source: 'サンダーウィング', id: '7FD' }),
       netRegexCn: NetRegexes.ability({ source: '雷翼', id: '7FD' }),
       netRegexKo: NetRegexes.ability({ source: '번개날개', id: '7FD' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -426,9 +416,7 @@
     {
       id: 'T9 Dragon Marker',
       netRegex: NetRegexes.headMarker({ id: '0014' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: function(data, matches) {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
         if (matches.target != data.me)

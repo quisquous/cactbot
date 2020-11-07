@@ -80,9 +80,7 @@
     {
       id: 'T13 Megaflare Share',
       netRegex: NetRegexes.headMarker({ id: '0027' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -98,9 +96,7 @@
     {
       id: 'T13 Earthshaker',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.earthshaker(),
     },
     {

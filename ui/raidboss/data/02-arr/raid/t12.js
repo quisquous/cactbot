@@ -92,9 +92,7 @@
     {
       id: 'T12 Whitefire',
       netRegex: NetRegexes.headMarker({ id: '0020' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -109,9 +107,7 @@
     {
       id: 'T12 Bluefire',
       netRegex: NetRegexes.headMarker({ id: '0021' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

@@ -37,9 +37,7 @@
       netRegexJa: NetRegexes.ability({ source: 'カドゥケウス', id: '4BA' }),
       netRegexCn: NetRegexes.ability({ source: '神杖巨蛇', id: '4BA' }),
       netRegexKo: NetRegexes.ability({ source: '카두케우스', id: '4BA' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -82,9 +80,7 @@
       netRegexJa: NetRegexes.ability({ source: 'カドゥケウス', id: '4B8' }),
       netRegexCn: NetRegexes.ability({ source: '神杖巨蛇', id: '4B8' }),
       netRegexKo: NetRegexes.ability({ source: '카두케우스', id: '4B8' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: 8,
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),

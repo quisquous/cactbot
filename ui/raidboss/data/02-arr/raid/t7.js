@@ -96,9 +96,7 @@
     {
       id: 'T7 Cursed Voice',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C3' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: function(data, matches) {
         return matches.duration - 3;
       },

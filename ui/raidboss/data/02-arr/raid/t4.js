@@ -12,9 +12,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ルークスピナー', id: '4D4' }),
       netRegexCn: NetRegexes.startsUsing({ source: '转盘堡', id: '4D4' }),
       netRegexKo: NetRegexes.startsUsing({ source: '보루형 회전전차', id: '4D4' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -34,9 +32,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ルークスピナー', id: '4D5' }),
       netRegexCn: NetRegexes.startsUsing({ source: '转盘堡', id: '4D5' }),
       netRegexKo: NetRegexes.startsUsing({ source: '보루형 회전전차', id: '4D5' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
