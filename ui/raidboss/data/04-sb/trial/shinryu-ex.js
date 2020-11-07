@@ -117,13 +117,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '25DD', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '25DD', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25DD', source: '신룡', capture: false }),
-      infoText: {
-        en: 'Ice: Stack and Stop',
-        de: 'Eis: Stack und Stehenbleiben',
-        fr: 'Glace : Packez-vous et arrêtez',
-        ja: '氷: スタック 動かない',
-        cn: '冰地面：站一起和停止移动',
-        ko: '얼음: 집합하고 이동하지 않기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Ice: Stack and Stop',
+          de: 'Eis: Stack und Stehenbleiben',
+          fr: 'Glace : Packez-vous et arrêtez',
+          ja: '氷: スタック 動かない',
+          cn: '冰地面：站一起和停止移动',
+          ko: '얼음: 집합하고 이동하지 않기',
+        },
       },
     },
     {
@@ -134,13 +137,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2611', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2611', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2611', source: '신룡', capture: false }),
-      infoText: {
-        en: 'Out of middle',
-        de: 'Raus aus der Mitte',
-        fr: 'Sortez du milieu',
-        ja: '中央から離れ',
-        cn: '离开中间',
-        ko: '중앙 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Out of middle',
+          de: 'Raus aus der Mitte',
+          fr: 'Sortez du milieu',
+          ja: '中央から離れ',
+          cn: '离开中间',
+          ko: '중앙 피하기',
+        },
       },
     },
     {
@@ -152,13 +158,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '25DB', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25DB', source: '신룡', capture: false }),
       durationSeconds: 7,
-      alertText: {
-        en: 'Get in water',
-        de: 'In\'s Wasser',
-        fr: 'Allez dans l\'eau',
-        ja: '水に入る',
-        cn: '进水圈',
-        ko: '물 장판에 들어가기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get in water',
+          de: 'In\'s Wasser',
+          fr: 'Allez dans l\'eau',
+          ja: '水に入る',
+          cn: '进水圈',
+          ko: '물 장판에 들어가기',
+        },
       },
     },
     {
@@ -202,13 +211,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '25DC', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25DC', source: '신룡', capture: false }),
       durationSeconds: 7,
-      alertText: {
-        en: 'out of water',
-        de: 'Raus aus dem Wasser',
-        fr: 'Sortez de l\'eau',
-        ja: '水から離れ',
-        cn: '离开水圈',
-        ko: '물 장판 밖으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'out of water',
+          de: 'Raus aus dem Wasser',
+          fr: 'Sortez de l\'eau',
+          ja: '水から離れ',
+          cn: '离开水圈',
+          ko: '물 장판 밖으로',
+        },
       },
     },
     {
@@ -271,13 +283,16 @@
       netRegexJa: NetRegexes.abilityFull({ id: '25EF', source: 'アイシクル', x: '-29\\.99', y: '-15', capture: false }),
       netRegexCn: NetRegexes.abilityFull({ id: '25EF', source: '冰柱', x: '-29\\.99', y: '-15', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ id: '25EF', source: '고드름', x: '-29\\.99', y: '-15', capture: false }),
-      alarmText: {
-        en: 'icicle, lean west',
-        de: 'Eiszapfen, nach westen',
-        fr: 'Stalactite, penchez vers l\'ouest',
-        ja: 'アイシクル: 西へ',
-        cn: '冰柱，去左边',
-        ko: '고드름, 왼쪽 먼저',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'icicle, lean west',
+          de: 'Eiszapfen, nach westen',
+          fr: 'Stalactite, penchez vers l\'ouest',
+          ja: 'アイシクル: 西へ',
+          cn: '冰柱，去左边',
+          ko: '고드름, 왼쪽 먼저',
+        },
       },
     },
     {
@@ -288,13 +303,16 @@
       netRegexJa: NetRegexes.abilityFull({ id: '25EF', source: 'アイシクル', x: '-29\\.99', y: '-25', capture: false }),
       netRegexCn: NetRegexes.abilityFull({ id: '25EF', source: '冰柱', x: '-29\\.99', y: '-25', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ id: '25EF', source: '고드름', x: '-29\\.99', y: '-25', capture: false }),
-      alarmText: {
-        en: 'icicle, lean east',
-        de: 'Eiszapfen, nach Osten',
-        fr: 'Stalactite, penchez vers l\'est',
-        ja: 'アイシクル: 東へ',
-        cn: '冰柱，去右边',
-        ko: '고드름, 오른쪽 먼저',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'icicle, lean east',
+          de: 'Eiszapfen, nach Osten',
+          fr: 'Stalactite, penchez vers l\'est',
+          ja: 'アイシクル: 東へ',
+          cn: '冰柱，去右边',
+          ko: '고드름, 오른쪽 먼저',
+        },
       },
     },
     {
@@ -307,13 +325,16 @@
       netRegexKo: NetRegexes.startsUsing({ id: '25DA', source: '신룡', capture: false }),
       delaySeconds: 3,
       durationSeconds: 5,
-      infoText: {
-        en: 'Knockback, look for water',
-        de: 'Rückstoß, nach Wasser schauen',
-        fr: 'Poussée, cherchez l\'eau',
-        ja: 'ノックバック、水を探せ',
-        cn: '击退，找水圈',
-        ko: '넉백, 물기둥 확인',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Knockback, look for water',
+          de: 'Rückstoß, nach Wasser schauen',
+          fr: 'Poussée, cherchez l\'eau',
+          ja: 'ノックバック、水を探せ',
+          cn: '击退，找水圈',
+          ko: '넉백, 물기둥 확인',
+        },
       },
     },
     {
@@ -327,13 +348,16 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'no more heals needed',
-        de: 'keine Heilung mehr nötig',
-        fr: 'Pas besoin de soigner',
-        ja: 'ヒールはもう要らない',
-        cn: '不需要更多奶了',
-        ko: '힐 그만',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'no more heals needed',
+          de: 'keine Heilung mehr nötig',
+          fr: 'Pas besoin de soigner',
+          ja: 'ヒールはもう要らない',
+          cn: '不需要更多奶了',
+          ko: '힐 그만',
+        },
       },
     },
     {
@@ -345,13 +369,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '25E2', source: '龙尾', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25E2', source: '신룡의 꼬리', capture: false }),
       delaySeconds: 2,
-      infoText: {
-        en: 'Tail: Switch targets',
-        de: 'Schweif: Zielwechsel',
-        fr: 'Queue : Changez de cible',
-        ja: '尾: タゲチェンジ',
-        cn: '打尾巴',
-        ko: '꼬리 공격',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tail: Switch targets',
+          de: 'Schweif: Zielwechsel',
+          fr: 'Queue : Changez de cible',
+          ja: '尾: タゲチェンジ',
+          cn: '打尾巴',
+          ko: '꼬리 공격',
+        },
       },
     },
     {
@@ -367,13 +394,16 @@
         return data.phase == 1;
       },
       // TODO: If tail is alive, delay this message?
-      infoText: {
-        en: 'Heart: Switch targets',
-        de: 'Herz: Ziel wechseln',
-        fr: 'Cœur : Changez de cible',
-        ja: '心核: タゲチェンジ',
-        cn: '打核心',
-        ko: '심핵 공격',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Heart: Switch targets',
+          de: 'Herz: Ziel wechseln',
+          fr: 'Cœur : Changez de cible',
+          ja: '心核: タゲチェンジ',
+          cn: '打核心',
+          ko: '심핵 공격',
+        },
       },
     },
     {
@@ -385,13 +415,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: '신룡', capture: false }),
-      alarmText: {
-        en: 'avoid divebomb',
-        de: 'Divebomb ausweichen',
-        fr: 'Évitez la bombe plongeante',
-        ja: 'ダイブボムに避け',
-        cn: '前方顺劈',
-        ko: '급강하 폭격 피하기',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'avoid divebomb',
+          de: 'Divebomb ausweichen',
+          fr: 'Évitez la bombe plongeante',
+          ja: 'ダイブボムに避け',
+          cn: '前方顺劈',
+          ko: '급강하 폭격 피하기',
+        },
       },
     },
     {
@@ -464,13 +497,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '264A', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '264A', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '264A', source: '신룡', capture: false }),
-      alertText: {
-        en: 'front cleave',
-        de: 'Frontalcleave',
-        fr: 'Cleave devant',
-        ja: '正面から離れ',
-        cn: '离开正面',
-        ko: '범위 밖으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'front cleave',
+          de: 'Frontalcleave',
+          fr: 'Cleave devant',
+          ja: '正面から離れ',
+          cn: '离开正面',
+          ko: '범위 밖으로',
+        },
       },
     },
     {
@@ -484,16 +520,19 @@
       condition: function(data) {
         return !data.finalWing;
       },
-      alertText: {
-        en: 'kill left first',
-        de: 'linken Flügel zuerst',
-        fr: 'Tuez la gauche en première',
-        ja: 'レフトウィングに攻撃',
-        cn: '击杀左翼',
-        ko: '왼쪽 날개 먼저',
-      },
+      alertText: (data, _, output) => output.text(),
       run: function(data) {
         data.finalWing = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'kill left first',
+          de: 'linken Flügel zuerst',
+          fr: 'Tuez la gauche en première',
+          ja: 'レフトウィングに攻撃',
+          cn: '击杀左翼',
+          ko: '왼쪽 날개 먼저',
+        },
       },
     },
     {
@@ -507,16 +546,19 @@
       condition: function(data) {
         return !data.finalWing;
       },
-      alertText: {
-        en: 'kill right first',
-        de: 'rechten Flügel zuerst',
-        fr: 'Tuez la droite en première',
-        ja: 'ライトウィングに攻撃',
-        cn: '击杀右翼',
-        ko: '오른쪽 날개 먼저',
-      },
+      alertText: (data, _, output) => output.text(),
       run: function(data) {
         data.finalWing = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'kill right first',
+          de: 'rechten Flügel zuerst',
+          fr: 'Tuez la droite en première',
+          ja: 'ライトウィングに攻撃',
+          cn: '击杀右翼',
+          ko: '오른쪽 날개 먼저',
+        },
       },
     },
     {
@@ -553,13 +595,16 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alarmText: {
-        en: 'tail marker on you',
-        de: 'Schweifmarker auf dir',
-        fr: 'Marqueur Queue sur VOUS',
-        ja: '自分にテイル',
-        cn: '龙尾点名',
-        ko: '꼬리 징 대상자',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'tail marker on you',
+          de: 'Schweifmarker auf dir',
+          fr: 'Marqueur Queue sur VOUS',
+          ja: '自分にテイル',
+          cn: '龙尾点名',
+          ko: '꼬리 징 대상자',
+        },
       },
     },
     {

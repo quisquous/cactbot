@@ -26,13 +26,16 @@
       condition: function(data) {
         return data.role == 'tank';
       },
-      alarmText: {
-        en: 'Orb Tethers',
-        de: 'Kugel-Verbindungen',
-        fr: 'Attrapez les orbes',
-        ja: '線',
-        cn: '连线',
-        ko: '구슬 줄',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Orb Tethers',
+          de: 'Kugel-Verbindungen',
+          fr: 'Attrapez les orbes',
+          ja: '線',
+          cn: '连线',
+          ko: '구슬 줄',
+        },
       },
     },
   ],

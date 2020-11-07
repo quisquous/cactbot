@@ -10,12 +10,15 @@
       id: 'O2S Double Stack',
       regex: /Double Stack/,
       beforeSeconds: 6,
-      alertText: {
-        en: 'DPS: Levitate',
-        de: 'DDs hoch',
-        ja: 'DPS: 浮上',
-        cn: 'DPS浮空',
-        ko: '딜러: 공중부양',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'DPS: Levitate',
+          de: 'DDs hoch',
+          ja: 'DPS: 浮上',
+          cn: 'DPS浮空',
+          ko: '딜러: 공중부양',
+        },
       },
     },
   ],

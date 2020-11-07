@@ -10,11 +10,14 @@
       id: 'O4S Neo Vacuum Wave',
       regex: /Vacuum Wave/,
       beforeSeconds: 8,
-      alertText: {
-        en: 'Vacuum Wave soon',
-        de: 'Vakuumwelle bald',
-        ja: 'まもなく真空波',
-        cn: '马上真空波',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Vacuum Wave soon',
+          de: 'Vakuumwelle bald',
+          ja: 'まもなく真空波',
+          cn: '马上真空波',
+        },
       },
     },
   ],
@@ -42,11 +45,14 @@
       netRegexJa: NetRegexes.startsUsing({ id: '23F5', source: 'エクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '23F5', source: '艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '23F5', source: '엑스데스', capture: false }),
-      infoText: {
-        en: 'Fire III',
-        de: 'Feuga',
-        ja: 'ファイガ',
-        cn: '静止',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Fire III',
+          de: 'Feuga',
+          ja: 'ファイガ',
+          cn: '静止',
+        },
       },
     },
     {
@@ -58,11 +64,14 @@
       netRegexJa: NetRegexes.startsUsing({ id: '23F7', source: 'エクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '23F7', source: '艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '23F7', source: '엑스데스', capture: false }),
-      infoText: {
-        en: 'Blizzard III',
-        de: 'Eisga',
-        ja: 'ブリザガ',
-        cn: '蛇皮走位',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Blizzard III',
+          de: 'Eisga',
+          ja: 'ブリザガ',
+          cn: '蛇皮走位',
+        },
       },
     },
     {

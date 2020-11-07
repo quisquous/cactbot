@@ -21,13 +21,16 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      infoText: {
-        en: 'Drop AOEs Away',
-        de: 'AoEs weglocken',
-        fr: 'Posez les AoE au loin',
-        ja: '離れてAoEを置く',
-        cn: '远离放置AOE',
-        ko: '장판 멀리빼기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop AOEs Away',
+          de: 'AoEs weglocken',
+          fr: 'Posez les AoE au loin',
+          ja: '離れてAoEを置く',
+          cn: '远离放置AOE',
+          ko: '장판 멀리빼기',
+        },
       },
     },
   ],

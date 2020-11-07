@@ -14,13 +14,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['2853', '2863'], source: 'リオレウス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['2853', '2863'], source: '火龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['2853', '2863'], source: '리오레우스', capture: false }),
-      infoText: {
-        en: 'Mangle',
-        de: 'Biss und Schweifhieb',
-        fr: 'Broyage',
-        ja: 'アギト',
-        ko: '으깨기',
-        cn: '去侧面',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mangle',
+          de: 'Biss und Schweifhieb',
+          fr: 'Broyage',
+          ja: 'アギト',
+          ko: '으깨기',
+          cn: '去侧面',
+        },
       },
     },
     {
@@ -31,13 +34,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'リオレウス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['2856', '2861'], source: '火龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['2856', '2861'], source: '리오레우스', capture: false }),
-      alertText: {
-        en: 'Rush',
-        de: 'Stürmen',
-        fr: 'Ruée',
-        ja: '突進',
-        ko: '돌진',
-        cn: '龙车',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Rush',
+          de: 'Stürmen',
+          fr: 'Ruée',
+          ja: '突進',
+          ko: '돌진',
+          cn: '龙车',
+        },
       },
     },
     {
@@ -48,13 +54,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['2859', '285B'], source: 'リオレウス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['2859', '285B'], source: '火龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['2859', '285B'], source: '리오레우스', capture: false }),
-      alarmText: {
-        en: 'Flaming Recoil',
-        de: 'Flammenschlag vorne',
-        fr: 'Bond enflammé',
-        ja: 'フレイムリコイル',
-        ko: '반동 화염',
-        cn: '去背面',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Flaming Recoil',
+          de: 'Flammenschlag vorne',
+          fr: 'Bond enflammé',
+          ja: 'フレイムリコイル',
+          ko: '반동 화염',
+          cn: '去背面',
+        },
       },
     },
     {
@@ -63,13 +72,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Fire Breath on YOU',
-        de: 'Feueratem auf DIR',
-        fr: 'Souffle enflammé sur VOUS',
-        ja: '自分にファイアブレス',
-        ko: '화염 숨결 대상자',
-        cn: '火点名',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Fire Breath on YOU',
+          de: 'Feueratem auf DIR',
+          fr: 'Souffle enflammé sur VOUS',
+          ja: '自分にファイアブレス',
+          ko: '화염 숨결 대상자',
+          cn: '火点名',
+        },
       },
     },
     {

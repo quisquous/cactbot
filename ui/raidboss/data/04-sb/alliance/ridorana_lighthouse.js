@@ -31,13 +31,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '2C50', source: '暗黑之云法姆弗里特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2C50', source: '암흑의 구름 팜프리트', capture: false }),
       delaySeconds: 4.5,
-      alertText: {
-        en: 'Look for Tsunami',
-        de: 'Auf Krug achten',
-        fr: 'Attention Tsunami',
-        ja: '水瓶が向いてる方向から離れ',
-        ko: '대해일 확인',
-        cn: '离开水瓶口方向',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look for Tsunami',
+          de: 'Auf Krug achten',
+          fr: 'Attention Tsunami',
+          ja: '水瓶が向いてる方向から離れ',
+          ko: '대해일 확인',
+          cn: '离开水瓶口方向',
+        },
       },
     },
     {
@@ -49,13 +52,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '2C50', source: '暗黑之云法姆弗里特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2C50', source: '암흑의 구름 팜프리트', capture: false }),
       delaySeconds: 16.5,
-      alertText: {
-        en: 'Look for Tsunami',
-        de: 'Auf Krug achten',
-        fr: 'Attention Tsunami',
-        ja: '水瓶が向いてる方向から離れ',
-        ko: '대해일 확인',
-        cn: '离开水瓶口方向',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look for Tsunami',
+          de: 'Auf Krug achten',
+          fr: 'Attention Tsunami',
+          ja: '水瓶が向いてる方向から離れ',
+          ko: '대해일 확인',
+          cn: '离开水瓶口方向',
+        },
       },
     },
     {
@@ -67,13 +73,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '2C50', source: '暗黑之云法姆弗里特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2C50', source: '암흑의 구름 팜프리트', capture: false }),
       delaySeconds: 28.5,
-      alertText: {
-        en: 'Look for Tsunami',
-        de: 'Auf Krug achten',
-        fr: 'Attention Tsunami',
-        ja: '水瓶が向いてる方向から離れ',
-        ko: '대해일 확인',
-        cn: '离开水瓶口方向',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look for Tsunami',
+          de: 'Auf Krug achten',
+          fr: 'Attention Tsunami',
+          ja: '水瓶が向いてる方向から離れ',
+          ko: '대해일 확인',
+          cn: '离开水瓶口方向',
+        },
       },
     },
     {
@@ -121,13 +130,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2CDE', source: '魔人ベリアス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2CDE', source: '魔人贝利亚斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2CDE', source: '마인 벨리아스', capture: false }),
-      infoText: {
-        en: 'Stand on Slow Clock',
-        de: 'In der langsamen Uhr stehen',
-        fr: 'Placez-vous sur une horloge lente',
-        ja: '遅い時計へ待機（早い方が爆発したらすぐ安置へ）',
-        ko: '느린 시계 위로',
-        cn: '站慢速时钟等待',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand on Slow Clock',
+          de: 'In der langsamen Uhr stehen',
+          fr: 'Placez-vous sur une horloge lente',
+          ja: '遅い時計へ待機（早い方が爆発したらすぐ安置へ）',
+          ko: '느린 시계 위로',
+          cn: '站慢速时钟等待',
+        },
       },
     },
     {
@@ -137,13 +149,16 @@
       condition: function(data, matches) {
         return (matches.target == data.me);
       },
-      alertText: {
-        en: 'Stretch Tether Outside',
-        de: 'Verbindung nach außen strecken',
-        fr: 'Lien vers l\'exterieur',
-        ja: '線を伸ばし外に向け',
-        ko: '줄 바깥으로 늘이기',
-        cn: '将连线朝外远离人群',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stretch Tether Outside',
+          de: 'Verbindung nach außen strecken',
+          fr: 'Lien vers l\'exterieur',
+          ja: '線を伸ばし外に向け',
+          ko: '줄 바깥으로 늘이기',
+          cn: '将连线朝外远离人群',
+        },
       },
     },
     {
@@ -154,13 +169,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2CE6', source: '魔人ベリアス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2CE6', source: '魔人贝利亚斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2CE6', source: '마인 벨리아스', capture: false }),
-      infoText: {
-        en: 'Stop Clocks',
-        de: 'Uhrzeiger nach außen',
-        fr: 'Arrêtez horloge',
-        ja: '針を外に指させ',
-        ko: '시간 폭탄',
-        cn: '定时炸弹',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stop Clocks',
+          de: 'Uhrzeiger nach außen',
+          fr: 'Arrêtez horloge',
+          ja: '針を外に指させ',
+          ko: '시간 폭탄',
+          cn: '定时炸弹',
+        },
       },
     },
     {
@@ -434,13 +452,16 @@
       condition: function(data, matches) {
         return (matches.target == data.me);
       },
-      infoText: {
-        en: 'Move to Postive',
-        de: 'Ins Positive laufen',
-        fr: 'Allez sur le plus',
-        ja: 'プラス（＋）へ',
-        ko: '+전하 쪽으로',
-        cn: '移动到正极',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move to Postive',
+          de: 'Ins Positive laufen',
+          fr: 'Allez sur le plus',
+          ja: 'プラス（＋）へ',
+          ko: '+전하 쪽으로',
+          cn: '移动到正极',
+        },
       },
     },
     {
@@ -449,13 +470,16 @@
       condition: function(data, matches) {
         return (matches.target == data.me);
       },
-      infoText: {
-        en: 'Move to Negative',
-        de: 'Ins Negative laufen',
-        fr: 'Allez sur le moins',
-        ja: 'マイナス（ー）へ',
-        ko: '-전하 쪽으로',
-        cn: '移动到负极',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move to Negative',
+          de: 'Ins Negative laufen',
+          fr: 'Allez sur le moins',
+          ja: 'マイナス（ー）へ',
+          ko: '-전하 쪽으로',
+          cn: '移动到负极',
+        },
       },
     },
     {
@@ -478,13 +502,16 @@
       netRegexCn: NetRegexes.addedCombatant({ name: '鬼龙的核心', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '야즈마트의 심핵', capture: false }),
       suppressSeconds: 10,
-      infoText: {
-        en: 'Kill Heart',
-        de: 'Herz',
-        fr: 'Tuer le cœur',
-        ja: '心核を討つ',
-        ko: '심핵 처리',
-        cn: '消灭boss核心',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Heart',
+          de: 'Herz',
+          fr: 'Tuer le cœur',
+          ja: '心核を討つ',
+          ko: '심핵 처리',
+          cn: '消灭boss核心',
+        },
       },
     },
   ],

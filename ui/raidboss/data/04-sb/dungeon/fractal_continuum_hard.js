@@ -23,13 +23,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2AE5', source: 'サーヴォ・ミノタウロス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2AE5', source: '自控化弥诺陶洛斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2AE5', source: '자동제어 미노타우로스', capture: false }),
-      infoText: {
-        en: 'swipe',
-        de: 'Hieb',
-        fr: 'Fauche',
-        ja: 'スワイプ',
-        cn: '去目标背后',
-        ko: '전방 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'swipe',
+          de: 'Hieb',
+          fr: 'Fauche',
+          ja: 'スワイプ',
+          cn: '去目标背后',
+          ko: '전방 피하기',
+        },
       },
     },
     {
@@ -40,13 +43,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '29A2', source: 'バイオ・ミノタウロス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '29A2', source: '生化弥诺陶洛斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '29A2', source: '양산체 미노타우로스', capture: false }),
-      infoText: {
-        en: 'swipe',
-        de: 'Hieb',
-        fr: 'Fauche',
-        ja: 'スワイプ',
-        cn: '去目标背后',
-        ko: '전방 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'swipe',
+          de: 'Hieb',
+          fr: 'Fauche',
+          ja: 'スワイプ',
+          cn: '去目标背后',
+          ko: '전방 피하기',
+        },
       },
     },
     {
@@ -57,13 +63,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2AE4', source: 'サーヴォ・ミノタウロス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2AE4', source: '自控化弥诺陶洛斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2AE4', source: '자동제어 미노타우로스', capture: false }),
-      alertText: {
-        en: 'Swing',
-        de: 'Schwung',
-        fr: 'Swing',
-        ja: 'スウィング',
-        cn: '远离目标',
-        ko: '밖으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Swing',
+          de: 'Schwung',
+          fr: 'Swing',
+          ja: 'スウィング',
+          cn: '远离目标',
+          ko: '밖으로',
+        },
       },
     },
     {
@@ -74,13 +83,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '29A1', source: 'バイオ・ミノタウロス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '29A1', source: '生化弥诺陶洛斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '29A1', source: '양산체 미노타우로스', capture: false }),
-      alertText: {
-        en: 'Swing',
-        de: 'Schwung',
-        fr: 'Swing',
-        ja: 'スウィング',
-        cn: '远离目标',
-        ko: '밖으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Swing',
+          de: 'Schwung',
+          fr: 'Swing',
+          ja: 'スウィング',
+          cn: '远离目标',
+          ko: '밖으로',
+        },
       },
     },
     {
@@ -91,13 +103,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '861', source: 'サーヴォ・キマイラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '861', source: '自控化奇美拉', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '861', source: '자동제어 키마이라', capture: false }),
-      alertText: {
-        en: 'Dragon\'s Voice',
-        de: 'Stimme Des Drachen',
-        fr: 'Voix Du Dragon',
-        ja: '雷電の咆哮',
-        cn: '靠近奇美拉',
-        ko: '뇌전의 포효',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dragon\'s Voice',
+          de: 'Stimme Des Drachen',
+          fr: 'Voix Du Dragon',
+          ja: '雷電の咆哮',
+          cn: '靠近奇美拉',
+          ko: '뇌전의 포효',
+        },
       },
     },
     {
@@ -108,13 +123,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '860', source: 'サーヴォ・キマイラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '860', source: '自控化奇美拉', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '860', source: '자동제어 키마이라', capture: false }),
-      alertText: {
-        en: 'Ram\'s Voice',
-        de: 'Stimme Des Widders',
-        fr: 'Voix Du Bélier',
-        ja: '氷結の咆哮',
-        cn: '远离奇美拉',
-        ko: '빙결의 포효',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Ram\'s Voice',
+          de: 'Stimme Des Widders',
+          fr: 'Voix Du Bélier',
+          ja: '氷結の咆哮',
+          cn: '远离奇美拉',
+          ko: '빙결의 포효',
+        },
       },
     },
     {
@@ -125,13 +143,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '860', source: 'プロトキマイラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '860', source: '原型奇美拉', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '860', source: '프로토 키마이라', capture: false }),
-      alertText: {
-        en: 'Ram\'s Voice',
-        de: 'Stimme Des Widders',
-        fr: 'Voix Du Bélier',
-        ja: '氷結の咆哮',
-        cn: '远离奇美拉',
-        ko: '빙결의 포효',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Ram\'s Voice',
+          de: 'Stimme Des Widders',
+          fr: 'Voix Du Bélier',
+          ja: '氷結の咆哮',
+          cn: '远离奇美拉',
+          ko: '빙결의 포효',
+        },
       },
     },
     {
@@ -179,11 +200,14 @@
       id: 'Fractal Hard Ratzon',
       netRegex: NetRegexes.headMarker({ id: '0046' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Puddle on YOU',
-        de: 'Fläche auf DIR',
-        fr: 'Zone au sol sur VOUS',
-        cn: '圈圈点名',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Puddle on YOU',
+          de: 'Fläche auf DIR',
+          fr: 'Zone au sol sur VOUS',
+          cn: '圈圈点名',
+        },
       },
     },
     {

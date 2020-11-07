@@ -55,13 +55,16 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      infoText: {
-        en: 'Light',
-        de: 'Licht',
-        fr: 'Lumière',
-        ja: '魔界の光',
-        cn: '光点名',
-        ko: '빛장판',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Light',
+          de: 'Licht',
+          fr: 'Lumière',
+          ja: '魔界の光',
+          cn: '光点名',
+          ko: '빛장판',
+        },
       },
     },
     {
@@ -70,13 +73,16 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      infoText: {
-        en: 'Wind',
-        de: 'Wind',
-        fr: 'Vent',
-        ja: '魔界の風',
-        cn: '圆圈点名',
-        ko: '초록징',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Wind',
+          de: 'Wind',
+          fr: 'Vent',
+          ja: '魔界の風',
+          cn: '圆圈点名',
+          ko: '초록징',
+        },
       },
     },
   ],

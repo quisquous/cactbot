@@ -56,13 +56,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '27DD', source: '白虎', target: '白虎', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '27DD', source: '白虎', target: '白虎', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27DD', source: '백호', target: '백호', capture: false }),
-      alertText: {
-        en: 'Distant Clap',
-        de: 'Donnergrollen',
-        fr: 'Tonnerre lointain',
-        ja: '遠雷',
-        cn: '远雷',
-        ko: '원뢰',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Distant Clap',
+          de: 'Donnergrollen',
+          fr: 'Tonnerre lointain',
+          ja: '遠雷',
+          cn: '远雷',
+          ko: '원뢰',
+        },
       },
     },
     {
@@ -76,13 +79,16 @@
       condition: function(data, matches) {
         return data.role == 'tank' && matches.target != data.me;
       },
-      alertText: {
-        en: 'Provoke Boss',
-        de: 'Boss abspotten',
-        fr: 'Provoquez !',
-        ja: '挑発',
-        cn: '挑衅',
-        ko: '보스 도발',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Provoke Boss',
+          de: 'Boss abspotten',
+          fr: 'Provoquez !',
+          ja: '挑発',
+          cn: '挑衅',
+          ko: '보스 도발',
+        },
       },
     },
     {
@@ -97,13 +103,16 @@
         return data.role == 'tank' && matches.target == data.me;
       },
       delaySeconds: 12,
-      alertText: {
-        en: 'Provoke Boss',
-        de: 'Boss abspotten',
-        fr: 'Provoquez le Boss !',
-        ja: '挑発',
-        cn: '挑衅',
-        ko: '보스 도발',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Provoke Boss',
+          de: 'Boss abspotten',
+          fr: 'Provoquez le Boss !',
+          ja: '挑発',
+          cn: '挑衅',
+          ko: '보스 도발',
+        },
       },
     },
     {
@@ -150,13 +159,16 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      infoText: {
-        en: 'Drop bubble outside',
-        de: 'Blase außen ablegen',
-        fr: 'Déposez la bulle à l\'extérieur',
-        ja: '外にマーカーを置く',
-        cn: '边缘放点名',
-        ko: '장판 바깥에 깔기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop bubble outside',
+          de: 'Blase außen ablegen',
+          fr: 'Déposez la bulle à l\'extérieur',
+          ja: '外にマーカーを置く',
+          cn: '边缘放点名',
+          ko: '장판 바깥에 깔기',
+        },
       },
     },
     {
@@ -165,13 +177,16 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      infoText: {
-        en: 'Pink bubble',
-        de: 'Pinke Blase',
-        fr: 'Bulle violette',
-        ja: '祟り目',
-        cn: '泡泡',
-        ko: '핑크 구슬',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Pink bubble',
+          de: 'Pinke Blase',
+          fr: 'Bulle violette',
+          ja: '祟り目',
+          cn: '泡泡',
+          ko: '핑크 구슬',
+        },
       },
     },
     {
@@ -180,13 +195,16 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alarmText: {
-        en: 'Puddles on YOU',
-        de: 'Pfützen auf DIR',
-        fr: 'Zones au sol sur VOUS',
-        ja: '自分に床範囲',
-        cn: '点名',
-        ko: '장판 바깥에 깔기 (3번)',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Puddles on YOU',
+          de: 'Pfützen auf DIR',
+          fr: 'Zones au sol sur VOUS',
+          ja: '自分に床範囲',
+          cn: '点名',
+          ko: '장판 바깥에 깔기 (3번)',
+        },
       },
     },
     {
@@ -195,13 +213,16 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      infoText: {
-        en: 'Get away',
-        de: 'Weg da',
-        fr: 'Éloignez-vous',
-        ja: '離れ',
-        cn: '远离',
-        ko: '멀리가기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get away',
+          de: 'Weg da',
+          fr: 'Éloignez-vous',
+          ja: '離れ',
+          cn: '远离',
+          ko: '멀리가기',
+        },
       },
     },
     {

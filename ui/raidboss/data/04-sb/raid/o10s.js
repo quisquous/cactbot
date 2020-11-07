@@ -48,13 +48,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Death From Below',
-        de: 'Tod von unten',
-        fr: 'Désastre terrestre',
-        ja: '地の災厄',
-        cn: '地之灾厄',
-        ko: '디버프 확인',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Death From Below',
+          de: 'Tod von unten',
+          fr: 'Désastre terrestre',
+          ja: '地の災厄',
+          cn: '地之灾厄',
+          ko: '디버프 확인',
+        },
       },
     },
     {
@@ -63,13 +66,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Death From Above',
-        de: 'Tod von oben',
-        fr: 'Désastre Céleste',
-        ja: '天の災厄',
-        cn: '天之灾厄',
-        ko: '디버프 확인',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Death From Above',
+          de: 'Tod von oben',
+          fr: 'Désastre Céleste',
+          ja: '天の災厄',
+          cn: '天之灾厄',
+          ko: '디버프 확인',
+        },
       },
     },
     {
@@ -100,16 +106,19 @@
       netRegexJa: NetRegexes.ability({ id: '31AC', source: 'ミドガルズオルム', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '31AC', source: '尘世幻龙', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '31AC', source: '미드가르드오름', capture: false }),
-      infoText: {
-        en: 'Next Spin: In or Out',
-        de: 'Nächste Drehung: Rein oder Raus',
-        fr: 'Tour suivant : Dedans/Dehors',
-        ja: '次: 中/外',
-        cn: '下一转：靠近或远离',
-        ko: '안쪽 / 바깥쪽',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.lastSpinWasHorizontal = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Next Spin: In or Out',
+          de: 'Nächste Drehung: Rein oder Raus',
+          fr: 'Tour suivant : Dedans/Dehors',
+          ja: '次: 中/外',
+          cn: '下一转：靠近或远离',
+          ko: '안쪽 / 바깥쪽',
+        },
       },
     },
     {
@@ -120,16 +129,19 @@
       netRegexJa: NetRegexes.ability({ id: '31AD', source: 'ミドガルズオルム', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '31AD', source: '尘世幻龙', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '31AD', source: '미드가르드오름', capture: false }),
-      infoText: {
-        en: 'Next Spin: Cardinals or Corners',
-        de: 'Nächste Drehung: Kanten oder Ecken',
-        fr: 'Tour suivant : Cardinaux ou Coins',
-        ja: '次: コーナー',
-        cn: '下一转：靠边火角落',
-        ko: '십자 / 대각선',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.lastSpinWasHorizontal = false;
+      },
+      outputStrings: {
+        text: {
+          en: 'Next Spin: Cardinals or Corners',
+          de: 'Nächste Drehung: Kanten oder Ecken',
+          fr: 'Tour suivant : Cardinaux ou Coins',
+          ja: '次: コーナー',
+          cn: '下一转：靠边火角落',
+          ko: '십자 / 대각선',
+        },
       },
     },
     {

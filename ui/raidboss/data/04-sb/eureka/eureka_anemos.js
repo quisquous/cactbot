@@ -12,13 +12,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2AD5', source: 'ヴォイドガルム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2AD5', source: '虚无加姆', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2AD5', source: '보이드 가름', capture: false }),
-      infoText: {
-        en: 'Dragon\'s Voice',
-        de: 'Stimme Des Drachen',
-        fr: 'Voix du dragon',
-        ja: '雷電の咆哮',
-        cn: '雷电咆哮',
-        ko: '뇌전의 포효',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dragon\'s Voice',
+          de: 'Stimme Des Drachen',
+          fr: 'Voix du dragon',
+          ja: '雷電の咆哮',
+          cn: '雷电咆哮',
+          ko: '뇌전의 포효',
+        },
       },
     },
     {
@@ -39,13 +42,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2A71', source: 'ポリュペモス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2A71', source: '波吕斐摩斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2A71', source: '폴리페모스', capture: false }),
-      infoText: {
-        en: 'Swipe',
-        de: 'Hieb',
-        fr: 'Fauche',
-        ja: 'スワイプ',
-        cn: '横扫',
-        ko: '휘두르기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Swipe',
+          de: 'Hieb',
+          fr: 'Fauche',
+          ja: 'スワイプ',
+          cn: '横扫',
+          ko: '휘두르기',
+        },
       },
     },
     {
@@ -66,12 +72,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2A73', source: 'ポリュペモス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2A73', source: '波吕斐摩斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2A73', source: '폴리페모스', capture: false }),
-      alertText: {
-        en: 'Eye Donut',
-        de: 'Augendonut',
-        fr: 'Donut œil',
-        ja: 'アイ・オブ・ビホルダー',
-        cn: '月环',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Eye Donut',
+          de: 'Augendonut',
+          fr: 'Donut œil',
+          ja: 'アイ・オブ・ビホルダー',
+          cn: '月环',
+        },
       },
     },
     {
@@ -82,13 +91,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2A72', source: 'ポリュペモス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2A72', source: '波吕斐摩斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2A72', source: '폴리페모스', capture: false }),
-      alertText: {
-        en: 'Glower Laser',
-        de: 'Blick Laser',
-        fr: 'Regard laser',
-        ja: 'グラワー',
-        cn: '怒视',
-        ko: '광선',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Glower Laser',
+          de: 'Blick Laser',
+          fr: 'Regard laser',
+          ja: 'グラワー',
+          cn: '怒视',
+          ko: '광선',
+        },
       },
     },
     {
@@ -122,12 +134,15 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alertText: {
-        en: 'Ice ball on you!',
-        de: 'Eisball auf dir!',
-        fr: 'Boule de glace sur vous !',
-        ja: '自分に氷玉',
-        cn: '点名冰球！',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Ice ball on you!',
+          de: 'Eisball auf dir!',
+          fr: 'Boule de glace sur vous !',
+          ja: '自分に氷玉',
+          cn: '点名冰球！',
+        },
       },
     },
     {
@@ -171,12 +186,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2896', source: 'パズズ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2896', source: '帕祖祖', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2896', source: '파주주', capture: false }),
-      alarmText: {
-        en: 'Plague Donut',
-        de: 'Plagen-Donut',
-        fr: 'Donut Nuée',
-        ja: 'ローカストプレイグ',
-        cn: '月环',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Plague Donut',
+          de: 'Plagen-Donut',
+          fr: 'Donut Nuée',
+          ja: 'ローカストプレイグ',
+          cn: '月环',
+        },
       },
     },
     {

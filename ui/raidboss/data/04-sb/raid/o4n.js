@@ -16,12 +16,15 @@
       condition: function(data) {
         return data.CanCleanse();
       },
-      alertText: {
-        en: 'Cleanse Doom soon',
-        de: 'Reinige Verhängnis bald',
-        ja: '死の宣告にエスナ',
-        cn: '驱散死宣',
-        ko: '죽음의 선고 해제하기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Cleanse Doom soon',
+          de: 'Reinige Verhängnis bald',
+          ja: '死の宣告にエスナ',
+          cn: '驱散死宣',
+          ko: '죽음의 선고 해제하기',
+        },
       },
     },
     {
@@ -53,12 +56,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '24C0', source: 'エクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '24C0', source: '艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '24C0', source: '엑스데스', capture: false }),
-      infoText: {
-        en: 'Move around',
-        de: 'Bewegen',
-        ja: '動く続ける',
-        cn: '不停移动',
-        ko: '움직이기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move around',
+          de: 'Bewegen',
+          ja: '動く続ける',
+          cn: '不停移动',
+          ko: '움직이기',
+        },
       },
     },
     {
@@ -96,12 +102,15 @@
         return data.battleCount > 1;
       },
       delaySeconds: 6,
-      infoText: {
-        en: 'Stand in the gap',
-        de: 'In der Lücke stehen',
-        ja: '狭間に',
-        cn: '远离中间位置',
-        ko: '빈틈에 서기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand in the gap',
+          de: 'In der Lücke stehen',
+          ja: '狭間に',
+          cn: '远离中间位置',
+          ko: '빈틈에 서기',
+        },
       },
     },
     {
@@ -113,12 +122,15 @@
       netRegexCn: NetRegexes.startsUsing({ id: '240A', source: '艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '240A', source: '엑스데스', capture: false }),
       delaySeconds: 6,
-      infoText: {
-        en: 'Behind head--Avoid zombie breath',
-        de: 'Hinter den Kopf - Vermeide den Zombie-Atem',
-        ja: '頭の後ろに - ゾンビブレス来るぞ',
-        cn: '站头后方',
-        ko: '머리 뒤로 - 좀비 숨결 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Behind head--Avoid zombie breath',
+          de: 'Hinter den Kopf - Vermeide den Zombie-Atem',
+          ja: '頭の後ろに - ゾンビブレス来るぞ',
+          cn: '站头后方',
+          ko: '머리 뒤로 - 좀비 숨결 피하기',
+        },
       },
     },
     {
@@ -129,12 +141,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '24C8', source: 'エクスデス', target: 'エクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '24C8', source: '艾克斯迪司', target: '艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '24C8', source: '엑스데스', target: '엑스데스', capture: false }),
-      infoText: {
-        en: 'Avoid black holes',
-        de: 'Weiche den Schwarzen Löchern aus',
-        ja: 'ブラックホールに離れ',
-        cn: '远离黑洞',
-        ko: '블랙홀 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid black holes',
+          de: 'Weiche den Schwarzen Löchern aus',
+          ja: 'ブラックホールに離れ',
+          cn: '远离黑洞',
+          ko: '블랙홀 피하기',
+        },
       },
     },
     {
@@ -151,12 +166,15 @@
       id: 'O4N Flare',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Flare on YOU',
-        de: 'Flare auf DIR',
-        ja: '自分にフレア',
-        cn: '核爆点名',
-        ko: '플레어 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Flare on YOU',
+          de: 'Flare auf DIR',
+          ja: '自分にフレア',
+          cn: '核爆点名',
+          ko: '플레어 대상자',
+        },
       },
     },
     {

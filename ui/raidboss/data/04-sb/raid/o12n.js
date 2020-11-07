@@ -52,13 +52,16 @@
       condition: function(data) {
         return data.role == 'tank';
       },
-      alertText: {
-        en: 'Move bosses apart',
-        de: 'Bosse auseinander ziehen',
-        fr: 'Ecartez les boss',
-        ja: 'ボスを引き離す',
-        cn: '分开boss',
-        ko: '보스 서로 떨어뜨리기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move bosses apart',
+          de: 'Bosse auseinander ziehen',
+          fr: 'Ecartez les boss',
+          ja: 'ボスを引き離す',
+          cn: '分开boss',
+          ko: '보스 서로 떨어뜨리기',
+        },
       },
     },
     {
@@ -103,13 +106,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Attack Omega-M',
-        de: 'Omega-M angreifen',
-        fr: 'Attaquez Oméga-M',
-        ja: 'オメガMに攻撃',
-        cn: '攻击男性',
-        ko: '오메가 M 공격',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Attack Omega-M',
+          de: 'Omega-M angreifen',
+          fr: 'Attaquez Oméga-M',
+          ja: 'オメガMに攻撃',
+          cn: '攻击男性',
+          ko: '오메가 M 공격',
+        },
       },
     },
     {
@@ -118,13 +124,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Attack Omega-F',
-        de: 'Omega-W angreifen',
-        fr: 'Attaquez Oméga-F',
-        ja: 'オメガFに攻撃',
-        cn: '攻击女性',
-        ko: '오메가 F 공격',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Attack Omega-F',
+          de: 'Omega-W angreifen',
+          fr: 'Attaquez Oméga-F',
+          ja: 'オメガFに攻撃',
+          cn: '攻击女性',
+          ko: '오메가 F 공격',
+        },
       },
     },
   ],

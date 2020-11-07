@@ -15,13 +15,16 @@
       id: 'Orbonne Agrias Duskblade',
       regex: /Duskblade/,
       beforeSeconds: 15,
-      infoText: {
-        en: 'Get to your pads',
-        de: 'Geh auf Dein Feld',
-        fr: 'Allez sur votre tour',
-        ja: '各サークルに入る',
-        ko: '장판 밟기',
-        cn: '踩塔',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get to your pads',
+          de: 'Geh auf Dein Feld',
+          fr: 'Allez sur votre tour',
+          ja: '各サークルに入る',
+          ko: '장판 밟기',
+          cn: '踩塔',
+        },
       },
     },
     {
@@ -30,13 +33,16 @@
       condition: function(data) {
         return data.role == 'tank';
       },
-      alertText: {
-        en: 'Pick up tether',
-        de: 'Verbindung abnehmen',
-        fr: 'Prenez le lien',
-        ja: '線を取る',
-        ko: '선 가져오기',
-        cn: '坦克接线',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Pick up tether',
+          de: 'Verbindung abnehmen',
+          fr: 'Prenez le lien',
+          ja: '線を取る',
+          ko: '선 가져오기',
+          cn: '坦克接线',
+        },
       },
     },
   ],
@@ -80,13 +86,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3737', source: '機工士ムスタディオ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3737', source: '机工士姆斯塔迪奥', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3737', source: '기공사 무스타디오', capture: false }),
-      alertText: {
-        en: 'Point opening at Mustadio',
-        de: 'Richte Öffnung auf Mustadio',
-        fr: 'Orientez l\'ouverture vers le boss',
-        ja: '未解析の方角をボスに向け',
-        ko: '문양이 빈 쪽을 무스타디오쪽으로 향하게 하기',
-        cn: '脚下光环缺口对准boss',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Point opening at Mustadio',
+          de: 'Richte Öffnung auf Mustadio',
+          fr: 'Orientez l\'ouverture vers le boss',
+          ja: '未解析の方角をボスに向け',
+          ko: '문양이 빈 쪽을 무스타디오쪽으로 향하게 하기',
+          cn: '脚下光环缺口对准boss',
+        },
       },
     },
     {
@@ -105,13 +114,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Searchlight on YOU',
-        de: 'Suchscheinwerfer auf DIR',
-        fr: 'Repérage sur VOUS',
-        ja: '地雷を外に放置（踏まない）',
-        ko: '탐조등 대상자',
-        cn: '远离人群放地雷后离开',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Searchlight on YOU',
+          de: 'Suchscheinwerfer auf DIR',
+          fr: 'Repérage sur VOUS',
+          ja: '地雷を外に放置（踏まない）',
+          ko: '탐조등 대상자',
+          cn: '远离人群放地雷后离开',
+        },
       },
     },
     {
@@ -169,13 +181,16 @@
       condition: function(data) {
         return !data.agriasGhostCleanse;
       },
-      infoText: {
-        en: 'Pick up swords',
-        de: 'Schwerter aufnehmen',
-        fr: 'Prenez les épées',
-        ja: 'ソード（剣）を取る',
-        ko: '검 들기',
-        cn: '进入附近的剑标记圈',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Pick up swords',
+          de: 'Schwerter aufnehmen',
+          fr: 'Prenez les épées',
+          ja: 'ソード（剣）を取る',
+          ko: '검 들기',
+          cn: '进入附近的剑标记圈',
+        },
       },
     },
     {
@@ -218,13 +233,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alarmText: {
-        en: 'Go To Center',
-        de: 'In die Mitte gehen',
-        fr: 'Allez au centre',
-        ja: '中央に入る',
-        ko: '중앙으로 이동',
-        cn: '前往中间',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go To Center',
+          de: 'In die Mitte gehen',
+          fr: 'Allez au centre',
+          ja: '中央に入る',
+          ko: '중앙으로 이동',
+          cn: '前往中间',
+        },
       },
     },
     {
@@ -235,13 +253,16 @@
       netRegexJa: NetRegexes.ability({ id: '385D', source: '聖騎士アグリアス', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '385D', source: '圣骑士阿格莉亚丝', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '385D', source: '성기사 아그리아스', capture: false }),
-      alertText: {
-        en: 'Get Shield',
-        de: 'Schild nehmen',
-        fr: 'Prenez un bouclier',
-        ja: 'シールド（盾）を取る',
-        ko: '방패 들기',
-        cn: '进入盾标记圈',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Shield',
+          de: 'Schild nehmen',
+          fr: 'Prenez un bouclier',
+          ja: 'シールド（盾）を取る',
+          ko: '방패 들기',
+          cn: '进入盾标记圈',
+        },
       },
     },
     {
@@ -253,13 +274,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '385E', source: '剑之骑士', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '385E', source: '검의 기사', capture: false }),
       suppressSeconds: 5,
-      alertText: {
-        en: 'Use Shield, Face Knights',
-        de: 'Schild benutzen, Ritter anschauen',
-        fr: 'Bouclier, face au chevaliers',
-        ja: '騎士に向けてシールドを使う',
-        ko: '방패 사용하고, 기사 바라보기',
-        cn: '面对剑骑使用盾牌',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Use Shield, Face Knights',
+          de: 'Schild benutzen, Ritter anschauen',
+          fr: 'Bouclier, face au chevaliers',
+          ja: '騎士に向けてシールドを使う',
+          ko: '방패 사용하고, 기사 바라보기',
+          cn: '面对剑骑使用盾牌',
+        },
       },
     },
     {
@@ -271,13 +295,16 @@
       netRegexCn: NetRegexes.addedCombatant({ name: '光辉的大盾', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '찬란한 방패', capture: false }),
       suppressSeconds: 10,
-      infoText: {
-        en: 'Kill shields with sword',
-        de: 'Schilde mit Schwert zerstören',
-        fr: 'Détruisez les boucliers avec les épées',
-        ja: '剣で大盾を破れ',
-        ko: '방패에 검 사용하기',
-        cn: '用剑摧毁护盾',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill shields with sword',
+          de: 'Schilde mit Schwert zerstören',
+          fr: 'Détruisez les boucliers avec les épées',
+          ja: '剣で大盾を破れ',
+          ko: '방패에 검 사용하기',
+          cn: '用剑摧毁护盾',
+        },
       },
     },
     {
@@ -288,13 +315,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3857', source: '聖騎士アグリアス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3857', source: '圣骑士阿格莉亚丝', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3857', source: '성기사 아그리아스', capture: false }),
-      infoText: {
-        en: 'Use shield, face boss',
-        de: 'Schild benutzen, Boss anschauen',
-        fr: 'Bouclier, face au boss',
-        ja: 'ボスを向けてシールドを使う',
-        ko: '방패 사용하고, 보스 바라보기',
-        cn: '面对boss使用盾牌',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Use shield, face boss',
+          de: 'Schild benutzen, Boss anschauen',
+          fr: 'Bouclier, face au boss',
+          ja: 'ボスを向けてシールドを使う',
+          ko: '방패 사용하고, 보스 바라보기',
+          cn: '面对boss使用盾牌',
+        },
       },
     },
     {
@@ -305,13 +335,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3858', source: '聖騎士アグリアス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3858', source: '圣骑士阿格莉亚丝', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3858', source: '성기사 아그리아스', capture: false }),
-      infoText: {
-        en: 'Use shield if tethered',
-        de: 'Schild benutzen, wenn verbunden',
-        fr: 'Bouclier si lié',
-        ja: '線と繋げたらシールドを使う',
-        ko: '선 연결되면 방패 사용하기',
-        cn: '被连线使用盾牌',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Use shield if tethered',
+          de: 'Schild benutzen, wenn verbunden',
+          fr: 'Bouclier si lié',
+          ja: '線と繋げたらシールドを使う',
+          ko: '선 연결되면 방패 사용하기',
+          cn: '被连线使用盾牌',
+        },
       },
     },
     {
@@ -338,13 +371,16 @@
       condition: function(data) {
         return data.CanFeint();
       },
-      infoText: {
-        en: 'Feint Tank Buster',
-        de: 'Tankbuster Zermürben',
-        fr: 'Evitez Tank Buster',
-        ja: 'タンクバスター（牽制使って）',
-        ko: '성천폭격타 탱버',
-        cn: '坦克死刑',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Feint Tank Buster',
+          de: 'Tankbuster Zermürben',
+          fr: 'Evitez Tank Buster',
+          ja: 'タンクバスター（牽制使って）',
+          ko: '성천폭격타 탱버',
+          cn: '坦克死刑',
+        },
       },
     },
     {
@@ -371,13 +407,16 @@
       condition: function(data) {
         return data.role == 'tank';
       },
-      alarmText: {
-        en: 'Give Tether Away',
-        de: 'Verbindung abgeben',
-        fr: 'Donnez le lien',
-        ja: '線を取らない！',
-        ko: '선 가져오기',
-        cn: '获取连线受到一次伤害后转给下一个',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Give Tether Away',
+          de: 'Verbindung abgeben',
+          fr: 'Donnez le lien',
+          ja: '線を取らない！',
+          ko: '선 가져오기',
+          cn: '获取连线受到一次伤害后转给下一个',
+        },
       },
     },
     {
@@ -391,13 +430,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Give Tether Away',
-        de: 'Verbindung abgeben',
-        fr: 'Donnez le lien',
-        ja: '線を次の人に交代',
-        ko: '장 바깥으로 빼기',
-        cn: '获取连线受到一次伤害后转给下一个',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Give Tether Away',
+          de: 'Verbindung abgeben',
+          fr: 'Donnez le lien',
+          ja: '線を次の人に交代',
+          ko: '장 바깥으로 빼기',
+          cn: '获取连线受到一次伤害后转给下一个',
+        },
       },
     },
     {
@@ -408,13 +450,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '375A', source: '雷神シド', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '375A', source: '雷神西德', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '375A', source: '뇌신 시드', capture: false }),
-      alertText: {
-        en: 'Kill Icewolf Adds',
-        de: 'Besiege die Eiswolf Adds',
-        fr: 'Tuez les Grêlons de glace',
-        ja: '氷狼を討つ',
-        ko: '얼음 부수기',
-        cn: '速度消灭冰狼',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Icewolf Adds',
+          de: 'Besiege die Eiswolf Adds',
+          fr: 'Tuez les Grêlons de glace',
+          ja: '氷狼を討つ',
+          ko: '얼음 부수기',
+          cn: '速度消灭冰狼',
+        },
       },
     },
     {
@@ -429,13 +474,16 @@
         return data.role == 'healer';
       },
       suppressSeconds: 10,
-      alertText: {
-        en: 'Heal To Full',
-        de: 'Vollheilen',
-        fr: 'Full life',
-        ja: '全員HPを満たされ',
-        ko: '체력 풀피로',
-        cn: '奶满全队',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Heal To Full',
+          de: 'Vollheilen',
+          fr: 'Full life',
+          ja: '全員HPを満たされ',
+          ko: '체력 풀피로',
+          cn: '奶满全队',
+        },
       },
     },
     {
@@ -446,13 +494,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3761', source: '雷神シド', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3761', source: '雷神西德', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3761', source: '뇌신 시드', capture: false }),
-      alertText: {
-        en: 'Stand on Pads',
-        de: 'Auf Felder stellen',
-        fr: 'Restez sur le pad',
-        ja: '各サークルに入る',
-        ko: '패드 밟기',
-        cn: '踩塔',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand on Pads',
+          de: 'Auf Felder stellen',
+          fr: 'Restez sur le pad',
+          ja: '各サークルに入る',
+          ko: '패드 밟기',
+          cn: '踩塔',
+        },
       },
     },
     {
@@ -461,13 +512,16 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alertText: {
-        en: 'Drop Bubble In Back',
-        de: 'Blase hinten ablegen',
-        fr: 'Déposez bulles derrière',
-        ja: '後ろに捨て',
-        ko: '징 뒤에 깔기',
-        cn: '将身上圆圈放在圆型区域后方',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop Bubble In Back',
+          de: 'Blase hinten ablegen',
+          fr: 'Déposez bulles derrière',
+          ja: '後ろに捨て',
+          ko: '징 뒤에 깔기',
+          cn: '将身上圆圈放在圆型区域后方',
+        },
       },
     },
     {
@@ -476,13 +530,16 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alertText: {
-        en: 'Bolt on YOU',
-        de: 'Blitz auf DIR',
-        fr: 'Eclair sur VOUS',
-        ja: '剣から離れ',
-        ko: '번개 대상자',
-        cn: '离开剑所指的区域',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bolt on YOU',
+          de: 'Blitz auf DIR',
+          fr: 'Eclair sur VOUS',
+          ja: '剣から離れ',
+          ko: '번개 대상자',
+          cn: '离开剑所指的区域',
+        },
       },
     },
     {
@@ -505,13 +562,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alarmText: {
-        en: 'Point Line Outside',
-        de: 'Linie nach Außen',
-        fr: 'Ligne vers l\'extérieur',
-        ja: '（線形AoE）外周向かって捨て',
-        ko: '성광폭렬파 바깥으로 빼기',
-        cn: '向外远离',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Point Line Outside',
+          de: 'Linie nach Außen',
+          fr: 'Ligne vers l\'extérieur',
+          ja: '（線形AoE）外周向かって捨て',
+          ko: '성광폭렬파 바깥으로 빼기',
+          cn: '向外远离',
+        },
       },
     },
     {
@@ -562,14 +622,17 @@
       netRegexJa: NetRegexes.startsUsing({ id: '374C', source: '雷神シド', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '374C', source: '雷神西德', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '374C', source: '뇌신 시드', capture: false }),
-      alertText: {
-        // e.g. E / NE / NW platforms
-        en: 'Rotate right',
-        de: 'Im Uhrzeigersinn ausweichen',
-        fr: 'Evitez les épées dans le sens anti-horaire',
-        ja: '右へ（逆時針回り）',
-        ko: '오른쪽으로 돌기',
-        cn: '向右移动避开',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          // e.g. E / NE / NW platforms
+          en: 'Rotate right',
+          de: 'Im Uhrzeigersinn ausweichen',
+          fr: 'Evitez les épées dans le sens anti-horaire',
+          ja: '右へ（逆時針回り）',
+          ko: '오른쪽으로 돌기',
+          cn: '向右移动避开',
+        },
       },
     },
     {
@@ -580,14 +643,17 @@
       netRegexJa: NetRegexes.startsUsing({ id: '374D', source: '雷神シド', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '374D', source: '雷神西德', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '374D', source: '뇌신 시드', capture: false }),
-      alertText: {
-        // NW / NE / E platforms
-        en: 'Rotate left',
-        de: 'Schwertern im Uhrzeigersinn ausweichen',
-        fr: 'Evitez les épées dans le sens horaire',
-        ja: '左へ（時針回り）',
-        ko: '왼쪽으로 돌기',
-        cn: '向左移动避开',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          // NW / NE / E platforms
+          en: 'Rotate left',
+          de: 'Schwertern im Uhrzeigersinn ausweichen',
+          fr: 'Evitez les épées dans le sens horaire',
+          ja: '左へ（時針回り）',
+          ko: '왼쪽으로 돌기',
+          cn: '向左移动避开',
+        },
       },
     },
     {
@@ -614,13 +680,16 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alertText: {
-        en: 'Eruption on YOU',
-        de: 'Eruption auf DIR',
-        fr: 'Éruption sur vous',
-        ja: '自分にエラプション',
-        ko: '불기둥 대상자',
-        cn: '地火喷发',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Eruption on YOU',
+          de: 'Eruption auf DIR',
+          fr: 'Éruption sur vous',
+          ja: '自分にエラプション',
+          ko: '불기둥 대상자',
+          cn: '地火喷发',
+        },
       },
     },
     {
@@ -639,13 +708,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '38CF', source: 'デミ・ベリアス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '38CF', source: '亚灵贝利亚斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '38CF', source: '데미벨리아스', capture: false }),
-      infoText: {
-        en: 'Stand on Slow Clock',
-        de: 'In der langsamen Uhr stehen',
-        fr: 'Placez-vous sur une horloge lente',
-        ja: '遅い時計へ待機（早い方が爆発したらすぐ安置へ）',
-        ko: '느린 시계 위로',
-        cn: '站慢速时钟等待快速爆炸后立即离开',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand on Slow Clock',
+          de: 'In der langsamen Uhr stehen',
+          fr: 'Placez-vous sur une horloge lente',
+          ja: '遅い時計へ待機（早い方が爆発したらすぐ安置へ）',
+          ko: '느린 시계 위로',
+          cn: '站慢速时钟等待快速爆炸后立即离开',
+        },
       },
     },
     {
@@ -656,13 +728,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '38DA', source: 'デミ・ハシュマリム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '38DA', source: '亚灵哈修马利姆', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '38DA', source: '데미하쉬말림', capture: false }),
-      alertText: {
-        en: 'Look for Hashmal dash',
-        de: 'Nach Hashmal-Dash ausschau halten',
-        fr: 'Attention au dash',
-        ja: '十字レザーを避け',
-        ko: '하쉬말 돌진 확인',
-        cn: '观察场地三个大十字路径并远离',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look for Hashmal dash',
+          de: 'Nach Hashmal-Dash ausschau halten',
+          fr: 'Attention au dash',
+          ja: '十字レザーを避け',
+          ko: '하쉬말 돌진 확인',
+          cn: '观察场地三个大十字路径并远离',
+        },
       },
     },
     {
@@ -676,13 +751,16 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      alertText: {
-        en: 'Heal Like Whoa',
-        de: 'Heilen was das Zeug hält',
-        fr: 'Mass heal',
-        ja: 'ヒーラー頑張って！',
-        ko: '계속 힐 돌리기',
-        cn: '加大治疗',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Heal Like Whoa',
+          de: 'Heilen was das Zeug hält',
+          fr: 'Mass heal',
+          ja: 'ヒーラー頑張って！',
+          ko: '계속 힐 돌리기',
+          cn: '加大治疗',
+        },
       },
     },
     {
@@ -698,13 +776,16 @@
       },
       // zzz
       delaySeconds: 23.5,
-      alertText: {
-        en: 'Kill Ruination!',
-        de: 'Zerstörung vernichten',
-        fr: 'Tuez la Marque des déchus',
-        ja: '堕天の証を倒す',
-        ko: '타락의 증거 죽이기',
-        cn: '速度消灭堕天之证',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Ruination!',
+          de: 'Zerstörung vernichten',
+          fr: 'Tuez la Marque des déchus',
+          ja: '堕天の証を倒す',
+          ko: '타락의 증거 죽이기',
+          cn: '速度消灭堕天之证',
+        },
       },
     },
     {
