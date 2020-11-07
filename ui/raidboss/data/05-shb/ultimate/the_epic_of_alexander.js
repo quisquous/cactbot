@@ -119,7 +119,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
           de: 'Tank Cleave',
           ja: 'タンククリーブ',
           fr: 'Tank Cleave',
-          ko: '탱크 범위 공격',
+          ko: '광역 탱버',
           cn: '坦克顺劈',
         };
       },
@@ -1653,7 +1653,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         de: 'TANK LB!!',
         ja: 'タンクLB!!',
         fr: 'LB TANK !!',
-        ko: '탱크 LIMITE BREAK!!',
+        ko: '탱커 LIMIT BREAK!!',
         cn: '坦克LB!!',
       },
     },
@@ -2503,7 +2503,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
             en: 'Tank Swap!',
             de: 'Tank Wechsel!',
             fr: 'Tank Swap !',
-            ko: '탱크 교대!!!',
+            ko: '탱교대!',
             cn: '换T!',
           };
         }

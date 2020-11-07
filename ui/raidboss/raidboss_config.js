@@ -120,11 +120,12 @@ let kDetailKeys = {
   },
   'duration': {
     label: {
-      en: 'duration',
-      de: 'Dauer',
-      fr: 'Durée',
-      ja: '存続時間',
-      cn: '持续时间',
+      en: 'duration (sec)',
+      de: 'Dauer (Sekunden)',
+      fr: 'Durée (secondes)',
+      ja: '存続時間 (秒)',
+      cn: '持续时间 (秒)',
+      ko: '지속 시간 (초)',
     },
     cls: 'duration-text',
     generatedManually: true,
@@ -216,6 +217,7 @@ const kMiscTranslations = {
     en: '(default)',
     de: '(Standard)',
     fr: '(Défaut)',
+    ko: '(기본값)',
   },
 };
 
