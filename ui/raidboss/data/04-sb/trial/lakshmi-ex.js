@@ -224,58 +224,92 @@
         }
       },
     },
-    { // Offtank cleave
+    {
+      // Offtank cleave
       id: 'Lakshmi Path of Light Marker',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
       alarmText: function(data) {
+        if (data.chanchala) {
+          return {
+            en: 'Vrill + Cleave on YOU',
+            de: 'Vril + Cleave auf DIR',
+            fr: 'Vril + Cleave sur VOUS',
+            ja: '自分に波動 (エーテル)',
+            cn: '元气 死刑点名',
+            ko: '락슈미 에테르 + 광역 탱버 대상자',
+          };
+        }
         return {
-          en: (data.chanchala ? 'Vrill + ' : '') + 'Cleave on YOU',
-          de: (data.chanchala ? 'Vril + ' : '') + 'Cleave auf DIR',
-          fr: (data.chanchala ? 'Vril + ' : '') + 'Cleave sur VOUS',
-          ja: '自分に波動' + (data.chanchala ? ' (エーテル)' : ''),
-          cn: (data.chanchala ? '元气 ' : '') + '死刑点名',
-          ko: (data.chanchala ? '락슈미 에테르 + ' : '') + '광역 탱버 대상자',
+          en: 'Cleave on YOU',
+          de: 'Cleave auf DIR',
+          fr: 'Cleave sur VOUS',
+          ja: '自分に波動',
+          cn: '死刑点名',
+          ko: '광역 탱버 대상자',
         };
       },
     },
-    { // Cross aoe
+    {
+      // Cross aoe
       id: 'Lakshmi Hand of Grace',
       netRegex: NetRegexes.headMarker({ id: '006B' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
       infoText: function(data) {
+        if (data.chanchala) {
+          return {
+            en: 'Vrill + Cross Marker',
+            de: 'Vril + Kreuz-Marker',
+            fr: 'Vril + Marqueur croix',
+            ja: '自分に右手 (エーテル)',
+            cn: '元气 十字点名',
+            ko: '락슈미 에테르 + 십자 장판 징',
+          };
+        }
         return {
-          en: (data.chanchala ? 'Vrill + ' : '') + 'Cross Marker',
-          de: (data.chanchala ? 'Vril + ' : '') + 'Kreuz-Marker',
-          fr: (data.chanchala ? 'Vril + ' : '') + 'Marqueur croix',
-          ja: '自分に右手' + (data.chanchala ? ' (エーテル)' : ''),
-          cn: (data.chanchala ? '元气 ' : '') + '十字点名',
-          ko: (data.chanchala ? '락슈미 에테르 + ' : '') + '십자 장판 징',
+          en: 'Cross Marker',
+          de: 'Kreuz-Marker',
+          fr: 'Marqueur croix',
+          ja: '自分に右手',
+          cn: '十字点名',
+          ko: '십자 장판 징',
         };
       },
     },
-    { // Flower marker (healers)
+    {
+      // Flower marker (healers)
       id: 'Lakshmi Hand of Beauty',
       netRegex: NetRegexes.headMarker({ id: '006D' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
       infoText: function(data) {
+        if (data.chanchala) {
+          return {
+            en: 'Vrill + Flower Marker',
+            de: 'Vril + Blumen-Marker',
+            fr: 'Vril + Marqueur fleur',
+            ja: '自分に左手 (エーテル)',
+            cn: '元气 花点名',
+            ko: '락슈미 에테르 + 원형 장판 징',
+          };
+        }
         return {
-          en: (data.chanchala ? 'Vrill + ' : '') + 'Flower Marker',
-          de: (data.chanchala ? 'Vril + ' : '') + 'Blumen-Marker',
-          fr: (data.chanchala ? 'Vril + ' : '') + 'Marqueur fleur',
-          ja: '自分に左手' + (data.chanchala ? ' (エーテル)' : ''),
-          cn: (data.chanchala ? '元气 ' : '') + '花点名',
-          ko: (data.chanchala ? '락슈미 에테르 + ' : '') + '원형 장판 징',
+          en: 'Flower Marker',
+          de: 'Blumen-Marker',
+          fr: 'Marqueur fleur',
+          ja: '自分に左手',
+          cn: '花点名',
+          ko: '원형 장판 징',
         };
       },
     },
-    { // Red marker during add phase
+    {
+      // Red marker during add phase
       id: 'Lakshmi Water III',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
