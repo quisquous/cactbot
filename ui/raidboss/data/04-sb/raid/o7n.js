@@ -21,14 +21,6 @@
         cn: '直线AOE',
         ko: '마도 레이저',
       },
-      tts: {
-        en: 'beam',
-        de: 'les er strahl',
-        fr: 'laser',
-        ja: 'レザー',
-        cn: '直线AOE',
-        ko: '레이저',
-      },
     },
     {
       id: 'O7N Arm And Hammer',

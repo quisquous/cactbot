@@ -32,14 +32,6 @@
         ja: '塔を見ないで！',
         cn: '背对神像',
       },
-      tts: {
-        en: 'look away',
-        fr: 'Ne regardez pas la statue',
-        de: 'weckschauen',
-        ko: '뒤돌기',
-        ja: '見るな！',
-        cn: '背对神像',
-      },
     },
     {
       id: 'O8S Intemperate Will',
@@ -77,14 +69,6 @@
         ja: '像を見て！',
         cn: '面对神像',
       },
-      tts: {
-        en: 'look towards',
-        fr: 'Regardez la statue',
-        de: 'anschauen',
-        ko: '쳐다보기',
-        ja: '像見て！',
-        cn: '面对神像',
-      },
     },
     {
       id: 'O8S Pasts Forgotten',
@@ -102,14 +86,6 @@
         ja: '過去: スタックしてそのまま',
         cn: '分摊不动',
       },
-      tts: {
-        en: 'stack and stay',
-        fr: 'Stack et rester-là',
-        de: 'Stek und Stehenbleiben',
-        ko: '맞고 가만히',
-        ja: 'スタックしてそのまま',
-        cn: '分摊不动',
-      },
     },
     {
       id: 'O8S Futures Numbered',
@@ -125,14 +101,6 @@
         de: 'Zukunft: Sammeln und Durchlaufen',
         ko: '미래: 맞고 통과해가기',
         ja: '未来: シェア後ボス通り抜ける',
-        cn: '分摊穿boss',
-      },
-      tts: {
-        en: 'stack and through',
-        fr: 'Stack et traversez',
-        de: 'Stek und durchlaufen',
-        ko: '맞고 통과해가기',
-        ja: 'シェア後通り抜け',
         cn: '分摊穿boss',
       },
     },
@@ -156,14 +124,6 @@
         ja: '過去: 飛んできたら反対向ける',
         cn: '诱导然后穿boss',
       },
-      tts: {
-        en: 'run run run',
-        fr: 'appâtez puis traversez',
-        de: 'Durchlaufen',
-        ko: '맞고 이동',
-        ja: '反対向ける',
-        cn: '诱导然后穿boss',
-      },
     },
     {
       // TODO: not sure if this cast is 4 or 5.
@@ -183,14 +143,6 @@
         de: 'Zukunft: Anlocken und Stehenbleiben',
         ko: '미래: 맞고, 가만히',
         ja: '未来: 飛んできたらそのまま',
-        cn: '诱导然后不动',
-      },
-      tts: {
-        en: 'stay stay stay',
-        fr: 'appâtez et stop',
-        de: 'Stehenbleiben',
-        ko: '맞고 가만히',
-        ja: 'そのまま',
         cn: '诱导然后不动',
       },
     },
@@ -238,26 +190,6 @@
             cn: '最远距离',
           };
         }
-      },
-      tts: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'wings',
-            fr: 'Ailes, être près ou loin',
-            de: 'schwingen',
-            ko: '양날개',
-            ja: '翼',
-            cn: '双翅膀',
-          };
-        }
-        return {
-          en: 'max melee',
-          fr: 'Max mêlée éloignez vous des tanks',
-          de: 'max nahkampf',
-          ko: '칼끝딜',
-          ja: '最大レンジ',
-          cn: '最远距离',
-        };
       },
     },
     {
@@ -313,18 +245,6 @@
           };
         }
       },
-      tts: function(data, matches) {
-        if (matches.target == data.me || data.role == 'healer' || data.role == 'tank') {
-          return {
-            en: 'embrace',
-            fr: 'Étreinte',
-            de: 'umarmung',
-            ko: '종말의 포옹',
-            ja: '双腕',
-            cn: '分摊死刑',
-          };
-        }
-      },
     },
     {
       // 28E8: clown hyperdrive, 2912: god hyperdrive
@@ -335,46 +255,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['28E8', '2912'], source: 'ケフカ' }),
       netRegexCn: NetRegexes.startsUsing({ id: ['28E8', '2912'], source: '凯夫卡' }),
       netRegexKo: NetRegexes.startsUsing({ id: ['28E8', '2912'], source: '케프카' }),
-      alertText: function(data, matches) {
-        if (matches.target != data.me)
-          return;
-
-        return {
-          en: 'Hyperdrive on YOU',
-          fr: 'Colonne de feu sur VOUS',
-          de: 'Hyperantrieb auf DIR',
-          ko: '하이퍼드라이브 대상자',
-          ja: '自分にハイパードライブ',
-          cn: '死刑点名',
-        };
-      },
-      infoText: function(data, matches) {
-        if (matches.target == data.me)
-          return;
-
-        if (data.role == 'healer' || data.role == 'tank') {
-          return {
-            en: 'Hyperdrive on ' + data.ShortName(matches.target),
-            fr: 'Colonne de feu sur ' + data.ShortName(matches.target),
-            de: 'Hyperantrieb auf ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 하이퍼드라이브',
-            ja: data.ShortName(matches.target) + 'にハイパードライブ',
-            cn: '死刑点名' + data.ShortName(matches.target),
-          };
-        }
-      },
-      tts: function(data, matches) {
-        if (matches.target == data.me || data.role == 'healer' || data.role == 'tank') {
-          return {
-            en: 'hyperdrive',
-            fr: 'Colonne de feu',
-            de: 'hyperantrieb',
-            ko: '하이퍼드라이브',
-            ja: 'ハイパードライブ',
-            cn: '圆形死刑',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'O8S Indulgent Will',
@@ -395,14 +276,6 @@
         ja: '混乱: 外へ',
         cn: '去外面',
       },
-      tts: {
-        en: 'confusion',
-        fr: 'Confusion, aller à l\'extérieur',
-        de: 'konfusion',
-        ko: '혼란',
-        ja: '混乱',
-        cn: '去外面',
-      },
     },
     {
       id: 'O8S Idyllic Will',
@@ -421,14 +294,6 @@
         de: 'Schlaf: Zur Mitte',
         ko: '수면: 안으로',
         ja: '睡眠: 中へ',
-        cn: '去中间',
-      },
-      tts: {
-        en: 'sleep',
-        fr: 'Sommeil',
-        de: 'Schlaf',
-        ko: '수면',
-        ja: '睡眠',
         cn: '去中间',
       },
     },

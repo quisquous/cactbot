@@ -29,14 +29,6 @@
         cn: '远离放置AOE',
         ko: '장판 멀리빼기',
       },
-      tts: {
-        en: 'aoes',
-        de: 'Flächen',
-        fr: 'aoe',
-        ja: 'AoE',
-        cn: 'AOE',
-        ko: '장판',
-      },
     },
   ],
   timelineReplace: [

@@ -99,14 +99,6 @@
         cn: '完全吸引',
         ko: '락슈미 에테르 + 바깥으로',
       },
-      tts: {
-        en: 'vrill and outside',
-        de: 'wriel und raus',
-        fr: 'vril et à l\'extérieur',
-        ja: 'エーテル と 誘引',
-        cn: '完全吸引',
-        ko: '락슈미 에테르 바깥으로',
-      },
     },
     {
       id: 'Lakshmi Divine Doubt',
@@ -123,14 +115,6 @@
         ja: 'エーテル + 完全なる惑乱',
         cn: '完全惑乱',
         ko: '락슈미 에테르 + 파트너끼리',
-      },
-      tts: {
-        en: 'vrill and buddy',
-        de: 'wriel und zu partner',
-        fr: 'vril et formé une paire',
-        ja: 'エーテル と 惑乱',
-        cn: '完全惑乱',
-        ko: '락슈미 에테르 파트너끼리',
       },
     },
     { // Stack marker
@@ -179,26 +163,6 @@
           fr: 'Packez-vous',
           ja: '頭割り',
           cn: '集合',
-          ko: '쉐어',
-        };
-      },
-      tts: function(data) {
-        if (data.chanchala) {
-          return {
-            en: 'vrill and stack',
-            de: 'vril und stek',
-            fr: 'Vril + Packez-vous',
-            ja: 'エーテル と 頭割り',
-            cn: '元气攻击',
-            ko: '락슈미 에테르 + 쉐어',
-          };
-        }
-        return {
-          en: 'stack',
-          de: 'stek',
-          fr: 'Packez-vous',
-          ja: '頭割り',
-          cn: '分摊',
           ko: '쉐어',
         };
       },

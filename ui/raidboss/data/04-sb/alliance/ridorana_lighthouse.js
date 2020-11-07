@@ -39,14 +39,6 @@
         ko: '대해일 확인',
         cn: '离开水瓶口方向',
       },
-      tts: {
-        en: 'Tsunami',
-        de: 'Krug',
-        fr: 'Tsunami',
-        ja: '大海嘯',
-        ko: '대해일',
-        cn: '龙卷风',
-      },
     },
     {
       id: 'Ridorana Famfrit Tsunami 2',
@@ -65,14 +57,6 @@
         ko: '대해일 확인',
         cn: '离开水瓶口方向',
       },
-      tts: {
-        en: 'Tsunami',
-        de: 'Krug',
-        fr: 'Tsunami',
-        ja: '大海嘯',
-        ko: '대해일',
-        cn: '龙卷风',
-      },
     },
     {
       id: 'Ridorana Famfrit Tsunami 3',
@@ -90,14 +74,6 @@
         ja: '水瓶が向いてる方向から離れ',
         ko: '대해일 확인',
         cn: '离开水瓶口方向',
-      },
-      tts: {
-        en: 'Tsunami',
-        de: 'Krug',
-        fr: 'Tsunami',
-        ja: '大海嘯',
-        ko: '대해일',
-        cn: '龙卷风',
       },
     },
     {
@@ -509,13 +485,6 @@
         ja: '心核を討つ',
         ko: '심핵 처리',
         cn: '消灭boss核心',
-      },
-      tts: {
-        en: 'Heart',
-        de: 'Herz',
-        fr: 'Cœur',
-        ja: '心核',
-        cn: '核心',
       },
     },
   ],

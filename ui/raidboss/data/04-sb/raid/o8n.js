@@ -13,40 +13,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '292E', source: 'ケフカ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '292E', source: '凯夫卡' }),
       netRegexKo: NetRegexes.startsUsing({ id: '292E', source: '케프카' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Hyperdrive on YOU',
-            fr: 'Colonne de feu sur VOUS',
-            de: 'Hyperantrieb auf DIR',
-            ja: '自分にハイパードライブ',
-            cn: '死刑点名',
-            ko: '하이퍼드라이브 대상자',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Hyperdrive on ' + data.ShortName(matches.target),
-            fr: 'Colonne de feu sur ' + data.ShortName(matches.target),
-            de: 'Hyperantrieb auf ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にハイパードライブ',
-            cn: '死刑点名' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 하이퍼드라이브',
-          };
-        }
-      },
-      tts: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'buster',
-            fr: 'Colonne de feu',
-            de: 'hyperantrieb',
-            ja: 'タンクバスター',
-            cn: '死刑',
-            ko: '탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'O8N Shockwave',
@@ -95,14 +62,6 @@
         cn: '面对神像',
         ko: '시선 바라보기',
       },
-      tts: {
-        en: 'look towards',
-        fr: 'Regardez la statue',
-        de: 'anschauen',
-        ja: '像を見て',
-        cn: '面对神像',
-        ko: '쳐다보기',
-      },
     },
     {
       id: 'O8N Indolent Will',
@@ -119,14 +78,6 @@
         ja: '神々の像を見ないで',
         cn: '背对神像',
         ko: '시선 피하기',
-      },
-      tts: {
-        en: 'look away',
-        fr: 'Ne regardez pas la statue',
-        de: 'weckschauen',
-        ja: '見るな！',
-        cn: '背对神像',
-        ko: '뒤돌기',
       },
     },
     {
@@ -152,13 +103,6 @@
         ja: '自分にファイガ',
         cn: '火点名',
       },
-      tts: {
-        en: 'fire',
-        fr: 'feu',
-        de: 'Feuer',
-        ja: 'ファイガ',
-        cn: '火',
-      },
     },
     {
       id: 'O8N Flagrant Fire Stack',
@@ -182,14 +126,6 @@
         cn: '真雷',
         ko: '진실 선더가',
       },
-      tts: {
-        en: 'True',
-        fr: 'Vrai',
-        de: 'Wahr',
-        ja: 'ほんもの',
-        cn: '真',
-        ko: '진실',
-      },
     },
     {
       id: 'O8N Thrumming Thunder Fake',
@@ -207,14 +143,6 @@
         ja: 'にせサンダガ',
         cn: '假雷',
         ko: '거짓 선더가',
-      },
-      tts: {
-        en: 'Fake',
-        fr: 'Fausse',
-        de: 'Falsch',
-        ja: 'にせもの',
-        cn: '假',
-        ko: '거짓',
       },
     },
     {
@@ -234,14 +162,6 @@
         cn: '假冰：远离',
         ko: '거짓 블리자가: 밖으로',
       },
-      tts: {
-        en: 'Get out',
-        fr: 'Sortez',
-        de: 'Rausgehen',
-        ja: '外へ',
-        cn: '远离',
-        ko: '밖으로',
-      },
     },
     {
       id: 'O8N Blizzard True Donut',
@@ -259,14 +179,6 @@
         ja: '真ブリザガ: 入る',
         cn: '真冰：靠近',
         ko: '진실 블리자가: 안으로',
-      },
-      tts: {
-        en: 'Get in',
-        fr: 'rentrez dedans',
-        de: 'Reingehen',
-        ja: '入る',
-        cn: '靠近',
-        ko: '안으로',
       },
     },
     {
@@ -286,14 +198,6 @@
         cn: '假冰：靠近',
         ko: '거짓 블리자가: 안으로',
       },
-      tts: {
-        en: 'Get in',
-        fr: 'rentrez dedans',
-        de: 'Reingehen',
-        ja: '入る',
-        cn: '靠近',
-        ko: '안으로',
-      },
     },
     {
       id: 'O8N Blizzard True Near',
@@ -311,14 +215,6 @@
         ja: '真ブリザガ: 外へ',
         cn: '真冰：远离',
         ko: '진실 블리자가: 밖으로',
-      },
-      tts: {
-        en: 'Get out',
-        fr: 'Sortez',
-        de: 'raus da',
-        ja: '外へ',
-        cn: '远离',
-        ko: '밖으로',
       },
     },
   ],
