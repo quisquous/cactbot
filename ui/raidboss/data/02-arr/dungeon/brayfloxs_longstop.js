@@ -17,25 +17,39 @@
       response: Responses.stun('info'),
     },
     {
-      // Esuna Pelican Poison
-      // This covers cases where multiple people get the poison, including yourself.
+      id: 'Brayflox Normal Pelican Poison Collect',
+      netRegex: NetRegexes.gainsEffect({ effectId: '12' }),
+      condition: (data) => data.role === 'healer',
+      run: (data, matches) => {
+        data.pelicanPoisons = data.pelicanPoisons || [];
+        data.pelicanPoisons.push(matches.target);
+      },
+    },
+    {
       id: 'Brayflox Normal Pelican Poison Healer',
       netRegex: NetRegexes.gainsEffect({ effectId: '12' }),
       condition: (data) => data.role === 'healer',
-      alertText: function(data, matches) {
-        if (matches.target !== data.me) {
+      delaySeconds: 1,
+      suppressSeconds: 2,
+      alertText: (data, matches) => {
+        if (!data.pelicanPoisons)
+          return;
+
+        const names = data.pelicanPoisons.sort();
+        data.pelicanPoisons = [];
+        if (names.length === 1 && names[0] === data.me) {
           return {
-            en: 'Esuna Poison on ' + data.ShortName(matches.target),
-            de: 'Entferne Gift von ' + data.ShortName(matches.target),
-            fr: 'Purifiez le poison sur ' + data.ShortName(matches.target),
-            cn: '康复' + data.ShortName(matches.target) + '的毒',
+            en: 'Esuna Your Poison',
+            de: 'Entferne dein Gift',
+            fr: 'Purifiez-vous',
+            cn: '康复自己的毒',
           };
         }
         return {
-          en: 'Esuna Your Poison',
-          de: 'Entferne dein Gift',
-          fr: 'Purifiez-vous',
-          cn: '康复自己的毒',
+          en: 'Esuna Poison on ' + names.map((x) => data.ShortName(x)).join(', '),
+          de: 'Entferne Gift von ' + names.map((x) => data.ShortName(x)).join(', '),
+          fr: 'Purifiez le poison sur ' + names.map((x) => data.ShortName(x)).join(', '),
+          cn: '康复' + names.map((x) => data.ShortName(x)).join(', '),
         };
       },
     },
