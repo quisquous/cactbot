@@ -125,6 +125,7 @@ let kDetailKeys = {
       fr: 'Durée',
       ja: '存続時間',
       cn: '持续时间',
+      ko: '지속 시간 (초)',
     },
     cls: 'duration-text',
     generatedManually: true,
@@ -216,6 +217,7 @@ const kMiscTranslations = {
     en: '(default)',
     de: '(Standard)',
     fr: '(Défaut)',
+    ko: '(기본값)',
   },
 };
 
