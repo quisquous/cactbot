@@ -11,9 +11,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: '制御システム', id: '5A7' }),
       netRegexCn: NetRegexes.startsUsing({ source: '自卫系统', id: '5A7' }),
       netRegexKo: NetRegexes.startsUsing({ source: '제어 시스템', id: '5A7' }),
-      condition: function(data) {
-        return data.CanSilence();
-      },
+      condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
     {

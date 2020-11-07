@@ -6,9 +6,7 @@
     {
       id: 'T2 High Voltage',
       netRegex: NetRegexes.startsUsing({ id: '4C0' }),
-      condition: function(data) {
-        return data.CanSilence();
-      },
+      condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
     {
