@@ -139,11 +139,11 @@
       },
       infoText: function(data, _, output) {
         if (!data.role.startsWith('dps'))
-          return output.dpsUpThDown();
+          return output.dpsUpTanksHealersDown();
       },
       tts: (data, _, output) => output.dpsUp(),
       outputStrings: {
-        dpsUpThDown: {
+        dpsUpTanksHealersDown: {
           en: 'DPS up, T/H down',
           de: 'DDs hoch, T/H runter',
           ja: 'DPS浮上 タンクヒラ降下',
