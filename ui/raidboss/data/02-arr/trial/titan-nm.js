@@ -29,19 +29,23 @@
       // Gaol callout for both yourself and others
       id: 'TitanNm Gaols',
       netRegex: NetRegexes.gainsEffect({ effectId: '124' }),
-      alertText: function(data, matches) {
-        if (matches.target !== data.me) {
-          return {
-            en: 'Break Gaol on ' + data.ShortName(matches.target),
-            de: 'Zerstöre das Gefängnis von ' + data.ShortName(matches.target),
-            cn: '石牢点' + data.ShortName(matches.target),
-          };
-        }
-        return {
+      alertText: function(data, matches, output) {
+        if (matches.target !== data.me)
+          return output.breakGaolOn({ player: data.ShortName(matches.target) });
+
+        return output.gaolOnYou();
+      },
+      outputStrings: {
+        breakGaolOn: {
+          en: 'Break Gaol on ${player}',
+          de: 'Zerstöre das Gefängnis von ${player}',
+          cn: '石牢点${player}',
+        },
+        gaolOnYou: {
           en: 'Gaol on YOU',
           de: 'Gefängnis auf DIR',
           cn: '石牢点名',
-        };
+        },
       },
     },
   ],

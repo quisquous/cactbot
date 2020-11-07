@@ -12,14 +12,17 @@
       netRegexJa: NetRegexes.ability({ source: 'カーリア', id: 'B73' }),
       netRegexCn: NetRegexes.ability({ source: '卡利亚', id: 'B73' }),
       netRegexKo: NetRegexes.ability({ source: '칼리야', id: 'B73' }),
-      alertText: function(data, matches) {
-        return {
-          en: 'Stun on ' + data.ShortName(matches.target),
-          de: 'Stun auf ' + data.ShortName(matches.target),
-          fr: 'Stun sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にスタン',
-          cn: '击昏' + data.ShortName(matches.target),
-        };
+      alertText: function(data, matches, output) {
+        return output.text({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Stun on ${player}',
+          de: 'Stun auf ${player}',
+          fr: 'Stun sur ${player}',
+          ja: '${player}にスタン',
+          cn: '击昏${player}',
+        },
       },
     },
     {
@@ -185,7 +188,7 @@
       condition: function(data) {
         return data.tetherA.length == 2;
       },
-      alarmText: function(data) {
+      alarmText: function(data, _, output) {
         let partner = undefined;
         if (data.tetherA[0] == data.me)
           partner = data.tetherA[1];
@@ -193,13 +196,16 @@
           partner = data.tetherA[0];
         if (!partner)
           return;
-        return {
-          en: 'Red Tethers With ' + data.ShortName(partner),
-          de: 'Rote Verbindung mit ' + data.ShortName(partner),
-          fr: 'Liens rouges avec ' + data.ShortName(partner),
-          ja: data.ShortName(partner) + 'に赤い線',
-          cn: '红线连' + data.ShortName(partner),
-        };
+        return output.text({ player: data.ShortName(partner) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Red Tethers With ${player}',
+          de: 'Rote Verbindung mit ${player}',
+          fr: 'Liens rouges avec ${player}',
+          ja: '${player}に赤い線',
+          cn: '红线连${player}',
+        },
       },
     },
     {
@@ -213,7 +219,7 @@
       condition: function(data) {
         return data.tetherB.length == 2;
       },
-      alarmText: function(data) {
+      alarmText: function(data, _, output) {
         let partner = undefined;
         if (data.tetherB[0] == data.me)
           partner = data.tetherB[1];
@@ -221,13 +227,16 @@
           partner = data.tetherB[0];
         if (!partner)
           return;
-        return {
-          en: 'Blue Tethers With ' + data.ShortName(partner),
-          de: 'Blaue Verbindung mit ' + data.ShortName(partner),
-          fr: 'Liens bleus avec ' + data.ShortName(partner),
-          ja: data.ShortName(partner) + 'に青い線',
-          cn: '蓝线连' + data.ShortName(partner),
-        };
+        return output.text({ player: data.ShortName(partner) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Blue Tethers With ${player}',
+          de: 'Blaue Verbindung mit ${player}',
+          fr: 'Liens bleus avec ${player}',
+          ja: '${player}に青い線',
+          cn: '蓝线连${player}',
+        },
       },
     },
     {

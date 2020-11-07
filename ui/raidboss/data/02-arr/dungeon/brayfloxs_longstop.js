@@ -29,26 +29,30 @@
       condition: (data) => data.role === 'healer',
       delaySeconds: 1,
       suppressSeconds: 2,
-      alertText: (data, matches) => {
+      alertText: (data, matches, output) => {
         if (!data.pelicanPoisons)
           return;
 
         const names = data.pelicanPoisons.sort();
         data.pelicanPoisons = [];
-        if (names.length === 1 && names[0] === data.me) {
-          return {
-            en: 'Esuna Your Poison',
-            de: 'Entferne dein Gift',
-            fr: 'Purifiez-vous',
-            cn: '康复自己的毒',
-          };
-        }
-        return {
-          en: 'Esuna Poison on ' + names.map((x) => data.ShortName(x)).join(', '),
-          de: 'Entferne Gift von ' + names.map((x) => data.ShortName(x)).join(', '),
-          fr: 'Purifiez le poison sur ' + names.map((x) => data.ShortName(x)).join(', '),
-          cn: '康复' + names.map((x) => data.ShortName(x)).join(', '),
-        };
+        if (names.length === 1 && names[0] === data.me)
+          return output.esunaYourPoison();
+
+        return output.esunaPoisonOns({ players: names.map((x) => data.ShortName(x)).join(', ') });
+      },
+      outputStrings: {
+        esunaYourPoison: {
+          en: 'Esuna Your Poison',
+          de: 'Entferne dein Gift',
+          fr: 'Purifiez-vous',
+          cn: '康复自己的毒',
+        },
+        esunaPoisonOns: {
+          en: 'Esuna Poison on ${players}',
+          de: 'Entferne Gift von ${players}',
+          fr: 'Purifiez le poison sur ${players}',
+          cn: '康复${players}',
+        },
       },
     },
     {
@@ -98,23 +102,26 @@
       netRegexJa: NetRegexes.ability({ id: '3D3', source: 'ヘルベンダー' }),
       netRegexKo: NetRegexes.ability({ id: '3D3', source: '장수도롱뇽' }),
       netRegexCn: NetRegexes.ability({ id: '3D3', source: '水栖蝾螈' }),
-      infoText: function(data, matches) {
-        if (matches.target !== data.me) {
-          return {
-            en: 'Break Bubble on ' + data.ShortName(matches.target),
-            de: 'Besiege die Blase von ' + data.ShortName(matches.target),
-            fr: 'Détruisez la bulle de ' + data.ShortName(matches.target),
-            cn: '打' + data.ShortName(matches.target) + '的泡泡',
-          };
-        }
-        if (matches.target === data.me) {
-          return {
-            en: 'Break Your Bubble',
-            de: 'Besiege deine Blase',
-            fr: 'Détruisez votre bulle',
-            cn: '打自己的泡泡',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (matches.target !== data.me)
+          return output.breakBubbleOn({ player: data.ShortName(matches.target) });
+
+        if (matches.target === data.me)
+          return output.breakYourBubble();
+      },
+      outputStrings: {
+        breakBubbleOn: {
+          en: 'Break Bubble on ${player}',
+          de: 'Besiege die Blase von ${player}',
+          fr: 'Détruisez la bulle de ${player}',
+          cn: '打${player}的泡泡',
+        },
+        breakYourBubble: {
+          en: 'Break Your Bubble',
+          de: 'Besiege deine Blase',
+          fr: 'Détruisez votre bulle',
+          cn: '打自己的泡泡',
+        },
       },
     },
     {
@@ -152,20 +159,24 @@
       id: 'Brayflox Normal Aiatar Poison Healer',
       netRegex: NetRegexes.gainsEffect({ effectId: '113' }),
       condition: (data) => data.role === 'healer',
-      alertText: function(data, matches) {
-        if (matches.target !== data.me) {
-          return {
-            en: 'Esuna Poison on ' + data.ShortName(matches.target),
-            de: 'Entferne Gift von ' + data.ShortName(matches.target),
-            cn: '康复' + data.ShortName(matches.target) + '的毒',
-          };
-        }
-        return {
+      alertText: function(data, matches, output) {
+        if (matches.target !== data.me)
+          return output.esunaPoisonOn({ player: data.ShortName(matches.target) });
+
+        return output.esunaYourPoison();
+      },
+      outputStrings: {
+        esunaPoisonOn: {
+          en: 'Esuna Poison on ${player}',
+          de: 'Entferne Gift von ${player}',
+          cn: '康复${player}的毒',
+        },
+        esunaYourPoison: {
           en: 'Esuna Your Poison',
           de: 'Entferne dein Gift',
           fr: 'Purifiez-vous',
           cn: '康复自己的毒',
-        };
+        },
       },
     },
   ],

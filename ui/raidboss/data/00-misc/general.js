@@ -16,16 +16,19 @@ const caresAboutTankStuff = (data) => {
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         let name = data.ShortName(matches.source);
-        return {
-          en: 'Provoke: ' + name,
-          de: 'Herausforderung: ' + name,
-          fr: 'Provocation: ' + name,
-          ja: '挑発: ' + name,
-          cn: '挑衅: ' + name,
-          ko: '도발: ' + name,
-        };
+        return output.text({ name: name });
+      },
+      outputStrings: {
+        text: {
+          en: 'Provoke: ${name}',
+          de: 'Herausforderung: ${name}',
+          fr: 'Provocation: ${name}',
+          ja: '挑発: ${name}',
+          cn: '挑衅: ${name}',
+          ko: '도발: ${name}',
+        },
       },
     },
     {
@@ -37,16 +40,19 @@ const caresAboutTankStuff = (data) => {
         return caresAboutTankStuff(data);
       },
       suppressSeconds: 0.5,
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         let name = data.ShortName(matches.source);
-        return {
-          en: 'Provoke: ' + name,
-          de: 'Herausforderung: ' + name,
-          fr: 'Provocation: ' + name,
-          ja: '挑発: ' + name,
-          cn: '挑衅: ' + name,
-          ko: '도발: ' + name,
-        };
+        return output.text({ name: name });
+      },
+      outputStrings: {
+        text: {
+          en: 'Provoke: ${name}',
+          de: 'Herausforderung: ${name}',
+          fr: 'Provocation: ${name}',
+          ja: '挑発: ${name}',
+          cn: '挑衅: ${name}',
+          ko: '도발: ${name}',
+        },
       },
     },
     {
@@ -57,16 +63,19 @@ const caresAboutTankStuff = (data) => {
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         let name = data.ShortName(matches.source);
-        return {
-          en: 'Shirk: ' + name,
-          de: 'Geteiltes Leid: ' + name,
-          fr: 'Dérobade: ' + name,
-          ja: 'シャーク: ' + name,
-          cn: '退避: ' + name,
-          ko: '기피: ' + name,
-        };
+        return output.text({ name: name });
+      },
+      outputStrings: {
+        text: {
+          en: 'Shirk: ${name}',
+          de: 'Geteiltes Leid: ${name}',
+          fr: 'Dérobade: ${name}',
+          ja: 'シャーク: ${name}',
+          cn: '退避: ${name}',
+          ko: '기피: ${name}',
+        },
       },
     },
     {
@@ -77,16 +86,19 @@ const caresAboutTankStuff = (data) => {
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         let name = data.ShortName(matches.source);
-        return {
-          en: 'Holmgang: ' + name,
-          de: 'Holmgang: ' + name,
-          fr: 'Holmgang: ' + name,
-          ja: 'ホルムギャング: ' + name,
-          cn: '死斗: ' + name,
-          ko: '일대일 결투: ' + name,
-        };
+        return output.text({ name: name });
+      },
+      outputStrings: {
+        text: {
+          en: 'Holmgang: ${name}',
+          de: 'Holmgang: ${name}',
+          fr: 'Holmgang: ${name}',
+          ja: 'ホルムギャング: ${name}',
+          cn: '死斗: ${name}',
+          ko: '일대일 결투: ${name}',
+        },
       },
     },
     {
@@ -97,16 +109,19 @@ const caresAboutTankStuff = (data) => {
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         let name = data.ShortName(matches.source);
-        return {
-          en: 'Hallowed: ' + name,
-          de: 'Heiliger Boden: ' + name,
-          fr: 'Invincible: ' + name,
-          ja: 'インビンシブル: ' + name,
-          cn: '神圣领域: ' + name,
-          ko: '천하무적: ' + name,
-        };
+        return output.text({ name: name });
+      },
+      outputStrings: {
+        text: {
+          en: 'Hallowed: ${name}',
+          de: 'Heiliger Boden: ${name}',
+          fr: 'Invincible: ${name}',
+          ja: 'インビンシブル: ${name}',
+          cn: '神圣领域: ${name}',
+          ko: '천하무적: ${name}',
+        },
       },
     },
     {
@@ -117,16 +132,19 @@ const caresAboutTankStuff = (data) => {
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         let name = data.ShortName(matches.source);
-        return {
-          en: 'Bolide: ' + name,
-          de: 'Meteoritenfall: ' + name,
-          fr: 'Bolide: ' + name,
-          ja: 'ボーライド: ' + name,
-          cn: '超火流星: ' + name,
-          ko: '폭발 유성: ' + name,
-        };
+        return output.text({ name: name });
+      },
+      outputStrings: {
+        text: {
+          en: 'Bolide: ${name}',
+          de: 'Meteoritenfall: ${name}',
+          fr: 'Bolide: ${name}',
+          ja: 'ボーライド: ${name}',
+          cn: '超火流星: ${name}',
+          ko: '폭발 유성: ${name}',
+        },
       },
     },
     {
@@ -137,16 +155,19 @@ const caresAboutTankStuff = (data) => {
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         let name = data.ShortName(matches.source);
-        return {
-          en: 'Living: ' + name,
-          de: 'Totenerweckung: ' + name,
-          fr: 'Mort-vivant: ' + name,
-          ja: 'リビングデッド: ' + name,
-          cn: '行尸走肉: ' + name,
-          ko: '산송장: ' + name,
-        };
+        return output.text({ name: name });
+      },
+      outputStrings: {
+        text: {
+          en: 'Living: ${name}',
+          de: 'Totenerweckung: ${name}',
+          fr: 'Mort-vivant: ${name}',
+          ja: 'リビングデッド: ${name}',
+          cn: '行尸走肉: ${name}',
+          ko: '산송장: ${name}',
+        },
       },
     },
     {
@@ -157,16 +178,19 @@ const caresAboutTankStuff = (data) => {
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         let name = data.ShortName(matches.source);
-        return {
-          en: 'Walking: ' + name,
-          de: 'Erweckter: ' + name,
-          fr: 'Marcheur des limbes: ' + name,
-          ja: 'ウォーキングデッド: ' + name,
-          cn: '死而不僵: ' + name,
-          ko: '움직이는 시체: ' + name,
-        };
+        return output.text({ name: name });
+      },
+      outputStrings: {
+        text: {
+          en: 'Walking: ${name}',
+          de: 'Erweckter: ${name}',
+          fr: 'Marcheur des limbes: ${name}',
+          ja: 'ウォーキングデッド: ${name}',
+          cn: '死而不僵: ${name}',
+          ko: '움직이는 시체: ${name}',
+        },
       },
     },
     {

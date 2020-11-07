@@ -41,15 +41,18 @@
       id: 'TitanHm Damage Down',
       netRegex: NetRegexes.gainsEffect({ effectId: '3E' }),
       condition: (data) => data.CanCleanse(),
-      infoText: function(data, matches) {
-        return {
-          en: 'Cleanse ' + data.ShortName(matches.target),
-          de: 'Reinige ' + data.ShortName(matches.target),
-          fr: 'Guérison sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にエスナ',
-          cn: '康复' + data.ShortName(matches.target),
-          ko: '' + data.ShortName(matches.target) + '에스나',
-        };
+      infoText: function(data, matches, output) {
+        return output.text({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Cleanse ${player}',
+          de: 'Reinige ${player}',
+          fr: 'Guérison sur ${player}',
+          ja: '${player}にエスナ',
+          cn: '康复${player}',
+          ko: '${player}에스나',
+        },
       },
     },
   ],
