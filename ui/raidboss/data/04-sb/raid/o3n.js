@@ -226,30 +226,34 @@
             ko: '개구리 장판으로',
           };
         }
-        return {
-          // Maybe there's a cleaner way to do this than just enumerating roles?
-          'tank': {
+        // Maybe there's a cleaner way to do this than just enumerating roles?
+        if (data.role === 'tank') {
+          return {
             en: 'Stand on shield',
             de: 'Auf Schild-Fläche stehen',
             ja: 'タンクパネルを踏む',
             cn: '站在坦克方块',
             ko: '방패 장판으로',
-          },
-          'healer': {
+          };
+        }
+        if (data.role === 'healer') {
+          return {
             en: 'Stand on cross',
             de: 'Auf Kreuz-Fläche stehen',
             ja: 'ヒーラーパネルを踏む',
             cn: '站在治疗方块',
             ko: '십자가 장판으로',
-          },
-          'dps': {
+          };
+        }
+        if (data.role === 'dps') {
+          return {
             en: 'Stand on sword',
             de: 'Auf Schwert-Fläche stehen',
             ja: 'DPSパネルを踏む',
             cn: '站在DPS方块',
             ko: '검 장판으로',
-          },
-        }[data.role];
+          };
+        }
       },
       run: function(data) {
         data.gameCount += 1;
