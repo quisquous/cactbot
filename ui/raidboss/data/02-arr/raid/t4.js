@@ -148,7 +148,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Clockwork Bug': '알라그 태엽벌레',
         'Clockwork Dreadnaught': '드레드노트',
@@ -157,8 +156,14 @@
         'Spinner-rook': '보루형 회전전차',
       },
       'replaceText': {
+        '\\(center\\)': '(중앙)',
+        '\\(outside\\)': '(바깥)',
         'Bug': '버그',
+        'Dreadnaught': '드레드노트',
         'Emergency Override': '긴급 체제 변환',
+        'Knight': '기사',
+        'Soldier': '병사',
+        'Rook': '회전전차',
       },
     },
   ],

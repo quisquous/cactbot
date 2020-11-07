@@ -331,7 +331,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Electric Node': '뇌격 시스템',
         'Kaliya': '칼리야',
@@ -346,6 +345,8 @@
         'Nerve Gas': '신경 가스',
         'Resonance': '공명',
         'Secondary Head': '옆 머리',
+        'Seed Of The Rivers/Sea': '강/바다의 원천',
+        'Seed Of The Sea/Rivers': '바다/강의 원천',
         'Stun': '기절',
       },
     },

@@ -250,7 +250,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Bennu': '벤누',
         'Phoenix(?!-)': '피닉스',
@@ -258,13 +257,14 @@
       },
       'replaceText': {
         '(?<! )Rebirth': '소생',
-        'Bennu Add': '벤누 Add',
+        'Bennu Add': '벤누 쫄',
         'Blackfire': '칠흑의 불꽃',
         'Bluefire': '청벽의 불꽃',
         'Brand Of Purgatory': '연옥의 불꽃',
         'Flames Of Rebirth': '윤회의 불꽃',
         'Flames Of Unforgiveness': '연옥의 폭염',
         'Fountain Of Fire': '영검의 불꽃',
+        'Fountain Tick': '영겁 틱',
         'Redfire Plume': '작열 불기둥',
         'Redfire(?! )': '홍련의 불꽃',
         'Revelation': '계시',

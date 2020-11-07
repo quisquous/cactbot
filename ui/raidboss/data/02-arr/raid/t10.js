@@ -170,9 +170,9 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Imdugud': '임두구드',
+        'The Alpha Concourse': '제I신도 구역',
       },
       'replaceText': {
         'Crackle Hiss': '파직파직 번개',
@@ -183,6 +183,10 @@
         'Heat Lightning': '뜨거운 번개',
         'Spike Flail': '가시 매타작',
         'Wild Charge': '야성의 돌진',
+        'Daughter': '딸',
+        'Son': '아들',
+        'Adds': '쫄',
+        'Random \\+ Charge': '번개/혼돈 + 전하 충전',
       },
     },
   ],
