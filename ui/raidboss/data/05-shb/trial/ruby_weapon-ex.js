@@ -418,19 +418,19 @@
         // 85.16,100.131 and 115.16,100.131
         // 100.16,85.13102 and 100.16,115.131
         if (matches.y < 90)
-          return output.cometsNs();
+          return output.cometsNorthSouth();
         else if (matches.x < 90)
-          return output.cometsEw();
+          return output.cometsEastWest();
       },
       outputStrings: {
-        cometsNs: {
+        cometsNorthSouth: {
           en: 'Comets N/S',
           de: 'Meteor N/S',
           fr: 'Comètes N/S',
           cn: '彗星 北/南',
           ko: '남/북 운석 낙하',
         },
-        cometsEw: {
+        cometsEastWest: {
           en: 'Comets E/W',
           de: 'Meteor O/W',
           fr: 'Comètes E/O',

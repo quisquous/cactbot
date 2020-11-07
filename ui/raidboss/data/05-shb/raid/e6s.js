@@ -413,17 +413,10 @@
         if (data.me == matches.source)
           return output.tetheredToPlayer({ player: data.ShortName(matches.target) });
 
-        return output.tetheredToPlayer2({ player: data.ShortName(matches.source) });
+        return output.tetheredToPlayer({ player: data.ShortName(matches.source) });
       },
       outputStrings: {
         tetheredToPlayer: {
-          en: 'Tethered to ${player}',
-          de: 'Verbunden mit ${player}',
-          fr: 'Lié à ${player}',
-          cn: '和${player}连线',
-          ko: '선 연결 짝: ${player}',
-        },
-        tetheredToPlayer2: {
           en: 'Tethered to ${player}',
           de: 'Verbunden mit ${player}',
           fr: 'Lié à ${player}',

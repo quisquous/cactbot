@@ -58,7 +58,7 @@
       netRegexKo: NetRegexes.startsUsing({ id: '3D45', source: '티타니아', capture: false }),
       infoText: function(data, _, output) {
         if (data.seenMistRune)
-          return output.inoutThenWaterPositions();
+          return output.inOutThenWaterPositions();
 
         return output.waterPositions();
       },
@@ -66,7 +66,7 @@
         data.seenMistRune = true;
       },
       outputStrings: {
-        inoutThenWaterPositions: {
+        inOutThenWaterPositions: {
           en: 'In/Out, then Water Positions',
           de: 'Rein/Raus, danach Wasser Positionen',
           fr: 'Intérieur/Extérieur, puis positions pour l\'eau',

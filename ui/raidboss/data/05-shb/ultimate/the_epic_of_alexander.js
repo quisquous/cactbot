@@ -242,35 +242,35 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         // data.puddle is set by 'TEA Wormhole TPS Strat' (or by some user trigger).
         // If that's disabled, this will still just call out puddle counts.
         if (matches[1] == data.puddle)
-          return output.soakThisPuddleParam({ param: matches[1] });
+          return output.soakThisPuddle({ num: matches[1] });
       },
       infoText: function(data, matches, output) {
         if (matches[1] == data.puddle)
           return;
-        return output.puddleParam({ param: matches[1] });
+        return output.puddle({ num: matches[1] });
       },
       tts: function(data, matches, output) {
         if (matches[1] == data.puddle)
-          return output.soakThisPuddle();
+          return output.soakThisPuddleTTS();
       },
       outputStrings: {
-        puddleParam: {
-          en: 'Puddle #${param}',
-          de: 'Fläche #${param}',
-          ja: '懺悔 #${param}',
-          fr: 'Zone au sol #${param}',
-          ko: '참회 #${param}',
-          cn: '水圈 #${param}',
-        },
-        soakThisPuddleParam: {
-          en: 'Soak This Puddle (#${param})',
-          de: 'Fläche nehmen (#${param})',
-          ja: '懺悔踏む (#${param})',
-          fr: 'Absorbez cette zone au sol (#${param})',
-          ko: '참회 밟기 (#${param})',
-          cn: '踩水圈 (#${param})',
+        puddle: {
+          en: 'Puddle #${num}',
+          de: 'Fläche #${num}',
+          ja: '懺悔 #${num}',
+          fr: 'Zone au sol #${num}',
+          ko: '참회 #${num}',
+          cn: '水圈 #${num}',
         },
         soakThisPuddle: {
+          en: 'Soak This Puddle (#${num})',
+          de: 'Fläche nehmen (#${num})',
+          ja: '懺悔踏む (#${num})',
+          fr: 'Absorbez cette zone au sol (#${num})',
+          ko: '참회 밟기 (#${num})',
+          cn: '踩水圈 (#${num})',
+        },
+        soakThisPuddleTTS: {
           en: 'Soak This Puddle',
           de: 'Fläche nehmen',
           fr: 'Absorbez cette zone au sol',
@@ -1389,7 +1389,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
           return output.tankBusterOnYou();
 
         if (data.role == 'healer')
-          return output.busterOn2({ player: data.ShortName(matches.target) });
+          return output.busterOn({ player: data.ShortName(matches.target) });
       },
       // As this seems to usually seems to be invulned,
       // don't make a big deal out of it.
@@ -1417,14 +1417,6 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
           ja: '自分にタンクバスター',
           ko: '나에게 탱크버스터',
           cn: '死刑点名',
-        },
-        busterOn2: {
-          en: 'Buster on ${player}',
-          de: 'Tankbuster auf ${player}',
-          fr: 'Tank buster sur ${player}',
-          ja: '${player}にタンクバスター',
-          ko: '${player}에게 탱크버스터',
-          cn: '死刑点 ${player}',
         },
       },
     },
@@ -1584,12 +1576,12 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '486E', capture: false }),
       infoText: function(data, _, output) {
         if (data.options.cactbotWormholeStrat)
-          return output.baitChakramsMidLookOppositeAlex();
+          return output.baitChakramsWormholeStrat();
 
         return output.baitChakrams();
       },
       outputStrings: {
-        baitChakramsMidLookOppositeAlex: {
+        baitChakramsWormholeStrat: {
           en: 'Bait Chakrams mid; Look opposite Alex',
           de: 'Locke Chakrams mittig; schau weg von Alex',
           fr: 'Attirez les Chakrams au milieu; Regardez à l\'opposé d\'Alex',

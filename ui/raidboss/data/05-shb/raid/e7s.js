@@ -91,7 +91,7 @@
         if (data.betwixtWorldsStack.length == 1)
           return;
         let names = data.betwixtWorldsStack.map((x) => data.ShortName(x)).sort();
-        return output.stackPlayers({ players: names.join(', ') });
+        return output.stackOn({ players: names.join(', ') });
       },
       outputStrings: {
         stackOnYou: {
@@ -102,7 +102,7 @@
           cn: '分摊点名',
           ko: '쉐어징 대상자',
         },
-        stackPlayers: {
+        stackOn: {
           en: 'Stack (${players})',
           de: 'Sammeln (${players})',
           fr: 'Package (${players})',
