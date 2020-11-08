@@ -14,7 +14,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3E9A', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E9A', source: '이노센스', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -69,7 +69,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3EEA', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EEA', source: '이노센스', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -82,7 +82,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3EA3', source: '无瑕灵君' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EA3', source: '이노센스' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },

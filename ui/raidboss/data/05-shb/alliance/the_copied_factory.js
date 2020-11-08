@@ -18,7 +18,7 @@
         // The third lightfast blade comes very close to second,
         // so suppress its message.
         data.lightfastCount = (data.lightfastCount || 0) + 1;
-        if (data.lightfastCount != 3)
+        if (data.lightfastCount !== 3)
           return;
         return output.text();
       },
@@ -60,7 +60,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '48CF', source: '多関節型：司令機', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48CF', source: '다관절형: 사령기', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
+        return data.role === 'tank' || data.role === 'healer' || data.CanAddle();
       },
       response: Responses.aoe(),
     },
@@ -144,7 +144,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4805', source: 'ホッブス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4805', source: '홉스', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
+        return data.role === 'tank' || data.role === 'healer' || data.CanAddle();
       },
       response: Responses.aoe(),
     },
@@ -383,7 +383,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4941', source: '飛行ユニット', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4941', source: '비행 유닛', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
+        return data.role === 'tank' || data.role === 'healer' || data.CanAddle();
       },
       response: Responses.aoe(),
     },
@@ -488,7 +488,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4755', source: 'エンゲルス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4755', source: '엥겔스', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
+        return data.role === 'tank' || data.role === 'healer' || data.CanAddle();
       },
       response: Responses.aoe(),
     },
@@ -540,7 +540,7 @@
       id: 'Copied Engels Incendiary Bombing',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       alertText: function(data, matches, output) {
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           return output.text();
       },
       outputStrings: {
@@ -558,7 +558,7 @@
       id: 'Copied Engels Guided Missile',
       netRegex: NetRegexes.headMarker({ id: '00C5' }),
       alertText: function(data, matches, output) {
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           return output.text();
       },
       outputStrings: {
@@ -643,7 +643,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '48F5', source: '９Ｓ：多脚戦車従属' }),
       netRegexKo: NetRegexes.startsUsing({ id: '48F5', source: '9S: 다각전차 종속' }),
       condition: function(data, matches) {
-        return data.me == matches.target || data.role == 'healer';
+        return data.me === matches.target || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -656,7 +656,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '48F6', source: '９Ｓ：多脚戦車従属', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48F6', source: '9S: 다각전차 종속', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
+        return data.role === 'tank' || data.role === 'healer' || data.CanAddle();
       },
       response: Responses.aoe(),
     },

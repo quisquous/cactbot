@@ -30,7 +30,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3E4D', source: '虚无行者' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E4D', source: '보이드워커' }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       response: Responses.tankBuster(),
     },
@@ -43,7 +43,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3E4D', source: '虚无行者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E4D', source: '보이드워커', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       suppressSeconds: 1,
       infoText: (data, _, output) => output.text(),
@@ -66,7 +66,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3E6D', source: '虚无行者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E6D', source: '보이드워커', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -146,10 +146,10 @@
       id: 'E2N Countdown Marker Fire',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
-        return data.me == matches.target && data.spell[data.me] == 'fire';
+        return data.me === matches.target && data.spell[data.me] === 'fire';
       },
       alertText: function(data, _, output) {
-        if (data.fireCount == 3)
+        if (data.fireCount === 3)
           return output.spreadDontStack();
 
         return output.spread();
@@ -200,9 +200,9 @@
       condition: function(data, matches) {
         // The third fire coincides with stack.
         // These people should avoid.
-        if (data.spell[data.me] == 'fire' && data.fireCount == 3)
+        if (data.spell[data.me] === 'fire' && data.fireCount === 3)
           return false;
-        return data.spell[matches.target] == 'stack';
+        return data.spell[matches.target] === 'stack';
       },
       response: Responses.stackMarkerOn(),
     },
@@ -233,7 +233,7 @@
       id: 'E2N Countdown Marker Shadoweye',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
-        return data.spell[matches.target] == 'eye';
+        return data.spell[matches.target] === 'eye';
       },
       delaySeconds: 2,
       response: Responses.lookAwayFromTarget('alarm'),
@@ -242,11 +242,11 @@
       id: 'E2N Countdown Marker Shadoweye You',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
-        return data.spell[matches.target] == 'eye';
+        return data.spell[matches.target] === 'eye';
       },
       delaySeconds: 2,
       infoText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.text();
       },
       outputStrings: {

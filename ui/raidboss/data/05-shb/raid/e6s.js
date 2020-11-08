@@ -188,7 +188,7 @@
       netRegex: NetRegexes.headMarker({ id: '00D3' }),
       suppressSeconds: 1,
       infoText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.enumerationOnYou();
 
         return output.enumeration();
@@ -255,10 +255,10 @@
         return data.handsOfFlame;
       },
       infoText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.chargeOnYou();
 
-        if (data.role != 'tank' || data.phase == 'both')
+        if (data.role !== 'tank' || data.phase === 'both')
           return;
         return output.tankSwap();
       },
@@ -425,10 +425,10 @@
       id: 'E6S Irons Of Purgatory',
       netRegex: NetRegexes.tether({ id: '006C' }),
       condition: function(data, matches) {
-        return data.me == matches.target || data.me == matches.source;
+        return data.me === matches.target || data.me === matches.source;
       },
       alertText: function(data, matches, output) {
-        if (data.me == matches.source)
+        if (data.me === matches.source)
           return output.tetheredToPlayer({ player: data.ShortName(matches.target) });
 
         return output.tetheredToPlayer({ player: data.ShortName(matches.source) });

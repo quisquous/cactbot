@@ -105,7 +105,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D70', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D70', source: '에덴 프라임', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -118,7 +118,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D8B', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D8B', source: '에덴 프라임', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -131,7 +131,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D7F', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D7F', source: '에덴 프라임', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -144,7 +144,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D88', source: '至尊伊甸' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D88', source: '에덴 프라임' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
+        return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBusterSwap(),
     },
@@ -187,7 +187,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '44F8', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '44F8', source: '에덴 프라임', capture: false }),
       alertText: function(data, _, output) {
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.getInSpread();
 
         return output.inStackBehind();
@@ -313,7 +313,7 @@
       id: 'E1S Vice and Virtue DPS 1',
       netRegex: NetRegexes.headMarker({ id: '00AE' }),
       condition: function(data, matches) {
-        return !data.paradise && data.vice == 'dps' && data.me == matches.target;
+        return !data.paradise && data.vice === 'dps' && data.me === matches.target;
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -351,7 +351,7 @@
       id: 'E1S Vice and Virtue Tank Mark',
       netRegex: NetRegexes.headMarker({ id: '00AE' }),
       condition: function(data, matches) {
-        return data.vice == 'tank' && data.me == matches.target;
+        return data.vice === 'tank' && data.me === matches.target;
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -374,7 +374,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D78', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D78', source: '에덴 프라임', capture: false }),
       condition: function(data) {
-        return data.role != 'tank';
+        return data.role !== 'tank';
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -421,9 +421,9 @@
       id: 'E1S Vice and Virtue Healer Mark Not You',
       netRegex: NetRegexes.gainsEffect({ effectId: '840', capture: false }),
       condition: function(data) {
-        if (data.role == 'dps')
+        if (data.role === 'dps')
           return data.paradise;
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return !data.paradise;
         return false;
       },

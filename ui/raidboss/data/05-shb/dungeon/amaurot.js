@@ -12,9 +12,9 @@
         data.meteor = (data.meteor || 0) + 1;
       },
       infoText: function(data, _, output) {
-        if (data.meteor == 1)
+        if (data.meteor === 1)
           return output.dropMeteorWest();
-        else if (data.meteor == 2)
+        else if (data.meteor === 2)
           return output.dropMeteorEast();
 
         return output.meteor();
@@ -81,7 +81,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3CE3', source: '至大灾兽', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CE3', source: '메가테리온', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },

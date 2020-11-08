@@ -184,11 +184,11 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D6[67]', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D6[67]', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D6[67]', capture: false }),
-      condition: (data) => data.role == 'tank',
+      condition: (data) => data.role === 'tank',
       delaySeconds: 43,
       suppressSeconds: 80,
       infoText: function(data, _, output) {
-        if (data.firstFrost == 'driving')
+        if (data.firstFrost === 'driving')
           return output.bitingFrostNext();
 
         return output.drivingFrostNext();
@@ -383,7 +383,7 @@
         data.akhMornTargets.push(matches.target);
       },
       response: function(data, matches) {
-        if (data.me == matches.target) {
+        if (data.me === matches.target) {
           let onYou = {
             en: 'Akh Morn on YOU',
             de: 'Akh Morn auf DIR',
@@ -393,11 +393,11 @@
           };
           // It'd be nice to have this be an alert, but it mixes with a lot of
           // other alerts (akh rhai "move" and worm's lament numbers).
-          if (data.role == 'tank')
+          if (data.role === 'tank')
             return { infoText: onYou };
           return { alarmText: onYou };
         }
-        if (data.akhMornTargets.length != 2)
+        if (data.akhMornTargets.length !== 2)
           return;
         if (data.akhMornTargets.includes(data.me))
           return;
@@ -434,10 +434,10 @@
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D7B' }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D7B' }),
       alertText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.mornAfahOnYou();
 
-        if (data.role == 'tank' || data.role == 'healer' || data.CanAddle())
+        if (data.role === 'tank' || data.role === 'healer' || data.CanAddle())
           return output.mornAfahOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -522,7 +522,7 @@
       netRegex: NetRegexes.gainsEffect({ effectId: '8D2' }),
       condition: Conditions.targetIsYou(),
       preRun: function(data, matches) {
-        if (data.wyrmsLament == 1) {
+        if (data.wyrmsLament === 1) {
           data.wyrmclawNumber = {
             '14': 1,
             '22': 2,
@@ -557,7 +557,7 @@
       netRegex: NetRegexes.gainsEffect({ effectId: '8D3' }),
       condition: Conditions.targetIsYou(),
       preRun: function(data, matches) {
-        if (data.wyrmsLament == 1) {
+        if (data.wyrmsLament === 1) {
           data.wyrmfangNumber = {
             '20': 1,
             '28': 2,
@@ -698,7 +698,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D7E', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D7E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D7E', capture: false }),
-      condition: (data) => data.role == 'tank',
+      condition: (data) => data.role === 'tank',
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -718,7 +718,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D7F', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D7F', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D7F', capture: false }),
-      condition: (data) => data.role == 'tank',
+      condition: (data) => data.role === 'tank',
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

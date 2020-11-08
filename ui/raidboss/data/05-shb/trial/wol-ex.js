@@ -166,11 +166,11 @@ const quintupleOutputStrings = {
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F3[456]' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F3[456]' }),
       run: function(data, matches) {
-        if (matches.id == '4F34')
+        if (matches.id === '4F34')
           data.limitBreak = 1;
-        if (matches.id == '4F35')
+        if (matches.id === '4F35')
           data.limitBreak = 2;
-        if (matches.id == '4F36')
+        if (matches.id === '4F36')
           data.limitBreak = 3;
       },
     },

@@ -9,7 +9,7 @@
       regex: /Lash/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       suppressSeconds: 10,
       response: Responses.miniBuster(),
@@ -47,7 +47,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3E04', source: ['裂口鲨', '原祖鲨'] }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E04', source: ['클라도셀라케', '돌리오두스'] }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -100,7 +100,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3E06', source: ['裂口鲨', '原祖鲨'], capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E06', source: ['클라도셀라케', '돌리오두스'], capture: false }),
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
+        return data.role === 'healer' || data.role === 'tank' || data.CanAddle();
       },
       response: Responses.aoe(),
     },
@@ -119,7 +119,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3E17', source: '侯爵魔界花', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E17', source: '몰볼 후작', capture: false }),
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
+        return data.role === 'healer' || data.role === 'tank' || data.CanAddle();
       },
       response: Responses.aoe(),
     },
@@ -145,7 +145,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3E23', source: '克察尔科亚特尔' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E23', source: '케찰코아틀' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -158,7 +158,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3E24', source: '克察尔科亚特尔', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E24', source: '케찰코아틀', capture: false }),
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
+        return data.role === 'healer' || data.role === 'tank' || data.CanAddle();
       },
       response: Responses.aoe(),
     },

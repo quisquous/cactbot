@@ -13,7 +13,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '40F7', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '40F7', source: '타이탄', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -26,7 +26,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '40F8', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '40F8', source: '타이탄', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -48,7 +48,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '40F9', source: '泰坦' }),
       netRegexKo: NetRegexes.startsUsing({ id: '40F9', source: '타이탄' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
+        return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },

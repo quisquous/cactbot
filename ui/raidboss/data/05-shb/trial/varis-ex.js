@@ -143,10 +143,10 @@
       netRegexCn: NetRegexes.startsUsing({ source: '瓦厉斯·耶·加尔乌斯', id: '4CF0' }),
       alertText: function(data, matches, output) {
         const target = matches.target;
-        if (data.me == target)
+        if (data.me === target)
           return output.tankBusterOnYou();
 
-        if (data.role == 'dps')
+        if (data.role === 'dps')
           return output.avoidTankCleave();
 
         return output.tankBusterOn({ player: data.ShortName(target) });
@@ -228,7 +228,7 @@
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD9', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CD9', capture: false }),
       delaySeconds: function(data) {
-        return data.phase == 2 ? 20 : 10;
+        return data.phase === 2 ? 20 : 10;
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -271,7 +271,7 @@
       response: function(data) {
         // This is easily forgetable after dodging and seems to get people killed.
         // This also differentiates spread from the spread => stack in the last phase.
-        return Responses.spread(data.phase == 5 ? 'alarm' : 'alert');
+        return Responses.spread(data.phase === 5 ? 'alarm' : 'alert');
       },
     },
     {
@@ -282,7 +282,7 @@
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CEA', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CEA', capture: false }),
       infoText: function(data, _, output) {
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.grabTethers();
 
         return output.killAdds();

@@ -14,7 +14,7 @@
       regex: /Comet 1/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -70,7 +70,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '47A6', source: 'ハーデス' }),
       netRegexKo: NetRegexes.startsUsing({ id: '47A6', source: '하데스' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
+        return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -189,7 +189,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '47B8', source: '那布里亚勒斯之影', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47B8', source: '나브리알레스의 그림자', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       delaySeconds: 25,
       response: Responses.aoe(),
@@ -283,7 +283,7 @@
       netRegexJa: NetRegexes.tether({ id: '000E', source: ['イゲオルムの影', 'ラハブレアの影'], target: ['イゲオルムの影', 'ラハブレアの影'], capture: false }),
       netRegexKo: NetRegexes.tether({ id: '000E', source: ['이게요름의 그림자', '라하브레아의 그림자'], target: ['이게요름의 그림자', '라하브레아의 그림자'], capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       suppressSeconds: 10,
       alarmText: (data, _, output) => output.text(),
@@ -307,7 +307,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '47BD', source: 'イゲオルムの影', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47BD', source: '이게요름의 그림자', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       infoText: function(data, _, output) {
         if (!data.sphereCount)
@@ -337,7 +337,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '47BF', source: 'ラハブレアとイゲオルム', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47BF', source: '라하브레아와 이게요름', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -410,7 +410,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['47C3', '47C2'], source: ['イゲオルムの影', 'ラハブレアの影'], capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['47C3', '47C2'], source: ['이게요름의 그림자', '라하브레아의 그림자'], capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       suppressSeconds: 5,
       alertText: (data, _, output) => output.text(),
@@ -429,7 +429,7 @@
       id: 'HadesEx Doom',
       netRegex: NetRegexes.gainsEffect({ effectId: '6E9', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       suppressSeconds: 5,
       alertText: (data, _, output) => output.text(),
@@ -517,7 +517,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '47CC', source: 'アシエン・プライムの影', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47CC', source: '아씨엔 프라임의 그림자', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       delaySeconds: 12,
       infoText: (data, _, output) => output.text(),
@@ -541,10 +541,10 @@
       netRegexJa: NetRegexes.startsUsing({ id: '47D1', source: 'アシエン・プライムの影' }),
       netRegexKo: NetRegexes.startsUsing({ id: '47D1', source: '아씨엔 프라임의 그림자' }),
       alertText: function(data, matches, output) {
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           return output.tankBusterOnYou();
 
-        if (data.role == 'healer')
+        if (data.role === 'healer')
           return output.busterOn({ player: data.ShortName(matches.target) });
 
         return output.awayFromPlayer({ player: data.ShortName(matches.target) });
@@ -606,7 +606,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '47D0', source: 'アシエン・プライムの影', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47D0', source: '아씨엔 프라임의 그림자', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -800,7 +800,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '47F3', source: 'ハーデス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47F3', source: '하데스', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -813,7 +813,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '47F4', source: 'ハーデス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47F4', source: '하데스', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -826,15 +826,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '47F6', source: 'ハーデス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47F6', source: '하데스', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       suppressSeconds: 2,
       alarmText: function(data, _, output) {
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.getTowers();
       },
       infoText: function(data, _, output) {
-        if (data.role == 'healer')
+        if (data.role === 'healer')
           return output.tankBusters();
       },
       outputStrings: {
@@ -865,7 +865,7 @@
       netRegexJa: NetRegexes.ability({ id: '47F6', source: 'ハーデス', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '47F6', source: '하데스', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       delaySeconds: 2,
       suppressSeconds: 2,
