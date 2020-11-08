@@ -76,6 +76,7 @@ const kAbility = {
   DragonKick: '4A',
   TwinSnakes: '3D',
   Demolish: '42',
+
   // RDM
   Verstone: '1D57',
   Verfire: '1D56',
@@ -103,6 +104,7 @@ const kAbility = {
   EnchantedReprise: '4090',
   Embolden: '1D60',
   Manafication: '1D61',
+
   Tomahawk: '2E',
   Overpower: '29',
   HeavySwing: '1F',
@@ -113,7 +115,6 @@ const kAbility = {
   StormsPath: '2A',
   InnerRelease: '1CDD',
   TrickAttack: '8D2',
-  Embolden: '1D60',
   Aetherflow: 'A6',
   ChainStratagem: '1D0C',
   Hypercharge: 'B45',
