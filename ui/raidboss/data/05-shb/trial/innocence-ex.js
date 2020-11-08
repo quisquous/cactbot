@@ -161,9 +161,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3EC9', source: 'フォーギヴン・ヴェナリー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3EC9', source: '得到宽恕的情欲' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EC9', source: '면죄된 정욕' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
@@ -325,9 +323,7 @@
     {
       id: 'InnoEx Winged Reprobation Tether',
       netRegex: NetRegexes.headMarker({ id: '00AC' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -343,9 +339,7 @@
     {
       id: 'InnoEx Winged Drop Of Light',
       netRegex: NetRegexes.headMarker({ id: '008A' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: function(data, _, output) {
         if (data.starbirthActive)
           return output.circleAvoidOrbs();

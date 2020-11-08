@@ -25,9 +25,7 @@
     {
       id: 'Cosmos Dark Well Far Winds',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -159,17 +157,13 @@
     {
       id: 'Cosmos Black Flame 1',
       netRegex: NetRegexes.headMarker({ id: '0019' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Cosmos Black Flame 2',
       netRegex: NetRegexes.headMarker({ id: '0019' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: 4,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -186,17 +180,13 @@
     {
       id: 'Cosmos Mortal Flame 1',
       netRegex: NetRegexes.headMarker({ id: '00C3' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Cosmos Mortal Flame 2',
       netRegex: NetRegexes.headMarker({ id: '00C3' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: 5.5,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -233,9 +223,7 @@
     {
       id: 'Cosmos Fire\'s Domain',
       netRegex: NetRegexes.headMarker({ id: '003[2345]' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       preRun: function(data) {
         data.firesDomain = (data.firesDomain || 0) + 1;
       },

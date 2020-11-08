@@ -106,9 +106,7 @@
     {
       id: 'E2N Dark Fire No Waiting',
       netRegex: NetRegexes.headMarker({ id: '004C' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
@@ -132,9 +130,7 @@
     {
       id: 'E2N Dark Fire Waiting',
       netRegex: NetRegexes.headMarker({ id: '00B5' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -186,9 +182,7 @@
     {
       id: 'E2N Unholy Darkness Waiting',
       netRegex: NetRegexes.headMarker({ id: '00B4' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -223,9 +217,7 @@
     {
       id: 'E2N Shadoweye Waiting',
       netRegex: NetRegexes.headMarker({ id: '00B7' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

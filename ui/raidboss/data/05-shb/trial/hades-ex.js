@@ -202,9 +202,7 @@
       netRegexFr: NetRegexes.tether({ id: '0011', source: 'Spectre D\'Ascien' }),
       netRegexJa: NetRegexes.tether({ id: '0011', source: '古代人の影' }),
       netRegexKo: NetRegexes.tether({ id: '0011', source: '고대인의 그림자' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -220,9 +218,7 @@
     {
       id: 'HadesEx Ancient Water 3',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.waterDarkMarker = true;
@@ -241,9 +237,7 @@
     {
       id: 'HadesEx Ancient Darkness',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       run: function(data) {
         data.waterDarkMarker = true;
@@ -350,9 +344,7 @@
     {
       id: 'HadesEx Burning Brand',
       netRegex: NetRegexes.gainsEffect({ effectId: '850' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       run: function(data) {
         data.brand = 'fire';
@@ -371,9 +363,7 @@
     {
       id: 'HadesEx Freezing Brand',
       netRegex: NetRegexes.gainsEffect({ effectId: '851' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       run: function(data) {
         data.brand = 'ice';
@@ -397,9 +387,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '47C3', source: 'Spectre D\'Igeyorhm' }),
       netRegexJa: NetRegexes.startsUsing({ id: '47C3', source: 'イゲオルムの影' }),
       netRegexKo: NetRegexes.startsUsing({ id: '47C3', source: '이게요름의 그림자' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
@@ -410,9 +398,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '47C2', source: 'Spectre De Lahabrea' }),
       netRegexJa: NetRegexes.startsUsing({ id: '47C2', source: 'ラハブレアの影' }),
       netRegexKo: NetRegexes.startsUsing({ id: '47C2', source: '라하브레아의 그림자' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
@@ -470,9 +456,7 @@
     {
       id: 'HadesEx Beyond Death',
       netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -489,9 +473,7 @@
     {
       id: 'HadesEx Ancient Circle',
       netRegex: NetRegexes.gainsEffect({ effectId: '83E' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 5;
       },
@@ -510,9 +492,7 @@
     {
       id: 'HadesEx Forked Lightning',
       netRegex: NetRegexes.gainsEffect({ effectId: '24B' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 2;
       },
@@ -633,9 +613,7 @@
     {
       id: 'HadesEx Captivity',
       netRegex: NetRegexes.headMarker({ id: '0078' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.getOut('alarm'),
     },
     {
@@ -661,9 +639,7 @@
     {
       id: 'HadesEx Dark Flame',
       netRegex: NetRegexes.headMarker({ id: '0064' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.flame = true;
@@ -682,9 +658,7 @@
     {
       id: 'HadesEx Dark Freeze',
       netRegex: NetRegexes.headMarker({ id: '00C1' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.freeze = true;
@@ -726,9 +700,7 @@
     {
       id: 'HadesEx Nether Blast',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       run: function(data) {
         data.netherBlast = true;

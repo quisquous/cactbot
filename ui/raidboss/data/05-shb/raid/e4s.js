@@ -69,9 +69,7 @@
     {
       id: 'E4S Pulse of the Land',
       netRegex: NetRegexes.headMarker({ id: '00B9' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
@@ -98,9 +96,7 @@
     {
       id: 'E4S Force of the Land',
       netRegex: NetRegexes.headMarker({ id: '00BA' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.stackMarker(),
     },
     {
@@ -179,9 +175,7 @@
     {
       id: 'E4S Crumbling Down',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -426,9 +420,7 @@
     {
       id: 'E4S Weight of the World',
       netRegex: NetRegexes.headMarker({ id: '00BB' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.getOut(),
     },
     {
@@ -473,9 +465,7 @@
     {
       id: 'E4S Granite Gaol',
       netRegex: NetRegexes.headMarker({ id: '00BF' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

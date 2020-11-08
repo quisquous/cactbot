@@ -25,9 +25,7 @@
     {
       id: 'Anyder Aquatic Lance',
       netRegex: NetRegexes.headMarker({ id: '0087' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -109,9 +107,7 @@
     {
       id: 'Anyder Sap Shower',
       netRegex: NetRegexes.headMarker({ id: '0078' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {

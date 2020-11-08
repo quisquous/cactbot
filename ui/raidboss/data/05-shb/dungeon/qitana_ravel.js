@@ -168,9 +168,7 @@
       netRegexJa: NetRegexes.tether({ id: '0039', source: 'エロース' }),
       netRegexCn: NetRegexes.tether({ id: '0039', source: '艾洛斯' }),
       netRegexKo: NetRegexes.tether({ id: '0039', source: '에로스' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -186,9 +184,7 @@
     {
       id: 'Qitana Viper Poison',
       netRegex: NetRegexes.headMarker({ id: '00AB' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

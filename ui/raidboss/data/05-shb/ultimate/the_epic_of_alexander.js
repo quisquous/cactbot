@@ -1060,9 +1060,7 @@ const namedNisiPass = (data, output) => {
     {
       id: 'TEA Compressed Water Initial',
       netRegex: NetRegexes.gainsEffect({ effectId: '85E' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -1078,9 +1076,7 @@ const namedNisiPass = (data, output) => {
     {
       id: 'TEA Compressed Water Explode',
       netRegex: NetRegexes.gainsEffect({ effectId: '85E' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: function(data, matches) {
         // 5 second warning.
         return parseFloat(matches.duration) - 5;
@@ -1104,9 +1100,7 @@ const namedNisiPass = (data, output) => {
     {
       id: 'TEA Compressed Lightning Initial',
       netRegex: NetRegexes.gainsEffect({ effectId: '85F' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -1122,9 +1116,7 @@ const namedNisiPass = (data, output) => {
     {
       id: 'TEA Compressed Lightning Explode',
       netRegex: NetRegexes.gainsEffect({ effectId: '85F' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: function(data, matches) {
         // 5 second warning.
         return parseFloat(matches.duration) - 5;
@@ -1239,9 +1231,7 @@ const namedNisiPass = (data, output) => {
     {
       id: 'TEA Final Judgment Nisi Verdict',
       netRegex: NetRegexes.gainsEffect({ effectId: ['8B0', '8B1', '85B', '85C'] }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       // This keeps refreshing forever, so only alert once.
       suppressSeconds: 10000,
       infoText: function(data, matches, output) {
@@ -1381,9 +1371,7 @@ const namedNisiPass = (data, output) => {
     {
       id: 'TEA Restraining Order',
       netRegex: NetRegexes.gainsEffect({ effectId: '464' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -1400,9 +1388,7 @@ const namedNisiPass = (data, output) => {
     {
       id: 'TEA House Arrest',
       netRegex: NetRegexes.gainsEffect({ effectId: '463' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -1419,9 +1405,7 @@ const namedNisiPass = (data, output) => {
     {
       id: 'TEA Shared Sentence',
       netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -1457,9 +1441,7 @@ const namedNisiPass = (data, output) => {
     {
       id: 'TEA Aggravated Assault',
       netRegex: NetRegexes.gainsEffect({ effectId: '461' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       alarmText: (data, _, output) => output.text(),
       outputStrings: {

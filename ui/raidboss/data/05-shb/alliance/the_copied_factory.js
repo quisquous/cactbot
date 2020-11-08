@@ -253,9 +253,7 @@
     {
       id: 'Copied Hobbes Short Missile',
       netRegex: NetRegexes.headMarker({ id: '00C4' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
@@ -363,9 +361,7 @@
       netRegexFr: NetRegexes.tether({ id: '0011', source: 'Unité Kamikaze Moyenne' }),
       netRegexJa: NetRegexes.tether({ id: '0011', source: '中型自爆' }),
       netRegexKo: NetRegexes.tether({ id: '0011', source: '중형 자폭' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -394,9 +390,7 @@
     {
       id: 'Copied Flight Unit Ballistic Impact',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
@@ -482,9 +476,7 @@
     {
       id: 'Copied Engels Precision Guided Missile',
       netRegex: NetRegexes.headMarker({ id: '00C6' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.tankBuster('info'),
     },
     {
@@ -681,17 +673,13 @@
     {
       id: 'Copied 9S Ballistic Impact',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
       id: 'Copied 9S Goliath Laser Turret',
       netRegex: NetRegexes.headMarker({ id: '00A4' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
