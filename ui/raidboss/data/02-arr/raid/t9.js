@@ -75,15 +75,18 @@
         return matches.duration - 5;
       },
       durationSeconds: 5,
-      infoText: function(data, matches) {
-        return {
-          en: 'Blight on ' + data.ShortName(matches.target),
-          de: 'Pestschwinge auf ' + data.ShortName(matches.target),
-          fr: 'Bile de rapace sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'に凶鳥毒気',
-          cn: '毒气点' + data.ShortName(matches.target),
-          ko: '광역폭발 디버프 ' + data.ShortName(matches.target),
-        };
+      infoText: function(data, matches, output) {
+        return output.text({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Blight on ${player}',
+          de: 'Pestschwinge auf ${player}',
+          fr: 'Bile de rapace sur ${player}',
+          ja: '${player}に凶鳥毒気',
+          cn: '毒气点${player}',
+          ko: '광역폭발 디버프 ${player}',
+        },
       },
     },
     {
@@ -101,25 +104,29 @@
     {
       id: 'T9 Stack',
       netRegex: NetRegexes.headMarker({ id: '000F' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Thermo on YOU',
-            de: 'Thermo auf DIR',
-            fr: 'Thermo sur VOUS',
-            ja: '自分に頭割り',
-            cn: '分摊点名',
-            ko: '쉐어징 대상자',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Sammeln auf ' + data.ShortName(matches.target),
-          fr: 'Packez-vous sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'と頭割り',
-          cn: '靠近' + data.ShortName(matches.target) + '分摊',
-          ko: '"' + data.ShortName(matches.target) + '" 쉐어징',
-        };
+      alertText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.thermoOnYou();
+
+        return output.stackOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        thermoOnYou: {
+          en: 'Thermo on YOU',
+          de: 'Thermo auf DIR',
+          fr: 'Thermo sur VOUS',
+          ja: '自分に頭割り',
+          cn: '分摊点名',
+          ko: '쉐어징 대상자',
+        },
+        stackOn: {
+          en: 'Stack on ${player}',
+          de: 'Sammeln auf ${player}',
+          fr: 'Packez-vous sur ${player}',
+          ja: '${player}と頭割り',
+          cn: '靠近${player}分摊',
+          ko: '"${player}" 쉐어징',
+        },
       },
     },
     {
@@ -330,15 +337,18 @@
       netRegexCn: NetRegexes.startsUsing({ id: '7E6', source: '奈尔·神·达纳斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '7E6', source: '넬 데우스 다르누스', capture: false }),
       durationSeconds: 12,
-      infoText: function(data) {
-        return {
-          en: 'Marks: ' + data.naelMarks.join(', '),
-          de: 'Markierungen : ' + data.naelMarks.join(', '),
-          fr: 'Marque : ' + data.naelMarks.join(', '),
-          ja: 'マーカー: ' + data.naelMarks.join(', '),
-          cn: '标记： ' + data.naelMarks.join(', '),
-          ko: '카탈징: ' + data.naelMarks.join(', '),
-        };
+      infoText: function(data, _, output) {
+        return output.text({ naelMarks: data.naelMarks.join(', ') });
+      },
+      outputStrings: {
+        text: {
+          en: 'Marks: ${naelMarks}',
+          de: 'Markierungen : ${naelMarks}',
+          fr: 'Marque : ${naelMarks}',
+          ja: 'マーカー: ${naelMarks}',
+          cn: '标记： ${naelMarks}',
+          ko: '카탈징: ${naelMarks}',
+        },
       },
     },
     {
@@ -352,32 +362,36 @@
       preRun: function(data) {
         data.tetherCount = data.tetherCount || 0;
         data.tetherCount++;
+      },
+      alertText: function(data, matches, output) {
+        if (data.me !== matches.target)
+          return;
         // Out, In, Out, In
-        data.tetherDir = data.tetherCount % 2 ? 'Fire Out' : 'Fire In';
+        if (data.tetherCount % 2)
+          return output.fireOutOnYou();
+        return output.fireInOnYou;
       },
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: data.tetherDir + ' (on YOU)',
-            de: data.tetherDir + ' (auf DIR)',
-            fr: data.tetherDir + ' (sur VOUS)',
-            ja: data.tetherDir + ' (自分)',
-            cn: data.tetherDir + ' (点名)',
-            ko: data.tetherDir + ' (대상자)',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return;
+        // Out, In, Out, In
+        if (data.tetherCount % 2)
+          return output.fireOutOn({ player: data.ShortName(matches.target) });
+        return output.fireInOn({ player: data.ShortName(matches.target) });
       },
-      infoText: function(data, matches) {
-        if (data.me != matches.target) {
-          return {
-            en: data.tetherDir + ' (on ' + data.ShortName(matches.target) + ')',
-            de: data.tetherDir + ' (auf ' + data.ShortName(matches.target) + ')',
-            fr: data.tetherDir + ' (sur ' + data.ShortName(matches.target) + ')',
-            ja: data.tetherDir + ' (' + data.ShortName(matches.target) + 'に)',
-            cn: data.tetherDir + ' (点 ' + data.ShortName(matches.target) + ')',
-            ko: data.tetherDir + ' (on ' + data.ShortName(matches.target) + ')',
-          };
-        }
+      outputStrings: {
+        fireOutOnYou: {
+          en: 'Fire Out (on YOU)',
+        },
+        fireInOnYou: {
+          en: 'Fire In (on YOU)',
+        },
+        fireOutOn: {
+          en: 'Fire Out (on ${player})',
+        },
+        fireInOn: {
+          en: 'Fire In (on ${player})',
+        },
       },
     },
     {
@@ -415,33 +429,37 @@
       id: 'T9 Dragon Marker',
       netRegex: NetRegexes.headMarker({ id: '0014' }),
       condition: Conditions.targetIsYou(),
-      alarmText: function(data, matches) {
+      alarmText: function(data, matches, output) {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
         if (matches.target != data.me)
           return;
         let marker = ['A', 'B', 'C'][data.naelDiveMarkerCount];
         let dir = data.naelMarks[data.naelDiveMarkerCount];
-        return {
-          en: 'Go To ' + marker + ' (in ' + dir + ')',
-          de: 'Gehe zu ' + marker + ' (im ' + dir + ')',
-          fr: 'Allez en ' + marker + ' (au ' + dir + ')',
-          ja: marker + 'に行く' + ' (あと ' + dir + '秒)',
-          cn: '去' + marker + ' (在 ' + dir + '秒)',
-          ko: marker + '로 이동' + ' (in ' + dir + ')',
-        };
+        return output.goToMarkerInDir({ marker: marker, dir: dir });
       },
-      tts: function(data, matches) {
+      tts: function(data, matches, output) {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
         if (matches.target != data.me)
           return;
-        return {
-          en: 'Go To ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
-          de: 'Gehe zu ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
-          fr: 'Allez en ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
-          ja: ['A', 'B', 'C'][data.naelDiveMarkerCount] + '行くよ',
-          cn: '去' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
-          ko: ['A', 'B', 'C'][data.naelDiveMarkerCount] + '로 이동',
-        };
+        return output.goToMarker({ marker: ['A', 'B', 'C'][data.naelDiveMarkerCount] });
+      },
+      outputStrings: {
+        goToMarkerInDir: {
+          en: 'Go To ${marker} (in ${dir})',
+          de: 'Gehe zu ${marker} (im ${dir})',
+          fr: 'Allez en ${marker} (au ${dir})',
+          ja: '${marker}に行く' + ' (あと ${dir}秒)',
+          cn: '去${marker} (在 ${dir}秒)',
+          ko: '${marker}로 이동' + ' (in ${dir})',
+        },
+        goToMarker: {
+          en: 'Go To ${marker}',
+          de: 'Gehe zu ${marker}',
+          fr: 'Allez en ${marker}',
+          ja: '${marker}行くよ',
+          cn: '去${marker}',
+          ko: '${marker}로 이동',
+        },
       },
     },
   ],

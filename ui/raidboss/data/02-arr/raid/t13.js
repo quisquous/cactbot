@@ -25,21 +25,23 @@
         return !(data.gigaflare > 1);
       },
       sound: 'Long',
-      infoText: function(data) {
-        if (data.gigaflare) {
-          return {
-            en: 'Stack Center for Dives',
-            de: 'In der Mitte sammeln für Sturzbombe',
-            fr: 'Packez-vous au centre pour les plongeons',
-            ja: '中央待機、メガフレアダイブを待つ',
-            cn: '中间集合等待俯冲',
-            ko: '기가플레어 집합',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (data.gigaflare)
+          return output.text();
       },
       run: function(data) {
         data.gigaflare = data.gigaflare || 0;
         data.gigaflare++;
+      },
+      outputStrings: {
+        text: {
+          en: 'Stack Center for Dives',
+          de: 'In der Mitte sammeln für Sturzbombe',
+          fr: 'Packez-vous au centre pour les plongeons',
+          ja: '中央待機、メガフレアダイブを待つ',
+          cn: '中间集合等待俯冲',
+          ko: '기가플레어 집합',
+        },
       },
     },
     {
@@ -50,31 +52,33 @@
       netRegexJa: NetRegexes.startsUsing({ id: 'BAE', source: 'バハムート・プライム' }),
       netRegexCn: NetRegexes.startsUsing({ id: 'BAE', source: '至尊巴哈姆特' }),
       netRegexKo: NetRegexes.startsUsing({ id: 'BAE', source: '바하무트 프라임' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Flatten on YOU',
-            de: 'Einebnen auf DIR',
-            fr: 'Compression sur VOUS',
-            ja: '自分にフラッテン',
-            cn: '死刑',
-            ko: '짓뭉개기',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (matches.target == data.me)
+          return output.flattenOnYou();
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         if (matches.target == data.me)
           return;
-        if (data.role == 'healer' || data.job == 'BLU') {
-          return {
-            en: 'Flatten on ' + data.ShortName(matches.target),
-            de: 'Einebnen auf ' + data.ShortName(matches.target),
-            fr: 'Compression sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にフラッテン',
-            cn: '死刑点' + data.ShortName(matches.target),
-            ko: '짓뭉개기 ' + data.ShortName(matches.target),
-          };
-        }
+        if (data.role == 'healer' || data.job == 'BLU')
+          return output.flattenOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        flattenOn: {
+          en: 'Flatten on ${player}',
+          de: 'Einebnen auf ${player}',
+          fr: 'Compression sur ${player}',
+          ja: '${player}にフラッテン',
+          cn: '死刑点${player}',
+          ko: '짓뭉개기 ${player}',
+        },
+        flattenOnYou: {
+          en: 'Flatten on YOU',
+          de: 'Einebnen auf DIR',
+          fr: 'Compression sur VOUS',
+          ja: '自分にフラッテン',
+          cn: '死刑',
+          ko: '짓뭉개기',
+        },
       },
     },
     {
@@ -130,29 +134,31 @@
       netRegexJa: NetRegexes.startsUsing({ id: 'BC2', source: 'バハムート・プライム' }),
       netRegexCn: NetRegexes.startsUsing({ id: 'BC2', source: '至尊巴哈姆特' }),
       netRegexKo: NetRegexes.startsUsing({ id: 'BC2', source: '바하무트 프라임' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Akh Morn on YOU',
-            de: 'Akh Morn auf DIR',
-            fr: 'Akh Morn sur VOUS',
-            ja: '自分にアク・モーン',
-            cn: '死亡轮回点名',
-            ko: '아크몬 대상자',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (matches.target == data.me)
+          return output.akhMornOnYou();
       },
-      infoText: function(data, matches) {
-        if (matches.target != data.me) {
-          return {
-            en: 'Akh Morn on ' + data.ShortName(matches.target),
-            de: 'Akh Morn auf ' + data.ShortName(matches.target),
-            fr: 'Akh Morn sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にアク・モーン',
-            cn: '死亡轮回点' + data.ShortName(matches.target),
-            ko: '아크몬 ' + data.ShortName(matches.target),
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (matches.target != data.me)
+          return output.akhMornOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        akhMornOn: {
+          en: 'Akh Morn on ${player}',
+          de: 'Akh Morn auf ${player}',
+          fr: 'Akh Morn sur ${player}',
+          ja: '${player}にアク・モーン',
+          cn: '死亡轮回点${player}',
+          ko: '아크몬 ${player}',
+        },
+        akhMornOnYou: {
+          en: 'Akh Morn on YOU',
+          de: 'Akh Morn auf DIR',
+          fr: 'Akh Morn sur VOUS',
+          ja: '自分にアク・モーン',
+          cn: '死亡轮回点名',
+          ko: '아크몬 대상자',
+        },
       },
     },
   ],

@@ -19,27 +19,29 @@
       // Allagan Rot
       id: 'T2 Rot',
       netRegex: NetRegexes.gainsEffect({ effectId: '14D' }),
-      alarmText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Rot on YOU',
-            de: 'Fäulnis auf DIR',
-            fr: 'Pourriture sur VOUS',
-            ja: '自分にアラガンロット',
-            cn: '毒点名',
-          };
-        }
+      alarmText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.rotOnYou();
       },
-      infoText: function(data, matches) {
-        if (data.me != matches.target) {
-          return {
-            en: 'Rot on ' + data.ShortName(matches.target),
-            de: 'Fäulnis auf ' + data.ShortName(matches.target),
-            fr: 'Pourriture sur ' + data.ShortName(matches.target),
-            ja: '自分に' + data.ShortName(matches.target),
-            cn: '毒点 ' + data.ShortName(matches.target),
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me != matches.target)
+          return output.rotOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        rotOn: {
+          en: 'Rot on ${player}',
+          de: 'Fäulnis auf ${player}',
+          fr: 'Pourriture sur ${player}',
+          ja: '自分に${player}',
+          cn: '毒点 ${player}',
+        },
+        rotOnYou: {
+          en: 'Rot on YOU',
+          de: 'Fäulnis auf DIR',
+          fr: 'Pourriture sur VOUS',
+          ja: '自分にアラガンロット',
+          cn: '毒点名',
+        },
       },
     },
     {
@@ -50,16 +52,19 @@
         data.rot = true;
       },
       delaySeconds: 11,
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (!data.rot)
           return;
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'Pass Rot',
           de: 'Fäulnis abgeben',
           fr: 'Passez la pourriture',
           ja: 'ロットを移す',
           cn: '传毒',
-        };
+        },
       },
     },
     {

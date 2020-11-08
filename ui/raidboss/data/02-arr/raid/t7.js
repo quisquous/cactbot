@@ -111,27 +111,29 @@
       id: 'T7 Cursed Shriek',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
       durationSeconds: 3,
-      alarmText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Shriek on YOU',
-            de: 'Schrei Der Verwünschung auf DIR',
-            fr: 'Cri du maléfice sur VOUS',
-            ja: '自分に呪詛の叫声',
-            cn: '诅咒之嚎点名',
-          };
-        }
+      alarmText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.shriekOnYou();
       },
-      infoText: function(data, matches) {
-        if (data.me != matches.target) {
-          return {
-            en: 'Shriek on ' + data.ShortName(matches.target),
-            de: 'Schrei Der Verwünschung auf ' + data.ShortName(matches.target),
-            fr: 'Cri du maléfice sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'に呪詛の叫声',
-            cn: '诅咒之嚎点' + data.ShortName(matches.target),
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me != matches.target)
+          return output.shriekOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        shriekOn: {
+          en: 'Shriek on ${player}',
+          de: 'Schrei Der Verwünschung auf ${player}',
+          fr: 'Cri du maléfice sur ${player}',
+          ja: '${player}に呪詛の叫声',
+          cn: '诅咒之嚎点${player}',
+        },
+        shriekOnYou: {
+          en: 'Shriek on YOU',
+          de: 'Schrei Der Verwünschung auf DIR',
+          fr: 'Cri du maléfice sur VOUS',
+          ja: '自分に呪詛の叫声',
+          cn: '诅咒之嚎点名',
+        },
       },
     },
     {
@@ -139,23 +141,27 @@
       netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
       delaySeconds: 7,
       durationSeconds: 3,
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Shriek Soon',
-            de: 'Schrei Der Verwünschung bald',
-            fr: 'Cri du maléfice bientôt',
-            ja: 'まもなく呪詛の叫声',
-            cn: '诅咒之嚎即将判定',
-          };
-        }
-        return {
+      infoText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.shriekSoon();
+
+        return output.dodgeShriek();
+      },
+      outputStrings: {
+        shriekSoon: {
+          en: 'Shriek Soon',
+          de: 'Schrei Der Verwünschung bald',
+          fr: 'Cri du maléfice bientôt',
+          ja: 'まもなく呪詛の叫声',
+          cn: '诅咒之嚎即将判定',
+        },
+        dodgeShriek: {
           en: 'Dodge Shriek',
           de: 'Schrei Der Verwünschung ausweichen',
           fr: 'Esquivez le cri maudit',
           ja: '呪詛の叫声に避け',
           cn: '躲避诅咒之嚎',
-        };
+        },
       },
     },
     {
