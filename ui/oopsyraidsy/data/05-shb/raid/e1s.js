@@ -23,7 +23,7 @@
       id: 'E1S Fire/Thunder III',
       damageRegex: '44FB',
       condition: function(e, data) {
-        return e.type != '15';
+        return e.type !== '15';
       },
       mistake: function(e, data) {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };
@@ -33,7 +33,7 @@
       id: 'E1S Pure Beam Single',
       damageRegex: '3D81',
       condition: function(e, data) {
-        return e.type != '15';
+        return e.type !== '15';
       },
       mistake: function(e, data) {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };
@@ -44,7 +44,7 @@
       // Vice Of Vanity
       damageRegex: '44F1',
       condition: function(e, data) {
-        return e.type != '15';
+        return e.type !== '15';
       },
       mistake: function(e, data) {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };
@@ -55,7 +55,7 @@
       // Vice Of Apathy
       damageRegex: '44F2',
       condition: function(e, data) {
-        return e.type != '15';
+        return e.type !== '15';
       },
       mistake: function(e, data) {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };

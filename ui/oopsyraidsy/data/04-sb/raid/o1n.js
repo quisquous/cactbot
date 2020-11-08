@@ -13,7 +13,7 @@
       id: 'O1N Levinbolt',
       damageRegex: '23DA',
       condition: function(e) {
-        return e.type != '15';
+        return e.type !== '15';
       },
       mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };

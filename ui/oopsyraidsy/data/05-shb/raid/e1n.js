@@ -18,7 +18,7 @@
       id: 'E1N Fire III',
       damageRegex: '44EB',
       condition: function(e, data) {
-        return e.type != '15';
+        return e.type !== '15';
       },
       mistake: function(e, data) {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };
@@ -29,7 +29,7 @@
       // Vice Of Vanity
       damageRegex: '44E7',
       condition: function(e, data) {
-        return e.type != '15';
+        return e.type !== '15';
       },
       mistake: function(e, data) {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };
@@ -40,7 +40,7 @@
       // Vice Of Apathy
       damageRegex: '44E8',
       condition: function(e, data) {
-        return e.type != '15';
+        return e.type !== '15';
       },
       mistake: function(e, data) {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };
