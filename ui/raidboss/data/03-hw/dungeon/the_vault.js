@@ -117,9 +117,7 @@
       netRegexJa: NetRegexes.tether({ id: '0001', source: '次元の裂け目' }),
       netRegexCn: NetRegexes.tether({ id: '0001', source: '次元裂缝' }),
       netRegexKo: NetRegexes.tether({ id: '0001', source: '차원의 틈새' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 5,
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
@@ -149,9 +147,7 @@
     {
       id: 'The Vault Holy Chains',
       netRegex: NetRegexes.headMarker({ id: '0061' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.breakChains(),
     },
     {
