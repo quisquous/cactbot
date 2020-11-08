@@ -133,9 +133,7 @@
       netRegexJa: NetRegexes.tether({ id: '0005', target: 'リビングリキッド' }),
       netRegexCn: NetRegexes.tether({ id: '0005', target: '有生命活水' }),
       netRegexKo: NetRegexes.tether({ id: '0005', target: '살아있는 액체' }),
-      condition: function(data, matches) {
-        return data.source == data.me;
-      },
+      condition: (data, matches) => matches.source === data.me,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
