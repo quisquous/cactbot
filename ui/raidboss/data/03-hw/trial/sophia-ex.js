@@ -15,36 +15,42 @@ let findSafeDir = (data) => {
   return safeDir;
 };
 
-let callSafeDir = (callIndex) => {
+const callSafeDir = (callIndex, output) => {
   return {
-    '2': {
-      en: 'Go East (Hard Tilt)',
-      de: 'Nach Osten gehen (starke Neigung)',
-      ja: '東へ (大きい斜め)',
-      cn: '去东边（大倾斜）',
-    },
-    '1': {
-      en: 'Go East (Soft Tilt)',
-      de: 'Nach Osten gehen (leichte Neigung)',
-      ja: '東へ (小さい斜め)',
-      cn: '去东边（小倾斜）',
-    },
-    '-2': {
-      en: 'Go West (Hard Tilt)',
-      de: 'Nach Westen gehen (starke Neigung)',
-      ja: '西へ (大きい斜め)',
-      cn: '去西边（大倾斜）',
-    },
-    '-1': {
-      en: 'Go West (Soft Tilt)',
-      de: 'Nach Westen gehen (leichte Neigung)',
-      ja: '西へ (小さい斜め)',
-      cn: '去西边（小倾斜）',
-    },
+    '2': output.goEastHardTilt(),
+    '1': output.goEastSoftTilt(),
+    '-2': output.goWestHardTilt(),
+    '-1': output.goWestSoftTilt(),
     // Stringified because Javascript doesn't do negative-integer key values.
   }[callIndex.toString()];
 };
 
+const tiltOutputStrings = {
+  goEastHardTilt: {
+    en: 'Go East (Hard Tilt)',
+    de: 'Nach Osten gehen (starke Neigung)',
+    ja: '東へ (大きい斜め)',
+    cn: '去东边（大倾斜）',
+  },
+  goEastSoftTilt: {
+    en: 'Go East (Soft Tilt)',
+    de: 'Nach Osten gehen (leichte Neigung)',
+    ja: '東へ (小さい斜め)',
+    cn: '去东边（小倾斜）',
+  },
+  goWestHardTilt: {
+    en: 'Go West (Hard Tilt)',
+    de: 'Nach Westen gehen (starke Neigung)',
+    ja: '西へ (大きい斜め)',
+    cn: '去西边（大倾斜）',
+  },
+  goWestSoftTilt: {
+    en: 'Go West (Soft Tilt)',
+    de: 'Nach Westen gehen (leichte Neigung)',
+    ja: '西へ (小さい斜め)',
+    cn: '去西边（小倾斜）',
+  },
+};
 
 [{
   zoneId: ZoneId.ContainmentBayP1T6Extreme,
@@ -357,20 +363,79 @@ let callSafeDir = (callIndex) => {
       durationSeconds: function(data, matches) {
         return parseFloat(matches.castTime);
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         const localeCompass = {
-          'N': { en: 'North', fr: 'Nord', de: 'Norde', ja: '北', cn: '北', ko: '북쪽' },
-          'S': { en: 'South', fr: 'Sud', de: 'Süden', ja: '南', cn: '南面', ko: '남쪽' },
-          'NW': { en: 'NW', fr: 'N-O', de: 'NW', ja: '北西', cn: '西北', ko: '북서' },
-          'NE': { en: 'NE', fr: 'N-E', de: 'NO', ja: '北東', cn: '东北', ko: '북동' },
-          'SW': { en: 'SW', fr: 'S-O', de: 'SW', ja: '南西', cn: '西南', ko: '남서' },
-          'SE': { en: 'SE', fr: 'S-E', de: 'SO', ja: '南東', cn: '东南', ko: '남동' },
+          'N': output.north(),
+          'S': output.south(),
+          'NW': output.northwest(),
+          'NE': output.northeast(),
+          'SW': output.southwest(),
+          'SE': output.southeast(),
         };
         if (data.thunderClones.length === 1)
           return localeCompass[data.thunderClones[0]];
-        const composite = localeCompass[data.thunderClones[0]][data.displayLang] + '/' +
-            localeCompass[data.thunderClones[1]][data.displayLang];
-        return composite;
+        return output.multiple({
+          dir1: localeCompass[data.thunderClones[0]],
+          dir2: localeCompass[data.thunderClones[1]],
+        });
+      },
+      outputStrings: {
+        north: {
+          en: 'North',
+          fr: 'Nord',
+          de: 'Norde',
+          ja: '北',
+          cn: '北',
+          ko: '북쪽',
+        },
+        south: {
+          en: 'South',
+          fr: 'Sud',
+          de: 'Süden',
+          ja: '南',
+          cn: '南面',
+          ko: '남쪽',
+        },
+        northwest: {
+          en: 'NW',
+          fr: 'N-O',
+          de: 'NW',
+          ja: '北西',
+          cn: '西北',
+          ko: '북서',
+        },
+        northeast: {
+          en: 'NE',
+          fr: 'N-E',
+          de: 'NO',
+          ja: '北東',
+          cn: '东北',
+          ko: '북동',
+        },
+        southwest: {
+          en: 'SW',
+          fr: 'S-O',
+          de: 'SW',
+          ja: '南西',
+          cn: '西南',
+          ko: '남서',
+        },
+        southeast: {
+          en: 'SE',
+          fr: 'S-E',
+          de: 'SO',
+          ja: '南東',
+          cn: '东南',
+          ko: '남동',
+        },
+        multiple: {
+          en: '${dir1} / ${dir2}',
+          de: '${dir1} / ${dir2}',
+          fr: '${dir1} / ${dir2}',
+          ja: '${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2}',
+          ko: '${dir1} / ${dir2}',
+        },
       },
     },
     {
@@ -472,7 +537,7 @@ let callSafeDir = (callIndex) => {
       delaySeconds: .5,
       durationSeconds: 12, // Ensuring that forgetful people aren't forgotten.
       suppressSeconds: 5,
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         // If we somehow skipped the first set of Quasars, we won't know the locations of
         // the scale entities. Activate the sadTethers flag and wait for the actual casts.
         if (!data.scaleSophias) {
@@ -486,8 +551,9 @@ let callSafeDir = (callIndex) => {
           data.sadTethers = true;
           return;
         }
-        return callSafeDir(safeDir);
+        return callSafeDir(safeDir, output);
       },
+      outputStrings: tiltOutputStrings,
     },
     {
       // This specifically calls the case where it's 1/1;2/2;3/3 tethers,
@@ -508,15 +574,16 @@ let callSafeDir = (callIndex) => {
       },
       durationSeconds: 10,
       suppressSeconds: 5,
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         let safeDir = findSafeDir(data);
         // If this is the first set of Meteor Quasars, there is no tilt.
         if (data.quasarTethers.length == 4 && safeDir != 0)
           return;
         if (safeDir == 0)
           safeDir = data.scaleSophias.indexOf(matches.sourceId) < 4 ? '2' : '-2';
-        return callSafeDir(safeDir);
+        return callSafeDir(safeDir, output);
       },
+      outputStrings: tiltOutputStrings,
     },
     {
       id: 'SophiaEX Quasar Cleanup',

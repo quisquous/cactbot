@@ -233,8 +233,16 @@
       durationSeconds: function(data) {
         return data.limitCutDelay;
       },
-      infoText: function(data) {
-        return data.limitCutNumber;
+      infoText: (data, _, output) => output.text({ num: data.limitCutNumber }),
+      outputStrings: {
+        text: {
+          en: '${num}',
+          de: '${num}',
+          fr: '${num}',
+          ja: '${num}',
+          cn: '${num}',
+          ko: '${num}',
+        },
       },
     },
     {
