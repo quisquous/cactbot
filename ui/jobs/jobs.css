@@ -36,6 +36,7 @@
 .whm #right-side-icons,
 .sch #right-side-icons,
 .smn #right-side-icons,
+.dnc #right-side-icons,
 .ast #right-side-icons {
   left: 278px;
 }
@@ -140,6 +141,7 @@
 
 #gnb-bar,
 #brd-bar,
+#dnc-bar,
 #mnk-bar {
   position: relative;
   width: 201px;
@@ -168,6 +170,7 @@
 
 #gnb-timers-combo,
 #gnb-timers-cartridgecombo,
+#dnc-timers-combo,
 #brd-timers-repertoire,
 #mnk-timers-lightning,
 #mnk-timers-combo {
@@ -191,6 +194,7 @@
 #pld-boxes,
 #drk-boxes,
 #blm-boxes,
+#dnc-boxes,
 #gnb-boxes {
   display: flex;
   position: absolute;
@@ -204,6 +208,7 @@
 #drg-boxes > div,
 #whm-boxes > div,
 #smn-boxes > div,
+#dnc-boxes > div,
 #ast-boxes > div,
 #war-boxes > div,
 #mnk-boxes > div,
@@ -235,6 +240,7 @@
 
 #sch-boxes > div,
 #brd-boxes > div,
+#dnc-boxes > div,
 #smn-boxes > div,
 #drg-boxes > div,
 #whm-boxes > div,
@@ -253,6 +259,7 @@
 #brd-boxes .text,
 #sch-boxes .text,
 #smn-boxes .text,
+#dnc-boxes .text,
 #drg-boxes .text,
 #whm-boxes .text,
 #ast-boxes .text,
@@ -275,6 +282,7 @@
 #sch-boxes .text,
 #gnb-boxes .text,
 #smn-boxes .text,
+#dnc-boxes .text,
 #drg-boxes .text,
 #brd-boxes .text,
 #whm-boxes .text,
@@ -330,6 +338,7 @@
 #ast-procs,
 #sch-procs,
 #whm-procs,
+#dnc-procs,
 #blu-procs,
 #drk-procs,
 #gnb-procs,
@@ -353,6 +362,7 @@
 #drg-procs-disembowel,
 #brd-procs-causticbite,
 #whm-procs-dia,
+#dnc-procs-standardstep,
 #smn-procs-miasma,
 #blu-procs-offguard,
 #gnb-procs-gnashingfang,
@@ -382,6 +392,7 @@
 #ast-procs-draw,
 #whm-procs-assize,
 #gnb-procs-nomercy,
+#dnc-procs-technicalstep,
 #sch-procs-aetherflow,
 #blu-procs-torment,
 #blm-dot-thunder {
@@ -394,6 +405,7 @@
 #ast-procs-luciddreaming,
 #sch-procs-luciddreaming,
 #gnb-procs-bloodfest,
+#dnc-procs-flourish,
 #whm-procs-lucid,
 #rdm-procs-lucid,
 #blm-procs-thunder,
@@ -985,4 +997,40 @@
 
 .drg-color-dragonsight.active {
   background-color: rgb(217, 51, 0);
+}
+
+.dnc-color-combo {
+  background-color: rgb(180, 200, 220);
+}
+
+.dnc-color-standardstep {
+  background-color: rgb(235, 235, 50);
+}
+
+.dnc-color-technicalstep {
+  background-color: rgb(80, 200, 200, 0.7);
+}
+
+.dnc-color-technicalstep.active {
+  background-color: rgb(80, 200, 200);
+}
+
+.dnc-color-flourish {
+  background-color: rgb(150, 100, 0);
+}
+
+.dnc-color-flourish.active {
+  background-color: rgb(255, 145, 0);
+}
+
+.dnc-color-esprit {
+  background-color: rgb(255, 200, 0, 0.7);
+}
+
+.dnc-color-esprit.high {
+  background-color: rgb(255, 50, 150);
+}
+
+.dnc-color-feather {
+  background-color: rgb(160, 200, 50);
 }
