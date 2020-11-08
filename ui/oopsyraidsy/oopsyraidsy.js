@@ -228,7 +228,7 @@ function UnscrambleDamage(field) {
     return 0;
   // Get the left two bytes as damage.
   let damage = parseInt(field.substr(0, len - 4), 16);
-  // Check for third byte === 0x40.
+  // Check for third byte == 0x40.
   if (field[len - 4] === '4') {
     // Wrap in the 4th byte as extra damage.  See notes above.
     const rightDamage = parseInt(field.substr(len - 2, 2), 16);
