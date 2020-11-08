@@ -402,8 +402,16 @@ class RaidbossConfigurator {
           triggerDetails.appendChild(detail);
         }
 
+        let hasOutputFunc = false;
+        for (const func of triggerOutputFunctions) {
+          if (trig[func]) {
+            hasOutputFunc = true;
+            break;
+          }
+        }
+
         // Add duration manually with an input to override.
-        {
+        if (hasOutputFunc) {
           const detailKey = 'duration';
           const optionKey = kOptionKeys.duration;
 
