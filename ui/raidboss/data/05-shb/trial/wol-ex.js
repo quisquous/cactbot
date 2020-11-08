@@ -661,9 +661,8 @@ const quintupleOutputStrings = {
       alertText: function(data, _, output) {
         const next = data.quintuplecasts.shift();
         // The last cast of 4EF0 will not have a next mechanic to call.
-        if (!next)
-          return;
-        return output[next]();
+        if (next)
+          return output[next]();
       },
       outputStrings: quintupleOutputStrings,
     },
