@@ -39,18 +39,38 @@
       netRegexJa: NetRegexes.ability({ id: '7D1', source: 'アラガンマイン' }),
       netRegexCn: NetRegexes.ability({ id: '7D1', source: '亚拉戈机雷' }),
       netRegexKo: NetRegexes.ability({ id: '7D1', source: '알라그 지뢰' }),
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         if (matches.target in data.landmines)
           return;
-        return (Object.keys(data.landmines).length + 1) + ' / 3';
+        const num = Object.keys(data.landmines).length + 1;
+        return output.landmine({ num: num });
       },
-      tts: function(data, matches) {
+      tts: function(data, matches, output) {
         if (matches.target in data.landmines)
           return;
-        return (Object.keys(data.landmines).length + 1);
+        const num = Object.keys(data.landmines).length + 1;
+        return output.landmineTTS({ num: num });
       },
       run: function(data, matches) {
         data.landmines[matches.target] = true;
+      },
+      outputStrings: {
+        landmine: {
+          en: '${num} / 3',
+          de: '${num} / 3',
+          fr: '${num} / 3',
+          ja: '${num} / 3',
+          cn: '${num} / 3',
+          ko: '${num} / 3',
+        },
+        landmineTTS: {
+          en: '${num}',
+          de: '${num}',
+          fr: '${num}',
+          ja: '${num}',
+          cn: '${num}',
+          ko: '${num}',
+        },
       },
     },
     {
