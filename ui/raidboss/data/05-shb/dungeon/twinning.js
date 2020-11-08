@@ -110,9 +110,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3DEF', source: 'ミトリダテス' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DEF', source: '米特里达梯' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DEF', source: '미트리다테스' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {

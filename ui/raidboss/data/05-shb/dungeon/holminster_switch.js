@@ -100,9 +100,7 @@
     {
       id: 'Holminster Chain Down',
       netRegex: NetRegexes.headMarker({ id: '005C' }),
-      condition: function(data, matches) {
-        return data.me != matches.target;
-      },
+      condition: Conditions.targetIsNotYou(),
       infoText: function(data, matches, output) {
         return output.text({ player: data.ShortName(matches.target) });
       },
@@ -120,9 +118,7 @@
     {
       id: 'Holminster Taphephobia',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {

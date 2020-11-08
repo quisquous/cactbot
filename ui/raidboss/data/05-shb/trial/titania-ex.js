@@ -274,9 +274,7 @@
     {
       id: 'TitaniaEx Uplift Markers',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -287,9 +285,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D36', source: 'ピーズブロッサム' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D36', source: '豌豆花' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D36', source: '콩나무' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.tankBuster('info'),
     },
     {
@@ -324,9 +320,7 @@
     {
       id: 'TitaniaEx Peasebomb',
       netRegex: NetRegexes.headMarker({ id: '008D' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
       run: function(data) {
         data.bomb = data.bomb || {};

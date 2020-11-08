@@ -100,9 +100,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3E6[12]', source: 'ヴォイドウォーカー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E6[12]', source: '虚无行者' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E6[12]', source: '보이드워커' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {

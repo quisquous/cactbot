@@ -7,9 +7,7 @@
     {
       id: 'Amaurot Meteor',
       netRegex: NetRegexes.headMarker({ id: '0039' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       preRun: function(data) {
         data.meteor = (data.meteor || 0) + 1;
       },
@@ -51,9 +49,7 @@
     {
       id: 'Amaurot Spread',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {

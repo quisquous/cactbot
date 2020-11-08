@@ -110,9 +110,7 @@
     {
       id: 'E3N Drenching Pulse Spread',
       netRegex: NetRegexes.headMarker({ id: '00A9' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -142,17 +140,13 @@
     {
       id: 'E3N Splashing Waters Spread',
       netRegex: NetRegexes.headMarker({ id: '0082' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'E3N Swirling Waters Donut',
       netRegex: NetRegexes.headMarker({ id: '0099' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

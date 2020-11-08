@@ -176,9 +176,7 @@
     {
       id: 'E3S Flare',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -368,9 +366,7 @@
     {
       id: 'E3S Surging Waters',
       netRegex: NetRegexes.gainsEffect({ effectId: '73A' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -388,9 +384,7 @@
       // TODO maybe tell other people about stacking for knockbacks
       id: 'E3S Sundering Waters',
       netRegex: NetRegexes.gainsEffect({ effectId: '73E' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: function(data, matches, output) {
         let seconds = matches.duration;
         if (seconds <= 8)
@@ -436,9 +430,7 @@
       // 29 seconds
       id: 'E3S Scouring Waters Defamation',
       netRegex: NetRegexes.gainsEffect({ effectId: '765' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -454,9 +446,7 @@
     {
       id: 'E3S Scouring Waters Avoid Knockback',
       netRegex: NetRegexes.gainsEffect({ effectId: '765' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: 22,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -488,9 +478,7 @@
     {
       id: 'E3S Scouring Waters',
       netRegex: NetRegexes.gainsEffect({ effectId: '765' }),
-      condition: function(data, matches) {
-        return data.me != matches.target;
-      },
+      condition: Conditions.targetIsNotYou(),
       delaySeconds: 25,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -507,9 +495,7 @@
     {
       id: 'E3S Sweeping Waters Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '73F' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

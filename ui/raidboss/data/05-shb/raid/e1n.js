@@ -91,9 +91,7 @@
     {
       id: 'E1N Vice of Apathy Mark',
       netRegex: NetRegexes.headMarker({ id: '001C' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

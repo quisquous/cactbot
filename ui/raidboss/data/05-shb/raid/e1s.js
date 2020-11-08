@@ -391,9 +391,7 @@
     {
       id: 'E1S Vice and Virtue Healer Mark YOU',
       netRegex: NetRegexes.gainsEffect({ effectId: '840' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: function(data, _, output) {
         if (data.paradise)
           return output.passPreyToDps();
