@@ -315,8 +315,18 @@
       id: 'RubyEx Meteor',
       netRegex: NetRegexes.headMarker({ id: '00(?:C[A-F]|D0|D1)' }),
       condition: Conditions.targetIsYou(),
-      infoText: function(data, matches) {
-        return parseInt(matches.id, 16) - parseInt('00CA', 16) + 1;
+      infoText: function(data, matches, output) {
+        return output.text({ num: parseInt(matches.id, 16) - parseInt('00CA', 16) + 1 });
+      },
+      outputStrings: {
+        text: {
+          en: '${num}',
+          de: '${num}',
+          fr: '${num}',
+          ja: '${num}',
+          cn: '${num}',
+          ko: '${num}',
+        },
       },
     },
     {
