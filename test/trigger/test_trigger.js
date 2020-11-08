@@ -282,10 +282,10 @@ let testValidIds = function(file, contents) {
       let idx = 0;
       let len = Math.min(prefix.length, trigger.id.length);
       for (idx = 0; idx < len; ++idx) {
-        if (prefix[idx] != trigger.id[idx])
+        if (prefix[idx] !== trigger.id[idx])
           break;
       }
-      if (idx == 0) {
+      if (idx === 0) {
         errorFunc(`${file}: No common id prefix in '${prefix}' and '${trigger.id}'`);
         brokenPrefixes = true;
         continue;
@@ -303,7 +303,7 @@ let testValidIds = function(file, contents) {
     // if prefix includes more than one word, just remove latter letters.
     if (prefix.includes(' '))
       prefix = prefix.substr(0, prefix.lastIndexOf(' ') + 1);
-    if (prefix[prefix.length - 1] != ' ')
+    if (prefix[prefix.length - 1] !== ' ')
       errorFunc(`${file}: id prefix '${prefix}' is not a full word, must end in a space`);
   }
 };
