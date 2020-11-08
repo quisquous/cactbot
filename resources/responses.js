@@ -22,6 +22,7 @@
 
 const builtInResponseStr = 'cactbot-builtin-response';
 
+// All valid trigger fields.
 const triggerFunctions = [
   'alarmText',
   'alertText',
@@ -41,6 +42,16 @@ const triggerFunctions = [
   'suppressSeconds',
   'tts',
   'outputStrings',
+];
+
+// Trigger fields that can produce output.
+const triggerOutputFunctions = [
+  'alarmText',
+  'alertText',
+  'infoText',
+  'groupTTS', // please remove me T_T
+  'response',
+  'tts',
 ];
 
 const severityMap = {
@@ -873,6 +884,7 @@ if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     Responses: Responses,
     triggerFunctions: triggerFunctions,
+    triggerOutputFunctions: triggerOutputFunctions,
     severityMap: severityMap,
     builtInResponseStr: builtInResponseStr,
   };
