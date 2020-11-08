@@ -198,7 +198,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'リビングリキッド', id: 'F01' }),
       netRegexCn: NetRegexes.startsUsing({ source: '有生命活水', id: 'F01' }),
       netRegexKo: NetRegexes.startsUsing({ source: '살아있는 액체', id: 'F01' }),
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         data.ferroTether = data.ferroTether || {};
         data.ferroMarker = data.ferroMarker || [];
         let partner = data.ferroTether[data.me];
@@ -208,25 +208,27 @@
         if (!partner || !marker1 || !marker2)
           return matches.ability + ' (???)';
 
-        if (marker1 == marker2) {
-          return {
-            en: 'Repel: close to ' + data.ShortName(partner),
-            de: 'Abstoß: nahe bei ' + data.ShortName(partner),
-            fr: 'Répulsion : Rapprochez-vous de ' + data.ShortName(partner),
-            ja: '同じ極: ' + data.ShortName(partner) + 'に近づく',
-            cn: '同极：靠近' + data.ShortName(partner),
-            ko: '반발: ' + data.ShortName(partner) + '와 가까이 붙기',
-          };
-        }
-
-        return {
-          en: 'Attract: away from ' + data.ShortName(partner),
-          de: 'Anziehung: weg von ' + data.ShortName(partner),
-          fr: 'Attraction : Eloignez-vous de ' + data.ShortName(partner),
-          ja: '異なる極: ' + data.ShortName(partner) + 'に離れ',
-          cn: '异极：远离' + data.ShortName(partner),
-          ko: '자력: ' + data.ShortName(partner) + '와 떨어지기',
-        };
+        if (marker1 == marker2)
+          return output.repel({ player: data.ShortName(partner) });
+        return output.attract({ player: data.ShortName(partner) });
+      },
+      outputStrings: {
+        repel: {
+          en: 'Repel: close to ${player}',
+          de: 'Abstoß: nahe bei ${player}',
+          fr: 'Répulsion : Rapprochez-vous de ${player}',
+          ja: '同じ極: ${player}に近づく',
+          cn: '同极：靠近${player}',
+          ko: '반발: ${player}와 가까이 붙기',
+        },
+        attract: {
+          en: 'Attract: away from ${player}',
+          de: 'Anziehung: weg von ${player}',
+          fr: 'Attraction : Eloignez-vous de ${player}',
+          ja: '異なる極: ${player}に離れ',
+          cn: '异极：远离${player}',
+          ko: '자력: ${player}와 떨어지기',
+        },
       },
     },
     {

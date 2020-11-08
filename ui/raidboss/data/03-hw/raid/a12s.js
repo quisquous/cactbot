@@ -72,7 +72,7 @@
       },
       delaySeconds: 0.5,
       suppressSeconds: 1,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         // Ignore Holy Scourge later in the fight.
         if (data.scourge && data.scourge.length > 2)
           return false;
@@ -80,14 +80,17 @@
         let names = data.scourge.map((x) => data.ShortName(x)).sort();
         if (names.length == 0)
           return;
-        return {
-          en: 'Scourge: ' + names.join(', '),
-          de: 'Licht: ' + names.join(', '),
-          fr: 'Lumière : ' + names.join(', '),
-          ja: names.join(', ') + 'に白光の鞭',
-          cn: '白光之鞭点:' + names.join(', '),
-          ko: '성광의 채찍:' + names.join(', '),
-        };
+        return output.text({ players: names.join(', ') });
+      },
+      outputStrings: {
+        text: {
+          en: 'Scourge: ${players}',
+          de: 'Licht: ${players}',
+          fr: 'Lumière : ${players}',
+          ja: '${players}に白光の鞭',
+          cn: '白光之鞭点:${players}',
+          ko: '성광의 채찍:${players}',
+        },
       },
     },
     {
