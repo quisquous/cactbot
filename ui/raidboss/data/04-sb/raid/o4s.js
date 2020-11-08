@@ -86,39 +86,43 @@
       netRegexJa: NetRegexes.startsUsing({ id: '23F9', source: 'エクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '23F9', source: '艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '23F9', source: '엑스데스', capture: false }),
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         // Tanks/healers always get an alert.
-        if (data.role == 'tank' || data.role == 'healer') {
-          return {
-            en: 'Thunder III: Tank buster',
-            de: 'Blitzga: Tank buster',
-            ja: 'サンダガ: タンクバスター',
-            cn: '雷三：坦克死刑',
-            ko: '선더가: 탱버',
-          };
-        }
+        if (data.role == 'tank' || data.role == 'healer')
+          return output.thunderBuster();
       },
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         // Tanks/healers always get an alert.
-        if (data.role == 'tank' || data.role == 'healer') return false;
-        return {
+        if (data.role == 'tank' || data.role == 'healer')
+          return false;
+        return output.thunder();
+      },
+      tts: function(data, _, output) {
+        if (data.role == 'tank' || data.role == 'healer')
+          return output.thunderTTS();
+      },
+      outputStrings: {
+        thunderBuster: {
+          en: 'Thunder III: Tank buster',
+          de: 'Blitzga: Tank buster',
+          ja: 'サンダガ: タンクバスター',
+          cn: '雷三：坦克死刑',
+          ko: '선더가: 탱버',
+        },
+        thunder: {
           en: 'Thunder III',
           de: 'Blitzga',
           ja: 'サンダガ',
           cn: '雷三',
           ko: '선더가',
-        };
-      },
-      tts: function(data) {
-        if (data.role == 'tank' || data.role == 'healer') {
-          return {
-            en: 'thunder',
-            de: 'blitzga',
-            ja: '離れ',
-            cn: '远离',
-            ko: '선더가',
-          };
-        }
+        },
+        thunderTTS: {
+          en: 'thunder',
+          de: 'blitzga',
+          ja: '離れ',
+          cn: '远离',
+          ko: '선더가',
+        },
       },
     },
     {

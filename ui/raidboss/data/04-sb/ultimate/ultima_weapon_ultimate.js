@@ -234,22 +234,46 @@
         if (data.titanGaols.length == 3)
           data.titanGaols.sort();
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (data.titanGaols.length != 3)
           return;
         let idx = data.titanGaols.indexOf(data.me);
         if (idx < 0)
           return;
         // Just return your number.
-        return idx + 1;
+        return output.num({ num: idx + 1 });
       },
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (data.titanGaols.length != 3)
           return;
         // Return all the people in order.
-        return data.titanGaols.map(function(n) {
+        const players = data.titanGaols.map(function(n) {
           return data.ShortName(n);
         }).join(', ');
+
+        return output.text({
+          player1: players[0],
+          player2: players[1],
+          player3: players[2],
+        });
+      },
+      outputStrings: {
+        num: {
+          en: '${num}',
+          de: '${num}',
+          fr: '${num}',
+          ja: '${num}',
+          cn: '${num}',
+          ko: '${num}',
+        },
+        text: {
+          en: '${player1}, ${player2}, ${player3}',
+          de: '${player1}, ${player2}, ${player3}',
+          fr: '${player1}, ${player2}, ${player3}',
+          ja: '${player1}, ${player2}, ${player3}',
+          cn: '${player1}, ${player2}, ${player3}',
+          ko: '${player1}, ${player2}, ${player3}',
+        },
       },
     },
     {

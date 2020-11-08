@@ -25,21 +25,26 @@
     {
       id: 'O10S Fire Marker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      alarmText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Fire Marker on YOU',
-            de: 'Feuer Marker auf DIR',
-            fr: 'Feu sur VOUS',
-            ja: '自分にマーカー',
-            cn: '火点名',
-            ko: '불징 대상자',
-          };
-        }
+      alarmText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.fireOnYou();
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         if (data.me != matches.target)
-          return 'Fire on ' + data.ShortName(matches.target);
+          return output.fireOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        fireOnYou: {
+          en: 'Fire Marker on YOU',
+          de: 'Feuer Marker auf DIR',
+          fr: 'Feu sur VOUS',
+          ja: '自分にマーカー',
+          cn: '火点名',
+          ko: '불징 대상자',
+        },
+        fireOn: {
+          en: 'Fire Marker on ${player}',
+        },
       },
     },
     {
