@@ -66,17 +66,19 @@
       netRegexJa: NetRegexes.startsUsing({ id: '101F', source: '聖騎士アデルフェル' }),
       netRegexCn: NetRegexes.startsUsing({ id: '101F', source: '圣骑士阿代尔斐尔' }),
       netRegexKo: NetRegexes.startsUsing({ id: '101F', source: '성기사 아델펠' }),
-      alertText: function(data, matches) {
-        if (data.role == 'healer') {
-          return {
-            en: 'Heal + shield ' + data.ShortName(matches.target),
-            de: 'Heilung + Schild ' + data.ShortName(matches.target),
-            fr: 'Soin + bouclier ' + data.ShortName(matches.target),
-            ja: 'すぐに' + data.ShortName(matches.target) + 'を癒す',
-            cn: '马上治疗' + data.ShortName(matches.target),
-            ko: data.ShortName(matches.target) + ' 강타 대상자',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (data.role == 'healer')
+          return output.text({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Heal + shield ${player}',
+          de: 'Heilung + Schild ${player}',
+          fr: 'Soin + bouclier ${player}',
+          ja: 'すぐに${player}を癒す',
+          cn: '马上治疗${player}',
+          ko: '${player} 강타 대상자',
+        },
       },
     },
     {

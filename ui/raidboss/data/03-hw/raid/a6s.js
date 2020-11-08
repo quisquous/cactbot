@@ -45,25 +45,29 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ブラスター', id: '15F7', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者', id: '15F7', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자', id: '15F7', capture: false }),
-      infoText: function(data) {
-        if (data.role == 'tank' && !data.magicVulnerability) {
-          return {
-            en: 'Get Mines',
-            de: 'Mienen nehmen',
-            fr: 'Prenez les mines',
-            ja: '地雷を踏む',
-            cn: '踩雷',
-            ko: '지뢰 밟기',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.role == 'tank' && !data.magicVulnerability)
+          return output.getMines();
+
+        return output.avoidMines();
+      },
+      outputStrings: {
+        getMines: {
+          en: 'Get Mines',
+          de: 'Mienen nehmen',
+          fr: 'Prenez les mines',
+          ja: '地雷を踏む',
+          cn: '踩雷',
+          ko: '지뢰 밟기',
+        },
+        avoidMines: {
           en: 'Avoid Mines',
           de: 'Mienen vermeiden',
           fr: 'Évitez les mines',
           ja: '地雷を踏まない',
           cn: '躲开地雷',
           ko: '지뢰 피하기',
-        };
+        },
       },
     },
     {
@@ -210,17 +214,20 @@
     {
       id: 'A6S Enumeration',
       netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         // 0040 = 2, 0041 = 3, 0042 = 4
         let count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
-        return {
-          en: data.ShortName(matches.target) + ': ' + count,
-          de: data.ShortName(matches.target) + ': ' + count,
-          fr: data.ShortName(matches.target) + ': ' + count,
-          ja: data.ShortName(matches.target) + ': ' + count,
-          cn: data.ShortName(matches.target) + '生命计算法: ' + count,
-          ko: data.ShortName(matches.target) + ': ' + count,
-        };
+        return output.text({ player: data.ShortName(matches.target), count: count });
+      },
+      outputStrings: {
+        text: {
+          en: '${player}: ${count}',
+          de: '${player}: ${count}',
+          fr: '${player}: ${count}',
+          ja: '${player}: ${count}',
+          cn: '${player}生命计算法: ${count}',
+          ko: '${player}: ${count}',
+        },
       },
     },
     {
@@ -328,17 +335,20 @@
         // 5 second warning.
         return parseFloat(matches.duration) - 5;
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (!data.haveWater)
           return;
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'Drop Water Soon',
           de: 'Gleich Wasser ablegen',
           fr: 'Déposez l\'eau bientôt',
           ja: '水来るよ',
           cn: '马上水分摊',
           ko: '곧 물징 폭발',
-        };
+        },
       },
     },
     {
@@ -382,17 +392,20 @@
         // 5 second warning.
         return parseFloat(matches.duration) - 5;
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (!data.haveLightning)
           return;
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'Drop Lightning Soon',
           de: 'Gleich Blitz ablegen',
           fr: 'Déposez l\'éclair bientôt',
           ja: '雷来るよ',
           cn: '马上雷分摊',
           ko: '곧 번개징 폭발',
-        };
+        },
       },
     },
   ],

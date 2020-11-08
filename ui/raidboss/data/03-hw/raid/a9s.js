@@ -131,30 +131,33 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'リファビッシャー', id: '1A3C', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '废品翻新装置', id: '1A3C', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '재생자', id: '1A3C', capture: false }),
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (data.mainTank == data.me)
           return;
-        return {
-          en: 'Get Behind',
-          de: 'Hinter ihn',
-          fr: 'Passez derrière',
-          ja: '背面へ',
-          ko: '보스 뒤로',
-          cn: '去背后',
-        };
+        return output.getBehind();
       },
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (data.mainTank != data.me)
           return;
-        return {
+        return output.scraplineOnYou();
+      },
+      outputStrings: {
+        scraplineOnYou: {
           en: 'Scrapline on YOU',
           de: 'Schrottlinie auf DIR',
           fr: 'Corde à ferraille sur VOUS',
           ja: '自分にスクラップラリアット',
           cn: '死刑',
           ko: '후려갈기기 대상자',
-        };
-        // ...probably, we hope...
+        },
+        getBehind: {
+          en: 'Get Behind',
+          de: 'Hinter ihn',
+          fr: 'Passez derrière',
+          ja: '背面へ',
+          ko: '보스 뒤로',
+          cn: '去背后',
+        },
       },
     },
     {

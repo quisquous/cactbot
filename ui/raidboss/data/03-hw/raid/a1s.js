@@ -58,18 +58,21 @@
       netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
       condition: Conditions.caresAboutMagical(),
       suppressSeconds: 2,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         data.hydro = data.hydro || [];
         if (data.hydro.length == 0)
           return;
-        return {
-          en: 'Hydrothermal on ' + data.hydro.map((x) => data.ShortName(x)).join(', '),
-          de: 'Hydrothermales auf ' + data.hydro.map((x) => data.ShortName(x)).join(', '),
-          fr: 'Missile hydrothermique sur ' + data.hydro.map((x) => data.ShortName(x)).join(', '),
-          ja: data.hydro.map((x) => data.ShortName(x)).join(', ') + 'に蒸気ミサイル',
-          cn: '导弹点' + data.hydro.map((x) => data.ShortName(x)).join(', '),
-          ko: '"' + data.hydro.map((x) => data.ShortName(x)).join(', ') + '" 증기 미사일',
-        };
+        return output.text({ players: data.hydro.map((x) => data.ShortName(x)).join(', ') });
+      },
+      outputStrings: {
+        text: {
+          en: 'Hydrothermal on ${players}',
+          de: 'Hydrothermales auf ${players}',
+          fr: 'Missile hydrothermique sur ${players}',
+          ja: '${players}に蒸気ミサイル',
+          cn: '导弹点${players}',
+          ko: '"${players}" 증기 미사일',
+        },
       },
     },
     {
@@ -135,7 +138,7 @@
       netRegexKo: NetRegexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'], capture: false }),
       delaySeconds: 0.3,
       suppressSeconds: 2,
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         data.hyper = data.hyper || [];
         if (data.hyper.includes(data.me))
           return;
@@ -143,14 +146,17 @@
         // awkward inside of functions.
         if (!Conditions.caresAboutMagical()(data))
           return;
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'Tank Busters',
           de: 'Tank buster',
           fr: 'Tank busters',
           ja: 'タンクバスター',
           cn: '坦克死刑',
           ko: '탱버',
-        };
+        },
       },
     },
     {

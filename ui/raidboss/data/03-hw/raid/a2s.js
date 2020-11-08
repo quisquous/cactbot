@@ -62,15 +62,18 @@
         return data.role == 'healer' || data.job == 'BLU';
       },
       suppressSeconds: 10,
-      infoText: function(data, matches) {
-        return {
-          en: 'Keep ' + data.ShortName(matches.target) + ' topped',
-          de: 'Halte HP von ' + data.ShortName(matches.target) + ' oben',
-          fr: 'Maintenez ' + data.ShortName(matches.target) + ' Max PV',
-          ja: data.ShortName(matches.target) + 'のHPを満タンに保つ',
-          cn: '保持' + data.ShortName(matches.target) + '满血',
-          ko: '"' + data.ShortName(matches.target) + '" 풀피 유지',
-        };
+      infoText: function(data, matches, output) {
+        return output.text({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Keep ${player} topped',
+          de: 'Halte HP von ${player} oben',
+          fr: 'Maintenez ${player} Max PV',
+          ja: '${player}のHPを満タンに保つ',
+          cn: '保持${player}满血',
+          ko: '"${player}" 풀피 유지',
+        },
       },
     },
     {
