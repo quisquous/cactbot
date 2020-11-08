@@ -63,7 +63,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1ED4', source: '老者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1ED4', source: '알테 로이테', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -76,7 +76,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1ED3', source: '老者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1ED3', source: '알테 로이테', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },

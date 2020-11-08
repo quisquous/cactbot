@@ -55,19 +55,19 @@
       netRegex: NetRegexes.headMarker({ id: ['0064', '0065'] }),
       condition: function(data, matches) {
         // Cave phase has no stack markers.
-        if (data.phaseNumber == 2)
+        if (data.phaseNumber === 2)
           return false;
 
         data.holyTargets = data.holyTargets || [];
         data.holyTargets.push(matches.target);
-        return data.holyTargets.length == 3;
+        return data.holyTargets.length === 3;
       },
       alertText: function(data, _, output) {
-        if (data.holyTargets[0] == data.me)
+        if (data.holyTargets[0] === data.me)
           return output.stackOnYou();
 
         for (let i = 1; i < 3; i++) {
-          if (data.holyTargets[i] == data.me)
+          if (data.holyTargets[i] === data.me)
             return output.out();
         }
         return output.stackOnHolytargets({ holyTargets: data.holyTargets[0] });
@@ -105,7 +105,7 @@
       id: 'O3N Spellblade Holy Cave',
       netRegex: NetRegexes.headMarker({ id: '0065' }),
       condition: function(data, matches) {
-        return data.phaseNumber == 2 && data.me == matches.target;
+        return data.phaseNumber === 2 && data.me === matches.target;
       },
       response: Responses.spread(),
     },
@@ -116,7 +116,7 @@
         if (data.phaseNumber < 3)
           return false;
         data.holyCounter = data.holyCounter || 0;
-        return (data.holyCounter % 2 == 0);
+        return (data.holyCounter % 2 === 0);
       },
       response: Responses.stackMarkerOn(),
       run: function(data) {
@@ -160,7 +160,7 @@
       netRegexCn: NetRegexes.addedCombatant({ name: '巨龙', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '거대 드래곤', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -194,7 +194,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '2466', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2466', source: '할리카르나소스', capture: false }),
       condition: function(data) {
-        return data.phaseNumber == 3 && data.gameCount % 2 == 0;
+        return data.phaseNumber === 3 && data.gameCount % 2 === 0;
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -216,7 +216,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '2466', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2466', source: '할리카르나소스', capture: false }),
       condition: function(data) {
-        return !(data.phaseNumber == 3 && data.gameCount % 2 == 0);
+        return !(data.phaseNumber === 3 && data.gameCount % 2 === 0);
       },
       response: Responses.awayFromFront(),
     },
@@ -231,7 +231,7 @@
       // No point in checking whether the user has the frog debuff,
       // if they didn't get it, or got it when they shouldn't have, there's no fixing things.
       infoText: function(data, _, output) {
-        if (data.phaseNumber == 3 && data.gameCount % 2 == 0)
+        if (data.phaseNumber === 3 && data.gameCount % 2 === 0)
           return output.standOnFrogTile();
 
         // Maybe there's a cleaner way to do this than just enumerating roles?

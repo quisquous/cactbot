@@ -33,7 +33,7 @@
       netRegex: NetRegexes.gainsEffect({ effectId: '595' }),
       condition: Conditions.targetIsYou(),
       alarmText: function(data, _, output) {
-        if (data.breathless == 6)
+        if (data.breathless === 6)
           return output.getInBubble();
       },
       infoText: function(data, _, output) {
@@ -41,7 +41,7 @@
           return output.breathless({ num: (data.breathless + 1) });
       },
       tts: function(data, _, output) {
-        if (data.breathless == 6)
+        if (data.breathless === 6)
           return output.bubble();
       },
       run: function(data) {

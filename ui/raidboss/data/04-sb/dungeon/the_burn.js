@@ -115,7 +115,7 @@
     {
       id: 'The Burn Aetherochemical Residue',
       netRegex: NetRegexes.headMarker({ id: '0002' }),
-      condition: (data, matches) => data.me == matches.target && data.hedetet,
+      condition: (data, matches) => data.me === matches.target && data.hedetet,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

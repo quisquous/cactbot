@@ -120,12 +120,12 @@
       id: 'O7S Blue Marker',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
       alarmText: function(data, matches, output) {
-        if (data.me != matches.target)
+        if (data.me !== matches.target)
           return;
         return output.blueMarkerOnYou();
       },
       infoText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return;
         return output.blueMarkerOn({ player: data.ShortName(matches.target) });
       },
@@ -180,7 +180,7 @@
       id: 'O7S Rot',
       netRegex: NetRegexes.gainsEffect({ effectId: '5C3' }),
       infoText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.rotOnYou();
 
         return output.rotOn({ player: data.ShortName(matches.target) });
@@ -229,25 +229,25 @@
       alertText: function(data, _, output) {
         data.loadCount = ++data.loadCount || 1;
 
-        if (data.loadCount == 1) {
+        if (data.loadCount === 1) {
           // First load is unknown.
           return output.screen();
-        } else if (data.loadCount == 2) {
+        } else if (data.loadCount === 2) {
           return data.first === 'biblio' ? output.dada() : output.biblio();
-        } else if (data.loadCount == 3) {
+        } else if (data.loadCount === 3) {
           return data.first === 'biblio' ? output.ultros() : output.ships();
-        } else if (data.loadCount == 4) {
+        } else if (data.loadCount === 4) {
           return data.first === 'biblio' ? output.ships() : output.ultros();
-        } else if (data.loadCount == 5) {
+        } else if (data.loadCount === 5) {
           return output.virus();
-        } else if (data.loadCount == 6) {
-          return data.first == 'biblio' ? output.ultros() : output.ships();
-        } else if (data.loadCount == 7) {
+        } else if (data.loadCount === 6) {
+          return data.first === 'biblio' ? output.ultros() : output.ships();
+        } else if (data.loadCount === 7) {
           // This is the post-virus Load/Skip divergence.
           return output.screen();
-        } else if (data.loadCount == 8) {
+        } else if (data.loadCount === 8) {
           return data.first === 'biblio' ? output.dada() : output.biblio();
-        } else if (data.loadCount == 9) {
+        } else if (data.loadCount === 9) {
           return data.first === 'biblio' ? output.ships() : output.ultros();
         }
 
@@ -285,17 +285,17 @@
       infoText: function(data, _, output) {
         data.runCount = ++data.runCount || 1;
 
-        if (data.runCount == 1)
+        if (data.runCount === 1)
           return output.dada();
-        else if (data.runCount == 2)
-          return data.first == 'biblio' ? output.ultros() : output.ships();
-        else if (data.runCount == 3)
+        else if (data.runCount === 2)
+          return data.first === 'biblio' ? output.ultros() : output.ships();
+        else if (data.runCount === 3)
           return data.first === 'biblio' ? output.ships() : output.ultros();
-        else if (data.runCount == 4)
-          return data.first == 'biblio' ? output.ultros() : output.ships();
-        else if (data.runCount == 5)
+        else if (data.runCount === 4)
+          return data.first === 'biblio' ? output.ultros() : output.ships();
+        else if (data.runCount === 5)
           return output.biblio();
-        else if (data.runCount == 6)
+        else if (data.runCount === 6)
           return data.first === 'biblio' ? output.ships() : output.ultros();
       },
       outputStrings: {

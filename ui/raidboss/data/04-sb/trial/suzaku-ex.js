@@ -24,7 +24,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '32DC', source: '朱雀', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '32DC', source: '주작', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {

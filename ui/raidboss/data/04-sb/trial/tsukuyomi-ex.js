@@ -34,20 +34,20 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: '月读' }),
       netRegexKo: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: '츠쿠요미' }),
       alarmText: function(data, matches, output) {
-        if (matches.target == data.me || data.role != 'tank')
+        if (matches.target === data.me || data.role !== 'tank')
           return;
 
         return output.tankSwap();
       },
       alertText: function(data, matches, output) {
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           return output.tankBusterOnYou();
 
-        if (data.role == 'healer')
+        if (data.role === 'healer')
           return output.busterOn({ player: data.ShortName(matches.target) });
       },
       infoText: function(data, matches, output) {
-        if (matches.target == data.me || data.role == 'tank' || data.role == 'healer')
+        if (matches.target === data.me || data.role === 'tank' || data.role === 'healer')
           return;
 
         return output.getOutOfFront();
@@ -239,7 +239,7 @@
       id: 'Tsukuyomi Moonlit Debuff',
       netRegex: NetRegexes.gainsEffect({ effectId: '602' }),
       condition: function(data, matches) {
-        return matches.target == data.me && data.moonlitCount >= 4;
+        return matches.target === data.me && data.moonlitCount >= 4;
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -273,7 +273,7 @@
       id: 'Tsukuyomi Moonshadowed Debuff',
       netRegex: NetRegexes.gainsEffect({ effectId: '603' }),
       condition: function(data, matches) {
-        return matches.target == data.me && data.moonshadowedCount >= 4;
+        return matches.target === data.me && data.moonshadowedCount >= 4;
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {

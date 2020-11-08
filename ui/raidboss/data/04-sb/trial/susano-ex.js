@@ -214,7 +214,7 @@
       netRegex: NetRegexes.headMarker({ id: '006E' }),
       condition: function(data, matches) {
         data.levinbolt = matches.target;
-        return (matches.target != data.me);
+        return (matches.target !== data.me);
       },
     },
     {
@@ -223,7 +223,7 @@
       infoText: function(data, matches, output) {
         // It's sometimes hard for tanks to see the line, so just give a
         // sound indicator for jumping rope back and forth.
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.text({ player: data.ShortName(matches.target) });
       },
       outputStrings: {

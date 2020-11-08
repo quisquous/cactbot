@@ -24,7 +24,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '315C', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '315C', source: '카오스', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
