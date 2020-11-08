@@ -76,9 +76,7 @@
     {
       id: 'UWU Garuda Mistral Song Marker',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -136,9 +134,7 @@
     {
       id: 'UWU Ifrit Fetters',
       netRegex: NetRegexes.gainsEffect({ effectId: '179' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 45,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -160,9 +156,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2B5B', source: 'イフリート' }),
       netRegexCn: NetRegexes.startsUsing({ id: '2B5B', source: '伊弗利特' }),
       netRegexKo: NetRegexes.startsUsing({ id: '2B5B', source: '이프리트' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

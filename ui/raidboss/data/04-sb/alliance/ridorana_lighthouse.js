@@ -412,9 +412,7 @@ const mathOutputStrings = {
     {
       id: 'Ridorana Construct Acceleration Bomb',
       netRegex: NetRegexes.gainsEffect({ effectId: '568' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: 2,
       response: Responses.stopEverything(),
     },

@@ -206,9 +206,7 @@
     {
       id: 'O3S Right Face',
       netRegex: NetRegexes.gainsEffect({ effectId: '510' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -224,9 +222,7 @@
     {
       id: 'O3S Forward March',
       netRegex: NetRegexes.gainsEffect({ effectId: '50D' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -242,9 +238,7 @@
     {
       id: 'O3S Left Face',
       netRegex: NetRegexes.gainsEffect({ effectId: '50F' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -260,9 +254,7 @@
     {
       id: 'O3S About Face',
       netRegex: NetRegexes.gainsEffect({ effectId: '50E' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       infoText: (data, _, output) => output.text(),
       outputStrings: {

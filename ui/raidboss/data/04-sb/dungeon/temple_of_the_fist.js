@@ -63,9 +63,7 @@
     {
       id: 'Temple Moonseal',
       netRegex: NetRegexes.headMarker({ id: '0059' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -81,9 +79,7 @@
     {
       id: 'Temple Sunseal',
       netRegex: NetRegexes.headMarker({ id: '0058' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

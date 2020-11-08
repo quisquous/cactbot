@@ -209,9 +209,7 @@
       // Offtank cleave
       id: 'Lakshmi Path of Light Marker',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: function(data, _, output) {
         if (data.chanchala)
           return output.vrillCleaveOnYou();
@@ -241,9 +239,7 @@
       // Cross aoe
       id: 'Lakshmi Hand of Grace',
       netRegex: NetRegexes.headMarker({ id: '006B' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: function(data, _, output) {
         if (data.chanchala)
           return output.vrillCrossMarker();
@@ -273,9 +269,7 @@
       // Flower marker (healers)
       id: 'Lakshmi Hand of Beauty',
       netRegex: NetRegexes.headMarker({ id: '006D' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: function(data, _, output) {
         if (data.chanchala)
           return output.vrillFlowerMarker();
@@ -305,9 +299,7 @@
       // Red marker during add phase
       id: 'Lakshmi Water III',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

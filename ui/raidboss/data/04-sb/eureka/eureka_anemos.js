@@ -132,9 +132,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '29C3', source: 'ヴォイドスケイル' }),
       netRegexCn: NetRegexes.startsUsing({ id: '29C3', source: '虚无鳞龙' }),
       netRegexKo: NetRegexes.startsUsing({ id: '29C3', source: '보이드비늘' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -165,9 +163,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '289F', source: 'パズズ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '289F', source: '帕祖祖' }),
       netRegexKo: NetRegexes.startsUsing({ id: '289F', source: '파주주' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {

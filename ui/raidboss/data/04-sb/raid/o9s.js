@@ -140,9 +140,7 @@
     {
       id: 'O9S Entropy Spread',
       netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       preRun: function(data) {
         data.entropyCount = data.entropyCount || 0;
         data.entropyCount += 1;
@@ -326,9 +324,7 @@
     {
       id: 'O9S Knock Down Marker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: function(data, _, output) {
         if (data.phaseType == 'water')
           return output.dropOutside();
@@ -371,9 +367,7 @@
     {
       id: 'O9S Headwind',
       netRegex: NetRegexes.gainsEffect({ effectId: '642' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.wind = 'head';
       },
@@ -381,9 +375,7 @@
     {
       id: 'O9S Tailwind',
       netRegex: NetRegexes.gainsEffect({ effectId: '643' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.wind = 'tail';
       },
@@ -495,9 +487,7 @@
     {
       id: 'O9S Primordial Crust Cleanup',
       netRegex: NetRegexes.gainsEffect({ effectId: '645' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: 30,
       run: function(data) {
         delete data.primordialCrust;

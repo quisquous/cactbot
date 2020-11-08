@@ -106,9 +106,7 @@
       netRegexJa: NetRegexes.tether({ id: '0029', source: 'ゼノス・イェー・ガルヴァス' }),
       netRegexCn: NetRegexes.tether({ id: '0029', source: '芝诺斯·耶·加尔乌斯' }),
       netRegexKo: NetRegexes.tether({ id: '0029', source: '제노스 예 갈부스' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

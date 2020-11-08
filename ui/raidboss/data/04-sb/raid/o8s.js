@@ -247,9 +247,7 @@ const strings = {
       netRegexJa: NetRegexes.startsUsing({ id: '28DD', source: '神々の像' }),
       netRegexCn: NetRegexes.startsUsing({ id: '28DD', source: '众神之像' }),
       netRegexKo: NetRegexes.startsUsing({ id: '28DD', source: '신들의 상' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.knockbackOn(),
     },
     {
@@ -366,9 +364,7 @@ const strings = {
       netRegexJa: NetRegexes.startsUsing({ id: '28E5', source: '神々の像' }),
       netRegexCn: NetRegexes.startsUsing({ id: '28E5', source: '众神之像' }),
       netRegexKo: NetRegexes.startsUsing({ id: '28E5', source: '신들의 상' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -389,9 +385,7 @@ const strings = {
       netRegexJa: NetRegexes.startsUsing({ id: '28E6', source: '神々の像' }),
       netRegexCn: NetRegexes.startsUsing({ id: '28E6', source: '众神之像' }),
       netRegexKo: NetRegexes.startsUsing({ id: '28E6', source: '신들의 상' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

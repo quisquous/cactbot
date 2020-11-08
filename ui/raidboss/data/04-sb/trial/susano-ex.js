@@ -244,9 +244,7 @@
     {
       id: 'SusEx Churning',
       netRegex: NetRegexes.gainsEffect({ effectId: '4F6' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 3;
       },
