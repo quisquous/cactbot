@@ -121,30 +121,34 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         let num = parseInt(matches.id);
         let isTriangle = num >= 95;
         num -= 90;
         if (isTriangle)
           num -= 4;
 
-        let squareName = {
-          en: 'Square',
-          de: 'Viereck',
-          fr: 'Carré',
-          ja: '四角',
-          cn: '四角',
-          ko: '짝수',
-        }[data.displayLang];
-        let triangleName = {
-          en: 'Triangle',
-          de: 'Dreieck',
-          fr: 'Triangle',
-          ja: '三角',
-          cn: '三角',
-          ko: '홀수',
-        }[data.displayLang];
-        return '#' + num + ' ' + (isTriangle ? triangleName : squareName);
+        if (isTriangle)
+          return output.triangle({ num: num });
+        return output.square({ num: num });
+      },
+      outputStrings: {
+        square: {
+          en: '#${num} Square',
+          de: '#${num} Viereck',
+          fr: '#${num} Carré',
+          ja: '#${num} 四角',
+          cn: '#${num} 四角',
+          ko: '#${num} 짝수',
+        },
+        triangle: {
+          en: '#${num} Triangle',
+          de: '#${num} Dreieck',
+          fr: '#${num} Triangle',
+          ja: '#${num} 三角',
+          cn: '#${num} 三角',
+          ko: '#${num} 홀수',
+        },
       },
     },
     {
@@ -638,62 +642,64 @@
       condition: function(data) {
         return data.numArms == 3;
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         let v = parseInt(data.armValue);
         if (!(v >= 0) || v > 7)
           return;
         return {
-          en: {
-            0b000: 'East',
-            0b001: 'Northeast',
-            0b010: undefined,
-            0b011: 'Northwest',
-            0b100: 'Southeast',
-            0b101: undefined,
-            0b110: 'Southwest',
-            0b111: 'West',
-          },
-          de: {
-            0b000: 'Osten',
-            0b001: 'Nordosten',
-            0b010: undefined,
-            0b011: 'Nordwesten',
-            0b100: 'Südosten',
-            0b101: undefined,
-            0b110: 'Südwesten',
-            0b111: 'Westen',
-          },
-          ja: {
-            0b000: '東',
-            0b001: '北東',
-            0b010: undefined,
-            0b011: '北西',
-            0b100: '南東',
-            0b101: undefined,
-            0b110: '南西',
-            0b111: '西',
-          },
-          cn: {
-            0b000: '东',
-            0b001: '东北',
-            0b010: undefined,
-            0b011: '西北',
-            0b100: '东南',
-            0b101: undefined,
-            0b110: '西南',
-            0b111: '西',
-          },
-          ko: {
-            0b000: '동쪽(3시)',
-            0b001: '북동쪽(1시)',
-            0b010: undefined,
-            0b011: '북서쪽(11시)',
-            0b100: '남동쪽(5시)',
-            0b101: undefined,
-            0b110: '남서쪽(7시)',
-            0b111: '서쪽(9시)',
-          },
-        }[data.displayLang][v];
+          0b000: output.east(),
+          0b001: output.northeast(),
+          0b010: undefined,
+          0b011: output.northwest(),
+          0b100: output.southeast(),
+          0b101: undefined,
+          0b110: output.southwest(),
+          0b111: output.west(),
+        }[v];
+      },
+      outputStrings: {
+        east: {
+          en: 'East',
+          de: 'Osten',
+          ja: '東',
+          cn: '东',
+          ko: '동쪽(3시)',
+        },
+        northeast: {
+          en: 'Northeast',
+          de: 'Nordosten',
+          ja: '北東',
+          cn: '东北',
+          ko: '북동쪽(1시)',
+        },
+        northwest: {
+          en: 'Northwest',
+          de: 'Nordwesten',
+          ja: '北西',
+          cn: '西北',
+          ko: '북서쪽(11시)',
+        },
+        southeast: {
+          en: 'Southeast',
+          de: 'Südosten',
+          ja: '南東',
+          cn: '东南',
+          ko: '남동쪽(5시)',
+        },
+        southwest: {
+          en: 'Southwest',
+          de: 'Südwesten',
+          ja: '南西',
+          cn: '西南',
+          ko: '남서쪽(7시)',
+        },
+        west: {
+          en: 'West',
+          de: 'Westen',
+          ja: '西',
+          cn: '西',
+          ko: '서쪽(9시)',
+        },
       },
     },
   ],

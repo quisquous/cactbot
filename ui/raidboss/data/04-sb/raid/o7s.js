@@ -236,61 +236,52 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'ガーディアン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '守护者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '가디언', capture: false }),
-      preRun: function(data) {
+      alertText: function(data, _, output) {
         data.loadCount = ++data.loadCount || 1;
-        data.thisLoad = undefined;
-        data.thisLoadText = undefined;
-        data.thisLoadTTS = undefined;
 
         if (data.loadCount == 1) {
           // First load is unknown.
-          data.thisLoad = 'screen';
+          return output.screen();
         } else if (data.loadCount == 2) {
-          data.thisLoad = data.first == 'biblio' ? 'dada' : 'biblio';
+          return data.first === 'biblio' ? output.dada() : output.biblio();
         } else if (data.loadCount == 3) {
-          data.thisLoad = data.first == 'biblio' ? 'ultros' : 'ships';
+          return data.first === 'biblio' ? output.ultros() : output.ships();
         } else if (data.loadCount == 4) {
-          data.thisLoad = data.first == 'biblio' ? 'ships' : 'ultros';
+          return data.first === 'biblio' ? output.ships() : output.ultros();
         } else if (data.loadCount == 5) {
-          data.thisLoad = 'virus';
+          return output.virus();
         } else if (data.loadCount == 6) {
-          data.thisLoad = data.first == 'biblio' ? 'ultros' : 'ships';
+          return data.first == 'biblio' ? output.ultros() : output.ships();
         } else if (data.loadCount == 7) {
           // This is the post-virus Load/Skip divergence.
-          data.thisLoad = 'screen';
+          return output.screen();
         } else if (data.loadCount == 8) {
-          data.thisLoad = data.second == 'biblio' ? 'dada' : 'biblio';
+          return data.first === 'biblio' ? output.dada() : output.biblio();
         } else if (data.loadCount == 9) {
-          data.thisLoad = data.first == 'biblio' ? 'ships' : 'ultros';
+          return data.first === 'biblio' ? output.ships() : output.ultros();
         }
 
-        if (!data.thisLoad) {
-          console.error('Unknown load: ' + data.loadCount);
-          return;
-        }
-        data.thisLoadText = ({
-          'screen': 'Biblio?/Knockback?',
-          'biblio': 'Biblio: Positions',
-          'dada': 'Dada: Knockback',
-          'ships': 'Ships: Out of Melee',
-          'ultros': 'Ultros: Ink Spread',
-          '(?<!\\w)virus': 'VIRUS',
-        })[data.thisLoad];
-
-        data.thisLoadTTS = ({
-          'screen': 'screen',
-          'biblio': 'biblio positions',
-          'dada': 'knockback',
-          'ships': 'get out',
-          'ultros': 'ink ink ink',
-          '(?<!\\w)virus': 'virus',
-        })[data.thisLoad];
+        console.error('Unknown load: ' + data.loadCount);
       },
-      alertText: function(data) {
-        return data.thisLoadText;
-      },
-      tts: function(data) {
-        return data.thisLoadTTS;
+      outputStrings: {
+        screen: {
+          en: 'Biblio?/Knockback?',
+        },
+        biblio: {
+          en: 'Biblio: Positions',
+        },
+        dada: {
+          en: 'Dada: Knockback',
+        },
+        ships: {
+          en: 'Ships: Out of Melee',
+        },
+        ultros: {
+          en: 'Ultros: Ink Spread',
+        },
+        virus: {
+          en: 'VIRUS',
+        },
       },
     },
     {
@@ -301,39 +292,35 @@
       netRegexJa: NetRegexes.startsUsing({ id: '276F', source: 'ガーディアン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '276F', source: '守护者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '276F', source: '가디언', capture: false }),
-      preRun: function(data) {
+      infoText: function(data, _, output) {
         data.runCount = ++data.runCount || 1;
-        data.thisRunText = undefined;
-        data.thisRunTTS = undefined;
 
         if (data.runCount == 1)
-          data.thisRun = data.first == 'biblio' ? 'dada' : 'dada';
+          return output.dada();
         else if (data.runCount == 2)
-          data.thisRun = data.first == 'biblio' ? 'ultros' : 'ships';
+          return data.first == 'biblio' ? output.ultros() : output.ships();
         else if (data.runCount == 3)
-          data.thisRun = data.first == 'biblio' ? 'ships' : 'ultros';
+          return data.first === 'biblio' ? output.ships() : output.ultros();
         else if (data.runCount == 4)
-          data.thisRun = data.first == 'biblio' ? 'ultros' : 'ships';
+          return data.first == 'biblio' ? output.ultros() : output.ships();
         else if (data.runCount == 5)
-          data.thisRun = 'biblio';
+          return output.biblio();
         else if (data.runCount == 6)
-          data.thisRun = data.first == 'biblio' ? 'ships' : 'ultros';
-
-
-        data.thisRunText = ({
-          'biblio': 'Biblio Add',
-          'dada': 'Dada Add',
-          'ships': 'Ship Adds',
-          'ultros': 'Ultros Add',
-        })[data.thisRun];
-
-        data.thisRunTTS = data.thisRunText;
+          return data.first === 'biblio' ? output.ships() : output.ultros();
       },
-      infoText: function(data) {
-        return data.thisRunText;
-      },
-      tts: function(data) {
-        return data.thisRunTTS;
+      outputStrings: {
+        biblio: {
+          en: 'Biblio Add',
+        },
+        dada: {
+          en: 'Dada Add',
+        },
+        ships: {
+          en: 'Ship Add',
+        },
+        ultros: {
+          en: 'Ultros Add',
+        },
       },
     },
   ],
