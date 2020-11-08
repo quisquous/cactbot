@@ -155,25 +155,29 @@
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
       },
-      alertText: function(data) {
-        if (data.lastSpinWasHorizontal) {
-          return {
-            en: 'Get Out',
-            de: 'Raus da',
-            fr: 'Sortez !',
-            ja: '外へ',
-            cn: '远离',
-            ko: '밖으로',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.lastSpinWasHorizontal)
+          return output.getOut();
+
+        return output.goToCardinals();
+      },
+      outputStrings: {
+        getOut: {
+          en: 'Get Out',
+          de: 'Raus da',
+          fr: 'Sortez !',
+          ja: '外へ',
+          cn: '远离',
+          ko: '밖으로',
+        },
+        goToCardinals: {
           en: 'Go To Cardinals',
           de: 'An die Kanten',
           fr: 'Allez sur les cardinaux',
           ja: '横や縦へ',
           cn: '靠边',
           ko: '십자 산개',
-        };
+        },
       },
     },
     {
@@ -187,25 +191,29 @@
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
       },
-      alertText: function(data) {
-        if (data.lastSpinWasHorizontal) {
-          return {
-            en: 'Get In',
-            de: 'Rein da',
-            fr: 'Sous le boss !',
-            ja: '中へ',
-            cn: '靠近',
-            ko: '안으로',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.lastSpinWasHorizontal)
+          return output.getIn();
+
+        return output.goToCorners();
+      },
+      outputStrings: {
+        getIn: {
+          en: 'Get In',
+          de: 'Rein da',
+          fr: 'Sous le boss !',
+          ja: '中へ',
+          cn: '靠近',
+          ko: '안으로',
+        },
+        goToCorners: {
           en: 'Go To Corners',
           de: 'In die Ecken',
           fr: 'Allez dans les coins',
           ja: '角へ',
           cn: '角落',
           ko: '구석 산개',
-        };
+        },
       },
     },
   ],

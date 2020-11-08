@@ -74,39 +74,43 @@
       netRegexJa: NetRegexes.startsUsing({ id: '25F3', source: '神龍' }),
       netRegexCn: NetRegexes.startsUsing({ id: '25F3', source: '神龙' }),
       netRegexKo: NetRegexes.startsUsing({ id: '25F3', source: '신룡' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Akh Morn on YOU',
-            de: 'Akh Morn auf DIR',
-            fr: 'Akh Morn sur VOUS',
-            ja: '自分にアク・モーン',
-            cn: '死亡轮回点名',
-            ko: '아크몬 대상자',
-          };
-        } else if (data.role == 'tank') {
-          return {
-            en: 'Akh Morn on ' + data.ShortName(matches.target),
-            de: 'Akh Morn auf ' + data.ShortName(matches.target),
-            fr: 'Akh Morn sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にアク・モーン',
-            cn: '死亡轮回点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 아크몬',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (matches.target == data.me)
+          return output.akhMornOnYou();
+        else if (data.role == 'tank')
+          return output.akhMornOn({ player: data.ShortName(matches.target) });
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         if (matches.target == data.me || data.role == 'tank')
           return;
 
-        return {
+        return output.akhRhaiSpreadAndMove();
+      },
+      outputStrings: {
+        akhRhaiSpreadAndMove: {
           en: 'Akh Rhai: spread and move',
           de: 'Akh Rhai: Verteilen und bewegen',
           fr: 'Akh Rhai: Dispersion et bougez',
           ja: 'アク・ラーイ: 散開 動け',
           cn: '天光轮回：散开和移动',
           ko: '아크 라이: 산개, 이동',
-        };
+        },
+        akhMornOnYou: {
+          en: 'Akh Morn on YOU',
+          de: 'Akh Morn auf DIR',
+          fr: 'Akh Morn sur VOUS',
+          ja: '自分にアク・モーン',
+          cn: '死亡轮回点名',
+          ko: '아크몬 대상자',
+        },
+        akhMornOn: {
+          en: 'Akh Morn on ${player}',
+          de: 'Akh Morn auf ${player}',
+          fr: 'Akh Morn sur ${player}',
+          ja: '${player}にアク・モーン',
+          cn: '死亡轮回点${player}',
+          ko: '"${player}" 아크몬',
+        },
       },
     },
     {
@@ -181,25 +185,29 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['271F', '25E8'], source: '右翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['271F', '25E8'], source: '오른쪽 날개', capture: false }),
       durationSeconds: 7,
-      alertText: function(data) {
-        if (data.phase == 3) {
-          return {
-            en: 'stop to get frozen',
-            de: 'Stopp! Einfrieren lassen',
-            fr: 'Arrêtez, laissez-vous gelé',
-            ja: '止まれ、凍結',
-            cn: '停下，冰地面',
-            ko: '멈춰서 얼기',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.phase == 3)
+          return output.stopToGetFrozen();
+
+        return output.stackInWater();
+      },
+      outputStrings: {
+        stopToGetFrozen: {
+          en: 'stop to get frozen',
+          de: 'Stopp! Einfrieren lassen',
+          fr: 'Arrêtez, laissez-vous gelé',
+          ja: '止まれ、凍結',
+          cn: '停下，冰地面',
+          ko: '멈춰서 얼기',
+        },
+        stackInWater: {
           en: 'Stack in water',
           de: 'In Wasser stacken',
           fr: 'Packez-vous dans l\'eau',
           ja: '水に集合',
           cn: '在水圈攻击',
           ko: '물 장판에 모이기',
-        };
+        },
       },
     },
     {
@@ -232,25 +240,29 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '右翼', target: '右翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '오른쪽 날개', target: '오른쪽 날개', capture: false }),
       durationSeconds: 7,
-      alertText: function(data) {
-        if (data.phase == 3) {
-          return {
-            en: 'bait bolt, keep moving',
-            de: 'Blitz ködern, weiterbewegen',
-            fr: 'Attirez la foudre, continuez à bouger',
-            ja: '稲妻: 動き続ける',
-            cn: '闪电，保持移动',
-            ko: '번개 공격 산개, 계속 움직이기',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.phase == 3)
+          return output.baitBoltKeepMoving();
+
+        return output.spreadOutNoWater();
+      },
+      outputStrings: {
+        baitBoltKeepMoving: {
+          en: 'bait bolt, keep moving',
+          de: 'Blitz ködern, weiterbewegen',
+          fr: 'Attirez la foudre, continuez à bouger',
+          ja: '稲妻: 動き続ける',
+          cn: '闪电，保持移动',
+          ko: '번개 공격 산개, 계속 움직이기',
+        },
+        spreadOutNoWater: {
           en: 'Spread out, no water',
           de: 'Verteilen und nicht in\'s Wasser',
           fr: 'Dispersez-vous en dehors de l\'eau',
           ja: '散開、水に入らない',
           cn: '散开，离开水圈',
           ko: '산개, 물장판 X',
-        };
+        },
       },
     },
     {
@@ -262,17 +274,19 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '右翼', target: '右翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '오른쪽 날개', target: '오른쪽 날개', capture: false }),
       delaySeconds: 9.5,
-      alarmText: function(data) {
-        if (data.phase == 3) {
-          return {
-            en: 'move away',
-            de: 'wegbewegen',
-            fr: 'Éloignez-vous',
-            ja: '散開',
-            cn: '散开',
-            ko: '떨어지기',
-          };
-        }
+      alarmText: function(data, _, output) {
+        if (data.phase == 3)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'move away',
+          de: 'wegbewegen',
+          fr: 'Éloignez-vous',
+          ja: '散開',
+          cn: '散开',
+          ko: '떨어지기',
+        },
       },
     },
     {
@@ -435,38 +449,33 @@
       netRegexJa: NetRegexes.startsUsing({ id: '260A', source: '白金龍' }),
       netRegexCn: NetRegexes.startsUsing({ id: '260A', source: '白金龙' }),
       netRegexKo: NetRegexes.startsUsing({ id: '260A', source: '백금룡' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Death Sentence on YOU',
-            de: 'Todesurteil auf DIR',
-            fr: 'Peine de mort sur VOUS',
-            ja: '自分にデスセンテンス',
-            cn: '死刑点名',
-            ko: '사형 선고 대상자',
-          };
-        } else if (data.role == 'healer') {
-          return {
-            en: 'Death Sentence on ' + data.ShortName(matches.target),
-            de: 'Todesurteil auf ' + data.ShortName(matches.target),
-            fr: 'Peine de mort sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にデスセンテンス',
-            cn: '死刑点名' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 사형 선고',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (matches.target == data.me)
+          return output.deathSentenceOnYou();
+        else if (data.role == 'healer')
+          return output.deathSentenceOn({ player: data.ShortName(matches.target) });
       },
-      infoText: function(data, matches) {
-        if (matches.target != data.me && data.role == 'tank') {
-          return {
-            en: 'Death Sentence on ' + data.ShortName(matches.target),
-            de: 'Todesurteil auf ' + data.ShortName(matches.target),
-            fr: 'Peine de mort sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にデスセンテンス',
-            cn: '死刑点名' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 사형 선고',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (matches.target != data.me && data.role == 'tank')
+          return output.deathSentenceOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        deathSentenceOn: {
+          en: 'Death Sentence on ${player}',
+          de: 'Todesurteil auf ${player}',
+          fr: 'Peine de mort sur ${player}',
+          ja: '${player}にデスセンテンス',
+          cn: '死刑点名${player}',
+          ko: '"${player}" 사형 선고',
+        },
+        deathSentenceOnYou: {
+          en: 'Death Sentence on YOU',
+          de: 'Todesurteil auf DIR',
+          fr: 'Peine de mort sur VOUS',
+          ja: '自分にデスセンテンス',
+          cn: '死刑点名',
+          ko: '사형 선고 대상자',
+        },
       },
     },
     {
@@ -568,25 +577,29 @@
         return matches.target == data.me;
       },
       delaySeconds: 3.8,
-      infoText: function(data) {
-        if (data.phase == 3) {
-          return {
-            en: 'break tethers then stack',
-            de: 'Kette zerreissen, dann stack',
-            fr: 'Cassez les liens, puis packez-vous',
-            ja: '鎖を引き、集合',
-            cn: '拉断锁链然后攻击',
-            ko: '선 끊고 모이기',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.phase == 3)
+          return output.breakTethersThenStack();
+
+        return output.breakTethers();
+      },
+      outputStrings: {
+        breakTethersThenStack: {
+          en: 'break tethers then stack',
+          de: 'Kette zerreissen, dann stack',
+          fr: 'Cassez les liens, puis packez-vous',
+          ja: '鎖を引き、集合',
+          cn: '拉断锁链然后攻击',
+          ko: '선 끊고 모이기',
+        },
+        breakTethers: {
           en: 'break tethers',
           de: 'Ketten zerreissen',
           fr: 'Cassez les liens',
           ja: '鎖',
           cn: '拉断锁链',
           ko: '선 끊기',
-        };
+        },
       },
     },
     {
@@ -615,32 +628,34 @@
         data.shakerTargets.push(matches.target);
         return data.shakerTargets.length == 2;
       },
-      alarmText: function(data) {
-        if (data.shakerTargets.includes(data.me)) {
-          return {
-            en: 'earthshaker on you',
-            de: 'Erdstoss auf dir',
-            fr: 'Secousse sur VOUS',
-            ja: '自分にアースシェーカー',
-            cn: '大地动摇点名',
-            ko: '어스 대상자',
-          };
-        }
+      alarmText: function(data, _, output) {
+        if (data.shakerTargets.includes(data.me))
+          return output.earthshakerOnYou();
       },
-      alertText: function(data) {
-        if (!data.shakerTargets.includes(data.me)) {
-          return {
-            en: 'avoid earthshakers',
-            de: 'Stöße ausweichen',
-            fr: 'Évitez les secousses',
-            ja: 'アースシェーカーに避け',
-            cn: '远离大地动摇',
-            ko: '어스 피하기',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (!data.shakerTargets.includes(data.me))
+          return output.avoidEarthshakers();
       },
       run: function(data) {
         delete data.shakerTargets;
+      },
+      outputStrings: {
+        avoidEarthshakers: {
+          en: 'avoid earthshakers',
+          de: 'Stöße ausweichen',
+          fr: 'Évitez les secousses',
+          ja: 'アースシェーカーに避け',
+          cn: '远离大地动摇',
+          ko: '어스 피하기',
+        },
+        earthshakerOnYou: {
+          en: 'earthshaker on you',
+          de: 'Erdstoss auf dir',
+          fr: 'Secousse sur VOUS',
+          ja: '自分にアースシェーカー',
+          cn: '大地动摇点名',
+          ko: '어스 대상자',
+        },
       },
     },
     {

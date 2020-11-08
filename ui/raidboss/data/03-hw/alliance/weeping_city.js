@@ -289,23 +289,27 @@
       netRegexCn: NetRegexes.ability({ id: '1803', source: '奥兹玛', capture: false }),
       // Delaying here to avoid colliding with other Flare Star triggers.
       delaySeconds: 4,
-      alertText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank lasers--Avoid party',
-            de: 'Tank lasers--Weg von der Party',
-            ja: 'タンクレザー - 外に',
-            cn: '坦克激光--远离人群',
-            ko: '탱커 레이저-- 피하기',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.role == 'tank')
+          return output.tankLasers();
+
+        return output.avoidTanks();
+      },
+      outputStrings: {
+        tankLasers: {
+          en: 'Tank lasers--Avoid party',
+          de: 'Tank lasers--Weg von der Party',
+          ja: 'タンクレザー - 外に',
+          cn: '坦克激光--远离人群',
+          ko: '탱커 레이저-- 피하기',
+        },
+        avoidTanks: {
           en: 'Avoid tanks',
           de: 'Weg von den Tanks',
           ja: 'タンクに離れ',
           cn: '远离坦克',
           ko: '탱커 피하기',
-        };
+        },
       },
     },
     {
@@ -445,23 +449,27 @@
       condition: function(data) {
         return data.calStarted;
       },
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: '16x Sky Laser on YOU!',
-            de: '16x Himmelslaser auf DIR!',
-            ja: '自分に16連撃潜地式波動砲！',
-            cn: '16连追踪AOE点名',
-            ko: '16 하늘 레이저 대상자',
-          };
-        }
-        return {
+      alertText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.skyLaserOnYou();
+
+        return output.avoidSkyLasers();
+      },
+      outputStrings: {
+        skyLaserOnYou: {
+          en: '16x Sky Laser on YOU!',
+          de: '16x Himmelslaser auf DIR!',
+          ja: '自分に16連撃潜地式波動砲！',
+          cn: '16连追踪AOE点名',
+          ko: '16 하늘 레이저 대상자',
+        },
+        avoidSkyLasers: {
           en: 'Avoid Sky Lasers',
           de: 'Himmelslaser ausweichen',
           ja: '潜地式波動砲に避け',
           cn: '躲避追踪AOE',
           ko: '하늘 레이저 피하기',
-        };
+        },
       },
     },
     {

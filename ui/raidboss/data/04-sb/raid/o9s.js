@@ -24,49 +24,31 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3172', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3172', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3172', source: '카오스', capture: false }),
-      alertText: function(data) {
-        if (data.primordialCrust) {
-          return {
-            en: 'Die on Front/Back -> Sides',
-            de: 'Stirb Vorne/Hinten -> Seiten',
-            fr: 'Devant/Derrière puis Côtés',
-            ja: '縦 -> 横で死ぬ',
-            cn: '死：前后 -> 左右',
-            ko: '앞뒤 -> 양옆 (디버프)',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (data.primordialCrust)
+          return output.dieOnFrontBack();
       },
-      infoText: function(data) {
-        if (!data.primordialCrust) {
-          return {
-            en: 'Sides -> Front/Back',
-            de: 'Seiten -> Vorne/Hinten',
-            fr: 'Côtés puis Devant/Derrière',
-            ja: '横 -> 縦',
-            cn: '左右 -> 前后',
-            ko: '양옆 -> 앞뒤',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (!data.primordialCrust)
+          return output.sides();
       },
-      tts: function(data) {
-        if (data.primordialCrust) {
-          return {
-            en: 'die on back',
-            de: 'hinten dran',
-            fr: 'aller derrière',
-            ja: '縦から',
-            cn: '前后找死',
-            ko: '뒤에서 맞기 (디버프)',
-          };
-        }
-        return {
-          en: 'go to sides',
-          de: 'an die Seiten',
-          fr: 'aller sur les cotés',
-          ja: '横から',
-          cn: '左右闪避',
-          ko: '양옆으로',
-        };
+      outputStrings: {
+        sides: {
+          en: 'Sides -> Front/Back',
+          de: 'Seiten -> Vorne/Hinten',
+          fr: 'Côtés puis Devant/Derrière',
+          ja: '横 -> 縦',
+          cn: '左右 -> 前后',
+          ko: '양옆 -> 앞뒤',
+        },
+        dieOnFrontBack: {
+          en: 'Die on Front/Back -> Sides',
+          de: 'Stirb Vorne/Hinten -> Seiten',
+          fr: 'Devant/Derrière puis Côtés',
+          ja: '縦 -> 横で死ぬ',
+          cn: '死：前后 -> 左右',
+          ko: '앞뒤 -> 양옆 (디버프)',
+        },
       },
     },
     {
@@ -77,49 +59,31 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3173', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3173', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3173', source: '카오스', capture: false }),
-      alertText: function(data) {
-        if (data.primordialCrust) {
-          return {
-            en: 'Die on Sides -> Front/Back',
-            de: 'Stirb an Seiten -> Vorne/Hinten',
-            fr: 'Devant/Derrière puis Côtés',
-            ja: '横 -> 縦で死ぬ',
-            cn: '死：左右 -> 前后',
-            ko: '양옆 -> 앞뒤 (디버프)',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (data.primordialCrust)
+          return output.dieOnSides();
       },
-      infoText: function(data) {
-        if (!data.primordialCrust) {
-          return {
-            en: 'Front/Back -> Sides',
-            de: 'Vorne/Hinten -> Seiten',
-            fr: 'Devant/Derrière puis Côtés',
-            ja: '縦 -> 横',
-            cn: '前后 -> 左右',
-            ko: '앞뒤 -> 양옆',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (!data.primordialCrust)
+          return output.frontBack();
       },
-      tts: function(data) {
-        if (data.primordialCrust) {
-          return {
-            en: 'die on sides',
-            de: 'an die Seiten',
-            fr: 'aller sur les cotés',
-            ja: '横から',
-            cn: '左右找死',
-            ko: '양옆 (디버프)',
-          };
-        }
-        return {
-          en: 'go to back',
-          de: 'hinten dran',
-          fr: 'aller derrière',
-          ja: '縦から',
-          cn: '前后闪避',
-          ko: '뒤로 이동',
-        };
+      outputStrings: {
+        frontBack: {
+          en: 'Front/Back -> Sides',
+          de: 'Vorne/Hinten -> Seiten',
+          fr: 'Devant/Derrière puis Côtés',
+          ja: '縦 -> 横',
+          cn: '前后 -> 左右',
+          ko: '앞뒤 -> 양옆',
+        },
+        dieOnSides: {
+          en: 'Die on Sides -> Front/Back',
+          de: 'Stirb an Seiten -> Vorne/Hinten',
+          fr: 'Devant/Derrière puis Côtés',
+          ja: '横 -> 縦で死ぬ',
+          cn: '死：左右 -> 前后',
+          ko: '양옆 -> 앞뒤 (디버프)',
+        },
       },
     },
     {
@@ -140,29 +104,23 @@
       netRegexJa: NetRegexes.startsUsing({ id: '317D', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '317D', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '317D', source: '카오스', capture: false }),
-      alarmText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Orb Tethers',
-            de: 'Kugel-Verbindungen',
-            fr: 'Récupérez l\'orbe',
-            ja: '線出たよ',
-            cn: '接线',
-            ko: '구슬 연결',
-          };
-        }
+      alarmText: function(data, _, output) {
+        if (data.role == 'tank')
+          return output.orbTethers();
       },
-      infoText: function(data) {
-        if (data.role == 'healer') {
-          return {
-            en: 'Orb Tethers',
-            de: 'Kugel-Verbindungen',
-            fr: 'Récupérez l\'orbe',
-            ja: '線出たよ',
-            cn: '坦克接线注意治疗',
-            ko: '구슬 연결',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (data.role == 'healer')
+          return output.orbTethers();
+      },
+      outputStrings: {
+        orbTethers: {
+          en: 'Orb Tethers',
+          de: 'Kugel-Verbindungen',
+          fr: 'Récupérez l\'orbe',
+          ja: '線出たよ',
+          cn: '坦克接线注意治疗',
+          ko: '구슬 연결',
+        },
       },
     },
     // Fire Path
@@ -195,39 +153,44 @@
           return parseFloat(matches.duration) - 12;
         return parseFloat(matches.duration) - 5;
       },
-      alertText: function(data) {
-        if (data.phaseType == 'enrage' || data.phaseType == 'orb' || data.entropyCount == 1) {
-          return {
-            en: 'Spread',
-            de: 'Verteilen',
-            fr: 'Ecartez-vous',
-            ja: '散開',
-            cn: '分散',
-            ko: '산개',
-          };
-        } else if (data.role == 'tank' || data.role == 'healer') {
-          return {
-            en: 'Spread and Stay',
-            de: 'Verteilen und bleiben',
-            fr: 'Ecartez-vous et restez',
-            ja: '散開して待機',
-            cn: '分散并停留',
-            ko: '산개하고 가만히',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (data.phaseType == 'enrage' || data.phaseType == 'orb' || data.entropyCount == 1)
+          return output.spread();
+        else if (data.role == 'tank' || data.role == 'healer')
+          return output.spreadAndStay();
+
         // DPS entropy #2
-        return {
+        return output.stackAndStayOut();
+      },
+      run: function(data) {
+        if (data.phaseType == 'orb' || data.entropyCount == 2)
+          delete data.entropyCount;
+      },
+      outputStrings: {
+        spread: {
+          en: 'Spread',
+          de: 'Verteilen',
+          fr: 'Ecartez-vous',
+          ja: '散開',
+          cn: '分散',
+          ko: '산개',
+        },
+        spreadAndStay: {
+          en: 'Spread and Stay',
+          de: 'Verteilen und bleiben',
+          fr: 'Ecartez-vous et restez',
+          ja: '散開して待機',
+          cn: '分散并停留',
+          ko: '산개하고 가만히',
+        },
+        stackAndStayOut: {
           en: 'Stack and Stay Out',
           de: 'Stack und Bleiben',
           fr: 'Packez-vous et restez',
           ja: '中央に集合',
           cn: '中间集合',
           ko: '산개하고 바깥에 있기',
-        };
-      },
-      run: function(data) {
-        if (data.phaseType == 'orb' || data.entropyCount == 2)
-          delete data.entropyCount;
+        },
       },
     },
     {
@@ -366,26 +329,29 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alertText: function(data) {
-        if (data.phaseType == 'water') {
-          return {
-            en: 'Drop Outside',
-            de: 'Gehe Nord / Süd',
-            fr: 'Allez au Nord/Sud',
-            ja: 'メテオ捨てて',
-            cn: '远离放点名',
-            ko: '바깥으로 빼기',
-          };
-        } else if (data.phaseType == 'wind') {
-          return {
-            en: 'Drop Outside + Knockback',
-            de: 'Geh nächste Ecke nah am Tornado',
-            fr: 'Déposez dans les coins',
-            ja: 'メテオ捨てて + ノックバック',
-            cn: '远离放点名 + 冲回人群',
-            ko: '바깥으로 빼기 + 넉백',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (data.phaseType == 'water')
+          return output.dropOutside();
+        else if (data.phaseType == 'wind')
+          return output.dropOutsideKnockback();
+      },
+      outputStrings: {
+        dropOutside: {
+          en: 'Drop Outside',
+          de: 'Gehe Nord / Süd',
+          fr: 'Allez au Nord/Sud',
+          ja: 'メテオ捨てて',
+          cn: '远离放点名',
+          ko: '바깥으로 빼기',
+        },
+        dropOutsideKnockback: {
+          en: 'Drop Outside + Knockback',
+          de: 'Geh nächste Ecke nah am Tornado',
+          fr: 'Déposez dans les coins',
+          ja: 'メテオ捨てて + ノックバック',
+          cn: '远离放点名 + 冲回人群',
+          ko: '바깥으로 빼기 + 넉백',
+        },
       },
     },
     // Wind Path
@@ -430,30 +396,33 @@
       netRegexJa: NetRegexes.startsUsing({ id: '318F', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '318F', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '318F', source: '카오스', capture: false }),
-      alarmText: function(data) {
-        if (data.wind == 'head') {
-          return {
-            en: 'Back to Tornado',
-            de: 'Rücken zum Tornado',
-            fr: 'Regardez vers l\'extérieur',
-            ja: '竜巻を見ない',
-            cn: '背对龙卷风',
-            ko: '토네이도 뒤돌기',
-          };
-        }
-        if (data.wind == 'tail') {
-          return {
-            en: 'Face the Tornado',
-            de: 'Zum Tornado hin',
-            fr: 'Regardez la tornade',
-            ja: '竜巻を見る',
-            cn: '面对龙卷风',
-            ko: '토네이도 바라보기',
-          };
-        }
+      alarmText: function(data, _, output) {
+        if (data.wind == 'head')
+          return output.backToTornado();
+
+        if (data.wind == 'tail')
+          return output.faceTheTornado();
       },
       run: function(data) {
         delete data.wind;
+      },
+      outputStrings: {
+        backToTornado: {
+          en: 'Back to Tornado',
+          de: 'Rücken zum Tornado',
+          fr: 'Regardez vers l\'extérieur',
+          ja: '竜巻を見ない',
+          cn: '背对龙卷风',
+          ko: '토네이도 뒤돌기',
+        },
+        faceTheTornado: {
+          en: 'Face the Tornado',
+          de: 'Zum Tornado hin',
+          fr: 'Regardez la tornade',
+          ja: '竜巻を見る',
+          cn: '面对龙卷风',
+          ko: '토네이도 바라보기',
+        },
       },
     },
     // Earth Path
@@ -477,25 +446,29 @@
         return data.role == 'healer';
       },
       suppressSeconds: 10,
-      infoText: function(data) {
-        if (data.phaseType != 'earth') {
-          return {
-            en: 'Heal All to Full',
-            de: 'Alle vollheilen',
-            fr: 'Soignez tout le monde full vie',
-            ja: 'HP戻して',
-            cn: '奶满全队',
-            ko: '전원 체력 풀피로',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.phaseType != 'earth')
+          return output.healAllToFull();
+
+        return output.healTankshealersToFull();
+      },
+      outputStrings: {
+        healAllToFull: {
+          en: 'Heal All to Full',
+          de: 'Alle vollheilen',
+          fr: 'Soignez tout le monde full vie',
+          ja: 'HP戻して',
+          cn: '奶满全队',
+          ko: '전원 체력 풀피로',
+        },
+        healTankshealersToFull: {
           en: 'Heal Tanks/Healers to full',
           de: 'Tanks/Heiler vollheilen',
           fr: 'Soignez Heals/Tanks full vie',
           ja: 'HP戻して',
           cn: '奶满T奶',
           ko: '탱/힐 체력 풀피로',
-        };
+        },
       },
     },
     {
@@ -570,20 +543,22 @@
         return parseFloat(matches.duration) - 3;
       },
       suppressSeconds: 10,
-      alertText: function(data) {
-        if (data.head == 'wind') {
-          return {
-            en: 'Back to DPS',
-            de: 'Rücken zum DPS',
-            fr: 'Dos au DPS',
-            ja: 'DPSの後ろへ',
-            cn: '背对DPS',
-            ko: '딜러한테서 뒤돌기',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (data.head == 'wind')
+          return output.text();
       },
       run: function(data) {
         delete data.wind;
+      },
+      outputStrings: {
+        text: {
+          en: 'Back to DPS',
+          de: 'Rücken zum DPS',
+          fr: 'Dos au DPS',
+          ja: 'DPSの後ろへ',
+          cn: '背对DPS',
+          ko: '딜러한테서 뒤돌기',
+        },
       },
     },
     {

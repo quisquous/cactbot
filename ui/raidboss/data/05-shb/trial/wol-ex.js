@@ -394,21 +394,23 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '5152', capture: false }),
       // This is still 1 second before this cast goes off, giving ~7 seconds before LB is needed.
       delaySeconds: 4,
-      alarmText: function(data) {
-        if (data.role === 'tank') {
-          return {
-            en: 'TANK LB!!',
-            de: 'TANK LB!!',
-            fr: 'LB TANK !!',
-            ja: 'タンクLB!!',
-            ko: '리미트 브레이크!!',
-            cn: '坦克LB!!',
-          };
-        }
+      alarmText: function(data, _, output) {
+        if (data.role === 'tank')
+          return output.text();
       },
       run: function(data) {
         data.isAddPhase = false;
         data.ultimateSeen = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'TANK LB!!',
+          de: 'TANK LB!!',
+          fr: 'LB TANK !!',
+          ja: 'タンクLB!!',
+          ko: '리미트 브레이크!!',
+          cn: '坦克LB!!',
+        },
       },
     },
     {

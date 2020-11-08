@@ -180,41 +180,45 @@
       netRegexJa: NetRegexes.tether({ source: '傭兵のレイムプリクス', id: '0039' }),
       netRegexCn: NetRegexes.tether({ source: '佣兵雷姆普里克斯', id: '0039' }),
       netRegexKo: NetRegexes.tether({ source: '용병 레임브릭스', id: '0039' }),
-      alarmText: function(data, matches) {
+      alarmText: function(data, matches, output) {
         if (data.me != matches.target)
           return;
-        return {
+        return output.tankSwapGetAway();
+      },
+      alertText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return;
+        if (data.role == 'tank')
+          return output.tankSwap();
+
+        if (data.role == 'healer' || data.job == 'BLU')
+          return output.shieldPlayer({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        tankSwap: {
+          en: 'Tank Swap!',
+          de: 'Tankwechsel!',
+          fr: 'Tank swap !',
+          ja: 'タンクスイッチ!',
+          cn: '换T！',
+          ko: '탱 교대',
+        },
+        shieldPlayer: {
+          en: 'Shield ${player}',
+          de: 'Schild ${player}',
+          fr: 'Bouclier ${player}',
+          ja: '${player}にバリア',
+          cn: '单盾${player}',
+          ko: '"${player}" 보호막',
+        },
+        tankSwapGetAway: {
           en: 'Tank Swap, Get Away',
           de: 'Tankwechsel, geh weg',
           fr: 'Tank swap, éloignez-vous',
           ja: 'タンクスイッチ、離れ',
           cn: '换T并且远离',
           ko: '탱 교대, 멀리가기',
-        };
-      },
-      alertText: function(data, matches) {
-        if (data.me == matches.target)
-          return;
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank Swap!',
-            de: 'Tankwechsel!',
-            fr: 'Tank swap !',
-            ja: 'タンクスイッチ!',
-            cn: '换T！',
-            ko: '탱 교대',
-          };
-        }
-        if (data.role == 'healer' || data.job == 'BLU') {
-          return {
-            en: 'Shield ' + data.ShortName(matches.target),
-            de: 'Schild ' + data.ShortName(matches.target),
-            fr: 'Bouclier ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にバリア',
-            cn: '单盾' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 보호막',
-          };
-        }
+        },
       },
     },
     {

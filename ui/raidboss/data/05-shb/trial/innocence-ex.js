@@ -49,54 +49,61 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3EEF', source: 'イノセンス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3EEF', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EEF', source: '이노센스', capture: false }),
-      infoText: function(data) {
-        if (data.starbirthCount == 1) {
-          return {
-            en: 'Starbirth: Corner',
-            de: 'Sternengeburt: Ecken',
-            fr: 'Accouchement Stellaire : Coin',
-            ja: 'スターバース: 角へ',
-            cn: '创星：角落躲避',
-            ko: '별생성: 구석으로',
-          };
-        } else if (data.starbirthCount == 2 || data.starbirthCount == 5) {
-          return {
-            en: 'Starbirth: Avoid + Charge',
-            de: 'Sternengeburt: Ausweichen + Charge',
-            fr: 'Accouchement Stellaire : Évitez + Charge',
-            ja: 'スターバース: 玉のない隅へ',
-            cn: '创星：躲避 + 冲锋',
-            ko: '별 생성: 별 피해서 징 맞기 + 돌진',
-          };
-        } else if (data.starbirthCount == 3) {
-          return {
-            en: 'Starbirth: Explode',
-            de: 'Sternengeburt: Explosion',
-            fr: 'Accouchement Stellaire : Explosion',
-            ja: 'スターバース: 爆発',
-            cn: '创星：爆炸',
-            ko: '별 생성: 별 터뜨리기',
-          };
-        } else if (data.starbirthCount == 4) {
-          return {
-            en: 'Starbirth: Charge',
-            de: 'Sternengeburt: Charge',
-            fr: 'Accouchement Stellaire : Charge',
-            ja: 'スターバース: 突進',
-            cn: '创星：冲锋',
-            ko: '별 생성: 돌진',
-          };
-        } else if (data.starbirthCount == 6) {
-          return {
-            en: 'Starbirth: Enrage',
-            de: 'Sternengeburt: Finalangriff',
-            fr: 'Accouchement Stellaire : Enrage',
-            ja: 'スターバース: 時間切れ',
-            cn: '创星：狂暴',
-            ko: '별 생성: 전멸기',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (data.starbirthCount == 1)
+          return output.starbirthCorner();
+        else if (data.starbirthCount == 2 || data.starbirthCount == 5)
+          return output.starbirthAvoidCharge();
+        else if (data.starbirthCount == 3)
+          return output.starbirthExplode();
+        else if (data.starbirthCount == 4)
+          return output.starbirthCharge();
+        else if (data.starbirthCount == 6)
+          return output.starbirthEnrage();
+
         // No text for the second enrage one.
+      },
+      outputStrings: {
+        starbirthCorner: {
+          en: 'Starbirth: Corner',
+          de: 'Sternengeburt: Ecken',
+          fr: 'Accouchement Stellaire : Coin',
+          ja: 'スターバース: 角へ',
+          cn: '创星：角落躲避',
+          ko: '별생성: 구석으로',
+        },
+        starbirthAvoidCharge: {
+          en: 'Starbirth: Avoid + Charge',
+          de: 'Sternengeburt: Ausweichen + Charge',
+          fr: 'Accouchement Stellaire : Évitez + Charge',
+          ja: 'スターバース: 玉のない隅へ',
+          cn: '创星：躲避 + 冲锋',
+          ko: '별 생성: 별 피해서 징 맞기 + 돌진',
+        },
+        starbirthExplode: {
+          en: 'Starbirth: Explode',
+          de: 'Sternengeburt: Explosion',
+          fr: 'Accouchement Stellaire : Explosion',
+          ja: 'スターバース: 爆発',
+          cn: '创星：爆炸',
+          ko: '별 생성: 별 터뜨리기',
+        },
+        starbirthCharge: {
+          en: 'Starbirth: Charge',
+          de: 'Sternengeburt: Charge',
+          fr: 'Accouchement Stellaire : Charge',
+          ja: 'スターバース: 突進',
+          cn: '创星：冲锋',
+          ko: '별 생성: 돌진',
+        },
+        starbirthEnrage: {
+          en: 'Starbirth: Enrage',
+          de: 'Sternengeburt: Finalangriff',
+          fr: 'Accouchement Stellaire : Enrage',
+          ja: 'スターバース: 時間切れ',
+          cn: '创星：狂暴',
+          ko: '별 생성: 전멸기',
+        },
       },
     },
     {
@@ -120,41 +127,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3ECD', source: 'イノセンス' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3ECD', source: '无瑕灵君' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3ECD', source: '이노센스' }),
-      alarmText: function(data, matches) {
-        if (matches.target == data.me || data.role != 'tank')
-          return;
-
-        return {
-          en: 'Tank Swap!',
-          de: 'Tankwechsel!',
-          fr: 'Tank swap !',
-          ja: 'スイッチ',
-          cn: '换T！',
-          ko: '탱 교대!',
-        };
-      },
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tank buster sur VOUS',
-            ja: '自分にタンクバスター',
-            cn: '死刑点名',
-            ko: '탱버 대상자',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tank buster sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にタンクバスター',
-            cn: '死刑 点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 탱버',
-          };
-        }
-      },
+      response: Responses.tankBusterSwap(),
     },
     {
       id: 'InnoEx Holy Sword Healer',
@@ -201,25 +174,29 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3EEE', source: 'イノセンス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3EEE', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EEE', source: '이노센스', capture: false }),
-      alertText: function(data) {
-        if (data.starbirthActive) {
-          return {
-            en: 'Avoid Charge and Orbs',
-            de: 'Charge und Orbs ausweichen',
-            fr: 'Évitez les charges et les orbes',
-            ja: '玉と突進避けて',
-            cn: '躲避冲锋与晶石',
-            ko: '돌진이랑 구슬 폭발을 피하세요',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.starbirthActive)
+          return output.avoidChargeAndOrbs();
+
+        return output.avoidCharge();
+      },
+      outputStrings: {
+        avoidChargeAndOrbs: {
+          en: 'Avoid Charge and Orbs',
+          de: 'Charge und Orbs ausweichen',
+          fr: 'Évitez les charges et les orbes',
+          ja: '玉と突進避けて',
+          cn: '躲避冲锋与晶石',
+          ko: '돌진이랑 구슬 폭발을 피하세요',
+        },
+        avoidCharge: {
           en: 'Avoid Charge',
           de: 'Charge ausweichen',
           fr: 'Évitez les charges',
           ja: '突進避けて',
           cn: '躲避冲锋',
           ko: '돌진을 피하세요',
-        };
+        },
       },
     },
     {
@@ -281,40 +258,45 @@
         data.lightPillar = data.lightPillar || 0;
         data.lightPillar++;
       },
-      alarmText: function(data, matches) {
+      alarmText: function(data, matches, output) {
         if (matches.target != data.me)
           return;
 
-        if (data.lightPillar == 3) {
-          return {
-            en: 'Aim Line At Back Orb',
-            de: 'Ziehle mit der Linie auf den entferntesten Orb',
-            fr: 'Visez avec la ligne à l\'arrière de l\'orbe',
-            ja: '後ろの玉に当てて',
-            cn: '分摊瞄准后方晶石',
-            ko: '멀리 있는 구슬 하나 맞추세요',
-          };
-        }
-        return {
-          en: 'Avoid Orbs With Line',
-          de: 'Ziehle nicht auf einen Orb',
-          fr: 'Évitez l\'orbe avec la ligne',
-          ja: '玉に当てるな',
-          cn: '躲开晶石与直线',
-          ko: '쉐어징이 구슬에 맞지 않게 하세요',
-        };
+        if (data.lightPillar == 3)
+          return output.aimLineAtBackOrb();
+
+        return output.avoidOrbsWithLine();
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         if (matches.target == data.me)
           return;
-        return {
+        return output.lineStack();
+      },
+      outputStrings: {
+        lineStack: {
           en: 'Line Stack',
           de: 'Sammeln in einer Linie',
           fr: 'Packez-vous en ligne',
           ja: 'シェア',
           cn: '直线分摊',
           ko: '쉐어징 모이세요',
-        };
+        },
+        aimLineAtBackOrb: {
+          en: 'Aim Line At Back Orb',
+          de: 'Ziehle mit der Linie auf den entferntesten Orb',
+          fr: 'Visez avec la ligne à l\'arrière de l\'orbe',
+          ja: '後ろの玉に当てて',
+          cn: '分摊瞄准后方晶石',
+          ko: '멀리 있는 구슬 하나 맞추세요',
+        },
+        avoidOrbsWithLine: {
+          en: 'Avoid Orbs With Line',
+          de: 'Ziehle nicht auf einen Orb',
+          fr: 'Évitez l\'orbe avec la ligne',
+          ja: '玉に当てるな',
+          cn: '躲开晶石与直线',
+          ko: '쉐어징이 구슬에 맞지 않게 하세요',
+        },
       },
     },
     {
@@ -364,25 +346,29 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alertText: function(data) {
-        if (data.starbirthActive) {
-          return {
-            en: 'Circle, Avoid Orbs',
-            de: 'Kreis, vermeide Orbs',
-            fr: 'Cercle, Évitez les orbes',
-            ja: 'オーブに当てないで',
-            cn: '圆圈点名，远离晶石',
-            ko: '원형 징, 구슬 피하세요',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.starbirthActive)
+          return output.circleAvoidOrbs();
+
+        return output.circleOnYou();
+      },
+      outputStrings: {
+        circleAvoidOrbs: {
+          en: 'Circle, Avoid Orbs',
+          de: 'Kreis, vermeide Orbs',
+          fr: 'Cercle, Évitez les orbes',
+          ja: 'オーブに当てないで',
+          cn: '圆圈点名，远离晶石',
+          ko: '원형 징, 구슬 피하세요',
+        },
+        circleOnYou: {
           en: 'Circle on YOU',
           de: 'Kreis auf DIR',
           fr: 'Cercle sur vous',
           ja: 'サークルついた',
           cn: '圆圈点名',
           ko: '원형 징 대상자 지정됨',
-        };
+        },
       },
     },
     {

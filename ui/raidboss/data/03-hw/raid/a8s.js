@@ -263,32 +263,34 @@
       // Note: also the 0045 headmarker.
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
       // TODO: do we need a Responses.effectOn() that uses matches.effect?
-      alarmText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Thunder on YOU',
-            de: 'Blitz auf DIR',
-            fr: 'Foudre sur VOUS',
-            ja: '自分に雷',
-            cn: '雷点名',
-            ko: '번개징 대상자',
-          };
-        }
+      alarmText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.thunderOnYou();
       },
-      infoText: function(data, matches) {
-        if (data.me != matches.target) {
-          return {
-            en: 'Thunder on ' + data.ShortName(matches.target),
-            de: 'Blitz auf ' + data.ShortName(matches.target),
-            fr: 'Foudre sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'に雷',
-            cn: '雷点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 번개징',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me != matches.target)
+          return output.thunderOn({ player: data.ShortName(matches.target) });
       },
       run: function(data, matches) {
         data.lightning = matches.target;
+      },
+      outputStrings: {
+        thunderOn: {
+          en: 'Thunder on ${player}',
+          de: 'Blitz auf ${player}',
+          fr: 'Foudre sur ${player}',
+          ja: '${player}に雷',
+          cn: '雷点${player}',
+          ko: '"${player}" 번개징',
+        },
+        thunderOnYou: {
+          en: 'Thunder on YOU',
+          de: 'Blitz auf DIR',
+          fr: 'Foudre sur VOUS',
+          ja: '自分に雷',
+          cn: '雷点名',
+          ko: '번개징 대상자',
+        },
       },
     },
     {
@@ -304,33 +306,39 @@
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 5;
       },
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (!data.lightning)
           return;
-        return {
-          en: 'Thunder Soon on ' + data.ShortName(data.lightning),
-          de: 'Blitz bald auf ' + data.ShortName(data.lightning),
-          fr: 'Foudre bientôt sur ' + data.ShortName(data.lightning),
-          ja: data.ShortName(data.lightning) + 'に雷頭割り',
-          cn: '马上雷分摊' + data.ShortName(data.lightning),
-          ko: '"' + data.ShortName(data.lightning) + '" 번개징 곧 터짐',
-        };
+        return output.text({ player: data.ShortName(data.lightning) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Thunder Soon on ${player}',
+          de: 'Blitz bald auf ${player}',
+          fr: 'Foudre bientôt sur ${player}',
+          ja: '${player}に雷頭割り',
+          cn: '马上雷分摊${player}',
+          ko: '"${player}" 번개징 곧 터짐',
+        },
       },
     },
     {
       id: 'A8S Enumeration',
       netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         // 0040 = 2, 0041 = 3, 0042 = 4
         let count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
-        return {
-          en: data.ShortName(matches.target) + ': ' + count,
-          de: data.ShortName(matches.target) + ': ' + count,
-          fr: data.ShortName(matches.target) + ': ' + count,
-          ja: data.ShortName(matches.target) + ': ' + count,
-          cn: data.ShortName(matches.target) + '生命计算法: ' + count,
-          ko: data.ShortName(matches.target) + ': ' + count,
-        };
+        return output.text({ player: data.ShortName(matches.target), count: count });
+      },
+      outputStrings: {
+        text: {
+          en: '${player}: ${count}',
+          de: '${player}: ${count}',
+          fr: '${player}: ${count}',
+          ja: '${player}: ${count}',
+          cn: '${player}生命计算法: ${count}',
+          ko: '${player}: ${count}',
+        },
       },
     },
     {
@@ -342,27 +350,30 @@
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '1663' }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '1663' }),
       condition: Conditions.caresAboutPhysical(),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Shared Tankbuster on YOU',
-            de: 'geteilter Tankbuster auf DIR',
-            fr: 'Tank buster à partager sur VOUS',
-            ja: '自分にタンクシェア',
-            cn: '分摊死刑点名',
-            ko: '쉐어 탱버 대상자',
-          };
-        }
-        if (data.role == 'tank' || data.role == 'healer') {
-          return {
-            en: 'Shared Tankbuster on ' + data.ShortName(matches.target),
-            de: 'geteilter Tankbuster on ' + data.ShortName(matches.target),
-            fr: 'Tank buster à partager sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + ' にタンクシェア',
-            cn: '分摊死刑点 ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 쉐어 탱버',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.sharedTankbusterOnYou();
+
+        if (data.role == 'tank' || data.role == 'healer')
+          return output.sharedTankbusterOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        sharedTankbusterOnYou: {
+          en: 'Shared Tankbuster on YOU',
+          de: 'geteilter Tankbuster auf DIR',
+          fr: 'Tank buster à partager sur VOUS',
+          ja: '自分にタンクシェア',
+          cn: '分摊死刑点名',
+          ko: '쉐어 탱버 대상자',
+        },
+        sharedTankbusterOn: {
+          en: 'Shared Tankbuster on ${player}',
+          de: 'geteilter Tankbuster on ${player}',
+          fr: 'Tank buster à partager sur ${player}',
+          ja: '${player} にタンクシェア',
+          cn: '分摊死刑点 ${player}',
+          ko: '"${player}" 쉐어 탱버',
+        },
       },
     },
     {
@@ -403,44 +414,48 @@
         return data.longNeedleStack && data.longNeedlePrey;
       },
       suppressSeconds: 10,
-      alarmText: function(data) {
-        if (data.longNeedlePrey.includes(data.me)) {
-          return {
-            en: 'Prey: Get Out',
-            de: 'Makiert: Geh raus',
-            fr: 'Marquage : Sortez',
-            ja: '赤いマーク: 外へ',
-            cn: '红点名离开人群',
-            ko: '빨간징: 밖으로',
-          };
-        }
+      alarmText: function(data, _, output) {
+        if (data.longNeedlePrey.includes(data.me))
+          return output.preyGetOut();
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (data.longNeedlePrey.includes(data.me))
           return;
         let target = data.longNeedleStack;
-        if (target == data.me) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR sammeln',
-            fr: 'Package sur VOUS',
-            ja: '自分にスタック',
-            cn: '集合点名',
-            ko: '쉐어징 대상자',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(target),
-          de: 'Auf ' + data.ShortName(target) + ' sammeln',
-          fr: 'Packez-vous sur ' + data.ShortName(target),
-          ja: data.ShortName(target) + 'にスタック',
-          cn: '靠近 ' + data.ShortName(target) + '集合',
-          ko: '"' + data.ShortName(target) + '" 쉐어징',
-        };
+        if (target == data.me)
+          return output.stackOnYou();
+
+        return output.stackOn({ player: data.ShortName(target) });
       },
       run: function(data) {
         delete data.longNeedleStack;
         delete data.longNeedlePrey;
+      },
+      outputStrings: {
+        stackOnYou: {
+          en: 'Stack on YOU',
+          de: 'Auf DIR sammeln',
+          fr: 'Package sur VOUS',
+          ja: '自分にスタック',
+          cn: '集合点名',
+          ko: '쉐어징 대상자',
+        },
+        stackOn: {
+          en: 'Stack on ${player}',
+          de: 'Auf ${player} sammeln',
+          fr: 'Packez-vous sur ${player}',
+          ja: '${player}にスタック',
+          cn: '靠近 ${player}集合',
+          ko: '"${player}" 쉐어징',
+        },
+        preyGetOut: {
+          en: 'Prey: Get Out',
+          de: 'Makiert: Geh raus',
+          fr: 'Marquage : Sortez',
+          ja: '赤いマーク: 外へ',
+          cn: '红点名离开人群',
+          ko: '빨간징: 밖으로',
+        },
       },
     },
     {
@@ -451,29 +466,33 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '1665' }),
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '1665' }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '1665' }),
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         if (data.me != matches.target)
           return;
-        return {
+        return output.superJumpOnYou();
+      },
+      infoText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return;
+        return output.superJumpOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        superJumpOn: {
+          en: 'Super Jump on ${player}',
+          de: 'Supersprung auf ${player}',
+          fr: 'Super saut sur ${player}',
+          ja: '${player}にスーパージャンプ',
+          cn: '超级跳点${player}',
+          ko: '"${player}" 슈퍼 점프',
+        },
+        superJumpOnYou: {
           en: 'Super Jump on YOU',
           de: 'Supersprung auf DIR',
           fr: 'Super saut sur VOUS',
           ja: '自分にスーパージャンプ',
           cn: '超级跳点名',
           ko: '슈퍼 점프 대상자',
-        };
-      },
-      infoText: function(data, matches) {
-        if (data.me == matches.target)
-          return;
-        return {
-          en: 'Super Jump on ' + data.ShortName(matches.target),
-          de: 'Supersprung auf ' + data.ShortName(matches.target),
-          fr: 'Super saut sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にスーパージャンプ',
-          cn: '超级跳点' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '" 슈퍼 점프',
-        };
+        },
       },
     },
     {
@@ -798,32 +817,34 @@
     {
       id: 'A8S Compressed Water',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      alarmText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Water on YOU',
-            de: 'Wasser auf DIR',
-            fr: 'Eau sur VOUS',
-            ja: '自分に水',
-            cn: '水点名',
-            ko: '물징 대상자',
-          };
-        }
+      alarmText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.waterOnYou();
       },
-      infoText: function(data, matches) {
-        if (data.me != matches.target) {
-          return {
-            en: 'Water on ' + data.ShortName(matches.target),
-            de: 'Wasser auf ' + data.ShortName(matches.target),
-            fr: 'Eau sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'に水',
-            cn: '水点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 물징',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me != matches.target)
+          return output.waterOn({ player: data.ShortName(matches.target) });
       },
       run: function(data, matches) {
         data.water = matches.target;
+      },
+      outputStrings: {
+        waterOn: {
+          en: 'Water on ${player}',
+          de: 'Wasser auf ${player}',
+          fr: 'Eau sur ${player}',
+          ja: '${player}に水',
+          cn: '水点${player}',
+          ko: '"${player}" 물징',
+        },
+        waterOnYou: {
+          en: 'Water on YOU',
+          de: 'Wasser auf DIR',
+          fr: 'Eau sur VOUS',
+          ja: '自分に水',
+          cn: '水点名',
+          ko: '물징 대상자',
+        },
       },
     },
     {
@@ -840,17 +861,20 @@
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 5;
       },
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (!data.water)
           return;
-        return {
-          en: 'Water Soon on ' + data.ShortName(data.water),
-          de: 'Wasser bald auf ' + data.ShortName(data.water),
-          fr: 'Eau bientôt sur ' + data.ShortName(data.water),
-          ja: 'まもなく、' + data.ShortName(data.water) + 'に頭割り',
-          cn: '马上水分摊' + data.ShortName(data.water),
-          ko: '"' + data.ShortName(data.water) + '" 물징 곧 터짐',
-        };
+        return output.text({ player: data.ShortName(data.water) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Water Soon on ${player}',
+          de: 'Wasser bald auf ${player}',
+          fr: 'Eau bientôt sur ${player}',
+          ja: 'まもなく、${player}に頭割り',
+          cn: '马上水分摊${player}',
+          ko: '"${player}" 물징 곧 터짐',
+        },
       },
     },
     {

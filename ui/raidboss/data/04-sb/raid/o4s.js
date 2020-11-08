@@ -168,19 +168,21 @@
         data.flareTargets.push(matches.target);
         return data.flareTargets.length == 3;
       },
-      alarmText: function(data) {
-        if (data.flareTargets.includes(data.me)) {
-          return {
-            en: 'Flare on you',
-            de: 'Flare auf dir',
-            ja: '自分にフレア',
-            cn: '核爆点名',
-            ko: '플레어 대상자',
-          };
-        }
+      alarmText: function(data, _, output) {
+        if (data.flareTargets.includes(data.me))
+          return output.text();
       },
       run: function(data) {
         delete data.flareTargets;
+      },
+      outputStrings: {
+        text: {
+          en: 'Flare on you',
+          de: 'Flare auf dir',
+          ja: '自分にフレア',
+          cn: '核爆点名',
+          ko: '플레어 대상자',
+        },
       },
     },
 
@@ -347,45 +349,49 @@
         if (data.shouldDieOnLaser())
           return data.dieDieDieSound;
       },
-      alarmText: function(data) {
-        if (data.shouldDieOnLaser()) {
-          return {
-            en: 'Die on Inside',
-            de: 'Innen sterben',
-            ja: '中に死ぬ',
-            cn: '在里面死亡',
-            ko: '안쪽 레이저 맞기',
-          };
-        }
+      alarmText: function(data, _, output) {
+        if (data.shouldDieOnLaser())
+          return output.dieOnInside();
       },
-      alertText: function(data) {
-        if (!data.shouldDieOnLaser()) {
-          return {
-            en: 'Go Outside',
-            de: 'Nach Außen',
-            ja: '外に出る',
-            cn: '去外面',
-            ko: '바깥으로',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (!data.shouldDieOnLaser())
+          return output.goOutside();
       },
-      tts: function(data) {
-        if (data.shouldDieOnLaser()) {
-          return {
-            en: 'die in in in',
-            de: 'sterben rein rein rein',
-            ja: '死になさい！',
-            cn: '死亡',
-            ko: '안쪽 레이저 맞기',
-          };
-        }
-        return {
+      tts: function(data, _, output) {
+        if (data.shouldDieOnLaser())
+          return output.dieInInIn();
+
+        return output.outOutOut();
+      },
+      outputStrings: {
+        goOutside: {
+          en: 'Go Outside',
+          de: 'Nach Außen',
+          ja: '外に出る',
+          cn: '去外面',
+          ko: '바깥으로',
+        },
+        dieOnInside: {
+          en: 'Die on Inside',
+          de: 'Innen sterben',
+          ja: '中に死ぬ',
+          cn: '在里面死亡',
+          ko: '안쪽 레이저 맞기',
+        },
+        dieInInIn: {
+          en: 'die in in in',
+          de: 'sterben rein rein rein',
+          ja: '死になさい！',
+          cn: '死亡',
+          ko: '안쪽 레이저 맞기',
+        },
+        outOutOut: {
           en: 'out out out',
           de: 'raus raus raus',
           ja: '出ていて！',
           cn: '出去出去',
           ko: '바깥으로',
-        };
+        },
       },
     },
     {
@@ -401,45 +407,49 @@
         if (data.shouldDieOnLaser())
           return data.dieDieDieSound;
       },
-      alarmText: function(data) {
-        if (data.shouldDieOnLaser()) {
-          return {
-            en: 'Die on Outside',
-            de: 'Außen sterben',
-            ja: '外に死ぬ',
-            cn: '在外面死亡',
-            ko: '바깥 레이저 맞기',
-          };
-        }
+      alarmText: function(data, _, output) {
+        if (data.shouldDieOnLaser())
+          return output.dieOnOutside();
       },
-      alertText: function(data) {
-        if (!data.shouldDieOnLaser()) {
-          return {
-            en: 'Go Inside',
-            de: 'Rein gehen',
-            ja: '中に入る',
-            cn: '去里面',
-            ko: '안으로',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (!data.shouldDieOnLaser())
+          return output.goInside();
       },
-      tts: function(data) {
-        if (data.shouldDieOnLaser()) {
-          return {
-            en: 'die out out out',
-            de: 'sterben raus raus raus',
-            ja: '死になさい！',
-            cn: '在外面死亡',
-            ko: '바깥 레이저 맞기',
-          };
-        }
-        return {
+      tts: function(data, _, output) {
+        if (data.shouldDieOnLaser())
+          return output.dieOutOutOut();
+
+        return output.inInIn();
+      },
+      outputStrings: {
+        goInside: {
+          en: 'Go Inside',
+          de: 'Rein gehen',
+          ja: '中に入る',
+          cn: '去里面',
+          ko: '안으로',
+        },
+        dieOnOutside: {
+          en: 'Die on Outside',
+          de: 'Außen sterben',
+          ja: '外に死ぬ',
+          cn: '在外面死亡',
+          ko: '바깥 레이저 맞기',
+        },
+        dieOutOutOut: {
+          en: 'die out out out',
+          de: 'sterben raus raus raus',
+          ja: '死になさい！',
+          cn: '在外面死亡',
+          ko: '바깥 레이저 맞기',
+        },
+        inInIn: {
           en: 'in in in',
           de: 'rein rein rein',
           ja: '入れ入れ',
           cn: '进去进去',
           ko: '안으로',
-        };
+        },
       },
     },
     {
@@ -455,69 +465,78 @@
         if (data.shouldDieOnLaser())
           return data.dieDieDieSound;
       },
-      alarmText: function(data) {
+      alarmText: function(data, _, output) {
         if (!data.shouldDieOnLaser())
           return;
 
-        if (data.blackWound) {
-          return {
-            en: 'Die On Right Blue',
-            de: 'In Blauem rechts sterben',
-            ja: '右の青色に死ぬ',
-            cn: '在右边蓝色死亡',
-            ko: '오른쪽 파랑 맞기',
-          };
-        } else if (data.whiteWound) {
-          return {
-            en: 'Die On Left Purple',
-            de: 'In Pinkem links sterben',
-            ja: '左の紫色に死ぬ',
-            cn: '在左边紫色死亡',
-            ko: '왼쪽 보라 맞기',
-          };
-        }
-        return {
-          en: 'Die on color sides',
-          de: 'Auf Farben sterben',
-          ja: '同じ色に死ぬ',
-          cn: '在同色一边死亡',
-          ko: '색깔 맞기',
-        };
+        if (data.blackWound)
+          return output.dieOnRightBlue();
+        else if (data.whiteWound)
+          return output.dieOnLeftPurple();
+
+        return output.dieOnColorSides();
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (data.shouldDieOnLaser())
           return;
 
-        if (data.blackWound) {
-          return {
-            en: 'Left On Purple',
-            de: 'Links auf Pink',
-            ja: '左の紫色に',
-            cn: '左边紫色',
-            ko: '왼쪽 보라',
-          };
-        } else if (data.whiteWound) {
-          return {
-            en: 'Right On Blue',
-            de: 'Rechts auf Blau',
-            ja: '右の青色に',
-            cn: '右边蓝色',
-            ko: '오른쪽 파랑',
-          };
-        }
-        return {
+        if (data.blackWound)
+          return output.leftOnPurple();
+        else if (data.whiteWound)
+          return output.rightOnBlue();
+
+        return output.colorSides();
+      },
+      tts: (data, _, output) => output.colors(),
+      outputStrings: {
+        leftOnPurple: {
+          en: 'Left On Purple',
+          de: 'Links auf Pink',
+          ja: '左の紫色に',
+          cn: '左边紫色',
+          ko: '왼쪽 보라',
+        },
+        rightOnBlue: {
+          en: 'Right On Blue',
+          de: 'Rechts auf Blau',
+          ja: '右の青色に',
+          cn: '右边蓝色',
+          ko: '오른쪽 파랑',
+        },
+        colorSides: {
           en: 'Color sides',
           de: 'Farbige Seiten',
           ja: '同じ色に',
           cn: '颜色一侧',
           ko: '색깔 맞기',
-        };
-      },
-      tts: {
-        en: 'colors',
-        de: 'Farben',
-        ja: '色',
-        ko: '색깔',
+        },
+        dieOnRightBlue: {
+          en: 'Die On Right Blue',
+          de: 'In Blauem rechts sterben',
+          ja: '右の青色に死ぬ',
+          cn: '在右边蓝色死亡',
+          ko: '오른쪽 파랑 맞기',
+        },
+        dieOnLeftPurple: {
+          en: 'Die On Left Purple',
+          de: 'In Pinkem links sterben',
+          ja: '左の紫色に死ぬ',
+          cn: '在左边紫色死亡',
+          ko: '왼쪽 보라 맞기',
+        },
+        dieOnColorSides: {
+          en: 'Die on color sides',
+          de: 'Auf Farben sterben',
+          ja: '同じ色に死ぬ',
+          cn: '在同色一边死亡',
+          ko: '색깔 맞기',
+        },
+        colors: {
+          en: 'colors',
+          de: 'Farben',
+          ja: '色',
+          ko: '색깔',
+        },
       },
     },
     {
@@ -533,70 +552,79 @@
         if (data.shouldDieOnLaser())
           return data.dieDieDieSound;
       },
-      alarmText: function(data) {
+      alarmText: function(data, _, output) {
         if (!data.shouldDieOnLaser())
           return;
 
-        if (data.blackWound) {
-          return {
-            en: 'Die On Left Blue',
-            de: 'Auf Blauem links sterben',
-            ja: '左の青色に死ぬ',
-            cn: '在左边蓝色死亡',
-            ko: '왼쪽 파랑 맞기',
-          };
-        } else if (data.whiteWound) {
-          return {
-            en: 'Die On Right Purple',
-            de: 'Auf Pinkem rechts sterben',
-            ja: '右の紫色に死ぬ',
-            cn: '在右边紫色死亡',
-            ko: '오른쪽 보라 맞기',
-          };
-        }
-        return {
-          en: 'Die on color sides',
-          de: 'Auf Farben sterben',
-          ja: '同じ色に死ぬ',
-          cn: '在同色一边死亡',
-          ko: '색깔 맞기',
-        };
+        if (data.blackWound)
+          return output.dieOnLeftBlue();
+        else if (data.whiteWound)
+          return output.dieOnRightPurple();
+
+        return output.dieOnColorSides();
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (data.shouldDieOnLaser())
           return;
 
-        if (data.blackWound) {
-          return {
-            en: 'Be Right On Purple',
-            de: 'Rechts auf Pink',
-            ja: '右の紫色に',
-            cn: '去右边紫色',
-            ko: '오른쪽 보라 맞기',
-          };
-        } else if (data.whiteWound) {
-          return {
-            en: 'Be Left On Blue',
-            de: 'Links auf Blau',
-            ja: '左の青色に',
-            cn: '去左边蓝色',
-            ko: '왼쪽 파랑 맞기',
-          };
-        }
-        return {
+        if (data.blackWound)
+          return output.beRightOnPurple();
+        else if (data.whiteWound)
+          return output.beLeftOnBlue();
+
+        return output.colorSides();
+      },
+      tts: (data, _, output) => output.colors(),
+      outputStrings: {
+        beRightOnPurple: {
+          en: 'Be Right On Purple',
+          de: 'Rechts auf Pink',
+          ja: '右の紫色に',
+          cn: '去右边紫色',
+          ko: '오른쪽 보라 맞기',
+        },
+        beLeftOnBlue: {
+          en: 'Be Left On Blue',
+          de: 'Links auf Blau',
+          ja: '左の青色に',
+          cn: '去左边蓝色',
+          ko: '왼쪽 파랑 맞기',
+        },
+        colorSides: {
           en: 'Color sides',
           de: 'Farbige Seiten',
           ja: '同じ色に',
           cn: '颜色一侧',
           ko: '색깔 방향',
-        };
-      },
-      tts: {
-        en: 'colors',
-        de: 'farben',
-        ja: '色',
-        cn: '颜色',
-        ko: '색깔',
+        },
+        dieOnLeftBlue: {
+          en: 'Die On Left Blue',
+          de: 'Auf Blauem links sterben',
+          ja: '左の青色に死ぬ',
+          cn: '在左边蓝色死亡',
+          ko: '왼쪽 파랑 맞기',
+        },
+        dieOnRightPurple: {
+          en: 'Die On Right Purple',
+          de: 'Auf Pinkem rechts sterben',
+          ja: '右の紫色に死ぬ',
+          cn: '在右边紫色死亡',
+          ko: '오른쪽 보라 맞기',
+        },
+        dieOnColorSides: {
+          en: 'Die on color sides',
+          de: 'Auf Farben sterben',
+          ja: '同じ色に死ぬ',
+          cn: '在同色一边死亡',
+          ko: '색깔 맞기',
+        },
+        colors: {
+          en: 'colors',
+          de: 'farben',
+          ja: '色',
+          cn: '颜色',
+          ko: '색깔',
+        },
       },
     },
     {
@@ -631,48 +659,55 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2416', source: 'ネオエクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2416', source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2416', source: '네오 엑스데스', capture: false }),
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (data.allaganField) {
-          if (data.role == 'tank') {
-            return {
-              en: 'Charge: be behind other tank',
-              de: 'Aufladung: hinter anderen Tank',
-              ja: '突進: 他のタンクの後ろに',
-              cn: '站在另一个坦克后面',
-              ko: '탱커 뒤에 있기',
-            };
-          }
-          return {
-            en: 'Charge: be in the very back',
-            de: 'Aufladung: Ganz nach hinten',
-            ja: '突進: 後ろの遠くへ',
-            cn: '去后面',
-            ko: '가장 뒤에 있기',
-          };
+          if (data.role == 'tank')
+            return output.chargeBeBehindOtherTank();
+
+          return output.chargeBeInTheVeryBack();
         }
-        if (data.role == 'tank') {
-          return {
-            en: 'Charge: be in front!',
-            de: 'Aufladung: Ganz nach vorn',
-            ja: '突進: 前方に',
-            cn: '去前面',
-            ko: '앞쪽으로',
-          };
-        }
-        return {
+        if (data.role == 'tank')
+          return output.chargeBeInFront();
+
+        return output.chargeBeBehindTanks();
+      },
+      tts: (data, _, output) => output.charge(),
+      outputStrings: {
+        chargeBeBehindOtherTank: {
+          en: 'Charge: be behind other tank',
+          de: 'Aufladung: hinter anderen Tank',
+          ja: '突進: 他のタンクの後ろに',
+          cn: '站在另一个坦克后面',
+          ko: '탱커 뒤에 있기',
+        },
+        chargeBeInTheVeryBack: {
+          en: 'Charge: be in the very back',
+          de: 'Aufladung: Ganz nach hinten',
+          ja: '突進: 後ろの遠くへ',
+          cn: '去后面',
+          ko: '가장 뒤에 있기',
+        },
+        chargeBeInFront: {
+          en: 'Charge: be in front!',
+          de: 'Aufladung: Ganz nach vorn',
+          ja: '突進: 前方に',
+          cn: '去前面',
+          ko: '앞쪽으로',
+        },
+        chargeBeBehindTanks: {
           en: 'Charge: be behind tanks',
           de: 'Aufladung: Hinter die Tanks',
           ja: '突進: タンクの後ろに',
           cn: '站在坦克后面',
           ko: '탱커 뒤로',
-        };
-      },
-      tts: {
-        en: 'charge',
-        de: 'aufladung',
-        cn: '充能',
-        ja: '無の氾濫',
-        ko: '무의 범람',
+        },
+        charge: {
+          en: 'charge',
+          de: 'aufladung',
+          cn: '充能',
+          ja: '無の氾濫',
+          ko: '무의 범람',
+        },
       },
     },
     {
@@ -683,30 +718,28 @@
       netRegexJa: NetRegexes.startsUsing({ id: '241C', source: 'ネオエクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '241C', source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '241C', source: '네오 엑스데스', capture: false }),
-      alertText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Double Attack',
-            de: 'Doppelangriff',
-            ja: 'ダブルアタック',
-            cn: '双重攻击',
-            ko: '이중 공격',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.role == 'tank')
+          return output.doubleAttack();
+
+        return output.doubleAttackGetOut();
+      },
+      tts: (data, _, output) => output.doubleAttack(),
+      outputStrings: {
+        doubleAttack: {
+          en: 'Double Attack',
+          de: 'Doppelangriff',
+          ja: 'ダブルアタック',
+          cn: '双重攻击',
+          ko: '이중 공격',
+        },
+        doubleAttackGetOut: {
           en: 'Double Attack: Get out',
           de: 'Doppelangriff: Raus da',
           ja: 'ダブルアタック: 外へ',
           cn: '双重攻击：去外面',
           ko: '이중 공격: 밖으로',
-        };
-      },
-      tts: {
-        en: 'double attack',
-        de: 'Doppelangriff',
-        ja: 'ダブルアタック',
-        cn: '双重攻击',
-        ko: '이중 공격',
+        },
       },
     },
     { // Grand Cross Alpha.
@@ -717,19 +750,23 @@
       netRegexJa: NetRegexes.startsUsing({ id: '242B', source: 'ネオエクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '242B', source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '242B', source: '네오 엑스데스', capture: false }),
-      infoText: {
-        en: 'Grand Cross Alpha: Go to middle',
-        de: 'Supernova Alpha: In die Mitte',
-        ja: 'グランドクロス・アルファ: 中央に',
-        cn: '前往中间集合',
+      infoText: (data, _, output) => output.text(),
+      tts: (data, _, output) => output.tts(),
+      outputStrings: {
+        text: {
+          en: 'Grand Cross Alpha: Go to middle',
+          de: 'Supernova Alpha: In die Mitte',
+          ja: 'グランドクロス・アルファ: 中央に',
+          cn: '前往中间集合',
         ko: '그랜드크로스: 알파, 중앙으로',
-      },
-      tts: {
-        en: 'go to middle',
-        de: 'In die Mitte',
-        ja: '中央に',
-        cn: '前往中间',
+        },
+        tts: {
+          en: 'go to middle',
+          de: 'In die Mitte',
+          ja: '中央に',
+          cn: '前往中间',
         ko: '중앙으로',
+        },
       },
     },
     {
@@ -740,59 +777,67 @@
       netRegexJa: NetRegexes.startsUsing({ id: '242C', source: 'ネオエクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '242C', source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '242C', source: '네오 엑스데스', capture: false }),
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Grand Cross Delta: Be in front of boss',
-            de: 'Supernova Delta: Vor den Boss',
-            ja: 'グランドクロス・デルタ: ボスの前に',
-            cn: '站在boss前面',
-            ko: '그랜드크로스: 델타, 보스 범위 끝으로',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Grand Cross Delta: Be on sides of boss',
-            de: 'Supernova Delta: An die Seiten vom Boss',
-            ja: 'グランドクロス・デルタ: ボスの横に',
-            cn: '站在boss后面',
-            ko: '그랜드크로스: 델타, 보스 옆쪽으로',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.role == 'tank')
+          return output.beInFront();
+
+        if (data.role == 'healer')
+          return output.beOnSides();
+
+        return output.beInsideBoss();
+      },
+      tts: function(data, _, output) {
+        if (data.role == 'tank')
+          return output.beInFrontTTS();
+
+        if (data.role == 'healer')
+          return output.beOnSidesTTS();
+
+        return output.beInsideBossTTS();
+      },
+      outputStrings: {
+        beInFront: {
+          en: 'Grand Cross Delta: Be in front of boss',
+          de: 'Supernova Delta: Vor den Boss',
+          ja: 'グランドクロス・デルタ: ボスの前に',
+          cn: '站在boss前面',
+          ko: '그랜드크로스: 델타, 보스 범위 끝으로',
+        },
+        beOnSides: {
+          en: 'Grand Cross Delta: Be on sides of boss',
+          de: 'Supernova Delta: An die Seiten vom Boss',
+          ja: 'グランドクロス・デルタ: ボスの横に',
+          cn: '站在boss后面',
+          ko: '그랜드크로스: 델타, 보스 옆쪽으로',
+        },
+        beInsideBoss: {
           en: 'Grand Cross Delta: Inside boss',
           de: 'Supernvoa Delta: In den Boss',
           ja: 'グランドクロス・デルタ: ボスの真ん中に',
           cn: '站在boss中间',
           ko: '그랜드크로스: 델타, 보스 안쪽으로',
-        };
-      },
-      tts: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'delta: be in front',
-            de: 'delta: vor den boss',
-            ja: 'ボスの前に',
-            cn: '去前面',
-            ko: '델타, 보스 범위 끝으로',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'delta: be on sides',
-            de: 'delta: an die seiten',
-            ja: 'ボスの横に',
-            cn: '去两侧',
-            ko: '델타, 보스 옆쪽으로',
-          };
-        }
-        return {
+        },
+        beInFrontTTS: {
+          en: 'delta: be in front',
+          de: 'delta: vor den boss',
+          ja: 'ボスの前に',
+          cn: '去前面',
+          ko: '델타, 보스 범위 끝으로',
+        },
+        beOnSidesTTS: {
+          en: 'delta: be on sides',
+          de: 'delta: an die seiten',
+          ja: 'ボスの横に',
+          cn: '去两侧',
+          ko: '델타, 보스 옆쪽으로',
+        },
+        beInsideBossTTS: {
           en: 'delta: be inside boss',
           de: 'delta: in den boss',
           ja: 'ボスの真ん中に',
           cn: '去boss中间',
           ko: '델타, 보스 안쪽으로',
-        };
+        },
       },
     },
     {
@@ -823,23 +868,27 @@
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 4;
       }, // 4 second warning.
-      alarmText: function(data) {
-        if (data.phase == 'omega') {
-          return {
-            en: 'look away and stop',
-            de: 'wegschauen und stehenbleiben',
-            ja: '見ない、動かない',
-            cn: '看外面并静止',
-            ko: '바라보지 말고 멈추기',
-          };
-        }
-        return {
+      alarmText: function(data, _, output) {
+        if (data.phase == 'omega')
+          return output.lookAwayAndStop();
+
+        return output.stop();
+      },
+      outputStrings: {
+        lookAwayAndStop: {
+          en: 'look away and stop',
+          de: 'wegschauen und stehenbleiben',
+          ja: '見ない、動かない',
+          cn: '看外面并静止',
+          ko: '바라보지 말고 멈추기',
+        },
+        stop: {
           en: 'stop',
           de: 'Stopp',
           ja: '動かない',
           cn: '静止',
           ko: '멈추기',
-        };
+        },
       },
     },
     {
@@ -848,19 +897,15 @@
       condition: function(data, matches) {
         return matches.target == data.me && data.phase == 'delta';
       },
-      infoText: {
-        en: 'Acceleration Bomb',
-        de: 'Beschleunigungsbombe',
-        ja: '加速度爆弾',
-        cn: '加速度炸弹',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Acceleration Bomb',
+          de: 'Beschleunigungsbombe',
+          ja: '加速度爆弾',
+          cn: '加速度炸弹',
         ko: '가속도 폭탄',
-      },
-      tts: {
-        en: 'bomb',
-        de: 'bombe',
-        ja: '加速度爆弾',
-        cn: '加速度炸弹',
-        ko: '가속도 폭탄',
+        },
       },
     },
     {
@@ -872,19 +917,15 @@
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 5;
       },
-      alertText: {
-        en: 'shriek: get mid, look away',
-        de: 'Schrei: Zur mitte und wegschauen',
-        ja: '呪詛の叫声: 中へ、外に向け',
-        cn: '石化点名',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'shriek: get mid, look away',
+          de: 'Schrei: Zur mitte und wegschauen',
+          ja: '呪詛の叫声: 中へ、外に向け',
+          cn: '石化点名',
         ko: '중앙으로, 바깥보기',
-      },
-      tts: {
-        en: 'shriek',
-        de: 'schrei',
-        ja: '呪詛の叫声',
-        cn: '石化',
-        ko: '비명',
+        },
       },
     },
     {
@@ -901,33 +942,29 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alarmText: function(data) {
+      alarmText: function(data, _, output) {
         // Not clear where to tell the healer where to go on delta
         // due to picking a side for uptime strat, or other strats.
-        if (data.phase == 'delta') {
-          return {
-            en: 'water on you',
-            de: 'wasser auf dir',
-            ja: '自分に水属性圧縮',
-            cn: '水点名',
-            ko: '물 대상자',
-          };
-        } else if (data.phase == 'omega') {
-          return {
-            en: 'water: stack under neo',
-            de: 'Wasser: Unter Neo stacken',
-            ja: '水属性圧縮: ボスの下に頭割り',
-            cn: '去下面',
-            ko: '물: 보스 아래 모이기',
-          };
-        }
+        if (data.phase == 'delta')
+          return output.waterOnYou();
+        else if (data.phase == 'omega')
+          return output.waterStackUnderNeo();
       },
-      tts: {
-        en: 'water stack',
-        de: 'Wasser stek',
-        ja: '頭割り',
-        cn: '水分摊',
-        ko: '물 모이기',
+      outputStrings: {
+        waterOnYou: {
+          en: 'water on you',
+          de: 'wasser auf dir',
+          ja: '自分に水属性圧縮',
+          cn: '水点名',
+          ko: '물 대상자',
+        },
+        waterStackUnderNeo: {
+          en: 'water: stack under neo',
+          de: 'Wasser: Unter Neo stacken',
+          ja: '水属性圧縮: ボスの下に頭割り',
+          cn: '去下面',
+          ko: '물: 보스 아래 모이기',
+        },
       },
     },
     {
@@ -938,32 +975,29 @@
         return data.phase == 'delta' && matches.target == data.me && data.role == 'tank';
       },
       delaySeconds: 0.5,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         // Something went awry, or maybe healers dead.  Just say stack on water anyway,
         // instead of trying to be smart when the healers die.
-        if (data.waterHealer) {
-          return {
-            en: 'Stack on ' + data.waterHealer,
-            de: 'Stack auf ' + data.waterHealer,
-            ja: data.waterHealer + 'に頭割り',
-            cn: '分摊于' + data.waterHealer,
-            ko: '"' + data.waterHealer + '"에게 모이기',
-          };
-        }
-        return {
+        if (data.waterHealer)
+          return output.stackOnWaterhealer({ waterHealer: data.waterHealer });
+
+        return output.stackOnWater();
+      },
+      outputStrings: {
+        stackOnWaterhealer: {
+          en: 'Stack on ${waterHealer}',
+          de: 'Stack auf ${waterHealer}',
+          ja: '${waterHealer}に頭割り',
+          cn: '分摊于${waterHealer}',
+          ko: '"' + data.waterHealer + '"에게 모이기',
+        },
+        stackOnWater: {
           en: 'Stack on water',
           de: 'Bei Wasser stacken',
           ja: '水持ちと頭割り',
           cn: '和水点名分摊',
           ko: '물 쉐어',
-        };
-      },
-      tts: {
-        en: 'water stack',
-        de: 'wasser stek',
-        ja: '頭割り',
-        cn: '水分摊',
-        ko: '물 쉐어',
+        },
       },
     },
     {
@@ -973,19 +1007,15 @@
       condition: function(data, matches) {
         return data.phase == 'delta' && matches.target == data.me && data.role != 'tank';
       },
-      infoText: {
-        en: 'Beyond Death',
-        de: 'Jenseis Des Jenseits',
-        ja: '死の超越',
-        cn: '超越死亡',
-        ko: '죽음 초월',
-      },
-      tts: {
-        en: 'death',
-        de: 'tod',
-        ja: '死',
-        cn: '找死',
-        ko: '죽음 초월',
+      infoText: (data, _, output) => output.beyondDeath(),
+      outputStrings: {
+        beyondDeath: {
+          en: 'Beyond Death',
+          de: 'Jenseis Des Jenseits',
+          ja: '死の超越',
+          cn: '超越死亡',
+          ko: '죽음 초월',
+        },
       },
     },
     {
@@ -996,31 +1026,28 @@
         return data.phase == 'omega' && matches.target == data.me;
       },
       delaySeconds: 0.5,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         // Good for both dps and tanks.
-        if (data.waterHealer) {
-          return {
-            en: 'Stack under boss on ' + data.waterHealer,
-            de: 'Unter Boss auf ' + data.waterHealer + ' stacken',
-            ja: 'ボスの下に' + data.waterHealer + 'と頭割り',
-            cn: '分摊于' + data.waterHealer,
-            ko: '보스 아래에서 "' + data.waterHealer + '"에게 모이기',
-          };
-        }
-        return {
+        if (data.waterHealer)
+          return output.stackUnderBossOnWaterhealer({ waterHealer: data.waterHealer });
+
+        return output.stackOnWater();
+      },
+      outputStrings: {
+        stackUnderBossOnWaterhealer: {
+          en: 'Stack under boss on ${waterHealer}',
+          de: 'Unter Boss auf ${waterHealer} stacken',
+          ja: 'ボスの下に${waterHealer}と頭割り',
+          cn: '分摊于${waterHealer}',
+          ko: '보스 아래에서 "' + data.waterHealer + '"에게 모이기',
+        },
+        stackOnWater: {
           en: 'Stack on water',
           de: 'Auf Wasser stacken',
           ja: '水と頭割り',
           cn: '和水点名分摊',
           ko: '물 쉐어',
-        };
-      },
-      tts: {
-        en: 'water stack',
-        de: 'Wasser stek',
-        ja: '頭割り',
-        cn: '水分摊',
-        ko: '물 쉐어',
+        },
       },
     },
     {
@@ -1057,22 +1084,18 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2417', source: 'ネオエクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2417', source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2417', source: '네오 엑스데스', capture: false }),
-      alertText: {
-        en: 'Almagest',
-        de: 'Almagest',
-        ja: 'アルマゲスト',
-        cn: '大AOE',
-        ko: '알마게스트',
-      },
-      tts: {
-        en: 'almagest',
-        de: 'almagest',
-        ja: 'アルマゲスト',
-        cn: '大AOE',
-        ko: '알마게스트',
-      },
+      alertText: (data, _, output) => output.almagest(),
       run: function(data) {
         data.almagestCount = (data.almagestCount || 0) + 1;
+      },
+      outputStrings: {
+        almagest: {
+          en: 'Almagest',
+          de: 'Almagest',
+          ja: 'アルマゲスト',
+          cn: '大AOE',
+        ko: '알마게스트',
+        },
       },
     },
     {
@@ -1088,48 +1111,45 @@
         data.flareTargets.push(matches.target);
         return data.flareTargets.length == 3;
       },
-      alarmText: function(data) {
-        if (data.flareTargets.includes(data.me)) {
-          return {
-            en: 'Flare on you',
-            de: 'Flare auf dir',
-            ja: '自分にフレア',
-            cn: '核爆点名',
-            ko: '플레어 대상자',
-          };
-        }
+      alarmText: function(data, _, output) {
+        if (data.flareTargets.includes(data.me))
+          return output.flareOnYou();
       },
-      infoText: function(data) {
-        if (!data.flareTargets.includes(data.me)) {
-          return {
-            en: 'Light and Darkness: Stack',
-            de: 'Licht und Dunkel: Stack',
-            ja: 'ライト・アンド・ダークネス: 頭割り',
-            cn: '分摊点名',
-            ko: '빛과 어둠: 모이기',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (!data.flareTargets.includes(data.me))
+          return output.stack();
       },
-      tts: function(data) {
-        if (data.flareTargets.includes(data.me)) {
-          return {
-            en: 'flare on you',
-            de: 'fleer auf dir',
-            ja: '自分にフレア',
-            cn: '核爆点名',
-            ko: '플레어 대상자',
-          };
-        }
-        return {
+      tts: function(data, _, output) {
+        if (data.flareTargets.includes(data.me))
+          return output.flareOnYou();
+
+        return output.stackTTS();
+      },
+      run: function(data) {
+        delete data.flareTargets;
+      },
+      outputStrings: {
+        stack: {
+          en: 'Light and Darkness: Stack',
+          de: 'Licht und Dunkel: Stack',
+          ja: 'ライト・アンド・ダークネス: 頭割り',
+          cn: '分摊点名',
+          ko: '빛과 어둠: 모이기',
+        },
+        flareOnYou: {
+          en: 'Flare on you',
+          de: 'Flare auf dir',
+          ja: '自分にフレア',
+          cn: '核爆点名',
+          ko: '플레어 대상자',
+        },
+        stackTTS: {
           en: 'stack',
           de: 'stek',
           ja: '頭割り',
           cn: '分摊',
           ko: '모이기',
-        };
-      },
-      run: function(data) {
-        delete data.flareTargets;
+        },
       },
     },
   ],

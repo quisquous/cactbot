@@ -160,15 +160,18 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: function(data, matches) {
-        return {
-          en: 'Heal ' + data.ShortName(matches.target) + ' soon',
-          de: 'Bald ' + data.ShortName(matches.target) + ' heilen',
-          fr: 'Soignez ' + data.ShortName(matches.target) + ' bientôt',
-          ja: 'すぐに' + data.ShortName(matches.target) + 'にヒール',
-          cn: '马上奶 ' + data.ShortName(matches.target),
-          ko: '' + data.ShortName(matches.target) + '힐 준비',
-        };
+      infoText: function(data, matches, output) {
+        return output.text({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Heal ${player} soon',
+          de: 'Bald ${player} heilen',
+          fr: 'Soignez ${player} bientôt',
+          ja: 'すぐに${player}にヒール',
+          cn: '马上奶 ${player}',
+          ko: '${player}힐 준비',
+        },
       },
     },
     {

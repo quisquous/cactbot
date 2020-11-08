@@ -264,23 +264,27 @@
       netRegex: NetRegexes.headMarker({ id: '0017', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 2,
-      alertText: function(data) {
-        if (data.rampant[data.me]) {
-          return {
-            en: 'Cone on YOU -- avoid towers',
-            de: 'Kegel AoE auf DIR -- Turm vermeiden',
-            fr: 'Cône sur Vous -- évitez les tours',
-            cn: '三角点名 -- 躲开塔',
-            ko: '부채꼴 대상자 - 장판 피하기',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.rampant[data.me])
+          return output.coneOnYouAvoidTowers();
+
+        return output.standInATower();
+      },
+      outputStrings: {
+        coneOnYouAvoidTowers: {
+          en: 'Cone on YOU -- avoid towers',
+          de: 'Kegel AoE auf DIR -- Turm vermeiden',
+          fr: 'Cône sur Vous -- évitez les tours',
+          cn: '三角点名 -- 躲开塔',
+          ko: '부채꼴 대상자 - 장판 피하기',
+        },
+        standInATower: {
           en: 'Stand in a tower',
           de: 'Im Turm stehen',
           fr: 'Tenez-vous dans une tour',
           cn: '踩塔',
           ko: '장판 들어가기',
-        };
+        },
       },
     },
     {

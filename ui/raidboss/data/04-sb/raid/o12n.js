@@ -75,29 +75,33 @@
     {
       id: 'O12N Stack Spread Markers',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         if (data.me != matches.target)
           return;
-        return {
-          en: 'Get Out',
-          de: 'Raus da',
-          fr: 'Sortez',
-          ja: '外へ',
-          cn: '远离',
-          ko: '파티에서 멀어지기',
-        };
+        return output.getOut();
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         if (data.me == matches.target)
           return;
-        return {
+        return output.stack();
+      },
+      outputStrings: {
+        stack: {
           en: 'Stack',
           de: 'Stacken',
           fr: 'Packez vous',
           ja: '頭割り',
           cn: '集合',
           ko: '쉐어징 대상자',
-        };
+        },
+        getOut: {
+          en: 'Get Out',
+          de: 'Raus da',
+          fr: 'Sortez',
+          ja: '外へ',
+          cn: '远离',
+          ko: '파티에서 멀어지기',
+        },
       },
     },
     {

@@ -152,23 +152,27 @@
       condition: function(data, matches) {
         return data.me == matches.target && data.spell[data.me] == 'fire';
       },
-      alertText: function(data) {
-        if (data.fireCount == 3) {
-          return {
-            en: 'Spread (don\'t stack!)',
-            de: 'Verteilen (nicht zusammen stehen)',
-            fr: 'Dispersez-vous (ne vous packez pas)',
-            cn: '分散',
-            ko: '산개 (쉐어 맞으면 안됨)',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.fireCount == 3)
+          return output.spreadDontStack();
+
+        return output.spread();
+      },
+      outputStrings: {
+        spreadDontStack: {
+          en: 'Spread (don\'t stack!)',
+          de: 'Verteilen (nicht zusammen stehen)',
+          fr: 'Dispersez-vous (ne vous packez pas)',
+          cn: '分散',
+          ko: '산개 (쉐어 맞으면 안됨)',
+        },
+        spread: {
           en: 'Spread',
           de: 'Verteilen',
           fr: 'Dispersez-vous',
           cn: '分散',
           ko: '산개',
-        };
+        },
       },
     },
     {
@@ -249,16 +253,18 @@
         return data.spell[matches.target] == 'eye';
       },
       delaySeconds: 2,
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Eye on YOU',
-            de: 'Auge auf DIR',
-            fr: 'Œil de l\'ombre sur VOUS',
-            cn: '石化眼点名',
-            ko: '시선징 대상자',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Eye on YOU',
+          de: 'Auge auf DIR',
+          fr: 'Œil de l\'ombre sur VOUS',
+          cn: '石化眼点名',
+          ko: '시선징 대상자',
+        },
       },
     },
     {

@@ -43,14 +43,17 @@
       id: 'ShivaHm Ice Boulder',
       netRegex: NetRegexes.ability({ id: '9A3' }),
       condition: Conditions.targetIsNotYou(),
-      infoText: function(data, matches) {
-        return {
-          en: 'Free ' + data.ShortName(matches.target),
-          de: 'Befreie ' + data.ShortName(matches.target),
-          fr: 'Libérez ' + data.ShortName(matches.target),
-          cn: '解救' + data.ShortName(matches.target),
-          ko: data.ShortName(matches.target) + '감옥 해제',
-        };
+      infoText: function(data, matches, output) {
+        return output.text({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Free ${player}',
+          de: 'Befreie ${player}',
+          fr: 'Libérez ${player}',
+          cn: '解救${player}',
+          ko: '${player}감옥 해제',
+        },
       },
     },
   ],

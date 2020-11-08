@@ -27,27 +27,29 @@
     {
       id: 'T10 Wild Charge',
       netRegex: NetRegexes.headMarker({ id: '001F' }),
-      alarmText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Charge on YOU',
-            de: 'Ansturm auf DIR',
-            fr: 'Charge sur VOUS',
-            ja: '自分にワイルドチャージ',
-            cn: '蓝球点名',
-          };
-        }
+      alarmText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.chargeOnYou();
       },
-      infoText: function(data, matches) {
-        if (data.me != matches.target) {
-          return {
-            en: 'Charge on ' + data.ShortName(matches.target),
-            de: 'Ansturm auf ' + data.ShortName(matches.target),
-            fr: 'Charge sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にワイルドチャージ',
-            cn: '蓝球点' + data.ShortName(matches.target),
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me != matches.target)
+          return output.chargeOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        chargeOn: {
+          en: 'Charge on ${player}',
+          de: 'Ansturm auf ${player}',
+          fr: 'Charge sur ${player}',
+          ja: '${player}にワイルドチャージ',
+          cn: '蓝球点${player}',
+        },
+        chargeOnYou: {
+          en: 'Charge on YOU',
+          de: 'Ansturm auf DIR',
+          fr: 'Charge sur VOUS',
+          ja: '自分にワイルドチャージ',
+          cn: '蓝球点名',
+        },
       },
     },
     {
@@ -63,27 +65,29 @@
       netRegexJa: NetRegexes.tether({ id: '0015', source: 'イムドゥグド' }),
       netRegexCn: NetRegexes.tether({ id: '0015', source: '伊姆都古德' }),
       netRegexKo: NetRegexes.tether({ id: '0015', source: '임두구드' }),
-      alarmText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Cyclonic on YOU',
-            de: 'Zyklon-Chaos auf DIR',
-            fr: 'Chaos cyclonique sur VOUS',
-            ja: '自分にサイクロニックカオス',
-            cn: '连线点名',
-          };
-        }
+      alarmText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.cyclonicOnYou();
       },
-      infoText: function(data, matches) {
-        if (data.me != matches.target) {
-          return {
-            en: 'Cyclonic on ' + data.ShortName(matches.target),
-            de: 'Zyklon-Chaos auf ' + data.ShortName(matches.target),
-            fr: 'Chaos cyclonique sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にサイクロニックカオス',
-            cn: '连线点' + data.ShortName(matches.target),
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me != matches.target)
+          return output.cyclonicOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        cyclonicOn: {
+          en: 'Cyclonic on ${player}',
+          de: 'Zyklon-Chaos auf ${player}',
+          fr: 'Chaos cyclonique sur ${player}',
+          ja: '${player}にサイクロニックカオス',
+          cn: '连线点${player}',
+        },
+        cyclonicOnYou: {
+          en: 'Cyclonic on YOU',
+          de: 'Zyklon-Chaos auf DIR',
+          fr: 'Chaos cyclonique sur VOUS',
+          ja: '自分にサイクロニックカオス',
+          cn: '连线点名',
+        },
       },
     },
   ],
@@ -170,9 +174,9 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Imdugud': '임두구드',
+        'The Alpha Concourse': '제I신도 구역',
       },
       'replaceText': {
         'Crackle Hiss': '파직파직 번개',
@@ -183,6 +187,10 @@
         'Heat Lightning': '뜨거운 번개',
         'Spike Flail': '가시 매타작',
         'Wild Charge': '야성의 돌진',
+        'Daughter': '딸',
+        'Son': '아들',
+        'Adds': '쫄',
+        'Random \\+ Charge': '번개/혼돈 + 전하 충전',
       },
     },
   ],

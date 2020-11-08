@@ -222,17 +222,20 @@
       netRegex: NetRegexes.headMarker({ id: ['004D', '004E'] }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 0.5,
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         const partner = matches.id === '004D' ? '004E' : '004D';
         // If for some reason there is no partner, we get a vulnerability or bleed and are sad.
         if (!data[partner])
           return;
-        return {
-          en: 'Stack with ' + data.ShortName(data[partner]),
-          de: 'Sammeln mit ' + data.ShortName(data[partner]),
-          fr: 'Packez-vous avec ' + data.ShortName(data[partner]),
-          cn: '靠近' + data.ShortName(data[partner]) + '集合',
-        };
+        return output.text({ player: data.ShortName(data[partner]) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Stack with ${player}',
+          de: 'Sammeln mit ${player}',
+          fr: 'Packez-vous avec ${player}',
+          cn: '靠近${player}集合',
+        },
       },
     },
     {
@@ -260,21 +263,25 @@
       // it's better to just delay, since it's always a consistent 8 seconds
       // from the time effects are applied until the circles come up.
       delaySeconds: 8,
-      infoText: function(data, matches) {
-        if (matches.effectId === '477') {
-          return {
-            en: 'Stand on red circle',
-            de: 'Im roten Kreis stehen',
-            fr: 'Restez dans le cercle rouge',
-            cn: '站在红圈',
-          };
-        }
-        return {
+      infoText: function(data, matches, output) {
+        if (matches.effectId === '477')
+          return output.standOnRedCircle();
+
+        return output.standOnBlueCircle();
+      },
+      outputStrings: {
+        standOnRedCircle: {
+          en: 'Stand on red circle',
+          de: 'Im roten Kreis stehen',
+          fr: 'Restez dans le cercle rouge',
+          cn: '站在红圈',
+        },
+        standOnBlueCircle: {
           en: 'Stand on blue circle',
           de: 'Im blauen Kreis stehen',
           fr: 'Restez dans le cercle bleu',
           cn: '站在蓝圈',
-        };
+        },
       },
     },
     {

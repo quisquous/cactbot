@@ -207,13 +207,16 @@
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 박수를 보냅니다.*?', capture: false }),
       sound: '../../resources/sounds/WeakAuras/Applause.ogg',
       soundVolume: 0.3,
-      tts: {
-        en: 'clapity clap',
-        de: 'klatschen',
-        fr: 'applaudissement',
-        ja: '拍手',
-        cn: '鼓掌',
-        ko: '박수 짝짝짝',
+      tts: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'clapity clap',
+          de: 'klatschen',
+          fr: 'applaudissement',
+          ja: '拍手',
+          cn: '鼓掌',
+          ko: '박수 짝짝짝',
+        },
       },
     },
     {

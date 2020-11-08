@@ -56,28 +56,32 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D45', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D45', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D45', source: '티타니아', capture: false }),
-      infoText: function(data) {
-        if (data.seenMistRune) {
-          return {
-            en: 'In/Out, then Water Positions',
-            de: 'Rein/Raus, danach Wasser Positionen',
-            fr: 'Intérieur/Extérieur, puis positions pour l\'eau',
-            ja: '中/外避けてポジションへ',
-            cn: '靠近/远离, 水圈站位',
-            ko: '안/밖 -> 물 장판 위치',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.seenMistRune)
+          return output.inOutThenWaterPositions();
+
+        return output.waterPositions();
+      },
+      run: function(data) {
+        data.seenMistRune = true;
+      },
+      outputStrings: {
+        inOutThenWaterPositions: {
+          en: 'In/Out, then Water Positions',
+          de: 'Rein/Raus, danach Wasser Positionen',
+          fr: 'Intérieur/Extérieur, puis positions pour l\'eau',
+          ja: '中/外避けてポジションへ',
+          cn: '靠近/远离, 水圈站位',
+          ko: '안/밖 -> 물 장판 위치',
+        },
+        waterPositions: {
           en: 'Water Positions',
           de: 'Wasser Positionen',
           fr: 'Positions pour l\'eau',
           ja: 'ポジションへ',
           cn: '水圈站位',
           ko: '물 장판',
-        };
-      },
-      run: function(data) {
-        data.seenMistRune = true;
+        },
       },
     },
     {
@@ -90,28 +94,32 @@
       netRegexKo: NetRegexes.startsUsing({ id: '3D47', source: '티타니아', capture: false }),
       // You have 16.5 seconds until the first stack damage.
       delaySeconds: 8.5,
-      alertText: function(data) {
-        if (data.seenFlameRune) {
-          return {
-            en: 'Stack (maybe rotate?)',
-            de: 'Sammeln (evtl rotieren?)',
-            fr: 'Packez-vous (rotation ?)',
-            ja: '集合 (多分時計回り?)',
-            cn: '左右集合 (可能旋转?)',
-            ko: '쉐어징 모이기',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.seenFlameRune)
+          return output.stackMaybeRotate();
+
+        return output.stackPositions();
+      },
+      run: function(data) {
+        data.seenFlameRune = true;
+      },
+      outputStrings: {
+        stackMaybeRotate: {
+          en: 'Stack (maybe rotate?)',
+          de: 'Sammeln (evtl rotieren?)',
+          fr: 'Packez-vous (rotation ?)',
+          ja: '集合 (多分時計回り?)',
+          cn: '左右集合 (可能旋转?)',
+          ko: '쉐어징 모이기',
+        },
+        stackPositions: {
           en: 'Stack Positions',
           de: 'Sammel-Positionen',
           fr: 'Packez-vous, positions',
           ja: '頭割り集合',
           cn: '左右集合',
           ko: '쉐어징 모이기',
-        };
-      },
-      run: function(data) {
-        data.seenFlameRune = true;
+        },
       },
     },
     {
@@ -299,15 +307,18 @@
         data.pummelCount = data.pummelCount || 0;
         data.pummelCount++;
       },
-      infoText: function(data) {
-        return {
-          en: 'Pummel ' + data.pummelCount,
-          de: 'Deftige Dachtel ' + data.pummelCount,
-          fr: 'Torgnole ' + data.pummelCount,
-          ja: '殴打 ' + data.pummelCount,
-          cn: '殴打 ' + data.pummelCount,
-          ko: '구타 ' + data.pummelCount,
-        };
+      infoText: function(data, _, output) {
+        return output.text({ num: data.pummelCount });
+      },
+      outputStrings: {
+        text: {
+          en: 'Pummel ${num}',
+          de: 'Deftige Dachtel ${num}',
+          fr: 'Torgnole ${num}',
+          ja: '殴打 ${num}',
+          cn: '殴打 ${num}',
+          ko: '구타 ${num}',
+        },
       },
     },
     {
@@ -338,28 +349,32 @@
       id: 'TitaniaEx Adds Stack',
       netRegex: NetRegexes.headMarker({ id: '00A1' }),
       delaySeconds: 0.25,
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR sammeln',
-            fr: 'Package sur VOUS',
-            ja: '自分に集合',
-            cn: '集合点名',
-            ko: '쉐어징 대상자',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.stackOnYou();
+
 
         if (data.bomb && data.bomb[data.me])
           return;
 
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Package sur ' + data.ShortName(matches.target),
-          cn: '靠近 ' + data.ShortName(matches.target) + '集合',
-          ko: '"' + data.ShortName(matches.target) + '"에게 모이기',
-        };
+        return output.stackOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        stackOnYou: {
+          en: 'Stack on YOU',
+          de: 'Auf DIR sammeln',
+          fr: 'Package sur VOUS',
+          ja: '自分に集合',
+          cn: '集合点名',
+          ko: '쉐어징 대상자',
+        },
+        stackOn: {
+          en: 'Stack on ${player}',
+          de: 'Auf ${player} sammeln',
+          fr: 'Package sur ${player}',
+          cn: '靠近 ${player}集合',
+          ko: '"${player}"에게 모이기',
+        },
       },
     },
     {
@@ -395,18 +410,21 @@
         data.thunderCount = data.thunderCount || 1;
       },
       suppressSeconds: 1,
-      infoText: function(data) {
-        return {
-          en: 'Thunder ' + data.thunderCount,
-          de: 'Blitz ' + data.thunderCount,
-          fr: 'Foudre ' + data.thunderCount,
-          ja: '線' + data.thunderCount + '人目',
-          cn: '雷连线 #' + data.thunderCount,
-          ko: data.thunderCount + '번째 번개',
-        };
+      infoText: function(data, _, output) {
+        return output.text({ num: data.thunderCount });
       },
       run: function(data) {
         data.thunderCount++;
+      },
+      outputStrings: {
+        text: {
+          en: 'Thunder ${num}',
+          de: 'Blitz ${num}',
+          fr: 'Foudre ${num}',
+          ja: '線${num}人目',
+          cn: '雷连线 #${num}',
+          ko: '${num}번째 번개',
+        },
       },
     },
     {

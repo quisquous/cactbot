@@ -142,16 +142,19 @@
       condition: function(data, matches) {
         return matches.source == data.me || matches.target == data.me;
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         let partner = matches.source == data.me ? matches.target : matches.source;
-        return {
-          en: 'Close Tethers (' + data.ShortName(partner) + ')',
-          de: 'Nahe Verbindungen (' + data.ShortName(partner) + ')',
-          fr: 'Liens proches (' + data.ShortName(partner) + ')',
-          ja: '(' + data.ShortName(partner) + ')に近づく',
-          cn: '靠近连线 (' + data.ShortName(partner) + ')',
-          ko: '강제접근: 상대와 가까이 붙기 (' + data.ShortName(partner) + ')',
-        };
+        return output.text({ player: data.ShortName(partner) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Close Tethers (${player})',
+          de: 'Nahe Verbindungen (${player})',
+          fr: 'Liens proches (${player})',
+          ja: '(${player})に近づく',
+          cn: '靠近连线 (${player})',
+          ko: '강제접근: 상대와 가까이 붙기 (${player})',
+        },
       },
     },
     {
@@ -160,16 +163,19 @@
       condition: function(data, matches) {
         return matches.source == data.me || matches.target == data.me;
       },
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         let partner = matches.source == data.me ? matches.target : matches.source;
-        return {
-          en: 'Far Tethers (' + data.ShortName(partner) + ')',
-          de: 'Entfernte Verbindungen (' + data.ShortName(partner) + ')',
-          fr: 'Liens éloignés (' + data.ShortName(partner) + ')',
-          ja: ' (' + data.ShortName(partner) + ')に離れ',
-          cn: '远离连线 (' + data.ShortName(partner) + ')',
-          ko: '접근금지: 상대와 떨어지기 (' + data.ShortName(partner) + ')',
-        };
+        return output.text({ player: data.ShortName(partner) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Far Tethers (${player})',
+          de: 'Entfernte Verbindungen (${player})',
+          fr: 'Liens éloignés (${player})',
+          ja: ' (${player})に離れ',
+          cn: '远离连线 (${player})',
+          ko: '접근금지: 상대와 떨어지기 (${player})',
+        },
       },
     },
     {
@@ -228,17 +234,19 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '1A0B', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '1A0B', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '1A0B', capture: false }),
-      alertText: function(data) {
-        if (data.role == 'tank' || data.role == 'healer' || data.job == 'BLU') {
-          return {
-            en: 'Shared Tankbuster',
-            de: 'geteilter Tankbuster',
-            fr: 'Partagez le Tank buster',
-            ja: '頭割りタンクバスター',
-            cn: '分摊死刑',
-            ko: '쉐어 탱크버스터',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (data.role == 'tank' || data.role == 'healer' || data.job == 'BLU')
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Shared Tankbuster',
+          de: 'geteilter Tankbuster',
+          fr: 'Partagez le Tank buster',
+          ja: '頭割りタンクバスター',
+          cn: '分摊死刑',
+          ko: '쉐어 탱크버스터',
+        },
       },
     },
     {

@@ -50,16 +50,19 @@
       id: 'E8S Rush',
       regex: /Rush \d/,
       beforeSeconds: 5,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         data.rushCount = data.rushCount || 0;
         data.rushCount++;
-        return {
-          en: 'Tether ' + data.rushCount,
-          de: 'Verbindung ' + data.rushCount,
-          fr: 'Lien ' + data.rushCount,
-          cn: '和' + data.rushCount + '连线',
-          ko: '선: ' + data.rushCount,
-        };
+        return output.text({ num: data.rushCount });
+      },
+      outputStrings: {
+        text: {
+          en: 'Tether ${num}',
+          de: 'Verbindung ${num}',
+          fr: 'Lien ${num}',
+          cn: '和${num}连线',
+          ko: '선: ${num}',
+        },
       },
     },
   ],
@@ -184,23 +187,27 @@
       condition: (data) => data.role == 'tank',
       delaySeconds: 43,
       suppressSeconds: 80,
-      infoText: function(data) {
-        if (data.firstFrost == 'driving') {
-          return {
-            en: 'Biting Frost Next',
-            de: 'Frosthieb als nächstes',
-            fr: 'Taillade de givre bientôt',
-            cn: '下次攻击前侧面',
-            ko: '다음: 서리 참격',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.firstFrost == 'driving')
+          return output.bitingFrostNext();
+
+        return output.drivingFrostNext();
+      },
+      outputStrings: {
+        bitingFrostNext: {
+          en: 'Biting Frost Next',
+          de: 'Frosthieb als nächstes',
+          fr: 'Taillade de givre bientôt',
+          cn: '下次攻击前侧面',
+          ko: '다음: 서리 참격',
+        },
+        drivingFrostNext: {
           en: 'Driving Frost Next',
           de: 'Froststoß als nächstes',
           fr: 'Percée de givre bientôt',
           cn: '下次攻击后面',
           ko: '다음: 서리 일격',
-        };
+        },
       },
     },
     {
@@ -223,24 +230,28 @@
       netRegexCn: NetRegexes.abilityFull({ source: '希瓦', id: '4DA0' }),
       netRegexKo: NetRegexes.abilityFull({ source: '시바', id: '4DA0' }),
       suppressSeconds: 20,
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         let x = parseFloat(matches.x);
-        if (x >= 99 && x <= 101) {
-          return {
-            en: 'North / South',
-            de: 'Norden / Süden',
-            fr: 'Nord / Sud',
-            cn: '南北站位',
-            ko: '남 / 북',
-          };
-        }
-        return {
+        if (x >= 99 && x <= 101)
+          return output.northSouth();
+
+        return output.eastWest();
+      },
+      outputStrings: {
+        northSouth: {
+          en: 'North / South',
+          de: 'Norden / Süden',
+          fr: 'Nord / Sud',
+          cn: '南北站位',
+          ko: '남 / 북',
+        },
+        eastWest: {
           en: 'East / West',
           de: 'Osten / Westen',
           fr: 'Est / Ouest',
           cn: '东西站位',
           ko: '동 / 서',
-        };
+        },
       },
     },
     {
@@ -422,25 +433,28 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D7B' }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D7B' }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D7B' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Morn Afah on YOU',
-            de: 'Morn Afah auf DIR',
-            fr: 'Morn Afah sur VOUS',
-            cn: '无尽顿悟点名',
-            ko: '몬아파 대상자',
-          };
-        }
-        if (data.role == 'tank' || data.role == 'healer' || data.CanAddle()) {
-          return {
-            en: 'Morn Afah on ' + data.ShortName(matches.target),
-            de: 'Morn Afah auf ' + data.ShortName(matches.target),
-            fr: 'Morn Afah sur ' + data.ShortName(matches.target),
-            cn: '无尽顿悟点 ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 몬 아파',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.mornAfahOnYou();
+
+        if (data.role == 'tank' || data.role == 'healer' || data.CanAddle())
+          return output.mornAfahOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        mornAfahOnYou: {
+          en: 'Morn Afah on YOU',
+          de: 'Morn Afah auf DIR',
+          fr: 'Morn Afah sur VOUS',
+          cn: '无尽顿悟点名',
+          ko: '몬아파 대상자',
+        },
+        mornAfahOn: {
+          en: 'Morn Afah on ${player}',
+          de: 'Morn Afah auf ${player}',
+          fr: 'Morn Afah sur ${player}',
+          cn: '无尽顿悟点 ${player}',
+          ko: '"${player}" 몬 아파',
+        },
       },
     },
     {
@@ -525,14 +539,17 @@
       durationSeconds: function(data, matches) {
         return matches.duration;
       },
-      alertText: function(data) {
-        return {
-          en: 'Red #' + data.wyrmclawNumber,
-          de: 'Rot #' + data.wyrmclawNumber,
-          fr: 'Rouge #' + data.wyrmclawNumber,
-          cn: '红色 #' + data.wyrmclawNumber,
-          ko: '빨강 ' + data.wyrmclawNumber + '번',
-        };
+      alertText: function(data, _, output) {
+        return output.text({ num: data.wyrmclawNumber });
+      },
+      outputStrings: {
+        text: {
+          en: 'Red #${num}',
+          de: 'Rot #${num}',
+          fr: 'Rouge #${num}',
+          cn: '红色 #${num}',
+          ko: '빨강 ${num}번',
+        },
       },
     },
     {
@@ -557,14 +574,17 @@
       durationSeconds: function(data, matches) {
         return matches.duration;
       },
-      alertText: function(data) {
-        return {
-          en: 'Blue #' + data.wyrmfangNumber,
-          de: 'Blau #' + data.wyrmfangNumber,
-          fr: 'Bleu #' + data.wyrmfangNumber,
-          cn: '蓝色 #' + data.wyrmfangNumber,
-          ko: '파랑 ' + data.wyrmfangNumber + '번',
-        };
+      alertText: function(data, _, output) {
+        return output.text({ num: data.wyrmfangNumber });
+      },
+      outputStrings: {
+        text: {
+          en: 'Blue #${num}',
+          de: 'Blau #${num}',
+          fr: 'Bleu #${num}',
+          cn: '蓝色 #${num}',
+          ko: '파랑 ${num}번',
+        },
       },
     },
     {
