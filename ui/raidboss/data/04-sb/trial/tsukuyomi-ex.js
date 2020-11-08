@@ -178,9 +178,7 @@
     {
       id: 'Tsukuyomi Meteor Marker',
       netRegex: NetRegexes.headMarker({ id: '0083' }),
-      condition: function(data, matches) {
-        return (matches.target == data.me);
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou(),
     },
     {
@@ -191,9 +189,7 @@
     {
       id: 'Tsukuyomi Hagetsu',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: function(data, matches) {
-        return (matches.target == data.me);
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {

@@ -90,9 +90,7 @@
       // Red knockback marker indicator
       id: 'SusEx Knockback',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: function(data, matches) {
-        return (matches.target == data.me);
-      },
+      condition: Conditions.targetIsYou(),
       alertText: function(data, _, output) {
         if (data.cloud)
           return output.knockbackWithCloud();
@@ -163,9 +161,7 @@
     {
       id: 'SusEx Levinbolt',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
-      condition: function(data, matches) {
-        return (matches.target == data.me);
-      },
+      condition: Conditions.targetIsYou(),
       alertText: function(data, _, output) {
         if (data.cloud)
           return output.levinboltWithCloud();

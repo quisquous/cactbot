@@ -147,17 +147,13 @@ const mathOutputStrings = {
     {
       id: 'Ridorana Famfrit Dark Cannonade',
       netRegex: NetRegexes.headMarker({ id: '0037' }),
-      condition: function(data, matches) {
-        return (matches.target == data.me);
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.doritoStack(),
     },
     {
       id: 'Ridorana Famfrit Briny Cannonade',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: function(data, matches) {
-        return (matches.target == data.me);
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -205,9 +201,7 @@ const mathOutputStrings = {
       // Burns effect.
       id: 'Ridorana Belias Hand of Time',
       netRegex: NetRegexes.gainsEffect({ effectId: '212' }),
-      condition: function(data, matches) {
-        return (matches.target == data.me);
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -264,9 +258,7 @@ const mathOutputStrings = {
     {
       id: 'Ridorana Construct Accelerate Spread',
       netRegex: NetRegexes.headMarker({ id: '008A' }),
-      condition: function(data, matches) {
-        return (matches.target == data.me);
-      },
+      condition: Conditions.targetIsYou(),
       preRun: function(data) {
         data.accelerateSpreadOnMe = true;
       },
@@ -308,9 +300,7 @@ const mathOutputStrings = {
       // Hp Penalty effect.
       id: 'Ridorana Construct Math HP Check 1',
       netRegex: NetRegexes.gainsEffect({ effectId: '615' }),
-      condition: function(data, matches) {
-        return (matches.target == data.me);
-      },
+      condition: Conditions.targetIsYou(),
       preRun: function(data) {
         if (!data.mathBaseValue && data.currentHP > 0 && data.currentHP < 10)
           data.mathBaseValue = data.currentHP;
@@ -323,9 +313,7 @@ const mathOutputStrings = {
       // overwriting any results from t=0 if that was valid.
       id: 'Ridorana Construct Math HP Check 2',
       netRegex: NetRegexes.gainsEffect({ effectId: '615' }),
-      condition: function(data, matches) {
-        return (matches.target == data.me);
-      },
+      condition: Conditions.targetIsYou(),
       preRun: function(data) {
         if (!data.mathBaseValue && data.currentHP > 0 && data.currentHP < 10)
           data.mathBaseValue = data.currentHP;
@@ -452,9 +440,7 @@ const mathOutputStrings = {
     {
       id: 'Ridorana Yiazmat Magnetic Negative',
       netRegex: NetRegexes.gainsEffect({ effectId: '60F' }),
-      condition: function(data, matches) {
-        return (matches.target == data.me);
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -470,9 +456,7 @@ const mathOutputStrings = {
     {
       id: 'Ridorana Yiazmat Magnetic Positive',
       netRegex: NetRegexes.gainsEffect({ effectId: '60E' }),
-      condition: function(data, matches) {
-        return (matches.target == data.me);
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
