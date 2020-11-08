@@ -41,17 +41,19 @@
     {
       id: 'O6S Demonic Stone',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
-      alarmText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Demonic Stone on YOU',
-            de: 'Dämonischer Stein auf DIR',
-            fr: 'Pierre démoniaque sur VOUS',
-            ko: '악령의 돌 장판 대상자',
-            ja: '自分にデモニックストーン',
-            cn: '引导aoe',
-          };
-        }
+      alarmText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Demonic Stone on YOU',
+          de: 'Dämonischer Stein auf DIR',
+          fr: 'Pierre démoniaque sur VOUS',
+          ko: '악령의 돌 장판 대상자',
+          ja: '自分にデモニックストーン',
+          cn: '引导aoe',
+        },
       },
     },
     {

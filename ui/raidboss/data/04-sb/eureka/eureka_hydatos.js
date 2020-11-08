@@ -172,29 +172,33 @@
       condition: function(data) {
         return data.side == 'west';
       },
-      alarmText: function(data, matches) {
+      alarmText: function(data, matches, output) {
         if (data.me != matches.target)
           return;
-        return {
-          en: 'Orb on YOU',
-          de: 'Orb auf DIR',
-          fr: 'Orbe sur VOUS',
-          ja: '自分に玉',
-          cn: '点名',
-          ko: '구슬 대상자',
-        };
+        return output.orbOnYou();
       },
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         if (data.me == matches.target)
           return;
-        return {
+        return output.awayFromOrbMarker();
+      },
+      outputStrings: {
+        awayFromOrbMarker: {
           en: 'Away From Orb Marker',
           de: 'Weg vom Orb-Marker',
           fr: 'Éloignez-vous du marquage Orbe',
           ja: '玉に離れ',
           cn: '远离点名',
           ko: '구슬 대상자에서 떨어지기',
-        };
+        },
+        orbOnYou: {
+          en: 'Orb on YOU',
+          de: 'Orb auf DIR',
+          fr: 'Orbe sur VOUS',
+          ja: '自分に玉',
+          cn: '点名',
+          ko: '구슬 대상자',
+        },
       },
     },
     {
@@ -308,21 +312,25 @@
       condition: function(data) {
         return data.side == 'east';
       },
-      alertText: {
-        en: 'Get to Ice',
-        de: 'Geh zum Eis',
-        fr: 'Allez à la glace',
-        ja: '氷に',
-        cn: '冰',
-        ko: '얼음',
-      },
-      infoText: {
-        en: 'Switch Magia',
-        de: 'Magia-Brett drehen',
-        fr: 'Changez de Magia',
-        ja: 'マギアボードを切替',
-        cn: '切换元素板',
-        ko: '마기아 전환',
+      alertText: (data, _, output) => output.getToIce(),
+      infoText: (data, _, output) => output.switchMagia(),
+      outputStrings: {
+        switchMagia: {
+          en: 'Switch Magia',
+          de: 'Magia-Brett drehen',
+          fr: 'Changez de Magia',
+          ja: 'マギアボードを切替',
+          cn: '切换元素板',
+          ko: '마기아 전환',
+        },
+        getToIce: {
+          en: 'Get to Ice',
+          de: 'Geh zum Eis',
+          fr: 'Allez à la glace',
+          ja: '氷に',
+          cn: '冰',
+          ko: '얼음',
+        },
       },
     },
     {
@@ -335,21 +343,25 @@
       condition: function(data) {
         return data.side == 'east';
       },
-      alertText: {
-        en: 'Get to Fire',
-        de: 'Geh zum Feuer',
-        fr: 'Allez au feu',
-        ja: '火',
-        cn: '火',
-        ko: '불',
-      },
-      infoText: {
-        en: 'Switch Magia',
-        de: 'Magia-Brett drehen',
-        fr: 'Changez de Magia',
-        ja: 'マギアボードを切替',
-        cn: '切换元素板',
-        ko: '마기아 전환',
+      alertText: (data, _, output) => output.getToFire(),
+      infoText: (data, _, output) => output.switchMagia(),
+      outputStrings: {
+        switchMagia: {
+          en: 'Switch Magia',
+          de: 'Magia-Brett drehen',
+          fr: 'Changez de Magia',
+          ja: 'マギアボードを切替',
+          cn: '切换元素板',
+          ko: '마기아 전환',
+        },
+        getToFire: {
+          en: 'Get to Fire',
+          de: 'Geh zum Feuer',
+          fr: 'Allez au feu',
+          ja: '火',
+          cn: '火',
+          ko: '불',
+        },
       },
     },
     {
@@ -553,53 +565,58 @@
       condition: function(data) {
         return data.sealed;
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (!data.seenHostile) {
-          if (data.bracelets == 'light') {
-            return {
-              en: 'Away From Light Circles',
-              de: 'Weg von hellen Kreisen',
-              fr: 'Éloignez-vous des cercles lumineux',
-              ja: '白リングに離れ',
-              cn: '远离白圈',
-              ko: '밝은 원에서 떨어지기',
-            };
-          }
-          if (data.bracelets == 'dark') {
-            return {
-              en: 'Away From Dark Circles',
-              de: 'Weg von dunklen Kreisen',
-              fr: 'Éloignez-vous des cercles ténèbreux',
-              ja: '黒リングに離れ',
-              cn: '远离黑圈',
-              ko: '어두운 원에서 떨어지기',
-            };
-          }
+          if (data.bracelets == 'light')
+            return output.awayFromLightCircles();
+
+          if (data.bracelets == 'dark')
+            return output.awayFromDarkCircles();
+
           return;
         }
-        if (data.bracelets == 'light') {
-          return {
-            en: 'Stand By Dark Circles',
-            de: 'Zu den dunklen Kreisen',
-            fr: 'Tenez-vous près des cercles ténèbreux',
-            ja: '黒リングに近づく',
-            cn: '靠近黑圈',
-            ko: '어두운 원 옆에 서기',
-          };
-        }
-        if (data.bracelets == 'dark') {
-          return {
-            en: 'Stand By Light Circles',
-            de: 'zu den hellen Kreisen',
-            fr: 'Tenez-vous près des cercles lumineux',
-            ja: '白リングに近づく',
-            cn: '靠近白圈',
-            ko: '밝은 원 옆에 서기',
-          };
-        }
+        if (data.bracelets == 'light')
+          return output.standByDarkCircles();
+
+        if (data.bracelets == 'dark')
+          return output.standByLightCircles();
       },
       run: function(data) {
         data.seenHostile = true;
+      },
+      outputStrings: {
+        awayFromLightCircles: {
+          en: 'Away From Light Circles',
+          de: 'Weg von hellen Kreisen',
+          fr: 'Éloignez-vous des cercles lumineux',
+          ja: '白リングに離れ',
+          cn: '远离白圈',
+          ko: '밝은 원에서 떨어지기',
+        },
+        awayFromDarkCircles: {
+          en: 'Away From Dark Circles',
+          de: 'Weg von dunklen Kreisen',
+          fr: 'Éloignez-vous des cercles ténèbreux',
+          ja: '黒リングに離れ',
+          cn: '远离黑圈',
+          ko: '어두운 원에서 떨어지기',
+        },
+        standByDarkCircles: {
+          en: 'Stand By Dark Circles',
+          de: 'Zu den dunklen Kreisen',
+          fr: 'Tenez-vous près des cercles ténèbreux',
+          ja: '黒リングに近づく',
+          cn: '靠近黑圈',
+          ko: '어두운 원 옆에 서기',
+        },
+        standByLightCircles: {
+          en: 'Stand By Light Circles',
+          de: 'zu den hellen Kreisen',
+          fr: 'Tenez-vous près des cercles lumineux',
+          ja: '白リングに近づく',
+          cn: '靠近白圈',
+          ko: '밝은 원 옆에 서기',
+        },
       },
     },
     {
@@ -613,27 +630,30 @@
       condition: function(data) {
         return data.sealed;
       },
-      alertText: function(data) {
-        if (data.bracelets == 'light') {
-          return {
-            en: 'Dark',
-            de: 'Dunkel',
-            fr: 'Ténèbres',
-            ja: '黒',
-            cn: '黑',
-            ko: '어둠',
-          };
-        }
-        if (data.bracelets == 'dark') {
-          return {
-            en: 'Light',
-            de: 'Hell',
-            fr: 'Lumière',
-            ja: '白',
-            cn: '白',
-            ko: '빛',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (data.bracelets == 'light')
+          return output.dark();
+
+        if (data.bracelets == 'dark')
+          return output.light();
+      },
+      outputStrings: {
+        dark: {
+          en: 'Dark',
+          de: 'Dunkel',
+          fr: 'Ténèbres',
+          ja: '黒',
+          cn: '黑',
+          ko: '어둠',
+        },
+        light: {
+          en: 'Light',
+          de: 'Hell',
+          fr: 'Lumière',
+          ja: '白',
+          cn: '白',
+          ko: '빛',
+        },
       },
     },
     {
@@ -680,30 +700,33 @@
       condition: function(data) {
         return data.sealed;
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (!data.clones)
           return;
         let wrists = data.clones.pop();
-        if (wrists == 'Astral') {
-          return {
-            en: 'Dark',
-            de: 'Dunkel',
-            fr: 'Ténèbres',
-            ja: '黒',
-            cn: '黑',
-            ko: '어둠',
-          };
-        }
-        if (wrists == 'Umbral') {
-          return {
-            en: 'Light',
-            de: 'Hell',
-            fr: 'Lumière',
-            ja: '白',
-            cn: '白',
-            ko: '빛',
-          };
-        }
+        if (wrists == 'Astral')
+          return output.dark();
+
+        if (wrists == 'Umbral')
+          return output.light();
+      },
+      outputStrings: {
+        dark: {
+          en: 'Dark',
+          de: 'Dunkel',
+          fr: 'Ténèbres',
+          ja: '黒',
+          cn: '黑',
+          ko: '어둠',
+        },
+        light: {
+          en: 'Light',
+          de: 'Hell',
+          fr: 'Lumière',
+          ja: '白',
+          cn: '白',
+          ko: '빛',
+        },
       },
     },
     {
@@ -757,25 +780,29 @@
         data.blackHoleCount = data.blackHoleCount || 0;
         data.blackHoleCount++;
       },
-      alarmText: function(data) {
-        return {
-          en: 'Black Hole ' + data.blackHoleCount + ' / 6',
-          de: 'Schwarzes Loch ' + data.blackHoleCount + ' / 6',
-          fr: 'Trou noir ' + data.blackHoleCount + ' / 6',
-          ja: 'ブラックホール: ' + data.blackHoleCount + ' / 6',
-          cn: '黑洞 ' + data.blackHoleCount + ' / 6',
-          ko: '블랙홀' + data.blackHoleCount + ' / 6',
-        };
+      alarmText: function(data, _, output) {
+        return output.blackHole({ num: data.blackHoleCount });
       },
-      tts: function(data) {
-        return {
-          en: 'Black Hole ' + data.blackHoleCount,
-          de: 'Schwarzes Loch ' + data.blackHoleCount,
-          fr: 'Trou noir ' + data.blackHoleCount,
-          ja: 'ブラックホール ' + data.blackHoleCount,
-          cn: '黑洞 ' + data.blackHoleCount,
-          ko: '블랙홀' + data.blackHoleCount,
-        };
+      tts: function(data, _, output) {
+        return output.blackHoleTTS({ num: data.blackHoleCount });
+      },
+      outputStrings: {
+        blackHole: {
+          en: 'Black Hole ${num} / 6',
+          de: 'Schwarzes Loch ${num} / 6',
+          fr: 'Trou noir ${num} / 6',
+          ja: 'ブラックホール: ${num} / 6',
+          cn: '黑洞 ${num} / 6',
+          ko: '블랙홀${num} / 6',
+        },
+        blackHoleTTS: {
+          en: 'Black Hole ${num}',
+          de: 'Schwarzes Loch ${num}',
+          fr: 'Trou noir ${num}',
+          ja: 'ブラックホール ${num}',
+          cn: '黑洞 ${num}',
+          ko: '블랙홀${num}',
+        },
       },
     },
     // FIXME: on all these forms, most of the time they come with double mechanics,
@@ -865,27 +892,31 @@
         return data.sealed;
       },
       delaySeconds: 9,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         // FIXME: taking multiple autos probably means tanking,
         // so probably could figure this out automatically.
-        if (data.role == 'tank') {
-          return {
-            en: 'Stack (if not tanking)',
-            de: 'Stack (wenn nicht am tanken)',
-            fr: 'Packez-vous (sauf les tanks)',
-            ja: '集合 (MTではないなら)',
-            cn: '集合（如果没在坦怪）',
-            ko: '집합 (탱킹 중인 사람 제외)',
-          };
-        }
-        return {
+        if (data.role == 'tank')
+          return output.stackIfNotTanking();
+
+        return output.stackUp();
+      },
+      outputStrings: {
+        stackIfNotTanking: {
+          en: 'Stack (if not tanking)',
+          de: 'Stack (wenn nicht am tanken)',
+          fr: 'Packez-vous (sauf les tanks)',
+          ja: '集合 (MTではないなら)',
+          cn: '集合（如果没在坦怪）',
+          ko: '집합 (탱킹 중인 사람 제외)',
+        },
+        stackUp: {
           en: 'Stack Up',
           de: 'Stacken',
           fr: 'Packez-vous en haut',
           ja: '集合',
           cn: '集合',
           ko: '집합',
-        };
+        },
       },
     },
     {
@@ -923,31 +954,33 @@
         return data.sealed;
       },
       delaySeconds: 9,
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         // FIXME: taking multiple autos probably means tanking,
         // so probably could figure this out automatically.
-        if (data.role == 'tank') {
-          return {
-            en: 'Offtanks Get Orbs',
-            de: 'Offtanks holt Kugeln',
-            fr: 'Offtanks, prenez les orbes',
-            ja: 'STは玉を処理',
-            cn: 'ST撞球',
-            ko: '섭탱 구슬 가져가기',
-          };
-        }
+        if (data.role == 'tank')
+          return output.offtanksGetOrbs();
       },
-      infoText: function(data) {
-        if (data.role != 'tank') {
-          return {
-            en: 'Stack Away From Tank',
-            de: 'Weg vom Tank stacken',
-            fr: 'Packez-vous loin du tank',
-            ja: 'タンクに離れて集合',
-            cn: '远离坦克集合',
-            ko: '탱커에서 멀어지기',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (data.role != 'tank')
+          return output.stackAwayFromTank();
+      },
+      outputStrings: {
+        stackAwayFromTank: {
+          en: 'Stack Away From Tank',
+          de: 'Weg vom Tank stacken',
+          fr: 'Packez-vous loin du tank',
+          ja: 'タンクに離れて集合',
+          cn: '远离坦克集合',
+          ko: '탱커에서 멀어지기',
+        },
+        offtanksGetOrbs: {
+          en: 'Offtanks Get Orbs',
+          de: 'Offtanks holt Kugeln',
+          fr: 'Offtanks, prenez les orbes',
+          ja: 'STは玉を処理',
+          cn: 'ST撞球',
+          ko: '섭탱 구슬 가져가기',
+        },
       },
     },
     {

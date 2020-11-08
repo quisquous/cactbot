@@ -13,28 +13,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '32D1', source: '朱雀' }),
       netRegexCn: NetRegexes.startsUsing({ id: '32D1', source: '朱雀' }),
       netRegexKo: NetRegexes.startsUsing({ id: '32D1', source: '주작' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tank buster sur VOUS',
-            ja: '自分にタンクバスター',
-            cn: '死刑减伤',
-            ko: '탱버 대상자',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tank buster sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にタンクバスター',
-            cn: '死刑 点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'SuzEx Phantom Flurry',

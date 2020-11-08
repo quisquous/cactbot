@@ -32,23 +32,27 @@
     {
       id: 'O2N Gravitational Manipulation Stack',
       netRegex: NetRegexes.headMarker({ id: '0071' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Stack marker on YOU',
-            de: 'Sammeln Marker auf DIR',
-            ja: '自分に集合',
-            cn: '集合点名',
-            ko: '쉐어징 대상자',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Sammeln auf ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'に集合',
-          cn: '靠近' + data.ShortName(matches.target) + '集合',
-          ko: '' + data.ShortName(matches.target) + ' 쉐어징',
-        };
+      alertText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.stackMarkerOnYou();
+
+        return output.stackOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        stackMarkerOnYou: {
+          en: 'Stack marker on YOU',
+          de: 'Sammeln Marker auf DIR',
+          ja: '自分に集合',
+          cn: '集合点名',
+          ko: '쉐어징 대상자',
+        },
+        stackOn: {
+          en: 'Stack on ${player}',
+          de: 'Sammeln auf ${player}',
+          ja: '${player}に集合',
+          cn: '靠近${player}集合',
+          ko: '${player} 쉐어징',
+        },
       },
     },
     {
@@ -89,19 +93,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '24FF', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '24FF', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '24FF', source: '카타스트로피', capture: false }),
-      infoText: {
-        en: '-100 Gs: Go north/south',
-        de: '-100G: Nach Norden/Süden',
-        ja: '-100 G: 北/南へ',
-        cn: '去北边/南边',
-        ko: '중력 마이너스 100: 남/북쪽으로',
-      },
-      tts: {
-        en: '100 gs',
-        de: '-100 G',
-        ja: 'マイナス100 G',
-        cn: '重力负100',
-        ko: '중력 마이너스 100',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: '-100 Gs: Go north/south',
+          de: '-100G: Nach Norden/Süden',
+          ja: '-100 G: 北/南へ',
+          cn: '去北边/南边',
+          ko: '중력 마이너스 100: 남/북쪽으로',
+        },
       },
     },
     {
@@ -122,38 +122,29 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2512', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2512', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2512', source: '카타스트로피', capture: false }),
-      alertText: function(data) {
-        if (!data.levitating) {
-          return {
-            en: 'Levitate',
-            de: 'Schweben',
-            ja: '浮上',
-            cn: '浮空',
-            ko: '공중부양',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (!data.levitating)
+          return output.levitate();
       },
-      infoText: function(data) {
-        if (data.levitating) {
-          return {
-            en: 'Earthquake',
-            de: 'Erdbeben',
-            ja: '地震',
-            cn: '地震',
-            ko: '대지진',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (data.levitating)
+          return output.earthquake();
       },
-      tts: function(data) {
-        if (!data.levitating) {
-          return {
-            en: 'levitate',
-            de: 'schweben',
-            ja: '浮上',
-            cn: '浮空',
-            ko: '공중부양',
-          };
-        }
+      outputStrings: {
+        earthquake: {
+          en: 'Earthquake',
+          de: 'Erdbeben',
+          ja: '地震',
+          cn: '地震',
+          ko: '대지진',
+        },
+        levitate: {
+          en: 'Levitate',
+          de: 'Schweben',
+          ja: '浮上',
+          cn: '浮空',
+          ko: '공중부양',
+        },
       },
     },
     {
@@ -173,34 +164,37 @@
       condition: Conditions.targetIsYou(),
       delaySeconds: 5,
       suppressSeconds: 10,
-      alertText: function(data) {
-        if (!data.levitating) {
-          return {
-            en: 'Levitate',
-            de: 'Schweben',
-            ja: '浮上',
-            cn: '浮空',
-            ko: '공중부양',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (!data.levitating)
+          return output.levitate();
       },
-      infoText: function(data) {
-        if (data.levitating) {
-          return {
-            en: '6 Fulms Under',
-            de: 'Versinkend',
-            ja: '沈下',
-            cn: '下陷',
-            ko: '하강',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (data.levitating)
+          return output.sixFulmsUnder();
       },
-      tts: {
-        en: 'float',
-        de: 'schweben',
-        ja: '浮上',
-        cn: '浮空',
-        ko: '공중부양',
+      tts: (data, _, output) => output.float(),
+      outputStrings: {
+        sixFulmsUnder: {
+          en: '6 Fulms Under',
+          de: 'Versinkend',
+          ja: '沈下',
+          cn: '下陷',
+          ko: '하강',
+        },
+        levitate: {
+          en: 'Levitate',
+          de: 'Schweben',
+          ja: '浮上',
+          cn: '浮空',
+          ko: '공중부양',
+        },
+        float: {
+          en: 'float',
+          de: 'schweben',
+          ja: '浮上',
+          cn: '浮空',
+          ko: '공중부양',
+        },
       },
     },
     {
@@ -219,53 +213,58 @@
           return 3;
         return 8;
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         // The first Antilight is always blue.
         if (data.antiCounter == 0) {
           // Players who are already floating should just get an info about Petrospheres.
           if (data.levitating)
             return;
-          return {
-            en: 'Levitate',
-            de: 'Levitation',
-            ja: '浮上',
-            cn: '浮空',
-            ko: '공중부양',
-          };
+          return output.levitate();
         }
         // It's always safe not to levitate after the first Antilight.
         // The second, fifth, eighth, etc Antilights require moving to the center as well.
-        if (data.antiCounter % 3 == 1) {
-          return {
-            en: 'Go center and don\'t levitate',
-            de: 'Geh in die Mitte und nicht schweben',
-            ja: '中央に浮かばず集合',
-            cn: '中间集合不要浮空',
-            ko: '공중부양 하지않고 가운데로',
-          };
-        }
-        return {
+        if (data.antiCounter % 3 == 1)
+          return output.goCenterAndDontLevitate();
+
+        return output.dontLevitate();
+      },
+      infoText: function(data, _, output) {
+        if (data.antiCounter == 0 && data.levitating)
+          return output.antilight();
+      },
+      run: function(data) {
+        data.antiCounter += 1;
+      },
+      outputStrings: {
+        antilight: {
+          en: 'Antilight',
+          de: 'Dunkellicht',
+          fr: 'Lumière obscure',
+          ja: '暗黒光',
+          cn: '暗黑光',
+          ko: '암흑광',
+        },
+        levitate: {
+          en: 'Levitate',
+          de: 'Levitation',
+          ja: '浮上',
+          cn: '浮空',
+          ko: '공중부양',
+        },
+        goCenterAndDontLevitate: {
+          en: 'Go center and don\'t levitate',
+          de: 'Geh in die Mitte und nicht schweben',
+          ja: '中央に浮かばず集合',
+          cn: '中间集合不要浮空',
+          ko: '공중부양 하지않고 가운데로',
+        },
+        dontLevitate: {
           en: 'Don\'t levitate',
           de: 'Nicht schweben',
           ja: '浮上はしない',
           cn: '不要浮空',
           ko: '공중부양 하지않기',
-        };
-      },
-      infoText: function(data) {
-        if (data.antiCounter == 0 && data.levitating) {
-          return {
-            en: 'Antilight',
-            de: 'Dunkellicht',
-            fr: 'Lumière obscure',
-            ja: '暗黒光',
-            cn: '暗黑光',
-            ko: '암흑광',
-          };
-        }
-      },
-      run: function(data) {
-        data.antiCounter += 1;
+        },
       },
     },
   ],

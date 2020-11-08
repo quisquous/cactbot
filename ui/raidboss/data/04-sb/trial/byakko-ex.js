@@ -137,20 +137,22 @@
       netRegexCn: NetRegexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27F9', source: '하얀 제왕', capture: false }),
       delaySeconds: 14,
-      alarmText: function(data) {
+      alarmText: function(data, _, output) {
         if (data.roarCount != 2)
           return;
 
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank LB NOW',
-            de: 'JETZT Tank LB',
-            fr: 'LB Tank maintenant !',
-            ja: '今タンクLB',
-            cn: '坦克LB',
-            ko: '탱리밋',
-          };
-        }
+        if (data.role == 'tank')
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Tank LB NOW',
+          de: 'JETZT Tank LB',
+          fr: 'LB Tank maintenant !',
+          ja: '今タンクLB',
+          cn: '坦克LB',
+          ko: '탱리밋',
+        },
       },
     },
     {
@@ -233,17 +235,19 @@
       netRegexFr: NetRegexes.dialog({ line: '[^:]*:Ma colère devient double.*?!.*?', capture: false }),
       netRegexJa: NetRegexes.dialog({ line: '[^:]*:駆けろ、我が半身ッ！歯向かう者どもに、牙と爪を突き立ててやれ！.*?', capture: false }),
       netRegexKo: NetRegexes.dialog({ line: '[^:]*:달려라! 나의 반신이여! 맞서는 자들에게 이빨과 발톱을 찔러넣어라!.*?', capture: false }),
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Tiger Add',
-            de: 'Tiger Add',
-            fr: 'Add Tigre',
-            ja: '虎分離',
-            cn: '虎分离',
-            ko: '호랑이 쫄',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (data.role == 'tank')
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Tiger Add',
+          de: 'Tiger Add',
+          fr: 'Add Tigre',
+          ja: '虎分離',
+          cn: '虎分离',
+          ko: '호랑이 쫄',
+        },
       },
     },
     {
@@ -280,15 +284,18 @@
       netRegexJa: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
-      infoText: function(data) {
-        return {
-          en: 'Stack #' + data.stakeCount,
-          de: 'Stack #' + data.stakeCount,
-          fr: 'Packez-vous #' + data.stakeCount,
-          ja: '頭割り #' + data.stakeCount,
-          cn: '集合 #' + data.stakeCount,
-          ko: '쉐어 #' + data.stakeCount,
-        };
+      infoText: function(data, _, output) {
+        return output.text({ num: data.stakeCount });
+      },
+      outputStrings: {
+        text: {
+          en: 'Stack #${num}',
+          de: 'Stack #${num}',
+          fr: 'Packez-vous #${num}',
+          ja: '頭割り #${num}',
+          cn: '集合 #${num}',
+          ko: '쉐어 #${num}',
+        },
       },
     },
   ],
