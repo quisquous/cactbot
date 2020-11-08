@@ -3019,7 +3019,7 @@ class Bars {
     ].forEach((effect) => {
       this.loseEffectFuncMap[effect] = () => {
         count = count + 1;
-        if (count === 4 && flourishFlag === true) {
+        if (count === 4 && flourishFlag) {
           flourish.duration = 60 - flourish.elapsed;
           flourishFlag = false;
           flourish.threshold = this.gcdSkill() + 1;
