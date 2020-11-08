@@ -1,5 +1,32 @@
 'use strict';
 
+const diveDirections = {
+  unknown: {
+    en: '?',
+  },
+  north: {
+    en: 'N',
+  },
+  northeast: {
+    en: 'NE',
+  },
+  east: {
+    en: 'E',
+  },
+  southeast: {
+    en: 'SE',
+  },
+  southwest: {
+    en: 'SW',
+  },
+  west: {
+    en: 'W',
+  },
+  northwest: {
+    en: 'NW',
+  },
+};
+
 [{
   zoneId: ZoneId.TheSecondCoilOfBahamutTurn4,
   timelineFile: 't9.txt',
@@ -304,8 +331,8 @@
 
         // Missing dragons??
         if (!data.dragons || data.dragons.length != 3) {
-          data.naelMarks = ['?', '?'];
-          data.safeZone = '?';
+          data.naelMarks = ['unknown', 'unknown'];
+          data.safeZone = 'unknown';
           return;
         }
 
@@ -314,7 +341,16 @@
         // The last one is single, so B is the last dragon + 1.
 
         let dragons = data.dragons.sort();
-        let dirNames = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+        let dirNames = [
+          'north',
+          'northeast',
+          'east',
+          'southeast',
+          'south',
+          'southwest',
+          'west',
+          'northwest',
+        ];
         data.naelMarks = [dragons[0], dragons[2]].map(function(i) {
           return dirNames[(i + 1) % 8];
         });
@@ -338,16 +374,20 @@
       netRegexKo: NetRegexes.startsUsing({ id: '7E6', source: '넬 데우스 다르누스', capture: false }),
       durationSeconds: 12,
       infoText: function(data, _, output) {
-        return output.text({ naelMarks: data.naelMarks.join(', ') });
+        return output.marks({
+          dir1: output[data.naelMarks[0]](),
+          dir2: output[data.naelMarks[1]](),
+        });
       },
       outputStrings: {
-        text: {
-          en: 'Marks: ${naelMarks}',
-          de: 'Markierungen : ${naelMarks}',
-          fr: 'Marque : ${naelMarks}',
-          ja: 'マーカー: ${naelMarks}',
-          cn: '标记： ${naelMarks}',
-          ko: '카탈징: ${naelMarks}',
+        ...diveDirections,
+        marks: {
+          en: 'Marks: ${dir1}, ${dir2}',
+          de: 'Markierungen : ${dir1}, ${dir2}',
+          fr: 'Marque : ${dir1}, ${dir2}',
+          ja: 'マーカー: ${dir1}, ${dir2}',
+          cn: '标记： ${dir1}, ${dir2}',
+          ko: '카탈징: ${dir1}, ${dir2}',
         },
       },
     },
@@ -421,8 +461,12 @@
       delaySeconds: 3,
       durationSeconds: 6,
       suppressSeconds: 20,
-      infoText: function(data) {
-        return 'Safe zone: ' + data.safeZone;
+      infoText: (data, _, output) => output.safeZone({ dir: output[data.safeZone]() }),
+      outputStrings: {
+        ...diveDirections,
+        safeZone: {
+          en: 'Safe zone: ${dir}',
+        },
       },
     },
     {
