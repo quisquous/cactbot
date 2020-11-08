@@ -40,9 +40,7 @@
     {
       id: 'O2S Levitation Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '556' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.levitating = true;
       },
@@ -50,9 +48,7 @@
     {
       id: 'O2S Levitation Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '556' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.levitating = false;
       },
@@ -243,9 +239,7 @@
     {
       id: 'O2S Unstable Gravity',
       netRegex: NetRegexes.gainsEffect({ effectId: '550' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: 9,
       alarmText: (data, _, output) => output.elevateOutsideStack(),
       tts: (data, _, output) => output.floatForBomb(),
@@ -312,9 +306,7 @@
     {
       id: 'O2S 6 Fulms Under Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '237' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.under = false;
       },

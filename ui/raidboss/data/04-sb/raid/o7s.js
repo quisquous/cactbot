@@ -9,9 +9,7 @@
     {
       id: 'O7S Aether Rot Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '5C3' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.rot = true;
       },
@@ -19,9 +17,7 @@
     {
       id: 'O7S Aether Rot Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '5C3' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.rot = false;
       },
@@ -107,9 +103,7 @@
     {
       id: 'O7S Orb Marker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -162,17 +156,13 @@
     {
       id: 'O7S Searing Wind',
       netRegex: NetRegexes.gainsEffect({ effectId: '178' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.getOut(),
     },
     {
       id: 'O7S Abandonment',
       netRegex: NetRegexes.gainsEffect({ effectId: '58A' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

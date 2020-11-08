@@ -226,9 +226,7 @@
     {
       id: 'Tsukuyomi Moonlit Debuff Logic',
       netRegex: NetRegexes.gainsEffect({ effectId: '602' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       preRun: function(data) {
         // init at 3 so we can start at 4 stacks to give the initial instruction to move
         if (typeof data.moonlitCount === 'undefined')
@@ -262,9 +260,7 @@
     {
       id: 'Tsukuyomi Moonshadowed Debuff Logic',
       netRegex: NetRegexes.gainsEffect({ effectId: '603' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       preRun: function(data) {
         // init at 3 so we can start at 4 stacks to give the initial instruction to move
         if (typeof data.moonshadowedCount === 'undefined')

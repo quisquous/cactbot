@@ -573,9 +573,7 @@
     {
       id: 'ShinryuEx Tethers',
       netRegex: NetRegexes.headMarker({ id: '0061' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: 3.8,
       infoText: function(data, _, output) {
         if (data.phase == 3)
@@ -605,9 +603,7 @@
     {
       id: 'ShinryuEx Tail Marker',
       netRegex: NetRegexes.headMarker({ id: '007E' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -661,9 +657,7 @@
     {
       id: 'ShinryuEx Cocoon Marker',
       netRegex: NetRegexes.headMarker({ id: '0039' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
   ],

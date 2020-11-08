@@ -18,9 +18,7 @@
     {
       id: 'O6N Meteors',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

@@ -111,9 +111,7 @@
     {
       id: 'Orbonne Mustadio Searchlight',
       netRegex: NetRegexes.headMarker({ id: '00A4' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -129,9 +127,7 @@
     {
       id: 'Orbonne Spread Marker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -163,9 +159,7 @@
     {
       id: 'Orbonne Agrias Vacuum',
       netRegex: NetRegexes.headMarker({ id: '00A5' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.agriasGhostCleanse = true;
       },
@@ -233,9 +227,7 @@
     {
       id: 'Orbonne Agrias Hallowed Bolt',
       netRegex: NetRegexes.headMarker({ id: '00A6' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -394,9 +386,7 @@
       netRegexJa: NetRegexes.ability({ id: '3753', source: '雷神シド' }),
       netRegexCn: NetRegexes.ability({ id: '3753', source: '雷神西德' }),
       netRegexKo: NetRegexes.ability({ id: '3753', source: '뇌신 시드' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
@@ -430,9 +420,7 @@
       netRegexJa: NetRegexes.ability({ id: '3759', source: '雷神シド' }),
       netRegexCn: NetRegexes.ability({ id: '3759', source: '雷神西德' }),
       netRegexKo: NetRegexes.ability({ id: '3759', source: '뇌신 시드' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -512,9 +500,7 @@
     {
       id: 'Orbonne Cid Shadowblade Bubble',
       netRegex: NetRegexes.headMarker({ id: '00AA' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -530,9 +516,7 @@
     {
       id: 'Orbonne Cid Hallowed Bolt',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -548,9 +532,7 @@
     {
       id: 'Orbonne Cid Crush Weapon',
       netRegex: NetRegexes.headMarker({ id: '005C' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.getOut('alarm'),
     },
     {
@@ -562,9 +544,7 @@
     {
       id: 'Orbonne Cid Divine Ruination',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -672,17 +652,13 @@
     {
       id: 'Orbonne Ultima Dark Cannonade',
       netRegex: NetRegexes.headMarker({ id: '0037' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.doritoStack(),
     },
     {
       id: 'Orbonne Ultima Eruption',
       netRegex: NetRegexes.headMarker({ id: '0066' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -698,9 +674,7 @@
     {
       id: 'Orbonne Ultima Flare IV',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.getOut('alarm'),
     },
     {
@@ -794,9 +768,7 @@
     {
       id: 'Orbonne Ultima Acceleration Bomb',
       netRegex: NetRegexes.gainsEffect({ effectId: '430' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 1;
       },

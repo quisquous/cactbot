@@ -32,9 +32,7 @@
       netRegexJa: NetRegexes.ability({ id: '332C', source: 'オメガM' }),
       netRegexCn: NetRegexes.ability({ id: '332C', source: '欧米茄M' }),
       netRegexKo: NetRegexes.ability({ id: '332C', source: '오메가 M' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -118,9 +116,7 @@
     {
       id: 'O12S Electric Slide Marker',
       netRegex: NetRegexes.headMarker({ id: '009[12345678]' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: function(data, matches, output) {
         let num = parseInt(matches.id);
         let isTriangle = num >= 95;
@@ -161,17 +157,13 @@
     {
       id: 'O12S Optimized Meteor',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou('info'),
     },
     {
       id: 'O12S Packet Filter F',
       netRegex: NetRegexes.gainsEffect({ effectId: '67D' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -187,9 +179,7 @@
     {
       id: 'O12S Packet Filter M',
       netRegex: NetRegexes.gainsEffect({ effectId: '67C' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -323,9 +313,7 @@
       // Local Regression
       id: 'O12S Local Tethers',
       netRegex: NetRegexes.gainsEffect({ effectId: '688' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -342,9 +330,7 @@
       // Remote Regression
       id: 'O12S Far Tethers',
       netRegex: NetRegexes.gainsEffect({ effectId: '689' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -361,9 +347,7 @@
       // Critical Overflow Bug
       id: 'O12S Defamation',
       netRegex: NetRegexes.gainsEffect({ effectId: '681' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -379,9 +363,7 @@
     {
       id: 'O12S Latent Defect',
       netRegex: NetRegexes.gainsEffect({ effectId: '686' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -398,9 +380,7 @@
       // Critical Underflow Bug
       id: 'O12S Rot',
       netRegex: NetRegexes.gainsEffect({ effectId: '682' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -504,9 +484,7 @@
       // Cascading Latent Defect
       id: 'O12S Hello World Tower Complete',
       netRegex: NetRegexes.gainsEffect({ effectId: '687' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

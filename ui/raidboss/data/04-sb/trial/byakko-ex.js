@@ -158,9 +158,7 @@
     {
       id: 'ByaEx Bubble',
       netRegex: NetRegexes.headMarker({ id: '0065' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -176,9 +174,7 @@
     {
       id: 'ByaEx Ominous Wind',
       netRegex: NetRegexes.gainsEffect({ effectId: '5C9' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -194,9 +190,7 @@
     {
       id: 'ByaEx Puddle Marker',
       netRegex: NetRegexes.headMarker({ id: '0004' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -212,9 +206,7 @@
     {
       id: 'ByaEx G100',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

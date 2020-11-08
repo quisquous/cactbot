@@ -9,9 +9,7 @@
     {
       id: 'UCU Firescorched Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '1D0' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.fireDebuff = true;
       },
@@ -19,9 +17,7 @@
     {
       id: 'UCU Firescorched Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '1D0' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.fireDebuff = false;
       },
@@ -29,9 +25,7 @@
     {
       id: 'UCU Icebitten Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '1D1' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.iceDebuff = true;
       },
@@ -39,9 +33,7 @@
     {
       id: 'UCU Icebitten Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '1D1' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.iceDebuff = false;
       },
@@ -202,9 +194,7 @@
     {
       id: 'UCU Hatch Marker YOU',
       netRegex: NetRegexes.headMarker({ id: '0076' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -608,9 +598,7 @@
       netRegexJa: NetRegexes.ability({ source: 'サンダーウィング', id: '26C7' }),
       netRegexCn: NetRegexes.ability({ source: '雷翼', id: '26C7' }),
       netRegexKo: NetRegexes.ability({ source: '번개날개', id: '26C7' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -1294,9 +1282,7 @@
     {
       id: 'UCU Megaflare Stack Me',
       netRegex: NetRegexes.headMarker({ id: '0027' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

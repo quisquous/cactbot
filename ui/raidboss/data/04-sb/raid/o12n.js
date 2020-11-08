@@ -67,9 +67,7 @@
     {
       id: 'O12N Optimized Meteor',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou(),
     },
     {
@@ -107,9 +105,7 @@
     {
       id: 'O12N Packet Filter F',
       netRegex: NetRegexes.gainsEffect({ effectId: '67D' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -125,9 +121,7 @@
     {
       id: 'O12N Packet Filter M',
       netRegex: NetRegexes.gainsEffect({ effectId: '67C' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

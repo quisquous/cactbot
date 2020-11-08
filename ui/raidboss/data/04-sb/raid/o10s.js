@@ -50,9 +50,7 @@
     {
       id: 'O10S Death From Below',
       netRegex: NetRegexes.headMarker({ id: '008F' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -68,9 +66,7 @@
     {
       id: 'O10S Death From Above',
       netRegex: NetRegexes.headMarker({ id: '008E' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

@@ -263,9 +263,7 @@
     {
       id: 'O4S Neo White Wound Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '564' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data, matches) {
         data.whiteWound = true;
       },
@@ -273,9 +271,7 @@
     {
       id: 'O4S Neo White Wound Lost',
       netRegex: NetRegexes.losesEffect({ effectId: '564' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data, matches) {
         data.whiteWound = false;
       },
@@ -283,9 +279,7 @@
     {
       id: 'O4S Neo Black Wound Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '565' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data, matches) {
         data.blackWound = true;
       },
@@ -293,9 +287,7 @@
     {
       id: 'O4S Neo Black Wound Lost',
       netRegex: NetRegexes.losesEffect({ effectId: '565' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data, matches) {
         data.blackWound = false;
       },
@@ -303,9 +295,7 @@
     {
       id: 'O4S Neo Beyond Death Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data, matches) {
         data.beyondDeath = true;
       },
@@ -313,9 +303,7 @@
     {
       id: 'O4S Neo Beyond Death Lost',
       netRegex: NetRegexes.losesEffect({ effectId: '566' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data, matches) {
         data.beyondDeath = false;
       },
@@ -323,9 +311,7 @@
     {
       id: 'O4S Neo Allagan Field Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C6' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data, matches) {
         data.allaganField = true;
       },
@@ -333,9 +319,7 @@
     {
       id: 'O4S Neo Allagan Field Lost',
       netRegex: NetRegexes.losesEffect({ effectId: '1C6' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data, matches) {
         data.allaganField = false;
       },
@@ -857,18 +841,14 @@
     {
       id: 'O4S Neo Forked Lightning',
       netRegex: NetRegexes.gainsEffect({ effectId: '24B' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: 1,
       response: Responses.spread(),
     },
     {
       id: 'O4S Neo Acceleration Bomb',
       netRegex: NetRegexes.gainsEffect({ effectId: '568' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 4;
       }, // 4 second warning.
@@ -943,9 +923,7 @@
       // Water Me (Delta/Omega)
       id: 'O4S Neo Water Me',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: function(data, _, output) {
         // Not clear where to tell the healer where to go on delta
         // due to picking a side for uptime strat, or other strats.

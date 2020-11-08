@@ -69,9 +69,7 @@
     {
       id: 'RathEx Fire Breath',
       netRegex: NetRegexes.headMarker({ id: '0081' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
