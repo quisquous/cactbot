@@ -43,7 +43,7 @@
           ko: '불징 대상자',
         },
         fireOn: {
-          en: 'Fire on ${player}',
+          en: 'Fire Marker on ${player}',
         },
       },
     },

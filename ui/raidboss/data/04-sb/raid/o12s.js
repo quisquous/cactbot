@@ -128,9 +128,7 @@
         if (isTriangle)
           num -= 4;
 
-        if (isTriangle)
-          return output.triangle({ num: num });
-        return output.square({ num: num });
+        return isTriangle ? output.triangle({ num: num }) : output.square({ num: num });
       },
       outputStrings: {
         square: {
