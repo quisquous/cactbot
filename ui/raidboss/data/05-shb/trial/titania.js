@@ -14,7 +14,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D5C', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D5C', source: '티타니아', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -207,7 +207,7 @@
       netRegexCn: NetRegexes.ability({ id: '3D31', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3D31', source: '티타니아', capture: false }),
       infoText: function(data, _, output) {
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.groupAddsEastOnMustardseed();
 
         return output.killMustardseedEast();

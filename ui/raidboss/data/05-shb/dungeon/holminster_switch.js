@@ -13,7 +13,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3DC5', source: '得到宽恕的失调', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DC5', source: '면죄된 불화', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -26,7 +26,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3DC4', source: '得到宽恕的失调' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DC4', source: '면죄된 불화' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -39,7 +39,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3DCF', source: '得到宽恕的泰丝琳' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DCF', source: '면죄된 테슬린' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -52,7 +52,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3DD0', source: '得到宽恕的泰丝琳', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DD0', source: '면죄된 테슬린', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -80,7 +80,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3DD8', source: '斐利亚', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DD8', source: '필리아', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -93,7 +93,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3DD7', source: '斐利亚' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DD7', source: '필리아' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },

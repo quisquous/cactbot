@@ -13,7 +13,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '4769', source: '宫殿的隐者' }),
       netRegexKo: NetRegexes.startsUsing({ id: '4769', source: '궁전의 은자' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -37,7 +37,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '49A3', source: '宫殿的隐者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '49A3', source: '궁전의 은자', capture: false }),
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
+        return data.role === 'healer' || data.role === 'tank' || data.CanAddle();
       },
       response: Responses.aoe(),
     },
@@ -81,7 +81,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '471C', source: '凉南希', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '471C', source: '랴난시', capture: false }),
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
+        return data.role === 'healer' || data.role === 'tank' || data.CanAddle();
       },
       response: Responses.aoe(),
     },
@@ -150,7 +150,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '4765', source: '卢格斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4765', source: '루구스', capture: false }),
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
+        return data.role === 'healer' || data.role === 'tank' || data.CanAddle();
       },
       response: Responses.aoe(),
     },
@@ -228,7 +228,7 @@
         data.firesDomain = (data.firesDomain || 0) + 1;
       },
       infoText: function(data, _, output) {
-        if (data.firesDomain == 1)
+        if (data.firesDomain === 1)
           return output.pointTetherAwayFromFurniture();
 
         return output.tetherOnYou();

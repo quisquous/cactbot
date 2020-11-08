@@ -9,7 +9,7 @@
       regex: /Earthen Anguish/,
       beforeSeconds: 3,
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank';
+        return data.role === 'healer' || data.role === 'tank';
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -60,7 +60,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '4116', source: '泰坦' }),
       netRegexKo: NetRegexes.startsUsing({ id: '4116', source: '타이탄' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
+        return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
       },
       // As this seems to usually seems to be invulned,
       // don't make a big deal out of it.
@@ -108,7 +108,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '4114', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4114', source: '타이탄', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -206,7 +206,7 @@
         let x = matches.x;
         let y = matches.y;
 
-        if (data.phase == 'armor') {
+        if (data.phase === 'armor') {
           // Three line bombs (middle, e/w, w/e), with seismic wave.
           if (x < 95) {
             data.printedBury = true;
@@ -215,7 +215,7 @@
             data.printedBury = true;
             return output.hideBehindWest();
           }
-        } else if (data.phase == 'landslide') {
+        } else if (data.phase === 'landslide') {
           // Landslide cardinals/corners + middle, followed by remaining 4.
           let xMiddle = x < 105 && x > 95;
           let yMiddle = y < 105 && y > 95;
@@ -323,7 +323,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '4124', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4124', source: '거대 타이탄', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.bigAoe(),
     },
@@ -427,10 +427,10 @@
       id: 'E4S Megalith',
       netRegex: NetRegexes.headMarker({ id: '005D' }),
       alertText: function(data, matches, output) {
-        if (data.role != 'tank')
+        if (data.role !== 'tank')
           return output.awayFromTanks();
 
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           return output.stackOnYou();
 
         return output.stackOn({ player: data.ShortName(matches.target) });
@@ -573,7 +573,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '412A', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '412A', source: '거대 타이탄', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },

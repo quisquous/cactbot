@@ -13,7 +13,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3FC4', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FC4', source: '리바이어선', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -21,7 +21,7 @@
       id: 'E3N Rip Current',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
+        return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -122,7 +122,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3FD4', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FD4', source: '리바이어선', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
