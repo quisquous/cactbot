@@ -32,7 +32,7 @@
 let getHeadmarkerId = (data, matches) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 004F.
   // (This makes the offset 0, and !0 is true.)
-  if (typeof data.decOffset == 'undefined') {
+  if (typeof data.decOffset === 'undefined') {
     // The first 1B marker in the encounter is Limit Cut 1, ID 004F.
     data.decOffset = parseInt(matches.id, 16) - 79;
   }
@@ -228,19 +228,19 @@ const namedNisiPass = (data, output) => {
     // and who doesn't have nisi.
     let myNisi = data.nisiMap[data.me];
     let names = Object.keys(data.finalNisiMap);
-    names = names.filter((x) => data.finalNisiMap[x] == myNisi && x != data.me);
+    names = names.filter((x) => data.finalNisiMap[x] === myNisi && x !== data.me);
 
     let namesWithoutNisi = names.filter((x) => !(x in data.nisiMap));
 
     // If somehow it's the case that you've had SUCH a late pass that there
     // isn't anybody without without nisi, at least use the names of folks who
     // have the final debuff.
-    if (namesWithoutNisi.length == 0)
+    if (namesWithoutNisi.length === 0)
       namesWithoutNisi = names;
 
     // If somehow still there's nobody, give a message so that it's not silent
     // but you're probably in trouble.
-    if (namesWithoutNisi.length == 0)
+    if (namesWithoutNisi.length === 0)
       return output.passNisi({ type: nisiToString(myNisi, output) });
 
     // The common case.  Hopefully there's only one person in the names list,
@@ -252,8 +252,8 @@ const namedNisiPass = (data, output) => {
   // If you don't have nisi, then you need to go get it from a person who does.
   let myNisi = data.finalNisiMap[data.me];
   let names = Object.keys(data.nisiMap);
-  names = names.filter((x) => data.nisiMap[x] == myNisi);
-  if (names.length == 0)
+  names = names.filter((x) => data.nisiMap[x] === myNisi);
+  if (names.length === 0)
     return output.getNisi({ type: nisiToString(myNisi, output) });
 
   return output.getNisi({
@@ -280,8 +280,8 @@ const namedNisiPass = (data, output) => {
       },
       suppressSeconds: 1,
       alertText: function(data, _, output) {
-        let multipleSwings = data.swingCount == 2 || data.swingCount == 3;
-        if (data.role == 'healer') {
+        let multipleSwings = data.swingCount === 2 || data.swingCount === 3;
+        if (data.role === 'healer') {
           if (multipleSwings)
             return output.tankBusters();
 
@@ -291,16 +291,16 @@ const namedNisiPass = (data, output) => {
           return output.tankBuster();
         }
 
-        if (data.role == 'tank') {
-          if (data.me == data.handTank && multipleSwings || data.me == data.liquidTank)
+        if (data.role === 'tank') {
+          if (data.me === data.handTank && multipleSwings || data.me === data.liquidTank)
             return output.tankBusterOnYou();
         }
       },
       infoText: function(data, _, output) {
-        let multipleSwings = data.swingCount == 2 || data.swingCount == 3;
-        if (data.role == 'healer')
+        let multipleSwings = data.swingCount === 2 || data.swingCount === 3;
+        if (data.role === 'healer')
           return;
-        if (data.me == data.handTank && multipleSwings || data.me == data.liquidTank)
+        if (data.me === data.handTank && multipleSwings || data.me === data.liquidTank)
           return;
         return output.tankCleave();
       },
@@ -355,7 +355,7 @@ const namedNisiPass = (data, output) => {
       regex: /Hand of Prayer\/Parting/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       suppressSeconds: 1,
       infoText: (data, _, output) => output.text(),
@@ -375,7 +375,7 @@ const namedNisiPass = (data, output) => {
       regex: /J Kick/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank';
+        return data.role === 'healer' || data.role === 'tank';
       },
       suppressSeconds: 1,
       infoText: (data, _, output) => output.text(),
@@ -411,7 +411,7 @@ const namedNisiPass = (data, output) => {
       regex: /Flarethrower/,
       beforeSeconds: 8,
       condition: function(data) {
-        return data.me == data.bruteTank && data.phase == 'brute';
+        return data.me === data.bruteTank && data.phase === 'brute';
       },
       suppressSeconds: 300,
       alertText: (data, _, output) => output.text(),
@@ -459,16 +459,16 @@ const namedNisiPass = (data, output) => {
       alertText: function(data, matches, output) {
         // data.puddle is set by 'TEA Wormhole TPS Strat' (or by some user trigger).
         // If that's disabled, this will still just call out puddle counts.
-        if (matches[1] == data.puddle)
+        if (matches[1] === data.puddle)
           return output.soakThisPuddle({ num: matches[1] });
       },
       infoText: function(data, matches, output) {
-        if (matches[1] == data.puddle)
+        if (matches[1] === data.puddle)
           return;
         return output.puddle({ num: matches[1] });
       },
       tts: function(data, matches, output) {
-        if (matches[1] == data.puddle)
+        if (matches[1] === data.puddle)
           return output.soakThisPuddleTTS();
       },
       outputStrings: {
@@ -506,7 +506,7 @@ const namedNisiPass = (data, output) => {
       regex: /^Ordained Capital Punishment$/,
       beforeSeconds: 6,
       alertText: function(data, _, output) {
-        if (data.role == 'tank' || data.role == 'healer')
+        if (data.role === 'tank' || data.role === 'healer')
           return output.text();
       },
       outputStrings: {
@@ -709,7 +709,7 @@ const namedNisiPass = (data, output) => {
         data.handOfPainCount = (data.handOfPainCount || 0) + 1;
       },
       infoText: function(data, _, output) {
-        if (data.handOfPainCount == 5)
+        if (data.handOfPainCount === 5)
           return output.text();
       },
       outputStrings: {
@@ -749,7 +749,7 @@ const namedNisiPass = (data, output) => {
       condition: function(data, matches) {
         // Here and elsewhere, it's probably best to check for whether the user is the target first,
         // as that should short-circuit more often.
-        return data.me == matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
+        return data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
       },
       preRun: function(data, matches) {
         let correctedMatch = getHeadmarkerId(data, matches);
@@ -763,7 +763,7 @@ const namedNisiPass = (data, output) => {
           '0055': 7,
           '0056': 8,
         }[correctedMatch];
-        if (data.phase == 'wormhole') {
+        if (data.phase === 'wormhole') {
           data.limitCutDelay = {
             '004F': 9.2,
             '0050': 10.7,
@@ -811,15 +811,15 @@ const namedNisiPass = (data, output) => {
       id: 'TEA Limit Cut Knockback',
       netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
-        return data.me == matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
+        return data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
       },
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: function(data) {
         return data.limitCutDelay - 5;
       },
       alertText: function(data, matches, output) {
-        let isOddNumber = parseInt(getHeadmarkerId(data, matches), 16) & 1 == 1;
-        if (data.phase == 'wormhole') {
+        let isOddNumber = parseInt(getHeadmarkerId(data, matches), 16) & 1 === 1;
+        if (data.phase === 'wormhole') {
           if (isOddNumber)
             return output.knockbackCleaveFaceOutside();
 
@@ -875,7 +875,7 @@ const namedNisiPass = (data, output) => {
       netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '483F', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '483F', capture: false }),
       condition: function(data) {
-        return data.phase == 'brute';
+        return data.phase === 'brute';
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -920,7 +920,7 @@ const namedNisiPass = (data, output) => {
       netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '49C2', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '49C2', capture: false }),
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
+        return data.role === 'healer' || data.role === 'tank' || data.CanAddle();
       },
       response: Responses.aoe(),
     },
@@ -935,7 +935,7 @@ const namedNisiPass = (data, output) => {
       // Nobody should be in front of cruise chaser but the tank, and this is close to
       // water thunder handling, so only tell the tank.
       condition: function(data) {
-        return data.me == data.cruiseTank;
+        return data.me === data.cruiseTank;
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -953,7 +953,7 @@ const namedNisiPass = (data, output) => {
       id: 'TEA Ice Marker',
       netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
-        return data.me == matches.target && getHeadmarkerId(data, matches) == '0043';
+        return data.me === matches.target && getHeadmarkerId(data, matches) === '0043';
       },
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
@@ -976,7 +976,7 @@ const namedNisiPass = (data, output) => {
       netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '4851', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '4851', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       suppressSeconds: 1,
       infoText: (data, _, output) => output.text(),
@@ -995,7 +995,7 @@ const namedNisiPass = (data, output) => {
       id: 'TEA Enumeration YOU',
       netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
-        return data.me == matches.target && getHeadmarkerId(data, matches) == '0041';
+        return data.me === matches.target && getHeadmarkerId(data, matches) === '0041';
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -1013,14 +1013,14 @@ const namedNisiPass = (data, output) => {
       id: 'TEA Enumeration Everyone',
       netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
-        return getHeadmarkerId(data, matches) == '0041';
+        return getHeadmarkerId(data, matches) === '0041';
       },
       preRun: function(data, matches) {
         data.enumerations = data.enumerations || [];
         data.enumerations.push(matches.target);
       },
       infoText: function(data, _, output) {
-        if (data.enumerations.length != 2)
+        if (data.enumerations.length !== 2)
           return;
         let names = data.enumerations.sort();
         return output.text({ players: names.map((x) => data.ShortName(x)).join(', ') });
@@ -1171,7 +1171,7 @@ const namedNisiPass = (data, output) => {
       netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '4850', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '4850', capture: false }),
       // Ignore enumerations later in the fight.
-      condition: (data) => data.phase == 'brute',
+      condition: (data) => data.phase === 'brute',
       delaySeconds: 1,
       suppressSeconds: 1,
       alertText: (data, _, output) => output.text(),
@@ -1271,14 +1271,14 @@ const namedNisiPass = (data, output) => {
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '4847' }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '4847' }),
       alertText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.sharedTankbusterOnYou();
 
-        if (data.role == 'tank' || data.role == 'healer')
+        if (data.role === 'tank' || data.role === 'healer')
           return output.sharedTankbusterOn({ player: data.ShortName(matches.target) });
       },
       infoText: function(data, _, output) {
-        if (data.role == 'tank' || data.role == 'healer')
+        if (data.role === 'tank' || data.role === 'healer')
           return;
         return output.baitSuperJump();
       },
@@ -1317,7 +1317,7 @@ const namedNisiPass = (data, output) => {
       netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '484A', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '484A', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '484A', capture: false }),
-      condition: (data) => data.phase == 'brute',
+      condition: (data) => data.phase === 'brute',
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -1347,7 +1347,7 @@ const namedNisiPass = (data, output) => {
       condition: function(data) {
         // NOTE: due to timings the "temporal" phase does not start until after debuffs are out.
         // So consider the "temporal" no debuff to be "brute" no debuff here.
-        return data.phase == 'brute' || data.phase == 'inception';
+        return data.phase === 'brute' || data.phase === 'inception';
       },
       delaySeconds: 0.5,
       durationSeconds: 10,
@@ -1422,7 +1422,7 @@ const namedNisiPass = (data, output) => {
     {
       id: 'TEA Shared Sentence Inception',
       netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
-      condition: (data) => data.phase == 'inception',
+      condition: (data) => data.phase === 'inception',
       delaySeconds: 3,
       infoText: function(data, matches, output) {
         return output.text({ player: data.ShortName(matches.target) });
@@ -1464,18 +1464,18 @@ const namedNisiPass = (data, output) => {
       netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A80' }),
       netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '4A80' }),
       alertText: function(data, matches, output) {
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           return output.tankBusterOnYou();
 
-        if (data.role == 'healer')
+        if (data.role === 'healer')
           return output.busterOn({ player: data.ShortName(matches.target) });
       },
       // As this seems to usually seems to be invulned,
       // don't make a big deal out of it.
       infoText: function(data, matches, output) {
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           return;
-        if (data.role != 'tank')
+        if (data.role !== 'tank')
           return;
 
         return output.busterOn({ player: data.ShortName(matches.target) });
@@ -1503,7 +1503,7 @@ const namedNisiPass = (data, output) => {
       id: 'TEA Judgment Crystal',
       netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
-        return data.me == matches.target && getHeadmarkerId(data, matches) == '0060';
+        return data.me === matches.target && getHeadmarkerId(data, matches) === '0060';
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -1563,7 +1563,7 @@ const namedNisiPass = (data, output) => {
     {
       id: 'TEA Inception Vuln Collection',
       netRegex: NetRegexes.gainsEffect({ effectId: '2B7' }),
-      condition: (data) => data.phase == 'inception',
+      condition: (data) => data.phase === 'inception',
       run: function(data, matches) {
         data.vuln[matches.target] = true;
       },
@@ -1577,10 +1577,10 @@ const namedNisiPass = (data, output) => {
       netRegexFr: NetRegexes.ability({ source: 'Primo-Alexander', id: '485F', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'アレキサンダー・プライム', id: '485F', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '485F', capture: false }),
-      condition: (data) => data.phase == 'inception',
+      condition: (data) => data.phase === 'inception',
       alarmText: function(data, _, output) {
         let numVulns = Object.keys(data.vuln).length;
-        if (data.role == 'tank' && data.vuln[data.me] && numVulns >= 5) {
+        if (data.role === 'tank' && data.vuln[data.me] && numVulns >= 5) {
           // If you're stacking three people in the shared sentence,
           // then probably the tank wants to handle jump with cooldowns.
           // TODO: we could probably determine where this is.
@@ -1604,7 +1604,7 @@ const namedNisiPass = (data, output) => {
         if (data.vuln[data.me]) {
           // Tanks covered in the alarmText case above.
           let numVulns = Object.keys(data.vuln).length;
-          if (data.role == 'tank' && numVulns >= 5)
+          if (data.role === 'tank' && numVulns >= 5)
             return;
 
           return output.vulnAvoidCleavesAndJump();
@@ -1686,7 +1686,7 @@ const namedNisiPass = (data, output) => {
           return false;
         if (!(/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches)))
           return false;
-        return data.phase == 'wormhole' && data.me == matches.target;
+        return data.phase === 'wormhole' && data.me === matches.target;
       },
       preRun: function(data, matches) {
         data.puddle = {
@@ -1794,9 +1794,9 @@ const namedNisiPass = (data, output) => {
       condition: function(data) {
         if (!data.options.cactbotWormholeStrat)
           return false;
-        if (data.phase != 'wormhole')
+        if (data.phase !== 'wormhole')
           return;
-        return data.limitCutNumber == 2 || data.limitCutNumber == 3;
+        return data.limitCutNumber === 2 || data.limitCutNumber === 3;
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -1814,7 +1814,7 @@ const namedNisiPass = (data, output) => {
       id: 'TEA Incinerating Heat',
       netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
-        return getHeadmarkerId(data, matches) == '005D';
+        return getHeadmarkerId(data, matches) === '005D';
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -1877,7 +1877,7 @@ const namedNisiPass = (data, output) => {
       netRegexJa: NetRegexes.ability({ source: 'アレキサンダー・プライム', id: '4879', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '4879', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       delaySeconds: 6,
       alarmText: (data, _, output) => output.text(),
@@ -1916,18 +1916,18 @@ const namedNisiPass = (data, output) => {
       id: 'TEA Perfect Optical Sight Stack',
       netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
-        return getHeadmarkerId(data, matches) == '003E';
+        return getHeadmarkerId(data, matches) === '003E';
       },
       preRun: function(data, matches) {
         data.opticalStack = data.opticalStack || [];
         data.opticalStack.push(matches.target);
       },
       alertText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.stackOnYou();
       },
       infoText: function(data, _, output) {
-        if (data.opticalStack.length == 1)
+        if (data.opticalStack.length === 1)
           return;
         let names = data.opticalStack.map((x) => data.ShortName(x)).sort();
         return output.opticalStackPlayers({ players: names.join(', ') });
@@ -1995,7 +1995,7 @@ const namedNisiPass = (data, output) => {
     {
       id: 'TEA Contact Prohibition',
       netRegex: NetRegexes.gainsEffect({ effectId: '868' }),
-      condition: (data, matches) => data.me == matches.target,
+      condition: (data, matches) => data.me === matches.target,
       infoText: (data, _, output) => output.text(),
       tts: {
         en: 'Orange',
@@ -2019,7 +2019,7 @@ const namedNisiPass = (data, output) => {
     {
       id: 'TEA Contact Regulation',
       netRegex: NetRegexes.gainsEffect({ effectId: '869' }),
-      condition: (data, matches) => data.me == matches.target,
+      condition: (data, matches) => data.me === matches.target,
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -2035,7 +2035,7 @@ const namedNisiPass = (data, output) => {
     {
       id: 'TEA Escape Prohibition',
       netRegex: NetRegexes.gainsEffect({ effectId: '86A' }),
-      condition: (data, matches) => data.me == matches.target,
+      condition: (data, matches) => data.me === matches.target,
       infoText: (data, _, output) => output.text(),
       tts: {
         en: 'Purple',
@@ -2059,7 +2059,7 @@ const namedNisiPass = (data, output) => {
     {
       id: 'TEA Escape Detection',
       netRegex: NetRegexes.gainsEffect({ effectId: '86B' }),
-      condition: (data, matches) => data.me == matches.target,
+      condition: (data, matches) => data.me === matches.target,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -2083,7 +2083,7 @@ const namedNisiPass = (data, output) => {
     {
       id: 'TEA Alpha Instructions',
       netRegex: NetRegexes.tether({ id: '0062', capture: false }),
-      condition: (data) => data.phase == 'alpha',
+      condition: (data) => data.phase === 'alpha',
       delaySeconds: 1,
       suppressSeconds: 10,
       run: function(data) {
@@ -2102,7 +2102,7 @@ const namedNisiPass = (data, output) => {
     {
       id: 'TEA Alpha Instructions Callout',
       netRegex: NetRegexes.tether({ id: '0062', capture: false }),
-      condition: (data) => data.phase == 'alpha',
+      condition: (data) => data.phase === 'alpha',
       delaySeconds: 2,
       durationSeconds: 28,
       suppressSeconds: 10,
@@ -2110,21 +2110,21 @@ const namedNisiPass = (data, output) => {
       // rather than a giant pile of conditionals in each function.
       alarmText: function(data, _, output) {
         // Defamation will wipe the group, so gets an alarm.
-        if (data.me == data.alphaDefamation)
+        if (data.me === data.alphaDefamation)
           return output.defamation();
       },
       alertText: function(data, _, output) {
         // Folks who need to not stack, get an alert.
-        if (data.me == data.alphaSolidarity)
+        if (data.me === data.alphaSolidarity)
           return output.solidarity();
         if (data.alphaSeverity.includes(data.me))
           return output.severity();
       },
       infoText: function(data, _, output) {
         // The other 4 people in the stack group just get info.
-        if (data.me == data.alphaDefamation)
+        if (data.me === data.alphaDefamation)
           return;
-        if (data.me == data.alphaSolidarity)
+        if (data.me === data.alphaSolidarity)
           return;
         if (data.alphaSeverity.includes(data.me))
           return;
@@ -2300,10 +2300,10 @@ const namedNisiPass = (data, output) => {
         data.safeAlphaPos = [matches.x, matches.y];
 
         // Unknown idx?
-        if (idx != 1 && idx != 2)
+        if (idx !== 1 && idx !== 2)
           return;
 
-        if (data.me == data.alphaDefamation) {
+        if (data.me === data.alphaDefamation) {
           if (idx === 1)
             return output.defamationFrontLeft();
           return output.defamationFrontRight();
@@ -2359,7 +2359,7 @@ const namedNisiPass = (data, output) => {
       // 5 seconds until mechanic
       delaySeconds: 2.2,
       alertText: function(data, _, output) {
-        if (data.firstAlphaOrdainedText == 'motionFirst')
+        if (data.firstAlphaOrdainedText === 'motionFirst')
           return output.moveFirst();
 
         return output.stillnessFirst();
@@ -2394,7 +2394,7 @@ const namedNisiPass = (data, output) => {
       // ~4 seconds until mechanic (to avoid overlapping with first)
       delaySeconds: 7.2,
       alertText: function(data, _, output) {
-        if (data.secondAlphaOrdainedText == 'motionSecond')
+        if (data.secondAlphaOrdainedText === 'motionSecond')
           return output.keepMoving();
 
         return output.stopEverything();
@@ -2421,7 +2421,7 @@ const namedNisiPass = (data, output) => {
     {
       id: 'TEA Beta Instructions',
       netRegex: NetRegexes.tether({ id: '0062', capture: false }),
-      condition: (data) => data.phase == 'beta',
+      condition: (data) => data.phase === 'beta',
       delaySeconds: 1,
       suppressSeconds: 10,
       run: function(data) {
@@ -2438,7 +2438,7 @@ const namedNisiPass = (data, output) => {
     {
       id: 'TEA Beta Instructions Callout',
       netRegex: NetRegexes.tether({ id: '0062', capture: false }),
-      condition: (data) => data.phase == 'beta',
+      condition: (data) => data.phase === 'beta',
       preRun: (data, _, output) => {
         data.betaInstructions = {
           '-1': output.unknown(),
@@ -2657,7 +2657,7 @@ const namedNisiPass = (data, output) => {
           return;
 
         // Error?
-        if (data.betaBait.length == 0)
+        if (data.betaBait.length === 0)
           return output.opticalStack();
 
         let names = data.betaBait.map((x) => data.ShortName(x)).sort();
@@ -2761,7 +2761,7 @@ const namedNisiPass = (data, output) => {
       },
       alertText: function(data, _, output) {
         // Call out after two, because that's when the mechanic is fully known.
-        if (data.trine.length != 2)
+        if (data.trine.length !== 2)
           return;
 
         // Find the third one based on the first two.
