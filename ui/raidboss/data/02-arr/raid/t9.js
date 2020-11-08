@@ -379,20 +379,17 @@ const diveDirections = {
           dir2: output[data.naelMarks[1]](),
         });
       },
-      outputStrings: Object.assign(
-          {},
-          diveDirections,
-          {
-            marks: {
-              en: 'Marks: ${dir1}, ${dir2}',
-              de: 'Markierungen : ${dir1}, ${dir2}',
-              fr: 'Marque : ${dir1}, ${dir2}',
-              ja: 'マーカー: ${dir1}, ${dir2}',
-              cn: '标记： ${dir1}, ${dir2}',
-              ko: '카탈징: ${dir1}, ${dir2}',
-            },
-          },
-      ),
+      outputStrings: {
+        ...diveDirections,
+        marks: {
+          en: 'Marks: ${dir1}, ${dir2}',
+          de: 'Markierungen : ${dir1}, ${dir2}',
+          fr: 'Marque : ${dir1}, ${dir2}',
+          ja: 'マーカー: ${dir1}, ${dir2}',
+          cn: '标记： ${dir1}, ${dir2}',
+          ko: '카탈징: ${dir1}, ${dir2}',
+        },
+      },
     },
     {
       id: 'T9 Tether',
@@ -465,15 +462,12 @@ const diveDirections = {
       durationSeconds: 6,
       suppressSeconds: 20,
       infoText: (data, _, output) => output.safeZone({ dir: output[data.safeZone]() }),
-      outputStrings: Object.assign(
-          {},
-          diveDirections,
-          {
-            safeZone: {
-              en: 'Safe zone: ${dir}',
-            },
-          },
-      ),
+      outputStrings: {
+        ...diveDirections,
+        safeZone: {
+          en: 'Safe zone: ${dir}',
+        },
+      },
     },
     {
       id: 'T9 Dragon Marker',
