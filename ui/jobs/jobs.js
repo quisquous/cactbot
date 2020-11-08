@@ -2975,7 +2975,7 @@ class Bars {
     let elapsed = 0;
     this.abilityFuncMap[kAbility.TechnicalFinish] = () => {
       // Avoid mutiple call in one TechnicalFinish.
-      if (technicalFlag === false) {
+      if (!technicalFlag) {
         elapsed = technicalStep.elapsed;
         technicalFlag = true;
       }
