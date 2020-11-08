@@ -10,7 +10,7 @@
       regex: /Atmospheric Displacement/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -25,7 +25,7 @@
       regex: /Unholy/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },

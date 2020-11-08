@@ -24,7 +24,7 @@
       regex: /Hand of Prayer\/Parting/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'tank' || data.job == 'BLU';
+        return data.role === 'tank' || data.job === 'BLU';
       },
       suppressSeconds: 1,
       infoText: (data, _, output) => output.text(),
@@ -155,7 +155,7 @@
       netRegexCn: NetRegexes.tether({ id: '0005', target: '有生命活水', capture: false }),
       netRegexKo: NetRegexes.tether({ id: '0005', target: '살아있는 액체', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       suppressSeconds: 1,
       infoText: (data, _, output) => output.text(),
@@ -206,7 +206,7 @@
         if (!partner || !marker1 || !marker2)
           return matches.ability + ' (???)';
 
-        if (marker1 == marker2)
+        if (marker1 === marker2)
           return output.repel({ player: data.ShortName(partner) });
         return output.attract({ player: data.ShortName(partner) });
       },
@@ -270,11 +270,11 @@
       id: 'A3S Fluid Claw',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
       alarmText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.clawOnYou();
       },
       infoText: function(data, matches, output) {
-        if (data.me != matches.target)
+        if (data.me !== matches.target)
           return output.clawOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -306,7 +306,7 @@
       netRegexCn: NetRegexes.ability({ source: '有生命活水', id: 'F1B', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '살아있는 액체', id: 'F1B', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.job == 'BLU';
+        return data.role === 'tank' || data.job === 'BLU';
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {

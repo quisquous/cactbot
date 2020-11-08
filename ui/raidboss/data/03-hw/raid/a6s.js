@@ -42,7 +42,7 @@
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者', id: '15F7', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자', id: '15F7', capture: false }),
       infoText: function(data, _, output) {
-        if (data.role == 'tank' && !data.magicVulnerability)
+        if (data.role === 'tank' && !data.magicVulnerability)
           return output.getMines();
 
         return output.avoidMines();
