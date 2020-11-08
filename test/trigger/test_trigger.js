@@ -11,7 +11,12 @@ const Regexes = require('../../resources/regexes.js');
 const NetRegexes = require('../../resources/netregexes.js');
 const Conditions = require('../../resources/conditions.js');
 const ZoneId = require('../../resources/zone_id.js');
-const { Responses, triggerFunctions, builtInResponseStr } = require('../../resources/responses.js');
+const {
+  Responses, // this is used via eval
+  triggerFunctions,
+  triggerOutputFunctions,
+  builtInResponseStr,
+} = require('../../resources/responses.js');
 const fs = require('fs');
 
 let exitCode = 0;
@@ -449,6 +454,16 @@ const testOutputStrings = (file, contents) => {
       } else {
         if (trigger.outputStrings && typeof outputStrings !== 'object') {
           errorFunc(`${file}: '${trigger.id}' outputStrings must be an object.`);
+          continue;
+        }
+        if (typeof trigger.outputStrings !== 'object') {
+          for (const func of triggerOutputFunctions) {
+            if (trigger[func]) {
+              errorFunc(`${file}: '${trigger.id}' missing field outputStrings.`);
+              break;
+            }
+          }
+          // If no output functions and no output strings, then no error and nothing left to do.
           continue;
         }
         outputStrings = trigger.outputStrings;
