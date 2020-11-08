@@ -25,7 +25,7 @@
     },
     {
       id: 'Brayflox Normal Pelican Poison Healer',
-      netRegex: NetRegexes.gainsEffect({ effectId: '12' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '12', capture: false }),
       condition: (data) => data.role === 'healer',
       delaySeconds: 1,
       suppressSeconds: 2,
@@ -139,7 +139,7 @@
     {
       // Move Aiatar out of Puddles
       id: 'Brayflox Normal Aiatar Toxic Vomit Tank',
-      netRegex: NetRegexes.gainsEffect({ effectId: '117' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '117', capture: false }),
       condition: (data) => data.role === 'tank',
       alertText: (data, _, output) => output.text(),
       outputStrings: {
