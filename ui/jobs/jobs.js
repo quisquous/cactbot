@@ -145,7 +145,7 @@ const kAbility = {
   HolyCircle: '404A',
   Confiteor: '404B',
   FourPointFury: '4059',
-  
+
   // DNC
   Cascade: '3E75',
   Fountain: '3E76',
