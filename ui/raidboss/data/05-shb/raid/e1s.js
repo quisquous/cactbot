@@ -186,25 +186,29 @@
       netRegexJa: NetRegexes.startsUsing({ id: '44F8', source: 'エデン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '44F8', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '44F8', source: '에덴 프라임', capture: false }),
-      alertText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Get In, Spread',
-            de: 'Rein gehen, verteilen',
-            fr: 'Intérieur, dispersez-vous',
-            ja: '中で散開',
-            cn: '中间散开',
-            ko: '보스 가까이 탱 약산개',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.role == 'tank')
+          return output.getInSpread();
+
+        return output.inStackBehind();
+      },
+      outputStrings: {
+        getInSpread: {
+          en: 'Get In, Spread',
+          de: 'Rein gehen, verteilen',
+          fr: 'Intérieur, dispersez-vous',
+          ja: '中で散開',
+          cn: '中间散开',
+          ko: '보스 가까이 탱 약산개',
+        },
+        inStackBehind: {
           en: 'In, Stack Behind',
           de: 'Rein, hinten stacken',
           fr: 'Intérieur, packez derrière',
           ja: '背面集合',
           cn: '背面集合',
           ko: '보스 가까이, 뒤에서 쉐어',
-        };
+        },
       },
     },
     {
@@ -390,25 +394,29 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: function(data) {
-        if (data.paradise) {
-          return {
-            en: 'Pass Prey to DPS',
-            de: 'Marker einem DPS geben',
-            fr: 'Passez la marque à un DPS',
-            ja: 'DPSに移して',
-            cn: '传毒DPS',
-            ko: '딜러한테 표식 넘기기',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.paradise)
+          return output.passPreyToDps();
+
+        return output.passPreyToTank();
+      },
+      outputStrings: {
+        passPreyToDps: {
+          en: 'Pass Prey to DPS',
+          de: 'Marker einem DPS geben',
+          fr: 'Passez la marque à un DPS',
+          ja: 'DPSに移して',
+          cn: '传毒DPS',
+          ko: '딜러한테 표식 넘기기',
+        },
+        passPreyToTank: {
           en: 'Pass Prey to Tank',
           de: 'Marker einem Tank geben',
           fr: 'Passez la marque à un Tank',
           ja: 'タンクに移して',
           cn: '传毒坦克',
           ko: '탱커한테 표식 넘기기',
-        };
+        },
       },
     },
     {

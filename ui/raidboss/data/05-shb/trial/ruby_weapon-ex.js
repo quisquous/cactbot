@@ -183,16 +183,18 @@
         data.colors = data.colors || [];
         data.colors[matches.target] = 'blue';
       },
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Attack Blue (East)',
-            de: 'Greife Blau an (Osten)',
-            fr: 'Attaquez le bleu (Est)',
-            cn: '攻击蓝色(东)',
-            ko: '파란색 공격 (오른쪽)',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Attack Blue (East)',
+          de: 'Greife Blau an (Osten)',
+          fr: 'Attaquez le bleu (Est)',
+          cn: '攻击蓝色(东)',
+          ko: '파란색 공격 (오른쪽)',
+        },
       },
     },
     {
@@ -202,16 +204,18 @@
         data.colors = data.colors || [];
         data.colors[matches.target] = 'red';
       },
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Attack Red (West)',
-            de: 'Greife Rot an (Westen)',
-            fr: 'Attaquez le rouge (Ouest)',
-            cn: '攻击红色(西)',
-            ko: '빨간색 공격 (왼쪽)',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Attack Red (West)',
+          de: 'Greife Rot an (Westen)',
+          fr: 'Attaquez le rouge (Ouest)',
+          cn: '攻击红色(西)',
+          ko: '빨간색 공격 (왼쪽)',
+        },
       },
     },
     {
@@ -271,26 +275,30 @@
       },
       // This gets cast twice (maybe once for each add)?
       suppressSeconds: 1,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         // TODO: it'd be nice to call out which raven was alive?
         if (data.ravenDead)
           return;
-        if (data.colors[data.me] == 'red') {
-          return {
-            en: 'Attack Red (East)',
-            de: 'Greife Rot an (Osten)',
-            fr: 'Attaquez le rouge (Est)',
-            cn: '攻击红色(东)',
-            ko: '빨간색 공격 (오른쪽)',
-          };
-        }
-        return {
+        if (data.colors[data.me] == 'red')
+          return output.attackRedEast();
+
+        return output.attackBlueWest();
+      },
+      outputStrings: {
+        attackRedEast: {
+          en: 'Attack Red (East)',
+          de: 'Greife Rot an (Osten)',
+          fr: 'Attaquez le rouge (Est)',
+          cn: '攻击红色(东)',
+          ko: '빨간색 공격 (오른쪽)',
+        },
+        attackBlueWest: {
           en: 'Attack Blue (West)',
           de: 'Greife Blau an (Westen)',
           fr: 'Attaquez le bleu (Ouest)',
           cn: '攻击蓝色(西)',
           ko: '파란색 공격 (왼쪽)',
-        };
+        },
       },
     },
     {
@@ -405,27 +413,30 @@
       netRegexJa: NetRegexes.addedCombatantFull({ name: 'コメット' }),
       netRegexCn: NetRegexes.addedCombatantFull({ name: '彗星' }),
       netRegexKo: NetRegexes.addedCombatantFull({ name: '혜성' }),
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         // Possible positions:
         // 85.16,100.131 and 115.16,100.131
         // 100.16,85.13102 and 100.16,115.131
-        if (matches.y < 90) {
-          return {
-            en: 'Comets N/S',
-            de: 'Meteor N/S',
-            fr: 'Comètes N/S',
-            cn: '彗星 北/南',
-            ko: '남/북 운석 낙하',
-          };
-        } else if (matches.x < 90) {
-          return {
-            en: 'Comets E/W',
-            de: 'Meteor O/W',
-            fr: 'Comètes E/O',
-            cn: '彗星 东/西',
-            ko: '동/서 운석낙하',
-          };
-        }
+        if (matches.y < 90)
+          return output.cometsNorthSouth();
+        else if (matches.x < 90)
+          return output.cometsEastWest();
+      },
+      outputStrings: {
+        cometsNorthSouth: {
+          en: 'Comets N/S',
+          de: 'Meteor N/S',
+          fr: 'Comètes N/S',
+          cn: '彗星 北/南',
+          ko: '남/북 운석 낙하',
+        },
+        cometsEastWest: {
+          en: 'Comets E/W',
+          de: 'Meteor O/W',
+          fr: 'Comètes E/O',
+          cn: '彗星 东/西',
+          ko: '동/서 운석낙하',
+        },
       },
     },
     {

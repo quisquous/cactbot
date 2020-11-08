@@ -128,37 +128,42 @@
       netRegex: NetRegexes.headMarker({ id: '005D' }),
       delaySeconds: 1,
       suppressSeconds: 5,
-      alertText: function(data, matches) {
-        if (data.anguish.length > 1) {
-          return {
-            en: 'Stack on your rock',
-            de: 'Auf deinem Stein sammeln',
-            fr: 'Restez sur votre rocher',
-            ja: '自分の隕石と貼りつく',
-            ko: '돌과 같이 맞기',
-          };
-        }
-        if (matches.target == data.me) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR sammeln',
-            fr: 'Package sur VOUS',
-            ja: '自分にスタック',
-            cn: '集合点名',
-            ko: '쉐어징 대상자',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Packez-vous sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にスタック',
-          cn: '靠近 ' + data.ShortName(matches.target) + '集合',
-          ko: '"' + data.ShortName(matches.target) + '" 쉐어징',
-        };
+      alertText: function(data, matches, output) {
+        if (data.anguish.length > 1)
+          return output.stackOnYourRock();
+
+        if (matches.target == data.me)
+          return output.stackOnYou();
+
+        return output.stackOn({ player: data.ShortName(matches.target) });
       },
       run: function(data) {
         delete data.anguish;
+      },
+      outputStrings: {
+        stackOnYourRock: {
+          en: 'Stack on your rock',
+          de: 'Auf deinem Stein sammeln',
+          fr: 'Restez sur votre rocher',
+          ja: '自分の隕石と貼りつく',
+          ko: '돌과 같이 맞기',
+        },
+        stackOnYou: {
+          en: 'Stack on YOU',
+          de: 'Auf DIR sammeln',
+          fr: 'Package sur VOUS',
+          ja: '自分にスタック',
+          cn: '集合点名',
+          ko: '쉐어징 대상자',
+        },
+        stackOn: {
+          en: 'Stack on ${player}',
+          de: 'Auf ${player} sammeln',
+          fr: 'Packez-vous sur ${player}',
+          ja: '${player}にスタック',
+          cn: '靠近 ${player}集合',
+          ko: '"${player}" 쉐어징',
+        },
       },
     },
     {

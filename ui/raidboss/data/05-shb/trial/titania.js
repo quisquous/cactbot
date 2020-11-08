@@ -210,25 +210,29 @@
       netRegexJa: NetRegexes.ability({ id: '3D31', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '3D31', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3D31', source: '티타니아', capture: false }),
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Group Adds East (on Mustardseed)',
-            de: 'Adds im Osten sammeln (bei Senfsamen)',
-            fr: 'Groupe sur l\'Add Est (Pousse-de-moutarde)',
-            ja: '東の雑魚 (マスタードシード)',
-            cn: '东边小怪 (芥子)',
-            ko: '쫄 모으기 (겨자씨 쪽)',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.role == 'tank')
+          return output.groupAddsEastOnMustardseed();
+
+        return output.killMustardseedEast();
+      },
+      outputStrings: {
+        groupAddsEastOnMustardseed: {
+          en: 'Group Adds East (on Mustardseed)',
+          de: 'Adds im Osten sammeln (bei Senfsamen)',
+          fr: 'Groupe sur l\'Add Est (Pousse-de-moutarde)',
+          ja: '東の雑魚 (マスタードシード)',
+          cn: '东边小怪 (芥子)',
+          ko: '쫄 모으기 (겨자씨 쪽)',
+        },
+        killMustardseedEast: {
           en: 'Kill Mustardseed (East)',
           de: 'Senfsamen angreifen (Osten)',
           fr: 'Tuez Pousse-de-moutarde (Est)',
           ja: '雑魚マスタードシードを倒す (東)',
           cn: '击杀芥子 (东)',
           ko: '겨자씨 잡기(동쪽)',
-        };
+        },
       },
     },
   ],

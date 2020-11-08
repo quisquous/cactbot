@@ -208,7 +208,7 @@
         return !data.printedBury;
       },
       durationSeconds: 7,
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         let x = matches.x;
         let y = matches.y;
 
@@ -216,22 +216,10 @@
           // Three line bombs (middle, e/w, w/e), with seismic wave.
           if (x < 95) {
             data.printedBury = true;
-            return {
-              en: 'Hide Behind East',
-              de: 'Im Osten vestecken',
-              fr: 'Cachez-vous derrière à l\'est',
-              cn: '右边躲避',
-              ko: '동쪽으로',
-            };
+            return output.hideBehindEast();
           } else if (x > 105) {
             data.printedBury = true;
-            return {
-              en: 'Hide Behind West',
-              de: 'Im Westen vestecken',
-              fr: 'Cachez-vous derrière à l\'ouest',
-              cn: '左边躲避',
-              ko: '서쪽으로',
-            };
+            return output.hideBehindWest();
           }
         } else if (data.phase == 'landslide') {
           // Landslide cardinals/corners + middle, followed by remaining 4.
@@ -244,24 +232,42 @@
           data.printedBury = true;
           if (!xMiddle && !yMiddle) {
             // Corners dropped first.  Cardinals safe.
-            return {
-              en: 'Go Cardinals First',
-              de: 'Zuerst zu den Seiten gehen',
-              fr: 'Allez aux cardinaux en premier',
-              ja: '十字',
-              cn: '十字',
-              ko: '먼저 측면으로 이동',
-            };
+            return output.goCardinalsFirst();
           }
           // Cardinals dropped first.  Corners safe.
-          return {
-            en: 'Go Corners First',
-            de: 'Zuerst in die Ecken gehen',
-            fr: 'Allez dans les coins en premier',
-            cn: '先去角落',
-            ko: '먼저 구석으로 이동',
-          };
+          return output.goCornersFirst();
         }
+      },
+      outputStrings: {
+        hideBehindEast: {
+          en: 'Hide Behind East',
+          de: 'Im Osten vestecken',
+          fr: 'Cachez-vous derrière à l\'est',
+          cn: '右边躲避',
+          ko: '동쪽으로',
+        },
+        hideBehindWest: {
+          en: 'Hide Behind West',
+          de: 'Im Westen vestecken',
+          fr: 'Cachez-vous derrière à l\'ouest',
+          cn: '左边躲避',
+          ko: '서쪽으로',
+        },
+        goCardinalsFirst: {
+          en: 'Go Cardinals First',
+          de: 'Zuerst zu den Seiten gehen',
+          fr: 'Allez aux cardinaux en premier',
+          ja: '十字',
+          cn: '十字',
+          ko: '먼저 측면으로 이동',
+        },
+        goCornersFirst: {
+          en: 'Go Corners First',
+          de: 'Zuerst in die Ecken gehen',
+          fr: 'Allez dans les coins en premier',
+          cn: '先去角落',
+          ko: '먼저 구석으로 이동',
+        },
       },
     },
     {
@@ -428,35 +434,40 @@
     {
       id: 'E4S Megalith',
       netRegex: NetRegexes.headMarker({ id: '005D' }),
-      alertText: function(data, matches) {
-        if (data.role != 'tank') {
-          return {
-            en: 'Away from Tanks',
-            de: 'Weg von den Tanks',
-            fr: 'Éloignez-vous des tanks',
-            ja: 'タンクから離れ',
-            cn: '远离坦克',
-            ko: '탱커에서 멀어지기',
-          };
-        }
-        if (matches.target == data.me) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR sammeln',
-            fr: 'Package sur VOUS',
-            ja: '自分にシェア',
-            cn: '集合分摊',
-            ko: '쉐어징 대상자',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Packez-vous sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にシェア',
-          cn: '与 ' + data.ShortName(matches.target) + ' 集合',
-          ko: '"' + data.ShortName(matches.target) + '" 쉐어징',
-        };
+      alertText: function(data, matches, output) {
+        if (data.role != 'tank')
+          return output.awayFromTanks();
+
+        if (matches.target == data.me)
+          return output.stackOnYou();
+
+        return output.stackOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        awayFromTanks: {
+          en: 'Away from Tanks',
+          de: 'Weg von den Tanks',
+          fr: 'Éloignez-vous des tanks',
+          ja: 'タンクから離れ',
+          cn: '远离坦克',
+          ko: '탱커에서 멀어지기',
+        },
+        stackOnYou: {
+          en: 'Stack on YOU',
+          de: 'Auf DIR sammeln',
+          fr: 'Package sur VOUS',
+          ja: '自分にシェア',
+          cn: '集合分摊',
+          ko: '쉐어징 대상자',
+        },
+        stackOn: {
+          en: 'Stack on ${player}',
+          de: 'Auf ${player} sammeln',
+          fr: 'Packez-vous sur ${player}',
+          ja: '${player}にシェア',
+          cn: '与 ${player} 集合',
+          ko: '"${player}" 쉐어징',
+        },
       },
     },
     {

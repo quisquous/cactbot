@@ -48,23 +48,27 @@
       id: 'E6N Air Bump',
       netRegex: NetRegexes.headMarker({ id: '00D3' }),
       suppressSeconds: 1,
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Enumeration on YOU',
-            de: 'Enumeration aud DIR',
-            fr: 'Énumération sur VOUS',
-            cn: '蓝圈分摊点名',
-            ko: '2인 장판 대상자',
-          };
-        }
-        return {
+      infoText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.enumerationOnYou();
+
+        return output.enumeration();
+      },
+      outputStrings: {
+        enumerationOnYou: {
+          en: 'Enumeration on YOU',
+          de: 'Enumeration aud DIR',
+          fr: 'Énumération sur VOUS',
+          cn: '蓝圈分摊点名',
+          ko: '2인 장판 대상자',
+        },
+        enumeration: {
           en: 'Enumeration',
           de: 'Enumeration',
           fr: 'Énumération',
           cn: '蓝圈分摊',
           ko: '2인 장판',
-        };
+        },
       },
     },
     {
@@ -99,25 +103,29 @@
       condition: function(data) {
         return data.handsOfFlame;
       },
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Charge on YOU',
-            de: 'Ansturm auf DIR',
-            fr: 'Charge sur VOUS',
-            cn: '冲锋点名',
-            ko: '돌진 대상자',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.chargeOnYou();
+
         if (data.role != 'tank' || data.phase == 'both')
           return;
-        return {
+        return output.tankSwap();
+      },
+      outputStrings: {
+        chargeOnYou: {
+          en: 'Charge on YOU',
+          de: 'Ansturm auf DIR',
+          fr: 'Charge sur VOUS',
+          cn: '冲锋点名',
+          ko: '돌진 대상자',
+        },
+        tankSwap: {
           en: 'Tank Swap',
           de: 'Tank Swap',
           fr: 'Tank Swap',
           cn: '换坦克',
           ko: '탱 교대',
-        };
+        },
       },
     },
     {

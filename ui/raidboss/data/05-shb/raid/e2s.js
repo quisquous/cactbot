@@ -302,17 +302,19 @@
       condition: function(data) {
         return !data.waiting;
       },
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Eye on YOU',
-            de: 'Auge auf DIR',
-            fr: 'Œil de l\'ombre sur VOUS',
-            ja: '自分に目',
-            cn: '石化眼点名',
-            ko: '시선징 대상자',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Eye on YOU',
+          de: 'Auge auf DIR',
+          fr: 'Œil de l\'ombre sur VOUS',
+          ja: '自分に目',
+          cn: '石化眼点名',
+          ko: '시선징 대상자',
+        },
       },
     },
     {

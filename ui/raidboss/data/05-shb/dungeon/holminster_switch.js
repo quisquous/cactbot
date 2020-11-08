@@ -103,15 +103,18 @@
       condition: function(data, matches) {
         return data.me != matches.target;
       },
-      infoText: function(data, matches) {
-        return {
-          en: 'Break chain on ' + data.ShortName(matches.target),
-          de: 'Kette von ' + data.ShortName(matches.target) + ' brechen',
-          fr: 'Cassez les chaînes de ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'の線を取る',
-          cn: '截断' + data.ShortName(matches.target) + '的线',
-          ko: data.ShortName(matches.target) + '의 사슬 부수기',
-        };
+      infoText: function(data, matches, output) {
+        return output.text({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Break chain on ${player}',
+          de: 'Kette von ${player} brechen',
+          fr: 'Cassez les chaînes de ${player}',
+          ja: '${player}の線を取る',
+          cn: '截断${player}的线',
+          ko: '${player}의 사슬 부수기',
+        },
       },
     },
     {

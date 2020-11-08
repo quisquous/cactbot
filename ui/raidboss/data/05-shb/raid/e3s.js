@@ -105,39 +105,42 @@
       id: 'E3S Rip Current',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       suppressSeconds: 10,
-      alarmText: function(data, matches) {
-        if (matches.target != data.me && data.role == 'tank') {
-          return {
-            en: 'Tank Swap!',
-            de: 'Tankwechsel!',
-            fr: 'Tank swap !',
-            ja: 'スイッチ',
-            cn: '换T！',
-            ko: '탱 교대!',
-          };
-        }
+      alarmText: function(data, matches, output) {
+        if (matches.target != data.me && data.role == 'tank')
+          return output.tankSwap();
       },
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tank buster auf DIR',
-            fr: 'Tank buster sur VOUS',
-            ja: '自分にタンクバスター',
-            cn: '死刑点名',
-            ko: '탱버 대상자',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Tank Busters',
-            de: 'Tank buster',
-            fr: 'Tank buster',
-            ja: 'タンクバスター',
-            cn: '死刑',
-            ko: '탱버',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.tankBusterOnYou();
+
+        if (data.role == 'healer')
+          return output.tankBusters();
+      },
+      outputStrings: {
+        tankBusterOnYou: {
+          en: 'Tank Buster on YOU',
+          de: 'Tank buster auf DIR',
+          fr: 'Tank buster sur VOUS',
+          ja: '自分にタンクバスター',
+          cn: '死刑点名',
+          ko: '탱버 대상자',
+        },
+        tankBusters: {
+          en: 'Tank Busters',
+          de: 'Tank buster',
+          fr: 'Tank buster',
+          ja: 'タンクバスター',
+          cn: '死刑',
+          ko: '탱버',
+        },
+        tankSwap: {
+          en: 'Tank Swap!',
+          de: 'Tankwechsel!',
+          fr: 'Tank swap !',
+          ja: 'スイッチ',
+          cn: '换T！',
+          ko: '탱 교대!',
+        },
       },
     },
     {
@@ -258,25 +261,29 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3FE4', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FE4', source: '리바이어선', capture: false }),
       delaySeconds: 2.9,
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Flare To Outside Corner',
-            de: 'Flare in die äuseren Ecken',
-            fr: 'Brasier dans un coin extérieur',
-            ja: '隅にフレア',
-            cn: '外侧角落放核爆',
-            ko: '플레어 양옆 뒤로 유도',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.role == 'tank')
+          return output.flareToOutsideCorner();
+
+        return output.stackOutsideAvoidFlares();
+      },
+      outputStrings: {
+        flareToOutsideCorner: {
+          en: 'Flare To Outside Corner',
+          de: 'Flare in die äuseren Ecken',
+          fr: 'Brasier dans un coin extérieur',
+          ja: '隅にフレア',
+          cn: '外侧角落放核爆',
+          ko: '플레어 양옆 뒤로 유도',
+        },
+        stackOutsideAvoidFlares: {
           en: 'Stack Outside, Avoid Flares',
           de: 'Auserhalb sammeln, Flares vermeiden',
           fr: 'Packez-vous à l\'extérieur, évitez les brasiers',
           ja: '前で集合',
           cn: '外侧集合躲避核爆',
           ko: '양옆 앞으로 모이고, 플레어 피하기',
-        };
+        },
       },
     },
     {
@@ -384,41 +391,45 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         let seconds = matches.duration;
-        if (seconds <= 8) {
-          return {
-            en: 'Knockback on YOU',
-            de: 'Knockback auf Dir',
-            fr: 'Poussée sur VOUS',
-            ja: '自分にノックバック',
-            cn: '击退点名',
-            ko: '넉백 대상자',
-          };
-        }
+        if (seconds <= 8)
+          return output.knockbackOnYou();
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         let seconds = matches.duration;
         if (seconds <= 8)
           return;
-        if (seconds <= 21) {
-          return {
-            en: 'Late First Knockback',
-            de: 'Erster reinigender Knockback',
-            fr: 'Poussée tardive 1',
-            ja: '遅ノックバック1',
-            cn: '迟击退点名 #1',
-            ko: '늦은 넉백 대상자 1',
-          };
-        }
-        return {
+        if (seconds <= 21)
+          return output.lateFirstKnockback();
+
+        return output.lateSecondKnockback();
+      },
+      outputStrings: {
+        lateFirstKnockback: {
+          en: 'Late First Knockback',
+          de: 'Erster reinigender Knockback',
+          fr: 'Poussée tardive 1',
+          ja: '遅ノックバック1',
+          cn: '迟击退点名 #1',
+          ko: '늦은 넉백 대상자 1',
+        },
+        lateSecondKnockback: {
           en: 'Late Second Knockback',
           de: 'Zweiter reinigender Knockback',
           fr: 'Poussée tardive 2',
           ja: '遅ノックバック2',
           cn: '迟击退点名 #2',
           ko: '늦은 넉백 대상자 2',
-        };
+        },
+        knockbackOnYou: {
+          en: 'Knockback on YOU',
+          de: 'Knockback auf Dir',
+          fr: 'Poussée sur VOUS',
+          ja: '自分にノックバック',
+          cn: '击退点名',
+          ko: '넉백 대상자',
+        },
       },
     },
     {
