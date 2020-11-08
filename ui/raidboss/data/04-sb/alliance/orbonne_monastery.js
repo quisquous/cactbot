@@ -31,7 +31,7 @@
       id: 'Orbonne Ultima Dominion Tether',
       regex: /Demi-Virgo.*Tether/,
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -351,7 +351,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3752', source: '雷神西德' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3752', source: '뇌신 시드' }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.tankBuster('info'),
     },
@@ -398,7 +398,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3758', source: '雷神西德', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3758', source: '뇌신 시드', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
@@ -462,7 +462,7 @@
       netRegexCn: NetRegexes.ability({ id: '3751', source: '雷神西德', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3751', source: '뇌신 시드', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       suppressSeconds: 10,
       alertText: (data, _, output) => output.text(),
@@ -726,7 +726,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3895', source: '圣天使阿尔蒂玛', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3895', source: '성천사 알테마', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -749,7 +749,7 @@
       netRegexCn: NetRegexes.ability({ id: '3895', source: '圣天使阿尔蒂玛', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3895', source: '성천사 알테마', capture: false }),
       condition: function(data) {
-        return data.role != 'healer';
+        return data.role !== 'healer';
       },
       // zzz
       delaySeconds: 23.5,

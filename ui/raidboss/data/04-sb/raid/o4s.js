@@ -88,17 +88,17 @@
       netRegexKo: NetRegexes.startsUsing({ id: '23F9', source: '엑스데스', capture: false }),
       alertText: function(data, _, output) {
         // Tanks/healers always get an alert.
-        if (data.role == 'tank' || data.role == 'healer')
+        if (data.role === 'tank' || data.role === 'healer')
           return output.thunderBuster();
       },
       infoText: function(data, _, output) {
         // Tanks/healers always get an alert.
-        if (data.role == 'tank' || data.role == 'healer')
+        if (data.role === 'tank' || data.role === 'healer')
           return false;
         return output.thunder();
       },
       tts: function(data, _, output) {
-        if (data.role == 'tank' || data.role == 'healer')
+        if (data.role === 'tank' || data.role === 'healer')
           return output.thunderTTS();
       },
       outputStrings: {
@@ -170,7 +170,7 @@
       condition: function(data, matches) {
         data.flareTargets = data.flareTargets || [];
         data.flareTargets.push(matches.target);
-        return data.flareTargets.length == 3;
+        return data.flareTargets.length === 3;
       },
       alarmText: function(data, _, output) {
         if (data.flareTargets.includes(data.me))
@@ -213,9 +213,9 @@
           // Beyond death doesn't update for laser #2 if you died on
           // laser #1, so don't tell anybody to die on laser #2.
           // If you still have beyond death, it'll remind you for #3.
-          if (this.omegaLaserCount == 2 && this.omegaProbablyDiedOnLaser)
+          if (this.omegaLaserCount === 2 && this.omegaProbablyDiedOnLaser)
             return false;
-          if (this.phase != 'omega')
+          if (this.phase !== 'omega')
             return true;
           return this.omegaLaserCount >= this.dieOnLaser;
         };
@@ -624,7 +624,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: '네오 엑스데스', capture: false }),
       run: function(data) {
-        if (data.phase != 'omega')
+        if (data.phase !== 'omega')
           return;
 
 
@@ -649,12 +649,12 @@
       netRegexKo: NetRegexes.startsUsing({ id: '2416', source: '네오 엑스데스', capture: false }),
       infoText: function(data, _, output) {
         if (data.allaganField) {
-          if (data.role == 'tank')
+          if (data.role === 'tank')
             return output.chargeBeBehindOtherTank();
 
           return output.chargeBeInTheVeryBack();
         }
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.chargeBeInFront();
 
         return output.chargeBeBehindTanks();
@@ -707,7 +707,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '241C', source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '241C', source: '네오 엑스데스', capture: false }),
       alertText: function(data, _, output) {
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.doubleAttack();
 
         return output.doubleAttackGetOut();
@@ -766,19 +766,19 @@
       netRegexCn: NetRegexes.startsUsing({ id: '242C', source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '242C', source: '네오 엑스데스', capture: false }),
       infoText: function(data, _, output) {
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.beInFront();
 
-        if (data.role == 'healer')
+        if (data.role === 'healer')
           return output.beOnSides();
 
         return output.beInsideBoss();
       },
       tts: function(data, _, output) {
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.beInFrontTTS();
 
-        if (data.role == 'healer')
+        if (data.role === 'healer')
           return output.beOnSidesTTS();
 
         return output.beInsideBossTTS();
@@ -853,7 +853,7 @@
         return parseFloat(matches.duration) - 4;
       }, // 4 second warning.
       alarmText: function(data, _, output) {
-        if (data.phase == 'omega')
+        if (data.phase === 'omega')
           return output.lookAwayAndStop();
 
         return output.stop();
@@ -879,7 +879,7 @@
       id: 'O4S Neo Acceleration Bomb Delta',
       netRegex: NetRegexes.gainsEffect({ effectId: '568' }),
       condition: function(data, matches) {
-        return matches.target == data.me && data.phase == 'delta';
+        return matches.target === data.me && data.phase === 'delta';
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -896,7 +896,7 @@
       id: 'O4S Neo Omega Shriek',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
       condition: function(data, matches) {
-        return matches.target == data.me && data.phase == 'omega';
+        return matches.target === data.me && data.phase === 'omega';
       },
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 5;
@@ -927,9 +927,9 @@
       alarmText: function(data, _, output) {
         // Not clear where to tell the healer where to go on delta
         // due to picking a side for uptime strat, or other strats.
-        if (data.phase == 'delta')
+        if (data.phase === 'delta')
           return output.waterOnYou();
-        else if (data.phase == 'omega')
+        else if (data.phase === 'omega')
           return output.waterStackUnderNeo();
       },
       outputStrings: {
@@ -954,7 +954,7 @@
       id: 'O4S Neo Beyond Death Delta Tank',
       netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
       condition: function(data, matches) {
-        return data.phase == 'delta' && matches.target == data.me && data.role == 'tank';
+        return data.phase === 'delta' && matches.target === data.me && data.role === 'tank';
       },
       delaySeconds: 0.5,
       infoText: function(data, _, output) {
@@ -987,7 +987,7 @@
       id: 'O4S Neo Beyond Death Delta Initial',
       netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
       condition: function(data, matches) {
-        return data.phase == 'delta' && matches.target == data.me && data.role != 'tank';
+        return data.phase === 'delta' && matches.target === data.me && data.role !== 'tank';
       },
       infoText: (data, _, output) => output.beyondDeath(),
       outputStrings: {
@@ -1005,7 +1005,7 @@
       id: 'O4S Neo Off Balance Omega',
       netRegex: NetRegexes.gainsEffect({ effectId: '569' }),
       condition: function(data, matches) {
-        return data.phase == 'omega' && matches.target == data.me;
+        return data.phase === 'omega' && matches.target === data.me;
       },
       delaySeconds: 0.5,
       infoText: function(data, _, output) {
@@ -1036,7 +1036,7 @@
       id: 'O4S Neo Earthshaker on Tank',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
-        return matches.target == data.me && data.role == 'tank';
+        return matches.target === data.me && data.role === 'tank';
       },
       response: Responses.earthshaker('info'),
     },
@@ -1044,7 +1044,7 @@
       id: 'O4S Neo Earthshaker on not Tank',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
-        return matches.target == data.me && data.role != 'tank';
+        return matches.target === data.me && data.role !== 'tank';
       },
       response: Responses.earthshaker('alarm'),
     },
@@ -1091,7 +1091,7 @@
       condition: function(data, matches) {
         data.flareTargets = data.flareTargets || [];
         data.flareTargets.push(matches.target);
-        return data.flareTargets.length == 3;
+        return data.flareTargets.length === 3;
       },
       alarmText: function(data, _, output) {
         if (data.flareTargets.includes(data.me))

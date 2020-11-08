@@ -26,11 +26,11 @@
       id: 'O10S Fire Marker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       alarmText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.fireOnYou();
       },
       infoText: function(data, matches, output) {
-        if (data.me != matches.target)
+        if (data.me !== matches.target)
           return output.fireOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {

@@ -201,7 +201,7 @@ const strings = {
       netRegexCn: NetRegexes.startsUsing({ id: '28F[78]', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28F[78]', source: '케프카', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -225,7 +225,7 @@ const strings = {
       netRegexCn: NetRegexes.startsUsing({ id: '28F[45]', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28F[45]', source: '케프카', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -259,11 +259,11 @@ const strings = {
       netRegexCn: NetRegexes.startsUsing({ id: '2900', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2900', source: '케프카', capture: false }),
       alarmText: function(data, _, output) {
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.wingsBeNearFar();
       },
       infoText: function(data, _, output) {
-        if (data.role != 'tank')
+        if (data.role !== 'tank')
           return output.maxMeleeAvoidTanks();
       },
       outputStrings: {
@@ -314,16 +314,16 @@ const strings = {
       netRegexCn: NetRegexes.startsUsing({ id: '2910', source: '凯夫卡' }),
       netRegexKo: NetRegexes.startsUsing({ id: '2910', source: '케프카' }),
       alertText: function(data, matches, output) {
-        if (matches.target != data.me)
+        if (matches.target !== data.me)
           return;
 
         return output.embraceOnYou();
       },
       infoText: function(data, matches, output) {
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           return;
 
-        if (data.role == 'healer' || data.role == 'tank')
+        if (data.role === 'healer' || data.role === 'tank')
           return output.embraceOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {

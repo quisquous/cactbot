@@ -33,8 +33,8 @@
       netRegexKo: NetRegexes.startsUsing({ id: '235A', source: '카타스트로피', capture: false }),
       run: function(data) {
         data.probeCount = (data.probeCount || 0) + 1;
-        data.dpsProbe = data.probeCount == 2 || data.probeCount == 4;
-        data.myProbe = data.dpsProbe == data.role.startsWith('dps');
+        data.dpsProbe = data.probeCount === 2 || data.probeCount === 4;
+        data.myProbe = data.dpsProbe === data.role.startsWith('dps');
       },
     },
     {
@@ -171,7 +171,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '2372', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2372', source: '카타스트로피', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -264,7 +264,7 @@
       id: 'O2S 6 Fulms Under Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
       condition: function(data, matches) {
-        return !data.under && matches.target == data.me;
+        return !data.under && matches.target === data.me;
       },
       delaySeconds: 5,
       alertText: function(data, _, output) {

@@ -10,7 +10,7 @@
       regex: /Path of Light/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       response: Responses.tankCleave(),
     },
@@ -49,7 +49,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '215E', source: '吉祥天女' }),
       netRegexKo: NetRegexes.startsUsing({ id: '215E', source: '락슈미' }),
       condition: function(data, matches) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       response: Responses.tankBuster('info'),
     },
@@ -62,7 +62,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '215E', source: '吉祥天女' }),
       netRegexKo: NetRegexes.startsUsing({ id: '215E', source: '락슈미' }),
       condition: function(data, matches) {
-        return data.role != 'tank' && data.role != 'healer';
+        return data.role !== 'tank' && data.role !== 'healer';
       },
       response: Responses.tankBuster('alarm'),
     },
@@ -133,7 +133,7 @@
         if (!data.chanchala)
           return;
 
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.vrillStackOnYou();
 
         return output.vrillStack();
@@ -142,7 +142,7 @@
         if (data.chanchala)
           return;
 
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.stackOnYou();
 
         return output.stack();

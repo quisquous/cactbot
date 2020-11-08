@@ -423,7 +423,7 @@ const mathOutputStrings = {
       netRegexCn: NetRegexes.startsUsing({ id: '2E32', source: '鬼龙雅兹玛特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2E32', source: '귀룡 야즈마트', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       response: Responses.awayFromFront(),
     },

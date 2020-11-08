@@ -49,31 +49,31 @@
       netRegex: NetRegexes.headMarker({ id: ['0064', '0065'] }),
       condition: function(data, matches) {
         // Library phase stack markers behave differently.
-        if (data.phase == 3)
+        if (data.phase === 3)
           return false;
 
         data.holyTargets = data.holyTargets || [];
         data.holyTargets.push(matches.target);
-        return data.holyTargets.length == 4;
+        return data.holyTargets.length === 4;
       },
       alarmText: function(data, _, output) {
-        if (data.holyTargets[1] != data.me)
+        if (data.holyTargets[1] !== data.me)
           return '';
         return output.stackOnYou();
       },
       alertText: function(data, _, output) {
-        if (data.holyTargets[1] == data.me)
+        if (data.holyTargets[1] === data.me)
           return;
 
         for (let i = 0; i < 4; ++i) {
-          if (data.holyTargets[i] == data.me)
+          if (data.holyTargets[i] === data.me)
             return output.getOut();
         }
         return output.stackOnHoly({ holyTargets: data.holyTargets[1] });
       },
       infoText: function(data, _, output) {
         for (let i = 0; i < 4; ++i) {
-          if (data.holyTargets[i] == data.me)
+          if (data.holyTargets[i] === data.me)
             return output.othersStackOnHoly({ holyTargets: data.holyTargets[1] });
         }
       },
@@ -117,10 +117,10 @@
       netRegex: NetRegexes.headMarker({ id: ['0064', '0065'] }),
       condition: function(data, matches) {
         // This is only for library phase.
-        if (data.phase != 3)
+        if (data.phase !== 3)
           return false;
 
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           data.librarySpellbladeMe = matches.id;
 
         return true;
@@ -130,17 +130,17 @@
       // anything is on you.  The 6 triggers will all have condition=true
       // and run, but only the first one will print.
       delaySeconds: function(data, matches) {
-        return matches.target == data.me ? 0 : 0.5;
+        return matches.target === data.me ? 0 : 0.5;
       },
       alertText: function(data, _, output) {
         if (data.librarySpellbladePrinted)
           return;
 
         data.librarySpellbladePrinted = true;
-        if (data.librarySpellbladeMe == '0064')
+        if (data.librarySpellbladeMe === '0064')
           return output.goSouthStackOnYou();
 
-        if (data.librarySpellbladeMe == '0065')
+        if (data.librarySpellbladeMe === '0065')
           return output.goNorth();
 
         return output.goSouthStackOnFriend();
@@ -150,10 +150,10 @@
           return;
 
         data.librarySpellbladePrinted = true;
-        if (data.librarySpellbladeMe == '0064')
+        if (data.librarySpellbladeMe === '0064')
           return output.stackOutside();
 
-        if (data.librarySpellbladeMe == '0065')
+        if (data.librarySpellbladeMe === '0065')
           return output.goNorth2();
 
         return output.stackInside();
@@ -308,7 +308,7 @@
       condition: function(data) {
         // Deliberately skip printing the waltz message for the
         // spellblade holy -> waltz that ends the library phase.
-        return data.phase != 3 || !data.seenHolyThisPhase;
+        return data.phase !== 3 || !data.seenHolyThisPhase;
       },
       alertText: (data, _, output) => output.text(),
       tts: (data, _, output) => output.tts(),

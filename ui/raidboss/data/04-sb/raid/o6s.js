@@ -24,7 +24,7 @@
       netRegexCn: NetRegexes.addedCombatant({ name: '暴风领域', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '폭풍 영역', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -42,7 +42,7 @@
       id: 'O6S Demonic Stone',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
       alarmText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.text();
       },
       outputStrings: {
@@ -85,7 +85,7 @@
       condition: function(data, matches) {
         // The person who gets the marker briefly gets the effect, so
         // don't tell them twice.
-        return data.me == matches.target && data.lastKiss != data.me;
+        return data.me === matches.target && data.lastKiss !== data.me;
       },
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
