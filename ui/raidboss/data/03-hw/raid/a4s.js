@@ -17,11 +17,11 @@
       id: 'A4S Discord Marker',
       netRegex: NetRegexes.headMarker({ id: '00AE' }),
       alertText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.orbsOnYou();
       },
       infoText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.orbsOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {

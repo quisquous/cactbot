@@ -164,12 +164,12 @@
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '1A77' }),
       // TODO: maybe we need a Responses.abilityOn()
       alarmText: function(data, matches, output) {
-        if (data.me != matches.target)
+        if (data.me !== matches.target)
           return;
         return output.gaOnYou();
       },
       infoText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return;
         return output.gaOn({ player: data.ShortName(matches.target) });
       },
@@ -209,7 +209,7 @@
         data.limitCutMap = data.limitCutMap || {};
         data.limitCutMap[limitCutNumber] = matches.target;
 
-        if (matches.target == data.me) {
+        if (matches.target === data.me) {
           data.limitCutNumber = limitCutNumber;
 
           // Time between headmarker and mechanic.
@@ -253,7 +253,7 @@
         return data.limitCutDelay - 5;
       },
       alertText: function(data, _, output) {
-        if (data.limitCutNumber % 2 == 1) {
+        if (data.limitCutNumber % 2 === 1) {
           // Odds
           return output.knockbackCleave();
         }
@@ -317,11 +317,11 @@
       netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '1A7F' }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '1A7F' }),
       alertText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.sharedTankbusterOnYou();
 
 
-        if (data.role == 'tank' || data.role == 'healer' || data.job == 'BLU')
+        if (data.role === 'tank' || data.role === 'healer' || data.job === 'BLU')
           return output.sharedTankbusterOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -399,12 +399,12 @@
       netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '1A83' }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '1A83' }),
       alarmText: function(data, matches, output) {
-        if (data.me != matches.target)
+        if (data.me !== matches.target)
           return;
         return output.chargeOnYou();
       },
       alertText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return;
         return output.chargeOn({ player: data.ShortName(matches.target) });
       },

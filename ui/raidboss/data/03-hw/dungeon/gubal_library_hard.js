@@ -10,7 +10,7 @@
       regex: /Triclip/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank';
+        return data.role === 'healer' || data.role === 'tank';
       },
       response: Responses.tankBuster(),
     },
@@ -25,7 +25,7 @@
       regex: /Darkness \(buster\)/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank';
+        return data.role === 'healer' || data.role === 'tank';
       },
       response: Responses.tankBuster(),
     },
@@ -40,7 +40,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1945', source: '液态火焰', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1945', source: '액체 불꽃', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -48,15 +48,15 @@
       id: 'Gubal Hard Ferrofluid',
       netRegex: NetRegexes.headMarker({ id: ['0030', '0031'] }),
       condition: function(data, matches) {
-        return data.me == matches.target || matches.targetId.slice(0, 1) == '4';
+        return data.me === matches.target || matches.targetId.slice(0, 1) === '4';
       },
       preRun: function(data, matches) {
         data.markers = data.markers || [];
         data.markers.push(matches.id);
       },
       infoText: function(data, _, output) {
-        if (data.markers.length == 2) {
-          let sameMarkers = data.markers[0] == data.markers[1];
+        if (data.markers.length === 2) {
+          let sameMarkers = data.markers[0] === data.markers[1];
           delete data.markers;
           if (sameMarkers)
             return output.closeToBoss();
@@ -250,7 +250,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1955', source: '博学林鸮', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1955', source: '스트릭스', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },

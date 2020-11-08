@@ -130,7 +130,7 @@ const tiltOutputStrings = {
       netRegexCn: NetRegexes.startsUsing({ id: '19C4', source: '索菲娅' }),
       netRegexKo: NetRegexes.startsUsing({ id: '19C4', source: '소피아' }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBusterSwap(),
     },
@@ -271,7 +271,7 @@ const tiltOutputStrings = {
         // Note that Y-values are inverted! (In-game, 0,1 is one unit South from the origin)
         let positionString = y > 0 ? 'S' : 'N';
         // The center two clones aren't exactly on the centerline, so we round the X coordinates.
-        if (Math.round(x) != 0)
+        if (Math.round(x) !== 0)
           positionString += Math.round(x) < 0 ? 'W' : 'E';
         // Yes, we have to specifically uppercase this for 03 log lines.
         // No, we don't know why. Blame Square/Ravahn/Hydaelyn.
@@ -545,7 +545,7 @@ const tiltOutputStrings = {
           return;
         }
         let safeDir = findSafeDir(data);
-        if (safeDir == 0) {
+        if (safeDir === 0) {
           // If it's the 1/1, 2/2, or 3/3 case, we sadly don't have enough information.
           // We have to quit here and wait for the actual cast.
           data.sadTethers = true;
@@ -577,9 +577,9 @@ const tiltOutputStrings = {
       alertText: function(data, matches, output) {
         let safeDir = findSafeDir(data);
         // If this is the first set of Meteor Quasars, there is no tilt.
-        if (data.quasarTethers.length == 4 && safeDir != 0)
+        if (data.quasarTethers.length === 4 && safeDir !== 0)
           return;
-        if (safeDir == 0)
+        if (safeDir === 0)
           safeDir = data.scaleSophias.indexOf(matches.sourceId) < 4 ? '2' : '-2';
         return callSafeDir(safeDir, output);
       },

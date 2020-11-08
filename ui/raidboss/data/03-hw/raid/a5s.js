@@ -125,7 +125,7 @@ let bombLocation = (matches) => {
       },
       // We could give directions here, but "into / opposite spikey" is pretty succinct.
       infoText: function(data, _, output) {
-        if (data.bombCount == 1)
+        if (data.bombCount === 1)
           return output.knockBombsIntoSpikey();
 
         return output.knockBombsOppositeSpikey();
@@ -174,8 +174,8 @@ let bombLocation = (matches) => {
         data.boostBombs.push(bombLocation(matches));
       },
       alertText: function(data, _, output) {
-        if (data.boostCount == 1) {
-          if (data.boostBombs.length != 1)
+        if (data.boostCount === 1) {
+          if (data.boostBombs.length !== 1)
             return;
           // index 0 = NW, 3 = NE, 12 = SW, 15 = SE
           let index = data.boostBombs[0].x + data.boostBombs[0].y * 4;

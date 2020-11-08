@@ -134,12 +134,12 @@
       netRegexCn: NetRegexes.startsUsing({ source: '废品翻新装置', id: '1A3C', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '재생자', id: '1A3C', capture: false }),
       alertText: function(data, _, output) {
-        if (data.mainTank == data.me)
+        if (data.mainTank === data.me)
           return;
         return output.getBehind();
       },
       infoText: function(data, _, output) {
-        if (data.mainTank != data.me)
+        if (data.mainTank !== data.me)
           return;
         return output.scraplineOnYou();
       },
