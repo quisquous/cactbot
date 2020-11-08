@@ -91,9 +91,7 @@
       netRegexJa: NetRegexes.tether({ id: '0039', source: 'リクイドフレイム' }),
       netRegexCn: NetRegexes.tether({ id: '0039', source: '液态火焰' }),
       netRegexKo: NetRegexes.tether({ id: '0039', source: '액체 불꽃' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -109,9 +107,7 @@
     {
       id: 'Gubal Hard Sunseal',
       netRegex: NetRegexes.gainsEffect({ effectId: '46F' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -127,9 +123,7 @@
     {
       id: 'Gubal Hard Moonseal',
       netRegex: NetRegexes.gainsEffect({ effectId: '470' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

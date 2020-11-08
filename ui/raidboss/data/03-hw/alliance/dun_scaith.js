@@ -100,9 +100,7 @@
     {
       id: 'Dun Scaith Aero 2',
       netRegex: NetRegexes.headMarker({ id: '0046' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -696,9 +694,7 @@
     {
       id: 'Dun Scaith Earth Shaker',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.earthshaker(),
     },
   ],
