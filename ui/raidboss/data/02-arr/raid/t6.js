@@ -7,7 +7,7 @@
     {
       id: 'T6 Thorn Whip Collect',
       netRegex: NetRegexes.tether({ id: '0012' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.thornMap = data.thornMap || {};
         data.thornMap[matches.source] = data.thornMap[matches.source] || [];
         data.thornMap[matches.source].push(matches.target);
@@ -24,15 +24,15 @@
       netRegexCn: NetRegexes.ability({ id: '879', source: '大王花' }),
       netRegexKo: NetRegexes.ability({ id: '879', source: '라플레시아' }),
       condition: Conditions.targetIsYou(),
-      infoText: function(data, _, output) {
-        let partners = data.thornMap[data.me];
+      infoText: (data, _, output) => {
+        const partners = data.thornMap[data.me];
         if (!partners)
           return output.thornsOnYou();
 
-        if (partners.length == 1)
+        if (partners.length === 1)
           return output.oneTether({ player: data.ShortName(partners[0]) });
 
-        if (partners.length == 2) {
+        if (partners.length === 2) {
           return output.twoTethers({
             player1: data.ShortName(partners[0]),
             player2: data.ShortName(partners[1]),
@@ -41,9 +41,7 @@
 
         return output.threeOrMoreTethers({ num: partners.length });
       },
-      run: function(data) {
-        delete data.thornMap;
-      },
+      run: (data) => delete data.thornMap,
       outputStrings: {
         thornsOnYou: {
           en: 'Thorns on YOU',
@@ -80,34 +78,30 @@
       id: 'T6 Honey On',
       netRegex: NetRegexes.gainsEffect({ effectId: '1BE' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
-        data.honey = true;
-      },
+      run: (data) => data.honey = true,
     },
     {
       id: 'T6 Honey Off',
       netRegex: NetRegexes.losesEffect({ effectId: '1BE' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
-        delete data.honey;
-      },
+      run: (data) => delete data.honey,
     },
     {
       id: 'T6 Flower',
       netRegex: NetRegexes.headMarker({ id: '000D' }),
-      alarmText: function(data, _, output) {
+      alarmText: (data, _, output) => {
         if (data.honey)
           return output.getEaten();
       },
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (data.honey)
           return;
 
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.jumpInNewThorns();
       },
-      infoText: function(data, matches, output) {
-        if (data.honey || data.me == matches.target)
+      infoText: (data, matches, output) => {
+        if (data.honey || data.me === matches.target)
           return;
 
         return output.avoidDevour();
@@ -164,13 +158,9 @@
       netRegexJa: NetRegexes.startsUsing({ id: '79E', source: 'ラフレシア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '79E', source: '大王花', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '79E', source: '라플레시아', capture: false }),
-      condition: function(data) {
-        return !data.seenLeafstorm;
-      },
+      condition: (data) => !data.seenLeafstorm,
       sound: 'Long',
-      run: function(data) {
-        data.seenLeafstorm = true;
-      },
+      run: (data) => data.seenLeafstorm = true,
     },
     {
       id: 'T6 Swarm Stack',
@@ -199,15 +189,13 @@
       netRegexJa: NetRegexes.ability({ id: '7A0', source: 'ラフレシア' }),
       netRegexCn: NetRegexes.ability({ id: '7A0', source: '大王花' }),
       netRegexKo: NetRegexes.ability({ id: '7A0', source: '라플레시아' }),
-      condition: function(data, matches) {
-        return data.me == matches.target || data.role == 'healer' || data.job == 'BLU';
-      },
-      alertText: function(data, matches, output) {
-        if (matches.target == data.me)
+      condition: (data, matches) => data.me === matches.target || data.role === 'healer' || data.job === 'BLU',
+      alertText: (data, matches, output) => {
+        if (matches.target === data.me)
           return output.swarmOnYou();
       },
-      infoText: function(data, matches, output) {
-        if (matches.target != data.me)
+      infoText: (data, matches, output) => {
+        if (matches.target !== data.me)
           return output.swarmOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -230,8 +218,8 @@
     {
       id: 'T6 Rotten Stench',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
-      alertText: function(data, matches, output) {
-        if (data.me == matches.target)
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
           return output.shareLaserOnYou();
 
         return output.shareLaserOn({ player: data.ShortName(matches.target) });

@@ -29,7 +29,7 @@
       condition: (data) => data.role === 'healer',
       delaySeconds: 1,
       suppressSeconds: 2,
-      alertText: (data, matches, output) => {
+      alertText: (data, _, output) => {
         if (!data.pelicanPoisons)
           return;
 
@@ -102,7 +102,7 @@
       netRegexJa: NetRegexes.ability({ id: '3D3', source: 'ヘルベンダー' }),
       netRegexKo: NetRegexes.ability({ id: '3D3', source: '장수도롱뇽' }),
       netRegexCn: NetRegexes.ability({ id: '3D3', source: '水栖蝾螈' }),
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (matches.target !== data.me)
           return output.breakBubbleOn({ player: data.ShortName(matches.target) });
 
@@ -140,9 +140,7 @@
       // Move Aiatar out of Puddles
       id: 'Brayflox Normal Aiatar Toxic Vomit Tank',
       netRegex: NetRegexes.gainsEffect({ effectId: '117' }),
-      condition: function(data, matches) {
-        return data.role === 'tank';
-      },
+      condition: (data) => data.role === 'tank',
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -159,7 +157,7 @@
       id: 'Brayflox Normal Aiatar Poison Healer',
       netRegex: NetRegexes.gainsEffect({ effectId: '113' }),
       condition: (data) => data.role === 'healer',
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (matches.target !== data.me)
           return output.esunaPoisonOn({ player: data.ShortName(matches.target) });
 

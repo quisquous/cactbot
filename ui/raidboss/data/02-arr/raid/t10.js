@@ -27,12 +27,12 @@
     {
       id: 'T10 Wild Charge',
       netRegex: NetRegexes.headMarker({ id: '001F' }),
-      alarmText: function(data, matches, output) {
-        if (data.me == matches.target)
+      alarmText: (data, matches, output) => {
+        if (data.me === matches.target)
           return output.chargeOnYou();
       },
-      infoText: function(data, matches, output) {
-        if (data.me != matches.target)
+      infoText: (data, matches, output) => {
+        if (data.me !== matches.target)
           return output.chargeOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -65,12 +65,12 @@
       netRegexJa: NetRegexes.tether({ id: '0015', source: 'イムドゥグド' }),
       netRegexCn: NetRegexes.tether({ id: '0015', source: '伊姆都古德' }),
       netRegexKo: NetRegexes.tether({ id: '0015', source: '임두구드' }),
-      alarmText: function(data, matches, output) {
-        if (data.me == matches.target)
+      alarmText: (data, matches, output) => {
+        if (data.me === matches.target)
           return output.cyclonicOnYou();
       },
-      infoText: function(data, matches, output) {
-        if (data.me != matches.target)
+      infoText: (data, matches, output) => {
+        if (data.me !== matches.target)
           return output.cyclonicOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {

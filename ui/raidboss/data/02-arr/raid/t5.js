@@ -12,9 +12,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ツインタニア', id: '5B2' }),
       netRegexCn: NetRegexes.startsUsing({ source: '双塔尼亚', id: '5B2' }),
       netRegexKo: NetRegexes.startsUsing({ source: '트윈타니아', id: '5B2' }),
-      condition: function(data, matches) {
-        return data.me == matches.target || data.role == 'healer' || data.job == 'BLU';
-      },
+      condition: (data, matches) => data.me === matches.target || data.role === 'healer' || data.job === 'BLU',
       response: Responses.tankBuster(),
     },
     {
@@ -25,9 +23,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ツインタニア', id: '5B2', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '双塔尼亚', id: '5B2', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '트윈타니아', id: '5B2', capture: false }),
-      condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer' || data.job == 'BLU';
-      },
+      condition: (data) => data.role === 'tank' || data.role === 'healer' || data.job === 'BLU',
       delaySeconds: 30,
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
@@ -80,12 +76,12 @@
       netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '5AC' }),
       netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '5AC' }),
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5AC' }),
-      alertText: function(data, matches, output) {
-        if (data.me == matches.target)
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
           return output.fireballOnYou();
       },
-      infoText: function(data, matches, output) {
-        if (data.me != matches.target)
+      infoText: (data, matches, output) => {
+        if (data.me !== matches.target)
           return output.fireballOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -115,12 +111,12 @@
       netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '5AB' }),
       netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '5AB' }),
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5AB' }),
-      alarmText: function(data, matches, output) {
-        if (data.me == matches.target)
+      alarmText: (data, matches, output) => {
+        if (data.me === matches.target)
           return output.conflagOnYou();
       },
-      infoText: function(data, matches, output) {
-        if (data.me != matches.target)
+      infoText: (data, matches, output) => {
+        if (data.me !== matches.target)
           return output.conflagOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -203,8 +199,8 @@
       netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '4E3' }),
       netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '4E3' }),
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '4E3' }),
-      infoText: function(data, matches, output) {
-        if (data.me == matches.target)
+      infoText: (data, matches, output) => {
+        if (data.me === matches.target)
           return output.knightOnYou();
 
         return output.knightOn({ player: data.ShortName(matches.target) });
@@ -266,12 +262,12 @@
       netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '5AD' }),
       netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '5AD' }),
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5AD' }),
-      alertText: function(data, matches, output) {
-        if (data.me == matches.target)
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
           return output.hatchOnYou();
       },
-      infoText: function(data, matches, output) {
-        if (data.me != matches.target)
+      infoText: (data, matches, output) => {
+        if (data.me !== matches.target)
           return output.hatchOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {

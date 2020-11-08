@@ -13,9 +13,7 @@
       netRegexCn: NetRegexes.ability({ id: 'B96', source: '不死鸟', capture: false }),
       netRegexKo: NetRegexes.ability({ id: 'B96', source: '피닉스', capture: false }),
       sound: 'Long',
-      run: function(data) {
-        data.phase = 3;
-      },
+      run: (data) => data.phase = 3,
     },
     {
       id: 'T12 Bennu',
@@ -27,7 +25,7 @@
       netRegexKo: NetRegexes.addedCombatant({ name: '벤누', capture: false }),
       delaySeconds: 55,
       durationSeconds: 4.5,
-      infoText: function(data, _, output) {
+      infoText: (data, _, output) => {
         if (data.phase >= 3)
           return;
         return output.text();
@@ -50,12 +48,12 @@
       netRegexJa: NetRegexes.startsUsing({ id: 'B87', source: 'フェニックス' }),
       netRegexCn: NetRegexes.startsUsing({ id: 'B87', source: '不死鸟' }),
       netRegexKo: NetRegexes.startsUsing({ id: 'B87', source: '피닉스' }),
-      alertText: function(data, matches, output) {
-        if (matches.target == data.me)
+      alertText: (data, matches, output) => {
+        if (matches.target === data.me)
           return output.revelationOnYou();
       },
-      infoText: function(data, matches, output) {
-        if (matches.target != data.me)
+      infoText: (data, matches, output) => {
+        if (matches.target !== data.me)
           return output.awayFromPlayer({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -128,12 +126,12 @@
       // Chain Of Purgatory
       id: 'T12 Chain',
       netRegex: NetRegexes.gainsEffect({ effectId: '24D' }),
-      alertText: function(data, matches, output) {
-        if (matches.target == data.me)
+      alertText: (data, matches, output) => {
+        if (matches.target === data.me)
           return output.chainOnYou();
       },
-      infoText: function(data, matches, output) {
-        if (matches.target != data.me)
+      infoText: (data, matches, output) => {
+        if (matches.target !== data.me)
           return output.chainOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {

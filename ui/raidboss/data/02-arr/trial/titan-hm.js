@@ -8,18 +8,14 @@
       id: 'TitanHm Mountain Buster',
       regex: /Mountain Buster/,
       beforeSeconds: 7,
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank';
-      },
+      condition: (data) => data.role === 'healer' || data.role === 'tank',
       response: Responses.tankBuster(),
     },
     {
       id: 'TitanHm Mountain Buster Avoid',
       regex: /Mountain Buster/,
       beforeSeconds: 7,
-      condition: function(data) {
-        return data.role != 'healer' && data.role != 'tank';
-      },
+      condition: (data) => data.role !== 'healer' && data.role !== 'tank',
       response: Responses.tankCleave(),
     },
     {
@@ -41,9 +37,7 @@
       id: 'TitanHm Damage Down',
       netRegex: NetRegexes.gainsEffect({ effectId: '3E' }),
       condition: (data) => data.CanCleanse(),
-      infoText: function(data, matches, output) {
-        return output.text({ player: data.ShortName(matches.target) });
-      },
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
           en: 'Cleanse ${player}',
