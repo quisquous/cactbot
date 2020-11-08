@@ -20,9 +20,8 @@
       netRegexJa: NetRegexes.startsUsing({ id: 'BB9', source: 'バハムート・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: 'BB9', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: 'BB9', source: '바하무트 프라임', capture: false }),
-      condition: (data) =>
-        // Only the first two gigas are phase changes, the rest are in final phase.
-        !(data.gigaflare > 1),
+      // Only the first two gigas are phase changes, the rest are in final phase.
+      condition: (data) => !(data.gigaflare > 1),
       sound: 'Long',
       infoText: (data, _, output) => {
         if (data.gigaflare)
