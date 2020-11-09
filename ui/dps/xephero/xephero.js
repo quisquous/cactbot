@@ -14,7 +14,7 @@ function showOverlay() {
 function update(dps, tracker) {
   let encounter = dps.Encounter;
   let rdps = parseFloat(encounter.encdps);
-  if (isNaN(rdps) || rdps == Infinity)
+  if (isNaN(rdps) || rdps === Infinity)
     return;
 
   showOverlay();
@@ -32,7 +32,7 @@ function update(dps, tracker) {
   container.html('');
 
   // sanity check
-  if (!isNaN(rdps) && rdps != Infinity)
+  if (!isNaN(rdps) && rdps !== Infinity)
     rdpsMax = Math.max(rdpsMax, rdps);
 
 
@@ -62,7 +62,7 @@ function update(dps, tracker) {
       maxdps = parseFloat(combatant.encdps);
 
 
-    if (combatant.name == 'YOU')
+    if (combatant.name === 'YOU')
       row.addClass('you');
 
     dpsOrder[combatant.name] = i;
@@ -117,7 +117,7 @@ function updatePhase(phase, dpsOrder) {
     let row = phase.rowMap[name];
     if (!row) {
       row = $('#phasenumbersource li').clone();
-      if (name == 'YOU')
+      if (name === 'YOU')
         row.addClass('you');
 
       phase.element.append(row);
