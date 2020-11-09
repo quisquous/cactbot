@@ -322,11 +322,12 @@ const tankBusterOnParty = (ceId) => (data, matches) => {
       id: 'Bozja South Castrum Albeleo Baleful Gaze',
       netRegex: NetRegexes.startsUsing({ source: 'Albeleo\'s Monstrosity', id: '5404', capture: false }),
       suppressSeconds: 3,
-      response: Responses.lookAway('alert'),
+      response: Responses.lookAway('info'),
     },
     {
       id: 'Bozja South Castrum Albeleo Abyssal Cry',
       netRegex: NetRegexes.startsUsing({ source: 'Albeleo\'s Hrodvitnir', id: '5406' }),
+      condition: (data) => data.CanSilence(),
       response: Responses.interrupt('alert'),
     },
     {
@@ -363,6 +364,7 @@ const tankBusterOnParty = (ceId) => (data, matches) => {
     },
     {
       id: 'Bozja South Castrum Adrammelech Curse of the Fiend Orbs',
+      // TODO: We could probably move this right after the orbs appear?
       netRegex: NetRegexes.startsUsing({ source: 'Adrammelech', id: '4F7B', capture: false }),
       // Mini-timeline:
       //  0.0: Adrammelech starts using Curse Of The Fiend
@@ -471,34 +473,40 @@ const tankBusterOnParty = (ceId) => (data, matches) => {
         if (!loc)
           return output.unknown();
 
-        const adrammelechCenterX = 73;
+        // Four inner orb locations:
+        // 85, -614.6 (NE)
+        // 88.6, -601.1 (SE)
+        // 75.1, -597.5 (SW)
+        // 71.5, -611 (NW)
+
+        const adrammelechCenterX = 80;
         const adrammelechCenterY = -605;
 
         // North is negative y.
         if (loc.x > adrammelechCenterX) {
           if (loc.y < adrammelechCenterY)
-            return output.southWest();
-          return output.northWest();
+            return output.southwest();
+          return output.northwest();
         }
         if (loc.y < adrammelechCenterY)
-          return output.southEast();
-        return output.northEast();
+          return output.southeast();
+        return output.northeast();
       },
       outputStrings: {
         unknown: {
           // "Follow Other People ;)"
           en: 'Go ???',
         },
-        northEast: {
+        northeast: {
           en: 'Go northeast',
         },
-        southEast: {
+        southeast: {
           en: 'Go southeast',
         },
-        southWest: {
+        southwest: {
           en: 'Go southwest',
         },
-        northWest: {
+        northwest: {
           en: 'Go northwest',
         },
       },
