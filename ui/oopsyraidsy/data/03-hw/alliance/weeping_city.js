@@ -103,7 +103,7 @@
       // This ability name is helpfully called "Attack" so name it something else.
       id: 'Weeping Ozma Tank Laser',
       netRegex: NetRegexes.ability({ id: '1831' }),
-      condition: (e) => e.type !== 15,
+      condition: (e) => e.type !== '15',
       mistake: function(e, data, matches) {
         return {
           type: 'warn',
