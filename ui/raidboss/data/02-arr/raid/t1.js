@@ -23,9 +23,7 @@
       netRegexJa: NetRegexes.ability({ source: 'カドゥケウス', id: '4B8.*?', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '神杖巨蛇', id: '4B8.*?', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '카두케우스', id: '4B8.*?', capture: false }),
-      run: function(data) {
-        data.started = true;
-      },
+      run: (data) => data.started = true,
     },
     {
       id: 'T1 Regorge',
@@ -55,9 +53,7 @@
       netRegexJa: NetRegexes.addedCombatant({ name: 'カドゥケウス.*?', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '神杖巨蛇.*?', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '카두케우스.*?', capture: false }),
-      condition: function(data) {
-        return data.started;
-      },
+      condition: (data) => data.started,
       suppressSeconds: 5,
       alertText: (data, _, output) => output.text(),
       outputStrings: {

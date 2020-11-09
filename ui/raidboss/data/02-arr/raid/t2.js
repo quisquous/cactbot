@@ -19,12 +19,12 @@
       // Allagan Rot
       id: 'T2 Rot',
       netRegex: NetRegexes.gainsEffect({ effectId: '14D' }),
-      alarmText: function(data, matches, output) {
-        if (data.me == matches.target)
+      alarmText: (data, matches, output) => {
+        if (data.me === matches.target)
           return output.rotOnYou();
       },
-      infoText: function(data, matches, output) {
-        if (data.me != matches.target)
+      infoText: (data, matches, output) => {
+        if (data.me !== matches.target)
           return output.rotOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -48,11 +48,9 @@
       id: 'T2 Pass Rot',
       netRegex: NetRegexes.gainsEffect({ effectId: '14D' }),
       condition: Conditions.targetIsYou(),
-      preRun: function(data) {
-        data.rot = true;
-      },
+      preRun: (data) => data.rot = true,
       delaySeconds: 11,
-      alertText: function(data, _, output) {
+      alertText: (data, _, output) => {
         if (!data.rot)
           return;
         return output.text();
@@ -71,9 +69,7 @@
       id: 'T2 Lost Rot',
       netRegex: NetRegexes.losesEffect({ effectId: '14D' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
-        delete data.rot;
-      },
+      run: (data) => delete data.rot,
     },
   ],
   timelineReplace: [
