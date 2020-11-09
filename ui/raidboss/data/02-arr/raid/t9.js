@@ -3,27 +3,35 @@
 const diveDirections = {
   unknown: {
     en: '?',
+    cn: '？',
   },
   north: {
     en: 'N',
+    cn: '北',
   },
   northeast: {
     en: 'NE',
+    cn: '东北',
   },
   east: {
     en: 'E',
+    cn: '东',
   },
   southeast: {
     en: 'SE',
+    cn: '东南',
   },
   southwest: {
     en: 'SW',
+    cn: '西南',
   },
   west: {
     en: 'W',
+    cn: '西',
   },
   northwest: {
     en: 'NW',
+    cn: '西北',
   },
 };
 
