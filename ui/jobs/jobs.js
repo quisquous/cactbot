@@ -3116,7 +3116,7 @@ class Bars {
         technicalStep.duration = 100 - elapsed;
         technicalStep.threshold = this.gcdSkill() + 1;
         technicalStep.fg = computeBackgroundColorFrom(technicalStep, 'dnc-color-technicalstep');
-      }, 20000);
+      }, technicalStep.duration * 1000);
     };
 
     // When cast Flourish, show proc remain time until all procs have been used.
@@ -3138,7 +3138,7 @@ class Bars {
         flourishFlag = false;
         flourish.threshold = this.gcdSkill() + 1;
         flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
-      }, 20000);
+      }, flourish.duration * 1000);
     };
     [
       EffectId.FlourishingCascade,
