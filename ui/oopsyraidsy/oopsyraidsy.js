@@ -726,7 +726,7 @@ class DamageTracker {
     const line = e.rawLine;
     for (let trigger of this.netTriggers) {
       let matches = line.match(trigger.netRegex);
-      if (matches !== null)
+      if (matches)
         this.OnTrigger(trigger, { line: line }, matches);
     }
 
@@ -753,7 +753,7 @@ class DamageTracker {
     for (const line of e.detail.logs) {
       for (const trigger of this.generalTriggers) {
         let matches = line.match(trigger.regex);
-        if (matches !== null)
+        if (matches)
           this.OnTrigger(trigger, { line: line }, matches);
       }
     }
@@ -858,7 +858,7 @@ class DamageTracker {
         if (matches)
           isGainLine = false;
       }
-      if (matches === null)
+      if (!matches)
         continue;
 
       let g = matches.groups;
@@ -917,7 +917,7 @@ class DamageTracker {
   OnTrigger(trigger, evt, matches) {
     // If using named groups, treat matches.groups as matches
     // so triggers can do things like matches.target.
-    if ((matches !== undefined) && (matches.groups !== undefined))
+    if (matches && matches.groups)
       matches = matches.groups;
 
     if (trigger.id && !IsTriggerEnabled(this.options, trigger.id))
