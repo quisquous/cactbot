@@ -378,7 +378,7 @@ const tankBusterOnParty = (ceId) => (data, matches) => {
       infoText: (data, _, output) => {
         // Let your actor id memes be dreams!
         // Orbs go off from highest actor id to lowest actor id, in pairs of two.
-        let sortedOrbs = Object.keys(data.orbs || {}).sort().reverse();
+        const sortedOrbs = Object.keys(data.orbs || {}).sort().reverse();
         const orbIdToNameId = data.orbs;
         delete data.orbs;
 
