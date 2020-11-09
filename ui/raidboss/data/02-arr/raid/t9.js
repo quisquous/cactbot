@@ -404,15 +404,19 @@ const diveDirections = {
       outputStrings: {
         fireOutOnYou: {
           en: 'Fire Out (on YOU)',
+          cn: '单吃火点名',
         },
         fireInOnYou: {
           en: 'Fire In (on YOU)',
+          cn: '集合火点名',
         },
         fireOutOn: {
           en: 'Fire Out (on ${player})',
+          cn: '单吃火点(on ${player})',
         },
         fireInOn: {
           en: 'Fire In (on ${player})',
+          cn: '集合火点(on ${player})',
         },
       },
     },
@@ -448,6 +452,7 @@ const diveDirections = {
         ...diveDirections,
         safeZone: {
           en: 'Safe zone: ${dir}',
+          cn: '安全点在：${dir}',
         },
       },
     },

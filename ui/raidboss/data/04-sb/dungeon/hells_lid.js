@@ -13,6 +13,7 @@
       outputStrings: {
         text: {
           en: 'Away from club/shield',
+          cn: '远离棍棍和盾盾',
         },
       },
     },
@@ -48,9 +49,11 @@
       outputStrings: {
         targetText: {
           en: 'Boss chasing--GET AWAY',
+          cn: 'BOSS追逐点名———快跑鸭',
         },
         otherText: {
           en: 'Avoid boss',
+          cn: '远离BOSS',
         },
       },
     },
@@ -71,6 +74,7 @@
       outputStrings: {
         text: {
           en: 'Avoid water orb',
+          cn: '躲避水球移动路径',
         },
       },
     },

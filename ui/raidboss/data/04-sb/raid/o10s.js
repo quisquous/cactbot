@@ -39,11 +39,12 @@
           de: 'Feuer Marker auf DIR',
           fr: 'Feu sur VOUS',
           ja: '自分にマーカー',
-          cn: '火点名',
+          cn: '喷火点名',
           ko: '불징 대상자',
         },
         fireOn: {
           en: 'Fire Marker on ${player}',
+          cn: '喷火点${player}',
         },
       },
     },
