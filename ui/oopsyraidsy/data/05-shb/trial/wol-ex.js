@@ -70,7 +70,7 @@
     {
       id: 'WolEx Katon San Share',
       netRegex: NetRegexes.ability({ id: '4EFE' }),
-      condition: (e) => e.type === 15,
+      condition: (e) => e.type === '15',
       mistake: function(e, data, matches) {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },

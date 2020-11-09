@@ -1060,7 +1060,7 @@ class DamageTracker {
     if (!dict)
       return;
     let keys = Object.keys(dict);
-    let condFunc = (e) => e.type !== 15;
+    let condFunc = (e) => e.type !== '15';
     for (let key of keys) {
       let id = dict[key];
       let trigger = {
