@@ -1,4 +1,4 @@
-/* 
+/*
   Search(match case) these words to reach your destination:
     Bars
     Boxes
@@ -23,6 +23,7 @@
 }
 
 /* Bars */
+
 /* Relative to #bars */
 #pull-bar,
 #hp-bar,
@@ -43,10 +44,6 @@
   font-size: 12px;
 }
 
-.justbuffs #right-side-icons {
-  position: fixed;
-  left: 0;
-}
 
 .justbuffs #pull-bar {
   display: none;
@@ -150,6 +147,7 @@
 }
 
 /* Boxes */
+
 /* Relative to #bars */
 #pld-boxes,
 #war-boxes,
@@ -193,6 +191,7 @@
 }
 
 /* Fit the exact height of the bars if not too small */
+
 /* Height of default/HP bar(show number) */
 #war-boxes > div,
 #gnb-boxes > div,
@@ -280,6 +279,11 @@
   border: 1px solid black;
   width: 44px;
   height: 32px;
+}
+
+.justbuffs #right-side-icons {
+  position: fixed;
+  left: 0;
 }
 
 /* Relative to #bars */
@@ -388,6 +392,7 @@
   width: calc(25% - 4px);
   height: 100%;
 }
+
 #whm-stacks-bloodlily > div.active {
   background-color: rgb(190, 43, 30);
 }
@@ -405,6 +410,7 @@
 }
 
 /* Procs */
+
 /*
   Relative to #bars
   In general, jobs has ui such that the health bar can appear on top
