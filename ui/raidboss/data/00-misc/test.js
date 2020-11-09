@@ -12,7 +12,7 @@
     'alarmtext "Death" before 3',
     'alertall "Long Castbar" before 1 speak "voice" "long"',
     function(data) {
-      if (data.role != 'tank' && data.role != 'healer')
+      if (data.role !== 'tank' && data.role !== 'healer')
         return 'hideall "Super Tankbuster"';
       return 'alarmtext "Super Tankbuster" before 2';
     },
@@ -21,7 +21,7 @@
         return 'hideall "Pentacle Sac (DPS)"';
     },
     function(data) {
-      if (data.role != 'healer')
+      if (data.role !== 'healer')
         return 'hideall "Almagest"';
       return 'alarmtext "Almagest" before 0';
     },
