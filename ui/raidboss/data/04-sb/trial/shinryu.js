@@ -14,16 +14,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1FA4', source: '神龙' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FA4', source: '신룡' }),
       alertText: function(data, matches, output) {
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           return output.akhMornOnYou();
-        else if (data.role == 'tank')
+        else if (data.role === 'tank')
           return output.akhMornOn({ player: data.ShortName(matches.target) });
       },
       infoText: function(data, matches, output) {
         // Nobody with Akh Morn is a direct target for Akh Rai,
         // and tanks should never be targeted for it.
         // Additionally, Akh Rai happens only after the intermission.
-        if (matches.target == data.me || data.role == 'tank' || !data.finalPhase)
+        if (matches.target === data.me || data.role === 'tank' || !data.finalPhase)
           return;
         return output.akhRhaiSpreadAndMove();
       },
@@ -206,7 +206,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1FA2', source: '左翼' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FA2', source: '왼쪽 날개' }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       delaySeconds: function(data, matches) {
         return matches.castTime - 4;

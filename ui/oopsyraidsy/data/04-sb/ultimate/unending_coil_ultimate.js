@@ -17,7 +17,7 @@
         // Instant death uses '36' as its flags, differentiating
         // from the explosion damage you take when somebody else
         // pops one.
-        return data.IsPlayerId(e.targetId) && e.flags == '36';
+        return data.IsPlayerId(e.targetId) && e.flags === '36';
       },
       mistake: function(e) {
         return {

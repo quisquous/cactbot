@@ -18,9 +18,7 @@
       netRegexCn: NetRegexes.message({ line: '地雷分布在了各处.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '지뢰가 뿌려졌습니다.*?', capture: false }),
       alertText: (data, _, output) => output.text(),
-      run: function(data) {
-        data.landmines = {};
-      },
+      run: (data) => data.landmines = {},
       outputStrings: {
         text: {
           en: 'Explode Landmines',
@@ -39,18 +37,36 @@
       netRegexJa: NetRegexes.ability({ id: '7D1', source: 'アラガンマイン' }),
       netRegexCn: NetRegexes.ability({ id: '7D1', source: '亚拉戈机雷' }),
       netRegexKo: NetRegexes.ability({ id: '7D1', source: '알라그 지뢰' }),
-      infoText: function(data, matches) {
+      infoText: (data, matches, output) => {
         if (matches.target in data.landmines)
           return;
-        return (Object.keys(data.landmines).length + 1) + ' / 3';
+        const num = Object.keys(data.landmines).length + 1;
+        return output.landmine({ num: num });
       },
-      tts: function(data, matches) {
+      tts: (data, matches, output) => {
         if (matches.target in data.landmines)
           return;
-        return (Object.keys(data.landmines).length + 1);
+        const num = Object.keys(data.landmines).length + 1;
+        return output.landmineTTS({ num: num });
       },
-      run: function(data, matches) {
-        data.landmines[matches.target] = true;
+      run: (data, matches) => data.landmines[matches.target] = true,
+      outputStrings: {
+        landmine: {
+          en: '${num} / 3',
+          de: '${num} / 3',
+          fr: '${num} / 3',
+          ja: '${num} / 3',
+          cn: '${num} / 3',
+          ko: '${num} / 3',
+        },
+        landmineTTS: {
+          en: '${num}',
+          de: '${num}',
+          fr: '${num}',
+          ja: '${num}',
+          cn: '${num}',
+          ko: '${num}',
+        },
       },
     },
     {
@@ -62,9 +78,7 @@
       netRegexCn: NetRegexes.tether({ id: '0005', target: '降世化身' }),
       netRegexKo: NetRegexes.tether({ id: '0005', target: '아바타' }),
       suppressSeconds: 6,
-      infoText: function(data, matches, output) {
-        return output.text({ player: data.ShortName(matches.source) });
-      },
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Missile Tether (on ${player})',
@@ -83,12 +97,12 @@
       netRegexJa: NetRegexes.startsUsing({ id: '7C3', source: 'アバター' }),
       netRegexCn: NetRegexes.startsUsing({ id: '7C3', source: '降世化身' }),
       netRegexKo: NetRegexes.startsUsing({ id: '7C3', source: '아바타' }),
-      alertText: function(data, matches, output) {
-        if (data.me == matches.target)
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
           return output.brainjackOnYou();
       },
-      infoText: function(data, matches, output) {
-        if (data.me != matches.target)
+      infoText: (data, matches, output) => {
+        if (data.me !== matches.target)
           return output.brainjackOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -116,12 +130,12 @@
       netRegexJa: NetRegexes.startsUsing({ id: '7C4', source: 'アバター' }),
       netRegexCn: NetRegexes.startsUsing({ id: '7C4', source: '降世化身' }),
       netRegexKo: NetRegexes.startsUsing({ id: '7C4', source: '아바타' }),
-      alertText: function(data, matches, output) {
-        if (data.me == matches.target)
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
           return output.allaganFieldOnYou();
       },
-      infoText: function(data, matches, output) {
-        if (data.me != matches.target)
+      infoText: (data, matches, output) => {
+        if (data.me !== matches.target)
           return output.allaganFieldOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {

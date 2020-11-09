@@ -10,7 +10,7 @@
       regex: /Blaster/,
       beforeSeconds: 3,
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {

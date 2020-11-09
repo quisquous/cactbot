@@ -13,7 +13,7 @@
       netRegexCn: NetRegexes.startsUsing({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4BD3', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: ['이프리트', '락타팍샤'], id: '4BD3', capture: false }),
       delaySeconds: 11,
-      promise: async (data) => {
+      promise: async (data, _, output) => {
         const ifritLocaleNames = {
           en: 'Ifrit',
           de: 'Ifrit',
@@ -70,66 +70,84 @@
         // south      x: 96-104   y: 107-115
         // southeast  x: 107-115  y: 107-115
         // southwest  x: 85-93    y: 107-115
-        let safeZoneObj1 = null;
-        let safeZoneObj2 = null;
+        let safeZone1 = null;
+        let safeZone2 = null;
 
         // don't need to go through all the posibilities,
         // only those 4 ifs do reflect the above positions
-        if (currentHighestCombatant.PosY > 84 && currentHighestCombatant.PosY < 94) {
-          safeZoneObj1 = {
-            en: 'north',
-            de: 'nord',
-            fr: 'nord',
-            ko: '북',
-            cn: '前',
-          };
-        } else if (currentHighestCombatant.PosY > 106 && currentHighestCombatant.PosY < 116) {
-          safeZoneObj1 = {
-            en: 'south',
-            de: 'süd',
-            fr: 'sud',
-            ko: '남',
-            cn: '后',
-          };
-        }
+        if (currentHighestCombatant.PosY > 84 && currentHighestCombatant.PosY < 94)
+          safeZone1 = output.north();
+        else if (currentHighestCombatant.PosY > 106 && currentHighestCombatant.PosY < 116)
+          safeZone1 = output.south();
 
-        if (currentHighestCombatant.PosX > 84 && currentHighestCombatant.PosX < 94) {
-          safeZoneObj2 = {
-            en: 'west',
-            de: 'west',
-            fr: 'ouest',
-            ko: '서',
-            cn: '左',
-          };
-        } else if (currentHighestCombatant.PosX > 106 && currentHighestCombatant.PosX < 116) {
-          safeZoneObj2 = {
-            en: 'east',
-            de: 'ost',
-            fr: 'est',
-            ko: '동',
-            cn: '右',
-          };
-        }
 
-        let concatSafeZones = (lang) => {
-          let str1 = safeZoneObj1 ? safeZoneObj1[lang] : '';
-          let str2 = safeZoneObj2 ? safeZoneObj2[lang] : '';
+        if (currentHighestCombatant.PosX > 84 && currentHighestCombatant.PosX < 94)
+          safeZone2 = output.west();
+        else if (currentHighestCombatant.PosX > 106 && currentHighestCombatant.PosX < 116)
+          safeZone2 = output.east();
 
-          if (lang === 'fr' && str1 && str2)
-            return str1 + ' ' + str2;
-          return str1 + str2;
-        };
 
-        data.safeZone = {
-          en: concatSafeZones('en'),
-          de: concatSafeZones('de'),
-          fr: concatSafeZones('fr'),
-          cn: concatSafeZones('cn'),
-          ko: concatSafeZones('ko') + '쪽으로',
-        };
+        if (safeZone1 && safeZone2)
+          data.safeZone = output.twoDirs({ dir1: safeZone1, dir2: safeZone2 });
+        else if (safeZone1)
+          data.safeZone = output.oneDir({ dir: safeZone1 });
+        else if (safeZone2)
+          data.safeZone = output.oneDir({ dir: safeZone2 });
       },
-      infoText: function(data) {
-        return data.safeZone === null ? '???' : data.safeZone;
+      infoText: function(data, _, output) {
+        return !data.safeZone ? output.unknown() : data.safeZone;
+      },
+      outputStrings: {
+        oneDir: {
+          en: '${dir}',
+          de: '${dir}',
+          fr: '${dir}',
+          cn: '${dir}',
+          ko: '${dir}쪽으로',
+        },
+        twoDirs: {
+          en: '${dir1}${dir2}',
+          de: '${dir1}${dir2}',
+          fr: '${dir1} ${dir2}',
+          cn: '${dir1}${dir2}',
+          ko: '${dir1}${dir2}쪽으로',
+        },
+        unknown: {
+          en: '???',
+          de: '???',
+          fr: '???',
+          ja: '???',
+          cn: '???',
+          ko: '???',
+        },
+        north: {
+          en: 'north',
+          de: 'nord',
+          fr: 'nord',
+          ko: '북',
+          cn: '前',
+        },
+        south: {
+          en: 'south',
+          de: 'süd',
+          fr: 'sud',
+          ko: '남',
+          cn: '后',
+        },
+        west: {
+          en: 'west',
+          de: 'west',
+          fr: 'ouest',
+          ko: '서',
+          cn: '左',
+        },
+        east: {
+          en: 'east',
+          de: 'ost',
+          fr: 'est',
+          ko: '동',
+          cn: '右',
+        },
       },
     },
     {
@@ -170,7 +188,7 @@
       netRegex: NetRegexes.headMarker({ id: '00D3' }),
       suppressSeconds: 1,
       infoText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.enumerationOnYou();
 
         return output.enumeration();
@@ -237,10 +255,10 @@
         return data.handsOfFlame;
       },
       infoText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.chargeOnYou();
 
-        if (data.role != 'tank' || data.phase == 'both')
+        if (data.role !== 'tank' || data.phase === 'both')
           return;
         return output.tankSwap();
       },
@@ -407,10 +425,10 @@
       id: 'E6S Irons Of Purgatory',
       netRegex: NetRegexes.tether({ id: '006C' }),
       condition: function(data, matches) {
-        return data.me == matches.target || data.me == matches.source;
+        return data.me === matches.target || data.me === matches.source;
       },
       alertText: function(data, matches, output) {
-        if (data.me == matches.source)
+        if (data.me === matches.source)
           return output.tetheredToPlayer({ player: data.ShortName(matches.target) });
 
         return output.tetheredToPlayer({ player: data.ShortName(matches.source) });

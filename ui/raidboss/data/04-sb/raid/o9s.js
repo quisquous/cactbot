@@ -105,11 +105,11 @@
       netRegexCn: NetRegexes.startsUsing({ id: '317D', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '317D', source: '카오스', capture: false }),
       alarmText: function(data, _, output) {
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.orbTethers();
       },
       infoText: function(data, _, output) {
-        if (data.role == 'healer')
+        if (data.role === 'healer')
           return output.orbTethers();
       },
       outputStrings: {
@@ -133,37 +133,35 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3186', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3186', source: '카오스', capture: false }),
       run: function(data) {
-        if (data.phaseType != 'enrage')
+        if (data.phaseType !== 'enrage')
           data.phaseType = 'fire';
       },
     },
     {
       id: 'O9S Entropy Spread',
       netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       preRun: function(data) {
         data.entropyCount = data.entropyCount || 0;
         data.entropyCount += 1;
       },
       delaySeconds: function(data, matches) {
         // Warn dps earlier to stack.
-        if (data.role != 'tank' && data.role != 'healer' && data.entropyCount == 2)
+        if (data.role !== 'tank' && data.role !== 'healer' && data.entropyCount === 2)
           return parseFloat(matches.duration) - 12;
         return parseFloat(matches.duration) - 5;
       },
       alertText: function(data, _, output) {
-        if (data.phaseType == 'enrage' || data.phaseType == 'orb' || data.entropyCount == 1)
+        if (data.phaseType === 'enrage' || data.phaseType === 'orb' || data.entropyCount === 1)
           return output.spread();
-        else if (data.role == 'tank' || data.role == 'healer')
+        else if (data.role === 'tank' || data.role === 'healer')
           return output.spreadAndStay();
 
         // DPS entropy #2
         return output.stackAndStayOut();
       },
       run: function(data) {
-        if (data.phaseType == 'orb' || data.entropyCount == 2)
+        if (data.phaseType === 'orb' || data.entropyCount === 2)
           delete data.entropyCount;
       },
       outputStrings: {
@@ -197,7 +195,7 @@
       id: 'O9S Entropy Avoid Hit',
       netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
       condition: function(data, matches) {
-        return matches.target == data.me && data.phaseType == 'fire';
+        return matches.target === data.me && data.phaseType === 'fire';
       },
       delaySeconds: function(data, matches) {
         // Folks get either the 24 second or the 10 second.
@@ -230,7 +228,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3180', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3180', source: '카오스', capture: false }),
       condition: function(data) {
-        return data.phaseType == 'fire';
+        return data.phaseType === 'fire';
       },
       // Each big bang has its own cast, so suppress.
       suppressSeconds: 1,
@@ -256,7 +254,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3187', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3187', source: '카오스', capture: false }),
       run: function(data) {
-        if (data.phaseType != 'enrage')
+        if (data.phaseType !== 'enrage')
           data.phaseType = 'water';
       },
     },
@@ -264,7 +262,7 @@
       id: 'O9S Dynamic Fluid 1',
       netRegex: NetRegexes.gainsEffect({ effectId: '641', capture: false }),
       condition: function(data) {
-        return data.phaseType == 'water';
+        return data.phaseType === 'water';
       },
       delaySeconds: 5,
       suppressSeconds: 1,
@@ -285,7 +283,7 @@
       id: 'O9S Dynamic Fluid 2',
       netRegex: NetRegexes.gainsEffect({ effectId: '641', capture: false }),
       condition: function(data) {
-        return data.phaseType == 'water';
+        return data.phaseType === 'water';
       },
       // T/H get 10s & DPS get 17s
       delaySeconds: 12,
@@ -306,7 +304,7 @@
       id: 'O9S Dynamic Fluid 3',
       netRegex: NetRegexes.gainsEffect({ effectId: '641', capture: false }),
       condition: function(data) {
-        return data.phaseType == 'enrage';
+        return data.phaseType === 'enrage';
       },
       // enrage -> 6s
       delaySeconds: 1,
@@ -326,13 +324,11 @@
     {
       id: 'O9S Knock Down Marker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: function(data, _, output) {
-        if (data.phaseType == 'water')
+        if (data.phaseType === 'water')
           return output.dropOutside();
-        else if (data.phaseType == 'wind')
+        else if (data.phaseType === 'wind')
           return output.dropOutsideKnockback();
       },
       outputStrings: {
@@ -364,16 +360,14 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3188', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3188', source: '카오스', capture: false }),
       run: function(data) {
-        if (data.phaseType != 'enrage')
+        if (data.phaseType !== 'enrage')
           data.phaseType = 'wind';
       },
     },
     {
       id: 'O9S Headwind',
       netRegex: NetRegexes.gainsEffect({ effectId: '642' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.wind = 'head';
       },
@@ -381,9 +375,7 @@
     {
       id: 'O9S Tailwind',
       netRegex: NetRegexes.gainsEffect({ effectId: '643' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.wind = 'tail';
       },
@@ -397,10 +389,10 @@
       netRegexCn: NetRegexes.startsUsing({ id: '318F', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '318F', source: '카오스', capture: false }),
       alarmText: function(data, _, output) {
-        if (data.wind == 'head')
+        if (data.wind === 'head')
           return output.backToTornado();
 
-        if (data.wind == 'tail')
+        if (data.wind === 'tail')
           return output.faceTheTornado();
       },
       run: function(data) {
@@ -435,7 +427,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3189', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3189', source: '카오스', capture: false }),
       run: function(data) {
-        if (data.phaseType != 'enrage')
+        if (data.phaseType !== 'enrage')
           data.phaseType = 'earth';
       },
     },
@@ -443,11 +435,11 @@
       id: 'O9S Accretion',
       netRegex: NetRegexes.gainsEffect({ effectId: '644', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       suppressSeconds: 10,
       infoText: function(data, _, output) {
-        if (data.phaseType != 'earth')
+        if (data.phaseType !== 'earth')
           return output.healAllToFull();
 
         return output.healTankshealersToFull();
@@ -475,7 +467,7 @@
       id: 'O9S Primordial Crust',
       netRegex: NetRegexes.gainsEffect({ effectId: '645' }),
       condition: function(data, matches) {
-        return data.me == matches.target && data.phaseType != 'orb';
+        return data.me === matches.target && data.phaseType !== 'orb';
       },
       infoText: (data, _, output) => output.text(),
       run: function(data) {
@@ -495,9 +487,7 @@
     {
       id: 'O9S Primordial Crust Cleanup',
       netRegex: NetRegexes.gainsEffect({ effectId: '645' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: 30,
       run: function(data) {
         delete data.primordialCrust;
@@ -537,14 +527,14 @@
       id: 'O9S Orb Entropy',
       netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
       condition: function(data, matches) {
-        return matches.target != data.me && data.phaseType == 'orb';
+        return matches.target !== data.me && data.phaseType === 'orb';
       },
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 3;
       },
       suppressSeconds: 10,
       alertText: function(data, _, output) {
-        if (data.head == 'wind')
+        if (data.head === 'wind')
           return output.text();
       },
       run: function(data) {
@@ -565,7 +555,7 @@
       id: 'O9S Orb Dynamic Fluid',
       netRegex: NetRegexes.gainsEffect({ effectId: '641' }),
       condition: function(data, matches) {
-        return matches.target == data.me && data.phaseType == 'orb';
+        return matches.target === data.me && data.phaseType === 'orb';
       },
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 5;

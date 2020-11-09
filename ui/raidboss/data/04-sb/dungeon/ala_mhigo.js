@@ -21,7 +21,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '204D', source: '守卫机蝎', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '204D', source: '경비 전갈', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -34,7 +34,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '204F', source: '奥卢斯·玛尔·亚希纳', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '204F', source: '아울루스 말 아시나', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -106,9 +106,7 @@
       netRegexJa: NetRegexes.tether({ id: '0029', source: 'ゼノス・イェー・ガルヴァス' }),
       netRegexCn: NetRegexes.tether({ id: '0029', source: '芝诺斯·耶·加尔乌斯' }),
       netRegexKo: NetRegexes.tether({ id: '0029', source: '제노스 예 갈부스' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -130,7 +128,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '206D', source: '芝诺斯·耶·加尔乌斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '206D', source: '제노스 예 갈부스', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },

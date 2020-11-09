@@ -68,7 +68,7 @@
       id: 'TEA Exhaust',
       damageRegex: '481F',
       condition: function(e, data) {
-        return e.targetName == e.attackerName;
+        return e.targetName === e.attackerName;
       },
       mistake: function(e, data) {
         return {
@@ -158,7 +158,7 @@
       damageRegex: '488D',
       condition: function(e, data) {
         // Single Tap
-        return e.type == '15';
+        return e.type === '15';
       },
       mistake: function(e, data) {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };

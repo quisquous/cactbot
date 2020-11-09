@@ -9,7 +9,7 @@
       regex: /Feathercut/,
       beforeSeconds: 4,
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -146,7 +146,7 @@
       id: 'Bardam\'s Mettle Flutterfall',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return data.me == matches.target && data.deadBardam;
+        return data.me === matches.target && data.deadBardam;
       },
       response: Responses.spread(),
     },

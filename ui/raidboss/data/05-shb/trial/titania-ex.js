@@ -14,7 +14,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D4B', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D4B', source: '티타니아', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -192,7 +192,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D2C', source: '缇坦妮雅' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2C', source: '티타니아' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
+        return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -205,7 +205,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D2C', source: '缇坦妮雅' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2C', source: '티타니아' }),
       condition: function(data) {
-        return data.role != 'tank' && data.role != 'healer';
+        return data.role !== 'tank' && data.role !== 'healer';
       },
       response: Responses.tankCleave('info'),
     },
@@ -274,9 +274,7 @@
     {
       id: 'TitaniaEx Uplift Markers',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -287,9 +285,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D36', source: 'ピーズブロッサム' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D36', source: '豌豆花' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D36', source: '콩나무' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.tankBuster('info'),
     },
     {
@@ -301,7 +297,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D37', source: '帕克', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D37', source: '요정의 권속', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       preRun: function(data) {
         data.pummelCount = data.pummelCount || 0;
@@ -324,9 +320,7 @@
     {
       id: 'TitaniaEx Peasebomb',
       netRegex: NetRegexes.headMarker({ id: '008D' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
       run: function(data) {
         data.bomb = data.bomb || {};
@@ -350,7 +344,7 @@
       netRegex: NetRegexes.headMarker({ id: '00A1' }),
       delaySeconds: 0.25,
       alertText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.stackOnYou();
 
 

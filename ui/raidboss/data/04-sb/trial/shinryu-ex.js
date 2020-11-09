@@ -75,13 +75,13 @@
       netRegexCn: NetRegexes.startsUsing({ id: '25F3', source: '神龙' }),
       netRegexKo: NetRegexes.startsUsing({ id: '25F3', source: '신룡' }),
       alertText: function(data, matches, output) {
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           return output.akhMornOnYou();
-        else if (data.role == 'tank')
+        else if (data.role === 'tank')
           return output.akhMornOn({ player: data.ShortName(matches.target) });
       },
       infoText: function(data, matches, output) {
-        if (matches.target == data.me || data.role == 'tank')
+        if (matches.target === data.me || data.role === 'tank')
           return;
 
         return output.akhRhaiSpreadAndMove();
@@ -186,7 +186,7 @@
       netRegexKo: NetRegexes.startsUsing({ id: ['271F', '25E8'], source: '오른쪽 날개', capture: false }),
       durationSeconds: 7,
       alertText: function(data, _, output) {
-        if (data.phase == 3)
+        if (data.phase === 3)
           return output.stopToGetFrozen();
 
         return output.stackInWater();
@@ -241,7 +241,7 @@
       netRegexKo: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '오른쪽 날개', target: '오른쪽 날개', capture: false }),
       durationSeconds: 7,
       alertText: function(data, _, output) {
-        if (data.phase == 3)
+        if (data.phase === 3)
           return output.baitBoltKeepMoving();
 
         return output.spreadOutNoWater();
@@ -275,7 +275,7 @@
       netRegexKo: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '오른쪽 날개', target: '오른쪽 날개', capture: false }),
       delaySeconds: 9.5,
       alarmText: function(data, _, output) {
-        if (data.phase == 3)
+        if (data.phase === 3)
           return output.text();
       },
       outputStrings: {
@@ -360,7 +360,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '264E', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '264E', source: '신룡', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -405,7 +405,7 @@
       netRegexKo: NetRegexes.addedCombatant({ name: '신룡의 심핵', capture: false }),
       condition: function(data) {
         // Prevent ugly heart message on wipe.
-        return data.phase == 1;
+        return data.phase === 1;
       },
       // TODO: If tail is alive, delay this message?
       infoText: (data, _, output) => output.text(),
@@ -450,13 +450,13 @@
       netRegexCn: NetRegexes.startsUsing({ id: '260A', source: '白金龙' }),
       netRegexKo: NetRegexes.startsUsing({ id: '260A', source: '백금룡' }),
       alertText: function(data, matches, output) {
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           return output.deathSentenceOnYou();
-        else if (data.role == 'healer')
+        else if (data.role === 'healer')
           return output.deathSentenceOn({ player: data.ShortName(matches.target) });
       },
       infoText: function(data, matches, output) {
-        if (matches.target != data.me && data.role == 'tank')
+        if (matches.target !== data.me && data.role === 'tank')
           return output.deathSentenceOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -573,12 +573,10 @@
     {
       id: 'ShinryuEx Tethers',
       netRegex: NetRegexes.headMarker({ id: '0061' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: 3.8,
       infoText: function(data, _, output) {
-        if (data.phase == 3)
+        if (data.phase === 3)
           return output.breakTethersThenStack();
 
         return output.breakTethers();
@@ -605,9 +603,7 @@
     {
       id: 'ShinryuEx Tail Marker',
       netRegex: NetRegexes.headMarker({ id: '007E' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -626,7 +622,7 @@
       condition: function(data, matches) {
         data.shakerTargets = data.shakerTargets || [];
         data.shakerTargets.push(matches.target);
-        return data.shakerTargets.length == 2;
+        return data.shakerTargets.length === 2;
       },
       alarmText: function(data, _, output) {
         if (data.shakerTargets.includes(data.me))
@@ -661,9 +657,7 @@
     {
       id: 'ShinryuEx Cocoon Marker',
       netRegex: NetRegexes.headMarker({ id: '0039' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
   ],

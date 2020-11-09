@@ -52,7 +52,7 @@
       id: 'Test Bootshine',
       damageRegex: '35',
       condition: function(e, data) {
-        if (e.attackerName != data.me)
+        if (e.attackerName !== data.me)
           return false;
         let strikingDummyNames = [
           'Striking Dummy',

@@ -25,14 +25,14 @@
       netRegexCn: NetRegexes.startsUsing({ id: '4158', source: '哈迪斯' }),
       netRegexKo: NetRegexes.startsUsing({ id: '4158', source: '하데스' }),
       alertText: function(data, matches, output) {
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           return output.tankBusterOnYou();
 
-        if (data.role == 'healer')
+        if (data.role === 'healer')
           return output.busterOn({ player: data.ShortName(matches.target) });
       },
       infoText: function(data, matches, output) {
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           return;
         return output.awayFromPlayer({ player: data.ShortName(matches.target) });
       },
@@ -132,7 +132,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '4180', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4180', source: '하데스', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -159,9 +159,7 @@
     {
       id: 'Hades Doom',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -223,7 +221,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '4161', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4161', source: '하데스', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -241,7 +239,7 @@
       id: 'Hades Dual Strike',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: function(data, matches) {
-        return data.neoHades && data.me == matches.target;
+        return data.neoHades && data.me === matches.target;
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -258,9 +256,7 @@
     {
       id: 'Hades Hellborn Yawp',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -276,9 +272,7 @@
     {
       id: 'Hades Fetters',
       netRegex: NetRegexes.headMarker({ id: '0078' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -332,16 +326,14 @@
     {
       id: 'Hades Nether Blast / Dark Eruption',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
       id: 'Hades Ancient Darkness',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: function(data, matches) {
-        return !data.neoHades && data.me == matches.target;
+        return !data.neoHades && data.me === matches.target;
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -358,9 +350,7 @@
     {
       id: 'Hades Ancient Water III',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.stackMarkerOn(),
     },
     {

@@ -14,82 +14,84 @@
     {
       id: 'A9S Power Generator',
       regex: /Power Generator/,
-      infoText: function(data) {
-        let nw1se1 = {
+      infoText: function(data, _, output) {
+        return {
+          1: output.oneEachNWSE(),
+          2: output.twoNW(),
+          // 3: faust,
+          4: output.oneNW(),
+          5: output.twoSE(),
+          6: output.oneNW(),
+          7: output.twoSE(),
+          8: output.oneNW(),
+        }[data.stockpileCount];
+      },
+      outputStrings: {
+        oneEachNWSE: {
           en: 'Place Generators NW/SE',
           de: 'Plaziere Generatoren NW/SO',
           fr: 'Placez les Générateurs NO/SE',
           ja: 'パワージェネレーターを北西/南東に運ぶ',
           cn: '搬运发电器到西北/东南',
           ko: '발전기 놓기: 북서/남동',
-        };
-        let nw2 = {
+        },
+        twoNW: {
           en: 'Place Generators NW',
           de: 'Plaziere Generatoren NW',
           fr: 'Placez les Générateurs NO',
           ja: 'パワージェネレーターを北西に運ぶ',
           cn: '搬运发电器到西北',
           ko: '발전기 놓기: 북서',
-        };
-        let nw1 = {
+        },
+        oneNW: {
           en: 'Place Generator NW',
           de: 'Plaziere Generator NW',
           fr: 'Placez les Générateurs NO',
           ja: 'パワージェネレーターを北西に運ぶ',
           cn: '搬运发电器到西北',
           ko: '발전기 놓기: 북서/남동',
-        };
-        let se2 = {
+        },
+        twoSE: {
           en: 'Place Generators SE',
           de: 'Plaziere Generatoren SO',
           fr: 'Placez les Générateurs SE',
           ja: 'パワージェネレーターを南東に運ぶ',
           cn: '搬运发电器到东南',
           ko: '발전기 놓기: 남동',
-        };
-
-        return {
-          1: nw1se1,
-          2: nw2,
-          // 3: faust,
-          4: nw1,
-          5: se2,
-          6: nw1,
-          7: se2,
-          8: nw1,
-        }[data.stockpileCount];
+        },
       },
     },
     {
       id: 'A9S Alarum',
       regex: /Alarum/,
       delaySeconds: 1,
-      infoText: function(data) {
-        // .. or anywhere not NW
-        let se = {
+      infoText: function(data, _, output) {
+        return {
+          5: output.southeast(),
+          6: output.southwest(),
+          7: output.southeast(),
+          8: output.southwest(),
+        }[data.stockpileCount];
+      },
+      outputStrings: {
+        southeast: {
+          // .. or anywhere not NW
           en: 'Kill Alarum SE',
           de: 'SO Alarm besiegen',
           fr: 'Tuez l\'Alarum SE',
           ja: '南東のアラームを倒す',
           cn: '在东南击杀警报',
           ko: '남동쪽 경보기 없애기',
-        };
-        // ... or anywhere not NW/SE
-        let sw = {
+        },
+        southwest: {
+          // ... or anywhere not NW/SE
           en: 'Kill Alarum SW',
           de: 'SW Alarm besiegen',
           fr: 'Tuez l\'Alarum SO',
           ja: '南西のアラームを倒す',
           cn: '在西南击杀警报',
           ko: '남서쪽 경보기 없애기',
-        };
-
-        return {
-          5: se,
-          6: sw,
-          7: se,
-          8: sw,
-        }[data.stockpileCount];
+        },
       },
     },
     {
@@ -132,12 +134,12 @@
       netRegexCn: NetRegexes.startsUsing({ source: '废品翻新装置', id: '1A3C', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '재생자', id: '1A3C', capture: false }),
       alertText: function(data, _, output) {
-        if (data.mainTank == data.me)
+        if (data.mainTank === data.me)
           return;
         return output.getBehind();
       },
       infoText: function(data, _, output) {
-        if (data.mainTank != data.me)
+        if (data.mainTank !== data.me)
           return;
         return output.scraplineOnYou();
       },
@@ -243,52 +245,53 @@
       netRegex: NetRegexes.tether({ id: '0011', capture: false }),
 
       suppressSeconds: 30,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         // Some of the last phases have multiple options.
         // This is an old fight, so just pick one for people.
-        let ne = {
+        return {
+          1: output.northeast(),
+          2: output.southeast(),
+          // 3: faust,
+          4: output.southwest(),
+          5: output.northwest(),
+          6: output.southwest(),
+          7: output.northwest(),
+          8: output.southwest(),
+        }[data.stockpileCount];
+      },
+      outputStrings: {
+        northeast: {
           en: 'Adds to NE Lava',
           de: 'Adds in NO Lava',
           fr: 'Adds dans la lave NE',
           ja: '北東にパワージェネレーターを倒す',
           cn: '拉小怪到东北击杀',
           ko: '쫄을 북동쪽 용암으로',
-        };
-        let se = {
+        },
+        southeast: {
           en: 'Adds to SE Lava',
           de: 'Adds in SO Lava',
           fr: 'Adds dans la lave SE',
           ja: '南東にパワージェネレーターを倒す',
           cn: '拉小怪到东南击杀',
           ko: '쫄을 남동쪽 용암으로',
-        };
-        let sw = {
+        },
+        southwest: {
           en: 'Adds to SW Lava',
           de: 'Adds in SW Lava',
           fr: 'Adds dans la lave SO',
           ja: '南西にパワージェネレーターを倒す',
           cn: '拉小怪到西南击杀',
           ko: '쫄을 남서쪽 용암으로',
-        };
-        let nw = {
+        },
+        northwest: {
           en: 'Adds to NW Lava',
           de: 'Adds in NW Lava',
           fr: 'Adds dans la lave NO',
           ja: '北西にパワージェネレーターを倒す',
           cn: '拉小怪到西北击杀',
           ko: '쫄을 북서쪽 용암으로',
-        };
-
-        return {
-          1: ne,
-          2: se,
-          // 3: faust,
-          4: sw,
-          5: nw,
-          6: sw,
-          7: nw,
-          8: sw,
-        }[data.stockpileCount];
+        },
       },
     },
   ],

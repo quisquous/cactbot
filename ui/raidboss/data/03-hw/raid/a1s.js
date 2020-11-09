@@ -60,7 +60,7 @@
       suppressSeconds: 2,
       infoText: function(data, _, output) {
         data.hydro = data.hydro || [];
-        if (data.hydro.length == 0)
+        if (data.hydro.length === 0)
           return;
         return output.text({ players: data.hydro.map((x) => data.ShortName(x)).join(', ') });
       },

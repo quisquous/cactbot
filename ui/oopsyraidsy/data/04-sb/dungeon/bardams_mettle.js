@@ -16,7 +16,7 @@ function abilityWarn(args) {
     id: args.id,
     netRegex: NetRegexes.abilityFull({ id: args.abilityId }),
     condition: function(e, data, matches) {
-      return matches.flags.substr(-2) == '0E';
+      return matches.flags.substr(-2) === '0E';
     },
     mistake: function(e, data, matches) {
       return { type: 'warn', blame: matches.target, text: matches.ability };

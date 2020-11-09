@@ -87,7 +87,7 @@
         // so we have to use the collect + delay construction to make calls.
         if (data.assault)
           return;
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.stackOnYou();
 
         return output.stackOn({ player: data.ShortName(matches.target) });

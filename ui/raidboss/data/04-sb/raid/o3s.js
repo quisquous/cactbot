@@ -49,31 +49,31 @@
       netRegex: NetRegexes.headMarker({ id: ['0064', '0065'] }),
       condition: function(data, matches) {
         // Library phase stack markers behave differently.
-        if (data.phase == 3)
+        if (data.phase === 3)
           return false;
 
         data.holyTargets = data.holyTargets || [];
         data.holyTargets.push(matches.target);
-        return data.holyTargets.length == 4;
+        return data.holyTargets.length === 4;
       },
       alarmText: function(data, _, output) {
-        if (data.holyTargets[1] != data.me)
+        if (data.holyTargets[1] !== data.me)
           return '';
         return output.stackOnYou();
       },
       alertText: function(data, _, output) {
-        if (data.holyTargets[1] == data.me)
+        if (data.holyTargets[1] === data.me)
           return;
 
         for (let i = 0; i < 4; ++i) {
-          if (data.holyTargets[i] == data.me)
+          if (data.holyTargets[i] === data.me)
             return output.getOut();
         }
         return output.stackOnHoly({ holyTargets: data.holyTargets[1] });
       },
       infoText: function(data, _, output) {
         for (let i = 0; i < 4; ++i) {
-          if (data.holyTargets[i] == data.me)
+          if (data.holyTargets[i] === data.me)
             return output.othersStackOnHoly({ holyTargets: data.holyTargets[1] });
         }
       },
@@ -117,10 +117,10 @@
       netRegex: NetRegexes.headMarker({ id: ['0064', '0065'] }),
       condition: function(data, matches) {
         // This is only for library phase.
-        if (data.phase != 3)
+        if (data.phase !== 3)
           return false;
 
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           data.librarySpellbladeMe = matches.id;
 
         return true;
@@ -130,17 +130,17 @@
       // anything is on you.  The 6 triggers will all have condition=true
       // and run, but only the first one will print.
       delaySeconds: function(data, matches) {
-        return matches.target == data.me ? 0 : 0.5;
+        return matches.target === data.me ? 0 : 0.5;
       },
       alertText: function(data, _, output) {
         if (data.librarySpellbladePrinted)
           return;
 
         data.librarySpellbladePrinted = true;
-        if (data.librarySpellbladeMe == '0064')
+        if (data.librarySpellbladeMe === '0064')
           return output.goSouthStackOnYou();
 
-        if (data.librarySpellbladeMe == '0065')
+        if (data.librarySpellbladeMe === '0065')
           return output.goNorth();
 
         return output.goSouthStackOnFriend();
@@ -150,10 +150,10 @@
           return;
 
         data.librarySpellbladePrinted = true;
-        if (data.librarySpellbladeMe == '0064')
+        if (data.librarySpellbladeMe === '0064')
           return output.stackOutside();
 
-        if (data.librarySpellbladeMe == '0065')
+        if (data.librarySpellbladeMe === '0065')
           return output.goNorth2();
 
         return output.stackInside();
@@ -206,9 +206,7 @@
     {
       id: 'O3S Right Face',
       netRegex: NetRegexes.gainsEffect({ effectId: '510' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -224,9 +222,7 @@
     {
       id: 'O3S Forward March',
       netRegex: NetRegexes.gainsEffect({ effectId: '50D' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -242,9 +238,7 @@
     {
       id: 'O3S Left Face',
       netRegex: NetRegexes.gainsEffect({ effectId: '50F' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -260,9 +254,7 @@
     {
       id: 'O3S About Face',
       netRegex: NetRegexes.gainsEffect({ effectId: '50E' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -316,7 +308,7 @@
       condition: function(data) {
         // Deliberately skip printing the waltz message for the
         // spellblade holy -> waltz that ends the library phase.
-        return data.phase != 3 || !data.seenHolyThisPhase;
+        return data.phase !== 3 || !data.seenHolyThisPhase;
       },
       alertText: (data, _, output) => output.text(),
       tts: (data, _, output) => output.tts(),
@@ -568,29 +560,46 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Halicarnassus': '할리카르나소스',
       },
       'replaceText': {
+        '--Apanda Spawns--': '--아판다 소환--',
+        '--Great Dragon Spawns--': '--거대 드래곤 소환--',
+        '--Ninjas \\+ Giant Spawn--': '--닌자 + 철거인 소환--',
+        '--White Flame Spawns--': '--하얀 불꽃 소환--',
+        '\\(Random\\)': '(무작위)',
+        '\\(Apanda\\)': '(아판다)',
+        '\\(Books\\)': '(책)',
+        '\\(Clock\\)': '(팔방 산개)',
+        '\\(Crystals\\)': '(크리스탈)',
+        '\\(Ultimate\\)': '(최종)',
+        'Tanks Morph': '탱커 변이',
+        'Healers Morph': '힐러 변이',
+        'DPS Morph': '딜러 변이',
         'Blizzard': '블리자드',
         'Critical Hit': '극대화',
         'Dimensional Wave': '차원 파동',
+        'Dragon Conal AoE': '드래곤 쫄 광역 공격',
         'Fire': '파이어',
-        'Haste': '헤이스트',
+        'Haste(?! )': '헤이스트',
+        'Haste III': '헤이스가',
         'Magic Hammer': '마법 망치',
         'Mindjack': '정신 장악',
         'Oink': '꿀꿀꿀꿀!',
         'Panel Swap': '판 바꾸기',
         'Place Dark Token': '죽음의 토큰 소환',
         'Place Token': '토큰 소환',
+        'Random Elemental': '무작위 원소 공격',
         'Ribbit': '개굴개굴!',
         'Spellblade Holy': '마법검 홀리',
         'Squelch': '보글보글!',
+        'Tethers': '선',
         'The Game': '게임 시작',
         'The Playing Field': '게임판',
         '(The )?Queen\'s Waltz': '여왕의 춤',
         'Thunder': '선더',
+        'Ninjas/Giant': '닌자/철거인',
       },
     },
   ],

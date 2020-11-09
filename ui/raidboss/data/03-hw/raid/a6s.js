@@ -7,9 +7,7 @@
     {
       id: 'A6S Magic Vulnerability Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '292' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.magicVulnerability = true;
       },
@@ -17,9 +15,7 @@
     {
       id: 'A6S Magic Vulnerability Loss',
       netRegex: NetRegexes.losesEffect({ effectId: '292' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.magicVulnerability = false;
       },
@@ -46,7 +42,7 @@
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者', id: '15F7', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자', id: '15F7', capture: false }),
       infoText: function(data, _, output) {
-        if (data.role == 'tank' && !data.magicVulnerability)
+        if (data.role === 'tank' && !data.magicVulnerability)
           return output.getMines();
 
         return output.avoidMines();
@@ -99,9 +95,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ブラスター・ミラージュ', id: '15FC' }),
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '15FC' }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '15FC' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -122,9 +116,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ブラスター・ミラージュ', id: '15FD' }),
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '15FD' }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '15FD' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -140,9 +132,7 @@
     {
       id: 'A6S Low Arithmeticks',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FD' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -159,9 +149,7 @@
     {
       id: 'A6S High Arithmeticks',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FE' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -262,9 +250,7 @@
     {
       id: 'A6S Ice Marker',
       netRegex: NetRegexes.headMarker({ id: '0043' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -279,9 +265,7 @@
     {
       id: 'A6S Fire Beam',
       netRegex: NetRegexes.headMarker({ id: '0019' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       // TODO: maybe this should say "hit tornado / avoid ice" but that's wordy.
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -297,9 +281,7 @@
     {
       id: 'A6S Compressed Water Initial',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.haveWater = true;
@@ -318,9 +300,7 @@
     {
       id: 'A6S Compressed Water Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '3FF' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.haveWater = false;
       },
@@ -328,9 +308,7 @@
     {
       id: 'A6S Compressed Water Explode',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: function(data, matches) {
         // 5 second warning.
         return parseFloat(matches.duration) - 5;
@@ -354,9 +332,7 @@
     {
       id: 'A6S Compressed Lightning Initial',
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.haveLightning = true;
@@ -375,9 +351,7 @@
     {
       id: 'A6S Compressed Lightning Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '400' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.haveLightning = false;
       },
@@ -385,9 +359,7 @@
     {
       id: 'A6S Compressed Lightning Explode',
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: function(data, matches) {
         // 5 second warning.
         return parseFloat(matches.duration) - 5;

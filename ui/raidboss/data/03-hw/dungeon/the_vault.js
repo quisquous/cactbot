@@ -39,7 +39,7 @@
       regex: /Altar Candle/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role != 'dps';
+        return data.role !== 'dps';
       },
       response: Responses.tankBuster(),
     },
@@ -54,7 +54,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '101E', source: '圣骑士阿代尔斐尔', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '101E', source: '성기사 아델펠', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -67,7 +67,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '101F', source: '圣骑士阿代尔斐尔' }),
       netRegexKo: NetRegexes.startsUsing({ id: '101F', source: '성기사 아델펠' }),
       alertText: function(data, matches, output) {
-        if (data.role == 'healer')
+        if (data.role === 'healer')
           return output.text({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -117,9 +117,7 @@
       netRegexJa: NetRegexes.tether({ id: '0001', source: '次元の裂け目' }),
       netRegexCn: NetRegexes.tether({ id: '0001', source: '次元裂缝' }),
       netRegexKo: NetRegexes.tether({ id: '0001', source: '차원의 틈새' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 5,
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
@@ -142,16 +140,14 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1035', source: '圣骑士沙里贝尔', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1035', source: '성기사 샤리베르', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
     {
       id: 'The Vault Holy Chains',
       netRegex: NetRegexes.headMarker({ id: '0061' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.breakChains(),
     },
     {

@@ -152,6 +152,10 @@ class TriggerOutputProxy {
       },
 
       get(target, name) {
+        // TODO: add a test that verifies nobody does this.
+        if (name === 'toJSON')
+          return '{}';
+
         // Because output.func() must exist at the time of trigger eval,
         // always provide a function even before we know which keys are valid.
         return (params) => {

@@ -60,7 +60,7 @@
       condition: function(e, data) {
         // We DO want to be hit by Toad/Ribbit if the next cast of The Game
         // is 4x toad panels.
-        return !(data.phaseNumber == 3 && data.gameCount % 2 == 0) && e.targetId != 'E0000000';
+        return !(data.phaseNumber === 3 && data.gameCount % 2 === 0) && e.targetId !== 'E0000000';
       },
       mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };

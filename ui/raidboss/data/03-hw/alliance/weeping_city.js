@@ -137,7 +137,7 @@
       id: 'Weeping City Arachne Web',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return data.arachneStarted && data.me == matches.target;
+        return data.arachneStarted && data.me === matches.target;
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -205,7 +205,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '17CB', source: '弗加尔', capture: false }),
       // Hell Wind sets HP to single digits, so mitigations don't work. Don't notify non-healers.
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -290,7 +290,7 @@
       // Delaying here to avoid colliding with other Flare Star triggers.
       delaySeconds: 4,
       alertText: function(data, _, output) {
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.tankLasers();
 
         return output.avoidTanks();
@@ -318,7 +318,7 @@
       id: 'Weeping City Flare Star Orbs',
       netRegex: NetRegexes.addedCombatantFull({ npcBaseId: '4889', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -450,7 +450,7 @@
         return data.calStarted;
       },
       alertText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.skyLaserOnYou();
 
         return output.avoidSkyLasers();

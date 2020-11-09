@@ -17,6 +17,7 @@
           de: 'Vakuumwelle bald',
           ja: 'まもなく真空波',
           cn: '马上真空波',
+          ko: '곧 진공파',
         },
       },
     },
@@ -52,6 +53,7 @@
           de: 'Feuga',
           ja: 'ファイガ',
           cn: '静止',
+          ko: '파이가',
         },
       },
     },
@@ -71,6 +73,7 @@
           de: 'Eisga',
           ja: 'ブリザガ',
           cn: '蛇皮走位',
+          ko: '블리자가',
         },
       },
     },
@@ -83,36 +86,43 @@
       netRegexJa: NetRegexes.startsUsing({ id: '23F9', source: 'エクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '23F9', source: '艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '23F9', source: '엑스데스', capture: false }),
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         // Tanks/healers always get an alert.
-        if (data.role == 'tank' || data.role == 'healer') {
-          return {
-            en: 'Thunder III: Tank buster',
-            de: 'Blitzga: Tank buster',
-            ja: 'サンダガ: タンクバスター',
-            cn: '雷三：坦克死刑',
-          };
-        }
+        if (data.role === 'tank' || data.role === 'healer')
+          return output.thunderBuster();
       },
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         // Tanks/healers always get an alert.
-        if (data.role == 'tank' || data.role == 'healer') return false;
-        return {
+        if (data.role === 'tank' || data.role === 'healer')
+          return false;
+        return output.thunder();
+      },
+      tts: function(data, _, output) {
+        if (data.role === 'tank' || data.role === 'healer')
+          return output.thunderTTS();
+      },
+      outputStrings: {
+        thunderBuster: {
+          en: 'Thunder III: Tank buster',
+          de: 'Blitzga: Tank buster',
+          ja: 'サンダガ: タンクバスター',
+          cn: '雷三：坦克死刑',
+          ko: '선더가: 탱버',
+        },
+        thunder: {
           en: 'Thunder III',
           de: 'Blitzga',
           ja: 'サンダガ',
           cn: '雷三',
-        };
-      },
-      tts: function(data) {
-        if (data.role == 'tank' || data.role == 'healer') {
-          return {
-            en: 'thunder',
-            de: 'blitzga',
-            ja: '離れ',
-            cn: '远离',
-          };
-        }
+          ko: '선더가',
+        },
+        thunderTTS: {
+          en: 'thunder',
+          de: 'blitzga',
+          ja: '離れ',
+          cn: '远离',
+          ko: '선더가',
+        },
       },
     },
     {
@@ -160,7 +170,7 @@
       condition: function(data, matches) {
         data.flareTargets = data.flareTargets || [];
         data.flareTargets.push(matches.target);
-        return data.flareTargets.length == 3;
+        return data.flareTargets.length === 3;
       },
       alarmText: function(data, _, output) {
         if (data.flareTargets.includes(data.me))
@@ -175,6 +185,7 @@
           de: 'Flare auf dir',
           ja: '自分にフレア',
           cn: '核爆点名',
+          ko: '플레어 대상자',
         },
       },
     },
@@ -202,9 +213,9 @@
           // Beyond death doesn't update for laser #2 if you died on
           // laser #1, so don't tell anybody to die on laser #2.
           // If you still have beyond death, it'll remind you for #3.
-          if (this.omegaLaserCount == 2 && this.omegaProbablyDiedOnLaser)
+          if (this.omegaLaserCount === 2 && this.omegaProbablyDiedOnLaser)
             return false;
-          if (this.phase != 'omega')
+          if (this.phase !== 'omega')
             return true;
           return this.omegaLaserCount >= this.dieOnLaser;
         };
@@ -252,9 +263,7 @@
     {
       id: 'O4S Neo White Wound Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '564' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data, matches) {
         data.whiteWound = true;
       },
@@ -262,9 +271,7 @@
     {
       id: 'O4S Neo White Wound Lost',
       netRegex: NetRegexes.losesEffect({ effectId: '564' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data, matches) {
         data.whiteWound = false;
       },
@@ -272,9 +279,7 @@
     {
       id: 'O4S Neo Black Wound Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '565' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data, matches) {
         data.blackWound = true;
       },
@@ -282,9 +287,7 @@
     {
       id: 'O4S Neo Black Wound Lost',
       netRegex: NetRegexes.losesEffect({ effectId: '565' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data, matches) {
         data.blackWound = false;
       },
@@ -292,9 +295,7 @@
     {
       id: 'O4S Neo Beyond Death Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data, matches) {
         data.beyondDeath = true;
       },
@@ -302,9 +303,7 @@
     {
       id: 'O4S Neo Beyond Death Lost',
       netRegex: NetRegexes.losesEffect({ effectId: '566' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data, matches) {
         data.beyondDeath = false;
       },
@@ -312,9 +311,7 @@
     {
       id: 'O4S Neo Allagan Field Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C6' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data, matches) {
         data.allaganField = true;
       },
@@ -322,9 +319,7 @@
     {
       id: 'O4S Neo Allagan Field Lost',
       netRegex: NetRegexes.losesEffect({ effectId: '1C6' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data, matches) {
         data.allaganField = false;
       },
@@ -362,24 +357,28 @@
           de: 'Nach Außen',
           ja: '外に出る',
           cn: '去外面',
+          ko: '바깥으로',
         },
         dieOnInside: {
           en: 'Die on Inside',
           de: 'Innen sterben',
           ja: '中に死ぬ',
           cn: '在里面死亡',
+          ko: '안쪽 레이저 맞기',
         },
         dieInInIn: {
           en: 'die in in in',
           de: 'sterben rein rein rein',
           ja: '死になさい！',
           cn: '死亡',
+          ko: '안쪽 레이저 맞기',
         },
         outOutOut: {
           en: 'out out out',
           de: 'raus raus raus',
           ja: '出ていて！',
           cn: '出去出去',
+          ko: '바깥으로',
         },
       },
     },
@@ -416,24 +415,28 @@
           de: 'Rein gehen',
           ja: '中に入る',
           cn: '去里面',
+          ko: '안으로',
         },
         dieOnOutside: {
           en: 'Die on Outside',
           de: 'Außen sterben',
           ja: '外に死ぬ',
           cn: '在外面死亡',
+          ko: '바깥 레이저 맞기',
         },
         dieOutOutOut: {
           en: 'die out out out',
           de: 'sterben raus raus raus',
           ja: '死になさい！',
           cn: '在外面死亡',
+          ko: '바깥 레이저 맞기',
         },
         inInIn: {
           en: 'in in in',
           de: 'rein rein rein',
           ja: '入れ入れ',
           cn: '进去进去',
+          ko: '안으로',
         },
       },
     },
@@ -479,41 +482,48 @@
           de: 'Links auf Pink',
           ja: '左の紫色に',
           cn: '左边紫色',
+          ko: '왼쪽 보라',
         },
         rightOnBlue: {
           en: 'Right On Blue',
           de: 'Rechts auf Blau',
           ja: '右の青色に',
           cn: '右边蓝色',
+          ko: '오른쪽 파랑',
         },
         colorSides: {
           en: 'Color sides',
           de: 'Farbige Seiten',
           ja: '同じ色に',
           cn: '颜色一侧',
+          ko: '색깔 맞기',
         },
         dieOnRightBlue: {
           en: 'Die On Right Blue',
           de: 'In Blauem rechts sterben',
           ja: '右の青色に死ぬ',
           cn: '在右边蓝色死亡',
+          ko: '오른쪽 파랑 맞기',
         },
         dieOnLeftPurple: {
           en: 'Die On Left Purple',
           de: 'In Pinkem links sterben',
           ja: '左の紫色に死ぬ',
           cn: '在左边紫色死亡',
+          ko: '왼쪽 보라 맞기',
         },
         dieOnColorSides: {
           en: 'Die on color sides',
           de: 'Auf Farben sterben',
           ja: '同じ色に死ぬ',
           cn: '在同色一边死亡',
+          ko: '색깔 맞기',
         },
         colors: {
           en: 'colors',
           de: 'Farben',
           ja: '色',
+          ko: '색깔',
         },
       },
     },
@@ -559,42 +569,49 @@
           de: 'Rechts auf Pink',
           ja: '右の紫色に',
           cn: '去右边紫色',
+          ko: '오른쪽 보라 맞기',
         },
         beLeftOnBlue: {
           en: 'Be Left On Blue',
           de: 'Links auf Blau',
           ja: '左の青色に',
           cn: '去左边蓝色',
+          ko: '왼쪽 파랑 맞기',
         },
         colorSides: {
           en: 'Color sides',
           de: 'Farbige Seiten',
           ja: '同じ色に',
           cn: '颜色一侧',
+          ko: '색깔 방향',
         },
         dieOnLeftBlue: {
           en: 'Die On Left Blue',
           de: 'Auf Blauem links sterben',
           ja: '左の青色に死ぬ',
           cn: '在左边蓝色死亡',
+          ko: '왼쪽 파랑 맞기',
         },
         dieOnRightPurple: {
           en: 'Die On Right Purple',
           de: 'Auf Pinkem rechts sterben',
           ja: '右の紫色に死ぬ',
           cn: '在右边紫色死亡',
+          ko: '오른쪽 보라 맞기',
         },
         dieOnColorSides: {
           en: 'Die on color sides',
           de: 'Auf Farben sterben',
           ja: '同じ色に死ぬ',
           cn: '在同色一边死亡',
+          ko: '색깔 맞기',
         },
         colors: {
           en: 'colors',
           de: 'farben',
           ja: '色',
           cn: '颜色',
+          ko: '색깔',
         },
       },
     },
@@ -607,7 +624,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: '네오 엑스데스', capture: false }),
       run: function(data) {
-        if (data.phase != 'omega')
+        if (data.phase !== 'omega')
           return;
 
 
@@ -632,12 +649,12 @@
       netRegexKo: NetRegexes.startsUsing({ id: '2416', source: '네오 엑스데스', capture: false }),
       infoText: function(data, _, output) {
         if (data.allaganField) {
-          if (data.role == 'tank')
+          if (data.role === 'tank')
             return output.chargeBeBehindOtherTank();
 
           return output.chargeBeInTheVeryBack();
         }
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.chargeBeInFront();
 
         return output.chargeBeBehindTanks();
@@ -649,30 +666,35 @@
           de: 'Aufladung: hinter anderen Tank',
           ja: '突進: 他のタンクの後ろに',
           cn: '站在另一个坦克后面',
+          ko: '탱커 뒤에 있기',
         },
         chargeBeInTheVeryBack: {
           en: 'Charge: be in the very back',
           de: 'Aufladung: Ganz nach hinten',
           ja: '突進: 後ろの遠くへ',
           cn: '去后面',
+          ko: '가장 뒤에 있기',
         },
         chargeBeInFront: {
           en: 'Charge: be in front!',
           de: 'Aufladung: Ganz nach vorn',
           ja: '突進: 前方に',
           cn: '去前面',
+          ko: '앞쪽으로',
         },
         chargeBeBehindTanks: {
           en: 'Charge: be behind tanks',
           de: 'Aufladung: Hinter die Tanks',
           ja: '突進: タンクの後ろに',
           cn: '站在坦克后面',
+          ko: '탱커 뒤로',
         },
         charge: {
           en: 'charge',
           de: 'aufladung',
           cn: '充能',
           ja: '無の氾濫',
+          ko: '무의 범람',
         },
       },
     },
@@ -685,7 +707,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '241C', source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '241C', source: '네오 엑스데스', capture: false }),
       alertText: function(data, _, output) {
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.doubleAttack();
 
         return output.doubleAttackGetOut();
@@ -697,12 +719,14 @@
           de: 'Doppelangriff',
           ja: 'ダブルアタック',
           cn: '双重攻击',
+          ko: '이중 공격',
         },
         doubleAttackGetOut: {
           en: 'Double Attack: Get out',
           de: 'Doppelangriff: Raus da',
           ja: 'ダブルアタック: 外へ',
           cn: '双重攻击：去外面',
+          ko: '이중 공격: 밖으로',
         },
       },
     },
@@ -722,12 +746,14 @@
           de: 'Supernova Alpha: In die Mitte',
           ja: 'グランドクロス・アルファ: 中央に',
           cn: '前往中间集合',
+          ko: '그랜드크로스: 알파, 중앙으로',
         },
         tts: {
           en: 'go to middle',
           de: 'In die Mitte',
           ja: '中央に',
           cn: '前往中间',
+          ko: '중앙으로',
         },
       },
     },
@@ -740,19 +766,19 @@
       netRegexCn: NetRegexes.startsUsing({ id: '242C', source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '242C', source: '네오 엑스데스', capture: false }),
       infoText: function(data, _, output) {
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.beInFront();
 
-        if (data.role == 'healer')
+        if (data.role === 'healer')
           return output.beOnSides();
 
         return output.beInsideBoss();
       },
       tts: function(data, _, output) {
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.beInFrontTTS();
 
-        if (data.role == 'healer')
+        if (data.role === 'healer')
           return output.beOnSidesTTS();
 
         return output.beInsideBossTTS();
@@ -763,36 +789,42 @@
           de: 'Supernova Delta: Vor den Boss',
           ja: 'グランドクロス・デルタ: ボスの前に',
           cn: '站在boss前面',
+          ko: '그랜드크로스: 델타, 보스 범위 끝으로',
         },
         beOnSides: {
           en: 'Grand Cross Delta: Be on sides of boss',
           de: 'Supernova Delta: An die Seiten vom Boss',
           ja: 'グランドクロス・デルタ: ボスの横に',
           cn: '站在boss后面',
+          ko: '그랜드크로스: 델타, 보스 옆쪽으로',
         },
         beInsideBoss: {
           en: 'Grand Cross Delta: Inside boss',
           de: 'Supernvoa Delta: In den Boss',
           ja: 'グランドクロス・デルタ: ボスの真ん中に',
           cn: '站在boss中间',
+          ko: '그랜드크로스: 델타, 보스 안쪽으로',
         },
         beInFrontTTS: {
           en: 'delta: be in front',
           de: 'delta: vor den boss',
           ja: 'ボスの前に',
           cn: '去前面',
+          ko: '델타, 보스 범위 끝으로',
         },
         beOnSidesTTS: {
           en: 'delta: be on sides',
           de: 'delta: an die seiten',
           ja: 'ボスの横に',
           cn: '去两侧',
+          ko: '델타, 보스 옆쪽으로',
         },
         beInsideBossTTS: {
           en: 'delta: be inside boss',
           de: 'delta: in den boss',
           ja: 'ボスの真ん中に',
           cn: '去boss中间',
+          ko: '델타, 보스 안쪽으로',
         },
       },
     },
@@ -809,23 +841,19 @@
     {
       id: 'O4S Neo Forked Lightning',
       netRegex: NetRegexes.gainsEffect({ effectId: '24B' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: 1,
       response: Responses.spread(),
     },
     {
       id: 'O4S Neo Acceleration Bomb',
       netRegex: NetRegexes.gainsEffect({ effectId: '568' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 4;
       }, // 4 second warning.
       alarmText: function(data, _, output) {
-        if (data.phase == 'omega')
+        if (data.phase === 'omega')
           return output.lookAwayAndStop();
 
         return output.stop();
@@ -836,12 +864,14 @@
           de: 'wegschauen und stehenbleiben',
           ja: '見ない、動かない',
           cn: '看外面并静止',
+          ko: '바라보지 말고 멈추기',
         },
         stop: {
           en: 'stop',
           de: 'Stopp',
           ja: '動かない',
           cn: '静止',
+          ko: '멈추기',
         },
       },
     },
@@ -849,7 +879,7 @@
       id: 'O4S Neo Acceleration Bomb Delta',
       netRegex: NetRegexes.gainsEffect({ effectId: '568' }),
       condition: function(data, matches) {
-        return matches.target == data.me && data.phase == 'delta';
+        return matches.target === data.me && data.phase === 'delta';
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -858,6 +888,7 @@
           de: 'Beschleunigungsbombe',
           ja: '加速度爆弾',
           cn: '加速度炸弹',
+          ko: '가속도 폭탄',
         },
       },
     },
@@ -865,7 +896,7 @@
       id: 'O4S Neo Omega Shriek',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
       condition: function(data, matches) {
-        return matches.target == data.me && data.phase == 'omega';
+        return matches.target === data.me && data.phase === 'omega';
       },
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 5;
@@ -877,6 +908,7 @@
           de: 'Schrei: Zur mitte und wegschauen',
           ja: '呪詛の叫声: 中へ、外に向け',
           cn: '石化点名',
+          ko: '중앙으로, 바깥보기',
         },
       },
     },
@@ -891,15 +923,13 @@
       // Water Me (Delta/Omega)
       id: 'O4S Neo Water Me',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: function(data, _, output) {
         // Not clear where to tell the healer where to go on delta
         // due to picking a side for uptime strat, or other strats.
-        if (data.phase == 'delta')
+        if (data.phase === 'delta')
           return output.waterOnYou();
-        else if (data.phase == 'omega')
+        else if (data.phase === 'omega')
           return output.waterStackUnderNeo();
       },
       outputStrings: {
@@ -908,12 +938,14 @@
           de: 'wasser auf dir',
           ja: '自分に水属性圧縮',
           cn: '水点名',
+          ko: '물 대상자',
         },
         waterStackUnderNeo: {
           en: 'water: stack under neo',
           de: 'Wasser: Unter Neo stacken',
           ja: '水属性圧縮: ボスの下に頭割り',
           cn: '去下面',
+          ko: '물: 보스 아래 모이기',
         },
       },
     },
@@ -922,7 +954,7 @@
       id: 'O4S Neo Beyond Death Delta Tank',
       netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
       condition: function(data, matches) {
-        return data.phase == 'delta' && matches.target == data.me && data.role == 'tank';
+        return data.phase === 'delta' && matches.target === data.me && data.role === 'tank';
       },
       delaySeconds: 0.5,
       infoText: function(data, _, output) {
@@ -939,12 +971,14 @@
           de: 'Stack auf ${waterHealer}',
           ja: '${waterHealer}に頭割り',
           cn: '分摊于${waterHealer}',
+          ko: '"${waterHealer}"에게 모이기',
         },
         stackOnWater: {
           en: 'Stack on water',
           de: 'Bei Wasser stacken',
           ja: '水持ちと頭割り',
           cn: '和水点名分摊',
+          ko: '물 쉐어',
         },
       },
     },
@@ -953,7 +987,7 @@
       id: 'O4S Neo Beyond Death Delta Initial',
       netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
       condition: function(data, matches) {
-        return data.phase == 'delta' && matches.target == data.me && data.role != 'tank';
+        return data.phase === 'delta' && matches.target === data.me && data.role !== 'tank';
       },
       infoText: (data, _, output) => output.beyondDeath(),
       outputStrings: {
@@ -962,6 +996,7 @@
           de: 'Jenseis Des Jenseits',
           ja: '死の超越',
           cn: '超越死亡',
+          ko: '죽음 초월',
         },
       },
     },
@@ -970,7 +1005,7 @@
       id: 'O4S Neo Off Balance Omega',
       netRegex: NetRegexes.gainsEffect({ effectId: '569' }),
       condition: function(data, matches) {
-        return data.phase == 'omega' && matches.target == data.me;
+        return data.phase === 'omega' && matches.target === data.me;
       },
       delaySeconds: 0.5,
       infoText: function(data, _, output) {
@@ -986,12 +1021,14 @@
           de: 'Unter Boss auf ${waterHealer} stacken',
           ja: 'ボスの下に${waterHealer}と頭割り',
           cn: '分摊于${waterHealer}',
+          ko: '보스 아래에서 "${waterHealer}"에게 모이기',
         },
         stackOnWater: {
           en: 'Stack on water',
           de: 'Auf Wasser stacken',
           ja: '水と頭割り',
           cn: '和水点名分摊',
+          ko: '물 쉐어',
         },
       },
     },
@@ -999,7 +1036,7 @@
       id: 'O4S Neo Earthshaker on Tank',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
-        return matches.target == data.me && data.role == 'tank';
+        return matches.target === data.me && data.role === 'tank';
       },
       response: Responses.earthshaker('info'),
     },
@@ -1007,7 +1044,7 @@
       id: 'O4S Neo Earthshaker on not Tank',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
-        return matches.target == data.me && data.role != 'tank';
+        return matches.target === data.me && data.role !== 'tank';
       },
       response: Responses.earthshaker('alarm'),
     },
@@ -1039,6 +1076,7 @@
           de: 'Almagest',
           ja: 'アルマゲスト',
           cn: '大AOE',
+          ko: '알마게스트',
         },
       },
     },
@@ -1053,7 +1091,7 @@
       condition: function(data, matches) {
         data.flareTargets = data.flareTargets || [];
         data.flareTargets.push(matches.target);
-        return data.flareTargets.length == 3;
+        return data.flareTargets.length === 3;
       },
       alarmText: function(data, _, output) {
         if (data.flareTargets.includes(data.me))
@@ -1078,18 +1116,21 @@
           de: 'Licht und Dunkel: Stack',
           ja: 'ライト・アンド・ダークネス: 頭割り',
           cn: '分摊点名',
+          ko: '빛과 어둠: 모이기',
         },
         flareOnYou: {
           en: 'Flare on you',
           de: 'Flare auf dir',
           ja: '自分にフレア',
           cn: '核爆点名',
+          ko: '플레어 대상자',
         },
         stackTTS: {
           en: 'stack',
           de: 'stek',
           ja: '頭割り',
           cn: '分摊',
+          ko: '모이기',
         },
       },
     },
@@ -1103,8 +1144,6 @@
       'replaceText': {
         '--Acceleration Bomb Resolves--': '--Beschleunigungsbombe löst sich auf--',
         '--Allagan Field Explodes--': '--Allagisches Feld explodiert--',
-        '--Boss Targetable--': '--Boss anvisierbar--',
-        '--Boss Untargetable--': '--Boss nicht anvisierbar--',
         '--LB Gauge Resets--': '--LB Leiste reset--',
         'Aero III': 'Windga',
         'Almagest': 'Almagest',
@@ -1189,8 +1228,6 @@
       'replaceText': {
         '--Acceleration Bomb Resolves--': '--加速度爆弾処理--',
         '--Allagan Field Explodes--': '--アラガンフィールド処理--',
-        '--Boss Targetable--': '--ボスターゲット可能--',
-        '--Boss Untargetable--': '--ボスターゲット不可--',
         '--LB Gauge Resets--': '--LBゲージリセット--',
         'Aero III': 'エアロガ',
         'Almagest': 'アルマゲスト',
@@ -1236,8 +1273,6 @@
       'replaceText': {
         '--Acceleration Bomb Resolves--': '--加速度炸弹处理--',
         '--Allagan Field Explodes--': '--亚拉戈领域爆炸--',
-        '--Boss Targetable--': '--Boss 可选中--',
-        '--Boss Untargetable--': '--Boss 不可选中--',
         '--LB Gauge Resets--': '--LB量表重置--',
         'Aero III': '暴风',
         'Almagest': '至高无上',
@@ -1278,11 +1313,13 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Exdeath': '엑스데스',
       },
       'replaceText': {
+        '--Acceleration Bomb Resolves--': '--가속도 폭탄 처리--',
+        '--Allagan Field Explodes--': '--알라간 필드 폭발--',
+        '--LB Gauge Resets--': '--리밋 게이지 초기화--',
         'Aero III': '에어로가',
         'Almagest': '알마게스트',
         'Black Hole': '블랙홀',
@@ -1298,16 +1335,23 @@
         'Fire III': '파이가',
         'Flare': '플레어',
         'Flood of Naught': '무의 범람',
+        'Final Battle': '마지막 싸움',
+        'Forked Lightning': '갈래 번개',
         'Frenzied Fist': '광란의 주먹',
         'Frenzied Sphere': '광란의 극지',
         'Grand Cross Alpha': '그랜드크로스: 알파',
         'Grand Cross Delta': '그랜드크로스: 델타',
         'Grand Cross Omega': '그랜드크로스: 오메가',
         'Holy': '홀리',
+        'HP Down Debuff': '최대 체력 저하 디버프',
+        'Knockback': '넉백',
         'Light and Darkness': '빛과 어둠',
+        'Random Elemental': '강화된 선더가/파이가/블리자가',
+        'Tethers': '선',
         'Meteor': '메테오',
         'Neverwhere': '법칙 붕괴',
         'Thunder III': '선더가',
+        'T/H': '탱/힐',
         'Vacuum Wave': '진공파',
         'Water': '워터',
         'White Hole': '화이트홀',

@@ -13,7 +13,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D94', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D94', source: '에덴 프라임', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -26,7 +26,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3DA4', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DA4', source: '에덴 프라임', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -39,7 +39,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D9C', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D9C', source: '에덴 프라임', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -62,7 +62,7 @@
       netRegexCn: NetRegexes.tether({ id: '0011', target: '至尊伊甸' }),
       netRegexKo: NetRegexes.tether({ id: '0011', target: '에덴 프라임' }),
       condition: function(data, matches) {
-        return data.me == matches.source;
+        return data.me === matches.source;
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -84,16 +84,14 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3DA1', source: '至尊伊甸' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DA1', source: '에덴 프라임' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
+        return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
     {
       id: 'E1N Vice of Apathy Mark',
       netRegex: NetRegexes.headMarker({ id: '001C' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

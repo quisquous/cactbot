@@ -87,7 +87,7 @@
       netRegexCn: NetRegexes.ability({ source: '突击者', id: '1632', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '맹습자', id: '1632', capture: false }),
       condition: function(data) {
-        return data.role == 'dps' || data.job == 'BLU';
+        return data.role === 'dps' || data.job === 'BLU';
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -273,12 +273,12 @@
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '1750' }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '1750' }),
       alertText: function(data, matches, output) {
-        if (data.me != matches.target)
+        if (data.me !== matches.target)
           return;
         return output.superJumpOnYou();
       },
       infoText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return;
         return output.superJumpOn({ player: data.ShortName(matches.target) });
       },

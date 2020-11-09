@@ -10,7 +10,7 @@
       regex: /Path of Light/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       response: Responses.tankCleave(),
     },
@@ -49,7 +49,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '215E', source: '吉祥天女' }),
       netRegexKo: NetRegexes.startsUsing({ id: '215E', source: '락슈미' }),
       condition: function(data, matches) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       response: Responses.tankBuster('info'),
     },
@@ -62,7 +62,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '215E', source: '吉祥天女' }),
       netRegexKo: NetRegexes.startsUsing({ id: '215E', source: '락슈미' }),
       condition: function(data, matches) {
-        return data.role != 'tank' && data.role != 'healer';
+        return data.role !== 'tank' && data.role !== 'healer';
       },
       response: Responses.tankBuster('alarm'),
     },
@@ -133,7 +133,7 @@
         if (!data.chanchala)
           return;
 
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.vrillStackOnYou();
 
         return output.vrillStack();
@@ -142,7 +142,7 @@
         if (data.chanchala)
           return;
 
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.stackOnYou();
 
         return output.stack();
@@ -209,9 +209,7 @@
       // Offtank cleave
       id: 'Lakshmi Path of Light Marker',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: function(data, _, output) {
         if (data.chanchala)
           return output.vrillCleaveOnYou();
@@ -241,9 +239,7 @@
       // Cross aoe
       id: 'Lakshmi Hand of Grace',
       netRegex: NetRegexes.headMarker({ id: '006B' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: function(data, _, output) {
         if (data.chanchala)
           return output.vrillCrossMarker();
@@ -273,9 +269,7 @@
       // Flower marker (healers)
       id: 'Lakshmi Hand of Beauty',
       netRegex: NetRegexes.headMarker({ id: '006D' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: function(data, _, output) {
         if (data.chanchala)
           return output.vrillFlowerMarker();
@@ -305,9 +299,7 @@
       // Red marker during add phase
       id: 'Lakshmi Water III',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

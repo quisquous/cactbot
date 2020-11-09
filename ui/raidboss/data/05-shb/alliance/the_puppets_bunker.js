@@ -3,6 +3,25 @@
 // TODO: is it worth adding triggers for gaining/losing shield protocol? effect 8F[0-2]
 // TODO: Incongruous Spin timeline trigger?
 
+const swipeOutputStrings = {
+  right: {
+    en: 'Right',
+    de: 'Rechts',
+    fr: 'Droite ',
+    ja: '右へ',
+    cn: '右',
+    ko: '오른쪽',
+  },
+  left: {
+    en: 'Left',
+    de: 'Links',
+    fr: 'Gauche',
+    ja: '左へ',
+    cn: '左',
+    ko: '왼쪽',
+  },
+};
+
 [{
   zoneId: ZoneId.ThePuppetsBunker,
   timelineFile: 'the_puppets_bunker.txt',
@@ -335,47 +354,31 @@
       netRegex: NetRegexes.startsUsing({ id: ['4FA[CD]', '550[DEF]', '5510'] }),
       preRun: function(data, matches) {
         data.swipe = data.swipe || [];
-        const kRight = {
-          en: 'Right',
-          de: 'Rechts',
-          fr: 'Droite ',
-          ja: '右へ',
-          cn: '右',
-          ko: '오른쪽',
-        };
-        const kLeft = {
-          en: 'Left',
-          de: 'Links',
-          fr: 'Gauche',
-          ja: '左へ',
-          cn: '左',
-          ko: '왼쪽',
-        };
-
         data.swipe.push({
-          '4FAC': kRight,
-          '4FAD': kLeft,
-          '550D': kRight,
-          '550E': kLeft,
-          '550F': kRight,
-          '5510': kLeft,
+          '4FAC': 'right',
+          '4FAD': 'left',
+          '550D': 'right',
+          '550E': 'left',
+          '550F': 'right',
+          '5510': 'left',
         }[matches.id]);
       },
       durationSeconds: 6,
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (data.swipe.length !== 1)
           return;
 
         // Call and clear the first swipe so we can not call it a second time below.
         const swipe = data.swipe[0];
         data.swipe[0] = null;
-        return swipe;
+        return output[swipe]();
       },
+      outputStrings: swipeOutputStrings,
     },
     {
       id: 'Puppet Superior Sliding Swipe Others',
       netRegex: NetRegexes.ability({ id: ['4FA[CD]', '550[DEF]', '5510'] }),
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         if (!data.swipe)
           return;
 
@@ -386,8 +389,9 @@
           swipe = data.swipe.shift();
         if (!swipe)
           return;
-        return swipe;
+        return output[swipe]();
       },
+      outputStrings: swipeOutputStrings,
     },
     {
       id: 'Puppet Heavy Volt Array',
@@ -659,33 +663,27 @@
       id: 'Puppet Compound 2P Four Parts Resolve',
       netRegex: NetRegexes.headMarker({ id: ['004F', '0050', '0051', '0052'] }),
       condition: Conditions.targetIsYou(),
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         return {
-          '004F': {
-            en: 'Jump #1 on YOU',
-            de: 'Sprung #1 auf DIR',
-            fr: 'Saut #1 sur VOUS',
-            ko: '점프 #1 대상자',
-          },
-          '0050': {
-            en: 'Cleave #1 on YOU',
-            de: 'Cleave #1 auf DIR',
-            fr: 'Cleave #1 sur VOUS',
-            ko: '직선공격 #1 대상자',
-          },
-          '0051': {
-            en: 'Jump #2 on YOU',
-            de: 'Sprung #2 auf DIR',
-            fr: 'Saut #2 sur VOUS',
-            ko: '점프 #2 대상자',
-          },
-          '0052': {
-            en: 'Cleave #2 on YOU',
-            de: 'Cleave #2 auf DIR',
-            fr: 'Cleave #2 sur VOUS',
-            ko: '직선공격 #2 대상자',
-          },
+          '004F': output.jump({ num: 1 }),
+          '0050': output.cleave({ num: 1 }),
+          '0051': output.jump({ num: 2 }),
+          '0052': output.cleave({ num: 2 }),
         }[matches.id];
+      },
+      outputStrings: {
+        jump: {
+          en: 'Jump #${num} on YOU',
+          de: 'Sprung #${num} auf DIR',
+          fr: 'Saut #${num} sur VOUS',
+          ko: '점프 #${num} 대상자',
+        },
+        cleave: {
+          en: 'Cleave #${num} on YOU',
+          de: 'Cleave #${num} auf DIR',
+          fr: 'Cleave #${num} sur VOUS',
+          ko: '직선공격 #${num} 대상자',
+        },
       },
     },
     {

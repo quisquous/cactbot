@@ -49,7 +49,7 @@
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '995', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '995', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '995', capture: false }),
-      response: function(data) {
+      response: (data) => {
         if (data.role === 'tank') {
           if (data.currentTank && data.blunt && data.blunt[data.currentTank]) {
             return {
@@ -76,9 +76,7 @@
           },
         };
       },
-      run: function(data) {
-        data.soonAfterWeaponChange = true;
-      },
+      run: (data) => data.soonAfterWeaponChange = true,
     },
     {
       id: 'ShivaEx Sword Phase',
@@ -88,7 +86,7 @@
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '993', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '993', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '993', capture: false }),
-      response: function(data) {
+      response: (data) => {
         if (data.role === 'tank') {
           if (data.currentTank && data.slashing && data.slashing[data.currentTank]) {
             return {
@@ -115,9 +113,7 @@
           },
         };
       },
-      run: function(data) {
-        data.soonAfterWeaponChange = true;
-      },
+      run: (data) => data.soonAfterWeaponChange = true,
     },
     {
       id: 'ShivaEx Weapon Change Delayed',
@@ -128,14 +124,12 @@
       netRegexKo: NetRegexes.ability({ source: '시바', id: ['993', '995'], capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: ['993', '995'], capture: false }),
       delaySeconds: 30,
-      run: function(data) {
-        data.soonAfterWeaponChange = false;
-      },
+      run: (data) => data.soonAfterWeaponChange = false,
     },
     {
       id: 'ShivaEx Slashing Resistance Down Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '23C' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.slashing = data.slashing || {};
         data.slashing[matches.target] = true;
       },
@@ -143,7 +137,7 @@
     {
       id: 'ShivaEx Slashing Resistance Down Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '23C' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.slashing = data.slashing || {};
         data.slashing[matches.target] = false;
       },
@@ -151,7 +145,7 @@
     {
       id: 'ShivaEx Blunt Resistance Down Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '23D' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.blunt = data.blunt || {};
         data.blunt[matches.target] = true;
       },
@@ -159,7 +153,7 @@
     {
       id: 'ShivaEx Blunt Resistance Down Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '23D' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.blunt = data.blunt || {};
         data.blunt[matches.target] = false;
       },
@@ -172,9 +166,7 @@
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: 'BE5' }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: 'BE5' }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: 'BE5' }),
-      run: function(data, matches) {
-        data.currentTank = matches.target;
-      },
+      run: (data, matches) => data.currentTank = matches.target,
     },
     {
       id: 'ShivaEx Hailstorm Marker',
@@ -200,9 +192,7 @@
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '98A', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '98A', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '98A', capture: false }),
-      run: function(data) {
-        data.seenDiamondDust = true;
-      },
+      run: (data) => data.seenDiamondDust = true,
     },
     {
       id: 'ShivaEx Frost Bow',
@@ -213,7 +203,7 @@
       netRegexKo: NetRegexes.ability({ source: '시바', id: 'BDD', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: 'BDD', capture: false }),
       response: Responses.getBehind('alarm'),
-      run: function(data) {
+      run: (data) => {
         // Just in case ACT has crashed or something, make sure this state is correct.
         data.seenDiamondDust = true;
       },
@@ -259,13 +249,13 @@
       netRegexJa: NetRegexes.abilityFull({ source: 'シヴァ', id: 'BEB' }),
       netRegexKo: NetRegexes.abilityFull({ source: '시바', id: 'BEB' }),
       netRegexCn: NetRegexes.abilityFull({ source: '希瓦', id: 'BEB' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         // Ignore other middle circles and try to only target the Icicle Impact x9.
         if (!data.seenDiamondDust || data.soonAfterWeaponChange)
           return false;
 
-        let x = parseFloat(matches.x);
-        let y = parseFloat(matches.y);
+        const x = parseFloat(matches.x);
+        const y = parseFloat(matches.y);
         return Math.abs(x) < 0.1 && Math.abs(y) < 0.1;
       },
       // This can hit multiple people.
@@ -281,9 +271,7 @@
       id: 'ShivaEx Ice Boulder',
       netRegex: NetRegexes.ability({ id: 'C8A' }),
       condition: Conditions.targetIsNotYou(),
-      infoText: function(data, matches, output) {
-        return output.text({ player: data.ShortName(matches.target) });
-      },
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
           en: 'Free ${player}',

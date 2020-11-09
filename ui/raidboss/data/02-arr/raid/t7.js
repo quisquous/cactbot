@@ -54,9 +54,7 @@
       netRegexJa: NetRegexes.ability({ id: '7A8', source: 'メリュジーヌ' }),
       netRegexCn: NetRegexes.ability({ id: '7A8', source: '美瑠姬奴' }),
       netRegexKo: NetRegexes.ability({ id: '7A8', source: '멜뤼진' }),
-      condition: function(data, matches) {
-        return data.me == matches.target && data.job == 'BLU';
-      },
+      condition: (data, matches) => data.me === matches.target && data.job === 'BLU',
       delaySeconds: 6,
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
@@ -93,9 +91,7 @@
       id: 'T7 Cursed Voice',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C3' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: function(data, matches) {
-        return matches.duration - 3;
-      },
+      delaySeconds: (data, matches) => matches.duration - 3,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -111,12 +107,12 @@
       id: 'T7 Cursed Shriek',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
       durationSeconds: 3,
-      alarmText: function(data, matches, output) {
-        if (data.me == matches.target)
+      alarmText: (data, matches, output) => {
+        if (data.me === matches.target)
           return output.shriekOnYou();
       },
-      infoText: function(data, matches, output) {
-        if (data.me != matches.target)
+      infoText: (data, matches, output) => {
+        if (data.me !== matches.target)
           return output.shriekOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -141,8 +137,8 @@
       netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
       delaySeconds: 7,
       durationSeconds: 3,
-      infoText: function(data, matches, output) {
-        if (data.me == matches.target)
+      infoText: (data, matches, output) => {
+        if (data.me === matches.target)
           return output.shriekSoon();
 
         return output.dodgeShriek();

@@ -10,7 +10,7 @@
       regex: /Triclip/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank';
+        return data.role === 'healer' || data.role === 'tank';
       },
       response: Responses.tankBuster(),
     },
@@ -25,7 +25,7 @@
       regex: /Darkness \(buster\)/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank';
+        return data.role === 'healer' || data.role === 'tank';
       },
       response: Responses.tankBuster(),
     },
@@ -40,7 +40,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1945', source: '液态火焰', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1945', source: '액체 불꽃', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -48,15 +48,15 @@
       id: 'Gubal Hard Ferrofluid',
       netRegex: NetRegexes.headMarker({ id: ['0030', '0031'] }),
       condition: function(data, matches) {
-        return data.me == matches.target || matches.targetId.slice(0, 1) == '4';
+        return data.me === matches.target || matches.targetId.slice(0, 1) === '4';
       },
       preRun: function(data, matches) {
         data.markers = data.markers || [];
         data.markers.push(matches.id);
       },
       infoText: function(data, _, output) {
-        if (data.markers.length == 2) {
-          let sameMarkers = data.markers[0] == data.markers[1];
+        if (data.markers.length === 2) {
+          let sameMarkers = data.markers[0] === data.markers[1];
           delete data.markers;
           if (sameMarkers)
             return output.closeToBoss();
@@ -91,9 +91,7 @@
       netRegexJa: NetRegexes.tether({ id: '0039', source: 'リクイドフレイム' }),
       netRegexCn: NetRegexes.tether({ id: '0039', source: '液态火焰' }),
       netRegexKo: NetRegexes.tether({ id: '0039', source: '액체 불꽃' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -109,9 +107,7 @@
     {
       id: 'Gubal Hard Sunseal',
       netRegex: NetRegexes.gainsEffect({ effectId: '46F' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -127,9 +123,7 @@
     {
       id: 'Gubal Hard Moonseal',
       netRegex: NetRegexes.gainsEffect({ effectId: '470' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -256,7 +250,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1955', source: '博学林鸮', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1955', source: '스트릭스', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
