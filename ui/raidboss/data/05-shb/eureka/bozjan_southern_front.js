@@ -203,9 +203,7 @@ const tankBusterOnParty = (ceId) => (data, matches) => {
       // TODO: netRegex could take (data) => {} here so we could do a target: data.me?
       netRegex: NetRegexes.ability({ source: '4th Legion Helldiver', id: '51FD' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.helldiver = true;
-      },
+      run: (data) => data.helldiver = true,
     },
     {
       id: 'Bozja South Castrum Helldiver MRV Missile',
