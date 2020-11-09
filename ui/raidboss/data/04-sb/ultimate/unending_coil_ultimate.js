@@ -619,7 +619,7 @@
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
         if (matches.duration > 1000)
           return false;
-        return data.me == matches.target;
+        return data.me === matches.target;
       },
       // FIXME: temporary workaround for multiple gains effects messages.
       // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223#issuecomment-513486275
@@ -950,7 +950,7 @@
         data.naelDragons = data.naelDragons || [0, 0, 0, 0, 0, 0, 0, 0];
         data.naelDragons[dir] = 1;
 
-        if (Object.keys(data.seenDragon).length != 5)
+        if (Object.keys(data.seenDragon).length !== 5)
           return;
 
         let output = data.findDragonMarks(data.naelDragons);
@@ -1084,17 +1084,17 @@
       id: 'UCU Octet Marker Tracking',
       netRegex: NetRegexes.headMarker({ id: ['0077', '0014', '0029'] }),
       condition: function(data) {
-        return data.trio == 'octet';
+        return data.trio === 'octet';
       },
       run: function(data, matches) {
         data.octetMarker = data.octetMarker || [];
         data.octetMarker.push(matches.target);
-        if (data.octetMarker.length != 7)
+        if (data.octetMarker.length !== 7)
           return;
 
         let partyList = Object.keys(data.partyList);
 
-        if (partyList.length != 8) {
+        if (partyList.length !== 8) {
           console.error('Octet error: bad party list size: ' + JSON.stringify(partyList));
           return;
         }
@@ -1109,13 +1109,13 @@
         let uniq = Object.keys(uniqDict);
         // If the number of unique folks who took markers is not 7, then
         // somebody has died and somebody took two.  Could be on anybody.
-        if (uniq.length != 7)
+        if (uniq.length !== 7)
           return;
 
         let remainingPlayers = partyList.filter(function(p) {
           return !data.octetMarker.includes(p);
         });
-        if (remainingPlayers.length != 1) {
+        if (remainingPlayers.length !== 1) {
           // This could happen if the party list wasn't unique.
           console.error('Octet error: failed to find player, ' + JSON.stringify(partyList) + ' ' + JSON.stringify(data.octetMarker));
           return;
@@ -1456,7 +1456,7 @@
         },
       },
       run: function(data) {
-        if (data.trio == 'tenstrike' && data.shakers.length == 4)
+        if (data.trio === 'tenstrike' && data.shakers.length === 4)
           data.shakers = [];
       },
     },
@@ -1596,17 +1596,17 @@
           let distance = modDistance(mark, dragon);
           console.assert(distance > 0);
           console.assert(distance <= 2);
-          if ((mark + distance + 8) % 8 == dragon) {
+          if ((mark + distance + 8) % 8 === dragon) {
             // Clockwise.
             for (let i = 0; i <= distance; ++i)
               bad.push((mark + i) % 8);
-            if (distance == 1)
+            if (distance === 1)
               bad.push((mark - 1 + 8) % 8);
           } else {
             // Widdershins.
             for (let i = 0; i <= distance; ++i)
               bad.push((mark - i + 8) % 8);
-            if (distance == 1)
+            if (distance === 1)
               bad.push((mark + 1) % 8);
           }
           return bad;
@@ -1632,11 +1632,11 @@
               dragons.push(i);
           }
 
-          if (dragons.length != 5)
+          if (dragons.length !== 5)
             return ret;
 
           // MARK 1: counterclockwise of #1 if adjacent, clockwise if not.
-          if (dragons[0] + 1 == dragons[1]) {
+          if (dragons[0] + 1 === dragons[1]) {
             // If the first two dragons are adjacent, they *must* go CCW.
             // In the scenario of N, NE, SE, S, W dragons, the first marker
             // could be E, but that forces the second mark to be S (instead
@@ -1652,7 +1652,7 @@
           }
 
           // MARK 2: go counterclockwise, unless dragon 2 is adjacent to 3.
-          if (dragons[1] == dragons[2] - 1) {
+          if (dragons[1] === dragons[2] - 1) {
             // Go clockwise.
             marks[1] = dragons[2] + 1;
           } else {
@@ -1661,7 +1661,7 @@
           }
 
           // MARK 3: if split, between 4 & 5.  If adjacent, clockwise of 5.
-          if (dragons[3] + 1 == dragons[4]) {
+          if (dragons[3] + 1 === dragons[4]) {
             // Adjacent dragons.
             // Clockwise is always ok.
             marks[2] = (dragons[4] + 1) % 8;
@@ -1674,14 +1674,14 @@
             // hole between #3 and #4, otherwise need all three holes.
             // e.g. N, NE, E, W, NW dragon pattern should prefer third
             // mark SW instead of N.
-            let distance = marks[1] == dragons[2] - 1 ? 2 : 4;
+            let distance = marks[1] === dragons[2] - 1 ? 2 : 4;
             if (dragons[3] >= dragons[2] + distance)
               marks[2] = dragons[3] - 1;
           } else {
             // Split dragons.  Common case: bias towards last dragon, in case
             // 2nd charge is going towards this pair.
             marks[2] = Math.ceil((dragons[3] + dragons[4]) / 2);
-            if (marks[1] == dragons[3] && marks[2] == marks[1] + 1) {
+            if (marks[1] === dragons[3] && marks[2] === marks[1] + 1) {
               // Tricksy edge case, e.g. N, NE, E, SE, SW.  S not safe for
               // third mark because second mark is at SE, and E dragon will
               // clip S.  Send all dragons CW even if this means eating more
