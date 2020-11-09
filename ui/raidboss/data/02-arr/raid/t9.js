@@ -3,34 +3,42 @@
 const diveDirections = {
   unknown: {
     en: '?',
+    de: '?',
     cn: '？',
   },
   north: {
     en: 'N',
+    de: 'N',
     cn: '北',
   },
   northeast: {
     en: 'NE',
+    de: 'NO',
     cn: '东北',
   },
   east: {
     en: 'E',
+    de: 'O',
     cn: '东',
   },
   southeast: {
     en: 'SE',
+    de: 'SO',
     cn: '东南',
   },
   southwest: {
     en: 'SW',
+    de: 'SW',
     cn: '西南',
   },
   west: {
     en: 'W',
+    de: 'W',
     cn: '西',
   },
   northwest: {
     en: 'NW',
+    de: 'NW',
     cn: '西北',
   },
 };
@@ -404,18 +412,22 @@ const diveDirections = {
       outputStrings: {
         fireOutOnYou: {
           en: 'Fire Out (on YOU)',
+          de: 'Feuer raus (auf DIR)',
           cn: '单吃火点名',
         },
         fireInOnYou: {
           en: 'Fire In (on YOU)',
+          de: 'Feuer rein (auf DIR)',
           cn: '集合火点名',
         },
         fireOutOn: {
           en: 'Fire Out (on ${player})',
+          de: 'Feuer raus (auf ${player})',
           cn: '单吃火点(on ${player})',
         },
         fireInOn: {
           en: 'Fire In (on ${player})',
+          de: 'Feuer rein (auf ${player})',
           cn: '集合火点(on ${player})',
         },
       },
@@ -452,6 +464,7 @@ const diveDirections = {
         ...diveDirections,
         safeZone: {
           en: 'Safe zone: ${dir}',
+          de: 'Sichere Zone: ${dir}',
           cn: '安全点在：${dir}',
         },
       },
