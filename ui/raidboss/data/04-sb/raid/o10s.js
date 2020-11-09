@@ -44,6 +44,7 @@
         },
         fireOn: {
           en: 'Fire Marker on ${player}',
+          de: 'Feuer Markierung auf ${player}',
         },
       },
     },

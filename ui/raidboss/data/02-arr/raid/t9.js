@@ -3,27 +3,35 @@
 const diveDirections = {
   unknown: {
     en: '?',
+    de: '?',
   },
   north: {
     en: 'N',
+    de: 'N',
   },
   northeast: {
     en: 'NE',
+    de: 'NO',
   },
   east: {
     en: 'E',
+    de: 'O',
   },
   southeast: {
     en: 'SE',
+    de: 'SO',
   },
   southwest: {
     en: 'SW',
+    de: 'SW',
   },
   west: {
     en: 'W',
+    de: 'W',
   },
   northwest: {
     en: 'NW',
+    de: 'NW',
   },
 };
 
@@ -396,15 +404,19 @@ const diveDirections = {
       outputStrings: {
         fireOutOnYou: {
           en: 'Fire Out (on YOU)',
+          de: 'Feuer raus (auf DIR)',
         },
         fireInOnYou: {
           en: 'Fire In (on YOU)',
+          de: 'Feuer rein (auf DIR)',
         },
         fireOutOn: {
           en: 'Fire Out (on ${player})',
+          de: 'Feuer raus (auf ${player})',
         },
         fireInOn: {
           en: 'Fire In (on ${player})',
+          de: 'Feuer rein (auf ${player})',
         },
       },
     },
@@ -440,6 +452,7 @@ const diveDirections = {
         ...diveDirections,
         safeZone: {
           en: 'Safe zone: ${dir}',
+          de: 'Sichere Zone: ${dir}',
         },
       },
     },

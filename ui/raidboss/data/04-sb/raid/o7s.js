@@ -256,21 +256,27 @@
       outputStrings: {
         screen: {
           en: 'Biblio?/Knockback?',
+          de: 'Biblio?/Rückstoß?',
         },
         biblio: {
           en: 'Biblio: Positions',
+          de: 'Biblio: Positionen',
         },
         dada: {
           en: 'Dada: Knockback',
+          de: 'Dada: Rückstoß',
         },
         ships: {
           en: 'Ships: Out of Melee',
+          de: 'Flieger: Raus aus Nahkampf-Reichweite',
         },
         ultros: {
           en: 'Ultros: Ink Spread',
+          de: 'Ultros: Tine - Verteilen',
         },
         virus: {
           en: 'VIRUS',
+          de: 'VIRUS',
         },
       },
     },
@@ -301,15 +307,19 @@
       outputStrings: {
         biblio: {
           en: 'Biblio Add',
+          de: 'Biblio Add',
         },
         dada: {
           en: 'Dada Add',
+          de: 'Dada Add',
         },
         ships: {
           en: 'Ship Add',
+          de: 'Flieger Add',
         },
         ultros: {
           en: 'Ultros Add',
+          de: 'Ultros Add',
         },
       },
     },
