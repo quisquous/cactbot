@@ -35,12 +35,12 @@
   triggers: [
     {
       id: 'Hells Lid Swing',
-      netRegex: NetRegexes.startsUsing({ id: '27BE', source: 'Otake-Manu', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '27BE', source: 'Otake-Manu', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '27BE', source: 'Otake-Manu', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '27BE', source: 'Otake-Manu', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '27BE', source: 'Otake-Manu', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '27BE', source: 'Otake-Manu', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '27BE', source: 'Otake-Maru', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '27BE', source: 'Otake-Maru', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '27BE', source: 'Ôtake Maru', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '27BE', source: 'オオタケ丸', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '27BE', source: '大岳丸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '27BE', source: '오오타케마루', capture: false }),
       response: Responses.getOut(),
     },
     {
@@ -236,7 +236,7 @@
         'Circling Winds': '疾风冲',
         'Disrobe': '徒手',
         'Divine Cataract': '玄天武水壁',
-        'Eruptive Leap': '噴火飛び',
+        'Eruptive Leap': '爆发跳跃',
         'Hell Of Waste': '玄冥瀑',
         'Hell Of Water': '玄冥流',
         'Hell Of Waves': '玄冥波',
