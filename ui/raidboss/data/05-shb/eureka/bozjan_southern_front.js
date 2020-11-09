@@ -647,6 +647,9 @@ const tankBusterOnParty = (ceId) => (data, matches) => {
     {
       id: 'Bozja South Castrum Lyon Passage',
       netRegex: NetRegexes.gameLog({ line: 'Lyon the Beast King would do battle at Majesty\'s Place.*?', capture: false }),
+      netRegexDe: NetRegexes.gameLog({ line: 'Der Bestienkönig will einen Kampf auf seinem Podest.*?', capture: false }),
+      netRegexFr: NetRegexes.gameLog({ line: 'Lyon attend des adversaires à sa taille sur la tribune des Souverains.*?', capture: false }),
+      netRegexJa: NetRegexes.gameLog({ line: '獣王ライアンは、王者の円壇での戦いを望んでいるようだ.*?', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
