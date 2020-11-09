@@ -464,7 +464,7 @@ const tankBusterOnParty = (ceId) => (data, matches) => {
       netRegex: NetRegexes.tether({ source: 'Adrammelech', target: 'Electric Charge' }),
       alertText: (data, matches, output) => {
         if (!data.warped)
-          return output.unknown;
+          return output.unknown();
 
         const loc = data.warped[matches.targetId.toUpperCase()];
         delete data.warped;
