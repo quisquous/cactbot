@@ -44,7 +44,6 @@
   font-size: 12px;
 }
 
-
 .justbuffs #pull-bar {
   display: none;
 }
@@ -281,11 +280,6 @@
   height: 32px;
 }
 
-.justbuffs #right-side-icons {
-  position: fixed;
-  left: 0;
-}
-
 /* Relative to #bars */
 #left-side-icons {
   position: absolute;
@@ -329,6 +323,11 @@
 .sch #right-side-icons,
 .ast #right-side-icons {
   left: 288px;
+}
+
+.justbuffs #right-side-icons {
+  position: fixed;
+  left: 0;
 }
 
 /* Stacks */
