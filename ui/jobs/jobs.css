@@ -172,8 +172,8 @@
 
 #gnb-timers-combo,
 #gnb-timers-cartridgecombo,
-#dnc-timers-combo,
 #nin-timers-combo,
+#dnc-timers-combo,
 #brd-timers-repertoire,
 #mnk-timers-lightning,
 #mnk-timers-combo {
@@ -1011,41 +1011,6 @@
   background-color: rgb(217, 51, 0);
 }
 
-.dnc-color-combo {
-  background-color: rgb(180, 200, 220);
-}
-
-.dnc-color-standardstep {
-  background-color: rgb(235, 235, 50);
-}
-
-.dnc-color-technicalstep {
-  background-color: rgb(80, 200, 200, 0.7);
-}
-
-.dnc-color-technicalstep.active {
-  background-color: rgb(80, 200, 200);
-}
-
-.dnc-color-flourish {
-  background-color: rgb(150, 100, 0);
-}
-
-.dnc-color-flourish.active {
-  background-color: rgb(255, 145, 0);
-}
-
-.dnc-color-esprit {
-  background-color: rgb(255, 200, 0, 0.7);
-}
-
-.dnc-color-esprit.high {
-  background-color: rgb(255, 50, 150);
-}
-
-.dnc-color-feather {
-  background-color: rgb(160, 200, 50);
-
 .nin-color-huton {
   background-color: rgb(0, 255, 255);
 }
@@ -1080,4 +1045,40 @@
 
 .nin-color-combo {
   background-color: rgb(180, 200, 220);
+}
+
+.dnc-color-combo {
+  background-color: rgb(180, 200, 220);
+}
+
+.dnc-color-standardstep {
+  background-color: rgb(235, 235, 50);
+}
+
+.dnc-color-technicalstep {
+  background-color: rgb(80, 200, 200, 0.7);
+}
+
+.dnc-color-technicalstep.active {
+  background-color: rgb(80, 200, 200);
+}
+
+.dnc-color-flourish {
+  background-color: rgb(150, 100, 0);
+}
+
+.dnc-color-flourish.active {
+  background-color: rgb(255, 145, 0);
+}
+
+.dnc-color-esprit {
+  background-color: rgb(255, 200, 0, 0.7);
+}
+
+.dnc-color-esprit.high {
+  background-color: rgb(255, 50, 150);
+}
+
+.dnc-color-feather {
+  background-color: rgb(160, 200, 50);
 }
