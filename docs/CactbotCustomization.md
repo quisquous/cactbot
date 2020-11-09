@@ -50,7 +50,7 @@ ACT -> Plugins -> OverlayPlugin.dll -> Cactbot -> Raidboss,
 there are individual trigger listings.
 You can use these listings to change various exposed configuration settings per trigger.
 
-Settings with a bell (🔔) next to their name are trigger mostly outputs that you can override.
+Settings with a bell (🔔) next to their name are trigger outputs that you can override.
 For example, maybe there's an 🔔onTarget field whose text is `Tank Buster on ${name}`.
 This is the string that will get played on screen (or via tts) when there is a tank buster on some person.
 `${name}` here is a parameter that will be set dynamically by the trigger.
