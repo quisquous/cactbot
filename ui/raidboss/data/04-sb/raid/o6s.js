@@ -41,10 +41,8 @@
     {
       id: 'O6S Demonic Stone',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
-      alarmText: function(data, matches, output) {
-        if (data.me === matches.target)
-          return output.text();
-      },
+      condition: Conditions.targetIsYou(),
+      alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Demonic Stone on YOU',

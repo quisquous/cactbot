@@ -539,10 +539,8 @@
     {
       id: 'Copied Engels Incendiary Bombing',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      alertText: function(data, matches, output) {
-        if (matches.target === data.me)
-          return output.text();
-      },
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Puddle on YOU',
@@ -557,10 +555,8 @@
     {
       id: 'Copied Engels Guided Missile',
       netRegex: NetRegexes.headMarker({ id: '00C5' }),
-      alertText: function(data, matches, output) {
-        if (matches.target === data.me)
-          return output.text();
-      },
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Out + Dodge Homing AoE',

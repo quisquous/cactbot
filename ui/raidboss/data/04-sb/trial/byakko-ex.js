@@ -227,10 +227,8 @@
       netRegexFr: NetRegexes.dialog({ line: '[^:]*:Ma colère devient double.*?!.*?', capture: false }),
       netRegexJa: NetRegexes.dialog({ line: '[^:]*:駆けろ、我が半身ッ！歯向かう者どもに、牙と爪を突き立ててやれ！.*?', capture: false }),
       netRegexKo: NetRegexes.dialog({ line: '[^:]*:달려라! 나의 반신이여! 맞서는 자들에게 이빨과 발톱을 찔러넣어라!.*?', capture: false }),
-      infoText: function(data, _, output) {
-        if (data.role === 'tank')
-          return output.text();
-      },
+      condition: (data) => data.role === 'tank',
+      infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Tiger Add',

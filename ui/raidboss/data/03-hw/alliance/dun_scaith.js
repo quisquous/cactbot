@@ -155,11 +155,9 @@
     {
       id: 'Dun Scaith Scythe Drop',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 5,
-      infoText: function(data, matches, output) {
-        if (data.me === matches.target)
-          return output.text();
-      },
+      infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Drop scythe outside',
@@ -367,10 +365,8 @@
     {
       id: 'Dun Scaith Prey Markers',
       netRegex: NetRegexes.gainsEffect({ effectId: '232' }),
-      alertText: function(data, matches, output) {
-        if (data.me === matches.target)
-          return output.text();
-      },
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Prey--Avoid party and keep moving',
@@ -536,11 +532,9 @@
       // This trigger is common to both Scathach and Diabolos, since handling is 100% identical.
       id: 'Dun Scaith Nox Orbs',
       netRegex: NetRegexes.headMarker({ id: '005C' }),
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 5,
-      alertText: function(data, matches, output) {
-        if (matches.target === data.me)
-          return output.text();
-      },
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Take orb outside',

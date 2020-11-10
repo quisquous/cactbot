@@ -682,10 +682,8 @@
       netRegexFr: NetRegexes.startsUsing({ id: '47E1', source: 'Hadès', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '47E1', source: 'ハーデス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47E1', source: '하데스', capture: false }),
-      infoText: function(data, _, output) {
-        if (!data.flame && !data.freeze)
-          return output.text();
-      },
+      condition: (data) => !data.flame && !data.freeze,
+      infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Knockback + Stack With Partner',

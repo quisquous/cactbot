@@ -237,10 +237,8 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '1A0B', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '1A0B', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '1A0B', capture: false }),
-      alertText: function(data, _, output) {
-        if (data.role === 'tank' || data.role === 'healer' || data.job === 'BLU')
-          return output.text();
-      },
+      condition: Conditions.caresAboutMagical(),
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Shared Tankbuster',
