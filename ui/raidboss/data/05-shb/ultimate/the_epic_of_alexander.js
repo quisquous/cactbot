@@ -505,10 +505,8 @@ const namedNisiPass = (data, output) => {
       id: 'TEA Ordained Capital Punishment',
       regex: /^Ordained Capital Punishment$/,
       beforeSeconds: 6,
-      alertText: function(data, _, output) {
-        if (data.role === 'tank' || data.role === 'healer')
-          return output.text();
-      },
+      condition: (data) => data.role === 'tank' || data.role === 'healer',
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Shared Tankbuster',
