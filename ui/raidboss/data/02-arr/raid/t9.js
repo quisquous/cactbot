@@ -413,22 +413,22 @@ const diveDirections = {
         fireOutOnYou: {
           en: 'Fire Out (on YOU)',
           de: 'Feuer raus (auf DIR)',
-          cn: '单吃火点名',
+          cn: '火球单吃点名',
         },
         fireInOnYou: {
           en: 'Fire In (on YOU)',
           de: 'Feuer rein (auf DIR)',
-          cn: '集合火点名',
+          cn: '火球集合点名',
         },
         fireOutOn: {
           en: 'Fire Out (on ${player})',
           de: 'Feuer raus (auf ${player})',
-          cn: '单吃火点(on ${player})',
+          cn: '火球单吃点${player}',
         },
         fireInOn: {
           en: 'Fire In (on ${player})',
           de: 'Feuer rein (auf ${player})',
-          cn: '集合火点(on ${player})',
+          cn: '火球集合点${player}',
         },
       },
     },
