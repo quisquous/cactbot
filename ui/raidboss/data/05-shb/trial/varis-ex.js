@@ -562,7 +562,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Bladesblood': '검기',
         'Gunshield': '건실드',
@@ -578,6 +577,7 @@
         'Aetherochemical Grenado': '마도 유탄',
         'Alea Iacta Est': '알레아 이악타 에스트',
         'Altius': '알티우스',
+        'Blade\'s Pulse': '공격 막아내기',
         'Citius': '키티우스',
         'Electrified Gunshield': '건실드: 마도 쇼크',
         'Festina Lente': '페스티나 렌테',
