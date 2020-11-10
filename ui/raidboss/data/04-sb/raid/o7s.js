@@ -272,7 +272,7 @@
         ships: {
           en: 'Ships: Out of Melee',
           de: 'Flieger: Raus aus Nahkampf-Reichweite',
-          cn: '飞机：远离BOSS',
+          cn: '飞机：远离近战范围',
         },
         ultros: {
           en: 'Ultros: Ink Spread',
