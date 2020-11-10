@@ -22,7 +22,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['330F', '3310'], source: ['欧米茄', '欧米茄M'] }),
       netRegexKo: NetRegexes.startsUsing({ id: ['330F', '3310'], source: ['오메가', '오메가 M'] }),
       condition: function(data, matches) {
-        return data.me == matches.target || data.role == 'healer';
+        return data.me === matches.target || data.role === 'healer';
       },
       suppressSeconds: 1,
       response: Responses.tankBuster(),
@@ -36,7 +36,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['3321', '3322'], source: ['欧米茄', '欧米茄M'] }),
       netRegexKo: NetRegexes.startsUsing({ id: ['3321', '3322'], source: ['오메가', '오메가 M'] }),
       condition: function(data, matches) {
-        return data.me == matches.target || data.role == 'healer';
+        return data.me === matches.target || data.role === 'healer';
       },
       suppressSeconds: 1,
       response: Responses.tankBuster(),
@@ -50,81 +50,88 @@
       netRegexCn: NetRegexes.gainsEffect({ target: '欧米茄', effectId: '67E', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '오메가', effectId: '67E', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
-      alertText: {
-        en: 'Move bosses apart',
-        de: 'Bosse auseinander ziehen',
-        fr: 'Ecartez les boss',
-        ja: 'ボスを引き離す',
-        cn: '分开boss',
-        ko: '보스 서로 떨어뜨리기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move bosses apart',
+          de: 'Bosse auseinander ziehen',
+          fr: 'Ecartez les boss',
+          ja: 'ボスを引き離す',
+          cn: '分开boss',
+          ko: '보스 서로 떨어뜨리기',
+        },
       },
     },
     {
       id: 'O12N Optimized Meteor',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou(),
     },
     {
       id: 'O12N Stack Spread Markers',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      alertText: function(data, matches) {
-        if (data.me != matches.target)
+      alertText: function(data, matches, output) {
+        if (data.me !== matches.target)
           return;
-        return {
-          en: 'Get Out',
-          de: 'Raus da',
-          fr: 'Sortez',
-          ja: '外へ',
-          cn: '远离',
-          ko: '파티에서 멀어지기',
-        };
+        return output.getOut();
       },
-      infoText: function(data, matches) {
-        if (data.me == matches.target)
+      infoText: function(data, matches, output) {
+        if (data.me === matches.target)
           return;
-        return {
+        return output.stack();
+      },
+      outputStrings: {
+        stack: {
           en: 'Stack',
           de: 'Stacken',
           fr: 'Packez vous',
           ja: '頭割り',
           cn: '集合',
           ko: '쉐어징 대상자',
-        };
+        },
+        getOut: {
+          en: 'Get Out',
+          de: 'Raus da',
+          fr: 'Sortez',
+          ja: '外へ',
+          cn: '远离',
+          ko: '파티에서 멀어지기',
+        },
       },
     },
     {
       id: 'O12N Packet Filter F',
       netRegex: NetRegexes.gainsEffect({ effectId: '67D' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Attack Omega-M',
-        de: 'Omega-M angreifen',
-        fr: 'Attaquez Oméga-M',
-        ja: 'オメガMに攻撃',
-        cn: '攻击男性',
-        ko: '오메가 M 공격',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Attack Omega-M',
+          de: 'Omega-M angreifen',
+          fr: 'Attaquez Oméga-M',
+          ja: 'オメガMに攻撃',
+          cn: '攻击男性',
+          ko: '오메가 M 공격',
+        },
       },
     },
     {
       id: 'O12N Packet Filter M',
       netRegex: NetRegexes.gainsEffect({ effectId: '67C' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Attack Omega-F',
-        de: 'Omega-W angreifen',
-        fr: 'Attaquez Oméga-F',
-        ja: 'オメガFに攻撃',
-        cn: '攻击女性',
-        ko: '오메가 F 공격',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Attack Omega-F',
+          de: 'Omega-W angreifen',
+          fr: 'Attaquez Oméga-F',
+          ja: 'オメガFに攻撃',
+          cn: '攻击女性',
+          ko: '오메가 F 공격',
+        },
       },
     },
   ],

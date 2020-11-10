@@ -14,7 +14,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3E9A', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E9A', source: '이노센스', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -26,12 +26,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3E99', source: 'イノセンス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E99', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E99', source: '이노센스', capture: false }),
-      alertText: {
-        en: 'Look Away, Get Towers',
-        de: 'Weg schauen, Türme nehmen',
-        fr: 'Regardez ailleurs, prenez une tour',
-        cn: '背对BOSS，踩塔',
-        ko: '뒤돌고 장판 들어가기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look Away, Get Towers',
+          de: 'Weg schauen, Türme nehmen',
+          fr: 'Regardez ailleurs, prenez une tour',
+          cn: '背对BOSS，踩塔',
+          ko: '뒤돌고 장판 들어가기',
+        },
       },
     },
     {
@@ -44,13 +47,16 @@
       netRegexKo: NetRegexes.startsUsing({ id: '3EDC', source: '이노센스', capture: false }),
       // 3 seconds cast time + 9.5 seconds until next sword.
       delaySeconds: 9.5,
-      infoText: {
-        en: 'Swords!',
-        de: 'Schwerter!',
-        fr: 'Épées !',
-        ja: '剣くるよ',
-        cn: '剑!',
-        ko: '검 돌아옴!',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Swords!',
+          de: 'Schwerter!',
+          fr: 'Épées !',
+          ja: '剣くるよ',
+          cn: '剑!',
+          ko: '검 돌아옴!',
+        },
       },
     },
 
@@ -63,7 +69,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3EEA', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EEA', source: '이노센스', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -76,7 +82,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3EA3', source: '无瑕灵君' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EA3', source: '이노센스' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -88,13 +94,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3EC7', source: 'イノセンス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3EC7', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EC7', source: '이노센스', capture: false }),
-      alertText: {
-        en: 'Avoid Charge',
-        de: 'ausweichen',
-        fr: 'Évitez les charges',
-        ja: '突進避けて',
-        cn: '躲避冲锋',
-        ko: '돌진 피하기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Charge',
+          de: 'ausweichen',
+          fr: 'Évitez les charges',
+          ja: '突進避けて',
+          cn: '躲避冲锋',
+          ko: '돌진 피하기',
+        },
       },
     },
     {
@@ -105,28 +114,32 @@
       netRegexJa: NetRegexes.ability({ id: '38FC', source: 'イノセンス', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '38FC', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '38FC', source: '이노센스', capture: false }),
-      infoText: {
-        en: 'Line Stack',
-        de: 'In einer Linie sammeln',
-        fr: 'Packez-vous en ligne',
-        ja: 'シェア',
-        cn: '直线分摊',
-        ko: '직선 쉐어',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Line Stack',
+          de: 'In einer Linie sammeln',
+          fr: 'Packez-vous en ligne',
+          ja: 'シェア',
+          cn: '直线分摊',
+          ko: '직선 쉐어',
+        },
       },
     },
     {
       id: 'Inno Winged Drop Of Light',
       netRegex: NetRegexes.headMarker({ id: '008A' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
-      alertText: {
-        en: 'Circle on YOU',
-        de: 'Kreis auf DIR',
-        fr: 'Cercle sur vous',
-        ja: 'サークルついた',
-        cn: '圈圈点你',
-        ko: '원형징 대상자',
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Circle on YOU',
+          de: 'Kreis auf DIR',
+          fr: 'Cercle sur vous',
+          ja: 'サークルついた',
+          cn: '圈圈点你',
+          ko: '원형징 대상자',
+        },
       },
     },
     {
@@ -139,12 +152,15 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3EB1', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EB1', source: '이노센스', capture: false }),
       suppressSeconds: 1,
-      infoText: {
-        en: 'Rotate Right',
-        de: 'Rechts rum rotieren',
-        fr: 'Rotation vers la droite',
-        cn: '向右旋转',
-        ko: '오른쪽으로 도세요',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Rotate Right',
+          de: 'Rechts rum rotieren',
+          fr: 'Rotation vers la droite',
+          cn: '向右旋转',
+          ko: '오른쪽으로 도세요',
+        },
       },
     },
   ],

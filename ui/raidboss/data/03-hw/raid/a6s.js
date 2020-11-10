@@ -7,9 +7,7 @@
     {
       id: 'A6S Magic Vulnerability Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '292' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.magicVulnerability = true;
       },
@@ -17,9 +15,7 @@
     {
       id: 'A6S Magic Vulnerability Loss',
       netRegex: NetRegexes.losesEffect({ effectId: '292' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.magicVulnerability = false;
       },
@@ -45,25 +41,29 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ブラスター', id: '15F7', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者', id: '15F7', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자', id: '15F7', capture: false }),
-      infoText: function(data) {
-        if (data.role == 'tank' && !data.magicVulnerability) {
-          return {
-            en: 'Get Mines',
-            de: 'Mienen nehmen',
-            fr: 'Prenez les mines',
-            ja: '地雷を踏む',
-            cn: '踩雷',
-            ko: '지뢰 밟기',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.role === 'tank' && !data.magicVulnerability)
+          return output.getMines();
+
+        return output.avoidMines();
+      },
+      outputStrings: {
+        getMines: {
+          en: 'Get Mines',
+          de: 'Mienen nehmen',
+          fr: 'Prenez les mines',
+          ja: '地雷を踏む',
+          cn: '踩雷',
+          ko: '지뢰 밟기',
+        },
+        avoidMines: {
           en: 'Avoid Mines',
           de: 'Mienen vermeiden',
           fr: 'Évitez les mines',
           ja: '地雷を踏まない',
           cn: '躲开地雷',
           ko: '지뢰 피하기',
-        };
+        },
       },
     },
     {
@@ -75,13 +75,16 @@
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '15FB', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '15FB', capture: false }),
       suppressSeconds: 1,
-      infoText: {
-        en: 'Dodge Mirage Charge',
-        de: 'Superladung ausweichen',
-        fr: 'Esquivez la charge de la réplique',
-        ja: 'スーパーチャージに避け',
-        cn: '躲开冲锋',
-        ko: '환영 돌진 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dodge Mirage Charge',
+          de: 'Superladung ausweichen',
+          fr: 'Esquivez la charge de la réplique',
+          ja: 'スーパーチャージに避け',
+          cn: '躲开冲锋',
+          ko: '환영 돌진 피하기',
+        },
       },
     },
     {
@@ -92,16 +95,17 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ブラスター・ミラージュ', id: '15FC' }),
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '15FC' }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '15FC' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alertText: {
-        en: 'Look Away from Mirage',
-        de: 'Von Replikant wegschauen',
-        fr: 'Ne regardez pas la réplique',
-        ja: 'ミラージュを見ないで',
-        cn: '背对幻象',
-        ko: '환영 쳐다보지 않기',
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look Away from Mirage',
+          de: 'Von Replikant wegschauen',
+          fr: 'Ne regardez pas la réplique',
+          ja: 'ミラージュを見ないで',
+          cn: '背对幻象',
+          ko: '환영 쳐다보지 않기',
+        },
       },
     },
     {
@@ -112,48 +116,51 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ブラスター・ミラージュ', id: '15FD' }),
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '15FD' }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '15FD' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alertText: {
-        en: 'Look Towards Mirage',
-        de: 'Von Replikant hinschauen',
-        fr: 'Regardez la réplique',
-        ja: 'ミラージュを見て',
-        cn: '面向幻象',
-        ko: '환영 쳐다보기',
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look Towards Mirage',
+          de: 'Von Replikant hinschauen',
+          fr: 'Regardez la réplique',
+          ja: 'ミラージュを見て',
+          cn: '面向幻象',
+          ko: '환영 쳐다보기',
+        },
       },
     },
     {
       id: 'A6S Low Arithmeticks',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FD' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
-      alertText: {
-        en: 'Go High',
-        de: 'Geh Hoch',
-        fr: 'Allez en haut',
-        ja: '高い床に乗る',
-        cn: '上高台',
-        ko: '높은곳으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go High',
+          de: 'Geh Hoch',
+          fr: 'Allez en haut',
+          ja: '高い床に乗る',
+          cn: '上高台',
+          ko: '높은곳으로',
+        },
       },
     },
     {
       id: 'A6S High Arithmeticks',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FE' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
-      alertText: {
-        en: 'Go Low',
-        de: 'Geh Runter',
-        fr: 'Allez en bas',
-        ja: '低い床に乗る',
-        cn: '下低台',
-        ko: '낮은곳으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go Low',
+          de: 'Geh Runter',
+          fr: 'Allez en bas',
+          ja: '低い床に乗る',
+          cn: '下低台',
+          ko: '낮은곳으로',
+        },
       },
     },
     {
@@ -195,17 +202,20 @@
     {
       id: 'A6S Enumeration',
       netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         // 0040 = 2, 0041 = 3, 0042 = 4
         let count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
-        return {
-          en: data.ShortName(matches.target) + ': ' + count,
-          de: data.ShortName(matches.target) + ': ' + count,
-          fr: data.ShortName(matches.target) + ': ' + count,
-          ja: data.ShortName(matches.target) + ': ' + count,
-          cn: data.ShortName(matches.target) + '生命计算法: ' + count,
-          ko: data.ShortName(matches.target) + ': ' + count,
-        };
+        return output.text({ player: data.ShortName(matches.target), count: count });
+      },
+      outputStrings: {
+        text: {
+          en: '${player}: ${count}',
+          de: '${player}: ${count}',
+          fr: '${player}: ${count}',
+          ja: '${player}: ${count}',
+          cn: '${player}生命计算法: ${count}',
+          ko: '${player}: ${count}',
+        },
       },
     },
     {
@@ -226,67 +236,71 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ボルテッカー', id: '161A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '环旋者', id: '161A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '교반자', id: '161A', capture: false }),
-      alertText: {
-        en: 'Hide Behind Ice',
-        de: 'Hinter dem Eis verstecken',
-        fr: 'Cachez-vous derrière la glace',
-        ja: '氷柱の後ろに',
-        ko: '얼음 뒤에 숨기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hide Behind Ice',
+          de: 'Hinter dem Eis verstecken',
+          fr: 'Cachez-vous derrière la glace',
+          ja: '氷柱の後ろに',
+          ko: '얼음 뒤에 숨기',
+        },
       },
     },
     {
       id: 'A6S Ice Marker',
       netRegex: NetRegexes.headMarker({ id: '0043' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alarmText: {
-        en: 'Ice: Freeze Tornado',
-        de: 'Eis: Tornado einfrieren',
-        fr: 'Glace : Gelez la tornade',
-        ja: '氷柱: 竜巻を凍結',
-        ko: '얼음: 물기둥 얼리기',
+      condition: Conditions.targetIsYou(),
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Ice: Freeze Tornado',
+          de: 'Eis: Tornado einfrieren',
+          fr: 'Glace : Gelez la tornade',
+          ja: '氷柱: 竜巻を凍結',
+          ko: '얼음: 물기둥 얼리기',
+        },
       },
     },
     {
       id: 'A6S Fire Beam',
       netRegex: NetRegexes.headMarker({ id: '0019' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       // TODO: maybe this should say "hit tornado / avoid ice" but that's wordy.
-      infoText: {
-        en: 'Fire Beam on YOU',
-        de: 'Feuer Strahl auf DIR',
-        fr: 'Rayon de feu sur VOUS',
-        ja: '自分にファイアビーム',
-        ko: '화염 광선 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Fire Beam on YOU',
+          de: 'Feuer Strahl auf DIR',
+          fr: 'Rayon de feu sur VOUS',
+          ja: '自分にファイアビーム',
+          ko: '화염 광선 대상자',
+        },
       },
     },
     {
       id: 'A6S Compressed Water Initial',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Water on YOU',
-        de: 'Wasser auf DIR',
-        fr: 'Eau sur VOUS',
-        ja: '自分に水',
-        cn: '水点名',
-        ko: '물징 대상자',
-      },
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.haveWater = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Water on YOU',
+          de: 'Wasser auf DIR',
+          fr: 'Eau sur VOUS',
+          ja: '自分に水',
+          cn: '水点名',
+          ko: '물징 대상자',
+        },
       },
     },
     {
       id: 'A6S Compressed Water Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '3FF' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.haveWater = false;
       },
@@ -294,50 +308,50 @@
     {
       id: 'A6S Compressed Water Explode',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: function(data, matches) {
         // 5 second warning.
         return parseFloat(matches.duration) - 5;
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (!data.haveWater)
           return;
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'Drop Water Soon',
           de: 'Gleich Wasser ablegen',
           fr: 'Déposez l\'eau bientôt',
           ja: '水来るよ',
           cn: '马上水分摊',
           ko: '곧 물징 폭발',
-        };
+        },
       },
     },
     {
       id: 'A6S Compressed Lightning Initial',
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Lightning on YOU',
-        de: 'Blitz auf DIR',
-        fr: 'Éclair sur VOUS',
-        ja: '自分に雷',
-        cn: '雷点名',
-        ko: '번개징 대상자',
-      },
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.haveLightning = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Lightning on YOU',
+          de: 'Blitz auf DIR',
+          fr: 'Éclair sur VOUS',
+          ja: '自分に雷',
+          cn: '雷点名',
+          ko: '번개징 대상자',
+        },
       },
     },
     {
       id: 'A6S Compressed Lightning Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '400' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.haveLightning = false;
       },
@@ -345,24 +359,25 @@
     {
       id: 'A6S Compressed Lightning Explode',
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: function(data, matches) {
         // 5 second warning.
         return parseFloat(matches.duration) - 5;
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (!data.haveLightning)
           return;
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'Drop Lightning Soon',
           de: 'Gleich Blitz ablegen',
           fr: 'Déposez l\'éclair bientôt',
           ja: '雷来るよ',
           cn: '马上雷分摊',
           ko: '곧 번개징 폭발',
-        };
+        },
       },
     },
   ],

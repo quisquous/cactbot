@@ -24,39 +24,43 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4158', source: 'ハーデス' }),
       netRegexCn: NetRegexes.startsUsing({ id: '4158', source: '哈迪斯' }),
       netRegexKo: NetRegexes.startsUsing({ id: '4158', source: '하데스' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tank buster sur VOUS',
-            ja: '自分にタンクバスター',
-            cn: '死刑',
-            ko: '탱버 대상자',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tank buster sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にタンクバスター',
-            cn: '死刑 点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 탱버',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (matches.target === data.me)
+          return output.tankBusterOnYou();
+
+        if (data.role === 'healer')
+          return output.busterOn({ player: data.ShortName(matches.target) });
       },
-      infoText: function(data, matches) {
-        if (matches.target == data.me)
+      infoText: function(data, matches, output) {
+        if (matches.target === data.me)
           return;
-        return {
-          en: 'Away From ' + data.ShortName(matches.target),
-          de: 'Weg von ' + data.ShortName(matches.target),
-          fr: 'Éloignez-vous de ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + ' から離れ',
-          cn: '远离 ' + data.ShortName(matches.target),
-          ko: data.ShortName(matches.target) + ' 한테서 피하세요',
-        };
+        return output.awayFromPlayer({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        awayFromPlayer: {
+          en: 'Away From ${player}',
+          de: 'Weg von ${player}',
+          fr: 'Éloignez-vous de ${player}',
+          ja: '${player} から離れ',
+          cn: '远离 ${player}',
+          ko: '${player} 한테서 피하세요',
+        },
+        tankBusterOnYou: {
+          en: 'Tank Buster on YOU',
+          de: 'Tankbuster auf DIR',
+          fr: 'Tank buster sur VOUS',
+          ja: '自分にタンクバスター',
+          cn: '死刑',
+          ko: '탱버 대상자',
+        },
+        busterOn: {
+          en: 'Buster on ${player}',
+          de: 'Tankbuster auf ${player}',
+          fr: 'Tank buster sur ${player}',
+          ja: '${player}にタンクバスター',
+          cn: '死刑 点${player}',
+          ko: '"${player}" 탱버',
+        },
       },
     },
     {
@@ -87,13 +91,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '414D', source: 'ハーデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '414D', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '414D', source: '하데스', capture: false }),
-      alertText: {
-        en: 'Dodge Giant Circles',
-        de: 'Weiche dem großen Kreis aus',
-        fr: 'Évitez les cercles géants',
-        ja: '降ったサークルを避け',
-        cn: '躲避大圈',
-        ko: '대형장판피하기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dodge Giant Circles',
+          de: 'Weiche dem großen Kreis aus',
+          fr: 'Évitez les cercles géants',
+          ja: '降ったサークルを避け',
+          cn: '躲避大圈',
+          ko: '대형장판피하기',
+        },
       },
     },
     {
@@ -125,7 +132,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '4180', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4180', source: '하데스', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -152,16 +159,17 @@
     {
       id: 'Hades Doom',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Cleanse Doom In Circle',
-        de: 'Entferne Verhängnis mit den Kreisen',
-        fr: 'Purifiez-vous du Glas dans le cercle',
-        ja: '光った輪を踏む、死の宣告を消す',
-        cn: '踩光圈',
-        ko: '모든 장판을 밟으세요',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Cleanse Doom In Circle',
+          de: 'Entferne Verhängnis mit den Kreisen',
+          fr: 'Purifiez-vous du Glas dans le cercle',
+          ja: '光った輪を踏む、死の宣告を消す',
+          cn: '踩光圈',
+          ko: '모든 장판을 밟으세요',
+        },
       },
     },
     {
@@ -172,13 +180,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4166', source: 'ハーデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4166', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4166', source: '하데스', capture: false }),
-      infoText: {
-        en: 'Right Knockback',
-        de: 'Rechter Knockback',
-        fr: 'Poussée à droite',
-        ja: '東／右からノックバック',
-        cn: '右侧击退',
-        ko: '오른쪽 넉백',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Right Knockback',
+          de: 'Rechter Knockback',
+          fr: 'Poussée à droite',
+          ja: '東／右からノックバック',
+          cn: '右侧击退',
+          ko: '오른쪽 넉백',
+        },
       },
     },
     {
@@ -189,13 +200,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4165', source: 'ハーデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4165', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4165', source: '하데스', capture: false }),
-      infoText: {
-        en: 'Left Knockback',
-        de: 'Linker Knockback',
-        fr: 'Poussée à gauche',
-        ja: '西／左からノックバック',
-        cn: '左侧击退',
-        ko: '왼쪽 넉백',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Left Knockback',
+          de: 'Linker Knockback',
+          fr: 'Poussée à gauche',
+          ja: '西／左からノックバック',
+          cn: '左侧击退',
+          ko: '왼쪽 넉백',
+        },
       },
     },
     {
@@ -207,60 +221,68 @@
       netRegexCn: NetRegexes.startsUsing({ id: '4161', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4161', source: '하데스', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
-      infoText: {
-        en: 'Tank Busters',
-        de: 'Tank Buster',
-        fr: 'Tank buster',
-        ja: 'タンクバスター',
-        cn: '坦克死刑',
-        ko: '탱크버스터',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Busters',
+          de: 'Tank Buster',
+          fr: 'Tank buster',
+          ja: 'タンクバスター',
+          cn: '坦克死刑',
+          ko: '탱크버스터',
+        },
       },
     },
     {
       id: 'Hades Dual Strike',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: function(data, matches) {
-        return data.neoHades && data.me == matches.target;
+        return data.neoHades && data.me === matches.target;
       },
-      alertText: {
-        en: 'Tank Buster Spread',
-        de: 'Tank Buster verteilen',
-        fr: 'Tank buster, dispersez-vous',
-        ja: 'タンクバスター、散開',
-        cn: '坦克死刑分散',
-        ko: '탱버 산개',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Buster Spread',
+          de: 'Tank Buster verteilen',
+          fr: 'Tank buster, dispersez-vous',
+          ja: 'タンクバスター、散開',
+          cn: '坦克死刑分散',
+          ko: '탱버 산개',
+        },
       },
     },
     {
       id: 'Hades Hellborn Yawp',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alertText: {
-        en: 'Drop Marker Outside',
-        de: 'Marker außen ablegen',
-        fr: 'Déposez la marque à l\'extérieur',
-        ja: '外周に安置',
-        cn: '外侧放点名',
-        ko: '외곽으로',
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop Marker Outside',
+          de: 'Marker außen ablegen',
+          fr: 'Déposez la marque à l\'extérieur',
+          ja: '外周に安置',
+          cn: '外侧放点名',
+          ko: '외곽으로',
+        },
       },
     },
     {
       id: 'Hades Fetters',
       netRegex: NetRegexes.headMarker({ id: '0078' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alarmText: {
-        en: 'Fetters on YOU',
-        de: 'Fessel auf DIR',
-        fr: 'Entraves sur VOUS',
-        ja: '自分に拘束',
-        cn: '锁链点名',
-        ko: '선 대상자',
+      condition: Conditions.targetIsYou(),
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Fetters on YOU',
+          de: 'Fessel auf DIR',
+          fr: 'Entraves sur VOUS',
+          ja: '自分に拘束',
+          cn: '锁链点名',
+          ko: '선 대상자',
+        },
       },
     },
     {
@@ -289,44 +311,46 @@
         return !data.seenLifeInCaptivity;
       },
       delaySeconds: 2,
-      infoText: {
-        en: 'Kill Jail',
-        de: 'Gefängniss zerstören',
-        fr: 'Tuez la prison',
-        ja: 'ジェイルに攻撃',
-        cn: '攻击牢狱',
-        ko: '감옥',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Jail',
+          de: 'Gefängniss zerstören',
+          fr: 'Tuez la prison',
+          ja: 'ジェイルに攻撃',
+          cn: '攻击牢狱',
+          ko: '감옥',
+        },
       },
     },
     {
       id: 'Hades Nether Blast / Dark Eruption',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
       id: 'Hades Ancient Darkness',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: function(data, matches) {
-        return !data.neoHades && data.me == matches.target;
+        return !data.neoHades && data.me === matches.target;
       },
-      alertText: {
-        en: 'Spread (Don\'t Stack!)',
-        de: 'Verteilen (Ohne stacken)',
-        fr: 'Dispersez-vous (Pas de package !)',
-        ja: '散開（重ならないように）',
-        cn: '分散（不要重合!）',
-        ko: '산개（모이지마세요!）',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spread (Don\'t Stack!)',
+          de: 'Verteilen (Ohne stacken)',
+          fr: 'Dispersez-vous (Pas de package !)',
+          ja: '散開（重ならないように）',
+          cn: '分散（不要重合!）',
+          ko: '산개（모이지마세요!）',
+        },
       },
     },
     {
       id: 'Hades Ancient Water III',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.stackMarkerOn(),
     },
     {
@@ -344,18 +368,21 @@
       id: 'Hades Ancient No Marker',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       delaySeconds: 0.5,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (data.ancient[data.me])
           return;
         let name = Object.keys(data.ancient).find((key) => data.ancient[key] === '003E');
-        return {
-          en: 'Stack on ' + data.ShortName(name),
-          de: 'Sammeln auf ' + data.ShortName(name),
-          fr: 'Packez-vous sur ' + data.ShortName(name),
-          ja: data.ShortName(name) + ' に集合',
-          cn: '靠近 ' + data.ShortName(name) + ' 集合',
-          ko: '"' + data.ShortName(name) + '" 쉐어징',
-        };
+        return output.text({ player: data.ShortName(name) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Stack on ${player}',
+          de: 'Sammeln auf ${player}',
+          fr: 'Packez-vous sur ${player}',
+          ja: '${player} に集合',
+          cn: '靠近 ${player} 集合',
+          ko: '"${player}" 쉐어징',
+        },
       },
     },
     {

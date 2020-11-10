@@ -32,7 +32,7 @@ let noBuff = (str) => {
       id: 'E7N Stygian Stake', // Laser tank buster, outside intermission phase
       damageRegex: '4C33',
       condition: function(e) {
-        return e.type != '15';
+        return e.type !== '15';
       },
       mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
@@ -42,7 +42,7 @@ let noBuff = (str) => {
       id: 'E5N Silver Shot', // Spread markers, intermission
       damageRegex: '4E7D',
       condition: function(e) {
-        return e.type != '15';
+        return e.type !== '15';
       },
       mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };

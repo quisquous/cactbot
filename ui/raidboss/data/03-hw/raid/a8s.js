@@ -20,26 +20,32 @@
       id: 'A8S Swindler Add',
       regex: /Swindler/,
       beforeSeconds: 5,
-      infoText: {
-        en: 'Swindler Soon',
-        de: 'Bald Schwindler',
-        fr: 'Arnaqueur bientôt',
-        ja: 'まもなくスウィンドラー',
-        cn: '欺诈者即将出现',
-        ko: '곧 조작자 등장',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Swindler Soon',
+          de: 'Bald Schwindler',
+          fr: 'Arnaqueur bientôt',
+          ja: 'まもなくスウィンドラー',
+          cn: '欺诈者即将出现',
+          ko: '곧 조작자 등장',
+        },
       },
     },
     {
       id: 'A8S Vortexer Add',
       regex: /Vortexer/,
       beforeSeconds: 5,
-      infoText: {
-        en: 'Vortexer Soon',
-        de: 'Bald Vortexer',
-        fr: 'Tourbillonneur bientôt',
-        ja: 'まもなくボルテッカー',
-        cn: '环旋者即将出现',
-        ko: '곧 교반자 등장',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Vortexer Soon',
+          de: 'Bald Vortexer',
+          fr: 'Tourbillonneur bientôt',
+          ja: 'まもなくボルテッカー',
+          cn: '环旋者即将出现',
+          ko: '곧 교반자 등장',
+        },
       },
     },
     {
@@ -52,13 +58,16 @@
       id: 'A8S Super Jump Soon',
       regex: /Super Jump/,
       beforeSeconds: 8,
-      infoText: {
-        en: 'Bait Super Jump',
-        de: 'Supersprung ködern',
-        fr: 'Attirez le Super saut',
-        ja: 'スーパージャンプを誘導',
-        cn: '引导超级跳',
-        ko: '슈퍼 점프',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Super Jump',
+          de: 'Supersprung ködern',
+          fr: 'Attirez le Super saut',
+          ja: 'スーパージャンプを誘導',
+          cn: '引导超级跳',
+          ko: '슈퍼 점프',
+        },
       },
     },
   ],
@@ -72,13 +81,16 @@
       netRegexCn: NetRegexes.startsUsing({ source: '突击者', id: '162E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '맹습자', id: '162E', capture: false }),
       // Insert sound effect from Arthars here.
-      alertText: {
-        en: 'Megabeamu~',
-        de: 'Megalaser~',
-        fr: 'Mégarayon~',
-        ja: 'メガビーム～',
-        cn: '巨型光束炮~',
-        ko: '고출력 광선~',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Megabeamu~',
+          de: 'Megalaser~',
+          fr: 'Mégarayon~',
+          ja: 'メガビーム～',
+          cn: '巨型光束炮~',
+          ko: '고출력 광선~',
+        },
       },
     },
     {
@@ -89,13 +101,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '1664', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '1664', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '1664', capture: false }),
-      alertText: {
-        en: 'Megabeamu~!',
-        de: 'Megalaser~!',
-        fr: 'Mégarayon~ !',
-        ja: 'メガビーム～',
-        cn: '巨型光束炮~!',
-        ko: '고출력 광선~!',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Megabeamu~!',
+          de: 'Megalaser~!',
+          fr: 'Mégarayon~ !',
+          ja: 'メガビーム～',
+          cn: '巨型光束炮~!',
+          ko: '고출력 광선~!',
+        },
       },
     },
     {
@@ -107,15 +122,18 @@
       netRegexCn: NetRegexes.ability({ source: '突击者', id: '1632', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '맹습자', id: '1632', capture: false }),
       condition: function(data) {
-        return data.role == 'dps' || data.job == 'BLU';
+        return data.role === 'dps' || data.job === 'BLU';
       },
-      infoText: {
-        en: 'Kill Regulators',
-        de: 'Dampfregler besiegen',
-        fr: 'Tuez les Régulateurs',
-        ja: 'スチームジャッジを倒す',
-        cn: '击杀小怪',
-        ko: '증기 감독 없애기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Regulators',
+          de: 'Dampfregler besiegen',
+          fr: 'Tuez les Régulateurs',
+          ja: 'スチームジャッジを倒す',
+          cn: '击杀小怪',
+          ko: '증기 감독 없애기',
+        },
       },
     },
     {
@@ -138,13 +156,16 @@
       netRegexCn: NetRegexes.addedCombatant({ name: '爆破者幻象', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '폭파자의 환영', capture: false }),
       suppressSeconds: 99999,
-      infoText: {
-        en: 'Mirage',
-        de: 'Mirage',
-        fr: 'Mirage',
-        ja: 'マラージュ',
-        cn: '幻象',
-        ko: '환영',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mirage',
+          de: 'Mirage',
+          fr: 'Mirage',
+          ja: 'マラージュ',
+          cn: '幻象',
+          ko: '환영',
+        },
       },
     },
     {
@@ -154,13 +175,16 @@
         // Verdict comes with the same headmarker.
         return data.me === matches.target && !data.seenLinkUp;
       },
-      infoText: {
-        en: 'Orb on YOU',
-        de: 'Orb auf DIR',
-        fr: 'Orbe sur VOUS',
-        ja: '自分に玉',
-        cn: '球点名',
-        ko: '구슬 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Orb on YOU',
+          de: 'Orb auf DIR',
+          fr: 'Orbe sur VOUS',
+          ja: '自分に玉',
+          cn: '球点名',
+          ko: '구슬 대상자',
+        },
       },
     },
     {
@@ -183,13 +207,16 @@
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
-      alertText: {
-        en: 'Get High',
-        de: 'Geh nach Oben',
-        fr: 'Montez',
-        ja: '高い床に乗る',
-        cn: '上高台',
-        ko: '높은곳으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get High',
+          de: 'Geh nach Oben',
+          fr: 'Montez',
+          ja: '高い床に乗る',
+          cn: '上高台',
+          ko: '높은곳으로',
+        },
       },
     },
     {
@@ -198,13 +225,16 @@
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
-      alertText: {
-        en: 'Get Down',
-        de: 'Geh nach Unten',
-        fr: 'Descendez',
-        ja: '低い床に乗る',
-        cn: '下低台',
-        ko: '낮은곳으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Down',
+          de: 'Geh nach Unten',
+          fr: 'Descendez',
+          ja: '低い床に乗る',
+          cn: '下低台',
+          ko: '낮은곳으로',
+        },
       },
     },
     {
@@ -233,32 +263,34 @@
       // Note: also the 0045 headmarker.
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
       // TODO: do we need a Responses.effectOn() that uses matches.effect?
-      alarmText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Thunder on YOU',
-            de: 'Blitz auf DIR',
-            fr: 'Foudre sur VOUS',
-            ja: '自分に雷',
-            cn: '雷点名',
-            ko: '번개징 대상자',
-          };
-        }
+      alarmText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return output.thunderOnYou();
       },
-      infoText: function(data, matches) {
-        if (data.me != matches.target) {
-          return {
-            en: 'Thunder on ' + data.ShortName(matches.target),
-            de: 'Blitz auf ' + data.ShortName(matches.target),
-            fr: 'Foudre sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'に雷',
-            cn: '雷点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 번개징',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me !== matches.target)
+          return output.thunderOn({ player: data.ShortName(matches.target) });
       },
       run: function(data, matches) {
         data.lightning = matches.target;
+      },
+      outputStrings: {
+        thunderOn: {
+          en: 'Thunder on ${player}',
+          de: 'Blitz auf ${player}',
+          fr: 'Foudre sur ${player}',
+          ja: '${player}に雷',
+          cn: '雷点${player}',
+          ko: '"${player}" 번개징',
+        },
+        thunderOnYou: {
+          en: 'Thunder on YOU',
+          de: 'Blitz auf DIR',
+          fr: 'Foudre sur VOUS',
+          ja: '自分に雷',
+          cn: '雷点名',
+          ko: '번개징 대상자',
+        },
       },
     },
     {
@@ -274,33 +306,39 @@
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 5;
       },
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (!data.lightning)
           return;
-        return {
-          en: 'Thunder Soon on ' + data.ShortName(data.lightning),
-          de: 'Blitz bald auf ' + data.ShortName(data.lightning),
-          fr: 'Foudre bientôt sur ' + data.ShortName(data.lightning),
-          ja: data.ShortName(data.lightning) + 'に雷頭割り',
-          cn: '马上雷分摊' + data.ShortName(data.lightning),
-          ko: '"' + data.ShortName(data.lightning) + '" 번개징 곧 터짐',
-        };
+        return output.text({ player: data.ShortName(data.lightning) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Thunder Soon on ${player}',
+          de: 'Blitz bald auf ${player}',
+          fr: 'Foudre bientôt sur ${player}',
+          ja: '${player}に雷頭割り',
+          cn: '马上雷分摊${player}',
+          ko: '"${player}" 번개징 곧 터짐',
+        },
       },
     },
     {
       id: 'A8S Enumeration',
       netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         // 0040 = 2, 0041 = 3, 0042 = 4
         let count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
-        return {
-          en: data.ShortName(matches.target) + ': ' + count,
-          de: data.ShortName(matches.target) + ': ' + count,
-          fr: data.ShortName(matches.target) + ': ' + count,
-          ja: data.ShortName(matches.target) + ': ' + count,
-          cn: data.ShortName(matches.target) + '生命计算法: ' + count,
-          ko: data.ShortName(matches.target) + ': ' + count,
-        };
+        return output.text({ player: data.ShortName(matches.target), count: count });
+      },
+      outputStrings: {
+        text: {
+          en: '${player}: ${count}',
+          de: '${player}: ${count}',
+          fr: '${player}: ${count}',
+          ja: '${player}: ${count}',
+          cn: '${player}生命计算法: ${count}',
+          ko: '${player}: ${count}',
+        },
       },
     },
     {
@@ -312,27 +350,30 @@
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '1663' }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '1663' }),
       condition: Conditions.caresAboutPhysical(),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Shared Tankbuster on YOU',
-            de: 'geteilter Tankbuster auf DIR',
-            fr: 'Tank buster à partager sur VOUS',
-            ja: '自分にタンクシェア',
-            cn: '分摊死刑点名',
-            ko: '쉐어 탱버 대상자',
-          };
-        }
-        if (data.role == 'tank' || data.role == 'healer') {
-          return {
-            en: 'Shared Tankbuster on ' + data.ShortName(matches.target),
-            de: 'geteilter Tankbuster on ' + data.ShortName(matches.target),
-            fr: 'Tank buster à partager sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + ' にタンクシェア',
-            cn: '分摊死刑点 ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 쉐어 탱버',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return output.sharedTankbusterOnYou();
+
+        if (data.role === 'tank' || data.role === 'healer')
+          return output.sharedTankbusterOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        sharedTankbusterOnYou: {
+          en: 'Shared Tankbuster on YOU',
+          de: 'geteilter Tankbuster auf DIR',
+          fr: 'Tank buster à partager sur VOUS',
+          ja: '自分にタンクシェア',
+          cn: '分摊死刑点名',
+          ko: '쉐어 탱버 대상자',
+        },
+        sharedTankbusterOn: {
+          en: 'Shared Tankbuster on ${player}',
+          de: 'geteilter Tankbuster on ${player}',
+          fr: 'Tank buster à partager sur ${player}',
+          ja: '${player} にタンクシェア',
+          cn: '分摊死刑点 ${player}',
+          ko: '"${player}" 쉐어 탱버',
+        },
       },
     },
     {
@@ -373,44 +414,48 @@
         return data.longNeedleStack && data.longNeedlePrey;
       },
       suppressSeconds: 10,
-      alarmText: function(data) {
-        if (data.longNeedlePrey.includes(data.me)) {
-          return {
-            en: 'Prey: Get Out',
-            de: 'Makiert: Geh raus',
-            fr: 'Marquage : Sortez',
-            ja: '赤いマーク: 外へ',
-            cn: '红点名离开人群',
-            ko: '빨간징: 밖으로',
-          };
-        }
+      alarmText: function(data, _, output) {
+        if (data.longNeedlePrey.includes(data.me))
+          return output.preyGetOut();
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (data.longNeedlePrey.includes(data.me))
           return;
         let target = data.longNeedleStack;
-        if (target == data.me) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR sammeln',
-            fr: 'Package sur VOUS',
-            ja: '自分にスタック',
-            cn: '集合点名',
-            ko: '쉐어징 대상자',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(target),
-          de: 'Auf ' + data.ShortName(target) + ' sammeln',
-          fr: 'Packez-vous sur ' + data.ShortName(target),
-          ja: data.ShortName(target) + 'にスタック',
-          cn: '靠近 ' + data.ShortName(target) + '集合',
-          ko: '"' + data.ShortName(target) + '" 쉐어징',
-        };
+        if (target === data.me)
+          return output.stackOnYou();
+
+        return output.stackOn({ player: data.ShortName(target) });
       },
       run: function(data) {
         delete data.longNeedleStack;
         delete data.longNeedlePrey;
+      },
+      outputStrings: {
+        stackOnYou: {
+          en: 'Stack on YOU',
+          de: 'Auf DIR sammeln',
+          fr: 'Package sur VOUS',
+          ja: '自分にスタック',
+          cn: '集合点名',
+          ko: '쉐어징 대상자',
+        },
+        stackOn: {
+          en: 'Stack on ${player}',
+          de: 'Auf ${player} sammeln',
+          fr: 'Packez-vous sur ${player}',
+          ja: '${player}にスタック',
+          cn: '靠近 ${player}集合',
+          ko: '"${player}" 쉐어징',
+        },
+        preyGetOut: {
+          en: 'Prey: Get Out',
+          de: 'Makiert: Geh raus',
+          fr: 'Marquage : Sortez',
+          ja: '赤いマーク: 外へ',
+          cn: '红点名离开人群',
+          ko: '빨간징: 밖으로',
+        },
       },
     },
     {
@@ -421,55 +466,65 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '1665' }),
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '1665' }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '1665' }),
-      alertText: function(data, matches) {
-        if (data.me != matches.target)
+      alertText: function(data, matches, output) {
+        if (data.me !== matches.target)
           return;
-        return {
+        return output.superJumpOnYou();
+      },
+      infoText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return;
+        return output.superJumpOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        superJumpOn: {
+          en: 'Super Jump on ${player}',
+          de: 'Supersprung auf ${player}',
+          fr: 'Super saut sur ${player}',
+          ja: '${player}にスーパージャンプ',
+          cn: '超级跳点${player}',
+          ko: '"${player}" 슈퍼 점프',
+        },
+        superJumpOnYou: {
           en: 'Super Jump on YOU',
           de: 'Supersprung auf DIR',
           fr: 'Super saut sur VOUS',
           ja: '自分にスーパージャンプ',
           cn: '超级跳点名',
           ko: '슈퍼 점프 대상자',
-        };
-      },
-      infoText: function(data, matches) {
-        if (data.me == matches.target)
-          return;
-        return {
-          en: 'Super Jump on ' + data.ShortName(matches.target),
-          de: 'Supersprung auf ' + data.ShortName(matches.target),
-          fr: 'Super saut sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にスーパージャンプ',
-          cn: '超级跳点' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '" 슈퍼 점프',
-        };
+        },
       },
     },
     {
       id: 'A8S Mirage Marker',
       netRegex: NetRegexes.headMarker({ id: '0008' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Mirage on YOU',
-        de: 'Mirage auf DIR',
-        fr: 'Mirage sur VOUS',
-        ja: '自分にミラージュ',
-        cn: '分身点名',
-        ko: '환영 징 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mirage on YOU',
+          de: 'Mirage auf DIR',
+          fr: 'Mirage sur VOUS',
+          ja: '自分にミラージュ',
+          cn: '分身点名',
+          ko: '환영 징 대상자',
+        },
       },
     },
     {
       id: 'A8S Ice Missile Marker',
       netRegex: NetRegexes.headMarker({ id: '0043' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Ice Missile on YOU',
-        de: 'Eis-Rakete auf DIR',
-        fr: 'Missile de glace sur VOUS',
-        ja: '自分にアイスミサイル',
-        cn: '冰点名',
-        ko: '얼음 미사일 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Ice Missile on YOU',
+          de: 'Eis-Rakete auf DIR',
+          fr: 'Missile de glace sur VOUS',
+          ja: '自分にアイスミサイル',
+          cn: '冰点名',
+          ko: '얼음 미사일 대상자',
+        },
       },
     },
     {
@@ -486,13 +541,16 @@
         return !data.seenLinkUp;
       },
       suppressSeconds: 10,
-      infoText: {
-        en: 'Get Mines',
-        de: 'Mienen nehmen',
-        fr: 'Prenez les mines',
-        ja: '地雷を踏む',
-        cn: '踩雷',
-        ko: '지뢰 밟기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Mines',
+          de: 'Mienen nehmen',
+          fr: 'Prenez les mines',
+          ja: '地雷を踏む',
+          cn: '踩雷',
+          ko: '지뢰 밟기',
+        },
       },
     },
     {
@@ -504,13 +562,16 @@
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '165A' }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '165A' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Look Away from Mirage',
-        de: 'Von Replikant wegschauen',
-        fr: 'Ne regardez pas la Réplique',
-        ja: 'ミラージュを見ないで',
-        cn: '背对幻象',
-        ko: '환영 쳐다보지 않기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look Away from Mirage',
+          de: 'Von Replikant wegschauen',
+          fr: 'Ne regardez pas la Réplique',
+          ja: 'ミラージュを見ないで',
+          cn: '背对幻象',
+          ko: '환영 쳐다보지 않기',
+        },
       },
     },
     {
@@ -522,13 +583,16 @@
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '165B' }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '165B' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Look Towards Mirage',
-        de: 'Zu Replikant hinschauen',
-        fr: 'Regardez la Réplique',
-        ja: 'ミラージュを見て',
-        cn: '面向幻象',
-        ko: '환영 쳐다보기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look Towards Mirage',
+          de: 'Zu Replikant hinschauen',
+          fr: 'Regardez la Réplique',
+          ja: 'ミラージュを見て',
+          cn: '面向幻象',
+          ko: '환영 쳐다보기',
+        },
       },
     },
     {
@@ -548,13 +612,16 @@
       netRegex: NetRegexes.gainsEffect({ effectId: '408' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
-      alertText: {
-        en: 'Min HP: Provoke Boss => Late NE Tornado',
-        de: 'Min HP: Boss herrausfordern => Später No Tornado',
-        fr: 'PV Min : Provocation Boss => Cyclone NE en retard',
-        ja: 'HP最小: ボスに挑発 => 北東竜巻',
-        cn: '最少HP:挑衅BOSS => 东北龙卷风',
-        ko: 'HP 최소: 보스 도발 => 북동쪽 회오리',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Min HP: Provoke Boss => Late NE Tornado',
+          de: 'Min HP: Boss herrausfordern => Später No Tornado',
+          fr: 'PV Min : Provocation Boss => Cyclone NE en retard',
+          ja: 'HP最小: ボスに挑発 => 北東竜巻',
+          cn: '最少HP:挑衅BOSS => 东北龙卷风',
+          ko: 'HP 최소: 보스 도발 => 북동쪽 회오리',
+        },
       },
     },
     {
@@ -569,13 +636,16 @@
       netRegex: NetRegexes.gainsEffect({ effectId: '408' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 27,
-      alarmText: {
-        en: 'Get NE Tornado',
-        de: 'Nimm NO Tornado',
-        fr: 'Prenez le Cyclone NE',
-        ja: '北東竜巻に',
-        cn: '去东北龙卷风',
-        ko: '북동쪽 회오리 밟기',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get NE Tornado',
+          de: 'Nimm NO Tornado',
+          fr: 'Prenez le Cyclone NE',
+          ja: '北東竜巻に',
+          cn: '去东北龙卷风',
+          ko: '북동쪽 회오리 밟기',
+        },
       },
     },
     {
@@ -589,13 +659,16 @@
       id: 'A8S Verdict Max HP',
       netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Max HP: Provoke Boss Second',
-        de: 'Max HP: Boss als Zweites herrausfordern',
-        fr: 'PV Max : Seconde Provocation Boss',
-        ja: 'HP最大: 第二のボスを挑発',
-        cn: '最多HP:第二个挑衅BOSS',
-        ko: 'HP 최대: 두번째로 보스 도발',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Max HP: Provoke Boss Second',
+          de: 'Max HP: Boss als Zweites herrausfordern',
+          fr: 'PV Max : Seconde Provocation Boss',
+          ja: 'HP最大: 第二のボスを挑発',
+          cn: '最多HP:第二个挑衅BOSS',
+          ko: 'HP 최대: 두번째로 보스 도발',
+        },
       },
     },
     {
@@ -603,31 +676,37 @@
       id: 'A8S Verdict Max HP Provoke',
       netRegex: NetRegexes.losesEffect({ effectId: '403' }),
       condition: function(data, matches) {
-        return matches.target == data.verdictMin && data.me == data.verdictMax;
+        return matches.target === data.verdictMin && data.me === data.verdictMax;
       },
-      alertText: {
-        en: 'Provoke Boss',
-        de: 'Boss herrausfordern',
-        fr: 'Provocation Boss',
-        ja: 'ボスを挑発',
-        cn: '挑衅BOSS',
-        ko: '보스 도발',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Provoke Boss',
+          de: 'Boss herrausfordern',
+          fr: 'Provocation Boss',
+          ja: 'ボスを挑発',
+          cn: '挑衅BOSS',
+          ko: '보스 도발',
+        },
       },
     },
     {
       id: 'A8S Verdict Max HP Blu Devour',
       netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
       condition: function(data, matches) {
-        return data.me == matches.target && data.job == 'BLU';
+        return data.me === matches.target && data.job === 'BLU';
       },
       delaySeconds: 27,
-      alarmText: {
-        en: 'Use Devour',
-        de: 'Benutze Verschlingen',
-        fr: 'Utilisez Dévoration',
-        ja: '捕食を使って',
-        cn: '使用捕食',
-        ko: '포식 사용하기',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Use Devour',
+          de: 'Benutze Verschlingen',
+          fr: 'Utilisez Dévoration',
+          ja: '捕食を使って',
+          cn: '使用捕食',
+          ko: '포식 사용하기',
+        },
       },
     },
     {
@@ -637,39 +716,48 @@
       durationSeconds: 10,
       // TODO: we could say who to share north orbs with?
       // TODO: we could also repeat the "share north orbs" after sw orb Explosion.
-      alertText: {
-        en: 'Penalty 1: SW orb -> Share 2x North Orbs',
-        de: 'Schwächung 1: SW orb -> 2x nördliche Orbs teilen',
-        fr: 'Altération 1 : Orbe SO -> Partagez 2x Orbes Nord',
-        ja: '1番: 南西にいる玉を喰らう => 北にいる玉に頭割り',
-        cn: '1号：吃西南球然后分摊北边双球',
-        ko: '약화 1: 남서쪽 구슬 -> 북쪽 구슬 2개',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Penalty 1: SW orb -> Share 2x North Orbs',
+          de: 'Schwächung 1: SW orb -> 2x nördliche Orbs teilen',
+          fr: 'Altération 1 : Orbe SO -> Partagez 2x Orbes Nord',
+          ja: '1番: 南西にいる玉を喰らう => 北にいる玉に頭割り',
+          cn: '1号：吃西南球然后分摊北边双球',
+          ko: '약화 1: 남서쪽 구슬 -> 북쪽 구슬 2개',
+        },
       },
     },
     {
       id: 'A8S Verdict Penalty 2',
       netRegex: NetRegexes.gainsEffect({ effectId: '40A' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Penalty 2: NW Tornado',
-        de: 'Schwächung 2: NW Tornado',
-        fr: 'Altérations 2 : Cyclone NO',
-        ja: '2番: 北西竜巻',
-        cn: '2号：西北龙卷风',
-        ko: '약화 2: 북서쪽 회오리',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Penalty 2: NW Tornado',
+          de: 'Schwächung 2: NW Tornado',
+          fr: 'Altérations 2 : Cyclone NO',
+          ja: '2番: 北西竜巻',
+          cn: '2号：西北龙卷风',
+          ko: '약화 2: 북서쪽 회오리',
+        },
       },
     },
     {
       id: 'A8S Verdict Penalty 3',
       netRegex: NetRegexes.gainsEffect({ effectId: '40B' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Penalty 3: Get a South Tornado',
-        de: 'Schwächung 3: Nimm südlichen Tornado',
-        fr: 'Altérations 3 : Prenez le Cyclone Sud',
-        ja: '3番: 南竜巻',
-        cn: '3号：南边龙卷风',
-        ko: '약화 3: 남쪽 회오리 중 하나 밟기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Penalty 3: Get a South Tornado',
+          de: 'Schwächung 3: Nimm südlichen Tornado',
+          fr: 'Altérations 3 : Prenez le Cyclone Sud',
+          ja: '3番: 南竜巻',
+          cn: '3号：南边龙卷风',
+          ko: '약화 3: 남쪽 회오리 중 하나 밟기',
+        },
       },
     },
     {
@@ -679,13 +767,16 @@
       delaySeconds: 28,
       // TODO: we could collect who else has penalty 3 to share the orb with?
       // TODO: we could also say who to share north orb with.
-      infoText: {
-        en: 'Share last orb after gavel',
-        de: 'Orn mach Prozessende teilen',
-        fr: 'Partagez l\'orbe après le procès',
-        ja: 'そして最後の玉に頭割り',
-        cn: '等待锤子判定后分摊最后球',
-        ko: '폐정 이후 구슬 남은거 처리',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Share last orb after gavel',
+          de: 'Orn mach Prozessende teilen',
+          fr: 'Partagez l\'orbe après le procès',
+          ja: 'そして最後の玉に頭割り',
+          cn: '等待锤子判定后分摊最后球',
+          ko: '폐정 이후 구슬 남은거 처리',
+        },
       },
     },
     {
@@ -695,57 +786,65 @@
       // TODO: we could say east or west here after the regulators spawn?
       // TODO: we could also say who to share north orb with.
       // TODO: we could also repeat the share after the regular dies?
-      infoText: {
-        en: 'Blue Regulator -> Share 1x North Orb',
-        de: 'Blauer Dampfregler -> 1x nördlichen Orb teilen',
-        fr: 'Régulateur bleu -> Partagez 1x Orbe Nord',
-        ja: '青いスチームジャッジ => 北の玉に頭割り',
-        cn: '蓝色小怪然后北边分摊球',
-        ko: '파란색 쫄 -> 북쪽 구슬 하나 처리',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Blue Regulator -> Share 1x North Orb',
+          de: 'Blauer Dampfregler -> 1x nördlichen Orb teilen',
+          fr: 'Régulateur bleu -> Partagez 1x Orbe Nord',
+          ja: '青いスチームジャッジ => 北の玉に頭割り',
+          cn: '蓝色小怪然后北边分摊球',
+          ko: '파란색 쫄 -> 북쪽 구슬 하나 처리',
+        },
       },
     },
     {
       id: 'A8S Verdict Nisi B',
       netRegex: NetRegexes.gainsEffect({ effectId: '40D' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Red Regulator -> Share 1x North Orb',
-        de: 'Roter Dampfregler -> 1x nördlichen Orb teilen',
-        fr: 'Régulateur rouge -> Partagez 1x Orbe Nord',
-        ja: '赤いスチームジャッジ => 北の玉に頭割り',
-        cn: '红色小怪然后北边分摊球',
-        ko: '빨간색 쫄 -> 북쪽 구슬 하나 처리',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Red Regulator -> Share 1x North Orb',
+          de: 'Roter Dampfregler -> 1x nördlichen Orb teilen',
+          fr: 'Régulateur rouge -> Partagez 1x Orbe Nord',
+          ja: '赤いスチームジャッジ => 北の玉に頭割り',
+          cn: '红色小怪然后北边分摊球',
+          ko: '빨간색 쫄 -> 북쪽 구슬 하나 처리',
+        },
       },
     },
     {
       id: 'A8S Compressed Water',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      alarmText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Water on YOU',
-            de: 'Wasser auf DIR',
-            fr: 'Eau sur VOUS',
-            ja: '自分に水',
-            cn: '水点名',
-            ko: '물징 대상자',
-          };
-        }
+      alarmText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return output.waterOnYou();
       },
-      infoText: function(data, matches) {
-        if (data.me != matches.target) {
-          return {
-            en: 'Water on ' + data.ShortName(matches.target),
-            de: 'Wasser auf ' + data.ShortName(matches.target),
-            fr: 'Eau sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'に水',
-            cn: '水点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 물징',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me !== matches.target)
+          return output.waterOn({ player: data.ShortName(matches.target) });
       },
       run: function(data, matches) {
         data.water = matches.target;
+      },
+      outputStrings: {
+        waterOn: {
+          en: 'Water on ${player}',
+          de: 'Wasser auf ${player}',
+          fr: 'Eau sur ${player}',
+          ja: '${player}に水',
+          cn: '水点${player}',
+          ko: '"${player}" 물징',
+        },
+        waterOnYou: {
+          en: 'Water on YOU',
+          de: 'Wasser auf DIR',
+          fr: 'Eau sur VOUS',
+          ja: '自分に水',
+          cn: '水点名',
+          ko: '물징 대상자',
+        },
       },
     },
     {
@@ -762,17 +861,20 @@
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 5;
       },
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (!data.water)
           return;
-        return {
-          en: 'Water Soon on ' + data.ShortName(data.water),
-          de: 'Wasser bald auf ' + data.ShortName(data.water),
-          fr: 'Eau bientôt sur ' + data.ShortName(data.water),
-          ja: 'まもなく、' + data.ShortName(data.water) + 'に頭割り',
-          cn: '马上水分摊' + data.ShortName(data.water),
-          ko: '"' + data.ShortName(data.water) + '" 물징 곧 터짐',
-        };
+        return output.text({ player: data.ShortName(data.water) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Water Soon on ${player}',
+          de: 'Wasser bald auf ${player}',
+          fr: 'Eau bientôt sur ${player}',
+          ja: 'まもなく、${player}に頭割り',
+          cn: '马上水分摊${player}',
+          ko: '"${player}" 물징 곧 터짐',
+        },
       },
     },
     {
@@ -795,13 +897,16 @@
       netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '1716', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '1716', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '1716', capture: false }),
-      infoText: {
-        en: 'Stack for Final Beam',
-        de: 'Stack für Finaler Megastrahl',
-        fr: 'Packez-vous pour Mégarayon final',
-        ja: 'ファイナルメガビームに頭割り',
-        cn: '集合分摊',
-        ko: '최후의 고출력 광선 쉐어',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack for Final Beam',
+          de: 'Stack für Finaler Megastrahl',
+          fr: 'Packez-vous pour Mégarayon final',
+          ja: 'ファイナルメガビームに頭割り',
+          cn: '集合分摊',
+          ko: '최후의 고출력 광선 쉐어',
+        },
       },
     },
   ],

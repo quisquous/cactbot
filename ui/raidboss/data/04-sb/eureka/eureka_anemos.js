@@ -12,21 +12,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2AD5', source: 'ヴォイドガルム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2AD5', source: '虚无加姆', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2AD5', source: '보이드 가름', capture: false }),
-      infoText: {
-        en: 'Dragon\'s Voice',
-        de: 'Stimme Des Drachen',
-        fr: 'Voix du dragon',
-        ja: '雷電の咆哮',
-        cn: '雷电咆哮',
-        ko: '뇌전의 포효',
-      },
-      tts: {
-        en: 'Dragon\'s Voice',
-        de: 'drache',
-        fr: 'Voix du dragon',
-        ja: '雷電の咆哮',
-        cn: '雷电咆哮',
-        ko: '뇌전의 포효',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dragon\'s Voice',
+          de: 'Stimme Des Drachen',
+          fr: 'Voix du dragon',
+          ja: '雷電の咆哮',
+          cn: '雷电咆哮',
+          ko: '뇌전의 포효',
+        },
       },
     },
     {
@@ -47,13 +42,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2A71', source: 'ポリュペモス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2A71', source: '波吕斐摩斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2A71', source: '폴리페모스', capture: false }),
-      infoText: {
-        en: 'Swipe',
-        de: 'Hieb',
-        fr: 'Fauche',
-        ja: 'スワイプ',
-        cn: '横扫',
-        ko: '휘두르기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Swipe',
+          de: 'Hieb',
+          fr: 'Fauche',
+          ja: 'スワイプ',
+          cn: '横扫',
+          ko: '휘두르기',
+        },
       },
     },
     {
@@ -74,12 +72,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2A73', source: 'ポリュペモス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2A73', source: '波吕斐摩斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2A73', source: '폴리페모스', capture: false }),
-      alertText: {
-        en: 'Eye Donut',
-        de: 'Augendonut',
-        fr: 'Donut œil',
-        ja: 'アイ・オブ・ビホルダー',
-        cn: '月环',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Eye Donut',
+          de: 'Augendonut',
+          fr: 'Donut œil',
+          ja: 'アイ・オブ・ビホルダー',
+          cn: '月环',
+          ko: '눈알 도넛 장판',
+        },
       },
     },
     {
@@ -90,13 +92,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2A72', source: 'ポリュペモス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2A72', source: '波吕斐摩斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2A72', source: '폴리페모스', capture: false }),
-      alertText: {
-        en: 'Glower Laser',
-        de: 'Blick Laser',
-        fr: 'Regard laser',
-        ja: 'グラワー',
-        cn: '怒视',
-        ko: '광선',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Glower Laser',
+          de: 'Blick Laser',
+          fr: 'Regard laser',
+          ja: 'グラワー',
+          cn: '怒视',
+          ko: '광선',
+        },
       },
     },
     {
@@ -127,22 +132,17 @@
       netRegexJa: NetRegexes.startsUsing({ id: '29C3', source: 'ヴォイドスケイル' }),
       netRegexCn: NetRegexes.startsUsing({ id: '29C3', source: '虚无鳞龙' }),
       netRegexKo: NetRegexes.startsUsing({ id: '29C3', source: '보이드비늘' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
-      alertText: {
-        en: 'Ice ball on you!',
-        de: 'Eisball auf dir!',
-        fr: 'Boule de glace sur vous !',
-        ja: '自分に氷玉',
-        cn: '点名冰球！',
-      },
-      tts: {
-        en: 'ice ball',
-        de: 'eisball',
-        fr: 'boule de glace',
-        ja: '氷',
-        cn: '冰球',
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Ice ball on you!',
+          de: 'Eisball auf dir!',
+          fr: 'Boule de glace sur vous !',
+          ja: '自分に氷玉',
+          cn: '点名冰球！',
+          ko: '얼음 구슬 대상자',
+        },
       },
     },
     {
@@ -163,9 +163,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '289F', source: 'パズズ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '289F', source: '帕祖祖' }),
       netRegexKo: NetRegexes.startsUsing({ id: '289F', source: '파주주' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
@@ -186,19 +184,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2896', source: 'パズズ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2896', source: '帕祖祖', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2896', source: '파주주', capture: false }),
-      alarmText: {
-        en: 'Plague Donut',
-        de: 'Plagen-Donut',
-        fr: 'Donut Nuée',
-        ja: 'ローカストプレイグ',
-        cn: '月环',
-      },
-      tts: {
-        en: 'plague donut',
-        de: 'plagen dohnat',
-        fr: 'Donut Nuée',
-        ja: 'ローカスト',
-        cn: '月环',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Plague Donut',
+          de: 'Plagen-Donut',
+          fr: 'Donut Nuée',
+          ja: 'ローカストプレイグ',
+          cn: '月环',
+          ko: '역병 도넛 장판',
+        },
       },
     },
     {
@@ -210,17 +205,20 @@
       netRegexCn: NetRegexes.wasDefeated({ target: '暗影幽灵', capture: false }),
       netRegexKo: NetRegexes.wasDefeated({ target: '그림자 망령', capture: false }),
       soundVolume: 0,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         data.wraithCount = data.wraithCount || 0;
         data.wraithCount++;
-        return {
-          en: 'wraiths: ' + data.wraithCount,
-          de: 'Geister: ' + data.wraithCount,
-          fr: 'spectres: ' + data.wraithCount,
-          ja: 'レイス: ' + data.wraithCount,
-          cn: '幽灵击杀: ' + data.wraithCount,
-          ko: '망령: ' + data.wraithCount,
-        };
+        return output.text({ num: data.wraithCount });
+      },
+      outputStrings: {
+        text: {
+          en: 'wraiths: ${num}',
+          de: 'Geister: ${num}',
+          fr: 'spectres: ${num}',
+          ja: 'レイス: ${num}',
+          cn: '幽灵击杀: ${num}',
+          ko: '망령: ${num}',
+        },
       },
     },
     {
@@ -237,11 +235,12 @@
     },
     {
       id: 'Eureka Falling Asleep',
-      netRegex: NetRegexes.gameLog({ line: '5 minutes have elapsed since your last activity..*?', capture: false }),
-      netRegexDe: NetRegexes.gameLog({ line: 'Seit deiner letzten Aktivität sind 5 Minuten vergangen..*?', capture: false }),
-      netRegexFr: NetRegexes.gameLog({ line: 'Votre personnage est inactif depuis 5 minutes.*?', capture: false }),
-      netRegexCn: NetRegexes.gameLog({ line: '已经5分钟没有进行任何操作.*?', capture: false }),
-      netRegexKo: NetRegexes.gameLog({ line: '5분 동안 아무 조작을 하지 않았습니다..*?', capture: false }),
+      netRegex: NetRegexes.gameLog({ line: '7 minutes have elapsed since your last activity..*?', capture: false }),
+      netRegexDe: NetRegexes.gameLog({ line: 'Seit deiner letzten Aktivität sind 7 Minuten vergangen..*?', capture: false }),
+      netRegexFr: NetRegexes.gameLog({ line: 'Votre personnage est inactif depuis 7 minutes.*?', capture: false }),
+      netRegexJa: NetRegexes.gameLog({ line: '操作がない状態になってから7分が経過しました。.*?', capture: false }),
+      netRegexCn: NetRegexes.gameLog({ line: '已经7分钟没有进行任何操作.*?', capture: false }),
+      netRegexKo: NetRegexes.gameLog({ line: '7분 동안 아무 조작을 하지 않았습니다..*?', capture: false }),
       response: Responses.wakeUp(),
     },
   ],

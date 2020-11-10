@@ -120,11 +120,12 @@ let kDetailKeys = {
   },
   'duration': {
     label: {
-      en: 'duration',
-      de: 'Dauer',
-      fr: 'Durée',
-      ja: '存続時間',
-      cn: '持续时间',
+      en: 'duration (sec)',
+      de: 'Dauer (Sekunden)',
+      fr: 'Durée (secondes)',
+      ja: '存続時間 (秒)',
+      cn: '持续时间 (秒)',
+      ko: '지속 시간 (초)',
     },
     cls: 'duration-text',
     generatedManually: true,
@@ -216,6 +217,7 @@ const kMiscTranslations = {
     en: '(default)',
     de: '(Standard)',
     fr: '(Défaut)',
+    ko: '(기본값)',
   },
 };
 
@@ -297,7 +299,7 @@ class RaidbossConfigurator {
     for (const [key, info] of Object.entries(fileMap)) {
       const expansion = info.prefix;
 
-      if (Object.keys(info.triggers).length == 0)
+      if (Object.keys(info.triggers).length === 0)
         continue;
 
       if (!expansionDivs[expansion]) {
@@ -400,8 +402,16 @@ class RaidbossConfigurator {
           triggerDetails.appendChild(detail);
         }
 
+        let hasOutputFunc = false;
+        for (const func of triggerOutputFunctions) {
+          if (trig[func]) {
+            hasOutputFunc = true;
+            break;
+          }
+        }
+
         // Add duration manually with an input to override.
-        {
+        if (hasOutputFunc) {
           const detailKey = 'duration';
           const optionKey = kOptionKeys.duration;
 

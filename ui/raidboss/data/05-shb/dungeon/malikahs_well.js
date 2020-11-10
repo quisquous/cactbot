@@ -13,7 +13,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3CE5', source: '大犰狳' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CE5', source: '거대 아르마딜로' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -30,13 +30,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3CE7', source: 'グレーター・アルマジロ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3CE7', source: '大犰狳', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CE7', source: '거대 아르마딜로', capture: false }),
-      infoText: {
-        en: 'Melee Knockback',
-        de: 'Nahkämpfer Rückstoß',
-        fr: 'Poussée au CaC',
-        ja: '近接最大距離ノックバック',
-        cn: '近战击退',
-        ko: '근거리 넉백',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Melee Knockback',
+          de: 'Nahkämpfer Rückstoß',
+          fr: 'Poussée au CaC',
+          ja: '近接最大距離ノックバック',
+          cn: '近战击退',
+          ko: '근거리 넉백',
+        },
       },
     },
     {
@@ -61,7 +64,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3CEB', source: '水陆两用塔罗斯' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CEB', source: '수력 탈로스' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -94,7 +97,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3CF1', source: '斯托尔戈', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CF1', source: '스토르게', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },

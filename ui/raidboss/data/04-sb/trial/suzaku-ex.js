@@ -13,28 +13,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '32D1', source: '朱雀' }),
       netRegexCn: NetRegexes.startsUsing({ id: '32D1', source: '朱雀' }),
       netRegexKo: NetRegexes.startsUsing({ id: '32D1', source: '주작' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tank buster sur VOUS',
-            ja: '自分にタンクバスター',
-            cn: '死刑减伤',
-            ko: '탱버 대상자',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tank buster sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にタンクバスター',
-            cn: '死刑 点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'SuzEx Phantom Flurry',
@@ -45,15 +24,18 @@
       netRegexCn: NetRegexes.startsUsing({ id: '32DC', source: '朱雀', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '32DC', source: '주작', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
-      alertText: {
-        en: 'Tank Buster',
-        de: 'Tankbuster',
-        fr: 'Tank buster',
-        ja: 'タンクバスター',
-        cn: '死刑',
-        ko: '탱버',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Buster',
+          de: 'Tankbuster',
+          fr: 'Tank buster',
+          ja: 'タンクバスター',
+          cn: '死刑',
+          ko: '탱버',
+        },
       },
     },
     {
@@ -64,13 +46,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '32DA', source: '朱雀', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '32DA', source: '朱雀', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '32DA', source: '주작', capture: false }),
-      alertText: {
-        en: 'Get Out',
-        de: 'Raus da',
-        fr: 'Allez au bord extérieur',
-        ja: '誘引',
-        cn: '远离',
-        ko: '밖으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Out',
+          de: 'Raus da',
+          fr: 'Allez au bord extérieur',
+          ja: '誘引',
+          cn: '远离',
+          ko: '밖으로',
+        },
       },
     },
     {
@@ -81,13 +66,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '32DB', source: '朱雀', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '32DB', source: '朱雀', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '32DB', source: '주작', capture: false }),
-      alertText: {
-        en: 'Get In',
-        de: 'Rein da',
-        fr: 'Allez au bord intérieur',
-        ja: '拒絶',
-        cn: '靠近',
-        ko: '안으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get In',
+          de: 'Rein da',
+          fr: 'Allez au bord intérieur',
+          ja: '拒絶',
+          cn: '靠近',
+          ko: '안으로',
+        },
       },
     },
   ],

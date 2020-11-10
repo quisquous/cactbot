@@ -74,47 +74,43 @@
       netRegexJa: NetRegexes.startsUsing({ id: '25F3', source: '神龍' }),
       netRegexCn: NetRegexes.startsUsing({ id: '25F3', source: '神龙' }),
       netRegexKo: NetRegexes.startsUsing({ id: '25F3', source: '신룡' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Akh Morn on YOU',
-            de: 'Akh Morn auf DIR',
-            fr: 'Akh Morn sur VOUS',
-            ja: '自分にアク・モーン',
-            cn: '死亡轮回点名',
-            ko: '아크몬 대상자',
-          };
-        } else if (data.role == 'tank') {
-          return {
-            en: 'Akh Morn on ' + data.ShortName(matches.target),
-            de: 'Akh Morn auf ' + data.ShortName(matches.target),
-            fr: 'Akh Morn sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にアク・モーン',
-            cn: '死亡轮回点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 아크몬',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (matches.target === data.me)
+          return output.akhMornOnYou();
+        else if (data.role === 'tank')
+          return output.akhMornOn({ player: data.ShortName(matches.target) });
       },
-      infoText: function(data, matches) {
-        if (matches.target == data.me || data.role == 'tank')
+      infoText: function(data, matches, output) {
+        if (matches.target === data.me || data.role === 'tank')
           return;
 
-        return {
+        return output.akhRhaiSpreadAndMove();
+      },
+      outputStrings: {
+        akhRhaiSpreadAndMove: {
           en: 'Akh Rhai: spread and move',
           de: 'Akh Rhai: Verteilen und bewegen',
           fr: 'Akh Rhai: Dispersion et bougez',
           ja: 'アク・ラーイ: 散開 動け',
           cn: '天光轮回：散开和移动',
           ko: '아크 라이: 산개, 이동',
-        };
-      },
-      tts: {
-        en: 'akh morn',
-        de: 'akh morn',
-        fr: 'akh morn',
-        ja: 'アク・モーン',
-        cn: '死亡轮回',
-        ko: '아크몬',
+        },
+        akhMornOnYou: {
+          en: 'Akh Morn on YOU',
+          de: 'Akh Morn auf DIR',
+          fr: 'Akh Morn sur VOUS',
+          ja: '自分にアク・モーン',
+          cn: '死亡轮回点名',
+          ko: '아크몬 대상자',
+        },
+        akhMornOn: {
+          en: 'Akh Morn on ${player}',
+          de: 'Akh Morn auf ${player}',
+          fr: 'Akh Morn sur ${player}',
+          ja: '${player}にアク・モーン',
+          cn: '死亡轮回点${player}',
+          ko: '"${player}" 아크몬',
+        },
       },
     },
     {
@@ -125,21 +121,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '25DD', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '25DD', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25DD', source: '신룡', capture: false }),
-      infoText: {
-        en: 'Ice: Stack and Stop',
-        de: 'Eis: Stack und Stehenbleiben',
-        fr: 'Glace : Packez-vous et arrêtez',
-        ja: '氷: スタック 動かない',
-        cn: '冰地面：站一起和停止移动',
-        ko: '얼음: 집합하고 이동하지 않기',
-      },
-      tts: {
-        en: 'stop',
-        de: 'stopp',
-        fr: 'arrêtez',
-        ja: '動かない',
-        cn: '停止',
-        ko: '이동하지 않기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Ice: Stack and Stop',
+          de: 'Eis: Stack und Stehenbleiben',
+          fr: 'Glace : Packez-vous et arrêtez',
+          ja: '氷: スタック 動かない',
+          cn: '冰地面：站一起和停止移动',
+          ko: '얼음: 집합하고 이동하지 않기',
+        },
       },
     },
     {
@@ -150,13 +141,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2611', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2611', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2611', source: '신룡', capture: false }),
-      infoText: {
-        en: 'Out of middle',
-        de: 'Raus aus der Mitte',
-        fr: 'Sortez du milieu',
-        ja: '中央から離れ',
-        cn: '离开中间',
-        ko: '중앙 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Out of middle',
+          de: 'Raus aus der Mitte',
+          fr: 'Sortez du milieu',
+          ja: '中央から離れ',
+          cn: '离开中间',
+          ko: '중앙 피하기',
+        },
       },
     },
     {
@@ -168,21 +162,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '25DB', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25DB', source: '신룡', capture: false }),
       durationSeconds: 7,
-      alertText: {
-        en: 'Get in water',
-        de: 'In\'s Wasser',
-        fr: 'Allez dans l\'eau',
-        ja: '水に入る',
-        cn: '进水圈',
-        ko: '물 장판에 들어가기',
-      },
-      tts: {
-        en: 'water',
-        de: 'wasser',
-        fr: 'eau',
-        ja: 'みず',
-        cn: '进水圈',
-        ko: '물 장판',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get in water',
+          de: 'In\'s Wasser',
+          fr: 'Allez dans l\'eau',
+          ja: '水に入る',
+          cn: '进水圈',
+          ko: '물 장판에 들어가기',
+        },
       },
     },
     {
@@ -196,45 +185,29 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['271F', '25E8'], source: '右翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['271F', '25E8'], source: '오른쪽 날개', capture: false }),
       durationSeconds: 7,
-      alertText: function(data) {
-        if (data.phase == 3) {
-          return {
-            en: 'stop to get frozen',
-            de: 'Stopp! Einfrieren lassen',
-            fr: 'Arrêtez, laissez-vous gelé',
-            ja: '止まれ、凍結',
-            cn: '停下，冰地面',
-            ko: '멈춰서 얼기',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.phase === 3)
+          return output.stopToGetFrozen();
+
+        return output.stackInWater();
+      },
+      outputStrings: {
+        stopToGetFrozen: {
+          en: 'stop to get frozen',
+          de: 'Stopp! Einfrieren lassen',
+          fr: 'Arrêtez, laissez-vous gelé',
+          ja: '止まれ、凍結',
+          cn: '停下，冰地面',
+          ko: '멈춰서 얼기',
+        },
+        stackInWater: {
           en: 'Stack in water',
           de: 'In Wasser stacken',
           fr: 'Packez-vous dans l\'eau',
           ja: '水に集合',
           cn: '在水圈攻击',
           ko: '물 장판에 모이기',
-        };
-      },
-      tts: function(data) {
-        if (data.phase == 3) {
-          return {
-            en: 'stop to get frozen',
-            de: 'Stopp! Einfrieren lassen',
-            fr: 'arrêtez, laissez-vous gelé',
-            ja: '止まれ、凍結',
-            cn: '停下，冰地面',
-            ko: '멈춰서 얼기',
-          };
-        }
-        return {
-          en: 'water',
-          de: 'Wasser',
-          fr: 'eau',
-          ja: '水',
-          cn: '水圈',
-          ko: '물 장판',
-        };
+        },
       },
     },
     {
@@ -246,13 +219,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '25DC', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25DC', source: '신룡', capture: false }),
       durationSeconds: 7,
-      alertText: {
-        en: 'out of water',
-        de: 'Raus aus dem Wasser',
-        fr: 'Sortez de l\'eau',
-        ja: '水から離れ',
-        cn: '离开水圈',
-        ko: '물 장판 밖으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'out of water',
+          de: 'Raus aus dem Wasser',
+          fr: 'Sortez de l\'eau',
+          ja: '水から離れ',
+          cn: '离开水圈',
+          ko: '물 장판 밖으로',
+        },
       },
     },
     {
@@ -264,45 +240,29 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '右翼', target: '右翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '오른쪽 날개', target: '오른쪽 날개', capture: false }),
       durationSeconds: 7,
-      alertText: function(data) {
-        if (data.phase == 3) {
-          return {
-            en: 'bait bolt, keep moving',
-            de: 'Blitz ködern, weiterbewegen',
-            fr: 'Attirez la foudre, continuez à bouger',
-            ja: '稲妻: 動き続ける',
-            cn: '闪电，保持移动',
-            ko: '번개 공격 산개, 계속 움직이기',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.phase === 3)
+          return output.baitBoltKeepMoving();
+
+        return output.spreadOutNoWater();
+      },
+      outputStrings: {
+        baitBoltKeepMoving: {
+          en: 'bait bolt, keep moving',
+          de: 'Blitz ködern, weiterbewegen',
+          fr: 'Attirez la foudre, continuez à bouger',
+          ja: '稲妻: 動き続ける',
+          cn: '闪电，保持移动',
+          ko: '번개 공격 산개, 계속 움직이기',
+        },
+        spreadOutNoWater: {
           en: 'Spread out, no water',
           de: 'Verteilen und nicht in\'s Wasser',
           fr: 'Dispersez-vous en dehors de l\'eau',
           ja: '散開、水に入らない',
           cn: '散开，离开水圈',
           ko: '산개, 물장판 X',
-        };
-      },
-      tts: function(data) {
-        if (data.phase == 3) {
-          return {
-            en: 'bait bolt, keep moving',
-            de: 'Blitz ködern, weiterbewegen',
-            fr: 'Attirez la foudre, continuez à bouger',
-            ja: '稲妻、動き続ける',
-            cn: '闪电，保持移动',
-            ko: '번개 공격 산개, 계속 움직이기',
-          };
-        }
-        return {
-          en: 'levinbolt',
-          de: 'Blitz',
-          fr: 'fulguration',
-          ja: '稲妻',
-          cn: '离开闪电',
-          ko: '우레',
-        };
+        },
       },
     },
     {
@@ -313,30 +273,18 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'ライトウィング', target: 'ライトウィング', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '右翼', target: '右翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '오른쪽 날개', target: '오른쪽 날개', capture: false }),
+      condition: (data) => data.phase === 3,
       delaySeconds: 9.5,
-      alarmText: function(data) {
-        if (data.phase == 3) {
-          return {
-            en: 'move away',
-            de: 'wegbewegen',
-            fr: 'Éloignez-vous',
-            ja: '散開',
-            cn: '散开',
-            ko: '떨어지기',
-          };
-        }
-      },
-      tts: function(data) {
-        if (data.phase == 3) {
-          return {
-            en: 'move away',
-            de: 'weckbewegen',
-            fr: 'Éloignez-vous',
-            ja: '散開',
-            cn: '散开',
-            ko: '떨어지기',
-          };
-        }
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'move away',
+          de: 'wegbewegen',
+          fr: 'Éloignez-vous',
+          ja: '散開',
+          cn: '散开',
+          ko: '떨어지기',
+        },
       },
     },
     {
@@ -347,13 +295,16 @@
       netRegexJa: NetRegexes.abilityFull({ id: '25EF', source: 'アイシクル', x: '-29\\.99', y: '-15', capture: false }),
       netRegexCn: NetRegexes.abilityFull({ id: '25EF', source: '冰柱', x: '-29\\.99', y: '-15', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ id: '25EF', source: '고드름', x: '-29\\.99', y: '-15', capture: false }),
-      alarmText: {
-        en: 'icicle, lean west',
-        de: 'Eiszapfen, nach westen',
-        fr: 'Stalactite, penchez vers l\'ouest',
-        ja: 'アイシクル: 西へ',
-        cn: '冰柱，去左边',
-        ko: '고드름, 왼쪽 먼저',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'icicle, lean west',
+          de: 'Eiszapfen, nach westen',
+          fr: 'Stalactite, penchez vers l\'ouest',
+          ja: 'アイシクル: 西へ',
+          cn: '冰柱，去左边',
+          ko: '고드름, 왼쪽 먼저',
+        },
       },
     },
     {
@@ -364,13 +315,16 @@
       netRegexJa: NetRegexes.abilityFull({ id: '25EF', source: 'アイシクル', x: '-29\\.99', y: '-25', capture: false }),
       netRegexCn: NetRegexes.abilityFull({ id: '25EF', source: '冰柱', x: '-29\\.99', y: '-25', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ id: '25EF', source: '고드름', x: '-29\\.99', y: '-25', capture: false }),
-      alarmText: {
-        en: 'icicle, lean east',
-        de: 'Eiszapfen, nach Osten',
-        fr: 'Stalactite, penchez vers l\'est',
-        ja: 'アイシクル: 東へ',
-        cn: '冰柱，去右边',
-        ko: '고드름, 오른쪽 먼저',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'icicle, lean east',
+          de: 'Eiszapfen, nach Osten',
+          fr: 'Stalactite, penchez vers l\'est',
+          ja: 'アイシクル: 東へ',
+          cn: '冰柱，去右边',
+          ko: '고드름, 오른쪽 먼저',
+        },
       },
     },
     {
@@ -383,21 +337,16 @@
       netRegexKo: NetRegexes.startsUsing({ id: '25DA', source: '신룡', capture: false }),
       delaySeconds: 3,
       durationSeconds: 5,
-      infoText: {
-        en: 'Knockback, look for water',
-        de: 'Rückstoß, nach Wasser schauen',
-        fr: 'Poussée, cherchez l\'eau',
-        ja: 'ノックバック、水を探せ',
-        cn: '击退，找水圈',
-        ko: '넉백, 물기둥 확인',
-      },
-      tts: {
-        en: 'knockback',
-        de: 'Rückstoß',
-        fr: 'poussée',
-        ja: 'ノックバック',
-        cn: '击退',
-        ko: '넉백',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Knockback, look for water',
+          de: 'Rückstoß, nach Wasser schauen',
+          fr: 'Poussée, cherchez l\'eau',
+          ja: 'ノックバック、水を探せ',
+          cn: '击退，找水圈',
+          ko: '넉백, 물기둥 확인',
+        },
       },
     },
     {
@@ -409,23 +358,18 @@
       netRegexCn: NetRegexes.startsUsing({ id: '264E', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '264E', source: '신룡', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
-      infoText: {
-        en: 'no more heals needed',
-        de: 'keine Heilung mehr nötig',
-        fr: 'Pas besoin de soigner',
-        ja: 'ヒールはもう要らない',
-        cn: '不需要更多奶了',
-        ko: '힐 그만',
-      },
-      tts: {
-        en: 'stop healing',
-        de: 'keine Heilung mehr',
-        fr: 'arrêtez^de soigner',
-        ja: 'ヒール ストップ',
-        cn: '停奶',
-        ko: '힐 그만',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'no more heals needed',
+          de: 'keine Heilung mehr nötig',
+          fr: 'Pas besoin de soigner',
+          ja: 'ヒールはもう要らない',
+          cn: '不需要更多奶了',
+          ko: '힐 그만',
+        },
       },
     },
     {
@@ -437,21 +381,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '25E2', source: '龙尾', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25E2', source: '신룡의 꼬리', capture: false }),
       delaySeconds: 2,
-      infoText: {
-        en: 'Tail: Switch targets',
-        de: 'Schweif: Zielwechsel',
-        fr: 'Queue : Changez de cible',
-        ja: '尾: タゲチェンジ',
-        cn: '打尾巴',
-        ko: '꼬리 공격',
-      },
-      tts: {
-        en: 'tail',
-        de: 'schweif',
-        fr: 'queue',
-        ja: '尾',
-        cn: '尾巴',
-        ko: '꼬리',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tail: Switch targets',
+          de: 'Schweif: Zielwechsel',
+          fr: 'Queue : Changez de cible',
+          ja: '尾: タゲチェンジ',
+          cn: '打尾巴',
+          ko: '꼬리 공격',
+        },
       },
     },
     {
@@ -464,24 +403,19 @@
       netRegexKo: NetRegexes.addedCombatant({ name: '신룡의 심핵', capture: false }),
       condition: function(data) {
         // Prevent ugly heart message on wipe.
-        return data.phase == 1;
+        return data.phase === 1;
       },
       // TODO: If tail is alive, delay this message?
-      infoText: {
-        en: 'Heart: Switch targets',
-        de: 'Herz: Ziel wechseln',
-        fr: 'Cœur : Changez de cible',
-        ja: '心核: タゲチェンジ',
-        cn: '打核心',
-        ko: '심핵 공격',
-      },
-      tts: {
-        en: 'heart',
-        de: 'herz',
-        fr: 'cœur',
-        ja: '心核',
-        cn: '核心',
-        ko: '심핵',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Heart: Switch targets',
+          de: 'Herz: Ziel wechseln',
+          fr: 'Cœur : Changez de cible',
+          ja: '心核: タゲチェンジ',
+          cn: '打核心',
+          ko: '심핵 공격',
+        },
       },
     },
     {
@@ -493,21 +427,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: '신룡', capture: false }),
-      alarmText: {
-        en: 'avoid divebomb',
-        de: 'Divebomb ausweichen',
-        fr: 'Évitez la bombe plongeante',
-        ja: 'ダイブボムに避け',
-        cn: '前方顺劈',
-        ko: '급강하 폭격 피하기',
-      },
-      tts: {
-        en: 'divebombs',
-        de: 'sturzflug',
-        fr: 'bombe plongeante',
-        ja: 'ダイブボム',
-        cn: '顺劈',
-        ko: '급강하 폭격',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'avoid divebomb',
+          de: 'Divebomb ausweichen',
+          fr: 'Évitez la bombe plongeante',
+          ja: 'ダイブボムに避け',
+          cn: '前方顺劈',
+          ko: '급강하 폭격 피하기',
+        },
       },
     },
     {
@@ -518,50 +447,33 @@
       netRegexJa: NetRegexes.startsUsing({ id: '260A', source: '白金龍' }),
       netRegexCn: NetRegexes.startsUsing({ id: '260A', source: '白金龙' }),
       netRegexKo: NetRegexes.startsUsing({ id: '260A', source: '백금룡' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Death Sentence on YOU',
-            de: 'Todesurteil auf DIR',
-            fr: 'Peine de mort sur VOUS',
-            ja: '自分にデスセンテンス',
-            cn: '死刑点名',
-            ko: '사형 선고 대상자',
-          };
-        } else if (data.role == 'healer') {
-          return {
-            en: 'Death Sentence on ' + data.ShortName(matches.target),
-            de: 'Todesurteil auf ' + data.ShortName(matches.target),
-            fr: 'Peine de mort sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にデスセンテンス',
-            cn: '死刑点名' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 사형 선고',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (matches.target === data.me)
+          return output.deathSentenceOnYou();
+        else if (data.role === 'healer')
+          return output.deathSentenceOn({ player: data.ShortName(matches.target) });
       },
-      infoText: function(data, matches) {
-        if (matches.target != data.me && data.role == 'tank') {
-          return {
-            en: 'Death Sentence on ' + data.ShortName(matches.target),
-            de: 'Todesurteil auf ' + data.ShortName(matches.target),
-            fr: 'Peine de mort sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にデスセンテンス',
-            cn: '死刑点名' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 사형 선고',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (matches.target !== data.me && data.role === 'tank')
+          return output.deathSentenceOn({ player: data.ShortName(matches.target) });
       },
-      tts: function(data) {
-        if (data.role == 'healer' || data.role == 'tank') {
-          return {
-            en: 'Death Sentence',
-            de: 'Todesurteil',
-            fr: 'Peine de mort',
-            ja: 'デスセンテンス',
-            cn: '死刑',
-            ko: '사형 선고',
-          };
-        }
+      outputStrings: {
+        deathSentenceOn: {
+          en: 'Death Sentence on ${player}',
+          de: 'Todesurteil auf ${player}',
+          fr: 'Peine de mort sur ${player}',
+          ja: '${player}にデスセンテンス',
+          cn: '死刑点名${player}',
+          ko: '"${player}" 사형 선고',
+        },
+        deathSentenceOnYou: {
+          en: 'Death Sentence on YOU',
+          de: 'Todesurteil auf DIR',
+          fr: 'Peine de mort sur VOUS',
+          ja: '自分にデスセンテンス',
+          cn: '死刑点名',
+          ko: '사형 선고 대상자',
+        },
       },
     },
     {
@@ -592,21 +504,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '264A', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '264A', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '264A', source: '신룡', capture: false }),
-      alertText: {
-        en: 'front cleave',
-        de: 'Frontalcleave',
-        fr: 'Cleave devant',
-        ja: '正面から離れ',
-        cn: '离开正面',
-        ko: '범위 밖으로',
-      },
-      tts: {
-        en: 'cleave',
-        de: 'klief',
-        fr: 'cleave',
-        ja: '前方範囲攻撃',
-        cn: '顺劈',
-        ko: '범위 공격',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'front cleave',
+          de: 'Frontalcleave',
+          fr: 'Cleave devant',
+          ja: '正面から離れ',
+          cn: '离开正面',
+          ko: '범위 밖으로',
+        },
       },
     },
     {
@@ -620,24 +527,19 @@
       condition: function(data) {
         return !data.finalWing;
       },
-      alertText: {
-        en: 'kill left first',
-        de: 'linken Flügel zuerst',
-        fr: 'Tuez la gauche en première',
-        ja: 'レフトウィングに攻撃',
-        cn: '击杀左翼',
-        ko: '왼쪽 날개 먼저',
-      },
-      tts: {
-        en: 'left first',
-        de: 'links zuerst',
-        fr: 'gauche en première',
-        ja: 'レフト',
-        cn: '击杀左翼',
-        ko: '왼쪽 먼저',
-      },
+      alertText: (data, _, output) => output.text(),
       run: function(data) {
         data.finalWing = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'kill left first',
+          de: 'linken Flügel zuerst',
+          fr: 'Tuez la gauche en première',
+          ja: 'レフトウィングに攻撃',
+          cn: '击杀左翼',
+          ko: '왼쪽 날개 먼저',
+        },
       },
     },
     {
@@ -651,95 +553,65 @@
       condition: function(data) {
         return !data.finalWing;
       },
-      alertText: {
-        en: 'kill right first',
-        de: 'rechten Flügel zuerst',
-        fr: 'Tuez la droite en première',
-        ja: 'ライトウィングに攻撃',
-        cn: '击杀右翼',
-        ko: '오른쪽 날개 먼저',
-      },
-      tts: {
-        en: 'right first',
-        de: 'rechts zuerst',
-        fr: 'droite en première',
-        ja: 'ライト',
-        cn: '击杀右翼',
-        ko: '오른쪽 날개',
-      },
+      alertText: (data, _, output) => output.text(),
       run: function(data) {
         data.finalWing = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'kill right first',
+          de: 'rechten Flügel zuerst',
+          fr: 'Tuez la droite en première',
+          ja: 'ライトウィングに攻撃',
+          cn: '击杀右翼',
+          ko: '오른쪽 날개 먼저',
+        },
       },
     },
     {
       id: 'ShinryuEx Tethers',
       netRegex: NetRegexes.headMarker({ id: '0061' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: 3.8,
-      infoText: function(data) {
-        if (data.phase == 3) {
-          return {
-            en: 'break tethers then stack',
-            de: 'Kette zerreissen, dann stack',
-            fr: 'Cassez les liens, puis packez-vous',
-            ja: '鎖を引き、集合',
-            cn: '拉断锁链然后攻击',
-            ko: '선 끊고 모이기',
-          };
-        }
-        return {
-          en: 'break tethers',
-          de: 'Ketten zerreissen',
-          fr: 'Cassez les liens',
-          ja: '鎖',
-          cn: '拉断锁链',
-          ko: '선 끊기',
-        };
+      infoText: function(data, _, output) {
+        if (data.phase === 3)
+          return output.breakTethersThenStack();
+
+        return output.breakTethers();
       },
-      tts: function(data) {
-        if (data.phase == 3) {
-          return {
-            en: 'break tethers then stack',
-            de: 'Kette zerreissen, dann stack',
-            fr: 'Cassez les liens, puis packez-vous',
-            ja: '鎖を引き、集合',
-            cn: '拉断锁链然后攻击',
-            ko: '선 끊고 모이기',
-          };
-        }
-        return {
+      outputStrings: {
+        breakTethersThenStack: {
+          en: 'break tethers then stack',
+          de: 'Kette zerreissen, dann stack',
+          fr: 'Cassez les liens, puis packez-vous',
+          ja: '鎖を引き、集合',
+          cn: '拉断锁链然后攻击',
+          ko: '선 끊고 모이기',
+        },
+        breakTethers: {
           en: 'break tethers',
           de: 'Ketten zerreissen',
           fr: 'Cassez les liens',
           ja: '鎖',
           cn: '拉断锁链',
           ko: '선 끊기',
-        };
+        },
       },
     },
     {
       id: 'ShinryuEx Tail Marker',
       netRegex: NetRegexes.headMarker({ id: '007E' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
-      alarmText: {
-        en: 'tail marker on you',
-        de: 'Schweifmarker auf dir',
-        fr: 'Marqueur Queue sur VOUS',
-        ja: '自分にテイル',
-        cn: '龙尾点名',
-        ko: '꼬리 징 대상자',
-      },
-      tts: {
-        en: 'tail marker',
-        de: 'schweif marker',
-        fr: 'marqueur queue',
-        ja: 'テイル',
-        cn: '龙尾点名',
-        ko: '꼬리 징',
+      condition: Conditions.targetIsYou(),
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'tail marker on you',
+          de: 'Schweifmarker auf dir',
+          fr: 'Marqueur Queue sur VOUS',
+          ja: '自分にテイル',
+          cn: '龙尾点名',
+          ko: '꼬리 징 대상자',
+        },
       },
     },
     {
@@ -748,62 +620,42 @@
       condition: function(data, matches) {
         data.shakerTargets = data.shakerTargets || [];
         data.shakerTargets.push(matches.target);
-        return data.shakerTargets.length == 2;
+        return data.shakerTargets.length === 2;
       },
-      alarmText: function(data) {
-        if (data.shakerTargets.includes(data.me)) {
-          return {
-            en: 'earthshaker on you',
-            de: 'Erdstoss auf dir',
-            fr: 'Secousse sur VOUS',
-            ja: '自分にアースシェーカー',
-            cn: '大地动摇点名',
-            ko: '어스 대상자',
-          };
-        }
+      alarmText: function(data, _, output) {
+        if (data.shakerTargets.includes(data.me))
+          return output.earthshakerOnYou();
       },
-      alertText: function(data) {
-        if (!data.shakerTargets.includes(data.me)) {
-          return {
-            en: 'avoid earthshakers',
-            de: 'Stöße ausweichen',
-            fr: 'Évitez les secousses',
-            ja: 'アースシェーカーに避け',
-            cn: '远离大地动摇',
-            ko: '어스 피하기',
-          };
-        }
-      },
-      tts: function(data) {
-        if (!data.shakerTargets.includes(data.me)) {
-          return {
-            en: 'avoid shakers',
-            de: 'Stöße ausweichen',
-            fr: 'évitez les secousses',
-            ja: 'アースシェーカー',
-            cn: '离开点名',
-            ko: '어스 피하기',
-          };
-        }
-        return {
-          en: 'earthshaker',
-          de: 'erdstoß',
-          fr: 'secousse',
-          ja: 'アースシェーカー',
-          cn: '大地动摇',
-          ko: '어스 징',
-        };
+      alertText: function(data, _, output) {
+        if (!data.shakerTargets.includes(data.me))
+          return output.avoidEarthshakers();
       },
       run: function(data) {
         delete data.shakerTargets;
+      },
+      outputStrings: {
+        avoidEarthshakers: {
+          en: 'avoid earthshakers',
+          de: 'Stöße ausweichen',
+          fr: 'Évitez les secousses',
+          ja: 'アースシェーカーに避け',
+          cn: '远离大地动摇',
+          ko: '어스 피하기',
+        },
+        earthshakerOnYou: {
+          en: 'earthshaker on you',
+          de: 'Erdstoss auf dir',
+          fr: 'Secousse sur VOUS',
+          ja: '自分にアースシェーカー',
+          cn: '大地动摇点名',
+          ko: '어스 대상자',
+        },
       },
     },
     {
       id: 'ShinryuEx Cocoon Marker',
       netRegex: NetRegexes.headMarker({ id: '0039' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
   ],

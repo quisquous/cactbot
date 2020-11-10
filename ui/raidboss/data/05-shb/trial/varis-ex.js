@@ -67,13 +67,16 @@
       regex: /^Magitek Burst$/,
       beforeSeconds: 15,
       durationSeconds: 5,
-      infoText: {
-        en: 'Spread Soon',
-        de: 'Bald verteilen',
-        fr: 'Dispersez-vous bientôt',
-        ja: 'まもなく散開',
-        cn: '即将散开',
-        ko: '잠시후 산개',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spread Soon',
+          de: 'Bald verteilen',
+          fr: 'Dispersez-vous bientôt',
+          ja: 'まもなく散開',
+          cn: '即将散开',
+          ko: '잠시후 산개',
+        },
       },
     },
   ],
@@ -119,13 +122,16 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CCA', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CCA', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '瓦厉斯·耶·加尔乌斯', id: '4CCA', capture: false }),
-      infoText: {
-        en: 'Bait Slashes',
-        de: 'Schnitte ködern',
-        fr: 'Attirez les taillades',
-        ja: '縦へ、アルティウスを誘導',
-        cn: 'Boss身后诱导剑气方向',
-        ko: '슬래시 유도',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Slashes',
+          de: 'Schnitte ködern',
+          fr: 'Attirez les taillades',
+          ja: '縦へ、アルティウスを誘導',
+          cn: 'Boss身后诱导剑气方向',
+          ko: '슬래시 유도',
+        },
       },
     },
     {
@@ -135,36 +141,41 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CF0' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CF0' }),
       netRegexCn: NetRegexes.startsUsing({ source: '瓦厉斯·耶·加尔乌斯', id: '4CF0' }),
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         const target = matches.target;
-        if (data.me == target) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tank buster auf DIR',
-            fr: 'Tank buster sur VOUS',
-            ja: '自分にタンクバスター',
-            cn: '死刑点名',
-            ko: '탱버 대상자',
-          };
-        }
-        if (data.role == 'dps') {
-          return {
-            en: 'Avoid tank cleave',
-            de: 'Tank Cleave ausweichen',
-            fr: 'Évitez le tank cleave',
-            ja: '前方範囲攻撃を避け',
-            cn: '远离顺劈',
-            ko: '광역 탱버 피하기',
-          };
-        }
-        return {
-          en: 'Tank Buster on ' + data.ShortName(target),
-          de: 'Tank buster auf ' + data.ShortName(target),
-          fr: 'Tank buster sur ' + data.ShortName(target),
-          ja: data.ShortName(target) + 'にタンクバスター',
-          cn: '死刑 点 ' + data.ShortName(target),
-          ko: '"' + data.ShortName(target) + '" 탱버',
-        };
+        if (data.me === target)
+          return output.tankBusterOnYou();
+
+        if (data.role === 'dps')
+          return output.avoidTankCleave();
+
+        return output.tankBusterOn({ player: data.ShortName(target) });
+      },
+      outputStrings: {
+        tankBusterOnYou: {
+          en: 'Tank Buster on YOU',
+          de: 'Tank buster auf DIR',
+          fr: 'Tank buster sur VOUS',
+          ja: '自分にタンクバスター',
+          cn: '死刑点名',
+          ko: '탱버 대상자',
+        },
+        avoidTankCleave: {
+          en: 'Avoid tank cleave',
+          de: 'Tank Cleave ausweichen',
+          fr: 'Évitez le tank cleave',
+          ja: '前方範囲攻撃を避け',
+          cn: '远离顺劈',
+          ko: '광역 탱버 피하기',
+        },
+        tankBusterOn: {
+          en: 'Tank Buster on ${player}',
+          de: 'Tank buster auf ${player}',
+          fr: 'Tank buster sur ${player}',
+          ja: '${player}にタンクバスター',
+          cn: '死刑 点 ${player}',
+          ko: '"${player}" 탱버',
+        },
       },
     },
     {
@@ -187,13 +198,16 @@
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CD5', capture: false }),
       // Multiple people getting hit by this can cause double triggers.
       suppressSeconds: 1,
-      infoText: {
-        en: 'Go Front',
-        de: 'Nach Vorne gehen',
-        fr: 'Allez devant',
-        ja: '前へ',
-        cn: '到正面',
-        ko: '앞으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go Front',
+          de: 'Nach Vorne gehen',
+          fr: 'Allez devant',
+          ja: '前へ',
+          cn: '到正面',
+          ko: '앞으로',
+        },
       },
     },
     {
@@ -214,15 +228,18 @@
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD9', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CD9', capture: false }),
       delaySeconds: function(data) {
-        return data.phase == 2 ? 20 : 10;
+        return data.phase === 2 ? 20 : 10;
       },
-      alertText: {
-        en: 'Stop attacking',
-        de: 'Angriffe stoppen',
-        fr: 'Arrêtez d\'attaquer',
-        ja: 'ブロックしない側に攻撃',
-        cn: '攻击未格挡的方向',
-        ko: '공격 중지',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stop attacking',
+          de: 'Angriffe stoppen',
+          fr: 'Arrêtez d\'attaquer',
+          ja: 'ブロックしない側に攻撃',
+          cn: '攻击未格挡的方向',
+          ko: '공격 중지',
+        },
       },
     },
     {
@@ -254,7 +271,7 @@
       response: function(data) {
         // This is easily forgetable after dodging and seems to get people killed.
         // This also differentiates spread from the spread => stack in the last phase.
-        return Responses.spread(data.phase == 5 ? 'alarm' : 'alert');
+        return Responses.spread(data.phase === 5 ? 'alarm' : 'alert');
       },
     },
     {
@@ -264,25 +281,29 @@
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CEA', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CEA', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CEA', capture: false }),
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Grab Tethers',
-            de: 'Verbindung nehmen',
-            fr: 'Prenez les liens',
-            ja: '線を取る',
-            cn: '接线',
-            ko: '선 가로채기',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.role === 'tank')
+          return output.grabTethers();
+
+        return output.killAdds();
+      },
+      outputStrings: {
+        grabTethers: {
+          en: 'Grab Tethers',
+          de: 'Verbindung nehmen',
+          fr: 'Prenez les liens',
+          ja: '線を取る',
+          cn: '接线',
+          ko: '선 가로채기',
+        },
+        killAdds: {
           en: 'Kill adds',
           de: 'Adds besiegen',
           fr: 'Tuez les adds',
           ja: '雑魚を処理',
           cn: '击杀小怪',
           ko: '쫄 잡기',
-        };
+        },
       },
     },
     {
@@ -307,22 +328,25 @@
       netRegexKo: NetRegexes.startsUsing({ source: '파멸의 종착역', id: '4CB4', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '恩惠终结', id: '4CB4', capture: false }),
       condition: (data) => data.clonesActive,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         // Sometimes this is called out with the stack mechanic.
         if (data.suppressDodgeCloneCall)
           return;
-        return {
+        return output.text();
+      },
+      run: function(data) {
+        delete data.suppressDodgeCloneCall;
+        delete data.clonesActive;
+      },
+      outputStrings: {
+        text: {
           en: 'Dodge Clones',
           de: 'Klonen ausweichen',
           fr: 'Esquivez les Clones',
           ja: 'ターミナス・エストを避け',
           cn: '躲避剑气',
           ko: '클론 피하기',
-        };
-      },
-      run: function(data) {
-        delete data.suppressDodgeCloneCall;
-        delete data.clonesActive;
+        },
       },
     },
     {
@@ -352,13 +376,16 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CE[56]', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '瓦厉斯·耶·加尔乌斯', id: '4CE[56]', capture: false }),
-      alertText: {
-        en: 'Bait Puddles Out',
-        de: 'Flächen nach draußen ködern',
-        fr: 'Attirez les zones au sol à l\'extérieur',
-        ja: '外周に安置',
-        cn: '外圈放黑泥',
-        ko: '장판 바깥쪽으로 유도',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Puddles Out',
+          de: 'Flächen nach draußen ködern',
+          fr: 'Attirez les zones au sol à l\'extérieur',
+          ja: '外周に安置',
+          cn: '外圈放黑泥',
+          ko: '장판 바깥쪽으로 유도',
+        },
       },
     },
   ],

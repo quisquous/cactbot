@@ -11,9 +11,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1FA', source: 'グレート・イエローペリカン' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FA', source: '노란 왕사다새' }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FA', source: '大黄鹈鹕' }),
-      condition: function(data, matches) {
-        return data.CanStun();
-      },
+      condition: (data) => data.CanStun(),
       response: Responses.stun('info'),
     },
     {
@@ -27,30 +25,34 @@
     },
     {
       id: 'Brayflox Normal Pelican Poison Healer',
-      netRegex: NetRegexes.gainsEffect({ effectId: '12' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '12', capture: false }),
       condition: (data) => data.role === 'healer',
       delaySeconds: 1,
       suppressSeconds: 2,
-      alertText: (data, matches) => {
+      alertText: (data, _, output) => {
         if (!data.pelicanPoisons)
           return;
 
         const names = data.pelicanPoisons.sort();
         data.pelicanPoisons = [];
-        if (names.length === 1 && names[0] === data.me) {
-          return {
-            en: 'Esuna Your Poison',
-            de: 'Entferne dein Gift',
-            fr: 'Purifiez-vous',
-            cn: '康复自己的毒',
-          };
-        }
-        return {
-          en: 'Esuna Poison on ' + names.map((x) => data.ShortName(x)).join(', '),
-          de: 'Entferne Gift von ' + names.map((x) => data.ShortName(x)).join(', '),
-          fr: 'Purifiez le poison sur ' + names.map((x) => data.ShortName(x)).join(', '),
-          cn: '康复' + names.map((x) => data.ShortName(x)).join(', '),
-        };
+        if (names.length === 1 && names[0] === data.me)
+          return output.esunaYourPoison();
+
+        return output.esunaPoisonOn({ players: names.map((x) => data.ShortName(x)).join(', ') });
+      },
+      outputStrings: {
+        esunaYourPoison: {
+          en: 'Esuna Your Poison',
+          de: 'Entferne dein Gift',
+          fr: 'Purifiez-vous',
+          cn: '康复自己的毒',
+        },
+        esunaPoisonOn: {
+          en: 'Esuna Poison on ${players}',
+          de: 'Entferne Gift von ${players}',
+          fr: 'Purifiez le poison sur ${players}',
+          cn: '康复${players}',
+        },
       },
     },
     {
@@ -71,9 +73,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '205', source: 'アッシュドレイク' }),
       netRegexKo: NetRegexes.startsUsing({ id: '205', source: '잿빛도마뱀' }),
       netRegexCn: NetRegexes.startsUsing({ id: '205', source: '白烬火蛟' }),
-      condition: function(data, matches) {
-        return data.CanStun();
-      },
+      condition: (data) => data.CanStun(),
       response: Responses.stun('info'),
     },
     {
@@ -90,9 +90,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D8', source: 'インフェルノドレイク' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D8', source: '지옥불 도마뱀' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D8', source: '狱炎火蛟' }),
-      condition: function(data, matches) {
-        return data.CanStun();
-      },
+      condition: (data) => data.CanStun(),
       response: Responses.stun('info'),
     },
     {
@@ -104,23 +102,26 @@
       netRegexJa: NetRegexes.ability({ id: '3D3', source: 'ヘルベンダー' }),
       netRegexKo: NetRegexes.ability({ id: '3D3', source: '장수도롱뇽' }),
       netRegexCn: NetRegexes.ability({ id: '3D3', source: '水栖蝾螈' }),
-      infoText: function(data, matches) {
-        if (matches.target !== data.me) {
-          return {
-            en: 'Break Bubble on ' + data.ShortName(matches.target),
-            de: 'Besiege die Blase von ' + data.ShortName(matches.target),
-            fr: 'Détruisez la bulle de ' + data.ShortName(matches.target),
-            cn: '打' + data.ShortName(matches.target) + '的泡泡',
-          };
-        }
-        if (matches.target === data.me) {
-          return {
-            en: 'Break Your Bubble',
-            de: 'Besiege deine Blase',
-            fr: 'Détruisez votre bulle',
-            cn: '打自己的泡泡',
-          };
-        }
+      infoText: (data, matches, output) => {
+        if (matches.target !== data.me)
+          return output.breakBubbleOn({ player: data.ShortName(matches.target) });
+
+        if (matches.target === data.me)
+          return output.breakYourBubble();
+      },
+      outputStrings: {
+        breakBubbleOn: {
+          en: 'Break Bubble on ${player}',
+          de: 'Besiege die Blase von ${player}',
+          fr: 'Détruisez la bulle de ${player}',
+          cn: '打${player}的泡泡',
+        },
+        breakYourBubble: {
+          en: 'Break Your Bubble',
+          de: 'Besiege deine Blase',
+          fr: 'Détruisez votre bulle',
+          cn: '打自己的泡泡',
+        },
       },
     },
     {
@@ -132,18 +133,14 @@
       netRegexJa: NetRegexes.startsUsing({ id: '22F', source: 'アイアタル' }),
       netRegexKo: NetRegexes.startsUsing({ id: '22F', source: '아이아타르' }),
       netRegexCn: NetRegexes.startsUsing({ id: '22F', source: '阿杰特' }),
-      condition: function(data, matches) {
-        return data.CanStun();
-      },
+      condition: (data) => data.CanStun(),
       response: Responses.stun('info'),
     },
     {
       // Move Aiatar out of Puddles
       id: 'Brayflox Normal Aiatar Toxic Vomit Tank',
-      netRegex: NetRegexes.gainsEffect({ effectId: '117' }),
-      condition: function(data, matches) {
-        return data.role === 'tank';
-      },
+      netRegex: NetRegexes.gainsEffect({ effectId: '117', capture: false }),
+      condition: (data) => data.role === 'tank',
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -160,20 +157,24 @@
       id: 'Brayflox Normal Aiatar Poison Healer',
       netRegex: NetRegexes.gainsEffect({ effectId: '113' }),
       condition: (data) => data.role === 'healer',
-      alertText: function(data, matches) {
-        if (matches.target !== data.me) {
-          return {
-            en: 'Esuna Poison on ' + data.ShortName(matches.target),
-            de: 'Entferne Gift von ' + data.ShortName(matches.target),
-            cn: '康复' + data.ShortName(matches.target) + '的毒',
-          };
-        }
-        return {
+      alertText: (data, matches, output) => {
+        if (matches.target !== data.me)
+          return output.esunaPoisonOn({ player: data.ShortName(matches.target) });
+
+        return output.esunaYourPoison();
+      },
+      outputStrings: {
+        esunaPoisonOn: {
+          en: 'Esuna Poison on ${player}',
+          de: 'Entferne Gift von ${player}',
+          cn: '康复${player}的毒',
+        },
+        esunaYourPoison: {
           en: 'Esuna Your Poison',
           de: 'Entferne dein Gift',
           fr: 'Purifiez-vous',
           cn: '康复自己的毒',
-        };
+        },
       },
     },
   ],

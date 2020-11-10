@@ -10,7 +10,7 @@
       regex: /Wyrm Tail/,
       beforeSeconds: 4,
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.miniBuster(),
     },
@@ -34,19 +34,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '23DE', source: 'アルテ・ロイテ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '23DE', source: '老者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '23DE', source: '알테 로이테', capture: false }),
-      infoText: {
-        en: 'Breath Wing: Be beside boss',
-        de: 'Atemschwinge: Neben Boss gehen',
-        ja: 'ブレスウィング: ボスに近づく',
-        cn: '站boss附近',
-        ko: '날개바람: 보스 옆으로',
-      },
-      tts: {
-        en: 'breath wing',
-        de: 'atemschwinge',
-        ja: 'ブレスウィング',
-        cn: '站boss附近',
-        ko: '날개바람',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Breath Wing: Be beside boss',
+          de: 'Atemschwinge: Neben Boss gehen',
+          ja: 'ブレスウィング: ボスに近づく',
+          cn: '站boss附近',
+          ko: '날개바람: 보스 옆으로',
+        },
       },
     },
     {
@@ -79,7 +75,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '23DC', source: '老者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '23DC', source: '알테 로이테', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -92,7 +88,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '23DB', source: '老者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '23DB', source: '알테 로이테', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       // Alert rather than info, as any further raid damage is lethal if unhealed.
       response: Responses.aoe('alert'),
@@ -106,7 +102,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '23D7', source: '老者' }),
       netRegexKo: NetRegexes.startsUsing({ id: '23D7', source: '알테 로이테' }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },

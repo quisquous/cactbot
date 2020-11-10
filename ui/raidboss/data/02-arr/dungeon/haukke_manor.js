@@ -11,9 +11,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2C1', source: ['御用邸のメイド', '御用邸のクラヴィジャー', 'レディ・アマンディヌ'] }),
       netRegexKo: NetRegexes.startsUsing({ id: '2C1', source: ['별궁의 하녀', '별궁 청지기', '레이디 아망딘'] }),
       netRegexCn: NetRegexes.startsUsing({ id: '2C1', source: ['庄园的女仆', '庄园的女工', '阿芒迪娜女士'] }),
-      condition: function(data, matches) {
-        return data.CanStun();
-      },
+      condition: (data) => data.CanStun(),
       suppressSeconds: 2,
       response: Responses.stun('info'),
     },
@@ -25,23 +23,19 @@
       netRegexJa: NetRegexes.startsUsing({ id: '35C', source: '御用邸の執事長' }),
       netRegexKo: NetRegexes.startsUsing({ id: '35C', source: '별궁의 집사장' }),
       netRegexCn: NetRegexes.startsUsing({ id: '35C', source: '庄园的总管' }),
-      condition: function(data, matches) {
-        return data.CanStun();
-      },
+      condition: (data) => data.CanStun(),
       response: Responses.stun('info'),
     },
     {
       // Particle and spell effects make this particular Dark Mist hard to see.
       id: 'Haukke Normal Amandine Dark Mist Dodge',
-      netRegex: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2C1', source: 'Dame Amandine' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2C1', source: 'レディ・アマンディヌ' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2C1', source: '레이디 아망딘' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2C1', source: '阿芒迪娜女士' }),
-      condition: function(data, matches) {
-        return !data.CanStun();
-      },
+      netRegex: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2C1', source: 'Dame Amandine', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2C1', source: 'レディ・アマンディヌ', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2C1', source: '레이디 아망딘', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2C1', source: '阿芒迪娜女士', capture: false }),
+      condition: (data) => !data.CanStun(),
       response: Responses.outOfMelee('alert'),
     },
     {
@@ -52,9 +46,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '356', source: 'レディ・アマンディヌ' }),
       netRegexKo: NetRegexes.startsUsing({ id: '356', source: '레이디 아망딘' }),
       netRegexCn: NetRegexes.startsUsing({ id: '356', source: '阿芒迪娜女士' }),
-      condition: function(data, matches) {
-        return data.CanSilence();
-      },
+      condition: (data) => data.CanSilence(),
       response: Responses.interrupt('info'),
     },
     {

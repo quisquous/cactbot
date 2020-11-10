@@ -13,7 +13,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3DC5', source: '得到宽恕的失调', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DC5', source: '면죄된 불화', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -26,7 +26,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3DC4', source: '得到宽恕的失调' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DC4', source: '면죄된 불화' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -39,7 +39,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3DCF', source: '得到宽恕的泰丝琳' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DCF', source: '면죄된 테슬린' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -52,7 +52,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3DD0', source: '得到宽恕的泰丝琳', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DD0', source: '면죄된 테슬린', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -80,7 +80,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3DD8', source: '斐利亚', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DD8', source: '필리아', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -93,33 +93,32 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3DD7', source: '斐利亚' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DD7', source: '필리아' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
     {
       id: 'Holminster Chain Down',
       netRegex: NetRegexes.headMarker({ id: '005C' }),
-      condition: function(data, matches) {
-        return data.me != matches.target;
+      condition: Conditions.targetIsNotYou(),
+      infoText: function(data, matches, output) {
+        return output.text({ player: data.ShortName(matches.target) });
       },
-      infoText: function(data, matches) {
-        return {
-          en: 'Break chain on ' + data.ShortName(matches.target),
-          de: 'Kette von ' + data.ShortName(matches.target) + ' brechen',
-          fr: 'Cassez les chaînes de ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'の線を取る',
-          cn: '截断' + data.ShortName(matches.target) + '的线',
-          ko: data.ShortName(matches.target) + '의 사슬 부수기',
-        };
+      outputStrings: {
+        text: {
+          en: 'Break chain on ${player}',
+          de: 'Kette von ${player} brechen',
+          fr: 'Cassez les chaînes de ${player}',
+          ja: '${player}の線を取る',
+          cn: '截断${player}的线',
+          ko: '${player}의 사슬 부수기',
+        },
       },
     },
     {
       id: 'Holminster Taphephobia',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -130,13 +129,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4350', source: 'フィリア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4350', source: '斐利亚', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4350', source: '필리아', capture: false }),
-      infoText: {
-        en: 'Line Stack',
-        de: 'Sammeln in einer Linie',
-        fr: 'Packez-vous en ligne',
-        ja: '頭割り',
-        cn: '直线分摊',
-        ko: '직선 쉐어',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Line Stack',
+          de: 'Sammeln in einer Linie',
+          fr: 'Packez-vous en ligne',
+          ja: '頭割り',
+          cn: '直线分摊',
+          ko: '직선 쉐어',
+        },
       },
     },
     {

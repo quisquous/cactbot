@@ -9,15 +9,18 @@
       regex: /Earthen Anguish/,
       beforeSeconds: 3,
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank';
+        return data.role === 'healer' || data.role === 'tank';
       },
-      alertText: {
-        en: 'Tank Busters',
-        de: 'Tank buster',
-        fr: 'Tank buster',
-        ja: 'タンクバスター',
-        cn: '坦克死刑',
-        ko: '탱버',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Busters',
+          de: 'Tank buster',
+          fr: 'Tank buster',
+          ja: 'タンクバスター',
+          cn: '坦克死刑',
+          ko: '탱버',
+        },
       },
     },
   ],
@@ -57,7 +60,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '4116', source: '泰坦' }),
       netRegexKo: NetRegexes.startsUsing({ id: '4116', source: '타이탄' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
+        return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
       },
       // As this seems to usually seems to be invulned,
       // don't make a big deal out of it.
@@ -66,9 +69,7 @@
     {
       id: 'E4S Pulse of the Land',
       netRegex: NetRegexes.headMarker({ id: '00B9' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
@@ -80,21 +81,22 @@
       netRegexCn: NetRegexes.startsUsing({ id: '410C', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '410C', source: '타이탄', capture: false }),
       suppressSeconds: 1,
-      infoText: {
-        en: 'Look for Evil Earth Marker',
-        de: 'Schau nach den Grimm der Erde Marker',
-        fr: 'Repérez une marque de Terre maléfique',
-        ja: '範囲見て',
-        cn: '观察地板',
-        ko: '사악한 대지 패턴 확인',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look for Evil Earth Marker',
+          de: 'Schau nach den Grimm der Erde Marker',
+          fr: 'Repérez une marque de Terre maléfique',
+          ja: '範囲見て',
+          cn: '观察地板',
+          ko: '사악한 대지 패턴 확인',
+        },
       },
     },
     {
       id: 'E4S Force of the Land',
       netRegex: NetRegexes.headMarker({ id: '00BA' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.stackMarker(),
     },
     {
@@ -106,7 +108,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '4114', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4114', source: '타이탄', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -128,13 +130,16 @@
       netRegexJa: NetRegexes.ability({ id: '40E6', source: 'タイタン', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '40E6', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '40E6', source: '타이탄', capture: false }),
-      alertText: {
-        en: 'Landslide: In Front',
-        de: 'Armberge: Vor ihm',
-        fr: 'Glissement : Devant',
-        ja: 'ランスラ: 正面へ',
-        cn: '面前躲避',
-        ko: '완갑: 정면',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Landslide: In Front',
+          de: 'Armberge: Vor ihm',
+          fr: 'Glissement : Devant',
+          ja: 'ランスラ: 正面へ',
+          cn: '面前躲避',
+          ko: '완갑: 정면',
+        },
       },
     },
     {
@@ -155,28 +160,32 @@
       netRegexJa: NetRegexes.startsUsing({ id: '411A', source: 'タイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '411A', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '411A', source: '타이탄', capture: false }),
-      alertText: {
-        en: 'Back Corners',
-        de: 'Hintere Ecken',
-        fr: 'Coins arrière',
-        ja: 'ランスラくるよ',
-        cn: '后方角落',
-        ko: '뒤쪽 구석으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Back Corners',
+          de: 'Hintere Ecken',
+          fr: 'Coins arrière',
+          ja: 'ランスラくるよ',
+          cn: '后方角落',
+          ko: '뒤쪽 구석으로',
+        },
       },
     },
     {
       id: 'E4S Crumbling Down',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alertText: {
-        en: 'Bomb on YOU',
-        de: 'Bombe auf DIR',
-        fr: 'Bombe sur VOUS',
-        ja: 'マーカーついた',
-        cn: '炸弹点名',
-        ko: '거리감쇠 징 대상자',
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bomb on YOU',
+          de: 'Bombe auf DIR',
+          fr: 'Bombe sur VOUS',
+          ja: 'マーカーついた',
+          cn: '炸弹点名',
+          ko: '거리감쇠 징 대상자',
+        },
       },
     },
     {
@@ -193,32 +202,20 @@
         return !data.printedBury;
       },
       durationSeconds: 7,
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         let x = matches.x;
         let y = matches.y;
 
-        if (data.phase == 'armor') {
+        if (data.phase === 'armor') {
           // Three line bombs (middle, e/w, w/e), with seismic wave.
           if (x < 95) {
             data.printedBury = true;
-            return {
-              en: 'Hide Behind East',
-              de: 'Im Osten vestecken',
-              fr: 'Cachez-vous derrière à l\'est',
-              cn: '右边躲避',
-              ko: '동쪽으로',
-            };
+            return output.hideBehindEast();
           } else if (x > 105) {
             data.printedBury = true;
-            return {
-              en: 'Hide Behind West',
-              de: 'Im Westen vestecken',
-              fr: 'Cachez-vous derrière à l\'ouest',
-              cn: '左边躲避',
-              ko: '서쪽으로',
-            };
+            return output.hideBehindWest();
           }
-        } else if (data.phase == 'landslide') {
+        } else if (data.phase === 'landslide') {
           // Landslide cardinals/corners + middle, followed by remaining 4.
           let xMiddle = x < 105 && x > 95;
           let yMiddle = y < 105 && y > 95;
@@ -229,24 +226,42 @@
           data.printedBury = true;
           if (!xMiddle && !yMiddle) {
             // Corners dropped first.  Cardinals safe.
-            return {
-              en: 'Go Cardinals First',
-              de: 'Zuerst zu den Seiten gehen',
-              fr: 'Allez aux cardinaux en premier',
-              ja: '十字',
-              cn: '十字',
-              ko: '먼저 측면으로 이동',
-            };
+            return output.goCardinalsFirst();
           }
           // Cardinals dropped first.  Corners safe.
-          return {
-            en: 'Go Corners First',
-            de: 'Zuerst in die Ecken gehen',
-            fr: 'Allez dans les coins en premier',
-            cn: '先去角落',
-            ko: '먼저 구석으로 이동',
-          };
+          return output.goCornersFirst();
         }
+      },
+      outputStrings: {
+        hideBehindEast: {
+          en: 'Hide Behind East',
+          de: 'Im Osten vestecken',
+          fr: 'Cachez-vous derrière à l\'est',
+          cn: '右边躲避',
+          ko: '동쪽으로',
+        },
+        hideBehindWest: {
+          en: 'Hide Behind West',
+          de: 'Im Westen vestecken',
+          fr: 'Cachez-vous derrière à l\'ouest',
+          cn: '左边躲避',
+          ko: '서쪽으로',
+        },
+        goCardinalsFirst: {
+          en: 'Go Cardinals First',
+          de: 'Zuerst zu den Seiten gehen',
+          fr: 'Allez aux cardinaux en premier',
+          ja: '十字',
+          cn: '十字',
+          ko: '먼저 측면으로 이동',
+        },
+        goCornersFirst: {
+          en: 'Go Corners First',
+          de: 'Zuerst in die Ecken gehen',
+          fr: 'Allez dans les coins en premier',
+          cn: '先去角落',
+          ko: '먼저 구석으로 이동',
+        },
       },
     },
     {
@@ -257,13 +272,16 @@
       netRegexJa: NetRegexes.ability({ id: '40E8', source: 'タイタン', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '40E8', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '40E8', source: '타이탄', capture: false }),
-      alertText: {
-        en: 'Wheels: On Sides',
-        de: 'Räder: Zur Seite',
-        fr: 'Roues : Sur les côtés',
-        ja: '車輪: 横へ',
-        cn: '车轮：两侧',
-        ko: '바퀴: 옆으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Wheels: On Sides',
+          de: 'Räder: Zur Seite',
+          fr: 'Roues : Sur les côtés',
+          ja: '車輪: 横へ',
+          cn: '车轮：两侧',
+          ko: '바퀴: 옆으로',
+        },
       },
     },
     {
@@ -274,13 +292,16 @@
       netRegexJa: NetRegexes.ability({ id: '411F', source: 'タイタン', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '411F', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '411F', source: '타이탄', capture: false }),
-      infoText: {
-        en: 'Tank Charge',
-        de: 'Tank wird angefahren',
-        fr: 'Charge tank',
-        ja: 'タンクに突進',
-        cn: '坦克冲锋',
-        ko: '탱커를 향해 돌진',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Charge',
+          de: 'Tank wird angefahren',
+          fr: 'Charge tank',
+          ja: 'タンクに突進',
+          cn: '坦克冲锋',
+          ko: '탱커를 향해 돌진',
+        },
       },
     },
     {
@@ -302,7 +323,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '4124', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4124', source: '거대 타이탄', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.bigAoe(),
     },
@@ -314,13 +335,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '412F', source: 'マキシタイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '412F', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '412F', source: '거대 타이탄', capture: false }),
-      infoText: {
-        en: 'Left, Then Right',
-        de: 'Links, dann Rechts',
-        fr: 'Gauche, puis droite',
-        ja: '左 => 右',
-        cn: '左 => 右',
-        ko: '왼쪽 => 오른쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Left, Then Right',
+          de: 'Links, dann Rechts',
+          fr: 'Gauche, puis droite',
+          ja: '左 => 右',
+          cn: '左 => 右',
+          ko: '왼쪽 => 오른쪽',
+        },
       },
     },
     {
@@ -331,13 +355,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4130', source: 'マキシタイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4130', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4130', source: '거대 타이탄', capture: false }),
-      infoText: {
-        en: 'Right, Then Left',
-        de: 'Rechts, dann Links',
-        fr: 'Droite, puis gauche',
-        ja: '右 => 左',
-        cn: '右 => 左',
-        ko: '오른쪽 => 왼쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Right, Then Left',
+          de: 'Rechts, dann Links',
+          fr: 'Droite, puis gauche',
+          ja: '右 => 左',
+          cn: '右 => 左',
+          ko: '오른쪽 => 왼쪽',
+        },
       },
     },
     {
@@ -348,13 +375,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4131', source: 'マキシタイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4131', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4131', source: '거대 타이탄', capture: false }),
-      infoText: {
-        en: 'Left, Stay Left',
-        de: 'Links, Links bleiben',
-        fr: 'Gauche, puis restez',
-        ja: 'ずっと左',
-        cn: '一直在左',
-        ko: '왼쪽 => 왼쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Left, Stay Left',
+          de: 'Links, Links bleiben',
+          fr: 'Gauche, puis restez',
+          ja: 'ずっと左',
+          cn: '一直在左',
+          ko: '왼쪽 => 왼쪽',
+        },
       },
     },
     {
@@ -365,13 +395,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4132', source: 'マキシタイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4132', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4132', source: '거대 타이탄', capture: false }),
-      infoText: {
-        en: 'Right, Stay Right',
-        de: 'Rechts, Rechts bleiben',
-        fr: 'Droite, puis restez',
-        ja: 'ずっと右',
-        cn: '一直在右',
-        ko: '오른쪽 => 오른쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Right, Stay Right',
+          de: 'Rechts, Rechts bleiben',
+          fr: 'Droite, puis restez',
+          ja: 'ずっと右',
+          cn: '一直在右',
+          ko: '오른쪽 => 오른쪽',
+        },
       },
     },
     {
@@ -387,58 +420,62 @@
     {
       id: 'E4S Weight of the World',
       netRegex: NetRegexes.headMarker({ id: '00BB' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.getOut(),
     },
     {
       id: 'E4S Megalith',
       netRegex: NetRegexes.headMarker({ id: '005D' }),
-      alertText: function(data, matches) {
-        if (data.role != 'tank') {
-          return {
-            en: 'Away from Tanks',
-            de: 'Weg von den Tanks',
-            fr: 'Éloignez-vous des tanks',
-            ja: 'タンクから離れ',
-            cn: '远离坦克',
-            ko: '탱커에서 멀어지기',
-          };
-        }
-        if (matches.target == data.me) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR sammeln',
-            fr: 'Package sur VOUS',
-            ja: '自分にシェア',
-            cn: '集合分摊',
-            ko: '쉐어징 대상자',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Packez-vous sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にシェア',
-          cn: '与 ' + data.ShortName(matches.target) + ' 集合',
-          ko: '"' + data.ShortName(matches.target) + '" 쉐어징',
-        };
+      alertText: function(data, matches, output) {
+        if (data.role !== 'tank')
+          return output.awayFromTanks();
+
+        if (matches.target === data.me)
+          return output.stackOnYou();
+
+        return output.stackOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        awayFromTanks: {
+          en: 'Away from Tanks',
+          de: 'Weg von den Tanks',
+          fr: 'Éloignez-vous des tanks',
+          ja: 'タンクから離れ',
+          cn: '远离坦克',
+          ko: '탱커에서 멀어지기',
+        },
+        stackOnYou: {
+          en: 'Stack on YOU',
+          de: 'Auf DIR sammeln',
+          fr: 'Package sur VOUS',
+          ja: '自分にシェア',
+          cn: '集合分摊',
+          ko: '쉐어징 대상자',
+        },
+        stackOn: {
+          en: 'Stack on ${player}',
+          de: 'Auf ${player} sammeln',
+          fr: 'Packez-vous sur ${player}',
+          ja: '${player}にシェア',
+          cn: '与 ${player} 集合',
+          ko: '"${player}" 쉐어징',
+        },
       },
     },
     {
       id: 'E4S Granite Gaol',
       netRegex: NetRegexes.headMarker({ id: '00BF' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alertText: {
-        en: 'Gaol on YOU',
-        de: 'Gefängnis auf DIR',
-        fr: 'Geôle sur VOUS',
-        ja: '自分にジェイル',
-        cn: '石牢点名',
-        ko: '화강암 감옥 대상',
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Gaol on YOU',
+          de: 'Gefängnis auf DIR',
+          fr: 'Geôle sur VOUS',
+          ja: '自分にジェイル',
+          cn: '石牢点名',
+          ko: '화강암 감옥 대상',
+        },
       },
     },
     {
@@ -455,13 +492,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4125', source: 'マキシタイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4125', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4125', source: '거대 타이탄', capture: false }),
-      infoText: {
-        en: 'GET OFF FRONT RIGHT',
-        de: 'VON VORNE RECHTS RUNTER',
-        fr: 'PARTEZ DE L\'AVANT DROITE',
-        ja: '右前壊れるよ',
-        cn: '破坏右前',
-        ko: '앞 오른쪽 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'GET OFF FRONT RIGHT',
+          de: 'VON VORNE RECHTS RUNTER',
+          fr: 'PARTEZ DE L\'AVANT DROITE',
+          ja: '右前壊れるよ',
+          cn: '破坏右前',
+          ko: '앞 오른쪽 피하기',
+        },
       },
     },
     {
@@ -472,13 +512,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4126', source: 'マキシタイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4126', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4126', source: '거대 타이탄', capture: false }),
-      infoText: {
-        en: 'GET OFF BACK RIGHT',
-        de: 'VON HINTEN RECHTS RUNTER',
-        fr: 'PARTEZ DE L\'ARRIÈRE DROITE',
-        ja: '右後ろ壊れるよ',
-        cn: '破坏右后',
-        ko: '뒤 오른쪽 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'GET OFF BACK RIGHT',
+          de: 'VON HINTEN RECHTS RUNTER',
+          fr: 'PARTEZ DE L\'ARRIÈRE DROITE',
+          ja: '右後ろ壊れるよ',
+          cn: '破坏右后',
+          ko: '뒤 오른쪽 피하기',
+        },
       },
     },
     {
@@ -489,13 +532,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4127', source: 'マキシタイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4127', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4127', source: '거대 타이탄', capture: false }),
-      infoText: {
-        en: 'GET OFF BACK LEFT',
-        de: 'VON HINTEN LINKS RUNTER',
-        fr: 'PARTEZ DE L\'ARRIÈRE GAUCHE',
-        ja: '左後ろ壊れるよ',
-        cn: '破坏左后',
-        ko: '뒤 왼쪽 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'GET OFF BACK LEFT',
+          de: 'VON HINTEN LINKS RUNTER',
+          fr: 'PARTEZ DE L\'ARRIÈRE GAUCHE',
+          ja: '左後ろ壊れるよ',
+          cn: '破坏左后',
+          ko: '뒤 왼쪽 피하기',
+        },
       },
     },
     {
@@ -506,13 +552,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4128', source: 'マキシタイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4128', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4128', source: '거대 타이탄', capture: false }),
-      infoText: {
-        en: 'GET OFF FRONT LEFT',
-        de: 'VON VORNE LINKS RUNTER',
-        fr: 'PARTEZ DE L\'AVANT GAUCHE',
-        ja: '左前壊れるよ',
-        cn: '破坏左前',
-        ko: '앞 왼쪽 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'GET OFF FRONT LEFT',
+          de: 'VON VORNE LINKS RUNTER',
+          fr: 'PARTEZ DE L\'AVANT GAUCHE',
+          ja: '左前壊れるよ',
+          cn: '破坏左前',
+          ko: '앞 왼쪽 피하기',
+        },
       },
     },
     {
@@ -524,7 +573,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '412A', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '412A', source: '거대 타이탄', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },

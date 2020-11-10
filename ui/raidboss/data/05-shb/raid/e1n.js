@@ -13,7 +13,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D94', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D94', source: '에덴 프라임', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -26,7 +26,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3DA4', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DA4', source: '에덴 프라임', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -39,7 +39,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D9C', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D9C', source: '에덴 프라임', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -62,14 +62,17 @@
       netRegexCn: NetRegexes.tether({ id: '0011', target: '至尊伊甸' }),
       netRegexKo: NetRegexes.tether({ id: '0011', target: '에덴 프라임' }),
       condition: function(data, matches) {
-        return data.me == matches.source;
+        return data.me === matches.source;
       },
-      alertText: {
-        en: 'Tank Laser on YOU',
-        de: 'Tank Laser auf DIR',
-        fr: 'Tank laser sur VOUS',
-        cn: '坦克射线点名',
-        ko: '탱 레이저 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Laser on YOU',
+          de: 'Tank Laser auf DIR',
+          fr: 'Tank laser sur VOUS',
+          cn: '坦克射线点名',
+          ko: '탱 레이저 대상자',
+        },
       },
     },
     {
@@ -81,22 +84,23 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3DA1', source: '至尊伊甸' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DA1', source: '에덴 프라임' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
+        return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
     {
       id: 'E1N Vice of Apathy Mark',
       netRegex: NetRegexes.headMarker({ id: '001C' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alertText: {
-        en: 'Drop Puddle, Run Middle',
-        de: 'Flächen ablegen, danach in die Mitte',
-        fr: 'Déposez les zones au sol, courez au milieu',
-        cn: '放圈，回中央',
-        ko: '장판 깔고 중앙으로',
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop Puddle, Run Middle',
+          de: 'Flächen ablegen, danach in die Mitte',
+          fr: 'Déposez les zones au sol, courez au milieu',
+          cn: '放圈，回中央',
+          ko: '장판 깔고 중앙으로',
+        },
       },
     },
     {

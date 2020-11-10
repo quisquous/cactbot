@@ -8,13 +8,16 @@
       id: 'A1S Emergency Liftoff',
       regex: /Emergency Liftoff/,
       beforeSeconds: 5,
-      infoText: {
-        en: 'Liftoff Soon',
-        de: 'Bald abheben',
-        fr: 'Décollage bientôt',
-        ja: '緊急上昇',
-        cn: '上升',
-        ko: '긴급 상승',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Liftoff Soon',
+          de: 'Bald abheben',
+          fr: 'Décollage bientôt',
+          ja: '緊急上昇',
+          cn: '上升',
+          ko: '긴급 상승',
+        },
       },
     },
     {
@@ -38,13 +41,16 @@
       id: 'A1S Hydrothermal You',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Hydrothermal on You',
-        de: 'Hydrothermales auf DIR',
-        fr: 'Missile hydrothermique sur Vous',
-        ja: '自分に蒸気ミサイル',
-        cn: '导弹点名',
-        ko: '증기 미사일 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hydrothermal on You',
+          de: 'Hydrothermales auf DIR',
+          fr: 'Missile hydrothermique sur Vous',
+          ja: '自分に蒸気ミサイル',
+          cn: '导弹点名',
+          ko: '증기 미사일 대상자',
+        },
       },
     },
     {
@@ -52,18 +58,21 @@
       netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
       condition: Conditions.caresAboutMagical(),
       suppressSeconds: 2,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         data.hydro = data.hydro || [];
-        if (data.hydro.length == 0)
+        if (data.hydro.length === 0)
           return;
-        return {
-          en: 'Hydrothermal on ' + data.hydro.map((x) => data.ShortName(x)).join(', '),
-          de: 'Hydrothermales auf ' + data.hydro.map((x) => data.ShortName(x)).join(', '),
-          fr: 'Missile hydrothermique sur ' + data.hydro.map((x) => data.ShortName(x)).join(', '),
-          ja: data.hydro.map((x) => data.ShortName(x)).join(', ') + 'に蒸気ミサイル',
-          cn: '导弹点' + data.hydro.map((x) => data.ShortName(x)).join(', '),
-          ko: '"' + data.hydro.map((x) => data.ShortName(x)).join(', ') + '" 증기 미사일',
-        };
+        return output.text({ players: data.hydro.map((x) => data.ShortName(x)).join(', ') });
+      },
+      outputStrings: {
+        text: {
+          en: 'Hydrothermal on ${players}',
+          de: 'Hydrothermales auf ${players}',
+          fr: 'Missile hydrothermique sur ${players}',
+          ja: '${players}に蒸気ミサイル',
+          cn: '导弹点${players}',
+          ko: '"${players}" 증기 미사일',
+        },
       },
     },
     {
@@ -82,13 +91,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: 'E46', source: 'オプレッサー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: 'E46', source: '压迫者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: 'E46', source: '억압자', capture: false }),
-      infoText: {
-        en: 'Bait Resin Bomb',
-        de: 'Köder Pechbombe',
-        fr: 'Placez-vous pour Bombe de résine',
-        ja: '粘着弾',
-        cn: '粘着弹',
-        ko: '점착탄',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Resin Bomb',
+          de: 'Köder Pechbombe',
+          fr: 'Placez-vous pour Bombe de résine',
+          ja: '粘着弾',
+          cn: '粘着弹',
+          ko: '점착탄',
+        },
       },
     },
     {
@@ -126,7 +138,7 @@
       netRegexKo: NetRegexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'], capture: false }),
       delaySeconds: 0.3,
       suppressSeconds: 2,
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         data.hyper = data.hyper || [];
         if (data.hyper.includes(data.me))
           return;
@@ -134,14 +146,17 @@
         // awkward inside of functions.
         if (!Conditions.caresAboutMagical()(data))
           return;
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'Tank Busters',
           de: 'Tank buster',
           fr: 'Tank busters',
           ja: 'タンクバスター',
           cn: '坦克死刑',
           ko: '탱버',
-        };
+        },
       },
     },
     {

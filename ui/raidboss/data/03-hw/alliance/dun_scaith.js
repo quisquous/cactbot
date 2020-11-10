@@ -30,13 +30,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['1C7F', '1C90'], source: '虚空死亡凝视', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1C7F', '1C90'], source: '공허의 저승파수꾼', capture: false }),
       suppressSeconds: 5,
-      alertText: {
-        en: 'Out of death circle',
-        de: 'Raus aus den Todeskreisen',
-        fr: 'Sortez du cercle de mort',
-        ja: 'ヴォイド・デス、外へ',
-        cn: '离开圈内并扯断连线',
-        ko: '데스 장판 빠져나오기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Out of death circle',
+          de: 'Raus aus den Todeskreisen',
+          fr: 'Sortez du cercle de mort',
+          ja: 'ヴォイド・デス、外へ',
+          cn: '离开圈内并扯断连线',
+          ko: '데스 장판 빠져나오기',
+        },
       },
     },
     {
@@ -53,13 +56,16 @@
       condition: function(data) {
         return data.CanCleanse();
       },
-      alertText: {
-        en: 'Cleanse Doom soon!',
-        de: 'Verhängnis bald reinigen!',
-        fr: 'Guerrissez Glas bientot',
-        ja: '死の宣告、エスナ！',
-        cn: '尽快驱散死亡宣告！',
-        ko: '죽음의 선고 해제',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Cleanse Doom soon!',
+          de: 'Verhängnis bald reinigen!',
+          fr: 'Guerrissez Glas bientot',
+          ja: '死の宣告、エスナ！',
+          cn: '尽快驱散死亡宣告！',
+          ko: '죽음의 선고 해제',
+        },
       },
     },
     {
@@ -79,28 +85,32 @@
       id: 'Dun Scaith Void Sprite',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5508', capture: false }),
       suppressSeconds: 10,
-      infoText: {
-        en: 'Kill sprites',
-        de: 'Exergone töten',
-        fr: 'Tuez les adds',
-        ja: 'スプライトを倒す',
-        cn: '击杀虚无元精',
-        ko: '광대 잡기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill sprites',
+          de: 'Exergone töten',
+          fr: 'Tuez les adds',
+          ja: 'スプライトを倒す',
+          cn: '击杀虚无元精',
+          ko: '광대 잡기',
+        },
       },
     },
     {
       id: 'Dun Scaith Aero 2',
       netRegex: NetRegexes.headMarker({ id: '0046' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Drop Tornado outside',
-        de: 'Wirbel draußen ablegen',
-        fr: 'Déposez les tornades à l\'extérieur',
-        ja: 'エアロガ、外に置く',
-        cn: '场地边缘放风圈',
-        ko: '회오리 외곽으로 유도',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop Tornado outside',
+          de: 'Wirbel draußen ablegen',
+          fr: 'Déposez les tornades à l\'extérieur',
+          ja: 'エアロガ、外に置く',
+          cn: '场地边缘放风圈',
+          ko: '회오리 외곽으로 유도',
+        },
       },
     },
     {
@@ -129,31 +139,34 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['1C82', '1C83'], source: '虚空死亡凝视', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1C82', '1C83'], source: '공허의 저승파수꾼', capture: false }),
       suppressSeconds: 5,
-      alertText: {
-        en: 'Avoid death squares',
-        de: 'Weiche den Todes-Feldern aus',
-        fr: 'Evitez les carrés mortels',
-        ja: 'ヴォイド・デスジャ、エリアの外に',
-        cn: '离开即死区域',
-        ko: '검은 장판 피하기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid death squares',
+          de: 'Weiche den Todes-Feldern aus',
+          fr: 'Evitez les carrés mortels',
+          ja: 'ヴォイド・デスジャ、エリアの外に',
+          cn: '离开即死区域',
+          ko: '검은 장판 피하기',
+        },
       },
     },
     // FERDIAD
     {
       id: 'Dun Scaith Scythe Drop',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 5,
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Drop scythe outside',
-            de: 'Sense draußen ablegen',
-            fr: 'Posez à l\'extérieur',
-            ja: 'ブラックウインド、外に置く',
-            cn: '场地边缘放镰刀',
-            ko: '외곽으로',
-          };
-        }
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop scythe outside',
+          de: 'Sense draußen ablegen',
+          fr: 'Posez à l\'extérieur',
+          ja: 'ブラックウインド、外に置く',
+          cn: '场地边缘放镰刀',
+          ko: '외곽으로',
+        },
       },
     },
     {
@@ -178,7 +191,7 @@
       run: function(data, matches) {
         data.cursing = data.cursing || [];
         data.wailing = data.wailing || [];
-        matches.npcNameId == '5510' ? data.wailing.push(matches.id) : data.cursing.push(matches.id);
+        matches.npcNameId === '5510' ? data.wailing.push(matches.id) : data.cursing.push(matches.id);
       },
     },
     {
@@ -202,66 +215,74 @@
       netRegex: NetRegexes.startsUsing({ id: ['1C9F', '1CA0'], capture: false }),
       delaySeconds: 1,
       suppressSeconds: 5,
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (data.donut.length === 2) {
-          return {
-            en: 'Go To Any Untethered',
-            de: 'Gehe zu einem Unverbundenen',
-            ja: '線のないアトモスに近づく',
-            cn: '靠近无线小怪',
-            ko: '아트모스 근처로',
-          };
+          return output.goToAnyUntethered();
         } else if (data.sphere.length === 2) {
-          return {
-            en: 'Avoid All Untethered',
-            de: 'Vermeide alle Unverbundenen',
-            ja: '線のないアトモスに離れ',
-            cn: '远离无线小怪',
-            ko: '모든 아트모스 피하기',
-          };
+          return output.avoidAllUntethered();
         } else if (data.donut.length === 1) {
           // Wailing Atomos is blue, Cursing Atomos is yellow.
           // If there's exactly 1 Chakram, the other Atomos is irrelevant.
           // (Any Chakram Atomos is guaranteed to be safe.)
-          if (data.donut[0] === 'wailing') {
-            return {
-              en: 'Go to Untethered Blue',
-              de: 'Gehe zu dem nicht verbundenen blauem Atomos',
-              fr: 'Allez vers la Gueule bleue non-liée',
-              ja: '線のない青色アトモスに近づく',
-              cn: '靠近蓝色小怪',
-              ko: '파란 아트모스로 이동',
-            };
-          }
-          return {
-            en: 'Go to Untethered Yellow',
-            de: 'Gehe zu dem nicht verbundenen gelben Atomos',
-            fr: 'Allez vers la Gueule jaune non-liée',
-            ja: '線のない黄色アトモスに近づく',
-            cn: '靠近黄色小怪',
-            ko: '노란 아트모스로 이동',
-          };
+          if (data.donut[0] === 'wailing')
+            return output.goToUntetheredBlue();
+
+          return output.goToUntetheredYellow();
         }
         // If there's only a Sphere on the field, the other Atomos color isn't guaranteed safe.
         // Therefore we need to specify staying away from the Sphere-tethered Atomos.
-        if (data.sphere[0] === 'wailing') {
-          return {
-            en: 'Avoid Untethered Blue',
-            de: 'Weiche dem nicht verbundenen blauem Atomos aus',
-            fr: 'Evitez Gueule bleue non-liée',
-            ja: '線のない青色アトモスに離れ',
-            cn: '远离蓝色小怪',
-            ko: '파란 아트모스 피하기',
-          };
-        }
-        return {
+        if (data.sphere[0] === 'wailing')
+          return output.avoidUntetheredBlue();
+
+        return output.avoidUntetheredYellow();
+      },
+      outputStrings: {
+        goToAnyUntethered: {
+          en: 'Go To Any Untethered',
+          de: 'Gehe zu einem Unverbundenen',
+          ja: '線のないアトモスに近づく',
+          cn: '靠近无线小怪',
+          ko: '아트모스 근처로',
+        },
+        avoidAllUntethered: {
+          en: 'Avoid All Untethered',
+          de: 'Vermeide alle Unverbundenen',
+          ja: '線のないアトモスに離れ',
+          cn: '远离无线小怪',
+          ko: '모든 아트모스 피하기',
+        },
+        goToUntetheredBlue: {
+          en: 'Go to Untethered Blue',
+          de: 'Gehe zu dem nicht verbundenen blauem Atomos',
+          fr: 'Allez vers la Gueule bleue non-liée',
+          ja: '線のない青色アトモスに近づく',
+          cn: '靠近蓝色小怪',
+          ko: '파란 아트모스로 이동',
+        },
+        goToUntetheredYellow: {
+          en: 'Go to Untethered Yellow',
+          de: 'Gehe zu dem nicht verbundenen gelben Atomos',
+          fr: 'Allez vers la Gueule jaune non-liée',
+          ja: '線のない黄色アトモスに近づく',
+          cn: '靠近黄色小怪',
+          ko: '노란 아트모스로 이동',
+        },
+        avoidUntetheredBlue: {
+          en: 'Avoid Untethered Blue',
+          de: 'Weiche dem nicht verbundenen blauem Atomos aus',
+          fr: 'Evitez Gueule bleue non-liée',
+          ja: '線のない青色アトモスに離れ',
+          cn: '远离蓝色小怪',
+          ko: '파란 아트모스 피하기',
+        },
+        avoidUntetheredYellow: {
           en: 'Avoid Untethered Yellow',
           de: 'Weiche dem nicht verbundenen gelben Atomos aus',
           fr: 'Evitez Gueule jaune non-liée',
           ja: '線のない黄色アトモスに離れ',
           cn: '远离黄色小怪',
           ko: '노란 아트모스 피하기',
-        };
+        },
       },
     },
     {
@@ -280,13 +301,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1CAA', source: 'フェルディア・ホロー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1CAA', source: '虚空弗迪亚', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1CAA', source: '공허의 페르디아', capture: false }),
-      infoText: {
-        en: 'Avoid puddles',
-        de: 'Flächen ausweichen',
-        fr: 'Evitez les zones au sol',
-        ja: '円範囲攻撃、避け',
-        cn: '离开圈圈',
-        ko: '장판 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid puddles',
+          de: 'Flächen ausweichen',
+          fr: 'Evitez les zones au sol',
+          ja: '円範囲攻撃、避け',
+          cn: '离开圈圈',
+          ko: '장판 피하기',
+        },
       },
     },
     {
@@ -294,13 +318,16 @@
       id: 'Dun Scaith Debilitator Fire',
       netRegex: NetRegexes.gainsEffect({ effectId: '471', capture: false }),
       suppressSeconds: 10,
-      alertText: {
-        en: 'Change puddles to water',
-        de: 'Ändere Flächen zu Wasser',
-        fr: 'Changez en eau',
-        ja: '青い水に入れ替わって',
-        cn: '将地上的圈踩成蓝色',
-        ko: '파란 장판으로 바꾸기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Change puddles to water',
+          de: 'Ändere Flächen zu Wasser',
+          fr: 'Changez en eau',
+          ja: '青い水に入れ替わって',
+          cn: '将地上的圈踩成蓝色',
+          ko: '파란 장판으로 바꾸기',
+        },
       },
     },
     {
@@ -308,13 +335,16 @@
       id: 'Dun Scaith Debilitator Water',
       netRegex: NetRegexes.gainsEffect({ effectId: '485', capture: false }),
       suppressSeconds: 10,
-      alertText: {
-        en: 'Change puddles to fire',
-        de: 'Ändere Flächen zu Feuer',
-        fr: 'Changez en feu',
-        ja: '赤い火に入れ替わって',
-        cn: '将地上的圈踩成红色',
-        ko: '빨간 장판으로 바꾸기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Change puddles to fire',
+          de: 'Ändere Flächen zu Feuer',
+          fr: 'Changez en feu',
+          ja: '赤い火に入れ替わって',
+          cn: '将地上的圈踩成红色',
+          ko: '빨간 장판으로 바꾸기',
+        },
       },
     },
     // PROTO-ULTIMA
@@ -328,24 +358,24 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: '究极神兵原型', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: '프로토 알테마', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
     {
       id: 'Dun Scaith Prey Markers',
       netRegex: NetRegexes.gainsEffect({ effectId: '232' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Prey--Avoid party and keep moving',
-            de: 'Markiert - Weg von der Gruppe und bleib in Bewegung',
-            fr: 'Marquage - Evitez les autres et bougez',
-            ja: 'マーキング - 外に移動続ける',
-            cn: '离开人群并保持移动',
-            ko: '파티에게서 떨어지고 움직이기',
-          };
-        }
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Prey--Avoid party and keep moving',
+          de: 'Markiert - Weg von der Gruppe und bleib in Bewegung',
+          fr: 'Marquage - Evitez les autres et bougez',
+          ja: 'マーキング - 外に移動続ける',
+          cn: '离开人群并保持移动',
+          ko: '파티에게서 떨어지고 움직이기',
+        },
       },
     },
     {
@@ -354,26 +384,32 @@
       id: 'Dun Scaith Bit Circles',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '3782', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'Avoid Bit AoEs',
-        de: 'Weiche den Bit AoEs aus',
-        fr: 'Evitez les AoE des forets',
-        ja: 'AoEを避け',
-        cn: '躲避小型AOE',
-        ko: '비트 장판 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Bit AoEs',
+          de: 'Weiche den Bit AoEs aus',
+          fr: 'Evitez les AoE des forets',
+          ja: 'AoEを避け',
+          cn: '躲避小型AOE',
+          ko: '비트 장판 피하기',
+        },
       },
     },
     {
       id: 'Dun Scaith Aether Collectors',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '3781', capture: false }),
       suppressSeconds: 5,
-      alertText: {
-        en: 'Kill collectors',
-        de: 'Ätherakkumulator besiegen',
-        fr: 'Détruisez les accumulateurs',
-        ja: 'エーテル集積器を倒す',
-        cn: '击杀以太收集器',
-        ko: '에테르 집적기 파괴',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill collectors',
+          de: 'Ätherakkumulator besiegen',
+          fr: 'Détruisez les accumulateurs',
+          ja: 'エーテル集積器を倒す',
+          cn: '击杀以太收集器',
+          ko: '에테르 집적기 파괴',
+        },
       },
     },
     // SCATHACH
@@ -387,13 +423,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1D1[EF]', source: '斯卡哈', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1D1[EF]', source: '스카하크', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'Avoid arm slaps',
-        de: 'Weiche den Armschlägen aus',
-        fr: 'Evitez les bras',
-        ja: '影の手を避け',
-        cn: '站在boss背后方向',
-        ko: '날개 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid arm slaps',
+          de: 'Weiche den Armschlägen aus',
+          fr: 'Evitez les bras',
+          ja: '影の手を避け',
+          cn: '站在boss背后方向',
+          ko: '날개 피하기',
+        },
       },
     },
     {
@@ -415,13 +454,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1D2F', source: 'スカアハ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1D2F', source: '斯卡哈', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1D2F', source: '스카하크', capture: false }),
-      infoText: {
-        en: 'Avoid line AoEs',
-        de: 'Weiche den Linien AoEs aus',
-        fr: 'Evitez les AoE en ligne',
-        ja: 'スカサハの正面に立たない',
-        cn: '躲开boss正面路线',
-        ko: '직선 장판 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid line AoEs',
+          de: 'Weiche den Linien AoEs aus',
+          fr: 'Evitez les AoE en ligne',
+          ja: 'スカサハの正面に立たない',
+          cn: '躲开boss正面路线',
+          ko: '직선 장판 피하기',
+        },
       },
     },
     {
@@ -433,7 +475,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1D32', source: '斯卡哈', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1D32', source: '스카하크', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -454,13 +496,16 @@
       id: 'Dun Scaith Shadow Limb Spawn',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5516', capture: false }),
       suppressSeconds: 5,
-      alertText: {
-        en: 'Kill the hands',
-        de: 'Besiege die Hand',
-        fr: 'Tuez les mains',
-        ja: '影の手を倒す',
-        cn: '击杀影之手',
-        ko: '손 처치하기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill the hands',
+          de: 'Besiege die Hand',
+          fr: 'Tuez les mains',
+          ja: '影の手を倒す',
+          cn: '击杀影之手',
+          ko: '손 처치하기',
+        },
       },
     },
     {
@@ -471,31 +516,34 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1CD1', source: 'コンラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1CD1', source: '康拉', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1CD1', source: '콘라', capture: false }),
-      alertText: {
-        en: 'Avoid AoE, Kill Connla',
-        de: 'Weiche AoE aus, besiege Connla',
-        fr: 'Evitez les AoE, tuez Connla',
-        ja: 'AoEを避け、コンラを倒す',
-        cn: '躲避AOE后击杀康拉',
-        ko: '장판 피하며 콘라 처치',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid AoE, Kill Connla',
+          de: 'Weiche AoE aus, besiege Connla',
+          fr: 'Evitez les AoE, tuez Connla',
+          ja: 'AoEを避け、コンラを倒す',
+          cn: '躲避AOE后击杀康拉',
+          ko: '장판 피하며 콘라 처치',
+        },
       },
     },
     {
       // This trigger is common to both Scathach and Diabolos, since handling is 100% identical.
       id: 'Dun Scaith Nox Orbs',
       netRegex: NetRegexes.headMarker({ id: '005C' }),
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 5,
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Take orb outside',
-            de: 'Orb nach außen bringen',
-            fr: 'Prenez l\'orb à l\'extérieur',
-            ja: '黒い球体を外に引く',
-            cn: '把球带出人群，移动到球不再出现为止',
-            ko: '외곽으로 유도',
-          };
-        }
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Take orb outside',
+          de: 'Orb nach außen bringen',
+          fr: 'Prenez l\'orb à l\'extérieur',
+          ja: '黒い球体を外に引く',
+          cn: '把球带出人群，移动到球不再出现为止',
+          ko: '외곽으로 유도',
+        },
       },
     },
     {
@@ -534,16 +582,19 @@
       id: 'Dun Scaith Noctoshield',
       netRegex: NetRegexes.gainsEffect({ target: 'Diabolos', effectId: '1AA', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       suppressSeconds: 5,
-      alertText: {
-        en: 'Boss hitting hard--Shield/Mitigate',
-        de: 'Harter Hit vom Boss - Schild/Milderung',
-        fr: 'Le boss frappe fort - Bouclier/Mitigation',
-        ja: '大ダメージ物理タンクバスター - ダメージ軽減/バリア',
-        cn: 'MT大伤害物理死刑—注意减伤/治疗盾',
-        ko: '탱커버스터 - 뎀감/보호막',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Boss hitting hard--Shield/Mitigate',
+          de: 'Harter Hit vom Boss - Schild/Milderung',
+          fr: 'Le boss frappe fort - Bouclier/Mitigation',
+          ja: '大ダメージ物理タンクバスター - ダメージ軽減/バリア',
+          cn: 'MT大伤害物理死刑—注意减伤/治疗盾',
+          ko: '탱커버스터 - 뎀감/보호막',
+        },
       },
     },
     {
@@ -555,7 +606,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['1C10', '1C11'], source: '迪亚波罗斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1C10', '1C11'], source: '디아볼로스', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       suppressSeconds: 5,
       response: Responses.aoe(),
@@ -564,13 +615,16 @@
       id: 'Dun Scaith Deathgates',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5523', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'Kill the deathgates',
-        de: 'Besiege die Tore des Todes',
-        fr: 'Détruisez les portes de mort',
-        ja: '召喚の扉を倒す',
-        cn: '击杀召唤之门',
-        ko: '소환의 문 파괴',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill the deathgates',
+          de: 'Besiege die Tore des Todes',
+          fr: 'Détruisez les portes de mort',
+          ja: '召喚の扉を倒す',
+          cn: '击杀召唤之门',
+          ko: '소환의 문 파괴',
+        },
       },
     },
     {
@@ -586,25 +640,29 @@
     {
       id: 'Dun Scaith Hollow Night',
       netRegex: NetRegexes.headMarker({ id: '005B' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Gaze stack on YOU',
-            de: 'Blick-Sammeln auf DIR',
-            fr: 'Package sur VOUS',
-            ja: '自分に頭割り',
-            cn: '点名分摊',
-            ko: '시선 쉐어 대상자',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target) + ' and look away',
-          de: 'Sammeln bei ' + data.ShortName(matches.target) + ' und wewg schauen',
-          fr: 'Package sur ' + data.ShortName(matches.target) + ' et regardez ailleurs',
-          ja: data.ShortName(matches.target) + 'に頭割り、見ない',
-          cn: '靠近并背对' + data.ShortName(matches.target) + '分摊',
-          ko: data.ShortName(matches.target) + '쉐어, 바라보지않기',
-        };
+      alertText: function(data, matches, output) {
+        if (matches.target === data.me)
+          return output.gazeStackOnYou();
+
+        return output.stackOnAndLookAway({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        gazeStackOnYou: {
+          en: 'Gaze stack on YOU',
+          de: 'Blick-Sammeln auf DIR',
+          fr: 'Package sur VOUS',
+          ja: '自分に頭割り',
+          cn: '点名分摊',
+          ko: '시선 쉐어 대상자',
+        },
+        stackOnAndLookAway: {
+          en: 'Stack on ${player} and look away',
+          de: 'Sammeln bei ${player} und wewg schauen',
+          fr: 'Package sur ${player} et regardez ailleurs',
+          ja: '${player}に頭割り、見ない',
+          cn: '靠近并背对${player}分摊',
+          ko: '${player}쉐어, 바라보지않기',
+        },
       },
     },
     {
@@ -616,7 +674,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['1C22', '1C23'], source: '虚空迪亚波罗斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1C22', '1C23'], source: '공허의 디아볼로스', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       suppressSeconds: 5,
       response: Responses.bigAoe(),
@@ -630,9 +688,7 @@
     {
       id: 'Dun Scaith Earth Shaker',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.earthshaker(),
     },
   ],

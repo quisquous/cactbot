@@ -42,15 +42,18 @@
         return !data.seenFirstSpear;
       },
       delaySeconds: 5,
-      infoText: {
-        en: 'Look for small spear',
-        de: 'Halt nach kleinem Speer ausschau',
-        fr: 'Allez sur la petite lance',
-        cn: '找短矛',
-        ko: '작은 지팡이 확인',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.seenFirstSpear = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Look for small spear',
+          de: 'Halt nach kleinem Speer ausschau',
+          fr: 'Allez sur la petite lance',
+          cn: '找短矛',
+          ko: '작은 지팡이 확인',
+        },
       },
     },
     {
@@ -61,35 +64,40 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4BAC', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4BAC', source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4BAC', source: '拉姆', capture: false }),
-      infoText: function(data) {
-        if (data.seenFirstAdd) {
-          return {
-            en: 'Look for adds',
-            de: 'Halt nach dem Add ausschau',
-            fr: 'Cherchez les adds',
-            cn: '冲锋',
-            ko: '쫄 위치 확인',
-          };
-        }
-        if (data.furysBoltActive) {
-          return {
-            en: 'Big Knockback',
-            de: 'Weiter Rückstoß',
-            fr: 'Forte poussée',
-            cn: '长击退',
-            ko: '긴 넉백',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.seenFirstAdd)
+          return output.lookForAdds();
+
+        if (data.furysBoltActive)
+          return output.bigKnockback();
+
+        return output.shortKnockback();
+      },
+      run: function(data) {
+        data.seenFirstAdd = true;
+      },
+      outputStrings: {
+        lookForAdds: {
+          en: 'Look for adds',
+          de: 'Halt nach dem Add ausschau',
+          fr: 'Cherchez les adds',
+          cn: '冲锋',
+          ko: '쫄 위치 확인',
+        },
+        bigKnockback: {
+          en: 'Big Knockback',
+          de: 'Weiter Rückstoß',
+          fr: 'Forte poussée',
+          cn: '长击退',
+          ko: '긴 넉백',
+        },
+        shortKnockback: {
           en: 'Short Knockback',
           de: 'Kurzer Rückstoß',
           fr: 'Faible poussée',
           cn: '短击退',
           ko: '짧은 넉백',
-        };
-      },
-      run: function(data) {
-        data.seenFirstAdd = true;
+        },
       },
     },
     {
@@ -100,17 +108,19 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4BAA', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4BAA', source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4BAA', source: '拉姆', capture: false }),
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         // Fury's Bolt + Stepped Leader doesn't require an orb
-        if (!data.surgeProtection && !data.steppedLeaderNext) {
-          return {
-            en: 'Grab an orb',
-            de: 'Einen Orb nehmen',
-            fr: 'Prenez un orbe',
-            cn: '吃球',
-            ko: '구슬 줍기',
-          };
-        }
+        if (!data.surgeProtection && !data.steppedLeaderNext)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Grab an orb',
+          de: 'Einen Orb nehmen',
+          fr: 'Prenez un orbe',
+          cn: '吃球',
+          ko: '구슬 줍기',
+        },
       },
     },
     {
@@ -138,20 +148,22 @@
       condition: function(data) {
         return !data.furysFourteenCounter || data.furysFourteenCounter < 2;
       },
-      alertText: function(data) {
-        if (!data.surgeProtection) {
-          return {
-            en: 'Grab an orb',
-            de: 'Einen Orb nehmen',
-            fr: 'Prenez un orbe',
-            cn: '吃球',
-            ko: '구슬 줍기',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (!data.surgeProtection)
+          return output.text();
       },
       run: function(data) {
         data.furysFourteenCounter = data.furysFourteenCounter || 0;
         data.furysFourteenCounter++;
+      },
+      outputStrings: {
+        text: {
+          en: 'Grab an orb',
+          de: 'Einen Orb nehmen',
+          fr: 'Prenez un orbe',
+          cn: '吃球',
+          ko: '구슬 줍기',
+        },
       },
     },
     {
@@ -173,24 +185,28 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4BC6', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4BC6', source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4BC6', source: '拉姆', capture: false }),
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         // Fury's Bolt + Stepped Leader is a donut AoE instead
-        if (!data.furysBoltActive) {
-          return {
-            en: 'Ready Spread',
-            de: 'Bereitmachen zum Verteilen',
-            fr: 'Dispersion bientôt',
-            cn: '准备分散',
-            ko: '산개 준비',
-          };
-        }
-        return {
+        if (!data.furysBoltActive)
+          return output.readySpread();
+
+        return output.donutAoe();
+      },
+      outputStrings: {
+        readySpread: {
+          en: 'Ready Spread',
+          de: 'Bereitmachen zum Verteilen',
+          fr: 'Dispersion bientôt',
+          cn: '准备分散',
+          ko: '산개 준비',
+        },
+        donutAoe: {
           en: 'donut AoE',
           de: 'Donut AoE',
           fr: 'AoE en donut',
           cn: '环形AOE',
           ko: '도넛 장판',
-        };
+        },
       },
     },
     {
@@ -238,12 +254,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4BB8', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4BB8', source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4BB8', source: '拉姆', capture: false }),
-      infoText: {
-        en: 'Position for Stormcloud',
-        de: 'Position für die Wolke',
-        fr: 'Position pour les nuages',
-        cn: '雷云站位',
-        ko: '번개 구름 위치 잡기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Position for Stormcloud',
+          de: 'Position für die Wolke',
+          fr: 'Position pour les nuages',
+          cn: '雷云站位',
+          ko: '번개 구름 위치 잡기',
+        },
       },
     },
     {
@@ -251,24 +270,30 @@
       id: 'E5S Stormcloud Cleanse',
       netRegex: NetRegexes.headMarker({ id: '00D2' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Cleanse In Cloud',
-        de: 'In der Wolke reinigen',
-        fr: 'Purifiez-vous dans le nuage',
-        ko: '디버프 제거하기',
-        cn: '雷云清Debuff',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Cleanse In Cloud',
+          de: 'In der Wolke reinigen',
+          fr: 'Purifiez-vous dans le nuage',
+          ko: '디버프 제거하기',
+          cn: '雷云清Debuff',
+        },
       },
     },
     {
       id: 'E5S Stormcloud Drop',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Drop Cloud Away',
-        de: 'Wolke drausen ablegen',
-        fr: 'Déposez le nuage à l\'extérieur',
-        ko: '번개 구름 소환자',
-        cn: '远离放雷云',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop Cloud Away',
+          de: 'Wolke drausen ablegen',
+          fr: 'Déposez le nuage à l\'extérieur',
+          ko: '번개 구름 소환자',
+          cn: '远离放雷云',
+        },
       },
     },
     {
@@ -279,12 +304,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4BAD', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4BAD', source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4BAD', source: '拉姆', capture: false }),
-      infoText: {
-        en: 'Be in your position',
-        de: 'Befinde dich auf deiner Position!',
-        fr: 'Soyez à votre position',
-        cn: '冲锋站位',
-        ko: '자기 위치에 있기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Be in your position',
+          de: 'Befinde dich auf deiner Position!',
+          fr: 'Soyez à votre position',
+          cn: '冲锋站位',
+          ko: '자기 위치에 있기',
+        },
       },
     },
     {
@@ -295,12 +323,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4BC4', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4BC4', source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4BC4', source: '拉姆', capture: false }),
-      alertText: {
-        en: 'Ready for Chain',
-        de: 'Bereit für Kettenblitz',
-        fr: 'Préparez-vous pour la chaine',
-        ko: '체인 라이트닝 준비',
-        cn: '雷光链',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Ready for Chain',
+          de: 'Bereit für Kettenblitz',
+          fr: 'Préparez-vous pour la chaine',
+          ko: '체인 라이트닝 준비',
+          cn: '雷光链',
+        },
       },
     },
     {

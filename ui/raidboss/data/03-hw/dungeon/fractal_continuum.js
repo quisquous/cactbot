@@ -10,7 +10,7 @@
       regex: /Atmospheric Displacement/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -25,7 +25,7 @@
       regex: /Unholy/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -79,13 +79,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: 'F87', source: 'ミノタウロス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: 'F87', source: '弥诺陶洛斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: 'F87', source: '미노타우로스', capture: false }),
-      alertText: {
-        en: 'Use a cage',
-        de: 'Benutze einen Käfig',
-        fr: 'Utilisez un incubateur',
-        ja: 'キメラ培養器を使って',
-        cn: '打开笼子',
-        ko: '감옥 해제',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Use a cage',
+          de: 'Benutze einen Käfig',
+          fr: 'Utilisez un incubateur',
+          ja: 'キメラ培養器を使って',
+          cn: '打开笼子',
+          ko: '감옥 해제',
+        },
       },
     },
     {
@@ -94,13 +97,16 @@
       condition: function(data) {
         return data.CanCleanse();
       },
-      infoText: {
-        en: 'Cleanse bomb',
-        de: 'Reinige Bomben-Debuff',
-        fr: 'Guérison => Debuff bombe',
-        ja: 'エスナ：魔科学爆弾',
-        cn: '康复魔炸弹',
-        ko: '폭탄 디버프 해제',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Cleanse bomb',
+          de: 'Reinige Bomben-Debuff',
+          fr: 'Guérison => Debuff bombe',
+          ja: 'エスナ：魔科学爆弾',
+          cn: '康复魔炸弹',
+          ko: '폭탄 디버프 해제',
+        },
       },
     },
     {

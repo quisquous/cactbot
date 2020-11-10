@@ -25,51 +25,60 @@
     {
       id: 'O10S Fire Marker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      alarmText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Fire Marker on YOU',
-            de: 'Feuer Marker auf DIR',
-            fr: 'Feu sur VOUS',
-            ja: '自分にマーカー',
-            cn: '火点名',
-            ko: '불징 대상자',
-          };
-        }
+      alarmText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return output.fireOnYou();
       },
-      infoText: function(data, matches) {
-        if (data.me != matches.target)
-          return 'Fire on ' + data.ShortName(matches.target);
+      infoText: function(data, matches, output) {
+        if (data.me !== matches.target)
+          return output.fireOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        fireOnYou: {
+          en: 'Fire Marker on YOU',
+          de: 'Feuer Marker auf DIR',
+          fr: 'Feu sur VOUS',
+          ja: '自分にマーカー',
+          cn: '喷火点名',
+          ko: '불징 대상자',
+        },
+        fireOn: {
+          en: 'Fire Marker on ${player}',
+          de: 'Feuer Markierung auf ${player}',
+          cn: '喷火点${player}',
+        },
       },
     },
     {
       id: 'O10S Death From Below',
       netRegex: NetRegexes.headMarker({ id: '008F' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Death From Below',
-        de: 'Tod von unten',
-        fr: 'Désastre terrestre',
-        ja: '地の災厄',
-        cn: '地之灾厄',
-        ko: '디버프 확인',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Death From Below',
+          de: 'Tod von unten',
+          fr: 'Désastre terrestre',
+          ja: '地の災厄',
+          cn: '地之灾厄',
+          ko: '디버프 확인',
+        },
       },
     },
     {
       id: 'O10S Death From Above',
       netRegex: NetRegexes.headMarker({ id: '008E' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Death From Above',
-        de: 'Tod von oben',
-        fr: 'Désastre Céleste',
-        ja: '天の災厄',
-        cn: '天之灾厄',
-        ko: '디버프 확인',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Death From Above',
+          de: 'Tod von oben',
+          fr: 'Désastre Céleste',
+          ja: '天の災厄',
+          cn: '天之灾厄',
+          ko: '디버프 확인',
+        },
       },
     },
     {
@@ -100,16 +109,19 @@
       netRegexJa: NetRegexes.ability({ id: '31AC', source: 'ミドガルズオルム', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '31AC', source: '尘世幻龙', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '31AC', source: '미드가르드오름', capture: false }),
-      infoText: {
-        en: 'Next Spin: In or Out',
-        de: 'Nächste Drehung: Rein oder Raus',
-        fr: 'Tour suivant : Dedans/Dehors',
-        ja: '次: 中/外',
-        cn: '下一转：靠近或远离',
-        ko: '안쪽 / 바깥쪽',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.lastSpinWasHorizontal = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Next Spin: In or Out',
+          de: 'Nächste Drehung: Rein oder Raus',
+          fr: 'Tour suivant : Dedans/Dehors',
+          ja: '次: 中/外',
+          cn: '下一转：靠近或远离',
+          ko: '안쪽 / 바깥쪽',
+        },
       },
     },
     {
@@ -120,16 +132,19 @@
       netRegexJa: NetRegexes.ability({ id: '31AD', source: 'ミドガルズオルム', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '31AD', source: '尘世幻龙', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '31AD', source: '미드가르드오름', capture: false }),
-      infoText: {
-        en: 'Next Spin: Cardinals or Corners',
-        de: 'Nächste Drehung: Kanten oder Ecken',
-        fr: 'Tour suivant : Cardinaux ou Coins',
-        ja: '次: コーナー',
-        cn: '下一转：靠边火角落',
-        ko: '십자 / 대각선',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.lastSpinWasHorizontal = false;
+      },
+      outputStrings: {
+        text: {
+          en: 'Next Spin: Cardinals or Corners',
+          de: 'Nächste Drehung: Kanten oder Ecken',
+          fr: 'Tour suivant : Cardinaux ou Coins',
+          ja: '次: コーナー',
+          cn: '下一转：靠边火角落',
+          ko: '십자 / 대각선',
+        },
       },
     },
     {
@@ -143,25 +158,29 @@
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
       },
-      alertText: function(data) {
-        if (data.lastSpinWasHorizontal) {
-          return {
-            en: 'Get Out',
-            de: 'Raus da',
-            fr: 'Sortez !',
-            ja: '外へ',
-            cn: '远离',
-            ko: '밖으로',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.lastSpinWasHorizontal)
+          return output.getOut();
+
+        return output.goToCardinals();
+      },
+      outputStrings: {
+        getOut: {
+          en: 'Get Out',
+          de: 'Raus da',
+          fr: 'Sortez !',
+          ja: '外へ',
+          cn: '远离',
+          ko: '밖으로',
+        },
+        goToCardinals: {
           en: 'Go To Cardinals',
           de: 'An die Kanten',
           fr: 'Allez sur les cardinaux',
           ja: '横や縦へ',
           cn: '靠边',
           ko: '십자 산개',
-        };
+        },
       },
     },
     {
@@ -175,25 +194,29 @@
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
       },
-      alertText: function(data) {
-        if (data.lastSpinWasHorizontal) {
-          return {
-            en: 'Get In',
-            de: 'Rein da',
-            fr: 'Sous le boss !',
-            ja: '中へ',
-            cn: '靠近',
-            ko: '안으로',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.lastSpinWasHorizontal)
+          return output.getIn();
+
+        return output.goToCorners();
+      },
+      outputStrings: {
+        getIn: {
+          en: 'Get In',
+          de: 'Rein da',
+          fr: 'Sous le boss !',
+          ja: '中へ',
+          cn: '靠近',
+          ko: '안으로',
+        },
+        goToCorners: {
           en: 'Go To Corners',
           de: 'In die Ecken',
           fr: 'Allez dans les coins',
           ja: '角へ',
           cn: '角落',
           ko: '구석 산개',
-        };
+        },
       },
     },
   ],

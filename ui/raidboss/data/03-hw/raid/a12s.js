@@ -38,15 +38,18 @@
         // Ignore Holy Scourge later in the fight.
         if (data.scourge && data.scourge.length > 2)
           return false;
-        return data.me == matches.target;
+        return data.me === matches.target;
       },
-      alertText: {
-        en: 'Scourge on YOU',
-        de: 'Licht auf DIR',
-        fr: 'Lumière sur VOUS',
-        ja: '自分に白光の鞭',
-        cn: '白光之鞭点名',
-        ko: '성광의 채찍 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Scourge on YOU',
+          de: 'Licht auf DIR',
+          fr: 'Lumière sur VOUS',
+          ja: '自分に白光の鞭',
+          cn: '白光之鞭点名',
+          ko: '성광의 채찍 대상자',
+        },
       },
     },
     {
@@ -65,26 +68,29 @@
         if (data.scourge && data.scourge.length > 2)
           return false;
 
-        return data.role == 'healer' || data.job == 'BLU';
+        return data.role === 'healer' || data.job === 'BLU';
       },
       delaySeconds: 0.5,
       suppressSeconds: 1,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         // Ignore Holy Scourge later in the fight.
         if (data.scourge && data.scourge.length > 2)
           return false;
 
         let names = data.scourge.map((x) => data.ShortName(x)).sort();
-        if (names.length == 0)
+        if (names.length === 0)
           return;
-        return {
-          en: 'Scourge: ' + names.join(', '),
-          de: 'Licht: ' + names.join(', '),
-          fr: 'Lumière : ' + names.join(', '),
-          ja: names.join(', ') + 'に白光の鞭',
-          cn: '白光之鞭点:' + names.join(', '),
-          ko: '성광의 채찍:' + names.join(', '),
-        };
+        return output.text({ players: names.join(', ') });
+      },
+      outputStrings: {
+        text: {
+          en: 'Scourge: ${players}',
+          de: 'Licht: ${players}',
+          fr: 'Lumière : ${players}',
+          ja: '${players}に白光の鞭',
+          cn: '白光之鞭点:${players}',
+          ko: '성광의 채찍:${players}',
+        },
       },
     },
     {
@@ -111,13 +117,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19EB', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '19EB', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '19EB', capture: false }),
-      infoText: {
-        en: 'Lasers',
-        de: 'Laser',
-        fr: 'Lasers',
-        ja: '十字の秘蹟',
-        cn: '十字圣礼',
-        ko: '십자 성례',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Lasers',
+          de: 'Laser',
+          fr: 'Lasers',
+          ja: '十字の秘蹟',
+          cn: '十字圣礼',
+          ko: '십자 성례',
+        },
       },
     },
     {
@@ -134,75 +143,90 @@
       id: 'A12S House Arrest',
       netRegex: NetRegexes.tether({ id: '001C' }),
       condition: function(data, matches) {
-        return matches.source == data.me || matches.target == data.me;
+        return matches.source === data.me || matches.target === data.me;
       },
-      infoText: function(data, matches) {
-        let partner = matches.source == data.me ? matches.target : matches.source;
-        return {
-          en: 'Close Tethers (' + data.ShortName(partner) + ')',
-          de: 'Nahe Verbindungen (' + data.ShortName(partner) + ')',
-          fr: 'Liens proches (' + data.ShortName(partner) + ')',
-          ja: '(' + data.ShortName(partner) + ')に近づく',
-          cn: '靠近连线 (' + data.ShortName(partner) + ')',
-          ko: '강제접근: 상대와 가까이 붙기 (' + data.ShortName(partner) + ')',
-        };
+      infoText: function(data, matches, output) {
+        let partner = matches.source === data.me ? matches.target : matches.source;
+        return output.text({ player: data.ShortName(partner) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Close Tethers (${player})',
+          de: 'Nahe Verbindungen (${player})',
+          fr: 'Liens proches (${player})',
+          ja: '(${player})に近づく',
+          cn: '靠近连线 (${player})',
+          ko: '강제접근: 상대와 가까이 붙기 (${player})',
+        },
       },
     },
     {
       id: 'A12S Restraining Order',
       netRegex: NetRegexes.tether({ id: '001D' }),
       condition: function(data, matches) {
-        return matches.source == data.me || matches.target == data.me;
+        return matches.source === data.me || matches.target === data.me;
       },
-      alertText: function(data, matches) {
-        let partner = matches.source == data.me ? matches.target : matches.source;
-        return {
-          en: 'Far Tethers (' + data.ShortName(partner) + ')',
-          de: 'Entfernte Verbindungen (' + data.ShortName(partner) + ')',
-          fr: 'Liens éloignés (' + data.ShortName(partner) + ')',
-          ja: ' (' + data.ShortName(partner) + ')に離れ',
-          cn: '远离连线 (' + data.ShortName(partner) + ')',
-          ko: '접근금지: 상대와 떨어지기 (' + data.ShortName(partner) + ')',
-        };
+      alertText: function(data, matches, output) {
+        let partner = matches.source === data.me ? matches.target : matches.source;
+        return output.text({ player: data.ShortName(partner) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Far Tethers (${player})',
+          de: 'Entfernte Verbindungen (${player})',
+          fr: 'Liens éloignés (${player})',
+          ja: ' (${player})に離れ',
+          cn: '远离连线 (${player})',
+          ko: '접근금지: 상대와 떨어지기 (${player})',
+        },
       },
     },
     {
       id: 'A12S Shared Sentence',
       netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Shared Sentence',
-        de: 'Urteil Kollektivstrafe',
-        fr: 'Partagez peine collective',
-        ja: '集団罰',
-        cn: '集团罪',
-        ko: '집단형: 쉐어',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Shared Sentence',
+          de: 'Urteil Kollektivstrafe',
+          fr: 'Partagez peine collective',
+          ja: '集団罰',
+          cn: '集团罪',
+          ko: '집단형: 쉐어',
+        },
       },
     },
     {
       id: 'A12S Defamation',
       netRegex: NetRegexes.gainsEffect({ effectId: '460' }),
       condition: Conditions.targetIsYou(),
-      alarmText: {
-        en: 'Defamation',
-        de: 'Ehrenstrafe',
-        fr: 'Diffamation',
-        ja: '名誉罰',
-        cn: '名誉罪',
-        ko: '명예형: 멀리가기',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Defamation',
+          de: 'Ehrenstrafe',
+          fr: 'Diffamation',
+          ja: '名誉罰',
+          cn: '名誉罪',
+          ko: '명예형: 멀리가기',
+        },
       },
     },
     {
       id: 'A12S Judgment Crystal',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Crystal on YOU',
-        de: 'Kristall auf DIR',
-        fr: 'Cristal sur VOUS',
-        ja: '自分に結晶',
-        cn: '结晶点名',
-        ko: '나에게 수정',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Crystal on YOU',
+          de: 'Kristall auf DIR',
+          fr: 'Cristal sur VOUS',
+          ja: '自分に結晶',
+          cn: '结晶点名',
+          ko: '나에게 수정',
+        },
       },
     },
     {
@@ -213,17 +237,17 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '1A0B', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '1A0B', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '1A0B', capture: false }),
-      alertText: function(data) {
-        if (data.role == 'tank' || data.role == 'healer' || data.job == 'BLU') {
-          return {
-            en: 'Shared Tankbuster',
-            de: 'geteilter Tankbuster',
-            fr: 'Partagez le Tank buster',
-            ja: '頭割りタンクバスター',
-            cn: '分摊死刑',
-            ko: '쉐어 탱크버스터',
-          };
-        }
+      condition: Conditions.caresAboutMagical(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Shared Tankbuster',
+          de: 'geteilter Tankbuster',
+          fr: 'Partagez le Tank buster',
+          ja: '頭割りタンクバスター',
+          cn: '分摊死刑',
+          ko: '쉐어 탱크버스터',
+        },
       },
     },
     {
@@ -245,13 +269,16 @@
       netRegexCn: NetRegexes.tether({ source: '亚历山大', id: '0036' }),
       netRegexKo: NetRegexes.tether({ source: '알렉산더', id: '0036' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Puddle Tether on YOU',
-        de: 'Flächen-Verbindung auf dir',
-        fr: 'Lien Zone au sol sur VOUS',
-        ja: '自分に線',
-        cn: '放圈连线点名',
-        ko: '장판 남기는 선 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Puddle Tether on YOU',
+          de: 'Flächen-Verbindung auf dir',
+          fr: 'Lien Zone au sol sur VOUS',
+          ja: '自分に線',
+          cn: '放圈连线点名',
+          ko: '장판 남기는 선 대상자',
+        },
       },
     },
   ],

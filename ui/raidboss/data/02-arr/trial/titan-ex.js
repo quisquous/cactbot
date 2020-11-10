@@ -8,27 +8,21 @@
       id: 'TitanEx Mountain Buster',
       regex: /Mountain Buster/,
       beforeSeconds: 7,
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank';
-      },
+      condition: (data) => data.role === 'healer' || data.role === 'tank',
       response: Responses.tankBuster(),
     },
     {
       id: 'TitanEx Mountain Buster Avoid',
       regex: /Mountain Buster/,
       beforeSeconds: 7,
-      condition: function(data) {
-        return data.role != 'healer' && data.role != 'tank';
-      },
+      condition: (data) => data.role !== 'healer' && data.role !== 'tank',
       response: Responses.tankCleave(),
     },
     {
       id: 'TitanEx Tumult',
       regex: /Tumult/,
       beforeSeconds: 5,
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
     {

@@ -12,9 +12,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ルークスピナー', id: '4D4' }),
       netRegexCn: NetRegexes.startsUsing({ source: '转盘堡', id: '4D4' }),
       netRegexKo: NetRegexes.startsUsing({ source: '보루형 회전전차', id: '4D4' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -34,9 +32,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ルークスピナー', id: '4D5' }),
       netRegexCn: NetRegexes.startsUsing({ source: '转盘堡', id: '4D5' }),
       netRegexKo: NetRegexes.startsUsing({ source: '보루형 회전전차', id: '4D5' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -152,7 +148,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Clockwork Bug': '알라그 태엽벌레',
         'Clockwork Dreadnaught': '드레드노트',
@@ -161,8 +156,14 @@
         'Spinner-rook': '보루형 회전전차',
       },
       'replaceText': {
+        '\\(center\\)': '(중앙)',
+        '\\(outside\\)': '(바깥)',
         'Bug': '버그',
+        'Dreadnaught': '드레드노트',
         'Emergency Override': '긴급 체제 변환',
+        'Knight': '기사',
+        'Soldier': '병사',
+        'Rook': '회전전차',
       },
     },
   ],

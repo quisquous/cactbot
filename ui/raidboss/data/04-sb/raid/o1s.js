@@ -23,19 +23,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1ED6', source: 'アルテ・ロイテ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1ED6', source: '老者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1ED6', source: '알테 로이테', capture: false }),
-      infoText: {
-        en: 'Breath Wing: Be beside boss',
-        de: 'Atemschwinge: Neben Boss gehen',
-        ja: 'ブレスウィング: ボスに近づく',
-        cn: '站boss附近',
-        ko: '날개바람: 보스 옆으로',
-      },
-      tts: {
-        en: 'breath wing',
-        de: 'atemschwinge',
-        ja: 'ブレスウィング',
-        cn: '站boss附近',
-        ko: '날개바람',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Breath Wing: Be beside boss',
+          de: 'Atemschwinge: Neben Boss gehen',
+          ja: 'ブレスウィング: ボスに近づく',
+          cn: '站boss附近',
+          ko: '날개바람: 보스 옆으로',
+        },
       },
     },
     {
@@ -67,7 +63,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1ED4', source: '老者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1ED4', source: '알테 로이테', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -80,7 +76,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1ED3', source: '老者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1ED3', source: '알테 로이테', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -191,7 +187,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Alte Roite': '알테 로이테',
         'Ball Of Fire': '화염 구체',
@@ -202,10 +197,16 @@
         'Breath Wing': '날개바람',
         'Charybdis': '대소용돌이',
         'Clamp': '압박',
+        'Classical': '고대 원소',
+        'safe': '안전',
+        'spread': '산개',
+        'stack': '쉐어',
         'Downburst': '하강 기류',
         'Flash Freeze': '급속 동결',
         'Flame': '불꽃',
+        'Inner Fireballs': '안쪽 화염구',
         'Levinbolt': '우레',
+        'Outer Fireballs': '바깥 화염구',
         'Roar': '포효',
         'Twin Bolt': '이중 낙뢰',
         'Wyrm Tail': '태고의 용 꼬리',

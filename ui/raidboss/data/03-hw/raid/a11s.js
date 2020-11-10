@@ -44,13 +44,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '1A6C', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '1A6C', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '1A6C', capture: false }),
-      infoText: {
-        en: 'Clock',
-        de: 'Uhr',
-        fr: 'Sens horaire',
-        ja: '照準 (時針回り)',
-        cn: '九连环',
-        ko: '시계방향',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Clock',
+          de: 'Uhr',
+          fr: 'Sens horaire',
+          ja: '照準 (時針回り)',
+          cn: '九连环',
+          ko: '시계방향',
+        },
       },
     },
     {
@@ -71,13 +74,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '1A6E', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '1A6E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '1A6E', capture: false }),
-      infoText: {
-        en: 'Bait Optical Sight',
-        de: 'Köder Visier',
-        fr: 'Attirez la Visée optique',
-        ja: '照準AoEを誘導',
-        cn: '诱导AOE',
-        ko: '유도 장판',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Optical Sight',
+          de: 'Köder Visier',
+          fr: 'Attirez la Visée optique',
+          ja: '照準AoEを誘導',
+          cn: '诱导AOE',
+          ko: '유도 장판',
+        },
       },
     },
     {
@@ -115,13 +121,16 @@
       netRegexJa: NetRegexes.addedCombatant({ name: 'イーディーディー', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '护航机甲', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: 'E\\.D\\.D\\.', capture: false }),
-      infoText: {
-        en: 'Kill Add',
-        de: 'Add besiegen',
-        fr: 'Tuez l\'Add',
-        ja: 'イーディーディーを倒す',
-        cn: '击杀小怪',
-        ko: '쫄 없애기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Add',
+          de: 'Add besiegen',
+          fr: 'Tuez l\'Add',
+          ja: 'イーディーディーを倒す',
+          cn: '击杀小怪',
+          ko: '쫄 없애기',
+        },
       },
     },
     {
@@ -132,13 +141,16 @@
       netRegexJa: NetRegexes.addedCombatant({ name: 'ショルダーアーマー', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '肩部装甲', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '견갑부', capture: false }),
-      infoText: {
-        en: 'Break Pauldron',
-        de: 'Schulterplatte zerstören',
-        fr: 'Brisez la Protection',
-        ja: 'アーマーを破れ',
-        cn: '击破护盾',
-        ko: '견갑부 부수기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Break Pauldron',
+          de: 'Schulterplatte zerstören',
+          fr: 'Brisez la Protection',
+          ja: 'アーマーを破れ',
+          cn: '击破护盾',
+          ko: '견갑부 부수기',
+        },
       },
     },
     {
@@ -151,29 +163,33 @@
       netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '1A77' }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '1A77' }),
       // TODO: maybe we need a Responses.abilityOn()
-      alarmText: function(data, matches) {
-        if (data.me != matches.target)
+      alarmText: function(data, matches, output) {
+        if (data.me !== matches.target)
           return;
-        return {
+        return output.gaOnYou();
+      },
+      infoText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return;
+        return output.gaOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        gaOn: {
+          en: 'GA-100 on ${player}',
+          de: 'GA-100 on ${player}',
+          fr: 'GA-100 sur ${player}',
+          ja: '${player}にGA-100',
+          cn: 'GA-100点${player}',
+          ko: '"${player}" GA-100',
+        },
+        gaOnYou: {
           en: 'GA-100 on YOU',
           de: 'GA-100 auf DIR',
           fr: 'GA-100 sur VOUS',
           ja: '自分にGA-100',
           cn: 'GA-100点名',
           ko: 'GA-100 대상자',
-        };
-      },
-      infoText: function(data, matches) {
-        if (data.me == matches.target)
-          return;
-        return {
-          en: 'GA-100 on ' + data.ShortName(matches.target),
-          de: 'GA-100 on ' + data.ShortName(matches.target),
-          fr: 'GA-100 sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にGA-100',
-          cn: 'GA-100点' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '" GA-100',
-        };
+        },
       },
     },
     {
@@ -193,7 +209,7 @@
         data.limitCutMap = data.limitCutMap || {};
         data.limitCutMap[limitCutNumber] = matches.target;
 
-        if (matches.target == data.me) {
+        if (matches.target === data.me) {
           data.limitCutNumber = limitCutNumber;
 
           // Time between headmarker and mechanic.
@@ -217,8 +233,16 @@
       durationSeconds: function(data) {
         return data.limitCutDelay;
       },
-      infoText: function(data) {
-        return data.limitCutNumber;
+      infoText: (data, _, output) => output.text({ num: data.limitCutNumber }),
+      outputStrings: {
+        text: {
+          en: '${num}',
+          de: '${num}',
+          fr: '${num}',
+          ja: '${num}',
+          cn: '${num}',
+          ko: '${num}',
+        },
       },
     },
     {
@@ -228,40 +252,45 @@
       delaySeconds: function(data) {
         return data.limitCutDelay - 5;
       },
-      alertText: function(data) {
-        if (data.limitCutNumber % 2 == 1) {
+      alertText: function(data, _, output) {
+        if (data.limitCutNumber % 2 === 1) {
           // Odds
-          return {
-            en: 'Knockback Cleave; Face Outside',
-            de: 'Rückstoß Cleave; nach Außen schauen',
-            fr: 'Poussée Cleave; Regardez vers l\'extérieur',
-            ja: 'ノックバック ソード; 外向く',
-            cn: '击退顺劈; 面向外侧',
-            ko: '넉백 소드; 바깥쪽 바라보기',
-          };
+          return output.knockbackCleave();
         }
 
         // Evens
         let partner = data.limitCutMap[data.limitCutNumber - 1];
         if (!partner) {
           // In case something goes awry?
-          return {
-            en: 'Knockback Charge',
-            de: 'Rückstoß Charge',
-            fr: 'Poussée Charge',
-            ja: 'ノックバック チャージ',
-            cn: '击退冲锋',
-            ko: '넉백 차지',
-          };
+          return output.knockbackCharge();
         }
 
-        return {
-          en: 'Face ' + data.ShortName(partner),
-          de: 'Schaue zu ' + data.ShortName(partner),
-          fr: 'Regardez ' + data.ShortName(partner),
-          cn: '面向' + data.ShortName(partner),
-          ko: '"' + data.ShortName(partner) + '" 바라보기',
-        };
+        return output.facePlayer({ player: data.ShortName(partner) });
+      },
+      outputStrings: {
+        knockbackCleave: {
+          en: 'Knockback Cleave; Face Outside',
+          de: 'Rückstoß Cleave; nach Außen schauen',
+          fr: 'Poussée Cleave; Regardez vers l\'extérieur',
+          ja: 'ノックバック ソード; 外向く',
+          cn: '击退顺劈; 面向外侧',
+          ko: '넉백 소드; 바깥쪽 바라보기',
+        },
+        knockbackCharge: {
+          en: 'Knockback Charge',
+          de: 'Rückstoß Charge',
+          fr: 'Poussée Charge',
+          ja: 'ノックバック チャージ',
+          cn: '击退冲锋',
+          ko: '넉백 차지',
+        },
+        facePlayer: {
+          en: 'Face ${player}',
+          de: 'Schaue zu ${player}',
+          fr: 'Regardez ${player}',
+          cn: '面向${player}',
+          ko: '"${player}" 바라보기',
+        },
       },
     },
     {
@@ -287,28 +316,31 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '1A7F' }),
       netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '1A7F' }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '1A7F' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Shared Tankbuster on YOU',
-            de: 'Geteilter Tankbuster auf DIR',
-            fr: 'Tank buster à partager sur VOUS',
-            ja: '自分に頭割りタンクバスター',
-            cn: '分摊死刑点名',
-            ko: '쉐어 탱버 대상자',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return output.sharedTankbusterOnYou();
 
-        if (data.role == 'tank' || data.role == 'healer' || data.job == 'BLU') {
-          return {
-            en: 'Shared Tankbuster on' + data.ShortName(matches.target),
-            de: 'Geteilter Tankbuster auf' + data.ShortName(matches.target),
-            fr: 'Tank buster à partager sur' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'に頭割りタンクバスター',
-            cn: '分摊死刑点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 쉐어 탱버',
-          };
-        }
+
+        if (data.role === 'tank' || data.role === 'healer' || data.job === 'BLU')
+          return output.sharedTankbusterOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        sharedTankbusterOnYou: {
+          en: 'Shared Tankbuster on YOU',
+          de: 'Geteilter Tankbuster auf DIR',
+          fr: 'Tank buster à partager sur VOUS',
+          ja: '自分に頭割りタンクバスター',
+          cn: '分摊死刑点名',
+          ko: '쉐어 탱버 대상자',
+        },
+        sharedTankbusterOn: {
+          en: 'Shared Tankbuster on ${player}',
+          de: 'Geteilter Tankbuster auf ${player}',
+          fr: 'Tank buster à partager sur ${player}',
+          ja: '${player}に頭割りタンクバスター',
+          cn: '分摊死刑点${player}',
+          ko: '"${player}" 쉐어 탱버',
+        },
       },
     },
     {
@@ -319,13 +351,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '1A7F', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '1A7F', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '1A7F', capture: false }),
-      alertText: {
-        en: 'Hide Behind Tower',
-        de: 'Hinter dem Tower verstecken',
-        fr: 'Cachez-vous derrière la tour',
-        ja: '塔の後ろに',
-        cn: '躲在塔后',
-        ko: '기둥 뒤에 숨기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hide Behind Tower',
+          de: 'Hinter dem Tower verstecken',
+          fr: 'Cachez-vous derrière la tour',
+          ja: '塔の後ろに',
+          cn: '躲在塔后',
+          ko: '기둥 뒤에 숨기',
+        },
       },
     },
     {
@@ -336,13 +371,16 @@
       netRegexJa: NetRegexes.addedCombatant({ name: 'プラズマシールド', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '等离子护盾', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '플라스마 방어막', capture: false }),
-      alertText: {
-        en: 'Break Shield From Front',
-        de: 'Schild von vorne zerstören',
-        fr: 'Brisez le Bouclier par l\'avant',
-        ja: 'シールドの正面から倒す',
-        cn: '正面击破护盾',
-        ko: '정면에서 방어막 부수기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Break Shield From Front',
+          de: 'Schild von vorne zerstören',
+          fr: 'Brisez le Bouclier par l\'avant',
+          ja: 'シールドの正面から倒す',
+          cn: '正面击破护盾',
+          ko: '정면에서 방어막 부수기',
+        },
       },
     },
     {
@@ -360,29 +398,33 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '1A83' }),
       netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '1A83' }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '1A83' }),
-      alarmText: function(data, matches) {
-        if (data.me != matches.target)
+      alarmText: function(data, matches, output) {
+        if (data.me !== matches.target)
           return;
-        return {
+        return output.chargeOnYou();
+      },
+      alertText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return;
+        return output.chargeOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        chargeOn: {
+          en: 'Charge on ${player}',
+          de: 'Ansturm auf ${player}',
+          fr: 'Charge sur ${player}',
+          ja: '${player}にチャージ',
+          cn: '冲锋点${player}',
+          ko: '"${player}" 돌진',
+        },
+        chargeOnYou: {
           en: 'Charge on YOU',
           de: 'Ansturm auf DIR',
           fr: 'Charge sur VOUS',
           ja: '自分にチャージ',
           cn: '冲锋点名',
           ko: '돌진 대상자',
-        };
-      },
-      alertText: function(data, matches) {
-        if (data.me == matches.target)
-          return;
-        return {
-          en: 'Charge on ' + data.ShortName(matches.target),
-          de: 'Ansturm auf ' + data.ShortName(matches.target),
-          fr: 'Charge sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にチャージ',
-          cn: '冲锋点' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '" 돌진',
-        };
+        },
       },
     },
   ],

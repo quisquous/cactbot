@@ -36,6 +36,7 @@ UserConfig.registerOptions('eureka', {
       name: {
         en: 'Play pop sound for NMs',
         de: 'Spiele Pop-Sound ab für NMs',
+        ko: '돌발임무 알림 소리 켜기',
       },
       type: 'checkbox',
       default: true,
@@ -45,6 +46,7 @@ UserConfig.registerOptions('eureka', {
       name: {
         en: 'Play pop sound for bunny fates',
         de: 'Spiele Pop-Sound ab für Bunny-Fates',
+        ko: '토끼 돌발 알림 소리 켜기',
       },
       type: 'checkbox',
       default: true,
@@ -54,6 +56,7 @@ UserConfig.registerOptions('eureka', {
       name: {
         en: 'Play pop sound for skirmishes',
         de: 'Spiele Pop-Sound ab für Scharmützel',
+        ko: 'skirmishes 알림 소리 켜기',
       },
       type: 'checkbox',
       default: false,
@@ -63,6 +66,7 @@ UserConfig.registerOptions('eureka', {
       name: {
         en: 'Play pop sound for critical engagements',
         de: 'Spiele Pop-Sound ab für Kritische Gefechte',
+        ko: 'critical engagements 알림 소리 켜기',
       },
       type: 'checkbox',
       default: true,
@@ -72,6 +76,7 @@ UserConfig.registerOptions('eureka', {
       name: {
         en: 'Play pop sound for duels',
         de: 'Spiele Pop-Sound ab für Duelle',
+        ko: 'duels 알림 소리 켜기',
       },
       type: 'checkbox',
       default: false,
@@ -113,6 +118,7 @@ UserConfig.registerOptions('eureka', {
       name: {
         en: 'Volume of the critical engagement pop sound (0-1)',
         de: 'Lautstärke des Kritischen Gefecht Sounds (0-1)',
+        ko: 'critical engagement 알림 소리 크기 (0-1)',
       },
       type: 'float',
       default: 0.3,

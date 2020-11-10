@@ -12,7 +12,7 @@
     'alarmtext "Death" before 3',
     'alertall "Long Castbar" before 1 speak "voice" "long"',
     function(data) {
-      if (data.role != 'tank' && data.role != 'healer')
+      if (data.role !== 'tank' && data.role !== 'healer')
         return 'hideall "Super Tankbuster"';
       return 'alarmtext "Super Tankbuster" before 2';
     },
@@ -21,7 +21,7 @@
         return 'hideall "Pentacle Sac (DPS)"';
     },
     function(data) {
-      if (data.role != 'healer')
+      if (data.role !== 'healer')
         return 'hideall "Almagest"';
       return 'alarmtext "Almagest" before 0';
     },
@@ -207,13 +207,16 @@
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 박수를 보냅니다.*?', capture: false }),
       sound: '../../resources/sounds/WeakAuras/Applause.ogg',
       soundVolume: 0.3,
-      tts: {
-        en: 'clapity clap',
-        de: 'klatschen',
-        fr: 'applaudissement',
-        ja: '拍手',
-        cn: '鼓掌',
-        ko: '박수 짝짝짝',
+      tts: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'clapity clap',
+          de: 'klatschen',
+          fr: 'applaudissement',
+          ja: '拍手',
+          cn: '鼓掌',
+          ko: '박수 짝짝짝',
+        },
       },
     },
     {
@@ -223,15 +226,18 @@
       netRegexDe: NetRegexes.echo({ line: 'cactbot sprache.*?', capture: false }),
       netRegexJa: NetRegexes.echo({ line: 'cactbot言語.*?', capture: false }),
       netRegexKo: NetRegexes.echo({ line: 'cactbot 언어.*?', capture: false }),
-      infoText: function(data) {
-        return {
-          en: 'Language: ' + data.parserLang,
-          de: 'Sprache: ' + data.parserLang,
-          fr: 'Langage: ' + data.paserLang,
-          ja: '言語：' + data.parserLang,
-          cn: '语言: ' + data.parserLang,
-          ko: '언어: ' + data.parserLang,
-        };
+      infoText: (data, _, output) => {
+        return output.text({ lang: data.parserLang });
+      },
+      outputStrings: {
+        text: {
+          en: 'Language: ${lang}',
+          de: 'Sprache: ${lang}',
+          fr: 'Langage: ${lang}',
+          ja: '言語：${lang}',
+          cn: '语言: ${lang}',
+          ko: '언어: ${lang}',
+        },
       },
     },
     {

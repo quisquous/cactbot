@@ -22,6 +22,7 @@
 
 const builtInResponseStr = 'cactbot-builtin-response';
 
+// All valid trigger fields.
 const triggerFunctions = [
   'alarmText',
   'alertText',
@@ -41,6 +42,16 @@ const triggerFunctions = [
   'suppressSeconds',
   'tts',
   'outputStrings',
+];
+
+// Trigger fields that can produce output.
+const triggerOutputFunctions = [
+  'alarmText',
+  'alertText',
+  'infoText',
+  'groupTTS', // please remove me T_T
+  'response',
+  'tts',
 ];
 
 const severityMap = {
@@ -135,12 +146,12 @@ const Responses = {
         ko: '탱버 대상자',
       },
       busterOnTarget: {
-        en: 'Tank Buster on ${name}',
-        de: 'Tank buster auf ${name}',
-        fr: 'Tank buster sur ${name}',
-        ja: '${name}にタンクバスター',
-        cn: '死刑 点 ${name}',
-        ko: '"${name}" 탱버',
+        en: 'Tank Buster on ${player}',
+        de: 'Tank buster auf ${player}',
+        fr: 'Tank buster sur ${player}',
+        ja: '${player}にタンクバスター',
+        cn: '死刑 点 ${player}',
+        ko: '"${player}" 탱버',
       },
     };
 
@@ -166,7 +177,7 @@ const Responses = {
       if (target === data.me)
         return;
 
-      return output.busterOnTarget({ name: data.ShortName(target) });
+      return output.busterOnTarget({ player: data.ShortName(target) });
     };
 
     const combined = combineFuncs(defaultAlertText(targetSev), targetFunc,
@@ -196,12 +207,12 @@ const Responses = {
         ko: '탱버 대상자',
       },
       busterOnTarget: {
-        en: 'Tank Buster on ${name}',
-        de: 'Tank buster auf ${name}',
-        fr: 'Tank buster sur ${name}',
-        ja: '${name}にタンクバスター',
-        cn: '死刑 点 ${name}',
-        ko: '"${name}" 탱버',
+        en: 'Tank Buster on ${player}',
+        de: 'Tank buster auf ${player}',
+        fr: 'Tank buster sur ${player}',
+        ja: '${player}にタンクバスター',
+        cn: '死刑 点 ${player}',
+        ko: '"${player}" 탱버',
       },
     };
 
@@ -219,7 +230,7 @@ const Responses = {
 
       if (target === data.me)
         return output.busterOnYou();
-      return output.busterOnTarget({ name: data.ShortName(target) });
+      return output.busterOnTarget({ player: data.ShortName(target) });
     };
 
     const combined = combineFuncs(defaultAlarmText(swapSev), tankSwapFunc,
@@ -333,12 +344,12 @@ const Responses = {
         ko: '쉐어징 대상자',
       },
       stackOnTarget: {
-        en: 'Stack on ${name}',
-        de: 'Auf ${name} sammeln',
-        fr: 'Packez-vous sur ${name}',
-        ja: '${name}にスタック',
-        cn: '靠近 ${name}集合',
-        ko: '"${name}" 쉐어징',
+        en: 'Stack on ${player}',
+        de: 'Auf ${player} sammeln',
+        fr: 'Packez-vous sur ${player}',
+        ja: '${player}にスタック',
+        cn: '靠近 ${player}集合',
+        ko: '"${player}" 쉐어징',
       },
     };
     return {
@@ -346,7 +357,7 @@ const Responses = {
         const target = getTarget(matches);
         if (target === data.me)
           return output.stackOnYou();
-        return output.stackOnTarget({ name: data.ShortName(target) });
+        return output.stackOnTarget({ player: data.ShortName(target) });
       },
     };
   },
@@ -401,12 +412,12 @@ const Responses = {
         ko: '넉백징 대상자',
       },
       knockbackOnTarget: {
-        en: 'Knockback on ${name}',
-        de: 'Rückstoß auf ${name}',
-        fr: 'Poussée sur ${name}',
-        ja: '${name}にノックバック',
-        cn: '击退点名${name}',
-        ko: '"${name}" 넉백징',
+        en: 'Knockback on ${player}',
+        de: 'Rückstoß auf ${player}',
+        fr: 'Poussée sur ${player}',
+        ja: '${player}にノックバック',
+        cn: '击退点名${player}',
+        ko: '"${player}" 넉백징',
       },
     };
 
@@ -419,7 +430,7 @@ const Responses = {
     const otherFunc = (data, matches, output) => {
       const target = getTarget(matches);
       if (target !== data.me)
-        return output.knockbackOnTarget({ name: data.ShortName(target) });
+        return output.knockbackOnTarget({ player: data.ShortName(target) });
     };
     const combined = combineFuncs(defaultInfoText(targetSev), targetFunc,
         defaultInfoText(otherSev), otherFunc);
@@ -722,12 +733,12 @@ const Responses = {
         ko: '홍옥징 대상자',
       },
       preyOnTarget: {
-        en: 'Prey on ${name}',
-        de: 'Marker auf ${name}',
-        fr: 'Marquage sur ${name}',
-        ja: '${name}に捕食',
-        cn: '掠食点名${name}',
-        ko: '"${name}" 홍옥징',
+        en: 'Prey on ${player}',
+        de: 'Marker auf ${player}',
+        fr: 'Marquage sur ${player}',
+        ja: '${player}に捕食',
+        cn: '掠食点名${player}',
+        ko: '"${player}" 홍옥징',
       },
     };
 
@@ -740,7 +751,7 @@ const Responses = {
     const otherFunc = (data, matches, output) => {
       const target = getTarget(matches);
       if (target !== data.me)
-        return output.preyOnTarget({ name: data.ShortName(target) });
+        return output.preyOnTarget({ player: data.ShortName(target) });
     };
 
     const combined = combineFuncs(defaultAlertText(targetSev), targetFunc,
@@ -763,12 +774,12 @@ const Responses = {
         ko: '다른 사람들이랑 떨어지기',
       },
       awayFromTarget: {
-        en: 'Away from ${name}',
-        de: 'Weg von ${name}',
-        fr: 'Éloignez-vous de ${name}',
-        ja: '${name}から離れ',
-        cn: '远离${name}',
-        ko: '"${name}"에서 멀어지기',
+        en: 'Away from ${player}',
+        de: 'Weg von ${player}',
+        fr: 'Éloignez-vous de ${player}',
+        ja: '${player}から離れ',
+        cn: '远离${player}',
+        ko: '"${player}"에서 멀어지기',
       },
     };
     return {
@@ -776,7 +787,7 @@ const Responses = {
         const target = getTarget(matches);
         if (data.me === target)
           return output.awayFromGroup();
-        return output.awayFromTarget({ name: data.ShortName(target) });
+        return output.awayFromTarget({ player: data.ShortName(target) });
       },
     };
   },
@@ -865,7 +876,7 @@ const Responses = {
     fr: 'RÉVEILLES-TOI',
     ja: '目を覚めて！',
     cn: '醒醒！动一动！！',
-    ko: '강제 퇴장 5분 전',
+    ko: '강제 퇴장 7분 전',
   }),
 };
 
@@ -873,6 +884,7 @@ if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     Responses: Responses,
     triggerFunctions: triggerFunctions,
+    triggerOutputFunctions: triggerOutputFunctions,
     severityMap: severityMap,
     builtInResponseStr: builtInResponseStr,
   };

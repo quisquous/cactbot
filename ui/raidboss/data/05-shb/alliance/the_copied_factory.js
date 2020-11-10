@@ -14,33 +14,39 @@
       id: 'Copied Flight Unit Lightfast',
       regex: /Lightfast Blade/,
       beforeSeconds: 15,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         // The third lightfast blade comes very close to second,
         // so suppress its message.
         data.lightfastCount = (data.lightfastCount || 0) + 1;
-        if (data.lightfastCount != 3)
+        if (data.lightfastCount !== 3)
           return;
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'Be Near Boss',
           de: 'sei in der Nähe des Bosses',
           fr: 'Près du boss',
           ja: 'ボスと貼りつく',
           cn: '靠近Boss',
           ko: '보스 근처로',
-        };
+        },
       },
     },
     {
       id: 'Copied Engels Demolish Structure',
       regex: /Demolish Structure/,
       beforeSeconds: 15,
-      infoText: {
-        en: 'Move to South Edge',
-        de: 'zur südlichen Kante',
-        fr: 'Allez au Sud',
-        ja: '南へ',
-        cn: '前往南侧边缘',
-        ko: '남쪽으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move to South Edge',
+          de: 'zur südlichen Kante',
+          fr: 'Allez au Sud',
+          ja: '南へ',
+          cn: '前往南侧边缘',
+          ko: '남쪽으로',
+        },
       },
     },
   ],
@@ -54,7 +60,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '48CF', source: '多関節型：司令機', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48CF', source: '다관절형: 사령기', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
+        return data.role === 'tank' || data.role === 'healer' || data.CanAddle();
       },
       response: Responses.aoe(),
     },
@@ -77,13 +83,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '48FA', source: '多関節型：兵隊機', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48FA', source: '다관절형: 병정기', capture: false }),
       suppressSeconds: 15,
-      infoText: {
-        en: 'Look for Lasers',
-        de: 'Pass auf die Laser auf',
-        fr: 'Attention aux lasers',
-        ja: 'レザーを避け',
-        cn: '小心激光',
-        ko: '레이저 확인',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look for Lasers',
+          de: 'Pass auf die Laser auf',
+          fr: 'Attention aux lasers',
+          ja: 'レザーを避け',
+          cn: '小心激光',
+          ko: '레이저 확인',
+        },
       },
     },
     {
@@ -135,7 +144,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4805', source: 'ホッブス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4805', source: '홉스', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
+        return data.role === 'tank' || data.role === 'healer' || data.CanAddle();
       },
       response: Responses.aoe(),
     },
@@ -147,16 +156,19 @@
       netRegexFr: NetRegexes.message({ line: 'Le bras mural droit s\'active!.*?', capture: false }),
       netRegexJa: NetRegexes.message({ line: '壁面のライトアームが稼働を始めた……！.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '벽면의 오른팔이 움직이기 시작합니다……!.*?', capture: false }),
-      infoText: {
-        en: 'Dodge Moving Circle',
-        de: 'Bewegenden Kreisen ausweichen',
-        fr: 'Evitez les cercles mouvants',
-        ja: '動いてるサークルを避け',
-        cn: '躲避移动圆圈',
-        ko: '시계방향 회전하면서 나오는 장판 피하기',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.alliance = data.alliance || 'A';
+      },
+      outputStrings: {
+        text: {
+          en: 'Dodge Moving Circle',
+          de: 'Bewegenden Kreisen ausweichen',
+          fr: 'Evitez les cercles mouvants',
+          ja: '動いてるサークルを避け',
+          cn: '躲避移动圆圈',
+          ko: '시계방향 회전하면서 나오는 장판 피하기',
+        },
       },
     },
     {
@@ -167,16 +179,19 @@
       netRegexFr: NetRegexes.message({ line: 'Les lance-flammes muraux s\'activent!.*?', capture: false }),
       netRegexJa: NetRegexes.message({ line: '壁面の火炎放射器が稼働を始めた……！.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '벽면의 화염 방사기가 가동되었습니다……!.*?', capture: false }),
-      alertText: {
-        en: 'Look Behind For Flamethrowers',
-        de: 'Flammenwerfer hinter dir',
-        fr: 'Regardez derrière (lance-flammes)',
-        ja: '後ろに火炎放射器',
-        cn: '观察后方放火',
-        ko: '뒤에서 불 나오는 곳 확인',
-      },
+      alertText: (data, _, output) => output.text(),
       run: function(data) {
         data.alliance = data.alliance || 'B';
+      },
+      outputStrings: {
+        text: {
+          en: 'Look Behind For Flamethrowers',
+          de: 'Flammenwerfer hinter dir',
+          fr: 'Regardez derrière (lance-flammes)',
+          ja: '後ろに火炎放射器',
+          cn: '观察后方放火',
+          ko: '뒤에서 불 나오는 곳 확인',
+        },
       },
     },
     {
@@ -202,13 +217,16 @@
       netRegexJa: NetRegexes.message({ line: '壁面のレフトアームが稼働を始めた……！.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '벽면의 왼팔이 움직이기 시작합니다……!.*?', capture: false }),
       delaySeconds: 8,
-      alertText: {
-        en: 'Dodge Falling Walls',
-        de: 'Den fallenden Wände asuweichen',
-        fr: 'Eviter les murs tombants',
-        ja: '倒れた壁を避け',
-        cn: '躲避倒塌墙壁',
-        ko: '넘어지는 벽 피하기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dodge Falling Walls',
+          de: 'Den fallenden Wände asuweichen',
+          fr: 'Eviter les murs tombants',
+          ja: '倒れた壁を避け',
+          cn: '躲避倒塌墙壁',
+          ko: '넘어지는 벽 피하기',
+        },
       },
     },
     {
@@ -220,21 +238,22 @@
       netRegexJa: NetRegexes.message({ line: '壁面のレフトアームが稼働を始めた……！.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '벽면의 왼팔이 움직이기 시작합니다……!.*?', capture: false }),
       delaySeconds: 10,
-      alertText: {
-        en: 'Spread Tethers',
-        de: 'Verbindungen Verteilen',
-        fr: 'Ecartez les liens',
-        ja: '散開、線を断つ',
-        cn: '散开扯断连线',
-        ko: '산개 선 (탱 혼자도 가능)',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spread Tethers',
+          de: 'Verbindungen Verteilen',
+          fr: 'Ecartez les liens',
+          ja: '散開、線を断つ',
+          cn: '散开扯断连线',
+          ko: '산개 선 (탱 혼자도 가능)',
+        },
       },
     },
     {
       id: 'Copied Hobbes Short Missile',
       netRegex: NetRegexes.headMarker({ id: '00C4' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
@@ -257,13 +276,16 @@
       netRegexKo: NetRegexes.message({ line: '바닥 아래의 기계생명체가 수상한 움직임을 보입니다……!.*?', capture: false }),
       durationSeconds: 10,
       suppressSeconds: 15,
-      infoText: {
-        en: 'Dodge Electric Floor',
-        de: 'Elektrischem Boden ausweichen',
-        fr: 'Evitez le sol électrifié',
-        ja: '電気床を避け',
-        cn: '躲避带电地板',
-        ko: '바닥 장판 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dodge Electric Floor',
+          de: 'Elektrischem Boden ausweichen',
+          fr: 'Evitez le sol électrifié',
+          ja: '電気床を避け',
+          cn: '躲避带电地板',
+          ko: '바닥 장판 피하기',
+        },
       },
     },
     {
@@ -274,13 +296,16 @@
       netRegexFr: NetRegexes.message({ line: 'Le tapis roulant s\'est mis en branle!.*?', capture: false }),
       netRegexJa: NetRegexes.message({ line: '床面のローラーコンベアが稼働を始めた……！.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '바닥의 컨베이어가 움직이기 시작합니다……!.*?', capture: false }),
-      infoText: {
-        en: 'Conveyor Belts',
-        de: 'Förderbänder',
-        fr: 'Tapis roulant',
-        ja: 'ローラーコンベア',
-        cn: '输送带',
-        ko: '컨베이어 벨트',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Conveyor Belts',
+          de: 'Förderbänder',
+          fr: 'Tapis roulant',
+          ja: 'ローラーコンベア',
+          cn: '输送带',
+          ko: '컨베이어 벨트',
+        },
       },
     },
     {
@@ -293,13 +318,16 @@
       netRegexKo: NetRegexes.message({ line: '바닥 밑에 가연성 액체가 차오릅니다……!.*?', capture: false }),
       durationSeconds: 3,
       suppressSeconds: 15,
-      alertText: {
-        en: 'Oil Vats',
-        de: 'Ölbehälter',
-        fr: 'Cuves à huile',
-        ja: 'オイル沸け',
-        cn: '油桶',
-        ko: '뚫린 바닥 피하기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Oil Vats',
+          de: 'Ölbehälter',
+          fr: 'Cuves à huile',
+          ja: 'オイル沸け',
+          cn: '油桶',
+          ko: '뚫린 바닥 피하기',
+        },
       },
     },
     {
@@ -313,13 +341,16 @@
       delaySeconds: 6,
       durationSeconds: 3,
       suppressSeconds: 15,
-      alertText: {
-        en: 'Oil Vats',
-        de: 'Ölbehälter',
-        fr: 'Cuves à huile',
-        ja: 'オイル沸け',
-        cn: '油桶',
-        ko: '뚫린 바닥 피하기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Oil Vats',
+          de: 'Ölbehälter',
+          fr: 'Cuves à huile',
+          ja: 'オイル沸け',
+          cn: '油桶',
+          ko: '뚫린 바닥 피하기',
+        },
       },
     },
     {
@@ -330,16 +361,17 @@
       netRegexFr: NetRegexes.tether({ id: '0011', source: 'Unité Kamikaze Moyenne' }),
       netRegexJa: NetRegexes.tether({ id: '0011', source: '中型自爆' }),
       netRegexKo: NetRegexes.tether({ id: '0011', source: '중형 자폭' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alertText: {
-        en: 'Exploder on YOU',
-        de: 'Explosion auf DIR',
-        fr: 'Explosion sur VOUS',
-        ja: '自分に自爆',
-        cn: '自爆点名',
-        ko: '폭발 징',
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Exploder on YOU',
+          de: 'Explosion auf DIR',
+          fr: 'Explosion sur VOUS',
+          ja: '自分に自爆',
+          cn: '自爆点名',
+          ko: '폭발 징',
+        },
       },
     },
     {
@@ -351,16 +383,14 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4941', source: '飛行ユニット', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4941', source: '비행 유닛', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
+        return data.role === 'tank' || data.role === 'healer' || data.CanAddle();
       },
       response: Responses.aoe(),
     },
     {
       id: 'Copied Flight Unit Ballistic Impact',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
@@ -391,13 +421,16 @@
       netRegexFr: NetRegexes.startsUsing({ id: '472E', source: 'Engels', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '472E', source: 'エンゲルス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '472E', source: '엥겔스', capture: false }),
-      alertText: {
-        en: 'Front and Center',
-        de: 'Vorne und Mitte',
-        fr: 'Devant et au centre',
-        ja: '前方の中へ',
-        cn: '前方中间',
-        ko: '앞으로 => 중앙으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Front and Center',
+          de: 'Vorne und Mitte',
+          fr: 'Devant et au centre',
+          ja: '前方の中へ',
+          cn: '前方中间',
+          ko: '앞으로 => 중앙으로',
+        },
       },
     },
     {
@@ -408,13 +441,16 @@
       netRegexFr: NetRegexes.startsUsing({ id: '472A', source: 'Engels', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '472A', source: 'エンゲルス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '472A', source: '엥겔스', capture: false }),
-      alertText: {
-        en: 'Back and Sides',
-        de: 'Hinten und Seiten',
-        fr: 'Arrière et côtés',
-        ja: '後方の横へ',
-        cn: '后方两侧',
-        ko: '뒤로 => 양옆으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Back and Sides',
+          de: 'Hinten und Seiten',
+          fr: 'Arrière et côtés',
+          ja: '後方の横へ',
+          cn: '后方两侧',
+          ko: '뒤로 => 양옆으로',
+        },
       },
     },
     {
@@ -425,21 +461,22 @@
       netRegexFr: NetRegexes.startsUsing({ id: '4746', source: 'Engels', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '4746', source: 'エンゲルス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4746', source: '엥겔스', capture: false }),
-      infoText: {
-        en: 'Kill Claws',
-        de: 'Klauen töten',
-        fr: 'Tuez les pinces',
-        ja: 'マルクスを倒す',
-        cn: '杀掉爪子',
-        ko: '양옆 톱 처리',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Claws',
+          de: 'Klauen töten',
+          fr: 'Tuez les pinces',
+          ja: 'マルクスを倒す',
+          cn: '杀掉爪子',
+          ko: '양옆 톱 처리',
+        },
       },
     },
     {
       id: 'Copied Engels Precision Guided Missile',
       netRegex: NetRegexes.headMarker({ id: '00C6' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.tankBuster('info'),
     },
     {
@@ -451,7 +488,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4755', source: 'エンゲルス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4755', source: '엥겔스', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
+        return data.role === 'tank' || data.role === 'healer' || data.CanAddle();
       },
       response: Responses.aoe(),
     },
@@ -466,13 +503,16 @@
       netRegexFr: NetRegexes.startsUsing({ id: '473C', source: 'Engels', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '473C', source: 'エンゲルス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '473C', source: '엥겔스', capture: false }),
-      infoText: {
-        en: 'Go Sides (Near Front)',
-        de: 'Zu den Seiten (Nahe der Front)',
-        fr: 'Allez sur les côtés (vers l\'avant)',
-        ja: '横へ (前に近づく)',
-        cn: '两侧（靠近前方）',
-        ko: '양옆으로 (앞 근처)',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go Sides (Near Front)',
+          de: 'Zu den Seiten (Nahe der Front)',
+          fr: 'Allez sur les côtés (vers l\'avant)',
+          ja: '横へ (前に近づく)',
+          cn: '两侧（靠近前方）',
+          ko: '양옆으로 (앞 근처)',
+        },
       },
     },
     {
@@ -484,45 +524,48 @@
       netRegexJa: NetRegexes.startsUsing({ id: '473C', source: 'エンゲルス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '473C', source: '엥겔스', capture: false }),
       delaySeconds: 8,
-      infoText: {
-        en: 'Get Towers',
-        de: 'Türme nehmen',
-        fr: 'Prenez les tours',
-        ja: '塔を踏む',
-        cn: '踩塔',
-        ko: '장판 하나씩 들어가기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Towers',
+          de: 'Türme nehmen',
+          fr: 'Prenez les tours',
+          ja: '塔を踏む',
+          cn: '踩塔',
+          ko: '장판 하나씩 들어가기',
+        },
       },
     },
     {
       id: 'Copied Engels Incendiary Bombing',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Puddle on YOU',
-            de: 'Fläche auf dir',
-            fr: 'Flaques sur VOUS',
-            ja: '自分に水溜り',
-            cn: '水圈点名',
-            ko: '징 대상자',
-          };
-        }
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Puddle on YOU',
+          de: 'Fläche auf dir',
+          fr: 'Flaques sur VOUS',
+          ja: '自分に水溜り',
+          cn: '水圈点名',
+          ko: '징 대상자',
+        },
       },
     },
     {
       id: 'Copied Engels Guided Missile',
       netRegex: NetRegexes.headMarker({ id: '00C5' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Get Out + Dodge Homing AoE',
-            de: 'Geh Raus + Zielsuch-AoE ausweichen',
-            fr: 'Dehors + Evitez l\'AoE',
-            ja: '外 + AoE',
-            cn: '远离 + 躲避弹幕',
-            ko: '바깥으로 빠지고 따라오는 장판 피하기',
-          };
-        }
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Out + Dodge Homing AoE',
+          de: 'Geh Raus + Zielsuch-AoE ausweichen',
+          fr: 'Dehors + Evitez l\'AoE',
+          ja: '外 + AoE',
+          cn: '远离 + 躲避弹幕',
+          ko: '바깥으로 빠지고 따라오는 장판 피하기',
+        },
       },
     },
     {
@@ -534,13 +577,16 @@
       netRegexJa: NetRegexes.ability({ id: '473F', source: 'エンゲルス', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '473F', source: '엥겔스', capture: false }),
       durationSeconds: 4,
-      infoText: {
-        en: 'Adds (Ignore Small)',
-        de: 'Adds (kleine ignorieren)',
-        fr: 'Adds (ignorez les petits)',
-        ja: '雑魚 (小さいのは無視)',
-        cn: '小怪（忽略小的）',
-        ko: '쫄 나옴 (작은건 무시)',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Adds (Ignore Small)',
+          de: 'Adds (kleine ignorieren)',
+          fr: 'Adds (ignorez les petits)',
+          ja: '雑魚 (小さいのは無視)',
+          cn: '小怪（忽略小的）',
+          ko: '쫄 나옴 (작은건 무시)',
+        },
       },
     },
     {
@@ -551,13 +597,16 @@
       netRegexFr: NetRegexes.startsUsing({ id: '474E', source: 'Engels', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '474E', source: 'エンゲルス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '474E', source: '엥겔스', capture: false }),
-      alertText: {
-        en: 'Front and Center',
-        de: 'Vorne und Mitte',
-        fr: 'Devant et au centre',
-        ja: '前方の中へ',
-        cn: '前方中间',
-        ko: '앞 중앙',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Front and Center',
+          de: 'Vorne und Mitte',
+          fr: 'Devant et au centre',
+          ja: '前方の中へ',
+          cn: '前方中间',
+          ko: '앞 중앙',
+        },
       },
     },
     {
@@ -569,13 +618,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '48A8', source: 'エンゲルス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48A8', source: '엥겔스', capture: false }),
       delaySeconds: 9,
-      infoText: {
-        en: 'Look For Wall Saws',
-        de: 'Halt nach den kleinen Sägen ausschau',
-        fr: 'Repérez les scies',
-        ja: 'マルクス突撃',
-        cn: '观察墙壁',
-        ko: '양옆 톱 확인',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look For Wall Saws',
+          de: 'Halt nach den kleinen Sägen ausschau',
+          fr: 'Repérez les scies',
+          ja: 'マルクス突撃',
+          cn: '观察墙壁',
+          ko: '양옆 톱 확인',
+        },
       },
     },
     {
@@ -587,7 +639,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '48F5', source: '９Ｓ：多脚戦車従属' }),
       netRegexKo: NetRegexes.startsUsing({ id: '48F5', source: '9S: 다각전차 종속' }),
       condition: function(data, matches) {
-        return data.me == matches.target || data.role == 'healer';
+        return data.me === matches.target || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -600,7 +652,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '48F6', source: '９Ｓ：多脚戦車従属', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48F6', source: '9S: 다각전차 종속', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
+        return data.role === 'tank' || data.role === 'healer' || data.CanAddle();
       },
       response: Responses.aoe(),
     },
@@ -617,24 +669,23 @@
     {
       id: 'Copied 9S Ballistic Impact',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
       id: 'Copied 9S Goliath Laser Turret',
       netRegex: NetRegexes.headMarker({ id: '00A4' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alertText: {
-        en: 'Laser Buster on YOU',
-        de: 'Laser Tankbuster auf DIR',
-        fr: 'Laser Tankbuster sur VOUS',
-        ja: '自分にレザー',
-        cn: '激光点名',
-        ko: '레이저 대상자',
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Laser Buster on YOU',
+          de: 'Laser Tankbuster auf DIR',
+          fr: 'Laser Tankbuster sur VOUS',
+          ja: '自分にレザー',
+          cn: '激光点名',
+          ko: '레이저 대상자',
+        },
       },
     },
     {
@@ -666,13 +717,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '48D3', source: '９Ｓ：多脚戦車従属', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48D3', source: '9S: 다각전차 종속', capture: false }),
       delaySeconds: 4,
-      alertText: {
-        en: 'Dodge Overhead Saws',
-        de: 'Sägen über dem Kopf ausweichen',
-        fr: 'Evitez la scie au-dessus de vous',
-        ja: 'マルクス支援',
-        cn: '躲避头顶锯',
-        ko: '톱 없는 쪽으로 피하기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dodge Overhead Saws',
+          de: 'Sägen über dem Kopf ausweichen',
+          fr: 'Evitez la scie au-dessus de vous',
+          ja: 'マルクス支援',
+          cn: '躲避头顶锯',
+          ko: '톱 없는 쪽으로 피하기',
+        },
       },
     },
     {
@@ -705,13 +759,16 @@
       netRegexFr: NetRegexes.startsUsing({ id: '48E7', source: '9S : Avec Multipède Esclave', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '48E7', source: '９Ｓ：多脚戦車従属', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48E7', source: '9S: 다각전차 종속', capture: false }),
-      alertText: {
-        en: 'Go Behind Untethered Tank',
-        de: 'Hinter den nicht verbundenen Panzer gehen',
-        fr: 'Derrière le tank non-lié',
-        ja: '線のない戦車の後ろへ',
-        cn: '没连线的坦克后躲避',
-        ko: '연결되지 않은 탱크 뒤로 숨기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go Behind Untethered Tank',
+          de: 'Hinter den nicht verbundenen Panzer gehen',
+          fr: 'Derrière le tank non-lié',
+          ja: '線のない戦車の後ろへ',
+          cn: '没连线的坦克后躲避',
+          ko: '연결되지 않은 탱크 뒤로 숨기',
+        },
       },
     },
     {
@@ -734,13 +791,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '48EB', source: '９Ｓ：多脚戦車従属', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48EB', source: '9S: 다각전차 종속', capture: false }),
       delaySeconds: 5,
-      infoText: {
-        en: 'Get in the bubble',
-        de: 'Geh in die Kuppel',
-        fr: 'Allez dans les bulles',
-        ja: '泡に入る',
-        cn: '进入圈圈',
-        ko: '안전지대 안으로 들어가기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get in the bubble',
+          de: 'Geh in die Kuppel',
+          fr: 'Allez dans les bulles',
+          ja: '泡に入る',
+          cn: '进入圈圈',
+          ko: '안전지대 안으로 들어가기',
+        },
       },
     },
   ],

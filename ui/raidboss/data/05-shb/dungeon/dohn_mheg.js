@@ -9,7 +9,7 @@
       regex: /Rake/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.miniBuster(),
     },
@@ -80,7 +80,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '2299', source: '美眼 因克·佐恩' }),
       netRegexKo: NetRegexes.startsUsing({ id: '2299', source: '눈이 예쁜 잉크 돈' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -93,7 +93,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1E8E', source: '美眼 因克·佐恩', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1E8E', source: '눈이 예쁜 잉크 돈', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -111,7 +111,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '22D3', source: '格里奥勒', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '22D3', source: '그리올', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -124,7 +124,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '35A4', source: '乐圣 因克·佐恩' }),
       netRegexKo: NetRegexes.startsUsing({ id: '35A4', source: '대음악가 잉크 돈' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -157,7 +157,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '358C', source: '乐圣 因克·佐恩', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '358C', source: '대음악가 잉크 돈', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },

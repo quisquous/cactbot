@@ -32,16 +32,17 @@
       netRegexJa: NetRegexes.ability({ id: '332C', source: 'オメガM' }),
       netRegexCn: NetRegexes.ability({ id: '332C', source: '欧米茄M' }),
       netRegexKo: NetRegexes.ability({ id: '332C', source: '오메가 M' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alarmText: {
-        en: 'Don\'t Stack!',
-        de: 'Nicht stacken!',
-        fr: 'Ne vous packez pas !',
-        ja: 'スタックするな！',
-        cn: '分散站位！',
-        ko: '쉐어 맞지 말것',
+      condition: Conditions.targetIsYou(),
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Don\'t Stack!',
+          de: 'Nicht stacken!',
+          fr: 'Ne vous packez pas !',
+          ja: 'スタックするな！',
+          cn: '分散站位！',
+          ko: '쉐어 맞지 말것',
+        },
       },
     },
     {
@@ -52,13 +53,16 @@
       netRegexJa: NetRegexes.gainsEffect({ target: 'オメガ', effectId: '67E', capture: false }),
       netRegexCn: NetRegexes.gainsEffect({ target: '欧米茄', effectId: '67E', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '오메가', effectId: '67E', capture: false }),
-      infoText: {
-        en: 'Keep Bosses Apart',
-        de: 'Bosse auseinander ziehen',
-        fr: 'Séparez les boss',
-        ja: 'ボス離して',
-        cn: '拉开Boss',
-        ko: '보스 떨어뜨리기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Keep Bosses Apart',
+          de: 'Bosse auseinander ziehen',
+          fr: 'Séparez les boss',
+          ja: 'ボス離して',
+          cn: '拉开Boss',
+          ko: '보스 떨어뜨리기',
+        },
       },
     },
     {
@@ -69,13 +73,16 @@
       netRegexJa: NetRegexes.gainsEffect({ target: 'オメガ', effectId: '67F', capture: false }),
       netRegexCn: NetRegexes.gainsEffect({ target: '欧米茄', effectId: '67F', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '오메가', effectId: '67F', capture: false }),
-      alertText: {
-        en: 'Move Bosses Together',
-        de: 'Bosse zusammenziehen',
-        fr: 'Packez les boss',
-        ja: 'ボス重ねて',
-        cn: '拉近Boss',
-        ko: '보스 붙이기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move Bosses Together',
+          de: 'Bosse zusammenziehen',
+          fr: 'Packez les boss',
+          ja: 'ボス重ねて',
+          cn: '拉近Boss',
+          ko: '보스 붙이기',
+        },
       },
     },
     {
@@ -87,7 +94,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['欧米茄', '欧米茄M'] }),
       netRegexKo: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['오메가', '오메가 M'] }),
       condition: function(data, matches) {
-        return data.me == matches.target || data.role == 'healer';
+        return data.me === matches.target || data.role === 'healer';
       },
       suppressSeconds: 1,
       response: Responses.tankBuster(),
@@ -101,7 +108,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['334B', '334C'], source: ['欧米茄', '欧米茄M'] }),
       netRegexKo: NetRegexes.startsUsing({ id: ['334B', '334C'], source: ['오메가', '오메가 M'] }),
       condition: function(data, matches) {
-        return data.me == matches.target || data.role == 'healer';
+        return data.me === matches.target || data.role === 'healer';
       },
       suppressSeconds: 1,
       response: Responses.tankBuster(),
@@ -109,33 +116,33 @@
     {
       id: 'O12S Electric Slide Marker',
       netRegex: NetRegexes.headMarker({ id: '009[12345678]' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alertText: function(data, matches) {
+      condition: Conditions.targetIsYou(),
+      alertText: function(data, matches, output) {
         let num = parseInt(matches.id);
         let isTriangle = num >= 95;
         num -= 90;
         if (isTriangle)
           num -= 4;
 
-        let squareName = {
-          en: 'Square',
-          de: 'Viereck',
-          fr: 'Carré',
-          ja: '四角',
-          cn: '四角',
-          ko: '짝수',
-        }[data.displayLang];
-        let triangleName = {
-          en: 'Triangle',
-          de: 'Dreieck',
-          fr: 'Triangle',
-          ja: '三角',
-          cn: '三角',
-          ko: '홀수',
-        }[data.displayLang];
-        return '#' + num + ' ' + (isTriangle ? triangleName : squareName);
+        return isTriangle ? output.triangle({ num: num }) : output.square({ num: num });
+      },
+      outputStrings: {
+        square: {
+          en: '#${num} Square',
+          de: '#${num} Viereck',
+          fr: '#${num} Carré',
+          ja: '#${num} 四角',
+          cn: '#${num} 四角',
+          ko: '#${num} 짝수',
+        },
+        triangle: {
+          en: '#${num} Triangle',
+          de: '#${num} Dreieck',
+          fr: '#${num} Triangle',
+          ja: '#${num} 三角',
+          cn: '#${num} 三角',
+          ko: '#${num} 홀수',
+        },
       },
     },
     {
@@ -150,39 +157,39 @@
     {
       id: 'O12S Optimized Meteor',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou('info'),
     },
     {
       id: 'O12S Packet Filter F',
       netRegex: NetRegexes.gainsEffect({ effectId: '67D' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Attack Omega-M',
-        de: 'Omega-M angreifen',
-        fr: 'Attaquez Oméga-M',
-        ja: 'Mを攻撃',
-        cn: '攻击欧米茄-M',
-        ko: '오메가 M 공격',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Attack Omega-M',
+          de: 'Omega-M angreifen',
+          fr: 'Attaquez Oméga-M',
+          ja: 'Mを攻撃',
+          cn: '攻击欧米茄-M',
+          ko: '오메가 M 공격',
+        },
       },
     },
     {
       id: 'O12S Packet Filter M',
       netRegex: NetRegexes.gainsEffect({ effectId: '67C' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Attack Omega-F',
-        de: 'Omega-W angreifen',
-        fr: 'Attaquez Oméga-F',
-        ja: 'Fを攻撃',
-        cn: '攻击欧米茄-F',
-        ko: '오메가 F 공격',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Attack Omega-F',
+          de: 'Omega-W angreifen',
+          fr: 'Attaquez Oméga-F',
+          ja: 'Fを攻撃',
+          cn: '攻击欧米茄-F',
+          ko: '오메가 F 공격',
+        },
       },
     },
     {
@@ -213,25 +220,29 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3364', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3364', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3364', source: '오메가', capture: false }),
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Monitors Left',
-            de: 'Monitore Links',
-            fr: 'Moniteur Gauche',
-            ja: '波動砲 (左)',
-            cn: '探测左边',
-            ko: '모니터 왼쪽',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.role === 'tank')
+          return output.monitorsLeft();
+
+        return output.dodgeLeft();
+      },
+      outputStrings: {
+        monitorsLeft: {
+          en: 'Monitors Left',
+          de: 'Monitore Links',
+          fr: 'Moniteur Gauche',
+          ja: '波動砲 (左)',
+          cn: '探测左边',
+          ko: '모니터 왼쪽',
+        },
+        dodgeLeft: {
           en: 'Dodge Left',
           de: 'Links ausweichen',
           fr: 'Evitez à gauche',
           ja: '左側に離れ',
           cn: '左侧躲闪',
           ko: '오른쪽으로',
-        };
+        },
       },
     },
     {
@@ -242,132 +253,144 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3365', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3365', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3365', source: '오메가', capture: false }),
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Monitors Right',
-            de: 'Monitore Rechts',
-            fr: 'Moniteur Droite',
-            ja: '波動砲 (右)',
-            cn: '探测右边',
-            ko: '모니터 오른쪽',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.role === 'tank')
+          return output.monitorsRight();
+
+        return output.dodgeRight();
+      },
+      outputStrings: {
+        monitorsRight: {
+          en: 'Monitors Right',
+          de: 'Monitore Rechts',
+          fr: 'Moniteur Droite',
+          ja: '波動砲 (右)',
+          cn: '探测右边',
+          ko: '모니터 오른쪽',
+        },
+        dodgeRight: {
           en: 'Dodge Right',
           de: 'Rechts ausweichen',
           fr: 'Evitez à droite',
           ja: '右側に離れ',
           cn: '右侧躲闪',
           ko: '왼쪽으로',
-        };
+        },
       },
     },
     {
       id: 'O12S Target Analysis Target',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
-      alarmText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Vuln on YOU',
-            de: 'Verwundbarkeit auf DIR',
-            fr: 'Vulnérabilité sur VOUS',
-            ja: '自分に標的',
-            cn: '目标识别',
-            ko: '표적식별 대상자',
-          };
-        }
+      alarmText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return output.vulnOnYou();
       },
-      infoText: function(data, matches) {
-        if (data.me == matches.target || data.role != 'tank')
+      infoText: function(data, matches, output) {
+        if (data.me === matches.target || data.role !== 'tank')
           return;
-        return {
-          en: 'Vuln on ' + data.ShortName(matches.target),
-          de: 'Verwundbarkeit auf ' + data.ShortName(matches.target),
-          fr: 'Vulnérabilité sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'に標的',
-          cn: '目标识别 点' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '" 표적식별',
-        };
+        return output.vulnOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        vulnOn: {
+          en: 'Vuln on ${player}',
+          de: 'Verwundbarkeit auf ${player}',
+          fr: 'Vulnérabilité sur ${player}',
+          ja: '${player}に標的',
+          cn: '目标识别 点${player}',
+          ko: '"${player}" 표적식별',
+        },
+        vulnOnYou: {
+          en: 'Vuln on YOU',
+          de: 'Verwundbarkeit auf DIR',
+          fr: 'Vulnérabilité sur VOUS',
+          ja: '自分に標的',
+          cn: '目标识别',
+          ko: '표적식별 대상자',
+        },
       },
     },
     {
       // Local Regression
       id: 'O12S Local Tethers',
       netRegex: NetRegexes.gainsEffect({ effectId: '688' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Close Tethers',
-        de: 'Nahe Verbindungen',
-        fr: 'Liens proches',
-        ja: 'ニアー',
-        cn: '靠近连线',
-        ko: '가까이 붙는 줄',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Close Tethers',
+          de: 'Nahe Verbindungen',
+          fr: 'Liens proches',
+          ja: 'ニアー',
+          cn: '靠近连线',
+          ko: '가까이 붙는 줄',
+        },
       },
     },
     {
       // Remote Regression
       id: 'O12S Far Tethers',
       netRegex: NetRegexes.gainsEffect({ effectId: '689' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Far Tethers',
-        de: 'Entfernte Verbindungen',
-        fr: 'Liens éloignés',
-        ja: 'ファー',
-        cn: '远离连线',
-        ko: '멀리 떨어지는 줄',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Far Tethers',
+          de: 'Entfernte Verbindungen',
+          fr: 'Liens éloignés',
+          ja: 'ファー',
+          cn: '远离连线',
+          ko: '멀리 떨어지는 줄',
+        },
       },
     },
     {
       // Critical Overflow Bug
       id: 'O12S Defamation',
       netRegex: NetRegexes.gainsEffect({ effectId: '681' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alarmText: {
-        en: 'Defamation on YOU',
-        de: 'Urteil auf DIR',
-        fr: '#Médisance sur VOUS',
-        ja: 'サークルついた',
-        cn: '严重错误：上溢',
-        ko: '치명적오류:광역 8초',
+      condition: Conditions.targetIsYou(),
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Defamation on YOU',
+          de: 'Urteil auf DIR',
+          fr: '#Médisance sur VOUS',
+          ja: 'サークルついた',
+          cn: '严重错误：上溢',
+          ko: '치명적오류:광역 8초',
+        },
       },
     },
     {
       id: 'O12S Latent Defect',
       netRegex: NetRegexes.gainsEffect({ effectId: '686' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alertText: {
-        en: 'Blue Marker',
-        de: 'Blauer Marker',
-        fr: 'Marqueur bleu',
-        ja: 'レイテントついた',
-        cn: '蓝点名',
-        ko: '잠재적오류 10초',
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Blue Marker',
+          de: 'Blauer Marker',
+          fr: 'Marqueur bleu',
+          ja: 'レイテントついた',
+          cn: '蓝点名',
+          ko: '잠재적오류 10초',
+        },
       },
     },
     {
       // Critical Underflow Bug
       id: 'O12S Rot',
       netRegex: NetRegexes.gainsEffect({ effectId: '682' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Rot',
-        de: 'Fäulnis',
-        fr: 'Pourriture',
-        ja: 'デグレードついた',
-        cn: '红点名',
-        ko: '치명적오류:전이 14초',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Rot',
+          de: 'Fäulnis',
+          fr: 'Pourriture',
+          ja: 'デグレードついた',
+          cn: '红点名',
+          ko: '치명적오류:전이 14초',
+        },
       },
     },
     {
@@ -375,36 +398,22 @@
       id: 'O12S Hello World Stack',
       netRegex: NetRegexes.gainsEffect({ effectId: '680' }),
       delaySeconds: function(data, matches) {
-        return matches.target == data.me ? 0 : 1;
+        return matches.target === data.me ? 0 : 1;
       },
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         let t = parseFloat(matches.duration);
-        if (data.me != matches.target)
+        if (data.me !== matches.target)
           return;
         if (!(t > 0))
           return;
-        if (t <= 8) {
-          return {
-            en: 'Short Stack on YOU',
-            de: 'Kurzer Stack auf YOU',
-            fr: 'Marque courte sur VOUS',
-            ja: '自分に早シェア',
-            cn: '短D',
-            ko: '8초 치명적오류:분배(쉐어)',
-          };
-        }
-        return {
-          en: 'Long Stack on YOU',
-          de: 'Langer Stack auf YOU',
-          fr: 'Marque longue sur VOUS',
-          ja: '自分に遅シェア',
-          cn: '长D',
-          ko: '13초 치명적오류:분배(쉐어)',
-        };
+        if (t <= 8)
+          return output.shortStackOnYou();
+
+        return output.longStackOnYou();
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         let t = parseFloat(matches.duration);
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return;
         if (!data.dpsShortStack)
           return;
@@ -412,16 +421,35 @@
           return;
         if (t <= 8) {
           data.dpsShortStack = false;
-          return {
-            en: 'Short Stack on ' + data.ShortName(matches.target),
-            de: 'Kurzer Stack auf ' + data.ShortName(matches.target),
-            fr: 'Marque courte sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'に早シェア',
-            cn: '短D 点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 쉐어',
-          };
+          return output.shortStackOn({ player: data.ShortName(matches.target) });
         }
         return;
+      },
+      outputStrings: {
+        shortStackOn: {
+          en: 'Short Stack on ${player}',
+          de: 'Kurzer Stack auf ${player}',
+          fr: 'Marque courte sur ${player}',
+          ja: '${player}に早シェア',
+          cn: '短D 点${player}',
+          ko: '"${player}" 쉐어',
+        },
+        shortStackOnYou: {
+          en: 'Short Stack on YOU',
+          de: 'Kurzer Stack auf YOU',
+          fr: 'Marque courte sur VOUS',
+          ja: '自分に早シェア',
+          cn: '短D',
+          ko: '8초 치명적오류:분배(쉐어)',
+        },
+        longStackOnYou: {
+          en: 'Long Stack on YOU',
+          de: 'Langer Stack auf YOU',
+          fr: 'Marque longue sur VOUS',
+          ja: '自分に遅シェア',
+          cn: '长D',
+          ko: '13초 치명적오류:분배(쉐어)',
+        },
       },
     },
     {
@@ -431,38 +459,42 @@
       preRun: function(data, matches) {
         data.helloDebuffs[matches.target] = true;
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         // 1 Defamation (T), 3 Blue Markers (T/H/D), 2 Stack Markers (D/D) = 6
         // Ignore rot here to be consistent.
-        if (Object.keys(data.helloDebuffs).length != 6)
+        if (Object.keys(data.helloDebuffs).length !== 6)
           return;
         if (data.me in data.helloDebuffs)
           return;
         data.helloDebuffs[data.me] = true;
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'No Marker',
           de: 'Kein Marker',
           fr: 'Aucun marqueur',
           ja: '無職',
           cn: '无BUFF',
           ko: '무징 대상자',
-        };
+        },
       },
     },
     {
       // Cascading Latent Defect
       id: 'O12S Hello World Tower Complete',
       netRegex: NetRegexes.gainsEffect({ effectId: '687' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Move out for Defamation',
-        de: 'Rausgehen für Urteil',
-        fr: 'Ecartez-vous pour #médisance',
-        ja: 'サークル捨てる',
-        cn: '离开人群传毒',
-        ko: '잠재적 오류: 전이',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move out for Defamation',
+          de: 'Rausgehen für Urteil',
+          fr: 'Ecartez-vous pour #médisance',
+          ja: 'サークル捨てる',
+          cn: '离开人群传毒',
+          ko: '잠재적 오류: 전이',
+        },
       },
     },
     {
@@ -480,30 +512,33 @@
       netRegex: NetRegexes.headMarker({ id: ['003E', '0060'], capture: false }),
       condition: function(data) {
         // 4 fire markers, 1 stack marker.
-        return data.isFinalOmega && Object.keys(data.archiveMarkers).length == 5;
+        return data.isFinalOmega && Object.keys(data.archiveMarkers).length === 5;
       },
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (data.me in data.archiveMarkers)
           return;
         for (let player in data.archiveMarkers) {
-          if (data.archiveMarkers[player] != '003E')
+          if (data.archiveMarkers[player] !== '003E')
             continue;
-          return {
-            en: 'Stack on ' + data.ShortName(player),
-            de: 'Stacken auf ' + data.ShortName(player),
-            fr: 'Packez-vous sur ' + data.ShortName(player),
-            ja: data.ShortName(player) + 'とスタック',
-            cn: '与' + data.ShortName(player) + '集合',
-            ko: '"' + data.ShortName(player) + '" 쉐어',
-          };
+          return output.text({ player: data.ShortName(player) });
         }
+      },
+      outputStrings: {
+        text: {
+          en: 'Stack on ${player}',
+          de: 'Stacken auf ${player}',
+          fr: 'Packez-vous sur ${player}',
+          ja: '${player}とスタック',
+          cn: '与${player}集合',
+          ko: '"${player}" 쉐어',
+        },
       },
     },
     {
       id: 'O12S Archive All Stack Marker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       condition: function(data, matches) {
-        return data.isFinalOmega && matches.target == data.me;
+        return data.isFinalOmega && matches.target === data.me;
       },
       response: Responses.stackMarkerOn('info'),
     },
@@ -511,7 +546,7 @@
       id: 'O12S Archive All Spread Marker',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: function(data, matches) {
-        return data.isFinalOmega && matches.target == data.me;
+        return data.isFinalOmega && matches.target === data.me;
       },
       response: Responses.spread(),
     },
@@ -523,13 +558,16 @@
       netRegexJa: NetRegexes.headMarker({ target: 'リアユニット', id: '009D', capture: false }),
       netRegexCn: NetRegexes.headMarker({ target: '尾部组', id: '009D', capture: false }),
       netRegexKo: NetRegexes.headMarker({ target: '후면 유닛', id: '009D', capture: false }),
-      alertText: {
-        en: 'Back Left',
-        de: 'Hinten Links',
-        fr: 'Arrière gauche',
-        ja: '左後ろ',
-        cn: '左后',
-        ko: '좌측 후방',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Back Left',
+          de: 'Hinten Links',
+          fr: 'Arrière gauche',
+          ja: '左後ろ',
+          cn: '左后',
+          ko: '좌측 후방',
+        },
       },
     },
     {
@@ -540,13 +578,16 @@
       netRegexJa: NetRegexes.headMarker({ target: 'リアユニット', id: '009C', capture: false }),
       netRegexCn: NetRegexes.headMarker({ target: '尾部组', id: '009C', capture: false }),
       netRegexKo: NetRegexes.headMarker({ target: '후면 유닛', id: '009C', capture: false }),
-      alertText: {
-        en: 'Back Right',
-        de: 'Hinten Rechts',
-        fr: 'Arrière droite',
-        ja: '右後ろ',
-        cn: '右后',
-        ko: '우측 후방',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Back Right',
+          de: 'Hinten Rechts',
+          fr: 'Arrière droite',
+          ja: '右後ろ',
+          cn: '右后',
+          ko: '우측 후방',
+        },
       },
     },
     {
@@ -561,7 +602,7 @@
         // Create a 3 digit binary value, R = 0, B = 1.
         // e.g. BBR = 110 = 6
         data.armValue *= 2;
-        if (matches.id == '009D')
+        if (matches.id === '009D')
           data.armValue += 1;
         data.numArms++;
       },
@@ -575,64 +616,66 @@
       netRegexCn: NetRegexes.headMarker({ target: '右臂组', id: ['009C', '009D'], capture: false }),
       netRegexKo: NetRegexes.headMarker({ target: '오른팔 유닛', id: ['009C', '009D'], capture: false }),
       condition: function(data) {
-        return data.numArms == 3;
+        return data.numArms === 3;
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         let v = parseInt(data.armValue);
         if (!(v >= 0) || v > 7)
           return;
         return {
-          en: {
-            0b000: 'East',
-            0b001: 'Northeast',
-            0b010: undefined,
-            0b011: 'Northwest',
-            0b100: 'Southeast',
-            0b101: undefined,
-            0b110: 'Southwest',
-            0b111: 'West',
-          },
-          de: {
-            0b000: 'Osten',
-            0b001: 'Nordosten',
-            0b010: undefined,
-            0b011: 'Nordwesten',
-            0b100: 'Südosten',
-            0b101: undefined,
-            0b110: 'Südwesten',
-            0b111: 'Westen',
-          },
-          ja: {
-            0b000: '東',
-            0b001: '北東',
-            0b010: undefined,
-            0b011: '北西',
-            0b100: '南東',
-            0b101: undefined,
-            0b110: '南西',
-            0b111: '西',
-          },
-          cn: {
-            0b000: '东',
-            0b001: '东北',
-            0b010: undefined,
-            0b011: '西北',
-            0b100: '东南',
-            0b101: undefined,
-            0b110: '西南',
-            0b111: '西',
-          },
-          ko: {
-            0b000: '동쪽(3시)',
-            0b001: '북동쪽(1시)',
-            0b010: undefined,
-            0b011: '북서쪽(11시)',
-            0b100: '남동쪽(5시)',
-            0b101: undefined,
-            0b110: '남서쪽(7시)',
-            0b111: '서쪽(9시)',
-          },
-        }[data.displayLang][v];
+          0b000: output.east(),
+          0b001: output.northeast(),
+          0b010: undefined,
+          0b011: output.northwest(),
+          0b100: output.southeast(),
+          0b101: undefined,
+          0b110: output.southwest(),
+          0b111: output.west(),
+        }[v];
+      },
+      outputStrings: {
+        east: {
+          en: 'East',
+          de: 'Osten',
+          ja: '東',
+          cn: '东',
+          ko: '동쪽(3시)',
+        },
+        northeast: {
+          en: 'Northeast',
+          de: 'Nordosten',
+          ja: '北東',
+          cn: '东北',
+          ko: '북동쪽(1시)',
+        },
+        northwest: {
+          en: 'Northwest',
+          de: 'Nordwesten',
+          ja: '北西',
+          cn: '西北',
+          ko: '북서쪽(11시)',
+        },
+        southeast: {
+          en: 'Southeast',
+          de: 'Südosten',
+          ja: '南東',
+          cn: '东南',
+          ko: '남동쪽(5시)',
+        },
+        southwest: {
+          en: 'Southwest',
+          de: 'Südwesten',
+          ja: '南西',
+          cn: '西南',
+          ko: '남서쪽(7시)',
+        },
+        west: {
+          en: 'West',
+          de: 'Westen',
+          ja: '西',
+          cn: '西',
+          ko: '서쪽(9시)',
+        },
       },
     },
   ],

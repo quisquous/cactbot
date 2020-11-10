@@ -13,49 +13,45 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1FA4', source: '神龍' }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FA4', source: '神龙' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FA4', source: '신룡' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Akh Morn on YOU',
-            de: 'Akh Morn auf DIR',
-            fr: 'Akh Morn sur VOUS',
-            ja: '自分にアク・モーン',
-            cn: '死亡轮回点名',
-            ko: '아크몬 대상자',
-          };
-        } else if (data.role == 'tank') {
-          return {
-            en: 'Akh Morn on ' + data.ShortName(matches.target),
-            de: 'Akh Morn auf ' + data.ShortName(matches.target),
-            fr: 'Akh Morn sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にアク・モーン',
-            cn: '死亡轮回点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 아크몬',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (matches.target === data.me)
+          return output.akhMornOnYou();
+        else if (data.role === 'tank')
+          return output.akhMornOn({ player: data.ShortName(matches.target) });
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         // Nobody with Akh Morn is a direct target for Akh Rai,
         // and tanks should never be targeted for it.
         // Additionally, Akh Rai happens only after the intermission.
-        if (matches.target == data.me || data.role == 'tank' || !data.finalPhase)
+        if (matches.target === data.me || data.role === 'tank' || !data.finalPhase)
           return;
-        return {
+        return output.akhRhaiSpreadAndMove();
+      },
+      outputStrings: {
+        akhRhaiSpreadAndMove: {
           en: 'Akh Rhai: spread and move',
           de: 'Akh Rhai: Verteilen und bewegen',
           fr: 'Akh Rhai: Dispersion et bougez',
           ja: 'アク・ラーイ: 散開 動け',
           cn: '天光轮回：散开和移动',
           ko: '아크 라이: 산개, 이동',
-        };
-      },
-      tts: {
-        en: 'akh morn',
-        de: 'akh morn',
-        fr: 'akh morn',
-        ja: 'アク・モーン',
-        cn: '死亡轮回',
-        ko: '아크몬',
+        },
+        akhMornOnYou: {
+          en: 'Akh Morn on YOU',
+          de: 'Akh Morn auf DIR',
+          fr: 'Akh Morn sur VOUS',
+          ja: '自分にアク・モーン',
+          cn: '死亡轮回点名',
+          ko: '아크몬 대상자',
+        },
+        akhMornOn: {
+          en: 'Akh Morn on ${player}',
+          de: 'Akh Morn auf ${player}',
+          fr: 'Akh Morn sur ${player}',
+          ja: '${player}にアク・モーン',
+          cn: '死亡轮回点${player}',
+          ko: '"${player}" 아크몬',
+        },
       },
     },
     {
@@ -81,13 +77,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '24EF', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '24EF', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '24EF', source: '신룡', capture: false }),
-      infoText: {
-        en: 'Out of middle',
-        de: 'Raus aus der Mitte',
-        fr: 'Sortez du milieu',
-        ja: '中央から離れ',
-        cn: '离开中间',
-        ko: '중앙 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Out of middle',
+          de: 'Raus aus der Mitte',
+          fr: 'Sortez du milieu',
+          ja: '中央から離れ',
+          cn: '离开中间',
+          ko: '중앙 피하기',
+        },
       },
     },
     {
@@ -99,21 +98,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1FAB', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FAB', source: '신룡', capture: false }),
       durationSeconds: 7,
-      alertText: {
-        en: 'Get in water',
-        de: 'In\'s Wasser',
-        fr: 'Allez dans l\'eau',
-        ja: '水に入る',
-        cn: '进水圈',
-        ko: '물 장판에 들어가기',
-      },
-      tts: {
-        en: 'water',
-        de: 'wasser',
-        fr: 'eau',
-        ja: 'みず',
-        cn: '进水圈',
-        ko: '물 장판',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get in water',
+          de: 'In\'s Wasser',
+          fr: 'Allez dans l\'eau',
+          ja: '水に入る',
+          cn: '进水圈',
+          ko: '물 장판에 들어가기',
+        },
       },
     },
     {
@@ -125,21 +119,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: '右翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: '오른쪽 날개', capture: false }),
       durationSeconds: 7,
-      alertText: {
-        en: 'Stack in water',
-        de: 'In Wasser stacken',
-        fr: 'Packez-vous dans l\'eau',
-        ja: '水に集合',
-        cn: '在水圈攻击',
-        ko: '물 장판에 모이기',
-      },
-      tts: {
-        en: 'water',
-        de: 'Wasser',
-        fr: 'eau',
-        ja: 'みず',
-        cn: '水圈',
-        ko: '물 장판',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack in water',
+          de: 'In Wasser stacken',
+          fr: 'Packez-vous dans l\'eau',
+          ja: '水に集合',
+          cn: '在水圈攻击',
+          ko: '물 장판에 모이기',
+        },
       },
     },
     {
@@ -151,13 +140,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1FAC', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FAC', source: '신룡', capture: false }),
       durationSeconds: 7,
-      alertText: {
-        en: 'out of water',
-        de: 'Raus aus dem Wasser',
-        fr: 'Sortez de l\'eau',
-        ja: '水から離れ',
-        cn: '离开水圈',
-        ko: '물 장판 밖으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'out of water',
+          de: 'Raus aus dem Wasser',
+          fr: 'Sortez de l\'eau',
+          ja: '水から離れ',
+          cn: '离开水圈',
+          ko: '물 장판 밖으로',
+        },
       },
     },
     {
@@ -169,21 +161,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1F9B', source: '右翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1F9B', source: '오른쪽 날개', capture: false }),
       durationSeconds: 7,
-      alertText: {
-        en: 'Spread out, no water',
-        de: 'Verteilen und nicht in\'s Wasser',
-        fr: 'Dispersez-vous en dehors de l\'eau',
-        ja: '散開、水に入らない',
-        cn: '散开，离开水圈',
-        ko: '산개, 물장판 X',
-      },
-      tts: {
-        en: 'levinbolt',
-        de: 'Blitz',
-        fr: 'fulguration',
-        ja: '稲妻',
-        cn: '离开闪电',
-        ko: '우레',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spread out, no water',
+          de: 'Verteilen und nicht in\'s Wasser',
+          fr: 'Dispersez-vous en dehors de l\'eau',
+          ja: '散開、水に入らない',
+          cn: '散开，离开水圈',
+          ko: '산개, 물장판 X',
+        },
       },
     },
     {
@@ -198,21 +185,16 @@
         return matches.castTime - 6;
       },
       durationSeconds: 5,
-      infoText: {
-        en: 'Knockback, look for water',
-        de: 'Rückstoß, nach Wasser schauen',
-        fr: 'Poussée, cherchez l\'eau',
-        ja: 'ノックバック、水を探せ',
-        cn: '击退，找水圈',
-        ko: '넉백, 물기둥 확인',
-      },
-      tts: {
-        en: 'knockback',
-        de: 'Rückstoß',
-        fr: 'Poussée',
-        ja: 'ノックバック',
-        cn: '击退',
-        ko: '넉백',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Knockback, look for water',
+          de: 'Rückstoß, nach Wasser schauen',
+          fr: 'Poussée, cherchez l\'eau',
+          ja: 'ノックバック、水を探せ',
+          cn: '击退，找水圈',
+          ko: '넉백, 물기둥 확인',
+        },
       },
     },
     {
@@ -224,7 +206,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1FA2', source: '左翼' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FA2', source: '왼쪽 날개' }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       delaySeconds: function(data, matches) {
         return matches.castTime - 4;
@@ -240,21 +222,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1F93', source: '龙尾', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1F93', source: '신룡의 꼬리', capture: false }),
       delaySeconds: 2,
-      infoText: {
-        en: 'Tail: Switch targets',
-        de: 'Schweif: Zielwechsel',
-        fr: 'Queue : Changez de cible',
-        ja: '尾: タゲチェンジ',
-        cn: '打尾巴',
-        ko: '꼬리 공격',
-      },
-      tts: {
-        en: 'tail',
-        de: 'schweif',
-        fr: 'queue',
-        ja: '尾',
-        cn: '尾巴',
-        ko: '꼬리',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tail: Switch targets',
+          de: 'Schweif: Zielwechsel',
+          fr: 'Queue : Changez de cible',
+          ja: '尾: タゲチェンジ',
+          cn: '打尾巴',
+          ko: '꼬리 공격',
+        },
       },
     },
     {
@@ -281,21 +258,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1FF4', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FF4', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FF4', source: '신룡', capture: false }),
-      alertText: {
-        en: 'avoid divebomb',
-        de: 'Divebomb ausweichen',
-        fr: 'Évitez la bombe plongeante',
-        ja: 'ダイブボムに避け',
-        cn: '前方顺劈',
-        ko: '급강하 폭격 피하기',
-      },
-      tts: {
-        en: 'divebombs',
-        de: 'sturzflug',
-        fr: 'bombe plongeante',
-        ja: 'ダイブボム',
-        cn: '顺劈',
-        ko: '급강하 폭격',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'avoid divebomb',
+          de: 'Divebomb ausweichen',
+          fr: 'Évitez la bombe plongeante',
+          ja: 'ダイブボムに避け',
+          cn: '前方顺劈',
+          ko: '급강하 폭격 피하기',
+        },
       },
     },
     {
@@ -312,13 +284,16 @@
       id: 'Shinryu Normal Slap Marker',
       netRegex: NetRegexes.headMarker({ id: '0062' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Bait onto unbroken squares',
-        de: 'Auf nicht kaputter Fläche ködern',
-        fr: 'Attirez sur les carrés non brisés',
-        ja: '壊れなかった床に誘導',
-        cn: '在未损坏方格上诱导',
-        ko: '꼬리 내리치기 유도',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait onto unbroken squares',
+          de: 'Auf nicht kaputter Fläche ködern',
+          fr: 'Attirez sur les carrés non brisés',
+          ja: '壊れなかった床に誘導',
+          cn: '在未损坏方格上诱导',
+          ko: '꼬리 내리치기 유도',
+        },
       },
     },
   ],

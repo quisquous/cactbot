@@ -14,21 +14,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '2633', source: '背德皇帝马提乌斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2633', source: '배덕의 황제 마티우스', capture: false }),
       delaySeconds: 11,
-      infoText: {
-        en: 'Kill Aqua Spheres',
-        de: 'Wasserkugeln zerstören',
-        fr: 'Détruire les bulles d\'eau',
-        ja: 'アクアスフィアを倒す',
-        cn: '击杀水球',
-        ko: '물 구체 죽이기',
-      },
-      tts: {
-        en: 'adds',
-        de: 'etz',
-        fr: 'adds',
-        ja: 'アクアスフィア',
-        cn: '击杀水球',
-        ko: '쫄 추가',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Aqua Spheres',
+          de: 'Wasserkugeln zerstören',
+          fr: 'Détruire les bulles d\'eau',
+          ja: 'アクアスフィアを倒す',
+          cn: '击杀水球',
+          ko: '물 구체 죽이기',
+        },
       },
     },
     {
@@ -36,56 +31,54 @@
       // using data.breathless to count the stacks.
       id: 'Rab Mateus Breathless Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '595' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
+      condition: Conditions.targetIsYou(),
+      alarmText: function(data, _, output) {
+        if (data.breathless === 6)
+          return output.getInBubble();
       },
-      alarmText: function(data) {
-        if (data.breathless == 6) {
-          return {
-            en: 'Get In Bubble',
-            de: 'Geh in die Blase',
-            fr: 'Allez dans une bulle',
-            ja: '泡に入る',
-            cn: '进气泡',
-            ko: '물방울 안으로',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (data.breathless >= 7)
+          return output.breathless({ num: (data.breathless + 1) });
       },
-      infoText: function(data) {
-        if (data.breathless >= 7) {
-          return {
-            en: 'Breathless: ' + (data.breathless + 1),
-            de: 'Atemnot: ' + (data.breathless + 1),
-            fr: 'Suffocation :' + (data.breathless + 1),
-            ja: '呼吸困難 :' + (data.breathless + 1),
-            cn: '窒息层数:' + (data.breathless + 1),
-            ko: '호흡곤란: ' + (data.breathless + 1),
-          };
-        }
-      },
-      tts: function(data) {
-        if (data.breathless == 6) {
-          return {
-            en: 'bubble',
-            de: 'blase',
-            fr: 'bulle',
-            ja: '泡',
-            cn: '进气泡',
-            ko: '숨쉬어!',
-          };
-        }
+      tts: function(data, _, output) {
+        if (data.breathless === 6)
+          return output.bubble();
       },
       run: function(data) {
         data.breathless = data.breathless | 0;
         data.breathless++;
       },
+      outputStrings: {
+        breathless: {
+          en: 'Breathless: ${num}',
+          de: 'Atemnot: ${num}',
+          fr: 'Suffocation :${num}',
+          ja: '呼吸困難 :${num}',
+          cn: '窒息层数:${num}',
+          ko: '호흡곤란: ${num}',
+        },
+        getInBubble: {
+          en: 'Get In Bubble',
+          de: 'Geh in die Blase',
+          fr: 'Allez dans une bulle',
+          ja: '泡に入る',
+          cn: '进气泡',
+          ko: '물방울 안으로',
+        },
+        bubble: {
+          en: 'bubble',
+          de: 'blase',
+          fr: 'bulle',
+          ja: '泡',
+          cn: '进气泡',
+          ko: '숨쉬어!',
+        },
+      },
     },
     {
       id: 'Rab Mateus Breathless Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '595' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.breathless = 0;
       },
@@ -98,21 +91,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '263D', source: '背徳の皇帝マティウス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '263D', source: '背德皇帝马提乌斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '263D', source: '배덕의 황제 마티우스', capture: false }),
-      alertText: {
-        en: 'Move To Safe Spot',
-        de: 'Zur sicheren Zone',
-        fr: 'Allez en zone sûre',
-        ja: '安置へ',
-        cn: '去安全点',
-        ko: '안전 지대로 이동',
-      },
-      tts: {
-        en: 'move away',
-        de: 'weck da',
-        fr: 'Zone sure',
-        ja: '安置へ',
-        cn: '去安全点',
-        ko: '안전 지대로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move To Safe Spot',
+          de: 'Zur sicheren Zone',
+          fr: 'Allez en zone sûre',
+          ja: '安置へ',
+          cn: '去安全点',
+          ko: '안전 지대로 이동',
+        },
       },
     },
     {
@@ -134,20 +122,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '25CB', source: '統制者ハシュマリム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '25CB', source: '统治者哈修马利姆', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25CB', source: '통제자 하쉬말림', capture: false }),
-      alertText: {
-        en: 'Move Away',
-        de: 'Weg da',
-        fr: 'Eloignez-vous',
-        ja: 'ハーマーから離れ',
-        cn: '远离大锤落点',
-        ko: '기둥으로부터 피하기',
-      },
-      tts: {
-        en: 'move away',
-        de: 'weck da',
-        fr: 'Eloignez vous',
-        ja: '離れ',
-        cn: '远离大锤落点',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move Away',
+          de: 'Weg da',
+          fr: 'Eloignez-vous',
+          ja: 'ハーマーから離れ',
+          cn: '远离大锤落点',
+          ko: '기둥으로부터 피하기',
+        },
       },
     },
     {
@@ -159,21 +143,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '25D4', source: '统治者哈修马利姆', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25D4', source: '통제자 하쉬말림', capture: false }),
       delaySeconds: 5,
-      infoText: {
-        en: 'Kill Golems',
-        de: 'Golems töten',
-        fr: 'Détruisez les golems',
-        ja: 'ゴーレムを倒す',
-        cn: '击杀小怪',
-        ko: '골렘 죽이기',
-      },
-      tts: {
-        en: 'adds',
-        de: 'etz',
-        fr: 'adds',
-        ja: 'ゴーレム',
-        cn: '击杀小怪',
-        ko: '쫄 추가',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Golems',
+          de: 'Golems töten',
+          fr: 'Détruisez les golems',
+          ja: 'ゴーレムを倒す',
+          cn: '击杀小怪',
+          ko: '골렘 죽이기',
+        },
       },
     },
     {
@@ -184,21 +163,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: 'D10', source: 'アルケオキマイラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: 'D10', source: '古奇美拉', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: 'D10', source: '원시 키마이라', capture: false }),
-      alertText: {
-        en: 'Dragon Voice: Move In',
-        de: 'Stimme Des Drachen: Rein',
-        fr: 'Voix Du Dragon : Packez-vous',
-        ja: '雷電の咆哮：中へ',
-        cn: '雷电咆哮: 靠近',
-        ko: '뇌전의 포효: 안으로',
-      },
-      tts: {
-        en: 'dragon voice',
-        de: 'Stimme des Drachen',
-        fr: 'Voix Du Dragon',
-        ja: 'なかへ',
-        cn: '靠近',
-        ko: '번개 안으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dragon Voice: Move In',
+          de: 'Stimme Des Drachen: Rein',
+          fr: 'Voix Du Dragon : Packez-vous',
+          ja: '雷電の咆哮：中へ',
+          cn: '雷电咆哮: 靠近',
+          ko: '뇌전의 포효: 안으로',
+        },
       },
     },
     {
@@ -209,29 +183,22 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: 'アルケオキマイラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: '古奇美拉', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: '원시 키마이라', capture: false }),
-      alertText: {
-        en: 'Ram Voice: Move Out',
-        de: 'Stimme Des Widders: Raus',
-        fr: 'Voix Du Bélier : Eloignez-vous',
-        ja: '氷結の咆哮：外へ',
-        cn: '寒冰咆哮: 远离',
-        ko: '빙결의 포효: 바깥으로',
-      },
-      tts: {
-        en: 'rams voice',
-        de: 'Stimme des Widders',
-        fr: 'Voix Du Bélier',
-        ja: 'そとへ',
-        cn: '远离',
-        ko: '빙결 바깥으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Ram Voice: Move Out',
+          de: 'Stimme Des Widders: Raus',
+          fr: 'Voix Du Bélier : Eloignez-vous',
+          ja: '氷結の咆哮：外へ',
+          cn: '寒冰咆哮: 远离',
+          ko: '빙결의 포효: 바깥으로',
+        },
       },
     },
     {
       id: 'Rab Rofocale Chariot',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.getIn(),
     },
     {
@@ -242,13 +209,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2676', source: '人馬王ロフォカレ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2676', source: '人马王洛弗卡勒', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2676', source: '인마왕 로포칼레', capture: false }),
-      alertText: {
-        en: 'Trample',
-        de: 'Zertrampeln',
-        fr: 'Fauchage',
-        ja: '蹂躙',
-        cn: '蹂躏',
-        ko: '유린',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Trample',
+          de: 'Zertrampeln',
+          fr: 'Fauchage',
+          ja: '蹂躙',
+          cn: '蹂躏',
+          ko: '유린',
+        },
       },
     },
     {
@@ -278,55 +248,59 @@
     {
       id: 'Rab Argath Command Scatter',
       netRegex: NetRegexes.headMarker({ id: '007B' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
+      condition: Conditions.targetIsYou(),
+      infoText: function(data, _, output) {
+        if (data.maskValue)
+          return output.move();
+
+        return output.stop();
       },
-      infoText: function(data) {
-        if (data.maskValue) {
-          return {
-            en: 'Move',
-            de: 'Bewegen',
-            fr: 'Bougez',
-            ja: '動け',
-            cn: '动起来',
-            ko: '움직이기',
-          };
-        }
-        return {
+      outputStrings: {
+        move: {
+          en: 'Move',
+          de: 'Bewegen',
+          fr: 'Bougez',
+          ja: '動け',
+          cn: '动起来',
+          ko: '움직이기',
+        },
+        stop: {
           en: 'Stop',
           de: 'Stopp',
           fr: 'Stop',
           ja: '動かない',
           cn: '不要动',
           ko: '멈추기',
-        };
+        },
       },
     },
     {
       id: 'Rab Argath Command Turn',
       netRegex: NetRegexes.headMarker({ id: '007C' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
+      condition: Conditions.targetIsYou(),
+      infoText: function(data, _, output) {
+        if (data.maskValue)
+          return output.lookAway();
+
+        return output.lookTowards();
       },
-      infoText: function(data) {
-        if (data.maskValue) {
-          return {
-            en: 'Look Away',
-            de: 'Wegschauen',
-            fr: 'Regardez ailleurs',
-            ja: '見ない',
-            cn: '背对BOSS',
-            ko: '바라보지 말기',
-          };
-        }
-        return {
+      outputStrings: {
+        lookAway: {
+          en: 'Look Away',
+          de: 'Wegschauen',
+          fr: 'Regardez ailleurs',
+          ja: '見ない',
+          cn: '背对BOSS',
+          ko: '바라보지 말기',
+        },
+        lookTowards: {
           en: 'Look Towards',
           de: 'Anschauen',
           fr: 'Regardez le boss',
           ja: 'ボスを見て',
           cn: '面对BOSS',
           ko: '바라보기',
-        };
+        },
       },
     },
   ],

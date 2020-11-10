@@ -40,6 +40,7 @@
   left: 278px;
 }
 
+.nin #right-side-icons,
 .drk #right-side-icons {
   left: 250px;
 }
@@ -139,6 +140,7 @@
 }
 
 #gnb-bar,
+#nin-bar,
 #brd-bar,
 #mnk-bar {
   position: relative;
@@ -168,6 +170,7 @@
 
 #gnb-timers-combo,
 #gnb-timers-cartridgecombo,
+#nin-timers-combo,
 #brd-timers-repertoire,
 #mnk-timers-lightning,
 #mnk-timers-combo {
@@ -184,6 +187,7 @@
 #sch-boxes,
 #whm-boxes,
 #smn-boxes,
+#nin-boxes,
 #drg-boxes,
 #ast-boxes,
 #war-boxes,
@@ -204,6 +208,7 @@
 #drg-boxes > div,
 #whm-boxes > div,
 #smn-boxes > div,
+#nin-boxes > div,
 #ast-boxes > div,
 #war-boxes > div,
 #mnk-boxes > div,
@@ -222,6 +227,7 @@
 */
 
 #war-boxes > div,
+#nin-boxes > div,
 #gnb-boxes > div {
   width: 29px;
   height: 29px;
@@ -255,6 +261,7 @@
 #smn-boxes .text,
 #drg-boxes .text,
 #whm-boxes .text,
+#nin-boxes .text,
 #ast-boxes .text,
 #war-boxes .text,
 #mnk-boxes .text,
@@ -275,6 +282,7 @@
 #sch-boxes .text,
 #gnb-boxes .text,
 #smn-boxes .text,
+#nin-boxes .text,
 #drg-boxes .text,
 #brd-boxes .text,
 #whm-boxes .text,
@@ -341,6 +349,7 @@
 
 #drg-procs,
 #brd-procs,
+#nin-procs,
 #smn-procs {
   position: absolute;
   top: 146px;
@@ -364,6 +373,7 @@
 
 #drg-procs-highjump,
 #brd-procs-stormbite,
+#nin-procs-trickattack,
 #smn-procs-biosmn {
   position: relative;
   display: inline-block;
@@ -372,6 +382,7 @@
 
 #drg-procs-lancecharge,
 #brd-procs-song,
+#nin-procs-bunshin,
 #smn-procs-energydrain {
   position: relative;
   display: inline-block;
@@ -405,6 +416,7 @@
 
 #drg-procs-dragonsight,
 #brd-procs-straightshotready,
+#nin-procs-ninjutsu,
 #smn-procs-trance {
   position: relative;
   display: inline-block;
@@ -985,4 +997,40 @@
 
 .drg-color-dragonsight.active {
   background-color: rgb(217, 51, 0);
+}
+
+.nin-color-huton {
+  background-color: rgb(0, 255, 255);
+}
+
+.nin-color-trickattack {
+  background-color: rgb(255, 200, 0, 0.6);
+}
+
+.nin-color-trickattack.active {
+  background-color: rgb(255, 200, 0);
+}
+
+.nin-color-bunshin {
+  background-color: rgb(250, 80, 0);
+}
+
+.nin-color-ninjutsu {
+  background-color: rgb(250, 150, 250);
+}
+
+.nin-color-ninki.low {
+  background-color: rgb(140, 90, 200);
+}
+
+.nin-color-ninki {
+  background-color: rgb(200, 50, 20, 0.7);
+}
+
+.nin-color-ninki.high {
+  background-color: rgb(255, 42, 0);
+}
+
+.nin-color-combo {
+  background-color: rgb(180, 200, 220);
 }

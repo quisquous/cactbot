@@ -13,7 +13,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3FC4', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FC4', source: '리바이어선', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -21,7 +21,7 @@
       id: 'E3N Rip Current',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
+        return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -34,12 +34,15 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3FD2', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FD2', source: '리바이어선', capture: false }),
       delaySeconds: 3,
-      infoText: {
-        en: 'Look for Wave',
-        de: 'Nach der Welle schauen',
-        fr: 'Repérez la vague',
-        cn: '看浪',
-        ko: '해일 위치 확인',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look for Wave',
+          de: 'Nach der Welle schauen',
+          fr: 'Repérez la vague',
+          cn: '看浪',
+          ko: '해일 위치 확인',
+        },
       },
     },
     {
@@ -63,12 +66,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3FD0', source: 'リヴァイアサン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3FD0', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FD0', source: '리바이어선', capture: false }),
-      alertText: {
-        en: 'Get Middle',
-        de: 'In die Mitte gehen',
-        fr: 'Allez au milieu',
-        cn: '中间',
-        ko: '중앙으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Middle',
+          de: 'In die Mitte gehen',
+          fr: 'Allez au milieu',
+          cn: '中间',
+          ko: '중앙으로',
+        },
       },
     },
     {
@@ -90,20 +96,21 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3FD8', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FD8', source: '리바이어선', capture: false }),
       delaySeconds: 8,
-      infoText: {
-        en: 'Avoid Puddles and Dives',
-        de: 'Flächen und Leviathan ausweichen',
-        fr: 'Évitez les zones au sol et les piqués',
-        cn: '躲圈闪避',
-        ko: '돌진이랑 장판 피하세요',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Puddles and Dives',
+          de: 'Flächen und Leviathan ausweichen',
+          fr: 'Évitez les zones au sol et les piqués',
+          cn: '躲圈闪避',
+          ko: '돌진이랑 장판 피하세요',
+        },
       },
     },
     {
       id: 'E3N Drenching Pulse Spread',
       netRegex: NetRegexes.headMarker({ id: '00A9' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -115,7 +122,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3FD4', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FD4', source: '리바이어선', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -133,23 +140,22 @@
     {
       id: 'E3N Splashing Waters Spread',
       netRegex: NetRegexes.headMarker({ id: '0082' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'E3N Swirling Waters Donut',
       netRegex: NetRegexes.headMarker({ id: '0099' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Donut on YOU',
-        de: 'Donut auf DIR',
-        fr: 'Donut sur VOUS',
-        cn: '月环点名',
-        ko: '도넛장판 대상자',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Donut on YOU',
+          de: 'Donut auf DIR',
+          fr: 'Donut sur VOUS',
+          cn: '月环点名',
+          ko: '도넛장판 대상자',
+        },
       },
     },
   ],

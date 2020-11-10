@@ -11,9 +11,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: '制御システム', id: '5A7' }),
       netRegexCn: NetRegexes.startsUsing({ source: '自卫系统', id: '5A7' }),
       netRegexKo: NetRegexes.startsUsing({ source: '제어 시스템', id: '5A7' }),
-      condition: function(data) {
-        return data.CanSilence();
-      },
+      condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
     {
@@ -25,9 +23,7 @@
       netRegexJa: NetRegexes.ability({ source: 'カドゥケウス', id: '4B8.*?', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '神杖巨蛇', id: '4B8.*?', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '카두케우스', id: '4B8.*?', capture: false }),
-      run: function(data) {
-        data.started = true;
-      },
+      run: (data) => data.started = true,
     },
     {
       id: 'T1 Regorge',
@@ -37,9 +33,7 @@
       netRegexJa: NetRegexes.ability({ source: 'カドゥケウス', id: '4BA' }),
       netRegexCn: NetRegexes.ability({ source: '神杖巨蛇', id: '4BA' }),
       netRegexKo: NetRegexes.ability({ source: '카두케우스', id: '4BA' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -59,9 +53,7 @@
       netRegexJa: NetRegexes.addedCombatant({ name: 'カドゥケウス.*?', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '神杖巨蛇.*?', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '카두케우스.*?', capture: false }),
-      condition: function(data) {
-        return data.started;
-      },
+      condition: (data) => data.started,
       suppressSeconds: 5,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -82,9 +74,7 @@
       netRegexJa: NetRegexes.ability({ source: 'カドゥケウス', id: '4B8' }),
       netRegexCn: NetRegexes.ability({ source: '神杖巨蛇', id: '4B8' }),
       netRegexKo: NetRegexes.ability({ source: '카두케우스', id: '4B8' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: 8,
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),

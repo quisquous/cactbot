@@ -9,13 +9,16 @@
       id: 'UWU Feather Rain',
       regex: /Feather Rain/,
       beforeSeconds: 3,
-      infoText: {
-        en: 'Move!',
-        de: 'Bewegen',
-        fr: 'Bougez',
-        ja: 'フェザーレイン',
-        ko: '이동',
-        cn: '躲羽毛',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move!',
+          de: 'Bewegen',
+          fr: 'Bougez',
+          ja: 'フェザーレイン',
+          ko: '이동',
+          cn: '躲羽毛',
+        },
       },
     },
   ],
@@ -56,46 +59,53 @@
       netRegexCn: NetRegexes.startsUsing({ id: '2B53', source: '迦楼罗', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2B53', source: '가루다', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
-      alertText: {
-        en: 'Slipstream',
-        de: 'Wirbelströmung',
-        fr: 'Sillage',
-        ja: 'スリップストリーム',
-        ko: '반동 기류',
-        cn: '螺旋气流',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Slipstream',
+          de: 'Wirbelströmung',
+          fr: 'Sillage',
+          ja: 'スリップストリーム',
+          ko: '반동 기류',
+          cn: '螺旋气流',
+        },
       },
     },
     {
       id: 'UWU Garuda Mistral Song Marker',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alertText: {
-        en: 'Mistral on YOU',
-        de: 'Mistral-Song',
-        fr: 'Chant Du Mistral',
-        ja: 'ミストラルソング',
-        ko: '삭풍 징',
-        cn: '寒风之歌点名',
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mistral on YOU',
+          de: 'Mistral-Song',
+          fr: 'Chant Du Mistral',
+          ja: 'ミストラルソング',
+          ko: '삭풍 징',
+          cn: '寒风之歌点名',
+        },
       },
     },
     {
       id: 'UWU Garuda Mistral Song Tank',
       netRegex: NetRegexes.headMarker({ id: '0010', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       suppressSeconds: 5,
-      infoText: {
-        en: 'Mistral Song',
-        de: 'Mistral-Song',
-        fr: 'Chant Du Mistral',
-        ja: 'ミストラルソング',
-        ko: '삭풍 징',
-        cn: '寒风之歌',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mistral Song',
+          de: 'Mistral-Song',
+          fr: 'Chant Du Mistral',
+          ja: 'ミストラルソング',
+          ko: '삭풍 징',
+          cn: '寒风之歌',
+        },
       },
     },
     {
@@ -107,39 +117,35 @@
       netRegexCn: NetRegexes.addedCombatant({ name: '刺羽', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '가시돋힌 깃털', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
-      infoText: {
-        en: 'Spiny Plume Add',
-        de: 'Dorniger Federsturm',
-        fr: 'Plume Perforante',
-        ja: 'スパイニープルーム',
-        ko: '가시돋힌 깃털 등장',
-        cn: '刺羽出现',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spiny Plume Add',
+          de: 'Dorniger Federsturm',
+          fr: 'Plume Perforante',
+          ja: 'スパイニープルーム',
+          ko: '가시돋힌 깃털 등장',
+          cn: '刺羽出现',
+        },
       },
     },
     {
       id: 'UWU Ifrit Fetters',
       netRegex: NetRegexes.gainsEffect({ effectId: '179' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 45,
-      infoText: {
-        en: 'Fetters on YOU',
-        de: 'Fesseln auf DIR',
-        fr: 'Chaînes Infernales',
-        ja: '自分に炎獄の鎖',
-        ko: '사슬 → 나',
-        cn: '火狱之锁点名',
-      },
-      tts: {
-        en: 'Fetters',
-        de: 'Fesseln',
-        fr: 'Chaînes Infernales',
-        ja: '炎獄の鎖',
-        ko: '사슬',
-        cn: '火狱之锁',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Fetters on YOU',
+          de: 'Fesseln auf DIR',
+          fr: 'Chaînes Infernales',
+          ja: '自分に炎獄の鎖',
+          ko: '사슬 → 나',
+          cn: '火狱之锁点名',
+        },
       },
     },
     {
@@ -150,36 +156,32 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2B5B', source: 'イフリート' }),
       netRegexCn: NetRegexes.startsUsing({ id: '2B5B', source: '伊弗利特' }),
       netRegexKo: NetRegexes.startsUsing({ id: '2B5B', source: '이프리트' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alarmText: {
-        en: 'Searing Wind on YOU',
-        de: 'Versengen auf DIR',
-        fr: 'Rugissement Infernal',
-        ja: '自分に灼熱',
-        ko: '작열 → 나',
-        cn: '灼热咆哮点名',
-      },
-      tts: {
-        en: 'Searing Wind',
-        de: 'Versengen',
-        fr: 'Rugissement Infernal',
-        ja: '灼熱',
-        ko: '작열',
-        cn: '灼热咆哮',
+      condition: Conditions.targetIsYou(),
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Searing Wind on YOU',
+          de: 'Versengen auf DIR',
+          fr: 'Rugissement Infernal',
+          ja: '自分に灼熱',
+          ko: '작열 → 나',
+          cn: '灼热咆哮点名',
+        },
       },
     },
     {
       id: 'UWU Ifrit Flaming Crush',
       netRegex: NetRegexes.headMarker({ id: '0075', capture: false }),
-      alertText: {
-        en: 'Stack',
-        de: 'Stack',
-        fr: 'Stack',
-        ja: '頭割り',
-        ko: '집합',
-        cn: '集合',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack',
+          de: 'Stack',
+          fr: 'Stack',
+          ja: '頭割り',
+          ko: '집합',
+          cn: '集合',
+        },
       },
     },
     {
@@ -223,25 +225,44 @@
       preRun: function(data, matches) {
         data.titanGaols = data.titanGaols || [];
         data.titanGaols.push(matches.target);
-        if (data.titanGaols.length == 3)
+        if (data.titanGaols.length === 3)
           data.titanGaols.sort();
       },
-      alertText: function(data) {
-        if (data.titanGaols.length != 3)
+      alertText: function(data, _, output) {
+        if (data.titanGaols.length !== 3)
           return;
         let idx = data.titanGaols.indexOf(data.me);
         if (idx < 0)
           return;
         // Just return your number.
-        return idx + 1;
+        return output.num({ num: idx + 1 });
       },
-      infoText: function(data) {
-        if (data.titanGaols.length != 3)
+      infoText: function(data, _, output) {
+        if (data.titanGaols.length !== 3)
           return;
-        // Return all the people in order.
-        return data.titanGaols.map(function(n) {
-          return data.ShortName(n);
-        }).join(', ');
+        return output.text({
+          player1: data.ShortName(data.titanGaols[0]),
+          player2: data.ShortName(data.titanGaols[1]),
+          player3: data.ShortName(data.titanGaols[2]),
+        });
+      },
+      outputStrings: {
+        num: {
+          en: '${num}',
+          de: '${num}',
+          fr: '${num}',
+          ja: '${num}',
+          cn: '${num}',
+          ko: '${num}',
+        },
+        text: {
+          en: '${player1}, ${player2}, ${player3}',
+          de: '${player1}, ${player2}, ${player3}',
+          fr: '${player1}, ${player2}, ${player3}',
+          ja: '${player1}, ${player2}, ${player3}',
+          cn: '${player1}, ${player2}, ${player3}',
+          ko: '${player1}, ${player2}, ${player3}',
+        },
       },
     },
     {
@@ -253,18 +274,21 @@
       netRegexJa: NetRegexes.ability({ id: '2B6A', source: 'ボムボルダー' }),
       netRegexCn: NetRegexes.ability({ id: '2B6A', source: '爆破岩石' }),
       netRegexKo: NetRegexes.ability({ id: '2B6A', source: '바위폭탄' }),
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         if (!data.titanGaols)
           return;
         if (!data.titanGaols.includes(matches.target))
           return;
-        return {
-          en: data.ShortName(matches.target) + ' died',
-          de: data.ShortName(matches.target) + ' gestorben',
-          ja: data.ShortName(matches.target) + ' 死にました',
-          ko: data.ShortName(matches.target) + ' 죽음',
-          cn: data.ShortName(matches.target) + ' 死亡',
-        };
+        return output.text({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        text: {
+          en: '${player} died',
+          de: '${player} gestorben',
+          ja: '${player} 死にました',
+          ko: '${player} 죽음',
+          cn: '${player} 死亡',
+        },
       },
     },
     {
@@ -289,15 +313,18 @@
       netRegexCn: NetRegexes.ability({ id: '2B6B', source: '泰坦' }),
       netRegexKo: NetRegexes.ability({ id: '2B6B', source: '타이탄' }),
       condition: function(data, matches) {
-        return data.phase == 'suppression' && data.me == matches.target;
+        return data.phase === 'suppression' && data.me === matches.target;
       },
-      alarmText: {
-        en: 'Gaol on YOU',
-        de: 'Granitgefängnis',
-        fr: 'Geôle',
-        ja: 'ジェイル',
-        ko: '감옥 → 나',
-        cn: '石牢点名',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Gaol on YOU',
+          de: 'Granitgefängnis',
+          fr: 'Geôle',
+          ja: 'ジェイル',
+          ko: '감옥 → 나',
+          cn: '石牢点名',
+        },
       },
     },
     {
@@ -309,15 +336,18 @@
       netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2CD3', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2CD3', capture: false }),
       condition: function(data) {
-        return data.phase == 'finale';
+        return data.phase === 'finale';
       },
-      infoText: {
-        en: 'Garuda',
-        de: 'Garuda',
-        fr: 'Garuda',
-        ja: 'ガルーダ',
-        ko: '가루다',
-        cn: '迦楼罗',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Garuda',
+          de: 'Garuda',
+          fr: 'Garuda',
+          ja: 'ガルーダ',
+          ko: '가루다',
+          cn: '迦楼罗',
+        },
       },
     },
     {
@@ -329,15 +359,18 @@
       netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2CD4', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2CD4', capture: false }),
       condition: function(data) {
-        return data.phase == 'finale';
+        return data.phase === 'finale';
       },
-      infoText: {
-        en: 'Ifrit',
-        de: 'Ifrit',
-        fr: 'Ifrit',
-        ja: 'イフリート',
-        ko: '이프리트',
-        cn: '伊弗利特',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Ifrit',
+          de: 'Ifrit',
+          fr: 'Ifrit',
+          ja: 'イフリート',
+          ko: '이프리트',
+          cn: '伊弗利特',
+        },
       },
     },
     {
@@ -349,15 +382,18 @@
       netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2CD5', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2CD5', capture: false }),
       condition: function(data) {
-        return data.phase == 'finale';
+        return data.phase === 'finale';
       },
-      infoText: {
-        en: 'Titan',
-        de: 'Titan',
-        fr: 'Titan',
-        ja: 'タイタン',
-        ko: '타이탄',
-        cn: '泰坦',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Titan',
+          de: 'Titan',
+          fr: 'Titan',
+          ja: 'タイタン',
+          ko: '타이탄',
+          cn: '泰坦',
+        },
       },
     },
   ],

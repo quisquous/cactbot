@@ -12,14 +12,15 @@
       netRegexJa: NetRegexes.ability({ source: 'カーリア', id: 'B73' }),
       netRegexCn: NetRegexes.ability({ source: '卡利亚', id: 'B73' }),
       netRegexKo: NetRegexes.ability({ source: '칼리야', id: 'B73' }),
-      alertText: function(data, matches) {
-        return {
-          en: 'Stun on ' + data.ShortName(matches.target),
-          de: 'Stun auf ' + data.ShortName(matches.target),
-          fr: 'Stun sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にスタン',
-          cn: '击昏' + data.ShortName(matches.target),
-        };
+      alertText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
+      outputStrings: {
+        text: {
+          en: 'Stun on ${player}',
+          de: 'Stun auf ${player}',
+          fr: 'Stun sur ${player}',
+          ja: '${player}にスタン',
+          cn: '击昏${player}',
+        },
       },
     },
     {
@@ -30,11 +31,9 @@
       netRegexJa: NetRegexes.ability({ source: 'カーリア', id: 'B74', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '卡利亚', id: 'B74', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '칼리야', id: 'B74', capture: false }),
-      condition: function(data) {
-        return !data.firstSeed;
-      },
+      condition: (data) => !data.firstSeed,
       response: Responses.spreadThenStack(),
-      run: function(data) {
+      run: (data) => {
         if (!data.firstSeed)
           data.firstSeed = 'river';
       },
@@ -47,11 +46,9 @@
       netRegexJa: NetRegexes.ability({ id: 'B75', source: 'カーリア', capture: false }),
       netRegexCn: NetRegexes.ability({ id: 'B75', source: '卡利亚', capture: false }),
       netRegexKo: NetRegexes.ability({ id: 'B75', source: '칼리야', capture: false }),
-      condition: function(data) {
-        return !data.firstSeed;
-      },
+      condition: (data) => !data.firstSeed,
       response: Responses.stackThenSpread(),
-      run: function(data) {
+      run: (data) => {
         if (!data.firstSeed)
           data.firstSeed = 'sea';
       },
@@ -64,13 +61,9 @@
       netRegexJa: NetRegexes.ability({ id: 'B76', source: 'カーリア', capture: false }),
       netRegexCn: NetRegexes.ability({ id: 'B76', source: '卡利亚', capture: false }),
       netRegexKo: NetRegexes.ability({ id: 'B76', source: '칼리야', capture: false }),
-      condition: function(data) {
-        return !data.firstSeed;
-      },
+      condition: (data) => !data.firstSeed,
       response: Responses.stackMarker(),
-      run: function(data) {
-        delete data.firstSeed;
-      },
+      run: (data) => delete data.firstSeed,
     },
     {
       id: 'T11 Seed Sea Second',
@@ -80,13 +73,9 @@
       netRegexJa: NetRegexes.ability({ id: 'B77', source: 'カーリア', capture: false }),
       netRegexCn: NetRegexes.ability({ id: 'B77', source: '卡利亚', capture: false }),
       netRegexKo: NetRegexes.ability({ id: 'B77', source: '칼리야', capture: false }),
-      condition: function(data) {
-        return !data.firstSeed;
-      },
+      condition: (data) => !data.firstSeed,
       response: Responses.spread(),
-      run: function(data) {
-        delete data.firstSeed;
-      },
+      run: (data) => delete data.firstSeed,
     },
     {
       id: 'T11 Phase 2',
@@ -116,9 +105,7 @@
       netRegexJa: NetRegexes.ability({ id: 'B85', source: '雷撃システム' }),
       netRegexCn: NetRegexes.ability({ id: 'B85', source: '雷击系统' }),
       netRegexKo: NetRegexes.ability({ id: 'B85', source: '뇌격 시스템' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -158,7 +145,7 @@
       netRegexJa: NetRegexes.tether({ id: '001C', target: 'カーリア' }),
       netRegexCn: NetRegexes.tether({ id: '001C', target: '卡利亚' }),
       netRegexKo: NetRegexes.tether({ id: '001C', target: '칼리야' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.tetherA = data.tetherA || [];
         data.tetherA.push(matches.source);
       },
@@ -171,7 +158,7 @@
       netRegexJa: NetRegexes.tether({ id: '001D', target: 'カーリア' }),
       netRegexCn: NetRegexes.tether({ id: '001D', target: '卡利亚' }),
       netRegexKo: NetRegexes.tether({ id: '001D', target: '칼리야' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.tetherB = data.tetherB || [];
         data.tetherB.push(matches.source);
       },
@@ -184,24 +171,25 @@
       netRegexJa: NetRegexes.tether({ id: '001C', target: 'カーリア', capture: false }),
       netRegexCn: NetRegexes.tether({ id: '001C', target: '卡利亚', capture: false }),
       netRegexKo: NetRegexes.tether({ id: '001C', target: '칼리야', capture: false }),
-      condition: function(data) {
-        return data.tetherA.length == 2;
-      },
-      alarmText: function(data) {
+      condition: (data) => data.tetherA.length === 2,
+      alarmText: (data, _, output) => {
         let partner = undefined;
-        if (data.tetherA[0] == data.me)
+        if (data.tetherA[0] === data.me)
           partner = data.tetherA[1];
-        if (data.tetherA[1] == data.me)
+        if (data.tetherA[1] === data.me)
           partner = data.tetherA[0];
         if (!partner)
           return;
-        return {
-          en: 'Red Tethers With ' + data.ShortName(partner),
-          de: 'Rote Verbindung mit ' + data.ShortName(partner),
-          fr: 'Liens rouges avec ' + data.ShortName(partner),
-          ja: data.ShortName(partner) + 'に赤い線',
-          cn: '红线连' + data.ShortName(partner),
-        };
+        return output.text({ player: data.ShortName(partner) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Red Tethers With ${player}',
+          de: 'Rote Verbindung mit ${player}',
+          fr: 'Liens rouges avec ${player}',
+          ja: '${player}に赤い線',
+          cn: '红线连${player}',
+        },
       },
     },
     {
@@ -212,24 +200,25 @@
       netRegexJa: NetRegexes.tether({ id: '001D', target: 'カーリア', capture: false }),
       netRegexCn: NetRegexes.tether({ id: '001D', target: '卡利亚', capture: false }),
       netRegexKo: NetRegexes.tether({ id: '001D', target: '칼리야', capture: false }),
-      condition: function(data) {
-        return data.tetherB.length == 2;
-      },
-      alarmText: function(data) {
+      condition: (data) => data.tetherB.length === 2,
+      alarmText: (data, _, output) => {
         let partner = undefined;
-        if (data.tetherB[0] == data.me)
+        if (data.tetherB[0] === data.me)
           partner = data.tetherB[1];
-        if (data.tetherB[1] == data.me)
+        if (data.tetherB[1] === data.me)
           partner = data.tetherB[0];
         if (!partner)
           return;
-        return {
-          en: 'Blue Tethers With ' + data.ShortName(partner),
-          de: 'Blaue Verbindung mit ' + data.ShortName(partner),
-          fr: 'Liens bleus avec ' + data.ShortName(partner),
-          ja: data.ShortName(partner) + 'に青い線',
-          cn: '蓝线连' + data.ShortName(partner),
-        };
+        return output.text({ player: data.ShortName(partner) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Blue Tethers With ${player}',
+          de: 'Blaue Verbindung mit ${player}',
+          fr: 'Liens bleus avec ${player}',
+          ja: '${player}に青い線',
+          cn: '蓝线连${player}',
+        },
       },
     },
     {
@@ -240,7 +229,7 @@
       netRegexJa: NetRegexes.ability({ id: 'B7B', source: 'カーリア', capture: false }),
       netRegexCn: NetRegexes.ability({ id: 'B7B', source: '卡利亚', capture: false }),
       netRegexKo: NetRegexes.ability({ id: 'B7B', source: '칼리야', capture: false }),
-      run: function(data) {
+      run: (data) => {
         delete data.tetherA;
         delete data.tetherB;
       },
@@ -333,7 +322,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Electric Node': '뇌격 시스템',
         'Kaliya': '칼리야',
@@ -348,6 +336,8 @@
         'Nerve Gas': '신경 가스',
         'Resonance': '공명',
         'Secondary Head': '옆 머리',
+        'Seed Of The Rivers/Sea': '강/바다의 원천',
+        'Seed Of The Sea/Rivers': '바다/강의 원천',
         'Stun': '기절',
       },
     },

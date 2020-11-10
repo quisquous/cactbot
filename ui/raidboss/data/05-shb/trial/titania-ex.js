@@ -14,7 +14,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D4B', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D4B', source: '티타니아', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -56,28 +56,32 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D45', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D45', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D45', source: '티타니아', capture: false }),
-      infoText: function(data) {
-        if (data.seenMistRune) {
-          return {
-            en: 'In/Out, then Water Positions',
-            de: 'Rein/Raus, danach Wasser Positionen',
-            fr: 'Intérieur/Extérieur, puis positions pour l\'eau',
-            ja: '中/外避けてポジションへ',
-            cn: '靠近/远离, 水圈站位',
-            ko: '안/밖 -> 물 장판 위치',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.seenMistRune)
+          return output.inOutThenWaterPositions();
+
+        return output.waterPositions();
+      },
+      run: function(data) {
+        data.seenMistRune = true;
+      },
+      outputStrings: {
+        inOutThenWaterPositions: {
+          en: 'In/Out, then Water Positions',
+          de: 'Rein/Raus, danach Wasser Positionen',
+          fr: 'Intérieur/Extérieur, puis positions pour l\'eau',
+          ja: '中/外避けてポジションへ',
+          cn: '靠近/远离, 水圈站位',
+          ko: '안/밖 -> 물 장판 위치',
+        },
+        waterPositions: {
           en: 'Water Positions',
           de: 'Wasser Positionen',
           fr: 'Positions pour l\'eau',
           ja: 'ポジションへ',
           cn: '水圈站位',
           ko: '물 장판',
-        };
-      },
-      run: function(data) {
-        data.seenMistRune = true;
+        },
       },
     },
     {
@@ -90,28 +94,32 @@
       netRegexKo: NetRegexes.startsUsing({ id: '3D47', source: '티타니아', capture: false }),
       // You have 16.5 seconds until the first stack damage.
       delaySeconds: 8.5,
-      alertText: function(data) {
-        if (data.seenFlameRune) {
-          return {
-            en: 'Stack (maybe rotate?)',
-            de: 'Sammeln (evtl rotieren?)',
-            fr: 'Packez-vous (rotation ?)',
-            ja: '集合 (多分時計回り?)',
-            cn: '左右集合 (可能旋转?)',
-            ko: '쉐어징 모이기',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.seenFlameRune)
+          return output.stackMaybeRotate();
+
+        return output.stackPositions();
+      },
+      run: function(data) {
+        data.seenFlameRune = true;
+      },
+      outputStrings: {
+        stackMaybeRotate: {
+          en: 'Stack (maybe rotate?)',
+          de: 'Sammeln (evtl rotieren?)',
+          fr: 'Packez-vous (rotation ?)',
+          ja: '集合 (多分時計回り?)',
+          cn: '左右集合 (可能旋转?)',
+          ko: '쉐어징 모이기',
+        },
+        stackPositions: {
           en: 'Stack Positions',
           de: 'Sammel-Positionen',
           fr: 'Packez-vous, positions',
           ja: '頭割り集合',
           cn: '左右集合',
           ko: '쉐어징 모이기',
-        };
-      },
-      run: function(data) {
-        data.seenFlameRune = true;
+        },
       },
     },
     {
@@ -132,13 +140,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '42D7', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '42D7', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '42D7', source: '티타니아', capture: false }),
-      infoText: {
-        en: 'Wait For Tethers In Center',
-        de: 'Auf die Verbindung in der Mitte warten',
-        fr: 'Attendez les liens au centre',
-        ja: '中央で待機',
-        cn: '中间集合等待荆棘',
-        ko: '가시 연결되기 전에 중앙으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Wait For Tethers In Center',
+          de: 'Auf die Verbindung in der Mitte warten',
+          fr: 'Attendez les liens au centre',
+          ja: '中央で待機',
+          cn: '中间集合等待荆棘',
+          ko: '가시 연결되기 전에 중앙으로',
+        },
       },
     },
     {
@@ -160,13 +171,16 @@
       netRegexJa: NetRegexes.ability({ id: '3D42', source: 'パック', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '3D42', source: '帕克', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3D42', source: '요정의 권속', capture: false }),
-      alertText: {
-        en: 'Diagonal Knockback Soon',
-        de: 'diagonaler Knockback bald',
-        fr: 'Poussée en diagonale bientôt',
-        ja: '対角に飛ぶ',
-        cn: '对角击退准备',
-        ko: '곧 대각선 넉백',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Diagonal Knockback Soon',
+          de: 'diagonaler Knockback bald',
+          fr: 'Poussée en diagonale bientôt',
+          ja: '対角に飛ぶ',
+          cn: '对角击退准备',
+          ko: '곧 대각선 넉백',
+        },
       },
     },
     {
@@ -178,7 +192,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D2C', source: '缇坦妮雅' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2C', source: '티타니아' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
+        return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -191,7 +205,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D2C', source: '缇坦妮雅' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2C', source: '티타니아' }),
       condition: function(data) {
-        return data.role != 'tank' && data.role != 'healer';
+        return data.role !== 'tank' && data.role !== 'healer';
       },
       response: Responses.tankCleave('info'),
     },
@@ -203,13 +217,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D2A', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D2A', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2A', source: '티타니아', capture: false }),
-      infoText: {
-        en: 'Get Middle, Shiva Circles',
-        de: 'In die Mitte, Shiva Kreise',
-        fr: 'Allez au milieu, cercles de Shiva',
-        ja: 'シヴァの輪っか',
-        cn: '中间集合, 九连环',
-        ko: '시바 얼음 장판',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Middle, Shiva Circles',
+          de: 'In die Mitte, Shiva Kreise',
+          fr: 'Allez au milieu, cercles de Shiva',
+          ja: 'シヴァの輪っか',
+          cn: '中间集合, 九连环',
+          ko: '시바 얼음 장판',
+        },
       },
     },
     {
@@ -242,21 +259,22 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D2E', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D2E', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2E', source: '티타니아', capture: false }),
-      infoText: {
-        en: 'Roots',
-        de: 'Ranken',
-        fr: 'Racines',
-        ja: '根のルーン',
-        cn: '根系生长',
-        ko: '뿌리 나옴',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Roots',
+          de: 'Ranken',
+          fr: 'Racines',
+          ja: '根のルーン',
+          cn: '根系生长',
+          ko: '뿌리 나옴',
+        },
       },
     },
     {
       id: 'TitaniaEx Uplift Markers',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -267,9 +285,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D36', source: 'ピーズブロッサム' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D36', source: '豌豆花' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D36', source: '콩나무' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.tankBuster('info'),
     },
     {
@@ -281,29 +297,30 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D37', source: '帕克', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D37', source: '요정의 권속', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       preRun: function(data) {
         data.pummelCount = data.pummelCount || 0;
         data.pummelCount++;
       },
-      infoText: function(data) {
-        return {
-          en: 'Pummel ' + data.pummelCount,
-          de: 'Deftige Dachtel ' + data.pummelCount,
-          fr: 'Torgnole ' + data.pummelCount,
-          ja: '殴打 ' + data.pummelCount,
-          cn: '殴打 ' + data.pummelCount,
-          ko: '구타 ' + data.pummelCount,
-        };
+      infoText: function(data, _, output) {
+        return output.text({ num: data.pummelCount });
+      },
+      outputStrings: {
+        text: {
+          en: 'Pummel ${num}',
+          de: 'Deftige Dachtel ${num}',
+          fr: 'Torgnole ${num}',
+          ja: '殴打 ${num}',
+          cn: '殴打 ${num}',
+          ko: '구타 ${num}',
+        },
       },
     },
     {
       id: 'TitaniaEx Peasebomb',
       netRegex: NetRegexes.headMarker({ id: '008D' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
       run: function(data) {
         data.bomb = data.bomb || {};
@@ -326,28 +343,32 @@
       id: 'TitaniaEx Adds Stack',
       netRegex: NetRegexes.headMarker({ id: '00A1' }),
       delaySeconds: 0.25,
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR sammeln',
-            fr: 'Package sur VOUS',
-            ja: '自分に集合',
-            cn: '集合点名',
-            ko: '쉐어징 대상자',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return output.stackOnYou();
+
 
         if (data.bomb && data.bomb[data.me])
           return;
 
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Package sur ' + data.ShortName(matches.target),
-          cn: '靠近 ' + data.ShortName(matches.target) + '集合',
-          ko: '"' + data.ShortName(matches.target) + '"에게 모이기',
-        };
+        return output.stackOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        stackOnYou: {
+          en: 'Stack on YOU',
+          de: 'Auf DIR sammeln',
+          fr: 'Package sur VOUS',
+          ja: '自分に集合',
+          cn: '集合点名',
+          ko: '쉐어징 대상자',
+        },
+        stackOn: {
+          en: 'Stack on ${player}',
+          de: 'Auf ${player} sammeln',
+          fr: 'Package sur ${player}',
+          cn: '靠近 ${player}集合',
+          ko: '"${player}"에게 모이기',
+        },
       },
     },
     {
@@ -359,13 +380,16 @@
       netRegexCn: NetRegexes.tether({ id: '0054', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.tether({ id: '0054', source: '티타니아', capture: false }),
       suppressSeconds: 60,
-      alertText: {
-        en: 'Initial Thunder Tether',
-        de: 'initiale Blitz Verbindung',
-        fr: 'Lien de foudre initial',
-        ja: '線一人目',
-        cn: '初始雷连线',
-        ko: '첫 번개 징 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Initial Thunder Tether',
+          de: 'initiale Blitz Verbindung',
+          fr: 'Lien de foudre initial',
+          ja: '線一人目',
+          cn: '初始雷连线',
+          ko: '첫 번개 징 대상자',
+        },
       },
     },
     {
@@ -380,18 +404,21 @@
         data.thunderCount = data.thunderCount || 1;
       },
       suppressSeconds: 1,
-      infoText: function(data) {
-        return {
-          en: 'Thunder ' + data.thunderCount,
-          de: 'Blitz ' + data.thunderCount,
-          fr: 'Foudre ' + data.thunderCount,
-          ja: '線' + data.thunderCount + '人目',
-          cn: '雷连线 #' + data.thunderCount,
-          ko: data.thunderCount + '번째 번개',
-        };
+      infoText: function(data, _, output) {
+        return output.text({ num: data.thunderCount });
       },
       run: function(data) {
         data.thunderCount++;
+      },
+      outputStrings: {
+        text: {
+          en: 'Thunder ${num}',
+          de: 'Blitz ${num}',
+          fr: 'Foudre ${num}',
+          ja: '線${num}人目',
+          cn: '雷连线 #${num}',
+          ko: '${num}번째 번개',
+        },
       },
     },
     {

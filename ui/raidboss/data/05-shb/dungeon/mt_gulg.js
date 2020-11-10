@@ -25,13 +25,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '41AB', source: 'フォーギヴン・アンビション', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '41AB', source: '得到宽恕的奢望', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '41AB', source: '면죄된 야망', capture: false }),
-      infoText: {
-        en: 'Ambition Tail Smash',
-        de: 'Begierde Schweifschlag',
-        fr: 'Ambition, Queue fracassante',
-        ja: 'テールスマッシュ',
-        cn: '尾巴横扫',
-        ko: '꼬리 휘두르기 주의',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Ambition Tail Smash',
+          de: 'Begierde Schweifschlag',
+          fr: 'Ambition, Queue fracassante',
+          ja: 'テールスマッシュ',
+          cn: '尾巴横扫',
+          ko: '꼬리 휘두르기 주의',
+        },
       },
     },
     {
@@ -43,7 +46,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3CFB', source: '得到宽恕的残忍' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CFB', source: '면죄된 잔혹' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -55,13 +58,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '41B2', source: 'フォーギヴン・クルエルティー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '41B2', source: '得到宽恕的残忍', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '41B2', source: '면죄된 잔혹', capture: false }),
-      alertText: {
-        en: 'Frontal Laser',
-        de: 'Frontaler Laser',
-        fr: 'Laser frontal',
-        ja: 'ボス前方レザー',
-        cn: '面前激光',
-        ko: '정면 레이저 공격',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Frontal Laser',
+          de: 'Frontaler Laser',
+          fr: 'Laser frontal',
+          ja: 'ボス前方レザー',
+          cn: '面前激光',
+          ko: '정면 레이저 공격',
+        },
       },
     },
     {
@@ -73,7 +79,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3CFC', source: '得到宽恕的残忍', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CFC', source: '면죄된 잔혹', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -86,13 +92,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D00', source: '得到宽恕的残忍', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D00', source: '면죄된 잔혹', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'dodge wind cones',
-        de: 'Wind-Fächerflächen ausweichen',
-        fr: 'Esquivez les cônes de vent',
-        ja: '風の楔から離れ',
-        cn: '躲风锥',
-        ko: '부채꼴 공격 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'dodge wind cones',
+          de: 'Wind-Fächerflächen ausweichen',
+          fr: 'Esquivez les cônes de vent',
+          ja: '風の楔から離れ',
+          cn: '躲风锥',
+          ko: '부채꼴 공격 피하기',
+        },
       },
     },
     {
@@ -115,7 +124,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D0B', source: '得到宽恕的无常', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D0B', source: '면죄된 변덕', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -129,7 +138,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D09', source: '得到宽恕的无常' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D09', source: '면죄된 변덕' }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -141,13 +150,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D0F', source: 'フォーギヴン・ウィムズィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D0F', source: '得到宽恕的无常', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D0F', source: '면죄된 변덕', capture: false }),
-      infoText: {
-        en: 'Get Towers',
-        de: 'Türme nehmen',
-        fr: 'Prenez les tours',
-        ja: '塔を踏む',
-        ko: '장판 들어가기',
-        cn: '踩塔',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Towers',
+          de: 'Türme nehmen',
+          fr: 'Prenez les tours',
+          ja: '塔を踏む',
+          ko: '장판 들어가기',
+          cn: '踩塔',
+        },
       },
     },
     {
@@ -179,7 +191,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D14', source: '得到宽恕的猥亵', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D14', source: '면죄된 외설', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -193,7 +205,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D12', source: '得到宽恕的猥亵' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D12', source: '면죄된 외설' }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -205,13 +217,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D18', source: 'フォーギヴン・オブセニティー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D18', source: '得到宽恕的猥亵', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D18', source: '면죄된 외설', capture: false }),
-      infoText: {
-        en: 'max melee range',
-        de: 'Maximale Nahkämpfer Entfernung',
-        fr: 'À distance max du CaC',
-        ja: '近接最大距離',
-        cn: '最远近战距离',
-        ko: '칼끝딜',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'max melee range',
+          de: 'Maximale Nahkämpfer Entfernung',
+          fr: 'À distance max du CaC',
+          ja: '近接最大距離',
+          cn: '最远近战距离',
+          ko: '칼끝딜',
+        },
       },
     },
     {
