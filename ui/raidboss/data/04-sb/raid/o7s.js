@@ -282,7 +282,7 @@
         virus: {
           en: 'VIRUS',
           de: 'VIRUS',
-          cn: '毒',
+          cn: '病毒',
         },
       },
     },
