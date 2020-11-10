@@ -14,6 +14,7 @@
         text: {
           en: 'Away from club/shield',
           de: 'Weg von der Keule/dem Schild',
+          cn: '远离棍棍和盾盾',
         },
       },
     },
@@ -55,10 +56,12 @@
         targetText: {
           en: 'Boss chasing--GET AWAY',
           de: 'Boss-Verfolgung--RENN WEG',
+          cn: 'BOSS追逐点名———快跑鸭',
         },
         otherText: {
           en: 'Avoid boss',
           de: 'Weiche dem Boss aus',
+          cn: '远离BOSS',
         },
       },
     },
@@ -95,6 +98,7 @@
         text: {
           en: 'Avoid water orb',
           de: 'Weiche dem Wasser-Orb aus',
+          cn: '躲避水球移动路径',
         },
       },
     },
