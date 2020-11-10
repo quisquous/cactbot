@@ -12,9 +12,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '40F7', source: 'タイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '40F7', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '40F7', source: '타이탄', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

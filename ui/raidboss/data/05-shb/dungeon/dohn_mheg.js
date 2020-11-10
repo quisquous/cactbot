@@ -92,9 +92,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1E8E', source: '美眼のインク＝ゾン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1E8E', source: '美眼 因克·佐恩', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1E8E', source: '눈이 예쁜 잉크 돈', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -110,9 +108,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '22D3', source: 'グリオール', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '22D3', source: '格里奥勒', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '22D3', source: '그리올', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -156,9 +152,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '358C', source: '楽聖のインク＝ゾン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '358C', source: '乐圣 因克·佐恩', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '358C', source: '대음악가 잉크 돈', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
   ],

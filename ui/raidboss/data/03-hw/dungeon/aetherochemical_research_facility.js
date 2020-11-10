@@ -79,9 +79,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1109', source: 'アシエン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1109', source: '至尊无影', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1109', source: '아씨엔 프라임', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -92,9 +90,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '110A', source: 'アシエン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '110A', source: '至尊无影', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '110A', source: '아씨엔 프라임', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
