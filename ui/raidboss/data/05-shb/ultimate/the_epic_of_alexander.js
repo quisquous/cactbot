@@ -256,7 +256,7 @@ const namedNisiPass = (data, output) => {
   if (names.length === 0)
     return output.getNisi({ type: nisiToString(myNisi, output) });
 
-  return output.getNisi({
+  return output.getNisiFrom({
     type: nisiToString(myNisi, output),
     player: data.ShortName(names[0]),
   });
