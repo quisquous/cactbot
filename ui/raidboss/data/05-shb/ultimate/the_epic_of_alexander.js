@@ -2658,10 +2658,18 @@ const namedNisiPass = (data, output) => {
         if (data.betaBait.length === 0)
           return output.opticalStack();
 
-        let names = data.betaBait.map((x) => data.ShortName(x)).sort();
+        let names = data.betaBait.map((x) => x ? data.ShortName(x) : output.unknown()).sort();
         return output.opticalStackPlayers({ players: names.join(', ') });
       },
       outputStrings: {
+        unknown: {
+          en: '???',
+          de: '???',
+          fr: '???',
+          ja: '???',
+          cn: '???',
+          ko: '???',
+        },
         opticalStack: {
           en: 'Optical Stack',
           de: 'Visier sammeln',
