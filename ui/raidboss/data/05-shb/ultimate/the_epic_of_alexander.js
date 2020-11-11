@@ -2250,6 +2250,8 @@ const namedNisiPass = (data, output) => {
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '489A', capture: false }),
       netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '489A', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '489A', capture: false }),
+      durationSeconds: 15,
+      suppressSeconds: 20,
       infoText: function(data, _, output) {
         data.secondAlphaOrdainedText = 'stillnessSecond';
         return output.combined({
