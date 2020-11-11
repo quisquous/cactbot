@@ -37,7 +37,7 @@ const InitDpsModule = function(updateFunc, hideFunc) {
 
   addOverlayListener('ChangeZone', function(e) {
     let newZone = e.zoneName;
-    if (gCurrentZone == newZone)
+    if (gCurrentZone === newZone)
       return;
     // Always hide on switching zones.
     hideFunc();
@@ -54,7 +54,7 @@ const InitDpsModule = function(updateFunc, hideFunc) {
 
   addOverlayListener('onPlayerChangedEvent', function(e) {
     let job = e.detail.job;
-    if (job == gCurrentJob)
+    if (job === gCurrentJob)
       return;
     gCurrentJob = job;
     if (Util.isCombatJob(job)) {

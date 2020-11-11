@@ -100,9 +100,7 @@
     {
       id: 'Dun Scaith Aero 2',
       netRegex: NetRegexes.headMarker({ id: '0046' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -157,11 +155,9 @@
     {
       id: 'Dun Scaith Scythe Drop',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 5,
-      infoText: function(data, matches, output) {
-        if (data.me == matches.target)
-          return output.text();
-      },
+      infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Drop scythe outside',
@@ -195,7 +191,7 @@
       run: function(data, matches) {
         data.cursing = data.cursing || [];
         data.wailing = data.wailing || [];
-        matches.npcNameId == '5510' ? data.wailing.push(matches.id) : data.cursing.push(matches.id);
+        matches.npcNameId === '5510' ? data.wailing.push(matches.id) : data.cursing.push(matches.id);
       },
     },
     {
@@ -361,18 +357,14 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: 'プロトアルテマ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: '究极神兵原型', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: '프로토 알테마', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
       id: 'Dun Scaith Prey Markers',
       netRegex: NetRegexes.gainsEffect({ effectId: '232' }),
-      alertText: function(data, matches, output) {
-        if (data.me == matches.target)
-          return output.text();
-      },
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Prey--Avoid party and keep moving',
@@ -480,9 +472,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1D32', source: 'スカアハ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1D32', source: '斯卡哈', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1D32', source: '스카하크', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -538,11 +528,9 @@
       // This trigger is common to both Scathach and Diabolos, since handling is 100% identical.
       id: 'Dun Scaith Nox Orbs',
       netRegex: NetRegexes.headMarker({ id: '005C' }),
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 5,
-      alertText: function(data, matches, output) {
-        if (matches.target == data.me)
-          return output.text();
-      },
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Take orb outside',
@@ -590,7 +578,7 @@
       id: 'Dun Scaith Noctoshield',
       netRegex: NetRegexes.gainsEffect({ target: 'Diabolos', effectId: '1AA', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       suppressSeconds: 5,
       alertText: (data, _, output) => output.text(),
@@ -614,7 +602,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['1C10', '1C11'], source: '迪亚波罗斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1C10', '1C11'], source: '디아볼로스', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       suppressSeconds: 5,
       response: Responses.aoe(),
@@ -649,7 +637,7 @@
       id: 'Dun Scaith Hollow Night',
       netRegex: NetRegexes.headMarker({ id: '005B' }),
       alertText: function(data, matches, output) {
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           return output.gazeStackOnYou();
 
         return output.stackOnAndLookAway({ player: data.ShortName(matches.target) });
@@ -682,7 +670,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['1C22', '1C23'], source: '虚空迪亚波罗斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1C22', '1C23'], source: '공허의 디아볼로스', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       suppressSeconds: 5,
       response: Responses.bigAoe(),
@@ -696,9 +684,7 @@
     {
       id: 'Dun Scaith Earth Shaker',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.earthshaker(),
     },
   ],

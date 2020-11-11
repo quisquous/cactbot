@@ -43,9 +43,7 @@
       id: 'ShivaHm Ice Boulder',
       netRegex: NetRegexes.ability({ id: '9A3' }),
       condition: Conditions.targetIsNotYou(),
-      infoText: function(data, matches, output) {
-        return output.text({ player: data.ShortName(matches.target) });
-      },
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
           en: 'Free ${player}',

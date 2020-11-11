@@ -299,7 +299,7 @@ class RaidbossConfigurator {
     for (const [key, info] of Object.entries(fileMap)) {
       const expansion = info.prefix;
 
-      if (Object.keys(info.triggers).length == 0)
+      if (Object.keys(info.triggers).length === 0)
         continue;
 
       if (!expansionDivs[expansion]) {
@@ -402,8 +402,16 @@ class RaidbossConfigurator {
           triggerDetails.appendChild(detail);
         }
 
+        let hasOutputFunc = false;
+        for (const func of triggerOutputFunctions) {
+          if (trig[func]) {
+            hasOutputFunc = true;
+            break;
+          }
+        }
+
         // Add duration manually with an input to override.
-        {
+        if (hasOutputFunc) {
           const detailKey = 'duration';
           const optionKey = kOptionKeys.duration;
 

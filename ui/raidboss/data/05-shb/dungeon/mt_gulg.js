@@ -46,7 +46,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3CFB', source: '得到宽恕的残忍' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CFB', source: '면죄된 잔혹' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -78,9 +78,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3CFC', source: 'フォーギヴン・クルエルティー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3CFC', source: '得到宽恕的残忍', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CFC', source: '면죄된 잔혹', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -123,9 +121,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D0B', source: 'フォーギヴン・ウィムズィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D0B', source: '得到宽恕的无常', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D0B', source: '면죄된 변덕', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -138,7 +134,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D09', source: '得到宽恕的无常' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D09', source: '면죄된 변덕' }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -190,9 +186,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D14', source: 'フォーギヴン・オブセニティー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D14', source: '得到宽恕的猥亵', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D14', source: '면죄된 외설', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -205,7 +199,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D12', source: '得到宽恕的猥亵' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D12', source: '면죄된 외설' }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },

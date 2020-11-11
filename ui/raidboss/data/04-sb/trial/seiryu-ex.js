@@ -43,7 +43,7 @@
       regex: /Kanabo/,
       beforeSeconds: 7,
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -80,10 +80,10 @@
       netRegexCn: NetRegexes.startsUsing({ id: '37D2', source: '青龙' }),
       netRegexKo: NetRegexes.startsUsing({ id: '37D2', source: '청룡' }),
       alertText: function(data, matches, output) {
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           return output.tankSwap();
 
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.swapThenBuster();
       },
       outputStrings: {
@@ -116,7 +116,7 @@
       condition: function(data) {
         // TODO: it'd be nice to figure out who the tanks are so this
         // could also apply to the person Cursekeeper was on.
-        return data.role != 'tank';
+        return data.role !== 'tank';
       },
       delaySeconds: 3,
       alertText: (data, _, output) => output.text(),
@@ -178,10 +178,10 @@
       id: 'SeiryuEx Ascending Marker You',
       netRegex: NetRegexes.headMarker({ id: '00A9' }),
       condition: function(data, matches) {
-        return data.blazing && matches.target == data.me;
+        return data.blazing && matches.target === data.me;
       },
       infoText: function(data, _, output) {
-        if (data.role == 'tank' || data.role == 'healer')
+        if (data.role === 'tank' || data.role === 'healer')
           return output.spreadDpsGetTowers();
 
         return output.spreadTanksHealersGetTowers();
@@ -209,12 +209,12 @@
       id: 'SeiryuEx Ascending Tower You',
       netRegex: NetRegexes.headMarker({ id: '00A9', capture: false }),
       condition: function(data) {
-        if (!data.blazing || data.markers.length != 4)
+        if (!data.blazing || data.markers.length !== 4)
           return false;
         return !data.markers.includes(data.me);
       },
       alarmText: function(data, _, output) {
-        if (data.role == 'tank' || data.role == 'healer')
+        if (data.role === 'tank' || data.role === 'healer')
           return output.getTowerTankHealerTowers();
 
         return output.getTowerDpsTowers();
@@ -316,7 +316,7 @@
       netRegexCn: NetRegexes.addedCombatant({ name: '苍之式鬼', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '푸른 사역귀', capture: false }),
       infoText: function(data, _, output) {
-        if (data.role == 'tank' || data.role == 'healer')
+        if (data.role === 'tank' || data.role === 'healer')
           return output.stackSouth();
 
         return output.stackIfNoTether();

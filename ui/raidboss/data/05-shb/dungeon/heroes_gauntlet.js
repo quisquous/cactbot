@@ -132,7 +132,7 @@
         if (data.anguish.length > 1)
           return output.stackOnYourRock();
 
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           return output.stackOnYou();
 
         return output.stackOn({ player: data.ShortName(matches.target) });

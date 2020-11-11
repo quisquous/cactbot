@@ -12,9 +12,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C8A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C8A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C8A', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -26,7 +24,7 @@
       netRegexCn: NetRegexes.tether({ source: '暗黑心象', id: '0025' }),
       netRegexKo: NetRegexes.tether({ source: '어둠의 우상', id: '0025' }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -51,14 +49,14 @@
       netRegexCn: NetRegexes.tether({ source: '暗黑心象', id: '0011' }),
       netRegexKo: NetRegexes.tether({ source: '어둠의 우상', id: '0011' }),
       condition: function(data) {
-        return data.phase == 'betwixtWorlds';
+        return data.phase === 'betwixtWorlds';
       },
       preRun: function(data, matches) {
         data.betwixtWorldsTethers = data.betwixtWorldsTethers || [];
         data.betwixtWorldsTethers.push(matches.target);
       },
       infoText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.text();
       },
       outputStrings: {
@@ -75,7 +73,7 @@
       id: 'E7S Betwixt Worlds Stack',
       netRegex: NetRegexes.headMarker({ id: '0064' }),
       condition: function(data) {
-        return data.phase == 'betwixtWorlds';
+        return data.phase === 'betwixtWorlds';
       },
       preRun: function(data, matches) {
         data.betwixtWorldsStack = data.betwixtWorldsStack || [];
@@ -85,10 +83,10 @@
         data.betwixtWorldsTethers = data.betwixtWorldsTethers || [];
         if (data.betwixtWorldsTethers.includes(data.me))
           return;
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.stackOnYou();
 
-        if (data.betwixtWorldsStack.length == 1)
+        if (data.betwixtWorldsStack.length === 1)
           return;
         let names = data.betwixtWorldsStack.map((x) => data.ShortName(x)).sort();
         return output.stackOn({ players: names.join(', ') });
@@ -187,14 +185,14 @@
       id: 'E7S Silver Shot',
       netRegex: NetRegexes.headMarker({ id: '0065' }),
       condition: function(data) {
-        return data.phase == 'falseMidnight';
+        return data.phase === 'falseMidnight';
       },
       preRun: function(data, matches) {
         data.falseMidnightSpread = data.falseMidnightSpread || [];
         data.falseMidnightSpread.push(matches.target);
       },
       infoText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.text();
       },
       outputStrings: {
@@ -212,7 +210,7 @@
       id: 'E7S Silver Sledge',
       netRegex: NetRegexes.headMarker({ id: '0064' }),
       condition: function(data) {
-        return data.phase == 'falseMidnight';
+        return data.phase === 'falseMidnight';
       },
       // The stack marker is in the middle of spreads,
       // so delay a tiny bit to call out stack so that
@@ -222,7 +220,7 @@
         data.falseMidnightSpread = data.falseMidnightSpread || [];
         if (data.falseMidnightSpread.includes(data.me))
           return;
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.stackOnYou();
 
         return output.stackOn({ player: data.ShortName(matches.target) });
@@ -275,17 +273,17 @@
       id: 'E7S Insatiable Light Stack',
       netRegex: NetRegexes.headMarker({ id: '0064' }),
       condition: function(data) {
-        return data.phase == 'adds';
+        return data.phase === 'adds';
       },
       preRun: function(data, matches) {
         data.insatiableLightStack = data.insatiableLightStack || [];
         data.insatiableLightStack.push(matches.target);
       },
       alertText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.stackOnYou();
 
-        if (data.insatiableLightStack.length == 1)
+        if (data.insatiableLightStack.length === 1)
           return;
         let names = data.insatiableLightStack.map((x) => data.ShortName(x)).sort();
         return output.stackPlayers({ players: names.join(', ') });
@@ -349,7 +347,7 @@
       netRegexCn: NetRegexes.ability({ source: '亵渎', id: '4C74', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '신성 모독', id: '4C74', capture: false }),
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
+        return data.role === 'healer' || data.role === 'tank' || data.CanAddle();
       },
       durationSeconds: 7,
       suppressSeconds: 15,
@@ -364,7 +362,7 @@
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '(?:4C8[BC]|4E5[56])', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '(?:4C8[BC]|4E5[56])', capture: false }),
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
+        return data.role === 'healer' || data.role === 'tank' || data.CanAddle();
       },
       suppressSeconds: 1,
       response: Responses.aoe(),
@@ -421,7 +419,7 @@
       netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '4C5[CD]' }),
       run: function(data, matches) {
         data.boundless = data.boundless || {};
-        let oppositeColor = matches.id == '4C5C' ? 'dark' : 'light';
+        let oppositeColor = matches.id === '4C5C' ? 'dark' : 'light';
         data.boundless[oppositeColor] = matches.target;
       },
     },
@@ -434,15 +432,15 @@
       netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '4C5[CD]' }),
       netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '4C5[CD]' }),
       condition: function(data, matches) {
-        if (Object.keys(data.boundless).length != 2)
+        if (Object.keys(data.boundless).length !== 2)
           return false;
-        let oppositeColor = matches.id == '4C5C' ? 'dark' : 'light';
-        return data.color == oppositeColor;
+        let oppositeColor = matches.id === '4C5C' ? 'dark' : 'light';
+        return data.color === oppositeColor;
       },
       response: function(data, matches) {
         // If somebody is taking both, definitely don't stack with them!
-        if (data.boundless.light == data.boundless.dark) {
-          if (matches.target == data.me)
+        if (data.boundless.light === data.boundless.dark) {
+          if (matches.target === data.me)
             return;
           return {
             infoText: {
@@ -547,10 +545,10 @@
       // Color buffs go out immediately after the cast
       delaySeconds: 0.1,
       infoText: function(data, _, output) {
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.goSouth();
 
-        if (data.color == 'light')
+        if (data.color === 'light')
           return output.goNorthwest();
 
         return output.goNortheast();

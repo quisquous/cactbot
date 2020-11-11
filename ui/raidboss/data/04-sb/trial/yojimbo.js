@@ -7,9 +7,7 @@
     {
       id: 'Yojimbo Giga Jump',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -25,17 +23,13 @@
     {
       id: 'Yojimbo Dorito',
       netRegex: NetRegexes.headMarker({ id: '0037' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.doritoStack(),
     },
     {
       id: 'Yojimbo Gekko',
       netRegex: NetRegexes.headMarker({ id: '0090' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -51,9 +45,7 @@
     {
       id: 'Yojimbo Enchain',
       netRegex: NetRegexes.headMarker({ id: '0005' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.getOut(),
     },
   ],

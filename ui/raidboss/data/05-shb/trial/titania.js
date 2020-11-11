@@ -13,9 +13,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D5C', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D5C', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D5C', source: '티타니아', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -164,17 +162,13 @@
     {
       id: 'Titania Uplift Markers',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Titania Peasebomb Markers',
       netRegex: NetRegexes.headMarker({ id: '00BD' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -211,7 +205,7 @@
       netRegexCn: NetRegexes.ability({ id: '3D31', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3D31', source: '티타니아', capture: false }),
       infoText: function(data, _, output) {
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.groupAddsEastOnMustardseed();
 
         return output.killMustardseedEast();

@@ -229,7 +229,7 @@ function UnscrambleDamage(field) {
   // Get the left two bytes as damage.
   let damage = parseInt(field.substr(0, len - 4), 16);
   // Check for third byte == 0x40.
-  if (field[len - 4] == '4') {
+  if (field[len - 4] === '4') {
     // Wrap in the 4th byte as extra damage.  See notes above.
     const rightDamage = parseInt(field.substr(len - 2, 2), 16);
     damage = damage - rightDamage + (rightDamage << 16);
@@ -634,7 +634,7 @@ class MistakeCollector {
     //     allows for one long dungeon ACT encounter to have multiple early
     //     or late pulls.
     let inGameCombat = e.detail.inGameCombat;
-    if (this.inGameCombat != inGameCombat) {
+    if (this.inGameCombat !== inGameCombat) {
       this.inGameCombat = inGameCombat;
       if (inGameCombat)
         this.StartCombat();
@@ -645,7 +645,7 @@ class MistakeCollector {
     }
 
     let inACTCombat = e.detail.inACTCombat;
-    if (this.inACTCombat != inACTCombat) {
+    if (this.inACTCombat !== inACTCombat) {
       this.inACTCombat = inACTCombat;
       if (inACTCombat) {
         // TODO: This message should probably include the timestamp
@@ -726,7 +726,7 @@ class DamageTracker {
     const line = e.rawLine;
     for (let trigger of this.netTriggers) {
       let matches = line.match(trigger.netRegex);
-      if (matches != null)
+      if (matches)
         this.OnTrigger(trigger, { line: line }, matches);
     }
 
@@ -753,7 +753,7 @@ class DamageTracker {
     for (const line of e.detail.logs) {
       for (const trigger of this.generalTriggers) {
         let matches = line.match(trigger.regex);
-        if (matches != null)
+        if (matches)
           this.OnTrigger(trigger, { line: line }, matches);
       }
     }
@@ -813,7 +813,7 @@ class DamageTracker {
       lowByte = '0' + lowByte;
 
     // Healing?
-    if (lowByte == '04') {
+    if (lowByte === '04') {
       for (const trigger of this.healTriggers) {
         if (!trigger.idRegex.test(abilityId))
           continue;
@@ -858,7 +858,7 @@ class DamageTracker {
         if (matches)
           isGainLine = false;
       }
-      if (matches === null)
+      if (!matches)
         continue;
 
       let g = matches.groups;
@@ -917,7 +917,7 @@ class DamageTracker {
   OnTrigger(trigger, evt, matches) {
     // If using named groups, treat matches.groups as matches
     // so triggers can do things like matches.target.
-    if ((matches != undefined) && (matches.groups != undefined))
+    if (matches && matches.groups)
       matches = matches.groups;
 
     if (trigger.id && !IsTriggerEnabled(this.options, trigger.id))
@@ -929,7 +929,7 @@ class DamageTracker {
     }
 
     let ValueOrFunction = (f, events, matches) => {
-      return (typeof f == 'function') ? f(events, this.data, matches) : f;
+      return (typeof f === 'function') ? f(events, this.data, matches) : f;
     };
 
     let collectSeconds = 'collectSeconds' in trigger ? ValueOrFunction(trigger.collectSeconds, matches) : 0;
@@ -1060,7 +1060,7 @@ class DamageTracker {
     if (!dict)
       return;
     let keys = Object.keys(dict);
-    let condFunc = (e) => e.type != 15;
+    let condFunc = (e) => e.type !== '15';
     for (let key of keys) {
       let id = dict[key];
       let trigger = {
@@ -1098,7 +1098,7 @@ class DamageTracker {
 
     for (const set of this.triggerSets) {
       if ('zoneId' in set) {
-        if (set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId && !(typeof set.zoneId == 'object' && set.zoneId.includes(this.zoneId)))
+        if (set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId && !(typeof set.zoneId === 'object' && set.zoneId.includes(this.zoneId)))
           continue;
       } else if ('zoneRegex' in set) {
         const zoneError = (s) => {
@@ -1183,7 +1183,7 @@ class DamageTracker {
   }
 
   OnPlayerChange(e) {
-    if (this.job == e.detail.job && this.me == e.detail.name)
+    if (this.job === e.detail.job && this.me === e.detail.name)
       return;
 
     this.me = e.detail.name;
@@ -1217,7 +1217,7 @@ class DamageTracker {
         console.error('Error parsing JSON from ' + filename + ': ' + exception);
         continue;
       }
-      if (typeof json != 'object' || !(json.length >= 0)) {
+      if (typeof json !== 'object' || !(json.length >= 0)) {
         console.error('Unexpected JSON from ' + filename + ', expected an array');
         continue;
       }
@@ -1231,7 +1231,7 @@ class DamageTracker {
 
         triggerSet.filename = filename;
         if ('triggers' in json) {
-          if (typeof triggerSet.triggers != 'object' || !(triggerSet.triggers.length >= 0)) {
+          if (typeof triggerSet.triggers !== 'object' || !(triggerSet.triggers.length >= 0)) {
             console.error('Unexpected JSON from ' + filename + ', expected triggers to be an array');
             continue;
           }

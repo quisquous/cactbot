@@ -90,9 +90,7 @@
       // Red knockback marker indicator
       id: 'SusEx Knockback',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: function(data, matches) {
-        return (matches.target == data.me);
-      },
+      condition: Conditions.targetIsYou(),
       alertText: function(data, _, output) {
         if (data.cloud)
           return output.knockbackWithCloud();
@@ -163,9 +161,7 @@
     {
       id: 'SusEx Levinbolt',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
-      condition: function(data, matches) {
-        return (matches.target == data.me);
-      },
+      condition: Conditions.targetIsYou(),
       alertText: function(data, _, output) {
         if (data.cloud)
           return output.levinboltWithCloud();
@@ -218,7 +214,7 @@
       netRegex: NetRegexes.headMarker({ id: '006E' }),
       condition: function(data, matches) {
         data.levinbolt = matches.target;
-        return (matches.target != data.me);
+        return (matches.target !== data.me);
       },
     },
     {
@@ -227,7 +223,7 @@
       infoText: function(data, matches, output) {
         // It's sometimes hard for tanks to see the line, so just give a
         // sound indicator for jumping rope back and forth.
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.text({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -244,9 +240,7 @@
     {
       id: 'SusEx Churning',
       netRegex: NetRegexes.gainsEffect({ effectId: '4F6' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 3;
       },

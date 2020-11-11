@@ -181,17 +181,17 @@
       netRegexCn: NetRegexes.tether({ source: '佣兵雷姆普里克斯', id: '0039' }),
       netRegexKo: NetRegexes.tether({ source: '용병 레임브릭스', id: '0039' }),
       alarmText: function(data, matches, output) {
-        if (data.me != matches.target)
+        if (data.me !== matches.target)
           return;
         return output.tankSwapGetAway();
       },
       alertText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return;
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.tankSwap();
 
-        if (data.role == 'healer' || data.job == 'BLU')
+        if (data.role === 'healer' || data.job === 'BLU')
           return output.shieldPlayer({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -279,7 +279,7 @@
       netRegex: NetRegexes.headMarker({ id: '0029' }),
       condition: function(data, matches) {
         // Only need to pass on the first one.
-        return data.me == matches.target && !data.seenBrighteyes;
+        return data.me === matches.target && !data.seenBrighteyes;
       },
       delaySeconds: 5,
       infoText: (data, _, output) => output.text(),

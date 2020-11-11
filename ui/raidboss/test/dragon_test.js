@@ -22,17 +22,17 @@ let badSpots = function(mark, dragon) {
   let distance = modDistance(mark, dragon);
   console.assert(distance > 0);
   console.assert(distance <= 2);
-  if ((mark + distance + 8) % 8 == dragon) {
+  if ((mark + distance + 8) % 8 === dragon) {
     // Clockwise.
     for (let i = 0; i <= distance; ++i)
       bad.push((mark + i) % 8);
-    if (distance == 1)
+    if (distance === 1)
       bad.push((mark - 1 + 8) % 8);
   } else {
     // Widdershins.
     for (let i = 0; i <= distance; ++i)
       bad.push((mark - i + 8) % 8);
-    if (distance == 1)
+    if (distance === 1)
       bad.push((mark + 1) % 8);
   }
   return bad;
@@ -58,11 +58,11 @@ let findDragonMarks = function(array) {
       dragons.push(i);
   }
 
-  if (dragons.length != 5)
+  if (dragons.length !== 5)
     return ret;
 
   // MARK 1: counterclockwise of #1 if adjacent, clockwise if not.
-  if (dragons[0] + 1 == dragons[1]) {
+  if (dragons[0] + 1 === dragons[1]) {
     // If the first two dragons are adjacent, they *must* go CCW.
     // In the scenario of N, NE, SE, S, W dragons, the first marker
     // could be E, but that forces the second mark to be S (instead
@@ -78,7 +78,7 @@ let findDragonMarks = function(array) {
   }
 
   // MARK 2: go counterclockwise, unless dragon 2 is adjacent to 3.
-  if (dragons[1] == dragons[2] - 1) {
+  if (dragons[1] === dragons[2] - 1) {
     // Go clockwise.
     marks[1] = dragons[2] + 1;
   } else {
@@ -87,7 +87,7 @@ let findDragonMarks = function(array) {
   }
 
   // MARK 3: if split, between 4 & 5.  If adjacent, clockwise of 5.
-  if (dragons[3] + 1 == dragons[4]) {
+  if (dragons[3] + 1 === dragons[4]) {
     // Adjacent dragons.
     // Clockwise is always ok.
     marks[2] = (dragons[4] + 1) % 8;
@@ -100,14 +100,14 @@ let findDragonMarks = function(array) {
     // hole between #3 and #4, otherwise need all three holes.
     // e.g. N, NE, E, W, NW dragon pattern should prefer third
     // mark SW instead of N.
-    let distance = marks[1] == dragons[2] - 1 ? 2 : 4;
+    let distance = marks[1] === dragons[2] - 1 ? 2 : 4;
     if (dragons[3] >= dragons[2] + distance)
       marks[2] = dragons[3] - 1;
   } else {
     // Split dragons.  Common case: bias towards last dragon, in
     // case 2nd charge is going towards this pair.
     marks[2] = Math.ceil((dragons[3] + dragons[4]) / 2);
-    if (marks[1] == dragons[3] && marks[2] == marks[1] + 1) {
+    if (marks[1] === dragons[3] && marks[2] === marks[1] + 1) {
       // Tricksy edge case, e.g. N, NE, E, SE, SW.  S not safe for
       // third mark because second mark is at SE, and E dragon will
       // clip S.  Send all dragons CW even if this means eating more
@@ -136,8 +136,8 @@ let findDragonMarks = function(array) {
 function testModDistance() {
   for (let i = 0; i < 8; ++i) {
     for (let j = -4; j <= 4; ++j) {
-      console.assert(modDistance(i, (i + j + 8) % 8) == Math.abs(j));
-      console.assert(modDistance(i, (i + j + 8) % 8) == Math.abs(j));
+      console.assert(modDistance(i, (i + j + 8) % 8) === Math.abs(j));
+      console.assert(modDistance(i, (i + j + 8) % 8) === Math.abs(j));
     }
   }
 }
@@ -147,10 +147,10 @@ function testBadSpots() {
   let equals = function(a, b) {
     a.sort();
     b.sort();
-    if (a.length != b.length)
+    if (a.length !== b.length)
       return false;
     for (let i = 0; i < a.length; ++i) {
-      if (a[i] != b[i])
+      if (a[i] !== b[i])
         return false;
     }
     return true;
@@ -183,24 +183,24 @@ function testFindDragonMarks(array, output) {
     if (array[i])
       dragons.push(i);
   }
-  console.assert(dragons.length == 5);
+  console.assert(dragons.length === 5);
 
   let dirNames = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
   let marks = markDirs.map(function(i) {
     return dirNames.indexOf(i);
   });
-  console.assert(marks.length == 3);
+  console.assert(marks.length === 3);
   for (let i = 0; i < marks.length; ++i) {
     console.assert(marks[i] >= 0);
     console.assert(marks[i] < 8);
   }
 
   // Marks can't be in front of their dragons.
-  console.assert(marks[0] != dragons[0]);
-  console.assert(marks[0] != dragons[1]);
-  console.assert(marks[1] != dragons[2]);
-  console.assert(marks[2] != dragons[3]);
-  console.assert(marks[2] != dragons[4]);
+  console.assert(marks[0] !== dragons[0]);
+  console.assert(marks[0] !== dragons[1]);
+  console.assert(marks[1] !== dragons[2]);
+  console.assert(marks[2] !== dragons[3]);
+  console.assert(marks[2] !== dragons[4]);
 
   // Marks can also be at most two away from a dragon except for one
   // tricksy edge case on dragon 3 where it can be three away.
@@ -208,7 +208,7 @@ function testFindDragonMarks(array, output) {
   console.assert(modDistance(marks[0], dragons[1]) <= 2);
   console.assert(modDistance(marks[1], dragons[2]) <= 2);
   if (output.wideThirdDive)
-    console.assert(modDistance(marks[2], dragons[3]) == 3);
+    console.assert(modDistance(marks[2], dragons[3]) === 3);
   else
     console.assert(modDistance(marks[2], dragons[3]) <= 2);
 
@@ -247,7 +247,7 @@ for (let i = 0; i < 256; ++i) {
   for (let j = 0; j < array.length; ++j)
     count += array[j];
 
-  if (count != 5)
+  if (count !== 5)
     continue;
 
   console.log(array);
@@ -258,4 +258,4 @@ for (let i = 0; i < 256; ++i) {
 }
 
 // 8 choose 5 == 56
-console.assert(total == 56);
+console.assert(total === 56);

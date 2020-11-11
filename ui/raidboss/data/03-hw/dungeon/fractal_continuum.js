@@ -9,9 +9,7 @@
       id: 'Fractal Atmospheric Displacement',
       regex: /Atmospheric Displacement/,
       beforeSeconds: 5,
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -24,9 +22,7 @@
       id: 'Fractal Unholy',
       regex: /Unholy/,
       beforeSeconds: 5,
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
   ],

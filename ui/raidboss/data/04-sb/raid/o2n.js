@@ -33,7 +33,7 @@
       id: 'O2N Gravitational Manipulation Stack',
       netRegex: NetRegexes.headMarker({ id: '0071' }),
       alertText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.stackMarkerOnYou();
 
         return output.stackOn({ player: data.ShortName(matches.target) });
@@ -59,7 +59,7 @@
       id: 'O2N Gravitational Manipulation Float',
       netRegex: NetRegexes.headMarker({ id: '0071' }),
       condition: function(data, matches) {
-        return !data.levitating && Conditions.targetIsNotYou();
+        return !data.levitating && Conditions.targetIsNotYou()(data, matches);
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -81,7 +81,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '250F', source: '灾变者' }),
       netRegexKo: NetRegexes.startsUsing({ id: '250F', source: '카타스트로피' }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -209,13 +209,13 @@
         data.antiCounter = data.antiCounter || 0;
       },
       durationSeconds: function(data) {
-        if (data.antiCounter == 0 && data.levitating)
+        if (data.antiCounter === 0 && data.levitating)
           return 3;
         return 8;
       },
       alertText: function(data, _, output) {
         // The first Antilight is always blue.
-        if (data.antiCounter == 0) {
+        if (data.antiCounter === 0) {
           // Players who are already floating should just get an info about Petrospheres.
           if (data.levitating)
             return;
@@ -223,13 +223,13 @@
         }
         // It's always safe not to levitate after the first Antilight.
         // The second, fifth, eighth, etc Antilights require moving to the center as well.
-        if (data.antiCounter % 3 == 1)
+        if (data.antiCounter % 3 === 1)
           return output.goCenterAndDontLevitate();
 
         return output.dontLevitate();
       },
       infoText: function(data, _, output) {
-        if (data.antiCounter == 0 && data.levitating)
+        if (data.antiCounter === 0 && data.levitating)
           return output.antilight();
       },
       run: function(data) {

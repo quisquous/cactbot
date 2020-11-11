@@ -29,7 +29,7 @@
       // Gaol callout for both yourself and others
       id: 'TitanNm Gaols',
       netRegex: NetRegexes.gainsEffect({ effectId: '124' }),
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (matches.target !== data.me)
           return output.breakGaolOn({ player: data.ShortName(matches.target) });
 

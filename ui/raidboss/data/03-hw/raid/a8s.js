@@ -122,7 +122,7 @@
       netRegexCn: NetRegexes.ability({ source: '突击者', id: '1632', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '맹습자', id: '1632', capture: false }),
       condition: function(data) {
-        return data.role == 'dps' || data.job == 'BLU';
+        return data.role === 'dps' || data.job === 'BLU';
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -264,11 +264,11 @@
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
       // TODO: do we need a Responses.effectOn() that uses matches.effect?
       alarmText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.thunderOnYou();
       },
       infoText: function(data, matches, output) {
-        if (data.me != matches.target)
+        if (data.me !== matches.target)
           return output.thunderOn({ player: data.ShortName(matches.target) });
       },
       run: function(data, matches) {
@@ -351,10 +351,10 @@
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '1663' }),
       condition: Conditions.caresAboutPhysical(),
       alertText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.sharedTankbusterOnYou();
 
-        if (data.role == 'tank' || data.role == 'healer')
+        if (data.role === 'tank' || data.role === 'healer')
           return output.sharedTankbusterOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -422,7 +422,7 @@
         if (data.longNeedlePrey.includes(data.me))
           return;
         let target = data.longNeedleStack;
-        if (target == data.me)
+        if (target === data.me)
           return output.stackOnYou();
 
         return output.stackOn({ player: data.ShortName(target) });
@@ -467,12 +467,12 @@
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '1665' }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '1665' }),
       alertText: function(data, matches, output) {
-        if (data.me != matches.target)
+        if (data.me !== matches.target)
           return;
         return output.superJumpOnYou();
       },
       infoText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return;
         return output.superJumpOn({ player: data.ShortName(matches.target) });
       },
@@ -676,7 +676,7 @@
       id: 'A8S Verdict Max HP Provoke',
       netRegex: NetRegexes.losesEffect({ effectId: '403' }),
       condition: function(data, matches) {
-        return matches.target == data.verdictMin && data.me == data.verdictMax;
+        return matches.target === data.verdictMin && data.me === data.verdictMax;
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -694,7 +694,7 @@
       id: 'A8S Verdict Max HP Blu Devour',
       netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
       condition: function(data, matches) {
-        return data.me == matches.target && data.job == 'BLU';
+        return data.me === matches.target && data.job === 'BLU';
       },
       delaySeconds: 27,
       alarmText: (data, _, output) => output.text(),
@@ -818,11 +818,11 @@
       id: 'A8S Compressed Water',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
       alarmText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.waterOnYou();
       },
       infoText: function(data, matches, output) {
-        if (data.me != matches.target)
+        if (data.me !== matches.target)
           return output.waterOn({ player: data.ShortName(matches.target) });
       },
       run: function(data, matches) {

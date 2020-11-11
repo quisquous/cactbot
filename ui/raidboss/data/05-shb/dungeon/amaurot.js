@@ -7,16 +7,14 @@
     {
       id: 'Amaurot Meteor',
       netRegex: NetRegexes.headMarker({ id: '0039' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       preRun: function(data) {
         data.meteor = (data.meteor || 0) + 1;
       },
       infoText: function(data, _, output) {
-        if (data.meteor == 1)
+        if (data.meteor === 1)
           return output.dropMeteorWest();
-        else if (data.meteor == 2)
+        else if (data.meteor === 2)
           return output.dropMeteorEast();
 
         return output.meteor();
@@ -51,9 +49,7 @@
     {
       id: 'Amaurot Spread',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -84,9 +80,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3CE3', source: 'メガセリオン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3CE3', source: '至大灾兽', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CE3', source: '메가테리온', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

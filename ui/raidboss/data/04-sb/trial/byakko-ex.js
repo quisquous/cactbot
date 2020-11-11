@@ -14,7 +14,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '27DA', source: '白虎' }),
       netRegexKo: NetRegexes.startsUsing({ id: '27DA', source: '백호' }),
       condition: function(data, matches) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -77,7 +77,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '27E0', source: '白虎' }),
       netRegexKo: NetRegexes.startsUsing({ id: '27E0', source: '백호' }),
       condition: function(data, matches) {
-        return data.role == 'tank' && matches.target != data.me;
+        return data.role === 'tank' && matches.target !== data.me;
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -100,7 +100,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '27E0', source: '白虎' }),
       netRegexKo: NetRegexes.startsUsing({ id: '27E0', source: '백호' }),
       condition: function(data, matches) {
-        return data.role == 'tank' && matches.target == data.me;
+        return data.role === 'tank' && matches.target === data.me;
       },
       delaySeconds: 12,
       alertText: (data, _, output) => output.text(),
@@ -138,10 +138,10 @@
       netRegexKo: NetRegexes.startsUsing({ id: '27F9', source: '하얀 제왕', capture: false }),
       delaySeconds: 14,
       alarmText: function(data, _, output) {
-        if (data.roarCount != 2)
+        if (data.roarCount !== 2)
           return;
 
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.text();
       },
       outputStrings: {
@@ -158,9 +158,7 @@
     {
       id: 'ByaEx Bubble',
       netRegex: NetRegexes.headMarker({ id: '0065' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -176,9 +174,7 @@
     {
       id: 'ByaEx Ominous Wind',
       netRegex: NetRegexes.gainsEffect({ effectId: '5C9' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -194,9 +190,7 @@
     {
       id: 'ByaEx Puddle Marker',
       netRegex: NetRegexes.headMarker({ id: '0004' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -212,9 +206,7 @@
     {
       id: 'ByaEx G100',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -235,10 +227,8 @@
       netRegexFr: NetRegexes.dialog({ line: '[^:]*:Ma colère devient double.*?!.*?', capture: false }),
       netRegexJa: NetRegexes.dialog({ line: '[^:]*:駆けろ、我が半身ッ！歯向かう者どもに、牙と爪を突き立ててやれ！.*?', capture: false }),
       netRegexKo: NetRegexes.dialog({ line: '[^:]*:달려라! 나의 반신이여! 맞서는 자들에게 이빨과 발톱을 찔러넣어라!.*?', capture: false }),
-      infoText: function(data, _, output) {
-        if (data.role == 'tank')
-          return output.text();
-      },
+      condition: (data) => data.role === 'tank',
+      infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Tiger Add',

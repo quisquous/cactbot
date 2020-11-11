@@ -50,15 +50,15 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3EEF', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EEF', source: '이노센스', capture: false }),
       infoText: function(data, _, output) {
-        if (data.starbirthCount == 1)
+        if (data.starbirthCount === 1)
           return output.starbirthCorner();
-        else if (data.starbirthCount == 2 || data.starbirthCount == 5)
+        else if (data.starbirthCount === 2 || data.starbirthCount === 5)
           return output.starbirthAvoidCharge();
-        else if (data.starbirthCount == 3)
+        else if (data.starbirthCount === 3)
           return output.starbirthExplode();
-        else if (data.starbirthCount == 4)
+        else if (data.starbirthCount === 4)
           return output.starbirthCharge();
-        else if (data.starbirthCount == 6)
+        else if (data.starbirthCount === 6)
           return output.starbirthEnrage();
 
         // No text for the second enrage one.
@@ -114,9 +114,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3EEA', source: 'イノセンス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3EEA', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EEA', source: '이노센스', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -138,7 +136,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3EC9', source: '得到宽恕的情欲', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EC9', source: '면죄된 정욕', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
@@ -161,9 +159,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3EC9', source: 'フォーギヴン・ヴェナリー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3EC9', source: '得到宽恕的情欲' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EC9', source: '면죄된 정욕' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
@@ -208,7 +204,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3EEF', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EEF', source: '이노센스', capture: false }),
       condition: function(data) {
-        return data.starbirthCount == 1;
+        return data.starbirthCount === 1;
       },
       delaySeconds: 6,
       alertText: (data, _, output) => output.text(),
@@ -232,7 +228,7 @@
       netRegexCn: NetRegexes.ability({ id: '42B0', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '42B0', source: '이노센스', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -259,16 +255,16 @@
         data.lightPillar++;
       },
       alarmText: function(data, matches, output) {
-        if (matches.target != data.me)
+        if (matches.target !== data.me)
           return;
 
-        if (data.lightPillar == 3)
+        if (data.lightPillar === 3)
           return output.aimLineAtBackOrb();
 
         return output.avoidOrbsWithLine();
       },
       infoText: function(data, matches, output) {
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           return;
         return output.lineStack();
       },
@@ -308,7 +304,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3F3E', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3F3E', source: '이노센스', capture: false }),
       condition: function(data) {
-        return data.lightPillar == 3;
+        return data.lightPillar === 3;
       },
       delaySeconds: 6.5,
       alertText: (data, _, output) => output.text(),
@@ -325,9 +321,7 @@
     {
       id: 'InnoEx Winged Reprobation Tether',
       netRegex: NetRegexes.headMarker({ id: '00AC' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -343,9 +337,7 @@
     {
       id: 'InnoEx Winged Drop Of Light',
       netRegex: NetRegexes.headMarker({ id: '008A' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: function(data, _, output) {
         if (data.starbirthActive)
           return output.circleAvoidOrbs();

@@ -125,7 +125,7 @@ let bombLocation = (matches) => {
       },
       // We could give directions here, but "into / opposite spikey" is pretty succinct.
       infoText: function(data, _, output) {
-        if (data.bombCount == 1)
+        if (data.bombCount === 1)
           return output.knockBombsIntoSpikey();
 
         return output.knockBombsOppositeSpikey();
@@ -173,41 +173,17 @@ let bombLocation = (matches) => {
         data.boostBombs = data.boostBombs || [];
         data.boostBombs.push(bombLocation(matches));
       },
-      alertText: function(data) {
-        if (data.boostCount == 1) {
-          if (data.boostBombs.length != 1)
+      alertText: function(data, _, output) {
+        if (data.boostCount === 1) {
+          if (data.boostBombs.length !== 1)
             return;
           // index 0 = NW, 3 = NE, 12 = SW, 15 = SE
           let index = data.boostBombs[0].x + data.boostBombs[0].y * 4;
           return {
-            0: {
-              en: 'NW first',
-              de: 'NW zuerst',
-              fr: 'NO en premier',
-              ja: 'まずは北西',
-              ko: '북서쪽 먼저',
-            },
-            3: {
-              en: 'NE first',
-              de: 'NO zuerst',
-              fr: 'NE en premier',
-              ja: 'まずは北東',
-              ko: '북동쪽 먼저',
-            },
-            12: {
-              en: 'SW first',
-              de: 'SW zuerst',
-              fr: 'SO en premier',
-              ja: 'まずは南西',
-              ko: '남서쪽 먼저',
-            },
-            15: {
-              en: 'SE first',
-              de: 'SO zuerst',
-              fr: 'SE en premier',
-              ja: 'まずは南東',
-              ko: '남동쪽 먼저',
-            },
+            0: output.northwestFirst(),
+            3: output.northeastFirst(),
+            12: output.southwestFirst(),
+            15: output.southeastFirst(),
           }[index];
         }
 
@@ -215,6 +191,36 @@ let bombLocation = (matches) => {
         // TODO: This would be trivial to find the safe spot,
         // buuuuut this is hard to find good words for 16 spots.
         // Do you call it "NNW" or "East of NW But Also Outside" @_@
+      },
+      outputStrings: {
+        northwestFirst: {
+          en: 'NW first',
+          de: 'NW zuerst',
+          fr: 'NO en premier',
+          ja: 'まずは北西',
+          ko: '북서쪽 먼저',
+        },
+        northeastFirst: {
+          en: 'NE first',
+          de: 'NO zuerst',
+          fr: 'NE en premier',
+          ja: 'まずは北東',
+          ko: '북동쪽 먼저',
+        },
+        southwestFirst: {
+          en: 'SW first',
+          de: 'SW zuerst',
+          fr: 'SO en premier',
+          ja: 'まずは南西',
+          ko: '남서쪽 먼저',
+        },
+        southeastFirst: {
+          en: 'SE first',
+          de: 'SO zuerst',
+          fr: 'SE en premier',
+          ja: 'まずは南東',
+          ko: '남동쪽 먼저',
+        },
       },
     },
     {

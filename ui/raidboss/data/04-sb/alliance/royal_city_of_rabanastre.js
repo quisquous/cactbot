@@ -31,11 +31,9 @@
       // using data.breathless to count the stacks.
       id: 'Rab Mateus Breathless Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '595' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: function(data, _, output) {
-        if (data.breathless == 6)
+        if (data.breathless === 6)
           return output.getInBubble();
       },
       infoText: function(data, _, output) {
@@ -43,7 +41,7 @@
           return output.breathless({ num: (data.breathless + 1) });
       },
       tts: function(data, _, output) {
-        if (data.breathless == 6)
+        if (data.breathless === 6)
           return output.bubble();
       },
       run: function(data) {
@@ -80,9 +78,7 @@
     {
       id: 'Rab Mateus Breathless Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '595' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.breathless = 0;
       },
@@ -202,9 +198,7 @@
     {
       id: 'Rab Rofocale Chariot',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.getIn(),
     },
     {
@@ -254,9 +248,7 @@
     {
       id: 'Rab Argath Command Scatter',
       netRegex: NetRegexes.headMarker({ id: '007B' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: function(data, _, output) {
         if (data.maskValue)
           return output.move();
@@ -285,9 +277,7 @@
     {
       id: 'Rab Argath Command Turn',
       netRegex: NetRegexes.headMarker({ id: '007C' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: function(data, _, output) {
         if (data.maskValue)
           return output.lookAway();

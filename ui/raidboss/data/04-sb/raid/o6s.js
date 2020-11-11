@@ -24,7 +24,7 @@
       netRegexCn: NetRegexes.addedCombatant({ name: '暴风领域', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '폭풍 영역', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -41,10 +41,8 @@
     {
       id: 'O6S Demonic Stone',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
-      alarmText: function(data, matches, output) {
-        if (data.me == matches.target)
-          return output.text();
-      },
+      condition: Conditions.targetIsYou(),
+      alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Demonic Stone on YOU',
@@ -66,9 +64,7 @@
     {
       id: 'O6S Last Kiss Marker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -87,7 +83,7 @@
       condition: function(data, matches) {
         // The person who gets the marker briefly gets the effect, so
         // don't tell them twice.
-        return data.me == matches.target && data.lastKiss != data.me;
+        return data.me === matches.target && data.lastKiss !== data.me;
       },
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
@@ -265,12 +261,12 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Demon Chadarnook': '차다르누크 악령',
         'Easterly': '극풍',
         'Goddess Chadarnook': '차다르누크 여신',
         'Haunt': '사념체',
+        'I have claimed the girl in the picture!': '우후후후…… 그림 속 여자는 내가 데려가마……',
         'Portrayal of Earth': '땅의 그림',
         'Portrayal of Fire': '불의 그림',
         'Portrayal of Water': '물의 그림',
@@ -287,6 +283,7 @@
         'Demonic Wave': '악령의 물결',
         'Divine Lure': '여신의 유혹',
         'Earthquake': '대지진',
+        'Easterlies': '극풍',
         'Featherlance': '깃털창',
         'Flash Fire': '불바다',
         'Flash Flood': '급류',

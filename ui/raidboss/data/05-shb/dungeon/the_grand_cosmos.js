@@ -13,7 +13,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '4769', source: '宫殿的隐者' }),
       netRegexKo: NetRegexes.startsUsing({ id: '4769', source: '궁전의 은자' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -25,9 +25,7 @@
     {
       id: 'Cosmos Dark Well Far Winds',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -38,9 +36,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '49A3', source: '宮殿の隠者', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '49A3', source: '宫殿的隐者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '49A3', source: '궁전의 은자', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -82,9 +78,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '471C', source: 'リャナンシー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '471C', source: '凉南希', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '471C', source: '랴난시', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -151,25 +145,19 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4765', source: 'ルゴス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4765', source: '卢格斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4765', source: '루구스', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
       id: 'Cosmos Black Flame 1',
       netRegex: NetRegexes.headMarker({ id: '0019' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Cosmos Black Flame 2',
       netRegex: NetRegexes.headMarker({ id: '0019' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: 4,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -186,17 +174,13 @@
     {
       id: 'Cosmos Mortal Flame 1',
       netRegex: NetRegexes.headMarker({ id: '00C3' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Cosmos Mortal Flame 2',
       netRegex: NetRegexes.headMarker({ id: '00C3' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: 5.5,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -233,14 +217,12 @@
     {
       id: 'Cosmos Fire\'s Domain',
       netRegex: NetRegexes.headMarker({ id: '003[2345]' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       preRun: function(data) {
         data.firesDomain = (data.firesDomain || 0) + 1;
       },
       infoText: function(data, _, output) {
-        if (data.firesDomain == 1)
+        if (data.firesDomain === 1)
           return output.pointTetherAwayFromFurniture();
 
         return output.tetherOnYou();

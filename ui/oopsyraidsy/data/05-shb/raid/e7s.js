@@ -50,7 +50,7 @@ let noBuff = (str) => {
       id: 'E7S Stygian Stake',
       damageRegex: '4C34',
       condition: function(e) {
-        return e.type != '15';
+        return e.type !== '15';
       },
       mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
@@ -61,7 +61,7 @@ let noBuff = (str) => {
       id: 'E7S Silver Shot',
       damageRegex: '4C92',
       condition: function(e) {
-        return e.type != '15';
+        return e.type !== '15';
       },
       mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
@@ -72,7 +72,7 @@ let noBuff = (str) => {
       id: 'E7S Silver Scourge',
       damageRegex: '4C93',
       condition: function(e) {
-        return e.type != '15';
+        return e.type !== '15';
       },
       mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
@@ -83,7 +83,7 @@ let noBuff = (str) => {
       id: 'E7S Chiaro Scuro Explosion',
       damageRegex: '4D1[45]',
       condition: function(e) {
-        return e.type != '15';
+        return e.type !== '15';
       },
       mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };

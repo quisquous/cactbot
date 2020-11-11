@@ -11,7 +11,12 @@ const Regexes = require('../../resources/regexes.js');
 const NetRegexes = require('../../resources/netregexes.js');
 const Conditions = require('../../resources/conditions.js');
 const ZoneId = require('../../resources/zone_id.js');
-const { Responses, triggerFunctions, builtInResponseStr } = require('../../resources/responses.js');
+const {
+  Responses, // this is used via eval
+  triggerFunctions,
+  triggerOutputFunctions,
+  builtInResponseStr,
+} = require('../../resources/responses.js');
 const fs = require('fs');
 
 let exitCode = 0;
@@ -277,10 +282,10 @@ let testValidIds = function(file, contents) {
       let idx = 0;
       let len = Math.min(prefix.length, trigger.id.length);
       for (idx = 0; idx < len; ++idx) {
-        if (prefix[idx] != trigger.id[idx])
+        if (prefix[idx] !== trigger.id[idx])
           break;
       }
-      if (idx == 0) {
+      if (idx === 0) {
         errorFunc(`${file}: No common id prefix in '${prefix}' and '${trigger.id}'`);
         brokenPrefixes = true;
         continue;
@@ -298,7 +303,7 @@ let testValidIds = function(file, contents) {
     // if prefix includes more than one word, just remove latter letters.
     if (prefix.includes(' '))
       prefix = prefix.substr(0, prefix.lastIndexOf(' ') + 1);
-    if (prefix[prefix.length - 1] != ' ')
+    if (prefix[prefix.length - 1] !== ' ')
       errorFunc(`${file}: id prefix '${prefix}' is not a full word, must end in a space`);
   }
 };
@@ -449,6 +454,16 @@ const testOutputStrings = (file, contents) => {
       } else {
         if (trigger.outputStrings && typeof outputStrings !== 'object') {
           errorFunc(`${file}: '${trigger.id}' outputStrings must be an object.`);
+          continue;
+        }
+        if (typeof trigger.outputStrings !== 'object') {
+          for (const func of triggerOutputFunctions) {
+            if (trigger[func]) {
+              errorFunc(`${file}: '${trigger.id}' missing field outputStrings.`);
+              break;
+            }
+          }
+          // If no output functions and no output strings, then no error and nothing left to do.
           continue;
         }
         outputStrings = trigger.outputStrings;

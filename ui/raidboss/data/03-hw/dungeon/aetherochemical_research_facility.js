@@ -10,7 +10,7 @@
       regex: /Bastardbluss/,
       beforeSeconds: 4,
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank';
+        return data.role === 'healer' || data.role === 'tank';
       },
       response: Responses.tankBuster(),
     },
@@ -19,7 +19,7 @@
       regex: /Hood Swing/,
       beforeSeconds: 4,
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank';
+        return data.role === 'healer' || data.role === 'tank';
       },
       response: Responses.tankBuster(),
     },
@@ -57,7 +57,7 @@
       netRegexKo: NetRegexes.ability({ id: '10ED', source: '하르마키스' }),
       condition: function(data) {
         // Tanks technically shouldn't assist with this mechanic
-        return data.role != 'tank';
+        return data.role !== 'tank';
       },
       response: Responses.stackMarkerOn(),
     },
@@ -79,9 +79,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1109', source: 'アシエン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1109', source: '至尊无影', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1109', source: '아씨엔 프라임', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -92,9 +90,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '110A', source: 'アシエン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '110A', source: '至尊无影', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '110A', source: '아씨엔 프라임', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

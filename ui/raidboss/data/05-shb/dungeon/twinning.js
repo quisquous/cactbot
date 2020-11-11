@@ -68,9 +68,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D64', source: 'アルファ・ザグナル', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D64', source: '扎戈斧龙一型', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D64', source: '알파 자그날', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -97,7 +95,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3DED', source: '米特里达梯' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DED', source: '미트리다테스' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -110,9 +108,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3DEF', source: 'ミトリダテス' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DEF', source: '米特里达梯' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DEF', source: '미트리다테스' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -166,7 +162,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3DFB', source: '泰空' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DFB', source: '타이쿤' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -189,9 +185,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3DFC', source: 'タイクーン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DFC', source: '泰空', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DFC', source: '타이쿤', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
   ],

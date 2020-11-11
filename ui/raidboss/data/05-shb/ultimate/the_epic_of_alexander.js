@@ -32,7 +32,7 @@
 let getHeadmarkerId = (data, matches) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 004F.
   // (This makes the offset 0, and !0 is true.)
-  if (typeof data.decOffset == 'undefined') {
+  if (typeof data.decOffset === 'undefined') {
     // The first 1B marker in the encounter is Limit Cut 1, ID 004F.
     data.decOffset = parseInt(matches.id, 16) - 79;
   }
@@ -44,6 +44,223 @@ let getHeadmarkerId = (data, matches) => {
 
 const kDecreeNisi = ['8AE', '8AF', '859', '85A'];
 const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
+
+const nisiToString = (nisiNum, output) => {
+  // nisiNum is 0-3
+  // assume output is using nisiTypes.
+  switch (nisiNum) {
+  case 0:
+    return output.blueAlpha();
+  case 1:
+    return output.orangeBeta();
+  case 2:
+    return output.purpleGamma();
+  case 3:
+    return output.greenDelta();
+  }
+};
+
+const ordainedOutputStrings = {
+  combined: {
+    en: '${action1}, ${action2}',
+    de: '${action1}, ${action2}',
+    fr: '${action1}, ${action2}',
+    ja: '${action1}, ${action2}',
+    cn: '${action1}, ${action2}',
+    ko: '${action1}, ${action2}',
+  },
+  motionFirst: {
+    en: 'Motion first',
+    de: 'Bewegungsbefehl zuerst',
+    ja: '最初は動く',
+    fr: 'Mouvement en premier',
+    ko: '우선 움직이기',
+    cn: '首先移动',
+  },
+  stillnessFirst: {
+    en: 'Stillness first',
+    de: 'Stillstandsbefehl zuerst',
+    ja: '最初は止まる',
+    fr: 'Immobilité en premier',
+    ko: '우선 멈추기',
+    cn: '首先静止',
+  },
+  motionSecond: {
+    en: 'Motion second',
+    de: 'Bewegungsbefehl als Zweites',
+    ja: '最後は動く',
+    fr: 'Mouvement en deuxième',
+    ko: '마지막엔 움직이기',
+    cn: '最后移动',
+  },
+  stillnessSecond: {
+    en: 'Stillness second',
+    de: 'Stillstandsbefehl als Zweites',
+    ja: '最後は止まる',
+    fr: 'Immobilité en deuxième',
+    ko: '마지막엔 멈추기',
+    cn: '最后静止',
+  },
+};
+
+const radiantOutputStrings = {
+  north: {
+    en: 'Sacrament North',
+    de: 'Sacrement Norden',
+    ja: '拝火は北',
+    fr: 'Sacrement Nord',
+    ko: '성례: 북',
+    cn: '拜火 北',
+  },
+  east: {
+    en: 'Sacrament East',
+    de: 'Sacrement Osten',
+    ja: '拝火は東',
+    fr: 'Sacrement Est',
+    ko: '성례: 동',
+    cn: '拜火 东',
+  },
+  south: {
+    en: 'Sacrament South',
+    de: 'Sacrement Süden',
+    ja: '拝火は南',
+    fr: 'Sacrement Sud',
+    ko: '성례: 남',
+    cn: '拜火 南',
+  },
+  west: {
+    en: 'Sacrament West',
+    de: 'Sacrement Westen',
+    ja: '拝火は西',
+    fr: 'Sacrement Ouest',
+    ko: '성례: 서',
+    cn: '拜火 西',
+  },
+};
+
+const nisiTypes = {
+  blueAlpha: {
+    en: 'Blue α',
+    de: 'Blau α',
+    fr: 'Bleu α',
+    ja: '青 α',
+    cn: '蓝 α',
+    ko: '파랑 α',
+  },
+  orangeBeta: {
+    en: 'Orange β',
+    de: 'Orange β',
+    fr: 'Orange β',
+    ja: 'オレンジ β',
+    cn: '橙 β',
+    ko: '노랑 β',
+  },
+  purpleGamma: {
+    en: 'Purple γ',
+    de: 'Lila γ',
+    fr: 'Violet γ',
+    ja: '紫 γ',
+    cn: '紫 γ',
+    ko: '보라 γ',
+  },
+  greenDelta: {
+    en: 'Green δ',
+    de: 'Grün δ',
+    fr: 'Vert δ',
+    ja: '緑 δ',
+    cn: '绿 δ',
+    ko: '녹색 δ',
+  },
+};
+
+const nisiPassOutputStrings = {
+  ...nisiTypes,
+  unknown: {
+    en: 'Get Final Nisi (?)',
+    de: 'Nehme letzten Nisi (?)',
+    ja: '最後のナイサイを取得 (?)',
+    fr: 'Prenez Peine finale (?)',
+    cn: '取得最后审判 (?)',
+    ko: '마지막 나이사이 받기 (?)',
+  },
+  passNisi: {
+    en: 'Pass ${type} Nisi',
+    de: 'Gebe ${type} Nisi',
+    ja: '${type} を渡す',
+    fr: 'Passez ${type} Peine',
+    cn: '传递 ${type}审判',
+    ko: '나이사이 건네기: ${type}',
+  },
+  passNisiTo: {
+    en: 'Pass ${type} to ${players}',
+    de: 'Gebe ${type} zu ${players}',
+    ja: '${type} を ${players} に渡す',
+    fr: 'Passez ${type} à ${players}',
+    cn: '将 ${type} 传给 ${players}',
+    ko: '나이사이 건네기: ${type} → ${players}',
+  },
+  getNisi: {
+    en: 'Get ${type}',
+    de: 'Nimm ${type}',
+    ja: '${type} を取る',
+    fr: 'Prenez ${type}',
+    cn: '获得 ${type}',
+    ko: '나이사이 가져오기: ${type}',
+  },
+  getNisiFrom: {
+    en: 'Get ${type} from ${player}',
+    de: 'Nimm ${type} von ${player}',
+    ja: '${player} から ${type} を取る',
+    fr: 'Prenez ${type} de ${player}',
+    cn: '从 ${player}获得${type}',
+    ko: '나이사이 가져오기: ${type} ← ${player}',
+  },
+};
+
+// Convenience function called for third and fourth nisi passes.
+const namedNisiPass = (data, output) => {
+  // error?
+  if (!(data.me in data.finalNisiMap))
+    return output.unknown();
+
+  if (data.me in data.nisiMap) {
+    // If you have nisi, you need to pass it to the person who has that final
+    // and who doesn't have nisi.
+    let myNisi = data.nisiMap[data.me];
+    let names = Object.keys(data.finalNisiMap);
+    names = names.filter((x) => data.finalNisiMap[x] === myNisi && x !== data.me);
+
+    let namesWithoutNisi = names.filter((x) => !(x in data.nisiMap));
+
+    // If somehow it's the case that you've had SUCH a late pass that there
+    // isn't anybody without without nisi, at least use the names of folks who
+    // have the final debuff.
+    if (namesWithoutNisi.length === 0)
+      namesWithoutNisi = names;
+
+    // If somehow still there's nobody, give a message so that it's not silent
+    // but you're probably in trouble.
+    if (namesWithoutNisi.length === 0)
+      return output.passNisi({ type: nisiToString(myNisi, output) });
+
+    // The common case.  Hopefully there's only one person in the names list,
+    // but you never know.
+    const players = namesWithoutNisi.map((x) => data.ShortName(x)).join(', ');
+    return output.passNisiTo({ type: nisiToString(myNisi, output), players: players });
+  }
+
+  // If you don't have nisi, then you need to go get it from a person who does.
+  let myNisi = data.finalNisiMap[data.me];
+  let names = Object.keys(data.nisiMap);
+  names = names.filter((x) => data.nisiMap[x] === myNisi);
+  if (names.length === 0)
+    return output.getNisi({ type: nisiToString(myNisi, output) });
+
+  return output.getNisiFrom({
+    type: nisiToString(myNisi, output),
+    player: data.ShortName(names[0]),
+  });
+};
 
 [{
   zoneId: ZoneId.TheEpicOfAlexanderUltimate,
@@ -63,8 +280,8 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       },
       suppressSeconds: 1,
       alertText: function(data, _, output) {
-        let multipleSwings = data.swingCount == 2 || data.swingCount == 3;
-        if (data.role == 'healer') {
+        let multipleSwings = data.swingCount === 2 || data.swingCount === 3;
+        if (data.role === 'healer') {
           if (multipleSwings)
             return output.tankBusters();
 
@@ -74,16 +291,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
           return output.tankBuster();
         }
 
-        if (data.role == 'tank') {
-          if (data.me == data.handTank && multipleSwings || data.me == data.liquidTank)
+        if (data.role === 'tank') {
+          if (data.me === data.handTank && multipleSwings || data.me === data.liquidTank)
             return output.tankBusterOnYou();
         }
       },
       infoText: function(data, _, output) {
-        let multipleSwings = data.swingCount == 2 || data.swingCount == 3;
-        if (data.role == 'healer')
+        let multipleSwings = data.swingCount === 2 || data.swingCount === 3;
+        if (data.role === 'healer')
           return;
-        if (data.me == data.handTank && multipleSwings || data.me == data.liquidTank)
+        if (data.me === data.handTank && multipleSwings || data.me === data.liquidTank)
           return;
         return output.tankCleave();
       },
@@ -138,7 +355,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       regex: /Hand of Prayer\/Parting/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       suppressSeconds: 1,
       infoText: (data, _, output) => output.text(),
@@ -158,7 +375,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       regex: /J Kick/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank';
+        return data.role === 'healer' || data.role === 'tank';
       },
       suppressSeconds: 1,
       infoText: (data, _, output) => output.text(),
@@ -194,7 +411,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       regex: /Flarethrower/,
       beforeSeconds: 8,
       condition: function(data) {
-        return data.me == data.bruteTank && data.phase == 'brute';
+        return data.me === data.bruteTank && data.phase === 'brute';
       },
       suppressSeconds: 300,
       alertText: (data, _, output) => output.text(),
@@ -230,9 +447,10 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       regex: /Propeller Wind/,
       beforeSeconds: 15,
       durationSeconds: 14,
-      alertText: function(data) {
-        return data.namedNisiPass(data);
+      alertText: function(data, _, output) {
+        return namedNisiPass(data, output);
       },
+      outputStrings: nisiPassOutputStrings,
     },
     {
       id: 'TEA Wormhole Puddle',
@@ -241,16 +459,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       alertText: function(data, matches, output) {
         // data.puddle is set by 'TEA Wormhole TPS Strat' (or by some user trigger).
         // If that's disabled, this will still just call out puddle counts.
-        if (matches[1] == data.puddle)
+        if (matches[1] === data.puddle)
           return output.soakThisPuddle({ num: matches[1] });
       },
       infoText: function(data, matches, output) {
-        if (matches[1] == data.puddle)
+        if (matches[1] === data.puddle)
           return;
         return output.puddle({ num: matches[1] });
       },
       tts: function(data, matches, output) {
-        if (matches[1] == data.puddle)
+        if (matches[1] === data.puddle)
           return output.soakThisPuddleTTS();
       },
       outputStrings: {
@@ -287,10 +505,8 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       id: 'TEA Ordained Capital Punishment',
       regex: /^Ordained Capital Punishment$/,
       beforeSeconds: 6,
-      alertText: function(data, _, output) {
-        if (data.role == 'tank' || data.role == 'healer')
-          return output.text();
-      },
+      condition: (data) => data.role === 'tank' || data.role === 'healer',
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Shared Tankbuster',
@@ -323,129 +539,6 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
           delete this.limitCutDelay;
         };
         data.resetState();
-
-        data.nisiNames = {
-          en: {
-            0: 'Blue α',
-            1: 'Orange β',
-            2: 'Purple γ',
-            3: 'Green δ',
-          },
-          de: {
-            0: 'Blau α',
-            1: 'Orange β',
-            2: 'Lila γ',
-            3: 'Grün δ',
-          },
-          ja: {
-            0: '青 α',
-            1: 'オレンジ β',
-            2: '紫 γ',
-            3: '緑 δ',
-          },
-          fr: {
-            0: 'Bleu α',
-            1: 'Orange β',
-            2: 'Violet γ',
-            3: 'Vert δ',
-          },
-          ko: {
-            0: '파랑 α',
-            1: '노랑 β',
-            2: '보라 γ',
-            3: '녹색 δ',
-          },
-          cn: {
-            0: '蓝 α',
-            1: '橙 β',
-            2: '紫 γ',
-            3: '绿 δ',
-          },
-        }[data.displayLang];
-
-        // Convenience function called for third and fourth nisi passes.
-        data.namedNisiPass = (data) => {
-          // error?
-          if (!(data.me in data.finalNisiMap)) {
-            return {
-              en: 'Get Final Nisi (?)',
-              de: 'Nehme letzten Nisi (?)',
-              ja: '最後のナイサイを取得 (?)',
-              fr: 'Prenez Peine finale (?)',
-              ko: '마지막 나이사이 받기 (?)',
-              cn: '取得最后审判 (?)',
-            };
-          }
-
-          if (data.me in data.nisiMap) {
-            // If you have nisi, you need to pass it to the person who has that final
-            // and who doesn't have nisi.
-            let myNisi = data.nisiMap[data.me];
-            let names = Object.keys(data.finalNisiMap);
-            names = names.filter((x) => data.finalNisiMap[x] == myNisi && x != data.me);
-
-            let namesWithoutNisi = names.filter((x) => !(x in data.nisiMap));
-
-            // If somehow it's the case that you've had SUCH a late pass that there
-            // isn't anybody without without nisi, at least use the names of folks who
-            // have the final debuff.
-            if (namesWithoutNisi.length == 0)
-              namesWithoutNisi = names;
-
-            // If somehow still there's nobody, give a message so that it's not silent
-            // but you're probably in trouble.
-            if (namesWithoutNisi.length == 0) {
-              return {
-                en: 'Pass ' + data.nisiNames[myNisi] + ' Nisi',
-                de: 'Gebe ' + data.nisiNames[myNisi] + ' Nisi',
-                ja: data.nisiNames[myNisi] + ' を渡す',
-                fr: 'Passez ' + data.nisiNames[myNisi] + ' Peine',
-                ko: '나이사이 건네기: ' + data.nisiNames[myNisi],
-                cn: '传递 ' + data.nisiNames[myNisi] + '审判',
-              };
-            }
-
-            // The common case.  Hopefully there's only one person in the names list,
-            // but you never know.
-            return {
-              en: 'Pass ' + data.nisiNames[myNisi] + ' to ' +
-                  namesWithoutNisi.map((x) => data.ShortName(x)).join(', or '),
-              de: 'Gebe ' + data.nisiNames[myNisi] + ' zu ' +
-                  namesWithoutNisi.map((x) => data.ShortName(x)).join(', oder '),
-              ja: data.nisiNames[myNisi] + ' を ' +
-                  namesWithoutNisi.map((x) => data.ShortName(x)).join(', か ') + ' に渡す',
-              fr: 'Passez ' + data.nisiNames[myNisi] + ' à ' +
-                  namesWithoutNisi.map((x) => data.ShortName(x)).join(', ou '),
-              ko: '나이사이 건네기: ' + data.nisiNames[myNisi] + ' → ' +
-                  namesWithoutNisi.map((x) => data.ShortName(x)).join(', 또는 '),
-              cn: '将 ' + data.nisiNames[myNisi] + ' 传给 ' +
-                  namesWithoutNisi.map((x) => data.ShortName(x)).join(', 或 '),
-            };
-          }
-
-          // If you don't have nisi, then you need to go get it from a person who does.
-          let myNisi = data.finalNisiMap[data.me];
-          let names = Object.keys(data.nisiMap);
-          names = names.filter((x) => data.nisiMap[x] == myNisi);
-          if (names.length == 0) {
-            return {
-              en: 'Get ' + data.nisiNames[myNisi],
-              de: 'Nimm ' + data.nisiNames[myNisi],
-              ja: data.nisiNames[myNisi] + ' を取る',
-              fr: 'Prenez ' + data.nisiNames[myNisi],
-              ko: '나이사이 가져오기: ' + data.nisiNames[myNisi],
-              cn: '获得 ' + data.nisiNames[myNisi],
-            };
-          }
-          return {
-            en: 'Get ' + data.nisiNames[myNisi] + ' from ' + data.ShortName(names[0]),
-            de: 'Nimm ' + data.nisiNames[myNisi] + ' von ' + data.ShortName(names[0]),
-            ja: data.ShortName(names[0]) + ' から ' + data.nisiNames[myNisi] + ' を取る',
-            fr: 'Prenez ' + data.nisiNames[myNisi] + ' de ' + data.ShortName(names[0]),
-            ko: '나이사이 가져오기: ' + data.nisiNames[myNisi] + ' ← ' + data.ShortName(names[0]),
-            cn: '从 ' + data.ShortName(names[0]) + '获得' + data.nisiNames[myNisi],
-          };
-        };
       },
     },
     {
@@ -614,7 +707,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         data.handOfPainCount = (data.handOfPainCount || 0) + 1;
       },
       infoText: function(data, _, output) {
-        if (data.handOfPainCount == 5)
+        if (data.handOfPainCount === 5)
           return output.text();
       },
       outputStrings: {
@@ -654,7 +747,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       condition: function(data, matches) {
         // Here and elsewhere, it's probably best to check for whether the user is the target first,
         // as that should short-circuit more often.
-        return data.me == matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
+        return data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
       },
       preRun: function(data, matches) {
         let correctedMatch = getHeadmarkerId(data, matches);
@@ -668,7 +761,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
           '0055': 7,
           '0056': 8,
         }[correctedMatch];
-        if (data.phase == 'wormhole') {
+        if (data.phase === 'wormhole') {
           data.limitCutDelay = {
             '004F': 9.2,
             '0050': 10.7,
@@ -716,15 +809,15 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       id: 'TEA Limit Cut Knockback',
       netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
-        return data.me == matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
+        return data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
       },
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: function(data) {
         return data.limitCutDelay - 5;
       },
       alertText: function(data, matches, output) {
-        let isOddNumber = parseInt(getHeadmarkerId(data, matches), 16) & 1 == 1;
-        if (data.phase == 'wormhole') {
+        let isOddNumber = parseInt(getHeadmarkerId(data, matches), 16) & 1 === 1;
+        if (data.phase === 'wormhole') {
           if (isOddNumber)
             return output.knockbackCleaveFaceOutside();
 
@@ -780,7 +873,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '483F', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '483F', capture: false }),
       condition: function(data) {
-        return data.phase == 'brute';
+        return data.phase === 'brute';
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -824,9 +917,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexFr: NetRegexes.startsUsing({ source: 'Croiseur-chasseur', id: '49C2', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '49C2', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '49C2', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -840,7 +931,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       // Nobody should be in front of cruise chaser but the tank, and this is close to
       // water thunder handling, so only tell the tank.
       condition: function(data) {
-        return data.me == data.cruiseTank;
+        return data.me === data.cruiseTank;
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -858,7 +949,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       id: 'TEA Ice Marker',
       netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
-        return data.me == matches.target && getHeadmarkerId(data, matches) == '0043';
+        return data.me === matches.target && getHeadmarkerId(data, matches) === '0043';
       },
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
@@ -881,7 +972,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '4851', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '4851', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       suppressSeconds: 1,
       infoText: (data, _, output) => output.text(),
@@ -900,7 +991,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       id: 'TEA Enumeration YOU',
       netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
-        return data.me == matches.target && getHeadmarkerId(data, matches) == '0041';
+        return data.me === matches.target && getHeadmarkerId(data, matches) === '0041';
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -918,14 +1009,14 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       id: 'TEA Enumeration Everyone',
       netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
-        return getHeadmarkerId(data, matches) == '0041';
+        return getHeadmarkerId(data, matches) === '0041';
       },
       preRun: function(data, matches) {
         data.enumerations = data.enumerations || [];
         data.enumerations.push(matches.target);
       },
       infoText: function(data, _, output) {
-        if (data.enumerations.length != 2)
+        if (data.enumerations.length !== 2)
           return;
         let names = data.enumerations.sort();
         return output.text({ players: names.map((x) => data.ShortName(x)).join(', ') });
@@ -965,9 +1056,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
     {
       id: 'TEA Compressed Water Initial',
       netRegex: NetRegexes.gainsEffect({ effectId: '85E' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -983,9 +1072,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
     {
       id: 'TEA Compressed Water Explode',
       netRegex: NetRegexes.gainsEffect({ effectId: '85E' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: function(data, matches) {
         // 5 second warning.
         return parseFloat(matches.duration) - 5;
@@ -1009,9 +1096,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
     {
       id: 'TEA Compressed Lightning Initial',
       netRegex: NetRegexes.gainsEffect({ effectId: '85F' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -1027,9 +1112,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
     {
       id: 'TEA Compressed Lightning Explode',
       netRegex: NetRegexes.gainsEffect({ effectId: '85F' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: function(data, matches) {
         // 5 second warning.
         return parseFloat(matches.duration) - 5;
@@ -1084,7 +1167,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '4850', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '4850', capture: false }),
       // Ignore enumerations later in the fight.
-      condition: (data) => data.phase == 'brute',
+      condition: (data) => data.phase === 'brute',
       delaySeconds: 1,
       suppressSeconds: 1,
       alertText: (data, _, output) => output.text(),
@@ -1110,9 +1193,10 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '4845', capture: false }),
       delaySeconds: 8,
       durationSeconds: 9,
-      alertText: function(data) {
-        return data.namedNisiPass(data);
+      alertText: function(data, _, output) {
+        return namedNisiPass(data, output);
       },
+      outputStrings: nisiPassOutputStrings,
     },
     {
       id: 'TEA Decree Nisi Gain',
@@ -1143,23 +1227,22 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
     {
       id: 'TEA Final Judgment Nisi Verdict',
       netRegex: NetRegexes.gainsEffect({ effectId: ['8B0', '8B1', '85B', '85C'] }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       // This keeps refreshing forever, so only alert once.
       suppressSeconds: 10000,
       infoText: function(data, matches, output) {
         const num = kFinalJudgementNisi.indexOf(matches.effectId.toUpperCase());
-        return output.text({ nisiNames: data.nisiNames[num] });
+        return output.verdict({ type: nisiToString(num, output) });
       },
       outputStrings: {
-        text: {
-          en: 'Verdict: ${nisiNames} Nisi',
-          de: 'Prozesseröffnung: ${nisiNames} Nisi',
-          ja: '最終: ${nisiNames}',
-          fr: 'Ouverture de procès: ${nisiNames} Nisi',
-          ko: '최종: ${nisiNames}',
-          cn: '最终: ${nisiNames}',
+        ...nisiTypes,
+        verdict: {
+          en: 'Verdict: ${type} Nisi',
+          de: 'Prozesseröffnung: ${type} Nisi',
+          ja: '最終: ${type}',
+          fr: 'Ouverture de procès: ${type} Nisi',
+          ko: '최종: ${type}',
+          cn: '最终: ${type}',
         },
       },
     },
@@ -1184,14 +1267,14 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '4847' }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '4847' }),
       alertText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.sharedTankbusterOnYou();
 
-        if (data.role == 'tank' || data.role == 'healer')
+        if (data.role === 'tank' || data.role === 'healer')
           return output.sharedTankbusterOn({ player: data.ShortName(matches.target) });
       },
       infoText: function(data, _, output) {
-        if (data.role == 'tank' || data.role == 'healer')
+        if (data.role === 'tank' || data.role === 'healer')
           return;
         return output.baitSuperJump();
       },
@@ -1230,7 +1313,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '484A', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '484A', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '484A', capture: false }),
-      condition: (data) => data.phase == 'brute',
+      condition: (data) => data.phase === 'brute',
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -1260,7 +1343,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       condition: function(data) {
         // NOTE: due to timings the "temporal" phase does not start until after debuffs are out.
         // So consider the "temporal" no debuff to be "brute" no debuff here.
-        return data.phase == 'brute' || data.phase == 'inception';
+        return data.phase === 'brute' || data.phase === 'inception';
       },
       delaySeconds: 0.5,
       durationSeconds: 10,
@@ -1284,9 +1367,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
     {
       id: 'TEA Restraining Order',
       netRegex: NetRegexes.gainsEffect({ effectId: '464' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -1303,9 +1384,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
     {
       id: 'TEA House Arrest',
       netRegex: NetRegexes.gainsEffect({ effectId: '463' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -1322,9 +1401,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
     {
       id: 'TEA Shared Sentence',
       netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -1341,7 +1418,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
     {
       id: 'TEA Shared Sentence Inception',
       netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
-      condition: (data) => data.phase == 'inception',
+      condition: (data) => data.phase === 'inception',
       delaySeconds: 3,
       infoText: function(data, matches, output) {
         return output.text({ player: data.ShortName(matches.target) });
@@ -1360,9 +1437,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
     {
       id: 'TEA Aggravated Assault',
       netRegex: NetRegexes.gainsEffect({ effectId: '461' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
@@ -1385,18 +1460,18 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A80' }),
       netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '4A80' }),
       alertText: function(data, matches, output) {
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           return output.tankBusterOnYou();
 
-        if (data.role == 'healer')
+        if (data.role === 'healer')
           return output.busterOn({ player: data.ShortName(matches.target) });
       },
       // As this seems to usually seems to be invulned,
       // don't make a big deal out of it.
       infoText: function(data, matches, output) {
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           return;
-        if (data.role != 'tank')
+        if (data.role !== 'tank')
           return;
 
         return output.busterOn({ player: data.ShortName(matches.target) });
@@ -1424,7 +1499,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       id: 'TEA Judgment Crystal',
       netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
-        return data.me == matches.target && getHeadmarkerId(data, matches) == '0060';
+        return data.me === matches.target && getHeadmarkerId(data, matches) === '0060';
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -1484,7 +1559,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
     {
       id: 'TEA Inception Vuln Collection',
       netRegex: NetRegexes.gainsEffect({ effectId: '2B7' }),
-      condition: (data) => data.phase == 'inception',
+      condition: (data) => data.phase === 'inception',
       run: function(data, matches) {
         data.vuln[matches.target] = true;
       },
@@ -1498,10 +1573,10 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexFr: NetRegexes.ability({ source: 'Primo-Alexander', id: '485F', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'アレキサンダー・プライム', id: '485F', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '485F', capture: false }),
-      condition: (data) => data.phase == 'inception',
+      condition: (data) => data.phase === 'inception',
       alarmText: function(data, _, output) {
         let numVulns = Object.keys(data.vuln).length;
-        if (data.role == 'tank' && data.vuln[data.me] && numVulns >= 5) {
+        if (data.role === 'tank' && data.vuln[data.me] && numVulns >= 5) {
           // If you're stacking three people in the shared sentence,
           // then probably the tank wants to handle jump with cooldowns.
           // TODO: we could probably determine where this is.
@@ -1525,7 +1600,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         if (data.vuln[data.me]) {
           // Tanks covered in the alarmText case above.
           let numVulns = Object.keys(data.vuln).length;
-          if (data.role == 'tank' && numVulns >= 5)
+          if (data.role === 'tank' && numVulns >= 5)
             return;
 
           return output.vulnAvoidCleavesAndJump();
@@ -1607,7 +1682,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
           return false;
         if (!(/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches)))
           return false;
-        return data.phase == 'wormhole' && data.me == matches.target;
+        return data.phase === 'wormhole' && data.me === matches.target;
       },
       preRun: function(data, matches) {
         data.puddle = {
@@ -1622,76 +1697,86 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         }[getHeadmarkerId(data, matches)];
       },
       durationSeconds: 10,
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         // Initial directions.
         // TODO: we could figure out which robot was left and right based
         // on chakrams, and call that out here too instead of just saying "Robot".
         return {
-          '004F': {
-            en: 'Left To Robot; Look Outside; 3rd Puddle',
-            de: 'Links vom Robot; Nach Außen schauen; 3. Fläche',
-            fr: 'À gauche du Robot; Regardez à l\'extérieur; 3rd zone au sol',
-            ja: '右上 外向き 懺悔3回目',
-            ko: '왼쪽 위 / 참회 #3',
-            cn: '左-->机器人; 面向外侧; 水圈#3',
-          },
-          '0050': {
-            en: 'Back Right Opposite Robot; Look Middle; 3rd Puddle',
-            de: 'Hinten Rechts gegenüber vom Robot; zur Mitte schauen; 3. Fläche',
-            fr: 'Revenez à l\'opposé droite du Robot; Regardez au milieu; 3rd zone au sol',
-            ja: '左下 内向き 懺悔3回目',
-            ko: '오른쪽 위 / 참회 #3',
-            cn: '右后<--机器人; 面向中间; 水圈#3',
-          },
-          '0051': {
-            en: 'Back Left Opposite Robot; No Puddle',
-            de: 'Hinten Links gegenüber vom Robot; keine Fläche',
-            fr: 'Revenez à l\'opposé gauche du Robot; Pas de zone au sol',
-            ja: '左上',
-            ko: '왼쪽 아래',
-            cn: '左后<--机器人; 无水圈',
-          },
-          '0052': {
-            en: 'Right To Robot; No puddle',
-            de: 'Rechts vom Robot; keine Fläche',
-            fr: 'À droite du Robot; Pas de zone au sol',
-            ja: '右下',
-            ko: '오른쪽 아래',
-            cn: '右-->机器人; 无水圈',
-          },
-          '0053': {
-            en: 'Left Robot Side -> 1st Puddle',
-            de: 'Linke Robot Seite -> 1. Fläche',
-            fr: 'Côté gauche du Robot-> 1st zone au sol',
-            ja: '右ちょい上 懺悔1回目',
-            ko: '왼쪽 / 참회 #1',
-            cn: '机器人左侧 --> 水圈#1',
-          },
-          '0054': {
-            en: 'Right Robot Side -> 1st Puddle',
-            de: 'Rechte Robot Seite -> 1. Fläche',
-            fr: 'Côté droit du Robot-> 1st zone au sol',
-            ja: '左ちょい上 懺悔1回目',
-            ko: '오른쪽 / 참회 #1',
-            cn: '机器人右侧 --> 水圈#1',
-          },
-          '0055': {
-            en: 'Left Robot Side -> cardinal; 2nd Puddle',
-            de: 'Linke Robot Seite -> cardinal; 2. Fläche',
-            fr: 'Côté gauche du Robot -> cardinal; 2nd zone au sol',
-            ja: '右ちょい上 懺悔2回目',
-            ko: '왼쪽 / 참회 #2',
-            cn: '机器人左侧 --> 边; 水圈#2',
-          },
-          '0056': {
-            en: 'Right Robot Side -> cardinal; 2nd Puddle',
-            de: 'Rechte Robot Seite -> cardinal; 2. Fläche',
-            fr: 'Côté droit du Robot -> cardinal; 2nd zone au sol',
-            ja: '左ちょい上 懺悔2回目',
-            ko: '오른쪽 / 참회 #2',
-            cn: '机器人右侧 --> 边; 水圈#2',
-          },
+          '004F': output.marker1(),
+          '0050': output.marker2(),
+          '0051': output.marker3(),
+          '0052': output.marker4(),
+          '0053': output.marker5(),
+          '0054': output.marker6(),
+          '0055': output.marker7(),
+          '0056': output.marker8(),
         }[getHeadmarkerId(data, matches)];
+      },
+      outputStrings: {
+        marker1: {
+          en: 'Left To Robot; Look Outside; 3rd Puddle',
+          de: 'Links vom Robot; Nach Außen schauen; 3. Fläche',
+          fr: 'À gauche du Robot; Regardez à l\'extérieur; 3rd zone au sol',
+          ja: '右上 外向き 懺悔3回目',
+          ko: '왼쪽 위 / 참회 #3',
+          cn: '左-->机器人; 面向外侧; 水圈#3',
+        },
+        marker2: {
+          en: 'Back Right Opposite Robot; Look Middle; 3rd Puddle',
+          de: 'Hinten Rechts gegenüber vom Robot; zur Mitte schauen; 3. Fläche',
+          fr: 'Revenez à l\'opposé droite du Robot; Regardez au milieu; 3rd zone au sol',
+          ja: '左下 内向き 懺悔3回目',
+          ko: '오른쪽 위 / 참회 #3',
+          cn: '右后<--机器人; 面向中间; 水圈#3',
+        },
+        marker3: {
+          en: 'Back Left Opposite Robot; No Puddle',
+          de: 'Hinten Links gegenüber vom Robot; keine Fläche',
+          fr: 'Revenez à l\'opposé gauche du Robot; Pas de zone au sol',
+          ja: '左上',
+          ko: '왼쪽 아래',
+          cn: '左后<--机器人; 无水圈',
+        },
+        marker4: {
+          en: 'Right To Robot; No puddle',
+          de: 'Rechts vom Robot; keine Fläche',
+          fr: 'À droite du Robot; Pas de zone au sol',
+          ja: '右下',
+          ko: '오른쪽 아래',
+          cn: '右-->机器人; 无水圈',
+        },
+        marker5: {
+          en: 'Left Robot Side -> 1st Puddle',
+          de: 'Linke Robot Seite -> 1. Fläche',
+          fr: 'Côté gauche du Robot-> 1st zone au sol',
+          ja: '右ちょい上 懺悔1回目',
+          ko: '왼쪽 / 참회 #1',
+          cn: '机器人左侧 --> 水圈#1',
+        },
+        marker6: {
+          en: 'Right Robot Side -> 1st Puddle',
+          de: 'Rechte Robot Seite -> 1. Fläche',
+          fr: 'Côté droit du Robot-> 1st zone au sol',
+          ja: '左ちょい上 懺悔1回目',
+          ko: '오른쪽 / 참회 #1',
+          cn: '机器人右侧 --> 水圈#1',
+        },
+        marker7: {
+          en: 'Left Robot Side -> cardinal; 2nd Puddle',
+          de: 'Linke Robot Seite -> cardinal; 2. Fläche',
+          fr: 'Côté gauche du Robot -> cardinal; 2nd zone au sol',
+          ja: '右ちょい上 懺悔2回目',
+          ko: '왼쪽 / 참회 #2',
+          cn: '机器人左侧 --> 边; 水圈#2',
+        },
+        marker8: {
+          en: 'Right Robot Side -> cardinal; 2nd Puddle',
+          de: 'Rechte Robot Seite -> cardinal; 2. Fläche',
+          fr: 'Côté droit du Robot -> cardinal; 2nd zone au sol',
+          ja: '左ちょい上 懺悔2回目',
+          ko: '오른쪽 / 참회 #2',
+          cn: '机器人右侧 --> 边; 水圈#2',
+        },
       },
     },
     {
@@ -1705,9 +1790,9 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       condition: function(data) {
         if (!data.options.cactbotWormholeStrat)
           return false;
-        if (data.phase != 'wormhole')
+        if (data.phase !== 'wormhole')
           return;
-        return data.limitCutNumber == 2 || data.limitCutNumber == 3;
+        return data.limitCutNumber === 2 || data.limitCutNumber === 3;
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -1725,7 +1810,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       id: 'TEA Incinerating Heat',
       netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
-        return getHeadmarkerId(data, matches) == '005D';
+        return getHeadmarkerId(data, matches) === '005D';
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -1788,7 +1873,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexJa: NetRegexes.ability({ source: 'アレキサンダー・プライム', id: '4879', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '4879', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       delaySeconds: 6,
       alarmText: (data, _, output) => output.text(),
@@ -1827,18 +1912,18 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       id: 'TEA Perfect Optical Sight Stack',
       netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
-        return getHeadmarkerId(data, matches) == '003E';
+        return getHeadmarkerId(data, matches) === '003E';
       },
       preRun: function(data, matches) {
         data.opticalStack = data.opticalStack || [];
         data.opticalStack.push(matches.target);
       },
       alertText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.stackOnYou();
       },
       infoText: function(data, _, output) {
-        if (data.opticalStack.length == 1)
+        if (data.opticalStack.length === 1)
           return;
         let names = data.opticalStack.map((x) => data.ShortName(x)).sort();
         return output.opticalStackPlayers({ players: names.join(', ') });
@@ -1906,7 +1991,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
     {
       id: 'TEA Contact Prohibition',
       netRegex: NetRegexes.gainsEffect({ effectId: '868' }),
-      condition: (data, matches) => data.me == matches.target,
+      condition: (data, matches) => data.me === matches.target,
       infoText: (data, _, output) => output.text(),
       tts: {
         en: 'Orange',
@@ -1930,7 +2015,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
     {
       id: 'TEA Contact Regulation',
       netRegex: NetRegexes.gainsEffect({ effectId: '869' }),
-      condition: (data, matches) => data.me == matches.target,
+      condition: (data, matches) => data.me === matches.target,
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -1946,7 +2031,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
     {
       id: 'TEA Escape Prohibition',
       netRegex: NetRegexes.gainsEffect({ effectId: '86A' }),
-      condition: (data, matches) => data.me == matches.target,
+      condition: (data, matches) => data.me === matches.target,
       infoText: (data, _, output) => output.text(),
       tts: {
         en: 'Purple',
@@ -1970,7 +2055,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
     {
       id: 'TEA Escape Detection',
       netRegex: NetRegexes.gainsEffect({ effectId: '86B' }),
-      condition: (data, matches) => data.me == matches.target,
+      condition: (data, matches) => data.me === matches.target,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -1994,7 +2079,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
     {
       id: 'TEA Alpha Instructions',
       netRegex: NetRegexes.tether({ id: '0062', capture: false }),
-      condition: (data) => data.phase == 'alpha',
+      condition: (data) => data.phase === 'alpha',
       delaySeconds: 1,
       suppressSeconds: 10,
       run: function(data) {
@@ -2007,100 +2092,96 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         data.alphaSolidarity = sortedNames[0];
         data.alphaDefamation = sortedNames[1];
         data.alphaSeverity = [sortedNames[2], sortedNames[3], sortedNames[4]];
+        data.alphaNoDebuff = [sortedNames[5], sortedNames[6], sortedNames[7]];
+      },
+    },
+    {
+      id: 'TEA Alpha Instructions Callout',
+      netRegex: NetRegexes.tether({ id: '0062', capture: false }),
+      condition: (data) => data.phase === 'alpha',
+      delaySeconds: 2,
+      durationSeconds: 28,
+      suppressSeconds: 10,
+      // TODO: this would probably be cleaner as a single response,
+      // rather than a giant pile of conditionals in each function.
+      alarmText: function(data, _, output) {
+        // Defamation will wipe the group, so gets an alarm.
+        if (data.me === data.alphaDefamation)
+          return output.defamation();
+      },
+      alertText: function(data, _, output) {
+        // Folks who need to not stack, get an alert.
+        if (data.me === data.alphaSolidarity)
+          return output.solidarity();
+        if (data.alphaSeverity.includes(data.me))
+          return output.severity();
+      },
+      infoText: function(data, _, output) {
+        // The other 4 people in the stack group just get info.
+        if (data.me === data.alphaDefamation)
+          return;
+        if (data.me === data.alphaSolidarity)
+          return;
+        if (data.alphaSeverity.includes(data.me))
+          return;
+        if (data.alphaNoDebuff.includes(data.me))
+          return output.noDebuff();
 
-        let kNoDebuff = {
-          en: 'No debuff: shared stack',
-          de: 'Kein debuff: geteilter stack',
-          ja: 'デバフ無し',
-          fr: 'Pas de debuff : package partagé',
-          ko: '디버프 없음; 오른쪽/함께 맞기',
-          cn: '无Debuff：分组分摊',
-        };
-        let kSeverity = {
+        // If enough people are alive, unknowns are probably no debuff stack.
+        if (Object.keys(data.tetherBois).length >= 5)
+          return output.unknownMaybeStack();
+        // Otherwise, gg.
+        return output.unknown();
+      },
+      outputStrings: {
+        unknownMaybeStack: {
+          en: 'No clone: probably stack?',
+          de: 'keine Klone: warscheinlich kein debuff + stack?',
+          ja: 'クローン無し: 多分シェア?',
+          fr: 'Pas de clone : package ?',
+          ko: '클론 없음: 아마도 오른쪽/함께 맞기?',
+          cn: '没有分身: 或许要集合?',
+        },
+        unknown: {
+          en: 'No clone: ???',
+          de: 'keine Klone: ???',
+          ja: 'クローン無し: ???',
+          fr: 'Pas de clone : ???',
+          ko: '클론 없음: ???',
+          cn: '没有分身: ¿¿¿',
+        },
+        defamation: {
+          en: 'Defamation on YOU',
+          de: 'Ehrenstrafe aud DIR',
+          fr: 'Diffamation sur VOUS',
+          ja: '名誉罰',
+          ko: '명예형: 보스 밑에서 나 홀로!!!',
+          cn: '名誉罪',
+        },
+        solidarity: {
+          en: 'Shared Sentence: stack',
+          de: 'Urteil Kollektivstrafe: stack',
+          ja: '集団罰: ',
+          fr: 'Peine collective : packez-vous',
+          ko: '집단형: 오른쪽/함께 맞기',
+          cn: '集团罪',
+        },
+        severity: {
           en: 'Severity: avoid shared stack',
           de: 'Erschwertes: geteilter stack ausweichen',
           ja: '加重罰',
           fr: 'Sévérité : éloignez-vous du package',
           ko: '가중형; 왼쪽/가중형끼리 모이기',
           cn: '加重罪：远离分摊',
-        };
-
-        let kUnknown;
-        if (sortedNames.length >= 5) {
-          kUnknown = {
-            en: 'No clone: probably stack?',
-            de: 'keine Klone: warscheinlich kein debuff + stack?',
-            ja: 'クローン無し: 多分シェア?',
-            fr: 'Pas de clone : package ?',
-            ko: '클론 없음: 아마도 오른쪽/함께 맞기?',
-            cn: '没有分身: 或许要集合?',
-          };
-        } else {
-          kUnknown = {
-            en: 'No clone: ???',
-            de: 'keine Klone: ???',
-            ja: 'クローン無し: ???',
-            fr: 'Pas de clone : ???',
-            ko: '클론 없음: ???',
-            cn: '没有分身: ¿¿¿',
-          };
-        }
-
-        data.alphaInstructions = {
-          '-1': kUnknown,
-          '0': {
-            en: 'Shared Sentence: stack',
-            de: 'Urteil Kollektivstrafe: stack',
-            ja: '集団罰: ',
-            fr: 'Peine collective : packez-vous',
-            ko: '집단형: 오른쪽/함께 맞기',
-            cn: '集团罪',
-          },
-          '1': {
-            en: 'Defamation on YOU',
-            de: 'Ehrenstrafe aud DIR',
-            fr: 'Diffamation sur VOUS',
-            ja: '名誉罰',
-            ko: '명예형: 보스 밑에서 나 홀로!!!',
-            cn: '名誉罪',
-          },
-          '2': kSeverity,
-          '3': kSeverity,
-          '4': kSeverity,
-          '5': kNoDebuff,
-          '6': kNoDebuff,
-          '7': kNoDebuff,
-        }[sortedNames.indexOf(data.me)];
-      },
-    },
-    {
-      id: 'TEA Alpha Instructions Callout',
-      netRegex: NetRegexes.tether({ id: '0062', capture: false }),
-      condition: (data) => data.phase == 'alpha',
-      delaySeconds: 2,
-      durationSeconds: 28,
-      suppressSeconds: 10,
-      alarmText: function(data) {
-        // Defamation will wipe the group, so gets an alarm.
-        if (data.me == data.alphaDefamation)
-          return data.alphaInstructions;
-      },
-      alertText: function(data) {
-        // Folks who need to not stack, get an alert.
-        if (data.me == data.alphaSolidarity)
-          return data.alphaInstructions;
-        if (data.alphaSeverity.includes(data.me))
-          return data.alphaInstructions;
-      },
-      infoText: function(data) {
-        // The other 4 people in the stack group just get info.
-        if (data.me == data.alphaDefamation)
-          return;
-        if (data.me == data.alphaSolidarity)
-          return;
-        if (data.alphaSeverity.includes(data.me))
-          return;
-        return data.alphaInstructions;
+        },
+        noDebuff: {
+          en: 'No debuff: shared stack',
+          de: 'Kein debuff: geteilter stack',
+          ja: 'デバフ無し',
+          fr: 'Pas de debuff : package partagé',
+          ko: '디버프 없음; 오른쪽/함께 맞기',
+          cn: '无Debuff：分组分摊',
+        },
       },
     },
     {
@@ -2111,21 +2192,14 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '4B0D', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B0D', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '4B0D', capture: false }),
-      preRun: function(data) {
-        data.firstAlphaOrdainedText = {
-          en: 'Motion first',
-          de: 'Bewegungsbefehl zuerst',
-          ja: '最初は動く',
-          fr: 'Mouvement en premier',
-          ko: '우선 움직이기',
-          cn: '首先移动',
-        };
-      },
       durationSeconds: 8,
       suppressSeconds: 20,
-      infoText: (data) => data.firstAlphaOrdainedText,
+      infoText: (data, _, output) => output.motionFirst(),
       run: function(data) {
-        data.firstAlphaOrdained = 'motion';
+        data.firstAlphaOrdainedText = 'motionFirst';
+      },
+      outputStrings: {
+        motionFirst: ordainedOutputStrings.motionFirst,
       },
     },
     {
@@ -2136,21 +2210,14 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '4B0E', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B0E', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '4B0E', capture: false }),
-      preRun: function(data) {
-        data.firstAlphaOrdainedText = {
-          en: 'Stillness first',
-          de: 'Stillstandsbefehl zuerst',
-          ja: '最初は止まる',
-          fr: 'Immobilité en premier',
-          ko: '우선 멈추기',
-          cn: '首先静止',
-        };
-      },
       durationSeconds: 8,
       suppressSeconds: 20,
-      infoText: (data) => data.firstAlphaOrdainedText,
+      infoText: (data, _, output) => output.stillnessFirst(),
       run: function(data) {
-        data.firstAlphaOrdained = 'stillness';
+        data.firstAlphaOrdainedText = 'stillnessFirst';
+      },
+      outputStrings: {
+        stillnessFirst: ordainedOutputStrings.stillnessFirst,
       },
     },
     {
@@ -2161,31 +2228,17 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '4899', capture: false }),
       netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '4899', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '4899', capture: false }),
-      preRun: function(data) {
-        data.secondAlphaOrdainedText = {
-          en: 'Motion second',
-          de: 'Bewegungsbefehl als Zweites',
-          ja: '最後は動く',
-          fr: 'Mouvement en deuxième',
-          ko: '마지막엔 움직이기',
-          cn: '最后移动',
-        };
-      },
       durationSeconds: 15,
       suppressSeconds: 20,
-      infoText: function(data) {
-        let first = data.firstAlphaOrdainedText[data.displayLang];
-        let second = data.secondAlphaOrdainedText[data.displayLang];
-        // For languages that haven't been translated, just return the second text.
-        if (!first || !second)
-          return data.secondAlphaOrdainedText;
-
-        return first + ', ' + second;
+      infoText: function(data, _, output) {
+        data.secondAlphaOrdainedText = 'motionSecond';
+        return output.combined({
+          action1: output[data.firstAlphaOrdainedText](),
+          action2: output[data.secondAlphaOrdainedText](),
+        });
       },
-      tts: (data) => data.secondAlphaOrdainedText,
-      run: function(data) {
-        data.secondAlphaOrdained = 'motion';
-      },
+      tts: (data, _, output) => output[data.secondAlphaOrdainedText](),
+      outputStrings: ordainedOutputStrings,
     },
     {
       id: 'TEA Alpha Ordained Stillness 2',
@@ -2195,31 +2248,17 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '489A', capture: false }),
       netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '489A', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '489A', capture: false }),
-      preRun: function(data) {
-        data.secondAlphaOrdainedText = {
-          en: 'Stillness second',
-          de: 'Stillstandsbefehl als Zweites',
-          ja: '最後は止まる',
-          fr: 'Immobilité en deuxième',
-          ko: '마지막엔 멈추기',
-          cn: '最后静止',
-        };
-      },
       durationSeconds: 15,
       suppressSeconds: 20,
-      infoText: function(data) {
-        let first = data.firstAlphaOrdainedText[data.displayLang];
-        let second = data.secondAlphaOrdainedText[data.displayLang];
-        // For languages that haven't been translated, just return the second text.
-        if (!first || !second)
-          return data.secondAlphaOrdainedText;
-
-        return first + ', ' + second;
+      infoText: function(data, _, output) {
+        data.secondAlphaOrdainedText = 'stillnessSecond';
+        return output.combined({
+          action1: output[data.firstAlphaOrdainedText](),
+          action2: output[data.secondAlphaOrdainedText](),
+        });
       },
-      tts: (data) => data.secondAlphaOrdainedText,
-      run: function(data) {
-        data.secondAlphaOrdained = 'stillness';
-      },
+      tts: (data, _, output) => output[data.secondAlphaOrdainedText](),
+      outputStrings: ordainedOutputStrings,
     },
     {
       id: 'TEA Alpha Safe Spot',
@@ -2231,7 +2270,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '49AA' }),
       netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '49AA' }),
       durationSeconds: 10,
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         // TODO: this is overly complicated.
         // Alexanders always appear in the same spots and it's always
         // the second or third Alexander that is the safe spot.
@@ -2259,48 +2298,52 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         data.safeAlphaPos = [matches.x, matches.y];
 
         // Unknown idx?
-        if (idx != 1 && idx != 2)
+        if (idx !== 1 && idx !== 2)
           return;
 
-        if (data.me == data.alphaDefamation) {
-          return [
-            {
-              en: 'Defamation: front left',
-              de: 'Ehrenstrafe: vorne links',
-              fr: 'Diffamation : devant à gauche',
-              ja: '名誉: 左前',
-              ko: '명예: 왼쪽 앞!!!',
-              cn: '名誉罪: 左前',
-            },
-            {
-              en: 'Defamation: front right',
-              de: 'Ehrenstrafe: vorne rechts',
-              fr: 'Diffamation : devant à droite',
-              ja: '名誉: 右前',
-              ko: '명예: 오른쪽 앞!!!',
-              cn: '名誉罪: 右前',
-            },
-          ][idx - 1];
+        if (data.me === data.alphaDefamation) {
+          if (idx === 1)
+            return output.defamationFrontLeft();
+          return output.defamationFrontRight();
         }
 
-        return [
-          {
-            en: 'Party: back right',
-            de: 'Gruppe: hinten rechts',
-            ja: '右後ろ',
-            fr: 'Groupe : arrière droite',
-            ko: '오른쪽 뒤!!!',
-            cn: '右后',
-          },
-          {
-            en: 'Party: back left',
-            de: 'Gruppe: hinten links',
-            ja: '左後ろ',
-            fr: 'Groupe : arrière gauche',
-            ko: '왼쪽 뒤!!!',
-            cn: '左后',
-          },
-        ][idx - 1];
+        if (idx === 1)
+          return output.partyBackRight();
+        return output.partyBackLeft();
+      },
+      outputStrings: {
+        defamationFrontLeft: {
+          en: 'Defamation: front left',
+          de: 'Ehrenstrafe: vorne links',
+          fr: 'Diffamation : devant à gauche',
+          ja: '名誉: 左前',
+          ko: '명예: 왼쪽 앞!!!',
+          cn: '名誉罪: 左前',
+        },
+        defamationFrontRight: {
+          en: 'Defamation: front right',
+          de: 'Ehrenstrafe: vorne rechts',
+          fr: 'Diffamation : devant à droite',
+          ja: '名誉: 右前',
+          ko: '명예: 오른쪽 앞!!!',
+          cn: '名誉罪: 右前',
+        },
+        partyBackRight: {
+          en: 'Party: back right',
+          de: 'Gruppe: hinten rechts',
+          ja: '右後ろ',
+          fr: 'Groupe : arrière droite',
+          ko: '오른쪽 뒤!!!',
+          cn: '右后',
+        },
+        partyBackLeft: {
+          en: 'Party: back left',
+          de: 'Gruppe: hinten links',
+          ja: '左後ろ',
+          fr: 'Groupe : arrière gauche',
+          ko: '왼쪽 뒤!!!',
+          cn: '左后',
+        },
       },
     },
     {
@@ -2314,7 +2357,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       // 5 seconds until mechanic
       delaySeconds: 2.2,
       alertText: function(data, _, output) {
-        if (data.firstAlphaOrdained == 'motion')
+        if (data.firstAlphaOrdainedText === 'motionFirst')
           return output.moveFirst();
 
         return output.stillnessFirst();
@@ -2349,7 +2392,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       // ~4 seconds until mechanic (to avoid overlapping with first)
       delaySeconds: 7.2,
       alertText: function(data, _, output) {
-        if (data.secondAlphaOrdained == 'motion')
+        if (data.secondAlphaOrdainedText === 'motionSecond')
           return output.keepMoving();
 
         return output.stopEverything();
@@ -2376,7 +2419,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
     {
       id: 'TEA Beta Instructions',
       netRegex: NetRegexes.tether({ id: '0062', capture: false }),
-      condition: (data) => data.phase == 'beta',
+      condition: (data) => data.phase === 'beta',
       delaySeconds: 1,
       suppressSeconds: 10,
       run: function(data) {
@@ -2387,105 +2430,55 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         data.betaBait = [sortedNames[0], sortedNames[1]];
         data.betaJumps = [sortedNames[0], sortedNames[2], sortedNames[6]];
 
-        data.betaInstructions = {
-          // If you don't know, it's probably best for you to pretend like
-          // you're running E->S so that there's a jump there and you
-          // don't kill your friends stacking north.
-          '-1': {
-            en: 'No Clone: maybe purple E->S ???',
-            de: 'Keine Klone: vielleicht Lila O->S ???',
-            ja: 'クローン無し: 多分東から南???',
-            fr: 'Pas de Clone : peut-être E->S ???',
-            ko: '클론 없음: 아마도 동→남 ???',
-            cn: '没有分身: 可能紫色 东->南 ???',
-          },
-          '0': {
-            en: 'Purple Bait: bait E',
-            de: 'Lila Köder: locke O',
-            ja: '逃亡監察: 東へ',
-            fr: 'Attirez le Violet : attirez à l\'E',
-            ko: '보라/도망감찰: 유도역할/동쪽',
-            cn: '紫色引导: 东',
-          },
-          '1': {
-            en: 'Orange Bait: bait N',
-            de: 'Orange Köder: locke N',
-            ja: '接触保護: 北へ',
-            fr: 'Attirez l\'Orange : attirez au N',
-            ko: '노랑/접촉보호: 유도역할/북쪽',
-            cn: '橙色引导: 北',
-          },
-          '2': {
-            en: 'Purple, no tether: E->W',
-            de: 'Lila, keine Verbindung: O->W',
-            ja: '逃亡禁止, 線無し: 東から西へ',
-            fr: 'Violet, pas de lien : E->O',
-            ko: '보라/접촉금지/선없음: 동→서',
-            cn: '紫色, 无连线: 东->西',
-          },
-          // This person also has the shared sentence.
-          '3': {
-            en: 'Orange, no tether: E->N',
-            de: 'Orange, keine Verbindung: O->N',
-            ja: '接触禁止, 線無し: 東から北へ',
-            fr: 'Orange, pas de lien : E->N',
-            ko: '노랑/접촉금지/선없음: 동→북',
-            cn: '橙色, 无连线: 东->北',
-          },
-          '4': {
-            en: 'Purple, close tether: E->N',
-            de: 'Lila, nahe Verbindungr: O->N',
-            ja: '逃亡禁止, 接近強制: 東から北へ',
-            fr: 'Violet, lien rapproché : E->N',
-            ko: '보라/도망금지/강제접근: 동→북',
-            cn: '紫色, 接近连线: 东->北',
-          },
-          '5': {
-            en: 'Orange, close tether: E->N',
-            de: 'Orange, nahe Verbindung: O->N',
-            ja: '接触禁止, 接近強制: 東から北へ',
-            fr: 'Orange, lien rapproché : E->N',
-            ko: '노랑/접촉금지/강제접근: 동→북',
-            cn: '橙色, 接近连线: 东->北',
-          },
-          '6': {
-            en: 'Purple, far tether: E->S',
-            de: 'Lila, entfernte Verbindung: O->S',
-            ja: '逃亡禁止, 接近禁止: 東から南へ',
-            fr: 'Violet, lien éloigné : E->S',
-            ko: '보라/도망금지/접근금지: 동→남',
-            cn: '紫色, 远离连线: 东->南',
-          },
-          '7': {
-            en: 'Orange, far tether: E->N',
-            de: 'Orange, entfernte Verbindung: O->N',
-            ja: '接触禁止, 接近禁止: 東から北へ',
-            fr: 'Orange, lien éloigné : E->N',
-            ko: '노랑/접촉금지/접근금지: 동→북',
-            cn: '橙色, 远离连线: 东->北',
-          },
-        }[sortedNames.indexOf(data.me)];
+        data.betaIndex = sortedNames.indexOf(data.me);
       },
     },
     {
       id: 'TEA Beta Instructions Callout',
       netRegex: NetRegexes.tether({ id: '0062', capture: false }),
-      condition: (data) => data.phase == 'beta',
+      condition: (data) => data.phase === 'beta',
+      preRun: (data, _, output) => {
+        // data.betaIndex won't be resolved until 1s delay and 'TEA Beta Instructions' runs.
+        // So make this a function, and defer the lookup of data.betaIndex.
+        data.betaInstructions = (idx) => {
+          if (typeof idx !== 'number') {
+            console.error(`TEA Beta Instructions Callout: non-number idx: ${idx}`);
+            return output.unknown();
+          }
+          const strings = {
+            '-1': output.unknown(),
+            '0': output.purpleBait(),
+            '1': output.orangeBait(),
+            '2': output.purpleNoTether(),
+            '3': output.orangeNoTether(),
+            '4': output.purpleCloseTether(),
+            '5': output.orangeCloseTether(),
+            '6': output.purpleFarTether(),
+            '7': output.orangeFarTether(),
+          };
+
+          if (idx in strings)
+            return strings[idx];
+
+          console.error(`TEA Beta Instructions Callout: missing idx: ${idx}`);
+          return output.unknown();
+        };
+      },
       delaySeconds: 2,
       durationSeconds: 35,
       suppressSeconds: 10,
-      // TODO: this mess would be a nice use for a function that can just return the text type.
+      // TODO: switch this all to a response.
       alarmText: function(data) {
         // Baiters get an alarm text.
         if (data.betaBait.includes(data.me))
-          return data.betaInstructions;
+          return data.betaInstructions(data.betaIndex);
       },
       alertText: function(data) {
         // The west and south jump get an alert text.
         if (data.betaBait.includes(data.me))
           return;
         if (data.betaJumps.includes(data.me))
-          return data.betaInstructions;
+          return data.betaInstructions(data.betaIndex);
       },
       infoText: function(data) {
         // The rest of the group (going north) gets info.
@@ -2493,7 +2486,85 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
           return;
         if (data.betaJumps.includes(data.me))
           return;
-        return data.betaInstructions;
+        return data.betaInstructions(data.betaIndex);
+      },
+      outputStrings: {
+        unknown: {
+          // If you don't know, it's probably best for you to pretend like
+          // you're running E->S so that there's a jump there and you
+          // don't kill your friends stacking north.
+          en: 'No Clone: maybe purple E->S ???',
+          de: 'Keine Klone: vielleicht Lila O->S ???',
+          ja: 'クローン無し: 多分東から南???',
+          fr: 'Pas de Clone : peut-être E->S ???',
+          ko: '클론 없음: 아마도 동→남 ???',
+          cn: '没有分身: 可能紫色 东->南 ???',
+        },
+        purpleBait: {
+          en: 'Purple Bait: bait E',
+          de: 'Lila Köder: locke O',
+          ja: '逃亡監察: 東へ',
+          fr: 'Attirez le Violet : attirez à l\'E',
+          ko: '보라/도망감찰: 유도역할/동쪽',
+          cn: '紫色引导: 东',
+        },
+        orangeBait: {
+          en: 'Orange Bait: bait N',
+          de: 'Orange Köder: locke N',
+          ja: '接触保護: 北へ',
+          fr: 'Attirez l\'Orange : attirez au N',
+          ko: '노랑/접촉보호: 유도역할/북쪽',
+          cn: '橙色引导: 北',
+        },
+        purpleNoTether: {
+          en: 'Purple, no tether: E->W',
+          de: 'Lila, keine Verbindung: O->W',
+          ja: '逃亡禁止, 線無し: 東から西へ',
+          fr: 'Violet, pas de lien : E->O',
+          ko: '보라/접촉금지/선없음: 동→서',
+          cn: '紫色, 无连线: 东->西',
+        },
+        orangeNoTether: {
+          // This person also has the shared sentence.
+          en: 'Orange, no tether: E->N',
+          de: 'Orange, keine Verbindung: O->N',
+          ja: '接触禁止, 線無し: 東から北へ',
+          fr: 'Orange, pas de lien : E->N',
+          ko: '노랑/접촉금지/선없음: 동→북',
+          cn: '橙色, 无连线: 东->北',
+        },
+        purpleCloseTether: {
+          en: 'Purple, close tether: E->N',
+          de: 'Lila, nahe Verbindungr: O->N',
+          ja: '逃亡禁止, 接近強制: 東から北へ',
+          fr: 'Violet, lien rapproché : E->N',
+          ko: '보라/도망금지/강제접근: 동→북',
+          cn: '紫色, 接近连线: 东->北',
+        },
+        orangeCloseTether: {
+          en: 'Orange, close tether: E->N',
+          de: 'Orange, nahe Verbindung: O->N',
+          ja: '接触禁止, 接近強制: 東から北へ',
+          fr: 'Orange, lien rapproché : E->N',
+          ko: '노랑/접촉금지/강제접근: 동→북',
+          cn: '橙色, 接近连线: 东->北',
+        },
+        purpleFarTether: {
+          en: 'Purple, far tether: E->S',
+          de: 'Lila, entfernte Verbindung: O->S',
+          ja: '逃亡禁止, 接近禁止: 東から南へ',
+          fr: 'Violet, lien éloigné : E->S',
+          ko: '보라/도망금지/접근금지: 동→남',
+          cn: '紫色, 远离连线: 东->南',
+        },
+        orangeFarTether: {
+          en: 'Orange, far tether: E->N',
+          de: 'Orange, entfernte Verbindung: O->N',
+          ja: '接触禁止, 接近禁止: 東から北へ',
+          fr: 'Orange, lien éloigné : E->N',
+          ko: '노랑/접촉금지/접근금지: 동→북',
+          cn: '橙色, 远离连线: 东->北',
+        },
       },
     },
     {
@@ -2504,7 +2575,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '489E' }),
       netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '489E' }),
       netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '489E' }),
-      preRun: function(data, matches) {
+      infoText: function(data, matches, output) {
         // Track which perfect alexander clone did this.
         data.radiantSourceId = matches.sourceId;
 
@@ -2513,46 +2584,18 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         let y = 100 - matches.y;
         // 0 = N, 1 = E, 2 = S, 3 = W
         let idx = Math.round((Math.atan2(x, y) / Math.PI * 2 + 4)) % 4;
-        data.radiantText = {
+        data.radiantOutputStringKey = {
           // North shouldn't be possible.
           // But, leaving this here in case my math is wrong.
-          0: {
-            en: 'Sacrament North',
-            de: 'Sacrement Norden',
-            ja: '拝火は北',
-            fr: 'Sacrement Nord',
-            ko: '성례: 북',
-            cn: '拜火 北',
-          },
-          1: {
-            en: 'Sacrament East',
-            de: 'Sacrement Osten',
-            ja: '拝火は東',
-            fr: 'Sacrement Est',
-            ko: '성례: 동',
-            cn: '拜火 东',
-          },
-          2: {
-            en: 'Sacrament South',
-            de: 'Sacrement Süden',
-            ja: '拝火は南',
-            fr: 'Sacrement Sud',
-            ko: '성례: 남',
-            cn: '拜火 南',
-          },
-          3: {
-            en: 'Sacrament West',
-            de: 'Sacrement Westen',
-            ja: '拝火は西',
-            fr: 'Sacrement Ouest',
-            ko: '성례: 서',
-            cn: '拜火 西',
-          },
+          0: 'north',
+          1: 'east',
+          2: 'south',
+          3: 'west',
         }[idx];
+        if (data.radiantOutputStringKey)
+          return output[data.radiantOutputStringKey]();
       },
-      infoText: function(data) {
-        return data.radiantText;
-      },
+      outputStrings: radiantOutputStrings,
     },
     {
       // For reference:
@@ -2626,13 +2669,21 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
           return;
 
         // Error?
-        if (data.betaBait.length == 0)
+        if (data.betaBait.length === 0)
           return output.opticalStack();
 
-        let names = data.betaBait.map((x) => data.ShortName(x)).sort();
+        let names = data.betaBait.map((x) => x ? data.ShortName(x) : output.unknown()).sort();
         return output.opticalStackPlayers({ players: names.join(', ') });
       },
       outputStrings: {
+        unknown: {
+          en: '???',
+          de: '???',
+          fr: '???',
+          ja: '???',
+          cn: '???',
+          ko: '???',
+        },
         opticalStack: {
           en: 'Optical Stack',
           de: 'Visier sammeln',
@@ -2674,9 +2725,11 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B14', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '4B14', capture: false }),
       delaySeconds: 16,
-      alertText: function(data) {
-        return data.radiantText;
+      alertText: function(data, _, output) {
+        if (data.radiantOutputStringKey)
+          return output[data.radiantOutputStringKey]();
       },
+      outputStrings: radiantOutputStrings,
     },
     {
       id: 'TEA Ordained Punishment',
@@ -2726,9 +2779,9 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
           108: 'y',
         }[matches.y]);
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         // Call out after two, because that's when the mechanic is fully known.
-        if (data.trine.length != 2)
+        if (data.trine.length !== 2)
           return;
 
         // Find the third one based on the first two.
@@ -2785,169 +2838,77 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         // Each three to one has a different set of movements.
         // Call both out to start, then a separate trigger
         // once the first has happened.
-        let responses = {
-          'gr': {
-            en: {
-              first: 'Wait Middle, Dodge North',
-              second: 'North',
-            },
-            de: {
-              first: 'Warte in der Mitte, ausweichen nach Norden',
-              second: 'Norden',
-            },
-            fr: {
-              first: 'Attendez au milieu, esquivez au Nord',
-              second: 'Nord',
-            },
-            ja: {
-              first: '中央から北へ',
-              second: '北へ',
-            },
-            ko: {
-              first: '가운데서 북쪽으로',
-              second: '북쪽으로',
-            },
-            cn: {
-              first: '中间 -> 北',
-              second: '北',
-            },
-          },
-          'rg': {
-            en: {
-              first: 'Go 1 North, Dodge South',
-              second: 'South',
-            },
-            de: {
-              first: 'Geh nach Norden, ausweichen nach Süden',
-              second: 'Süden',
-            },
-            fr: {
-              first: 'Allez 1 au Nord, esquivez au Sud',
-              second: 'Sud',
-            },
-            ja: {
-              first: '北から中央へ',
-              second: '中央へ',
-            },
-            ko: {
-              first: '북쪽에서 가운데로',
-              second: '가운데로',
-            },
-            cn: {
-              first: '北 -> 中间',
-              second: '中间',
-            },
-          },
-          'ry': {
-            en: {
-              first: 'Go 1 North, Dodge West',
-              second: 'West',
-            },
-            de: {
-              first: 'Geh nach Norden, ausweichen nach Westen',
-              second: 'Westen',
-            },
-            fr: {
-              first: 'Allez 1 au Nord, esquivez à l\'Ouest',
-              second: 'Ouest',
-            },
-            ja: {
-              first: '北から西へ',
-              second: '西へ',
-            },
-            ko: {
-              first: '북쪽에서 서쪽으로',
-              second: '서쪽으로',
-            },
-            cn: {
-              first: '北 -> 西',
-              second: '西',
-            },
-          },
-          'yr': {
-            en: {
-              first: 'Go 1 South, Dodge East',
-              second: 'East',
-            },
-            de: {
-              first: 'Geh nach Süden, ausweichen nach Osten',
-              second: 'Osten',
-            },
-            fr: {
-              first: 'Allez 1 au Sud, esquivez à l\'Est',
-              second: 'Est',
-            },
-            ja: {
-              first: '南から東へ',
-              second: '東へ',
-            },
-            ko: {
-              first: '남쪽에서 동쪽으로',
-              second: '동쪽으로',
-            },
-            cn: {
-              first: '南 -> 东',
-              second: '东',
-            },
-          },
-          'gy': {
-            en: {
-              first: 'Wait Middle, Dodge South',
-              second: 'South',
-            },
-            de: {
-              first: 'Warte in der Mitte, ausweichen nach Süden',
-              second: 'Süden',
-            },
-            fr: {
-              first: 'Attendez au milieu, esquivez au Sud',
-              second: 'Sud',
-            },
-            ja: {
-              first: '中央から南へ',
-              second: '南へ',
-            },
-            ko: {
-              first: '가운데서 남쪽으로',
-              second: '남쪽으로',
-            },
-            cn: {
-              first: '中间 -> 南',
-              second: '南',
-            },
-          },
-          'yg': {
-            en: {
-              first: 'Go 1 South, Dodge North',
-              second: 'North',
-            },
-            de: {
-              first: 'Geh nach Süden, ausweichen nach Norden',
-              second: 'Norden',
-            },
-            fr: {
-              first: 'Allez 1 au Sud, esquivez au Nord',
-              second: 'Nord',
-            },
-            ja: {
-              first: '南から北へ',
-              second: '北へ',
-            },
-            ko: {
-              first: '남쪽에서 북쪽으로',
-              second: '북쪽으로',
-            },
-            cn: {
-              first: '南 -> 北',
-              second: '北',
-            },
-          },
-        }[threeOne][data.displayLang];
 
-        // Save this for later.
-        data.secondTrineResponse = responses.second;
-
-        return responses.first;
+        switch (threeOne) {
+        case 'gr':
+          data.secondTrineResponse = 'north';
+          return output.waitMiddleDodgeNorth();
+        case 'rg':
+          data.secondTrineResponse = 'south';
+          return output.goNorthDodgeSouth();
+        case 'ry':
+          data.secondTrineResponse = 'west';
+          return output.goNorthDodgeWest();
+        case 'yr':
+          data.secondTrineResponse = 'east';
+          return output.goSouthDodgeEast();
+        case 'gy':
+          data.secondTrineResponse = 'south';
+          return output.waitMiddleDodgeSouth();
+        case 'yg':
+          data.secondTrineResponse = 'north';
+          return output.goSouthDodgeNorth();
+        }
+      },
+      outputStrings: {
+        waitMiddleDodgeNorth: {
+          en: 'Wait Middle, Dodge North',
+          de: 'Warte in der Mitte, ausweichen nach Norden',
+          fr: 'Attendez au milieu, esquivez au Nord',
+          ja: '中央から北へ',
+          cn: '中间 -> 北',
+          ko: '가운데서 북쪽으로',
+        },
+        goNorthDodgeSouth: {
+          en: 'Go 1 North, Dodge South',
+          de: 'Geh nach Norden, ausweichen nach Süden',
+          fr: 'Allez 1 au Nord, esquivez au Sud',
+          ja: '北から中央へ',
+          cn: '北 -> 中间',
+          ko: '북쪽에서 가운데로',
+        },
+        goNorthDodgeWest: {
+          en: 'Go 1 North, Dodge West',
+          de: 'Geh nach Norden, ausweichen nach Westen',
+          fr: 'Allez 1 au Nord, esquivez à l\'Ouest',
+          ja: '北から西へ',
+          cn: '北 -> 西',
+          ko: '북쪽에서 서쪽으로',
+        },
+        goSouthDodgeEast: {
+          en: 'Go 1 South, Dodge East',
+          de: 'Geh nach Süden, ausweichen nach Osten',
+          fr: 'Allez 1 au Sud, esquivez à l\'Est',
+          ja: '南から東へ',
+          cn: '南 -> 东',
+          ko: '남쪽에서 동쪽으로',
+        },
+        waitMiddleDodgeSouth: {
+          en: 'Wait Middle, Dodge South',
+          de: 'Warte in der Mitte, ausweichen nach Süden',
+          fr: 'Attendez au milieu, esquivez au Sud',
+          ja: '中央から南へ',
+          cn: '中间 -> 南',
+          ko: '가운데서 남쪽으로',
+        },
+        goSouthDodgeNorth: {
+          en: 'Go 1 South, Dodge North',
+          de: 'Geh nach Süden, ausweichen nach Norden',
+          fr: 'Allez 1 au Sud, esquivez au Nord',
+          ja: '南から北へ',
+          cn: '南 -> 北',
+          ko: '남쪽에서 북쪽으로',
+        },
       },
     },
     {
@@ -2959,8 +2920,42 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '4890', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '4890', capture: false }),
       suppressSeconds: 15,
-      alertText: function(data) {
-        return data.secondTrineResponse;
+      alertText: function(data, _, output) {
+        return output[data.secondTrineResponse]();
+      },
+      outputStrings: {
+        north: {
+          en: 'North',
+          de: 'Norden',
+          fr: 'Nord',
+          ja: '北へ',
+          cn: '北',
+          ko: '북쪽으로',
+        },
+        east: {
+          en: 'East',
+          de: 'Osten',
+          fr: 'Est',
+          ja: '東へ',
+          cn: '东',
+          ko: '동쪽으로',
+        },
+        south: {
+          en: 'South',
+          de: 'Süden',
+          fr: 'Sud',
+          ja: '中央へ',
+          cn: '中间',
+          ko: '가운데로',
+        },
+        west: {
+          en: 'West',
+          de: 'Westen',
+          fr: 'Ouest',
+          ja: '西へ',
+          cn: '西',
+          ko: '서쪽으로',
+        },
       },
     },
     {

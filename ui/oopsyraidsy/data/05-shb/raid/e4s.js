@@ -42,7 +42,7 @@
       id: 'E4S Fault Line',
       damageRegex: '411E',
       condition: function(e, data, matches) {
-        return data.faultLineTarget != e.targetName;
+        return data.faultLineTarget !== e.targetName;
       },
       mistake: function(e, data) {
         return {

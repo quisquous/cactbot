@@ -33,16 +33,14 @@
       netRegexKo: NetRegexes.startsUsing({ id: '235A', source: '카타스트로피', capture: false }),
       run: function(data) {
         data.probeCount = (data.probeCount || 0) + 1;
-        data.dpsProbe = data.probeCount == 2 || data.probeCount == 4;
-        data.myProbe = data.dpsProbe == data.role.startsWith('dps');
+        data.dpsProbe = data.probeCount === 2 || data.probeCount === 4;
+        data.myProbe = data.dpsProbe === data.role.startsWith('dps');
       },
     },
     {
       id: 'O2S Levitation Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '556' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.levitating = true;
       },
@@ -50,9 +48,7 @@
     {
       id: 'O2S Levitation Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '556' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.levitating = false;
       },
@@ -174,9 +170,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2372', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2372', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2372', source: '카타스트로피', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -243,9 +237,7 @@
     {
       id: 'O2S Unstable Gravity',
       netRegex: NetRegexes.gainsEffect({ effectId: '550' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: 9,
       alarmText: (data, _, output) => output.elevateOutsideStack(),
       tts: (data, _, output) => output.floatForBomb(),
@@ -270,7 +262,7 @@
       id: 'O2S 6 Fulms Under Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
       condition: function(data, matches) {
-        return !data.under && matches.target == data.me;
+        return !data.under && matches.target === data.me;
       },
       delaySeconds: 5,
       alertText: function(data, _, output) {
@@ -312,9 +304,7 @@
     {
       id: 'O2S 6 Fulms Under Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '237' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.under = false;
       },
@@ -413,7 +403,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': '카타스트로피',
       },
@@ -421,7 +410,9 @@
         '-100 Gs': '중력 -100',
         '(?<!-)100 Gs': '중력 100',
         'Antilight': '암흑광',
+        '(?<!Epi)center': '중앙',
         'Death\'s Gaze': '사신의 눈동자',
+        'Double Stack': '이중쉐어',
         'Earthquake': '대지진',
         'Epicenter': '진원 생성',
         'Evilsphere': '악의 세력권',
@@ -429,7 +420,9 @@
         'Gravitational Wave': '중력파',
         'Long Drop': '자유낙하',
         'Paranormal Wave': '저주 파동',
+        'Probes': '촉수 유도',
         'Unstable Gravity': '중력 폭발',
+        'T/H': '탱/힐',
       },
     },
   ],

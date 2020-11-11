@@ -147,7 +147,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3927', source: '亚特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3927', source: '아르트', capture: false }),
       condition: function(data) {
-        return data.side == 'west';
+        return data.side === 'west';
       },
       run: function(data) {
         data.mythcall = true;
@@ -162,7 +162,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3934', source: '亚特' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3934', source: '아르트' }),
       condition: function(data) {
-        return data.side == 'west';
+        return data.side === 'west';
       },
       response: Responses.tankBuster(),
     },
@@ -170,15 +170,15 @@
       id: 'BA Art Orb Marker',
       netRegex: NetRegexes.headMarker({ id: '005C' }),
       condition: function(data) {
-        return data.side == 'west';
+        return data.side === 'west';
       },
       alarmText: function(data, matches, output) {
-        if (data.me != matches.target)
+        if (data.me !== matches.target)
           return;
         return output.orbOnYou();
       },
       alertText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return;
         return output.awayFromOrbMarker();
       },
@@ -205,7 +205,7 @@
       id: 'BA Art Piercing Dark Marker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.side == 'west' && data.me == matches.target;
+        return data.side === 'west' && data.me === matches.target;
       },
       response: Responses.spread(),
     },
@@ -218,7 +218,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3928', source: '亚特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3928', source: '아르트', capture: false }),
       condition: function(data) {
-        return data.side == 'west';
+        return data.side === 'west';
       },
       response: Responses.getOut(),
     },
@@ -231,7 +231,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3929', source: '亚特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3929', source: '아르트', capture: false }),
       condition: function(data) {
-        return data.side == 'west';
+        return data.side === 'west';
       },
       response: Responses.getIn(),
     },
@@ -244,7 +244,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3928', source: '亚特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3928', source: '아르트', capture: false }),
       condition: function(data) {
-        return data.side == 'west' && data.mythcall;
+        return data.side === 'west' && data.mythcall;
       },
       delaySeconds: 3.5,
       response: Responses.getUnder(),
@@ -258,7 +258,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3929', source: '亚特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3929', source: '아르트', capture: false }),
       condition: function(data) {
-        return data.side == 'west' && data.mythcall;
+        return data.side === 'west' && data.mythcall;
       },
       delaySeconds: 3.5,
       infoText: (data, _, output) => output.text(),
@@ -282,7 +282,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3945', source: '欧文' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3945', source: '오와인' }),
       condition: function(data) {
-        return data.side == 'west';
+        return data.side === 'west';
       },
       response: Responses.tankBuster(),
     },
@@ -290,7 +290,7 @@
       id: 'BA Owain Piercing Light Marker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.side == 'east' && data.me == matches.target;
+        return data.side === 'east' && data.me === matches.target;
       },
       response: Responses.spread(),
     },
@@ -298,7 +298,7 @@
       id: 'BA Owain Dorito Stack',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.side == 'east' && data.me == matches.target;
+        return data.side === 'east' && data.me === matches.target;
       },
       response: Responses.doritoStack(),
     },
@@ -310,7 +310,7 @@
       netRegexJa: NetRegexes.dialog({ line: '[^:]*:白の妖槍「ムンジャルグ」、燃え上がれ！.*?', capture: false }),
       netRegexCn: NetRegexes.dialog({ line: '[^:]*:红颈妖枪，点燃一切.*?', capture: false }),
       condition: function(data) {
-        return data.side == 'east';
+        return data.side === 'east';
       },
       alertText: (data, _, output) => output.getToIce(),
       infoText: (data, _, output) => output.switchMagia(),
@@ -341,7 +341,7 @@
       netRegexJa: NetRegexes.dialog({ line: '[^:]*:白の妖槍「ムンジャルグ」、震え凍れよ！.*?', capture: false }),
       netRegexCn: NetRegexes.dialog({ line: '[^:]*:红颈妖枪，冻结万物.*?', capture: false }),
       condition: function(data) {
-        return data.side == 'east';
+        return data.side === 'east';
       },
       alertText: (data, _, output) => output.getToFire(),
       infoText: (data, _, output) => output.switchMagia(),
@@ -373,7 +373,7 @@
       netRegexCn: NetRegexes.ability({ id: '3941', source: '白手' }),
       netRegexKo: NetRegexes.ability({ id: '3941', source: '하얀 손' }),
       condition: function(data, matches) {
-        return data.side == 'east' && data.me == matches.target;
+        return data.side === 'east' && data.me === matches.target;
       },
       response: Responses.doritoStack(),
     },
@@ -386,7 +386,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '394D', source: '欧文', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '394D', source: '오와인', capture: false }),
       condition: function(data) {
-        return data.side == 'east';
+        return data.side === 'east';
       },
       response: Responses.getOut(),
     },
@@ -420,7 +420,7 @@
       id: 'BA Raiden Lancing Bolt',
       netRegex: NetRegexes.headMarker({ id: '008A' }),
       condition: function(data, matches) {
-        return data.sealed && data.me == matches.target;
+        return data.sealed && data.me === matches.target;
       },
       response: Responses.spread(),
     },
@@ -567,18 +567,18 @@
       },
       alertText: function(data, _, output) {
         if (!data.seenHostile) {
-          if (data.bracelets == 'light')
+          if (data.bracelets === 'light')
             return output.awayFromLightCircles();
 
-          if (data.bracelets == 'dark')
+          if (data.bracelets === 'dark')
             return output.awayFromDarkCircles();
 
           return;
         }
-        if (data.bracelets == 'light')
+        if (data.bracelets === 'light')
           return output.standByDarkCircles();
 
-        if (data.bracelets == 'dark')
+        if (data.bracelets === 'dark')
           return output.standByLightCircles();
       },
       run: function(data) {
@@ -631,10 +631,10 @@
         return data.sealed;
       },
       alertText: function(data, _, output) {
-        if (data.bracelets == 'light')
+        if (data.bracelets === 'light')
           return output.dark();
 
-        if (data.bracelets == 'dark')
+        if (data.bracelets === 'dark')
           return output.light();
       },
       outputStrings: {
@@ -704,10 +704,10 @@
         if (!data.clones)
           return;
         let wrists = data.clones.pop();
-        if (wrists == 'Astral')
+        if (wrists === 'Astral')
           return output.dark();
 
-        if (wrists == 'Umbral')
+        if (wrists === 'Umbral')
           return output.light();
       },
       outputStrings: {
@@ -895,7 +895,7 @@
       infoText: function(data, _, output) {
         // FIXME: taking multiple autos probably means tanking,
         // so probably could figure this out automatically.
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.stackIfNotTanking();
 
         return output.stackUp();
@@ -957,11 +957,11 @@
       alertText: function(data, _, output) {
         // FIXME: taking multiple autos probably means tanking,
         // so probably could figure this out automatically.
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.offtanksGetOrbs();
       },
       infoText: function(data, _, output) {
-        if (data.role != 'tank')
+        if (data.role !== 'tank')
           return output.stackAwayFromTank();
       },
       outputStrings: {
@@ -1079,7 +1079,7 @@
       netRegexCn: NetRegexes.ability({ id: '37AA', source: '奥兹玛原型' }),
       netRegexKo: NetRegexes.ability({ id: '37AA', source: '프로토 오즈마' }),
       condition: function(data, matches) {
-        return data.sealed && data.me == matches.target;
+        return data.sealed && data.me === matches.target;
       },
       response: Responses.stopEverything(),
     },
@@ -1087,7 +1087,7 @@
       id: 'BA Ozma Meteor',
       netRegex: NetRegexes.headMarker({ id: '0039' }),
       condition: function(data, matches) {
-        return data.sealed && data.me == matches.target;
+        return data.sealed && data.me === matches.target;
       },
       response: Responses.meteorOnYou(),
     },

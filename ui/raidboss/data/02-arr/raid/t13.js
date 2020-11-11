@@ -20,16 +20,14 @@
       netRegexJa: NetRegexes.startsUsing({ id: 'BB9', source: 'バハムート・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: 'BB9', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: 'BB9', source: '바하무트 프라임', capture: false }),
-      condition: function(data) {
-        // Only the first two gigas are phase changes, the rest are in final phase.
-        return !(data.gigaflare > 1);
-      },
+      // Only the first two gigas are phase changes, the rest are in final phase.
+      condition: (data) => !(data.gigaflare > 1),
       sound: 'Long',
-      infoText: function(data, _, output) {
+      infoText: (data, _, output) => {
         if (data.gigaflare)
           return output.text();
       },
-      run: function(data) {
+      run: (data) => {
         data.gigaflare = data.gigaflare || 0;
         data.gigaflare++;
       },
@@ -52,14 +50,14 @@
       netRegexJa: NetRegexes.startsUsing({ id: 'BAE', source: 'バハムート・プライム' }),
       netRegexCn: NetRegexes.startsUsing({ id: 'BAE', source: '至尊巴哈姆特' }),
       netRegexKo: NetRegexes.startsUsing({ id: 'BAE', source: '바하무트 프라임' }),
-      alertText: function(data, matches, output) {
-        if (matches.target == data.me)
+      alertText: (data, matches, output) => {
+        if (matches.target === data.me)
           return output.flattenOnYou();
       },
-      infoText: function(data, matches, output) {
-        if (matches.target == data.me)
+      infoText: (data, matches, output) => {
+        if (matches.target === data.me)
           return;
-        if (data.role == 'healer' || data.job == 'BLU')
+        if (data.role === 'healer' || data.job === 'BLU')
           return output.flattenOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -111,9 +109,7 @@
       netRegexJa: NetRegexes.tether({ id: '0004', target: 'バハムート・プライム' }),
       netRegexCn: NetRegexes.tether({ id: '0004', target: '至尊巴哈姆特' }),
       netRegexKo: NetRegexes.tether({ id: '0004', target: '바하무트 프라임' }),
-      condition: function(data, matches) {
-        return data.me == matches.source;
-      },
+      condition: (data, matches) => data.me === matches.source,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -134,12 +130,12 @@
       netRegexJa: NetRegexes.startsUsing({ id: 'BC2', source: 'バハムート・プライム' }),
       netRegexCn: NetRegexes.startsUsing({ id: 'BC2', source: '至尊巴哈姆特' }),
       netRegexKo: NetRegexes.startsUsing({ id: 'BC2', source: '바하무트 프라임' }),
-      alertText: function(data, matches, output) {
-        if (matches.target == data.me)
+      alertText: (data, matches, output) => {
+        if (matches.target === data.me)
           return output.akhMornOnYou();
       },
-      infoText: function(data, matches, output) {
-        if (matches.target != data.me)
+      infoText: (data, matches, output) => {
+        if (matches.target !== data.me)
           return output.akhMornOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {

@@ -277,7 +277,7 @@ FakeCombatant.prototype.update = function(elapsedSeconds) {
   this.floatDuration += elapsedSeconds;
   this.data.DURATION = Math.floor(this.floatDuration);
 
-  if (this.remainingDeadSeconds != null) {
+  if (this.remainingDeadSeconds !== null) {
     this.remainingDeadSeconds -= elapsedSeconds;
     if (this.remainingDeadSeconds > 0)
       return;
@@ -295,7 +295,7 @@ FakeCombatant.prototype.update = function(elapsedSeconds) {
   }
 
   let gcds = Math.floor((this.gcdRemainder + elapsedSeconds) / this.gcd);
-  if (gcds == 0) {
+  if (gcds === 0) {
     this.gcdRemainder += elapsedSeconds;
     return;
   }

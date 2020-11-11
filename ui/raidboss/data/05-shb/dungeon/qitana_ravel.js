@@ -13,7 +13,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3C89', source: '洛查特尔' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3C89', source: '로차틀' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -25,9 +25,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3C8B', source: 'ロツァトル', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3C8B', source: '洛查特尔', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3C8B', source: '로차틀', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -104,7 +102,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3C91', source: '大脚野蝠' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3C91', source: '배츠콰치' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -116,9 +114,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3C92', source: 'バッツカッチ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3C92', source: '大脚野蝠', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3C92', source: '배츠콰치', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -129,9 +125,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3C93', source: 'バッツカッチ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3C93', source: '大脚野蝠', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3C93', source: '배츠콰치', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -143,7 +137,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3C99', source: '艾洛斯' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3C99', source: '에로스' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -155,9 +149,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3C9B', source: 'エロース', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3C9B', source: '艾洛斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3C9B', source: '에로스', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -168,9 +160,7 @@
       netRegexJa: NetRegexes.tether({ id: '0039', source: 'エロース' }),
       netRegexCn: NetRegexes.tether({ id: '0039', source: '艾洛斯' }),
       netRegexKo: NetRegexes.tether({ id: '0039', source: '에로스' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -186,9 +176,7 @@
     {
       id: 'Qitana Viper Poison',
       netRegex: NetRegexes.headMarker({ id: '00AB' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

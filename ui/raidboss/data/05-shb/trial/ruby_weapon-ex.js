@@ -48,9 +48,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4ABE', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4ABE', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4ABE', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -62,7 +60,7 @@
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4B03' }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4B03' }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBusterSwap(),
     },
@@ -184,7 +182,7 @@
         data.colors[matches.target] = 'blue';
       },
       infoText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.text();
       },
       outputStrings: {
@@ -205,7 +203,7 @@
         data.colors[matches.target] = 'red';
       },
       infoText: function(data, matches, output) {
-        if (data.me == matches.target)
+        if (data.me === matches.target)
           return output.text();
       },
       outputStrings: {
@@ -233,9 +231,9 @@
       netRegexCn: NetRegexes.startsUsing({ source: '奈尔的幻影', id: '4AFF' }),
       netRegexKo: NetRegexes.startsUsing({ source: '넬의 환영', id: '4AFF' }),
       condition: function(data, matches) {
-        if (data.role != 'healer' || data.role != 'tank')
+        if (data.role !== 'healer' || data.role !== 'tank')
           return false;
-        if (data.colors[data.me] == data.colors[matches.target])
+        if (data.colors[data.me] === data.colors[matches.target])
           return true;
       },
       suppressSeconds: 1,
@@ -262,7 +260,7 @@
       netRegexKo: NetRegexes.ability({ source: '루비 웨폰', id: '4AFC', capture: false }),
       preRun: function(data) {
         for (color of data.colors) {
-          if (color == 'blue')
+          if (color === 'blue')
             color = 'red';
           else
             color = 'blue';
@@ -279,7 +277,7 @@
         // TODO: it'd be nice to call out which raven was alive?
         if (data.ravenDead)
           return;
-        if (data.colors[data.me] == 'red')
+        if (data.colors[data.me] === 'red')
           return output.attackRedEast();
 
         return output.attackBlueWest();
@@ -315,8 +313,18 @@
       id: 'RubyEx Meteor',
       netRegex: NetRegexes.headMarker({ id: '00(?:C[A-F]|D0|D1)' }),
       condition: Conditions.targetIsYou(),
-      infoText: function(data, matches) {
-        return parseInt(matches.id, 16) - parseInt('00CA', 16) + 1;
+      infoText: function(data, matches, output) {
+        return output.text({ num: parseInt(matches.id, 16) - parseInt('00CA', 16) + 1 });
+      },
+      outputStrings: {
+        text: {
+          en: '${num}',
+          de: '${num}',
+          fr: '${num}',
+          ja: '${num}',
+          cn: '${num}',
+          ko: '${num}',
+        },
       },
     },
     {
@@ -356,7 +364,7 @@
       netRegexJa: NetRegexes.ability({ source: 'ルビーウェポン', id: '4AB6', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '红宝石神兵', id: '4AB6', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '루비 웨폰', id: '4AB6', capture: false }),
-      condition: (data) => data.role == 'tank',
+      condition: (data) => data.role === 'tank',
       delaySeconds: 11.5,
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
@@ -377,7 +385,7 @@
       netRegexJa: NetRegexes.ability({ source: 'ルビーウェポン', id: '4AB6', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '红宝石神兵', id: '4AB6', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '루비 웨폰', id: '4AB6', capture: false }),
-      condition: (data) => data.role != 'tank',
+      condition: (data) => data.role !== 'tank',
       delaySeconds: 13,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -447,9 +455,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4B04', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4B04', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4B04', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
   ],

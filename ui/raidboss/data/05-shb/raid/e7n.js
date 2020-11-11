@@ -12,9 +12,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C52', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C52', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C52', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -26,7 +24,7 @@
       netRegexCn: NetRegexes.tether({ source: '暗黑心象', id: '0025' }),
       netRegexKo: NetRegexes.tether({ source: '어둠의 우상', id: '0025' }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -132,7 +130,7 @@
       suppressSeconds: 3,
       infoText: function(data, _, output) {
         data.colorCount = data.colorCount + 1 || 0;
-        if (data.colorCount == 3) {
+        if (data.colorCount === 3) {
           delete data.colorCount;
           return;
         }
@@ -155,7 +153,7 @@
       suppressSeconds: 3,
       infoText: function(data, _, output) {
         data.colorCount = data.colorCount + 1 || 0;
-        if (data.colorCount == 3) {
+        if (data.colorCount === 3) {
           delete data.colorCount;
           return;
         }

@@ -1,5 +1,80 @@
 'use strict';
 
+const strings = {
+  typeAndDir: {
+    en: '${type}: ${dir}',
+    de: '${type}: ${dir}',
+    fr: '${type}: ${dir}',
+    ja: '${type}: ${dir}',
+    cn: '${type}: ${dir}',
+    ko: '${type}: ${dir}',
+  },
+  spread: {
+    en: 'Spread',
+    fr: 'Eloignez-vous',
+    de: 'verteilen',
+    ko: '산개',
+    ja: '散開',
+    cn: '散开',
+  },
+  stack: {
+    en: 'Stack',
+    fr: 'Stack',
+    de: 'Stacken',
+    ko: '집합',
+    ja: 'スタック',
+    cn: '集合',
+  },
+  getOut: {
+    en: 'Get Out',
+    fr: 'sortir',
+    de: 'raus da',
+    ko: '밖으로',
+    ja: '外へ',
+    cn: '远离',
+  },
+  getIn: {
+    en: 'Get In',
+    fr: 'rentrer dedans',
+    de: 'reingehen',
+    ko: '안으로',
+    ja: '中へ',
+    cn: '靠近',
+  },
+  trueThunder: {
+    en: 'True Thunder',
+    fr: 'Vraie foudre',
+    de: 'Wahrer Blitz',
+    ko: '진실 선더가',
+    ja: '真サンダガ',
+    cn: '真雷',
+  },
+  fakeThunder: {
+    en: 'Fake Thunder',
+    fr: 'Fausse foudre',
+    de: 'Falscher Blitz',
+    ko: '거짓 선더가',
+    ja: 'にせサンダガ',
+    cn: '假雷',
+  },
+  trueIce: {
+    en: 'True Ice',
+    fr: 'Vraie glace',
+    de: 'Wahres Eis',
+    ko: '진실 블리자가',
+    ja: '真ブリザガ',
+    cn: '真冰',
+  },
+  fakeIce: {
+    en: 'Fake Ice',
+    fr: 'Fausse glace',
+    de: 'Falsches Eis',
+    ko: '거짓 블리자가',
+    ja: 'にせブリザガ',
+    cn: '假冰',
+  },
+};
+
 // O8S - Sigmascape 4.0 Savage
 [{
   zoneId: ZoneId.SigmascapeV40Savage,
@@ -126,7 +201,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '28F[78]', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28F[78]', source: '케프카', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -150,7 +225,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '28F[45]', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28F[45]', source: '케프카', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -172,9 +247,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '28DD', source: '神々の像' }),
       netRegexCn: NetRegexes.startsUsing({ id: '28DD', source: '众神之像' }),
       netRegexKo: NetRegexes.startsUsing({ id: '28DD', source: '신들의 상' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.knockbackOn(),
     },
     {
@@ -186,11 +259,11 @@
       netRegexCn: NetRegexes.startsUsing({ id: '2900', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2900', source: '케프카', capture: false }),
       alarmText: function(data, _, output) {
-        if (data.role == 'tank')
+        if (data.role === 'tank')
           return output.wingsBeNearFar();
       },
       infoText: function(data, _, output) {
-        if (data.role != 'tank')
+        if (data.role !== 'tank')
           return output.maxMeleeAvoidTanks();
       },
       outputStrings: {
@@ -241,16 +314,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '2910', source: '凯夫卡' }),
       netRegexKo: NetRegexes.startsUsing({ id: '2910', source: '케프카' }),
       alertText: function(data, matches, output) {
-        if (matches.target != data.me)
+        if (matches.target !== data.me)
           return;
 
         return output.embraceOnYou();
       },
       infoText: function(data, matches, output) {
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           return;
 
-        if (data.role == 'healer' || data.role == 'tank')
+        if (data.role === 'healer' || data.role === 'tank')
           return output.embraceOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -291,9 +364,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '28E5', source: '神々の像' }),
       netRegexCn: NetRegexes.startsUsing({ id: '28E5', source: '众神之像' }),
       netRegexKo: NetRegexes.startsUsing({ id: '28E5', source: '신들의 상' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -314,9 +385,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '28E6', source: '神々の像' }),
       netRegexCn: NetRegexes.startsUsing({ id: '28E6', source: '众神之像' }),
       netRegexKo: NetRegexes.startsUsing({ id: '28E6', source: '신들의 상' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -340,7 +409,6 @@
       run: function(data) {
         delete data.lastFire;
         delete data.lastThunder;
-        delete data.lastIce;
         delete data.lastIceDir;
         delete data.manaReleaseText;
       },
@@ -353,20 +421,33 @@
       netRegexJa: NetRegexes.startsUsing({ id: '28D2', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28D2', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28D2', source: '케프카', capture: false }),
-      preRun: function(data) {
-        if (data.lastFire) {
-          data.manaReleaseText = data.lastFire;
-          return;
-        }
+      infoText: function(data, _, output) {
+        if (data.lastFire)
+          return output[data.lastFire]();
+
         if (!data.lastIceDir)
           return;
-        data.manaReleaseText = data.lastThunder + ', ' + data.lastIceDir;
+
+        return output.thunderIce({
+          thunder: output[data.lastThunder](),
+          dir: output[data.lastIceDir](),
+        });
       },
-      infoText: function(data) {
-        return data.manaReleaseText;
-      },
-      tts: function(data) {
-        return data.manaReleaseText;
+      outputStrings: {
+        thunderIce: {
+          en: '${thunder}, ${dir}',
+          de: '${thunder}, ${dir}',
+          fr: '${thunder}, ${dir}',
+          ja: '${thunder}, ${dir}',
+          cn: '${thunder}, ${dir}',
+          ko: '${thunder}, ${dir}',
+        },
+        fakeThunder: strings.fakeThunder,
+        trueThunder: strings.trueThunder,
+        getIn: strings.getIn,
+        getOut: strings.getOut,
+        spread: strings.spread,
+        stack: strings.stack,
       },
     },
     {
@@ -387,14 +468,7 @@
       netRegexKo: NetRegexes.ability({ id: '28CF', source: '케프카', capture: false }),
       suppressSeconds: 40,
       run: function(data) {
-        data.lastFire = {
-          en: 'Spread',
-          fr: 'Eloignez-vous',
-          de: 'verteilen',
-          ko: '산개',
-          ja: '散開',
-          cn: '散开',
-        }[data.displayLang];
+        data.lastFire = 'spread';
       },
     },
     {
@@ -410,14 +484,7 @@
       netRegexKo: NetRegexes.ability({ id: '28D0', source: '케프카', capture: false }),
       suppressSeconds: 40,
       run: function(data) {
-        data.lastFire = {
-          en: 'Stack',
-          fr: 'Stack',
-          de: 'Stacken',
-          ko: '집합',
-          ja: 'スタック',
-          cn: '集合',
-        }[data.displayLang];
+        data.lastFire = 'stack';
       },
     },
     {
@@ -431,22 +498,13 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['28CD', '2B31'], source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['28CD', '2B31'], source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['28CD', '2B31'], source: '케프카', capture: false }),
-      preRun: function(data) {
-        data.lastThunder = {
-          en: 'True Thunder',
-          fr: 'Vraie foudre',
-          de: 'Wahrer Blitz',
-          ko: '진실 선더가',
-          ja: '真サンダガ',
-          cn: '真雷',
-        }[data.displayLang];
+      preRun: (data) => {
+        data.lastThunder = 'trueThunder';
       },
       suppressSeconds: 40,
-      infoText: function(data) {
-        return data.lastThunder;
-      },
-      tts: function(data) {
-        return data.lastThunder;
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: strings.trueThunder,
       },
     },
     {
@@ -460,22 +518,13 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['28CC', '2B30'], source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['28CC', '2B30'], source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['28CC', '2B30'], source: '케프카', capture: false }),
-      preRun: function(data) {
-        data.lastThunder = {
-          en: 'Fake Thunder',
-          fr: 'Fausse foudre',
-          de: 'Falscher Blitz',
-          ko: '거짓 선더가',
-          ja: 'にせサンダガ',
-          cn: '假雷',
-        }[data.displayLang];
+      preRun: (data) => {
+        data.lastThunder = 'fakeThunder';
       },
       suppressSeconds: 40,
-      infoText: function(data) {
-        return data.lastThunder;
-      },
-      tts: function(data) {
-        return data.lastThunder;
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: strings.fakeThunder,
       },
     },
     {
@@ -490,29 +539,15 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['28C5', '2B2B'], source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['28C5', '2B2B'], source: '케프카', capture: false }),
       preRun: function(data) {
-        data.lastIce = {
-          en: 'Fake Ice',
-          fr: 'Fausse glace',
-          de: 'Falsches Eis',
-          ko: '거짓 블리자가',
-          ja: 'にせブリザガ',
-          cn: '假冰',
-        }[data.displayLang];
-        data.lastIceDir = {
-          en: 'Get Out',
-          fr: 'sortir',
-          de: 'raus da',
-          ko: '밖으로',
-          ja: '外へ',
-          cn: '远离',
-        }[data.displayLang];
+        data.lastIceDir = 'getOut';
       },
       suppressSeconds: 40,
-      infoText: function(data) {
-        return data.lastIce + ': ' + data.lastIceDir;
-      },
-      tts: function(data) {
-        return data.lastIce;
+      infoText: (data, _, output) => output.text({ type: output.type(), dir: output.dir() }),
+      tts: (data, _, output) => output.dir(),
+      outputStrings: {
+        text: strings.typeAndDir,
+        type: strings.fakeIce,
+        dir: strings.getOut,
       },
     },
     {
@@ -527,29 +562,15 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['28C9', '2B2E'], source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['28C9', '2B2E'], source: '케프카', capture: false }),
       preRun: function(data) {
-        data.lastIce = {
-          en: 'True Ice',
-          fr: 'Vraie glace',
-          de: 'Wahres Eis',
-          ko: '진실 블리자가',
-          ja: '真ブリザガ',
-          cn: '真冰',
-        }[data.displayLang];
-        data.lastIceDir = {
-          en: 'Get In',
-          fr: 'rentrer dedans',
-          de: 'reingehen',
-          ko: '안으로',
-          ja: '中へ',
-          cn: '靠近',
-        }[data.displayLang];
+        data.lastIceDir = 'getIn';
       },
       suppressSeconds: 40,
-      infoText: function(data) {
-        return data.lastIce + ': ' + data.lastIceDir;
-      },
-      tts: function(data) {
-        return data.lastIce;
+      infoText: (data, _, output) => output.text({ type: output.type(), dir: output.dir() }),
+      tts: (data, _, output) => output.dir(),
+      outputStrings: {
+        text: strings.typeAndDir,
+        type: strings.trueIce,
+        dir: strings.getIn,
       },
     },
     {
@@ -564,29 +585,15 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['28C4', '2B2A'], source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['28C4', '2B2A'], source: '케프카', capture: false }),
       preRun: function(data) {
-        data.lastIce = {
-          en: 'Fake Ice',
-          fr: 'Fausse glace',
-          de: 'Falsches Eis',
-          ko: '거짓 블리자가',
-          ja: 'にせブリザガ',
-          cn: '假冰',
-        }[data.displayLang];
-        data.lastIceDir = {
-          en: 'Get In',
-          fr: 'rentrer dedans',
-          de: 'reingehen',
-          ko: '안으로',
-          ja: '中へ',
-          cn: '靠近',
-        }[data.displayLang];
+        data.lastIceDir = 'getIn';
       },
       suppressSeconds: 40,
-      infoText: function(data) {
-        return data.lastIce + ': ' + data.lastIceDir;
-      },
-      tts: function(data) {
-        return data.lastIce;
+      infoText: (data, _, output) => output.text({ type: output.type(), dir: output.dir() }),
+      tts: (data, _, output) => output.dir(),
+      outputStrings: {
+        text: strings.typeAndDir,
+        type: strings.fakeIce,
+        dir: strings.getIn,
       },
     },
     {
@@ -601,29 +608,15 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['28C8', '2B2D'], source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['28C8', '2B2D'], source: '케프카', capture: false }),
       preRun: function(data) {
-        data.lastIce = {
-          en: 'True Ice',
-          fr: 'Vraie glace',
-          de: 'Wahres Eis',
-          ko: '진실 블리자가',
-          ja: '真ブリザガ',
-          cn: '真冰',
-        }[data.displayLang];
-        data.lastIceDir = {
-          en: 'Get Out',
-          fr: 'sortir',
-          de: 'rausgehen',
-          ko: '밖으로',
-          ja: '外へ',
-          cn: '远离',
-        }[data.displayLang];
+        data.lastIceDir = 'getOut';
       },
       suppressSeconds: 40,
-      infoText: function(data) {
-        return data.lastIce + ': ' + data.lastIceDir;
-      },
-      tts: function(data) {
-        return data.lastIce;
+      infoText: (data, _, output) => output.text({ type: output.type(), dir: output.dir() }),
+      tts: (data, _, output) => output.dir(),
+      outputStrings: {
+        text: strings.typeAndDir,
+        type: strings.trueIce,
+        dir: strings.getOut,
       },
     },
   ],
@@ -838,7 +831,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Graven Image': '신들의 상',
         'Kefka': '케프카',
@@ -848,26 +840,38 @@
       'replaceText': {
         'Aero Assault': '갈기갈기 에어로가',
         'All Things Ending': '소멸의 발차기',
+        'big': '大',
+        'small': '小',
         'Blizzard Blitz': '빙글빙글 블리자가',
+        'Blizzard\\+Thunder': '블리자드+선더',
         'Celestriad': '세 개의 별',
+        'DPS': '딜러',
+        'End(?!ing)': '종료',
         'Fire III': '파이가',
         'Flagrant Fire': '이글이글 파이가',
         'Forsaken': '행방불명',
         'Graven Image': '신들의 상',
         'Gravitas': '중력탄',
+        'Half Arena': '절반 장판',
         'Heartless Angel': '비정한 천사',
         'Heartless Archangel': '비정한 대천사',
         'Hyperdrive': '하이퍼드라이브',
         'Indomitable Will': '호완의 신기',
         'Inexorable Will': '무정의 신기',
+        'Knockback Tethers': '넉백 선',
         'Light Of Judgment': '심판의 빛',
         'Mana Charge': '마력 충전',
         'Mana Release': '마력 방출',
         'Meteor': '메테오',
+        'Past/Future': '과거/미래',
         'Pulse Wave': '파동탄',
         'Revolting Ruin': '파삭파삭 루인가',
+        'Statue Half Cleave': '전장 절반 강한 공격',
         'Shockwave': '충격파',
+        'Sleep/Confuse Tethers': '수면/혼란 선',
+        'Soak': '흡수',
         'Starstrafe': '요성난무',
+        'Statue Gaze': '동상 작동',
         'Thrumming Thunder': '찌릿찌릿 선더가',
         'Thunder III': '선더가',
         'Timely Teleport': '껑충껑충 텔레포',

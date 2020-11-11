@@ -59,7 +59,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '2B53', source: '迦楼罗', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2B53', source: '가루다', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -76,9 +76,7 @@
     {
       id: 'UWU Garuda Mistral Song Marker',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -95,7 +93,7 @@
       id: 'UWU Garuda Mistral Song Tank',
       netRegex: NetRegexes.headMarker({ id: '0010', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
@@ -119,7 +117,7 @@
       netRegexCn: NetRegexes.addedCombatant({ name: '刺羽', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '가시돋힌 깃털', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -136,9 +134,7 @@
     {
       id: 'UWU Ifrit Fetters',
       netRegex: NetRegexes.gainsEffect({ effectId: '179' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 45,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -160,9 +156,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2B5B', source: 'イフリート' }),
       netRegexCn: NetRegexes.startsUsing({ id: '2B5B', source: '伊弗利特' }),
       netRegexKo: NetRegexes.startsUsing({ id: '2B5B', source: '이프리트' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -231,25 +225,44 @@
       preRun: function(data, matches) {
         data.titanGaols = data.titanGaols || [];
         data.titanGaols.push(matches.target);
-        if (data.titanGaols.length == 3)
+        if (data.titanGaols.length === 3)
           data.titanGaols.sort();
       },
-      alertText: function(data) {
-        if (data.titanGaols.length != 3)
+      alertText: function(data, _, output) {
+        if (data.titanGaols.length !== 3)
           return;
         let idx = data.titanGaols.indexOf(data.me);
         if (idx < 0)
           return;
         // Just return your number.
-        return idx + 1;
+        return output.num({ num: idx + 1 });
       },
-      infoText: function(data) {
-        if (data.titanGaols.length != 3)
+      infoText: function(data, _, output) {
+        if (data.titanGaols.length !== 3)
           return;
-        // Return all the people in order.
-        return data.titanGaols.map(function(n) {
-          return data.ShortName(n);
-        }).join(', ');
+        return output.text({
+          player1: data.ShortName(data.titanGaols[0]),
+          player2: data.ShortName(data.titanGaols[1]),
+          player3: data.ShortName(data.titanGaols[2]),
+        });
+      },
+      outputStrings: {
+        num: {
+          en: '${num}',
+          de: '${num}',
+          fr: '${num}',
+          ja: '${num}',
+          cn: '${num}',
+          ko: '${num}',
+        },
+        text: {
+          en: '${player1}, ${player2}, ${player3}',
+          de: '${player1}, ${player2}, ${player3}',
+          fr: '${player1}, ${player2}, ${player3}',
+          ja: '${player1}, ${player2}, ${player3}',
+          cn: '${player1}, ${player2}, ${player3}',
+          ko: '${player1}, ${player2}, ${player3}',
+        },
       },
     },
     {
@@ -300,7 +313,7 @@
       netRegexCn: NetRegexes.ability({ id: '2B6B', source: '泰坦' }),
       netRegexKo: NetRegexes.ability({ id: '2B6B', source: '타이탄' }),
       condition: function(data, matches) {
-        return data.phase == 'suppression' && data.me == matches.target;
+        return data.phase === 'suppression' && data.me === matches.target;
       },
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
@@ -323,7 +336,7 @@
       netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2CD3', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2CD3', capture: false }),
       condition: function(data) {
-        return data.phase == 'finale';
+        return data.phase === 'finale';
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -346,7 +359,7 @@
       netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2CD4', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2CD4', capture: false }),
       condition: function(data) {
-        return data.phase == 'finale';
+        return data.phase === 'finale';
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -369,7 +382,7 @@
       netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2CD5', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2CD5', capture: false }),
       condition: function(data) {
-        return data.phase == 'finale';
+        return data.phase === 'finale';
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
