@@ -2438,17 +2438,31 @@ const namedNisiPass = (data, output) => {
       netRegex: NetRegexes.tether({ id: '0062', capture: false }),
       condition: (data) => data.phase === 'beta',
       preRun: (data, _, output) => {
-        data.betaInstructions = {
-          '-1': output.unknown(),
-          '0': output.purpleBait(),
-          '1': output.orangeBait(),
-          '2': output.purpleNoTether(),
-          '3': output.orangeNoTether(),
-          '4': output.purpleCloseTether(),
-          '5': output.orangeCloseTether(),
-          '6': output.purpleFarTether(),
-          '7': output.orangeFarTether(),
-        }[data.betaIndex];
+        // data.betaIndex won't be resolved until 1s delay and 'TEA Beta Instructions' runs.
+        // So make this a function, and defer the lookup of data.betaIndex.
+        data.betaInstructions = (idx) => {
+          if (typeof idx !== 'number') {
+            console.error(`TEA Beta Instructions Callout: non-number idx: ${idx}`);
+            return output.unknown();
+          }
+          const strings = {
+            '-1': output.unknown(),
+            '0': output.purpleBait(),
+            '1': output.orangeBait(),
+            '2': output.purpleNoTether(),
+            '3': output.orangeNoTether(),
+            '4': output.purpleCloseTether(),
+            '5': output.orangeCloseTether(),
+            '6': output.purpleFarTether(),
+            '7': output.orangeFarTether(),
+          };
+
+          if (idx in strings)
+            return strings[idx];
+
+          console.error(`TEA Beta Instructions Callout: missing idx: ${idx}`);
+          return output.unknown();
+        };
       },
       delaySeconds: 2,
       durationSeconds: 35,
@@ -2457,14 +2471,14 @@ const namedNisiPass = (data, output) => {
       alarmText: function(data) {
         // Baiters get an alarm text.
         if (data.betaBait.includes(data.me))
-          return data.betaInstructions;
+          return data.betaInstructions(data.betaIndex);
       },
       alertText: function(data) {
         // The west and south jump get an alert text.
         if (data.betaBait.includes(data.me))
           return;
         if (data.betaJumps.includes(data.me))
-          return data.betaInstructions;
+          return data.betaInstructions(data.betaIndex);
       },
       infoText: function(data) {
         // The rest of the group (going north) gets info.
@@ -2472,7 +2486,7 @@ const namedNisiPass = (data, output) => {
           return;
         if (data.betaJumps.includes(data.me))
           return;
-        return data.betaInstructions;
+        return data.betaInstructions(data.betaIndex);
       },
       outputStrings: {
         unknown: {
