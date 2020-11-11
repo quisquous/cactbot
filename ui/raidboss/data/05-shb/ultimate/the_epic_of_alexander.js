@@ -917,9 +917,7 @@ const namedNisiPass = (data, output) => {
       netRegexFr: NetRegexes.startsUsing({ source: 'Croiseur-chasseur', id: '49C2', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '49C2', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '49C2', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer' || data.role === 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

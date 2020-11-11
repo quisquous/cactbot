@@ -74,9 +74,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '23DC', source: 'アルテ・ロイテ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '23DC', source: '老者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '23DC', source: '알테 로이테', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

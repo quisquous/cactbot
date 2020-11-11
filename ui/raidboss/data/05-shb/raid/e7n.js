@@ -12,9 +12,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C52', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C52', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C52', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer' || data.role === 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

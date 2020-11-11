@@ -36,9 +36,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '49A3', source: '宮殿の隠者', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '49A3', source: '宫殿的隐者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '49A3', source: '궁전의 은자', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer' || data.role === 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -80,9 +78,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '471C', source: 'リャナンシー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '471C', source: '凉南希', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '471C', source: '랴난시', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer' || data.role === 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -149,9 +145,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4765', source: 'ルゴス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4765', source: '卢格斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4765', source: '루구스', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer' || data.role === 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

@@ -357,9 +357,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: 'プロトアルテマ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: '究极神兵原型', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: '프로토 알테마', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -474,9 +472,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1D32', source: 'スカアハ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1D32', source: '斯卡哈', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1D32', source: '스카하크', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
