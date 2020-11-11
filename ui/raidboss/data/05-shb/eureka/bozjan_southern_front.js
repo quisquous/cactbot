@@ -88,6 +88,7 @@ const orbOutputStrings = {
   stopOutside: {
     en: 'Stop (Out)',
     de: 'Stop (Außen)',
+    ko: '멈추기 (바깥에서)',
   },
   move: {
     en: 'Move',
@@ -265,6 +266,7 @@ const tankBusterOnParty = (ceId) => (data, matches) => {
         text: {
           en: 'Take one tether',
           de: 'Nimm eine´Verbindung',
+          ko: '선 하나 낚아채기',
         },
       },
     },
@@ -317,6 +319,7 @@ const tankBusterOnParty = (ceId) => (data, matches) => {
         text: {
           en: 'Kill Magitek Core',
           de: 'Besiege Magitek-Reaktor',
+          ko: '마도 핵 죽이기',
         },
       },
     },
@@ -353,10 +356,12 @@ const tankBusterOnParty = (ceId) => (data, matches) => {
         getUnderOrb: {
           en: 'Get Under Orb',
           de: 'Geh unter einem Orb',
+          ko: '구슬 아래로',
         },
         goCorner: {
           en: 'Go To Corner',
           de: 'Geh in die Ecken',
+          ko: '구석으로',
         },
       },
     },
@@ -409,6 +414,7 @@ const tankBusterOnParty = (ceId) => (data, matches) => {
         text: {
           en: 'Kill Meteors',
           de: 'Besiege die Meteore',
+          ko: '메테오 부수기',
         },
       },
     },
@@ -567,22 +573,27 @@ const tankBusterOnParty = (ceId) => (data, matches) => {
           // "Follow Other People ;)"
           en: 'Go ???',
           de: 'Gehe nach ???',
+          ko: '???쪽으로',
         },
         northeast: {
           en: 'Go northeast',
           de: 'Gehe nach Nordosten',
+          ko: '북동쪽으로',
         },
         southeast: {
           en: 'Go southeast',
           de: 'Gehe nach Südosten',
+          ko: '남동쪽으로',
         },
         southwest: {
           en: 'Go southwest',
           de: 'Gehe nach Südwesten',
+          ko: '남서쪽으로',
         },
         northwest: {
           en: 'Go northwest',
           de: 'Gehe nach Nordwesten',
+          ko: '북서쪽으로',
         },
       },
     },
@@ -613,6 +624,7 @@ const tankBusterOnParty = (ceId) => (data, matches) => {
         justOrb: {
           en: 'Get Under Light Orb',
           de: 'Unter einem Lichtorb stellen',
+          ko: '빛 구슬 아래로',
         },
         orbWithFlutter: {
           en: 'Get Under Blown Light Orb',
@@ -641,6 +653,7 @@ const tankBusterOnParty = (ceId) => (data, matches) => {
         text: {
           en: 'Follow Boss',
           de: 'Folge dem Boss',
+          ko: '보스 따라가기',
         },
       },
     },

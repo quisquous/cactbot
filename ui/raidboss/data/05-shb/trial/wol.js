@@ -516,5 +516,18 @@
         'Ultimate Crossover': 'アルティメット・クロスオーバー',
       },
     },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Warrior Of Light': '빛의 전사',
+      },
+      'replaceText': {
+        '\\(In\\)': '(중앙)',
+        '\\(Out\\)': '(외곽)',
+        '--active time event--': '--긴급 조작--',
+        'Summon(?! Wyrm)': '소환',
+      },
+    },
   ],
 }];

@@ -102,14 +102,16 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Ifrit': '이프리트',
       },
       'replaceText': {
+        '\\(inner\\)': '(안)',
+        '\\(outer\\)': '(밖)',
         'Eruption': '용암 분출',
         'Hellfire': '지옥의 화염',
         'Incinerate': '소각',
+        'Nail Add': '말뚝 소환',
         'Radiant Plume': '광휘의 불기둥',
         'Vulcan Burst': '폭렬 난사',
       },
