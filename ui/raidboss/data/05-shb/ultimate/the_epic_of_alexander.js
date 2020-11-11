@@ -2441,7 +2441,11 @@ const namedNisiPass = (data, output) => {
         // data.betaIndex won't be resolved until 1s delay and 'TEA Beta Instructions' runs.
         // So make this a function, and defer the lookup of data.betaIndex.
         data.betaInstructions = (idx) => {
-          return {
+          if (typeof idx !== 'number') {
+            console.error(`TEA Beta Instructions Callout: non-number idx: ${idx}`);
+            return output.unknown();
+          }
+          const strings = {
             '-1': output.unknown(),
             '0': output.purpleBait(),
             '1': output.orangeBait(),
@@ -2451,7 +2455,13 @@ const namedNisiPass = (data, output) => {
             '5': output.orangeCloseTether(),
             '6': output.purpleFarTether(),
             '7': output.orangeFarTether(),
-          }[idx];
+          };
+
+          if (idx in strings)
+            return strings[idx];
+
+          console.error(`TEA Beta Instructions Callout: missing idx: ${idx}`);
+          return output.unknown();
         };
       },
       delaySeconds: 2,
