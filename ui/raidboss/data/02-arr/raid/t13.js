@@ -145,7 +145,7 @@
           fr: 'Akh Morn sur ${player}',
           ja: '${player}にアク・モーン',
           cn: '死亡轮回点${player}',
-          ko: '아크몬 ${player}',
+          ko: '"${player}" 아크몬',
         },
         akhMornOnYou: {
           en: 'Akh Morn on YOU',
