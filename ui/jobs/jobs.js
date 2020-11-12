@@ -45,9 +45,39 @@ const kPullText = {
 };
 
 const kAbility = {
+  // LB
+  ShieldWall: 'C5', // T LB1
+  Stronghold: 'C6', // T LB2
+  LastBastion: 'C7', // PLD LB3
+  LandWaker: '1090', // WAR LB3
+  DarkForce: '1091', // DRK LB3
+  GunmetalSoul: '42D1', // GNB LB3
+  HealingWind: 'CE', // H LB1
+  BreathoftheEarth: 'CF', // H LB2
+  PulseofLife: 'D0', // WHM LB3
+  AngelFeathers: '1097', // SCH LB3
+  AstralStasis: '1098', // AST LB3
+  Braver: 'C8', // meleeDPS LB1
+  Bladedance: 'C9', // meleeDPS LB2
+  FinalHeaven: 'CA', // MNK LB3
+  Chimatsuri: '1093', // NIN LB3
+  DragonsongDive: '1092', // DRG LB3
+  DoomoftheLiving: '1EB5', // SAM LB3
+  BigShot: '108E', // rangeDPS LB1
+  Desperado: '108F', // rangeDPS LB2
+  SagittariusArrow: '1094', // BRD LB3
+  SatelliteBeam: '1095', // MCH LB3
+  CrimsonLotus: '42D2', // DNC LB3
+  Skyshard: 'CB', // magicDPS LB1
+  Starstorm: 'CC', // magicDPS LB2
+  Meteor: 'CD', // BLM LB3
+  Teraflare: '1096', // SMN LB3
+  VermilionScourge: '1EB6', // RDM LB3
   DragonKick: '4A',
   TwinSnakes: '3D',
   Demolish: '42',
+
+  // RDM
   Verstone: '1D57',
   Verfire: '1D56',
   Veraero: '1D53',
@@ -58,16 +88,23 @@ const kAbility = {
   Jolt: '1D4F',
   Impact: '1D62',
   Scatter: '1D55',
+  Verthunder2: '408C',
+  Veraero2: '408D',
   Vercure: '1D5A',
   Verraise: '1D63',
   Riposte: '1D50',
   Zwerchhau: '1D58',
   Redoublement: '1D5C',
   Moulinet: '1D59',
+  Reprise: '4091',
   EnchantedRiposte: '1D67',
   EnchantedZwerchhau: '1D68',
   EnchantedRedoublement: '1D69',
   EnchantedMoulinet: '1D6A',
+  EnchantedReprise: '4090',
+  Embolden: '1D60',
+  Manafication: '1D61',
+
   Tomahawk: '2E',
   Overpower: '29',
   HeavySwing: '1F',
@@ -77,7 +114,6 @@ const kAbility = {
   StormsEye: '2D',
   StormsPath: '2A',
   InnerRelease: '1CDD',
-  Embolden: '1D60',
   Aetherflow: 'A6',
   ChainStratagem: '1D0C',
   Hypercharge: 'B45',
@@ -419,6 +455,34 @@ function setupRegexes(playerName) {
   // Full skill names of abilities that break combos.
   // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
   kComboBreakers = Object.freeze([
+    // LB
+    kAbility.ShieldWall,
+    kAbility.Stronghold,
+    kAbility.LastBastion,
+    kAbility.LandWaker,
+    kAbility.DarkForce,
+    kAbility.GunmetalSoul,
+    kAbility.HealingWind,
+    kAbility.BreathoftheEarth,
+    kAbility.PulseofLife,
+    kAbility.AngelFeathers,
+    kAbility.AstralStasis,
+    kAbility.Braver,
+    kAbility.Bladedance,
+    kAbility.FinalHeaven,
+    kAbility.Chimatsuri,
+    kAbility.DragonsongDive,
+    kAbility.DoomoftheLiving,
+    kAbility.BigShot,
+    kAbility.Desperado,
+    kAbility.SagittariusArrow,
+    kAbility.SatelliteBeam,
+    kAbility.CrimsonLotus,
+    kAbility.Skyshard,
+    kAbility.Starstorm,
+    kAbility.Meteor,
+    kAbility.Teraflare,
+    kAbility.VermilionScourge,
     // GNB
     kAbility.KeenEdge,
     kAbility.BrutalShell,
@@ -445,16 +509,21 @@ function setupRegexes(playerName) {
     kAbility.Jolt,
     kAbility.Impact,
     kAbility.Scatter,
+    kAbility.Verthunder2,
+    kAbility.Veraero2,
     kAbility.Vercure,
     kAbility.Verraise,
     kAbility.Riposte,
     kAbility.Zwerchhau,
     kAbility.Redoublement,
     kAbility.Moulinet,
+    kAbility.Reprise,
     kAbility.EnchantedRiposte,
     kAbility.EnchantedZwerchhau,
     kAbility.EnchantedRedoublement,
     kAbility.EnchantedMoulinet,
+    kAbility.EnchantedReprise,
+    kAbility.Manafication,
     // war
     kAbility.Tomahawk,
     kAbility.Overpower,
