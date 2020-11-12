@@ -14,7 +14,9 @@ class Tooltip {
     };
     this.target = target;
     this.direction = direction;
-    this.tooltip = document.querySelector('template.tooltip.' + direction)
+    // Technically, templates should use querySelector, but this gets called so often
+    // on trigger-heavy encounters that we should hack its performance a bit
+    this.tooltip = document.getElementById(`${direction}TooltipTemplate`)
       .content.firstElementChild.cloneNode(true);
     this.setText(text);
     document.body.append(this.tooltip);
