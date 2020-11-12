@@ -45,6 +45,7 @@
         fireOn: {
           en: 'Fire Marker on ${player}',
           de: 'Feuer Markierung auf ${player}',
+          fr: 'Feu sur ${player}',
           cn: '喷火点${player}',
         },
       },
