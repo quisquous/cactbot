@@ -42,6 +42,7 @@
           fr: 'Charge sur ${player}',
           ja: '${player}にワイルドチャージ',
           cn: '蓝球点${player}',
+          ko: '"${player}" 야성의 돌진 대상',
         },
         chargeOnYou: {
           en: 'Charge on YOU',
@@ -49,6 +50,7 @@
           fr: 'Charge sur VOUS',
           ja: '自分にワイルドチャージ',
           cn: '蓝球点名',
+          ko: '야성의 돌진 대상자',
         },
       },
     },

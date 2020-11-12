@@ -190,10 +190,8 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2147', source: 'ラクシュミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2147', source: '吉祥天女', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2147', source: '락슈미', capture: false }),
-      alertText: function(data, _, output) {
-        if (data.chanchala)
-          return output.text();
-      },
+      condition: (data) => data.chancala,
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Vrill for AOE',

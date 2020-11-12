@@ -273,11 +273,9 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'ライトウィング', target: 'ライトウィング', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '右翼', target: '右翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '오른쪽 날개', target: '오른쪽 날개', capture: false }),
+      condition: (data) => data.phase === 3,
       delaySeconds: 9.5,
-      alarmText: function(data, _, output) {
-        if (data.phase === 3)
-          return output.text();
-      },
+      alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'move away',

@@ -240,15 +240,10 @@
       infoText: function(data, _, output) {
         if (data.titanGaols.length !== 3)
           return;
-        // Return all the people in order.
-        const players = data.titanGaols.map(function(n) {
-          return data.ShortName(n);
-        }).join(', ');
-
         return output.text({
-          player1: players[0],
-          player2: players[1],
-          player3: players[2],
+          player1: data.ShortName(data.titanGaols[0]),
+          player2: data.ShortName(data.titanGaols[1]),
+          player3: data.ShortName(data.titanGaols[2]),
         });
       },
       outputStrings: {

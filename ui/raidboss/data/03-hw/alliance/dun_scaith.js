@@ -155,11 +155,9 @@
     {
       id: 'Dun Scaith Scythe Drop',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 5,
-      infoText: function(data, matches, output) {
-        if (data.me === matches.target)
-          return output.text();
-      },
+      infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Drop scythe outside',
@@ -359,18 +357,14 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: 'プロトアルテマ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: '究极神兵原型', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: '프로토 알테마', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
       id: 'Dun Scaith Prey Markers',
       netRegex: NetRegexes.gainsEffect({ effectId: '232' }),
-      alertText: function(data, matches, output) {
-        if (data.me === matches.target)
-          return output.text();
-      },
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Prey--Avoid party and keep moving',
@@ -478,9 +472,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1D32', source: 'スカアハ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1D32', source: '斯卡哈', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1D32', source: '스카하크', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -536,11 +528,9 @@
       // This trigger is common to both Scathach and Diabolos, since handling is 100% identical.
       id: 'Dun Scaith Nox Orbs',
       netRegex: NetRegexes.headMarker({ id: '005C' }),
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 5,
-      alertText: function(data, matches, output) {
-        if (matches.target === data.me)
-          return output.text();
-      },
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Take orb outside',

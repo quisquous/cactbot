@@ -13,9 +13,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3E9A', source: 'イノセンス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E9A', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E9A', source: '이노센스', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -68,9 +66,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3EEA', source: 'イノセンス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3EEA', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EEA', source: '이노센스', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

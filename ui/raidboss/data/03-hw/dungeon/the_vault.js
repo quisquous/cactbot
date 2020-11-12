@@ -53,9 +53,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '101E', source: '聖騎士アデルフェル', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '101E', source: '圣骑士阿代尔斐尔', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '101E', source: '성기사 아델펠', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -139,9 +137,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1035', source: '聖騎士シャリベル', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1035', source: '圣骑士沙里贝尔', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1035', source: '성기사 샤리베르', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

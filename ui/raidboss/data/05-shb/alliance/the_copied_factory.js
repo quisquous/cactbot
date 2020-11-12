@@ -59,9 +59,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '48CF', source: 'Modèle Multiarticulé : Commandant', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '48CF', source: '多関節型：司令機', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48CF', source: '다관절형: 사령기', capture: false }),
-      condition: function(data) {
-        return data.role === 'tank' || data.role === 'healer' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -143,9 +141,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '4805', source: 'Hobbes', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '4805', source: 'ホッブス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4805', source: '홉스', capture: false }),
-      condition: function(data) {
-        return data.role === 'tank' || data.role === 'healer' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -382,9 +378,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '4941', source: 'Module De Vol', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '4941', source: '飛行ユニット', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4941', source: '비행 유닛', capture: false }),
-      condition: function(data) {
-        return data.role === 'tank' || data.role === 'healer' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -487,9 +481,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '4755', source: 'Engels', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '4755', source: 'エンゲルス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4755', source: '엥겔스', capture: false }),
-      condition: function(data) {
-        return data.role === 'tank' || data.role === 'healer' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -539,10 +531,8 @@
     {
       id: 'Copied Engels Incendiary Bombing',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      alertText: function(data, matches, output) {
-        if (matches.target === data.me)
-          return output.text();
-      },
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Puddle on YOU',
@@ -557,10 +547,8 @@
     {
       id: 'Copied Engels Guided Missile',
       netRegex: NetRegexes.headMarker({ id: '00C5' }),
-      alertText: function(data, matches, output) {
-        if (matches.target === data.me)
-          return output.text();
-      },
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Out + Dodge Homing AoE',
@@ -655,9 +643,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '48F6', source: '9S : Avec Multipède Esclave', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '48F6', source: '９Ｓ：多脚戦車従属', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48F6', source: '9S: 다각전차 종속', capture: false }),
-      condition: function(data) {
-        return data.role === 'tank' || data.role === 'healer' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

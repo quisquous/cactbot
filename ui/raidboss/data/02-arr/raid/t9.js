@@ -3,27 +3,50 @@
 const diveDirections = {
   unknown: {
     en: '?',
+    de: '?',
+    cn: '？',
   },
   north: {
     en: 'N',
+    de: 'N',
+    cn: '北',
+    ko: '북',
   },
   northeast: {
     en: 'NE',
+    de: 'NO',
+    cn: '东北',
+    ko: '북동',
   },
   east: {
     en: 'E',
+    de: 'O',
+    cn: '东',
+    ko: '동',
   },
   southeast: {
     en: 'SE',
+    de: 'SO',
+    cn: '东南',
+    ko: '남동',
   },
   southwest: {
     en: 'SW',
+    de: 'SW',
+    cn: '西南',
+    ko: '남서',
   },
   west: {
     en: 'W',
+    de: 'W',
+    cn: '西',
+    ko: '서',
   },
   northwest: {
     en: 'NW',
+    de: 'NW',
+    cn: '西北',
+    ko: '북서',
   },
 };
 
@@ -396,15 +419,23 @@ const diveDirections = {
       outputStrings: {
         fireOutOnYou: {
           en: 'Fire Out (on YOU)',
+          de: 'Feuer raus (auf DIR)',
+          cn: '火球单吃点名',
         },
         fireInOnYou: {
           en: 'Fire In (on YOU)',
+          de: 'Feuer rein (auf DIR)',
+          cn: '火球集合点名',
         },
         fireOutOn: {
           en: 'Fire Out (on ${player})',
+          de: 'Feuer raus (auf ${player})',
+          cn: '火球单吃点${player}',
         },
         fireInOn: {
           en: 'Fire In (on ${player})',
+          de: 'Feuer rein (auf ${player})',
+          cn: '火球集合点${player}',
         },
       },
     },
@@ -440,6 +471,9 @@ const diveDirections = {
         ...diveDirections,
         safeZone: {
           en: 'Safe zone: ${dir}',
+          de: 'Sichere Zone: ${dir}',
+          cn: '安全点在：${dir}',
+          ko: '안전 지대: ${dir}',
         },
       },
     },
@@ -468,7 +502,7 @@ const diveDirections = {
           fr: 'Allez en ${marker} (au ${dir})',
           ja: '${marker}に行く' + ' (あと ${dir}秒)',
           cn: '去${marker} (在 ${dir}秒)',
-          ko: '${marker}로 이동' + ' (in ${dir})',
+          ko: '${marker}로 이동' + ' (${dir}쪽)',
         },
         goToMarker: {
           en: 'Go To ${marker}',

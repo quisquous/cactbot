@@ -299,7 +299,7 @@ class RaidbossConfigurator {
     for (const [key, info] of Object.entries(fileMap)) {
       const expansion = info.prefix;
 
-      if (Object.keys(info.triggers).length == 0)
+      if (Object.keys(info.triggers).length === 0)
         continue;
 
       if (!expansionDivs[expansion]) {

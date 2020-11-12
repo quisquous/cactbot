@@ -39,9 +39,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1945', source: 'リクイドフレイム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1945', source: '液态火焰', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1945', source: '액체 불꽃', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -249,9 +247,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1955', source: 'ストリックス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1955', source: '博学林鸮', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1955', source: '스트릭스', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

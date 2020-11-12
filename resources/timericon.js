@@ -188,18 +188,18 @@ class TimerIcon extends HTMLElement {
     this._textColor = 'white';
     this._colorBorderSize = 2;
 
-    if (this.duration != null) this._duration = Math.max(parseFloat(this.duration), 0);
-    if (this.width != null) this._width = Math.max(parseInt(this.width), 1);
-    if (this.height != null) this._height = Math.max(parseInt(this.height), 1);
-    if (this.bordercolor != null) this._borderFg = this.bordercolor;
-    if (this.bordersize != null) this._colorBorderSize = Math.max(parseInt(this.bordersize), 0);
-    if (this.scale != null) this._scale = Math.max(parseFloat(this.scale), 0.01);
-    if (this.hideafter != null && this.hideafter != '') this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
-    if (typeof this.onhide !== 'undefined') this._onHide = this.onhide;
-    if (this.icon != null) this._icon = this.icon;
-    if (this.zoom != null) this._zoom = Math.max(parseInt(this.zoom), 0);
-    if (this.text != null) this._text = this.text;
-    if (this.textcolor != null) this._textColor = this.textcolor;
+    if (this.duration !== null) this._duration = Math.max(parseFloat(this.duration), 0);
+    if (this.width !== null) this._width = Math.max(parseInt(this.width), 1);
+    if (this.height !== null) this._height = Math.max(parseInt(this.height), 1);
+    if (this.bordercolor !== null) this._borderFg = this.bordercolor;
+    if (this.bordersize !== null) this._colorBorderSize = Math.max(parseInt(this.bordersize), 0);
+    if (this.scale !== null) this._scale = Math.max(parseFloat(this.scale), 0.01);
+    if (this.hideafter !== null && this.hideafter !== '') this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
+    if (this.onhide !== null) this._onHide = this.onhide;
+    if (this.icon !== null) this._icon = this.icon;
+    if (this.zoom !== null) this._zoom = Math.max(parseInt(this.zoom), 0);
+    if (this.text !== null) this._text = this.text;
+    if (this.textcolor !== null) this._textColor = this.textcolor;
 
     this._connected = true;
     this.layout();
@@ -211,32 +211,32 @@ class TimerIcon extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (name == 'duration') {
+    if (name === 'duration') {
       this._duration = Math.max(parseFloat(newValue), 0);
       this.reset();
-    } else if (name == 'width') {
+    } else if (name === 'width') {
       this._width = Math.max(parseInt(newValue), 1);
       this.layout();
-    } else if (name == 'height') {
+    } else if (name === 'height') {
       this._height = Math.max(parseInt(newValue), 1);
       this.layout();
-    } else if (name == 'bordercolor') {
+    } else if (name === 'bordercolor') {
       this._borderFg = newValue;
       this.layout();
-    } else if (name == 'bordersize') {
+    } else if (name === 'bordersize') {
       this._colorBorderSize = Math.max(parseInt(newValue), 0);
       this.layout();
-    } else if (name == 'onhide') {
+    } else if (name === 'onhide') {
       this._onHide = newValue;
-    } else if (name == 'icon') {
+    } else if (name === 'icon') {
       this._icon = newValue;
       this.layout();
-    } else if (name == 'zoom') {
+    } else if (name === 'zoom') {
       this._zoom = Math.max(parseInt(newValue), 0);
       this.layout();
-    } else if (name == 'text') {
+    } else if (name === 'text') {
       this._text = newValue;
-    } else if (name == 'textcolor') {
+    } else if (name === 'textcolor') {
       this._textColor = newValue;
     }
 
@@ -295,18 +295,18 @@ class TimerIcon extends HTMLElement {
   }
 
   draw() {
-    if (this._text == 'remain') {
+    if (this._text === 'remain') {
       let intRemain = parseInt(this._value + 0.99999999999);
       if (intRemain > 0)
         this.textElement.innerText = intRemain;
       else
         this.textElement.innerText = '';
-    } else if (this._text == 'percent') {
+    } else if (this._text === 'percent') {
       let percent = this._duration <= 0 ? 1 : this._value / this._duration;
       // Keep it between 0 and 1.
       percent = Math.min(1, Math.max(0, percent));
       this.textElement.innerText = (percent * 100).toFixed(0);
-    } else if (this._text == 'elapsed') {
+    } else if (this._text === 'elapsed') {
       let intelapsed = (this._duration - this._value).toFixed(0);
       this.textElement.innerText = intelapsed;
     } else {

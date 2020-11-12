@@ -909,5 +909,23 @@ const quintupleOutputStrings = {
         'Ultimate Crossover': 'アルティメット・クロスオーバー',
       },
     },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Warrior Of Light': '빛의 전사',
+      },
+      'replaceText': {
+        'BLM/WHM': '흑마／백마',
+        '(?<!\\w)Cast(?= )': '시전',
+        'DRK/BRD': '암기／음유',
+        '(?<! )Limit(?! Break)': '리미트',
+        'Limit Break': '리미트 브레이크',
+        'Meteor Impact': '운석 낙하',
+        '(?<= )NIN': '닌자',
+        'SMN/WAR': '소환사／전사',
+        'Summon(?! Wyrm)': '소환',
+      },
+    },
   ],
 }];

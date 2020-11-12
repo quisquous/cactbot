@@ -49,9 +49,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3FDC', source: 'リヴァイアサン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3FDC', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FDC', source: '리바이어선', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -62,9 +60,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3FDE', source: 'リヴァイアサン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3FDE', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FDE', source: '리바이어선', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
