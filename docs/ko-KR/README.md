@@ -150,7 +150,7 @@ cactbot이 zip 파일을 생성하는 구조와의 차이점 때문에
 1. ACT를 여세요.
 1. cactbot 플러그인을 추가한 후에 반드시 ACT를 재시작했는지 확인하세요.
 1. `Plugins` 탭 안의 `OverlayPlugin.dll` 탭으로 이동하세요.
-1. "추가" 버튼을 클릭하고 리스트 안에 있는 `Cactbot Raidboss`을 선택하세요.
+1. "추가" 버튼을 클릭하고 리스트 안에 있는 `Cactbot Raidboss`를 선택하세요.
 
     ![overlay plugin 추가 스크린샷](../../screenshots/overlay_plugin_new.png)
 
@@ -169,7 +169,7 @@ cactbot은 test UI를 기본으로 제공합니다.
 
 1. 드래그하고 크기를 조절해서 오버레이를 원하는대로 위치시키세요.
 
-1. `Raidboss` 오버레이의 `General` 탭에서, `위치 잠금`와 `클릭 무시`체크 박스를 선택하세요.
+1. `Raidboss` 오버레이의 `일반` 탭에서, `위치 잠금`와 `클릭 무시`체크 박스를 선택하세요.
 테스트 타임라인 바, 디버그 텍스트, 빨간색 경계선과 옅은 파란색 배경은 오버레이가 잠기면 사라집니다.
 
     ![raidboss plugin 설정](../../screenshots/overlay_plugin_new_raidboss_locked.png)
