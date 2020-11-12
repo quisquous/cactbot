@@ -155,7 +155,7 @@ cactbot이 zip 파일을 생성하는 구조와의 차이점 때문에
     ![overlay plugin 추가 스크린샷](../../screenshots/overlay_plugin_new.png)
 
 1. 이제, 화면에 어떤 테스트 UI가 보일겁니다.
-cactbot은 test UI를 기본으로 제공합니다.
+cactbot은 테스트 UI를 기본으로 제공합니다.
 두꺼운 빨간색 경계선과
 파란색 배경화면은 오버레이를 화면에서 크기를 조절하고 위치를 정하는데 도움을 줍니다.
 이것들은 오버레이 설정 패널에서 위치 잠금을 설정하면 사라집니다.
@@ -261,7 +261,7 @@ The module is designed to look and feel similar to the
 
 Fight timelines are provided in files designed for the [ACT Timeline](https://github.com/grindingcoil/act_timeline)
 plugin, [documented here](http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)
-with [some extensions](docs/TimelineGuide.md).
+with [some extensions](../TimelineGuide.md).
 
 There are three levels of text alerts, in order of escalating importance: `info`, `alert`, and `alarm`.
 Text messages will be in one of these, and more important levels are larger and more eye grabbing colors.  Text-to-speech can be configured if you prefer that over on screen text.
@@ -290,7 +290,7 @@ Instructions:
 1. Select `Cactbot Raidboss (Combined Alerts and Timelines)` from the URL Generator list.
 1. Edit the url to say `raidemulator.html` instead of `raidboss.html`.
 1. Copy and paste this edited url into Chrome.
-1. Drag and drop a [network log](/docs/FAQ-Troubleshooting.md#how-to-find-a-network-log) onto the page.
+1. Drag and drop a [network log](../FAQ-Troubleshooting.md#how-to-find-a-network-log) onto the page.
 1. Select the zone and encounter, and then click `Load Encounter`.
 
 If the emulator is not working, check the console log in the inspector for errors.
@@ -386,7 +386,7 @@ Cast times are currently only logged as you fish, so there won't be any data unt
 
 [See here](https://www.youtube.com/watch?v=GHgWIA-Zhug) for examples of the different tug types.
 
-Check [here](docs/FAQ-Troubleshooting.md#fisher-module) for common troubleshooting tips.
+Check [here](../FAQ-Troubleshooting.md#fisher-module) for common troubleshooting tips.
 
 ### [dps](../../ui/dps) 미터기
 
@@ -433,7 +433,7 @@ It can be useful to try out to make sure everything is working as expected or to
 
 ## 문제 해결
 
-자주 나타나는 Cactbot 문제를 포함한 일반적인 FAQ는 [여기](docs/FAQ-Troubleshooting.md)에서 확인할 수 있습니다.
+자주 나타나는 Cactbot 문제를 포함한 일반적인 FAQ는 [여기](../FAQ-Troubleshooting.md)에서 확인할 수 있습니다.
 
 ## Cactbot 사용자 설정
 
