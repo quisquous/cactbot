@@ -5,19 +5,19 @@
 
 let Conditions = {
   targetIsYou: () => (data, matches) => {
-    return data.me == matches.target;
+    return data.me === matches.target;
   },
   targetIsNotYou: () => (data, matches) => {
     return data.me !== matches.target;
   },
   caresAboutAOE: () => (data) => {
-    return data.role == 'tank' || data.role == 'healer' || data.CanAddle() || data.job == 'BLU';
+    return data.role === 'tank' || data.role === 'healer' || data.CanAddle() || data.job === 'BLU';
   },
   caresAboutMagical: () => (data) => {
-    return data.role == 'tank' || data.role == 'healer' || data.CanAddle() || data.job == 'BLU';
+    return data.role === 'tank' || data.role === 'healer' || data.CanAddle() || data.job === 'BLU';
   },
   caresAboutPhysical: () => (data) => {
-    return data.role == 'tank' || data.role == 'healer' || data.CanFeint() || data.job == 'BLU';
+    return data.role === 'tank' || data.role === 'healer' || data.CanFeint() || data.job === 'BLU';
   },
 };
 

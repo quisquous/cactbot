@@ -197,14 +197,14 @@ class TimerBox extends HTMLElement {
     this._bigAtZero = true;
     this._roundUpThreshold = true;
 
-    if (this.duration != null) this._duration = Math.max(parseFloat(this.duration), 0);
-    if (this.threshold != null) this._threshold = parseFloat(this.threshold);
-    if (this.bg != null) this._bg = this.bg;
-    if (this.fg != null) this._fg = this.fg;
-    if (this.scale != null) this._scale = Math.max(parseFloat(this.scale), 0.01);
-    if (this.toward != null) this._towardTop = this.toward != 'bottom';
-    if (this.style != null) this._styleFill = this.style != 'empty';
-    if (this.hideafter != null && this.hideafter != '') this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
+    if (this.duration !== null) this._duration = Math.max(parseFloat(this.duration), 0);
+    if (this.threshold !== null) this._threshold = parseFloat(this.threshold);
+    if (this.bg !== null) this._bg = this.bg;
+    if (this.fg !== null) this._fg = this.fg;
+    if (this.scale !== null) this._scale = Math.max(parseFloat(this.scale), 0.01);
+    if (this.toward !== null) this._towardTop = this.toward !== 'bottom';
+    if (this.style !== null) this._styleFill = this.style !== 'empty';
+    if (this.hideafter !== null && this.hideafter !== '') this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
 
     this._connected = true;
     this.layout();
@@ -217,37 +217,37 @@ class TimerBox extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (name == 'duration') {
+    if (name === 'duration') {
       this._duration = Math.max(parseFloat(newValue), 0);
       this.reset();
       return;
     }
 
-    if (name == 'threshold') {
+    if (name === 'threshold') {
       this._threshold = Math.max(parseFloat(newValue), 0);
-    } else if (name == 'toward') {
-      this._towardTop = newValue != 'bottom';
+    } else if (name === 'toward') {
+      this._towardTop = newValue !== 'bottom';
       this.layout();
-    } else if (name == 'style') {
-      this._styleFill = newValue != 'empty';
+    } else if (name === 'style') {
+      this._styleFill = newValue !== 'empty';
       this.layout();
-    } else if (name == 'bg') {
+    } else if (name === 'bg') {
       this._bg = newValue;
       this.layout();
-    } else if (name == 'fg') {
+    } else if (name === 'fg') {
       this._fg = newValue;
       this.layout();
-    } else if (name == 'hideafter') {
+    } else if (name === 'hideafter') {
       this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
-      if (this._duration == 0 && this._hideAfter >= 0)
+      if (this._duration === 0 && this._hideAfter >= 0)
         this.hide();
       else if (this._hideAfter < 0)
         this.show();
-    } else if (name == 'roundupthreshold') {
+    } else if (name === 'roundupthreshold') {
       this._roundUpThreshold = newValue;
-    } else if (name == 'valuescale') {
+    } else if (name === 'valuescale') {
       this._valueScale = parseFloat(newValue);
-    } else if (name == 'bigatzero') {
+    } else if (name === 'bigatzero') {
       this._bigAtZero = newValue === 'true';
     }
 
@@ -307,7 +307,7 @@ class TimerBox extends HTMLElement {
       rounded = remainingSec;
 
 
-    if (rounded <= 0.000000001 || this._duration == 0) {
+    if (rounded <= 0.000000001 || this._duration === 0) {
       if (this._bigAtZero) {
         this.largeBoxElement.style.display = 'block';
         this.smallBoxElement.style.display = 'none';
@@ -356,7 +356,7 @@ class TimerBox extends HTMLElement {
       this._duration = 0;
       if (this._hideAfter > 0)
         this._hideTimer = setTimeout(this.hide(), this._hideAfter);
-      else if (this._hideAfter == 0)
+      else if (this._hideAfter === 0)
         this.hide();
 
       window.cancelAnimationFrame(this._animationFrame);

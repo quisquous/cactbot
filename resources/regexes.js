@@ -569,7 +569,7 @@ var Regexes = {
   // like /insensitive/i are dropped.
   anyOf: function() {
     let array;
-    if (arguments.length == 1) {
+    if (arguments.length === 1) {
       if (!Array.isArray(arguments[0]))
         return arguments[0];
       array = arguments[0];
