@@ -362,7 +362,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Aetherial Tear': '차원의 틈새',
         'Dawn Knight': '여명의 자동기사',
@@ -395,8 +394,10 @@
         'Holy Chain': '거룩한 사슬',
         'Holy Shield Bash': '성스러운 방패 강타',
         'Hyperdimensional Slash': '고차원',
+        'Knights Appear': '자동 기사 생성',
         'Overpower': '압도',
-        'Retreat': '철수',
+        'Retreat(?!ing)': '철수',
+        'Retreating': '철수 중',
         'Rive': '두 동강 내기',
         'Sacred Flame': '성화 연소',
         'Shining Blade': '찬란한 칼날',

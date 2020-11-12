@@ -68,7 +68,7 @@
           fr: 'Guérison sur ${player}',
           ja: 'エスナ：${player}',
           cn: '康复${player}',
-          ko: '${player}에스나',
+          ko: '"${player}" 에스나',
         },
       },
     },

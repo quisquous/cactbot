@@ -17,6 +17,7 @@
           fr: 'Limit break maintenant !',
           ja: 'タンクLBを！',
           cn: '坦克LB！',
+          ko: '지금 탱리밋 사용!',
         },
       },
     },
@@ -342,7 +343,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         '(?<! )Alexander(?! )': '알렉산더',
         'Alexander Prime': '알렉산더 프라임',

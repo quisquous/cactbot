@@ -403,6 +403,8 @@
         'Quickthinx Allthoughts': '만능의 퀵싱크스',
         'Shanoa': '샤노아',
         'Sturm Doll': '인형 폭기병',
+        'Electrocution Gallery': '공개처형 광장',
+        'Pyretic': '열병',
       },
       'replaceText': {
         'Big Doll': '큰 인형',
