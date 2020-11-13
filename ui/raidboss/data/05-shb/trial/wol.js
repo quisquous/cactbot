@@ -289,12 +289,9 @@
       // Both for Absolute Holy and Katon San
       id: 'WOL Absolute Holy Katon San',
       netRegex: NetRegexes.headMarker({ id: '00A1' }),
+      condition: (data) => data.deluge !== data.me,
       delaySeconds: 0.5,
-      response: function(data, matches) {
-        if (data.deluge === data.me)
-          return;
-        return Responses.stackMarkerOn();
-      },
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'WOL Radiant Braver',

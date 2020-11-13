@@ -3,6 +3,41 @@
 // Notes:
 // Ignoring Gobsway Rumblerocks (1AA0) aoe trigger, as it is small and frequent.
 
+const chargeOutputStrings = {
+  getIn: {
+    en: 'In',
+    de: 'Rein',
+    fr: 'Intérieur',
+    ja: '中へ',
+    cn: '靠近',
+    ko: '안으로',
+  },
+  getOut: {
+    en: 'Out',
+    de: 'Raus',
+    ja: '外へ',
+    fr: 'Exterieur',
+    cn: '远离',
+    ko: '밖으로',
+  },
+  spread: {
+    en: 'Spread',
+    de: 'Verteilen',
+    fr: 'Dispersez-vous',
+    ja: '散開',
+    cn: '分散',
+    ko: '산개',
+  },
+  stackMarker: {
+    en: 'Stack',
+    de: 'Sammeln',
+    fr: 'Packez-vous',
+    ja: '頭割り',
+    cn: '分摊',
+    ko: '쉐어뎀',
+  },
+};
+
 [{
   zoneId: ZoneId.AlexanderTheBreathOfTheCreatorSavage,
   timelineFile: 'a10s.txt',
@@ -106,16 +141,20 @@
       preRun: function(data, matches) {
         data.charges = data.charges || [];
         data.charges.push({
-          '1AB8': Responses.getIn,
-          '1AB9': Responses.getOut,
-          '1ABA': Responses.spread,
-          '1ABB': Responses.stack,
+          '1AB8': 'getIn',
+          '1AB9': 'getOut',
+          '1ABA': 'spread',
+          '1ABB': 'stackMarker',
         }[matches.id]);
       },
-      response: function(data) {
+      response: function(data, _, output) {
+        // cactbot-builtin-response
+        output.responseOutputStrings = chargeOutputStrings;
+
         // Call the first one out with alert, the other two with info.
-        let severity = data.charges.length > 1 ? 'info' : 'alert';
-        return data.charges[data.charges.length - 1](severity);
+        data.charges = data.charges || [];
+        let severity = data.charges.length > 1 ? 'infoText' : 'alertText';
+        return { [severity]: output[data.charges[data.charges.length - 1]]() };
       },
     },
     {
@@ -140,11 +179,14 @@
       netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1A9[ABCE]', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1A9[ABCE]', capture: false }),
       suppressSeconds: 0.5,
-      response: function(data) {
+      response: function(data, _, output) {
+        // cactbot-builtin-response
+        output.responseOutputStrings = chargeOutputStrings;
+
         if (!data.charges || !data.charges.length)
           return;
 
-        return data.charges.shift()('alert');
+        return { alertText: output[data.charges.shift()]() };
       },
     },
     {

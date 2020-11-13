@@ -49,24 +49,18 @@
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '995', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '995', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '995', capture: false }),
-      response: (data) => {
-        if (data.role === 'tank') {
-          if (data.currentTank && data.blunt && data.blunt[data.currentTank]) {
-            return {
-              alertText: {
-                en: 'Staff (Tank Swap)',
-                de: 'Stab (Tankwechsel)',
-                fr: 'Bâton (Tank Swap)',
-                ja: '杖 (スイッチ)',
-                cn: '权杖（换T）',
-                ko: '지팡이 (탱커 교대)',
-              },
-            };
-          }
-        }
-
-        return {
-          infoText: {
+      response: (data, _, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          staffTankSwap: {
+            en: 'Staff (Tank Swap)',
+            de: 'Stab (Tankwechsel)',
+            fr: 'Bâton (Tank Swap)',
+            ja: '杖 (スイッチ)',
+            cn: '权杖（换T）',
+            ko: '지팡이 (탱커 교대)',
+          },
+          staff: {
             en: 'Staff',
             de: 'Stab',
             fr: 'Bâton',
@@ -75,6 +69,13 @@
             ko: '지팡이',
           },
         };
+
+        if (data.role === 'tank') {
+          if (data.currentTank && data.blunt && data.blunt[data.currentTank])
+            return { alertText: output.staffTankSwap() };
+        }
+
+        return { infoText: output.staff() };
       },
       run: (data) => data.soonAfterWeaponChange = true,
     },
@@ -86,24 +87,18 @@
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '993', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '993', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '993', capture: false }),
-      response: (data) => {
-        if (data.role === 'tank') {
-          if (data.currentTank && data.slashing && data.slashing[data.currentTank]) {
-            return {
-              alertText: {
-                en: 'Sword (Tank Swap)',
-                de: 'Schwert (Tankwechsel)',
-                fr: 'Épée (Tank Swap)',
-                ja: '剣 (スイッチ)',
-                cn: '剑（换T）',
-                ko: '검 (탱커 교대)',
-              },
-            };
-          }
-        }
-
-        return {
-          infoText: {
+      response: (data, _, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          swordTankSwap: {
+            en: 'Sword (Tank Swap)',
+            de: 'Schwert (Tankwechsel)',
+            fr: 'Épée (Tank Swap)',
+            ja: '剣 (スイッチ)',
+            cn: '剑（换T）',
+            ko: '검 (탱커 교대)',
+          },
+          sword: {
             en: 'Sword',
             de: 'Schwert',
             fr: 'Épée',
@@ -112,6 +107,12 @@
             ko: '검',
           },
         };
+        if (data.role === 'tank') {
+          if (data.currentTank && data.slashing && data.slashing[data.currentTank])
+            return { alertText: output.swordTankSwap() };
+        }
+
+        return { infoText: output.sword() };
       },
       run: (data) => data.soonAfterWeaponChange = true,
     },
