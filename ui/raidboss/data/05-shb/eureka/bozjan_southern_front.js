@@ -67,6 +67,7 @@ const orbOutputStrings = {
   unknown: {
     en: '???',
     de: '???',
+    ko: '???',
   },
   knockback: {
     en: 'Knockback',
@@ -117,6 +118,7 @@ const orbOutputStrings = {
   rings: {
     en: 'Rings',
     de: 'Ringe',
+    ko: '고리장판',
   },
 };
 
@@ -241,6 +243,7 @@ const tankBusterOnParty = (ceId) => (data, matches) => {
         text: {
           en: 'Stand in dive charge',
           de: 'Stehe im Ansturm',
+          ko: '돌진 장판 위에 서기',
         },
       },
     },
@@ -624,11 +627,12 @@ const tankBusterOnParty = (ceId) => (data, matches) => {
         justOrb: {
           en: 'Get Under Light Orb',
           de: 'Unter einem Lichtorb stellen',
-          ko: '빛 구슬 아래로',
+          ko: '하얀 구슬 안으로',
         },
         orbWithFlutter: {
           en: 'Get Under Blown Light Orb',
           de: 'Zu einem weggeschleuderten Lichtorb gehen',
+          ko: '하얀 구슬이 이동할 위치로',
         },
       },
     },
@@ -668,6 +672,7 @@ const tankBusterOnParty = (ceId) => (data, matches) => {
         text: {
           en: 'Lyon Passage Open',
           de: 'Lyon Zugang offen',
+          ko: '라이온 포탈 개방',
         },
       },
     },
