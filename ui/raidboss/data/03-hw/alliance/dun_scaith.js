@@ -880,7 +880,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Aether': 'エーテルスフィア',
         'Aether Collector': 'エーテル集積器',
@@ -967,7 +966,8 @@
         'Thirty Souls': 'サーティー・ソウルズ',
         'Thirty Thorns': 'サーティー・ソーンズ',
         'Touchdown': 'タッチダウン',
-        'Void Aero II': 'ヴォイド・エアロラ',
+        'Void Aero II(?!I)': 'ヴォイド・エアロラ',
+        'Void Aero III': 'ヴォイド・エアロガ',
         'Void Aero IV': 'ヴォイド・エアロジャ',
         'Void Blizzard III': 'ヴォイド・ブリザガ',
         'Void Blizzard IV': 'ヴォイド・ブリザジャ',
