@@ -236,7 +236,7 @@ ThirdParty
 1. 솔루션을 Visual Studio로 여세요. (Visual Studio 2017에서 작동을 테스트하고 있습니다).
 1. "Release"와 "x64" 설정으로 빌드하세요.
 1. 플러그인은 **bin/x64/Release/CactbotOverlay.dll**에 빌드될 겁니다.
-1. 빌드된 플러그인을 ACT에 플러그인으로 직접 추가하세요.  
+1. 빌드된 플러그인을 ACT에 플러그인으로 직접 추가하세요.
 ACT -> Plugins -> Plugin Listing 탭에서, `Browse` 버튼을 클릭하고 이 파일이 빌드된 **bin/x64/Release/CactbotOverlay.dll**을 찾으세요.  그리고 `Add/Enable Plugin`을 클릭하세요.
 
 ## UI 모듈 개요
@@ -479,8 +479,3 @@ cactbot은 현재 서비스 중인 글로벌 서버 버전 (영어, 독일어, �
 그리고 한국 서버 버전(한국어)에서
 테스트되고 작동합니다.
 일부 번역은 계속 진행 중입니다.
-
-유니코드 문자는
-[resources/regexes.js](../../resources/regexes.js) 파일의 도우미를 통해서 지원됩니다.
-하지만 [타임라인](../../ui/raidboss/data/timelines)과 로그 이벤트 [트리거](../../ui/raidboss/data/triggers)는
-ACT 로그 이벤트에 나타나는 이름이 다를 경우에 틀릴 수도 있습니다.

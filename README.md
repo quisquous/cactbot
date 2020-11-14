@@ -478,8 +478,3 @@ international (English, German, French, Japanese) version,
 the current Chinese version,
 and the current Korean version.
 Some translations are still a work in progress.
-
-Unicode characters are supported throughout, through the use of the helpers in the
-[resources/regexes.js](resources/regexes.js) file. However [timelines](ui/raidboss/data/timelines)
-and log event [triggers](ui/raidboss/data/triggers) may be incorrect if names that appear in the
-ACT log events are different.
