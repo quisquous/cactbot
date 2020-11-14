@@ -92,7 +92,7 @@ hideall "--sync--"
 
 2097.0 "--sync--" sync /:Annia Quo Soranus:370F:/
 2100.0 "Artificial Plasma" sync /:Julia Quo Soranus:3727:/
-2108.2 # "Angry Salamander" sync /:Annia Quo Soranus:372C:/
+2108.2 "Angry Salamander" # sync /:Annia Quo Soranus:372C:/
 2108.4 "Innocence" sync /:Julia Quo Soranus:3729:/
 2117.5 "Commence Air Strike" sync /:Julia Quo Soranus:3716:/
 2119.3 "--sync--" sync /:Julia Quo Soranus:370E:/
