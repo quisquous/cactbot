@@ -349,7 +349,7 @@ def main(args):
                 **entry
             )
 
-        output.append(output_entry.encode("ascii", "ignore").decode("utf8", "ignore"))
+        output.append(output_entry)
 
         # Save the entry til the next line for filtering
         last_entry = entry
