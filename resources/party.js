@@ -106,11 +106,11 @@ export default class PartyTracker {
   // in your immediate party, returns null.
   otherTank(name) {
     let names = this.tankNames;
-    if (names.length != 2)
+    if (names.length !== 2)
       return null;
-    if (names[0] == name)
+    if (names[0] === name)
       return names[1];
-    if (names[1] == name)
+    if (names[1] === name)
       return names[0];
     return null;
   }
@@ -118,11 +118,11 @@ export default class PartyTracker {
   // see: otherTank, but for healers.
   otherHealer(name) {
     let names = this.roleToPartyNames['healer'];
-    if (names.length != 2)
+    if (names.length !== 2)
       return null;
-    if (names[0] == name)
+    if (names[0] === name)
       return names[1];
-    if (names[1] == name)
+    if (names[1] === name)
       return names[0];
     return null;
   }

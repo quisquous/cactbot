@@ -12,15 +12,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ルークスピナー', id: '4D4' }),
       netRegexCn: NetRegexes.startsUsing({ source: '转盘堡', id: '4D4' }),
       netRegexKo: NetRegexes.startsUsing({ source: '보루형 회전전차', id: '4D4' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alertText: {
-        en: 'LOS Thrust',
-        de: 'LOS Gravitationsschlag',
-        fr: 'LOS Percée gravitationelle',
-        ja: 'グラビデカノン',
-        cn: '死刑',
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'LOS Thrust',
+          de: 'LOS Gravitationsschlag',
+          fr: 'LOS Percée gravitationelle',
+          ja: 'グラビデカノン',
+          cn: '死刑',
+        },
       },
     },
     {
@@ -31,15 +32,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ルークスピナー', id: '4D5' }),
       netRegexCn: NetRegexes.startsUsing({ source: '转盘堡', id: '4D5' }),
       netRegexKo: NetRegexes.startsUsing({ source: '보루형 회전전차', id: '4D5' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alarmText: {
-        en: 'LOS Pox',
-        de: 'LOS Pocken',
-        fr: 'LOS Vérole',
-        ja: 'ポックス',
-        cn: '血量上限降低',
+      condition: Conditions.targetIsYou(),
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'LOS Pox',
+          de: 'LOS Pocken',
+          fr: 'LOS Vérole',
+          ja: 'ポックス',
+          cn: '血量上限降低',
+        },
       },
     },
     {
@@ -51,12 +53,15 @@
       netRegexCn: NetRegexes.addedCombatant({ name: '亚拉戈发条骑士', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '알라그 태엽기사', capture: false }),
       suppressSeconds: 100000,
-      infoText: {
-        en: 'Magic on Soldier, Physical on Knights',
-        de: 'Magier auf Soldat, Physische auf Ritter',
-        fr: 'Magique sur Soldat, Physique sur Chevalier',
-        ja: '魔法はソルジャー、物理はナイト',
-        cn: '法系打士兵，物理打骑士',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Magic on Soldier, Physical on Knights',
+          de: 'Magier auf Soldat, Physische auf Ritter',
+          fr: 'Magique sur Soldat, Physique sur Chevalier',
+          ja: '魔法はソルジャー、物理はナイト',
+          cn: '法系打士兵，物理打骑士',
+        },
       },
     },
   ],
@@ -143,7 +148,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Clockwork Bug': '알라그 태엽벌레',
         'Clockwork Dreadnaught': '드레드노트',
@@ -152,8 +156,14 @@
         'Spinner-rook': '보루형 회전전차',
       },
       'replaceText': {
+        '\\(center\\)': '(중앙)',
+        '\\(outside\\)': '(바깥)',
         'Bug': '버그',
+        'Dreadnaught': '드레드노트',
         'Emergency Override': '긴급 체제 변환',
+        'Knight': '기사',
+        'Soldier': '병사',
+        'Rook': '회전전차',
       },
     },
   ],

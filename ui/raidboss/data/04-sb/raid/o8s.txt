@@ -3,8 +3,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0 "--Reset--" sync /Removing combatant Kefka/ window 10000 jump 0
 0 "--Reset--" sync /The limit gauge resets!/ window 10000 jump 0
+0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
 4 "--sync--" sync /:Kefka:28C2:/ window 5,0
 13 "Mana Charge" sync /:Kefka:28D1:/ window 20,20 # drift 0.476

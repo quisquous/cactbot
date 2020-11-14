@@ -14,7 +14,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '27DA', source: '白虎' }),
       netRegexKo: NetRegexes.startsUsing({ id: '27DA', source: '백호' }),
       condition: function(data, matches) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -56,21 +56,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '27DD', source: '白虎', target: '白虎', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '27DD', source: '白虎', target: '白虎', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27DD', source: '백호', target: '백호', capture: false }),
-      alertText: {
-        en: 'Distant Clap',
-        de: 'Donnergrollen',
-        fr: 'Tonnerre lointain',
-        ja: '遠雷',
-        cn: '远雷',
-        ko: '원뢰',
-      },
-      tts: {
-        en: 'clap',
-        de: 'grollen',
-        fr: 'tonnerre',
-        ja: '遠雷',
-        cn: '远雷',
-        ko: '원뢰',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Distant Clap',
+          de: 'Donnergrollen',
+          fr: 'Tonnerre lointain',
+          ja: '遠雷',
+          cn: '远雷',
+          ko: '원뢰',
+        },
       },
     },
     {
@@ -82,23 +77,18 @@
       netRegexCn: NetRegexes.startsUsing({ id: '27E0', source: '白虎' }),
       netRegexKo: NetRegexes.startsUsing({ id: '27E0', source: '백호' }),
       condition: function(data, matches) {
-        return data.role == 'tank' && matches.target != data.me;
+        return data.role === 'tank' && matches.target !== data.me;
       },
-      alertText: {
-        en: 'Provoke Boss',
-        de: 'Boss abspotten',
-        fr: 'Provoquez !',
-        ja: '挑発',
-        cn: '挑衅',
-        ko: '보스 도발',
-      },
-      tts: {
-        en: 'Provoke',
-        de: 'abspotten',
-        fr: 'provoquez',
-        ja: '挑発',
-        cn: '挑衅',
-        ko: '도발',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Provoke Boss',
+          de: 'Boss abspotten',
+          fr: 'Provoquez !',
+          ja: '挑発',
+          cn: '挑衅',
+          ko: '보스 도발',
+        },
       },
     },
     {
@@ -110,24 +100,19 @@
       netRegexCn: NetRegexes.startsUsing({ id: '27E0', source: '白虎' }),
       netRegexKo: NetRegexes.startsUsing({ id: '27E0', source: '백호' }),
       condition: function(data, matches) {
-        return data.role == 'tank' && matches.target == data.me;
+        return data.role === 'tank' && matches.target === data.me;
       },
       delaySeconds: 12,
-      alertText: {
-        en: 'Provoke Boss',
-        de: 'Boss abspotten',
-        fr: 'Provoquez le Boss !',
-        ja: '挑発',
-        cn: '挑衅',
-        ko: '보스 도발',
-      },
-      tts: {
-        en: 'Provoke',
-        de: 'abspotten',
-        fr: 'provoquez',
-        ja: '挑発',
-        cn: '挑衅',
-        ko: '도발',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Provoke Boss',
+          de: 'Boss abspotten',
+          fr: 'Provoquez le Boss !',
+          ja: '挑発',
+          cn: '挑衅',
+          ko: '보스 도발',
+        },
       },
     },
     {
@@ -152,112 +137,86 @@
       netRegexCn: NetRegexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27F9', source: '하얀 제왕', capture: false }),
       delaySeconds: 14,
-      alarmText: function(data) {
-        if (data.roarCount != 2)
+      alarmText: function(data, _, output) {
+        if (data.roarCount !== 2)
           return;
 
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank LB NOW',
-            de: 'JETZT Tank LB',
-            fr: 'LB Tank maintenant !',
-            ja: '今タンクLB',
-            cn: '坦克LB',
-            ko: '탱리밋',
-          };
-        }
+        if (data.role === 'tank')
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Tank LB NOW',
+          de: 'JETZT Tank LB',
+          fr: 'LB Tank maintenant !',
+          ja: '今タンクLB',
+          cn: '坦克LB',
+          ko: '탱리밋',
+        },
       },
     },
     {
       id: 'ByaEx Bubble',
       netRegex: NetRegexes.headMarker({ id: '0065' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
-      infoText: {
-        en: 'Drop bubble outside',
-        de: 'Blase außen ablegen',
-        fr: 'Déposez la bulle à l\'extérieur',
-        ja: '外にマーカーを置く',
-        cn: '边缘放点名',
-        ko: '장판 바깥에 깔기',
-      },
-      tts: {
-        en: 'drop outside',
-        de: 'außen ablegen',
-        fr: 'déposez à l\'extérieur',
-        ja: '外にマーカー',
-        cn: '边缘放点名',
-        ko: '장판 바깥으로',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop bubble outside',
+          de: 'Blase außen ablegen',
+          fr: 'Déposez la bulle à l\'extérieur',
+          ja: '外にマーカーを置く',
+          cn: '边缘放点名',
+          ko: '장판 바깥에 깔기',
+        },
       },
     },
     {
       id: 'ByaEx Ominous Wind',
       netRegex: NetRegexes.gainsEffect({ effectId: '5C9' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
-      infoText: {
-        en: 'Pink bubble',
-        de: 'Pinke Blase',
-        fr: 'Bulle violette',
-        ja: '祟り目',
-        cn: '泡泡',
-        ko: '핑크 구슬',
-      },
-      tts: {
-        en: 'bubble',
-        de: 'blase',
-        fr: 'bulle',
-        ja: '祟り目',
-        cn: '泡泡',
-        ko: '구슬',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Pink bubble',
+          de: 'Pinke Blase',
+          fr: 'Bulle violette',
+          ja: '祟り目',
+          cn: '泡泡',
+          ko: '핑크 구슬',
+        },
       },
     },
     {
       id: 'ByaEx Puddle Marker',
       netRegex: NetRegexes.headMarker({ id: '0004' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
-      alarmText: {
-        en: 'Puddles on YOU',
-        de: 'Pfützen auf DIR',
-        fr: 'Zones au sol sur VOUS',
-        ja: '自分に床範囲',
-        cn: '点名',
-        ko: '장판 바깥에 깔기 (3번)',
-      },
-      tts: {
-        en: 'puddles',
-        de: 'pfützen',
-        fr: 'zones au sol',
-        ja: '床範囲',
-        cn: '点名',
-        ko: '장판 바깥으로',
+      condition: Conditions.targetIsYou(),
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Puddles on YOU',
+          de: 'Pfützen auf DIR',
+          fr: 'Zones au sol sur VOUS',
+          ja: '自分に床範囲',
+          cn: '点名',
+          ko: '장판 바깥에 깔기 (3번)',
+        },
       },
     },
     {
       id: 'ByaEx G100',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
-      infoText: {
-        en: 'Get away',
-        de: 'Weg da',
-        fr: 'Éloignez-vous',
-        ja: '離れ',
-        cn: '远离',
-        ko: '멀리가기',
-      },
-      tts: {
-        en: 'get away',
-        de: 'weck da',
-        fr: 'éloignez-vous',
-        ja: '離れ',
-        cn: '远离',
-        ko: '멀리가기',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get away',
+          de: 'Weg da',
+          fr: 'Éloignez-vous',
+          ja: '離れ',
+          cn: '远离',
+          ko: '멀리가기',
+        },
       },
     },
     {
@@ -268,17 +227,17 @@
       netRegexFr: NetRegexes.dialog({ line: '[^:]*:Ma colère devient double.*?!.*?', capture: false }),
       netRegexJa: NetRegexes.dialog({ line: '[^:]*:駆けろ、我が半身ッ！歯向かう者どもに、牙と爪を突き立ててやれ！.*?', capture: false }),
       netRegexKo: NetRegexes.dialog({ line: '[^:]*:달려라! 나의 반신이여! 맞서는 자들에게 이빨과 발톱을 찔러넣어라!.*?', capture: false }),
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Tiger Add',
-            de: 'Tiger Add',
-            fr: 'Add Tigre',
-            ja: '虎分離',
-            cn: '虎分离',
-            ko: '호랑이 쫄',
-          };
-        }
+      condition: (data) => data.role === 'tank',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tiger Add',
+          de: 'Tiger Add',
+          fr: 'Add Tigre',
+          ja: '虎分離',
+          cn: '虎分离',
+          ko: '호랑이 쫄',
+        },
       },
     },
     {
@@ -315,15 +274,18 @@
       netRegexJa: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
-      infoText: function(data) {
-        return {
-          en: 'Stack #' + data.stakeCount,
-          de: 'Stack #' + data.stakeCount,
-          fr: 'Packez-vous #' + data.stakeCount,
-          ja: '頭割り #' + data.stakeCount,
-          cn: '集合 #' + data.stakeCount,
-          ko: '쉐어 #' + data.stakeCount,
-        };
+      infoText: function(data, _, output) {
+        return output.text({ num: data.stakeCount });
+      },
+      outputStrings: {
+        text: {
+          en: 'Stack #${num}',
+          de: 'Stack #${num}',
+          fr: 'Packez-vous #${num}',
+          ja: '頭割り #${num}',
+          cn: '集合 #${num}',
+          ko: '쉐어 #${num}',
+        },
       },
     },
   ],

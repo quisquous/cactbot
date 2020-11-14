@@ -43,6 +43,8 @@ def str_time(timestamp):
 def is_line_end(line_fields):
     if is_zone_unseal(line_fields):
         return True
+    if is_ce_end(line_fields):
+        return True
     return is_encounter_end_code(line_fields)
 
 
@@ -52,6 +54,23 @@ def is_zone_seal(line_fields):
 
 def is_zone_unseal(line_fields):
     return line_fields[4].endswith("no longer sealed!")
+
+
+def is_ce_start(line_fields):
+    if line_fields[0] != "00" or line_fields[2] != "0039":
+        return False
+    return get_ce_name(line_fields)
+
+
+def get_ce_name(line_fields):
+    m = re.match(r"You have joined the critical engagement, (.*)\. Access", line_fields[4])
+    if not m:
+        return ""
+    return m[1]
+
+
+def is_ce_end(line_fields):
+    return line_fields[0] == "33" and line_fields[3] == "80000014" and line_fields[4] == "00"
 
 
 def is_line_attack(line_fields):
@@ -125,6 +144,13 @@ def find_fights_in_file(file):
             encounter_start_staging = [
                 parse_event_time(line),
                 line_fields[4].split(" will be sealed off")[0],
+            ]
+            encounter_in_progress = True
+            continue
+        if is_ce_start(line_fields):
+            encounter_start_staging = [
+                parse_event_time(line),
+                "CE: %s" % get_ce_name(line_fields),
             ]
             encounter_in_progress = True
             continue

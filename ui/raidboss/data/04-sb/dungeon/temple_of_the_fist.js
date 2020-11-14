@@ -9,7 +9,7 @@
       regex: /Pounce/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank';
+        return data.role === 'healer' || data.role === 'tank';
       },
       response: Responses.tankBuster(),
     },
@@ -17,9 +17,7 @@
       id: 'Temple Cardinal Shift',
       regex: /Cardinal Shift/,
       beforeSeconds: 5,
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
   ],
@@ -32,9 +30,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1FD6', source: 'クァール・シュルティ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FD6', source: '凶豹所闻', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FD6', source: '커얼 슈루티', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -45,9 +41,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1FD6', source: 'クァール・スムリティ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FD6', source: '凶豹所忆', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FD6', source: '커얼 스므리티', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -63,31 +57,33 @@
     {
       id: 'Temple Moonseal',
       netRegex: NetRegexes.headMarker({ id: '0059' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Stand in blue',
-        de: 'Im Blauen stehen',
-        fr: 'Tenez-vous dans le bleu',
-        ja: '青色に踏む',
-        cn: '站在蓝色区域',
-        ko: '파랑장판에 서기',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand in blue',
+          de: 'Im Blauen stehen',
+          fr: 'Tenez-vous dans le bleu',
+          ja: '青色に踏む',
+          cn: '站在蓝色区域',
+          ko: '파랑장판에 서기',
+        },
       },
     },
     {
       id: 'Temple Sunseal',
       netRegex: NetRegexes.headMarker({ id: '0058' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Stand in red',
-        de: 'Im Roten stehen',
-        fr: 'Tenez-vous dans le rouge',
-        ja: '赤色に踏む',
-        cn: '站在红色区域',
-        ko: '빨강장판에 서기',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand in red',
+          de: 'Im Roten stehen',
+          fr: 'Tenez-vous dans le rouge',
+          ja: '赤色に踏む',
+          cn: '站在红色区域',
+          ko: '빨강장판에 서기',
+        },
       },
     },
     {
@@ -118,13 +114,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1FDE', source: 'アブダ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FDE', source: '额部陀', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FDE', source: '아부다', capture: false }),
-      alertText: {
-        en: 'watch for safe',
-        de: 'nach sicherer Position schauen',
-        fr: 'Trouvez une zone safe',
-        ja: '安全場所へ',
-        cn: '前往安全区',
-        ko: '안전지대 찾기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'watch for safe',
+          de: 'nach sicherer Position schauen',
+          fr: 'Trouvez une zone safe',
+          ja: '安全場所へ',
+          cn: '前往安全区',
+          ko: '안전지대 찾기',
+        },
       },
     },
     {
@@ -135,9 +134,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1FE7', source: '双豹のイヴォン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FE7', source: '双豹伊沃恩', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FE7', source: '쌍표범 이본', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -149,17 +146,20 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1FE6', source: '双豹伊沃恩' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FE6', source: '쌍표범 이본' }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
-      infoText: function(data, matches) {
-        return {
-          en: 'Heal ' + data.shortName(matches.target) + ' soon',
-          de: 'Bald ' + data.shortName(matches.target) + ' heilen',
-          fr: 'Soignez ' + data.shortName(matches.target) + ' bientôt',
-          ja: 'すぐに' + data.ShortName(matches.target) + 'にヒール',
-          cn: '马上奶 ' + data.shortName(matches.target),
-          ko: '' + data.shortName(matches.target) + '힐 준비',
-        };
+      infoText: function(data, matches, output) {
+        return output.text({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Heal ${player} soon',
+          de: 'Bald ${player} heilen',
+          fr: 'Soignez ${player} bientôt',
+          ja: 'すぐに${player}にヒール',
+          cn: '马上奶 ${player}',
+          ko: '${player}힐 준비',
+        },
       },
     },
     {
@@ -170,13 +170,16 @@
       netRegexJa: NetRegexes.ability({ id: '1FE9', source: '双豹のイヴォン', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '1FE9', source: '双豹伊沃恩', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '1FE9', source: '쌍표범 이본', capture: false }),
-      infoText: {
-        en: 'Avoid floating heads',
-        de: 'Weiche den fliegenden Köpfen aus',
-        fr: 'Évitez les têtes flottantes',
-        ja: 'ヘッドに避け',
-        cn: '避开漂浮的头',
-        ko: '커얼머리 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid floating heads',
+          de: 'Weiche den fliegenden Köpfen aus',
+          fr: 'Évitez les têtes flottantes',
+          ja: 'ヘッドに避け',
+          cn: '避开漂浮的头',
+          ko: '커얼머리 피하기',
+        },
       },
     },
     {
@@ -187,13 +190,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1FED', source: '双豹のイヴォン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FED', source: '双豹伊沃恩', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FED', source: '쌍표범 이본', capture: false }),
-      infoText: {
-        en: 'Away from marker',
-        de: 'Weg von den Markierungen',
-        fr: 'Éloignez-vous du marqueur',
-        ja: 'マークに離れ',
-        cn: '远离标记',
-        ko: '마커에게서 멀어지기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away from marker',
+          de: 'Weg von den Markierungen',
+          fr: 'Éloignez-vous du marqueur',
+          ja: 'マークに離れ',
+          cn: '远离标记',
+          ko: '마커에게서 멀어지기',
+        },
       },
     },
     {

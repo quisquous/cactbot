@@ -20,13 +20,16 @@
       id: 'ShivaUn Icebrand',
       regex: /Icebrand/,
       beforeSeconds: 5,
-      alertText: {
-        en: 'Party Share Tankbuster',
-        de: 'Tankbuster mit der Gruppe Teilen',
-        fr: 'Partagez le Tank buster avec le groupe',
-        ja: '頭割りタンクバスター',
-        cn: '团队分摊死刑',
-        ko: '파티 쉐어 탱버',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Party Share Tankbuster',
+          de: 'Tankbuster mit der Gruppe Teilen',
+          fr: 'Partagez le Tank buster avec le groupe',
+          ja: '頭割りタンクバスター',
+          cn: '团队分摊死刑',
+          ko: '파티 쉐어 탱버',
+        },
       },
     },
     {
@@ -220,26 +223,32 @@
       netRegex: NetRegexes.headMarker({ id: '001A' }),
       condition: Conditions.targetIsYou(),
       // Responses.knockback does not quite give the 'laser cleave' aspect here.
-      alarmText: {
-        en: 'Knockback Laser on YOU',
-        de: 'Rückstoß-Laser auf DIR',
-        fr: 'Poussée-Laser sur VOUS',
-        ja: '自分にノックバックレザー',
-        cn: '击退激光点名',
-        ko: '넉백 레이저 대상자',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Knockback Laser on YOU',
+          de: 'Rückstoß-Laser auf DIR',
+          fr: 'Poussée-Laser sur VOUS',
+          ja: '自分にノックバックレザー',
+          cn: '击退激光点名',
+          ko: '넉백 레이저 대상자',
+        },
       },
     },
     {
       id: 'ShivaUn Avalanche Marker Other',
       netRegex: NetRegexes.headMarker({ id: '001A' }),
       condition: Conditions.targetIsNotYou(),
-      infoText: {
-        en: 'Avoid Laser',
-        de: 'Laser ausweichen',
-        fr: 'Évitez le laser',
-        ja: 'ノックバックレザーを避け',
-        cn: '躲避击退激光',
-        ko: '레이저 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Laser',
+          de: 'Laser ausweichen',
+          fr: 'Évitez le laser',
+          ja: 'ノックバックレザーを避け',
+          cn: '躲避击退激光',
+          ko: '레이저 피하기',
+        },
       },
     },
     {
@@ -272,15 +281,18 @@
       id: 'ShivaUn Ice Boulder',
       netRegex: NetRegexes.ability({ id: '537A' }),
       condition: Conditions.targetIsNotYou(),
-      infoText: function(data, matches) {
-        return {
-          en: 'Free ' + data.ShortName(matches.target),
-          de: 'Befreie ' + data.ShortName(matches.target),
-          fr: 'Libérez ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'を救って',
-          cn: '解救' + data.ShortName(matches.target),
-          ko: data.ShortName(matches.target) + '감옥 해제',
-        };
+      infoText: function(data, matches, output) {
+        return output.text({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Free ${player}',
+          de: 'Befreie ${player}',
+          fr: 'Libérez ${player}',
+          ja: '${player}を救って',
+          cn: '解救${player}',
+          ko: '${player}감옥 해제',
+        },
       },
     },
   ],
@@ -402,12 +414,14 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Ice Soldier': '얼음 병사',
         'Shiva': '시바',
       },
       'replaceText': {
+        '\\(circle\\)': '(원형)',
+        '\\(cross\\)': '(십자)',
+        '--frozen--': '--동결--',
         'Absolute Zero': '절대영도',
         'Avalanche': '눈사태',
         'Diamond Dust': '다이아몬드 더스트',

@@ -12,24 +12,30 @@
       id: 'RubyEx Magitek Meteor Behind',
       regex: /Magitek Meteor/,
       beforeSeconds: 4,
-      alertText: {
-        en: 'Hide Behind Meteor',
-        de: 'Hinter dem Meteor verstecken',
-        fr: 'Cachez-vous derrière le météore',
-        cn: '躲在陨石后',
-        ko: '운석 뒤에 숨기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hide Behind Meteor',
+          de: 'Hinter dem Meteor verstecken',
+          fr: 'Cachez-vous derrière le météore',
+          cn: '躲在陨石后',
+          ko: '운석 뒤에 숨기',
+        },
       },
     },
     {
       id: 'RubyEx Magitek Meteor Away',
       regex: /Magitek Meteor/,
       beforeSeconds: 0,
-      infoText: {
-        en: 'Away From Meteor',
-        de: 'Weg vom Meteor',
-        fr: 'Éloignez-vous du météore',
-        cn: '远离陨石',
-        ko: '운석에게서 멀어지기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away From Meteor',
+          de: 'Weg vom Meteor',
+          fr: 'Éloignez-vous du météore',
+          cn: '远离陨石',
+          ko: '운석에게서 멀어지기',
+        },
       },
     },
   ],
@@ -42,9 +48,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4ABE', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4ABE', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4ABE', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -56,7 +60,7 @@
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4B03' }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4B03' }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBusterSwap(),
     },
@@ -68,12 +72,15 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AD0', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AD0', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AD0', capture: false }),
-      infoText: {
-        en: 'Away from Lines',
-        de: 'Weg von den Linien',
-        fr: 'En dehors des sillons',
-        cn: '远离线',
-        ko: '선 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away from Lines',
+          de: 'Weg von den Linien',
+          fr: 'En dehors des sillons',
+          cn: '远离线',
+          ko: '선 피하기',
+        },
       },
     },
     {
@@ -84,12 +91,15 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4ACF', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4ACF', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4ACF', capture: false }),
-      alertText: {
-        en: 'Get On Lines',
-        de: 'Auf die Linien gehen',
-        fr: 'Sur les sillons',
-        cn: '靠近线',
-        ko: '선 위로 올라가기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get On Lines',
+          de: 'Auf die Linien gehen',
+          fr: 'Sur les sillons',
+          cn: '靠近线',
+          ko: '선 위로 올라가기',
+        },
       },
     },
     {
@@ -153,12 +163,15 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4B2D', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4B2D', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4B2D', capture: false }),
-      infoText: {
-        en: 'Enrage!',
-        de: 'Finalangriff!',
-        fr: 'Enrage !',
-        cn: '狂暴',
-        ko: '전멸기!',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Enrage!',
+          de: 'Finalangriff!',
+          fr: 'Enrage !',
+          cn: '狂暴',
+          ko: '전멸기!',
+        },
       },
     },
     {
@@ -168,16 +181,18 @@
         data.colors = data.colors || [];
         data.colors[matches.target] = 'blue';
       },
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Attack Blue (East)',
-            de: 'Greife Blau an (Osten)',
-            fr: 'Attaquez le bleu (Est)',
-            cn: '攻击蓝色(东)',
-            ko: '파란색 공격 (오른쪽)',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Attack Blue (East)',
+          de: 'Greife Blau an (Osten)',
+          fr: 'Attaquez le bleu (Est)',
+          cn: '攻击蓝色(东)',
+          ko: '파란색 공격 (오른쪽)',
+        },
       },
     },
     {
@@ -187,16 +202,18 @@
         data.colors = data.colors || [];
         data.colors[matches.target] = 'red';
       },
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Attack Red (West)',
-            de: 'Greife Rot an (Westen)',
-            fr: 'Attaquez le rouge (Ouest)',
-            cn: '攻击红色(西)',
-            ko: '빨간색 공격 (왼쪽)',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Attack Red (West)',
+          de: 'Greife Rot an (Westen)',
+          fr: 'Attaquez le rouge (Ouest)',
+          cn: '攻击红色(西)',
+          ko: '빨간색 공격 (왼쪽)',
+        },
       },
     },
     {
@@ -214,9 +231,9 @@
       netRegexCn: NetRegexes.startsUsing({ source: '奈尔的幻影', id: '4AFF' }),
       netRegexKo: NetRegexes.startsUsing({ source: '넬의 환영', id: '4AFF' }),
       condition: function(data, matches) {
-        if (data.role != 'healer' || data.role != 'tank')
+        if (data.role !== 'healer' || data.role !== 'tank')
           return false;
-        if (data.colors[data.me] == data.colors[matches.target])
+        if (data.colors[data.me] === data.colors[matches.target])
           return true;
       },
       suppressSeconds: 1,
@@ -243,7 +260,7 @@
       netRegexKo: NetRegexes.ability({ source: '루비 웨폰', id: '4AFC', capture: false }),
       preRun: function(data) {
         for (color of data.colors) {
-          if (color == 'blue')
+          if (color === 'blue')
             color = 'red';
           else
             color = 'blue';
@@ -256,26 +273,30 @@
       },
       // This gets cast twice (maybe once for each add)?
       suppressSeconds: 1,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         // TODO: it'd be nice to call out which raven was alive?
         if (data.ravenDead)
           return;
-        if (data.colors[data.me] == 'red') {
-          return {
-            en: 'Attack Red (East)',
-            de: 'Greife Rot an (Osten)',
-            fr: 'Attaquez le rouge (Est)',
-            cn: '攻击红色(东)',
-            ko: '빨간색 공격 (오른쪽)',
-          };
-        }
-        return {
+        if (data.colors[data.me] === 'red')
+          return output.attackRedEast();
+
+        return output.attackBlueWest();
+      },
+      outputStrings: {
+        attackRedEast: {
+          en: 'Attack Red (East)',
+          de: 'Greife Rot an (Osten)',
+          fr: 'Attaquez le rouge (Est)',
+          cn: '攻击红色(东)',
+          ko: '빨간색 공격 (오른쪽)',
+        },
+        attackBlueWest: {
           en: 'Attack Blue (West)',
           de: 'Greife Blau an (Westen)',
           fr: 'Attaquez le bleu (Ouest)',
           cn: '攻击蓝色(西)',
           ko: '파란색 공격 (왼쪽)',
-        };
+        },
       },
     },
     {
@@ -292,8 +313,18 @@
       id: 'RubyEx Meteor',
       netRegex: NetRegexes.headMarker({ id: '00(?:C[A-F]|D0|D1)' }),
       condition: Conditions.targetIsYou(),
-      infoText: function(data, matches) {
-        return parseInt(matches.id, 16) - parseInt('00CA', 16) + 1;
+      infoText: function(data, matches, output) {
+        return output.text({ num: parseInt(matches.id, 16) - parseInt('00CA', 16) + 1 });
+      },
+      outputStrings: {
+        text: {
+          en: '${num}',
+          de: '${num}',
+          fr: '${num}',
+          ja: '${num}',
+          cn: '${num}',
+          ko: '${num}',
+        },
       },
     },
     {
@@ -314,12 +345,15 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AF0', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AF0', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AF0', capture: false }),
-      infoText: {
-        en: 'Away from Meteor!',
-        de: 'Weg vom Meteor!',
-        fr: 'Éloignez-vous du météore !',
-        cn: '远离陨石',
-        ko: '운석에게서 멀어지기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away from Meteor!',
+          de: 'Weg vom Meteor!',
+          fr: 'Éloignez-vous du météore !',
+          cn: '远离陨石',
+          ko: '운석에게서 멀어지기',
+        },
       },
     },
     {
@@ -330,14 +364,17 @@
       netRegexJa: NetRegexes.ability({ source: 'ルビーウェポン', id: '4AB6', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '红宝石神兵', id: '4AB6', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '루비 웨폰', id: '4AB6', capture: false }),
-      condition: (data) => data.role == 'tank',
+      condition: (data) => data.role === 'tank',
       delaySeconds: 11.5,
-      alarmText: {
-        en: 'Stand in Meteor Tankbuster',
-        de: 'Stehe im Meteor - Tankbuster',
-        fr: 'Tank buster, Restez dans la comète',
-        cn: '接刀',
-        ko: '운석 막기',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand in Meteor Tankbuster',
+          de: 'Stehe im Meteor - Tankbuster',
+          fr: 'Tank buster, Restez dans la comète',
+          cn: '接刀',
+          ko: '운석 막기',
+        },
       },
     },
     {
@@ -348,26 +385,32 @@
       netRegexJa: NetRegexes.ability({ source: 'ルビーウェポン', id: '4AB6', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '红宝石神兵', id: '4AB6', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '루비 웨폰', id: '4AB6', capture: false }),
-      condition: (data) => data.role != 'tank',
+      condition: (data) => data.role !== 'tank',
       delaySeconds: 13,
-      alertText: {
-        en: 'Kill Meteor Adds',
-        de: 'Besiege die Meteor Adds',
-        fr: 'Tuez les comètes',
-        cn: '击杀陨石',
-        ko: '운석 부수기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Meteor Adds',
+          de: 'Besiege die Meteor Adds',
+          fr: 'Tuez les comètes',
+          cn: '击杀陨石',
+          ko: '운석 부수기',
+        },
       },
     },
     {
       id: 'RubyEx Bradamante',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Avoid tanks with laser',
-        de: 'Tanks nicht mit dem Laser treffen',
-        fr: 'Évitez les tanks avec votre laser',
-        cn: '躲开坦克激光',
-        ko: '레이저 대상자 - 탱커 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid tanks with laser',
+          de: 'Tanks nicht mit dem Laser treffen',
+          fr: 'Évitez les tanks avec votre laser',
+          cn: '躲开坦克激光',
+          ko: '레이저 대상자 - 탱커 피하기',
+        },
       },
     },
     {
@@ -378,27 +421,30 @@
       netRegexJa: NetRegexes.addedCombatantFull({ name: 'コメット' }),
       netRegexCn: NetRegexes.addedCombatantFull({ name: '彗星' }),
       netRegexKo: NetRegexes.addedCombatantFull({ name: '혜성' }),
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         // Possible positions:
         // 85.16,100.131 and 115.16,100.131
         // 100.16,85.13102 and 100.16,115.131
-        if (matches.y < 90) {
-          return {
-            en: 'Comets N/S',
-            de: 'Meteor N/S',
-            fr: 'Comètes N/S',
-            cn: '彗星 北/南',
-            ko: '남/북 운석 낙하',
-          };
-        } else if (matches.x < 90) {
-          return {
-            en: 'Comets E/W',
-            de: 'Meteor O/W',
-            fr: 'Comètes E/O',
-            cn: '彗星 东/西',
-            ko: '동/서 운석낙하',
-          };
-        }
+        if (matches.y < 90)
+          return output.cometsNorthSouth();
+        else if (matches.x < 90)
+          return output.cometsEastWest();
+      },
+      outputStrings: {
+        cometsNorthSouth: {
+          en: 'Comets N/S',
+          de: 'Meteor N/S',
+          fr: 'Comètes N/S',
+          cn: '彗星 北/南',
+          ko: '남/북 운석 낙하',
+        },
+        cometsEastWest: {
+          en: 'Comets E/W',
+          de: 'Meteor O/W',
+          fr: 'Comètes E/O',
+          cn: '彗星 东/西',
+          ko: '동/서 운석낙하',
+        },
       },
     },
     {
@@ -409,9 +455,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4B04', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4B04', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4B04', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
   ],

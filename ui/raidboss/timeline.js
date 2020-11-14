@@ -99,7 +99,7 @@ export class Timeline {
 
     let orig = text;
     for (let r of this.replacements) {
-      if (r.locale && r.locale != replaceLang)
+      if (r.locale && r.locale !== replaceLang)
         continue;
       if (!r[replaceKey])
         continue;
@@ -190,15 +190,15 @@ export class Timeline {
       let originalLine = line;
 
       let match = line.match(regexes.ignore);
-      if (match != null) {
+      if (match) {
         this.ignores[match[1]] = true;
         continue;
       }
 
       match = line.match(regexes.tts);
-      if (match != null) {
+      if (match) {
         // TODO: Support alert sounds?
-        if (match[3] == 'sound')
+        if (match[3] === 'sound')
           continue;
         texts[match[1]] = texts[match[1]] || [];
         texts[match[1]].push({
@@ -216,7 +216,7 @@ export class Timeline {
         continue;
 
       match = line.match(regexes.popupText);
-      if (match != null) {
+      if (match) {
         texts[match[2]] = texts[match[2]] || [];
         texts[match[2]].push({
           type: match[1],
@@ -227,7 +227,7 @@ export class Timeline {
       }
 
       match = line.match(regexes.line);
-      if (match == null) {
+      if (!match) {
         this.errors.push({
           lineNumber: lineNumber,
           line: originalLine,
@@ -361,7 +361,7 @@ export class Timeline {
     // Sort by time, but when the time is the same, sort by file order.
     // Then assign a sortKey to each event so that we can maintain that order.
     this.events.sort(function(a, b) {
-      if (a.time == b.time) return a.id - b.id;
+      if (a.time === b.time) return a.id - b.id;
       return a.time - b.time;
     });
     for (let i = 0; i < this.events.length; ++i)
@@ -551,19 +551,19 @@ export class Timeline {
       let t = this.texts[this.nextText];
       if (t.time > fightNow)
         break;
-      if (t.type == 'info') {
+      if (t.type === 'info') {
         if (this.showInfoTextCallback)
           this.showInfoTextCallback(t.text);
-      } else if (t.type == 'alert') {
+      } else if (t.type === 'alert') {
         if (this.showAlertTextCallback)
           this.showAlertTextCallback(t.text);
-      } else if (t.type == 'alarm') {
+      } else if (t.type === 'alarm') {
         if (this.showAlarmTextCallback)
           this.showAlarmTextCallback(t.text);
-      } else if (t.type == 'tts') {
+      } else if (t.type === 'tts') {
         if (this.speakTTSCallback)
           this.speakTTSCallback(t.text);
-      } else if (t.type == 'trigger') {
+      } else if (t.type === 'trigger') {
         if (this.triggerCallback)
           this.triggerCallback(t.trigger, t.matches);
       }
@@ -616,7 +616,7 @@ export class Timeline {
 
     let nextTime = Math.min(nextEventStarting, Math.min(nextEventEnding,
         Math.min(nextTextOccurs, Math.min(nextSyncStarting, nextSyncEnding))));
-    if (nextTime != kBig) {
+    if (nextTime !== kBig) {
       console.assert(nextTime > fightNow, 'nextTime is in the past');
       this.updateTimer = window.setTimeout(
           this._OnUpdateTimer.bind(this),

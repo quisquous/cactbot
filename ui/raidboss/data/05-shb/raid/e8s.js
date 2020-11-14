@@ -50,16 +50,19 @@
       id: 'E8S Rush',
       regex: /Rush \d/,
       beforeSeconds: 5,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         data.rushCount = data.rushCount || 0;
         data.rushCount++;
-        return {
-          en: 'Tether ' + data.rushCount,
-          de: 'Verbindung ' + data.rushCount,
-          fr: 'Lien ' + data.rushCount,
-          cn: '和' + data.rushCount + '连线',
-          ko: '선: ' + data.rushCount,
-        };
+        return output.text({ num: data.rushCount });
+      },
+      outputStrings: {
+        text: {
+          en: 'Tether ${num}',
+          de: 'Verbindung ${num}',
+          fr: 'Lien ${num}',
+          cn: '和${num}连线',
+          ko: '선: ${num}',
+        },
       },
     },
   ],
@@ -90,14 +93,17 @@
       // This cast is 5 seconds, so don't muddy the back/front call.
       // But also don't wait too long to give directions?
       delaySeconds: 2,
-      infoText: {
-        // Sorry, there are no mirror colors in the logs (YET),
-        // and so this is the best that can be done.
-        en: 'Go Back, Red Mirror Side',
-        de: 'Nach Hinten gehen, Seite des roten Spiegels',
-        fr: 'Allez derrière, côté miroir rouge',
-        cn: '去后面，红镜子侧',
-        ko: '빨간 거울 방향 구석으로 이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          // Sorry, there are no mirror colors in the logs (YET),
+          // and so this is the best that can be done.
+          en: 'Go Back, Red Mirror Side',
+          de: 'Nach Hinten gehen, Seite des roten Spiegels',
+          fr: 'Allez derrière, côté miroir rouge',
+          cn: '去后面，红镜子侧',
+          ko: '빨간 거울 방향 구석으로 이동',
+        },
       },
     },
     {
@@ -113,12 +119,15 @@
       },
       // See comments on Biting Frost First Mirror above.
       delaySeconds: 2,
-      infoText: {
-        en: 'Go Front, Green Mirror Side',
-        de: 'Nach Vorne gehen, Seite des grünen Spiegels',
-        fr: 'Allez devant, côté miroir vert',
-        cn: '去前面，绿镜子侧',
-        ko: '초록 거울 방향 구석으로 이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go Front, Green Mirror Side',
+          de: 'Nach Vorne gehen, Seite des grünen Spiegels',
+          fr: 'Allez devant, côté miroir vert',
+          cn: '去前面，绿镜子侧',
+          ko: '초록 거울 방향 구석으로 이동',
+        },
       },
     },
     {
@@ -130,12 +139,15 @@
       netRegexCn: NetRegexes.ability({ source: '冰面镜', id: '4DB[78]', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '얼음 거울', id: '4DB[78]', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'Swap Sides',
-        de: 'Seiten wechseln',
-        fr: 'Changez de côté',
-        cn: '换边',
-        ko: '반대로 이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Swap Sides',
+          de: 'Seiten wechseln',
+          fr: 'Changez de côté',
+          cn: '换边',
+          ko: '반대로 이동',
+        },
       },
     },
     {
@@ -172,26 +184,30 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D6[67]', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D6[67]', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D6[67]', capture: false }),
-      condition: (data) => data.role == 'tank',
+      condition: (data) => data.role === 'tank',
       delaySeconds: 43,
       suppressSeconds: 80,
-      infoText: function(data) {
-        if (data.firstFrost == 'driving') {
-          return {
-            en: 'Biting Frost Next',
-            de: 'Frosthieb als nächstes',
-            fr: 'Taillade de givre bientôt',
-            cn: '下次攻击前侧面',
-            ko: '다음: 서리 참격',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.firstFrost === 'driving')
+          return output.bitingFrostNext();
+
+        return output.drivingFrostNext();
+      },
+      outputStrings: {
+        bitingFrostNext: {
+          en: 'Biting Frost Next',
+          de: 'Frosthieb als nächstes',
+          fr: 'Taillade de givre bientôt',
+          cn: '下次攻击前侧面',
+          ko: '다음: 서리 참격',
+        },
+        drivingFrostNext: {
           en: 'Driving Frost Next',
           de: 'Froststoß als nächstes',
           fr: 'Percée de givre bientôt',
           cn: '下次攻击后面',
           ko: '다음: 서리 일격',
-        };
+        },
       },
     },
     {
@@ -214,24 +230,28 @@
       netRegexCn: NetRegexes.abilityFull({ source: '希瓦', id: '4DA0' }),
       netRegexKo: NetRegexes.abilityFull({ source: '시바', id: '4DA0' }),
       suppressSeconds: 20,
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         let x = parseFloat(matches.x);
-        if (x >= 99 && x <= 101) {
-          return {
-            en: 'North / South',
-            de: 'Norden / Süden',
-            fr: 'Nord / Sud',
-            cn: '南北站位',
-            ko: '남 / 북',
-          };
-        }
-        return {
+        if (x >= 99 && x <= 101)
+          return output.northSouth();
+
+        return output.eastWest();
+      },
+      outputStrings: {
+        northSouth: {
+          en: 'North / South',
+          de: 'Norden / Süden',
+          fr: 'Nord / Sud',
+          cn: '南北站位',
+          ko: '남 / 북',
+        },
+        eastWest: {
           en: 'East / West',
           de: 'Osten / Westen',
           fr: 'Est / Ouest',
           cn: '东西站位',
           ko: '동 / 서',
-        };
+        },
       },
     },
     {
@@ -246,12 +266,15 @@
         return data.CanCleanse();
       },
       suppressSeconds: 1,
-      infoText: {
-        en: 'Cleanse',
-        de: 'Reinigen',
-        fr: 'Guérison',
-        cn: '驱散',
-        ko: '에스나',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Cleanse',
+          de: 'Reinigen',
+          fr: 'Guérison',
+          cn: '驱散',
+          ko: '에스나',
+        },
       },
     },
     {
@@ -301,24 +324,30 @@
       netRegex: NetRegexes.gainsEffect({ effectId: '8CD' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 1,
-      infoText: {
-        en: 'Chain on YOU',
-        de: 'Kette auf DIR',
-        fr: 'Chaîne sur VOUS',
-        cn: '连线点名',
-        ko: '사슬 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Chain on YOU',
+          de: 'Kette auf DIR',
+          fr: 'Chaîne sur VOUS',
+          cn: '连线点名',
+          ko: '사슬 대상자',
+        },
       },
     },
     {
       id: 'E8S Holy Light',
       netRegex: NetRegexes.tether({ id: '0002' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Orb on YOU',
-        de: 'Orb auf DIR',
-        fr: 'Orbe sur VOUS',
-        cn: '拉球点名',
-        ko: '구슬 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Orb on YOU',
+          de: 'Orb auf DIR',
+          fr: 'Orbe sur VOUS',
+          cn: '拉球点名',
+          ko: '구슬 대상자',
+        },
       },
     },
     {
@@ -354,7 +383,7 @@
         data.akhMornTargets.push(matches.target);
       },
       response: function(data, matches) {
-        if (data.me == matches.target) {
+        if (data.me === matches.target) {
           let onYou = {
             en: 'Akh Morn on YOU',
             de: 'Akh Morn auf DIR',
@@ -364,11 +393,11 @@
           };
           // It'd be nice to have this be an alert, but it mixes with a lot of
           // other alerts (akh rhai "move" and worm's lament numbers).
-          if (data.role == 'tank')
+          if (data.role === 'tank')
             return { infoText: onYou };
           return { alarmText: onYou };
         }
-        if (data.akhMornTargets.length != 2)
+        if (data.akhMornTargets.length !== 2)
           return;
         if (data.akhMornTargets.includes(data.me))
           return;
@@ -404,25 +433,28 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D7B' }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D7B' }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D7B' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Morn Afah on YOU',
-            de: 'Morn Afah auf DIR',
-            fr: 'Morn Afah sur VOUS',
-            cn: '无尽顿悟点名',
-            ko: '몬아파 대상자',
-          };
-        }
-        if (data.role == 'tank' || data.role == 'healer' || data.CanAddle()) {
-          return {
-            en: 'Morn Afah on ' + data.ShortName(matches.target),
-            de: 'Morn Afah auf ' + data.ShortName(matches.target),
-            fr: 'Morn Afah sur ' + data.ShortName(matches.target),
-            cn: '无尽顿悟点 ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 몬 아파',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return output.mornAfahOnYou();
+
+        if (data.role === 'tank' || data.role === 'healer' || data.CanAddle())
+          return output.mornAfahOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        mornAfahOnYou: {
+          en: 'Morn Afah on YOU',
+          de: 'Morn Afah auf DIR',
+          fr: 'Morn Afah sur VOUS',
+          cn: '无尽顿悟点名',
+          ko: '몬아파 대상자',
+        },
+        mornAfahOn: {
+          en: 'Morn Afah on ${player}',
+          de: 'Morn Afah auf ${player}',
+          fr: 'Morn Afah sur ${player}',
+          cn: '无尽顿悟点 ${player}',
+          ko: '"${player}" 몬 아파',
+        },
       },
     },
     {
@@ -490,7 +522,7 @@
       netRegex: NetRegexes.gainsEffect({ effectId: '8D2' }),
       condition: Conditions.targetIsYou(),
       preRun: function(data, matches) {
-        if (data.wyrmsLament == 1) {
+        if (data.wyrmsLament === 1) {
           data.wyrmclawNumber = {
             '14': 1,
             '22': 2,
@@ -507,14 +539,17 @@
       durationSeconds: function(data, matches) {
         return matches.duration;
       },
-      alertText: function(data) {
-        return {
-          en: 'Red #' + data.wyrmclawNumber,
-          de: 'Rot #' + data.wyrmclawNumber,
-          fr: 'Rouge #' + data.wyrmclawNumber,
-          cn: '红色 #' + data.wyrmclawNumber,
-          ko: '빨강 ' + data.wyrmclawNumber + '번',
-        };
+      alertText: function(data, _, output) {
+        return output.text({ num: data.wyrmclawNumber });
+      },
+      outputStrings: {
+        text: {
+          en: 'Red #${num}',
+          de: 'Rot #${num}',
+          fr: 'Rouge #${num}',
+          cn: '红色 #${num}',
+          ko: '빨강 ${num}번',
+        },
       },
     },
     {
@@ -522,7 +557,7 @@
       netRegex: NetRegexes.gainsEffect({ effectId: '8D3' }),
       condition: Conditions.targetIsYou(),
       preRun: function(data, matches) {
-        if (data.wyrmsLament == 1) {
+        if (data.wyrmsLament === 1) {
           data.wyrmfangNumber = {
             '20': 1,
             '28': 2,
@@ -539,14 +574,17 @@
       durationSeconds: function(data, matches) {
         return matches.duration;
       },
-      alertText: function(data) {
-        return {
-          en: 'Blue #' + data.wyrmfangNumber,
-          de: 'Blau #' + data.wyrmfangNumber,
-          fr: 'Bleu #' + data.wyrmfangNumber,
-          cn: '蓝色 #' + data.wyrmfangNumber,
-          ko: '파랑 ' + data.wyrmfangNumber + '번',
-        };
+      alertText: function(data, _, output) {
+        return output.text({ num: data.wyrmfangNumber });
+      },
+      outputStrings: {
+        text: {
+          en: 'Blue #${num}',
+          de: 'Blau #${num}',
+          fr: 'Bleu #${num}',
+          cn: '蓝色 #${num}',
+          ko: '파랑 ${num}번',
+        },
       },
     },
     {
@@ -641,12 +679,15 @@
         return data.CanCleanse();
       },
       suppressSeconds: 1,
-      infoText: {
-        en: 'Cleanse DPS Only',
-        de: 'Nur DPS reinigen',
-        fr: 'Guérison => DPS seulement',
-        cn: '驱散DPS',
-        ko: '딜러만 에스나',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Cleanse DPS Only',
+          de: 'Nur DPS reinigen',
+          fr: 'Guérison => DPS seulement',
+          cn: '驱散DPS',
+          ko: '딜러만 에스나',
+        },
       },
     },
     {
@@ -657,13 +698,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D7E', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D7E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D7E', capture: false }),
-      condition: (data) => data.role == 'tank',
-      alertText: {
-        en: 'Tank Stack in Tower',
-        de: 'Auf Tank im Turm sammeln',
-        fr: 'Package tanks dans les tours',
-        cn: '坦克塔内分摊',
-        ko: '탱커 쉐어',
+      condition: (data) => data.role === 'tank',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Stack in Tower',
+          de: 'Auf Tank im Turm sammeln',
+          fr: 'Package tanks dans les tours',
+          cn: '坦克塔内分摊',
+          ko: '탱커 쉐어',
+        },
       },
     },
     {
@@ -674,13 +718,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D7F', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D7F', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D7F', capture: false }),
-      condition: (data) => data.role == 'tank',
-      alertText: {
-        en: 'Tank Spread in Tower',
-        de: 'Tank im Turm verteilen',
-        fr: 'Dispersion tanks dans les tours',
-        cn: '坦克塔内分散',
-        ko: '탱커 산개',
+      condition: (data) => data.role === 'tank',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Spread in Tower',
+          de: 'Tank im Turm verteilen',
+          fr: 'Dispersion tanks dans les tours',
+          cn: '坦克塔内分散',
+          ko: '탱커 산개',
+        },
       },
     },
   ],

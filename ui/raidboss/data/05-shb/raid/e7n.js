@@ -12,9 +12,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C52', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C52', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C52', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -26,7 +24,7 @@
       netRegexCn: NetRegexes.tether({ source: '暗黑心象', id: '0025' }),
       netRegexKo: NetRegexes.tether({ source: '어둠의 우상', id: '0025' }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -34,48 +32,60 @@
       id: 'E7N Left With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C2' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Teleporting Left',
-        de: 'Nach Links teleportieren',
-        fr: 'Téléportation à gauche',
-        cn: '向左传送',
-        ko: '왼쪽으로 순간이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Teleporting Left',
+          de: 'Nach Links teleportieren',
+          fr: 'Téléportation à gauche',
+          cn: '向左传送',
+          ko: '왼쪽으로 순간이동',
+        },
       },
     },
     {
       id: 'E7N Right With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C3' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Teleporting Right',
-        de: 'Nach Rechts teleportieren',
-        fr: 'Téléportation à droite',
-        cn: '向右传送',
-        ko: '오른쪽으로 순간이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Teleporting Right',
+          de: 'Nach Rechts teleportieren',
+          fr: 'Téléportation à droite',
+          cn: '向右传送',
+          ko: '오른쪽으로 순간이동',
+        },
       },
     },
     {
       id: 'E7N Forward With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C0' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Teleporting Forward',
-        de: 'Teleportation Vorwärts',
-        fr: 'Téléportation devant',
-        cn: '向前传送',
-        ko: '앞으로 순간이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Teleporting Forward',
+          de: 'Teleportation Vorwärts',
+          fr: 'Téléportation devant',
+          cn: '向前传送',
+          ko: '앞으로 순간이동',
+        },
       },
     },
     {
       id: 'E7N Back With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C1' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Teleporting Back',
-        de: 'Teleportation Rückwärts',
-        fr: 'Téléportation derrière',
-        cn: '向后传送',
-        ko: '뒤로 순간이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Teleporting Back',
+          de: 'Teleportation Rückwärts',
+          fr: 'Téléportation derrière',
+          cn: '向后传送',
+          ko: '뒤로 순간이동',
+        },
       },
     },
     {
@@ -87,12 +97,15 @@
       netRegexCn: NetRegexes.startsUsing({ source: '盲崇', id: '4C4C', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '숭배', id: '4C4C', capture: false }),
       suppressSeconds: 1,
-      infoText: {
-        en: 'Teleport into donut',
-        de: 'In den Donut teleportieren',
-        fr: 'Téléportez vous dans le donut',
-        cn: '传送进月环',
-        ko: '도넛 장판 안으로 순간이동하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Teleport into donut',
+          de: 'In den Donut teleportieren',
+          fr: 'Téléportez vous dans le donut',
+          cn: '传送进月环',
+          ko: '도넛 장판 안으로 순간이동하기',
+        },
       },
     },
     {
@@ -115,19 +128,22 @@
       netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 3,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         data.colorCount = data.colorCount + 1 || 0;
-        if (data.colorCount == 3) {
+        if (data.colorCount === 3) {
           delete data.colorCount;
           return;
         }
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'Get hit by dark',
           de: 'Vom Dunklen treffen lassen',
           fr: 'Encaissez le noir',
           cn: '被黑色打',
           ko: '어둠 맞기',
-        };
+        },
       },
     },
     {
@@ -135,19 +151,22 @@
       netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 3,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         data.colorCount = data.colorCount + 1 || 0;
-        if (data.colorCount == 3) {
+        if (data.colorCount === 3) {
           delete data.colorCount;
           return;
         }
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'Get hit by light',
           de: 'Vom Hellen treffen lassen',
           fr: 'Encaissez le blanc',
           cn: '被白色打',
           ko: '빛 맞기',
-        };
+        },
       },
     },
     {

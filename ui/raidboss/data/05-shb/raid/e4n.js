@@ -12,9 +12,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '40F7', source: 'タイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '40F7', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '40F7', source: '타이탄', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -26,14 +24,17 @@
       netRegexCn: NetRegexes.startsUsing({ id: '40F8', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '40F8', source: '타이탄', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
-      infoText: {
-        en: 'aoe + dot',
-        de: 'AoE + DoT',
-        fr: 'AoE + dot',
-        cn: 'AOE + dot',
-        ko: '전체공격 + 도트뎀',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'aoe + dot',
+          de: 'AoE + DoT',
+          fr: 'AoE + dot',
+          cn: 'AOE + dot',
+          ko: '전체공격 + 도트뎀',
+        },
       },
     },
     {
@@ -45,7 +46,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '40F9', source: '泰坦' }),
       netRegexKo: NetRegexes.startsUsing({ id: '40F9', source: '타이탄' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
+        return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -57,12 +58,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '40FA', source: 'タイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '40FA', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '40FA', source: '타이탄', capture: false }),
-      alertText: {
-        en: 'Stand In Front',
-        de: 'Vor ihm stehen',
-        fr: 'Placez-vous devant',
-        cn: '面前躲避',
-        ko: '정면이 안전',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand In Front',
+          de: 'Vor ihm stehen',
+          fr: 'Placez-vous devant',
+          cn: '面前躲避',
+          ko: '정면이 안전',
+        },
       },
     },
     {
@@ -75,12 +79,15 @@
       netRegexKo: NetRegexes.startsUsing({ id: '40F2', source: '거대 바위', capture: false }),
       delaySeconds: 6,
       suppressSeconds: 10,
-      infoText: {
-        en: 'Hide Behind Boulder',
-        de: 'Hinter Felsen verstecken',
-        fr: 'Cachez-vous derrière le rocher',
-        cn: '躲在石头后',
-        ko: '돌 뒤에 숨기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hide Behind Boulder',
+          de: 'Hinter Felsen verstecken',
+          fr: 'Cachez-vous derrière le rocher',
+          cn: '躲在石头后',
+          ko: '돌 뒤에 숨기',
+        },
       },
     },
     {
@@ -101,12 +108,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4102', source: 'タイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4102', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4102', source: '타이탄', capture: false }),
-      alertText: {
-        en: 'Stand On Flank',
-        de: 'Auf seiner Flanke stehen',
-        fr: 'Placez-vous sur le flanc',
-        cn: '两侧躲避',
-        ko: '넓은쪽 옆면이 안전',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand On Flank',
+          de: 'Auf seiner Flanke stehen',
+          fr: 'Placez-vous sur le flanc',
+          cn: '两侧躲避',
+          ko: '넓은쪽 옆면이 안전',
+        },
       },
     },
   ],

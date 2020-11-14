@@ -12,7 +12,7 @@
     'alarmtext "Death" before 3',
     'alertall "Long Castbar" before 1 speak "voice" "long"',
     function(data) {
-      if (data.role != 'tank' && data.role != 'healer')
+      if (data.role !== 'tank' && data.role !== 'healer')
         return 'hideall "Super Tankbuster"';
       return 'alarmtext "Super Tankbuster" before 2';
     },
@@ -21,7 +21,7 @@
         return 'hideall "Pentacle Sac (DPS)"';
     },
     function(data) {
-      if (data.role != 'healer')
+      if (data.role !== 'healer')
         return 'hideall "Almagest"';
       return 'alarmtext "Almagest" before 0';
     },
@@ -46,30 +46,32 @@
   timelineTriggers: [
     {
       id: 'Test Angry Dummy',
-      regex: /(Angry Dummy)/,
+      regex: /Angry Dummy/,
       beforeSeconds: 2,
-      infoText: function(data, matches) {
-        return {
-          en: 'Stack for ' + matches[1],
-          de: 'Sammeln für ' + matches[1],
-          fr: 'Packez-vous pour ' + matches[1],
-          ja: matches[1] + 'に集合',
+      infoText: (data, matches, output) => output.stack(),
+      tts: (data, matches, output) => output.stackTTS(),
+      outputStrings: {
+        stack: {
+          en: 'Stack for Angry Dummy',
+          de: 'Sammeln für Wütender Dummy',
+          fr: 'Packez-vous pour Mannequin en colère',
+          ja: '怒る木人に集合',
           cn: '木人处集合',
-          ko: matches[1] + '에 집합',
-        };
-      },
-      tts: {
-        en: 'Stack',
-        de: 'Sammeln',
-        fr: 'Packez-vous',
-        ja: '集合',
-        cn: '集合',
-        ko: '집합',
+          ko: '화난 나무인형에 집합',
+        },
+        stackTTS: {
+          en: 'Stack',
+          de: 'Sammeln',
+          fr: 'Packez-vous',
+          ja: '集合',
+          cn: '集合',
+          ko: '집합',
+        },
       },
     },
     {
       id: 'Test Delayed Dummy',
-      regex: /(Angry Dummy)/,
+      regex: /Angry Dummy/,
       // Add in a huge delay to make it obvious the delay runs before promise.
       delaySeconds: 10,
       promise: function(data, matches) {
@@ -82,16 +84,19 @@
         });
         return p;
       },
-      infoText: function(data) {
+      infoText: function(data, matches, output) {
         let elapsed = data.delayedDummyTimestampAfter - data.delayedDummyTimestampBefore;
-        return {
-          en: 'Elapsed ms: ' + elapsed,
-          de: 'Abgelaufene ms: ' + elapsed,
-          fr: 'Expiré ms: ' + elapsed,
-          ja: '経過時間：' + elapsed,
-          cn: '经过时间：' + elapsed,
-          ko: '경과 시간: ' + elapsed,
-        };
+        return output.elapsed({ elapsed: elapsed });
+      },
+      outputStrings: {
+        elapsed: {
+          en: 'Elapsed ms: ${elapsed}',
+          de: 'Abgelaufene ms: ${elapsed}',
+          fr: 'Expiré ms: ${elapsed}',
+          ja: '経過時間：${elapsed}',
+          cn: '经过时间：${elapsed}',
+          ko: '경과 시간: ${elapsed}',
+        },
       },
     },
   ],
@@ -104,18 +109,19 @@
       netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人をつついた.*?', capture: false }),
       netRegexCn: NetRegexes.gameNameLog({ line: '.*用手指戳向木人.*?', capture: false }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 쿡쿡 찌릅니다.*?', capture: false }),
-      preRun: function(data) {
+      preRun: (data) => {
         data.pokes = (data.pokes || 0) + 1;
       },
-      infoText: function(data) {
-        return {
-          en: 'poke #' + data.pokes,
-          de: 'stups #' + data.pokes,
-          fr: 'poussée #' + data.pokes,
-          ja: 'つつく #' + data.pokes,
-          cn: '戳 #' + data.pokes,
-          ko: data.pokes + '번 찌름',
-        };
+      infoText: (data, _, output) => output.poke({ numPokes: data.pokes }),
+      outputStrings: {
+        poke: {
+          en: 'poke #${numPokes}',
+          de: 'stups #${numPokes}',
+          fr: 'poussée #${numPokes}',
+          ja: 'つつく #${numPokes}',
+          cn: '戳 #${numPokes}',
+          ko: '${numPokes}번 찌름',
+        },
       },
     },
     {
@@ -126,14 +132,7 @@
       netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人に活を入れた.*?', capture: false }),
       netRegexCn: NetRegexes.gameNameLog({ line: '.*激励木人.*?', capture: false }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 힘을 불어넣습니다.*?', capture: false }),
-      alertText: {
-        en: 'PSYCH!!!',
-        de: 'AUF GEHTS!!!',
-        fr: 'MOTIVATION !!!',
-        ja: '活を入れる！！',
-        cn: '激励！！',
-        ko: '힘내라!!',
-      },
+      alertText: (data, _, output) => output.text(),
       groupTTS: {
         en: 'group psych',
         de: 'Gruppen auf gehts',
@@ -150,6 +149,16 @@
         cn: '激励',
         ko: '힘내라!',
       },
+      outputStrings: {
+        text: {
+          en: 'PSYCH!!!',
+          de: 'AUF GEHTS!!!',
+          fr: 'MOTIVATION !!!',
+          ja: '活を入れる！！',
+          cn: '激励！！',
+          ko: '힘내라!!',
+        },
+      },
     },
     {
       id: 'Test Laugh',
@@ -160,14 +169,7 @@
       netRegexCn: NetRegexes.gameNameLog({ line: '.*看着木人高声大笑.*?', capture: false }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 보고 폭소를 터뜨립니다.*?', capture: false }),
       suppressSeconds: 5,
-      alarmText: {
-        en: 'hahahahaha',
-        de: 'hahahahaha',
-        fr: 'hahahahaha',
-        ja: 'ハハハハハ',
-        cn: '2333333333',
-        ko: '푸하하하하핳',
-      },
+      alarmText: (data, _, output) => output.text(),
       groupTTS: {
         en: 'group laugh',
         de: 'Gruppenlache',
@@ -184,6 +186,16 @@
         cn: '哈哈哈哈哈哈',
         ko: '푸하하하하핳',
       },
+      outputStrings: {
+        text: {
+          en: 'hahahahaha',
+          de: 'hahahahaha',
+          fr: 'hahahahaha',
+          ja: 'ハハハハハ',
+          cn: '2333333333',
+          ko: '푸하하하하핳',
+        },
+      },
     },
     {
       id: 'Test Clap',
@@ -195,13 +207,16 @@
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 박수를 보냅니다.*?', capture: false }),
       sound: '../../resources/sounds/WeakAuras/Applause.ogg',
       soundVolume: 0.3,
-      tts: {
-        en: 'clapity clap',
-        de: 'klatschen',
-        fr: 'applaudissement',
-        ja: '拍手',
-        cn: '鼓掌',
-        ko: '박수 짝짝짝',
+      tts: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'clapity clap',
+          de: 'klatschen',
+          fr: 'applaudissement',
+          ja: '拍手',
+          cn: '鼓掌',
+          ko: '박수 짝짝짝',
+        },
       },
     },
     {
@@ -211,27 +226,36 @@
       netRegexDe: NetRegexes.echo({ line: 'cactbot sprache.*?', capture: false }),
       netRegexJa: NetRegexes.echo({ line: 'cactbot言語.*?', capture: false }),
       netRegexKo: NetRegexes.echo({ line: 'cactbot 언어.*?', capture: false }),
-      infoText: function(data) {
-        return {
-          en: 'Language: ' + data.parserLang,
-          de: 'Sprache: ' + data.parserLang,
-          fr: 'Langage: ' + data.paserLang,
-          ja: '言語：' + data.parserLang,
-          cn: '语言: ' + data.parserLang,
-          ko: '언어: ' + data.parserLang,
-        };
+      infoText: (data, _, output) => {
+        return output.text({ lang: data.parserLang });
+      },
+      outputStrings: {
+        text: {
+          en: 'Language: ${lang}',
+          de: 'Sprache: ${lang}',
+          fr: 'Langage: ${lang}',
+          ja: '言語：${lang}',
+          cn: '语言: ${lang}',
+          ko: '언어: ${lang}',
+        },
       },
     },
     {
       id: 'Test Response',
       netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot test antwort.*?', capture: false }),
-      response: function(data) {
+      response: function(data, _, output) {
+        output.responseOutputStrings = {
+          alarmOne: '1',
+          alertTwo: '2',
+          infoThree: '3',
+          ttsFour: '4',
+        };
         return {
-          alarmText: '1',
-          alertText: '2',
-          infoText: '3',
-          tts: '4',
+          alarmText: output.alarmOne(),
+          alertText: output.alertTwo(),
+          infoText: output.infoThree(),
+          tts: output.ttsFour(),
         };
       },
     },

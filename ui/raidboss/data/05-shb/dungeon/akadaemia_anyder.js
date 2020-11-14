@@ -9,7 +9,7 @@
       regex: /Lash/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       suppressSeconds: 10,
       response: Responses.miniBuster(),
@@ -25,16 +25,17 @@
     {
       id: 'Anyder Aquatic Lance',
       netRegex: NetRegexes.headMarker({ id: '0087' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'puddle on you',
-        de: 'Fläche auf DIR',
-        fr: 'Zone au sol sur VOUS',
-        ja: '自分に水溜り',
-        cn: '水球点名',
-        ko: '징 대상자',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'puddle on you',
+          de: 'Fläche auf DIR',
+          fr: 'Zone au sol sur VOUS',
+          ja: '自分に水溜り',
+          cn: '水球点名',
+          ko: '징 대상자',
+        },
       },
     },
     {
@@ -46,7 +47,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3E04', source: ['裂口鲨', '原祖鲨'] }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E04', source: ['클라도셀라케', '돌리오두스'] }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -58,13 +59,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3E0A', source: 'クラドセラケ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E0A', source: '裂口鲨', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E0A', source: '클라도셀라케', capture: false }),
-      infoText: {
-        en: 'Away From Swimming Shark',
-        de: 'Weg vom schwimmenden Hai',
-        fr: 'Éloignez-vous du requin qui nage',
-        ja: '水中サメから離れ',
-        cn: '远离水中BOSS',
-        ko: '물 속 상어 멀리 떨어지기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away From Swimming Shark',
+          de: 'Weg vom schwimmenden Hai',
+          fr: 'Éloignez-vous du requin qui nage',
+          ja: '水中サメから離れ',
+          cn: '远离水中BOSS',
+          ko: '물 속 상어 멀리 떨어지기',
+        },
       },
     },
     {
@@ -75,13 +79,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3E0B', source: 'ドリオドゥス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E0B', source: '原祖鲨', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E0B', source: '돌리오두스', capture: false }),
-      infoText: {
-        en: 'Sides of Swimming Shark',
-        de: 'Zu den Seiten vom schwimmenden Hai',
-        fr: 'Sur les côtés du requin qui nage',
-        ja: '水中サメの側へ',
-        cn: '去水中BOSS的两侧',
-        ko: '물 속 상어 측면으로 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Sides of Swimming Shark',
+          de: 'Zu den Seiten vom schwimmenden Hai',
+          fr: 'Sur les côtés du requin qui nage',
+          ja: '水中サメの側へ',
+          cn: '去水中BOSS的两侧',
+          ko: '물 속 상어 측면으로 피하기',
+        },
       },
     },
     {
@@ -92,17 +99,13 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3E06', source: ['クラドセラケ', 'ドリオドゥス'], capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E06', source: ['裂口鲨', '原祖鲨'], capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E06', source: ['클라도셀라케', '돌리오두스'], capture: false }),
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
       id: 'Anyder Sap Shower',
       netRegex: NetRegexes.headMarker({ id: '0078' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -113,9 +116,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3E17', source: 'マーカス・モルボル', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E17', source: '侯爵魔界花', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E17', source: '몰볼 후작', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -140,7 +141,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3E23', source: '克察尔科亚特尔' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E23', source: '케찰코아틀' }),
       condition: function(data, matches) {
-        return matches.target == data.me || data.role == 'healer';
+        return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -152,9 +153,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3E24', source: 'ケツァクウァトル', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E24', source: '克察尔科亚特尔', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E24', source: '케찰코아틀', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -166,13 +165,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3E1A', source: '克察尔科亚特尔', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E1A', source: '케찰코아틀', capture: false }),
       delaySeconds: 4.7,
-      infoText: {
-        en: 'grab orbs',
-        de: 'Orbs nehmen',
-        fr: 'Prenez les orbes',
-        ja: '雷丸を得る',
-        cn: '吃球',
-        ko: '구슬 줍기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'grab orbs',
+          de: 'Orbs nehmen',
+          fr: 'Prenez les orbes',
+          ja: '雷丸を得る',
+          cn: '吃球',
+          ko: '구슬 줍기',
+        },
       },
     },
   ],

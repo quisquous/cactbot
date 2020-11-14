@@ -92,7 +92,7 @@ export default class DpsPhaseTracker {
   }
 
   inCombatChanged(inCombat) {
-    if (this.inCombat == inCombat)
+    if (this.inCombat === inCombat)
       return;
     this.inCombat = inCombat;
     if (inCombat)
@@ -106,7 +106,7 @@ export default class DpsPhaseTracker {
 
     // Make sure there's no phase name collision.
     for (let i = 0; i < this.phases.length; ++i) {
-      if (this.phases[i].name == name && !this.phases[i].complete) {
+      if (this.phases[i].name === name && !this.phases[i].complete) {
         console.error('Duplicate phase: ' + name);
         return;
       }
@@ -124,7 +124,7 @@ export default class DpsPhaseTracker {
   onFightPhaseEnd(name, dps) {
     this.onOverlayDataUpdate(dps);
     for (let i = 0; i < this.phases.length; ++i) {
-      if (this.phases[i].name == name && !this.phases[i].complete) {
+      if (this.phases[i].name === name && !this.phases[i].complete) {
         this.phases[i].complete = true;
         return;
       }
@@ -162,7 +162,7 @@ export default class DpsPhaseTracker {
     // This happens where ACT stops providing new updates but log entries
     // or other triggers indicate that phases have started.
     if (phaseStart) {
-      if (phaseStart.Encounter.DURATION == phaseEnd.Encounter.DURATION)
+      if (phaseStart.Encounter.DURATION === phaseEnd.Encounter.DURATION)
         return;
     }
 

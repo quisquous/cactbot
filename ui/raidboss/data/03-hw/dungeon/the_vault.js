@@ -16,13 +16,16 @@
       regex: /Shining Blade/,
       beforeSeconds: 3,
       suppressSeconds: 10,
-      infoText: {
-        en: 'Avoid dashes',
-        de: 'Sprint ausweichen',
-        fr: 'Évitez les charges',
-        ja: 'ブレードに避け',
-        cn: '躲开冲锋',
-        ko: '돌진 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid dashes',
+          de: 'Sprint ausweichen',
+          fr: 'Évitez les charges',
+          ja: 'ブレードに避け',
+          cn: '躲开冲锋',
+          ko: '돌진 피하기',
+        },
       },
     },
     {
@@ -36,7 +39,7 @@
       regex: /Altar Candle/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role != 'dps';
+        return data.role !== 'dps';
       },
       response: Responses.tankBuster(),
     },
@@ -50,9 +53,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '101E', source: '聖騎士アデルフェル', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '101E', source: '圣骑士阿代尔斐尔', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '101E', source: '성기사 아델펠', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -63,17 +64,19 @@
       netRegexJa: NetRegexes.startsUsing({ id: '101F', source: '聖騎士アデルフェル' }),
       netRegexCn: NetRegexes.startsUsing({ id: '101F', source: '圣骑士阿代尔斐尔' }),
       netRegexKo: NetRegexes.startsUsing({ id: '101F', source: '성기사 아델펠' }),
-      alertText: function(data, matches) {
-        if (data.role == 'healer') {
-          return {
-            en: 'Heal + shield ' + data.ShortName(matches.target),
-            de: 'Heilung + Schild ' + data.ShortName(matches.target),
-            fr: 'Soin + bouclier ' + data.ShortName(matches.target),
-            ja: 'すぐに' + data.ShortName(matches.target) + 'を癒す',
-            cn: '马上治疗' + data.ShortName(matches.target),
-            ko: data.ShortName(matches.target) + ' 강타 대상자',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (data.role === 'healer')
+          return output.text({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Heal + shield ${player}',
+          de: 'Heilung + Schild ${player}',
+          fr: 'Soin + bouclier ${player}',
+          ja: 'すぐに${player}を癒す',
+          cn: '马上治疗${player}',
+          ko: '${player} 강타 대상자',
+        },
       },
     },
     {
@@ -112,17 +115,18 @@
       netRegexJa: NetRegexes.tether({ id: '0001', source: '次元の裂け目' }),
       netRegexCn: NetRegexes.tether({ id: '0001', source: '次元裂缝' }),
       netRegexKo: NetRegexes.tether({ id: '0001', source: '차원의 틈새' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 5,
-      alarmText: {
-        en: 'Away from rifts',
-        de: 'Weg von de Ätherspalten',
-        fr: 'Éloignez-vous des déchirures',
-        ja: '裂け目に離れ',
-        cn: '远离黑圈',
-        ko: '장판 피하기',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away from rifts',
+          de: 'Weg von de Ätherspalten',
+          fr: 'Éloignez-vous des déchirures',
+          ja: '裂け目に離れ',
+          cn: '远离黑圈',
+          ko: '장판 피하기',
+        },
       },
     },
     {
@@ -133,17 +137,13 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1035', source: '聖騎士シャリベル', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1035', source: '圣骑士沙里贝尔', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1035', source: '성기사 샤리베르', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
       id: 'The Vault Holy Chains',
       netRegex: NetRegexes.headMarker({ id: '0061' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.breakChains(),
     },
     {
@@ -169,13 +169,16 @@
         return data.knightsActive;
       },
       suppressSeconds: 4,
-      infoText: {
-        en: 'Evade marching knights',
-        de: 'Marschierenden Rittern ausweichen',
-        fr: 'Esquivez la marche chevaliers',
-        ja: 'ナイトに避け',
-        cn: '躲开人马',
-        ko: '자동기사 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Evade marching knights',
+          de: 'Marschierenden Rittern ausweichen',
+          fr: 'Esquivez la marche chevaliers',
+          ja: 'ナイトに避け',
+          cn: '躲开人马',
+          ko: '자동기사 피하기',
+        },
       },
     },
   ],
@@ -359,7 +362,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Aetherial Tear': '차원의 틈새',
         'Dawn Knight': '여명의 자동기사',
@@ -392,8 +394,10 @@
         'Holy Chain': '거룩한 사슬',
         'Holy Shield Bash': '성스러운 방패 강타',
         'Hyperdimensional Slash': '고차원',
+        'Knights Appear': '자동 기사 생성',
         'Overpower': '압도',
-        'Retreat': '철수',
+        'Retreat(?!ing)': '철수',
+        'Retreating': '철수 중',
         'Rive': '두 동강 내기',
         'Sacred Flame': '성화 연소',
         'Shining Blade': '찬란한 칼날',

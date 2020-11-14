@@ -51,31 +51,33 @@
     {
       id: 'O5S Diabolic Light',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
-      infoText: {
-        en: 'Light',
-        de: 'Licht',
-        fr: 'Lumière',
-        ko: '빛장판',
-        ja: '魔界の光',
-        cn: '光点名',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Light',
+          de: 'Licht',
+          fr: 'Lumière',
+          ko: '빛장판',
+          ja: '魔界の光',
+          cn: '光点名',
+        },
       },
     },
     {
       id: 'O5S Diabolic Wind',
       netRegex: NetRegexes.headMarker({ id: '0046' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
-      infoText: {
-        en: 'Wind',
-        de: 'Wind',
-        fr: 'Vent',
-        ko: '초록징',
-        ja: '魔界の風',
-        cn: '圆圈点名',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Wind',
+          de: 'Wind',
+          fr: 'Vent',
+          ko: '초록징',
+          ja: '魔界の風',
+          cn: '圆圈点名',
+        },
       },
     },
     {
@@ -200,7 +202,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Agony': '고뇌하는 유령',
         'Malice': '원한',
@@ -209,15 +210,23 @@
         'Wroth Ghost': '격노하는 유령',
       },
       'replaceText': {
+        'DPS': '딜러',
+        'T/H': '탱/힐',
+        ' Ghosts': ' 유령',
         'Acid Rain': '산성비',
+        'Add Wave': '쫄 소환',
         'All In The Mind': '염력',
+        'Crossing Whistle': '유령 지나가는 경적',
         'Diabolic Headlamp': '마계의 전조등',
         'Diabolic Light': '마계의 빛',
         'Diabolic Wind': '마계의 바람',
         'Doom Strike': '마령격',
         'Encumber': '진로 방해',
+        'Ghosts spawn': '유령 소환',
         'Head On': '추돌',
+        'Knockback Whistle': '넉백 경적',
         'Saintly Beam': '성스러운 광선',
+        'Tether Whistle': '선징 경적',
       },
     },
   ],

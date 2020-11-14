@@ -8,12 +8,15 @@
       id: 'E2N Punishing Ray',
       regex: /Punishing Ray/,
       beforeSeconds: 9,
-      infoText: {
-        en: 'Get Puddles',
-        de: 'Flächen nehmen',
-        fr: 'Allez dans les zones au sol',
-        cn: '踩圈',
-        ko: '장판 밟기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Puddles',
+          de: 'Flächen nehmen',
+          fr: 'Allez dans les zones au sol',
+          cn: '踩圈',
+          ko: '장판 밟기',
+        },
       },
     },
   ],
@@ -27,7 +30,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3E4D', source: '虚无行者' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E4D', source: '보이드워커' }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
       response: Responses.tankBuster(),
     },
@@ -40,15 +43,18 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3E4D', source: '虚无行者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E4D', source: '보이드워커', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       suppressSeconds: 1,
-      infoText: {
-        en: 'Tank Busters',
-        de: 'Tank buster',
-        fr: 'Tank buster',
-        cn: '死刑',
-        ko: '탱버',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Busters',
+          de: 'Tank buster',
+          fr: 'Tank buster',
+          cn: '死刑',
+          ko: '탱버',
+        },
       },
     },
     {
@@ -59,9 +65,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3E6D', source: 'ヴォイドウォーカー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E6D', source: '虚无行者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E6D', source: '보이드워커', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -100,9 +104,7 @@
     {
       id: 'E2N Dark Fire No Waiting',
       netRegex: NetRegexes.headMarker({ id: '004C' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread('alert'),
     },
     {
@@ -126,40 +128,45 @@
     {
       id: 'E2N Dark Fire Waiting',
       netRegex: NetRegexes.headMarker({ id: '00B5' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Delayed Fire',
-        de: 'Verzögertes Feuer',
-        fr: 'Feu retardé',
-        cn: '延迟火',
-        ko: '지연술 파이가',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Delayed Fire',
+          de: 'Verzögertes Feuer',
+          fr: 'Feu retardé',
+          cn: '延迟火',
+          ko: '지연술 파이가',
+        },
       },
     },
     {
       id: 'E2N Countdown Marker Fire',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
-        return data.me == matches.target && data.spell[data.me] == 'fire';
+        return data.me === matches.target && data.spell[data.me] === 'fire';
       },
-      alertText: function(data) {
-        if (data.fireCount == 3) {
-          return {
-            en: 'Spread (don\'t stack!)',
-            de: 'Verteilen (nicht zusammen stehen)',
-            fr: 'Dispersez-vous (ne vous packez pas)',
-            cn: '分散',
-            ko: '산개 (쉐어 맞으면 안됨)',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.fireCount === 3)
+          return output.spreadDontStack();
+
+        return output.spread();
+      },
+      outputStrings: {
+        spreadDontStack: {
+          en: 'Spread (don\'t stack!)',
+          de: 'Verteilen (nicht zusammen stehen)',
+          fr: 'Dispersez-vous (ne vous packez pas)',
+          cn: '分散',
+          ko: '산개 (쉐어 맞으면 안됨)',
+        },
+        spread: {
           en: 'Spread',
           de: 'Verteilen',
           fr: 'Dispersez-vous',
           cn: '分散',
           ko: '산개',
-        };
+        },
       },
     },
     {
@@ -173,15 +180,16 @@
     {
       id: 'E2N Unholy Darkness Waiting',
       netRegex: NetRegexes.headMarker({ id: '00B4' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Delayed Stack',
-        de: 'Verzögertes sammeln',
-        fr: 'Package retardé',
-        cn: '延迟集合',
-        ko: '지연술 쉐어징',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Delayed Stack',
+          de: 'Verzögertes sammeln',
+          fr: 'Package retardé',
+          cn: '延迟集合',
+          ko: '지연술 쉐어징',
+        },
       },
     },
     {
@@ -190,9 +198,9 @@
       condition: function(data, matches) {
         // The third fire coincides with stack.
         // These people should avoid.
-        if (data.spell[data.me] == 'fire' && data.fireCount == 3)
+        if (data.spell[data.me] === 'fire' && data.fireCount === 3)
           return false;
-        return data.spell[matches.target] == 'stack';
+        return data.spell[matches.target] === 'stack';
       },
       response: Responses.stackMarkerOn(),
     },
@@ -207,22 +215,23 @@
     {
       id: 'E2N Shadoweye Waiting',
       netRegex: NetRegexes.headMarker({ id: '00B7' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Delayed Shadoweye',
-        de: 'Verzögertes Schattenauge',
-        fr: 'Œil de l\'ombre retardé',
-        cn: '延迟石化眼',
-        ko: '지연술 그림자시선',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Delayed Shadoweye',
+          de: 'Verzögertes Schattenauge',
+          fr: 'Œil de l\'ombre retardé',
+          cn: '延迟石化眼',
+          ko: '지연술 그림자시선',
+        },
       },
     },
     {
       id: 'E2N Countdown Marker Shadoweye',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
-        return data.spell[matches.target] == 'eye';
+        return data.spell[matches.target] === 'eye';
       },
       delaySeconds: 2,
       response: Responses.lookAwayFromTarget('alarm'),
@@ -231,19 +240,21 @@
       id: 'E2N Countdown Marker Shadoweye You',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
-        return data.spell[matches.target] == 'eye';
+        return data.spell[matches.target] === 'eye';
       },
       delaySeconds: 2,
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Eye on YOU',
-            de: 'Auge auf DIR',
-            fr: 'Œil de l\'ombre sur VOUS',
-            cn: '石化眼点名',
-            ko: '시선징 대상자',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Eye on YOU',
+          de: 'Auge auf DIR',
+          fr: 'Œil de l\'ombre sur VOUS',
+          cn: '石化眼点名',
+          ko: '시선징 대상자',
+        },
       },
     },
     {

@@ -10,13 +10,16 @@
       id: 'SusEx Cloud',
       regex: /Knockback \(cloud\)/,
       beforeSeconds: 1.5,
-      infoText: {
-        en: 'look for cloud',
-        de: 'Nach Wolke ausschau halten',
-        fr: 'Cherchez le nuage',
-        ja: '雷雲を探せ',
-        cn: '寻找雷云',
-        ko: '구름 확인',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'look for cloud',
+          de: 'Nach Wolke ausschau halten',
+          fr: 'Cherchez le nuage',
+          ja: '雷雲を探せ',
+          cn: '寻找雷云',
+          ko: '구름 확인',
+        },
       },
     },
   ],
@@ -87,113 +90,123 @@
       // Red knockback marker indicator
       id: 'SusEx Knockback',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: function(data, matches) {
-        return (matches.target == data.me);
+      condition: Conditions.targetIsYou(),
+      alertText: function(data, _, output) {
+        if (data.cloud)
+          return output.knockbackWithCloud();
+        else if (data.churning)
+          return output.knockbackWithDice();
+
+        return output.knockback();
       },
-      alertText: function(data) {
-        if (data.cloud) {
-          return {
-            en: 'Knockback on you (cloud)',
-            de: 'Rückstoss auf Dir (Wolke)',
-            fr: 'Poussée sur VOUS (nuage)',
-            ja: '自分にノックバック (雷雲)',
-            cn: '击退点名（雷云）',
-            ko: '넉백 대상자 (구름)',
-          };
-        } else if (data.churning) {
-          return {
-            en: 'Knockback + dice (STOP)',
-            de: 'Rückstoss + Würfel (STOPP)',
-            fr: 'Poussée + dé (ARRÊTEZ)',
-            ja: 'ノックバック + 禍泡 (そのまま)',
-            cn: '击退+水泡（静止）',
-            ko: '넉백 + 주사위 (가만히)',
-          };
-        }
-        return {
+      tts: function(data, _, output) {
+        if (data.cloud)
+          return output.knockbackWithCloudTTS();
+        else if (data.churning)
+          return output.knockbackWithDiceTTS();
+
+        return output.knockbackTTS();
+      },
+      outputStrings: {
+        knockbackWithCloud: {
+          en: 'Knockback on you (cloud)',
+          de: 'Rückstoss auf Dir (Wolke)',
+          fr: 'Poussée sur VOUS (nuage)',
+          ja: '自分にノックバック (雷雲)',
+          cn: '击退点名（雷云）',
+          ko: '넉백 대상자 (구름)',
+        },
+        knockbackWithDice: {
+          en: 'Knockback + dice (STOP)',
+          de: 'Rückstoss + Würfel (STOPP)',
+          fr: 'Poussée + dé (ARRÊTEZ)',
+          ja: 'ノックバック + 禍泡 (そのまま)',
+          cn: '击退+水泡（静止）',
+          ko: '넉백 + 주사위 (가만히)',
+        },
+        knockback: {
           en: 'Knockback on YOU',
           de: 'Rückstoß auf DIR',
           fr: 'Poussée sur VOUS',
           ja: '自分にノックバック',
           cn: '击退点名',
           ko: '넉백 대상자',
-        };
-      },
-      tts: function(data) {
-        if (data.cloud) {
-          return {
-            en: 'knockback with cloud',
-            de: 'Rückstoß mit wolke',
-            fr: 'Poussée avec nuage',
-            ja: '雷雲ノックバック',
-            cn: '雷云击退',
-            ko: '넉백과 구름 장판',
-          };
-        } else if (data.churning) {
-          return {
-            en: 'Knockback with dice',
-            de: 'Rückstoß mit Würfel',
-            fr: 'Poussée avec dé',
-            ja: '禍泡ノックバック',
-            cn: '水泡击退',
-            ko: '넉백과 주사위',
-          };
-        }
-        return {
+        },
+        knockbackWithCloudTTS: {
+          en: 'knockback with cloud',
+          de: 'Rückstoß mit wolke',
+          fr: 'Poussée avec nuage',
+          ja: '雷雲ノックバック',
+          cn: '雷云击退',
+          ko: '넉백과 구름 장판',
+        },
+        knockbackWithDiceTTS: {
+          en: 'Knockback with dice',
+          de: 'Rückstoß mit Würfel',
+          fr: 'Poussée avec dé',
+          ja: '禍泡ノックバック',
+          cn: '水泡击退',
+          ko: '넉백과 주사위',
+        },
+        knockbackTTS: {
           en: 'Knockback',
           de: 'Rückstoß',
           fr: 'Poussée',
           ja: 'ノックバック',
           cn: '击退',
           ko: '넉백',
-        };
+        },
       },
     },
     {
       id: 'SusEx Levinbolt',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
-      condition: function(data, matches) {
-        return (matches.target == data.me);
+      condition: Conditions.targetIsYou(),
+      alertText: function(data, _, output) {
+        if (data.cloud)
+          return output.levinboltWithCloud();
+
+        return output.levinboltOnYou();
       },
-      alertText: function(data) {
-        if (data.cloud) {
-          return {
-            en: 'Levinbolt on you (cloud)',
-            de: 'Blitz auf Dir (Wolke)',
-            fr: 'Fulguration sur VOUS (nuage)',
-            ja: '自分に稲妻 (雷雲)',
-            cn: '闪电点名（雷云）',
-            ko: '우레 대상자 (구름)',
-          };
-        }
-        return {
+      tts: function(data, _, output) {
+        if (data.cloud)
+          return output.levinboltWithCloudTTS();
+
+        return output.levinboltOnYouTTS();
+      },
+      outputStrings: {
+        levinboltWithCloud: {
+          en: 'Levinbolt on you (cloud)',
+          de: 'Blitz auf Dir (Wolke)',
+          fr: 'Fulguration sur VOUS (nuage)',
+          ja: '自分に稲妻 (雷雲)',
+          cn: '闪电点名（雷云）',
+          ko: '우레 대상자 (구름)',
+        },
+        levinboltOnYou: {
           en: 'Levinbolt on you',
           de: 'Blitz auf dir',
           fr: 'Fulguration sur VOUS',
           ja: '自分に稲妻',
           cn: '闪电点名',
           ko: '우레 대상자',
-        };
-      },
-      tts: function(data) {
-        if (data.cloud) {
-          return {
-            en: 'bolt with cloud',
-            de: 'blitz mit wolke',
-            fr: 'foudre avec nuage',
-            ja: '雷雲 稲妻',
-            cn: '闪电带雷云',
-            ko: '구름 번개',
-          };
-        }
-        return {
+        },
+        levinboltWithCloudTTS: {
+          en: 'bolt with cloud',
+          de: 'blitz mit wolke',
+          fr: 'foudre avec nuage',
+          ja: '雷雲 稲妻',
+          cn: '闪电带雷云',
+          ko: '구름 번개',
+        },
+        levinboltOnYouTTS: {
           en: 'bolt',
           de: 'blitz',
           fr: 'foudre',
           ja: '稲妻',
           cn: '闪电',
           ko: '번개',
-        };
+        },
       },
     },
     {
@@ -201,33 +214,33 @@
       netRegex: NetRegexes.headMarker({ id: '006E' }),
       condition: function(data, matches) {
         data.levinbolt = matches.target;
-        return (matches.target != data.me);
+        return (matches.target !== data.me);
       },
     },
     {
       id: 'SusEx Levinbolt Stun',
       netRegex: NetRegexes.headMarker({ id: '006F' }),
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         // It's sometimes hard for tanks to see the line, so just give a
         // sound indicator for jumping rope back and forth.
-        if (data.role == 'tank') {
-          return {
-            en: 'Stun: ' + data.ShortName(matches.target),
-            de: 'Paralyse ' + data.ShortName(matches.target),
-            fr: 'Stun ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にスタン',
-            cn: '击晕' + data.ShortName(matches.target),
-            ko: data.ShortName(matches.target) + '스턴',
-          };
-        }
+        if (data.role === 'tank')
+          return output.text({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Stun: ${player}',
+          de: 'Paralyse ${player}',
+          fr: 'Stun ${player}',
+          ja: '${player}にスタン',
+          cn: '击晕${player}',
+          ko: '${player}스턴',
+        },
       },
     },
     {
       id: 'SusEx Churning',
       netRegex: NetRegexes.gainsEffect({ effectId: '4F6' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 3;
       },

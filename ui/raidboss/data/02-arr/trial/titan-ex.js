@@ -8,53 +8,53 @@
       id: 'TitanEx Mountain Buster',
       regex: /Mountain Buster/,
       beforeSeconds: 7,
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank';
-      },
+      condition: (data) => data.role === 'healer' || data.role === 'tank',
       response: Responses.tankBuster(),
     },
     {
       id: 'TitanEx Mountain Buster Avoid',
       regex: /Mountain Buster/,
       beforeSeconds: 7,
-      condition: function(data) {
-        return data.role != 'healer' && data.role != 'tank';
-      },
+      condition: (data) => data.role !== 'healer' && data.role !== 'tank',
       response: Responses.tankCleave(),
     },
     {
       id: 'TitanEx Tumult',
       regex: /Tumult/,
       beforeSeconds: 5,
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
     {
       id: 'TitanEx Gaoler Adds',
       regex: /Gaoler Adds/,
       beforeSeconds: 1,
-      infoText: {
-        en: 'Gaoler Adds',
-        de: 'graniten Kerkermeister Adds',
-        fr: 'Adds geôlier',
-        ja: '雑魚: 子タイタン',
-        cn: '小土豆出现',
-        ko: '화강암 감옥 쫄',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Gaoler Adds',
+          de: 'graniten Kerkermeister Adds',
+          fr: 'Adds geôlier',
+          ja: '雑魚: 子タイタン',
+          cn: '小土豆出现',
+          ko: '화강암 감옥 쫄',
+        },
       },
     },
     {
       id: 'TitanEx Double Weight',
       regex: /Weight Of The Land 1/,
       beforeSeconds: 4,
-      infoText: {
-        en: 'Double Weight',
-        de: 'Doppeltes Gaias Gewicht',
-        fr: 'Double poids',
-        ja: '大地の重み2連',
-        cn: '二连流沙',
-        ko: '2연속 대지의 무게',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Double Weight',
+          de: 'Doppeltes Gaias Gewicht',
+          fr: 'Double poids',
+          ja: '大地の重み2連',
+          cn: '二连流沙',
+          ko: '2연속 대지의 무게',
+        },
       },
     },
   ],
@@ -190,6 +190,12 @@
         'Titan': '타이탄',
       },
       'replaceText': {
+        '\\(all\\)': '(모두)',
+        '\\(clock\\)': '(시계 방향)',
+        '\\(one side\\)': '(한 방향)',
+        '\\(row 1\\)': '(1열)',
+        '\\(row 2\\)': '(2열)',
+        '\\(row 3\\)': '(3열)',
         'Burst': '대폭발',
         'Bury': '충격',
         'Earthen Fury': '대지의 분노',

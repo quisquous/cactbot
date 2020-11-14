@@ -17,15 +17,17 @@
       netRegexJa: NetRegexes.message({ line: '地雷が散布された.*?', capture: false }),
       netRegexCn: NetRegexes.message({ line: '地雷分布在了各处.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '지뢰가 뿌려졌습니다.*?', capture: false }),
-      alertText: {
-        en: 'Explode Landmines',
-        de: 'Landminen explodieren',
-        fr: 'Explosez les mines',
-        ja: '地雷を踏む',
-        cn: '引爆地雷',
-      },
-      run: function(data) {
-        data.landmines = {};
+      alertText: (data, _, output) => output.text(),
+      run: (data) => data.landmines = {},
+      outputStrings: {
+        text: {
+          en: 'Explode Landmines',
+          de: 'Landminen explodieren',
+          fr: 'Explosez les mines',
+          ja: '地雷を踏む',
+          cn: '引爆地雷',
+          ko: '지뢰 폭발시키기',
+        },
       },
     },
     {
@@ -36,18 +38,36 @@
       netRegexJa: NetRegexes.ability({ id: '7D1', source: 'アラガンマイン' }),
       netRegexCn: NetRegexes.ability({ id: '7D1', source: '亚拉戈机雷' }),
       netRegexKo: NetRegexes.ability({ id: '7D1', source: '알라그 지뢰' }),
-      infoText: function(data, matches) {
+      infoText: (data, matches, output) => {
         if (matches.target in data.landmines)
           return;
-        return (Object.keys(data.landmines).length + 1) + ' / 3';
+        const num = Object.keys(data.landmines).length + 1;
+        return output.landmine({ num: num });
       },
-      tts: function(data, matches) {
+      tts: (data, matches, output) => {
         if (matches.target in data.landmines)
           return;
-        return (Object.keys(data.landmines).length + 1);
+        const num = Object.keys(data.landmines).length + 1;
+        return output.landmineTTS({ num: num });
       },
-      run: function(data, matches) {
-        data.landmines[matches.target] = true;
+      run: (data, matches) => data.landmines[matches.target] = true,
+      outputStrings: {
+        landmine: {
+          en: '${num} / 3',
+          de: '${num} / 3',
+          fr: '${num} / 3',
+          ja: '${num} / 3',
+          cn: '${num} / 3',
+          ko: '${num} / 3',
+        },
+        landmineTTS: {
+          en: '${num}',
+          de: '${num}',
+          fr: '${num}',
+          ja: '${num}',
+          cn: '${num}',
+          ko: '${num}',
+        },
       },
     },
     {
@@ -59,14 +79,16 @@
       netRegexCn: NetRegexes.tether({ id: '0005', target: '降世化身' }),
       netRegexKo: NetRegexes.tether({ id: '0005', target: '아바타' }),
       suppressSeconds: 6,
-      infoText: function(data, matches) {
-        return {
-          en: 'Missile Tether (on ' + data.ShortName(matches.source) + ')',
-          de: 'Raketen Tether (auf ' + data.ShortName(matches.source) + ')',
-          fr: 'Lien missile sur ' + data.ShortName(matches.source),
-          ja: data.ShortName(matches.source) + 'にミサイル',
-          cn: '导弹连线(on ' + data.ShortName(matches.source) + ')',
-        };
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
+      outputStrings: {
+        text: {
+          en: 'Missile Tether (on ${player})',
+          de: 'Raketen Tether (auf ${player})',
+          fr: 'Lien missile sur ${player}',
+          ja: '${player}にミサイル',
+          cn: '导弹连线(on ${player})',
+          ko: '"${player}" 유도 미사일 대상',
+        },
       },
     },
     {
@@ -77,27 +99,31 @@
       netRegexJa: NetRegexes.startsUsing({ id: '7C3', source: 'アバター' }),
       netRegexCn: NetRegexes.startsUsing({ id: '7C3', source: '降世化身' }),
       netRegexKo: NetRegexes.startsUsing({ id: '7C3', source: '아바타' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Brainjack on YOU',
-            de: 'Gehirnwäsche auf DIR',
-            fr: 'Détournement cérébral sur VOUS',
-            ja: '自分に混乱',
-            cn: '洗脑点名',
-          };
-        }
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.brainjackOnYou();
       },
-      infoText: function(data, matches) {
-        if (data.me != matches.target) {
-          return {
-            en: 'Brainjack on ' + data.ShortName(matches.target),
-            de: 'Gehirnwäsche auf ' + data.ShortName(matches.target),
-            fr: 'Détournement cérébral sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'に混乱',
-            cn: '洗脑点' + data.ShortName(matches.target),
-          };
-        }
+      infoText: (data, matches, output) => {
+        if (data.me !== matches.target)
+          return output.brainjackOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        brainjackOn: {
+          en: 'Brainjack on ${player}',
+          de: 'Gehirnwäsche auf ${player}',
+          fr: 'Détournement cérébral sur ${player}',
+          ja: '${player}に混乱',
+          cn: '洗脑点${player}',
+          ko: '"${player}" 두뇌 장악 대상',
+        },
+        brainjackOnYou: {
+          en: 'Brainjack on YOU',
+          de: 'Gehirnwäsche auf DIR',
+          fr: 'Détournement cérébral sur VOUS',
+          ja: '自分に混乱',
+          cn: '洗脑点名',
+          ko: '두뇌 장악 대상자',
+        },
       },
     },
     {
@@ -108,27 +134,31 @@
       netRegexJa: NetRegexes.startsUsing({ id: '7C4', source: 'アバター' }),
       netRegexCn: NetRegexes.startsUsing({ id: '7C4', source: '降世化身' }),
       netRegexKo: NetRegexes.startsUsing({ id: '7C4', source: '아바타' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Allagan Field on YOU',
-            de: 'Allagisches Feld auf DIR',
-            fr: 'Champ allagois sur VOUS',
-            ja: '自分にアラガンフィールド',
-            cn: '亚拉戈领域点名',
-          };
-        }
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.allaganFieldOnYou();
       },
-      infoText: function(data, matches) {
-        if (data.me != matches.target) {
-          return {
-            en: 'Allagan Field on ' + data.ShortName(matches.target),
-            de: 'Allagisches Feld auf ' + data.ShortName(matches.target),
-            fr: 'Champ allagois sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にアラガンフィールド',
-            cn: '亚拉戈领域点' + data.ShortName(matches.target),
-          };
-        }
+      infoText: (data, matches, output) => {
+        if (data.me !== matches.target)
+          return output.allaganFieldOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        allaganFieldOn: {
+          en: 'Allagan Field on ${player}',
+          de: 'Allagisches Feld auf ${player}',
+          fr: 'Champ allagois sur ${player}',
+          ja: '${player}にアラガンフィールド',
+          cn: '亚拉戈领域点${player}',
+          ko: '"${player}" 알라그 필드 대상',
+        },
+        allaganFieldOnYou: {
+          en: 'Allagan Field on YOU',
+          de: 'Allagisches Feld auf DIR',
+          fr: 'Champ allagois sur VOUS',
+          ja: '自分にアラガンフィールド',
+          cn: '亚拉戈领域点名',
+          ko: '알라그 필드 대상자',
+        },
       },
     },
     {
@@ -139,12 +169,16 @@
       netRegexJa: NetRegexes.addedCombatant({ name: 'ドレッドノート', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '恐慌装甲', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '드레드노트', capture: false }),
-      infoText: {
-        en: 'Dreadnaught Add',
-        de: 'Brummonaut Add',
-        fr: 'Add Cuirassé',
-        ja: '雑魚：ドレッドノート',
-        cn: '恐慌装甲出现',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dreadnaught Add',
+          de: 'Brummonaut Add',
+          fr: 'Add Cuirassé',
+          ja: '雑魚：ドレッドノート',
+          cn: '恐慌装甲出现',
+          ko: '드레드노트 쫄',
+        },
       },
     },
   ],

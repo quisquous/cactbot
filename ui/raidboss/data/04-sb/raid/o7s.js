@@ -9,9 +9,7 @@
     {
       id: 'O7S Aether Rot Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '5C3' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.rot = true;
       },
@@ -19,9 +17,7 @@
     {
       id: 'O7S Aether Rot Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '5C3' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.rot = false;
       },
@@ -82,21 +78,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2788', source: 'ガーディアン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2788', source: '守护者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2788', source: '가디언', capture: false }),
-      alertText: {
-        en: 'Magitek Ray',
-        de: 'Magitek-Laser',
-        fr: 'Rayon Magitek',
-        ko: '마도 레이저',
-        ja: '魔導レーザー',
-        cn: '直线AOE',
-      },
-      tts: {
-        en: 'beam',
-        de: 'leser',
-        fr: 'laser',
-        ko: '레이저',
-        ja: 'レーザー',
-        cn: '激光',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Magitek Ray',
+          de: 'Magitek-Laser',
+          fr: 'Rayon Magitek',
+          ko: '마도 레이저',
+          ja: '魔導レーザー',
+          cn: '直线AOE',
+        },
       },
     },
     {
@@ -112,64 +103,49 @@
     {
       id: 'O7S Orb Marker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
-      alertText: {
-        en: 'Orb Marker',
-        de: 'Orb Marker',
-        fr: 'Orbe',
-        ko: '원자 파동 징',
-        ja: 'マーカー',
-        cn: '死刑点名',
-      },
-      tts: {
-        en: 'orb',
-        de: 'orb',
-        fr: 'orbe',
-        ko: '원자 파동',
-        ja: 'マーカー',
-        cn: '球',
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Orb Marker',
+          de: 'Orb Marker',
+          fr: 'Orbe',
+          ko: '원자 파동 징',
+          ja: 'マーカー',
+          cn: '死刑点名',
+        },
       },
     },
     {
       id: 'O7S Blue Marker',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
-      alarmText: function(data, matches) {
-        if (data.me != matches.target)
+      alarmText: function(data, matches, output) {
+        if (data.me !== matches.target)
           return;
-        return {
+        return output.blueMarkerOnYou();
+      },
+      infoText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return;
+        return output.blueMarkerOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        blueMarkerOn: {
+          en: 'Blue Marker on ${player}',
+          de: 'Aura-Kanone auf ${player}',
+          fr: 'Marque Bleue sur ${player}',
+          ko: '"${player}" 파란징',
+          ja: '${player}に青玉',
+          cn: '蓝球点名${player}',
+        },
+        blueMarkerOnYou: {
           en: 'Blue Marker on YOU',
           de: 'Aura-Kanone auf DIR',
           fr: 'Marque Bleue sur VOUS',
           ko: '파란징 대상자',
           ja: '自分に青玉',
           cn: '蓝球点名',
-        };
-      },
-      infoText: function(data, matches) {
-        if (data.me == matches.target)
-          return;
-        return {
-          en: 'Blue Marker on ' + data.ShortName(matches.target),
-          de: 'Aura-Kanone auf ' + data.ShortName(matches.target),
-          fr: 'Marque Bleue sur ' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '" 파란징',
-          ja: data.ShortName(matches.target) + 'に青玉',
-          cn: '蓝球点名' + data.ShortName(matches.target),
-        };
-      },
-      tts: function(data, matches) {
-        if (data.me != matches.target)
-          return;
-        return {
-          en: 'blue marker',
-          de: 'aura-kanone',
-          fr: 'marque bleu',
-          ko: '파란징',
-          ja: '青玉ついた',
-          cn: '蓝球',
-        };
+        },
       },
     },
     {
@@ -180,70 +156,52 @@
     {
       id: 'O7S Searing Wind',
       netRegex: NetRegexes.gainsEffect({ effectId: '178' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.getOut(),
     },
     {
       id: 'O7S Abandonment',
       netRegex: NetRegexes.gainsEffect({ effectId: '58A' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alertText: {
-        en: 'Abandonment: stay middle',
-        de: 'Verlassen: Bleib mittig',
-        fr: 'Isolement : restez au milieu',
-        ko: '고독감: 중앙에 있기',
-        ja: '孤独: 内側へ',
-        cn: '呆在中间',
-      },
-      tts: {
-        en: 'abandonment',
-        de: 'verlassen',
-        fr: 'isolement',
-        ko: '고독감',
-        ja: '孤独',
-        cn: '孤独',
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Abandonment: stay middle',
+          de: 'Verlassen: Bleib mittig',
+          fr: 'Isolement : restez au milieu',
+          ko: '고독감: 중앙에 있기',
+          ja: '孤独: 内側へ',
+          cn: '呆在中间',
+        },
       },
     },
     {
       // Aether Rot
       id: 'O7S Rot',
       netRegex: NetRegexes.gainsEffect({ effectId: '5C3' }),
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Rot on you',
-            de: 'Fäule auf DIR',
-            fr: 'Pourriture sur VOUS',
-            ko: '에테르 대상자',
-            ja: '自分にロット',
-            cn: '以太病毒点名',
-          };
-        }
-        return {
-          en: 'Rot on ' + data.ShortName(matches.target),
-          de: 'Fäule auf ' + data.ShortName(matches.target),
-          fr: 'Pourriture sur ' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '" 에테르',
-          ja: data.ShortName(matches.target) + 'にロット',
-          cn: '以太病毒点名' + data.ShortName(matches.target),
-        };
-      },
-      tts: function(data, matches) {
-        if (data.me != matches.target)
-          return;
+      infoText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return output.rotOnYou();
 
-        return {
-          en: 'rot',
-          de: 'fäule',
-          fr: 'pourriture',
-          ja: 'ロット',
-          cn: '结束前传毒',
-          ko: '에테르',
-        };
+        return output.rotOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        rotOnYou: {
+          en: 'Rot on you',
+          de: 'Fäule auf DIR',
+          fr: 'Pourriture sur VOUS',
+          ko: '에테르 대상자',
+          ja: '自分にロット',
+          cn: '以太病毒点名',
+        },
+        rotOn: {
+          en: 'Rot on ${player}',
+          de: 'Fäule auf ${player}',
+          fr: 'Pourriture sur ${player}',
+          ko: '"${player}" 에테르',
+          ja: '${player}にロット',
+          cn: '以太病毒点名${player}',
+        },
       },
     },
     {
@@ -268,61 +226,64 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'ガーディアン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '守护者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '가디언', capture: false }),
-      preRun: function(data) {
+      alertText: function(data, _, output) {
         data.loadCount = ++data.loadCount || 1;
-        data.thisLoad = undefined;
-        data.thisLoadText = undefined;
-        data.thisLoadTTS = undefined;
 
-        if (data.loadCount == 1) {
+        if (data.loadCount === 1) {
           // First load is unknown.
-          data.thisLoad = 'screen';
-        } else if (data.loadCount == 2) {
-          data.thisLoad = data.first == 'biblio' ? 'dada' : 'biblio';
-        } else if (data.loadCount == 3) {
-          data.thisLoad = data.first == 'biblio' ? 'ultros' : 'ships';
-        } else if (data.loadCount == 4) {
-          data.thisLoad = data.first == 'biblio' ? 'ships' : 'ultros';
-        } else if (data.loadCount == 5) {
-          data.thisLoad = 'virus';
-        } else if (data.loadCount == 6) {
-          data.thisLoad = data.first == 'biblio' ? 'ultros' : 'ships';
-        } else if (data.loadCount == 7) {
+          return output.screen();
+        } else if (data.loadCount === 2) {
+          return data.first === 'biblio' ? output.dada() : output.biblio();
+        } else if (data.loadCount === 3) {
+          return data.first === 'biblio' ? output.ultros() : output.ships();
+        } else if (data.loadCount === 4) {
+          return data.first === 'biblio' ? output.ships() : output.ultros();
+        } else if (data.loadCount === 5) {
+          return output.virus();
+        } else if (data.loadCount === 6) {
+          return data.first === 'biblio' ? output.ultros() : output.ships();
+        } else if (data.loadCount === 7) {
           // This is the post-virus Load/Skip divergence.
-          data.thisLoad = 'screen';
-        } else if (data.loadCount == 8) {
-          data.thisLoad = data.second == 'biblio' ? 'dada' : 'biblio';
-        } else if (data.loadCount == 9) {
-          data.thisLoad = data.first == 'biblio' ? 'ships' : 'ultros';
+          return output.screen();
+        } else if (data.loadCount === 8) {
+          return data.first === 'biblio' ? output.dada() : output.biblio();
+        } else if (data.loadCount === 9) {
+          return data.first === 'biblio' ? output.ships() : output.ultros();
         }
 
-        if (!data.thisLoad) {
-          console.error('Unknown load: ' + data.loadCount);
-          return;
-        }
-        data.thisLoadText = ({
-          'screen': 'Biblio?/Knockback?',
-          'biblio': 'Biblio: Positions',
-          'dada': 'Dada: Knockback',
-          'ships': 'Ships: Out of Melee',
-          'ultros': 'Ultros: Ink Spread',
-          '(?<!\\w)virus': 'VIRUS',
-        })[data.thisLoad];
-
-        data.thisLoadTTS = ({
-          'screen': 'screen',
-          'biblio': 'biblio positions',
-          'dada': 'knockback',
-          'ships': 'get out',
-          'ultros': 'ink ink ink',
-          '(?<!\\w)virus': 'virus',
-        })[data.thisLoad];
+        console.error('Unknown load: ' + data.loadCount);
       },
-      alertText: function(data) {
-        return data.thisLoadText;
-      },
-      tts: function(data) {
-        return data.thisLoadTTS;
+      outputStrings: {
+        screen: {
+          en: 'Biblio?/Knockback?',
+          de: 'Biblio?/Rückstoß?',
+          cn: '图书？/击退？',
+        },
+        biblio: {
+          en: 'Biblio: Positions',
+          de: 'Biblio: Positionen',
+          cn: '图书：站位',
+        },
+        dada: {
+          en: 'Dada: Knockback',
+          de: 'Dada: Rückstoß',
+          cn: '达达：击退',
+        },
+        ships: {
+          en: 'Ships: Out of Melee',
+          de: 'Flieger: Raus aus Nahkampf-Reichweite',
+          cn: '飞机：远离近战范围',
+        },
+        ultros: {
+          en: 'Ultros: Ink Spread',
+          de: 'Ultros: Tine - Verteilen',
+          cn: '章鱼：墨汁快散开',
+        },
+        virus: {
+          en: 'VIRUS',
+          de: 'VIRUS',
+          cn: '病毒',
+        },
       },
     },
     {
@@ -333,39 +294,43 @@
       netRegexJa: NetRegexes.startsUsing({ id: '276F', source: 'ガーディアン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '276F', source: '守护者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '276F', source: '가디언', capture: false }),
-      preRun: function(data) {
+      infoText: function(data, _, output) {
         data.runCount = ++data.runCount || 1;
-        data.thisRunText = undefined;
-        data.thisRunTTS = undefined;
 
-        if (data.runCount == 1)
-          data.thisRun = data.first == 'biblio' ? 'dada' : 'dada';
-        else if (data.runCount == 2)
-          data.thisRun = data.first == 'biblio' ? 'ultros' : 'ships';
-        else if (data.runCount == 3)
-          data.thisRun = data.first == 'biblio' ? 'ships' : 'ultros';
-        else if (data.runCount == 4)
-          data.thisRun = data.first == 'biblio' ? 'ultros' : 'ships';
-        else if (data.runCount == 5)
-          data.thisRun = 'biblio';
-        else if (data.runCount == 6)
-          data.thisRun = data.first == 'biblio' ? 'ships' : 'ultros';
-
-
-        data.thisRunText = ({
-          'biblio': 'Biblio Add',
-          'dada': 'Dada Add',
-          'ships': 'Ship Adds',
-          'ultros': 'Ultros Add',
-        })[data.thisRun];
-
-        data.thisRunTTS = data.thisRunText;
+        if (data.runCount === 1)
+          return output.dada();
+        else if (data.runCount === 2)
+          return data.first === 'biblio' ? output.ultros() : output.ships();
+        else if (data.runCount === 3)
+          return data.first === 'biblio' ? output.ships() : output.ultros();
+        else if (data.runCount === 4)
+          return data.first === 'biblio' ? output.ultros() : output.ships();
+        else if (data.runCount === 5)
+          return output.biblio();
+        else if (data.runCount === 6)
+          return data.first === 'biblio' ? output.ships() : output.ultros();
       },
-      infoText: function(data) {
-        return data.thisRunText;
-      },
-      tts: function(data) {
-        return data.thisRunTTS;
+      outputStrings: {
+        biblio: {
+          en: 'Biblio Add',
+          de: 'Biblio Add',
+          cn: '图书出现',
+        },
+        dada: {
+          en: 'Dada Add',
+          de: 'Dada Add',
+          cn: '达达出现',
+        },
+        ships: {
+          en: 'Ship Add',
+          de: 'Flieger Add',
+          cn: '飞机出现',
+        },
+        ultros: {
+          en: 'Ultros Add',
+          de: 'Ultros Add',
+          cn: '章鱼出现',
+        },
       },
     },
   ],
@@ -566,15 +531,18 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Dadaluma': '다다루마',
         'Fire Control System': '병기 제어 시스템',
         'Guardian': '가디언',
         'Ultros': '오르트로스',
+        'WEAPON SYSTEMS ONLINE': '병기 제어 시스템 기동……',
       },
       'replaceText': {
+        '\\(H\\)': '(힐러)',
+        '\\(DPS\\)': '(딜러)',
         'Aether Rot': '에테르 부패',
+        'Air Force': '에어포스',
         'Arm And Hammer': '양팔 내리치기',
         'Atomic Ray': '원자 파동',
         'Aura Cannon': '오라 포격',
@@ -588,7 +556,7 @@
         'Diffractive Laser': '확산 레이저',
         'Diffractive Plasma': '확산 플라스마',
         'Ink': '먹물',
-        'Interrupt Stoneskin': '스톤스킨 취소됨',
+        'Interrupt Stoneskin': '스톤스킨 침묵하기',
         'Load': '불러오기',
         'Magitek Ray': '마도 레이저',
         'Magnetism': '자력',
@@ -596,7 +564,7 @@
         'Missile Simulation': '불러오기: 미사일',
         'Paste(?! Program)': '붙여넣기',
         'Plane Laser': '에어포스 레이저',
-        'Prey': 'プレイ',
+        'Prey': '표식',
         'Radar': '레이더',
         'Repel': '반발',
         'Run(?! Program)': '실체화',
@@ -605,6 +573,7 @@
         'Temporary Misdirection': '심신상실',
         'Tentacle(?! )': '문어발',
         'Tentacle Simulation': '불러오기: 문어발',
+        'Retrieve Ultros': '역순 불러오기: 오르트로스',
         'Viral Weapon': '바이러스 병기',
         '(?<!\\w)Virus': '바이러스',
         'Wallop': '매질',

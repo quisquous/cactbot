@@ -9,7 +9,7 @@
       regex: /Feathercut/,
       beforeSeconds: 4,
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -19,13 +19,16 @@
       id: 'Bardam\'s Mettle Rush',
       netRegex: NetRegexes.tether({ id: '0039' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Run Away From Boss',
-        de: 'Renn weg vom Boss',
-        fr: 'Courez loin du boss',
-        ja: 'ボスに離れ',
-        cn: '远离Boss',
-        ko: '보스와 거리 벌리기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Run Away From Boss',
+          de: 'Renn weg vom Boss',
+          fr: 'Courez loin du boss',
+          ja: 'ボスに離れ',
+          cn: '远离Boss',
+          ko: '보스와 거리 벌리기',
+        },
       },
     },
     {
@@ -71,13 +74,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1F01', source: 'バルダムの巨像', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1F01', source: '巴儿达木巨像', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1F01', source: '바르담 조각상', capture: false }),
-      infoText: {
-        en: 'Stand in a tower',
-        de: 'Im Turm stehen',
-        fr: 'Tenez-vous dans une tour',
-        ja: '塔を踏む',
-        cn: '踩塔',
-        ko: '장판 들어가기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand in a tower',
+          de: 'Im Turm stehen',
+          fr: 'Tenez-vous dans une tour',
+          ja: '塔を踏む',
+          cn: '踩塔',
+          ko: '장판 들어가기',
+        },
       },
     },
     {
@@ -90,14 +96,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '257D', source: 'バルダムの巨像', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '257D', source: '巴儿达木巨像', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '257D', source: '바르담 조각상', capture: false }),
-      alertText: {
-        en: '8x puddles on YOU',
-        de: '8x Fläche auf DIR',
-        fr: '8x Zones au sol sur VOUS',
-        ja: '8つ波動砲',
-        cn: '躲避8连追踪AOE',
-        ko: '8장판 준비',
-
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: '8x puddles on YOU',
+          de: '8x Fläche auf DIR',
+          fr: '8x Zones au sol sur VOUS',
+          ja: '8つ波動砲',
+          cn: '躲避8连追踪AOE',
+          ko: '8장판 준비',
+        },
       },
     },
     {
@@ -111,13 +119,16 @@
       delaySeconds: function(data, matches) {
         return parseFloat(matches.castTime) - 7;
       },
-      alertText: {
-        en: 'Hide behind boulder',
-        de: 'Hinter dem Brocken verstecken',
-        fr: 'Cachez-vous derrière le rocher',
-        ja: 'メテオの後ろに',
-        cn: '站在陨石后',
-        ko: '운석 뒤에 숨기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hide behind boulder',
+          de: 'Hinter dem Brocken verstecken',
+          fr: 'Cachez-vous derrière le rocher',
+          ja: 'メテオの後ろに',
+          cn: '站在陨石后',
+          ko: '운석 뒤에 숨기',
+        },
       },
     },
     {
@@ -135,7 +146,7 @@
       id: 'Bardam\'s Mettle Flutterfall',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return data.me == matches.target && data.deadBardam;
+        return data.me === matches.target && data.deadBardam;
       },
       response: Responses.spread(),
     },
@@ -153,26 +164,32 @@
       id: 'Bardam\'s Mettle Wingbeat You',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Knockback Laser on YOU',
-        de: 'Rückstoß-Laser auf DIR',
-        fr: 'Poussée-laser sur VOUS',
-        ja: '自分にノックバック',
-        cn: '击退点名',
-        ko: '날갯짓 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Knockback Laser on YOU',
+          de: 'Rückstoß-Laser auf DIR',
+          fr: 'Poussée-laser sur VOUS',
+          ja: '自分にノックバック',
+          cn: '击退点名',
+          ko: '날갯짓 대상자',
+        },
       },
     },
     {
       id: 'Bardam\'s Mettle Wingbeat Others',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
       condition: Conditions.targetIsNotYou(),
-      infoText: {
-        en: 'Avoid Laser',
-        de: 'Laser ausweichen',
-        fr: 'Évitez le laser',
-        ja: 'ノックバックレザーに避け',
-        cn: '躲避击退点名',
-        ko: '날갯짓 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Laser',
+          de: 'Laser ausweichen',
+          fr: 'Évitez le laser',
+          ja: 'ノックバックレザーに避け',
+          cn: '躲避击退点名',
+          ko: '날갯짓 피하기',
+        },
       },
     },
   ],

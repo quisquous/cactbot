@@ -253,7 +253,7 @@ export const Util = (() => {
     } else {
       p = new Promise((resolve) => {
         sendMessage(msg, (data) => {
-          resolve(data == null ? null : JSON.parse(data));
+          resolve(data === null ? null : JSON.parse(data));
         });
       });
     }

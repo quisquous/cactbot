@@ -12,9 +12,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ツインタニア', id: '5B2' }),
       netRegexCn: NetRegexes.startsUsing({ source: '双塔尼亚', id: '5B2' }),
       netRegexKo: NetRegexes.startsUsing({ source: '트윈타니아', id: '5B2' }),
-      condition: function(data, matches) {
-        return data.me == matches.target || data.role == 'healer' || data.job == 'BLU';
-      },
+      condition: (data, matches) => data.me === matches.target || data.role === 'healer' || data.job === 'BLU',
       response: Responses.tankBuster(),
     },
     {
@@ -25,18 +23,19 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ツインタニア', id: '5B2', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '双塔尼亚', id: '5B2', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '트윈타니아', id: '5B2', capture: false }),
-      condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer' || data.job == 'BLU';
-      },
+      condition: (data) => data.role === 'tank' || data.role === 'healer' || data.job === 'BLU',
       delaySeconds: 30,
       suppressSeconds: 5,
-      infoText: {
-        en: 'Death Sentence Soon',
-        de: 'Todesurteil bald',
-        fr: 'Peine de mort bientôt',
-        ja: 'まもなくデスセンテンス',
-        cn: '死刑',
-        ko: '사형선고',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Death Sentence Soon',
+          de: 'Todesurteil bald',
+          fr: 'Peine de mort bientôt',
+          ja: 'まもなくデスセンテンス',
+          cn: '死刑',
+          ko: '사형선고',
+        },
       },
     },
     {
@@ -47,13 +46,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'メラシディアン・ワイバーン', id: '4DB', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '美拉西迪亚祸龙', id: '4DB', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '메라시디아 와이번', id: '4DB', capture: false }),
-      infoText: {
-        en: 'Liquid Hell',
-        de: 'Höllenschmelze',
-        fr: 'Enfer liquide',
-        ja: 'ヘルリキッド',
-        cn: '液体地狱',
-        ko: '지옥의 늪',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Liquid Hell',
+          de: 'Höllenschmelze',
+          fr: 'Enfer liquide',
+          ja: 'ヘルリキッド',
+          cn: '液体地狱',
+          ko: '지옥의 늪',
+        },
       },
     },
     {
@@ -74,29 +76,31 @@
       netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '5AC' }),
       netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '5AC' }),
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5AC' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Fireball on YOU',
-            de: 'Feuerball auf DIR',
-            fr: 'Boule de feu sur VOUS',
-            ja: '自分にファイアボール',
-            cn: '火球点名',
-            ko: '나에게 화염구',
-          };
-        }
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.fireballOnYou();
       },
-      infoText: function(data, matches) {
-        if (data.me != matches.target) {
-          return {
-            en: 'Fireball on ' + data.ShortName(matches.target),
-            de: 'Feuerball auf ' + data.ShortName(matches.target),
-            fr: 'Boule de feu sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にファイアボール',
-            cn: '火球点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 쉐어징',
-          };
-        }
+      infoText: (data, matches, output) => {
+        if (data.me !== matches.target)
+          return output.fireballOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        fireballOn: {
+          en: 'Fireball on ${player}',
+          de: 'Feuerball auf ${player}',
+          fr: 'Boule de feu sur ${player}',
+          ja: '${player}にファイアボール',
+          cn: '火球点${player}',
+          ko: '"${player}" 쉐어징',
+        },
+        fireballOnYou: {
+          en: 'Fireball on YOU',
+          de: 'Feuerball auf DIR',
+          fr: 'Boule de feu sur VOUS',
+          ja: '自分にファイアボール',
+          cn: '火球点名',
+          ko: '나에게 화염구',
+        },
       },
     },
     {
@@ -107,29 +111,31 @@
       netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '5AB' }),
       netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '5AB' }),
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5AB' }),
-      alarmText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Conflag on YOU',
-            de: 'Feuersturm auf DIR',
-            fr: 'Tempête de feu sur VOUS',
-            ja: '自分にファイアストーム',
-            cn: '火焰流点名',
-            ko: '불보라 보스밑으로',
-          };
-        }
+      alarmText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.conflagOnYou();
       },
-      infoText: function(data, matches) {
-        if (data.me != matches.target) {
-          return {
-            en: 'Conflag on ' + data.ShortName(matches.target),
-            de: 'Feuersturm auf ' + data.ShortName(matches.target),
-            fr: 'Tempête de feu sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にファイアストーム',
-            cn: '火焰流点' + data.ShortName(matches.target),
-            ko: '불보라' + data.ShortName(matches.target),
-          };
-        }
+      infoText: (data, matches, output) => {
+        if (data.me !== matches.target)
+          return output.conflagOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        conflagOn: {
+          en: 'Conflag on ${player}',
+          de: 'Feuersturm auf ${player}',
+          fr: 'Tempête de feu sur ${player}',
+          ja: '${player}にファイアストーム',
+          cn: '火焰流点${player}',
+          ko: '불보라${player}',
+        },
+        conflagOnYou: {
+          en: 'Conflag on YOU',
+          de: 'Feuersturm auf DIR',
+          fr: 'Tempête de feu sur VOUS',
+          ja: '自分にファイアストーム',
+          cn: '火焰流点名',
+          ko: '불보라 보스밑으로',
+        },
       },
     },
     {
@@ -150,13 +156,16 @@
       netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '5B0', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '5B0', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5B0', capture: false }),
-      alertText: {
-        en: 'DIVEBOMB',
-        de: 'STURZBOMBE',
-        fr: 'BOMBE PLONGEANTE',
-        ja: 'ダイブボム',
-        cn: '俯冲',
-        ko: '급강하',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'DIVEBOMB',
+          de: 'STURZBOMBE',
+          fr: 'BOMBE PLONGEANTE',
+          ja: 'ダイブボム',
+          cn: '俯冲',
+          ko: '급강하',
+        },
       },
     },
     {
@@ -169,13 +178,16 @@
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5B0', capture: false }),
       delaySeconds: 60,
       suppressSeconds: 5000,
-      infoText: {
-        en: 'Divebombs Soon',
-        de: 'Sturzbombe bald',
-        fr: 'Bombe plongeante bientôt',
-        ja: 'まもなくダイブボム',
-        cn: '即将俯冲',
-        ko: '급강하 준비',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Divebombs Soon',
+          de: 'Sturzbombe bald',
+          fr: 'Bombe plongeante bientôt',
+          ja: 'まもなくダイブボム',
+          cn: '即将俯冲',
+          ko: '급강하 준비',
+        },
       },
     },
     {
@@ -187,25 +199,29 @@
       netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '4E3' }),
       netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '4E3' }),
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '4E3' }),
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Knight on YOU',
-            de: 'Furchtritter auf DIR',
-            fr: 'Chevalier sur VOUS',
-            ja: '自分にナイト',
-            cn: '骑士点名',
-            ko: '드레드 대상자',
-          };
-        }
-        return {
-          en: 'Knight on ' + data.ShortName(matches.target),
-          de: 'Furchtritter auf ' + data.ShortName(matches.target),
-          fr: 'Chevalier sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にナイト',
-          cn: '骑士点' + data.ShortName(matches.target),
-          ko: '드래드 대상' + data.ShortName(matches.target),
-        };
+      infoText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.knightOnYou();
+
+        return output.knightOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        knightOnYou: {
+          en: 'Knight on YOU',
+          de: 'Furchtritter auf DIR',
+          fr: 'Chevalier sur VOUS',
+          ja: '自分にナイト',
+          cn: '骑士点名',
+          ko: '드레드 대상자',
+        },
+        knightOn: {
+          en: 'Knight on ${player}',
+          de: 'Furchtritter auf ${player}',
+          fr: 'Chevalier sur ${player}',
+          ja: '${player}にナイト',
+          cn: '骑士点${player}',
+          ko: '"${player}" 드래드 대상',
+        },
       },
     },
     {
@@ -216,13 +232,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ツインタニア', id: '4E1', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '双塔尼亚', id: '4E1', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '트윈타니아', id: '4E1', capture: false }),
-      alertText: {
-        en: 'Twister!',
-        de: 'Wirbelsturm!',
-        fr: 'Tornade !',
-        ja: 'ツイスター!',
-        cn: '风风风！',
-        ko: '회오리',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Twister!',
+          de: 'Wirbelsturm!',
+          fr: 'Tornade !',
+          ja: 'ツイスター!',
+          cn: '风风风！',
+          ko: '회오리',
+        },
       },
     },
     {
@@ -243,29 +262,31 @@
       netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '5AD' }),
       netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '5AD' }),
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5AD' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Hatch on YOU',
-            de: 'Austritt auf DIR',
-            fr: 'Éclosion sur VOUS',
-            ja: '自分に魔力爆散',
-            cn: '黑球点名',
-            ko: '나에게 마력방출',
-          };
-        }
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.hatchOnYou();
       },
-      infoText: function(data, matches) {
-        if (data.me != matches.target) {
-          return {
-            en: 'Hatch on ' + data.ShortName(matches.target),
-            de: 'Austritt auf ' + data.ShortName(matches.target),
-            fr: 'Éclosion sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'に魔力爆散',
-            cn: '黑球点' + data.ShortName(matches.target),
-            ko: '마력방출' + data.ShortName(matches.target),
-          };
-        }
+      infoText: (data, matches, output) => {
+        if (data.me !== matches.target)
+          return output.hatchOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        hatchOn: {
+          en: 'Hatch on ${player}',
+          de: 'Austritt auf ${player}',
+          fr: 'Éclosion sur ${player}',
+          ja: '${player}に魔力爆散',
+          cn: '黑球点${player}',
+          ko: '"${player}" 마력방출',
+        },
+        hatchOnYou: {
+          en: 'Hatch on YOU',
+          de: 'Austritt auf DIR',
+          fr: 'Éclosion sur VOUS',
+          ja: '自分に魔力爆散',
+          cn: '黑球点名',
+          ko: '나에게 마력방출',
+        },
       },
     },
   ],

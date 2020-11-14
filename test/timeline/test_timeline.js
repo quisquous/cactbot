@@ -26,7 +26,7 @@ let triggersFile = process.argv[3];
 let timelineText = String(fs.readFileSync(timelineFile));
 let triggerSet = eval(String(fs.readFileSync(triggersFile)));
 
-if (triggerSet.length != 1) {
+if (triggerSet.length !== 1) {
   console.log(triggerSet.length);
   errorFunc(triggersFile + ':Break out multiple trigger sets into multiple files');
 }

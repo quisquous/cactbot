@@ -62,9 +62,39 @@ const kPullText = {
 };
 
 const kAbility = {
+  // LB
+  ShieldWall: 'C5', // T LB1
+  Stronghold: 'C6', // T LB2
+  LastBastion: 'C7', // PLD LB3
+  LandWaker: '1090', // WAR LB3
+  DarkForce: '1091', // DRK LB3
+  GunmetalSoul: '42D1', // GNB LB3
+  HealingWind: 'CE', // H LB1
+  BreathoftheEarth: 'CF', // H LB2
+  PulseofLife: 'D0', // WHM LB3
+  AngelFeathers: '1097', // SCH LB3
+  AstralStasis: '1098', // AST LB3
+  Braver: 'C8', // meleeDPS LB1
+  Bladedance: 'C9', // meleeDPS LB2
+  FinalHeaven: 'CA', // MNK LB3
+  Chimatsuri: '1093', // NIN LB3
+  DragonsongDive: '1092', // DRG LB3
+  DoomoftheLiving: '1EB5', // SAM LB3
+  BigShot: '108E', // rangeDPS LB1
+  Desperado: '108F', // rangeDPS LB2
+  SagittariusArrow: '1094', // BRD LB3
+  SatelliteBeam: '1095', // MCH LB3
+  CrimsonLotus: '42D2', // DNC LB3
+  Skyshard: 'CB', // magicDPS LB1
+  Starstorm: 'CC', // magicDPS LB2
+  Meteor: 'CD', // BLM LB3
+  Teraflare: '1096', // SMN LB3
+  VermilionScourge: '1EB6', // RDM LB3
   DragonKick: '4A',
   TwinSnakes: '3D',
   Demolish: '42',
+
+  // RDM
   Verstone: '1D57',
   Verfire: '1D56',
   Veraero: '1D53',
@@ -75,16 +105,23 @@ const kAbility = {
   Jolt: '1D4F',
   Impact: '1D62',
   Scatter: '1D55',
+  Verthunder2: '408C',
+  Veraero2: '408D',
   Vercure: '1D5A',
   Verraise: '1D63',
   Riposte: '1D50',
   Zwerchhau: '1D58',
   Redoublement: '1D5C',
   Moulinet: '1D59',
+  Reprise: '4091',
   EnchantedRiposte: '1D67',
   EnchantedZwerchhau: '1D68',
   EnchantedRedoublement: '1D69',
   EnchantedMoulinet: '1D6A',
+  EnchantedReprise: '4090',
+  Embolden: '1D60',
+  Manafication: '1D61',
+
   Tomahawk: '2E',
   Overpower: '29',
   HeavySwing: '1F',
@@ -94,13 +131,10 @@ const kAbility = {
   StormsEye: '2D',
   StormsPath: '2A',
   InnerRelease: '1CDD',
-  TrickAttack: '8D2',
-  Embolden: '1D60',
   Aetherflow: 'A6',
   ChainStratagem: '1D0C',
   Hypercharge: 'B45',
   Adloquium: 'B9',
-  RabbitMedium: '8E0',
   OneIlmPunch: '48',
   Bootshine: '35',
   FastBlade: '09',
@@ -162,6 +196,20 @@ const kAbility = {
   HolyCircle: '404A',
   Confiteor: '404B',
   FourPointFury: '4059',
+
+  // NIN
+  SpinningEdge: '8C0',
+  GustSlash: '8C2',
+  AeolianEdge: '8CF',
+  ArmorCrush: 'DEB',
+  DeathBlossom: '8CE',
+  HakkeMujinsatsu: '4068',
+  ThrowingDagger: '8C7',
+  TrickAttack: '8D2',
+  RabbitMedium: '8E0',
+  Bunshin: '406D',
+  Hide: '8C5',
+
   TechnicalFinish: '3F44',
   Thunder1: '90',
   Thunder2: '94',
@@ -355,6 +403,21 @@ function setupComboTracker(callback) {
     kAbility.DemonSlice,
     kAbility.DemonSlaughter,
   ]);
+  // NIN
+  comboTracker.AddCombo([
+    kAbility.SpinningEdge,
+    kAbility.GustSlash,
+    kAbility.AeolianEdge,
+  ]);
+  comboTracker.AddCombo([
+    kAbility.SpinningEdge,
+    kAbility.GustSlash,
+    kAbility.ArmorCrush,
+  ]);
+  comboTracker.AddCombo([
+    kAbility.DeathBlossom,
+    kAbility.HakkeMujinsatsu,
+  ]);
   comboTracker.AddCombo([
     kAbility.FastBlade,
     kAbility.SavageBlade,
@@ -409,6 +472,34 @@ function setupRegexes(playerName) {
   // Full skill names of abilities that break combos.
   // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
   kComboBreakers = Object.freeze([
+    // LB
+    kAbility.ShieldWall,
+    kAbility.Stronghold,
+    kAbility.LastBastion,
+    kAbility.LandWaker,
+    kAbility.DarkForce,
+    kAbility.GunmetalSoul,
+    kAbility.HealingWind,
+    kAbility.BreathoftheEarth,
+    kAbility.PulseofLife,
+    kAbility.AngelFeathers,
+    kAbility.AstralStasis,
+    kAbility.Braver,
+    kAbility.Bladedance,
+    kAbility.FinalHeaven,
+    kAbility.Chimatsuri,
+    kAbility.DragonsongDive,
+    kAbility.DoomoftheLiving,
+    kAbility.BigShot,
+    kAbility.Desperado,
+    kAbility.SagittariusArrow,
+    kAbility.SatelliteBeam,
+    kAbility.CrimsonLotus,
+    kAbility.Skyshard,
+    kAbility.Starstorm,
+    kAbility.Meteor,
+    kAbility.Teraflare,
+    kAbility.VermilionScourge,
     // GNB
     kAbility.KeenEdge,
     kAbility.BrutalShell,
@@ -416,6 +507,14 @@ function setupRegexes(playerName) {
     kAbility.DemonSlice,
     kAbility.DemonSlaughter,
     kAbility.LightningShot,
+    // NIN
+    kAbility.SpinningEdge,
+    kAbility.GustSlash,
+    kAbility.AeolianEdge,
+    kAbility.ArmorCrush,
+    kAbility.DeathBlossom,
+    kAbility.HakkeMujinsatsu,
+    kAbility.ThrowingDagger,
     // rdm
     kAbility.Verstone,
     kAbility.Verfire,
@@ -427,16 +526,21 @@ function setupRegexes(playerName) {
     kAbility.Jolt,
     kAbility.Impact,
     kAbility.Scatter,
+    kAbility.Verthunder2,
+    kAbility.Veraero2,
     kAbility.Vercure,
     kAbility.Verraise,
     kAbility.Riposte,
     kAbility.Zwerchhau,
     kAbility.Redoublement,
     kAbility.Moulinet,
+    kAbility.Reprise,
     kAbility.EnchantedRiposte,
     kAbility.EnchantedZwerchhau,
     kAbility.EnchantedRedoublement,
     kAbility.EnchantedMoulinet,
+    kAbility.EnchantedReprise,
+    kAbility.Manafication,
     // war
     kAbility.Tomahawk,
     kAbility.Overpower,
@@ -594,7 +698,7 @@ class Buff {
     // TODO: could consider looking at the party list to make initials unique?
     let txt = '';
     let initials = source.split(' ');
-    if (initials.length == 2)
+    if (initials.length === 2)
       txt = initials[0][0] + initials[1][0];
     else
       txt = initials[0];
@@ -1081,7 +1185,7 @@ class BuffTracker {
       return;
 
     let list = this.rightBuffDiv;
-    if (info.side == 'left' && this.leftBuffDiv)
+    if (info.side === 'left' && this.leftBuffDiv)
       list = this.leftBuffDiv;
 
     let buff = this.buffs[name];
@@ -1150,6 +1254,7 @@ class Bars {
     this.paeonStacks = 0;
     this.museStacks = 0;
     this.circleOfPower = 0;
+    this.mudraTriggerCd = true;
 
     this.comboFuncs = [];
     this.jobFuncs = [];
@@ -1197,7 +1302,7 @@ class Bars {
       const barList = bars.children;
       for (const bar of barList) {
         if (bar.id === 'hp-bar' || bar.id === 'mp-bar') continue;
-        if (this.isPVPZone === true)
+        if (this.isPVPZone)
           bar.style.display = 'none';
         else
           bar.style.display = '';
@@ -1225,7 +1330,7 @@ class Bars {
     };
 
     let container = document.getElementById('jobs-container');
-    if (container == null) {
+    if (!container) {
       let root = document.getElementById('container');
       container = document.createElement('div');
       container.id = 'jobs-container';
@@ -1570,7 +1675,7 @@ class Bars {
     this.comboFuncs.push((skill) => {
       // TODO: remove this condition when CN or KO launch patch 5.3
       if (this.options.ParserLanguage === 'cn' || this.options.ParserLanguage === 'ko') {
-        if (skill == kAbility.MythrilTempest) {
+        if (skill === kAbility.MythrilTempest) {
           if (eyeBox.duration > 0) {
             let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
             eyeBox.duration = 0;
@@ -1578,14 +1683,14 @@ class Bars {
           }
           return;
         }
-        if (skill == kAbility.StormsEye) {
+        if (skill === kAbility.StormsEye) {
           eyeBox.duration = 0;
           eyeBox.duration = 30 + 1;
         }
       } else {
         // TODO: handle flags where you don't hit something.
         // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
-        if (skill == kAbility.MythrilTempest) {
+        if (skill === kAbility.MythrilTempest) {
           if (eyeBox.duration > 0) {
             let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
             eyeBox.duration = 0;
@@ -1593,7 +1698,7 @@ class Bars {
           }
           return;
         }
-        if (skill == kAbility.StormsEye) {
+        if (skill === kAbility.StormsEye) {
           if (eyeBox.duration > 0) {
             let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
             eyeBox.duration = 0;
@@ -1617,11 +1722,11 @@ class Bars {
       }
       // Min number of skills until eye without breaking combo.
       let minSkillsUntilEye;
-      if (skill == kAbility.HeavySwing) {
+      if (skill === kAbility.HeavySwing) {
         minSkillsUntilEye = 2;
-      } else if (skill == kAbility.SkullSunder) {
+      } else if (skill === kAbility.SkullSunder) {
         minSkillsUntilEye = 4;
-      } else if (skill == kAbility.Maim) {
+      } else if (skill === kAbility.Maim) {
         minSkillsUntilEye = 1;
       } else {
         // End of combo, or broken combo.
@@ -1722,7 +1827,7 @@ class Bars {
     });
 
     this.comboFuncs.push((skill) => {
-      if (skill == kAbility.GoringBlade) {
+      if (skill === kAbility.GoringBlade) {
         goreBox.duration = 0;
         // Technically, goring blade is 21, but 2.43 * 9 = 21.87, so if you
         // have the box show 21, it looks like you're awfully late with
@@ -1856,7 +1961,7 @@ class Bars {
       // Turn green when you have all 3 kinds of seal
       const sealCount = new Set(seals).size;
       sealBox.innerText = sealCount;
-      if (sealCount == 3)
+      if (sealCount === 3)
         sealBox.parentNode.classList.add('ready');
       else
         sealBox.parentNode.classList.remove('ready');
@@ -1925,7 +2030,7 @@ class Bars {
       aetherflowStackBox.innerText = aetherflow;
       fairyGaugeBox.innerText = fairygauge;
       let f = fairyGaugeBox.parentNode;
-      if (jobDetail.fairyMilliseconds != 0) {
+      if (jobDetail.fairyMilliseconds !== 0) {
         f.classList.add('bright');
         fairyGaugeBox.innerText = milli;
       } else {
@@ -2050,7 +2155,7 @@ class Bars {
       // turn red when you have too much stacks before EnergyDrain ready.
       aetherflowStackBox.innerText = stack;
       let s = parseFloat(energyDrainBox.duration || 0) - parseFloat(energyDrainBox.elapsed);
-      if ((stack == 2) && (s <= 8))
+      if ((stack === 2) && (s <= 8))
         aetherflowStackBox.parentNode.classList.add('too-much-stacks');
       else
         aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
@@ -2063,9 +2168,9 @@ class Bars {
       tranceBox.fg = computeBackgroundColorFrom(tranceBox, 'smn-color-trance');
       if (time > 0) {
         demiSummoningBox.innerText = time;
-      } else if (jobDetail.dreadwyrmStacks == 2) {
+      } else if (jobDetail.dreadwyrmStacks === 2) {
         demiSummoningBox.parentNode.classList.add('bahamutready');
-      } else if (jobDetail.phoenixReady == true) {
+      } else if (jobDetail.phoenixReady) {
         demiSummoningBox.parentNode.classList.add('firebirdready');
         tranceBox.fg = computeBackgroundColorFrom(tranceBox, 'smn-color-demisummon.firebirdready');
       }
@@ -2073,9 +2178,9 @@ class Bars {
       // Turn red when only 7s summoning time remain, to alarm that cast the second Enkindle.
       // Also alarm that don't cast a spell that has cast time, or a WW/SF will be missed.
       // Turn red when only 2s trancing time remain, to alarm that cast deathflare.
-      if (time <= 7 && summoned == 3)
+      if (time <= 7 && summoned === 3)
         demiSummoningBox.parentNode.classList.add('last');
-      else if (time > 0 && time <= 2 && summoned == 0)
+      else if (time > 0 && time <= 2 && summoned === 0)
         demiSummoningBox.parentNode.classList.add('last');
       else
         demiSummoningBox.parentNode.classList.remove('last');
@@ -2174,7 +2279,7 @@ class Bars {
 
       this.lightningStacks = jobDetail.lightningStacks;
       lightningTimer.fg = lightningFgColors[this.lightningStacks];
-      if (this.lightningStacks == 0) {
+      if (this.lightningStacks === 0) {
         // Show sad red bar when you've lost all your pancakes.
         lightningTimer.style = 'fill';
         lightningTimer.value = 0;
@@ -2271,7 +2376,7 @@ class Bars {
       fgColor: 'drg-color-disembowel',
     });
     this.comboFuncs.push((skill) => {
-      if (skill == kAbility.Disembowel) {
+      if (skill === kAbility.Disembowel) {
         disembowelBox.duration = 0;
         disembowelBox.duration = 30 + 1;
       }
@@ -2335,11 +2440,11 @@ class Bars {
       eyes.parentNode.classList.remove('zero', 'one', 'two');
       if (jobDetail.lifeMilliseconds > 0 || jobDetail.bloodMilliseconds > 0) {
         eyes.innerText = jobDetail.eyesAmount;
-        if (jobDetail.eyesAmount == 0)
+        if (jobDetail.eyesAmount === 0)
           eyes.parentNode.classList.add('zero');
-        else if (jobDetail.eyesAmount == 1)
+        else if (jobDetail.eyesAmount === 1)
           eyes.parentNode.classList.add('one');
-        else if (jobDetail.eyesAmount == 2)
+        else if (jobDetail.eyesAmount === 2)
           eyes.parentNode.classList.add('two');
       } else {
         eyes.innerText = '';
@@ -2354,7 +2459,7 @@ class Bars {
     for (let i = 0; i < 100; i += incs) {
       let marker = document.createElement('div');
       marker.classList.add('marker');
-      marker.classList.add((i % 40 == 0) ? 'odd' : 'even');
+      marker.classList.add((i % 40 === 0) ? 'odd' : 'even');
       container.appendChild(marker);
       marker.style.left = i + '%';
       marker.style.width = incs + '%';
@@ -2531,7 +2636,7 @@ class Bars {
     });
 
     this.jobFuncs.push((jobDetail) => {
-      if (this.umbralStacks != jobDetail.umbralStacks) {
+      if (this.umbralStacks !== jobDetail.umbralStacks) {
         this.umbralStacks = jobDetail.umbralStacks;
         this.UpdateMPTicker();
       }
@@ -2668,7 +2773,7 @@ class Bars {
         songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song.minuet');
         songBox.threshold = 5;
         repertoireBox.parentNode.classList.remove('full');
-        if (jobDetail.songProcs == 3)
+        if (jobDetail.songProcs === 3)
           repertoireBox.parentNode.classList.add('full');
       } else if (jobDetail.songName === 'Ballad') {
         repertoireBox.innerText = '';
@@ -2690,7 +2795,7 @@ class Bars {
       }
 
       // Soul Voice
-      if (jobDetail.soulGauge != soulVoiceBox.innerText) {
+      if (jobDetail.soulGauge !== soulVoiceBox.innerText) {
         soulVoiceBox.innerText = jobDetail.soulGauge;
         soulVoiceBox.parentNode.classList.remove('high');
         if (jobDetail.soulGauge >= 95)
@@ -2698,7 +2803,7 @@ class Bars {
       }
 
       // GCD calculate
-      if (jobDetail.songName == 'Paeon' && this.paeonStacks != jobDetail.songProcs)
+      if (jobDetail.songName === 'Paeon' && this.paeonStacks !== jobDetail.songProcs)
         this.paeonStacks = jobDetail.songProcs;
     });
     let ethosStacks = 0;
@@ -2773,7 +2878,7 @@ class Bars {
       const lilysecond = Math.floor(jobDetail.lilyMilliseconds / 1000);
 
       lilyBox.innerText = lily;
-      if (lily == 3)
+      if (lily === 3)
         lilysecondBox.innerText = '';
       else
         lilysecondBox.innerText = 30 - lilysecond;
@@ -2787,7 +2892,7 @@ class Bars {
       }
 
       const l = lilysecondBox.parentNode;
-      if ((lily == 2 && 30 - lilysecond <= 5) || lily == 3)
+      if ((lily === 2 && 30 - lilysecond <= 5) || lily === 3)
         l.classList.add('full');
       else
         l.classList.remove('full');
@@ -2832,13 +2937,107 @@ class Bars {
   }
 
   setupNin() {
+    const ninki = this.addResourceBox({
+      classList: ['nin-color-ninki'],
+    });
+    const hutonBox = this.addProcBox({
+      id: 'nin-procs-huton',
+      fgColor: 'nin-color-huton',
+      threshold: 20,
+    });
+    const trickAttack = this.addProcBox({
+      id: 'nin-procs-trickattack',
+      fgColor: 'nin-color-trickattack',
+    });
+    const bunshin = this.addProcBox({
+      id: 'nin-procs-bunshin',
+      fgColor: 'nin-color-bunshin',
+    });
+    this.abilityFuncMap[kAbility.Bunshin] = () => {
+      bunshin.duration = 0;
+      bunshin.duration = 90;
+    };
+    const ninjutsu = this.addProcBox({
+      id: 'nin-procs-ninjutsu',
+      fgColor: 'nin-color-ninjutsu',
+    });
+    // Ninjutsu's cooldown begins to countdown at the first mudra.
+    this.gainEffectFuncMap[EffectId.Mudra] = () => {
+      if (!this.mudraTriggerCd)
+        return;
+      const old = parseFloat(ninjutsu.duration) - parseFloat(ninjutsu.elapsed);
+      if (old > 0) {
+        ninjutsu.duration = 0;
+        ninjutsu.duration = old + 20;
+      } else {
+        ninjutsu.duration = 0;
+        ninjutsu.duration = 20 - 0.5;
+      }
+      this.mudraTriggerCd = false;
+    };
+    // On each mudra, Mudra effect will be gain once,
+    // use this.mudraTriggerCd to tell that whether this mudra trigger cooldown.
+    this.loseEffectFuncMap[EffectId.Mudra] = () => {
+      this.mudraTriggerCd = true;
+    };
+    this.gainEffectFuncMap[EffectId.Kassatsu] = () => {
+      this.mudraTriggerCd = false;
+    };
+    this.loseEffectFuncMap[EffectId.Kassatsu] = () => {
+      this.mudraTriggerCd = true;
+    };
+    this.abilityFuncMap[kAbility.Hide] = () => {
+      ninjutsu.duration = 0;
+    };
+    this.statChangeFuncMap['NIN'] = () => {
+      trickAttack.valuescale = this.gcdSkill();
+      this.abilityFuncMap[kAbility.TrickAttack] = () => {
+        trickAttack.duration = 0;
+        trickAttack.duration = 15;
+        trickAttack.threshold = 1000;
+        trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack.active');
+        setTimeout(() => {
+          trickAttack.duration = 45;
+          trickAttack.threshold = this.gcdSkill() * 4;
+          trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack');
+        }, 15000);
+      };
+      bunshin.valuescale = this.gcdSkill();
+      bunshin.threshold = this.gcdSkill() * 8;
+      ninjutsu.valuescale = this.gcdSkill();
+      ninjutsu.threshold = this.gcdSkill() * 2;
+    };
+
     this.jobFuncs.push((jobDetail) => {
       if (jobDetail.hutonMilliseconds > 0) {
-        if (this.huton != 1)
+        if (this.huton !== 1)
           this.huton = 1;
-      } else if (this.huton == 1) {
+      } else if (this.huton === 1) {
         this.huton = 0;
       }
+      ninki.innerText = jobDetail.ninkiAmount;
+      ninki.parentNode.classList.remove('high', 'low');
+      if (jobDetail.ninkiAmount < 50)
+        ninki.parentNode.classList.add('low');
+      else if (jobDetail.ninkiAmount >= 90)
+        ninki.parentNode.classList.add('high');
+      const oldSeconds = parseFloat(hutonBox.duration) - parseFloat(hutonBox.elapsed);
+      const seconds = jobDetail.hutonMilliseconds / 1000.0;
+      if (!hutonBox.duration || seconds > oldSeconds) {
+        hutonBox.duration = 0;
+        hutonBox.duration = seconds;
+      }
+    });
+    const comboTimer = this.addTimerBar({
+      id: 'nin-timers-combo',
+      fgColor: 'nin-color-combo',
+    });
+    this.comboFuncs.push((skill) => {
+      comboTimer.duration = 0;
+      if (this.combo.isFinalSkill)
+        return;
+      if (skill)
+        comboTimer.duration = 15;
     });
   }
 
@@ -2925,7 +3124,7 @@ class Bars {
 
     this.jobFuncs.push((jobDetail) => {
       cartridgeBox.innerText = jobDetail.cartridges;
-      if (jobDetail.cartridges == 2)
+      if (jobDetail.cartridges === 2)
         cartridgeBox.parentNode.classList.add('full');
       else
         cartridgeBox.parentNode.classList.remove('full');
@@ -2949,11 +3148,11 @@ class Bars {
 
     let type1Buffs = 0;
     let type2Buffs = 0;
-    if (this.job == 'BLM') {
+    if (this.job === 'BLM') {
       type1Buffs += this.circleOfPower ? 15 : 0;
-    } else if (this.job == 'WHM') {
+    } else if (this.job === 'WHM') {
       type1Buffs += this.presenceOfMind ? 20 : 0;
-    } else if (this.job == 'SAM') {
+    } else if (this.job === 'SAM') {
       if (this.shifu) {
         if (this.level > 77)
           type1Buffs += 13;
@@ -2961,11 +3160,11 @@ class Bars {
       }
     }
 
-    if (this.job == 'NIN') {
+    if (this.job === 'NIN') {
       type2Buffs += this.huton ? 15 : 0;
-    } else if (this.job == 'MNK') {
+    } else if (this.job === 'MNK') {
       type2Buffs += 5 * this.lightningStacks;
-    } else if (this.job == 'BRD') {
+    } else if (this.job === 'BRD') {
       type2Buffs += 4 * this.paeonStacks;
       switch (this.museStacks) {
       case 1:
@@ -3030,12 +3229,12 @@ class Bars {
 
     let baseTick = this.inCombat ? kMPCombatRate : kMPNormalRate;
     let umbralTick = 0;
-    if (this.umbralStacks == -1) umbralTick = kMPUI1Rate;
-    if (this.umbralStacks == -2) umbralTick = kMPUI2Rate;
-    if (this.umbralStacks == -3) umbralTick = kMPUI3Rate;
+    if (this.umbralStacks === -1) umbralTick = kMPUI1Rate;
+    if (this.umbralStacks === -2) umbralTick = kMPUI2Rate;
+    if (this.umbralStacks === -3) umbralTick = kMPUI3Rate;
 
     let mpTick = Math.floor(this.maxMP * baseTick) + Math.floor(this.maxMP * umbralTick);
-    if (delta == mpTick && this.umbralStacks <= 0) // MP ticks disabled in AF
+    if (delta === mpTick && this.umbralStacks <= 0) // MP ticks disabled in AF
       this.o.mpTicker.duration = kMPTickInterval;
 
     // Update color based on the astral fire/ice state
@@ -3055,16 +3254,16 @@ class Bars {
     let mediumMP = -1;
     let far = -1;
 
-    if (this.job == 'RDM' || this.job == 'BLM' || this.job == 'SMN' || this.job == 'ACN')
+    if (this.job === 'RDM' || this.job === 'BLM' || this.job === 'SMN' || this.job === 'ACN')
       far = this.options.FarThresholdOffence;
 
-    if (this.job == 'DRK') {
+    if (this.job === 'DRK') {
       lowMP = this.options.DrkLowMPThreshold;
       mediumMP = this.options.DrkMediumMPThreshold;
-    } else if (this.job == 'PLD') {
+    } else if (this.job === 'PLD') {
       lowMP = this.options.PldLowMPThreshold;
       mediumMP = this.options.PldMediumMPThreshold;
-    } else if (this.job == 'BLM') {
+    } else if (this.job === 'BLM') {
       lowMP = this.options.BlmLowMPThreshold;
       mediumMP = this.options.BlmMediumMPThreshold;
     }
@@ -3163,7 +3362,7 @@ class Bars {
   }
 
   OnInCombatChanged(e) {
-    if (this.inCombat == e.detail.inGameCombat)
+    if (this.inCombat === e.detail.inGameCombat)
       return;
 
     this.inCombat = e.detail.inGameCombat;
@@ -3198,13 +3397,13 @@ class Bars {
   }
 
   SetPullCountdown(seconds) {
-    if (this.o.pullCountdown == null) return;
+    if (!this.o.pullCountdown) return;
 
     let inCountdown = seconds > 0;
     let showingCountdown = parseFloat(this.o.pullCountdown.duration) > 0;
-    if (inCountdown != showingCountdown) {
+    if (inCountdown !== showingCountdown) {
       this.o.pullCountdown.duration = seconds;
-      if (inCountdown) {
+      if (inCountdown && this.options.PlayCountdownSound) {
         let audio = new Audio('../../resources/sounds/PowerAuras/sonar.ogg');
         audio.volume = 0.3;
         audio.play();
@@ -3234,7 +3433,7 @@ class Bars {
         for (const regex of this.craftingFinishRegexes) {
           const m = regex.exec(log);
           if (m) {
-            if (m.groups.player === undefined || m.groups.player == this.me) {
+            if (!m.groups.player || m.groups.player === this.me) {
               this.crafting = false;
               break;
             }
@@ -3267,7 +3466,7 @@ class Bars {
     let updateCp = false;
     let updateGp = false;
     let updateLevel = false;
-    if (e.detail.job != this.job) {
+    if (e.detail.job !== this.job) {
       this.job = e.detail.job;
       // Combos are job specific.
       this.combo.AbortCombo();
@@ -3278,31 +3477,31 @@ class Bars {
       if (!Util.isGatheringJob(this.job))
         this.gpAlarmReady = false;
     }
-    if (e.detail.level != this.level) {
+    if (e.detail.level !== this.level) {
       this.level = e.detail.level;
       updateLevel = true;
     }
-    if (e.detail.currentHP != this.hp || e.detail.maxHP != this.maxHP ||
-      e.detail.currentShield != this.currentShield) {
+    if (e.detail.currentHP !== this.hp || e.detail.maxHP !== this.maxHP ||
+      e.detail.currentShield !== this.currentShield) {
       this.hp = e.detail.currentHP;
       this.maxHP = e.detail.maxHP;
       this.currentShield = e.detail.currentShield;
       updateHp = true;
 
-      if (this.hp == 0)
+      if (this.hp === 0)
         this.combo.AbortCombo(); // Death resets combos.
     }
-    if (e.detail.currentMP != this.mp || e.detail.maxMP != this.maxMP) {
+    if (e.detail.currentMP !== this.mp || e.detail.maxMP !== this.maxMP) {
       this.mp = e.detail.currentMP;
       this.maxMP = e.detail.maxMP;
       updateMp = true;
     }
-    if (e.detail.currentCP != this.cp || e.detail.maxCP != this.maxCP) {
+    if (e.detail.currentCP !== this.cp || e.detail.maxCP !== this.maxCP) {
       this.cp = e.detail.currentCP;
       this.maxCP = e.detail.maxCP;
       updateCp = true;
     }
-    if (e.detail.currentGP != this.gp || e.detail.maxGP != this.maxGP) {
+    if (e.detail.currentGP !== this.gp || e.detail.maxGP !== this.maxGP) {
       this.gp = e.detail.currentGP;
       this.maxGP = e.detail.maxGP;
       updateGp = true;
@@ -3337,11 +3536,11 @@ class Bars {
 
     let update = false;
     if (!target || !target.Name) {
-      if (this.distance != -1) {
+      if (this.distance !== -1) {
         this.distance = -1;
         update = true;
       }
-    } else if (target.EffectiveDistance != this.distance) {
+    } else if (target.EffectiveDistance !== this.distance) {
       this.distance = target.EffectiveDistance;
       update = true;
     }
@@ -3402,7 +3601,7 @@ class Bars {
       }
     }
     // For extremely complex BRD
-    if (this.job != 'BRD')
+    if (this.job !== 'BRD')
       return;
     if (!this.dotTarget)
       this.dotTarget = [];
@@ -3457,9 +3656,9 @@ class Bars {
       let log = e.detail.logs[i];
 
       // TODO: only consider this when not in battle.
-      if (log[15] == '0') {
+      if (log[15] === '0') {
         let r = log.match(this.countdownStartRegex);
-        if (r != null) {
+        if (r) {
           let seconds = parseFloat(r.groups.time);
           this.SetPullCountdown(seconds);
           continue;
@@ -3472,7 +3671,7 @@ class Bars {
           this.Test();
           continue;
         }
-        if (log[16] == 'C') {
+        if (log[16] === 'C') {
           let stats = log.match(kStatsRegex).groups;
           this.skillSpeed = stats.skillSpeed;
           this.spellSpeed = stats.spellSpeed;
@@ -3481,10 +3680,10 @@ class Bars {
         }
         if (Util.isCraftingJob(this.job))
           this.OnCraftingLog(log);
-      } else if (log[15] == '1') {
+      } else if (log[15] === '1') {
         // TODO: consider flags for missing.
         // flags:damage is 1:0 in most misses.
-        if (log[16] == '5' || log[16] == '6') {
+        if (log[16] === '5' || log[16] === '6') {
           // use of GP Potion
           let cordialRegex = Regexes.ability({ source: this.me, id: '20(017FD|F5A3D|F844F|0420F|0317D)' });
           if (cordialRegex.test(log)) {

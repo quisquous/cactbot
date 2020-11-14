@@ -59,7 +59,7 @@ const kDirectoryChooseButtonText = {
   fr: 'Choix du répertoire',
   ja: 'ディレクトリを選択',
   cn: '选择目录',
-  ko: '디렉터리 선택',
+  ko: '디렉토리 선택',
 };
 
 // What to show when a directory hasn't been chosen.
@@ -311,7 +311,7 @@ export default class CactbotConfigurator {
   buildUI(container, contents) {
     for (let group in contents) {
       let content = contents[group];
-      if (content.length == 0)
+      if (content.length === 0)
         continue;
 
       // For each overlay options template, build a section for it.
@@ -455,7 +455,7 @@ export default class CactbotConfigurator {
       let elem = document.createElement('option');
       elem.value = innerOptions[key];
       elem.innerHTML = key;
-      if (innerOptions[key] == defaultValue)
+      if (innerOptions[key] === defaultValue)
         elem.selected = true;
       input.appendChild(elem);
     }

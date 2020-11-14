@@ -28,7 +28,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
 
       for (const trigger of this.triggers) {
         const r = log.match(trigger.localRegex);
-        if (r != null) {
+        if (r) {
           // Some async magic here, force waiting for the entirety of
           // the trigger execution before continuing
           const delayPromise = new Promise((res) => {
@@ -61,7 +61,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
 
       for (const trigger of this.netTriggers) {
         const r = log.match(trigger.localNetRegex);
-        if (r != null) {
+        if (r) {
           // Some async magic here, force waiting for the entirety of
           // the trigger execution before continuing
           const delayPromise = new Promise((res) => {

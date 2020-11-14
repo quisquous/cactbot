@@ -1,6 +1,8 @@
 00-misc/general.js
 00-misc/test.js
 00-misc/test.txt
+02-arr/dungeon/brayfloxs_longstop.js
+02-arr/dungeon/haukke_manor.js
 02-arr/raid/t1.js
 02-arr/raid/t10.js
 02-arr/raid/t10.txt
@@ -31,6 +33,8 @@
 02-arr/trial/shiva-hm.txt
 02-arr/trial/shiva-ex.js
 02-arr/trial/shiva-ex.txt
+02-arr/trial/titan-nm.js
+02-arr/trial/titan-nm.txt
 02-arr/trial/titan-hm.js
 02-arr/trial/titan-hm.txt
 02-arr/trial/titan-ex.js
@@ -97,6 +101,9 @@
 04-sb/dungeon/bardams_mettle.txt
 04-sb/dungeon/drowned_city_of_skalla.js
 04-sb/dungeon/fractal_continuum_hard.js
+04-sb/dungeon/fractal_continuum_hard.txt
+04-sb/dungeon/hells_lid.js
+04-sb/dungeon/hells_lid.txt
 04-sb/dungeon/temple_of_the_fist.js
 04-sb/dungeon/temple_of_the_fist.txt
 04-sb/dungeon/the_burn.js
@@ -203,6 +210,8 @@
 05-shb/dungeon/the_grand_cosmos.txt
 05-shb/dungeon/twinning.js
 05-shb/dungeon/twinning.txt
+05-shb/eureka/bozjan_southern_front.js
+05-shb/eureka/bozjan_southern_front.txt
 05-shb/etc/the_diadem.js
 05-shb/raid/e1n.js
 05-shb/raid/e1n.txt

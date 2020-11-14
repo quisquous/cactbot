@@ -75,7 +75,7 @@ let UserConfig = {
       if (e.detail.systemLocale) {
         options.SystemLocale = e.detail.systemLocale;
         options.ShortLocale = e.detail.systemLocale.substring(0, 2);
-        if (options.ShortLocale == 'zh')
+        if (options.ShortLocale === 'zh')
           options.ShortLocale = 'cn';
         if (!supportedLanguage.includes(options.ShortLocale))
           options.ShortLocale = options.ParserLanguage;
@@ -135,7 +135,7 @@ let UserConfig = {
           document.getElementsByTagName('head')[0].appendChild(userCssText);
         }
       } else if (basePath) {
-        if (basePath.slice(-1) != '/')
+        if (basePath.slice(-1) !== '/')
           basePath += '/';
         let jsUrl = basePath + jsFile;
         printUserFile('remote user file: ' + jsUrl);
@@ -171,14 +171,14 @@ let UserConfig = {
     });
   },
   handleSkin: function(skinName) {
-    if (!skinName || skinName == 'default')
+    if (!skinName || skinName === 'default')
       return;
 
     let basePath = document.location.toString();
     let slashIdx = basePath.lastIndexOf('/');
-    if (slashIdx != -1)
+    if (slashIdx !== -1)
       basePath = basePath.substr(0, slashIdx);
-    if (basePath.slice(-1) != '/')
+    if (basePath.slice(-1) !== '/')
       basePath += '/';
     let skinHref = basePath + 'skins/' + skinName + '/' + skinName + '.css';
     this.appendCSSLink(skinHref);

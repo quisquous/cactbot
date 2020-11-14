@@ -9,7 +9,7 @@
       regex: /Wild Horn/,
       beforeSeconds: 4,
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -39,13 +39,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1C32', source: 'スポアサック', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1C32', source: '포자 주머니', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'Away from large pod',
-        de: 'Weg vom großen Pod',
-        fr: 'Éloignez-vous des spores',
-        ja: 'スポアサックに離れ',
-        cn: '远离大孢囊',
-        ko: '큰 포자 주머니에게서 떨어지기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away from large pod',
+          de: 'Weg vom großen Pod',
+          fr: 'Éloignez-vous des spores',
+          ja: 'スポアサックに離れ',
+          cn: '远离大孢囊',
+          ko: '큰 포자 주머니에게서 떨어지기',
+        },
       },
     },
     {
@@ -55,15 +58,18 @@
       condition: function(data) {
         return data.CanCleanse();
       },
-      infoText: function(data, matches) {
-        return {
-          en: 'Cleanse ' + data.shortName(matches.target),
-          de: 'Reinige ' + data.shortName(matches.target),
-          fr: 'Guérison sur ' + data.shortName(matches.target),
-          ja: 'エスナ：' + data.ShortName(matches.target),
-          cn: '康复' + data.shortName(matches.target),
-          ko: '' + data.shortName(matches.target) + '에스나',
-        };
+      infoText: function(data, matches, output) {
+        return output.text({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Cleanse ${player}',
+          de: 'Reinige ${player}',
+          fr: 'Guérison sur ${player}',
+          ja: 'エスナ：${player}',
+          cn: '康复${player}',
+          ko: '"${player}" 에스나',
+        },
       },
     },
     {
@@ -159,13 +165,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1C3E', source: '熔岩蝎' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1C3E', source: '용암 전갈' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Drop puddle outside',
-        de: 'Fläche draußen ablegen',
-        fr: 'Déposez la zone au sol à l\'extérieur',
-        ja: '外周に置く',
-        cn: '人群外放圈圈',
-        ko: '용암지대 생성 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop puddle outside',
+          de: 'Fläche draußen ablegen',
+          fr: 'Déposez la zone au sol à l\'extérieur',
+          ja: '外周に置く',
+          cn: '人群外放圈圈',
+          ko: '용암지대 생성 대상자',
+        },
       },
     },
     {
@@ -177,7 +186,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['熔岩蝎', '尖尾蝎'] }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['용암 전갈', '꼬리 전갈'] }),
       condition: function(data, matches) {
-        return data.me == matches.target || data.role == 'tank' || data.role == 'healer';
+        return data.me === matches.target || data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },

@@ -20,13 +20,16 @@
       id: 'ShivaEx Icebrand',
       regex: /Icebrand/,
       beforeSeconds: 5,
-      alertText: {
-        en: 'Party Share Tankbuster',
-        de: 'Tankbuster mit der Gruppe Teilen',
-        fr: 'Partagez le Tank buster avec le groupe',
-        ja: '頭割りタンクバスター',
-        cn: '团队分摊死刑',
-        ko: '파티 쉐어 탱버',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Party Share Tankbuster',
+          de: 'Tankbuster mit der Gruppe Teilen',
+          fr: 'Partagez le Tank buster avec le groupe',
+          ja: '頭割りタンクバスター',
+          cn: '团队分摊死刑',
+          ko: '파티 쉐어 탱버',
+        },
       },
     },
     {
@@ -46,7 +49,7 @@
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '995', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '995', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '995', capture: false }),
-      response: function(data) {
+      response: (data) => {
         if (data.role === 'tank') {
           if (data.currentTank && data.blunt && data.blunt[data.currentTank]) {
             return {
@@ -73,9 +76,7 @@
           },
         };
       },
-      run: function(data) {
-        data.soonAfterWeaponChange = true;
-      },
+      run: (data) => data.soonAfterWeaponChange = true,
     },
     {
       id: 'ShivaEx Sword Phase',
@@ -85,7 +86,7 @@
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '993', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '993', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '993', capture: false }),
-      response: function(data) {
+      response: (data) => {
         if (data.role === 'tank') {
           if (data.currentTank && data.slashing && data.slashing[data.currentTank]) {
             return {
@@ -112,9 +113,7 @@
           },
         };
       },
-      run: function(data) {
-        data.soonAfterWeaponChange = true;
-      },
+      run: (data) => data.soonAfterWeaponChange = true,
     },
     {
       id: 'ShivaEx Weapon Change Delayed',
@@ -125,14 +124,12 @@
       netRegexKo: NetRegexes.ability({ source: '시바', id: ['993', '995'], capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: ['993', '995'], capture: false }),
       delaySeconds: 30,
-      run: function(data) {
-        data.soonAfterWeaponChange = false;
-      },
+      run: (data) => data.soonAfterWeaponChange = false,
     },
     {
       id: 'ShivaEx Slashing Resistance Down Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '23C' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.slashing = data.slashing || {};
         data.slashing[matches.target] = true;
       },
@@ -140,7 +137,7 @@
     {
       id: 'ShivaEx Slashing Resistance Down Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '23C' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.slashing = data.slashing || {};
         data.slashing[matches.target] = false;
       },
@@ -148,7 +145,7 @@
     {
       id: 'ShivaEx Blunt Resistance Down Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '23D' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.blunt = data.blunt || {};
         data.blunt[matches.target] = true;
       },
@@ -156,7 +153,7 @@
     {
       id: 'ShivaEx Blunt Resistance Down Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '23D' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.blunt = data.blunt || {};
         data.blunt[matches.target] = false;
       },
@@ -169,9 +166,7 @@
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: 'BE5' }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: 'BE5' }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: 'BE5' }),
-      run: function(data, matches) {
-        data.currentTank = matches.target;
-      },
+      run: (data, matches) => data.currentTank = matches.target,
     },
     {
       id: 'ShivaEx Hailstorm Marker',
@@ -197,9 +192,7 @@
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '98A', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '98A', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '98A', capture: false }),
-      run: function(data) {
-        data.seenDiamondDust = true;
-      },
+      run: (data) => data.seenDiamondDust = true,
     },
     {
       id: 'ShivaEx Frost Bow',
@@ -210,7 +203,7 @@
       netRegexKo: NetRegexes.ability({ source: '시바', id: 'BDD', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: 'BDD', capture: false }),
       response: Responses.getBehind('alarm'),
-      run: function(data) {
+      run: (data) => {
         // Just in case ACT has crashed or something, make sure this state is correct.
         data.seenDiamondDust = true;
       },
@@ -220,26 +213,32 @@
       netRegex: NetRegexes.headMarker({ id: '001A' }),
       condition: Conditions.targetIsYou(),
       // Responses.knockback does not quite give the 'laser cleave' aspect here.
-      alarmText: {
-        en: 'Knockback Laser on YOU',
-        de: 'Rückstoß-Laser auf DIR',
-        fr: 'Poussée-Laser sur VOUS',
-        ja: '自分にアバランチ',
-        cn: '击退激光点名',
-        ko: '넉백 레이저 대상자',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Knockback Laser on YOU',
+          de: 'Rückstoß-Laser auf DIR',
+          fr: 'Poussée-Laser sur VOUS',
+          ja: '自分にアバランチ',
+          cn: '击退激光点名',
+          ko: '넉백 레이저 대상자',
+        },
       },
     },
     {
       id: 'ShivaEx Avalanche Marker Other',
       netRegex: NetRegexes.headMarker({ id: '001A' }),
       condition: Conditions.targetIsNotYou(),
-      infoText: {
-        en: 'Avoid Laser',
-        de: 'Laser ausweichen',
-        fr: 'Évitez le laser',
-        ja: 'アバランチに避け',
-        cn: '躲避击退激光',
-        ko: '레이저 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Laser',
+          de: 'Laser ausweichen',
+          fr: 'Évitez le laser',
+          ja: 'アバランチに避け',
+          cn: '躲避击退激光',
+          ko: '레이저 피하기',
+        },
       },
     },
     {
@@ -250,13 +249,13 @@
       netRegexJa: NetRegexes.abilityFull({ source: 'シヴァ', id: 'BEB' }),
       netRegexKo: NetRegexes.abilityFull({ source: '시바', id: 'BEB' }),
       netRegexCn: NetRegexes.abilityFull({ source: '希瓦', id: 'BEB' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         // Ignore other middle circles and try to only target the Icicle Impact x9.
         if (!data.seenDiamondDust || data.soonAfterWeaponChange)
           return false;
 
-        let x = parseFloat(matches.x);
-        let y = parseFloat(matches.y);
+        const x = parseFloat(matches.x);
+        const y = parseFloat(matches.y);
         return Math.abs(x) < 0.1 && Math.abs(y) < 0.1;
       },
       // This can hit multiple people.
@@ -272,15 +271,16 @@
       id: 'ShivaEx Ice Boulder',
       netRegex: NetRegexes.ability({ id: 'C8A' }),
       condition: Conditions.targetIsNotYou(),
-      infoText: function(data, matches) {
-        return {
-          en: 'Free ' + data.ShortName(matches.target),
-          de: 'Befreie ' + data.ShortName(matches.target),
-          fr: 'Libérez ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'を救って',
-          cn: '解救' + data.ShortName(matches.target),
-          ko: data.ShortName(matches.target) + '감옥 해제',
-        };
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
+      outputStrings: {
+        text: {
+          en: 'Free ${player}',
+          de: 'Befreie ${player}',
+          fr: 'Libérez ${player}',
+          ja: '${player}を救って',
+          cn: '解救${player}',
+          ko: '${player}감옥 해제',
+        },
       },
     },
   ],
@@ -401,12 +401,14 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Ice Soldier': '얼음 병사',
         'Shiva': '시바',
       },
       'replaceText': {
+        '\\(circle\\)': '(원형)',
+        '\\(cross\\)': '(십자)',
+        '--frozen--': '--동결--',
         'Absolute Zero': '절대영도',
         'Avalanche': '눈사태',
         'Diamond Dust': '다이아몬드 더스트',

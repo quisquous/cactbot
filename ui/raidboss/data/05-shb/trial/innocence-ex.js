@@ -29,13 +29,16 @@
       netRegexKo: NetRegexes.startsUsing({ id: '3EDC', source: '이노센스', capture: false }),
       // 3 seconds cast time + 7 seconds until next sword.
       delaySeconds: 7,
-      infoText: {
-        en: 'Swords!',
-        de: 'Schwerter!',
-        fr: 'Épées !',
-        ja: '剣くるよ',
-        cn: '剑!',
-        ko: '검 돌아옴!',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Swords!',
+          de: 'Schwerter!',
+          fr: 'Épées !',
+          ja: '剣くるよ',
+          cn: '剑!',
+          ko: '검 돌아옴!',
+        },
       },
     },
     {
@@ -46,54 +49,61 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3EEF', source: 'イノセンス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3EEF', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EEF', source: '이노센스', capture: false }),
-      infoText: function(data) {
-        if (data.starbirthCount == 1) {
-          return {
-            en: 'Starbirth: Corner',
-            de: 'Sternengeburt: Ecken',
-            fr: 'Accouchement Stellaire : Coin',
-            ja: 'スターバース: 角へ',
-            cn: '创星：角落躲避',
-            ko: '별생성: 구석으로',
-          };
-        } else if (data.starbirthCount == 2 || data.starbirthCount == 5) {
-          return {
-            en: 'Starbirth: Avoid + Charge',
-            de: 'Sternengeburt: Ausweichen + Charge',
-            fr: 'Accouchement Stellaire : Évitez + Charge',
-            ja: 'スターバース: 玉のない隅へ',
-            cn: '创星：躲避 + 冲锋',
-            ko: '별 생성: 별 피해서 징 맞기 + 돌진',
-          };
-        } else if (data.starbirthCount == 3) {
-          return {
-            en: 'Starbirth: Explode',
-            de: 'Sternengeburt: Explosion',
-            fr: 'Accouchement Stellaire : Explosion',
-            ja: 'スターバース: 爆発',
-            cn: '创星：爆炸',
-            ko: '별 생성: 별 터뜨리기',
-          };
-        } else if (data.starbirthCount == 4) {
-          return {
-            en: 'Starbirth: Charge',
-            de: 'Sternengeburt: Charge',
-            fr: 'Accouchement Stellaire : Charge',
-            ja: 'スターバース: 突進',
-            cn: '创星：冲锋',
-            ko: '별 생성: 돌진',
-          };
-        } else if (data.starbirthCount == 6) {
-          return {
-            en: 'Starbirth: Enrage',
-            de: 'Sternengeburt: Finalangriff',
-            fr: 'Accouchement Stellaire : Enrage',
-            ja: 'スターバース: 時間切れ',
-            cn: '创星：狂暴',
-            ko: '별 생성: 전멸기',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (data.starbirthCount === 1)
+          return output.starbirthCorner();
+        else if (data.starbirthCount === 2 || data.starbirthCount === 5)
+          return output.starbirthAvoidCharge();
+        else if (data.starbirthCount === 3)
+          return output.starbirthExplode();
+        else if (data.starbirthCount === 4)
+          return output.starbirthCharge();
+        else if (data.starbirthCount === 6)
+          return output.starbirthEnrage();
+
         // No text for the second enrage one.
+      },
+      outputStrings: {
+        starbirthCorner: {
+          en: 'Starbirth: Corner',
+          de: 'Sternengeburt: Ecken',
+          fr: 'Accouchement Stellaire : Coin',
+          ja: 'スターバース: 角へ',
+          cn: '创星：角落躲避',
+          ko: '별생성: 구석으로',
+        },
+        starbirthAvoidCharge: {
+          en: 'Starbirth: Avoid + Charge',
+          de: 'Sternengeburt: Ausweichen + Charge',
+          fr: 'Accouchement Stellaire : Évitez + Charge',
+          ja: 'スターバース: 玉のない隅へ',
+          cn: '创星：躲避 + 冲锋',
+          ko: '별 생성: 별 피해서 징 맞기 + 돌진',
+        },
+        starbirthExplode: {
+          en: 'Starbirth: Explode',
+          de: 'Sternengeburt: Explosion',
+          fr: 'Accouchement Stellaire : Explosion',
+          ja: 'スターバース: 爆発',
+          cn: '创星：爆炸',
+          ko: '별 생성: 별 터뜨리기',
+        },
+        starbirthCharge: {
+          en: 'Starbirth: Charge',
+          de: 'Sternengeburt: Charge',
+          fr: 'Accouchement Stellaire : Charge',
+          ja: 'スターバース: 突進',
+          cn: '创星：冲锋',
+          ko: '별 생성: 돌진',
+        },
+        starbirthEnrage: {
+          en: 'Starbirth: Enrage',
+          de: 'Sternengeburt: Finalangriff',
+          fr: 'Accouchement Stellaire : Enrage',
+          ja: 'スターバース: 時間切れ',
+          cn: '创星：狂暴',
+          ko: '별 생성: 전멸기',
+        },
       },
     },
     {
@@ -104,9 +114,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3EEA', source: 'イノセンス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3EEA', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EEA', source: '이노센스', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -117,41 +125,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3ECD', source: 'イノセンス' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3ECD', source: '无瑕灵君' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3ECD', source: '이노센스' }),
-      alarmText: function(data, matches) {
-        if (matches.target == data.me || data.role != 'tank')
-          return;
-
-        return {
-          en: 'Tank Swap!',
-          de: 'Tankwechsel!',
-          fr: 'Tank swap !',
-          ja: 'スイッチ',
-          cn: '换T！',
-          ko: '탱 교대!',
-        };
-      },
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tank buster sur VOUS',
-            ja: '自分にタンクバスター',
-            cn: '死刑点名',
-            ko: '탱버 대상자',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tank buster sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にタンクバスター',
-            cn: '死刑 点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 탱버',
-          };
-        }
-      },
+      response: Responses.tankBusterSwap(),
     },
     {
       id: 'InnoEx Holy Sword Healer',
@@ -162,16 +136,19 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3EC9', source: '得到宽恕的情欲', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EC9', source: '면죄된 정욕', capture: false }),
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       suppressSeconds: 5,
-      infoText: {
-        en: 'Tank Busters',
-        de: 'Tank Buster',
-        fr: 'Tank buster',
-        ja: 'タンクバスター',
-        cn: '死刑',
-        ko: '탱버',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Busters',
+          de: 'Tank Buster',
+          fr: 'Tank buster',
+          ja: 'タンクバスター',
+          cn: '死刑',
+          ko: '탱버',
+        },
       },
     },
     {
@@ -182,9 +159,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3EC9', source: 'フォーギヴン・ヴェナリー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3EC9', source: '得到宽恕的情欲' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EC9', source: '면죄된 정욕' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
     },
     {
@@ -195,25 +170,29 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3EEE', source: 'イノセンス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3EEE', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EEE', source: '이노센스', capture: false }),
-      alertText: function(data) {
-        if (data.starbirthActive) {
-          return {
-            en: 'Avoid Charge and Orbs',
-            de: 'Charge und Orbs ausweichen',
-            fr: 'Évitez les charges et les orbes',
-            ja: '玉と突進避けて',
-            cn: '躲避冲锋与晶石',
-            ko: '돌진이랑 구슬 폭발을 피하세요',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.starbirthActive)
+          return output.avoidChargeAndOrbs();
+
+        return output.avoidCharge();
+      },
+      outputStrings: {
+        avoidChargeAndOrbs: {
+          en: 'Avoid Charge and Orbs',
+          de: 'Charge und Orbs ausweichen',
+          fr: 'Évitez les charges et les orbes',
+          ja: '玉と突進避けて',
+          cn: '躲避冲锋与晶石',
+          ko: '돌진이랑 구슬 폭발을 피하세요',
+        },
+        avoidCharge: {
           en: 'Avoid Charge',
           de: 'Charge ausweichen',
           fr: 'Évitez les charges',
           ja: '突進避けて',
           cn: '躲避冲锋',
           ko: '돌진을 피하세요',
-        };
+        },
       },
     },
     {
@@ -225,16 +204,19 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3EEF', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EEF', source: '이노센스', capture: false }),
       condition: function(data) {
-        return data.starbirthCount == 1;
+        return data.starbirthCount === 1;
       },
       delaySeconds: 6,
-      alertText: {
-        en: 'Get to Safe Corner',
-        de: 'Geh in die sichere Ecke',
-        fr: 'Allez au coin sûr',
-        ja: '安置へ',
-        cn: '去安全角落',
-        ko: '안전한 구석으로 이동',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get to Safe Corner',
+          de: 'Geh in die sichere Ecke',
+          fr: 'Allez au coin sûr',
+          ja: '安置へ',
+          cn: '去安全角落',
+          ko: '안전한 구석으로 이동',
+        },
       },
     },
     {
@@ -246,15 +228,18 @@
       netRegexCn: NetRegexes.ability({ id: '42B0', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '42B0', source: '이노센스', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
-      infoText: {
-        en: 'Grab East/West Venery Adds',
-        de: 'Nehme östliches/westliches Wollust Add',
-        fr: 'Attrapez les adds en Est/Ouest',
-        ja: '雑魚のタゲ取って',
-        cn: '接小怪仇恨',
-        ko: '동/서 쫄 잡으세요',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Grab East/West Venery Adds',
+          de: 'Nehme östliches/westliches Wollust Add',
+          fr: 'Attrapez les adds en Est/Ouest',
+          ja: '雑魚のタゲ取って',
+          cn: '接小怪仇恨',
+          ko: '동/서 쫄 잡으세요',
+        },
       },
     },
     {
@@ -269,40 +254,45 @@
         data.lightPillar = data.lightPillar || 0;
         data.lightPillar++;
       },
-      alarmText: function(data, matches) {
-        if (matches.target != data.me)
+      alarmText: function(data, matches, output) {
+        if (matches.target !== data.me)
           return;
 
-        if (data.lightPillar == 3) {
-          return {
-            en: 'Aim Line At Back Orb',
-            de: 'Ziehle mit der Linie auf den entferntesten Orb',
-            fr: 'Visez avec la ligne à l\'arrière de l\'orbe',
-            ja: '後ろの玉に当てて',
-            cn: '分摊瞄准后方晶石',
-            ko: '멀리 있는 구슬 하나 맞추세요',
-          };
-        }
-        return {
-          en: 'Avoid Orbs With Line',
-          de: 'Ziehle nicht auf einen Orb',
-          fr: 'Évitez l\'orbe avec la ligne',
-          ja: '玉に当てるな',
-          cn: '躲开晶石与直线',
-          ko: '쉐어징이 구슬에 맞지 않게 하세요',
-        };
+        if (data.lightPillar === 3)
+          return output.aimLineAtBackOrb();
+
+        return output.avoidOrbsWithLine();
       },
-      infoText: function(data, matches) {
-        if (matches.target == data.me)
+      infoText: function(data, matches, output) {
+        if (matches.target === data.me)
           return;
-        return {
+        return output.lineStack();
+      },
+      outputStrings: {
+        lineStack: {
           en: 'Line Stack',
           de: 'Sammeln in einer Linie',
           fr: 'Packez-vous en ligne',
           ja: 'シェア',
           cn: '直线分摊',
           ko: '쉐어징 모이세요',
-        };
+        },
+        aimLineAtBackOrb: {
+          en: 'Aim Line At Back Orb',
+          de: 'Ziehle mit der Linie auf den entferntesten Orb',
+          fr: 'Visez avec la ligne à l\'arrière de l\'orbe',
+          ja: '後ろの玉に当てて',
+          cn: '分摊瞄准后方晶石',
+          ko: '멀리 있는 구슬 하나 맞추세요',
+        },
+        avoidOrbsWithLine: {
+          en: 'Avoid Orbs With Line',
+          de: 'Ziehle nicht auf einen Orb',
+          fr: 'Évitez l\'orbe avec la ligne',
+          ja: '玉に当てるな',
+          cn: '躲开晶石与直线',
+          ko: '쉐어징이 구슬에 맞지 않게 하세요',
+        },
       },
     },
     {
@@ -314,57 +304,63 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3F3E', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3F3E', source: '이노센스', capture: false }),
       condition: function(data) {
-        return data.lightPillar == 3;
+        return data.lightPillar === 3;
       },
       delaySeconds: 6.5,
-      alertText: {
-        en: 'Get to Safe Corner',
-        de: 'Geh in die sichere Ecke',
-        fr: 'Allez au coin sûr',
-        cn: '去安全角落',
-        ko: '안전한 구석으로 이동하세요',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get to Safe Corner',
+          de: 'Geh in die sichere Ecke',
+          fr: 'Allez au coin sûr',
+          cn: '去安全角落',
+          ko: '안전한 구석으로 이동하세요',
+        },
       },
     },
     {
       id: 'InnoEx Winged Reprobation Tether',
       netRegex: NetRegexes.headMarker({ id: '00AC' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
-      alertText: {
-        en: 'Tether on YOU',
-        de: 'Verbindung auf DIR',
-        fr: 'Lien sur VOUS',
-        ja: '線ついた',
-        cn: '连线点名',
-        ko: '선 대상자 지정됨',
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tether on YOU',
+          de: 'Verbindung auf DIR',
+          fr: 'Lien sur VOUS',
+          ja: '線ついた',
+          cn: '连线点名',
+          ko: '선 대상자 지정됨',
+        },
       },
     },
     {
       id: 'InnoEx Winged Drop Of Light',
       netRegex: NetRegexes.headMarker({ id: '008A' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
+      condition: Conditions.targetIsYou(),
+      alertText: function(data, _, output) {
+        if (data.starbirthActive)
+          return output.circleAvoidOrbs();
+
+        return output.circleOnYou();
       },
-      alertText: function(data) {
-        if (data.starbirthActive) {
-          return {
-            en: 'Circle, Avoid Orbs',
-            de: 'Kreis, vermeide Orbs',
-            fr: 'Cercle, Évitez les orbes',
-            ja: 'オーブに当てないで',
-            cn: '圆圈点名，远离晶石',
-            ko: '원형 징, 구슬 피하세요',
-          };
-        }
-        return {
+      outputStrings: {
+        circleAvoidOrbs: {
+          en: 'Circle, Avoid Orbs',
+          de: 'Kreis, vermeide Orbs',
+          fr: 'Cercle, Évitez les orbes',
+          ja: 'オーブに当てないで',
+          cn: '圆圈点名，远离晶石',
+          ko: '원형 징, 구슬 피하세요',
+        },
+        circleOnYou: {
           en: 'Circle on YOU',
           de: 'Kreis auf DIR',
           fr: 'Cercle sur vous',
           ja: 'サークルついた',
           cn: '圆圈点名',
           ko: '원형 징 대상자 지정됨',
-        };
+        },
       },
     },
     {
@@ -376,13 +372,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3EE[456]', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EE[456]', source: '이노센스', capture: false }),
       suppressSeconds: 15,
-      infoText: {
-        en: 'Avoid Swords then Ray',
-        de: 'Weiche den Schwertern aus, danach Strahl',
-        fr: 'Évitez l\'épée puis le rayon',
-        ja: '剣避けてからピザカット',
-        cn: '躲避剑与激光',
-        ko: '칼 먼저 피하고 장판 피하세요',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Swords then Ray',
+          de: 'Weiche den Schwertern aus, danach Strahl',
+          fr: 'Évitez l\'épée puis le rayon',
+          ja: '剣避けてからピザカット',
+          cn: '躲避剑与激光',
+          ko: '칼 먼저 피하고 장판 피하세요',
+        },
       },
     },
     {
@@ -418,13 +417,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3ED7', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3ED7', source: '이노센스', capture: false }),
       suppressSeconds: 1,
-      infoText: {
-        en: 'Rotate Left',
-        de: 'Links rum rotieren',
-        fr: 'Tournez à gauche',
-        ja: '時針回り',
-        cn: '向左旋转',
-        ko: '왼쪽으로 도세요',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Rotate Left',
+          de: 'Links rum rotieren',
+          fr: 'Tournez à gauche',
+          ja: '時針回り',
+          cn: '向左旋转',
+          ko: '왼쪽으로 도세요',
+        },
       },
     },
     {
@@ -436,13 +438,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3ED9', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3ED9', source: '이노센스', capture: false }),
       suppressSeconds: 1,
-      infoText: {
-        en: 'Rotate Right',
-        de: 'Rechts rum rotieren',
-        fr: 'Tournez à droite',
-        ja: '逆時針回り',
-        cn: '向右旋转',
-        ko: '오른쪽으로 도세요',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Rotate Right',
+          de: 'Rechts rum rotieren',
+          fr: 'Tournez à droite',
+          ja: '逆時針回り',
+          cn: '向右旋转',
+          ko: '오른쪽으로 도세요',
+        },
       },
     },
     {
@@ -454,13 +459,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3ED3', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3ED3', source: '이노센스', capture: false }),
       suppressSeconds: 1,
-      infoText: {
-        en: 'Rotate Left',
-        de: 'Links rum rotieren',
-        fr: 'Tournez à gauche',
-        ja: '時針回り',
-        cn: '向左旋转',
-        ko: '왼쪽으로 도세요',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Rotate Left',
+          de: 'Links rum rotieren',
+          fr: 'Tournez à gauche',
+          ja: '時針回り',
+          cn: '向左旋转',
+          ko: '왼쪽으로 도세요',
+        },
       },
     },
     {
@@ -472,13 +480,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3ED5', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3ED5', source: '이노센스', capture: false }),
       suppressSeconds: 1,
-      infoText: {
-        en: 'Rotate Right',
-        de: 'Rechts rum rotieren',
-        fr: 'Tournez à droite',
-        ja: '逆時針回り',
-        cn: '向右旋转',
-        ko: '오른쪽으로 도세요',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Rotate Right',
+          de: 'Rechts rum rotieren',
+          fr: 'Tournez à droite',
+          ja: '逆時針回り',
+          cn: '向右旋转',
+          ko: '오른쪽으로 도세요',
+        },
       },
     },
   ],

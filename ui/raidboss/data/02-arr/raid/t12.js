@@ -13,9 +13,7 @@
       netRegexCn: NetRegexes.ability({ id: 'B96', source: '不死鸟', capture: false }),
       netRegexKo: NetRegexes.ability({ id: 'B96', source: '피닉스', capture: false }),
       sound: 'Long',
-      run: function(data) {
-        data.phase = 3;
-      },
+      run: (data) => data.phase = 3,
     },
     {
       id: 'T12 Bennu',
@@ -27,16 +25,20 @@
       netRegexKo: NetRegexes.addedCombatant({ name: '벤누', capture: false }),
       delaySeconds: 55,
       durationSeconds: 4.5,
-      infoText: function(data) {
+      infoText: (data, _, output) => {
         if (data.phase >= 3)
           return;
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'Bennu Soon',
           de: 'Bennu Add bald',
           fr: 'Bénou bientôt',
           ja: 'まもなくベンヌ',
           cn: '小鸟即将出现',
-        };
+          ko: '곧 벤누 쫄',
+        },
       },
     },
     {
@@ -47,27 +49,31 @@
       netRegexJa: NetRegexes.startsUsing({ id: 'B87', source: 'フェニックス' }),
       netRegexCn: NetRegexes.startsUsing({ id: 'B87', source: '不死鸟' }),
       netRegexKo: NetRegexes.startsUsing({ id: 'B87', source: '피닉스' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Revelation on YOU',
-            de: 'Offenbarung auf DIR',
-            fr: 'Révélation sur VOUS',
-            ja: '自分にリヴァレーション',
-            cn: '天启点名',
-          };
-        }
+      alertText: (data, matches, output) => {
+        if (matches.target === data.me)
+          return output.revelationOnYou();
       },
-      infoText: function(data, matches) {
-        if (matches.target != data.me) {
-          return {
-            en: 'Away from ' + data.ShortName(matches.target),
-            de: 'Weg von ' + data.ShortName(matches.target),
-            fr: 'Éloignez-vous de ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'に離れ',
-            cn: '远离' + data.ShortName(matches.target),
-          };
-        }
+      infoText: (data, matches, output) => {
+        if (matches.target !== data.me)
+          return output.awayFromPlayer({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        awayFromPlayer: {
+          en: 'Away from ${player}',
+          de: 'Weg von ${player}',
+          fr: 'Éloignez-vous de ${player}',
+          ja: '${player}に離れ',
+          cn: '远离${player}',
+          ko: '"${player}"에게서 멀어지기',
+        },
+        revelationOnYou: {
+          en: 'Revelation on YOU',
+          de: 'Offenbarung auf DIR',
+          fr: 'Révélation sur VOUS',
+          ja: '自分にリヴァレーション',
+          cn: '天启点名',
+          ko: '계시 대상자',
+        },
       },
     },
     {
@@ -78,67 +84,79 @@
       netRegexJa: NetRegexes.startsUsing({ id: 'B8C', source: 'フェニックス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: 'B8C', source: '不死鸟', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: 'B8C', source: '피닉스', capture: false }),
-      infoText: {
-        en: 'Blackfire Spread',
-        de: 'Schwarzfeuer verteilen',
-        fr: 'Flamme noire, dispersez-vous',
-        ja: '漆黒の炎、散開',
-        cn: '黑火分散',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Blackfire Spread',
+          de: 'Schwarzfeuer verteilen',
+          fr: 'Flamme noire, dispersez-vous',
+          ja: '漆黒の炎、散開',
+          cn: '黑火分散',
+          ko: '칠흑의 불꽃 산개',
+        },
       },
     },
     {
       id: 'T12 Whitefire',
       netRegex: NetRegexes.headMarker({ id: '0020' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alertText: {
-        en: 'Whitefire on YOU',
-        de: 'Weißfeuer auf DIR',
-        fr: 'Flamme blanche sur VOUS',
-        ja: '自分に白熱の炎',
-        cn: '白火点名',
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Whitefire on YOU',
+          de: 'Weißfeuer auf DIR',
+          fr: 'Flamme blanche sur VOUS',
+          ja: '自分に白熱の炎',
+          cn: '白火点名',
+          ko: '백열의 불꽃 대상자',
+        },
       },
     },
     {
       id: 'T12 Bluefire',
       netRegex: NetRegexes.headMarker({ id: '0021' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alertText: {
-        en: 'Bluefire Away',
-        de: 'Blaufeuer wegbringen',
-        fr: 'Flamme bleue, éloignez-vous',
-        ja: '青碧の炎、離れ',
-        cn: '蓝火远离',
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bluefire Away',
+          de: 'Blaufeuer wegbringen',
+          fr: 'Flamme bleue, éloignez-vous',
+          ja: '青碧の炎、離れ',
+          cn: '蓝火远离',
+          ko: '청벽의 불꽃 대상자',
+        },
       },
     },
     {
       // Chain Of Purgatory
       id: 'T12 Chain',
       netRegex: NetRegexes.gainsEffect({ effectId: '24D' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Chain on YOU',
-            de: 'Kette auf DIR',
-            fr: 'Chaine sur VOUS',
-            ja: '自分に誘爆',
-            cn: '毒点名',
-          };
-        }
+      alertText: (data, matches, output) => {
+        if (matches.target === data.me)
+          return output.chainOnYou();
       },
-      infoText: function(data, matches) {
-        if (matches.target != data.me) {
-          return {
-            en: 'Chain on ' + data.ShortName(matches.target),
-            de: 'Kette auf ' + data.ShortName(matches.target),
-            fr: 'Chaine sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'に誘爆',
-            cn: '毒点名' + data.ShortName(matches.target),
-          };
-        }
+      infoText: (data, matches, output) => {
+        if (matches.target !== data.me)
+          return output.chainOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        chainOn: {
+          en: 'Chain on ${player}',
+          de: 'Kette auf ${player}',
+          fr: 'Chaine sur ${player}',
+          ja: '${player}に誘爆',
+          cn: '毒点名${player}',
+          ko: '"${player}" 사슬 대상',
+        },
+        chainOnYou: {
+          en: 'Chain on YOU',
+          de: 'Kette auf DIR',
+          fr: 'Chaine sur VOUS',
+          ja: '自分に誘爆',
+          cn: '毒点名',
+          ko: '사슬 대상자',
+        },
       },
     },
   ],
@@ -245,7 +263,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Bennu': '벤누',
         'Phoenix(?!-)': '피닉스',
@@ -253,13 +270,14 @@
       },
       'replaceText': {
         '(?<! )Rebirth': '소생',
-        'Bennu Add': '벤누 Add',
+        'Bennu Add': '벤누 쫄',
         'Blackfire': '칠흑의 불꽃',
         'Bluefire': '청벽의 불꽃',
         'Brand Of Purgatory': '연옥의 불꽃',
         'Flames Of Rebirth': '윤회의 불꽃',
         'Flames Of Unforgiveness': '연옥의 폭염',
         'Fountain Of Fire': '영검의 불꽃',
+        'Fountain Tick': '영겁 틱',
         'Redfire Plume': '작열 불기둥',
         'Redfire(?! )': '홍련의 불꽃',
         'Revelation': '계시',

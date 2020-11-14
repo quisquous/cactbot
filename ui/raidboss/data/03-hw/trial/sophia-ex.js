@@ -15,36 +15,42 @@ let findSafeDir = (data) => {
   return safeDir;
 };
 
-let callSafeDir = (callIndex) => {
+const callSafeDir = (callIndex, output) => {
   return {
-    '2': {
-      en: 'Go East (Hard Tilt)',
-      de: 'Nach Osten gehen (starke Neigung)',
-      ja: '東へ (大きい斜め)',
-      cn: '去东边（大倾斜）',
-    },
-    '1': {
-      en: 'Go East (Soft Tilt)',
-      de: 'Nach Osten gehen (leichte Neigung)',
-      ja: '東へ (小さい斜め)',
-      cn: '去东边（小倾斜）',
-    },
-    '-2': {
-      en: 'Go West (Hard Tilt)',
-      de: 'Nach Westen gehen (starke Neigung)',
-      ja: '西へ (大きい斜め)',
-      cn: '去西边（大倾斜）',
-    },
-    '-1': {
-      en: 'Go West (Soft Tilt)',
-      de: 'Nach Westen gehen (leichte Neigung)',
-      ja: '西へ (小さい斜め)',
-      cn: '去西边（小倾斜）',
-    },
+    '2': output.goEastHardTilt(),
+    '1': output.goEastSoftTilt(),
+    '-2': output.goWestHardTilt(),
+    '-1': output.goWestSoftTilt(),
     // Stringified because Javascript doesn't do negative-integer key values.
   }[callIndex.toString()];
 };
 
+const tiltOutputStrings = {
+  goEastHardTilt: {
+    en: 'Go East (Hard Tilt)',
+    de: 'Nach Osten gehen (starke Neigung)',
+    ja: '東へ (大きい斜め)',
+    cn: '去东边（大倾斜）',
+  },
+  goEastSoftTilt: {
+    en: 'Go East (Soft Tilt)',
+    de: 'Nach Osten gehen (leichte Neigung)',
+    ja: '東へ (小さい斜め)',
+    cn: '去东边（小倾斜）',
+  },
+  goWestHardTilt: {
+    en: 'Go West (Hard Tilt)',
+    de: 'Nach Westen gehen (starke Neigung)',
+    ja: '西へ (大きい斜め)',
+    cn: '去西边（大倾斜）',
+  },
+  goWestSoftTilt: {
+    en: 'Go West (Soft Tilt)',
+    de: 'Nach Westen gehen (leichte Neigung)',
+    ja: '西へ (小さい斜め)',
+    cn: '去西边（小倾斜）',
+  },
+};
 
 [{
   zoneId: ZoneId.ContainmentBayP1T6Extreme,
@@ -63,12 +69,15 @@ let callSafeDir = (callIndex) => {
       id: 'SophiaEX Onrush',
       regex: /Onrush/,
       beforeSeconds: 5,
-      infoText: {
-        en: 'Avoid Dash Attack',
-        de: 'Ansturm-Angriff ausweichen',
-        fr: 'Évitez l\'attaque Charge',
-        ja: '突進に避け',
-        cn: '躲避击飞',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Dash Attack',
+          de: 'Ansturm-Angriff ausweichen',
+          fr: 'Évitez l\'attaque Charge',
+          ja: '突進に避け',
+          cn: '躲避击飞',
+        },
       },
     },
     {
@@ -82,26 +91,32 @@ let callSafeDir = (callIndex) => {
       id: 'SophiaEX Dischordant Cleansing',
       regex: /Dischordant Cleansing/,
       beforeSeconds: 6,
-      alertText: {
-        en: 'Stack With Partner',
-        de: 'Mit Partner stacken',
-        fr: 'Packez-vous avec votre partenaire',
-        ja: '白黒合わせて',
-        cn: '黑白配',
-        ko: '흑백 파트너랑 모이기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack With Partner',
+          de: 'Mit Partner stacken',
+          fr: 'Packez-vous avec votre partenaire',
+          ja: '白黒合わせて',
+          cn: '黑白配',
+          ko: '흑백 파트너랑 모이기',
+        },
       },
     },
     {
       id: 'SophiaEX Quasar Bait',
       regex: /Quasar \(Snapshot\)/,
       beforeSeconds: 6,
-      infoText: {
-        en: 'Bait Quasar Meteors',
-        de: 'Quasar Meteore ködern',
-        fr: 'Attirez les météores du Quasar',
-        ja: 'メテオを誘導',
-        cn: '诱导陨石',
-        ko: '운석 유도하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Quasar Meteors',
+          de: 'Quasar Meteore ködern',
+          fr: 'Attirez les météores du Quasar',
+          ja: 'メテオを誘導',
+          cn: '诱导陨石',
+          ko: '운석 유도하기',
+        },
       },
     },
   ],
@@ -115,7 +130,7 @@ let callSafeDir = (callIndex) => {
       netRegexCn: NetRegexes.startsUsing({ id: '19C4', source: '索菲娅' }),
       netRegexKo: NetRegexes.startsUsing({ id: '19C4', source: '소피아' }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBusterSwap(),
     },
@@ -169,13 +184,16 @@ let callSafeDir = (callIndex) => {
       netRegexJa: NetRegexes.startsUsing({ id: '19B8', source: '三の従者', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '19B8', source: '信徒其三', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '19B8', source: '제3신도', capture: false }),
-      infoText: {
-        en: 'Get behind lancer',
-        de: 'Geh hinter dem 3. Demiurg',
-        fr: 'Passez derrière le lancier',
-        ja: '三の従者の後ろに',
-        cn: '躲在3号小怪后',
-        ko: '제3신도 뒤로 가기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get behind lancer',
+          de: 'Geh hinter dem 3. Demiurg',
+          fr: 'Passez derrière le lancier',
+          ja: '三の従者の後ろに',
+          cn: '躲在3号小怪后',
+          ko: '제3신도 뒤로 가기',
+        },
       },
     },
     {
@@ -186,25 +204,29 @@ let callSafeDir = (callIndex) => {
       netRegexJa: NetRegexes.startsUsing({ id: '1988', source: '一の従者' }),
       netRegexCn: NetRegexes.startsUsing({ id: '1988', source: '信徒其一' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1988', source: '제1신도' }),
-      infoText: function(data, matches) {
-        if (Conditions.targetIsYou()) {
-          return {
-            en: 'Infusion on YOU',
-            de: 'Schneisenschläger auf DIR',
-            fr: 'Infusion sur VOUS',
-            ja: '自分に猛突進',
-            cn: '冲锋点名',
-            ko: '맹돌진 대상자',
-          };
-        }
-        return {
-          en: 'Infusion on ' + data.ShortName(matches.target),
-          de: 'Schneisenschläger auf ' + data.ShortName(matches.target),
-          fr: 'Infusion sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'に猛突進',
-          cn: '冲锋点' + data.ShortName(matches.target),
-          ko: '' + data.ShortName(matches.target) + ' 에게 맹돌진',
-        };
+      infoText: function(data, matches, output) {
+        if (Conditions.targetIsYou())
+          return output.infusionOnYou();
+
+        return output.infusionOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        infusionOnYou: {
+          en: 'Infusion on YOU',
+          de: 'Schneisenschläger auf DIR',
+          fr: 'Infusion sur VOUS',
+          ja: '自分に猛突進',
+          cn: '冲锋点名',
+          ko: '맹돌진 대상자',
+        },
+        infusionOn: {
+          en: 'Infusion on ${player}',
+          de: 'Schneisenschläger auf ${player}',
+          fr: 'Infusion sur ${player}',
+          ja: '${player}に猛突進',
+          cn: '冲锋点${player}',
+          ko: '${player} 에게 맹돌진',
+        },
       },
     },
     {
@@ -249,7 +271,7 @@ let callSafeDir = (callIndex) => {
         // Note that Y-values are inverted! (In-game, 0,1 is one unit South from the origin)
         let positionString = y > 0 ? 'S' : 'N';
         // The center two clones aren't exactly on the centerline, so we round the X coordinates.
-        if (Math.round(x) != 0)
+        if (Math.round(x) !== 0)
           positionString += Math.round(x) < 0 ? 'W' : 'E';
         // Yes, we have to specifically uppercase this for 03 log lines.
         // No, we don't know why. Blame Square/Ravahn/Hydaelyn.
@@ -318,13 +340,16 @@ let callSafeDir = (callIndex) => {
       condition: function(data) {
         return data.clonesActive;
       },
-      infoText: {
-        en: 'Avoid head laser',
-        de: 'Kopflaser ausweichen',
-        fr: 'Évitez la tête laser',
-        ja: 'レザーに避け',
-        cn: '躲避人头炮',
-        ko: '머리 레이저 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid head laser',
+          de: 'Kopflaser ausweichen',
+          fr: 'Évitez la tête laser',
+          ja: 'レザーに避け',
+          cn: '躲避人头炮',
+          ko: '머리 레이저 피하기',
+        },
       },
     },
     {
@@ -338,20 +363,79 @@ let callSafeDir = (callIndex) => {
       durationSeconds: function(data, matches) {
         return parseFloat(matches.castTime);
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         const localeCompass = {
-          'N': { en: 'North', fr: 'Nord', de: 'Norde', ja: '北', cn: '北', ko: '북쪽' },
-          'S': { en: 'South', fr: 'Sud', de: 'Süden', ja: '南', cn: '南面', ko: '남쪽' },
-          'NW': { en: 'NW', fr: 'N-O', de: 'NW', ja: '北西', cn: '西北', ko: '북서' },
-          'NE': { en: 'NE', fr: 'N-E', de: 'NO', ja: '北東', cn: '东北', ko: '북동' },
-          'SW': { en: 'SW', fr: 'S-O', de: 'SW', ja: '南西', cn: '西南', ko: '남서' },
-          'SE': { en: 'SE', fr: 'S-E', de: 'SO', ja: '南東', cn: '东南', ko: '남동' },
+          'N': output.north(),
+          'S': output.south(),
+          'NW': output.northwest(),
+          'NE': output.northeast(),
+          'SW': output.southwest(),
+          'SE': output.southeast(),
         };
         if (data.thunderClones.length === 1)
           return localeCompass[data.thunderClones[0]];
-        const composite = localeCompass[data.thunderClones[0]][data.displayLang] + '/' +
-            localeCompass[data.thunderClones[1]][data.displayLang];
-        return composite;
+        return output.multiple({
+          dir1: localeCompass[data.thunderClones[0]],
+          dir2: localeCompass[data.thunderClones[1]],
+        });
+      },
+      outputStrings: {
+        north: {
+          en: 'North',
+          fr: 'Nord',
+          de: 'Norde',
+          ja: '北',
+          cn: '北',
+          ko: '북쪽',
+        },
+        south: {
+          en: 'South',
+          fr: 'Sud',
+          de: 'Süden',
+          ja: '南',
+          cn: '南面',
+          ko: '남쪽',
+        },
+        northwest: {
+          en: 'NW',
+          fr: 'N-O',
+          de: 'NW',
+          ja: '北西',
+          cn: '西北',
+          ko: '북서',
+        },
+        northeast: {
+          en: 'NE',
+          fr: 'N-E',
+          de: 'NO',
+          ja: '北東',
+          cn: '东北',
+          ko: '북동',
+        },
+        southwest: {
+          en: 'SW',
+          fr: 'S-O',
+          de: 'SW',
+          ja: '南西',
+          cn: '西南',
+          ko: '남서',
+        },
+        southeast: {
+          en: 'SE',
+          fr: 'S-E',
+          de: 'SO',
+          ja: '南東',
+          cn: '东南',
+          ko: '남동',
+        },
+        multiple: {
+          en: '${dir1} / ${dir2}',
+          de: '${dir1} / ${dir2}',
+          fr: '${dir1} / ${dir2}',
+          ja: '${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2}',
+          ko: '${dir1} / ${dir2}',
+        },
       },
     },
     {
@@ -453,7 +537,7 @@ let callSafeDir = (callIndex) => {
       delaySeconds: .5,
       durationSeconds: 12, // Ensuring that forgetful people aren't forgotten.
       suppressSeconds: 5,
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         // If we somehow skipped the first set of Quasars, we won't know the locations of
         // the scale entities. Activate the sadTethers flag and wait for the actual casts.
         if (!data.scaleSophias) {
@@ -461,14 +545,15 @@ let callSafeDir = (callIndex) => {
           return;
         }
         let safeDir = findSafeDir(data);
-        if (safeDir == 0) {
+        if (safeDir === 0) {
           // If it's the 1/1, 2/2, or 3/3 case, we sadly don't have enough information.
           // We have to quit here and wait for the actual cast.
           data.sadTethers = true;
           return;
         }
-        return callSafeDir(safeDir);
+        return callSafeDir(safeDir, output);
       },
+      outputStrings: tiltOutputStrings,
     },
     {
       // This specifically calls the case where it's 1/1;2/2;3/3 tethers,
@@ -489,15 +574,16 @@ let callSafeDir = (callIndex) => {
       },
       durationSeconds: 10,
       suppressSeconds: 5,
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         let safeDir = findSafeDir(data);
         // If this is the first set of Meteor Quasars, there is no tilt.
-        if (data.quasarTethers.length == 4 && safeDir != 0)
+        if (data.quasarTethers.length === 4 && safeDir !== 0)
           return;
-        if (safeDir == 0)
+        if (safeDir === 0)
           safeDir = data.scaleSophias.indexOf(matches.sourceId) < 4 ? '2' : '-2';
-        return callSafeDir(safeDir);
+        return callSafeDir(safeDir, output);
       },
+      outputStrings: tiltOutputStrings,
     },
     {
       id: 'SophiaEX Quasar Cleanup',

@@ -52,7 +52,7 @@ export default class FisherUI {
     let oldPlace = this.placeEl.innerHTML;
 
     if (!place) {
-      if (oldPlace && oldPlace[0] != '(')
+      if (oldPlace && oldPlace[0] !== '(')
         this.placeEl.innerHTML = '(' + oldPlace + ')';
       else
         this.placeEl.innerHTML = '------------';
@@ -76,7 +76,7 @@ export default class FisherUI {
       bar.centertext = row.getAttribute('data-fish');
 
       // Step one: fill until the minimum time
-      if ((min && min != 'undefined') && (max && max != 'undefined')) {
+      if ((min && min !== 'undefined') && (max && max !== 'undefined')) {
         row.opacity = 0.8;
         bar.duration = min / 1000;
         bar.style = 'fill';

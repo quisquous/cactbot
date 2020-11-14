@@ -18,24 +18,17 @@
     {
       id: 'O6N Meteors',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
-      infoText: {
-        en: 'Drop AOEs Away',
-        de: 'AoEs weglocken',
-        fr: 'Posez les AoE au loin',
-        ja: '離れてAoEを置く',
-        cn: '远离放置AOE',
-        ko: '장판 멀리빼기',
-      },
-      tts: {
-        en: 'aoes',
-        de: 'Flächen',
-        fr: 'aoe',
-        ja: 'AoE',
-        cn: 'AOE',
-        ko: '장판',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop AOEs Away',
+          de: 'AoEs weglocken',
+          fr: 'Posez les AoE au loin',
+          ja: '離れてAoEを置く',
+          cn: '远离放置AOE',
+          ko: '장판 멀리빼기',
+        },
       },
     },
   ],

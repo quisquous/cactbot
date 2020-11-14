@@ -52,31 +52,33 @@
     {
       id: 'O5N Diabolic Light',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
-      infoText: {
-        en: 'Light',
-        de: 'Licht',
-        fr: 'Lumière',
-        ja: '魔界の光',
-        cn: '光点名',
-        ko: '빛장판',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Light',
+          de: 'Licht',
+          fr: 'Lumière',
+          ja: '魔界の光',
+          cn: '光点名',
+          ko: '빛장판',
+        },
       },
     },
     {
       id: 'O5N Diabolic Wind',
       netRegex: NetRegexes.headMarker({ id: '0046' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
-      infoText: {
-        en: 'Wind',
-        de: 'Wind',
-        fr: 'Vent',
-        ja: '魔界の風',
-        cn: '圆圈点名',
-        ko: '초록징',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Wind',
+          de: 'Wind',
+          fr: 'Vent',
+          ja: '魔界の風',
+          cn: '圆圈点名',
+          ko: '초록징',
+        },
       },
     },
   ],

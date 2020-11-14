@@ -14,7 +14,7 @@ export default class SeaBase {
 
   findKey(obj, val) {
     return Object.keys(obj).find((x) =>
-      obj[x] == val ||
+      obj[x] === val ||
       Array.isArray(obj[x]) && obj[x].includes(val));
   }
 
@@ -90,7 +90,7 @@ export default class SeaBase {
     // find q1 (median of first half)
     let q1Index = Math.floor(q2Index / 2);
 
-    if (q2Index % 2 || q2Index == 0)
+    if (q2Index % 2 || q2Index === 0)
       q1 = times[q1Index];
     else
       q1 = (times[q1Index] + times[q1Index - 1]) / 2;
@@ -99,7 +99,7 @@ export default class SeaBase {
     // find q2 (median of second half)
     let q3Index = q1Index + q2Index;
 
-    if (q3Index % 2 || q2Index == 0)
+    if (q3Index % 2 || q2Index === 0)
       q3 = times[q3Index];
     else
       q3 = (times[q3Index] + times[q3Index - 1]) / 2;

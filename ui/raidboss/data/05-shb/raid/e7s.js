@@ -12,9 +12,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C8A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C8A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C8A', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -26,7 +24,7 @@
       netRegexCn: NetRegexes.tether({ source: '暗黑心象', id: '0025' }),
       netRegexKo: NetRegexes.tether({ source: '어둠의 우상', id: '0025' }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
     },
@@ -51,106 +49,124 @@
       netRegexCn: NetRegexes.tether({ source: '暗黑心象', id: '0011' }),
       netRegexKo: NetRegexes.tether({ source: '어둠의 우상', id: '0011' }),
       condition: function(data) {
-        return data.phase == 'betwixtWorlds';
+        return data.phase === 'betwixtWorlds';
       },
       preRun: function(data, matches) {
         data.betwixtWorldsTethers = data.betwixtWorldsTethers || [];
         data.betwixtWorldsTethers.push(matches.target);
       },
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Tether on YOU',
-            de: 'Verbindung auf DIR',
-            fr: 'Lien sur VOUS',
-            cn: '连线点名',
-            ko: '선 대상자',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Tether on YOU',
+          de: 'Verbindung auf DIR',
+          fr: 'Lien sur VOUS',
+          cn: '连线点名',
+          ko: '선 대상자',
+        },
       },
     },
     {
       id: 'E7S Betwixt Worlds Stack',
       netRegex: NetRegexes.headMarker({ id: '0064' }),
       condition: function(data) {
-        return data.phase == 'betwixtWorlds';
+        return data.phase === 'betwixtWorlds';
       },
       preRun: function(data, matches) {
         data.betwixtWorldsStack = data.betwixtWorldsStack || [];
         data.betwixtWorldsStack.push(matches.target);
       },
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         data.betwixtWorldsTethers = data.betwixtWorldsTethers || [];
         if (data.betwixtWorldsTethers.includes(data.me))
           return;
-        if (data.me == matches.target) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Sammeln auf DIR',
-            fr: 'Package sur VOUS',
-            ja: '自分にシェア',
-            cn: '分摊点名',
-            ko: '쉐어징 대상자',
-          };
-        }
-        if (data.betwixtWorldsStack.length == 1)
+        if (data.me === matches.target)
+          return output.stackOnYou();
+
+        if (data.betwixtWorldsStack.length === 1)
           return;
         let names = data.betwixtWorldsStack.map((x) => data.ShortName(x)).sort();
-        return {
-          en: 'Stack (' + names.join(', ') + ')',
-          de: 'Sammeln (' + names.join(', ') + ')',
-          fr: 'Package (' + names.join(', ') + ')',
-          cn: '分摊 (' + names.join(', ') + ')',
-          ko: '모이기 (' + names.join(', ') + ')',
-        };
+        return output.stackOn({ players: names.join(', ') });
+      },
+      outputStrings: {
+        stackOnYou: {
+          en: 'Stack on YOU',
+          de: 'Sammeln auf DIR',
+          fr: 'Package sur VOUS',
+          ja: '自分にシェア',
+          cn: '分摊点名',
+          ko: '쉐어징 대상자',
+        },
+        stackOn: {
+          en: 'Stack (${players})',
+          de: 'Sammeln (${players})',
+          fr: 'Package (${players})',
+          cn: '分摊 (${players})',
+          ko: '모이기 (${players})',
+        },
       },
     },
     {
       id: 'E7S Left With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C2' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Teleporting Left',
-        de: 'Teleportation Links',
-        fr: 'Téléportation à gauche',
-        cn: '向左传送',
-        ko: '왼쪽으로 순간이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Teleporting Left',
+          de: 'Teleportation Links',
+          fr: 'Téléportation à gauche',
+          cn: '向左传送',
+          ko: '왼쪽으로 순간이동',
+        },
       },
     },
     {
       id: 'E7S Right With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C3' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Teleporting Right',
-        de: 'Teleportation Rechts',
-        fr: 'Téléportation à droite',
-        cn: '向右传送',
-        ko: '오른쪽으로 순간이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Teleporting Right',
+          de: 'Teleportation Rechts',
+          fr: 'Téléportation à droite',
+          cn: '向右传送',
+          ko: '오른쪽으로 순간이동',
+        },
       },
     },
     {
       id: 'E7S Forward With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C0' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Teleporting Forward',
-        de: 'Teleportation Vorwärts',
-        fr: 'Téléportation devant',
-        cn: '向前传送',
-        ko: '앞으로 순간이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Teleporting Forward',
+          de: 'Teleportation Vorwärts',
+          fr: 'Téléportation devant',
+          cn: '向前传送',
+          ko: '앞으로 순간이동',
+        },
       },
     },
     {
       id: 'E7S Back With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C1' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Teleporting Back',
-        de: 'Teleportation Rückwärts',
-        fr: 'Téléportation derrière',
-        cn: '向后传送',
-        ko: '뒤로 순간이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Teleporting Back',
+          de: 'Teleportation Rückwärts',
+          fr: 'Téléportation derrière',
+          cn: '向后传送',
+          ko: '뒤로 순간이동',
+        },
       },
     },
     {
@@ -169,57 +185,63 @@
       id: 'E7S Silver Shot',
       netRegex: NetRegexes.headMarker({ id: '0065' }),
       condition: function(data) {
-        return data.phase == 'falseMidnight';
+        return data.phase === 'falseMidnight';
       },
       preRun: function(data, matches) {
         data.falseMidnightSpread = data.falseMidnightSpread || [];
         data.falseMidnightSpread.push(matches.target);
       },
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Spread',
-            de: 'Verteilen',
-            fr: 'Dispersez-vous',
-            ja: '散開',
-            cn: '分散',
-            ko: '산개',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Spread',
+          de: 'Verteilen',
+          fr: 'Dispersez-vous',
+          ja: '散開',
+          cn: '分散',
+          ko: '산개',
+        },
       },
     },
     {
       id: 'E7S Silver Sledge',
       netRegex: NetRegexes.headMarker({ id: '0064' }),
       condition: function(data) {
-        return data.phase == 'falseMidnight';
+        return data.phase === 'falseMidnight';
       },
       // The stack marker is in the middle of spreads,
       // so delay a tiny bit to call out stack so that
       // it is not called out on spreads.
       delaySeconds: 0.5,
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         data.falseMidnightSpread = data.falseMidnightSpread || [];
         if (data.falseMidnightSpread.includes(data.me))
           return;
-        if (data.me == matches.target) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Sammeln auf DIR',
-            fr: 'Package sur VOUS',
-            ja: '自分にシェア',
-            cn: '分摊点名',
-            ko: '쉐어징 대상자',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Packez-vous sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にスタック',
-          cn: '靠近 ' + data.ShortName(matches.target) + '集合',
-          ko: '"' + data.ShortName(matches.target) + '" 쉐어징',
-        };
+        if (data.me === matches.target)
+          return output.stackOnYou();
+
+        return output.stackOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        stackOnYou: {
+          en: 'Stack on YOU',
+          de: 'Sammeln auf DIR',
+          fr: 'Package sur VOUS',
+          ja: '自分にシェア',
+          cn: '分摊点名',
+          ko: '쉐어징 대상자',
+        },
+        stackOn: {
+          en: 'Stack on ${player}',
+          de: 'Auf ${player} sammeln',
+          fr: 'Packez-vous sur ${player}',
+          ja: '${player}にスタック',
+          cn: '靠近 ${player}集合',
+          ko: '"${player}" 쉐어징',
+        },
       },
     },
     {
@@ -251,33 +273,37 @@
       id: 'E7S Insatiable Light Stack',
       netRegex: NetRegexes.headMarker({ id: '0064' }),
       condition: function(data) {
-        return data.phase == 'adds';
+        return data.phase === 'adds';
       },
       preRun: function(data, matches) {
         data.insatiableLightStack = data.insatiableLightStack || [];
         data.insatiableLightStack.push(matches.target);
       },
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Sammeln auf DIR',
-            fr: 'Package sur VOUS',
-            ja: '自分にシェア',
-            cn: '分摊点名',
-            ko: '쉐어징 대상자',
-          };
-        }
-        if (data.insatiableLightStack.length == 1)
+      alertText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return output.stackOnYou();
+
+        if (data.insatiableLightStack.length === 1)
           return;
         let names = data.insatiableLightStack.map((x) => data.ShortName(x)).sort();
-        return {
-          en: 'Stack (' + names.join(', ') + ')',
-          de: 'Sammeln (' + names.join(', ') + ')',
-          fr: 'Packez-vous (' + names.join(', ') + ')',
-          cn: '分摊 (' + names.join(', ') + ')',
-          ko: '모이기 (' + names.join(', ') + ')',
-        };
+        return output.stackPlayers({ players: names.join(', ') });
+      },
+      outputStrings: {
+        stackOnYou: {
+          en: 'Stack on YOU',
+          de: 'Sammeln auf DIR',
+          fr: 'Package sur VOUS',
+          ja: '自分にシェア',
+          cn: '分摊点名',
+          ko: '쉐어징 대상자',
+        },
+        stackPlayers: {
+          en: 'Stack (${players})',
+          de: 'Sammeln (${players})',
+          fr: 'Packez-vous (${players})',
+          cn: '分摊 (${players})',
+          ko: '모이기 (${players})',
+        },
       },
     },
     {
@@ -301,12 +327,15 @@
       netRegexCn: NetRegexes.startsUsing({ source: '盲崇', id: '4C70', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '숭배', id: '4C70', capture: false }),
       suppressSeconds: 1,
-      infoText: {
-        en: 'Get under vertical add',
-        de: 'Unter das vertikale Add gehen',
-        fr: 'Allez sous l\'add vertical',
-        ko: '세로로 도는 쫄 아래로',
-        cn: '去竖转小怪脚下',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get under vertical add',
+          de: 'Unter das vertikale Add gehen',
+          fr: 'Allez sous l\'add vertical',
+          ko: '세로로 도는 쫄 아래로',
+          cn: '去竖转小怪脚下',
+        },
       },
     },
     {
@@ -318,7 +347,7 @@
       netRegexCn: NetRegexes.ability({ source: '亵渎', id: '4C74', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '신성 모독', id: '4C74', capture: false }),
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
+        return data.role === 'healer' || data.role === 'tank' || data.CanAddle();
       },
       durationSeconds: 7,
       suppressSeconds: 15,
@@ -333,7 +362,7 @@
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '(?:4C8[BC]|4E5[56])', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '(?:4C8[BC]|4E5[56])', capture: false }),
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
+        return data.role === 'healer' || data.role === 'tank' || data.CanAddle();
       },
       suppressSeconds: 1,
       response: Responses.aoe(),
@@ -390,7 +419,7 @@
       netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '4C5[CD]' }),
       run: function(data, matches) {
         data.boundless = data.boundless || {};
-        let oppositeColor = matches.id == '4C5C' ? 'dark' : 'light';
+        let oppositeColor = matches.id === '4C5C' ? 'dark' : 'light';
         data.boundless[oppositeColor] = matches.target;
       },
     },
@@ -403,15 +432,15 @@
       netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '4C5[CD]' }),
       netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '4C5[CD]' }),
       condition: function(data, matches) {
-        if (Object.keys(data.boundless).length != 2)
+        if (Object.keys(data.boundless).length !== 2)
           return false;
-        let oppositeColor = matches.id == '4C5C' ? 'dark' : 'light';
-        return data.color == oppositeColor;
+        let oppositeColor = matches.id === '4C5C' ? 'dark' : 'light';
+        return data.color === oppositeColor;
       },
       response: function(data, matches) {
         // If somebody is taking both, definitely don't stack with them!
-        if (data.boundless.light == data.boundless.dark) {
-          if (matches.target == data.me)
+        if (data.boundless.light === data.boundless.dark) {
+          if (matches.target === data.me)
             return;
           return {
             infoText: {
@@ -447,19 +476,22 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '(?:4C2C|4C65)', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '(?:4C2C|4C65)', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '(?:4C2C|4C65)', capture: false }),
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         data.colorMap = data.colorMap || [];
         let colorTrans = data.colorMap[data.color] || {};
         let color = colorTrans[data.displayLang];
         if (!color)
           return;
-        return {
-          en: 'Get hit by ' + color,
-          de: 'Lass dich treffen von ' + color,
-          fr: 'Encaissez le ' + color,
-          cn: '撞' + color,
-          ko: color + ' 맞기',
-        };
+        return output.text({ color: color });
+      },
+      outputStrings: {
+        text: {
+          en: 'Get hit by ${color}',
+          de: 'Lass dich treffen von ${color}',
+          fr: 'Encaissez le ${color}',
+          cn: '撞${color}',
+          ko: '${color} 맞기',
+        },
       },
     },
     {
@@ -471,12 +503,15 @@
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C9A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C9A', capture: false }),
       suppressSeconds: 1,
-      alertText: {
-        en: 'Bait Puddles',
-        de: 'Flächen ködern',
-        fr: 'Placez les zones au sol',
-        cn: '放圈',
-        ko: '장판 버리기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Puddles',
+          de: 'Flächen ködern',
+          fr: 'Placez les zones au sol',
+          cn: '放圈',
+          ko: '장판 버리기',
+        },
       },
     },
     {
@@ -488,12 +523,15 @@
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C76', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C76', capture: false }),
       // Can't use knockback prevention for this, so say where to get knocked back.
-      alertText: {
-        en: 'Get Knocked Into Corner',
-        de: 'Lass dich in die Ecke zurückstoßen',
-        fr: 'Faites-vous pousser dans les coins',
-        cn: '击退到角落',
-        ko: '구석으로 넉백',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Knocked Into Corner',
+          de: 'Lass dich in die Ecke zurückstoßen',
+          fr: 'Faites-vous pousser dans les coins',
+          cn: '击退到角落',
+          ko: '구석으로 넉백',
+        },
       },
     },
     {
@@ -506,32 +544,37 @@
       netRegexKo: NetRegexes.ability({ source: '어둠의 우상', id: '4C7A', capture: false }),
       // Color buffs go out immediately after the cast
       delaySeconds: 0.1,
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Go South',
-            de: 'Geh nach Süden',
-            fr: 'Allez au Sud',
-            cn: '前往南侧',
-            ko: '남쪽',
-          };
-        }
-        if (data.color == 'light') {
-          return {
-            en: 'Go Northwest',
-            de: 'Geh nach Nordwesten',
-            fr: 'Allez au Nord-Ouest',
-            cn: '前往西北',
-            ko: '북서쪽',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.role === 'tank')
+          return output.goSouth();
+
+        if (data.color === 'light')
+          return output.goNorthwest();
+
+        return output.goNortheast();
+      },
+      outputStrings: {
+        goSouth: {
+          en: 'Go South',
+          de: 'Geh nach Süden',
+          fr: 'Allez au Sud',
+          cn: '前往南侧',
+          ko: '남쪽',
+        },
+        goNorthwest: {
+          en: 'Go Northwest',
+          de: 'Geh nach Nordwesten',
+          fr: 'Allez au Nord-Ouest',
+          cn: '前往西北',
+          ko: '북서쪽',
+        },
+        goNortheast: {
           en: 'Go Northeast',
           de: 'Geh nach Nordosten',
           fr: 'Allez au Nord-Est',
           cn: '前往东北',
           ko: '북동쪽',
-        };
+        },
       },
     },
     {
@@ -542,19 +585,22 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C7E', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C7E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C7E', capture: false }),
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         data.colorMap = data.colorMap || [];
         let colorTrans = data.colorMap[data.color] || {};
         let color = colorTrans[data.displayLang];
         if (!color)
           return;
-        return {
-          en: 'Stand in ' + color,
-          de: 'Stehe in ' + color,
-          fr: 'Restez sur ' + color,
-          cn: '站进' + color,
-          ko: color + '에 서기',
-        };
+        return output.text({ color: color });
+      },
+      outputStrings: {
+        text: {
+          en: 'Stand in ${color}',
+          de: 'Stehe in ${color}',
+          fr: 'Restez sur ${color}',
+          cn: '站进${color}',
+          ko: '${color}에 서기',
+        },
       },
     },
   ],

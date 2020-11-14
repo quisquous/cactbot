@@ -10,7 +10,7 @@
       regex: /Bastardbluss/,
       beforeSeconds: 4,
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank';
+        return data.role === 'healer' || data.role === 'tank';
       },
       response: Responses.tankBuster(),
     },
@@ -19,7 +19,7 @@
       regex: /Hood Swing/,
       beforeSeconds: 4,
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank';
+        return data.role === 'healer' || data.role === 'tank';
       },
       response: Responses.tankBuster(),
     },
@@ -57,7 +57,7 @@
       netRegexKo: NetRegexes.ability({ id: '10ED', source: '하르마키스' }),
       condition: function(data) {
         // Tanks technically shouldn't assist with this mechanic
-        return data.role != 'tank';
+        return data.role !== 'tank';
       },
       response: Responses.stackMarkerOn(),
     },
@@ -79,9 +79,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1109', source: 'アシエン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1109', source: '至尊无影', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1109', source: '아씨엔 프라임', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -92,9 +90,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '110A', source: 'アシエン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '110A', source: '至尊无影', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '110A', source: '아씨엔 프라임', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -108,13 +104,16 @@
       // The cast is ~10s, but it takes about 2s for correct execution to register
       // 6s to execute is *usually* enough time
       delaySeconds: (data, matches) => parseFloat(matches.castTime) - 6,
-      alertText: {
-        en: 'Stand in dark portal',
-        de: 'Im dunklen Portal stehen',
-        fr: 'Tenez-vous dans un portail noir',
-        ja: '黒い玉に入る',
-        cn: '进入黑洞',
-        ko: '검은 포탈에 들어가기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand in dark portal',
+          de: 'Im dunklen Portal stehen',
+          fr: 'Tenez-vous dans un portail noir',
+          ja: '黒い玉に入る',
+          cn: '进入黑洞',
+          ko: '검은 포탈에 들어가기',
+        },
       },
     },
     {
@@ -126,13 +125,16 @@
       netRegexCn: NetRegexes.addedCombatant({ name: '混沌晶球', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '혼돈의 구체', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'Avoid your orb--pop others\'',
-        de: 'Weiche deinem Orb aus - löse die Orbs der anderen aus',
-        fr: 'Évitez votre orbe, éclatez les autres',
-        ja: '自分の玉に避け、他人の玉を砕ける',
-        cn: '躲开自己的球，去撞别人的球',
-        ko: '내 구체는 피하고, 다른 구체 터트리기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid your orb--pop others\'',
+          de: 'Weiche deinem Orb aus - löse die Orbs der anderen aus',
+          fr: 'Évitez votre orbe, éclatez les autres',
+          ja: '自分の玉に避け、他人の玉を砕ける',
+          cn: '躲开自己的球，去撞别人的球',
+          ko: '내 구체는 피하고, 다른 구체 터트리기',
+        },
       },
     },
   ],

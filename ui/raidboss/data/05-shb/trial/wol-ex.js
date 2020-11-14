@@ -1,71 +1,73 @@
 'use strict';
 
-const kImbuedFire = {
-  en: 'Stop',
-  de: 'Stopp',
-  fr: 'Stop',
-  ja: '動かない',
-  cn: '不要动',
-  ko: '멈추기',
+// Shared between imbued and quintuplecast.
+const sharedOutputStrings = {
+  fire: {
+    en: 'Stop',
+    de: 'Stopp',
+    fr: 'Stop',
+    ja: '動かない',
+    cn: '不要动',
+    ko: '멈추기',
+  },
+  blizzard: {
+    en: 'Move',
+    de: 'Bewegen',
+    fr: 'Bougez',
+    ja: '動け',
+    cn: '动起来',
+    ko: '움직이기',
+  },
+  holy: {
+    en: 'Stack',
+    de: 'Stacken',
+    fr: 'Pack',
+    ja: 'スタック',
+    cn: '集合',
+    ko: '쉐어',
+  },
+  stone: {
+    en: 'Protean',
+    de: 'Himmelsrichtungen',
+    fr: 'Position',
+    ja: '散開',
+    cn: '散开',
+    ko: '위치 산개',
+  },
 };
 
-const kImbuedBlizzard = {
-  en: 'Move',
-  de: 'Bewegen',
-  fr: 'Bougez',
-  ja: '動け',
-  cn: '动起来',
-  ko: '움직이기',
+// Only for imbued.
+const imbuedOutputStrings = {
+  ...sharedOutputStrings,
+  swordIn: {
+    en: 'In',
+    de: 'Rein',
+    fr: 'Intérieur',
+    ja: '中へ',
+    cn: '靠近',
+    ko: '안으로',
+  },
+  swordOut: {
+    en: 'Out',
+    de: 'Raus',
+    fr: 'Exterieur',
+    ja: '外へ',
+    cn: '远离',
+    ko: '밖으로',
+  },
 };
 
-const kImbuedHoly = {
-  en: 'Stack',
-  de: 'Stacken',
-  fr: 'Pack',
-  ja: 'スタック',
-  cn: '集合',
-  ko: '쉐어',
-};
-
-const kImbuedStone = {
-  en: 'Protean',
-  de: 'Himmelsrichtungen',
-  fr: 'Position',
-  ja: '散開',
-  cn: '散开',
-  ko: '위치 산개',
-};
-
-const kImbuedSwordIn = {
-  en: 'In',
-  de: 'Rein',
-  fr: 'Intérieur',
-  ja: '中へ',
-  cn: '靠近',
-  ko: '안으로',
-};
-
-const kImbuedSwordOut = {
-  en: 'Out',
-  de: 'Raus',
-  fr: 'Exterieur',
-  ja: '外へ',
-  cn: '远离',
-  ko: '밖으로',
-};
-
-const kQuintupleFlash = {
-  en: 'Look Away',
-  de: 'Wegschauen',
-  fr: 'Regardez ailleurs',
-  ja: '見ない',
-  ko: '뒤돌기',
-  cn: '背对',
-};
-
-// TODO: replace this with a proxy, here and elsewhere.
-const translate = (data, obj) => {
-  return data.displayLang in obj ? obj[data.displayLang] : obj['en'];
+// Only for quintuplecast.
+const quintupleOutputStrings = {
+  ...sharedOutputStrings,
+  flash: {
+    en: 'Look Away',
+    de: 'Wegschauen',
+    fr: 'Regardez ailleurs',
+    ja: '見ない',
+    ko: '뒤돌기',
+    cn: '背对',
+  },
 };
 
 [{
@@ -77,10 +79,44 @@ const translate = (data, obj) => {
       regex: /Limit Break/,
       // 2 extra seconds over the cast.
       beforeSeconds: 8,
-      alertText: function(data) {
-        const msg = data.limitBreak;
+      alertText: function(data, _, output) {
+        const num = data.limitBreak;
         delete data.limitBreak;
-        return msg;
+
+        switch (num) {
+        case 1:
+          return output.limitBreak1();
+        case 2:
+          return output.limitBreak2();
+        case 3:
+          return output.limitBreak3();
+        }
+      },
+      outputStrings: {
+        limitBreak1: {
+          en: 'role positions',
+          de: 'Rollenposition',
+          fr: 'Positions par rôle',
+          ja: 'ロール特定位置へ',
+          cn: '去指定位置',
+          ko: '1단리밋 산개위치로',
+        },
+        limitBreak2: {
+          en: 'healer stacks',
+          de: 'Heiler stacks',
+          fr: 'Stacks healers',
+          ja: 'ヒーラーと集合',
+          cn: '与治疗集合',
+          ko: '좌우 산개',
+        },
+        limitBreak3: {
+          en: 'meteor',
+          de: 'Meteor',
+          fr: 'Météor',
+          ja: 'メテオ',
+          cn: '陨石',
+          ko: '메테오',
+        },
       },
     },
   ],
@@ -95,13 +131,16 @@ const translate = (data, obj) => {
         return data.role === 'healer';
       },
       suppressSeconds: 5,
-      alertText: {
-        en: 'Heal All to Full',
-        de: 'Alle vollheilen',
-        fr: 'Soignez tout le monde complètement',
-        ja: '全員HPを満タンさせ！',
-        cn: '奶满全队',
-        ko: '전원 체력 풀피로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Heal All to Full',
+          de: 'Alle vollheilen',
+          fr: 'Soignez tout le monde complètement',
+          ja: '全員HPを満タンさせ！',
+          cn: '奶满全队',
+          ko: '전원 체력 풀피로',
+        },
       },
     },
     {
@@ -110,11 +149,14 @@ const translate = (data, obj) => {
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F43', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F43', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F43', capture: false }),
-      infoText: {
-        en: 'Bait Confiteor',
-        de: 'Confiteor ködern',
-        fr: 'Posez les zones au sol (Confiteor)',
-        ko: '장판 유도하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Confiteor',
+          de: 'Confiteor ködern',
+          fr: 'Posez les zones au sol (Confiteor)',
+          ko: '장판 유도하기',
+        },
       },
     },
     {
@@ -124,44 +166,12 @@ const translate = (data, obj) => {
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F3[456]' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F3[456]' }),
       run: function(data, matches) {
-        data.limitBreaks = {
-          en: {
-            0: 'role positions',
-            1: 'healer stacks',
-            2: 'meteor',
-          },
-          de: {
-            0: 'Rollenposition',
-            1: 'Heiler stacks',
-            2: 'Meteor',
-          },
-          fr: {
-            0: 'Positions par rôle',
-            1: 'Stacks healers',
-            2: 'Météor',
-          },
-          ja: {
-            0: 'ロール特定位置へ',
-            1: 'ヒーラーと集合',
-            2: 'メテオ',
-          },
-          cn: {
-            0: '去指定位置',
-            1: '与治疗集合',
-            2: '陨石',
-          },
-          ko: {
-            0: '1단리밋 산개위치로',
-            1: '좌우 산개',
-            2: '메테오',
-          },
-        }[data.displayLang];
-        if (matches.id == '4F34')
-          data.limitBreak = data.limitBreaks[0];
-        if (matches.id == '4F35')
-          data.limitBreak = data.limitBreaks[1];
-        if (matches.id == '4F36')
-          data.limitBreak = data.limitBreaks[2];
+        if (matches.id === '4F34')
+          data.limitBreak = 1;
+        if (matches.id === '4F35')
+          data.limitBreak = 2;
+        if (matches.id === '4F36')
+          data.limitBreak = 3;
       },
     },
     {
@@ -170,7 +180,10 @@ const translate = (data, obj) => {
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F2C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F2C', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F2C', capture: false }),
-      infoText: kImbuedStone,
+      infoText: (data, _, output) => output.stone(),
+      outputStrings: {
+        stone: imbuedOutputStrings.stone,
+      },
     },
     {
       id: 'WOLEx Imbued Absolute Fire III',
@@ -180,7 +193,7 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4EF3', capture: false }),
       run: function(data) {
         data.imbued = data.imbued || [];
-        data.imbued.push(kImbuedFire);
+        data.imbued.push('fire');
       },
     },
     {
@@ -191,7 +204,7 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4EF4', capture: false }),
       run: function(data) {
         data.imbued = data.imbued || [];
-        data.imbued.push(kImbuedBlizzard);
+        data.imbued.push('blizzard');
       },
     },
     {
@@ -202,7 +215,7 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4EF5', capture: false }),
       run: function(data) {
         data.imbued = data.imbued || [];
-        data.imbued.push(kImbuedHoly);
+        data.imbued.push('holy');
       },
     },
     {
@@ -213,7 +226,7 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4EF6', capture: false }),
       run: function(data) {
         data.imbued = data.imbued || [];
-        data.imbued.push(kImbuedStone);
+        data.imbued.push('stone');
       },
     },
     {
@@ -224,14 +237,15 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F4A', capture: false }),
       preRun: function(data) {
         data.imbued = data.imbued || [];
-        data.imbued.push(kImbuedSwordIn);
+        data.imbued.push('swordIn');
       },
-      alertText: function(data) {
-        const translated = data.imbued.map((x) => translate(data, x));
-        const msg = translated.join(' + ');
+      alertText: function(data, _, output) {
+        const strings = data.imbued.map((key) => output[key]());
+        const msg = strings.join(' + ');
         delete data.imbued;
         return msg;
       },
+      outputStrings: imbuedOutputStrings,
     },
     {
       id: 'WOLEx Imbued Coruscance Out',
@@ -241,14 +255,15 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F49', capture: false }),
       preRun: function(data) {
         data.imbued = data.imbued || [];
-        data.imbued.push(kImbuedSwordOut);
+        data.imbued.push('swordOut');
       },
-      alertText: function(data) {
-        const translated = data.imbued.map((x) => translate(data, x));
-        const msg = translated.join(' + ');
+      alertText: function(data, _, output) {
+        const strings = data.imbued.map((key) => output[key]());
+        const msg = strings.join(' + ');
         delete data.imbued;
         return msg;
       },
+      outputStrings: imbuedOutputStrings,
     },
     {
       id: 'WOLEx The Bitter End',
@@ -266,13 +281,16 @@ const translate = (data, obj) => {
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F41', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F41', capture: false }),
       delaySeconds: 6,
-      infoText: {
-        en: 'Avoid Wyrm Dash',
-        de: 'Wyrm-Ansturm ausweichen',
-        fr: 'Esquivez la charge du Wyrm',
-        ja: '竜を避け',
-        cn: '躲避龙的冲锋',
-        ko: '용 돌진 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Wyrm Dash',
+          de: 'Wyrm-Ansturm ausweichen',
+          fr: 'Esquivez la charge du Wyrm',
+          ja: '竜を避け',
+          cn: '躲避龙的冲锋',
+          ko: '용 돌진 피하기',
+        },
       },
     },
     {
@@ -309,13 +327,16 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: ['幻光の狂戦士', '幻光の暗黒騎士'], id: '515[47]', capture: false }),
       condition: Conditions.caresAboutPhysical(),
       suppressSeconds: 2,
-      infoText: {
-        en: 'Tank Busters',
-        de: 'Tankbuster',
-        fr: 'Tank buster',
-        ja: 'タンクバスター',
-        cn: '坦克死刑',
-        ko: '탱버',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Busters',
+          de: 'Tankbuster',
+          fr: 'Tank buster',
+          ja: 'タンクバスター',
+          cn: '坦克死刑',
+          ko: '탱버',
+        },
       },
     },
     {
@@ -326,26 +347,32 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: ['幻光の狂戦士', '幻光の暗黒騎士'], id: '515[68]', capture: false }),
       condition: (data) => data.CanSilence(),
       suppressSeconds: 2,
-      alarmText: {
-        en: 'Interrupt',
-        de: 'Unterbreche',
-        fr: 'Interrompez',
-        ja: '沈黙',
-        cn: '打断',
-        ko: '기술 시전 끊기',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Interrupt',
+          de: 'Unterbreche',
+          fr: 'Interrompez',
+          ja: '沈黙',
+          cn: '打断',
+          ko: '기술 시전 끊기',
+        },
       },
     },
     {
       id: 'WOLEx Adds Deluge of Death Marker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: (data, matches) => !data.ultimateSeen && data.me === matches.target,
-      alarmText: {
-        en: 'Flare on YOU',
-        de: 'Flare auf DIR',
-        fr: 'Brasier sur VOUS',
-        ja: '自分にフレア',
-        cn: '核爆点名',
-        ko: '플레어 대상자',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Flare on YOU',
+          de: 'Flare auf DIR',
+          fr: 'Brasier sur VOUS',
+          ja: '自分にフレア',
+          cn: '核爆点名',
+          ko: '플레어 대상자',
+        },
       },
     },
     {
@@ -356,13 +383,16 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.tether({ source: '幻光の召喚獣', id: '0054' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 4,
-      infoText: {
-        en: 'Point Tether Out',
-        de: 'Verbindung nach draußen richten',
-        fr: 'Lien vers l\'extérieur',
-        ja: '線を外に引く',
-        cn: '连线',
-        ko: '선 연결 바깥으로 빼기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Point Tether Out',
+          de: 'Verbindung nach draußen richten',
+          fr: 'Lien vers l\'extérieur',
+          ja: '線を外に引く',
+          cn: '连线',
+          ko: '선 연결 바깥으로 빼기',
+        },
       },
     },
     {
@@ -373,21 +403,23 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '5152', capture: false }),
       // This is still 1 second before this cast goes off, giving ~7 seconds before LB is needed.
       delaySeconds: 4,
-      alarmText: function(data) {
-        if (data.role === 'tank') {
-          return {
-            en: 'TANK LB!!',
-            de: 'TANK LB!!',
-            fr: 'LB TANK !!',
-            ja: 'タンクLB!!',
-            ko: '리미트 브레이크!!',
-            cn: '坦克LB!!',
-          };
-        }
+      alarmText: function(data, _, output) {
+        if (data.role === 'tank')
+          return output.text();
       },
       run: function(data) {
         data.isAddPhase = false;
         data.ultimateSeen = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'TANK LB!!',
+          de: 'TANK LB!!',
+          fr: 'LB TANK !!',
+          ja: 'タンクLB!!',
+          ko: '리미트 브레이크!!',
+          cn: '坦克LB!!',
+        },
       },
     },
     {
@@ -399,13 +431,16 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: '幻光の黒魔道士', id: '4F3D', capture: false }),
       condition: (data) => data.ultimateSeen && !data.calledSpectral,
       preRun: (data) => data.calledSpectral = true,
-      alertText: {
-        en: 'Black Mage + White Mage',
-        de: 'Schwarzmagier + Weißmagier',
-        fr: 'Mage noir + Mage blanc',
-        ja: '黒魔導士 + 白魔導士',
-        cn: '黑魔法师 + 白魔法师',
-        ko: '흑마도사 + 백마도사',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Black Mage + White Mage',
+          de: 'Schwarzmagier + Weißmagier',
+          fr: 'Mage noir + Mage blanc',
+          ja: '黒魔導士 + 白魔導士',
+          cn: '黑魔法师 + 白魔法师',
+          ko: '흑마도사 + 백마도사',
+        },
       },
     },
     {
@@ -417,13 +452,16 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4EF[34]', capture: false }),
       condition: (data) => data.ultimateSeen && !data.calledSpectral,
       preRun: (data) => data.calledSpectral = true,
-      alertText: {
-        en: 'Summoner + Warrior',
-        de: 'Beschwörer + Krieger',
-        fr: 'Invocateur + Guerrier',
-        ja: '召喚師 + 戦士',
-        cn: '召唤师 + 战士',
-        ko: '소환사 + 전사',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Summoner + Warrior',
+          de: 'Beschwörer + Krieger',
+          fr: 'Invocateur + Guerrier',
+          ja: '召喚師 + 戦士',
+          cn: '召唤师 + 战士',
+          ko: '소환사 + 전사',
+        },
       },
     },
     {
@@ -436,13 +474,16 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F43', capture: false }),
       condition: (data) => data.ultimateSeen && !data.calledSpectral,
       preRun: (data) => data.calledSpectral = true,
-      alertText: {
-        en: 'Dark Knight + Bard',
-        de: 'Dunkelritter + Barde',
-        fr: 'Chevalier noir + Barde',
-        ja: '暗黒騎士 + 吟遊詩人',
-        cn: '暗黑骑士 + 吟游诗人',
-        ko: '암흑기사 + 음유시인',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dark Knight + Bard',
+          de: 'Dunkelritter + Barde',
+          fr: 'Chevalier noir + Barde',
+          ja: '暗黒騎士 + 吟遊詩人',
+          cn: '暗黑骑士 + 吟游诗人',
+          ko: '암흑기사 + 음유시인',
+        },
       },
     },
     {
@@ -454,16 +495,19 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4EF[56]', capture: false }),
       condition: (data) => data.ultimateSeen && !data.calledSpectral,
       preRun: (data) => data.calledSpectral = true,
-      alertText: {
-        en: 'Ninja',
-        de: 'Ninja',
-        fr: 'Ninja',
-        ja: '忍者',
-        cn: '忍者',
-        ko: '닌자',
-      },
+      alertText: (data, _, output) => output.text(),
       run: function(data) {
         data.ninja = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Ninja',
+          de: 'Ninja',
+          fr: 'Ninja',
+          ja: '忍者',
+          cn: '忍者',
+          ko: '닌자',
+        },
       },
     },
     {
@@ -511,42 +555,51 @@ const translate = (data, obj) => {
       id: 'WOLEx Perfect Decimation',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Warrior Cleave on YOU',
-        de: 'Krieger Cleave auf DIR',
-        fr: 'Cleave du Guerrier sur VOUS',
-        ja: '自分に戦士の範囲攻撃',
-        cn: '战士顺劈点名',
-        ko: '전사 범위 공격 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Warrior Cleave on YOU',
+          de: 'Krieger Cleave auf DIR',
+          fr: 'Cleave du Guerrier sur VOUS',
+          ja: '自分に戦士の範囲攻撃',
+          cn: '战士顺劈点名',
+          ko: '전사 범위 공격 대상자',
+        },
       },
     },
     {
       id: 'WOLEx Brimstone Earth',
       netRegex: NetRegexes.headMarker({ id: '0067' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Puddle on YOU',
-        de: 'Fläche auf DIR',
-        fr: 'Zone au sol sur VOUS',
-        ja: '自分に水溜り',
-        cn: '水球点名',
-        ko: '장판 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Puddle on YOU',
+          de: 'Fläche auf DIR',
+          fr: 'Zone au sol sur VOUS',
+          ja: '自分に水溜り',
+          cn: '水球点名',
+          ko: '장판 대상자',
+        },
       },
     },
     {
       id: 'WOLEx Deluge of Death Marker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: (data, matches) => data.ultimateSeen && data.me === matches.target,
-      alarmText: {
-        en: 'Flare on YOU',
-        de: 'Flare auf DIR',
-        fr: 'Brasier sur VOUS',
-        ja: '自分にフレア',
-        cn: '核爆点名',
-        ko: '플레어 대상자',
-      },
+      alarmText: (data, _, output) => output.text(),
       run: function(data) {
         data.deluge = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Flare on YOU',
+          de: 'Flare auf DIR',
+          fr: 'Brasier sur VOUS',
+          ja: '自分にフレア',
+          cn: '核爆点名',
+          ko: '플레어 대상자',
+        },
       },
     },
     {
@@ -590,12 +643,13 @@ const translate = (data, obj) => {
       netRegexFr: NetRegexes.ability({ source: 'Guerrier De La Lumière Primordial', id: '4EEF', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ウォーリア・オブ・ライト', id: '4EEF', capture: false }),
       durationSeconds: 18.5,
-      infoText: function(data) {
-        const translated = data.quintuplecasts.map((x) => translate(data, x));
-        const msg = translated.join(' > ');
+      infoText: function(data, _, output) {
+        const strings = data.quintuplecasts.map((key) => output[key]());
+        const msg = strings.join(' > ');
         return msg;
       },
       tts: null,
+      outputStrings: quintupleOutputStrings,
     },
     {
       id: 'WOLEx Quintuplecast Individual',
@@ -604,13 +658,13 @@ const translate = (data, obj) => {
       netRegexFr: NetRegexes.ability({ source: 'Guerrier De La Lumière Primordial', id: ['4EEF', '4EF0'], capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ウォーリア・オブ・ライト', id: ['4EEF', '4EF0'], capture: false }),
       durationSeconds: 3,
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         const next = data.quintuplecasts.shift();
         // The last cast of 4EF0 will not have a next mechanic to call.
-        if (!next)
-          return;
-        return translate(data, next);
+        if (next)
+          return output[next]();
       },
+      outputStrings: quintupleOutputStrings,
     },
     {
       id: 'WOLEx Quintuplecast Blizzard',
@@ -618,9 +672,12 @@ const translate = (data, obj) => {
       condition: (data) => data.quintuplecasting,
       durationSeconds: 2,
       suppressSeconds: 5,
-      infoText: (data) => `(${translate(data, kImbuedBlizzard).toLowerCase()})`,
+      infoText: (data, _, output) => `(${output.blizzard().toLowerCase()})`,
       run: function(data) {
-        data.quintuplecasts.push(kImbuedBlizzard);
+        data.quintuplecasts.push('blizzard');
+      },
+      outputStrings: {
+        blizzard: quintupleOutputStrings.blizzard,
       },
     },
     {
@@ -629,9 +686,12 @@ const translate = (data, obj) => {
       condition: (data) => data.quintuplecasting,
       durationSeconds: 2,
       suppressSeconds: 5,
-      infoText: (data) => `(${translate(data, kImbuedHoly).toLowerCase()})`,
+      infoText: (data, _, output) => `(${output.holy().toLowerCase()})`,
       run: function(data) {
-        data.quintuplecasts.push(kImbuedHoly);
+        data.quintuplecasts.push('holy');
+      },
+      outputStrings: {
+        holy: quintupleOutputStrings.holy,
       },
     },
     {
@@ -640,9 +700,12 @@ const translate = (data, obj) => {
       condition: (data) => data.quintuplecasting,
       durationSeconds: 2,
       suppressSeconds: 5,
-      infoText: (data) => `(${translate(data, kImbuedStone).toLowerCase()})`,
+      infoText: (data, _, output) => `(${output.stone().toLowerCase()})`,
       run: function(data) {
-        data.quintuplecasts.push(kImbuedStone);
+        data.quintuplecasts.push('stone');
+      },
+      outputStrings: {
+        stone: quintupleOutputStrings.stone,
       },
     },
     {
@@ -651,20 +714,26 @@ const translate = (data, obj) => {
       condition: (data) => data.quintuplecasting,
       durationSeconds: 2,
       suppressSeconds: 5,
-      infoText: (data) => `(${translate(data, kImbuedFire).toLowerCase()})`,
+      infoText: (data, _, output) => `(${output.fire().toLowerCase()})`,
       run: function(data) {
-        data.quintuplecasts.push(kImbuedFire);
+        data.quintuplecasts.push('fire');
+      },
+      outputStrings: {
+        fire: quintupleOutputStrings.fire,
       },
     },
     {
       id: 'WOLEx Quintuplecast Flash',
-      netRegex: NetRegexes.headMarker({ id: '00DF' }),
+      netRegex: NetRegexes.headMarker({ id: '00DF', capture: false }),
       condition: (data) => data.quintuplecasting,
       durationSeconds: 2,
       suppressSeconds: 5,
-      infoText: (data) => `(${translate(data, kQuintupleFlash).toLowerCase()})`,
-      run: function(data, matches) {
-        data.quintuplecasts.push(kQuintupleFlash);
+      infoText: (data, _, output) => `(${output.flash().toLowerCase()})`,
+      run: function(data) {
+        data.quintuplecasts.push('flash');
+      },
+      outputStrings: {
+        flash: quintupleOutputStrings.flash,
       },
     },
   ],
@@ -838,6 +907,24 @@ const translate = (data, obj) => {
         'To The Limit': 'リミットチャージ',
         'Twincast': 'ふたりがけ',
         'Ultimate Crossover': 'アルティメット・クロスオーバー',
+      },
+    },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Warrior Of Light': '빛의 전사',
+      },
+      'replaceText': {
+        'BLM/WHM': '흑마／백마',
+        '(?<!\\w)Cast(?= )': '시전',
+        'DRK/BRD': '암기／음유',
+        '(?<! )Limit(?! Break)': '리미트',
+        'Limit Break': '리미트 브레이크',
+        'Meteor Impact': '운석 낙하',
+        '(?<= )NIN': '닌자',
+        'SMN/WAR': '소환사／전사',
+        'Summon(?! Wyrm)': '소환',
       },
     },
   ],

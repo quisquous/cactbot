@@ -76,7 +76,7 @@
       id: 'E8S Path of Light',
       damageRegex: '4DA1',
       condition: function(e) {
-        return e.type != '15';
+        return e.type !== '15';
       },
       mistake: function(e) {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };

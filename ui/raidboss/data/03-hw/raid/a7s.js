@@ -60,29 +60,31 @@
     {
       id: 'A7S Sizzlebeam',
       netRegex: NetRegexes.headMarker({ id: '0018' }),
-      alertText: function(data, matches) {
-        if (matches.target === data.me) {
-          return {
-            en: 'Sizzlebeam on YOU',
-            de: 'Gobpartikelstrahl auf DIR',
-            fr: 'Gobrayon sur VOUS',
-            ja: '自分にゴブ式波動砲',
-            cn: '波动炮点名',
-            ko: '고블린식 파동포 대상자',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (matches.target === data.me)
+          return output.sizzlebeamOnYou();
       },
-      infoText: function(data, matches) {
-        if (matches.target !== data.me) {
-          return {
-            en: 'Sizzlebeam on ' + data.ShortName(matches.target),
-            de: 'Gobpartikelstrahl auf ' + data.ShortName(matches.target),
-            fr: 'Gobrayon sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にゴブ式波動砲',
-            cn: '波动炮点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 고블린식 파동포',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (matches.target !== data.me)
+          return output.sizzlebeamOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        sizzlebeamOn: {
+          en: 'Sizzlebeam on ${player}',
+          de: 'Gobpartikelstrahl auf ${player}',
+          fr: 'Gobrayon sur ${player}',
+          ja: '${player}にゴブ式波動砲',
+          cn: '波动炮点${player}',
+          ko: '"${player}" 고블린식 파동포',
+        },
+        sizzlebeamOnYou: {
+          en: 'Sizzlebeam on YOU',
+          de: 'Gobpartikelstrahl auf DIR',
+          fr: 'Gobrayon sur VOUS',
+          ja: '自分にゴブ式波動砲',
+          cn: '波动炮点名',
+          ko: '고블린식 파동포 대상자',
+        },
       },
     },
     {
@@ -105,25 +107,31 @@
       netRegexKo: NetRegexes.tether({ source: '폭탄', id: '001F' }),
       netRegexCn: NetRegexes.tether({ source: '炸弹', id: '001F' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Bomb Spread',
-        de: 'Bomben verteilen',
-        fr: 'Bombe, dispersez-vous',
-        ja: '爆弾、散開',
-        cn: '炸弹，散开',
-        ko: '폭탄 뿌리기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bomb Spread',
+          de: 'Bomben verteilen',
+          fr: 'Bombe, dispersez-vous',
+          ja: '爆弾、散開',
+          cn: '炸弹，散开',
+          ko: '폭탄 뿌리기',
+        },
       },
     },
     {
       id: 'A7S Jail Prey',
       netRegex: NetRegexes.headMarker({ id: '0029' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Jail Prey',
-        de: 'Gefängnis Markierung',
-        fr: 'Marquage prison',
-        ja: '隔離部屋',
-        ko: '감옥 징 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Jail Prey',
+          de: 'Gefängnis Markierung',
+          fr: 'Marquage prison',
+          ja: '隔離部屋',
+          ko: '감옥 징 대상자',
+        },
       },
     },
     {
@@ -138,13 +146,16 @@
       netRegexCn: NetRegexes.tether({ source: '爆破型7号哥布林战车', id: '0011' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
-      infoText: {
-        en: 'Jail Tether',
-        de: 'Gefängnis Verbindung',
-        fr: 'Lien prison',
-        ja: '隔離部屋線',
-        cn: '监狱连线',
-        ko: '감옥 줄 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Jail Tether',
+          de: 'Gefängnis Verbindung',
+          fr: 'Lien prison',
+          ja: '隔離部屋線',
+          cn: '监狱连线',
+          ko: '감옥 줄 대상자',
+        },
       },
     },
     {
@@ -212,13 +223,16 @@
         // If you're not in a jail, kill the padlock.
         return !data.grabbed.includes(data.me) && data.stickyloom !== data.me;
       },
-      infoText: {
-        en: 'Break Padlock',
-        de: 'Schloss zerstören',
-        fr: 'Cassez le cadenas',
-        ja: '錠前を破れ',
-        cn: '打破锁',
-        ko: '자물쇠 부수기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Break Padlock',
+          de: 'Schloss zerstören',
+          fr: 'Cassez le cadenas',
+          ja: '錠前を破れ',
+          cn: '打破锁',
+          ko: '자물쇠 부수기',
+        },
       },
     },
     {
@@ -229,26 +243,32 @@
       netRegexJa: NetRegexes.ability({ source: 'シャノア', id: '15EC', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '샤노아', id: '15EC', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '夏诺雅', id: '15EC', capture: false }),
-      alertText: {
-        en: 'Kill Heart',
-        de: 'Herz besiegen',
-        fr: 'Tuez le cœur',
-        ja: '真心を倒す',
-        cn: '击杀真心',
-        ko: '진심 없애기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Heart',
+          de: 'Herz besiegen',
+          fr: 'Tuez le cœur',
+          ja: '真心を倒す',
+          cn: '击杀真心',
+          ko: '진심 없애기',
+        },
       },
     },
     {
       id: 'A7S Searing Wind',
       netRegex: NetRegexes.gainsEffect({ effectId: '178' }),
       condition: Conditions.targetIsYou(),
-      alarmText: {
-        en: 'Searing Wind on YOU',
-        de: 'Versengen auf DIR',
-        fr: 'Fournaise sur VOUS',
-        ja: '自分に灼熱',
-        cn: '热风点名',
-        ko: '뜨거운 바람 대상자',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Searing Wind on YOU',
+          de: 'Versengen auf DIR',
+          fr: 'Fournaise sur VOUS',
+          ja: '自分に灼熱',
+          cn: '热风点名',
+          ko: '뜨거운 바람 대상자',
+        },
       },
     },
   ],
@@ -383,6 +403,8 @@
         'Quickthinx Allthoughts': '만능의 퀵싱크스',
         'Shanoa': '샤노아',
         'Sturm Doll': '인형 폭기병',
+        'Electrocution Gallery': '공개처형 광장',
+        'Pyretic': '열병',
       },
       'replaceText': {
         'Big Doll': '큰 인형',

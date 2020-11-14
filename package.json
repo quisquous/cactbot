@@ -59,6 +59,7 @@
         "multi-or-nest",
         "consistent"
       ],
+      "eqeqeq": "error",
       "guard-for-in": "off",
       "indent": [
         "error",

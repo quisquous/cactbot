@@ -18,7 +18,7 @@
       id: 'E3N Rip Current',
       damageRegex: '3FC7',
       condition: function(e, data) {
-        return e.type != '15';
+        return e.type !== '15';
       },
       mistake: function(e, data) {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };

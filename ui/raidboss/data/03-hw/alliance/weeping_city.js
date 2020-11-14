@@ -16,25 +16,31 @@
       regex: /The Widow's Kiss/,
       beforeSeconds: 5,
       // Probably kills the player if failed, so it gets an alert.
-      alertText: {
-        en: 'Stand on webs',
-        de: 'Auf den Spinnennetzen stehen',
-        ja: 'アンキレーウェブに入る',
-        cn: '站在网上',
-        ko: '거미줄 위에 서기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand on webs',
+          de: 'Auf den Spinnennetzen stehen',
+          ja: 'アンキレーウェブに入る',
+          cn: '站在网上',
+          ko: '거미줄 위에 서기',
+        },
       },
     },
     {
       id: 'Weeping City Punishing Ray',
       regex: /Punishing Ray/,
       beforeSeconds: 10,
-      infoText: {
-        en: 'Get Puddles',
-        de: 'Flächen nehmen',
-        fr: 'Allez dans les zones au sol',
-        ja: '踏む',
-        cn: '踩圈',
-        ko: '바닥 징 밟기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Puddles',
+          de: 'Flächen nehmen',
+          fr: 'Allez dans les zones au sol',
+          ja: '踏む',
+          cn: '踩圈',
+          ko: '바닥 징 밟기',
+        },
       },
     },
     {
@@ -131,14 +137,17 @@
       id: 'Weeping City Arachne Web',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return data.arachneStarted && data.me == matches.target;
+        return data.arachneStarted && data.me === matches.target;
       },
-      infoText: {
-        en: 'Drop Web Outside',
-        de: 'Spinnennetz draußen ablegen',
-        ja: 'ウェブを外周に捨て',
-        cn: '蛛网点名，放在场边',
-        ko: '거미줄 바깥쪽으로 빼기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop Web Outside',
+          de: 'Spinnennetz draußen ablegen',
+          ja: 'ウェブを外周に捨て',
+          cn: '蛛网点名，放在场边',
+          ko: '거미줄 바깥쪽으로 빼기',
+        },
       },
     },
     {
@@ -151,13 +160,16 @@
       id: 'Weeping City Dark Eruption',
       netRegex: NetRegexes.headMarker({ id: '0019' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Puddles on YOU',
-        de: 'Pfützen auf DIR',
-        fr: 'Mare sur VOUS',
-        ja: '自分に床範囲',
-        cn: '圈圈点名',
-        ko: '장판 바깥에 깔기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Puddles on YOU',
+          de: 'Pfützen auf DIR',
+          fr: 'Mare sur VOUS',
+          ja: '自分に床範囲',
+          cn: '圈圈点名',
+          ko: '장판 바깥에 깔기',
+        },
       },
     },
     {
@@ -193,7 +205,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '17CB', source: '弗加尔', capture: false }),
       // Hell Wind sets HP to single digits, so mitigations don't work. Don't notify non-healers.
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role === 'healer';
       },
       response: Responses.aoe(),
     },
@@ -205,24 +217,30 @@
       netRegexJa: NetRegexes.startsUsing({ id: '17CA', source: 'フォルガル', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '17CA', source: '포르갈', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '17CA', source: '弗加尔', capture: false }),
-      alertText: {
-        en: 'Stand in one puddle',
-        de: 'In einer Fläche stehen',
-        ja: '範囲に入る',
-        cn: '站在圈里',
-        ko: '장판으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand in one puddle',
+          de: 'In einer Fläche stehen',
+          ja: '範囲に入る',
+          cn: '站在圈里',
+          ko: '장판으로',
+        },
       },
     },
     {
       id: 'Weeping City Meteor Impact',
       netRegex: NetRegexes.headMarker({ id: '0039' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Drop meteor back or left',
-        de: 'Meteor hinten oder links ablegen',
-        ja: 'メテオ、後ろや左に置く',
-        cn: '流星点名，放在背后或左边',
-        ko: '메테오 뒤/왼쪽으로 빼기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop meteor back or left',
+          de: 'Meteor hinten oder links ablegen',
+          ja: 'メテオ、後ろや左に置く',
+          cn: '流星点名，放在背后或左边',
+          ko: '메테오 뒤/왼쪽으로 빼기',
+        },
       },
     },
     {
@@ -235,12 +253,15 @@
       netRegexJa: NetRegexes.ability({ id: '1826', source: 'オズマ', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '1826', source: '오즈마', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '1826', source: '奥兹玛', capture: false }),
-      alertText: {
-        en: 'Get off rectangle platform',
-        de: 'Von der plattform runter gehen',
-        ja: '通路で回避',
-        cn: '离开平台',
-        ko: '통로로 이동',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get off rectangle platform',
+          de: 'Von der plattform runter gehen',
+          ja: '通路で回避',
+          cn: '离开平台',
+          ko: '통로로 이동',
+        },
       },
     },
     {
@@ -268,23 +289,27 @@
       netRegexCn: NetRegexes.ability({ id: '1803', source: '奥兹玛', capture: false }),
       // Delaying here to avoid colliding with other Flare Star triggers.
       delaySeconds: 4,
-      alertText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank lasers--Avoid party',
-            de: 'Tank lasers--Weg von der Party',
-            ja: 'タンクレザー - 外に',
-            cn: '坦克激光--远离人群',
-            ko: '탱커 레이저-- 피하기',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.role === 'tank')
+          return output.tankLasers();
+
+        return output.avoidTanks();
+      },
+      outputStrings: {
+        tankLasers: {
+          en: 'Tank lasers--Avoid party',
+          de: 'Tank lasers--Weg von der Party',
+          ja: 'タンクレザー - 外に',
+          cn: '坦克激光--远离人群',
+          ko: '탱커 레이저-- 피하기',
+        },
+        avoidTanks: {
           en: 'Avoid tanks',
           de: 'Weg von den Tanks',
           ja: 'タンクに離れ',
           cn: '远离坦克',
           ko: '탱커 피하기',
-        };
+        },
       },
     },
     {
@@ -293,13 +318,17 @@
       id: 'Weeping City Flare Star Orbs',
       netRegex: NetRegexes.addedCombatantFull({ npcBaseId: '4889', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role === 'tank' || data.role === 'healer';
       },
-      infoText: {
-        en: 'Get orbs',
-        de: 'Kugeln nehmen',
-        ja: '玉を取る',
-        cn: '撞球',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get orbs',
+          de: 'Kugeln nehmen',
+          ja: '玉を取る',
+          cn: '撞球',
+          ko: '구슬 먹기',
+        },
       },
     },
     {
@@ -360,24 +389,30 @@
       id: 'Weeping City Living Lock Axes',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['4899', '4900'], capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'Close to axes, avoid bulbs',
-        de: 'Nahe den Äxten, vermeide Knospen',
-        ja: '刃物の髪に近づく、丸い髪に離れ',
-        cn: '靠近斧状发，远离球状发',
-        ko: '도끼모양에 붙고, 둥근모양은 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Close to axes, avoid bulbs',
+          de: 'Nahe den Äxten, vermeide Knospen',
+          ja: '刃物の髪に近づく、丸い髪に離れ',
+          cn: '靠近斧状发，远离球状发',
+          ko: '도끼모양에 붙고, 둥근모양은 피하기',
+        },
       },
     },
     {
       id: 'Weeping City Living Lock Scythes',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '4898', capture: false }),
       suppressSeconds: 5,
-      alertText: {
-        en: 'Avoid scythe line AoEs',
-        de: 'Weiche den Sensen AOEs aus',
-        ja: '十字AoE',
-        cn: '躲避镰刀直线AOE',
-        ko: '직선 장판 피하기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid scythe line AoEs',
+          de: 'Weiche den Sensen AOEs aus',
+          ja: '十字AoE',
+          cn: '躲避镰刀直线AOE',
+          ko: '직선 장판 피하기',
+        },
       },
     },
     {
@@ -385,12 +420,15 @@
       id: 'Weeping City Entanglement',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '4904', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'Avoid purple circles',
-        de: 'Vermeide die lilanen Flächen',
-        ja: '紫の円範囲を避け',
-        cn: '远离紫圈',
-        ko: '보라색 원 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid purple circles',
+          de: 'Vermeide die lilanen Flächen',
+          ja: '紫の円範囲を避け',
+          cn: '远离紫圈',
+          ko: '보라색 원 피하기',
+        },
       },
     },
     {
@@ -412,23 +450,27 @@
       condition: function(data) {
         return data.calStarted;
       },
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: '16x Sky Laser on YOU!',
-            de: '16x Himmelslaser auf DIR!',
-            ja: '自分に16連撃潜地式波動砲！',
-            cn: '16连追踪AOE点名',
-            ko: '16 하늘 레이저 대상자',
-          };
-        }
-        return {
+      alertText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return output.skyLaserOnYou();
+
+        return output.avoidSkyLasers();
+      },
+      outputStrings: {
+        skyLaserOnYou: {
+          en: '16x Sky Laser on YOU!',
+          de: '16x Himmelslaser auf DIR!',
+          ja: '自分に16連撃潜地式波動砲！',
+          cn: '16连追踪AOE点名',
+          ko: '16 하늘 레이저 대상자',
+        },
+        avoidSkyLasers: {
           en: 'Avoid Sky Lasers',
           de: 'Himmelslaser ausweichen',
           ja: '潜地式波動砲に避け',
           cn: '躲避追踪AOE',
           ko: '하늘 레이저 피하기',
-        };
+        },
       },
     },
     {
@@ -731,7 +773,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Arachne Eve': '아라크네',
         'Calofisteri': '칼로피스테리',
@@ -778,6 +819,7 @@
         'Mega Death': '범람하는 죽음',
         'Megiddo Flame': '메기도 플레임',
         'Meteor(?![\\w\\s])': '메테오',
+        'Meteor Headmarkers': '메테오 머리징',
         'Meteor Impact': '운석 낙하',
         'Necropurge': '사령 침잠',
         'Penetration': '침투',
@@ -786,8 +828,10 @@
         'Pyramid': '삼각뿔',
         'Shadow Burst': '그림자 폭발',
         'Silken Spray': '거미줄 분사',
+        'Sphere': '구',
         'Split End': '쪼개기',
         'Sticky Wicket': '끈끈이 구멍',
+        'Tank Lasers': '탱 레이저',
         'The Widow\'s Embrace': '큰거미의 포옹',
         'The Widow\'s Kiss': '거미 덫',
         'Transfiguration': '형태 변화',

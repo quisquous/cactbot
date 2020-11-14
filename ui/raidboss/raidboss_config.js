@@ -22,6 +22,13 @@ const Responses = _Responses;
 import _ZoneId from '../../resources/zone_id.js';
 const ZoneId = _ZoneId;
 
+
+const kOptionKeys = {
+  output: 'Output',
+  duration: 'Duration',
+  outputStrings: 'OutputStrings',
+};
+
 // No sound only option, because that's silly.
 let kTriggerOptions = {
   default: {
@@ -134,6 +141,18 @@ let kDetailKeys = {
     cls: 'condition-text',
     debugOnly: true,
   },
+  'duration': {
+    label: {
+      en: 'duration (sec)',
+      de: 'Dauer (Sekunden)',
+      fr: 'Durée (secondes)',
+      ja: '存続時間 (秒)',
+      cn: '持续时间 (秒)',
+      ko: '지속 시간 (초)',
+    },
+    cls: 'duration-text',
+    generatedManually: true,
+  },
   'preRun': {
     label: {
       en: 'preRun',
@@ -215,6 +234,22 @@ let kDetailKeys = {
   },
 };
 
+const kMiscTranslations = {
+  // Shows up for un-set values.
+  valueDefault: {
+    en: '(default)',
+    de: '(Standard)',
+    fr: '(Défaut)',
+    ko: '(기본값)',
+  },
+};
+
+const validDurationOrUndefined = (val) => {
+  val = parseFloat(val);
+  if (!isNaN(val) && val >= 0)
+    return val;
+  return undefined;
+};
 
 // This is used both for top level Options and for PerTriggerAutoConfig settings.
 // Unfortunately due to poor decisions in the past, PerTriggerOptions has different
@@ -247,6 +282,27 @@ function setOptionsFromOutputValue(options, value) {
   }
 }
 
+// Helper for doing nothing during trigger eval, but still recording any
+// calls to `output.responseOutputStrings = x;` via callback.
+class DoNothingFuncProxy {
+  constructor(outputStringsCallback) {
+    return new Proxy(this, {
+      set(target, property, value) {
+        if (property === 'responseOutputStrings') {
+          outputStringsCallback(value);
+          return true;
+        }
+
+        // Ignore other property setting here.
+      },
+
+      get(target, name) {
+        return () => {};
+      },
+    });
+  }
+}
+
 class RaidbossConfigurator {
   constructor(cactbotConfigurator) {
     this.base = cactbotConfigurator;
@@ -266,7 +322,7 @@ class RaidbossConfigurator {
     for (const [key, info] of Object.entries(fileMap)) {
       const expansion = info.prefix;
 
-      if (Object.keys(info.triggers).length == 0)
+      if (Object.keys(info.triggers).length === 0)
         continue;
 
       if (!expansionDivs[expansion]) {
@@ -340,7 +396,9 @@ class RaidbossConfigurator {
         triggerDetails.appendChild(this.buildTriggerOptions(trig, triggerDiv));
 
         // Append some details about the trigger so it's more obvious what it is.
-        for (let detailKey in kDetailKeys) {
+        for (const detailKey in kDetailKeys) {
+          if (kDetailKeys[detailKey].generatedManually)
+            continue;
           if (!this.base.developerOptions && kDetailKeys[detailKey].debugOnly)
             continue;
           if (!trig[detailKey] && !trig.output[detailKey])
@@ -366,16 +424,79 @@ class RaidbossConfigurator {
 
           triggerDetails.appendChild(detail);
         }
+
+        let hasOutputFunc = false;
+        for (const func of triggerOutputFunctions) {
+          if (trig[func]) {
+            hasOutputFunc = true;
+            break;
+          }
+        }
+
+        // Add duration manually with an input to override.
+        if (hasOutputFunc) {
+          const detailKey = 'duration';
+          const optionKey = kOptionKeys.duration;
+
+          let label = document.createElement('div');
+          label.innerText = this.base.translate(kDetailKeys[detailKey].label);
+          label.classList.add('trigger-label');
+          triggerDetails.appendChild(label);
+
+          let div = document.createElement('div');
+          div.classList.add('option-input-container', 'trigger-duration');
+
+          let input = document.createElement('input');
+          div.appendChild(input);
+          input.type = 'text';
+          input.step = 'any';
+          input.placeholder = this.base.translate(kMiscTranslations.valueDefault);
+          input.value = this.base.getOption('raidboss', 'triggers', trig.id, optionKey, '');
+          let setFunc = () => {
+            let val = validDurationOrUndefined(input.value) || '';
+            this.base.setOption('raidboss', 'triggers', trig.id, optionKey, val);
+          };
+          input.onchange = setFunc;
+          input.oninput = setFunc;
+
+          triggerDetails.appendChild(div);
+        }
+
+        // Add output strings manually
+        const outputStrings = trig.outputStrings || {};
+
+        for (const key in outputStrings) {
+          const optionKey = kOptionKeys.outputStrings;
+          let template = this.base.translate(outputStrings[key]);
+
+          let label = document.createElement('div');
+          label.innerText = key;
+          label.classList.add('trigger-outputstring-label');
+          triggerDetails.appendChild(label);
+
+          let div = document.createElement('div');
+          div.classList.add('option-input-container', 'trigger-outputstring');
+
+          let input = document.createElement('input');
+          div.appendChild(input);
+          input.type = 'text';
+          input.placeholder = template;
+          input.value = this.base.getOption('raidboss', 'triggers', trig.id, optionKey, key, '');
+          let setFunc = () => this.base.setOption('raidboss', 'triggers', trig.id, optionKey, key, input.value);
+          input.onchange = setFunc;
+          input.oninput = setFunc;
+
+          triggerDetails.appendChild(div);
+        }
       }
     }
   }
 
   // This duplicates the raidboss function of the same name.
-  valueOrFunction(f, data, matches) {
-    let result = (typeof f == 'function') ? f(data, matches) : f;
+  valueOrFunction(f, data, matches, output) {
+    let result = (typeof f === 'function') ? f(data, matches, output) : f;
     if (result !== Object(result))
       return result;
-    // TODO: somehow use the option for alert language here??
     if (result[this.alertsLang])
       return this.valueOrFunction(result[this.alertsLang]);
     if (result[this.timelineLang])
@@ -386,6 +507,13 @@ class RaidbossConfigurator {
   }
 
   processTrigger(trig) {
+    // TODO: with some hackiness (e.g. regexes?) we could figure out which
+    // output string came from which alert type (alarm, alert, info, tts).
+    trig.output = new DoNothingFuncProxy((outputStrings) => {
+      trig.outputStrings = trig.outputStrings || {};
+      Object.assign(trig.outputStrings, outputStrings);
+    });
+
     let kBaseFakeData = {
       party: new PartyTracker(),
       lang: this.base.lang,
@@ -467,7 +595,7 @@ class RaidbossConfigurator {
     // This could get much more complicated if we wanted it to.
     let evalTrigger = (trig, key, idx) => {
       try {
-        let result = this.valueOrFunction(trig[key], kFakeData[idx], kFakeMatches);
+        let result = this.valueOrFunction(trig[key], kFakeData[idx], kFakeMatches, trig.output);
         if (!result)
           return false;
 
@@ -492,24 +620,33 @@ class RaidbossConfigurator {
         try {
           // Can't use ValueOrFunction here as r returns a non-localizable object.
           // FIXME: this hackily replicates some raidboss logic too.
-          let response = (typeof r == 'function') ? r(kFakeData[d], kFakeMatches) : r;
+          let response = r;
+          while (typeof response === 'function')
+            response = response(kFakeData[d], kFakeMatches, trig.output);
           if (!response)
             continue;
-          for (let i = 0; i < keys.length; ++i)
-            evalTrigger(response, keys[i], d);
+
+          if (!trig.outputStrings) {
+            for (const key of keys)
+              evalTrigger(response, key, d);
+          }
+          break;
         } catch (e) {
           continue;
         }
       }
     }
 
-    for (let i = 0; i < keys.length; ++i) {
-      let key = keys[i];
-      if (!trig[key])
-        continue;
-      for (let d = 0; d < kFakeData.length; ++d) {
-        if (evalTrigger(trig, key, d))
-          break;
+    // Only evaluate fields if there are not outputStrings.
+    // outputStrings will indicate more clearly what the trigger says.
+    if (!trig.outputStrings) {
+      for (const key of keys) {
+        if (!trig[key])
+          continue;
+        for (let d = 0; d < kFakeData.length; ++d) {
+          if (evalTrigger(trig, key, d))
+            break;
+        }
       }
     }
 
@@ -572,7 +709,7 @@ class RaidbossConfigurator {
   }
 
   buildTriggerOptions(trig, labelDiv) {
-    let kField = 'Output';
+    let optionKey = kOptionKeys.output;
     let div = document.createElement('div');
     div.classList.add('trigger-options');
 
@@ -586,7 +723,7 @@ class RaidbossConfigurator {
     let input = document.createElement('select');
     div.appendChild(input);
 
-    let selectValue = this.base.getOption('raidboss', 'triggers', trig.id, kField, 'default');
+    let selectValue = this.base.getOption('raidboss', 'triggers', trig.id, optionKey, 'default');
 
     for (let key in kTriggerOptions) {
       // Hide debug only options unless they are selected.
@@ -607,7 +744,7 @@ class RaidbossConfigurator {
         let value = input.value;
         if (value.includes('default'))
           value = 'default';
-        this.base.setOption('raidboss', 'triggers', trig.id, kField, input.value);
+        this.base.setOption('raidboss', 'triggers', trig.id, optionKey, input.value);
       };
     }
 
@@ -660,25 +797,40 @@ const templateOptions = {
     });
   },
   processExtraOptions: (options, savedConfig) => {
-    options['PerTriggerAutoConfig'] = options['PerTriggerAutoConfig'] || {};
-    let triggers = savedConfig.triggers;
+    // raidboss will look up this.options.PerTriggerAutoConfig to find these values.
+    const optionName = 'PerTriggerAutoConfig';
+
+    options[optionName] = options[optionName] || {};
+    const triggers = savedConfig.triggers;
     if (!triggers)
       return;
 
-    let perTrigger = options['PerTriggerAutoConfig'];
+    const perTrigger = options[optionName];
 
-    let outputObjs = {};
-    let keys = Object.keys(kTriggerOptions);
-    for (let i = 0; i < keys.length; ++i) {
-      outputObjs[keys[i]] = {};
-      setOptionsFromOutputValue(outputObjs[keys[i]], keys[i]);
+    const outputObjs = {};
+    const keys = Object.keys(kTriggerOptions);
+    for (const key of keys) {
+      outputObjs[key] = {};
+      setOptionsFromOutputValue(outputObjs[key], key);
     }
 
-    for (let id in triggers) {
-      let output = triggers[id]['Output'];
-      if (!output)
-        continue;
-      perTrigger[id] = outputObjs[output];
+    for (const id in triggers) {
+      const autoConfig = {};
+
+      const output = triggers[id][kOptionKeys.output];
+      if (output)
+        Object.assign(autoConfig, outputObjs[output]);
+
+      const duration = validDurationOrUndefined(triggers[id][kOptionKeys.duration]);
+      if (duration)
+        autoConfig[kOptionKeys.duration] = duration;
+
+      const outputStrings = triggers[id][kOptionKeys.outputStrings];
+      if (outputStrings)
+        autoConfig[kOptionKeys.outputStrings] = outputStrings;
+
+      if (output || duration || outputStrings)
+        perTrigger[id] = autoConfig;
     }
   },
   options: [

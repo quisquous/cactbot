@@ -49,91 +49,66 @@
       netRegex: NetRegexes.headMarker({ id: ['0064', '0065'] }),
       condition: function(data, matches) {
         // Library phase stack markers behave differently.
-        if (data.phase == 3)
+        if (data.phase === 3)
           return false;
 
         data.holyTargets = data.holyTargets || [];
         data.holyTargets.push(matches.target);
-        return data.holyTargets.length == 4;
+        return data.holyTargets.length === 4;
       },
-      alarmText: function(data) {
-        if (data.holyTargets[1] != data.me)
+      alarmText: function(data, _, output) {
+        if (data.holyTargets[1] !== data.me)
           return '';
-        return {
+        return output.stackOnYou();
+      },
+      alertText: function(data, _, output) {
+        if (data.holyTargets[1] === data.me)
+          return;
+
+        for (let i = 0; i < 4; ++i) {
+          if (data.holyTargets[i] === data.me)
+            return output.getOut();
+        }
+        return output.stackOnHoly({ holyTargets: data.holyTargets[1] });
+      },
+      infoText: function(data, _, output) {
+        for (let i = 0; i < 4; ++i) {
+          if (data.holyTargets[i] === data.me)
+            return output.othersStackOnHoly({ holyTargets: data.holyTargets[1] });
+        }
+      },
+      run: function(data) {
+        delete data.holyTargets;
+      },
+      outputStrings: {
+        othersStackOnHoly: {
+          en: 'others stack on ${holyTargets}',
+          de: 'andere stacken auf ${holyTargets}',
+          ja: '他は${holyTargets}に頭割り',
+          cn: '其他分摊${holyTargets}',
+          ko: '${holyTargets} 다른 쉐어징',
+        },
+        getOut: {
+          en: 'Get out',
+          de: 'Raus da',
+          ja: '出て',
+          cn: '出去',
+          ko: '밖으로',
+        },
+        stackOnHoly: {
+          en: 'Stack on ${holyTargets}',
+          de: 'Stack auf ${holyTargets}',
+          ja: '${holyTargets}に頭割り',
+          cn: '分摊${holyTargets}',
+          ko: '${holyTargets} 쉐어징',
+        },
+        stackOnYou: {
           en: 'Stack on YOU',
           de: 'Stack auf DIR',
           ja: '自分に頭割り',
           cn: '分摊点名',
           ko: '쉐어징 대상자',
-        };
-      },
-      alertText: function(data) {
-        if (data.holyTargets[1] == data.me)
-          return;
-
-        for (let i = 0; i < 4; ++i) {
-          if (data.holyTargets[i] == data.me) {
-            return {
-              en: 'Get out',
-              de: 'Raus da',
-              ja: '出て',
-              cn: '出去',
-              ko: '밖으로',
-            };
-          }
-        }
-        return {
-          en: 'Stack on ' + data.holyTargets[1],
-          de: 'Stack auf ' + data.holyTargets[1],
-          ja: data.holyTargets[1] + 'に頭割り',
-          cn: '分摊' + data.holyTargets[1],
-          ko: '' + data.holyTargets[1] + ' 쉐어징',
-        };
-      },
-      infoText: function(data) {
-        for (let i = 0; i < 4; ++i) {
-          if (data.holyTargets[i] == data.me) {
-            return {
-              en: 'others stack on ' + data.holyTargets[1],
-              de: 'andere stacken auf ' + data.holyTargets[1],
-              ja: '他は' + data.holyTargets[1] + 'に頭割り',
-              cn: '其他分摊' + data.holyTargets[1],
-              ko: '' + data.holyTargets[1] + ' 다른 쉐어징',
-            };
-          }
-        }
-      },
-      tts: function(data) {
-        if (data.holyTargets[1] == data.me) {
-          return {
-            en: 'stack on you',
-            de: 'stack auf dir',
-            ja: '自分に頭割り',
-            cn: '分摊点名',
-            ko: '쉐어징 대상자',
-          };
-        }
-        for (let i = 0; i < 4; ++i) {
-          if (data.holyTargets[i] == data.me) {
-            return {
-              en: 'get out',
-              de: 'raus da',
-              ja: '出ていて',
-              cn: '出去',
-              ko: '밖으로',
-            };
-          }
-        }
-        return {
-          en: 'stack on ' + data.holyTargets[1],
-          de: 'stack auf ' + data.holyTargets[1],
-          ja: data.holyTargets[1] + 'に頭割り',
-          cn: '分摊' + data.holyTargets[1],
-          ko: '' + data.holyTargets[1] + ' 쉐어징',
-        };
-      },
-      run: function(data) {
-        delete data.holyTargets;
+        },
       },
     },
     {
@@ -142,10 +117,10 @@
       netRegex: NetRegexes.headMarker({ id: ['0064', '0065'] }),
       condition: function(data, matches) {
         // This is only for library phase.
-        if (data.phase != 3)
+        if (data.phase !== 3)
           return false;
 
-        if (matches.target == data.me)
+        if (matches.target === data.me)
           data.librarySpellbladeMe = matches.id;
 
         return true;
@@ -155,129 +130,141 @@
       // anything is on you.  The 6 triggers will all have condition=true
       // and run, but only the first one will print.
       delaySeconds: function(data, matches) {
-        return matches.target == data.me ? 0 : 0.5;
+        return matches.target === data.me ? 0 : 0.5;
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (data.librarySpellbladePrinted)
           return;
 
         data.librarySpellbladePrinted = true;
-        if (data.librarySpellbladeMe == '0064') {
-          return {
-            en: 'Go south: stack on YOU',
-            de: 'Nach Süden: stack auf DIR',
-            ja: '南へ: 自分に頭割り',
-            cn: '去南边分摊点名',
-            ko: '남쪽으로: 쉐어징 대상자',
-          };
-        }
-        if (data.librarySpellbladeMe == '0065') {
-          return {
-            en: 'go north',
-            de: 'nach norden',
-            ja: '南へ',
-            cn: '去南边',
-            ko: '북쪽으로',
-          };
-        }
-        return {
+        if (data.librarySpellbladeMe === '0064')
+          return output.goSouthStackOnYou();
+
+        if (data.librarySpellbladeMe === '0065')
+          return output.goNorth();
+
+        return output.goSouthStackOnFriend();
+      },
+      tts: function(data, _, output) {
+        if (data.librarySpellbladePrinted)
+          return;
+
+        data.librarySpellbladePrinted = true;
+        if (data.librarySpellbladeMe === '0064')
+          return output.stackOutside();
+
+        if (data.librarySpellbladeMe === '0065')
+          return output.goNorth2();
+
+        return output.stackInside();
+      },
+      outputStrings: {
+        goSouthStackOnYou: {
+          en: 'Go south: stack on YOU',
+          de: 'Nach Süden: stack auf DIR',
+          ja: '南へ: 自分に頭割り',
+          cn: '去南边分摊点名',
+          ko: '남쪽으로: 쉐어징 대상자',
+        },
+        goNorth: {
+          en: 'go north',
+          de: 'nach norden',
+          ja: '南へ',
+          cn: '去南边',
+          ko: '북쪽으로',
+        },
+        goSouthStackOnFriend: {
           en: 'go south: stack on friend',
           de: 'nach süden: stack auf freund',
           ja: '南へ: 頭割り',
           cn: '去南边分摊',
           ko: '남쪽으로: 쉐어징',
-        };
-      },
-      tts: function(data) {
-        if (data.librarySpellbladePrinted)
-          return;
-
-        data.librarySpellbladePrinted = true;
-        if (data.librarySpellbladeMe == '0064') {
-          return {
-            en: 'stack outside',
-            de: 'außen stacken',
-            ja: '外へ: 頭割り',
-            cn: '去外面分摊',
-            ko: '밖으로: 쉐어징',
-          };
-        }
-        if (data.librarySpellbladeMe == '0065') {
-          return {
-            en: 'go north',
-            de: 'nach norden',
-            ja: '南へ',
-            cn: '去南边',
-            ko: '북쪽으로',
-          };
-        }
-        return {
+        },
+        stackOutside: {
+          en: 'stack outside',
+          de: 'außen stacken',
+          ja: '外へ: 頭割り',
+          cn: '去外面分摊',
+          ko: '밖으로: 쉐어징',
+        },
+        goNorth2: {
+          en: 'go north',
+          de: 'nach norden',
+          ja: '南へ',
+          cn: '去南边',
+          ko: '북쪽으로',
+        },
+        stackInside: {
           en: 'stack inside',
           de: 'innen stacken',
           ja: '中へ: 頭割り',
           cn: '去里面分摊',
           ko: '안으로: 쉐어징',
-        };
+        },
       },
     },
     {
       id: 'O3S Right Face',
       netRegex: NetRegexes.gainsEffect({ effectId: '510' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 8,
-      infoText: {
-        en: 'Mindjack: Right',
-        de: 'Geistlenkung: Rechts',
-        ja: 'マインドジャック: 右折',
-        cn: '右',
-        ko: '정신장악: 오른쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mindjack: Right',
+          de: 'Geistlenkung: Rechts',
+          ja: 'マインドジャック: 右折',
+          cn: '右',
+          ko: '정신장악: 오른쪽',
+        },
       },
     },
     {
       id: 'O3S Forward March',
       netRegex: NetRegexes.gainsEffect({ effectId: '50D' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 8,
-      infoText: {
-        en: 'Mindjack: Forward',
-        de: 'Geistlenkung: Vorwärts',
-        ja: 'マインドジャック: 前進',
-        cn: '前',
-        ko: '정신장악: 앞쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mindjack: Forward',
+          de: 'Geistlenkung: Vorwärts',
+          ja: 'マインドジャック: 前進',
+          cn: '前',
+          ko: '정신장악: 앞쪽',
+        },
       },
     },
     {
       id: 'O3S Left Face',
       netRegex: NetRegexes.gainsEffect({ effectId: '50F' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 8,
-      infoText: {
-        en: 'Mindjack: Left',
-        de: 'Geistlenkung: Links',
-        ja: 'マインドジャック: 左折',
-        cn: '左',
-        ko: '정신장악: 왼쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mindjack: Left',
+          de: 'Geistlenkung: Links',
+          ja: 'マインドジャック: 左折',
+          cn: '左',
+          ko: '정신장악: 왼쪽',
+        },
       },
     },
     {
       id: 'O3S About Face',
       netRegex: NetRegexes.gainsEffect({ effectId: '50E' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       durationSeconds: 8,
-      infoText: {
-        en: 'Mindjack: Back',
-        de: 'Geistlenkung: Zurück',
-        ja: 'マインドジャック: 後退',
-        cn: '后',
-        ko: '정신장악: 뒤쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mindjack: Back',
+          de: 'Geistlenkung: Zurück',
+          ja: 'マインドジャック: 後退',
+          cn: '后',
+          ko: '정신장악: 뒤쪽',
+        },
       },
     },
     {
@@ -321,21 +308,25 @@
       condition: function(data) {
         // Deliberately skip printing the waltz message for the
         // spellblade holy -> waltz that ends the library phase.
-        return data.phase != 3 || !data.seenHolyThisPhase;
+        return data.phase !== 3 || !data.seenHolyThisPhase;
       },
-      alertText: {
-        en: 'The Queen\'s Waltz: Books',
-        de: 'Tanz der Königin: Bücher',
-        ja: '女王の舞い: 本',
-        cn: '中间两排分格站位',
-        ko: '여왕의 춤: 책',
-      },
-      tts: {
-        en: 'books',
-        de: 'bücher',
-        ja: '本',
-        cn: '书',
-        ko: '책',
+      alertText: (data, _, output) => output.text(),
+      tts: (data, _, output) => output.tts(),
+      outputStrings: {
+        text: {
+          en: 'The Queen\'s Waltz: Books',
+          de: 'Tanz der Königin: Bücher',
+          ja: '女王の舞い: 本',
+          cn: '中间两排分格站位',
+          ko: '여왕의 춤: 책',
+        },
+        tts: {
+          en: 'books',
+          de: 'bücher',
+          ja: '本',
+          cn: '书',
+          ko: '책',
+        },
       },
     },
     {
@@ -346,19 +337,23 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2306', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2306', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2306', source: '할리카르나소스', capture: false }),
-      infoText: {
-        en: 'The Queen\'s Waltz: Clock',
-        de: 'Tanz der Königin: Uhr',
-        ja: '女王の舞い: 散開',
-        cn: '万变水波站位',
-        ko: '여왕의 춤: 산개',
-      },
-      tts: {
-        en: 'clock',
-        de: 'uhr',
-        ja: '散開',
-        cn: '万变水波',
-        ko: '산개',
+      infoText: (data, _, output) => output.text(),
+      tts: (data, _, output) => output.tts(),
+      outputStrings: {
+        text: {
+          en: 'The Queen\'s Waltz: Clock',
+          de: 'Tanz der Königin: Uhr',
+          ja: '女王の舞い: 散開',
+          cn: '万变水波站位',
+          ko: '여왕의 춤: 산개',
+        },
+        tts: {
+          en: 'clock',
+          de: 'uhr',
+          ja: '散開',
+          cn: '万变水波',
+          ko: '산개',
+        },
       },
     },
     {
@@ -369,19 +364,23 @@
       netRegexJa: NetRegexes.startsUsing({ id: '230A', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '230A', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '230A', source: '할리카르나소스', capture: false }),
-      infoText: {
-        en: 'The Queen\'s Waltz: Crystal Square',
-        de: 'Tanz der Königin: Kristallfeld',
-        ja: '女王の舞い: 床',
-        cn: '站在蓝地板',
-        ko: '여왕의 춤: 대지',
-      },
-      tts: {
-        en: 'blue square',
-        de: 'blaues feld',
-        ja: '青い床',
-        cn: '蓝地板',
-        ko: '파란 장판',
+      infoText: (data, _, output) => output.text(),
+      tts: (data, _, output) => output.tts(),
+      outputStrings: {
+        text: {
+          en: 'The Queen\'s Waltz: Crystal Square',
+          de: 'Tanz der Königin: Kristallfeld',
+          ja: '女王の舞い: 床',
+          cn: '站在蓝地板',
+          ko: '여왕의 춤: 대지',
+        },
+        tts: {
+          en: 'blue square',
+          de: 'blaues feld',
+          ja: '青い床',
+          cn: '蓝地板',
+          ko: '파란 장판',
+        },
       },
     },
     {
@@ -392,19 +391,23 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2308', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2308', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2308', source: '할리카르나소스', capture: false }),
-      infoText: {
-        en: 'The Queen\'s Waltz: Tethers',
-        de: 'Tanz der Königin: Ranken',
-        ja: '女王の舞い: 茨',
-        cn: '先集中后扯线',
-        ko: '여왕의 춤: 가시',
-      },
-      tts: {
-        en: 'tethers',
-        de: 'ranken',
-        ja: '茨を引く',
-        cn: '扯线',
-        ko: '가시',
+      infoText: (data, _, output) => output.text(),
+      tts: (data, _, output) => output.tts(),
+      outputStrings: {
+        text: {
+          en: 'The Queen\'s Waltz: Tethers',
+          de: 'Tanz der Königin: Ranken',
+          ja: '女王の舞い: 茨',
+          cn: '先集中后扯线',
+          ko: '여왕의 춤: 가시',
+        },
+        tts: {
+          en: 'tethers',
+          de: 'ranken',
+          ja: '茨を引く',
+          cn: '扯线',
+          ko: '가시',
+        },
       },
     },
   ],
@@ -557,29 +560,46 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Halicarnassus': '할리카르나소스',
       },
       'replaceText': {
+        '--Apanda Spawns--': '--아판다 소환--',
+        '--Great Dragon Spawns--': '--거대 드래곤 소환--',
+        '--Ninjas \\+ Giant Spawn--': '--닌자 + 철거인 소환--',
+        '--White Flame Spawns--': '--하얀 불꽃 소환--',
+        '\\(Random\\)': '(무작위)',
+        '\\(Apanda\\)': '(아판다)',
+        '\\(Books\\)': '(책)',
+        '\\(Clock\\)': '(팔방 산개)',
+        '\\(Crystals\\)': '(크리스탈)',
+        '\\(Ultimate\\)': '(최종)',
+        'Tanks Morph': '탱커 변이',
+        'Healers Morph': '힐러 변이',
+        'DPS Morph': '딜러 변이',
         'Blizzard': '블리자드',
         'Critical Hit': '극대화',
         'Dimensional Wave': '차원 파동',
+        'Dragon Conal AoE': '드래곤 쫄 광역 공격',
         'Fire': '파이어',
-        'Haste': '헤이스트',
+        'Haste(?! )': '헤이스트',
+        'Haste III': '헤이스가',
         'Magic Hammer': '마법 망치',
         'Mindjack': '정신 장악',
         'Oink': '꿀꿀꿀꿀!',
         'Panel Swap': '판 바꾸기',
         'Place Dark Token': '죽음의 토큰 소환',
         'Place Token': '토큰 소환',
+        'Random Elemental': '무작위 원소 공격',
         'Ribbit': '개굴개굴!',
         'Spellblade Holy': '마법검 홀리',
         'Squelch': '보글보글!',
+        'Tethers': '선',
         'The Game': '게임 시작',
         'The Playing Field': '게임판',
         '(The )?Queen\'s Waltz': '여왕의 춤',
         'Thunder': '선더',
+        'Ninjas/Giant': '닌자/철거인',
       },
     },
   ],

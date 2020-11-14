@@ -7,7 +7,7 @@
     {
       id: 'T6 Thorn Whip Collect',
       netRegex: NetRegexes.tether({ id: '0012' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.thornMap = data.thornMap || {};
         data.thornMap[matches.source] = data.thornMap[matches.source] || [];
         data.thornMap[matches.source].push(matches.target);
@@ -23,110 +23,111 @@
       netRegexJa: NetRegexes.ability({ id: '879', source: 'ラフレシア' }),
       netRegexCn: NetRegexes.ability({ id: '879', source: '大王花' }),
       netRegexKo: NetRegexes.ability({ id: '879', source: '라플레시아' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => {
+        const partners = data.thornMap[data.me];
+        if (!partners)
+          return output.thornsOnYou();
+
+        if (partners.length === 1)
+          return output.oneTether({ player: data.ShortName(partners[0]) });
+
+        if (partners.length === 2) {
+          return output.twoTethers({
+            player1: data.ShortName(partners[0]),
+            player2: data.ShortName(partners[1]),
+          });
+        }
+
+        return output.threeOrMoreTethers({ num: partners.length });
       },
-      infoText: function(data) {
-        let partners = data.thornMap[data.me];
-        if (!partners) {
-          return {
-            en: 'Thorns on YOU',
-            de: 'Dornenpeitsche auf DIR',
-            fr: 'Ronces sur VOUS',
-            ja: '自分にソーンウィップ',
-            cn: '荆棘点名',
-          };
-        }
-        if (partners.length == 1) {
-          return {
-            en: 'Thorns w/ (' + data.ShortName(partners[0]) + ')',
-            de: 'Dornenpeitsche mit (' + data.ShortName(partners[0]) + ')',
-            fr: 'Ronces avec (' + data.ShortName(partners[0]) + ')',
-            ja: '自分と (' + data.ShortName(partners[0]) + ') にソーンウィップ',
-            cn: '荆棘与(' + data.ShortName(partners[0]) + ')',
-          };
-        }
-        if (partners.length == 2) {
-          return {
-            en: 'Thorns w/ (' + data.ShortName(partners[0]) + ', ' + data.ShortName(partners[1]) + ')',
-            de: 'Dornenpeitsche mit (' + data.ShortName(partners[0]) + ', ' + data.ShortName(partners[1]) + ')',
-            fr: 'Ronces avec (' + data.ShortName(partners[0]) + ', ' + data.ShortName(partners[1]) + ')',
-            ja: '自分と (' + data.ShortName(partners[0]) + ', ' + data.ShortName(partners[1]) + ') にソーンウィップ',
-            cn: '荆棘与(' + data.ShortName(partners[0]) + ', ' + data.ShortName(partners[1]) + ')',
-          };
-        }
-        return {
-          en: 'Thorns (' + partners.length + ' people)',
-          de: 'Dornenpeitsche mit (' + partners.length + ' Personen)',
-          fr: 'Ronces (' + partners.length + ' personne)',
-          ja: 'ソーンウィップ (' + partners.length + '人)',
-          cn: '荆棘(' + partners.length + ' people)',
-        };
-      },
-      run: function(data) {
-        delete data.thornMap;
+      run: (data) => delete data.thornMap,
+      outputStrings: {
+        thornsOnYou: {
+          en: 'Thorns on YOU',
+          de: 'Dornenpeitsche auf DIR',
+          fr: 'Ronces sur VOUS',
+          ja: '自分にソーンウィップ',
+          cn: '荆棘点名',
+        },
+        oneTether: {
+          en: 'Thorns w/ (${player})',
+          de: 'Dornenpeitsche mit (${player})',
+          fr: 'Ronces avec (${player})',
+          ja: '自分と (${player}) にソーンウィップ',
+          cn: '荆棘与(${player})',
+        },
+        twoTethers: {
+          en: 'Thorns w/ (${player1}, ${player2})',
+          de: 'Dornenpeitsche mit (${player1}, ${player2})',
+          fr: 'Ronces avec (${player1}, ${player2})',
+          ja: '自分と (${player1}, ${player2}) にソーンウィップ',
+          cn: '荆棘与(${player1}, ${player2})',
+        },
+        threeOrMoreTethers: {
+          en: 'Thorns (${num} people)',
+          de: 'Dornenpeitsche mit (${num} Personen)',
+          fr: 'Ronces (${num} personne)',
+          ja: 'ソーンウィップ (${num}人)',
+          cn: '荆棘(${num} people)',
+        },
       },
     },
     {
       // Honey-Glazed
       id: 'T6 Honey On',
       netRegex: NetRegexes.gainsEffect({ effectId: '1BE' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      run: function(data) {
-        data.honey = true;
-      },
+      condition: Conditions.targetIsYou(),
+      run: (data) => data.honey = true,
     },
     {
       id: 'T6 Honey Off',
       netRegex: NetRegexes.losesEffect({ effectId: '1BE' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      run: function(data) {
-        delete data.honey;
-      },
+      condition: Conditions.targetIsYou(),
+      run: (data) => delete data.honey,
     },
     {
       id: 'T6 Flower',
       netRegex: NetRegexes.headMarker({ id: '000D' }),
-      alarmText: function(data) {
-        if (data.honey) {
-          return {
-            en: 'Devour: Get Eaten',
-            de: 'Verschlingen: Gefressen werden',
-            fr: 'Dévoration : Faites-vous manger',
-            ja: '捕食: 捕食され',
-            cn: '捕食点名',
-          };
-        }
+      alarmText: (data, _, output) => {
+        if (data.honey)
+          return output.getEaten();
       },
-      alertText: function(data, matches) {
+      alertText: (data, matches, output) => {
         if (data.honey)
           return;
 
-        if (data.me == matches.target) {
-          return {
-            en: 'Devour: Jump In New Thorns',
-            de: 'Verschlingen: Spring in die neuen Dornen',
-            fr: 'Dévoration : Sautez dans les ronces',
-            ja: '捕食: 新芽に乗る',
-            cn: '去新荆棘',
-          };
-        }
+        if (data.me === matches.target)
+          return output.jumpInNewThorns();
       },
-      infoText: function(data, matches) {
-        if (data.honey || data.me == matches.target)
+      infoText: (data, matches, output) => {
+        if (data.honey || data.me === matches.target)
           return;
 
-        return {
+        return output.avoidDevour();
+      },
+      outputStrings: {
+        avoidDevour: {
           en: 'Avoid Devour',
           de: 'Weiche Verschlingen aus',
           fr: 'Évitez Dévoration',
           ja: '捕食に避け',
           cn: '躲开吞食',
-        };
+        },
+        jumpInNewThorns: {
+          en: 'Devour: Jump In New Thorns',
+          de: 'Verschlingen: Spring in die neuen Dornen',
+          fr: 'Dévoration : Sautez dans les ronces',
+          ja: '捕食: 新芽に乗る',
+          cn: '去新荆棘',
+        },
+        getEaten: {
+          en: 'Devour: Get Eaten',
+          de: 'Verschlingen: Gefressen werden',
+          fr: 'Dévoration : Faites-vous manger',
+          ja: '捕食: 捕食され',
+          cn: '捕食点名',
+        },
       },
     },
     {
@@ -157,13 +158,9 @@
       netRegexJa: NetRegexes.startsUsing({ id: '79E', source: 'ラフレシア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '79E', source: '大王花', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '79E', source: '라플레시아', capture: false }),
-      condition: function(data) {
-        return !data.seenLeafstorm;
-      },
+      condition: (data) => !data.seenLeafstorm,
       sound: 'Long',
-      run: function(data) {
-        data.seenLeafstorm = true;
-      },
+      run: (data) => data.seenLeafstorm = true,
     },
     {
       id: 'T6 Swarm Stack',
@@ -173,12 +170,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '86C', source: 'ラフレシア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '86C', source: '大王花', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '86C', source: '라플레시아', capture: false }),
-      infoText: {
-        en: 'Stack for Acid',
-        de: 'Sammeln für Säure-Blubberblase',
-        fr: 'Packez-vous pour Pluie acide',
-        ja: '集合、アシッドレインを誘導',
-        cn: '集合引导酸雨',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack for Acid',
+          de: 'Sammeln für Säure-Blubberblase',
+          fr: 'Packez-vous pour Pluie acide',
+          ja: '集合、アシッドレインを誘導',
+          cn: '集合引导酸雨',
+        },
       },
     },
     {
@@ -189,52 +189,56 @@
       netRegexJa: NetRegexes.ability({ id: '7A0', source: 'ラフレシア' }),
       netRegexCn: NetRegexes.ability({ id: '7A0', source: '大王花' }),
       netRegexKo: NetRegexes.ability({ id: '7A0', source: '라플레시아' }),
-      condition: function(data, matches) {
-        return data.me == matches.target || data.role == 'healer' || data.job == 'BLU';
+      condition: (data, matches) => data.me === matches.target || data.role === 'healer' || data.job === 'BLU',
+      alertText: (data, matches, output) => {
+        if (matches.target === data.me)
+          return output.swarmOnYou();
       },
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Swarm on YOU',
-            de: 'Fähenfurz auf DIR',
-            fr: 'Nuée sur VOUS',
-            ja: '自分にスウォーム',
-            cn: '蜂群点名',
-          };
-        }
+      infoText: (data, matches, output) => {
+        if (matches.target !== data.me)
+          return output.swarmOn({ player: data.ShortName(matches.target) });
       },
-      infoText: function(data, matches) {
-        if (matches.target != data.me) {
-          return {
-            en: 'Swarm on ' + data.ShortName(matches.target),
-            de: 'Fähenfurz auf ' + data.ShortName(matches.target),
-            fr: 'Nuée sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にスウォーム',
-            cn: '蜂群点' + data.ShortName(matches.target),
-          };
-        }
+      outputStrings: {
+        swarmOn: {
+          en: 'Swarm on ${player}',
+          de: 'Fähenfurz auf ${player}',
+          fr: 'Nuée sur ${player}',
+          ja: '${player}にスウォーム',
+          cn: '蜂群点${player}',
+        },
+        swarmOnYou: {
+          en: 'Swarm on YOU',
+          de: 'Fähenfurz auf DIR',
+          fr: 'Nuée sur VOUS',
+          ja: '自分にスウォーム',
+          cn: '蜂群点名',
+        },
       },
     },
     {
       id: 'T6 Rotten Stench',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Share Laser (on YOU)',
-            de: 'Geteilter Laser (auf DIR)',
-            fr: 'Partagez le laser (sur VOUS)',
-            ja: '(自分に)頭割りレザー',
-            cn: '分摊激光点名',
-          };
-        }
-        return {
-          en: 'Share Laser (on ' + data.ShortName(matches.target) + ')',
-          de: 'Geteilter Laser (auf ' + data.ShortName(matches.target) + ')',
-          fr: 'Partage de laser (sur ' + data.ShortName(matches.target) + ')',
-          ja: '(' + data.ShortName(matches.target) + ')に頭割りレザー',
-          cn: '分摊激光点(on ' + data.ShortName(matches.target) + ')',
-        };
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.shareLaserOnYou();
+
+        return output.shareLaserOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        shareLaserOnYou: {
+          en: 'Share Laser (on YOU)',
+          de: 'Geteilter Laser (auf DIR)',
+          fr: 'Partagez le laser (sur VOUS)',
+          ja: '(自分に)頭割りレザー',
+          cn: '分摊激光点名',
+        },
+        shareLaserOn: {
+          en: 'Share Laser (on ${player})',
+          de: 'Geteilter Laser (auf ${player})',
+          fr: 'Partage de laser (sur ${player})',
+          ja: '(${player})に頭割りレザー',
+          cn: '分摊激光点(on ${player})',
+        },
       },
     },
   ],

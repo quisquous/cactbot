@@ -15,13 +15,16 @@
       id: 'BA Raiden Levinwhorl',
       regex: /Levinwhorl/,
       beforeSeconds: 10,
-      alertText: {
-        en: 'Shields and Mitigation',
-        de: 'Schilde und Abschwächungen',
-        fr: 'Boucliers et mitigation',
-        ja: 'ダメージ軽減とバリアを',
-        cn: '切盾减伤',
-        ko: '뎀감, 보호막',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Shields and Mitigation',
+          de: 'Schilde und Abschwächungen',
+          fr: 'Boucliers et mitigation',
+          ja: 'ダメージ軽減とバリアを',
+          cn: '切盾减伤',
+          ko: '뎀감, 보호막',
+        },
       },
     },
     {
@@ -29,45 +32,45 @@
       regex: /Explosive Impulse/,
       beforeSeconds: 10,
       suppressSeconds: 60,
-      infoText: {
-        en: 'Pop Eurekan Potions',
-        de: 'Eureka-Heiltränke benutzen',
-        fr: 'Utilisez potion d\'Eurêka',
-        ja: 'エウレカ回復薬',
-        cn: '磕优雷卡回复药',
-        ko: '에우레카 포션 먹기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Pop Eurekan Potions',
+          de: 'Eureka-Heiltränke benutzen',
+          fr: 'Utilisez potion d\'Eurêka',
+          ja: 'エウレカ回復薬',
+          cn: '磕优雷卡回复药',
+          ko: '에우레카 포션 먹기',
+        },
       },
     },
     {
       id: 'BA Ozma Black Hole Warning',
       regex: /Black Hole/,
       beforeSeconds: 12,
-      infoText: {
-        en: 'Black Hole Soon',
-        de: 'Schwarzes Loch',
-        fr: 'Trou noir bientôt',
-        ja: 'まもなくブラックホール',
-        cn: '黑洞警告',
-        ko: '곧 블랙홀',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Black Hole Soon',
+          de: 'Schwarzes Loch',
+          fr: 'Trou noir bientôt',
+          ja: 'まもなくブラックホール',
+          cn: '黑洞警告',
+          ko: '곧 블랙홀',
+        },
       },
     },
   ],
   triggers: [
     {
       id: 'BA Falling Asleep',
-      netRegex: NetRegexes.gameLog({ line: '5 minutes have elapsed since your last activity..*?', capture: false }),
-      netRegexDe: NetRegexes.gameLog({ line: 'Seit deiner letzten Aktivität sind 5 Minuten vergangen..*?', capture: false }),
-      netRegexFr: NetRegexes.gameLog({ line: 'Votre personnage est inactif depuis 5 minutes.*?', capture: false }),
-      netRegexCn: NetRegexes.gameLog({ line: '已经5分钟没有进行任何操作.*?', capture: false }),
-      netRegexKo: NetRegexes.gameLog({ line: '5분 동안 아무 조작을 하지 않았습니다..*?', capture: false }),
-      alarmText: {
-        en: 'WAKE UP',
-        de: 'AUFWACHEN',
-        fr: 'RÉVEILLES-TOI',
-        ja: '目を覚めて！',
-        cn: '醒醒！动一动！！',
-        ko: '강제 퇴장 5분 전',
-      },
+      netRegex: NetRegexes.gameLog({ line: '7 minutes have elapsed since your last activity..*?', capture: false }),
+      netRegexDe: NetRegexes.gameLog({ line: 'Seit deiner letzten Aktivität sind 7 Minuten vergangen..*?', capture: false }),
+      netRegexFr: NetRegexes.gameLog({ line: 'Votre personnage est inactif depuis 7 minutes.*?', capture: false }),
+      netRegexJa: NetRegexes.gameLog({ line: '操作がない状態になってから7分が経過しました。.*?', capture: false }),
+      netRegexCn: NetRegexes.gameLog({ line: '已经7分钟没有进行任何操作.*?', capture: false }),
+      netRegexKo: NetRegexes.gameLog({ line: '7분 동안 아무 조작을 하지 않았습니다..*?', capture: false }),
+      response: Responses.wakeUp(),
     },
     {
       id: 'BA Saved By Rememberance',
@@ -144,7 +147,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3927', source: '亚特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3927', source: '아르트', capture: false }),
       condition: function(data) {
-        return data.side == 'west';
+        return data.side === 'west';
       },
       run: function(data) {
         data.mythcall = true;
@@ -159,7 +162,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3934', source: '亚特' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3934', source: '아르트' }),
       condition: function(data) {
-        return data.side == 'west';
+        return data.side === 'west';
       },
       response: Responses.tankBuster(),
     },
@@ -167,38 +170,42 @@
       id: 'BA Art Orb Marker',
       netRegex: NetRegexes.headMarker({ id: '005C' }),
       condition: function(data) {
-        return data.side == 'west';
+        return data.side === 'west';
       },
-      alarmText: function(data, matches) {
-        if (data.me != matches.target)
+      alarmText: function(data, matches, output) {
+        if (data.me !== matches.target)
           return;
-        return {
-          en: 'Orb on YOU',
-          de: 'Orb auf DIR',
-          fr: 'Orbe sur VOUS',
-          ja: '自分に玉',
-          cn: '点名',
-          ko: '구슬 대상자',
-        };
+        return output.orbOnYou();
       },
-      alertText: function(data, matches) {
-        if (data.me == matches.target)
+      alertText: function(data, matches, output) {
+        if (data.me === matches.target)
           return;
-        return {
+        return output.awayFromOrbMarker();
+      },
+      outputStrings: {
+        awayFromOrbMarker: {
           en: 'Away From Orb Marker',
           de: 'Weg vom Orb-Marker',
           fr: 'Éloignez-vous du marquage Orbe',
           ja: '玉に離れ',
           cn: '远离点名',
           ko: '구슬 대상자에서 떨어지기',
-        };
+        },
+        orbOnYou: {
+          en: 'Orb on YOU',
+          de: 'Orb auf DIR',
+          fr: 'Orbe sur VOUS',
+          ja: '自分に玉',
+          cn: '点名',
+          ko: '구슬 대상자',
+        },
       },
     },
     {
       id: 'BA Art Piercing Dark Marker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.side == 'west' && data.me == matches.target;
+        return data.side === 'west' && data.me === matches.target;
       },
       response: Responses.spread(),
     },
@@ -211,7 +218,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3928', source: '亚特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3928', source: '아르트', capture: false }),
       condition: function(data) {
-        return data.side == 'west';
+        return data.side === 'west';
       },
       response: Responses.getOut(),
     },
@@ -224,7 +231,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3929', source: '亚特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3929', source: '아르트', capture: false }),
       condition: function(data) {
-        return data.side == 'west';
+        return data.side === 'west';
       },
       response: Responses.getIn(),
     },
@@ -237,7 +244,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3928', source: '亚特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3928', source: '아르트', capture: false }),
       condition: function(data) {
-        return data.side == 'west' && data.mythcall;
+        return data.side === 'west' && data.mythcall;
       },
       delaySeconds: 3.5,
       response: Responses.getUnder(),
@@ -251,16 +258,19 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3929', source: '亚特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3929', source: '아르트', capture: false }),
       condition: function(data) {
-        return data.side == 'west' && data.mythcall;
+        return data.side === 'west' && data.mythcall;
       },
       delaySeconds: 3.5,
-      infoText: {
-        en: 'Under Spears',
-        de: 'Unter einen Speer',
-        fr: 'En dessous des lances',
-        ja: '妖槍旋',
-        cn: '枪脚下',
-        ko: '창 아래로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Under Spears',
+          de: 'Unter einen Speer',
+          fr: 'En dessous des lances',
+          ja: '妖槍旋',
+          cn: '枪脚下',
+          ko: '창 아래로',
+        },
       },
     },
     {
@@ -272,7 +282,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3945', source: '欧文' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3945', source: '오와인' }),
       condition: function(data) {
-        return data.side == 'west';
+        return data.side === 'west';
       },
       response: Responses.tankBuster(),
     },
@@ -280,7 +290,7 @@
       id: 'BA Owain Piercing Light Marker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.side == 'east' && data.me == matches.target;
+        return data.side === 'east' && data.me === matches.target;
       },
       response: Responses.spread(),
     },
@@ -288,7 +298,7 @@
       id: 'BA Owain Dorito Stack',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.side == 'east' && data.me == matches.target;
+        return data.side === 'east' && data.me === matches.target;
       },
       response: Responses.doritoStack(),
     },
@@ -300,23 +310,27 @@
       netRegexJa: NetRegexes.dialog({ line: '[^:]*:白の妖槍「ムンジャルグ」、燃え上がれ！.*?', capture: false }),
       netRegexCn: NetRegexes.dialog({ line: '[^:]*:红颈妖枪，点燃一切.*?', capture: false }),
       condition: function(data) {
-        return data.side == 'east';
+        return data.side === 'east';
       },
-      alertText: {
-        en: 'Get to Ice',
-        de: 'Geh zum Eis',
-        fr: 'Allez à la glace',
-        ja: '氷に',
-        cn: '冰',
-        ko: '얼음',
-      },
-      infoText: {
-        en: 'Switch Magia',
-        de: 'Magia-Brett drehen',
-        fr: 'Changez de Magia',
-        ja: 'マギアボードを切替',
-        cn: '切换元素板',
-        ko: '마기아 전환',
+      alertText: (data, _, output) => output.getToIce(),
+      infoText: (data, _, output) => output.switchMagia(),
+      outputStrings: {
+        switchMagia: {
+          en: 'Switch Magia',
+          de: 'Magia-Brett drehen',
+          fr: 'Changez de Magia',
+          ja: 'マギアボードを切替',
+          cn: '切换元素板',
+          ko: '마기아 전환',
+        },
+        getToIce: {
+          en: 'Get to Ice',
+          de: 'Geh zum Eis',
+          fr: 'Allez à la glace',
+          ja: '氷に',
+          cn: '冰',
+          ko: '얼음',
+        },
       },
     },
     {
@@ -327,23 +341,27 @@
       netRegexJa: NetRegexes.dialog({ line: '[^:]*:白の妖槍「ムンジャルグ」、震え凍れよ！.*?', capture: false }),
       netRegexCn: NetRegexes.dialog({ line: '[^:]*:红颈妖枪，冻结万物.*?', capture: false }),
       condition: function(data) {
-        return data.side == 'east';
+        return data.side === 'east';
       },
-      alertText: {
-        en: 'Get to Fire',
-        de: 'Geh zum Feuer',
-        fr: 'Allez au feu',
-        ja: '火',
-        cn: '火',
-        ko: '불',
-      },
-      infoText: {
-        en: 'Switch Magia',
-        de: 'Magia-Brett drehen',
-        fr: 'Changez de Magia',
-        ja: 'マギアボードを切替',
-        cn: '切换元素板',
-        ko: '마기아 전환',
+      alertText: (data, _, output) => output.getToFire(),
+      infoText: (data, _, output) => output.switchMagia(),
+      outputStrings: {
+        switchMagia: {
+          en: 'Switch Magia',
+          de: 'Magia-Brett drehen',
+          fr: 'Changez de Magia',
+          ja: 'マギアボードを切替',
+          cn: '切换元素板',
+          ko: '마기아 전환',
+        },
+        getToFire: {
+          en: 'Get to Fire',
+          de: 'Geh zum Feuer',
+          fr: 'Allez au feu',
+          ja: '火',
+          cn: '火',
+          ko: '불',
+        },
       },
     },
     {
@@ -355,7 +373,7 @@
       netRegexCn: NetRegexes.ability({ id: '3941', source: '白手' }),
       netRegexKo: NetRegexes.ability({ id: '3941', source: '하얀 손' }),
       condition: function(data, matches) {
-        return data.side == 'east' && data.me == matches.target;
+        return data.side === 'east' && data.me === matches.target;
       },
       response: Responses.doritoStack(),
     },
@@ -368,7 +386,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '394D', source: '欧文', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '394D', source: '오와인', capture: false }),
       condition: function(data) {
-        return data.side == 'east';
+        return data.side === 'east';
       },
       response: Responses.getOut(),
     },
@@ -402,7 +420,7 @@
       id: 'BA Raiden Lancing Bolt',
       netRegex: NetRegexes.headMarker({ id: '008A' }),
       condition: function(data, matches) {
-        return data.sealed && data.me == matches.target;
+        return data.sealed && data.me === matches.target;
       },
       response: Responses.spread(),
     },
@@ -495,16 +513,19 @@
       condition: function(data) {
         return data.sealed;
       },
-      infoText: {
-        en: 'Dark Bracelets',
-        de: 'Dunkle Armreife',
-        fr: 'Bracelets ténèbreux',
-        ja: '黒リング',
-        cn: '黑光环',
-        ko: '어두운 고리',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.bracelets = 'dark';
+      },
+      outputStrings: {
+        text: {
+          en: 'Dark Bracelets',
+          de: 'Dunkle Armreife',
+          fr: 'Bracelets ténèbreux',
+          ja: '黒リング',
+          cn: '黑光环',
+          ko: '어두운 고리',
+        },
       },
     },
     {
@@ -518,16 +539,19 @@
       condition: function(data) {
         return data.sealed;
       },
-      infoText: {
-        en: 'Light Bracelets',
-        de: 'Helle Armreife',
-        fr: 'Bracelets lumineux',
-        ja: '白リング',
-        cn: '白光环',
-        ko: '빛 고리',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.bracelets = 'light';
+      },
+      outputStrings: {
+        text: {
+          en: 'Light Bracelets',
+          de: 'Helle Armreife',
+          fr: 'Bracelets lumineux',
+          ja: '白リング',
+          cn: '白光环',
+          ko: '빛 고리',
+        },
       },
     },
     {
@@ -541,53 +565,58 @@
       condition: function(data) {
         return data.sealed;
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (!data.seenHostile) {
-          if (data.bracelets == 'light') {
-            return {
-              en: 'Away From Light Circles',
-              de: 'Weg von hellen Kreisen',
-              fr: 'Éloignez-vous des cercles lumineux',
-              ja: '白リングに離れ',
-              cn: '远离白圈',
-              ko: '밝은 원에서 떨어지기',
-            };
-          }
-          if (data.bracelets == 'dark') {
-            return {
-              en: 'Away From Dark Circles',
-              de: 'Weg von dunklen Kreisen',
-              fr: 'Éloignez-vous des cercles ténèbreux',
-              ja: '黒リングに離れ',
-              cn: '远离黑圈',
-              ko: '어두운 원에서 떨어지기',
-            };
-          }
+          if (data.bracelets === 'light')
+            return output.awayFromLightCircles();
+
+          if (data.bracelets === 'dark')
+            return output.awayFromDarkCircles();
+
           return;
         }
-        if (data.bracelets == 'light') {
-          return {
-            en: 'Stand By Dark Circles',
-            de: 'Zu den dunklen Kreisen',
-            fr: 'Tenez-vous près des cercles ténèbreux',
-            ja: '黒リングに近づく',
-            cn: '靠近黑圈',
-            ko: '어두운 원 옆에 서기',
-          };
-        }
-        if (data.bracelets == 'dark') {
-          return {
-            en: 'Stand By Light Circles',
-            de: 'zu den hellen Kreisen',
-            fr: 'Tenez-vous près des cercles lumineux',
-            ja: '白リングに近づく',
-            cn: '靠近白圈',
-            ko: '밝은 원 옆에 서기',
-          };
-        }
+        if (data.bracelets === 'light')
+          return output.standByDarkCircles();
+
+        if (data.bracelets === 'dark')
+          return output.standByLightCircles();
       },
       run: function(data) {
         data.seenHostile = true;
+      },
+      outputStrings: {
+        awayFromLightCircles: {
+          en: 'Away From Light Circles',
+          de: 'Weg von hellen Kreisen',
+          fr: 'Éloignez-vous des cercles lumineux',
+          ja: '白リングに離れ',
+          cn: '远离白圈',
+          ko: '밝은 원에서 떨어지기',
+        },
+        awayFromDarkCircles: {
+          en: 'Away From Dark Circles',
+          de: 'Weg von dunklen Kreisen',
+          fr: 'Éloignez-vous des cercles ténèbreux',
+          ja: '黒リングに離れ',
+          cn: '远离黑圈',
+          ko: '어두운 원에서 떨어지기',
+        },
+        standByDarkCircles: {
+          en: 'Stand By Dark Circles',
+          de: 'Zu den dunklen Kreisen',
+          fr: 'Tenez-vous près des cercles ténèbreux',
+          ja: '黒リングに近づく',
+          cn: '靠近黑圈',
+          ko: '어두운 원 옆에 서기',
+        },
+        standByLightCircles: {
+          en: 'Stand By Light Circles',
+          de: 'zu den hellen Kreisen',
+          fr: 'Tenez-vous près des cercles lumineux',
+          ja: '白リングに近づく',
+          cn: '靠近白圈',
+          ko: '밝은 원 옆에 서기',
+        },
       },
     },
     {
@@ -601,27 +630,30 @@
       condition: function(data) {
         return data.sealed;
       },
-      alertText: function(data) {
-        if (data.bracelets == 'light') {
-          return {
-            en: 'Dark',
-            de: 'Dunkel',
-            fr: 'Ténèbres',
-            ja: '黒',
-            cn: '黑',
-            ko: '어둠',
-          };
-        }
-        if (data.bracelets == 'dark') {
-          return {
-            en: 'Light',
-            de: 'Hell',
-            fr: 'Lumière',
-            ja: '白',
-            cn: '白',
-            ko: '빛',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (data.bracelets === 'light')
+          return output.dark();
+
+        if (data.bracelets === 'dark')
+          return output.light();
+      },
+      outputStrings: {
+        dark: {
+          en: 'Dark',
+          de: 'Dunkel',
+          fr: 'Ténèbres',
+          ja: '黒',
+          cn: '黑',
+          ko: '어둠',
+        },
+        light: {
+          en: 'Light',
+          de: 'Hell',
+          fr: 'Lumière',
+          ja: '白',
+          cn: '白',
+          ko: '빛',
+        },
       },
     },
     {
@@ -668,30 +700,33 @@
       condition: function(data) {
         return data.sealed;
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (!data.clones)
           return;
         let wrists = data.clones.pop();
-        if (wrists == 'Astral') {
-          return {
-            en: 'Dark',
-            de: 'Dunkel',
-            fr: 'Ténèbres',
-            ja: '黒',
-            cn: '黑',
-            ko: '어둠',
-          };
-        }
-        if (wrists == 'Umbral') {
-          return {
-            en: 'Light',
-            de: 'Hell',
-            fr: 'Lumière',
-            ja: '白',
-            cn: '白',
-            ko: '빛',
-          };
-        }
+        if (wrists === 'Astral')
+          return output.dark();
+
+        if (wrists === 'Umbral')
+          return output.light();
+      },
+      outputStrings: {
+        dark: {
+          en: 'Dark',
+          de: 'Dunkel',
+          fr: 'Ténèbres',
+          ja: '黒',
+          cn: '黑',
+          ko: '어둠',
+        },
+        light: {
+          en: 'Light',
+          de: 'Hell',
+          fr: 'Lumière',
+          ja: '白',
+          cn: '白',
+          ko: '빛',
+        },
       },
     },
     {
@@ -705,13 +740,16 @@
       condition: function(data) {
         return data.sealed;
       },
-      infoText: {
-        en: 'Orbs to Opposite Colors',
-        de: 'Kugeln zu umgekehrter Farbe',
-        fr: 'Orbes aux couleurs opposées',
-        ja: '反対の色に',
-        cn: '连线去相反颜色',
-        ko: '구슬 반대 색깔로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Orbs to Opposite Colors',
+          de: 'Kugeln zu umgekehrter Farbe',
+          fr: 'Orbes aux couleurs opposées',
+          ja: '反対の色に',
+          cn: '连线去相反颜色',
+          ko: '구슬 반대 색깔로',
+        },
       },
     },
     {
@@ -742,25 +780,29 @@
         data.blackHoleCount = data.blackHoleCount || 0;
         data.blackHoleCount++;
       },
-      alarmText: function(data) {
-        return {
-          en: 'Black Hole ' + data.blackHoleCount + ' / 6',
-          de: 'Schwarzes Loch ' + data.blackHoleCount + ' / 6',
-          fr: 'Trou noir ' + data.blackHoleCount + ' / 6',
-          ja: 'ブラックホール: ' + data.blackHoleCount + ' / 6',
-          cn: '黑洞 ' + data.blackHoleCount + ' / 6',
-          ko: '블랙홀' + data.blackHoleCount + ' / 6',
-        };
+      alarmText: function(data, _, output) {
+        return output.blackHole({ num: data.blackHoleCount });
       },
-      tts: function(data) {
-        return {
-          en: 'Black Hole ' + data.blackHoleCount,
-          de: 'Schwarzes Loch ' + data.blackHoleCount,
-          fr: 'Trou noir ' + data.blackHoleCount,
-          ja: 'ブラックホール ' + data.blackHoleCount,
-          cn: '黑洞 ' + data.blackHoleCount,
-          ko: '블랙홀' + data.blackHoleCount,
-        };
+      tts: function(data, _, output) {
+        return output.blackHoleTTS({ num: data.blackHoleCount });
+      },
+      outputStrings: {
+        blackHole: {
+          en: 'Black Hole ${num} / 6',
+          de: 'Schwarzes Loch ${num} / 6',
+          fr: 'Trou noir ${num} / 6',
+          ja: 'ブラックホール: ${num} / 6',
+          cn: '黑洞 ${num} / 6',
+          ko: '블랙홀${num} / 6',
+        },
+        blackHoleTTS: {
+          en: 'Black Hole ${num}',
+          de: 'Schwarzes Loch ${num}',
+          fr: 'Trou noir ${num}',
+          ja: 'ブラックホール ${num}',
+          cn: '黑洞 ${num}',
+          ko: '블랙홀${num}',
+        },
       },
     },
     // FIXME: on all these forms, most of the time they come with double mechanics,
@@ -779,13 +821,16 @@
       condition: function(data) {
         return data.sealed;
       },
-      alertText: {
-        en: 'Off the Platform',
-        de: 'Weg von der Fläche',
-        fr: 'Hors de la plateforme',
-        ja: '回避',
-        cn: '远离平台',
-        ko: '멀어지기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Off the Platform',
+          de: 'Weg von der Fläche',
+          fr: 'Hors de la plateforme',
+          ja: '回避',
+          cn: '远离平台',
+          ko: '멀어지기',
+        },
       },
     },
     {
@@ -800,13 +845,16 @@
         return data.sealed;
       },
       delaySeconds: 9,
-      infoText: {
-        en: 'Spread for Bleed',
-        de: 'Blutung verteilen',
-        fr: 'Dispersez-vous pour le saignement',
-        ja: '散開',
-        cn: '分散',
-        ko: '산개',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spread for Bleed',
+          de: 'Blutung verteilen',
+          fr: 'Dispersez-vous pour le saignement',
+          ja: '散開',
+          cn: '分散',
+          ko: '산개',
+        },
       },
     },
     {
@@ -820,13 +868,16 @@
       condition: function(data) {
         return data.sealed;
       },
-      alertText: {
-        en: 'Go Far',
-        de: 'Weit weg',
-        fr: 'Éloignez-vous',
-        ja: '離れ',
-        cn: '远离',
-        ko: '멀리가기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go Far',
+          de: 'Weit weg',
+          fr: 'Éloignez-vous',
+          ja: '離れ',
+          cn: '远离',
+          ko: '멀리가기',
+        },
       },
     },
     {
@@ -841,27 +892,31 @@
         return data.sealed;
       },
       delaySeconds: 9,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         // FIXME: taking multiple autos probably means tanking,
         // so probably could figure this out automatically.
-        if (data.role == 'tank') {
-          return {
-            en: 'Stack (if not tanking)',
-            de: 'Stack (wenn nicht am tanken)',
-            fr: 'Packez-vous (sauf les tanks)',
-            ja: '集合 (MTではないなら)',
-            cn: '集合（如果没在坦怪）',
-            ko: '집합 (탱킹 중인 사람 제외)',
-          };
-        }
-        return {
+        if (data.role === 'tank')
+          return output.stackIfNotTanking();
+
+        return output.stackUp();
+      },
+      outputStrings: {
+        stackIfNotTanking: {
+          en: 'Stack (if not tanking)',
+          de: 'Stack (wenn nicht am tanken)',
+          fr: 'Packez-vous (sauf les tanks)',
+          ja: '集合 (MTではないなら)',
+          cn: '集合（如果没在坦怪）',
+          ko: '집합 (탱킹 중인 사람 제외)',
+        },
+        stackUp: {
           en: 'Stack Up',
           de: 'Stacken',
           fr: 'Packez-vous en haut',
           ja: '集合',
           cn: '集合',
           ko: '집합',
-        };
+        },
       },
     },
     {
@@ -875,13 +930,16 @@
       condition: function(data) {
         return data.sealed;
       },
-      alertText: {
-        en: 'Get Close',
-        de: 'Nah dran',
-        fr: 'Rapprochez-vous',
-        ja: '近づいて',
-        cn: '靠近',
-        ko: '가까이',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Close',
+          de: 'Nah dran',
+          fr: 'Rapprochez-vous',
+          ja: '近づいて',
+          cn: '靠近',
+          ko: '가까이',
+        },
       },
     },
     {
@@ -896,31 +954,33 @@
         return data.sealed;
       },
       delaySeconds: 9,
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         // FIXME: taking multiple autos probably means tanking,
         // so probably could figure this out automatically.
-        if (data.role == 'tank') {
-          return {
-            en: 'Offtanks Get Orbs',
-            de: 'Offtanks holt Kugeln',
-            fr: 'Offtanks, prenez les orbes',
-            ja: 'STは玉を処理',
-            cn: 'ST撞球',
-            ko: '섭탱 구슬 가져가기',
-          };
-        }
+        if (data.role === 'tank')
+          return output.offtanksGetOrbs();
       },
-      infoText: function(data) {
-        if (data.role != 'tank') {
-          return {
-            en: 'Stack Away From Tank',
-            de: 'Weg vom Tank stacken',
-            fr: 'Packez-vous loin du tank',
-            ja: 'タンクに離れて集合',
-            cn: '远离坦克集合',
-            ko: '탱커에서 멀어지기',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (data.role !== 'tank')
+          return output.stackAwayFromTank();
+      },
+      outputStrings: {
+        stackAwayFromTank: {
+          en: 'Stack Away From Tank',
+          de: 'Weg vom Tank stacken',
+          fr: 'Packez-vous loin du tank',
+          ja: 'タンクに離れて集合',
+          cn: '远离坦克集合',
+          ko: '탱커에서 멀어지기',
+        },
+        offtanksGetOrbs: {
+          en: 'Offtanks Get Orbs',
+          de: 'Offtanks holt Kugeln',
+          fr: 'Offtanks, prenez les orbes',
+          ja: 'STは玉を処理',
+          cn: 'ST撞球',
+          ko: '섭탱 구슬 가져가기',
+        },
       },
     },
     {
@@ -935,13 +995,16 @@
         return data.sealed;
       },
       suppressSeconds: 1,
-      alertText: {
-        en: 'Get Off',
-        de: 'Weg da',
-        fr: 'Descendez',
-        ja: '回避',
-        cn: '远离平台',
-        ko: '멀어지기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Off',
+          de: 'Weg da',
+          fr: 'Descendez',
+          ja: '回避',
+          cn: '远离平台',
+          ko: '멀어지기',
+        },
       },
     },
     {
@@ -956,13 +1019,16 @@
         return data.sealed;
       },
       suppressSeconds: 1,
-      alertText: {
-        en: 'Get Close',
-        de: 'Nah dran',
-        fr: 'Rapprochez-vous',
-        ja: '近づく',
-        cn: '靠近',
-        ko: '가까이',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Close',
+          de: 'Nah dran',
+          fr: 'Rapprochez-vous',
+          ja: '近づく',
+          cn: '靠近',
+          ko: '가까이',
+        },
       },
     },
     {
@@ -977,13 +1043,16 @@
         return data.sealed;
       },
       suppressSeconds: 1,
-      alertText: {
-        en: 'Go Far',
-        de: 'Weit weg',
-        fr: 'Éloignez-vous',
-        ja: '離れ',
-        cn: '远离',
-        ko: '멀리',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go Far',
+          de: 'Weit weg',
+          fr: 'Éloignez-vous',
+          ja: '離れ',
+          cn: '远离',
+          ko: '멀리',
+        },
       },
     },
     {
@@ -1010,7 +1079,7 @@
       netRegexCn: NetRegexes.ability({ id: '37AA', source: '奥兹玛原型' }),
       netRegexKo: NetRegexes.ability({ id: '37AA', source: '프로토 오즈마' }),
       condition: function(data, matches) {
-        return data.sealed && data.me == matches.target;
+        return data.sealed && data.me === matches.target;
       },
       response: Responses.stopEverything(),
     },
@@ -1018,7 +1087,7 @@
       id: 'BA Ozma Meteor',
       netRegex: NetRegexes.headMarker({ id: '0039' }),
       condition: function(data, matches) {
-        return data.sealed && data.me == matches.target;
+        return data.sealed && data.me === matches.target;
       },
       response: Responses.meteorOnYou(),
     },
@@ -1389,7 +1458,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Absolute Virtue': '절대미덕',
         'Arsenal Centaur': '무기고 켄타우로스',
@@ -1408,6 +1476,7 @@
         'Streak Lightning': '연쇄 번개',
         'The Lance of Virtue Containment Unit': '미덕의 창 봉인 구역',
         'The Shin-Zantetsuken Containment Unit': '진 참철검 봉인 구역',
+        'The Proto Ozma Containment Unit': '프로토 오즈마 봉인 구역',
       },
       'replaceText': {
         'Acallam Na Senorach': '피어너의 창',

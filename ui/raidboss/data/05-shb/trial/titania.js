@@ -13,9 +13,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D5C', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D5C', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D5C', source: '티타니아', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -56,13 +54,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D45', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D45', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D45', source: '티타니아', capture: false }),
-      infoText: {
-        en: 'Water Positions',
-        de: 'Wasser Positionen',
-        fr: 'Positions pour l\'eau',
-        ja: 'ポジションへ',
-        cn: '水毒',
-        ko: '물 장판 위치',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Water Positions',
+          de: 'Wasser Positionen',
+          fr: 'Positions pour l\'eau',
+          ja: 'ポジションへ',
+          cn: '水毒',
+          ko: '물 장판 위치',
+        },
       },
     },
     {
@@ -74,13 +75,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3D47', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D47', source: '티타니아', capture: false }),
       delaySeconds: 6,
-      alertText: {
-        en: 'Stack In Puddles',
-        de: 'In einer Fläche sammeln',
-        fr: 'Packez-vous dans les Flaques d\'eau',
-        ja: '水の輪に集合',
-        cn: '水圈集合',
-        ko: '장판에 모이기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack In Puddles',
+          de: 'In einer Fläche sammeln',
+          fr: 'Packez-vous dans les Flaques d\'eau',
+          ja: '水の輪に集合',
+          cn: '水圈集合',
+          ko: '장판에 모이기',
+        },
       },
     },
     {
@@ -101,13 +105,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D2A', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D2A', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2A', source: '티타니아', capture: false }),
-      infoText: {
-        en: 'Get Middle, Shiva Circles',
-        de: 'In die Mitte, Shiva Kreise',
-        fr: 'Allez au milieu, cercles de Shiva',
-        ja: 'シヴァの輪っか',
-        cn: '中间集合, 九连环',
-        ko: '시바 얼음 장판',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Middle, Shiva Circles',
+          de: 'In die Mitte, Shiva Kreise',
+          fr: 'Allez au milieu, cercles de Shiva',
+          ja: 'シヴァの輪っか',
+          cn: '中间集合, 九连环',
+          ko: '시바 얼음 장판',
+        },
       },
     },
     {
@@ -140,29 +147,28 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D2E', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D2E', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2E', source: '티타니아', capture: false }),
-      infoText: {
-        en: 'Avoid Roots',
-        de: 'Ranken vermeiden',
-        fr: 'Évitez les Racines',
-        ja: '根系から避け',
-        cn: '躲避树根',
-        ko: '뿌리 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Roots',
+          de: 'Ranken vermeiden',
+          fr: 'Évitez les Racines',
+          ja: '根系から避け',
+          cn: '躲避树根',
+          ko: '뿌리 피하기',
+        },
       },
     },
     {
       id: 'Titania Uplift Markers',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Titania Peasebomb Markers',
       netRegex: NetRegexes.headMarker({ id: '00BD' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -178,13 +184,16 @@
       netRegexJa: NetRegexes.ability({ id: '3D42', source: 'パック', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '3D42', source: '帕克', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3D42', source: '요정의 권속', capture: false }),
-      alertText: {
-        en: 'Diagonal Knockback Soon',
-        de: 'diagonaler Knockback bald',
-        fr: 'Poussée en diagonale bientôt',
-        ja: '対角に飛ぶ',
-        cn: '对角击退准备',
-        ko: '곧 대각선 넉백',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Diagonal Knockback Soon',
+          de: 'diagonaler Knockback bald',
+          fr: 'Poussée en diagonale bientôt',
+          ja: '対角に飛ぶ',
+          cn: '对角击退准备',
+          ko: '곧 대각선 넉백',
+        },
       },
     },
     {
@@ -195,25 +204,29 @@
       netRegexJa: NetRegexes.ability({ id: '3D31', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '3D31', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3D31', source: '티타니아', capture: false }),
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Group Adds East (on Mustardseed)',
-            de: 'Adds im Osten sammeln (bei Senfsamen)',
-            fr: 'Groupe sur l\'Add Est (Pousse-de-moutarde)',
-            ja: '東の雑魚 (マスタードシード)',
-            cn: '东边小怪 (芥子)',
-            ko: '쫄 모으기 (겨자씨 쪽)',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.role === 'tank')
+          return output.groupAddsEastOnMustardseed();
+
+        return output.killMustardseedEast();
+      },
+      outputStrings: {
+        groupAddsEastOnMustardseed: {
+          en: 'Group Adds East (on Mustardseed)',
+          de: 'Adds im Osten sammeln (bei Senfsamen)',
+          fr: 'Groupe sur l\'Add Est (Pousse-de-moutarde)',
+          ja: '東の雑魚 (マスタードシード)',
+          cn: '东边小怪 (芥子)',
+          ko: '쫄 모으기 (겨자씨 쪽)',
+        },
+        killMustardseedEast: {
           en: 'Kill Mustardseed (East)',
           de: 'Senfsamen angreifen (Osten)',
           fr: 'Tuez Pousse-de-moutarde (Est)',
           ja: '雑魚マスタードシードを倒す (東)',
           cn: '击杀芥子 (东)',
           ko: '겨자씨 잡기(동쪽)',
-        };
+        },
       },
     },
   ],

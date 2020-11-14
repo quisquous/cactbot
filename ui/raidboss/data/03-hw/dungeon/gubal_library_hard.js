@@ -10,7 +10,7 @@
       regex: /Triclip/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank';
+        return data.role === 'healer' || data.role === 'tank';
       },
       response: Responses.tankBuster(),
     },
@@ -25,7 +25,7 @@
       regex: /Darkness \(buster\)/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank';
+        return data.role === 'healer' || data.role === 'tank';
       },
       response: Responses.tankBuster(),
     },
@@ -39,44 +39,46 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1945', source: 'リクイドフレイム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1945', source: '液态火焰', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1945', source: '액체 불꽃', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
       id: 'Gubal Hard Ferrofluid',
       netRegex: NetRegexes.headMarker({ id: ['0030', '0031'] }),
       condition: function(data, matches) {
-        return data.me == matches.target || matches.targetId.slice(0, 1) == '4';
+        return data.me === matches.target || matches.targetId.slice(0, 1) === '4';
       },
       preRun: function(data, matches) {
         data.markers = data.markers || [];
         data.markers.push(matches.id);
       },
-      infoText: function(data) {
-        if (data.markers.length == 2) {
-          let sameMarkers = data.markers[0] == data.markers[1];
+      infoText: function(data, _, output) {
+        if (data.markers.length === 2) {
+          let sameMarkers = data.markers[0] === data.markers[1];
           delete data.markers;
-          if (sameMarkers) {
-            return {
-              en: 'Close to boss',
-              de: 'Nahe zum Boss',
-              fr: 'Rapprochez-vous du boss',
-              ja: 'ボスに近づく',
-              cn: '靠近boss',
-              ko: '보스와 가까이 서기',
-            };
-          }
-          return {
-            en: 'Away from boss',
-            de: 'Weg vom Boss',
-            fr: 'Éloignez-vous du boss',
-            ja: 'ボスに離れ',
-            cn: '远离boss',
-            ko: '보스와 떨어지기',
-          };
+          if (sameMarkers)
+            return output.closeToBoss();
+
+          return output.awayFromBoss();
         }
+      },
+      outputStrings: {
+        closeToBoss: {
+          en: 'Close to boss',
+          de: 'Nahe zum Boss',
+          fr: 'Rapprochez-vous du boss',
+          ja: 'ボスに近づく',
+          cn: '靠近boss',
+          ko: '보스와 가까이 서기',
+        },
+        awayFromBoss: {
+          en: 'Away from boss',
+          de: 'Weg vom Boss',
+          fr: 'Éloignez-vous du boss',
+          ja: 'ボスに離れ',
+          cn: '远离boss',
+          ko: '보스와 떨어지기',
+        },
       },
     },
     {
@@ -87,46 +89,49 @@
       netRegexJa: NetRegexes.tether({ id: '0039', source: 'リクイドフレイム' }),
       netRegexCn: NetRegexes.tether({ id: '0039', source: '液态火焰' }),
       netRegexKo: NetRegexes.tether({ id: '0039', source: '액체 불꽃' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Away from boss',
-        de: 'Weg vom Boss',
-        fr: 'Éloignez-vous du boss',
-        ja: 'ボスに離れ',
-        cn: '远离boss',
-        ko: '멀어지기',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away from boss',
+          de: 'Weg vom Boss',
+          fr: 'Éloignez-vous du boss',
+          ja: 'ボスに離れ',
+          cn: '远离boss',
+          ko: '멀어지기',
+        },
       },
     },
     {
       id: 'Gubal Hard Sunseal',
       netRegex: NetRegexes.gainsEffect({ effectId: '46F' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Stand in red',
-        de: 'Im Roten stehen',
-        fr: 'Tenez-vous dans le rouge',
-        ja: '赤色に入る',
-        cn: '站在红色',
-        ko: '빨강장판에 서기',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand in red',
+          de: 'Im Roten stehen',
+          fr: 'Tenez-vous dans le rouge',
+          ja: '赤色に入る',
+          cn: '站在红色',
+          ko: '빨강장판에 서기',
+        },
       },
     },
     {
       id: 'Gubal Hard Moonseal',
       netRegex: NetRegexes.gainsEffect({ effectId: '470' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      infoText: {
-        en: 'Stand in blue',
-        de: 'Im Blauen stehen',
-        fr: 'Tenez-vous dans le bleu',
-        ja: '青色に入る',
-        cn: '站在蓝色',
-        ko: '파랑장판에 서기',
+      condition: Conditions.targetIsYou(),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand in blue',
+          de: 'Im Blauen stehen',
+          fr: 'Tenez-vous dans le bleu',
+          ja: '青色に入る',
+          cn: '站在蓝色',
+          ko: '파랑장판에 서기',
+        },
       },
     },
     {
@@ -138,27 +143,30 @@
       netRegexJa: NetRegexes.startsUsing({ id: '198D', source: 'メカノスクライブ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '198D', source: '自走人偶抄写员', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '198D', source: '기계 서기', capture: false }),
-      infoText: function(data) {
-        if (data.CanSilence()) {
-          return {
-            en: 'Interrupt Mechanoscribe',
-            de: 'unterbreche Mechanoscholar',
-            fr: 'Interrompez le Mécano-scribe',
-            ja: '沈黙：メカノスクライブ',
-            cn: '打断人偶',
-            ko: '기계 서기 차단',
-          };
-        }
-        if (data.CanStun()) {
-          return {
-            en: 'Stun Mechanoscribe',
-            de: 'betäube Mechanoscholar',
-            fr: 'Stun sur le Mécano-scribe',
-            ja: 'スタン：メカノスクライブ',
-            cn: '眩晕人偶',
-            ko: '기계 서기 기절',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (data.CanSilence())
+          return output.interruptMechanoscribe();
+
+        if (data.CanStun())
+          return output.stunMechanoscribe();
+      },
+      outputStrings: {
+        interruptMechanoscribe: {
+          en: 'Interrupt Mechanoscribe',
+          de: 'unterbreche Mechanoscholar',
+          fr: 'Interrompez le Mécano-scribe',
+          ja: '沈黙：メカノスクライブ',
+          cn: '打断人偶',
+          ko: '기계 서기 차단',
+        },
+        stunMechanoscribe: {
+          en: 'Stun Mechanoscribe',
+          de: 'betäube Mechanoscholar',
+          fr: 'Stun sur le Mécano-scribe',
+          ja: 'スタン：メカノスクライブ',
+          cn: '眩晕人偶',
+          ko: '기계 서기 기절',
+        },
       },
     },
     {
@@ -169,13 +177,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1956', source: 'ストリックス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1956', source: '博学林鸮', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1956', source: '스트릭스', capture: false }),
-      infoText: {
-        en: 'Stand in light circle',
-        de: 'Im hellen Kreis stehen',
-        fr: 'Tenez-vous dans le cercle blanc',
-        ja: '白い輪に入る',
-        cn: '去白色区域',
-        ko: '빛 장판으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand in light circle',
+          de: 'Im hellen Kreis stehen',
+          fr: 'Tenez-vous dans le cercle blanc',
+          ja: '白い輪に入る',
+          cn: '去白色区域',
+          ko: '빛 장판으로',
+        },
       },
     },
     {
@@ -186,13 +197,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1957', source: 'ストリックス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1957', source: '博学林鸮', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1957', source: '스트릭스', capture: false }),
-      infoText: {
-        en: 'Stand in dark circle',
-        de: 'Im dunklen Kreis stehen',
-        fr: 'Tenez-vous dans le cercle noir',
-        ja: '黒い輪に入る',
-        cn: '去黑色区域',
-        ko: '어둠 장판으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand in dark circle',
+          de: 'Im dunklen Kreis stehen',
+          fr: 'Tenez-vous dans le cercle noir',
+          ja: '黒い輪に入る',
+          cn: '去黑色区域',
+          ko: '어둠 장판으로',
+        },
       },
     },
     {
@@ -203,13 +217,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1959', source: 'ストリックス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1959', source: '博学林鸮', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1959', source: '스트릭스', capture: false }),
-      infoText: {
-        en: 'Cleanse in green circle',
-        de: 'Im grünen Kreis reinigen',
-        fr: 'Purifiez-vous dans le cercle vert',
-        ja: '緑の輪に入る',
-        cn: '去绿色区域',
-        ko: '초록 장판으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Cleanse in green circle',
+          de: 'Im grünen Kreis reinigen',
+          fr: 'Purifiez-vous dans le cercle vert',
+          ja: '緑の輪に入る',
+          cn: '去绿色区域',
+          ko: '초록 장판으로',
+        },
       },
     },
     {
@@ -230,9 +247,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1955', source: 'ストリックス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1955', source: '博学林鸮', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1955', source: '스트릭스', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -244,13 +259,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '195D', source: '贝希摩斯护卫', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '195D', source: '고서의 베히모스', capture: false }),
       delaySeconds: 14, // Leaving about 10s warning to complete the LoS
-      alertText: {
-        en: 'Hide behind boulder',
-        de: 'Hinter dem Brocken verstecken',
-        fr: 'Cachez-vous derrière le rocher',
-        ja: 'メテオの後ろに',
-        cn: '站在陨石后',
-        ko: '운석 뒤에 숨기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hide behind boulder',
+          de: 'Hinter dem Brocken verstecken',
+          fr: 'Cachez-vous derrière le rocher',
+          ja: 'メテオの後ろに',
+          cn: '站在陨石后',
+          ko: '운석 뒤에 숨기',
+        },
       },
     },
   ],
@@ -443,12 +461,14 @@
       },
       'replaceText': {
         'Bibliocide': '화염',
+        'Book Drop': '책 떨어짐',
         'Check Out': '도서 선정',
         'Discontinue': '폐간',
         'Ecliptic Meteor': '황도 메테오',
         'Folio': '증쇄',
         'Form Shift': '연무',
         'Frightful Roar': '끔찍한 포효',
+        'Hand/Tornado': '손/토네이도',
         'Issue': '간행',
         'Magnetism': '자력',
         'Meteor Impact': '운석 낙하',
@@ -463,6 +483,7 @@
         'Searing Wind': '열풍',
         'Slosh': '돌진',
         'Triclip': '삼단베기',
+        'Quakes/Tornados': '퀘이가/토네이도',
       },
     },
   ],

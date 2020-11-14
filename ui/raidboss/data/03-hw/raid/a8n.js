@@ -23,13 +23,16 @@
       id: 'A8N Super Jump Soon',
       regex: /Super Jump/,
       beforeSeconds: 8,
-      infoText: {
-        en: 'Bait Super Jump',
-        de: 'Supersprung ködern',
-        fr: 'Attirez le Super saut',
-        ja: 'スーパージャンプを誘導',
-        cn: '引导超级跳',
-        ko: '슈퍼 점프',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Super Jump',
+          de: 'Supersprung ködern',
+          fr: 'Attirez le Super saut',
+          ja: 'スーパージャンプを誘導',
+          cn: '引导超级跳',
+          ko: '슈퍼 점프',
+        },
       },
     },
   ],
@@ -43,13 +46,16 @@
       netRegexCn: NetRegexes.startsUsing({ source: '突击者', id: '1732', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '맹습자', id: '1732', capture: false }),
       // Insert sound effect from Arthars here.
-      alertText: {
-        en: 'Megabeamu~',
-        de: 'Megalaser~',
-        fr: 'Mégarayon~',
-        ja: 'メガビーム～',
-        cn: '巨型光束炮~',
-        ko: '고출력 광선~',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Megabeamu~',
+          de: 'Megalaser~',
+          fr: 'Mégarayon~',
+          ja: 'メガビーム～',
+          cn: '巨型光束炮~',
+          ko: '고출력 광선~',
+        },
       },
     },
     {
@@ -60,13 +66,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '174F', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '174F', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '174F', capture: false }),
-      alertText: {
-        en: 'Megabeamu~!',
-        de: 'Megalaser~!',
-        fr: 'Mégarayon~ !',
-        ja: 'メガビーム～',
-        cn: '巨型光束炮~!',
-        ko: '고출력 광선~!',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Megabeamu~!',
+          de: 'Megalaser~!',
+          fr: 'Mégarayon~ !',
+          ja: 'メガビーム～',
+          cn: '巨型光束炮~!',
+          ko: '고출력 광선~!',
+        },
       },
     },
     {
@@ -78,15 +87,18 @@
       netRegexCn: NetRegexes.ability({ source: '突击者', id: '1632', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '맹습자', id: '1632', capture: false }),
       condition: function(data) {
-        return data.role == 'dps' || data.job == 'BLU';
+        return data.role === 'dps' || data.job === 'BLU';
       },
-      infoText: {
-        en: 'Kill Regulators',
-        de: 'Dampfregler besiegen',
-        fr: 'Tuez les Régulateurs',
-        ja: 'スチームジャッジを倒す',
-        cn: '击杀小怪',
-        ko: '증기 감독 없애기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Regulators',
+          de: 'Dampfregler besiegen',
+          fr: 'Tuez les Régulateurs',
+          ja: 'スチームジャッジを倒す',
+          cn: '击杀小怪',
+          ko: '증기 감독 없애기',
+        },
       },
     },
     {
@@ -107,13 +119,16 @@
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
-      alertText: {
-        en: 'Get High',
-        de: 'Geh nach Oben',
-        fr: 'Montez',
-        ja: '高い床に乗る',
-        cn: '上高台',
-        ko: '높은곳으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get High',
+          de: 'Geh nach Oben',
+          fr: 'Montez',
+          ja: '高い床に乗る',
+          cn: '上高台',
+          ko: '높은곳으로',
+        },
       },
     },
     {
@@ -122,13 +137,16 @@
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
-      alertText: {
-        en: 'Get Down',
-        de: 'Geh nach Unten',
-        fr: 'Descendez',
-        ja: '低い床に乗る',
-        cn: '下低台',
-        ko: '낮은곳으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Down',
+          de: 'Geh nach Unten',
+          fr: 'Descendez',
+          ja: '低い床に乗る',
+          cn: '下低台',
+          ko: '낮은곳으로',
+        },
       },
     },
     {
@@ -144,17 +162,20 @@
     {
       id: 'A8N Enumeration',
       netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         // 0040 = 2, 0041 = 3, 0042 = 4
         let count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
-        return {
-          en: data.ShortName(matches.target) + ': ' + count,
-          de: data.ShortName(matches.target) + ': ' + count,
-          fr: data.ShortName(matches.target) + ': ' + count,
-          ja: data.ShortName(matches.target) + ': ' + count,
-          cn: data.ShortName(matches.target) + '生命计算法: ' + count,
-          ko: data.ShortName(matches.target) + ': ' + count,
-        };
+        return output.text({ player: data.ShortName(matches.target), count: count });
+      },
+      outputStrings: {
+        text: {
+          en: '${player}: ${count}',
+          de: '${player}: ${count}',
+          fr: '${player}: ${count}',
+          ja: '${player}: ${count}',
+          cn: '${player}生命计算法: ${count}',
+          ko: '${player}: ${count}',
+        },
       },
     },
     {
@@ -213,10 +234,13 @@
       id: 'A8N Long Needle Active Tank',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       condition: (data) => data.me === data.bruteTank && data.bruteTankOut,
-      alertText: {
-        en: 'Don\'t Stack! (tank cleave)',
-        de: 'Nicht Sammeln! (Tank Cleave)',
-        cn: '别去集合！（坦克顺劈）',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Don\'t Stack! (tank cleave)',
+          de: 'Nicht Sammeln! (Tank Cleave)',
+          cn: '别去集合！（坦克顺劈）',
+        },
       },
     },
     {
@@ -248,55 +272,65 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '1750' }),
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '1750' }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '1750' }),
-      alertText: function(data, matches) {
-        if (data.me != matches.target)
+      alertText: function(data, matches, output) {
+        if (data.me !== matches.target)
           return;
-        return {
+        return output.superJumpOnYou();
+      },
+      infoText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return;
+        return output.superJumpOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        superJumpOn: {
+          en: 'Super Jump on ${player}',
+          de: 'Supersprung auf ${player}',
+          fr: 'Super saut sur ${player}',
+          ja: '${player}にスーパージャンプ',
+          cn: '超级跳点${player}',
+          ko: '"${player}" 슈퍼 점프',
+        },
+        superJumpOnYou: {
           en: 'Super Jump on YOU',
           de: 'Supersprung auf DIR',
           fr: 'Super saut sur VOUS',
           ja: '自分にスーパージャンプ',
           cn: '超级跳点名',
           ko: '슈퍼 점프 대상자',
-        };
-      },
-      infoText: function(data, matches) {
-        if (data.me == matches.target)
-          return;
-        return {
-          en: 'Super Jump on ' + data.ShortName(matches.target),
-          de: 'Supersprung auf ' + data.ShortName(matches.target),
-          fr: 'Super saut sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にスーパージャンプ',
-          cn: '超级跳点' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '" 슈퍼 점프',
-        };
+        },
       },
     },
     {
       id: 'A8N Mirage Marker',
       netRegex: NetRegexes.headMarker({ id: '0008' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Mirage on YOU',
-        de: 'Mirage auf DIR',
-        fr: 'Mirage sur VOUS',
-        ja: '自分にミラージュ',
-        cn: '分身点名',
-        ko: '환영 징 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mirage on YOU',
+          de: 'Mirage auf DIR',
+          fr: 'Mirage sur VOUS',
+          ja: '自分にミラージュ',
+          cn: '分身点名',
+          ko: '환영 징 대상자',
+        },
       },
     },
     {
       id: 'A8N Ice Missile Marker',
       netRegex: NetRegexes.headMarker({ id: '0043' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Ice Missile on YOU',
-        de: 'Eis-Rakete auf DIR',
-        fr: 'Missile de glace sur VOUS',
-        ja: '自分にアイスミサイル',
-        cn: '冰点名',
-        ko: '얼음 미사일 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Ice Missile on YOU',
+          de: 'Eis-Rakete auf DIR',
+          fr: 'Missile de glace sur VOUS',
+          ja: '自分にアイスミサイル',
+          cn: '冰点名',
+          ko: '얼음 미사일 대상자',
+        },
       },
     },
     {
@@ -308,10 +342,14 @@
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '1749', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '1749', capture: false }),
       suppressSeconds: 5,
-      alertText: {
-        en: 'Avoid Mirage Dashes',
-        de: 'Weiche den Replikant Ansturm aus',
-        cn: '躲避分身冲锋',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Mirage Dashes',
+          de: 'Weiche den Replikant Ansturm aus',
+          cn: '躲避分身冲锋',
+          ko: '환영 돌진 피하기',
+        },
       },
     },
   ],

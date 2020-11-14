@@ -30,16 +30,19 @@
       netRegexJa: NetRegexes.ability({ id: '31C7', source: 'ミドガルズオルム', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '31C7', source: '尘世幻龙', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '31C7', source: '미드가르드오름', capture: false }),
-      infoText: {
-        en: 'Next Spin: In or Out',
-        de: 'Nächste Drehung: Rein oder raus',
-        fr: 'Tour suivant : Dedans/Dehors',
-        ja: '次: 中/外',
-        cn: '下一转:内圈/外圈',
-        ko: '다음: 안으로 혹은 밖으로',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.lastSpinWasHorizontal = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Next Spin: In or Out',
+          de: 'Nächste Drehung: Rein oder raus',
+          fr: 'Tour suivant : Dedans/Dehors',
+          ja: '次: 中/外',
+          cn: '下一转:内圈/外圈',
+          ko: '다음: 안으로 혹은 밖으로',
+        },
       },
     },
     {
@@ -50,16 +53,19 @@
       netRegexJa: NetRegexes.ability({ id: '31C8', source: 'ミドガルズオルム', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '31C8', source: '尘世幻龙', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '31C8', source: '미드가르드오름', capture: false }),
-      infoText: {
-        en: 'Next Spin: Corners',
-        de: 'Nächste Drehung: Ecken',
-        fr: 'Tour suivant : Plus',
-        ja: '次: コーナー',
-        cn: '下一转:角落',
-        ko: '다음: 모서리로',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.lastSpinWasHorizontal = false;
+      },
+      outputStrings: {
+        text: {
+          en: 'Next Spin: Corners',
+          de: 'Nächste Drehung: Ecken',
+          fr: 'Tour suivant : Plus',
+          ja: '次: コーナー',
+          cn: '下一转:角落',
+          ko: '다음: 모서리로',
+        },
       },
     },
     {
@@ -73,25 +79,29 @@
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
       },
-      alertText: function(data) {
-        if (data.lastSpinWasHorizontal) {
-          return {
-            en: 'Get Out',
-            de: 'Raus da',
-            fr: 'Sortez',
-            ja: '外へ',
-            cn: '远离',
-            ko: '밖으로',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (data.lastSpinWasHorizontal)
+          return output.getOut();
+
         // This shouldn't happen.
-        return {
+        return output.goToCardinals();
+      },
+      outputStrings: {
+        getOut: {
+          en: 'Get Out',
+          de: 'Raus da',
+          fr: 'Sortez',
+          ja: '外へ',
+          cn: '远离',
+          ko: '밖으로',
+        },
+        goToCardinals: {
           en: 'Go To Cardinals',
           de: 'Geh zu den Kanten',
           fr: 'Allez sur les points cardinaux',
           ja: '横や縦へ',
           cn: '去正点',
-        };
+        },
       },
     },
     {
@@ -105,24 +115,28 @@
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
       },
-      alertText: function(data) {
-        if (data.lastSpinWasHorizontal) {
-          return {
-            en: 'Get In',
-            de: 'Rein da',
-            fr: 'Allez sous le boss',
-            ja: '中へ',
-            cn: '靠近',
-            ko: '안으로',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.lastSpinWasHorizontal)
+          return output.getIn();
+
+        return output.goToCorners();
+      },
+      outputStrings: {
+        getIn: {
+          en: 'Get In',
+          de: 'Rein da',
+          fr: 'Allez sous le boss',
+          ja: '中へ',
+          cn: '靠近',
+          ko: '안으로',
+        },
+        goToCorners: {
           en: 'Go To Corners',
           de: 'In die Ecken',
           fr: 'Allez dans les coins',
           ja: '角へ',
           cn: '去角落',
-        };
+        },
       },
     },
   ],

@@ -271,7 +271,7 @@ class PullCounter {
       return;
     if (this.bossStarted)
       return;
-    if (this.party.length != 8)
+    if (this.party.length !== 8)
       return;
 
     if (this.bosses.length === 1) {
@@ -298,7 +298,7 @@ class PullCounter {
 
   SetSaveData(e) {
     try {
-      if (e != null && e.data)
+      if (e && e.data)
         this.pullCounts = JSON.parse(e.data);
       else
         this.pullCounts = {};

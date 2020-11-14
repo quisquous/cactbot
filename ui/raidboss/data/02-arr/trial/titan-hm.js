@@ -8,18 +8,14 @@
       id: 'TitanHm Mountain Buster',
       regex: /Mountain Buster/,
       beforeSeconds: 7,
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank';
-      },
+      condition: (data) => data.role === 'healer' || data.role === 'tank',
       response: Responses.tankBuster(),
     },
     {
       id: 'TitanHm Mountain Buster Avoid',
       regex: /Mountain Buster/,
       beforeSeconds: 7,
-      condition: function(data) {
-        return data.role != 'healer' && data.role != 'tank';
-      },
+      condition: (data) => data.role !== 'healer' && data.role !== 'tank',
       response: Responses.tankCleave(),
     },
     {
@@ -32,9 +28,7 @@
       id: 'TitanHm Tumult',
       regex: /Tumult/,
       beforeSeconds: 5,
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
   ],
@@ -42,18 +36,17 @@
     {
       id: 'TitanHm Damage Down',
       netRegex: NetRegexes.gainsEffect({ effectId: '3E' }),
-      condition: function(data) {
-        return data.CanCleanse();
-      },
-      infoText: function(data, matches) {
-        return {
-          en: 'Cleanse ' + data.ShortName(matches.target),
-          de: 'Reinige ' + data.ShortName(matches.target),
-          fr: 'Guérison sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にエスナ',
-          cn: '康复' + data.ShortName(matches.target),
-          ko: '' + data.ShortName(matches.target) + '에스나',
-        };
+      condition: (data) => data.CanCleanse(),
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
+      outputStrings: {
+        text: {
+          en: 'Cleanse ${player}',
+          de: 'Reinige ${player}',
+          fr: 'Guérison sur ${player}',
+          ja: '${player}にエスナ',
+          cn: '康复${player}',
+          ko: '${player}에스나',
+        },
       },
     },
   ],
@@ -146,12 +139,14 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': '바위폭탄',
         'Titan': '타이탄',
       },
       'replaceText': {
+        '\\(clock\\)': '(시계 방향)',
+        '\\(diamond\\)': '(3방향)',
+        '\\(line\\)': '(직선)',
         'Burst': '대폭발',
         'Bury': '충격',
         'Earthen Fury': '대지의 분노',

@@ -207,10 +207,24 @@ html {
   display: grid;
   grid-template-columns: repeat(1, auto 1fr);
   grid-column-gap: 10px;
+  grid-row-gap: 3px;
 }
 
 .trigger-label {
   display: inline;
+  align-self: center;
+  min-height: 18px;
+}
+
+.trigger-outputstring-label {
+  display: inline;
+  align-self: center;
+  min-height: 18px;
+}
+
+.trigger-outputstring-label::before {
+  content: '\1F514';
+  color: dimgrey;
 }
 
 .trigger-detail {
@@ -252,6 +266,16 @@ input[type=text] {
   padding: 3px;
   width: 40px;
   text-align: right;
+}
+
+.trigger-duration > input[type=text] {
+  width: 60px;
+  text-align: left;
+}
+
+.trigger-outputstring > input[type=text] {
+  width: 200px;
+  text-align: left;
 }
 
 input[type=submit] {

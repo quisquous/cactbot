@@ -33,65 +33,58 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'ツクヨミ' }),
       netRegexCn: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: '月读' }),
       netRegexKo: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: '츠쿠요미' }),
-      alarmText: function(data, matches) {
-        if (matches.target == data.me || data.role != 'tank')
+      alarmText: function(data, matches, output) {
+        if (matches.target === data.me || data.role !== 'tank')
           return;
 
-        return {
-          en: 'Tank Swap!',
-          de: 'Tankwechsel!',
-          fr: 'Tank swap !',
-          ja: 'スイッチ',
-          cn: '换T！',
-          ko: '탱 교대',
-        };
+        return output.tankSwap();
       },
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tank buster sur VOUS',
-            ja: '自分にタンクバスター',
-            cn: '死刑减伤',
-            ko: '탱버 대상자',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tank buster sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にタンクバスター',
-            cn: '死刑 点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(target) + '" 탱버',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (matches.target === data.me)
+          return output.tankBusterOnYou();
+
+        if (data.role === 'healer')
+          return output.busterOn({ player: data.ShortName(matches.target) });
       },
-      infoText: function(data, matches) {
-        if (matches.target == data.me || data.role == 'tank' || data.role == 'healer')
+      infoText: function(data, matches, output) {
+        if (matches.target === data.me || data.role === 'tank' || data.role === 'healer')
           return;
 
-        return {
+        return output.getOutOfFront();
+      },
+      outputStrings: {
+        getOutOfFront: {
           en: 'Get out of front',
           de: 'Weg von vorn',
           fr: 'Sortez du devant',
           ja: '正面から離れ',
           cn: '远离正面',
           ko: '정면 피하기',
-        };
-      },
-      tts: function(data) {
-        if (data.role == 'tank' || data.role == 'healer') {
-          return {
-            en: 'buster',
-            de: 'basta',
-            fr: 'tank buster',
-            ja: 'タンクバスター',
-            cn: '死刑',
-            ko: '탱버',
-          };
-        }
+        },
+        tankBusterOnYou: {
+          en: 'Tank Buster on YOU',
+          de: 'Tankbuster auf DIR',
+          fr: 'Tank buster sur VOUS',
+          ja: '自分にタンクバスター',
+          cn: '死刑减伤',
+          ko: '탱버 대상자',
+        },
+        busterOn: {
+          en: 'Buster on ${player}',
+          de: 'Tankbuster auf ${player}',
+          fr: 'Tank buster sur ${player}',
+          ja: '${player}にタンクバスター',
+          cn: '死刑 点${player}',
+          ko: '"${player}" 탱버',
+        },
+        tankSwap: {
+          en: 'Tank Swap!',
+          de: 'Tankwechsel!',
+          fr: 'Tank swap !',
+          ja: 'スイッチ',
+          cn: '换T！',
+          ko: '탱 교대',
+        },
       },
     },
     {
@@ -103,15 +96,7 @@
       netRegexCn: NetRegexes.gainsEffect({ target: '月读', effectId: '5FF', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '츠쿠요미', effectId: '5FF', capture: false }),
       run: function(data) {
-        let moonInOut = {
-          en: 'Out',
-          de: 'Raus',
-          fr: 'Extérieur',
-          ja: '外へ',
-          cn: '远离',
-          ko: '밖',
-        };
-        data.moonInOut = moonInOut[data.displayLang] || moonInOut['en'];
+        data.moonIsOut = true;
       },
     },
     {
@@ -123,15 +108,7 @@
       netRegexCn: NetRegexes.gainsEffect({ target: '月读', effectId: '600', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '츠쿠요미', effectId: '600', capture: false }),
       run: function(data) {
-        let moonInOut = {
-          en: 'In',
-          de: 'Rein',
-          fr: 'Intérieur',
-          ja: '中へ',
-          cn: '靠近',
-          ko: '안',
-        };
-        data.moonInOut = moonInOut[data.displayLang] || moonInOut['en'];
+        data.moonIsOut = false;
       },
     },
     {
@@ -142,15 +119,28 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2BDA', source: 'ツクヨミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2BDA', source: '月读', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2BDA', source: '츠쿠요미', capture: false }),
-      infoText: function(data) {
-        return {
-          en: 'Left + ' + data.moonInOut,
-          fr: 'Gauche + ' + data.moonInOut,
-          de: 'Links + ' + data.moonInOut,
-          ja: '左へ + ' + data.moonInOut,
-          cn: '左边 + ' + data.moonInOut,
-          ko: '왼쪽 + ' + data.moonInOut,
-        };
+      infoText: function(data, _, output) {
+        if (data.moonIsOut)
+          return output.leftAndOut();
+        return output.leftAndIn();
+      },
+      outputStrings: {
+        leftAndOut: {
+          en: 'Left + Out',
+          fr: 'Gauche + Raus',
+          de: 'Links + Extérieur',
+          ja: '左へ + 外へ',
+          cn: '左边 + 远离',
+          ko: '왼쪽 + 밖',
+        },
+        leftAndIn: {
+          en: 'Left + In',
+          fr: 'Gauche + Rein',
+          de: 'Links + Intérieur',
+          ja: '左へ + 中へ',
+          cn: '左边 + 靠近',
+          ko: '왼쪽 + 안',
+        },
       },
     },
     {
@@ -161,23 +151,34 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2BDB', source: 'ツクヨミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2BDB', source: '月读', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2BDB', source: '츠쿠요미', capture: false }),
-      infoText: function(data) {
-        return {
-          en: 'Right + ' + data.moonInOut,
-          fr: 'Droite + ' + data.moonInOut,
-          de: 'Rechts + ' + data.moonInOut,
-          ja: '右へ + ' + data.moonInOut,
-          cn: '右边 + ' + data.moonInOut,
-          ko: '오른쪽 + ' + data.moonInOut,
-        };
+      infoText: function(data, _, output) {
+        if (data.moonIsOut)
+          return output.rightAndOut();
+        return output.rightAndIn();
+      },
+      outputStrings: {
+        rightAndOut: {
+          en: 'Right + Out',
+          fr: 'Droite + Raus',
+          de: 'Rechts + Extérieur',
+          ja: '右へ + 外へ',
+          cn: '右边 + 远离',
+          ko: '오른쪽 + 밖',
+        },
+        rightAndIn: {
+          en: 'Right + In',
+          fr: 'Droite + Rein',
+          de: 'Rechts + Intérieur',
+          ja: '右へ + 中へ',
+          cn: '右边 + 靠近',
+          ko: '오른쪽 + 안',
+        },
       },
     },
     {
       id: 'Tsukuyomi Meteor Marker',
       netRegex: NetRegexes.headMarker({ id: '0083' }),
-      condition: function(data, matches) {
-        return (matches.target == data.me);
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou(),
     },
     {
@@ -188,9 +189,7 @@
     {
       id: 'Tsukuyomi Hagetsu',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: function(data, matches) {
-        return (matches.target == data.me);
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -223,9 +222,7 @@
     {
       id: 'Tsukuyomi Moonlit Debuff Logic',
       netRegex: NetRegexes.gainsEffect({ effectId: '602' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       preRun: function(data) {
         // init at 3 so we can start at 4 stacks to give the initial instruction to move
         if (typeof data.moonlitCount === 'undefined')
@@ -242,23 +239,24 @@
       id: 'Tsukuyomi Moonlit Debuff',
       netRegex: NetRegexes.gainsEffect({ effectId: '602' }),
       condition: function(data, matches) {
-        return matches.target == data.me && data.moonlitCount >= 4;
+        return matches.target === data.me && data.moonlitCount >= 4;
       },
-      infoText: {
-        en: 'Move to Black!',
-        de: 'In\'s schwarze laufen!',
-        fr: 'Bougez en zone noire !',
-        ja: '新月に！',
-        cn: '踩黑色！',
-        ko: '검정색으로 이동!',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move to Black!',
+          de: 'In\'s schwarze laufen!',
+          fr: 'Bougez en zone noire !',
+          ja: '新月に！',
+          cn: '踩黑色！',
+          ko: '검정색으로 이동!',
+        },
       },
     },
     {
       id: 'Tsukuyomi Moonshadowed Debuff Logic',
       netRegex: NetRegexes.gainsEffect({ effectId: '603' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       preRun: function(data) {
         // init at 3 so we can start at 4 stacks to give the initial instruction to move
         if (typeof data.moonshadowedCount === 'undefined')
@@ -275,15 +273,18 @@
       id: 'Tsukuyomi Moonshadowed Debuff',
       netRegex: NetRegexes.gainsEffect({ effectId: '603' }),
       condition: function(data, matches) {
-        return matches.target == data.me && data.moonshadowedCount >= 4;
+        return matches.target === data.me && data.moonshadowedCount >= 4;
       },
-      infoText: {
-        en: 'Move to White!',
-        de: 'In\'s weiße laufen!',
-        fr: 'Bougez en zone blanche !',
-        ja: '満月に！',
-        cn: '踩白色！',
-        ko: '흰색으로 이동!',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move to White!',
+          de: 'In\'s weiße laufen!',
+          fr: 'Bougez en zone blanche !',
+          ja: '満月に！',
+          cn: '踩白色！',
+          ko: '흰색으로 이동!',
+        },
       },
     },
   ],

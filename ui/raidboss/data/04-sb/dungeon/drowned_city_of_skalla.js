@@ -21,19 +21,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2663', source: '直言のフロドリック', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2663', source: '直言不讳 赫罗德里克', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2663', source: '입바른 흐로드릭', capture: false }),
-      alertText: function(data) {
-        return data.role != 'tank' ? 'tail cleave' : '';
-      },
-      infoText: function(data) {
-        return data.role == 'tank' ? 'tail cleave' : '';
-      },
-      tts: {
-        en: 'tail attack',
-        de: 'schweifattacke',
-        fr: 'attaquez la queue',
-        ja: 'しっぽ！',
-        cn: '尾巴攻击',
-        ko: '꼬리쓸기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'tail cleave',
+          de: 'schweifattacke',
+          fr: 'attaquez la queue',
+          ja: 'しっぽ！',
+          cn: '尾巴攻击',
+          ko: '꼬리쓸기',
+        },
       },
     },
     {
@@ -54,21 +51,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2662', source: '直言のフロドリック', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2662', source: '直言不讳 赫罗德里克', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2662', source: '입바른 흐로드릭', capture: false }),
-      infoText: {
-        en: 'avoid eye lasers',
-        de: 'Augenlaser ausweichen',
-        fr: 'Évitez les lasers',
-        ja: '前方レザーに避け',
-        cn: '避开眼部激光',
-        ko: '레이저 피하기',
-      },
-      tts: {
-        en: 'eye laser',
-        de: 'augen lesa',
-        fr: 'laser',
-        ja: 'レザー',
-        cn: '离开正面',
-        ko: '레이저',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'avoid eye lasers',
+          de: 'Augenlaser ausweichen',
+          fr: 'Évitez les lasers',
+          ja: '前方レザーに避け',
+          cn: '避开眼部激光',
+          ko: '레이저 피하기',
+        },
       },
     },
   ],

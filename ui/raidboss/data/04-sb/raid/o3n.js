@@ -55,53 +55,57 @@
       netRegex: NetRegexes.headMarker({ id: ['0064', '0065'] }),
       condition: function(data, matches) {
         // Cave phase has no stack markers.
-        if (data.phaseNumber == 2)
+        if (data.phaseNumber === 2)
           return false;
 
         data.holyTargets = data.holyTargets || [];
         data.holyTargets.push(matches.target);
-        return data.holyTargets.length == 3;
+        return data.holyTargets.length === 3;
       },
-      alertText: function(data) {
-        if (data.holyTargets[0] == data.me) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR sammeln',
-            fr: 'Package sur VOUS',
-            ja: '自分にスタック',
-            cn: '集合点名',
-            ko: '쉐어징 대상자',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (data.holyTargets[0] === data.me)
+          return output.stackOnYou();
+
         for (let i = 1; i < 3; i++) {
-          if (data.holyTargets[i] == data.me) {
-            return {
-              en: 'Out',
-              de: 'Raus',
-              ja: '外へ',
-              fr: 'Dehors',
-              cn: '远离',
-              ko: '밖으로',
-            };
-          }
+          if (data.holyTargets[i] === data.me)
+            return output.out();
         }
-        return {
-          en: 'Stack on ' + data.holyTargets[0],
-          de: 'Stack auf ' + data.holyTargets[0],
-          ja: data.holyTargets[0] + 'にスタック',
-          cn: '靠近 ' + data.holyTargets[0] + '集合',
-          ko: '"' + data.holyTargets[0] + '" 쉐어징',
-        };
+        return output.stackOnHolytargets({ holyTargets: data.holyTargets[0] });
       },
       run: function(data) {
         delete data.holyTargets;
+      },
+      outputStrings: {
+        stackOnYou: {
+          en: 'Stack on YOU',
+          de: 'Auf DIR sammeln',
+          fr: 'Package sur VOUS',
+          ja: '自分にスタック',
+          cn: '集合点名',
+          ko: '쉐어징 대상자',
+        },
+        out: {
+          en: 'Out',
+          de: 'Raus',
+          ja: '外へ',
+          fr: 'Dehors',
+          cn: '远离',
+          ko: '밖으로',
+        },
+        stackOnHolytargets: {
+          en: 'Stack on ${holyTargets}',
+          de: 'Stack auf ${holyTargets}',
+          ja: '${holyTargets}にスタック',
+          cn: '靠近 ${holyTargets}集合',
+          ko: '"${holyTargets}" 쉐어징',
+        },
       },
     },
     {
       id: 'O3N Spellblade Holy Cave',
       netRegex: NetRegexes.headMarker({ id: '0065' }),
       condition: function(data, matches) {
-        return data.phaseNumber == 2 && data.me == matches.target;
+        return data.phaseNumber === 2 && data.me === matches.target;
       },
       response: Responses.spread(),
     },
@@ -112,7 +116,7 @@
         if (data.phaseNumber < 3)
           return false;
         data.holyCounter = data.holyCounter || 0;
-        return (data.holyCounter % 2 == 0);
+        return (data.holyCounter % 2 === 0);
       },
       response: Responses.stackMarkerOn(),
       run: function(data) {
@@ -128,19 +132,23 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2471', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2471', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2471', source: '할리카르나소스', capture: false }),
-      infoText: {
-        en: 'Get on crystal square',
-        de: 'Kristallfeld',
-        ja: '青い床に',
-        cn: '站在蓝地板',
-        ko: '파란 장판으로',
-      },
-      tts: {
-        en: 'blue square',
-        de: 'blaues feld',
-        ja: '青い床',
-        cn: '蓝地板',
-        ko: '파란 장판',
+      infoText: (data, _, output) => output.getOnCrystalSquare(),
+      tts: (data, _, output) => output.blueSquare(),
+      outputStrings: {
+        getOnCrystalSquare: {
+          en: 'Get on crystal square',
+          de: 'Kristallfeld',
+          ja: '青い床に',
+          cn: '站在蓝地板',
+          ko: '파란 장판으로',
+        },
+        blueSquare: {
+          en: 'blue square',
+          de: 'blaues feld',
+          ja: '青い床',
+          cn: '蓝地板',
+          ko: '파란 장판',
+        },
       },
     },
     {
@@ -152,14 +160,17 @@
       netRegexCn: NetRegexes.addedCombatant({ name: '巨龙', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '거대 드래곤', capture: false }),
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role === 'tank';
       },
-      infoText: {
-        en: 'Grab dragon',
-        de: 'Drachen nehmen',
-        ja: 'ドラゴンを取って',
-        cn: '拉住巨龙',
-        ko: '용 잡기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Grab dragon',
+          de: 'Drachen nehmen',
+          ja: 'ドラゴンを取って',
+          cn: '拉住巨龙',
+          ko: '용 잡기',
+        },
       },
     },
     {
@@ -183,14 +194,17 @@
       netRegexCn: NetRegexes.startsUsing({ id: '2466', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2466', source: '할리카르나소스', capture: false }),
       condition: function(data) {
-        return data.phaseNumber == 3 && data.gameCount % 2 == 0;
+        return data.phaseNumber === 3 && data.gameCount % 2 === 0;
       },
-      alertText: {
-        en: 'Get hit by Ribbit',
-        de: 'Lass dich von Quaaak treffen',
-        ja: 'クルルルルを受け',
-        cn: 'BOSS正面吃呱呱',
-        ko: '개굴장판 맞기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get hit by Ribbit',
+          de: 'Lass dich von Quaaak treffen',
+          ja: 'クルルルルを受け',
+          cn: 'BOSS正面吃呱呱',
+          ko: '개굴장판 맞기',
+        },
       },
     },
     {
@@ -202,7 +216,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '2466', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2466', source: '할리카르나소스', capture: false }),
       condition: function(data) {
-        return !(data.phaseNumber == 3 && data.gameCount % 2 == 0);
+        return !(data.phaseNumber === 3 && data.gameCount % 2 === 0);
       },
       response: Responses.awayFromFront(),
     },
@@ -216,43 +230,52 @@
       netRegexKo: NetRegexes.startsUsing({ id: '246D', source: '할리카르나소스', capture: false }),
       // No point in checking whether the user has the frog debuff,
       // if they didn't get it, or got it when they shouldn't have, there's no fixing things.
-      infoText: function(data) {
-        if (data.phaseNumber == 3 && data.gameCount % 2 == 0) {
-          return {
-            en: 'Stand on frog tile',
-            de: 'Auf Frosch-Fläche stehen',
-            ja: 'カエルパネルを踏む',
-            cn: '站在呱呱方块',
-            ko: '개구리 장판으로',
-          };
-        }
-        return {
-          // Maybe there's a cleaner way to do this than just enumerating roles?
-          'tank': {
-            en: 'Stand on shield',
-            de: 'Auf Schild-Fläche stehen',
-            ja: 'タンクパネルを踏む',
-            cn: '站在坦克方块',
-            ko: '방패 장판으로',
-          },
-          'healer': {
-            en: 'Stand on cross',
-            de: 'Auf Kreuz-Fläche stehen',
-            ja: 'ヒーラーパネルを踏む',
-            cn: '站在治疗方块',
-            ko: '십자가 장판으로',
-          },
-          'dps': {
-            en: 'Stand on sword',
-            de: 'Auf Schwert-Fläche stehen',
-            ja: 'DPSパネルを踏む',
-            cn: '站在DPS方块',
-            ko: '검 장판으로',
-          },
-        }[data.role];
+      infoText: function(data, _, output) {
+        if (data.phaseNumber === 3 && data.gameCount % 2 === 0)
+          return output.standOnFrogTile();
+
+        // Maybe there's a cleaner way to do this than just enumerating roles?
+        if (data.role === 'tank')
+          return output.standOnShield();
+
+        if (data.role === 'healer')
+          return output.standOnCross();
+
+        if (data.role === 'dps')
+          return output.standOnSword();
       },
       run: function(data) {
         data.gameCount += 1;
+      },
+      outputStrings: {
+        standOnFrogTile: {
+          en: 'Stand on frog tile',
+          de: 'Auf Frosch-Fläche stehen',
+          ja: 'カエルパネルを踏む',
+          cn: '站在呱呱方块',
+          ko: '개구리 장판으로',
+        },
+        standOnShield: {
+          en: 'Stand on shield',
+          de: 'Auf Schild-Fläche stehen',
+          ja: 'タンクパネルを踏む',
+          cn: '站在坦克方块',
+          ko: '방패 장판으로',
+        },
+        standOnCross: {
+          en: 'Stand on cross',
+          de: 'Auf Kreuz-Fläche stehen',
+          ja: 'ヒーラーパネルを踏む',
+          cn: '站在治疗方块',
+          ko: '십자가 장판으로',
+        },
+        standOnSword: {
+          en: 'Stand on sword',
+          de: 'Auf Schwert-Fläche stehen',
+          ja: 'DPSパネルを踏む',
+          cn: '站在DPS方块',
+          ko: '검 장판으로',
+        },
       },
     },
     {
@@ -263,12 +286,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2467', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2467', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2467', source: '할리카르나소스', capture: false }),
-      infoText: {
-        en: 'Mindjack: Forward',
-        de: 'Geistlenkung: Vorwärts',
-        ja: 'マインドジャック: 前進',
-        cn: '精神控制：向前',
-        ko: '정신 장악: 앞쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mindjack: Forward',
+          de: 'Geistlenkung: Vorwärts',
+          ja: 'マインドジャック: 前進',
+          cn: '精神控制：向前',
+          ko: '정신 장악: 앞쪽',
+        },
       },
     },
     {
@@ -279,12 +305,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2468', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2468', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2468', source: '할리카르나소스', capture: false }),
-      infoText: {
-        en: 'Mindjack: Back',
-        de: 'Geistlenkung: Zurück',
-        ja: 'マインドジャック: 後退',
-        cn: '精神控制：向后',
-        ko: '정신 장악: 뒤쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mindjack: Back',
+          de: 'Geistlenkung: Zurück',
+          ja: 'マインドジャック: 後退',
+          cn: '精神控制：向后',
+          ko: '정신 장악: 뒤쪽',
+        },
       },
     },
     {
@@ -295,12 +324,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2469', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2469', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2469', source: '할리카르나소스', capture: false }),
-      infoText: {
-        en: 'Mindjack: Left',
-        de: 'Geistlenkung: Links',
-        ja: 'マインドジャック: 左折',
-        cn: '精神控制：向左',
-        ko: '정신 장악: 왼쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mindjack: Left',
+          de: 'Geistlenkung: Links',
+          ja: 'マインドジャック: 左折',
+          cn: '精神控制：向左',
+          ko: '정신 장악: 왼쪽',
+        },
       },
     },
     {
@@ -311,12 +343,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '246A', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '246A', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '246A', source: '할리카르나소스', capture: false }),
-      infoText: {
-        en: 'Mindjack: Right',
-        de: 'Geistlenkung: Rechts',
-        ja: 'マインドジャック: 右折',
-        cn: '精神控制：向右',
-        ko: '정신 장악: 오른쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mindjack: Right',
+          de: 'Geistlenkung: Rechts',
+          ja: 'マインドジャック: 右折',
+          cn: '精神控制：向右',
+          ko: '정신 장악: 오른쪽',
+        },
       },
     },
   ],

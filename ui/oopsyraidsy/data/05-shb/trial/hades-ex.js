@@ -48,7 +48,7 @@
       damageRegex: '47BA',
       condition: function(e, data) {
         // Don't blame people who don't have tethers.
-        return e.type != '15' && data.me in data.hasDark;
+        return e.type !== '15' && data.me in data.hasDark;
       },
       mistake: function(e, data) {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };

@@ -67,13 +67,16 @@
       regex: /^Magitek Burst$/,
       beforeSeconds: 15,
       durationSeconds: 5,
-      infoText: {
-        en: 'Spread Soon',
-        de: 'Bald verteilen',
-        fr: 'Dispersez-vous bientôt',
-        ja: 'まもなく散開',
-        cn: '即将散开',
-        ko: '잠시후 산개',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spread Soon',
+          de: 'Bald verteilen',
+          fr: 'Dispersez-vous bientôt',
+          ja: 'まもなく散開',
+          cn: '即将散开',
+          ko: '잠시후 산개',
+        },
       },
     },
   ],
@@ -86,6 +89,7 @@
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CCC', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CCC', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CCC', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CCC', capture: false }),
       run: function(data) {
         data.phase = 2;
       },
@@ -97,6 +101,7 @@
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CE2', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CE2', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CE2', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CE2', capture: false }),
       run: function(data) {
         data.phase = 5;
       },
@@ -108,6 +113,7 @@
       netRegexFr: NetRegexes.ability({ source: 'double de Varis', id: '4CB3', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリスの幻影', id: '4CB3', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯的幻影', id: '4CB3', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '바리스의 환영', id: '4CB3', capture: false }),
       run: function(data) {
         data.clonesActive = true;
       },
@@ -119,13 +125,17 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CCA', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CCA', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '瓦厉斯·耶·加尔乌斯', id: '4CCA', capture: false }),
-      infoText: {
-        en: 'Bait Slashes',
-        de: 'Schnitte ködern',
-        fr: 'Attirez les taillades',
-        ja: '縦へ、アルティウスを誘導',
-        cn: 'Boss身后诱导剑气方向',
-        ko: '슬래시 유도',
+      netRegexKo: NetRegexes.startsUsing({ source: '바리스 예 갈부스', id: '4CCA', capture: false }),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Slashes',
+          de: 'Schnitte ködern',
+          fr: 'Attirez les taillades',
+          ja: '縦へ、アルティウスを誘導',
+          cn: 'Boss身后诱导剑气方向',
+          ko: '슬래시 유도',
+        },
       },
     },
     {
@@ -135,36 +145,42 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CF0' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CF0' }),
       netRegexCn: NetRegexes.startsUsing({ source: '瓦厉斯·耶·加尔乌斯', id: '4CF0' }),
-      alertText: function(data, matches) {
+      netRegexKo: NetRegexes.startsUsing({ source: '바리스 예 갈부스', id: '4CF0' }),
+      alertText: function(data, matches, output) {
         const target = matches.target;
-        if (data.me == target) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tank buster auf DIR',
-            fr: 'Tank buster sur VOUS',
-            ja: '自分にタンクバスター',
-            cn: '死刑点名',
-            ko: '탱버 대상자',
-          };
-        }
-        if (data.role == 'dps') {
-          return {
-            en: 'Avoid tank cleave',
-            de: 'Tank Cleave ausweichen',
-            fr: 'Évitez le tank cleave',
-            ja: '前方範囲攻撃を避け',
-            cn: '远离顺劈',
-            ko: '광역 탱버 피하기',
-          };
-        }
-        return {
-          en: 'Tank Buster on ' + data.ShortName(target),
-          de: 'Tank buster auf ' + data.ShortName(target),
-          fr: 'Tank buster sur ' + data.ShortName(target),
-          ja: data.ShortName(target) + 'にタンクバスター',
-          cn: '死刑 点 ' + data.ShortName(target),
-          ko: '"' + data.ShortName(target) + '" 탱버',
-        };
+        if (data.me === target)
+          return output.tankBusterOnYou();
+
+        if (data.role === 'dps')
+          return output.avoidTankCleave();
+
+        return output.tankBusterOn({ player: data.ShortName(target) });
+      },
+      outputStrings: {
+        tankBusterOnYou: {
+          en: 'Tank Buster on YOU',
+          de: 'Tank buster auf DIR',
+          fr: 'Tank buster sur VOUS',
+          ja: '自分にタンクバスター',
+          cn: '死刑点名',
+          ko: '탱버 대상자',
+        },
+        avoidTankCleave: {
+          en: 'Avoid tank cleave',
+          de: 'Tank Cleave ausweichen',
+          fr: 'Évitez le tank cleave',
+          ja: '前方範囲攻撃を避け',
+          cn: '远离顺劈',
+          ko: '광역 탱버 피하기',
+        },
+        tankBusterOn: {
+          en: 'Tank Buster on ${player}',
+          de: 'Tank buster auf ${player}',
+          fr: 'Tank buster sur ${player}',
+          ja: '${player}にタンクバスター',
+          cn: '死刑 点 ${player}',
+          ko: '"${player}" 탱버',
+        },
       },
     },
     {
@@ -174,6 +190,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CD2', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD2', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '瓦厉斯·耶·加尔乌斯', id: '4CD2', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '바리스 예 갈부스', id: '4CD2', capture: false }),
       response: Responses.getBehind('alert'),
     },
     {
@@ -185,15 +202,19 @@
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CD5', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD5', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CD5', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CD5', capture: false }),
       // Multiple people getting hit by this can cause double triggers.
       suppressSeconds: 1,
-      infoText: {
-        en: 'Go Front',
-        de: 'Nach Vorne gehen',
-        fr: 'Allez devant',
-        ja: '前へ',
-        cn: '到正面',
-        ko: '앞으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go Front',
+          de: 'Nach Vorne gehen',
+          fr: 'Allez devant',
+          ja: '前へ',
+          cn: '到正面',
+          ko: '앞으로',
+        },
       },
     },
     {
@@ -203,6 +224,7 @@
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CD7', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD7', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CD7', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CD7', capture: false }),
       delaySeconds: 21.5,
       response: Responses.knockback('alert'),
     },
@@ -213,16 +235,20 @@
       netRegexFr: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD9', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CD9', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CD9', capture: false }),
       delaySeconds: function(data) {
-        return data.phase == 2 ? 20 : 10;
+        return data.phase === 2 ? 20 : 10;
       },
-      alertText: {
-        en: 'Stop attacking',
-        de: 'Angriffe stoppen',
-        fr: 'Arrêtez d\'attaquer',
-        ja: 'ブロックしない側に攻撃',
-        cn: '攻击未格挡的方向',
-        ko: '공격 중지',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stop attacking',
+          de: 'Angriffe stoppen',
+          fr: 'Arrêtez d\'attaquer',
+          ja: 'ブロックしない側に攻撃',
+          cn: '攻击未格挡的方向',
+          ko: '공격 중지',
+        },
       },
     },
     {
@@ -232,6 +258,7 @@
       netRegexFr: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDC', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CDC', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CDC', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CDC', capture: false }),
       response: Responses.goFrontBack('info'),
     },
     {
@@ -241,6 +268,7 @@
       netRegexFr: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDB', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CDB', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CDB', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CDB', capture: false }),
       response: Responses.goSides('info'),
     },
     {
@@ -251,10 +279,11 @@
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CDE', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CDE', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CDE', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CDE', capture: false }),
       response: function(data) {
         // This is easily forgetable after dodging and seems to get people killed.
         // This also differentiates spread from the spread => stack in the last phase.
-        return Responses.spread(data.phase == 5 ? 'alarm' : 'alert');
+        return Responses.spread(data.phase === 5 ? 'alarm' : 'alert');
       },
     },
     {
@@ -264,25 +293,30 @@
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CEA', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CEA', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CEA', capture: false }),
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Grab Tethers',
-            de: 'Verbindung nehmen',
-            fr: 'Prenez les liens',
-            ja: '線を取る',
-            cn: '接线',
-            ko: '선 가로채기',
-          };
-        }
-        return {
+      netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CEA', capture: false }),
+      infoText: function(data, _, output) {
+        if (data.role === 'tank')
+          return output.grabTethers();
+
+        return output.killAdds();
+      },
+      outputStrings: {
+        grabTethers: {
+          en: 'Grab Tethers',
+          de: 'Verbindung nehmen',
+          fr: 'Prenez les liens',
+          ja: '線を取る',
+          cn: '接线',
+          ko: '선 가로채기',
+        },
+        killAdds: {
           en: 'Kill adds',
           de: 'Adds besiegen',
           fr: 'Tuez les adds',
           ja: '雑魚を処理',
           cn: '击杀小怪',
           ko: '쫄 잡기',
-        };
+        },
       },
     },
     {
@@ -293,6 +327,7 @@
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CC9', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CC9', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CC9', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CC9', capture: false }),
       delaySeconds: 10,
       run: function(data) {
         delete data.suppressDodgeCloneCall;
@@ -304,25 +339,28 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ターミナス・エスト', id: '4CB4', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '파멸의 종착역', id: '4CB4', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '恩惠终结', id: '4CB4', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '파멸의 종착역', id: '4CB4', capture: false }),
       condition: (data) => data.clonesActive,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         // Sometimes this is called out with the stack mechanic.
         if (data.suppressDodgeCloneCall)
           return;
-        return {
+        return output.text();
+      },
+      run: function(data) {
+        delete data.suppressDodgeCloneCall;
+        delete data.clonesActive;
+      },
+      outputStrings: {
+        text: {
           en: 'Dodge Clones',
           de: 'Klonen ausweichen',
           fr: 'Esquivez les Clones',
           ja: 'ターミナス・エストを避け',
           cn: '躲避剑气',
           ko: '클론 피하기',
-        };
-      },
-      run: function(data) {
-        delete data.suppressDodgeCloneCall;
-        delete data.clonesActive;
+        },
       },
     },
     {
@@ -332,6 +370,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'bouclier-canon', id: '4E4F', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ガンシールド', id: '4E4F', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '枪盾', id: '4E4F', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '검기', id: '4E4F', capture: false }),
       response: Responses.stackMarker('info'),
     },
     {
@@ -341,6 +380,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'bouclier-canon', id: '4E50', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ガンシールド', id: '4E50', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '枪盾', id: '4E50', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '검기', id: '4E50', capture: false }),
       // TODO: This is technicallly a spread, but it's more like "protean" spread?
       // Not sure how to make this more clear.
       response: Responses.spread('alert'),
@@ -352,13 +392,17 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CE[56]', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '瓦厉斯·耶·加尔乌斯', id: '4CE[56]', capture: false }),
-      alertText: {
-        en: 'Bait Puddles Out',
-        de: 'Flächen nach draußen ködern',
-        fr: 'Attirez les zones au sol à l\'extérieur',
-        ja: '外周に安置',
-        cn: '外圈放黑泥',
-        ko: '장판 바깥쪽으로 유도',
+      netRegexKo: NetRegexes.startsUsing({ source: '바리스 예 갈부스', id: '4CE[56]', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Puddles Out',
+          de: 'Flächen nach draußen ködern',
+          fr: 'Attirez les zones au sol à l\'extérieur',
+          ja: '外周に安置',
+          cn: '外圈放黑泥',
+          ko: '장판 바깥쪽으로 유도',
+        },
       },
     },
   ],
@@ -514,6 +558,44 @@
         'Terminus Est': '恩惠终结',
         'Ventus Est': '是为疾风',
         'Vivere Militare Est': '生者战也',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Bladesblood': '검기',
+        'Gunshield': '건실드',
+        'Ignis Est': '파멸의 화염',
+        'Magitek Turret II': '마도 포탑 II',
+        'Phantom Varis': '바리스의 환영',
+        'Terminus Est': '파멸의 종착역',
+        'Varis Yae Galvus': '바리스 예 갈부스',
+        'Ventus Est': '파멸의 바람',
+      },
+      'replaceText': {
+        '--clones appear\\?--': '--분신 생성?--',
+        'Aetherochemical Grenado': '마도 유탄',
+        'Alea Iacta Est': '알레아 이악타 에스트',
+        'Altius': '알티우스',
+        'Blade\'s Pulse': '공격 막아내기',
+        'Citius': '키티우스',
+        'Electrified Gunshield': '건실드: 마도 쇼크',
+        'Festina Lente': '페스티나 렌테',
+        'Fortius': '포르티우스',
+        '(?<! )Gunshield': '건실드',
+        'Ignis Est': '파멸의 화염',
+        'Loaded Gunshield': '건실드: 마도 버스트',
+        'Magitek Burst': '마도 버스트',
+        'Magitek Shielding': '마도 카운터',
+        'Magitek Shock': '마도 쇼크',
+        'Magitek Spark/Torch': '마도 스파크/플레임',
+        'Magitek Torch/Spark': '마도 플레임/스파크',
+        'Reinforced Gunshield': '건실드: 마도 카운터',
+        'Reinforcements': '지원 명령',
+        'Shockwave': '충격 파동',
+        'Terminus Est': '파멸의 종착역',
+        'Ventus Est': '파멸의 바람',
+        'Vivere Militare Est': '위웨레 밀리타레 에스트',
       },
     },
   ],

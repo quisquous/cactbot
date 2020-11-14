@@ -32,8 +32,7 @@
 
 
 ##############################################################
-0	"--Reset--" sync /Removing combatant Exdeath/ window 10000 jump 0
-0	"--Reset--" sync /Removing combatant Neo Exdeath/ window 10000 jump 0
+0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
 
 ######Phase 1
@@ -46,7 +45,7 @@
 43	"Fire III (DPS)"	#Fire III on DPS
 47	"Fire III (T/H)"	#Fire III on Tanks & Healers
 54	"White Hole"
-66	"--Boss Untargetable--"
+66	"--Untargetable--"
 73	"Knockback"
 75	"Holy"
 78	"Flare" duration 5	#1 tank, 1 healer, 1 DPS
@@ -54,7 +53,7 @@
 
 
 ######Phase 2
-86	"--Boss Targetable--"
+86	"--Targetable--"
 90	"Random Elemental"	#Enhanced Thunder/Fire/Blizzard III
 97	"Vacuum Wave (1)"
 107	"White Hole"
@@ -66,14 +65,14 @@
 144	"White Hole"
 159	"Thunder III"
 167	"Meteor"
-180	"--Boss Untargetable--"
+180	"--Untargetable--"
 186	"Knockback"	#Collision
 188	"Holy"	#Stack Mechanic
 191	"Flare" duration 5	#1 tank, 1 healer, 1 DPS
 192	"Zombie Breath"
 
 ######Phase 3
-200	"--Boss Targetable--"
+200	"--Targetable--"
 203	"Random Elemental"	#Enhanced Thunder/Fire/Blizzard III
 210	"Vacuum Wave (1)"	#Vacuum Wave
 220	"White Hole"	#Need full HP
@@ -86,7 +85,7 @@
 265	"Dualcast"
 273	"Thunder III"
 280	"Meteor"	#Party wipe if boss HP>65%
-282	"--Boss Untargetable--"
+282	"--Untargetable--"
 344	"--LB Gauge Resets--"
 
 ######################################################
@@ -96,8 +95,8 @@
 527	"Delta Attack"	#Blizzard III (Healers & DPS) + Fire III (DPS)
 530	"Delta Attack 2"	#Blizzard III (Healers & DPS) + Fire III (Tanks & Healers)
 543	"Grand Cross Alpha"	#AoE + Debuffs (Hysteria, White/Black Wound, 16s Allagan Field, 15s Acceleration Bomb)
-546	"--Boss Untargetable--"
-549	"--Boss Targetable--"
+546	"--Untargetable--"
+549	"--Targetable--"
 555	"Charge"
 558	"--Acceleration Bomb Resolves--"
 559	"--Allagan Field Explodes--"
@@ -131,8 +130,8 @@
 778	"Aero III"  # Tank buster
 785	"Emptiness"	sync /:Neo Exdeath:2420:/ window 20	#Linearly propagating circle AoEs
 793	"Grand Cross Alpha"	#AoE + Debuffs (Hysteria, White/Black Wound, 16s Allagan Field, 15s Acceleration Bomb)
-795	"--Boss Untargetable--"
-798	"--Boss Targetable--"
+795	"--Untargetable--"
+798	"--Targetable--"
 804	"Charge"
 808	"--Acceleration Bomb Resolves--"
 809	"--Allagan Field Explodes--"
@@ -180,8 +179,8 @@
 1096	"Aero III"  # Tank buster
 1103	"Emptiness"	sync /:Neo Exdeath:2420:/ window 20	#Linearly propagating circle AoEs
 1111	"Grand Cross Alpha"	#AoE + Debuffs (Hysteria, White/Black Wound, 16s Allagan Field, 15s Acceleration Bomb)
-1113	"--Boss Untargetable--"
-1116	"--Boss Targetable--"
+1113	"--Untargetable--"
+1116	"--Targetable--"
 1121	"Charge"
 1125	"--Acceleration Bomb Resolves--"
 1126	"--Allagan Field Explodes--"
