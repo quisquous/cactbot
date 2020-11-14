@@ -144,16 +144,6 @@ const kAbility = {
   Confiteor: '404B',
   FourPointFury: '4059',
 
-  // DNC
-  Cascade: '3E75',
-  Fountain: '3E76',
-  Windmill: '3E79',
-  Bladeshower: '3E7A',
-  TechnicalFinish: '3F44',
-  StandardStep: '3E7D',
-  TechnicalStep: '3E7E',
-  Flourish: '3E8D',
-
   // NIN
   SpinningEdge: '8C0',
   GustSlash: '8C2',
@@ -166,6 +156,16 @@ const kAbility = {
   RabbitMedium: '8E0',
   Bunshin: '406D',
   Hide: '8C5',
+
+  // DNC
+  Cascade: '3E75',
+  Fountain: '3E76',
+  Windmill: '3E79',
+  Bladeshower: '3E7A',
+  TechnicalFinish: '3F44',
+  StandardStep: '3E7D',
+  TechnicalStep: '3E7E',
+  Flourish: '3E8D',
 
   Thunder1: '90',
   Thunder2: '94',
@@ -3100,24 +3100,31 @@ class Bars {
       technicalStep.duration = 0;
       technicalStep.duration = 120;
     };
-    let technicalFlag = false;
+    let technicalIsActive = false;
     let elapsed = 0;
-    this.abilityFuncMap[kAbility.TechnicalFinish] = () => {
-      // Avoid mutiple call in one TechnicalFinish.
-      if (!technicalFlag) {
+    [
+      kAbility.QuadrupleTechnicalFinish,
+      kAbility.TripleTechnicalFinish,
+      kAbility.DoubleTechnicalFinish,
+      kAbility.SingleTechnicalFinish,
+    ].forEach((ability) => {
+      this.abilityFuncMap[ability] = () => {
+        // Avoid mutiple call in one TechnicalFinish.
+        if (technicalIsActive)
+          return;
         elapsed = technicalStep.elapsed;
-        technicalFlag = true;
-      }
-      technicalStep.duration = 20;
-      technicalStep.threshold = 1000;
-      technicalStep.fg = computeBackgroundColorFrom(technicalStep, 'dnc-color-technicalstep.active');
-      setTimeout(() => {
-        technicalFlag = false;
-        technicalStep.duration = 100 - elapsed;
-        technicalStep.threshold = this.gcdSkill() + 1;
-        technicalStep.fg = computeBackgroundColorFrom(technicalStep, 'dnc-color-technicalstep');
-      }, technicalStep.duration * 1000);
-    };
+        technicalIsActive = true;
+        technicalStep.duration = 20;
+        technicalStep.threshold = 1000;
+        technicalStep.fg = computeBackgroundColorFrom(technicalStep, 'dnc-color-technicalstep.active');
+        setTimeout(() => {
+          technicalIsActive = false;
+          technicalStep.duration = 100 - elapsed;
+          technicalStep.threshold = this.gcdSkill() + 1;
+          technicalStep.fg = computeBackgroundColorFrom(technicalStep, 'dnc-color-technicalstep');
+        }, technicalStep.duration * 1000);
+      };
+    });
 
     // When cast Flourish, show proc remain time until all procs have been used.
     const flourish = this.addProcBox({
