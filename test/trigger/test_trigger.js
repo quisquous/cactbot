@@ -429,7 +429,8 @@ class TestOutputProxy {
       },
       set(target, property, value) {
         if (property === 'responseOutputStrings') {
-          // The normal output proxy
+          // The normal output proxy assigns here, but we want to keep the same
+          // object so we can inspect it outside the proxy.
           Object.assign(responseOutputStrings, value);
           return true;
         }
@@ -494,6 +495,7 @@ const testOutputStrings = (file, contents) => {
 
       // TODO: should we prevent `output['phrase with spaces']()` style constructions?
       // TODO: should we restrict outputStrings keys to valid variable characters?
+      // TODO: should we prevent built in responses from returning other Response functions?
 
       // TODO: share this with popup-text.js?
       const paramRegex = /\${\s*([^}\s]+)\s*}/g;
