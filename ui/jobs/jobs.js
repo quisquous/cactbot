@@ -3386,7 +3386,7 @@ class Bars {
     let showingCountdown = parseFloat(this.o.pullCountdown.duration) > 0;
     if (inCountdown !== showingCountdown) {
       this.o.pullCountdown.duration = seconds;
-      if (inCountdown) {
+      if (inCountdown && this.options.PlayCountdownSound) {
         let audio = new Audio('../../resources/sounds/PowerAuras/sonar.ogg');
         audio.volume = 0.3;
         audio.play();
