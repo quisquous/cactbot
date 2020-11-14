@@ -338,7 +338,7 @@ class Fisher {
 
     for (let type in this.regex[Options.ParserLanguage]) {
       result = this.regex[Options.ParserLanguage][type].exec(log);
-      if (result != null) {
+      if (result) {
         switch (type) {
         // case 'bait': this.handleBait(result[1]); break;
         case 'cast': this.handleCast(result[1]); break;
@@ -358,7 +358,7 @@ class Fisher {
   }
 
   OnLogEvent(e) {
-    if (this.job == 'FSH')
+    if (this.job === 'FSH')
       e.detail.logs.forEach(this.parseLine, this);
   }
 
@@ -370,7 +370,7 @@ class Fisher {
 
   OnPlayerChange(e) {
     this.job = e.detail.job;
-    if (this.job == 'FSH') {
+    if (this.job === 'FSH') {
       this.element.style.display = 'block';
       if (!this.fishing)
         this.handleBait(e.detail.bait);

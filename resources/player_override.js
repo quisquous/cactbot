@@ -204,12 +204,12 @@ const addRemotePlayerSelectUI = function(lang) {
       last.checked = true;
     }
 
-    const partyPlayers = party.filter((p) => p.inParty && p.name != lastSelectedPlayer);
+    const partyPlayers = party.filter((p) => p.inParty && p.name !== lastSelectedPlayer);
     const partyNames = partyPlayers.map((p) => p.name).sort();
     for (const name of partyNames)
       addRadio(name, name, 'player-radio-party');
 
-    const alliancePlayers = party.filter((p) => !p.inParty && p.name != lastSelectedPlayer);
+    const alliancePlayers = party.filter((p) => !p.inParty && p.name !== lastSelectedPlayer);
     const allianceNames = alliancePlayers.map((p) => p.name).sort();
     for (const name of allianceNames)
       addRadio(name, name, 'player-radio-alliance');

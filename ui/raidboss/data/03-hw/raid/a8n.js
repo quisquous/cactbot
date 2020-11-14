@@ -348,6 +348,7 @@
           en: 'Avoid Mirage Dashes',
           de: 'Weiche den Replikant Ansturm aus',
           cn: '躲避分身冲锋',
+          ko: '환영 돌진 피하기',
         },
       },
     },

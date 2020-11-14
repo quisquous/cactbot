@@ -220,7 +220,7 @@
           fr: 'Chevalier sur ${player}',
           ja: '${player}にナイト',
           cn: '骑士点${player}',
-          ko: '드래드 대상${player}',
+          ko: '"${player}" 드래드 대상',
         },
       },
     },
@@ -277,7 +277,7 @@
           fr: 'Éclosion sur ${player}',
           ja: '${player}に魔力爆散',
           cn: '黑球点${player}',
-          ko: '마력방출${player}',
+          ko: '"${player}" 마력방출',
         },
         hatchOnYou: {
           en: 'Hatch on YOU',

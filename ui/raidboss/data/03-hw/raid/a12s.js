@@ -237,10 +237,8 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '1A0B', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '1A0B', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '1A0B', capture: false }),
-      alertText: function(data, _, output) {
-        if (data.role === 'tank' || data.role === 'healer' || data.job === 'BLU')
-          return output.text();
-      },
+      condition: Conditions.caresAboutMagical(),
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Shared Tankbuster',
@@ -464,7 +462,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         '(?<! )Alexander(?! )': '알렉산더',
         'Alexander Prime': '알렉산더 프라임',
@@ -474,7 +471,8 @@
         'The General\'s Wing': '아리다이오스의 날개',
       },
       'replaceText': {
-        '(?<!Radiant )Sacrament': '십자 성례',
+        '\\(Radiant\\?\\) Sacrament': '원형/십자 성례',
+        '(?<! )Sacrament': '십자 성례',
         'Almost Holy': '프티 홀리',
         'Arrhidaeus\'s Lanner': '아리다이오스의 전령',
         'Blazing Scourge': '백광의 채찍',

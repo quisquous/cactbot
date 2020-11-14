@@ -39,9 +39,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1945', source: 'リクイドフレイム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1945', source: '液态火焰', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1945', source: '액체 불꽃', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -249,9 +247,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1955', source: 'ストリックス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1955', source: '博学林鸮', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1955', source: '스트릭스', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -465,12 +461,14 @@
       },
       'replaceText': {
         'Bibliocide': '화염',
+        'Book Drop': '책 떨어짐',
         'Check Out': '도서 선정',
         'Discontinue': '폐간',
         'Ecliptic Meteor': '황도 메테오',
         'Folio': '증쇄',
         'Form Shift': '연무',
         'Frightful Roar': '끔찍한 포효',
+        'Hand/Tornado': '손/토네이도',
         'Issue': '간행',
         'Magnetism': '자력',
         'Meteor Impact': '운석 낙하',
@@ -485,6 +483,7 @@
         'Searing Wind': '열풍',
         'Slosh': '돌진',
         'Triclip': '삼단베기',
+        'Quakes/Tornados': '퀘이가/토네이도',
       },
     },
   ],

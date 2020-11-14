@@ -207,11 +207,11 @@ hideall "--sync--"
 
 50044.4 "Curse Of The Fiend" sync /:Adrammelech:4F7A:/
 50051.5 "Accursed Becoming" sync /:Adrammelech:4F7B:/
-50058.7 "Fire/Blizzard IV" sync /:Adrammelech:545[AD]:/
+50058.7 "Fire IV/Blizzard IV" sync /:Adrammelech:545[AD]:/
 
 50067.0 "Curse Of The Fiend" sync /:Adrammelech:4F7A:/
 50074.1 "Accursed Becoming" sync /:Adrammelech:4F7B:/
-50081.3 "Stone/Aero/Thunder IV" sync /:Adrammelech:4F(7F|80|81):/
+50081.3 "Stone IV/Aero IV/Thunder IV" sync /:Adrammelech:4F(7F|80|81):/
 
 50091.4 "Burst II" sync /:Adrammelech:4F8A:/
 50102.5 "Warped Light" sync /:Adrammelech:4F8C:/
@@ -285,11 +285,11 @@ hideall "--sync--"
 60067.9 "Ready x3" duration 4.1 #sync /:Lyon The Beast King:5191:/
 60074.9 "Obey" sync /:Dawon:517C:/
 60077.0 "Swooping Frenzy" sync /:Dawon:517E:/
-60079.8 "Frigid/Fervid Pulse" sync /:Dawon:51(7F|80):/
+60079.8 "Frigid Pulse/Fervid Pulse" sync /:Dawon:51(7F|80):/
 60082.2 "Swooping Frenzy" sync /:Dawon:517E:/
-60085.0 "Frigid/Fervid Pulse" sync /:Dawon:51(7F|80):/
+60085.0 "Frigid Pulse/Fervid Pulse" sync /:Dawon:51(7F|80):/
 60087.4 "Swooping Frenzy" sync /:Dawon:517E:/
-60090.2 "Frigid/Fervid Pulse" sync /:Dawon:51(7F|80):/
+60090.2 "Frigid Pulse/Fervid Pulse" sync /:Dawon:51(7F|80):/
 60101.6 "Call Beast" sync /:Lyon The Beast King:5192:/
 60107.6 "Molting Plumage" sync /:Dawon:517A:/
 60119.2 "Explosion" sync /:Verdant Plume:5182:/

@@ -280,7 +280,7 @@ class PopupText {
   }
 
   OnPlayerChange(e) {
-    if (this.job != e.detail.job || this.me != e.detail.name)
+    if (this.job !== e.detail.job || this.me !== e.detail.name)
       this.OnJobChange(e);
     this.data.currentHP = e.detail.currentHP;
   }
@@ -299,7 +299,7 @@ class PopupText {
         console.log('Error parsing JSON from ' + filename + ': ' + exception);
         continue;
       }
-      if (typeof json != 'object' || !(json.length >= 0)) {
+      if (typeof json !== 'object' || !(json.length >= 0)) {
         console.log('Unexpected JSON from ' + filename + ', expected an array');
         continue;
       }
@@ -308,7 +308,7 @@ class PopupText {
           console.log('Unexpected JSON from ' + filename + ', expected a triggers');
           continue;
         }
-        if (typeof json[i].triggers != 'object' || !(json[i].triggers.length >= 0)) {
+        if (typeof json[i].triggers !== 'object' || !(json[i].triggers.length >= 0)) {
           console.log('Unexpected JSON from ' + filename + ', expected triggers to be an array');
           continue;
         }
@@ -354,7 +354,7 @@ class PopupText {
       if (Array.isArray(obj)) {
         for (let i = 0; i < obj.length; ++i)
           addTimeline(obj[i]);
-      } else if (typeof obj == 'function') {
+      } else if (typeof obj === 'function') {
         addTimeline(obj(this.data));
       } else if (obj) {
         timelines.push(obj);
@@ -382,7 +382,7 @@ class PopupText {
       }
 
       if (set.zoneId) {
-        if (set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId && !(typeof set.zoneId == 'object' && set.zoneId.includes(this.zoneId)))
+        if (set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId && !(typeof set.zoneId === 'object' && set.zoneId.includes(this.zoneId)))
           continue;
       } else if (set.zoneRegex) {
         let zoneRegex = set.zoneRegex;
@@ -516,7 +516,7 @@ class PopupText {
   }
 
   OnInCombatChange(inCombat) {
-    if (this.inCombat == inCombat)
+    if (this.inCombat === inCombat)
       return;
 
     if (inCombat || this.resetWhenOutOfCombat)
@@ -524,7 +524,7 @@ class PopupText {
   }
 
   SetInCombat(inCombat) {
-    if (this.inCombat == inCombat)
+    if (this.inCombat === inCombat)
       return;
 
     // Stop timers when stopping combat to stop any active timers that
@@ -597,7 +597,7 @@ class PopupText {
 
       for (let trigger of this.triggers) {
         let r = log.match(trigger.localRegex);
-        if (r != null)
+        if (r)
           this.OnTrigger(trigger, r);
       }
     }
@@ -607,7 +607,7 @@ class PopupText {
     let log = e.rawLine;
     for (let trigger of this.netTriggers) {
       let r = log.match(trigger.localNetRegex);
-      if (r != null)
+      if (r)
         this.OnTrigger(trigger, r);
     }
   }
@@ -628,7 +628,7 @@ class PopupText {
 
     // If using named groups, treat matches.groups as matches
     // so triggers can do things like matches.target.
-    if ((matches != undefined) && (matches.groups != undefined))
+    if (matches && matches.groups)
       matches = matches.groups;
 
     // Set up a helper object so we don't have to throw
@@ -840,7 +840,11 @@ class PopupText {
     let promise = null;
     if ('promise' in triggerHelper.trigger) {
       if (typeof triggerHelper.trigger.promise === 'function') {
-        promise = triggerHelper.trigger.promise(this.data, triggerHelper.matches);
+        promise = triggerHelper.trigger.promise(
+            this.data,
+            triggerHelper.matches,
+            triggerHelper.trigger.output);
+
         // Make sure we actually get a Promise back from the function
         if (Promise.resolve(promise) !== promise) {
           console.error('Trigger ' + triggerHelper.trigger.id + ': promise function did not return a promise');

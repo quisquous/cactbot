@@ -256,21 +256,33 @@
       outputStrings: {
         screen: {
           en: 'Biblio?/Knockback?',
+          de: 'Biblio?/Rückstoß?',
+          cn: '图书？/击退？',
         },
         biblio: {
           en: 'Biblio: Positions',
+          de: 'Biblio: Positionen',
+          cn: '图书：站位',
         },
         dada: {
           en: 'Dada: Knockback',
+          de: 'Dada: Rückstoß',
+          cn: '达达：击退',
         },
         ships: {
           en: 'Ships: Out of Melee',
+          de: 'Flieger: Raus aus Nahkampf-Reichweite',
+          cn: '飞机：远离近战范围',
         },
         ultros: {
           en: 'Ultros: Ink Spread',
+          de: 'Ultros: Tine - Verteilen',
+          cn: '章鱼：墨汁快散开',
         },
         virus: {
           en: 'VIRUS',
+          de: 'VIRUS',
+          cn: '病毒',
         },
       },
     },
@@ -301,15 +313,23 @@
       outputStrings: {
         biblio: {
           en: 'Biblio Add',
+          de: 'Biblio Add',
+          cn: '图书出现',
         },
         dada: {
           en: 'Dada Add',
+          de: 'Dada Add',
+          cn: '达达出现',
         },
         ships: {
           en: 'Ship Add',
+          de: 'Flieger Add',
+          cn: '飞机出现',
         },
         ultros: {
           en: 'Ultros Add',
+          de: 'Ultros Add',
+          cn: '章鱼出现',
         },
       },
     },

@@ -291,7 +291,7 @@ class CactbotConfigurator {
   buildUI(container, contents) {
     for (let group in contents) {
       let content = contents[group];
-      if (content.length == 0)
+      if (content.length === 0)
         continue;
 
       // For each overlay options template, build a section for it.
@@ -435,7 +435,7 @@ class CactbotConfigurator {
       let elem = document.createElement('option');
       elem.value = innerOptions[key];
       elem.innerHTML = key;
-      if (innerOptions[key] == defaultValue)
+      if (innerOptions[key] === defaultValue)
         elem.selected = true;
       input.appendChild(elem);
     }

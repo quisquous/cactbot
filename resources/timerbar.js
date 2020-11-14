@@ -296,7 +296,7 @@ class TimerBar extends HTMLElement {
     this._connected = true;
     this.layout();
     this.updateText();
-    if (this._start == null)
+    if (!this._start)
       this.setvalue(this._duration);
     else
       this.advance();
@@ -307,56 +307,56 @@ class TimerBar extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (name == 'duration') {
+    if (name === 'duration') {
       this._duration = Math.max(parseFloat(newValue), 0);
       this.setvalue(this._duration);
-    } else if (name == 'value') {
+    } else if (name === 'value') {
       this.setvalue(Math.max(parseFloat(newValue), 0));
-    } else if (name == 'elapsed') {
+    } else if (name === 'elapsed') {
       this.setvalue(this._duration - Math.max(parseFloat(newValue), 0));
-    } else if (name == 'width') {
+    } else if (name === 'width') {
       this._width = newValue;
       this.layout();
-    } else if (name == 'height') {
+    } else if (name === 'height') {
       this._height = newValue;
       this.layout();
-    } else if (name == 'bg') {
+    } else if (name === 'bg') {
       this._bg = newValue;
       this.layout();
-    } else if (name == 'fg') {
+    } else if (name === 'fg') {
       this._fg = newValue;
       this.layout();
-    } else if (name == 'style') {
-      this._styleFill = newValue == 'fill';
+    } else if (name === 'style') {
+      this._styleFill = newValue === 'fill';
       this.layout();
-    } else if (name == 'toward') {
-      this._towardRight = newValue == 'right';
+    } else if (name === 'toward') {
+      this._towardRight = newValue === 'right';
       this.layout();
-    } else if (name == 'lefttext') {
-      let update = newValue != this._leftText && this._connected;
+    } else if (name === 'lefttext') {
+      let update = newValue !== this._leftText && this._connected;
       this._leftText = newValue;
       if (update)
         this.updateText();
-    } else if (name == 'centertext') {
-      let update = newValue != this._centerText && this._connected;
+    } else if (name === 'centertext') {
+      let update = newValue !== this._centerText && this._connected;
       this._centerText = newValue;
       if (update)
         this.updateText();
-    } else if (name == 'righttext') {
-      let update = newValue != this._rightText && this._connected;
+    } else if (name === 'righttext') {
+      let update = newValue !== this._rightText && this._connected;
       this._rightText = newValue;
       if (update)
         this.updateText();
-    } else if (name == 'hideafter') {
+    } else if (name === 'hideafter') {
       this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
-      if (this.value == '0') {
+      if (this.value === '0') {
         if (this._hideAfter >= 0)
           this.hide();
         else
           this.show();
       }
-    } else if (name == 'loop') {
-      this._loop = newValue != null;
+    } else if (name === 'loop') {
+      this._loop = newValue !== null;
     }
 
     if (this._connected)
@@ -405,34 +405,34 @@ class TimerBar extends HTMLElement {
     if (this._styleFill)
       percent = 1.0 - percent;
     this.foregroundElement.style.width = percent * 100 + '%';
-    if (this._leftText != '') {
-      if (this._leftText == 'remain')
+    if (this._leftText !== '') {
+      if (this._leftText === 'remain')
         this.leftTextElement.innerHTML = displayRemain;
-      else if (this._leftText == 'duration')
+      else if (this._leftText === 'duration')
         this.leftTextElement.innerHTML = displayRemain + ' / ' + this._duration;
-      else if (this._leftText == 'percent')
+      else if (this._leftText === 'percent')
         this.leftTextElement.innerHTML = (percent * 100).toFixed(1) + ' %';
-      else if (this._leftText == 'elapsed')
+      else if (this._leftText === 'elapsed')
         this.leftTextElement.innerHTML = displayElapsed;
     }
-    if (this._centerText != '') {
-      if (this._centerText == 'remain')
+    if (this._centerText !== '') {
+      if (this._centerText === 'remain')
         this.centerTextElement.innerHTML = displayRemain;
-      else if (this._centerText == 'duration')
+      else if (this._centerText === 'duration')
         this.centerTextElement.innerHTML = displayRemain + ' / ' + this._duration;
-      else if (this._centerText == 'percent')
+      else if (this._centerText === 'percent')
         this.centerTextElement.innerHTML = (percent * 100).toFixed(1) + ' %';
-      else if (this._centerText == 'elapsed')
+      else if (this._centerText === 'elapsed')
         this.centerTextElement.innerHTML = displayElapsed;
     }
-    if (this._rightText != '') {
-      if (this._rightText == 'remain')
+    if (this._rightText !== '') {
+      if (this._rightText === 'remain')
         this.rightTextElement.innerHTML = displayRemain;
-      else if (this._rightText == 'duration')
+      else if (this._rightText === 'duration')
         this.rightTextElement.innerHTML = displayRemain + ' / ' + this._duration;
-      else if (this._rightText == 'percent')
+      else if (this._rightText === 'percent')
         this.rightTextElement.innerHTML = (percent * 100).toFixed(1) + ' %';
-      else if (this._rightText == 'elapsed')
+      else if (this._rightText === 'elapsed')
         this.rightTextElement.innerHTML = displayElapsed;
     }
   }
@@ -476,7 +476,7 @@ class TimerBar extends HTMLElement {
       this._duration = 0;
       if (this._hideAfter > 0)
         this._hideTimer = setTimeout(this.hide.bind(this), this._hideAfter * 1000);
-      else if (this._hideAfter == 0)
+      else if (this._hideAfter === 0)
         this.hide();
 
       window.cancelAnimationFrame(this._animationFrame);
