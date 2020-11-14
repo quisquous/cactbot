@@ -53,14 +53,8 @@
   height: 32px;
 }
 
-#mp-bar.show-number {
-  height: 18px;
-}
-
-#cp-bar {
-  height: 18px;
-}
-
+#mp-bar.show-number,
+#cp-bar,
 #gp-bar {
   height: 18px;
 }
