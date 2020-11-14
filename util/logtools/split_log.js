@@ -1,6 +1,7 @@
 'use strict';
 
 import fs from 'fs';
+import readline from 'readline';
 import Anonymizer from './anonymizer.js';
 import Splitter from './splitter.js';
 import { EncounterCollector } from './encounter_tools.js';
@@ -251,7 +252,7 @@ const writeFile = (outputFile, startLine, endLine) => {
     let notifier = new ConsoleNotifier();
     let anonymizer = new Anonymizer();
 
-    let lineReader = require('readline').createInterface({
+    let lineReader = readline.createInterface({
       input: fs.createReadStream(logFileName),
     });
 
@@ -299,7 +300,7 @@ const writeFile = (outputFile, startLine, endLine) => {
 (async function() {
   const makeCollectorFromPrepass = async (filename) => {
     let collector = new EncounterCollector();
-    let lineReader = require('readline').createInterface({
+    let lineReader = readline.createInterface({
       input: fs.createReadStream(filename),
     });
     for await (const line of lineReader) {
