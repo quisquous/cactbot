@@ -43,6 +43,9 @@ jobs:
       - name: Build Cactbot Plugin
         run: |
           dotnet build plugin/Cactbot.sln /p:Configuration=Release /p:Platform=x64
+      - name: Build JavaScript UI Module Bundles
+        run: |
+          npm run build
       - name: Setup Staging Directory
         run: |
           ./util/publish.sh
