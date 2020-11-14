@@ -2049,7 +2049,7 @@ class Bars {
       fgColor: 'smn-color-trance',
     });
 
-    // FurtherRuin Stack Guage
+    // FurtherRuin Stack Gauge
     let stacksContainer = document.createElement('div');
     stacksContainer.id = 'smn-stacks';
     this.addJobBarContainer().appendChild(stacksContainer);
@@ -2796,7 +2796,7 @@ class Bars {
       fgColor: 'whm-color-lucid',
     });
 
-    // BloodLily Guage
+    // BloodLily Gauge
     const stacksContainer = document.createElement('div');
     stacksContainer.id = 'whm-stacks';
     this.addJobBarContainer().appendChild(stacksContainer);
@@ -3124,18 +3124,18 @@ class Bars {
       id: 'dnc-procs-flourish',
       fgColor: 'dnc-color-flourish',
     });
-    let count = 0;
-    let flourishFlag = false;
+    let flourishEffect = [];
+    let flourishIsActive = false;
     this.abilityFuncMap[kAbility.Flourish] = () => {
       flourish.duration = 0;
       flourish.duration = 20;
-      count = 0;
-      flourishFlag = true;
+      flourishEffect = [];
+      flourishIsActive = true;
       flourish.threshold = 1000;
       flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish.active');
       setTimeout(() => {
         flourish.duration = 40;
-        flourishFlag = false;
+        flourishIsActive = false;
         flourish.threshold = this.gcdSkill() + 1;
         flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
       }, flourish.duration * 1000);
@@ -3145,31 +3145,33 @@ class Bars {
       EffectId.FlourishingFountain,
       EffectId.FlourishingShower,
       EffectId.FlourishingWindmill,
+      EffectId.FlourishingFanDance,
     ].forEach((effect) => {
       this.loseEffectFuncMap[effect] = () => {
-        count = count + 1;
-        if (count === 4 && flourishFlag) {
+        if (!(flourishEffect.includes(effect)))
+          flourishEffect.push(effect);        
+        if (flourishEffect.length === 5 && flourishIsActive) {
           flourish.duration = 60 - flourish.elapsed;
-          flourishFlag = false;
+          flourishIsActive = false;
           flourish.threshold = this.gcdSkill() + 1;
           flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
         }
       };
     });
 
-    const featherGuage = this.addResourceBox({
+    const featherGauge = this.addResourceBox({
       classList: ['dnc-color-feather'],
     });
-    const espritGuage = this.addResourceBox({
+    const espritGauge = this.addResourceBox({
       classList: ['dnc-color-esprit'],
     });
     this.jobFuncs.push((jobDetail) => {
-      espritGuage.innerText = jobDetail.esprit;
-      featherGuage.innerText = jobDetail.feathers;
+      espritGauge.innerText = jobDetail.esprit;
+      featherGauge.innerText = jobDetail.feathers;
       if (jobDetail.esprit >= 80)
-        espritGuage.parentNode.classList.add('high');
+        espritGauge.parentNode.classList.add('high');
       else
-        espritGuage.parentNode.classList.remove('high');
+        espritGauge.parentNode.classList.remove('high');
     });
 
     this.statChangeFuncMap['DNC'] = () => {
