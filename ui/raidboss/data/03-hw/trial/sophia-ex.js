@@ -31,24 +31,28 @@ const tiltOutputStrings = {
     de: 'Nach Osten gehen (starke Neigung)',
     ja: '東へ (大きい斜め)',
     cn: '去东边（大倾斜）',
+    ko: '동쪽으로 (크게 기울어짐)',
   },
   goEastSoftTilt: {
     en: 'Go East (Soft Tilt)',
     de: 'Nach Osten gehen (leichte Neigung)',
     ja: '東へ (小さい斜め)',
     cn: '去东边（小倾斜）',
+    ko: '동쪽으로 (작게 기울어짐)',
   },
   goWestHardTilt: {
     en: 'Go West (Hard Tilt)',
     de: 'Nach Westen gehen (starke Neigung)',
     ja: '西へ (大きい斜め)',
     cn: '去西边（大倾斜）',
+    ko: '서쪽으로 (크게 기울어짐)',
   },
   goWestSoftTilt: {
     en: 'Go West (Soft Tilt)',
     de: 'Nach Westen gehen (leichte Neigung)',
     ja: '西へ (小さい斜め)',
     cn: '去西边（小倾斜）',
+    ko: '서쪽으로 (작게 기울어짐)',
   },
 };
 
@@ -77,6 +81,7 @@ const tiltOutputStrings = {
           fr: 'Évitez l\'attaque Charge',
           ja: '突進に避け',
           cn: '躲避击飞',
+          ko: '대쉬 공격 피하기',
         },
       },
     },
