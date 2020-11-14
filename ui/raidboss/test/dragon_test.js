@@ -122,7 +122,7 @@ let findDragonMarks = function(array) {
   ret.unsafeThirdMark = bad.includes(marks[2]);
 
   let dirNames = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-  ret.marks = marks.map(function(i) {
+  ret.marks = marks.map((i) => {
     return dirNames[i];
   });
   return ret;
@@ -186,7 +186,7 @@ function testFindDragonMarks(array, output) {
   console.assert(dragons.length === 5);
 
   let dirNames = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-  let marks = markDirs.map(function(i) {
+  let marks = markDirs.map((i) => {
     return dirNames.indexOf(i);
   });
   console.assert(marks.length === 3);

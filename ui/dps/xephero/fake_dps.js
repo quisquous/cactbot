@@ -179,7 +179,7 @@ FakeEncounter.prototype.update = function(elapsedSeconds) {
 FakeEncounter.prototype.getDpsUpdate = function() {
   let combatantDetail = {};
 
-  this.combatants.sort(function(a, b) {
+  this.combatants.sort((a, b) => {
     return b.data.damage - a.data.damage;
   });
 
