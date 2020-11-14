@@ -101,6 +101,11 @@
       },
     },
     {
+      id: 'Ghimlyt Dark Order To Bombard',
+      netRegex: NetRegexes.ability({ id: '3710', source: 'Annia Quo Soranus', capture: false }),
+      response: Responses.knockback(),
+    },
+    {
       id: 'Ghimlyt Dark Covering Fire',
       netRegex: NetRegexes.headMarker({ id: '0078' }),
       condition: Conditions.targetIsYou(),
