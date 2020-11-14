@@ -44,7 +44,7 @@ known_mapping = {
     "Caustic Bite": "1200",
     "Windbite": "129",
     "Venomous Bite": "124",
-    "Flourishing Fan Dance": '1820',
+    "Flourishing Fan Dance": "1820",
 }
 
 
