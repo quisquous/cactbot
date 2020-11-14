@@ -3149,7 +3149,7 @@ class Bars {
     ].forEach((effect) => {
       this.loseEffectFuncMap[effect] = () => {
         if (!(flourishEffect.includes(effect)))
-          flourishEffect.push(effect);        
+          flourishEffect.push(effect);
         if (flourishEffect.length === 5 && flourishIsActive) {
           flourish.duration = 60 - flourish.elapsed;
           flourishIsActive = false;
