@@ -49,14 +49,14 @@ hideall "--sync--"
 
 1000.0 "Start" sync /00:0839:The Impact Crater will be sealed off/ window 1000,1
 1012.2 "Nitrospin" sync /:Prometheus:3455:/
-1023.4 "Needle Gun/Oil Shower" sync /:Prometheus:(345A|3456):/
+1023.4 "Needle Gun" sync /:Prometheus:345A:/
 1031.1 "--untargetable--"
 1031.2 "Tunnel" sync /:Prometheus:3457:/ window 31.2,5
 1042.8 "Heat" duration 4 # sync /:Prometheus:3458:/
 1048.0 "--targetable--"
 
 1056.2 "Unbreakable Cermet Drill" sync /:Prometheus:3459:/ window 30,30
-1068.3 "Needle Gun/Oil Shower" sync /:Prometheus:(345A|3456):/
+1068.3 "Needle Gun" sync /:Prometheus:345A:/
 1075.4 "Needle Gun/Oil Shower" sync /:Prometheus:(345A|3456):/
 1086.4 "Nitrospin" sync /:Prometheus:3455:/
 1097.8 "Freezing Missile (windup)" sync /:Prometheus:345B:/
@@ -67,7 +67,7 @@ hideall "--sync--"
 1118.2 "--targetable--"
 
 1131.5 "Unbreakable Cermet Drill" sync /:Prometheus:3459:/ jump 1056.2
-1143.6 "Needle Gun/Oil Shower"
+1143.6 "Needle Gun"
 1150.7 "Needle Gun/Oil Shower"
 1161.9 "Nitrospin"
 

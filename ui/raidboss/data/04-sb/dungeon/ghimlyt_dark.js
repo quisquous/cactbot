@@ -11,7 +11,7 @@
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Avoid laser from wall',
+          en: 'Avoid wall laser',
         },
       },
     },
@@ -41,12 +41,16 @@
       response: Responses.stackMarkerOn(),
     },
     {
+      // 00A7 is the orange clockwise indicator. 00A8 is the blue counterclockwise one.
       id: 'Ghimlyt Dark Magitek Slash',
-      netRegex: NetRegexes.startsUsing({ id: '3774', source: 'Mark III-B Magitek Colossus', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      netRegex: NetRegexes.headMarker({ id: ['00A7', '00A8'] }),
+      infoText: (data, matches, output) => {
+        const direction = matches.id === '00A7' ? 'Left' : 'Right';
+        return output.text({ direction: direction });
+      },
       outputStrings: {
         text: {
-          en: 'Avoid spinning laser',
+          en: 'Rotate ${direction}',
         },
       },
     },
@@ -90,15 +94,8 @@
       // This head marker is used on players and NPCs, so we have to exclude NPCs explicitly.
       id: 'Ghimlyt Dark Heirsbane',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
-      condition: (data, matches) => matches.targetId[0] !== '4' && data.role === 'healer',
-      infoText: (data, matches, output) => {
-        return output.text({ player: data.ShortName(matches.target) });
-      },
-      outputStrings: {
-        text: {
-          en: 'Incoming damage on ${player}',
-        },
-      },
+      condition: (data, matches) => matches.targetId[0] !== '4' && Conditions.caresAboutPhysical()(data, matches),
+      response: Responses.tankBuster(),
     },
     {
       id: 'Ghimlyt Dark Order To Bombard',
