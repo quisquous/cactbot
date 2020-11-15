@@ -27,7 +27,7 @@ hideall "--sync--"
 82.6 "Air Raid"
 94.1 "Air Raid"
 
-100.0 "--sync--" sync / 1E:........:Nuzal Hueloc loses the effect of Hover/ window 100,5
+100.0 "--sync--" sync / 22:........:Nuzal Hueloc:........:Nuzal Hueloc:01/ window 100,5
 121.3 "Wind Blast" sync /:Nuzal Hueloc:19C7:/ window 21.3,5
 129.5 "Long Burst" sync /:Nuzal Hueloc:19C8:/
 132.7 "Short Burst" sync /:Nuzal Hueloc:19C6:/
@@ -52,7 +52,7 @@ hideall "--sync--"
 272.1 "Air Raid"
 
 
-300.0 "--sync--" sync / 1E:........:Nuzal Hueloc loses the effect of Hover/ window 100,5
+300.0 "--sync--" sync / 22:........:Nuzal Hueloc:........:Nuzal Hueloc:01/ window 100,5
 305.3 "Short Burst" sync /:Nuzal Hueloc:19C6:/ window 5,10
 314.4 "Wind Blast" sync /:Nuzal Hueloc:19C7:/
 323.5 "Long Burst" sync /:Nuzal Hueloc:19C8:/

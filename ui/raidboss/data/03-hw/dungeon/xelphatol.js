@@ -16,6 +16,8 @@
     {
       // This might be better handled by collecting Swiftfeather,
       // but a timeline trigger is easy and consistent.
+      // This is *technically* avoidable, but if mishandled can kill melee or unwary healers.
+      // (The timing from "cone locked in" to "cone damage snapshots" is 0.70 seconds.)
       id: 'Xelphatol On Low',
       regex: /On Low/,
       beforeSeconds: 5,
