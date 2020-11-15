@@ -392,7 +392,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'bouclier-canon', id: '4E4F', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ガンシールド', id: '4E4F', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '枪盾', id: '4E4F', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '검기', id: '4E4F', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '건실드', id: '4E4F', capture: false }),
       response: Responses.stackMarker('info'),
     },
     {
@@ -402,7 +402,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'bouclier-canon', id: '4E50', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ガンシールド', id: '4E50', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '枪盾', id: '4E50', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '검기', id: '4E50', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '건실드', id: '4E50', capture: false }),
       // TODO: This is technicallly a spread, but it's more like "protean" spread?
       // Not sure how to make this more clear.
       response: Responses.spread('alert'),
