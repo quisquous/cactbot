@@ -45,12 +45,14 @@
       id: 'Ghimlyt Dark Magitek Slash',
       netRegex: NetRegexes.headMarker({ id: ['00A7', '00A8'] }),
       infoText: (data, matches, output) => {
-        const direction = matches.id === '00A7' ? 'Left' : 'Right';
-        return output.text({ direction: direction });
+        return matches.id === '00A7' ? output.left() : output.right();
       },
       outputStrings: {
-        text: {
-          en: 'Rotate ${direction}',
+        left: {
+          en: 'Rotate left',
+        },
+        right: {
+          en: 'Rotate right',
         },
       },
     },
