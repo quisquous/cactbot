@@ -1,14 +1,14 @@
 'use strict';
 
-addOverlayListener('ChangeZone', function(e) {
+addOverlayListener('ChangeZone', (e) => {
   document.getElementById('currentZone').innerText = `currentZone: ${e.zoneName} (${e.zoneID})`;
 });
 
-addOverlayListener('onInCombatChangedEvent', function(e) {
+addOverlayListener('onInCombatChangedEvent', (e) => {
   document.getElementById('inCombat').innerText = 'inCombat: act: ' + (e.detail.inACTCombat ? 'yes' : 'no') + ' game: ' + (e.detail.inGameCombat ? 'yes' : 'no');
 });
 
-addOverlayListener('onPlayerChangedEvent', function(e) {
+addOverlayListener('onPlayerChangedEvent', (e) => {
   document.getElementById('hp').innerText = e.detail.currentHP + '/' + e.detail.maxHP + ' (' + e.detail.currentShield + ')';
   document.getElementById('mp').innerText = e.detail.currentMP + '/' + e.detail.maxMP;
   document.getElementById('cp').innerText = e.detail.currentCP + '/' + e.detail.maxCP;
@@ -66,7 +66,7 @@ addOverlayListener('onPlayerChangedEvent', function(e) {
   document.getElementById('bait').innerText = e.detail.bait;
 });
 
-addOverlayListener('EnmityTargetData', function(e) {
+addOverlayListener('EnmityTargetData', (e) => {
   let target = e.Target;
   if (!target) {
     document.getElementById('target').innerText = '--';
@@ -79,15 +79,15 @@ addOverlayListener('EnmityTargetData', function(e) {
   }
 });
 
-addOverlayListener('onGameExistsEvent', function(e) {
+addOverlayListener('onGameExistsEvent', (e) => {
   // console.log("Game exists: " + e.detail.exists);
 });
 
-addOverlayListener('onGameActiveChangedEvent', function(e) {
+addOverlayListener('onGameActiveChangedEvent', (e) => {
   // console.log("Game active: " + e.detail.active);
 });
 
-addOverlayListener('onLogEvent', function(e) {
+addOverlayListener('onLogEvent', (e) => {
   for (let i = 0; i < e.detail.logs.length; i++) {
     // Match "/echo tts:<stuff>"
     let r = e.detail.logs[i].match('00:0038:tts:(.*)');
@@ -100,11 +100,11 @@ addOverlayListener('onLogEvent', function(e) {
   }
 });
 
-addOverlayListener('onUserFileChanged', function(e) {
+addOverlayListener('onUserFileChanged', (e) => {
   console.log(`User file ${e.file} changed!`);
 });
 
-addOverlayListener('FileChanged', function(e) {
+addOverlayListener('FileChanged', (e) => {
   console.log(`File ${e.file} changed!`);
 });
 

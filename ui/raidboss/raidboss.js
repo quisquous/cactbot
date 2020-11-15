@@ -25,7 +25,7 @@ let Options = {
 
 let gTimelineController;
 
-UserConfig.getUserConfigLocation('raidboss', Options, function(e) {
+UserConfig.getUserConfigLocation('raidboss', Options, (e) => {
   // Query params override default and user options.
   // This allows for html files that say "timeline only" or "alerts only".
   const params = new URLSearchParams(window.location.search);
@@ -105,7 +105,7 @@ UserConfig.getUserConfigLocation('raidboss', Options, function(e) {
     gTimelineController.SetPopupTextInterface(new PopupTextGenerator(gPopupText));
   gPopupText.SetTimelineLoader(new TimelineLoader(gTimelineController));
 
-  addOverlayListener('onLogEvent', function(e) {
+  addOverlayListener('onLogEvent', (e) => {
     gTimelineController.OnLogEvent(e);
   });
 });

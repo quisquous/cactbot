@@ -2521,7 +2521,7 @@ class Bars {
       lucidBox.threshold = this.gcdSpell() + 1;
     };
 
-    this.jobFuncs.push(function(jobDetail) {
+    this.jobFuncs.push((jobDetail) => {
       let white = jobDetail.whiteMana;
       let black = jobDetail.blackMana;
 
@@ -3852,23 +3852,23 @@ class Bars {
 
 let gBars;
 
-UserConfig.getUserConfigLocation('jobs', Options, function() {
-  addOverlayListener('onPlayerChangedEvent', function(e) {
+UserConfig.getUserConfigLocation('jobs', Options, () => {
+  addOverlayListener('onPlayerChangedEvent', (e) => {
     gBars.OnPlayerChanged(e);
   });
-  addOverlayListener('EnmityTargetData', function(e) {
+  addOverlayListener('EnmityTargetData', (e) => {
     gBars.UpdateEnmityTargetData(e);
   });
-  addOverlayListener('onPartyWipe', function(e) {
+  addOverlayListener('onPartyWipe', (e) => {
     gBars.OnPartyWipe(e);
   });
-  addOverlayListener('onInCombatChangedEvent', function(e) {
+  addOverlayListener('onInCombatChangedEvent', (e) => {
     gBars.OnInCombatChanged(e);
   });
-  addOverlayListener('ChangeZone', function(e) {
+  addOverlayListener('ChangeZone', (e) => {
     gBars.OnChangeZone(e);
   });
-  addOverlayListener('onLogEvent', function(e) {
+  addOverlayListener('onLogEvent', (e) => {
     gBars.OnLogEvent(e);
   });
   addOverlayListener('LogLine', (e) => {

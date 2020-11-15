@@ -305,7 +305,7 @@ class PullCounter {
   }
 }
 
-UserConfig.getUserConfigLocation('pullcounter', Options, function() {
+UserConfig.getUserConfigLocation('pullcounter', Options, () => {
   gPullCounter = new PullCounter(document.getElementById('pullcounttext'));
 
   addOverlayListener('onLogEvent', (e) => gPullCounter.OnLogEvent(e));
