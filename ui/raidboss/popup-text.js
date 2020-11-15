@@ -840,7 +840,11 @@ class PopupText {
     let promise = null;
     if ('promise' in triggerHelper.trigger) {
       if (typeof triggerHelper.trigger.promise === 'function') {
-        promise = triggerHelper.trigger.promise(this.data, triggerHelper.matches);
+        promise = triggerHelper.trigger.promise(
+            this.data,
+            triggerHelper.matches,
+            triggerHelper.trigger.output);
+
         // Make sure we actually get a Promise back from the function
         if (Promise.resolve(promise) !== promise) {
           console.error('Trigger ' + triggerHelper.trigger.id + ': promise function did not return a promise');

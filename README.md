@@ -5,6 +5,8 @@
 [![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/quisquous/cactbot/Test/main)](https://github.com/quisquous/cactbot/actions?query=workflow%3ATest+branch%3Amain)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/quisquous/cactbot?color=brightgreen&sort=semver)](https://github.com/quisquous/cactbot/releases/latest)
 
+🌎 [**English**] [[한국어](docs/ko-KR/README.md)]
+
 1. [About](#about)
 1. [Installing](#installing)
 1. [Building From Source](#building-from-source)
@@ -15,7 +17,7 @@
 
 ## About
 
-cactbot is an ACT overlay that provides raiding tools for [Final Fantasy XIV](http://www.finalfantasyxiv.com/).  This project is an overlay plugin for
+cactbot is an ACT overlay that provides raiding tools for [Final Fantasy XIV](http://www.finalfantasyxiv.com/). This project is an overlay plugin for
 [ngld's OverlayPlugin](https://github.com/ngld/OverlayPlugin)
 which itself is a plugin for
 [Advanced Combat Tracker](http://advancedcombattracker.com/).
@@ -84,7 +86,7 @@ and enable it in the list of plugins.
 
 Additionally, you must enable parsing from the network and make sure that ACT is not firewalled.
 Make sure the settings for the FFXIV plugin have the "Include HP for Triggers" button checked.
-This is under `Plugins` ->`FFXIV Settings` -> `Parse Options`.
+This is under `Plugins` ->`FFXIV Settings` -> `Options`.
 
 Alternative FFXIV Plugin Guides:
 
@@ -476,8 +478,3 @@ international (English, German, French, Japanese) version,
 the current Chinese version,
 and the current Korean version.
 Some translations are still a work in progress.
-
-Unicode characters are supported throughout, through the use of the helpers in the
-[resources/regexes.js](resources/regexes.js) file. However [timelines](ui/raidboss/data/timelines)
-and log event [triggers](ui/raidboss/data/triggers) may be incorrect if names that appear in the
-ACT log events are different.

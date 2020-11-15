@@ -46,7 +46,7 @@ function findNextWeather(timeMs, zoneId, searchWeather, maxTimeMs) {
 
   for (; timeMs < maxTimeMs; timeMs += 8 * 175 * 1000) {
     let weather = getWeather(timeMs, zoneId);
-    if (weather == searchWeather)
+    if (weather === searchWeather)
       return floorTimeToStartOfWeather(timeMs);
   }
   return undefined;
@@ -57,7 +57,7 @@ function findNextWeatherNot(timeMs, zoneId, searchWeather, maxTimeMs) {
 
   for (; timeMs < maxTimeMs; timeMs += 8 * 175 * 1000) {
     let weather = getWeather(timeMs, zoneId);
-    if (weather != searchWeather)
+    if (weather !== searchWeather)
       return floorTimeToStartOfWeather(timeMs);
   }
   return undefined;

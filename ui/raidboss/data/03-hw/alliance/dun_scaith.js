@@ -93,7 +93,7 @@
           fr: 'Tuez les adds',
           ja: 'スプライトを倒す',
           cn: '击杀虚无元精',
-          ko: '광대 잡기',
+          ko: '정령 잡기',
         },
       },
     },
@@ -357,9 +357,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: 'プロトアルテマ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: '究极神兵原型', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: '프로토 알테마', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -474,9 +472,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1D32', source: 'スカアハ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1D32', source: '斯卡哈', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1D32', source: '스카하크', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -661,7 +657,7 @@
           fr: 'Package sur ${player} et regardez ailleurs',
           ja: '${player}に頭割り、見ない',
           cn: '靠近并背对${player}分摊',
-          ko: '${player}쉐어, 바라보지않기',
+          ko: '${player} 쉐어, 바라보지않기',
         },
       },
     },
@@ -970,7 +966,8 @@
         'Thirty Souls': 'サーティー・ソウルズ',
         'Thirty Thorns': 'サーティー・ソーンズ',
         'Touchdown': 'タッチダウン',
-        'Void Aero II': 'ヴォイド・エアロラ',
+        'Void Aero II(?!I)': 'ヴォイド・エアロラ',
+        'Void Aero III': 'ヴォイド・エアロガ',
         'Void Aero IV': 'ヴォイド・エアロジャ',
         'Void Blizzard III': 'ヴォイド・ブリザガ',
         'Void Blizzard IV': 'ヴォイド・ブリザジャ',
@@ -1076,7 +1073,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Aether': '에테르 구체',
         'Aether Collector': '에테르 집적기',
@@ -1103,6 +1099,10 @@
         'Wailing Atomos': '허성의 아토모스',
       },
       'replaceText': {
+        '--deathgate spawn--': '--소환의 문 생성--',
+        '--lifegate spawn--': '--마력의 문 생성--',
+        '--shadows gather--': '--그림자 모임--',
+        '--towers appear--': '--기둥 생성--',
         'Aether Bend': '에테르 굴절',
         'Aetherial Pool': '에테르 웅덩이',
         'Aetherochemical Flare': '마과학 플레어',
@@ -1152,14 +1152,16 @@
         'Soar': '비상',
         'Spike Of Darkness': '어둠의 강타',
         'Supernova': '광란의 태양',
-        'Terror': '공포',
+        'Ultimate Terror': '궁극의 공포',
+        '(?<!Ultimate )Terror': '공포',
         'Thirty Arrows': '서른 화살',
         'Thirty Cries': '서른 울음',
         'Thirty Sickles': '서른 낫',
         'Thirty Souls': '서른 혼',
         'Thirty Thorns': '서른 가시',
         'Touchdown': '착지',
-        'Void Aero II': '보이드 에어로라',
+        'Void Aero II(?!I)': '보이드 에어로라',
+        'Void Aero III': '보이드 에어로가',
         'Void Aero IV': '보이드 에어로쟈',
         'Void Blizzard III': '보이드 블리자가',
         'Void Blizzard IV': '보이드 블리자쟈',

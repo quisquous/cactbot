@@ -542,7 +542,6 @@ let bombLocation = (matches) => {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         '(?<!Hummel)Faust': '파우스트',
         '(?<!Smart)Bomb': '폭탄',
@@ -550,6 +549,7 @@ let bombLocation = (matches) => {
         'Gobbledygroper': '고블키마이라',
         'Ratfinx Twinkledinks': '재주꾼 랫핑크스',
         'Smartbomb': '초고성능 폭탄',
+        'The Clevering': '고블린 과학 연구실',
       },
       'replaceText': {
         '--big--': '--커짐--',

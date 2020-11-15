@@ -14,7 +14,9 @@
         text: {
           en: 'Away from club/shield',
           de: 'Weg von der Keule/dem Schild',
+          fr: 'Éloignez-vous du bouclier/fauche',
           cn: '远离棍棍和盾盾',
+          ko: '검/방패에게서 멀어지기',
         },
       },
     },
@@ -56,12 +58,16 @@
         targetText: {
           en: 'Boss chasing--GET AWAY',
           de: 'Boss-Verfolgung--RENN WEG',
+          fr: 'Ruée du boss -- ÉLOIGNEZ-VOUS',
           cn: 'BOSS追逐点名———快跑鸭',
+          ko: '보스 추격중 --도망가세요',
         },
         otherText: {
           en: 'Avoid boss',
           de: 'Weiche dem Boss aus',
+          fr: 'Évitez le boss',
           cn: '远离BOSS',
+          ko: '도망가기',
         },
       },
     },
@@ -98,7 +104,9 @@
         text: {
           en: 'Avoid water orb',
           de: 'Weiche dem Wasser-Orb aus',
+          fr: 'Évitez l\'orbe d\'eau',
           cn: '躲避水球移动路径',
+          ko: '물구슬 피하기',
         },
       },
     },

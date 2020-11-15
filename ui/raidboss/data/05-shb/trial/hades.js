@@ -131,9 +131,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4180', source: 'ハーデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4180', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4180', source: '하데스', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

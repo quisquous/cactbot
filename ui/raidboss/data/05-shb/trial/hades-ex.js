@@ -336,9 +336,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '47BF', source: 'Duo D\'Asciens', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '47BF', source: 'ラハブレアとイゲオルム', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47BF', source: '라하브레아와 이게요름', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -605,9 +603,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '47D0', source: 'Spectre De Primo-Ascien', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '47D0', source: 'アシエン・プライムの影', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47D0', source: '아씨엔 프라임의 그림자', capture: false }),
-      condition: function(data) {
-        return data.role === 'tank' || data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -797,9 +793,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '47F3', source: 'Hadès', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '47F3', source: 'ハーデス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47F3', source: '하데스', capture: false }),
-      condition: function(data) {
-        return data.role === 'tank' || data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -810,9 +804,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '47F4', source: 'Hadès', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '47F4', source: 'ハーデス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47F4', source: '하데스', capture: false }),
-      condition: function(data) {
-        return data.role === 'tank' || data.role === 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {

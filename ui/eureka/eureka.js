@@ -2521,12 +2521,12 @@ class EurekaTracker {
   }
 
   ProcessFateQueue() {
-    while (this.fateQueue.length != 0)
+    while (this.fateQueue.length !== 0)
       this.OnFate(this.fateQueue.pop());
   }
 
   ProcessCEQueue() {
-    while (this.CEQueue.length != 0)
+    while (this.CEQueue.length !== 0)
       this.OnCE(this.CEQueue.pop());
   }
 
@@ -2619,7 +2619,7 @@ class EurekaTracker {
 
       if (nm.weather) {
         let respawnWeather = getWeather(respawnMs, this.zoneId);
-        if (respawnWeather != nm.weather) {
+        if (respawnWeather !== nm.weather) {
           let weatherStartTime =
             findNextWeather(respawnMs, this.zoneId, nm.weather);
           if (weatherStartTime > respawnMs) {
@@ -2792,7 +2792,7 @@ class EurekaTracker {
 
     let nm = null;
     for (const key of this.nmKeys) {
-      if (e.detail.data.ceKey == this.nms[key].ceKey) {
+      if (e.detail.data.ceKey === this.nms[key].ceKey) {
         nm = this.nms[key];
         break;
       }
@@ -2881,7 +2881,7 @@ class EurekaTracker {
     name.classList.add('flag-name');
     name.classList.add('text');
     name.innerText = beforeText;
-    if (beforeText != '' && afterText != '')
+    if (beforeText !== '' && afterText !== '')
       name.innerText += ' ';
     name.innerText += afterText;
     label.appendChild(icon);

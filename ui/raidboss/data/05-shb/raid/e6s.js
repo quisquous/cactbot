@@ -93,6 +93,8 @@
           data.safeZone = output.oneDir({ dir: safeZone1 });
         else if (safeZone2)
           data.safeZone = output.oneDir({ dir: safeZone2 });
+        else
+          data.safeZone = null;
       },
       infoText: function(data, _, output) {
         return !data.safeZone ? output.unknown() : data.safeZone;

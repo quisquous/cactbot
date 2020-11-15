@@ -155,12 +155,14 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Ice Soldier': '얼음 병사',
         'Shiva': '시바',
       },
       'replaceText': {
+        '\\(circle\\)': '(원형)',
+        '\\(cross\\)': '(십자)',
+        '--frozen--': '--동결--',
         'Absolute Zero': '절대영도',
         'Diamond Dust': '다이아몬드 더스트',
         'Dreams Of Ice': '빙결의 환상',

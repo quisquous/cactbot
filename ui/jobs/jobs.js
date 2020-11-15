@@ -45,9 +45,39 @@ const kPullText = {
 };
 
 const kAbility = {
+  // LB
+  ShieldWall: 'C5', // T LB1
+  Stronghold: 'C6', // T LB2
+  LastBastion: 'C7', // PLD LB3
+  LandWaker: '1090', // WAR LB3
+  DarkForce: '1091', // DRK LB3
+  GunmetalSoul: '42D1', // GNB LB3
+  HealingWind: 'CE', // H LB1
+  BreathoftheEarth: 'CF', // H LB2
+  PulseofLife: 'D0', // WHM LB3
+  AngelFeathers: '1097', // SCH LB3
+  AstralStasis: '1098', // AST LB3
+  Braver: 'C8', // meleeDPS LB1
+  Bladedance: 'C9', // meleeDPS LB2
+  FinalHeaven: 'CA', // MNK LB3
+  Chimatsuri: '1093', // NIN LB3
+  DragonsongDive: '1092', // DRG LB3
+  DoomoftheLiving: '1EB5', // SAM LB3
+  BigShot: '108E', // rangeDPS LB1
+  Desperado: '108F', // rangeDPS LB2
+  SagittariusArrow: '1094', // BRD LB3
+  SatelliteBeam: '1095', // MCH LB3
+  CrimsonLotus: '42D2', // DNC LB3
+  Skyshard: 'CB', // magicDPS LB1
+  Starstorm: 'CC', // magicDPS LB2
+  Meteor: 'CD', // BLM LB3
+  Teraflare: '1096', // SMN LB3
+  VermilionScourge: '1EB6', // RDM LB3
   DragonKick: '4A',
   TwinSnakes: '3D',
   Demolish: '42',
+
+  // RDM
   Verstone: '1D57',
   Verfire: '1D56',
   Veraero: '1D53',
@@ -58,16 +88,23 @@ const kAbility = {
   Jolt: '1D4F',
   Impact: '1D62',
   Scatter: '1D55',
+  Verthunder2: '408C',
+  Veraero2: '408D',
   Vercure: '1D5A',
   Verraise: '1D63',
   Riposte: '1D50',
   Zwerchhau: '1D58',
   Redoublement: '1D5C',
   Moulinet: '1D59',
+  Reprise: '4091',
   EnchantedRiposte: '1D67',
   EnchantedZwerchhau: '1D68',
   EnchantedRedoublement: '1D69',
   EnchantedMoulinet: '1D6A',
+  EnchantedReprise: '4090',
+  Embolden: '1D60',
+  Manafication: '1D61',
+
   Tomahawk: '2E',
   Overpower: '29',
   HeavySwing: '1F',
@@ -77,7 +114,6 @@ const kAbility = {
   StormsEye: '2D',
   StormsPath: '2A',
   InnerRelease: '1CDD',
-  Embolden: '1D60',
   Aetherflow: 'A6',
   ChainStratagem: '1D0C',
   Hypercharge: 'B45',
@@ -157,7 +193,19 @@ const kAbility = {
   Bunshin: '406D',
   Hide: '8C5',
 
-  TechnicalFinish: '3F44',
+  // DNC
+  Cascade: '3E75',
+  Fountain: '3E76',
+  Windmill: '3E79',
+  Bladeshower: '3E7A',
+  QuadrupleTechnicalFinish: '3F44',
+  TripleTechnicalFinish: '3F43',
+  DoubleTechnicalFinish: '3F42',
+  SingleTechnicalFinish: '3F41',
+  StandardStep: '3E7D',
+  TechnicalStep: '3E7E',
+  Flourish: '3E8D',
+
   Thunder1: '90',
   Thunder2: '94',
   Thunder3: '99',
@@ -387,6 +435,15 @@ function setupComboTracker(callback) {
     kAbility.RiotBlade,
     kAbility.GoringBlade,
   ]);
+  // DNC
+  comboTracker.AddCombo([
+    kAbility.Cascade,
+    kAbility.Fountain,
+  ]);
+  comboTracker.AddCombo([
+    kAbility.Windmill,
+    kAbility.Bladeshower,
+  ]);
   comboTracker.AddCombo([
     kAbility.FightOrFlight,
     kAbility.FastBlade,
@@ -419,6 +476,34 @@ function setupRegexes(playerName) {
   // Full skill names of abilities that break combos.
   // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
   kComboBreakers = Object.freeze([
+    // LB
+    kAbility.ShieldWall,
+    kAbility.Stronghold,
+    kAbility.LastBastion,
+    kAbility.LandWaker,
+    kAbility.DarkForce,
+    kAbility.GunmetalSoul,
+    kAbility.HealingWind,
+    kAbility.BreathoftheEarth,
+    kAbility.PulseofLife,
+    kAbility.AngelFeathers,
+    kAbility.AstralStasis,
+    kAbility.Braver,
+    kAbility.Bladedance,
+    kAbility.FinalHeaven,
+    kAbility.Chimatsuri,
+    kAbility.DragonsongDive,
+    kAbility.DoomoftheLiving,
+    kAbility.BigShot,
+    kAbility.Desperado,
+    kAbility.SagittariusArrow,
+    kAbility.SatelliteBeam,
+    kAbility.CrimsonLotus,
+    kAbility.Skyshard,
+    kAbility.Starstorm,
+    kAbility.Meteor,
+    kAbility.Teraflare,
+    kAbility.VermilionScourge,
     // GNB
     kAbility.KeenEdge,
     kAbility.BrutalShell,
@@ -426,6 +511,11 @@ function setupRegexes(playerName) {
     kAbility.DemonSlice,
     kAbility.DemonSlaughter,
     kAbility.LightningShot,
+    // DNC
+    kAbility.Cascade,
+    kAbility.Fountain,
+    kAbility.Windmill,
+    kAbility.Bladeshower,
     // NIN
     kAbility.SpinningEdge,
     kAbility.GustSlash,
@@ -445,16 +535,21 @@ function setupRegexes(playerName) {
     kAbility.Jolt,
     kAbility.Impact,
     kAbility.Scatter,
+    kAbility.Verthunder2,
+    kAbility.Veraero2,
     kAbility.Vercure,
     kAbility.Verraise,
     kAbility.Riposte,
     kAbility.Zwerchhau,
     kAbility.Redoublement,
     kAbility.Moulinet,
+    kAbility.Reprise,
     kAbility.EnchantedRiposte,
     kAbility.EnchantedZwerchhau,
     kAbility.EnchantedRedoublement,
     kAbility.EnchantedMoulinet,
+    kAbility.EnchantedReprise,
+    kAbility.Manafication,
     // war
     kAbility.Tomahawk,
     kAbility.Overpower,
@@ -1426,6 +1521,7 @@ class Bars {
       'NIN': this.setupNin,
       'SAM': this.setupSam,
       'GNB': this.setupGnb,
+      'DNC': this.setupDnc,
     };
     if (setup[this.job])
       setup[this.job].bind(this)();
@@ -2025,7 +2121,7 @@ class Bars {
       fgColor: 'smn-color-trance',
     });
 
-    // FurtherRuin Stack Guage
+    // FurtherRuin Stack Gauge
     let stacksContainer = document.createElement('div');
     stacksContainer.id = 'smn-stacks';
     this.addJobBarContainer().appendChild(stacksContainer);
@@ -2772,7 +2868,7 @@ class Bars {
       fgColor: 'whm-color-lucid',
     });
 
-    // BloodLily Guage
+    // BloodLily Gauge
     const stacksContainer = document.createElement('div');
     stacksContainer.id = 'whm-stacks';
     this.addJobBarContainer().appendChild(stacksContainer);
@@ -3043,6 +3139,128 @@ class Bars {
       else
         cartridgeBox.parentNode.classList.remove('full');
     });
+  }
+
+  setupDnc() {
+    const comboTimer = this.addTimerBar({
+      id: 'dnc-timers-combo',
+      fgColor: 'dnc-color-combo',
+    });
+    this.comboFuncs.push((skill) => {
+      comboTimer.duration = 0;
+      if (this.combo.isFinalSkill)
+        return;
+      if (skill)
+        comboTimer.duration = 15;
+    });
+
+    const standardStep = this.addProcBox({
+      id: 'dnc-procs-standardstep',
+      fgColor: 'dnc-color-standardstep',
+    });
+    this.abilityFuncMap[kAbility.StandardStep] = () => {
+      standardStep.duration = 0;
+      standardStep.duration = 30;
+    };
+
+    // TechnicalStep cooldown on begin dance, but effect appear when TechnicalFinish.
+    const technicalStep = this.addProcBox({
+      id: 'dnc-procs-technicalstep',
+      fgColor: 'dnc-color-technicalstep',
+    });
+    this.abilityFuncMap[kAbility.TechnicalStep] = () => {
+      technicalStep.duration = 0;
+      technicalStep.duration = 120;
+    };
+    let technicalIsActive = false;
+    let elapsed = 0;
+    [
+      kAbility.QuadrupleTechnicalFinish,
+      kAbility.TripleTechnicalFinish,
+      kAbility.DoubleTechnicalFinish,
+      kAbility.SingleTechnicalFinish,
+    ].forEach((ability) => {
+      this.abilityFuncMap[ability] = () => {
+        // Avoid mutiple call in one TechnicalFinish.
+        if (technicalIsActive)
+          return;
+        elapsed = technicalStep.elapsed;
+        technicalIsActive = true;
+        technicalStep.duration = 20;
+        technicalStep.threshold = 1000;
+        technicalStep.fg = computeBackgroundColorFrom(technicalStep, 'dnc-color-technicalstep.active');
+        setTimeout(() => {
+          technicalIsActive = false;
+          technicalStep.duration = 100 - elapsed;
+          technicalStep.threshold = this.gcdSkill() + 1;
+          technicalStep.fg = computeBackgroundColorFrom(technicalStep, 'dnc-color-technicalstep');
+        }, technicalStep.duration * 1000);
+      };
+    });
+
+    // When cast Flourish, show proc remain time until all procs have been used.
+    const flourish = this.addProcBox({
+      id: 'dnc-procs-flourish',
+      fgColor: 'dnc-color-flourish',
+    });
+    let flourishEffect = [];
+    let flourishIsActive = false;
+    this.abilityFuncMap[kAbility.Flourish] = () => {
+      flourish.duration = 0;
+      flourish.duration = 20;
+      flourishEffect = [];
+      flourishIsActive = true;
+      flourish.threshold = 1000;
+      flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish.active');
+      setTimeout(() => {
+        flourish.duration = 40;
+        flourishIsActive = false;
+        flourish.threshold = this.gcdSkill() + 1;
+        flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
+      }, flourish.duration * 1000);
+    };
+    [
+      EffectId.FlourishingCascade,
+      EffectId.FlourishingFountain,
+      EffectId.FlourishingShower,
+      EffectId.FlourishingWindmill,
+      EffectId.FlourishingFanDance,
+    ].forEach((effect) => {
+      this.loseEffectFuncMap[effect] = () => {
+        if (!(flourishEffect.includes(effect)))
+          flourishEffect.push(effect);
+        if (flourishEffect.length === 5 && flourishIsActive) {
+          flourish.duration = 60 - flourish.elapsed;
+          flourishIsActive = false;
+          flourish.threshold = this.gcdSkill() + 1;
+          flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
+        }
+      };
+    });
+
+    const featherGauge = this.addResourceBox({
+      classList: ['dnc-color-feather'],
+    });
+    const espritGauge = this.addResourceBox({
+      classList: ['dnc-color-esprit'],
+    });
+    this.jobFuncs.push((jobDetail) => {
+      espritGauge.innerText = jobDetail.esprit;
+      featherGauge.innerText = jobDetail.feathers;
+      if (jobDetail.esprit >= 80)
+        espritGauge.parentNode.classList.add('high');
+      else
+        espritGauge.parentNode.classList.remove('high');
+    });
+
+    this.statChangeFuncMap['DNC'] = () => {
+      standardStep.valuescale = this.gcdSkill();
+      standardStep.threshold = this.gcdSkill() + 1;
+      technicalStep.valuescale = this.gcdSkill();
+      technicalStep.threshold = this.gcdSkill() + 1;
+      flourish.valuescale = this.gcdSkill();
+      flourish.threshold = this.gcdSkill() + 1;
+    };
   }
 
   OnComboChange(skill) {
@@ -3317,7 +3535,7 @@ class Bars {
     let showingCountdown = parseFloat(this.o.pullCountdown.duration) > 0;
     if (inCountdown !== showingCountdown) {
       this.o.pullCountdown.duration = seconds;
-      if (inCountdown) {
+      if (inCountdown && this.options.PlayCountdownSound) {
         let audio = new Audio('../../resources/sounds/PowerAuras/sonar.ogg');
         audio.volume = 0.3;
         audio.play();

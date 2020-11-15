@@ -187,14 +187,15 @@ Generally speaking it's best to use one of these if it fits the situation.)
 **preRun: function(data, matches, output)**
 If the trigger activates, the function will run as the first action after the activation condition is met.
 
-**promise: function(data, matches, output)**
-If present and a function which returns a promise,
-will wait for promise to resolve before continuing with trigger.
-This runs after `preRun` and before the `delaySeconds` delay.
-
 **delaySeconds**
 An amount of time, in seconds, to wait from the time the regex match is detected until the trigger activates.
 May be a number or a `function(data, matches, output)` that returns a number.
+This runs after `preRun` and before the `promise`.
+
+**promise: function(data, matches, output)**
+If present and a function which returns a promise,
+will wait for promise to resolve before continuing with trigger.
+This runs after the delay from `delaySeconds`.
 
 **durationSeconds**
 Time, in seconds, to display the trigger text.

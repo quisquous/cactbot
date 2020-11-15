@@ -139,12 +139,14 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': '바위폭탄',
         'Titan': '타이탄',
       },
       'replaceText': {
+        '\\(clock\\)': '(시계 방향)',
+        '\\(diamond\\)': '(3방향)',
+        '\\(line\\)': '(직선)',
         'Burst': '대폭발',
         'Bury': '충격',
         'Earthen Fury': '대지의 분노',

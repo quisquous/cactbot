@@ -59,7 +59,7 @@
       id: 'O2N Gravitational Manipulation Float',
       netRegex: NetRegexes.headMarker({ id: '0071' }),
       condition: function(data, matches) {
-        return !data.levitating && Conditions.targetIsNotYou();
+        return !data.levitating && Conditions.targetIsNotYou()(data, matches);
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {

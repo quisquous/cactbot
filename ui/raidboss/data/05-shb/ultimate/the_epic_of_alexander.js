@@ -256,7 +256,7 @@ const namedNisiPass = (data, output) => {
   if (names.length === 0)
     return output.getNisi({ type: nisiToString(myNisi, output) });
 
-  return output.getNisi({
+  return output.getNisiFrom({
     type: nisiToString(myNisi, output),
     player: data.ShortName(names[0]),
   });
@@ -917,9 +917,7 @@ const namedNisiPass = (data, output) => {
       netRegexFr: NetRegexes.startsUsing({ source: 'Croiseur-chasseur', id: '49C2', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '49C2', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '49C2', capture: false }),
-      condition: function(data) {
-        return data.role === 'healer' || data.role === 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -2250,6 +2248,8 @@ const namedNisiPass = (data, output) => {
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '489A', capture: false }),
       netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '489A', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '489A', capture: false }),
+      durationSeconds: 15,
+      suppressSeconds: 20,
       infoText: function(data, _, output) {
         data.secondAlphaOrdainedText = 'stillnessSecond';
         return output.combined({
@@ -2438,17 +2438,31 @@ const namedNisiPass = (data, output) => {
       netRegex: NetRegexes.tether({ id: '0062', capture: false }),
       condition: (data) => data.phase === 'beta',
       preRun: (data, _, output) => {
-        data.betaInstructions = {
-          '-1': output.unknown(),
-          '0': output.purpleBait(),
-          '1': output.orangeBait(),
-          '2': output.purpleNoTether(),
-          '3': output.orangeNoTether(),
-          '4': output.purpleCloseTether(),
-          '5': output.orangeCloseTether(),
-          '6': output.purpleFarTether(),
-          '7': output.orangeFarTether(),
-        }[data.betaIndex];
+        // data.betaIndex won't be resolved until 1s delay and 'TEA Beta Instructions' runs.
+        // So make this a function, and defer the lookup of data.betaIndex.
+        data.betaInstructions = (idx) => {
+          if (typeof idx !== 'number') {
+            console.error(`TEA Beta Instructions Callout: non-number idx: ${idx}`);
+            return output.unknown();
+          }
+          const strings = {
+            '-1': output.unknown(),
+            '0': output.purpleBait(),
+            '1': output.orangeBait(),
+            '2': output.purpleNoTether(),
+            '3': output.orangeNoTether(),
+            '4': output.purpleCloseTether(),
+            '5': output.orangeCloseTether(),
+            '6': output.purpleFarTether(),
+            '7': output.orangeFarTether(),
+          };
+
+          if (idx in strings)
+            return strings[idx];
+
+          console.error(`TEA Beta Instructions Callout: missing idx: ${idx}`);
+          return output.unknown();
+        };
       },
       delaySeconds: 2,
       durationSeconds: 35,
@@ -2457,14 +2471,14 @@ const namedNisiPass = (data, output) => {
       alarmText: function(data) {
         // Baiters get an alarm text.
         if (data.betaBait.includes(data.me))
-          return data.betaInstructions;
+          return data.betaInstructions(data.betaIndex);
       },
       alertText: function(data) {
         // The west and south jump get an alert text.
         if (data.betaBait.includes(data.me))
           return;
         if (data.betaJumps.includes(data.me))
-          return data.betaInstructions;
+          return data.betaInstructions(data.betaIndex);
       },
       infoText: function(data) {
         // The rest of the group (going north) gets info.
@@ -2472,7 +2486,7 @@ const namedNisiPass = (data, output) => {
           return;
         if (data.betaJumps.includes(data.me))
           return;
-        return data.betaInstructions;
+        return data.betaInstructions(data.betaIndex);
       },
       outputStrings: {
         unknown: {
@@ -2658,10 +2672,18 @@ const namedNisiPass = (data, output) => {
         if (data.betaBait.length === 0)
           return output.opticalStack();
 
-        let names = data.betaBait.map((x) => data.ShortName(x)).sort();
+        let names = data.betaBait.map((x) => x ? data.ShortName(x) : output.unknown()).sort();
         return output.opticalStackPlayers({ players: names.join(', ') });
       },
       outputStrings: {
+        unknown: {
+          en: '???',
+          de: '???',
+          fr: '???',
+          ja: '???',
+          cn: '???',
+          ko: '???',
+        },
         opticalStack: {
           en: 'Optical Stack',
           de: 'Visier sammeln',
