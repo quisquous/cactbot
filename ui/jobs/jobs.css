@@ -12,51 +12,7 @@
   display: none;
 }
 
-.big-buff {
-  border: 1px solid black;
-  width: 44px;
-  height: 32px;
-}
-
-/* Relative to #bars */
-#left-side-icons {
-  position: absolute;
-  left: -2px;
-}
-
-/* Relative to #bars */
-#right-side-icons {
-  position: absolute;
-  left: 242px;
-}
-
-.rdm #right-side-icons,
-.brd #right-side-icons,
-.drg #right-side-icons,
-.whm #right-side-icons,
-.sch #right-side-icons,
-.smn #right-side-icons,
-.dnc #right-side-icons,
-.ast #right-side-icons {
-  left: 278px;
-}
-
-.nin #right-side-icons,
-.drk #right-side-icons {
-  left: 250px;
-}
-
-.blm #left-side-icons {
-  left: -40px;
-}
-
-.blu #right-side-icons {
-  left: 204px;
-}
-
-.pld #right-side-icons {
-  left: 288px;
-}
+/* Bars */
 
 /* Relative to #bars */
 #pull-bar,
@@ -78,11 +34,6 @@
   font-size: 12px;
 }
 
-.justbuffs #right-side-icons {
-  position: fixed;
-  left: 0;
-}
-
 .justbuffs #pull-bar {
   display: none;
 }
@@ -92,9 +43,9 @@
 }
 
 #mp-bar,
-#rdm-bar,
 #gnb-bar,
-#mnk-bar {
+#mnk-bar,
+#rdm-bar {
   margin-top: 1px;
 }
 
@@ -102,14 +53,8 @@
   height: 32px;
 }
 
-#mp-bar.show-number {
-  height: 18px;
-}
-
-#cp-bar {
-  height: 18px;
-}
-
+#mp-bar.show-number,
+#cp-bar,
 #gp-bar {
   height: 18px;
 }
@@ -118,11 +63,11 @@
   height: 10px;
 }
 
+.pld #hp-bar,
+.drk #hp-bar,
 .whm #hp-bar,
 .sch #hp-bar,
 .ast #hp-bar,
-.drk #hp-bar,
-.pld #hp-bar,
 .blu #hp-bar {
   height: 18px;
 }
@@ -131,23 +76,37 @@
   height: 24px;
 }
 
+#gnb-bar,
+#mnk-bar,
+#nin-bar,
+#brd-bar,
+#dnc-bar {
+  position: relative;
+  width: 201px;
+  height: 7px;
+  background: rgba(30, 30, 30, 0.7);
+}
+
+#gnb-timers-combo,
+#gnb-timers-cartridgecombo,
+#mnk-timers-lightning,
+#mnk-timers-combo,
+#nin-timers-combo,
+#brd-timers-repertoire,
+#dnc-timers-combo {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 10px;
+  margin-top: 1px;
+}
+
 /* Relative to #bars */
 #rdm-bar {
   position: relative;
   border: 1px solid black;
   width: 200px; /* 202 minus borders */
   height: calc(8px * 2 - 4px);
-  background: rgba(30, 30, 30, 0.7);
-}
-
-#gnb-bar,
-#nin-bar,
-#brd-bar,
-#dnc-bar,
-#mnk-bar {
-  position: relative;
-  width: 201px;
-  height: 7px;
   background: rgba(30, 30, 30, 0.7);
 }
 
@@ -170,278 +129,192 @@
   height: calc(100% - 4px);
 }
 
-#gnb-timers-combo,
-#gnb-timers-cartridgecombo,
-#nin-timers-combo,
-#dnc-timers-combo,
-#brd-timers-repertoire,
-#mnk-timers-lightning,
-#mnk-timers-combo {
-  display: block;
-  position: relative;
-  width: 100%;
-  height: 10px;
-  margin-top: 1px;
-}
+/* Boxes */
 
 /* Relative to #bars */
-#rdm-boxes,
-#brd-boxes,
-#sch-boxes,
-#whm-boxes,
-#smn-boxes,
-#nin-boxes,
-#drg-boxes,
-#ast-boxes,
-#war-boxes,
-#mnk-boxes,
 #pld-boxes,
+#war-boxes,
 #drk-boxes,
-#blm-boxes,
+#gnb-boxes,
+#whm-boxes,
+#sch-boxes,
+#ast-boxes,
+#mnk-boxes,
+#drg-boxes,
+#nin-boxes,
+#brd-boxes,
 #dnc-boxes,
-#gnb-boxes {
+#blm-boxes,
+#smn-boxes,
+#rdm-boxes {
   display: flex;
   position: absolute;
   left: 202px;
   top: 0;
 }
 
-#rdm-boxes > div,
-#brd-boxes > div,
-#sch-boxes > div,
-#drg-boxes > div,
-#whm-boxes > div,
-#smn-boxes > div,
-#dnc-boxes > div,
-#nin-boxes > div,
-#ast-boxes > div,
-#war-boxes > div,
-#mnk-boxes > div,
 #pld-boxes > div,
+#war-boxes > div,
 #drk-boxes > div,
+#gnb-boxes > div,
+#whm-boxes > div,
+#sch-boxes > div,
+#ast-boxes > div,
+#mnk-boxes > div,
+#drg-boxes > div,
+#nin-boxes > div,
+#brd-boxes > div,
+#dnc-boxes > div,
 #blm-boxes > div,
-#gnb-boxes > div {
+#smn-boxes > div,
+#rdm-boxes > div {
   display: inline-block;
   margin-left: 4;
   border: 1px solid rgba(0, 0, 0, 0.7);
 }
 
-/*
-  Boxes try to fit the exact height of the bars.
-  War is pretty short though, so just gets a default value.
-*/
+/* Fit the exact height of the bars if not too small */
 
+/* Height of default/HP bar(show number) */
 #war-boxes > div,
+#gnb-boxes > div,
+#drg-boxes > div,
 #nin-boxes > div,
-#gnb-boxes > div {
+#brd-boxes > div,
+#dnc-boxes > div {
   width: 29px;
   height: 29px;
 }
 
+#war-boxes .text,
+#gnb-boxes .text,
+#drg-boxes .text,
+#nin-boxes .text,
+#brd-boxes .text,
+#dnc-boxes .text {
+  text-align: center;
+  position: relative;
+  top: 5px;
+  font-size: 16px;
+}
+
+/* Height of HP + MP bar(show number) */
+#pld-boxes > div,
 #drk-boxes > div,
-#pld-boxes > div {
+#whm-boxes > div,
+#sch-boxes > div,
+#ast-boxes > div {
   width: 35px;
   height: 35px;
 }
 
-#sch-boxes > div,
-#brd-boxes > div,
-#dnc-boxes > div,
+#pld-boxes .text,
+#drk-boxes .text,
+#whm-boxes .text,
+#sch-boxes .text,
+#ast-boxes .text {
+  text-align: center;
+  position: relative;
+  top: 6px;
+  font-size: 20px;
+}
+
+/* Height of something special */
 #smn-boxes > div,
-#drg-boxes > div,
-#whm-boxes > div,
-#ast-boxes > div,
 #rdm-boxes > div {
   width: 28px;
   height: 28px;
 }
 
-#mnk-boxes > div {
-  width: 30px;
-  height: 30px;
-}
-
-#rdm-boxes .text,
-#brd-boxes .text,
-#sch-boxes .text,
 #smn-boxes .text,
-#dnc-boxes .text,
-#drg-boxes .text,
-#whm-boxes .text,
-#nin-boxes .text,
-#ast-boxes .text,
-#war-boxes .text,
-#mnk-boxes .text,
-#pld-boxes .text,
-#drk-boxes .text,
-#blm-boxes .text,
-#gnb-boxes .text {
+#rdm-boxes .text {
   text-align: center;
   position: relative;
-  top: 7px;
+  top: 5px;
   font-size: 16px;
 }
 
-#mnk-boxes .text {
-  top: 7px;
-}
-
-#sch-boxes .text,
-#gnb-boxes .text,
-#smn-boxes .text,
-#dnc-boxes .text,
-#nin-boxes .text,
-#drg-boxes .text,
-#brd-boxes .text,
-#whm-boxes .text,
-#ast-boxes .text,
-#rdm-boxes .text {
-  top: 5px;
-}
-
-#drk-boxes .text,
-#pld-boxes .text {
-  top: 6px;
-  font-size: 20px;
-}
-
+#mnk-boxes > div,
 #blm-boxes > div {
   width: 30px;
   height: 30px;
 }
 
+#mnk-boxes .text,
 #blm-boxes .text {
+  text-align: center;
+  position: relative;
   top: 6px;
+  font-size: 16px;
 }
 
-/*
-  Relative to #bars
-  In general, jobs has ui such that the health bar can appear on top
-  of the ffxiv target+buffs bar, with the procs appearing underneath.
-  All jobs should have procs in roughly the same spot, and the
-  entire bars + procs should be roughly 250px wide, 210px tall.
-*/
-#rdm-procs {
+/* Left box */
+.blm-umbral-timer {
   position: absolute;
-  top: 146px;
-  left: 0;
+
+  /* fix this hack by using better layout primitives */
+  left: -242px;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
-#rdm-procs-white {
-  position: relative;
-  display: inline-block;
-  left: 10px;
-}
-
-#rdm-procs-black {
-  position: relative;
-  display: inline-block;
-  left: calc(152px / 2);
+/* Side Icons */
+.big-buff {
+  border: 1px solid black;
+  width: 44px;
+  height: 32px;
 }
 
 /* Relative to #bars */
-#war-procs,
-#pld-procs,
-#mnk-procs,
-#ast-procs,
-#sch-procs,
-#whm-procs,
-#dnc-procs,
-#blu-procs,
-#drk-procs,
-#gnb-procs,
-#blm-procs {
+#left-side-icons {
   position: absolute;
-  top: 146px;
-  left: 10px;
+  left: -2px;
 }
 
-#drg-procs,
-#brd-procs,
-#nin-procs,
-#smn-procs {
+.blm #left-side-icons {
+  left: -40px;
+}
+
+/* Relative to #bars, default for 1 small box */
+#right-side-icons {
   position: absolute;
-  top: 146px;
+  left: 242px;
+}
+
+/* Space for no resource box */
+.blm #right-side-icons,
+.blu #right-side-icons {
+  left: 204px;
+}
+
+/* Space for 2 resource boxes */
+.drg #right-side-icons,
+.brd #right-side-icons,
+.dnc #right-side-icons,
+.smn #right-side-icons,
+.rdm #right-side-icons {
+  left: 278px;
+}
+
+/* Space for 1 big resource box */
+.drk #right-side-icons,
+.nin #right-side-icons {
+  left: 250px;
+}
+
+/* Space for 2 big resource box */
+.pld #right-side-icons,
+.whm #right-side-icons,
+.sch #right-side-icons,
+.ast #right-side-icons {
+  left: 288px;
+}
+
+.justbuffs #right-side-icons {
+  position: fixed;
   left: 0;
 }
 
-#mnk-procs-dragonkick,
-#ast-procs-combust,
-#sch-procs-bio,
-#drg-procs-disembowel,
-#brd-procs-causticbite,
-#whm-procs-dia,
-#dnc-procs-standardstep,
-#smn-procs-miasma,
-#blu-procs-offguard,
-#gnb-procs-gnashingfang,
-#blm-procs-fire {
-  position: relative;
-  display: inline-block;
-  left: 0;
-}
-
-#drg-procs-highjump,
-#brd-procs-stormbite,
-#nin-procs-trickattack,
-#smn-procs-biosmn {
-  position: relative;
-  display: inline-block;
-  left: calc(152px / 3);
-}
-
-#drg-procs-lancecharge,
-#brd-procs-song,
-#nin-procs-bunshin,
-#smn-procs-energydrain {
-  position: relative;
-  display: inline-block;
-  left: calc(152px / 3 * 2);
-}
-
-#mnk-procs-twinsnakes,
-#ast-procs-draw,
-#whm-procs-assize,
-#gnb-procs-nomercy,
-#dnc-procs-technicalstep,
-#sch-procs-aetherflow,
-#blu-procs-torment,
-#blm-dot-thunder {
-  position: relative;
-  display: inline-block;
-  left: calc(142px / 2);
-}
-
-#mnk-procs-demolish,
-#ast-procs-luciddreaming,
-#sch-procs-luciddreaming,
-#gnb-procs-bloodfest,
-#dnc-procs-flourish,
-#whm-procs-lucid,
-#rdm-procs-lucid,
-#blm-procs-thunder,
-#blu-procs-lucid {
-  position: relative;
-  display: inline-block;
-  left: 142px;
-}
-
-#drg-procs-dragonsight,
-#brd-procs-straightshotready,
-#nin-procs-ninjutsu,
-#smn-procs-trance {
-  position: relative;
-  display: inline-block;
-  left: 153px;
-}
-
-#smn-stacks {
-  display: flex;
-  margin-top: 1px;
-  width: 204px;
-  height: 12px;
-}
-
+/* Stacks */
 #whm-stacks {
   display: flex;
   margin-top: 1px;
@@ -456,22 +329,11 @@
   height: 12px;
 }
 
-#blm-stacks-xeno {
-  width: 50%;
-  height: 100%;
-}
-
-#blm-stacks-xeno > div {
-  background-color: rgba(66, 19, 128, 0.2);
-  margin-left: 2px;
-  display: inline-block;
-  border: 1px solid black;
-  width: calc(50% - 4px);
-  height: 100%;
-}
-
-#blm-stacks-xeno > div.active {
-  background-color: rgb(200, 50, 200);
+#smn-stacks {
+  display: flex;
+  margin-top: 1px;
+  width: 204px;
+  height: 12px;
 }
 
 #whm-stacks-bloodlily,
@@ -480,7 +342,8 @@
   height: 100%;
 }
 
-#blm-stacks-heart {
+#blm-stacks-heart,
+#blm-stacks-xeno {
   width: 50%;
   height: 100%;
 }
@@ -495,6 +358,15 @@
   height: 100%;
 }
 
+#blm-stacks-xeno > div {
+  background-color: rgba(66, 19, 128, 0.2);
+  margin-left: 2px;
+  display: inline-block;
+  border: 1px solid black;
+  width: calc(50% - 4px);
+  height: 100%;
+}
+
 #smn-stacks-ruin4 > div {
   background-color: rgba(174, 227, 235, 0.2);
   margin-right: 2px;
@@ -504,26 +376,115 @@
   height: 100%;
 }
 
+#whm-stacks-bloodlily > div.active {
+  background-color: rgb(190, 43, 30);
+}
+
 #blm-stacks-heart > div.active {
   background-color: rgb(174, 227, 235);
 }
 
-#whm-stacks-bloodlily > div.active {
-  background-color: rgb(190, 43, 30);
+#blm-stacks-xeno > div.active {
+  background-color: rgb(200, 50, 200);
 }
 
 #smn-stacks-ruin4 > div.active {
   background-color: rgb(65, 0, 200);
 }
 
-.blm-umbral-timer {
-  position: absolute;
+/* Procs */
 
-  /* fix this hack by using better layout primitives */
-  left: -242px;
-  background-color: rgba(0, 0, 0, 0.3);
+/*
+  Relative to #bars
+  In general, jobs has ui such that the health bar can appear on top
+  of the ffxiv target+buffs bar, with the procs appearing underneath.
+  All jobs should have procs in roughly the same spot, and the
+  entire bars + procs should be roughly 250px wide, 210px tall.
+*/
+#pld-procs,
+#war-procs,
+#drk-procs,
+#gnb-procs,
+#whm-procs,
+#sch-procs,
+#ast-procs,
+#mnk-procs,
+#drg-procs,
+#nin-procs,
+#brd-procs,
+#dnc-procs,
+#blm-procs,
+#smn-procs,
+#rdm-procs,
+#blu-procs {
+  position: absolute;
+  top: 146px;
+  left: 0;
 }
 
+/* Box 1 default at left 0, so not needed to define */
+
+/* Box 2/4 */
+#drg-procs-highjump,
+#nin-procs-trickattack,
+#brd-procs-stormbite,
+#smn-procs-biosmn {
+  position: relative;
+  display: inline-block;
+  left: calc(153px / 3);
+}
+
+/* Box 3/4 */
+#drg-procs-lancecharge,
+#nin-procs-bunshin,
+#brd-procs-song,
+#smn-procs-energydrain {
+  position: relative;
+  display: inline-block;
+  left: calc(153px / 3 * 2);
+}
+
+/* Box 4/4 */
+#drg-procs-dragonsight,
+#nin-procs-ninjutsu,
+#brd-procs-straightshotready,
+#smn-procs-trance {
+  position: relative;
+  display: inline-block;
+  left: 153px;
+}
+
+/* Box 2/3 */
+#gnb-procs-nomercy,
+#whm-procs-assize,
+#sch-procs-aetherflow,
+#ast-procs-draw,
+#mnk-procs-twinsnakes,
+#dnc-procs-technicalstep,
+#blm-dot-thunder,
+#rdm-procs-black,
+#blu-procs-torment {
+  position: relative;
+  display: inline-block;
+  left: calc(153px / 2);
+}
+
+/* Box 3/3 */
+#gnb-procs-bloodfest,
+#whm-procs-lucid,
+#sch-procs-luciddreaming,
+#ast-procs-luciddreaming,
+#mnk-procs-demolish,
+#dnc-procs-flourish,
+#blm-procs-thunder,
+#rdm-procs-lucid,
+#blu-procs-lucid {
+  position: relative;
+  display: inline-block;
+  left: 153px;
+}
+
+/* Colors */
 .bar-border-color {
   background-color: rgb(30, 30, 30);
 }
@@ -576,42 +537,7 @@
   background-color: rgb(20, 50, 20);
 }
 
-.rdm-color-white-mana {
-  background-color: rgb(220, 220, 240);
-}
-
-.rdm-color-black-mana {
-  background-color: rgb(47, 100, 208);
-}
-
-.rdm-color-white-mana.dim {
-  background-color: rgb(100, 100, 100);
-}
-
-.rdm-color-black-mana.dim {
-  background-color: rgb(13, 76, 80);
-}
-
-.rdm-color-lucid {
-  background-color: rgb(227, 148, 210);
-}
-
-.war-color-beast {
-  background-color: rgb(230, 20, 20);
-}
-
-.war-color-beast.low {
-  background-color: rgb(255, 235, 153);
-}
-
-.war-color-beast.mid {
-  background-color: rgb(255, 153, 0);
-}
-
-.war-color-eye {
-  background-color: rgb(60, 100, 210);
-}
-
+/* PLD */
 .pld-color-oath {
   background-color: rgb(255, 210, 45);
 }
@@ -632,6 +558,28 @@
   background-color: rgb(25, 156, 255);
 }
 
+.pld-color-gore {
+  background-color: rgb(255, 135, 35);
+}
+
+/* WAR */
+.war-color-beast {
+  background-color: rgb(230, 20, 20);
+}
+
+.war-color-beast.low {
+  background-color: rgb(255, 235, 153);
+}
+
+.war-color-beast.mid {
+  background-color: rgb(255, 153, 0);
+}
+
+.war-color-eye {
+  background-color: rgb(60, 100, 210);
+}
+
+/* DRK */
 .drk-color-blood {
   background-color: rgb(255, 0, 10);
 }
@@ -648,54 +596,127 @@
   background-color: rgb(129, 33, 138);
 }
 
-.pld-color-gore {
-  background-color: rgb(255, 135, 35);
+/* GNB */
+.gnb-color-cartridge {
+  background-color: rgb(115, 218, 255);
 }
 
-.smn-color-ruin {
-  background-color: rgb(150, 233, 140);
+.gnb-color-cartridge.full {
+  background-color: rgb(250, 86, 45);
 }
 
-.smn-color-aetherflow {
-  background-color: rgb(255, 96, 207);
-}
-
-.smn-color-aetherflow.too-much-stacks {
-  background-color: rgb(240, 30, 30);
-}
-
-.smn-color-biosmn {
-  background-color: olivedrab;
-}
-
-.smn-color-miasma {
-  background-color: cornflowerblue;
-}
-
-.smn-color-energydrain {
-  background-color: brown;
-}
-
-.smn-color-trance {
-  background-color: rgb(60, 80, 200);
-}
-
-.smn-color-demisummon {
+.gnb-color-combo {
   background-color: rgb(180, 200, 220);
 }
 
-.smn-color-demisummon.bahamutready {
-  background-color: rgb(64, 65, 163);
+.gnb-color-gnashingfang {
+  background-color: rgb(216, 111, 12);
 }
 
-.smn-color-demisummon.firebirdready {
-  background-color: orange;
+.gnb-color-nomercy {
+  background-color: rgba(232, 127, 127, 0.7);
 }
 
-.smn-color-demisummon.last {
+.gnb-color-nomercy.active {
+  background-color: rgb(232, 127, 127);
+}
+
+.gnb-color-bloodfest {
+  background-color: rgb(9, 81, 98);
+}
+
+/* WHM */
+.whm-color-dia {
+  background-color: rgb(120, 170, 250);
+}
+
+.whm-color-assize {
+  background-color: rgb(62, 224, 170);
+}
+
+.whm-color-lucid {
+  background-color: rgb(227, 148, 210);
+}
+
+.whm-color-lily {
+  background-color: rgb(60, 80, 200);
+}
+
+.whm-color-lilysecond {
+  background-color: rgb(120, 170, 250);
+}
+
+.whm-color-lilysecond.full {
   background-color: rgb(240, 30, 30);
 }
 
+/* SCH */
+.sch-color-bio {
+  background-color: rgb(60, 80, 200);
+}
+
+.sch-color-aetherflow {
+  background-color: rgb(255, 96, 207);
+}
+
+.sch-color-aetherflow.too-much-stacks {
+  background-color: rgb(240, 30, 30);
+}
+
+.sch-color-fairygauge {
+  background-color: rgb(62, 224, 170);
+}
+
+.sch-color-fairygauge.bright {
+  background-color: rgb(120, 170, 250);
+}
+
+.sch-color-lucid {
+  background-color: rgb(227, 148, 210);
+}
+
+/* AST */
+.ast-color-combust {
+  background-color: rgb(120, 170, 250);
+}
+
+.ast-color-benefic {
+  background-color: rgb(62, 224, 170);
+}
+
+.ast-color-helios {
+  background-color: rgb(175, 235, 215);
+}
+
+.ast-color-draw {
+  background-color: rgb(64, 65, 163);
+}
+
+.ast-color-card {
+  background-color: rgb(180, 200, 220);
+}
+
+.ast-color-card.range {
+  background-color: rgb(255, 96, 207);
+}
+
+.ast-color-card.melee {
+  background-color: rgb(120, 170, 250);
+}
+
+.ast-color-seal {
+  background-color: rgb(180, 200, 220);
+}
+
+.ast-color-seal.ready {
+  background-color: rgb(62, 224, 170);
+}
+
+.ast-color-lucid {
+  background-color: rgb(227, 148, 210);
+}
+
+/* MNK */
 .mnk-color-chakra {
   background-color: rgb(230, 20, 20);
 }
@@ -740,225 +761,7 @@
   background-color: rgb(60, 80, 200);
 }
 
-.brd-color-causticbite {
-  background-color: rgb(182, 68, 235);
-}
-
-.brd-color-stormbite {
-  background-color: rgb(72, 117, 202);
-}
-
-.brd-color-straightshotready {
-  background-color: rgb(240, 130, 80);
-}
-
-.brd-color-song {
-  background-color: rgb(180, 200, 220);
-}
-
-.brd-color-song.minuet {
-  background-color: rgb(100, 150, 100);
-}
-
-.brd-color-song.minuet.full {
-  background-color: rgb(250, 150, 0);
-}
-
-.brd-color-song.ballad {
-  background-color: rgb(143, 90, 143);
-}
-
-.brd-color-song.paeon {
-  background-color: rgb(207, 205, 52);
-}
-
-.brd-color-soulvoice {
-  background-color: rgb(180, 200, 220);
-}
-
-.brd-color-soulvoice.high {
-  background-color: rgb(250, 100, 0);
-}
-
-.whm-color-dia {
-  background-color: rgb(120, 170, 250);
-}
-
-.whm-color-assize {
-  background-color: rgb(62, 224, 170);
-}
-
-.whm-color-lucid {
-  background-color: rgb(227, 148, 210);
-}
-
-.whm-color-lily {
-  background-color: rgb(60, 80, 200);
-}
-
-.whm-color-lilysecond {
-  background-color: rgb(120, 170, 250);
-}
-
-.whm-color-lilysecond.full {
-  background-color: rgb(240, 30, 30);
-}
-
-.sch-color-bio {
-  background-color: rgb(60, 80, 200);
-}
-
-.sch-color-aetherflow {
-  background-color: rgb(255, 96, 207);
-}
-
-.sch-color-aetherflow.too-much-stacks {
-  background-color: rgb(240, 30, 30);
-}
-
-.sch-color-fairygauge {
-  background-color: rgb(62, 224, 170);
-}
-
-.sch-color-fairygauge.bright {
-  background-color: rgb(120, 170, 250);
-}
-
-.sch-color-lucid {
-  background-color: rgb(227, 148, 210);
-}
-
-.ast-color-combust {
-  background-color: rgb(120, 170, 250);
-}
-
-.ast-color-benefic {
-  background-color: rgb(62, 224, 170);
-}
-
-.ast-color-helios {
-  background-color: rgb(175, 235, 215);
-}
-
-.ast-color-draw {
-  background-color: rgb(64, 65, 163);
-}
-
-.ast-color-card {
-  background-color: rgb(180, 200, 220);
-}
-
-.ast-color-card.range {
-  background-color: rgb(255, 96, 207);
-}
-
-.ast-color-card.melee {
-  background-color: rgb(120, 170, 250);
-}
-
-.ast-color-seal {
-  background-color: rgb(180, 200, 220);
-}
-
-.ast-color-seal.ready {
-  background-color: rgb(62, 224, 170);
-}
-
-.ast-color-lucid {
-  background-color: rgb(227, 148, 210);
-}
-
-.blu-color-offguard {
-  background-color: rgb(210, 255, 196);
-}
-
-.blu-color-torment {
-  background-color: rgb(168, 65, 45);
-}
-
-.blu-color-lucid {
-  background-color: rgb(227, 148, 210);
-}
-
-.blm-color-dot {
-  background-color: rgb(110, 186, 245);
-}
-
-.blm-color-thunder {
-  background-color: rgb(64, 65, 163);
-}
-
-.blm-color-fire {
-  background-color: rgb(217, 51, 0);
-}
-
-.blm-umbral-timer.fire {
-  background-color: rgb(229, 56, 53);
-}
-
-.blm-umbral-timer.ice {
-  background-color: rgb(30, 80, 245);
-}
-
-.blm-xeno-timer {
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-.blm-xeno-timer.active {
-  background-color: rgb(200, 50, 200);
-}
-
-/* Pulse effect for xeno overwrite */
-@keyframes pulse {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(200, 50, 200, 0.7);
-  }
-
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(200, 50, 200, 0);
-  }
-
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(200, 50, 200, 0);
-  }
-}
-
-.blm-xeno-timer.pulse {
-  box-shadow: 0 0 0 0 rgba(200, 50, 200, 1);
-  animation: pulse 1s infinite;
-}
-
-.gnb-color-cartridge {
-  background-color: rgb(115, 218, 255);
-}
-
-.gnb-color-cartridge.full {
-  background-color: rgb(250, 86, 45);
-}
-
-.gnb-color-combo {
-  background-color: rgb(180, 200, 220);
-}
-
-.gnb-color-gnashingfang {
-  background-color: rgb(216, 111, 12);
-}
-
-.gnb-color-nomercy {
-  background-color: rgba(232, 127, 127, 0.7);
-}
-
-.gnb-color-nomercy.active {
-  background-color: rgb(232, 127, 127);
-}
-
-.gnb-color-bloodfest {
-  background-color: rgb(9, 81, 98);
-}
-
+/* DRG */
 .drg-color-disembowel {
   background-color: rgba(0, 255, 255, 0.7);
 }
@@ -1011,6 +814,7 @@
   background-color: rgb(217, 51, 0);
 }
 
+/* NIN */
 .nin-color-huton {
   background-color: rgb(0, 255, 255);
 }
@@ -1047,6 +851,52 @@
   background-color: rgb(180, 200, 220);
 }
 
+/* SAM */
+
+/* BRD */
+.brd-color-causticbite {
+  background-color: rgb(182, 68, 235);
+}
+
+.brd-color-stormbite {
+  background-color: rgb(72, 117, 202);
+}
+
+.brd-color-straightshotready {
+  background-color: rgb(240, 130, 80);
+}
+
+.brd-color-song {
+  background-color: rgb(180, 200, 220);
+}
+
+.brd-color-song.minuet {
+  background-color: rgb(100, 150, 100);
+}
+
+.brd-color-song.minuet.full {
+  background-color: rgb(250, 150, 0);
+}
+
+.brd-color-song.ballad {
+  background-color: rgb(143, 90, 143);
+}
+
+.brd-color-song.paeon {
+  background-color: rgb(207, 205, 52);
+}
+
+.brd-color-soulvoice {
+  background-color: rgb(180, 200, 220);
+}
+
+.brd-color-soulvoice.high {
+  background-color: rgb(250, 100, 0);
+}
+
+/* MCH */
+
+/* DNC */
 .dnc-color-combo {
   background-color: rgb(180, 200, 220);
 }
@@ -1081,4 +931,135 @@
 
 .dnc-color-feather {
   background-color: rgb(160, 200, 50);
+}
+
+/* BLM */
+.blm-color-thunder {
+  background-color: rgb(64, 65, 163);
+}
+
+.blm-color-dot {
+  background-color: rgb(110, 186, 245);
+}
+
+.blm-color-fire {
+  background-color: rgb(217, 51, 0);
+}
+
+.blm-umbral-timer.fire {
+  background-color: rgb(229, 56, 53);
+}
+
+.blm-umbral-timer.ice {
+  background-color: rgb(30, 80, 245);
+}
+
+.blm-xeno-timer {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.blm-xeno-timer.active {
+  background-color: rgb(200, 50, 200);
+}
+
+/* Pulse effect for xeno overwrite */
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(200, 50, 200, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(200, 50, 200, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(200, 50, 200, 0);
+  }
+}
+
+.blm-xeno-timer.pulse {
+  box-shadow: 0 0 0 0 rgba(200, 50, 200, 1);
+  animation: pulse 1s infinite;
+}
+
+/* SMN */
+.smn-color-ruin {
+  background-color: rgb(150, 233, 140);
+}
+
+.smn-color-aetherflow {
+  background-color: rgb(255, 96, 207);
+}
+
+.smn-color-aetherflow.too-much-stacks {
+  background-color: rgb(240, 30, 30);
+}
+
+.smn-color-biosmn {
+  background-color: olivedrab;
+}
+
+.smn-color-miasma {
+  background-color: cornflowerblue;
+}
+
+.smn-color-energydrain {
+  background-color: brown;
+}
+
+.smn-color-trance {
+  background-color: rgb(60, 80, 200);
+}
+
+.smn-color-demisummon {
+  background-color: rgb(180, 200, 220);
+}
+
+.smn-color-demisummon.bahamutready {
+  background-color: rgb(64, 65, 163);
+}
+
+.smn-color-demisummon.firebirdready {
+  background-color: orange;
+}
+
+.smn-color-demisummon.last {
+  background-color: rgb(240, 30, 30);
+}
+
+/* RDM */
+.rdm-color-white-mana {
+  background-color: rgb(220, 220, 240);
+}
+
+.rdm-color-black-mana {
+  background-color: rgb(47, 100, 208);
+}
+
+.rdm-color-white-mana.dim {
+  background-color: rgb(100, 100, 100);
+}
+
+.rdm-color-black-mana.dim {
+  background-color: rgb(13, 76, 80);
+}
+
+.rdm-color-lucid {
+  background-color: rgb(227, 148, 210);
+}
+
+/* BLU */
+.blu-color-offguard {
+  background-color: rgb(210, 255, 196);
+}
+
+.blu-color-torment {
+  background-color: rgb(168, 65, 45);
+}
+
+.blu-color-lucid {
+  background-color: rgb(227, 148, 210);
 }
