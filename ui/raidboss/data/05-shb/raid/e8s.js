@@ -382,34 +382,35 @@
         data.akhMornTargets = data.akhMornTargets || [];
         data.akhMornTargets.push(matches.target);
       },
-      response: function(data, matches) {
-        if (data.me === matches.target) {
-          let onYou = {
+      response: function(data, matches, output) {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          akhMornOnYou: {
             en: 'Akh Morn on YOU',
             de: 'Akh Morn auf DIR',
             fr: 'Akh Morn sur VOUS',
             cn: '死亡轮回点名',
             ko: '아크몬 대상자',
-          };
+          },
+          akhMornOn: {
+            en: 'Akh Morn: ${players}',
+            de: 'Akh Morn: ${players}',
+            fr: 'Akh Morn : ${players}',
+            ko: '아크몬 : ${players}',
+            cn: '死亡轮回: ${players}',
+          },
+        };
+        if (data.me === matches.target) {
           // It'd be nice to have this be an alert, but it mixes with a lot of
           // other alerts (akh rhai "move" and worm's lament numbers).
-          if (data.role === 'tank')
-            return { infoText: onYou };
-          return { alarmText: onYou };
+          return { [data.role === 'tank' ? 'infoText' : 'alarmText']: output.akhMornOnYou() };
         }
         if (data.akhMornTargets.length !== 2)
           return;
         if (data.akhMornTargets.includes(data.me))
           return;
-        return {
-          infoText: {
-            en: 'Akh Morn: ' + data.akhMornTargets.map((x) => data.ShortName(x)).join(', '),
-            de: 'Akh Morn: ' + data.akhMornTargets.map((x) => data.ShortName(x)).join(', '),
-            fr: 'Akh Morn : ' + data.akhMornTargets.map((x) => data.ShortName(x)).join(', '),
-            ko: '아크몬 : ' + data.akhMornTargets.map((x) => data.ShortName(x)).join(', '),
-            cn: '死亡轮回: ' + data.akhMornTargets.map((x) => data.ShortName(x)).join(', '),
-          },
-        };
+        const players = data.akhMornTargets.map((x) => data.ShortName(x)).join(', ');
+        return { infoText: akhMornOn({ players: players }) };
       },
     },
     {

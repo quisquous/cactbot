@@ -457,25 +457,26 @@ const swipeOutputStrings = {
       netRegexDe: NetRegexes.startsUsing({ source: '905P: Läufer', id: '5001' }),
       netRegexFr: NetRegexes.startsUsing({ source: '905P : Avec Unité Terrestre Lourde', id: '5001' }),
       netRegexJa: NetRegexes.startsUsing({ source: '９０５Ｐ：重陸戦ユニット装備', id: '5001' }),
-      response: function(data, matches) {
-        if (data.role === 'tank' || matches.target === data.me) {
-          return {
-            alertText: {
-              en: 'Tank Laser Cleave on YOU',
-              de: 'Tank Laser cleave auf DIR',
-              fr: 'Tank Laser cleave sur VOUS',
-              ko: '탱커 레이저 대상자',
-            },
-          };
-        }
-        return {
-          infoText: {
+      response: function(data, matches, output) {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          tankCleaveOnYou: {
+            en: 'Tank Laser Cleave on YOU',
+            de: 'Tank Laser cleave auf DIR',
+            fr: 'Tank Laser cleave sur VOUS',
+            ko: '탱커 레이저 대상자',
+          },
+          avoidTankCleaves: {
             en: 'Avoid tank laser cleaves',
             de: 'Tank Laser cleave ausweichen',
             fr: 'Évitez les cleaves du laser sur les tanks',
             ko: '탱커 레이저 피하기',
           },
         };
+        if (data.role === 'tank' || matches.target === data.me)
+          return { alertText: output.tankCleaveOnYou() };
+
+        return { infoText: output.avoidTankCleaves() };
       },
     },
     {

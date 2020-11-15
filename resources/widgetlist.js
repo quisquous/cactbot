@@ -240,7 +240,7 @@ class WidgetList extends HTMLElement {
     this._elements[id] = sortKeyFn;
     this._sorted.push(id);
     let that = this;
-    this._sorted.sort(function(a, b) {
+    this._sorted.sort((a, b) => {
       return that._elements[a]() - that._elements[b]();
     });
 
@@ -340,7 +340,7 @@ class WidgetList extends HTMLElement {
       div.style.color = 'white';
       div.style.textShadow = '-1px 0 3px black, 0 1px 3px black, 1px 0 3px black, 0 -1px 3px black';
       div.innerHTML = '<br/>' + (i + 1);
-      this.addElement('test' + i, div, function() {
+      this.addElement('test' + i, div, () => {
         0;
       });
     }

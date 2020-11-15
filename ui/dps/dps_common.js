@@ -15,7 +15,7 @@ let gCurrentZone = null;
 let gInCombat = false;
 
 const InitDpsModule = function(updateFunc, hideFunc) {
-  addOverlayListener('CombatData', function(e) {
+  addOverlayListener('CombatData', (e) => {
     // DPS numbers in large pvp is not useful and hella noisy.
     if (gIgnoreCurrentZone || gIgnoreCurrentJob)
       return;
@@ -35,7 +35,7 @@ const InitDpsModule = function(updateFunc, hideFunc) {
     updateFunc({ detail: e });
   });
 
-  addOverlayListener('ChangeZone', function(e) {
+  addOverlayListener('ChangeZone', (e) => {
     let newZone = e.zoneName;
     if (gCurrentZone === newZone)
       return;
@@ -48,11 +48,11 @@ const InitDpsModule = function(updateFunc, hideFunc) {
     gIgnoreCurrentZone = Options.IgnoreContentTypes.includes(contentType);
   });
 
-  addOverlayListener('onInCombatChangedEvent', function(e) {
+  addOverlayListener('onInCombatChangedEvent', (e) => {
     gInCombat = e.detail.inACTCombat;
   });
 
-  addOverlayListener('onPlayerChangedEvent', function(e) {
+  addOverlayListener('onPlayerChangedEvent', (e) => {
     let job = e.detail.job;
     if (job === gCurrentJob)
       return;

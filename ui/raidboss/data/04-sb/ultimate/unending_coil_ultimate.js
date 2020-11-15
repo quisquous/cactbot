@@ -880,10 +880,10 @@
       netRegexCn: NetRegexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       preRun: function(data) {
-        let tookTwo = data.fireballs[1].filter(function(p) {
+        let tookTwo = data.fireballs[1].filter((p) => {
           return data.fireballs[2].includes(p);
         });
-        let tookThree = tookTwo.filter(function(p) {
+        let tookThree = tookTwo.filter((p) => {
           return data.fireballs[3].includes(p);
         });
         data.tookThreeFireballs = tookThree.includes(data.me);
@@ -963,7 +963,7 @@
         };
 
         let dirNames = langMap[data.displayLang] || langMap['en'];
-        data.naelMarks = output.marks.map(function(i) {
+        data.naelMarks = output.marks.map((i) => {
           return dirNames[i];
         });
         data.wideThirdDive = output.wideThirdDive;
@@ -1112,7 +1112,7 @@
         if (uniq.length !== 7)
           return;
 
-        let remainingPlayers = partyList.filter(function(p) {
+        let remainingPlayers = partyList.filter((p) => {
           return !data.octetMarker.includes(p);
         });
         if (remainingPlayers.length !== 1) {
