@@ -40,7 +40,27 @@
       regex: /^Festina Lente$/,
       beforeSeconds: 6,
       durationSeconds: 6,
-      response: function(data) {
+      response: function(data, _, output) {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          dodgeClonesAndStack: {
+            en: 'Dodge Clones + Stack',
+            de: 'Klonen ausweichen und Sammeln',
+            fr: 'Évitez les Clones + packez-vous',
+            ja: 'ターミナス・エストを避け／頭割り集合',
+            cn: '躲避剑气 + 集合分摊',
+            ko: '분신 피하기 + 집합',
+          },
+          stackMarker: {
+            en: 'Stack',
+            de: 'Sammeln',
+            fr: 'Packez-vous',
+            ja: '頭割り',
+            cn: '分摊',
+            ko: '쉐어뎀',
+          },
+        };
+
         // In any case where you need to position stacks in the right lane,
         // use this special call, no matter how far ahead in time it is.
         if (data.clonesActive) {
@@ -48,18 +68,9 @@
           // In these cases, don't also call out "dodge clones", by setting this variable.
           // For cases where they are far apart, this gets cleared in the cleanup trigger.
           data.suppressDodgeCloneCall = true;
-          return {
-            alertText: {
-              en: 'Dodge Clones + Stack',
-              de: 'Klonen ausweichen und Sammeln',
-              fr: 'Évitez les Clones + packez-vous',
-              ja: 'ターミナス・エストを避け／頭割り集合',
-              cn: '躲避剑气 + 集合分摊',
-              ko: '분신 피하기 + 집합',
-            },
-          };
+          return { alertText: output.dodgeClonesAndStack() };
         }
-        return Responses.stackMarker('alert');
+        return { alertText: output.stackMarker() };
       },
     },
     {
@@ -280,10 +291,21 @@
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CDE', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CDE', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CDE', capture: false }),
-      response: function(data) {
+      response: function(data, _, output) {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          text: {
+            en: 'Spread',
+            de: 'Verteilen',
+            fr: 'Dispersez-vous',
+            ja: '散開',
+            cn: '分散',
+            ko: '산개',
+          },
+        };
         // This is easily forgetable after dodging and seems to get people killed.
         // This also differentiates spread from the spread => stack in the last phase.
-        return Responses.spread(data.phase === 5 ? 'alarm' : 'alert');
+        return { [data.phase === 5 ? 'alarmText' : 'alertText']: output.text() };
       },
     },
     {

@@ -102,14 +102,22 @@ let bombLocation = (matches) => {
     {
       id: 'A5S Concussion',
       netRegex: NetRegexes.gainsEffect({ effectId: '3E4' }),
-      response: function(data, matches) {
-        if (matches.target === data.me)
-          return;
-        if (data.role === 'tank')
-          return Responses.tankSwap('alarm');
-        if (data.job === 'BLU')
-          return Responses.tankSwap('info');
+      condition: (data, matches) => {
+        if (data.me !== matches.target)
+          return false;
+        return data.role === 'tank';
       },
+      response: Responses.tankBusterSwap('alarm'),
+    },
+    {
+      id: 'A5S Concussion BLU',
+      netRegex: NetRegexes.gainsEffect({ effectId: '3E4' }),
+      condition: (data, matches) => {
+        if (data.me !== matches.target)
+          return false;
+        return data.role !== 'tank' && data.job === 'BLU';
+      },
+      response: Responses.tankBusterSwap('info'),
     },
     {
       id: 'A5S Bomb Direction',

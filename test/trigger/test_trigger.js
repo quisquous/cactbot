@@ -178,7 +178,8 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
             continue;
           }
           // Built-in response functions can be safely called once.
-          currentTriggerFunction = currentTriggerFunction({}, {}, {});
+          const output = new TestOutputProxy(trigger, {}, errorFunc);
+          currentTriggerFunction = currentTriggerFunction({}, {}, output);
         }
         if (func === 'response' && typeof currentTriggerFunction === 'object') {
           // Treat a response object as its own trigger and look at all the functions it returns.
@@ -418,6 +419,28 @@ let testBadZoneId = function(file, contents) {
     errorFunc(`${file}: use zoneId instead of zoneRegex`);
 };
 
+class TestOutputProxy {
+  constructor(trigger, responseOutputStrings, errorFunc) {
+    return new Proxy(this, {
+      get(target, name) {
+        // We can't validate all possible paths from the trigger,
+        // so always succeed here and we'll validate later.
+        return () => '';
+      },
+      set(target, property, value) {
+        if (property === 'responseOutputStrings') {
+          // The normal output proxy assigns here, but we want to keep the same
+          // object so we can inspect it outside the proxy.
+          Object.assign(responseOutputStrings, value);
+          return true;
+        }
+
+        errorFunc(`Trigger ${trigger.id} set invalid '${property}' on output.`);
+      },
+    });
+  }
+}
+
 // responses_test.js will handle testing any response with builtInResponseStr.
 // triggers using `response:` otherwise cannot be tested, because we cannot
 // safely call the response function.
@@ -440,12 +463,13 @@ const testOutputStrings = (file, contents) => {
         if (typeof trigger.response !== 'function')
           continue;
         const funcStr = trigger.response.toString();
-        if (!funcStr.includes(builtInResponseStr))
+        if (!funcStr.includes(builtInResponseStr)) {
+          errorFunc(`${file}: '${trigger.id}' built-in response does not include "${builtInResponseStr}".`);
           continue;
-        const output = { responseOutputStrings: undefined };
+        }
+        const output = new TestOutputProxy(trigger, outputStrings, errorFunc);
         // Call the function to get the outputStrings.
         response = trigger.response({}, {}, output);
-        outputStrings = output.responseOutputStrings;
 
         if (typeof outputStrings !== 'object') {
           errorFunc(`${file}: '${trigger.id}' built-in response did not set outputStrings.`);
@@ -471,6 +495,7 @@ const testOutputStrings = (file, contents) => {
 
       // TODO: should we prevent `output['phrase with spaces']()` style constructions?
       // TODO: should we restrict outputStrings keys to valid variable characters?
+      // TODO: should we prevent built in responses from returning other Response functions?
 
       // TODO: share this with popup-text.js?
       const paramRegex = /\${\s*([^}\s]+)\s*}/g;
@@ -481,6 +506,11 @@ const testOutputStrings = (file, contents) => {
       // For each outputString, find and validate all of the parameters.
       for (const key in outputStrings) {
         let templateObj = outputStrings[key];
+        if (typeof templateObj === 'string') {
+          // Strings are acceptable as output strings, but convert to a translatable object
+          // to make the rest of the code simpler.
+          templateObj = { en: templateObj };
+        }
         if (typeof templateObj !== 'object') {
           errorFunc(`${file}: '${key}' in '${trigger.id}' outputStrings is not a translatable object`);
           continue;
@@ -526,6 +556,9 @@ const testOutputStrings = (file, contents) => {
 
       const usedOutputStringEntries = new Set();
 
+      // Detects uses of `output[variable]()` which could be anything.
+      let dynamicOutputStringAccess = false;
+
       // Now, we have an optional |outputStrings| and an optional |response|.
       // Verify that any function in |trigger| or |response| using |output|
       // has a corresponding key in |outputStrings|.  But hackily.
@@ -536,6 +569,8 @@ const testOutputStrings = (file, contents) => {
           continue;
         const funcStr = func.toString();
         const keys = [];
+
+        dynamicOutputStringAccess |= /\boutput\[/.test(funcStr);
 
         // Validate that any calls to output.word() have a corresponding outputStrings entry.
         funcStr.replace(/\boutput\.(\w*)\(/g, (fullMatch, key) => {
@@ -558,7 +593,7 @@ const testOutputStrings = (file, contents) => {
 
       // Responses can have unused output strings in some cases, such as ones
       // that work with and without matching.
-      if (!response) {
+      if (!response && !dynamicOutputStringAccess) {
         for (const key in outputStrings) {
           if (!usedOutputStringEntries.has(key))
             errorFunc(`${file}: '${trigger.id}' has unused outputStrings entry '${key}'`);
