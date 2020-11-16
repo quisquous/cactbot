@@ -212,7 +212,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Abalathian Hornbill': '阿巴拉提亚犀鸟',
         'Dotoli Ciloc': '旋风扇 德托里·西罗克',
