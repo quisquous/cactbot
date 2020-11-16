@@ -2723,7 +2723,7 @@ class EurekaTracker {
         }
       }
 
-      if (!this.zoneInfo.hasTracker)
+      if (!this.zoneInfo.hasTracker && this.zoneInfo.hasTracker !== undefined)
         return;
 
       let gTrackerRegex = this.TransByParserLang(this.options.Regex, 'gTrackerRegex');
