@@ -4,10 +4,10 @@ import Regexes from '../../resources/regexes.js';
 import UserConfig from '../../resources/user_config.js';
 import ZoneId from '../../resources/zone_id.js';
 import ZoneInfo from '../../resources/zone_info.js';
+import { getWeather, findNextWeather, findNextWeatherNot, findNextNight, findNextDay, isNightTime } from '../../resources/weather.js';
 
 import './eureka_config.js';
 import '../../resources/common.js';
-import '../../resources/weather.js';
 
 let bunnyLabel = {
   en: 'Bunny',
