@@ -95,7 +95,7 @@ export const commonReplacement = {
       fr: '--burn dps--',
       ja: '--火力出せ--',
       cn: '--转火--',
-      ko: '--dps burn--',
+      ko: '--딜 체크--',
     },
     '--east--': {
       de: '--osten--',

@@ -37,6 +37,7 @@
             de: 'Runter gestoßen!',
             ja: 'ノックバック',
             cn: '击退坠落',
+            ko: '넉백됨!',
           },
         };
       },
@@ -54,6 +55,7 @@
             de: 'runtergerutscht!',
             ja: '滑った',
             cn: '滑落',
+            ko: '미끄러짐!',
           },
         };
       },

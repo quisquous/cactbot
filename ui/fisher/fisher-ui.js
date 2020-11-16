@@ -81,12 +81,12 @@ export default class FisherUI {
         bar.duration = min / 1000;
         bar.style = 'fill';
         // Step two: empty until the maximum time
-        timeouts.push(setTimeout(function() {
+        timeouts.push(setTimeout(() => {
           row.style.opacity = 1;
           bar.style = 'empty';
           bar.value = 0;
           bar.duration = (max - min) / 1000;
-          timeouts.push(setTimeout(function() {
+          timeouts.push(setTimeout(() => {
             row.style.opacity = 0.5;
           }, (max - min)));
         }, min));
@@ -120,9 +120,9 @@ export default class FisherUI {
     cancelAnimationFrame(this.animationFrame);
     this.animationFrame = null;
 
-    this.bars.forEach(function(bar) {
+    this.bars.forEach((bar) => {
       // Stops the timed events
-      bar.timeouts.forEach(function(timeout) {
+      bar.timeouts.forEach((timeout) => {
         clearTimeout(timeout);
       });
 
@@ -133,7 +133,7 @@ export default class FisherUI {
 
   redrawFish(hookTimes, tugTypes) {
     // Sort hook times by minimum time, with undefineds being at the end
-    let sortedKeys = Object.keys(hookTimes).sort(function(a, b) {
+    let sortedKeys = Object.keys(hookTimes).sort((a, b) => {
       let t = hookTimes;
 
       if ((!t[a] || !t[a].min) && (!t[b] || !t[b].min))
@@ -147,7 +147,7 @@ export default class FisherUI {
     });
 
     // Remove current values from all wells
-    Array.prototype.forEach.call(this.element.querySelectorAll('.well-entry, .table-row'), function(node) {
+    Array.prototype.forEach.call(this.element.querySelectorAll('.well-entry, .table-row'), (node) => {
       node.parentNode.removeChild(node);
     });
 

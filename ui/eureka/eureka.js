@@ -2897,7 +2897,7 @@ class EurekaTracker {
     label.appendChild(name);
     container.appendChild(label);
 
-    window.setTimeout(function() {
+    window.setTimeout(() => {
       // Changing zones can also orphan all the labels.
       if (label.parentElement === container)
         container.removeChild(label);
@@ -2911,20 +2911,20 @@ class EurekaTracker {
   }
 }
 
-UserConfig.getUserConfigLocation('eureka', Options, function(e) {
-  addOverlayListener('onPlayerChangedEvent', function(e) {
+UserConfig.getUserConfigLocation('eureka', Options, (e) => {
+  addOverlayListener('onPlayerChangedEvent', (e) => {
     gTracker.OnPlayerChange(e);
   });
-  addOverlayListener('ChangeZone', function(e) {
+  addOverlayListener('ChangeZone', (e) => {
     gTracker.OnChangeZone(e);
   });
-  addOverlayListener('onLogEvent', function(e) {
+  addOverlayListener('onLogEvent', (e) => {
     gTracker.OnLog(e);
   });
-  addOverlayListener('onFateEvent', function(e) {
+  addOverlayListener('onFateEvent', (e) => {
     gTracker.OnFate(e);
   });
-  addOverlayListener('onCEEvent', function(e) {
+  addOverlayListener('onCEEvent', (e) => {
     gTracker.OnCE(e);
   });
 

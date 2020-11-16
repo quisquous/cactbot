@@ -47,6 +47,7 @@ UserConfig.registerOptions('jobs', {
       id: 'PlayCountdownSound',
       name: {
         en: 'Enable countdown notification sound',
+        de: 'Aktiviere Countdown Hinweis-Ton',
         ko: '초읽기 알림 소리 켜기',
       },
       type: 'checkbox',

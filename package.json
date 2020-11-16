@@ -129,6 +129,7 @@
         }
       ],
       "operator-linebreak": "error",
+      "prefer-arrow-callback": "error",
       "prefer-rest-params": "off",
       "quotes": [
         "error",

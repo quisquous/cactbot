@@ -343,7 +343,7 @@ class Radar {
   }
 }
 
-UserConfig.getUserConfigLocation('radar', Options, function() {
+UserConfig.getUserConfigLocation('radar', Options, () => {
   addOverlayListener('LogLine', (e) => {
     gRadar.OnNetLog(e);
   });

@@ -159,9 +159,9 @@ class Fisher {
   updateFishData() {
     // We can only know data for both of these
     if (!this.place || !this.getActiveBait()) {
-      return new Promise(function(resolve, reject) {
+      return new Promise(((resolve, reject) => {
         resolve();
-      });
+      }));
     }
 
     let _this = this;
@@ -174,13 +174,13 @@ class Fisher {
     // We should update twice for each fish, one for hook times and one for tugs
     let queue = this.placeFish.length * 2;
 
-    return new Promise(function(resolve, reject) {
+    return new Promise(((resolve, reject) => {
       for (let index in _this.placeFish) {
         let fish = _this.placeFish[index];
 
         // Get the hook min and max times for the fish/bait/chum combo
         _this.seaBase.getHookTimes(fish, _this.getActiveBait(), _this.chum)
-          .then(function(hookTimes) {
+          .then((hookTimes) => {
             _this.hookTimes[fish.name] = hookTimes;
             queue -= 1;
             if (!queue) {
@@ -190,7 +190,7 @@ class Fisher {
           });
 
         // Get the tug type for the fish
-        _this.seaBase.getTug(fish).then(function(tug) {
+        _this.seaBase.getTug(fish).then((tug) => {
           _this.tugTypes[fish.name] = tug;
           queue -= 1;
           if (!queue) {
@@ -199,7 +199,7 @@ class Fisher {
           }
         });
       }
-    });
+    }));
   }
 
   handleBait(bait) {
@@ -244,7 +244,7 @@ class Fisher {
       this.ui.setPlace(this.place.name);
     let _this = this;
 
-    this.updateFishData().then(function() {
+    this.updateFishData().then(() => {
       _this.ui.startFishing();
     });
   }
@@ -317,7 +317,7 @@ class Fisher {
     // Chum fades just before the catch appears, so we need to
     // delay it to record the catch with chum active
     let _this = this;
-    setTimeout(function() {
+    setTimeout(() => {
       _this.chum = false;
     }, 1000);
   }
@@ -386,18 +386,18 @@ class Fisher {
   }
 }
 
-UserConfig.getUserConfigLocation('fisher', Options, function() {
+UserConfig.getUserConfigLocation('fisher', Options, () => {
   gFisher = new Fisher(document.getElementById('fisher'));
 
-  addOverlayListener('onLogEvent', function(e) {
+  addOverlayListener('onLogEvent', (e) => {
     gFisher.OnLogEvent(e);
   });
 
-  addOverlayListener('ChangeZone', function(e) {
+  addOverlayListener('ChangeZone', (e) => {
     gFisher.OnChangeZone(e);
   });
 
-  addOverlayListener('onPlayerChangedEvent', function(e) {
+  addOverlayListener('onPlayerChangedEvent', (e) => {
     gFisher.OnPlayerChange(e);
   });
 });

@@ -604,7 +604,7 @@ const Regexes = {
                    (regexpString.multiline ? 'm' : '');
       regexpString = regexpString.source;
     }
-    regexpString = regexpString.replace(/\\y\{(.*?)\}/g, function(match, group) {
+    regexpString = regexpString.replace(/\\y\{(.*?)\}/g, (match, group) => {
       return kCactbotCategories[group] || match;
     });
     return new RegExp(regexpString, modifiers);

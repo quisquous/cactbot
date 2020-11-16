@@ -244,7 +244,8 @@
       id: 'Test Response',
       netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot test antwort.*?', capture: false }),
-      response: function(data, _, output) {
+      response: (data, _, output) => {
+        // cactbot-builtin-response
         output.responseOutputStrings = {
           alarmOne: '1',
           alertTwo: '2',

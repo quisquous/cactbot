@@ -360,20 +360,20 @@ export class Timeline {
 
     // Sort by time, but when the time is the same, sort by file order.
     // Then assign a sortKey to each event so that we can maintain that order.
-    this.events.sort(function(a, b) {
+    this.events.sort((a, b) => {
       if (a.time === b.time) return a.id - b.id;
       return a.time - b.time;
     });
     for (let i = 0; i < this.events.length; ++i)
       this.events[i].sortKey = i;
 
-    this.texts.sort(function(a, b) {
+    this.texts.sort((a, b) => {
       return a.time - b.time;
     });
-    this.syncStarts.sort(function(a, b) {
+    this.syncStarts.sort((a, b) => {
       return a.start - b.start;
     });
-    this.syncEnds.sort(function(a, b) {
+    this.syncEnds.sort((a, b) => {
       return a.end - b.end;
     });
   }
@@ -526,7 +526,7 @@ export class Timeline {
     }
     if (events.length)
       Array.prototype.push.apply(this.activeEvents, events);
-    this.activeEvents.sort(function(a, b) {
+    this.activeEvents.sort((a, b) => {
       return a.time - b.time;
     });
   }

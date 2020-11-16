@@ -437,20 +437,25 @@
         let oppositeColor = matches.id === '4C5C' ? 'dark' : 'light';
         return data.color === oppositeColor;
       },
-      response: function(data, matches) {
+      response: function(data, matches, output) {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          text: {
+            en: 'Avoid ${player}',
+            de: 'Vermeide ${player}',
+            fr: 'Évitez ${player}',
+            ko: '${player}피하기',
+            cn: '躲开 ${player}',
+          },
+        };
+        if (!data.boundless)
+          return;
+
         // If somebody is taking both, definitely don't stack with them!
         if (data.boundless.light === data.boundless.dark) {
           if (matches.target === data.me)
             return;
-          return {
-            infoText: {
-              en: 'Avoid ' + data.ShortName(matches.target),
-              de: 'Vermeide ' + data.ShortName(matches.target),
-              fr: 'Évitez ' + data.ShortName(matches.target),
-              ko: data.ShortName(matches.target) + '피하기',
-              cn: '躲开 ' + data.ShortName(matches.target),
-            },
-          };
+          return { infoText: output.text({ player: data.ShortName(matches.target) }) };
         }
         return Responses.stackMarkerOn();
       },

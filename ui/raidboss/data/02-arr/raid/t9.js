@@ -35,6 +35,14 @@ const diveDirections = {
     cn: '东南',
     ko: '남동',
   },
+  south: {
+    en: 'S',
+    de: 'S',
+    fr: 'S',
+    ja: '南',
+    cn: '南面',
+    ko: '남',
+  },
   southwest: {
     en: 'SW',
     de: 'SW',
