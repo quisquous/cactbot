@@ -142,7 +142,6 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Abalathian Hornbill': 'bucorve d\'Abalathia',
         'Dotoli Ciloc': 'Dotoli Ciloc',
@@ -154,6 +153,9 @@
         'Tozol Huatotl': 'Tozol Huatotl',
       },
       'replaceText': {
+        '\\(buster\\)': '(Tankbuster)',
+        '\\(line\\)': '(Ligne)',
+        '\\(aoe\\)': '(AoE)',
         'Aerial Blast': 'Rafale aérienne',
         'Air Raid': 'Raid aérien',
         'Bill': 'Bec solide',

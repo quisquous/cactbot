@@ -13,6 +13,7 @@
         text: {
           en: 'Avoid wall laser',
           de: 'Weiche dem Wand-Laser aus',
+          fr: 'Évitez le laser du mur',
         },
       },
     },
@@ -63,10 +64,12 @@
         left: {
           en: 'Rotate left',
           de: 'Nach links rotieren',
+          fr: 'Rotation vers la gauche',
         },
         right: {
           en: 'Rotate right',
           de: 'Nach rechts rotieren',
+          fr: 'Rotation vers la droite',
         },
       },
     },
@@ -216,7 +219,6 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Annia Quo Soranus': 'Annia quo Soranus',
         'Ceruleum Tank': 'réservoir de céruleum',
@@ -229,6 +231,8 @@
         'The Provisional Imperial Landing': 'Aire d\'atterrissage provisoire',
       },
       'replaceText': {
+        '\\(windup\\)': '(Préparation)',
+        '\\(cast\\)': '(Lancement)',
         'Aglaia Bite': 'Morsure d\'Aglaia',
         'Angry Salamander': 'Colère de la salamandre',
         'Artificial Boost': 'Amplificateur magitek',

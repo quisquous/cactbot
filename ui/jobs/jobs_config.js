@@ -46,6 +46,7 @@ UserConfig.registerOptions('jobs', {
       name: {
         en: 'Enable countdown notification sound',
         de: 'Aktiviere Countdown Hinweis-Ton',
+        fr: 'Activer la notification sonore du compte à rebours',
         ko: '초읽기 알림 소리 켜기',
       },
       type: 'checkbox',
