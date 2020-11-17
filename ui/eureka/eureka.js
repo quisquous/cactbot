@@ -152,6 +152,7 @@ let Options = {
       mapWidth: 1300,
       mapHeight: 950,
       shortName: 'anemos',
+      hasTracker: true,
       primaryWeather: ['Gales'],
       // TODO: these could be a little better tuned :C
       mapToPixelXScalar: 41.12,
@@ -602,6 +603,7 @@ let Options = {
       mapWidth: 1500,
       mapHeight: 950,
       shortName: 'pagos',
+      hasTracker: true,
       mapToPixelXScalar: 41.08333,
       mapToPixelXConstant: -85.28333,
       mapToPixelYScalar: 41.09158,
@@ -1001,6 +1003,7 @@ let Options = {
       mapWidth: 1350,
       mapHeight: 1450,
       shortName: 'pyros',
+      hasTracker: true,
       mapToPixelXScalar: 42.515,
       mapToPixelXConstant: -344.064,
       mapToPixelYScalar: 42.486,
@@ -1400,6 +1403,7 @@ let Options = {
       mapWidth: 1500,
       mapHeight: 800,
       shortName: 'hydatos',
+      hasTracker: true,
       mapToPixelXScalar: 37.523,
       mapToPixelXConstant: -48.160,
       mapToPixelYScalar: 37.419,
@@ -2723,7 +2727,7 @@ class EurekaTracker {
         }
       }
 
-      if (!this.zoneInfo.hasTracker && this.zoneInfo.hasTracker !== undefined)
+      if (!this.zoneInfo.hasTracker)
         return;
 
       let gTrackerRegex = this.TransByParserLang(this.options.Regex, 'gTrackerRegex');
