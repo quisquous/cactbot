@@ -25,7 +25,7 @@ jobs:
 
           # Check both AssemblyInfo files have the correct version
           if cat plugin/CactbotEventSource/Properties/AssemblyInfo.cs | grep -q ${VERSION} && cat plugin/CactbotOverlay/Properties/AssemblyInfo.cs | grep -q ${VERSION}; then
-            echo "::set-env name=TAG_NAME::v$VERSION"
+            echo "TAG_NAME=v$VERSION" >> $GITHUB_ENV
             echo "Matching assembly file version values found."
           else
             echo "Different assembly file version values found. Skipping tag creation..."
