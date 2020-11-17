@@ -16,6 +16,15 @@ UserConfig.registerOptions('jobs', {
       default: false,
     },
     {
+      id: 'ShowPullBar',
+      name: {
+        en: 'Show Pull Bar',
+        ko: '초읽기 바 보이기',
+      },
+      type: 'checkbox',
+      default: true,
+    },
+    {
       id: 'LowerOpacityOutOfCombat',
       name: {
         en: 'Lower ui opacity when out of combat',

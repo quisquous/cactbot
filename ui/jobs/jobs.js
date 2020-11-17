@@ -1412,6 +1412,8 @@ class Bars {
       this.o.leftBuffsList.toward = 'left down';
       this.o.leftBuffsList.elementwidth = this.options.BigBuffIconWidth + 2;
     }
+    if (!this.options.ShowPullBar)
+      barsLayoutContainer.classList.add('nopullbar');
 
     if (Util.isCraftingJob(this.job)) {
       this.o.cpContainer = document.createElement('div');
