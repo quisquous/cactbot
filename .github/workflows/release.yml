@@ -25,7 +25,7 @@ jobs:
       # Gets the numerical output of the git tag and assigns it to an environment variable
       - name: Get Tag Version
         run: |
-          echo ::set-env name=CACTBOT_RELEASE::cactbot-${GITHUB_REF#refs/tags/v}
+          echo "CACTBOT_RELEASE=cactbot-${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
         shell: bash
       - name: Check dependencies cache
         id: cache-dependencies

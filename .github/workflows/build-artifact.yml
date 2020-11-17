@@ -31,7 +31,7 @@ jobs:
       shell: bash
       run: |
         sha=$(echo ${{ github.sha }} | cut -c 1-8)
-        echo "::set-env name=artifact_sha::$sha"
+        echo "artifact_sha=$sha" >> $GITHUB_ENV
 
     - name: Check dependencies cache
       id: cache-dependencies
@@ -55,7 +55,7 @@ jobs:
         python .\util\fetch_deps.py
 
     - name: Set up msbuild
-      uses: microsoft/setup-msbuild@v1.0.1
+      uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Add Custom Problem Matcher
       run: |
