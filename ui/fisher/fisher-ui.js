@@ -19,8 +19,9 @@ if (window.customElements) {
 }
 
 export default class FisherUI {
-  constructor(element) {
+  constructor(element, options) {
     this.element = element;
+    this.options = options;
     this.baitEl = element.querySelector('#bait-name');
     this.placeEl = element.querySelector('#place-name');
     this.timeEl = element.querySelector('#cast-duration');
@@ -96,7 +97,7 @@ export default class FisherUI {
       }
 
       if (row.getAttribute('data-tug'))
-        bar.fg = Options.Colors[this.tugNames[row.getAttribute('data-tug')]];
+        bar.fg = this.options.Colors[this.tugNames[row.getAttribute('data-tug')]];
 
 
       while (row.lastChild)
@@ -163,7 +164,7 @@ export default class FisherUI {
         el.setAttribute('data-fish', fish);
         el.style.top = (hookTimes[fish].min / 600).toString() + '%';
         el.style.height = ((hookTimes[fish].max - hookTimes[fish].min) / 600).toString() + '%';
-        el.style.backgroundColor = Options.Colors[this.tugNames[tug]];
+        el.style.backgroundColor = this.options.Colors[this.tugNames[tug]];
 
         // Put the element in the well
         let well = this.element.querySelector('#fisher-well-' + this.tugNames[tug]);

@@ -145,7 +145,7 @@ class Fisher {
       },
     };
 
-    this.ui = new FisherUI(element);
+    this.ui = new FisherUI(element, Options);
     this.seaBase = new SeaBase(Options);
   }
 
