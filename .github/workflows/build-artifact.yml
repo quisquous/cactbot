@@ -31,7 +31,7 @@ jobs:
       shell: bash
       run: |
         sha=$(echo ${{ github.sha }} | cut -c 1-8)
-        echo "::set-env name=artifact_sha::$sha"
+        echo "artifact_sha=$sha" >> $GITHUB_ENV
 
     - name: Check dependencies cache
       id: cache-dependencies
