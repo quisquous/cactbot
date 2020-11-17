@@ -74,7 +74,7 @@
           de: 'Fläche auf DIR',
           fr: 'Zone au sol sur VOUS',
           ja: '自分に水溜り',
-          cn: '水球点名',
+          cn: '风圈点名',
           ko: '장판 대상자',
         },
       },
@@ -142,7 +142,6 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Abalathian Hornbill': 'bucorve d\'Abalathia',
         'Dotoli Ciloc': 'Dotoli Ciloc',
@@ -154,6 +153,9 @@
         'Tozol Huatotl': 'Tozol Huatotl',
       },
       'replaceText': {
+        '\\(buster\\)': '(Tankbuster)',
+        '\\(line\\)': '(Ligne)',
+        '\\(aoe\\)': '(AoE)',
         'Aerial Blast': 'Rafale aérienne',
         'Air Raid': 'Raid aérien',
         'Bill': 'Bec solide',
@@ -212,7 +214,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Abalathian Hornbill': '阿巴拉提亚犀鸟',
         'Dotoli Ciloc': '旋风扇 德托里·西罗克',
@@ -224,6 +225,9 @@
         'Tozol Huatotl': '晴天霹雳 托佐尔·法托特尔',
       },
       'replaceText': {
+        '\\(buster\\)': '(死刑)',
+        '\\(line\\)': '(直线)',
+        '\\(aoe\\)': '(AOE)',
         'Aerial Blast': '大气爆发',
         'Air Raid': '空袭',
         'Bill': '坚喙',

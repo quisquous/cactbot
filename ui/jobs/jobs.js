@@ -426,13 +426,6 @@ function setupComboTracker(callback) {
   comboTracker.AddCombo([
     kAbility.FastBlade,
     kAbility.RiotBlade,
-    kAbility.FightOrFlight,
-    kAbility.GoringBlade,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.FastBlade,
-    kAbility.FightOrFlight,
-    kAbility.RiotBlade,
     kAbility.GoringBlade,
   ]);
   // DNC
@@ -443,12 +436,6 @@ function setupComboTracker(callback) {
   comboTracker.AddCombo([
     kAbility.Windmill,
     kAbility.Bladeshower,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.FightOrFlight,
-    kAbility.FastBlade,
-    kAbility.RiotBlade,
-    kAbility.GoringBlade,
   ]);
   comboTracker.AddCombo([
     kAbility.TrueThrust,

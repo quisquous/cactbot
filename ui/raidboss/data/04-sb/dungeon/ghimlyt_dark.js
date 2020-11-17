@@ -13,6 +13,7 @@
         text: {
           en: 'Avoid wall laser',
           de: 'Weiche dem Wand-Laser aus',
+          fr: 'Évitez le laser du mur',
         },
       },
     },
@@ -63,10 +64,12 @@
         left: {
           en: 'Rotate left',
           de: 'Nach links rotieren',
+          fr: 'Rotation vers la gauche',
         },
         right: {
           en: 'Rotate right',
           de: 'Nach rechts rotieren',
+          fr: 'Rotation vers la droite',
         },
       },
     },
@@ -216,7 +219,6 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Annia Quo Soranus': 'Annia quo Soranus',
         'Ceruleum Tank': 'réservoir de céruleum',
@@ -229,6 +231,8 @@
         'The Provisional Imperial Landing': 'Aire d\'atterrissage provisoire',
       },
       'replaceText': {
+        '\\(windup\\)': '(Préparation)',
+        '\\(cast\\)': '(Lancement)',
         'Aglaia Bite': 'Morsure d\'Aglaia',
         'Angry Salamander': 'Colère de la salamandre',
         'Artificial Boost': 'Amplificateur magitek',
@@ -320,7 +324,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Annia Quo Soranus': '安妮亚・库奥・索拉努斯',
         'Ceruleum Tank': '青磷水罐',
@@ -333,6 +336,8 @@
         'The Provisional Imperial Landing': '帝国临时飞艇坪',
       },
       'replaceText': {
+        '\\(windup\\)': '(发射)',
+        '\\(cast\\)': '(判定)',
         'Aglaia Bite': '典雅女神枪',
         'Angry Salamander': '炎兽心火击',
         'Artificial Boost': '魔导增幅器',
