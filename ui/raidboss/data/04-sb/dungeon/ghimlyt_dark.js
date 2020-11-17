@@ -272,7 +272,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Annia Quo Soranus': 'アンニア・クォ・ソラノス',
         'Ceruleum Tank': '青燐水タンク',
@@ -285,6 +284,8 @@
         'The Provisional Imperial Landing': '帝国軍仮設ランディング',
       },
       'replaceText': {
+        '\\(windup\\)': '(発射)',
+        '\\(cast\\)': '(着弾)',
         'Aglaia Bite': 'アグライアバイト',
         'Angry Salamander': '炎獣心火撃',
         'Artificial Boost': '魔導ブースター',

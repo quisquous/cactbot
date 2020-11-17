@@ -73,7 +73,7 @@
           en: 'Puddle on YOU',
           de: 'Fläche auf DIR',
           fr: 'Zone au sol sur VOUS',
-          ja: '自分に水溜り',
+          ja: '自分に風',
           cn: '风圈点名',
           ko: '장판 대상자',
         },
@@ -179,7 +179,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Abalathian Hornbill': 'アバラシア・ホーンビル',
         'Dotoli Ciloc': '旋風のドトリ・シロック',
@@ -191,6 +190,9 @@
         'Tozol Huatotl': '晴嵐のトゾル・ファトトル',
       },
       'replaceText': {
+        '\\(buster\\)': '(タンクバスター)',
+        '\\(line\\)': '(直線範囲)',
+        '\\(aoe\\)': '(AoE)',
         'Aerial Blast': 'エリアルブラスト',
         'Air Raid': 'エアレイド',
         'Bill': 'ソリッドビル',
