@@ -1,4 +1,6 @@
 import UserConfig from '../../resources/user_config.js';
+import ZoneInfo from '../../resources/zone_info.js';
+import contentList from '../../resources/content_list.js';
 
 // TODO:
 // The convention of "import X as _X; const X = _X;" is currently
@@ -528,6 +530,18 @@ export default class CactbotConfigurator {
         continue;
       }
 
+      let title = fileNameToTitle(filename);
+      let zoneId = undefined;
+
+      // Make assumptions about trigger structure here to try to get the zoneId out.
+      if (json && json[0] && json[0].zoneId) {
+        zoneId = json[0].zoneId;
+        // Use the translatable zone info name, if possible.
+        const zoneInfo = zoneId ? ZoneInfo[zoneId] : null;
+        if (zoneInfo)
+          title = this.translate(zoneInfo.name);
+      }
+
       const fileKey = filename.replace(/\//g, '-').replace(/.js$/, '');
       map[fileKey] = {
         filename: filename,
@@ -536,7 +550,7 @@ export default class CactbotConfigurator {
         typeKey: typeKey,
         prefix: this.translate(kPrefixToCategory[prefixKey]),
         type: this.translate(kDirectoryToCategory[typeKey]),
-        title: fileNameToTitle(filename),
+        title: title,
         json: json,
       };
     }
