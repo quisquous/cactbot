@@ -34,10 +34,6 @@
   font-size: 12px;
 }
 
-.nopullbar #pull-bar {
-  display: none;
-}
-
 .justbuffs #bars {
   display: none;
 }
