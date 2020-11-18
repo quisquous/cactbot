@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.TheForbiddenLandEurekaAnemos,
   resetWhenOutOfCombat: false,

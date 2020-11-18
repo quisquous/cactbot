@@ -1,5 +1,3 @@
-'use strict';
-
 import LineEvent from './LineEvent.js';
 import { LineEvent0x15 } from './LineEvent0x15.js';
 

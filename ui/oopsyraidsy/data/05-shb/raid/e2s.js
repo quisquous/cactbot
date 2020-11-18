@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: shadoweye failure
 // TODO: Empty Hate (3E59/3E5A) hits everybody, so hard to tell about knockback
 // TODO: maybe mark hell wind people who got clipped by stack?

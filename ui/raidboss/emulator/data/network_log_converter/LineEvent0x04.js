@@ -1,5 +1,3 @@
-'use strict';
-
 import { LineEvent0x03 } from './LineEvent0x03.js';
 
 // Removed combatant event

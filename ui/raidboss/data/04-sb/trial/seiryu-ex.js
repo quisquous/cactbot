@@ -1,5 +1,3 @@
-'use strict';
-
 // Seiryu Extreme
 [{
   zoneId: ZoneId.TheWreathOfSnakesExtreme,

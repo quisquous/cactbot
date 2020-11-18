@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * This is a base class that classes can extend to inherit event bus capabilities.
  * This allows other classes to listen for events with the `on` function.

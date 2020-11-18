@@ -1,5 +1,3 @@
-'use strict';
-
 import './raidboss_config.js';
 import '../../resources/common.js';
 import '../../resources/timerbar.js';

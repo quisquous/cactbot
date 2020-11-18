@@ -1,5 +1,3 @@
-'use strict';
-
 import EmulatorCommon from '../EmulatorCommon.js';
 import EventBus from '../EventBus.js';
 import PersistorEncounter from './PersistorEncounter.js';

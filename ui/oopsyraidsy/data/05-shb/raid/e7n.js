@@ -1,5 +1,3 @@
-'use strict';
-
 let wrongBuff = (str) => {
   return {
     en: str + ' (wrong buff)',

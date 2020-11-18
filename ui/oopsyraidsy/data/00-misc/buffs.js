@@ -1,5 +1,3 @@
-'use strict';
-
 // Abilities seem instant.
 let abilityCollectSeconds = 0.5;
 // Observation: up to ~1.2 seconds for a buff to roll through the party.

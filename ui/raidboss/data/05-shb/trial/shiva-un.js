@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: some sort of warning about extra tank damage during bow phase?
 // TODO: should the post-staff "spread" happen unconditionally prior to marker?
 

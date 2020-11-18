@@ -1,5 +1,3 @@
-'use strict';
-
 export default class RaidEmulatorOverlayApiHook {
   constructor(emulator) {
     this.emulator = emulator;

@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.TheHeroesGauntlet,
   timelineFile: 'heroes_gauntlet.txt',

@@ -152,7 +152,7 @@
         }
       ],
       "strict": [
-        "off",
+        "error",
         "global"
       ],
       "unicode-bom": [

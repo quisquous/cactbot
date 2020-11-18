@@ -1,5 +1,3 @@
-'use strict';
-
 // Note: no warnings for Sweeping Flames, Tail Sweep, or Roar.
 
 // Rathalos Extreme

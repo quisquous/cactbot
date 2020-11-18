@@ -1,5 +1,3 @@
-'use strict';
-
 // Shinryu Extreme
 [{
   zoneId: ZoneId.TheMinstrelsBalladShinryusDomain,

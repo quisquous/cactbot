@@ -1,5 +1,3 @@
-'use strict';
-
 import Combatant from './Combatant.js';
 import CombatantJobSearch from './CombatantJobSearch.js';
 import CombatantState from './CombatantState.js';

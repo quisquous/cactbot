@@ -1,5 +1,3 @@
-'use strict';
-
 // O11N - Alphascape 3.0
 [{
   zoneId: ZoneId.AlphascapeV30,

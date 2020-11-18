@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: fix tail end (seemed to not work??)
 // TODO: add phase tracking (so death from above/below can tell you to swap or not)
 // TODO: add swap callout after exaflares

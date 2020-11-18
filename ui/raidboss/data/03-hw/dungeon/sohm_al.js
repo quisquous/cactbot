@@ -1,5 +1,3 @@
-'use strict';
-
 // Sohm Al (normal)
 [{
   zoneId: ZoneId.SohmAl,

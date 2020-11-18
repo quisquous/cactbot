@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.AkadaemiaAnyder,
   timelineFile: 'akadaemia_anyder.txt',

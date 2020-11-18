@@ -1,5 +1,3 @@
-'use strict';
-
 // Ifrit Story Mode
 [{
   zoneId: ZoneId.TheBowlOfEmbers,

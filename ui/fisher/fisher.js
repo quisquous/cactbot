@@ -1,5 +1,3 @@
-'use strict';
-
 import FisherUI from './fisher-ui.js';
 import SeaBase from './seabase.js';
 import UserConfig from '../../resources/user_config.js';

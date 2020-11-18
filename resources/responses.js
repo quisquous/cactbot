@@ -1,5 +1,3 @@
-'use strict';
-
 // This is meant to be used in a trigger as such:
 // {
 //   id: 'Some tankbuster',

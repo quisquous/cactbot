@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO:
 // The convention of "import X as _X; const X = _X;" is currently
 // being used as a method to workaround for downstream code

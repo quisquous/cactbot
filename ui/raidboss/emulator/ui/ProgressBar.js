@@ -1,5 +1,3 @@
-'use strict';
-
 import Tooltip from './Tooltip.js';
 import EmulatorCommon from '../EmulatorCommon.js';
 

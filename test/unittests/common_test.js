@@ -1,5 +1,3 @@
-'use strict';
-
 import { Util } from '../../resources/common.js';
 import chai from 'chai';
 

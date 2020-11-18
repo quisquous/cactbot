@@ -1,5 +1,3 @@
-'use strict';
-
 import '../../resources/common.js';
 import './raidboss_config.js';
 

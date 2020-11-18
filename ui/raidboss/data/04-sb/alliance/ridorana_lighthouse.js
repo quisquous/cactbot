@@ -1,5 +1,3 @@
-'use strict';
-
 const mathDirection = function(mathBaseValue, correctMath, output) {
   if (!correctMath)
     return;

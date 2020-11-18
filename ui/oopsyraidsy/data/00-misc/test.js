@@ -1,5 +1,3 @@
-'use strict';
-
 // Test mistake triggers.
 [{
   zoneId: ZoneId.MiddleLaNoscea,

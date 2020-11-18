@@ -1,5 +1,3 @@
-'use strict';
-
 // Shiva Hard
 [{
   zoneId: ZoneId.AkhAfahAmphitheatreHard,

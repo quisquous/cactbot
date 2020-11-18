@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.CapeWestwind,
   timelineFile: 'cape_westwind.txt',

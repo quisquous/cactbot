@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.EdensVerseFurorSavage,
   timelineFile: 'e6s.txt',

@@ -1,5 +1,3 @@
-'use strict';
-
 // Xelphatol
 [{
   zoneId: ZoneId.Xelphatol,

@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.EdensVerseRefulgence,
   timelineFile: 'e8n.txt',

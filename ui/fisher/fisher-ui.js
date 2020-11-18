@@ -1,5 +1,3 @@
-'use strict';
-
 import TimerBar from '../../resources/timerbar.js';
 
 class FisherBar extends TimerBar {

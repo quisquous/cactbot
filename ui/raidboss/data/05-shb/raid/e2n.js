@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.EdensGateDescent,
   timelineFile: 'e2n.txt',

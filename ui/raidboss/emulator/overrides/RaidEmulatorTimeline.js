@@ -1,5 +1,3 @@
-'use strict';
-
 import { Timeline } from '../../timeline.js';
 
 export default class RaidEmulatorTimeline extends Timeline {

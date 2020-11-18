@@ -1,5 +1,3 @@
-'use strict';
-
 let findSafeDir = (data) => {
   // Tethers are ordered with all East tethers first. This *doesn't* mean that the East
   // or West tethers are themselves in order within their half!

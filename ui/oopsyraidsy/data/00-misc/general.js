@@ -1,5 +1,3 @@
-'use strict';
-
 // General mistakes; these apply everywhere.
 [{
   zoneId: ZoneId.MatchAll,

@@ -1,5 +1,3 @@
-'use strict';
-
 // Susano Extreme
 [{
   zoneId: ZoneId.ThePoolOfTributeExtreme,

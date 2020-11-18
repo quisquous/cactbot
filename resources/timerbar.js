@@ -1,5 +1,3 @@
-'use strict';
-
 export default class TimerBar extends HTMLElement {
   static get observedAttributes() {
     return ['duration', 'value', 'elapsed', 'hideafter', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'style', 'toward', 'loop'];

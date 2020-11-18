@@ -1,5 +1,3 @@
-'use strict';
-
 // Shinryu Normal
 [{
   zoneId: ZoneId.TheRoyalMenagerie,

@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: check tethers being cut (when they shouldn't)
 // TODO: check for concussed debuff
 // TODO: check for taking tankbuster with lightheaded

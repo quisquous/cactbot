@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: ravensflight calls
 // TODO: in/out calls for your orange/blue add, dynamo 4EB0, chariot 4EB1
 // TODO: there's no 23: message for tethers, so is likely part of add spawn?

@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.MiddleLaNoscea,
   timelineFile: 'test.txt',

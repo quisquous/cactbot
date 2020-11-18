@@ -1,5 +1,3 @@
-'use strict';
-
 import LineEvent from './LineEvent.js';
 import { LineEvent0x1A } from './LineEvent0x1A.js';
 import EmulatorCommon from '../../EmulatorCommon.js';

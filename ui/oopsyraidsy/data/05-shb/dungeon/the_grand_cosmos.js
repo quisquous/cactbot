@@ -1,5 +1,3 @@
-'use strict';
-
 // The Grand Cosmos
 [{
   zoneId: ZoneId.TheGrandCosmos,

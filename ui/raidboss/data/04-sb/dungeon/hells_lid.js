@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.HellsLid,
   timelineFile: 'hells_lid.txt',

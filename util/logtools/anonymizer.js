@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: is the first byte of ids always flags, such that "..000000" is always empty?
 const emptyIds = ['E0000000', '80000000'];
 

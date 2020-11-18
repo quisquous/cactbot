@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.TheQitanaRavel,
   timelineFile: 'qitana_ravel.txt',

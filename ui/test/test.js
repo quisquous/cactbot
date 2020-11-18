@@ -1,5 +1,3 @@
-'use strict';
-
 import '../../resources/common.js';
 
 addOverlayListener('ChangeZone', (e) => {

@@ -1,5 +1,3 @@
-'use strict';
-
 export default class Tooltip {
   constructor(target, direction, text, autoShow = true, autoHide = true) {
     if (!Tooltip.validDirections.includes(direction))

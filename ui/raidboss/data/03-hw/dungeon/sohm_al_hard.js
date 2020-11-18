@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.SohmAlHard,
   timelineFile: 'sohm_al_hard.txt',

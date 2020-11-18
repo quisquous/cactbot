@@ -1,5 +1,3 @@
-'use strict';
-
 // Fractal Continuum
 [{
   zoneId: ZoneId.TheFractalContinuum,

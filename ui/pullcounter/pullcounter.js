@@ -1,5 +1,3 @@
-'use strict';
-
 import '../../resources/common.js';
 import { LocaleRegex } from '../../resources/translations.js';
 import Regexes from '../../resources/regexes.js';
