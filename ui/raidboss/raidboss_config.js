@@ -5,7 +5,6 @@
 // create a variable of the same name, the eval()'d code does not know
 // about the import, and thus throws ReferenceErrors.
 import PartyTracker from '../../resources/party.js';
-import contentList from '../../resources/content_list.js';
 import _Regexes from '../../resources/regexes.js';
 const Regexes = _Regexes;
 import UserConfig from '../../resources/user_config.js';
@@ -318,24 +317,7 @@ class RaidbossConfigurator {
 
     let expansionDivs = {};
 
-    const sortedEntries = Object.keys(fileMap).sort((keyA, keyB) => {
-      const indexA = contentList.indexOf(fileMap[keyA].zoneId);
-      const indexB = contentList.indexOf(fileMap[keyB].zoneId);
-      if (indexA === -1 && indexB === -1) {
-        // If we don't know, sort by strings.
-        return keyA.localeCompare(keyB);
-      } else if (indexA === -1) {
-        // Sort B first.
-        return 1;
-      } else if (indexB === -1) {
-        // Sort A first.
-        return -1;
-      }
-      // Default: sort by index in contentList.
-      return indexA - indexB;
-    });
-
-    for (const key of sortedEntries) {
+    for (const key in fileMap) {
       const info = fileMap[key];
       const expansion = info.prefix;
 
@@ -708,11 +690,6 @@ class RaidbossConfigurator {
           rawTriggers.trigger.push(...triggerSet.triggers);
         if (triggerSet.timelineTriggers)
           rawTriggers.timeline.push(...triggerSet.timelineTriggers);
-
-        // TODO: currently many tests require that each file has only one triggerSet.
-        // This uses the zoneId of the final trigger set, for simplicity.
-        // However, perhaps this should emit a set of trigger sets as entries?
-        item.zoneId = triggerSet.zoneId;
       }
 
       item.triggers = {};

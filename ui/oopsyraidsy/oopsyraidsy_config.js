@@ -46,7 +46,8 @@ class OopsyConfigurator {
 
     let expansionDivs = {};
 
-    for (const [key, info] of Object.entries(fileMap)) {
+    for (const key in fileMap) {
+      const info = fileMap[key];
       const expansion = info.prefix;
 
       if (info.triggers.length === 0)
