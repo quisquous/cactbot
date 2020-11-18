@@ -1,5 +1,3 @@
-'use strict';
-
 let triggersFile = process.argv[2];
 let locale = process.argv[3];
 let localeReg = 'regex' + locale[0].toUpperCase() + locale[1];

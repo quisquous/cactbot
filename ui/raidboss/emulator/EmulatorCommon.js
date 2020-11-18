@@ -1,5 +1,3 @@
-'use strict';
-
 import { LocaleNetRegex } from '../../../resources/translations.js';
 import NetRegexes from '../../../resources/netregexes.js';
 

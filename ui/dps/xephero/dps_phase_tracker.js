@@ -1,5 +1,3 @@
-'use strict';
-
 import { LocaleRegex } from '../../../resources/translations.js';
 
 let kTestPhaseStart = 'cactbot phase start';

@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.DohnMheg,
   timelineFile: 'dohn_mheg.txt',

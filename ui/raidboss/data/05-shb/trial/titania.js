@@ -1,5 +1,3 @@
-'use strict';
-
 // Titania Normal Mode
 [{
   zoneId: ZoneId.TheDancingPlague,

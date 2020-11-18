@@ -1,5 +1,3 @@
-'use strict';
-
 export default class CombatantState {
   constructor(posX, posY, posZ, heading, targetable, HP, maxHP, MP, maxMP) {
     this.posX = posX;

@@ -1,5 +1,3 @@
-'use strict';
-
 // O7N - Sigmascape 3.0 Normal
 [{
   zoneId: ZoneId.SigmascapeV30,

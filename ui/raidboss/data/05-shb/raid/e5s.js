@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.EdensVerseFulminationSavage,
   timelineFile: 'e5s.txt',

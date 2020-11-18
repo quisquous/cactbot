@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.ContainmentBayS1T7Extreme,
   timelineFile: 'sephirot-ex.txt',

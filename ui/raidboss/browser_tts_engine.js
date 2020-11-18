@@ -1,5 +1,3 @@
-'use strict';
-
 const TTSEngineType = {
   SpeechSynthesis: 0,
   GoogleTTS: 1,

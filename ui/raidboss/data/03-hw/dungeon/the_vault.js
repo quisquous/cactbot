@@ -1,5 +1,3 @@
-'use strict';
-
 // The Vault
 [{
   zoneId: ZoneId.TheVault,

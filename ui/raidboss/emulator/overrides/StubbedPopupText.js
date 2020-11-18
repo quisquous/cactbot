@@ -1,5 +1,3 @@
-'use strict';
-
 import { PopupText } from '../../popup-text.js';
 
 export default class StubbedPopupText extends PopupText {

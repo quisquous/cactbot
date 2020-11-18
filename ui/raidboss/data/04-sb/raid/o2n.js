@@ -1,5 +1,3 @@
-'use strict';
-
 // O2N - Deltascape 2.0 Normal
 [{
   zoneId: ZoneId.DeltascapeV20,

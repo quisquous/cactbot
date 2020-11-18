@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: Radiant Braver is 4F16/4F17(x2), shouldn't get hit by both?
 // TODO: Radiant Desperado is 4F18/4F19, shouldn't get hit by both?
 // TODO: Radiant Meteor is 4F1A, and shouldn't get hit by more than 1?

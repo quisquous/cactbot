@@ -1,5 +1,3 @@
-'use strict';
-
 import LineEvent from './LineEvent.js';
 
 // Ability hit single target event

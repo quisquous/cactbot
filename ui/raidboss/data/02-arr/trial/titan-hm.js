@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.TheNavelHard,
   timelineFile: 'titan-hm.txt',

@@ -1,5 +1,3 @@
-'use strict';
-
 import StubbedPopupText from '../overrides/StubbedPopupText.js';
 
 export default class RaidEmulatorPopupText extends StubbedPopupText {

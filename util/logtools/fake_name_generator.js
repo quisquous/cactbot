@@ -1,5 +1,3 @@
-'use strict';
-
 const fakePlayerNames = [
   'Tini Poutini',
   'Potato Chippy',

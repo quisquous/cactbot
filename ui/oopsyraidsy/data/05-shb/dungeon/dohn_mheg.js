@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: Missing Growing tethers on boss 2.
 // (Maybe gather party member names on the previous TIIIIMBEEEEEER cast for comparison?)
 // TODO: Failing to interrupt Dohnfaust Fuath on Watering Wheel casts?

@@ -1,5 +1,3 @@
-'use strict';
-
 import ContentType from '../../resources/content_type.js';
 import EffectId from '../../resources/effect_id.js';
 import { LocaleRegex } from '../../resources/translations.js';

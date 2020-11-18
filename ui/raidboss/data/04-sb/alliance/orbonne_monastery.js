@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: grand cross "plummet" attacks have locations,
 // so it should be possible to tell people where to go.
 // This is not true for Mustadio's Maintenance.

@@ -1,5 +1,3 @@
-'use strict';
-
 // Shiva Unreal
 [{
   zoneId: ZoneId.TheAkhAfahAmphitheatreUnreal,

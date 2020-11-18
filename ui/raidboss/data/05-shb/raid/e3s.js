@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.EdensGateInundationSavage,
   timelineFile: 'e3s.txt',

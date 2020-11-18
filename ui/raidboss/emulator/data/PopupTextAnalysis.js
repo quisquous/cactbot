@@ -1,5 +1,3 @@
-'use strict';
-
 import EmulatorCommon from '../EmulatorCommon.js';
 import StubbedPopupText from '../overrides/StubbedPopupText.js';
 

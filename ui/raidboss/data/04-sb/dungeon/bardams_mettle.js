@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.BardamsMettle,
   timelineFile: 'bardams_mettle.txt',

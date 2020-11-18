@@ -1,5 +1,3 @@
-'use strict';
-
 import fs from 'fs';
 import readline from 'readline';
 import Anonymizer from './anonymizer.js';

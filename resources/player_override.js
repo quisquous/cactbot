@@ -1,5 +1,3 @@
-'use strict';
-
 import { Util } from './common.js';
 
 // Will redirect calls from `onPlayerChangedEvent` to |func| overriding with

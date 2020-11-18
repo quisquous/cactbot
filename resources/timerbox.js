@@ -1,5 +1,3 @@
-'use strict';
-
 class TimerBox extends HTMLElement {
   static get observedAttributes() {
     return ['duration', 'threshold', 'bg', 'fg', 'toward', 'style', 'hideafter', 'bigatzero', 'roundupthreshold'];

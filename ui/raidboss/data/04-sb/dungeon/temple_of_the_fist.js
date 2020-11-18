@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.TheTempleOfTheFist,
   timelineFile: 'temple_of_the_fist.txt',

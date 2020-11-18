@@ -1,5 +1,3 @@
-'use strict';
-
 // Hades Ex
 [{
   zoneId: ZoneId.TheMinstrelsBalladHadessElegy,

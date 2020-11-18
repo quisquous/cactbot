@@ -1,5 +1,3 @@
-'use strict';
-
 // O4S - Deltascape 4.0 Savage
 [{
   zoneId: ZoneId.DeltascapeV40Savage,

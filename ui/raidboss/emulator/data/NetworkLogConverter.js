@@ -1,5 +1,3 @@
-'use strict';
-
 import LogRepository from './network_log_converter/LogRepository.js';
 import ParseLine from './network_log_converter/ParseLine.js';
 

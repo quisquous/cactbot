@@ -1,5 +1,3 @@
-'use strict';
-
 // In your cactbot/user/raidboss.js file, add the line:
 //   Options.cactbote8sUptimeKnockbackStrat = true;
 // .. if you want cactbot to callout Mirror Mirror 4's double knockback

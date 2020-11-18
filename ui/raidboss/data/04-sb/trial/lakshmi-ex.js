@@ -1,5 +1,3 @@
-'use strict';
-
 // Lakshmi Extreme
 [{
   zoneId: ZoneId.EmanationExtreme,

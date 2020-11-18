@@ -1,5 +1,3 @@
-'use strict';
-
 import CombatantTracker from './CombatantTracker.js';
 import LogEventHandler from './LogEventHandler.js';
 import PetNamesByLang from '../../../../resources/pet_names.js';

@@ -1,5 +1,3 @@
-'use strict';
-
 // This test loads an individual trigger file and makes validates
 // the format and regex calls made.
 

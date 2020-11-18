@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.AlexanderTheEyesOfTheCreatorSavage,
   timelineFile: 'a9s.txt',

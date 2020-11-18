@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.TheGhimlytDark,
   timelineFile: 'ghimlyt_dark.txt',

@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.EdensVerseFuror,
   timelineFile: 'e6n.txt',

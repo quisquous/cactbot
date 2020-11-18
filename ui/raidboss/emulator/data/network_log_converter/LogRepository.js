@@ -1,5 +1,3 @@
-'use strict';
-
 export default class LogRepository {
   constructor() {
     this.Combatants = {};
