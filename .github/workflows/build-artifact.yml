@@ -74,3 +74,4 @@ jobs:
       with:
         name: cactbot-${{ env.artifact_sha }}
         path: publish/cactbot-release/
+        retention-days: 30
