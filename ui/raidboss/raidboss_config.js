@@ -239,6 +239,8 @@ const kMiscTranslations = {
     en: '(default)',
     de: '(Standard)',
     fr: '(Défaut)',
+    ja: '(初期値)',
+    cn: '(默认值)',
     ko: '(기본값)',
   },
 };
