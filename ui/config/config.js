@@ -534,10 +534,10 @@ export default class CactbotConfigurator {
       let zoneId = undefined;
 
       // Make assumptions about trigger structure here to try to get the zoneId out.
-      if (json && json[0] && json[0].zoneId) {
+      if (json && json[0] && 'zoneId' in json[0]) {
         zoneId = json[0].zoneId;
         // Use the translatable zone info name, if possible.
-        const zoneInfo = zoneId ? ZoneInfo[zoneId] : null;
+        const zoneInfo = ZoneInfo[zoneId];
         if (zoneInfo)
           title = this.translate(zoneInfo.name);
       }
@@ -552,10 +552,42 @@ export default class CactbotConfigurator {
         type: this.translate(kDirectoryToCategory[typeKey]),
         title: title,
         json: json,
+        zoneId: zoneId,
       };
     }
 
-    return map;
+    const sortedEntries = Object.keys(map).sort((keyA, keyB) => {
+      // Sort first by expansion.
+      const entryA = map[keyA];
+      const entryB = map[keyB];
+      const prefixCompare = entryA.prefixKey.localeCompare(entryB.prefixKey);
+      if (prefixCompare !== 0)
+        return prefixCompare;
+
+      // Then sort by contentList.
+      const indexA = contentList.indexOf(entryA.zoneId);
+      const indexB = contentList.indexOf(entryB.zoneId);
+
+      if (indexA === -1 && indexB === -1) {
+        // If we don't know, sort by strings.
+        return keyA.localeCompare(keyB);
+      } else if (indexA === -1) {
+        // Sort B first.
+        return 1;
+      } else if (indexB === -1) {
+        // Sort A first.
+        return -1;
+      }
+      // Default: sort by index in contentList.
+      return indexA - indexB;
+    });
+
+    // Rebuild map with keys in the right order.
+    const sortedMap = {};
+    for (const key of sortedEntries)
+      sortedMap[key] = map[key];
+
+    return sortedMap;
   }
 }
 
