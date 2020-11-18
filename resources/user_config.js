@@ -19,9 +19,9 @@ const ZoneId = _ZoneId;
 
 class UserConfig {
   constructor() {
-    optionTemplates = {};
-    savedConfig = null;
-    userFileCallbacks = {};
+    this.optionTemplates = {};
+    this.savedConfig = null;
+    this.userFileCallbacks = {};
   }
   registerOptions(overlayName, optionTemplates, userFileCallback) {
     this.optionTemplates[overlayName] = optionTemplates;
