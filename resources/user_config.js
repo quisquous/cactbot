@@ -261,17 +261,9 @@ class UserConfig {
     }
     textElem.innerHTML = unlockText[lang] || unlockText['en'];
   }
-
-  static getInstance() {
-    if (!this.instance)
-      this.instance = new UserConfig();
-    return this.instance;
-  }
 }
 
-const userConfig = UserConfig.getInstance();
-
-export default userConfig;
+export default new UserConfig();
 
 // This event comes early and is not cached, so set up event listener immediately.
 document.addEventListener('onOverlayStateUpdate', (e) => {
