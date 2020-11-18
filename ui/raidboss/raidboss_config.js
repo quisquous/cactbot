@@ -17,7 +17,7 @@ import _Conditions from '../../resources/conditions.js';
 const Conditions = _Conditions;
 import _NetRegexes from '../../resources/netregexes.js';
 const NetRegexes = _NetRegexes;
-import { Responses as _Responses } from '../../resources/responses.js';
+import { Responses as _Responses, triggerOutputFunctions } from '../../resources/responses.js';
 const Responses = _Responses;
 import _ZoneId from '../../resources/zone_id.js';
 const ZoneId = _ZoneId;
@@ -621,8 +621,10 @@ class RaidbossConfigurator {
           // Can't use ValueOrFunction here as r returns a non-localizable object.
           // FIXME: this hackily replicates some raidboss logic too.
           let response = r;
-          while (typeof response === 'function')
+          while (typeof response === 'function') {
+            // TODO: check if this has builtInResponseStr first.
             response = response(kFakeData[d], kFakeMatches, trig.output);
+          }
           if (!response)
             continue;
 
