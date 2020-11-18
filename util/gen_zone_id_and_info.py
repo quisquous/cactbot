@@ -46,7 +46,7 @@ synthetic_ids = {
 
 
 def make_territory_map(contents):
-    inputs = ["#", 11, "PlaceName", "Name", "WeatherRate", "Map", "TerritoryIntendedUse"]
+    inputs = ["#", 11, "PlaceName", "Name", "WeatherRate", "Map", "TerritoryIntendedUse", "ExVersion"]
     outputs = [
         "territory_id",
         "cfc_id",
@@ -55,6 +55,7 @@ def make_territory_map(contents):
         "weather_rate",
         "map_id",
         "territory_intended_use",
+        "ex_version",
     ]
     return csv_util.make_map(contents, inputs, outputs)
 
@@ -199,6 +200,7 @@ def generate_zone_info(territory_map, cfc_map, map_map, territory_to_cfc_map, pl
         place_name = place_name_map[place_id]["place_name"]
 
         output["weatherRate"] = int(territory["weather_rate"])
+        output["exVersion"] = int(territory["ex_version"])
 
         cfc_id = territory_to_cfc_map[territory_id]
         if cfc_id == None:

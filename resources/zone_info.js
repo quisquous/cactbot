@@ -3,6 +3,7 @@
 
 export default {
   128: {
+    'exVersion': 0,
     'name': {
       'en': 'Limsa Lominsa Upper Decks',
     },
@@ -12,6 +13,7 @@ export default {
     'weatherRate': 14,
   },
   129: {
+    'exVersion': 0,
     'name': {
       'en': 'Limsa Lominsa Lower Decks',
     },
@@ -21,6 +23,7 @@ export default {
     'weatherRate': 15,
   },
   130: {
+    'exVersion': 0,
     'name': {
       'en': 'Ul\'dah - Steps of Nald',
     },
@@ -30,6 +33,7 @@ export default {
     'weatherRate': 7,
   },
   131: {
+    'exVersion': 0,
     'name': {
       'en': 'Ul\'dah - Steps of Thal',
     },
@@ -39,6 +43,7 @@ export default {
     'weatherRate': 8,
   },
   132: {
+    'exVersion': 0,
     'name': {
       'en': 'New Gridania',
     },
@@ -48,6 +53,7 @@ export default {
     'weatherRate': 1,
   },
   133: {
+    'exVersion': 0,
     'name': {
       'en': 'Old Gridania',
     },
@@ -57,6 +63,7 @@ export default {
     'weatherRate': 2,
   },
   134: {
+    'exVersion': 0,
     'name': {
       'en': 'Middle La Noscea',
     },
@@ -66,6 +73,7 @@ export default {
     'weatherRate': 16,
   },
   135: {
+    'exVersion': 0,
     'name': {
       'en': 'Lower La Noscea',
     },
@@ -75,6 +83,7 @@ export default {
     'weatherRate': 17,
   },
   136: {
+    'exVersion': 0,
     'name': {
       'en': 'Mist',
     },
@@ -84,6 +93,7 @@ export default {
     'weatherRate': 14,
   },
   137: {
+    'exVersion': 0,
     'name': {
       'en': 'Eastern La Noscea',
     },
@@ -93,6 +103,7 @@ export default {
     'weatherRate': 18,
   },
   138: {
+    'exVersion': 0,
     'name': {
       'en': 'Western La Noscea',
     },
@@ -102,6 +113,7 @@ export default {
     'weatherRate': 19,
   },
   139: {
+    'exVersion': 0,
     'name': {
       'en': 'Upper La Noscea',
     },
@@ -111,6 +123,7 @@ export default {
     'weatherRate': 20,
   },
   140: {
+    'exVersion': 0,
     'name': {
       'en': 'Western Thanalan',
     },
@@ -120,6 +133,7 @@ export default {
     'weatherRate': 9,
   },
   141: {
+    'exVersion': 0,
     'name': {
       'en': 'Central Thanalan',
     },
@@ -130,6 +144,7 @@ export default {
   },
   142: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'the Dragon\'s Neck',
     },
@@ -140,6 +155,7 @@ export default {
   },
   143: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'the Steps of Faith',
     },
@@ -149,6 +165,7 @@ export default {
     'weatherRate': 28,
   },
   145: {
+    'exVersion': 0,
     'name': {
       'en': 'Eastern Thanalan',
     },
@@ -158,6 +175,7 @@ export default {
     'weatherRate': 11,
   },
   146: {
+    'exVersion': 0,
     'name': {
       'en': 'Southern Thanalan',
     },
@@ -167,6 +185,7 @@ export default {
     'weatherRate': 12,
   },
   147: {
+    'exVersion': 0,
     'name': {
       'en': 'Northern Thanalan',
     },
@@ -176,6 +195,7 @@ export default {
     'weatherRate': 13,
   },
   148: {
+    'exVersion': 0,
     'name': {
       'en': 'Central Shroud',
     },
@@ -186,6 +206,7 @@ export default {
   },
   150: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'the Keeper of the Lake',
     },
@@ -196,6 +217,7 @@ export default {
   },
   151: {
     'contentType': 5,
+    'exVersion': 0,
     'name': {
       'en': 'the World of Darkness',
     },
@@ -205,6 +227,7 @@ export default {
     'weatherRate': 0,
   },
   152: {
+    'exVersion': 0,
     'name': {
       'en': 'East Shroud',
     },
@@ -214,6 +237,7 @@ export default {
     'weatherRate': 4,
   },
   153: {
+    'exVersion': 0,
     'name': {
       'en': 'South Shroud',
     },
@@ -223,6 +247,7 @@ export default {
     'weatherRate': 5,
   },
   154: {
+    'exVersion': 0,
     'name': {
       'en': 'North Shroud',
     },
@@ -232,6 +257,7 @@ export default {
     'weatherRate': 6,
   },
   155: {
+    'exVersion': 0,
     'name': {
       'en': 'Coerthas Central Highlands',
     },
@@ -241,6 +267,7 @@ export default {
     'weatherRate': 21,
   },
   156: {
+    'exVersion': 0,
     'name': {
       'en': 'Mor Dhona',
     },
@@ -251,6 +278,7 @@ export default {
   },
   157: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'Sastasha',
     },
@@ -261,6 +289,7 @@ export default {
   },
   158: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'Brayflox\'s Longstop',
     },
@@ -271,6 +300,7 @@ export default {
   },
   159: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'the Wanderer\'s Palace',
     },
@@ -281,6 +311,7 @@ export default {
   },
   160: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'Pharos Sirius',
     },
@@ -291,6 +322,7 @@ export default {
   },
   161: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'Copperbell Mines',
     },
@@ -301,6 +333,7 @@ export default {
   },
   162: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'Halatali',
     },
@@ -311,6 +344,7 @@ export default {
   },
   163: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'the Sunken Temple of Qarn',
     },
@@ -321,6 +355,7 @@ export default {
   },
   164: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'the Tam–Tara Deepcroft',
     },
@@ -331,6 +366,7 @@ export default {
   },
   166: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'Haukke Manor',
     },
@@ -341,6 +377,7 @@ export default {
   },
   167: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'Amdapor Keep',
     },
@@ -351,6 +388,7 @@ export default {
   },
   168: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'the Stone Vigil',
     },
@@ -361,6 +399,7 @@ export default {
   },
   169: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'the Thousand Maws of Toto–Rak',
     },
@@ -371,6 +410,7 @@ export default {
   },
   170: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'Cutter\'s Cry',
     },
@@ -381,6 +421,7 @@ export default {
   },
   171: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'Dzemael Darkhold',
     },
@@ -391,6 +432,7 @@ export default {
   },
   172: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'the Aurum Vale',
     },
@@ -401,6 +443,7 @@ export default {
   },
   174: {
     'contentType': 5,
+    'exVersion': 0,
     'name': {
       'en': 'the Labyrinth of the Ancients',
     },
@@ -410,6 +453,7 @@ export default {
     'weatherRate': 0,
   },
   180: {
+    'exVersion': 0,
     'name': {
       'en': 'Outer La Noscea',
     },
@@ -420,6 +464,7 @@ export default {
   },
   188: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'the Wanderer\'s Palace (Hard)',
     },
@@ -430,6 +475,7 @@ export default {
   },
   189: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'Amdapor Keep (Hard)',
     },
@@ -440,6 +486,7 @@ export default {
   },
   190: {
     'contentType': 3,
+    'exVersion': 0,
     'name': {
       'en': 'Under the Armor',
     },
@@ -450,6 +497,7 @@ export default {
   },
   191: {
     'contentType': 3,
+    'exVersion': 0,
     'name': {
       'en': 'Pulling Poison Posies',
     },
@@ -460,6 +508,7 @@ export default {
   },
   192: {
     'contentType': 3,
+    'exVersion': 0,
     'name': {
       'en': 'Stinging Back',
     },
@@ -470,6 +519,7 @@ export default {
   },
   193: {
     'contentType': 5,
+    'exVersion': 0,
     'name': {
       'en': 'the Final Coil of Bahamut - Turn 1',
     },
@@ -480,6 +530,7 @@ export default {
   },
   194: {
     'contentType': 5,
+    'exVersion': 0,
     'name': {
       'en': 'the Final Coil of Bahamut - Turn 2',
     },
@@ -490,6 +541,7 @@ export default {
   },
   195: {
     'contentType': 5,
+    'exVersion': 0,
     'name': {
       'en': 'the Final Coil of Bahamut - Turn 3',
     },
@@ -500,6 +552,7 @@ export default {
   },
   196: {
     'contentType': 5,
+    'exVersion': 0,
     'name': {
       'en': 'the Final Coil of Bahamut - Turn 4',
     },
@@ -510,6 +563,7 @@ export default {
   },
   202: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'the Bowl of Embers',
     },
@@ -520,6 +574,7 @@ export default {
   },
   206: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'the Navel',
     },
@@ -530,6 +585,7 @@ export default {
   },
   207: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'Thornmarch (Hard)',
     },
@@ -540,6 +596,7 @@ export default {
   },
   208: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'the Howling Eye',
     },
@@ -550,6 +607,7 @@ export default {
   },
   214: {
     'contentType': 3,
+    'exVersion': 0,
     'name': {
       'en': 'Basic Training: Enemy Parties',
     },
@@ -560,6 +618,7 @@ export default {
   },
   215: {
     'contentType': 3,
+    'exVersion': 0,
     'name': {
       'en': 'Basic Training: Enemy Strongholds',
     },
@@ -570,6 +629,7 @@ export default {
   },
   216: {
     'contentType': 3,
+    'exVersion': 0,
     'name': {
       'en': 'Hero on the Half Shell',
     },
@@ -580,6 +640,7 @@ export default {
   },
   217: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'Castrum Meridianum',
     },
@@ -590,6 +651,7 @@ export default {
   },
   219: {
     'contentType': 3,
+    'exVersion': 0,
     'name': {
       'en': 'Flicking Sticks and Taking Names',
     },
@@ -600,6 +662,7 @@ export default {
   },
   220: {
     'contentType': 3,
+    'exVersion': 0,
     'name': {
       'en': 'All\'s Well that Ends in the Well',
     },
@@ -610,6 +673,7 @@ export default {
   },
   221: {
     'contentType': 3,
+    'exVersion': 0,
     'name': {
       'en': 'More than a Feeler',
     },
@@ -620,6 +684,7 @@ export default {
   },
   222: {
     'contentType': 3,
+    'exVersion': 0,
     'name': {
       'en': 'Annoy the Void',
     },
@@ -630,6 +695,7 @@ export default {
   },
   223: {
     'contentType': 3,
+    'exVersion': 0,
     'name': {
       'en': 'Shadow and Claw',
     },
@@ -640,6 +706,7 @@ export default {
   },
   224: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'the Praetorium',
     },
@@ -650,6 +717,7 @@ export default {
   },
   241: {
     'contentType': 5,
+    'exVersion': 0,
     'name': {
       'en': 'the Binding Coil of Bahamut - Turn 1',
     },
@@ -660,6 +728,7 @@ export default {
   },
   242: {
     'contentType': 5,
+    'exVersion': 0,
     'name': {
       'en': 'the Binding Coil of Bahamut - Turn 2',
     },
@@ -670,6 +739,7 @@ export default {
   },
   243: {
     'contentType': 5,
+    'exVersion': 0,
     'name': {
       'en': 'the Binding Coil of Bahamut - Turn 3',
     },
@@ -680,6 +750,7 @@ export default {
   },
   244: {
     'contentType': 5,
+    'exVersion': 0,
     'name': {
       'en': 'the Binding Coil of Bahamut - Turn 4',
     },
@@ -690,6 +761,7 @@ export default {
   },
   245: {
     'contentType': 5,
+    'exVersion': 0,
     'name': {
       'en': 'the Binding Coil of Bahamut - Turn 5',
     },
@@ -699,6 +771,7 @@ export default {
     'weatherRate': 0,
   },
   250: {
+    'exVersion': 0,
     'name': {
       'en': 'Wolves\' Den Pier',
     },
@@ -709,6 +782,7 @@ export default {
   },
   281: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'the <Emphasis>Whorleater</Emphasis> (Hard)',
     },
@@ -719,6 +793,7 @@ export default {
   },
   292: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'the Bowl of Embers (Hard)',
     },
@@ -729,6 +804,7 @@ export default {
   },
   293: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'the Navel (Hard)',
     },
@@ -739,6 +815,7 @@ export default {
   },
   294: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'the Howling Eye (Hard)',
     },
@@ -749,6 +826,7 @@ export default {
   },
   295: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'the Bowl of Embers (Extreme)',
     },
@@ -759,6 +837,7 @@ export default {
   },
   296: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'the Navel (Extreme)',
     },
@@ -769,6 +848,7 @@ export default {
   },
   297: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'the Howling Eye (Extreme)',
     },
@@ -779,6 +859,7 @@ export default {
   },
   298: {
     'contentType': 3,
+    'exVersion': 0,
     'name': {
       'en': 'Long Live the Queen',
     },
@@ -789,6 +870,7 @@ export default {
   },
   299: {
     'contentType': 3,
+    'exVersion': 0,
     'name': {
       'en': 'Ward Up',
     },
@@ -799,6 +881,7 @@ export default {
   },
   300: {
     'contentType': 3,
+    'exVersion': 0,
     'name': {
       'en': 'Solemn Trinity',
     },
@@ -809,6 +892,7 @@ export default {
   },
   332: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'Cape Westwind',
     },
@@ -819,6 +903,7 @@ export default {
   },
   348: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'the Minstrel\'s Ballad: Ultima\'s Bane',
     },
@@ -829,6 +914,7 @@ export default {
   },
   349: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'Copperbell Mines (Hard)',
     },
@@ -839,6 +925,7 @@ export default {
   },
   350: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'Haukke Manor (Hard)',
     },
@@ -849,6 +936,7 @@ export default {
   },
   353: {
     'contentType': 4,
+    'exVersion': 2,
     'name': {
       'en': 'Special Event I',
     },
@@ -859,6 +947,7 @@ export default {
   },
   354: {
     'contentType': 4,
+    'exVersion': 3,
     'name': {
       'en': 'Special Event II',
     },
@@ -869,6 +958,7 @@ export default {
   },
   355: {
     'contentType': 5,
+    'exVersion': 0,
     'name': {
       'en': 'the Second Coil of Bahamut - Turn 1',
     },
@@ -879,6 +969,7 @@ export default {
   },
   356: {
     'contentType': 5,
+    'exVersion': 0,
     'name': {
       'en': 'the Second Coil of Bahamut - Turn 2',
     },
@@ -889,6 +980,7 @@ export default {
   },
   357: {
     'contentType': 5,
+    'exVersion': 0,
     'name': {
       'en': 'the Second Coil of Bahamut - Turn 3',
     },
@@ -899,6 +991,7 @@ export default {
   },
   358: {
     'contentType': 5,
+    'exVersion': 0,
     'name': {
       'en': 'the Second Coil of Bahamut - Turn 4',
     },
@@ -909,6 +1002,7 @@ export default {
   },
   359: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'the <Emphasis>Whorleater</Emphasis> (Extreme)',
     },
@@ -919,6 +1013,7 @@ export default {
   },
   360: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'Halatali (Hard)',
     },
@@ -929,6 +1024,7 @@ export default {
   },
   361: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'Hullbreaker Isle',
     },
@@ -939,6 +1035,7 @@ export default {
   },
   362: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'Brayflox\'s Longstop (Hard)',
     },
@@ -949,6 +1046,7 @@ export default {
   },
   363: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'the Lost City of Amdapor',
     },
@@ -959,6 +1057,7 @@ export default {
   },
   364: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'Thornmarch (Extreme)',
     },
@@ -969,6 +1068,7 @@ export default {
   },
   365: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'the Stone Vigil (Hard)',
     },
@@ -979,6 +1079,7 @@ export default {
   },
   366: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'Battle on the Big Bridge',
     },
@@ -989,6 +1090,7 @@ export default {
   },
   367: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'the Sunken Temple of Qarn (Hard)',
     },
@@ -999,6 +1101,7 @@ export default {
   },
   368: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'A Relic Reborn: the Chimera',
     },
@@ -1009,6 +1112,7 @@ export default {
   },
   369: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'A Relic Reborn: the Hydra',
     },
@@ -1019,6 +1123,7 @@ export default {
   },
   371: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'Snowcloak',
     },
@@ -1029,6 +1134,7 @@ export default {
   },
   372: {
     'contentType': 5,
+    'exVersion': 0,
     'name': {
       'en': 'Syrcus Tower',
     },
@@ -1039,6 +1145,7 @@ export default {
   },
   373: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'the Tam–Tara Deepcroft (Hard)',
     },
@@ -1049,6 +1156,7 @@ export default {
   },
   374: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'the Striking Tree (Hard)',
     },
@@ -1059,6 +1167,7 @@ export default {
   },
   375: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'the Striking Tree (Extreme)',
     },
@@ -1069,6 +1178,7 @@ export default {
   },
   376: {
     'contentType': 6,
+    'exVersion': 0,
     'name': {
       'en': 'the Borderland Ruins (Secure)',
     },
@@ -1079,6 +1189,7 @@ export default {
   },
   377: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'Akh Afah Amphitheatre (Hard)',
     },
@@ -1089,6 +1200,7 @@ export default {
   },
   378: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'Akh Afah Amphitheatre (Extreme)',
     },
@@ -1099,6 +1211,7 @@ export default {
   },
   380: {
     'contentType': 5,
+    'exVersion': 0,
     'name': {
       'en': 'the Second Coil of Bahamut (Savage) - Turn 1',
     },
@@ -1109,6 +1222,7 @@ export default {
   },
   381: {
     'contentType': 5,
+    'exVersion': 0,
     'name': {
       'en': 'the Second Coil of Bahamut (Savage) - Turn 2',
     },
@@ -1119,6 +1233,7 @@ export default {
   },
   382: {
     'contentType': 5,
+    'exVersion': 0,
     'name': {
       'en': 'the Second Coil of Bahamut (Savage) - Turn 3',
     },
@@ -1129,6 +1244,7 @@ export default {
   },
   383: {
     'contentType': 5,
+    'exVersion': 0,
     'name': {
       'en': 'the Second Coil of Bahamut (Savage) - Turn 4',
     },
@@ -1139,6 +1255,7 @@ export default {
   },
   387: {
     'contentType': 2,
+    'exVersion': 0,
     'name': {
       'en': 'Sastasha (Hard)',
     },
@@ -1149,6 +1266,7 @@ export default {
   },
   389: {
     'contentType': 19,
+    'exVersion': 0,
     'name': {
       'en': 'Chocobo Race: Costa del Sol',
     },
@@ -1159,6 +1277,7 @@ export default {
   },
   390: {
     'contentType': 19,
+    'exVersion': 0,
     'name': {
       'en': 'Chocobo Race: Sagolii Road',
     },
@@ -1169,6 +1288,7 @@ export default {
   },
   391: {
     'contentType': 19,
+    'exVersion': 0,
     'name': {
       'en': 'Chocobo Race: Tranquil Paths',
     },
@@ -1179,6 +1299,7 @@ export default {
   },
   394: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'Urth\'s Fount',
     },
@@ -1189,6 +1310,7 @@ export default {
   },
   396: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'Battle in the Big Keep',
     },
@@ -1198,6 +1320,7 @@ export default {
     'weatherRate': 28,
   },
   397: {
+    'exVersion': 1,
     'name': {
       'en': 'Coerthas Western Highlands',
     },
@@ -1207,6 +1330,7 @@ export default {
     'weatherRate': 49,
   },
   398: {
+    'exVersion': 1,
     'name': {
       'en': 'The Dravanian Forelands',
     },
@@ -1216,6 +1340,7 @@ export default {
     'weatherRate': 50,
   },
   399: {
+    'exVersion': 1,
     'name': {
       'en': 'The Dravanian Hinterlands',
     },
@@ -1225,6 +1350,7 @@ export default {
     'weatherRate': 51,
   },
   400: {
+    'exVersion': 1,
     'name': {
       'en': 'The Churning Mists',
     },
@@ -1234,6 +1360,7 @@ export default {
     'weatherRate': 52,
   },
   401: {
+    'exVersion': 1,
     'name': {
       'en': 'The Sea of Clouds',
     },
@@ -1243,6 +1370,7 @@ export default {
     'weatherRate': 53,
   },
   402: {
+    'exVersion': 1,
     'name': {
       'en': 'Azys Lla',
     },
@@ -1253,6 +1381,7 @@ export default {
   },
   403: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'Return of the Bull',
     },
@@ -1263,6 +1392,7 @@ export default {
   },
   416: {
     'contentType': 2,
+    'exVersion': 1,
     'name': {
       'en': 'the Great Gubal Library',
     },
@@ -1273,6 +1403,7 @@ export default {
   },
   417: {
     'contentType': 19,
+    'exVersion': 0,
     'name': {
       'en': 'Chocobo Race: Tutorial',
     },
@@ -1282,6 +1413,7 @@ export default {
     'weatherRate': 0,
   },
   418: {
+    'exVersion': 1,
     'name': {
       'en': 'Foundation',
     },
@@ -1291,6 +1423,7 @@ export default {
     'weatherRate': 47,
   },
   419: {
+    'exVersion': 1,
     'name': {
       'en': 'The Pillars',
     },
@@ -1301,6 +1434,7 @@ export default {
   },
   420: {
     'contentType': 2,
+    'exVersion': 1,
     'name': {
       'en': 'Neverreap',
     },
@@ -1311,6 +1445,7 @@ export default {
   },
   421: {
     'contentType': 2,
+    'exVersion': 1,
     'name': {
       'en': 'the Vault',
     },
@@ -1321,6 +1456,7 @@ export default {
   },
   426: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'the Chrysalis',
     },
@@ -1331,6 +1467,7 @@ export default {
   },
   430: {
     'contentType': 2,
+    'exVersion': 1,
     'name': {
       'en': 'the Fractal Continuum',
     },
@@ -1341,6 +1478,7 @@ export default {
   },
   431: {
     'contentType': 6,
+    'exVersion': 0,
     'name': {
       'en': 'Seal Rock (Seize)',
     },
@@ -1351,6 +1489,7 @@ export default {
   },
   432: {
     'contentType': 4,
+    'exVersion': 1,
     'name': {
       'en': 'Thok ast Thok (Hard)',
     },
@@ -1361,6 +1500,7 @@ export default {
   },
   434: {
     'contentType': 2,
+    'exVersion': 1,
     'name': {
       'en': 'the Dusk Vigil',
     },
@@ -1371,6 +1511,7 @@ export default {
   },
   435: {
     'contentType': 2,
+    'exVersion': 1,
     'name': {
       'en': 'the Aery',
     },
@@ -1381,6 +1522,7 @@ export default {
   },
   436: {
     'contentType': 4,
+    'exVersion': 1,
     'name': {
       'en': 'the Limitless Blue (Hard)',
     },
@@ -1391,6 +1533,7 @@ export default {
   },
   437: {
     'contentType': 4,
+    'exVersion': 1,
     'name': {
       'en': 'the Singularity Reactor',
     },
@@ -1401,6 +1544,7 @@ export default {
   },
   438: {
     'contentType': 2,
+    'exVersion': 1,
     'name': {
       'en': 'the Aetherochemical Research Facility',
     },
@@ -1411,6 +1555,7 @@ export default {
   },
   441: {
     'contentType': 2,
+    'exVersion': 1,
     'name': {
       'en': 'Sohm Al',
     },
@@ -1421,6 +1566,7 @@ export default {
   },
   442: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Fist of the Father',
     },
@@ -1431,6 +1577,7 @@ export default {
   },
   443: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Cuff of the Father',
     },
@@ -1441,6 +1588,7 @@ export default {
   },
   444: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Arm of the Father',
     },
@@ -1451,6 +1599,7 @@ export default {
   },
   445: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Burden of the Father',
     },
@@ -1461,6 +1610,7 @@ export default {
   },
   446: {
     'contentType': 4,
+    'exVersion': 1,
     'name': {
       'en': 'Thok ast Thok (Extreme)',
     },
@@ -1471,6 +1621,7 @@ export default {
   },
   447: {
     'contentType': 4,
+    'exVersion': 1,
     'name': {
       'en': 'the Limitless Blue (Extreme)',
     },
@@ -1481,6 +1632,7 @@ export default {
   },
   448: {
     'contentType': 4,
+    'exVersion': 1,
     'name': {
       'en': 'the Minstrel\'s Ballad: Thordan\'s Reign',
     },
@@ -1491,6 +1643,7 @@ export default {
   },
   449: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Fist of the Father (Savage)',
     },
@@ -1501,6 +1654,7 @@ export default {
   },
   450: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Cuff of the Father (Savage)',
     },
@@ -1511,6 +1665,7 @@ export default {
   },
   451: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Arm of the Father (Savage)',
     },
@@ -1521,6 +1676,7 @@ export default {
   },
   452: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Burden of the Father (Savage)',
     },
@@ -1530,6 +1686,7 @@ export default {
     'weatherRate': 0,
   },
   478: {
+    'exVersion': 1,
     'name': {
       'en': 'Idyllshire',
     },
@@ -1540,6 +1697,7 @@ export default {
   },
   506: {
     'contentType': 19,
+    'exVersion': 0,
     'name': {
       'en': 'LoVM: Master Tournament',
     },
@@ -1550,6 +1708,7 @@ export default {
   },
   508: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'the Void Ark',
     },
@@ -1560,6 +1719,7 @@ export default {
   },
   509: {
     'contentType': 4,
+    'exVersion': 0,
     'name': {
       'en': 'Special Event III',
     },
@@ -1570,6 +1730,7 @@ export default {
   },
   510: {
     'contentType': 2,
+    'exVersion': 1,
     'name': {
       'en': 'Pharos Sirius (Hard)',
     },
@@ -1580,6 +1741,7 @@ export default {
   },
   511: {
     'contentType': 2,
+    'exVersion': 1,
     'name': {
       'en': 'Saint Mocianne\'s Arboretum',
     },
@@ -1590,6 +1752,7 @@ export default {
   },
   512: {
     'contentType': 23,
+    'exVersion': 1,
     'name': {
       'en': 'the Diadem (Easy)',
     },
@@ -1600,6 +1763,7 @@ export default {
   },
   514: {
     'contentType': 23,
+    'exVersion': 1,
     'name': {
       'en': 'the Diadem',
     },
@@ -1610,6 +1774,7 @@ export default {
   },
   515: {
     'contentType': 23,
+    'exVersion': 1,
     'name': {
       'en': 'the Diadem (Hard)',
     },
@@ -1620,6 +1785,7 @@ export default {
   },
   516: {
     'contentType': 2,
+    'exVersion': 1,
     'name': {
       'en': 'the Antitower',
     },
@@ -1630,6 +1796,7 @@ export default {
   },
   517: {
     'contentType': 4,
+    'exVersion': 1,
     'name': {
       'en': 'Containment Bay S1T7',
     },
@@ -1640,6 +1807,7 @@ export default {
   },
   519: {
     'contentType': 2,
+    'exVersion': 1,
     'name': {
       'en': 'the Lost City of Amdapor (Hard)',
     },
@@ -1650,6 +1818,7 @@ export default {
   },
   520: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Fist of the Son',
     },
@@ -1660,6 +1829,7 @@ export default {
   },
   521: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Cuff of the Son',
     },
@@ -1670,6 +1840,7 @@ export default {
   },
   522: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Arm of the Son',
     },
@@ -1680,6 +1851,7 @@ export default {
   },
   523: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Burden of the Son',
     },
@@ -1690,6 +1862,7 @@ export default {
   },
   524: {
     'contentType': 4,
+    'exVersion': 1,
     'name': {
       'en': 'Containment Bay S1T7 (Extreme)',
     },
@@ -1700,6 +1873,7 @@ export default {
   },
   525: {
     'contentType': 6,
+    'exVersion': 0,
     'name': {
       'en': 'the Feast (4 on 4 - Training)',
     },
@@ -1710,6 +1884,7 @@ export default {
   },
   527: {
     'contentType': 6,
+    'exVersion': 0,
     'name': {
       'en': 'the Feast (4 on 4 - Ranked)',
     },
@@ -1720,6 +1895,7 @@ export default {
   },
   529: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Fist of the Son (Savage)',
     },
@@ -1730,6 +1906,7 @@ export default {
   },
   530: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Cuff of the Son (Savage)',
     },
@@ -1740,6 +1917,7 @@ export default {
   },
   531: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Arm of the Son (Savage)',
     },
@@ -1750,6 +1928,7 @@ export default {
   },
   532: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Burden of the Son (Savage)',
     },
@@ -1760,6 +1939,7 @@ export default {
   },
   533: {
     'contentType': 7,
+    'exVersion': 1,
     'name': {
       'en': 'a Spectacle for the Ages',
     },
@@ -1770,6 +1950,7 @@ export default {
   },
   537: {
     'contentType': 20,
+    'exVersion': 0,
     'name': {
       'en': 'Avoid Area of Effect Attacks',
     },
@@ -1780,6 +1961,7 @@ export default {
   },
   538: {
     'contentType': 20,
+    'exVersion': 0,
     'name': {
       'en': 'Execute a Combo to Increase Enmity',
     },
@@ -1790,6 +1972,7 @@ export default {
   },
   539: {
     'contentType': 20,
+    'exVersion': 0,
     'name': {
       'en': 'Execute a Combo in Battle',
     },
@@ -1800,6 +1983,7 @@ export default {
   },
   540: {
     'contentType': 20,
+    'exVersion': 0,
     'name': {
       'en': 'Accrue Enmity from Multiple Targets',
     },
@@ -1810,6 +1994,7 @@ export default {
   },
   541: {
     'contentType': 20,
+    'exVersion': 0,
     'name': {
       'en': 'Engage Multiple Targets',
     },
@@ -1820,6 +2005,7 @@ export default {
   },
   542: {
     'contentType': 20,
+    'exVersion': 0,
     'name': {
       'en': 'Execute a Ranged Attack to Increase Enmity',
     },
@@ -1830,6 +2016,7 @@ export default {
   },
   543: {
     'contentType': 20,
+    'exVersion': 0,
     'name': {
       'en': 'Engage Enemy Reinforcements',
     },
@@ -1840,6 +2027,7 @@ export default {
   },
   544: {
     'contentType': 20,
+    'exVersion': 0,
     'name': {
       'en': 'Assist Allies in Defeating a Target',
     },
@@ -1850,6 +2038,7 @@ export default {
   },
   545: {
     'contentType': 20,
+    'exVersion': 0,
     'name': {
       'en': 'Defeat an Occupied Target',
     },
@@ -1860,6 +2049,7 @@ export default {
   },
   546: {
     'contentType': 20,
+    'exVersion': 0,
     'name': {
       'en': 'Avoid Engaged Targets',
     },
@@ -1870,6 +2060,7 @@ export default {
   },
   548: {
     'contentType': 20,
+    'exVersion': 0,
     'name': {
       'en': 'Interact with the Battlefield',
     },
@@ -1880,6 +2071,7 @@ export default {
   },
   549: {
     'contentType': 20,
+    'exVersion': 0,
     'name': {
       'en': 'Heal an Ally',
     },
@@ -1890,6 +2082,7 @@ export default {
   },
   550: {
     'contentType': 20,
+    'exVersion': 0,
     'name': {
       'en': 'Heal Multiple Allies',
     },
@@ -1900,6 +2093,7 @@ export default {
   },
   552: {
     'contentType': 20,
+    'exVersion': 0,
     'name': {
       'en': 'Final Exercise',
     },
@@ -1910,6 +2104,7 @@ export default {
   },
   554: {
     'contentType': 6,
+    'exVersion': 0,
     'name': {
       'en': 'the Fields of Glory (Shatter)',
     },
@@ -1920,6 +2115,7 @@ export default {
   },
   555: {
     'contentType': 2,
+    'exVersion': 1,
     'name': {
       'en': 'Sohr Khai',
     },
@@ -1930,6 +2126,7 @@ export default {
   },
   556: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'the Weeping City of Mhach',
     },
@@ -1940,6 +2137,7 @@ export default {
   },
   557: {
     'contentType': 2,
+    'exVersion': 1,
     'name': {
       'en': 'Hullbreaker Isle (Hard)',
     },
@@ -1950,6 +2148,7 @@ export default {
   },
   558: {
     'contentType': 9,
+    'exVersion': 0,
     'name': {
       'en': 'the Aquapolis',
     },
@@ -1960,6 +2159,7 @@ export default {
   },
   559: {
     'contentType': 4,
+    'exVersion': 1,
     'name': {
       'en': 'the Final Steps of Faith',
     },
@@ -1970,6 +2170,7 @@ export default {
   },
   560: {
     'contentType': 7,
+    'exVersion': 1,
     'name': {
       'en': 'a Bloody Reunion',
     },
@@ -1980,6 +2181,7 @@ export default {
   },
   561: {
     'contentType': 21,
+    'exVersion': 0,
     'name': {
       'en': 'the Palace of the Dead (Floors 1-10)',
     },
@@ -1990,6 +2192,7 @@ export default {
   },
   562: {
     'contentType': 21,
+    'exVersion': 0,
     'name': {
       'en': 'the Palace of the Dead (Floors 11-20)',
     },
@@ -2000,6 +2203,7 @@ export default {
   },
   563: {
     'contentType': 21,
+    'exVersion': 0,
     'name': {
       'en': 'the Palace of the Dead (Floors 21-30)',
     },
@@ -2010,6 +2214,7 @@ export default {
   },
   564: {
     'contentType': 21,
+    'exVersion': 0,
     'name': {
       'en': 'the Palace of the Dead (Floors 31-40)',
     },
@@ -2020,6 +2225,7 @@ export default {
   },
   565: {
     'contentType': 21,
+    'exVersion': 1,
     'name': {
       'en': 'the Palace of the Dead (Floors 41-50)',
     },
@@ -2030,6 +2236,7 @@ export default {
   },
   566: {
     'contentType': 4,
+    'exVersion': 1,
     'name': {
       'en': 'the Minstrel\'s Ballad: Nidhogg\'s Rage',
     },
@@ -2040,6 +2247,7 @@ export default {
   },
   571: {
     'contentType': 22,
+    'exVersion': 0,
     'name': {
       'en': 'the Haunted Manor',
     },
@@ -2050,6 +2258,7 @@ export default {
   },
   572: {
     'contentType': 2,
+    'exVersion': 1,
     'name': {
       'en': 'Xelphatol',
     },
@@ -2060,6 +2269,7 @@ export default {
   },
   576: {
     'contentType': 4,
+    'exVersion': 1,
     'name': {
       'en': 'Containment Bay P1T6',
     },
@@ -2070,6 +2280,7 @@ export default {
   },
   577: {
     'contentType': 4,
+    'exVersion': 1,
     'name': {
       'en': 'Containment Bay P1T6 (Extreme)',
     },
@@ -2080,6 +2291,7 @@ export default {
   },
   578: {
     'contentType': 2,
+    'exVersion': 1,
     'name': {
       'en': 'the Great Gubal Library (Hard)',
     },
@@ -2090,6 +2302,7 @@ export default {
   },
   579: {
     'contentType': 19,
+    'exVersion': 0,
     'name': {
       'en': 'the Triple Triad Battlehall',
     },
@@ -2100,6 +2313,7 @@ export default {
   },
   580: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Eyes of the Creator',
     },
@@ -2110,6 +2324,7 @@ export default {
   },
   581: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Breath of the Creator',
     },
@@ -2120,6 +2335,7 @@ export default {
   },
   582: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Heart of the Creator',
     },
@@ -2130,6 +2346,7 @@ export default {
   },
   583: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Soul of the Creator',
     },
@@ -2140,6 +2357,7 @@ export default {
   },
   584: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Eyes of the Creator (Savage)',
     },
@@ -2150,6 +2368,7 @@ export default {
   },
   585: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Breath of the Creator (Savage)',
     },
@@ -2160,6 +2379,7 @@ export default {
   },
   586: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Heart of the Creator (Savage)',
     },
@@ -2170,6 +2390,7 @@ export default {
   },
   587: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Alexander - The Soul of the Creator (Savage)',
     },
@@ -2180,6 +2401,7 @@ export default {
   },
   589: {
     'contentType': 19,
+    'exVersion': 0,
     'name': {
       'en': 'LoVM: Player Battle (RP)',
     },
@@ -2190,6 +2412,7 @@ export default {
   },
   590: {
     'contentType': 19,
+    'exVersion': 0,
     'name': {
       'en': 'LoVM: Tournament',
     },
@@ -2200,6 +2423,7 @@ export default {
   },
   591: {
     'contentType': 19,
+    'exVersion': 0,
     'name': {
       'en': 'LoVM: Player Battle (Non-RP)',
     },
@@ -2210,6 +2434,7 @@ export default {
   },
   592: {
     'contentType': 7,
+    'exVersion': 1,
     'name': {
       'en': 'One Life for One World',
     },
@@ -2220,6 +2445,7 @@ export default {
   },
   593: {
     'contentType': 21,
+    'exVersion': 1,
     'name': {
       'en': 'the Palace of the Dead (Floors 51-60)',
     },
@@ -2230,6 +2456,7 @@ export default {
   },
   594: {
     'contentType': 21,
+    'exVersion': 1,
     'name': {
       'en': 'the Palace of the Dead (Floors 61-70)',
     },
@@ -2240,6 +2467,7 @@ export default {
   },
   595: {
     'contentType': 21,
+    'exVersion': 1,
     'name': {
       'en': 'the Palace of the Dead (Floors 71-80)',
     },
@@ -2250,6 +2478,7 @@ export default {
   },
   596: {
     'contentType': 21,
+    'exVersion': 1,
     'name': {
       'en': 'the Palace of the Dead (Floors 81-90)',
     },
@@ -2260,6 +2489,7 @@ export default {
   },
   597: {
     'contentType': 21,
+    'exVersion': 1,
     'name': {
       'en': 'the Palace of the Dead (Floors 91-100)',
     },
@@ -2270,6 +2500,7 @@ export default {
   },
   598: {
     'contentType': 21,
+    'exVersion': 1,
     'name': {
       'en': 'the Palace of the Dead (Floors 101-110)',
     },
@@ -2280,6 +2511,7 @@ export default {
   },
   599: {
     'contentType': 21,
+    'exVersion': 1,
     'name': {
       'en': 'the Palace of the Dead (Floors 111-120)',
     },
@@ -2290,6 +2522,7 @@ export default {
   },
   600: {
     'contentType': 21,
+    'exVersion': 1,
     'name': {
       'en': 'the Palace of the Dead (Floors 121-130)',
     },
@@ -2300,6 +2533,7 @@ export default {
   },
   601: {
     'contentType': 21,
+    'exVersion': 1,
     'name': {
       'en': 'the Palace of the Dead (Floors 131-140)',
     },
@@ -2310,6 +2544,7 @@ export default {
   },
   602: {
     'contentType': 21,
+    'exVersion': 1,
     'name': {
       'en': 'the Palace of the Dead (Floors 141-150)',
     },
@@ -2320,6 +2555,7 @@ export default {
   },
   603: {
     'contentType': 21,
+    'exVersion': 1,
     'name': {
       'en': 'the Palace of the Dead (Floors 151-160)',
     },
@@ -2330,6 +2566,7 @@ export default {
   },
   604: {
     'contentType': 21,
+    'exVersion': 1,
     'name': {
       'en': 'the Palace of the Dead (Floors 161-170)',
     },
@@ -2340,6 +2577,7 @@ export default {
   },
   605: {
     'contentType': 21,
+    'exVersion': 1,
     'name': {
       'en': 'the Palace of the Dead (Floors 171-180)',
     },
@@ -2350,6 +2588,7 @@ export default {
   },
   606: {
     'contentType': 21,
+    'exVersion': 1,
     'name': {
       'en': 'the Palace of the Dead (Floors 181-190)',
     },
@@ -2360,6 +2599,7 @@ export default {
   },
   607: {
     'contentType': 21,
+    'exVersion': 1,
     'name': {
       'en': 'the Palace of the Dead (Floors 191-200)',
     },
@@ -2369,6 +2609,7 @@ export default {
     'weatherRate': 0,
   },
   612: {
+    'exVersion': 2,
     'name': {
       'en': 'The Fringes',
     },
@@ -2378,6 +2619,7 @@ export default {
     'weatherRate': 79,
   },
   613: {
+    'exVersion': 2,
     'name': {
       'en': 'The Ruby Sea',
     },
@@ -2387,6 +2629,7 @@ export default {
     'weatherRate': 83,
   },
   614: {
+    'exVersion': 2,
     'name': {
       'en': 'Yanxia',
     },
@@ -2397,6 +2640,7 @@ export default {
   },
   615: {
     'contentType': 2,
+    'exVersion': 1,
     'name': {
       'en': 'Baelsar\'s Wall',
     },
@@ -2407,6 +2651,7 @@ export default {
   },
   616: {
     'contentType': 2,
+    'exVersion': 2,
     'name': {
       'en': 'Shisui of the Violet Tides',
     },
@@ -2417,6 +2662,7 @@ export default {
   },
   617: {
     'contentType': 2,
+    'exVersion': 1,
     'name': {
       'en': 'Sohm Al (Hard)',
     },
@@ -2427,6 +2673,7 @@ export default {
   },
   619: {
     'contentType': 6,
+    'exVersion': 0,
     'name': {
       'en': 'the Feast (Custom Match - Feasting Grounds)',
     },
@@ -2436,6 +2683,7 @@ export default {
     'weatherRate': 65,
   },
   620: {
+    'exVersion': 2,
     'name': {
       'en': 'The Peaks',
     },
@@ -2445,6 +2693,7 @@ export default {
     'weatherRate': 80,
   },
   621: {
+    'exVersion': 2,
     'name': {
       'en': 'The Lochs',
     },
@@ -2454,6 +2703,7 @@ export default {
     'weatherRate': 81,
   },
   622: {
+    'exVersion': 2,
     'name': {
       'en': 'The Azim Steppe',
     },
@@ -2464,6 +2714,7 @@ export default {
   },
   623: {
     'contentType': 2,
+    'exVersion': 2,
     'name': {
       'en': 'Bardam\'s Mettle',
     },
@@ -2474,6 +2725,7 @@ export default {
   },
   624: {
     'contentType': 23,
+    'exVersion': 1,
     'name': {
       'en': 'the Diadem Hunting Grounds (Easy)',
     },
@@ -2484,6 +2736,7 @@ export default {
   },
   625: {
     'contentType': 23,
+    'exVersion': 1,
     'name': {
       'en': 'the Diadem Hunting Grounds',
     },
@@ -2494,6 +2747,7 @@ export default {
   },
   626: {
     'contentType': 2,
+    'exVersion': 2,
     'name': {
       'en': 'The Sirensong Sea',
     },
@@ -2504,6 +2758,7 @@ export default {
   },
   627: {
     'contentType': 5,
+    'exVersion': 1,
     'name': {
       'en': 'Dun Scaith',
     },
@@ -2513,6 +2768,7 @@ export default {
     'weatherRate': 58,
   },
   628: {
+    'exVersion': 2,
     'name': {
       'en': 'Kugane',
     },
@@ -2523,6 +2779,7 @@ export default {
   },
   630: {
     'contentType': 23,
+    'exVersion': 1,
     'name': {
       'en': 'the Diadem - Trials of the Fury',
     },
@@ -2533,6 +2790,7 @@ export default {
   },
   633: {
     'contentType': 7,
+    'exVersion': 1,
     'name': {
       'en': 'The Carteneau Flats: Heliodrome',
     },
@@ -2542,6 +2800,7 @@ export default {
     'weatherRate': 0,
   },
   635: {
+    'exVersion': 2,
     'name': {
       'en': 'Rhalgr\'s Reach',
     },
@@ -2552,6 +2811,7 @@ export default {
   },
   637: {
     'contentType': 4,
+    'exVersion': 1,
     'name': {
       'en': 'Containment Bay Z1T9',
     },
@@ -2562,6 +2822,7 @@ export default {
   },
   638: {
     'contentType': 4,
+    'exVersion': 1,
     'name': {
       'en': 'Containment Bay Z1T9 (Extreme)',
     },
@@ -2572,6 +2833,7 @@ export default {
   },
   646: {
     'contentType': 6,
+    'exVersion': 0,
     'name': {
       'en': 'the Feast (Custom Match - Lichenweed)',
     },
@@ -2582,6 +2844,7 @@ export default {
   },
   656: {
     'contentType': 23,
+    'exVersion': 1,
     'name': {
       'en': 'the Diadem - Trials of the Matron',
     },
@@ -2592,6 +2855,7 @@ export default {
   },
   660: {
     'contentType': 2,
+    'exVersion': 2,
     'name': {
       'en': 'Doma Castle',
     },
@@ -2602,6 +2866,7 @@ export default {
   },
   661: {
     'contentType': 2,
+    'exVersion': 2,
     'name': {
       'en': 'Castrum Abania',
     },
@@ -2612,6 +2877,7 @@ export default {
   },
   662: {
     'contentType': 2,
+    'exVersion': 2,
     'name': {
       'en': 'Kugane Castle',
     },
@@ -2622,6 +2888,7 @@ export default {
   },
   663: {
     'contentType': 2,
+    'exVersion': 2,
     'name': {
       'en': 'The Temple of the Fist',
     },
@@ -2632,6 +2899,7 @@ export default {
   },
   665: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'It\'s Probably a Trap',
     },
@@ -2642,6 +2910,7 @@ export default {
   },
   674: {
     'contentType': 4,
+    'exVersion': 2,
     'name': {
       'en': 'the Pool of Tribute',
     },
@@ -2652,6 +2921,7 @@ export default {
   },
   677: {
     'contentType': 4,
+    'exVersion': 2,
     'name': {
       'en': 'the Pool of Tribute (Extreme)',
     },
@@ -2662,6 +2932,7 @@ export default {
   },
   679: {
     'contentType': 4,
+    'exVersion': 2,
     'name': {
       'en': 'the Royal Menagerie',
     },
@@ -2672,6 +2943,7 @@ export default {
   },
   684: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'The Resonant',
     },
@@ -2682,6 +2954,7 @@ export default {
   },
   688: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'Naadam',
     },
@@ -2692,6 +2965,7 @@ export default {
   },
   689: {
     'contentType': 2,
+    'exVersion': 2,
     'name': {
       'en': 'Ala Mhigo',
     },
@@ -2702,6 +2976,7 @@ export default {
   },
   690: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'Interdimensional Rift',
     },
@@ -2712,6 +2987,7 @@ export default {
   },
   691: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Deltascape V1.0',
     },
@@ -2722,6 +2998,7 @@ export default {
   },
   692: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Deltascape V2.0',
     },
@@ -2732,6 +3009,7 @@ export default {
   },
   693: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Deltascape V3.0',
     },
@@ -2742,6 +3020,7 @@ export default {
   },
   694: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Deltascape V4.0',
     },
@@ -2752,6 +3031,7 @@ export default {
   },
   695: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Deltascape V1.0 (Savage)',
     },
@@ -2762,6 +3042,7 @@ export default {
   },
   696: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Deltascape V2.0 (Savage)',
     },
@@ -2772,6 +3053,7 @@ export default {
   },
   697: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Deltascape V3.0 (Savage)',
     },
@@ -2782,6 +3064,7 @@ export default {
   },
   698: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Deltascape V4.0 (Savage)',
     },
@@ -2792,6 +3075,7 @@ export default {
   },
   705: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'In Thal\'s Name',
     },
@@ -2802,6 +3086,7 @@ export default {
   },
   706: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'Raising the Sword',
     },
@@ -2812,6 +3097,7 @@ export default {
   },
   707: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'With Heart and Steel',
     },
@@ -2822,6 +3108,7 @@ export default {
   },
   708: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'Blood on the Deck',
     },
@@ -2832,6 +3119,7 @@ export default {
   },
   709: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'The Face of True Evil',
     },
@@ -2842,6 +3130,7 @@ export default {
   },
   710: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'Matsuba Mayhem',
     },
@@ -2852,6 +3141,7 @@ export default {
   },
   711: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'The Battle on Bekko',
     },
@@ -2862,6 +3152,7 @@ export default {
   },
   712: {
     'contentType': 9,
+    'exVersion': 2,
     'name': {
       'en': 'the Lost Canals of Uznair',
     },
@@ -2872,6 +3163,7 @@ export default {
   },
   713: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'Dark as the Night Sky',
     },
@@ -2882,6 +3174,7 @@ export default {
   },
   714: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'Dragon Sound',
     },
@@ -2892,6 +3185,7 @@ export default {
   },
   715: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'The Orphans and the Broken Blade',
     },
@@ -2902,6 +3196,7 @@ export default {
   },
   716: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'Our Compromise',
     },
@@ -2912,6 +3207,7 @@ export default {
   },
   717: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'Curious Gorge Meets His Match',
     },
@@ -2922,6 +3218,7 @@ export default {
   },
   718: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'The Heart of the Problem',
     },
@@ -2932,6 +3229,7 @@ export default {
   },
   719: {
     'contentType': 4,
+    'exVersion': 2,
     'name': {
       'en': 'Emanation',
     },
@@ -2942,6 +3240,7 @@ export default {
   },
   720: {
     'contentType': 4,
+    'exVersion': 2,
     'name': {
       'en': 'Emanation (Extreme)',
     },
@@ -2952,6 +3251,7 @@ export default {
   },
   722: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'Our Unsung Heroes',
     },
@@ -2962,6 +3262,7 @@ export default {
   },
   723: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'When Clans Collide',
     },
@@ -2972,6 +3273,7 @@ export default {
   },
   725: {
     'contentType': 9,
+    'exVersion': 2,
     'name': {
       'en': 'the Hidden Canals of Uznair',
     },
@@ -2982,6 +3284,7 @@ export default {
   },
   729: {
     'contentType': 6,
+    'exVersion': 0,
     'name': {
       'en': 'Astragalos',
     },
@@ -2992,6 +3295,7 @@ export default {
   },
   730: {
     'contentType': 4,
+    'exVersion': 2,
     'name': {
       'en': 'the Minstrel\'s Ballad: Shinryu\'s Domain',
     },
@@ -3002,6 +3306,7 @@ export default {
   },
   731: {
     'contentType': 2,
+    'exVersion': 2,
     'name': {
       'en': 'the Drowned City of Skalla',
     },
@@ -3012,6 +3317,7 @@ export default {
   },
   732: {
     'contentType': 26,
+    'exVersion': 2,
     'name': {
       'en': 'the Forbidden Land, Eureka Anemos',
     },
@@ -3022,6 +3328,7 @@ export default {
   },
   733: {
     'contentType': 28,
+    'exVersion': 2,
     'name': {
       'en': 'the Unending Coil of Bahamut (Ultimate)',
     },
@@ -3032,6 +3339,7 @@ export default {
   },
   734: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'the Royal City of Rabanastre',
     },
@@ -3042,6 +3350,7 @@ export default {
   },
   741: {
     'contentType': 22,
+    'exVersion': 0,
     'name': {
       'en': 'the Valentione\'s Ceremony',
     },
@@ -3052,6 +3361,7 @@ export default {
   },
   742: {
     'contentType': 2,
+    'exVersion': 2,
     'name': {
       'en': 'Hells\' Lid',
     },
@@ -3062,6 +3372,7 @@ export default {
   },
   743: {
     'contentType': 2,
+    'exVersion': 2,
     'name': {
       'en': 'the Fractal Continuum (Hard)',
     },
@@ -3072,6 +3383,7 @@ export default {
   },
   745: {
     'contentType': 6,
+    'exVersion': 0,
     'name': {
       'en': 'the Feast (Team Ranked)',
     },
@@ -3082,6 +3394,7 @@ export default {
   },
   746: {
     'contentType': 4,
+    'exVersion': 2,
     'name': {
       'en': 'the Jade Stoa',
     },
@@ -3092,6 +3405,7 @@ export default {
   },
   748: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Sigmascape V1.0',
     },
@@ -3102,6 +3416,7 @@ export default {
   },
   749: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Sigmascape V2.0',
     },
@@ -3112,6 +3427,7 @@ export default {
   },
   750: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Sigmascape V3.0',
     },
@@ -3122,6 +3438,7 @@ export default {
   },
   751: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Sigmascape V4.0',
     },
@@ -3132,6 +3449,7 @@ export default {
   },
   752: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Sigmascape V1.0 (Savage)',
     },
@@ -3142,6 +3460,7 @@ export default {
   },
   753: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Sigmascape V2.0 (Savage)',
     },
@@ -3152,6 +3471,7 @@ export default {
   },
   754: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Sigmascape V3.0 (Savage)',
     },
@@ -3162,6 +3482,7 @@ export default {
   },
   755: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Sigmascape V4.0 (Savage)',
     },
@@ -3172,6 +3493,7 @@ export default {
   },
   758: {
     'contentType': 4,
+    'exVersion': 2,
     'name': {
       'en': 'the Jade Stoa (Extreme)',
     },
@@ -3181,6 +3503,7 @@ export default {
     'weatherRate': 93,
   },
   759: {
+    'exVersion': 2,
     'name': {
       'en': 'The Doman Enclave',
     },
@@ -3191,6 +3514,7 @@ export default {
   },
   761: {
     'contentType': 4,
+    'exVersion': 2,
     'name': {
       'en': 'the Great Hunt',
     },
@@ -3201,6 +3525,7 @@ export default {
   },
   762: {
     'contentType': 4,
+    'exVersion': 2,
     'name': {
       'en': 'the Great Hunt (Extreme)',
     },
@@ -3211,6 +3536,7 @@ export default {
   },
   763: {
     'contentType': 26,
+    'exVersion': 2,
     'name': {
       'en': 'the Forbidden Land, Eureka Pagos',
     },
@@ -3221,6 +3547,7 @@ export default {
   },
   765: {
     'contentType': 6,
+    'exVersion': 0,
     'name': {
       'en': 'the Feast (Ranked)',
     },
@@ -3231,6 +3558,7 @@ export default {
   },
   766: {
     'contentType': 6,
+    'exVersion': 0,
     'name': {
       'en': 'the Feast (Training)',
     },
@@ -3241,6 +3569,7 @@ export default {
   },
   767: {
     'contentType': 6,
+    'exVersion': 0,
     'name': {
       'en': 'the Feast (Custom Match - Crystal Tower)',
     },
@@ -3251,6 +3580,7 @@ export default {
   },
   768: {
     'contentType': 2,
+    'exVersion': 2,
     'name': {
       'en': 'the Swallow\'s Compass',
     },
@@ -3261,6 +3591,7 @@ export default {
   },
   769: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'Emissary of the Dawn',
     },
@@ -3271,6 +3602,7 @@ export default {
   },
   770: {
     'contentType': 21,
+    'exVersion': 2,
     'name': {
       'en': 'Heaven-on-High  (Floors 1-10)',
     },
@@ -3281,6 +3613,7 @@ export default {
   },
   771: {
     'contentType': 21,
+    'exVersion': 2,
     'name': {
       'en': 'Heaven-on-High  (Floors 11-20)',
     },
@@ -3291,6 +3624,7 @@ export default {
   },
   772: {
     'contentType': 21,
+    'exVersion': 2,
     'name': {
       'en': 'Heaven-on-High  (Floors 21-30)',
     },
@@ -3301,6 +3635,7 @@ export default {
   },
   773: {
     'contentType': 21,
+    'exVersion': 2,
     'name': {
       'en': 'Heaven-on-High  (Floors 41-50)',
     },
@@ -3311,6 +3646,7 @@ export default {
   },
   774: {
     'contentType': 21,
+    'exVersion': 2,
     'name': {
       'en': 'Heaven-on-High  (Floors 61-70)',
     },
@@ -3321,6 +3657,7 @@ export default {
   },
   775: {
     'contentType': 21,
+    'exVersion': 2,
     'name': {
       'en': 'Heaven-on-High  (Floors 81-90)',
     },
@@ -3331,6 +3668,7 @@ export default {
   },
   776: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'the Ridorana Lighthouse',
     },
@@ -3341,6 +3679,7 @@ export default {
   },
   777: {
     'contentType': 28,
+    'exVersion': 2,
     'name': {
       'en': 'the Weapon\'s Refrain (Ultimate)',
     },
@@ -3351,6 +3690,7 @@ export default {
   },
   778: {
     'contentType': 4,
+    'exVersion': 2,
     'name': {
       'en': 'Castrum Fluminis',
     },
@@ -3361,6 +3701,7 @@ export default {
   },
   779: {
     'contentType': 4,
+    'exVersion': 2,
     'name': {
       'en': 'the Minstrel\'s Ballad: Tsukuyomi\'s Pain',
     },
@@ -3371,6 +3712,7 @@ export default {
   },
   782: {
     'contentType': 21,
+    'exVersion': 2,
     'name': {
       'en': 'Heaven-on-High  (Floors 31-40)',
     },
@@ -3381,6 +3723,7 @@ export default {
   },
   783: {
     'contentType': 21,
+    'exVersion': 2,
     'name': {
       'en': 'Heaven-on-High  (Floors 51-60)',
     },
@@ -3391,6 +3734,7 @@ export default {
   },
   784: {
     'contentType': 21,
+    'exVersion': 2,
     'name': {
       'en': 'Heaven-on-High  (Floors 71-80)',
     },
@@ -3401,6 +3745,7 @@ export default {
   },
   785: {
     'contentType': 21,
+    'exVersion': 2,
     'name': {
       'en': 'Heaven-on-High  (Floors 91-100)',
     },
@@ -3411,6 +3756,7 @@ export default {
   },
   788: {
     'contentType': 2,
+    'exVersion': 2,
     'name': {
       'en': 'Saint Mocianne\'s Arboretum (Hard)',
     },
@@ -3421,6 +3767,7 @@ export default {
   },
   789: {
     'contentType': 2,
+    'exVersion': 2,
     'name': {
       'en': 'the Burn',
     },
@@ -3431,6 +3778,7 @@ export default {
   },
   790: {
     'contentType': 22,
+    'exVersion': 0,
     'name': {
       'en': 'the Calamity Retold',
     },
@@ -3441,6 +3789,7 @@ export default {
   },
   791: {
     'contentType': 6,
+    'exVersion': 0,
     'name': {
       'en': 'Hidden Gorge',
     },
@@ -3451,6 +3800,7 @@ export default {
   },
   792: {
     'contentType': 19,
+    'exVersion': 0,
     'name': {
       'en': 'Leap of Faith',
     },
@@ -3461,6 +3811,7 @@ export default {
   },
   793: {
     'contentType': 2,
+    'exVersion': 2,
     'name': {
       'en': 'the Ghimlyt Dark',
     },
@@ -3471,6 +3822,7 @@ export default {
   },
   794: {
     'contentType': 9,
+    'exVersion': 2,
     'name': {
       'en': 'the Shifting Altars of Uznair',
     },
@@ -3481,6 +3833,7 @@ export default {
   },
   795: {
     'contentType': 26,
+    'exVersion': 2,
     'name': {
       'en': 'the Forbidden Land, Eureka Pyros',
     },
@@ -3491,6 +3844,7 @@ export default {
   },
   796: {
     'contentType': 27,
+    'exVersion': 0,
     'name': {
       'en': 'All\'s Well That Starts Well',
     },
@@ -3501,6 +3855,7 @@ export default {
   },
   797: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'The Will of the Moon',
     },
@@ -3511,6 +3866,7 @@ export default {
   },
   798: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Alphascape V1.0',
     },
@@ -3521,6 +3877,7 @@ export default {
   },
   799: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Alphascape V2.0',
     },
@@ -3531,6 +3888,7 @@ export default {
   },
   800: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Alphascape V3.0',
     },
@@ -3541,6 +3899,7 @@ export default {
   },
   801: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Alphascape V4.0',
     },
@@ -3551,6 +3910,7 @@ export default {
   },
   802: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Alphascape V1.0 (Savage)',
     },
@@ -3561,6 +3921,7 @@ export default {
   },
   803: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Alphascape V2.0 (Savage)',
     },
@@ -3571,6 +3932,7 @@ export default {
   },
   804: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Alphascape V3.0 (Savage)',
     },
@@ -3581,6 +3943,7 @@ export default {
   },
   805: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'Alphascape V4.0 (Savage)',
     },
@@ -3591,6 +3954,7 @@ export default {
   },
   806: {
     'contentType': 4,
+    'exVersion': 2,
     'name': {
       'en': 'Kugane Ohashi',
     },
@@ -3601,6 +3965,7 @@ export default {
   },
   810: {
     'contentType': 4,
+    'exVersion': 2,
     'name': {
       'en': 'Hells\' Kier',
     },
@@ -3611,6 +3976,7 @@ export default {
   },
   811: {
     'contentType': 4,
+    'exVersion': 2,
     'name': {
       'en': 'Hells\' Kier (Extreme)',
     },
@@ -3620,6 +3986,7 @@ export default {
     'weatherRate': 98,
   },
   813: {
+    'exVersion': 3,
     'name': {
       'en': 'Lakeland',
     },
@@ -3629,6 +3996,7 @@ export default {
     'weatherRate': 106,
   },
   814: {
+    'exVersion': 3,
     'name': {
       'en': 'Kholusia',
     },
@@ -3638,6 +4006,7 @@ export default {
     'weatherRate': 107,
   },
   815: {
+    'exVersion': 3,
     'name': {
       'en': 'Amh Araeng',
     },
@@ -3647,6 +4016,7 @@ export default {
     'weatherRate': 108,
   },
   816: {
+    'exVersion': 3,
     'name': {
       'en': 'Il Mheg',
     },
@@ -3656,6 +4026,7 @@ export default {
     'weatherRate': 109,
   },
   817: {
+    'exVersion': 3,
     'name': {
       'en': 'The Rak\'tika Greatwood',
     },
@@ -3665,6 +4036,7 @@ export default {
     'weatherRate': 110,
   },
   818: {
+    'exVersion': 3,
     'name': {
       'en': 'The Tempest',
     },
@@ -3674,6 +4046,7 @@ export default {
     'weatherRate': 111,
   },
   819: {
+    'exVersion': 3,
     'name': {
       'en': 'The Crystarium',
     },
@@ -3683,6 +4056,7 @@ export default {
     'weatherRate': 112,
   },
   820: {
+    'exVersion': 3,
     'name': {
       'en': 'Eulmore',
     },
@@ -3693,6 +4067,7 @@ export default {
   },
   821: {
     'contentType': 2,
+    'exVersion': 3,
     'name': {
       'en': 'Dohn Mheg',
     },
@@ -3703,6 +4078,7 @@ export default {
   },
   822: {
     'contentType': 2,
+    'exVersion': 3,
     'name': {
       'en': 'Mt. Gulg',
     },
@@ -3713,6 +4089,7 @@ export default {
   },
   823: {
     'contentType': 2,
+    'exVersion': 3,
     'name': {
       'en': 'the Qitana Ravel',
     },
@@ -3723,6 +4100,7 @@ export default {
   },
   824: {
     'contentType': 4,
+    'exVersion': 2,
     'name': {
       'en': 'the Wreath of Snakes',
     },
@@ -3733,6 +4111,7 @@ export default {
   },
   825: {
     'contentType': 4,
+    'exVersion': 2,
     'name': {
       'en': 'the Wreath of Snakes (Extreme)',
     },
@@ -3743,6 +4122,7 @@ export default {
   },
   826: {
     'contentType': 5,
+    'exVersion': 2,
     'name': {
       'en': 'the Orbonne Monastery',
     },
@@ -3753,6 +4133,7 @@ export default {
   },
   827: {
     'contentType': 26,
+    'exVersion': 2,
     'name': {
       'en': 'the Forbidden Land, Eureka Hydatos',
     },
@@ -3763,6 +4144,7 @@ export default {
   },
   830: {
     'contentType': 7,
+    'exVersion': 2,
     'name': {
       'en': 'a Requiem for Heroes',
     },
@@ -3773,6 +4155,7 @@ export default {
   },
   831: {
     'contentType': 19,
+    'exVersion': 0,
     'name': {
       'en': 'Four-player Mahjong (Kuitan Disabled)',
     },
@@ -3783,6 +4166,7 @@ export default {
   },
   832: {
     'contentType': 19,
+    'exVersion': 0,
     'name': {
       'en': 'Air Force One',
     },
@@ -3793,6 +4177,7 @@ export default {
   },
   834: {
     'contentType': 7,
+    'exVersion': 0,
     'name': {
       'en': 'Messenger of the Winds',
     },
@@ -3803,6 +4188,7 @@ export default {
   },
   836: {
     'contentType': 2,
+    'exVersion': 3,
     'name': {
       'en': 'Malikah\'s Well',
     },
@@ -3813,6 +4199,7 @@ export default {
   },
   837: {
     'contentType': 2,
+    'exVersion': 3,
     'name': {
       'en': 'Holminster Switch',
     },
@@ -3823,6 +4210,7 @@ export default {
   },
   838: {
     'contentType': 2,
+    'exVersion': 3,
     'name': {
       'en': 'Amaurot',
     },
@@ -3833,6 +4221,7 @@ export default {
   },
   840: {
     'contentType': 2,
+    'exVersion': 3,
     'name': {
       'en': 'the Twinning',
     },
@@ -3843,6 +4232,7 @@ export default {
   },
   841: {
     'contentType': 2,
+    'exVersion': 3,
     'name': {
       'en': 'Akadaemia Anyder',
     },
@@ -3853,6 +4243,7 @@ export default {
   },
   845: {
     'contentType': 4,
+    'exVersion': 3,
     'name': {
       'en': 'The Dancing Plague',
     },
@@ -3863,6 +4254,7 @@ export default {
   },
   846: {
     'contentType': 4,
+    'exVersion': 3,
     'name': {
       'en': 'The Crown of the Immaculate',
     },
@@ -3873,6 +4265,7 @@ export default {
   },
   847: {
     'contentType': 4,
+    'exVersion': 3,
     'name': {
       'en': 'The Dying Gasp',
     },
@@ -3883,6 +4276,7 @@ export default {
   },
   848: {
     'contentType': 4,
+    'exVersion': 3,
     'name': {
       'en': 'the Crown of the Immaculate (Extreme)',
     },
@@ -3893,6 +4287,7 @@ export default {
   },
   849: {
     'contentType': 5,
+    'exVersion': 3,
     'name': {
       'en': 'Eden\'s Gate: Resurrection',
     },
@@ -3903,6 +4298,7 @@ export default {
   },
   850: {
     'contentType': 5,
+    'exVersion': 3,
     'name': {
       'en': 'Eden\'s Gate: Descent',
     },
@@ -3913,6 +4309,7 @@ export default {
   },
   851: {
     'contentType': 5,
+    'exVersion': 3,
     'name': {
       'en': 'Eden\'s Gate: Inundation',
     },
@@ -3923,6 +4320,7 @@ export default {
   },
   852: {
     'contentType': 5,
+    'exVersion': 3,
     'name': {
       'en': 'Eden\'s Gate: Sepulture',
     },
@@ -3933,6 +4331,7 @@ export default {
   },
   853: {
     'contentType': 5,
+    'exVersion': 3,
     'name': {
       'en': 'Eden\'s Gate: Resurrection (Savage)',
     },
@@ -3943,6 +4342,7 @@ export default {
   },
   854: {
     'contentType': 5,
+    'exVersion': 3,
     'name': {
       'en': 'Eden\'s Gate: Descent (Savage)',
     },
@@ -3953,6 +4353,7 @@ export default {
   },
   855: {
     'contentType': 5,
+    'exVersion': 3,
     'name': {
       'en': 'Eden\'s Gate: Inundation (Savage)',
     },
@@ -3963,6 +4364,7 @@ export default {
   },
   856: {
     'contentType': 5,
+    'exVersion': 3,
     'name': {
       'en': 'Eden\'s Gate: Sepulture (Savage)',
     },
@@ -3973,6 +4375,7 @@ export default {
   },
   858: {
     'contentType': 4,
+    'exVersion': 3,
     'name': {
       'en': 'the Dancing Plague (Extreme)',
     },
@@ -3983,6 +4386,7 @@ export default {
   },
   859: {
     'contentType': 7,
+    'exVersion': 3,
     'name': {
       'en': 'Legend of the Not-so-hidden Temple',
     },
@@ -3993,6 +4397,7 @@ export default {
   },
   860: {
     'contentType': 7,
+    'exVersion': 3,
     'name': {
       'en': 'Coming Clean',
     },
@@ -4003,6 +4408,7 @@ export default {
   },
   873: {
     'contentType': 7,
+    'exVersion': 3,
     'name': {
       'en': 'The Hardened Heart',
     },
@@ -4013,6 +4419,7 @@ export default {
   },
   874: {
     'contentType': 7,
+    'exVersion': 3,
     'name': {
       'en': 'The Lost and the Found',
     },
@@ -4023,6 +4430,7 @@ export default {
   },
   875: {
     'contentType': 7,
+    'exVersion': 3,
     'name': {
       'en': 'The Hunter\'s Legacy',
     },
@@ -4033,6 +4441,7 @@ export default {
   },
   876: {
     'contentType': 7,
+    'exVersion': 3,
     'name': {
       'en': 'Nyelbert\'s Lament',
     },
@@ -4043,6 +4452,7 @@ export default {
   },
   879: {
     'contentType': 9,
+    'exVersion': 3,
     'name': {
       'en': 'The Dungeons of Lyhe Ghiah',
     },
@@ -4053,6 +4463,7 @@ export default {
   },
   882: {
     'contentType': 5,
+    'exVersion': 3,
     'name': {
       'en': 'The Copied Factory',
     },
@@ -4063,6 +4474,7 @@ export default {
   },
   884: {
     'contentType': 2,
+    'exVersion': 3,
     'name': {
       'en': 'The Grand Cosmos',
     },
@@ -4073,6 +4485,7 @@ export default {
   },
   885: {
     'contentType': 4,
+    'exVersion': 3,
     'name': {
       'en': 'The Minstrel\'s Ballad: Hades\'s Elegy',
     },
@@ -4083,6 +4496,7 @@ export default {
   },
   887: {
     'contentType': 28,
+    'exVersion': 3,
     'name': {
       'en': 'The Epic of Alexander (Ultimate)',
     },
@@ -4093,6 +4507,7 @@ export default {
   },
   888: {
     'contentType': 6,
+    'exVersion': 0,
     'name': {
       'en': 'Onsal Hakair (Danshig Naadam)',
     },
@@ -4103,6 +4518,7 @@ export default {
   },
   893: {
     'contentType': 7,
+    'exVersion': 3,
     'name': {
       'en': 'Vows of Virtue, Deeds of Cruelty',
     },
@@ -4113,6 +4529,7 @@ export default {
   },
   894: {
     'contentType': 7,
+    'exVersion': 3,
     'name': {
       'en': 'As the Heart Bids',
     },
@@ -4123,6 +4540,7 @@ export default {
   },
   897: {
     'contentType': 4,
+    'exVersion': 3,
     'name': {
       'en': 'Cinder Drift',
     },
@@ -4133,6 +4551,7 @@ export default {
   },
   898: {
     'contentType': 2,
+    'exVersion': 3,
     'name': {
       'en': 'Anamnesis Anyder',
     },
@@ -4143,6 +4562,7 @@ export default {
   },
   900: {
     'contentType': 16,
+    'exVersion': 0,
     'name': {
       'en': 'Ocean Fishing',
     },
@@ -4153,6 +4573,7 @@ export default {
   },
   901: {
     'contentType': 16,
+    'exVersion': 1,
     'name': {
       'en': 'the Diadem',
     },
@@ -4163,6 +4584,7 @@ export default {
   },
   902: {
     'contentType': 5,
+    'exVersion': 3,
     'name': {
       'en': 'Eden\'s Verse: Fulmination',
     },
@@ -4173,6 +4595,7 @@ export default {
   },
   903: {
     'contentType': 5,
+    'exVersion': 3,
     'name': {
       'en': 'Eden\'s Verse: Furor',
     },
@@ -4183,6 +4606,7 @@ export default {
   },
   904: {
     'contentType': 5,
+    'exVersion': 3,
     'name': {
       'en': 'Eden\'s Verse: Iconoclasm',
     },
@@ -4193,6 +4617,7 @@ export default {
   },
   905: {
     'contentType': 5,
+    'exVersion': 3,
     'name': {
       'en': 'Eden\'s Verse: Refulgence',
     },
@@ -4203,6 +4628,7 @@ export default {
   },
   906: {
     'contentType': 5,
+    'exVersion': 3,
     'name': {
       'en': 'Eden\'s Verse: Fulmination (Savage)',
     },
@@ -4213,6 +4639,7 @@ export default {
   },
   907: {
     'contentType': 5,
+    'exVersion': 3,
     'name': {
       'en': 'Eden\'s Verse: Furor (Savage)',
     },
@@ -4223,6 +4650,7 @@ export default {
   },
   908: {
     'contentType': 5,
+    'exVersion': 3,
     'name': {
       'en': 'Eden\'s Verse: Iconoclasm (Savage)',
     },
@@ -4233,6 +4661,7 @@ export default {
   },
   909: {
     'contentType': 5,
+    'exVersion': 3,
     'name': {
       'en': 'Eden\'s Verse: Refulgence (Savage)',
     },
@@ -4243,6 +4672,7 @@ export default {
   },
   911: {
     'contentType': 7,
+    'exVersion': 3,
     'name': {
       'en': 'the Bozja Incident',
     },
@@ -4253,6 +4683,7 @@ export default {
   },
   912: {
     'contentType': 4,
+    'exVersion': 3,
     'name': {
       'en': 'Cinder Drift (Extreme)',
     },
@@ -4263,6 +4694,7 @@ export default {
   },
   913: {
     'contentType': 4,
+    'exVersion': 3,
     'name': {
       'en': 'Memoria Misera (Extreme)',
     },
@@ -4273,6 +4705,7 @@ export default {
   },
   914: {
     'contentType': 7,
+    'exVersion': 3,
     'name': {
       'en': 'A Sleep Disturbed',
     },
@@ -4283,6 +4716,7 @@ export default {
   },
   916: {
     'contentType': 2,
+    'exVersion': 3,
     'name': {
       'en': 'the Heroes\' Gauntlet',
     },
@@ -4293,6 +4727,7 @@ export default {
   },
   917: {
     'contentType': 5,
+    'exVersion': 3,
     'name': {
       'en': 'the Puppets\' Bunker',
     },
@@ -4303,6 +4738,7 @@ export default {
   },
   920: {
     'contentType': 29,
+    'exVersion': 3,
     'name': {
       'en': 'The Bozjan Southern Front',
     },
@@ -4313,6 +4749,7 @@ export default {
   },
   922: {
     'contentType': 4,
+    'exVersion': 3,
     'name': {
       'en': 'the Seat of Sacrifice',
     },
@@ -4323,6 +4760,7 @@ export default {
   },
   923: {
     'contentType': 4,
+    'exVersion': 3,
     'name': {
       'en': 'the Seat of Sacrifice (Extreme)',
     },
@@ -4333,6 +4771,7 @@ export default {
   },
   925: {
     'contentType': 7,
+    'exVersion': 3,
     'name': {
       'en': 'Sleep Now in Sapphire',
     },
@@ -4343,6 +4782,7 @@ export default {
   },
   929: {
     'contentType': 16,
+    'exVersion': 1,
     'name': {
       'en': 'the Diadem',
     },
@@ -4353,6 +4793,7 @@ export default {
   },
   930: {
     'contentType': 4,
+    'exVersion': 3,
     'name': {
       'en': 'the Akh Afah Amphitheatre (Unreal)',
     },
@@ -4363,6 +4804,7 @@ export default {
   },
   932: {
     'contentType': 7,
+    'exVersion': 3,
     'name': {
       'en': 'Faded Memories',
     },
