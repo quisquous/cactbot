@@ -1,5 +1,3 @@
-'use strict';
-
 import { commonReplacement, partialCommonReplacementKeys } from '../../ui/raidboss/common_replacement.js';
 
 import Regexes from '../../resources/regexes.js';

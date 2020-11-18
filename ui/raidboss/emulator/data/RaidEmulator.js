@@ -1,5 +1,3 @@
-'use strict';
-
 import EventBus from '../EventBus.js';
 import AnalyzedEncounter from './AnalyzedEncounter.js';
 

@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: Berserker 2nd/3rd wild anguish should be shared with just a rock
 
 [{

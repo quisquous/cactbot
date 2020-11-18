@@ -1,5 +1,3 @@
-'use strict';
-
 export default class CombatantJobSearch {
   static getJob(abilityID) {
     if (!CombatantJobSearch.abilityMatchRegex.test(abilityID))

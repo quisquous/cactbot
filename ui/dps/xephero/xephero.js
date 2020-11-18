@@ -1,5 +1,3 @@
-'use strict';
-
 import DpsPhaseTracker from './dps_phase_tracker.js';
 import { InitDpsModule, Options } from '../dps_common.js';
 import UserConfig from '../../../resources/user_config.js';

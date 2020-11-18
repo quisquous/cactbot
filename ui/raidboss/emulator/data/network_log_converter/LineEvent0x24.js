@@ -1,5 +1,3 @@
-'use strict';
-
 import LineEvent from './LineEvent.js';
 
 // Limit gauge event

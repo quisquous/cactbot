@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: maybe this should be structured identically to a timelineReplace section.
 
 // It's awkward to refer to these string keys, so name them as replaceSync[keys.sealKey].

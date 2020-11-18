@@ -1,5 +1,3 @@
-'use strict';
-
 // The Great Gubal Library--Hard
 [{
   zoneId: ZoneId.TheGreatGubalLibraryHard,

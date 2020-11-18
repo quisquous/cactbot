@@ -1,5 +1,3 @@
-'use strict';
-
 import gMonster from '../../resources/hunt.js';
 import NetRegexes from '../../resources/netregexes.js';
 import UserConfig from '../../resources/user_config.js';

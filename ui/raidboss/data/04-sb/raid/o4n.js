@@ -1,5 +1,3 @@
-'use strict';
-
 // O4N - Deltascape 4.0 Normal
 [{
   zoneId: ZoneId.DeltascapeV40,

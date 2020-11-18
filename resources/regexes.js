@@ -1,5 +1,3 @@
-'use strict';
-
 export default class Regexes {
   // fields: source, id, ability, target, capture
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#14-networkstartscasting

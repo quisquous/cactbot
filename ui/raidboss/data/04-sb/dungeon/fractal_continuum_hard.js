@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.TheFractalContinuumHard,
   timelineFile: 'fractal_continuum_hard.txt',

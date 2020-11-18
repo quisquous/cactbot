@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO
 // better callouts for cycle
 // tank provoke messages when cotank has flare

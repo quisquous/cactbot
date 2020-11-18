@@ -1,5 +1,3 @@
-'use strict';
-
 import Regexes from '../../resources/regexes.js';
 import regexCaptureTest from '../util/regex_util.js';
 import chai from 'chai';

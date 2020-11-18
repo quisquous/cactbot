@@ -1,5 +1,3 @@
-'use strict';
-
 import ContentType from '../../resources/content_type.js';
 import { Util } from '../../resources/common.js';
 import ZoneInfo from '../../resources/zone_info.js';

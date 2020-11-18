@@ -1,5 +1,3 @@
-'use strict';
-
 import Regexes from './regexes.js';
 import NetRegexes from './netregexes.js';
 

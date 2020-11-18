@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.TheWeepingCityOfMhach,
   timelineFile: 'weeping_city.txt',

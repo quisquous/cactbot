@@ -1,5 +1,3 @@
-'use strict';
-
 import logDefinitions from './netlog_defs.js';
 
 export default class Splitter {

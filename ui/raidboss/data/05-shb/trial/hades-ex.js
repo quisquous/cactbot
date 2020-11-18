@@ -1,5 +1,3 @@
-'use strict';
-
 // Hades Extreme
 
 // TODO: call out direction for safe spot

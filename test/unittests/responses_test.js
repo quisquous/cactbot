@@ -1,5 +1,3 @@
-'use strict';
-
 import { Responses, severityMap, triggerFunctions, builtInResponseStr } from '../../resources/responses.js';
 import chai from 'chai';
 const { assert } = chai;

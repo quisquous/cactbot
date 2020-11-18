@@ -1,5 +1,3 @@
-'use strict';
-
 // Rename this file to `oopsyraidsy.js` then edit to change the oopsyraidsy ui.
 
 // A set of triggers to be ignored. The key is the 'id' of the trigger, and

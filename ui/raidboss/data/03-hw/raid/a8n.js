@@ -1,5 +1,3 @@
-'use strict';
-
 // ALEXANDER - THE BURDEN OF THE SON NORMAL
 // A8N
 

@@ -1,5 +1,3 @@
-'use strict';
-
 // Titania Extreme
 [{
   zoneId: ZoneId.TheDancingPlagueExtreme,

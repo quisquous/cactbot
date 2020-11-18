@@ -1,5 +1,3 @@
-'use strict';
-
 import { Util } from './common.js';
 
 export default class PartyTracker {

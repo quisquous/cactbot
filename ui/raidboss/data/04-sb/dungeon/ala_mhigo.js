@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.AlaMhigo,
   timelineFile: 'ala_mhigo.txt',

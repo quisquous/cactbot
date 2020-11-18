@@ -1,5 +1,3 @@
-'use strict';
-
 // The Copied Factory
 // TODO: Tell people where to stand for Engels wall saws
 // TODO: Tell people where to stand for 9S overhead saws

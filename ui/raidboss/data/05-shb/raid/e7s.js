@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.EdensVerseIconoclasmSavage,
   timelineFile: 'e7s.txt',

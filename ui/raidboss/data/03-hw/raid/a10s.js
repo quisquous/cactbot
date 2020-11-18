@@ -1,5 +1,3 @@
-'use strict';
-
 // Notes:
 // Ignoring Gobsway Rumblerocks (1AA0) aoe trigger, as it is small and frequent.
 

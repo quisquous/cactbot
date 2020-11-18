@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: could consider keeping track of the gobbie driver?
 // Nothing in the logs for when you get in, other than removing combatanat.
 // FDE, FDF, FE0, FE1 are all skills you use when inside.

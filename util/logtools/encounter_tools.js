@@ -1,5 +1,3 @@
-'use strict';
-
 import NetRegexes from '../../resources/netregexes.js';
 import ZoneInfo from '../../resources/zone_info.js';
 import ContentType from '../../resources/content_type.js';

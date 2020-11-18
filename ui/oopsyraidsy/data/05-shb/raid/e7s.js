@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: missing an orb during tornado phase
 // TODO: jumping in the tornado damage??
 // TODO: taking sungrace(4C80) or moongrace(4C82) with wrong debuff

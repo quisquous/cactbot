@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.AnamnesisAnyder,
   timelineFile: 'anamnesis_anyder.txt',

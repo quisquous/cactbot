@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.TheBindingCoilOfBahamutTurn2,
   triggers: [

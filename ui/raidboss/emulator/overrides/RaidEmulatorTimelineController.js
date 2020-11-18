@@ -1,5 +1,3 @@
-'use strict';
-
 import { TimelineController } from '../../timeline.js';
 import RaidEmulatorTimeline from './RaidEmulatorTimeline.js';
 

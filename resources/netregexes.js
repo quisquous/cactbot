@@ -1,5 +1,3 @@
-'use strict';
-
 import Regexes from './regexes.js';
 
 // Differences from Regexes:

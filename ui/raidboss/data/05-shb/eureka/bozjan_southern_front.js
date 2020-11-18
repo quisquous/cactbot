@@ -1,5 +1,3 @@
-'use strict';
-
 // List of events:
 // https://github.com/xivapi/ffxiv-datamining/blob/master/csv/DynamicEvent.csv
 //

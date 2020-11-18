@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: FIX luminous aetheroplasm warning not working
 // TODO: FIX doll death not working
 // TODO: failing hand of pain/parting (check for high damage?)

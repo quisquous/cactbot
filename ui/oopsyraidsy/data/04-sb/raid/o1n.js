@@ -1,5 +1,3 @@
-'use strict';
-
 // O1N - Deltascape 1.0 Normal
 [{
   zoneId: ZoneId.DeltascapeV10,

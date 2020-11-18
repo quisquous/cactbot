@@ -1,5 +1,3 @@
-'use strict';
-
 // In your cactbot/user/raidboss.js file, add the line:
 //   Options.cactbotWormholeStrat = true;
 // .. if you want cactbot strat for wormhole.

@@ -1,5 +1,3 @@
-'use strict';
-
 // Shared between imbued and quintuplecast.
 const sharedOutputStrings = {
   fire: {

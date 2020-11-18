@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: should the post-staff "spread" happen unconditionally prior to marker?
 
 [{

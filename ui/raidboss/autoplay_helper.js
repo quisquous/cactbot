@@ -1,5 +1,3 @@
-'use strict';
-
 export default class AutoplayHelper {
   static Check() {
     let context = new AudioContext();

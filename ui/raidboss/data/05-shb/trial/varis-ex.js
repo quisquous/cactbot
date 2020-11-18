@@ -1,4 +1,3 @@
-'use strict';
 [{
   zoneId: ZoneId.MemoriaMiseraExtreme,
   timelineFile: 'varis-ex.txt',

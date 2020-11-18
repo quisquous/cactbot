@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: stun call for True Heart sprint ability?
 
 // TODO: can we figure out jails from the location of the tethering gobbie?

@@ -1,5 +1,3 @@
-'use strict';
-
 // For consistency with Responses, Conditions
 // are also functions.
 

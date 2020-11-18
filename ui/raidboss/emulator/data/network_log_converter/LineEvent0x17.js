@@ -1,5 +1,3 @@
-'use strict';
-
 import LineEvent from './LineEvent.js';
 
 // Cancel ability event

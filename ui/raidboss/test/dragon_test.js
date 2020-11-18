@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: This tests the dragon marking algorithm.  This should
 // probably be in some more general unit testing framework, but
 // for now is just a "manual" test, with the code here being

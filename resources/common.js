@@ -1,5 +1,3 @@
-'use strict';
-
 export const Util = (() => {
   const kTankJobs = ['GLA', 'PLD', 'MRD', 'WAR', 'DRK', 'GNB'];
   const kHealerJobs = ['CNJ', 'WHM', 'SCH', 'AST'];

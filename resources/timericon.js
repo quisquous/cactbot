@@ -1,5 +1,3 @@
-'use strict';
-
 export default class TimerIcon extends HTMLElement {
   static get observedAttributes() {
     return ['icon', 'name', 'zoom', 'duration', 'onhide', 'width', 'height', 'bordercolor', 'bordersize', 'text', 'textcolor'];
