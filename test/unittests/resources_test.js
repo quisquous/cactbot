@@ -1,5 +1,3 @@
-'use strict';
-
 import contentList from '../../resources/content_list.js';
 import ZoneId from '../../resources/zone_id.js';
 
