@@ -1,6 +1,7 @@
-'use strict';
+import gWeatherRates from './weather_rate.js';
+import ZoneInfo from './zone_info.js';
 
-function getWeather(timeMs, zoneId) {
+export function getWeather(timeMs, zoneId) {
   let chance = getWeatherChanceValue(timeMs);
 
   // See weather_rate.js and territory_type.js for details.
@@ -41,7 +42,7 @@ function floorTimeToStartOfWeather(timeMs) {
   return Math.floor(timeMs / eightHours) * eightHours;
 }
 
-function findNextWeather(timeMs, zoneId, searchWeather, maxTimeMs) {
+export function findNextWeather(timeMs, zoneId, searchWeather, maxTimeMs) {
   maxTimeMs = (maxTimeMs || 1000 * 60 * 1000) + timeMs;
 
   for (; timeMs < maxTimeMs; timeMs += 8 * 175 * 1000) {
@@ -52,7 +53,7 @@ function findNextWeather(timeMs, zoneId, searchWeather, maxTimeMs) {
   return undefined;
 }
 
-function findNextWeatherNot(timeMs, zoneId, searchWeather, maxTimeMs) {
+export function findNextWeatherNot(timeMs, zoneId, searchWeather, maxTimeMs) {
   maxTimeMs = (maxTimeMs || 1000 * 60 * 1000) + timeMs;
 
   for (; timeMs < maxTimeMs; timeMs += 8 * 175 * 1000) {
@@ -73,15 +74,15 @@ function findNextHour(timeMs, searchHour) {
   return time;
 }
 
-function findNextNight(timeMs) {
+export function findNextNight(timeMs) {
   return findNextHour(timeMs, 19);
 }
 
-function findNextDay(timeMs) {
+export function findNextDay(timeMs) {
   return findNextHour(timeMs, 6);
 }
 
-function isNightTime(timeMs) {
+export function isNightTime(timeMs) {
   let hour = (timeMs / 1000 / 175) % 24;
   return hour < 6 || hour > 19;
 }

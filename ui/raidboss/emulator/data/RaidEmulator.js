@@ -1,6 +1,7 @@
-'use strict';
+import EventBus from '../EventBus.js';
+import AnalyzedEncounter from './AnalyzedEncounter.js';
 
-class RaidEmulator extends EventBus {
+export default class RaidEmulator extends EventBus {
   constructor(options) {
     super();
     this.options = options;
@@ -121,6 +122,3 @@ class RaidEmulator extends EventBus {
 }
 
 RaidEmulator.playbackSpeed = 10;
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = RaidEmulator;

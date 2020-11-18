@@ -1,5 +1,3 @@
-'use strict';
-
 // Byakko Extreme
 [{
   zoneId: ZoneId.TheJadeStoaExtreme,

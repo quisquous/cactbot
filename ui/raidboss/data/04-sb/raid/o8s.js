@@ -1,5 +1,3 @@
-'use strict';
-
 const strings = {
   typeAndDir: {
     en: '${type}: ${dir}',

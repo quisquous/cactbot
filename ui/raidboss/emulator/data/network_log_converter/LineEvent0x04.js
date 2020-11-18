@@ -1,9 +1,9 @@
-'use strict';
+import { LineEvent0x03 } from './LineEvent0x03.js';
 
 // Removed combatant event
 // Extend the add combatant event to reduce duplicate code since they're
 // the same from a data perspective
-class LineEvent0x04 extends LineEvent0x03 {
+export class LineEvent0x04 extends LineEvent0x03 {
   constructor(repo, line, parts) {
     super(repo, line, parts);
   }
@@ -17,11 +17,4 @@ class LineEvent0x04 extends LineEvent0x03 {
   }
 }
 
-class LineEvent04 extends LineEvent0x04 {}
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    LineEvent0x04: LineEvent0x04,
-    LineEvent04: LineEvent04,
-  };
-}
+export class LineEvent04 extends LineEvent0x04 {}

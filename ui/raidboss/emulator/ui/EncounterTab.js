@@ -1,6 +1,7 @@
-'use strict';
+import EmulatorCommon from '../EmulatorCommon.js';
+import EventBus from '../EventBus.js';
 
-class EncounterTab extends EventBus {
+export default class EncounterTab extends EventBus {
   constructor(persistor) {
     super();
     this.persistor = persistor;
@@ -183,6 +184,3 @@ class EncounterTab extends EventBus {
     }
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = EncounterTab;

@@ -1,6 +1,9 @@
-'use strict';
+import Combatant from './Combatant.js';
+import CombatantJobSearch from './CombatantJobSearch.js';
+import CombatantState from './CombatantState.js';
+import PetNamesByLang from '../../../../resources/pet_names.js';
 
-class CombatantTracker {
+export default class CombatantTracker {
   constructor(logLines, language) {
     this.language = language;
     this.firstTimestamp = Number.MAX_SAFE_INTEGER;
@@ -223,6 +226,3 @@ class CombatantTracker {
     return 'Unknown';
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = CombatantTracker;

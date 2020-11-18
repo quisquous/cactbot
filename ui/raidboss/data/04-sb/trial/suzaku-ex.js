@@ -1,5 +1,3 @@
-'use strict';
-
 // Suzaku Extreme
 [{
   zoneId: ZoneId.HellsKierExtreme,

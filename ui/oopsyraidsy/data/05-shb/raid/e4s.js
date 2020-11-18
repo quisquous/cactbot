@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: could track people get hitting by markers they shouldn't
 // TODO: could track non-tanks getting hit by tankbusters, megaliths
 // TODO: could track non-target getting hit by tankbuster

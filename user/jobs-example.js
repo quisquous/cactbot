@@ -1,5 +1,3 @@
-'use strict';
-
 // Rename this file to `jobs.js` and edit it to change the jobs ui.
 
 // Zones to show food buff warning, when at max level.

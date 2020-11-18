@@ -1,7 +1,7 @@
-'use strict';
+import LineEvent from './LineEvent.js';
 
 // Ability hit single target event
-class LineEvent0x15 extends LineEvent {
+export class LineEvent0x15 extends LineEvent {
   constructor(repo, line, parts) {
     super(repo, line, parts);
 
@@ -57,11 +57,4 @@ class LineEvent0x15 extends LineEvent {
   }
 }
 
-class LineEvent21 extends LineEvent0x15 {}
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    LineEvent0x15: LineEvent0x15,
-    LineEvent21: LineEvent21,
-  };
-}
+export class LineEvent21 extends LineEvent0x15 {}

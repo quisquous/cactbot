@@ -1,4 +1,4 @@
-'use strict';
+import UserConfig from '../../resources/user_config.js';
 
 UserConfig.registerOptions('radar', {
   options: [

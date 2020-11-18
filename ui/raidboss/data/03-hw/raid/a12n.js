@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.AlexanderTheSoulOfTheCreator,
   timelineFile: 'a12n.txt',

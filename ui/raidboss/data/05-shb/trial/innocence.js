@@ -1,5 +1,3 @@
-'use strict';
-
 // Innocence Normal
 [{
   zoneId: ZoneId.TheCrownOfTheImmaculate,

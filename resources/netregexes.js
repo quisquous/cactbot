@@ -1,4 +1,4 @@
-'use strict';
+import Regexes from './regexes.js';
 
 // Differences from Regexes:
 // * may have more fields
@@ -71,13 +71,7 @@ let parseHelper = (params, funcName, fields) => {
   return Regexes.parse(str);
 };
 
-// Node loading shenanigans.  'var' lets other files require() this file inside of
-// Node and put NetRegexes as a global without conflicting when redefining.
-/* eslint-disable no-var */
-var Regexes;
-var NetRegexes = {
-/* eslint-enable */
-
+const NetRegexes = {
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#14-networkstartscasting
   startsUsing: (params) => {
     return parseHelper(params, 'startsUsing', {
@@ -358,8 +352,5 @@ var NetRegexes = {
   },
 };
 
-if (typeof module !== 'undefined') {
-  if (module.exports)
-    module.exports = NetRegexes;
-  Regexes = require('./regexes.js');
-}
+// TODO: Convert into static class
+export default NetRegexes;

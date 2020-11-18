@@ -1,5 +1,3 @@
-'use strict';
-
 // Tsukuyomi Extreme
 [{
   zoneId: ZoneId.TheMinstrelsBalladTsukuyomisPain,

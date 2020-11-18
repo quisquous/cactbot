@@ -298,8 +298,6 @@ so the triggers file is always required.
 An initial triggers file should look like the following:
 
 ```javascript
-'use strict';
-
 [{
   zoneId: ZoneId.CapeWestwind,
   timelineFile: 'cape_westwind.txt',

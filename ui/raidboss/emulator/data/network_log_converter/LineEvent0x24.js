@@ -1,7 +1,7 @@
-'use strict';
+import LineEvent from './LineEvent.js';
 
 // Limit gauge event
-class LineEvent0x24 extends LineEvent {
+export class LineEvent0x24 extends LineEvent {
   constructor(repo, line, parts) {
     super(repo, line, parts);
     this.value = parseInt(parts[2], 16);
@@ -14,11 +14,4 @@ class LineEvent0x24 extends LineEvent {
   }
 }
 
-class LineEvent36 extends LineEvent0x24 {}
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    LineEvent0x24: LineEvent0x24,
-    LineEvent36: LineEvent36,
-  };
-}
+export class LineEvent36 extends LineEvent0x24 {}

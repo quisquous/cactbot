@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: [ZoneId.TheDiadem, ZoneId.TheDiadem521],
   resetWhenOutOfCombat: false,

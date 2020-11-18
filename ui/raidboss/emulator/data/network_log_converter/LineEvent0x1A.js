@@ -1,7 +1,8 @@
-'use strict';
+import LineEvent from './LineEvent.js';
+import EmulatorCommon from '../../EmulatorCommon.js';
 
 // Gain status effect event
-class LineEvent0x1A extends LineEvent {
+export class LineEvent0x1A extends LineEvent {
   constructor(repo, line, parts) {
     super(repo, line, parts);
 
@@ -54,7 +55,7 @@ class LineEvent0x1A extends LineEvent {
   }
 }
 
-class LineEvent26 extends LineEvent0x1A {}
+export class LineEvent26 extends LineEvent0x1A {}
 
 LineEvent0x1A.showStackCountFor = [
   '130', // Aetherflow
@@ -65,10 +66,3 @@ LineEvent0x1A.showStackCountFor = [
   '4d7', // Embolden
   '511', // Embolden
 ];
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    LineEvent0x1A: LineEvent0x1A,
-    LineEvent26: LineEvent26,
-  };
-}

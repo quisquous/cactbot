@@ -1,7 +1,7 @@
-'use strict';
+import LineEvent from './LineEvent.js';
 
 // Network update hp event
-class LineEvent0x27 extends LineEvent {
+export class LineEvent0x27 extends LineEvent {
   constructor(repo, line, parts) {
     super(repo, line, parts);
 
@@ -21,11 +21,4 @@ class LineEvent0x27 extends LineEvent {
   }
 }
 
-class LineEvent39 extends LineEvent0x27 {}
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    LineEvent0x27: LineEvent0x27,
-    LineEvent39: LineEvent39,
-  };
-}
+export class LineEvent39 extends LineEvent0x27 {}

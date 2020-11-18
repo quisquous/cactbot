@@ -1,5 +1,3 @@
-'use strict';
-
 // Frontlines: Shatter
 [{
   zoneId: ZoneId.TheFieldsOfGloryShatter,

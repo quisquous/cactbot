@@ -1,5 +1,3 @@
-'use strict';
-
 // Aetherochemical Research Facility
 [{
   zoneId: ZoneId.TheAetherochemicalResearchFacility,

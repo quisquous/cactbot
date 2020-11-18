@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: rush hitting the crystal
 // TODO: adds not being killed
 // TODO: taking the rush twice (when you have debuff)

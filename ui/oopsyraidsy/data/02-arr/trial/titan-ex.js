@@ -1,5 +1,3 @@
-'use strict';
-
 // Titan Extreme
 [{
   zoneId: ZoneId.TheNavelExtreme,

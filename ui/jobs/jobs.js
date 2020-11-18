@@ -1,4 +1,19 @@
-'use strict';
+import ContentType from '../../resources/content_type.js';
+import EffectId from '../../resources/effect_id.js';
+import { LocaleRegex } from '../../resources/translations.js';
+import Regexes from '../../resources/regexes.js';
+import NetRegexes from '../../resources/netregexes.js';
+import UserConfig from '../../resources/user_config.js';
+import { Util } from '../../resources/common.js';
+import ZoneInfo from '../../resources/zone_info.js';
+import ZoneId from '../../resources/zone_id.js';
+
+import './jobs_config.js';
+import '../../resources/resourcebar.js';
+import '../../resources/timerbar.js';
+import '../../resources/timerbox.js';
+import '../../resources/timericon.js';
+import '../../resources/widgetlist.js';
 
 const kWellFedContentTypes = [
   ContentType.Dungeons,

@@ -1,6 +1,4 @@
-'use strict';
-
-class PersistorEncounter {
+export default class PersistorEncounter {
   constructor(encounter) {
     this.id = encounter.id;
     this.name = encounter.combatantTracker.getMainCombatantName();
@@ -13,6 +11,3 @@ class PersistorEncounter {
     this.duration = encounter.endTimestamp - encounter.startTimestamp;
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = PersistorEncounter;

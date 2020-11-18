@@ -1,14 +1,15 @@
-'use strict';
+import { commonReplacement, partialCommonReplacementKeys } from '../../ui/raidboss/common_replacement.js';
 
-const fs = require('fs');
-const { assert } = require('chai');
-const Regexes = require('../../resources/regexes.js');
-const NetRegexes = require('../../resources/netregexes.js');
-const Conditions = require('../../resources/conditions.js');
-const ZoneId = require('../../resources/zone_id.js');
-const { Responses } = require('../../resources/responses.js');
-const { Timeline } = require('../../ui/raidboss/timeline.js');
-const { commonReplacement, partialCommonReplacementKeys } = require('../../ui/raidboss/common_replacement.js');
+import Regexes from '../../resources/regexes.js';
+import { Timeline } from '../../ui/raidboss/timeline.js';
+import fs from 'fs';
+
+// Used by downstream eval
+import Conditions from '../../resources/conditions.js';
+import NetRegexes from '../../resources/netregexes.js';
+import { Responses } from '../../resources/responses.js';
+import ZoneId from '../../resources/zone_id.js';
+
 
 let exitCode = 0;
 

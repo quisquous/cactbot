@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.AlexanderTheBurdenOfTheFatherSavage,
   timelineFile: 'a4s.txt',

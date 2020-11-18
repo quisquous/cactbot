@@ -1,3 +1,8 @@
+import { InitDpsModule, Options } from '../dps_common.js';
+import UserConfig from '../../../resources/user_config.js';
+
+import '../../../resources/common.js';
+
 // fiddle: http://jsfiddle.net/v1ddnsvh/8/
 /* global window */
 
@@ -491,3 +496,26 @@ DamageMeter.defaultProps = {
     parseData: {},
     noJobColors: false
 };
+
+function onOverlayDataUpdate(e) {
+    let start = new Date().getTime();
+    let details = e.detail;
+    let container = document.getElementById('container');
+    container.style.display = 'block';
+
+    React.render(
+        React.createElement(DamageMeter, {
+            parseData: e.detail
+        }),
+        container
+    );
+    //console.log('rendered in ' + (+new Date() - start) + 'ms');
+}
+
+function hideOverlay() {
+    document.getElementById('container').style.display = 'none';
+}
+
+UserConfig.getUserConfigLocation('rdmty', Options, (e) => {
+    InitDpsModule(onOverlayDataUpdate, hideOverlay);
+});

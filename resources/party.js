@@ -1,6 +1,6 @@
-'use strict';
+import { Util } from './common.js';
 
-class PartyTracker {
+export default class PartyTracker {
   constructor() {
     this.onPartyChanged({ party: [] });
   }
@@ -137,6 +137,3 @@ class PartyTracker {
     return this.idToName_[id];
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = PartyTracker;

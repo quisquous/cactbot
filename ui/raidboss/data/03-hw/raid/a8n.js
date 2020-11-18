@@ -1,5 +1,3 @@
-'use strict';
-
 // ALEXANDER - THE BURDEN OF THE SON NORMAL
 // A8N
 
@@ -239,6 +237,7 @@
         text: {
           en: 'Don\'t Stack! (tank cleave)',
           de: 'Nicht Sammeln! (Tank Cleave)',
+          ja: '集まらない! (タンクへのスラッシュ)',
           cn: '别去集合！（坦克顺劈）',
         },
       },
@@ -347,6 +346,7 @@
         text: {
           en: 'Avoid Mirage Dashes',
           de: 'Weiche den Replikant Ansturm aus',
+          ja: 'ミラージュの正面に離れ',
           cn: '躲避分身冲锋',
           ko: '환영 돌진 피하기',
         },

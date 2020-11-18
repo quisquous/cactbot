@@ -1,7 +1,8 @@
-'use strict';
+import LineEvent from './LineEvent.js';
+import EmulatorCommon from '../../EmulatorCommon.js';
 
 // DoT/HoT event
-class LineEvent0x18 extends LineEvent {
+export class LineEvent0x18 extends LineEvent {
   constructor(repo, line, parts) {
     super(repo, line, parts);
 
@@ -49,7 +50,7 @@ class LineEvent0x18 extends LineEvent {
   }
 }
 
-class LineEvent24 extends LineEvent0x18 {}
+export class LineEvent24 extends LineEvent0x18 {}
 
 LineEvent0x18.showEffectNamesFor = {
   '4C4': 'Excognition',
@@ -63,10 +64,3 @@ LineEvent0x18.showEffectNamesFor = {
   '4C7': 'Fey Union',
   '742': 'Nascent Glint',
 };
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    LineEvent0x18: LineEvent0x18,
-    LineEvent24: LineEvent24,
-  };
-}

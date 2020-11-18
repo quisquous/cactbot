@@ -1,6 +1,4 @@
-'use strict';
-
-class Tooltip {
+export default class Tooltip {
   constructor(target, direction, text, autoShow = true, autoHide = true) {
     if (!Tooltip.validDirections.includes(direction))
       throw new Error('Invalid direction for tooltip: ' + direction);
@@ -94,6 +92,3 @@ Tooltip.hideEvents = [
   'mouseleave',
   'blur',
 ];
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = Tooltip;

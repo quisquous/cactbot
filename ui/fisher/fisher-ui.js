@@ -1,4 +1,4 @@
-'use strict';
+import TimerBar from '../../resources/timerbar.js';
 
 class FisherBar extends TimerBar {
   stop() {
@@ -16,9 +16,10 @@ if (window.customElements) {
   });
 }
 
-class FisherUI {
-  constructor(element) {
+export default class FisherUI {
+  constructor(element, options) {
     this.element = element;
+    this.options = options;
     this.baitEl = element.querySelector('#bait-name');
     this.placeEl = element.querySelector('#place-name');
     this.timeEl = element.querySelector('#cast-duration');
@@ -94,7 +95,7 @@ class FisherUI {
       }
 
       if (row.getAttribute('data-tug'))
-        bar.fg = Options.Colors[this.tugNames[row.getAttribute('data-tug')]];
+        bar.fg = this.options.Colors[this.tugNames[row.getAttribute('data-tug')]];
 
 
       while (row.lastChild)
@@ -161,7 +162,7 @@ class FisherUI {
         el.setAttribute('data-fish', fish);
         el.style.top = (hookTimes[fish].min / 600).toString() + '%';
         el.style.height = ((hookTimes[fish].max - hookTimes[fish].min) / 600).toString() + '%';
-        el.style.backgroundColor = Options.Colors[this.tugNames[tug]];
+        el.style.backgroundColor = this.options.Colors[this.tugNames[tug]];
 
         // Put the element in the well
         let well = this.element.querySelector('#fisher-well-' + this.tugNames[tug]);
@@ -195,6 +196,3 @@ class FisherUI {
     this.animationFrame = null;
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = FisherUI;

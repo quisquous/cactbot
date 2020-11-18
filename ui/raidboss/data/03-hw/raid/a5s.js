@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: do the gobcut and gobstraight really alternate?
 // if so, then maybe we could call out which was coming.
 // I thought some of them were fixed and don't have enough data.

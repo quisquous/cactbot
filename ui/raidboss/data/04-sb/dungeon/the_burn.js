@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.TheBurn,
   timelineFile: 'the_burn.txt',

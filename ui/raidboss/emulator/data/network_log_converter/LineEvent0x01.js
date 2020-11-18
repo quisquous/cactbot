@@ -1,7 +1,8 @@
-'use strict';
+import LineEvent from './LineEvent.js';
+import EmulatorCommon from '../../EmulatorCommon.js';
 
 // Zone change event
-class LineEvent0x01 extends LineEvent {
+export class LineEvent0x01 extends LineEvent {
   constructor(repo, line, parts) {
     super(repo, line, parts);
     this.zoneId = parts[2].toUpperCase();
@@ -17,11 +18,4 @@ class LineEvent0x01 extends LineEvent {
   }
 }
 
-class LineEvent01 extends LineEvent0x01 {}
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    LineEvent0x01: LineEvent0x01,
-    LineEvent01: LineEvent01,
-  };
-}
+export class LineEvent01 extends LineEvent0x01 {}

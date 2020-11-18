@@ -1,6 +1,6 @@
-'use strict';
+import { PopupText } from '../../popup-text.js';
 
-class StubbedPopupText extends PopupText {
+export default class StubbedPopupText extends PopupText {
   constructor(options) {
     super(options);
   }
@@ -20,6 +20,3 @@ class StubbedPopupText extends PopupText {
 }
 
 StubbedPopupText.globalTriggerSets = null;
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = StubbedPopupText;

@@ -1,5 +1,3 @@
-'use strict';
-
 // O12S - Alphascape 4.0 Savage
 
 [{

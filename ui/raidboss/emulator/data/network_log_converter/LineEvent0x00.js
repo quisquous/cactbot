@@ -1,7 +1,7 @@
-'use strict';
+import LineEvent from './LineEvent.js';
 
 // Chat event
-class LineEvent0x00 extends LineEvent {
+export class LineEvent0x00 extends LineEvent {
   constructor(repo, line, parts) {
     super(repo, line, parts);
     if (this.parts.slice(4).join('|').split('\u001f\u001f').length > 1)
@@ -26,7 +26,7 @@ class LineEvent0x00 extends LineEvent {
   }
 }
 
-class LineEvent00 extends LineEvent0x00 {}
+export class LineEvent00 extends LineEvent0x00 {}
 
 LineEvent00.chatSymbolReplacements = [
   {
@@ -45,10 +45,3 @@ LineEvent00.chatSymbolReplacements = [
     Type: 'Negative Effect',
   },
 ];
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    LineEvent0x00: LineEvent0x00,
-    LineEvent00: LineEvent00,
-  };
-}

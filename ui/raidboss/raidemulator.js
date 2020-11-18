@@ -1,4 +1,24 @@
-'use strict';
+import '../../resources/common.js';
+import './raidboss_config.js';
+
+import EmulatedMap from './emulator/ui/EmulatedMap.js';
+import EmulatedPartyInfo from './emulator/ui/EmulatedPartyInfo.js';
+import EmulatorCommon from './emulator/EmulatorCommon.js';
+import Encounter from './emulator/data/Encounter.js';
+import EncounterTab from './emulator/ui/EncounterTab.js';
+import LogEventHandler from './emulator/data/LogEventHandler.js';
+import NetworkLogConverter from './emulator/data/NetworkLogConverter.js';
+import Persistor from './emulator/data/Persistor.js';
+import { PopupTextGenerator } from './popup-text.js';
+import ProgressBar from './emulator/ui/ProgressBar.js';
+import RaidEmulator from './emulator/data/RaidEmulator.js';
+import RaidEmulatorOverlayApiHook from './emulator/overrides/RaidEmulatorOverlayApiHook.js';
+import RaidEmulatorPopupText from './emulator/overrides/RaidEmulatorPopupText.js';
+import RaidEmulatorTimelineController from './emulator/overrides/RaidEmulatorTimelineController.js';
+import RaidEmulatorTimelineUI from './emulator/overrides/RaidEmulatorTimelineUI.js';
+import { TimelineLoader } from './timeline.js';
+import Tooltip from './emulator/ui/Tooltip.js';
+import UserConfig from '../../resources/user_config.js';
 
 // @TODO: Some way to not have this be a global?
 

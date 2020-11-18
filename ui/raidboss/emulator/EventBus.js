@@ -1,11 +1,9 @@
-'use strict';
-
 /**
  * This is a base class that classes can extend to inherit event bus capabilities.
  * This allows other classes to listen for events with the `on` function.
  * The inheriting class can fire those events with the `dispatch` function.
  */
-class EventBus {
+export default class EventBus {
   constructor() {
     this.listeners = {};
   }
@@ -51,6 +49,3 @@ class EventBus {
     }
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = EventBus;

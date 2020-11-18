@@ -1,6 +1,8 @@
-'use strict';
+import ContentType from '../../resources/content_type.js';
+import { Util } from '../../resources/common.js';
+import ZoneInfo from '../../resources/zone_info.js';
 
-let Options = {
+export let Options = {
   Language: 'en',
   IgnoreContentTypes: [
     ContentType.Pvp,
@@ -14,7 +16,7 @@ let gCurrentJob = null;
 let gCurrentZone = null;
 let gInCombat = false;
 
-const InitDpsModule = function(updateFunc, hideFunc) {
+export const InitDpsModule = function(updateFunc, hideFunc) {
   addOverlayListener('CombatData', (e) => {
     // DPS numbers in large pvp is not useful and hella noisy.
     if (gIgnoreCurrentZone || gIgnoreCurrentJob)
@@ -65,10 +67,3 @@ const InitDpsModule = function(updateFunc, hideFunc) {
     hideFunc();
   });
 };
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    Options: Options,
-    InitDpsModule: InitDpsModule,
-  };
-}

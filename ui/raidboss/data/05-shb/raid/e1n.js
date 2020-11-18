@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.EdensGateResurrection,
   timelineFile: 'e1n.txt',

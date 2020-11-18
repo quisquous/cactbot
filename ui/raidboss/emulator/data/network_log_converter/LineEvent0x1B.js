@@ -1,7 +1,7 @@
-'use strict';
+import LineEvent from './LineEvent.js';
 
 // Head marker event
-class LineEvent0x1B extends LineEvent {
+export class LineEvent0x1B extends LineEvent {
   constructor(repo, line, parts) {
     super(repo, line, parts);
 
@@ -10,11 +10,4 @@ class LineEvent0x1B extends LineEvent {
   }
 }
 
-class LineEvent27 extends LineEvent0x1B {}
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    LineEvent0x1B: LineEvent0x1B,
-    LineEvent27: LineEvent27,
-  };
-}
+export class LineEvent27 extends LineEvent0x1B {}

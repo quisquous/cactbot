@@ -1,6 +1,4 @@
-'use strict';
-
-const Util = (() => {
+export const Util = (() => {
   const kTankJobs = ['GLA', 'PLD', 'MRD', 'WAR', 'DRK', 'GNB'];
   const kHealerJobs = ['CNJ', 'WHM', 'SCH', 'AST'];
   const kMeleeDpsJobs = ['PGL', 'MNK', 'LNC', 'DRG', 'ROG', 'NIN', 'SAM'];
@@ -261,9 +259,3 @@ const Util = (() => {
     return p;
   };
 })();
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    Util: Util,
-  };
-}

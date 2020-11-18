@@ -1,7 +1,7 @@
-'use strict';
+import LineEvent from './LineEvent.js';
 
 // Cancel ability event
-class LineEvent0x17 extends LineEvent {
+export class LineEvent0x17 extends LineEvent {
   constructor(repo, line, parts) {
     super(repo, line, parts);
 
@@ -13,11 +13,4 @@ class LineEvent0x17 extends LineEvent {
   }
 }
 
-class LineEvent23 extends LineEvent0x17 {}
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    LineEvent0x17: LineEvent0x17,
-    LineEvent23: LineEvent23,
-  };
-}
+export class LineEvent23 extends LineEvent0x17 {}

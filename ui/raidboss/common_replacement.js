@@ -1,9 +1,7 @@
-'use strict';
-
 // TODO: maybe this should be structured identically to a timelineReplace section.
 
 // It's awkward to refer to these string keys, so name them as replaceSync[keys.sealKey].
-const syncKeys = {
+export const syncKeys = {
   seal: '(?<=00:0839:)(.*) will be sealed off(?: in (?:[0-9]+ seconds)?)?',
   unseal: 'is no longer sealed',
   engage: 'Engage!',
@@ -27,7 +25,7 @@ const textKeys = {
   DPS: '(?<= \\(|\\/)DPS(?=\\)|\\/)',
 };
 
-const commonReplacement = {
+export const commonReplacement = {
   replaceSync: {
     [syncKeys.seal]: {
       en: '$1 will be sealed off',
@@ -306,7 +304,7 @@ const commonReplacement = {
 // in the sense that even if it applies, there still needs to be another
 // translation for it to be complete.  These keys should be exactly the same
 // as the keys from the commonReplacement block above.
-const partialCommonReplacementKeys = [
+export const partialCommonReplacementKeys = [
   // Because the zone name needs to be translated here, this is partial.
   syncKeys.seal,
   // Directions
@@ -323,11 +321,3 @@ const partialCommonReplacementKeys = [
   textKeys.Healer,
   textKeys.DPS,
 ];
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    commonReplacement: commonReplacement,
-    partialCommonReplacementKeys: partialCommonReplacementKeys,
-    syncKeys: syncKeys,
-  };
-}

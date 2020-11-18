@@ -1,5 +1,3 @@
-'use strict';
-
 // canAnonymize: boolean whether this line can be anonymized
 // playerIds: map of indexes from a player id to the index of that player name
 // isUnknown: needs more information, never seen this log
@@ -576,5 +574,4 @@ const logDefinitions = {
   },
 };
 
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = logDefinitions;
+export default logDefinitions;

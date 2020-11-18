@@ -1,9 +1,11 @@
-'use strict';
+import LineEvent from './LineEvent.js';
+import { LineEvent0x1A } from './LineEvent0x1A.js';
+import EmulatorCommon from '../../EmulatorCommon.js';
 
 // Lose status effect event
 // Extend the gain status event to reduce duplicate code since they're
 // the same from a data perspective
-class LineEvent0x1E extends LineEvent0x1A {
+export class LineEvent0x1E extends LineEvent0x1A {
   constructor(repo, line, parts) {
     super(repo, line, parts);
   }
@@ -27,11 +29,4 @@ class LineEvent0x1E extends LineEvent0x1A {
   }
 }
 
-class LineEvent30 extends LineEvent0x1E {}
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    LineEvent0x1E: LineEvent0x1E,
-    LineEvent30: LineEvent30,
-  };
-}
+export class LineEvent30 extends LineEvent0x1E {}

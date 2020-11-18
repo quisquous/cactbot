@@ -1,23 +1,17 @@
-'use strict';
-
 // This test loads an individual trigger file and makes validates
 // the format and regex calls made.
 
 // TODO: Remove ` ?` before each hex value once global prefix `^.{14} ` is added.
 // JavaScript doesn't allow for possessive operators in regular expressions.
 
-const { assert } = require('chai');
-const Regexes = require('../../resources/regexes.js');
-const NetRegexes = require('../../resources/netregexes.js');
-const Conditions = require('../../resources/conditions.js');
-const ZoneId = require('../../resources/zone_id.js');
-const {
-  Responses, // this is used via eval
-  triggerFunctions,
-  triggerOutputFunctions,
-  builtInResponseStr,
-} = require('../../resources/responses.js');
-const fs = require('fs');
+import chai from 'chai';
+const { assert } = chai;
+import Regexes from '../../resources/regexes.js';
+import NetRegexes from '../../resources/netregexes.js';
+import Conditions from '../../resources/conditions.js';
+import ZoneId from '../../resources/zone_id.js';
+import { Responses, triggerFunctions, triggerOutputFunctions, builtInResponseStr } from '../../resources/responses.js';
+import fs from 'fs';
 
 let exitCode = 0;
 

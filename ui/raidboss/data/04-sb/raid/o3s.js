@@ -1,5 +1,3 @@
-'use strict';
-
 // O3S - Deltascape 3.0 Savage
 [{
   zoneId: ZoneId.DeltascapeV30Savage,

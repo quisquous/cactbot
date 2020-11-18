@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: failing to interrupt Mana Boost (3D8D)
 // TODO: failing to pass healer debuff?
 // TODO: what happens if you don't kill a meteor during four orbs?

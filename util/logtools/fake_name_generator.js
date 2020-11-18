@@ -1,5 +1,3 @@
-'use strict';
-
 const fakePlayerNames = [
   'Tini Poutini',
   'Potato Chippy',
@@ -13,7 +11,7 @@ function randomFromArray(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
-class FakeNameGenerator {
+export default class FakeNameGenerator {
   constructor() {
     this.fakePlayerNames = [...fakePlayerNames];
     // playerId -> name
@@ -124,6 +122,3 @@ class FakeNameGenerator {
     return 'X\'' + randomStr + ' Tia';
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = FakeNameGenerator;

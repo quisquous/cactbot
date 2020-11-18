@@ -1,6 +1,4 @@
-'use strict';
-
-class CombatantState {
+export default class CombatantState {
   constructor(posX, posY, posZ, heading, targetable, HP, maxHP, MP, maxMP) {
     this.posX = posX;
     this.posY = posY;
@@ -26,6 +24,3 @@ class CombatantState {
         Number(props.maxMP) || this.maxMP);
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = CombatantState;

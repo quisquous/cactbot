@@ -1,5 +1,3 @@
-'use strict';
-
 const TTSEngineType = {
   SpeechSynthesis: 0,
   GoogleTTS: 1,
@@ -43,7 +41,7 @@ class GoogleTTSItem extends TTSItem {
   }
 }
 
-class BrowserTTSEngine {
+export default class BrowserTTSEngine {
   constructor(lang) {
     this.googleTTSLang = lang === 'cn' ? 'zh' : lang;
     // TODO: should there be options for different voices here so that
@@ -108,6 +106,3 @@ class BrowserTTSEngine {
     this.ttsItems[text].play();
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = BrowserTTSEngine;

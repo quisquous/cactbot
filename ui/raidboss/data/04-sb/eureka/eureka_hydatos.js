@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.TheForbiddenLandEurekaHydatos,
   timelineFile: 'eureka_hydatos.txt',

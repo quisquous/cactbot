@@ -1,5 +1,3 @@
-'use strict';
-
 class ResourceBar extends HTMLElement {
   static get observedAttributes() {
     return ['value', 'maxvalue', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'toward', 'extravalue', 'extracolor'];

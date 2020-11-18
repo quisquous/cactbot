@@ -1,6 +1,9 @@
-'use strict';
+import EmulatorCommon from '../EmulatorCommon.js';
+import EventBus from '../EventBus.js';
+import Tooltip from './Tooltip.js';
+import { Util } from '../../../../resources/common.js';
 
-class EmulatedPartyInfo extends EventBus {
+export default class EmulatedPartyInfo extends EventBus {
   constructor(emulator) {
     super();
     this.tooltips = [];
@@ -307,6 +310,3 @@ EmulatedPartyInfo.jobOrder = [
   'BRD', 'MCH', 'DNC',
   'BLM', 'SMN', 'RDM',
   'BLU'];
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = EmulatedPartyInfo;

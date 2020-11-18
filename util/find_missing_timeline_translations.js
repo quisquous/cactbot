@@ -1,17 +1,15 @@
-'use strict';
-
 let triggersFile = process.argv[2];
 let locale = process.argv[3];
 let localeReg = 'regex' + locale[0].toUpperCase() + locale[1];
 
-const fs = require('fs');
-const Regexes = require('../resources/regexes.js');
-const NetRegexes = require('../resources/netregexes.js');
-const Conditions = require('../resources/conditions.js');
-const ZoneId = require('../resources/zone_id.js');
-const { Responses } = require('../resources/responses.js');
-const { Timeline } = require('../ui/raidboss/timeline.js');
-const { commonReplacement, partialCommonReplacementKeys } = require('../ui/raidboss/common_replacement.js');
+import fs from 'fs';
+import Regexes from '../resources/regexes.js';
+import NetRegexes from '../resources/netregexes.js';
+import Conditions from '../resources/conditions.js';
+import ZoneId from '../resources/zone_id.js';
+import { Responses } from '../resources/responses.js';
+import { Timeline } from '../ui/raidboss/timeline.js';
+import { commonReplacement, partialCommonReplacementKeys } from '../ui/raidboss/common_replacement.js';
 
 // Hackily assume that any file with a txt file of the same name is a trigger/timeline.
 let timelineFile = triggersFile.replace(/\.js$/, '.txt');

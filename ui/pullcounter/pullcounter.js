@@ -1,10 +1,12 @@
-'use strict';
+import '../../resources/common.js';
+import { LocaleRegex } from '../../resources/translations.js';
+import Regexes from '../../resources/regexes.js';
+import UserConfig from '../../resources/user_config.js';
+import ZoneId from '../../resources/zone_id.js';
 
 let Options = {
   Language: 'en',
 };
-
-'use strict';
 
 // NOTE: do not add more fights to this data structure.
 // These exist for testing pullcounter and for backwards compatibility

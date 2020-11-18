@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.TheSecondCoilOfBahamutTurn3,
   timelineFile: 't8.txt',

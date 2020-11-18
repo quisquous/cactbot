@@ -1,5 +1,3 @@
-'use strict';
-
 // Ultima Weapon Ultimate
 [{
   zoneId: ZoneId.TheWeaponsRefrainUltimate,

@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.AlexanderTheCuffOfTheSonSavage,
   timelineFile: 'a6s.txt',

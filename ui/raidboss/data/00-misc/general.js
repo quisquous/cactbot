@@ -1,5 +1,3 @@
-'use strict';
-
 const caresAboutTankStuff = (data) => {
   return data.role === 'tank' || data.role === 'healer' || data.job === 'BLU';
 };

@@ -1,5 +1,3 @@
-'use strict';
-
 [{
   zoneId: ZoneId.CinderDrift,
   timelineFile: 'ruby_weapon.txt',

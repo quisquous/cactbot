@@ -1,4 +1,13 @@
-'use strict';
+import './raidboss_config.js';
+import '../../resources/common.js';
+import '../../resources/timerbar.js';
+
+import { PopupText, PopupTextGenerator, gPopupText as _gPopupText } from './popup-text.js';
+import { TimelineController, TimelineLoader, TimelineUI } from './timeline.js';
+let gPopupText = _gPopupText;
+
+import UserConfig from '../../resources/user_config.js';
+import { addRemotePlayerSelectUI } from '../../resources/player_override.js';
 
 // See user/raidboss-example.js for documentation.
 let Options = {

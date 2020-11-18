@@ -1,5 +1,3 @@
-'use strict';
-
 class EmulatedMapInfo {
   constructor() {
     this.combatantOffsetX;

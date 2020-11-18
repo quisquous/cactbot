@@ -1,10 +1,5 @@
-'use strict';
-
-class EmulatedMap {
+export default class EmulatedMap {
   constructor(emulator) {
 
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = EmulatedMap;

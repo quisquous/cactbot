@@ -1,5 +1,3 @@
-'use strict';
-
 // UCU - The Unending Coil Of Bahamut (Ultimate)
 [{
   zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,

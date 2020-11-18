@@ -1,12 +1,11 @@
-'use strict';
+import chai from 'chai';
 
-const { assert } = require('chai');
-
+const { assert } = chai;
 // Quite bogus.
 let bogusLine = 'using act is cheating';
 
 // An automated way to test standard regex functions that take a dictionary of fields.
-let regexCaptureTest = (func, lines) => {
+export default (func, lines) => {
   // regex should not match the bogus line.
   assert.isNull(bogusLine.match(func({})));
 
@@ -69,9 +68,3 @@ let regexCaptureTest = (func, lines) => {
     assert.propertyVal(explicitNoCaptureMatch, 'groups', undefined);
   }
 };
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    regexCaptureTest: regexCaptureTest,
-  };
-}

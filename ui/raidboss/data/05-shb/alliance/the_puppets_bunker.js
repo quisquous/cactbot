@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: is it worth adding triggers for gaining/losing shield protocol? effect 8F[0-2]
 // TODO: Incongruous Spin timeline trigger?
 

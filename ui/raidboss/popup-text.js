@@ -1,4 +1,26 @@
-'use strict';
+// TODO:
+// The convention of "import X as _X; const X = _X;" is currently
+// being used as a method to workaround for downstream code
+// that is running via eval(). Because importing statements do not
+// create a variable of the same name, the eval()'d code does not know
+// about the import, and thus throws ReferenceErrors.
+// Used by downstream eval
+import _Conditions from '../../resources/conditions.js';
+const Conditions = _Conditions;
+import _NetRegexes from '../../resources/netregexes.js';
+const NetRegexes = _NetRegexes;
+import { Responses as _Responses } from '../../resources/responses.js';
+const Responses = _Responses;
+
+import AutoplayHelper from './autoplay_helper.js';
+import BrowserTTSEngine from './browser_tts_engine.js';
+import { addPlayerChangedOverrideListener } from '../../resources/player_override.js';
+import PartyTracker from '../../resources/party.js';
+import _Regexes from '../../resources/regexes.js';
+const Regexes = _Regexes;
+import { Util } from '../../resources/common.js';
+import _ZoneId from '../../resources/zone_id.js';
+const ZoneId = _ZoneId;
 
 // There should be (at most) six lines of instructions.
 const raidbossInstructions = {
@@ -106,7 +128,6 @@ class OrderedTriggerList {
   }
 }
 
-
 class TriggerOutputProxy {
   constructor(trigger, displayLang, perTriggerAutoConfig) {
     this.trigger = trigger;
@@ -201,7 +222,7 @@ class TriggerOutputProxy {
   }
 }
 
-class PopupText {
+export class PopupText {
   constructor(options) {
     this.options = options;
     this.triggers = [];
@@ -1043,7 +1064,7 @@ class PopupText {
   }
 }
 
-class PopupTextGenerator {
+export class PopupTextGenerator {
   constructor(popupText) {
     this.popupText = popupText;
   }
@@ -1081,11 +1102,4 @@ class PopupTextGenerator {
   }
 }
 
-let gPopupText;
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    PopupText: PopupText,
-    PopupTextGenerator: PopupTextGenerator,
-  };
-}
+export let gPopupText;

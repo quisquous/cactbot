@@ -1,5 +1,3 @@
-'use strict';
-
 // The Copied Factory
 [{
   zoneId: ZoneId.TheCopiedFactory,

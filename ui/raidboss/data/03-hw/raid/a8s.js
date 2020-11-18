@@ -1,5 +1,3 @@
-'use strict';
-
 // TODO: Final Punishment stack counts are in the network log, but not in ACT log :C
 // e.g. 4 stacks:
 //   26|2020-02-08T21:03:07.8080000-08:00|403|Final Punishment|

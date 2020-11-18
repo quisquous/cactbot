@@ -1,6 +1,4 @@
-'use strict';
-
-class LogRepository {
+export default class LogRepository {
   constructor() {
     this.Combatants = {};
     this.firstTimestamp = Number.MAX_SAFE_INTEGER;
@@ -54,6 +52,3 @@ class LogRepository {
     return ret;
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = LogRepository;

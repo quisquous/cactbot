@@ -1,6 +1,6 @@
-'use strict';
+import gFisherData from './static-data.js';
 
-class SeaBase {
+export default class SeaBase {
   constructor(options) {
     this._dbName = 'seabase';
     this._dbVersion = 1;
@@ -370,6 +370,3 @@ class SeaBase {
     });
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = SeaBase;

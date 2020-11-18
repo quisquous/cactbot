@@ -1,7 +1,7 @@
-'use strict';
+import LineEvent from './LineEvent.js';
 
 // Player change event
-class LineEvent0x02 extends LineEvent {
+export class LineEvent0x02 extends LineEvent {
   constructor(repo, line, parts) {
     super(repo, line, parts);
 
@@ -14,11 +14,4 @@ class LineEvent0x02 extends LineEvent {
   }
 }
 
-class LineEvent02 extends LineEvent0x02 {}
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    LineEvent0x02: LineEvent0x02,
-    LineEvent02: LineEvent02,
-  };
-}
+export class LineEvent02 extends LineEvent0x02 {}

@@ -1,7 +1,7 @@
-'use strict';
+import LineEvent from './LineEvent.js';
 
 // Nameplate toggle
-class LineEvent0x22 extends LineEvent {
+export class LineEvent0x22 extends LineEvent {
   constructor(repo, line, parts) {
     super(repo, line, parts);
 
@@ -15,11 +15,4 @@ class LineEvent0x22 extends LineEvent {
   }
 }
 
-class LineEvent34 extends LineEvent0x22 {}
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    LineEvent0x22: LineEvent0x22,
-    LineEvent34: LineEvent34,
-  };
-}
+export class LineEvent34 extends LineEvent0x22 {}

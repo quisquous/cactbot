@@ -1,6 +1,8 @@
-'use strict';
+import CombatantTracker from './CombatantTracker.js';
+import LogEventHandler from './LogEventHandler.js';
+import PetNamesByLang from '../../../../resources/pet_names.js';
 
-class Encounter {
+export default class Encounter {
   constructor(encounterDay, encounterZoneId, encounterZoneName, logLines) {
     this.id = null;
     this.encounterZoneId = encounterZoneId;
@@ -87,6 +89,3 @@ class Encounter {
     this.startStatus = [...this.startStatus].sort().join(', ');
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = Encounter;
