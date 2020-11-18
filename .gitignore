@@ -10,6 +10,7 @@ plugin/**/*.csproj.user
 
 plugin/ThirdParty/
 publish/
+dist/
 node_modules
 package-lock.json
 .idea/*

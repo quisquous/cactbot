@@ -1,5 +1,7 @@
 'use strict';
 
+import UserConfig from '../../resources/user_config.js';
+
 const oopsyHelpers = [
   'damageWarn',
   'damageFail',

@@ -5,50 +5,12 @@
   <title>Cactbot DPS rdmty</title>
 
   <link rel="stylesheet" href="../../../resources/defaults.css">
-  <script src="../../../resources/common.js"></script>
-  <script src="../../../resources/content_type.js"></script>
-  <script src="../../../resources/regexes.js"></script>
-  <script src="../../../resources/netregexes.js"></script>
-  <script src="../../../resources/user_config.js"></script>
-  <script src="../../../resources/translations.js"></script>
-  <script src="../../../resources/zone_id.js"></script>
-  <script src="../../../resources/zone_info.js"></script>
+  <link rel="stylesheet" type="text/css" href="dps.css">
+  <link rel="stylesheet" href="../../../user/rdmty.css">
   <script src="../../../resources/lib/lodash.min.js"></script>
   <script src="../../../resources/lib/react.min.js"></script>
-  <script src="../dps_common.js"></script>
-
-  <link rel="stylesheet" type="text/css" href="dps.css">
-
-  <!-- User config -->
-  <link rel="stylesheet" href="../../../user/rdmty.css">
+  <script src="../../../dist/rdmty.bundle.js"></script>
   <script src="../../../user/rdmty.js"></script>
-
-  <script src="dps.js"></script>
-  <script>
-    'use strict';
-    function onOverlayDataUpdate(e) {
-      let start = new Date().getTime();
-      let details = e.detail;
-      let container = document.getElementById('container');
-      container.style.display = 'block';
-
-      React.render(
-        React.createElement(DamageMeter, {
-          parseData: e.detail
-        }),
-        container
-      );
-      //console.log('rendered in ' + (+new Date() - start) + 'ms');
-    }
-
-    function hideOverlay() {
-      document.getElementById('container').style.display = 'none';
-    }
-
-    UserConfig.getUserConfigLocation('rdmty', Options, (e) => {
-      InitDpsModule(onOverlayDataUpdate, hideOverlay);
-    });
-  </script>
 </head>
 <body>
   <div id="container"></div>

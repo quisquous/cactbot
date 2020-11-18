@@ -1,5 +1,11 @@
 'use strict';
 
+import FisherUI from './fisher-ui.js';
+import SeaBase from './seabase.js';
+import UserConfig from '../../resources/user_config.js';
+
+import '../../resources/common.js';
+
 let Options = {
   IQRHookQuantity: 100,
   IQRTugQuantity: 10,
@@ -139,7 +145,7 @@ class Fisher {
       },
     };
 
-    this.ui = new FisherUI(element);
+    this.ui = new FisherUI(element, Options);
     this.seaBase = new SeaBase(Options);
   }
 

@@ -1,11 +1,12 @@
 'use strict';
 
-const fs = require('fs');
-const Anonymizer = require('./anonymizer.js');
-const Splitter = require('./splitter.js');
-const { EncounterCollector } = require('./encounter_tools.js');
-const ZoneId = require('../../resources/zone_id.js');
-const argparse = require('argparse');
+import fs from 'fs';
+import readline from 'readline';
+import Anonymizer from './anonymizer.js';
+import Splitter from './splitter.js';
+import { EncounterCollector } from './encounter_tools.js';
+import ZoneId from '../../resources/zone_id.js';
+import argparse from 'argparse';
 
 // TODO: add options for not splitting / not anonymizing.
 let parser = new argparse.ArgumentParser({
@@ -251,7 +252,7 @@ const writeFile = (outputFile, startLine, endLine) => {
     let notifier = new ConsoleNotifier();
     let anonymizer = new Anonymizer();
 
-    let lineReader = require('readline').createInterface({
+    let lineReader = readline.createInterface({
       input: fs.createReadStream(logFileName),
     });
 
@@ -299,7 +300,7 @@ const writeFile = (outputFile, startLine, endLine) => {
 (async function() {
   const makeCollectorFromPrepass = async (filename) => {
     let collector = new EncounterCollector();
-    let lineReader = require('readline').createInterface({
+    let lineReader = readline.createInterface({
       input: fs.createReadStream(filename),
     });
     for await (const line of lineReader) {

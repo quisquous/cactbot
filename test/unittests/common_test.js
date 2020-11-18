@@ -1,8 +1,9 @@
 'use strict';
 
-const { Util } = require('../../resources/common.js');
+import { Util } from '../../resources/common.js';
+import chai from 'chai';
 
-const { assert } = require('chai');
+const { assert } = chai;
 
 // Duplicate values from common.js
 // Expect to update these as patches and expansions change job capabilities

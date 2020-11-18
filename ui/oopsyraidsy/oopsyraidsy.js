@@ -1,5 +1,26 @@
 'use strict';
 
+// TODO:
+// The convention of "import X as _X; const X = _X;" is currently
+// being used as a method to workaround for downstream code
+// that is running via eval(). Because importing statements do not
+// create a variable of the same name, the eval()'d code does not know
+// about the import, and thus throws ReferenceErrors.
+import ContentType from '../../resources/content_type.js';
+import { LocaleNetRegex } from '../../resources/translations.js';
+import _NetRegexes from '../../resources/netregexes.js';
+const NetRegexes = _NetRegexes;
+import PartyTracker from '../../resources/party.js';
+import _Regexes from '../../resources/regexes.js';
+const Regexes = _Regexes;
+import UserConfig from '../../resources/user_config.js';
+import { Util } from '../../resources/common.js';
+import _ZoneId from '../../resources/zone_id.js';
+const ZoneId = _ZoneId;
+import ZoneInfo from '../../resources/zone_info.js';
+
+import './oopsyraidsy_config.js';
+
 let Options = {
   Triggers: [],
   PlayerNicks: {},

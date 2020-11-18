@@ -1,6 +1,6 @@
 'use strict';
 
-class Combatant {
+export default class Combatant {
   constructor(id, name) {
     this.id = id;
     this.name = '';
@@ -96,6 +96,3 @@ class Combatant {
     return this.states[this.significantStates[i - 1]];
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = Combatant;

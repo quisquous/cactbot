@@ -5,18 +5,11 @@ on:
     branches: [ main ]
 
 jobs:
-  update-gh-pages:
+  check-gh-pages:
     runs-on: ubuntu-latest
+    outputs:
+      found: ${{ steps.check-gh-pages.outputs.found }}
     steps:
-      - name: Setup GitHub Repository Variables
-        id: setup-vars
-        uses: actions/github-script@v2
-        with:
-          # Creates output variables to be used in later steps since there is
-          # no native way to split the strings within the script itself
-          script: |
-            core.setOutput('owner', "${{ github.repository }}".split('/')[0])
-            core.setOutput('repo', "${{ github.repository }}".split('/')[1])
       - name: Check gh-pages Exists
         id: check-gh-pages
         shell: bash
@@ -29,15 +22,23 @@ jobs:
             echo "::set-output name=found::false"
             echo "gh-pages branch not found. Skipping..."
           fi
-      - name: Update gh-pages
-        uses: actions/github-script@v2
-        if: steps.check-gh-pages.outputs.found == 'true'
-        with:
-          script: |
-            github.git.updateRef({
-              owner: "${{ steps.setup-vars.outputs.owner }}",
-              repo: "${{ steps.setup-vars.outputs.repo }}",
-              ref: "heads/gh-pages",
-              sha: context.sha,
-              force: true
-            })
+  update-gh-pages:
+    runs-on: ubuntu-latest
+    needs: check-gh-pages
+    if: needs.check-gh-pages.outputs.found == 'true'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: |
+          npm install
+          npm run build
+      - name: git setup
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+      - name: git commit and push
+        run: |
+          git checkout -B gh-pages
+          git add dist --force
+          git commit -m "gh-pages build"
+          git push origin gh-pages --force

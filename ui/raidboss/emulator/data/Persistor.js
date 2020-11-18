@@ -1,6 +1,11 @@
 'use strict';
 
-class Persistor extends EventBus {
+import EmulatorCommon from '../EmulatorCommon.js';
+import EventBus from '../EventBus.js';
+import PersistorEncounter from './PersistorEncounter.js';
+import Encounter from './Encounter.js';
+
+export default class Persistor extends EventBus {
   constructor() {
     super();
     this.DB = null;
@@ -230,6 +235,3 @@ class Persistor extends EventBus {
 }
 
 Persistor.dbVersion = 3;
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = Persistor;

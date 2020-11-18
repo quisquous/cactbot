@@ -1,6 +1,8 @@
 'use strict';
 
-class RaidEmulatorTimelineUI extends TimelineUI {
+import { TimelineUI } from '../../timeline.js';
+
+export default class RaidEmulatorTimelineUI extends TimelineUI {
   constructor(options) {
     super(options);
     this.emulatedTimerBars = [];
@@ -141,6 +143,3 @@ class RaidEmulatorTimelineUI extends TimelineUI {
     }
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = RaidEmulatorTimelineUI;

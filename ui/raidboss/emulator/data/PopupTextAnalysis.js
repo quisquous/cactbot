@@ -1,6 +1,9 @@
 'use strict';
 
-class PopupTextAnalysis extends StubbedPopupText {
+import EmulatorCommon from '../EmulatorCommon.js';
+import StubbedPopupText from '../overrides/StubbedPopupText.js';
+
+export default class PopupTextAnalysis extends StubbedPopupText {
   OnTriggerInternal(trigger, matches) {
     this.currentTriggerStatus = {
       initialData: EmulatorCommon.cloneData(this.data),
@@ -223,6 +226,3 @@ class PopupTextAnalysis extends StubbedPopupText {
     // No-op
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = PopupTextAnalysis;

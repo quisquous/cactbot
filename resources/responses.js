@@ -20,10 +20,10 @@
 // function that sets outputStrings and returns an object without doing
 // anything with data or matches.  See `responses_test.js`.
 
-const builtInResponseStr = 'cactbot-builtin-response';
+export const builtInResponseStr = 'cactbot-builtin-response';
 
 // All valid trigger fields.
-const triggerFunctions = [
+export const triggerFunctions = [
   'alarmText',
   'alertText',
   'condition',
@@ -45,7 +45,7 @@ const triggerFunctions = [
 ];
 
 // Trigger fields that can produce output.
-const triggerOutputFunctions = [
+export const triggerOutputFunctions = [
   'alarmText',
   'alertText',
   'infoText',
@@ -54,7 +54,7 @@ const triggerOutputFunctions = [
   'tts',
 ];
 
-const severityMap = {
+export const severityMap = {
   'info': 'infoText',
   'alert': 'alertText',
   'alarm': 'alarmText',
@@ -126,7 +126,7 @@ const staticResponse = (field, text) => (data, _, output) => {
   };
 };
 
-const Responses = {
+export const Responses = {
   tankBuster: (targetSev, otherSev) => {
     const outputStrings = {
       noTarget: {
@@ -879,13 +879,3 @@ const Responses = {
     ko: '강제 퇴장 7분 전',
   }),
 };
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    Responses: Responses,
-    triggerFunctions: triggerFunctions,
-    triggerOutputFunctions: triggerOutputFunctions,
-    severityMap: severityMap,
-    builtInResponseStr: builtInResponseStr,
-  };
-}

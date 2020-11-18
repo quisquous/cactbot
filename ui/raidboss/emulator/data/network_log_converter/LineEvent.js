@@ -1,9 +1,11 @@
 'use strict';
 
+import EmulatorCommon from '../../EmulatorCommon.js';
+
 /**
  * Generic class to track an FFXIV log line
  */
-class LineEvent {
+export default class LineEvent {
   constructor(repo, line, parts) {
     this.offset = 0; // To be calculated later
 
@@ -56,6 +58,3 @@ class LineEvent {
       ).toString(16), 16);
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = LineEvent;

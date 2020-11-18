@@ -1,5 +1,34 @@
 'use strict';
 
+import UserConfig from '../../resources/user_config.js';
+
+// TODO:
+// The convention of "import X as _X; const X = _X;" is currently
+// being used as a method to workaround for downstream code
+// that is running via eval(). Because importing statements do not
+// create a variable of the same name, the eval()'d code does not know
+// about the import, and thus throws ReferenceErrors.
+// Used by downstream eval
+import _Conditions from '../../resources/conditions.js';
+const Conditions = _Conditions;
+import _NetRegexes from '../../resources/netregexes.js';
+const NetRegexes = _NetRegexes;
+import _Regexes from '../../resources/regexes.js';
+const Regexes = _Regexes;
+import { Responses as _Responses } from '../../resources/responses.js';
+const Responses = _Responses;
+import _ZoneId from '../../resources/zone_id.js';
+const ZoneId = _ZoneId;
+
+// Load other config files
+import './general_config.js';
+import '../eureka/eureka_config.js';
+import '../jobs/jobs_config.js';
+import '../oopsyraidsy/oopsyraidsy_config.js';
+import '../radar/radar_config.js';
+import '../raidboss/raidboss_config.js';
+import '../../resources/common.js';
+
 let Options = {};
 let gConfig = null;
 
@@ -164,7 +193,7 @@ const fileNameToTitle = (filename) => {
   return capitalized;
 };
 
-class CactbotConfigurator {
+export default class CactbotConfigurator {
   constructor(configFiles, configOptions, savedConfig) {
     // Predefined, only for ordering purposes.
     this.contents = {
@@ -181,15 +210,6 @@ class CactbotConfigurator {
     this.lang = configOptions.DisplayLanguage || configOptions.ShortLocale;
     this.savedConfig = savedConfig || {};
     this.developerOptions = this.getOption('general', 'ShowDeveloperOptions', false);
-
-    for (let filename in configFiles) {
-      try {
-        eval(configFiles[filename]);
-      } catch (exception) {
-        console.error('Error parsing JSON from ' + filename + ': ' + exception);
-        continue;
-      }
-    }
 
     let templates = UserConfig.optionTemplates;
     for (let group in templates) {
@@ -538,6 +558,3 @@ UserConfig.getUserConfigLocation('config', Options, async (e) => {
       Options,
       UserConfig.savedConfig);
 });
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = CactbotConfigurator;

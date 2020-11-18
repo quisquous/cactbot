@@ -1,9 +1,8 @@
 'use strict';
 
-const { Responses, severityMap, triggerFunctions, builtInResponseStr: builtInResponseStr } = require('../../resources/responses.js');
-
-const { assert } = require('chai');
-
+import { Responses, severityMap, triggerFunctions, builtInResponseStr } from '../../resources/responses.js';
+import chai from 'chai';
+const { assert } = chai;
 // test_trigger.js will validate the field names, so no need to do that here.
 
 const outputStringSetterStr = 'output.responseOutputStrings = ';
