@@ -32,7 +32,7 @@ module.exports = {
         test: /data[\\\/]manifest\.txt$/,
         use: [
           {
-            loader: './webpack/loaders/manifest-loader.js',
+            loader: './webpack/loaders/manifest-loader.cjs',
           },
         ],
       },

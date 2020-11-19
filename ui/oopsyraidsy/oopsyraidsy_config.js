@@ -1,4 +1,5 @@
 import UserConfig from '../../resources/user_config.js';
+import oopsyFileData from './data/manifest.txt';
 
 const oopsyHelpers = [
   'damageWarn',
@@ -181,16 +182,8 @@ class OopsyConfigurator {
 
 UserConfig.registerOptions('oopsyraidsy', {
   buildExtraUI: (base, container) => {
-    let oopsyUrl = new URL('../oopsyraidsy/oopsyraidsy.html', location.href);
-    callOverlayHandler({
-      call: 'cactbotReadDataFiles',
-      source: oopsyUrl,
-    }).then((e) => {
-      let files = e.detail.files;
-
-      let builder = new OopsyConfigurator(base);
-      builder.buildUI(container, files);
-    });
+    let builder = new OopsyConfigurator(base);
+    builder.buildUI(container, oopsyFileData);
   },
   processExtraOptions: (options, savedConfig) => {
     options['PerTriggerAutoConfig'] = options['PerTriggerAutoConfig'] || {};

@@ -10,6 +10,7 @@ import _Regexes from '../../resources/regexes.js';
 const Regexes = _Regexes;
 import UserConfig from '../../resources/user_config.js';
 import { Util } from '../../resources/common.js';
+import raidbossFileData from './data/manifest.txt';
 
 // Used by downstream eval
 import _Conditions from '../../resources/conditions.js';
@@ -809,16 +810,8 @@ const userFileHandler = (name, files, options) => {
 
 const templateOptions = {
   buildExtraUI: (base, container) => {
-    let raidbossUrl = new URL('../raidboss/raidboss.html', location.href);
-    callOverlayHandler({
-      call: 'cactbotReadDataFiles',
-      source: raidbossUrl,
-    }).then((e) => {
-      let files = e.detail.files;
-
-      let builder = new RaidbossConfigurator(base);
-      builder.buildUI(container, files);
-    });
+    let builder = new RaidbossConfigurator(base);
+    builder.buildUI(container, raidbossFileData);
   },
   processExtraOptions: (options, savedConfig) => {
     // raidboss will look up this.options.PerTriggerAutoConfig to find these values.

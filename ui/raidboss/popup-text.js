@@ -306,13 +306,13 @@ export class PopupText {
     this.data.currentHP = e.detail.currentHP;
   }
 
-  OnDataFilesRead(e) {
+  OnDataFilesRead(files) {
     this.triggerSets = [];
-    for (let filename in e.detail.files) {
+    for (let filename in files) {
       if (!filename.endsWith('.js'))
         continue;
 
-      let text = e.detail.files[filename];
+      let text = files[filename];
       let json;
       try {
         json = eval(text);

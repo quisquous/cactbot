@@ -8,7 +8,7 @@ let gPopupText = _gPopupText;
 
 import UserConfig from '../../resources/user_config.js';
 import { addRemotePlayerSelectUI } from '../../resources/player_override.js';
-const raidbossFileData = import('./data/manifest.txt');
+import raidbossFileData from './data/manifest.txt';
 
 // See user/raidboss-example.js for documentation.
 let Options = {
