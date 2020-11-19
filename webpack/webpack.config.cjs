@@ -5,6 +5,7 @@ const path = require('path');
 module.exports = {
   entry: {
     config: './ui/config/config.js',
+    coverage: './util/coverage/coverage.js',
     rdmty: './ui/dps/rdmty/dps.js',
     xephero: './ui/dps/xephero/xephero.js',
     eureka: './ui/eureka/eureka.js',
