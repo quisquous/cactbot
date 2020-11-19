@@ -31,6 +31,9 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
+  "engines": {
+    "node": ">=13.2.0"
+  },
   "eslintConfig": {
     "env": {
       "browser": true,
