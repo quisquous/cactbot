@@ -1617,10 +1617,10 @@ class Bars {
     timerBox.hideafter = '';
     timerBox.roundupthreshold = false;
     timerBox.valuescale = options.scale ? options.scale : 1;
-    if (options.id)
+    if (options.id) {
       timerBox.id = options.id;
       timerBox.classList.add('timerbox');
-
+    }
     return timerBox;
   }
 
@@ -1632,7 +1632,7 @@ class Bars {
     let timer = document.createElement('timer-bar');
     container.appendChild(timerDiv);
     timerDiv.appendChild(timer);
-    timer.classList.add('timerbar')
+    timer.classList.add('timerbar');
 
     timer.width = window.getComputedStyle(timerDiv).width;
     timer.height = window.getComputedStyle(timerDiv).height;
