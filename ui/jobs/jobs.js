@@ -1603,7 +1603,7 @@ class Bars {
       container = document.createElement('div');
       container.id = id;
       document.getElementById('bars').appendChild(container);
-      container.classList.add('procbox');
+      container.classList.add('proc-box');
     }
 
     let timerBox = document.createElement('timer-box');
