@@ -83,7 +83,7 @@
   background: rgba(30, 30, 30, 0.7);
 }
 
-.timerbar {
+.timer-bar {
   display: block;
   position: relative;
   width: 100%;
@@ -351,7 +351,7 @@
   All jobs should have procs in roughly the same spot, and the
   entire bars + procs should be roughly 250px wide, 210px tall.
 */
-.procbox {
+.proc-box {
   position: absolute;
   top: 146px;
   left: 0;
