@@ -37,8 +37,8 @@ module.exports = {
         ],
       },
       {
-        test: /data[\\\/].*\.js$/,
-        // TODO: add uglifier here
+        // TODO: convert trigger files to be modules so we can import directly.
+        test: /(?:raidboss|oopsyraidsy)[\\\/]data[\\\/].*\.js$/,
         use: ['raw-loader'],
       },
       {

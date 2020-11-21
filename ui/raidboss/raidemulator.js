@@ -19,6 +19,7 @@ import RaidEmulatorTimelineUI from './emulator/overrides/RaidEmulatorTimelineUI.
 import { TimelineLoader } from './timeline.js';
 import Tooltip from './emulator/ui/Tooltip.js';
 import UserConfig from '../../resources/user_config.js';
+import raidbossFileData from './data/manifest.txt';
 
 // @TODO: Some way to not have this be a global?
 
@@ -166,35 +167,6 @@ let Options = {
     // Wait for the DB to be ready before doing anything that might invoke the DB
     persistor.on('ready', () => {
       UserConfig.getUserConfigLocation('raidboss', Options, (e) => {
-        // This is the only remaining dependency on ACT itself.
-        // No way to get the text files/manifest other than through ACT.
-        callOverlayHandler({
-          call: 'cactbotReadDataFiles',
-          source: location.href,
-        }).then((e) => {
-          document.querySelector('.websocketConnected').classList.remove('d-none');
-          document.querySelector('.websocketDisconnected').classList.add('d-none');
-
-          // Make sure timeline and alerts know about the data files
-          timelineController.SetDataFiles(e.detail.files);
-          popupText.OnDataFilesRead(e);
-          popupText.ReloadTimelines();
-          // Store off the event for zone changes/etc
-          emulator.dataFilesEvent = e;
-
-          persistor.listEncounters().then((encounters) => {
-            if (encounters.length > 0) {
-              let lastEncounter = window.localStorage.getItem('currentEncounter');
-              if (lastEncounter !== undefined && lastEncounter !== undefined) {
-                lastEncounter = parseInt(lastEncounter);
-                let matchedEncounters = encounters.filter((e) => e.id === lastEncounter);
-                if (matchedEncounters.length)
-                  encounterTab.dispatch('load', lastEncounter);
-              }
-            }
-          });
-        });
-
         // Initialize the Raidboss components, bind them to the emulator for event listeners
         timelineUI = new RaidEmulatorTimelineUI(Options);
         timelineUI.bindTo(emulator);
@@ -208,13 +180,28 @@ let Options = {
 
         emulator.setPopupText(popupText);
 
+        // Make sure timeline and alerts know about the data files
+        timelineController.SetDataFiles(raidbossFileData);
+        popupText.OnDataFilesRead(raidbossFileData);
+        popupText.ReloadTimelines();
+        emulator.dataFiles = raidbossFileData;
+
         // Load the encounter metadata from the DB
         encounterTab.refresh();
 
         // If we don't have any encounters stored, show the intro modal
         persistor.listEncounters().then((encounters) => {
-          if (encounters.length === 0)
+          if (encounters.length === 0) {
             showModal('.introModal');
+          } else {
+            let lastEncounter = window.localStorage.getItem('currentEncounter');
+            if (lastEncounter !== undefined && lastEncounter !== undefined) {
+              lastEncounter = parseInt(lastEncounter);
+              let matchedEncounters = encounters.filter((e) => e.id === lastEncounter);
+              if (matchedEncounters.length)
+                encounterTab.dispatch('load', lastEncounter);
+            }
+          }
         });
 
         let checkFile = async (file) => {

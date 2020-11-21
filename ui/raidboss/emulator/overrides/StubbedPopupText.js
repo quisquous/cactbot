@@ -9,12 +9,12 @@ export default class StubbedPopupText extends PopupText {
   HookOverlays() { }
 
   // Override, only parse the trigger sets once
-  OnDataFilesRead(e) {
+  OnDataFilesRead(files) {
     if (StubbedPopupText.globalTriggerSets !== null) {
       this.triggerSets = StubbedPopupText.globalTriggerSets;
       return;
     }
-    super.OnDataFilesRead(e);
+    super.OnDataFilesRead(files);
     StubbedPopupText.globalTriggerSets = this.triggerSets;
   }
 }

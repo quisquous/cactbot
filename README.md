@@ -282,16 +282,12 @@ and should work in other browsers as well but this is less tested.
 
 Instructions:
 
-1. Start ACT.
-1. Make sure the WS Server is started via Plugins -> OverlayPlugin WSServer -> Stream/Local Overlay.
-1. Select `Cactbot Raidboss (Combined Alerts and Timelines)` from the URL Generator list.
-1. Edit the url to say `raidemulator.html` instead of `raidboss.html`.
-1. Copy and paste this edited url into Chrome.
+1. Load **ui/raidboss/raidemulator.html** into your Chrome browser.
 1. Drag and drop a [network log](/docs/FAQ-Troubleshooting.md#how-to-find-a-network-log) onto the page.
 1. Select the zone and encounter, and then click `Load Encounter`.
 
 If the emulator is not working, check the console log in the inspector for errors.
-No buttons will work until it is connected to ACT via websocket.
+Loading and processing files can be slow, so be patient.
 
 ![raidboss emulator screenshot](screenshots/raidboss_emulator.png)
 

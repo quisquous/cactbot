@@ -53,9 +53,9 @@ export default class AnalyzedEncounter extends EventBus {
     const gTimelineController = new RaidEmulatorTimelineController(this.options, gTimelineUI);
 
     gTimelineController.SetPopupTextInterface(new PopupTextGenerator(gPopupText));
-    gTimelineController.SetDataFiles(this.emulator.dataFilesEvent.detail.files);
+    gTimelineController.SetDataFiles(this.emulator.dataFiles);
     popupText.SetTimelineLoader(new TimelineLoader(gTimelineController));
-    popupText.OnDataFilesRead(this.emulator.dataFilesEvent);
+    popupText.OnDataFilesRead(this.emulator.dataFiles);
     popupText.ReloadTimelines();
     popupText.partyTracker.onPartyChanged({
       party: this.encounter.combatantTracker.partyMembers.map((ID) => {
