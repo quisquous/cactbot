@@ -954,7 +954,7 @@ const templateOptions = {
           '德语 (de)': 'de',
           '法语 (fr)': 'fr',
           '日语 (ja)': 'ja',
-          '朝鲜语 (ko)': 'ko',
+          '韩语 (ko)': 'ko',
         },
         ko: {
           '주 사용 언어 사용': 'default',
@@ -1029,7 +1029,7 @@ const templateOptions = {
           '德语 (de)': 'de',
           '法语 (fr)': 'fr',
           '日语 (ja)': 'ja',
-          '朝鲜语 (ko)': 'ko',
+          '韩语 (ko)': 'ko',
         },
         ko: {
           'FFXIV Plugin 언어 사용': 'default',
