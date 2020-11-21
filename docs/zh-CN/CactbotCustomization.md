@@ -3,6 +3,7 @@
 🌎 [[English](../CactbotCustomization.md)] [**简体中文**] [[한국어](../ko-KR/CactbotCustomization.md)]
 
 - [使用cactbot配置界面](#使用cactbot配置界面)
+- [通过cactbot配置界面改变触发器文本](#通过cactbot配置界面改变触发器文本)
 - [用户文件夹概览](#用户文件夹概览)
 - [设置您自己的用户文件夹](#设置您自己的用户文件夹)
 - [样式自定义](#样式自定义)
@@ -25,6 +26,7 @@
 
 - 设置触发器输出TTS
 - 禁用触发器
+- 改变触发器输出
 - 改变cactbot语言
 - 音量设置
 - 隐藏奶酪图标
@@ -32,6 +34,16 @@
 您可能无法通过cactbot配置界面以配置所有您想要的更改。 但是它是最容易的方法，适合作为您定制化的第一步。 以后此界面会添加更多的选项。
 
 此处的选项会存储于 `%APPDATA%\Advanced Combat Tracker\Config\RainbowMage.OverlayPlugin.config.json` 文件中。 但您并不需要也不应当直接修改该文件。
+
+## 通过cactbot配置界面改变触发器文本
+
+在位于ACT-> 插件> OverlayPlugin.dll-> Cactbot-> Raidboss的cactbot配置界面中， 罗列着所有的触发器。 这里的列表让您可以更改每个触发器支持外部更改的配置设置。
+
+名称旁边带有铃铛(🔔) 的设置项的触发器输出文本是可以被覆盖的。 举个例子，假设有一个🔔onTarget字段，其文本为 `死刑点${player}`。 当某人接到死刑技能时，这个字符串将出现在屏幕上（或通过tts播报）。 `${player}` 是一个将由触发器动态设置的参数。 任何类似于 `${param}` 的字符串都是动态参数。
+
+比如，您可以将这个文本更改为 `${player} 即将死亡！`。 或者，也许您不关心谁是目标，那么您可以将其改为 `死刑` 以使文本更加简短。 如果您想撤消自己的更改，只需清空文本框即可。
+
+但这个方式有一定的限制。 例如，您无法更改逻辑。 而且在大多数情况下，您无法使 `tts` 的播报与 `alarmText` 不同。 您无法添加更多的参数。 如果您想要对触发器做出更加复杂的覆盖操作， 那么您需要查看 [Raidboss触发器自定义](#raidboss触发器自定义) 小节。
 
 ## 用户文件夹概览
 
@@ -106,11 +118,13 @@ Options.Triggers.push({
 
 ### 例1：改变输出文本
 
-假定您正在攻略巴哈姆特绝境战(UCOB)， 您的固定队采用的不是cactbot默认的火1集合吃的打法， 而是先单吃火1。
+假定您正在攻略巴哈姆特绝境战(UCOB)， 您的固定队采用的不是cactbot默认的火1集合吃的打法， 而是先单吃火1。 另外，您 *同时* 还想让触发器通过tts播报与文本不同的内容。 比如，您总是忘记出人群，因此您想让它重复播报数次。
+
+若您只是想修改 `信息文本`，你可以 [通过cactbot配置界面改变触发器文本](#changing-trigger-text-with-the-cactbot-ui) 实现。
 
 其中一种调整方式是编辑触发器的输出。 您可以在 [ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js](https://github.com/quisquous/cactbot/blob/cce8bc6b10d2210fa512bd1c8edd39c260cc3df8/ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js#L715-L743) 中找到原本的 fireball #1 触发器。
 
-您需要将以下的代码粘贴至您的 `cactbot/user/raidboss.js` 中：
+您需要将以下的代码粘贴至您的 `cactbot/user/raidboss.js` 中。
 
 ```javascript
 Options.Triggers.push({
@@ -130,6 +144,9 @@ Options.Triggers.push({
       infoText: {
         en: 'Fire OUT',
       },
+      tts: {
+        en: 'out out out out out',
+      },
       run: function(data) {
         data.naelFireballCount = 1;
       },
@@ -138,7 +155,7 @@ Options.Triggers.push({
 });
 ```
 
-此处还修改了 `tts` 部分，并且移除了英语以外的其他语言。
+此处还删除了英语以外的语言。
 
 ### 例2：使挑衅提示适用于全职业
 
@@ -146,7 +163,7 @@ Options.Triggers.push({
 
 我们需要修改 `condition` 函数(function)。 由于此处的id与内置的 `General Provoke` 触发器一致，因此会覆盖同名的内置触发器。
 
-您需要将以下的代码粘贴至您的 `cactbot/user/raidboss.js` 中：
+您需要将以下的代码粘贴至您的 `cactbot/user/raidboss.js` 中。
 
 ```javascript
 Options.Triggers.push([{
