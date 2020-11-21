@@ -128,7 +128,6 @@ namespace Cactbot {
         return null;
       });
       RegisterEventHandler("cactbotLoadUser", FetchUserFiles);
-      RegisterEventHandler("cactbotReadDataFiles", FetchDataFiles);
       RegisterEventHandler("cactbotRequestPlayerUpdate", (msg) => {
         notify_state_.player = null;
         return null;
@@ -493,83 +492,6 @@ namespace Cactbot {
     }
     public void LogInfo(string format, params object[] args) {
       this.Log(LogLevel.Info, format, args);
-    }
-
-    private Dictionary<string, string> GetDataFiles(string url) {
-      // Uri is not smart enough to strip the query args here, so we'll do it manually?
-      var idx = url.IndexOf('?');
-      if (idx > 0)
-        url = url.Substring(0, idx);
-
-      // If file is a remote pointer, load that file explicitly so that the manifest
-      // is relative to the pointed to url and not the local file.
-      if (url.StartsWith("file:///")) {
-        var html = File.ReadAllText(new Uri(url).LocalPath);
-        var match = System.Text.RegularExpressions.Regex.Match(html, @"<meta http-equiv=""refresh"" content=""0; url=(.*)?""\/?>");
-        if (match.Groups.Count > 1) {
-          url = match.Groups[1].Value;
-        }
-      }
-
-      var web = new System.Net.WebClient();
-      web.Encoding = System.Text.Encoding.UTF8;
-      System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Ssl3 | System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
-
-      var data_file_paths = new List<string>();
-      try {
-        var data_dir_manifest = new Uri(new Uri(url), "data/manifest.txt");
-        var manifest_reader = new StringReader(web.DownloadString(data_dir_manifest));
-        for (var line = manifest_reader.ReadLine(); line != null; line = manifest_reader.ReadLine()) {
-          line = line.Trim();
-          if (line.Length > 0)
-            data_file_paths.Add(line);
-        }
-      } catch (System.Net.WebException e) {
-        if (e.Status == System.Net.WebExceptionStatus.ProtocolError &&
-            e.Response is System.Net.HttpWebResponse &&
-            ((System.Net.HttpWebResponse)e.Response).StatusCode == System.Net.HttpStatusCode.NotFound) {
-          // Ignore file not found.
-        } else if (e.InnerException != null &&
-          (e.InnerException is FileNotFoundException || e.InnerException is DirectoryNotFoundException)) {
-          // Ignore file not found.
-        } else if (e.InnerException != null && e.InnerException.InnerException != null &&
-          (e.InnerException.InnerException is FileNotFoundException || e.InnerException.InnerException is DirectoryNotFoundException)) {
-          // Ignore file not found.
-        } else {
-          LogError("Unable to read manifest file: " + e.Message);
-        }
-      } catch (Exception e) {
-        LogError("Unable to read manifest file: " + e.Message);
-      }
-
-      if (data_file_paths.Count > 0) {
-        var file_data = new Dictionary<string, string>();
-        foreach (string data_filename in data_file_paths) {
-          try {
-            var file_path = new Uri(new Uri(url), "data/" + data_filename);
-            file_data[data_filename] = web.DownloadString(file_path);
-          } catch (Exception e) {
-            LogError("Unable to read data file: " + e.Message);
-          }
-        }
-
-        //OnDataFilesRead(new JSEvents.DataFilesRead(file_data));
-        return file_data;
-      }
-
-      return null;
-    }
-
-    private JObject FetchDataFiles(JObject msg) {
-      var result = GetDataFiles(msg["source"].ToString());
-
-      var container = new JObject();
-      container["files"] = result == null ? null : JObject.FromObject(result);
-
-      var output = new JObject();
-      output["detail"] = container;
-
-      return output;
     }
 
     private Dictionary<string, string> GetLocalUserFiles(string config_dir) {
