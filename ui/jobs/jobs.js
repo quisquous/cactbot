@@ -1562,6 +1562,7 @@ class Bars {
       container = document.createElement('div');
       container.id = id;
       document.getElementById('bars').appendChild(container);
+      container.classList.add('bar-container');
     }
     return container;
   }
@@ -1573,6 +1574,7 @@ class Bars {
       boxes = document.createElement('div');
       boxes.id = id;
       document.getElementById('bars').appendChild(boxes);
+      boxes.classList.add('box-container');
     }
     return boxes;
   }
@@ -1582,7 +1584,7 @@ class Bars {
     let boxDiv = document.createElement('div');
     if (options.classList) {
       for (let i = 0; i < options.classList.length; ++i)
-        boxDiv.classList.add(options.classList[i]);
+        boxDiv.classList.add(options.classList[i], 'resourcebox');
     }
     boxes.appendChild(boxDiv);
 
@@ -1601,6 +1603,7 @@ class Bars {
       container = document.createElement('div');
       container.id = id;
       document.getElementById('bars').appendChild(container);
+      container.classList.add('proc-box');
     }
 
     let timerBox = document.createElement('timer-box');
@@ -1614,9 +1617,10 @@ class Bars {
     timerBox.hideafter = '';
     timerBox.roundupthreshold = false;
     timerBox.valuescale = options.scale ? options.scale : 1;
-    if (options.id)
+    if (options.id) {
       timerBox.id = options.id;
-
+      timerBox.classList.add('timer-box');
+    }
     return timerBox;
   }
 
@@ -1628,6 +1632,7 @@ class Bars {
     let timer = document.createElement('timer-bar');
     container.appendChild(timerDiv);
     timerDiv.appendChild(timer);
+    timer.classList.add('timer-bar');
 
     timer.width = window.getComputedStyle(timerDiv).width;
     timer.height = window.getComputedStyle(timerDiv).height;
@@ -1647,6 +1652,7 @@ class Bars {
     let bar = document.createElement('resource-bar');
     container.appendChild(barDiv);
     barDiv.appendChild(bar);
+    bar.classList.add('resourcebar');
 
     bar.bg = 'rgba(0, 0, 0, 0)';
     bar.fg = computeBackgroundColorFrom(bar, options.fgColor);
