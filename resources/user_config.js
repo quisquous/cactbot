@@ -83,11 +83,7 @@ let UserConfig = {
       if (!supportedLanguage.includes(options.DisplayLanguage))
         options.DisplayLanguage = options.ParserLanguage || 'en';
 
-      document
-        .getElementsByTagName('body')[0]
-        .classList
-        .add('lang-' + options.DisplayLanguage);
-
+      document.body.classList.add(`lang-${options.DisplayLanguage}`);
       this.addUnlockText(options.DisplayLanguage);
 
       // Handle processOptions after default language selection above,
