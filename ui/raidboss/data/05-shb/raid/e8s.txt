@@ -136,7 +136,7 @@ hideall "--sync--"
 ### Ice Mirror
 699.6 "Mirror, Mirror" sync /:Shiva:4D5A:/
 709.9 "Frost Armor" sync /:Shiva:4DD0:/
-719.9 "Reflected Frost Armor (G)" sync /:Frozen Mirror:4DC0:/
+719.9 "Reflected Frost Armor (R)" sync /:Frozen Mirror:4DC0:/
 720.4 "Drachen Armor" sync /:Shiva:4DD2:/
 722.9 "Akh Rhai" sync /:Shiva:4D99:/
 
