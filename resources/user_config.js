@@ -16,17 +16,20 @@ const Responses = _Responses;
 import _ZoneId from './zone_id.js';
 const ZoneId = _ZoneId;
 
-let UserConfig = {
-  optionTemplates: {},
-  userFileCallbacks: {},
-  savedConfig: null,
-  registerOptions: function(overlayName, optionTemplates, userFileCallback) {
+
+class UserConfig {
+  constructor() {
+    this.optionTemplates = {};
+    this.savedConfig = null;
+    this.userFileCallbacks = {};
+  }
+  registerOptions(overlayName, optionTemplates, userFileCallback) {
     this.optionTemplates[overlayName] = optionTemplates;
     if (userFileCallback)
       this.userFileCallbacks[overlayName] = userFileCallback;
-  },
+  }
 
-  getUserConfigLocation: function(overlayName, options, callback) {
+  getUserConfigLocation(overlayName, options, callback) {
     let currentlyReloading = false;
     let reloadOnce = () => {
       if (currentlyReloading)
@@ -168,8 +171,9 @@ let UserConfig = {
         loadUser(e);
       });
     });
-  },
-  handleSkin: function(skinName) {
+  }
+
+  handleSkin(skinName) {
     if (!skinName || skinName === 'default')
       return;
 
@@ -181,22 +185,22 @@ let UserConfig = {
       basePath += '/';
     let skinHref = basePath + 'skins/' + skinName + '/' + skinName + '.css';
     this.appendCSSLink(skinHref);
-  },
-  appendJSLink: function(src) {
+  }
+  appendJSLink(src) {
     let userJS = document.createElement('script');
     userJS.setAttribute('type', 'text/javascript');
     userJS.setAttribute('src', src);
     userJS.setAttribute('async', false);
     document.getElementsByTagName('head')[0].appendChild(userJS);
-  },
-  appendCSSLink: function(href) {
+  }
+  appendCSSLink(href) {
     let userCSS = document.createElement('link');
     userCSS.setAttribute('rel', 'stylesheet');
     userCSS.setAttribute('type', 'text/css');
     userCSS.setAttribute('href', href);
     document.getElementsByTagName('head')[0].appendChild(userCSS);
-  },
-  processOptions: function(options, savedConfig, template) {
+  }
+  processOptions(options, savedConfig, template) {
     // Take options from the template, find them in savedConfig,
     // and apply them to options. This also handles setting
     // defaults for anything in the template, even if it does not
@@ -235,8 +239,8 @@ let UserConfig = {
     // to handle anything that has been set on that UI.
     if (template.processExtraOptions)
       template.processExtraOptions(options, savedConfig);
-  },
-  addUnlockText: (lang) => {
+  }
+  addUnlockText(lang) {
     const unlockText = {
       en: '🔓 Unlocked (lock overlay before using)',
       de: '🔓 Entsperrt (Sperre das Overlay vor der Nutzung)',
@@ -257,11 +261,10 @@ let UserConfig = {
       document.body.append(textElem);
     }
     textElem.innerHTML = unlockText[lang] || unlockText['en'];
-  },
-};
+  }
+}
 
-// TODO: Convert into static class
-export default UserConfig;
+export default new UserConfig();
 
 // This event comes early and is not cached, so set up event listener immediately.
 document.addEventListener('onOverlayStateUpdate', (e) => {
