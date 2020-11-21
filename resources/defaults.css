@@ -21,6 +21,18 @@ body {
   will-change: content;
 }
 
+.lang-ja .text {
+  font-family:
+    "BIZ UDPゴシック",
+    "BIZ UDPGothic",
+    "游ゴシック",
+    "Yu Gothic",
+    "Meiryo UI",
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
 .hide {
   display: none !important;
 }
