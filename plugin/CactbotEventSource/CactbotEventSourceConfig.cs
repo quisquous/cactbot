@@ -8,7 +8,6 @@ using Newtonsoft.Json.Linq;
 namespace Cactbot {
   [Serializable]
   public class CactbotEventSourceConfig {
-    public event EventHandler WatchFileChangesChanged;
     public CactbotEventSourceConfig() {
     }
 
@@ -40,13 +39,6 @@ namespace Cactbot {
 
     public void SaveConfig(IPluginConfig pluginConfig) {
       pluginConfig.EventSourceConfigs["CactbotESConfig"] = JObject.FromObject(this);
-    }
-
-    public void OnUpdateConfig() {
-      var currentValue = WatchFileChanges;
-      if (watchFileChanges != currentValue)
-        WatchFileChangesChanged?.Invoke(this, new EventArgs());
-        watchFileChanges = currentValue;
     }
 
     public Dictionary<string, JToken> OverlayData = null;
@@ -92,38 +84,6 @@ namespace Cactbot {
           options["general"] = general;
         }
         general["CactbotUserDirectory"] = value;
-      }
-    }
-
-    [JsonIgnore]
-    private bool watchFileChanges = false;
-    [JsonIgnore]
-    public bool WatchFileChanges {
-      get {
-        if (!OverlayData.TryGetValue("options", out JToken options))
-          return false;
-        var general = options["general"];
-        if (general == null)
-          return false;
-
-        var developer = general["ShowDeveloperOptions"];
-        if (developer == null)
-          return false;
-        try {
-          if (!developer.ToObject<bool>())
-            return false;
-        } catch {
-          return false;
-        }
-
-        var reload = general["ReloadOnFileChange"];
-        if (reload == null)
-          return false;
-        try {
-          return reload.ToObject<bool>();
-        } catch {
-          return false;
-        }
       }
     }
   }

@@ -48,7 +48,6 @@ namespace Cactbot {
 
     private string language_ = null;
     private string pc_locale_ = null;
-    private List<FileSystemWatcher> watchers;
 
     public delegate void ForceReloadHandler(JSEvents.ForceReloadEvent e);
     public event ForceReloadHandler OnForceReload;
@@ -143,7 +142,6 @@ namespace Cactbot {
       });
       RegisterEventHandler("cactbotSaveData", (msg) => {
         Config.OverlayData[msg["overlay"].ToString()] = msg["data"];
-        Config.OnUpdateConfig();
         return null;
       });
       RegisterEventHandler("cactbotLoadData", (msg) => {
@@ -296,19 +294,6 @@ namespace Cactbot {
         LogError("Requires .NET 4.6 or above. Using " + net_version_str);
 
       versions.DoUpdateCheck(Config);
-
-      // Start watching files after the update check.
-      Config.WatchFileChangesChanged += (o, e) => {
-        if (Config.WatchFileChanges) {
-          StartFileWatcher();
-        } else {
-          StopFileWatcher();
-        }
-      };
-
-      if (Config.WatchFileChanges) {
-        StartFileWatcher();
-      }
     }
 
     public override void Stop() {
@@ -682,60 +667,6 @@ namespace Cactbot {
       var response = new JObject();
       response["detail"] = result;
       return response;
-    }
-
-    private void StartFileWatcher() {
-      watchers = new List<FileSystemWatcher>();
-      var paths = new List<string>();
-      
-      paths.Add((new VersionChecker(this)).GetCactbotDirectory());
-      paths.Add(Config.UserConfigFile);
-
-      foreach (var path in paths) {
-        if (String.IsNullOrEmpty(path))
-          continue;
-
-        var watchDir = "";
-        try {
-          // Get canonical url for paths so that Directory.Exists will work properly.
-          watchDir = Path.GetFullPath(Path.GetDirectoryName(new Uri(path).LocalPath));
-        } catch {
-          continue;
-        }
-
-        if (!Directory.Exists(watchDir))
-          continue;
-
-        var watcher = new FileSystemWatcher()
-        {
-          Path = watchDir,
-          NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName,
-          IncludeSubdirectories = true,
-        };
-
-        // We only care about file changes. New or renamed files don't matter if we don't have a reference to them
-        // and adding a new reference causes an existing file to change.
-        watcher.Changed += (o, e) => {
-          DispatchEvent(JObject.FromObject(new {
-            type = "onUserFileChanged",
-            file = e.FullPath,
-          }));
-        };
-
-        watcher.EnableRaisingEvents = true;
-        watchers.Add(watcher);
-
-        LogInfo("Started watching {0}", watchDir);
-      }
-    }
-
-    private void StopFileWatcher() {
-      foreach (var watcher in watchers) {
-        watcher.EnableRaisingEvents = false;
-        watcher.Dispose();
-      }
-
-      watchers = null;
     }
 
     struct OverlayPreset : IOverlayPreset {
