@@ -1611,7 +1611,7 @@ class Bars {
       'NIN': this.setupNin,
       'SAM': this.setupSam,
       'BRD': this.setupBrd,
-      // 'MCH': this.setupMch,
+      'MCH': this.setupMch,
       'DNC': this.setupDnc,
       'BLM': this.setupBlm,
       'SMN': this.setupSmn,
@@ -2824,9 +2824,20 @@ class Bars {
     };
   }
 
-  // setupMch() {
+  setupMch() {
+    const comboTimer = this.addTimerBar({
+      id: 'mch-timers-combo',
+      fgColor: 'combo-color',
+    });
 
-  // }
+    this.comboFuncs.push((skill) => {
+      comboTimer.duration = 0;
+      if (this.combo.isFinalSkill)
+        return;
+      if (skill)
+        comboTimer.duration = 15;
+    });
+  }
 
   setupDnc() {
     const comboTimer = this.addTimerBar({
