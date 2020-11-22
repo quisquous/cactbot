@@ -182,7 +182,7 @@ class OopsyConfigurator {
 
 UserConfig.registerOptions('oopsyraidsy', {
   buildExtraUI: (base, container) => {
-    let builder = new OopsyConfigurator(base);
+    const builder = new OopsyConfigurator(base);
     builder.buildUI(container, oopsyFileData);
   },
   processExtraOptions: (options, savedConfig) => {

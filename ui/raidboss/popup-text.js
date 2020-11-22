@@ -308,11 +308,11 @@ export class PopupText {
 
   OnDataFilesRead(files) {
     this.triggerSets = [];
-    for (let filename in files) {
+    for (const filename in files) {
       if (!filename.endsWith('.js'))
         continue;
 
-      let text = files[filename];
+      const text = files[filename];
       let json;
       try {
         json = eval(text);

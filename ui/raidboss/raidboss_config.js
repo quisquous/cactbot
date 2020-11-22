@@ -810,7 +810,7 @@ const userFileHandler = (name, files, options) => {
 
 const templateOptions = {
   buildExtraUI: (base, container) => {
-    let builder = new RaidbossConfigurator(base);
+    const builder = new RaidbossConfigurator(base);
     builder.buildUI(container, raidbossFileData);
   },
   processExtraOptions: (options, savedConfig) => {

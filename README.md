@@ -287,7 +287,7 @@ Instructions:
 1. Select the zone and encounter, and then click `Load Encounter`.
 
 If the emulator is not working, check the console log in the inspector for errors.
-Loading and processing files can be slow, so be patient.
+Loading and processing files can be slow, so please be patient.
 
 ![raidboss emulator screenshot](screenshots/raidboss_emulator.png)
 
