@@ -195,7 +195,7 @@ let Options = {
             showModal('.introModal');
           } else {
             let lastEncounter = window.localStorage.getItem('currentEncounter');
-            if (lastEncounter !== undefined && lastEncounter !== undefined) {
+            if (lastEncounter !== undefined) {
               lastEncounter = parseInt(lastEncounter);
               let matchedEncounters = encounters.filter((e) => e.id === lastEncounter);
               if (matchedEncounters.length)
