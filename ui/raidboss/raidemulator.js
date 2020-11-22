@@ -167,6 +167,9 @@ let Options = {
     // Wait for the DB to be ready before doing anything that might invoke the DB
     persistor.on('ready', () => {
       UserConfig.getUserConfigLocation('raidboss', Options, (e) => {
+        document.querySelector('.websocketConnected').classList.remove('d-none');
+        document.querySelector('.websocketDisconnected').classList.add('d-none');
+
         // Initialize the Raidboss components, bind them to the emulator for event listeners
         timelineUI = new RaidEmulatorTimelineUI(Options);
         timelineUI.bindTo(emulator);
