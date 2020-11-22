@@ -393,11 +393,6 @@ function setupComboTracker(callback) {
   comboTracker.AddCombo([
     kAbility.FastBlade,
     kAbility.RiotBlade,
-    kAbility.RoyalAuthority,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.FastBlade,
-    kAbility.RiotBlade,
     kAbility.GoringBlade,
   ]);
   // WAR
@@ -513,19 +508,6 @@ function setupComboTracker(callback) {
   comboTracker.AddCombo([
     kAbility.Windmill,
     kAbility.Bladeshower,
-  ]);
-  // RDM
-  comboTracker.AddCombo([
-    kAbility.EnchantedRiposte,
-    kAbility.EnchantedZwerchhau,
-    kAbility.EnchantedRedoublement,
-    kAbility.Verflare,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.EnchantedRiposte,
-    kAbility.EnchantedZwerchhau,
-    kAbility.EnchantedRedoublement,
-    kAbility.Verholy,
   ]);
   return comboTracker;
 }
@@ -649,32 +631,6 @@ function setupRegexes(playerName) {
     kAbility.Fountain,
     kAbility.Windmill,
     kAbility.Bladeshower,
-    // RDM
-    kAbility.Verstone,
-    kAbility.Verfire,
-    kAbility.Veraero,
-    kAbility.Verthunder,
-    kAbility.Verholy,
-    kAbility.Verflare,
-    kAbility.Jolt2,
-    kAbility.Jolt,
-    kAbility.Impact,
-    kAbility.Scatter,
-    kAbility.Verthunder2,
-    kAbility.Veraero2,
-    kAbility.Vercure,
-    kAbility.Verraise,
-    kAbility.Riposte,
-    kAbility.Zwerchhau,
-    kAbility.Redoublement,
-    kAbility.Moulinet,
-    kAbility.Reprise,
-    kAbility.EnchantedRiposte,
-    kAbility.EnchantedZwerchhau,
-    kAbility.EnchantedRedoublement,
-    kAbility.EnchantedMoulinet,
-    kAbility.EnchantedReprise,
-    kAbility.Manafication,
   ]);
 }
 
