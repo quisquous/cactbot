@@ -468,6 +468,10 @@
   background-color: rgb(20, 50, 20);
 }
 
+.combo-color {
+  background-color: rgb(180, 200, 220);
+}
+
 /* PLD */
 .pld-color-oath {
   background-color: rgb(255, 210, 45);
@@ -534,10 +538,6 @@
 
 .gnb-color-cartridge.full {
   background-color: rgb(250, 86, 45);
-}
-
-.gnb-color-combo {
-  background-color: rgb(180, 200, 220);
 }
 
 .gnb-color-gnashingfang {
@@ -778,10 +778,6 @@
   background-color: rgb(255, 42, 0);
 }
 
-.nin-color-combo {
-  background-color: rgb(180, 200, 220);
-}
-
 /* SAM */
 
 /* BRD */
@@ -828,10 +824,6 @@
 /* MCH */
 
 /* DNC */
-.dnc-color-combo {
-  background-color: rgb(180, 200, 220);
-}
-
 .dnc-color-standardstep {
   background-color: rgb(235, 235, 50);
 }

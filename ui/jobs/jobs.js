@@ -1850,6 +1850,11 @@ class Bars {
       fgColor: 'war-color-eye',
     });
 
+    const comboTimer = this.addTimerBar({
+      id: 'war-timers-combo',
+      fgColor: 'combo-color',
+    });
+
     this.comboFuncs.push((skill) => {
       // TODO: remove this condition when CN or KO launch patch 5.3
       if (this.options.ParserLanguage === 'cn' || this.options.ParserLanguage === 'ko') {
@@ -1923,6 +1928,12 @@ class Bars {
         eyeBox.threshold = newThreshold;
       else
         eyeBox.threshold = oldThreshold;
+      
+      comboTimer.duration = 0;
+      if (this.combo.isFinalSkill)
+        return;
+      if (skill)
+        comboTimer.duration = 15;
     });
 
     this.loseEffectFuncMap[EffectId.StormsEye] = () => {
@@ -1972,6 +1983,19 @@ class Bars {
         darksideBox.duration = seconds;
       }
     });
+
+    const comboTimer = this.addTimerBar({
+      id: 'drk-timers-combo',
+      fgColor: 'combo-color',
+    });
+
+    this.comboFuncs.push((skill) => {
+      comboTimer.duration = 0;
+      if (this.combo.isFinalSkill)
+        return;
+      if (skill)
+        comboTimer.duration = 15;
+    });
   }
 
   setupGnb() {
@@ -2018,7 +2042,7 @@ class Bars {
     });
     const comboTimer = this.addTimerBar({
       id: 'gnb-timers-combo',
-      fgColor: 'gnb-color-combo',
+      fgColor: 'combo-color',
     });
     const cartridgeComboTimer = this.addTimerBar({
       id: 'gnb-timers-cartridgecombo',
@@ -2632,7 +2656,7 @@ class Bars {
     });
     const comboTimer = this.addTimerBar({
       id: 'nin-timers-combo',
-      fgColor: 'nin-color-combo',
+      fgColor: 'combo-color',
     });
     this.comboFuncs.push((skill) => {
       comboTimer.duration = 0;
@@ -2807,7 +2831,7 @@ class Bars {
   setupDnc() {
     const comboTimer = this.addTimerBar({
       id: 'dnc-timers-combo',
-      fgColor: 'dnc-color-combo',
+      fgColor: 'combo-color',
     });
     this.comboFuncs.push((skill) => {
       comboTimer.duration = 0;
