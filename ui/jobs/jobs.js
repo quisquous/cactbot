@@ -456,29 +456,6 @@ function setupComboTracker(callback) {
     kAbility.DeathBlossom,
     kAbility.HakkeMujinsatsu,
   ]);
-  // SAM
-  comboTracker.AddCombo([
-    kAbility.Hakaze,
-    kAbility.Jinpu,
-    kAbility.Gekko,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.Hakaze,
-    kAbility.Shifu,
-    kAbility.Kasha,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.Hakaze,
-    kAbility.Yukikaze,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.Fuga,
-    kAbility.Mangetsu,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.Fuga,
-    kAbility.Oka,
-  ]);
   // MCH
   comboTracker.AddCombo([
     kAbility.SplitShot,
@@ -607,17 +584,6 @@ function setupRegexes(playerName) {
     kAbility.DeathBlossom,
     kAbility.HakkeMujinsatsu,
     kAbility.ThrowingDagger,
-    // SAM
-    kAbility.Hakaze,
-    kAbility.Jinpu,
-    kAbility.Shifu,
-    kAbility.Gekko,
-    kAbility.Kasha,
-    kAbility.Yukikaze,
-    kAbility.Fuga,
-    kAbility.Mangetsu,
-    kAbility.Oka,
-    kAbility.Enpi,
     // MCH
     kAbility.SplitShot,
     kAbility.SlugShot,
