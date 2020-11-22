@@ -393,11 +393,6 @@ function setupComboTracker(callback) {
   comboTracker.AddCombo([
     kAbility.FastBlade,
     kAbility.RiotBlade,
-    kAbility.RoyalAuthority,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.FastBlade,
-    kAbility.RiotBlade,
     kAbility.GoringBlade,
   ]);
   // WAR
@@ -461,29 +456,6 @@ function setupComboTracker(callback) {
     kAbility.DeathBlossom,
     kAbility.HakkeMujinsatsu,
   ]);
-  // SAM
-  comboTracker.AddCombo([
-    kAbility.Hakaze,
-    kAbility.Jinpu,
-    kAbility.Gekko,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.Hakaze,
-    kAbility.Shifu,
-    kAbility.Kasha,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.Hakaze,
-    kAbility.Yukikaze,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.Fuga,
-    kAbility.Mangetsu,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.Fuga,
-    kAbility.Oka,
-  ]);
   // MCH
   comboTracker.AddCombo([
     kAbility.SplitShot,
@@ -513,19 +485,6 @@ function setupComboTracker(callback) {
   comboTracker.AddCombo([
     kAbility.Windmill,
     kAbility.Bladeshower,
-  ]);
-  // RDM
-  comboTracker.AddCombo([
-    kAbility.EnchantedRiposte,
-    kAbility.EnchantedZwerchhau,
-    kAbility.EnchantedRedoublement,
-    kAbility.Verflare,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.EnchantedRiposte,
-    kAbility.EnchantedZwerchhau,
-    kAbility.EnchantedRedoublement,
-    kAbility.Verholy,
   ]);
   return comboTracker;
 }
@@ -625,17 +584,6 @@ function setupRegexes(playerName) {
     kAbility.DeathBlossom,
     kAbility.HakkeMujinsatsu,
     kAbility.ThrowingDagger,
-    // SAM
-    kAbility.Hakaze,
-    kAbility.Jinpu,
-    kAbility.Shifu,
-    kAbility.Gekko,
-    kAbility.Kasha,
-    kAbility.Yukikaze,
-    kAbility.Fuga,
-    kAbility.Mangetsu,
-    kAbility.Oka,
-    kAbility.Enpi,
     // MCH
     kAbility.SplitShot,
     kAbility.SlugShot,
@@ -649,32 +597,6 @@ function setupRegexes(playerName) {
     kAbility.Fountain,
     kAbility.Windmill,
     kAbility.Bladeshower,
-    // RDM
-    kAbility.Verstone,
-    kAbility.Verfire,
-    kAbility.Veraero,
-    kAbility.Verthunder,
-    kAbility.Verholy,
-    kAbility.Verflare,
-    kAbility.Jolt2,
-    kAbility.Jolt,
-    kAbility.Impact,
-    kAbility.Scatter,
-    kAbility.Verthunder2,
-    kAbility.Veraero2,
-    kAbility.Vercure,
-    kAbility.Verraise,
-    kAbility.Riposte,
-    kAbility.Zwerchhau,
-    kAbility.Redoublement,
-    kAbility.Moulinet,
-    kAbility.Reprise,
-    kAbility.EnchantedRiposte,
-    kAbility.EnchantedZwerchhau,
-    kAbility.EnchantedRedoublement,
-    kAbility.EnchantedMoulinet,
-    kAbility.EnchantedReprise,
-    kAbility.Manafication,
   ]);
 }
 
