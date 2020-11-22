@@ -75,7 +75,7 @@
 .bar-container {
   position: relative;
   width: 201px;
-  height: 7px;
+  height: 0;
   background: rgba(30, 30, 30, 0.7);
 }
 
