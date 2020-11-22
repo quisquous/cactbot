@@ -1928,7 +1928,7 @@ class Bars {
         eyeBox.threshold = newThreshold;
       else
         eyeBox.threshold = oldThreshold;
-      
+
       comboTimer.duration = 0;
       if (this.combo.isFinalSkill)
         return;
