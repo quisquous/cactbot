@@ -194,7 +194,7 @@ const fileNameToTitle = (filename) => {
 };
 
 export default class CactbotConfigurator {
-  constructor(configFiles, configOptions, savedConfig) {
+  constructor(configOptions, savedConfig) {
     // Predefined, only for ordering purposes.
     this.contents = {
       // top level
@@ -592,13 +592,7 @@ export default class CactbotConfigurator {
 }
 
 UserConfig.getUserConfigLocation('config', Options, async (e) => {
-  let readConfigFiles = callOverlayHandler({
-    call: 'cactbotReadDataFiles',
-    source: location.href,
-  });
-
   gConfig = new CactbotConfigurator(
-      (await readConfigFiles).detail.files,
       Options,
       UserConfig.savedConfig);
 });

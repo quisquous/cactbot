@@ -8,6 +8,7 @@ let gPopupText = _gPopupText;
 
 import UserConfig from '../../resources/user_config.js';
 import { addRemotePlayerSelectUI } from '../../resources/player_override.js';
+import raidbossFileData from './data/manifest.txt';
 
 // See user/raidboss-example.js for documentation.
 let Options = {
@@ -98,21 +99,16 @@ UserConfig.getUserConfigLocation('raidboss', Options, (e) => {
   if (!Options.TimelineEnabled)
     container.classList.add('hide-timeline');
 
-  callOverlayHandler({
-    call: 'cactbotReadDataFiles',
-    source: location.href,
-  }).then((e) => {
-    gTimelineController.SetDataFiles(e.detail.files);
-    gPopupText.OnDataFilesRead(e);
-    gPopupText.ReloadTimelines();
-  });
-
   gTimelineController = new TimelineController(Options, new TimelineUI(Options));
   gPopupText = new PopupText(Options);
   // Connect the timelines to the popup text, if alerts are desired.
   if (Options.AlertsEnabled)
     gTimelineController.SetPopupTextInterface(new PopupTextGenerator(gPopupText));
   gPopupText.SetTimelineLoader(new TimelineLoader(gTimelineController));
+
+  gTimelineController.SetDataFiles(raidbossFileData);
+  gPopupText.OnDataFilesRead(raidbossFileData);
+  gPopupText.ReloadTimelines();
 
   addOverlayListener('onLogEvent', (e) => {
     gTimelineController.OnLogEvent(e);
