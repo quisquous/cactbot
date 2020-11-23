@@ -19,6 +19,8 @@ import ZoneInfo from '../../resources/zone_info.js';
 
 import './oopsyraidsy_config.js';
 
+import oopsyFileData from './data/manifest.txt';
+
 let Options = {
   Triggers: [],
   PlayerNicks: {},
@@ -1211,8 +1213,8 @@ class DamageTracker {
     this.ReloadTriggers();
   }
 
-  OnDataFilesRead(e) {
-    this.dataFiles = e.detail.files;
+  OnDataFilesRead(files) {
+    this.dataFiles = files;
     this.ReloadTriggers();
   }
 
@@ -1295,10 +1297,7 @@ UserConfig.getUserConfigLocation('oopsyraidsy', Options, () => {
     mistakeCollector.OnInCombatChangedEvent(e);
   });
 
-  callOverlayHandler({
-    call: 'cactbotReadDataFiles',
-    source: location.href,
-  }).then((r) => damageTracker.OnDataFilesRead(r));
+  damageTracker.OnDataFilesRead(oopsyFileData);
 
   callOverlayHandler({ call: 'cactbotRequestPlayerUpdate' });
 });

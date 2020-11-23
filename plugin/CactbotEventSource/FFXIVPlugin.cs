@@ -31,6 +31,9 @@ namespace Cactbot {
     public int GetLanguageId() {
       IActPluginV1 ffxiv_plugin = null;
       foreach (var plugin in ActGlobals.oFormActMain.ActPlugins) {
+        // Skip disabled and unloaded plugins.
+        if (plugin.pluginObj == null)
+          continue;
         var file = plugin.pluginFile.Name;
         if (file == "FFXIV_ACT_Plugin.dll") {
           if (ffxiv_plugin != null) {

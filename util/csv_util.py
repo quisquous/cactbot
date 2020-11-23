@@ -102,3 +102,14 @@ def get_locale_table(table, locale, inputs, outputs=None):
         return get_ko_table(table, inputs, outputs)
     else:
         raise Exception("Invalid locale: %s" % locale)
+
+
+def get_raw_csv(table, locale):
+    if locale == "cn":
+        url = "%s%s%s.csv" % (_BASE_GITHUB, _CN_GITHUB, table)
+    elif locale == "ko":
+        url = "%s%s%s.csv" % (_BASE_GITHUB, _KO_GITHUB, table)
+    else:
+        raise Exception("Invalid locale: %s" % locale)
+    with urllib.request.urlopen(url) as response:
+        return io.StringIO(response.read().decode("utf-8"))

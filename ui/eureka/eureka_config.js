@@ -36,6 +36,8 @@ UserConfig.registerOptions('eureka', {
       name: {
         en: 'Play pop sound for NMs',
         de: 'Spiele Pop-Sound ab für NMs',
+        ja: 'NM通知機能を有効にする',
+        cn: 'NM出现时播放提示音',
         ko: '돌발임무 알림 소리 켜기',
       },
       type: 'checkbox',
@@ -46,6 +48,8 @@ UserConfig.registerOptions('eureka', {
       name: {
         en: 'Play pop sound for bunny fates',
         de: 'Spiele Pop-Sound ab für Bunny-Fates',
+        ja: 'しあわせうさぎ通知機能を有効にする',
+        cn: '幸福兔出现时播放提示音',
         ko: '토끼 돌발 알림 소리 켜기',
       },
       type: 'checkbox',
@@ -56,6 +60,8 @@ UserConfig.registerOptions('eureka', {
       name: {
         en: 'Play pop sound for skirmishes',
         de: 'Spiele Pop-Sound ab für Scharmützel',
+        ja: 'スカーミッシュ通知機能を有効にする',
+        cn: 'skirmishes出现时播放提示音',
         ko: 'skirmishes 알림 소리 켜기',
       },
       type: 'checkbox',
@@ -66,6 +72,8 @@ UserConfig.registerOptions('eureka', {
       name: {
         en: 'Play pop sound for critical engagements',
         de: 'Spiele Pop-Sound ab für Kritische Gefechte',
+        ja: 'CE通知機能を有効にする',
+        cn: 'critical engagements出现时播放提示音',
         ko: 'critical engagements 알림 소리 켜기',
       },
       type: 'checkbox',
@@ -76,6 +84,8 @@ UserConfig.registerOptions('eureka', {
       name: {
         en: 'Play pop sound for duels',
         de: 'Spiele Pop-Sound ab für Duelle',
+        ja: '一騎打ち通知機能を有効にする',
+        cn: 'duels出现时播放提示音',
         ko: 'duels 알림 소리 켜기',
       },
       type: 'checkbox',
@@ -104,7 +114,7 @@ UserConfig.registerOptions('eureka', {
         de: 'Lautstärke des Bunny Pop Sounds (0-1)',
         fr: 'Volume du son d\'apparition des lapins (0-1)',
         ja: 'しあわせうさぎ出現音量 (0-1)',
-        cn: '幸福兔提示音量',
+        cn: '幸福兔提示音量（0-1）',
         ko: '토끼 돌발 등장 알림 소리 크기 (0-1)',
       },
       type: 'float',
@@ -118,6 +128,8 @@ UserConfig.registerOptions('eureka', {
       name: {
         en: 'Volume of the critical engagement pop sound (0-1)',
         de: 'Lautstärke des Kritischen Gefecht Sounds (0-1)',
+        ja: 'CE通知音量 (0-1)',
+        cn: 'critical engagement提示音量（0-1）',
         ko: 'critical engagement 알림 소리 크기 (0-1)',
       },
       type: 'float',

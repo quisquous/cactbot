@@ -9,6 +9,7 @@ import _Regexes from '../../resources/regexes.js';
 const Regexes = _Regexes;
 import UserConfig from '../../resources/user_config.js';
 import { Util } from '../../resources/common.js';
+import raidbossFileData from './data/manifest.txt';
 
 // Used by downstream eval
 import _Conditions from '../../resources/conditions.js';
@@ -238,6 +239,8 @@ const kMiscTranslations = {
     en: '(default)',
     de: '(Standard)',
     fr: '(Défaut)',
+    ja: '(初期値)',
+    cn: '(默认值)',
     ko: '(기본값)',
   },
 };
@@ -317,7 +320,8 @@ class RaidbossConfigurator {
 
     let expansionDivs = {};
 
-    for (const [key, info] of Object.entries(fileMap)) {
+    for (const key in fileMap) {
+      const info = fileMap[key];
       const expansion = info.prefix;
 
       if (Object.keys(info.triggers).length === 0)
@@ -785,16 +789,8 @@ const userFileHandler = (name, files, options) => {
 
 const templateOptions = {
   buildExtraUI: (base, container) => {
-    let raidbossUrl = new URL('../raidboss/raidboss.html', location.href);
-    callOverlayHandler({
-      call: 'cactbotReadDataFiles',
-      source: raidbossUrl,
-    }).then((e) => {
-      let files = e.detail.files;
-
-      let builder = new RaidbossConfigurator(base);
-      builder.buildUI(container, files);
-    });
+    const builder = new RaidbossConfigurator(base);
+    builder.buildUI(container, raidbossFileData);
   },
   processExtraOptions: (options, savedConfig) => {
     // raidboss will look up this.options.PerTriggerAutoConfig to find these values.
@@ -951,7 +947,7 @@ const templateOptions = {
           '德语 (de)': 'de',
           '法语 (fr)': 'fr',
           '日语 (ja)': 'ja',
-          '朝鲜语 (ko)': 'ko',
+          '韩语 (ko)': 'ko',
         },
         ko: {
           '주 사용 언어 사용': 'default',
@@ -1026,7 +1022,7 @@ const templateOptions = {
           '德语 (de)': 'de',
           '法语 (fr)': 'fr',
           '日语 (ja)': 'ja',
-          '朝鲜语 (ko)': 'ko',
+          '韩语 (ko)': 'ko',
         },
         ko: {
           'FFXIV Plugin 언어 사용': 'default',

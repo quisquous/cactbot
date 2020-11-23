@@ -984,7 +984,7 @@
         'Banish(?! )': '放逐',
         'Inescapable Illumination': '曝露光',
         'The House Of Light': '光之海啸',
-        'Reflected Frost Armor \\(G\\)': '连锁反冰甲(绿)',
+        'Reflected Frost Armor \\(R\\)': '连锁反冰甲(红)',
       },
     },
     {
@@ -1047,7 +1047,7 @@
         'Banish(?! )': '배니시',
         'Inescapable Illumination': '폭로광',
         'The House Of Light': '빛의 해일',
-        'Reflected Frost Armor \\(G\\)': '반사된 서리 갑옷 (초록)',
+        'Reflected Frost Armor \\(R\\)': '반사된 서리 갑옷 (빨강)',
       },
     },
   ],

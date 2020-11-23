@@ -1,4 +1,6 @@
 import UserConfig from '../../resources/user_config.js';
+import ZoneInfo from '../../resources/zone_info.js';
+import contentList from '../../resources/content_list.js';
 
 // TODO:
 // The convention of "import X as _X; const X = _X;" is currently
@@ -192,7 +194,7 @@ const fileNameToTitle = (filename) => {
 };
 
 export default class CactbotConfigurator {
-  constructor(configFiles, configOptions, savedConfig) {
+  constructor(configOptions, savedConfig) {
     // Predefined, only for ordering purposes.
     this.contents = {
       // top level
@@ -528,6 +530,18 @@ export default class CactbotConfigurator {
         continue;
       }
 
+      let title = fileNameToTitle(filename);
+      let zoneId = undefined;
+
+      // Make assumptions about trigger structure here to try to get the zoneId out.
+      if (json && json[0] && 'zoneId' in json[0]) {
+        zoneId = json[0].zoneId;
+        // Use the translatable zone info name, if possible.
+        const zoneInfo = ZoneInfo[zoneId];
+        if (zoneInfo)
+          title = this.translate(zoneInfo.name);
+      }
+
       const fileKey = filename.replace(/\//g, '-').replace(/.js$/, '');
       map[fileKey] = {
         filename: filename,
@@ -536,23 +550,49 @@ export default class CactbotConfigurator {
         typeKey: typeKey,
         prefix: this.translate(kPrefixToCategory[prefixKey]),
         type: this.translate(kDirectoryToCategory[typeKey]),
-        title: fileNameToTitle(filename),
+        title: title,
         json: json,
+        zoneId: zoneId,
       };
     }
 
-    return map;
+    const sortedEntries = Object.keys(map).sort((keyA, keyB) => {
+      // Sort first by expansion.
+      const entryA = map[keyA];
+      const entryB = map[keyB];
+      const prefixCompare = entryA.prefixKey.localeCompare(entryB.prefixKey);
+      if (prefixCompare !== 0)
+        return prefixCompare;
+
+      // Then sort by contentList.
+      const indexA = contentList.indexOf(entryA.zoneId);
+      const indexB = contentList.indexOf(entryB.zoneId);
+
+      if (indexA === -1 && indexB === -1) {
+        // If we don't know, sort by strings.
+        return keyA.localeCompare(keyB);
+      } else if (indexA === -1) {
+        // Sort B first.
+        return 1;
+      } else if (indexB === -1) {
+        // Sort A first.
+        return -1;
+      }
+      // Default: sort by index in contentList.
+      return indexA - indexB;
+    });
+
+    // Rebuild map with keys in the right order.
+    const sortedMap = {};
+    for (const key of sortedEntries)
+      sortedMap[key] = map[key];
+
+    return sortedMap;
   }
 }
 
 UserConfig.getUserConfigLocation('config', Options, async (e) => {
-  let readConfigFiles = callOverlayHandler({
-    call: 'cactbotReadDataFiles',
-    source: location.href,
-  });
-
   gConfig = new CactbotConfigurator(
-      (await readConfigFiles).detail.files,
       Options,
       UserConfig.savedConfig);
 });

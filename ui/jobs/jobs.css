@@ -34,10 +34,6 @@
   font-size: 12px;
 }
 
-.justbuffs #pull-bar {
-  display: none;
-}
-
 .justbuffs #bars {
   display: none;
 }
@@ -76,24 +72,14 @@
   height: 24px;
 }
 
-#gnb-bar,
-#mnk-bar,
-#nin-bar,
-#brd-bar,
-#dnc-bar {
+.bar-container {
   position: relative;
   width: 201px;
-  height: 7px;
+  height: 0;
   background: rgba(30, 30, 30, 0.7);
 }
 
-#gnb-timers-combo,
-#gnb-timers-cartridgecombo,
-#mnk-timers-lightning,
-#mnk-timers-combo,
-#nin-timers-combo,
-#brd-timers-repertoire,
-#dnc-timers-combo {
+.timer-bar {
   display: block;
   position: relative;
   width: 100%;
@@ -132,66 +118,26 @@
 /* Boxes */
 
 /* Relative to #bars */
-#pld-boxes,
-#war-boxes,
-#drk-boxes,
-#gnb-boxes,
-#whm-boxes,
-#sch-boxes,
-#ast-boxes,
-#mnk-boxes,
-#drg-boxes,
-#nin-boxes,
-#brd-boxes,
-#dnc-boxes,
-#blm-boxes,
-#smn-boxes,
-#rdm-boxes {
+.box-container {
   display: flex;
   position: absolute;
   left: 202px;
   top: 0;
 }
 
-#pld-boxes > div,
-#war-boxes > div,
-#drk-boxes > div,
-#gnb-boxes > div,
-#whm-boxes > div,
-#sch-boxes > div,
-#ast-boxes > div,
-#mnk-boxes > div,
-#drg-boxes > div,
-#nin-boxes > div,
-#brd-boxes > div,
-#dnc-boxes > div,
-#blm-boxes > div,
-#smn-boxes > div,
-#rdm-boxes > div {
+/*
+  Fit the exact height of the bars if not too small
+  Height of default/HP bar(show number)
+*/
+.box-container > div {
   display: inline-block;
   margin-left: 4;
   border: 1px solid rgba(0, 0, 0, 0.7);
-}
-
-/* Fit the exact height of the bars if not too small */
-
-/* Height of default/HP bar(show number) */
-#war-boxes > div,
-#gnb-boxes > div,
-#drg-boxes > div,
-#nin-boxes > div,
-#brd-boxes > div,
-#dnc-boxes > div {
   width: 29px;
   height: 29px;
 }
 
-#war-boxes .text,
-#gnb-boxes .text,
-#drg-boxes .text,
-#nin-boxes .text,
-#brd-boxes .text,
-#dnc-boxes .text {
+.box-container .text {
   text-align: center;
   position: relative;
   top: 5px;
@@ -401,22 +347,7 @@
   All jobs should have procs in roughly the same spot, and the
   entire bars + procs should be roughly 250px wide, 210px tall.
 */
-#pld-procs,
-#war-procs,
-#drk-procs,
-#gnb-procs,
-#whm-procs,
-#sch-procs,
-#ast-procs,
-#mnk-procs,
-#drg-procs,
-#nin-procs,
-#brd-procs,
-#dnc-procs,
-#blm-procs,
-#smn-procs,
-#rdm-procs,
-#blu-procs {
+.proc-box {
   position: absolute;
   top: 146px;
   left: 0;
@@ -537,6 +468,10 @@
   background-color: rgb(20, 50, 20);
 }
 
+.combo-color {
+  background-color: rgb(180, 200, 220);
+}
+
 /* PLD */
 .pld-color-oath {
   background-color: rgb(255, 210, 45);
@@ -603,10 +538,6 @@
 
 .gnb-color-cartridge.full {
   background-color: rgb(250, 86, 45);
-}
-
-.gnb-color-combo {
-  background-color: rgb(180, 200, 220);
 }
 
 .gnb-color-gnashingfang {
@@ -847,10 +778,6 @@
   background-color: rgb(255, 42, 0);
 }
 
-.nin-color-combo {
-  background-color: rgb(180, 200, 220);
-}
-
 /* SAM */
 
 /* BRD */
@@ -897,10 +824,6 @@
 /* MCH */
 
 /* DNC */
-.dnc-color-combo {
-  background-color: rgb(180, 200, 220);
-}
-
 .dnc-color-standardstep {
   background-color: rgb(235, 235, 50);
 }

@@ -71,9 +71,9 @@ let parseHelper = (params, funcName, fields) => {
   return Regexes.parse(str);
 };
 
-const NetRegexes = {
+export default class NetRegexes {
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#14-networkstartscasting
-  startsUsing: (params) => {
+  static startsUsing(params) {
     return parseHelper(params, 'startsUsing', {
       0: { field: 'type', value: '20' },
       1: { field: 'timestamp' },
@@ -85,11 +85,11 @@ const NetRegexes = {
       7: { field: 'target' },
       8: { field: 'castTime' },
     });
-  },
+  }
 
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#15-networkability
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#16-networkaoeability
-  ability: (params) => {
+  static ability(params) {
     return parseHelper(params, 'ability', {
       0: { field: 'type', value: '2[12]' },
       1: { field: 'timestamp' },
@@ -100,11 +100,11 @@ const NetRegexes = {
       6: { field: 'targetId' },
       7: { field: 'target' },
     });
-  },
+  }
 
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#15-networkability
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#16-networkaoeability
-  abilityFull: (params) => {
+  static abilityFull(params) {
     return parseHelper(params, 'abilityFull', {
       0: { field: 'type', value: '2[12]' },
       1: { field: 'timestamp' },
@@ -123,10 +123,10 @@ const NetRegexes = {
       42: { field: 'z' },
       43: { field: 'heading' },
     });
-  },
+  }
 
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1b-networktargeticon-head-markers
-  headMarker: (params) => {
+  static headMarker(params) {
     return parseHelper(params, 'headMarker', {
       0: { field: 'type', value: '27' },
       1: { field: 'timestamp' },
@@ -134,20 +134,20 @@ const NetRegexes = {
       3: { field: 'target' },
       6: { field: 'id' },
     });
-  },
+  }
 
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#03-addcombatant
-  addedCombatant: (params) => {
+  static addedCombatant(params) {
     return parseHelper(params, 'addedCombatant', {
       0: { field: 'type', value: '03' },
       1: { field: 'timestamp' },
       2: { field: 'id' },
       3: { field: 'name' },
     });
-  },
+  }
 
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#03-addcombatant
-  addedCombatantFull: (params) => {
+  static addedCombatantFull(params) {
     return parseHelper(params, 'addedCombatantFull', {
       0: { field: 'type', value: '03' },
       1: { field: 'timestamp' },
@@ -166,10 +166,10 @@ const NetRegexes = {
       19: { field: 'z' },
       20: { field: 'heading' },
     });
-  },
+  }
 
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#04-removecombatant
-  removingCombatant: (params) => {
+  static removingCombatant(params) {
     return parseHelper(params, 'removingCombatant', {
       0: { field: 'type', value: '04' },
       1: { field: 'timestamp' },
@@ -177,10 +177,10 @@ const NetRegexes = {
       3: { field: 'name' },
       12: { field: 'hp' },
     });
-  },
+  }
 
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1a-networkbuff
-  gainsEffect: (params) => {
+  static gainsEffect(params) {
     return parseHelper(params, 'gainsEffect', {
       0: { field: 'type', value: '26' },
       1: { field: 'timestamp' },
@@ -193,11 +193,11 @@ const NetRegexes = {
       8: { field: 'target' },
       9: { field: 'count' },
     });
-  },
+  }
 
   // Prefer gainsEffect over this function unless you really need extra data.
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#26-networkstatuseffects
-  statusEffectExplicit: (params) => {
+  static statusEffectExplicit(params) {
     return parseHelper(params, 'statusEffectExplicit', {
       0: { field: 'type', value: '38' },
       1: { field: 'timestamp' },
@@ -215,10 +215,10 @@ const NetRegexes = {
       18: { field: 'data3' },
       19: { field: 'data4' },
     });
-  },
+  }
 
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove
-  losesEffect: (params) => {
+  static losesEffect(params) {
     return parseHelper(params, 'losesEffect', {
       0: { field: 'type', value: '30' },
       1: { field: 'timestamp' },
@@ -230,10 +230,10 @@ const NetRegexes = {
       8: { field: 'target' },
       9: { field: 'count' },
     });
-  },
+  }
 
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#23-networktether
-  tether: (params) => {
+  static tether(params) {
     return parseHelper(params, 'tether', {
       0: { field: 'type', value: '35' },
       1: { field: 'timestamp' },
@@ -243,11 +243,11 @@ const NetRegexes = {
       5: { field: 'target' },
       8: { field: 'id' },
     });
-  },
+  }
 
   // 'target' was defeated by 'source'
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#19-networkdeath
-  wasDefeated: (params) => {
+  static wasDefeated(params) {
     return parseHelper(params, 'wasDefeated', {
       0: { field: 'type', value: '25' },
       1: { field: 'timestamp' },
@@ -256,38 +256,38 @@ const NetRegexes = {
       4: { field: 'sourceId' },
       5: { field: 'source' },
     });
-  },
+  }
 
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
-  echo: (params) => {
+  static echo(params) {
     if (typeof params === 'undefined')
       params = {};
     Regexes.validateParams(params, 'echo', ['type', 'timestamp', 'code', 'name', 'line', 'capture']);
     params.code = '0038';
     return NetRegexes.gameLog(params);
-  },
+  }
 
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
-  dialog: (params) => {
+  static dialog(params) {
     if (typeof params === 'undefined')
       params = {};
     Regexes.validateParams(params, 'dialog', ['type', 'timestamp', 'code', 'name', 'line', 'capture']);
     params.code = '0044';
     return NetRegexes.gameLog(params);
-  },
+  }
 
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
-  message: (params) => {
+  static message(params) {
     if (typeof params === 'undefined')
       params = {};
     Regexes.validateParams(params, 'message', ['type', 'timestamp', 'code', 'name', 'line', 'capture']);
     params.code = '0839';
     return NetRegexes.gameLog(params);
-  },
+  }
 
   // fields: code, name, line, capture
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
-  gameLog: (params) => {
+  static gameLog(params) {
     return parseHelper(params, 'gameLog', {
       0: { field: 'type', value: '00' },
       1: { field: 'timestamp' },
@@ -295,16 +295,16 @@ const NetRegexes = {
       3: { field: 'name' },
       4: { field: 'line' },
     });
-  },
+  }
 
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
-  gameNameLog: (params) => {
+  static gameNameLog(params) {
     // for compat with Regexes.
     return NetRegexes.gameLog(params);
-  },
+  }
 
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#0c-playerstats
-  statChange: (params) => {
+  static statChange(params) {
     return parseHelper(params, 'statChange', {
       0: { field: 'type', value: '12' },
       1: { field: 'timestamp' },
@@ -325,20 +325,20 @@ const NetRegexes = {
       16: { field: 'spellSpeed' },
       18: { field: 'tenacity' },
     });
-  },
+  }
 
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#01-changezone
-  changeZone: (params) => {
+  static changeZone(params) {
     return parseHelper(params, 'changeZone', {
       0: { field: 'type', value: '01' },
       1: { field: 'timestamp' },
       2: { field: 'id' },
       3: { field: 'name' },
     });
-  },
+  }
 
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#21-network6d-actor-control-lines
-  network6d: (params) => {
+  static network6d(params) {
     return parseHelper(params, 'network6d', {
       0: { field: 'type', value: '33' },
       1: { field: 'timestamp' },
@@ -349,8 +349,5 @@ const NetRegexes = {
       6: { field: 'data2' },
       7: { field: 'data3' },
     });
-  },
-};
-
-// TODO: Convert into static class
-export default NetRegexes;
+  }
+}
