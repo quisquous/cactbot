@@ -156,25 +156,24 @@ class OopsyConfigurator {
 
     for (let [key, item] of Object.entries(map)) {
       item.triggers = [];
-      for (const triggerSet of item.json) {
-        for (const prop of oopsyHelpers) {
-          if (!triggerSet[prop])
-            continue;
-          for (const id in triggerSet[prop])
-            item.triggers.push({ id: id });
-        }
-
-        if (!triggerSet.triggers)
+      const triggerSet = item.triggerSet;
+      for (const prop of oopsyHelpers) {
+        if (!triggerSet[prop])
           continue;
+        for (const id in triggerSet[prop])
+          item.triggers.push({ id: id });
+      }
 
-        for (const trigger of triggerSet.triggers) {
-          if (!trigger.id)
-            continue;
-          // Skip triggers that just set data.
-          if (!trigger.mistake)
-            continue;
-          item.triggers.push(trigger);
-        }
+      if (!triggerSet.triggers)
+        continue;
+
+      for (const trigger of triggerSet.triggers) {
+        if (!trigger.id)
+          continue;
+        // Skip triggers that just set data.
+        if (!trigger.mistake)
+          continue;
+        item.triggers.push(trigger);
       }
     }
     return map;
