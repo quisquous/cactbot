@@ -1,7 +1,12 @@
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // ALEXANDER - THE BURDEN OF THE SON NORMAL
 // A8N
 
-[{
+export default {
   zoneId: ZoneId.AlexanderTheBurdenOfTheSon,
   timelineFile: 'a8n.txt',
   timelineTriggers: [
@@ -601,4 +606,4 @@
       },
     },
   ],
-}];
+};

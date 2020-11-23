@@ -1,5 +1,10 @@
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // Aetherochemical Research Facility
-[{
+export default {
   zoneId: ZoneId.TheAetherochemicalResearchFacility,
   timelineFile: 'aetherochemical_research_facility.txt',
   timelineTriggers: [
@@ -404,4 +409,4 @@
       },
     },
   ],
-}];
+};

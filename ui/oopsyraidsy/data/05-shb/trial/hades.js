@@ -1,5 +1,6 @@
+import ZoneId from '../../../../../resources/zone_id.js';
 // Hades Normal
-[{
+export default {
   zoneId: ZoneId.TheDyingGasp,
   damageWarn: {
     'Hades Bad Faith 1': '414B',
@@ -58,4 +59,4 @@
       },
     },
   ],
-}];
+};

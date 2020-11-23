@@ -1,5 +1,8 @@
+import NetRegexes from '../../../../../resources/netregexes.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // Hades Ex
-[{
+export default {
   zoneId: ZoneId.TheMinstrelsBalladHadessElegy,
   damageWarn: {
     'HadesEx Shadow Spread 2': '47AA',
@@ -144,4 +147,4 @@
       },
     },
   ],
-}];
+};

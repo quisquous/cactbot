@@ -1,4 +1,5 @@
-[{
+import ZoneId from '../../../../../resources/zone_id.js';
+export default {
   zoneId: ZoneId.Amaurot,
   damageWarn: {
     'Amaurot Burning Sky': '354A',
@@ -23,4 +24,4 @@
   damageFail: {
     'Amaurot Apokalypsis': '3CD7',
   },
-}];
+};

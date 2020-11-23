@@ -1,5 +1,6 @@
+import ZoneId from '../../../../../resources/zone_id.js';
 // Innocence Extreme
-[{
+export default {
   zoneId: ZoneId.TheCrownOfTheImmaculateExtreme,
   damageWarn: {
     'InnoEx Duel Descent': '3ED2',
@@ -29,4 +30,4 @@
     'InnoEx God Ray 3': '3EE8',
     'InnoEx Explosion': '3EF0',
   },
-}];
+};

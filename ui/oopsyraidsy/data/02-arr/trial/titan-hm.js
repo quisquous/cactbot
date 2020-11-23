@@ -1,5 +1,6 @@
+import ZoneId from '../../../../../resources/zone_id.js';
 // Titan Hard
-[{
+export default {
   zoneId: ZoneId.TheNavelHard,
   damageWarn: {
     'TitanHm Weight Of The Land': '553',
@@ -14,4 +15,4 @@
   shareFail: {
     'TitanHm Mountain Buster': '283',
   },
-}];
+};

@@ -1,5 +1,6 @@
+import ZoneId from '../../../../../resources/zone_id.js';
 // Innocence Normal
-[{
+export default {
   zoneId: ZoneId.TheCrownOfTheImmaculate,
   damageWarn: {
     'Inno Daybreak': '3E9D',
@@ -20,4 +21,4 @@
     'Inno God Ray 3': '3EBF',
     'Inno God Ray 4': '3EC0',
   },
-}];
+};

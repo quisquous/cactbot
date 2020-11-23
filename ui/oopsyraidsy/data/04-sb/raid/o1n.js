@@ -1,5 +1,6 @@
+import ZoneId from '../../../../../resources/zone_id.js';
 // O1N - Deltascape 1.0 Normal
-[{
+export default {
   zoneId: ZoneId.DeltascapeV10,
   damageWarn: {
     'O1N Burn': '23D5', // Fireball explosion circle AoEs
@@ -18,4 +19,4 @@
       },
     },
   ],
-}];
+};

@@ -1,4 +1,5 @@
-[{
+import ZoneId from '../../../../../resources/zone_id.js';
+export default {
   zoneId: ZoneId.EdensVerseFuror,
   damageWarn: {
     'E6N Thorns': '4BDA', // AoE markers after Enumeration
@@ -21,4 +22,4 @@
     // Kills non-tanks who get hit by it.
     'E6N Instant Incineration': '4BED',
   },
-}];
+};

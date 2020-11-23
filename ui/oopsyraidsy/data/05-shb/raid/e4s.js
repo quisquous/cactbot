@@ -1,7 +1,10 @@
+import NetRegexes from '../../../../../resources/netregexes.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // TODO: could track people get hitting by markers they shouldn't
 // TODO: could track non-tanks getting hit by tankbusters, megaliths
 // TODO: could track non-target getting hit by tankbuster
-[{
+export default {
   zoneId: ZoneId.EdensGateSepultureSavage,
   damageWarn: {
     'E4S Weight of the Land': '4108',
@@ -58,4 +61,4 @@
       },
     },
   ],
-}];
+};

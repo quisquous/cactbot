@@ -1,4 +1,5 @@
-[{
+import ZoneId from '../../../../../resources/zone_id.js';
+export default {
   zoneId: ZoneId.EdensGateResurrection,
   damageWarn: {
     'E1N Eden\'s Thunder III': '44ED',
@@ -45,4 +46,4 @@
       },
     },
   ],
-}];
+};

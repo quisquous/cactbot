@@ -1,4 +1,7 @@
-[{
+import NetRegexes from '../../../../../resources/netregexes.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.TheWeepingCityOfMhach,
   damageWarn: {
     'Weeping Critical Bite': '1848', // Sarsuchus cone aoe
@@ -134,4 +137,4 @@
       },
     },
   ],
-}];
+};
