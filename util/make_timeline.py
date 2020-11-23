@@ -172,35 +172,27 @@ def parse_file(args):
             if not started:
                 started = True
                 last_ability_time = e_tools.parse_event_time(line)
+                # If it's a zone seal, we want to make a special entry.
+                if e_tools.is_zone_seal(line.split("|")):
+                    entry = make_entry(
+                        {
+                            "line_type": "zone_seal",
+                            "time": e_tools.parse_event_time(line),
+                            "zone_message": line.split("|")[4].split(" will be sealed off")[0]
+                        }
+                    )
+                    entries.append(entry)
 
             # We're looking for enemy casts or enemies becoming targetable/untargetable.
             # These lines will start with 21, 22, or 34, and have an NPC ID (400#####)
-            # If there's a zone seal, we want that also.
             # If none of these apply, skip the line
 
-            if (not line[0:2] in ["21", "22", "34"] or not line[37:40] == "400") and line[0:2] != "00":
+            if not line[0:2] in ["21", "22", "34"] or not line[37:40] == "400":
                 continue
             line_fields = line.split("|")
             # We aren't including targetable lines unless the user explicitly says to.
             if line[0:2] == "34" and not line_fields[3] in args.include_targetable:
                 continue
-
-            # If it's a zone seal, we want to make a special entry.
-            if e_tools.is_zone_seal(line_fields):
-                entry = make_entry(
-                    {
-                        "line_type": "zone_seal",
-                        "time": e_tools.parse_event_time(line),
-                        "zone_message": line_fields[4].split(" will be sealed off")[0]
-                    }
-                )
-                entries.append(entry)
-                continue
-
-            # If we're here, we don't care about any other 00 log lines.
-            if line[0:2] == "00":
-                continue
-                
             # At this point, we have a combat line for the timeline.
             entry = make_entry(
                 {
