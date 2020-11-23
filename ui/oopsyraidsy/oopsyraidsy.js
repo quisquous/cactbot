@@ -1,20 +1,11 @@
-// TODO:
-// The convention of "import X as _X; const X = _X;" is currently
-// being used as a method to workaround for downstream code
-// that is running via eval(). Because importing statements do not
-// create a variable of the same name, the eval()'d code does not know
-// about the import, and thus throws ReferenceErrors.
 import ContentType from '../../resources/content_type.js';
 import { LocaleNetRegex } from '../../resources/translations.js';
-import _NetRegexes from '../../resources/netregexes.js';
-const NetRegexes = _NetRegexes;
+import NetRegexes from '../../resources/netregexes.js';
 import PartyTracker from '../../resources/party.js';
-import _Regexes from '../../resources/regexes.js';
-const Regexes = _Regexes;
+import Regexes from '../../resources/regexes.js';
 import UserConfig from '../../resources/user_config.js';
 import { Util } from '../../resources/common.js';
-import _ZoneId from '../../resources/zone_id.js';
-const ZoneId = _ZoneId;
+import ZoneId from '../../resources/zone_id.js';
 import ZoneInfo from '../../resources/zone_info.js';
 
 import './oopsyraidsy_config.js';
@@ -1229,36 +1220,27 @@ class DamageTracker {
       return;
 
     this.triggerSets = Options.Triggers;
-    for (let filename in this.dataFiles) {
-      let text = this.dataFiles[filename];
-      let json;
-      try {
-        json = eval(text);
-      } catch (exception) {
-        console.error('Error parsing JSON from ' + filename + ': ' + exception);
+    for (const filename in this.dataFiles) {
+      const json = this.dataFiles[filename];
+      if (typeof json !== 'object') {
+        console.error('Unexpected JSON from ' + filename + ', expected an object');
         continue;
       }
-      if (typeof json !== 'object' || !(json.length >= 0)) {
-        console.error('Unexpected JSON from ' + filename + ', expected an array');
+      const hasZoneRegex = 'zoneRegex' in json;
+      const hasZoneId = 'zoneId' in json;
+      if (!hasZoneRegex && !hasZoneId || hasZoneRegex && hasZoneId) {
+        console.error('Unexpected JSON from ' + filename + ', need one of zoneRegex/zoneID');
         continue;
       }
-      for (const triggerSet of json) {
-        const hasZoneRegex = 'zoneRegex' in triggerSet;
-        const hasZoneId = 'zoneId' in triggerSet;
-        if (!hasZoneRegex && !hasZoneId || hasZoneRegex && hasZoneId) {
-          console.error('Unexpected JSON from ' + filename + ', need one of zoneRegex/zoneID');
+
+      json.filename = filename;
+      if ('triggers' in json) {
+        if (typeof json.triggers !== 'object' || !(json.triggers.length >= 0)) {
+          console.error('Unexpected JSON from ' + filename + ', expected triggers to be an array');
           continue;
         }
-
-        triggerSet.filename = filename;
-        if ('triggers' in json) {
-          if (typeof triggerSet.triggers !== 'object' || !(triggerSet.triggers.length >= 0)) {
-            console.error('Unexpected JSON from ' + filename + ', expected triggers to be an array');
-            continue;
-          }
-        }
       }
-      Array.prototype.push.apply(this.triggerSets, json);
+      this.triggerSets.push(json);
     }
     this.ReloadTriggers();
   }
