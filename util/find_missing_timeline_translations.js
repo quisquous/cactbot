@@ -3,11 +3,8 @@ let locale = process.argv[3];
 let localeReg = 'regex' + locale[0].toUpperCase() + locale[1];
 
 import fs from 'fs';
+import path from 'path';
 import Regexes from '../resources/regexes.js';
-import NetRegexes from '../resources/netregexes.js';
-import Conditions from '../resources/conditions.js';
-import ZoneId from '../resources/zone_id.js';
-import { Responses } from '../resources/responses.js';
 import { Timeline } from '../ui/raidboss/timeline.js';
 import { commonReplacement, partialCommonReplacementKeys } from '../ui/raidboss/common_replacement.js';
 
@@ -18,29 +15,15 @@ if (!fs.existsSync(timelineFile))
 
 let timelineText = String(fs.readFileSync(timelineFile));
 let timeline = new Timeline(timelineText);
+
+const importPath = '../' + path.relative(process.cwd(), triggersFile).replace(/\\/g, '/');
+let triggerSet;
+let triggers;
+let translations;
+let trans;
+
 let triggerText = String(fs.readFileSync(triggersFile));
 let triggerLines = triggerText.split('\n');
-let triggerSetList = eval(triggerText);
-let triggerSet = triggerSetList[0];
-if (!triggerSet)
-  process.exit(-1);
-let triggers = triggerSet.triggers;
-
-let translations = triggerSet.timelineReplace;
-if (!translations)
-  process.exit(0);
-
-let trans = {
-  replaceSync: {},
-  replaceText: {},
-};
-
-for (let transBlock of translations) {
-  if (!transBlock.locale || transBlock.locale !== locale)
-    continue;
-  trans = transBlock;
-  break;
-}
 
 // An extremely hacky helper to turn a trigger id back into a line number.
 function findLineNumberByTriggerId(text, id) {
@@ -216,5 +199,27 @@ function findMissingTimeline() {
     console.log(`${triggersFile}: missingTranslations set true when not needed`);
 }
 
-findMissingRegex();
-findMissingTimeline();
+async function findMissing() {
+
+  triggerSet = (await import(importPath)).default;
+  triggers = triggerSet.triggers;
+  translations = triggerSet.timelineReplace;
+  if (!translations)
+    return;
+
+  trans = {
+    replaceSync: {},
+    replaceText: {},
+  };
+  
+  for (let transBlock of translations) {
+    if (!transBlock.locale || transBlock.locale !== locale)
+      continue;
+    trans = transBlock;
+    break;
+  }
+
+  findMissingRegex();
+  findMissingTimeline();
+}
+findMissing();
