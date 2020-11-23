@@ -178,7 +178,7 @@ def parse_file(args):
                         {
                             "line_type": "zone_seal",
                             "time": e_tools.parse_event_time(line),
-                            "zone_message": line.split("|")[4].split(" will be sealed off")[0]
+                            "zone_message": line.split("|")[4].split(" will be sealed off")[0],
                         }
                     )
                     entries.append(entry)
@@ -276,7 +276,11 @@ def main(args):
 
     output = []
     if entries[0]["line_type"] and entries[0]["line_type"] == "zone_seal":
-        output.append('0 "Start" sync /00:0839:{} will be sealed off/ window 0,1'.format(entries[0]["zone_message"].title()))
+        output.append(
+            '0 "Start" sync /00:0839:{} will be sealed off/ window 0,1'.format(
+                entries[0]["zone_message"].title()
+            )
+        )
         entries.pop(0)
     else:
         output.append('0 "Start" sync /Engage!/ window 0,1')
