@@ -200,7 +200,6 @@ function findMissingTimeline() {
 }
 
 async function findMissing() {
-
   triggerSet = (await import(importPath)).default;
   triggers = triggerSet.triggers;
   translations = triggerSet.timelineReplace;
@@ -211,7 +210,7 @@ async function findMissing() {
     replaceSync: {},
     replaceText: {},
   };
-  
+
   for (let transBlock of translations) {
     if (!transBlock.locale || transBlock.locale !== locale)
       continue;
