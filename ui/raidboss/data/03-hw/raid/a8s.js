@@ -1,15 +1,10 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // TODO: Final Punishment stack counts are in the network log, but not in ACT log :C
 // e.g. 4 stacks:
 //   26|2020-02-08T21:03:07.8080000-08:00|403|Final Punishment|
 //   39.95|E0000000||1068E9CB|Potato Chippy|04|19062|||0bd20f2b57d49b17a19caa10e1fb8734
 // TODO: chakram safe spots lol?
 
-export default {
+[{
   zoneId: ZoneId.AlexanderTheBurdenOfTheSonSavage,
   timelineFile: 'a8s.txt',
   timelineTriggers: [
@@ -1289,4 +1284,4 @@ export default {
       },
     },
   ],
-};
+}];

@@ -1,8 +1,3 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // TODO: is it worth adding triggers for gaining/losing shield protocol? effect 8F[0-2]
 // TODO: Incongruous Spin timeline trigger?
 
@@ -25,7 +20,7 @@ const swipeOutputStrings = {
   },
 };
 
-export default {
+[{
   zoneId: ZoneId.ThePuppetsBunker,
   timelineFile: 'the_puppets_bunker.txt',
   triggers: [
@@ -1077,4 +1072,4 @@ export default {
       },
     },
   ],
-};
+}];

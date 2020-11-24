@@ -1,5 +1,4 @@
-import ZoneId from '../../../../../resources/zone_id.js';
-export default {
+[{
   zoneId: ZoneId.ThokAstThokExtreme,
   timelineFile: 'ravana-ex.txt',
   triggers: [
@@ -197,4 +196,4 @@ export default {
       },
     },
   ],
-};
+}];

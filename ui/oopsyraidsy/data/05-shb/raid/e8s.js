@@ -1,6 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // TODO: rush hitting the crystal
 // TODO: adds not being killed
 // TODO: taking the rush twice (when you have debuff)
@@ -14,7 +11,7 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // I'm not sure this makes any sense? But can't tell if the spread was a mistake or not.
 // Maybe we could check for "Magic Vulnerability Up"?
 
-export default {
+[{
   zoneId: ZoneId.EdensVerseRefulgenceSavage,
   damageWarn: {
     'E8S Biting Frost': '4D66', // 270-degree frontal AoE, Shiva
@@ -84,4 +81,4 @@ export default {
       },
     },
   ],
-};
+}];

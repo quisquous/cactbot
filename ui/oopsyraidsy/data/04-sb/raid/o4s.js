@@ -1,8 +1,5 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // O4S - Deltascape 4.0 Savage
-export default {
+[{
   zoneId: ZoneId.DeltascapeV40Savage,
   damageWarn: {
     'O4S2 Neo Vacuum Wave': '241D',
@@ -127,4 +124,4 @@ export default {
       },
     },
   ],
-};
+}];

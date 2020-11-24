@@ -1,8 +1,5 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // Aetherochemical Research Facility
-export default {
+[{
   zoneId: ZoneId.TheAetherochemicalResearchFacility,
   damageWarn: {
     'ARF Grand Sword': '216', // Conal AoE, Scrambled Iron Giant trash
@@ -46,4 +43,4 @@ export default {
       },
     },
   ],
-};
+}];

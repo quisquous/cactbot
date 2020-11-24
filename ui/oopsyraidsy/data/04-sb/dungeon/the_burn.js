@@ -1,5 +1,4 @@
-import ZoneId from '../../../../../resources/zone_id.js';
-export default {
+[{
   zoneId: ZoneId.TheBurn,
   damageWarn: {
     'The Burn Falling Rock': '31A3', // Environmental line AoE
@@ -40,4 +39,4 @@ export default {
     'The Burn Leaden': '43', // Puddle effect, boss 2. (Also inflicts 11F, Sludge.)
     'The Burn Puddle Frostbite': '11D', // Ice puddle effect, boss 3. (NOT the conal-inflicted one, 10C.)
   },
-};
+}];

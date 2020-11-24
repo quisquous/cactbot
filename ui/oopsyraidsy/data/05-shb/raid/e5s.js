@@ -1,6 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // TODO: is there a different ability if the shield duty action isn't used properly?
 // TODO: is there an ability from Raiden (the bird) if you get eaten?
 // TODO: maybe chain lightning warning if you get hit while you have system shock (8B8)
@@ -16,7 +13,7 @@ let noOrb = (str) => {
   };
 };
 
-export default {
+[{
   zoneId: ZoneId.EdensVerseFulminationSavage,
   damageWarn: {
     'E5S Impact': '4E3B', // Stratospear landing AoE
@@ -140,4 +137,4 @@ export default {
       },
     },
   ],
-};
+}];

@@ -1,13 +1,10 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // TODO: Radiant Braver is 4EF7/4EF8(x2), shouldn't get hit by both?
 // TODO: Radiant Desperado is 4EF9/4EFA, shouldn't get hit by both?
 // TODO: Radiant Meteor is 4EFC, and shouldn't get hit by more than 1?
 // TODO: Absolute Holy should be shared?
 // TODO: intersecting brimstones?
 
-export default {
+[{
   zoneId: ZoneId.TheSeatOfSacrificeExtreme,
   damageWarn: {
     'WOLEx Solemn Confiteor': '4F0C', // ground puddles
@@ -77,4 +74,4 @@ export default {
       },
     },
   ],
-};
+}];

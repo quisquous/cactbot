@@ -1,7 +1,4 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
-export default {
+[{
   zoneId: ZoneId.EdensVerseFulmination,
   damageWarn: {
     'E5N Impact': '4E3A', // Stratospear landing AoE
@@ -81,4 +78,4 @@ export default {
       },
     },
   ],
-};
+}];

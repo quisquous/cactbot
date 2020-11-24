@@ -1,6 +1,3 @@
-import NetRegexes from '../../../../resources/netregexes.js';
-import ZoneId from '../../../../resources/zone_id.js';
-
 // Abilities seem instant.
 let abilityCollectSeconds = 0.5;
 // Observation: up to ~1.2 seconds for a buff to roll through the party.
@@ -152,7 +149,7 @@ let missedHeal = (args) => {
 
 let missedMitigationAbility = missedHeal;
 
-export default {
+[{
   zoneId: ZoneId.MatchAll,
   triggers: [
     {
@@ -242,4 +239,4 @@ export default {
     missedHeal({ id: 'White Wind', abilityId: '2C8E' }),
     missedHeal({ id: 'Gobskin', abilityId: '4780' }),
   ],
-};
+}];

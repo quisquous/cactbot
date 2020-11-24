@@ -1,7 +1,4 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
-export default {
+[{
   zoneId: ZoneId.SohmAlHard,
   damageWarn: {
     'SohmAlHm Deadly Vapor': '1DC9', // Environmental circle AoEs
@@ -39,4 +36,4 @@ export default {
       },
     },
   ],
-};
+}];

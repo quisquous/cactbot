@@ -1,11 +1,6 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // O12S - Alphascape 4.0 Savage
 
-export default {
+[{
   zoneId: ZoneId.AlphascapeV40Savage,
   timelineFile: 'o12s.txt',
   triggers: [
@@ -1004,4 +999,4 @@ export default {
       },
     },
   ],
-};
+}];

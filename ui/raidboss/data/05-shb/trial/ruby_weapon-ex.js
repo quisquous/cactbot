@@ -1,13 +1,8 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // TODO: ravensflight calls
 // TODO: in/out calls for your orange/blue add, dynamo 4EB0, chariot 4EB1
 // TODO: there's no 23: message for tethers, so is likely part of add spawn?
 
-export default {
+[{
   zoneId: ZoneId.CinderDriftExtreme,
   timelineFile: 'ruby_weapon-ex.txt',
   timelineTriggers: [
@@ -716,4 +711,4 @@ export default {
       },
     },
   ],
-};
+}];

@@ -1,8 +1,3 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // TODO: do the gobcut and gobstraight really alternate?
 // if so, then maybe we could call out which was coming.
 // I thought some of them were fixed and don't have enough data.
@@ -24,7 +19,7 @@ let bombLocation = (matches) => {
   };
 };
 
-export default {
+[{
   zoneId: ZoneId.AlexanderTheFistOfTheSonSavage,
   timelineFile: 'a5s.txt',
   timelineTriggers: [
@@ -598,4 +593,4 @@ export default {
       },
     },
   ],
-};
+}];

@@ -1,11 +1,6 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // TODO: should the post-staff "spread" happen unconditionally prior to marker?
 
-export default {
+[{
   zoneId: ZoneId.AkhAfahAmphitheatreHard,
   timelineFile: 'shiva-hm.txt',
   timelineTriggers: [
@@ -181,4 +176,4 @@ export default {
       },
     },
   ],
-};
+}];

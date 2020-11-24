@@ -1,9 +1,3 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import Regexes from '../../../../../resources/regexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 const diveDirections = {
   unknown: {
     en: '?',
@@ -70,7 +64,7 @@ const diveDirections = {
   },
 };
 
-export default {
+[{
   zoneId: ZoneId.TheSecondCoilOfBahamutTurn4,
   timelineFile: 't9.txt',
   timelineTriggers: [
@@ -769,4 +763,4 @@ export default {
       },
     },
   ],
-};
+}];

@@ -1,11 +1,5 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import Regexes from '../../../../../resources/regexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // UCU - The Unending Coil Of Bahamut (Ultimate)
-export default {
+[{
   zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,
   timelineFile: 'unending_coil_ultimate.txt',
   triggers: [
@@ -2125,4 +2119,4 @@ export default {
       },
     },
   ],
-};
+}];

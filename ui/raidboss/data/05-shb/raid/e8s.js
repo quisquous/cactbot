@@ -1,8 +1,3 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // In your cactbot/user/raidboss.js file, add the line:
 //   Options.cactbote8sUptimeKnockbackStrat = true;
 // .. if you want cactbot to callout Mirror Mirror 4's double knockback
@@ -25,7 +20,7 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // TODO: callouts for the stack group mirrors?
 // TODO: icelit dragonsong callouts?
 
-export default {
+[{
   zoneId: ZoneId.EdensVerseRefulgenceSavage,
   timelineFile: 'e8s.txt',
   timelineTriggers: [
@@ -1056,4 +1051,4 @@ export default {
       },
     },
   ],
-};
+}];

@@ -1,10 +1,5 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // O6S - Sigmascape 2.0 Savage
-export default {
+[{
   zoneId: ZoneId.SigmascapeV20Savage,
   timelineFile: 'o6s.txt',
   triggers: [
@@ -303,4 +298,4 @@ export default {
       },
     },
   ],
-};
+}];

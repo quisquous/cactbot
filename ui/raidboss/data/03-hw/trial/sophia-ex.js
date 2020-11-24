@@ -1,8 +1,3 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 let findSafeDir = (data) => {
   // Tethers are ordered with all East tethers first. This *doesn't* mean that the East
   // or West tethers are themselves in order within their half!
@@ -59,7 +54,7 @@ const tiltOutputStrings = {
   },
 };
 
-export default {
+[{
   zoneId: ZoneId.ContainmentBayP1T6Extreme,
   timelineFile: 'sophia-ex.txt',
   timelineTriggers: [
@@ -782,4 +777,4 @@ export default {
       },
     },
   ],
-};
+}];

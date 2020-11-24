@@ -1,10 +1,5 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // Tsukuyomi Extreme
-export default {
+[{
   zoneId: ZoneId.TheMinstrelsBalladTsukuyomisPain,
   timelineFile: 'tsukuyomi-ex.txt',
   triggers: [
@@ -520,4 +515,4 @@ export default {
       },
     },
   ],
-};
+}];

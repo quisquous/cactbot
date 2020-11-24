@@ -1,12 +1,9 @@
-import NetRegexes from '../../../../resources/netregexes.js';
-import ZoneId from '../../../../resources/zone_id.js';
-
 const caresAboutTankStuff = (data) => {
   return data.role === 'tank' || data.role === 'healer' || data.job === 'BLU';
 };
 
 // Triggers for all occasions and zones.
-export default {
+[{
   zoneId: ZoneId.MatchAll,
   triggers: [
     {
@@ -198,4 +195,4 @@ export default {
       soundVolume: 0.6,
     },
   ],
-};
+}];

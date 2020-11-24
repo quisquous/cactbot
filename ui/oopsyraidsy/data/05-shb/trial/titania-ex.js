@@ -1,5 +1,4 @@
-import ZoneId from '../../../../../resources/zone_id.js';
-export default {
+[{
   zoneId: ZoneId.TheDancingPlagueExtreme,
   damageWarn: {
     'TitaniaEx Wood\'s Embrace': '3D2F',
@@ -19,4 +18,4 @@ export default {
     'TitaniaEx Thunder Rune': '3D29',
     'TitaniaEx Divination Rune': '3D4A',
   },
-};
+}];

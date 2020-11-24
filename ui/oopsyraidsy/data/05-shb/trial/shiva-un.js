@@ -1,8 +1,5 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // Shiva Unreal
-export default {
+[{
   zoneId: ZoneId.TheAkhAfahAmphitheatreUnreal,
   damageWarn: {
     // Large white circles.
@@ -51,4 +48,4 @@ export default {
       },
     },
   ],
-};
+}];

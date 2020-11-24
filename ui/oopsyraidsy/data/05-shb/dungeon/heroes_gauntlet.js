@@ -1,9 +1,6 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // TODO: Berserker 2nd/3rd wild anguish should be shared with just a rock
 
-export default {
+[{
   zoneId: ZoneId.TheHeroesGauntlet,
   damageWarn: {
     'THG Blade\'s Benison': '5228', // pld conal
@@ -60,4 +57,4 @@ export default {
       },
     },
   ],
-};
+}];

@@ -1,8 +1,3 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // TODO: stun call for True Heart sprint ability?
 
 // TODO: can we figure out jails from the location of the tethering gobbie?
@@ -42,7 +37,7 @@ import ZoneId from '../../../../../resources/zone_id.js';
 //     red tether / white prey
 //     green tether / purple prey
 
-export default {
+[{
   zoneId: ZoneId.AlexanderTheArmOfTheSonSavage,
   timelineNeedsFixing: true,
   timelineFile: 'a7s.txt',
@@ -430,4 +425,4 @@ export default {
       },
     },
   ],
-};
+}];

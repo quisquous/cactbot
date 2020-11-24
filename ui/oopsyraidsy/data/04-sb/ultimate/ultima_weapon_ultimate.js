@@ -1,8 +1,5 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // Ultima Weapon Ultimate
-export default {
+[{
   zoneId: ZoneId.TheWeaponsRefrainUltimate,
   damageWarn: {
     'UWU Searing Wind': '2B5C',
@@ -40,4 +37,4 @@ export default {
       },
     },
   ],
-};
+}];

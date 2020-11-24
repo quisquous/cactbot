@@ -1,6 +1,5 @@
-import ZoneId from '../../../../../resources/zone_id.js';
 // Titan Extreme
-export default {
+[{
   zoneId: ZoneId.TheNavelExtreme,
   damageWarn: {
     'TitanEx Weight Of The Land': '5BE',
@@ -16,4 +15,4 @@ export default {
   shareFail: {
     'TitanEx Mountain Buster': '5B8',
   },
-};
+}];

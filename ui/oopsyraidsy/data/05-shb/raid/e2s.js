@@ -1,12 +1,9 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // TODO: shadoweye failure
 // TODO: Empty Hate (3E59/3E5A) hits everybody, so hard to tell about knockback
 // TODO: maybe mark hell wind people who got clipped by stack?
 // TODO: missing puddles?
 // TODO: missing light/dark circle stack
-export default {
+[{
   zoneId: ZoneId.EdensGateDescentSavage,
   damageWarn: {
     'E2S Doomvoid Slicer': '3E50',
@@ -44,4 +41,4 @@ export default {
       },
     },
   ],
-};
+}];

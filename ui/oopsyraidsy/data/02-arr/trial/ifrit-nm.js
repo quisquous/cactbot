@@ -1,6 +1,5 @@
-import ZoneId from '../../../../../resources/zone_id.js';
 // Ifrit Story Mode
-export default {
+[{
   zoneId: ZoneId.TheBowlOfEmbers,
   damageWarn: {
     'IfritNm Radiant Plume': '2DE',
@@ -28,4 +27,4 @@ export default {
       },
     },
   ],
-};
+}];

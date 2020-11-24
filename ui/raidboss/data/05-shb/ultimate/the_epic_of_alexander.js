@@ -1,8 +1,3 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // In your cactbot/user/raidboss.js file, add the line:
 //   Options.cactbotWormholeStrat = true;
 // .. if you want cactbot strat for wormhole.
@@ -265,7 +260,7 @@ const namedNisiPass = (data, output) => {
   });
 };
 
-export default {
+[{
   zoneId: ZoneId.TheEpicOfAlexanderUltimate,
   timelineFile: 'the_epic_of_alexander.txt',
   timelineTriggers: [
@@ -3459,4 +3454,4 @@ export default {
       },
     },
   ],
-};
+}];

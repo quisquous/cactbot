@@ -1,7 +1,4 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
-export default {
+[{
   zoneId: ZoneId.AlexanderTheSoulOfTheCreator,
   damageWarn: {
     'A12N Sacrament': '1AE6', // Cross Lasers
@@ -43,4 +40,4 @@ export default {
       },
     },
   ],
-};
+}];

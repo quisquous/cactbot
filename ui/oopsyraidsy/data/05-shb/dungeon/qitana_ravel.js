@@ -1,5 +1,4 @@
-import ZoneId from '../../../../../resources/zone_id.js';
-export default {
+[{
   zoneId: ZoneId.TheQitanaRavel,
   damageWarn: {
     'Qitana Sun Toss': '3C8A', // Ground AoE, boss one
@@ -23,4 +22,4 @@ export default {
     'Qitana Viper Poison 1': '3C9D', // AoE from the 00AB poison head marker, boss three
     'Qitana Confession of Faith 2': '3CA3', // Overlapped circles failure on the spread circles version of the mechanic
   },
-};
+}];

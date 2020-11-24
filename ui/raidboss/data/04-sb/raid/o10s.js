@@ -1,8 +1,3 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // TODO: fix tail end (seemed to not work??)
 // TODO: add phase tracking (so death from above/below can tell you to swap or not)
 // TODO: add swap callout after exaflares
@@ -11,7 +6,7 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // TODO: stack head markers
 
 // O10S - Alphascape 2.0 Savage
-export default {
+[{
   zoneId: ZoneId.AlphascapeV20Savage,
   timelineFile: 'o10s.txt',
   triggers: [
@@ -402,4 +397,4 @@ export default {
       },
     },
   ],
-};
+}];

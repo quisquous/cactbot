@@ -1,8 +1,5 @@
-import NetRegexes from '../../../../resources/netregexes.js';
-import ZoneId from '../../../../resources/zone_id.js';
-
 // Test mistake triggers.
-export default {
+[{
   zoneId: ZoneId.MiddleLaNoscea,
   triggers: [
     {
@@ -116,4 +113,4 @@ export default {
       },
     },
   ],
-};
+}];

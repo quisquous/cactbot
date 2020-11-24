@@ -1,7 +1,3 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // TODO: could consider keeping track of the gobbie driver?
 // Nothing in the logs for when you get in, other than removing combatanat.
 // FDE, FDF, FE0, FE1 are all skills you use when inside.
@@ -9,7 +5,7 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // There aren't many triggers, so maybe worth just keeping the global callouts
 // for bombs and stuns.
 
-export default {
+[{
   zoneId: ZoneId.AlexanderTheCuffOfTheFatherSavage,
   timelineFile: 'a2s.txt',
   timelineTriggers: [
@@ -316,4 +312,4 @@ export default {
       },
     },
   ],
-};
+}];

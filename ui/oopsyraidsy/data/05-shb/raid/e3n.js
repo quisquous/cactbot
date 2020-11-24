@@ -1,5 +1,4 @@
-import ZoneId from '../../../../../resources/zone_id.js';
-export default {
+[{
   zoneId: ZoneId.EdensGateInundation,
   damageWarn: {
     'E3N Monster Wave 1': '3FCA',
@@ -24,4 +23,4 @@ export default {
       },
     },
   ],
-};
+}];

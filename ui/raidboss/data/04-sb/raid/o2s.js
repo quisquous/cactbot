@@ -1,10 +1,5 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // O2S - Deltascape 2.0 Savage
-export default {
+[{
   zoneId: ZoneId.DeltascapeV20Savage,
   timelineNeedsFixing: true,
   timelineFile: 'o2s.txt',
@@ -429,4 +424,4 @@ export default {
       },
     },
   ],
-};
+}];

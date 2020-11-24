@@ -1,8 +1,5 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
-import ZoneId from '../../../../../resources/zone_id.js';
-
 // O4N - Deltascape 4.0 Normal
-export default {
+[{
   zoneId: ZoneId.DeltascapeV40,
   damageWarn: {
     'O4N Blizzard III': '24BC', // Targeted circle AoEs, Exdeath
@@ -43,4 +40,4 @@ export default {
       },
     },
   ],
-};
+}];
