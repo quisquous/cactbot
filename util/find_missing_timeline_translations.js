@@ -1,29 +1,48 @@
-let triggersFile = process.argv[2];
-let locale = process.argv[3];
-let localeReg = 'regex' + locale[0].toUpperCase() + locale[1];
-
 import fs from 'fs';
 import path from 'path';
 import Regexes from '../resources/regexes.js';
 import { Timeline } from '../ui/raidboss/timeline.js';
 import { commonReplacement, partialCommonReplacementKeys } from '../ui/raidboss/common_replacement.js';
 
-// Hackily assume that any file with a txt file of the same name is a trigger/timeline.
-let timelineFile = triggersFile.replace(/\.js$/, '.txt');
-if (!fs.existsSync(timelineFile))
-  process.exit(-1);
+const triggersFile = process.argv[2];
+const locale = process.argv[3];
+const localeReg = 'regex' + locale[0].toUpperCase() + locale[1];
+findMissing(triggersFile, locale, localeReg);
 
-let timelineText = String(fs.readFileSync(timelineFile));
-let timeline = new Timeline(timelineText);
+async function findMissing(triggersFile, locale, localeReg) {
+  // Hackily assume that any file with a txt file of the same name is a trigger/timeline.
+  let timelineFile = triggersFile.replace(/\.js$/, '.txt');
+  if (!fs.existsSync(timelineFile))
+    process.exit(-1);
 
-const importPath = '../' + path.relative(process.cwd(), triggersFile).replace(/\\/g, '/');
-let triggerSet;
-let triggers;
-let translations;
-let trans;
+  let timelineText = String(fs.readFileSync(timelineFile));
+  let timeline = new Timeline(timelineText);
 
-let triggerText = String(fs.readFileSync(triggersFile));
-let triggerLines = triggerText.split('\n');
+  const importPath = '../' + path.relative(process.cwd(), triggersFile).replace(/\\/g, '/');
+
+  let triggerText = String(fs.readFileSync(triggersFile));
+  let triggerLines = triggerText.split('\n');
+
+  const triggerSet = (await import(importPath)).default;
+  const translations = triggerSet.timelineReplace;
+  if (!translations)
+    return;
+
+  let trans = {
+    replaceSync: {},
+    replaceText: {},
+  };
+
+  for (let transBlock of translations) {
+    if (!transBlock.locale || transBlock.locale !== locale)
+      continue;
+    trans = transBlock;
+    break;
+  }
+
+  findMissingRegex(triggerSet.triggers, triggerLines, timeline, trans, localeReg);
+  findMissingTimeline(timelineFile, triggerSet, timeline, trans);
+}
 
 // An extremely hacky helper to turn a trigger id back into a line number.
 function findLineNumberByTriggerId(text, id) {
@@ -48,7 +67,7 @@ function findLineNumberByTriggerId(text, id) {
   return '?';
 }
 
-function findMissingRegex() {
+function findMissingRegex(triggers, triggerLines, timeline, trans, localeReg) {
   for (let trigger of triggers) {
     let origRegex = trigger.regex;
     if (!origRegex)
@@ -113,7 +132,7 @@ function findMissingRegex() {
   }
 }
 
-function findMissingTimeline() {
+function findMissingTimeline(timelineFile, triggerSet, timeline, trans) {
   // Don't bother translating timelines that are old.
   if (triggerSet.timelineNeedsFixing)
     return;
@@ -198,27 +217,3 @@ function findMissingTimeline() {
   if (keys.length === 0 && trans.missingTranslations)
     console.log(`${triggersFile}: missingTranslations set true when not needed`);
 }
-
-async function findMissing() {
-  triggerSet = (await import(importPath)).default;
-  triggers = triggerSet.triggers;
-  translations = triggerSet.timelineReplace;
-  if (!translations)
-    return;
-
-  trans = {
-    replaceSync: {},
-    replaceText: {},
-  };
-
-  for (let transBlock of translations) {
-    if (!transBlock.locale || transBlock.locale !== locale)
-      continue;
-    trans = transBlock;
-    break;
-  }
-
-  findMissingRegex();
-  findMissingTimeline();
-}
-findMissing();
