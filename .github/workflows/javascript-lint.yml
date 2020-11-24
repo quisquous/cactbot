@@ -31,7 +31,8 @@ jobs:
       - name: Install Dependencies
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: |
-          npm install
+          npm ci
+
       - name: npm run lint
         run: |
           npm run lint
