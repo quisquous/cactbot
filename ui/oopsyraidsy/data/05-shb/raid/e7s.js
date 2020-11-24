@@ -1,3 +1,6 @@
+import NetRegexes from '../../../../../resources/netregexes.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // TODO: missing an orb during tornado phase
 // TODO: jumping in the tornado damage??
 // TODO: taking sungrace(4C80) or moongrace(4C82) with wrong debuff
@@ -27,7 +30,7 @@ let noBuff = (str) => {
   };
 };
 
-[{
+export default {
   zoneId: ZoneId.EdensVerseIconoclasmSavage,
   damageWarn: {
     'E7S Silver Sword': '4C8E', // ground aoe
@@ -172,4 +175,4 @@ let noBuff = (str) => {
       },
     },
   ],
-}];
+};

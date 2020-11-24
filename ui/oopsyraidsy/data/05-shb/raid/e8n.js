@@ -1,4 +1,7 @@
-[{
+import NetRegexes from '../../../../../resources/netregexes.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.EdensVerseRefulgence,
   damageWarn: {
     'E8N Biting Frost': '4DDB', // 270-degree frontal AoE, Shiva
@@ -59,4 +62,4 @@
       },
     },
   ],
-}];
+};

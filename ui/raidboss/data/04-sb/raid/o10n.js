@@ -1,5 +1,8 @@
+import NetRegexes from '../../../../../resources/netregexes.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // O10N - Alphascape 2.0
-[{
+export default {
   zoneId: ZoneId.AlphascapeV20,
   timelineFile: 'o10n.txt',
   triggers: [
@@ -276,4 +279,4 @@
       },
     },
   ],
-}];
+};

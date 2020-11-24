@@ -1,4 +1,6 @@
-[{
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.ContainmentBayS1T7Extreme,
   timelineFile: 'sephirot-ex.txt',
   triggers: [
@@ -152,4 +154,4 @@
       },
     },
   ],
-}];
+};
