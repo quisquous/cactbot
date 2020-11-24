@@ -1,6 +1,6 @@
 # Cactbot自定义教程
 
-🌎 [[English](../CactbotCustomization.md)] [**简体中文**] [[한국어](../ko-KR/CactbotCustomization.md)]
+🌎 [[English](../CactbotCustomization.md)] [**简体中文**] [[繁體中文](./zh-TW/CactbotCustomization.md)] [[한국어](../ko-KR/CactbotCustomization.md)]
 
 - [使用cactbot配置界面](#使用cactbot配置界面)
 - [通过cactbot配置界面改变触发器文本](#通过cactbot配置界面改变触发器文本)
