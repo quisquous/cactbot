@@ -20,7 +20,6 @@ export default class NetworkLogConverter {
   async convertLines(lines) {
     this.Combatants = {};
     const repo = new LogRepository();
-    const i = 0;
     lines = lines.map((l) => ParseLine.parse(repo, l)).filter((l) => l);
 
     for (let i = 0; i < lines.length; ++i) {
