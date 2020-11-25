@@ -696,24 +696,9 @@ export class PopupText {
 
   // Build a default triggerHelper object for this trigger
   _onTriggerInternalGetHelper(trigger, matches, now) {
-    let triggerHelper;
-    // Separate the creation and assignment to let the ValueOrFunction method work properly
-    triggerHelper = {
+    const triggerHelper = {
       trigger: trigger,
       now: now,
-      valueOrFunction: (f) => {
-        let result = f;
-        if (typeof result === 'function')
-          result = result(this.data, triggerHelper.matches, trigger.output);
-        // All triggers return either a string directly, or an object
-        // whose keys are different parser language based names.  For simplicity,
-        // this is valid to do for any trigger entry that can handle a function.
-        // In case anybody wants to encapsulate any fancy grammar, the values
-        // in this object can also be functions.
-        if (typeof result !== 'object' || result === null)
-          return result;
-        return triggerHelper.valueOrFunction(result[this.displayLang] || result['en']);
-      },
       triggerOptions: trigger.id && this.options.PerTriggerOptions[trigger.id] || {},
       triggerAutoConfig: trigger.id && this.options.PerTriggerAutoConfig[trigger.id] || {},
       // This setting only suppresses output, trigger still runs for data/logic purposes
@@ -732,6 +717,22 @@ export class PopupText {
       duration: undefined,
       ttsText: undefined,
     };
+
+    // Separate the creation of triggerHelper and creation of valueOrFunction
+    // method so ValueOrFunction can execute properly
+    triggerHelper.valueOrFunction = (f) => {
+      let result = f;
+      if (typeof result === 'function')
+        result = result(this.data, triggerHelper.matches, trigger.output);
+      // All triggers return either a string directly, or an object
+      // whose keys are different parser language based names.  For simplicity,
+      // this is valid to do for any trigger entry that can handle a function.
+      // In case anybody wants to encapsulate any fancy grammar, the values
+      // in this object can also be functions.
+      if (typeof result !== 'object' || result === null)
+        return result;
+      return triggerHelper.valueOrFunction(result[this.displayLang] || result['en']);
+    },
 
     this._onTriggerInternalHelperDefaults(triggerHelper);
 

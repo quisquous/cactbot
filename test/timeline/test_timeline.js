@@ -120,7 +120,10 @@ let tests = {
               // e.g. "Magnetism/Repel" is affected by both /Magnetism/ and /Repel/,
               // however these are independent and could be applied in either order.
 
-              let otherFirst = otherReplaced.replace(Regexes.parse(regex), testCase.replace[regex]);
+              const otherFirst = otherReplaced.replace(
+                  Regexes.parse(regex),
+                  testCase.replace[regex],
+              );
               let otherSecond = replaced.replace(Regexes.parse(otherRegex),
                   testCase.replace[otherRegex]);
               if (otherFirst === otherSecond)

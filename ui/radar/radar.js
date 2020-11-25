@@ -230,7 +230,10 @@ class Radar {
     // calculate rotation based on facing
     let playerVector = new Point2D(this.playerPos.x, this.playerPos.y);
     let targetVector = monster.pos;
-    let deltaVector = new Point2D(targetVector.x - playerVector.x, targetVector.y - playerVector.y);
+    const deltaVector = new Point2D(
+        targetVector.x - playerVector.x,
+        targetVector.y - playerVector.y,
+    );
     if (tr) {
       tr.childNodes[1].innerHTML = monster.rank + '&nbsp;&nbsp;&nbsp;&nbsp;' + monster.name;
       if (Math.abs(this.playerPos.z - monster.posZ) > 5)
