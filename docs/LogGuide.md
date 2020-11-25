@@ -919,14 +919,16 @@ Unused.
 
 ### 21: Network6D (Actor Control Lines)
 
-See also: [nari directory update documentation](https://nonowazu.github.io/nari/types/event/directorupdate.html)
+See also: [nari director update documentation](https://nonowazu.github.io/nari/types/event/directorupdate.html)
 
-Actor control lines are for several miscellaneous zone commands:
+To control aspects of the user interface, the game sends packets called Actor Controls. These are broken into 3 types: ActorControl, ActorControlSelf, and ActorControlTarget. If ActorControl is global, then ActorControlSelf / ActorControlTarget affects individual actor(s).
 
-* changing the music
-* resetting an entire zone after a wipe
-* limit gauge for bosses
-* updates on time remaining (periodically, and after a clear)
+Actor control commands are identified by a category, with parameters passed to it as a handler. DirectorUpdate is a category of ActorControlSelf and is used to control the events inside content for an individual player:
+
+* BGM change
+* some cutscenes
+* barrier up/down
+* fade in/out
 
 Structure:
 `21:TypeAndInstanceContentId:Command (4 bytes):Data (4x 4? byte extra data)`

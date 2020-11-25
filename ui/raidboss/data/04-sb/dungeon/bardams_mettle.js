@@ -102,7 +102,7 @@
           fr: '8x Zones au sol sur VOUS',
           ja: '8つ波動砲',
           cn: '躲避8连追踪AOE',
-          ko: '8장판 준비',
+          ko: '8연속 장판 준비',
         },
       },
     },
