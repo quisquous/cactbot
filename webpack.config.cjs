@@ -37,11 +37,6 @@ module.exports = {
         ],
       },
       {
-        // TODO: convert trigger files to be modules so we can import directly.
-        test: /(?:raidboss|oopsyraidsy)[\\\/]data[\\\/].*\.js$/,
-        use: ['raw-loader'],
-      },
-      {
         test: /data[\\\/](?!manifest\.txt).*\.txt$/,
         // TODO: we could also strip comments and blank lines from timelines
         use: ['raw-loader'],

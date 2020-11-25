@@ -3,33 +3,22 @@ import { commonReplacement, partialCommonReplacementKeys } from '../../ui/raidbo
 import Regexes from '../../resources/regexes.js';
 import { Timeline } from '../../ui/raidboss/timeline.js';
 import fs from 'fs';
-
-// Used by downstream eval
-import Conditions from '../../resources/conditions.js';
-import NetRegexes from '../../resources/netregexes.js';
-import { Responses } from '../../resources/responses.js';
-import ZoneId from '../../resources/zone_id.js';
-
+import path from 'path';
 
 let exitCode = 0;
 
-let errorFunc = (str) => {
+const errorFunc = (str) => {
   console.error(str);
   exitCode = 1;
 };
 
 // Global setup.
-let timelineFile = process.argv[2];
-let triggersFile = process.argv[3];
-let timelineText = String(fs.readFileSync(timelineFile));
-let triggerSet = eval(String(fs.readFileSync(triggersFile)));
-
-if (triggerSet.length !== 1) {
-  console.log(triggerSet.length);
-  errorFunc(triggersFile + ':Break out multiple trigger sets into multiple files');
-}
-let triggers = triggerSet[0];
-let timeline = new Timeline(timelineText, null, triggers.timelineTriggers);
+const timelineFile = process.argv[2];
+const triggersFile = process.argv[3];
+const timelineText = String(fs.readFileSync(timelineFile));
+const importPath = '../../' + path.relative(process.cwd(), triggersFile).replace(/\\/g, '/');
+let triggerSet;
+let timeline;
 
 function getTestCases(trans, skipPartialCommon) {
   let testCases = [
@@ -83,7 +72,7 @@ let tests = {
   },
 
   translationConflictTest: () => {
-    let translations = triggers.timelineReplace;
+    let translations = triggerSet.timelineReplace;
     if (!translations)
       return;
 
@@ -169,7 +158,7 @@ let tests = {
     }
   },
   missingTranslationTest: () => {
-    let translations = triggers.timelineReplace;
+    let translations = triggerSet.timelineReplace;
     if (!translations)
       return;
 
@@ -212,7 +201,7 @@ let tests = {
     }
   },
   badCharacters: () => {
-    let translations = triggers.timelineReplace;
+    let translations = triggerSet.timelineReplace;
     if (!translations)
       return;
 
@@ -252,8 +241,16 @@ let tests = {
   },
 };
 
-for (let name in tests)
-  tests[name]();
+async function doTests() {
+  triggerSet = (await import(importPath)).default;
+  timeline = new Timeline(timelineText, null, triggerSet.timelineTriggers);
+
+  for (let name in tests)
+    tests[name]();
+
+  process.exit(exitCode);
+}
+
+doTests();
 
 
-process.exit(exitCode);

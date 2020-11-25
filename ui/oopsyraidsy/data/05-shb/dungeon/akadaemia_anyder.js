@@ -1,4 +1,6 @@
-[{
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.AkadaemiaAnyder,
   damageWarn: {
     'Anyder Acrid Stream': '4304',
@@ -23,4 +25,4 @@
     'Anyder Winding Current': '3E1F',
     // 3E20 is being hit by the growing orbs, maybe?
   },
-}];
+};

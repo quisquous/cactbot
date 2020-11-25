@@ -1,4 +1,7 @@
-[{
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.TheBowlOfEmbers,
   timelineFile: 'ifrit-nm.txt',
   timelineTriggers: [
@@ -115,4 +118,4 @@
       },
     },
   ],
-}];
+};

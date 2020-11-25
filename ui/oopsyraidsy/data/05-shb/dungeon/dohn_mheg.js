@@ -1,9 +1,12 @@
+import NetRegexes from '../../../../../resources/netregexes.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // TODO: Missing Growing tethers on boss 2.
 // (Maybe gather party member names on the previous TIIIIMBEEEEEER cast for comparison?)
 // TODO: Failing to interrupt Dohnfaust Fuath on Watering Wheel casts?
 // (15:........:Dohnfast Fuath:3DAA:Watering Wheel:........:(\y{Name}):)
 
-[{
+export default {
   zoneId: ZoneId.DohnMheg,
   damageWarn: {
     'Dohn Mheg Geyser': '2260', // Water eruptions, boss 1
@@ -40,4 +43,4 @@
       },
     },
   ],
-}];
+};

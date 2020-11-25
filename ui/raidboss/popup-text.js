@@ -1,26 +1,10 @@
-// TODO:
-// The convention of "import X as _X; const X = _X;" is currently
-// being used as a method to workaround for downstream code
-// that is running via eval(). Because importing statements do not
-// create a variable of the same name, the eval()'d code does not know
-// about the import, and thus throws ReferenceErrors.
-// Used by downstream eval
-import _Conditions from '../../resources/conditions.js';
-const Conditions = _Conditions;
-import _NetRegexes from '../../resources/netregexes.js';
-const NetRegexes = _NetRegexes;
-import { Responses as _Responses } from '../../resources/responses.js';
-const Responses = _Responses;
-
 import AutoplayHelper from './autoplay_helper.js';
 import BrowserTTSEngine from './browser_tts_engine.js';
 import { addPlayerChangedOverrideListener } from '../../resources/player_override.js';
 import PartyTracker from '../../resources/party.js';
-import _Regexes from '../../resources/regexes.js';
-const Regexes = _Regexes;
+import Regexes from '../../resources/regexes.js';
 import { Util } from '../../resources/common.js';
-import _ZoneId from '../../resources/zone_id.js';
-const ZoneId = _ZoneId;
+import ZoneId from '../../resources/zone_id.js';
 
 // There should be (at most) six lines of instructions.
 const raidbossInstructions = {
@@ -312,30 +296,21 @@ export class PopupText {
       if (!filename.endsWith('.js'))
         continue;
 
-      const text = files[filename];
-      let json;
-      try {
-        json = eval(text);
-      } catch (exception) {
-        console.log('Error parsing JSON from ' + filename + ': ' + exception);
-        continue;
-      }
-      if (typeof json !== 'object' || !(json.length >= 0)) {
+      const json = files[filename];
+      if (typeof json !== 'object') {
         console.log('Unexpected JSON from ' + filename + ', expected an array');
         continue;
       }
-      for (let i = 0; i < json.length; ++i) {
-        if (!('triggers' in json[i])) {
-          console.log('Unexpected JSON from ' + filename + ', expected a triggers');
-          continue;
-        }
-        if (typeof json[i].triggers !== 'object' || !(json[i].triggers.length >= 0)) {
-          console.log('Unexpected JSON from ' + filename + ', expected triggers to be an array');
-          continue;
-        }
-        json[i].filename = filename;
+      if (!('triggers' in json)) {
+        console.log('Unexpected JSON from ' + filename + ', expected a triggers');
+        continue;
       }
-      Array.prototype.push.apply(this.triggerSets, json);
+      if (typeof json.triggers !== 'object' || !(json.triggers.length >= 0)) {
+        console.log('Unexpected JSON from ' + filename + ', expected triggers to be an array');
+        continue;
+      }
+      json.filename = filename;
+      this.triggerSets.push(json);
     }
 
     // User triggers must come last so that they override built-in files.

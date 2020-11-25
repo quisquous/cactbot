@@ -1,4 +1,7 @@
-[{
+import NetRegexes from '../../../../../resources/netregexes.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.AlaMhigo,
   damageWarn: {
     'Ala Mhigo Magitek Ray': '24CE', // Line AoE, Legion Predator trash, before boss 1
@@ -37,4 +40,4 @@
       },
     },
   ],
-}];
+};

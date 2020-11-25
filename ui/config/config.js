@@ -2,24 +2,6 @@ import UserConfig from '../../resources/user_config.js';
 import ZoneInfo from '../../resources/zone_info.js';
 import contentList from '../../resources/content_list.js';
 
-// TODO:
-// The convention of "import X as _X; const X = _X;" is currently
-// being used as a method to workaround for downstream code
-// that is running via eval(). Because importing statements do not
-// create a variable of the same name, the eval()'d code does not know
-// about the import, and thus throws ReferenceErrors.
-// Used by downstream eval
-import _Conditions from '../../resources/conditions.js';
-const Conditions = _Conditions;
-import _NetRegexes from '../../resources/netregexes.js';
-const NetRegexes = _NetRegexes;
-import _Regexes from '../../resources/regexes.js';
-const Regexes = _Regexes;
-import { Responses as _Responses } from '../../resources/responses.js';
-const Responses = _Responses;
-import _ZoneId from '../../resources/zone_id.js';
-const ZoneId = _ZoneId;
-
 // Load other config files
 import './general_config.js';
 import '../eureka/eureka_config.js';
@@ -522,20 +504,13 @@ export default class CactbotConfigurator {
         break;
       }
 
-      let json;
-      try {
-        json = eval(files[filename]);
-      } catch (exception) {
-        console.log('Error parsing JSON from ' + filename + ': ' + exception);
-        continue;
-      }
-
+      let triggerSet = files[filename];
       let title = fileNameToTitle(filename);
       let zoneId = undefined;
 
       // Make assumptions about trigger structure here to try to get the zoneId out.
-      if (json && json[0] && 'zoneId' in json[0]) {
-        zoneId = json[0].zoneId;
+      if (triggerSet && 'zoneId' in triggerSet) {
+        zoneId = triggerSet.zoneId;
         // Use the translatable zone info name, if possible.
         const zoneInfo = ZoneInfo[zoneId];
         if (zoneInfo)
@@ -551,7 +526,7 @@ export default class CactbotConfigurator {
         prefix: this.translate(kPrefixToCategory[prefixKey]),
         type: this.translate(kDirectoryToCategory[typeKey]),
         title: title,
-        json: json,
+        triggerSet: triggerSet,
         zoneId: zoneId,
       };
     }

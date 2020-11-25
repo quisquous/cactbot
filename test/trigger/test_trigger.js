@@ -4,18 +4,13 @@
 // TODO: Remove ` ?` before each hex value once global prefix `^.{14} ` is added.
 // JavaScript doesn't allow for possessive operators in regular expressions.
 
-import chai from 'chai';
-const { assert } = chai;
-import Regexes from '../../resources/regexes.js';
-import NetRegexes from '../../resources/netregexes.js';
-import Conditions from '../../resources/conditions.js';
-import ZoneId from '../../resources/zone_id.js';
-import { Responses, triggerFunctions, triggerOutputFunctions, builtInResponseStr } from '../../resources/responses.js';
+import { triggerFunctions, triggerOutputFunctions, builtInResponseStr } from '../../resources/responses.js';
 import fs from 'fs';
+import path from 'path';
 
 let exitCode = 0;
 
-let inputFilename = String(process.argv.slice(2));
+const inputFilename = String(process.argv.slice(2));
 
 const regexLanguages = [
   'regex',
@@ -133,12 +128,8 @@ let getParamNames = function(func) {
     .split(/,(?![^{]*})/g).filter(Boolean); // split & filter [""]
 };
 
-let testInvalidCapturingGroupRegex = function(file, contents) {
-  let json = eval(contents);
-
-  for (let i in json[0].triggers) {
-    let currentTrigger = json[0].triggers[i];
-
+let testInvalidCapturingGroupRegex = function(file, triggerSet) {
+  for (const currentTrigger of triggerSet.triggers) {
     let containsMatches = false;
     let containsMatchesParam = false;
 
@@ -225,11 +216,8 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
   }
 };
 
-let testInvalidTriggerKeys = function(file, contents) {
-  let json = eval(contents);
-
-  for (let i in json[0].triggers) {
-    let currentTrigger = json[0].triggers[i];
+const testInvalidTriggerKeys = function(file, triggerSet) {
+  for (const currentTrigger of triggerSet.triggers) {
     for (let key in currentTrigger) {
       if (triggerFunctions.includes(key))
         continue;
@@ -242,14 +230,12 @@ let testInvalidTriggerKeys = function(file, contents) {
   }
 };
 
-let testValidIds = function(file, contents) {
-  let json = eval(contents);
-
+const testValidIds = function(file, triggerSet) {
   let prefix = null;
   let brokenPrefixes = false;
   let ids = new Set();
 
-  for (let set of [json[0].triggers, json[0].timelineTriggers]) {
+  for (let set of [triggerSet.triggers, triggerSet.timelineTriggers]) {
     if (!set)
       continue;
     for (let trigger of set) {
@@ -303,23 +289,21 @@ let testValidIds = function(file, contents) {
   }
 };
 
-let testResponseHasNoFriends = function(file, contents) {
-  let json = eval(contents);
-
-  let bannedItems = [
+const testResponseHasNoFriends = function(file, triggerSet) {
+  const bannedItems = [
     'alarmText',
     'alertText',
     'infoText',
     'tts',
   ];
 
-  for (let set of [json[0].triggers, json[0].timelineTriggers]) {
+  for (const set of [triggerSet.triggers, triggerSet.timelineTriggers]) {
     if (!set)
       continue;
-    for (let trigger of set) {
+    for (const trigger of set) {
       if (!trigger.response)
         continue;
-      for (let item of bannedItems) {
+      for (const item of bannedItems) {
         if (trigger[item])
           errorFunc(`${file}: ${trigger.id} cannot have both 'response' and '${item}'`);
       }
@@ -327,9 +311,7 @@ let testResponseHasNoFriends = function(file, contents) {
   }
 };
 
-let testTriggerFieldsSorted = function(file, contents) {
-  let json = eval(contents);
-
+const testTriggerFieldsSorted = function(file, triggerSet) {
   // This is the order in which they are run.
   const triggerOrder = [
     'id',
@@ -358,7 +340,7 @@ let testTriggerFieldsSorted = function(file, contents) {
     'run',
   ];
 
-  for (let set of [json[0].triggers, json[0].timelineTriggers]) {
+  for (const set of [triggerSet.triggers, triggerSet.timelineTriggers]) {
     if (!set)
       continue;
     for (let trigger of set) {
@@ -382,14 +364,12 @@ let testTriggerFieldsSorted = function(file, contents) {
   }
 };
 
-let testBadTimelineTriggerRegex = function(file, contents) {
-  let json = eval(contents);
-  if (!json[0].timelineTriggers)
+const testBadTimelineTriggerRegex = function(file, triggerSet) {
+  if (!triggerSet.timelineTriggers)
     return;
 
-  for (let trigger of json[0].timelineTriggers) {
-    let keys = Object.keys(trigger);
-    for (let key of keys) {
+  for (const trigger of triggerSet.timelineTriggers) {
+    for (const key in trigger) {
       // regex is the only valid regular expression field on a timeline trigger.
       if (key === 'regex')
         continue;
@@ -400,10 +380,7 @@ let testBadTimelineTriggerRegex = function(file, contents) {
 };
 
 
-let testBadZoneId = function(file, contents) {
-  let json = eval(contents);
-  let triggerSet = json[0];
-
+const testBadZoneId = function(file, triggerSet) {
   if (!('zoneId' in triggerSet))
     errorFunc(`${file}: missing zone id`);
   else if (typeof triggerSet.zoneId === 'undefined')
@@ -438,9 +415,7 @@ class TestOutputProxy {
 // responses_test.js will handle testing any response with builtInResponseStr.
 // triggers using `response:` otherwise cannot be tested, because we cannot
 // safely call the response function.
-const testOutputStrings = (file, contents) => {
-  const json = eval(contents);
-  const triggerSet = json[0];
+const testOutputStrings = (file, triggerSet) => {
   for (const set of [triggerSet.triggers, triggerSet.timelineTriggers]) {
     if (!set)
       continue;
@@ -597,10 +572,12 @@ const testOutputStrings = (file, contents) => {
   }
 };
 
-let testTriggerFile = function(file) {
-  let contents = fs.readFileSync(file) + '';
-
+const testTriggerFile = async function(file) {
   try {
+    const contents = fs.readFileSync(file) + '';
+    const importPath = '../../' + path.relative(process.cwd(), file).replace(/\\/g, '/');
+    const triggerSet = (await import(importPath)).default;
+
     testValidTriggerRegexLanguage(file, contents);
     testWellFormedNewCombatantTriggerRegex(file, contents);
     testWellFormedStartsUsingTriggerRegex(file, contents);
@@ -609,20 +586,21 @@ let testTriggerFile = function(file) {
     testBadCatchAllRegex(file, contents);
     testObjectIdRegex(file, contents);
     testUnnecessaryGroupRegex(file, contents);
-    testInvalidCapturingGroupRegex(file, contents);
-    testInvalidTriggerKeys(file, contents);
-    testValidIds(file, contents);
-    testResponseHasNoFriends(file, contents);
-    testTriggerFieldsSorted(file, contents);
-    testBadTimelineTriggerRegex(file, contents);
-    testBadZoneId(file, contents);
-    testOutputStrings(file, contents);
+    testInvalidCapturingGroupRegex(file, triggerSet);
+    testInvalidTriggerKeys(file, triggerSet);
+    testValidIds(file, triggerSet);
+    testResponseHasNoFriends(file, triggerSet);
+    testTriggerFieldsSorted(file, triggerSet);
+    testBadTimelineTriggerRegex(file, triggerSet);
+    testBadZoneId(file, triggerSet);
+    testOutputStrings(file, triggerSet);
   } catch (e) {
     errorFunc(`Trigger error in ${file}.`);
     console.error(e);
   }
+
+  process.exit(exitCode);
 };
 
 testTriggerFile(inputFilename);
 
-process.exit(exitCode);
