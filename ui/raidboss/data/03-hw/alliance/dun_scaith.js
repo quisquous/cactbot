@@ -292,7 +292,7 @@ export default {
       id: 'Dun Scaith Atomos Cleanup',
       netRegex: NetRegexes.ability({ id: ['1CA1', '1CA2'], capture: false }),
       run: function(data) {
-        for (let el of ['cursing', 'wailing', 'sphere', 'donut'])
+        for (const el of ['cursing', 'wailing', 'sphere', 'donut'])
           delete data[el];
       },
     },

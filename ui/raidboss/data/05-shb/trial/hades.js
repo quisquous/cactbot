@@ -372,7 +372,7 @@ export default {
       infoText: function(data, _, output) {
         if (data.ancient[data.me])
           return;
-        let name = Object.keys(data.ancient).find((key) => data.ancient[key] === '003E');
+        const name = Object.keys(data.ancient).find((key) => data.ancient[key] === '003E');
         return output.text({ player: data.ShortName(name) });
       },
       outputStrings: {

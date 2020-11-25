@@ -74,7 +74,7 @@ export default {
         return data.IsPlayerId(e.targetId);
       },
       mistake: function(e, data) {
-        let text = e.abilityName + ' => ' + data.ShortName(e.targetName);
+        const text = e.abilityName + ' => ' + data.ShortName(e.targetName);
         return { type: 'fail', blame: e.attackerName, text: text };
       },
     },

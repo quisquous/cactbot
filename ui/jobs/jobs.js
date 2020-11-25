@@ -23,7 +23,7 @@ const kWellFedContentTypes = [
 ];
 
 // See user/jobs-example.js for documentation.
-let Options = {
+const Options = {
   ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'WHM', 'SCH', 'AST', 'BLU'],
   ShowMPNumber: ['PLD', 'DRK', 'WHM', 'SCH', 'AST', 'BLM', 'BLU'],
 
@@ -297,7 +297,7 @@ let kMobLosesEffectRegex = null;
 let kMobGainsEffectFromYouRegex = null;
 let kMobLosesEffectFromYouRegex = null;
 
-let kStatsRegex = Regexes.statChange();
+const kStatsRegex = Regexes.statChange();
 // [level][Sub][Div]
 // Source: http://theoryjerks.akhmorning.com/resources/levelmods/
 const kLevelMod = [[0, 0],
@@ -338,7 +338,7 @@ class ComboTracker {
 
     for (let i = 0; i < skillList.length; ++i) {
       const id = skillList[i];
-      let node = {
+      const node = {
         id: id,
         next: {},
       };
@@ -369,7 +369,7 @@ class ComboTracker {
       this.considerNext = this.startMap;
     } else {
       this.considerNext = Object.assign({}, this.startMap, nextState.next);
-      let kComboDelayMs = 15000;
+      const kComboDelayMs = 15000;
       this.comboTimer = window.setTimeout(() => {
         this.AbortCombo(null);
       }, kComboDelayMs);
@@ -388,7 +388,7 @@ class ComboTracker {
 }
 
 function setupComboTracker(callback) {
-  let comboTracker = new ComboTracker(kComboBreakers, callback);
+  const comboTracker = new ComboTracker(kComboBreakers, callback);
   // PLD
   comboTracker.AddCombo([
     kAbility.FastBlade,
@@ -605,35 +605,35 @@ function doesJobNeedMPBar(job) {
 }
 
 function computeBackgroundColorFrom(element, classList) {
-  let div = document.createElement('div');
-  let classes = classList.split('.');
+  const div = document.createElement('div');
+  const classes = classList.split('.');
   for (let i = 0; i < classes.length; ++i)
     div.classList.add(classes[i]);
   element.appendChild(div);
-  let color = window.getComputedStyle(div).backgroundColor;
+  const color = window.getComputedStyle(div).backgroundColor;
   element.removeChild(div);
   return color;
 }
 
 function makeAuraTimerIcon(name, seconds, opacity, iconWidth, iconHeight, iconText,
     barHeight, textHeight, textColor, borderSize, borderColor, barColor, auraIcon) {
-  let div = document.createElement('div');
+  const div = document.createElement('div');
   div.style.opacity = opacity;
 
-  let icon = document.createElement('timer-icon');
+  const icon = document.createElement('timer-icon');
   icon.width = iconWidth;
   icon.height = iconHeight;
   icon.bordersize = borderSize;
   icon.textcolor = textColor;
   div.appendChild(icon);
 
-  let barDiv = document.createElement('div');
+  const barDiv = document.createElement('div');
   barDiv.style.position = 'relative';
   barDiv.style.top = iconHeight;
   div.appendChild(barDiv);
 
   if (seconds >= 0) {
-    let bar = document.createElement('timer-bar');
+    const bar = document.createElement('timer-bar');
     bar.width = iconWidth;
     bar.height = barHeight;
     bar.fg = barColor;
@@ -642,7 +642,7 @@ function makeAuraTimerIcon(name, seconds, opacity, iconWidth, iconHeight, iconTe
   }
 
   if (textHeight > 0) {
-    let text = document.createElement('div');
+    const text = document.createElement('div');
     text.classList.add('text');
     text.style.width = iconWidth;
     text.style.height = textHeight;
@@ -701,12 +701,12 @@ class Buff {
       this.cooldown[source].removeCallback();
     }
 
-    let cooldownKey = 'c:' + this.name + ':' + source;
+    const cooldownKey = 'c:' + this.name + ':' + source;
 
     let secondsUntilShow = this.info.cooldown - this.options.BigBuffShowCooldownSeconds;
     secondsUntilShow = Math.min(Math.max(effectSeconds, secondsUntilShow), this.info.cooldown);
-    let showSeconds = this.info.cooldown - secondsUntilShow;
-    let addReadyCallback = () => {
+    const showSeconds = this.info.cooldown - secondsUntilShow;
+    const addReadyCallback = () => {
       this.addReady(source);
     };
 
@@ -722,22 +722,22 @@ class Buff {
 
     // TODO: could consider looking at the party list to make initials unique?
     let txt = '';
-    let initials = source.split(' ');
+    const initials = source.split(' ');
     if (initials.length === 2)
       txt = initials[0][0] + initials[1][0];
     else
       txt = initials[0];
 
-    let color = this.info.borderColor;
+    const color = this.info.borderColor;
 
-    let readyKey = 'r:' + this.name + ':' + source;
+    const readyKey = 'r:' + this.name + ':' + source;
     this.ready[source] = this.makeAura(readyKey, this.readyList, -1, 0,
         this.readySortKeyBase, color, txt, 0.6);
   }
 
   makeAura(key, list, seconds, secondsUntilShow,
       adjustSort, textColor, txt, opacity, expireCallback) {
-    let aura = {};
+    const aura = {};
     aura.removeCallback = () => {
       list.removeElement(key);
       if (aura.addTimeout) {
@@ -750,7 +750,7 @@ class Buff {
       }
     };
     aura.addCallback = () => {
-      let elem = makeAuraTimerIcon(
+      const elem = makeAuraTimerIcon(
           key, seconds, opacity,
           this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
           txt,
@@ -784,20 +784,20 @@ class Buff {
   clear() {
     this.onLose();
 
-    let cooldownKeys = Object.keys(this.cooldown);
+    const cooldownKeys = Object.keys(this.cooldown);
     for (let i = 0; i < cooldownKeys.length; ++i)
       this.cooldown[cooldownKeys[i]].removeCallback();
 
-    let readyKeys = Object.keys(this.ready);
+    const readyKeys = Object.keys(this.ready);
     for (let i = 0; i < readyKeys.length; ++i)
       this.ready[readyKeys[i]].removeCallback();
   }
 
   clearCooldown(source) {
-    let ready = this.ready[source];
+    const ready = this.ready[source];
     if (ready)
       ready.removeCallback();
-    let cooldown = this.cooldown[source];
+    const cooldown = this.cooldown[source];
     if (cooldown)
       cooldown.removeCallback();
   }
@@ -1098,14 +1098,14 @@ class BuffTracker {
       },
     };
 
-    let keys = Object.keys(this.buffInfo);
+    const keys = Object.keys(this.buffInfo);
     this.gainEffectMap = {};
     this.loseEffectMap = {};
     this.gainAbilityMap = {};
     this.mobGainsEffectMap = {};
     this.mobLosesEffectMap = {};
 
-    let propToMapMap = {
+    const propToMapMap = {
       gainEffect: this.gainEffectMap,
       loseEffect: this.loseEffectMap,
       gainAbility: this.gainAbilityMap,
@@ -1114,26 +1114,26 @@ class BuffTracker {
     };
 
     for (let i = 0; i < keys.length; ++i) {
-      let buff = this.buffInfo[keys[i]];
+      const buff = this.buffInfo[keys[i]];
       buff.name = keys[i];
 
-      let overrides = this.options.PerBuffOptions[buff.name] || {};
+      const overrides = this.options.PerBuffOptions[buff.name] || {};
       buff.borderColor = overrides.borderColor || buff.borderColor;
       buff.icon = overrides.icon || buff.icon;
       buff.side = overrides.side || buff.side || 'right';
       buff.sortKey = overrides.sortKey || buff.sortKey;
       buff.hide = overrides.hide === undefined ? buff.hide : overrides.hide;
 
-      for (let prop in propToMapMap) {
+      for (const prop in propToMapMap) {
         if (!(prop in buff))
           continue;
-        let key = buff[prop];
+        const key = buff[prop];
         if (typeof key === 'undefined') {
           console.error('undefined value for key ' + prop + ' for buff ' + buff.name);
           continue;
         }
 
-        let map = propToMapMap[prop];
+        const map = propToMapMap[prop];
         map[key] = map[key] || [];
         map[key].push(buff);
       }
@@ -1148,30 +1148,30 @@ class BuffTracker {
       */
     };
 
-    let buffOverrides = {
+    const buffOverrides = {
       ko: v520,
       cn: v520,
     };
 
-    for (let key in buffOverrides[this.options.ParserLanguage]) {
-      for (let key2 in buffOverrides[this.options.ParserLanguage][key])
+    for (const key in buffOverrides[this.options.ParserLanguage]) {
+      for (const key2 in buffOverrides[this.options.ParserLanguage][key])
         this.buffInfo[key][key2] = buffOverrides[this.options.ParserLanguage][key][key2];
     }
   }
 
   onUseAbility(id, matches) {
-    let buffs = this.gainAbilityMap[id];
+    const buffs = this.gainAbilityMap[id];
     if (!buffs)
       return;
 
-    for (let b of buffs)
+    for (const b of buffs)
       this.onBigBuff(b.name, b.durationSeconds, b, matches.source);
   }
 
   onGainEffect(buffs, matches) {
     if (!buffs)
       return;
-    for (let b of buffs) {
+    for (const b of buffs) {
       let seconds = -1;
       if (b.useEffectDuration)
         seconds = parseFloat(matches.duration);
@@ -1185,7 +1185,7 @@ class BuffTracker {
   onLoseEffect(buffs, matches) {
     if (!buffs)
       return;
-    for (let b of buffs)
+    for (const b of buffs)
       this.onLoseBigBuff(b.name, b);
   }
 
@@ -1219,9 +1219,9 @@ class BuffTracker {
       buff = this.buffs[name];
     }
 
-    let shareList = info.sharesCooldownWith || [];
-    for (let share of shareList) {
-      let existingBuff = this.buffs[share];
+    const shareList = info.sharesCooldownWith || [];
+    for (const share of shareList) {
+      const existingBuff = this.buffs[share];
       if (existingBuff)
         existingBuff.clearCooldown(source);
     }
@@ -1230,14 +1230,14 @@ class BuffTracker {
   }
 
   onLoseBigBuff(name) {
-    let buff = this.buffs[name];
+    const buff = this.buffs[name];
     if (!buff)
       return;
     buff.onLose();
   }
 
   clear() {
-    let keys = Object.keys(this.buffs);
+    const keys = Object.keys(this.buffs);
     for (let i = 0; i < keys.length; ++i)
       this.buffs[keys[i]].clear();
   }
@@ -1348,15 +1348,15 @@ class Bars {
     this.dotTarget = [];
 
     this.gainEffectFuncMap[EffectId.WellFed] = (name, matches) => {
-      let seconds = parseFloat(matches.duration);
-      let now = Date.now(); // This is in ms.
+      const seconds = parseFloat(matches.duration);
+      const now = Date.now(); // This is in ms.
       this.foodBuffExpiresTimeMs = now + (seconds * 1000);
       this.UpdateFoodBuff();
     };
 
     let container = document.getElementById('jobs-container');
     if (!container) {
-      let root = document.getElementById('container');
+      const root = document.getElementById('container');
       container = document.createElement('div');
       container.id = 'jobs-container';
       root.appendChild(container);
@@ -1367,7 +1367,7 @@ class Bars {
     this.o = {};
     container.classList.remove('hide');
 
-    let barsLayoutContainer = document.createElement('div');
+    const barsLayoutContainer = document.createElement('div');
     barsLayoutContainer.id = 'jobs';
     container.appendChild(barsLayoutContainer);
 
@@ -1383,19 +1383,19 @@ class Bars {
     else if (Util.isGatheringJob(this.job))
       barsLayoutContainer.classList.add('gathering');
 
-    let pullCountdownContainer = document.createElement('div');
+    const pullCountdownContainer = document.createElement('div');
     pullCountdownContainer.id = 'pull-bar';
     // Pull counter not affected by opacity option.
     barsLayoutContainer.appendChild(pullCountdownContainer);
     this.o.pullCountdown = document.createElement('timer-bar');
     pullCountdownContainer.appendChild(this.o.pullCountdown);
 
-    let opacityContainer = document.createElement('div');
+    const opacityContainer = document.createElement('div');
     opacityContainer.id = 'opacity-container';
     barsLayoutContainer.appendChild(opacityContainer);
 
     // Holds health/mana.
-    let barsContainer = document.createElement('div');
+    const barsContainer = document.createElement('div');
     barsContainer.id = 'bars';
     opacityContainer.appendChild(barsContainer);
 
@@ -1469,12 +1469,12 @@ class Bars {
       return;
     }
 
-    let showHPNumber = this.options.ShowHPNumber.includes(this.job);
-    let showMPNumber = this.options.ShowMPNumber.includes(this.job);
-    let showMPTicker = this.options.ShowMPTicker.includes(this.job);
+    const showHPNumber = this.options.ShowHPNumber.includes(this.job);
+    const showMPNumber = this.options.ShowMPNumber.includes(this.job);
+    const showMPTicker = this.options.ShowMPTicker.includes(this.job);
 
-    let healthText = showHPNumber ? 'value' : '';
-    let manaText = showMPNumber ? 'value' : '';
+    const healthText = showHPNumber ? 'value' : '';
+    const manaText = showMPNumber ? 'value' : '';
 
     this.o.healthContainer = document.createElement('div');
     this.o.healthContainer.id = 'hp-bar';
@@ -1520,7 +1520,7 @@ class Bars {
       this.o.mpTicker.loop = true;
     }
 
-    let setup = {
+    const setup = {
       'PLD': this.setupPld,
       'WAR': this.setupWar,
       'DRK': this.setupDrk,
@@ -1571,7 +1571,7 @@ class Bars {
   }
 
   addJobBarContainer() {
-    let id = this.job.toLowerCase() + '-bar';
+    const id = this.job.toLowerCase() + '-bar';
     let container = document.getElementById(id);
     if (!container) {
       container = document.createElement('div');
@@ -1583,7 +1583,7 @@ class Bars {
   }
 
   addJobBoxContainer() {
-    let id = this.job.toLowerCase() + '-boxes';
+    const id = this.job.toLowerCase() + '-boxes';
     let boxes = document.getElementById(id);
     if (!boxes) {
       boxes = document.createElement('div');
@@ -1595,15 +1595,15 @@ class Bars {
   }
 
   addResourceBox(options) {
-    let boxes = this.addJobBoxContainer();
-    let boxDiv = document.createElement('div');
+    const boxes = this.addJobBoxContainer();
+    const boxDiv = document.createElement('div');
     if (options.classList) {
       for (let i = 0; i < options.classList.length; ++i)
         boxDiv.classList.add(options.classList[i], 'resourcebox');
     }
     boxes.appendChild(boxDiv);
 
-    let textDiv = document.createElement('div');
+    const textDiv = document.createElement('div');
     boxDiv.appendChild(textDiv);
     textDiv.classList.add('text');
 
@@ -1611,7 +1611,7 @@ class Bars {
   }
 
   addProcBox(options) {
-    let id = this.job.toLowerCase() + '-procs';
+    const id = this.job.toLowerCase() + '-procs';
 
     let container = document.getElementById(id);
     if (!container) {
@@ -1621,7 +1621,7 @@ class Bars {
       container.classList.add('proc-box');
     }
 
-    let timerBox = document.createElement('timer-box');
+    const timerBox = document.createElement('timer-box');
     container.appendChild(timerBox);
     timerBox.style = 'empty';
     if (options.fgColor)
@@ -1640,11 +1640,11 @@ class Bars {
   }
 
   addTimerBar(options) {
-    let container = this.addJobBarContainer();
+    const container = this.addJobBarContainer();
 
-    let timerDiv = document.createElement('div');
+    const timerDiv = document.createElement('div');
     timerDiv.id = options.id;
-    let timer = document.createElement('timer-bar');
+    const timer = document.createElement('timer-bar');
     container.appendChild(timerDiv);
     timerDiv.appendChild(timer);
     timer.classList.add('timer-bar');
@@ -1660,11 +1660,11 @@ class Bars {
   }
 
   addResourceBar(options) {
-    let container = this.addJobBarContainer();
+    const container = this.addJobBarContainer();
 
-    let barDiv = document.createElement('div');
+    const barDiv = document.createElement('div');
     barDiv.id = options.id;
-    let bar = document.createElement('resource-bar');
+    const bar = document.createElement('resource-bar');
     container.appendChild(barDiv);
     barDiv.appendChild(bar);
     bar.classList.add('resourcebar');
@@ -1679,19 +1679,19 @@ class Bars {
   }
 
   setupPld() {
-    let oathBox = this.addResourceBox({
+    const oathBox = this.addResourceBox({
       classList: ['pld-color-oath'],
     });
-    let atonementBox = this.addResourceBox({
+    const atonementBox = this.addResourceBox({
       classList: ['pld-color-atonement'],
     });
 
     this.jobFuncs.push((jobDetail) => {
-      let oath = jobDetail.oath;
+      const oath = jobDetail.oath;
       if (oathBox.innerText === oath)
         return;
       oathBox.innerText = oath;
-      let p = oathBox.parentNode;
+      const p = oathBox.parentNode;
       if (oath < 50) {
         p.classList.add('low');
         p.classList.remove('mid');
@@ -1704,7 +1704,7 @@ class Bars {
       }
     });
 
-    let goreBox = this.addProcBox({
+    const goreBox = this.addProcBox({
       fgColor: 'pld-color-gore',
     });
 
@@ -1723,7 +1723,7 @@ class Bars {
 
     const setAtonement = (stacks) => {
       atonementBox.innerText = stacks;
-      let p = atonementBox.parentNode;
+      const p = atonementBox.parentNode;
       if (stacks === 0)
         p.classList.remove('any');
       else
@@ -1746,16 +1746,16 @@ class Bars {
   }
 
   setupWar() {
-    let textBox = this.addResourceBox({
+    const textBox = this.addResourceBox({
       classList: ['war-color-beast'],
     });
 
     this.jobFuncs.push((jobDetail) => {
-      let beast = jobDetail.beast;
+      const beast = jobDetail.beast;
       if (textBox.innerText === beast)
         return;
       textBox.innerText = beast;
-      let p = textBox.parentNode;
+      const p = textBox.parentNode;
       if (beast < 50) {
         p.classList.add('low');
         p.classList.remove('mid');
@@ -1768,7 +1768,7 @@ class Bars {
       }
     });
 
-    let eyeBox = this.addProcBox({
+    const eyeBox = this.addProcBox({
       fgColor: 'war-color-eye',
     });
 
@@ -1782,7 +1782,7 @@ class Bars {
       if (this.options.ParserLanguage === 'cn' || this.options.ParserLanguage === 'ko') {
         if (skill === kAbility.MythrilTempest) {
           if (eyeBox.duration > 0) {
-            let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
+            const old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
             eyeBox.duration = 0;
             eyeBox.duration = Math.min(old + 10, 30);
           }
@@ -1797,7 +1797,7 @@ class Bars {
         // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
         if (skill === kAbility.MythrilTempest) {
           if (eyeBox.duration > 0) {
-            let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
+            const old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
             eyeBox.duration = 0;
             eyeBox.duration = Math.min(old + 30, 59.5);
           }
@@ -1805,7 +1805,7 @@ class Bars {
         }
         if (skill === kAbility.StormsEye) {
           if (eyeBox.duration > 0) {
-            let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
+            const old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
             eyeBox.duration = 0;
             eyeBox.duration = Math.min(old + 30, 59.5);
             // Storm's Eye applies with some animation delay here, and on the next
@@ -1818,7 +1818,7 @@ class Bars {
         }
         this.abilityFuncMap[kAbility.InnerRelease] = () => {
           if (eyeBox.duration > 0) {
-            let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
+            const old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
             eyeBox.duration = 0;
             eyeBox.duration = Math.min(old + 15, 59.5);
           }
@@ -1840,8 +1840,8 @@ class Bars {
 
       // The new threshold is "can I finish the current combo and still
       // have time to do a Storm's Eye".
-      let oldThreshold = parseFloat(eyeBox.threshold);
-      let newThreshold = (minSkillsUntilEye + 2) * this.gcdSkill();
+      const oldThreshold = parseFloat(eyeBox.threshold);
+      const newThreshold = (minSkillsUntilEye + 2) * this.gcdSkill();
 
       // Because thresholds are nonmonotonic (when finishing a combo)
       // be careful about setting them in ways that are visually poor.
@@ -1872,21 +1872,21 @@ class Bars {
   }
 
   setupDrk() {
-    let bloodBox = this.addResourceBox({
+    const bloodBox = this.addResourceBox({
       classList: ['drk-color-blood'],
     });
 
-    let darksideBox = this.addProcBox({
+    const darksideBox = this.addProcBox({
       fgColor: 'drk-color-darkside',
       threshold: 10,
     });
 
     this.jobFuncs.push((jobDetail) => {
-      let blood = jobDetail.blood;
+      const blood = jobDetail.blood;
       if (bloodBox.innerText === blood)
         return;
       bloodBox.innerText = blood;
-      let p = bloodBox.parentNode;
+      const p = bloodBox.parentNode;
       if (blood < 50) {
         p.classList.add('low');
         p.classList.remove('mid');
@@ -1898,8 +1898,8 @@ class Bars {
         p.classList.remove('mid');
       }
 
-      let oldSeconds = parseFloat(darksideBox.duration) - parseFloat(darksideBox.elapsed);
-      let seconds = jobDetail.darksideMilliseconds / 1000.0;
+      const oldSeconds = parseFloat(darksideBox.duration) - parseFloat(darksideBox.elapsed);
+      const seconds = jobDetail.darksideMilliseconds / 1000.0;
       if (!darksideBox.duration || seconds > oldSeconds) {
         darksideBox.duration = 0;
         darksideBox.duration = seconds;
@@ -2101,36 +2101,36 @@ class Bars {
   }
 
   setupSch() {
-    let aetherflowStackBox = this.addResourceBox({
+    const aetherflowStackBox = this.addResourceBox({
       classList: ['sch-color-aetherflow'],
     });
 
-    let fairyGaugeBox = this.addResourceBox({
+    const fairyGaugeBox = this.addResourceBox({
       classList: ['sch-color-fairygauge'],
     });
 
-    let bioBox = this.addProcBox({
+    const bioBox = this.addProcBox({
       id: 'sch-procs-bio',
       fgColor: 'sch-color-bio',
     });
 
-    let aetherflowBox = this.addProcBox({
+    const aetherflowBox = this.addProcBox({
       id: 'sch-procs-aetherflow',
       fgColor: 'sch-color-aetherflow',
     });
 
-    let lucidBox = this.addProcBox({
+    const lucidBox = this.addProcBox({
       id: 'sch-procs-luciddreaming',
       fgColor: 'sch-color-lucid',
     });
 
     this.jobFuncs.push((jobDetail) => {
-      let aetherflow = jobDetail.aetherflowStacks;
-      let fairygauge = jobDetail.fairyGauge;
-      let milli = Math.ceil(jobDetail.fairyMilliseconds / 1000);
+      const aetherflow = jobDetail.aetherflowStacks;
+      const fairygauge = jobDetail.fairyGauge;
+      const milli = Math.ceil(jobDetail.fairyMilliseconds / 1000);
       aetherflowStackBox.innerText = aetherflow;
       fairyGaugeBox.innerText = fairygauge;
-      let f = fairyGaugeBox.parentNode;
+      const f = fairyGaugeBox.parentNode;
       if (jobDetail.fairyMilliseconds !== 0) {
         f.classList.add('bright');
         fairyGaugeBox.innerText = milli;
@@ -2142,8 +2142,8 @@ class Bars {
       // dynamically annouce user depends on their aetherflow stacks right now
       aetherflowBox.threshold = this.gcdSpell() * (aetherflow || 1) + 1;
 
-      let p = aetherflowStackBox.parentNode;
-      let s = parseFloat(aetherflowBox.duration || 0) - parseFloat(aetherflowBox.elapsed);
+      const p = aetherflowStackBox.parentNode;
+      const s = parseFloat(aetherflowBox.duration || 0) - parseFloat(aetherflowBox.elapsed);
       if (parseFloat(aetherflow) * 5 >= s) {
         // turn red when stacks are too much before AF ready
         p.classList.add('too-much-stacks');
@@ -2193,26 +2193,26 @@ class Bars {
       'Spire': { 'bonus': 'range', 'seal': 'Celestial' },
     };
 
-    let combustBox = this.addProcBox({
+    const combustBox = this.addProcBox({
       id: 'ast-procs-combust',
       fgColor: 'ast-color-combust',
     });
 
-    let drawBox = this.addProcBox({
+    const drawBox = this.addProcBox({
       id: 'ast-procs-draw',
       fgColor: 'ast-color-draw',
     });
 
-    let lucidBox = this.addProcBox({
+    const lucidBox = this.addProcBox({
       id: 'ast-procs-luciddreaming',
       fgColor: 'ast-color-lucid',
     });
 
-    let cardBox = this.addResourceBox({
+    const cardBox = this.addResourceBox({
       classList: ['ast-color-card'],
     });
 
-    let sealBox = this.addResourceBox({
+    const sealBox = this.addResourceBox({
       classList: ['ast-color-seal'],
     });
 
@@ -2222,7 +2222,7 @@ class Bars {
 
       // Show on which kind of jobs your card plays better by color
       // Blue on melee, purple on ranged, and grey when no card
-      let cardParent = cardBox.parentNode;
+      const cardParent = cardBox.parentNode;
       cardParent.classList.remove('melee', 'range');
       if (card in cardsMap)
         cardParent.classList.add(cardsMap[card].bonus);
@@ -2280,29 +2280,29 @@ class Bars {
   }
 
   setupMnk() {
-    let lightningTimer = this.addTimerBar({
+    const lightningTimer = this.addTimerBar({
       id: 'mnk-timers-lightning',
       fgColor: 'mnk-color-lightning-0',
     });
 
-    let formTimer = this.addTimerBar({
+    const formTimer = this.addTimerBar({
       id: 'mnk-timers-combo',
       fgColor: 'mnk-color-form',
     });
 
-    let textBox = this.addResourceBox({
+    const textBox = this.addResourceBox({
       classList: ['mnk-color-chakra'],
     });
 
-    let lightningFgColors = [];
+    const lightningFgColors = [];
     for (let i = 0; i <= 3; ++i)
       lightningFgColors.push(computeBackgroundColorFrom(lightningTimer, 'mnk-color-lightning-' + i));
 
     this.jobFuncs.push((jobDetail) => {
-      let chakra = jobDetail.chakraStacks;
+      const chakra = jobDetail.chakraStacks;
       if (textBox.innerText !== chakra) {
         textBox.innerText = chakra;
-        let p = textBox.parentNode;
+        const p = textBox.parentNode;
         if (chakra < 5)
           p.classList.add('dim');
         else
@@ -2321,8 +2321,8 @@ class Bars {
 
         // Setting the duration resets the timer bar to 0, so set
         // duration first before adjusting the value.
-        let old = parseFloat(lightningTimer.duration) - parseFloat(lightningTimer.elapsed);
-        let lightningSeconds = jobDetail.lightningMilliseconds / 1000.0;
+        const old = parseFloat(lightningTimer.duration) - parseFloat(lightningTimer.elapsed);
+        const lightningSeconds = jobDetail.lightningMilliseconds / 1000.0;
         if (lightningSeconds > old) {
           lightningTimer.duration = 16;
           lightningTimer.value = lightningSeconds;
@@ -2330,19 +2330,19 @@ class Bars {
       }
     });
 
-    let dragonKickBox = this.addProcBox({
+    const dragonKickBox = this.addProcBox({
       id: 'mnk-procs-dragonkick',
       fgColor: 'mnk-color-dragonkick',
       threshold: 6,
     });
 
-    let twinSnakesBox = this.addProcBox({
+    const twinSnakesBox = this.addProcBox({
       id: 'mnk-procs-twinsnakes',
       fgColor: 'mnk-color-twinsnakes',
       threshold: 6,
     });
 
-    let demolishBox = this.addProcBox({
+    const demolishBox = this.addProcBox({
       id: 'mnk-procs-demolish',
       fgColor: 'mnk-color-demolish',
       // Slightly shorter time, to make the box not pop right as
@@ -2356,7 +2356,7 @@ class Bars {
     };
     this.abilityFuncMap[kAbility.FourPointFury] = () => {
       // FIXME: using this at zero.
-      let old = parseFloat(twinSnakesBox.duration) - parseFloat(twinSnakesBox.elapsed);
+      const old = parseFloat(twinSnakesBox.duration) - parseFloat(twinSnakesBox.elapsed);
       twinSnakesBox.duration = 0;
       if (old > 0)
         twinSnakesBox.duration = Math.min(old + 10, 15);
@@ -2378,7 +2378,7 @@ class Bars {
       formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-pb');
     };
 
-    let changeFormFunc = (name, matches) => {
+    const changeFormFunc = (name, matches) => {
       formTimer.duration = 0;
       formTimer.duration = parseFloat(matches.duration);
       formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
@@ -2696,8 +2696,8 @@ class Bars {
         songBox.threshold = 13;
       }
 
-      let oldSeconds = parseFloat(songBox.duration) - parseFloat(songBox.elapsed);
-      let seconds = jobDetail.songMilliseconds / 1000.0;
+      const oldSeconds = parseFloat(songBox.duration) - parseFloat(songBox.elapsed);
+      const seconds = jobDetail.songMilliseconds / 1000.0;
       if (!songBox.duration || seconds > oldSeconds) {
         songBox.duration = 0;
         songBox.duration = seconds;
@@ -2884,18 +2884,18 @@ class Bars {
   }
 
   setupBlm() {
-    let thunderDot = this.addProcBox({
+    const thunderDot = this.addProcBox({
       id: 'blm-dot-thunder',
       fgColor: 'blm-color-dot',
       threshold: 4,
     });
-    let thunderProc = this.addProcBox({
+    const thunderProc = this.addProcBox({
       id: 'blm-procs-thunder',
       fgColor: 'blm-color-thunder',
       threshold: 1000,
     });
     thunderProc.bigatzero = false;
-    let fireProc = this.addProcBox({
+    const fireProc = this.addProcBox({
       id: 'blm-procs-fire',
       fgColor: 'blm-color-fire',
       threshold: 1000,
@@ -2939,34 +2939,34 @@ class Bars {
 
     // It'd be super nice to use grid here.
     // Maybe some day when cactbot uses new cef.
-    let stacksContainer = document.createElement('div');
+    const stacksContainer = document.createElement('div');
     stacksContainer.id = 'blm-stacks';
     this.addJobBarContainer().appendChild(stacksContainer);
 
-    let heartStacksContainer = document.createElement('div');
+    const heartStacksContainer = document.createElement('div');
     heartStacksContainer.id = 'blm-stacks-heart';
     stacksContainer.appendChild(heartStacksContainer);
-    let heartStacks = [];
+    const heartStacks = [];
     for (let i = 0; i < 3; ++i) {
-      let d = document.createElement('div');
+      const d = document.createElement('div');
       heartStacksContainer.appendChild(d);
       heartStacks.push(d);
     }
 
-    let xenoStacksContainer = document.createElement('div');
+    const xenoStacksContainer = document.createElement('div');
     xenoStacksContainer.id = 'blm-stacks-xeno';
     stacksContainer.appendChild(xenoStacksContainer);
-    let xenoStacks = [];
+    const xenoStacks = [];
     for (let i = 0; i < 2; ++i) {
-      let d = document.createElement('div');
+      const d = document.createElement('div');
       xenoStacksContainer.appendChild(d);
       xenoStacks.push(d);
     }
 
-    let umbralTimer = this.addResourceBox({
+    const umbralTimer = this.addResourceBox({
       classList: ['blm-umbral-timer'],
     });
-    let xenoTimer = this.addResourceBox({
+    const xenoTimer = this.addResourceBox({
       classList: ['blm-xeno-timer'],
     });
 
@@ -2975,14 +2975,14 @@ class Bars {
         this.umbralStacks = jobDetail.umbralStacks;
         this.UpdateMPTicker();
       }
-      let fouls = jobDetail.foulCount;
+      const fouls = jobDetail.foulCount;
       for (let i = 0; i < 2; ++i) {
         if (fouls > i)
           xenoStacks[i].classList.add('active');
         else
           xenoStacks[i].classList.remove('active');
       }
-      let hearts = jobDetail.umbralHearts;
+      const hearts = jobDetail.umbralHearts;
       for (let i = 0; i < 3; ++i) {
         if (hearts > i)
           heartStacks[i].classList.add('active');
@@ -2990,9 +2990,9 @@ class Bars {
           heartStacks[i].classList.remove('active');
       }
 
-      let stacks = jobDetail.umbralStacks;
-      let seconds = Math.ceil(jobDetail.umbralMilliseconds / 1000.0);
-      let p = umbralTimer.parentNode;
+      const stacks = jobDetail.umbralStacks;
+      const seconds = Math.ceil(jobDetail.umbralMilliseconds / 1000.0);
+      const p = umbralTimer.parentNode;
       if (!stacks) {
         umbralTimer.innerText = '';
         p.classList.remove('fire');
@@ -3007,12 +3007,12 @@ class Bars {
         p.classList.add('ice');
       }
 
-      let xp = xenoTimer.parentNode;
+      const xp = xenoTimer.parentNode;
       if (!jobDetail.enochian) {
         xenoTimer.innerText = '';
         xp.classList.remove('active', 'pulse');
       } else {
-        let nextPoly = jobDetail.nextPolyglotMilliseconds;
+        const nextPoly = jobDetail.nextPolyglotMilliseconds;
         xenoTimer.innerText = Math.ceil(nextPoly / 1000.0);
         xp.classList.add('active');
 
@@ -3025,44 +3025,44 @@ class Bars {
   }
 
   setupSmn() {
-    let aetherflowStackBox = this.addResourceBox({
+    const aetherflowStackBox = this.addResourceBox({
       classList: ['smn-color-aetherflow'],
     });
 
-    let demiSummoningBox = this.addResourceBox({
+    const demiSummoningBox = this.addResourceBox({
       classList: ['smn-color-demisummon'],
     });
 
-    let miasmaBox = this.addProcBox({
+    const miasmaBox = this.addProcBox({
       id: 'smn-procs-miasma',
       fgColor: 'smn-color-miasma',
     });
 
-    let bioSmnBox = this.addProcBox({
+    const bioSmnBox = this.addProcBox({
       id: 'smn-procs-biosmn',
       fgColor: 'smn-color-biosmn',
     });
 
-    let energyDrainBox = this.addProcBox({
+    const energyDrainBox = this.addProcBox({
       id: 'smn-procs-energydrain',
       fgColor: 'smn-color-energydrain',
     });
 
-    let tranceBox = this.addProcBox({
+    const tranceBox = this.addProcBox({
       id: 'smn-procs-trance',
       fgColor: 'smn-color-trance',
     });
 
     // FurtherRuin Stack Gauge
-    let stacksContainer = document.createElement('div');
+    const stacksContainer = document.createElement('div');
     stacksContainer.id = 'smn-stacks';
     this.addJobBarContainer().appendChild(stacksContainer);
-    let ruin4Container = document.createElement('div');
+    const ruin4Container = document.createElement('div');
     ruin4Container.id = 'smn-stacks-ruin4';
     stacksContainer.appendChild(ruin4Container);
-    let ruin4Stacks = [];
+    const ruin4Stacks = [];
     for (let i = 0; i < 4; ++i) {
-      let d = document.createElement('div');
+      const d = document.createElement('div');
       ruin4Container.appendChild(d);
       ruin4Stacks.push(d);
     }
@@ -3090,13 +3090,13 @@ class Bars {
     });
 
     this.jobFuncs.push((jobDetail) => {
-      let stack = jobDetail.aetherflowStacks;
-      let summoned = jobDetail.bahamutSummoned;
-      let time = Math.ceil(jobDetail.stanceMilliseconds / 1000);
+      const stack = jobDetail.aetherflowStacks;
+      const summoned = jobDetail.bahamutSummoned;
+      const time = Math.ceil(jobDetail.stanceMilliseconds / 1000);
 
       // turn red when you have too much stacks before EnergyDrain ready.
       aetherflowStackBox.innerText = stack;
-      let s = parseFloat(energyDrainBox.duration || 0) - parseFloat(energyDrainBox.elapsed);
+      const s = parseFloat(energyDrainBox.duration || 0) - parseFloat(energyDrainBox.elapsed);
       if ((stack === 2) && (s <= 8))
         aetherflowStackBox.parentNode.classList.add('too-much-stacks');
       else
@@ -3190,11 +3190,11 @@ class Bars {
   }
 
   setupRdm() {
-    let container = this.addJobBarContainer();
+    const container = this.addJobBarContainer();
 
-    let incs = 20;
+    const incs = 20;
     for (let i = 0; i < 100; i += incs) {
-      let marker = document.createElement('div');
+      const marker = document.createElement('div');
       marker.classList.add('marker');
       marker.classList.add((i % 40 === 0) ? 'odd' : 'even');
       container.appendChild(marker);
@@ -3202,40 +3202,40 @@ class Bars {
       marker.style.width = incs + '%';
     }
 
-    let whiteManaBar = this.addResourceBar({
+    const whiteManaBar = this.addResourceBar({
       id: 'rdm-white-bar',
       fgColor: 'rdm-color-white-mana',
       maxvalue: 100,
     });
 
-    let blackManaBar = this.addResourceBar({
+    const blackManaBar = this.addResourceBar({
       id: 'rdm-black-bar',
       fgColor: 'rdm-color-black-mana',
       maxvalue: 100,
     });
 
-    let whiteManaBox = this.addResourceBox({
+    const whiteManaBox = this.addResourceBox({
       classList: ['rdm-color-white-mana'],
     });
 
-    let blackManaBox = this.addResourceBox({
+    const blackManaBox = this.addResourceBox({
       classList: ['rdm-color-black-mana'],
     });
 
-    let whiteProc = this.addProcBox({
+    const whiteProc = this.addProcBox({
       id: 'rdm-procs-white',
       fgColor: 'rdm-color-white-mana',
       threshold: 1000,
     });
     whiteProc.bigatzero = false;
-    let blackProc = this.addProcBox({
+    const blackProc = this.addProcBox({
       id: 'rdm-procs-black',
       fgColor: 'rdm-color-black-mana',
       threshold: 1000,
     });
     blackProc.bigatzero = false;
 
-    let lucidBox = this.addProcBox({
+    const lucidBox = this.addProcBox({
       id: 'rdm-procs-lucid',
       fgColor: 'rdm-color-lucid',
     });
@@ -3249,15 +3249,15 @@ class Bars {
     };
 
     this.jobFuncs.push((jobDetail) => {
-      let white = jobDetail.whiteMana;
-      let black = jobDetail.blackMana;
+      const white = jobDetail.whiteMana;
+      const black = jobDetail.blackMana;
 
       whiteManaBar.value = white;
       blackManaBar.value = black;
 
       if (whiteManaBox.innerText !== white) {
         whiteManaBox.innerText = white;
-        let p = whiteManaBox.parentNode;
+        const p = whiteManaBox.parentNode;
         if (white < 80)
           p.classList.add('dim');
         else
@@ -3265,7 +3265,7 @@ class Bars {
       }
       if (blackManaBox.innerText !== black) {
         blackManaBox.innerText = black;
-        let p = blackManaBox.parentNode;
+        const p = blackManaBox.parentNode;
         if (black < 80)
           p.classList.add('dim');
         else
@@ -3286,17 +3286,17 @@ class Bars {
   }
 
   setupBlu() {
-    let offguardBox = this.addProcBox({
+    const offguardBox = this.addProcBox({
       id: 'blu-procs-offguard',
       fgColor: 'blu-color-offguard',
     });
 
-    let tormentBox = this.addProcBox({
+    const tormentBox = this.addProcBox({
       id: 'blu-procs-torment',
       fgColor: 'blu-color-torment',
     });
 
-    let lucidBox = this.addProcBox({
+    const lucidBox = this.addProcBox({
       id: 'blu-procs-lucid',
       fgColor: 'blu-color-lucid',
     });
@@ -3387,7 +3387,7 @@ class Bars {
   }
 
   UpdateJobBarGCDs() {
-    let f = this.statChangeFuncMap[this.job];
+    const f = this.statChangeFuncMap[this.job];
     if (f)
       f();
   }
@@ -3398,7 +3398,7 @@ class Bars {
     this.o.healthBar.maxvalue = this.maxHP;
     this.o.healthBar.extraValue = this.currentShield;
 
-    let percent = (this.hp + this.currentShield) / this.maxHP;
+    const percent = (this.hp + this.currentShield) / this.maxHP;
 
     if (this.maxHP > 0 && percent < this.options.LowHealthThresholdPercent)
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color.low');
@@ -3410,7 +3410,7 @@ class Bars {
 
   UpdateMPTicker() {
     if (!this.o.mpTicker) return;
-    let delta = this.mp - this.prevMP;
+    const delta = this.mp - this.prevMP;
     this.prevMP = this.mp;
 
     // Hide out of combat if requested
@@ -3421,13 +3421,13 @@ class Bars {
     }
     this.o.mpTicker.style = 'fill';
 
-    let baseTick = this.inCombat ? kMPCombatRate : kMPNormalRate;
+    const baseTick = this.inCombat ? kMPCombatRate : kMPNormalRate;
     let umbralTick = 0;
     if (this.umbralStacks === -1) umbralTick = kMPUI1Rate;
     if (this.umbralStacks === -2) umbralTick = kMPUI2Rate;
     if (this.umbralStacks === -3) umbralTick = kMPUI3Rate;
 
-    let mpTick = Math.floor(this.maxMP * baseTick) + Math.floor(this.maxMP * umbralTick);
+    const mpTick = Math.floor(this.maxMP * baseTick) + Math.floor(this.maxMP * umbralTick);
     if (delta === mpTick && this.umbralStacks <= 0) // MP ticks disabled in AF
       this.o.mpTicker.duration = kMPTickInterval;
 
@@ -3488,14 +3488,14 @@ class Bars {
       this.gpAlarmReady = true;
     } else if (this.gpAlarmReady && !this.gpPotion && this.gp >= this.options.GpAlarmPoint) {
       this.gpAlarmReady = false;
-      let audio = new Audio('../../resources/sounds/PowerAuras/kaching.ogg');
+      const audio = new Audio('../../resources/sounds/PowerAuras/kaching.ogg');
       audio.volume = this.options.GpAlarmSoundVolume;
       audio.play();
     }
   }
 
   UpdateOpacity() {
-    let opacityContainer = document.getElementById('opacity-container');
+    const opacityContainer = document.getElementById('opacity-container');
     if (!opacityContainer)
       return;
     if (this.inCombat || !this.options.LowerOpacityOutOfCombat ||
@@ -3510,7 +3510,7 @@ class Bars {
     if (!this.init || !this.o.leftBuffsList)
       return;
 
-    let CanShowWellFedWarning = function() {
+    const CanShowWellFedWarning = function() {
       if (!this.options.HideWellFedAboveSeconds)
         return false;
       if (this.inCombat)
@@ -3519,24 +3519,24 @@ class Bars {
     };
 
     // Returns the number of ms until it should be shown. If <= 0, show it.
-    let TimeToShowWellFedWarning = function() {
-      let nowMs = Date.now();
-      let showAtMs = this.foodBuffExpiresTimeMs - (this.options.HideWellFedAboveSeconds * 1000);
+    const TimeToShowWellFedWarning = function() {
+      const nowMs = Date.now();
+      const showAtMs = this.foodBuffExpiresTimeMs - (this.options.HideWellFedAboveSeconds * 1000);
       return showAtMs - nowMs;
     };
 
     window.clearTimeout(this.foodBuffTimer);
     this.foodBuffTimer = null;
 
-    let canShow = CanShowWellFedWarning.bind(this)();
-    let showAfterMs = TimeToShowWellFedWarning.bind(this)();
+    const canShow = CanShowWellFedWarning.bind(this)();
+    const showAfterMs = TimeToShowWellFedWarning.bind(this)();
 
     if (!canShow || showAfterMs > 0) {
       this.o.leftBuffsList.removeElement('foodbuff');
       if (canShow)
         this.foodBuffTimer = window.setTimeout(this.UpdateFoodBuff.bind(this), showAfterMs);
     } else {
-      let div = makeAuraTimerIcon(
+      const div = makeAuraTimerIcon(
           'foodbuff', -1, 1,
           this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
           '',
@@ -3593,12 +3593,12 @@ class Bars {
   SetPullCountdown(seconds) {
     if (!this.o.pullCountdown) return;
 
-    let inCountdown = seconds > 0;
-    let showingCountdown = parseFloat(this.o.pullCountdown.duration) > 0;
+    const inCountdown = seconds > 0;
+    const showingCountdown = parseFloat(this.o.pullCountdown.duration) > 0;
     if (inCountdown !== showingCountdown) {
       this.o.pullCountdown.duration = seconds;
       if (inCountdown && this.options.PlayCountdownSound) {
-        let audio = new Audio('../../resources/sounds/PowerAuras/sonar.ogg');
+        const audio = new Audio('../../resources/sounds/PowerAuras/sonar.ogg');
         audio.volume = 0.3;
         audio.play();
       }
@@ -3726,7 +3726,7 @@ class Bars {
   }
 
   UpdateEnmityTargetData(e) {
-    let target = e.Target;
+    const target = e.Target;
 
     let update = false;
     if (!target || !target.Name) {
@@ -3755,7 +3755,7 @@ class Bars {
       let m = log.match(kYouGainEffectRegex);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
-        let f = this.gainEffectFuncMap[effectId];
+        const f = this.gainEffectFuncMap[effectId];
         if (f)
           f(name, m.groups);
         this.buffTracker.onYouGainEffect(effectId, m.groups);
@@ -3769,7 +3769,7 @@ class Bars {
       let m = log.match(kYouLoseEffectRegex);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
-        let f = this.loseEffectFuncMap[effectId];
+        const f = this.loseEffectFuncMap[effectId];
         if (f)
           f(name, m.groups);
         this.buffTracker.onYouLoseEffect(effectId, m.groups);
@@ -3780,16 +3780,16 @@ class Bars {
         this.buffTracker.onMobLosesEffect(effectId, m.groups);
       }
     } else if (type === '21' || type === '22') {
-      let m = log.match(kYouUseAbilityRegex);
+      const m = log.match(kYouUseAbilityRegex);
       if (m) {
-        let id = m.groups.id;
+        const id = m.groups.id;
         this.combo.HandleAbility(id);
-        let f = this.abilityFuncMap[id];
+        const f = this.abilityFuncMap[id];
         if (f)
           f(id, m.groups);
         this.buffTracker.onUseAbility(id, m.groups);
       } else {
-        let m = log.match(kAnybodyAbilityRegex);
+        const m = log.match(kAnybodyAbilityRegex);
         if (m)
           this.buffTracker.onUseAbility(m.groups.id, m.groups);
       }
@@ -3806,17 +3806,17 @@ class Bars {
       EffectId.VenomousBite,
     ]);
     if (type === '26') {
-      let m = log.match(kMobGainsEffectFromYouRegex);
+      const m = log.match(kMobGainsEffectFromYouRegex);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
         if (Object.values(brdDoTs).includes(effectId))
           this.dotTarget.push(m.groups.targetId);
-        let f = this.mobGainEffectFromYouFuncMap[effectId];
+        const f = this.mobGainEffectFromYouFuncMap[effectId];
         if (f)
           f(name, m.groups);
       }
     } else if (type === '30') {
-      let m = log.match(kMobLosesEffectFromYouRegex);
+      const m = log.match(kMobLosesEffectFromYouRegex);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
         if (Object.values(brdDoTs).includes(effectId)) {
@@ -3826,7 +3826,7 @@ class Bars {
         }
       }
     } else if (type === '21' || type === '22') {
-      let m = log.match(kYouUseAbilityRegex);
+      const m = log.match(kYouUseAbilityRegex);
       if (m) {
         if (this.dotTarget.includes(m.groups.targetId))
           this.lastAttackedDotTarget = m.groups.targetId;
@@ -3847,13 +3847,13 @@ class Bars {
       return;
 
     for (let i = 0; i < e.detail.logs.length; i++) {
-      let log = e.detail.logs[i];
+      const log = e.detail.logs[i];
 
       // TODO: only consider this when not in battle.
       if (log[15] === '0') {
-        let r = log.match(this.countdownStartRegex);
+        const r = log.match(this.countdownStartRegex);
         if (r) {
-          let seconds = parseFloat(r.groups.time);
+          const seconds = parseFloat(r.groups.time);
           this.SetPullCountdown(seconds);
           continue;
         }
@@ -3866,7 +3866,7 @@ class Bars {
           continue;
         }
         if (log[16] === 'C') {
-          let stats = log.match(kStatsRegex).groups;
+          const stats = log.match(kStatsRegex).groups;
           this.skillSpeed = stats.skillSpeed;
           this.spellSpeed = stats.spellSpeed;
           this.UpdateJobBarGCDs();
@@ -3879,7 +3879,7 @@ class Bars {
         // flags:damage is 1:0 in most misses.
         if (log[16] === '5' || log[16] === '6') {
           // use of GP Potion
-          let cordialRegex = Regexes.ability({ source: this.me, id: '20(017FD|F5A3D|F844F|0420F|0317D)' });
+          const cordialRegex = Regexes.ability({ source: this.me, id: '20(017FD|F5A3D|F844F|0420F|0317D)' });
           if (cordialRegex.test(log)) {
             this.gpPotion = true;
             setTimeout(() => {
@@ -3892,8 +3892,8 @@ class Bars {
   }
 
   Test() {
-    let logs = [];
-    let t = '[10:10:10.000] ';
+    const logs = [];
+    const t = '[10:10:10.000] ';
     logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30.2 Seconds.');
     logs.push(t + '15:10000000:Tako Yaki:1D60:Embolden:10000000:' + this.me + ':500020F:4D70000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:00001DE7');
     logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
@@ -3907,7 +3907,7 @@ class Bars {
     logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Devotion from That Guy for 15.0 Seconds.');
     logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.');
     logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Brotherhood from Other Guy for 15.0 Seconds.');
-    let e = { detail: { logs: logs } };
+    const e = { detail: { logs: logs } };
     this.OnLogEvent(e);
   }
 }

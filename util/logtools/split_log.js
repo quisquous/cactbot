@@ -7,7 +7,7 @@ import ZoneId from '../../resources/zone_id.js';
 import argparse from 'argparse';
 
 // TODO: add options for not splitting / not anonymizing.
-let parser = new argparse.ArgumentParser({
+const parser = new argparse.ArgumentParser({
   addHelp: true,
 });
 parser.addArgument(['-f', '--file'], {
@@ -113,8 +113,8 @@ const generateFileName = (fightOrZone) => {
   else
     seal = '';
 
-  let idToZoneName = {};
-  for (let zoneName in ZoneId)
+  const idToZoneName = {};
+  for (const zoneName in ZoneId)
     idToZoneName[ZoneId[zoneName]] = zoneName;
   const zoneName = idToZoneName[zoneId];
 
@@ -147,7 +147,7 @@ const rightExtendStr = (row, lengths, idx) => {
 
 const printCollectedZones = (collector) => {
   let idx = 1;
-  let outputRows = [];
+  const outputRows = [];
   for (const zone of collector.zones) {
     outputRows.push([
       idx.toString(),
@@ -182,7 +182,7 @@ const printCollectedZones = (collector) => {
 
 const printCollectedFights = (collector) => {
   let idx = 1;
-  let outputRows = [];
+  const outputRows = [];
   let seenSeal = false;
   let lastDate = null;
   for (const fight of collector.fights) {
@@ -247,25 +247,25 @@ class ConsoleNotifier {
 
 const writeFile = (outputFile, startLine, endLine) => {
   return new Promise((resolve, reject) => {
-    let notifier = new ConsoleNotifier();
-    let anonymizer = new Anonymizer();
+    const notifier = new ConsoleNotifier();
+    const anonymizer = new Anonymizer();
 
-    let lineReader = readline.createInterface({
+    const lineReader = readline.createInterface({
       input: fs.createReadStream(logFileName),
     });
 
     // If --force is not passed, this will fail if the file already exists.
     const flags = args.force === null ? 'wx' : 'w';
-    let writer = fs.createWriteStream(outputFile, { flags: flags });
+    const writer = fs.createWriteStream(outputFile, { flags: flags });
     writer.on('error', (err) => {
       errorFunc(err);
       process.exit(-1);
       reject();
     });
 
-    let splitter = new Splitter(startLine, endLine, notifier);
+    const splitter = new Splitter(startLine, endLine, notifier);
 
-    let lines = [];
+    const lines = [];
     lineReader.on('line', (line) => {
       splitter.processWithCallback(line, (line) => {
         const anonLine = anonymizer.process(line, notifier);
@@ -297,8 +297,8 @@ const writeFile = (outputFile, startLine, endLine) => {
 // No top-level await, so wrap everything an async function.  <_<
 (async function() {
   const makeCollectorFromPrepass = async (filename) => {
-    let collector = new EncounterCollector();
-    let lineReader = readline.createInterface({
+    const collector = new EncounterCollector();
+    const lineReader = readline.createInterface({
       input: fs.createReadStream(filename),
     });
     for await (const line of lineReader) {
@@ -321,11 +321,11 @@ const writeFile = (outputFile, startLine, endLine) => {
 
   // This utility prints 1-indexed fights and zones, so adjust - 1.
   if (args['search_fights'] !== -1) {
-    let fight = collector.fights[args['search_fights'] - 1];
+    const fight = collector.fights[args['search_fights'] - 1];
     await writeFile(generateFileName(fight), fight.startLine, fight.endLine);
     process.exit(exitCode);
   } else if (args['search_zones'] !== -1) {
-    let zone = collector.zones[args['search_zones'] - 1];
+    const zone = collector.zones[args['search_zones'] - 1];
     await writeFile(generateFileName(zone), zone.startLine, zone.endLine);
     process.exit(exitCode);
   } else if (args['fight_regex'] !== -1) {

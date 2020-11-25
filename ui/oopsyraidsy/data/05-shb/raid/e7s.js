@@ -8,7 +8,7 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // TODO: taking explosion from the wrong Chiaro/Scuro orb
 // TODO: handle 4C89 Silver Stake tankbuster 2nd hit, as it's ok to have two in.
 
-let wrongBuff = (str) => {
+const wrongBuff = (str) => {
   return {
     en: str + ' (wrong buff)',
     de: str + ' (falscher Buff)',
@@ -19,7 +19,7 @@ let wrongBuff = (str) => {
   };
 };
 
-let noBuff = (str) => {
+const noBuff = (str) => {
   return {
     en: str + ' (no buff)',
     de: str + ' (kein Buff)',

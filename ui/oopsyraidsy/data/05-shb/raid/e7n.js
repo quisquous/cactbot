@@ -1,7 +1,7 @@
 import NetRegexes from '../../../../../resources/netregexes.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
-let wrongBuff = (str) => {
+const wrongBuff = (str) => {
   return {
     en: str + ' (wrong buff)',
     de: str + ' (falscher Buff)',
@@ -10,7 +10,7 @@ let wrongBuff = (str) => {
   };
 };
 
-let noBuff = (str) => {
+const noBuff = (str) => {
   return {
     en: str + ' (no buff)',
     de: str + ' (kein Buff)',

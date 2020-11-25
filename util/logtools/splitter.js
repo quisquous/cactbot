@@ -108,7 +108,7 @@ export default class Splitter {
     } else if (typeof result === 'string') {
       callback(line);
     } else if (typeof result === 'object') {
-      for (let resultLine of result)
+      for (const resultLine of result)
         callback(resultLine);
     }
   }

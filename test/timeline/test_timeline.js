@@ -21,7 +21,7 @@ let triggerSet;
 let timeline;
 
 function getTestCases(trans, skipPartialCommon) {
-  let testCases = [
+  const testCases = [
     {
       type: 'replaceSync',
       items: new Set(timeline.syncStarts.map((x) => x.regex.source)),
@@ -35,9 +35,9 @@ function getTestCases(trans, skipPartialCommon) {
   ];
 
   // Add all common replacements, so they can be checked for collisions as well.
-  for (let testCase of testCases) {
-    let common = commonReplacement[testCase.type];
-    for (let key in common) {
+  for (const testCase of testCases) {
+    const common = commonReplacement[testCase.type];
+    for (const key in common) {
       if (skipPartialCommon && partialCommonReplacementKeys.includes(key))
         continue;
       if (!common[key][trans.locale]) {
@@ -59,11 +59,11 @@ function getTestCasesWithoutPartialCommon(trans) {
   return getTestCases(trans, true);
 }
 
-let tests = {
+const tests = {
   // This test loads an individual raidboss timeline and makes sure
   // that timeline.js can parse it without errors.
   timelineErrorTest: () => {
-    for (let e of timeline.errors) {
+    for (const e of timeline.errors) {
       if (e.line && e.lineNumber)
         errorFunc(timelineFile + ':' + e.lineNumber + ': ' + e.error + ': ' + e.line);
       else
@@ -72,12 +72,12 @@ let tests = {
   },
 
   translationConflictTest: () => {
-    let translations = triggerSet.timelineReplace;
+    const translations = triggerSet.timelineReplace;
     if (!translations)
       return;
 
-    for (let trans of translations) {
-      let locale = trans.locale;
+    for (const trans of translations) {
+      const locale = trans.locale;
       if (!locale) {
         // TODO: maybe this needs to be in the triggers test instead
         errorFunc(triggersFile + ': missing locale in translation block');
@@ -85,15 +85,15 @@ let tests = {
       }
 
       // Note: even if translations are missing, they should not have conflicts.
-      let testCases = getTestCases(trans);
+      const testCases = getTestCases(trans);
 
       // For both texts and syncs...
-      for (let testCase of testCases) {
+      for (const testCase of testCases) {
         // For every unique replaceable text or sync the timeline knows about...
-        for (let orig of testCase.items) {
+        for (const orig of testCase.items) {
           // For every translation for that timeline...
-          for (let regex in testCase.replace) {
-            let replaced = orig.replace(Regexes.parse(regex), testCase.replace[regex]);
+          for (const regex in testCase.replace) {
+            const replaced = orig.replace(Regexes.parse(regex), testCase.replace[regex]);
             if (orig === replaced)
               continue;
 
@@ -105,10 +105,10 @@ let tests = {
             // (1) Verify that there is no pre-replacement collision,.
             // i.e. two regexes that apply to the same text or sync.
             // e.g. "Holy IV" is affected by both /Holy IV/ and /Holy/.
-            for (let otherRegex in testCase.replace) {
+            for (const otherRegex in testCase.replace) {
               if (regex === otherRegex)
                 continue;
-              let otherReplaced =
+              const otherReplaced =
                   orig.replace(Regexes.parse(otherRegex), testCase.replace[otherRegex]);
               if (orig === otherReplaced)
                 continue;
@@ -124,7 +124,7 @@ let tests = {
                   Regexes.parse(regex),
                   testCase.replace[regex],
               );
-              let otherSecond = replaced.replace(Regexes.parse(otherRegex),
+              const otherSecond = replaced.replace(Regexes.parse(otherRegex),
                   testCase.replace[otherRegex]);
               if (otherFirst === otherSecond)
                 continue;
@@ -135,10 +135,10 @@ let tests = {
             // (2) Verify that there is no post-replacement collision with this text,
             // i.e. a regex that applies to the replaced text that another regex
             // has already modified.
-            for (let otherRegex in testCase.replace) {
+            for (const otherRegex in testCase.replace) {
               if (regex === otherRegex)
                 continue;
-              let otherSecond =
+              const otherSecond =
                   replaced.replace(Regexes.parse(otherRegex), testCase.replace[otherRegex]);
               if (replaced === otherSecond)
                 continue;
@@ -161,12 +161,12 @@ let tests = {
     }
   },
   missingTranslationTest: () => {
-    let translations = triggerSet.timelineReplace;
+    const translations = triggerSet.timelineReplace;
     if (!translations)
       return;
 
-    for (let trans of translations) {
-      let locale = trans.locale;
+    for (const trans of translations) {
+      const locale = trans.locale;
       if (!locale)
         continue;
 
@@ -175,23 +175,23 @@ let tests = {
 
       // Ignore partial common translations here, as they don't
       // count towards completing missing translations.
-      let testCases = getTestCasesWithoutPartialCommon(trans);
+      const testCases = getTestCasesWithoutPartialCommon(trans);
 
-      let ignore = timeline.GetMissingTranslationsToIgnore();
-      let isIgnored = (x) => {
-        for (let ig of ignore) {
+      const ignore = timeline.GetMissingTranslationsToIgnore();
+      const isIgnored = (x) => {
+        for (const ig of ignore) {
           if (ig.test(x))
             return true;
         }
         return false;
       };
 
-      for (let testCase of testCases) {
-        for (let item of testCase.items) {
+      for (const testCase of testCases) {
+        for (const item of testCase.items) {
           if (isIgnored(item))
             continue;
           let matched = false;
-          for (let regex in testCase.replace) {
+          for (const regex in testCase.replace) {
             if (Regexes.parse(regex).test(item)) {
               matched = true;
               break;
@@ -204,25 +204,25 @@ let tests = {
     }
   },
   badCharacters: () => {
-    let translations = triggerSet.timelineReplace;
+    const translations = triggerSet.timelineReplace;
     if (!translations)
       return;
 
-    for (let trans of translations) {
-      let locale = trans.locale;
+    for (const trans of translations) {
+      const locale = trans.locale;
       if (!locale)
         continue;
 
-      let testCases = getTestCases(trans);
+      const testCases = getTestCases(trans);
 
       // Text should not include ^ or $, unless preceeded by \ or [
-      let badRegex = [
+      const badRegex = [
         /(?<![\\[])[\^\$]/,
       ].map((x) => Regexes.parse(x));
 
-      for (let testCase of testCases) {
-        for (let regex in testCase.replace) {
-          for (let bad of badRegex) {
+      for (const testCase of testCases) {
+        for (const regex in testCase.replace) {
+          for (const bad of badRegex) {
             if (Regexes.parse(regex).source.match(bad))
               errorFunc(`${triggersFile}:locale ${locale}:invalid character in ${testCase.type} '${regex}'`);
           }
@@ -231,8 +231,8 @@ let tests = {
     }
   },
   sealedSyncTest: () => {
-    for (let sync of timeline.syncStarts) {
-      let regex = sync.regex.source;
+    for (const sync of timeline.syncStarts) {
+      const regex = sync.regex.source;
       if (regex.includes('is no longer sealed')) {
         if (!regex.includes('00:0839:.*is no longer sealed'))
           errorFunc(`${timelineFile}:${sync.lineNumber} 'is no longer sealed' sync must be exactly '00:0839:.*is no longer sealed'`);
@@ -248,7 +248,7 @@ async function doTests() {
   triggerSet = (await import(importPath)).default;
   timeline = new Timeline(timelineText, null, triggerSet.timelineTriggers);
 
-  for (let name in tests)
+  for (const name in tests)
     tests[name]();
 
   process.exit(exitCode);

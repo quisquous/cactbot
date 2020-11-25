@@ -199,7 +199,7 @@ export default {
       id: 'A11S Limit Cut Collect',
       netRegex: NetRegexes.headMarker({ id: '00(?:4F|5[0-6])' }),
       run: function(data, matches) {
-        let limitCutNumber = {
+        const limitCutNumber = {
           '004F': 1,
           '0050': 2,
           '0051': 3,
@@ -262,7 +262,7 @@ export default {
         }
 
         // Evens
-        let partner = data.limitCutMap[data.limitCutNumber - 1];
+        const partner = data.limitCutMap[data.limitCutNumber - 1];
         if (!partner) {
           // In case something goes awry?
           return output.knockbackCharge();

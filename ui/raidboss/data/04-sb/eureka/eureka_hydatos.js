@@ -705,7 +705,7 @@ export default {
       alertText: function(data, _, output) {
         if (!data.clones)
           return;
-        let wrists = data.clones.pop();
+        const wrists = data.clones.pop();
         if (wrists === 'Astral')
           return output.dark();
 

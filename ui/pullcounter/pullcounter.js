@@ -4,7 +4,7 @@ import Regexes from '../../resources/regexes.js';
 import UserConfig from '../../resources/user_config.js';
 import ZoneId from '../../resources/zone_id.js';
 
-let Options = {
+const Options = {
   Language: 'en',
 };
 

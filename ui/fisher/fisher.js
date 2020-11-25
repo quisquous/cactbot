@@ -4,7 +4,7 @@ import UserConfig from '../../resources/user_config.js';
 
 import '../../resources/common.js';
 
-let Options = {
+const Options = {
   IQRHookQuantity: 100,
   IQRTugQuantity: 10,
   Colors: {
@@ -162,7 +162,7 @@ class Fisher {
       }));
     }
 
-    let _this = this;
+    const _this = this;
     this.hookTimes = {};
     this.tugTypes = {};
 
@@ -173,8 +173,8 @@ class Fisher {
     let queue = this.placeFish.length * 2;
 
     return new Promise(((resolve, reject) => {
-      for (let index in _this.placeFish) {
-        let fish = _this.placeFish[index];
+      for (const index in _this.placeFish) {
+        const fish = _this.placeFish[index];
 
         // Get the hook min and max times for the fish/bait/chum combo
         _this.seaBase.getHookTimes(fish, _this.getActiveBait(), _this.chum)
@@ -240,7 +240,7 @@ class Fisher {
     // due to differing cast vs location names.
     if (this.place.id)
       this.ui.setPlace(this.place.name);
-    let _this = this;
+    const _this = this;
 
     this.updateFishData().then(() => {
       _this.ui.startFishing();
@@ -314,7 +314,7 @@ class Fisher {
   handleChumFade() {
     // Chum fades just before the catch appears, so we need to
     // delay it to record the catch with chum active
-    let _this = this;
+    const _this = this;
     setTimeout(() => {
       _this.chum = false;
     }, 1000);
@@ -340,7 +340,7 @@ class Fisher {
   parseLine(log) {
     let result = null;
 
-    for (let type in this.regex[Options.ParserLanguage]) {
+    for (const type in this.regex[Options.ParserLanguage]) {
       result = this.regex[Options.ParserLanguage][type].exec(log);
       if (result) {
         switch (type) {

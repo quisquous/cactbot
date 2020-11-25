@@ -29,7 +29,7 @@ export class LineEvent0x14 extends LineEvent {
   }
 
   convert() {
-    let target = this.targetName.length === 0 ? 'Unknown' : this.targetName;
+    const target = this.targetName.length === 0 ? 'Unknown' : this.targetName;
 
     this.convertedLine = this.prefix() +
       this.abilityId + ':' +

@@ -122,7 +122,7 @@ export default {
       condition: Conditions.targetIsYou(),
       alertText: function(data, matches, output) {
         let num = parseInt(matches.id);
-        let isTriangle = num >= 95;
+        const isTriangle = num >= 95;
         num -= 90;
         if (isTriangle)
           num -= 4;
@@ -404,7 +404,7 @@ export default {
         return matches.target === data.me ? 0 : 1;
       },
       alertText: function(data, matches, output) {
-        let t = parseFloat(matches.duration);
+        const t = parseFloat(matches.duration);
         if (data.me !== matches.target)
           return;
         if (!(t > 0))
@@ -415,7 +415,7 @@ export default {
         return output.longStackOnYou();
       },
       infoText: function(data, matches, output) {
-        let t = parseFloat(matches.duration);
+        const t = parseFloat(matches.duration);
         if (data.me === matches.target)
           return;
         if (!data.dpsShortStack)
@@ -520,7 +520,7 @@ export default {
       infoText: function(data, _, output) {
         if (data.me in data.archiveMarkers)
           return;
-        for (let player in data.archiveMarkers) {
+        for (const player in data.archiveMarkers) {
           if (data.archiveMarkers[player] !== '003E')
             continue;
           return output.text({ player: data.ShortName(player) });
@@ -622,7 +622,7 @@ export default {
         return data.numArms === 3;
       },
       alertText: function(data, _, output) {
-        let v = parseInt(data.armValue);
+        const v = parseInt(data.armValue);
         if (!(v >= 0) || v > 7)
           return;
         return {

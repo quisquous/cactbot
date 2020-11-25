@@ -45,7 +45,7 @@ class OopsyConfigurator {
   buildUI(container, files) {
     const fileMap = this.processOopsyFiles(files);
 
-    let expansionDivs = {};
+    const expansionDivs = {};
 
     for (const key in fileMap) {
       const info = fileMap[key];
@@ -55,11 +55,11 @@ class OopsyConfigurator {
         continue;
 
       if (!expansionDivs[expansion]) {
-        let expansionContainer = document.createElement('div');
+        const expansionContainer = document.createElement('div');
         expansionContainer.classList.add('trigger-expansion-container', 'collapsed');
         container.appendChild(expansionContainer);
 
-        let expansionHeader = document.createElement('div');
+        const expansionHeader = document.createElement('div');
         expansionHeader.classList.add('trigger-expansion-header');
         expansionHeader.onclick = () => {
           expansionContainer.classList.toggle('collapsed');
@@ -70,21 +70,21 @@ class OopsyConfigurator {
         expansionDivs[expansion] = expansionContainer;
       }
 
-      let triggerContainer = document.createElement('div');
+      const triggerContainer = document.createElement('div');
       triggerContainer.classList.add('trigger-file-container', 'collapsed');
       expansionDivs[expansion].appendChild(triggerContainer);
 
-      let headerDiv = document.createElement('div');
+      const headerDiv = document.createElement('div');
       headerDiv.classList.add('trigger-file-header');
       headerDiv.onclick = () => {
         triggerContainer.classList.toggle('collapsed');
       };
 
-      let parts = [info.title, info.type, expansion];
+      const parts = [info.title, info.type, expansion];
       for (let i = 0; i < parts.length; ++i) {
         if (!parts[i])
           continue;
-        let partDiv = document.createElement('div');
+        const partDiv = document.createElement('div');
         partDiv.classList.add('trigger-file-header-part');
         partDiv.innerText = parts[i];
         headerDiv.appendChild(partDiv);
@@ -92,19 +92,19 @@ class OopsyConfigurator {
 
       triggerContainer.appendChild(headerDiv);
 
-      let triggerOptions = document.createElement('div');
+      const triggerOptions = document.createElement('div');
       triggerOptions.classList.add('trigger-file-options');
       triggerContainer.appendChild(triggerOptions);
 
       for (const trigger of info.triggers) {
         // Build the trigger label.
-        let triggerDiv = document.createElement('div');
+        const triggerDiv = document.createElement('div');
         triggerDiv.innerHTML = trigger.id;
         triggerDiv.classList.add('trigger');
         triggerOptions.appendChild(triggerDiv);
 
         // Container for the right side ui (select boxes, all of the info).
-        let triggerDetails = document.createElement('div');
+        const triggerDetails = document.createElement('div');
         triggerDetails.classList.add('trigger-details');
         triggerOptions.appendChild(triggerDetails);
 
@@ -114,24 +114,24 @@ class OopsyConfigurator {
   }
 
   buildTriggerOptions(id, labelDiv) {
-    let kField = 'Output';
-    let div = document.createElement('div');
+    const kField = 'Output';
+    const div = document.createElement('div');
     div.classList.add('trigger-options');
 
-    let updateLabel = (input) => {
+    const updateLabel = (input) => {
       if (input.value === 'hidden' || input.value === 'disabled')
         labelDiv.classList.add('disabled');
       else
         labelDiv.classList.remove('disabled');
     };
 
-    let input = document.createElement('select');
+    const input = document.createElement('select');
     div.appendChild(input);
 
-    let selectValue = this.base.getOption(this.optionKey, 'triggers', id, kField, 'default');
+    const selectValue = this.base.getOption(this.optionKey, 'triggers', id, kField, 'default');
 
     for (const key in kTriggerOptions) {
-      let elem = document.createElement('option');
+      const elem = document.createElement('option');
       elem.innerHTML = this.base.translate(kTriggerOptions[key].label);
       elem.value = key;
       elem.selected = key === selectValue;
@@ -152,9 +152,9 @@ class OopsyConfigurator {
   }
 
   processOopsyFiles(files) {
-    let map = this.base.processFiles(files);
+    const map = this.base.processFiles(files);
 
-    for (let [key, item] of Object.entries(map)) {
+    for (const [key, item] of Object.entries(map)) {
       item.triggers = [];
       const triggerSet = item.triggerSet;
       for (const prop of oopsyHelpers) {
@@ -187,12 +187,12 @@ UserConfig.registerOptions('oopsyraidsy', {
   },
   processExtraOptions: (options, savedConfig) => {
     options['PerTriggerAutoConfig'] = options['PerTriggerAutoConfig'] || {};
-    let triggers = savedConfig.triggers;
+    const triggers = savedConfig.triggers;
     if (!triggers)
       return;
 
     for (const id in triggers) {
-      let output = triggers[id]['Output'];
+      const output = triggers[id]['Output'];
       if (!output)
         continue;
 

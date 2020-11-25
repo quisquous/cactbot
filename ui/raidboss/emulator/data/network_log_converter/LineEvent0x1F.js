@@ -8,12 +8,12 @@ export class LineEvent0x1F extends LineEvent {
 
     this.id = parts[2].toUpperCase();
 
-    let bytes1 = EmulatorCommon.zeroPad(parts[3], 8);
-    let bytes2 = EmulatorCommon.zeroPad(parts[4], 8);
-    let bytes3 = EmulatorCommon.zeroPad(parts[5], 8);
-    let bytes4 = EmulatorCommon.zeroPad(parts[6], 8);
+    const bytes1 = EmulatorCommon.zeroPad(parts[3], 8);
+    const bytes2 = EmulatorCommon.zeroPad(parts[4], 8);
+    const bytes3 = EmulatorCommon.zeroPad(parts[5], 8);
+    const bytes4 = EmulatorCommon.zeroPad(parts[6], 8);
 
-    let splitFunc = (s) => [
+    const splitFunc = (s) => [
       s.substr(6, 2),
       s.substr(4, 2),
       s.substr(2, 2),

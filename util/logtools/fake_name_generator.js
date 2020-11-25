@@ -112,7 +112,7 @@ export default class FakeNameGenerator {
 
   makeUniqueMiqoteName(id) {
     // Turn id into a lowercase string of letters.
-    let randomStr = id.toString(26).split('').map((c) => {
+    const randomStr = id.toString(26).split('').map((c) => {
       // shift [0-9] to [a-j]
       if (c.match(/\d/) !== null)
         return String.fromCharCode(parseInt(c) + 'a'.charCodeAt());

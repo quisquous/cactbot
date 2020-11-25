@@ -204,8 +204,8 @@ export default {
       },
       durationSeconds: 7,
       alertText: function(data, matches, output) {
-        let x = matches.x;
-        let y = matches.y;
+        const x = matches.x;
+        const y = matches.y;
 
         if (data.phase === 'armor') {
           // Three line bombs (middle, e/w, w/e), with seismic wave.
@@ -218,8 +218,8 @@ export default {
           }
         } else if (data.phase === 'landslide') {
           // Landslide cardinals/corners + middle, followed by remaining 4.
-          let xMiddle = x < 105 && x > 95;
-          let yMiddle = y < 105 && y > 95;
+          const xMiddle = x < 105 && x > 95;
+          const yMiddle = y < 105 && y > 95;
           // Ignore middle point, which may come first.
           if (xMiddle && yMiddle)
             return;

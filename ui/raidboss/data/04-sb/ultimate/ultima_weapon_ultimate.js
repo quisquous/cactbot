@@ -233,7 +233,7 @@ export default {
       alertText: function(data, _, output) {
         if (data.titanGaols.length !== 3)
           return;
-        let idx = data.titanGaols.indexOf(data.me);
+        const idx = data.titanGaols.indexOf(data.me);
         if (idx < 0)
           return;
         // Just return your number.

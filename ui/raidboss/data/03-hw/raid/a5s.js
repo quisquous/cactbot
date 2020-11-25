@@ -15,7 +15,7 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // TODO: is it worth calling out a safe spot for the second boost?
 // There's some notes below, but good words for directions are hard.
 
-let bombLocation = (matches) => {
+const bombLocation = (matches) => {
   // x = -15, -5, +5, +15 (east to west)
   // y = -205, -195, -185, -175 (north to south)
   return {
@@ -189,7 +189,7 @@ export default {
           if (data.boostBombs.length !== 1)
             return;
           // index 0 = NW, 3 = NE, 12 = SW, 15 = SE
-          let index = data.boostBombs[0].x + data.boostBombs[0].y * 4;
+          const index = data.boostBombs[0].x + data.boostBombs[0].y * 4;
           return {
             0: output.northwestFirst(),
             3: output.northeastFirst(),

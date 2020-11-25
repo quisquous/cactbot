@@ -39,7 +39,7 @@ export default class LineEvent {
       return 0;
 
     damage = EmulatorCommon.zeroPad(damage, 8);
-    let parts = [
+    const parts = [
       damage.substr(0, 2),
       damage.substr(2, 2),
       damage.substr(4, 2),
