@@ -173,17 +173,34 @@ def parse_file(args):
                 started = True
                 last_ability_time = e_tools.parse_event_time(line)
 
+            # We cull non-useful lines before potentially more expensive operations.
+            if not line[0:2] in ["00", "21", "22", "34"]:
+                continue
+
+            line_fields = line.split("|")
+
+            # If it's a zone seal, we want to make a special entry.
+            if e_tools.is_zone_seal(line_fields):
+                entry = make_entry(
+                    {
+                        "line_type": "zone_seal",
+                        "time": e_tools.parse_event_time(line),
+                        "zone_message": line_fields[4].split(" will be sealed off")[0],
+                    }
+                )
+                entries.append(entry)
+                continue
+
             # We're looking for enemy casts or enemies becoming targetable/untargetable.
             # These lines will start with 21, 22, or 34, and have an NPC ID (400#####)
-            # If this isn't one, skip the line
+            # If none of these apply, skip the line
 
-            if not (line[0:2] in ["21", "22", "34"]) or not line[37:40] == "400":
+            if not line[0:2] in ["21", "22", "34"] or not line[37:40] == "400":
                 continue
-            line_fields = line.split("|")
+
             # We aren't including targetable lines unless the user explicitly says to.
             if line[0:2] == "34" and not line_fields[3] in args.include_targetable:
                 continue
-
             # At this point, we have a combat line for the timeline.
             entry = make_entry(
                 {
@@ -266,7 +283,15 @@ def main(args):
     last_entry = make_entry({})
 
     output = []
-    output.append('0 "Start" sync /Engage!/ window 0,1')
+    if entries[0]["line_type"] and entries[0]["line_type"] == "zone_seal":
+        output.append(
+            '0 "Start" sync /00:0839:{} will be sealed off/ window 0,1'.format(
+                entries[0]["zone_message"].title()
+            )
+        )
+        entries.pop(0)
+    else:
+        output.append('0 "Start" sync /Engage!/ window 0,1')
 
     for entry in entries:
 
