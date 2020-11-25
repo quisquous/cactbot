@@ -1,0 +1,14 @@
+{
+  "files.associations": {
+    "**/data/**/*.txt": "cactbot-timeline"
+  },
+  "files.exclude": {
+    ".git": true,
+  },
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "search.exclude": {
+    "**/node_modules": true,
+    "dist/**": true
+  }
+}
