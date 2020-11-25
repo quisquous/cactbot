@@ -2,12 +2,12 @@ import NetRegexes from '../../../../resources/netregexes.js';
 import ZoneId from '../../../../resources/zone_id.js';
 
 // Abilities seem instant.
-let abilityCollectSeconds = 0.5;
+const abilityCollectSeconds = 0.5;
 // Observation: up to ~1.2 seconds for a buff to roll through the party.
-let effectCollectSeconds = 2.0;
+const effectCollectSeconds = 2.0;
 
 // args: triggerId, netRegex, field, type, ignoreSelf
-let missedFunc = (args) => {
+const missedFunc = (args) => {
   return {
     // Sure, not all of these are "buffs" per se, but they're all in the buffs file.
     id: 'Buff ' + args.triggerId,
@@ -27,11 +27,11 @@ let missedFunc = (args) => {
     },
     collectSeconds: args.collectSeconds,
     mistake: function(allEvents, data, allMatches) {
-      let partyNames = data.party.partyNames;
+      const partyNames = data.party.partyNames;
 
       // TODO: consider dead people somehow
-      let gotBuffMap = {};
-      for (let name of partyNames)
+      const gotBuffMap = {};
+      for (const name of partyNames)
         gotBuffMap[name] = false;
 
       const firstMatch = allMatches[0];
@@ -53,7 +53,7 @@ let missedFunc = (args) => {
         gotBuffMap[sourceName] = true;
 
       const thingName = firstMatch[args.field];
-      for (let matches of allMatches) {
+      for (const matches of allMatches) {
         // In case you have multiple party members who hit the same cooldown at the same
         // time (lol?), then ignore anybody who wasn't the first.
         if (matches.source !== firstMatch.source)
@@ -62,7 +62,7 @@ let missedFunc = (args) => {
         gotBuffMap[matches.target] = true;
       }
 
-      let missed = Object.keys(gotBuffMap).filter((x) => !gotBuffMap[x]);
+      const missed = Object.keys(gotBuffMap).filter((x) => !gotBuffMap[x]);
       if (missed.length === 0)
         return;
 
@@ -99,7 +99,7 @@ let missedFunc = (args) => {
   };
 };
 
-let missedMitigationBuff = (args) => {
+const missedMitigationBuff = (args) => {
   if (!args.effectId)
     console.error('Missing effectId: ' + JSON.stringify(args));
   return missedFunc({
@@ -112,7 +112,7 @@ let missedMitigationBuff = (args) => {
   });
 };
 
-let missedDamageBuff = (args) => {
+const missedDamageBuff = (args) => {
   if (!args.effectId)
     console.error('Missing effectId: ' + JSON.stringify(args));
   return missedFunc({
@@ -125,7 +125,7 @@ let missedDamageBuff = (args) => {
   });
 };
 
-let missedDamageAbility = (args) => {
+const missedDamageAbility = (args) => {
   if (!args.abilityId)
     console.error('Missing abilityId: ' + JSON.stringify(args));
   return missedFunc({
@@ -138,7 +138,7 @@ let missedDamageAbility = (args) => {
   });
 };
 
-let missedHeal = (args) => {
+const missedHeal = (args) => {
   if (!args.abilityId)
     console.error('Missing abilityId: ' + JSON.stringify(args));
   return missedFunc({
@@ -150,7 +150,7 @@ let missedHeal = (args) => {
   });
 };
 
-let missedMitigationAbility = missedHeal;
+const missedMitigationAbility = missedHeal;
 
 export default {
   zoneId: ZoneId.MatchAll,

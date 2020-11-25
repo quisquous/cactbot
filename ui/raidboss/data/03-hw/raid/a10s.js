@@ -156,7 +156,7 @@ export default {
 
         // Call the first one out with alert, the other two with info.
         data.charges = data.charges || [];
-        let severity = data.charges.length > 1 ? 'infoText' : 'alertText';
+        const severity = data.charges.length > 1 ? 'infoText' : 'alertText';
         return { [severity]: output[data.charges[data.charges.length - 1]]() };
       },
     },

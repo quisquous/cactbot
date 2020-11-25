@@ -13,8 +13,8 @@ export default class ProgressBar {
     this.emulator = emulator;
     this.$progress.addEventListener('mousemove', (e) => {
       if (this.emulator.currentEncounter) {
-        let percent = e.offsetX / e.currentTarget.offsetWidth;
-        let time = Math.floor(this.emulator.currentEncounter.encounter.duration * percent) -
+        const percent = e.offsetX / e.currentTarget.offsetWidth;
+        const time = Math.floor(this.emulator.currentEncounter.encounter.duration * percent) -
           this.emulator.currentEncounter.encounter.initialOffset;
         this.$progressBarTooltip.offset.x = e.offsetX - (e.currentTarget.offsetWidth / 2);
         this.$progressBarTooltip.setText(EmulatorCommon.timeToString(time));
@@ -23,8 +23,8 @@ export default class ProgressBar {
     });
     this.$progress.addEventListener('click', (e) => {
       if (this.emulator.currentEncounter) {
-        let percent = e.offsetX / e.currentTarget.offsetWidth;
-        let time = Math.floor(this.emulator.currentEncounter.encounter.duration * percent);
+        const percent = e.offsetX / e.currentTarget.offsetWidth;
+        const time = Math.floor(this.emulator.currentEncounter.encounter.duration * percent);
         this.emulator.seek(time);
       }
     });
@@ -38,22 +38,22 @@ export default class ProgressBar {
       if (isNaN(encounter.encounter.initialOffset)) {
         this.$engageIndicator.classList.add('d-none');
       } else {
-        let initialPercent =
+        const initialPercent =
           (encounter.encounter.initialOffset / emulator.currentEncounter.encounter.duration) * 100;
         this.$engageIndicator.classList.remove('d-none');
         this.$engageIndicator.style.left = initialPercent + '%';
       }
     });
     emulator.on('tick', (timestampOffset) => {
-      let progPercent = (timestampOffset / emulator.currentEncounter.encounter.duration) * 100;
+      const progPercent = (timestampOffset / emulator.currentEncounter.encounter.duration) * 100;
       this.$progressBarCurrent.textContent = EmulatorCommon.timeToString(
           timestampOffset - emulator.currentEncounter.encounter.initialOffset,
           false);
       this.$progressBar.setAttribute('ariaValueNow', timestampOffset - emulator.currentEncounter.encounter.initialOffset);
       this.$progressBar.style.width = progPercent + '%';
     });
-    let $play = document.querySelector('.progressBarRow button.play');
-    let $pause = document.querySelector('.progressBarRow button.pause');
+    const $play = document.querySelector('.progressBarRow button.play');
+    const $pause = document.querySelector('.progressBarRow button.pause');
     $play.addEventListener('click', () => {
       if (this.emulator.play()) {
         $play.classList.add('d-none');

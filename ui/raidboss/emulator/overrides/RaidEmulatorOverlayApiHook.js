@@ -35,16 +35,16 @@ export default class RaidEmulatorOverlayApiHook {
   call(msg) {
     if (msg.call === 'getCombatants') {
       return new Promise((res) => {
-        let combatants = [];
-        let tracker = this.emulator.currentEncounter.encounter.combatantTracker;
-        let timestamp = this.emulator.currentEncounter.encounter.startTimestamp +
+        const combatants = [];
+        const tracker = this.emulator.currentEncounter.encounter.combatantTracker;
+        const timestamp = this.emulator.currentEncounter.encounter.startTimestamp +
           this.timestampOffset;
 
-        for (let id in tracker.combatants) {
-          let combatant = tracker.combatants[id];
+        for (const id in tracker.combatants) {
+          const combatant = tracker.combatants[id];
           // nextSignificantState is a bit inefficient but given that this isn't run every tick
           // we can afford to be a bit inefficient for readability's sake
-          let combatantState = combatant.nextSignificantState(timestamp);
+          const combatantState = combatant.nextSignificantState(timestamp);
           if (msg.ids && msg.ids.includes(id))
             combatants.push(combatantState);
           else if (msg.names && msg.names.includes(tracker.combatants[id].name))

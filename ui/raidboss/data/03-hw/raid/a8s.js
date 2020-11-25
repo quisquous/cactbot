@@ -330,7 +330,7 @@ export default {
       netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
       infoText: function(data, matches, output) {
         // 0040 = 2, 0041 = 3, 0042 = 4
-        let count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
+        const count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
         return output.text({ player: data.ShortName(matches.target), count: count });
       },
       outputStrings: {
@@ -424,7 +424,7 @@ export default {
       alertText: function(data, _, output) {
         if (data.longNeedlePrey.includes(data.me))
           return;
-        let target = data.longNeedleStack;
+        const target = data.longNeedleStack;
         if (target === data.me)
           return output.stackOnYou();
 

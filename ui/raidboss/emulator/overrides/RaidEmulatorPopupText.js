@@ -20,8 +20,8 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
 
   async doUpdate(timestampOffset) {
     this.emulatedOffset = timestampOffset;
-    for (let t of this.scheduledTriggers) {
-      let remaining = t.expires - timestampOffset;
+    for (const t of this.scheduledTriggers) {
+      const remaining = t.expires - timestampOffset;
       if (remaining <= 0) {
         t.resolver();
         await t.promise;
@@ -31,7 +31,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
       return t.expires - timestampOffset > 0;
     });
     this.displayedText = this.displayedText.filter((t) => {
-      let remaining = t.expires - timestampOffset;
+      const remaining = t.expires - timestampOffset;
       if (remaining > 0) {
         t.element.querySelector('.popup-text-remaining').textContent = '(' + (remaining / 1000).toFixed(1) + ')';
         return true;
@@ -63,7 +63,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
     });
     emulator.on('preSeek', (time) => {
       this.seeking = true;
-      for (let i of this.scheduledTriggers)
+      for (const i of this.scheduledTriggers)
         i.rejecter();
 
       this.scheduledTriggers = [];
@@ -79,7 +79,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
       }, 5);
     });
     emulator.on('currentEncounterChanged', () => {
-      for (let i of this.scheduledTriggers)
+      for (const i of this.scheduledTriggers)
         i.rejecter();
 
       this.scheduledTriggers = [];
@@ -95,20 +95,20 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
   }
 
   _createTextFor(text, textType, lowerTextKey, duration) {
-    let textElementClass = textType + '-text';
-    let e = this._makeTextElement(text, textElementClass);
+    const textElementClass = textType + '-text';
+    const e = this._makeTextElement(text, textElementClass);
     this.addDisplayText(e, this.emulatedOffset + (duration * 1000));
   }
 
   _onTriggerInternalDelaySeconds(triggerHelper) {
-    let delay = 'delaySeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds) : 0;
+    const delay = 'delaySeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds) : 0;
 
     if (!delay || delay <= 0)
       return null;
 
     let resolver;
     let rejecter;
-    let ret = new Promise((res, rej) => {
+    const ret = new Promise((res, rej) => {
       resolver = res;
       rejecter = rej;
     });
@@ -124,7 +124,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
   _playAudioFile(url, volume) {
     if (![this.options.InfoSound, this.options.AlertSound, this.options.AlarmSound]
       .includes(url)) {
-      let div = this._makeTextElement(url, 'audio-file');
+      const div = this._makeTextElement(url, 'audio-file');
       this.addDisplayText(div, this.emulatedOffset + this.audioDebugTextDuration);
     }
     if (this.seeking)
@@ -136,20 +136,20 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
     if (this.seeking)
       return;
 
-    let div = this._makeTextElement(ttsText, 'tts-text');
+    const div = this._makeTextElement(ttsText, 'tts-text');
     this.addDisplayText(div, this.emulatedOffset + this.audioDebugTextDuration);
     super.ttsSay(ttsText);
   }
 
   _makeTextElement(text, className) {
-    let $ret = this.$textElementTemplate.cloneNode(true);
+    const $ret = this.$textElementTemplate.cloneNode(true);
     $ret.classList.add(className);
     $ret.querySelector('.popup-text').textContent = text;
     return $ret;
   }
 
   addDisplayText($e, endTimestamp) {
-    let remaining = (endTimestamp - this.emulatedOffset) / 1000;
+    const remaining = (endTimestamp - this.emulatedOffset) / 1000;
     $e.querySelector('.popup-text-remaining').textContent = '(' + remaining.toFixed(1) + ')';
     this.$popupTextContainerWrapper.append($e);
     this.displayedText.push({

@@ -18,7 +18,7 @@ export default class AnalyzedEncounter extends EventBus {
   }
 
   selectPerspective(ID) {
-    let partyMember = this.encounter.combatantTracker.combatants[ID];
+    const partyMember = this.encounter.combatantTracker.combatants[ID];
     this.popupText.OnPlayerChange({
       detail: {
         name: partyMember.name,

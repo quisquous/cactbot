@@ -5,7 +5,7 @@ import UserConfig from '../../resources/user_config.js';
 import './radar_config.js';
 import '../../resources/common.js';
 
-let Options = {
+const Options = {
   PopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
   RankOptions: {
     'S': {
@@ -73,8 +73,8 @@ class Point2D {
 }
 
 function posToMap(h) {
-  let offset = 21.5;
-  let pitch = 0.02;
+  const offset = 21.5;
+  const pitch = 0.02;
   return h * pitch + offset;
 }
 
@@ -86,7 +86,7 @@ function PlaySound(monster, options) {
       text: monster.rank + ' ' + monster.name,
     });
   } else if (options.PopSoundAlert && options.PopSound && options.PopVolume) {
-    let audio = new Audio(options.PopSound);
+    const audio = new Audio(options.PopSound);
     audio.volume = options.PopVolume;
     audio.play();
   }
@@ -106,9 +106,9 @@ class Radar {
       instanceChangedRegexes[this.options.ParserLanguage] ||
       instanceChangedRegexes['en'];
 
-    for (let i in this.monsters) {
-      let monster = this.monsters[i];
-      let lang = this.lang || 'en';
+    for (const i in this.monsters) {
+      const monster = this.monsters[i];
+      const lang = this.lang || 'en';
       monster.name = monster.name[lang] || monster.name['en'];
 
       // Names are either strings or arrays of strings.
@@ -147,17 +147,17 @@ class Radar {
         return;
     }
 
-    let mobKey = matches.name.toLowerCase();
+    const mobKey = matches.name.toLowerCase();
     if (mobKey in this.targetMonsters) {
       // Get positions
-      let playerPos = new Point2D(this.playerPos.x, this.playerPos.y);
-      let oldPos = this.targetMonsters[mobKey].pos;
-      let newPos =
+      const playerPos = new Point2D(this.playerPos.x, this.playerPos.y);
+      const oldPos = this.targetMonsters[mobKey].pos;
+      const newPos =
         new Point2D(parseFloat(matches.x), parseFloat(matches.y));
 
       // Calculate distances
-      let oldDistance = playerPos.distance(oldPos);
-      let newDistance = playerPos.distance(newPos);
+      const oldDistance = playerPos.distance(oldPos);
+      const newDistance = playerPos.distance(newPos);
 
       // Update position only if its closer than the current one
       if (newDistance < oldDistance) {
@@ -173,10 +173,10 @@ class Radar {
       }
     } else {
       // Add DOM
-      let arrowId = 'arrow-' + matches.id;
-      let tr = document.createElement('tr');
+      const arrowId = 'arrow-' + matches.id;
+      const tr = document.createElement('tr');
       let th = document.createElement('th');
-      let img = document.createElement('img');
+      const img = document.createElement('img');
       img.setAttribute('id', arrowId);
       img.setAttribute('src', 'arrow.png');
       img.setAttribute('class', 'radar-image-40');
@@ -189,7 +189,7 @@ class Radar {
       tr.appendChild(th);
       this.table.insertBefore(tr, this.table.childNodes[0]);
 
-      let m = {
+      const m = {
         'id': matches.id,
         'name': matches.name,
         'rank': monster.rank || '',
@@ -226,11 +226,14 @@ class Radar {
     let options = this.options;
     if (monster.rank in options.RankOptions)
       options = Object.assign({}, this.options, options.RankOptions[monster.rank]);
-    let tr = monster.dom;
+    const tr = monster.dom;
     // calculate rotation based on facing
-    let playerVector = new Point2D(this.playerPos.x, this.playerPos.y);
-    let targetVector = monster.pos;
-    let deltaVector = new Point2D(targetVector.x - playerVector.x, targetVector.y - playerVector.y);
+    const playerVector = new Point2D(this.playerPos.x, this.playerPos.y);
+    const targetVector = monster.pos;
+    const deltaVector = new Point2D(
+        targetVector.x - playerVector.x,
+        targetVector.y - playerVector.y,
+    );
     if (tr) {
       tr.childNodes[1].innerHTML = monster.rank + '&nbsp;&nbsp;&nbsp;&nbsp;' + monster.name;
       if (Math.abs(this.playerPos.z - monster.posZ) > 5)
@@ -256,9 +259,9 @@ class Radar {
 
     let deltaTheta = Math.atan2(deltaVector.y, deltaVector.x);
     deltaTheta -= Math.PI - this.playerRotation;
-    let angle = deltaTheta * 180 / Math.PI;
-    let arrowId = 'arrow-' + monster.id;
-    let arrow = document.getElementById(arrowId);
+    const angle = deltaTheta * 180 / Math.PI;
+    const arrowId = 'arrow-' + monster.id;
+    const arrow = document.getElementById(arrowId);
     arrow.style.transform = 'rotate(' + angle + 'deg)';
   }
 
@@ -322,7 +325,7 @@ class Radar {
     this.playerPos.y = e.detail.pos.y;
     this.playerPos.z = e.detail.pos.z;
     this.playerRotation = e.detail.rotation;
-    for (let i in this.targetMonsters)
+    for (const i in this.targetMonsters)
       this.UpdateMonsterDom(this.targetMonsters[i]);
   }
 
@@ -331,8 +334,8 @@ class Radar {
   }
 
   ClearTargetMonsters(deltaTime) {
-    let deltaTimeThreshold = deltaTime || 0;
-    for (let i in this.targetMonsters) {
+    const deltaTimeThreshold = deltaTime || 0;
+    for (const i in this.targetMonsters) {
       if ((Date.now() - this.targetMonsters[i].addTime) / 1000 > deltaTimeThreshold) {
         this.targetMonsters[i].dom.remove();
         delete this.targetMonsters[i];

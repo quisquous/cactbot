@@ -20,7 +20,7 @@ export default class CombatantTracker {
   }
 
   initialize(logLines) {
-    let keyedLogLines = {};
+    const keyedLogLines = {};
     // First pass: Get list of combatants, figure out where they
     // start at if possible, build our keyed log lines
     for (let i = 0; i < logLines.length; ++i) {
@@ -51,11 +51,11 @@ export default class CombatantTracker {
       }
     }
 
-    let sortedTimestamps = Object.keys(keyedLogLines).sort();
+    const sortedTimestamps = Object.keys(keyedLogLines).sort();
 
     // Between passes: Create our initial combatant states
-    for (let id in this.initialStates) {
-      let state = this.initialStates[id];
+    for (const id in this.initialStates) {
+      const state = this.initialStates[id];
       this.combatants[id].pushState(this.firstTimestamp, new CombatantState(
           Number(state.posX),
           Number(state.posY),
@@ -70,9 +70,9 @@ export default class CombatantTracker {
     }
 
     // Second pass: Analyze combatant information for tracking
-    let eventTracker = {};
+    const eventTracker = {};
     for (let i = 0; i < sortedTimestamps.length; ++i) {
-      let line = keyedLogLines[sortedTimestamps[i]];
+      const line = keyedLogLines[sortedTimestamps[i]];
       let state = this.extractStateFromLine(line);
       if (state) {
         eventTracker[line.id] = eventTracker[line.id] || 0;
@@ -88,7 +88,7 @@ export default class CombatantTracker {
     }
 
     // Figure out party/enemy/other status
-    let petNames = PetNamesByLang[this.language];
+    const petNames = PetNamesByLang[this.language];
     this.others = this.others.filter((ID) => {
       if (this.combatants[ID].job !== null &&
         this.combatants[ID].job !== 'NONE' &&
@@ -116,9 +116,9 @@ export default class CombatantTracker {
       return;
 
     this.initCombatant(line.id, line.name, line.timestamp);
-    let initState = this.initialStates[line.id];
+    const initState = this.initialStates[line.id];
 
-    let extractedState = this.extractStateFromLine(line);
+    const extractedState = this.extractStateFromLine(line);
 
     initState.timestamp = Math.min(initState.timestamp, line.timestamp);
     initState.posX = initState.posX || extractedState.posX || null;
@@ -146,9 +146,9 @@ export default class CombatantTracker {
       return;
 
     this.initCombatant(line.targetId, line.targetName, line.timestamp);
-    let initState = this.initialStates[line.targetId];
+    const initState = this.initialStates[line.targetId];
 
-    let extractedState = this.extractStateFromTargetLine(line);
+    const extractedState = this.extractStateFromTargetLine(line);
 
     initState.posX = initState.posX || extractedState.posX || null;
     initState.posY = initState.posY || extractedState.posY || null;
@@ -164,7 +164,7 @@ export default class CombatantTracker {
     if (!line.id)
       return false;
 
-    let state = {};
+    const state = {};
 
     if (line.x !== undefined) state.posX = line.x;
     if (line.y !== undefined) state.posY = line.y;
@@ -185,7 +185,7 @@ export default class CombatantTracker {
     if (!line.targetId)
       return false;
 
-    let state = {};
+    const state = {};
 
     if (line.targetX !== undefined) state.posX = line.targetX;
     if (line.targetY !== undefined) state.posY = line.targetY;

@@ -91,7 +91,7 @@ export default {
 
         if (data.betwixtWorldsStack.length === 1)
           return;
-        let names = data.betwixtWorldsStack.map((x) => data.ShortName(x)).sort();
+        const names = data.betwixtWorldsStack.map((x) => data.ShortName(x)).sort();
         return output.stackOn({ players: names.join(', ') });
       },
       outputStrings: {
@@ -288,7 +288,7 @@ export default {
 
         if (data.insatiableLightStack.length === 1)
           return;
-        let names = data.insatiableLightStack.map((x) => data.ShortName(x)).sort();
+        const names = data.insatiableLightStack.map((x) => data.ShortName(x)).sort();
         return output.stackPlayers({ players: names.join(', ') });
       },
       outputStrings: {
@@ -422,7 +422,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '4C5[CD]' }),
       run: function(data, matches) {
         data.boundless = data.boundless || {};
-        let oppositeColor = matches.id === '4C5C' ? 'dark' : 'light';
+        const oppositeColor = matches.id === '4C5C' ? 'dark' : 'light';
         data.boundless[oppositeColor] = matches.target;
       },
     },
@@ -437,7 +437,7 @@ export default {
       condition: function(data, matches) {
         if (Object.keys(data.boundless).length !== 2)
           return false;
-        let oppositeColor = matches.id === '4C5C' ? 'dark' : 'light';
+        const oppositeColor = matches.id === '4C5C' ? 'dark' : 'light';
         return data.color === oppositeColor;
       },
       response: function(data, matches, output) {
@@ -486,8 +486,8 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '(?:4C2C|4C65)', capture: false }),
       alertText: function(data, _, output) {
         data.colorMap = data.colorMap || [];
-        let colorTrans = data.colorMap[data.color] || {};
-        let color = colorTrans[data.displayLang];
+        const colorTrans = data.colorMap[data.color] || {};
+        const color = colorTrans[data.displayLang];
         if (!color)
           return;
         return output.text({ color: color });
@@ -595,8 +595,8 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C7E', capture: false }),
       alertText: function(data, _, output) {
         data.colorMap = data.colorMap || [];
-        let colorTrans = data.colorMap[data.color] || {};
-        let color = colorTrans[data.displayLang];
+        const colorTrans = data.colorMap[data.color] || {};
+        const color = colorTrans[data.displayLang];
         if (!color)
           return;
         return output.text({ color: color });

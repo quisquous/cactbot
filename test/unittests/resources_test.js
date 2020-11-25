@@ -33,7 +33,7 @@ const tests = {
   },
 };
 
-let keys = Object.keys(tests);
+const keys = Object.keys(tests);
 let exitCode = 0;
 for (const key of keys) {
   try {

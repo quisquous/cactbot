@@ -11,13 +11,13 @@ export default class Persistor extends EventBus {
   }
 
   initializeDB() {
-    let request = window.indexedDB.open('RaidEmulatorEncounters', Persistor.dbVersion);
+    const request = window.indexedDB.open('RaidEmulatorEncounters', Persistor.dbVersion);
     request.addEventListener('success', (ev) => {
       this.DB = ev.target.result;
       this.dispatch('ready');
     });
     request.addEventListener('upgradeneeded', (ev) => {
-      let promises = [];
+      const promises = [];
       let encountersStorage;
       let encounterSummariesStorage;
       // We deliberately avoid using breaks for this switch/case to allow
@@ -48,7 +48,7 @@ export default class Persistor extends EventBus {
       }));
 
       let completed = 0;
-      for (let i in promises) {
+      for (const i in promises) {
         promises[i].then(() => {
           ++completed;
           if (completed === promises.length) {
@@ -67,9 +67,9 @@ export default class Persistor extends EventBus {
       ret = new Promise((res) => {
         resolver = res;
       });
-      let encounter = EmulatorCommon.cloneData(baseEncounter, []);
+      const encounter = EmulatorCommon.cloneData(baseEncounter, []);
       delete encounter.combatantTracker;
-      let encountersStorage = this.encountersStorage;
+      const encountersStorage = this.encountersStorage;
       let req;
       if (encounter.id === null) {
         delete encounter.id;
@@ -79,9 +79,9 @@ export default class Persistor extends EventBus {
       }
       req.addEventListener('success', (ev) => {
         baseEncounter.id = encounter.id = ev.target.result;
-        let encounterSummariesStorage = this.encounterSummariesStorage;
-        let summary = new PersistorEncounter(baseEncounter);
-        let req2 = encounterSummariesStorage.put(summary);
+        const encounterSummariesStorage = this.encounterSummariesStorage;
+        const summary = new PersistorEncounter(baseEncounter);
+        const req2 = encounterSummariesStorage.put(summary);
         req2.addEventListener('success', (ev) => {
           resolver();
         });
@@ -95,11 +95,11 @@ export default class Persistor extends EventBus {
   loadEncounter(id) {
     return new Promise((res) => {
       if (this.DB !== null) {
-        let encountersStorage = this.encountersStorage;
-        let req = encountersStorage.get(id);
+        const encountersStorage = this.encountersStorage;
+        const req = encountersStorage.get(id);
         req.addEventListener('success', (ev) => {
-          let enc = req.result;
-          let ret = new Encounter(enc.encounterDay,
+          const enc = req.result;
+          const ret = new Encounter(enc.encounterDay,
               enc.encounterZoneId,
               enc.encounterZoneName,
               enc.logLines);
@@ -115,11 +115,11 @@ export default class Persistor extends EventBus {
   deleteEncounter(id) {
     return new Promise((res) => {
       if (this.DB !== null) {
-        let encountersStorage = this.encountersStorage;
-        let req = encountersStorage.delete(id);
+        const encountersStorage = this.encountersStorage;
+        const req = encountersStorage.delete(id);
         req.addEventListener('success', (ev) => {
-          let encounterSummariesStorage = this.encounterSummariesStorage;
-          let req = encounterSummariesStorage.delete(id);
+          const encounterSummariesStorage = this.encounterSummariesStorage;
+          const req = encounterSummariesStorage.delete(id);
           req.addEventListener('success', (ev) => {
             res(true);
           });
@@ -139,7 +139,7 @@ export default class Persistor extends EventBus {
   listEncounters(zoneName = null, startTimestamp = null, endTimestamp = null) {
     return new Promise((res) => {
       if (this.DB !== null) {
-        let encounterSummariesStorage = this.encounterSummariesStorage;
+        const encounterSummariesStorage = this.encounterSummariesStorage;
         let keyRange = null;
         let index = null;
         if (zoneName !== null) {
@@ -179,11 +179,11 @@ export default class Persistor extends EventBus {
 
   async clearDB() {
     let p1Res;
-    let p1 = new Promise((res) => {
+    const p1 = new Promise((res) => {
       p1Res = res;
     });
     let p2Res;
-    let p2 = new Promise((res) => {
+    const p2 = new Promise((res) => {
       p2Res = res;
     });
     this.encountersStorage.clear().addEventListener('success', () => {
@@ -197,12 +197,12 @@ export default class Persistor extends EventBus {
   }
 
   async exportDB() {
-    let ret = {
+    const ret = {
       encounters: [],
     };
-    let summaries = await this.listEncounters();
-    for (let summary of summaries) {
-      let enc = await this.loadEncounter(summary.id);
+    const summaries = await this.listEncounters();
+    for (const summary of summaries) {
+      const enc = await this.loadEncounter(summary.id);
       ret.encounters.push({
         encounterDay: EmulatorCommon.timeToDateString(summary.Start),
         encounterZoneName: summary.ZoneName,

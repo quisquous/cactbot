@@ -61,7 +61,7 @@ export default {
 
         // we need to filter for the Ifrit with the highest ID
         // since that one is always the safe spot.
-        let currentHighestCombatant =
+        const currentHighestCombatant =
           combatantData.combatants.sort((a, b) => a.ID - b.ID).pop();
 
         // all variation ranges for all the 9 ball positions for the kicking actors

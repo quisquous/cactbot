@@ -2,7 +2,7 @@ import ContentType from '../../resources/content_type.js';
 import { Util } from '../../resources/common.js';
 import ZoneInfo from '../../resources/zone_info.js';
 
-export let Options = {
+export const Options = {
   Language: 'en',
   IgnoreContentTypes: [
     ContentType.Pvp,
@@ -30,7 +30,7 @@ export const InitDpsModule = function(updateFunc, hideFunc) {
 
     // Don't bother showing the first "Infinity" dps right as
     // combat starts.
-    let dps = parseFloat(e.Encounter.encdps);
+    const dps = parseFloat(e.Encounter.encdps);
     if (dps <= 0 || dps === Infinity)
       return;
 
@@ -38,7 +38,7 @@ export const InitDpsModule = function(updateFunc, hideFunc) {
   });
 
   addOverlayListener('ChangeZone', (e) => {
-    let newZone = e.zoneName;
+    const newZone = e.zoneName;
     if (gCurrentZone === newZone)
       return;
     // Always hide on switching zones.
@@ -55,7 +55,7 @@ export const InitDpsModule = function(updateFunc, hideFunc) {
   });
 
   addOverlayListener('onPlayerChangedEvent', (e) => {
-    let job = e.detail.job;
+    const job = e.detail.job;
     if (job === gCurrentJob)
       return;
     gCurrentJob = job;

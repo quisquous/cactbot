@@ -57,7 +57,7 @@ export default {
       },
       infoText: function(data, _, output) {
         if (data.markers.length === 2) {
-          let sameMarkers = data.markers[0] === data.markers[1];
+          const sameMarkers = data.markers[0] === data.markers[1];
           delete data.markers;
           if (sameMarkers)
             return output.closeToBoss();

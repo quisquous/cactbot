@@ -63,7 +63,7 @@ export default {
       damageRegex: '4B9D',
       suppressSeconds: 30,
       mistake: function(e, data) {
-        for (let m of data.cloudMarkers) {
+        for (const m of data.cloudMarkers) {
           return {
             type: 'fail',
             blame: data.cloudMarkers[m],

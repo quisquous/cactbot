@@ -35,80 +35,80 @@ const errorFunc = (str) => {
   exitCode = 1;
 };
 
-let testValidTriggerRegexLanguage = function(file, contents) {
-  let unsupportedRegexLanguage = /(?:regex|triggerRegex)(?!:|Cn|De|Fr|Ko|Ja)\w*\s*:/g;
-  let results = contents.match(unsupportedRegexLanguage);
+const testValidTriggerRegexLanguage = function(file, contents) {
+  const unsupportedRegexLanguage = /(?:regex|triggerRegex)(?!:|Cn|De|Fr|Ko|Ja)\w*\s*:/g;
+  const results = contents.match(unsupportedRegexLanguage);
   if (results && results.length > 0) {
     for (const result of results)
       errorFunc(`${file}: invalid regex language '${result}'`);
   }
 };
 
-let createTriggerRegexString = function(string) {
+const createTriggerRegexString = function(string) {
   return new RegExp(`(?:regex|triggerRegex)(?:|\\w{2}): \/${string}\/`, 'g');
 };
 
-let testWellFormedNewCombatantTriggerRegex = function(file, contents) {
+const testWellFormedNewCombatantTriggerRegex = function(file, contents) {
   // Escape the escapes so they can escape the escape in the parsed regex.
-  let newCombatantRegex = createTriggerRegexString('(?! ?03:\\\\y{ObjectId}:)(.*:)?Added new combatant.*');
-  let results = contents.match(newCombatantRegex);
+  const newCombatantRegex = createTriggerRegexString('(?! ?03:\\\\y{ObjectId}:)(.*:)?Added new combatant.*');
+  const results = contents.match(newCombatantRegex);
   if (results) {
     for (const result of results)
       errorFunc(`${file}: 'Added new combatant' regex should begin with '03:\\y{ObjectId}:', found '${result}'`);
   }
 };
 
-let testWellFormedStartsUsingTriggerRegex = function(file, contents) {
-  let startsUsingRegex = createTriggerRegexString('(?! ?14:)(.* )?starts using.*');
-  let results = contents.match(startsUsingRegex);
+const testWellFormedStartsUsingTriggerRegex = function(file, contents) {
+  const startsUsingRegex = createTriggerRegexString('(?! ?14:)(.* )?starts using.*');
+  const results = contents.match(startsUsingRegex);
   if (results) {
     for (const result of results)
       errorFunc(`${file}: 'starts using' regex should begin with '14:', found '${result}'`);
   }
 };
 
-let testWellFormedGainsEffectTriggerRegex = function(file, contents) {
+const testWellFormedGainsEffectTriggerRegex = function(file, contents) {
   // There are some weird Eureka "gains effect" messages with 00:332e.
   // But everything else is 1A.
-  let gainsEffectRegex = createTriggerRegexString('(?! (?:1A:\\\\y{ObjectId}|00:332e):)(.* )?gains the effect of.*');
-  let results = contents.match(gainsEffectRegex);
+  const gainsEffectRegex = createTriggerRegexString('(?! (?:1A:\\\\y{ObjectId}|00:332e):)(.* )?gains the effect of.*');
+  const results = contents.match(gainsEffectRegex);
   if (results) {
     for (const result of results)
       errorFunc(`${file}: 'gains the effect of' regex should begin with '1A:\\y{ObjectId}:', found '${result}'`);
   }
 };
 
-let testWellFormedLosesEffectTriggerRegex = function(file, contents) {
-  let losesEffectRegex = createTriggerRegexString('(?! ?1E:\\\\y{ObjectId}:)(.* )?loses the effect of.*');
-  let results = contents.match(losesEffectRegex);
+const testWellFormedLosesEffectTriggerRegex = function(file, contents) {
+  const losesEffectRegex = createTriggerRegexString('(?! ?1E:\\\\y{ObjectId}:)(.* )?loses the effect of.*');
+  const results = contents.match(losesEffectRegex);
   if (results) {
     for (const result of results)
       errorFunc(`${file}: 'loses the effect of' regex should begin with '1E:\\y{ObjectId}:', found '${result}'`);
   }
 };
 
-let testBadCatchAllRegex = function(file, contents) {
+const testBadCatchAllRegex = function(file, contents) {
   // Matches 3, 5, 6, 7, or 9 (or more) consecutive '.' operators
-  let badCatchAllRegex = createTriggerRegexString('.*:(\\.{3}(\\.{2,4})?|\\.{9,}):.*');
-  let results = contents.match(badCatchAllRegex);
+  const badCatchAllRegex = createTriggerRegexString('.*:(\\.{3}(\\.{2,4})?|\\.{9,}):.*');
+  const results = contents.match(badCatchAllRegex);
   if (results) {
     for (const result of results)
       errorFunc(`${file}: Invalid number of '.' operators, found '${result}'`);
   }
 };
 
-let testObjectIdRegex = function(file, contents) {
-  let objectIdRegex = createTriggerRegexString('.*:\\.{8}:.*');
-  let results = contents.match(objectIdRegex);
+const testObjectIdRegex = function(file, contents) {
+  const objectIdRegex = createTriggerRegexString('.*:\\.{8}:.*');
+  const results = contents.match(objectIdRegex);
   if (results) {
     for (const result of results)
       errorFunc(`${file}: ObjectId should be used in favor of literal '........', found '${result}'`);
   }
 };
 
-let testUnnecessaryGroupRegex = function(file, contents) {
-  let unnecessaryGroupRegex = createTriggerRegexString('.*\\(\\?:.\\|.\\).*');
-  let results = contents.match(unnecessaryGroupRegex);
+const testUnnecessaryGroupRegex = function(file, contents) {
+  const unnecessaryGroupRegex = createTriggerRegexString('.*\\(\\?:.\\|.\\).*');
+  const results = contents.match(unnecessaryGroupRegex);
   if (results) {
     for (const result of results)
       errorFunc(`${file}: Match single character from set '[ab]' should be used in favor of group matching '(?:a|b)' for single characters, found '${result}'`);
@@ -117,7 +117,7 @@ let testUnnecessaryGroupRegex = function(file, contents) {
 
 // https://stackoverflow.com/questions/1007981/
 // Parsing code with regular expressions is always a great idea.
-let getParamNames = function(func) {
+const getParamNames = function(func) {
   return func.toString()
     .replace(/[/][/].*$/mg, '') // strip single-line comments
     .replace(/\s+/g, '') // strip white space
@@ -128,12 +128,12 @@ let getParamNames = function(func) {
     .split(/,(?![^{]*})/g).filter(Boolean); // split & filter [""]
 };
 
-let testInvalidCapturingGroupRegex = function(file, triggerSet) {
+const testInvalidCapturingGroupRegex = function(file, triggerSet) {
   for (const currentTrigger of triggerSet.triggers) {
     let containsMatches = false;
     let containsMatchesParam = false;
 
-    let verifyTrigger = (trigger) => {
+    const verifyTrigger = (trigger) => {
       for (const func of triggerFunctions) {
         let currentTriggerFunction = trigger[func];
         if (currentTriggerFunction === null)
@@ -177,10 +177,10 @@ let testInvalidCapturingGroupRegex = function(file, triggerSet) {
     let captures = -1;
 
     // Check for inconsistencies between languages in regexes.
-    for (let regexLang of regexLanguages) {
-      let currentRegex = currentTrigger[regexLang];
+    for (const regexLang of regexLanguages) {
+      const currentRegex = currentTrigger[regexLang];
       if (typeof currentRegex !== 'undefined') {
-        let currentCaptures = new RegExp('(?:' + currentRegex.toString() + ')?').exec('').length - 1;
+        const currentCaptures = new RegExp('(?:' + currentRegex.toString() + ')?').exec('').length - 1;
         // Ignore first pass
         if (captures !== -1 && captures !== currentCaptures) {
           errorFunc(`${file}: Found inconsistent capturing groups between languages for trigger id '${currentTrigger.id}'.`);
@@ -191,10 +191,10 @@ let testInvalidCapturingGroupRegex = function(file, triggerSet) {
     }
 
     // Check for inconsistencies between languages in netRegexes.
-    for (let netRegexLang of netRegexLanguages) {
-      let currentRegex = currentTrigger[netRegexLang];
+    for (const netRegexLang of netRegexLanguages) {
+      const currentRegex = currentTrigger[netRegexLang];
       if (typeof currentRegex !== 'undefined') {
-        let currentCaptures = new RegExp('(?:' + currentRegex.toString() + ')?').exec('').length - 1;
+        const currentCaptures = new RegExp('(?:' + currentRegex.toString() + ')?').exec('').length - 1;
         // Ignore first pass
         if (captures !== -1 && captures !== currentCaptures) {
           errorFunc(`${file}: Found inconsistent capturing groups between languages for trigger id '${currentTrigger.id}'.`);
@@ -218,7 +218,7 @@ let testInvalidCapturingGroupRegex = function(file, triggerSet) {
 
 const testInvalidTriggerKeys = function(file, triggerSet) {
   for (const currentTrigger of triggerSet.triggers) {
-    for (let key in currentTrigger) {
+    for (const key in currentTrigger) {
       if (triggerFunctions.includes(key))
         continue;
       if (regexLanguages.includes(key))
@@ -233,12 +233,12 @@ const testInvalidTriggerKeys = function(file, triggerSet) {
 const testValidIds = function(file, triggerSet) {
   let prefix = null;
   let brokenPrefixes = false;
-  let ids = new Set();
+  const ids = new Set();
 
-  for (let set of [triggerSet.triggers, triggerSet.timelineTriggers]) {
+  for (const set of [triggerSet.triggers, triggerSet.timelineTriggers]) {
     if (!set)
       continue;
-    for (let trigger of set) {
+    for (const trigger of set) {
       if (!trigger.id) {
         errorFunc(`${file}: Missing id field in trigger ${trigger.regex}`);
         continue;
@@ -261,7 +261,7 @@ const testValidIds = function(file, triggerSet) {
 
       // Find common prefix.
       let idx = 0;
-      let len = Math.min(prefix.length, trigger.id.length);
+      const len = Math.min(prefix.length, trigger.id.length);
       for (idx = 0; idx < len; ++idx) {
         if (prefix[idx] !== trigger.id[idx])
           break;
@@ -343,16 +343,16 @@ const testTriggerFieldsSorted = function(file, triggerSet) {
   for (const set of [triggerSet.triggers, triggerSet.timelineTriggers]) {
     if (!set)
       continue;
-    for (let trigger of set) {
+    for (const trigger of set) {
       let lastIdx = -1;
 
-      let keys = Object.keys(trigger);
+      const keys = Object.keys(trigger);
 
-      for (let field of triggerOrder) {
+      for (const field of triggerOrder) {
         if (typeof trigger[field] === 'undefined')
           continue;
 
-        let thisIdx = keys.indexOf(field);
+        const thisIdx = keys.indexOf(field);
         if (thisIdx === -1)
           continue;
         if (thisIdx <= lastIdx)

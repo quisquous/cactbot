@@ -55,7 +55,7 @@ export default {
       condition: function(e, data) {
         if (e.attackerName !== data.me)
           return false;
-        let strikingDummyNames = [
+        const strikingDummyNames = [
           'Striking Dummy',
           'Mannequin d\'entraînement',
           '木人', // Striking Dummy called `木人` in CN as well as JA
@@ -67,7 +67,7 @@ export default {
       mistake: function(e, data) {
         data.bootCount = data.bootCount || 0;
         data.bootCount++;
-        let text = e.abilityName + ' (' + data.bootCount + '): ' + e.damageStr;
+        const text = e.abilityName + ' (' + data.bootCount + '): ' + e.damageStr;
         return { type: 'warn', blame: data.me, text: text };
       },
     },
@@ -98,13 +98,13 @@ export default {
       collectSeconds: 5,
       mistake: function(events, data) {
         // When collectSeconds is specified, events are passed as an array.
-        let pokes = events.length;
+        const pokes = events.length;
 
         // 1 poke at a time is fine, but more than one inside of
         // collectSeconds is (OBVIOUSLY) a mistake.
         if (pokes <= 1)
           return;
-        let text = {
+        const text = {
           en: 'Too many pokes (' + pokes + ')',
           fr: 'Trop de touches (' + pokes + ')',
           de: 'Zu viele Piekser (' + pokes + ')',

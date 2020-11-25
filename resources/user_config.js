@@ -31,7 +31,7 @@ class UserConfig {
 
   getUserConfigLocation(overlayName, options, callback) {
     let currentlyReloading = false;
-    let reloadOnce = () => {
+    const reloadOnce = () => {
       if (currentlyReloading)
         return;
       currentlyReloading = true;
@@ -45,16 +45,16 @@ class UserConfig {
       reloadOnce();
     });
 
-    let readOptions = callOverlayHandler({
+    const readOptions = callOverlayHandler({
       call: 'cactbotLoadData',
       overlay: 'options',
     });
 
     const loadUser = async (e) => {
-      let localFiles = e.detail.localUserFiles;
+      const localFiles = e.detail.localUserFiles;
       let basePath = e.detail.userLocation;
-      let jsFile = overlayName + '.js';
-      let cssFile = overlayName + '.css';
+      const jsFile = overlayName + '.js';
+      const cssFile = overlayName + '.css';
 
       // The plugin auto-detects the language, so set this first.
       // If options files want to override it, they can for testing.
@@ -93,7 +93,7 @@ class UserConfig {
       // but before css below which may load skin files.
       // processOptions needs to be called whether or not there are
       // any userOptions saved, as it sets up the defaults.
-      let userOptions = await readOptions || {};
+      const userOptions = await readOptions || {};
       this.savedConfig = userOptions.data || {};
       this.processOptions(
           options,
@@ -103,7 +103,7 @@ class UserConfig {
 
       // If the overlay has a "Debug" setting, set to true via the config tool,
       // then also print out user files that have been loaded.
-      let printUserFile = options.Debug ? (x) => console.log(x) : (x) => {};
+      const printUserFile = options.Debug ? (x) => console.log(x) : (x) => {};
 
       // In cases where the user files are local but the overlay url
       // is remote, local files needed to be read by the plugin and
@@ -115,7 +115,7 @@ class UserConfig {
             if (this.userFileCallbacks[overlayName]) {
               this.userFileCallbacks[overlayName](jsFile, localFiles, options);
             } else {
-              let Options = options;
+              const Options = options;
               eval(localFiles[jsFile]);
             }
           } catch (e) {
@@ -132,21 +132,21 @@ class UserConfig {
 
         if (cssFile in localFiles) {
           printUserFile('local user file: ' + basePath + '\\' + cssFile);
-          let userCssText = document.createElement('style');
+          const userCssText = document.createElement('style');
           userCssText.innerText = localFiles[cssFile];
           document.getElementsByTagName('head')[0].appendChild(userCssText);
         }
       } else if (basePath) {
         if (basePath.slice(-1) !== '/')
           basePath += '/';
-        let jsUrl = basePath + jsFile;
+        const jsUrl = basePath + jsFile;
         printUserFile('remote user file: ' + jsUrl);
         this.appendJSLink(jsUrl);
 
         // See note above in localFiles case about skin load ordering.
         this.handleSkin(options.Skin);
 
-        let cssUrl = basePath + cssFile;
+        const cssUrl = basePath + cssFile;
         printUserFile('remote user file: ' + cssUrl);
         this.appendCSSLink(cssUrl);
       }
@@ -178,23 +178,23 @@ class UserConfig {
       return;
 
     let basePath = document.location.toString();
-    let slashIdx = basePath.lastIndexOf('/');
+    const slashIdx = basePath.lastIndexOf('/');
     if (slashIdx !== -1)
       basePath = basePath.substr(0, slashIdx);
     if (basePath.slice(-1) !== '/')
       basePath += '/';
-    let skinHref = basePath + 'skins/' + skinName + '/' + skinName + '.css';
+    const skinHref = basePath + 'skins/' + skinName + '/' + skinName + '.css';
     this.appendCSSLink(skinHref);
   }
   appendJSLink(src) {
-    let userJS = document.createElement('script');
+    const userJS = document.createElement('script');
     userJS.setAttribute('type', 'text/javascript');
     userJS.setAttribute('src', src);
     userJS.setAttribute('async', false);
     document.getElementsByTagName('head')[0].appendChild(userJS);
   }
   appendCSSLink(href) {
-    let userCSS = document.createElement('link');
+    const userCSS = document.createElement('link');
     userCSS.setAttribute('rel', 'stylesheet');
     userCSS.setAttribute('type', 'text/css');
     userCSS.setAttribute('href', href);
@@ -215,12 +215,12 @@ class UserConfig {
     if (!template)
       return;
 
-    let templateOptions = template.options || [];
+    const templateOptions = template.options || [];
     for (let i = 0; i < templateOptions.length; ++i) {
-      let opt = templateOptions[i];
+      const opt = templateOptions[i];
 
       // Grab the saved value or the default to set in options.
-      let value = opt.id in savedConfig ? savedConfig[opt.id] : opt.default;
+      const value = opt.id in savedConfig ? savedConfig[opt.id] : opt.default;
 
       // Options can provide custom logic to turn a value into options settings.
       // If this doesn't exist, just set the value directly.
@@ -268,7 +268,7 @@ export default new UserConfig();
 
 // This event comes early and is not cached, so set up event listener immediately.
 document.addEventListener('onOverlayStateUpdate', (e) => {
-  let docClassList = document.documentElement.classList;
+  const docClassList = document.documentElement.classList;
   if (e.detail.isLocked)
     docClassList.remove('resizeHandle', 'unlocked');
   else

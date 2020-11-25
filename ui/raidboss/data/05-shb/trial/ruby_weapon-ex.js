@@ -270,7 +270,7 @@ export default {
         }
         data.ravens = data.ravens || {};
 
-        let tmp = data.ravens.red;
+        const tmp = data.ravens.red;
         data.ravens.red = data.ravens.blue;
         data.ravens.blue = tmp;
       },

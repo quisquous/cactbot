@@ -268,8 +268,8 @@ export default {
         if (!data.seenDiamondDust || data.soonAfterWeaponChange)
           return false;
 
-        let x = parseFloat(matches.x);
-        let y = parseFloat(matches.y);
+        const x = parseFloat(matches.x);
+        const y = parseFloat(matches.y);
         return Math.abs(x) < 0.1 && Math.abs(y) < 0.1;
       },
       // This can hit multiple people.

@@ -234,7 +234,7 @@ export default {
       netRegexKo: NetRegexes.abilityFull({ source: '시바', id: '4DA0' }),
       suppressSeconds: 20,
       infoText: function(data, matches, output) {
-        let x = parseFloat(matches.x);
+        const x = parseFloat(matches.x);
         if (x >= 99 && x <= 101)
           return output.northSouth();
 

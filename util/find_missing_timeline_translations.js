@@ -11,17 +11,17 @@ findMissing(triggersFile, locale, localeReg);
 
 async function findMissing(triggersFile, locale, localeReg) {
   // Hackily assume that any file with a txt file of the same name is a trigger/timeline.
-  let timelineFile = triggersFile.replace(/\.js$/, '.txt');
+  const timelineFile = triggersFile.replace(/\.js$/, '.txt');
   if (!fs.existsSync(timelineFile))
     process.exit(-1);
 
-  let timelineText = String(fs.readFileSync(timelineFile));
-  let timeline = new Timeline(timelineText);
+  const timelineText = String(fs.readFileSync(timelineFile));
+  const timeline = new Timeline(timelineText);
 
   const importPath = '../' + path.relative(process.cwd(), triggersFile).replace(/\\/g, '/');
 
-  let triggerText = String(fs.readFileSync(triggersFile));
-  let triggerLines = triggerText.split('\n');
+  const triggerText = String(fs.readFileSync(triggersFile));
+  const triggerLines = triggerText.split('\n');
 
   const triggerSet = (await import(importPath)).default;
   const translations = triggerSet.timelineReplace;
@@ -33,7 +33,7 @@ async function findMissing(triggersFile, locale, localeReg) {
     replaceText: {},
   };
 
-  for (let transBlock of translations) {
+  for (const transBlock of translations) {
     if (!transBlock.locale || transBlock.locale !== locale)
       continue;
     trans = transBlock;
@@ -52,10 +52,10 @@ function findLineNumberByTriggerId(text, id) {
   // Other regex characters just need to be escaped once to get out of
   // Regexes.parse unscathed.
   escapedId = escapedId.replace(/([+^$*])/, '\\$1');
-  let regex = Regexes.parse('^\\s*id: \'' + escapedId + '\',');
+  const regex = Regexes.parse('^\\s*id: \'' + escapedId + '\',');
 
   let lineNumber = 0;
-  for (let line of text) {
+  for (const line of text) {
     lineNumber++;
 
     if (regex.test(line))
@@ -68,26 +68,26 @@ function findLineNumberByTriggerId(text, id) {
 }
 
 function findMissingRegex(triggers, triggerLines, timeline, trans, localeReg) {
-  for (let trigger of triggers) {
+  for (const trigger of triggers) {
     let origRegex = trigger.regex;
     if (!origRegex)
       continue;
 
-    let lineNumber = findLineNumberByTriggerId(triggerLines, trigger.id);
+    const lineNumber = findLineNumberByTriggerId(triggerLines, trigger.id);
 
     origRegex = origRegex.source.toLowerCase();
 
     let foundMatch = false;
 
     let transRegex = origRegex;
-    for (let regex in trans.replaceSync) {
-      let replace = Regexes.parseGlobal(regex);
+    for (const regex in trans.replaceSync) {
+      const replace = Regexes.parseGlobal(regex);
       if (transRegex.match(replace))
         foundMatch = true;
       transRegex = transRegex.replace(replace, trans.replaceSync[regex]);
     }
-    for (let regex in commonReplacement.replaceSync) {
-      let replace = Regexes.parseGlobal(regex);
+    for (const regex in commonReplacement.replaceSync) {
+      const replace = Regexes.parseGlobal(regex);
       if (transRegex.match(replace))
         foundMatch = true;
       transRegex = transRegex.replace(replace, commonReplacement.replaceSync[regex][locale]);
@@ -113,9 +113,9 @@ function findMissingRegex(triggers, triggerLines, timeline, trans, localeReg) {
       continue;
 
     // Any missing translations in the ignore list should be skipped.
-    let ignore = timeline.GetMissingTranslationsToIgnore();
+    const ignore = timeline.GetMissingTranslationsToIgnore();
     let foundIgnore = false;
-    for (let ig of ignore) {
+    for (const ig of ignore) {
       if (origRegex.match(ig)) {
         foundIgnore = true;
         break;
@@ -138,7 +138,7 @@ function findMissingTimeline(timelineFile, triggerSet, timeline, trans) {
     return;
 
   // TODO: merge this with test_timeline.js??
-  let testCases = [
+  const testCases = [
     {
       type: 'replaceSync',
       items: new Set(timeline.syncStarts.map((x) =>
@@ -157,9 +157,9 @@ function findMissingTimeline(timelineFile, triggerSet, timeline, trans) {
   const skipPartialCommon = true;
 
   // Add all common replacements, so they can be checked for collisions as well.
-  for (let testCase of testCases) {
-    let common = commonReplacement[testCase.type];
-    for (let key in common) {
+  for (const testCase of testCases) {
+    const common = commonReplacement[testCase.type];
+    for (const key in common) {
       if (skipPartialCommon && partialCommonReplacementKeys.includes(key))
         continue;
       if (!common[key][trans.locale]) {
@@ -178,23 +178,23 @@ function findMissingTimeline(timelineFile, triggerSet, timeline, trans) {
     }
   }
 
-  let ignore = timeline.GetMissingTranslationsToIgnore();
-  let isIgnored = (x) => {
-    for (let ig of ignore) {
+  const ignore = timeline.GetMissingTranslationsToIgnore();
+  const isIgnored = (x) => {
+    for (const ig of ignore) {
       if (x.match(ig))
         return true;
     }
     return false;
   };
 
-  let output = {};
+  const output = {};
 
-  for (let testCase of testCases) {
-    for (let item of testCase.items) {
+  for (const testCase of testCases) {
+    for (const item of testCase.items) {
       if (isIgnored(item.text))
         continue;
       let matched = false;
-      for (let regex in testCase.replace) {
+      for (const regex in testCase.replace) {
         if (item.text.match(Regexes.parse(regex))) {
           matched = true;
           break;
@@ -203,15 +203,15 @@ function findMissingTimeline(timelineFile, triggerSet, timeline, trans) {
       if (!matched) {
         // Because we handle syncs separately from texts, in order to
         // sort them all properly together, create a key to be used with sort().
-        let sortKey = String(item.line).padStart(8, '0') + testCase.label;
-        let value = `${timelineFile}:${item.line} ${testCase.label} "${item.text}"`;
+        const sortKey = String(item.line).padStart(8, '0') + testCase.label;
+        const value = `${timelineFile}:${item.line} ${testCase.label} "${item.text}"`;
         output[sortKey] = value;
       }
     }
   }
 
-  let keys = Object.keys(output).sort();
-  for (let key of keys)
+  const keys = Object.keys(output).sort();
+  for (const key of keys)
     console.log(output[key]);
 
   if (keys.length === 0 && trans.missingTranslations)

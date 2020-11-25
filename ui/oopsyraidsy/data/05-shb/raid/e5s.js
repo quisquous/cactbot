@@ -5,7 +5,7 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // TODO: is there an ability from Raiden (the bird) if you get eaten?
 // TODO: maybe chain lightning warning if you get hit while you have system shock (8B8)
 
-let noOrb = (str) => {
+const noOrb = (str) => {
   return {
     en: str + ' (no orb)',
     de: str + ' (kein Orb)',
@@ -120,7 +120,7 @@ export default {
       damageRegex: '4BBA',
       suppressSeconds: 30,
       mistake: function(e, data) {
-        for (let m of data.cloudMarkers) {
+        for (const m of data.cloudMarkers) {
           return {
             type: 'fail',
             blame: data.cloudMarkers[m],

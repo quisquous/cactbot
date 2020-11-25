@@ -28,7 +28,7 @@ export default {
     },
     function(data) {
       // <_<
-      let shortName = data.me.indexOf(' ') >= 0 ? data.me.substring(0, data.me.indexOf(' ')) : data.me;
+      const shortName = data.me.indexOf(' ') >= 0 ? data.me.substring(0, data.me.indexOf(' ')) : data.me;
       return [
         '40 "Death To ' + shortName + '!!"',
         'hideall "Death"',
@@ -77,7 +77,7 @@ export default {
       delaySeconds: 10,
       promise: function(data, matches) {
         data.delayedDummyTimestampBefore = Date.now();
-        let p = new Promise((res) => {
+        const p = new Promise((res) => {
           window.setTimeout(() => {
             data.delayedDummyTimestampAfter = Date.now();
             res();
@@ -86,7 +86,7 @@ export default {
         return p;
       },
       infoText: function(data, matches, output) {
-        let elapsed = data.delayedDummyTimestampAfter - data.delayedDummyTimestampBefore;
+        const elapsed = data.delayedDummyTimestampAfter - data.delayedDummyTimestampBefore;
         return output.elapsed({ elapsed: elapsed });
       },
       outputStrings: {

@@ -385,12 +385,12 @@ export default {
       netRegex: NetRegexes.gainsEffect({ effectId: '73E' }),
       condition: Conditions.targetIsYou(),
       alertText: function(data, matches, output) {
-        let seconds = matches.duration;
+        const seconds = matches.duration;
         if (seconds <= 8)
           return output.knockbackOnYou();
       },
       infoText: function(data, matches, output) {
-        let seconds = matches.duration;
+        const seconds = matches.duration;
         if (seconds <= 8)
           return;
         if (seconds <= 21)

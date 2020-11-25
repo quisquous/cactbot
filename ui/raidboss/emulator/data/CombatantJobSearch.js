@@ -4,7 +4,7 @@ export default class CombatantJobSearch {
       return null;
 
     abilityID = Number('0x' + abilityID);
-    for (let Job in CombatantJobSearch.abilities) {
+    for (const Job in CombatantJobSearch.abilities) {
       if (CombatantJobSearch.abilities[Job].includes(abilityID))
         return Job;
     }

@@ -11,7 +11,7 @@ import { addRemotePlayerSelectUI } from '../../resources/player_override.js';
 import raidbossFileData from './data/manifest.txt';
 
 // See user/raidboss-example.js for documentation.
-let Options = {
+const Options = {
   // These options are ones that are not auto-defined by raidboss_config.js.
   PlayerNicks: {},
 
@@ -73,27 +73,27 @@ UserConfig.getUserConfigLocation('raidboss', Options, (e) => {
 
   const alertsParam = params.get('alerts');
   if (alertsParam !== null) {
-    let previous = Options.AlertsEnabled;
+    const previous = Options.AlertsEnabled;
     Options.AlertsEnabled = !!parseInt(alertsParam);
     if (!previous && Options.AlertsEnabled)
       console.log('Enabling alerts via query parameter');
   }
   const timelineParam = params.get('timeline');
   if (timelineParam !== null) {
-    let previous = Options.TimelineEnabled;
+    const previous = Options.TimelineEnabled;
     Options.TimelineEnabled = !!parseInt(timelineParam);
     if (!previous && Options.TimelineEnabled)
       console.log('Enabling timeline via query parameter');
   }
   const audioParam = params.get('audio');
   if (audioParam !== null) {
-    let previous = Options.AudioAllowed;
+    const previous = Options.AudioAllowed;
     Options.AudioAllowed = !!parseInt(audioParam);
     if (!previous && Options.AudioAllowed)
       console.log('Enabling audio via query parameter');
   }
 
-  let container = document.getElementById('container');
+  const container = document.getElementById('container');
   if (!Options.AlertsEnabled)
     container.classList.add('hide-alerts');
   if (!Options.TimelineEnabled)

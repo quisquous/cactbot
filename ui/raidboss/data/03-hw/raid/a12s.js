@@ -80,7 +80,7 @@ export default {
         if (data.scourge && data.scourge.length > 2)
           return false;
 
-        let names = data.scourge.map((x) => data.ShortName(x)).sort();
+        const names = data.scourge.map((x) => data.ShortName(x)).sort();
         if (names.length === 0)
           return;
         return output.text({ players: names.join(', ') });
@@ -149,7 +149,7 @@ export default {
         return matches.source === data.me || matches.target === data.me;
       },
       infoText: function(data, matches, output) {
-        let partner = matches.source === data.me ? matches.target : matches.source;
+        const partner = matches.source === data.me ? matches.target : matches.source;
         return output.text({ player: data.ShortName(partner) });
       },
       outputStrings: {
@@ -170,7 +170,7 @@ export default {
         return matches.source === data.me || matches.target === data.me;
       },
       alertText: function(data, matches, output) {
-        let partner = matches.source === data.me ? matches.target : matches.source;
+        const partner = matches.source === data.me ? matches.target : matches.source;
         return output.text({ player: data.ShortName(partner) });
       },
       outputStrings: {

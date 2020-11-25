@@ -88,7 +88,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
 
   _onTriggerInternalCheckSuppressed(trigger, when) {
     this.currentFunction = '_onTriggerInternalCheckSuppressed';
-    let ret = super._onTriggerInternalCheckSuppressed(trigger, when);
+    const ret = super._onTriggerInternalCheckSuppressed(trigger, when);
     this.currentTriggerStatus.suppressed = ret;
     if (ret) {
       this.delayResolver();
@@ -100,7 +100,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
 
   _onTriggerInternalCondition(triggerHelper) {
     this.currentFunction = '_onTriggerInternalCondition';
-    let ret = super._onTriggerInternalCondition(triggerHelper);
+    const ret = super._onTriggerInternalCondition(triggerHelper);
     this.currentTriggerStatus.condition = ret;
     if (!ret) {
       this.delayResolver();
@@ -126,7 +126,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     this.currentFunction = '_onTriggerInternalDelaySeconds';
     // Can't inherit the default logic for delay since we don't
     // want to delay for mass processing of the timeline
-    let delay = 'delaySeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds) : 0;
+    const delay = 'delaySeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds) : 0;
     this.currentTriggerStatus.delay = delay;
     return new Promise((res) => {
       this.delayResolver();
@@ -146,7 +146,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
 
   _onTriggerInternalPromise(triggerHelper) {
     this.currentFunction = '_onTriggerInternalPromise';
-    let ret = super._onTriggerInternalPromise(triggerHelper);
+    const ret = super._onTriggerInternalPromise(triggerHelper);
     this.currentTriggerStatus.promise = ret;
     return (async () => {
       await ret;
