@@ -25,7 +25,6 @@ jobs:
           node-version: '12'
 
       - uses: actions/cache@v2
-        id: npm-cache
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -37,7 +36,6 @@ jobs:
           python-version: '3.7'
 
       - name: Install Dependencies
-        if: steps.npm-cache.outputs.cache-hit != 'true'
         run: |
           npm ci
 
