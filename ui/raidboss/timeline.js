@@ -874,12 +874,16 @@ export class TimelineUI {
 }
 
 export class TimelineController {
-  constructor(options, ui) {
+  constructor(options, ui, raidbossDataFiles) {
     this.options = options;
     this.ui = ui;
-    this.dataFiles = {};
-    // data files not sent yet.
-    this.timelines = null;
+
+    this.timelines = {};
+    for (const f in raidbossDataFiles) {
+      if (!f.endsWith('.txt'))
+        continue;
+      this.timelines[f] = raidbossDataFiles[f];
+    }
 
     // Used to suppress any Engage! if there's a wipe between /countdown and Engage!.
     this.suppressNextEngage = false;
@@ -945,15 +949,6 @@ export class TimelineController {
 
   IsReady() {
     return this.timelines !== null;
-  }
-
-  SetDataFiles(files) {
-    this.timelines = {};
-    for (const f in files) {
-      if (!f.endsWith('.txt'))
-        continue;
-      this.timelines[f] = files[f];
-    }
   }
 }
 
