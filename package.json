@@ -161,6 +161,7 @@
         "error",
         "global"
       ],
+      "template-curly-spacing": "error",
       "unicode-bom": [
         "error",
         "never"
