@@ -335,7 +335,6 @@ const testTriggerFieldsSorted = function(file, triggerSet) {
     'alarmText',
     'alertText',
     'infoText',
-    'groupTTS',
     'tts',
     'run',
   ];

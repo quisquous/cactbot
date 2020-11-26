@@ -134,14 +134,6 @@ export default {
       netRegexCn: NetRegexes.gameNameLog({ line: '.*激励木人.*?', capture: false }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 힘을 불어넣습니다.*?', capture: false }),
       alertText: (data, _, output) => output.text(),
-      groupTTS: {
-        en: 'group psych',
-        de: 'Gruppen auf gehts',
-        fr: 'motivation de groupe',
-        ja: 'グループ、活を入れる',
-        cn: '组激励',
-        ko: '단체 격려',
-      },
       tts: {
         en: 'psych',
         de: 'auf gehts',
@@ -171,14 +163,6 @@ export default {
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 보고 폭소를 터뜨립니다.*?', capture: false }),
       suppressSeconds: 5,
       alarmText: (data, _, output) => output.text(),
-      groupTTS: {
-        en: 'group laugh',
-        de: 'Gruppenlache',
-        fr: 'rire de groupe',
-        ja: 'グループハハハ',
-        cn: '组哈哈',
-        ko: '단체 웃음',
-      },
       tts: {
         en: 'hahahahaha',
         de: 'hahahahaha',

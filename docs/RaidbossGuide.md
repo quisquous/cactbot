@@ -357,7 +357,6 @@ Trigger elements are evaluated in this order, and must be listed in this order:
 - alarmText
 - alertText
 - infoText
-- groupTTS
 - tts
 - run
 - outputStrings
