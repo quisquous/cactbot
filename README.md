@@ -315,7 +315,7 @@ Mistake triggers are specified for individual fights in the [ui/oopsyraidsy/data
 To use this module,
 point cactbot at **ui/jobs/jobs.html** or use the `Cactbot Jobs` preset.
 
-This module provides health, mana, and tp bars, as well as icons and timer bars for big raid buffs such as
+This module provides health and mana bars, as well as icons and timer bars for big raid buffs such as
 The Balance and Trick Attack. It also features a food buff warning to keep up your food buff when leveling
 or raiding, and a visual pull countdown.
 
