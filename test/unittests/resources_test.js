@@ -1,5 +1,6 @@
 import contentList from '../../resources/content_list.js';
 import ZoneId from '../../resources/zone_id.js';
+import ZoneInfo from '../../resources/zone_info.js';
 
 import chai from 'chai';
 const { assert } = chai;
@@ -20,6 +21,16 @@ const tests = {
       assert(zoneValue in zoneValueToId,
           `Bad ZoneId in content_list.js, idx: ${idx}, prev: ${prevValue}`);
       prevValue = zoneValue in zoneValueToId ? zoneValueToId[zoneValue] : '';
+    }
+  },
+  contentListHasCorrespondingZoneInfo: () => {
+    for (let idx = 0; idx < contentList.length; ++idx) {
+      const zoneValue = contentList[idx];
+      // MatchAll is the one synthetic zone id, so does not count here.
+      if (zoneValue === ZoneId.MatchAll)
+        continue;
+      assert(zoneValue in ZoneInfo,
+          `Missing ZoneInfo for content_list.js, idx: ${idx}, id: ${zoneValueToId[zoneValue]}`);
     }
   },
   contentListIsUnique: () => {
