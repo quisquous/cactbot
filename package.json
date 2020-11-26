@@ -111,6 +111,7 @@
         "always"
       ],
       "no-console": "off",
+      "no-duplicate-imports": "error",
       "no-else-return": "error",
       "no-undef": "off",
       "no-unused-vars": "off",
