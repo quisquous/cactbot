@@ -4,5 +4,3 @@
 *.ogg binary
 *.mp3 binary
 *.wav binary
-
-.vscode/*.json jsonc
