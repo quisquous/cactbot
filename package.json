@@ -21,6 +21,7 @@
     "css-loader": "^4.3.0",
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.9.1",
+    "eslint-plugin-import": "^2.22.1",
     "husky": "^4.2.5",
     "lint-staged": "^10.0.8",
     "markdownlint-cli": "^0.20.0",
@@ -42,7 +43,8 @@
     },
     "extends": [
       "eslint:recommended",
-      "google"
+      "google",
+      "plugin:import/errors"
     ],
     "rules": {
       "arrow-spacing": [
@@ -65,6 +67,17 @@
       ],
       "eqeqeq": "error",
       "guard-for-in": "off",
+      "import/export": "error",
+      "import/no-duplicates": "error",
+      "import/no-named-as-default": "error",
+      "import/no-named-as-default-member": "error",
+      "import/no-unresolved": [
+        "error",
+        {
+          "caseSensitive": true
+        }
+      ],
+      "import/no-webpack-loader-syntax": "error",
       "indent": [
         "error",
         2,
