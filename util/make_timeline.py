@@ -11,19 +11,19 @@ import encounter_tools as e_tools
 
 """FFLogs returns battle events in a list of dicts that looks something like this:
     {
-      "timestamp": 4816719,
-      "type": "cast",
-      "sourceID": 113,
-      "sourceIsFriendly": false,
-      "targetID": 95,
-      "targetIsFriendly": true,
-      "ability": {
-        "name": "attack",
-        "guid": 870,
-        "type": 128,
-        "abilityIcon": "000000-000405.png"
-      },
-      "pin": "0"
+        "timestamp": 4816719,
+        "type": "cast",
+        "sourceID": 113,
+        "sourceIsFriendly": false,
+        "targetID": 95,
+        "targetIsFriendly": true,
+        "ability": {
+            "name": "attack",
+            "guid": 870,
+            "type": 128,
+            "abilityIcon": "000000-000405.png"
+        },
+        "pin": "0"
     },
 We map from the type property here to ACT network log line numbers.
 Technically there are both 21 and 22 log lines,
@@ -32,26 +32,26 @@ but for the purposes of this script it doesn't matter which one we map to.
 Sometimes there's an environmental actor that doesn't have the same layout.
 These are assigned a GUID of 9020. They will have a "source" property:
 {
-  "timestamp": 5308320,
-  "type": "cast",
-  "source": {
-    "name": "Leviathan",
-    "id": 31,
-    "guid": 9020,
-    "type": "NPC",
-    "icon": "NPC"
-  },
-  "sourceInstance": 1,
-  "sourceIsFriendly": false,
-  "targetID": 1,
-  "targetIsFriendly": true,
-  "ability": {
-    "name": "Rip Current",
-    "guid": 16353,
-    "type": 1024,
-    "abilityIcon": "000000-000405.png"
-  },
-  "pin": "0"
+    "timestamp": 5308320,
+    "type": "cast",
+    "source": {
+        "name": "Leviathan",
+        "id": 31,
+        "guid": 9020,
+        "type": "NPC",
+        "icon": "NPC"
+    },
+    "sourceInstance": 1,
+    "sourceIsFriendly": false,
+    "targetID": 1,
+    "targetIsFriendly": true,
+    "ability": {
+        "name": "Rip Current",
+        "guid": 16353,
+        "type": 1024,
+        "abilityIcon": "000000-000405.png"
+    },
+    "pin": "0"
 }
 """
 

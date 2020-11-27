@@ -599,7 +599,7 @@ export default class Regexes {
     let modifiers = 'i';
     if (regexpString instanceof RegExp) {
       modifiers += (regexpString.global ? 'g' : '') +
-                   (regexpString.multiline ? 'm' : '');
+                    (regexpString.multiline ? 'm' : '');
       regexpString = regexpString.source;
     }
     regexpString = regexpString.replace(/\\y\{(.*?)\}/g, (match, group) => {
