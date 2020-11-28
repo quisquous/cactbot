@@ -33,8 +33,6 @@ const Options = {
   IsRemoteRaidboss: false,
 };
 
-let gTimelineController;
-
 UserConfig.getUserConfigLocation('raidboss', Options, (e) => {
   // Query params override default and user options.
   // This allows for html files that say "timeline only" or "alerts only".
@@ -99,18 +97,15 @@ UserConfig.getUserConfigLocation('raidboss', Options, (e) => {
   if (!Options.TimelineEnabled)
     container.classList.add('hide-timeline');
 
-  gTimelineController = new TimelineController(Options, new TimelineUI(Options));
-  gPopupText = new PopupText(Options);
+  const timelineUI = new TimelineUI(Options);
+  const timelineController = new TimelineController(Options, timelineUI, raidbossFileData);
+  gPopupText = new PopupText(Options, new TimelineLoader(timelineController), raidbossFileData);
+
   // Connect the timelines to the popup text, if alerts are desired.
   if (Options.AlertsEnabled)
-    gTimelineController.SetPopupTextInterface(new PopupTextGenerator(gPopupText));
-  gPopupText.SetTimelineLoader(new TimelineLoader(gTimelineController));
-
-  gTimelineController.SetDataFiles(raidbossFileData);
-  gPopupText.OnDataFilesRead(raidbossFileData);
-  gPopupText.ReloadTimelines();
+    timelineController.SetPopupTextInterface(new PopupTextGenerator(gPopupText));
 
   addOverlayListener('onLogEvent', (e) => {
-    gTimelineController.OnLogEvent(e);
+    timelineController.OnLogEvent(e);
   });
 });

@@ -173,21 +173,16 @@ const Options = {
         // Initialize the Raidboss components, bind them to the emulator for event listeners
         timelineUI = new RaidEmulatorTimelineUI(Options);
         timelineUI.bindTo(emulator);
-        timelineController = new RaidEmulatorTimelineController(Options, timelineUI);
+        timelineController =
+            new RaidEmulatorTimelineController(Options, timelineUI, raidbossFileData);
         timelineController.bindTo(emulator);
-        popupText = new RaidEmulatorPopupText(Options);
+        popupText = new RaidEmulatorPopupText(
+            Options, new TimelineLoader(timelineController), raidbossFileData);
         popupText.bindTo(emulator);
 
         timelineController.SetPopupTextInterface(new PopupTextGenerator(popupText));
-        popupText.SetTimelineLoader(new TimelineLoader(timelineController));
 
         emulator.setPopupText(popupText);
-
-        // Make sure timeline and alerts know about the data files
-        timelineController.SetDataFiles(raidbossFileData);
-        popupText.OnDataFilesRead(raidbossFileData);
-        popupText.ReloadTimelines();
-        emulator.dataFiles = raidbossFileData;
 
         // Load the encounter metadata from the DB
         encounterTab.refresh();

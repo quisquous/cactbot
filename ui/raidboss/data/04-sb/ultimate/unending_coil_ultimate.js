@@ -1040,7 +1040,9 @@ export default {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
         if (matches.target !== data.me)
           return;
-        const dir = data.naelMarks[data.naelDiveMarkerCount];
+        const dir = data.naelMarks ? data.naelMarks[data.naelDiveMarkerCount] : undefined;
+        if (!dir)
+          return output.text({ dir: output.unknownDir() });
         return output.text({ dir: dir });
       },
       outputStrings: {
@@ -1048,6 +1050,14 @@ export default {
           en: 'Go To ${dir} with marker',
           de: 'Gehe nach ${dir} mit dem Marker',
           ko: '${dir}으로 이동',
+        },
+        unknownDir: {
+          en: '???',
+          de: '???',
+          fr: '???',
+          ja: '???',
+          cn: '???',
+          ko: '???',
         },
       },
     },

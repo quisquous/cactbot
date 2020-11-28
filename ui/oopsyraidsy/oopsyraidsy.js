@@ -675,9 +675,10 @@ class MistakeCollector {
 }
 
 class DamageTracker {
-  constructor(options, collector) {
+  constructor(options, collector, dataFiles) {
     this.options = options;
     this.collector = collector;
+    this.dataFiles = dataFiles;
     this.triggerSets = null;
     this.inCombat = false;
     this.ignoreZone = false;
@@ -1204,17 +1205,9 @@ class DamageTracker {
     this.ReloadTriggers();
   }
 
-  OnDataFilesRead(files) {
-    this.dataFiles = files;
-    this.ReloadTriggers();
-  }
-
   ProcessDataFiles() {
     // Only run this once.
     if (this.triggerSets)
-      return;
-    // Wait until OnPlayerChange + OnDataFilesRead occur for the first time.
-    if (!this.dataFiles)
       return;
     if (!this.me)
       return;
@@ -1263,7 +1256,7 @@ UserConfig.getUserConfigLocation('oopsyraidsy', Options, () => {
     mistakeCollector = new MistakeCollector(Options, listView);
   }
 
-  const damageTracker = new DamageTracker(Options, mistakeCollector);
+  const damageTracker = new DamageTracker(Options, mistakeCollector, oopsyFileData);
 
   addOverlayListener('onLogEvent', (e) => damageTracker.OnLogEvent(e));
   addOverlayListener('LogLine', (e) => damageTracker.OnNetLog(e));
@@ -1278,8 +1271,6 @@ UserConfig.getUserConfigLocation('oopsyraidsy', Options, () => {
     damageTracker.OnInCombatChangedEvent(e);
     mistakeCollector.OnInCombatChangedEvent(e);
   });
-
-  damageTracker.OnDataFilesRead(oopsyFileData);
 
   callOverlayHandler({ call: 'cactbotRequestPlayerUpdate' });
 });

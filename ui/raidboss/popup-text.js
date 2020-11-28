@@ -207,8 +207,11 @@ class TriggerOutputProxy {
 }
 
 export class PopupText {
-  constructor(options) {
+  constructor(options, timelineLoader, raidbossDataFiles) {
     this.options = options;
+    this.timelineLoader = timelineLoader;
+    this.ProcessDataFiles(raidbossDataFiles);
+
     this.triggers = [];
     this.netTriggers = [];
     this.timers = {};
@@ -280,17 +283,13 @@ export class PopupText {
     });
   }
 
-  SetTimelineLoader(timelineLoader) {
-    this.timelineLoader = timelineLoader;
-  }
-
   OnPlayerChange(e) {
     if (this.job !== e.detail.job || this.me !== e.detail.name)
       this.OnJobChange(e);
     this.data.currentHP = e.detail.currentHP;
   }
 
-  OnDataFilesRead(files) {
+  ProcessDataFiles(files) {
     this.triggerSets = [];
     for (const filename in files) {
       if (!filename.endsWith('.js'))

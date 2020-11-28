@@ -6,6 +6,7 @@ import RaidEmulatorTimelineUI from '../overrides/RaidEmulatorTimelineUI.js';
 import PopupTextAnalysis from '../data/PopupTextAnalysis.js';
 import { TimelineLoader } from '../../timeline.js';
 import { Util } from '../../../../resources/common.js';
+import raidbossFileData from '../../data/manifest.txt';
 
 export default class AnalyzedEncounter extends EventBus {
   constructor(options, encounter, emulator) {
@@ -48,15 +49,14 @@ export default class AnalyzedEncounter extends EventBus {
       return;
     }
 
-    const popupText = new PopupTextAnalysis(this.popupText.options);
-    const gTimelineUI = new RaidEmulatorTimelineUI(this.options);
-    const gTimelineController = new RaidEmulatorTimelineController(this.options, gTimelineUI);
+    const timelineUI = new RaidEmulatorTimelineUI(this.options);
+    const timelineController =
+        new RaidEmulatorTimelineController(this.options, timelineUI, raidbossFileData);
+    const popupText = new PopupTextAnalysis(
+        this.popupText.options, new TimelineLoader(timelineController), raidbossFileData);
 
-    gTimelineController.SetPopupTextInterface(new PopupTextGenerator(gPopupText));
-    gTimelineController.SetDataFiles(this.emulator.dataFiles);
-    popupText.SetTimelineLoader(new TimelineLoader(gTimelineController));
-    popupText.OnDataFilesRead(this.emulator.dataFiles);
-    popupText.ReloadTimelines();
+    timelineController.SetPopupTextInterface(new PopupTextGenerator(popupText));
+
     popupText.partyTracker.onPartyChanged({
       party: this.encounter.combatantTracker.partyMembers.map((ID) => {
         return {
