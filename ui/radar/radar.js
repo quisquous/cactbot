@@ -267,6 +267,7 @@ class Radar {
 
   RemoveMonster(mobKey) {
     if (mobKey in this.targetMonsters) {
+      console.log(this.targetMonsters[mobKey].name + ' killed');
       this.targetMonsters[mobKey].dom.remove();
       delete this.targetMonsters[mobKey];
     }
