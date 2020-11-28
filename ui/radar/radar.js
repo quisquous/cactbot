@@ -206,7 +206,9 @@ class Radar {
       this.targetMonsters[mobKey] = m;
       this.UpdateMonsterDom(m);
 
-      console.log(monster.name + ' found at (' + posToMap(m.pos.x).toFixed(1) + ', ' + posToMap(m.pos.y).toFixed(1) + ')');
+      const mapX = posToMap(m.pos.x).toFixed(1);
+      const mapY = posToMap(m.pos.y).toFixed(1);
+      console.log(`Found: ${monster.name} (${mapX}, ${mapY})`);
 
       PlaySound(this.targetMonsters[mobKey], options);
     }
@@ -219,7 +221,7 @@ class Radar {
       return;
     monster.puller = puller;
     this.UpdateMonsterDom(monster);
-    console.log('Pull: ' + puller + ' => ' + monster.name);
+    console.log(`Pulled: ${puller} => ${monster.name}`);
   }
 
   UpdateMonsterDom(monster) {
@@ -267,7 +269,7 @@ class Radar {
 
   RemoveMonster(mobKey) {
     if (mobKey in this.targetMonsters) {
-      console.log(this.targetMonsters[mobKey].name + ' killed');
+      console.log(`Killed: ${this.targetMonsters[mobKey].name}`);
       this.targetMonsters[mobKey].dom.remove();
       delete this.targetMonsters[mobKey];
     }
