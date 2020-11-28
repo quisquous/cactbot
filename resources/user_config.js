@@ -113,7 +113,14 @@ class UserConfig {
           try {
             printUserFile('local user file: ' + basePath + '\\' + jsFile);
             const Options = options;
+
+            // This is the one eval cactbot should ever need, which is for handling user files.
+            // Because user files can be located anywhere on disk and there's backwards compat
+            // issues, it's unlikely that these will be able to be anything but eval forever.
+            //
+            /* eslint-disable no-eval */
             eval(localFiles[jsFile]);
+            /* eslint-enable no-eval */
 
             if (this.userFileCallbacks[overlayName])
               this.userFileCallbacks[overlayName](jsFile, localFiles, options);

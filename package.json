@@ -126,6 +126,8 @@
       "no-console": "off",
       "no-duplicate-imports": "error",
       "no-else-return": "error",
+      "no-eval": "error",
+      "no-implied-eval": "error",
       "no-undef": "off",
       "no-unused-vars": "off",
       "no-useless-escape": "off",
