@@ -108,8 +108,7 @@ class Radar {
 
     for (const i in this.monsters) {
       const monster = this.monsters[i];
-      const lang = this.lang || 'en';
-      monster.name = monster.name[lang] || monster.name['en'];
+      monster.name = monster.name[this.lang] || monster.name['en'];
 
       // Names are either strings or arrays of strings.
       if (typeof monster.name === 'string') {
