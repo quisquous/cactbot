@@ -2,9 +2,8 @@ import './raidboss_config.js';
 import '../../resources/common.js';
 import '../../resources/timerbar.js';
 
-import { PopupText, PopupTextGenerator, gPopupText as _gPopupText } from './popup-text.js';
+import { PopupText, PopupTextGenerator } from './popup-text.js';
 import { TimelineController, TimelineLoader, TimelineUI } from './timeline.js';
-let gPopupText = _gPopupText;
 
 import UserConfig from '../../resources/user_config.js';
 import { addRemotePlayerSelectUI } from '../../resources/player_override.js';
@@ -99,11 +98,12 @@ UserConfig.getUserConfigLocation('raidboss', Options, (e) => {
 
   const timelineUI = new TimelineUI(Options);
   const timelineController = new TimelineController(Options, timelineUI, raidbossFileData);
-  gPopupText = new PopupText(Options, new TimelineLoader(timelineController), raidbossFileData);
+  const timelineLoader = new TimelineLoader(timelineController);
+  const popupText = new PopupText(Options, timelineLoader, raidbossFileData);
 
   // Connect the timelines to the popup text, if alerts are desired.
   if (Options.AlertsEnabled)
-    timelineController.SetPopupTextInterface(new PopupTextGenerator(gPopupText));
+    timelineController.SetPopupTextInterface(new PopupTextGenerator(popupText));
 
   addOverlayListener('onLogEvent', (e) => {
     timelineController.OnLogEvent(e);
