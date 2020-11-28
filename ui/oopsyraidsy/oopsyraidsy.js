@@ -1209,7 +1209,6 @@ class DamageTracker {
     // Only run this once.
     if (this.triggerSets)
       return;
-    // Wait until OnPlayerChange occurs for the first time.
     if (!this.me)
       return;
 
