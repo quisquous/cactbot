@@ -1,6 +1,6 @@
 export default class TimerIcon extends HTMLElement {
   static get observedAttributes() {
-    return ['icon', 'name', 'zoom', 'duration', 'onhide', 'width', 'height', 'bordercolor', 'bordersize', 'text', 'textcolor'];
+    return ['icon', 'name', 'zoom', 'duration', 'width', 'height', 'bordercolor', 'bordersize', 'text', 'textcolor'];
   }
 
   // All visual dimensions are scaled by this.
@@ -58,14 +58,6 @@ export default class TimerIcon extends HTMLElement {
   }
   get hideafter() {
     return this.getAttribute('hideafter');
-  }
-
-  // When the timer hides after completing, this string is evaluated.
-  set onhide(c) {
-    this.setAttribute('onhide', c);
-  }
-  get onhide() {
-    return this.getAttribute('onhide');
   }
 
   // Sets the path to the image to show in the icon.
@@ -179,7 +171,6 @@ export default class TimerIcon extends HTMLElement {
     this._borderFg = 'grey';
     this._scale = 1;
     this._hideAfter = -1;
-    this._onHide = '';
     this._icon = '';
     this._zoom = 20;
     this._text = 'remain';
@@ -193,7 +184,6 @@ export default class TimerIcon extends HTMLElement {
     if (this.bordersize !== null) this._colorBorderSize = Math.max(parseInt(this.bordersize), 0);
     if (this.scale !== null) this._scale = Math.max(parseFloat(this.scale), 0.01);
     if (this.hideafter !== null && this.hideafter !== '') this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
-    if (this.onhide !== null) this._onHide = this.onhide;
     if (this.icon !== null) this._icon = this.icon;
     if (this.zoom !== null) this._zoom = Math.max(parseInt(this.zoom), 0);
     if (this.text !== null) this._text = this.text;
@@ -224,8 +214,6 @@ export default class TimerIcon extends HTMLElement {
     } else if (name === 'bordersize') {
       this._colorBorderSize = Math.max(parseInt(newValue), 0);
       this.layout();
-    } else if (name === 'onhide') {
-      this._onHide = newValue;
     } else if (name === 'icon') {
       this._icon = newValue;
       this.layout();
@@ -335,11 +323,6 @@ export default class TimerIcon extends HTMLElement {
       if (this._hideAfter >= 0) {
         this._hideTimer = setTimeout(() => {
           this.rootElement.style.display = 'none';
-          try {
-            eval(this._onHide);
-          } catch (e) {
-            console.log('error evaluating onhide: ' + this._onHide);
-          }
         }, this._hideAfter);
       }
     } else {
