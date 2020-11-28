@@ -1,6 +1,6 @@
 import EmulatorCommon from '../EmulatorCommon.js';
 import EventBus from '../EventBus.js';
-import { gPopupText, PopupTextGenerator } from '../../popup-text.js';
+import { PopupTextGenerator } from '../../popup-text.js';
 import RaidEmulatorTimelineController from '../overrides/RaidEmulatorTimelineController.js';
 import RaidEmulatorTimelineUI from '../overrides/RaidEmulatorTimelineUI.js';
 import PopupTextAnalysis from '../data/PopupTextAnalysis.js';

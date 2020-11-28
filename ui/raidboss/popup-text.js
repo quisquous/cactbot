@@ -1060,5 +1060,3 @@ export class PopupTextGenerator {
     this.popupText.OnTrigger(trigger, matches);
   }
 }
-
-export let gPopupText;
