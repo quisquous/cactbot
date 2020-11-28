@@ -1,8 +1,8 @@
 import StubbedPopupText from '../overrides/StubbedPopupText.js';
 
 export default class RaidEmulatorPopupText extends StubbedPopupText {
-  constructor(options) {
-    super(options);
+  constructor(options, timelineLoader, raidbossFileData) {
+    super(options, timelineLoader, raidbossFileData);
     this.$popupTextContainerWrapper = document.querySelector('.popup-text-container-outer');
     this.emulatedOffset = 0;
 

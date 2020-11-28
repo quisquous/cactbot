@@ -49,11 +49,11 @@ export default class AnalyzedEncounter extends EventBus {
       return;
     }
 
-    const popupText = new PopupTextAnalysis(
-        this.popupText.options, new TimelineLoader(timelineController), raidbossFileData);
     const timelineUI = new RaidEmulatorTimelineUI(this.options);
     const timelineController =
         new RaidEmulatorTimelineController(this.options, timelineUI, raidbossFileData);
+    const popupText = new PopupTextAnalysis(
+        this.popupText.options, new TimelineLoader(timelineController), raidbossFileData);
 
     timelineController.SetPopupTextInterface(new PopupTextGenerator(popupText));
 
