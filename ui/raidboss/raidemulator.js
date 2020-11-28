@@ -177,7 +177,7 @@ const Options = {
             new RaidEmulatorTimelineController(Options, timelineUI, raidbossFileData);
         timelineController.bindTo(emulator);
         popupText = new RaidEmulatorPopupText(
-            Option, new TimelineLoader(timelineController), raidbossFileData);
+            Options, new TimelineLoader(timelineController), raidbossFileData);
         popupText.bindTo(emulator);
 
         timelineController.SetPopupTextInterface(new PopupTextGenerator(popupText));
