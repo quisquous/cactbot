@@ -654,8 +654,6 @@ export class PopupText {
         // Priority audio order:
         // * user disabled (play nothing)
         // * if tts options are enabled globally or for this trigger:
-        //   * user groupTTS trigger groupTTS/tts override
-        //   * groupTTS entries in the trigger
         //   * user TTS triggers tts override
         //   * tts entries in the trigger
         //   * default alarm tts
@@ -674,7 +672,6 @@ export class PopupText {
         // being valid but empty, this will take priority over the default
         // tts texts from alarm/alert/info and will prevent tts from playing
         // and allowing sounds to be played instead.
-        this._onTriggerInternalGroupTTS(triggerHelper);
         this._onTriggerInternalTTS(triggerHelper);
         this._onTriggerInternalPlayAudio(triggerHelper);
         this._onTriggerInternalRun(triggerHelper);
@@ -889,19 +886,6 @@ export class PopupText {
 
   _onTriggerInternalInfoText(triggerHelper) {
     this._addTextFor('info', triggerHelper);
-  }
-
-  _onTriggerInternalGroupTTS(triggerHelper) {
-    if (triggerHelper.groupSpokenAlertsEnabled) {
-      if ('GroupTTSText' in triggerHelper.triggerOptions) {
-        triggerHelper.ttsText =
-          triggerHelper.valueOrFunction(triggerHelper.triggerOptions.GroupTTSText);
-      } else if ('groupTTS' in triggerHelper.trigger) {
-        triggerHelper.ttsText = triggerHelper.valueOrFunction(triggerHelper.trigger.groupTTS);
-      } else if ('groupTTS' in triggerHelper.response) {
-        triggerHelper.ttsText = triggerHelper.valueOrFunction(triggerHelper.response.groupTTS);
-      }
-    }
   }
 
   _onTriggerInternalTTS(triggerHelper) {

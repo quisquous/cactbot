@@ -28,7 +28,6 @@ export const triggerFunctions = [
   'delaySeconds',
   'disabled',
   'durationSeconds',
-  'groupTTS',
   'id',
   'infoText',
   'preRun',
@@ -47,7 +46,6 @@ export const triggerOutputFunctions = [
   'alarmText',
   'alertText',
   'infoText',
-  'groupTTS', // please remove me T_T
   'response',
   'tts',
 ];

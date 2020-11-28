@@ -185,11 +185,6 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     super._onTriggerInternalInfoText(triggerHelper);
   }
 
-  _onTriggerInternalGroupTTS(triggerHelper) {
-    this.currentFunction = '_onTriggerInternalGroupTTS';
-    super._onTriggerInternalGroupTTS(triggerHelper);
-  }
-
   _onTriggerInternalTTS(triggerHelper) {
     this.currentFunction = '_onTriggerInternalTTS';
     super._onTriggerInternalTTS(triggerHelper);
