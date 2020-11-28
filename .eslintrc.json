@@ -4,6 +4,10 @@
     "ecmaVersion": 2020,
     "sourceType": "module"
   },
+  "ignorePatterns": [
+    "resources/lib/",
+    "ui/dps/rdmty/"
+  ],
   "env": {
     "browser": true,
     "es6": true
