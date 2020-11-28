@@ -740,9 +740,6 @@ class RaidbossConfigurator {
 
 // Raidboss needs to do some extra processing of user files.
 const userFileHandler = (name, files, options) => {
-  const Options = options;
-  eval(files[name]);
-
   if (!options.Triggers)
     return;
 

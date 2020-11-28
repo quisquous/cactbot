@@ -112,12 +112,11 @@ class UserConfig {
         if (jsFile in localFiles) {
           try {
             printUserFile('local user file: ' + basePath + '\\' + jsFile);
-            if (this.userFileCallbacks[overlayName]) {
+            const Options = options;
+            eval(localFiles[jsFile]);
+
+            if (this.userFileCallbacks[overlayName])
               this.userFileCallbacks[overlayName](jsFile, localFiles, options);
-            } else {
-              const Options = options;
-              eval(localFiles[jsFile]);
-            }
           } catch (e) {
             // Be very visible for users.
             console.log('*** ERROR IN USER FILE ***');
