@@ -1,4 +1,4 @@
-import fs, { readdirSync } from 'fs';
+import fs from 'fs';
 import path from 'path';
 import chai from 'chai';
 import { Timeline } from '../ui/raidboss/timeline.js';
