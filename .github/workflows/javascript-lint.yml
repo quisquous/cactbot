@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '**/*.js'
+      - '**/*.json'
       - '.github/workflows/javascript-lint.yml'
   pull_request:
     types:
@@ -12,6 +13,7 @@ on:
       - synchronize
     paths:
       - '**/*.js'
+      - '**/*.json'
       - '.github/workflows/javascript-lint.yml'
 
 jobs:
