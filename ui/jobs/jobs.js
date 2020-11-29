@@ -214,6 +214,7 @@ const kAbility = {
   HeatedCleanShot: '1CF5',
   SpreadShot: 'B36',
   Drill: '4072',
+  Bioblaster: '4073',
   HotShot: 'B38',
   AirAnchor: '4074',
   WildFire: 'B3E',
@@ -2837,14 +2838,19 @@ class Bars {
       id: 'mch-procs-drill',
       fgColor: 'mch-color-drill',
     });
-    this.abilityFuncMap[kAbility.Drill] = () => {
-      drillBox.duration = 0;
-      drillBox.duration = this.CalcGCDFromStat(this.skillSpeed, 20000);
-      if (wildFireActive) {
-        wildFireGCD = wildFireGCD + 1;
-        refreshWildFireGuage();
-      }
-    };
+    [
+      kAbility.Drill,
+      kAbility.Bioblaster,
+    ].forEach((ability) => {
+      this.abilityFuncMap[ability] = () => {
+        drillBox.duration = 0;
+        drillBox.duration = this.CalcGCDFromStat(this.skillSpeed, 20000);
+        if (wildFireActive) {
+          wildFireGCD = wildFireGCD + 1;
+          refreshWildFireGuage();
+        }
+      };
+    });
 
     const airAnchorBox = this.addProcBox({
       id: 'mch-procs-airanchor',
