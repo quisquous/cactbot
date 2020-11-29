@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
@@ -61,6 +62,39 @@ export default {
     },
   ],
   triggers: [
+    {
+      id: 'TitanEx Rock Throw',
+      netRegex: NetRegexes.ability({ source: 'Titan', id: '285', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Titan', id: '285', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Titan', id: '285', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'Titan', id: '285', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '泰坦', id: '285', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '타이탄', id: '285', capture: false }),
+      // This trigger is a little tricky.  Ideally we'd want to alert all
+      // players who had a jail marker, but this is not a 1B headmarker.
+      // This is probably because this is old content, similar to T5.
+      // Worse, only one player is called out as the target of Rock Throw.
+      // It seems strictly worse to differentiate trigger output of known
+      // rock throw target vs unknown rock throw target, as we don't want to
+      // give a false expectation that this trigger is very smart.
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Jails',
+        },
+      },
+    },
+    {
+      id: 'TitanEx Upheaval',
+      // Five second cast time.
+      netRegex: NetRegexes.startsUsing({ source: 'Titan', id: '5BA', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Titan', id: '5BA', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Titan', id: '5BA', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'Titan', id: '5BA', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '泰坦', id: '5BA', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '타이탄', id: '5BA', capture: false }),
+      response: Responses.knockback('info'),
+    },
   ],
   timelineReplace: [
     {
