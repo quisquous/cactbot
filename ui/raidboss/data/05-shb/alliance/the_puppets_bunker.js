@@ -1106,6 +1106,7 @@ export default {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         '724P-operated superior flight unit \\(A-lpha\\)': '724P：强化型飞行装置[A-lpha]',
         '767P-Operated Superior Flight Unit \\(B-Eta\\)': '767P：强化型飞行装置[B-eta]',
@@ -1126,9 +1127,9 @@ export default {
         'The passage': '通道',
       },
       'replaceText': {
-      '(?<=\\()In': '内',
-      'Out(?=\\)|/)': '外',
-      '(?<=\\(|/)Behind(?=\\))': '后',
+        '(?<=\\()In': '内',
+        'Out(?=\\)|/)': '外',
+        '(?<=\\(|/)Behind(?=\\))': '后',
         'Aerial Support: Bombardment': '航空支援：轰炸',
         'Aerial Support: Swoop': '航空支援：突击',
         'Anti-Personnel Missile': '对人导弹乱射',

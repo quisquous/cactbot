@@ -534,6 +534,7 @@ export default {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Spectral Bard': '幻光吟游诗人',
         'Spectral Black Mage': '幻光黑魔法师',
@@ -546,9 +547,9 @@ export default {
         'Wyrm Of Light': '光之真龙',
       },
       'replaceText': {
-      '\\(In\\)': '(月环)',
-      '\\(Out\\)': '(钢铁)',
-      '--active time event--': '--XJB按--',
+        '\\(In\\)': '(月环)',
+        '\\(Out\\)': '(钢铁)',
+        '--active time event--': '--XJB按--',
         'Absolute Blizzard III': '绝对冰封',
         'Absolute Fire III': '绝对爆炎',
         'Absolute Fire/Blizard': '绝对爆炎/绝对冰封',
