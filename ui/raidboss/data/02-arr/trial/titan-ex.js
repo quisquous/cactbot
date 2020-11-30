@@ -82,6 +82,7 @@ export default {
         text: {
           en: 'Jails',
           de: 'Gefängnis',
+          cn: '石牢',
         },
       },
     },
