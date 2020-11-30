@@ -81,6 +81,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Jails',
+          de: 'Gefängnis',
         },
       },
     },
