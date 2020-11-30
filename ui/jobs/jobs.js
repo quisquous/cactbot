@@ -2794,6 +2794,11 @@ class Bars {
     });
 
     // Wild Fire Gauge
+    let wildFireActive = false;
+    // exclude WildFire it self, for some code neatness reason.
+    let wildFireGCD = -1;
+    let cooldown = false;
+
     const stacksContainer = document.createElement('div');
     stacksContainer.id = 'mch-stacks';
     stacksContainer.classList.add('hide');
@@ -2807,6 +2812,21 @@ class Bars {
       wildFireContainer.appendChild(d);
       wildFireStacks.push(d);
     }
+    const refreshWildFireGuage = () => {
+      if (wildFireActive && !cooldown) {
+        wildFireGCD = wildFireGCD + 1;
+        for (let i = 0; i < 6; ++i) {
+          if (wildFireGCD > i)
+            wildFireStacks[i].classList.add('active');
+          else
+            wildFireStacks[i].classList.remove('active');
+        }
+        cooldown = true;
+        setTimeout(() => {
+          cooldown = false;
+        }, 100);
+      }
+    };
     [
       kAbility.SplitShot,
       kAbility.SlugShot,
@@ -2819,20 +2839,9 @@ class Bars {
       kAbility.AutoCrossbow,
     ].forEach((ability) => {
       this.abilityFuncMap[ability] = () => {
-        if (wildFireActive) {
-          wildFireGCD = wildFireGCD + 1;
-          refreshWildFireGuage();
-        }
+        refreshWildFireGuage();
       };
     });
-    const refreshWildFireGuage = () => {
-      for (let i = 0; i < 6; ++i) {
-        if (wildFireGCD > i)
-          wildFireStacks[i].classList.add('active');
-        else
-          wildFireStacks[i].classList.remove('active');
-      }
-    };
 
     const drillBox = this.addProcBox({
       id: 'mch-procs-drill',
@@ -2845,10 +2854,7 @@ class Bars {
       this.abilityFuncMap[ability] = () => {
         drillBox.duration = 0;
         drillBox.duration = this.CalcGCDFromStat(this.skillSpeed, 20000);
-        if (wildFireActive) {
-          wildFireGCD = wildFireGCD + 1;
-          refreshWildFireGuage();
-        }
+        refreshWildFireGuage();
       };
     });
 
@@ -2863,15 +2869,10 @@ class Bars {
       this.abilityFuncMap[ability] = () => {
         airAnchorBox.duration = 0;
         airAnchorBox.duration = this.CalcGCDFromStat(this.skillSpeed, 40000);
-        if (wildFireActive) {
-          wildFireGCD = wildFireGCD + 1;
-          refreshWildFireGuage();
-        }
+        refreshWildFireGuage();
       };
     });
 
-    let wildFireActive = false;
-    let wildFireGCD = 0;
     const wildFireBox = this.addProcBox({
       id: 'mch-procs-wildfire',
       fgColor: 'mch-color-wildfire',
@@ -2881,7 +2882,7 @@ class Bars {
       wildFireBox.duration = 10;
       wildFireBox.threshold = 1000;
       wildFireActive = true;
-      wildFireGCD = 0;
+      wildFireGCD = -1;
       refreshWildFireGuage();
       stacksContainer.classList.remove('hide');
       wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire.active');
@@ -2889,7 +2890,7 @@ class Bars {
         wildFireBox.duration = 110;
         wildFireBox.threshold = this.gcdSkill() + 1;
         wildFireActive = false;
-        wildFireGCD = 0;
+        wildFireGCD = -1;
         refreshWildFireGuage();
         stacksContainer.classList.add('hide');
         wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire');
