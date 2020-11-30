@@ -582,7 +582,7 @@ export default {
         'To The Limit': '突破极限',
         'Twincast': '合力咏唱',
         'Ultimate Crossover': '究极·交汇',
-        '(?<!Absolute )Blizzard': '冰结',
+        '(?<!(Absolute |Imbued |/))Blizzard': '冰结',
       },
     },
     {
