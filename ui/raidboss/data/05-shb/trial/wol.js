@@ -51,6 +51,7 @@ export default {
       netRegexDe: NetRegexes.ability({ source: 'Krieger Des Lichts', id: '4F27', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Guerrier De La Lumière Primordial', id: '4F27', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ウォーリア・オブ・ライト', id: '4F27', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '光之战士', id: '4F27', capture: false }),
       condition: function(data) {
         return data.role === 'healer';
       },
@@ -73,6 +74,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F11', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F11', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F11', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F11', capture: false }),
       response: Responses.getUnder('info'),
     },
     {
@@ -81,6 +83,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F10', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F10', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F10', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F10', capture: false }),
       response: Responses.getOut('info'),
     },
     {
@@ -89,6 +92,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F2D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F2D', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F2D', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F2D', capture: false }),
       response: Responses.moveAround('alert'),
     },
     {
@@ -97,6 +101,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F2E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F2E', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F2E', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F2E', capture: false }),
       // I mean, stop if you want, I guess?
       response: Responses.stopEverything('info'),
     },
@@ -106,6 +111,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F13', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F13', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F13', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F13', capture: false }),
       run: function(data) {
         data.imbued = 'blizzard';
       },
@@ -116,6 +122,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F12', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F12', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F12', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F12', capture: false }),
       run: function(data) {
         data.imbued = 'fire';
       },
@@ -126,6 +133,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F4B', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F4B', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F4B', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F4B', capture: false }),
       alertText: function(data, _, output) {
         if (data.imbued === 'blizzard')
           return output.outMove();
@@ -167,6 +175,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F4C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F4C', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F4C', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F4C', capture: false }),
       alertText: function(data, _, output) {
         if (data.imbued === 'blizzard')
           return output.underMove();
@@ -208,6 +217,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F42', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F42', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F42', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F42', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -226,6 +236,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F41', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F41', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F41', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F41', capture: false }),
       delaySeconds: 6,
       // This applies to both phases.  We could say something like "go side without wyrm" and
       // "go to corner without wyrm", but "avoid wyrm dash" covers both.  Hopefully it's obvious
@@ -248,6 +259,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F28' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F28' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F28' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F28' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBusterSwap(),
     },
@@ -257,6 +269,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F29', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F29', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F29', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F29', capture: false }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
@@ -309,6 +322,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '515D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '515D', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '515D', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '515D', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -343,6 +357,7 @@ export default {
       netRegexDe: NetRegexes.ability({ source: 'Phantom-Ninja', id: '4F38', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Ninja Spectral', id: '4F38', capture: false }),
       netRegexJa: NetRegexes.ability({ source: '幻光の忍者', id: '4F38', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '幻光忍者', id: '4F38', capture: false }),
       delaySeconds: 5,
       response: Responses.knockback(),
     },
@@ -352,6 +367,7 @@ export default {
       netRegexDe: NetRegexes.tether({ source: 'Phantom-Primae', id: '0011' }),
       netRegexFr: NetRegexes.tether({ source: 'Egi Spectral', id: '0011' }),
       netRegexJa: NetRegexes.tether({ source: '幻光の召喚獣', id: '0011' }),
+      netRegexCn: NetRegexes.tether({ source: '幻光召唤兽', id: '0011' }),
       condition: Conditions.targetIsYou(),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -514,6 +530,59 @@ export default {
         'To The Limit': 'リミットチャージ',
         'Twincast': 'ふたりがけ',
         'Ultimate Crossover': 'アルティメット・クロスオーバー',
+      },
+    },
+    {
+      'locale': 'cn',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Spectral Bard': '幻光吟游诗人',
+        'Spectral Black Mage': '幻光黑魔法师',
+        'Spectral Dark Knight': '幻光暗黑骑士',
+        'Spectral Egi': '幻光召唤兽',
+        'Spectral Ninja': '幻光忍者',
+        'Spectral Summoner': '幻光召唤师',
+        'Spectral Warrior': '幻光狂战士',
+        'Warrior Of Light': '光之战士',
+        'Wyrm Of Light': '光之真龙',
+      },
+      'replaceText': {
+        '\\(In\\)': '(月环)',
+        '\\(Out\\)': '(钢铁)',
+        '--active time event--': '--XJB按--',
+        'Absolute Blizzard III': '绝对冰封',
+        'Absolute Fire III': '绝对爆炎',
+        'Absolute Fire/Blizard': '绝对爆炎/绝对冰封',
+        'Absolute Holy': '绝对神圣',
+        'Absolute Teleport': '绝对传送',
+        'Ascendance': '生辰星位',
+        'Brimstone Earth': '狱火大地',
+        'Cauterize': '灼热俯冲',
+        'Coruscant Saber': '光明利剑',
+        'Deluge Of Death': '死亡暴雨',
+        'Elddragon Dive': '远古龙炎冲',
+        'Flare Breath': '核爆吐息',
+        'Imbued Coruscance': '魔法剑技·光明利剑',
+        'Imbued Fire/Blizzard': '魔法剑·绝对爆炎/绝对冰封',
+        'Katon: San': '叁式火遁之术',
+        'Meteor Impact': '陨石冲击',
+        'Perfect Decimation': '完美地毁人亡',
+        'Radiant Braver': '光之勇猛烈斩',
+        'Radiant Desperado': '光之亡命暴徒',
+        'Radiant Meteor': '光之陨石流星',
+        'Shining Wave': '光芒波动',
+        'Solemn Confiteor': '庄严悔罪',
+        'Specter Of Light': '幻光召唤',
+        'Suiton: San': '叁式水遁之术',
+        'Summon(?! Wyrm)': '召唤',
+        'Summon Wyrm': '真龙召唤',
+        'Sword Of Light': '光之剑',
+        'Terror Unleashed': '恐惧释放',
+        'The Bitter End': '尽灭',
+        'To The Limit': '突破极限',
+        'Twincast': '合力咏唱',
+        'Ultimate Crossover': '究极·交汇',
+        '(?<!(Absolute |Imbued |/))Blizzard': '冰结',
       },
     },
     {
