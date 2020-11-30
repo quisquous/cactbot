@@ -67,7 +67,7 @@ export default {
       netRegex: NetRegexes.ability({ source: 'Titan', id: '285', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Titan', id: '285', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Titan', id: '285', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'Titan', id: '285', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'タイタン', id: '285', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '泰坦', id: '285', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '타이탄', id: '285', capture: false }),
       // This trigger is a little tricky.  Ideally we'd want to alert all
@@ -90,7 +90,7 @@ export default {
       netRegex: NetRegexes.startsUsing({ source: 'Titan', id: '5BA', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Titan', id: '5BA', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Titan', id: '5BA', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'Titan', id: '5BA', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'タイタン', id: '5BA', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '泰坦', id: '5BA', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '타이탄', id: '5BA', capture: false }),
       response: Responses.knockback('info'),
