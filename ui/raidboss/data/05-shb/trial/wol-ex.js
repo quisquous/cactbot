@@ -961,6 +961,7 @@ export default {
         'Absolute Flash': '绝对闪光',
         'Absolute Holy': '绝对神圣',
         'Absolute Stone III': '绝对垒石',
+        'Berserk': '狂暴',
         'Blade Of Shadow': '漆黑魔剑',
         'Brimstone Earth': '狱火大地',
         'Coruscant Saber': '光明利剑',
