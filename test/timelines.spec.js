@@ -5,17 +5,11 @@ import { Timeline } from '../ui/raidboss/timeline.js';
 import { commonReplacement, partialCommonReplacementKeys } from '../ui/raidboss/common_replacement.js';
 import Regexes from '../resources/regexes.js';
 
+import Mocha from 'mocha';
+
 const { expect } = chai;
 
 const raidbossDataPath = './ui/raidboss/data/';
-
-function walkDir(dir, callback) {
-  fs.readdirSync(dir).forEach((f) => {
-    const dirPath = path.join(dir, f);
-    const isDirectory = fs.statSync(dirPath).isDirectory();
-    isDirectory ? walkDir(dirPath, callback) : callback(path.join(dir, f));
-  });
-}
 
 const parseTimelineFileFromTriggerFile = (filepath) => {
   const fileContents = fs.readFileSync(filepath, 'utf8');
@@ -37,23 +31,19 @@ let triggersFile;
 let timeline;
 
 const setup = () => {
-  walkDir(raidbossDataPath, (filepath) => {
+  global.timelineFiles.forEach((timelineFile) => {
     // For each timeline file, ensure that its corresponding trigger file is pointing to it.
-    const filename = filepath.split(path.sep).slice(-1)[0];
-    if (!filename.endsWith('.txt'))
-      return;
-    if (filename === 'manifest.txt')
-      return;
-    const triggerFilename = filepath.replace('.txt', '.js');
+    const filename = timelineFile.split('/').slice(-1)[0];
+    const triggerFilename = timelineFile.replace('.txt', '.js');
     if (!fs.statSync(triggerFilename))
-      throw new Error(`Error: Timeline file ${filepath} found without matching trigger file`);
-    const timelineFile = parseTimelineFileFromTriggerFile(triggerFilename);
-    if (timelineFile !== filename)
-      throw new Error(`Error: Trigger file ${triggerFilename} has \`triggerFile: '${timelineFile}'\`, but was expecting \`triggerFile: '${filename}'\`.`);
+      throw new Error(`Error: Timeline file ${timelineFile} found without matching trigger file`);
+    const timelineFileFromFile = parseTimelineFileFromTriggerFile(triggerFilename);
+    if (filename !== timelineFileFromFile)
+      throw new Error(`Error: Trigger file ${triggerFilename} has \`triggerFile: '${timelineFileFromFile}'\`, but was expecting \`triggerFile: '${filename}'\``);
 
     testFiles.push({
-      timelineFile: filepath,
-      triggersFile: filepath.replace('.txt', '.js'),
+      timelineFile: timelineFile,
+      triggersFile: triggerFilename,
     });
   });
 };
