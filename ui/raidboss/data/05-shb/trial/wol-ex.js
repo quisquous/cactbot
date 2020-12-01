@@ -973,7 +973,7 @@ export default {
         'DRK/BRD': '黑骑／诗人',
         'Elddragon Dive': '远古龙炎冲',
         'Fatal Cleave': '夺命飞环',
-        'Fire/Ice': '火/冰',
+        '(?<!(Imbued) )Fire/Ice': '火/冰',
         'Flare Breath': '核爆吐息',
         '(?<!(Absolute|Imbued) )Holy': '神圣',
         'Imbued Coruscance': '魔法剑技·光明利剑',
