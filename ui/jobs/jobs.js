@@ -213,6 +213,13 @@ const kAbility = {
   HeatedSlugShot: '1CF4',
   HeatedCleanShot: '1CF5',
   SpreadShot: 'B36',
+  Drill: '4072',
+  Bioblaster: '4073',
+  HotShot: 'B38',
+  AirAnchor: '4074',
+  WildFire: 'B3E',
+  HeatBlast: '1CF2',
+  AutoCrossbow: '4071',
   // DNC
   Cascade: '3E75',
   Fountain: '3E76',
@@ -2759,6 +2766,145 @@ class Bars {
       if (skill)
         comboTimer.duration = 15;
     });
+
+    const heatGauge = this.addResourceBox({
+      classList: ['mch-color-heat'],
+    });
+    const batteryGauge = this.addResourceBox({
+      classList: ['mch-color-battery'],
+    });
+    this.jobFuncs.push((jobDetail) => {
+      heatGauge.innerText = jobDetail.heat;
+      batteryGauge.innerText = jobDetail.battery;
+      // These two seconds are shown by half adjust, not like others' ceil.
+      if (jobDetail.overheatMilliseconds > 0) {
+        heatGauge.parentNode.classList.add('overheat');
+        heatGauge.innerText = Math.round(jobDetail.overheatMilliseconds / 1000);
+      } else {
+        heatGauge.parentNode.classList.remove('overheat');
+        heatGauge.innerText = jobDetail.heat;
+      }
+      if (jobDetail.batteryMilliseconds > 0) {
+        batteryGauge.parentNode.classList.add('robot-active');
+        batteryGauge.innerText = Math.round(jobDetail.batteryMilliseconds / 1000);
+      } else {
+        batteryGauge.parentNode.classList.remove('robot-active');
+        batteryGauge.innerText = jobDetail.battery;
+      }
+    });
+
+    // Wild Fire Gauge
+    let wildFireActive = false;
+    // exclude WildFire it self, for some code neatness reason.
+    let wildFireGCD = -1;
+    let cooldown = false;
+
+    const stacksContainer = document.createElement('div');
+    stacksContainer.id = 'mch-stacks';
+    stacksContainer.classList.add('hide');
+    this.addJobBarContainer().appendChild(stacksContainer);
+    const wildFireContainer = document.createElement('div');
+    wildFireContainer.id = 'mch-stacks-wildfire';
+    stacksContainer.appendChild(wildFireContainer);
+    const wildFireStacks = [];
+    for (let i = 0; i < 6; ++i) {
+      const d = document.createElement('div');
+      wildFireContainer.appendChild(d);
+      wildFireStacks.push(d);
+    }
+    const refreshWildFireGuage = () => {
+      if (wildFireActive && !cooldown) {
+        wildFireGCD = wildFireGCD + 1;
+        for (let i = 0; i < 6; ++i) {
+          if (wildFireGCD > i)
+            wildFireStacks[i].classList.add('active');
+          else
+            wildFireStacks[i].classList.remove('active');
+        }
+        cooldown = true;
+        setTimeout(() => {
+          cooldown = false;
+        }, 100);
+      }
+    };
+    [
+      kAbility.SplitShot,
+      kAbility.SlugShot,
+      kAbility.CleanShot,
+      kAbility.HeatedSplitShot,
+      kAbility.HeatedSlugShot,
+      kAbility.HeatedCleanShot,
+      kAbility.SpreadShot,
+      kAbility.HeatBlast,
+      kAbility.AutoCrossbow,
+    ].forEach((ability) => {
+      this.abilityFuncMap[ability] = () => {
+        refreshWildFireGuage();
+      };
+    });
+
+    const drillBox = this.addProcBox({
+      id: 'mch-procs-drill',
+      fgColor: 'mch-color-drill',
+    });
+    [
+      kAbility.Drill,
+      kAbility.Bioblaster,
+    ].forEach((ability) => {
+      this.abilityFuncMap[ability] = () => {
+        drillBox.duration = 0;
+        drillBox.duration = this.CalcGCDFromStat(this.skillSpeed, 20000);
+        refreshWildFireGuage();
+      };
+    });
+
+    const airAnchorBox = this.addProcBox({
+      id: 'mch-procs-airanchor',
+      fgColor: 'mch-color-airanchor',
+    });
+    [
+      kAbility.AirAnchor,
+      kAbility.HotShot,
+    ].forEach((ability) => {
+      this.abilityFuncMap[ability] = () => {
+        airAnchorBox.duration = 0;
+        airAnchorBox.duration = this.CalcGCDFromStat(this.skillSpeed, 40000);
+        refreshWildFireGuage();
+      };
+    });
+
+    const wildFireBox = this.addProcBox({
+      id: 'mch-procs-wildfire',
+      fgColor: 'mch-color-wildfire',
+    });
+    this.abilityFuncMap[kAbility.WildFire] = () => {
+      wildFireBox.duration = 0;
+      wildFireBox.duration = 10;
+      wildFireBox.threshold = 1000;
+      wildFireActive = true;
+      wildFireGCD = -1;
+      refreshWildFireGuage();
+      stacksContainer.classList.remove('hide');
+      wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire.active');
+      setTimeout(() => {
+        wildFireBox.duration = 110;
+        wildFireBox.threshold = this.gcdSkill() + 1;
+        wildFireActive = false;
+        wildFireGCD = -1;
+        refreshWildFireGuage();
+        stacksContainer.classList.add('hide');
+        wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire');
+      }, 10000);
+    };
+
+    this.statChangeFuncMap['MCH'] = () => {
+      drillBox.valuescale = this.gcdSkill();
+      drillBox.threshold = this.gcdSkill() * 3 + 1;
+      airAnchorBox.valuescale = this.gcdSkill();
+      airAnchorBox.threshold = this.gcdSkill() * 3 + 1;
+      wildFireBox.valuescale = this.gcdSkill();
+      wildFireBox.threshold = this.gcdSkill() + 1;
+    };
   }
 
   setupDnc() {
