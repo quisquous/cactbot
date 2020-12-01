@@ -534,7 +534,6 @@ export default {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Spectral Bard': '幻光吟游诗人',
         'Spectral Black Mage': '幻光黑魔法师',
@@ -582,7 +581,6 @@ export default {
         'To The Limit': '突破极限',
         'Twincast': '合力咏唱',
         'Ultimate Crossover': '究极·交汇',
-        '(?<!(Absolute |Imbued |/))Blizzard': '冰结',
       },
     },
     {

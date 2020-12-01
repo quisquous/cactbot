@@ -1130,11 +1130,10 @@ export default {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
-        '724P-operated superior flight unit \\(A-lpha\\)': '724P：强化型飞行装置[A-lpha]',
-        '767P-Operated Superior Flight Unit \\(B-Eta\\)': '767P：强化型飞行装置[B-eta]',
-        '772P-Operated Superior Flight Unit \\(C-Hi\\)': '772P：强化型飞行装置[C-hi]',
+        '724P-Operated Superior Flight Unit \\\\\\(A-Lpha\\\\\\)': '724P：强化型飞行装置[A-lpha]',
+        '767P-Operated Superior Flight Unit \\\\\\(B-Eta\\\\\\)': '767P：强化型飞行装置[B-eta]',
+        '772P-Operated Superior Flight Unit \\\\\\(C-Hi\\\\\\)': '772P：强化型飞行装置[C-hi]',
         '813P-Operated Aegis Unit': '813P：装备据点防卫装置',
         '905P-Operated Heavy Artillery Unit': '905P：装备重型陆战装置',
         'Compound 2P': '2P：融合体',
