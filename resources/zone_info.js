@@ -6883,6 +6883,7 @@ export default {
     'contentType': 2,
     'exVersion': 3,
     'name': {
+      'cn': '暗影决战诺弗兰特',
       'de': 'Schlacht um Norvrandt',
       'en': 'The Heroes\' Gauntlet',
       'fr': 'La Traversée de Norvrandt',
@@ -6897,6 +6898,7 @@ export default {
     'contentType': 5,
     'exVersion': 3,
     'name': {
+      'cn': '人偶军事基地',
       'de': 'Die Puppenfestung',
       'en': 'The Puppets\' Bunker',
       'fr': 'La base militaire des Pantins',
@@ -6925,6 +6927,7 @@ export default {
     'contentType': 4,
     'exVersion': 3,
     'name': {
+      'cn': '光之战士歼灭战',
       'de': 'Krieger des Lichts',
       'en': 'The Seat of Sacrifice',
       'fr': 'Le Trône du Sacrifice',
@@ -6939,6 +6942,7 @@ export default {
     'contentType': 4,
     'exVersion': 3,
     'name': {
+      'cn': '光之战士幻耀歼灭战',
       'de': 'Krieger des Lichts (extrem)',
       'en': 'The Seat of Sacrifice (Extreme)',
       'fr': 'Le Trône du Sacrifice (extrême)',
@@ -6953,6 +6957,7 @@ export default {
     'contentType': 7,
     'exVersion': 3,
     'name': {
+      'cn': '飞翔吧，前往维尔利特！',
       'de': 'Luftangriff auf Werlyt',
       'en': 'Sleep Now in Sapphire',
       'fr': 'Sur la mer de saphir',
@@ -6981,6 +6986,7 @@ export default {
     'contentType': 4,
     'exVersion': 3,
     'name': {
+      'cn': '希瓦幻巧战',
       'de': 'Traumprüfung - Shiva',
       'en': 'The Akh Afah Amphitheatre (Unreal)',
       'fr': 'L\'Amphithéâtre d\'Akh Afah (irréel)',
@@ -6995,6 +7001,7 @@ export default {
     'contentType': 7,
     'exVersion': 3,
     'name': {
+      'cn': '褪色的记忆',
       'de': 'Verblasste Erinnerungen',
       'en': 'Faded Memories',
       'fr': 'Souvenir périssable',
