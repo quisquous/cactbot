@@ -534,7 +534,6 @@ export default {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Spectral Bard': '幻光吟游诗人',
         'Spectral Black Mage': '幻光黑魔法师',
