@@ -1785,8 +1785,8 @@ class Bars {
     });
 
     this.comboFuncs.push((skill) => {
-      // TODO: remove this condition when CN or KO launch patch 5.3
-      if (this.options.ParserLanguage === 'cn' || this.options.ParserLanguage === 'ko') {
+      // TODO: remove this condition when KO launch patch 5.3
+      if (this.options.ParserLanguage === 'ko') {
         if (skill === kAbility.MythrilTempest) {
           if (eyeBox.duration > 0) {
             const old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
