@@ -1,5 +1,8 @@
+import NetRegexes from '../../../../../resources/netregexes.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // O2N - Deltascape 2.0 Normal
-[{
+export default {
   zoneId: ZoneId.DeltascapeV20,
   damageWarn: {
     'O2N Main Quake': '24A5', // Non-telegraphed circle AoE, Fleshy Member
@@ -33,4 +36,4 @@
       },
     },
   ],
-}];
+};

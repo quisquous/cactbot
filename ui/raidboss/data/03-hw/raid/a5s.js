@@ -1,3 +1,8 @@
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // TODO: do the gobcut and gobstraight really alternate?
 // if so, then maybe we could call out which was coming.
 // I thought some of them were fixed and don't have enough data.
@@ -10,7 +15,7 @@
 // TODO: is it worth calling out a safe spot for the second boost?
 // There's some notes below, but good words for directions are hard.
 
-let bombLocation = (matches) => {
+const bombLocation = (matches) => {
   // x = -15, -5, +5, +15 (east to west)
   // y = -205, -195, -185, -175 (north to south)
   return {
@@ -19,7 +24,7 @@ let bombLocation = (matches) => {
   };
 };
 
-[{
+export default {
   zoneId: ZoneId.AlexanderTheFistOfTheSonSavage,
   timelineFile: 'a5s.txt',
   timelineTriggers: [
@@ -184,7 +189,7 @@ let bombLocation = (matches) => {
           if (data.boostBombs.length !== 1)
             return;
           // index 0 = NW, 3 = NE, 12 = SW, 15 = SE
-          let index = data.boostBombs[0].x + data.boostBombs[0].y * 4;
+          const index = data.boostBombs[0].x + data.boostBombs[0].y * 4;
           return {
             0: output.northwestFirst(),
             3: output.northeastFirst(),
@@ -593,4 +598,4 @@ let bombLocation = (matches) => {
       },
     },
   ],
-}];
+};

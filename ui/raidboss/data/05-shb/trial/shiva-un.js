@@ -1,7 +1,12 @@
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // TODO: some sort of warning about extra tank damage during bow phase?
 // TODO: should the post-staff "spread" happen unconditionally prior to marker?
 
-[{
+export default {
   zoneId: ZoneId.TheAkhAfahAmphitheatreUnreal,
   timelineFile: 'shiva-un.txt',
   timelineTriggers: [
@@ -263,8 +268,8 @@
         if (!data.seenDiamondDust || data.soonAfterWeaponChange)
           return false;
 
-        let x = parseFloat(matches.x);
-        let y = parseFloat(matches.y);
+        const x = parseFloat(matches.x);
+        const y = parseFloat(matches.y);
         return Math.abs(x) < 0.1 && Math.abs(y) < 0.1;
       },
       // This can hit multiple people.
@@ -440,4 +445,4 @@
       },
     },
   ],
-}];
+};

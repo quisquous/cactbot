@@ -1,4 +1,9 @@
-[{
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.TheBurn,
   timelineFile: 'the_burn.txt',
   triggers: [
@@ -403,4 +408,4 @@
       },
     },
   ],
-}];
+};

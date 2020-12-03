@@ -15,7 +15,7 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
   document.getElementById('gp').innerText = e.detail.currentGP + '/' + e.detail.maxGP;
   document.getElementById('job').innerText = e.detail.level + ' ' + e.detail.job;
   document.getElementById('debug').innerText = e.detail.debugJob;
-  let jobDetail = e.detail.jobDetail;
+  const jobDetail = e.detail.jobDetail;
   if (e.detail.job === 'RDM')
     document.getElementById('jobinfo').innerText = jobDetail.whiteMana + ' | ' + jobDetail.blackMana;
   else if (e.detail.job === 'WAR')
@@ -67,7 +67,7 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
 });
 
 addOverlayListener('EnmityTargetData', (e) => {
-  let target = e.Target;
+  const target = e.Target;
   if (!target) {
     document.getElementById('target').innerText = '--';
     document.getElementById('tid').innerText = '';
@@ -90,7 +90,7 @@ addOverlayListener('onGameActiveChangedEvent', (e) => {
 addOverlayListener('onLogEvent', (e) => {
   for (let i = 0; i < e.detail.logs.length; i++) {
     // Match "/echo tts:<stuff>"
-    let r = e.detail.logs[i].match('00:0038:tts:(.*)');
+    const r = e.detail.logs[i].match('00:0038:tts:(.*)');
     if (r) {
       callOverlayHandler({
         call: 'cactbotSay',

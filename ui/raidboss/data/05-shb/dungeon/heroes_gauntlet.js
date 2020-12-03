@@ -1,4 +1,9 @@
-[{
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.TheHeroesGauntlet,
   timelineFile: 'heroes_gauntlet.txt',
   triggers: [
@@ -8,6 +13,7 @@
       netRegexDe: NetRegexes.startsUsing({ id: '4FCB', source: 'Phantom-Dieb' }),
       netRegexFr: NetRegexes.startsUsing({ id: '4FCB', source: 'Voleur Spectral' }),
       netRegexJa: NetRegexes.startsUsing({ id: '4FCB', source: '幻光のシーフ' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4FCB', source: '幻光盗贼' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
@@ -23,6 +29,7 @@
       netRegexDe: NetRegexes.startsUsing({ id: '4FCC', source: 'Phantom-Dieb', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4FCC', source: 'Voleur Spectral', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '4FCC', source: '幻光のシーフ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4FCC', source: '幻光盗贼', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -38,6 +45,7 @@
           de: 'Weg von der Verbindung',
           fr: 'Éloignez-vous du marqueur de lien',
           ja: '線から離れ',
+          cn: '远离连线标志',
           ko: '이어진 표식으로부터 떨어지기',
         },
       },
@@ -54,6 +62,7 @@
       netRegexDe: NetRegexes.startsUsing({ id: '4F5E', source: 'Phantom-Nekromantin' }),
       netRegexFr: NetRegexes.startsUsing({ id: '4F5E', source: 'Nécromancienne Spectrale' }),
       netRegexJa: NetRegexes.startsUsing({ id: '4F5E', source: '幻光のネクロマンサー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4F5E', source: '幻光亡灵法师' }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.tankBuster(),
     },
@@ -63,6 +72,7 @@
       netRegexDe: NetRegexes.startsUsing({ id: '4F60', source: 'Phantom-Nekromantin', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4F60', source: 'Nécromancienne Spectrale', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '4F60', source: '幻光のネクロマンサー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4F60', source: '幻光亡灵法师', capture: false }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
@@ -72,6 +82,7 @@
       netRegexDe: NetRegexes.startsUsing({ id: '520C', source: 'Phantom-Berserker', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '520C', source: 'Berserker Spectral', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '520C', source: '幻光のバーサーカー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '520C', source: '幻光狂战士', capture: false }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
@@ -82,6 +93,7 @@
       netRegexDe: NetRegexes.startsUsing({ id: ['520A', '520B'], source: 'Phantom-Berserker', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['520A', '520B'], source: 'Berserker Spectral', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['520A', '520B'], source: '幻光のバーサーカー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['520A', '520B'], source: '幻光狂战士', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
@@ -90,6 +102,7 @@
       netRegexDe: NetRegexes.startsUsing({ id: '5206', source: 'Phantom-Berserker', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5206', source: 'Berserker Spectral', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5206', source: '幻光のバーサーカー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '5206', source: '幻光狂战士', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -97,6 +110,7 @@
           de: 'In den Krater gehen',
           fr: 'Allez dans un cratère',
           ja: '穴に入る',
+          cn: '进入坑洞',
           ko: '구덩이에 들어가기',
         },
       },
@@ -107,6 +121,7 @@
       netRegexDe: NetRegexes.startsUsing({ id: ['5202', '5203', '5204'], source: 'Phantom-Berserker', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['5202', '5203', '5204'], source: 'Berserker Spectral', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['5202', '5203', '5204'], source: '幻光のバーサーカー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['5202', '5203', '5204'], source: '幻光狂战士', capture: false }),
       suppressSeconds: 5,
       response: Responses.knockback(),
     },
@@ -144,6 +159,7 @@
           de: 'Auf deinem Stein sammeln',
           fr: 'Restez sur votre rocher',
           ja: '自分の隕石と貼りつく',
+          cn: '与自己的石堆重合',
           ko: '돌과 같이 맞기',
         },
         stackOnYou: {
@@ -159,7 +175,7 @@
           de: 'Auf ${player} sammeln',
           fr: 'Packez-vous sur ${player}',
           ja: '${player}にスタック',
-          cn: '靠近 ${player}集合',
+          cn: '靠近${player}集合',
           ko: '"${player}" 쉐어징',
         },
       },
@@ -289,5 +305,44 @@
         'Wild Rampage': '獣魂の猛り',
       },
     },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Chicken Knife': '投掷弱鸡匕首',
+        'Necrobomb': '亡灵爆弹',
+        'Rubble': '瓦砾',
+        'Spectral Berserker': '幻光狂战士',
+        'Spectral Necromancer': '幻光亡灵法师',
+        'Spectral Thief': '幻光盗贼',
+        'The Illuminated Plaza': '大圣堂前广场',
+        'The Mount Argai Mines': '阿尔格矿山',
+        'The Summer Ballroom': '草人的舞场',
+      },
+      'replaceText': {
+        'Absolute Dark II': '绝对昏暗',
+        'Beastly Fury': '野兽之怒',
+        'Chaos Storm': '混沌风暴',
+        'Chicken Knife': '投掷弱鸡匕首',
+        'Coward\'s Cunning': '胆小鬼的一击',
+        'Dark Deluge': '黑浪',
+        '(?<!Shadow)Dash': '冲刺',
+        'Death Throes': '死亡引领',
+        'Falling Rock': '落石',
+        'Necroburst': '亡灵爆发',
+        'Necromancy': '亡灵术',
+        'Pain Mire': '苦痛酸沼',
+        'Papercutter': '残片斩',
+        'Raging Slice': '暴怒劈',
+        'Shadowdash': '分身冲刺',
+        'Spectral Dream': '幻光三段',
+        'Spectral Gust': '幻光旋风',
+        'Spectral Whirlwind': '幻光大旋风',
+        'Twisted Touch': '污秽之指',
+        'Vacuum Blade': '真空刃',
+        'Wild Anguish': '兽魂的苦痛',
+        'Wild Rage': '兽魂的愤怒',
+        'Wild Rampage': '兽魂的勇猛',
+      },
+    },
   ],
-}];
+};

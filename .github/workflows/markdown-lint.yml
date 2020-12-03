@@ -3,10 +3,12 @@ name: Markdown Lint
 on:
   push:
     paths:
+      - '*.json'
       - '**/*.md'
       - '.github/workflows/markdown-lint.yml'
   pull_request:
     paths:
+      - '*.json'
       - '**/*.md'
       - '.github/workflows/markdown-lint.yml'
 

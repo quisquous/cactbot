@@ -5,12 +5,14 @@ on:
     paths:
       - '**/*.js'
       - '**/*.py'
+      - 'package*.json'
       - 'ui/raidboss/**'
       - '.github/workflows/test.yml'
   pull_request:
     paths:
       - '**/*.js'
       - '**/*.py'
+      - 'package*.json'
       - 'ui/raidboss/**'
       - '.github/workflows/test.yml'
 

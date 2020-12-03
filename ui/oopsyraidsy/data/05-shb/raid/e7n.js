@@ -1,4 +1,7 @@
-let wrongBuff = (str) => {
+import NetRegexes from '../../../../../resources/netregexes.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
+const wrongBuff = (str) => {
   return {
     en: str + ' (wrong buff)',
     de: str + ' (falscher Buff)',
@@ -7,7 +10,7 @@ let wrongBuff = (str) => {
   };
 };
 
-let noBuff = (str) => {
+const noBuff = (str) => {
   return {
     en: str + ' (no buff)',
     de: str + ' (kein Buff)',
@@ -16,7 +19,7 @@ let noBuff = (str) => {
   };
 };
 
-[{
+export default {
   zoneId: ZoneId.EdensVerseIconoclasm,
   damageWarn: {
     'E7N Stygian Sword': '4C55', // Circle ground AoEs after False Twilight
@@ -106,4 +109,4 @@ let noBuff = (str) => {
       },
     },
   ],
-}];
+};

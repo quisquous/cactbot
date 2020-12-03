@@ -1,4 +1,6 @@
-[{
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.TheTwinning,
   damageWarn: {
     'Twinning Auto Cannons': '43A9',
@@ -16,4 +18,4 @@
   damageFail: {
     'Twinning 128 Tonze Swipe': '3DBA',
   },
-}];
+};

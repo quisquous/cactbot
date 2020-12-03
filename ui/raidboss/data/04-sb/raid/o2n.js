@@ -1,5 +1,10 @@
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // O2N - Deltascape 2.0 Normal
-[{
+export default {
   zoneId: ZoneId.DeltascapeV20,
   timelineFile: 'o2n.txt',
   timelineTriggers: [
@@ -408,4 +413,4 @@
       },
     },
   ],
-}];
+};

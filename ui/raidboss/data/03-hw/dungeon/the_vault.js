@@ -1,5 +1,10 @@
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // The Vault
-[{
+export default {
   zoneId: ZoneId.TheVault,
   timelineFile: 'the_vault.txt',
   timelineTriggers: [
@@ -404,4 +409,4 @@
       },
     },
   ],
-}];
+};

@@ -1,8 +1,8 @@
 import Regexes from './regexes.js';
 import NetRegexes from './netregexes.js';
 
-export let LocaleRegex = {};
-export let LocaleNetRegex = {};
+export const LocaleRegex = {};
+export const LocaleNetRegex = {};
 
 // Fill in LocaleRegex so that things like LocaleRegex.countdownStart.de is a valid regex.
 (() => {

@@ -24,7 +24,7 @@ export default class SeaBase {
 
   getConnection() {
     return new Promise((resolve, reject) => {
-      let req = window.indexedDB.open(this._dbName, this._dbVersion);
+      const req = window.indexedDB.open(this._dbName, this._dbVersion);
 
       req.onsuccess = (event) => {
         resolve(req.result);
@@ -35,8 +35,8 @@ export default class SeaBase {
       };
 
       req.onupgradeneeded = (event) => {
-        let db = event.target.result;
-        let tx = event.target.transaction;
+        const db = event.target.result;
+        const tx = event.target.transaction;
         let objectStore;
 
         if (!db.objectStoreNames.contains(this._storeName))
@@ -83,10 +83,10 @@ export default class SeaBase {
 
     // find q2 (median)
     // we only need the index for the median
-    let q2Index = Math.floor(times.length / 2);
+    const q2Index = Math.floor(times.length / 2);
 
     // find q1 (median of first half)
-    let q1Index = Math.floor(q2Index / 2);
+    const q1Index = Math.floor(q2Index / 2);
 
     if (q2Index % 2 || q2Index === 0)
       q1 = times[q1Index];
@@ -95,7 +95,7 @@ export default class SeaBase {
 
 
     // find q2 (median of second half)
-    let q3Index = q1Index + q2Index;
+    const q3Index = q1Index + q2Index;
 
     if (q3Index % 2 || q2Index === 0)
       q3 = times[q3Index];
@@ -103,7 +103,7 @@ export default class SeaBase {
       q3 = (times[q3Index] + times[q3Index - 1]) / 2;
 
 
-    let iqr = q3 - q1;
+    const iqr = q3 - q1;
 
     // use these to calculate thresholds for outliers
     return {
@@ -113,7 +113,7 @@ export default class SeaBase {
   }
 
   normalizeHooks(times) {
-    let thresholds = this.getIQRThresholds(times);
+    const thresholds = this.getIQRThresholds(times);
 
     let min;
     let max;
@@ -146,9 +146,9 @@ export default class SeaBase {
     let commit = true;
 
     // Make sure we have complete data before recording
-    let keys = ['fish', 'bait', 'place', 'castTimestamp', 'hookTime', 'reelTime', 'chum', 'snagging'];
+    const keys = ['fish', 'bait', 'place', 'castTimestamp', 'hookTime', 'reelTime', 'chum', 'snagging'];
 
-    for (let index in keys) {
+    for (const index in keys) {
       if (!Object.prototype.hasOwnProperty.call(data, keys[index]) ||
           data[keys[index]] === null) {
         commit = false;
@@ -160,8 +160,8 @@ export default class SeaBase {
       return false;
 
     this.getConnection().then((db) => {
-      let tx = db.transaction(this._storeName, 'readwrite');
-      let store = tx.objectStore(this._storeName);
+      const tx = db.transaction(this._storeName, 'readwrite');
+      const store = tx.objectStore(this._storeName);
 
       store.add(data);
     });
@@ -187,7 +187,7 @@ export default class SeaBase {
       } else if (!value.id && value.name) {
         // Return the first / primary name regardless of what is passed in
         // when doing a reverse lookup by name.
-        let key = this.findKey(gFisherData[lookup][this.parserLang], value.name);
+        const key = this.findKey(gFisherData[lookup][this.parserLang], value.name);
         info = {
           id: key,
           name: this.firstIfArray(gFisherData[lookup][this.parserLang][key]),
@@ -198,7 +198,7 @@ export default class SeaBase {
     } else if (isNaN(value)) {
       // 2. String with the name
       // See note above about reverse lookups.
-      let key = this.findKey(gFisherData[lookup][this.parserLang], value);
+      const key = this.findKey(gFisherData[lookup][this.parserLang], value);
       info = {
         id: key,
         name: this.firstIfArray(gFisherData[lookup][this.parserLang][key]),
@@ -215,14 +215,14 @@ export default class SeaBase {
   }
 
   getFish(fish) {
-    let result = this.getInfo('fish', fish);
+    const result = this.getInfo('fish', fish);
     if (!result.id || !result.name)
       console.log('failed to look up fish: ' + fish);
     return result;
   }
 
   getBait(bait) {
-    let result = this.getInfo('tackle', bait);
+    const result = this.getInfo('tackle', bait);
     if (!result.id || !result.name)
       console.log('failed to look up bait: ' + bait);
     return result;
@@ -244,14 +244,14 @@ export default class SeaBase {
 
   getFishForPlace(place) {
     // Get place object
-    let placeObject = this.getPlace(place);
+    const placeObject = this.getPlace(place);
 
     // Get fish IDs for place ID
-    let fishList = gFisherData['placefish'][placeObject.id];
+    const fishList = gFisherData['placefish'][placeObject.id];
 
     // Get fish names for IDs
-    let placeFish = [];
-    for (let fishID in fishList)
+    const placeFish = [];
+    for (const fishID in fishList)
       placeFish.push(this.getFish(fishList[fishID]));
 
 
@@ -259,12 +259,12 @@ export default class SeaBase {
   }
 
   queryHookTimes(index, fish, bait, chum) {
-    let times = [];
+    const times = [];
 
     return new Promise((resolve, reject) => {
       index.openCursor(IDBKeyRange.only([fish.id.toString(), bait.id, chum ? 1 : 0]))
         .onsuccess = (event) => {
-          let cursor = event.target.result;
+          const cursor = event.target.result;
 
           if (cursor) {
             times.push(cursor.value.hookTime);
@@ -288,9 +288,9 @@ export default class SeaBase {
 
     return new Promise((resolve, reject) => {
       this.getConnection().then((db) => {
-        let tx = db.transaction(this._storeName, 'readwrite');
-        let store = tx.objectStore(this._storeName);
-        let index = store.index('fishbaitchum');
+        const tx = db.transaction(this._storeName, 'readwrite');
+        const store = tx.objectStore(this._storeName);
+        const index = store.index('fishbaitchum');
 
         this.queryHookTimes(index, fish, bait, chum).then((times) => {
           if (!times.length)
@@ -302,11 +302,11 @@ export default class SeaBase {
   }
 
   queryTug(index, fish) {
-    let reelTimes = [];
+    const reelTimes = [];
 
     return new Promise((resolve, reject) => {
       index.openCursor(IDBKeyRange.only(fish.id.toString())).onsuccess = (event) => {
-        let cursor = event.target.result;
+        const cursor = event.target.result;
 
         if (cursor) {
           reelTimes.push(cursor.value.reelTime);
@@ -324,11 +324,11 @@ export default class SeaBase {
   getTug(fish) {
     return new Promise((resolve, reject) => {
       this.getConnection().then((db) => {
-        let tx = db.transaction(this._storeName, 'readwrite');
-        let store = tx.objectStore(this._storeName);
-        let index = store.index('fish');
+        const tx = db.transaction(this._storeName, 'readwrite');
+        const store = tx.objectStore(this._storeName);
+        const index = store.index('fish');
 
-        let tug = gFisherData['tugs'][fish.id];
+        const tug = gFisherData['tugs'][fish.id];
         if (tug) {
           resolve(tug);
         } else {
@@ -336,7 +336,7 @@ export default class SeaBase {
             if (!reelTimes.length)
               resolve(0);
 
-            let thresholds = this.getIQRThresholds(reelTimes);
+            const thresholds = this.getIQRThresholds(reelTimes);
 
             let sum = 0;
             let validValues = 0;
@@ -348,7 +348,7 @@ export default class SeaBase {
               }
             });
 
-            let average = sum / validValues;
+            const average = sum / validValues;
             let tug;
 
             // Small: <8000

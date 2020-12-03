@@ -28,7 +28,6 @@ export const triggerFunctions = [
   'delaySeconds',
   'disabled',
   'durationSeconds',
-  'groupTTS',
   'id',
   'infoText',
   'preRun',
@@ -47,7 +46,6 @@ export const triggerOutputFunctions = [
   'alarmText',
   'alertText',
   'infoText',
-  'groupTTS', // please remove me T_T
   'response',
   'tts',
 ];
@@ -96,7 +94,7 @@ const getSource = (matches) => {
 
 // FIXME: make this work for any number of pairs of params
 const combineFuncs = function(text1, func1, text2, func2) {
-  let obj = {};
+  const obj = {};
 
   if (text1 !== text2) {
     obj[text1] = func1;

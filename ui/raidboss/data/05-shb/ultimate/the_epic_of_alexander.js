@@ -1,3 +1,8 @@
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // In your cactbot/user/raidboss.js file, add the line:
 //   Options.cactbotWormholeStrat = true;
 // .. if you want cactbot strat for wormhole.
@@ -27,7 +32,7 @@
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
 // added to their ID. This offset currently appears to be set per instance, so
 // we can determine what it is from the first overhead marker we see.
-let getHeadmarkerId = (data, matches) => {
+const getHeadmarkerId = (data, matches) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 004F.
   // (This makes the offset 0, and !0 is true.)
   if (typeof data.decOffset === 'undefined') {
@@ -224,7 +229,7 @@ const namedNisiPass = (data, output) => {
   if (data.me in data.nisiMap) {
     // If you have nisi, you need to pass it to the person who has that final
     // and who doesn't have nisi.
-    let myNisi = data.nisiMap[data.me];
+    const myNisi = data.nisiMap[data.me];
     let names = Object.keys(data.finalNisiMap);
     names = names.filter((x) => data.finalNisiMap[x] === myNisi && x !== data.me);
 
@@ -248,7 +253,7 @@ const namedNisiPass = (data, output) => {
   }
 
   // If you don't have nisi, then you need to go get it from a person who does.
-  let myNisi = data.finalNisiMap[data.me];
+  const myNisi = data.finalNisiMap[data.me];
   let names = Object.keys(data.nisiMap);
   names = names.filter((x) => data.nisiMap[x] === myNisi);
   if (names.length === 0)
@@ -260,7 +265,7 @@ const namedNisiPass = (data, output) => {
   });
 };
 
-[{
+export default {
   zoneId: ZoneId.TheEpicOfAlexanderUltimate,
   timelineFile: 'the_epic_of_alexander.txt',
   timelineTriggers: [
@@ -278,7 +283,7 @@ const namedNisiPass = (data, output) => {
       },
       suppressSeconds: 1,
       alertText: function(data, _, output) {
-        let multipleSwings = data.swingCount === 2 || data.swingCount === 3;
+        const multipleSwings = data.swingCount === 2 || data.swingCount === 3;
         if (data.role === 'healer') {
           if (multipleSwings)
             return output.tankBusters();
@@ -295,7 +300,7 @@ const namedNisiPass = (data, output) => {
         }
       },
       infoText: function(data, _, output) {
-        let multipleSwings = data.swingCount === 2 || data.swingCount === 3;
+        const multipleSwings = data.swingCount === 2 || data.swingCount === 3;
         if (data.role === 'healer')
           return;
         if (data.me === data.handTank && multipleSwings || data.me === data.liquidTank)
@@ -748,7 +753,7 @@ const namedNisiPass = (data, output) => {
         return data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
       },
       preRun: function(data, matches) {
-        let correctedMatch = getHeadmarkerId(data, matches);
+        const correctedMatch = getHeadmarkerId(data, matches);
         data.limitCutNumber = {
           '004F': 1,
           '0050': 2,
@@ -814,7 +819,7 @@ const namedNisiPass = (data, output) => {
         return data.limitCutDelay - 5;
       },
       alertText: function(data, matches, output) {
-        let isOddNumber = parseInt(getHeadmarkerId(data, matches), 16) & 1 === 1;
+        const isOddNumber = parseInt(getHeadmarkerId(data, matches), 16) & 1 === 1;
         if (data.phase === 'wormhole') {
           if (isOddNumber)
             return output.knockbackCleaveFaceOutside();
@@ -1016,7 +1021,7 @@ const namedNisiPass = (data, output) => {
       infoText: function(data, _, output) {
         if (data.enumerations.length !== 2)
           return;
-        let names = data.enumerations.sort();
+        const names = data.enumerations.sort();
         return output.text({ players: names.map((x) => data.ShortName(x)).join(', ') });
       },
       outputStrings: {
@@ -1573,7 +1578,7 @@ const namedNisiPass = (data, output) => {
       netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '485F', capture: false }),
       condition: (data) => data.phase === 'inception',
       alarmText: function(data, _, output) {
-        let numVulns = Object.keys(data.vuln).length;
+        const numVulns = Object.keys(data.vuln).length;
         if (data.role === 'tank' && data.vuln[data.me] && numVulns >= 5) {
           // If you're stacking three people in the shared sentence,
           // then probably the tank wants to handle jump with cooldowns.
@@ -1585,7 +1590,7 @@ const namedNisiPass = (data, output) => {
         if (data.vuln[data.me])
           return;
 
-        let numVulns = Object.keys(data.vuln).length;
+        const numVulns = Object.keys(data.vuln).length;
         if (numVulns >= 5) {
           // In this case, jump was handled above for tanks.
           return output.baitSword();
@@ -1597,7 +1602,7 @@ const namedNisiPass = (data, output) => {
       infoText: function(data, _, output) {
         if (data.vuln[data.me]) {
           // Tanks covered in the alarmText case above.
-          let numVulns = Object.keys(data.vuln).length;
+          const numVulns = Object.keys(data.vuln).length;
           if (data.role === 'tank' && numVulns >= 5)
             return;
 
@@ -1923,7 +1928,7 @@ const namedNisiPass = (data, output) => {
       infoText: function(data, _, output) {
         if (data.opticalStack.length === 1)
           return;
-        let names = data.opticalStack.map((x) => data.ShortName(x)).sort();
+        const names = data.opticalStack.map((x) => data.ShortName(x)).sort();
         return output.opticalStackPlayers({ players: names.join(', ') });
       },
       outputStrings: {
@@ -2084,8 +2089,8 @@ const namedNisiPass = (data, output) => {
         // Let your actor id memes be dreams.
         // If you sort the actor ids of the clones, this will tell you what you have.
         // If anybody is dead, they will fill in from the lowest.
-        let sortedIds = Object.keys(data.tetherBois).sort().reverse();
-        let sortedNames = sortedIds.map((x) => data.tetherBois[x]);
+        const sortedIds = Object.keys(data.tetherBois).sort().reverse();
+        const sortedNames = sortedIds.map((x) => data.tetherBois[x]);
 
         data.alphaSolidarity = sortedNames[0];
         data.alphaDefamation = sortedNames[1];
@@ -2282,14 +2287,14 @@ const namedNisiPass = (data, output) => {
 
         // If they are all rotated equally, then:
         // rotation = idx * scale + rot0
-        let rot0 = Math.atan2(78.28883 - 100, 100 - 91.00694);
-        let rot1 = Math.atan2(91.00694 - 100, 100 - 78.28883);
-        let scale = rot1 - rot0; // == Math.PI / 4
+        const rot0 = Math.atan2(78.28883 - 100, 100 - 91.00694);
+        const rot1 = Math.atan2(91.00694 - 100, 100 - 78.28883);
+        const scale = rot1 - rot0; // == Math.PI / 4
 
-        let x = matches.x - 100;
-        let y = 100 - matches.y;
+        const x = matches.x - 100;
+        const y = 100 - matches.y;
         // idx is in [0, 1, 2, 3]
-        let idx = parseInt(Math.round((Math.atan2(x, y) - rot0) / scale));
+        const idx = parseInt(Math.round((Math.atan2(x, y) - rot0) / scale));
 
         // Store in case anybody wants to mark this.
         data.safeAlphaIdx = idx;
@@ -2422,8 +2427,8 @@ const namedNisiPass = (data, output) => {
       suppressSeconds: 10,
       run: function(data) {
         // See notes in TEA Alpha Instructions about what's going on here.
-        let sortedIds = Object.keys(data.tetherBois).sort().reverse();
-        let sortedNames = sortedIds.map((x) => data.tetherBois[x]);
+        const sortedIds = Object.keys(data.tetherBois).sort().reverse();
+        const sortedNames = sortedIds.map((x) => data.tetherBois[x]);
 
         data.betaBait = [sortedNames[0], sortedNames[1]];
         data.betaJumps = [sortedNames[0], sortedNames[2], sortedNames[6]];
@@ -2578,10 +2583,10 @@ const namedNisiPass = (data, output) => {
         data.radiantSourceId = matches.sourceId;
 
         // Round location to nearest cardinal.
-        let x = matches.x - 100;
-        let y = 100 - matches.y;
+        const x = matches.x - 100;
+        const y = 100 - matches.y;
         // 0 = N, 1 = E, 2 = S, 3 = W
-        let idx = Math.round((Math.atan2(x, y) / Math.PI * 2 + 4)) % 4;
+        const idx = Math.round((Math.atan2(x, y) / Math.PI * 2 + 4)) % 4;
         data.radiantOutputStringKey = {
           // North shouldn't be possible.
           // But, leaving this here in case my math is wrong.
@@ -2670,7 +2675,7 @@ const namedNisiPass = (data, output) => {
         if (data.betaBait.length === 0)
           return output.opticalStack();
 
-        let names = data.betaBait.map((x) => x ? data.ShortName(x) : output.unknown()).sort();
+        const names = data.betaBait.map((x) => x ? data.ShortName(x) : output.unknown()).sort();
         return output.opticalStackPlayers({ players: names.join(', ') });
       },
       outputStrings: {
@@ -2783,13 +2788,13 @@ const namedNisiPass = (data, output) => {
           return;
 
         // Find the third one based on the first two.
-        let three = ['r', 'g', 'y'].filter((x) => !data.trine.includes(x));
+        const three = ['r', 'g', 'y'].filter((x) => !data.trine.includes(x));
 
         // Start on the third trine, then move to the first.
-        let threeOne = three + data.trine[0];
+        const threeOne = three + data.trine[0];
 
         // For parks and other forestry solutions.
-        let locations = {
+        const locations = {
           r: [92, 100],
           g: [100, 100],
           y: [108, 100],
@@ -3454,4 +3459,4 @@ const namedNisiPass = (data, output) => {
       },
     },
   ],
-}];
+};

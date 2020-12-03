@@ -1,3 +1,6 @@
+import NetRegexes from '../../../../../resources/netregexes.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // TODO: Radiant Braver is 4F16/4F17(x2), shouldn't get hit by both?
 // TODO: Radiant Desperado is 4F18/4F19, shouldn't get hit by both?
 // TODO: Radiant Meteor is 4F1A, and shouldn't get hit by more than 1?
@@ -6,7 +9,7 @@
 // Note: Deliberately not including pyretic damage as an error.
 // Note: It doesn't appear that there's any way to tell who failed the cutscene.
 
-[{
+export default {
   zoneId: ZoneId.TheSeatOfSacrifice,
   damageWarn: {
     'WOL Solemn Confiteor': '4F2A', // ground puddles
@@ -36,4 +39,4 @@
       },
     },
   ],
-}];
+};

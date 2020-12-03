@@ -5,10 +5,12 @@ on:
     paths:
       - '**/*.py'
       - '.github/workflows/python-lint.yml'
+      - 'requirements.txt'
   pull_request:
     paths:
       - '**/*.py'
       - '.github/workflows/python-lint.yml'
+      - 'requirements.txt'
 
 jobs:
   black:

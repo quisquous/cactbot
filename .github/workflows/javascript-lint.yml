@@ -4,10 +4,12 @@ on:
   push:
     paths:
       - '**/*.js'
+      - '**/*.json'
       - '.github/workflows/javascript-lint.yml'
   pull_request:
     paths:
       - '**/*.js'
+      - '**/*.json'
       - '.github/workflows/javascript-lint.yml'
 
 jobs:

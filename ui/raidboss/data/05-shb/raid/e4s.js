@@ -1,4 +1,9 @@
-[{
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.EdensGateSepultureSavage,
   timelineFile: 'e4s.txt',
   timelineTriggers: [
@@ -199,8 +204,8 @@
       },
       durationSeconds: 7,
       alertText: function(data, matches, output) {
-        let x = matches.x;
-        let y = matches.y;
+        const x = matches.x;
+        const y = matches.y;
 
         if (data.phase === 'armor') {
           // Three line bombs (middle, e/w, w/e), with seismic wave.
@@ -213,8 +218,8 @@
           }
         } else if (data.phase === 'landslide') {
           // Landslide cardinals/corners + middle, followed by remaining 4.
-          let xMiddle = x < 105 && x > 95;
-          let yMiddle = y < 105 && y > 95;
+          const xMiddle = x < 105 && x > 95;
+          const yMiddle = y < 105 && y > 95;
           // Ignore middle point, which may come first.
           if (xMiddle && yMiddle)
             return;
@@ -766,4 +771,4 @@
       },
     },
   ],
-}];
+};

@@ -1,5 +1,9 @@
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // O9N - Alphascape 1.0
-[{
+export default {
   zoneId: ZoneId.AlphascapeV10,
   timelineFile: 'o9n.txt',
   triggers: [
@@ -160,4 +164,4 @@
       },
     },
   ],
-}];
+};

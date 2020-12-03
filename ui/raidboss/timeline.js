@@ -54,12 +54,12 @@ const timelineInstructions = {
 };
 
 function computeBackgroundColorFrom(element, classList) {
-  let div = document.createElement('div');
-  let classes = classList.split('.');
+  const div = document.createElement('div');
+  const classes = classList.split('.');
   for (let i = 0; i < classes.length; ++i)
     div.classList.add(classes[i]);
   element.appendChild(div);
-  let color = window.getComputedStyle(div).backgroundColor;
+  const color = window.getComputedStyle(div).backgroundColor;
   element.removeChild(div);
   return color;
 }
@@ -95,22 +95,22 @@ export class Timeline {
     if (!this.replacements)
       return text;
 
-    let orig = text;
-    for (let r of this.replacements) {
+    const orig = text;
+    for (const r of this.replacements) {
       if (r.locale && r.locale !== replaceLang)
         continue;
       if (!r[replaceKey])
         continue;
-      let keys = Object.keys(r[replaceKey]);
-      for (let key of keys)
+      const keys = Object.keys(r[replaceKey]);
+      for (const key of keys)
         text = text.replace(Regexes.parse(key), r[replaceKey][key]);
     }
     // Common Replacements
-    for (let key in commonReplacement[replaceKey]) {
-      let repl = commonReplacement[replaceKey][key][replaceLang];
+    for (const key in commonReplacement[replaceKey]) {
+      const repl = commonReplacement[replaceKey][key][replaceLang];
       if (!repl)
         continue;
-      let regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
+      const regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
       text = text.replace(regex, repl);
     }
     return text;
@@ -153,7 +153,7 @@ export class Timeline {
     this.syncEnds = [];
 
     let uniqueid = 1;
-    let texts = {};
+    const texts = {};
     const regexes = {
       comment: /^\s*#/,
       commentLine: /#.*$/,
@@ -177,15 +177,15 @@ export class Timeline {
       }
     }
 
-    let lines = text.split('\n');
+    const lines = text.split('\n');
     for (let i = 0; i < lines.length; ++i) {
-      let lineNumber = i + 1;
+      const lineNumber = i + 1;
       let line = lines[i];
       line = line.trim();
       // Drop comments and empty lines.
       if (!line || regexes.comment.test(line))
         continue;
-      let originalLine = line;
+      const originalLine = line;
 
       let match = line.match(regexes.ignore);
       if (match) {
@@ -238,8 +238,8 @@ export class Timeline {
       // There can be # in the ability name, but probably not in the regex.
       line = line.replace(regexes.commentLine, '').trim();
 
-      let seconds = parseFloat(match[2]);
-      let e = {
+      const seconds = parseFloat(match[2]);
+      const e = {
         id: uniqueid++,
         time: seconds,
         // The original ability name in the timeline.  Used for hideall, infotext, etc.
@@ -258,7 +258,7 @@ export class Timeline {
         commandMatch = line.match(regexes.syncCommand);
         if (commandMatch) {
           line = line.replace(commandMatch[1], '').trim();
-          let sync = {
+          const sync = {
             id: uniqueid,
             regex: Regexes.parse(this.GetReplacedSync(commandMatch[2])),
             start: seconds - 2.5,
@@ -322,7 +322,7 @@ export class Timeline {
     for (const e of this.events) {
       if (e.name in texts) {
         for (const matchedTextEvent of texts[e.name]) {
-          let t = {
+          const t = {
             type: matchedTextEvent.type,
             time: e.time - matchedTextEvent.secondsBefore,
             text: matchedTextEvent.text,
@@ -335,7 +335,7 @@ export class Timeline {
       // against timeline text and insert them as text events to run.
       if (triggers) {
         for (const trigger of triggers) {
-          let m = e.name.match(trigger.regex);
+          const m = e.name.match(trigger.regex);
           if (!m)
             continue;
           this.texts.push({
@@ -384,7 +384,7 @@ export class Timeline {
     this.nextSyncStart = 0;
     this.nextSyncEnd = 0;
 
-    let fightNow = 0;
+    const fightNow = 0;
     this._AdvanceTimeTo(fightNow);
     this._CollectActiveSyncs(fightNow);
 
@@ -397,7 +397,7 @@ export class Timeline {
 
   SyncTo(fightNow) {
     // This records the actual time which aligns with "0" in the timeline.
-    let newTimebase = new Date(new Date() - fightNow * 1000);
+    const newTimebase = new Date(new Date() - fightNow * 1000);
     // Skip syncs that are too close.  Many syncs happen on abilities that
     // hit 8 to 24 people, and so this is a lot of churn.
     if (Math.abs(newTimebase - this.timebase) <= 2)
@@ -441,7 +441,7 @@ export class Timeline {
 
   OnLogLine(line) {
     for (let i = 0; i < this.activeSyncs.length; ++i) {
-      let sync = this.activeSyncs[i];
+      const sync = this.activeSyncs[i];
       if (line.search(sync.regex) >= 0) {
         if ('jump' in sync) {
           if (!sync.jump)
@@ -479,7 +479,7 @@ export class Timeline {
   }
 
   _ClearExceptRunningDurationTimers(fightNow) {
-    let durationEvents = [];
+    const durationEvents = [];
     for (let i = 0; i < this.activeEvents.length; ++i) {
       if (this.activeEvents[i].isDur && this.activeEvents[i].time > fightNow) {
         durationEvents.push(this.activeEvents[i]);
@@ -502,11 +502,11 @@ export class Timeline {
 
   _AddDurationTimers(fightNow) {
     let sort = false;
-    let events = [];
+    const events = [];
     for (let i = 0; i < this.activeEvents.length; ++i) {
-      let e = this.activeEvents[i];
+      const e = this.activeEvents[i];
       if (e.time <= fightNow && e.duration) {
-        let durationEvent = {
+        const durationEvent = {
           id: e.id,
           time: e.time + e.duration,
           sortKey: e.sortKey,
@@ -532,7 +532,7 @@ export class Timeline {
   _AddUpcomingTimers(fightNow) {
     while (this.nextEvent < this.events.length &&
         this.activeEvents.length < this.options.MaxNumberOfTimerBars) {
-      let e = this.events[this.nextEvent];
+      const e = this.events[this.nextEvent];
       if (e.time - fightNow > this.options.ShowTimerBarsAtSeconds)
         break;
       if (fightNow < e.time && !(e.name in this.ignores)) {
@@ -546,7 +546,7 @@ export class Timeline {
 
   _AddPassedTexts(fightNow) {
     while (this.nextText < this.texts.length) {
-      let t = this.texts[this.nextText];
+      const t = this.texts[this.nextText];
       if (t.time > fightNow)
         break;
       if (t.type === 'info') {
@@ -579,7 +579,7 @@ export class Timeline {
   _ScheduleUpdate(fightNow) {
     console.assert(this.timebase, '_ScheduleUpdate called while stopped');
 
-    let kBig = 1000000000; // Something bigger than any fight length in seconds.
+    const kBig = 1000000000; // Something bigger than any fight length in seconds.
     let nextEventStarting = kBig;
     let nextTextOccurs = kBig;
     let nextEventEnding = kBig;
@@ -587,11 +587,11 @@ export class Timeline {
     let nextSyncEnding = kBig;
 
     if (this.nextEvent < this.events.length) {
-      let nextEventEndsAt = this.events[this.nextEvent].time;
+      const nextEventEndsAt = this.events[this.nextEvent].time;
       console.assert(nextEventStarting > fightNow, 'nextEvent wasn\'t updated before calling _ScheduleUpdate');
       // There might be more events than we can show, so the next event might be in
       // the past. If that happens, then ignore it, as we can't use that for our timer.
-      let showNextEventAt = nextEventEndsAt - this.options.ShowTimerBarsAtSeconds;
+      const showNextEventAt = nextEventEndsAt - this.options.ShowTimerBarsAtSeconds;
       if (showNextEventAt > fightNow)
         nextEventStarting = showNextEventAt;
     }
@@ -612,7 +612,7 @@ export class Timeline {
       console.assert(nextSyncEnding > fightNow, 'nextSyncEnd wasn\'t updated before calling _ScheduleUpdate');
     }
 
-    let nextTime = Math.min(nextEventStarting, Math.min(nextEventEnding,
+    const nextTime = Math.min(nextEventStarting, Math.min(nextEventEnding,
         Math.min(nextTextOccurs, Math.min(nextSyncStarting, nextSyncEnding))));
     if (nextTime !== kBig) {
       console.assert(nextTime > fightNow, 'nextTime is in the past');
@@ -626,7 +626,7 @@ export class Timeline {
     console.assert(this.timebase, '_OnTimerUpdate called while stopped');
 
     // This is the number of seconds into the fight (subtracting Dates gives milliseconds).
-    let fightNow = (new Date() - this.timebase) / 1000;
+    const fightNow = (new Date() - this.timebase) / 1000;
     // Send text events now or they'd be skipped by _AdvanceTimeTo().
     this._AddPassedTexts(fightNow, true);
     this._AdvanceTimeTo(fightNow);
@@ -696,12 +696,12 @@ export class TimelineUI {
     const instructions = timelineInstructions[lang];
 
     // Helper for positioning/resizing when locked.
-    let helper = document.getElementById('timeline-resize-helper');
+    const helper = document.getElementById('timeline-resize-helper');
     const rows = Math.max(6, this.options.MaxNumberOfTimerBars);
     helper.style.gridTemplateRows = 'repeat(' + rows + ', 1fr)';
 
     for (let i = 0; i < this.options.MaxNumberOfTimerBars; ++i) {
-      let helperBar = document.createElement('div');
+      const helperBar = document.createElement('div');
       helperBar.classList.add('text');
       helperBar.classList.add('resize-helper-bar');
       helperBar.classList.add('timeline-bar-color');
@@ -757,8 +757,8 @@ export class TimelineUI {
   }
 
   OnAddTimer(fightNow, e, channeling) {
-    let div = document.createElement('div');
-    let bar = document.createElement('timer-bar');
+    const div = document.createElement('div');
+    const bar = document.createElement('timer-bar');
     div.classList.add('timer-bar');
     div.appendChild(bar);
     bar.duration = channeling ? e.time - fightNow : this.options.ShowTimerBarsAtSeconds;
@@ -782,7 +782,7 @@ export class TimelineUI {
 
     // Adding a timer with the same id immediately removes the previous.
     if (this.activeBars[e.id]) {
-      let div = this.activeBars[e.id].parentNode;
+      const div = this.activeBars[e.id].parentNode;
       div.parentNode.removeChild(div);
     }
 
@@ -812,8 +812,8 @@ export class TimelineUI {
       delete this.expireTimers[e.id];
     }
 
-    let bar = this.activeBars[e.id];
-    let div = bar.parentNode;
+    const bar = this.activeBars[e.id];
+    const div = bar.parentNode;
     div.parentNode.removeChild(div);
     delete this.activeBars[e.id];
   }
@@ -874,12 +874,16 @@ export class TimelineUI {
 }
 
 export class TimelineController {
-  constructor(options, ui) {
+  constructor(options, ui, raidbossDataFiles) {
     this.options = options;
     this.ui = ui;
-    this.dataFiles = {};
-    // data files not sent yet.
-    this.timelines = null;
+
+    this.timelines = {};
+    for (const f in raidbossDataFiles) {
+      if (!f.endsWith('.txt'))
+        continue;
+      this.timelines[f] = raidbossDataFiles[f];
+    }
 
     // Used to suppress any Engage! if there's a wipe between /countdown and Engage!.
     this.suppressNextEngage = false;
@@ -928,7 +932,7 @@ export class TimelineController {
 
     // Get the text from each file in |timelineFiles|.
     for (let i = 0; i < timelineFiles.length; ++i) {
-      let name = timelineFiles[i];
+      const name = timelineFiles[i];
       if (name in this.timelines)
         text = text + '\n' + this.timelines[name];
       else
@@ -945,15 +949,6 @@ export class TimelineController {
 
   IsReady() {
     return this.timelines !== null;
-  }
-
-  SetDataFiles(files) {
-    this.timelines = {};
-    for (let f in files) {
-      if (!f.endsWith('.txt'))
-        continue;
-      this.timelines[f] = files[f];
-    }
   }
 }
 

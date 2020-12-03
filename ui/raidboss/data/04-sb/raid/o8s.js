@@ -1,3 +1,8 @@
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 const strings = {
   typeAndDir: {
     en: '${type}: ${dir}',
@@ -74,7 +79,7 @@ const strings = {
 };
 
 // O8S - Sigmascape 4.0 Savage
-[{
+export default {
   zoneId: ZoneId.SigmascapeV40Savage,
   timelineFile: 'o8s.txt',
   triggers: [
@@ -883,4 +888,4 @@ const strings = {
       },
     },
   ],
-}];
+};

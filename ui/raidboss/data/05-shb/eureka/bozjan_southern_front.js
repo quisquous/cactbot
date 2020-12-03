@@ -1,3 +1,9 @@
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import Regexes from '../../../../../resources/regexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // List of events:
 // https://github.com/xivapi/ffxiv-datamining/blob/master/csv/DynamicEvent.csv
 //
@@ -131,7 +137,7 @@ const tankBusterOnParty = (ceId) => (data, matches) => {
   return data.party.inParty(data.target);
 };
 
-[{
+export default {
   zoneId: ZoneId.TheBozjanSouthernFront,
   resetWhenOutOfCombat: false,
   timelineFile: 'bozjan_southern_front.txt',
@@ -940,4 +946,4 @@ const tankBusterOnParty = (ceId) => (data, matches) => {
       },
     },
   ],
-}];
+};

@@ -1,27 +1,18 @@
-// TODO:
-// The convention of "import X as _X; const X = _X;" is currently
-// being used as a method to workaround for downstream code
-// that is running via eval(). Because importing statements do not
-// create a variable of the same name, the eval()'d code does not know
-// about the import, and thus throws ReferenceErrors.
 import ContentType from '../../resources/content_type.js';
 import { LocaleNetRegex } from '../../resources/translations.js';
-import _NetRegexes from '../../resources/netregexes.js';
-const NetRegexes = _NetRegexes;
+import NetRegexes from '../../resources/netregexes.js';
 import PartyTracker from '../../resources/party.js';
-import _Regexes from '../../resources/regexes.js';
-const Regexes = _Regexes;
+import Regexes from '../../resources/regexes.js';
 import UserConfig from '../../resources/user_config.js';
 import { Util } from '../../resources/common.js';
-import _ZoneId from '../../resources/zone_id.js';
-const ZoneId = _ZoneId;
+import ZoneId from '../../resources/zone_id.js';
 import ZoneInfo from '../../resources/zone_info.js';
 
 import './oopsyraidsy_config.js';
 
 import oopsyFileData from './data/manifest.txt';
 
-let Options = {
+const Options = {
   Triggers: [],
   PlayerNicks: {},
   DisabledTriggers: {},
@@ -154,19 +145,19 @@ const kCopiedMessage = {
 };
 
 // Internal trigger id for early pull
-let kEarlyPullId = 'General Early Pull';
+const kEarlyPullId = 'General Early Pull';
 
 // Fields for net log ability lines.
-let kFieldFlags = 8;
-let kFieldDamage = 9;
+const kFieldFlags = 8;
+const kFieldDamage = 9;
 
 // If kFieldFlags is any of these values, then consider field 10/11 as 8/9.
 // It appears a little bit that flags come in pairs of values, but it's unclear
 // what these mean.
-let kShiftFlagValues = ['3E', '113', '213', '313'];
-let kFlagInstantDeath = '36'; // Always 36 ?
+const kShiftFlagValues = ['3E', '113', '213', '313'];
+const kFlagInstantDeath = '36'; // Always 36 ?
 // miss, damage, block, parry, instant death
-let kAttackFlags = ['01', '03', '05', '06', kFlagInstantDeath];
+const kAttackFlags = ['01', '03', '05', '06', kFlagInstantDeath];
 
 /* eslint-disable max-len */
 
@@ -234,7 +225,7 @@ function ShortNamify(name) {
   if (name in Options.PlayerNicks)
     return Options.PlayerNicks[name];
 
-  let idx = name.indexOf(' ');
+  const idx = name.indexOf(' ');
   return idx < 0 ? name : name.substr(0, idx);
 }
 
@@ -297,7 +288,7 @@ class OopsyLiveList {
   }
 
   AddLine(iconClass, text, time) {
-    let maxItems = this.options.NumLiveListItemsInCombat;
+    const maxItems = this.options.NumLiveListItemsInCombat;
 
     let rowDiv;
     if (this.numItems < this.items.length)
@@ -307,15 +298,15 @@ class OopsyLiveList {
 
     this.numItems++;
 
-    let iconDiv = document.createElement('div');
+    const iconDiv = document.createElement('div');
     iconDiv.classList.add('mistake-icon');
     iconDiv.classList.add(iconClass);
     rowDiv.appendChild(iconDiv);
-    let textDiv = document.createElement('div');
+    const textDiv = document.createElement('div');
     textDiv.classList.add('mistake-text');
     textDiv.innerHTML = text;
     rowDiv.appendChild(textDiv);
-    let timeDiv = document.createElement('div');
+    const timeDiv = document.createElement('div');
     timeDiv.classList.add('mistake-time');
     timeDiv.innerHTML = time;
     rowDiv.appendChild(timeDiv);
@@ -332,7 +323,7 @@ class OopsyLiveList {
   }
 
   MakeRow() {
-    let div = document.createElement('div');
+    const div = document.createElement('div');
     div.classList.add('mistake-row');
 
     // click-to-copy function
@@ -367,7 +358,7 @@ class OopsyLiveList {
   }
 
   HideOldItems() {
-    let maxItems = this.options.NumLiveListItemsInCombat;
+    const maxItems = this.options.NumLiveListItemsInCombat;
     for (let i = 0; i < this.items.length - maxItems; ++i)
       this.items[i].classList.add('hide');
   }
@@ -412,11 +403,11 @@ class OopsySummaryList {
     if (this.currentDiv)
       return;
 
-    let section = document.createElement('div');
+    const section = document.createElement('div');
     section.classList.add('section');
     this.container.appendChild(section);
 
-    let headerDiv = document.createElement('div');
+    const headerDiv = document.createElement('div');
     headerDiv.classList.add('section-header');
     section.appendChild(headerDiv);
 
@@ -424,18 +415,18 @@ class OopsySummaryList {
     // but it's not clear how to connect these two.
     this.pullIdx++;
 
-    let pullDiv = document.createElement('div');
+    const pullDiv = document.createElement('div');
     pullDiv.innerText = `Pull ${this.pullIdx}`;
     headerDiv.appendChild(pullDiv);
-    let zoneDiv = document.createElement('div');
+    const zoneDiv = document.createElement('div');
     if (this.zoneName)
       zoneDiv.innerText = `(${this.zoneName})`;
     headerDiv.appendChild(zoneDiv);
-    let timeDiv = document.createElement('div');
+    const timeDiv = document.createElement('div');
     timeDiv.innerText = this.GetTimeStr(new Date());
     headerDiv.appendChild(timeDiv);
 
-    let rowContainer = document.createElement('div');
+    const rowContainer = document.createElement('div');
     rowContainer.classList.add('section-rows');
     section.appendChild(rowContainer);
 
@@ -449,20 +440,20 @@ class OopsySummaryList {
   AddLine(iconClass, text, time) {
     this.StartNewSectionIfNeeded();
 
-    let rowDiv = document.createElement('div');
+    const rowDiv = document.createElement('div');
     rowDiv.classList.add('mistake-row');
     this.currentDiv.appendChild(rowDiv);
 
     // TODO: maybe combine this with OopsyLiveList.
-    let iconDiv = document.createElement('div');
+    const iconDiv = document.createElement('div');
     iconDiv.classList.add('mistake-icon');
     iconDiv.classList.add(iconClass);
     rowDiv.appendChild(iconDiv);
-    let textDiv = document.createElement('div');
+    const textDiv = document.createElement('div');
     textDiv.classList.add('mistake-text');
     textDiv.innerHTML = text;
     rowDiv.appendChild(textDiv);
-    let timeDiv = document.createElement('div');
+    const timeDiv = document.createElement('div');
     timeDiv.classList.add('mistake-time');
     timeDiv.innerHTML = time;
     rowDiv.appendChild(timeDiv);
@@ -508,9 +499,9 @@ class MistakeCollector {
       return '';
     if (!time)
       time = Date.now();
-    let totalSeconds = Math.floor((time - this.baseTime) / 1000);
-    let seconds = totalSeconds % 60;
-    let minutes = Math.floor(totalSeconds / 60);
+    const totalSeconds = Math.floor((time - this.baseTime) / 1000);
+    const seconds = totalSeconds % 60;
+    const minutes = Math.floor(totalSeconds / 60);
     return minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
   }
 
@@ -528,8 +519,8 @@ class MistakeCollector {
     // Because damage comes before in combat (regardless of where engage
     // occurs), StartCombat has to be responsible for clearing the listView
     // list.
-    let now = Date.now();
-    let kMinimumSecondsAfterWipe = 5;
+    const now = Date.now();
+    const kMinimumSecondsAfterWipe = 5;
     if (this.stopTime && now - this.stopTime < 1000 * kMinimumSecondsAfterWipe)
       return;
     this.startTime = now;
@@ -563,7 +554,7 @@ class MistakeCollector {
   OnMistakeText(type, blame, text, time) {
     if (!text)
       return;
-    let blameText = blame ? ShortNamify(blame) + ': ' : '';
+    const blameText = blame ? ShortNamify(blame) + ': ' : '';
     this.listView.AddLine(type, blameText + text, this.GetFormattedTime(time));
   }
 
@@ -579,9 +570,9 @@ class MistakeCollector {
       this.StartCombat();
       return;
     }
-    let seconds = ((Date.now() - this.startTime) / 1000);
+    const seconds = ((Date.now() - this.startTime) / 1000);
     if (this.firstPuller && seconds >= this.options.MinimumTimeForPullMistake) {
-      let text = this.Translate(kEarlyPullText) + ' (' + seconds.toFixed(1) + 's)';
+      const text = this.Translate(kEarlyPullText) + ' (' + seconds.toFixed(1) + 's)';
       if (IsTriggerEnabled(this.options, kEarlyPullId))
         this.OnMistakeText('pull', this.firstPuller, text);
     }
@@ -597,9 +588,9 @@ class MistakeCollector {
         this.firstPuller = '???';
 
       this.StartCombat();
-      let seconds = ((Date.now() - this.engageTime) / 1000);
+      const seconds = ((Date.now() - this.engageTime) / 1000);
       if (this.engageTime && seconds >= this.options.MinimumTimeForPullMistake) {
-        let text = this.Translate(kLatePullText) + ' (' + seconds.toFixed(1) + 's)';
+        const text = this.Translate(kLatePullText) + ' (' + seconds.toFixed(1) + 's)';
         if (IsTriggerEnabled(this.options, kEarlyPullId))
           this.OnMistakeText('pull', this.firstPuller, text);
       }
@@ -654,7 +645,7 @@ class MistakeCollector {
     //     combat, and consider early pulls starting game combat early.  This
     //     allows for one long dungeon ACT encounter to have multiple early
     //     or late pulls.
-    let inGameCombat = e.detail.inGameCombat;
+    const inGameCombat = e.detail.inGameCombat;
     if (this.inGameCombat !== inGameCombat) {
       this.inGameCombat = inGameCombat;
       if (inGameCombat)
@@ -665,7 +656,7 @@ class MistakeCollector {
       this.listView.SetInCombat(this.inGameCombat);
     }
 
-    let inACTCombat = e.detail.inACTCombat;
+    const inACTCombat = e.detail.inACTCombat;
     if (this.inACTCombat !== inACTCombat) {
       this.inACTCombat = inACTCombat;
       if (inACTCombat) {
@@ -684,9 +675,10 @@ class MistakeCollector {
 }
 
 class DamageTracker {
-  constructor(options, collector) {
+  constructor(options, collector, dataFiles) {
     this.options = options;
     this.collector = collector;
+    this.dataFiles = dataFiles;
     this.triggerSets = null;
     this.inCombat = false;
     this.ignoreZone = false;
@@ -745,8 +737,8 @@ class DamageTracker {
       return;
 
     const line = e.rawLine;
-    for (let trigger of this.netTriggers) {
-      let matches = line.match(trigger.netRegex);
+    for (const trigger of this.netTriggers) {
+      const matches = line.match(trigger.netRegex);
       if (matches)
         this.OnTrigger(trigger, { line: line }, matches);
     }
@@ -773,7 +765,7 @@ class DamageTracker {
       return;
     for (const line of e.detail.logs) {
       for (const trigger of this.generalTriggers) {
-        let matches = line.match(trigger.regex);
+        const matches = line.match(trigger.regex);
         if (matches)
           this.OnTrigger(trigger, { line: line }, matches);
       }
@@ -806,7 +798,7 @@ class DamageTracker {
     if (!lineMatches)
       return;
 
-    let matches = lineMatches.groups;
+    const matches = lineMatches.groups;
 
     // Shift damage and flags forward for mysterious spurious :3E:0:.
     // Plenary Indulgence also appears to prepend confession stacks.
@@ -882,7 +874,7 @@ class DamageTracker {
       if (!matches)
         continue;
 
-      let g = matches.groups;
+      const g = matches.groups;
       if (!evt) {
         evt = {
           targetName: g.target,
@@ -949,12 +941,12 @@ class DamageTracker {
         return;
     }
 
-    let ValueOrFunction = (f, events, matches) => {
+    const ValueOrFunction = (f, events, matches) => {
       return (typeof f === 'function') ? f(events, this.data, matches) : f;
     };
 
-    let collectSeconds = 'collectSeconds' in trigger ? ValueOrFunction(trigger.collectSeconds, matches) : 0;
-    let collectMultipleEvents = 'collectSeconds' in trigger;
+    const collectSeconds = 'collectSeconds' in trigger ? ValueOrFunction(trigger.collectSeconds, matches) : 0;
+    const collectMultipleEvents = 'collectSeconds' in trigger;
     if (collectMultipleEvents && trigger.id in this.activeTriggers) {
       this.activeTriggers[trigger.id].events.push(evt);
       this.activeTriggers[trigger.id].matches.push(matches);
@@ -967,8 +959,8 @@ class DamageTracker {
       delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds, evt, matches) : 0;
 
 
-    let triggerTime = Date.now();
-    let f = (function() {
+    const triggerTime = Date.now();
+    const f = (function() {
       let eventParam = evt;
       let matchesParam = matches;
       if (collectMultipleEvents) {
@@ -978,7 +970,7 @@ class DamageTracker {
       }
 
       if ('mistake' in trigger) {
-        let m = ValueOrFunction(trigger.mistake, eventParam, matchesParam);
+        const m = ValueOrFunction(trigger.mistake, eventParam, matchesParam);
         if (Array.isArray(m)) {
           for (let i = 0; i < m.length; ++i)
             this.collector.OnMistakeObj(m[i]);
@@ -987,7 +979,7 @@ class DamageTracker {
         }
       }
       if ('deathReason' in trigger) {
-        let ret = ValueOrFunction(trigger.deathReason, eventParam, matchesParam);
+        const ret = ValueOrFunction(trigger.deathReason, eventParam, matchesParam);
         if (ret) {
           ret.reason = this.collector.Translate(ret.reason);
           this.AddImpliedDeathReason(ret);
@@ -1041,10 +1033,10 @@ class DamageTracker {
   AddSimpleTriggers(type, dict) {
     if (!dict)
       return;
-    let keys = Object.keys(dict);
-    for (let key of keys) {
-      let id = dict[key];
-      let trigger = {
+    const keys = Object.keys(dict);
+    for (const key of keys) {
+      const id = dict[key];
+      const trigger = {
         id: key,
         damageRegex: id,
         idRegex: Regexes.parse('^' + id + '$'),
@@ -1061,10 +1053,10 @@ class DamageTracker {
   AddGainsEffectTriggers(type, dict) {
     if (!dict)
       return;
-    let keys = Object.keys(dict);
-    for (let key of keys) {
-      let id = dict[key];
-      let trigger = {
+    const keys = Object.keys(dict);
+    for (const key of keys) {
+      const id = dict[key];
+      const trigger = {
         id: key,
         netRegex: NetRegexes.gainsEffect({ effectId: id }),
         mistake: function(e, data, matches) {
@@ -1080,11 +1072,11 @@ class DamageTracker {
   AddShareTriggers(type, dict) {
     if (!dict)
       return;
-    let keys = Object.keys(dict);
-    let condFunc = (e) => e.type !== '15';
-    for (let key of keys) {
-      let id = dict[key];
-      let trigger = {
+    const keys = Object.keys(dict);
+    const condFunc = (e) => e.type !== '15';
+    for (const key of keys) {
+      const id = dict[key];
+      const trigger = {
         id: key,
         damageRegex: id,
         condition: condFunc,
@@ -1170,7 +1162,7 @@ class DamageTracker {
       if (!set.triggers)
         set.triggers = [];
       for (let j = 0; j < set.triggers.length; ++j) {
-        let trigger = set.triggers[j];
+        const trigger = set.triggers[j];
         if ('regex' in trigger) {
           trigger.regex = Regexes.parse(Regexes.anyOf(trigger.regex));
           this.generalTriggers.push(trigger);
@@ -1213,52 +1205,35 @@ class DamageTracker {
     this.ReloadTriggers();
   }
 
-  OnDataFilesRead(files) {
-    this.dataFiles = files;
-    this.ReloadTriggers();
-  }
-
   ProcessDataFiles() {
     // Only run this once.
     if (this.triggerSets)
-      return;
-    // Wait until OnPlayerChange + OnDataFilesRead occur for the first time.
-    if (!this.dataFiles)
       return;
     if (!this.me)
       return;
 
     this.triggerSets = Options.Triggers;
-    for (let filename in this.dataFiles) {
-      let text = this.dataFiles[filename];
-      let json;
-      try {
-        json = eval(text);
-      } catch (exception) {
-        console.error('Error parsing JSON from ' + filename + ': ' + exception);
+    for (const filename in this.dataFiles) {
+      const json = this.dataFiles[filename];
+      if (typeof json !== 'object') {
+        console.error('Unexpected JSON from ' + filename + ', expected an object');
         continue;
       }
-      if (typeof json !== 'object' || !(json.length >= 0)) {
-        console.error('Unexpected JSON from ' + filename + ', expected an array');
+      const hasZoneRegex = 'zoneRegex' in json;
+      const hasZoneId = 'zoneId' in json;
+      if (!hasZoneRegex && !hasZoneId || hasZoneRegex && hasZoneId) {
+        console.error('Unexpected JSON from ' + filename + ', need one of zoneRegex/zoneID');
         continue;
       }
-      for (const triggerSet of json) {
-        const hasZoneRegex = 'zoneRegex' in triggerSet;
-        const hasZoneId = 'zoneId' in triggerSet;
-        if (!hasZoneRegex && !hasZoneId || hasZoneRegex && hasZoneId) {
-          console.error('Unexpected JSON from ' + filename + ', need one of zoneRegex/zoneID');
+
+      json.filename = filename;
+      if ('triggers' in json) {
+        if (typeof json.triggers !== 'object' || !(json.triggers.length >= 0)) {
+          console.error('Unexpected JSON from ' + filename + ', expected triggers to be an array');
           continue;
         }
-
-        triggerSet.filename = filename;
-        if ('triggers' in json) {
-          if (typeof triggerSet.triggers !== 'object' || !(triggerSet.triggers.length >= 0)) {
-            console.error('Unexpected JSON from ' + filename + ', expected triggers to be an array');
-            continue;
-          }
-        }
       }
-      Array.prototype.push.apply(this.triggerSets, json);
+      this.triggerSets.push(json);
     }
     this.ReloadTriggers();
   }
@@ -1268,8 +1243,8 @@ UserConfig.getUserConfigLocation('oopsyraidsy', Options, () => {
   let listView;
   let mistakeCollector;
 
-  let summaryElement = document.getElementById('summary');
-  let liveListElement = document.getElementById('livelist');
+  const summaryElement = document.getElementById('summary');
+  const liveListElement = document.getElementById('livelist');
 
   // Choose the ui based on whether this is the summary view or the live list.
   // They have different elements in the file.
@@ -1281,7 +1256,7 @@ UserConfig.getUserConfigLocation('oopsyraidsy', Options, () => {
     mistakeCollector = new MistakeCollector(Options, listView);
   }
 
-  let damageTracker = new DamageTracker(Options, mistakeCollector);
+  const damageTracker = new DamageTracker(Options, mistakeCollector, oopsyFileData);
 
   addOverlayListener('onLogEvent', (e) => damageTracker.OnLogEvent(e));
   addOverlayListener('LogLine', (e) => damageTracker.OnNetLog(e));
@@ -1296,8 +1271,6 @@ UserConfig.getUserConfigLocation('oopsyraidsy', Options, () => {
     damageTracker.OnInCombatChangedEvent(e);
     mistakeCollector.OnInCombatChangedEvent(e);
   });
-
-  damageTracker.OnDataFilesRead(oopsyFileData);
 
   callOverlayHandler({ call: 'cactbotRequestPlayerUpdate' });
 });

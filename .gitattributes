@@ -4,3 +4,6 @@
 *.ogg binary
 *.mp3 binary
 *.wav binary
+
+# Set the language for these files to jsonc to ensure GitHub doesn't show the comments as errors
+.vscode/*.json         linguist-language=jsonc

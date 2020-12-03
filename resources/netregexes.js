@@ -8,12 +8,12 @@ import Regexes from './regexes.js';
 const separator = '\\|';
 const matchDefault = '[^|]*';
 
-let parseHelper = (params, funcName, fields) => {
+const parseHelper = (params, funcName, fields) => {
   // Validate params's field names vs the ones in fields.
   if (typeof params === 'undefined')
     params = {};
-  let validFields = [];
-  for (let value of Object.values(fields)) {
+  const validFields = [];
+  for (const value of Object.values(fields)) {
     if (typeof value !== 'object')
       continue;
     validFields.push(value.field);
@@ -21,18 +21,18 @@ let parseHelper = (params, funcName, fields) => {
   Regexes.validateParams(params, funcName, ['capture', ...validFields]);
 
   // Find the last key we care about, so we can shorten the regex if needed.
-  let capture = Regexes.trueIfUndefined(params.capture);
-  let fieldKeys = Object.keys(fields);
+  const capture = Regexes.trueIfUndefined(params.capture);
+  const fieldKeys = Object.keys(fields);
   let maxKey;
   if (capture) {
     maxKey = fieldKeys[fieldKeys.length - 1];
   } else {
     maxKey = 0;
-    for (let key of fieldKeys) {
-      let value = fields[key];
+    for (const key of fieldKeys) {
+      const value = fields[key];
       if (typeof value !== 'object')
         continue;
-      let fieldName = fields[key].field;
+      const fieldName = fields[key].field;
       if (fieldName in params)
         maxKey = key;
     }
@@ -44,14 +44,14 @@ let parseHelper = (params, funcName, fields) => {
   for (let key in fields) {
     key = parseInt(key);
     // Fill in blanks.
-    let missingFields = key - lastKey - 1;
+    const missingFields = key - lastKey - 1;
     if (missingFields === 1)
       str += '\\y{NetField}';
     else if (missingFields > 1)
       str += '\\y{NetField}{' + missingFields + '}';
     lastKey = key;
 
-    let value = fields[key];
+    const value = fields[key];
     if (typeof value !== 'object')
       throw new Error(`${funcName}: invalid value: ${JSON.stringify(value)}`);
 

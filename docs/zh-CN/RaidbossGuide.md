@@ -160,7 +160,6 @@
 - alarmText
 - alertText
 - infoText
-- groupTTS
 - tts
 - run
 

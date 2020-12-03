@@ -22,7 +22,7 @@ export default class Combatant {
     if (name === '')
       return;
 
-    let parts = name.split('(');
+    const parts = name.split('(');
     this.name = parts[0];
     if (parts.length > 1)
       this.server = parts[1].replace(/\)$/, '');
@@ -41,8 +41,8 @@ export default class Combatant {
 
   nextSignificantState(timestamp) {
     // Shortcut out if this is significant or if there's no higher significant state
-    let index = this.significantStates.indexOf(timestamp);
-    let lastSignificantStateIndex = this.significantStates.length - 1;
+    const index = this.significantStates.indexOf(timestamp);
+    const lastSignificantStateIndex = this.significantStates.length - 1;
     if (index >= 0 && index < lastSignificantStateIndex)
       return this.states[this.significantStates[index + 1]];
     else if (index === lastSignificantStateIndex ||
@@ -70,9 +70,9 @@ export default class Combatant {
       this.states[timestamp] = this.states[this.latestTimestamp].partialClone(props);
       this.latestTimestamp = Math.max(this.latestTimestamp, timestamp);
     }
-    let lastSignificantStatetimestamp = this.significantStates[this.significantStates.length - 1];
-    let oldStateJSON = JSON.stringify(this.states[lastSignificantStatetimestamp]);
-    let newStateJSON = JSON.stringify(this.states[timestamp]);
+    const lastSignificantStatetimestamp = this.significantStates[this.significantStates.length - 1];
+    const oldStateJSON = JSON.stringify(this.states[lastSignificantStatetimestamp]);
+    const newStateJSON = JSON.stringify(this.states[timestamp]);
 
     if (lastSignificantStatetimestamp !== timestamp && newStateJSON !== oldStateJSON)
       this.significantStates.push(timestamp);

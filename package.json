@@ -7,8 +7,8 @@
     "url": "https://github.com/quisquous/cactbot"
   },
   "scripts": {
-    "build": "node_modules/.bin/webpack --config webpack.config.cjs --mode production",
-    "start": "node_modules/.bin/webpack-dev-server --config webpack.config.cjs --mode development",
+    "build": "node_modules/.bin/webpack --config webpack/webpack.config.cjs --mode production",
+    "start": "node_modules/.bin/webpack-dev-server --config webpack/webpack.config.cjs --mode development",
     "lint": "node_modules/.bin/eslint resources ui user test util",
     "lintfix": "node_modules/.bin/eslint --fix resources ui user test util",
     "stylelint": "node_modules/.bin/stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css",
@@ -21,6 +21,7 @@
     "css-loader": "^4.3.0",
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.9.1",
+    "eslint-plugin-import": "^2.22.1",
     "husky": "^4.2.5",
     "lint-staged": "^10.0.8",
     "markdownlint-cli": "^0.20.0",
@@ -34,140 +35,6 @@
   },
   "engines": {
     "node": ">=13.2.0"
-  },
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "es6": true
-    },
-    "extends": [
-      "eslint:recommended",
-      "google"
-    ],
-    "rules": {
-      "arrow-spacing": [
-        "error",
-        {
-          "before": true,
-          "after": true
-        }
-      ],
-      "camelcase": [
-        "error",
-        {
-          "properties": "always"
-        }
-      ],
-      "curly": [
-        "error",
-        "multi-or-nest",
-        "consistent"
-      ],
-      "eqeqeq": "error",
-      "guard-for-in": "off",
-      "indent": [
-        "error",
-        2,
-        {
-          "ArrayExpression": 1,
-          "CallExpression": {
-            "arguments": 2
-          },
-          "FunctionDeclaration": {
-            "parameters": 2
-          },
-          "FunctionExpression": {
-            "parameters": 2
-          },
-          "ignoreComments": false,
-          "ObjectExpression": 1
-        }
-      ],
-      "linebreak-style": [
-        "error",
-        "windows"
-      ],
-      "max-len": [
-        "error",
-        {
-          "code": 100,
-          "ignoreRegExpLiterals": true,
-          "ignoreStrings": true,
-          "ignoreTemplateLiterals": true,
-          "ignoreUrls": true,
-          "tabWidth": 2
-        }
-      ],
-      "new-cap": [
-        "error",
-        {
-          "capIsNew": false,
-          "newIsCap": false,
-          "properties": false
-        }
-      ],
-      "no-cond-assign": [
-        "error",
-        "always"
-      ],
-      "no-console": "off",
-      "no-else-return": "error",
-      "no-undef": "off",
-      "no-unused-vars": "off",
-      "no-useless-escape": "off",
-      "object-curly-newline": [
-        "error",
-        {
-          "consistent": true,
-          "multiline": true
-        }
-      ],
-      "object-curly-spacing": [
-        "error",
-        "always"
-      ],
-      "object-property-newline": [
-        "error",
-        {
-          "allowAllPropertiesOnSameLine": true
-        }
-      ],
-      "operator-linebreak": "error",
-      "prefer-arrow-callback": "error",
-      "prefer-rest-params": "off",
-      "quotes": [
-        "error",
-        "single",
-        {
-          "allowTemplateLiterals": true
-        }
-      ],
-      "require-jsdoc": "off",
-      "space-in-parens": [
-        "error",
-        "never"
-      ],
-      "space-infix-ops": "error",
-      "space-unary-ops": [
-        "error",
-        {
-          "words": true,
-          "nonwords": false
-        }
-      ],
-      "strict": [
-        "error",
-        "global"
-      ],
-      "unicode-bom": [
-        "error",
-        "never"
-      ]
-    },
-    "parserOptions": {
-      "ecmaVersion": 2018,
-      "sourceType": "module"
-    }
   },
   "stylelint": {
     "extends": "stylelint-config-standard"

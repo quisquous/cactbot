@@ -361,9 +361,6 @@ namespace Cactbot {
       //   thus cause this to happen one to three times depending on their timing. This shouldn't cause any issues but
       //   it's a waste of CPU cycles.
       // * Since this only happens during startup, it's probably not worth fixing though. Not sure.
-      // * Some overlays behave slightly different from the above explanation. Raidboss for example loads data files
-      //   in addition to the listed steps. I think it's even loading them twice since raidboss.js loads the data files
-      //   for gTimelineController and popup-text.js requests them again for its own purposes.
 
       bool game_exists = ffxiv_.FindProcess();
       if (game_exists != notify_state_.game_exists) {

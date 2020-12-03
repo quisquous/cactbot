@@ -1,15 +1,20 @@
-[{
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.EdensGateResurrectionSavage,
   timelineFile: 'e1s.txt',
   timeline: [
     function(data) {
-      let chance = 0.4;
-      let time = '275';
+      const chance = 0.4;
+      const time = '275';
 
       if (Math.random() >= chance)
         return;
 
-      let goofs = {
+      const goofs = {
         en: [
           'brb',
           ':zzz:',
@@ -50,7 +55,7 @@
       if (!goofs)
         return;
 
-      let goof = goofs[Math.floor(Math.random() * goofs.length)];
+      const goof = goofs[Math.floor(Math.random() * goofs.length)];
       return time + ' "' + goof + '"';
     },
   ],
@@ -220,7 +225,7 @@
       run: function(data) {
         // Note: this happens *after* the marks, so is setting up vice for the next marks.
         data.viceCount++;
-        let viceMap = {
+        const viceMap = {
           1: 'dps',
           2: 'tank',
           3: 'healer',
@@ -627,4 +632,4 @@
       },
     },
   ],
-}];
+};

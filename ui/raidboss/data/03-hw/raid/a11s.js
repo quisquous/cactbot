@@ -1,4 +1,9 @@
-[{
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.AlexanderTheHeartOfTheCreatorSavage,
   timelineFile: 'a11s.txt',
   timelineTriggers: [
@@ -194,7 +199,7 @@
       id: 'A11S Limit Cut Collect',
       netRegex: NetRegexes.headMarker({ id: '00(?:4F|5[0-6])' }),
       run: function(data, matches) {
-        let limitCutNumber = {
+        const limitCutNumber = {
           '004F': 1,
           '0050': 2,
           '0051': 3,
@@ -257,7 +262,7 @@
         }
 
         // Evens
-        let partner = data.limitCutMap[data.limitCutNumber - 1];
+        const partner = data.limitCutMap[data.limitCutNumber - 1];
         if (!partner) {
           // In case something goes awry?
           return output.knockbackCharge();
@@ -680,4 +685,4 @@
       },
     },
   ],
-}];
+};

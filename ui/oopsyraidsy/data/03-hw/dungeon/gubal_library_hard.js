@@ -1,4 +1,7 @@
-[{
+import NetRegexes from '../../../../../resources/netregexes.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.TheGreatGubalLibraryHard,
   damageWarn: {
     'GubalHm Terror Eye': '930', // Circle AoE, Spine Breaker trash
@@ -92,4 +95,4 @@
       },
     },
   ],
-}];
+};

@@ -1,8 +1,13 @@
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // TODO: grand cross "plummet" attacks have locations,
 // so it should be possible to tell people where to go.
 // This is not true for Mustadio's Maintenance.
 
-[{
+export default {
   zoneId: ZoneId.TheOrbonneMonastery,
   timelineFile: 'orbonne_monastery.txt',
   timelineTriggers: [
@@ -1280,4 +1285,4 @@
       },
     },
   ],
-}];
+};

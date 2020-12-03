@@ -4,20 +4,20 @@
 // copied into the ultimate triggers.
 
 // Begin copy and paste
-let modDistance = function(mark, dragon) {
-  let oneWay = (dragon - mark + 8) % 8;
-  let otherWay = (mark - dragon + 8) % 8;
-  let distance = Math.min(oneWay, otherWay);
+const modDistance = function(mark, dragon) {
+  const oneWay = (dragon - mark + 8) % 8;
+  const otherWay = (mark - dragon + 8) % 8;
+  const distance = Math.min(oneWay, otherWay);
   console.assert(distance >= 0);
   return distance;
 };
 
-let badSpots = function(mark, dragon) {
+const badSpots = function(mark, dragon) {
   // All spots between mark and dragon are bad.  If distance == 1,
   // then the dragon hits the spot behind the mark too.  e.g. N
   // mark, NE dragon will also hit NW.
-  let bad = [];
-  let distance = modDistance(mark, dragon);
+  const bad = [];
+  const distance = modDistance(mark, dragon);
   console.assert(distance > 0);
   console.assert(distance <= 2);
   if ((mark + distance + 8) % 8 === dragon) {
@@ -36,9 +36,9 @@ let badSpots = function(mark, dragon) {
   return bad;
 };
 
-let findDragonMarks = function(array) {
-  let marks = [-1, -1, -1];
-  let ret = {
+const findDragonMarks = function(array) {
+  const marks = [-1, -1, -1];
+  const ret = {
     // Third drive is on a dragon three squares away and will cover
     // more of the middle than usual, e.g. SE dragon, SW dragon,
     // mark W (because S is unsafe from 2nd dive).
@@ -50,7 +50,7 @@ let findDragonMarks = function(array) {
     marks: ['error', 'error', 'error'],
   };
 
-  let dragons = [];
+  const dragons = [];
   for (let i = 0; i < 8; ++i) {
     if (array[i])
       dragons.push(i);
@@ -98,7 +98,7 @@ let findDragonMarks = function(array) {
     // hole between #3 and #4, otherwise need all three holes.
     // e.g. N, NE, E, W, NW dragon pattern should prefer third
     // mark SW instead of N.
-    let distance = marks[1] === dragons[2] - 1 ? 2 : 4;
+    const distance = marks[1] === dragons[2] - 1 ? 2 : 4;
     if (dragons[3] >= dragons[2] + distance)
       marks[2] = dragons[3] - 1;
   } else {
@@ -115,11 +115,11 @@ let findDragonMarks = function(array) {
     }
   }
 
-  let bad = badSpots(marks[0], dragons[0]);
+  const bad = badSpots(marks[0], dragons[0]);
   bad.concat(badSpots(marks[0], dragons[1]));
   ret.unsafeThirdMark = bad.includes(marks[2]);
 
-  let dirNames = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+  const dirNames = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
   ret.marks = marks.map((i) => {
     return dirNames[i];
   });
@@ -142,7 +142,7 @@ function testModDistance() {
 testModDistance();
 
 function testBadSpots() {
-  let equals = function(a, b) {
+  const equals = function(a, b) {
     a.sort();
     b.sort();
     if (a.length !== b.length)
@@ -156,18 +156,18 @@ function testBadSpots() {
 
   // 1 away dragons
   for (let i = 0; i < 8; ++i) {
-    let before = (i - 1 + 8) % 8;
-    let after = (i + 1) % 8;
+    const before = (i - 1 + 8) % 8;
+    const after = (i + 1) % 8;
     console.assert(equals([before, i, after], badSpots(i, before)));
     console.assert(equals([before, i, after], badSpots(i, after)));
   }
 
   // 2 away dragons
   for (let i = 0; i < 8; ++i) {
-    let before2 = (i - 2 + 8) % 8;
-    let before1 = (i - 1 + 8) % 8;
-    let after1 = (i + 1) % 8;
-    let after2 = (i + 2) % 8;
+    const before2 = (i - 2 + 8) % 8;
+    const before1 = (i - 1 + 8) % 8;
+    const after1 = (i + 1) % 8;
+    const after2 = (i + 2) % 8;
     console.assert(equals([before2, before1, i], badSpots(i, before2)));
     console.assert(equals([after2, after1, i], badSpots(i, after2)));
   }
@@ -175,16 +175,16 @@ function testBadSpots() {
 testBadSpots();
 
 function testFindDragonMarks(array, output) {
-  let markDirs = output.marks;
-  let dragons = [];
+  const markDirs = output.marks;
+  const dragons = [];
   for (let i = 0; i < 8; ++i) {
     if (array[i])
       dragons.push(i);
   }
   console.assert(dragons.length === 5);
 
-  let dirNames = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-  let marks = markDirs.map((i) => {
+  const dirNames = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+  const marks = markDirs.map((i) => {
     return dirNames.indexOf(i);
   });
   console.assert(marks.length === 3);
@@ -212,7 +212,7 @@ function testFindDragonMarks(array, output) {
 
   console.assert(modDistance(marks[2], dragons[4]) <= 2);
 
-  let bad = [
+  const bad = [
     badSpots(marks[0], dragons[0]).concat(badSpots(marks[0], dragons[1])),
     badSpots(marks[1], dragons[2]),
   ];
@@ -231,7 +231,7 @@ function testFindDragonMarks(array, output) {
 
 let total = 0;
 for (let i = 0; i < 256; ++i) {
-  let array = [
+  const array = [
     i & 0x80 ? 1 : 0,
     i & 0x40 ? 1 : 0,
     i & 0x20 ? 1 : 0,
@@ -249,7 +249,7 @@ for (let i = 0; i < 256; ++i) {
     continue;
 
   console.log(array);
-  let output = findDragonMarks(array);
+  const output = findDragonMarks(array);
   console.log(output);
   testFindDragonMarks(array, output);
   ++total;

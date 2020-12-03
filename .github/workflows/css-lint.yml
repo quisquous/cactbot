@@ -3,10 +3,12 @@ name: CSS Lint
 on:
   push:
     paths:
+      - '*.json'
       - '**/*.css'
       - '.github/workflows/css-lint.yml'
   pull_request:
     paths:
+      - '*.json'
       - '**/*.css'
       - '.github/workflows/css-lint.yml'
 

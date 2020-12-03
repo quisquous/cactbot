@@ -1,10 +1,15 @@
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // TODO: Final Punishment stack counts are in the network log, but not in ACT log :C
 // e.g. 4 stacks:
 //   26|2020-02-08T21:03:07.8080000-08:00|403|Final Punishment|
 //   39.95|E0000000||1068E9CB|Potato Chippy|04|19062|||0bd20f2b57d49b17a19caa10e1fb8734
 // TODO: chakram safe spots lol?
 
-[{
+export default {
   zoneId: ZoneId.AlexanderTheBurdenOfTheSonSavage,
   timelineFile: 'a8s.txt',
   timelineTriggers: [
@@ -325,7 +330,7 @@
       netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
       infoText: function(data, matches, output) {
         // 0040 = 2, 0041 = 3, 0042 = 4
-        let count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
+        const count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
         return output.text({ player: data.ShortName(matches.target), count: count });
       },
       outputStrings: {
@@ -419,7 +424,7 @@
       alertText: function(data, _, output) {
         if (data.longNeedlePrey.includes(data.me))
           return;
-        let target = data.longNeedleStack;
+        const target = data.longNeedleStack;
         if (target === data.me)
           return output.stackOnYou();
 
@@ -1284,4 +1289,4 @@
       },
     },
   ],
-}];
+};

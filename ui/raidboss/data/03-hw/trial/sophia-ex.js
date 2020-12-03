@@ -1,4 +1,9 @@
-let findSafeDir = (data) => {
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
+const findSafeDir = (data) => {
   // Tethers are ordered with all East tethers first. This *doesn't* mean that the East
   // or West tethers are themselves in order within their half!
   // The eight scale entities are listed in the data object, with West at indices 0-3,
@@ -8,7 +13,7 @@ let findSafeDir = (data) => {
   // This will give us the tilt direction for all but the 1/1, 2/2, and 3/3 cases.
   // The safe side is represented here by whether safeDir is positive or negative.
   // (West/negative, East/positive.)
-  for (let tether of data.quasarTethers)
+  for (const tether of data.quasarTethers)
     safeDir += data.scaleSophias.indexOf(tether) < 4 ? -1 : 1;
   return safeDir;
 };
@@ -54,7 +59,7 @@ const tiltOutputStrings = {
   },
 };
 
-[{
+export default {
   zoneId: ZoneId.ContainmentBayP1T6Extreme,
   timelineFile: 'sophia-ex.txt',
   timelineTriggers: [
@@ -458,7 +463,7 @@ const tiltOutputStrings = {
           'thunderClones',
           'seenThunder',
         ];
-        for (let element of cloneData)
+        for (const element of cloneData)
           delete data[element];
       },
     },
@@ -547,7 +552,7 @@ const tiltOutputStrings = {
           data.sadTethers = true;
           return;
         }
-        let safeDir = findSafeDir(data);
+        const safeDir = findSafeDir(data);
         if (safeDir === 0) {
           // If it's the 1/1, 2/2, or 3/3 case, we sadly don't have enough information.
           // We have to quit here and wait for the actual cast.
@@ -777,4 +782,4 @@ const tiltOutputStrings = {
       },
     },
   ],
-}];
+};

@@ -1,4 +1,8 @@
-[{
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.TheForbiddenLandEurekaHydatos,
   timelineFile: 'eureka_hydatos.txt',
   resetWhenOutOfCombat: false,
@@ -701,7 +705,7 @@
       alertText: function(data, _, output) {
         if (!data.clones)
           return;
-        let wrists = data.clones.pop();
+        const wrists = data.clones.pop();
         if (wrists === 'Astral')
           return output.dark();
 
@@ -1544,4 +1548,4 @@
       },
     },
   ],
-}];
+};

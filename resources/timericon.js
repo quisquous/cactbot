@@ -1,6 +1,6 @@
 export default class TimerIcon extends HTMLElement {
   static get observedAttributes() {
-    return ['icon', 'name', 'zoom', 'duration', 'onhide', 'width', 'height', 'bordercolor', 'bordersize', 'text', 'textcolor'];
+    return ['icon', 'name', 'zoom', 'duration', 'width', 'height', 'bordercolor', 'bordersize', 'text', 'textcolor'];
   }
 
   // All visual dimensions are scaled by this.
@@ -60,14 +60,6 @@ export default class TimerIcon extends HTMLElement {
     return this.getAttribute('hideafter');
   }
 
-  // When the timer hides after completing, this string is evaluated.
-  set onhide(c) {
-    this.setAttribute('onhide', c);
-  }
-  get onhide() {
-    return this.getAttribute('onhide');
-  }
-
   // Sets the path to the image to show in the icon.
   set icon(p) {
     this.setAttribute('icon', p);
@@ -106,14 +98,14 @@ export default class TimerIcon extends HTMLElement {
   // This would be used with window.customElements.
   constructor() {
     super();
-    let root = this.attachShadow({ mode: 'open' });
+    const root = this.attachShadow({ mode: 'open' });
     this.init(root);
   }
 
   // These would be used by document.registerElement, which is deprecated but
   // ACT uses an old CEF which has this instead of the newer APIs.
   createdCallback() {
-    let root = this.createShadowRoot();
+    const root = this.createShadowRoot();
     this.init(root);
   }
   // Convert from the deprecated API names to the modern API names.
@@ -179,7 +171,6 @@ export default class TimerIcon extends HTMLElement {
     this._borderFg = 'grey';
     this._scale = 1;
     this._hideAfter = -1;
-    this._onHide = '';
     this._icon = '';
     this._zoom = 20;
     this._text = 'remain';
@@ -193,7 +184,6 @@ export default class TimerIcon extends HTMLElement {
     if (this.bordersize !== null) this._colorBorderSize = Math.max(parseInt(this.bordersize), 0);
     if (this.scale !== null) this._scale = Math.max(parseFloat(this.scale), 0.01);
     if (this.hideafter !== null && this.hideafter !== '') this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
-    if (this.onhide !== null) this._onHide = this.onhide;
     if (this.icon !== null) this._icon = this.icon;
     if (this.zoom !== null) this._zoom = Math.max(parseInt(this.zoom), 0);
     if (this.text !== null) this._text = this.text;
@@ -224,8 +214,6 @@ export default class TimerIcon extends HTMLElement {
     } else if (name === 'bordersize') {
       this._colorBorderSize = Math.max(parseInt(newValue), 0);
       this.layout();
-    } else if (name === 'onhide') {
-      this._onHide = newValue;
     } else if (name === 'icon') {
       this._icon = newValue;
       this.layout();
@@ -247,10 +235,10 @@ export default class TimerIcon extends HTMLElement {
     if (!this._connected)
       return;
 
-    let borderBackgroundStyle = this.borderBackgroundElement.style;
-    let borderForegroundStyle = this.borderForegroundElement.style;
-    let iconStyle = this.iconElement.style;
-    let textStyle = this.textElement.style;
+    const borderBackgroundStyle = this.borderBackgroundElement.style;
+    const borderForegroundStyle = this.borderForegroundElement.style;
+    const iconStyle = this.iconElement.style;
+    const textStyle = this.textElement.style;
 
     borderBackgroundStyle.backgroundColor = this._borderBg;
     borderBackgroundStyle.opacity = this.kBackgroundOpacity;
@@ -258,7 +246,7 @@ export default class TimerIcon extends HTMLElement {
     borderBackgroundStyle.width = this._width * this._scale;
     borderBackgroundStyle.height = this._height * this._scale;
 
-    let borderPadding = this.kOuterBorderSize * 2 + this._colorBorderSize * 2;
+    const borderPadding = this.kOuterBorderSize * 2 + this._colorBorderSize * 2;
     borderForegroundStyle.width = (this._width - borderPadding) * this._scale;
     borderForegroundStyle.height = (this._height - borderPadding) * this._scale;
     borderForegroundStyle.borderWidth = this._colorBorderSize * this._scale;
@@ -267,12 +255,12 @@ export default class TimerIcon extends HTMLElement {
     borderForegroundStyle.left = this.kOuterBorderSize * this._scale;
     borderForegroundStyle.top = this.kOuterBorderSize * this._scale;
 
-    let iconLeft = (this.kOuterBorderSize * 2 + this._colorBorderSize) * this._scale;
-    let iconTop = (this.kOuterBorderSize * 2 + this._colorBorderSize) * this._scale;
-    let iconPadding = this.kOuterBorderSize * 4 + this._colorBorderSize * 2;
-    let iconWidth = (this._width - iconPadding) * this._scale;
-    let iconHeight = (this._height - iconPadding) * this._scale;
-    let textHeight = Math.ceil(Math.min(iconWidth, iconHeight) / 1.8);
+    const iconLeft = (this.kOuterBorderSize * 2 + this._colorBorderSize) * this._scale;
+    const iconTop = (this.kOuterBorderSize * 2 + this._colorBorderSize) * this._scale;
+    const iconPadding = this.kOuterBorderSize * 4 + this._colorBorderSize * 2;
+    const iconWidth = (this._width - iconPadding) * this._scale;
+    const iconHeight = (this._height - iconPadding) * this._scale;
+    const textHeight = Math.ceil(Math.min(iconWidth, iconHeight) / 1.8);
     iconStyle.width = iconWidth;
     iconStyle.height = iconHeight;
     iconStyle.left = iconLeft;
@@ -294,7 +282,7 @@ export default class TimerIcon extends HTMLElement {
 
   draw() {
     if (this._text === 'remain') {
-      let intRemain = parseInt(this._value + 0.99999999999);
+      const intRemain = parseInt(this._value + 0.99999999999);
       if (intRemain > 0)
         this.textElement.innerText = intRemain;
       else
@@ -305,7 +293,7 @@ export default class TimerIcon extends HTMLElement {
       percent = Math.min(1, Math.max(0, percent));
       this.textElement.innerText = (percent * 100).toFixed(0);
     } else if (this._text === 'elapsed') {
-      let intelapsed = (this._duration - this._value).toFixed(0);
+      const intelapsed = (this._duration - this._value).toFixed(0);
       this.textElement.innerText = intelapsed;
     } else {
       this.textElement.innerHTML = this._text;
@@ -335,11 +323,6 @@ export default class TimerIcon extends HTMLElement {
       if (this._hideAfter >= 0) {
         this._hideTimer = setTimeout(() => {
           this.rootElement.style.display = 'none';
-          try {
-            eval(this._onHide);
-          } catch (e) {
-            console.log('error evaluating onhide: ' + this._onHide);
-          }
         }, this._hideAfter);
       }
     } else {

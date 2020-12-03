@@ -1,4 +1,9 @@
-[{
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.DunScaith,
   timelineNeedsFixing: true,
   timelineFile: 'dun_scaith.txt',
@@ -287,7 +292,7 @@
       id: 'Dun Scaith Atomos Cleanup',
       netRegex: NetRegexes.ability({ id: ['1CA1', '1CA2'], capture: false }),
       run: function(data) {
-        for (let el of ['cursing', 'wailing', 'sphere', 'donut'])
+        for (const el of ['cursing', 'wailing', 'sphere', 'donut'])
           delete data[el];
       },
     },
@@ -1168,5 +1173,4 @@
       },
     },
   ],
-},
-];
+};

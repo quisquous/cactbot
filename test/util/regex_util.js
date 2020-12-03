@@ -2,7 +2,7 @@ import chai from 'chai';
 
 const { assert } = chai;
 // Quite bogus.
-let bogusLine = 'using act is cheating';
+const bogusLine = 'using act is cheating';
 
 // An automated way to test standard regex functions that take a dictionary of fields.
 export default (func, lines) => {
@@ -10,41 +10,41 @@ export default (func, lines) => {
   assert.isNull(bogusLine.match(func({})));
 
   for (let i = 0; i < lines.length; ++i) {
-    let line = lines[i];
+    const line = lines[i];
 
     // Undefined params (default capture).
-    let undefinedParamsMatch = line.match(func());
+    const undefinedParamsMatch = line.match(func());
     assert.isNotNull(undefinedParamsMatch, '' + func() + ' did not match ' + line);
     assert.notPropertyVal(undefinedParamsMatch, 'groups', undefined, func().source);
 
     // Empty params (default capture).
-    let emptyParamsMatch = line.match(func({}));
+    const emptyParamsMatch = line.match(func({}));
     assert.isNotNull(emptyParamsMatch, '' + func({}) + ' did not match ' + line);
     assert.notPropertyVal(emptyParamsMatch, 'groups', undefined);
 
     // No capture match.
-    let noCaptureMatch = line.match(func({ capture: false }));
+    const noCaptureMatch = line.match(func({ capture: false }));
     assert.isNotNull(noCaptureMatch);
     assert.propertyVal(noCaptureMatch, 'groups', undefined);
 
     // Capture match.
-    let captureMatch = line.match(func({ capture: true }));
+    const captureMatch = line.match(func({ capture: true }));
     assert.isNotNull(captureMatch);
     assert.notPropertyVal(captureMatch, 'groups', undefined);
     assert.isObject(captureMatch.groups);
 
     // Capture always needs at least one thing.
-    let keys = Object.keys(captureMatch.groups);
+    const keys = Object.keys(captureMatch.groups);
     assert.isAbove(keys.length, 0);
 
-    let explicitFields = {};
+    const explicitFields = {};
     explicitFields.capture = true;
     for (let j = 0; j < keys.length; ++j) {
-      let key = keys[j];
+      const key = keys[j];
 
       // Because matched values may have special regex
       // characters in it, escape these when specifying.
-      let value = captureMatch.groups[key];
+      const value = captureMatch.groups[key];
       let escaped = value;
       if (typeof value !== 'undefined')
         escaped = escaped.replace(/[.*+?^${}()]/g, '\\$&');
@@ -55,7 +55,7 @@ export default (func, lines) => {
     // both match, and return the same thing.
     // This verifies that input parameters to the regex fields and
     // named matching groups are equivalent.
-    let explicitCaptureMatch = line.match(func(explicitFields));
+    const explicitCaptureMatch = line.match(func(explicitFields));
     assert.isNotNull(explicitCaptureMatch);
     assert.notPropertyVal(explicitCaptureMatch, 'groups', undefined);
     assert.isObject(explicitCaptureMatch.groups);
@@ -63,7 +63,7 @@ export default (func, lines) => {
 
     // Not capturing with explicit fields should also work.
     explicitFields.capture = false;
-    let explicitNoCaptureMatch = line.match(func(explicitFields));
+    const explicitNoCaptureMatch = line.match(func(explicitFields));
     assert.isNotNull(explicitNoCaptureMatch);
     assert.propertyVal(explicitNoCaptureMatch, 'groups', undefined);
   }

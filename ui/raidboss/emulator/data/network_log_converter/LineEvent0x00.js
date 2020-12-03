@@ -19,7 +19,7 @@ export class LineEvent0x00 extends LineEvent {
   }
 
   static replaceChatSymbols(line) {
-    for (let rep of LineEvent00.chatSymbolReplacements)
+    for (const rep of LineEvent00.chatSymbolReplacements)
       line = line.replace(rep.Search, rep.Replace);
 
     return line;

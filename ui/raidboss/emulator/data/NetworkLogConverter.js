@@ -5,12 +5,12 @@ export default class NetworkLogConverter {
   constructor(options) {
     this.EnableProperCaseBug = true;
 
-    for (let i in options)
+    for (const i in options)
       this[i] = options[i];
   }
 
   async convertFile(data) {
-    let ret = await this.convertLines(
+    const ret = await this.convertLines(
         // Split data into an array of separate lines, removing any blank lines.
         data.split(NetworkLogConverter.lineSplitRegex).filter((l) => l !== ''),
     );
@@ -19,8 +19,7 @@ export default class NetworkLogConverter {
 
   async convertLines(lines) {
     this.Combatants = {};
-    let repo = new LogRepository();
-    let i = 0;
+    const repo = new LogRepository();
     lines = lines.map((l) => ParseLine.parse(repo, l)).filter((l) => l);
 
     for (let i = 0; i < lines.length; ++i) {

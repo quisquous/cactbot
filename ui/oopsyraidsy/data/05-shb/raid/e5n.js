@@ -1,4 +1,7 @@
-[{
+import NetRegexes from '../../../../../resources/netregexes.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.EdensVerseFulmination,
   damageWarn: {
     'E5N Impact': '4E3A', // Stratospear landing AoE
@@ -60,7 +63,7 @@
       damageRegex: '4B9D',
       suppressSeconds: 30,
       mistake: function(e, data) {
-        for (let m of data.cloudMarkers) {
+        for (const m of data.cloudMarkers) {
           return {
             type: 'fail',
             blame: data.cloudMarkers[m],
@@ -78,4 +81,4 @@
       },
     },
   ],
-}];
+};

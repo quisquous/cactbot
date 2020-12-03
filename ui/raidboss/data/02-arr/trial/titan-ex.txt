@@ -1,5 +1,5 @@
 # Titan Extreme
-# -p 5C0:203 5C1:700 -ii 5BD 5BC 673
+# -p 5C0:203 5C1:700 -ii 368 5BD 5BC 673
 
 # Note: Landslides during upheavals only happen if there is a targetable
 # player outside the two jails.  If solo/duo-ing, then everything moves
@@ -65,7 +65,7 @@ hideall "--sync--"
 353.6 "Mountain Buster" sync /:Titan:5B8:/
 360.9 "Burst" duration 4.2 #sync /:Bomb Boulder:5BF:/
 
-363.9 "Landslide" sync /:Titan:5BB:/ window 30,30 jump 212.6
+363.9 "Landslide" sync /:Titan:5BB:/ window 20,20 jump 212.6
 368.0 "Rock Throw"
 372.1 "Mountain Buster"
 381.1 "Upheaval"
