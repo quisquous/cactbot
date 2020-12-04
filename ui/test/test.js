@@ -49,11 +49,9 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
   else if (e.detail.job === 'AST')
     document.getElementById('jobinfo').innerText = jobDetail.heldCard + ' (' + jobDetail.arcanums + ')';
   else if (e.detail.job === 'MNK')
-    document.getElementById('jobinfo').innerText = jobDetail.lightningStacks + ' | ' + jobDetail.chakraStacks + ' (' + jobDetail.lightningMilliseconds + ')';
+    document.getElementById('jobinfo').innerText = jobDetail.lightningStacks + ' (' + jobDetail.lightningMilliseconds + ') | ' + jobDetail.chakraStacks + ' | ' + jobDetail.lightningTimerFrozen;
   else if (e.detail.job === 'PGL')
     document.getElementById('jobinfo').innerText = jobDetail.lightningStacks + ' (' + jobDetail.lightningMilliseconds + ')';
-  else if (e.detail.job === 'MNK')
-    document.getElementById('jobinfo').innerText = jobDetail.lightningStacks + ' (' + jobDetail.lightningMilliseconds + ') | ' + jobDetail.chakraStacks + ' | ' + jobDetail.lightningTimerFrozen;
   else if (e.detail.job === 'MCH')
     document.getElementById('jobinfo').innerText = jobDetail.heat + ' (' + jobDetail.overheatMilliseconds + ') | ' + jobDetail.battery + ' (' + jobDetail.batteryMilliseconds + ') | last: ' + jobDetail.lastBatteryAmount + ' | ' + jobDetail.overheatActive + ' | ' + jobDetail.robotActive;
   else if (e.detail.job === 'SAM')
