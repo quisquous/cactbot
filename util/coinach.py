@@ -13,13 +13,17 @@ _DEFAULT_COINACH_PATHS = [
     "C:\\SaintCoinach\\",
     "D:\\SaintCoinach\\",
 ]
+
 if os.environ.get("CACTBOT_DEFAULT_COINACH_PATH", None):
     _DEFAULT_COINACH_PATHS.append(os.environ["CACTBOT_DEFAULT_COINACH_PATH"])
+
 _FFXIV_EXE = os.path.join("game", "ffxiv_dx11.exe")
+
 _DEFAULT_FFXIV_PATHS = [
     "C:\\Program Files (x86)\\SquareEnix\\FINAL FANTASY XIV - A Realm Reborn",
     "D:\\Program Files (x86)\\SquareEnix\\FINAL FANTASY XIV - A Realm Reborn",
 ]
+
 if os.environ.get("CACTBOT_DEFAULT_FFXIV_PATH", None):
     _DEFAULT_FFXIV_PATHS.append(os.environ["CACTBOT_DEFAULT_FFXIV_PATH"])
 
