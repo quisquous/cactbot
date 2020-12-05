@@ -338,9 +338,15 @@ export class Timeline {
           const m = e.name.match(trigger.regex);
           if (!m)
             continue;
+
+          // TODO: beforeSeconds should support being a function.
+          const autoConfig = trigger.id && this.options.PerTriggerAutoConfig[trigger.id] || {};
+          const configOverride = autoConfig['BeforeSeconds'];
+          const beforeSeconds = configOverride ? configOverride : trigger.beforeSeconds;
+
           this.texts.push({
             type: 'trigger',
-            time: e.time - (trigger.beforeSeconds || 0),
+            time: e.time - (beforeSeconds || 0),
             trigger: trigger,
             matches: m,
           });
