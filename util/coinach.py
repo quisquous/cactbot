@@ -27,6 +27,7 @@ _DEFAULT_FFXIV_PATHS = [
 if os.environ.get("CACTBOT_DEFAULT_FFXIV_PATH", None):
     _DEFAULT_FFXIV_PATHS.append(os.environ["CACTBOT_DEFAULT_FFXIV_PATH"])
 
+
 class CoinachError(Exception):
     def __init__(self, message, cmd, output):
         self.message = message
