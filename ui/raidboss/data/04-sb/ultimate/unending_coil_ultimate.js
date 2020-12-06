@@ -875,6 +875,7 @@ export default {
           fr: 'Feu EN DEDANS (${players} raus)',
           de: 'Feuer INNEN (${players} éviter)',
           cn: '火3 (${players}躲避)',
+          ko: '불 같이맞기 (${players} 는 피하기)',
         },
         fireInAvoid: {
           en: 'Fire IN: AVOID!',

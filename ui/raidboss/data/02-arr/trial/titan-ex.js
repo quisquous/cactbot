@@ -84,6 +84,7 @@ export default {
           de: 'Gefängnis',
           fr: 'Geôles',
           cn: '石牢',
+          ko: '돌감옥',
         },
       },
     },
