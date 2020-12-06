@@ -1412,7 +1412,7 @@ export default {
         twinHasMegaflare: {
           en: '${player} (twin) has megaflare',
           de: '${player} (Twin) hat Megaflare',
-          cn: '${player} (双塔) 带百万核爆',
+          cn: '${player} (双塔) 分摊点名',
           ko: '${player} (트윈 징 대상자) => 쉐어',
         },
         twinHasTower: {
