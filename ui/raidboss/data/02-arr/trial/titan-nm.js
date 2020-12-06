@@ -43,11 +43,13 @@ export default {
           en: 'Break Gaol on ${player}',
           de: 'Zerstöre das Gefängnis von ${player}',
           cn: '石牢点${player}',
+          ko: '${player} 돌감옥 해제',
         },
         gaolOnYou: {
           en: 'Gaol on YOU',
           de: 'Gefängnis auf DIR',
           cn: '石牢点名',
+          ko: '돌감옥 대상자',
         },
       },
     },

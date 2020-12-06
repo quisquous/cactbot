@@ -244,6 +244,7 @@ export default {
           de: 'Nicht Sammeln! (Tank Cleave)',
           ja: '集まらない! (タンクへのスラッシュ)',
           cn: '别去集合！（坦克顺劈）',
+          ko: '산개하기! (광역 탱버)',
         },
       },
     },
