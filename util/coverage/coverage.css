@@ -1,0 +1,66 @@
+body {
+  margin: 20px;
+}
+
+div {
+  font-family: arial, sans-serif;
+}
+
+body > div {
+  margin-bottom: 50px;
+}
+
+#title {
+  font-weight: bold;
+  font-size: 40px;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+}
+
+#language-select {
+  display: grid;
+  grid-auto-flow: column;
+  width: 400px;
+  align-items: end;
+}
+
+#warning {
+  font-size: 30px;
+  color: red;
+}
+
+.label {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#expansion-grid > .label {
+  justify-self: right;
+}
+
+.header {
+  font-size: 18px;
+}
+
+.data {
+  justify-self: right;
+}
+
+.emoji {
+  justify-self: center;
+}
+
+#expansion-grid {
+  display: grid;
+  grid-template-columns: max-content repeat(6, minmax(60px, max-content));
+  column-gap: 20px;
+  row-gap: 10px;
+}
+
+#zone-grid {
+  display: grid;
+  grid-template-columns: max-content repeat(4, minmax(60px, max-content));
+  column-gap: 20px;
+  row-gap: 10px;
+  justify-items: left;
+}

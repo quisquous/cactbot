@@ -31,6 +31,7 @@ jobs:
       - name: Build
         run: |
           npm install
+          npm run coverage-report
           npm run build
       - name: git setup
         run: |
@@ -39,6 +40,6 @@ jobs:
       - name: git commit and push
         run: |
           git checkout -B gh-pages
-          git add dist --force
+          git add dist resources --force
           git commit -m "gh-pages build"
           git push origin gh-pages --force
