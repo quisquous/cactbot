@@ -126,7 +126,7 @@ const addDiv = (container, cls, text) => {
   const div = document.createElement('div');
   div.classList.add(cls);
   if (text)
-    div.innerText = text;
+    div.innerHTML = text;
   container.appendChild(div);
 };
 
@@ -193,7 +193,10 @@ const buildZoneGrid = (container, lang, coverage) => {
           addDiv(container, 'text', translate(contentTypeToLabel[zone.contentType], lang));
         },
         name: () => {
-          addDiv(container, 'text', translate(zone.name, lang));
+          let name = translate(zone.name, lang);
+          name = name.replace('<Emphasis>', '<i>');
+          name = name.replace('</Emphasis>', '</i>');
+          addDiv(container, 'text', name);
         },
         triggers: () => {
           const triggerEmoji = zoneCoverage.triggers.num > 0 ? '✔️' : undefined;
