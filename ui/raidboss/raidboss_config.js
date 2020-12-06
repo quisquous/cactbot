@@ -8,6 +8,7 @@ import raidbossFileData from './data/manifest.txt';
 const kOptionKeys = {
   output: 'Output',
   duration: 'Duration',
+  beforeSeconds: 'BeforeSeconds',
   outputStrings: 'OutputStrings',
 };
 
@@ -110,6 +111,13 @@ const kDetailKeys = {
     },
     cls: 'regex-text',
     debugOnly: true,
+  },
+  'beforeSeconds': {
+    label: {
+      en: 'before (sec)',
+    },
+    cls: 'before-seconds-text',
+    generatedManually: true,
   },
   'condition': {
     label: {
@@ -416,6 +424,43 @@ class RaidbossConfigurator {
             hasOutputFunc = true;
             break;
           }
+        }
+
+        // Add beforeSeconds manually for timeline triggers.
+        if (trig.isTimelineTrigger) {
+          const detailKey = 'beforeSeconds';
+          const optionKey = kOptionKeys.beforeSeconds;
+
+          const label = document.createElement('div');
+          label.innerText = this.base.translate(kDetailKeys[detailKey].label);
+          label.classList.add('trigger-label');
+          triggerDetails.appendChild(label);
+
+          const div = document.createElement('div');
+          div.classList.add('option-input-container', 'trigger-before-seconds');
+
+          const input = document.createElement('input');
+          div.appendChild(input);
+          input.type = 'text';
+          input.step = 'any';
+
+          // Say "(default)" for more complicated things like functions.
+          let defaultValue = kMiscTranslations.valueDefault;
+          if (trig.beforeSeconds === undefined)
+            defaultValue = 0;
+          else if (typeof trig.beforeSeconds === 'number')
+            defaultValue = trig.beforeSeconds;
+
+          input.placeholder = this.base.translate(defaultValue);
+          input.value = this.base.getOption('raidboss', 'triggers', trig.id, optionKey, '');
+          const setFunc = () => {
+            const val = validDurationOrUndefined(input.value) || '';
+            this.base.setOption('raidboss', 'triggers', trig.id, optionKey, val);
+          };
+          input.onchange = setFunc;
+          input.oninput = setFunc;
+
+          triggerDetails.appendChild(div);
         }
 
         // Add duration manually with an input to override.
@@ -799,6 +844,10 @@ const templateOptions = {
       const duration = validDurationOrUndefined(triggers[id][kOptionKeys.duration]);
       if (duration)
         autoConfig[kOptionKeys.duration] = duration;
+
+      const beforeSeconds = validDurationOrUndefined(triggers[id][kOptionKeys.beforeSeconds]);
+      if (beforeSeconds)
+        autoConfig[kOptionKeys.beforeSeconds] = beforeSeconds;
 
       const outputStrings = triggers[id][kOptionKeys.outputStrings];
       if (outputStrings)
