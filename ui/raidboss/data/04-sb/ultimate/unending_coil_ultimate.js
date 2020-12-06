@@ -1063,7 +1063,7 @@ export default {
         text: {
           en: 'Go To ${dir} with marker',
           de: 'Gehe nach ${dir} mit dem Marker',
-          cn: '去${dir}',
+          cn: '带着点名去${dir}',
           ko: '${dir}으로 이동',
         },
         unknownDir: {
