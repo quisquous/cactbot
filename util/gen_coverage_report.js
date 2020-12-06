@@ -16,7 +16,7 @@ import { Responses, triggerFunctions, triggerOutputFunctions, builtInResponseStr
 // so need to do the same processing its loader would do.
 const raidbossManifest = '../ui/raidboss/data/manifest.txt';
 const oopsyManifest = '../ui/oopsyraidsy/data/manifest.txt';
-const outputFileName = '../resources/coverage_report.js';
+const outputFileName = 'coverage/coverage_report.js';
 
 const readManifest = (filename) => {
   const contents = fs.readFileSync(filename);

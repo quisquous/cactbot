@@ -1,5 +1,5 @@
 import contentList from '../../resources/content_list.js';
-import { coverage, coverageTotals } from '../../resources/coverage_report.js';
+import { coverage, coverageTotals } from './coverage_report.js';
 import ZoneInfo from '../../resources/zone_info.js';
 import ContentType from '../../resources/content_type.js';
 
