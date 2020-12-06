@@ -874,6 +874,7 @@ export default {
           en: 'Fire IN (${players} out)',
           fr: 'Feu EN DEDANS (${players} raus)',
           de: 'Feuer INNEN (${players} éviter)',
+          cn: '火进 (${players}出)',
         },
         fireInAvoid: {
           en: 'Fire IN: AVOID!',
@@ -1062,6 +1063,7 @@ export default {
         text: {
           en: 'Go To ${dir} with marker',
           de: 'Gehe nach ${dir} mit dem Marker',
+          cn: '去${dir}',
           ko: '${dir}으로 이동',
         },
         unknownDir: {
