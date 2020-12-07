@@ -115,6 +115,10 @@ const kDetailKeys = {
   'beforeSeconds': {
     label: {
       en: 'before (sec)',
+      de: 'Vorher (Sekunden)',
+      fr: 'avant (seconde)',
+      ja: 'その前に (秒)',
+      cn: '提前 (秒)',
     },
     cls: 'before-seconds-text',
     generatedManually: true,
