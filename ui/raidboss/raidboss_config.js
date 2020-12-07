@@ -138,7 +138,7 @@ const kDetailKeys = {
       en: 'duration (sec)',
       de: 'Dauer (Sekunden)',
       fr: 'Durée (secondes)',
-      ja: '存続時間 (秒)',
+      ja: '存続時間（秒）',
       cn: '持续时间（秒）',
       ko: '지속 시간 (초)',
     },
