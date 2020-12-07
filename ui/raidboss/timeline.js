@@ -68,7 +68,8 @@ function computeBackgroundColorFrom(element, classList) {
 // docs/TimelineGuide.md
 export class Timeline {
   constructor(text, replacements, triggers, styles, options) {
-    this.options = options;
+    this.options = options || {};
+    this.perTriggerAutoConfig = this.options['PerTriggerAutoConfig'] || {};
     this.replacements = replacements;
 
     // A set of names which will not be notified about.
@@ -340,7 +341,7 @@ export class Timeline {
             continue;
 
           // TODO: beforeSeconds should support being a function.
-          const autoConfig = trigger.id && this.options.PerTriggerAutoConfig[trigger.id] || {};
+          const autoConfig = trigger.id && this.perTriggerAutoConfig[trigger.id] || {};
           const configOverride = autoConfig['BeforeSeconds'];
           const beforeSeconds = configOverride ? configOverride : trigger.beforeSeconds;
 
