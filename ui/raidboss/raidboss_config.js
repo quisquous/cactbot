@@ -115,6 +115,8 @@ const kDetailKeys = {
   'beforeSeconds': {
     label: {
       en: 'before (sec)',
+      ja: 'その前に（秒）',
+      cn: '提前（秒）',
     },
     cls: 'before-seconds-text',
     generatedManually: true,
@@ -137,7 +139,7 @@ const kDetailKeys = {
       de: 'Dauer (Sekunden)',
       fr: 'Durée (secondes)',
       ja: '存続時間 (秒)',
-      cn: '持续时间 (秒)',
+      cn: '持续时间（秒）',
       ko: '지속 시간 (초)',
     },
     cls: 'duration-text',
