@@ -3,7 +3,7 @@ import ZoneId from '../../../../../resources/zone_id.js';
 
 // Shiva Hard
 export default {
-  zoneId: ZoneId.AkhAfahAmphitheatreHard,
+  zoneId: ZoneId.TheAkhAfahAmphitheatreHard,
   damageWarn: {
     // Large white circles.
     'ShivaHm Icicle Impact': '993',

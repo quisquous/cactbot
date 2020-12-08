@@ -7,7 +7,7 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // TODO: should the post-staff "spread" happen unconditionally prior to marker?
 
 export default {
-  zoneId: ZoneId.AkhAfahAmphitheatreExtreme,
+  zoneId: ZoneId.TheAkhAfahAmphitheatreExtreme,
   timelineFile: 'shiva-ex.txt',
   timelineTriggers: [
     {

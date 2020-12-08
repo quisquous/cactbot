@@ -127,7 +127,7 @@ export default [
   ZoneId.ThornmarchHard,
   ZoneId.TheWhorleaterHard,
   ZoneId.TheStrikingTreeHard,
-  ZoneId.AkhAfahAmphitheatreHard,
+  ZoneId.TheAkhAfahAmphitheatreHard,
   ZoneId.UrthsFount,
 
   // High-end Trials (A Realm Reborn)
@@ -138,7 +138,7 @@ export default [
   ZoneId.ThornmarchExtreme,
   ZoneId.TheWhorleaterExtreme,
   ZoneId.TheStrikingTreeExtreme,
-  ZoneId.AkhAfahAmphitheatreExtreme,
+  ZoneId.TheAkhAfahAmphitheatreExtreme,
 
   // Trials (Heavensward)
   ZoneId.ThokAstThokHard,

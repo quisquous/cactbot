@@ -3,7 +3,7 @@ import ZoneId from '../../../../../resources/zone_id.js';
 
 // Shiva Extreme
 export default {
-  zoneId: ZoneId.AkhAfahAmphitheatreExtreme,
+  zoneId: ZoneId.TheAkhAfahAmphitheatreExtreme,
   damageWarn: {
     // Large white circles.
     'ShivaEx Icicle Impact': 'BEB',
