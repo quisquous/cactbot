@@ -92,6 +92,7 @@ export default [
   ZoneId.TheGrandCosmos,
   ZoneId.AnamnesisAnyder,
   ZoneId.TheHeroesGauntlet,
+  ZoneId.MatoyasRelict,
 
   // Guildhests
   ZoneId.BasicTrainingEnemyParties,
@@ -185,6 +186,7 @@ export default [
   ZoneId.TheDyingGasp,
   ZoneId.CinderDrift,
   ZoneId.TheSeatOfSacrifice,
+  ZoneId.CastrumMarinum,
 
   // High-end Trials (Shadowbringers)
   ZoneId.TheDancingPlagueExtreme,
@@ -193,7 +195,9 @@ export default [
   ZoneId.CinderDriftExtreme,
   ZoneId.MemoriaMiseraExtreme,
   ZoneId.TheSeatOfSacrificeExtreme,
+  ZoneId.CastrumMarinumExtreme,
   ZoneId.TheAkhAfahAmphitheatreUnreal,
+  ZoneId.TheNavelUnreal,
 
   // Alliance Raids (A Realm Reborn)
   ZoneId.TheLabyrinthOfTheAncients,
@@ -300,6 +304,10 @@ export default [
   ZoneId.EdensVerseFuror,
   ZoneId.EdensVerseIconoclasm,
   ZoneId.EdensVerseRefulgence,
+  ZoneId.EdensPromiseUmbra,
+  ZoneId.EdensPromiseLitany,
+  ZoneId.EdensPromiseAnamorphosis,
+  ZoneId.EdensPromiseEternity,
 
   // Savage Raids (Shadowbringers)
   ZoneId.EdensGateResurrectionSavage,
@@ -310,6 +318,10 @@ export default [
   ZoneId.EdensVerseFurorSavage,
   ZoneId.EdensVerseIconoclasmSavage,
   ZoneId.EdensVerseRefulgenceSavage,
+  ZoneId.EdensPromiseUmbraSavage,
+  ZoneId.EdensPromiseLitanySavage,
+  ZoneId.EdensPromiseAnamorphosisSavage,
+  ZoneId.EdensPromiseEternitySavage,
 
   // Ultimate Raids
   ZoneId.TheUnendingCoilOfBahamutUltimate,
