@@ -42,7 +42,10 @@ const processTriggerFile = (triggerFile, zoneId, triggerSet, timelineContents, c
   coverage[zoneId] = coverage[zoneId] || {};
 
   const timelineEntry = {};
-  if (timelineContents)
+  // 1000 here is an arbitrary limit to ignore stub timeline files that haven't been filled out.
+  // ifrit-nm is the shortest real timeline, at 1800 characters.
+  // TODO: consider processing the timeline and finding the max time? or some other heuristic.
+  if (timelineContents && timelineContents.length > 1000)
     timelineEntry.hasFile = true;
   if (triggerSet.timelineNeedsFixing)
     timelineEntry.timelineNeedsFixing = true;
