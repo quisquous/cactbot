@@ -7,13 +7,13 @@ export default {
   zoneId: ZoneId.CastrumMarinumExtreme,
   triggers: [
     {
-      id: 'CastrumEx Optimized Ultima',
+      id: 'EmeraldEx Optimized Ultima',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5B10', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
-      id: 'CastrumEx Aetheroplasm Production',
+      id: 'EmeraldEx Aetheroplasm Production',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55AA', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -24,33 +24,43 @@ export default {
       },
     },
     {
-      id: 'CastrumEx Divide Et Impera P1',
+      id: 'EmeraldEx Divide Et Impera P1',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '555B', capture: false }),
-      condition: Conditions.caresAboutAOE(),
-      response: Responses.spread(),
+      alertText: (data) => {
+        if (data.role === 'tank') {
+          return output.sharedTankStack();
+        }
+      return output.spread();
+      },
     },
     {
-      id: 'CastrumEx Divide Et Impera P2',
+      id: 'EmeraldEx Divide Et Impera P2',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5537', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          cn: '八方位',
+          en: 'Protean',
+          de: 'Himmelsrichtungen',
+          fr: 'Position',
+          ja: '散開',
+          cn: '分散站位',
+          ko: '정해진 위치로 산개',
         },
       },
     },
     {
-      id: 'CastrumEx Primus Terminus Est',
+      id: 'EmeraldEx Primus Terminus Est',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55C3', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
+          en: 'Go sides, aim across',
           cn: '靠边',
         },
       },
     },
     {
-      id: 'CastrumEx Tertius Terminus est',
+      id: 'EmeraldEx Tertius Terminus est',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55CC', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -60,17 +70,13 @@ export default {
       },
     },
     {
-      id: 'CastrumEx Sidescathe Left',
+      id: 'EmeraldEx Sidescathe Left',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55D5', capture: false }),
       alertText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          cn: '左(看翅膀)',
-        },
-      },
+      response: Responses.goLeft(),
     },
     {
-      id: 'CastrumEx Full-Power Optimized Ultima',
+      id: 'EmeraldEx Full-Power Optimized Ultima',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5B17', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -80,17 +86,12 @@ export default {
       },
     },
     {
-      id: 'CastrumEx Sidescathe Right',
+      id: 'EmeraldEx Sidescathe Right',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55D4', capture: false }),
-      infoText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          cn: '右（看翅膀）',
-        },
-      },
+      response: Responses.goRight(),
     },
     {
-      id: 'CastrumEx Secundus Terminus est',
+      id: 'EmeraldEx Secundus Terminus est',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55C8', capture: false }),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
@@ -100,17 +101,18 @@ export default {
       },
     },
     {
-      id: 'CastrumEx Legio Phantasmatis',
+      id: 'EmeraldEx Legio Phantasmatis',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55B4', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
+          en: 'Numbered Divebombs',
           cn: '注意士兵顺序，结束返回中央',
         },
       },
     },
     {
-      id: 'CastrumEx Magitek Magnetism',
+      id: 'EmeraldEx Magitek Magnetism',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '555B', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
