@@ -65,6 +65,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ id: '598F', source: 'Nixchen', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '598F', source: 'nixe', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '598F', source: 'ノッケン', capture: false }),
+      condition: Conditions.targetIsNotYou(),
       alertText: (data, _, output) => output.avoidTether(),
       outputStrings: {
         avoidTether: {
