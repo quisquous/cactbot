@@ -37,7 +37,7 @@ export default {
         text: {
           cn: '八方位',
         },
-      }
+      },
     },
     {
       id: 'CastrumEx Primus Terminus Est',
@@ -47,8 +47,7 @@ export default {
         text: {
           cn: '靠边',
         },
-      }
-
+      },
     },
     {
       id: 'CastrumEx Tertius Terminus est',
@@ -58,7 +57,7 @@ export default {
         text: {
           cn: '注意落剑顺序',
         },
-      }
+      },
     },
     {
       id: 'CastrumEx Sidescathe',
@@ -68,7 +67,7 @@ export default {
         text: {
           cn: '左(看翅膀)',
         },
-      }
+      },
     },
     {
       id: 'Full-Power Optimized Ultima',
@@ -78,7 +77,7 @@ export default {
         text: {
           cn: '凉凉',
         },
-      }
+      },
     },
     {
       id: 'CastrumEx Sidescathe',
@@ -88,7 +87,7 @@ export default {
         text: {
           cn: '右（看翅膀）',
         },
-      }
+      },
     },
     {
       id: 'CastrumEx Secundus Terminus est',
@@ -98,7 +97,7 @@ export default {
         text: {
           cn: '靠边放剑(十字四角)',
         },
-      }
+      },
     },
     {
       id: 'CastrumEx Legio Phantasmatis',
@@ -108,7 +107,7 @@ export default {
         text: {
           cn: '注意士兵顺序，结束返回中央',
         },
-      }
+      },
     },
     {
       id: 'Magitek Magnetism',
