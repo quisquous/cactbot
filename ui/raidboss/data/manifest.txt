@@ -279,6 +279,8 @@
 05-shb/trial/ruby_weapon-ex.txt
 05-shb/trial/shiva-un.js
 05-shb/trial/shiva-un.txt
+05-shb/trial/titan-un.js
+05-shb/trial/titan-un.txt
 05-shb/trial/titania.js
 05-shb/trial/titania.txt
 05-shb/trial/titania-ex.js
