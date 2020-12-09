@@ -1,3 +1,6 @@
+import NetRegexes from '../../../../../resources/netregexes.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // TODO: FIX luminous aetheroplasm warning not working
 // TODO: FIX doll death not working
 // TODO: failing hand of pain/parting (check for high damage?)
@@ -14,7 +17,7 @@
 // TODO: failures of plaint of solidarity (shared sentence)
 // TODO: ordained capital punishment hitting non-tanks
 
-[{
+export default {
   zoneId: ZoneId.TheEpicOfAlexanderUltimate,
   damageWarn: {
     'TEA Sluice': '49B1',
@@ -163,4 +166,4 @@
       },
     },
   ],
-}];
+};

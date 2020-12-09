@@ -5,56 +5,54 @@ on:
     paths:
       - '**/*.py'
       - '.github/workflows/python-lint.yml'
+      - 'requirements.txt'
   pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
     paths:
       - '**/*.py'
       - '.github/workflows/python-lint.yml'
+      - 'requirements.txt'
 
 jobs:
   black:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v1
-      - name: Setup Python
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v1
+
+      - uses: actions/setup-python@v2
         with:
           python-version: '3.7'
 
       # Cache pip dependencies
       # See also: https://github.com/actions/cache/blob/main/examples.md#python---pip
       - name: Get pip cache dir
-        id: pip-cache
+        id: pip-dir
         run: |
           echo "::set-output name=dir::$(pip cache dir)"
 
-      - name: pip cache
-        uses: actions/cache@v2
+      - uses: actions/cache@v2
         with:
-          path: ${{ steps.pip-cache.outputs.dir }}
-          key: cactbot-pip-${{ hashFiles('**/requirements.txt') }}
+          path: ${{ steps.pip-dir.outputs.dir }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
-            cactbot-pip-
+            ${{ runner.os }}-pip-
 
       - name: Install Dependencies
         run: |
           pip install -r requirements.txt
+
       - name: black **/*.py --line-length 100 --check --diff
         run: |
           black **/*.py --line-length 100 --check --diff
+
   pylint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v1
-      - name: Setup Python
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v1
+
+      - uses: actions/setup-python@v2
         with:
           python-version: '3.7'
+
       - name: Add Custom Problem Matcher
         run: |
           echo "::add-matcher::.github/matchers/${{ github.job }}.json"
@@ -62,21 +60,21 @@ jobs:
       # Cache pip dependencies
       # See also: https://github.com/actions/cache/blob/main/examples.md#python---pip
       - name: Get pip cache dir
-        id: pip-cache
+        id: pip-dir
         run: |
           echo "::set-output name=dir::$(pip cache dir)"
 
-      - name: pip cache
-        uses: actions/cache@v2
+      - uses: actions/cache@v2
         with:
-          path: ${{ steps.pip-cache.outputs.dir }}
-          key: cactbot-pip-${{ hashFiles('**/requirements.txt') }}
+          path: ${{ steps.pip-dir.outputs.dir }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
-            cactbot-pip-
+            ${{ runner.os }}-pip-
 
       - name: Install Dependencies
         run: |
           pip install -r requirements.txt
+
       - name: pylint **/*.py --errors-only
         run: |
           pylint **/*.py --errors-only

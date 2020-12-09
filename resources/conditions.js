@@ -19,4 +19,3 @@ export default class Conditions {
     return (data) => data.role === 'tank' || data.role === 'healer' || data.CanFeint() || data.job === 'BLU';
   }
 }
-

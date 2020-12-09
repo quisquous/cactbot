@@ -1,5 +1,10 @@
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // O9S - Alphascape 1.0 Savage
-[{
+export default {
   zoneId: ZoneId.AlphascapeV10Savage,
   timelineFile: 'o9s.txt',
   triggers: [
@@ -198,7 +203,7 @@
       delaySeconds: function(data, matches) {
         // Folks get either the 24 second or the 10 second.
         // So, delay for the opposite minus 5.
-        let seconds = parseFloat(matches.duration);
+        const seconds = parseFloat(matches.duration);
         // Got 24 seconds (dps)
         if (seconds > 11)
           return 5;
@@ -720,4 +725,4 @@
       },
     },
   ],
-}];
+};

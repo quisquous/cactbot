@@ -21,7 +21,7 @@ export default class Anonymizer {
     // About 20% of any log is hashes, so just clear instead of faking.
     this.fakeHash = '';
 
-    for (let id of emptyIds) {
+    for (const id of emptyIds) {
       // Empty ids have already been anonymized (to themselves).
       this.anonMap[id] = id;
       // Empty ids have no name.
@@ -42,7 +42,7 @@ export default class Anonymizer {
     else
       notifier.warn('missing hash ' + splitLine.length, splitLine);
 
-    let type = this.logTypes[splitLine[0]];
+    const type = this.logTypes[splitLine[0]];
     if (!type || type.isUnknown) {
       notifier.warn('unknown type', splitLine);
       return;
@@ -66,7 +66,7 @@ export default class Anonymizer {
           return;
         }
         const value = splitLine[fieldIdx];
-        let subValues = type.subFields[subFieldName];
+        const subValues = type.subFields[subFieldName];
 
         // Unhandled values inherit the field's value.
         if (value in subValues) {
@@ -104,7 +104,7 @@ export default class Anonymizer {
       }
 
       // TODO: keep track of uppercase/lowercase??
-      let playerId = splitLine[idIdx].toUpperCase();
+      const playerId = splitLine[idIdx].toUpperCase();
 
       // Cutscenes get added combatant messages with ids such as 'FF000006' and no name.
       const isCutsceneId = playerId.substr(0, 2) === 'FF';
@@ -134,7 +134,7 @@ export default class Anonymizer {
       // Replace the id at this index with a fake player id.
       if (!this.anonMap[playerId])
         this.anonMap[playerId] = this.addNewPlayer();
-      let fakePlayerId = this.anonMap[playerId];
+      const fakePlayerId = this.anonMap[playerId];
       if (!fakePlayerId)
         notifier.warn('internal error: missing player id', splitLine);
       if (typeof this.playerMap[fakePlayerId] === 'undefined')
@@ -157,8 +157,8 @@ export default class Anonymizer {
 
   addNewPlayer() {
     this.lastPlayerIdx++;
-    let playerName = this.nameGenerator.makeName(this.lastPlayerIdx);
-    let playerId = this.lastPlayerIdx.toString(16).toUpperCase();
+    const playerName = this.nameGenerator.makeName(this.lastPlayerIdx);
+    const playerId = this.lastPlayerIdx.toString(16).toUpperCase();
     this.playerMap[playerId] = playerName;
     return playerId;
   }
@@ -168,9 +168,9 @@ export default class Anonymizer {
     let success = true;
 
     // valid player ids
-    let playerIds = Object.keys(this.anonMap);
+    const playerIds = Object.keys(this.anonMap);
     // made up anon ids
-    let anonIds = Object.keys(this.playerMap);
+    const anonIds = Object.keys(this.playerMap);
 
     for (const anonId of anonIds) {
       if (emptyIds.includes(anonId))
@@ -190,10 +190,10 @@ export default class Anonymizer {
 
     let success = true;
 
-    let playerIds = Object.keys(this.anonMap);
+    const playerIds = Object.keys(this.anonMap);
 
     for (let idx = 0; idx < splitLine.length; ++idx) {
-      let field = splitLine[idx];
+      const field = splitLine[idx];
       if (emptyIds.includes(field))
         continue;
       if (playerIds.includes(field)) {

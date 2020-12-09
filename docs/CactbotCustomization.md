@@ -1,6 +1,6 @@
 # Cactbot Customization
 
-🌎 [**English**] [[简体中文](./zh-CN/CactbotCustomization.md)] [[한국어](./ko-KR/CactbotCustomization.md)]
+🌎 [**English**] [[简体中文](./zh-CN/CactbotCustomization.md)] [[繁體中文](./zh-TW/CactbotCustomization.md)] [[한국어](./ko-KR/CactbotCustomization.md)]
 
 - [Using the cactbot UI](#using-the-cactbot-ui)
 - [Changing Trigger Text with the cactbot UI](#changing-trigger-text-with-the-cactbot-ui)

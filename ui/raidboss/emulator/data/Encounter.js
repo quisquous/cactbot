@@ -21,12 +21,12 @@ export default class Encounter {
     this.firstPlayerAbility = Number.MAX_SAFE_INTEGER;
     this.firstEnemyAbility = Number.MAX_SAFE_INTEGER;
 
-    let petNames = PetNamesByLang[this.language];
+    const petNames = PetNamesByLang[this.language];
 
     this.firstLineIndex = 0;
 
     for (let i = 0; i < this.logLines.length; ++i) {
-      let line = this.logLines[i];
+      const line = this.logLines[i];
       let res = LogEventHandler.isMatchStart(line.networkLine);
       if (res) {
         this.firstLineIndex = i;

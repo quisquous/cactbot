@@ -3,14 +3,12 @@ name: CSS Lint
 on:
   push:
     paths:
+      - '*.json'
       - '**/*.css'
       - '.github/workflows/css-lint.yml'
   pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
     paths:
+      - '*.json'
       - '**/*.css'
       - '.github/workflows/css-lint.yml'
 
@@ -18,18 +16,27 @@ jobs:
   stylelint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v1
-      - name: Setup Node
-        uses: actions/setup-node@v2-beta
+      - uses: actions/checkout@v1
+
+      - uses: actions/setup-node@v2-beta
         with:
           node-version: '12'
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Add Custom Problem Matcher
         run: |
           echo "::add-matcher::.github/matchers/${{ github.job }}.json"  
+
       - name: Install Dependencies
         run: |
-          npm install
+          npm ci
+
       - name: npm run stylelint
         run: |
           npm run stylelint

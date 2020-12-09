@@ -17,10 +17,10 @@ export default class EventBus {
    * @return {any} The callbacks registered to the event(s)
    */
   on(event, callback = undefined, scope = undefined) {
-    let events = event.split(' ');
-    let ret = {};
+    const events = event.split(' ');
+    const ret = {};
     scope = scope !== undefined ? scope : window;
-    for (let event of events) {
+    for (const event of events) {
       this.listeners[event] = this.listeners[event] || [];
       if (callback !== undefined)
         this.listeners[event].push({ scope: scope, callback: callback });
@@ -42,8 +42,8 @@ export default class EventBus {
       return;
 
     for (let i = 0; i < this.listeners[event].length; ++i) {
-      let l = this.listeners[event][i];
-      let res = l.callback.apply(l.scope, eventArguments);
+      const l = this.listeners[event][i];
+      const res = l.callback.apply(l.scope, eventArguments);
       if (Promise.resolve(res) === res)
         await res;
     }

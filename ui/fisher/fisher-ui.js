@@ -34,8 +34,8 @@ export default class FisherUI {
   }
 
   draw() {
-    let timeMs = (new Date() - this.castStart);
-    let time = (timeMs / 1000).toFixed(1);
+    const timeMs = (new Date() - this.castStart);
+    const time = (timeMs / 1000).toFixed(1);
 
     this.timeEl.innerHTML = time;
     this.arrowEl.style.top = (timeMs / 600) + '%';
@@ -48,7 +48,7 @@ export default class FisherUI {
   }
 
   setPlace(place) {
-    let oldPlace = this.placeEl.innerHTML;
+    const oldPlace = this.placeEl.innerHTML;
 
     if (!place) {
       if (oldPlace && oldPlace[0] !== '(')
@@ -61,15 +61,15 @@ export default class FisherUI {
   }
 
   startTimers() {
-    let barData = {};
+    const barData = {};
 
-    let rows = this.element.querySelectorAll('.table-row');
+    const rows = this.element.querySelectorAll('.table-row');
 
     for (let i = 0; i < rows.length; i++) {
-      let row = rows[i];
-      let min = row.getAttribute('data-min');
-      let max = row.getAttribute('data-max');
-      let bar = document.createElement('fisher-bar');
+      const row = rows[i];
+      const min = row.getAttribute('data-min');
+      const max = row.getAttribute('data-max');
+      const bar = document.createElement('fisher-bar');
       let timeouts = [];
 
       bar.centertext = row.getAttribute('data-fish');
@@ -132,8 +132,8 @@ export default class FisherUI {
 
   redrawFish(hookTimes, tugTypes) {
     // Sort hook times by minimum time, with undefineds being at the end
-    let sortedKeys = Object.keys(hookTimes).sort((a, b) => {
-      let t = hookTimes;
+    const sortedKeys = Object.keys(hookTimes).sort((a, b) => {
+      const t = hookTimes;
 
       if ((!t[a] || !t[a].min) && (!t[b] || !t[b].min))
         return 0;
@@ -152,12 +152,12 @@ export default class FisherUI {
 
     for (let i = 0; i < sortedKeys.length; i++) {
       // First, draw on the well
-      let fish = sortedKeys[i];
+      const fish = sortedKeys[i];
 
       if (tugTypes[fish] && hookTimes[fish].min && hookTimes[fish].max) {
-        let tug = tugTypes[fish];
+        const tug = tugTypes[fish];
         // Create the element with fish-specific styles
-        let el = document.createElement('div');
+        const el = document.createElement('div');
         el.classList.add('well-entry');
         el.setAttribute('data-fish', fish);
         el.style.top = (hookTimes[fish].min / 600).toString() + '%';
@@ -165,12 +165,12 @@ export default class FisherUI {
         el.style.backgroundColor = this.options.Colors[this.tugNames[tug]];
 
         // Put the element in the well
-        let well = this.element.querySelector('#fisher-well-' + this.tugNames[tug]);
+        const well = this.element.querySelector('#fisher-well-' + this.tugNames[tug]);
         well.appendChild(el);
       }
 
       // Next, make the row for the table
-      let row = document.createElement('div');
+      const row = document.createElement('div');
       row.classList.add('table-row');
       row.setAttribute('data-fish', fish);
       row.setAttribute('data-tug', tugTypes[fish]);
@@ -178,7 +178,7 @@ export default class FisherUI {
       row.setAttribute('data-max', hookTimes[fish].max);
 
       // Add the row to the table
-      let table = this.element.querySelector('#fisher-table');
+      const table = this.element.querySelector('#fisher-table');
       table.appendChild(row);
     }
   }

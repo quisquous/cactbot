@@ -49,7 +49,7 @@ export default class TimerBar extends HTMLElement {
   }
   get value() {
     if (!this._start) return this._duration.toString();
-    let elapsedMs = new Date() - this._start;
+    const elapsedMs = new Date() - this._start;
     return Math.max(0, this._duration - (elapsedMs / 1000)).toString();
   }
 
@@ -132,14 +132,14 @@ export default class TimerBar extends HTMLElement {
   // This would be used with window.customElements.
   constructor() {
     super();
-    let root = this.attachShadow({ mode: 'open' });
+    const root = this.attachShadow({ mode: 'open' });
     this.init(root);
   }
 
   // These would be used by document.registerElement, which is deprecated but
   // ACT uses an old CEF which has this instead of the newer APIs.
   createdCallback() {
-    let root = this.createShadowRoot();
+    const root = this.createShadowRoot();
     this.init(root);
   }
   // Convert from the deprecated API names to the modern API names.
@@ -331,17 +331,17 @@ export default class TimerBar extends HTMLElement {
       this._towardRight = newValue === 'right';
       this.layout();
     } else if (name === 'lefttext') {
-      let update = newValue !== this._leftText && this._connected;
+      const update = newValue !== this._leftText && this._connected;
       this._leftText = newValue;
       if (update)
         this.updateText();
     } else if (name === 'centertext') {
-      let update = newValue !== this._centerText && this._connected;
+      const update = newValue !== this._centerText && this._connected;
       this._centerText = newValue;
       if (update)
         this.updateText();
     } else if (name === 'righttext') {
-      let update = newValue !== this._rightText && this._connected;
+      const update = newValue !== this._rightText && this._connected;
       this._rightText = newValue;
       if (update)
         this.updateText();
@@ -379,7 +379,7 @@ export default class TimerBar extends HTMLElement {
   }
 
   updateText() {
-    let varyingTexts = ['elapsed', 'duration', 'percent', 'remain'];
+    const varyingTexts = ['elapsed', 'duration', 'percent', 'remain'];
     // These values are filled in during draw() when the values change.
     if (!varyingTexts.includes(this._leftText)) {
       // Otherwise the value is fixed so it can be set here.
@@ -393,13 +393,13 @@ export default class TimerBar extends HTMLElement {
   }
 
   draw() {
-    let elapsedSec = (new Date() - this._start) / 1000;
-    let remainSec = Math.max(0, this._duration - elapsedSec);
+    const elapsedSec = (new Date() - this._start) / 1000;
+    const remainSec = Math.max(0, this._duration - elapsedSec);
     let percent = this._duration <= 0 ? 0 : remainSec / this._duration;
     // Keep it between 0 and 1.
     percent = Math.min(1, Math.max(0, percent));
-    let displayRemain = remainSec ? remainSec.toFixed(1) : '';
-    let displayElapsed = elapsedSec.toFixed(1);
+    const displayRemain = remainSec ? remainSec.toFixed(1) : '';
+    const displayElapsed = elapsedSec.toFixed(1);
     if (this._styleFill)
       percent = 1.0 - percent;
     this.foregroundElement.style.width = percent * 100 + '%';
@@ -447,7 +447,7 @@ export default class TimerBar extends HTMLElement {
   }
 
   setvalue(remainSec) {
-    let elapsedSec = Math.max(0, this._duration - remainSec);
+    const elapsedSec = Math.max(0, this._duration - remainSec);
     this._start = new Date() - (elapsedSec * 1000);
 
     if (!this._connected) return;
@@ -460,7 +460,7 @@ export default class TimerBar extends HTMLElement {
   }
 
   advance() {
-    let elapsedSec = (new Date() - this._start) / 1000;
+    const elapsedSec = (new Date() - this._start) / 1000;
     if (elapsedSec >= this._duration) {
       // Timer completed
       if (this._loop && this._duration > 0) {

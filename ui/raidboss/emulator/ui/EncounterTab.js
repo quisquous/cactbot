@@ -19,12 +19,12 @@ export default class EncounterTab extends EventBus {
   refresh() {
     this.encounters = {};
     this.persistor.listEncounters().then((encounters) => {
-      for (let i in encounters) {
-        let enc = encounters[i];
-        let zone = enc.zoneName;
-        let encDate = EmulatorCommon.timeToDateString(enc.start);
-        let encTime = EmulatorCommon.timeToTimeString(enc.start);
-        let encDuration = EmulatorCommon.msToDuration(enc.duration);
+      for (const i in encounters) {
+        const enc = encounters[i];
+        const zone = enc.zoneName;
+        const encDate = EmulatorCommon.timeToDateString(enc.start);
+        const encTime = EmulatorCommon.timeToTimeString(enc.start);
+        const encDuration = EmulatorCommon.msToDuration(enc.duration);
         this.encounters[zone] = this.encounters[zone] || {};
         this.encounters[zone][encDate] = this.encounters[zone][encDate] || [];
         this.encounters[zone][encDate].push({
@@ -51,17 +51,17 @@ export default class EncounterTab extends EventBus {
 
     let clear = true;
 
-    let zones = new Set(Object.keys(this.encounters));
+    const zones = new Set(Object.keys(this.encounters));
 
-    for (let zone of [...zones].sort()) {
-      let $row = this.$encounterTabRowTemplate.cloneNode(true);
+    for (const zone of [...zones].sort()) {
+      const $row = this.$encounterTabRowTemplate.cloneNode(true);
       $row.innerText = zone;
       if (zone === this.currentZone) {
         clear = false;
         $row.classList.add('selected');
       }
       $row.addEventListener('click', (ev) => {
-        let t = ev.currentTarget;
+        const t = ev.currentTarget;
         t.parentElement.querySelectorAll('.selectorRow.selected').forEach((n) => {
           n.classList.remove('selected');
         });
@@ -82,16 +82,16 @@ export default class EncounterTab extends EventBus {
     let clear = true;
 
     if (this.currentZone !== undefined) {
-      let dates = new Set(Object.keys(this.encounters[this.currentZone]));
-      for (let date of [...dates].sort()) {
-        let $row = this.$encounterTabRowTemplate.cloneNode(true);
+      const dates = new Set(Object.keys(this.encounters[this.currentZone]));
+      for (const date of [...dates].sort()) {
+        const $row = this.$encounterTabRowTemplate.cloneNode(true);
         $row.innerText = date;
         if (date === this.currentDate) {
           clear = false;
           $row.classList.add('selected');
         }
         $row.addEventListener('click', (ev) => {
-          let t = ev.currentTarget;
+          const t = ev.currentTarget;
           t.parentElement.querySelectorAll('.selectorRow.selected').forEach((n) => {
             n.classList.remove('selected');
           });
@@ -113,12 +113,12 @@ export default class EncounterTab extends EventBus {
     let clear = true;
 
     if (this.currentZone !== undefined && this.currentDate !== undefined) {
-      let sortedEncounters = this.encounters[this.currentZone][this.currentDate].sort((l, r) => {
+      const sortedEncounters = this.encounters[this.currentZone][this.currentDate].sort((l, r) => {
         return l.start.localeCompare(r.start);
       });
-      for (let i in sortedEncounters) {
-        let enc = this.encounters[this.currentZone][this.currentDate][i];
-        let $row = this.$encounterTabEncounterRowTemplate.cloneNode(true);
+      for (const i in sortedEncounters) {
+        const enc = this.encounters[this.currentZone][this.currentDate][i];
+        const $row = this.$encounterTabEncounterRowTemplate.cloneNode(true);
         $row.setAttribute('data-index', i);
         if (i === this.currentEncounter) {
           clear = false;
@@ -128,7 +128,7 @@ export default class EncounterTab extends EventBus {
         $row.querySelector('.encounterName').innerText = enc.name;
         $row.querySelector('.encounterDuration').innerText = '(' + enc.duration + ')';
         $row.addEventListener('click', (ev) => {
-          let t = ev.currentTarget;
+          const t = ev.currentTarget;
           t.parentElement.querySelectorAll('.selectorRow.selected').forEach((n) => {
             n.classList.remove('selected');
           });
@@ -152,14 +152,14 @@ export default class EncounterTab extends EventBus {
       /**
        * @type PersistorEncounter
        */
-      let enc =
+      const enc =
         this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter;
 
       let pullAt = 'N/A';
       if (!isNaN(enc.offset))
         pullAt = EmulatorCommon.timeToString(enc.offset, false);
 
-      let $info = this.$encounterInfoTemplate.cloneNode(true);
+      const $info = this.$encounterInfoTemplate.cloneNode(true);
       $info.querySelector('.encounterLoad').addEventListener('click', () => {
         this.dispatch('load', this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter.id);
       });

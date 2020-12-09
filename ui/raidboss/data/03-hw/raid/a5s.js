@@ -1,3 +1,8 @@
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // TODO: do the gobcut and gobstraight really alternate?
 // if so, then maybe we could call out which was coming.
 // I thought some of them were fixed and don't have enough data.
@@ -10,7 +15,7 @@
 // TODO: is it worth calling out a safe spot for the second boost?
 // There's some notes below, but good words for directions are hard.
 
-let bombLocation = (matches) => {
+const bombLocation = (matches) => {
   // x = -15, -5, +5, +15 (east to west)
   // y = -205, -195, -185, -175 (north to south)
   return {
@@ -19,7 +24,7 @@ let bombLocation = (matches) => {
   };
 };
 
-[{
+export default {
   zoneId: ZoneId.AlexanderTheFistOfTheSonSavage,
   timelineFile: 'a5s.txt',
   timelineTriggers: [
@@ -57,6 +62,8 @@ let bombLocation = (matches) => {
           de: 'Vogel bald (Lila)',
           fr: 'Oiseau bientôt (Violet)',
           ja: 'まもなく鳥に変化 (紫の薬)',
+          cn: '准备变鸟（紫药）',
+          ko: '새 변신 준비 (보라)',
         },
       },
     },
@@ -72,6 +79,8 @@ let bombLocation = (matches) => {
           de: 'Gorilla bald (Rot)',
           fr: 'Gorille bientôt (Rouge)',
           ja: 'まもなくゴリラに変化 (赤の薬)',
+          cn: '准备变猩猩（红药）',
+          ko: '고릴라 변신 준비 (빨강)',
         },
       },
     },
@@ -87,6 +96,8 @@ let bombLocation = (matches) => {
           de: 'Debuff in der Fläche bald erneuern',
           fr: 'Rafraîchissez le debuff dans la zone au sol bientôt',
           ja: 'デバフを癒す',
+          cn: '踩圈刷新debuff',
+          ko: '디버프 해제하기',
         },
       },
     },
@@ -142,6 +153,7 @@ let bombLocation = (matches) => {
           de: 'Bombe in die Spike-Bombe stoßen',
           fr: 'Poussez les bombes dans la bombe à pointe',
           ja: 'トゲ爆弾を飛ばす',
+          cn: '把炸弹拍到地雷处',
           ko: '지뢰쪽으로 폭탄 밀기',
         },
         knockBombsOppositeSpikey: {
@@ -149,6 +161,7 @@ let bombLocation = (matches) => {
           de: 'Bombe gegnüber der Spike-Bombe stoßen',
           fr: 'Poussez les bombes à l\'opposé de la bombe à pointe',
           ja: 'トゲ爆弾を対角に飛ばす',
+          cn: '把炸弹拍到地雷处',
           ko: '지뢰 반대쪽으로 폭탄 밀기',
         },
       },
@@ -184,7 +197,7 @@ let bombLocation = (matches) => {
           if (data.boostBombs.length !== 1)
             return;
           // index 0 = NW, 3 = NE, 12 = SW, 15 = SE
-          let index = data.boostBombs[0].x + data.boostBombs[0].y * 4;
+          const index = data.boostBombs[0].x + data.boostBombs[0].y * 4;
           return {
             0: output.northwestFirst(),
             3: output.northeastFirst(),
@@ -204,6 +217,7 @@ let bombLocation = (matches) => {
           de: 'NW zuerst',
           fr: 'NO en premier',
           ja: 'まずは北西',
+          cn: '先左上',
           ko: '북서쪽 먼저',
         },
         northeastFirst: {
@@ -211,6 +225,7 @@ let bombLocation = (matches) => {
           de: 'NO zuerst',
           fr: 'NE en premier',
           ja: 'まずは北東',
+          cn: '先右上',
           ko: '북동쪽 먼저',
         },
         southwestFirst: {
@@ -218,6 +233,7 @@ let bombLocation = (matches) => {
           de: 'SW zuerst',
           fr: 'SO en premier',
           ja: 'まずは南西',
+          cn: '先左下',
           ko: '남서쪽 먼저',
         },
         southeastFirst: {
@@ -225,6 +241,7 @@ let bombLocation = (matches) => {
           de: 'SO zuerst',
           fr: 'SE en premier',
           ja: 'まずは南東',
+          cn: '先右下',
           ko: '남동쪽 먼저',
         },
       },
@@ -240,6 +257,7 @@ let bombLocation = (matches) => {
           de: 'Weg gehen',
           fr: 'Éloignez-vous',
           ja: '外へ',
+          cn: '快出去',
           ko: '멀리 떨어지기',
         },
       },
@@ -259,6 +277,7 @@ let bombLocation = (matches) => {
           de: 'Schild ${player}',
           fr: 'Bouclier sur ${player}',
           ja: '${player}にバリア',
+          cn: '给${player}单盾',
           ko: '"${player}" 에게 보호막',
         },
       },
@@ -274,6 +293,7 @@ let bombLocation = (matches) => {
           de: 'GLOOPYGLOOP~',
           fr: 'Gobacide gluant',
           ja: '強酸性劇物薬',
+          cn: '强酸剧毒药',
           ko: '강산성 극약',
         },
       },
@@ -316,6 +336,7 @@ let bombLocation = (matches) => {
           de: 'Reinigen (Grün)',
           fr: 'Purifiez-vous (Vert)',
           ja: 'エスナ (緑の薬)',
+          cn: '解毒（绿药）',
           ko: '디버프 해제 (초록)',
         },
       },
@@ -340,6 +361,7 @@ let bombLocation = (matches) => {
           de: 'Verbindungen brechen (Blau)',
           fr: 'Cassez le lien (Bleu)',
           ja: '線を断つ (青の薬)',
+          cn: '消除连线（蓝药）',
           ko: '선 끊기 (파랑)',
         },
       },
@@ -593,4 +615,4 @@ let bombLocation = (matches) => {
       },
     },
   ],
-}];
+};

@@ -1,5 +1,9 @@
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // O11S - Alphascape 3.0 Savage
-[{
+export default {
   zoneId: ZoneId.AlphascapeV30Savage,
   timelineFile: 'o11s.txt',
   triggers: [
@@ -438,4 +442,4 @@
       },
     },
   ],
-}];
+};

@@ -5,6 +5,7 @@ const path = require('path');
 module.exports = {
   entry: {
     config: './ui/config/config.js',
+    coverage: './util/coverage/coverage.js',
     rdmty: './ui/dps/rdmty/dps.js',
     xephero: './ui/dps/xephero/xephero.js',
     eureka: './ui/eureka/eureka.js',
@@ -19,7 +20,7 @@ module.exports = {
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../dist'),
   },
   devServer: { writeToDisk: true },
   module: {
@@ -35,11 +36,6 @@ module.exports = {
             loader: './webpack/loaders/manifest-loader.cjs',
           },
         ],
-      },
-      {
-        // TODO: convert trigger files to be modules so we can import directly.
-        test: /(?:raidboss|oopsyraidsy)[\\\/]data[\\\/].*\.js$/,
-        use: ['raw-loader'],
       },
       {
         test: /data[\\\/](?!manifest\.txt).*\.txt$/,

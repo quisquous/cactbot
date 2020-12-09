@@ -1,4 +1,9 @@
-[{
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.AlexanderTheSoulOfTheCreatorSavage,
   timelineFile: 'a12s.txt',
   timelineTriggers: [
@@ -75,7 +80,7 @@
         if (data.scourge && data.scourge.length > 2)
           return false;
 
-        let names = data.scourge.map((x) => data.ShortName(x)).sort();
+        const names = data.scourge.map((x) => data.ShortName(x)).sort();
         if (names.length === 0)
           return;
         return output.text({ players: names.join(', ') });
@@ -144,7 +149,7 @@
         return matches.source === data.me || matches.target === data.me;
       },
       infoText: function(data, matches, output) {
-        let partner = matches.source === data.me ? matches.target : matches.source;
+        const partner = matches.source === data.me ? matches.target : matches.source;
         return output.text({ player: data.ShortName(partner) });
       },
       outputStrings: {
@@ -165,7 +170,7 @@
         return matches.source === data.me || matches.target === data.me;
       },
       alertText: function(data, matches, output) {
-        let partner = matches.source === data.me ? matches.target : matches.source;
+        const partner = matches.source === data.me ? matches.target : matches.source;
         return output.text({ player: data.ShortName(partner) });
       },
       outputStrings: {
@@ -504,4 +509,4 @@
       },
     },
   ],
-}];
+};

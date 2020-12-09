@@ -1,5 +1,7 @@
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // Fractal Continuum
-[{
+export default {
   zoneId: ZoneId.TheFractalContinuum,
   damageWarn: {
     'Fractal Double Sever': 'F7D', // Conals, boss 1
@@ -14,4 +16,4 @@
   shareWarn: {
     'Fractal Sanctification': 'F89', // Instant conal buster, boss 3
   },
-}];
+};

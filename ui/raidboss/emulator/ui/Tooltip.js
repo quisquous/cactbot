@@ -39,14 +39,14 @@ export default class Tooltip {
   }
 
   show() {
-    let targetRect = this.target.getBoundingClientRect();
-    let targetMiddle = {
+    const targetRect = this.target.getBoundingClientRect();
+    const targetMiddle = {
       x: targetRect.x + (targetRect.width / 2),
       y: targetRect.y + (targetRect.height / 2),
     };
-    let tooltipRect = this.tooltip.getBoundingClientRect();
+    const tooltipRect = this.tooltip.getBoundingClientRect();
     // Middle of tooltip - half of arrow height
-    let lrArrowHeight = (tooltipRect.height / 2) -
+    const lrArrowHeight = (tooltipRect.height / 2) -
       (this.tooltip.querySelector('.arrow').getBoundingClientRect().height / 2);
     switch (this.direction) {
     case 'top':

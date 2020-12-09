@@ -33,6 +33,25 @@ body {
     sans-serif;
 }
 
+@font-face {
+  font-family: "黑体";
+  src: url(https://act.diemoe.net/overlays/common/SmartisanHei.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+.lang-cn .text {
+  font-family:
+    "黑体",
+    "SimHei",
+    "微软雅黑",
+    "Microsoft Yahei UI",
+    "Lato",
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
 .hide {
   display: none !important;
 }

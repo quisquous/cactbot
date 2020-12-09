@@ -1,4 +1,6 @@
-[{
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.MalikahsWell,
   damageWarn: {
     'Malikah Falling Rock': '3CEA',
@@ -12,4 +14,4 @@
     'Malikah Heretic\'s Fork 2': '3E0E',
     'Malikah Earthshake': '3E39',
   },
-}];
+};

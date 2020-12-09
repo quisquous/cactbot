@@ -1632,4 +1632,52 @@ export default {
       'Climactic',
     ],
   },
+  127: {
+    'rates': [
+      50,
+      65,
+      80,
+      95,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Clouds',
+      'Fog',
+      'Thunder',
+      'Thunderstorms',
+    ],
+  },
+  128: {
+    'rates': [
+      40,
+      58,
+      75,
+      93,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Clouds',
+      'Fog',
+      'Rain',
+      'Showers',
+    ],
+  },
+  129: {
+    'rates': [
+      44,
+      59,
+      73,
+      93,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Clouds',
+      'Fog',
+      'Thunder',
+      'Thunderstorms',
+    ],
+  },
 };

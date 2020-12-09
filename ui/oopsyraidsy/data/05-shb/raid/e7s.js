@@ -1,3 +1,6 @@
+import NetRegexes from '../../../../../resources/netregexes.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // TODO: missing an orb during tornado phase
 // TODO: jumping in the tornado damage??
 // TODO: taking sungrace(4C80) or moongrace(4C82) with wrong debuff
@@ -5,7 +8,7 @@
 // TODO: taking explosion from the wrong Chiaro/Scuro orb
 // TODO: handle 4C89 Silver Stake tankbuster 2nd hit, as it's ok to have two in.
 
-let wrongBuff = (str) => {
+const wrongBuff = (str) => {
   return {
     en: str + ' (wrong buff)',
     de: str + ' (falscher Buff)',
@@ -16,7 +19,7 @@ let wrongBuff = (str) => {
   };
 };
 
-let noBuff = (str) => {
+const noBuff = (str) => {
   return {
     en: str + ' (no buff)',
     de: str + ' (kein Buff)',
@@ -27,7 +30,7 @@ let noBuff = (str) => {
   };
 };
 
-[{
+export default {
   zoneId: ZoneId.EdensVerseIconoclasmSavage,
   damageWarn: {
     'E7S Silver Sword': '4C8E', // ground aoe
@@ -172,4 +175,4 @@ let noBuff = (str) => {
       },
     },
   ],
-}];
+};

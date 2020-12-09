@@ -1,4 +1,9 @@
-[{
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.AlexanderTheArmOfTheFatherSavage,
   timelineFile: 'a3s.txt',
   timelineTriggers: [
@@ -197,9 +202,9 @@
       alertText: function(data, matches, output) {
         data.ferroTether = data.ferroTether || {};
         data.ferroMarker = data.ferroMarker || [];
-        let partner = data.ferroTether[data.me];
-        let marker1 = data.ferroMarker[data.me];
-        let marker2 = data.ferroMarker[partner];
+        const partner = data.ferroTether[data.me];
+        const marker1 = data.ferroMarker[data.me];
+        const marker2 = data.ferroMarker[partner];
 
         if (!partner || !marker1 || !marker2)
           return matches.ability + ' (???)';
@@ -485,4 +490,4 @@
       },
     },
   ],
-}];
+};

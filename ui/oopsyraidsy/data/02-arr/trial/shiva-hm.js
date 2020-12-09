@@ -1,6 +1,9 @@
+import NetRegexes from '../../../../../resources/netregexes.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // Shiva Hard
-[{
-  zoneId: ZoneId.AkhAfahAmphitheatreHard,
+export default {
+  zoneId: ZoneId.TheAkhAfahAmphitheatreHard,
   damageWarn: {
     // Large white circles.
     'ShivaHm Icicle Impact': '993',
@@ -40,4 +43,4 @@
       },
     },
   ],
-}];
+};

@@ -1,7 +1,7 @@
 import { LocaleRegex } from '../../../resources/translations.js';
 
-let kTestPhaseStart = 'cactbot phase start';
-let kTestPhaseEnd = 'cactbot phase end';
+const kTestPhaseStart = 'cactbot phase start';
+const kTestPhaseEnd = 'cactbot phase end';
 
 export default class DpsPhaseTracker {
   constructor(options) {
@@ -69,11 +69,11 @@ export default class DpsPhaseTracker {
 
     // Update each open phase with new diffs.
     for (let i = 0; i < this.phases.length; ++i) {
-      let phase = this.phases[i];
+      const phase = this.phases[i];
       if (phase.complete)
         continue;
 
-      let diff = this.diffUpdateInfo(phase.start, dps);
+      const diff = this.diffUpdateInfo(phase.start, dps);
       if (!diff)
         continue;
 
@@ -134,7 +134,7 @@ export default class DpsPhaseTracker {
     this.defaultPhase = null;
     this.defaultPhaseIdx = 0;
     for (let i = 0; i < this.phases.length; ++i) {
-      let element = this.phases[i].element;
+      const element = this.phases[i].element;
       if (element)
         element.remove();
     }
@@ -164,17 +164,17 @@ export default class DpsPhaseTracker {
         return;
     }
 
-    let diffProps = function(start, end, props, out) {
+    const diffProps = function(start, end, props, out) {
       for (let i = 0; i < props.length; ++i) {
-        let prop = props[i];
+        const prop = props[i];
         out[prop] = end[prop] - start[prop];
       }
     };
-    let copyProps = function(start, props, out) {
+    const copyProps = function(start, props, out) {
       for (let i = 0; i < props.length; ++i)
         out[props[i]] = start[props[i]];
     };
-    let setDPS = function(duration, encDuration, out) {
+    const setDPS = function(duration, encDuration, out) {
       out.dps = (out.damage / duration).toFixed(2);
       out.encdps = (out.damage / encDuration).toFixed(2);
 
@@ -182,7 +182,7 @@ export default class DpsPhaseTracker {
       out.ENCDPS = Math.floor(out.encdps);
     };
 
-    let encounterDiffProps = [
+    const encounterDiffProps = [
       'DURATION',
       'damage',
       'hits',
@@ -196,11 +196,11 @@ export default class DpsPhaseTracker {
       'healstaken',
       'deaths',
     ];
-    let combatantCopyProps = [
+    const combatantCopyProps = [
       'name',
       'Job',
     ];
-    let combatantDiffProps = [
+    const combatantDiffProps = [
       'DURATION',
       'damage',
       'hits',
@@ -217,7 +217,7 @@ export default class DpsPhaseTracker {
       'deaths',
     ];
 
-    let encounter = {};
+    const encounter = {};
     if (phaseStart) {
       diffProps(phaseStart.Encounter, phaseEnd.Encounter, encounterDiffProps, encounter);
       setDPS(encounter.DURATION, encounter.DURATION, encounter);
@@ -228,14 +228,14 @@ export default class DpsPhaseTracker {
 
     // Deliberately use end, as combatants aren't initally listed before
     // they've done any damage right when the fight starts.
-    let combatant = {};
-    for (let name in phaseEnd.Combatant) {
-      let start = phaseStart ? phaseStart.Combatant[name] : null;
-      let end = phaseEnd.Combatant[name];
+    const combatant = {};
+    for (const name in phaseEnd.Combatant) {
+      const start = phaseStart ? phaseStart.Combatant[name] : null;
+      const end = phaseEnd.Combatant[name];
       if (!end)
         continue;
 
-      let c = {};
+      const c = {};
       copyProps(end, combatantCopyProps, c);
       if (start) {
         diffProps(start, end, combatantDiffProps, c);

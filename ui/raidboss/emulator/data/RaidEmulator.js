@@ -22,7 +22,7 @@ export default class RaidEmulator extends EventBus {
     });
   }
   setCurrentByID(id) {
-    let index = this.encounters.findIndex((v) => v.id === id);
+    const index = this.encounters.findIndex((v) => v.id === id);
     if (index === -1)
       return false;
 
@@ -39,7 +39,7 @@ export default class RaidEmulator extends EventBus {
     if (this.currentEncounter === null)
       return false;
 
-    let firstIndex = this.currentEncounter.encounter.firstLineIndex;
+    const firstIndex = this.currentEncounter.encounter.firstLineIndex;
 
     this.currentTimestamp = this.currentTimestamp ||
       this.currentEncounter.encounter.logLines[firstIndex].timestamp;
@@ -64,7 +64,7 @@ export default class RaidEmulator extends EventBus {
     for (let i = this.currentLogLineIndex + 1;
       i < this.currentEncounter.encounter.logLines.length;
       ++i) {
-      let line = this.currentEncounter.encounter.logLines[i];
+      const line = this.currentEncounter.encounter.logLines[i];
       if (line.offset <= time) {
         logs.push(line);
         // Bunch emitted lines for performance reasons
@@ -96,8 +96,8 @@ export default class RaidEmulator extends EventBus {
       this.pause();
       return;
     }
-    let logs = [];
-    let lastTimestamp = this.currentTimestamp + RaidEmulator.playbackSpeed;
+    const logs = [];
+    const lastTimestamp = this.currentTimestamp + RaidEmulator.playbackSpeed;
     for (let i = this.currentLogLineIndex + 1;
       i < this.currentEncounter.encounter.logLines.length;
       ++i) {

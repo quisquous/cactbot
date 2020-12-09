@@ -144,7 +144,7 @@ export class EncounterFinder {
       }
     }
 
-    for (let regex of this.sealRegexes) {
+    for (const regex of this.sealRegexes) {
       m = line.match(regex);
       if (m) {
         this.haveSeenSeals = true;
@@ -157,7 +157,7 @@ export class EncounterFinder {
       }
     }
 
-    for (let regex of this.unsealRegexes) {
+    for (const regex of this.unsealRegexes) {
       m = line.match(regex);
       if (m) {
         this.onUnseal(line, this.currentSeal, m.groups);

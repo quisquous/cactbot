@@ -256,6 +256,11 @@ timeline, or come from log messages that occur in the game, similar to ACT's "Cu
 The module is designed to look and feel similar to the
 [BigWigs Bossmods](https://mods.curse.com/addons/wow/big-wigs) addon for World of Warcraft.
 
+[This page](https://quisquous.github.io/cactbot/util/coverage/coverage.html) lists
+the currently supported set of content in cactbot.
+Support is continually added over time (patches welcome!)
+but a lot of old content may not be supported yet.
+
 Fight timelines are provided in files designed for the [ACT Timeline](https://github.com/grindingcoil/act_timeline)
 plugin, [documented here](http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)
 with [some extensions](docs/TimelineGuide.md).
@@ -315,7 +320,7 @@ Mistake triggers are specified for individual fights in the [ui/oopsyraidsy/data
 To use this module,
 point cactbot at **ui/jobs/jobs.html** or use the `Cactbot Jobs` preset.
 
-This module provides health, mana, and tp bars, as well as icons and timer bars for big raid buffs such as
+This module provides health and mana bars, as well as icons and timer bars for big raid buffs such as
 The Balance and Trick Attack. It also features a food buff warning to keep up your food buff when leveling
 or raiding, and a visual pull countdown.
 

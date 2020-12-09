@@ -28,8 +28,8 @@ export default class ParseLine {
   static parse(repo, line) {
     let ret;
 
-    let parts = line.split('|');
-    let event = parts[0];
+    const parts = line.split('|');
+    const event = parts[0];
 
     // Don't parse raw network packet lines
     if (event === '252')

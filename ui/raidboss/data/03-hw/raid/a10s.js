@@ -1,3 +1,8 @@
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // Notes:
 // Ignoring Gobsway Rumblerocks (1AA0) aoe trigger, as it is small and frequent.
 
@@ -36,7 +41,7 @@ const chargeOutputStrings = {
   },
 };
 
-[{
+export default {
   zoneId: ZoneId.AlexanderTheBreathOfTheCreatorSavage,
   timelineFile: 'a10s.txt',
   timelineTriggers: [
@@ -151,7 +156,7 @@ const chargeOutputStrings = {
 
         // Call the first one out with alert, the other two with info.
         data.charges = data.charges || [];
-        let severity = data.charges.length > 1 ? 'infoText' : 'alertText';
+        const severity = data.charges.length > 1 ? 'infoText' : 'alertText';
         return { [severity]: output[data.charges[data.charges.length - 1]]() };
       },
     },
@@ -617,4 +622,4 @@ const chargeOutputStrings = {
       },
     },
   ],
-}];
+};

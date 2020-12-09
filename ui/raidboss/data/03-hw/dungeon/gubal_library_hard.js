@@ -1,5 +1,10 @@
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // The Great Gubal Library--Hard
-[{
+export default {
   zoneId: ZoneId.TheGreatGubalLibraryHard,
   timelineFile: 'gubal_library_hard.txt',
   timelineTriggers: [
@@ -52,7 +57,7 @@
       },
       infoText: function(data, _, output) {
         if (data.markers.length === 2) {
-          let sameMarkers = data.markers[0] === data.markers[1];
+          const sameMarkers = data.markers[0] === data.markers[1];
           delete data.markers;
           if (sameMarkers)
             return output.closeToBoss();
@@ -485,4 +490,4 @@
       },
     },
   ],
-}];
+};

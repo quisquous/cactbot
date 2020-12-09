@@ -2,24 +2,6 @@ import UserConfig from '../../resources/user_config.js';
 import ZoneInfo from '../../resources/zone_info.js';
 import contentList from '../../resources/content_list.js';
 
-// TODO:
-// The convention of "import X as _X; const X = _X;" is currently
-// being used as a method to workaround for downstream code
-// that is running via eval(). Because importing statements do not
-// create a variable of the same name, the eval()'d code does not know
-// about the import, and thus throws ReferenceErrors.
-// Used by downstream eval
-import _Conditions from '../../resources/conditions.js';
-const Conditions = _Conditions;
-import _NetRegexes from '../../resources/netregexes.js';
-const NetRegexes = _NetRegexes;
-import _Regexes from '../../resources/regexes.js';
-const Regexes = _Regexes;
-import { Responses as _Responses } from '../../resources/responses.js';
-const Responses = _Responses;
-import _ZoneId from '../../resources/zone_id.js';
-const ZoneId = _ZoneId;
-
 // Load other config files
 import './general_config.js';
 import '../eureka/eureka_config.js';
@@ -29,7 +11,7 @@ import '../radar/radar_config.js';
 import '../raidboss/raidboss_config.js';
 import '../../resources/common.js';
 
-let Options = {};
+const Options = {};
 let gConfig = null;
 
 // Text in the butter bar, to prompt the user to reload after a config change.
@@ -180,9 +162,9 @@ const kDirectoryToCategory = {
 // TODO: use ZoneId to get this
 const fileNameToTitle = (filename) => {
   // Strip directory and extension.
-  let file = filename.replace(/^.*\//, '').replace('.js', '');
+  const file = filename.replace(/^.*\//, '').replace('.js', '');
   // Remove non-name characters (probably).
-  let name = file.replace(/[_-]/g, ' ');
+  const name = file.replace(/[_-]/g, ' ');
   // Capitalize the first letter of every word.
   let capitalized = name.replace(/(?:^| )\w/g, (c) => c.toUpperCase());
 
@@ -211,15 +193,15 @@ export default class CactbotConfigurator {
     this.savedConfig = savedConfig || {};
     this.developerOptions = this.getOption('general', 'ShowDeveloperOptions', false);
 
-    let templates = UserConfig.optionTemplates;
-    for (let group in templates) {
+    const templates = UserConfig.optionTemplates;
+    for (const group in templates) {
       this.contents[group] = this.contents[group] || [];
       this.contents[group].push(templates[group]);
     }
 
     this.buildButterBar();
 
-    let container = document.getElementById('container');
+    const container = document.getElementById('container');
     this.buildUI(container, this.contents);
   }
 
@@ -239,7 +221,7 @@ export default class CactbotConfigurator {
   translate(textObj) {
     if (textObj === null || typeof textObj !== 'object' || !textObj['en'])
       return textObj;
-    let t = textObj[this.lang];
+    const t = textObj[this.lang];
     if (t)
       return t;
     return textObj['en'];
@@ -250,13 +232,13 @@ export default class CactbotConfigurator {
   // e.g. (foo, bar, baz, 5) with {foo: { bar: { baz: 3 } } } will return
   // the value 3.  Requires at least two args.
   getOption() {
-    let num = arguments.length;
+    const num = arguments.length;
     if (num < 2) {
       console.error('getOption requires at least two args');
       return;
     }
 
-    let defaultValue = arguments[num - 1];
+    const defaultValue = arguments[num - 1];
     let objOrValue = this.savedConfig;
     for (let i = 0; i < num - 1; ++i) {
       objOrValue = objOrValue[arguments[i]];
@@ -271,7 +253,7 @@ export default class CactbotConfigurator {
   // e.g. (foo, bar, baz, 3) will set {foo: { bar: { baz: 3 } } }.
   // requires at least two args.
   setOption() {
-    let num = arguments.length;
+    const num = arguments.length;
     if (num < 2) {
       console.error('setOption requires at least two args');
       return;
@@ -280,7 +262,7 @@ export default class CactbotConfigurator {
     // Set keys and create default {} if it doesn't exist.
     let obj = this.savedConfig;
     for (let i = 0; i < num - 2; ++i) {
-      let arg = arguments[i];
+      const arg = arguments[i];
       obj[arg] = obj[arg] || {};
       obj = obj[arg];
     }
@@ -290,14 +272,14 @@ export default class CactbotConfigurator {
   }
 
   buildButterBar() {
-    let container = document.getElementById('butter-bar');
+    const container = document.getElementById('butter-bar');
 
-    let textDiv = document.createElement('div');
+    const textDiv = document.createElement('div');
     textDiv.classList.add('reload-text');
     textDiv.innerText = this.translate(kReloadText);
     container.appendChild(textDiv);
 
-    let buttonInput = document.createElement('input');
+    const buttonInput = document.createElement('input');
     buttonInput.classList.add('reload-button');
     buttonInput.type = 'button';
     buttonInput.onclick = () => {
@@ -309,22 +291,22 @@ export default class CactbotConfigurator {
 
   // Top level UI builder, builds everything.
   buildUI(container, contents) {
-    for (let group in contents) {
-      let content = contents[group];
+    for (const group in contents) {
+      const content = contents[group];
       if (content.length === 0)
         continue;
 
       // For each overlay options template, build a section for it.
       // Then iterate through all of its options and build ui for those options.
       // Give each options template a chance to build special ui.
-      let groupDiv = this.buildOverlayGroup(container, group);
+      const groupDiv = this.buildOverlayGroup(container, group);
       for (let i = 0; i < content.length; ++i) {
-        let options = content[i].options || [];
+        const options = content[i].options || [];
         for (let j = 0; j < options.length; ++j) {
-          let opt = options[j];
+          const opt = options[j];
           if (!this.developerOptions && opt.debugOnly)
             continue;
-          let buildFunc = {
+          const buildFunc = {
             checkbox: this.buildCheckbox,
             select: this.buildSelect,
             float: this.buildFloat,
@@ -339,7 +321,7 @@ export default class CactbotConfigurator {
           buildFunc.bind(this)(groupDiv, opt, group);
         }
 
-        let builder = content[i].buildExtraUI;
+        const builder = content[i].buildExtraUI;
         if (builder)
           builder(this, groupDiv);
       }
@@ -348,20 +330,20 @@ export default class CactbotConfigurator {
 
   // Overlay builder for each overlay type (e.g. raidboss, jobs).
   buildOverlayGroup(container, group) {
-    let collapser = document.createElement('div');
+    const collapser = document.createElement('div');
     collapser.classList.add('overlay-container');
     container.appendChild(collapser);
 
-    let a = document.createElement('a');
+    const a = document.createElement('a');
     a.name = group;
     collapser.appendChild(a);
 
-    let header = document.createElement('div');
+    const header = document.createElement('div');
     header.classList.add('overlay-header');
     header.innerText = group;
     a.appendChild(header);
 
-    let groupDiv = document.createElement('div');
+    const groupDiv = document.createElement('div');
     groupDiv.classList.add('overlay-options');
     collapser.appendChild(groupDiv);
 
@@ -373,17 +355,17 @@ export default class CactbotConfigurator {
   }
 
   buildNameDiv(opt) {
-    let div = document.createElement('div');
+    const div = document.createElement('div');
     div.innerHTML = this.translate(opt.name);
     div.classList.add('option-name');
     return div;
   }
 
   buildCheckbox(parent, opt, group) {
-    let div = document.createElement('div');
+    const div = document.createElement('div');
     div.classList.add('option-input-container');
 
-    let input = document.createElement('input');
+    const input = document.createElement('input');
     div.appendChild(input);
     input.type = 'checkbox';
     input.checked = this.getOption(group, opt.id, opt.default);
@@ -394,21 +376,21 @@ export default class CactbotConfigurator {
   }
 
   buildDirectory(parent, opt, group) {
-    let div = document.createElement('div');
+    const div = document.createElement('div');
     div.classList.add('option-input-container');
     div.classList.add('input-dir-container');
 
-    let input = document.createElement('input');
+    const input = document.createElement('input');
     input.type = 'submit';
     input.value = this.translate(kDirectoryChooseButtonText);
     input.classList.add('input-dir-submit');
     div.appendChild(input);
 
-    let label = document.createElement('div');
+    const label = document.createElement('div');
     label.classList.add('input-dir-label');
     div.appendChild(label);
 
-    let setLabel = (str) => {
+    const setLabel = (str) => {
       if (str)
         label.innerText = str;
       else
@@ -425,15 +407,15 @@ export default class CactbotConfigurator {
       // FIXME: do we need some clearer UI here (like pretending to be modal?)
       input.disabled = true;
 
-      let prevValue = label.innerText;
+      const prevValue = label.innerText;
       label.innerText = '';
 
-      let result = await callOverlayHandler({
+      const result = await callOverlayHandler({
         call: 'cactbotChooseDirectory',
       });
 
       input.disabled = false;
-      let dir = result.data ? result.data : '';
+      const dir = result.data ? result.data : '';
       if (dir !== prevValue)
         this.setOption(group, opt.id, dir);
       setLabel(dir);
@@ -441,18 +423,18 @@ export default class CactbotConfigurator {
   }
 
   buildSelect(parent, opt, group) {
-    let div = document.createElement('div');
+    const div = document.createElement('div');
     div.classList.add('option-input-container');
 
-    let input = document.createElement('select');
+    const input = document.createElement('select');
     div.appendChild(input);
 
-    let defaultValue = this.getOption(group, opt.id, opt.default);
+    const defaultValue = this.getOption(group, opt.id, opt.default);
     input.onchange = () => this.setOption(group, opt.id, input.value);
 
-    let innerOptions = this.translate(opt.options);
-    for (let key in innerOptions) {
-      let elem = document.createElement('option');
+    const innerOptions = this.translate(opt.options);
+    for (const key in innerOptions) {
+      const elem = document.createElement('option');
       elem.value = innerOptions[key];
       elem.innerHTML = key;
       if (innerOptions[key] === defaultValue)
@@ -466,15 +448,15 @@ export default class CactbotConfigurator {
 
   // FIXME: this could use some data validation if a user inputs non-floats.
   buildFloat(parent, opt, group) {
-    let div = document.createElement('div');
+    const div = document.createElement('div');
     div.classList.add('option-input-container');
 
-    let input = document.createElement('input');
+    const input = document.createElement('input');
     div.appendChild(input);
     input.type = 'text';
     input.step = 'any';
     input.value = this.getOption(group, opt.id, parseFloat(opt.default));
-    let setFunc = () => this.setOption(group, opt.id, input.value);
+    const setFunc = () => this.setOption(group, opt.id, input.value);
     input.onchange = setFunc;
     input.oninput = setFunc;
 
@@ -484,15 +466,15 @@ export default class CactbotConfigurator {
 
   // FIXME: this could use some data validation if a user inputs non-integers.
   buildInteger(parent, opt, group) {
-    let div = document.createElement('div');
+    const div = document.createElement('div');
     div.classList.add('option-input-container');
 
-    let input = document.createElement('input');
+    const input = document.createElement('input');
     div.appendChild(input);
     input.type = 'text';
     input.step = 1;
     input.value = this.getOption(group, opt.id, parseInt(opt.default));
-    let setFunc = () => this.setOption(group, opt.id, input.value);
+    const setFunc = () => this.setOption(group, opt.id, input.value);
     input.onchange = setFunc;
     input.oninput = setFunc;
 
@@ -501,7 +483,7 @@ export default class CactbotConfigurator {
   }
 
   processFiles(files) {
-    let map = {};
+    const map = {};
     for (const filename in files) {
       if (!filename.endsWith('.js'))
         continue;
@@ -522,20 +504,13 @@ export default class CactbotConfigurator {
         break;
       }
 
-      let json;
-      try {
-        json = eval(files[filename]);
-      } catch (exception) {
-        console.log('Error parsing JSON from ' + filename + ': ' + exception);
-        continue;
-      }
-
+      const triggerSet = files[filename];
       let title = fileNameToTitle(filename);
       let zoneId = undefined;
 
       // Make assumptions about trigger structure here to try to get the zoneId out.
-      if (json && json[0] && 'zoneId' in json[0]) {
-        zoneId = json[0].zoneId;
+      if (triggerSet && 'zoneId' in triggerSet) {
+        zoneId = triggerSet.zoneId;
         // Use the translatable zone info name, if possible.
         const zoneInfo = ZoneInfo[zoneId];
         if (zoneInfo)
@@ -551,7 +526,7 @@ export default class CactbotConfigurator {
         prefix: this.translate(kPrefixToCategory[prefixKey]),
         type: this.translate(kDirectoryToCategory[typeKey]),
         title: title,
-        json: json,
+        triggerSet: triggerSet,
         zoneId: zoneId,
       };
     }

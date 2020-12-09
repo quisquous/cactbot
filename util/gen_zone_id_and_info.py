@@ -26,9 +26,27 @@ known_ids = {
 # name_key to territory_id mappings for locations that no longer
 # exist.  This is for things that have been taken out of the
 # game.  This will throw errors if anything conflicts.
-# TODO: if needed we could emit zone_info too.
 synthetic_ids = {
     "TheDiadem521": 901,
+    "TheAkhAfahAmphitheatreUnreal": 930,
+}
+
+synthetic_zone_info = {
+    930: {
+        "contentType": 4,
+        "exVersion": 3,
+        "name": {
+            "cn": "希瓦幻巧战",
+            "de": "Traumprüfung - Shiva",
+            "en": "The Akh Afah Amphitheatre (Unreal)",
+            "fr": "L'Amphithéâtre d'Akh Afah (irréel)",
+            "ja": "幻シヴァ討滅戦",
+        },
+        "offsetX": 0,
+        "offsetY": 0,
+        "sizeFactor": 400,
+        "weatherRate": 46,
+    },
 }
 
 # Notes: use rawexd here instead of exd to get place ids / territory ids
@@ -201,6 +219,9 @@ def generate_zone_info(
     territory_map, cfc_map_by_lang, map_map, territory_to_cfc_map, place_name_map_by_lang
 ):
     map = {}
+
+    for id, info in synthetic_zone_info.items():
+        map[str(id)] = info
 
     # The first letter of zones starting with articles are not capitalized.
     def capitalize(str):

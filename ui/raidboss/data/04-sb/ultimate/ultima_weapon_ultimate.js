@@ -1,5 +1,9 @@
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // Ultima Weapon Ultimate
-[{
+export default {
   zoneId: ZoneId.TheWeaponsRefrainUltimate,
   timelineFile: 'ultima_weapon_ultimate.txt',
   timelineTriggers: [
@@ -229,7 +233,7 @@
       alertText: function(data, _, output) {
         if (data.titanGaols.length !== 3)
           return;
-        let idx = data.titanGaols.indexOf(data.me);
+        const idx = data.titanGaols.indexOf(data.me);
         if (idx < 0)
           return;
         // Just return your number.
@@ -729,4 +733,4 @@
       },
     },
   ],
-}];
+};

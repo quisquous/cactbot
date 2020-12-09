@@ -1,26 +1,10 @@
-// TODO:
-// The convention of "import X as _X; const X = _X;" is currently
-// being used as a method to workaround for downstream code
-// that is running via eval(). Because importing statements do not
-// create a variable of the same name, the eval()'d code does not know
-// about the import, and thus throws ReferenceErrors.
-// Used by downstream eval
-import _Conditions from '../../resources/conditions.js';
-const Conditions = _Conditions;
-import _NetRegexes from '../../resources/netregexes.js';
-const NetRegexes = _NetRegexes;
-import { Responses as _Responses } from '../../resources/responses.js';
-const Responses = _Responses;
-
 import AutoplayHelper from './autoplay_helper.js';
 import BrowserTTSEngine from './browser_tts_engine.js';
 import { addPlayerChangedOverrideListener } from '../../resources/player_override.js';
 import PartyTracker from '../../resources/party.js';
-import _Regexes from '../../resources/regexes.js';
-const Regexes = _Regexes;
+import Regexes from '../../resources/regexes.js';
 import { Util } from '../../resources/common.js';
-import _ZoneId from '../../resources/zone_id.js';
-const ZoneId = _ZoneId;
+import ZoneId from '../../resources/zone_id.js';
 
 // There should be (at most) six lines of instructions.
 const raidbossInstructions = {
@@ -83,7 +67,7 @@ function onTriggerException(trigger, e) {
     str += ' (' + trigger.filename + ')';
   console.error(str);
 
-  let lines = e.stack.split('\n');
+  const lines = e.stack.split('\n');
   for (let i = 0; i < lines.length; ++i)
     console.error(lines[i]);
 }
@@ -223,8 +207,11 @@ class TriggerOutputProxy {
 }
 
 export class PopupText {
-  constructor(options) {
+  constructor(options, timelineLoader, raidbossDataFiles) {
     this.options = options;
+    this.timelineLoader = timelineLoader;
+    this.ProcessDataFiles(raidbossDataFiles);
+
     this.triggers = [];
     this.netTriggers = [];
     this.timers = {};
@@ -245,7 +232,7 @@ export class PopupText {
       };
     } else {
       this.ttsSay = function(text) {
-        let cmd = { 'call': 'cactbotSay', 'text': text };
+        const cmd = { 'call': 'cactbotSay', 'text': text };
         window.callOverlayHandler(cmd);
       };
     }
@@ -296,46 +283,33 @@ export class PopupText {
     });
   }
 
-  SetTimelineLoader(timelineLoader) {
-    this.timelineLoader = timelineLoader;
-  }
-
   OnPlayerChange(e) {
     if (this.job !== e.detail.job || this.me !== e.detail.name)
       this.OnJobChange(e);
     this.data.currentHP = e.detail.currentHP;
   }
 
-  OnDataFilesRead(files) {
+  ProcessDataFiles(files) {
     this.triggerSets = [];
     for (const filename in files) {
       if (!filename.endsWith('.js'))
         continue;
 
-      const text = files[filename];
-      let json;
-      try {
-        json = eval(text);
-      } catch (exception) {
-        console.log('Error parsing JSON from ' + filename + ': ' + exception);
-        continue;
-      }
-      if (typeof json !== 'object' || !(json.length >= 0)) {
+      const json = files[filename];
+      if (typeof json !== 'object') {
         console.log('Unexpected JSON from ' + filename + ', expected an array');
         continue;
       }
-      for (let i = 0; i < json.length; ++i) {
-        if (!('triggers' in json[i])) {
-          console.log('Unexpected JSON from ' + filename + ', expected a triggers');
-          continue;
-        }
-        if (typeof json[i].triggers !== 'object' || !(json[i].triggers.length >= 0)) {
-          console.log('Unexpected JSON from ' + filename + ', expected triggers to be an array');
-          continue;
-        }
-        json[i].filename = filename;
+      if (!('triggers' in json)) {
+        console.log('Unexpected JSON from ' + filename + ', expected a triggers');
+        continue;
       }
-      Array.prototype.push.apply(this.triggerSets, json);
+      if (typeof json.triggers !== 'object' || !(json.triggers.length >= 0)) {
+        console.log('Unexpected JSON from ' + filename + ', expected triggers to be an array');
+        continue;
+      }
+      json.filename = filename;
+      this.triggerSets.push(json);
     }
 
     // User triggers must come last so that they override built-in files.
@@ -361,8 +335,8 @@ export class PopupText {
     this.netTriggers = [];
     let timelineFiles = [];
     let timelines = [];
-    let replacements = [];
-    let timelineStyles = [];
+    const replacements = [];
+    const timelineStyles = [];
     this.resetWhenOutOfCombat = true;
 
     const orderedTriggers = new OrderedTriggerList();
@@ -371,7 +345,7 @@ export class PopupText {
 
     // Recursively/iteratively process timeline entries for triggers.
     // Functions get called with data, arrays get iterated, strings get appended.
-    let addTimeline = (function(obj) {
+    const addTimeline = (function(obj) {
       if (Array.isArray(obj)) {
         for (let i = 0; i < obj.length; ++i)
           addTimeline(obj[i]);
@@ -383,9 +357,9 @@ export class PopupText {
     }).bind(this);
 
     // construct something like regexEn or regexFr.
-    let langSuffix = this.parserLang.charAt(0).toUpperCase() + this.parserLang.slice(1);
-    let regexParserLang = 'regex' + langSuffix;
-    let netRegexParserLang = 'netRegex' + langSuffix;
+    const langSuffix = this.parserLang.charAt(0).toUpperCase() + this.parserLang.slice(1);
+    const regexParserLang = 'regex' + langSuffix;
+    const netRegexParserLang = 'netRegex' + langSuffix;
 
     for (const set of this.triggerSets) {
       // zoneRegex can be undefined, a regex, or translatable object of regex.
@@ -438,9 +412,9 @@ export class PopupText {
       // Adjust triggers for the parser language.
       if (set.triggers && this.options.AlertsEnabled) {
         // Filter out disabled triggers
-        let enabledTriggers = set.triggers.filter((trigger) => !('disabled' in trigger && trigger.disabled));
+        const enabledTriggers = set.triggers.filter((trigger) => !('disabled' in trigger && trigger.disabled));
 
-        for (let trigger of enabledTriggers) {
+        for (const trigger of enabledTriggers) {
           // Add an additional resolved regex here to save
           // time later.  This will clobber each time we
           // load this, but that's ok.
@@ -454,13 +428,13 @@ export class PopupText {
           this.ProcessTrigger(trigger);
 
           // parser-language-based regex takes precedence.
-          let regex = trigger[regexParserLang] || trigger.regex;
+          const regex = trigger[regexParserLang] || trigger.regex;
           if (regex) {
             trigger.localRegex = Regexes.parse(regex);
             orderedTriggers.push(trigger);
           }
 
-          let netRegex = trigger[netRegexParserLang] || trigger.netRegex;
+          const netRegex = trigger[netRegexParserLang] || trigger.netRegex;
           if (netRegex) {
             trigger.localNetRegex = Regexes.parse(netRegex);
             orderedNetTriggers.push(trigger);
@@ -486,7 +460,7 @@ export class PopupText {
       // And set the timeline files/timelines from each set that matches.
       if (set.timelineFile) {
         if (set.filename) {
-          let dir = set.filename.substring(0, set.filename.lastIndexOf('/'));
+          const dir = set.filename.substring(0, set.filename.lastIndexOf('/'));
           timelineFiles.push(dir + '/' + set.timelineFile);
         } else {
           // Note: For user files, this should get handled by raidboss_config.js,
@@ -572,7 +546,7 @@ export class PopupText {
     if (name in this.options.PlayerNicks)
       return this.options.PlayerNicks[name];
 
-    let idx = name.indexOf(' ');
+    const idx = name.indexOf(' ');
     return idx < 0 ? name : name.substr(0, idx);
   }
 
@@ -612,12 +586,12 @@ export class PopupText {
   }
 
   OnLog(e) {
-    for (let log of e.detail.logs) {
+    for (const log of e.detail.logs) {
       if (log.includes('00:0038:cactbot wipe'))
         this.SetInCombat(false);
 
-      for (let trigger of this.triggers) {
-        let r = log.match(trigger.localRegex);
+      for (const trigger of this.triggers) {
+        const r = log.match(trigger.localRegex);
         if (r)
           this.OnTrigger(trigger, r);
       }
@@ -625,9 +599,9 @@ export class PopupText {
   }
 
   OnNetLog(e) {
-    let log = e.rawLine;
-    for (let trigger of this.netTriggers) {
-      let r = log.match(trigger.localNetRegex);
+    const log = e.rawLine;
+    for (const trigger of this.netTriggers) {
+      const r = log.match(trigger.localNetRegex);
       if (r)
         this.OnTrigger(trigger, r);
     }
@@ -642,7 +616,7 @@ export class PopupText {
   }
 
   OnTriggerInternal(trigger, matches) {
-    let now = +new Date();
+    const now = +new Date();
 
     if (this._onTriggerInternalCheckSuppressed(trigger, now))
       return;
@@ -654,7 +628,7 @@ export class PopupText {
 
     // Set up a helper object so we don't have to throw
     // a ton of info back and forth between subfunctions
-    let triggerHelper = this._onTriggerInternalGetHelper(trigger, matches, now);
+    const triggerHelper = this._onTriggerInternalGetHelper(trigger, matches, now);
 
     if (!this._onTriggerInternalCondition(triggerHelper))
       return;
@@ -662,13 +636,13 @@ export class PopupText {
     this._onTriggerInternalPreRun(triggerHelper);
 
     // Evaluate for delay here, but run delay later
-    let delayPromise = this._onTriggerInternalDelaySeconds(triggerHelper);
+    const delayPromise = this._onTriggerInternalDelaySeconds(triggerHelper);
     this._onTriggerInternalDurationSeconds(triggerHelper);
     this._onTriggerInternalSuppressSeconds(triggerHelper);
 
-    let triggerPostDelay = () => {
-      let promise = this._onTriggerInternalPromise(triggerHelper);
-      let triggerPostPromise = () => {
+    const triggerPostDelay = () => {
+      const promise = this._onTriggerInternalPromise(triggerHelper);
+      const triggerPostPromise = () => {
         this._onTriggerInternalSound(triggerHelper);
         this._onTriggerInternalSoundVolume(triggerHelper);
         this._onTriggerInternalResponse(triggerHelper);
@@ -679,8 +653,6 @@ export class PopupText {
         // Priority audio order:
         // * user disabled (play nothing)
         // * if tts options are enabled globally or for this trigger:
-        //   * user groupTTS trigger groupTTS/tts override
-        //   * groupTTS entries in the trigger
         //   * user TTS triggers tts override
         //   * tts entries in the trigger
         //   * default alarm tts
@@ -699,7 +671,6 @@ export class PopupText {
         // being valid but empty, this will take priority over the default
         // tts texts from alarm/alert/info and will prevent tts from playing
         // and allowing sounds to be played instead.
-        this._onTriggerInternalGroupTTS(triggerHelper);
         this._onTriggerInternalTTS(triggerHelper);
         this._onTriggerInternalPlayAudio(triggerHelper);
         this._onTriggerInternalRun(triggerHelper);
@@ -721,24 +692,9 @@ export class PopupText {
 
   // Build a default triggerHelper object for this trigger
   _onTriggerInternalGetHelper(trigger, matches, now) {
-    let triggerHelper;
-    // Separate the creation and assignment to let the ValueOrFunction method work properly
-    triggerHelper = {
+    const triggerHelper = {
       trigger: trigger,
       now: now,
-      valueOrFunction: (f) => {
-        let result = f;
-        if (typeof result === 'function')
-          result = result(this.data, triggerHelper.matches, trigger.output);
-        // All triggers return either a string directly, or an object
-        // whose keys are different parser language based names.  For simplicity,
-        // this is valid to do for any trigger entry that can handle a function.
-        // In case anybody wants to encapsulate any fancy grammar, the values
-        // in this object can also be functions.
-        if (typeof result !== 'object' || result === null)
-          return result;
-        return triggerHelper.valueOrFunction(result[this.displayLang] || result['en']);
-      },
       triggerOptions: trigger.id && this.options.PerTriggerOptions[trigger.id] || {},
       triggerAutoConfig: trigger.id && this.options.PerTriggerAutoConfig[trigger.id] || {},
       // This setting only suppresses output, trigger still runs for data/logic purposes
@@ -758,6 +714,22 @@ export class PopupText {
       ttsText: undefined,
     };
 
+    // Separate the creation of triggerHelper and creation of valueOrFunction
+    // method so ValueOrFunction can execute properly
+    triggerHelper.valueOrFunction = (f) => {
+      let result = f;
+      if (typeof result === 'function')
+        result = result(this.data, triggerHelper.matches, trigger.output);
+      // All triggers return either a string directly, or an object
+      // whose keys are different parser language based names.  For simplicity,
+      // this is valid to do for any trigger entry that can handle a function.
+      // In case anybody wants to encapsulate any fancy grammar, the values
+      // in this object can also be functions.
+      if (typeof result !== 'object' || result === null)
+        return result;
+      return triggerHelper.valueOrFunction(result[this.displayLang] || result['en']);
+    },
+
     this._onTriggerInternalHelperDefaults(triggerHelper);
 
     return triggerHelper;
@@ -774,7 +746,7 @@ export class PopupText {
   }
 
   _onTriggerInternalCondition(triggerHelper) {
-    let condition = triggerHelper.triggerOptions.Condition || triggerHelper.trigger.condition;
+    const condition = triggerHelper.triggerOptions.Condition || triggerHelper.trigger.condition;
     if (condition) {
       if (!condition(this.data, triggerHelper.matches))
         return false;
@@ -824,11 +796,11 @@ export class PopupText {
   }
 
   _onTriggerInternalDelaySeconds(triggerHelper) {
-    let delay = 'delaySeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds) : 0;
+    const delay = 'delaySeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds) : 0;
     if (!delay || delay <= 0)
       return null;
 
-    let triggerID = this.currentTriggerID++;
+    const triggerID = this.currentTriggerID++;
     this.timers[triggerID] = true;
     return new Promise((res, rej) => {
       window.setTimeout(() => {
@@ -852,7 +824,7 @@ export class PopupText {
   }
 
   _onTriggerInternalSuppressSeconds(triggerHelper) {
-    let suppress = 'suppressSeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.suppressSeconds) : 0;
+    const suppress = 'suppressSeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.suppressSeconds) : 0;
     if (triggerHelper.trigger.id && suppress > 0)
       this.triggerSuppress[triggerHelper.trigger.id] = triggerHelper.now + (suppress * 1000);
   }
@@ -915,19 +887,6 @@ export class PopupText {
     this._addTextFor('info', triggerHelper);
   }
 
-  _onTriggerInternalGroupTTS(triggerHelper) {
-    if (triggerHelper.groupSpokenAlertsEnabled) {
-      if ('GroupTTSText' in triggerHelper.triggerOptions) {
-        triggerHelper.ttsText =
-          triggerHelper.valueOrFunction(triggerHelper.triggerOptions.GroupTTSText);
-      } else if ('groupTTS' in triggerHelper.trigger) {
-        triggerHelper.ttsText = triggerHelper.valueOrFunction(triggerHelper.trigger.groupTTS);
-      } else if ('groupTTS' in triggerHelper.response) {
-        triggerHelper.ttsText = triggerHelper.valueOrFunction(triggerHelper.response.groupTTS);
-      }
-    }
-  }
-
   _onTriggerInternalTTS(triggerHelper) {
     if (!triggerHelper.groupSpokenAlertsEnabled || typeof triggerHelper.ttsText === 'undefined') {
       if ('TTSText' in triggerHelper.triggerOptions)
@@ -943,8 +902,8 @@ export class PopupText {
 
   _onTriggerInternalPlayAudio(triggerHelper) {
     if (triggerHelper.trigger.sound && triggerHelper.soundUrl) {
-      let namedSound = triggerHelper.soundUrl + 'Sound';
-      let namedSoundVolume = triggerHelper.soundUrl + 'SoundVolume';
+      const namedSound = triggerHelper.soundUrl + 'Sound';
+      const namedSoundVolume = triggerHelper.soundUrl + 'SoundVolume';
       if (namedSound in this.options) {
         triggerHelper.soundUrl = this.options[namedSound];
         if (namedSoundVolume in this.options)
@@ -1002,11 +961,11 @@ export class PopupText {
 
   _createTextFor(text, textType, lowerTextKey, duration) {
     // info-text
-    let textElementClass = textType + '-text';
+    const textElementClass = textType + '-text';
     if (textType !== 'info')
       text = triggerUpperCase(text);
-    let holder = this[lowerTextKey].getElementsByClassName('holder')[0];
-    let div = this._makeTextElement(text, textElementClass);
+    const holder = this[lowerTextKey].getElementsByClassName('holder')[0];
+    const div = this._makeTextElement(text, textElementClass);
 
     holder.appendChild(div);
     if (holder.children.length > this.kMaxRowsOfText)
@@ -1020,15 +979,15 @@ export class PopupText {
 
   _addTextFor(textType, triggerHelper) {
     // Info
-    let textTypeUpper = textType[0].toUpperCase() + textType.slice(1);
+    const textTypeUpper = textType[0].toUpperCase() + textType.slice(1);
     // infoText
-    let lowerTextKey = textType + 'Text';
+    const lowerTextKey = textType + 'Text';
     // InfoText
-    let upperTextKey = textTypeUpper + 'Text';
-    let textObj = triggerHelper.triggerOptions[upperTextKey] ||
+    const upperTextKey = textTypeUpper + 'Text';
+    const textObj = triggerHelper.triggerOptions[upperTextKey] ||
       triggerHelper.trigger[lowerTextKey] || triggerHelper.response[lowerTextKey];
     if (textObj) {
-      let text = triggerHelper.valueOrFunction(textObj);
+      const text = triggerHelper.valueOrFunction(textObj);
       triggerHelper.defaultTTSText = triggerHelper.defaultTTSText || text;
       if (text && triggerHelper.textAlertsEnabled) {
         // per-trigger option > trigger field > option duration by text type
@@ -1044,7 +1003,7 @@ export class PopupText {
   }
 
   _makeTextElement(text, className) {
-    let div = document.createElement('div');
+    const div = document.createElement('div');
     div.classList.add(className);
     div.classList.add('animate-text');
     div.innerText = text;
@@ -1052,7 +1011,7 @@ export class PopupText {
   }
 
   _playAudioFile(url, volume) {
-    let audio = new Audio(url);
+    const audio = new Audio(url);
     audio.volume = volume || 1;
     audio.play();
   }
@@ -1101,5 +1060,3 @@ export class PopupTextGenerator {
     this.popupText.OnTrigger(trigger, matches);
   }
 }
-
-export let gPopupText;

@@ -142,6 +142,7 @@
   position: relative;
   top: 5px;
   font-size: 16px;
+  line-height: 1.1em;
 }
 
 /* Height of HP + MP bar(show number) */
@@ -235,6 +236,7 @@
 /* Space for 2 resource boxes */
 .drg #right-side-icons,
 .brd #right-side-icons,
+.mch #right-side-icons,
 .dnc #right-side-icons,
 .smn #right-side-icons,
 .rdm #right-side-icons {
@@ -268,6 +270,17 @@
   height: 12px;
 }
 
+#mch-stacks {
+  display: flex;
+  margin-top: 1px;
+  width: 206px;
+  height: 12px;
+}
+
+#mch-stacks.hide {
+  display: none;
+}
+
 #blm-stacks {
   display: flex;
   margin-top: 1px;
@@ -283,6 +296,7 @@
 }
 
 #whm-stacks-bloodlily,
+#mch-stacks-wildfire,
 #smn-stacks-ruin4 {
   width: 100%;
   height: 100%;
@@ -301,6 +315,15 @@
   display: inline-block;
   border: 1px solid black;
   width: calc(33% - 4px);
+  height: 100%;
+}
+
+#mch-stacks-wildfire > div {
+  background-color: rgba(174, 227, 235, 0.2);
+  margin-right: 2px;
+  display: inline-block;
+  border: 1px solid black;
+  width: calc(16% - 3px);
   height: 100%;
 }
 
@@ -324,6 +347,10 @@
 
 #whm-stacks-bloodlily > div.active {
   background-color: rgb(190, 43, 30);
+}
+
+#mch-stacks-wildfire > div.active {
+  background-color: rgb(250, 0, 0);
 }
 
 #blm-stacks-heart > div.active {
@@ -391,6 +418,7 @@
 #sch-procs-aetherflow,
 #ast-procs-draw,
 #mnk-procs-twinsnakes,
+#mch-procs-airanchor,
 #dnc-procs-technicalstep,
 #blm-dot-thunder,
 #rdm-procs-black,
@@ -406,6 +434,7 @@
 #sch-procs-luciddreaming,
 #ast-procs-luciddreaming,
 #mnk-procs-demolish,
+#mch-procs-wildfire,
 #dnc-procs-flourish,
 #blm-procs-thunder,
 #rdm-procs-lucid,
@@ -822,6 +851,37 @@
 }
 
 /* MCH */
+.mch-color-heat {
+  background-color: rgb(250, 100, 0);
+}
+
+.mch-color-heat.overheat {
+  background-color: rgb(250, 0, 0);
+}
+
+.mch-color-battery {
+  background-color: rgb(60, 110, 110);
+}
+
+.mch-color-battery.robot-active {
+  background-color: rgb(80, 200, 200);
+}
+
+.mch-color-drill {
+  background-color: rgb(235, 235, 50);
+}
+
+.mch-color-airanchor {
+  background-color: rgba(80, 200, 200, 0.5);
+}
+
+.mch-color-wildfire {
+  background-color: rgba(190, 80, 70);
+}
+
+.mch-color-wildfire.active {
+  background-color: rgba(250, 0, 0);
+}
 
 /* DNC */
 .dnc-color-standardstep {

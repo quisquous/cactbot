@@ -91,7 +91,7 @@ class TimerBox extends HTMLElement {
   // The length remaining in the count down.
   get value() {
     if (!this._start) return this._duration.toString();
-    let elapsedMs = new Date() - this._start;
+    const elapsedMs = new Date() - this._start;
     return Math.max(0, this._duration - (elapsedMs / 1000)).toString();
   }
 
@@ -112,14 +112,14 @@ class TimerBox extends HTMLElement {
   // This would be used with window.customElements.
   constructor() {
     super();
-    let root = this.attachShadow({ mode: 'open' });
+    const root = this.attachShadow({ mode: 'open' });
     this.init(root);
   }
 
   // These would be used by document.registerElement, which is deprecated but
   // ACT uses an old CEF which has this instead of the newer APIs.
   createdCallback() {
-    let root = this.createShadowRoot();
+    const root = this.createShadowRoot();
     this.init(root);
   }
   // Convert from the deprecated API names to the modern API names.
@@ -259,10 +259,10 @@ class TimerBox extends HTMLElement {
     if (this._styleFill)
       towardTop = !towardTop;
 
-    let largeBackgroundStyle = this.largeBoxBackgroundElement.style;
-    let smallBackgroundStyle = this.smallBoxBackgroundElement.style;
-    let largeForegroundStyle = this.largeBoxForegroundElement.style;
-    let smallForegroundStyle = this.smallBoxForegroundElement.style;
+    const largeBackgroundStyle = this.largeBoxBackgroundElement.style;
+    const smallBackgroundStyle = this.smallBoxBackgroundElement.style;
+    const largeForegroundStyle = this.largeBoxForegroundElement.style;
+    const smallForegroundStyle = this.smallBoxForegroundElement.style;
 
     smallBackgroundStyle.backgroundColor = this._bg;
     largeBackgroundStyle.backgroundColor = this._bg;
@@ -276,7 +276,7 @@ class TimerBox extends HTMLElement {
     smallForegroundStyle.width =
       smallForegroundStyle.height = (this.kSmallSize - this.kBorderSize * 2) * this._scale;
 
-    let sizeDiff = this.kLargeSize - this.kSmallSize;
+    const sizeDiff = this.kLargeSize - this.kSmallSize;
     smallBackgroundStyle.left = smallBackgroundStyle.top =
         sizeDiff * this._scale / 2;
     smallForegroundStyle.left = smallForegroundStyle.top =
@@ -296,8 +296,8 @@ class TimerBox extends HTMLElement {
   draw() {
     if (!this._connected) return;
 
-    let elapsedSec = (new Date() - this._start) / 1000;
-    let remainingSec = Math.max(0, this._duration - elapsedSec);
+    const elapsedSec = (new Date() - this._start) / 1000;
+    const remainingSec = Math.max(0, this._duration - elapsedSec);
     let rounded;
     if (this._roundUpThreshold)
       rounded = Math.ceil(remainingSec);
@@ -323,7 +323,7 @@ class TimerBox extends HTMLElement {
       this.largeBoxElement.style.display = 'block';
       this.smallBoxElement.style.display = 'none';
       this.timerElement.style.display = 'block';
-      let animStartValue = this._duration > this._threshold ? this._threshold : this._duration;
+      const animStartValue = this._duration > this._threshold ? this._threshold : this._duration;
       let animPercent = (animStartValue - remainingSec) / animStartValue;
       if (!this._styleFill)
         animPercent = 1.0 - animPercent;
@@ -347,7 +347,7 @@ class TimerBox extends HTMLElement {
   }
 
   advance() {
-    let elapsedSec = (new Date() - this._start) / 1000;
+    const elapsedSec = (new Date() - this._start) / 1000;
     if (elapsedSec >= this._duration) {
       // Sets the attribute to 0 so users can see the counter is done, and
       // if they set the same duration again it will count.

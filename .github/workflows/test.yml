@@ -5,16 +5,14 @@ on:
     paths:
       - '**/*.js'
       - '**/*.py'
+      - 'package*.json'
       - 'ui/raidboss/**'
       - '.github/workflows/test.yml'
   pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
     paths:
       - '**/*.js'
       - '**/*.py'
+      - 'package*.json'
       - 'ui/raidboss/**'
       - '.github/workflows/test.yml'
 
@@ -22,19 +20,27 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v1
-      - name: Setup Node
-        uses: actions/setup-node@v2-beta
+      - uses: actions/checkout@v1
+
+      - uses: actions/setup-node@v2-beta
         with:
           node-version: '12'
-      - name: Setup Python
-        uses: actions/setup-python@v2
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - uses: actions/setup-python@v2
         with:
           python-version: '3.7'
+
       - name: Install Dependencies
         run: |
-          npm install
+          npm ci
+
       - name: npm test
         run: |
           npm test

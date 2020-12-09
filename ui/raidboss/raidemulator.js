@@ -24,7 +24,7 @@ import raidbossFileData from './data/manifest.txt';
 // @TODO: Some way to not have this be a global?
 
 // See user/raidboss-example.js for documentation.
-let Options = {
+const Options = {
   // These options are ones that are not auto-defined by raidboss_config.js.
   PlayerNicks: {},
 
@@ -79,7 +79,7 @@ let Options = {
 
     // Listen for the log parser to dispatch a fight
     logEventHandler.on('fight', (day, zoneId, zoneName, lines) => {
-      let enc = new Encounter(day, zoneId, zoneName, lines);
+      const enc = new Encounter(day, zoneId, zoneName, lines);
       // If there's not both a player and an enemy ability, don't persist the encounter
       if (!(enc.firstPlayerAbility > 0 && enc.firstEnemyAbility > 0))
         return;
@@ -135,7 +135,7 @@ let Options = {
         enc.logLines = enc.logLines.slice(enc.firstLineIndex - 1);
 
         // Update precalculated offsets
-        let firstTimestamp = enc.logLines[0].timestamp;
+        const firstTimestamp = enc.logLines[0].timestamp;
         for (let i = 0; i < enc.logLines.length; ++i)
           enc.logLines[i].offset = enc.logLines[i].timestamp - firstTimestamp;
 
@@ -173,21 +173,16 @@ let Options = {
         // Initialize the Raidboss components, bind them to the emulator for event listeners
         timelineUI = new RaidEmulatorTimelineUI(Options);
         timelineUI.bindTo(emulator);
-        timelineController = new RaidEmulatorTimelineController(Options, timelineUI);
+        timelineController =
+            new RaidEmulatorTimelineController(Options, timelineUI, raidbossFileData);
         timelineController.bindTo(emulator);
-        popupText = new RaidEmulatorPopupText(Options);
+        popupText = new RaidEmulatorPopupText(
+            Options, new TimelineLoader(timelineController), raidbossFileData);
         popupText.bindTo(emulator);
 
         timelineController.SetPopupTextInterface(new PopupTextGenerator(popupText));
-        popupText.SetTimelineLoader(new TimelineLoader(timelineController));
 
         emulator.setPopupText(popupText);
-
-        // Make sure timeline and alerts know about the data files
-        timelineController.SetDataFiles(raidbossFileData);
-        popupText.OnDataFilesRead(raidbossFileData);
-        popupText.ReloadTimelines();
-        emulator.dataFiles = raidbossFileData;
 
         // Load the encounter metadata from the DB
         encounterTab.refresh();
@@ -207,12 +202,12 @@ let Options = {
           }
         });
 
-        let checkFile = async (file) => {
+        const checkFile = async (file) => {
           if (file.type === 'application/json') {
             // Import a DB file by passing it to Persistor
             // DB files are just json representations of the DB
             file.text().then((txt) => {
-              let DB = JSON.parse(txt);
+              const DB = JSON.parse(txt);
               persistor.importDB(DB).then(() => {
                 encounterTab.refresh();
               });
@@ -222,14 +217,14 @@ let Options = {
             file.text().then((txt) => {
               // Import a network file by passing it to LogEventHandler to convert it
               logConverter.convertFile(txt).then((lines) => {
-                let localLogHandler = new LogEventHandler();
+                const localLogHandler = new LogEventHandler();
                 localLogHandler.currentDate = EmulatorCommon.timeToDateString(lines[0].timestamp);
 
-                let promises = [];
+                const promises = [];
 
                 // Listen for LogEventHandler to dispatch fights and persist them
                 localLogHandler.on('fight', async (day, zoneId, zoneName, lines) => {
-                  let enc = new Encounter(day, zoneId, zoneName, lines);
+                  const enc = new Encounter(day, zoneId, zoneName, lines);
                   if (!(enc.firstPlayerAbility > 0 && enc.firstEnemyAbility > 0))
                     return;
                   emulator.addEncounter(enc);
@@ -247,7 +242,7 @@ let Options = {
           }
         };
 
-        let ignoreEvent = (e) => {
+        const ignoreEvent = (e) => {
           e.preventDefault();
           e.stopPropagation();
         };
@@ -259,22 +254,22 @@ let Options = {
         document.body.addEventListener('drop', async (e) => {
           e.preventDefault();
           e.stopPropagation();
-          let dt = e.dataTransfer;
-          let files = dt.files;
+          const dt = e.dataTransfer;
+          const files = dt.files;
           for (let i = 0; i < files.length; ++i) {
-            let file = files[i];
+            const file = files[i];
             await checkFile(file);
           }
         });
 
-        let $exportButton = document.querySelector('.exportDBButton');
+        const $exportButton = document.querySelector('.exportDBButton');
 
         new Tooltip($exportButton, 'bottom',
             'Export DB is very slow and shows a 0 byte download, but it does work eventually.');
 
         // Auto initialize all collapse elements on the page
         document.querySelectorAll('[data-toggle="collapse"]').forEach((n) => {
-          let target = document.querySelector(n.getAttribute('data-target'));
+          const target = document.querySelector(n.getAttribute('data-target'));
           n.addEventListener('click', () => {
             if (n.getAttribute('aria-expanded') === 'false') {
               n.setAttribute('aria-expanded', 'true');
@@ -291,10 +286,10 @@ let Options = {
           persistor.exportDB().then((obj) => {
             // Convert encounter DB to json, then base64 encode it
             // Encounters can have unicode, can't use btoa for base64 encode
-            let blob = new Blob([JSON.stringify(obj)], { type: 'application/json' });
+            const blob = new Blob([JSON.stringify(obj)], { type: 'application/json' });
             obj = null;
             // Offer download to user
-            let a = document.createElement('a');
+            const a = document.createElement('a');
             a.href = URL.createObjectURL(blob);
             a.setAttribute('download', 'RaidEmulator_DBExport_' + (+new Date()) + '.json');
             a.click();
@@ -306,12 +301,12 @@ let Options = {
           });
         });
 
-        let $fileInput = document.querySelector('.loadFileInput');
+        const $fileInput = document.querySelector('.loadFileInput');
 
         // Handle the `Load Network Log` button when user selects files
         $fileInput.addEventListener('change', async (e) => {
           for (let i = 0; i < e.target.files.length; ++i) {
-            let file = e.target.files[i];
+            const file = e.target.files[i];
             checkFile(file);
           }
         });
@@ -381,9 +376,9 @@ let Options = {
 })();
 
 function showModal(selector) {
-  let modal = document.querySelector(selector);
-  let body = document.body;
-  let backdrop = document.querySelector('.modal-backdrop');
+  const modal = document.querySelector(selector);
+  const body = document.body;
+  const backdrop = document.querySelector('.modal-backdrop');
   body.classList.add('modal-open');
   backdrop.classList.add('show');
   backdrop.classList.remove('hide');
@@ -392,9 +387,9 @@ function showModal(selector) {
 }
 
 function hideModal(selector = '.modal.show') {
-  let modal = document.querySelector(selector);
-  let body = document.body;
-  let backdrop = document.querySelector('.modal-backdrop');
+  const modal = document.querySelector(selector);
+  const body = document.body;
+  const backdrop = document.querySelector('.modal-backdrop');
   body.classList.remove('modal-open');
   backdrop.classList.remove('show');
   backdrop.classList.add('hide');

@@ -1,3 +1,5 @@
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // TODO: 5093 taking High-Powered Laser with a vuln (because of taking two)
 // TODO: 4FB5 taking High-Powered Laser with a vuln (because of taking two)
 // TODO: 50D3 Aerial Support: Bombardment going off from add
@@ -5,7 +7,7 @@
 // TODO: 4FF4/4FF5 One of these is failing chemical conflagration
 // TODO: standing in wrong teleporter?? maybe 5363?
 
-[{
+export default {
   zoneId: ZoneId.ThePuppetsBunker,
   damageWarn: {
     'Puppet Aegis Beam Cannons 1': '5074', // rotating separating white ground aoe
@@ -80,4 +82,4 @@
   gainsEffectWarn: {
     'Puppet Burns': '10B', // standing in many various fire aoes
   },
-}];
+};

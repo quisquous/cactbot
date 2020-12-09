@@ -273,6 +273,11 @@ input[type=text] {
   text-align: left;
 }
 
+.trigger-before-seconds > input[type=text] {
+  width: 60px;
+  text-align: left;
+}
+
 .trigger-outputstring > input[type=text] {
   width: 200px;
   text-align: left;

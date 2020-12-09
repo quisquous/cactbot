@@ -1,5 +1,8 @@
+import NetRegexes from '../../../../../resources/netregexes.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // O3N - Deltascape 3.0 Normal
-[{
+export default {
   zoneId: ZoneId.DeltascapeV30,
   damageWarn: {
     'O3N Spellblade Fire III': '2460', // Donut AoE, Halicarnassus
@@ -82,4 +85,4 @@
       },
     },
   ],
-}];
+};

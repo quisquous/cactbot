@@ -1,7 +1,9 @@
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // TODO: failing to interrupt Mana Boost (3D8D)
 // TODO: failing to pass healer debuff?
 // TODO: what happens if you don't kill a meteor during four orbs?
-[{
+export default {
   zoneId: ZoneId.EdensGateResurrectionSavage,
   damageWarn: {
     'E1S Eden\'s Thunder III': '44F7',
@@ -60,4 +62,4 @@
       },
     },
   ],
-}];
+};

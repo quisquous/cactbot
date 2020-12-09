@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Cactbot {
   public class FFXIVProcessIntl : FFXIVProcess {
-    // Last updated for FFXIV 5.2
+    // Last updated for FFXIV 5.4
 
     [StructLayout(LayoutKind.Explicit)]
     public unsafe struct EntityMemory {
@@ -38,7 +38,7 @@ namespace Cactbot {
       [FieldOffset(0xB0)]
       public Single rotation;
 
-      [FieldOffset(0x1898)]
+      [FieldOffset(0x1C4)]
       public CharacterDetails charDetails;
     }
 
@@ -52,28 +52,29 @@ namespace Cactbot {
       public int max_hp;
 
       [FieldOffset(0x08)]
-      public int mp;
+      public short mp;
 
-      [FieldOffset(0x12)]
+      [FieldOffset(0x10)]
       public short gp;
 
-      [FieldOffset(0x14)]
+      [FieldOffset(0x12)]
       public short max_gp;
 
-      [FieldOffset(0x16)]
+      [FieldOffset(0x14)]
       public short cp;
 
-      [FieldOffset(0x18)]
+      [FieldOffset(0x16)]
       public short max_cp;
 
-      [FieldOffset(0x42)]
+      [FieldOffset(0x1E)]
       public EntityJob job;
 
-      [FieldOffset(0x44)]
+      [FieldOffset(0x1F)]
       public byte level;
 
-      [FieldOffset(0x65)]
-      public short shieldPercentage;
+      // TODO: find this again
+      // [FieldOffset(0x65)]
+      // public short shieldPercentage;
     }
     public FFXIVProcessIntl(ILogger logger) : base(logger) { }
 
@@ -198,7 +199,10 @@ namespace Cactbot {
           // This doesn't exist in memory, so just send the right value.
           // As there are other versions that still have it, don't change the event.
           entity.max_mp = 10000;
-          entity.shield_value = mem.charDetails.shieldPercentage * entity.max_hp / 100;
+
+          // TODO: fix me
+          // entity.shield_value = mem.charDetails.shieldPercentage * entity.max_hp / 100;
+          entity.shield_value = 0;
 
           if (IsGatherer(entity.job)) {
             entity.gp = mem.charDetails.gp;

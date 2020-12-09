@@ -26,12 +26,12 @@ class GoogleTTSItem extends TTSItem {
     super();
     this.lang = lang;
     this.text = text;
-    let iframe = document.createElement('iframe');
+    const iframe = document.createElement('iframe');
     // remove sandbox so we can modify contents/call play on audio element later
     iframe.removeAttribute('sandbox');
     iframe.style.display = 'none';
     document.body.appendChild(iframe);
-    let encText = encodeURIComponent(text);
+    const encText = encodeURIComponent(text);
     iframe.contentDocument.body.innerHTML = '<audio src="https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=' + lang + '&q=' + encText + '" id="TTS">';
     this.item = iframe.contentDocument.body.firstElementChild;
   }

@@ -69,7 +69,7 @@ export default class EmulatedPartyInfo extends EventBus {
    * @param {string} timestamp
    */
   updatePartyInfo(emulator, timestamp) {
-    for (let id in this.displayedParty)
+    for (const id in this.displayedParty)
       this.updateCombatantInfo(emulator.currentEncounter, id, timestamp);
   }
 
@@ -89,9 +89,9 @@ export default class EmulatedPartyInfo extends EventBus {
     this.$triggerBar.querySelectorAll('.triggerItem').forEach((n) => {
       n.remove();
     });
-    let membersToDisplay = encounter.encounter.combatantTracker.partyMembers.sort((l, r) => {
-      let a = encounter.encounter.combatantTracker.combatants[l];
-      let b = encounter.encounter.combatantTracker.combatants[r];
+    const membersToDisplay = encounter.encounter.combatantTracker.partyMembers.sort((l, r) => {
+      const a = encounter.encounter.combatantTracker.combatants[l];
+      const b = encounter.encounter.combatantTracker.combatants[r];
       return EmulatedPartyInfo.jobOrder.indexOf(a.job) - EmulatedPartyInfo.jobOrder.indexOf(b.job);
     }).slice(0, 8);
     document.querySelectorAll('.playerTriggerInfo').forEach((n) => {
@@ -99,8 +99,8 @@ export default class EmulatedPartyInfo extends EventBus {
     });
 
     for (let i = 0; i < membersToDisplay.length; ++i) {
-      let id = membersToDisplay[i];
-      let obj = this.getPartyInfoObjectFor(encounter, id);
+      const id = membersToDisplay[i];
+      const obj = this.getPartyInfoObjectFor(encounter, id);
       this.displayedParty[id] = obj;
       this.updateCombatantInfo(encounter, id);
       this.$partyInfo.append(obj.$rootElem);
@@ -114,12 +114,12 @@ export default class EmulatedPartyInfo extends EventBus {
         );
       }
 
-      for (let triggerIndex in encounter.perspectives[id].triggers) {
-        let trigger = encounter.perspectives[id].triggers[triggerIndex];
+      for (const triggerIndex in encounter.perspectives[id].triggers) {
+        const trigger = encounter.perspectives[id].triggers[triggerIndex];
         if (!trigger.status.executed || trigger.resolvedOffset > encounter.encounter.duration)
           continue;
 
-        let $e = this.$triggerItemTemplate.cloneNode(true);
+        const $e = this.$triggerItemTemplate.cloneNode(true);
         $e.style.left = ((trigger.resolvedOffset / encounter.encounter.duration) * 100) + '%';
         this.tooltips.push(new Tooltip($e, 'bottom', trigger.triggerHelper.trigger.id));
         this.triggerBars[i].append($e);
@@ -154,16 +154,16 @@ export default class EmulatedPartyInfo extends EventBus {
     if (stateID <= this.latestDisplayedState)
       return;
 
-    let combatant = encounter.encounter.combatantTracker.combatants[id];
+    const combatant = encounter.encounter.combatantTracker.combatants[id];
     if (!combatant)
       return;
     stateID = stateID || combatant.getState(0);
 
-    let State = combatant.getState(stateID);
+    const State = combatant.getState(stateID);
     if (State === undefined)
       return;
 
-    let hpProg = (State.HP / State.maxHP) * 100;
+    const hpProg = (State.HP / State.maxHP) * 100;
     let hpLabel = State.HP + '/' + State.maxHP;
     hpLabel = EmulatorCommon.spacePadLeft(hpLabel, (State.maxHP.toString().length * 2) + 1);
     this.displayedParty[id].$hpProgElem.ariaValueNow = State.HP;
@@ -171,7 +171,7 @@ export default class EmulatedPartyInfo extends EventBus {
     this.displayedParty[id].$hpProgElem.style.width = hpProg + '%';
     this.displayedParty[id].$hpLabelElem.textContent = hpLabel;
 
-    let mpProg = (State.MP / State.maxMP) * 100;
+    const mpProg = (State.MP / State.maxMP) * 100;
     let mpLabel = State.MP + '/' + State.maxMP;
     mpLabel = EmulatorCommon.spacePadLeft(mpLabel, (State.maxMP.toString().length * 2) + 1);
     this.displayedParty[id].$mpProgElem.ariaValueNow = State.MP;
@@ -181,11 +181,11 @@ export default class EmulatedPartyInfo extends EventBus {
   }
 
   getPartyInfoObjectFor(encounter, id) {
-    let $e = this.$playerInfoRowTemplate.cloneNode(true);
-    let $hp = $e.querySelector('.hp');
-    let $mp = $e.querySelector('.mp');
-    let $name = $e.querySelector('.playerName');
-    let ret = {
+    const $e = this.$playerInfoRowTemplate.cloneNode(true);
+    const $hp = $e.querySelector('.hp');
+    const $mp = $e.querySelector('.mp');
+    const $name = $e.querySelector('.playerName');
+    const ret = {
       $rootElem: $e,
       $iconElem: $e.querySelector('jobicon'),
       $hpElem: $hp,
@@ -199,7 +199,7 @@ export default class EmulatedPartyInfo extends EventBus {
       $triggerElem: this.getTriggerInfoObjectFor(encounter, id),
     };
 
-    let combatant = encounter.encounter.combatantTracker.combatants[id];
+    const combatant = encounter.encounter.combatantTracker.combatants[id];
     ret.$rootElem.classList.add((combatant.job || '').toUpperCase());
     this.tooltips.push(new Tooltip(ret.$rootElem, 'left', combatant.name));
     $name.innerHTML = combatant.name;
@@ -211,31 +211,31 @@ export default class EmulatedPartyInfo extends EventBus {
   }
 
   getTriggerInfoObjectFor(encounter, id) {
-    let $ret = this.$playerTriggerInfoTemplate.cloneNode(true);
-    let $container = $ret.querySelector('.d-flex.flex-column');
+    const $ret = this.$playerTriggerInfoTemplate.cloneNode(true);
+    const $container = $ret.querySelector('.d-flex.flex-column');
 
-    let per = encounter.perspectives[id];
+    const per = encounter.perspectives[id];
 
-    let $initDataViewer = this.$jsonViewerTemplate.cloneNode(true);
+    const $initDataViewer = this.$jsonViewerTemplate.cloneNode(true);
     $initDataViewer.textContent = JSON.stringify(per.initialData, null, 2);
 
     $container.append(this._wrapCollapse('Initial Data', $initDataViewer, () => {
       $initDataViewer.textContent = JSON.stringify(per.initialData, null, 2);
     }));
 
-    let $triggerContainer = $container.querySelector('.d-flex.flex-column');
+    const $triggerContainer = $container.querySelector('.d-flex.flex-column');
 
-    for (let i in per.triggers.sort((l, r) => l.resolvedOffset - r.resolvedOffset)) {
-      let $triggerDataViewer = this.$jsonViewerTemplate.cloneNode(true);
-      let buttonName = this.getTriggerFiredLabelTime(per.triggers[i]) +
+    for (const i in per.triggers.sort((l, r) => l.resolvedOffset - r.resolvedOffset)) {
+      const $triggerDataViewer = this.$jsonViewerTemplate.cloneNode(true);
+      const buttonName = this.getTriggerFiredLabelTime(per.triggers[i]) +
         ' - ' + per.triggers[i].triggerHelper.trigger.id;
-      let $trigger = this._wrapCollapse(buttonName, $triggerDataViewer, () => {
+      const $trigger = this._wrapCollapse(buttonName, $triggerDataViewer, () => {
         $triggerDataViewer.textContent = JSON.stringify(per.triggers[i], null, 2);
       });
-      let $buttonWrapper = $trigger.querySelector('.wrap-collapse-button');
-      let $label = this.$triggerLabelTemplate.cloneNode(true);
-      let $labelText = $label.querySelector('.trigger-label-text');
-      let $labelTime = $label.querySelector('.trigger-label-time');
+      const $buttonWrapper = $trigger.querySelector('.wrap-collapse-button');
+      const $label = this.$triggerLabelTemplate.cloneNode(true);
+      const $labelText = $label.querySelector('.trigger-label-text');
+      const $labelTime = $label.querySelector('.trigger-label-time');
       $labelText.textContent = this.getTriggerLabelText(per.triggers[i]);
       $labelTime.textContent = this.getTriggerResolvedLabelTime(per.triggers[i]);
       $buttonWrapper.append($label);
@@ -249,7 +249,7 @@ export default class EmulatedPartyInfo extends EventBus {
 
     $container.append($triggerContainer);
 
-    let $finalDataViewer = this.$jsonViewerTemplate.cloneNode(true);
+    const $finalDataViewer = this.$jsonViewerTemplate.cloneNode(true);
     $finalDataViewer.textContent = JSON.stringify(per.finalData, null, 2);
 
     $container.append(this._wrapCollapse('Final Data', $finalDataViewer, () => {
@@ -287,10 +287,10 @@ export default class EmulatedPartyInfo extends EventBus {
   }
 
   _wrapCollapse(label, $obj, onclick) {
-    let $ret = this.$wrapCollapseTemplate.cloneNode(true);
-    let $button = $ret.querySelector('.btn');
+    const $ret = this.$wrapCollapseTemplate.cloneNode(true);
+    const $button = $ret.querySelector('.btn');
     $button.textContent = label;
-    let $wrapper = $ret.querySelector('.wrap-collapse-wrapper');
+    const $wrapper = $ret.querySelector('.wrap-collapse-wrapper');
     $button.addEventListener('click', () => {
       if ($wrapper.classList.contains('d-none'))
         $wrapper.classList.remove('d-none');

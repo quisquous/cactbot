@@ -1,4 +1,9 @@
-[{
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.TheNavel,
   timelineFile: 'titan-nm.txt',
   timelineTriggers: [
@@ -38,11 +43,13 @@
           en: 'Break Gaol on ${player}',
           de: 'Zerstöre das Gefängnis von ${player}',
           cn: '石牢点${player}',
+          ko: '${player} 돌감옥 해제',
         },
         gaolOnYou: {
           en: 'Gaol on YOU',
           de: 'Gefängnis auf DIR',
           cn: '石牢点名',
+          ko: '돌감옥 대상자',
         },
       },
     },
@@ -129,4 +136,4 @@
       },
     },
   ],
-}];
+};

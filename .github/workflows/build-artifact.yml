@@ -19,6 +19,7 @@ on:
       - 'util/publish.sh'
       - 'util/DEPS.py'
       - 'util/fetch_deps.py'
+  workflow_dispatch:
 
 jobs:
   msbuild:

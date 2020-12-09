@@ -1,4 +1,6 @@
-[{
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.EdensGateSepulture,
   damageWarn: {
     'E4N Weight of the Land': '40EB',
@@ -14,4 +16,4 @@
     'E4N Seismic Wave': '40F3',
     'E4N Fault Line': '4101',
   },
-}];
+};

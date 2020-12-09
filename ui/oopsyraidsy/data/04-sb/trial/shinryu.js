@@ -1,6 +1,9 @@
+import NetRegexes from '../../../../../resources/netregexes.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
 // Shinryu Normal
 
-[{
+export default {
   zoneId: ZoneId.TheRoyalMenagerie,
   damageWarn: {
     'Shinryu Akh Rhai': '1FA6', // Sky lasers alongside Akh Morn.
@@ -41,5 +44,5 @@
       },
     },
   ],
-}];
+};
 

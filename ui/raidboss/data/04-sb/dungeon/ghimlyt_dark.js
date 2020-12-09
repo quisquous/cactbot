@@ -1,4 +1,9 @@
-[{
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.TheGhimlytDark,
   timelineFile: 'ghimlyt_dark.txt',
   timelineTriggers: [
@@ -12,6 +17,8 @@
           en: 'Avoid wall laser',
           de: 'Weiche dem Wand-Laser aus',
           fr: 'Évitez le laser du mur',
+          cn: '躲避墙壁激光',
+          ko: '벽 레이저 피하기',
         },
       },
     },
@@ -63,11 +70,15 @@
           en: 'Rotate left',
           de: 'Nach links rotieren',
           fr: 'Rotation vers la gauche',
+          cn: '向左转',
+          ko: '왼쪽으로 회전',
         },
         right: {
           en: 'Rotate right',
           de: 'Nach rechts rotieren',
           fr: 'Rotation vers la droite',
+          cn: '向右转',
+          ko: '오른쪽으로 회전',
         },
       },
     },
@@ -427,4 +438,4 @@
       },
     },
   ],
-}];
+};

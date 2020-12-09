@@ -1,4 +1,9 @@
-[{
+import Conditions from '../../../../../resources/conditions.js';
+import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
+import ZoneId from '../../../../../resources/zone_id.js';
+
+export default {
   zoneId: ZoneId.EdensGateInundationSavage,
   timelineFile: 'e3s.txt',
   timelineTriggers: [
@@ -380,12 +385,12 @@
       netRegex: NetRegexes.gainsEffect({ effectId: '73E' }),
       condition: Conditions.targetIsYou(),
       alertText: function(data, matches, output) {
-        let seconds = matches.duration;
+        const seconds = matches.duration;
         if (seconds <= 8)
           return output.knockbackOnYou();
       },
       infoText: function(data, matches, output) {
-        let seconds = matches.duration;
+        const seconds = matches.duration;
         if (seconds <= 8)
           return;
         if (seconds <= 21)
@@ -824,4 +829,4 @@
       },
     },
   ],
-}];
+};
