@@ -5,6 +5,7 @@ import ZoneId from '../../../../../resources/zone_id.js';
 
 // TODO: Add N/S E/W callout to Rejuvenating Balm
 // TODO: Add Summon
+// TODO: Second, Third Art of Darknesses
 
 export default {
   zoneId: ZoneId.EdensPromiseUmbraSavage,
@@ -201,28 +202,6 @@ export default {
       response: Responses.goSides(),
     },
     {
-      id: 'E9S The Second Art Of Darkness Right -> Stacks',
-      netRegex: NetRegexes.startsUsing({ id: '5601', source: 'Cloud Of Darkness', capture: false }),
-      durationSeconds: 10,
-      alertText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Left -> Stacks',
-        },
-      },
-    },
-    {
-      id: 'E9S The Second Art Of Darkness Left -> Stacks',
-      netRegex: NetRegexes.startsUsing({ id: '5602', source: 'Cloud Of Darkness', capture: false }),
-      durationSeconds: 10,
-      alertText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Right -> Stacks',
-        },
-      },
-    },
-    {
       id: 'E9S Wide-Angle Phaser Unlimited Sides',
       netRegex: NetRegexes.startsUsing({ id: '560[DE]', source: 'Cloud Of Darkness', capture: false }),
       delaySeconds: 2,
@@ -337,17 +316,6 @@ export default {
       response: Responses.bigAoe('alert'),
       run: (data) => {
         delete data.phase;
-      },
-    },
-    {
-      id: 'E9S The Third Art Of Darkness Right -> Protean -> Left',
-      netRegex: NetRegexes.startsUsing({ id: '5603', source: 'Cloud Of Darkness', capture: false }),
-      durationSeconds: 18,
-      alertText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Left -> Protean -> Right',
-        },
       },
     },
     {
