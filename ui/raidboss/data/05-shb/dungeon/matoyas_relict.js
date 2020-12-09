@@ -61,10 +61,10 @@ export default {
     },
     {
       id: 'Matoyas Nixie Crash-smash',
-      netRegex: NetRegexes.startsUsing({ id: '598F', source: 'Nixie', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '598F', source: 'Nixchen', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '598F', source: 'nixe', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '598F', source: 'ノッケン', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '598F', source: 'Nixie' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '598F', source: 'Nixchen' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '598F', source: 'nixe' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '598F', source: 'ノッケン' }),
       condition: Conditions.targetIsNotYou(),
       alertText: (data, _, output) => output.avoidTether(),
       outputStrings: {
