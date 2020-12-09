@@ -106,8 +106,8 @@ export default {
     {
       id: 'E10S Shadowkeeper 1',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5720', capture: false }),
-      alertText: (data, _, output) => output.text(),
       suppressSeconds: 99999,
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Drop Shadow Max Melee',
