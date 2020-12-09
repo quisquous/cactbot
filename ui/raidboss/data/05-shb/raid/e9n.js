@@ -105,6 +105,7 @@ export default {
         text: {
           en: 'Wait Near Bramble',
           de: 'Warte in der Nähe des Dornenstrauch',
+          fr: 'Attendez près des ronces',
         },
       },
     },
@@ -130,6 +131,7 @@ export default {
         text: {
           en: 'Go Sides At Tethered Wall',
           de: 'Geh seitlich der verundenen Wände',
+          fr: 'Sur les côtés du mur lié',
         },
       },
     },
@@ -147,6 +149,7 @@ export default {
         text: {
           en: 'Away From Tethered Walls',
           de: 'Weg von den verbundenen Wänden',
+          fr: 'Loin du mur lié',
         },
       },
     },
