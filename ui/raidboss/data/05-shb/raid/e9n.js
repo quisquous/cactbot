@@ -82,12 +82,7 @@ export default {
       netRegex: NetRegexes.headMarker({ id: '000C' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 3,
-      alertText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Away From Bramble',
-        },
-      },
+      response: Responses.breakChains(),
     },
     {
       id: 'E9N Wide-Angle Phaser',
