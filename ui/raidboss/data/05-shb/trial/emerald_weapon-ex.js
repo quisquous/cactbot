@@ -26,7 +26,7 @@ export default {
     {
       id: 'EmeraldEx Divide Et Impera P1',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '555B', capture: false }),
-      alertText: (data) => {
+      alertText: (data, _, output) => {
         if (data.role === 'tank') return output.sharedTankStack();
       return output.spread();
       },
@@ -70,7 +70,6 @@ export default {
     {
       id: 'EmeraldEx Sidescathe Left',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55D5', capture: false }),
-      alertText: (data, _, output) => output.text(),
       response: Responses.goLeft(),
     },
     {
