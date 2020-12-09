@@ -64,6 +64,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Wait Near Bramble',
+          fr: 'Attendez près des ronces',
         },
       },
     },
@@ -83,6 +84,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Go Sides At Tethered Wall',
+          fr: 'Sur les côtés du mur lié',
         },
       },
     },
@@ -94,6 +96,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Away From Tethered Walls',
+          fr: 'Loin du mur lié',
         },
       },
     },
