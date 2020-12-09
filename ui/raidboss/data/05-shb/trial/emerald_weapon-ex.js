@@ -31,6 +31,20 @@ export default {
           return output.sharedTankStack();
         return output.spread();
       },
+      outputStrings: {
+        spread: {
+          en: 'Spread',
+          de: 'Verteilen',
+          fr: 'Ecartez-vous',
+          ja: '散開',
+          cn: '分散',
+          ko: '산개',
+        },
+        sharedTankStack: {
+          en: 'Tank stack',
+          cn: '坦克分摊',
+        },
+      },
     },
     {
       id: 'EmeraldEx Divide Et Impera P2',
