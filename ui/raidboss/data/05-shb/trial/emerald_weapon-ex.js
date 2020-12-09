@@ -55,7 +55,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Go sides, aim across',
-          cn: '靠边',
+          cn: '靠边，注意箭头朝向',
         },
       },
     },
