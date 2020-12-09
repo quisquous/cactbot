@@ -6984,6 +6984,7 @@ export default {
     'contentType': 16,
     'exVersion': 1,
     'name': {
+      'cn': '天上福地云冠群岛',
       'de': 'Das Diadem - Erschließung',
       'en': 'The Diadem',
       'fr': 'Le Diadème',
