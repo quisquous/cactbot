@@ -131,7 +131,7 @@ export default {
         text: {
           en: 'Go Sides At Tethered Wall',
           de: 'Geh seitlich der verundenen Wände',
-          fr: 'Sur les côtés du mur lié',
+          fr: 'Allez vers les côtés du mur lié',
         },
       },
     },
@@ -149,7 +149,7 @@ export default {
         text: {
           en: 'Away From Tethered Walls',
           de: 'Weg von den verbundenen Wänden',
-          fr: 'Loin du mur lié',
+          fr: 'Éloignez-vous des murs liés',
         },
       },
     },
@@ -180,7 +180,7 @@ export default {
         text: {
           en: 'Get Towers',
           de: 'Türme nehmen',
-          fr: 'Allez dans les tours',
+          fr: 'Prenez les tours',
           ja: '塔を踏む',
           cn: '踩塔',
           ko: '장판 들어가기',
