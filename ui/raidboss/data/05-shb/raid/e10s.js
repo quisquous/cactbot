@@ -3,6 +3,8 @@ import NetRegexes from '../../../../../resources/netregexes.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
+// TODO: could use giga slash "get in" here for four slashes
+
 export default {
   zoneId: ZoneId.EdensPromiseLitanySavage,
   timelineFile: 'e10s.txt',
@@ -13,14 +15,51 @@ export default {
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
-    // TODO: back front implosion??
-    // 56F0 is be on shadow, 56F3 is be away from shadow
+    {
+      id: 'E10S Implosion Howl',
+      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56F0', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Shadow Side',
+        },
+      },
+    },
+    {
+      id: 'E10S Implosion Tail',
+      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56F3', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Opposite Shadow',
+        },
+      },
+    },
     {
       id: 'E10S Throne Of Shadow',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5717', capture: false }),
       response: Responses.getOut('alert'),
     },
-    // TODO: giga slash from shadow
+    {
+      id: 'E10S Giga Slash Shadow Single Left',
+      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56EA', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go Left of Shadow',
+        },
+      },
+    },
+    {
+      id: 'E10S Giga Slash Shadow Single Right',
+      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56ED', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go Right of Shadow',
+        },
+      },
+    },
     {
       id: 'E10S Umbra Smash',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5BAA' }),
@@ -58,6 +97,26 @@ export default {
       // Cast on self, with no player target.
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5B0C' }),
       response: Responses.tankCleave(),
+    },
+    {
+      id: 'E10S Giga Slash Shadow Drop Right',
+      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '52BC', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Cleaving Right',
+        },
+      },
+    },
+    {
+      id: 'E10S Giga Slash Shadow Drop Left',
+      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '52BD', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Cleaving Left',
+        },
+      },
     },
     {
       id: 'E10S Shadow Cleave',
@@ -120,7 +179,6 @@ export default {
       suppressSeconds: 3,
       response: Responses.getUnder(),
     },
-    // TODO: giga slash headmarkers? tethers?
     {
       id: 'E10S Distant Scream',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5716', capture: false }),
@@ -173,7 +231,30 @@ export default {
         },
       },
     },
-    // TODO: could use giga slash "get in" here for four slashes
+    {
+      // TODO: I saw once a 5700 then 5702 for the second implosion at 452.7
+      // TODO: are the double implosions always the same??
+      id: 'E10S Quadruple Implosion Howl',
+      netRegex: NetRegexes.ability({ source: 'Shadowkeeper', id: '56FC', capture: false }),
+      durationSeconds: 6,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Shadow Side',
+        },
+      },
+    },
+    {
+      id: 'E10S Quadruple Implosion Tail',
+      netRegex: NetRegexes.ability({ source: 'Shadowkeeper', id: '5700', capture: false }),
+      durationSeconds: 6,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Opposite Shadow',
+        },
+      },
+    },
     {
       id: 'E10S Voidgate',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5734', capture: false }),
