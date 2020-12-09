@@ -49,6 +49,17 @@ export default {
       response: Responses.aoe(),
     },
     {
+      id: 'Matoyas Mudman Falling Rock',
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      response: Responses.stackMarkerOn(),
+    },
+    {
+      id: 'Matoyas Mudman Sputter',
+      netRegex: NetRegexes.headMarker({ id: '008B' }),
+      condition: Conditions.targetIsYou(),
+      response: Responses.spread(),
+    },
+    {
       id: 'Matoyas Nixie Crash-smash',
       netRegex: NetRegexes.startsUsing({ id: '598F', source: 'Nixie', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '598F', source: 'Nixchen', capture: false }),
