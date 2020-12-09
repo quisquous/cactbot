@@ -101,15 +101,5 @@ export default {
         },
       },
     },
-    {
-      id: 'EmeraldEx Photon Burst',
-      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5594', capture: false }),
-      infoText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          cn: '注意地雷正负极(正正扩散，正负融合)',
-        },
-      },
-    },
   ],
 };
