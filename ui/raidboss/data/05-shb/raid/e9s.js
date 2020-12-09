@@ -298,7 +298,7 @@ export default {
       alertText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
-          en: 'Point Face Laser Out',
+          en: 'Face Laser Out',
         },
       },
     },
