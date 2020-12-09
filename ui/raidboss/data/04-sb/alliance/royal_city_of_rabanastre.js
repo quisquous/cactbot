@@ -541,7 +541,7 @@ export default {
         'Hole In One': '去BOSS脚下',
         'Ice Cone Phase': '引导冰块阶段',
         '(?<! )Judgment(?! )': '制裁',
-        'Judgment Blade': '不动无明剑	',
+        'Judgment Blade': '不动无明剑',
         'Landwaster': '地动',
         'Line AOEs': '直线AOE',
         'Maverick': '特立独行',
