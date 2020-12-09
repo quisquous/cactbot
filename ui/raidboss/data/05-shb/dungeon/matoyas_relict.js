@@ -13,9 +13,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ id: '547F', source: 'Matschmann' }),
       netRegexFr: NetRegexes.startsUsing({ id: '547F', source: 'tadboue' }),
       netRegexJa: NetRegexes.startsUsing({ id: '547F', source: 'マッドマン' }),
-      condition: function(data, matches) {
-        return data.me === matches.target || data.role === 'healer';
-      },
+      condition: Conditions.caresAboutMagical(),
       response: Responses.tankBuster(),
     },
     {
