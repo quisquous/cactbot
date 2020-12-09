@@ -70,7 +70,7 @@ export default {
       },
     },
     {
-      id: 'Full-Power Optimized Ultima',
+      id: 'CastrumEx Full-Power Optimized Ultima',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5B17', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
