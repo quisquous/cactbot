@@ -60,7 +60,7 @@ export default {
       },
     },
     {
-      id: 'CastrumEx Sidescathe',
+      id: 'CastrumEx Sidescathe Left',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55D5', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -80,7 +80,7 @@ export default {
       },
     },
     {
-      id: 'CastrumEx Sidescathe',
+      id: 'CastrumEx Sidescathe Right',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55D4', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -110,7 +110,7 @@ export default {
       },
     },
     {
-      id: 'Magitek Magnetism',
+      id: 'CastrumEx Magitek Magnetism',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '555B', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
