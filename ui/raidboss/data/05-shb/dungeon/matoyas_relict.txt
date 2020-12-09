@@ -1,0 +1,59 @@
+### Matoya's Relict
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0 "--Reset--" sync /00:0839:.*is no longer sealed/ window 100000 jump 0
+
+### Mudman
+# -p 547F:1011
+# -ii 368 5481 5487 548E 548F 5490 5492
+1000.0 "--sync--" sync /00:0839:Clayclot Cauldron will be sealed off/ window 1000,0
+# Loop
+1011.0 "Hard Rock" sync /:Mudman:547F:/ duration 6 window 0,70
+1020.2 "Petrified Peat" sync /:Mudman:5480:/
+1032.3 "Peat Pelt" sync /:Mudman:5482:/
+1041.4 "Rocky Roll" sync /:Mud Bubble:548[34]:/
+1050.7 "Brittle Breccia" sync /:Mudman:548D:/
+1051.1 "Rocky Roll" sync /:Mud Bubble:548[35]:/
+1066.7 "Stone Age" sync /:Mudman:5491:/ duration 5
+
+
+### Nixie
+# -p 598F:2009.2
+# -ii 598E 5990 5992 5993 5994 5995 5996 5BB9
+2000.0 "--sync--" sync /00:0839:Clearnote Cauldron will be sealed off/ window 2000,0
+
+2009.2 "Crash-Smash" sync /:Nixie:598F:/ duration 6
+2023.4 "Shower Power" sync /:Nixie:5991:/
+2044.1 "Pitter-Patter" sync /:Nixie:5988:/
+2072.2 "Sea Shanty" sync /:Nixie:598[AC]:/
+2092.4 "Shower Power" sync /:Nixie:5991:/
+2110.5 "Crash-Smash" sync /:Nixie:598F:/ duration 6
+2130.7 "Shower Power" sync /:Nixie:5991:/
+2134.9 "Splish-Splash" sync /:Nixie:598D:/
+2160.0 "Shower Power" sync /:Nixie:5991:/
+
+### Mother Pirxie
+# -p 5913:3010.0
+# -ii 368 4A8F 5912 5914 5917 5918 591E 591F 5923 5925
+3000.0 "--sync--" sync /00:0839:Woebegone Workshop will be sealed off/ window 3000,0
+
+3010.0 "Tender Loin" sync /:Mother Porxie:5913:/
+3028.2 "Huff And Puff" sync /:Mother Porxie:5919:/
+3030.3 "Medium Rear" sync /:Mother Porxie:591D:/
+3044.4 "Meat Mallet" sync /:Mother Porxie:5916:/
+3049.3 "Barbeque" sync /:Mother Porxie:5B23:/
+3071.5 "To A Crisp" sync /:Mother Porxie:5924:/
+3085.6 "Minced Meat" sync /:Mother Porxie:5911:/ duration 6
+3101.9 "Buffet" sync /:Aeolian Cave Sprite:5926:/
+3107.2 "Buffet" sync /:Aeolian Cave Sprite:5926:/
+3111.8 "Explosion" sync /:Aeolian Cave Sprite:4E34:/
+3122.9 "Huff And Puff" sync /:Mother Porxie:591B:/
+3125.0 "Medium Rear" sync /:Mother Porxie:591D:/
+3141.2 "Open Flame" sync /:Mother Porxie:5922:/
+3153.3 "Minced Meat" sync /:Mother Porxie:5911:/ duration 6
+3165.4 "Tender Loin" sync /:Mother Porxie:5913:/
+3179.5 "Tender Loin" sync /:Mother Porxie:5913:/
+3199.0 "Huff And Puff" sync /:Mother Porxie:5919:/
+3201.1 "Medium Rear" sync /:Mother Porxie:591D:/
