@@ -42,7 +42,7 @@ export default {
     {
       id: 'CastrumEx Primus Terminus Est',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55C3', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           cn: '靠边',
@@ -53,7 +53,7 @@ export default {
     {
       id: 'CastrumEx Tertius Terminus est',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55CC', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           cn: '注意落剑顺序',
@@ -73,7 +73,7 @@ export default {
     {
       id: 'Full-Power Optimized Ultima',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5B17', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           cn: '凉凉',
@@ -83,7 +83,7 @@ export default {
     {
       id: 'CastrumEx Sidescathe',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55D4', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           cn: '右（看翅膀）',
@@ -93,7 +93,7 @@ export default {
     {
       id: 'CastrumEx Secundus Terminus est',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55C8', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           cn: '靠边放剑(十字四角)',
@@ -103,7 +103,7 @@ export default {
     {
       id: 'CastrumEx Legio Phantasmatis',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55B4', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           cn: '注意士兵顺序，结束返回中央',
@@ -113,7 +113,7 @@ export default {
     {
       id: 'Magitek Magnetism',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '555B', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           cn: '注意地雷正负极(正正扩散，正负融合)',
