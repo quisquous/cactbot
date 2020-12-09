@@ -76,16 +76,6 @@ export default {
       response: Responses.goLeft(),
     },
     {
-      id: 'EmeraldEx Full-Power Optimized Ultima',
-      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5B17', capture: false }),
-      infoText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          cn: '凉凉',
-        },
-      },
-    },
-    {
       id: 'EmeraldEx Sidescathe Right',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55D4', capture: false }),
       response: Responses.goRight(),
