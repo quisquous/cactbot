@@ -169,20 +169,20 @@ export default {
       delaySeconds: 7,
       alarmText: function(data, _, output) {
         if (data.role === 'tank')
-          return output.stayOut();
+          return output.tankSpread();
       },
       alertText: function(data, _, output) {
         if (data.role !== 'tank')
           return output.healerStacks();
       },
       outputStrings: {
-        stayOut: {
-          en: 'Stay Out',
-          de: 'Draußen stehen',
-          fr: 'Restez éloigné',
-          ja: 'ライトニングを外に安置',
-          cn: '外侧放雷',
-          ko: '바깥에 있기',
+        tankSpread: {
+          en: 'Tank Spread',
+          de: 'Tanks verteilen',
+          fr: 'Tanks, dispersez-vous',
+          ja: 'タンクは外に',
+          cn: '坦克散开',
+          ko: '탱 산개',
         },
         healerStacks: {
           en: 'Healer Stacks',
@@ -347,18 +347,6 @@ export default {
       outputStrings: {
         text: {
           en: 'Left -> Protean -> Right',
-        },
-      },
-    },
-    {
-      // TODO: Unconfirmed
-      id: 'E9S The Third Art Of Darkness Left -> Protean -> Right',
-      netRegex: NetRegexes.startsUsing({ id: '5604', source: 'Cloud Of Darkness', capture: false }),
-      durationSeconds: 18,
-      alertText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Right -> Protean -> Left',
         },
       },
     },
