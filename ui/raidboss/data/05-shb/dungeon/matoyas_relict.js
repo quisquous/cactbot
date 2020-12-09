@@ -102,8 +102,8 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ id: '5913', source: 'Muttersau', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5913', source: 'mère porxie', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5913', source: 'マザーポークシー', capture: false }),
-      delaySeconds: 3,
       condition: Conditions.caresAboutAOE(),
+      delaySeconds: 3,
       response: Responses.aoe(),
     },
     {
