@@ -214,9 +214,9 @@ export default {
       durationSeconds: 15,
       preRun: (data) => {
         if (data.role === 'tank')
-          data.phaserOutputs = ['out', 'tankLaser', 'sides'];
+          data.phaserOutputs = ['sides', 'tankLaser', 'out'];
         else
-          data.phaserOutputs = ['out', 'healerStacks', 'sides'];
+          data.phaserOutputs = ['sides', 'healerStacks', 'out'];
       },
       alertText: (data, _, output) => data.phaserOutputs.map((key) => output[key]()).join(' -> '),
       outputStrings: phaserOutputStrings,
