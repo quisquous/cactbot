@@ -27,9 +27,7 @@ export default {
       id: 'EmeraldEx Divide Et Impera P1',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '555B', capture: false }),
       alertText: (data) => {
-        if (data.role === 'tank') {
-          return output.sharedTankStack();
-        }
+        if (data.role === 'tank') return output.sharedTankStack();
       return output.spread();
       },
     },
