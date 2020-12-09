@@ -102,8 +102,8 @@ export default {
       },
     },
     {
-      id: 'EmeraldEx Magitek Magnetism',
-      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '555B', capture: false }),
+      id: 'EmeraldEx Photon Burst',
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5594', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
