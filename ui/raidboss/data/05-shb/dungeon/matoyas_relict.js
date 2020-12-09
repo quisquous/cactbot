@@ -65,9 +65,9 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ id: '598F', source: 'Nixchen', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '598F', source: 'nixe', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '598F', source: 'ノッケン', capture: false }),
-      alertText: (data, _, output) => output.awayFrom(),
+      alertText: (data, _, output) => output.avoidTether(),
       outputStrings: {
-        awayFrom: {
+        avoidTether: {
           en: 'Avoid tank and tethers',
           ja: 'タンクや線に離れ',
           cn: '远离坦克及其连线',
@@ -80,9 +80,9 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ id: '5991', source: 'Nixchen', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5991', source: 'nixe', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5991', source: 'ノッケン', capture: false }),
-      alertText: (data, _, output) => output.moveTo(),
+      alertText: (data, _, output) => output.avoidWall(),
       outputStrings: {
-        moveTo: {
+        avoidWall: {
           en: 'Avoid Wall Flush',
           ja: '光ってない横列に移動',
           cn: '站在墙壁未发光的一列',
@@ -121,9 +121,9 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ id: '5919', source: 'Muttersau', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5919', source: 'mère porxie', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5919', source: 'マザーポークシー', capture: false }),
-      alertText: (data, _, output) => output.standFront(),
+      alertText: (data, _, output) => output.getKnocked(),
       outputStrings: {
-        standFront: {
+        getKnocked: {
           en: 'Get Knocked into Safe (no anti-knockback)',
           ja: 'ボスの正面に (堅実魔効かない)',
           cn: '站在Boss正面 (防击退无效)',
@@ -189,9 +189,9 @@ export default {
       netRegexFr: NetRegexes.ability({ id: '4E34', source: 'élémentaire des cavernes venteuses', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '4E34', source: 'ウィンドケイブ・スプライト', capture: false }),
       delaySeconds: 2,
-      alertText: (data, _, output) => output.move(),
+      alertText: (data, _, output) => output.goBoss(),
       outputStrings: {
-        move: {
+        goBoss: {
           en: 'Go to Boss',
           ja: 'ボスの居場所に移動',
           cn: '站在Boss正下方',
