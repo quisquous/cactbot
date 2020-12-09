@@ -1271,7 +1271,8 @@ export default {
     {
       'locale': 'cn',
       'replaceSync': {
-        'Exdeath': '艾克斯迪司',
+        '(?<! )Exdeath': '艾克斯迪司',
+        'Neo Exdeath': '新生艾克斯迪司',
       },
       'replaceText': {
         '--Acceleration Bomb Resolves--': '--加速度炸弹处理--',
@@ -1300,14 +1301,15 @@ export default {
         'Grand Cross Alpha': '大十字·阿尔法',
         'Grand Cross Delta': '大十字·德尔塔',
         'Grand Cross Omega': '大十字·欧米茄',
-        'HP Down Debuff': 'HP下降Debuff',
         'Holy': '神圣',
+        'HP Down Debuff': '血量上限降低Debuff',
         'Knockback': '击退',
         'Light and Darkness': '光与暗',
         'Meteor': '陨石',
         'Neverwhere': '规律崩坏',
         'Random Elemental': '随机元灵',
         'Thunder III': '暴雷',
+        'T/H': 'T/奶',
         'Vacuum Wave': '真空波',
         'Water': '流水',
         'White Hole': '白洞',
