@@ -121,7 +121,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ id: '5919', source: 'Muttersau', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5919', source: 'mère porxie', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5919', source: 'マザーポークシー', capture: false }),
-      alarmText: (data, _, output) => output.standFront(),
+      alertText: (data, _, output) => output.standFront(),
       outputStrings: {
         standFront: {
           en: 'Get Knocked into Safe (no anti-knockback)',
@@ -136,7 +136,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ id: '5916', source: 'Muttersau', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5916', source: 'mère porxie', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5916', source: 'マザーポークシー', capture: false }),
-      alarmText: (data, _, output) => output.awayFromAoe(),
+      alertText: (data, _, output) => output.awayFromAoe(),
       outputStrings: {
         awayFromAoe: {
           en: 'Away From AoE',
@@ -189,7 +189,7 @@ export default {
       netRegexFr: NetRegexes.ability({ id: '4E34', source: 'élémentaire des cavernes venteuses', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '4E34', source: 'ウィンドケイブ・スプライト', capture: false }),
       delaySeconds: 2,
-      alarmText: (data, _, output) => output.move(),
+      alertText: (data, _, output) => output.move(),
       outputStrings: {
         move: {
           en: 'Go to Boss',
