@@ -116,7 +116,7 @@ export default {
       outputStrings: {
         standFront: {
           en: 'Stand in front of Boss (anti-knockback not usable)',
-          ja: 'ボスの正面に (堅実魔無効)',
+          ja: 'ボスの正面に (堅実魔効かない)',
           cn: '站在Boss正面 (防击退无效)',
         },
       },
