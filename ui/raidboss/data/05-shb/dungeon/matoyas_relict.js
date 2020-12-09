@@ -170,9 +170,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ id: '5911', source: 'Muttersau' }),
       netRegexFr: NetRegexes.startsUsing({ id: '5911', source: 'mère porxie' }),
       netRegexJa: NetRegexes.startsUsing({ id: '5911', source: 'マザーポークシー' }),
-      condition: function(data, matches) {
-        return data.me === matches.target || data.role === 'healer';
-      },
+      condition: Conditions.caresAboutMagical(),
       response: Responses.tankBuster(),
     },
     {
