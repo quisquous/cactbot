@@ -45,16 +45,6 @@ export default {
       response: Responses.aoe(),
     },
     {
-      id: 'E9N Mire Of Despair',
-      netRegex: NetRegexes.startsUsing({ id: '5B07', source: 'Cloud Of Darkness', capture: false }),
-      infoText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Out from Under',
-        },
-      },
-    },
-    {
       id: 'E9N Obscure Woods',
       netRegex: NetRegexes.startsUsing({ id: '4FA2', source: 'Cloud Of Darkness', capture: false }),
       condition: Conditions.caresAboutAOE(),
