@@ -6,6 +6,49 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // TODO: Add N/S E/W callout to Rejuvenating Balm
 // TODO: Add Summon
 // TODO: Second, Third Art of Darknesses
+// TODO: Add individual callouts for Phaser Unlimited actions as they're casting
+
+const phaserOutputStrings = {
+  sides: {
+    en: 'Sides',
+    de: 'Seiten',
+    fr: 'Côtés',
+    ja: '横へ',
+    ko: '양옆으로',
+    cn: '去侧面',
+  },
+  out: {
+    en: 'Out',
+    de: 'Raus',
+    ja: '外へ',
+    fr: 'Exterieur',
+    cn: '远离',
+    ko: '밖으로',
+  },
+  healerStacks: {
+    en: 'Healer Stacks',
+    de: 'Bei den Heilern sammeln',
+    fr: 'Packages sur les heals',
+    ja: 'ヒーラーに集合',
+    cn: '治疗集合',
+    ko: '힐러 모이기',
+  },
+  tankSpread: {
+    en: 'Tank Spread',
+    de: 'Tanks verteilen',
+    fr: 'Tanks, dispersez-vous',
+    ja: 'タンクは外に',
+    cn: '坦克散开',
+    ko: '탱 산개',
+  },
+  tankLaser: {
+    en: 'Laser on YOU',
+    de: 'Laser auf DIR',
+    fr: 'Laser sur VOUS',
+    cn: '激光点名',
+    ko: '레이저 대상자',
+  },
+};
 
 export default {
   zoneId: ZoneId.EdensPromiseUmbraSavage,
@@ -153,101 +196,30 @@ export default {
       response: Responses.breakChains(),
     },
     {
-      id: 'E9S Anti-Air Phaser Unlimited Out',
+      id: 'E9S Anti-Air Phaser Unlimited List',
       netRegex: NetRegexes.startsUsing({ id: '561[23]', source: 'Cloud Of Darkness', capture: false }),
-      delaySeconds: 1,
-      durationSeconds: 6,
-      alertText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Go Tethered Wall Then Out',
-        },
-      },
-    },
-    {
-      id: 'E9S Anti-Air Phaser Unlimited Soaks',
-      netRegex: NetRegexes.startsUsing({ id: '561[23]', source: 'Cloud Of Darkness', capture: false }),
-      delaySeconds: 7,
-      alarmText: function(data, _, output) {
+      durationSeconds: 15,
+      preRun: (data) => {
         if (data.role === 'tank')
-          return output.tankSpread();
+          data.phaserOutputs = ['out', 'tankSpread', 'sides'];
+        else
+          data.phaserOutputs = ['out', 'healerStacks', 'sides'];
       },
-      alertText: function(data, _, output) {
-        if (data.role !== 'tank')
-          return output.healerStacks();
-      },
-      outputStrings: {
-        tankSpread: {
-          en: 'Tank Spread',
-          de: 'Tanks verteilen',
-          fr: 'Tanks, dispersez-vous',
-          ja: 'タンクは外に',
-          cn: '坦克散开',
-          ko: '탱 산개',
-        },
-        healerStacks: {
-          en: 'Healer Stacks',
-          de: 'Bei den Heilern sammeln',
-          fr: 'Packages sur les heals',
-          ja: 'ヒーラーに集合',
-          cn: '治疗集合',
-          ko: '힐러 모이기',
-        },
-      },
+      alertText: (data, _, output) => data.phaserOutputs.map((key) => output[key]()).join(' -> '),
+      outputStrings: phaserOutputStrings,
     },
     {
-      id: 'E9S Anti-Air Phaser Unlimited Sides',
-      netRegex: NetRegexes.startsUsing({ id: '561[23]', source: 'Cloud Of Darkness', capture: false }),
-      delaySeconds: 11,
-      response: Responses.goSides(),
-    },
-    {
-      id: 'E9S Wide-Angle Phaser Unlimited Sides',
+      id: 'E9S Wide-Angle Phaser Unlimited List',
       netRegex: NetRegexes.startsUsing({ id: '560[DE]', source: 'Cloud Of Darkness', capture: false }),
-      delaySeconds: 2,
-      durationSeconds: 5,
-      alertText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Go Tethered Wall Then Sides',
-        },
-      },
-    },
-    {
-      id: 'E9S Wide-Angle Phaser Unlimited Laser',
-      netRegex: NetRegexes.startsUsing({ id: '560[DE]', source: 'Cloud Of Darkness', capture: false }),
-      delaySeconds: 8,
-      alarmText: function(data, _, output) {
+      durationSeconds: 15,
+      preRun: (data) => {
         if (data.role === 'tank')
-          return output.tankLaser();
+          data.phaserOutputs = ['out', 'tankLaser', 'sides'];
+        else
+          data.phaserOutputs = ['out', 'healerStacks', 'sides'];
       },
-      alertText: function(data, _, output) {
-        if (data.role !== 'tank')
-          return output.healerStacks();
-      },
-      outputStrings: {
-        tankLaser: {
-          en: 'Laser on YOU',
-          de: 'Laser auf DIR',
-          fr: 'Laser sur VOUS',
-          cn: '激光点名',
-          ko: '레이저 대상자',
-        },
-        healerStacks: {
-          en: 'Healer Stacks',
-          de: 'Bei den Heilern sammeln',
-          fr: 'Packages sur les heals',
-          ja: 'ヒーラーに集合',
-          cn: '治疗集合',
-          ko: '힐러 모이기',
-        },
-      },
-    },
-    {
-      id: 'E9S Wide-Angle Phaser Unlimited Out',
-      netRegex: NetRegexes.startsUsing({ id: '560[DE]', source: 'Cloud Of Darkness', capture: false }),
-      delaySeconds: 12,
-      response: Responses.getOut(),
+      alertText: (data, _, output) => data.phaserOutputs.map((key) => output[key]()).join(' -> '),
+      outputStrings: phaserOutputStrings,
     },
     {
       id: 'E9S Empty Plane',
