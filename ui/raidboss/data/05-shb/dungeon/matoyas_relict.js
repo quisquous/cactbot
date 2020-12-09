@@ -57,7 +57,7 @@ export default {
       alertText: (data, _, output) => output.awayFrom(),
       outputStrings: {
         awayFrom: {
-          en: 'Away from Tank and his Tether',
+          en: 'Avoid tank and tethers',
           ja: 'タンクや線に離れ',
           cn: '远离坦克及其连线',
         },
@@ -72,7 +72,7 @@ export default {
       alertText: (data, _, output) => output.moveTo(),
       outputStrings: {
         moveTo: {
-          en: 'Move to ...',
+          en: 'Avoid Wall Flush',
           ja: '光ってない横列に移動',
           cn: '站在墙壁未发光的一列',
         },
@@ -113,7 +113,7 @@ export default {
       alarmText: (data, _, output) => output.standFront(),
       outputStrings: {
         standFront: {
-          en: 'Stand in front of Boss (anti-knockback not usable)',
+          en: 'Get Knocked into Safe (no anti-knockback)',
           ja: 'ボスの正面に (堅実魔効かない)',
           cn: '站在Boss正面 (防击退无效)',
         },
@@ -181,9 +181,9 @@ export default {
       alarmText: (data, _, output) => output.move(),
       outputStrings: {
         move: {
-          en: 'Remember where Boss is and move there quickly',
+          en: 'Go to Boss',
           ja: 'ボスの居場所に移動',
-          cn: '升空时记住Boss的位置然后迅速靠近',
+          cn: '站在Boss正下方',
         },
       },
     },
@@ -196,4 +196,5 @@ export default {
       response: Responses.spread(),
     },
   ],
+  timelineReplace: [],
 };
