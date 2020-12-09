@@ -334,7 +334,7 @@ export default {
       netRegex: NetRegexes.startsUsing({ id: '55F1', source: 'Cloud Of Darkness', capture: false }),
       condition: Conditions.caresAboutAOE(),
       durationSeconds: 5,
-      response: Responses.aoe('alert'),
+      response: Responses.bigAoe('alert'),
       run: (data) => {
         delete data.phase;
       },
