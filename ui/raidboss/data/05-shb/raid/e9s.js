@@ -118,7 +118,7 @@ export default {
       response: Responses.aoe(),
     },
     {
-      id: 'E9N Flood Of Obscurity',
+      id: 'E9S Flood Of Obscurity',
       netRegex: NetRegexes.startsUsing({ id: '5907', source: 'Cloud Of Darkness', capture: false }),
       delaySeconds: 3,
       infoText: (data, _, output) => output.text(),
@@ -275,10 +275,10 @@ export default {
       netRegex: NetRegexes.startsUsing({ id: '55EF', source: 'Cloud Of Darkness', capture: false }),
       condition: Conditions.caresAboutAOE(),
       durationSeconds: 5,
+      response: Responses.aoe(),
       run: (data) => {
         data.phase = 'empty';
       },
-      response: Responses.aoe(),
     },
     {
       id: 'E9S Flood Of Emptiness',
@@ -334,10 +334,10 @@ export default {
       netRegex: NetRegexes.startsUsing({ id: '55F1', source: 'Cloud Of Darkness', capture: false }),
       condition: Conditions.caresAboutAOE(),
       durationSeconds: 5,
+      response: Responses.aoe('alert'),
       run: (data) => {
         delete data.phase;
       },
-      response: Responses.aoe('alert'),
     },
     {
       id: 'E9S The Third Art Of Darkness Right -> Protean -> Left',
