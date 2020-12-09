@@ -198,26 +198,26 @@ export default {
     {
       id: 'E9S Anti-Air Phaser Unlimited List',
       netRegex: NetRegexes.startsUsing({ id: '561[23]', source: 'Cloud Of Darkness', capture: false }),
-      durationSeconds: 15,
       preRun: (data) => {
         if (data.role === 'tank')
           data.phaserOutputs = ['out', 'tankSpread', 'sides'];
         else
           data.phaserOutputs = ['out', 'healerStacks', 'sides'];
       },
+      durationSeconds: 15,
       alertText: (data, _, output) => data.phaserOutputs.map((key) => output[key]()).join(' -> '),
       outputStrings: phaserOutputStrings,
     },
     {
       id: 'E9S Wide-Angle Phaser Unlimited List',
       netRegex: NetRegexes.startsUsing({ id: '560[DE]', source: 'Cloud Of Darkness', capture: false }),
-      durationSeconds: 15,
       preRun: (data) => {
         if (data.role === 'tank')
           data.phaserOutputs = ['sides', 'tankLaser', 'out'];
         else
           data.phaserOutputs = ['sides', 'healerStacks', 'out'];
       },
+      durationSeconds: 15,
       alertText: (data, _, output) => data.phaserOutputs.map((key) => output[key]()).join(' -> '),
       outputStrings: phaserOutputStrings,
     },
