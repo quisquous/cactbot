@@ -78,6 +78,7 @@ export default {
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
+          en: 'Swords',
           cn: '注意落剑顺序',
         },
       },
@@ -93,11 +94,13 @@ export default {
       response: Responses.goRight(),
     },
     {
+      // TODO: use headmarkers for this
       id: 'EmeraldEx Secundus Terminus est',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55C8', capture: false }),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
+          en: 'X to cards, + to intercards',
           cn: '靠边放剑(十字四角)',
         },
       },
