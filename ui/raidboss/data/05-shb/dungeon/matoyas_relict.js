@@ -140,7 +140,7 @@ export default {
       alertText: (data, _, output) => output.awayFromAoe(),
       outputStrings: {
         awayFromAoe: {
-          en: 'Away From AoE',
+          en: 'Go to Opposite Side',
           ja: '反対側へ',
           cn: '对面躲避坠落',
         },
