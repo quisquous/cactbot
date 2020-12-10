@@ -3,6 +3,15 @@ import NetRegexes from '../../../../../resources/netregexes.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
+// TODO: could use giga slash "get in" here for four slashes
+// TODO: use headmarkers for limit cut number
+//       need to track tether bois
+//       HOWEVER this also uses TEA rules where the limit cut number has an offset.
+//       HOWEVER HOWEVER only the limit cut numbers use this offset
+//       the second 1B line is the #1 limit cut number, and they increment in hex by 1
+
+// Note: there's no headmarker ability line for cleaving shadows.
+
 export default {
   zoneId: ZoneId.EdensPromiseLitanySavage,
   timelineFile: 'e10s.txt',
@@ -16,8 +25,26 @@ export default {
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
-    // TODO: back front implosion??
-    // 56F0 is be on shadow, 56F3 is be away from shadow
+    {
+      id: 'E10S Implosion Howl',
+      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56F0', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Shadow Side',
+        },
+      },
+    },
+    {
+      id: 'E10S Implosion Tail',
+      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56F3', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Opposite Shadow',
+        },
+      },
+    },
     {
       id: 'E10S Throne Of Shadow',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5717', capture: false }),
@@ -26,7 +53,46 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5717', capture: false }),
       response: Responses.getOut('alert'),
     },
-    // TODO: giga slash from shadow
+    {
+      id: 'E10S Giga Slash Shadow Single Left',
+      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56EA', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go Left of Shadow',
+        },
+      },
+    },
+    {
+      id: 'E10S Giga Slash Shadow Single Right',
+      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56ED', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go Right of Shadow',
+        },
+      },
+    },
+    {
+      id: 'E10S Giga Slash Shadow Quadruple Left',
+      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56F4', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go Left of Shadows',
+        },
+      },
+    },
+    {
+      id: 'E10S Giga Slash Shadow Quadruple Right',
+      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56F8', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go Right of Shadows',
+        },
+      },
+    },
     {
       id: 'E10S Umbra Smash',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5BAA' }),
@@ -75,6 +141,26 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5B0C' }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5B0C' }),
       response: Responses.tankCleave(),
+    },
+    {
+      id: 'E10S Giga Slash Shadow Drop Right',
+      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5B2D', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Left Cleave',
+        },
+      },
+    },
+    {
+      id: 'E10S Giga Slash Shadow Drop Left',
+      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5B2C', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Right Cleave',
+        },
+      },
     },
     {
       id: 'E10S Shadow Cleave',
@@ -165,7 +251,6 @@ export default {
       suppressSeconds: 3,
       response: Responses.getUnder(),
     },
-    // TODO: giga slash headmarkers? tethers?
     {
       id: 'E10S Distant Scream',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5716', capture: false }),
@@ -230,6 +315,7 @@ export default {
       netRegexFr: NetRegexes.ability({ source: 'Roi De L\'Ombre', id: '5B13', capture: false }),
       netRegexJa: NetRegexes.ability({ source: '影の王', id: '5B13', capture: false }),
       delaySeconds: 4,
+      suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -239,7 +325,30 @@ export default {
         },
       },
     },
-    // TODO: could use giga slash "get in" here for four slashes
+    {
+      // TODO: I saw once a 5700 then 5702 for the second implosion at 452.7
+      // TODO: are the double implosions always the same??
+      id: 'E10S Quadruple Implosion Howl',
+      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56FC', capture: false }),
+      durationSeconds: 6,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Shadow Side',
+        },
+      },
+    },
+    {
+      id: 'E10S Quadruple Implosion Tail',
+      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5700', capture: false }),
+      durationSeconds: 6,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Opposite Shadow',
+        },
+      },
+    },
     {
       id: 'E10S Voidgate',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5734', capture: false }),
@@ -271,7 +380,6 @@ export default {
       },
     },
     {
-      // TODO: use a headmarker here
       id: 'E10S Pitch Bog',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5721', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5721', capture: false }),
@@ -279,8 +387,8 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5721', capture: false }),
       infoText: (data, _, output) => {
         if (data.seenPitchBog)
-          return data.secondPitchBog();
-        return data.firstPitchBog();
+          return output.secondPitchBog();
+        return output.firstPitchBog();
       },
       run: (data) => data.seenPitchBog = true,
       outputStrings: {
@@ -290,42 +398,51 @@ export default {
           fr: 'Zones au sol à l\'extérieur',
         },
         secondPitchBog: {
-          en: 'Puddles on intercardinals',
+          en: 'Final Puddle Positions',
           de: 'Flächen interkardinal ablegen',
           fr: 'Zones au sol en intercardinal',
         },
       },
     },
     {
-      // TODO: use a tether line for this, and use a12s output strings
       id: 'E10S Shackled Apart',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5BAC', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5BAC', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5BAC', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5BAC', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      netRegex: NetRegexes.tether({ id: '0082' }),
+      condition: function(data, matches) {
+        return matches.source === data.me || matches.target === data.me;
+      },
+      alertText: function(data, matches, output) {
+        const partner = matches.source === data.me ? matches.target : matches.source;
+        return output.text({ player: data.ShortName(partner) });
+      },
       outputStrings: {
         text: {
-          en: 'Far Tethers',
-          de: 'Entfernte Verbindung',
-          fr: 'Liens éloignés',
+          en: 'Far Tethers (${player})',
+          de: 'Entfernte Verbindungen (${player})',
+          fr: 'Liens éloignés (${player})',
+          ja: ' (${player})に離れ',
+          cn: '远离连线 (${player})',
+          ko: '접근금지: 상대와 떨어지기 (${player})',
         },
       },
     },
     {
-      // TODO: use a tether line for this, and use a12s output strings
-      // TODO: this doesn't hit everybody
       id: 'E10S Shackled Together',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '572E', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '572E', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '572E', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '572E', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      netRegex: NetRegexes.tether({ id: '0081' }),
+      condition: function(data, matches) {
+        return matches.source === data.me || matches.target === data.me;
+      },
+      alertText: function(data, matches, output) {
+        const partner = matches.source === data.me ? matches.target : matches.source;
+        return output.text({ player: data.ShortName(partner) });
+      },
       outputStrings: {
         text: {
-          en: 'Close Tethers',
-          de: 'Nahe Verbindung',
-          fr: 'Liens proches',
+          en: 'Close Tethers (${player})',
+          de: 'Nahe Verbindungen (${player})',
+          fr: 'Liens proches (${player})',
+          ja: '(${player})に近づく',
+          cn: '靠近连线 (${player})',
+          ko: '강제접근: 상대와 가까이 붙기 (${player})',
         },
       },
     },
