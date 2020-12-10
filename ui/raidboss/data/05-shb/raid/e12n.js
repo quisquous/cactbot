@@ -2,6 +2,14 @@ import Conditions from '../../../../../resources/conditions.js';
 import NetRegexes from '../../../../../resources/netregexes.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
+
+// TODO: Tether mechanic callouts. Each tether type is used for one primal,
+// so we could just do a collect > analyze > call system based on which tethers are seen.
+// TODO: Handle the EarthShaker bait --> beam intercept mechanic during the intermission.
+// TODO: Math the spawn position of the Titanic Bomb Boulders to call the safe direction like E4s.
+// TODO: Fix the Rapturous Reach trigger so it doesn't double call during the intermission.
+
+
 export default {
   zoneId: ZoneId.EdensPromiseEternity,
   timelineFile: 'e12n.txt',
@@ -25,7 +33,7 @@ export default {
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Between small boulders',
+          en: 'Between small bombs',
         },
       },
     },
