@@ -186,11 +186,11 @@ export default {
     },
     {
       id: 'Matoyas Porxie Sprite Explosion',
-      netRegex: NetRegexes.ability({ id: '4E34', source: 'aeolian cave sprite', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '4E34', source: 'Windhöhlen-Exergon', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '4E34', source: 'élémentaire des cavernes venteuses', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '4E34', source: 'ウィンドケイブ・スプライト', capture: false }),
-      delaySeconds: 2,
+      netRegex: NetRegexes.startsUsing({ id: '4E34', source: 'aeolian cave sprite', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4E34', source: 'Windhöhlen-Exergon', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4E34', source: 'élémentaire des cavernes venteuses', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4E34', source: 'ウィンドケイブ・スプライト', capture: false }),
+      delaySeconds: 5,
       alertText: (data, _, output) => output.goBoss(),
       outputStrings: {
         goBoss: {
