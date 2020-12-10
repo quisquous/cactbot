@@ -97,6 +97,7 @@ export default {
       netRegexFr: NetRegexes.ability({ id: '5988', source: 'nixe', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '5988', source: 'ノッケン', capture: false }),
       delaySeconds: 3,
+      durationSeconds: 6,
       infoText: (data, _, output) => output.stepIn(),
       outputStrings: {
         stepIn: {
