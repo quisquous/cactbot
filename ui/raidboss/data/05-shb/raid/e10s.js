@@ -365,27 +365,6 @@ export default {
       },
     },
     {
-      id: 'E10S Shackled Together',
-      netRegex: NetRegexes.tether({ id: '0081' }),
-      condition: function(data, matches) {
-        return matches.source === data.me || matches.target === data.me;
-      },
-      alertText: function(data, matches, output) {
-        const partner = matches.source === data.me ? matches.target : matches.source;
-        return output.text({ player: data.ShortName(partner) });
-      },
-      outputStrings: {
-        text: {
-          en: 'Close Tethers (${player})',
-          de: 'Nahe Verbindungen (${player})',
-          fr: 'Liens proches (${player})',
-          ja: '(${player})に近づく',
-          cn: '靠近连线 (${player})',
-          ko: '강제접근: 상대와 가까이 붙기 (${player})',
-        },
-      },
-    },
-    {
       // TODO: this mechanic needs a lot more love
       id: 'E10S Voidgate Amplifier',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5BCF', capture: false }),
