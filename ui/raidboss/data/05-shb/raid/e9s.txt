@@ -8,8 +8,8 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
 0 "Start" sync /Engage!/ window 0,1
-0.8 "--sync--" sync /:Cloud Of Darkness:5627:/
-16.9 "Ground-Razing Particle Beam" sync /:Cloud Of Darkness:5625:/
+0.8 "--sync--" sync /:Cloud Of Darkness:5627:/ window 1,0
+16.9 "Ground-Razing Particle Beam" sync /:Cloud Of Darkness:5625:/ window 17,10
 27.1 "The Art Of Darkness" sync /:Cloud Of Darkness:5B4[56]:/
 36.8 "The Art Of Darkness" sync /:Cloud Of Darkness:5B4[56]:/
 47.5 "Devouring Dark" sync /:Cloud Of Darkness:5623:/
