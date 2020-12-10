@@ -48,15 +48,22 @@ hideall "--sync--"
 # -ii 598E 5990 5992 5993 5994 5995 5996 5BB9
 2000.0 "--sync--" sync / 00:0839:Clearnote Cauldron will be sealed off/ window 2000,0
 
-2009.2 "Crash-Smash" sync /:Nixie:598F:/ duration 6
+2009.2 "Crash-Smash" sync /:Nixie:598F:/ window 10,10
 2023.4 "Shower Power" sync /:Nixie:5991:/
 2044.1 "Pitter-Patter" sync /:Nixie:5988:/
 2072.2 "Sea Shanty" sync /:Nixie:598[AC]:/
 2092.4 "Shower Power" sync /:Nixie:5991:/
-2110.5 "Crash-Smash" sync /:Nixie:598F:/ duration 6
+
+2110.5 "Crash-Smash" sync /:Nixie:598F:/ window 10,10
 2130.7 "Shower Power" sync /:Nixie:5991:/
 2134.9 "Splish-Splash" sync /:Nixie:598D:/
 2160.0 "Shower Power" sync /:Nixie:5991:/
+
+2178.2 "Crash-Smash" sync /:Nixie:598F:/ window 10,10 jump 2110.5
+2198.4 "Shower Power" # sync /:Nixie:5991:/
+2202.6 "Splish-Splash" # sync /:Nixie:598D:/
+2227.7 "Shower Power" # sync /:Nixie:5991:/
+
 
 ### Mother Porxie
 # -p 5913:3010.0
@@ -92,7 +99,7 @@ hideall "--sync--"
 3207.1 "Huff And Puff" sync /:Mother Porxie:5919:/
 3209.2 "Medium Rear" sync /:Mother Porxie:591D:/
 3225.3 "Open Flame" sync /:Mother Porxie:5922:/
-3237.5 "Minced Meat" sync /:Mother Porxie:5911:/ jump 160.6
+3237.5 "Minced Meat" sync /:Mother Porxie:5911:/ jump 3160.6
 3249.6 "Tender Loin" sync /:Mother Porxie:5913:/
 3263.7 "Tender Loin" sync /:Mother Porxie:5913:/
 3281.9 "Huff And Puff" sync /:Mother Porxie:5919:/
