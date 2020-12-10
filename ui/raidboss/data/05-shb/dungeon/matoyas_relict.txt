@@ -22,7 +22,7 @@ hideall "--sync--"
 ### Nixie
 # -p 598F:2009.2
 # -ii 598E 5990 5992 5993 5994 5995 5996 5BB9
-2000.0 "--sync--" sync /00:0839:Clearnote Cauldron will be sealed off/ window 2000,0
+2000.0 "--sync--" sync / 00:0839:Clearnote Cauldron will be sealed off/ window 2000,0
 
 2009.2 "Crash-Smash" sync /:Nixie:598F:/ duration 6
 2023.4 "Shower Power" sync /:Nixie:5991:/
