@@ -54,7 +54,7 @@ hideall "--sync--"
 534.1 "Stock" sync /:Eden's Promise:5860:/
 542.8 "Formless Judgment" sync /:Eden's Promise:5873:/ window 30,30
 545.6 "--sync--" sync /:Eden's Promise:5879:/
-555.7 "Double Primal Attack" sync /:Eden's Promise:5861:/
+555.7 "Release" sync /:Eden's Promise:5861:/
 
 
 568.6 "Stock" sync /:Eden's Promise:5860:/ window 15,30
@@ -92,14 +92,14 @@ hideall "--sync--"
 735.4 "Frigid Stone" # sync /:Eden's Promise:5869:/
 735.6 "--sync--" sync /:Eden's Promise:5871:/
 738.2 "--sync--" sync /:Eden's Promise:5879:/
-747.6 "Double Primal Attack" sync /:Eden's Promise:5861:/
+747.6 "Release" sync /:Eden's Promise:5861:/
 
 756.6 "--sync--" sync /:Eden's Promise:5879:/ jump 900.0
 761.5 "Stock?" sync /:Eden's Promise:5860:/ jump 1000.0
-766.2 "Double Primal Attack?"
+766.2 "Cast?"
 770.2 "Formless Judgment?"
-776.9 "Double Primal Attack?"
-782.4 "Double Primal Attack?"
+776.9 "Cast?"
+782.4 "Release?"
 784.6 "Maleficium?"
 
 
@@ -115,20 +115,20 @@ hideall "--sync--"
 834.2 "Under The Weight" sync /:Eden's Promise:5870:/
 834.3 "--sync--" sync /:Eden's Promise:5871:/
 836.9 "--sync--" sync /:Eden's Promise:5879:/
-846.3 "Double Primal Attack" sync /:Eden's Promise:5861:/
+846.3 "Release" sync /:Eden's Promise:5861:/
 
 855.3 "--sync--" sync /:Eden's Promise:5879:/ jump 900.0
 860.2 "Stock?" sync /:Eden's Promise:5860:/ jump 1000.0
-864.9 "Double Primal Attack?"
+864.9 "Cast?"
 868.9 "Formless Judgment?"
-875.6 "Double Primal Attack?"
-881.1 "Double Primal Attack?"
+875.6 "Cast?"
+881.1 "Release?"
 883.3 "Maleficium?"
 
 # Maleficium Block
 900.0 "--sync--" sync /:Eden's Promise:5879:/
-909.6 "Double Primal Attack" sync /:Eden's Promise:4E2C:/
-920.3 "Double Primal Attack" sync /:Eden's Promise:4E2C:/
+909.6 "Cast" sync /:Eden's Promise:4E2C:/
+920.3 "Cast" sync /:Eden's Promise:4E2C:/
 928.0 "Maleficium" sync /:Eden's Promise:5872:/ window 15,15
 
 940.9 "Stock" sync /:Eden's Promise:5860:/
@@ -146,7 +146,7 @@ hideall "--sync--"
 1000.0 "Stock" sync /:Eden's Promise:5860:/
 1008.7 "Formless Judgment" sync /:Eden's Promise:5873:/ window 15,15
 1011.5 "--sync--" sync /:Eden's Promise:5879:/
-1020.9 "Double Primal Attack" sync /:Eden's Promise:5861:/
+1020.9 "Release" sync /:Eden's Promise:5861:/
 
 1034.8 "Stock" sync /:Eden's Promise:5860:/
 1044.4 "Junction Shiva?" sync /:Eden's Promise:5862:/ jump 700.0
