@@ -43,24 +43,39 @@ hideall "--sync--"
 
 ### Mother Porxie
 # -p 5913:3010.0
-# -ii 368 4A8F 5912 5914 5917 5918 591E 591F 5923 5925
+# -ii 4A8F 5912 5914 5917 5918 591E 591F 5923 5925
 3000.0 "--sync--" sync / 00:0839:Woebegone Workshop will be sealed off/ window 3000,0
 
-3010.0 "Tender Loin" sync /:Mother Porxie:5913:/
-3028.2 "Huff And Puff" sync /:Mother Porxie:5919:/
-3030.3 "Medium Rear" sync /:Mother Porxie:591D:/
-3044.4 "Meat Mallet" sync /:Mother Porxie:5916:/
-3049.3 "Barbeque" sync /:Mother Porxie:5B23:/
-3071.5 "To A Crisp" sync /:Mother Porxie:5924:/
-3085.6 "Minced Meat" sync /:Mother Porxie:5911:/ duration 6
-3101.9 "Buffet" sync /:Aeolian Cave Sprite:5926:/
-3107.2 "Buffet" sync /:Aeolian Cave Sprite:5926:/
-3111.8 "Explosion" sync /:Aeolian Cave Sprite:4E34:/
-3122.9 "Huff And Puff" sync /:Mother Porxie:591B:/
-3125.0 "Medium Rear" sync /:Mother Porxie:591D:/
-3141.2 "Open Flame" sync /:Mother Porxie:5922:/
-3153.3 "Minced Meat" sync /:Mother Porxie:5911:/ duration 6
-3165.4 "Tender Loin" sync /:Mother Porxie:5913:/
-3179.5 "Tender Loin" sync /:Mother Porxie:5913:/
-3199.0 "Huff And Puff" sync /:Mother Porxie:5919:/
-3201.1 "Medium Rear" sync /:Mother Porxie:591D:/
+3011.3 "Tender Loin" sync /:Mother Porxie:5913:/
+3029.5 "Huff And Puff" sync /:Mother Porxie:5919:/
+3031.6 "Medium Rear" sync /:Mother Porxie:591D:/
+3045.7 "Meat Mallet" sync /:Mother Porxie:5916:/
+3045.7 "--untargetable--"
+3050.4 "Barbeque" sync /:Mother Porxie:5B23:/
+3072.4 "To A Crisp" sync /:Mother Porxie:5924:/
+3074.4 "--targetable--"
+3086.5 "Minced Meat" sync /:Mother Porxie:5911:/ window 50,10
+3093.6 "--untargetable--"
+
+3096.6 "Huff And Puff" sync /:591A:Mother Porxie/ window 96.6,5 duration 49.70
+3101.6 "Buffet" sync /:Aeolian Cave Sprite:5926:/
+3107.3 "Buffet" sync /:Aeolian Cave Sprite:5926:/
+3112.8 "Buffet" sync /:Aeolian Cave Sprite:5926:/
+3118.4 "Buffet" sync /:Aeolian Cave Sprite:5926:/
+3124.0 "Buffet" sync /:Aeolian Cave Sprite:5926:/
+3129.6 "Buffet" sync /:Aeolian Cave Sprite:5926:/
+3130.3 "Huff And Puff Enrage?" sync /:Mother Porxie:591B:/ window 50,5
+
+3132.3 "--targetable--"
+3132.4 "Medium Rear" sync /:Mother Porxie:591D:/
+3148.5 "Open Flame" sync /:Mother Porxie:5922:/
+3160.6 "Minced Meat" sync /:Mother Porxie:5911:/
+3172.7 "Tender Loin" sync /:Mother Porxie:5913:/
+3186.8 "Tender Loin" sync /:Mother Porxie:5913:/
+3207.1 "Huff And Puff" sync /:Mother Porxie:5919:/
+3209.2 "Medium Rear" sync /:Mother Porxie:591D:/
+3225.3 "Open Flame" sync /:Mother Porxie:5922:/
+3237.5 "Minced Meat" sync /:Mother Porxie:5911:/ jump 160.6
+3249.6 "Tender Loin" sync /:Mother Porxie:5913:/
+3263.7 "Tender Loin" sync /:Mother Porxie:5913:/
+3281.9 "Huff And Puff" sync /:Mother Porxie:5919:/
