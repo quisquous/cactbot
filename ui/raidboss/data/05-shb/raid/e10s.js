@@ -55,6 +55,7 @@ export default {
         avoidStack: {
           en: 'Avoid Stack!',
           de: 'Nicht Sammeln!',
+          fr: 'Ne vous packez pas !',
         },
         stack: {
           en: 'Stack',
@@ -86,6 +87,7 @@ export default {
         text: {
           en: 'Drop Shadow Out',
           de: 'Schatten draußen ablegen',
+          fr: 'Déposez l\'ombre à l\'extérieur',
         },
       },
     },
@@ -101,6 +103,7 @@ export default {
         text: {
           en: '1 out, 2+3 in',
           de: '1 raus, 2+3 rein',
+          fr: '1 extérieur, 2+3 intérieur',
         },
       },
     },
@@ -116,6 +119,7 @@ export default {
         text: {
           en: '2 out, 1+3 in',
           de: '2 raus, 1+3 rein',
+          fr: '2 extérieur, 1+3 intérieur',
         },
       },
     },
@@ -132,6 +136,7 @@ export default {
         text: {
           en: '3 out, 1+2 in',
           de: '3 raus, 1+2 rein',
+          fr: '3 extérieur, 1+2 intérieur',
         },
       },
     },
@@ -147,6 +152,7 @@ export default {
         text: {
           en: 'Drop Shadow Max Melee',
           de: 'Lege den Schatten im max Melee Bereich ab',
+          fr: 'Déposez l\'ombre au max de la portée',
         },
       },
     },
@@ -181,6 +187,7 @@ export default {
         text: {
           en: 'Orbs',
           de: 'Orbs',
+          fr: 'Orbes',
         },
       },
     },
@@ -195,6 +202,7 @@ export default {
         text: {
           en: 'Watch Tethered Dog',
           de: 'Achte auf den verbundenen Hund',
+          fr: 'Regardez le chien lié',
         },
       },
     },
@@ -258,6 +266,7 @@ export default {
         text: {
           en: 'Towers first, then cleaves',
           de: 'Zuerst Türme, dann cleaves',
+          fr: 'Tours en premier puis cleaves',
         },
       },
     },
@@ -278,10 +287,12 @@ export default {
         firstPitchBog: {
           en: 'Puddles outside',
           de: 'Flächen nach draußen',
+          fr: 'Zones au sol à l\'extérieur',
         },
         secondPitchBog: {
           en: 'Puddles on intercardinals',
           de: 'Flächen interkardinal ablegen',
+          fr: 'Zones au sol en intercardinal',
         },
       },
     },
@@ -297,6 +308,7 @@ export default {
         text: {
           en: 'Far Tethers',
           de: 'Entfernte Verbindung',
+          fr: 'Liens éloignés',
         },
       },
     },
@@ -313,6 +325,7 @@ export default {
         text: {
           en: 'Close Tethers',
           de: 'Nahe Verbindung',
+          fr: 'Liens proches',
         },
       },
     },
@@ -328,6 +341,7 @@ export default {
         text: {
           en: 'Pick up Puddles',
           de: 'Fläche nehmen',
+          fr: 'Prenez les zones au sol',
         },
       },
     },

@@ -21,7 +21,7 @@ const phaserOutputStrings = {
     en: 'Out',
     de: 'Raus',
     ja: '外へ',
-    fr: 'Exterieur',
+    fr: 'Extérieur',
     cn: '远离',
     ko: '밖으로',
   },
@@ -200,6 +200,7 @@ export default {
         text: {
           en: 'Place Bramble',
           de: 'Dornenstrauch plazieren',
+          fr: 'Déposez les ronces',
         },
       },
     },
@@ -227,6 +228,7 @@ export default {
         text: {
           en: 'Away From Tethered Walls',
           de: 'Weg von den verbundenen Wänden',
+          fr: 'Éloignez-vous des murs liés',
         },
       },
     },
@@ -301,6 +303,7 @@ export default {
         text: {
           en: 'Tile Positions',
           de: 'Kachel Positionen',
+          fr: 'Allez sur votre case',
         },
       },
     },
@@ -314,6 +317,7 @@ export default {
         text: {
           en: 'Face Laser Out',
           de: 'Laser nach draußen richten',
+          fr: 'Orientez le laser vers l\'extérieur',
         },
       },
     },
@@ -394,7 +398,7 @@ export default {
         text: {
           en: 'Get Towers',
           de: 'Türme nehmen',
-          fr: 'Allez dans les tours',
+          fr: 'Prenez les tours',
           ja: '塔を踏む',
           cn: '踩塔',
           ko: '장판 들어가기',
