@@ -10,13 +10,20 @@ hideall "--sync--"
 # -ii 368 5481 5487 548E 548F 5490 5492
 1000.0 "--sync--" sync / 00:0839:Clayclot Cauldron will be sealed off/ window 1000,0
 # Loop
-1011.0 "Hard Rock" sync /:Mudman:547F:/ duration 6 window 0,70
+1011.0 "Hard Rock" sync /:Mudman:547F:/ duration 6 window 10,10
 1020.2 "Petrified Peat" sync /:Mudman:5480:/
 1032.3 "Peat Pelt" sync /:Mudman:5482:/
 1041.4 "Rocky Roll" sync /:Mud Bubble:548[34]:/
 1050.7 "Brittle Breccia" sync /:Mudman:548D:/
 1051.1 "Rocky Roll" sync /:Mud Bubble:548[35]:/
 1066.7 "Stone Age" sync /:Mudman:5491:/ duration 5
+
+1080.0 "Hard Rock" sync /:Mudman:547F:/ duration 6 jump 1011.0 window 20,20
+1090.0 "Petrified Peat" # sync /:Mudman:5480:/
+1102.1 "Peat Pelt" # sync /:Mudman:5482:/
+1111.2 "Rocky Roll" # sync /:Mud Bubble:548[34]:/
+1120.5 "Brittle Breccia" # sync /:Mudman:548D:/
+
 
 
 ### Nixie
