@@ -32,6 +32,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Shadow Side',
+          ko: '그림자 방향',
         },
       },
     },
@@ -42,6 +43,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Opposite Shadow',
+          ko: '그림자 반대쪽',
         },
       },
     },
@@ -60,6 +62,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Go Left of Shadow',
+          ko: '그림자 왼쪽',
         },
       },
     },
@@ -70,6 +73,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Go Right of Shadow',
+          ko: '그림자 오른쪽',
         },
       },
     },
@@ -80,6 +84,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Go Left of Shadows',
+          ko: '그림자 왼쪽',
         },
       },
     },
@@ -90,6 +95,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Go Right of Shadows',
+          ko: '그림자 오른쪽',
         },
       },
     },
@@ -122,6 +128,7 @@ export default {
           en: 'Avoid Stack!',
           de: 'Nicht Sammeln!',
           fr: 'Ne vous packez pas !',
+          ko: '공격 피하기',
         },
         stack: {
           en: 'Stack',
@@ -149,6 +156,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Left Cleave',
+          ko: '왼쪽 장판',
         },
       },
     },
@@ -159,6 +167,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Right Cleave',
+          ko: '오른쪽 장판',
         },
       },
     },
@@ -174,6 +183,7 @@ export default {
           en: 'Drop Shadow Out',
           de: 'Schatten draußen ablegen',
           fr: 'Déposez l\'ombre à l\'extérieur',
+          ko: '그림자 바깥에 떨어뜨리기',
         },
       },
     },
@@ -190,6 +200,7 @@ export default {
           en: '1 out, 2+3 in',
           de: '1 raus, 2+3 rein',
           fr: '1 extérieur, 2+3 intérieur',
+          ko: '1 바깥, 2+3 안쪽',
         },
       },
     },
@@ -206,6 +217,7 @@ export default {
           en: '2 out, 1+3 in',
           de: '2 raus, 1+3 rein',
           fr: '2 extérieur, 1+3 intérieur',
+          ko: '2 바깥, 1+3 안쪽',
         },
       },
     },
@@ -223,6 +235,7 @@ export default {
           en: '3 out, 1+2 in',
           de: '3 raus, 1+2 rein',
           fr: '3 extérieur, 1+2 intérieur',
+          ko: '3 바깥, 1+2 안쪽',
         },
       },
     },
@@ -239,6 +252,7 @@ export default {
           en: 'Drop Shadow Max Melee',
           de: 'Lege den Schatten im max Melee Bereich ab',
           fr: 'Déposez l\'ombre au max de la portée',
+          ko: '그림자 칼끝 위치에 떨어뜨리기',
         },
       },
     },
@@ -273,6 +287,7 @@ export default {
           en: 'Orbs',
           de: 'Orbs',
           fr: 'Orbes',
+          ko: '구슬',
         },
       },
     },
@@ -288,6 +303,7 @@ export default {
           en: 'Watch Tethered Dog',
           de: 'Achte auf den verbundenen Hund',
           fr: 'Regardez le chien lié',
+          ko: '연결된 쫄 지켜보기',
         },
       },
     },
@@ -305,6 +321,7 @@ export default {
           // TODO: this also happens twice, with tethers
           en: 'Be On Squiggles',
           de: 'Sei auf dem Kringel',
+          ko: '구불구불한 선 쪽으로',
         },
       },
     },
@@ -322,6 +339,7 @@ export default {
           // TODO: this could be better if we knew where the shadow was
           en: 'Away From Squiggles',
           de: 'Weg vom Kringel',
+          ko: '곧은 선 쪽으로',
         },
       },
     },
@@ -335,6 +353,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Shadow Side',
+          ko: '그림자 방향',
         },
       },
     },
@@ -346,6 +365,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Opposite Shadow',
+          ko: '그림자 반대쪽',
         },
       },
     },
@@ -360,6 +380,7 @@ export default {
         text: {
           en: 'Cleaves with towers',
           de: 'Cleaves mit Türmen',
+          ko: '기둥이랑 장판유도 동시에',
         },
       },
     },
@@ -376,6 +397,7 @@ export default {
           en: 'Towers first, then cleaves',
           de: 'Zuerst Türme, dann cleaves',
           fr: 'Tours en premier puis cleaves',
+          ko: '기둥 먼저, 그다음 장판유도',
         },
       },
     },
@@ -396,11 +418,13 @@ export default {
           en: 'Puddles outside',
           de: 'Flächen nach draußen',
           fr: 'Zones au sol à l\'extérieur',
+          ko: '장판 바깥에',
         },
         secondPitchBog: {
           en: 'Final Puddle Positions',
           de: 'Flächen interkardinal ablegen',
           fr: 'Zones au sol en intercardinal',
+          ko: '각자 장판 위치로',
         },
       },
     },
@@ -421,7 +445,7 @@ export default {
           fr: 'Liens éloignés (${player})',
           ja: ' (${player})に離れ',
           cn: '远离连线 (${player})',
-          ko: '접근금지: 상대와 떨어지기 (${player})',
+          ko: '상대와 떨어지기 (${player})',
         },
       },
     },
@@ -442,7 +466,7 @@ export default {
           fr: 'Liens proches (${player})',
           ja: '(${player})に近づく',
           cn: '靠近连线 (${player})',
-          ko: '강제접근: 상대와 가까이 붙기 (${player})',
+          ko: '상대와 가까이 붙기 (${player})',
         },
       },
     },
@@ -459,6 +483,7 @@ export default {
           en: 'Pick up Puddles',
           de: 'Fläche nehmen',
           fr: 'Prenez les zones au sol',
+          ko: '장판 밟아서 선 가져오기',
         },
       },
     },
