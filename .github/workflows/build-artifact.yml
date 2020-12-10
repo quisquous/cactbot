@@ -65,6 +65,13 @@ jobs:
     - name: MSBuild
       run: msbuild /p:Configuration=Release /p:Platform=x64 plugin/Cactbot.sln
       shell: cmd
+    
+    - name: Install Node Dependencies
+      run: |
+        npm install
+    - name: Build JavaScript UI Module Bundles
+      run: |
+        npm run build
 
     - name: Generate artifact
       shell: bash
