@@ -8,7 +8,7 @@ hideall "--sync--"
 ### Mudman
 # -p 547F:1011
 # -ii 368 5481 5487 548E 548F 5490 5492
-1000.0 "--sync--" sync /00:0839:Clayclot Cauldron will be sealed off/ window 1000,0
+1000.0 "--sync--" sync / 00:0839:Clayclot Cauldron will be sealed off/ window 1000,0
 # Loop
 1011.0 "Hard Rock" sync /:Mudman:547F:/ duration 6 window 0,70
 1020.2 "Petrified Peat" sync /:Mudman:5480:/
