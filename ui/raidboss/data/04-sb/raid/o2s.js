@@ -388,6 +388,9 @@ export default {
         'Catastrophe': '灾变者',
       },
       'replaceText': {
+        '\\(center\\)': '(中央)',
+        '\\(T/H\\)': '(T/奶)',
+        '\\(troll\\)': '(死神之瞳)',
         '-100 Gs': '重力-100',
         '(?<!-)100 Gs': '重力100',
         'Antilight': '暗黑光',

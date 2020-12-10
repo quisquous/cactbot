@@ -356,7 +356,7 @@ export default {
       },
       'replaceText': {
         'Ame No Murakumo': '天之丛云',
-        'Ame-No-Murakumo add': '天之丛云小怪',
+        'Ame-No-Murakumo add': '天之丛云出现',
         'Assail': '强击',
         'Churn': '祸泡附身',
         'Dark Levin': '紫电',

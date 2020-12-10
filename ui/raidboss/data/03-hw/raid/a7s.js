@@ -133,6 +133,7 @@ export default {
           de: 'Gefängnis Markierung',
           fr: 'Marquage prison',
           ja: '隔離部屋',
+          cn: '监狱点名',
           ko: '감옥 징 대상자',
         },
       },
