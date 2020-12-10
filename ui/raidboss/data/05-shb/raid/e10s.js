@@ -69,7 +69,6 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56EA', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56EA', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56EA', capture: false }),
-
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
