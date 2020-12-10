@@ -10,20 +10,37 @@ hideall "--sync--"
 # -ii 368 5481 5487 548E 548F 5490 5492
 1000.0 "--sync--" sync / 00:0839:Clayclot Cauldron will be sealed off/ window 1000,0
 # Loop
-1011.0 "Hard Rock" sync /:Mudman:547F:/ duration 6 window 10,10
+1011.0 "Hard Rock" sync /:Mudman:547F:/ window 10,10
 1020.2 "Petrified Peat" sync /:Mudman:5480:/
 1032.3 "Peat Pelt" sync /:Mudman:5482:/
 1041.4 "Rocky Roll" sync /:Mud Bubble:548[34]:/
 1050.7 "Brittle Breccia" sync /:Mudman:548D:/
 1051.1 "Rocky Roll" sync /:Mud Bubble:548[35]:/
-1066.7 "Stone Age" sync /:Mudman:5491:/ duration 5
-# loops jump back
-1080.0 "Hard Rock" sync /:Mudman:547F:/ duration 6 jump 1011.0 window 20,20
-1090.0 "Petrified Peat" # sync /:Mudman:5480:/
-1102.1 "Peat Pelt" # sync /:Mudman:5482:/
-1111.2 "Rocky Roll" # sync /:Mud Bubble:548[34]:/
-1120.5 "Brittle Breccia" # sync /:Mudman:548D:/
+1066.7 "Stone Age" sync /:Mudman:5491:/
 
+1077.8 "Hard Rock" sync /:Mudman:547F:/ window 10,10
+1087.0 "Petrified Peat" sync /:Mudman:5480:/
+1099.1 "Peat Pelt" sync /:Mudman:5482:/
+1108.2 "Rocky Roll" sync /:Mud Bubble:548[34]:/
+1117.5 "Brittle Breccia" sync /:Mudman:548D:/
+1117.9 "Rocky Roll" sync /:Mud Bubble:548[35]:/
+1133.5 "Stone Age" sync /:Mudman:5491:/
+
+1144.6 "Hard Rock" sync /:Mudman:547F:/ window 10,10
+1153.8 "Petrified Peat" sync /:Mudman:5480:/
+1165.9 "Peat Pelt" sync /:Mudman:5482:/
+1175.0 "Rocky Roll" sync /:Mud Bubble:548[34]:/
+1184.3 "Brittle Breccia" sync /:Mudman:548D:/
+1184.7 "Rocky Roll" sync /:Mud Bubble:548[35]:/
+1200.3 "Stone Age" sync /:Mudman:5491:/
+
+1212.3 "Falling Rock" sync /:Mudman:549[34]:/
+
+1144.6 "Hard Rock" sync /:Mudman:547F:/ window 10,10 jump 1011.0
+1153.8 "Petrified Peat" # sync /:Mudman:5480:/
+1165.9 "Peat Pelt" # sync /:Mudman:5482:/
+1175.0 "Rocky Roll" # sync /:Mud Bubble:548[34]:/
+1184.3 "Brittle Breccia" # sync /:Mudman:548D:/
 
 
 ### Nixie
