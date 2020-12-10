@@ -46,7 +46,7 @@ export default {
         esunaYourPoison: {
           en: 'Esuna Your Poison',
           de: 'Entferne dein Gift',
-          fr: 'Purifiez-vous du poison',
+          fr: 'Purifiez-vous',
           ja: '自分の毒をエスナ',
           cn: '康复自己的毒',
           ko: '독 에스나 하기',
@@ -119,7 +119,7 @@ export default {
         breakBubbleOn: {
           en: 'Break Bubble on ${player}',
           de: 'Besiege die Blase von ${player}',
-          fr: 'Brisez la bulle de ${player}',
+          fr: 'Détruisez la bulle de ${player}',
           ja: '${player}の泡を破れ',
           cn: '打${player}的泡泡',
           ko: '"${player}" 물구슬 깨기',
@@ -127,7 +127,7 @@ export default {
         breakYourBubble: {
           en: 'Break Your Bubble',
           de: 'Besiege deine Blase',
-          fr: 'Brisez votre bulle',
+          fr: 'Détruisez votre bulle',
           ja: '自分の泡を破れ',
           cn: '打自己的泡泡',
           ko: '물구슬 깨기',
@@ -179,7 +179,6 @@ export default {
         esunaPoisonOn: {
           en: 'Esuna Poison on ${player}',
           de: 'Entferne Gift von ${player}',
-          fr: 'Purifiez le poison sur ${players}',
           ja: '${player}の毒をエスナ',
           cn: '康复${player}的毒',
           ko: '"${player}" 독 에스나',
@@ -187,7 +186,7 @@ export default {
         esunaYourPoison: {
           en: 'Esuna Your Poison',
           de: 'Entferne dein Gift',
-          fr: 'Purifiez-vous du poison',
+          fr: 'Purifiez-vous',
           ja: '自分の毒をエスナ',
           cn: '康复自己的毒',
           ko: '독 에스나 하기',
