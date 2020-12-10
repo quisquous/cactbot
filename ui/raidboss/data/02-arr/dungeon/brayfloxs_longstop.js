@@ -179,7 +179,7 @@ export default {
         esunaPoisonOn: {
           en: 'Esuna Poison on ${player}',
           de: 'Entferne Gift von ${player}',
-          fr: 'Purifiez le poison sur ${players}',
+          fr: 'Purifiez le poison sur ${player}',
           ja: '${player}の毒をエスナ',
           cn: '康复${player}的毒',
           ko: '"${player}" 독 에스나',
