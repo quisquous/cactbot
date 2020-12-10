@@ -37,7 +37,7 @@ hideall "--sync--"
 ### Mother Porxie
 # -p 5913:3010.0
 # -ii 368 4A8F 5912 5914 5917 5918 591E 591F 5923 5925
-3000.0 "--sync--" sync /00:0839:Woebegone Workshop will be sealed off/ window 3000,0
+3000.0 "--sync--" sync / 00:0839:Woebegone Workshop will be sealed off/ window 3000,0
 
 3010.0 "Tender Loin" sync /:Mother Porxie:5913:/
 3028.2 "Huff And Puff" sync /:Mother Porxie:5919:/
