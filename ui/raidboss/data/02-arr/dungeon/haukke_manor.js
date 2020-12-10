@@ -77,7 +77,7 @@ export default {
         text: {
           en: 'Turn off Lamps',
           de: 'Schalte die Lampen aus',
-          fr: 'Eteignez les lampes',
+          fr: 'Éteignez les lampes',
           ja: '消灯する',
           cn: '关灯',
           ko: '등불 끄기',
