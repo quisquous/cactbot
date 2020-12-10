@@ -92,11 +92,11 @@ export default {
     },
     {
       id: 'Matoyas Nixie Pitter-patter',
-      netRegex: NetRegexes.ability({ id: '5991', source: 'Nixie', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '5991', source: 'Nixchen', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '5991', source: 'nixe', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '5991', source: 'ノッケン', capture: false }),
-      delaySeconds: 9,
+      netRegex: NetRegexes.ability({ id: '5988', source: 'Nixie', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '5988', source: 'Nixchen', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '5988', source: 'nixe', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '5988', source: 'ノッケン', capture: false }),
+      delaySeconds: 3,
       infoText: (data, _, output) => output.stepIn(),
       outputStrings: {
         stepIn: {
