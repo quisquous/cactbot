@@ -46,33 +46,42 @@ const exVersionToName = {
 const exVersionToShortName = {
   '0': {
     en: 'ARR',
+    de: 'ARR',
   },
   '1': {
     en: 'HW',
+    de: 'HW',
   },
   '2': {
     en: 'SB',
+    de: 'SB',
   },
   '3': {
     en: 'ShB',
+    de: 'ShB',
   },
 };
 
 const contentTypeToLabel = {
   [ContentType.Raids]: {
     en: 'Raid',
+    de: 'Raid',
   },
   [ContentType.Trials]: {
     en: 'Trial',
+    de: 'Prfng',
   },
   [ContentType.UltimateRaids]: {
     en: 'Ult',
+    de: 'Ult',
   },
   [ContentType.Dungeons]: {
     en: 'Dgn',
+    de: 'Dgn',
   },
   [ContentType.Guildhests]: {
     en: 'Hest',
+    de: 'Gldgh',
   },
 };
 
@@ -88,18 +97,23 @@ const contentTypeLabelOrder = [
 const zoneGridHeaders = {
   expansion: {
     en: 'Ex',
+    de: 'Ex',
   },
   type: {
     en: 'Type',
+    de: 'Art',
   },
   name: {
     en: 'Name',
+    de: 'Name',
   },
   triggers: {
     en: 'Triggers',
+    de: 'Triggers',
   },
   timeline: {
     en: 'Timeline',
+    de: 'Timeline',
   },
   // TODO: oopsy
   // TODO: missing translation items
@@ -109,14 +123,17 @@ const miscStrings = {
   // Title at the top of the page.
   title: {
     en: 'Cactbot Content Coverage',
+    de: 'Cactbot Inhaltsabdeckung',
   },
   // Overall label for the expansion table.
   overall: {
     en: 'Overall',
+    de: 'Insgesamt',
   },
   // Warning when generator hasn't been run.
   runGenerator: {
     en: 'Error: Run node util/gen_coverage_report.js to generate data.',
+    de: 'Error: Führe node util/gen_coverage_report.js aus um die Daten zu generieren.',
   },
 };
 

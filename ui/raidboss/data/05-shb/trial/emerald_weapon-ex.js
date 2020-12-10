@@ -25,6 +25,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Get orbs',
+          de: 'Orbs nehmen',
           cn: '撞球',
           ko: '구슬 부딪히기',
         },
@@ -52,6 +53,7 @@ export default {
         },
         sharedTankStack: {
           en: 'Tank stack',
+          de: 'Tanks sammeln',
           cn: '坦克分摊',
           ko: '탱끼리 모이기',
         },
@@ -85,6 +87,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Go sides, aim across',
+          de: 'Geh zu den Seiten, ziehle nach gegenüber',
           cn: '靠边，注意箭头朝向',
           ko: '구석으로, 서로 겹치지 않게',
         },
@@ -100,6 +103,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Swords',
+          de: 'Schwerter',
           cn: '注意落剑顺序',
           ko: '검',
         },
@@ -132,6 +136,7 @@ export default {
       outputStrings: {
         text: {
           en: 'X to cards, + to intercards',
+          de: 'X in die Cardinalen, + in die Intercardinale Himmelsrichtungen',
           cn: '靠边放剑(十字四角)',
           ko: 'X는 동서남북, +는 대각위치로',
         },
@@ -147,6 +152,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Numbered Divebombs',
+          de: 'Nummerierte Sturzflüge',
           cn: '注意士兵顺序，结束返回中央',
           ko: '엑사플레어 준비',
         },
