@@ -17,9 +17,9 @@ hideall "--sync--"
 1050.7 "Brittle Breccia" sync /:Mudman:548D:/
 1051.1 "Rocky Roll" sync /:Mud Bubble:548[35]:/
 1066.7 "Stone Age" sync /:Mudman:5491:/ duration 5
-
-1080.0 "Hard Rock" sync /:Mudman:547F:/ duration 6 jump 1011.0 window 20,20
-1090.0 "Petrified Peat" # sync /:Mudman:5480:/
+# loops jump back
+1080.0 "Hard Rock" sync /:Mudman:547F:/ duration 6 jump 1011.0 window 20,20
+1090.0 "Petrified Peat" # sync /:Mudman:5480:/
 1102.1 "Peat Pelt" # sync /:Mudman:5482:/
 1111.2 "Rocky Roll" # sync /:Mud Bubble:548[34]:/
 1120.5 "Brittle Breccia" # sync /:Mudman:548D:/
