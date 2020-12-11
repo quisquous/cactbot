@@ -47,18 +47,22 @@ const exVersionToShortName = {
   '0': {
     en: 'ARR',
     de: 'ARR',
+    cn: '重生',
   },
   '1': {
     en: 'HW',
     de: 'HW',
+    cn: '苍穹',
   },
   '2': {
     en: 'SB',
     de: 'SB',
+    cn: '红莲',
   },
   '3': {
     en: 'ShB',
     de: 'ShB',
+    cn: '暗影',
   },
 };
 
@@ -66,22 +70,27 @@ const contentTypeToLabel = {
   [ContentType.Raids]: {
     en: 'Raid',
     de: 'Raid',
+    cn: '大型任务',
   },
   [ContentType.Trials]: {
     en: 'Trial',
     de: 'Prfng',
+    cn: '讨伐歼灭战',
   },
   [ContentType.UltimateRaids]: {
     en: 'Ult',
     de: 'Ult',
+    cn: '绝境战',
   },
   [ContentType.Dungeons]: {
     en: 'Dgn',
     de: 'Dgn',
+    cn: '迷宫挑战',
   },
   [ContentType.Guildhests]: {
     en: 'Hest',
     de: 'Gldgh',
+    cn: '行会令',
   },
 };
 
@@ -98,22 +107,27 @@ const zoneGridHeaders = {
   expansion: {
     en: 'Ex',
     de: 'Ex',
+    cn: '资料片',
   },
   type: {
     en: 'Type',
     de: 'Art',
+    cn: '类型',
   },
   name: {
     en: 'Name',
     de: 'Name',
+    cn: '名称',
   },
   triggers: {
     en: 'Triggers',
     de: 'Triggers',
+    cn: '触发器',
   },
   timeline: {
     en: 'Timeline',
     de: 'Timeline',
+    cn: '时间轴',
   },
   // TODO: oopsy
   // TODO: missing translation items
@@ -124,16 +138,19 @@ const miscStrings = {
   title: {
     en: 'Cactbot Content Coverage',
     de: 'Cactbot Inhaltsabdeckung',
+    cn: 'Cactbot 内容检视',
   },
   // Overall label for the expansion table.
   overall: {
     en: 'Overall',
     de: 'Insgesamt',
+    cn: '总览',
   },
   // Warning when generator hasn't been run.
   runGenerator: {
     en: 'Error: Run node util/gen_coverage_report.js to generate data.',
     de: 'Error: Führe node util/gen_coverage_report.js aus um die Daten zu generieren.',
+    cn: '错误: 运行util/gen_coverage_report.js以生成数据。',
   },
 };
 
