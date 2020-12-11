@@ -343,7 +343,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Protean -> Partner Stacks -> Line Cleave -> Knockback -> Stack',
-          ko: '8장판 -> 파트너 쉐어뎀 -> 직선 장판 -> 넉백 -> 모이기',
+          ko: '8산개 -> 파트너 쉐어뎀 -> 직선 장판 -> 넉백 -> 모이기',
         },
       },
     },
@@ -355,7 +355,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Protean -> Spread -> Line Cleave -> Out -> Tank Cleaves',
-          ko: '8장판 -> 산개 -> 직선 장판 -> 밖으로 -> 광역 탱버',
+          ko: '8산개 -> 산개 -> 직선 장판 -> 밖으로 -> 광역 탱버',
         },
       },
     },
@@ -367,7 +367,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Protean -> Group Stacks -> Line Cleave -> Bait -> Away',
-          ko: '8장판 -> 그룹 쉐어뎀 -> 직선 장판 -> 장판 유도 -> 피하기',
+          ko: '8산개 -> 그룹 쉐어뎀 -> 직선 장판 -> 장판 유도 -> 피하기',
         },
       },
     },
