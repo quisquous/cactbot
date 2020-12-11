@@ -62,6 +62,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Get Near Same Polarity Mines',
+          ko: '같은 극성 폭탄쪽으로',
         },
       },
       run: (data) => data.seenMines = true,
@@ -112,6 +113,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Bait Lines Away From Safe Spot',
+          ko: '안전지대 밖으로 장판 유도',
         },
       },
     },
