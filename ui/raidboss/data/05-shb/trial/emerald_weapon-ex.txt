@@ -1,0 +1,94 @@
+### Emerald Weapon Ex
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
+
+### Phase 1
+# -p 55B0:17.1
+# -ii 55AF 55AE 557B 58D3 557D 557F 5BA6 5BA7 5596 557A 5579 5BD3 5017 559E 55A0 5597 5018 55A4 5BA3 554B 554C 5593 559A 5B03 5598
+
+0 "Start" sync /Engage!/ window 0,1
+1.1 "--sync--" sync /:The Emerald Weapon:5B1A:/ window 1.1,0
+17.1 "Emerald Shot" sync /:The Emerald Weapon:55B0:/ window 18,10
+21.5 "--sync--" sync /:The Emerald Weapon:5B1A:/
+28.2 "Optimized Ultima" sync /:The Emerald Weapon:55B1:/
+32.6 "--sync--" sync /:The Emerald Weapon:5B1A:/
+39.4 "Aetheroplasm Production" sync /:The Emerald Weapon:55AA:/
+65.6 "Emerald Beam" sync /:The Emerald Weapon:557[13]:/
+81.7 "--sync--" sync /:The Emerald Weapon:5B1A:/
+92.8 "Magitek Magnetism" sync /:The Emerald Weapon:5594:/
+101.8 "--sync--" sync /:The Emerald Weapon:5B1A:/
+118.0 "Magitek Magnetism" sync /:The Emerald Weapon:5594:/
+124.8 "--sync--" sync /:The Emerald Weapon:5B1A:/
+138.1 "Emerald Beam" sync /:The Emerald Weapon:557[57]:/
+154.2 "--sync--" sync /:The Emerald Weapon:5B1A:/
+160.3 "Optimized Ultima" sync /:The Emerald Weapon:55B1:/
+165.3 "--sync--" sync /:The Emerald Weapon:5B1A:/
+171.4 "Bit Storm" sync /:The Emerald Weapon:55A2:/
+178.5 "Divide Et Impera" sync /:The Emerald Weapon:5537:/
+188.7 "--sync--" sync /:The Emerald Weapon:5B1A:/
+198.6 "Expire" sync /:The Emerald Weapon:5591:/
+208.6 "Aire Tam Storm" sync /:The Emerald Weapon:558F:/
+222.5 "--sync--" sync /:The Emerald Weapon:5B1A:/
+231.7 "Photon Ring" sync /:The Emerald Weapon:55A9:/
+234.7 "--sync--" sync /:The Emerald Weapon:5B1A:/
+243.9 "Magitek Magnetism" sync /:The Emerald Weapon:5594:/
+261.8 "--sync--" sync /:The Emerald Weapon:5B1A:/
+278.1 "Optimized Ultima" sync /:The Emerald Weapon:55B1:/
+284.9 "--sync--" sync /:The Emerald Weapon:5B1A:/
+291.1 "Bit Storm" sync /:The Emerald Weapon:55A2:/
+298.2 "Divide Et Impera" sync /:The Emerald Weapon:5537:/
+305.4 "--sync--" sync /:The Emerald Weapon:5B1A:/
+312.5 "Optimized Ultima" sync /:The Emerald Weapon:55B2:/
+322.5 "--sync--" sync /:The Emerald Weapon:5B1A:/
+339.6 "Enrage" sync /:The Emerald Weapon:5B16:/
+
+### Cutscene
+800.0 "--cutscene--" sync /:The Emerald Weapon:5B02:/ window 800,0 duration 58.5
+858.5 "--targetable--"
+
+### Phase 2
+# -p 555B:1015
+# -ii 55DA 55D9 55BD 55BC 55CE 5B1F 5B20 55D7 55BA 55BB 5585 55D6 55C0 55C1 55C2 55D0 55D2 55CB 55CC
+# -ic Bitblade
+
+1000.0 "Start"
+1001.0 "--sync--" sync /:The Emerald Weapon:5B1C:/ window 1001,0
+1015.0 "Divide Et Impera" sync /:The Emerald Weapon:555B:/ window 1015,5
+1022.2 "--sync--" sync /:The Emerald Weapon:5B1C:/
+1031.3 "Primus Terminus Est" sync /:The Emerald Weapon:55C3:/
+1039.2 "--sync--" sync /:The Emerald Weapon:5B1C:/
+1046.4 "Tertius Terminus Est" sync /:The Emerald Weapon:55CC:/
+1059.3 "--sync--" sync /:The Emerald Weapon:5B1C:/
+1075.6 "Legio Phantasmatis" sync /:The Emerald Weapon:55B4:/
+1076.4 "--sync--" sync /:The Emerald Weapon:5B1C:/
+1096.2 "Heirsbane" sync /:Black Wolf's Image:55B9:/
+1117.6 "Magitek Cannon" sync /:Reaper Image:55BE:/
+1127.3 "--sync--" sync /:The Emerald Weapon:5B1C:/
+1135.4 "Optimized Ultima" sync /:The Emerald Weapon:5B10:/
+1141.4 "--sync--" sync /:The Emerald Weapon:5B1C:/
+1148.6 "Divide Et Impera" sync /:The Emerald Weapon:555B:/
+1155.8 "--sync--" sync /:The Emerald Weapon:5B1C:/
+1162.0 "Tertius Terminus Est" sync /:The Emerald Weapon:55CC:/
+1168.1 "Split" sync /:The Emerald Weapon:55(CF|D3):/
+1174.3 "Expire / Sidescathe" sync /:The Emerald Weapon:55D[145]:/
+1188.2 "--sync--" sync /:The Emerald Weapon:5B1C:/
+1205.5 "Legio Phantasmatis" sync /:The Emerald Weapon:55B4:/
+1214.9 "--sync--" sync /:Black Wolf's Image:55C0:/
+1226.2 "--sync--" sync /:Black Wolf's Image:55C1:/
+1232.4 "--sync--" sync /:Black Wolf's Image:55C2:/
+1238.4 "Shots Fired" sync /:Imperial Image:55B7:/ duration 6
+1247.5 "Magitek Cannon" sync /:Reaper Image:55BE:/
+1257.2 "--sync--" sync /:The Emerald Weapon:5B1C:/
+1269.4 "Secundus Terminus Est" sync /:The Emerald Weapon:55C8:/
+1280.3 "--sync--" sync /:The Emerald Weapon:5B1C:/
+1292.7 "Split" sync /:The Emerald Weapon:55(CF|D3):/
+1298.5 "Expire / Sidescathe" sync /:The Emerald Weapon:55D[145]:/
+1312.4 "--sync--" sync /:The Emerald Weapon:5B1C:/
+1326.5 "Primus Terminus Est" sync /:The Emerald Weapon:55C3:/
+1329.4 "--sync--" sync /:The Emerald Weapon:5B1C:/
+1343.2 "Divide Et Impera" sync /:The Emerald Weapon:555B:/
+1350.4 "--sync--" sync /:The Emerald Weapon:5B1C:/
+1374.5 "Enrage" sync /:The Emerald Weapon:5B17:/
