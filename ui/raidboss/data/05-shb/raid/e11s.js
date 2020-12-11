@@ -36,6 +36,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Protean -> Partner Stacks',
+          ko: '8산개 -> 파트너 쉐어뎀',
         },
       },
     },
@@ -46,6 +47,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Protean -> Spread',
+          ko: '8산개 -> 산개',
         },
       },
     },
@@ -56,6 +58,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Protean -> Group Stacks',
+          ko: '8산개 -> 그룹 쉐어뎀',
         },
       },
     },
@@ -66,6 +69,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Line Cleave -> Knockback',
+          ko: '직선 장판 -> 넉백',
         },
       },
     },
@@ -76,6 +80,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Line Cleave -> Out',
+          ko: '직선 장판 -> 바깥으로',
         },
       },
     },
@@ -86,6 +91,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Line Cleave + Bait',
+          ko: '직선 장판 + 장판 유도',
         },
       },
     },
@@ -94,7 +100,7 @@ export default {
       netRegex: NetRegexes.tether({ id: '0011' }),
       run: (data, matches) => {
         data.tethers = data.tethers || {};
-        data.tethers[data.target] = matches.targetId;
+        data.tethers[matches.target] = matches.targetId;
       },
     },
     {
@@ -142,9 +148,11 @@ export default {
         output.responseOutputStrings = {
           onYou: {
             en: 'Lightning Tether on YOU',
+            ko: '번개징 대상자',
           },
           forTanks: {
             en: 'Lightning on ${player}',
+            ko: '"${player}" 번개징 대상자',
           },
           tankCleave: {
             en: 'Tank cleave',
@@ -237,6 +245,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Fire: Go to Blue',
+          ko: '화염: 파랑으로',
         },
       },
     },
@@ -248,6 +257,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Lightning: Go to Red',
+          ko: '번개: 빨강으로',
         },
       },
     },
@@ -264,6 +274,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Fire: Go to Blue',
+          ko: '화염: 파랑으로',
         },
       },
     },
@@ -274,6 +285,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Lightning: Go to Red',
+          ko: '번개: 빨강으로',
         },
       },
     },
@@ -285,6 +297,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Fire: Go to Blue',
+          ko: '화염: 파랑으로',
         },
       },
     },
@@ -295,6 +308,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Lightning: Go to Red',
+          ko: '화염: 빨강으로',
         },
       },
     },
@@ -306,6 +320,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Fire: Knockback To Red -> Go Blue',
+          ko: '화염: 빨강으로 넉백 -> 파랑으로 이동',
         },
       },
     },
@@ -316,6 +331,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Lightning: Knockback To Blue -> Go Red',
+          ko: '번개: 파랑으로 넉백 -> 빨강으로 이동',
         },
       },
     },
@@ -327,6 +343,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Protean -> Partner Stacks -> Line Cleave -> Knockback -> Stack',
+          ko: '8산개 -> 파트너 쉐어뎀 -> 직선 장판 -> 넉백 -> 모이기',
         },
       },
     },
@@ -338,6 +355,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Protean -> Spread -> Line Cleave -> Out -> Tank Cleaves',
+          ko: '8산개 -> 산개 -> 직선 장판 -> 밖으로 -> 광역 탱버',
         },
       },
     },
@@ -349,6 +367,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Protean -> Group Stacks -> Line Cleave -> Bait -> Away',
+          ko: '8산개 -> 그룹 쉐어뎀 -> 직선 장판 -> 장판 유도 -> 피하기',
         },
       },
     },

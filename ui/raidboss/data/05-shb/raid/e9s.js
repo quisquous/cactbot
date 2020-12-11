@@ -359,6 +359,7 @@ export default {
           fr: 'Orientez le laser vers l\'extérieur',
           ja: 'レザーを外に向け',
           cn: '向外引导激光',
+          ko: '바깥 바라보기 (레이저 유도)',
         },
       },
     },
