@@ -116,7 +116,7 @@ export default {
       },
     },
     {
-      id: 'EmeraldEx Expire',
+      id: 'EmeraldEx Expire P1',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55[D9]1', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55[D9]1', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55[D9]1', capture: false }),
@@ -239,7 +239,7 @@ export default {
       },
     },
     {
-      id: 'EmeraldEx Expire',
+      id: 'EmeraldEx Expire P2',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '282b', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '282b', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '282b', capture: false }),
