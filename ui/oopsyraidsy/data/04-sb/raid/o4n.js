@@ -30,6 +30,7 @@ export default {
           name: e.target,
           reason: {
             en: 'Cleansers missed Doom!',
+            de: 'Doom-Reinigung vergessen!',
             ja: '死の宣告',
             cn: '没解死宣',
           },
@@ -45,6 +46,7 @@ export default {
           name: e.targetName,
           reason: {
             en: 'Pushed off!',
+            de: 'Runter geschubst!',
             ja: '落ちた',
             cn: '击退坠落',
           },

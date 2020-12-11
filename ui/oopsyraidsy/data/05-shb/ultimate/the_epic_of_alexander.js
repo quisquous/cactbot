@@ -77,6 +77,7 @@ export default {
           blame: e.targetName,
           text: {
             en: 'luminous aetheroplasm',
+            de: 'Luminiszentes Ätheroplasma',
             ja: '光性爆雷',
             cn: '光性爆雷',
           },
@@ -108,6 +109,7 @@ export default {
           name: data.jagdTether ? data.jagdTether[e.attackerId] : undefined,
           text: {
             en: 'Doll Death',
+            de: 'Puppe Tot',
             ja: 'ドールが死んだ',
             cn: '浮士德死亡',
           },
