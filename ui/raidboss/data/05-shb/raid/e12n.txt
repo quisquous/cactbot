@@ -30,7 +30,7 @@ hideall "--sync--"
 148.4 "--untargetable--"
 
 # Intermission. Can be pushed, unknown threshold, maybe 70% HP?
-196.5 "Eternal Oblivion" sync /:Eden's Promise:587A:/ window 50,10
+196.5 "Eternal Oblivion" sync /:Eden's Promise:587A:/ window 200,10
 204.3 "--sync--" sync /:Eden's Promise:4B20:/
 232.9 "Earth Shaker" sync /:Eden's Promise:5885:/
 232.9 "Obliteration" sync /:Eden's Promise:4B43:/
@@ -71,7 +71,7 @@ hideall "--sync--"
 # and then this first block, always ending in 5861 Release,
 # is followed by:
 
-# Unknown_5879 > Cast > Cast > Malefecium
+# Unknown_5879 > Cast > Cast > Maleficium
 # The time between 5861 Release and Unknown 5879
 # is consistent at 9 seconds for both Shiva and Titan.
 
