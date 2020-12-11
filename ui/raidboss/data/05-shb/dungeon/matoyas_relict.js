@@ -34,6 +34,7 @@ export default {
       outputStrings: {
         pullOrb: {
           en: 'Pull orb to an empty hole',
+          fr: 'Placez l\'orbe dans un trou',
           ja: '泥団子を四隅の穴に誘導',
           cn: '诱导泥球到无敌人的风圈',
           ko: '빈 구멍으로 구슬 보내기',
@@ -71,6 +72,7 @@ export default {
       outputStrings: {
         avoidTether: {
           en: 'Avoid tank and tethers',
+          fr: 'Évitez le tank et les liens',
           ja: 'タンクや線に離れ',
           cn: '远离坦克及其连线',
           ko: '탱커와 선 피하기',
@@ -87,6 +89,7 @@ export default {
       outputStrings: {
         avoidWall: {
           en: 'Avoid Wall Flush',
+          fr: 'Évitez le jet d\'eau',
           ja: '光ってない横列に移動',
           cn: '站在墙壁未发光的一列',
           ko: '벽 물줄기 피하기',
@@ -105,6 +108,7 @@ export default {
       outputStrings: {
         stepIn: {
           en: 'Step in Puddle near the Cloud',
+          fr: 'Allez dans la zone au sol près du nuage',
           ja: '雲に近い水を踏む',
           cn: '站在靠近云朵的水流里等待浮空',
           ko: '구름 근처 물줄기 위에 서기',
@@ -130,6 +134,7 @@ export default {
       outputStrings: {
         getKnocked: {
           en: 'Get Knocked into Safe (no anti-knockback)',
+          fr: 'Faites-vous pousser en zone safe (pas d\'anti-poussée)',
           ja: 'ボスの正面に (堅実魔効かない)',
           cn: '站在Boss正面 (防击退无效)',
           ko: '안전한 구역으로 넉백당하기',
@@ -146,6 +151,7 @@ export default {
       outputStrings: {
         awayFromAoe: {
           en: 'Go to Opposite Side',
+          fr: 'Allez du côté opposé',
           ja: '反対側へ',
           cn: '对面躲避坠落',
           ko: '반대편으로 이동',
@@ -163,6 +169,7 @@ export default {
       outputStrings: {
         awayFrom: {
           en: 'Away From Boss',
+          fr: 'Éloignez-vous du boss',
           ja: 'ボスに離れ',
           cn: '远离Boss所在的行',
           ko: '보스에서 떨어지기',
@@ -176,6 +183,7 @@ export default {
       outputStrings: {
         runAway: {
           en: 'RUN AWAY',
+          fr: 'FUYEZ',
           ja: 'ボスに離れ',
           cn: '远离即死区',
           ko: '바람 반대로 뛰기',
@@ -202,6 +210,7 @@ export default {
       outputStrings: {
         goBoss: {
           en: 'Go to Boss',
+          fr: 'Allez vers le boss',
           ja: 'ボスの居場所に移動',
           cn: '站在Boss正下方',
           ko: '보스쪽으로',
