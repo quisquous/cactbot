@@ -25,14 +25,30 @@ export default {
       // Thin Ice
       netRegex: NetRegexes.gainsEffect({ effectId: '38F' }),
       deathReason: function(e, data, matches) {
-        return { type: 'fail', name: matches.target, reason: { en: 'Slid off!' } };
+        return {
+          type: 'fail',
+          name: matches.target,
+          reason: {
+            en: 'Slid off!',
+            ja: '滑った',
+            cn: '滑落',
+          },
+        };
       },
     },
     {
       id: 'Shinryu Tidal Wave',
       damageRegex: '1F8B',
       deathReason: function(e) {
-        return { type: 'fail', name: e.targetName, reason: { en: 'Pushed off!' } };
+        return {
+          type: 'fail',
+          name: e.targetName,
+          reason: {
+            en: 'Pushed off!',
+            ja: '落ちた',
+            cn: '击退坠落',
+          },
+        };
       },
     },
     {
@@ -40,7 +56,15 @@ export default {
       id: 'Shinryu Aerial Blast',
       damageRegex: '1F90',
       deathReason: function(e) {
-        return { type: 'fail', name: e.targetName, reason: { en: 'Pushed off!' } };
+        return {
+          type: 'fail',
+          name: e.targetName,
+          reason: {
+            en: 'Pushed off!',
+            ja: '落ちた',
+            cn: '击退坠落',
+          },
+        };
       },
     },
   ],

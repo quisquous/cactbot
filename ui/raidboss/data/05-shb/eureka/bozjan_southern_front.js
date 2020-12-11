@@ -71,6 +71,8 @@ const orbOutputStrings = {
   unknown: {
     en: '???',
     de: '???',
+    ja: '???',
+    cn: '???',
     ko: '???',
   },
   knockback: {
@@ -93,6 +95,8 @@ const orbOutputStrings = {
   stopOutside: {
     en: 'Stop (Out)',
     de: 'Stop (Außen)',
+    ja: 'ストップ (外に)',
+    cn: '停止活动 (外面)',
     ko: '멈추기 (바깥에서)',
   },
   move: {
@@ -122,6 +126,8 @@ const orbOutputStrings = {
   rings: {
     en: 'Rings',
     de: 'Ringe',
+    ja: 'ドーナツ',
+    cn: '月环',
     ko: '고리장판',
   },
 };
@@ -247,6 +253,8 @@ export default {
         text: {
           en: 'Stand in dive charge',
           de: 'Stehe im Ansturm',
+          ja: '直線頭割りに入る',
+          cn: '进直线分摊',
           ko: '돌진 장판 위에 서기',
         },
       },
@@ -273,6 +281,8 @@ export default {
         text: {
           en: 'Take one tether',
           de: 'Nimm eine´Verbindung',
+          ja: '線を取る',
+          cn: '接线',
           ko: '선 하나 낚아채기',
         },
       },
@@ -326,6 +336,8 @@ export default {
         text: {
           en: 'Kill Magitek Core',
           de: 'Besiege Magitek-Reaktor',
+          ja: '魔導コアを撃破',
+          cn: '击杀魔导核心',
           ko: '마도 핵 죽이기',
         },
       },
@@ -363,11 +375,15 @@ export default {
         getUnderOrb: {
           en: 'Get Under Orb',
           de: 'Geh unter einem Orb',
+          ja: '白玉に安置',
+          cn: '靠近白球',
           ko: '구슬 아래로',
         },
         goCorner: {
           en: 'Go To Corner',
           de: 'Geh in die Ecken',
+          ja: 'コーナーへ',
+          cn: '去角落',
           ko: '구석으로',
         },
       },
@@ -421,6 +437,8 @@ export default {
         text: {
           en: 'Kill Meteors',
           de: 'Besiege die Meteore',
+          ja: 'メテオを撃破',
+          cn: '击杀陨石',
           ko: '메테오 부수기',
         },
       },
@@ -580,26 +598,36 @@ export default {
           // "Follow Other People ;)"
           en: 'Go ???',
           de: 'Gehe nach ???',
+          ja: '??? へ',
+          cn: '去 ???',
           ko: '???쪽으로',
         },
         northeast: {
           en: 'Go northeast',
           de: 'Gehe nach Nordosten',
+          ja: '北東へ',
+          cn: '去东北',
           ko: '북동쪽으로',
         },
         southeast: {
           en: 'Go southeast',
           de: 'Gehe nach Südosten',
+          ja: '南東へ',
+          cn: '去东南',
           ko: '남동쪽으로',
         },
         southwest: {
           en: 'Go southwest',
           de: 'Gehe nach Südwesten',
+          ja: '南西へ',
+          cn: '去西南',
           ko: '남서쪽으로',
         },
         northwest: {
           en: 'Go northwest',
           de: 'Gehe nach Nordwesten',
+          ja: '北西へ',
+          cn: '去西北',
           ko: '북서쪽으로',
         },
       },
@@ -631,11 +659,15 @@ export default {
         justOrb: {
           en: 'Get Under Light Orb',
           de: 'Unter einem Lichtorb stellen',
+          ja: '白玉へ',
+          cn: '靠近白球',
           ko: '하얀 구슬 안으로',
         },
         orbWithFlutter: {
           en: 'Get Under Blown Light Orb',
           de: 'Zu einem weggeschleuderten Lichtorb gehen',
+          ja: '赤玉へ',
+          cn: '靠近火球',
           ko: '하얀 구슬이 이동할 위치로',
         },
       },
@@ -661,6 +693,8 @@ export default {
         text: {
           en: 'Follow Boss',
           de: 'Folge dem Boss',
+          ja: 'ボスの後ろに追う',
+          cn: '跟紧在Boss身后',
           ko: '보스 따라가기',
         },
       },
@@ -676,6 +710,8 @@ export default {
         text: {
           en: 'Lyon Passage Open',
           de: 'Lyon Zugang offen',
+          ja: '獣王ライオンフェイス開始',
+          cn: '挑战兽王莱恩',
           ko: '라이온 포탈 개방',
         },
       },
@@ -868,7 +904,6 @@ export default {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         '4Th Legion Helldiver': 'IVレギオン・ヘルダイバー',
         'Adrammelech': 'アドラメレク',
@@ -885,6 +920,7 @@ export default {
         'Verdant Plume': '濃緑の羽根',
       },
       'replaceText': {
+        '--Lyon Passage--': '--ライオンフェイス開始--',
         '(?<!Command: )Chain Cannon': 'チェーンガン',
         '(?<!Command: )Dive Formation': '一斉突撃',
         '(?<!Command: )Infrared Blast': '熱線照射',
@@ -906,10 +942,11 @@ export default {
         'Energy Generation': 'エネルギー体生成',
         'Explosion': '爆散',
         'False Thunder': 'フォルスサンダー',
-        'Fervid Pulse': 'ファーヴィッドパルス',
+        '(?<!/)Fervid Pulse': 'ファーヴィッドパルス',
         'Fire IV': 'ファイジャ',
         'Flare': 'フレア',
         'Frigid Pulse': 'フリジッドパルス',
+        'Frigid/Fervid Pulse': 'フリジッドパルス/ファーヴィッドパルス',
         'Heart Of Nature': '地霊脈',
         'Holy IV': 'ホーリジャ',
         'Lightburst': 'ライトバースト',
@@ -923,6 +960,7 @@ export default {
         'Nature\'s Blood': '波導地霊斬',
         'Nature\'s Pulse': '波導地霊衝',
         'Obey': 'しじをきく',
+        'Orb': '玉',
         'Pentagust': 'ペンタガスト',
         'Polar Magnetism': '転換マグネット',
         'Pole Shift': '磁場転換',
