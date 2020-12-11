@@ -131,7 +131,7 @@ export default {
     },
     {
       id: 'EmeraldEx Secundus Terminus est Corner',
-      netRegex: NetRegexes.startsUsing({ source: 'Bitblade', id: '55C9', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Bitblade', id: '55C9', capture: false }),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -142,7 +142,7 @@ export default {
     },
     {
       id: 'EmeraldEx Secundus Terminus est',
-      netRegex: NetRegexes.startsUsing({ source: 'Bitblade', id: '55CA', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Bitblade', id: '55CA', capture: false }),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
