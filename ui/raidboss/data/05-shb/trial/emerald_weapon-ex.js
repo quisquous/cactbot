@@ -228,30 +228,20 @@ export default {
       response: Responses.knockback(),
     },
     {
-      id: 'EmeraldEx Secundus Terminus est Corner',
-      netRegex: NetRegexes.ability({ source: 'Bitblade', id: '55C9', capture: false }),
-      alarmText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Go to intercards',
-          de: 'in die Intercardinale Himmelsrichtungen',
-          fr: 'en intercadinal',
-          cn: '去场边四角',
-          ko: '대각위치로',
-        },
-      },
-    },
-    {
+      // TODO: use headmarkers for this
       id: 'EmeraldEx Secundus Terminus est',
-      netRegex: NetRegexes.ability({ source: 'Bitblade', id: '55CA', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55C8', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55C8', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55C8', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55C8', capture: false }),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Go to cards',
-          de: 'in die Cardinalen',
-          fr: 'sur les cardinaux',
-          cn: '去场边中间',
-          ko: '동서남북',
+          en: 'X to cards, + to intercards',
+          de: 'X in die Cardinalen, + in die Intercardinale Himmelsrichtungen',
+          fr: 'X sur les cardinaux, + en intercadinal',
+          cn: '靠边放剑(十字四角)',
+          ko: 'X는 동서남북, +는 대각위치로',
         },
       },
     },
