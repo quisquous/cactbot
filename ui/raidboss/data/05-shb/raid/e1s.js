@@ -494,7 +494,7 @@ export default {
         text: {
           en: 'Bait Orb Lasers Outside',
           de: 'Laser nach drausen ködern',
-          fr: 'Orientez les lasers à l\'extérieur',
+          fr: 'Orientez les lasers vers l\'extérieur',
           cn: '外侧吃激光',
           ko: '원/힐 레이저 바깥으로 유도',
         },
