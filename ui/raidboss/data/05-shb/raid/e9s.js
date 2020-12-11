@@ -6,7 +6,6 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // TODO: Add N/S E/W callout to Rejuvenating Balm
 // TODO: Add Summon
 // TODO: Second, Third Art of Darknesses
-// TODO: Add individual callouts for Phaser Unlimited actions as they're casting
 
 const phaserOutputStrings = {
   sides: {
@@ -256,7 +255,22 @@ export default {
           data.phaserOutputs = ['out', 'healerStacks', 'sides'];
       },
       durationSeconds: 15,
-      alertText: (data, _, output) => data.phaserOutputs.map((key) => output[key]()).join(' -> '),
+      infoText: (data, _, output) => data.phaserOutputs.map((key) => output[key]()).join(' -> '),
+      run: (data) => data.phaserOutputs.shift(),
+      outputStrings: phaserOutputStrings,
+    },
+    {
+      id: 'E9S Anti-Air Phaser Unlimited 2',
+      netRegex: NetRegexes.startsUsing({ id: '561[23]', source: 'Cloud Of Darkness', capture: false }),
+      delaySeconds: 7,
+      alertText: (data, _, output) => output[data.phaserOutputs.shift()](),
+      outputStrings: phaserOutputStrings,
+    },
+    {
+      id: 'E9S Anti-Air Phaser Unlimited 3',
+      netRegex: NetRegexes.startsUsing({ id: '561[23]', source: 'Cloud Of Darkness', capture: false }),
+      delaySeconds: 12,
+      alertText: (data, _, output) => output[data.phaserOutputs.shift()](),
       outputStrings: phaserOutputStrings,
     },
     {
@@ -274,7 +288,22 @@ export default {
           data.phaserOutputs = ['sides', 'healerStacks', 'out'];
       },
       durationSeconds: 15,
-      alertText: (data, _, output) => data.phaserOutputs.map((key) => output[key]()).join(' -> '),
+      infoText: (data, _, output) => data.phaserOutputs.map((key) => output[key]()).join(' -> '),
+      run: (data) => data.phaserOutputs.shift(),
+      outputStrings: phaserOutputStrings,
+    },
+    {
+      id: 'E9S Wide-Angle Phaser Unlimited 2',
+      netRegex: NetRegexes.startsUsing({ id: '560[DE]', source: 'Cloud Of Darkness', capture: false }),
+      delaySeconds: 8,
+      alertText: (data, _, output) => output[data.phaserOutputs.shift()](),
+      outputStrings: phaserOutputStrings,
+    },
+    {
+      id: 'E9S Wide-Angle Phaser Unlimited 3',
+      netRegex: NetRegexes.startsUsing({ id: '560[DE]', source: 'Cloud Of Darkness', capture: false }),
+      delaySeconds: 12,
+      alertText: (data, _, output) => output[data.phaserOutputs.shift()](),
       outputStrings: phaserOutputStrings,
     },
     {
