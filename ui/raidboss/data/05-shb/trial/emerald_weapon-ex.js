@@ -116,7 +116,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Bait Lines Away From Safe Spot',
-          fr: 'Orientez les lignes hors de la zone safe',
+          fr: 'Orientez les lignes hors de la zone sûre',
           ko: '안전지대 밖으로 장판 유도',
         },
       },
