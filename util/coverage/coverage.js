@@ -75,25 +75,25 @@ const contentTypeToLabel = {
     en: 'Raid',
     de: 'Raid',
     ja: 'レイド',
-    cn: 'Raid',
+    cn: '大型任务',
   },
   [ContentType.Trials]: {
     en: 'Trial',
     de: 'Prfng',
     ja: '討伐戦',
-    cn: '蛮神',
+    cn: '讨伐战',
   },
   [ContentType.UltimateRaids]: {
     en: 'Ult',
     de: 'Ult',
     ja: '絶',
-    cn: '绝',
+    cn: '绝境战',
   },
   [ContentType.Dungeons]: {
     en: 'Dgn',
     de: 'Dgn',
     ja: 'ID',
-    cn: '四人本',
+    cn: '迷宫挑战',
   },
   [ContentType.Guildhests]: {
     en: 'Hest',
@@ -117,7 +117,7 @@ const zoneGridHeaders = {
     en: 'Ex',
     de: 'Ex',
     ja: 'パッチ',
-    cn: '大版本',
+    cn: '资料片',
   },
   type: {
     en: 'Type',
@@ -160,7 +160,7 @@ const miscStrings = {
     en: 'Overall',
     de: 'Insgesamt',
     ja: '概要',
-    cn: '概要',
+    cn: '总览',
   },
   // Warning when generator hasn't been run.
   runGenerator: {
