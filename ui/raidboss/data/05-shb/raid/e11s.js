@@ -94,7 +94,7 @@ export default {
       netRegex: NetRegexes.tether({ id: '0011' }),
       run: (data, matches) => {
         data.tethers = data.tethers || {};
-        data.tethers[data.target] = matches.targetId;
+        data.tethers[matches.target] = matches.targetId;
       },
     },
     {
