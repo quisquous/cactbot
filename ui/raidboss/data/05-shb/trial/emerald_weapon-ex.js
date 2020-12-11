@@ -62,6 +62,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Get Near Same Polarity Mines',
+          de: 'Nahe den Bomben mit gleicher Polarisierung',
           ko: '같은 극성 폭탄쪽으로',
         },
       },
@@ -113,6 +114,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Bait Lines Away From Safe Spot',
+          de: 'Linien weg vom Safespot ködern',
           ko: '안전지대 밖으로 장판 유도',
         },
       },
@@ -128,6 +130,9 @@ export default {
     {
       id: 'EmeraldEx Bit Storm',
       netRegex: NetRegexes.addedCombatant({ name: 'Claw Bit', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Satellitenarm', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Main Volante', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'ハンドビット', capture: false }),
       delaySeconds: 3,
       suppressSeconds: 2,
       response: Responses.getIn(),
@@ -135,6 +140,9 @@ export default {
     {
       id: 'EmeraldEx Photon Ring',
       netRegex: NetRegexes.removingCombatant({ name: 'Claw Bit', capture: false }),
+      netRegexDe: NetRegexes.removingCombatant({ name: 'Satellitenarm', capture: false }),
+      netRegexFr: NetRegexes.removingCombatant({ name: 'Main Volante', capture: false }),
+      netRegexJa: NetRegexes.removingCombatant({ name: 'ハンドビット', capture: false }),
       delaySeconds: 3,
       suppressSeconds: 2,
       response: Responses.getOut(),
@@ -249,18 +257,21 @@ export default {
       'locale': 'de',
       'replaceSync': {
         'The Emerald Weapon': 'Smaragd-Waffe',
+        'Claw Bit': 'Satellitenarm',
       },
     },
     {
       'locale': 'fr',
       'replaceSync': {
         'The Emerald Weapon': 'Arme Émeraude',
+        'Claw Bit': 'main volante',
       },
     },
     {
       'locale': 'ja',
       'replaceSync': {
         'The Emerald Weapon': 'エメラルドウェポン',
+        'Claw Bit': 'ハンドビット',
       },
     },
   ],

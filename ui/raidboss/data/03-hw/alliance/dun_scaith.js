@@ -580,6 +580,11 @@ export default {
     {
       id: 'Dun Scaith Noctoshield',
       netRegex: NetRegexes.gainsEffect({ target: 'Diabolos', effectId: '1AA', capture: false }),
+      netRegexDe: NetRegexes.gainsEffect({ target: 'Diabolos', effectId: '1AA', capture: false }),
+      netRegexFr: NetRegexes.gainsEffect({ target: 'Diabolos', effectId: '1AA', capture: false }),
+      netRegexJa: NetRegexes.gainsEffect({ target: 'ディアボロス', effectId: '1AA', capture: false }),
+      netRegexCn: NetRegexes.gainsEffect({ target: '迪亚波罗斯', effectId: '1AA', capture: false }),
+      netRegexKo: NetRegexes.gainsEffect({ target: '디아볼로스', effectId: '1AA', capture: false }),
       condition: function(data) {
         return data.role === 'tank' || data.role === 'healer';
       },
