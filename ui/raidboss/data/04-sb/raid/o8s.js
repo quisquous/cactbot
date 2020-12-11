@@ -210,7 +210,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Past: Bait, then through',
-          fr: 'Passé : appâtez puis traversez',
+          fr: 'Passé : Attirez, puis traversez',
           de: 'Vergangenheit : Anlocken und Durchlaufen',
           ko: '과거: 맞고, 이동',
           ja: '過去: 飛んできたら反対向ける',
@@ -234,7 +234,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Future: Bait, then stay',
-          fr: 'Futur : appâtez et ne bougez plus',
+          fr: 'Futur : Attirez, puis restez',
           de: 'Zukunft: Anlocken und Stehenbleiben',
           ko: '미래: 맞고, 가만히',
           ja: '未来: 飛んできたらそのまま',
