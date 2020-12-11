@@ -126,6 +126,7 @@ export default {
             blame: data.cloudMarkers[m],
             text: {
               en: e.abilityName + '(clouds too close)',
+              de: e.abilityName + '(Wolken zu nahe)',
               ja: e.abilityName + '(雲近すぎ)',
               cn: e.abilityName + '(雷云重叠)',
             },

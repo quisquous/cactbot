@@ -30,6 +30,7 @@ export default {
           name: matches.target,
           reason: {
             en: 'Slid off!',
+            de: 'Runter gerutscht!',
             ja: '滑った',
             cn: '滑落',
           },
@@ -45,6 +46,7 @@ export default {
           name: e.targetName,
           reason: {
             en: 'Pushed off!',
+            de: 'Runter geschubst!',
             ja: '落ちた',
             cn: '击退坠落',
           },
@@ -61,6 +63,7 @@ export default {
           name: e.targetName,
           reason: {
             en: 'Pushed off!',
+            de: 'Runter geschubst!',
             ja: '落ちた',
             cn: '击退坠落',
           },

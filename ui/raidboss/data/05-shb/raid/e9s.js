@@ -51,9 +51,11 @@ const phaserOutputStrings = {
 const artOfDarknessOutputStrings = {
   startRight: {
     en: 'Start Right',
+    de: 'Starte Rechts',
   },
   startLeft: {
     en: 'Start Left',
+    de: 'Starte Links',
   },
   goRight: {
     en: 'Right',
