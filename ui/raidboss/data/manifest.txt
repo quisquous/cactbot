@@ -206,6 +206,8 @@
 05-shb/dungeon/holminster_switch.txt
 05-shb/dungeon/malikahs_well.js
 05-shb/dungeon/malikahs_well.txt
+05-shb/dungeon/matoyas_relict.js
+05-shb/dungeon/matoyas_relict.txt
 05-shb/dungeon/mt_gulg.js
 05-shb/dungeon/mt_gulg.txt
 05-shb/dungeon/qitana_ravel.js
@@ -265,6 +267,8 @@
 05-shb/raid/e12n.txt
 05-shb/raid/e12s.js
 05-shb/raid/e12s.txt
+05-shb/trial/emerald_weapon-ex.js
+05-shb/trial/emerald_weapon-ex.txt
 05-shb/trial/hades.js
 05-shb/trial/hades.txt
 05-shb/trial/hades-ex.js
@@ -279,6 +283,8 @@
 05-shb/trial/ruby_weapon-ex.txt
 05-shb/trial/shiva-un.js
 05-shb/trial/shiva-un.txt
+05-shb/trial/titan-un.js
+05-shb/trial/titan-un.txt
 05-shb/trial/titania.js
 05-shb/trial/titania.txt
 05-shb/trial/titania-ex.js

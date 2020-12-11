@@ -46,33 +46,69 @@ const exVersionToName = {
 const exVersionToShortName = {
   '0': {
     en: 'ARR',
+    de: 'ARR',
+    fr: 'ARR',
+    ja: '新生',
+    cn: '2.X',
   },
   '1': {
     en: 'HW',
+    de: 'HW',
+    fr: 'HW',
+    ja: '蒼天',
+    cn: '3.X',
   },
   '2': {
     en: 'SB',
+    de: 'SB',
+    fr: 'SB',
+    ja: '紅蓮',
+    cn: '4.X',
   },
   '3': {
     en: 'ShB',
+    de: 'ShB',
+    fr: 'ShB',
+    ja: '漆黒',
+    cn: '5.X',
   },
 };
 
 const contentTypeToLabel = {
   [ContentType.Raids]: {
     en: 'Raid',
+    de: 'Raid',
+    fr: 'Raid',
+    ja: 'レイド',
+    cn: '大型任务',
   },
   [ContentType.Trials]: {
     en: 'Trial',
+    de: 'Prfng',
+    fr: 'Défi',
+    ja: '討伐戦',
+    cn: '讨伐战',
   },
   [ContentType.UltimateRaids]: {
     en: 'Ult',
+    de: 'Ult',
+    fr: 'Fatal',
+    ja: '絶',
+    cn: '绝境战',
   },
   [ContentType.Dungeons]: {
     en: 'Dgn',
+    de: 'Dgn',
+    fr: 'Djn',
+    ja: 'ID',
+    cn: '迷宫挑战',
   },
   [ContentType.Guildhests]: {
     en: 'Hest',
+    de: 'Gldgh',
+    fr: 'Op. Guilde',
+    ja: 'ギルド',
+    cn: '行会令',
   },
 };
 
@@ -88,18 +124,38 @@ const contentTypeLabelOrder = [
 const zoneGridHeaders = {
   expansion: {
     en: 'Ex',
+    de: 'Ex',
+    fr: 'Ext',
+    ja: 'パッチ',
+    cn: '资料片',
   },
   type: {
     en: 'Type',
+    de: 'Art',
+    fr: 'Type',
+    ja: 'タイプ',
+    cn: '类型',
   },
   name: {
     en: 'Name',
+    de: 'Name',
+    fr: 'Nom',
+    ja: '名前',
+    cn: '名称',
   },
   triggers: {
     en: 'Triggers',
+    de: 'Triggers',
+    fr: 'Triggers',
+    ja: 'トリガー',
+    cn: '触发器',
   },
   timeline: {
     en: 'Timeline',
+    de: 'Timeline',
+    fr: 'Timeline',
+    ja: 'タイムライン',
+    cn: '时间轴',
   },
   // TODO: oopsy
   // TODO: missing translation items
@@ -109,14 +165,26 @@ const miscStrings = {
   // Title at the top of the page.
   title: {
     en: 'Cactbot Content Coverage',
+    de: 'Cactbot Inhaltsabdeckung',
+    fr: 'Contenus présents dans Cactbot',
+    ja: 'Cactbot コンテンツ完成度',
+    cn: 'Cactbot 内容覆盖率',
   },
   // Overall label for the expansion table.
   overall: {
     en: 'Overall',
+    de: 'Insgesamt',
+    fr: 'Total',
+    ja: '概要',
+    cn: '总览',
   },
   // Warning when generator hasn't been run.
   runGenerator: {
     en: 'Error: Run node util/gen_coverage_report.js to generate data.',
+    de: 'Error: Führe node util/gen_coverage_report.js aus um die Daten zu generieren.',
+    fr: 'Erreur : Lancez node util/gen_coverage_report.js pour générer des données.',
+    ja: 'エラー：node util/gen_coverage_report.js を実行し、データを生成しよう。',
+    cn: '错误：请先运行 node util/gen_coverage_report.js 以生成数据。',
   },
 };
 

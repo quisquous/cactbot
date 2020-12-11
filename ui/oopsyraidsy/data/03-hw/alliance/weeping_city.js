@@ -112,6 +112,7 @@ export default {
           text: {
             en: 'Tank Laser',
             de: 'Tank Laser',
+            fr: 'Tank Laser',
             ja: 'タンクレザー',
             cn: '坦克激光',
             ko: '탱커 레이저',
@@ -129,6 +130,7 @@ export default {
           reason: {
             en: 'Slid off!',
             de: 'ist runtergerutscht!',
+            fr: 'Glissé !',
             ja: 'ノックバック',
             cn: '击退！',
             ko: '넉백됨!',

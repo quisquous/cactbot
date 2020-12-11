@@ -25,14 +25,32 @@ export default {
       id: 'O4N Doom', // Kills target if not cleansed
       netRegex: NetRegexes.gainsEffect({ effectId: '38E' }),
       deathReason: function(e, data, matches) {
-        return { type: 'fail', name: e.target, reason: { en: 'Cleansers missed Doom!' } };
+        return {
+          type: 'fail',
+          name: e.target,
+          reason: {
+            en: 'Cleansers missed Doom!',
+            de: 'Doom-Reinigung vergessen!',
+            ja: '死の宣告',
+            cn: '没解死宣',
+          },
+        };
       },
     },
     {
       id: 'O4N Vacuum Wave', // Short knockback from Exdeath
       damageRegex: '24B8',
       deathReason: function(e) {
-        return { type: 'fail', name: e.targetName, reason: { en: 'Pushed off!' } };
+        return {
+          type: 'fail',
+          name: e.targetName,
+          reason: {
+            en: 'Pushed off!',
+            de: 'Runter geschubst!',
+            ja: '落ちた',
+            cn: '击退坠落',
+          },
+        };
       },
     },
     {

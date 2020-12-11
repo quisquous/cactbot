@@ -122,7 +122,7 @@ export default {
         text: {
           en: 'watch for safe',
           de: 'nach sicherer Position schauen',
-          fr: 'Trouvez une zone safe',
+          fr: 'Trouvez une zone sûre',
           ja: '安全場所へ',
           cn: '前往安全区',
           ko: '안전지대 찾기',
