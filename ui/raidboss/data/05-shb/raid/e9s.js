@@ -113,13 +113,9 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: ['5B45', '55FB'], source: '暗闇の雲', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['5B45', '55FB'], source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['5B45', '55FB'], source: '어둠의 구름', capture: false }),
-      durationSeconds: (data) => {
-        if (data.phase === 'empty')
-          return 8;
-        return 4;
-      },
-      alertText: (data, _, output) => output['protean'](),
-      outputStrings: artOfDarknessOutputStrings,
+      durationSeconds: (data) => data.phase === 'empty' ? 8 : 4,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: { text: artOfDarknessOutputStrings.protean },
     },
     {
       id: 'E9S The Art Of Darkness Partner Stacks',
@@ -129,13 +125,9 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: ['5B46', '55FE'], source: '暗闇の雲', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['5B46', '55FE'], source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['5B46', '55FE'], source: '어둠의 구름', capture: false }),
-      durationSeconds: (data) => {
-        if (data.phase === 'empty')
-          return 8;
-        return 4;
-      },
-      alertText: (data, _, output) => output['stackWithPartner'](),
-      outputStrings: artOfDarknessOutputStrings,
+      durationSeconds: (data) => data.phase === 'empty' ? 8 : 4,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: { text: artOfDarknessOutputStrings.stackWithPartner },
     },
     {
       id: 'E9S Zero-Form Devouring Dark',
@@ -356,12 +348,12 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '5601', source: '暗闇の雲', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5601', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5601', source: '어둠의 구름', capture: false }),
-      infoText: (data, _, output) => output['startLeft'](),
-      outputStrings: artOfDarknessOutputStrings,
-      run: (data) => {
-        data.artOfDarknessRemaining = 2;
-        data.artOfDarkness = [];
-      },
+      // The fight goes Second Art -> Third Art -> Second Art, so we want
+      // to have this cleaned up before the second Second Art Of Darkness
+      preRun: (data) => delete data.finalArtOfDarkness,
+      infoText: (data, _, output) => output.text(),
+      outputStrings: { text: artOfDarknessOutputStrings.startLeft },
+      run: (data) => data.artOfDarkness = [],
     },
     {
       id: 'E9S The Second Art Of Darkness Left',
@@ -371,52 +363,38 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '5602', source: '暗闇の雲', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5602', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5602', source: '어둠의 구름', capture: false }),
-      infoText: (data, _, output) => output['startRight'](),
-      outputStrings: artOfDarknessOutputStrings,
-      run: (data) => {
-        data.artOfDarknessRemaining = 2;
-        data.artOfDarkness = [];
-      },
+      // The fight goes Second Art -> Third Art -> Second Art, so we want
+      // to have this cleaned up before the second Second Art Of Darkness
+      preRun: (data) => delete data.finalArtOfDarkness,
+      infoText: (data, _, output) => output.text(),
+      outputStrings: { text: artOfDarknessOutputStrings.startRight },
+      run: (data) => data.artOfDarkness = [],
     },
     {
       id: 'E9S The Second / Third Art Of Darkness Stack Charge',
       netRegex: NetRegexes.headMarker({ id: '01B9', capture: false }),
       preRun: (data) => data.artOfDarkness.push('stackWithPartner'),
-      durationSeconds: (data) => {
-        if (data.finalArtOfDarkness)
-          return 16;
-        return 9;
-      },
+      durationSeconds: (data) => data.finalArtOfDarkness ? 16 : 9,
       alertText: (data, _, output) => {
         if (data.finalArtOfDarkness)
           data.artOfDarkness.push(data.finalArtOfDarkness);
         return data.artOfDarkness.map((key) => output[key]()).join(' -> ');
       },
       outputStrings: artOfDarknessOutputStrings,
-      run: (data) => {
-        delete data.artOfDarkness;
-        delete data.finalArtOfDarkness;
-      },
+      run: (data) => delete data.artOfDarkness,
     },
     {
       id: 'E9S The Second / Third Art Of Darkness Protean Charge',
       netRegex: NetRegexes.headMarker({ id: '01BA', capture: false }),
       preRun: (data) => data.artOfDarkness.push('protean'),
-      durationSeconds: (data) => {
-        if (data.finalArtOfDarkness)
-          return 16;
-        return 9;
-      },
+      durationSeconds: (data) => data.finalArtOfDarkness ? 16 : 9,
       alertText: (data, _, output) => {
         if (data.finalArtOfDarkness)
           data.artOfDarkness.push(data.finalArtOfDarkness);
         return data.artOfDarkness.map((key) => output[key]()).join(' -> ');
       },
       outputStrings: artOfDarknessOutputStrings,
-      run: (data) => {
-        delete data.artOfDarkness;
-        delete data.finalArtOfDarkness;
-      },
+      run: (data) => delete data.artOfDarkness,
     },
     {
       id: 'E9S The Second / Third Art Of Darkness Right Charge',
@@ -441,9 +419,7 @@ export default {
       condition: Conditions.caresAboutAOE(),
       durationSeconds: 5,
       response: Responses.aoe(),
-      run: (data) => {
-        data.phase = 'empty';
-      },
+      run: (data) => data.phase = 'empty',
     },
     {
       id: 'E9S Flood Of Emptiness',
@@ -537,9 +513,7 @@ export default {
       condition: Conditions.caresAboutAOE(),
       durationSeconds: 5,
       response: Responses.bigAoe('alert'),
-      run: (data) => {
-        delete data.phase;
-      },
+      run: (data) => delete data.phase,
     },
     {
       id: 'E9S The Third Art Of Darkness Right',
@@ -549,10 +523,9 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '5603', source: '暗闇の雲', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5603', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5603', source: '어둠의 구름', capture: false }),
-      infoText: (data, _, output) => output['startLeft'](),
-      outputStrings: artOfDarknessOutputStrings,
+      infoText: (data, _, output) => output.text(),
+      outputStrings: { text: artOfDarknessOutputStrings.startLeft },
       run: (data) => {
-        data.artOfDarknessRemaining = 2;
         data.artOfDarkness = [];
         // Add this once we've seen the second charge to call out sooner.
         data.finalArtOfDarkness = 'goRight';
@@ -566,10 +539,9 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '5604', source: '暗闇の雲', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5604', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5604', source: '어둠의 구름', capture: false }),
-      infoText: (data, _, output) => output['startRight'](),
-      outputStrings: artOfDarknessOutputStrings,
+      infoText: (data, _, output) => output.text(),
+      outputStrings: { text: artOfDarknessOutputStrings.startRight },
       run: (data) => {
-        data.artOfDarknessRemaining = 2;
         data.artOfDarkness = [];
         // Add this once we've seen the second charge to call out sooner.
         data.finalArtOfDarkness = 'goLeft';
