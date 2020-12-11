@@ -47,22 +47,18 @@ const exVersionToShortName = {
   '0': {
     en: 'ARR',
     de: 'ARR',
-    fr: 'ARR',
   },
   '1': {
     en: 'HW',
     de: 'HW',
-    fr: 'HW',
   },
   '2': {
     en: 'SB',
     de: 'SB',
-    fr: 'SB',
   },
   '3': {
     en: 'ShB',
     de: 'ShB',
-    fr: 'ShB',
   },
 };
 
@@ -70,27 +66,22 @@ const contentTypeToLabel = {
   [ContentType.Raids]: {
     en: 'Raid',
     de: 'Raid',
-    fr: 'Raid',
   },
   [ContentType.Trials]: {
     en: 'Trial',
     de: 'Prfng',
-    fr: 'Défi',
   },
   [ContentType.UltimateRaids]: {
     en: 'Ult',
     de: 'Ult',
-    fr: 'Fatal',
   },
   [ContentType.Dungeons]: {
     en: 'Dgn',
     de: 'Dgn',
-    fr: 'Djn',
   },
   [ContentType.Guildhests]: {
     en: 'Hest',
     de: 'Gldgh',
-    fr: 'OpGld',
   },
 };
 
@@ -107,27 +98,22 @@ const zoneGridHeaders = {
   expansion: {
     en: 'Ex',
     de: 'Ex',
-    fr: 'Ex',
   },
   type: {
     en: 'Type',
     de: 'Art',
-    fr: 'Type',
   },
   name: {
     en: 'Name',
     de: 'Name',
-    fr: 'Nom',
   },
   triggers: {
     en: 'Triggers',
     de: 'Triggers',
-    fr: 'Triggers',
   },
   timeline: {
     en: 'Timeline',
     de: 'Timeline',
-    fr: 'Timeline',
   },
   // TODO: oopsy
   // TODO: missing translation items
@@ -138,19 +124,16 @@ const miscStrings = {
   title: {
     en: 'Cactbot Content Coverage',
     de: 'Cactbot Inhaltsabdeckung',
-    fr: 'Couverture du contenu de Cactbot',
   },
   // Overall label for the expansion table.
   overall: {
     en: 'Overall',
     de: 'Insgesamt',
-    fr: 'Global',
   },
   // Warning when generator hasn't been run.
   runGenerator: {
     en: 'Error: Run node util/gen_coverage_report.js to generate data.',
     de: 'Error: Führe node util/gen_coverage_report.js aus um die Daten zu generieren.',
-    fr: 'Erreur : exécutez node util/gen_coverage_report.js pour générer des données',
   },
 };
 
