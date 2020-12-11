@@ -14,6 +14,7 @@ const sharedOutputStrings = {
 
 export default {
   zoneId: ZoneId.CastrumMarinumExtreme,
+  timelineFile: 'emerald_weapon-ex.txt',
   triggers: [
     {
       id: 'EmeraldEx Emerald Shot',
@@ -245,18 +246,21 @@ export default {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'The Emerald Weapon': 'Smaragd-Waffe',
       },
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'The Emerald Weapon': 'Arme Émeraude',
       },
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'The Emerald Weapon': 'エメラルドウェポン',
       },
