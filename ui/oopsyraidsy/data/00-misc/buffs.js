@@ -77,7 +77,8 @@ const missedFunc = (args) => {
             en: thingName + ' missed ' + missed.map((x) => data.ShortName(x)).join(', '),
             de: thingName + ' verfehlt ' + missed.map((x) => data.ShortName(x)).join(', '),
             fr: thingName + ' manqué(e) sur ' + missed.map((x) => data.ShortName(x)).join(', '),
-            cn: thingName + ' 没奶到 ' + missed.map((x) => data.ShortName(x)).join(', '),
+            ja: '(' + missed.map((x) => data.ShortName(x)).join(', ') + ') が' + thingName + 'を受けなかった',
+            cn: thingName + ' 没受到 ' + missed.map((x) => data.ShortName(x)).join(', '),
             ko: thingName + ' ' + missed.map((x) => data.ShortName(x)).join(', ') + '에게 적용안됨',
           },
         };
@@ -91,6 +92,7 @@ const missedFunc = (args) => {
           en: thingName + ' missed ' + missed.length + ' people',
           de: thingName + ' verfehlte ' + missed.length + ' Personen',
           fr: thingName + ' manqué(e) sur ' + missed.length + ' personnes',
+          ja: missed.length + '人が' + thingName + 'を受けなかった',
           cn: thingName + ' 没奶到 ' + missed.length + ' 人',
           ko: thingName + ' ' + missed.length + '명에게 적용안됨',
         },

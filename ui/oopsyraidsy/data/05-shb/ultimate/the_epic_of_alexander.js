@@ -75,7 +75,11 @@ export default {
         return {
           type: 'fail',
           blame: e.targetName,
-          text: 'luminous aetheroplasm',
+          text: {
+            en: 'luminous aetheroplasm',
+            ja: '光性爆雷',
+            cn: '光性爆雷',
+          },
         };
       },
     },
@@ -102,7 +106,11 @@ export default {
           type: 'fail',
           // This may be undefined, which is fine.
           name: data.jagdTether ? data.jagdTether[e.attackerId] : undefined,
-          text: 'Doll Death',
+          text: {
+            en: 'Doll Death',
+            ja: 'ドールが死んだ',
+            cn: '浮士德死亡',
+          },
         };
       },
     },
