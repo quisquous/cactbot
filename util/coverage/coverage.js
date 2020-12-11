@@ -47,18 +47,26 @@ const exVersionToShortName = {
   '0': {
     en: 'ARR',
     de: 'ARR',
+    ja: '新生',
+    cn: '2.X',
   },
   '1': {
     en: 'HW',
     de: 'HW',
+    ja: '蒼天',
+    cn: '3.X',
   },
   '2': {
     en: 'SB',
     de: 'SB',
+    ja: '紅蓮',
+    cn: '4.X',
   },
   '3': {
     en: 'ShB',
     de: 'ShB',
+    ja: '漆黒',
+    cn: '5.X',
   },
 };
 
@@ -66,22 +74,32 @@ const contentTypeToLabel = {
   [ContentType.Raids]: {
     en: 'Raid',
     de: 'Raid',
+    ja: 'レイド',
+    cn: 'Raid',
   },
   [ContentType.Trials]: {
     en: 'Trial',
     de: 'Prfng',
+    ja: '討伐戦',
+    cn: '蛮神',
   },
   [ContentType.UltimateRaids]: {
     en: 'Ult',
     de: 'Ult',
+    ja: '絶',
+    cn: '绝',
   },
   [ContentType.Dungeons]: {
     en: 'Dgn',
     de: 'Dgn',
+    ja: 'ダンジョン',
+    cn: '四人本',
   },
   [ContentType.Guildhests]: {
     en: 'Hest',
     de: 'Gldgh',
+    ja: 'ギルド',
+    cn: '行会令',
   },
 };
 
@@ -98,22 +116,32 @@ const zoneGridHeaders = {
   expansion: {
     en: 'Ex',
     de: 'Ex',
+    ja: 'パッチ',
+    cn: '大版本',
   },
   type: {
     en: 'Type',
     de: 'Art',
+    ja: 'タイプ',
+    cn: '类型',
   },
   name: {
     en: 'Name',
     de: 'Name',
+    ja: '名前',
+    cn: '名称',
   },
   triggers: {
     en: 'Triggers',
     de: 'Triggers',
+    ja: 'トリガー',
+    cn: '触发器',
   },
   timeline: {
     en: 'Timeline',
     de: 'Timeline',
+    ja: 'タイムライン',
+    cn: '时间轴',
   },
   // TODO: oopsy
   // TODO: missing translation items
@@ -124,16 +152,22 @@ const miscStrings = {
   title: {
     en: 'Cactbot Content Coverage',
     de: 'Cactbot Inhaltsabdeckung',
+    ja: 'Cactbot コンテンツ完成度',
+    cn: 'Cactbot 副本覆盖率',
   },
   // Overall label for the expansion table.
   overall: {
     en: 'Overall',
     de: 'Insgesamt',
+    ja: '概要',
+    cn: '概要',
   },
   // Warning when generator hasn't been run.
   runGenerator: {
     en: 'Error: Run node util/gen_coverage_report.js to generate data.',
     de: 'Error: Führe node util/gen_coverage_report.js aus um die Daten zu generieren.',
+    ja: 'エラー：node util/gen_coverage_report.js を実行し、データを生成しよう。',
+    cn: '错误：请先运行 node util/gen_coverage_report.js 以生成数据。',
   },
 };
 
