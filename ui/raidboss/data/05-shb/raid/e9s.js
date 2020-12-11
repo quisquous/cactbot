@@ -350,6 +350,7 @@ export default {
           en: 'Face Laser Out',
           de: 'Laser nach draußen richten',
           fr: 'Orientez le laser vers l\'extérieur',
+          ko: '바깥 바라보기 (레이저 유도)',
         },
       },
     },
