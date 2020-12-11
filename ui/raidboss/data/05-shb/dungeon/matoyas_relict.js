@@ -34,6 +34,7 @@ export default {
       outputStrings: {
         pullOrb: {
           en: 'Pull orb to an empty hole',
+          de: 'Orb in ein Loch lenken',
           fr: 'Placez l\'orbe dans un trou',
           ja: '泥団子を四隅の穴に誘導',
           cn: '诱导泥球到无敌人的风圈',
@@ -72,6 +73,7 @@ export default {
       outputStrings: {
         avoidTether: {
           en: 'Avoid tank and tethers',
+          de: 'Weiche den Tank-Verbindungen aus',
           fr: 'Évitez le tank et les liens',
           ja: 'タンクや線に離れ',
           cn: '远离坦克及其连线',
@@ -89,6 +91,7 @@ export default {
       outputStrings: {
         avoidWall: {
           en: 'Avoid Wall Flush',
+          de: 'Weiche den Wand-Stömmungen aus',
           fr: 'Évitez le jet d\'eau',
           ja: '光ってない横列に移動',
           cn: '站在墙壁未发光的一列',
@@ -108,6 +111,7 @@ export default {
       outputStrings: {
         stepIn: {
           en: 'Step in Puddle near the Cloud',
+          de: 'In einer Fläche nahe der Wolke stehen',
           fr: 'Allez dans la zone au sol près du nuage',
           ja: '雲に近い水を踏む',
           cn: '站在靠近云朵的水流里等待浮空',
@@ -134,6 +138,7 @@ export default {
       outputStrings: {
         getKnocked: {
           en: 'Get Knocked into Safe (no anti-knockback)',
+          de: 'Lass dich in den Safespot zurückstoßen (kein Rückstoßschutz)',
           fr: 'Faites-vous pousser en zone safe (pas d\'anti-poussée)',
           ja: 'ボスの正面に (堅実魔効かない)',
           cn: '站在Boss正面 (防击退无效)',
@@ -151,6 +156,7 @@ export default {
       outputStrings: {
         awayFromAoe: {
           en: 'Go to Opposite Side',
+          de: 'Geh auf die andere Seite',
           fr: 'Allez du côté opposé',
           ja: '反対側へ',
           cn: '对面躲避坠落',
@@ -169,6 +175,7 @@ export default {
       outputStrings: {
         awayFrom: {
           en: 'Away From Boss',
+          de: 'Weg vom Boss',
           fr: 'Éloignez-vous du boss',
           ja: 'ボスに離れ',
           cn: '远离Boss所在的行',
@@ -183,6 +190,7 @@ export default {
       outputStrings: {
         runAway: {
           en: 'RUN AWAY',
+          de: 'RENN WEG',
           fr: 'FUYEZ',
           ja: 'ボスに離れ',
           cn: '远离即死区',
@@ -210,6 +218,7 @@ export default {
       outputStrings: {
         goBoss: {
           en: 'Go to Boss',
+          de: 'Gehe zum Boss',
           fr: 'Allez vers le boss',
           ja: 'ボスの居場所に移動',
           cn: '站在Boss正下方',
