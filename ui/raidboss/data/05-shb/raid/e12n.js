@@ -53,14 +53,15 @@ export default {
       response: Responses.stackMarkerOn(),
     },
     {
-      id: 'E12N Diamond Dust',
+      id: 'E12N Diamond Dust Spread',
       netRegex: NetRegexes.startsUsing({ id: '5864', source: 'Eden\'s Promise', capture: false }),
-      infoText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Spread, don\'t move',
-        },
-      },
+      response: Responses.spread(),
+    },
+    {
+      id: 'E12N Diamond Dust Stop',
+      netRegex: NetRegexes.startsUsing({ id: '5864', source: 'Eden\'s Promise', capture: false }),
+      delaySeconds: 1, // Avoiding collision with the spread call
+      response: Responses.stopMoving('info'),
     },
     {
       id: 'E12N Frigid Stone',
