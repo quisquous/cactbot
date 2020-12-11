@@ -47,6 +47,7 @@ export default {
         reason: {
           en: 'Missed Tower',
           de: 'Turm verpasst',
+          fr: 'Tour manquée',
           ja: '塔を踏まなかった',
           cn: '没踩塔',
           ko: '장판 실수',
