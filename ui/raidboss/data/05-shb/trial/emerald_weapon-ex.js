@@ -240,10 +240,10 @@ export default {
     },
     {
       id: 'EmeraldEx Expire P2',
-      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '282b', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '282b', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '282b', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '282b', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55D1', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55D1', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55D1', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55D1', capture: false }),
       response: Responses.getOut(),
     },
     {
