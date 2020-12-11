@@ -177,6 +177,7 @@ export default {
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
+          en: 'watch rank-and-file soldiers',
           cn: '观察士兵队列',
         },
       },
