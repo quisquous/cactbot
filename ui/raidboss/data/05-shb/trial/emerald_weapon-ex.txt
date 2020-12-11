@@ -10,8 +10,8 @@ hideall "--sync--"
 # -ii 55AF 55AE 557B 58D3 557D 557F 5BA6 5BA7 5596 557A 5579 5BD3 5017 559E 55A0 5597 5018 55A4 5BA3 554B 554C 5593 559A 5B03 5598
 
 0 "Start" sync /Engage!/ window 0,1
-1.1 "--sync--" sync /:The Emerald Weapon:5B1A:/
-17.1 "Emerald Shot" sync /:The Emerald Weapon:55B0:/ window 15,5
+1.1 "--sync--" sync /:The Emerald Weapon:5B1A:/ window 1.1,0
+17.1 "Emerald Shot" sync /:The Emerald Weapon:55B0:/ window 18,10
 21.5 "--sync--" sync /:The Emerald Weapon:5B1A:/
 28.2 "Optimized Ultima" sync /:The Emerald Weapon:55B1:/
 32.6 "--sync--" sync /:The Emerald Weapon:5B1A:/
@@ -55,7 +55,7 @@ hideall "--sync--"
 # -ic Bitblade
 
 1000.0 "Start"
-1001.0 "--sync--" sync /:The Emerald Weapon:5B1C:/ window 100,0
+1001.0 "--sync--" sync /:The Emerald Weapon:5B1C:/ window 1001,0
 1015.0 "Divide Et Impera" sync /:The Emerald Weapon:555B:/ window 1015,5
 1022.2 "--sync--" sync /:The Emerald Weapon:5B1C:/
 1031.3 "Primus Terminus Est" sync /:The Emerald Weapon:55C3:/
