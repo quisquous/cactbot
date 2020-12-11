@@ -153,7 +153,7 @@ const miscStrings = {
     en: 'Cactbot Content Coverage',
     de: 'Cactbot Inhaltsabdeckung',
     ja: 'Cactbot コンテンツ完成度',
-    cn: 'Cactbot 副本覆盖率',
+    cn: 'Cactbot 内容覆盖率',
   },
   // Overall label for the expansion table.
   overall: {
