@@ -28,10 +28,14 @@ export default {
     {
       id: 'E10S Implosion Howl',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56F0', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56F0', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56F0', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56F0', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Shadow Side',
+          de: 'Schatten Seite',
           ko: '그림자 방향',
         },
       },
@@ -39,10 +43,14 @@ export default {
     {
       id: 'E10S Implosion Tail',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56F3', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56F3', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56F3', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56F3', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Opposite Shadow',
+          de: 'Gegenüber des Schattens',
           ko: '그림자 반대쪽',
         },
       },
@@ -58,10 +66,14 @@ export default {
     {
       id: 'E10S Giga Slash Shadow Single Left',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56EA', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56EA', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56EA', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56EA', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go Left of Shadow',
+          de: 'Geh links vom Schatten',
           ko: '그림자 왼쪽',
         },
       },
@@ -69,10 +81,14 @@ export default {
     {
       id: 'E10S Giga Slash Shadow Single Right',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56ED', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56ED', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56ED', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56ED', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go Right of Shadow',
+          de: 'Geh rechts vom Schatten',
           ko: '그림자 오른쪽',
         },
       },
@@ -80,10 +96,14 @@ export default {
     {
       id: 'E10S Giga Slash Shadow Quadruple Left',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56F4', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56F4', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56F4', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56F4', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go Left of Shadows',
+          de: 'Geh links vom Schatten',
           ko: '그림자 왼쪽',
         },
       },
@@ -91,10 +111,14 @@ export default {
     {
       id: 'E10S Giga Slash Shadow Quadruple Right',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56F8', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56F8', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56F8', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56F8', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go Right of Shadows',
+          de: 'Geh rechts vom Schatten',
           ko: '그림자 오른쪽',
         },
       },
@@ -152,10 +176,14 @@ export default {
     {
       id: 'E10S Giga Slash Shadow Drop Right',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5B2D', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5B2D', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5B2D', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5B2D', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Left Cleave',
+          de: 'Linker Cleave',
           ko: '왼쪽 장판',
         },
       },
@@ -163,10 +191,14 @@ export default {
     {
       id: 'E10S Giga Slash Shadow Drop Left',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5B2C', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5B2C', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5B2C', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5B2C', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Right Cleave',
+          de: 'Rechter Cleave',
           ko: '오른쪽 장판',
         },
       },
@@ -348,11 +380,15 @@ export default {
       // TODO: are the double implosions always the same??
       id: 'E10S Quadruple Implosion Howl',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '56FC', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56FC', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56FC', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56FC', capture: false }),
       durationSeconds: 6,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Shadow Side',
+          de: 'Schatten Seite',
           ko: '그림자 방향',
         },
       },
@@ -360,11 +396,15 @@ export default {
     {
       id: 'E10S Quadruple Implosion Tail',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5700', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5700', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5700', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5700', capture: false }),
       durationSeconds: 6,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Opposite Shadow',
+          de: 'Gegenüber des Schattens',
           ko: '그림자 반대쪽',
         },
       },
