@@ -80,7 +80,7 @@ const contentTypeToLabel = {
   [ContentType.UltimateRaids]: {
     en: 'Ult',
     de: 'Ult',
-    fr: 'Ult',
+    fr: 'Fatal',
   },
   [ContentType.Dungeons]: {
     en: 'Dgn',
@@ -150,7 +150,7 @@ const miscStrings = {
   runGenerator: {
     en: 'Error: Run node util/gen_coverage_report.js to generate data.',
     de: 'Error: Führe node util/gen_coverage_report.js aus um die Daten zu generieren.',
-    fr: 'Erreur: Lancez node util/gen_coverage_report.js pour générer des données.',
+    fr: 'Erreur : Lancez node util/gen_coverage_report.js pour générer des données.',
   },
 };
 
