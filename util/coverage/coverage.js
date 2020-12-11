@@ -92,7 +92,7 @@ const contentTypeToLabel = {
   [ContentType.Dungeons]: {
     en: 'Dgn',
     de: 'Dgn',
-    ja: 'ダンジョン',
+    ja: 'ID',
     cn: '四人本',
   },
   [ContentType.Guildhests]: {
