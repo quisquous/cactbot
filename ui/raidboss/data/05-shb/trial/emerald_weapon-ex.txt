@@ -76,7 +76,9 @@ hideall "--sync--"
 1174.3 "Expire / Sidescathe" sync /:The Emerald Weapon:55D[145]:/
 1188.2 "--sync--" sync /:The Emerald Weapon:5B1C:/
 1205.5 "Legio Phantasmatis" sync /:The Emerald Weapon:55B4:/
+1214.9 "--sync--" sync /:Black Wolf's Image:55C0:/
 1226.2 "--sync--" sync /:Black Wolf's Image:55C1:/
+1232.4 "--sync--" sync /:Black Wolf's Image:55C2:/
 1238.4 "Shots Fired" sync /:Imperial Image:55B7:/ duration 6
 1247.5 "Magitek Cannon" sync /:Reaper Image:55BE:/
 1257.2 "--sync--" sync /:The Emerald Weapon:5B1C:/
