@@ -352,20 +352,5 @@ export default {
         },
       },
     },
-    {
-      // TODO: differentiate untargeted fatebreaker image abilities.
-      id: 'E11S Shifting Sky Debug Log',
-      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker\'s Image' }),
-      run: (data, matches) => {
-        for (const key in (data.tethers || {})) {
-          if (data.tethers[key] === matches.sourceId) {
-            console.log(`${matches.id}: ${key}`);
-            return;
-          }
-        }
-        console.log(`Unknown image id: ${JSON.stringify(matches)}, ` +
-          `${JSON.stringify(data.tethers || {})}}`);
-      },
-    },
   ],
 };
