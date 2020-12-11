@@ -23,7 +23,6 @@ export default {
     {
       id: 'E12N Formless Judgment',
       netRegex: NetRegexes.startsUsing({ id: '5873', source: 'Eden\'s Promise' }),
-      condition: Conditions.caresAboutMagical(),
       response: Responses.tankCleave(),
     },
     {
