@@ -376,6 +376,7 @@ export default {
       preRun: (data) => data.artOfDarkness.push('stackWithPartner'),
       durationSeconds: (data) => data.finalArtOfDarkness ? 16 : 9,
       alertText: (data, _, output) => {
+        // Perform the callout now, regardless if it's The Second or Third Art Of Darkness
         if (data.finalArtOfDarkness)
           data.artOfDarkness.push(data.finalArtOfDarkness);
         return data.artOfDarkness.map((key) => output[key]()).join(' -> ');
@@ -389,6 +390,7 @@ export default {
       preRun: (data) => data.artOfDarkness.push('protean'),
       durationSeconds: (data) => data.finalArtOfDarkness ? 16 : 9,
       alertText: (data, _, output) => {
+        // Perform the callout now, regardless if it's The Second or Third Art Of Darkness
         if (data.finalArtOfDarkness)
           data.artOfDarkness.push(data.finalArtOfDarkness);
         return data.artOfDarkness.map((key) => output[key]()).join(' -> ');
