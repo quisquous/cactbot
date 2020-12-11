@@ -68,7 +68,6 @@ hideall "--sync--"
 490.2 "--sync--" sync /:Cloud Of Darkness:5627:/
 495.0 "Hypercharged Condensation" sync /:Cloud Of Darkness:560C:/
 502.3 "--sync--" sync /:Cloud Of Darkness:5627:/
-508.3 "Hypercharged Dispersal" sync /:Hypercharged Cloud:560B:/
 510.2 "Full-Perimeter Particle Beam" sync /:Cloud Of Darkness:5629:/
 527.5 "The Art Of Darkness (L/R)" sync /:Cloud Of Darkness:5A9[56]:/
 531.2 "--sync--" sync /:Cloud Of Darkness:5627:/
