@@ -15,6 +15,20 @@ const sharedOutputStrings = {
 export default {
   zoneId: ZoneId.CastrumMarinumExtreme,
   timelineFile: 'emerald_weapon-ex.txt',
+  timelineTriggers: [
+    {
+      id: 'EmeraldEx Bit Storm',
+      regex: /Bit Storm/,
+      beforeSeconds: 4,
+      response: Responses.getIn(),
+    },
+    {
+      id: 'EmeraldEx Photon Ring',
+      regex: /Photon Ring/,
+      beforeSeconds: 4,
+      response: Responses.getOut(),
+    },
+  ],
   triggers: [
     {
       id: 'EmeraldEx Emerald Shot',
@@ -130,26 +144,6 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55[D9]1', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55[D9]1', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55[D9]1', capture: false }),
-      response: Responses.getOut(),
-    },
-    {
-      id: 'EmeraldEx Bit Storm',
-      netRegex: NetRegexes.addedCombatant({ name: 'Claw Bit', capture: false }),
-      netRegexDe: NetRegexes.addedCombatant({ name: 'Satellitenarm', capture: false }),
-      netRegexFr: NetRegexes.addedCombatant({ name: 'Main Volante', capture: false }),
-      netRegexJa: NetRegexes.addedCombatant({ name: 'ハンドビット', capture: false }),
-      delaySeconds: 3,
-      suppressSeconds: 2,
-      response: Responses.getIn(),
-    },
-    {
-      id: 'EmeraldEx Photon Ring',
-      netRegex: NetRegexes.removingCombatant({ name: 'Claw Bit', capture: false }),
-      netRegexDe: NetRegexes.removingCombatant({ name: 'Satellitenarm', capture: false }),
-      netRegexFr: NetRegexes.removingCombatant({ name: 'Main Volante', capture: false }),
-      netRegexJa: NetRegexes.removingCombatant({ name: 'ハンドビット', capture: false }),
-      delaySeconds: 3,
-      suppressSeconds: 2,
       response: Responses.getOut(),
     },
     {
