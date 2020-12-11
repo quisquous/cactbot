@@ -114,9 +114,8 @@ export default {
     },
     {
       id: 'E9N Stygian Break Tether',
-      netRegex: NetRegexes.headMarker({ id: '000C' }),
+      netRegex: NetRegexes.tether({ id: '0012' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: 3,
       response: Responses.breakChains(),
     },
     {
