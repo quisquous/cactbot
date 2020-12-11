@@ -361,7 +361,6 @@ export default {
       run: (data) => {
         data.artOfDarknessRemaining = 2;
         data.artOfDarkness = [];
-        delete data.finalArtOfDarkness;
       },
     },
     {
@@ -377,7 +376,6 @@ export default {
       run: (data) => {
         data.artOfDarknessRemaining = 2;
         data.artOfDarkness = [];
-        delete data.finalArtOfDarkness;
       },
     },
     {
@@ -395,7 +393,10 @@ export default {
         return data.artOfDarkness.map((key) => output[key]()).join(' -> ');
       },
       outputStrings: artOfDarknessOutputStrings,
-      run: (data) => delete data.artOfDarkness,
+      run: (data) => {
+        delete data.artOfDarkness;
+        delete data.finalArtOfDarkness;
+      },
     },
     {
       id: 'E9S The Second / Third Art Of Darkness Protean Charge',
@@ -403,8 +404,8 @@ export default {
       preRun: (data) => data.artOfDarkness.push('protean'),
       durationSeconds: (data) => {
         if (data.finalArtOfDarkness)
-          return 12;
-        return 6;
+          return 16;
+        return 9;
       },
       alertText: (data, _, output) => {
         if (data.finalArtOfDarkness)
@@ -412,7 +413,10 @@ export default {
         return data.artOfDarkness.map((key) => output[key]()).join(' -> ');
       },
       outputStrings: artOfDarknessOutputStrings,
-      run: (data) => delete data.artOfDarkness,
+      run: (data) => {
+        delete data.artOfDarkness;
+        delete data.finalArtOfDarkness;
+      },
     },
     {
       id: 'E9S The Second / Third Art Of Darkness Right Charge',
