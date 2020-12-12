@@ -139,7 +139,7 @@ export default {
       },
     },
     {
-      id: 'EmeraldEx Expire',
+      id: 'EmeraldEx Expire P1',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55[D9]1', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55[D9]1', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55[D9]1', capture: false }),
@@ -198,7 +198,7 @@ export default {
           en: 'Swords',
           de: 'Schwerter',
           fr: 'Épées',
-          cn: '注意落剑顺序',
+          cn: '剑',
           ko: '검',
         },
       },
@@ -220,6 +220,14 @@ export default {
       response: Responses.goRight(),
     },
     {
+      id: 'EmeraldEx Emerald Crusher',
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5585', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '5585', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '5585', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '5585', capture: false }),
+      response: Responses.knockback(),
+    },
+    {
       // TODO: use headmarkers for this
       id: 'EmeraldEx Secundus Terminus est',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55C8', capture: false }),
@@ -238,19 +246,35 @@ export default {
       },
     },
     {
-      id: 'EmeraldEx Legio Phantasmatis',
-      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55B4', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55B4', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55B4', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55B4', capture: false }),
+      id: 'EmeraldEx Expire P2',
+      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55D1', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55D1', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55D1', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55D1', capture: false }),
+      response: Responses.getOut(),
+    },
+    {
+      id: 'EmeraldEx Mechanized Maneuver',
+      netRegex: NetRegexes.startsUsing({ source: `Black Wolf's Image`, id: '55BA', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Numbered Divebombs',
           de: 'Nummerierte Sturzflüge',
           fr: 'Mines numérotées',
-          cn: '注意士兵顺序，结束返回中央',
+          cn: '观察飞机数字',
           ko: '엑사플레어 준비',
+        },
+      },
+    },
+    {
+      id: 'EmeraldEx Full Rank',
+      netRegex: NetRegexes.startsUsing({ source: `Black Wolf's Image`, id: '55C0', capture: false }),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'watch rank-and-file soldiers',
+          cn: '观察士兵队列',
         },
       },
     },
