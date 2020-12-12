@@ -150,7 +150,7 @@ export default {
     },
     {
       id: 'E12N Rapturous Reach Cleanup',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       delaySeconds: 10,
       run: (data) => delete data.stacks,
     },
@@ -188,16 +188,9 @@ export default {
     },
     {
       id: 'E12N Cast Release',
-      netRegex: NetRegexes.startsUsing({ id: ['4E2C', '585B', '5861'] }),
+      netRegex: NetRegexes.startsUsing({ id: ['4E2C', '585B', '5861'], capture: false }),
+      preRun: (data) => data.tethers = data.tethers.sort(),
       delaySeconds: 1, // Tethers should be first in the log, but let's be SURE
-      preRun: (data) => {
-        data.tethers = data.tethers.sort();
-      },
-      infoText: function(data, _, output) {
-        if (data.tethers.length === 2)
-          return;
-        return output[data.tethers[0]]();
-      },
       alertText: function(data, _, output) {
         if (data.tethers.length !== 2)
           return;
@@ -206,11 +199,16 @@ export default {
           safespot2: output[data.tethers[1]](),
         });
       },
+      infoText: function(data, _, output) {
+        if (data.tethers.length === 2)
+          return;
+        return output[data.tethers[0]]();
+      },
       outputStrings: primalOutputStrings,
     },
     {
       id: 'E12N Tether Cleanup',
-      netRegex: NetRegexes.startsUsing({ id: ['4E2C', '585B', '5861'] }),
+      netRegex: NetRegexes.startsUsing({ id: ['4E2C', '585B', '5861'], capture: false }),
       delaySeconds: 5,
       run: (data) => delete data.tethers,
     },
