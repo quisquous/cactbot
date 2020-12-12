@@ -49,14 +49,6 @@ const phaserOutputStrings = {
 };
 
 const artOfDarknessOutputStrings = {
-  startRight: {
-    en: 'Start Right',
-    de: 'Starte Rechts',
-  },
-  startLeft: {
-    en: 'Start Left',
-    de: 'Starte Links',
-  },
   goRight: {
     en: 'Right',
     de: 'Rechts',
@@ -354,8 +346,17 @@ export default {
       // to have this cleaned up before the second Second Art Of Darkness
       preRun: (data) => delete data.finalArtOfDarkness,
       infoText: (data, _, output) => output.text(),
-      outputStrings: { text: artOfDarknessOutputStrings.startLeft },
-      run: (data) => data.artOfDarkness = [],
+      outputStrings: {
+        text: {
+          en: 'Start Left',
+          de: 'Starte Links',
+        },
+      },
+      run: (data) => {
+        data.artOfDarkness = [];
+        if (!data.artOfDarknessIdMap)
+          data.artOfDarknessExpected = 'right';
+      },
     },
     {
       id: 'E9S The Second Art Of Darkness Left',
@@ -369,13 +370,65 @@ export default {
       // to have this cleaned up before the second Second Art Of Darkness
       preRun: (data) => delete data.finalArtOfDarkness,
       infoText: (data, _, output) => output.text(),
-      outputStrings: { text: artOfDarknessOutputStrings.startRight },
-      run: (data) => data.artOfDarkness = [],
+      outputStrings: {
+        text: {
+          en: 'Start Right',
+          de: 'Starte Rechts',
+        },
+      },
+      run: (data) => {
+        data.artOfDarkness = [];
+        if (!data.artOfDarknessIdMap)
+          data.artOfDarknessExpected = 'left';
+      },
     },
     {
-      id: 'E9S The Second / Third Art Of Darkness Stack Charge',
-      netRegex: NetRegexes.headMarker({ id: '01B9', capture: false }),
-      preRun: (data) => data.artOfDarkness.push('stackWithPartner'),
+      // The Art Of Darkness uses head markers with randomized offsets.  The first
+      // charge is always left or right, and we can solve the rest from there.
+      id: 'E9S The Second / Third Art Of Darkness Charge Solver',
+      netRegex: NetRegexes.headMarker({ id: '01..', target: 'Cloud Of Darkness' }),
+      condition: (data) => !data.artOfDarknessIdMap,
+      run: (data, matches) => {
+        data.artOfDarknessIdMap = {};
+
+        let idPivot;
+        if (data.artOfDarknessExpected === 'left')
+          idPivot = parseInt(matches.id, 16);
+        else if (data.artOfDarknessExpected === 'right')
+          idPivot = parseInt(matches.id, 16) - 1;
+
+        delete data.artOfDarknessExpected;
+
+        // The left swipe is the lowest head marker, and the rest are sequential.
+        const artOfDarknessOutputKeys = ['goRight', 'goLeft', 'stackWithPartner', 'protean'];
+        for (let i = 0; i < 4; ++i) {
+          const hexPivot = (idPivot + i).toString(16).toUpperCase().padStart(4, '0');
+          data.artOfDarknessIdMap[hexPivot] = artOfDarknessOutputKeys[i];
+        }
+      },
+    },
+    {
+      id: 'E9S The Second / Third Art Of Darkness Left / Right Charge',
+      netRegex: NetRegexes.headMarker({ id: '01..', target: 'Cloud Of Darkness' }),
+      condition: (data, matches) => {
+        if (!data.artOfDarkness || !data.artOfDarknessIdMap)
+          return false;
+        const output = data.artOfDarknessIdMap[matches.id];
+        return output === 'goRight' || output === 'goLeft';
+      },
+      run: (data, matches) => data.artOfDarkness.push(data.artOfDarknessIdMap[matches.id]),
+    },
+    {
+      // Fire the trigger on stack or protean since we want the callout as soon as possible.
+      id: 'E9S The Second / Third Art Of Darkness Callout',
+      netRegex: NetRegexes.headMarker({ id: '01..', target: 'Cloud Of Darkness' }),
+      condition: (data, matches) => {
+        if (!data.artOfDarkness || !data.artOfDarknessIdMap)
+          return false;
+        const output = data.artOfDarknessIdMap[matches.id];
+        return output === 'stackWithPartner' || output === 'protean';
+      },
+      preRun: (data, matches) => data.artOfDarkness.push(data.artOfDarknessIdMap[matches.id]),
       durationSeconds: (data) => data.finalArtOfDarkness ? 16 : 9,
       alertText: (data, _, output) => {
         // Perform the callout now, regardless if it's The Second or Third Art Of Darkness
@@ -385,32 +438,6 @@ export default {
       },
       outputStrings: artOfDarknessOutputStrings,
       run: (data) => delete data.artOfDarkness,
-    },
-    {
-      id: 'E9S The Second / Third Art Of Darkness Protean Charge',
-      netRegex: NetRegexes.headMarker({ id: '01BA', capture: false }),
-      preRun: (data) => data.artOfDarkness.push('protean'),
-      durationSeconds: (data) => data.finalArtOfDarkness ? 16 : 9,
-      alertText: (data, _, output) => {
-        // Perform the callout now, regardless if it's The Second or Third Art Of Darkness
-        if (data.finalArtOfDarkness)
-          data.artOfDarkness.push(data.finalArtOfDarkness);
-        return data.artOfDarkness.map((key) => output[key]()).join(' -> ');
-      },
-      outputStrings: artOfDarknessOutputStrings,
-      run: (data) => delete data.artOfDarkness,
-    },
-    {
-      id: 'E9S The Second / Third Art Of Darkness Right Charge',
-      netRegex: NetRegexes.headMarker({ id: '01B8', capture: false }),
-      condition: (data) => data.artOfDarkness,
-      run: (data) => data.artOfDarkness.push('goLeft'),
-    },
-    {
-      id: 'E9S The Second / Third Art Of Darkness Left Charge',
-      netRegex: NetRegexes.headMarker({ id: '01B7', capture: false }),
-      condition: (data) => data.artOfDarkness,
-      run: (data) => data.artOfDarkness.push('goRight'),
     },
     {
       id: 'E9S Empty Plane',
@@ -529,7 +556,12 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '5603', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5603', source: '어둠의 구름', capture: false }),
       infoText: (data, _, output) => output.text(),
-      outputStrings: { text: artOfDarknessOutputStrings.startLeft },
+      outputStrings: {
+        text: {
+          en: 'Start Left',
+          de: 'Starte Links',
+        },
+      },
       run: (data) => {
         data.artOfDarkness = [];
         // Add this once we've seen the second charge to call out sooner.
@@ -545,7 +577,12 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '5604', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5604', source: '어둠의 구름', capture: false }),
       infoText: (data, _, output) => output.text(),
-      outputStrings: { text: artOfDarknessOutputStrings.startRight },
+      outputStrings: {
+        text: {
+          en: 'Start Right',
+          de: 'Starte Rechts',
+        },
+      },
       run: (data) => {
         data.artOfDarkness = [];
         // Add this once we've seen the second charge to call out sooner.
