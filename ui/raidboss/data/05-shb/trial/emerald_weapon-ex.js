@@ -100,7 +100,7 @@ export default {
         spread: {
           en: 'Spread',
           de: 'Verteilen',
-          fr: 'Ecartez-vous',
+          fr: 'Dispersez-vous',
           ja: '散開',
           cn: '分散',
           ko: '산개',
@@ -289,7 +289,6 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Black Wolf\'s Image': 'spectre de Gaius',
         'Imperial Image': 'spectre de soldat impérial',
@@ -297,6 +296,7 @@ export default {
         'The Emerald Weapon': 'Arme Émeraude',
       },
       'replaceText': {
+        '--cutscene--': '--cinématique--',
         'Aetheroplasm Production': 'Condensation d\'éthéroplasma',
         'Aire Tam Storm': 'Aire Tam Storm',
         'Bit Storm': 'Salve circulaire',
