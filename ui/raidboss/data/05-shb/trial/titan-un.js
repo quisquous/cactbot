@@ -76,6 +76,7 @@ export default {
       outputStrings: {
         jailOnYou: {
           en: 'Jail on YOU',
+          fr: 'Geôle sur VOUS',
         },
         jails: {
           en: 'Jails',
