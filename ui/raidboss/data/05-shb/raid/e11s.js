@@ -153,6 +153,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Protean -> Holy Groups',
+          ko: '8산개 -> 홀리 그룹',
         },
       },
     },
@@ -251,12 +252,15 @@ export default {
         output.responseOutputStrings = {
           fireTetherOnYou: {
             en: 'Stack With Fire Tether',
+            ko: '화염 선 대상자, 쉐어뎀',
           },
           lightningTetherOnYou: {
             en: 'Take Lightning To Tanks',
+            ko: '번개 탱커한테 넘기기',
           },
           tetherInfo: {
             en: 'Lightning on ${player1}, Fire on ${player2}',
+            ko: '"${player1}" 번개, "${player2}" 화염',
           },
         };
 
@@ -302,6 +306,7 @@ export default {
         output.responseOutputStrings = {
           fireTetherOnYou: {
             en: 'Stack With Fire Tether',
+            ko: '화염 선 대상자, 쉐어뎀',
           },
           holyTetherOnYou: {
             en: 'Away from Group',
@@ -313,6 +318,7 @@ export default {
           },
           tetherInfo: {
             en: 'Holy on ${player1}, Fire on ${player2}',
+            ko: '"${player1}" 홀리, "${player2}" 화염',
           },
         };
 
@@ -586,6 +592,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Protean -> Holy Groups -> Line Cleave -> Bait -> Away',
+          ko: '8산개 -> 홀리 그룹 -> 직선 장판 -> 장판 유도 -> 피하기',
         },
       },
     },
