@@ -4,8 +4,10 @@ import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
 // TODO: ageless serpent knockback
-// TODO: shifting sky tether callouts
-// TODO: cycle of faith tether callouts
+// TODO: add tank lightning cleave stuff
+// TODO: tether during right of the heavens 2
+// TODO: burnt strike callouts during shifting/sundered sky
+// TODO: move callout for holy burnt strike bait
 
 // Notes:
 // sinsmite = lightning elemental break
@@ -14,7 +16,6 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // blastburn = burnt strike fire knockback
 // burnout = burnt strike lightning out
 // shining blade = burnt strike light bait
-// Fatebreaker's Image Bound Of Faith is 5682 / 567F / ????
 
 const unknownTarget = {
   en: '???',
@@ -23,6 +24,88 @@ const unknownTarget = {
   ja: '???',
   cn: '???',
   ko: '???',
+};
+
+const boundOfFaithFireTetherResponse = (data, _, output) => {
+  // cactbot-builtin-response
+  output.responseOutputStrings = {
+    stackOnYou: {
+      en: 'Stack on YOU',
+      de: 'Auf DIR sammeln',
+      fr: 'Package sur VOUS',
+      ja: '自分にスタック',
+      cn: '集合点名',
+      ko: '쉐어징 대상자',
+    },
+    stackOnTarget: {
+      en: 'Stack on ${player}',
+      de: 'Auf ${player} sammeln',
+      fr: 'Packez-vous sur ${player}',
+      ja: '${player}にスタック',
+      cn: '靠近 ${player}集合',
+      ko: '"${player}" 쉐어징',
+    },
+    unknownTarget: unknownTarget,
+  };
+
+  const targets = Object.keys(data.tethers || {});
+  if (targets.includes(data.me))
+    return { alertText: output.stackOnYou() };
+  if (targets.length === 0)
+    return { alertText: output.stackOnTarget({ player: output.unknownTarget() }) };
+  return { alertText: output.stackOnTarget({ player: data.ShortName(targets[0]) }) };
+};
+
+const boundOfFaithLightningTetherResponse = (data, _, output) => {
+  // cactbot-builtin-response
+  output.responseOutputStrings = {
+    onYou: {
+      en: 'Take Lightning To Tanks',
+    },
+    tetherInfo: {
+      en: 'Lightning on ${player}',
+      de: 'Lichtverbindung auf ${player}',
+      ko: '"${player}" 번개징 대상자',
+    },
+    unknownTarget: unknownTarget,
+  };
+
+  const targets = Object.keys(data.tethers || {});
+  if (targets.includes(data.me))
+    return { alarmText: output.onYou() };
+
+  const target = targets.length === 1 ? data.ShortName(targets[0]) : output.unknownTarget();
+  return { infoText: output.tetherInfo({ player: target }) };
+};
+
+const boundOfFaithHolyTetherResponse = (data, _, output) => {
+  // cactbot-builtin-response
+  output.responseOutputStrings = {
+    awayFromGroup: {
+      en: 'Away from Group',
+      de: 'Weg von der Gruppe',
+      fr: 'Éloignez-vous du groupe',
+      ja: '外へ',
+      cn: '远离人群',
+      ko: '다른 사람들이랑 떨어지기',
+    },
+    awayFromTarget: {
+      en: 'Away from ${player}',
+      de: 'Weg von ${player}',
+      fr: 'Éloignez-vous de ${player}',
+      ja: '${player}から離れ',
+      cn: '远离${player}',
+      ko: '"${player}"에서 멀어지기',
+    },
+    unknownTarget: unknownTarget,
+  };
+
+  const targets = Object.keys(data.tethers || {});
+  if (targets.includes(data.me))
+    return { alarmText: output.awayFromGroup() };
+  if (targets.length === 0)
+    return { infoText: output.awayFromTarget({ player: output.unknownTarget() }) };
+  return { infoText: output.awayFromTarget({ player: data.ShortName(targets[0]) }) };
 };
 
 export default {
@@ -60,7 +143,7 @@ export default {
       },
     },
     {
-      id: 'E11S Elemental Break Light',
+      id: 'E11S Elemental Break Holy',
       netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5668', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '5668', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5668', capture: false }),
@@ -69,9 +152,7 @@ export default {
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Protean -> Group Stacks',
-          de: 'Himmelsrichtung -> In der Gruppe sammeln',
-          ko: '8산개 -> 그룹 쉐어뎀',
+          en: 'Protean -> Holy Groups',
         },
       },
     },
@@ -106,7 +187,7 @@ export default {
       },
     },
     {
-      id: 'E11S Burnt Strike Light',
+      id: 'E11S Burnt Strike Holy',
       netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5656', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '5656', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5656', capture: false }),
@@ -125,7 +206,7 @@ export default {
       netRegex: NetRegexes.tether({ id: '0011' }),
       run: (data, matches) => {
         data.tethers = data.tethers || {};
-        data.tethers[matches.target] = matches.targetId;
+        data.tethers[matches.target] = matches.sourceId;
       },
     },
     {
@@ -140,33 +221,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '5658', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5658', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5658', capture: false }),
-      alertText: (data, _, output) => {
-        const targets = Object.keys(data.tethers || {});
-        if (targets.includes(data.me))
-          return output.stackOnYou();
-        if (targets.length === 0)
-          return output.stackOnTarget({ player: output.unknownTarget() });
-        return output.stackOnTarget({ player: data.ShortName(targets[0]) });
-      },
-      outputStrings: {
-        stackOnYou: {
-          en: 'Stack on YOU',
-          de: 'Auf DIR sammeln',
-          fr: 'Package sur VOUS',
-          ja: '自分にスタック',
-          cn: '集合点名',
-          ko: '쉐어징 대상자',
-        },
-        stackOnTarget: {
-          en: 'Stack on ${player}',
-          de: 'Auf ${player} sammeln',
-          fr: 'Packez-vous sur ${player}',
-          ja: '${player}にスタック',
-          cn: '靠近 ${player}集合',
-          ko: '"${player}" 쉐어징',
-        },
-        unknownTarget: unknownTarget,
-      },
+      response: boundOfFaithFireTetherResponse,
     },
     {
       id: 'E11S Bound Of Faith Lightning',
@@ -174,50 +229,81 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '565B', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '565B', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '565B', capture: false }),
-      response: (data, _, output) => {
-        // cactbot-builtin-response
-        output.responseOutputStrings = {
-          onYou: {
-            en: 'Lightning Tether on YOU',
-            de: 'Lichtverbindung auf DIR',
-            ko: '번개징 대상자',
-          },
-          forTanks: {
-            en: 'Lightning on ${player}',
-            de: 'Lichtverbindung auf ${player}',
-            ko: '"${player}" 번개징 대상자',
-          },
-          tankCleave: {
-            en: 'Tank cleave',
-            de: 'Tank Cleave',
-            fr: 'Tank cleave',
-            ja: '前方範囲攻撃',
-            cn: '顺劈',
-            ko: '광역 탱버',
-          },
-          unknownTarget: unknownTarget,
-        };
-
-        const targets = Object.keys(data.tethers || {});
-        if (targets.includes(data.me))
-          return { alarmText: output.onYou() };
-        if (data.role !== 'tank')
-          return { infoText: output.tankCleave() };
-        if (targets.length === 0)
-          return { alertText: output.forTanks({ player: output.unknownTarget() }) };
-        return { alertText: output.forTanks({ player: data.ShortName(targets[0]) }) };
-      },
+      response: boundOfFaithLightningTetherResponse,
     },
     {
-      id: 'E11S Bound Of Faith Light',
+      id: 'E11S Bound Of Faith Holy',
       netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '565F', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '565F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '565F', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '565F', capture: false }),
-      response: (data, _, output) => {
+      response: boundOfFaithHolyTetherResponse,
+    },
+    {
+      id: 'E11S Bound Of Faith Shifting Sky',
+      // After Shifting Sky, there's a fire (567F) and lightning (5682) Bound Of Faith from Images.
+      // After Sundered Sky, there's a fire (567F) and holy (5BC5) Bound Of Faith from Images.
+      // These are the only time these Images appear and cast Bound Of Faith,
+      // catch the first via 5682 and the second via 5BC5 and call two tethers with one trigger.
+      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker\'s Image', id: '5682' }),
+      response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
-          awayFromGroup: {
+          fireTetherOnYou: {
+            en: 'Stack With Fire Tether',
+          },
+          lightningTetherOnYou: {
+            en: 'Take Lightning To Tanks',
+          },
+          tetherInfo: {
+            en: 'Lightning on ${player1}, Fire on ${player2}',
+          },
+        };
+
+        if (!data.tethers)
+          return;
+        const targets = Object.keys(data.tethers);
+        if (targets.length !== 2) {
+          console.error(`Unknown Shifting Sky tether targets: ${JSON.stringify(data.tethers)}`);
+          return;
+        }
+
+        let fireTarget;
+        let lightningTarget;
+        if (data.tethers[targets[0]] === matches.sourceId) {
+          lightningTarget = targets[0];
+          fireTarget = targets[1];
+        } else if (data.tethers[targets[1]] === matches.sourceId) {
+          fireTarget = targets[0];
+          lightningTarget = targets[1];
+        } else {
+          console.error(`Weird Shifting Sky tether targets: ${JSON.stringify(data.tethers)}` +
+            `, ${JSON.stringify(matches)}`);
+          return;
+        }
+
+        const tetherInfo = output.tetherInfo({
+          player1: data.ShortName(lightningTarget),
+          player2: data.ShortName(fireTarget),
+        });
+        const response = { infoText: tetherInfo };
+        if (lightningTarget === data.me)
+          Object.assign(response, { alarmText: output.lightningTetherOnYou() });
+        if (fireTarget === data.me)
+          Object.assign(response, { alertText: output.fireTetherOnYou() });
+        return response;
+      },
+    },
+    {
+      id: 'E11S Bound Of Faith Sundered Sky',
+      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker\'s Image', id: '5BC5' }),
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          fireTetherOnYou: {
+            en: 'Stack With Fire Tether',
+          },
+          holyTetherOnYou: {
             en: 'Away from Group',
             de: 'Weg von der Gruppe',
             fr: 'Éloignez-vous du groupe',
@@ -225,23 +311,43 @@ export default {
             cn: '远离人群',
             ko: '다른 사람들이랑 떨어지기',
           },
-          awayFromTarget: {
-            en: 'Away from ${player}',
-            de: 'Weg von ${player}',
-            fr: 'Éloignez-vous de ${player}',
-            ja: '${player}から離れ',
-            cn: '远离${player}',
-            ko: '"${player}"에서 멀어지기',
+          tetherInfo: {
+            en: 'Holy on ${player1}, Fire on ${player2}',
           },
-          unknownTarget: unknownTarget,
         };
 
-        const targets = Object.keys(data.tethers || {});
-        if (targets.includes(data.me))
-          return { alarmText: output.awayFromGroup() };
-        if (targets.length === 0)
-          return { infoText: output.awayFromTarget({ player: output.unknownTarget() }) };
-        return { infoText: output.awayFromTarget({ player: data.ShortName(targets[0]) }) };
+        if (!data.tethers)
+          return;
+        const targets = Object.keys(data.tethers);
+        if (targets.length !== 2) {
+          console.error(`Unknown Sundered Sky tether targets: ${JSON.stringify(data.tethers)}`);
+          return;
+        }
+
+        let fireTarget;
+        let holyTarget;
+        if (data.tethers[targets[0]] === matches.sourceId) {
+          holyTarget = targets[0];
+          fireTarget = targets[1];
+        } else if (data.tethers[targets[1]] === matches.sourceId) {
+          fireTarget = targets[0];
+          holyTarget = targets[1];
+        } else {
+          console.error(`Weird Sundered Sky tether targets: ${JSON.stringify(data.tethers)}` +
+            `, ${JSON.stringify(matches)}`);
+          return;
+        }
+
+        const tetherInfo = output.tetherInfo({
+          player1: data.ShortName(holyTarget),
+          player2: data.ShortName(fireTarget),
+        });
+        const response = { infoText: tetherInfo };
+        if (holyTarget === data.me)
+          Object.assign(response, { alarmText: output.holyTetherOnYou() });
+        if (fireTarget === data.me)
+          Object.assign(response, { alertText: output.fireTetherOnYou() });
+        return response;
       },
     },
     {
@@ -329,8 +435,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '5675', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5675', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5675', capture: false }),
-
-      durationSeconds: 10,
+      durationSeconds: 17,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -346,6 +451,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '5676', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5676', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5676', capture: false }),
+      durationSeconds: 17,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -377,6 +483,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '566F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '566F', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '566F', capture: false }),
+      durationSeconds: 10,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -392,7 +499,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '5677', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5677', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5677', capture: false }),
-      durationSeconds: 10,
+      durationSeconds: 16,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -408,6 +515,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '5678', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5678', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5678', capture: false }),
+      durationSeconds: 16,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -434,6 +542,15 @@ export default {
       },
     },
     {
+      id: 'E11S Cycle of Faith Fire Tether',
+      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '568A', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '568A', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '568A', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '568A', capture: false }),
+      delaySeconds: 16.5,
+      response: boundOfFaithFireTetherResponse,
+    },
+    {
       id: 'E11S Cycle of Faith Lightning',
       netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5692', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '5692', capture: false }),
@@ -450,7 +567,16 @@ export default {
       },
     },
     {
-      id: 'E11S Cycle of Faith Light',
+      id: 'E11S Cycle of Faith Lightning Tether',
+      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5692', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '5692', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5692', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5692', capture: false }),
+      delaySeconds: 16.5,
+      response: boundOfFaithLightningTetherResponse,
+    },
+    {
+      id: 'E11S Cycle of Faith Holy',
       netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '569A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '569A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '569A', capture: false }),
@@ -459,11 +585,18 @@ export default {
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Protean -> Group Stacks -> Line Cleave -> Bait -> Away',
-          de: 'Himmelsrichtung -> Sammeln in der Gruppe -> Linien AoE -> Ködern -> Weg',
-          ko: '8산개 -> 그룹 쉐어뎀 -> 직선 장판 -> 장판 유도 -> 피하기',
+          en: 'Protean -> Holy Groups -> Line Cleave -> Bait -> Away',
         },
       },
+    },
+    {
+      id: 'E11S Cycle of Faith Holy Tether',
+      netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '569A', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '569A', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '569A', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '569A', capture: false }),
+      delaySeconds: 16.5,
+      response: boundOfFaithHolyTetherResponse,
     },
   ],
   timelineReplace: [
