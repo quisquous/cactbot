@@ -61,10 +61,11 @@ const boundOfFaithLightningTetherResponse = (data, _, output) => {
   output.responseOutputStrings = {
     onYou: {
       en: 'Take Lightning To Tanks',
+      de: 'Bring Blitz zu den Tanks',
     },
     tetherInfo: {
       en: 'Lightning on ${player}',
-      de: 'Lichtverbindung auf ${player}',
+      de: 'Blitz auf ${player}',
       ko: '"${player}" 번개징 대상자',
     },
     unknownTarget: unknownTarget,
@@ -153,6 +154,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Protean -> Holy Groups',
+          de: 'Himmelsrichtung -> Sanctus Gruppen',
         },
       },
     },
@@ -246,17 +248,23 @@ export default {
       // These are the only time these Images appear and cast Bound Of Faith,
       // catch the first via 5682 and the second via 5BC5 and call two tethers with one trigger.
       netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker\'s Image', id: '5682' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Abbild Des Fusionierten Ascians', id: '5682' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Double Du Sabreur De Destins', id: '5682' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカーの幻影', id: '5682' }),
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           fireTetherOnYou: {
             en: 'Stack With Fire Tether',
+            de: 'Auf der Feuer-Verbindung sammeln',
           },
           lightningTetherOnYou: {
             en: 'Take Lightning To Tanks',
+            de: 'Bring Blitz zum Tank',
           },
           tetherInfo: {
             en: 'Lightning on ${player1}, Fire on ${player2}',
+            de: 'Blitz auf ${player1}, Feuer auf ${player2}',
           },
         };
 
@@ -297,11 +305,15 @@ export default {
     {
       id: 'E11S Bound Of Faith Sundered Sky',
       netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker\'s Image', id: '5BC5' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Abbild Des Fusionierten Ascians', id: '5BC5' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Double Du Sabreur De Destins', id: '5BC5' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカーの幻影', id: '5BC5' }),
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           fireTetherOnYou: {
             en: 'Stack With Fire Tether',
+            de: 'Auf der Feuer-Verbindung sammeln',
           },
           holyTetherOnYou: {
             en: 'Away from Group',
@@ -313,6 +325,7 @@ export default {
           },
           tetherInfo: {
             en: 'Holy on ${player1}, Fire on ${player2}',
+            de: 'Sanctus auf ${player1}, Feuer auf ${player2}',
           },
         };
 
@@ -586,6 +599,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Protean -> Holy Groups -> Line Cleave -> Bait -> Away',
+          de: 'Himmelsrichtung -> Sanctus Gruppen -> Linien AoE -> Ködern -> Weg',
         },
       },
     },
