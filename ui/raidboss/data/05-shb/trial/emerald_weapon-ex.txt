@@ -60,9 +60,9 @@ hideall "--sync--"
 1031.3 "Primus Terminus Est" sync /:The Emerald Weapon:55C3:/
 1039.2 "--sync--" sync /:The Emerald Weapon:5B1C:/
 1046.4 "Tertius Terminus Est" sync /:The Emerald Weapon:55CC:/
-1048.4 "Tertius Terminus Est" sync /:Bitblade:55CD:/
-1049.6 "Tertius Terminus Est" sync /:Bitblade:55CD:/
-1050.8 "Tertius Terminus Est" sync /:Bitblade:55CD:/
+1048.4 "Tertius Terminus Est" # sync /:Bitblade:55CD:/
+1049.6 "Tertius Terminus Est" # sync /:Bitblade:55CD:/
+1050.8 "Tertius Terminus Est" # sync /:Bitblade:55CD:/
 1059.3 "--sync--" sync /:The Emerald Weapon:5B1C:/
 1075.6 "Legio Phantasmatis" sync /:The Emerald Weapon:55B4:/
 1076.4 "--sync--" sync /:The Emerald Weapon:5B1C:/
@@ -75,9 +75,9 @@ hideall "--sync--"
 1155.8 "--sync--" sync /:The Emerald Weapon:5B1C:/
 1168.1 "Split" sync /:The Emerald Weapon:55(CF|D3):/
 1174.3 "Expire / Sidescathe" sync /:The Emerald Weapon:55D[145]:/
-1178.0 "Tertius Terminus Est" sync /:Bitblade:55CD:/
-1179.2 "Tertius Terminus Est" sync /:Bitblade:55CD:/
-1180.4 "Tertius Terminus Est" sync /:Bitblade:55CD:/
+1178.0 "Tertius Terminus Est" # sync /:Bitblade:55CD:/
+1179.2 "Tertius Terminus Est" # sync /:Bitblade:55CD:/
+1180.4 "Tertius Terminus Est" # sync /:Bitblade:55CD:/
 1188.2 "--sync--" sync /:The Emerald Weapon:5B1C:/
 1205.5 "Legio Phantasmatis" sync /:The Emerald Weapon:55B4:/
 1214.9 "--sync--" sync /:Black Wolf's Image:55C0:/
@@ -90,9 +90,9 @@ hideall "--sync--"
 1280.3 "--sync--" sync /:The Emerald Weapon:5B1C:/
 1292.7 "Split" sync /:The Emerald Weapon:55(CF|D3):/
 1298.5 "Expire / Sidescathe" sync /:The Emerald Weapon:55D[145]:/
-1302.4 "Tertius Terminus Est" sync /:Bitblade:55CD:/
-1303.6 "Tertius Terminus Est" sync /:Bitblade:55CD:/
-1304.8 "Tertius Terminus Est" sync /:Bitblade:55CD:/
+1302.4 "Tertius Terminus Est" # sync /:Bitblade:55CD:/
+1303.6 "Tertius Terminus Est" # sync /:Bitblade:55CD:/
+1304.8 "Tertius Terminus Est" # sync /:Bitblade:55CD:/
 1312.4 "--sync--" sync /:The Emerald Weapon:5B1C:/
 1326.5 "Primus Terminus Est" sync /:The Emerald Weapon:55C3:/
 1329.4 "--sync--" sync /:The Emerald Weapon:5B1C:/
