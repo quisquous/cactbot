@@ -161,9 +161,10 @@ export default {
       response: Responses.stackMarkerOn(),
     },
     {
-      id: 'E12N Diamond Dust Spread',
+      id: 'E12N Diamond Dust Mitigate',
       netRegex: NetRegexes.startsUsing({ id: '5864', source: 'Eden\'s Promise', capture: false }),
-      response: Responses.spread(),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.aoe(),
     },
     {
       id: 'E12N Diamond Dust Stop',
