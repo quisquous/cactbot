@@ -20,7 +20,7 @@ export default {
       id: 'EmeraldEx Bit Storm',
       regex: /Bit Storm/,
       beforeSeconds: 4,
-      response: Responses.getIn(),
+      response: Responses.getUnder(),
     },
     {
       id: 'EmeraldEx Photon Ring',
@@ -139,7 +139,7 @@ export default {
       },
     },
     {
-      id: 'EmeraldEx Expire P1',
+      id: 'EmeraldEx Expire',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55[D9]1', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55[D9]1', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55[D9]1', capture: false }),
@@ -246,14 +246,6 @@ export default {
       },
     },
     {
-      id: 'EmeraldEx Expire P2',
-      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55D1', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55D1', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55D1', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55D1', capture: false }),
-      response: Responses.getOut(),
-    },
-    {
       id: 'EmeraldEx Mechanized Maneuver',
       netRegex: NetRegexes.startsUsing({ source: `Black Wolf's Image`, id: '55BA', capture: false }),
       infoText: (data, _, output) => output.text(),
@@ -282,6 +274,7 @@ export default {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Black Wolf\'s Image': 'Gaius-Projektion',
         'Imperial Image': 'garleisch(?:e|er|es|en) Soldat',
