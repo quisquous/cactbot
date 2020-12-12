@@ -7,6 +7,7 @@ const sharedOutputStrings = {
   sharedTankStack: {
     en: 'Tank stack',
     de: 'Tanks sammeln',
+    fr: 'Package Tanks',
     cn: '坦克分摊',
     ko: '탱끼리 모이기',
   },
