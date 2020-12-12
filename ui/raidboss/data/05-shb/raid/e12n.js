@@ -45,10 +45,10 @@ const primalOutputStrings = {
     en: 'Sides',
   },
   '008E': {
-    en: 'In',
+    en: 'Middle',
   },
   '0090': {
-    en: 'Out',
+    en: 'Out of melee',
   },
 };
 
@@ -81,7 +81,7 @@ export default {
       // SE X: 11.31371 Y: -86.3137
       id: 'E12N Bomb Collect',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9816' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         const bomb = {};
         bomb.north = parseFloat(matches.y) + 70 > 0;
         bomb.east = parseFloat(matches.x) > 0;
@@ -120,15 +120,15 @@ export default {
       id: 'E12N Rapturous Reach Double',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       condition: (data) => !data.seenIntermission,
-      preRun: function(data, matches) {
+      preRun: (data, matches) => {
         data.stacks = data.stacks || [];
         data.stacks.push(matches.target);
       },
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.stackOnYou();
       },
-      infoText: function(data, _, output) {
+      infoText: (data, _, output) => {
         if (data.stacks.length === 1)
           return;
         const names = data.stacks.map((x) => data.ShortName(x)).sort();
@@ -137,6 +137,10 @@ export default {
       outputStrings: {
         stacks: {
           en: 'Stack (${players})',
+          de: 'Sammeln (${players})',
+          fr: 'Package (${players})',
+          cn: '分摊 (${players})',
+          ko: '모이기 (${players})',
         },
         stackOnYou: {
           en: 'Stack on YOU',
@@ -181,7 +185,7 @@ export default {
     {
       id: 'E12N Tether Collect',
       netRegex: NetRegexes.tether({ id: tetherIds }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.tethers = data.tethers || [];
         data.tethers.push(matches.id);
       },
@@ -191,7 +195,7 @@ export default {
       netRegex: NetRegexes.startsUsing({ id: ['4E2C', '585B', '5861'], capture: false }),
       preRun: (data) => data.tethers = data.tethers.sort(),
       delaySeconds: 1, // Tethers should be first in the log, but let's be SURE
-      alertText: function(data, _, output) {
+      alertText: (data, _, output) => {
         if (data.tethers.length !== 2)
           return;
         return output.combined({
@@ -199,7 +203,7 @@ export default {
           safespot2: output[data.tethers[1]](),
         });
       },
-      infoText: function(data, _, output) {
+      infoText: (data, _, output) => {
         if (data.tethers.length === 2)
           return;
         return output[data.tethers[0]]();
