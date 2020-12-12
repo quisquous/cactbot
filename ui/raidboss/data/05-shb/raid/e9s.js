@@ -84,6 +84,57 @@ const artOfDarknessOutputStrings = {
   },
 };
 
+const calculateSummonSafeZone = (clone1, clone2, artOfDarknessAbilityId) => {
+  const p1 = Math.round(4 - 4 * Math.atan2(clone1.PosX - 100, clone1.PosY - 100) / Math.PI) % 8;
+  const p2 = Math.round(4 - 4 * Math.atan2(clone2.PosX - 100, clone2.PosY - 100) / Math.PI) % 8;
+
+  const directions = {
+    '0': 'NNE',
+    '1': 'ENE',
+    '2': 'ESE',
+    '3': 'SSE',
+    '4': 'SSW',
+    '5': 'WSW',
+    '6': 'WNW',
+    '7': 'NNW',
+  };
+
+  const badZones = [];
+  for (const clonePosition of [p1, p2]) {
+    for (let i = 0; i < 4; ++i) {
+      let newPosition;
+      // Swiping her right
+      if (artOfDarknessAbilityId === '561E') {
+        // Off by 1 here, since N is 0 for the Clone but NNE for the safe spot
+        newPosition = ((clonePosition - i % 8) + 7) % 8;
+      } else {
+        newPosition = clonePosition + i % 8;
+      }
+      if (!badZones.includes(newPosition))
+        badZones.push(newPosition);
+    }
+  }
+  const safeZones = [0, 1, 2, 3, 4, 5, 6, 7]
+    .filter((pos) => !badZones.includes(pos))
+    .map((pos) => directions[pos]);
+
+  // TODO: Find Cloud Of Darkness' rotation so we can have a definitive position.
+  if (safeZones.length > 1) {
+    const instruction = artOfDarknessAbilityId === '561E' ? 'LEFT' : 'RIGHT';
+
+    // Reduce to a single direction + give left or right
+    const singleDirection = safeZones.join('')
+      .split('')
+      .filter((item, pos, self) => {
+        return self.indexOf(item) === pos && safeZones.every((str) => str.includes(item));
+      })
+      .join('');
+
+    return `${singleDirection} + ${instruction}`;
+  }
+  return safeZones[0];
+};
+
 export default {
   zoneId: ZoneId.EdensPromiseUmbraSavage,
   timelineFile: 'e9s.txt',
@@ -637,6 +688,40 @@ export default {
           cn: '踩塔',
           ko: '기둥 들어가기',
         },
+      },
+    },
+    {
+      id: 'E9S Summon',
+      netRegex: NetRegexes.ability({ id: '5019', source: 'Cloud Of Darkness', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '5019', source: 'Wolke Der Dunkelheit', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '5019', source: 'Nuage De Ténèbres', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '5019', source: '暗闇の雲', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '5019', source: '暗黑之云', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '5019', source: '어둠의 구름', capture: false }),
+      promise: async (data) => {
+        const cloneOfDarknessLocaleNames = {
+          en: 'Clone Of Darkness',
+        };
+
+        const combatantData = await window.callOverlayHandler({
+          call: 'getCombatants',
+          names: [cloneOfDarknessLocaleNames[data.parserLang]],
+        });
+
+        if (combatantData === null || !combatantData.combatants || !combatantData.combatants.length)
+          return;
+
+        data.combatantData = combatantData;
+      },
+    },
+    {
+      id: 'E9S Clone The Art Of Darkness',
+      netRegex: NetRegexes.startsUsing({ id: '561[EF]', source: 'Clone Of Darkness' }),
+      condition: (data) => data.combatantData,
+      suppressSeconds: 1,
+      alertText: (data, matches) => {
+        const clones = data.combatantData.combatants;
+        return calculateSummonSafeZone(clones[0], clones[1], matches.id);
       },
     },
   ],
