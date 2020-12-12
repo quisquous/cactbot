@@ -99,7 +99,7 @@ export default {
         text: {
           en: 'Bait Resin Bomb',
           de: 'Köder Pechbombe',
-          fr: 'Placez-vous pour Bombe de résine',
+          fr: 'Attirez Bombe de résine',
           ja: '粘着弾',
           cn: '粘着弹',
           ko: '점착탄',

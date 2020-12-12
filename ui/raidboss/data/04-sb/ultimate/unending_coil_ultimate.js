@@ -1360,7 +1360,7 @@ export default {
       outputStrings: {
         blackfireTower: {
           en: 'Tower, bait hypernova',
-          fr: 'Tour, appâter Supernova',
+          fr: 'Tour, attirez Supernova',
           de: 'Turm, Hypernova ködern',
           ja: 'タワーやスーパーノヴァ',
           cn: '踩塔, 引导超新星',
@@ -1368,7 +1368,7 @@ export default {
         },
         octetTowerPlusTwin: {
           en: 'Bait Twin, then tower',
-          fr: 'Appâter Gémellia, puis tour',
+          fr: 'Attirez Gémellia, puis tour',
           de: 'Twintania in Turm locken',
           ja: 'タニアダイブやタワー',
           cn: '引导双塔, 踩塔',

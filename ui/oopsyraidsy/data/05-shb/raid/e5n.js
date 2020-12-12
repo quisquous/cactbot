@@ -46,7 +46,16 @@ export default {
         return !data.hasOrb[e.targetName];
       },
       mistake: function(e) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName + ' (no orb)' };
+        return {
+          type: 'fail',
+          blame: e.targetName,
+          text: {
+            en: e.abilityName + ' (no orb)',
+            de: e.abilityName + ' (kein Orb)',
+            ja: e.abilityName + '(雷玉無し)',
+            cn: e.abilityName + '(没吃球)',
+          },
+        };
       },
     },
     {
@@ -67,7 +76,12 @@ export default {
           return {
             type: 'fail',
             blame: data.cloudMarkers[m],
-            text: e.abilityName + '(clouds too close)',
+            text: {
+              en: e.abilityName + '(clouds too close)',
+              de: e.abilityName + '(Wolken zu nahe)',
+              ja: e.abilityName + '(雲近すぎ)',
+              cn: e.abilityName + '(雷云重叠)',
+            },
           };
         }
       },

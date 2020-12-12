@@ -223,7 +223,7 @@ export default {
         text: {
           en: 'Bait Star Explosions',
           de: 'Stern Explosion ködern',
-          fr: 'Déposez les explosions d\'étoiles',
+          fr: 'Attirez les explosions d\'étoiles',
           ja: '放射霧を誘導',
           cn: '诱导放射雾',
           ko: '별모양 장판 피하기',

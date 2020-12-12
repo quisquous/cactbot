@@ -40,7 +40,7 @@ export default {
           blame: data.me,
           fullText: {
             en: 'Party Wipe',
-            fr: 'Wipe',
+            fr: 'Party Wipe',
             de: 'Gruppenwipe',
             ja: 'ワイプ',
             cn: '团灭',
