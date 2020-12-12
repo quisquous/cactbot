@@ -585,7 +585,6 @@ export default {
         'Anti-Air Phaser Unlimited': '高射式 跳躍波動砲：零式',
         'Anti-Air Particle Beam': '高射式 波動砲',
         'Aetherosynthesis': '生気吸収',
-        '\\(P/S\\)': '(散開/頭割り)',
         '\\(L/R\\)': '(左/右)',
       },
     },
