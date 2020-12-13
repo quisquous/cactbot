@@ -436,7 +436,6 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Spectral Bard': 'barde spectral',
         'Spectral Black Mage': 'mage noir spectral',
@@ -449,6 +448,7 @@ export default {
         'Wyrm Of Light': 'wyrm de Lumière',
       },
       'replaceText': {
+        '--active time event--': '--temps d\'évènement actif--',
         '\\(In\\)': '(Intérieur)',
         '\\(Out\\)': '(Extérieur)',
         'Absolute Blizzard III': 'Méga Glace absolue',
