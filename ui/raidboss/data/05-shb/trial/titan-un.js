@@ -64,22 +64,21 @@ export default {
   triggers: [
     {
       id: 'TitanUn Rock Throw',
-      netRegex: NetRegexes.ability({ source: 'Titan', id: '5ADD', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Titan', id: '5ADD', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Titan', id: '5ADD', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'タイタン', id: '5ADD', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '泰坦', id: '5ADD', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '타이탄', id: '5ADD', capture: false }),
-      // This trigger is a little tricky.  Ideally we'd want to alert all
-      // players who had a jail marker, but this is not a 1B headmarker.
-      // This is probably because this is old content, similar to T5.
-      // Worse, only one player is called out as the target of Rock Throw.
-      // It seems strictly worse to differentiate trigger output of known
-      // rock throw target vs unknown rock throw target, as we don't want to
-      // give a false expectation that this trigger is very smart.
-      alertText: (data, _, output) => output.text(),
+      netRegex: NetRegexes.tether({ id: '0007' }),
+      alertText: (data, matches, output) => {
+        if (matches.source === data.me || matches.target === data.me)
+          return output.jailOnYou();
+      },
+      infoText: (data, matches, output) => {
+        if (matches.source !== data.me && matches.target !== data.me)
+          return output.jails();
+      },
       outputStrings: {
-        text: {
+        jailOnYou: {
+          en: 'Jail on YOU',
+          fr: 'Geôle sur VOUS',
+        },
+        jails: {
           en: 'Jails',
           de: 'Gefängnis',
           fr: 'Geôles',
