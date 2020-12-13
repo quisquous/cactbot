@@ -186,10 +186,9 @@ def find_fights_in_file(file):
 
 
 def list_fights_in_file(args, encounter_sets):
-        return [
-            f'{str(i + 1).zfill(2)}. {" | ".join(e_info)}'
-            for i, e_info in enumerate(encounter_sets)
-        ]
+    return [
+        f'{str(i + 1).zfill(2)}. {" | ".join(e_info)}' for i, e_info in enumerate(encounter_sets)
+    ]
 
 
 def choose_fight_times(args, encounters):
