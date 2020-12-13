@@ -171,10 +171,28 @@ def find_fights_in_file(file):
         # Ignore fights under 1 minute
         if (e_ends[i] - e_starts[i][0]).total_seconds() < 60:
             continue
-        encounter_info = [str_time((e_starts[i][0])), str_time(e_ends[i]), str(e_starts[i][1])]
+        # Since the duration will only ever be used as a display string,
+        # there's probably no need to do this "correctly".
+        duration = str(e_ends[i] - e_starts[i][0]).split(".")[0][2:]
+        encounter_info = [
+            str_time((e_starts[i][0])),
+            str_time(e_ends[i]),
+            duration,
+            str(e_starts[i][1]),
+        ]
         encounter_sets.append(encounter_info)
     file.seek(0)
     return encounter_sets
+
+
+def list_fights_in_file(args, encounter_sets):
+    if args.search_fights < 0:
+        return [
+            f'{str(i + 1).zfill(2)}. {" | ".join(e_info)}'
+            for i, e_info in enumerate(encounter_sets)
+        ]
+    elif args.search_fights > len(encounter_sets):
+        raise Exception("Selected fight index not in selected ACT log.")
 
 
 def choose_fight_times(args, encounters):

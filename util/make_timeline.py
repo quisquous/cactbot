@@ -153,11 +153,7 @@ def parse_file(args):
         if args.search_fights:
             encounter_sets = e_tools.find_fights_in_file(file)
             # If all we want to do is list encounters, stop here and give to the user.
-            if args.search_fights < 0:
-                return [f'{i + 1}. {" ".join(e_info)}' for i, e_info in enumerate(encounter_sets)]
-            elif args.search_fights > len(encounter_sets):
-                raise Exception("Selected fight index not in selected ACT log.")
-
+            return e_tools.list_fights_in_file(args, encounter_sets)
         start_time, end_time = e_tools.choose_fight_times(args, encounter_sets)
         # Scan the file until the start timestamp
         for line in file:
