@@ -122,6 +122,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Move to last explosions',
+          ko: '마지막 폭발 위치로',
         },
       },
     },
