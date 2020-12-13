@@ -248,7 +248,10 @@ export default {
     },
     {
       id: 'EmeraldEx Mechanized Maneuver',
-      netRegex: NetRegexes.startsUsing({ source: `Black Wolf's Image`, id: '55BA', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Black Wolf\'s Image', id: '55BA', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Gaius-Projektion', id: '55BA', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Spectre De Gaius', id: '55BA', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ガイウスの幻影', id: '55BA', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -262,11 +265,15 @@ export default {
     },
     {
       id: 'EmeraldEx Full Rank',
-      netRegex: NetRegexes.startsUsing({ source: `Black Wolf's Image`, id: '55C0', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Black Wolf\'s Image', id: '55C0', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Gaius-Projektion', id: '55C0', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Spectre De Gaius', id: '55C0', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ガイウスの幻影', id: '55C0', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'watch rank-and-file soldiers',
+          de: 'Achte auf die Lücken zwischen den Soldaten',
           cn: '观察士兵队列',
           ko: '엑사플레어 순서, 빈 공간 확인',
         },
