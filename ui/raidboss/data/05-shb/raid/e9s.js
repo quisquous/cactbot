@@ -588,6 +588,7 @@ export default {
         text: {
           en: 'Start Left',
           de: 'Starte Links',
+          ko: '왼쪽에서 시작',
         },
       },
       run: (data) => {
@@ -609,6 +610,7 @@ export default {
         text: {
           en: 'Start Right',
           de: 'Starte Rechts',
+          ko: '오른쪽에서 시작',
         },
       },
       run: (data) => {

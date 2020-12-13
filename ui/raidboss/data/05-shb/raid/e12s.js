@@ -43,49 +43,62 @@ const primalOutputStrings = {
   // Tethers.
   '008E': {
     en: 'Middle',
+    ko: '중앙',
   },
   '008F': {
     en: 'Sides',
+    ko: '양옆',
   },
   '0090': {
     en: 'Out',
+    ko: '바깥',
   },
   '0091': {
     en: 'Intercards',
+    ko: '대각',
   },
   // Tether combos.
   '008E008F': {
     en: 'Under + Sides',
+    ko: '보스 아래 + 양옆',
   },
   '008E0090': {
     en: 'North/South + Out',
+    ko: '북/남 + 바깥',
   },
   '008E0091': {
     en: 'Under + Intercards',
+    ko: '보스 아래 + 대각',
   },
   // Text output.
   'combined': {
     en: '${safespot1} + ${safespot2}',
+    ko: '${safespot1} + ${safespot2}',
   },
   'stock': {
     en: 'Stock: ${text}',
+    ko: '저장: ${text}',
   },
   'junctionSuffix': {
     en: '${text} (${junction})',
+    ko: '${text} (${junction})',
   },
   // Junctions.
   'spread': {
     // Shiva spread.
     en: 'spread',
+    ko: '산개',
   },
   'stacks': {
     // Titan healer stacks.
     en: 'stacks',
+    ko: '쉐어',
   },
   'stack': {
     // Obliterate whole group laser stack.
     // This is deliberately "stack" singular (vs Titan "stacks").
     en: 'group stack',
+    ko: '그룹 쉐어',
   },
 };
 
@@ -120,6 +133,7 @@ export default {
       outputStrings: {
         busterAndSwap: {
           en: 'Tank Buster + Swap',
+          ko: '탱버 + 탱 교대',
         },
       },
     },
@@ -137,6 +151,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Tank Busters',
+          ko: '탱버',
         },
       },
     },
@@ -160,10 +175,12 @@ export default {
         // Use parentheses to try to connote that this is a tell for the future, e.g. wolex.
         junctionWithCast: {
           en: 'Spread',
+          ko: '산개',
         },
         // TODO: maybe this should be a timeline trigger instead, since it needs more mit.
         diamondDust: {
           en: 'Big AOE, Get Middle',
+          ko: '대형 장판, 중앙으로',
         },
       },
     },
@@ -185,9 +202,11 @@ export default {
       outputStrings: {
         junctionWithCast: {
           en: 'Healer Stacks',
+          ko: '힐러 쉐어',
         },
         earthenFury: {
           en: 'Big AOE, Bombs Soon',
+          ko: '대형 장판, 곧 폭탄',
         },
       },
     },
@@ -267,6 +286,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Orange Stack',
+          ko: '주황 모이기',
         },
       },
     },
@@ -278,6 +298,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Yellow Spread',
+          ko: '노랑 산개',
         },
       },
     },
@@ -291,6 +312,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Blue!',
+          ko: '파랑!',
         },
       },
     },
@@ -336,6 +358,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Lion Tether on YOU',
+          ko: '사자 선 대상자',
         },
       },
     },
