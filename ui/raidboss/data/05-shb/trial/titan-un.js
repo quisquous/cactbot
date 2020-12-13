@@ -63,8 +63,10 @@ export default {
   ],
   triggers: [
     {
+      // Doesn't seem like this happens twice, but let's be safe.
       id: 'TitanUn Rock Throw',
       netRegex: NetRegexes.tether({ id: '0007' }),
+      suppressSeconds: 1,
       alertText: (data, matches, output) => {
         if (matches.source === data.me || matches.target === data.me)
           return output.jailOnYou();
