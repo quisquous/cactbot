@@ -165,6 +165,7 @@ export default {
           en: 'Line Cleave -> Knockback',
           de: 'Linien AoE -> Rückstoß',
           ko: '직선 장판 -> 넉백',
+          cn: '直线AoE -> 击退',
         },
       },
     },
@@ -180,6 +181,7 @@ export default {
           en: 'Line Cleave -> Out',
           de: 'Linien AoE -> Raus',
           ko: '직선 장판 -> 바깥으로',
+          cn: '直线AoE -> 远离',
         },
       },
     },
@@ -195,6 +197,7 @@ export default {
           en: 'Line Cleave + Bait',
           de: 'Linien AoE -> Ködern',
           ko: '직선 장판 + 장판 유도',
+          cn: '直线AoE+放置点名',
         },
       },
     },
@@ -208,6 +211,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Dodge Lightning First -> Rotate For Fire',
+          cn: '躲雷 -> 火击退',
         },
       },
     },
@@ -221,6 +225,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Fire Knockback After Lightning',
+          cn: '雷 -> 火击退',
         },
       },
     },
@@ -276,6 +281,7 @@ export default {
           en: 'Fire: Go to Blue',
           de: 'Feuer: Geh zu Blau',
           ko: '화염: 파랑으로',
+          cn: '火：去蓝门一侧',
         },
       },
     },
@@ -292,6 +298,7 @@ export default {
           en: 'Lightning: Go to Red',
           de: 'Blitz: Geh zu Rot',
           ko: '번개: 빨강으로',
+          cn: '雷：去红门一侧',
         },
       },
     },
