@@ -53,11 +53,13 @@ const artOfDarknessOutputStrings = {
   startRight: {
     en: 'Start Right',
     de: 'Starte Rechts',
+    fr: 'Commencer à droite',
     ko: '오른쪽에서 시작',
   },
   startLeft: {
     en: 'Start Left',
     de: 'Starte Links',
+    fr: 'Commencer à gauche',
     ko: '왼쪽에서 시작',
   },
   goRight: {
@@ -218,7 +220,7 @@ export default {
         text: {
           en: 'Place Bramble',
           de: 'Dornenstrauch plazieren',
-          fr: 'Déposez les ronces',
+          fr: 'Placez les ronces',
           ja: '苗木を捨てる',
           cn: '击退放置树苗',
           ko: '장판 유도하기',
@@ -617,18 +619,20 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Hypercharged Cloud': 'nuage palpitant',
         'Cloud Of Darkness': 'Nuage de Ténèbres',
       },
       'replaceText': {
+        '\\(L/R\\)': '(G/D)',
+        '\\(P/S\\)': '(Po/Pa)',
         'The Third Art Of Darkness': 'Arts ténébreux triple',
         'The Second Art Of Darkness': 'Arts ténébreux double',
         'The Art Of Darkness': 'Arts ténébreux',
         'Summon': 'Invocation',
         'Rejuvenating Balm': 'Tir vivifiant',
         'Particle Concentration': 'Rayon sphérique',
+        'Phaser Unlimited': 'Faisceau de particules bondissant',
         '(?<!(Full-Perimeter|Ground-Razing) )Particle Beam': 'Rayon explosif',
         'Obscure Woods': 'Forêt obscure',
         'Hypercharged Dispersal': 'Dissipation',
