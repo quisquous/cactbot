@@ -276,6 +276,7 @@ export default {
         text: {
           en: 'watch rank-and-file soldiers',
           cn: '观察士兵队列',
+          ko: '엑사플레어 순서, 빈 공간 확인',
         },
       },
     },

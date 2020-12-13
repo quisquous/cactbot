@@ -53,10 +53,12 @@ const artOfDarknessOutputStrings = {
   startRight: {
     en: 'Start Right',
     de: 'Starte Rechts',
+    ko: '오른쪽에서 시작',
   },
   startLeft: {
     en: 'Start Left',
     de: 'Starte Links',
+    ko: '왼쪽에서 시작',
   },
   goRight: {
     en: 'Right',

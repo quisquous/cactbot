@@ -33,6 +33,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Between small bombs',
+          ko: '작은 폭탄 사이로',
         },
       },
     },
@@ -44,6 +45,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Move to last explosions',
+          ko: '마지막 폭발 위치로',
         },
       },
     },
