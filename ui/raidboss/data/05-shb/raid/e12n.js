@@ -22,42 +22,54 @@ const tetherIds = ['008E', '008F', '0090', '0091'];
 const bombOutputStrings = {
   'north': {
     en: 'Between north bombs',
+    de: 'Zwichen den Bomben im Norden',
   },
   'south': {
     en: 'Between south bombs',
+    de: 'Zwichen den Bomben im Süden',
   },
   'east': {
     en: 'Between east bombs',
+    de: 'Zwichen den Bomben im Osten',
   },
   'west': {
     en: 'Between west bombs',
+    de: 'Zwichen den Bomben im Westen',
   },
 };
 
 const primalOutputStrings = {
   'combined': {
     en: '${safespot1} + ${safespot2}',
+    de: '${safespot1} + ${safespot2}',
   },
   '008E': {
     en: 'Middle',
+    de: 'Mitte',
   },
   '008F': {
     en: 'Sides',
+    de: 'Seiten',
   },
   '0090': {
     en: 'Out',
+    de: 'Raus',
   },
   '0091': {
     en: 'Intercards',
+    de: 'Interkardinale Himmelsrichtungen',
   },
   '008E008F': {
     en: 'Under + Sides',
+    de: 'Unter Ihm + Seiten',
   },
   '008E0090': {
     en: 'North/South + Out',
+    de: 'Norden/Süden + Raus',
   },
   '008E0091': {
     en: 'Under + Intercards',
+    de: 'Unter Ihm + Interkardinale Himmelsrichtungen',
   },
 };
 
@@ -69,6 +81,9 @@ export default {
     {
       id: 'E12N Intermission Completion',
       netRegex: NetRegexes.ability({ id: '4B48', source: 'Eden\'s Promise', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '4B48', source: 'Edens Verheißung', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '4B48', source: 'Promesse D\'Éden', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '4B48', source: 'プロミス・オブ・エデン', capture: false }),
       run: (data) => data.seenIntermission = true,
     },
     {

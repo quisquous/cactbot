@@ -283,7 +283,6 @@ export default {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Black Wolf\'s Image': 'Gaius-Projektion',
         'Imperial Image': 'garleisch(?:e|er|es|en) Soldat',
