@@ -36,19 +36,28 @@ const bombOutputStrings = {
 
 const primalOutputStrings = {
   'combined': {
-    en: '${safespot1}, ${safespot2}',
-  },
-  '0091': {
-    en: 'Intercardinals',
-  },
-  '008F': {
-    en: 'Sides',
+    en: '${safespot1} + ${safespot2}',
   },
   '008E': {
     en: 'Middle',
   },
+  '008F': {
+    en: 'Sides',
+  },
   '0090': {
-    en: 'Out of melee',
+    en: 'Out',
+  },
+  '0091': {
+    en: 'Intercards',
+  },
+  '008E008F': {
+    en: 'Under + Sides',
+  },
+  '008E0090': {
+    en: 'North/South + Out',
+  },
+  '008E0091': {
+    en: 'Under + Intercards',
   },
 };
 
@@ -194,10 +203,15 @@ export default {
       id: 'E12N Cast Release',
       netRegex: NetRegexes.startsUsing({ id: ['4E2C', '585B', '5861'], capture: false }),
       preRun: (data) => data.tethers = data.tethers.sort(),
-      delaySeconds: 1, // Tethers should be first in the log, but let's be SURE
+      delaySeconds: 0.5, // Tethers should be first in the log, but let's be SURE
       alertText: (data, _, output) => {
         if (data.tethers.length !== 2)
           return;
+        // Leviathan's mechanics aren't easily described in a single word,
+        // so we special-case them.
+        const comboStr = data.tethers[0] + data.tethers[1];
+        if (comboStr in primalOutputStrings)
+          return { alertText: output[comboStr]() };
         return output.combined({
           safespot1: output[data.tethers[0]](),
           safespot2: output[data.tethers[1]](),
