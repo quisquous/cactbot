@@ -386,7 +386,7 @@ export default {
       // The Art Of Darkness uses head markers with randomized offsets.  The first
       // charge is always left or right, and we can solve the rest from there.
       id: 'E9S The Second / Third Art Of Darkness Charge Solver',
-      netRegex: NetRegexes.headMarker({ id: '01..', target: 'Cloud Of Darkness' }),
+      netRegex: NetRegexes.headMarker({ target: 'Cloud Of Darkness' }),
       condition: (data) => !data.artOfDarknessIdMap,
       run: (data, matches) => {
         data.artOfDarknessIdMap = {};
@@ -409,7 +409,7 @@ export default {
     },
     {
       id: 'E9S The Second / Third Art Of Darkness Left / Right Charge',
-      netRegex: NetRegexes.headMarker({ id: '01..', target: 'Cloud Of Darkness' }),
+      netRegex: NetRegexes.headMarker({ target: 'Cloud Of Darkness' }),
       condition: (data, matches) => {
         if (!data.artOfDarkness || !data.artOfDarknessIdMap)
           return false;
