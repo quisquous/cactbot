@@ -212,7 +212,7 @@ export default {
         // so we special-case them.
         const comboStr = data.tethers[0] + data.tethers[1];
         if (comboStr in primalOutputStrings)
-          return { alertText: output[comboStr]() };
+          return output[comboStr]();
         return output.combined({
           safespot1: output[data.tethers[0]](),
           safespot2: output[data.tethers[1]](),
