@@ -284,7 +284,7 @@ export default {
           en: 'Drop Shadow Max Melee',
           de: 'Lege den Schatten im max Melee Bereich ab',
           fr: 'Déposez l\'ombre au max de la portée',
-          ko: '그림자 칼끝 위치에 떨어뜨리기',
+          ko: '그림자 칼끝딜 위치에 떨어뜨리기',
         },
       },
     },
