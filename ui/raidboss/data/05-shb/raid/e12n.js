@@ -3,17 +3,74 @@ import NetRegexes from '../../../../../resources/netregexes.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
-// TODO: Tether mechanic callouts. Each tether type is used for one primal,
-// so we could just do a collect > analyze > call system based on which tethers are seen.
+// EDEN'S PROMISE: ETERNITY
+// E12 NORMAL
+
 // TODO: Handle the EarthShaker bait --> beam intercept mechanic during the intermission.
 // TODO: Math the spawn position of the Titanic Bomb Boulders to call the safe direction like E4s.
-// TODO: Fix the Rapturous Reach trigger so it doesn't double call during the intermission.
+
+// Each tether ID corresponds to a primal:
+// 008E -- Leviathan
+// 008F -- Ifrit
+// 0090 -- Ramuh
+// 0091 -- Garuda
+// We can collect + store these for later use on Stock/Release.
+
+const tetherIds = ['008E', '008F', '0090', '0091'];
+
+// Keys here indicate SAFE directions!
+const bombOutputStrings = {
+  'north': {
+    en: 'Between north bombs',
+  },
+  'south': {
+    en: 'Between south bombs',
+  },
+  'east': {
+    en: 'Between east bombs',
+  },
+  'west': {
+    en: 'Between west bombs',
+  },
+};
+
+const primalOutputStrings = {
+  'combined': {
+    en: '${safespot1} + ${safespot2}',
+  },
+  '008E': {
+    en: 'Middle',
+  },
+  '008F': {
+    en: 'Sides',
+  },
+  '0090': {
+    en: 'Out',
+  },
+  '0091': {
+    en: 'Intercards',
+  },
+  '008E008F': {
+    en: 'Under + Sides',
+  },
+  '008E0090': {
+    en: 'North/South + Out',
+  },
+  '008E0091': {
+    en: 'Under + Intercards',
+  },
+};
 
 
 export default {
   zoneId: ZoneId.EdensPromiseEternity,
   timelineFile: 'e12n.txt',
   triggers: [
+    {
+      id: 'E12N Intermission Completion',
+      netRegex: NetRegexes.ability({ id: '4B48', source: 'Eden\'s Promise', capture: false }),
+      run: (data) => data.seenIntermission = true,
+    },
     {
       id: 'E12N Maleficium',
       netRegex: NetRegexes.startsUsing({ id: '5872', source: 'Eden\'s Promise', capture: false }),
@@ -32,19 +89,39 @@ export default {
       response: Responses.tankCleave(),
     },
     {
+      // Titanic Bombs spawn at two of four points:
+      // NW X: -11.31371 Y: -63.68629
+      // SW X: -11.31371 Y: -86.3137
+      // NE X: 11.31371 Y: -63.68629
+      // SE X: 11.31371 Y: -86.3137
+      id: 'E12N Bomb Collect',
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9816' }),
+      run: (data, matches) => {
+        const bomb = {};
+        bomb.north = parseFloat(matches.y) + 70 > 0;
+        bomb.east = parseFloat(matches.x) > 0;
+        data.bombs = data.bombs || [];
+        data.bombs.push(bomb);
+      },
+    },
+    {
       id: 'E12N Boulders Impact',
       netRegex: NetRegexes.ability({ id: '586E', source: 'Titanic Bomb Boulder', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '586E', source: 'Mega-Bomber-Brocken', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '586E', source: 'Méga Bombo Rocher', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '586E', source: 'メガ・ボムボルダー', capture: false }),
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Between small bombs',
-          de: 'Zwischen 2 kleinen Bomben stehen',
-        },
+      infoText: (data, _, output) => {
+        // Whichever direction has two  Titanic Bombs, the safe spot is opposite.
+        let safe;
+        if (data.bombs[0].north === data.bombs[1].north)
+          safe = data.bombs[0].north ? 'south' : 'north';
+        else
+          safe = data.bombs[0].east ? 'west' : 'east';
+        return output[safe]();
       },
+      outputStrings: bombOutputStrings,
+      run: (data) => delete data.bombs,
     },
     {
       id: 'E12N Boulders Explosion',
@@ -58,21 +135,66 @@ export default {
         text: {
           en: 'Move to last explosions',
           de: 'Zur letzten Explosion bewegen',
+          ko: '마지막 폭발 위치로',
         },
       },
     },
     {
-      id: 'E12N Rapturous Reach',
+      id: 'E12N Rapturous Reach Double',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
+      condition: (data) => !data.seenIntermission,
+      preRun: (data, matches) => {
+        data.stacks = data.stacks || [];
+        data.stacks.push(matches.target);
+      },
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.stackOnYou();
+      },
+      infoText: (data, _, output) => {
+        if (data.stacks.length === 1)
+          return;
+        const names = data.stacks.map((x) => data.ShortName(x)).sort();
+        return output.stacks({ players: names.join(', ') });
+      },
+      outputStrings: {
+        stacks: {
+          en: 'Stack (${players})',
+          de: 'Sammeln (${players})',
+          fr: 'Package (${players})',
+          cn: '分摊 (${players})',
+          ko: '모이기 (${players})',
+        },
+        stackOnYou: {
+          en: 'Stack on YOU',
+          de: 'Sammeln auf DIR',
+          ja: '自分にシェア',
+          fr: 'Package sur VOUS',
+          ko: '나에게 모이기',
+          cn: '集合点名',
+        },
+      },
+    },
+    {
+      id: 'E12N Rapturous Reach Cleanup',
+      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
+      delaySeconds: 10,
+      run: (data) => delete data.stacks,
+    },
+    {
+      id: 'E12N Rapturous Reach Single',
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      condition: (data) => data.seenIntermission,
       response: Responses.stackMarkerOn(),
     },
     {
-      id: 'E12N Diamond Dust Spread',
+      id: 'E12N Diamond Dust Mitigate',
       netRegex: NetRegexes.startsUsing({ id: '5864', source: 'Eden\'s Promise', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '5864', source: 'Edens Verheißung', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5864', source: 'Promesse D\'Éden', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5864', source: 'プロミス・オブ・エデン', capture: false }),
-      response: Responses.spread(),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.aoe(),
     },
     {
       id: 'E12N Diamond Dust Stop',
@@ -81,13 +203,52 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ id: '5864', source: 'Promesse D\'Éden', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5864', source: 'プロミス・オブ・エデン', capture: false }),
       delaySeconds: 1, // Avoiding collision with the spread call
-      response: Responses.stopMoving('info'),
+      response: Responses.stopMoving('alert'),
     },
     {
       id: 'E12N Frigid Stone',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
+    },
+    {
+      id: 'E12N Tether Collect',
+      netRegex: NetRegexes.tether({ id: tetherIds }),
+      run: (data, matches) => {
+        data.tethers = data.tethers || [];
+        data.tethers.push(matches.id);
+      },
+    },
+    {
+      id: 'E12N Cast Release',
+      netRegex: NetRegexes.startsUsing({ id: ['4E2C', '585B', '5861'], capture: false }),
+      preRun: (data) => data.tethers = data.tethers.sort(),
+      delaySeconds: 0.5, // Tethers should be first in the log, but let's be SURE
+      alertText: (data, _, output) => {
+        if (data.tethers.length !== 2)
+          return;
+        // Leviathan's mechanics aren't easily described in a single word,
+        // so we special-case them.
+        const comboStr = data.tethers[0] + data.tethers[1];
+        if (comboStr in primalOutputStrings)
+          return output[comboStr]();
+        return output.combined({
+          safespot1: output[data.tethers[0]](),
+          safespot2: output[data.tethers[1]](),
+        });
+      },
+      infoText: (data, _, output) => {
+        if (data.tethers.length === 2)
+          return;
+        return output[data.tethers[0]]();
+      },
+      outputStrings: primalOutputStrings,
+    },
+    {
+      id: 'E12N Tether Cleanup',
+      netRegex: NetRegexes.startsUsing({ id: ['4E2C', '585B', '5861'], capture: false }),
+      delaySeconds: 5,
+      run: (data) => delete data.tethers,
     },
   ],
   timelineReplace: [
