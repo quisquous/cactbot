@@ -62,13 +62,13 @@ const boundOfFaithLightningTetherResponse = (data, _, output) => {
     onYou: {
       en: 'Take Lightning To Tanks',
       de: 'Bring Blitz zu den Tanks',
-      cn: '和T分摊雷',
+      cn: '和T处理雷',
     },
     tetherInfo: {
       en: 'Lightning on ${player}',
       de: 'Blitz auf ${player}',
       ko: '"${player}" 번개징 대상자',
-      cn: '雷点了 ${player}',
+      cn: '雷点了${player}',
     },
     unknownTarget: unknownTarget,
   };
