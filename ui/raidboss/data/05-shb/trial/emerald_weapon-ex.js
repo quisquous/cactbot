@@ -7,6 +7,7 @@ const sharedOutputStrings = {
   sharedTankStack: {
     en: 'Tank stack',
     de: 'Tanks sammeln',
+    fr: 'Package Tanks',
     cn: '坦克分摊',
     ko: '탱끼리 모이기',
   },
@@ -20,7 +21,7 @@ export default {
       id: 'EmeraldEx Bit Storm',
       regex: /Bit Storm/,
       beforeSeconds: 4,
-      response: Responses.getIn(),
+      response: Responses.getUnder(),
     },
     {
       id: 'EmeraldEx Photon Ring',
@@ -100,7 +101,7 @@ export default {
         spread: {
           en: 'Spread',
           de: 'Verteilen',
-          fr: 'Ecartez-vous',
+          fr: 'Dispersez-vous',
           ja: '散開',
           cn: '分散',
           ko: '산개',
@@ -139,7 +140,7 @@ export default {
       },
     },
     {
-      id: 'EmeraldEx Expire P1',
+      id: 'EmeraldEx Expire',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55[D9]1', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55[D9]1', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55[D9]1', capture: false }),
@@ -246,16 +247,11 @@ export default {
       },
     },
     {
-      id: 'EmeraldEx Expire P2',
-      netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '55D1', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '55D1', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55D1', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55D1', capture: false }),
-      response: Responses.getOut(),
-    },
-    {
       id: 'EmeraldEx Mechanized Maneuver',
-      netRegex: NetRegexes.startsUsing({ source: `Black Wolf's Image`, id: '55BA', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Black Wolf\'s Image', id: '55BA', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Gaius-Projektion', id: '55BA', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Spectre De Gaius', id: '55BA', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ガイウスの幻影', id: '55BA', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -269,12 +265,17 @@ export default {
     },
     {
       id: 'EmeraldEx Full Rank',
-      netRegex: NetRegexes.startsUsing({ source: `Black Wolf's Image`, id: '55C0', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Black Wolf\'s Image', id: '55C0', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Gaius-Projektion', id: '55C0', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Spectre De Gaius', id: '55C0', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ガイウスの幻影', id: '55C0', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'watch rank-and-file soldiers',
+          de: 'Achte auf die Lücken zwischen den Soldaten',
           cn: '观察士兵队列',
+          ko: '엑사플레어 순서, 빈 공간 확인',
         },
       },
     },
@@ -282,6 +283,7 @@ export default {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Black Wolf\'s Image': 'Gaius-Projektion',
         'Imperial Image': 'garleisch(?:e|er|es|en) Soldat',
@@ -313,7 +315,6 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Black Wolf\'s Image': 'spectre de Gaius',
         'Imperial Image': 'spectre de soldat impérial',
@@ -321,6 +322,7 @@ export default {
         'The Emerald Weapon': 'Arme Émeraude',
       },
       'replaceText': {
+        '--cutscene--': '--cinématique--',
         'Aetheroplasm Production': 'Condensation d\'éthéroplasma',
         'Aire Tam Storm': 'Aire Tam Storm',
         'Bit Storm': 'Salve circulaire',
