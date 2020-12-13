@@ -186,18 +186,17 @@ def find_fights_in_file(file):
 
 
 def list_fights_in_file(args, encounter_sets):
-    if args.search_fights < 0:
         return [
             f'{str(i + 1).zfill(2)}. {" | ".join(e_info)}'
             for i, e_info in enumerate(encounter_sets)
         ]
-    elif args.search_fights > len(encounter_sets):
-        raise Exception("Selected fight index not in selected ACT log.")
 
 
 def choose_fight_times(args, encounters):
     start_time = end_time = 0
     if args.search_fights:
+        if args.search_fights > len(encounters):
+            raise Exception("Selected fight index not in selected ACT log.")
         # Indexing is offset here to allow for 1-based indexing for the user.
         start_time = encounters[args.search_fights - 1][0]
         end_time = encounters[args.search_fights - 1][1]

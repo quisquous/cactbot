@@ -389,7 +389,8 @@ def run_file(args, timelist):
         if args.search_fights:
             encounter_sets = e_tools.find_fights_in_file(file)
             # If all we want to do is list encounters, stop here and give to the user.
-            return e_tools.list_fights_in_file(args, encounter_sets)
+            if args.search_fights < 0:
+                return e_tools.list_fights_in_file(args, encounter_sets)
         start_time, end_time = e_tools.choose_fight_times(args, encounter_sets)
         # Scan the file until the start timestamp
         for line in file:
