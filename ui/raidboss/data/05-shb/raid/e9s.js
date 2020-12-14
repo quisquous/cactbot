@@ -590,7 +590,7 @@ export default {
         text: {
           en: 'Start Left',
           de: 'Starte Links',
-          cn: '左侧开始'
+          cn: '左侧开始',
         },
       },
       run: (data) => {
@@ -612,7 +612,7 @@ export default {
         text: {
           en: 'Start Right',
           de: 'Starte Rechts',
-          cn: '右侧开始'
+          cn: '右侧开始',
         },
       },
       run: (data) => {
