@@ -3,8 +3,13 @@ import NetRegexes from '../../../../../resources/netregexes.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
-// TODO: knockback direction from big hand after giant lasers (Palm Of Temperance 58B4/58B6/?/?)
+// Handle randomized headmarkers:
+// TODO: tankbuster markers
 // TODO: do the formless markers come out in hate order? if so, be smart about swap vs buster call.
+// TODO: electric slide markers
+// TODO: titan headmarkers
+
+// TODO: knockback direction from big hand after giant lasers (Palm Of Temperance 58B4/58B6/?/?)
 // TODO: for left/right reach during Blade Of Flame, call out Left + #1 alarm for #1.
 // TODO: classical sculpture healer stacks are id 0106 headmarkers, but happen earlier too :C
 // TODO: knockback from lion
@@ -132,39 +137,6 @@ export default {
       response: Responses.aoe(),
     },
     {
-      id: 'E12S Promise Formless Judgement',
-      netRegex: NetRegexes.headMarker({ id: '01A2', capture: false }),
-      condition: (data) => data.role === 'tank',
-      suppressSeconds: 1,
-      alertText: (data, _, output) => {
-        return output.busterAndSwap();
-      },
-      outputStrings: {
-        busterAndSwap: {
-          en: 'Tank Buster + Swap',
-          de: 'Tankbuster + Wechsel',
-        },
-      },
-    },
-    {
-      id: 'E12S Promise Formless Judgement Warning',
-      netRegex: NetRegexes.headMarker({ id: '01A2' }),
-      condition: (data, matches) => {
-        if (data.role === 'tank')
-          return false;
-        // ew sorry
-        return Conditions.caresAboutPhysical()(data, matches);
-      },
-      suppressSeconds: 1,
-      alertText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Tank Busters',
-          de: 'Tankbusters',
-        },
-      },
-    },
-    {
       id: 'E12S Promise Junction Shiva',
       netRegex: NetRegexes.tether({ id: shivaTetherId, capture: false }),
       // Call out what the mechanic will be so that folks have time to move.
@@ -275,7 +247,6 @@ export default {
       },
       run: (data) => {
         delete data.tethers;
-        delete data.stockedTethers;
         delete data.junctionSuffix;
       },
       outputStrings: primalOutputStrings,
@@ -295,79 +266,6 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '589D', capture: false }),
       delaySeconds: 3.1, // just for safety
       response: Responses.knockback('alert'),
-    },
-    {
-      id: 'E12S Promise Titan Orange Square',
-      netRegex: NetRegexes.headMarker({ id: '0182' }),
-      condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Orange Stack',
-          de: 'Orange sammeln',
-        },
-      },
-    },
-    {
-      id: 'E12S Promise Titan Yellow Pyramid',
-      netRegex: NetRegexes.headMarker({ id: '0181' }),
-      condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Yellow Spread',
-          de: 'Gelb verteil',
-        },
-      },
-    },
-    {
-      // TODO: the 2nd and third set of markers have two blues that can be on anybody.
-      // TODO: therefore you need a priority system, and it'd be nice to call out your partner.
-      id: 'E12S Promise Titan Blue',
-      netRegex: NetRegexes.headMarker({ id: '0183' }),
-      condition: Conditions.targetIsYou(),
-      alarmText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Blue!',
-          de: 'Blau!',
-        },
-      },
-    },
-    {
-      id: 'E12S Promise Blade Of Flame Markers',
-      netRegex: NetRegexes.headMarker({ id: ['0159', '015[A-F]', '01560'] }),
-      condition: Conditions.targetIsYou(),
-      durationSeconds: 15,
-      alertText: (data, matches, output) => {
-        // We could arguably tell you which giant you're tethered to by finding their position?
-        // And then saying something like "North" but that's probably more confusing than helpful.
-        // Unclear which one gets triangles or squares too, so don't say that.
-
-        // ids are sequential: #1 square, #2 square, #3 square, #4 square, #1 triangle etc
-        // Convert id values into 1-4 to use for output.
-        const decimalBase = parseInt('0159', 16);
-        const decimalId = (parseInt(matches.id, 16) - decimalBase) % 4 + 1;
-        return output[decimalId.toString()]();
-      },
-      outputStrings: {
-        '1': {
-          en: '1',
-          de: '1',
-        },
-        '2': {
-          en: '2',
-          de: '2',
-        },
-        '3': {
-          en: '3',
-          de: '3',
-        },
-        '4': {
-          en: '4',
-          de: '4',
-        },
-      },
     },
     {
       // We could arguably tell people where their lion is, but this is probably plenty.
