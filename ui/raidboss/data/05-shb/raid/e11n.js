@@ -64,10 +64,12 @@ const boundOfFaithLightningTetherResponse = (data, _, output) => {
     onYou: {
       en: 'Lightning on YOU',
       de: 'Blitz auf DIR',
+      fr: 'Éclair sur VOUS',
     },
     tetherInfo: {
       en: 'Lightning on ${player}',
       de: 'Blitz auf ${player}',
+      fr: 'Éclair sur ${player}',
       ko: '"${player}" 번개징 대상자',
     },
     unknownTarget: unknownTarget,
@@ -165,6 +167,7 @@ export default {
         text: {
           en: 'Line Cleave -> Knockback',
           de: 'Linien AoE -> Rückstoß',
+          fr: 'AoE en ligne -> Poussée',
           ko: '직선 장판 -> 넉백',
           cn: '直线AoE -> 击退',
         },
@@ -181,6 +184,7 @@ export default {
         text: {
           en: 'Line Cleave -> Out',
           de: 'Linien AoE -> Raus',
+          fr: 'AoE en ligne -> Extérieur',
           ko: '직선 장판 -> 바깥으로',
           cn: '直线AoE -> 远离',
         },
@@ -197,6 +201,7 @@ export default {
         text: {
           en: 'Line Cleave + Bait',
           de: 'Linien AoE -> Ködern',
+          fr: 'AoE en ligne -> Appâtez',
           ko: '직선 장판 + 장판 유도',
           cn: '直线AoE+放置点名',
         },
@@ -213,6 +218,7 @@ export default {
         text: {
           en: 'Dodge Lightning First -> Rotate For Fire',
           de: 'Weiche zuerst Blitz aus -> Rotiere für Feuer',
+          fr: 'Évitez l\'éclair d\'abord -> Tournez pour le Feu',
           cn: '躲雷 -> 火击退',
         },
       },
@@ -228,6 +234,7 @@ export default {
         text: {
           en: 'Fire Knockback After Lightning',
           de: 'Feuer Rückstoß nach Blitz',
+          fr: 'Poussée du Feu après l\'Éclair',
           cn: '雷 -> 火击退',
         },
       },
@@ -283,6 +290,7 @@ export default {
         text: {
           en: 'Fire: Go to Blue',
           de: 'Feuer: Geh zu Blau',
+          fr: 'Feu : Allez sur le Bleu',
           ko: '화염: 파랑으로',
           cn: '火：去蓝门一侧',
         },
@@ -300,6 +308,7 @@ export default {
         text: {
           en: 'Lightning: Go to Red',
           de: 'Blitz: Geh zu Rot',
+          fr: 'Éclair : Allez sur le Rouge',
           ko: '번개: 빨강으로',
           cn: '雷：去红门一侧',
         },

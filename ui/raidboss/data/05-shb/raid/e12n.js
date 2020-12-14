@@ -23,18 +23,22 @@ const bombOutputStrings = {
   'north': {
     en: 'Between north bombs',
     de: 'Zwichen den Bomben im Norden',
+    fr: 'Entre les bombes au Nord',
   },
   'south': {
     en: 'Between south bombs',
     de: 'Zwichen den Bomben im Süden',
+    fr: 'Entre les bombes au Sud',
   },
   'east': {
     en: 'Between east bombs',
     de: 'Zwichen den Bomben im Osten',
+    fr: 'Entre les bombes à l\'Est',
   },
   'west': {
     en: 'Between west bombs',
     de: 'Zwichen den Bomben im Westen',
+    fr: 'Entre les bombes à l\'Ouest',
   },
 };
 
@@ -46,30 +50,37 @@ const primalOutputStrings = {
   '008E': {
     en: 'Middle',
     de: 'Mitte',
+    fr: 'Milieu',
   },
   '008F': {
     en: 'Sides',
     de: 'Seiten',
+    fr: 'Côtés',
   },
   '0090': {
     en: 'Out',
     de: 'Raus',
+    fr: 'Extérieur',
   },
   '0091': {
     en: 'Intercards',
     de: 'Interkardinale Himmelsrichtungen',
+    fr: 'Intercardinal',
   },
   '008E008F': {
     en: 'Under + Sides',
     de: 'Unter Ihm + Seiten',
+    fr: 'Dessous + Côtés',
   },
   '008E0090': {
     en: 'North/South + Out',
     de: 'Norden/Süden + Raus',
+    fr: 'Nord/Sud + Extérieur',
   },
   '008E0091': {
     en: 'Under + Intercards',
     de: 'Unter Ihm + Interkardinale Himmelsrichtungen',
+    fr: 'Dessous + Intercardinal',
   },
 };
 
@@ -150,6 +161,7 @@ export default {
         text: {
           en: 'Move to last explosions',
           de: 'Zur letzten Explosion bewegen',
+          fr: 'Allez sur la dernière explosion',
           ko: '마지막 폭발 위치로',
         },
       },
