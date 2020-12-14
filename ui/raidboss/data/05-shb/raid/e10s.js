@@ -190,6 +190,7 @@ export default {
         text: {
           en: 'Left Cleave',
           de: 'Linker Cleave',
+          cn: '左侧顺劈',
           ko: '오른쪽에 그림자 오게',
         },
       },
@@ -205,6 +206,7 @@ export default {
         text: {
           en: 'Right Cleave',
           de: 'Rechter Cleave',
+          cn: '右侧顺劈',
           ko: '왼쪽에 그림자 오게',
         },
       },
@@ -286,7 +288,7 @@ export default {
           de: '3 raus, 1+2 rein',
           fr: '3 extérieur, 1+2 intérieur',
           ko: '3 바깥, 1+2 안쪽',
-          cn: '麻将3出，1+3进',
+          cn: '麻将3出，1+2进',
         },
       },
     },
