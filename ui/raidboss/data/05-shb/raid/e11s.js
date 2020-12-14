@@ -64,6 +64,7 @@ const boundOfFaithLightningTetherResponse = (data, _, output) => {
       de: 'Bring Blitz zu den Tanks',
       fr: 'Donnez l\'Éclair au tanks',
       cn: '和T处理雷',
+      ko: '번개징 탱커쪽으로',
     },
     tetherInfo: {
       en: 'Lightning on ${player}',
@@ -164,8 +165,8 @@ export default {
           en: 'Protean -> Holy Groups',
           de: 'Himmelsrichtung -> Sanctus Gruppen',
           fr: 'Position -> Groupes',
-          ko: '8산개 -> 홀리 그룹',
           cn: '八方 -> 光三向分摊',
+          ko: '8산개 -> 홀리 그룹 쉐어',
         },
       },
     },
@@ -653,8 +654,8 @@ export default {
           en: 'Protean -> Holy Groups -> Line Cleave -> Bait -> Away',
           de: 'Himmelsrichtung -> Sanctus Gruppen -> Linien AoE -> Ködern -> Weg',
           fr: 'Position -> Groupes -> AoE en ligne -> Appâtez -> Éloignez-vous',
-          ko: '8산개 -> 홀리 그룹 -> 직선 장판 -> 장판 유도 -> 피하기',
           cn: '八方 -> 光三向分摊 -> 直线 -> 放光点名 -> 离开',
+          ko: '8산개 -> 홀리 그룹 쉐어 -> 직선 장판 -> 장판 유도 -> 피하기',
         },
       },
     },
@@ -671,6 +672,7 @@ export default {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Demi-Gukumatz': 'Demi-Gukumatz',
         'Fatebreaker(?!\'s image)': 'fusioniert(?:e|er|es|en) Ascian',
@@ -707,6 +709,7 @@ export default {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Demi-Gukumatz': 'demi-Gukumatz',
         'Fatebreaker(?!\'s image)': 'Sabreur de destins',
@@ -743,6 +746,7 @@ export default {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Demi-Gukumatz': 'デミグクマッツ',
         'Fatebreaker(?!\'s image)': 'フェイトブレイカー',

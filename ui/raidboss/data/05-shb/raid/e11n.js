@@ -65,6 +65,7 @@ const boundOfFaithLightningTetherResponse = (data, _, output) => {
       en: 'Lightning on YOU',
       de: 'Blitz auf DIR',
       fr: 'Éclair sur VOUS',
+      ko: '번개징 대상자',
     },
     tetherInfo: {
       en: 'Lightning on ${player}',
@@ -220,6 +221,7 @@ export default {
           de: 'Weiche zuerst Blitz aus -> Rotiere für Feuer',
           fr: 'Évitez l\'éclair d\'abord -> Tournez pour le Feu',
           cn: '躲雷 -> 火击退',
+          ko: '번개 먼저 피하고 -> 회전해서 화염 피하기',
         },
       },
     },
@@ -236,6 +238,7 @@ export default {
           de: 'Feuer Rückstoß nach Blitz',
           fr: 'Poussée du Feu après l\'Éclair',
           cn: '雷 -> 火击退',
+          ko: '번개 다음 화염 넉백',
         },
       },
     },

@@ -24,21 +24,25 @@ const bombOutputStrings = {
     en: 'Between north bombs',
     de: 'Zwichen den Bomben im Norden',
     fr: 'Entre les bombes au Nord',
+    ko: '북쪽 폭탄 사이',
   },
   'south': {
     en: 'Between south bombs',
     de: 'Zwichen den Bomben im Süden',
     fr: 'Entre les bombes au Sud',
+    ko: '남쪽 폭탄 사이',
   },
   'east': {
     en: 'Between east bombs',
     de: 'Zwichen den Bomben im Osten',
     fr: 'Entre les bombes à l\'Est',
+    ko: '동쪽 폭탄 사이',
   },
   'west': {
     en: 'Between west bombs',
     de: 'Zwichen den Bomben im Westen',
     fr: 'Entre les bombes à l\'Ouest',
+    ko: '서쪽 폭탄 사이',
   },
 };
 
@@ -46,41 +50,49 @@ const primalOutputStrings = {
   'combined': {
     en: '${safespot1} + ${safespot2}',
     de: '${safespot1} + ${safespot2}',
+    ko: '${safespot1} + ${safespot2}',
   },
   '008E': {
     en: 'Middle',
     de: 'Mitte',
     fr: 'Milieu',
+    ko: '중앙',
   },
   '008F': {
     en: 'Sides',
     de: 'Seiten',
     fr: 'Côtés',
+    ko: '양옆',
   },
   '0090': {
     en: 'Out',
     de: 'Raus',
     fr: 'Extérieur',
+    ko: '바깥',
   },
   '0091': {
     en: 'Intercards',
     de: 'Interkardinale Himmelsrichtungen',
     fr: 'Intercardinal',
+    ko: '대각',
   },
   '008E008F': {
     en: 'Under + Sides',
     de: 'Unter Ihm + Seiten',
     fr: 'Dessous + Côtés',
+    ko: '보스 아래 + 양옆',
   },
   '008E0090': {
     en: 'North/South + Out',
     de: 'Norden/Süden + Raus',
     fr: 'Nord/Sud + Extérieur',
+    ko: '북/남 + 바깥',
   },
   '008E0091': {
     en: 'Under + Intercards',
     de: 'Unter Ihm + Interkardinale Himmelsrichtungen',
     fr: 'Dessous + Intercardinal',
+    ko: '보스 아래 + 대각',
   },
 };
 
