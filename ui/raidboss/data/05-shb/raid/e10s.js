@@ -4,7 +4,6 @@ import NetRegexes from '../../../../../resources/netregexes.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
-// TODO: could use giga slash "get in" here for four slashes
 // TODO: Fix headmarkers for groups running multiple of the same job ?
 
 // Note: there's no headmarker ability line for cleaving shadows.
@@ -33,8 +32,9 @@ export default {
         text: {
           en: 'Shadow Side',
           de: 'Schatten Seite',
-          ko: '그림자 방향',
+          fr: 'Ombre à côté',
           cn: '影子同侧',
+          ko: '그림자 쪽으로',
         },
       },
     },
@@ -49,8 +49,9 @@ export default {
         text: {
           en: 'Opposite Shadow',
           de: 'Gegenüber des Schattens',
-          ko: '그림자 반대쪽',
+          fr: 'Ombre opposée',
           cn: '影子异侧',
+          ko: '그림자 반대쪽으로',
         },
       },
     },
@@ -73,8 +74,9 @@ export default {
         text: {
           en: 'Go Left of Shadow',
           de: 'Geh links vom Schatten',
-          ko: '그림자 왼쪽',
+          fr: 'Allez à gauche de l\'ombre',
           cn: '影子左侧',
+          ko: '그림자 왼쪽으로',
         },
       },
     },
@@ -89,8 +91,9 @@ export default {
         text: {
           en: 'Go Right of Shadow',
           de: 'Geh rechts vom Schatten',
-          ko: '그림자 오른쪽',
+          fr: 'Allez à droite de l\'ombre',
           cn: '影子右侧',
+          ko: '그림자 오른쪽으로',
         },
       },
     },
@@ -105,6 +108,7 @@ export default {
         text: {
           en: 'Go Left of Shadows',
           de: 'Geh links vom Schatten',
+          fr: 'Allez à gauche des ombres',
           ko: '그림자 왼쪽',
           cn: '影子左侧',
         },
@@ -121,6 +125,7 @@ export default {
         text: {
           en: 'Go Right of Shadows',
           de: 'Geh rechts vom Schatten',
+          fr: 'Allez à droite des ombres',
           ko: '그림자 오른쪽',
           cn: '影子右侧',
         },
@@ -188,7 +193,9 @@ export default {
         text: {
           en: 'Left Cleave',
           de: 'Linker Cleave',
-          ko: '왼쪽 장판',
+          fr: 'Cleave gauche',
+          cn: '左侧顺劈',
+          ko: '오른쪽에 그림자 오게',
         },
       },
     },
@@ -203,9 +210,20 @@ export default {
         text: {
           en: 'Right Cleave',
           de: 'Rechter Cleave',
-          ko: '오른쪽 장판',
+          fr: 'Cleave droit',
+          cn: '右侧顺劈',
+          ko: '왼쪽에 그림자 오게',
         },
       },
+    },
+    {
+      id: 'E10S Shadow Servant Get In',
+      netRegex: NetRegexes.gainsEffect({ effectId: '9D6', capture: false }),
+      // The effect lasts two seconds, use the difference of the two
+      // instead of telling the bound people to get in instantly.
+      delaySeconds: 1,
+      suppressSeconds: 1,
+      response: Responses.getIn(),
     },
     {
       id: 'E10S Shadow Cleave',
@@ -219,7 +237,7 @@ export default {
           en: 'Drop Shadow Out',
           de: 'Schatten draußen ablegen',
           fr: 'Déposez l\'ombre à l\'extérieur',
-          ko: '그림자 바깥에 떨어뜨리기',
+          ko: '바깥쪽에 그림자 떨어뜨리기',
           cn: '影子放到外圈',
         },
       },
@@ -348,7 +366,7 @@ export default {
           de: '3 raus, 1+2 rein',
           fr: '3 extérieur, 1+2 intérieur',
           ko: '3 바깥, 1+2 안쪽',
-          cn: '麻将3出，1+3进',
+          cn: '麻将3出，1+2进',
         },
       },
     },
@@ -476,8 +494,9 @@ export default {
         text: {
           en: 'Shadow Side',
           de: 'Schatten Seite',
-          ko: '그림자 방향',
+          fr: 'Ombre à côté',
           cn: '影子同侧',
+          ko: '그림자 쪽으로',
         },
       },
     },
@@ -493,6 +512,7 @@ export default {
         text: {
           en: 'Opposite Shadow',
           de: 'Gegenüber des Schattens',
+          fr: 'Ombre opposée',
           ko: '그림자 반대쪽',
           cn: '影子异侧',
         },
@@ -509,6 +529,7 @@ export default {
         text: {
           en: 'Cleaves with towers',
           de: 'Cleaves mit Türmen',
+          fr: 'Cleaves avec Tours',
           ko: '기둥이랑 그림자 유도 동시에',
           cn: '影子+塔',
         },

@@ -63,8 +63,10 @@ export default {
   ],
   triggers: [
     {
+      // Doesn't seem like this happens twice, but let's be safe.
       id: 'TitanUn Rock Throw',
       netRegex: NetRegexes.tether({ id: '0007' }),
+      suppressSeconds: 1,
       alertText: (data, matches, output) => {
         if (matches.source === data.me || matches.target === data.me)
           return output.jailOnYou();
@@ -78,11 +80,14 @@ export default {
           en: 'Jail on YOU',
           de: 'Gefängnis auf DIR',
           fr: 'Geôle sur VOUS',
+          ja: '自分にジェイル',
+          cn: '石牢点名',
         },
         jails: {
           en: 'Jails',
           de: 'Gefängnis',
           fr: 'Geôles',
+          ja: 'ジェイル',
           cn: '石牢',
           ko: '돌감옥',
         },
