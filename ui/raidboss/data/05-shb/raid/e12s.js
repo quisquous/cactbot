@@ -48,49 +48,62 @@ const primalOutputStrings = {
   // Tethers.
   '008E': {
     en: 'Middle',
+    de: 'Mitte',
   },
   '008F': {
     en: 'Sides',
+    de: 'Seiten',
   },
   '0090': {
     en: 'Out',
+    de: 'Raus',
   },
   '0091': {
     en: 'Intercards',
+    de: 'Interkardinale Himmelsrichtungen',
   },
   // Tether combos.
   '008E008F': {
     en: 'Under + Sides',
+    de: 'Runter + Seiten',
   },
   '008E0090': {
     en: 'North/South + Out',
+    de: 'Norden/Süden + Raus',
   },
   '008E0091': {
     en: 'Under + Intercards',
+    de: 'Runter + Interkardinale Himmerlsrichtungen',
   },
   // Text output.
   'combined': {
     en: '${safespot1} + ${safespot2}',
+    de: '${safespot1} + ${safespot2}',
   },
   'stock': {
     en: 'Stock: ${text}',
+    de: 'Sammeln: ${text}',
   },
   'junctionSuffix': {
     en: '${text} (${junction})',
+    de: '${text} (${junction})',
   },
   // Junctions.
   'spread': {
     // Shiva spread.
     en: 'spread',
+    de: 'verteilen',
   },
   'stacks': {
     // Titan healer stacks.
     en: 'stacks',
+    de: 'sammeln',
   },
   'stack': {
     // Obliterate whole group laser stack.
     // This is deliberately "stack" singular (vs Titan "stacks").
     en: 'group stack',
+    de: 'In Gruppen sammeln',
   },
 };
 
@@ -101,16 +114,25 @@ export default {
     {
       id: 'E12S Promise Rapturous Reach Left',
       netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58AD', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58AD', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58AD', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58AD', capture: false }),
       response: Responses.goLeft('info'),
     },
     {
       id: 'E12S Promise Rapturous Reach Right',
       netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58AE', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58AE', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58AE', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58AE', capture: false }),
       response: Responses.goRight('info'),
     },
     {
       id: 'E12S Promise Obliteration',
       netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58A8', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58A8', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58A8', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A8', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -134,10 +156,12 @@ export default {
         // Use parentheses to try to connote that this is a tell for the future, e.g. wolex.
         junctionWithCast: {
           en: 'Spread',
+          de: 'Verteilen',
         },
         // TODO: maybe this should be a timeline trigger instead, since it needs more mit.
         diamondDust: {
           en: 'Big AOE, Get Middle',
+          de: 'Große AoE, geh in die Mitte',
         },
       },
     },
@@ -159,9 +183,11 @@ export default {
       outputStrings: {
         junctionWithCast: {
           en: 'Healer Stacks',
+          de: 'Heiler-Gruppen',
         },
         earthenFury: {
           en: 'Big AOE, Bombs Soon',
+          de: 'Große AoE, bald Bomben',
         },
       },
     },
@@ -176,6 +202,9 @@ export default {
     {
       id: 'E12S Promise Stock',
       netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '5892', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '5892', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '5892', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '5892', capture: false }),
       infoText: (data, _, output) => {
         data.stockedTethers = data.tethers;
         delete data.tethers;
@@ -190,6 +219,9 @@ export default {
     {
       id: 'E12S Promise Cast Release',
       netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: ['4E43', '5893'] }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: ['4E43', '5893'] }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: ['4E43', '5893'] }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: ['4E43', '5893'] }),
       alertText: (data, matches, output) => {
         // At the end of the fight, there is a stock -> cast -> release,
         // which means that we need to grab the original tethers during the first stock.
@@ -229,6 +261,9 @@ export default {
       id: 'E12S Promise Plunging Ice',
       // This has a 9 second cast. :eyes:
       netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '589D', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '589D', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '589D', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '589D', capture: false }),
       delaySeconds: 3.1, // just for safety
       response: Responses.knockback('alert'),
     },
@@ -236,6 +271,9 @@ export default {
       // We could arguably tell people where their lion is, but this is probably plenty.
       id: 'E12S Promise Small Lion Tether',
       netRegex: NetRegexes.tether({ source: 'Beastly Sculpture', id: '0011' }),
+      netRegexDe: NetRegexes.tether({ source: 'Abbild Eines Löwen', id: '0011' }),
+      netRegexFr: NetRegexes.tether({ source: 'Création Léonine', id: '0011' }),
+      netRegexJa: NetRegexes.tether({ source: '創られた獅子', id: '0011' }),
       condition: Conditions.targetIsYou(),
       // Don't collide with reach left/right call.
       delaySeconds: 0.5,
@@ -243,7 +281,130 @@ export default {
       outputStrings: {
         text: {
           en: 'Lion Tether on YOU',
+          de: 'Löwen-Verbindung auf DIR',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Beastly Sculpture': 'Abbild eines Löwen',
+        'Bomb Boulder': 'Bomber-Brocken',
+        'Chiseled Sculpture': 'Abbild eines Mannes',
+        'Eden\'s Promise': 'Edens Verheißung',
+        'Guardian Of Eden': 'Wächter von Eden',
+        'Ice Pillar': 'Eissäule',
+      },
+      'replaceText': {
+        'Blade Of Flame': 'Flammenschwert',
+        'Cast': 'Auswerfen',
+        'Classical Sculpture': 'Klassische Skulptur',
+        'Diamond Dust': 'Diamantenstaub',
+        'Earthen Fury': 'Gaias Zorn',
+        'Force Of The Land': 'Gaias Tosen',
+        'Formless Judgment': 'Formloses Urteil',
+        'Frigid Stone': 'Eisstein',
+        'Ice Floe': 'Eisfluss',
+        'Ice Pillar': 'Eissäule',
+        'Impact': 'Impakt',
+        'Initialize Recall': 'Rückholung initialisieren',
+        'Junction Shiva': 'Verbindung: Shiva',
+        'Junction Titan': 'Verbindung: Titan',
+        'Laser Eye': 'Laserauge',
+        'Lionsblaze': 'Löwenfeuer',
+        'Obliteration': 'Auslöschung',
+        'Palm Of Temperance': 'Hand der Mäßigung',
+        'Pillar Pierce': 'Säulendurchschlag',
+        'Plunging Ice': 'Fallendes Eis',
+        'Pulse Of The Land': 'Gaias Beben',
+        'Rapturous Reach': 'Stürmischer Griff',
+        'Release': 'Freilassen',
+        'Stock': 'Sammeln',
+        '(?<!Junction )Titan': 'Titan',
+        'Under The Weight': 'Wucht der Erde',
+        'Weight Of The World': 'Schwere der Erde',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Beastly Sculpture': 'création léonine',
+        'Bomb Boulder': 'bombo rocher',
+        'Chiseled Sculpture': 'création masculine',
+        'Eden\'s Promise': 'Promesse d\'Éden',
+        'Guardian Of Eden': 'Gardien d\'Éden',
+        'Ice Pillar': 'Pilier de glace',
+      },
+      'replaceText': {
+        'Blade Of Flame': 'Flammes de Lumière colossales',
+        'Cast': 'Lancer',
+        'Classical Sculpture': 'Serviteur colossal',
+        'Diamond Dust': 'Poussière de diamant',
+        'Earthen Fury': 'Fureur tellurique',
+        'Force Of The Land': 'Grondement tellurique',
+        'Formless Judgment': 'Onde du châtiment',
+        'Frigid Stone': 'Rocher de glace',
+        'Ice Floe': 'Flux glacé',
+        'Ice Pillar': 'Pilier de glace',
+        'Impact': 'Impact',
+        'Initialize Recall': 'Remembrances',
+        'Junction Shiva': 'Associer : Shiva',
+        'Junction Titan': 'Associer : Titan',
+        'Laser Eye': 'Faisceau maser',
+        'Lionsblaze': 'Feu léonin',
+        'Obliteration': 'Maleficium',
+        'Palm Of Temperance': 'Paume de tempérance',
+        'Pillar Pierce': 'Frappe puissante',
+        'Plunging Ice': 'Chute de glace',
+        'Pulse Of The Land': 'Vibration tellurique',
+        'Rapturous Reach': 'Main voluptueuse',
+        'Release': 'Relâcher',
+        'Stock': 'Stocker',
+        '(?<!Junction )Titan': 'Titan',
+        'Under The Weight': 'Pression tellurique',
+        'Weight Of The World': 'Poids du monde',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Beastly Sculpture': '創られた獅子',
+        'Bomb Boulder': 'ボムボルダー',
+        'Chiseled Sculpture': '創られた男',
+        'Eden\'s Promise': 'プロミス・オブ・エデン',
+        'Guardian Of Eden': 'ガーディアン・オブ・エデン',
+        'Ice Pillar': '氷柱',
+      },
+      'replaceText': {
+        'Blade Of Flame': '巨兵の光炎',
+        'Cast': 'はなつ',
+        'Classical Sculpture': '巨兵創出',
+        'Diamond Dust': 'ダイアモンドダスト',
+        'Earthen Fury': '大地の怒り',
+        'Force Of The Land': '大地の轟き',
+        'Formless Judgment': '天罰の波動',
+        'Frigid Stone': 'アイスストーン',
+        'Ice Floe': 'アイスフロー',
+        'Ice Pillar': '氷柱',
+        'Impact': '衝撃',
+        'Initialize Recall': '記憶想起',
+        'Junction Shiva': 'ジャンクション：シヴァ',
+        'Junction Titan': 'ジャンクション：タイタン',
+        'Laser Eye': 'メーザーアイ',
+        'Lionsblaze': '獅子の業火',
+        'Obliteration': 'マレフィキウム',
+        'Palm Of Temperance': '拒絶の手',
+        'Pillar Pierce': '激突',
+        'Plunging Ice': '落氷衝撃',
+        'Pulse Of The Land': '大地の響き',
+        'Rapturous Reach': '悦楽の手',
+        'Release': 'リリース',
+        'Stock': 'ストック',
+        '(?<!Junction )Titan': 'タイタン',
+        'Under The Weight': '大地の重圧',
+        'Weight Of The World': '大陸の重み',
       },
     },
   ],

@@ -13,7 +13,7 @@ hideall "--sync--"
 # 58AF: jump center with big cylinder animation??
 
 0 "Start"
-0.8 "" sync /:Eden's Promise:4B1E:/ window 1,0
+0.8 "--sync--" sync /:Eden's Promise:4B1E:/ window 1,0
 11.0 "--sync--" sync /:58A8:Eden's Promise/ window 11,20
 16.0 "Obliteration" sync /:Eden's Promise:58A8:/
 23.2 "--middle--" sync /:Eden's Promise:58AF:/
@@ -90,7 +90,7 @@ hideall "--sync--"
 388.9 "Rapturous Reach" sync /:Eden's Promise:58A[DE]:/
 
 414.9 "Stock" sync /:Eden's Promise:5892:/
-418.2 "--middle" sync /:Eden's Promise:58AF:/
+418.2 "--middle--" sync /:Eden's Promise:58AF:/
 424.3 "Junction Shiva/Titan" sync /:Eden's Promise:589[45]:/
 434.0 "Cast" sync /:Eden's Promise:4E43:/
 437.5 "Frigid Stone/Under The Weight" sync /:Eden's Promise:(589E|58A6):/
