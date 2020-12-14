@@ -363,7 +363,7 @@ export default {
         'The Emerald Weapon': 'エメラルドウェポン',
       },
       'replaceText': {
-        '--cutscene--': '--カットシン--',
+        '--cutscene--': '--カットシーン--',
         'Aetheroplasm Production': '爆雷生成',
         'Aire Tam Storm': 'エメラルドビッグバン',
         'Bit Storm': 'アームビット：円形射撃',
