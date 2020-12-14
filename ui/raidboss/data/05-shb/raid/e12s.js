@@ -307,6 +307,7 @@ export default {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Beastly Sculpture': 'Abbild eines Löwen',
         'Bomb Boulder': 'Bomber-Brocken',
@@ -347,6 +348,7 @@ export default {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Beastly Sculpture': 'création léonine',
         'Bomb Boulder': 'bombo rocher',
@@ -387,6 +389,7 @@ export default {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Beastly Sculpture': '創られた獅子',
         'Bomb Boulder': 'ボムボルダー',
