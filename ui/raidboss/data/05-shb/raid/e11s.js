@@ -648,6 +648,7 @@ export default {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Demi-Gukumatz': 'Demi-Gukumatz',
         'Fatebreaker(?!\'s image)': 'fusioniert(?:e|er|es|en) Ascian',
@@ -684,6 +685,7 @@ export default {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Demi-Gukumatz': 'demi-Gukumatz',
         'Fatebreaker(?!\'s image)': 'Sabreur de destins',
@@ -720,6 +722,7 @@ export default {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Demi-Gukumatz': 'デミグクマッツ',
         'Fatebreaker(?!\'s image)': 'フェイトブレイカー',
