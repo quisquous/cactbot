@@ -185,7 +185,8 @@ export default {
     },
     {
       id: 'Matoyas Porxie Sucked In',
-      netRegex: NetRegexes.gainsEffect({ effectId: '9B6', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '9B6' }),
+      suppressSeconds: (data, matches) => parseFloat(matches.duration),
       alarmText: (data, _, output) => output.runAway(),
       outputStrings: {
         runAway: {
