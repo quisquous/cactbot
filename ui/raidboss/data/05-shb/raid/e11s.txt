@@ -76,7 +76,9 @@ hideall "--sync--"
 169.4 "Sinsmoke" sync /:Fatebreaker's Image:5681:/
 169.4 "Sinsmite" sync /:Fatebreaker's Image:5684:/
 169.8 "Bow Shock" sync /:Fatebreaker's Image:5685:/
+173.0 "Burnt Strike " sync /:Fatebreaker's Image:567B:/
 174.7 "Burnout" sync /:Fatebreaker's Image:567C:/
+176.0 "Burnt Strike" sync /:Fatebreaker's Image:5679:/
 178.0 "Blastburn" sync /:Fatebreaker's Image:567A:/
 180.7 "--targetable--"
 
@@ -115,9 +117,12 @@ hideall "--sync--"
 370.5 "Resounding Crack" sync /:Demi-Gukumatz:5688:/
 372.5 "Sinsmoke" sync /:Fatebreaker's Image:5681:/
 372.6 "Sinsight" sync /:Fatebreaker's Image:5BC7:/
+376.5 "Burnt Strike" sync /:Fatebreaker's Image:567D:/
 378.2 "Mortal Burn Mark" sync /:Fatebreaker's Image:5BC8:/
+380.1 "Burnt Strike " sync /:Fatebreaker's Image:567B:/
 381.6 "Shining Blade" sync /:Fatebreaker's Image:567E:/
 381.8 "Burnout" sync /:Fatebreaker's Image:567C:/
+383.6 "Burnt Strike" sync /:Fatebreaker's Image:5679:/
 385.6 "Blastburn" sync /:Fatebreaker's Image:567A:/
 386.4 "--targetable--"
 
@@ -175,7 +180,7 @@ hideall "--sync--"
 
 728.2 "--center--" sync /:Fatebreaker:5908:/ window 30,30
 735.0 "Burnished Glory?"
-737.2 "--Cycle Of Faith--" sync /:Fatebreaker:568A:/ jump 900.0
+737.2 "Cycle Of Faith" sync /:Fatebreaker:568A:/ jump 900.0
 737.2 "--sync--" sync /:Fatebreaker:569A:/ jump 800.0
 737.3 "Elemental Break"
 739.8 "Sinsight/Sinsmite/Sinsmoke"
@@ -233,5 +238,5 @@ hideall "--sync--"
 946.7 "Floating Fetters"
 
 
-992.3 "Burnished Glory" sync /:5529:Fatebreaker/ window 1000,5 duration 9.7
+992.3 "Burnished Glory" sync /:5529:Fatebreaker/ window 1000,0
 1000.0 "Burnished Glory Enrage" sync /:Fatebreaker:5529:/
