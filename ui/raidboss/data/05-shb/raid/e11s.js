@@ -281,7 +281,7 @@ export default {
           lightningTetherOnYou: {
             en: 'Take Lightning To Tanks',
             de: 'Bring Blitz zum Tank',
-            fr: 'Donnez l\'Éclair au tanks',
+            fr: 'Donnez l\'Éclair aux tanks',
             ko: '번개 탱커한테 넘기기',
             cn: '和T分摊雷',
           },
