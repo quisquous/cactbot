@@ -49,61 +49,74 @@ const primalOutputStrings = {
   '008E': {
     en: 'Middle',
     de: 'Mitte',
+    ko: '중앙',
   },
   '008F': {
     en: 'Sides',
     de: 'Seiten',
+    ko: '양옆',
   },
   '0090': {
     en: 'Out',
     de: 'Raus',
+    ko: '바깥',
   },
   '0091': {
     en: 'Intercards',
     de: 'Interkardinale Himmelsrichtungen',
+    ko: '대각',
   },
   // Tether combos.
   '008E008F': {
     en: 'Under + Sides',
     de: 'Runter + Seiten',
+    ko: '보스 아래 + 양옆',
   },
   '008E0090': {
     en: 'North/South + Out',
     de: 'Norden/Süden + Raus',
+    ko: '북/남 + 바깥',
   },
   '008E0091': {
     en: 'Under + Intercards',
     de: 'Runter + Interkardinale Himmerlsrichtungen',
+    ko: '보스 아래 + 대각',
   },
   // Text output.
   'combined': {
     en: '${safespot1} + ${safespot2}',
     de: '${safespot1} + ${safespot2}',
+    ko: '${safespot1} + ${safespot2}',
   },
   'stock': {
     en: 'Stock: ${text}',
     de: 'Sammeln: ${text}',
+    ko: '저장: ${text}',
   },
   'junctionSuffix': {
     en: '${text} (${junction})',
     de: '${text} (${junction})',
+    ko: '${text} (${junction})',
   },
   // Junctions.
   'spread': {
     // Shiva spread.
     en: 'spread',
     de: 'verteilen',
+    ko: '산개',
   },
   'stacks': {
     // Titan healer stacks.
     en: 'stacks',
     de: 'sammeln',
+    ko: '쉐어',
   },
   'stack': {
     // Obliterate whole group laser stack.
     // This is deliberately "stack" singular (vs Titan "stacks").
     en: 'group stack',
     de: 'In Gruppen sammeln',
+    ko: '그룹 쉐어',
   },
 };
 
@@ -157,11 +170,13 @@ export default {
         junctionWithCast: {
           en: 'Spread',
           de: 'Verteilen',
+          ko: '산개',
         },
         // TODO: maybe this should be a timeline trigger instead, since it needs more mit.
         diamondDust: {
           en: 'Big AOE, Get Middle',
           de: 'Große AoE, geh in die Mitte',
+          ko: '대형 장판, 중앙으로',
         },
       },
     },
@@ -184,10 +199,12 @@ export default {
         junctionWithCast: {
           en: 'Healer Stacks',
           de: 'Heiler-Gruppen',
+          ko: '힐러 쉐어',
         },
         earthenFury: {
           en: 'Big AOE, Bombs Soon',
           de: 'Große AoE, bald Bomben',
+          ko: '대형 장판, 곧 폭탄',
         },
       },
     },
@@ -282,6 +299,7 @@ export default {
         text: {
           en: 'Lion Tether on YOU',
           de: 'Löwen-Verbindung auf DIR',
+          ko: '사자 선 대상자',
         },
       },
     },

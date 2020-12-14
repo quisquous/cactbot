@@ -35,7 +35,7 @@ export default {
         text: {
           en: 'Shadow Side',
           de: 'Schatten Seite',
-          ko: '그림자 방향',
+          ko: '그림자 쪽으로',
           cn: '影子同侧',
         },
       },
@@ -51,7 +51,7 @@ export default {
         text: {
           en: 'Opposite Shadow',
           de: 'Gegenüber des Schattens',
-          ko: '그림자 반대쪽',
+          ko: '그림자 반대쪽으로',
           cn: '影子异侧',
         },
       },
@@ -75,7 +75,7 @@ export default {
         text: {
           en: 'Go Left of Shadow',
           de: 'Geh links vom Schatten',
-          ko: '그림자 왼쪽',
+          ko: '그림자 왼쪽으로',
           cn: '影子左侧',
         },
       },
@@ -91,7 +91,7 @@ export default {
         text: {
           en: 'Go Right of Shadow',
           de: 'Geh rechts vom Schatten',
-          ko: '그림자 오른쪽',
+          ko: '그림자 오른쪽으로',
           cn: '影子右侧',
         },
       },
@@ -190,7 +190,7 @@ export default {
         text: {
           en: 'Left Cleave',
           de: 'Linker Cleave',
-          ko: '왼쪽 장판',
+          ko: '오른쪽에 그림자 오게',
         },
       },
     },
@@ -205,7 +205,7 @@ export default {
         text: {
           en: 'Right Cleave',
           de: 'Rechter Cleave',
-          ko: '오른쪽 장판',
+          ko: '왼쪽에 그림자 오게',
         },
       },
     },
@@ -230,7 +230,7 @@ export default {
           en: 'Drop Shadow Out',
           de: 'Schatten draußen ablegen',
           fr: 'Déposez l\'ombre à l\'extérieur',
-          ko: '그림자 바깥에 떨어뜨리기',
+          ko: '바깥쪽에 그림자 떨어뜨리기',
           cn: '影子放到外圈',
         },
       },
@@ -413,7 +413,7 @@ export default {
         text: {
           en: 'Shadow Side',
           de: 'Schatten Seite',
-          ko: '그림자 방향',
+          ko: '그림자 쪽으로',
           cn: '影子同侧',
         },
       },
