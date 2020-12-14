@@ -3,7 +3,6 @@ import NetRegexes from '../../../../../resources/netregexes.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
-// TODO: could use giga slash "get in" here for four slashes
 // TODO: use headmarkers for limit cut number
 //       need to track tether bois
 //       HOWEVER this also uses TEA rules where the limit cut number has an offset.
@@ -209,6 +208,15 @@ export default {
           ko: '오른쪽 장판',
         },
       },
+    },
+    {
+      id: 'E10S Shadow Servant Get In',
+      netRegex: NetRegexes.gainsEffect({ effectId: '9D6', capture: false }),
+      // The effect lasts two seconds, use the difference of the two
+      // instead of telling the bound people to get in instantly.
+      delaySeconds: 1,
+      suppressSeconds: 1,
+      response: Responses.getIn(),
     },
     {
       id: 'E10S Shadow Cleave',
