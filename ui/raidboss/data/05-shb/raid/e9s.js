@@ -701,6 +701,9 @@ export default {
       promise: async (data) => {
         const cloneOfDarknessLocaleNames = {
           en: 'Clone Of Darkness',
+          de: 'Klon der Dunkelheit',
+          fr: 'Nuage de Ténèbres',
+          ja: '幻影の雲',
         };
 
         const combatantData = await window.callOverlayHandler({
