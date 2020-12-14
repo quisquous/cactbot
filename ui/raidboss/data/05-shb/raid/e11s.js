@@ -63,7 +63,7 @@ const boundOfFaithLightningTetherResponse = (data, _, output) => {
       en: 'Take Lightning To Tanks',
       de: 'Bring Blitz zu den Tanks',
       cn: '和T处理雷',
-      ko: '번개징 탱커한테 넘기기',
+      ko: '번개징 탱커쪽으로',
     },
     tetherInfo: {
       en: 'Lightning on ${player}',
@@ -160,7 +160,7 @@ export default {
         text: {
           en: 'Protean -> Holy Groups',
           de: 'Himmelsrichtung -> Sanctus Gruppen',
-          ko: '8산개 -> 홀리 그룹',
+          ko: '8산개 -> 홀리 그룹 쉐어',
           cn: '八方 -> 光三向分摊',
         },
       },
@@ -630,7 +630,7 @@ export default {
         text: {
           en: 'Protean -> Holy Groups -> Line Cleave -> Bait -> Away',
           de: 'Himmelsrichtung -> Sanctus Gruppen -> Linien AoE -> Ködern -> Weg',
-          ko: '8산개 -> 홀리 그룹 -> 직선 장판 -> 장판 유도 -> 피하기',
+          ko: '8산개 -> 홀리 그룹 쉐어 -> 직선 장판 -> 장판 유도 -> 피하기',
           cn: '八方 -> 光三向分摊 -> 直线 -> 放光点名 -> 离开',
         },
       },
