@@ -171,7 +171,7 @@ export default {
       netRegexFr: NetRegexes.ability({ id: '5916', source: 'mère porxie', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '5916', source: 'マザーポークシー', capture: false }),
       delaySeconds: 5,
-      alarmText: (data, _, output) => output.awayFrom(),
+      alertText: (data, _, output) => output.awayFrom(),
       outputStrings: {
         awayFrom: {
           en: 'Away From Boss',
@@ -185,7 +185,8 @@ export default {
     },
     {
       id: 'Matoyas Porxie Sucked In',
-      netRegex: NetRegexes.gainsEffect({ effectId: '9B6', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '9B6' }),
+      suppressSeconds: (data, matches) => parseFloat(matches.duration),
       alarmText: (data, _, output) => output.runAway(),
       outputStrings: {
         runAway: {
