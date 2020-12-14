@@ -35,8 +35,9 @@ export default {
         text: {
           en: 'Shadow Side',
           de: 'Schatten Seite',
-          ko: '그림자 쪽으로',
+          fr: 'Ombre à côté',
           cn: '影子同侧',
+          ko: '그림자 쪽으로',
         },
       },
     },
@@ -51,8 +52,9 @@ export default {
         text: {
           en: 'Opposite Shadow',
           de: 'Gegenüber des Schattens',
-          ko: '그림자 반대쪽으로',
+          fr: 'Ombre opposée',
           cn: '影子异侧',
+          ko: '그림자 반대쪽으로',
         },
       },
     },
@@ -75,8 +77,9 @@ export default {
         text: {
           en: 'Go Left of Shadow',
           de: 'Geh links vom Schatten',
-          ko: '그림자 왼쪽으로',
+          fr: 'Allez à gauche de l\'ombre',
           cn: '影子左侧',
+          ko: '그림자 왼쪽으로',
         },
       },
     },
@@ -91,8 +94,9 @@ export default {
         text: {
           en: 'Go Right of Shadow',
           de: 'Geh rechts vom Schatten',
-          ko: '그림자 오른쪽으로',
+          fr: 'Allez à droite de l\'ombre',
           cn: '影子右侧',
+          ko: '그림자 오른쪽으로',
         },
       },
     },
@@ -107,6 +111,7 @@ export default {
         text: {
           en: 'Go Left of Shadows',
           de: 'Geh links vom Schatten',
+          fr: 'Allez à gauche des ombres',
           ko: '그림자 왼쪽',
           cn: '影子左侧',
         },
@@ -123,6 +128,7 @@ export default {
         text: {
           en: 'Go Right of Shadows',
           de: 'Geh rechts vom Schatten',
+          fr: 'Allez à droite des ombres',
           ko: '그림자 오른쪽',
           cn: '影子右侧',
         },
@@ -190,6 +196,7 @@ export default {
         text: {
           en: 'Left Cleave',
           de: 'Linker Cleave',
+          fr: 'Cleave gauche',
           cn: '左侧顺劈',
           ko: '오른쪽에 그림자 오게',
         },
@@ -206,6 +213,7 @@ export default {
         text: {
           en: 'Right Cleave',
           de: 'Rechter Cleave',
+          fr: 'Cleave droit',
           cn: '右侧顺劈',
           ko: '왼쪽에 그림자 오게',
         },
@@ -415,8 +423,9 @@ export default {
         text: {
           en: 'Shadow Side',
           de: 'Schatten Seite',
-          ko: '그림자 쪽으로',
+          fr: 'Ombre à côté',
           cn: '影子同侧',
+          ko: '그림자 쪽으로',
         },
       },
     },
@@ -432,6 +441,7 @@ export default {
         text: {
           en: 'Opposite Shadow',
           de: 'Gegenüber des Schattens',
+          fr: 'Ombre opposée',
           ko: '그림자 반대쪽',
           cn: '影子异侧',
         },
@@ -448,6 +458,7 @@ export default {
         text: {
           en: 'Cleaves with towers',
           de: 'Cleaves mit Türmen',
+          fr: 'Cleaves avec Tours',
           ko: '기둥이랑 그림자 유도 동시에',
           cn: '影子+塔',
         },
