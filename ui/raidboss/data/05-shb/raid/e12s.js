@@ -215,7 +215,6 @@ export default {
       },
       run: (data) => {
         delete data.tethers;
-        delete data.stockedTethers;
         delete data.junctionSuffix;
       },
       outputStrings: primalOutputStrings,
