@@ -211,7 +211,7 @@ export default {
     },
     {
       id: 'E10S Shadow Servant Get In',
-      netRegex: NetRegexes.gainsEffect({ effectId: '9D6' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '9D6', capture: false }),
       // The effect lasts two seconds, use the difference of the two
       // instead of telling the bound people to get in instantly.
       delaySeconds: 1,
