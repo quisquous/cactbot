@@ -674,7 +674,7 @@ export default {
         'Devouring Dark': 'Erosion der Dunkelheit',
         'Deluge Of Darkness': 'Sintflut der Dunkelheit',
         'Phaser Unlimited': 'Phaser: Nullform',
-        '\\(P\\/S\\)': '(H/V)',
+        '\\(P\\/S\\)': '(Uhrzeiger/Partner)',
       },
     },
     {
