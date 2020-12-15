@@ -200,7 +200,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5B2D', capture: false }),
       durationSeconds: (data) => data.gigaSlashCleaveDebuffDuration,
       alertText: (data, _, output) => {
-        let ret = output.noShadow;
+        let ret = '';
         switch (data.gigaSlashCleaveDebuffId) {
         case '973':
           ret = output.west;
@@ -215,10 +215,15 @@ export default {
           ret = output.south;
           break;
         }
+
         delete data.gigaSlashCleaveDebuffId;
         delete data.gigaSlashCleaveDebuffDuration;
+        if (!ret)
+          return;
+
         return ret();
       },
+      infoText: (data, _, output) => output.leftCleave(),
       outputStrings: {
         north: {
           en: 'North',
@@ -232,7 +237,7 @@ export default {
         west: {
           en: 'West',
         },
-        noShadow: {
+        leftCleave: {
           en: 'Left Cleave',
           de: 'Linker Cleave',
           fr: 'Cleave gauche',
@@ -250,7 +255,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5B2C', capture: false }),
       durationSeconds: (data) => data.gigaSlashCleaveDebuffDuration,
       alertText: (data, _, output) => {
-        let ret = output.noShadow;
+        let ret = '';
         switch (data.gigaSlashCleaveDebuffId) {
         case '973':
           ret = output.east;
@@ -265,10 +270,15 @@ export default {
           ret = output.north;
           break;
         }
+
         delete data.gigaSlashCleaveDebuffId;
         delete data.gigaSlashCleaveDebuffDuration;
+        if (!ret)
+          return;
+
         return ret();
       },
+      infoText: (data, _, output) => output.rightCleave(),
       outputStrings: {
         north: {
           en: 'North',
@@ -282,7 +292,7 @@ export default {
         west: {
           en: 'West',
         },
-        noShadow: {
+        rightCleave: {
           en: 'Right Cleave',
           de: 'Rechter Cleave',
           fr: 'Cleave droit',
