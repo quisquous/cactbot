@@ -227,15 +227,19 @@ export default {
       outputStrings: {
         north: {
           en: 'North',
+          de: 'Norden',
         },
         south: {
           en: 'South',
+          de: 'Süden',
         },
         east: {
           en: 'East',
+          de: 'Osten',
         },
         west: {
           en: 'West',
+          de: 'Westen',
         },
         leftCleave: {
           en: 'Left Cleave',
@@ -282,15 +286,19 @@ export default {
       outputStrings: {
         north: {
           en: 'North',
+          de: 'Norden',
         },
         south: {
           en: 'South',
+          de: 'Süden',
         },
         east: {
           en: 'East',
+          de: 'Osten',
         },
         west: {
           en: 'West',
+          de: 'Westen',
         },
         rightCleave: {
           en: 'Right Cleave',
@@ -721,7 +729,6 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Shadowkeeper': 'Ordre royal',
         'Shadow Of A Hero': 'ombre de héros',
