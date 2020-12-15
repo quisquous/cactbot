@@ -43,20 +43,13 @@ const phaserOutputStrings = {
     en: 'Laser on YOU',
     de: 'Laser auf DIR',
     fr: 'Laser sur VOUS',
+    ja: '自分にレーザー',
     cn: '激光点名',
     ko: '레이저 대상자',
   },
 };
 
 const artOfDarknessOutputStrings = {
-  startRight: {
-    en: 'Start Right',
-    de: 'Starte Rechts',
-  },
-  startLeft: {
-    en: 'Start Left',
-    de: 'Starte Links',
-  },
   goRight: {
     en: 'Right',
     de: 'Rechts',
@@ -183,7 +176,7 @@ export default {
           en: 'Avoid Laser',
           de: 'Laser ausweichen',
           fr: 'Évitez le laser',
-          ja: 'アバランチに避け',
+          ja: 'レーザー注意',
           cn: '躲避击退激光',
           ko: '레이저 피하기',
         },
@@ -215,7 +208,9 @@ export default {
         text: {
           en: 'Place Bramble',
           de: 'Dornenstrauch plazieren',
-          fr: 'Déposez les ronces',
+          fr: 'Placez les ronces',
+          ja: '苗木を捨てる',
+          cn: '击退放置树苗',
           ko: '장판 유도하기',
         },
       },
@@ -245,6 +240,8 @@ export default {
           en: 'Away From Tethered Walls',
           de: 'Weg von den verbundenen Wänden',
           fr: 'Éloignez-vous des murs liés',
+          ja: '線が繋がれなかった方へ',
+          cn: '远离连线的墙壁',
           ko: '보스 선 연결된 방향 피하기',
         },
       },
@@ -354,8 +351,21 @@ export default {
       // to have this cleaned up before the second Second Art Of Darkness
       preRun: (data) => delete data.finalArtOfDarkness,
       infoText: (data, _, output) => output.text(),
-      outputStrings: { text: artOfDarknessOutputStrings.startLeft },
-      run: (data) => data.artOfDarkness = [],
+      outputStrings: {
+        text: {
+          en: 'Start Left',
+          de: 'Starte Links',
+          fr: 'Commencez à gauche',
+          ja: '左から',
+          cn: '左侧开始',
+          ko: '왼쪽에서 시작',
+        },
+      },
+      run: (data) => {
+        data.artOfDarkness = [];
+        if (!data.artOfDarknessIdMap)
+          data.artOfDarknessExpected = 'right';
+      },
     },
     {
       id: 'E9S The Second Art Of Darkness Left',
@@ -369,13 +379,84 @@ export default {
       // to have this cleaned up before the second Second Art Of Darkness
       preRun: (data) => delete data.finalArtOfDarkness,
       infoText: (data, _, output) => output.text(),
-      outputStrings: { text: artOfDarknessOutputStrings.startRight },
-      run: (data) => data.artOfDarkness = [],
+      outputStrings: {
+        text: {
+          en: 'Start Right',
+          de: 'Starte Rechts',
+          fr: 'Commencez à droite',
+          ja: '右から',
+          cn: '右侧开始',
+          ko: '오른쪽에서 시작',
+        },
+      },
+      run: (data) => {
+        data.artOfDarkness = [];
+        if (!data.artOfDarknessIdMap)
+          data.artOfDarknessExpected = 'left';
+      },
     },
     {
-      id: 'E9S The Second / Third Art Of Darkness Stack Charge',
-      netRegex: NetRegexes.headMarker({ id: '01B9', capture: false }),
-      preRun: (data) => data.artOfDarkness.push('stackWithPartner'),
+      // The Art Of Darkness uses head markers with randomized offsets.  The first
+      // charge is always left or right, and we can solve the rest from there.
+      id: 'E9S The Second / Third Art Of Darkness Charge Solver',
+      netRegex: NetRegexes.headMarker({ target: 'Cloud Of Darkness' }),
+      netRegexDe: NetRegexes.headMarker({ target: 'Wolke Der Dunkelheit' }),
+      netRegexFr: NetRegexes.headMarker({ target: 'Nuage De Ténèbres' }),
+      netRegexJa: NetRegexes.headMarker({ target: '暗闇の雲' }),
+      netRegexCn: NetRegexes.headMarker({ target: '暗黑之云' }),
+      netRegexKo: NetRegexes.headMarker({ target: '어둠의 구름' }),
+      condition: (data) => !data.artOfDarknessIdMap,
+      run: (data, matches) => {
+        data.artOfDarknessIdMap = {};
+
+        let idPivot;
+        if (data.artOfDarknessExpected === 'left')
+          idPivot = parseInt(matches.id, 16);
+        else if (data.artOfDarknessExpected === 'right')
+          idPivot = parseInt(matches.id, 16) - 1;
+
+        delete data.artOfDarknessExpected;
+
+        // The left swipe is the lowest head marker, and the rest are sequential.
+        const artOfDarknessOutputKeys = ['goRight', 'goLeft', 'stackWithPartner', 'protean'];
+        for (let i = 0; i < 4; ++i) {
+          const hexPivot = (idPivot + i).toString(16).toUpperCase().padStart(4, '0');
+          data.artOfDarknessIdMap[hexPivot] = artOfDarknessOutputKeys[i];
+        }
+      },
+    },
+    {
+      id: 'E9S The Second / Third Art Of Darkness Left / Right Charge',
+      netRegex: NetRegexes.headMarker({ target: 'Cloud Of Darkness' }),
+      netRegexDe: NetRegexes.headMarker({ target: 'Wolke Der Dunkelheit' }),
+      netRegexFr: NetRegexes.headMarker({ target: 'Nuage De Ténèbres' }),
+      netRegexJa: NetRegexes.headMarker({ target: '暗闇の雲' }),
+      netRegexCn: NetRegexes.headMarker({ target: '暗黑之云' }),
+      netRegexKo: NetRegexes.headMarker({ target: '어둠의 구름' }),
+      condition: (data, matches) => {
+        if (!data.artOfDarkness || !data.artOfDarknessIdMap)
+          return false;
+        const output = data.artOfDarknessIdMap[matches.id];
+        return output === 'goRight' || output === 'goLeft';
+      },
+      run: (data, matches) => data.artOfDarkness.push(data.artOfDarknessIdMap[matches.id]),
+    },
+    {
+      // Fire the trigger on stack or protean since we want the callout as soon as possible.
+      id: 'E9S The Second / Third Art Of Darkness Callout',
+      netRegex: NetRegexes.headMarker({ id: '01..', target: 'Cloud Of Darkness' }),
+      netRegexDe: NetRegexes.headMarker({ id: '01..', target: 'Wolke Der Dunkelheit' }),
+      netRegexFr: NetRegexes.headMarker({ id: '01..', target: 'Nuage De Ténèbres' }),
+      netRegexJa: NetRegexes.headMarker({ id: '01..', target: '暗闇の雲' }),
+      netRegexCn: NetRegexes.headMarker({ id: '01..', target: '暗黑之云' }),
+      netRegexKo: NetRegexes.headMarker({ id: '01..', target: '어둠의 구름' }),
+      condition: (data, matches) => {
+        if (!data.artOfDarkness || !data.artOfDarknessIdMap)
+          return false;
+        const output = data.artOfDarknessIdMap[matches.id];
+        return output === 'stackWithPartner' || output === 'protean';
+      },
+      preRun: (data, matches) => data.artOfDarkness.push(data.artOfDarknessIdMap[matches.id]),
       durationSeconds: (data) => data.finalArtOfDarkness ? 16 : 9,
       alertText: (data, _, output) => {
         // Perform the callout now, regardless if it's The Second or Third Art Of Darkness
@@ -385,32 +466,6 @@ export default {
       },
       outputStrings: artOfDarknessOutputStrings,
       run: (data) => delete data.artOfDarkness,
-    },
-    {
-      id: 'E9S The Second / Third Art Of Darkness Protean Charge',
-      netRegex: NetRegexes.headMarker({ id: '01BA', capture: false }),
-      preRun: (data) => data.artOfDarkness.push('protean'),
-      durationSeconds: (data) => data.finalArtOfDarkness ? 16 : 9,
-      alertText: (data, _, output) => {
-        // Perform the callout now, regardless if it's The Second or Third Art Of Darkness
-        if (data.finalArtOfDarkness)
-          data.artOfDarkness.push(data.finalArtOfDarkness);
-        return data.artOfDarkness.map((key) => output[key]()).join(' -> ');
-      },
-      outputStrings: artOfDarknessOutputStrings,
-      run: (data) => delete data.artOfDarkness,
-    },
-    {
-      id: 'E9S The Second / Third Art Of Darkness Right Charge',
-      netRegex: NetRegexes.headMarker({ id: '01B8', capture: false }),
-      condition: (data) => data.artOfDarkness,
-      run: (data) => data.artOfDarkness.push('goLeft'),
-    },
-    {
-      id: 'E9S The Second / Third Art Of Darkness Left Charge',
-      netRegex: NetRegexes.headMarker({ id: '01B7', capture: false }),
-      condition: (data) => data.artOfDarkness,
-      run: (data) => data.artOfDarkness.push('goRight'),
     },
     {
       id: 'E9S Empty Plane',
@@ -439,6 +494,8 @@ export default {
           en: 'Tile Positions',
           de: 'Kachel Positionen',
           fr: 'Allez sur votre case',
+          ja: '定めたパネルに待機',
+          cn: '上自己的方块',
           ko: '바닥 자리잡기',
         },
       },
@@ -454,6 +511,8 @@ export default {
           en: 'Face Laser Out',
           de: 'Laser nach draußen richten',
           fr: 'Orientez le laser vers l\'extérieur',
+          ja: 'レーザーを外に向ける',
+          cn: '向外引导激光',
           ko: '바깥 바라보기 (레이저 유도)',
         },
       },
@@ -529,7 +588,16 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '5603', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5603', source: '어둠의 구름', capture: false }),
       infoText: (data, _, output) => output.text(),
-      outputStrings: { text: artOfDarknessOutputStrings.startLeft },
+      outputStrings: {
+        text: {
+          en: 'Start Left',
+          de: 'Starte Links',
+          fr: 'Commencez à gauche',
+          ja: '左から',
+          cn: '左侧开始',
+          ko: '왼쪽에서 시작',
+        },
+      },
       run: (data) => {
         data.artOfDarkness = [];
         // Add this once we've seen the second charge to call out sooner.
@@ -545,7 +613,16 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '5604', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5604', source: '어둠의 구름', capture: false }),
       infoText: (data, _, output) => output.text(),
-      outputStrings: { text: artOfDarknessOutputStrings.startRight },
+      outputStrings: {
+        text: {
+          en: 'Start Right',
+          de: 'Starte Rechts',
+          fr: 'Commencez à droite',
+          ja: '右から',
+          cn: '右侧开始',
+          ko: '오른쪽에서 시작',
+        },
+      },
       run: (data) => {
         data.artOfDarkness = [];
         // Add this once we've seen the second charge to call out sooner.
@@ -601,23 +678,25 @@ export default {
         'Devouring Dark': 'Erosion der Dunkelheit',
         'Deluge Of Darkness': 'Sintflut der Dunkelheit',
         'Phaser Unlimited': 'Phaser: Nullform',
-        '\\(P\\/S\\)': '(H/V)',
+        '\\(P\\/S\\)': '(Uhrzeiger/Partner)',
       },
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Hypercharged Cloud': 'nuage palpitant',
         'Cloud Of Darkness': 'Nuage de Ténèbres',
       },
       'replaceText': {
+        '\\(L/R\\)': '(G/D)',
+        '\\(P/S\\)': '(Po/Pa)',
         'The Third Art Of Darkness': 'Arts ténébreux triple',
         'The Second Art Of Darkness': 'Arts ténébreux double',
         'The Art Of Darkness': 'Arts ténébreux',
         'Summon': 'Invocation',
         'Rejuvenating Balm': 'Tir vivifiant',
         'Particle Concentration': 'Rayon sphérique',
+        'Phaser Unlimited': 'Faisceau de particules bondissant',
         '(?<!(Full-Perimeter|Ground-Razing) )Particle Beam': 'Rayon explosif',
         'Obscure Woods': 'Forêt obscure',
         'Hypercharged Dispersal': 'Dissipation',
@@ -633,7 +712,6 @@ export default {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Hypercharged Cloud': '波動雲',
         'Cloud Of Darkness': '暗闇の雲',
@@ -644,6 +722,7 @@ export default {
         'The Art Of Darkness': '闇の戦技',
         'Summon': '召喚',
         'Rejuvenating Balm': '活性弾',
+        'Phaser Unlimited': '跳躍波動砲',
         'Particle Concentration': '波動球',
         '(?<!(Full-Perimeter|Ground-Razing) )Particle Beam': '波動爆発',
         'Obscure Woods': '暗黒森林',
@@ -656,6 +735,14 @@ export default {
         'Empty Plane': '暗黒天空',
         'Devouring Dark': '闇の浸食',
         'Deluge Of Darkness': '闇の大氾濫',
+        'Dark-Energy Particle Beam': '呪詛式 波動砲',
+        'Condensed Wide-Angle Particle Beam': '広角式 高出力波動砲',
+        'Condensed Anti-Air Particle Beam': '高射式 高出力波動砲',
+        'Bad Vibrations': '強振動',
+        'Anti-Air Phaser Unlimited': '高射式 跳躍波動砲：零式',
+        'Anti-Air Particle Beam': '高射式 波動砲',
+        'Aetherosynthesis': '生気吸収',
+        '\\(L/R\\)': '(左/右)',
       },
     },
   ],

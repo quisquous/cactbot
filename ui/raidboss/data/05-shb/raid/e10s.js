@@ -3,7 +3,6 @@ import NetRegexes from '../../../../../resources/netregexes.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
-// TODO: could use giga slash "get in" here for four slashes
 // TODO: use headmarkers for limit cut number
 //       need to track tether bois
 //       HOWEVER this also uses TEA rules where the limit cut number has an offset.
@@ -36,7 +35,10 @@ export default {
         text: {
           en: 'Shadow Side',
           de: 'Schatten Seite',
-          ko: '그림자 방향',
+          fr: 'Ombre à côté',
+          ja: '影同じ側へ',
+          cn: '影子同侧',
+          ko: '그림자 쪽으로',
         },
       },
     },
@@ -51,7 +53,10 @@ export default {
         text: {
           en: 'Opposite Shadow',
           de: 'Gegenüber des Schattens',
-          ko: '그림자 반대쪽',
+          fr: 'Ombre opposée',
+          ja: '影の反対側へ',
+          cn: '影子异侧',
+          ko: '그림자 반대쪽으로',
         },
       },
     },
@@ -74,7 +79,10 @@ export default {
         text: {
           en: 'Go Left of Shadow',
           de: 'Geh links vom Schatten',
-          ko: '그림자 왼쪽',
+          fr: 'Allez à gauche de l\'ombre',
+          ja: '影の左へ',
+          cn: '影子左侧',
+          ko: '그림자 왼쪽으로',
         },
       },
     },
@@ -89,7 +97,10 @@ export default {
         text: {
           en: 'Go Right of Shadow',
           de: 'Geh rechts vom Schatten',
-          ko: '그림자 오른쪽',
+          fr: 'Allez à droite de l\'ombre',
+          ja: '影の右へ',
+          cn: '影子右侧',
+          ko: '그림자 오른쪽으로',
         },
       },
     },
@@ -104,6 +115,9 @@ export default {
         text: {
           en: 'Go Left of Shadows',
           de: 'Geh links vom Schatten',
+          fr: 'Allez à gauche des ombres',
+          ja: '影の左へ',
+          cn: '影子左侧',
           ko: '그림자 왼쪽',
         },
       },
@@ -119,6 +133,9 @@ export default {
         text: {
           en: 'Go Right of Shadows',
           de: 'Geh rechts vom Schatten',
+          fr: 'Allez à droite des ombres',
+          ja: '影の右へ',
+          cn: '影子右侧',
           ko: '그림자 오른쪽',
         },
       },
@@ -152,6 +169,8 @@ export default {
           en: 'Avoid Stack!',
           de: 'Nicht Sammeln!',
           fr: 'Ne vous packez pas !',
+          ja: '重ならない！',
+          cn: '不要重合!',
           ko: '공격 피하기',
         },
         stack: {
@@ -179,12 +198,56 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5B2D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5B2D', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5B2D', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      durationSeconds: (data) => data.gigaSlashCleaveDebuffDuration,
+      alertText: (data, _, output) => {
+        let ret = '';
+        switch (data.gigaSlashCleaveDebuffId) {
+        case '973':
+          ret = output.west;
+          break;
+        case '974':
+          ret = output.east;
+          break;
+        case '975':
+          ret = output.north;
+          break;
+        case '976':
+          ret = output.south;
+          break;
+        }
+
+        delete data.gigaSlashCleaveDebuffId;
+        delete data.gigaSlashCleaveDebuffDuration;
+        if (!ret)
+          return;
+
+        return ret();
+      },
+      infoText: (data, _, output) => output.leftCleave(),
       outputStrings: {
-        text: {
+        north: {
+          en: 'North',
+          de: 'Norden',
+        },
+        south: {
+          en: 'South',
+          de: 'Süden',
+        },
+        east: {
+          en: 'East',
+          de: 'Osten',
+        },
+        west: {
+          en: 'West',
+          de: 'Westen',
+        },
+        leftCleave: {
           en: 'Left Cleave',
           de: 'Linker Cleave',
-          ko: '왼쪽 장판',
+          fr: 'Cleave gauche',
+          ja: '左半面へ攻撃',
+          cn: '左侧顺劈',
+          ko: '오른쪽에 그림자 오게',
         },
       },
     },
@@ -194,14 +257,76 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5B2C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5B2C', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5B2C', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      durationSeconds: (data) => data.gigaSlashCleaveDebuffDuration,
+      alertText: (data, _, output) => {
+        let ret = '';
+        switch (data.gigaSlashCleaveDebuffId) {
+        case '973':
+          ret = output.east;
+          break;
+        case '974':
+          ret = output.west;
+          break;
+        case '975':
+          ret = output.south;
+          break;
+        case '976':
+          ret = output.north;
+          break;
+        }
+
+        delete data.gigaSlashCleaveDebuffId;
+        delete data.gigaSlashCleaveDebuffDuration;
+        if (!ret)
+          return;
+
+        return ret();
+      },
+      infoText: (data, _, output) => output.rightCleave(),
       outputStrings: {
-        text: {
+        north: {
+          en: 'North',
+          de: 'Norden',
+        },
+        south: {
+          en: 'South',
+          de: 'Süden',
+        },
+        east: {
+          en: 'East',
+          de: 'Osten',
+        },
+        west: {
+          en: 'West',
+          de: 'Westen',
+        },
+        rightCleave: {
           en: 'Right Cleave',
           de: 'Rechter Cleave',
-          ko: '오른쪽 장판',
+          fr: 'Cleave droit',
+          ja: '右半面へ攻撃',
+          cn: '右侧顺劈',
+          ko: '왼쪽에 그림자 오게',
         },
       },
+    },
+    {
+      id: 'E10S Shadow Servant Cleave Drop',
+      netRegex: NetRegexes.gainsEffect({ effectId: '97[3456]' }),
+      condition: Conditions.targetIsYou(),
+      run: (data, matches) => {
+        data.gigaSlashCleaveDebuffId = matches.effectId;
+        data.gigaSlashCleaveDebuffDuration = matches.duration;
+      },
+    },
+    {
+      id: 'E10S Shadow Servant Get In',
+      netRegex: NetRegexes.gainsEffect({ effectId: '9D6', capture: false }),
+      // The effect lasts two seconds, use the difference of the two
+      // instead of telling the bound people to get in instantly.
+      delaySeconds: 1,
+      suppressSeconds: 1,
+      response: Responses.getIn(),
     },
     {
       id: 'E10S Shadow Cleave',
@@ -215,7 +340,9 @@ export default {
           en: 'Drop Shadow Out',
           de: 'Schatten draußen ablegen',
           fr: 'Déposez l\'ombre à l\'extérieur',
-          ko: '그림자 바깥에 떨어뜨리기',
+          ja: '影を外周に捨てる',
+          cn: '影子放到外圈',
+          ko: '바깥쪽에 그림자 떨어뜨리기',
         },
       },
     },
@@ -232,6 +359,8 @@ export default {
           en: '1 out, 2+3 in',
           de: '1 raus, 2+3 rein',
           fr: '1 extérieur, 2+3 intérieur',
+          ja: '1番入らない、2/3番入る',
+          cn: '麻将1出，2+3进',
           ko: '1 바깥, 2+3 안쪽',
         },
       },
@@ -249,6 +378,8 @@ export default {
           en: '2 out, 1+3 in',
           de: '2 raus, 1+3 rein',
           fr: '2 extérieur, 1+3 intérieur',
+          ja: '2番入らない、1/3番入る',
+          cn: '麻将2出，1+3进',
           ko: '2 바깥, 1+3 안쪽',
         },
       },
@@ -267,6 +398,8 @@ export default {
           en: '3 out, 1+2 in',
           de: '3 raus, 1+2 rein',
           fr: '3 extérieur, 1+2 intérieur',
+          ja: '3番入らない、1/2番入る',
+          cn: '麻将3出，1+2进',
           ko: '3 바깥, 1+2 안쪽',
         },
       },
@@ -284,7 +417,9 @@ export default {
           en: 'Drop Shadow Max Melee',
           de: 'Lege den Schatten im max Melee Bereich ab',
           fr: 'Déposez l\'ombre au max de la portée',
-          ko: '그림자 칼끝 위치에 떨어뜨리기',
+          ja: 'タゲサークル外側に影を捨てる',
+          cn: '把影子放到Boss目标圈外',
+          ko: '그림자 칼끝딜 위치에 떨어뜨리기',
         },
       },
     },
@@ -319,6 +454,8 @@ export default {
           en: 'Orbs',
           de: 'Orbs',
           fr: 'Orbes',
+          ja: '玉',
+          cn: '球',
           ko: '구슬',
         },
       },
@@ -335,6 +472,8 @@ export default {
           en: 'Watch Tethered Dog',
           de: 'Achte auf den verbundenen Hund',
           fr: 'Regardez le chien lié',
+          ja: '線で繋がった分身を注視',
+          cn: '找连线的狗',
           ko: '연결된 쫄 지켜보기',
         },
       },
@@ -353,16 +492,18 @@ export default {
           // TODO: this also happens twice, with tethers
           en: 'Be On Squiggles',
           de: 'Sei auf dem Kringel',
+          ja: '曲線上待機',
+          cn: '站到连线为曲线的一侧',
           ko: '구불구불한 선 쪽으로',
         },
       },
     },
     {
       id: 'E10S Cloak of Shadows 1',
-      netRegex: NetRegexes.ability({ source: 'Shadowkeeper', id: '5B13', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Schattenkönig', id: '5B13', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Roi De L\'Ombre', id: '5B13', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: '影の王', id: '5B13', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5B13', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5B13', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5B13', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5B13', capture: false }),
       delaySeconds: 4,
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
@@ -371,6 +512,8 @@ export default {
           // TODO: this could be better if we knew where the shadow was
           en: 'Away From Squiggles',
           de: 'Weg vom Kringel',
+          ja: '安置へ',
+          cn: '远离连线为曲线的一侧',
           ko: '곧은 선 쪽으로',
         },
       },
@@ -389,7 +532,10 @@ export default {
         text: {
           en: 'Shadow Side',
           de: 'Schatten Seite',
-          ko: '그림자 방향',
+          fr: 'Ombre à côté',
+          ja: '影同じ側へ',
+          cn: '影子同侧',
+          ko: '그림자 쪽으로',
         },
       },
     },
@@ -405,6 +551,9 @@ export default {
         text: {
           en: 'Opposite Shadow',
           de: 'Gegenüber des Schattens',
+          fr: 'Ombre opposée',
+          ja: '影の反対側へ',
+          cn: '影子异侧',
           ko: '그림자 반대쪽',
         },
       },
@@ -420,7 +569,10 @@ export default {
         text: {
           en: 'Cleaves with towers',
           de: 'Cleaves mit Türmen',
-          ko: '기둥이랑 장판유도 동시에',
+          fr: 'Cleaves avec Tours',
+          ja: '従僕 + 塔',
+          cn: '影子+塔',
+          ko: '기둥이랑 그림자 유도 동시에',
         },
       },
     },
@@ -437,7 +589,9 @@ export default {
           en: 'Towers first, then cleaves',
           de: 'Zuerst Türme, dann cleaves',
           fr: 'Tours en premier puis cleaves',
-          ko: '기둥 먼저, 그다음 장판유도',
+          ja: 'まずは塔、そして従僕',
+          cn: '先塔后影子',
+          ko: '기둥 먼저, 그다음 그림자 유도',
         },
       },
     },
@@ -458,12 +612,16 @@ export default {
           en: 'Puddles outside',
           de: 'Flächen nach draußen',
           fr: 'Zones au sol à l\'extérieur',
-          ko: '장판 바깥에',
+          ja: '外周に捨てる',
+          cn: '点名放到外圈',
+          ko: '장판 바깥쪽에 깔기',
         },
         secondPitchBog: {
           en: 'Final Puddle Positions',
           de: 'Flächen interkardinal ablegen',
           fr: 'Zones au sol en intercardinal',
+          ja: '最後のスワンプ',
+          cn: '最后一次点名放到外圈',
           ko: '각자 장판 위치로',
         },
       },
@@ -523,7 +681,9 @@ export default {
           en: 'Pick up Puddles',
           de: 'Fläche nehmen',
           fr: 'Prenez les zones au sol',
-          ko: '장판 밟아서 선 가져오기',
+          ja: 'スワンプを踏む',
+          cn: '踩放下的沼泽',
+          ko: '장판 밟아서 그림자 선 가져오기',
         },
       },
     },
@@ -569,7 +729,6 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Shadowkeeper': 'Ordre royal',
         'Shadow Of A Hero': 'ombre de héros',
@@ -608,7 +767,6 @@ export default {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Shadowkeeper': '影の王命',
         'Shadow Of A Hero': '英雄の影',
