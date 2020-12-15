@@ -704,6 +704,7 @@ export default {
           de: 'Klon der Dunkelheit',
           fr: 'Nuage de Ténèbres',
           ja: '幻影の雲',
+          cn: '幻影之云',
         };
 
         const combatantData = await window.callOverlayHandler({
@@ -720,6 +721,10 @@ export default {
     {
       id: 'E9S Clone The Art Of Darkness',
       netRegex: NetRegexes.startsUsing({ id: '561[EF]', source: 'Clone Of Darkness' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '561[EF]', source: 'Klon der Dunkelheit' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '561[EF]', source: 'Nuage de Ténèbres' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '561[EF]', source: '幻影の雲' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '561[EF]', source: '幻影之云' }),
       condition: (data) => data.combatantData,
       suppressSeconds: 1,
       alertText: (data, matches) => {
