@@ -171,6 +171,7 @@ export default {
       netRegexFr: NetRegexes.ability({ id: '5916', source: 'mère porxie', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '5916', source: 'マザーポークシー', capture: false }),
       delaySeconds: 5,
+      suppressSeconds: 1,
       alertText: (data, _, output) => output.awayFrom(),
       outputStrings: {
         awayFrom: {
