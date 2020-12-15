@@ -7,7 +7,7 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
 ### Eden's Promise
-# -ii 4B1E 58AA 58AB 4E44 4E45 4E46 4E47 589B 4E5A 58A0 58B8 5897 58B0 58A8 58B4 4F9E
+# -ii 4B1E 58AA 58AB 4E44 4E45 4E46 4E47 589B 4E5A 58A0 58B8 5897 58B0 58B4 4F9E 58BB 58BC
 # -p 58A8:16
 
 # 58AF: jump center with big cylinder animation??
@@ -63,6 +63,7 @@ hideall "--sync--"
 248.4 "--middle--" sync /:Eden's Promise:58AF:/
 258.5 "Cast" sync /:Eden's Promise:4E43:/
 259.6 "Obliteration Laser" sync /:Guardian Of Eden:4E36:/
+269.8 "Obliteration" sync /:Eden's Promise:58A8:/
 
 283.0 "Stock" sync /:Eden's Promise:5892:/
 288.1 "Classical Sculpture" sync /:Chiseled Sculpture:58B2:/
@@ -74,6 +75,7 @@ hideall "--sync--"
 308.0 "Blade Of Flame 4" #sync /:Chiseled Sculpture:58B3:/
 310.2 "Palm Of Temperance" sync /:Eden's Promise:58B6:/
 316.5 "Release" sync /:Eden's Promise:5893:/
+327.7 "Obliteration" sync /:Eden's Promise:58A8:/
 
 335.4 "Formless Judgment" sync /:Eden's Promise:58A9:/
 #335.7 "Formless Judgment" sync /:Eden's Promise:58AC:/
@@ -88,6 +90,7 @@ hideall "--sync--"
 379.7 "Release" sync /:Eden's Promise:5893:/
 383.8 "Lionsblaze 3" sync /:Beastly Sculpture:58B9:/
 388.9 "Rapturous Reach" sync /:Eden's Promise:58A[DE]:/
+401.7 "Obliteration" sync /:Eden's Promise:58A8:/
 
 414.9 "Stock" sync /:Eden's Promise:5892:/
 418.2 "--middle--" sync /:Eden's Promise:58AF:/
@@ -95,6 +98,7 @@ hideall "--sync--"
 434.0 "Cast" sync /:Eden's Promise:4E43:/
 437.5 "Frigid Stone/Under The Weight" sync /:Eden's Promise:(589E|58A6):/
 438.2 "--sync--" sync /:Eden's Promise:58A7:/
+445.8 "Obliteration" sync /:Eden's Promise:58A8:/
 
 453.0 "Junction Shiva/Titan" sync /:Eden's Promise:589[45]:/
 462.7 "Release" sync /:Eden's Promise:5893:/
@@ -104,11 +108,11 @@ hideall "--sync--"
 478.1 "Formless Judgment" sync /:Eden's Promise:58A9:/
 #478.4 "Formless Judgment" sync /:Eden's Promise:58AC:/
 480.9 "Formless Judgment" #sync /:Eden's Promise:58AC:/
-501.3 "--middle--" sync /:Eden's Promise:58AF:/
 
-503.0 "Enrage?"
-### TODO: enrage?
-
+489.4 "Obliteration" sync /:Eden's Promise:58A8:/
+498.6 "Obliteration" sync /:Eden's Promise:58A8:/
+506.9 "--untargetable--"
+512.0 "Paradise Lost" sync /:Eden's Promise:58BA:/
 
 
 ### Oracle of Darkness
