@@ -239,19 +239,24 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: ['4E43', '5893'] }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: ['4E43', '5893'] }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: ['4E43', '5893'] }),
+      preRun: (data) => {
+        data.castCount = data.castCount || 0;
+        data.castCount++;
+      },
+      // The pattern is cast - cast - release - release - cast - release.
+      // #4 (the 2nd release) starts casting just before the second lion fire breath.
+      // Delay just a smidgen so that hypothetically you don't jump off your bait spot early.
+      // This is a 7 second long cast bar, so you still have 5 seconds to make it in.
+      delaySeconds: (data) => data.castCount === 4 ? 1.8 : 0,
       alertText: (data, matches, output) => {
+        // The second cast comes with an obliteration group laser (and no junction).
+        // The entire party should stack this one.
+        if (data.castCount === 2)
+          data.junctionSuffix = 'stack';
+
         // At the end of the fight, there is a stock -> cast -> release,
         // which means that we need to grab the original tethers during the first stock.
         const isRelease = matches.id === '5893';
-
-        // On the 2nd cast.
-        if (!isRelease) {
-          data.castCount = data.castCount || 0;
-          data.castCount++;
-          if (data.castCount === 2)
-            data.junctionSuffix = 'stack';
-        }
-
         const text = getTetherString(isRelease ? data.stockedTethers : data.tethers, output);
         if (!text)
           return;
