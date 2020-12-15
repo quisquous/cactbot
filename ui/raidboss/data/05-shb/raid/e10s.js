@@ -191,9 +191,41 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5B2D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5B2D', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5B2D', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      durationSeconds: (data) => data.gigaSlashCleaveDebuffDuration,
+      alertText: (data, _, output) => {
+        let ret = output.noShadow;
+        switch (data.gigaSlashCleaveDebuffId) {
+        case '973':
+          ret = output.west;
+          break;
+        case '974':
+          ret = output.east;
+          break;
+        case '975':
+          ret = output.north;
+          break;
+        case '976':
+          ret = output.south;
+          break;
+        }
+        delete data.gigaSlashCleaveDebuffId;
+        delete data.gigaSlashCleaveDebuffDuration;
+        return ret();
+      },
       outputStrings: {
-        text: {
+        north: {
+          en: 'North',
+        },
+        south: {
+          en: 'South',
+        },
+        east: {
+          en: 'East',
+        },
+        west: {
+          en: 'West',
+        },
+        noShadow: {
           en: 'Left Cleave',
           de: 'Linker Cleave',
           fr: 'Cleave gauche',
@@ -208,15 +240,56 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5B2C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5B2C', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5B2C', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      durationSeconds: (data) => data.gigaSlashCleaveDebuffDuration,
+      alertText: (data, _, output) => {
+        let ret = output.noShadow;
+        switch (data.gigaSlashCleaveDebuffId) {
+        case '973':
+          ret = output.east;
+          break;
+        case '974':
+          ret = output.west;
+          break;
+        case '975':
+          ret = output.south;
+          break;
+        case '976':
+          ret = output.north;
+          break;
+        }
+        delete data.gigaSlashCleaveDebuffId;
+        delete data.gigaSlashCleaveDebuffDuration;
+        return ret();
+      },
       outputStrings: {
-        text: {
+        north: {
+          en: 'North',
+        },
+        south: {
+          en: 'South',
+        },
+        east: {
+          en: 'East',
+        },
+        west: {
+          en: 'West',
+        },
+        noShadow: {
           en: 'Right Cleave',
           de: 'Rechter Cleave',
           fr: 'Cleave droit',
           cn: '右侧顺劈',
           ko: '왼쪽에 그림자 오게',
         },
+      },
+    },
+    {
+      id: 'E10S Shadow Servant Cleave Drop',
+      netRegex: NetRegexes.gainsEffect({ effectId: '97[3456]' }),
+      condition: Conditions.targetIsYou(),
+      run: (data, matches) => {
+        data.gigaSlashCleaveDebuffId = matches.effectId;
+        data.gigaSlashCleaveDebuffDuration = matches.duration;
       },
     },
     {
