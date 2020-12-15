@@ -320,7 +320,6 @@ export default {
         'Guardian Of Eden': 'Wächter von Eden',
         'Ice Pillar': 'Eissäule',
         'Oracle Of Darkness': 'Orakel der Dunkelheit',
-        'Oracle of Darkness': 'Orakel der Dunkelheit',
         'Sorrow\'s Hourglass': 'Sanduhr der Sorge',
       },
       'replaceText': {
@@ -400,7 +399,6 @@ export default {
         'Guardian Of Eden': 'Gardien d\'Éden',
         'Ice Pillar': 'Pilier de glace',
         'Oracle Of Darkness': 'prêtresse des Ténèbres',
-        'Oracle of Darkness': 'prêtresse des Ténèbres',
         'Sorrow\'s Hourglass': 'sablier de chagrin',
       },
       'replaceText': {
@@ -480,7 +478,6 @@ export default {
         'Guardian Of Eden': 'ガーディアン・オブ・エデン',
         'Ice Pillar': '氷柱',
         'Oracle Of Darkness': '闇の巫女',
-        'Oracle of Darkness': '闇の巫女',
         'Sorrow\'s Hourglass': '悲しみの砂時計',
       },
       'replaceText': {
