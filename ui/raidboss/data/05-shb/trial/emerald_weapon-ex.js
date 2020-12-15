@@ -284,6 +284,7 @@ export default {
         text: {
           en: 'watch rank-and-file soldiers',
           de: 'Achte auf die Lücken zwischen den Soldaten',
+          fr: 'Regardez les soldats en rangs',
           ja: '飛行部隊と射撃部隊を見覚える',
           cn: '观察士兵队列',
           ko: '엑사플레어 순서, 빈 공간 확인',
