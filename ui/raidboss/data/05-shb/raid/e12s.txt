@@ -10,8 +10,6 @@ hideall "--sync--"
 # -ii 4B1E 58AA 58AB 4E44 4E45 4E46 4E47 589B 4E5A 58A0 58B8 5897 58B0 58B4 4F9E 58BB 58BC
 # -p 58A8:16
 
-# 58AF: jump center with big cylinder animation??
-
 0 "Start"
 0.8 "--sync--" sync /:Eden's Promise:4B1E:/ window 1,0
 11.0 "--sync--" sync /:58A8:Eden's Promise/ window 11,20
@@ -126,10 +124,10 @@ hideall "--sync--"
 
 1032.3 "Spell-In-Waiting" sync /:Oracle Of Darkness:58C8:/
 1045.6 "Spell-In-Waiting" sync /:Oracle Of Darkness:58C8:/
-1053.3 "Dark Water III / Water III" sync /:Oracle of Darkness:58C[AD]:/
+1053.3 "Dark Water III / Dark Eruption" sync /:Oracle of Darkness:58C[AD]:/
 1064.9 "Darkest Dance" sync /:Oracle Of Darkness:58BE:/
 1067.9 "Darkest Dance" sync /:Oracle Of Darkness:58C1:/
-1071.5 "Dark Eruption / Water III" sync /:Oracle of Darkness:58C[AD]:/
+1071.5 "Dark Eruption / Dark Water III" sync /:Oracle of Darkness:58C[AD]:/
 1080.7 "Shockwave Pulsar" sync /:Oracle Of Darkness:58F0:/
 
 1101.9 "Basic Relativity" sync /:Oracle Of Darkness:58E0:/ window 200,100
