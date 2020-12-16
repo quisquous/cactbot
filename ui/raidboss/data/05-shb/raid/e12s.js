@@ -57,7 +57,7 @@ const primalOutputStrings = {
     en: 'Sides',
     de: 'Seiten',
     ja: '両側',
-    cn: '两边',
+    cn: '两侧',
     ko: '양옆',
   },
   '0090': {
@@ -71,7 +71,7 @@ const primalOutputStrings = {
     en: 'Intercards',
     de: 'Interkardinale Himmelsrichtungen',
     ja: '対角',
-    cn: '对角线',
+    cn: '四角',
     ko: '대각',
   },
   // Tether combos.
@@ -79,21 +79,21 @@ const primalOutputStrings = {
     en: 'Under + Sides',
     de: 'Runter + Seiten',
     ja: '真ん中 + 横へ',
-    cn: '正下方 + 两边',
+    cn: '正中间两侧',
     ko: '보스 아래 + 양옆',
   },
   '008E0090': {
     en: 'North/South + Out',
     de: 'Norden/Süden + Raus',
     ja: '北/南 + 外へ',
-    cn: '北/南 + 远离',
+    cn: '南北远离',
     ko: '북/남 + 바깥',
   },
   '008E0091': {
     en: 'Under + Intercards',
     de: 'Runter + Interkardinale Himmerlsrichtungen',
     ja: '真ん中 + 対角',
-    cn: '正下方 + 对角线',
+    cn: '正中间四角',
     ko: '보스 아래 + 대각',
   },
   // Text output.
