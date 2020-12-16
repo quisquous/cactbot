@@ -279,8 +279,8 @@ export default {
       'locale': 'fr',
       'replaceSync': {
         'Aeolian Cave Sprite': 'élémentaire des cavernes venteuses',
-        'The Clayclot Cauldron': 'Carrière clinquante',
-        'The Clearnote Cauldron': 'Fontaine frisquette',
+        'The Clayclot Cauldron': 'La carrière clinquante',
+        'The Clearnote Cauldron': 'La fontaine frisquette',
         'Mother Porxie': 'mère porxie',
         'Mud Bubble': 'bulle de boue',
         'Mudman': 'tadboue',
