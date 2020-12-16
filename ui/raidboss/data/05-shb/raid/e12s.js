@@ -92,7 +92,7 @@ const primalOutputStrings = {
   '008E0091': {
     en: 'Under + Intercards',
     de: 'Runter + Interkardinale Himmerlsrichtungen',
-    ja: '真ん中 + 対角',
+    ja: '真ん中 + 斜め',
     cn: '正中间四角',
     ko: '보스 아래 + 대각',
   },
