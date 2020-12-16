@@ -227,7 +227,7 @@ export default {
           en: 'Avoid Laser',
           de: 'Laser ausweichen',
           fr: 'Évitez le laser',
-          ja: 'レーザーに避け',
+          ja: 'レーザー注意',
           cn: '躲避击退激光',
           ko: '레이저 피하기',
         },
@@ -406,7 +406,9 @@ export default {
         text: {
           en: 'Start Left',
           de: 'Starte Links',
-          fr: 'Commencer à gauche',
+          fr: 'Commencez à gauche',
+          ja: '左から',
+          cn: '左侧开始',
           ko: '왼쪽에서 시작',
         },
       },
@@ -432,7 +434,9 @@ export default {
         text: {
           en: 'Start Right',
           de: 'Starte Rechts',
-          fr: 'Commencer à droite',
+          fr: 'Commencez à droite',
+          ja: '右から',
+          cn: '右侧开始',
           ko: '오른쪽에서 시작',
         },
       },
@@ -639,6 +643,10 @@ export default {
         text: {
           en: 'Start Left',
           de: 'Starte Links',
+          fr: 'Commencez à gauche',
+          ja: '左から',
+          cn: '左侧开始',
+          ko: '왼쪽에서 시작',
         },
       },
       run: (data) => {
@@ -660,6 +668,10 @@ export default {
         text: {
           en: 'Start Right',
           de: 'Starte Rechts',
+          fr: 'Commencez à droite',
+          ja: '右から',
+          cn: '右侧开始',
+          ko: '오른쪽에서 시작',
         },
       },
       run: (data) => {
@@ -759,7 +771,7 @@ export default {
         'Devouring Dark': 'Erosion der Dunkelheit',
         'Deluge Of Darkness': 'Sintflut der Dunkelheit',
         'Phaser Unlimited': 'Phaser: Nullform',
-        '\\(P\\/S\\)': '(H/V)',
+        '\\(P\\/S\\)': '(Uhrzeiger/Partner)',
       },
     },
     {
