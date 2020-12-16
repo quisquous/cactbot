@@ -49,53 +49,73 @@ const primalOutputStrings = {
   '008E': {
     en: 'Middle',
     de: 'Mitte',
+    ja: '中へ',
+    cn: '中间',
     ko: '중앙',
   },
   '008F': {
     en: 'Sides',
     de: 'Seiten',
+    ja: '横へ',
+    cn: '两侧',
     ko: '양옆',
   },
   '0090': {
     en: 'Out',
     de: 'Raus',
+    ja: '離れる',
+    cn: '远离',
     ko: '바깥',
   },
   '0091': {
     en: 'Intercards',
     de: 'Interkardinale Himmelsrichtungen',
+    ja: '斜め',
+    cn: '四角',
     ko: '대각',
   },
   // Tether combos.
   '008E008F': {
     en: 'Under + Sides',
     de: 'Runter + Seiten',
+    ja: '真ん中 + 横へ',
+    cn: '正中间两侧',
     ko: '보스 아래 + 양옆',
   },
   '008E0090': {
     en: 'North/South + Out',
     de: 'Norden/Süden + Raus',
+    ja: '北/南 + 外へ',
+    cn: '南北远离',
     ko: '북/남 + 바깥',
   },
   '008E0091': {
     en: 'Under + Intercards',
     de: 'Runter + Interkardinale Himmerlsrichtungen',
+    ja: '真ん中 + 斜め',
+    cn: '正中间四角',
     ko: '보스 아래 + 대각',
   },
   // Text output.
   'combined': {
     en: '${safespot1} + ${safespot2}',
     de: '${safespot1} + ${safespot2}',
+    ja: '${safespot1} + ${safespot2}',
+    cn: '${safespot1} + ${safespot2}',
     ko: '${safespot1} + ${safespot2}',
   },
   'stock': {
     en: 'Stock: ${text}',
     de: 'Sammeln: ${text}',
+    ja: 'ストック: ${text}',
+    cn: '暂存: ${text}',
     ko: '저장: ${text}',
   },
   'junctionSuffix': {
     en: '${text} (${junction})',
     de: '${text} (${junction})',
+    ja: '${text} (${junction})',
+    cn: '${text} (${junction})',
     ko: '${text} (${junction})',
   },
   // Junctions.
@@ -103,12 +123,16 @@ const primalOutputStrings = {
     // Shiva spread.
     en: 'spread',
     de: 'verteilen',
+    ja: '散開',
+    cn: '散开',
     ko: '산개',
   },
   'stacks': {
     // Titan healer stacks.
     en: 'stacks',
     de: 'sammeln',
+    ja: 'ヒラ頭割り',
+    cn: '治疗分摊',
     ko: '쉐어',
   },
   'stack': {
@@ -116,6 +140,8 @@ const primalOutputStrings = {
     // This is deliberately "stack" singular (vs Titan "stacks").
     en: 'group stack',
     de: 'In Gruppen sammeln',
+    ja: '頭割り',
+    cn: '集合',
     ko: '그룹 쉐어',
   },
 };
@@ -170,12 +196,16 @@ export default {
         junctionWithCast: {
           en: 'Spread',
           de: 'Verteilen',
+          ja: '散開',
+          cn: '散开',
           ko: '산개',
         },
         // TODO: maybe this should be a timeline trigger instead, since it needs more mit.
         diamondDust: {
           en: 'Big AOE, Get Middle',
           de: 'Große AoE, geh in die Mitte',
+          ja: '大ダメージ、中へ',
+          cn: '超大伤害，去中间',
           ko: '대형 장판, 중앙으로',
         },
       },
@@ -199,11 +229,15 @@ export default {
         junctionWithCast: {
           en: 'Healer Stacks',
           de: 'Heiler-Gruppen',
+          ja: 'ヒラ頭割り',
+          cn: '治疗分摊',
           ko: '힐러 쉐어',
         },
         earthenFury: {
           en: 'Big AOE, Bombs Soon',
           de: 'Große AoE, bald Bomben',
+          ja: '大ダメージ、まもなく岩落とし',
+          cn: '超大伤害，即将落石',
           ko: '대형 장판, 곧 폭탄',
         },
       },
@@ -304,6 +338,8 @@ export default {
         text: {
           en: 'Lion Tether on YOU',
           de: 'Löwen-Verbindung auf DIR',
+          ja: '自分にライオン線',
+          cn: '狮子连线点名',
           ko: '사자 선 대상자',
         },
       },
@@ -494,9 +530,11 @@ export default {
         'Classical Sculpture': '巨兵創出',
         'Dark Aero III': 'ダークエアロガ',
         'Dark Current': 'ダークストリーム',
-        'Dark Eruption': 'ダークエラプション',
+        '(?<! )Dark Eruption(?! )': 'ダークエラプション',
+        'Dark Eruption / Dark Water III': 'ダークエラプション/ダークウォタガ',
         'Dark Fire III': 'ダークファイガ',
-        'Dark Water III': 'ダークウォタガ',
+        'Dark Water III / Dark Eruption': 'ダークウォタガ/ダークエラプション',
+        '(?<! )Dark Water III(?! )': 'ダークウォタガ',
         'Darkest Dance': '暗夜の舞踏技',
         'Diamond Dust': 'ダイアモンドダスト',
         'Dual Apocalypse': 'アポカリプス・ダブル',
@@ -518,7 +556,8 @@ export default {
         'Lionsblaze': '獅子の業火',
         'Maelstrom': 'メイルシュトローム',
         'Memory\'s End': 'エンド・オブ・メモリーズ',
-        'Obliteration': 'マレフィキウム',
+        'Obliteration(?! Laser)': 'マレフィキウム',
+        'Obliteration Laser': 'マレフィキウム レーザー',
         'Palm Of Temperance': '拒絶の手',
         'Paradise Lost': 'パラダイスロスト',
         'Pillar Pierce': '激突',
