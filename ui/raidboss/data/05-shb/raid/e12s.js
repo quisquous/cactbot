@@ -56,7 +56,7 @@ const primalOutputStrings = {
   '008F': {
     en: 'Sides',
     de: 'Seiten',
-    ja: '両側',
+    ja: '横へ',
     cn: '两侧',
     ko: '양옆',
   },
@@ -70,7 +70,7 @@ const primalOutputStrings = {
   '0091': {
     en: 'Intercards',
     de: 'Interkardinale Himmelsrichtungen',
-    ja: '対角',
+    ja: '斜め',
     cn: '四角',
     ko: '대각',
   },
