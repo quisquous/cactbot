@@ -118,6 +118,9 @@ const calculateSummonSafeZone = (clone1, clone2, artOfDarknessAbilityId) => {
     .filter((pos) => !badZones.includes(pos))
     .map((pos) => directions[pos]);
 
+  if (safeZones.length === 0)
+    return '?';
+
   // TODO: Find Cloud Of Darkness' rotation so we can have a definitive position.
   if (safeZones.length > 1) {
     const instruction = artOfDarknessAbilityId === '561E' ? 'LEFT' : 'RIGHT';
