@@ -85,8 +85,10 @@ const artOfDarknessOutputStrings = {
 };
 
 const calculateSummonSafeZone = (clone1, clone2, artOfDarknessAbilityId) => {
-  const p1 = Math.round(4 - 4 * Math.atan2(clone1.PosX - 100, clone1.PosY - 100) / Math.PI) % 8;
-  const p2 = Math.round(4 - 4 * Math.atan2(clone2.PosX - 100, clone2.PosY - 100) / Math.PI) % 8;
+  // Convert coordinates to 8 cardinal/intercardinal positions:
+  // N at 0, NE at 1, ... NW at 7
+  const p1 = Math.round(4 - 4 * Math.atan2(clone1.PosX - 100, clone1.PosY - 100) / Math.PI);
+  const p2 = Math.round(4 - 4 * Math.atan2(clone2.PosX - 100, clone2.PosY - 100) / Math.PI);
 
   const directions = {
     '0': 'NNE',
@@ -118,20 +120,32 @@ const calculateSummonSafeZone = (clone1, clone2, artOfDarknessAbilityId) => {
     .filter((pos) => !badZones.includes(pos))
     .map((pos) => directions[pos]);
 
-  if (safeZones.length === 0)
+  if (safeZones.length === 0 || safeZones.length > 2)
     return '?';
 
   // TODO: Find Cloud Of Darkness' rotation so we can have a definitive position.
-  if (safeZones.length > 1) {
+  if (safeZones.length === 2) {
+    const longestCommonSubstring = (string1, string2) => {
+      let longest = '';
+
+      let common = '';
+      for (let i = 0; i < string1.length; ++i) {
+        if (string1[i] !== string2[i]) {
+          common = '';
+          continue;
+        }
+        common += string1[i];
+        if (common.length > longest.length)
+          longest = common;
+      }
+      return longest;
+    };
+
     const instruction = artOfDarknessAbilityId === '561E' ? 'LEFT' : 'RIGHT';
 
-    // Reduce to a single direction + give left or right
-    const singleDirection = safeZones.join('')
-      .split('')
-      .filter((item, pos, self) => {
-        return self.indexOf(item) === pos && safeZones.every((str) => str.includes(item));
-      })
-      .join('');
+    const lcs = longestCommonSubstring(safeZones[0], safeZones[1]);
+    // Reduce any duplicates, e.g. make 'NN' return 'N'
+    const singleDirection = String.prototype.concat(...new Set(lcs));
 
     return `${singleDirection} + ${instruction}`;
   }
@@ -706,13 +720,13 @@ export default {
       },
     },
     {
-      id: 'E9S Summon',
-      netRegex: NetRegexes.ability({ id: '5019', source: 'Cloud Of Darkness', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '5019', source: 'Wolke Der Dunkelheit', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '5019', source: 'Nuage De Ténèbres', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '5019', source: '暗闇の雲', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '5019', source: '暗黑之云', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '5019', source: '어둠의 구름', capture: false }),
+      id: 'E9S Clone The Art Of Darkness',
+      netRegex: NetRegexes.startsUsing({ id: '561[EF]', source: 'Clone Of Darkness' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '561[EF]', source: 'Klon der Dunkelheit' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '561[EF]', source: 'Nuage de Ténèbres' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '561[EF]', source: '幻影の雲' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '561[EF]', source: '幻影之云' }),
+      suppressSeconds: 1,
       promise: async (data) => {
         const cloneOfDarknessLocaleNames = {
           en: 'Clone Of Darkness',
@@ -732,16 +746,6 @@ export default {
 
         data.combatantData = combatantData;
       },
-    },
-    {
-      id: 'E9S Clone The Art Of Darkness',
-      netRegex: NetRegexes.startsUsing({ id: '561[EF]', source: 'Clone Of Darkness' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '561[EF]', source: 'Klon der Dunkelheit' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '561[EF]', source: 'Nuage de Ténèbres' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '561[EF]', source: '幻影の雲' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '561[EF]', source: '幻影之云' }),
-      condition: (data) => data.combatantData,
-      suppressSeconds: 1,
       alertText: (data, matches) => {
         const clones = data.combatantData.combatants;
         return calculateSummonSafeZone(clones[0], clones[1], matches.id);
