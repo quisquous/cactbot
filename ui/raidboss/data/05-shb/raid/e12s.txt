@@ -10,8 +10,6 @@ hideall "--sync--"
 # -ii 4B1E 58AA 58AB 4E44 4E45 4E46 4E47 589B 4E5A 58A0 58B8 5897 58B0 58B4 4F9E 58BB 58BC
 # -p 58A8:16
 
-# 58AF: jump center with big cylinder animation??
-
 0 "Start"
 0.8 "--sync--" sync /:Eden's Promise:4B1E:/ window 1,0
 11.0 "--sync--" sync /:58A8:Eden's Promise/ window 11,20
@@ -126,57 +124,57 @@ hideall "--sync--"
 
 1032.3 "Spell-In-Waiting" sync /:Oracle Of Darkness:58C8:/
 1045.6 "Spell-In-Waiting" sync /:Oracle Of Darkness:58C8:/
-1053.3 "Dark Water III / Water III" sync /:Oracle of Darkness:58C[AD]:/
+1053.3 "Dark Water III / Dark Eruption" sync /:Oracle Of Darkness:58C[AD]:/
 1064.9 "Darkest Dance" sync /:Oracle Of Darkness:58BE:/
 1067.9 "Darkest Dance" sync /:Oracle Of Darkness:58C1:/
-1071.5 "Dark Eruption / Water III" sync /:Oracle of Darkness:58C[AD]:/
+1071.5 "Dark Eruption / Dark Water III" sync /:Oracle Of Darkness:58C[AD]:/
 1080.7 "Shockwave Pulsar" sync /:Oracle Of Darkness:58F0:/
 
 1101.9 "Basic Relativity" sync /:Oracle Of Darkness:58E0:/ window 200,100
 1110.0 "Speed" sync /:Oracle Of Darkness:58DD:/
-1110.0 "Slow" sync /:Oracle of Darkness:58DF:/
-1110.0 "Quicken" sync /:Oracle of Darkness:58DE:/
+1110.0 "Slow" sync /:Oracle Of Darkness:58DF:/
+1110.0 "Quicken" sync /:Oracle Of Darkness:58DE:/
 1117.0 "Dark Current" sync /:Sorrow's Hourglass:58D7:/
 1124.0 "Dark Current" sync /:Sorrow's Hourglass:58D7:/
-1124.8 "Return" sync /:Oracle of Darkness:58D6:/
-1124.8 "Shadoweye" sync /:Oracle of Darkness:58D2:/
+1124.8 "Return" sync /:Oracle Of Darkness:58D6:/
+1124.8 "Shadoweye" sync /:Oracle Of Darkness:58D2:/
 1131.0 "Dark Current" sync /:Sorrow's Hourglass:58D7:/
 1131.0 "Empty Rage" sync /:Sorrow's Hourglass:58DB:/
 1135.1 "Empty Hate" sync /:Sorrow's Hourglass:58DC:/
-1138.8 "Dark Water III" sync /:Oracle of Darkness:58CA:/
+1138.8 "Dark Water III" sync /:Oracle Of Darkness:58CA:/
 1148.1 "Shockwave Pulsar" sync /:Oracle Of Darkness:58F0:/
 
 1163.3 "Singular Apocalypse" sync /:Oracle Of Darkness:58E5:/ window 200,100
 1172.7 "Cataclysm" sync /:Oracle Of Darkness:58C2:/
 1181.3 "Black Halo" sync /:Oracle Of Darkness:58C7:/
-1185.6 "Apocalypse" #sync /:Oracle of Darkness:58E6:/
-1187.1 "Apocalypse" #sync /:Oracle of Darkness:58E6:/
-1188.6 "Apocalypse" #sync /:Oracle of Darkness:58E6:/
+1185.6 "Apocalypse" #sync /:Oracle Of Darkness:58E6:/
+1187.1 "Apocalypse" #sync /:Oracle Of Darkness:58E6:/
+1188.6 "Apocalypse" #sync /:Oracle Of Darkness:58E6:/
 1189.0 "Shell Crusher" sync /:Oracle Of Darkness:58C3:/
-1190.1 "Apocalypse" #sync /:Oracle of Darkness:58E6:/
-1191.6 "Apocalypse" #sync /:Oracle of Darkness:58E6:/
-1193.1 "Apocalypse" #sync /:Oracle of Darkness:58E6:/
-1194.6 "Apocalypse" #sync /:Oracle of Darkness:58E6:/
+1190.1 "Apocalypse" #sync /:Oracle Of Darkness:58E6:/
+1191.6 "Apocalypse" #sync /:Oracle Of Darkness:58E6:/
+1193.1 "Apocalypse" #sync /:Oracle Of Darkness:58E6:/
+1194.6 "Apocalypse" #sync /:Oracle Of Darkness:58E6:/
 1195.0 "Spirit Taker" sync /:Oracle Of Darkness:58C4:/
-1196.0 "Apocalypse" #sync /:Oracle of Darkness:58E6:/
-1197.5 "Apocalypse" #sync /:Oracle of Darkness:58E6:/
-1199.0 "Apocalypse" #sync /:Oracle of Darkness:58E6:/
+1196.0 "Apocalypse" #sync /:Oracle Of Darkness:58E6:/
+1197.5 "Apocalypse" #sync /:Oracle Of Darkness:58E6:/
+1199.0 "Apocalypse" #sync /:Oracle Of Darkness:58E6:/
 1206.2 "Shockwave Pulsar" sync /:Oracle Of Darkness:58F0:/
 
 1224.4 "Intermediate Relativity" sync /:Oracle Of Darkness:58E1:/ window 300,100
 # TODO: fill this in better with where the rewinds drop
-1237.3 "Return IV" sync /:Oracle of Darkness:4E59:/
+1237.3 "Return IV" sync /:Oracle Of Darkness:4E59:/
 1265.6 "Shockwave Pulsar" sync /:Oracle Of Darkness:58F0:/
 
 1280.8 "Dual Apocalypse" sync /:Oracle Of Darkness:501C:/ window 300,100
 1290.2 "Cataclysm" sync /:Oracle Of Darkness:58C2:/
-1295.1 "Apocalypse" #sync /:Oracle of Darkness:58E6:/
-1297.1 "Apocalypse" #sync /:Oracle of Darkness:58E6:/
-1299.1 "Apocalypse" #sync /:Oracle of Darkness:58E6:/
-1301.1 "Apocalypse" #sync /:Oracle of Darkness:58E6:/
+1295.1 "Apocalypse" #sync /:Oracle Of Darkness:58E6:/
+1297.1 "Apocalypse" #sync /:Oracle Of Darkness:58E6:/
+1299.1 "Apocalypse" #sync /:Oracle Of Darkness:58E6:/
+1301.1 "Apocalypse" #sync /:Oracle Of Darkness:58E6:/
 1302.4 "Somber Dance" sync /:Oracle Of Darkness:58BD:/
-1303.1 "Apocalypse" #sync /:Oracle of Darkness:58E6:/
-1305.1 "Apocalypse" #sync /:Oracle of Darkness:58E6:/
+1303.1 "Apocalypse" #sync /:Oracle Of Darkness:58E6:/
+1305.1 "Apocalypse" #sync /:Oracle Of Darkness:58E6:/
 1305.9 "Somber Dance" sync /:Oracle Of Darkness:58C0:/
 1316.2 "Shell Crusher" sync /:Oracle Of Darkness:58C3:/
 1322.1 "Spirit Taker" sync /:Oracle Of Darkness:58C4:/
@@ -184,41 +182,41 @@ hideall "--sync--"
 
 1349.9 "Advanced Relativity" sync /:Oracle Of Darkness:58E2:/ window 400,100
 1358.0 "Speed" sync /:Oracle Of Darkness:58DD:/
-1358.1 "Slow" sync /:Oracle of Darkness:58DF:/
-1358.1 "Quicken" sync /:Oracle of Darkness:58DE:/
-1362.8 "Return IV" sync /:Oracle of Darkness:4E59:/
-1362.8 "Dark Water III" sync /:Oracle of Darkness:58CA:/
+1358.1 "Slow" sync /:Oracle Of Darkness:58DF:/
+1358.1 "Quicken" sync /:Oracle Of Darkness:58DE:/
+1362.8 "Return IV" sync /:Oracle Of Darkness:4E59:/
+1362.8 "Dark Water III" sync /:Oracle Of Darkness:58CA:/
 1373.1 "Maelstrom" sync /:Sorrow's Hourglass:58DA:/
-1373.9 "Dark Fire III" sync /:Oracle of Darkness:58CF:/
-1373.9 "Dark Aero III" sync /:Oracle of Darkness:58D4:/
+1373.9 "Dark Fire III" sync /:Oracle Of Darkness:58CF:/
+1373.9 "Dark Aero III" sync /:Oracle Of Darkness:58D4:/
 1377.1 "Maelstrom" sync /:Sorrow's Hourglass:58DA:/
-1377.9 "Shadoweye" sync /:Oracle of Darkness:58D2:/
+1377.9 "Shadoweye" sync /:Oracle Of Darkness:58D2:/
 1381.2 "Maelstrom" sync /:Sorrow's Hourglass:58DA:/
-1382.0 "Dark Aero III" sync /:Oracle of Darkness:58D4:/
-1386.0 "Dark Water III" sync /:Oracle of Darkness:58CA:/
+1382.0 "Dark Aero III" sync /:Oracle Of Darkness:58D4:/
+1386.0 "Dark Water III" sync /:Oracle Of Darkness:58CA:/
 1395.4 "Shockwave Pulsar" sync /:Oracle Of Darkness:58F0:/
 
 1412.6 "Triple Apocalypse" sync /:Oracle Of Darkness:501D:/ window 500,100
-1421.3 "Apocalypse" #sync /:Oracle of Darkness:58E6:/
+1421.3 "Apocalypse" #sync /:Oracle Of Darkness:58E6:/
 1422.8 "Darkest Dance" sync /:Oracle Of Darkness:58BE:/
-1424.3 "Apocalypse" #sync /:Oracle of Darkness:58E6:/
+1424.3 "Apocalypse" #sync /:Oracle Of Darkness:58E6:/
 1425.9 "Darkest Dance" sync /:Oracle Of Darkness:58C1:/
-1427.3 "Apocalypse" #sync /:Oracle of Darkness:58E6:/
+1427.3 "Apocalypse" #sync /:Oracle Of Darkness:58E6:/
 1439.3 "Shockwave Pulsar" sync /:Oracle Of Darkness:58F0:/
 1447.9 "Black Halo" sync /:Oracle Of Darkness:58C7:/
 
 1471.1 "Terminal Relativity" sync /:Oracle Of Darkness:58E3:/ window 500,100
-1477.9 "--1--" #sync /:Oracle of Darkness:501E:/
-1481.0 "--2--" #sync /:Oracle of Darkness:501E:/
-1484.0 "--3--" #sync /:Oracle of Darkness:501E:/
+1477.9 "--1--" #sync /:Oracle Of Darkness:501E:/
+1481.0 "--2--" #sync /:Oracle Of Darkness:501E:/
+1484.0 "--3--" #sync /:Oracle Of Darkness:501E:/
 1486.2 "Shockwave Pulsar 1" sync /:Oracle Of Darkness:58D5:/
-1491.0 "--1--" #sync /:Oracle of Darkness:501E:/
-1493.9 "--2--" #sync /:Oracle of Darkness:501E:/
-1496.9 "--3--" #sync /:Oracle of Darkness:501E:/
+1491.0 "--1--" #sync /:Oracle Of Darkness:501E:/
+1493.9 "--2--" #sync /:Oracle Of Darkness:501E:/
+1496.9 "--3--" #sync /:Oracle Of Darkness:501E:/
 1499.7 "Shockwave Pulsar 2" sync /:Oracle Of Darkness:58D5:/
-1503.9 "--1--" #sync /:Oracle of Darkness:501E:/
-1506.9 "--2--" #sync /:Oracle of Darkness:501E:/
-1509.9 "--3--" #sync /:Oracle of Darkness:501E:/
+1503.9 "--1--" #sync /:Oracle Of Darkness:501E:/
+1506.9 "--2--" #sync /:Oracle Of Darkness:501E:/
+1509.9 "--3--" #sync /:Oracle Of Darkness:501E:/
 1513.2 "Shockwave Pulsar 3" sync /:Oracle Of Darkness:58D5:/
 
 1533.7 "Memory's End" sync /:Oracle Of Darkness:58E4:/

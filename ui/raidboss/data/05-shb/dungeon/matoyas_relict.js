@@ -171,6 +171,7 @@ export default {
       netRegexFr: NetRegexes.ability({ id: '5916', source: 'mère porxie', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '5916', source: 'マザーポークシー', capture: false }),
       delaySeconds: 5,
+      suppressSeconds: 1,
       alertText: (data, _, output) => output.awayFrom(),
       outputStrings: {
         awayFrom: {
@@ -241,13 +242,13 @@ export default {
       'locale': 'de',
       'replaceSync': {
         'Aeolian Cave Sprite': 'Windhöhlen-Exergon',
-        'Clayclot Cauldron': 'Lehmgrube',
-        'Clearnote Cauldron': 'Stromkreuz',
+        'The Clayclot Cauldron': 'Lehmgrube',
+        'The Clearnote Cauldron': 'Stromkreuz',
         'Mother Porxie': 'Muttersau',
         'Mud Bubble': 'Matschblase',
         'Mudman': 'Matschmann',
         'Nixie': 'Nixchen',
-        'Woebegone Workshop': 'Geht-Weg-Werkstatt',
+        'The Woebegone Workshop': 'Geht-Weg-Werkstatt',
       },
       'replaceText': {
         'Barbeque': 'Grillfest',
@@ -278,13 +279,13 @@ export default {
       'locale': 'fr',
       'replaceSync': {
         'Aeolian Cave Sprite': 'élémentaire des cavernes venteuses',
-        'Clayclot Cauldron': 'Carrière clinquante',
-        'Clearnote Cauldron': 'Fontaine frisquette',
+        'The Clayclot Cauldron': 'La carrière clinquante',
+        'The Clearnote Cauldron': 'La fontaine frisquette',
         'Mother Porxie': 'mère porxie',
         'Mud Bubble': 'bulle de boue',
         'Mudman': 'tadboue',
         'Nixie': 'nixe',
-        'Woebegone Workshop': 'Grand four délaissé',
+        'The Woebegone Workshop': 'Grand four délaissé',
       },
       'replaceText': {
         'Barbeque': 'Grillade au barbecue',
@@ -315,13 +316,13 @@ export default {
       'locale': 'ja',
       'replaceSync': {
         'Aeolian Cave Sprite': 'ウィンドケイブ・スプライト',
-        'Clayclot Cauldron': '輝きの採土場',
-        'Clearnote Cauldron': '涼しの採水場',
+        'The Clayclot Cauldron': '輝きの採土場',
+        'The Clearnote Cauldron': '涼しの採水場',
         'Mother Porxie': 'マザーポークシー',
         'Mud Bubble': '泥団子',
         'Mudman': 'マッドマン',
         'Nixie': 'ノッケン',
-        'Woebegone Workshop': '居留守の工房',
+        'The Woebegone Workshop': '居留守の工房',
       },
       'replaceText': {
         'Barbeque': 'バーベキューグリル',

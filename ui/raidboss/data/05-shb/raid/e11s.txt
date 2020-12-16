@@ -4,14 +4,8 @@
 # -it "Fatebreaker"
 # -ii 366 5664 5906 565C 5659 58F4 566C 5686 5682 567F 568C
 
-# TODO: fflogs is missing a bunch of abilities, including most adds.
-# TODO: redo this with a real log oof
-
 hideall "--Reset--"
 hideall "--sync--"
-
-# TODO: 5664 is protean
-# TODO: 5908 is --center--?
 
 # example lightning bound of faith
 # 46.7 "Bound Of Faith" sync /:Fatebreaker:565[8B]:/

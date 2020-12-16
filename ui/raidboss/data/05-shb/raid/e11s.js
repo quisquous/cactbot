@@ -158,7 +158,6 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '5668', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5668', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5668', capture: false }),
-
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -672,16 +671,16 @@ export default {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Demi-Gukumatz': 'Demi-Gukumatz',
-        'Fatebreaker(?!\'s image)': 'fusioniert(?:e|er|es|en) Ascian',
         'Fatebreaker\'s image': 'Abbild des fusionierten Ascians',
+        'Fatebreaker(?!\'s image)': 'fusioniert(?:e|er|es|en) Ascian',
         'Halo of Flame': 'Halo der Flamme',
       },
       'replaceText': {
         'Ageless Serpent': 'Alterslose Schlange',
         'Blastburn': 'Brandstoß',
+        'Blasting Zone': 'Erda-Detonation',
         'Bound Of Faith': 'Sünden-Erdstoß',
         'Bow Shock': 'Schockpatrone',
         'Brightfire': 'Lichtflamme',
@@ -689,8 +688,10 @@ export default {
         'Burnished Glory': 'Leuchtende Aureole',
         'Burnout': 'Brandentladung',
         'Burnt Strike': 'Brandschlag',
+        'Cycle Of Faith': 'Mehrfache Vergeltung',
         'Cycle of Faith': 'Mehrfache Vergeltung',
         'Elemental Break': 'Elementarbruch',
+        'Floating Fetters': 'Schwebende Fesseln',
         'Mortal Burn Mark': 'Brandmal der Sterblichen',
         'Powder Mark': 'Pulvermal',
         'Prismatic Deception': 'Prismatische Unsichtbarkeit',
@@ -709,16 +710,16 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Demi-Gukumatz': 'demi-Gukumatz',
-        'Fatebreaker(?!\'s image)': 'Sabreur de destins',
         'Fatebreaker\'s image': 'double du Sabreur de destins',
+        'Fatebreaker(?!\'s image)': 'Sabreur de destins',
         'Halo of Flame': 'halo de feu',
       },
       'replaceText': {
         'Ageless Serpent': 'Serpent éternel',
         'Blastburn': 'Explosion brûlante',
+        'Blasting Zone': 'Zone de destruction',
         'Bound Of Faith': 'Percée illuminée',
         'Bow Shock': 'Arc de choc',
         'Brightfire': 'Flammes de Lumière',
@@ -726,8 +727,10 @@ export default {
         'Burnished Glory': 'Halo luminescent',
         'Burnout': 'Combustion totale',
         'Burnt Strike': 'Frappe brûlante',
+        'Cycle Of Faith': 'Multi-taillade magique',
         'Cycle of Faith': 'Multi-taillade magique',
         'Elemental Break': 'Rupture élémentaire',
+        'Floating Fetters': 'Entraves flottantes',
         'Mortal Burn Mark': 'Marque de conflagration',
         'Powder Mark': 'Marquage fatal',
         'Prismatic Deception': 'Invisibilité prismatique',
@@ -746,16 +749,16 @@ export default {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Demi-Gukumatz': 'デミグクマッツ',
-        'Fatebreaker(?!\'s image)': 'フェイトブレイカー',
         'Fatebreaker\'s image': 'フェイトブレイカーの幻影',
+        'Fatebreaker(?!\'s image)': 'フェイトブレイカー',
         'Halo of Flame': '焔の光輪',
       },
       'replaceText': {
         'Ageless Serpent': '龍頭龍尾',
         'Blastburn': 'バーンブラスト',
+        'Blasting Zone': 'ブラスティングゾーン',
         'Bound Of Faith': 'シンソイルスラスト',
         'Bow Shock': 'バウショック',
         'Brightfire': '光炎',
@@ -763,8 +766,10 @@ export default {
         'Burnished Glory': '光焔光背',
         'Burnout': 'バーンアウト',
         'Burnt Strike': 'バーンストライク',
+        'Cycle Of Faith': '魔装連続剣',
         'Cycle of Faith': '魔装連続剣',
         'Elemental Break': 'エレメンタルブレイク',
+        'Floating Fetters': '浮遊拘束',
         'Mortal Burn Mark': '大爆印',
         'Powder Mark': '爆印刻',
         'Prismatic Deception': 'プリズマチックインビジブル',
