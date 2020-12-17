@@ -10,12 +10,6 @@ import fflogs
 import encounter_tools as e_tools
 
 
-class tcolor:
-    WARN = "\033[33m"
-    FAIL = "\033[91m"
-    SYNCWARN = "\033[93m"
-    END = "\033[0m"
-
 
 def load_timeline(timeline):
     """Loads a timeline file into a list of entry dicts"""
@@ -287,14 +281,6 @@ def test_match(event, entry):
     return False
 
 
-def drift_fail(entry_text):
-    return tcolor.FAIL + entry_text + tcolor.END
-
-
-def drift_warn(entry_text):
-    return tcolor.WARN + entry_text + tcolor.END
-
-
 def check_event(event, timelist, state):
     # Get amount of time that's passed since last sync point
     if state["timeline_stopped"]:
@@ -331,9 +317,9 @@ def check_event(event, timelist, state):
                 timeline_position, entry["time"], entry["label"], drift
             )
             if abs(drift) > args.drift_failure:
-                print(drift_fail(entry_text))
+                print(e_tools.color_fail(entry_text))
             elif args.drift_failure > abs(drift) > args.drift_warning:
-                print(drift_warn(entry_text))
+                print(e_tools.color_warn(entry_text))
             else:
                 print(entry_text)
 
