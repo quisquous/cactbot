@@ -325,9 +325,6 @@ def check_event(event, timelist, state):
             if time_progress_seconds > 30:
                 print("    Warning: {:.3f}s since last sync".format(time_progress_seconds))
 
-            if time_progress_seconds > 30:
-                print("    Warning: {:.3f}s since last sync".format(time_progress_seconds))
-
             # Find any syncs before this one that were passed without syncing
             if not state["timeline_stopped"]:
                 for other_entry in timelist:
