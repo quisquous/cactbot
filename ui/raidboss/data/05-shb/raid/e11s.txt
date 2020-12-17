@@ -199,8 +199,8 @@ hideall "--sync--"
 
 828.2 "--center--" sync /:Fatebreaker:5908:/ window 30,30
 835.0 "Burnished Glory?"
-837.2 "Cycle Of Faith" sync /:Fatebreaker:5692:/
-837.2 "--sync--" sync /:Fatebreaker:568A:/
+837.2 "Cycle Of Faith" sync /:Fatebreaker:5692:/ jump 700.0
+837.2 "--sync--" sync /:Fatebreaker:568A:/ jump 900.0
 837.3 "Elemental Break"
 839.8 "Sinsight/Sinsmite/Sinsmoke"
 841.7 "Burnt Strike?"
