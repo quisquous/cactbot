@@ -4,7 +4,6 @@ import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
 // TODO: Add N/S E/W callout to Rejuvenating Balm
-// TODO: Add Summon
 
 const phaserOutputStrings = {
   sides: {
@@ -127,6 +126,49 @@ const convertBossHeadingToClonePosition = (boss) => {
     PosX: 100 - 20 * Math.round(Math.sin(closestRad)),
     PosY: 100 - 20 * Math.round(Math.cos(closestRad)),
   };
+};
+
+const calculateSummonSafeZone = (boss, clone1, clone2, abilityId) => {
+  // Convert coordinates to 8 cardinal / intercardinal positions:
+  // N at 0, NE at 1, ... NW at 7
+  const b = Math.round(4 - 4 * Math.atan2(boss.PosX - 100, boss.PosY - 100) / Math.PI);
+  const c1 = Math.round(4 - 4 * Math.atan2(clone1.PosX - 100, clone1.PosY - 100) / Math.PI);
+  const c2 = Math.round(4 - 4 * Math.atan2(clone2.PosX - 100, clone2.PosY - 100) / Math.PI);
+
+  const directions = {
+    '0': 'NNE',
+    '1': 'ENE',
+    '2': 'ESE',
+    '3': 'SSE',
+    '4': 'SSW',
+    '5': 'WSW',
+    '6': 'WNW',
+    '7': 'NNW',
+  };
+
+  const badZones = [];
+  for (const position of [b, c1, c2]) {
+    for (let i = 0; i < 4; ++i) {
+      let newPosition;
+      // Swiping her right
+      if (abilityId === '561E') {
+        // Off by 1 here, since N is 0 for the Clone but NNE for the safe spot
+        newPosition = ((position - i % 8) + 7) % 8;
+      } else {
+        newPosition = (position + i) % 8;
+      }
+      if (!badZones.includes(newPosition))
+        badZones.push(newPosition);
+    }
+  }
+  const safeZones = [0, 1, 2, 3, 4, 5, 6, 7]
+    .filter((pos) => !badZones.includes(pos))
+    .map((pos) => directions[pos]);
+
+  if (safeZones.length !== 1)
+    return 'unknown';
+
+  return safeZones[0];
 };
 
 export default {
@@ -770,50 +812,8 @@ export default {
         data.clones = cloneData.combatants;
       },
       alertText: (data, matches, output) => {
-        const boss = data.boss;
-        const clone1 = data.clones[0];
-        const clone2 = data.clones[1];
-
-        // Convert coordinates to 8 cardinal / intercardinal positions:
-        // N at 0, NE at 1, ... NW at 7
-        const b = Math.round(4 - 4 * Math.atan2(boss.PosX - 100, boss.PosY - 100) / Math.PI);
-        const c1 = Math.round(4 - 4 * Math.atan2(clone1.PosX - 100, clone1.PosY - 100) / Math.PI);
-        const c2 = Math.round(4 - 4 * Math.atan2(clone2.PosX - 100, clone2.PosY - 100) / Math.PI);
-
-        const directions = {
-          '0': 'NNE',
-          '1': 'ENE',
-          '2': 'ESE',
-          '3': 'SSE',
-          '4': 'SSW',
-          '5': 'WSW',
-          '6': 'WNW',
-          '7': 'NNW',
-        };
-
-        const badZones = [];
-        for (const position of [b, c1, c2]) {
-          for (let i = 0; i < 4; ++i) {
-            let newPosition;
-            // Swiping her right
-            if (matches.id === '561E') {
-              // Off by 1 here, since N is 0 for the Clone but NNE for the safe spot
-              newPosition = ((position - i % 8) + 7) % 8;
-            } else {
-              newPosition = (position + i) % 8;
-            }
-            if (!badZones.includes(newPosition))
-              badZones.push(newPosition);
-          }
-        }
-        const safeZones = [0, 1, 2, 3, 4, 5, 6, 7]
-          .filter((pos) => !badZones.includes(pos))
-          .map((pos) => directions[pos]);
-
-        if (safeZones.length !== 1)
-          return output['unknown']();
-
-        return output[safeZones[0]]();
+        const [clone1, clone2] = data.clones;
+        return output[calculateSummonSafeZone(data.boss, clone1, clone2, matches.id)]();
       },
       outputStrings: summonDirectionOutputStrings,
       run: (data) => delete data.summon,
