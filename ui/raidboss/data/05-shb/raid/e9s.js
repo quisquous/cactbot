@@ -747,7 +747,7 @@ export default {
           return;
 
         // All of the fake bosses have a BNpcID of 9020, 12379 is the real one.
-        const boss = bossData.combatants.filter((boss) => boss.BNpcID !== 12379)[0];
+        const boss = bossData.combatants.filter((boss) => boss.BNpcID === 12379)[0];
 
         data.boss = convertBossHeadingToClonePosition(boss);
 
