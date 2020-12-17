@@ -280,6 +280,14 @@ def test_match(event, entry):
     return False
 
 
+def drift_fail(entry_text):
+    return "\033[91m" + entry_text + "\033[0m"
+
+
+def drift_warn(entry_text):
+    return "\033[33m" + entry_text + "\033[0m"
+
+
 def check_event(event, timelist, state):
     # Get amount of time that's passed since last sync point
     if state["timeline_stopped"]:
@@ -315,10 +323,10 @@ def check_event(event, timelist, state):
             entry_text = "{:.3f}: Matched entry: {} {} ({:+.3f}s)".format(
                 timeline_position, entry["time"], entry["label"], drift
             )
-            if abs(drift) > 1:
-                print("\033[91m" + entry_text + "\033[0m")
-            elif 1 > abs(drift) > 0.2:
-                print("\033[33m" + entry_text + "\033[0m")
+            if abs(drift) > args.drift_failure:
+                print(drift_fail(entry_text))
+            elif args.drift_failure > abs(drift) > args.drift_warning:
+                print(drift_warn(entry_text))
             else:
                 print(entry_text)
 
@@ -538,6 +546,24 @@ if __name__ == "__main__":
         "--timeline",
         type=timeline_file,
         help="The filename of the timeline to test against, e.g. ultima_weapon_ultimate",
+    )
+
+    # Output Format arguments
+    parser.add_argument(
+        "-df",
+        "--drift-failure",
+        nargs="?",
+        default=1,
+        type=float,
+        help="If an entry misses its timestamp by more than this value in seconds, it is displayed in red. Defaults to 1.",
+    )
+    parser.add_argument(
+        "-dw",
+        "--drift-warning",
+        nargs="?",
+        default=0.2,
+        type=float,
+        help="If an entry misses its timestamp by more than this value in seconds, it is displayed in yellow. Defaults to 0.2.",
     )
 
     args = parser.parse_args()
