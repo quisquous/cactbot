@@ -83,6 +83,7 @@ const artOfDarknessOutputStrings = {
     ko: '산개',
   },
 };
+
 const summonDirectionOutputStrings = {
   NNE: {
     en: 'NNE',
