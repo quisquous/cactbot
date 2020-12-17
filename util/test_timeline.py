@@ -315,9 +315,9 @@ def check_event(event, timelist, state):
             entry_text = "{:.3f}: Matched entry: {} {} ({:+.3f}s)".format(
                     timeline_position, entry["time"], entry["label"], drift
                 )
-            if drift > 1 or drift < -1:
+            if abs(drift) > 1:
                 print('\033[91m' + entry_text + '\033[0m')
-            elif 1 > drift > 0.2 or  -1 < drift < -0.2:
+            elif 1 > abs(drift) > 0.2:
                 print('\033[33m' + entry_text + '\033[0m')
             else:
                 print(entry_text)
