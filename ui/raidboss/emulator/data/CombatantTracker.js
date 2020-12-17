@@ -20,15 +20,12 @@ export default class CombatantTracker {
   }
 
   initialize(logLines) {
-    const keyedLogLines = {};
     // First pass: Get list of combatants, figure out where they
-    // start at if possible, build our keyed log lines
+    // start at if possible
     for (let i = 0; i < logLines.length; ++i) {
       const line = logLines[i];
       this.firstTimestamp = Math.min(this.firstTimestamp, line.timestamp);
       this.lastTimestamp = Math.max(this.lastTimestamp, line.timestamp);
-
-      keyedLogLines[line.timestamp + '_' + i] = line;
 
       switch (line.hexEvent) {
       // Source/target events
@@ -44,14 +41,15 @@ export default class CombatantTracker {
         this.addCombatantFromLine(line);
         this.addCombatantFromTargetLine(line);
         break;
+      case '00':
+        // For 00 chat lines, don't ever generate combatant data from them
+        break;
 
       default:
         this.addCombatantFromLine(line);
         break;
       }
     }
-
-    const sortedTimestamps = Object.keys(keyedLogLines).sort();
 
     // Between passes: Create our initial combatant states
     for (const id in this.initialStates) {
@@ -71,8 +69,8 @@ export default class CombatantTracker {
 
     // Second pass: Analyze combatant information for tracking
     const eventTracker = {};
-    for (let i = 0; i < sortedTimestamps.length; ++i) {
-      const line = keyedLogLines[sortedTimestamps[i]];
+    for (let i = 0; i < logLines.length; ++i) {
+      const line = logLines[i];
       let state = this.extractStateFromLine(line);
       if (state) {
         eventTracker[line.id] = eventTracker[line.id] || 0;

@@ -95,6 +95,8 @@ export default class AnalyzedEncounter extends EventBus {
     };
 
     for (const log of this.encounter.logLines) {
+      await this.dispatch('analyzeLine', log);
+
       if (this.encounter.combatantTracker.combatants[ID].hasState(log.timestamp)) {
         popupText.OnPlayerChange({
           detail: {
