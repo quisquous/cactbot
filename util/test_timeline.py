@@ -552,7 +552,7 @@ if __name__ == "__main__":
 
     if args.report and not args.key:
         raise parser.error(
-            "FFlogs parsing requires an API key. Visit https://www.fflogs.com/profile and use the Public key"
+            "FFlogs parsing requires an API key. Visit https://www.fflogs.com/profile and use the V1 Client Key"
         )
 
     # Actually call the script
