@@ -312,11 +312,18 @@ def check_event(event, timelist, state):
 
             # Check the timeline drift for anomolous timings
             drift = entry["time"] - timeline_position
-            print(
-                "{:.3f}: Matched entry: {} {} ({:+.3f}s)".format(
+            entry_text = "{:.3f}: Matched entry: {} {} ({:+.3f}s)".format(
                     timeline_position, entry["time"], entry["label"], drift
                 )
-            )
+            if drift > 1 or drift < -1:
+                print('\033[91m' + entry_text + '\033[0m')
+            elif 1 > drift > 0.2 or  -1 < drift < -0.2:
+                print('\033[33m' + entry_text + '\033[0m')
+            else:
+                print(entry_text)
+
+            if time_progress_seconds > 30:
+                print("    Warning: {:.3f}s since last sync".format(time_progress_seconds))
 
             if time_progress_seconds > 30:
                 print("    Warning: {:.3f}s since last sync".format(time_progress_seconds))
