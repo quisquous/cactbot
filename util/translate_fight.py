@@ -215,7 +215,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "-k",
         "--key",
-        help="The FFLogs API key (public) to use, from https://www.fflogs.com/accounts/changeuser",
+        help="The FFLogs API key (public) to use, from https://www.fflogs.com/profile",
     )
     parser.add_argument(
         "-rf",
@@ -232,7 +232,7 @@ if __name__ == "__main__":
 
     if args.report and not args.key:
         raise parser.error(
-            "FFlogs parsing requires an API key. Visit https://www.fflogs.com/accounts/changeuser and use the Public key"
+            "FFlogs parsing requires an API key. Visit https://www.fflogs.com/profile and use the V1 Client Key"
         )
 
     main(args)
