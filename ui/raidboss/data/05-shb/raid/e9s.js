@@ -83,73 +83,71 @@ const artOfDarknessOutputStrings = {
     ko: '산개',
   },
 };
+const summonDirectionOutputStrings = {
+  NNE: {
+    en: 'NNE',
+  },
+  ENE: {
+    en: 'ENE',
+  },
+  ESE: {
+    en: 'ESE',
+  },
+  SSE: {
+    en: 'SSE',
+  },
+  SSW: {
+    en: 'SSW',
+  },
+  WSW: {
+    en: 'WSW',
+  },
+  WNW: {
+    en: 'WNW',
+  },
+  NNW: {
+    en: 'NNW',
+  },
+  unknown: {
+    en: '???',
+    de: '???',
+    fr: '???',
+    ja: '???',
+    cn: '???',
+    ko: '???',
+  },
+};
 
-const calculateSummonSafeZone = (clone1, clone2, artOfDarknessAbilityId) => {
-  // Convert coordinates to 8 cardinal/intercardinal positions:
-  // N at 0, NE at 1, ... NW at 7
-  const p1 = Math.round(4 - 4 * Math.atan2(clone1.PosX - 100, clone1.PosY - 100) / Math.PI);
-  const p2 = Math.round(4 - 4 * Math.atan2(clone2.PosX - 100, clone2.PosY - 100) / Math.PI);
+const convertBossHeadingToClonePosition = (boss) => {
+  const facing = [
+    (Math.PI), // N
+    (3 / 4) * Math.PI, // NE
+    (1 / 2) * Math.PI, // E
+    (1 / 4) * Math.PI, // SE
+    0, // S
+    (-1 / 4) * Math.PI, // SW
+    (-1 / 2) * Math.PI, // W
+    (-3 / 4) * Math.PI, // NW
+    -1 * Math.PI, // N again...
+  ];
 
-  const directions = {
-    '0': 'NNE',
-    '1': 'ENE',
-    '2': 'ESE',
-    '3': 'SSE',
-    '4': 'SSW',
-    '5': 'WSW',
-    '6': 'WNW',
-    '7': 'NNW',
+  const output = facing.reduce((prev, curr) => {
+    return Math.abs(curr - boss.Heading) < Math.abs(prev - boss.Heading) ? curr : prev;
+  });
+
+  const facingToClonePositionMap = {
+    '0': { PosX: 100, PosY: 120 },
+    '1': { PosX: 80, PosY: 120 },
+    '2': { PosX: 80, PosY: 100 },
+    '3': { PosX: 80, PosY: 80 },
+    '4': { PosX: 100, PosY: 80 },
+    '5': { PosX: 120, PosY: 80 },
+    '6': { PosX: 120, PosY: 100 },
+    '7': { PosX: 120, PosY: 120 },
+    '8': { PosX: 100, PosY: 120 }, // Same as 0
   };
 
-  const badZones = [];
-  for (const clonePosition of [p1, p2]) {
-    for (let i = 0; i < 4; ++i) {
-      let newPosition;
-      // Swiping her right
-      if (artOfDarknessAbilityId === '561E') {
-        // Off by 1 here, since N is 0 for the Clone but NNE for the safe spot
-        newPosition = ((clonePosition - i % 8) + 7) % 8;
-      } else {
-        newPosition = clonePosition + i % 8;
-      }
-      if (!badZones.includes(newPosition))
-        badZones.push(newPosition);
-    }
-  }
-  const safeZones = [0, 1, 2, 3, 4, 5, 6, 7]
-    .filter((pos) => !badZones.includes(pos))
-    .map((pos) => directions[pos]);
-
-  if (safeZones.length === 0 || safeZones.length > 2)
-    return '?';
-
-  // TODO: Find Cloud Of Darkness' rotation so we can have a definitive position.
-  if (safeZones.length === 2) {
-    const longestCommonSubstring = (string1, string2) => {
-      let longest = '';
-
-      let common = '';
-      for (let i = 0; i < string1.length; ++i) {
-        if (string1[i] !== string2[i]) {
-          common = '';
-          continue;
-        }
-        common += string1[i];
-        if (common.length > longest.length)
-          longest = common;
-      }
-      return longest;
-    };
-
-    const instruction = artOfDarknessAbilityId === '561E' ? 'LEFT' : 'RIGHT';
-
-    const lcs = longestCommonSubstring(safeZones[0], safeZones[1]);
-    // Reduce any duplicates, e.g. make 'NN' return 'N'
-    const singleDirection = String.prototype.concat(...new Set(lcs));
-
-    return `${singleDirection} + ${instruction}`;
-  }
-  return safeZones[0];
+  return facingToClonePositionMap[facing.indexOf(output)];
 };
 
 export default {
@@ -606,8 +604,15 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '5A95', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5A95', source: '어둠의 구름', capture: false }),
       durationSeconds: 8,
-      alertText: (data, _, output) => output['goLeft'](),
-      outputStrings: artOfDarknessOutputStrings,
+      alertText: (data, _, output) => {
+        if (!data.summon)
+          return output.text();
+      },
+      infoText: (data, _, output) => {
+        if (data.summon)
+          return output.text();
+      },
+      outputStrings: { text: artOfDarknessOutputStrings.goLeft },
     },
     {
       id: 'E9S The Art Of Darkness Left',
@@ -617,9 +622,17 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '5A96', source: '暗闇の雲', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5A96', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5A96', source: '어둠의 구름', capture: false }),
+      condition: (data) => !data.summon,
       durationSeconds: 8,
-      alertText: (data, _, output) => output['goRight'](),
-      outputStrings: artOfDarknessOutputStrings,
+      alertText: (data, _, output) => {
+        if (!data.summon)
+          return output.text();
+      },
+      infoText: (data, _, output) => {
+        if (data.summon)
+          return output.text();
+      },
+      outputStrings: { text: artOfDarknessOutputStrings.goRight },
     },
     {
       id: 'E9S Full-Perimeter Particle Beam',
@@ -720,6 +733,16 @@ export default {
       },
     },
     {
+      id: 'E9S Summon',
+      netRegex: NetRegexes.ability({ id: '5019', source: 'Cloud Of Darkness', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '5019', source: 'Wolke Der Dunkelheit', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '5019', source: 'Nuage De Ténèbres', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '5019', source: '暗闇の雲', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '5019', source: '暗黑之云', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '5019', source: '어둠의 구름', capture: false }),
+      run: (data) => data.summon = true,
+    },
+    {
       id: 'E9S Clone The Art Of Darkness',
       netRegex: NetRegexes.startsUsing({ id: '561[EF]', source: 'Clone Of Darkness' }),
       netRegexDe: NetRegexes.startsUsing({ id: '561[EF]', source: 'Klon der Dunkelheit' }),
@@ -728,28 +751,94 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '561[EF]', source: '幻影之云' }),
       suppressSeconds: 1,
       promise: async (data) => {
+        const cloudOfDarknessLocaleNames = {
+          en: 'Cloud Of Darkness',
+          de: 'Wolke Der Dunkelheit',
+          fr: 'Nuage De Ténèbres',
+          ja: '暗闇の雲',
+          cn: '暗黑之云',
+          ko: '어둠의 구름',
+        };
+
+        const bossData = await window.callOverlayHandler({
+          call: 'getCombatants',
+          names: [cloudOfDarknessLocaleNames[data.parserLang]],
+        });
+
+        if (bossData === null || !bossData.combatants || !bossData.combatants.length)
+          return;
+
+        // All of the fake bosses have a BNpcID of 9020, 12379 is the real one.
+        const boss = bossData.combatants.filter((boss) => boss.BNpcID !== 12379)[0];
+
+        data.boss = convertBossHeadingToClonePosition(boss);
+
         const cloneOfDarknessLocaleNames = {
           en: 'Clone Of Darkness',
           de: 'Klon der Dunkelheit',
-          fr: 'Nuage de Ténèbres',
+          fr: 'Nuage de Ténèbres', // TODO: Is this right?? Same as boss??
           ja: '幻影の雲',
           cn: '幻影之云',
         };
 
-        const combatantData = await window.callOverlayHandler({
+        const cloneData = await window.callOverlayHandler({
           call: 'getCombatants',
           names: [cloneOfDarknessLocaleNames[data.parserLang]],
         });
 
-        if (combatantData === null || !combatantData.combatants || !combatantData.combatants.length)
+        if (cloneData === null || !cloneData.combatants || !cloneData.combatants.length)
           return;
 
-        data.combatantData = combatantData;
+        data.clones = cloneData.combatants;
       },
-      alertText: (data, matches) => {
-        const clones = data.combatantData.combatants;
-        return calculateSummonSafeZone(clones[0], clones[1], matches.id);
+      alertText: (data, matches, output) => {
+        const boss = data.boss;
+        const clone1 = data.clones[0];
+        const clone2 = data.clones[1];
+
+        // Convert coordinates to 8 cardinal / intercardinal positions:
+        // N at 0, NE at 1, ... NW at 7
+        const b = Math.round(4 - 4 * Math.atan2(boss.PosX - 100, boss.PosY - 100) / Math.PI);
+        const c1 = Math.round(4 - 4 * Math.atan2(clone1.PosX - 100, clone1.PosY - 100) / Math.PI);
+        const c2 = Math.round(4 - 4 * Math.atan2(clone2.PosX - 100, clone2.PosY - 100) / Math.PI);
+
+        const directions = {
+          '0': 'NNE',
+          '1': 'ENE',
+          '2': 'ESE',
+          '3': 'SSE',
+          '4': 'SSW',
+          '5': 'WSW',
+          '6': 'WNW',
+          '7': 'NNW',
+        };
+
+        const badZones = [];
+        for (const position of [b, c1, c2]) {
+          for (let i = 0; i < 4; ++i) {
+            let newPosition;
+            // Swiping her right
+            if (matches.id === '561E') {
+              // Off by 1 here, since N is 0 for the Clone but NNE for the safe spot
+              newPosition = ((position - i % 8) + 7) % 8;
+            } else {
+              newPosition = (position + i) % 8;
+            }
+            if (!badZones.includes(newPosition))
+              badZones.push(newPosition);
+          }
+        }
+        const safeZones = [0, 1, 2, 3, 4, 5, 6, 7]
+          .filter((pos) => !badZones.includes(pos))
+          .map((pos) => directions[pos]);
+
+        if (safeZones.length !== 1)
+          return output['unknown']();
+
+        return output[safeZones[0]]();
       },
+      outputStrings: summonDirectionOutputStrings,
+      run: (data) => delete data.summon,
     },
   ],
   timelineReplace: [
