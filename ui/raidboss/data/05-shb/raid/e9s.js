@@ -601,7 +601,6 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '5A96', source: '暗闇の雲', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5A96', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5A96', source: '어둠의 구름', capture: false }),
-      condition: (data) => !data.summon,
       durationSeconds: 8,
       alertText: (data, _, output) => {
         if (!data.summon)
