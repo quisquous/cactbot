@@ -120,35 +120,13 @@ const summonDirectionOutputStrings = {
 };
 
 const convertBossHeadingToClonePosition = (boss) => {
-  const facing = [
-    (Math.PI), // N
-    (3 / 4) * Math.PI, // NE
-    (1 / 2) * Math.PI, // E
-    (1 / 4) * Math.PI, // SE
-    0, // S
-    (-1 / 4) * Math.PI, // SW
-    (-1 / 2) * Math.PI, // W
-    (-3 / 4) * Math.PI, // NW
-    -1 * Math.PI, // N again...
-  ];
-
-  const closestRad = facing.reduce((prev, curr) => {
-    return Math.abs(curr - boss.Heading) < Math.abs(prev - boss.Heading) ? curr : prev;
-  });
-
-  const facingToClonePositionMap = {
-    '0': { PosX: 100, PosY: 120 },
-    '1': { PosX: 80, PosY: 120 },
-    '2': { PosX: 80, PosY: 100 },
-    '3': { PosX: 80, PosY: 80 },
-    '4': { PosX: 100, PosY: 80 },
-    '5': { PosX: 120, PosY: 80 },
-    '6': { PosX: 120, PosY: 100 },
-    '7': { PosX: 120, PosY: 120 },
-    '8': { PosX: 100, PosY: 120 }, // Same as 0
+  // Snap heading to closest card/intercard (aka PI/4).  N = PI, E = PI/2.
+  const closestRad = Math.round(boss.Heading * 4 / Math.PI) / 4 * Math.PI;
+  // Find position opposite of the boss facing, centered on 100,100.
+  return {
+    PosX: 100 - 20 * Math.round(Math.sin(closestRad)),
+    PosY: 100 - 20 * Math.round(Math.cos(closestRad)),
   };
-
-  return facingToClonePositionMap[facing.indexOf(closestRad)];
 };
 
 export default {
