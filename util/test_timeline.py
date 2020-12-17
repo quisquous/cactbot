@@ -10,7 +10,6 @@ import fflogs
 import encounter_tools as e_tools
 
 
-
 def load_timeline(timeline):
     """Loads a timeline file into a list of entry dicts"""
     timelist = []
