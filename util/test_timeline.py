@@ -9,6 +9,11 @@ import re
 import fflogs
 import encounter_tools as e_tools
 
+class tcolor:
+    WARN = '\033[33m'
+    FAIL = '\033[91m'
+    SYNCWARN = '\033[93m'
+    END = '\033[0m'
 
 def load_timeline(timeline):
     """Loads a timeline file into a list of entry dicts"""
@@ -281,11 +286,11 @@ def test_match(event, entry):
 
 
 def drift_fail(entry_text):
-    return "\033[91m" + entry_text + "\033[0m"
+    return tcolor.FAIL + entry_text + tcolor.END
 
 
 def drift_warn(entry_text):
-    return "\033[33m" + entry_text + "\033[0m"
+    return tcolor.WARN + entry_text + tcolor.END
 
 
 def check_event(event, timelist, state):
