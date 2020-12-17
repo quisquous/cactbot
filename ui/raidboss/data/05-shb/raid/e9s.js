@@ -131,7 +131,7 @@ const convertBossHeadingToClonePosition = (boss) => {
     -1 * Math.PI, // N again...
   ];
 
-  const output = facing.reduce((prev, curr) => {
+  const closestRad = facing.reduce((prev, curr) => {
     return Math.abs(curr - boss.Heading) < Math.abs(prev - boss.Heading) ? curr : prev;
   });
 
@@ -147,7 +147,7 @@ const convertBossHeadingToClonePosition = (boss) => {
     '8': { PosX: 100, PosY: 120 }, // Same as 0
   };
 
-  return facingToClonePositionMap[facing.indexOf(output)];
+  return facingToClonePositionMap[facing.indexOf(closestRad)];
 };
 
 export default {
