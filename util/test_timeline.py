@@ -315,7 +315,7 @@ def check_event(event, timelist, state):
             entry_text = "{:.3f}: Matched entry: {} {} ({:+.3f}s)".format(
                 timeline_position, entry["time"], entry["label"], drift
             )
-            if abs(drift) > args.drift_failure:
+            if args.drift_max > abs(drift) > args.drift_failure:
                 print(e_tools.color_fail(entry_text))
             elif args.drift_failure > abs(drift) > args.drift_warning:
                 print(e_tools.color_warn(entry_text))
@@ -556,6 +556,14 @@ if __name__ == "__main__":
         default=0.2,
         type=float,
         help="If an entry misses its timestamp by more than this value in seconds, it is displayed in yellow. Defaults to 0.2.",
+    )
+    parser.add_argument(
+        "-dm",
+        "--drift-max",
+        nargs="?",
+        default=10,
+        type=float,
+        help="If an entry misses its timestamp by more than this value in seconds, it is assumed to be a jump and will not be highlighted. Defaults to 10.",
     )
 
     args = parser.parse_args()
