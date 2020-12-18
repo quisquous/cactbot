@@ -233,12 +233,12 @@ export default {
         south: {
           en: 'South',
           de: 'Süden',
-          cn: '去南边'
+          cn: '去南边',
         },
         east: {
           en: 'East',
           de: 'Osten',
-          cn: '去东边'
+          cn: '去东边',
         },
         west: {
           en: 'West',
@@ -296,12 +296,12 @@ export default {
         south: {
           en: 'South',
           de: 'Süden',
-          cn: '去南边'
+          cn: '去南边',
         },
         east: {
           en: 'East',
           de: 'Osten',
-          cn: '去东边'
+          cn: '去东边',
         },
         west: {
           en: 'West',
