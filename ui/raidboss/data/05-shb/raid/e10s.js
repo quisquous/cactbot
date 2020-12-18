@@ -228,18 +228,22 @@ export default {
         north: {
           en: 'North',
           de: 'Norden',
+          cn: '去北边',
         },
         south: {
           en: 'South',
           de: 'Süden',
+          cn: '去南边'
         },
         east: {
           en: 'East',
           de: 'Osten',
+          cn: '去东边'
         },
         west: {
           en: 'West',
           de: 'Westen',
+          cn: '去西边',
         },
         leftCleave: {
           en: 'Left Cleave',
@@ -287,18 +291,22 @@ export default {
         north: {
           en: 'North',
           de: 'Norden',
+          cn: '去北边',
         },
         south: {
           en: 'South',
           de: 'Süden',
+          cn: '去南边'
         },
         east: {
           en: 'East',
           de: 'Osten',
+          cn: '去东边'
         },
         west: {
           en: 'West',
           de: 'Westen',
+          cn: '去西边',
         },
         rightCleave: {
           en: 'Right Cleave',
