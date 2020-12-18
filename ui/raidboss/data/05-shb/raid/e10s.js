@@ -776,7 +776,7 @@ export default {
     {
       'locale': 'ja',
       'replaceSync': {
-        'Shadowkeeper': '影の王命',
+        'Shadowkeeper': '影の王',
         'Shadow Of A Hero': '英雄の影',
         'Shadefire': 'シャドウファイア',
       },
