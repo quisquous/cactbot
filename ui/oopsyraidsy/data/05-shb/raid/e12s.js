@@ -44,6 +44,9 @@ export default {
     'E12S Promise Kingsblaze': '4F9E', // Big lion breath
     'E12S Oracle Black Halo': '58C7', // Tankbuster cleave
   },
+  gainsEffectFail: {
+    'E12S Oracle Doom': '9D4', // Relativity punishment for multiple mistakes
+  },
   triggers: [
     {
       id: 'E12S Promise Ice Pillar Tracker',
