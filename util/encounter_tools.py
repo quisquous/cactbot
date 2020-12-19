@@ -256,10 +256,12 @@ def is_tl_line_adds(poss_match):
 
 
 def colorize(input_text, color_code):
-    return '{}{}{}'.format(color_code, input_text, tcolor.END)
+    return "{}{}{}".format(color_code, input_text, tcolor.END)
+
 
 def color_fail(entry_text):
     return colorize(tcolor.FAIL, entry_text)
+
 
 def color_warn(entry_text):
     return colorize(tcolor.WARN, entry_text)
