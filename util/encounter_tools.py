@@ -255,9 +255,11 @@ def is_tl_line_adds(poss_match):
     return re.search(r"Added new combatant (.*$)", poss_match)
 
 
-def color_fail(entry_text):
-    return tcolor.FAIL + entry_text + tcolor.END
+def colorize(input_text, color_code):
+    return '{}{}{}'.format(color_code, input_text, tcolor.END)
 
+def color_fail(entry_text):
+    return colorize(tcolor.FAIL, entry_text)
 
 def color_warn(entry_text):
-    return tcolor.WARN + entry_text + tcolor.END
+    return colorize(tcolor.WARN, entry_text)
