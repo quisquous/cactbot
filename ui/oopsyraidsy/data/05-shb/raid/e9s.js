@@ -1,8 +1,6 @@
 import ZoneId from '../../../../../resources/zone_id.js';
 
 // TODO: 561D Evil Seed hits everyone, hard to know if there's a double tap
-// TODO: 561B Stygian Tendrils cast Aetherosynthesis?
-// TODO: 561A Stygian Tendrils cast Withdraw?
 // TODO: falling through panel just does damage with no ability name, like a death wall
 // TODO: what happens if you jump in seed thorns?
 
