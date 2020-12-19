@@ -4,17 +4,7 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-# Two phase block abilities are not translated:
-# 5B0D, https://xivapi.com/action/23309, which is
-# Attack on the Shadow of the Hero: Howling Shadow (shortened here as Howling Shadow)
-
-# 56CC, https://xivapi.com/action/22220, which is
-# Attack on the Shadow of the Hero: Void Pulsation (--sync--, since it lines up with Void Pulse)
-
-# Neither of these attacks' names can safely be in the actual file,
-# since multiple utilities throw exceptions based on characters they contain.
-
-# -ii 56B0 56B6 56B9 56BA 56BB 56BD 56BE 56C0 56C1 56D4 56D5 56D8 56D9 56E1 56E7 5B09 5B26
+# -ii 56B0 56B6 56B9 56BA 56BB 56BD 56BE 56C0 56C1 56CC 56D4 56D5 56D8 56D9 56E1 56E7 5B09 5B0D 5B26
 
 0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
@@ -42,12 +32,10 @@ hideall "--sync--"
 194.1 "Left/Right Shadow Slash" sync /:Shadowkeeper:56(AF|B2):/
 205.5 "Voidgate" sync /:Shadowkeeper:56DD:/ window 50,50
 219.6 "Void Pulse" sync /:Shadowkeeper:56DE:/
-220.2 "--sync--" sync /:Shadowkeeper:56CC:/
 230.8 "Left/Right Shadow Slash" sync /:Shadowkeeper:56(AF|B2):/
 233.9 "Left/Right Shadow Slash" sync /:Shadowkeeper:56(AF|B2):/
-246.6 "Distant Scream" sync /:Shadowkeeper:56C6:/
+246.6 "Distant Scream" sync /:Shadowkeeper:56C6:/ window 246.6,10
 
-246.7 "Howling Shadow" sync /:Shadowkeeper:5B0D:/ window 246.7,10
 253.2 "--center--" sync /:Shadowkeeper:5B08:/
 258.6 "Spawn Shadow" sync /:Shadowkeeper:56D6:/
 260.3 "--sync--" sync /:Shadowkeeper:56D7:/
@@ -66,7 +54,6 @@ hideall "--sync--"
 359.0 "Throne Of Shadow" sync /:Shadowkeeper:56C7:/
 367.6 "Voidgate" sync /:Shadowkeeper:56DD:/
 381.7 "Void Pulse" sync /:Shadowkeeper:56DE:/
-382.3 "--sync--" sync /:Shadowkeeper:56CC:/
 384.8 "Left/Right Giga Slash" sync /:Shadowkeeper:56(AE|B1):/
 395.2 "Shadowy Eruption" sync /:Shadowkeeper:56(DF|E4):/
 404.4 "Left/Right Shadow Slash" sync /:Shadowkeeper:56(AF|B2):/
@@ -74,9 +61,8 @@ hideall "--sync--"
 418.6 "Umbra Smash x4" duration 5 # sync /:Shadowkeeper:5BAB:/
 430.0 "Shadow's Edge" sync /:Shadowkeeper:5B0B:/
 439.3 "Shadowy Eruption x3" # sync /:Shadowkeeper:56E0:/
-449.0 "Distant Scream" sync /:Shadowkeeper:56C6:/
+449.0 "Distant Scream" sync /:Shadowkeeper:56C6:/ jump 246.6
 
-449.1 "Howling Shadow" sync /:Shadowkeeper:5B0D:/ jump 246.7
 461.0 "Spawn Shadow"
 467.1 "Shadow Warrior"
 479.3 "Shadowy Eruption"
