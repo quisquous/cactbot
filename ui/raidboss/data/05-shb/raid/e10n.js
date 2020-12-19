@@ -43,6 +43,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Go Front',
+          ja: '前へ',
+          cn: '去前方',
         },
       },
     },
@@ -58,7 +60,7 @@ export default {
           en: 'Shadow Side',
           de: 'Schatten Seite',
           fr: 'Ombre à côté',
-          ja: '影同じ側へ',
+          ja: '影と同じ側へ',
           cn: '影子同侧',
           ko: '그림자 쪽으로',
         },
@@ -172,6 +174,8 @@ export default {
         text: {
           // TODO: this could be better if we knew where the shadow was
           en: 'Away From Black Lines',
+          ja: '黒い線から離れる',
+          cn: '远离黑线',
         },
       },
     },
