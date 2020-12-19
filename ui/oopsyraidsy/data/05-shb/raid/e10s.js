@@ -1,5 +1,8 @@
 import ZoneId from '../../../../../resources/zone_id.js';
 
+// TODO: hitting shadow of the hero with abilities can cause you to take damage, list those?
+//       e.g. picking up your first pitch bog puddle will cause you to die to the damage
+//       your shadow takes from Deepshadow Nova or Distant Scream.
 // TODO: 573B Blighting Blitz issues during limit cut numbers
 // TODO: shackle apart/together failures
 // TODO: tower (void pulse) failures
