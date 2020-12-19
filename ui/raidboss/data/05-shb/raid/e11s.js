@@ -166,7 +166,7 @@ export default {
           en: 'Protean -> Holy Groups',
           de: 'Himmelsrichtung -> Sanctus Gruppen',
           fr: 'Position -> Groupes',
-          ja: '8方向散開 -> 光3方向頭割り'<
+          ja: '8方向散開 -> 光3方向頭割り',
           cn: '八方 -> 光三向分摊',
           ko: '8산개 -> 홀리 그룹 쉐어',
         },
