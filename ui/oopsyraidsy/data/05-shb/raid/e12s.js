@@ -20,8 +20,6 @@ export default {
     'E12S Promise Ferostorm': '4E46', // Garuda get intercardinals cast (damage down)
     'E12S Promise Judgment Jolt': '4E47', // Ramuh get out cast (damage down)
     'E12S Promise Shatter': '589C', // Ice Pillar explosion if tether not gotten
-    'E12S Oracle Dark Eruption 1': '58CE', // Initial warmup spread mechanic
-    'E12S Oracle Dark Eruption 2': '58CD', // Relativity spread mechanic
     'E12S Oracle Dark Blizard III': '58D3', // Relativity donut mechanic
     'E12S Oracle Apocalypse': '58E6', // Light up circle explosions (damage down)
   },
@@ -41,6 +39,8 @@ export default {
     'E12S Promise Pulse Of The Land': '58A3', // Titan bomb yellow marker
     'E12S Promise Blade Of Flame': '58B3', // Classic Sculpture laser
     'E12S Promise Kingsblaze': '4F9E', // Big lion breath
+    'E12S Oracle Dark Eruption 1': '58CE', // Initial warmup spread mechanic
+    'E12S Oracle Dark Eruption 2': '58CD', // Relativity spread mechanic
     'E12S Oracle Black Halo': '58C7', // Tankbuster cleave
   },
   gainsEffectFail: {
