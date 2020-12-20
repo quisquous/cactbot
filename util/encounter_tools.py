@@ -56,20 +56,28 @@ def is_line_end(line_fields):
 
 
 def is_zone_seal(line_fields):
+    if len(line_fields) <= 4:
+        return False
     return line_fields[4].endswith("sealed off in 15 seconds!")
 
 
 def is_zone_unseal(line_fields):
+    if len(line_fields) <= 4:
+        return False
     return line_fields[4].endswith("no longer sealed!")
 
 
 def is_ce_start(line_fields):
+    if len(line_fields) <= 2:
+        return False
     if line_fields[0] != "00" or line_fields[2] != "0039":
         return False
     return get_ce_name(line_fields)
 
 
 def get_ce_name(line_fields):
+    if len(line_fields) <= 4:
+        return False
     m = re.match(r"You have joined the critical engagement, (.*)\. Access", line_fields[4])
     if not m:
         return ""
@@ -77,27 +85,39 @@ def get_ce_name(line_fields):
 
 
 def is_ce_end(line_fields):
+    if len(line_fields) <= 4:
+        return False
     return line_fields[0] == "33" and line_fields[3] == "80000014" and line_fields[4] == "00"
 
 
 def is_line_attack(line_fields):
+    if len(line_fields) <= 6:
+        return False
     # We want only situations where a friendly attacks an enemy
     return line_fields[0] in ("21", "22") and line_fields[6].startswith("4")
 
 
 def is_instance_begun(line_fields):
+    if len(line_fields) <= 4:
+        return False
     return line_fields[4].endswith("has begun.")
 
 
 def is_instance_updated(line_fields):
+    if len(line_fields) <= 3:
+        return False
     return line_fields[0] == "33" and line_fields[3] in ["40000001", "40000006"]
 
 
 def is_instance_ended(line_fields):
+    if len(line_fields) <= 4:
+        return False
     return line_fields[4].endswith("has ended.")
 
 
 def is_encounter_end_code(line_fields):
+    if len(line_fields) <= 3:
+        return False
     if not line_fields[0] == "33":
         return False
     return line_fields[3] in ("40000010", "40000003")
