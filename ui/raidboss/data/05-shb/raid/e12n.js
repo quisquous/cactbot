@@ -128,15 +128,15 @@ export default {
     },
     {
       // Titanic Bombs spawn at two of four points:
-      // NW X: -11.31371 Y: -63.68629
-      // SW X: -11.31371 Y: -86.3137
-      // NE X: 11.31371 Y: -63.68629
-      // SE X: 11.31371 Y: -86.3137
+      // SW X: -11.31371 Y: -63.68629
+      // NW X: -11.31371 Y: -86.3137
+      // SE X: 11.31371 Y: -63.68629
+      // NE X: 11.31371 Y: -86.3137
       id: 'E12N Bomb Collect',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9816' }),
       run: (data, matches) => {
         const bomb = {};
-        bomb.north = parseFloat(matches.y) + 70 > 0;
+        bomb.north = parseFloat(matches.y) + 70 < 0;
         bomb.east = parseFloat(matches.x) > 0;
         data.bombs = data.bombs || [];
         data.bombs.push(bomb);
