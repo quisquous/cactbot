@@ -51,20 +51,20 @@ export default {
       id: 'E12S Promise Ice Pillar Tracker',
       netRegex: NetRegexes.tether({ source: 'Ice Pillar', id: ['0001', '0039'] }),
       run: (e, data, matches) => {
-        data.pillars = data.pillars || {};
-        data.pillars[matches.sourceId] = matches.target;
+        data.pillarIdToOwner = data.pillarIdToOwner || {};
+        data.pillarIdToOwner[matches.sourceId] = matches.target;
       },
     },
     {
       id: 'E12S Promise Ice Pillar Mistake',
       netRegex: NetRegexes.ability({ source: 'Ice Pillar', id: '589B' }),
       condition: (e, data, matches) => {
-        if (!data.pillars)
+        if (!data.pillarIdToOwner)
           return false;
-        return matches.target === data.pillars[matches.sourceId];
+        return matches.target !== data.pillarIdToOwner[matches.sourceId];
       },
       mistake: (e, data, matches) => {
-        const pillarOwner = data.pillars[matches.sourceId];
+        const pillarOwner = data.pillarIdToOwner[matches.sourceId];
         return {
           type: 'fail',
           blame: matches.target,
