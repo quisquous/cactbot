@@ -26,7 +26,6 @@ export default {
     'E12S Oracle Apocalypse': '58E6', // Light up circle explosions (damage down)
   },
   damageFail: {
-    'E12S Oracle Shadoweye': '58D2', // Relativity Gaze
     'E12S Oracle Maelstrom': '58DA', // Advanced Relativity traffic light aoe
   },
   shareWarn: {
@@ -109,6 +108,14 @@ export default {
             cn: '击退坠落',
           },
         };
+      },
+    },
+    {
+      id: 'E12S Oracle Shadoweye',
+      damageRegex: '58D2',
+      condition: (e) => e.damage > 0,
+      mistake: (e, data, matches) => {
+        return { type: 'fail', blame: matches.target, text: matches.ability };
       },
     },
   ],
