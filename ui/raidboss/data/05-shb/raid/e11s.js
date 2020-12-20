@@ -484,14 +484,6 @@ export default {
       },
     },
     {
-      id: 'E11S Resonant Winds',
-      netRegex: NetRegexes.startsUsing({ source: 'Demi-Gukumatz', id: '5689', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Demi-Gukumatz', id: '5689', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Demi-Gukumatz', id: '5689', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'デミグクマッツ', id: '5689', capture: false }),
-      response: Responses.getIn('info'),
-    },
-    {
       id: 'E11S Shifting Sky Fire',
       netRegex: NetRegexes.startsUsing({ source: 'Fatebreaker', id: '5675', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Fusioniert(?:e|er|es|en) Ascian', id: '5675', capture: false }),
