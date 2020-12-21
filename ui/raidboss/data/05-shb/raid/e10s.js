@@ -35,7 +35,7 @@ export default {
         text: {
           en: 'Shadow Side',
           de: 'Schatten Seite',
-          fr: 'Ombre à côté',
+          fr: 'Allez du côté de l\'ombre',
           ja: '影と同じ側へ',
           cn: '影子同侧',
           ko: '그림자 쪽으로',
@@ -53,7 +53,7 @@ export default {
         text: {
           en: 'Opposite Shadow',
           de: 'Gegenüber des Schattens',
-          fr: 'Ombre opposée',
+          fr: 'Allez du côté opposé à l\'ombre',
           ja: '影の反対側へ',
           cn: '影子异侧',
           ko: '그림자 반대쪽으로',
@@ -228,6 +228,7 @@ export default {
         north: {
           en: 'North',
           de: 'Norden',
+          fr: 'Nord',
           cn: '去北边',
           ja: '北',
           ko: '북쪽',
@@ -235,6 +236,7 @@ export default {
         south: {
           en: 'South',
           de: 'Süden',
+          fr: 'Sud"
           cn: '去南边',
           ja: '南',
           ko: '남쪽',
@@ -242,6 +244,7 @@ export default {
         east: {
           en: 'East',
           de: 'Osten',
+          fr: 'Est',
           cn: '去东边',
           ja: '東',
           ko: '동쪽',
@@ -249,6 +252,7 @@ export default {
         west: {
           en: 'West',
           de: 'Westen',
+          fr: 'Ouest',
           cn: '去西边',
           ja: '西',
           ko: '서쪽',
@@ -299,24 +303,28 @@ export default {
         north: {
           en: 'North',
           de: 'Norden',
+          fr: 'Nord',
           cn: '去北边',
           ko: '북쪽',
         },
         south: {
           en: 'South',
           de: 'Süden',
+          fr: 'Sud',
           cn: '去南边',
           ko: '남쪽',
         },
         east: {
           en: 'East',
           de: 'Osten',
+          fr: 'Est',
           cn: '去东边',
           ko: '동쪽',
         },
         west: {
           en: 'West',
           de: 'Westen',
+          fr: 'Ouest',
           cn: '去西边',
           ko: '서쪽',
         },
@@ -512,6 +520,7 @@ export default {
           // TODO: this also happens twice, with tethers
           en: 'Be On Squiggles',
           de: 'Sei auf dem Kringel',
+          fr: 'Allez sur l\'ombre tordue',
           ja: '曲線上待機',
           cn: '站到连线为曲线的一侧',
           ko: '구불구불한 선 쪽으로',
@@ -532,6 +541,7 @@ export default {
           // TODO: this could be better if we knew where the shadow was
           en: 'Away From Squiggles',
           de: 'Weg vom Kringel',
+          fr: 'Éloignez-vous de l\'ombre tordue',
           ja: '安置へ',
           cn: '远离连线为曲线的一侧',
           ko: '곧은 선 쪽으로',
@@ -552,7 +562,7 @@ export default {
         text: {
           en: 'Shadow Side',
           de: 'Schatten Seite',
-          fr: 'Ombre à côté',
+          fr: 'Allez du côté de l\'ombre',
           ja: '影と同じ側へ',
           cn: '影子同侧',
           ko: '그림자 쪽으로',
@@ -571,7 +581,7 @@ export default {
         text: {
           en: 'Opposite Shadow',
           de: 'Gegenüber des Schattens',
-          fr: 'Ombre opposée',
+          fr: 'Allez du côté opposé à l\'ombre',
           ja: '影の反対側へ',
           cn: '影子异侧',
           ko: '그림자 반대쪽',
