@@ -236,7 +236,7 @@ export default {
         south: {
           en: 'South',
           de: 'Süden',
-          fr: 'Sud"
+          fr: 'Sud',
           cn: '去南边',
           ja: '南',
           ko: '남쪽',
