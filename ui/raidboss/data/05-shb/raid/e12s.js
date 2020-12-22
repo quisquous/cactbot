@@ -7,6 +7,11 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // TODO: knockback direction from big hand after giant lasers (Palm Of Temperance 58B4/58B6/?/?)
 // TODO: for left/right reach during Blade Of Flame, call out Left + #1 alarm for #1.
 
+// TODO: somber dance triggers
+// TODO: apocalypse "get away from facing" or some such triggers
+// TODO: double apoc clockwise vs counterclockwise call would be nice
+// TODO: maybe call something for advanced, including double aero partners?
+
 // Each tether ID corresponds to a primal:
 // 008C -- Shiva
 // 008D -- Titan
@@ -149,6 +154,39 @@ const numberOutputStrings = [0, 1, 2, 3, 4].map((n) => {
     ko: str,
   };
 });
+
+// These keys map effect ids to `intermediateRelativityOutputStrings` keys.
+const effectIdToOutputStringKey = {
+  '690': 'flare',
+  '996': 'stack',
+  '998': 'shadoweye',
+  '99C': 'eruption',
+  '99E': 'blizzard',
+  '99F': 'aero',
+};
+
+// These are currently used for both the informative x > y > z callout,
+// but also the individual alerts.  These are kept short and snappy.
+const intermediateRelativityOutputStrings = {
+  flare: {
+    en: 'Flare',
+  },
+  stack: {
+    en: 'Stack',
+  },
+  shadoweye: {
+    en: 'Gaze',
+  },
+  eruption: {
+    en: 'Spread',
+  },
+  blizzard: {
+    en: 'Ice',
+  },
+  aero: {
+    en: 'Aero',
+  },
+};
 
 export default {
   zoneId: ZoneId.EdensPromiseEternitySavage,
@@ -494,6 +532,162 @@ export default {
           ja: '自分にライオン線',
           cn: '狮子连线点名',
           ko: '사자 선 대상자',
+        },
+      },
+    },
+    {
+      id: 'E12S Oracle Shockwave Pulsar',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58F0', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.aoe(),
+    },
+    {
+      id: 'E12S Oracle Basic Relativity',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E0', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.bigAoe(),
+      run: (data) => data.phase = 'basic',
+    },
+    {
+      id: 'E12S Oracle Intermediate Relativity',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E1', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.bigAoe(),
+      run: (data) => data.phase = 'intermediate',
+    },
+    {
+      id: 'E12S Oracle Advanced Relativity',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E2', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.bigAoe(),
+      run: (data) => data.phase = 'advanced',
+    },
+    {
+      id: 'E12S Oracle Terminal Relativity',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E3', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.bigAoe(),
+      run: (data) => data.phase = 'terminal',
+    },
+    {
+      id: 'E12S Oracle Darkest Dance',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58BE', capture: false }),
+      infoText: (data, _, output) => {
+        if (data.role === 'tank')
+          return output.tankBait();
+        return output.partyUnder();
+      },
+      outputStrings: {
+        tankBait: {
+          en: 'Bait Far',
+        },
+        partyUnder: {
+          en: 'Get Under',
+          de: 'Unter ihn',
+          fr: 'En dessous',
+          ja: 'ボスと貼り付く',
+          cn: '去脚下',
+          ko: '보스 아래로',
+        },
+      },
+    },
+    {
+      id: 'E12S Shell Crusher',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C3', capture: false }),
+      response: Responses.getTogether('alert'),
+    },
+    {
+      id: 'E12S Spirit Taker',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C4', capture: false }),
+      response: Responses.spread('info'),
+    },
+    {
+      id: 'E12S Black Halo',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C7' }),
+      condition: Conditions.caresAboutPhysical(),
+      response: Responses.tankBuster('alert'),
+    },
+    {
+      id: 'E12S Relativity Debuff Collector',
+      // 690 Spell-In-Waiting: Flare
+      // 996 Spell-In-Waiting: Unholy Darkness
+      // 998 Spell-In-Waiting: Shadoweye
+      // 99C Spell-In-Waiting: Dark Eruption
+      // 99E Spell-In-Waiting: Dark Blizzard III
+      // 99F Spell-In-Waiting: Dark Aero III
+      netRegex: NetRegexes.gainsEffect({ effectId: ['690', '99[68CEF]'] }),
+      condition: (data, matches) => data.phase === 'intermediate' && matches.target === data.me,
+      preRun: (data, matches) => {
+        data.debuffs = data.debuffs || {};
+        data.debuffs[matches.effectId] = parseFloat(matches.duration);
+      },
+      infoText: (data, _, output) => {
+        const unsortedIds = Object.keys(data.debuffs);
+        if (unsortedIds.length !== 3)
+          return;
+
+        // Sort effect ids descending by duration.
+        const sortedIds = unsortedIds.sort((a, b) => data.debuffs[b] - data.debuffs[a]);
+        const keys = sortedIds.map((effectId) => effectIdToOutputStringKey[effectId]);
+
+        // Stash outputstring keys to use later.
+        data.intermediateDebuffs = [keys[1], keys[2]];
+
+        return output.comboText({
+          effect1: output[keys[0]](),
+          effect2: output[keys[1]](),
+          effect3: output[keys[2]](),
+        });
+      },
+      outputStrings: Object.assign({
+        comboText: {
+          en: '${effect1} > ${effect2} > ${effect3}',
+        },
+      }, intermediateRelativityOutputStrings),
+    },
+    {
+      id: 'E12S Relativity Debuffs',
+      // Players originally get `Spell-in-Waiting: Return` or `Spell-in-Waiting: Return IV`.
+      // When Spell-in-Waiting Return IV wears off, players get Return IV effect.
+      // When Return IV effect wears off, players get Return effect.
+      // When Return effect wears off, players go back to previous locations
+      //
+      // Return = 994
+      // Return IV = 995
+      netRegex: NetRegexes.gainsEffect({ effectId: '99[45]' }),
+      condition: Conditions.targetIsYou(),
+      response: (data, _, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = Object.assign({
+          moveAway: {
+            en: 'Move!',
+            de: 'Bewegen!',
+            fr: 'Bougez !',
+            ja: '避けて！',
+            cn: '快躲开！',
+            ko: '이동하기!',
+          },
+        }, intermediateRelativityOutputStrings);
+
+        if (data.phase !== 'intermediate')
+          return { infoText: output.moveAway() };
+
+        const key = data.intermediateDebuffs && data.intermediateDebuffs.shift();
+        if (!key)
+          return { infoText: output.moveAway() };
+        return { alertText: output[key]() };
+      },
+    },
+    {
+      // For all relativities, players should look outside during the final return effect.
+      id: 'E12S Relativity Look Outside',
+      netRegex: NetRegexes.gainsEffect({ effectId: '994' }),
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - 1.5,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look Outside',
         },
       },
     },
