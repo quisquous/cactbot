@@ -320,7 +320,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '589D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '589D', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '589D', capture: false }),
-      delaySeconds: 3.1, // just for safety
+      delaySeconds: 4,
       response: Responses.knockback('alert'),
     },
     {
