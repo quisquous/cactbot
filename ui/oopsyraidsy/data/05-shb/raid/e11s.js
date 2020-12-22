@@ -19,6 +19,13 @@ export default {
     'E11S Halo Of Levin Brightfire': '566C', // Blue circle intermission explosion
     'E11S Portal Of Flame Bright Pulse': '5671', // Red card intermission explosion
     'E11S Portal Of Levin Bright Pulse': '5670', // Blue card intermission explosion
+    'E11S Resonant Winds': '5689', // Demi-Gukumatz "get in"
+    'E11S Resounding Crack': '5688', // Demi-Gukumatz 270 degree frontal cleave
+    'E11S Image Burnt Strike Lightning': '567B', // Fate Breaker's Image line cleave
+    'E11N Image Burnout': '567C', // Fate Breaker's Image lightning expansion
+    'E11N Image Burnt Strike Fire': '5679', // Fate Breaker's Image line cleave
+    'E11N Image Burnt Strike Holy': '567B', // Fate Breaker's Image line cleave
+    'E11N Image Shining Blade': '567E', // Fate Breaker's Image baited explosion
   },
   damageFail: {
     'E11S Burnout': '5655', // Burnt Strike lightning expansion
