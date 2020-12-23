@@ -144,14 +144,14 @@ const primalOutputStrings = {
 // The first 1B marker in the encounter is the formless tankbuster, ID 004F.
 const firstHeadmarker = parseInt('00DA', 16);
 const getHeadmarkerId = (data, matches) => {
-  // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 004F.
+  // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 00DA.
   // (This makes the offset 0, and !0 is true.)
   if (typeof data.decOffset === 'undefined')
     data.decOffset = parseInt(matches.id, 16) - firstHeadmarker;
   // The leading zeroes are stripped when converting back to string, so we re-add them here.
   // Fortunately, we don't have to worry about whether or not this is robust,
   // since we know all the IDs that will be present in the encounter.
-  return '00' + (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase();
+  return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
 
 // For giant lasers.
