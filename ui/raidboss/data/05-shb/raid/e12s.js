@@ -227,14 +227,16 @@ export default {
           if (data.seenFirstBombs && data.weightTargets.length === 2) {
             if (data.weightTargets.includes(data.me)) {
               const partner = data.weightTargets[data.weightTargets[0] === data.me ? 1 : 0];
-              return output.titanBlueWithPartner({ player: data.ShortName(partner) });
+              return {
+                alarmText: output.titanBlueWithPartner({ player: data.ShortName(partner) }),
+              };
             }
           }
         }
 
         // From here on out, any response is for the current player.
         if (matches.target !== data.me)
-          return response;
+          return;
 
         // Formless double tankbuster mechanic.
         if (id === '00DA') {
