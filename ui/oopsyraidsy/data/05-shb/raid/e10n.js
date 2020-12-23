@@ -15,6 +15,7 @@ export default {
     'E10N Right Shadow Slash': '56AF', // giga slash from shadow
     'E10N Left Giga Slash': '56B1', // boss left giga slash
     'E10N Left Shadow Slash': '56BD', // giga slash from shadow
+    'E10N Shadowy Eruption': '56E1', // baited ground aoe markers paired with barbs
   },
   shareWarn: {
     'E10N Shadow\'s Edge': '56DB', // Tankbuster single target followup
