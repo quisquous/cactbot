@@ -622,7 +622,7 @@ export default {
       condition: (data, matches) => data.phase === 'intermediate' && matches.target === data.me,
       preRun: (data, matches) => {
         data.debuffs = data.debuffs || {};
-        data.debuffs[matches.effectId] = parseFloat(matches.duration);
+        data.debuffs[matches.effectId.toUpperCase()] = parseFloat(matches.duration);
       },
       infoText: (data, _, output) => {
         const unsortedIds = Object.keys(data.debuffs);
