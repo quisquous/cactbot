@@ -38,6 +38,7 @@ export default {
             fr: 'Assomé',
             ja: 'ノックバック',
             cn: '击退坠落',
+            ko: '넉백',
           },
         };
       },
