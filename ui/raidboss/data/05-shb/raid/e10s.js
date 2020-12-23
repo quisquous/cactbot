@@ -508,6 +508,7 @@ export default {
     },
     {
       id: 'E10S Fade To Shadow',
+      // Fade To Shadow starts well before the Cloak of Shadows, so use that instead for initial.
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '572B', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '572B', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '572B', capture: false }),
@@ -528,17 +529,18 @@ export default {
       },
     },
     {
-      id: 'E10S Cloak of Shadows 1',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5B13', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5B13', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5B13', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5B13', capture: false }),
+      id: 'E10S Cloak Of Shadows',
+      // 5B13/5B14 Cloak Of Shadows both start casting at the same time but go off separately.
+      // So, use the initial 5B13 hit to time the move away trigger.
+      netRegex: NetRegexes.ability({ source: 'Shadowkeeper', id: '5B13', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Schattenkönig', id: '5B13', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Roi De L\'Ombre', id: '5B13', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '影の王', id: '5B13', capture: false }),
       delaySeconds: 4,
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          // TODO: this could be better if we knew where the shadow was
           en: 'Away From Squiggles',
           de: 'Weg vom Kringel',
           fr: 'Éloignez-vous de l\'ombre tordue',
