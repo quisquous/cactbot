@@ -147,7 +147,30 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5BAA' }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5BAA' }),
       condition: Conditions.caresAboutPhysical(),
-      response: Responses.tankBusterSwap(),
+      // Although this is a swap, use `tankBuster` here to give the off tank a warning and a chance
+      // to shield the main tank.  The offtank swap is delayed into the swap trigger below.
+      response: Responses.tankBuster('alert', 'info'),
+      run: (data, matches) => {
+        data.umbraTarget = matches.target;
+      },
+    },
+    {
+      id: 'E10S Umbra Smash Offtank Swap',
+      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5BAA' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5BAA' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5BAA' }),
+      netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5BAA' }),
+      condition: (data, matches) => data.role === 'tank' && matches.target !== data.me,
+      // This is a four hit tankbuster with a wind-up castbar.
+      // If you provoke in between the four hits, you can end up taking a hit, so the offtank
+      // needs to wait until all four hits have been applied (or something roughly there).
+      // Therefore, need a delay that is a good balance of "warning ahead of time" and
+      // "not so soon that the offtank steals the 4th hit".  For reference:
+      //   * 3rd hit = 7.3 seconds after cast starts
+      //   * 4th hit = 8.9 seconds after cast starts
+      // TODO: verify that the 4th hit is locked in with this delay (or if it could be shorter)
+      delaySeconds: 8.5,
+      response: Responses.tankBusterSwap('alert', 'alert'),
       run: (data, matches) => {
         data.umbraTarget = matches.target;
       },
