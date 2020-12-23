@@ -4,11 +4,23 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+import asyncio
 from definitions import CactbotModule, DATA_DIRECTORY, PROJECT_ROOT_DIRECTORY, TEST_DIRECTORY
 
 TIMELINE_DIRECTORY = "timeline"
 
 TIMELINE_TEST_DIRECTORY = Path(PROJECT_ROOT_DIRECTORY, TEST_DIRECTORY, TIMELINE_DIRECTORY)
+
+
+async def run(proc_list):
+    processes = [await p for p in proc_list]
+    await asyncio.gather(*[p.communicate() for p in processes])
+
+    exit_status = 0
+    for proc in processes:
+        exit_status != proc.returncode
+
+    return exit_status
 
 
 def main():
@@ -21,7 +33,8 @@ def main():
     Returns:
         An exit status code of 0 or 1 if the tests passed successfully or failed, respectively.
     """
-    exit_status = 0
+    loop = asyncio.get_event_loop()
+    async_process_list = []
 
     for filepath in Path(CactbotModule.RAIDBOSS.directory(), DATA_DIRECTORY).glob("**/*.txt"):
         # Filter manifest or README files from the result set
@@ -62,9 +75,13 @@ def main():
 
         # Run individual timeline tests
         for test_file in TIMELINE_TEST_DIRECTORY.iterdir():
-            exit_status |= subprocess.call(
-                ["node", str(test_file), str(filepath), str(trigger_filename)]
+            async_process_list.append(
+                asyncio.create_subprocess_exec(
+                    "node", str(test_file), str(filepath), str(trigger_filename)
+                )
             )
+
+    exit_status = loop.run_until_complete(run(async_process_list))
 
     return exit_status
 
