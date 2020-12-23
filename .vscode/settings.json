@@ -11,5 +11,10 @@
   "search.exclude": {
     "**/node_modules": true,
     "dist/**": true
-  }
+  },
+  "eslint.options": {
+    "rulePaths": [
+      "./eslint"
+    ]
+  },
 }

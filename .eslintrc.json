@@ -152,6 +152,7 @@
     "unicode-bom": [
       "error",
       "never"
-    ]
+    ],
+    "cactbot-locale-order": "warn"
   }
 }
