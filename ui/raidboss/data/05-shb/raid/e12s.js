@@ -598,7 +598,10 @@ export default {
     },
     {
       id: 'E12S Spirit Taker',
-      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C4', capture: false }),
+      // Spirit Taker always comes after Shell Crusher, so trigger on Shell Crusher damage
+      // to warn people a second or two earlier than `starts using Spirit Taker` would occur.
+      netRegex: NetRegexes.ability({ source: 'Oracle Of Darkness', id: '58C3', capture: false }),
+      suppressSeconds: 1,
       response: Responses.spread('info'),
     },
     {
@@ -683,7 +686,7 @@ export default {
       id: 'E12S Relativity Look Outside',
       netRegex: NetRegexes.gainsEffect({ effectId: '994' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (data, matches) => parseFloat(matches.duration) - 1.5,
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - 2.5,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
