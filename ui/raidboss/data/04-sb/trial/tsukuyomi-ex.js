@@ -130,16 +130,16 @@ export default {
       outputStrings: {
         leftAndOut: {
           en: 'Left + Out',
-          fr: 'Gauche + Raus',
           de: 'Links + Extérieur',
+          fr: 'Gauche + Raus',
           ja: '左へ + 外へ',
           cn: '左边 + 远离',
           ko: '왼쪽 + 밖',
         },
         leftAndIn: {
           en: 'Left + In',
-          fr: 'Gauche + Rein',
           de: 'Links + Intérieur',
+          fr: 'Gauche + Rein',
           ja: '左へ + 中へ',
           cn: '左边 + 靠近',
           ko: '왼쪽 + 안',
@@ -162,16 +162,16 @@ export default {
       outputStrings: {
         rightAndOut: {
           en: 'Right + Out',
-          fr: 'Droite + Raus',
           de: 'Rechts + Extérieur',
+          fr: 'Droite + Raus',
           ja: '右へ + 外へ',
           cn: '右边 + 远离',
           ko: '오른쪽 + 밖',
         },
         rightAndIn: {
           en: 'Right + In',
-          fr: 'Droite + Rein',
           de: 'Rechts + Intérieur',
+          fr: 'Droite + Rein',
           ja: '右へ + 中へ',
           cn: '右边 + 靠近',
           ko: '오른쪽 + 안',

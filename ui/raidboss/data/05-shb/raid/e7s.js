@@ -336,8 +336,8 @@ export default {
           en: 'Get under vertical add',
           de: 'Unter das vertikale Add gehen',
           fr: 'Allez sous l\'add vertical',
-          ko: '세로로 도는 쫄 아래로',
           cn: '去竖转小怪脚下',
+          ko: '세로로 도는 쫄 아래로',
         },
       },
     },
@@ -447,8 +447,8 @@ export default {
             en: 'Avoid ${player}',
             de: 'Vermeide ${player}',
             fr: 'Évitez ${player}',
-            ko: '${player}피하기',
             cn: '躲开 ${player}',
+            ko: '${player}피하기',
           },
         };
         if (!data.boundless)

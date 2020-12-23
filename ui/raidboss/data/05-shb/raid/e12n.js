@@ -207,10 +207,10 @@ export default {
         stackOnYou: {
           en: 'Stack on YOU',
           de: 'Sammeln auf DIR',
-          ja: '自分にシェア',
           fr: 'Package sur VOUS',
-          ko: '나에게 모이기',
+          ja: '自分にシェア',
           cn: '集合点名',
+          ko: '나에게 모이기',
         },
       },
     },
