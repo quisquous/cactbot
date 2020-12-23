@@ -444,12 +444,12 @@ export default {
     {
       // Fire the trigger on stack or protean since we want the callout as soon as possible.
       id: 'E9S The Second / Third Art Of Darkness Callout',
-      netRegex: NetRegexes.headMarker({ id: '01..', target: 'Cloud Of Darkness' }),
-      netRegexDe: NetRegexes.headMarker({ id: '01..', target: 'Wolke Der Dunkelheit' }),
-      netRegexFr: NetRegexes.headMarker({ id: '01..', target: 'Nuage De Ténèbres' }),
-      netRegexJa: NetRegexes.headMarker({ id: '01..', target: '暗闇の雲' }),
-      netRegexCn: NetRegexes.headMarker({ id: '01..', target: '暗黑之云' }),
-      netRegexKo: NetRegexes.headMarker({ id: '01..', target: '어둠의 구름' }),
+      netRegex: NetRegexes.headMarker({ target: 'Cloud Of Darkness' }),
+      netRegexDe: NetRegexes.headMarker({ target: 'Wolke Der Dunkelheit' }),
+      netRegexFr: NetRegexes.headMarker({ target: 'Nuage De Ténèbres' }),
+      netRegexJa: NetRegexes.headMarker({ target: '暗闇の雲' }),
+      netRegexCn: NetRegexes.headMarker({ target: '暗黑之云' }),
+      netRegexKo: NetRegexes.headMarker({ target: '어둠의 구름' }),
       condition: (data, matches) => {
         if (!data.artOfDarkness || !data.artOfDarknessIdMap)
           return false;
