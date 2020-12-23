@@ -56,6 +56,7 @@ export default {
           text: {
             en: `${matches.ability} (alone)`,
             de: `${matches.ability} (allein)`,
+            ko: `${matches.ability} (혼자 맞음)`,
           },
         };
       },
@@ -76,6 +77,7 @@ export default {
             fr: 'Assomé',
             ja: 'ノックバック',
             cn: '击退坠落',
+            ko: '넉백',
           },
         };
       },

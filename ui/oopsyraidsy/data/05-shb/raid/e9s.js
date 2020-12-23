@@ -48,6 +48,7 @@ export default {
           text: {
             en: `${matches.ability} (alone)`,
             de: `${matches.ability} (allein)`,
+            ko: `${matches.ability} (혼자 맞음)`,
           },
         };
       },
