@@ -263,7 +263,7 @@ export default {
           // We could arguably tell you which giant you're tethered to by finding their position?
           // And then saying something like "North" but that's probably more confusing than helpful.
           // ids are sequential: #1 square, #2 square, #3 square, #4 square, #1 triangle etc
-          const decOffset = parseInt(id, 16) - parseInt(id, firstLaserMarker);
+          const decOffset = parseInt(id, 16) - parseInt(firstLaserMarker, 16);
           return {
             alertText: [
               output.square1(),
