@@ -55,6 +55,7 @@ export default {
           blame: matches.target,
           text: {
             en: `${matches.ability} (alone)`,
+            de: `${matches.ability} (allein)`,
           },
         };
       },
