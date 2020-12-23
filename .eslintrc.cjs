@@ -12,6 +12,9 @@ module.exports = {
     'sourceType': 'module',
   },
   'ignorePatterns': [
+    'dist/',
+    'plugin/',
+    'publish/',
     'resources/lib/',
     'ui/dps/rdmty/',
   ],
