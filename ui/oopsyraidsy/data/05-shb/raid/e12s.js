@@ -70,6 +70,7 @@ export default {
           blame: matches.target,
           text: {
             en: `${matches.ability} (from ${pillarOwner})`,
+            de: `${matches.ability} (von ${pillarOwner})`,
           },
         };
       },
@@ -85,6 +86,7 @@ export default {
           blame: matches.target,
           text: {
             en: `${matches.ability} (alone)`,
+            de: `${matches.ability} (allein)`,
           },
         };
       },
