@@ -1,3 +1,10 @@
+const path = require('path');
+
+// RULES_DIR must be absolute so that eslint can be used programatically
+// and still find the eslint/ plugin directory correctly.
+const rulesDirPlugin = require('eslint-plugin-rulesdir');
+rulesDirPlugin.RULES_DIR = path.join(__dirname, 'eslint');
+
 module.exports = {
   'root': true,
   'parserOptions': {
@@ -16,6 +23,9 @@ module.exports = {
     'eslint:recommended',
     'google',
     'plugin:import/errors',
+  ],
+  'plugins': [
+    'rulesdir',
   ],
   'rules': {
     'arrow-spacing': [
@@ -153,6 +163,6 @@ module.exports = {
       'error',
       'never',
     ],
-    'cactbot-locale-order': 'warn',
+    'rulesdir/cactbot-locale-order': 'warn',
   },
 };
