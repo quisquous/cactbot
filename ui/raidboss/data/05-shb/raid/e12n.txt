@@ -37,7 +37,7 @@ hideall "--sync--"
 251.2 "Eternal Oblivion" sync /:Eden's Promise:587B:/ window 20,20
 259.0 "--sync--" sync /:Eden's Promise:4B21:/
 267.3 "Classical Sculpture" sync /:Chiseled Sculpture:5886:/
-290.2 "Rapturous Reach" sync /:Eden's Promise:5887:/
+290.2 "Rapturous Reach" sync /:Eden's Promise:5889:/
 290.2 "Palm Of Temperance" sync /:Eden's Promise:4B44:/
 308.4 "Eternal Oblivion" sync /:Eden's Promise:587C:/ window 20,20
 316.2 "--sync--" sync /:Eden's Promise:4B22:/
@@ -88,7 +88,7 @@ hideall "--sync--"
 716.8 "--sync--" sync /:Eden's Promise:5866:/
 721.9 "Frigid Stone" sync /:Eden's Promise:5867:/
 727.9 "Ice Floe" sync /:Eden's Promise:5868:/
-732.9 "Rapturous Reach" sync /:Eden's Promise:5878:/ window 30,30
+732.9 "Rapturous Reach" sync /:Eden's Promise:587[78]:/ window 30,30
 735.4 "Frigid Stone" # sync /:Eden's Promise:5869:/
 735.6 "--sync--" sync /:Eden's Promise:5871:/
 738.2 "--sync--" sync /:Eden's Promise:5879:/
@@ -111,7 +111,7 @@ hideall "--sync--"
 818.7 "Impact 2" # sync /:Bomb Boulder:586C:/
 822.7 "Explosion 1" sync /:Titanic Bomb Boulder:586F:/
 825.7 "Explosion 2" # sync /:Bomb Boulder:586D:/
-831.7 "Rapturous Reach" sync /:Eden's Promise:5878:/ window 30,30
+831.7 "Rapturous Reach" sync /:Eden's Promise:587[78]:/ window 30,30
 834.2 "Under The Weight" sync /:Eden's Promise:5870:/
 834.3 "--sync--" sync /:Eden's Promise:5871:/
 836.9 "--sync--" sync /:Eden's Promise:5879:/
