@@ -193,12 +193,14 @@ var ____Class2=React.Component;for(var ____Class2____Key in ____Class2){if(____C
                                 formatNumber(encounter.encdps)
                             )
                         ), 
-                        React.createElement("div", {className: "cell"}, 
-                            React.createElement("span", {className: "label ff-header"}, "Crits"), 
-                            React.createElement("span", {className: "value ff-text"}, 
-                                encounter['crithit%']
+                        // TODO: encounter['crithit%'] appears to always be zero.
+                        // https://github.com/ngld/OverlayPlugin/issues/189
+                        React.createElement("div", {className: "cell"},
+                            React.createElement("span", {className: "label ff-header"}, "Crits"),
+                            React.createElement("span", {className: "value ff-text"},
+                                (formatNumber(100 / encounter.hits * encounter.crithits) + "%")
                             )
-                        ), 
+                        ),
                         React.createElement("div", {className: "cell"}, 
                             React.createElement("span", {className: "label ff-header"}, "Miss"), 
                             React.createElement("span", {className: "value ff-text"}, 

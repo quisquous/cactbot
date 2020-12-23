@@ -5,6 +5,13 @@ import re
 import argparse
 
 
+class tcolor:
+    WARN = "\033[33m"
+    FAIL = "\033[91m"
+    CAUTION = "\033[93m"
+    END = "\033[0m"
+
+
 def timestamp_type(arg):
     """Defines the timestamp input format"""
     if arg and re.match(r"\d{2}:\d{2}:\d{2}\.\d{3}", arg) is None:
@@ -246,3 +253,15 @@ def is_tl_line_log(poss_match):
 
 def is_tl_line_adds(poss_match):
     return re.search(r"Added new combatant (.*$)", poss_match)
+
+
+def colorize(input_text, color_code):
+    return "{}{}{}".format(color_code, input_text, tcolor.END)
+
+
+def color_fail(entry_text):
+    return colorize(tcolor.FAIL, entry_text)
+
+
+def color_warn(entry_text):
+    return colorize(tcolor.WARN, entry_text)

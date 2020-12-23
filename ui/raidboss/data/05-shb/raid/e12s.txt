@@ -115,6 +115,7 @@ hideall "--sync--"
 
 ### Oracle of Darkness
 # -p 58EF:1015
+# -it "Oracle Of Darkness"
 # -ii 4B1F 58C5 58C6 58D7 58BF 58C9 58CB 58CC 58CE
 
 1000.0 "Start"
@@ -181,6 +182,7 @@ hideall "--sync--"
 1330.7 "Shockwave Pulsar" sync /:Oracle Of Darkness:58F0:/
 
 1349.9 "Advanced Relativity" sync /:Oracle Of Darkness:58E2:/ window 400,100
+1353.9 "--untargetable--"
 1358.0 "Speed" sync /:Oracle Of Darkness:58DD:/
 1358.1 "Slow" sync /:Oracle Of Darkness:58DF:/
 1358.1 "Quicken" sync /:Oracle Of Darkness:58DE:/
@@ -194,6 +196,7 @@ hideall "--sync--"
 1381.2 "Maelstrom" sync /:Sorrow's Hourglass:58DA:/
 1382.0 "Dark Aero III" sync /:Oracle Of Darkness:58D4:/
 1386.0 "Dark Water III" sync /:Oracle Of Darkness:58CA:/
+1387.2 "--targetable--"
 1395.4 "Shockwave Pulsar" sync /:Oracle Of Darkness:58F0:/
 
 1412.6 "Triple Apocalypse" sync /:Oracle Of Darkness:501D:/ window 500,100
