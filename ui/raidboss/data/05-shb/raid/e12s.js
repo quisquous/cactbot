@@ -173,8 +173,9 @@ export default {
   triggers: [
     {
       // Headmarkers are randomized, so handle them all with a single trigger.
-      id: 'E12S Headmarker',
+      id: 'E12S Promise Headmarker',
       netRegex: NetRegexes.headMarker({}),
+      condition: (data) => data.isDoorBoss,
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -341,6 +342,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A8', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
+      run: (data) => data.isDoorBoss = true,
     },
     {
       id: 'E12S Promise Junction Shiva',
