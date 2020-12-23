@@ -288,7 +288,7 @@ export default {
     },
     {
       id: 'E12S Promise Formless Judgment',
-      netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '5858A9A5', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58A9', capture: false }),
       condition: Conditions.caresAboutPhysical(),
       response: (data, _, output) => {
         // cactbot-builtin-response
