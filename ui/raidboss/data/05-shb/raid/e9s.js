@@ -766,7 +766,7 @@ export default {
       id: 'E9S Clone The Art Of Darkness',
       netRegex: NetRegexes.startsUsing({ id: '561[EF]', source: 'Clone Of Darkness' }),
       netRegexDe: NetRegexes.startsUsing({ id: '561[EF]', source: 'Klon der Dunkelheit' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '561[EF]', source: 'Nuage de Ténèbres' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '561[EF]', source: 'Nuées de Ténèbres' }),
       netRegexJa: NetRegexes.startsUsing({ id: '561[EF]', source: '幻影の雲' }),
       netRegexCn: NetRegexes.startsUsing({ id: '561[EF]', source: '幻影之云' }),
       suppressSeconds: 1,
@@ -796,7 +796,7 @@ export default {
         const cloneOfDarknessLocaleNames = {
           en: 'Clone Of Darkness',
           de: 'Klon der Dunkelheit',
-          fr: 'Nuage de Ténèbres', // TODO: Is this right?? Same as boss??
+          fr: 'Nuées de Ténèbres', // TODO: Does case sensitivity matter here? https://xivapi.com/BNpcName/9765 gives the name in lowercase
           ja: '幻影の雲',
           cn: '幻影之云',
         };
