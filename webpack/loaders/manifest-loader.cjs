@@ -15,7 +15,7 @@ module.exports = function(content, map, meta) {
 
     // Use static imports instead of dynamic ones to put files in the bundle.
     const fileVar = `file${fileIdx}`;
-    importStr += `import ${fileVar} from './${name}';\n`
+    importStr += `import ${fileVar} from './${name}';\n`;
     outputStr += `'${name}': ${fileVar},`;
   }
 

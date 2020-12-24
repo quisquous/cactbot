@@ -9,8 +9,8 @@
   "scripts": {
     "build": "node_modules/.bin/webpack --config webpack/webpack.config.cjs --mode production",
     "start": "node_modules/.bin/webpack-dev-server --config webpack/webpack.config.cjs --mode development",
-    "lint": "node_modules/.bin/eslint resources ui user test util",
-    "lintfix": "node_modules/.bin/eslint --fix resources ui user test util",
+    "lint": "node_modules/.bin/eslint **/*.{js,cjs,mjs}",
+    "lintfix": "node_modules/.bin/eslint --fix **/*.{js,cjs,mjs}",
     "stylelint": "node_modules/.bin/stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
     "markdownlint": "node_modules/.bin/markdownlint . --ignore node_modules --ignore publish --ignore CactbotOverlay/ThirdParty",
     "test": "python test/run_tests.py",
@@ -48,7 +48,7 @@
   },
   "lint-staged": {
     "*.css": "stylelint",
-    "*.js": "eslint",
+    "*.{js,cjs,mjs}": "eslint",
     "*.md": "markdownlint",
     "*.py": "python -m pylint --errors-only"
   },
