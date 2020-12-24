@@ -33,7 +33,7 @@ class ThrowOnInvalidProxy {
 // * use OnTarget suffix for things with `${name}`
 // * any other parameters (of which there are none, currently) should use consistent suffixes.
 // * the value of each property should be a single object with localized keys
-const OutputStrings = new ThrowOnInvalidProxy({
+const Outputs = new ThrowOnInvalidProxy({
   aoe: {
     en: 'aoe',
     de: 'AoE',
@@ -533,4 +533,4 @@ const OutputStrings = new ThrowOnInvalidProxy({
   },
 });
 
-export default OutputStrings;
+export default Outputs;
