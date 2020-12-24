@@ -260,31 +260,37 @@ export default {
         screen: {
           en: 'Biblio?/Knockback?',
           de: 'Biblio?/Rückstoß?',
+          ja: 'ビブリオタフ?/ノックバック?',
           cn: '图书？/击退？',
         },
         biblio: {
           en: 'Biblio: Positions',
           de: 'Biblio: Positionen',
+          ja: 'ビブリオタフ: 定めた位置へ',
           cn: '图书：站位',
         },
         dada: {
           en: 'Dada: Knockback',
           de: 'Dada: Rückstoß',
+          ja: 'ダダルマー: ノックバック',
           cn: '达达：击退',
         },
         ships: {
           en: 'Ships: Out of Melee',
           de: 'Flieger: Raus aus Nahkampf-Reichweite',
+          ja: 'エアフォース: 離れる',
           cn: '飞机：远离近战范围',
         },
         ultros: {
           en: 'Ultros: Ink Spread',
           de: 'Ultros: Tine - Verteilen',
+          ja: 'オルトロス: インク 散開',
           cn: '章鱼：墨汁快散开',
         },
         virus: {
           en: 'VIRUS',
           de: 'VIRUS',
+          ja: 'ウイルス',
           cn: '病毒',
         },
       },
@@ -317,21 +323,25 @@ export default {
         biblio: {
           en: 'Biblio Add',
           de: 'Biblio Add',
+          ja: '雑魚: ビブリオタフ',
           cn: '图书出现',
         },
         dada: {
           en: 'Dada Add',
           de: 'Dada Add',
+          ja: '雑魚: ダダルマー',
           cn: '达达出现',
         },
         ships: {
           en: 'Ship Add',
           de: 'Flieger Add',
+          ja: '雑魚: エアフォース',
           cn: '飞机出现',
         },
         ultros: {
           en: 'Ultros Add',
           de: 'Ultros Add',
+          ja: '雑魚: オルトロス',
           cn: '章鱼出现',
         },
       },
