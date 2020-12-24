@@ -1,3 +1,5 @@
+'use strict';
+
 const path = require('path');
 
 // RULES_DIR must be absolute so that eslint can be used programatically
@@ -11,6 +13,14 @@ module.exports = {
     'ecmaVersion': 2020,
     'sourceType': 'module',
   },
+  'overrides': [
+    {
+      'files': ['**/*.cjs'],
+      'parserOptions': {
+        'sourceType': 'script',
+      },
+    },
+  ],
   'ignorePatterns': [
     'dist/',
     'plugin/',
