@@ -624,6 +624,17 @@ namespace Cactbot {
       });
     }
 
+    private void RegisterExternalPreset(string name, string url, int width, int height, bool locked)
+    {
+        Registry.RegisterOverlayPreset(new OverlayPreset
+        {
+            Name = $"Cactbot External {name}",
+            Url = url,
+            Size = new int[] { width, height },
+            Locked = locked,
+        });
+    }
+
     private void RegisterPresets() {
       RegisterPreset("Raidboss", width:1100, height:300, "Raidboss (Combined Alerts & Timeline)", "raidboss");
       RegisterPreset("Raidboss", width:1100, height:300, "Raidboss Alerts Only", "raidboss_alerts_only");
@@ -638,6 +649,8 @@ namespace Cactbot {
       // FIXME: these should be consistently named.
       RegisterDpsPreset("Xephero", "xephero-cactbot", width:600, height:400);
       RegisterDpsPreset("Rdmty", "dps", width:600, height:400);
+      // External Overlays using Cactbot Plugin
+      RegisterExternalPreset("ZeffUI", "https://zeffuro.github.io/ZeffUI/", width: 800, height: 600, false);
     }
 
     // State that is tracked and sent to JS when it changes.
