@@ -89,8 +89,8 @@ export default {
         out: {
           en: 'Out',
           de: 'Raus',
-          ja: '外へ',
           fr: 'Dehors',
+          ja: '外へ',
           cn: '远离',
           ko: '밖으로',
         },

@@ -68,8 +68,8 @@ const quintupleOutputStrings = {
     de: 'Wegschauen',
     fr: 'Regardez ailleurs',
     ja: '見ない',
-    ko: '뒤돌기',
     cn: '背对',
+    ko: '뒤돌기',
   },
 };
 

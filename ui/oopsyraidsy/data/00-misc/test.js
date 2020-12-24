@@ -40,8 +40,8 @@ export default {
           blame: data.me,
           fullText: {
             en: 'Party Wipe',
-            fr: 'Party Wipe',
             de: 'Gruppenwipe',
+            fr: 'Party Wipe',
             ja: 'ワイプ',
             cn: '团灭',
             ko: '파티 전멸',
@@ -106,8 +106,8 @@ export default {
           return;
         const text = {
           en: 'Too many pokes (' + pokes + ')',
-          fr: 'Trop de touches (' + pokes + ')',
           de: 'Zu viele Piekser (' + pokes + ')',
+          fr: 'Trop de touches (' + pokes + ')',
           ja: 'いっぱいつついた (' + pokes + ')',
           cn: '戳太多下啦 (' + pokes + ')',
           ko: '너무 많이 찌름 (' + pokes + '번)',

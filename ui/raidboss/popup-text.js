@@ -940,10 +940,10 @@ export class PopupText {
       // * arrows in the middle are a sequence, e.g. "in => out => spread"
       const arrowReplacement = {
         en: ' then ',
-        cn: '然后',
         de: ' dann ',
         fr: ' puis ',
         ja: 'や',
+        cn: '然后',
         ko: ' 그리고 ',
       };
       triggerHelper.ttsText = triggerHelper.ttsText.replace(/\s*(<[-=]|[=-]>)\s*/g,
