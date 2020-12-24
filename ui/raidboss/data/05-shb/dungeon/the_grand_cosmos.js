@@ -205,7 +205,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4763', source: 'ルゴス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4763', source: '卢格斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4763', source: '루구스', capture: false }),
-      response: Responses.goLeft('info'),
+      response: Responses.goRight('info'),
     },
     {
       id: 'Cosmos Scorching Right',
@@ -215,7 +215,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4762', source: 'ルゴス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4762', source: '卢格斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4762', source: '루구스', capture: false }),
-      response: Responses.goRight('info'),
+      response: Responses.goLeft('info'),
     },
     {
       id: 'Cosmos Fire\'s Domain',
