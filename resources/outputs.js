@@ -228,6 +228,14 @@ const Outputs = new ThrowOnInvalidProxy({
     cn: '背对',
     ko: '뒤돌기',
   },
+  lookAwayFromPlayer: {
+    en: 'Look Away from ${player}',
+    de: 'Schau weg von ${player}',
+    fr: 'Ne regardez pas ${player}',
+    ja: '${player}を見ない',
+    cn: '背对${player}',
+    ko: '${player}에게서 뒤돌기',
+  },
   lookAwayFromTarget: {
     en: 'Look Away from ${name}',
     de: 'Schau weg von ${name}',
