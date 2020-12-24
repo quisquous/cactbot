@@ -7,7 +7,6 @@ on:
       - '**/*.cjs'
       - '**/*.mjs'
       - '**/*.json'
-      - 'eslint/'
       - '.github/workflows/javascript-lint.yml'
   pull_request:
     paths:
@@ -15,7 +14,6 @@ on:
       - '**/*.cjs'
       - '**/*.mjs'
       - '**/*.json'
-      - 'eslint/'
       - '.github/workflows/javascript-lint.yml'
 
 jobs:
