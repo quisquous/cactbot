@@ -624,14 +624,14 @@ namespace Cactbot {
       });
     }
 
-    private void RegisterExternalPreset(string name, string url, int width, int height, bool locked)
+    private void RegisterExternalPreset(string name, string url, int width, int height)
     {
         Registry.RegisterOverlayPreset(new OverlayPreset
         {
             Name = $"{name}",
             Url = url,
             Size = new int[] { width, height },
-            Locked = locked,
+            Locked = false,
         });
     }
 
@@ -650,7 +650,7 @@ namespace Cactbot {
       RegisterDpsPreset("Xephero", "xephero-cactbot", width:600, height:400);
       RegisterDpsPreset("Rdmty", "dps", width:600, height:400);
       // External Overlays using Cactbot Plugin
-      RegisterExternalPreset("ZeffUI", "https://zeffuro.github.io/ZeffUI/", width: 800, height: 600, false);
+      RegisterExternalPreset("ZeffUI", "https://zeffuro.github.io/ZeffUI/", width: 800, height: 600);
     }
 
     // State that is tracked and sent to JS when it changes.
