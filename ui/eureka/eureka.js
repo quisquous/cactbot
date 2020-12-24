@@ -44,6 +44,13 @@ const Options = {
         }
         return ' pour ???';
       },
+      ja: (nowMs, stopTime) => {
+        if (stopTime) {
+          const min = (stopTime - nowMs) / 1000 / 60;
+          return ' 終わるまであと ' + Math.ceil(min) + ' 分 ';
+        }
+        return ' 終わるまであと ???';
+      },
       cn: (nowMs, stopTime) => {
         if (stopTime) {
           const min = (stopTime - nowMs) / 1000 / 60;
@@ -81,6 +88,13 @@ const Options = {
         }
         return ' dans ???';
       },
+      ja: (nowMs, startTime) => {
+        if (startTime) {
+          const min = (startTime - nowMs) / 1000 / 60;
+          return ' あと ' + Math.ceil(min) + ' 分 ';
+        }
+        return ' あと ???';
+      },
       cn: (nowMs, startTime) => {
         if (startTime) {
           const min = (startTime - nowMs) / 1000 / 60;
@@ -106,6 +120,9 @@ const Options = {
       fr: (dayNightMin) => {
         return ' pour ' + dayNightMin + ' min ';
       },
+      ja: (dayNightMin) => {
+        return ' ' + dayNightMin + '分';
+      },
       cn: (dayNightMin) => {
         return ' ' + dayNightMin + '分钟';
       },
@@ -117,6 +134,7 @@ const Options = {
       en: 'm',
       de: 'min',
       fr: ' min ',
+      ja: '分',
       cn: '分',
       ko: '분',
     },
@@ -170,6 +188,7 @@ const Options = {
         en: 'Anemos Elemental',
         de: 'Anemos-Elementar',
         fr: 'Élémentaire Anemos',
+        ja: 'アネモス・エレメンタル',
         cn: '常风元灵',
         ko: '아네모스 정령',
       },
@@ -619,6 +638,7 @@ const Options = {
         en: 'Pagos Elemental',
         de: 'Pagos-Elementar',
         fr: 'Élémentaire Pagos',
+        ja: 'パゴス・エレメンタル',
         cn: '恒冰元灵',
         ko: '파고스 정령',
       },
@@ -1019,6 +1039,7 @@ const Options = {
         en: 'Pyros Elemental',
         de: 'Pyros-Elementar',
         fr: 'Élémentaire Pyros',
+        ja: 'ピューロス・エレメンタル',
         cn: '涌火元灵',
         ko: '피로스 정령',
       },
@@ -1419,6 +1440,7 @@ const Options = {
         en: 'Hydatos Elemental',
         de: 'Hydatos-Elementar',
         fr: 'Élémentaire d\'Hydatos',
+        ja: 'ヒュダトス・エレメンタル',
         cn: '丰水元灵',
         ko: '히다토스 정령',
       },
