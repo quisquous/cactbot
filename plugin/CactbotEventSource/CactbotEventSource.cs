@@ -628,7 +628,7 @@ namespace Cactbot {
     {
         Registry.RegisterOverlayPreset(new OverlayPreset
         {
-            Name = $"Cactbot External {name}",
+            Name = $"{name}",
             Url = url,
             Size = new int[] { width, height },
             Locked = locked,
