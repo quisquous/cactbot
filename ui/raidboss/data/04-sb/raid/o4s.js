@@ -526,6 +526,7 @@ export default {
           en: 'colors',
           de: 'Farben',
           ja: '色',
+          cn: '看颜色',
           ko: '색깔',
         },
       },

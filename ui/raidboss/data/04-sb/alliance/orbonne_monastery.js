@@ -223,6 +223,7 @@ export default {
           de: 'Kristalle mit Schwert zerschlagen',
           fr: 'Libérez les prisonniers avec les épées',
           ja: '（コンテンツアクション）剣で魂を討つ',
+          cn: '使用额外技能攻击',
           ko: '감옥에 검 사용하기',
         },
       },

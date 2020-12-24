@@ -10,7 +10,8 @@ const diveDirections = {
     de: '?',
     fr: '?',
     ja: '?',
-    cn: '？',
+    cn: '?',
+    ko: '?',
   },
   north: {
     en: 'N',
