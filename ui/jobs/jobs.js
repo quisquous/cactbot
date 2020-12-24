@@ -1156,8 +1156,8 @@ class BuffTracker {
     };
 
     const buffOverrides = {
-      ko: v520,
       cn: v520,
+      ko: v520,
     };
 
     for (const key in buffOverrides[this.options.ParserLanguage]) {

@@ -184,6 +184,10 @@ export default {
         data.junctionCount = data.junctionCount || 0;
         data.junctionCount++;
       },
+      // Add in a slight delay for this big aoe so that trigger is < 10 seconds ahead.
+      // Any further than 10 seconds and it's easy to miss reprisal or addle.
+      delaySeconds: (data) => data.junctionCount === 2 ? 4 : 0,
+      // For the junction with cast, keep the spread up for longer as a reminder.
       durationSeconds: (data) => data.junctionCount === 2 ? 4 : 13,
       alertText: (data, _, output) => {
         // The 2nd and 3rd junctions are different mechanics.
@@ -192,7 +196,6 @@ export default {
         return output.junctionWithCast();
       },
       outputStrings: {
-        // Use parentheses to try to connote that this is a tell for the future, e.g. wolex.
         junctionWithCast: {
           en: 'Spread',
           de: 'Verteilen',
@@ -200,7 +203,6 @@ export default {
           cn: '散开',
           ko: '산개',
         },
-        // TODO: maybe this should be a timeline trigger instead, since it needs more mit.
         diamondDust: {
           en: 'Big AOE, Get Middle',
           de: 'Große AoE, geh in die Mitte',
@@ -218,6 +220,11 @@ export default {
         data.junctionCount = data.junctionCount || 0;
         data.junctionCount++;
       },
+      // Add in a slight delay for this big aoe so that trigger is < 10 seconds ahead.
+      // Any further than 10 seconds and it's easy to miss reprisal or addle.
+      // Note: Junction Titan is not the same distance away from the aoe as Junction Shiva.
+      delaySeconds: (data) => data.junctionCount === 3 ? 5 : 0,
+      // For the junction with cast, keep the stack up for longer as a reminder.
       durationSeconds: (data) => data.junctionCount === 3 ? 4 : 13,
       alertText: (data, _, output) => {
         // The 2nd and 3rd junctions are different mechanics.
@@ -320,7 +327,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '589D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '589D', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '589D', capture: false }),
-      delaySeconds: 3.1, // just for safety
+      delaySeconds: 4,
       response: Responses.knockback('alert'),
     },
     {

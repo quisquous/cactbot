@@ -35,7 +35,7 @@ export default {
         text: {
           en: 'Shadow Side',
           de: 'Schatten Seite',
-          fr: 'Ombre à côté',
+          fr: 'Allez du côté de l\'ombre',
           ja: '影と同じ側へ',
           cn: '影子同侧',
           ko: '그림자 쪽으로',
@@ -53,7 +53,7 @@ export default {
         text: {
           en: 'Opposite Shadow',
           de: 'Gegenüber des Schattens',
-          fr: 'Ombre opposée',
+          fr: 'Allez du côté opposé à l\'ombre',
           ja: '影の反対側へ',
           cn: '影子异侧',
           ko: '그림자 반대쪽으로',
@@ -147,7 +147,30 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5BAA' }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5BAA' }),
       condition: Conditions.caresAboutPhysical(),
-      response: Responses.tankBusterSwap(),
+      // Although this is a swap, use `tankBuster` here to give the off tank a warning and a chance
+      // to shield the main tank.  The offtank swap is delayed into the swap trigger below.
+      response: Responses.tankBuster('alert', 'info'),
+      run: (data, matches) => {
+        data.umbraTarget = matches.target;
+      },
+    },
+    {
+      id: 'E10S Umbra Smash Offtank Swap',
+      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5BAA' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5BAA' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5BAA' }),
+      netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5BAA' }),
+      condition: (data, matches) => data.role === 'tank' && matches.target !== data.me,
+      // This is a four hit tankbuster with a wind-up castbar.
+      // If you provoke in between the four hits, you can end up taking a hit, so the offtank
+      // needs to wait until all four hits have been applied (or something roughly there).
+      // Therefore, need a delay that is a good balance of "warning ahead of time" and
+      // "not so soon that the offtank steals the 4th hit".  For reference:
+      //   * 3rd hit = 7.3 seconds after cast starts
+      //   * 4th hit = 8.9 seconds after cast starts
+      // TODO: verify that the 4th hit is locked in with this delay (or if it could be shorter)
+      delaySeconds: 8.5,
+      response: Responses.tankBusterSwap('alert', 'alert'),
       run: (data, matches) => {
         data.umbraTarget = matches.target;
       },
@@ -228,26 +251,34 @@ export default {
         north: {
           en: 'North',
           de: 'Norden',
-          cn: '去北边',
+          fr: 'Nord',
           ja: '北',
+          cn: '去北边',
+          ko: '북쪽',
         },
         south: {
           en: 'South',
           de: 'Süden',
-          cn: '去南边',
+          fr: 'Sud',
           ja: '南',
+          cn: '去南边',
+          ko: '남쪽',
         },
         east: {
           en: 'East',
           de: 'Osten',
-          cn: '去东边',
+          fr: 'Est',
           ja: '東',
+          cn: '去东边',
+          ko: '동쪽',
         },
         west: {
           en: 'West',
           de: 'Westen',
-          cn: '去西边',
+          fr: 'Ouest',
           ja: '西',
+          cn: '去西边',
+          ko: '서쪽',
         },
         leftCleave: {
           en: 'Left Cleave',
@@ -295,22 +326,30 @@ export default {
         north: {
           en: 'North',
           de: 'Norden',
+          fr: 'Nord',
           cn: '去北边',
+          ko: '북쪽',
         },
         south: {
           en: 'South',
           de: 'Süden',
+          fr: 'Sud',
           cn: '去南边',
+          ko: '남쪽',
         },
         east: {
           en: 'East',
           de: 'Osten',
+          fr: 'Est',
           cn: '去东边',
+          ko: '동쪽',
         },
         west: {
           en: 'West',
           de: 'Westen',
+          fr: 'Ouest',
           cn: '去西边',
+          ko: '서쪽',
         },
         rightCleave: {
           en: 'Right Cleave',
@@ -492,6 +531,7 @@ export default {
     },
     {
       id: 'E10S Fade To Shadow',
+      // Fade To Shadow starts well before the Cloak of Shadows, so use that instead for initial.
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '572B', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '572B', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '572B', capture: false }),
@@ -504,6 +544,7 @@ export default {
           // TODO: this also happens twice, with tethers
           en: 'Be On Squiggles',
           de: 'Sei auf dem Kringel',
+          fr: 'Allez sur l\'ombre tordue',
           ja: '曲線上待機',
           cn: '站到连线为曲线的一侧',
           ko: '구불구불한 선 쪽으로',
@@ -511,19 +552,21 @@ export default {
       },
     },
     {
-      id: 'E10S Cloak of Shadows 1',
-      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5B13', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5B13', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5B13', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5B13', capture: false }),
+      id: 'E10S Cloak Of Shadows',
+      // 5B13/5B14 Cloak Of Shadows both start casting at the same time but go off separately.
+      // So, use the initial 5B13 hit to time the move away trigger.
+      netRegex: NetRegexes.ability({ source: 'Shadowkeeper', id: '5B13', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Schattenkönig', id: '5B13', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Roi De L\'Ombre', id: '5B13', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '影の王', id: '5B13', capture: false }),
       delaySeconds: 4,
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          // TODO: this could be better if we knew where the shadow was
           en: 'Away From Squiggles',
           de: 'Weg vom Kringel',
+          fr: 'Éloignez-vous de l\'ombre tordue',
           ja: '安置へ',
           cn: '远离连线为曲线的一侧',
           ko: '곧은 선 쪽으로',
@@ -544,7 +587,7 @@ export default {
         text: {
           en: 'Shadow Side',
           de: 'Schatten Seite',
-          fr: 'Ombre à côté',
+          fr: 'Allez du côté de l\'ombre',
           ja: '影と同じ側へ',
           cn: '影子同侧',
           ko: '그림자 쪽으로',
@@ -563,7 +606,7 @@ export default {
         text: {
           en: 'Opposite Shadow',
           de: 'Gegenüber des Schattens',
-          fr: 'Ombre opposée',
+          fr: 'Allez du côté opposé à l\'ombre',
           ja: '影の反対側へ',
           cn: '影子异侧',
           ko: '그림자 반대쪽',

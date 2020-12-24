@@ -399,8 +399,8 @@ export default {
             en: 'Akh Morn: ${players}',
             de: 'Akh Morn: ${players}',
             fr: 'Akh Morn : ${players}',
-            ko: '아크몬 : ${players}',
             cn: '死亡轮回: ${players}',
+            ko: '아크몬 : ${players}',
           },
         };
         if (data.me === matches.target) {
