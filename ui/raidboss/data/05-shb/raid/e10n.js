@@ -44,7 +44,7 @@ export default {
         text: {
           en: 'Go Front',
           ja: '前へ',
-          cn: '去前方',
+          cn: '去前面',
         },
       },
     },
