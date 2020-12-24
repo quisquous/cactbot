@@ -316,6 +316,7 @@ export default {
           en: 'Get to Safe Corner',
           de: 'Geh in die sichere Ecke',
           fr: 'Allez au coin sûr',
+          ja: '安置へ',
           cn: '去安全角落',
           ko: '안전한 구석으로 이동하세요',
         },
