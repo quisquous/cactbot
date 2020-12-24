@@ -54,9 +54,9 @@ export default {
       outputStrings: {
         stack: {
           en: 'Stack for Angry Dummy',
+          ja: '怒る木人に集合',
           de: 'Sammeln für Wütender Dummy',
           fr: 'Packez-vous pour Mannequin en colère',
-          ja: '怒る木人に集合',
           cn: '木人处集合',
           ko: '화난 나무인형에 집합',
         },
