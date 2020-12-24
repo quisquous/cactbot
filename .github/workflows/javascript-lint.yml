@@ -22,6 +22,10 @@ jobs:
         with:
           node-version: '12'
 
+      - name: Add Custom Problem Matcher
+        run: |
+          echo "::add-matcher::.github/matchers/${{ github.job }}.json"
+
       - uses: actions/cache@v2
         with:
           path: ~/.npm
