@@ -359,8 +359,8 @@ export const Responses = {
   },
   stackMiddle: (sev) => staticResponse(defaultInfoText(sev), {
     en: 'Stack in middle',
-    fr: 'Packez-vous au milieu',
     de: 'In der Mitte sammeln',
+    fr: 'Packez-vous au milieu',
     ja: '中央でスタック',
     cn: '中间集合',
     ko: '중앙에서 모이기',
@@ -534,8 +534,8 @@ export const Responses = {
   getOut: (sev) => staticResponse(defaultAlertText(sev), {
     en: 'Out',
     de: 'Raus',
-    ja: '外へ',
     fr: 'Exterieur',
+    ja: '外へ',
     cn: '远离',
     ko: '밖으로',
   }),
@@ -581,8 +581,8 @@ export const Responses = {
   }),
   goMiddle: (sev) => staticResponse(defaultAlertText(sev), {
     en: 'go into middle',
-    fr: 'Allez au milieu',
     de: 'in die Mitte gehen',
+    fr: 'Allez au milieu',
     ja: '中へ',
     cn: '去中间',
     ko: '중앙으로',
@@ -632,8 +632,8 @@ export const Responses = {
     de: 'Seiten',
     fr: 'Côtés',
     ja: '横へ',
-    ko: '양옆으로',
     cn: '去侧面',
+    ko: '양옆으로',
   }),
   // .killAdds() is used for adds that will always be available
   killAdds: (sev) => staticResponse(defaultInfoText(sev), {
@@ -641,15 +641,15 @@ export const Responses = {
     de: 'Adds besiegen',
     fr: 'Tuez les adds',
     ja: '雑魚を処理',
-    ko: '쫄 잡기',
     cn: '击杀小怪',
+    ko: '쫄 잡기',
   }),
   // .killExtraAdd() is used for adds that appear if a mechanic was not played correctly
   killExtraAdd: (sev) => staticResponse(defaultInfoText(sev), {
     en: 'Kill Extra Add',
     de: 'Add besiegen',
-    ja: '雑魚を倒す',
     fr: 'Tuez l\'add',
+    ja: '雑魚を倒す',
     cn: '击杀小怪',
     ko: '쫄 잡기',
   }),

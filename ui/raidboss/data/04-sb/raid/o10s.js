@@ -49,6 +49,7 @@ export default {
           en: 'Fire Marker on ${player}',
           de: 'Feuer Markierung auf ${player}',
           fr: 'Feu sur ${player}',
+          ja: '${player} にマーカー',
           cn: '喷火点${player}',
         },
       },

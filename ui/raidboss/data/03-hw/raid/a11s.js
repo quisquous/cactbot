@@ -291,6 +291,7 @@ export default {
           en: 'Face ${player}',
           de: 'Schaue zu ${player}',
           fr: 'Regardez ${player}',
+          ja: '${player} に向かう',
           cn: '面向${player}',
           ko: '"${player}" 바라보기',
         },

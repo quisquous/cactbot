@@ -154,10 +154,7 @@ def parse_file(args):
             encounter_sets = e_tools.find_fights_in_file(file)
             # If all we want to do is list encounters, stop here and give to the user.
             if args.search_fights < 0:
-                return [f'{i + 1}. {" ".join(e_info)}' for i, e_info in enumerate(encounter_sets)]
-            elif args.search_fights > len(encounter_sets):
-                raise Exception("Selected fight index not in selected ACT log.")
-
+                return e_tools.list_fights_in_file(args, encounter_sets)
         start_time, end_time = e_tools.choose_fight_times(args, encounter_sets)
         # Scan the file until the start timestamp
         for line in file:
@@ -408,9 +405,7 @@ if __name__ == "__main__":
 
     # Report arguments
     parser.add_argument(
-        "-k",
-        "--key",
-        help="The FFLogs API key to use, from https://www.fflogs.com/accounts/changeuser",
+        "-k", "--key", help="The FFLogs API key to use, from https://www.fflogs.com/profile",
     )
     parser.add_argument(
         "-rf",
@@ -496,7 +491,7 @@ if __name__ == "__main__":
         raise parser.error("Log file input requires start and end timestamps")
     if args.report and not args.key:
         raise parser.error(
-            "FFlogs parsing requires an API key. Visit https://www.fflogs.com/accounts/changeuser and use the Public key"
+            "FFlogs parsing requires an API key. Visit https://www.fflogs.com/profile and use the V1 Client Key"
         )
 
     # Actually call the script

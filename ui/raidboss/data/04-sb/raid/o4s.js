@@ -526,6 +526,7 @@ export default {
           en: 'colors',
           de: 'Farben',
           ja: '色',
+          cn: '看颜色',
           ko: '색깔',
         },
       },
@@ -695,8 +696,8 @@ export default {
         charge: {
           en: 'charge',
           de: 'aufladung',
-          cn: '充能',
           ja: '無の氾濫',
+          cn: '充能',
           ko: '무의 범람',
         },
       },

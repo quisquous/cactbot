@@ -4,11 +4,17 @@
   },
   "files.exclude": {
     ".git": true,
+    "**/__pycache__": true
   },
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "search.exclude": {
     "**/node_modules": true,
     "dist/**": true
-  }
+  },
+  "eslint.options": {
+    "rulePaths": [
+      "./eslint"
+    ]
+  },
 }

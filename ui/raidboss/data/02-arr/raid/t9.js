@@ -10,7 +10,8 @@ const diveDirections = {
     de: '?',
     fr: '?',
     ja: '?',
-    cn: '？',
+    cn: '?',
+    ko: '?',
   },
   north: {
     en: 'N',
@@ -40,8 +41,8 @@ const diveDirections = {
     en: 'SE',
     de: 'SO',
     fr: 'SE',
-    cn: '南東',
     ja: '東南',
+    cn: '南東',
     ko: '남동',
   },
   south: {

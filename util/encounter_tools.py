@@ -5,6 +5,13 @@ import re
 import argparse
 
 
+class tcolor:
+    WARN = "\033[33m"
+    FAIL = "\033[91m"
+    CAUTION = "\033[93m"
+    END = "\033[0m"
+
+
 def timestamp_type(arg):
     """Defines the timestamp input format"""
     if arg and re.match(r"\d{2}:\d{2}:\d{2}\.\d{3}", arg) is None:
@@ -171,15 +178,31 @@ def find_fights_in_file(file):
         # Ignore fights under 1 minute
         if (e_ends[i] - e_starts[i][0]).total_seconds() < 60:
             continue
-        encounter_info = [str_time((e_starts[i][0])), str_time(e_ends[i]), str(e_starts[i][1])]
+        # Since the duration will only ever be used as a display string,
+        # there's probably no need to do this "correctly".
+        duration = str(e_ends[i] - e_starts[i][0]).split(".")[0][2:]
+        encounter_info = [
+            str_time((e_starts[i][0])),
+            str_time(e_ends[i]),
+            duration,
+            str(e_starts[i][1]),
+        ]
         encounter_sets.append(encounter_info)
     file.seek(0)
     return encounter_sets
 
 
+def list_fights_in_file(args, encounter_sets):
+    return [
+        f'{str(i + 1).zfill(2)}. {" | ".join(e_info)}' for i, e_info in enumerate(encounter_sets)
+    ]
+
+
 def choose_fight_times(args, encounters):
     start_time = end_time = 0
     if args.search_fights:
+        if args.search_fights > len(encounters):
+            raise Exception("Selected fight index not in selected ACT log.")
         # Indexing is offset here to allow for 1-based indexing for the user.
         start_time = encounters[args.search_fights - 1][0]
         end_time = encounters[args.search_fights - 1][1]
@@ -230,3 +253,15 @@ def is_tl_line_log(poss_match):
 
 def is_tl_line_adds(poss_match):
     return re.search(r"Added new combatant (.*$)", poss_match)
+
+
+def colorize(input_text, color_code):
+    return "{}{}{}".format(color_code, input_text, tcolor.END)
+
+
+def color_fail(entry_text):
+    return colorize(tcolor.FAIL, entry_text)
+
+
+def color_warn(entry_text):
+    return colorize(tcolor.WARN, entry_text)

@@ -367,6 +367,7 @@ export default {
           en: 'Stack on ${player}',
           de: 'Auf ${player} sammeln',
           fr: 'Package sur ${player}',
+          ja: '${player}にスタック',
           cn: '靠近 ${player}集合',
           ko: '"${player}"에게 모이기',
         },
