@@ -11,6 +11,41 @@ import ZoneId from '../../../../../resources/zone_id.js';
 
 // Note: there's no headmarker ability line for cleaving shadows.
 
+const directions = {
+  north: {
+    en: 'North',
+    de: 'Norden',
+    fr: 'le nord',
+    ja: '北へ',
+    cn: '去北边',
+    ko: '북쪽',
+  },
+  south: {
+    en: 'South',
+    de: 'Süden',
+    fr: 'le sud',
+    ja: '南へ',
+    cn: '去南边',
+    ko: '남쪽',
+  },
+  east: {
+    en: 'East',
+    de: 'Osten',
+    fr: 'l\'est',
+    ja: '東へ',
+    cn: '去东边',
+    ko: '동쪽',
+  },
+  west: {
+    en: 'West',
+    de: 'Westen',
+    fr: 'l\'ouest',
+    ja: '西へ',
+    cn: '去西边',
+    ko: '서쪽',
+  },
+};
+
 export default {
   zoneId: ZoneId.EdensPromiseLitanySavage,
   timelineFile: 'e10s.txt',
@@ -244,41 +279,15 @@ export default {
         if (!ret)
           return;
 
-        return ret();
+        return output.dropShadow({ dir: ret });
       },
       infoText: (data, _, output) => output.leftCleave(),
       outputStrings: {
-        north: {
-          en: 'North',
-          de: 'Norden',
-          fr: 'Nord',
-          ja: '北',
-          cn: '去北边',
-          ko: '북쪽',
-        },
-        south: {
-          en: 'South',
-          de: 'Süden',
-          fr: 'Sud',
-          ja: '南',
-          cn: '去南边',
-          ko: '남쪽',
-        },
-        east: {
-          en: 'East',
-          de: 'Osten',
-          fr: 'Est',
-          ja: '東',
-          cn: '去东边',
-          ko: '동쪽',
-        },
-        west: {
-          en: 'West',
-          de: 'Westen',
-          fr: 'Ouest',
-          ja: '西',
-          cn: '去西边',
-          ko: '서쪽',
+        dropShadow: {
+          en: 'Drop Shadow ${dir}',
+          fr: 'Déposez l\'ombre à ${dir}',
+          ja: '${dir}、影を捨てる',
+          cn: '${dir}放影子',
         },
         leftCleave: {
           en: 'Left Cleave',
@@ -288,6 +297,7 @@ export default {
           cn: '左侧顺劈',
           ko: '오른쪽에 그림자 오게',
         },
+        ...directions,
       },
     },
     {
@@ -319,41 +329,15 @@ export default {
         if (!ret)
           return;
 
-        return ret();
+        return output.dropShadow({ dir: ret });
       },
       infoText: (data, _, output) => output.rightCleave(),
       outputStrings: {
-        north: {
-          en: 'North',
-          de: 'Norden',
-          fr: 'Nord',
-          ja: '北へ',
-          cn: '去北边',
-          ko: '북쪽',
-        },
-        south: {
-          en: 'South',
-          de: 'Süden',
-          fr: 'Sud',
-          ja: '南へ',
-          cn: '去南边',
-          ko: '남쪽',
-        },
-        east: {
-          en: 'East',
-          de: 'Osten',
-          fr: 'Est',
-          ja: '東へ',
-          cn: '去东边',
-          ko: '동쪽',
-        },
-        west: {
-          en: 'West',
-          de: 'Westen',
-          fr: 'Ouest',
-          ja: '西へ',
-          cn: '去西边',
-          ko: '서쪽',
+        dropShadow: {
+          en: 'Drop Shadow on ${dir}',
+          fr: 'Déposez l\'ombre à ${dir}',
+          ja: '${dir}、影を捨てる',
+          cn: '${dir}放影子',
         },
         rightCleave: {
           en: 'Right Cleave',
@@ -363,6 +347,7 @@ export default {
           cn: '右侧顺劈',
           ko: '왼쪽에 그림자 오게',
         },
+        ...directions,
       },
     },
     {
