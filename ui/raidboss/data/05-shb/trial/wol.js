@@ -452,6 +452,7 @@ export default {
         '\\(In\\)': '(Intérieur)',
         '\\(Out\\)': '(Extérieur)',
         'Absolute Blizzard III': 'Méga Glace absolue',
+        'Absolute Fire/Blizard': 'Méga Feu/Glace absolue',
         'Absolute Fire/Blizzard': 'Méga Feu/Glace absolue',
         'Absolute Fire III': 'Méga Feu absolu',
         'Absolute Holy': 'Miracle absolu',
