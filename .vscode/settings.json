@@ -1,9 +1,4 @@
 {
-  "eslint.options": {
-    "rulePaths": [
-      "./eslint"
-    ]
-  },
   "editor.tabSize": 2,
   "files.associations": {
     "**/data/**/*.txt": "cactbot-timeline"
