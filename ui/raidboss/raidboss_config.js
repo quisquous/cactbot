@@ -779,18 +779,32 @@ class RaidbossConfigurator {
 }
 
 // Raidboss needs to do some extra processing of user files.
-const userFileHandler = (name, files, options) => {
+const userFileHandler = (name, files, options, basePath) => {
   if (!options.Triggers)
     return;
 
+  // TODO: right now, it's a bit of a foot-gun that users could have a root level
+  // raidboss.js that says `Options.Triggers = [/*etc*/]` which will clobber any
+  // inheritance from anybody else.  Should we warn about this?  Should we
+  // (somehow??) attempt to work around this?
+
   for (const set of options.Triggers) {
-    // Annotate triggers with where they came from.
-    set.filename = `user/${name}`;
+    // Annotate triggers with where they came from.  Note, options is passed in repeatedly
+    // as multiple sets of user files add triggers, so only process each file once.
+    if (set.isUserTriggerSet)
+      continue;
+
+    // `filename` here is just cosmetic for better debug printing to make it more clear
+    // where a trigger or an override is coming from.
+    set.filename = `${basePath}${name}`;
+    set.isUserTriggerSet = true;
 
     // Convert set.timelineFile to set.timeline.
     if (set.timelineFile) {
-      let dir = name.substring(0, name.lastIndexOf('/'));
-      dir = dir ? `$(dir)/` : '';
+      const lastIndex = Math.max(name.lastIndexOf('/'), name.lastIndexOf('\\'));
+      // If lastIndex === -1, truncate name to the empty string.
+      // if lastIndex > -1, truncate name after the final slash.
+      const dir = name.substring(0, lastIndex + 1);
 
       const timelineFile = `${dir}${set.timelineFile}`;
       delete set.timelineFile;

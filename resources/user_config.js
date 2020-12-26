@@ -29,6 +29,72 @@ class UserConfig {
       this.userFileCallbacks[overlayName] = userFileCallback;
   }
 
+  sortUserFiles(keys) {
+    // Helper data structure for subdirectories.
+    const splitKeyMap = {};
+    for (const key of keys)
+      splitKeyMap[key] = key.toUpperCase().split(/[/\\]/);
+
+    // Sort paths as a depth-first case-insensitive alphabetical subdirectory walk, followed by
+    // all files sorted case-insensitive alphabetically once a subdir has been processed, e.g.
+    //  * a/some.js
+    //  * b/subdir1/z/z/z/nested_file.js
+    //  * b/subdir1/file.js
+    //  * b/subdir2/first.js
+    //  * b/subdir2/second.js
+    //  * b/some_file.js
+    //  * root_file1.js
+    //  * root_file2.js
+    return keys.sort((a, b) => {
+      const maxLen = Math.max(splitKeyMap[a].length, splitKeyMap[b].length);
+
+      for (let idx = 0; idx < maxLen; ++idx) {
+        // If both subdirectories or both files, then compare names.
+        const isLastA = splitKeyMap[a].length - 1 === idx;
+        const isLastB = splitKeyMap[b].length - 1 === idx;
+        if (isLastA && isLastB || !isLastA && !isLastB) {
+          const nameDiff = splitKeyMap[a][idx].localeCompare(splitKeyMap[b][idx]);
+          if (nameDiff || isLastA && isLastB)
+            return nameDiff;
+        }
+
+        // At this point, if idx is the final for each, we would have returned above.
+        // So, check if either a or b is at the final entry in splitKeyMap.
+        // If so, then there's a mismatch, and we know one the one with a filename
+        // should be sorted last.
+
+        if (splitKeyMap[a].length - 1 <= idx) {
+          // a has fewer subdirectories, so should be sorted last.
+          return 1;
+        }
+        if (splitKeyMap[b].length - 1 <= idx) {
+          // a has more subdirectories, so should be sorted first.
+          return -1;
+        }
+      }
+      return 0;
+    });
+  }
+
+  // Given a set of paths, an overlayName, and an extension, return all paths with
+  // that extension that have `overlayName` either as their entire filename (no subdir)
+  // or are inside a root-level subdirectory named `overlayName`/  The extension should
+  // include the period separator, e.g. ".js".  All comparisons are case insensitive.
+  filterUserFiles(paths, origOverlayName, origExtension) {
+    const extension = origExtension.toLowerCase();
+    const overlayName = origOverlayName.toLowerCase();
+    return paths.filter((origPath) => {
+      const path = origPath.toLowerCase();
+      if (!path.endsWith(extension))
+        return false;
+      if (path === `${overlayName}${extension}`)
+        return true;
+      if (path.startsWith(`${overlayName}/`) || path.startsWith(`${overlayName}\\`))
+        return true;
+      return false;
+    });
+  }
+
   getUserConfigLocation(overlayName, options, callback) {
     let currentlyReloading = false;
     const reloadOnce = () => {
@@ -51,10 +117,15 @@ class UserConfig {
     });
 
     const loadUser = async (e) => {
+      // The basePath isn't using for anything other than cosmetic printing of full paths,
+      // so replace any slashes here for uniformity.  In case anybody is using cactbot on
+      // Linux (?!?), support any style of slashes elsewhere.
+      const basePath = e.detail.userLocation.replace(/[/\\]*$/, '') + '\\';
       const localFiles = e.detail.localUserFiles;
-      const basePath = e.detail.userLocation;
-      const jsFile = overlayName + '.js';
-      const cssFile = overlayName + '.css';
+
+      const sortedFiles = this.sortUserFiles(Object.keys(localFiles));
+      const jsFiles = this.filterUserFiles(sortedFiles, overlayName, '.js');
+      const cssFiles = this.filterUserFiles(sortedFiles, overlayName, '.css');
 
       // The plugin auto-detects the language, so set this first.
       // If options files want to override it, they can for testing.
@@ -109,9 +180,9 @@ class UserConfig {
       // is remote, local files needed to be read by the plugin and
       // passed to Javascript for Chrome security reasons.
       if (localFiles) {
-        if (jsFile in localFiles) {
+        for (const jsFile of jsFiles) {
           try {
-            printUserFile('local user file: ' + basePath + '\\' + jsFile);
+            printUserFile(`local user file: ${basePath}${jsFile}`);
             const Options = options;
 
             // This is the one eval cactbot should ever need, which is for handling user files.
@@ -123,7 +194,7 @@ class UserConfig {
             /* eslint-enable no-eval */
 
             if (this.userFileCallbacks[overlayName])
-              this.userFileCallbacks[overlayName](jsFile, localFiles, options);
+              this.userFileCallbacks[overlayName](jsFile, localFiles, options, basePath);
           } catch (e) {
             // Be very visible for users.
             console.log('*** ERROR IN USER FILE ***');
@@ -136,8 +207,8 @@ class UserConfig {
         // allows user css to override skin-specific css as well.
         this.handleSkin(options.Skin);
 
-        if (cssFile in localFiles) {
-          printUserFile('local user file: ' + basePath + '\\' + cssFile);
+        for (const cssFile of cssFiles) {
+          printUserFile(`local user file: ${basePath}${cssFile}`);
           const userCssText = document.createElement('style');
           userCssText.innerText = localFiles[cssFile];
           document.getElementsByTagName('head')[0].appendChild(userCssText);
@@ -154,6 +225,7 @@ class UserConfig {
     callOverlayHandler({
       call: 'cactbotLoadUser',
       source: location.href,
+      overlayName: overlayName,
     }).then((e) => {
       // Wait for DOMContentLoaded if needed.
       if (document.readyState !== 'loading') {
@@ -259,11 +331,14 @@ class UserConfig {
 
 export default new UserConfig();
 
-// This event comes early and is not cached, so set up event listener immediately.
-document.addEventListener('onOverlayStateUpdate', (e) => {
-  const docClassList = document.documentElement.classList;
-  if (e.detail.isLocked)
-    docClassList.remove('resizeHandle', 'unlocked');
-  else
-    docClassList.add('resizeHandle', 'unlocked');
-});
+
+if (typeof document !== 'undefined') {
+  // This event comes early and is not cached, so set up event listener immediately.
+  document.addEventListener('onOverlayStateUpdate', (e) => {
+    const docClassList = document.documentElement.classList;
+    if (e.detail.isLocked)
+      docClassList.remove('resizeHandle', 'unlocked');
+    else
+      docClassList.add('resizeHandle', 'unlocked');
+  });
+}
