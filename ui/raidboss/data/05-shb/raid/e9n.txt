@@ -12,7 +12,8 @@ hideall "--sync--"
 # Unfortunately we can't sync to a first attack here,
 # as Cloud of Darkness uses an auto at random before starting her 3-second rotation.
 # 0.1 "--sync--" sync /:Cloud Of Darkness:5626:/ window 0.1,1
-15.1 "Ground-Razing Particle Beam" sync /:Cloud Of Darkness:55ED:/ window 15.1,5
+10.4 "--sync--" sync /:55ED:Cloud Of Darkness/ window 10.4,5
+15.1 "Ground-Razing Particle Beam" sync /:Cloud Of Darkness:55ED:/
 25.3 "The Art Of Darkness" sync /:Cloud Of Darkness:522[34]:/
 34.8 "Wide-Angle Particle Beam" sync /:Cloud Of Darkness:5AFF:/
 45.2 "Zero-Form Particle Beam" sync /:Cloud Of Darkness:55EB:/
