@@ -70,10 +70,6 @@ You need to have at least one chat log set to show `Own Gathering Messages` You 
 
 You must have the `Hide Chat Log (for privacy)` option disabled.
 
-- Supported language
-Korean is not supported at this time.
-You will need to restart ACT after you change parser language.
-
 ## Places To Get Help
 
 - ask in the [FFXIV ACT discord](https://discord.gg/ahFKcmx) #troubleshooting channel
