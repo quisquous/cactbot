@@ -222,30 +222,35 @@ export default {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Cloud Of Darkness': 'Wolke der Dunkelheit',
       },
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Cloud Of Darkness': 'Nuage de Ténèbres',
       },
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Cloud Of Darkness': '暗闇の雲',
       },
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Cloud Of Darkness': '暗黑之云',
       },
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Cloud Of Darkness': '어둠의 구름',
       },
