@@ -52,7 +52,7 @@ class UserConfig {
 
     const loadUser = async (e) => {
       const localFiles = e.detail.localUserFiles;
-      let basePath = e.detail.userLocation;
+      const basePath = e.detail.userLocation;
       const jsFile = overlayName + '.js';
       const cssFile = overlayName + '.css';
 
@@ -142,19 +142,6 @@ class UserConfig {
           userCssText.innerText = localFiles[cssFile];
           document.getElementsByTagName('head')[0].appendChild(userCssText);
         }
-      } else if (basePath) {
-        if (basePath.slice(-1) !== '/')
-          basePath += '/';
-        const jsUrl = basePath + jsFile;
-        printUserFile('remote user file: ' + jsUrl);
-        this.appendJSLink(jsUrl);
-
-        // See note above in localFiles case about skin load ordering.
-        this.handleSkin(options.Skin);
-
-        const cssUrl = basePath + cssFile;
-        printUserFile('remote user file: ' + cssUrl);
-        this.appendCSSLink(cssUrl);
       }
 
       // Post this callback so that the js and css can be executed first.
