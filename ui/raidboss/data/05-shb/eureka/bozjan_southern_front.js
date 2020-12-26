@@ -71,6 +71,7 @@ const orbOutputStrings = {
   unknown: {
     en: '???',
     de: '???',
+    fr: '???',
     ja: '???',
     cn: '???',
     ko: '???',
@@ -86,7 +87,7 @@ const orbOutputStrings = {
   stop: {
     en: 'Stop',
     de: 'Stopp',
-    fr: 'Stop',
+    fr: 'Arrêtez',
     ja: '動かない',
     cn: '不要动',
     ko: '멈추기',
@@ -95,6 +96,7 @@ const orbOutputStrings = {
   stopOutside: {
     en: 'Stop (Out)',
     de: 'Stop (Außen)',
+    fr: 'Arrêtez (Extérieur)',
     ja: 'ストップ (外に)',
     cn: '停止活动 (外面)',
     ko: '멈추기 (바깥에서)',
@@ -126,6 +128,7 @@ const orbOutputStrings = {
   rings: {
     en: 'Rings',
     de: 'Ringe',
+    fr: 'Anneaux',
     ja: 'ドーナツ',
     cn: '月环',
     ko: '고리장판',
@@ -253,6 +256,7 @@ export default {
         text: {
           en: 'Stand in dive charge',
           de: 'Stehe im Ansturm',
+          fr: 'Restez dans la charge',
           ja: '直線頭割りに入る',
           cn: '进直线分摊',
           ko: '돌진 장판 위에 서기',
@@ -281,6 +285,7 @@ export default {
         text: {
           en: 'Take one tether',
           de: 'Nimm eine´Verbindung',
+          fr: 'Prenez un lien',
           ja: '線を取る',
           cn: '接线',
           ko: '선 하나 낚아채기',
@@ -336,6 +341,7 @@ export default {
         text: {
           en: 'Kill Magitek Core',
           de: 'Besiege Magitek-Reaktor',
+          fr: 'Tuez le Cœur magitek',
           ja: '魔導コアを撃破',
           cn: '击杀魔导核心',
           ko: '마도 핵 죽이기',
@@ -375,6 +381,7 @@ export default {
         getUnderOrb: {
           en: 'Get Under Orb',
           de: 'Geh unter einem Orb',
+          fr: 'Allez sous l\'Orbe',
           ja: '白玉に安置',
           cn: '靠近白球',
           ko: '구슬 아래로',
@@ -382,6 +389,7 @@ export default {
         goCorner: {
           en: 'Go To Corner',
           de: 'Geh in die Ecken',
+          fr: 'Allez dans un coin',
           ja: 'コーナーへ',
           cn: '去角落',
           ko: '구석으로',
@@ -437,6 +445,7 @@ export default {
         text: {
           en: 'Kill Meteors',
           de: 'Besiege die Meteore',
+          fr: 'Tuez les météores',
           ja: 'メテオを撃破',
           cn: '击杀陨石',
           ko: '메테오 부수기',
@@ -598,6 +607,7 @@ export default {
           // "Follow Other People ;)"
           en: 'Go ???',
           de: 'Gehe nach ???',
+          fr: 'Allez au ???',
           ja: '??? へ',
           cn: '去 ???',
           ko: '???쪽으로',
@@ -605,6 +615,7 @@ export default {
         northeast: {
           en: 'Go northeast',
           de: 'Gehe nach Nordosten',
+          fr: 'Allez au nord-est',
           ja: '北東へ',
           cn: '去东北',
           ko: '북동쪽으로',
@@ -612,6 +623,7 @@ export default {
         southeast: {
           en: 'Go southeast',
           de: 'Gehe nach Südosten',
+          fr: 'Allez au sud-est',
           ja: '南東へ',
           cn: '去东南',
           ko: '남동쪽으로',
@@ -619,6 +631,7 @@ export default {
         southwest: {
           en: 'Go southwest',
           de: 'Gehe nach Südwesten',
+          fr: 'Allez au sud-ouest',
           ja: '南西へ',
           cn: '去西南',
           ko: '남서쪽으로',
@@ -626,6 +639,7 @@ export default {
         northwest: {
           en: 'Go northwest',
           de: 'Gehe nach Nordwesten',
+          fr: 'Allez au nord-ouest',
           ja: '北西へ',
           cn: '去西北',
           ko: '북서쪽으로',
@@ -659,6 +673,7 @@ export default {
         justOrb: {
           en: 'Get Under Light Orb',
           de: 'Unter einem Lichtorb stellen',
+          fr: 'Allez sous un Orbe lumineux',
           ja: '白玉へ',
           cn: '靠近白球',
           ko: '하얀 구슬 안으로',
@@ -666,6 +681,7 @@ export default {
         orbWithFlutter: {
           en: 'Get Under Blown Light Orb',
           de: 'Zu einem weggeschleuderten Lichtorb gehen',
+          fr: 'Allez sous un Orbe lumineux soufflé',
           ja: '赤玉へ',
           cn: '靠近火球',
           ko: '하얀 구슬이 이동할 위치로',
@@ -693,6 +709,7 @@ export default {
         text: {
           en: 'Follow Boss',
           de: 'Folge dem Boss',
+          fr: 'Suivez le Boss',
           ja: 'ボスの後ろに追う',
           cn: '跟紧在Boss身后',
           ko: '보스 따라가기',
@@ -710,6 +727,7 @@ export default {
         text: {
           en: 'Lyon Passage Open',
           de: 'Lyon Zugang offen',
+          fr: 'Passage du Lyon ouvert',
           ja: '獣王ライオンフェイス開始',
           cn: '挑战兽王莱恩',
           ko: '라이온 포탈 개방',
@@ -825,7 +843,6 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         '4Th Legion Helldiver': 'plongeur infernal de la 4e légion',
         'Adrammelech': 'Adrammelech',
@@ -842,6 +859,7 @@ export default {
         'Verdant Plume': 'plume de sinople',
       },
       'replaceText': {
+        '--Lyon Passage--': '--Passage du Lyon --',
         '(?<!Command: )Chain Cannon': 'Canon automatique',
         '(?<!Command: )Dive Formation': 'Attaque groupée',
         '(?<!Command: )Infrared Blast': 'Rayonnement thermique',
@@ -863,9 +881,10 @@ export default {
         'Energy Generation': 'Condensateur d\'énergie',
         'Explosion': 'Explosion',
         'False Thunder': 'Foudre artificielle',
-        'Fervid Pulse': 'Pulsation ardente',
+        '(?<!Frigid/)Fervid Pulse': 'Pulsation ardente',
         'Fire IV': 'Giga Feu',
         'Flare': 'Brasier',
+        'Frigid/Fervid Pulse': 'Pulsation glacial/ardente',
         'Frigid Pulse': 'Pulsation glaciale',
         'Heart Of Nature': 'Pulsation sismique',
         'Holy IV': 'Giga Miracle',
@@ -880,6 +899,7 @@ export default {
         'Nature\'s Blood': 'Onde fracturante',
         'Nature\'s Pulse': 'Onde brise-terre',
         'Obey': 'À l\'écoute du maître',
+        'Orb': 'Orbe',
         'Pentagust': 'Pentasouffle',
         'Polar Magnetism': 'Aimant à polarité inversée',
         'Pole Shift': 'Inversion des pôles',
