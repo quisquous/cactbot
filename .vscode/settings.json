@@ -1,4 +1,5 @@
 {
+  "editor.tabSize": 2,
   "files.associations": {
     "**/data/**/*.txt": "cactbot-timeline"
   },
@@ -8,13 +9,23 @@
   },
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
+  "python.formatting.provider": "black",
+  "python.formatting.blackArgs": ["--line-length", "100"],
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": false,
+  "python.linting.pylintArgs": ["--errors-only"],
+  "python.linting.pylintEnabled": true,
   "search.exclude": {
     "**/node_modules": true,
     "dist/**": true
   },
-  "eslint.options": {
-    "rulePaths": [
-      "./eslint"
-    ]
-  },
+  "[python]": {
+    "editor.tabSize": 4,
+    "editor.formatOnSave": true,
+    /**
+      * Although format mode could be set as "modification",
+      * unfortunately `black` does not support "Format Selection"
+      */
+    "editor.formatOnSaveMode": "file"
+  }
 }
