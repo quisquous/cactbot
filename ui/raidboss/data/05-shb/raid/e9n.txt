@@ -52,7 +52,7 @@ hideall "--sync--"
 340.1 "Waste Away" sync /:Cloud Of Darkness:55DE:/
 342.4 "Evil Seed" sync /:Cloud Of Darkness:55E7:/
 361.7 "Wide-Angle Phaser" sync /:Cloud Of Darkness:55E0:/
-376.5 "Rejuvenating Balm" sync /:Cloud Of Darkness:55E2:/
+376.8 "Rejuvenating Balm" sync /:Cloud Of Darkness:55E2:/
 384.2 "The Art Of Darkness" sync /:Cloud Of Darkness:522[34]:/
 386.6 "Bad Vibrations" sync /:Stygian Arbor:55E6:/ window 30,30
 399.2 "Deluge Of Darkness" sync /:Cloud Of Darkness:5155:/
