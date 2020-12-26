@@ -288,6 +288,7 @@ export default {
           fr: 'Déposez l\'ombre à ${dir}',
           ja: '${dir}、影を捨てる',
           cn: '${dir}放影子',
+          ko: '${dir}에 그림자 놓기',
         },
         leftCleave: {
           en: 'Left Cleave',
@@ -295,7 +296,7 @@ export default {
           fr: 'Cleave gauche',
           ja: '左半面へ攻撃',
           cn: '左侧顺劈',
-          ko: '오른쪽에 그림자 오게',
+          ko: '왼쪽 공격',
         },
         ...directions,
       },
@@ -338,6 +339,7 @@ export default {
           fr: 'Déposez l\'ombre à ${dir}',
           ja: '${dir}、影を捨てる',
           cn: '${dir}放影子',
+          ko: '${dir}에 그림자 놓기',
         },
         rightCleave: {
           en: 'Right Cleave',
@@ -345,7 +347,7 @@ export default {
           fr: 'Cleave droit',
           ja: '右半面へ攻撃',
           cn: '右侧顺劈',
-          ko: '왼쪽에 그림자 오게',
+          ko: '오른쪽 공격',
         },
         ...directions,
       },
