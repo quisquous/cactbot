@@ -64,7 +64,7 @@ export const LocaleNetRegex = {};
       de: 'Du hast mit der Testsynthese von \ue0bb(?<recipe>.*) begonnen\\.',
       fr: 'Vous commencez une synthèse d\'essai pour une? \ue0bb(?<recipe>.*)\\.',
       ja: '(?<player>\\y{Name})は\ue0bb(?<recipe>.*)の製作練習を開始した。',
-      cn: '(?<player>\\y{Name})开始练习制作\ue0bb(?<recipe>.*)\\。',
+      cn: '(?<player>\\y{Name})开始练习制作\ue0bb(?<recipe>.*)。',
     },
     craftingFinish: {
       en: 'You synthesize (?<count>(an?|\\d+) )?\ue0bb(?<recipe>.*)(\ue03c)?\\.',
