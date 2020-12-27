@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions.js';
 import NetRegexes from '../../../../../resources/netregexes.js';
+import Outputs from '../../../../../resources/outputs.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
@@ -62,30 +63,9 @@ const primalOutputStrings = {
     cn: '${safespot1} + ${safespot2}',
     ko: '${safespot1} + ${safespot2}',
   },
-  '008E': {
-    en: 'Middle',
-    de: 'Mitte',
-    fr: 'Milieu',
-    ja: '中へ',
-    cn: '中间',
-    ko: '중앙',
-  },
-  '008F': {
-    en: 'Sides',
-    de: 'Seiten',
-    fr: 'Côtés',
-    ja: '横へ',
-    cn: '两侧',
-    ko: '양옆',
-  },
-  '0090': {
-    en: 'Out',
-    de: 'Raus',
-    fr: 'Extérieur',
-    ja: '離れる',
-    cn: '远离',
-    ko: '바깥',
-  },
+  '008E': Outputs.middle,
+  '008F': Outputs.sides,
+  '0090': Outputs.out,
   '0091': {
     en: 'Intercards',
     de: 'Interkardinale Himmelsrichtungen',
@@ -231,14 +211,7 @@ export default {
           cn: '分摊 (${players})',
           ko: '모이기 (${players})',
         },
-        stackOnYou: {
-          en: 'Stack on YOU',
-          de: 'Sammeln auf DIR',
-          fr: 'Package sur VOUS',
-          ja: '自分にシェア',
-          cn: '集合点名',
-          ko: '나에게 모이기',
-        },
+        stackOnYou: Outputs.stackOnYou,
       },
     },
     {

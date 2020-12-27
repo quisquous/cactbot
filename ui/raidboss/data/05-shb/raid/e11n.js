@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions.js';
 import NetRegexes from '../../../../../resources/netregexes.js';
+import Outputs from '../../../../../resources/outputs.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
@@ -19,43 +20,20 @@ import ZoneId from '../../../../../resources/zone_id.js';
 
 const tetherIds = ['0002', '0005', '0006'];
 
-const unknownTarget = {
-  en: '???',
-  de: '???',
-  fr: '???',
-  ja: '???',
-  cn: '???',
-  ko: '???',
-};
-
 const boundOfFaithFireTetherResponse = (data, _, output) => {
   // cactbot-builtin-response
   output.responseOutputStrings = {
-    stackOnYou: {
-      en: 'Stack on YOU',
-      de: 'Auf DIR sammeln',
-      fr: 'Package sur VOUS',
-      ja: '自分にスタック',
-      cn: '集合点名',
-      ko: '쉐어징 대상자',
-    },
-    stackOnTarget: {
-      en: 'Stack on ${player}',
-      de: 'Auf ${player} sammeln',
-      fr: 'Packez-vous sur ${player}',
-      ja: '${player}にスタック',
-      cn: '靠近 ${player}集合',
-      ko: '"${player}" 쉐어징',
-    },
-    unknownTarget: unknownTarget,
+    stackOnYou: Outputs.stackOnYou,
+    stackOnPlayer: Outputs.stackOnPlayer,
+    unknownTarget: Outputs.unknownTarget,
   };
 
   const targets = Object.keys(data.tethers || {});
   if (targets.includes(data.me))
     return { alertText: output.stackOnYou() };
   if (targets.length === 0)
-    return { alertText: output.stackOnTarget({ player: output.unknownTarget() }) };
-  return { alertText: output.stackOnTarget({ player: data.ShortName(targets[0]) }) };
+    return { alertText: output.stackOnPlayer({ player: output.unknownTarget() }) };
+  return { alertText: output.stackOnPlayer({ player: data.ShortName(targets[0]) }) };
 };
 
 const boundOfFaithLightningTetherResponse = (data, _, output) => {
@@ -77,7 +55,7 @@ const boundOfFaithLightningTetherResponse = (data, _, output) => {
       cn: '雷点${player}',
       ko: '"${player}" 번개징 대상자',
     },
-    unknownTarget: unknownTarget,
+    unknownTarget: Outputs.unknownTarget,
   };
 
   const targets = Object.keys(data.tethers || {});
@@ -91,31 +69,17 @@ const boundOfFaithLightningTetherResponse = (data, _, output) => {
 const boundOfFaithHolyTetherResponse = (data, _, output) => {
   // cactbot-builtin-response
   output.responseOutputStrings = {
-    awayFromGroup: {
-      en: 'Away from Group',
-      de: 'Weg von der Gruppe',
-      fr: 'Éloignez-vous du groupe',
-      ja: '外へ',
-      cn: '远离人群',
-      ko: '다른 사람들이랑 떨어지기',
-    },
-    awayFromTarget: {
-      en: 'Away from ${player}',
-      de: 'Weg von ${player}',
-      fr: 'Éloignez-vous de ${player}',
-      ja: '${player}から離れ',
-      cn: '远离${player}',
-      ko: '"${player}"에서 멀어지기',
-    },
-    unknownTarget: unknownTarget,
+    awayFromGroup: Outputs.awayFromGroup,
+    awayFromPlayer: Outputs.awayFromPlayer,
+    unknownTarget: Outputs.unknownTarget,
   };
 
   const targets = Object.keys(data.tethers || {});
   if (targets.includes(data.me))
     return { alarmText: output.awayFromGroup() };
   if (targets.length === 0)
-    return { infoText: output.awayFromTarget({ player: output.unknownTarget() }) };
-  return { infoText: output.awayFromTarget({ player: data.ShortName(targets[0]) }) };
+    return { infoText: output.awayFromPlayer({ player: output.unknownTarget() }) };
+  return { infoText: output.awayFromPlayer({ player: data.ShortName(targets[0]) }) };
 };
 
 
@@ -151,14 +115,7 @@ export default {
       delaySeconds: (data, matches) => parseFloat(matches.duration) - 4,
       alertText: (data, _, output) => output.awayFromGroup(),
       outputStrings: {
-        awayFromGroup: {
-          en: 'Away from Group',
-          de: 'Weg von der Gruppe',
-          fr: 'Éloignez-vous du groupe',
-          ja: '外へ',
-          cn: '远离人群',
-          ko: '다른 사람들이랑 떨어지기',
-        },
+        awayFromGroup: Outputs.awayFromGroup,
       },
     },
     {
