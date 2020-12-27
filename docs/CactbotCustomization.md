@@ -86,6 +86,23 @@ The `oopsyraidsy` module loads `user/oopsyraidsy.js` and `user/oopsyraidsy.css`.
 And so on, for each module.
 These files are included after cactbot's files and can override its settings.
 
+Additionally, cactbot will also load any files in a subdirectory of the same module name.
+For example, `raidboss` will also load any `.js` and `.css` files
+underneath `user/raidboss/` even if in multiple subfolders.
+This is intended to make it easier to share triggers and customizations with others.
+Timeline `.txt` files must be directly in the same folder as the `.js` that refers to them.
+
+cactbot loads files in subdirectories (alphabetically) before loading files in outer directories.
+This is so that `user/raidboss.js` will always be loaded last
+and can override anything that is set inside a file inside of `user/raidboss/`.
+For example, `user/alphascape/some_file.js` will load before `user/mystatic/file1.js`,
+which will both load before `user/raidboss.js`.
+The same applies to `.css` files.
+
+You can get more information about the loading order
+by looking at the [debug messages](#check-if-your-file-is-loaded)
+when developer mode is turned on.
+
 The `user/` directory already includes some example configuration files,
 which you can rename and use.
 For example the [user/raidboss-example.js](../user/raidboss-example.js) file
@@ -111,13 +128,13 @@ This is often in `%APPDATA%\Advanced Combat Tracker\Plugins\cactbot-version\cact
 
 ## Customizing Appearance
 
-The `user/<name>.css` file can change positions, sizes, colors, etc. for components of
+A user css file can change positions, sizes, colors, etc. for components of
 the UI module. See the `ui/<name>/<name>.css` to find the selectors you can modify.
 
 For example in [ui/raidboss/raidboss.css](../ui/raidboss/raidboss.css),
 you see the `#popup-text-container` and `#timeline-container`
 which can be changed via `user/raidboss.css` to different positions as desired.
-You can use `user/raidboss.css` to add additional styling.
+You can use `user/raidboss.css` or a `.css` file in `user/raidboss/` to add additional styling.
 
 The size and color of info text alerts can also be changed
 by making a CSS rule for the `.info-text` class such as below:
@@ -423,6 +440,8 @@ It will list lines for each local user file it loads:
 `[10/19/2020 6:18:27 PM] Info: raidbossy: BrowserConsole: local user file: C:\Users\tinipoutini\cactbot\user\raidboss.js`
 
 Verify that your user file is loaded at all.
+
+The order that the filenames are printed are the order in which they are loaded.
 
 ### Check if your user file has errors
 
