@@ -272,6 +272,7 @@ const Outputs = new ThrowOnInvalidProxy({
   goFront: {
     en: 'Go Front',
     de: 'Geh nach vorn',
+    fr: 'Allez Devant',
     ja: '前へ',
     cn: '去前面',
   },
@@ -401,6 +402,7 @@ const Outputs = new ThrowOnInvalidProxy({
   middle: {
     en: 'Middle',
     de: 'Mitte',
+    fr: 'Milieu',
     ja: '中へ',
     cn: '中间',
     ko: '중앙',
