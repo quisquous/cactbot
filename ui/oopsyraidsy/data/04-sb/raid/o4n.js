@@ -31,6 +31,7 @@ export default {
           reason: {
             en: 'Cleansers missed Doom!',
             de: 'Doom-Reinigung vergessen!',
+            fr: 'N\'a pas été dissiper du Glas !'
             ja: '死の宣告',
             cn: '没解死宣',
           },
@@ -47,6 +48,7 @@ export default {
           reason: {
             en: 'Pushed off!',
             de: 'Runter geschubst!',
+            fr: 'A été pousser !',
             ja: '落ちた',
             cn: '击退坠落',
           },

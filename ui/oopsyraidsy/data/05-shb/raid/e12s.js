@@ -71,6 +71,7 @@ export default {
           text: {
             en: `${matches.ability} (from ${pillarOwner})`,
             de: `${matches.ability} (von ${pillarOwner})`,
+            fr: `${matches.ability} (de ${pillarOwner})`,
             ja: `${matches.ability} (${pillarOwner}から)`,
             cn: `${matches.ability} (来自${pillarOwner})`,
             ko: `${matches.ability} (from ${pillarOwner})`,
@@ -90,6 +91,7 @@ export default {
           text: {
             en: `${matches.ability} (alone)`,
             de: `${matches.ability} (allein)`,
+            fr: `${matches.ability} (seul(e))`,
             ja: `${matches.ability} (一人)`,
             cn: `${matches.ability} (单吃)`,
             ko: `${matches.ability} (혼자 맞음)`,
@@ -111,7 +113,7 @@ export default {
           reason: {
             en: 'Knocked off',
             de: 'Runtergefallen',
-            fr: 'Assomé',
+            fr: 'A été assommé(e)',
             ja: 'ノックバック',
             cn: '击退坠落',
             ko: '넉백',

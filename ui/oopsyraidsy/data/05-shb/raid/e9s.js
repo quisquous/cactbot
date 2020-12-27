@@ -48,6 +48,7 @@ export default {
           text: {
             en: `${matches.ability} (alone)`,
             de: `${matches.ability} (allein)`,
+            fr: `${matches.ability} (seul(e))`,
             ja: `${matches.ability} (一人)`,
             cn: `${matches.ability} (单吃)`,
             ko: `${matches.ability} (혼자 맞음)`,
