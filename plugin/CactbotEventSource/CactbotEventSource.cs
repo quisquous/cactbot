@@ -476,48 +476,73 @@ namespace Cactbot {
       this.Log(LogLevel.Info, format, args);
     }
 
-    private Dictionary<string, string> GetLocalUserFiles(string config_dir) {
+    private static string GetRelativePath(string top_dir, string filename) {
+      // TODO: .net 5.0 / .net core 2.0 has Path.GetRelativePath.
+      // There's also a win api function we could call, but that's a bit gross.
+      // However, this is an easy case where filename is known to be rooted in top_dir,
+      // so use this hacky solution for now.  Hi, ngld.
+      return filename.Replace(top_dir, "");
+    }
+
+    private Dictionary<string, string> GetLocalUserFiles(string config_dir, string overlay_name) {
+      // TODO: probably should sanity check overlay_name for no * or ? wildcards as well
+      // as GetInvalidPathChars.
       if (String.IsNullOrEmpty(config_dir))
         return null;
 
-      // TODO: It's not great to have to load every js and css file in the user dir.
-      // But most of the time they'll be short and there won't be many.  JS
-      // could attempt to send an overlay name to C# code (and race with the
-      // document ready event), but that's probably overkill.
       var user_files = new Dictionary<string, string>();
-      string path;
+      string top_dir;
+      string sub_dir = null;
       try {
-        path = new Uri(config_dir).LocalPath;
+        top_dir = new Uri(config_dir).LocalPath;
       } catch (UriFormatException) {
         // This can happen e.g. "http://localhost:8000".  Thanks, Uri constructor.  /o\
         return null;
       }
 
-      // It's important to return null here vs an empty dictionary.  null here
-      // indicates to attempt to load the user overloads indirectly via the path.
-      // This is how remote user directories work.
+      // Returning null here means we failed to find anything meaningful (or error), and so try
+      // again with a different directory.  In the future when this is in OverlayPlugin, we will
+      // probably just abort entirely.
       try {
-        if (!Directory.Exists(path)) {
+        if (!Directory.Exists(top_dir)) {
           return null;
         }
+
+        if (overlay_name != null) {
+          sub_dir = Path.Combine(top_dir, overlay_name);
+          if (!Directory.Exists(sub_dir))
+            sub_dir = null;
+         }
+
       } catch (Exception e) {
         LogError("Error checking directory: {0}", e.ToString());
         return null;
       }
 
+      // Hack for backwards compat with older js that doesn't provide overlay_name,
+      // just in case.  Remove this in any future version and require overlay_name.
+      if (overlay_name == null)
+        overlay_name = "*";
+
       try {
-        var filenames = Directory.EnumerateFiles(path, "*.js").Concat(
-          Directory.EnumerateFiles(path, "*.css"));
+        var filenames = Directory.EnumerateFiles(top_dir, $"{overlay_name}.js").Concat(
+          Directory.EnumerateFiles(top_dir, $"{overlay_name}.css"));
+        if (sub_dir != null) {
+          filenames = filenames.Concat(
+            Directory.EnumerateFiles(sub_dir, "*.js", SearchOption.AllDirectories)).Concat(
+            Directory.EnumerateFiles(sub_dir, "*.css", SearchOption.AllDirectories));
+        }
         foreach (string filename in filenames) {
-          if (filename.Contains("-example."))
-            continue;
-          user_files[Path.GetFileName(filename)] = File.ReadAllText(filename) +
+          user_files[GetRelativePath(top_dir, filename)] = File.ReadAllText(filename) +
             $"\n//# sourceURL={filename}";
         }
 
-        var textFilenames = Directory.EnumerateFiles(path, "*.txt");
+        var textFilenames = Directory.EnumerateFiles(top_dir, "*.txt");
+        if (sub_dir != null) {
+          textFilenames = textFilenames.Concat(Directory.EnumerateFiles(sub_dir, "*.txt", SearchOption.AllDirectories));
+        }
         foreach (string filename in textFilenames) {
-          user_files[Path.GetFileName(filename)] = File.ReadAllText(filename);
+          user_files[GetRelativePath(top_dir, filename)] = File.ReadAllText(filename);
         }
       } catch (Exception e) {
         LogError("User error file exception: {0}", e.ToString());
@@ -526,14 +551,14 @@ namespace Cactbot {
       return user_files;
     }
 
-    private void GetUserConfigDirAndFiles(string source, out string config_dir, out Dictionary<string, string> local_files) {
+    private void GetUserConfigDirAndFiles(string source, string overlay_name, out string config_dir, out Dictionary<string, string> local_files) {
       local_files = null;
       config_dir = null;
 
       if (Config.UserConfigFile != null && Config.UserConfigFile != "") {
         // Explicit user config directory specified.
         config_dir = Config.UserConfigFile;
-        local_files = GetLocalUserFiles(config_dir);
+        local_files = GetLocalUserFiles(config_dir, overlay_name);
       } else {
         if (source != null && source != "") {
           // First try a user directory relative to the html.
@@ -542,7 +567,7 @@ namespace Cactbot {
             // TODO: maybe replace this with the version checker get cactbot root
             var url_dir = Path.GetDirectoryName(new Uri(source).LocalPath);
             config_dir = Path.GetFullPath(url_dir + "\\..\\..\\user\\");
-            local_files = GetLocalUserFiles(config_dir);
+            local_files = GetLocalUserFiles(config_dir, overlay_name);
           } catch (Exception e) {
             LogError("Error checking html rel dir: {0}: {1}", source, e.ToString());
             config_dir = null;
@@ -553,7 +578,7 @@ namespace Cactbot {
           // Second try a user directory relative to the dll.
           try {
             config_dir = Path.GetFullPath((new VersionChecker(this)).GetCactbotDirectory() + "\\user");
-            local_files = GetLocalUserFiles(config_dir);
+            local_files = GetLocalUserFiles(config_dir, overlay_name);
           } catch (Exception e) {
             // Accessing CactbotEventSourceConfig.CactbotDllRelativeUserUri can throw an exception so don't.
             LogError("Error checking dll rel dir: {0}: {1}", config_dir, e.ToString());
@@ -571,7 +596,8 @@ namespace Cactbot {
 
     private JObject FetchUserFiles(JObject msg) {
       Dictionary<string, string> user_files;
-      GetUserConfigDirAndFiles(msg["source"].ToString(), out string config_dir, out user_files);
+      var overlay_name = msg.ContainsKey("overlayName") ? msg["overlayName"].ToString() : null;
+      GetUserConfigDirAndFiles(msg["source"].ToString(), overlay_name, out string config_dir, out user_files);
 
       var result = new JObject();
       result["userLocation"] = config_dir;
