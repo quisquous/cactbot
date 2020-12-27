@@ -15,7 +15,7 @@ const directions = {
   north: {
     en: 'North',
     de: 'Norden',
-    fr: 'le nord',
+    fr: 'Nord',
     ja: '北へ',
     cn: '去北边',
     ko: '북쪽',
@@ -23,7 +23,7 @@ const directions = {
   south: {
     en: 'South',
     de: 'Süden',
-    fr: 'le sud',
+    fr: 'Sud',
     ja: '南へ',
     cn: '去南边',
     ko: '남쪽',
@@ -31,7 +31,7 @@ const directions = {
   east: {
     en: 'East',
     de: 'Osten',
-    fr: 'l\'est',
+    fr: 'Est',
     ja: '東へ',
     cn: '去东边',
     ko: '동쪽',
@@ -39,7 +39,7 @@ const directions = {
   west: {
     en: 'West',
     de: 'Westen',
-    fr: 'l\'ouest',
+    fr: 'Ouest',
     ja: '西へ',
     cn: '去西边',
     ko: '서쪽',
@@ -285,7 +285,7 @@ export default {
       outputStrings: {
         dropShadow: {
           en: 'Drop Shadow ${dir}',
-          fr: 'Déposez l\'ombre à ${dir}',
+          fr: 'Déposez l\'ombre du côté ${dir}',
           ja: '${dir}、影を捨てる',
           cn: '${dir}放影子',
           ko: '${dir}에 그림자 놓기',
@@ -336,7 +336,7 @@ export default {
       outputStrings: {
         dropShadow: {
           en: 'Drop Shadow on ${dir}',
-          fr: 'Déposez l\'ombre à ${dir}',
+          fr: 'Déposez l\'ombre du côté ${dir}',
           ja: '${dir}、影を捨てる',
           cn: '${dir}放影子',
           ko: '${dir}에 그림자 놓기',
