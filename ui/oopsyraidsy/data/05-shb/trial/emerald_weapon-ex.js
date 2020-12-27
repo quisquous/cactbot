@@ -41,6 +41,7 @@ export default {
           blame: matches.target,
           text: {
             en: `${matches.ability} (alone)`,
+            fr: `${matches.ability} (seul(e))`,
           },
         };
       },
@@ -88,6 +89,7 @@ export default {
           blame: matches.target,
           text: {
             en: `${matches.ability} (wrong color)`,
+            fr: `${matches.ability} (mauvaise couleur)`,
           },
         };
       },
@@ -102,6 +104,7 @@ export default {
           blame: matches.target,
           text: {
             en: `${matches.ability} (wrong color)`,
+            fr: `${matches.ability} (mauvaise couleur)`,
           },
         };
       },
