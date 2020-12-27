@@ -31,7 +31,7 @@ export default {
           reason: {
             en: 'Cleansers missed Doom!',
             de: 'Doom-Reinigung vergessen!',
-            fr: 'N\'a pas été dissiper du Glas !'
+            fr: 'N\'a pas été dissiper du Glas !',
             ja: '死の宣告',
             cn: '没解死宣',
           },
