@@ -168,7 +168,7 @@ export default {
           reason: {
             en: 'Knocked off',
             de: 'Runtergefallen',
-            fr: 'Assomé',
+            fr: 'A été assommé(e)',
             ja: 'ノックバック',
             cn: '击退坠落',
           },
