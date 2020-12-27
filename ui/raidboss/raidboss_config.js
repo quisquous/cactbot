@@ -368,15 +368,14 @@ class RaidbossConfigurator {
         const trig = info.triggers[id];
 
         // Don't construct triggers that won't show anything.
-        let detailCount = 0;
-        for (const detailKey in kDetailKeys) {
-          if (!this.base.developerOptions && kDetailKeys[detailKey].debugOnly)
-            continue;
-          if (!trig[detailKey] && !trig.output[detailKey])
-            continue;
-          detailCount++;
+        let hasOutputFunc = false;
+        for (const func of triggerOutputFunctions) {
+          if (trig[func]) {
+            hasOutputFunc = true;
+            break;
+          }
         }
-        if (detailCount === 0)
+        if (!hasOutputFunc && !this.base.developerOptions)
           continue;
 
         // Build the trigger label.
@@ -420,14 +419,6 @@ class RaidbossConfigurator {
           }
 
           triggerDetails.appendChild(detail);
-        }
-
-        let hasOutputFunc = false;
-        for (const func of triggerOutputFunctions) {
-          if (trig[func]) {
-            hasOutputFunc = true;
-            break;
-          }
         }
 
         // Add beforeSeconds manually for timeline triggers.
