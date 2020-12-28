@@ -52,6 +52,7 @@ export default {
           text: {
             en: e.abilityName + ' (no orb)',
             de: e.abilityName + ' (kein Orb)',
+            fr: e.abilityName + '(pas d\'orbe)',
             ja: e.abilityName + '(雷玉無し)',
             cn: e.abilityName + '(没吃球)',
           },
@@ -79,6 +80,7 @@ export default {
             text: {
               en: e.abilityName + '(clouds too close)',
               de: e.abilityName + '(Wolken zu nahe)',
+              fr: e.abilityName + '(nuages trop proches)',
               ja: e.abilityName + '(雲近すぎ)',
               cn: e.abilityName + '(雷云重叠)',
             },

@@ -42,6 +42,15 @@ export default {
           'Eden\'s Dormez bien',
           'Rip énochien',
         ],
+        ja: [
+          'ちょっと待ってください',
+          '眠い :zzz:',
+          'LAHEE~',
+          '居眠りでもしましょうか',
+          'コーヒー飲むにいこう',
+          'ほらエデンも眠った',
+          'エノキアンにRIP',
+        ],
         cn: [
           '马上回来',
           '困了睡会儿',
@@ -495,6 +504,7 @@ export default {
           en: 'Bait Orb Lasers Outside',
           de: 'Laser nach drausen ködern',
           fr: 'Orientez les lasers vers l\'extérieur',
+          ja: 'レーザーを外に誘導',
           cn: '外侧吃激光',
           ko: '원/힐 레이저 바깥으로 유도',
         },

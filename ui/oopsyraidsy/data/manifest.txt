@@ -35,6 +35,7 @@
 05-shb/dungeon/heroes_gauntlet.js
 05-shb/dungeon/holminster_switch.js
 05-shb/dungeon/malikahs_well.js
+05-shb/dungeon/matoyas_relict.js
 05-shb/dungeon/mt_gulg.js
 05-shb/dungeon/qitana_ravel.js
 05-shb/dungeon/the_grand_cosmos.js

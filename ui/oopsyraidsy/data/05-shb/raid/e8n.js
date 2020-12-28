@@ -36,7 +36,7 @@ export default {
           reason: {
             en: 'Pushed off!',
             de: 'Runter gestoßen!',
-            fr: 'Repoussé!',
+            fr: 'A été pousser !',
             ja: 'ノックバック',
             cn: '击退坠落',
             ko: '넉백됨!',
@@ -55,7 +55,7 @@ export default {
           reason: {
             en: 'Slid off!',
             de: 'runtergerutscht!',
-            fr: 'Assommé!',
+            fr: 'A glissé(e) !',
             ja: '滑った',
             cn: '滑落',
             ko: '미끄러짐!',

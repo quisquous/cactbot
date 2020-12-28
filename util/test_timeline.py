@@ -312,11 +312,15 @@ def check_event(event, timelist, state):
 
             # Check the timeline drift for anomolous timings
             drift = entry["time"] - timeline_position
-            print(
-                "{:.3f}: Matched entry: {} {} ({:+.3f}s)".format(
-                    timeline_position, entry["time"], entry["label"], drift
-                )
+            entry_text = "{:.3f}: Matched entry: {} {} ({:+.3f}s)".format(
+                timeline_position, entry["time"], entry["label"], drift
             )
+            if args.drift_max > abs(drift) > args.drift_failure:
+                print(e_tools.color_fail(entry_text))
+            elif args.drift_failure > abs(drift) > args.drift_warning:
+                print(e_tools.color_warn(entry_text))
+            else:
+                print(entry_text)
 
             if time_progress_seconds > 30:
                 print("    Warning: {:.3f}s since last sync".format(time_progress_seconds))
@@ -536,6 +540,32 @@ if __name__ == "__main__":
         help="The filename of the timeline to test against, e.g. ultima_weapon_ultimate",
     )
 
+    # Output Format arguments
+    parser.add_argument(
+        "-df",
+        "--drift-failure",
+        nargs="?",
+        default=1,
+        type=float,
+        help="If an entry misses its timestamp by more than this value in seconds, it is displayed in red. Defaults to 1.",
+    )
+    parser.add_argument(
+        "-dw",
+        "--drift-warning",
+        nargs="?",
+        default=0.2,
+        type=float,
+        help="If an entry misses its timestamp by more than this value in seconds, it is displayed in yellow. Defaults to 0.2.",
+    )
+    parser.add_argument(
+        "-dm",
+        "--drift-max",
+        nargs="?",
+        default=10,
+        type=float,
+        help="If an entry misses its timestamp by more than this value in seconds, it is assumed to be a jump and will not be highlighted. Defaults to 10.",
+    )
+
     args = parser.parse_args()
 
     # Check dependent args
@@ -552,7 +582,7 @@ if __name__ == "__main__":
 
     if args.report and not args.key:
         raise parser.error(
-            "FFlogs parsing requires an API key. Visit https://www.fflogs.com/profile and use the Public key"
+            "FFlogs parsing requires an API key. Visit https://www.fflogs.com/profile and use the V1 Client Key"
         )
 
     # Actually call the script

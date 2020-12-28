@@ -24,24 +24,32 @@ const bombOutputStrings = {
     en: 'Between north bombs',
     de: 'Zwichen den Bomben im Norden',
     fr: 'Entre les bombes au Nord',
+    ja: '北の岩へ',
+    cn: '去北边岩石中间',
     ko: '북쪽 폭탄 사이',
   },
   'south': {
     en: 'Between south bombs',
     de: 'Zwichen den Bomben im Süden',
     fr: 'Entre les bombes au Sud',
+    ja: '南の岩へ',
+    cn: '去南边岩石中间',
     ko: '남쪽 폭탄 사이',
   },
   'east': {
     en: 'Between east bombs',
     de: 'Zwichen den Bomben im Osten',
     fr: 'Entre les bombes à l\'Est',
+    ja: '東の岩へ',
+    cn: '去东边岩石中间',
     ko: '동쪽 폭탄 사이',
   },
   'west': {
     en: 'Between west bombs',
     de: 'Zwichen den Bomben im Westen',
     fr: 'Entre les bombes à l\'Ouest',
+    ja: '西の岩へ',
+    cn: '去西边岩石中间',
     ko: '서쪽 폭탄 사이',
   },
 };
@@ -50,48 +58,64 @@ const primalOutputStrings = {
   'combined': {
     en: '${safespot1} + ${safespot2}',
     de: '${safespot1} + ${safespot2}',
+    ja: '${safespot1} + ${safespot2}',
+    cn: '${safespot1} + ${safespot2}',
     ko: '${safespot1} + ${safespot2}',
   },
   '008E': {
     en: 'Middle',
     de: 'Mitte',
     fr: 'Milieu',
+    ja: '中へ',
+    cn: '中间',
     ko: '중앙',
   },
   '008F': {
     en: 'Sides',
     de: 'Seiten',
     fr: 'Côtés',
+    ja: '横へ',
+    cn: '两侧',
     ko: '양옆',
   },
   '0090': {
     en: 'Out',
     de: 'Raus',
     fr: 'Extérieur',
+    ja: '離れる',
+    cn: '远离',
     ko: '바깥',
   },
   '0091': {
     en: 'Intercards',
     de: 'Interkardinale Himmelsrichtungen',
     fr: 'Intercardinal',
+    ja: '斜め',
+    cn: '四角',
     ko: '대각',
   },
   '008E008F': {
     en: 'Under + Sides',
     de: 'Unter Ihm + Seiten',
     fr: 'Dessous + Côtés',
+    ja: '真ん中 + 横へ',
+    cn: '正中间两侧',
     ko: '보스 아래 + 양옆',
   },
   '008E0090': {
     en: 'North/South + Out',
     de: 'Norden/Süden + Raus',
     fr: 'Nord/Sud + Extérieur',
+    ja: '北/南 + 外へ',
+    cn: '南北远离',
     ko: '북/남 + 바깥',
   },
   '008E0091': {
     en: 'Under + Intercards',
     de: 'Unter Ihm + Interkardinale Himmelsrichtungen',
     fr: 'Dessous + Intercardinal',
+    ja: '真ん中 + 斜め',
+    cn: '正中间四角',
     ko: '보스 아래 + 대각',
   },
 };
@@ -128,15 +152,15 @@ export default {
     },
     {
       // Titanic Bombs spawn at two of four points:
-      // NW X: -11.31371 Y: -63.68629
-      // SW X: -11.31371 Y: -86.3137
-      // NE X: 11.31371 Y: -63.68629
-      // SE X: 11.31371 Y: -86.3137
+      // SW X: -11.31371 Y: -63.68629
+      // NW X: -11.31371 Y: -86.3137
+      // SE X: 11.31371 Y: -63.68629
+      // NE X: 11.31371 Y: -86.3137
       id: 'E12N Bomb Collect',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9816' }),
       run: (data, matches) => {
         const bomb = {};
-        bomb.north = parseFloat(matches.y) + 70 > 0;
+        bomb.north = parseFloat(matches.y) + 70 < 0;
         bomb.east = parseFloat(matches.x) > 0;
         data.bombs = data.bombs || [];
         data.bombs.push(bomb);
@@ -174,6 +198,8 @@ export default {
           en: 'Move to last explosions',
           de: 'Zur letzten Explosion bewegen',
           fr: 'Allez sur la dernière explosion',
+          ja: '最後に爆発した岩へ',
+          cn: '去最后爆炸的岩石旁',
           ko: '마지막 폭발 위치로',
         },
       },
@@ -201,16 +227,17 @@ export default {
           en: 'Stack (${players})',
           de: 'Sammeln (${players})',
           fr: 'Package (${players})',
+          ja: '頭割り (${players})',
           cn: '分摊 (${players})',
           ko: '모이기 (${players})',
         },
         stackOnYou: {
           en: 'Stack on YOU',
           de: 'Sammeln auf DIR',
-          ja: '自分にシェア',
           fr: 'Package sur VOUS',
-          ko: '나에게 모이기',
+          ja: '自分にシェア',
           cn: '集合点名',
+          ko: '나에게 모이기',
         },
       },
     },

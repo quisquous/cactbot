@@ -30,7 +30,16 @@ export default {
         return data.assault.includes(matches.target);
       },
       mistake: function(e, data, matches) {
-        return { type: 'fail', blame: matches.target, text: { en: 'Didn\'t Spread!' } };
+        return {
+          type: 'fail',
+          blame: matches.target,
+          text: {
+            en: 'Didn\'t Spread!',
+            fr: 'Ne s\'est pas dispersé(e) !',
+            ja: '散開しなかった!',
+            cn: '没有散开!',
+          },
+        };
       },
     },
     {

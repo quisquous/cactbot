@@ -36,7 +36,7 @@ export default {
         text: {
           en: 'Get Towers',
           de: 'Türme nehmen',
-          fr: 'Allez dans les tours',
+          fr: 'Prenez les tours',
           ja: '塔を踏む',
           cn: '踩塔',
           ko: '장판 들어가기',
@@ -246,7 +246,7 @@ export default {
         text: {
           en: 'Avoid Wyrm Dash',
           de: 'Wyrm-Ansturm ausweichen',
-          fr: 'Esquivez la charge du Wyrm',
+          fr: 'Évitez la charge du Wyrm',
           ja: '竜を避け',
           cn: '躲避巴哈冲锋',
           ko: '용 돌진 피하기',
@@ -285,7 +285,7 @@ export default {
         text: {
           en: 'GTFO',
           de: 'GTFO',
-          fr: 'Cassez-vous',
+          fr: 'Éloignez-vous',
           ja: '出ていて！',
           cn: '快出去！',
           ko: '진영 벗어나기!',
@@ -436,7 +436,6 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Spectral Bard': 'barde spectral',
         'Spectral Black Mage': 'mage noir spectral',
@@ -449,7 +448,12 @@ export default {
         'Wyrm Of Light': 'wyrm de Lumière',
       },
       'replaceText': {
+        '--active time event--': '--temps d\'évènement actif--',
+        '\\(In\\)': '(Intérieur)',
+        '\\(Out\\)': '(Extérieur)',
         'Absolute Blizzard III': 'Méga Glace absolue',
+        'Absolute Fire/Blizard': 'Méga Feu/Glace absolue',
+        'Absolute Fire/Blizzard': 'Méga Feu/Glace absolue',
         'Absolute Fire III': 'Méga Feu absolu',
         'Absolute Holy': 'Miracle absolu',
         'Absolute Teleport': 'Téléportation absolue',
@@ -461,6 +465,7 @@ export default {
         'Elddragon Dive': 'Piqué du dragon ancien',
         'Flare Breath': 'Souffle brasier',
         'Imbued Coruscance': 'Magilame Fureur flamboyante',
+        'Imbued Fire/Blizzard': 'Magilame Méga Feu/Glace',
         'Katon: San': 'Katon : San',
         'Meteor Impact': 'Impact de météore',
         'Perfect Decimation': 'Décimation parfaite',

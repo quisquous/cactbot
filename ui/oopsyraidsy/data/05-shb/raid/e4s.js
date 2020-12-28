@@ -52,7 +52,7 @@ export default {
           text: {
             en: 'Run Over',
             de: e.abilityName,
-            fr: 'Écrasé',
+            fr: 'A été écrasé(e)',
             ja: e.abilityName,
             cn: e.abilityName,
             ko: e.abilityName,

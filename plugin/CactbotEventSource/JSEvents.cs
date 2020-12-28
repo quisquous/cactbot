@@ -196,18 +196,5 @@ namespace Cactbot {
 
       public Dictionary<string, string> files;
     }
-
-    public class OnInitializeOverlay : JSEvent {
-      public OnInitializeOverlay(string location, Dictionary<string, string> files, string language) {
-        this.userLocation = location;
-        this.localUserFiles = files;
-        this.language = language;
-      }
-
-      public string EventName() { return "onInitializeOverlay"; }
-      public string userLocation;
-      public Dictionary<string, string> localUserFiles;
-      public string language;
-    }
   }
 }

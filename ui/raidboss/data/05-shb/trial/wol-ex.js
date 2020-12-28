@@ -24,7 +24,7 @@ const sharedOutputStrings = {
   holy: {
     en: 'Stack',
     de: 'Stacken',
-    fr: 'Pack',
+    fr: 'Packez-vous',
     ja: 'スタック',
     cn: '集合',
     ko: '쉐어',
@@ -68,8 +68,8 @@ const quintupleOutputStrings = {
     de: 'Wegschauen',
     fr: 'Regardez ailleurs',
     ja: '見ない',
-    ko: '뒤돌기',
     cn: '背对',
+    ko: '뒤돌기',
   },
 };
 
@@ -107,7 +107,7 @@ export default {
         limitBreak2: {
           en: 'healer stacks',
           de: 'Heiler stacks',
-          fr: 'Stacks healers',
+          fr: 'Package healers',
           ja: 'ヒーラーと集合',
           cn: '与治疗集合',
           ko: '좌우 산개',
@@ -115,7 +115,7 @@ export default {
         limitBreak3: {
           en: 'meteor',
           de: 'Meteor',
-          fr: 'Météor',
+          fr: 'Météore',
           ja: 'メテオ',
           cn: '陨石',
           ko: '메테오',
@@ -159,7 +159,7 @@ export default {
         text: {
           en: 'Bait Confiteor',
           de: 'Confiteor ködern',
-          fr: 'Posez les zones au sol (Confiteor)',
+          fr: 'Attirez les zones au sol',
           ja: 'ソーレムコンフィテオル',
           cn: '诱导庄严悔罪',
           ko: '장판 유도하기',
@@ -303,7 +303,7 @@ export default {
         text: {
           en: 'Avoid Wyrm Dash',
           de: 'Wyrm-Ansturm ausweichen',
-          fr: 'Esquivez la charge du Wyrm',
+          fr: 'Évitez la charge du Wyrm',
           ja: '竜を避け',
           cn: '躲避巴哈冲锋',
           ko: '용 돌진 피하기',
@@ -410,7 +410,7 @@ export default {
         text: {
           en: 'Point Tether Out',
           de: 'Verbindung nach draußen richten',
-          fr: 'Lien vers l\'extérieur',
+          fr: 'Pointez le lien vers l\'extérieur',
           ja: '線を外に引く',
           cn: '连线拉向场外',
           ko: '선 연결 바깥으로 빼기',
@@ -833,7 +833,6 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Spectral Ninja': 'ninja spectral',
         'Warrior Of Light': 'Guerrier de la Lumière primordial',
@@ -853,6 +852,7 @@ export default {
         'Berserk': 'Furie',
         'Blade Of Shadow': 'Tranchant maléfique d\'ombre',
         'Brimstone Earth': 'Terre de soufre',
+        '(?<!\\w)Cast': 'Incantation',
         'Cauterize': 'Cautérisation',
         'Coruscant Saber': 'Fureur flamboyante',
         'Deep Darkside': 'Ténèbres intérieures absolues',
@@ -860,9 +860,18 @@ export default {
         'Elddragon Dive': 'Piqué du dragon ancien',
         'Fatal Cleave': 'Fendoir fatal',
         'Flare Breath': 'Souffle brasier',
+        'Fire/Ice -> SMN/WAR': 'Feu/Glace -> INV/GUE',
+        '(?<!\\w )Holy': 'Mirace absolu',
         'Imbued Coruscance': 'Magilame Fureur flamboyante',
+        'Imbued Holy': 'Magilame Miracle',
+        'Imbued Stone': 'Magilame Méga Terre',
+        'Imbued Fire/Blizzard': 'Magilame Méga Feu/Glace',
+        'Imbued Fire/Ice': 'Magilame Méga Feu/Glace',
+        'Imbued Ice/Fire': 'Magilame Méga Glace/Feu',
         'Katon\\: San': 'Katon : San',
         'Limit Break': 'Transcendance',
+        'Limit -> BLM/WHM': 'Transcendance -> MNO/MBL',
+        'Limit -> DRK/BRD': 'Transcendance -> CHN/BRD',
         'Meteor Impact': 'Impact de météore',
         'Perfect Decimation': 'Décimation parfaite',
         'Quintuplecast': 'Quintuple sort',
@@ -872,6 +881,7 @@ export default {
         'Shining Wave': 'Épée flamboyante',
         'Solemn Confiteor': 'Confiteor solennel',
         'Specter Of Light': 'Sommation des braves',
+        '(?<!\\w )Stone(?! Earth)': 'Méga Terre',
         'Suiton\\: San': 'Suiton : San',
         'Summon(?! Wyrm)': 'Invocation',
         'Summon Wyrm': 'Invocation de wyrm',

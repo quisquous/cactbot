@@ -78,6 +78,7 @@ export default {
           text: {
             en: 'luminous aetheroplasm',
             de: 'Luminiszentes Ätheroplasma',
+            fr: 'Éthéroplasma lumineux',
             ja: '光性爆雷',
             cn: '光性爆雷',
           },
@@ -110,6 +111,7 @@ export default {
           text: {
             en: 'Doll Death',
             de: 'Puppe Tot',
+            fr: 'Poupée morte',
             ja: 'ドールが死んだ',
             cn: '浮士德死亡',
           },

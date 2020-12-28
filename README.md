@@ -185,7 +185,7 @@ To install dependencies there are 2 methods: **per script** and **manually**
 ### Dependencies: Script Method
 
 1. `curl` MUST be installed (this is used to download dependencies)
-1. Execute the `./utils/fetch_deps.py` script
+1. Execute the `./util/fetch_deps.py` script
 1. Continue with **Steps to build**
 
 ### Dependencies: Manual Method
@@ -254,7 +254,7 @@ This module provides a visual timeline of upcoming events in a fight, as well as
 notifications to help increase raid awareness. Text and sound alerts can be based on the fight
 timeline, or come from log messages that occur in the game, similar to ACT's "Custom Triggers".
 The module is designed to look and feel similar to the
-[BigWigs Bossmods](https://mods.curse.com/addons/wow/big-wigs) addon for World of Warcraft.
+[BigWigs Bossmods](https://www.curseforge.com/wow/addons/big-wigs) addon for World of Warcraft.
 
 [This page](https://quisquous.github.io/cactbot/util/coverage/coverage.html) lists
 the currently supported set of content in cactbot.
@@ -268,8 +268,7 @@ with [some extensions](docs/TimelineGuide.md).
 There are three levels of text alerts, in order of escalating importance: `info`, `alert`, and `alarm`.
 Text messages will be in one of these, and more important levels are larger and more eye grabbing colors.  Text-to-speech can be configured if you prefer that over on screen text.
 
-Timeline files are found in [ui/raidboss/data/timelines](ui/raidboss/data/timelines). Triggers
-for text and sound alerts are found in [ui/raidboss/data/triggers](ui/raidboss/data/triggers).
+Timeline files and triggers for text and sound alerts are found in [ui/raidboss/data](ui/raidboss/data), timeline files with `.txt` extension and trigger files with `.js` extension.
 
 In this screenshot, the raidboss module is highlighted, with the timeline circled in red, and the
 text alerts circled in yellow, with an `alert`-level text message visible.
