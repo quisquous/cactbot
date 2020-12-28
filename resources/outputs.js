@@ -86,7 +86,7 @@ const Outputs = new ThrowOnInvalidProxy({
   tankBusters: {
     en: 'Tank Busters',
     de: 'Tank buster',
-    fr: 'Tank buster',
+    fr: 'Tank busters',
     ja: 'タンクバスター',
     cn: '死刑',
     ko: '탱버',
@@ -272,6 +272,7 @@ const Outputs = new ThrowOnInvalidProxy({
   goFront: {
     en: 'Go Front',
     de: 'Geh nach vorn',
+    fr: 'Allez Devant',
     ja: '前へ',
     cn: '去前面',
   },
@@ -401,6 +402,7 @@ const Outputs = new ThrowOnInvalidProxy({
   middle: {
     en: 'Middle',
     de: 'Mitte',
+    fr: 'Milieu',
     ja: '中へ',
     cn: '中间',
     ko: '중앙',
@@ -532,7 +534,7 @@ const Outputs = new ThrowOnInvalidProxy({
   breakChains: {
     en: 'Break chains',
     de: 'Kette zerbrechen',
-    fr: 'Cassez les chaines',
+    fr: 'Brisez les chaines',
     ja: '線を切る',
     cn: '切断连线',
     ko: '선 끊기',
@@ -564,7 +566,7 @@ const Outputs = new ThrowOnInvalidProxy({
   closeTethersWithPlayer: {
     en: 'Close Tethers (${player})',
     de: 'Nahe Verbindungen (${player})',
-    fr: 'Liens proches (${player})',
+    fr: 'Liens proches avec (${player})',
     ja: '(${player})に近づく',
     cn: '靠近连线 (${player})',
     ko: '상대와 가까이 붙기 (${player})',
@@ -572,7 +574,7 @@ const Outputs = new ThrowOnInvalidProxy({
   farTethersWithPlayer: {
     en: 'Far Tethers (${player})',
     de: 'Entfernte Verbindungen (${player})',
-    fr: 'Liens éloignés (${player})',
+    fr: 'Liens éloignés avec (${player})',
     ja: ' (${player})から離れる',
     cn: '远离连线 (${player})',
     ko: '상대와 떨어지기 (${player})',
@@ -588,7 +590,7 @@ const Outputs = new ThrowOnInvalidProxy({
   north: {
     en: 'North',
     de: 'Norden',
-    fr: 'le nord',
+    fr: 'Nord',
     ja: '北へ',
     cn: '去北边',
     ko: '북쪽',
@@ -596,7 +598,7 @@ const Outputs = new ThrowOnInvalidProxy({
   south: {
     en: 'South',
     de: 'Süden',
-    fr: 'le sud',
+    fr: 'Sud',
     ja: '南へ',
     cn: '去南边',
     ko: '남쪽',
@@ -604,7 +606,7 @@ const Outputs = new ThrowOnInvalidProxy({
   east: {
     en: 'East',
     de: 'Osten',
-    fr: 'l\'est',
+    fr: 'Est',
     ja: '東へ',
     cn: '去东边',
     ko: '동쪽',
@@ -612,7 +614,7 @@ const Outputs = new ThrowOnInvalidProxy({
   west: {
     en: 'West',
     de: 'Westen',
-    fr: 'l\'ouest',
+    fr: 'Ouest',
     ja: '西へ',
     cn: '去西边',
     ko: '서쪽',
