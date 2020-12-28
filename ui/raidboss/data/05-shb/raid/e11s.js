@@ -113,7 +113,7 @@ export default {
         text: {
           en: 'Protean -> Spread',
           de: 'Himmelsrichtung -> Verteilen',
-          fr: 'Position -> Écartez-vous',
+          fr: 'Position -> Dispersez-vous',
           ja: '8方向散開 -> 散開',
           cn: '八方 -> 分散',
           ko: '8산개 -> 산개',
@@ -185,7 +185,7 @@ export default {
         text: {
           en: 'Line Cleave + Bait',
           de: 'Linien AoE -> Ködern',
-          fr: 'AoE en ligne -> Appâtez',
+          fr: 'AoE en ligne + Attirez',
           ja: '直線範囲 -> AoE誘導',
           cn: '直线 -> 放光点名',
           ko: '직선 장판 + 장판 유도',
@@ -409,7 +409,7 @@ export default {
         text: {
           en: 'Fire: Go to Blue',
           de: 'Feuer: Geh zu Blau',
-          fr: 'Feu: Allez sur le Bleu',
+          fr: 'Feu : Allez sur le Bleu',
           ja: '炎: 安置は青',
           cn: '火：去蓝门',
           ko: '화염: 파랑으로',
@@ -447,7 +447,7 @@ export default {
         text: {
           en: 'Fire: Go to Blue',
           de: 'Feuer: Geh zu Blau',
-          fr: 'Feu: Allez sur le Bleu',
+          fr: 'Feu : Allez sur le Bleu',
           ja: '炎: 安置は青',
           cn: '火：去蓝门',
           ko: '화염: 파랑으로',
@@ -485,7 +485,7 @@ export default {
         text: {
           en: 'Fire: Go to Blue',
           de: 'Feuer: Geh zu Blau',
-          fr: 'Feu: Allez sur le Bleu',
+          fr: 'Feu : Allez sur le Bleu',
           ja: '炎: 安置は青',
           cn: '火：去蓝门',
           ko: '화염: 파랑으로',
@@ -561,7 +561,7 @@ export default {
         text: {
           en: 'Protean -> Partner Stacks -> Line Cleave -> Knockback -> Stack',
           de: 'Himmelsrichtung -> Auf Partner sammeln -> Linien AoE -> Rückstoß -> Sammeln',
-          fr: 'Position -> Packagez-vous avec votre partenaire -> Aoe en ligne -> Poussée -> Package',
+          fr: 'Position -> Packez-vous avec votre partenaire -> Aoe en ligne -> Poussée -> Package',
           ja: '8方向散開 -> 2人頭割り -> 直線範囲 -> ノックバック -> 頭割り',
           cn: '八方 -> 分摊 -> 直线 -> 击退 -> 集合',
           ko: '8산개 -> 파트너 쉐어뎀 -> 직선 장판 -> 넉백 -> 모이기',
@@ -589,7 +589,7 @@ export default {
         text: {
           en: 'Protean -> Spread -> Line Cleave -> Out -> Tank Cleaves',
           de: 'Himmelsrichtung -> Verteilen -> Linien AoE -> Raus -> Tank AoEs',
-          fr: 'Position -> Écartez-vous -> AoE en ligne -> Extérieur -> Tank cleaves',
+          fr: 'Position -> Dispersez-vous -> AoE en ligne -> Extérieur -> Tank cleaves',
           ja: '8方向散開 -> 散開 -> 直線範囲 -> 離れる -> タンクに雷範囲',
           cn: '八方 -> 分散 -> 直线 -> 远离直线 -> T接雷',
           ko: '8산개 -> 산개 -> 직선 장판 -> 밖으로 -> 광역 탱버',
@@ -617,7 +617,7 @@ export default {
         text: {
           en: 'Protean -> Holy Groups -> Line Cleave -> Bait -> Away',
           de: 'Himmelsrichtung -> Sanctus Gruppen -> Linien AoE -> Ködern -> Weg',
-          fr: 'Position -> Groupes -> AoE en ligne -> Appâtez -> Éloignez-vous',
+          fr: 'Position -> Groupes -> AoE en ligne -> Attirez -> Éloignez-vous',
           ja: '8方向散開 -> 3方向頭割り -> 直線範囲 -> AoE誘導 -> 離れる',
           cn: '八方 -> 光三向分摊 -> 直线 -> 放光点名 -> 离开',
           ko: '8산개 -> 홀리 그룹 쉐어 -> 직선 장판 -> 장판 유도 -> 피하기',
@@ -683,6 +683,7 @@ export default {
         'Halo of Flame': 'halo de feu',
       },
       'replaceText': {
+        '\\?': ' ?',
         'Ageless Serpent': 'Serpent éternel',
         'Blastburn': 'Explosion brûlante',
         'Blasting Zone': 'Zone de destruction',
