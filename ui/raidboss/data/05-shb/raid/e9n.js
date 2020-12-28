@@ -222,10 +222,9 @@ export default {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Cloud Of Darkness': 'Wolke der Dunkelheit',
-        'Stygian Arbor': 'stygisch[a] Dorn',
+        'Stygian Arbor': 'stygisch Dorn',
       },
       'replaceText': {
         'Anti-air Particle Beam': 'Flugabwehr-Partikelstrahl',
