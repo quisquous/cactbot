@@ -441,7 +441,7 @@ It will list lines for each local user file it loads:
 
 Verify that your user file is loaded at all.
 
-The order that the filenames are printed are the order in which they are loaded.
+The order that the filenames are printed is the order in which they are loaded.
 
 ### Check if your user file has errors
 
