@@ -240,7 +240,7 @@ ThirdParty
 
 1. Install [nodejs and npm](https://nodejs.org/en/download/)
 1. Run `npm install` in the root of the cactbot directory.
-1. Run `npm build` or `npm start`.
+1. Run `npm run build` or `npm start`.
 
 See the [contributing](CONTRIBUTING.md#validating-changes-via-webpack) documentation
 for more details about using Webpack.
