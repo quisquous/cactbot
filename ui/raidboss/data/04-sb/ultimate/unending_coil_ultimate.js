@@ -1552,7 +1552,7 @@ export default {
         text: {
           en: 'Akh Morn #${num}',
           de: 'Akh Morn #${num}',
-          ja: 'アク・モーン #{num}',
+          ja: 'アク・モーン #${num}',
           cn: '死亡轮回 #${num}',
           ko: '아크 몬 ${num}',
         },
