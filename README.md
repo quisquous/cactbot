@@ -238,16 +238,19 @@ ThirdParty
 
 ### npm and webpack
 
+If you are not a cactbot developer
+and are trying to modify cactbot for your own personal triggers,
+you should instead refer to the [customization documentation](docs/CactbotCustomization.md)
+instead of changing your local cactbot files.
+
+To install npm and start Webpack, follow these steps:
+
 1. Install [nodejs and npm](https://nodejs.org/en/download/)
 1. Run `npm install` in the root of the cactbot directory.
 1. Run `npm run build` or `npm start`.
 
 See the [contributing](CONTRIBUTING.md#validating-changes-via-webpack) documentation
 for more details about using Webpack.
-
-If you are a user and not a cactbot developer,
-you should instead refer to the [customization documentation](docs/CactbotCustomization.md)
-instead of changing local files.
 
 ## UI module overview
 
