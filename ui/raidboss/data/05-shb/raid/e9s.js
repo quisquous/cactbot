@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions.js';
 import NetRegexes from '../../../../../resources/netregexes.js';
+import Outputs from '../../../../../resources/outputs.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
@@ -7,22 +8,8 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // TODO: Add Summon
 
 const phaserOutputStrings = {
-  sides: {
-    en: 'Sides',
-    de: 'Seiten',
-    fr: 'Côtés',
-    ja: '横へ',
-    cn: '去侧面',
-    ko: '양옆으로',
-  },
-  out: {
-    en: 'Out',
-    de: 'Raus',
-    fr: 'Extérieur',
-    ja: '外へ',
-    cn: '远离',
-    ko: '밖으로',
-  },
+  sides: Outputs.sides,
+  out: Outputs.out,
   healerStacks: {
     en: 'Healer Stacks',
     de: 'Bei den Heilern sammeln',
@@ -50,22 +37,8 @@ const phaserOutputStrings = {
 };
 
 const artOfDarknessOutputStrings = {
-  goRight: {
-    en: 'Right',
-    de: 'Rechts',
-    fr: 'Droite ',
-    ja: '右へ',
-    cn: '右',
-    ko: '오른쪽',
-  },
-  goLeft: {
-    en: 'Left',
-    de: 'Links',
-    fr: 'Gauche',
-    ja: '左へ',
-    cn: '左',
-    ko: '왼쪽',
-  },
+  goRight: Outputs.right,
+  goLeft: Outputs.left,
   stackWithPartner: {
     en: 'Stack With Partner',
     de: 'Mit Partner stacken',
@@ -148,30 +121,9 @@ export default {
           return output.avoidLaser();
       },
       outputStrings: {
-        tankBusterOnYou: {
-          en: 'Tank Buster on YOU',
-          de: 'Tank buster auf DIR',
-          fr: 'Tank buster sur VOUS',
-          ja: '自分にタンクバスター',
-          cn: '死刑点名',
-          ko: '탱버 대상자',
-        },
-        tankBusters: {
-          en: 'Tank Busters',
-          de: 'Tank buster',
-          fr: 'Tank buster',
-          ja: 'タンクバスター',
-          cn: '死刑',
-          ko: '탱버',
-        },
-        tankSwap: {
-          en: 'Tank Swap!',
-          de: 'Tankwechsel!',
-          fr: 'Tank swap !',
-          ja: 'タンクスイッチ',
-          cn: '换T！',
-          ko: '탱 교대',
-        },
+        tankBusterOnYou: Outputs.tankBusterOnYou,
+        tankBusters: Outputs.tankBusters,
+        tankSwap: Outputs.tankSwap,
         avoidLaser: {
           en: 'Avoid Laser',
           de: 'Laser ausweichen',

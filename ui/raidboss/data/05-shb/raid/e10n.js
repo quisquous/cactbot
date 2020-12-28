@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions.js';
 import NetRegexes from '../../../../../resources/netregexes.js';
+import Outputs from '../../../../../resources/outputs.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
@@ -41,12 +42,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56B7', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
-        text: {
-          en: 'Go Front',
-          de: 'Geh nach vorn',
-          ja: '前へ',
-          cn: '去前面',
-        },
+        text: Outputs.goFront,
       },
     },
     {

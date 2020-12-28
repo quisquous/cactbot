@@ -82,6 +82,15 @@ const Outputs = new ThrowOnInvalidProxy({
     cn: '死刑点名',
     ko: '탱버 대상자',
   },
+  // when there are multiple tankbusters going out
+  tankBusters: {
+    en: 'Tank Busters',
+    de: 'Tank buster',
+    fr: 'Tank buster',
+    ja: 'タンクバスター',
+    cn: '死刑',
+    ko: '탱버',
+  },
   tankCleave: {
     en: 'Tank cleave',
     de: 'Tank Cleave',
@@ -260,6 +269,12 @@ const Outputs = new ThrowOnInvalidProxy({
     cn: '去前侧方',
     ko: '보스 후방 피하기',
   },
+  goFront: {
+    en: 'Go Front',
+    de: 'Geh nach vorn',
+    ja: '前へ',
+    cn: '去前面',
+  },
   // getUnder is used when you have to get into the bosses hitbox
   getUnder: {
     en: 'Get Under',
@@ -382,6 +397,13 @@ const Outputs = new ThrowOnInvalidProxy({
     ja: '横へ',
     cn: '去侧面',
     ko: '양옆으로',
+  },
+  middle: {
+    en: 'Middle',
+    de: 'Mitte',
+    ja: '中へ',
+    cn: '中间',
+    ko: '중앙',
   },
   // killAdds is used for adds that will always be available
   killAdds: {
@@ -538,6 +560,62 @@ const Outputs = new ThrowOnInvalidProxy({
     ja: '目を覚めて！',
     cn: '醒醒！动一动！！',
     ko: '강제 퇴장 7분 전',
+  },
+  closeTethersWithPlayer: {
+    en: 'Close Tethers (${player})',
+    de: 'Nahe Verbindungen (${player})',
+    fr: 'Liens proches (${player})',
+    ja: '(${player})に近づく',
+    cn: '靠近连线 (${player})',
+    ko: '상대와 가까이 붙기 (${player})',
+  },
+  farTethersWithPlayer: {
+    en: 'Far Tethers (${player})',
+    de: 'Entfernte Verbindungen (${player})',
+    fr: 'Liens éloignés (${player})',
+    ja: ' (${player})から離れる',
+    cn: '远离连线 (${player})',
+    ko: '상대와 떨어지기 (${player})',
+  },
+  unknownTarget: {
+    en: '???',
+    de: '???',
+    fr: '???',
+    ja: '???',
+    cn: '???',
+    ko: '???',
+  },
+  north: {
+    en: 'North',
+    de: 'Norden',
+    fr: 'le nord',
+    ja: '北へ',
+    cn: '去北边',
+    ko: '북쪽',
+  },
+  south: {
+    en: 'South',
+    de: 'Süden',
+    fr: 'le sud',
+    ja: '南へ',
+    cn: '去南边',
+    ko: '남쪽',
+  },
+  east: {
+    en: 'East',
+    de: 'Osten',
+    fr: 'l\'est',
+    ja: '東へ',
+    cn: '去东边',
+    ko: '동쪽',
+  },
+  west: {
+    en: 'West',
+    de: 'Westen',
+    fr: 'l\'ouest',
+    ja: '西へ',
+    cn: '去西边',
+    ko: '서쪽',
   },
 });
 
