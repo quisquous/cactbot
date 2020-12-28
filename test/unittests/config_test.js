@@ -6,6 +6,7 @@ const { assert } = chai;
 const tests = {
   sortUserFiles: () => {
     const unsortedKeys = [
+      'b but with some spaces/file.js',
       'b/subdir1/z/z/z/nested_file.js',
       'a/some.js',
       'root_file1.js',
@@ -14,15 +15,18 @@ const tests = {
       'b/some_file.js',
       'b/subdir1/file.js',
       'root_file2.js',
+      'a/some file with spaces oof why.js',
       'b/subdir2/first.js',
     ];
     const sortedKeys = [
+      'a/some file with spaces oof why.js',
       'a/some.js',
       'b/subdir1/z/z/z/nested_file.js',
       'b/subdir1/file.js',
       'b/subdir2/first.js',
       'B/subDir2/second.js',
       'b/some_file.js',
+      'b but with some spaces/file.js',
       'zzz/sleepy.js',
       'root_file1.js',
       'root_file2.js',
@@ -39,16 +43,20 @@ const tests = {
       'raidboss/mystatic/subfolder/raidboss.js',
       'raidboss/mystatic/strat1.js',
       'raidboss/MyStatic/strat2.js',
+      'raidboss/my other space static/yikes.js',
       'raidboss/nicelookingtriggers/script.js',
       'raidboss/nicelookingtriggers/style.js',
       'raidboss/prettytimelines/something.css',
+      'raidboss/prettytimelines/something else.css',
       'ignored_root_file.js',
       'oopsyraidsy.js',
       'RADAR.js',
       'radar.CSS',
+      'raidbossy.js',
       'raidboss.js',
       'raidboss.css',
       'raidboss.html',
+      'yet another ignored file with spaces.js',
     ];
 
     assert.deepEqual(UserConfig.filterUserFiles(keys, 'radar', '.js'), ['RADAR.js']);
@@ -64,12 +72,14 @@ const tests = {
       'raidboss/mystatic/subfolder/raidboss.js',
       'raidboss/mystatic/strat1.js',
       'raidboss/MyStatic/strat2.js',
+      'raidboss/my other space static/yikes.js',
       'raidboss/nicelookingtriggers/script.js',
       'raidboss/nicelookingtriggers/style.js',
       'raidboss.js',
     ]);
     assert.deepEqual(UserConfig.filterUserFiles(keys, 'raidboss', '.css'), [
       'raidboss/prettytimelines/something.css',
+      'raidboss/prettytimelines/something else.css',
       'raidboss.css',
     ]);
   },
