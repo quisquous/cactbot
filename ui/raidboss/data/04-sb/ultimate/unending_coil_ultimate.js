@@ -874,6 +874,7 @@ export default {
           en: 'Fire IN (${players} out)',
           de: 'Feuer INNEN (${players} éviter)',
           fr: 'Feu EN DEDANS (${players} raus)',
+          ja: 'ファイアボールは密着 (${players}は外へ)',
           cn: '火3 (${players}躲避)',
           ko: '불 같이맞기 (${players} 는 피하기)',
         },
@@ -1065,6 +1066,7 @@ export default {
         text: {
           en: 'Go To ${dir} with marker',
           de: 'Gehe nach ${dir} mit dem Marker',
+          ja: 'マーカー付いたまま${dir}へ',
           cn: '带着点名去${dir}',
           ko: '${dir}으로 이동',
         },
@@ -1188,6 +1190,7 @@ export default {
           en: '${num}: ${player}',
           de: '${num}: ${player}',
           fr: '${num} : ${player}',
+          ja: '${num}: ${player}',
           cn: '${num}：${player}',
           ko: '${num}: ${player}',
         },
@@ -1414,12 +1417,14 @@ export default {
         twinHasMegaflare: {
           en: '${player} (twin) has megaflare',
           de: '${player} (Twin) hat Megaflare',
+          ja: '${player} (ツインタニア) メガ頭割り',
           cn: '${player} (双塔) 分摊点名',
           ko: '${player} (트윈 징 대상자) => 쉐어',
         },
         twinHasTower: {
           en: '${player} (twin) needs tower',
           de: '${player} (Twin) braucht einen Turm',
+          ja: '${player} (ツインタニア) 塔を踏む',
           cn: '${player} (双塔) 需要踩塔',
           ko: '${player} (트윈 징 대상자) => 기둥',
         },
@@ -1547,6 +1552,7 @@ export default {
         text: {
           en: 'Akh Morn #${num}',
           de: 'Akh Morn #${num}',
+          ja: 'アク・モーン #{num}',
           cn: '死亡轮回 #${num}',
           ko: '아크 몬 ${num}',
         },
