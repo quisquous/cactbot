@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions.js';
 import NetRegexes from '../../../../../resources/netregexes.js';
+import Outputs from '../../../../../resources/outputs.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
@@ -58,34 +59,14 @@ const primalOutputStrings = {
   'combined': {
     en: '${safespot1} + ${safespot2}',
     de: '${safespot1} + ${safespot2}',
+    fr: '${safespot1} + ${safespot2}',
     ja: '${safespot1} + ${safespot2}',
     cn: '${safespot1} + ${safespot2}',
     ko: '${safespot1} + ${safespot2}',
   },
-  '008E': {
-    en: 'Middle',
-    de: 'Mitte',
-    fr: 'Milieu',
-    ja: '中へ',
-    cn: '中间',
-    ko: '중앙',
-  },
-  '008F': {
-    en: 'Sides',
-    de: 'Seiten',
-    fr: 'Côtés',
-    ja: '横へ',
-    cn: '两侧',
-    ko: '양옆',
-  },
-  '0090': {
-    en: 'Out',
-    de: 'Raus',
-    fr: 'Extérieur',
-    ja: '離れる',
-    cn: '远离',
-    ko: '바깥',
-  },
+  '008E': Outputs.middle,
+  '008F': Outputs.sides,
+  '0090': Outputs.out,
   '0091': {
     en: 'Intercards',
     de: 'Interkardinale Himmelsrichtungen',
@@ -97,7 +78,7 @@ const primalOutputStrings = {
   '008E008F': {
     en: 'Under + Sides',
     de: 'Unter Ihm + Seiten',
-    fr: 'Dessous + Côtés',
+    fr: 'En dessous + Côtés',
     ja: '真ん中 + 横へ',
     cn: '正中间两侧',
     ko: '보스 아래 + 양옆',
@@ -113,7 +94,7 @@ const primalOutputStrings = {
   '008E0091': {
     en: 'Under + Intercards',
     de: 'Unter Ihm + Interkardinale Himmelsrichtungen',
-    fr: 'Dessous + Intercardinal',
+    fr: 'En dessous + Intercardinal',
     ja: '真ん中 + 斜め',
     cn: '正中间四角',
     ko: '보스 아래 + 대각',
@@ -231,14 +212,7 @@ export default {
           cn: '分摊 (${players})',
           ko: '모이기 (${players})',
         },
-        stackOnYou: {
-          en: 'Stack on YOU',
-          de: 'Sammeln auf DIR',
-          fr: 'Package sur VOUS',
-          ja: '自分にシェア',
-          cn: '集合点名',
-          ko: '나에게 모이기',
-        },
+        stackOnYou: Outputs.stackOnYou,
       },
     },
     {
@@ -365,6 +339,7 @@ export default {
         'Titanic Bomb Boulder': 'méga bombo rocher',
       },
       'replaceText': {
+        '\\?': ' ?',
         'Cast': 'Lancer',
         'Classical Sculpture': 'Serviteur colossal',
         'Conflag Strike': 'Ekpurosis',

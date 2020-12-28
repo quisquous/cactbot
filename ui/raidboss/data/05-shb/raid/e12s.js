@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions.js';
 import NetRegexes from '../../../../../resources/netregexes.js';
+import Outputs from '../../../../../resources/outputs.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
@@ -46,27 +47,9 @@ const getTetherString = (tethers, output) => {
 // TODO: also on the pre-statue cast, call south for any levi mechanics, west for any ifrit.
 const primalOutputStrings = {
   // Tethers.
-  '008E': {
-    en: 'Middle',
-    de: 'Mitte',
-    ja: '中へ',
-    cn: '中间',
-    ko: '중앙',
-  },
-  '008F': {
-    en: 'Sides',
-    de: 'Seiten',
-    ja: '横へ',
-    cn: '两侧',
-    ko: '양옆',
-  },
-  '0090': {
-    en: 'Out',
-    de: 'Raus',
-    ja: '離れる',
-    cn: '远离',
-    ko: '바깥',
-  },
+  '008E': Outputs.middle,
+  '008F': Outputs.sides,
+  '0090': Outputs.out,
   '0091': {
     en: 'Intercards',
     de: 'Interkardinale Himmelsrichtungen',
@@ -196,13 +179,7 @@ export default {
         return output.junctionWithCast();
       },
       outputStrings: {
-        junctionWithCast: {
-          en: 'Spread',
-          de: 'Verteilen',
-          ja: '散開',
-          cn: '散开',
-          ko: '산개',
-        },
+        junctionWithCast: Outputs.spread,
         diamondDust: {
           en: 'Big AOE, Get Middle',
           de: 'Große AoE, geh in die Mitte',
