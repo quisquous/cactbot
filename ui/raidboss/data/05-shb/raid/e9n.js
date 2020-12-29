@@ -224,7 +224,7 @@ export default {
       'locale': 'de',
       'replaceSync': {
         'Cloud Of Darkness': 'Wolke der Dunkelheit',
-        'Stygian Arbor': 'stygisch Dorn',
+        'Stygian Arbor': 'stygisch(?:e|er|es|en) Dorn',
       },
       'replaceText': {
         'Anti-air Particle Beam': 'Flugabwehr-Partikelstrahl',
