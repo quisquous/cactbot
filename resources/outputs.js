@@ -226,7 +226,7 @@ const Outputs = new ThrowOnInvalidProxy({
     de: 'Anschauen Boss',
     fr: 'Regardez le boss',
     ja: 'ボスを見る',
-    cn: '正对',
+    cn: '面向',
     ko: '쳐다보기',
   },
   lookAway: {
