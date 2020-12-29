@@ -52,16 +52,30 @@ class UserConfig {
         // If both subdirectories or both files, then compare names.
         const isLastA = splitKeyMap[a].length - 1 === idx;
         const isLastB = splitKeyMap[b].length - 1 === idx;
-        if (isLastA && isLastB || !isLastA && !isLastB) {
-          const nameDiff = splitKeyMap[a][idx].localeCompare(splitKeyMap[b][idx]);
-          if (nameDiff || isLastA && isLastB)
-            return nameDiff;
+        if (isLastA && isLastB) {
+          // If both last, then this is a filename comparison.
+
+          // First, compare filename without extension.
+          const fileA = splitKeyMap[a][idx].replace(/\.[^\.]*$/, '');
+          const fileB = splitKeyMap[b][idx].replace(/\.[^\.]*$/, '');
+          const filenameOnlyDiff = fileA.localeCompare(fileB);
+          if (filenameOnlyDiff)
+            return filenameOnlyDiff;
+
+          // Second, compare including the extension.
+          // Always return something here, see note below.
+          return splitKeyMap[a][idx].localeCompare(splitKeyMap[b][idx]);
+        } else if (!isLastA && !isLastB) {
+          // If both not last, this is a subdirectory comparison.
+          const diff = splitKeyMap[a][idx].localeCompare(splitKeyMap[b][idx]);
+          if (diff)
+            return diff;
         }
 
         // At this point, if idx is the final for each, we would have returned above.
         // So, check if either a or b is at the final entry in splitKeyMap.
-        // If so, then there's a mismatch, and we know one the one with a filename
-        // should be sorted last.
+        // If so, then there's a mismatch in number of directories, and we know one
+        // the one with a filename should be sorted last.
 
         if (splitKeyMap[a].length - 1 <= idx) {
           // a has fewer subdirectories, so should be sorted last.

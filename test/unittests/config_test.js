@@ -19,8 +19,8 @@ const tests = {
       'b/subdir2/first.js',
     ];
     const sortedKeys = [
-      'a/some file with spaces oof why.js',
       'a/some.js',
+      'a/some file with spaces oof why.js', // sorted by filename ignoring extension
       'b/subdir1/z/z/z/nested_file.js',
       'b/subdir1/file.js',
       'b/subdir2/first.js',
