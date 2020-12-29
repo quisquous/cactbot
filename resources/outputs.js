@@ -226,7 +226,7 @@ const Outputs = new ThrowOnInvalidProxy({
     de: 'Anschauen Boss',
     fr: 'Regardez le boss',
     ja: 'ボスを見る',
-    cn: '面向',
+    cn: '面向Boss',
     ko: '쳐다보기',
   },
   lookAway: {
@@ -234,7 +234,7 @@ const Outputs = new ThrowOnInvalidProxy({
     de: 'Wegschauen',
     fr: 'Regardez ailleurs',
     ja: 'ボスを見ない',
-    cn: '背对',
+    cn: '背对Boss',
     ko: '뒤돌기',
   },
   lookAwayFromPlayer: {
