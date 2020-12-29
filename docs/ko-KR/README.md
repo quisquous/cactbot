@@ -231,13 +231,29 @@ ThirdParty
    |- OverlayPlugin.dll
 ```
 
-### 빌드하는 단계
+### 플러그인을 빌드하는 단계
 
 1. 솔루션을 Visual Studio로 여세요. (Visual Studio 2017에서 작동을 테스트하고 있습니다).
 1. "Release"와 "x64" 설정으로 빌드하세요.
 1. 플러그인은 **bin/x64/Release/CactbotOverlay.dll**에 빌드될 겁니다.
 1. 빌드된 플러그인을 ACT에 플러그인으로 직접 추가하세요.
 ACT -> Plugins -> Plugin Listing 탭에서, `Browse` 버튼을 클릭하고 이 파일이 빌드된 **bin/x64/Release/CactbotOverlay.dll**을 찾으세요.  그리고 `Add/Enable Plugin`을 클릭하세요.
+
+### npm과 webpack
+
+cactbot 개발자가 아니고
+개인적인 목적으로 수정하는 경우에는
+[Cactbot 사용자 설정](./CactbotCustomization.md) 문서를 참고해야 합니다.
+cactbot 파일을 직접 수정하는 것은 권장하지 않습니다.
+
+npm을 설치하고 Webpack을 실행하려면, 다음 과정을 따르세요:
+
+1. [nodejs와 npm](https://nodejs.org/ko/download/)을 설치합니다.
+1. cactbot 최상위 디렉토리에서 `npm install`을 실행합니다.
+1. `npm run build` 또는 `npm start`를 실행합니다.
+
+Webpack에 대해 더 자세히 알고 싶다면
+[기여하기](../../CONTRIBUTING.md#validating-changes-via-webpack) 문서를 보세요.
 
 ## UI 모듈 개요
 
