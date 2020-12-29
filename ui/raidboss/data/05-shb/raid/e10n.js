@@ -56,7 +56,7 @@ export default {
         text: {
           en: 'Shadow Side',
           de: 'Schatten Seite',
-          fr: 'Ombre à côté',
+          fr: 'Allez du côté de l\'ombre',
           ja: '影と同じ側へ',
           cn: '影子同侧',
           ko: '그림자 쪽으로',
@@ -74,7 +74,7 @@ export default {
         text: {
           en: 'Opposite Shadow',
           de: 'Gegenüber des Schattens',
-          fr: 'Ombre opposée',
+          fr: 'Allez du côté opposé à l\'ombre',
           ja: '影の反対側へ',
           cn: '影子异侧',
           ko: '그림자 반대쪽으로',
@@ -181,6 +181,7 @@ export default {
           // TODO: this could be better if we knew where the shadow was
           en: 'Away From Black Lines',
           de: 'Weg von den schwarzen Linien',
+          fr: 'Éloignez-vous des lignes noires',
           ja: '黒い線から離れる',
           cn: '远离黑线',
         },

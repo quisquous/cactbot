@@ -258,7 +258,7 @@ export default {
       outputStrings: {
         dropShadow: {
           en: 'Drop Shadow ${dir}',
-          fr: 'Déposez l\'ombre à ${dir}',
+          fr: 'Déposez l\'ombre du côté ${dir}',
           ja: '${dir}、影を捨てる',
           cn: '${dir}放影子',
           ko: '${dir}에 그림자 놓기',
@@ -309,7 +309,7 @@ export default {
       outputStrings: {
         dropShadow: {
           en: 'Drop Shadow on ${dir}',
-          fr: 'Déposez l\'ombre à ${dir}',
+          fr: 'Déposez l\'ombre du côté ${dir}',
           ja: '${dir}、影を捨てる',
           cn: '${dir}放影子',
           ko: '${dir}에 그림자 놓기',
