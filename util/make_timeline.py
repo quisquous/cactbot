@@ -60,6 +60,10 @@ log_event_types = {
 }
 
 
+def is_ascii(str):
+    return len(str) == len(str.encode())
+
+
 def make_entry(overrides):
     # This should include all of the fields that any entry uses.
     base_entry = {
@@ -212,6 +216,8 @@ def parse_file(args):
 
             # Unknown abilities should be hidden sync lines by default.
             if line_fields[5].startswith("Unknown_"):
+                entry["ability_name"] = "--sync--"
+            elif not is_ascii(line_fields[5]):
                 entry["ability_name"] = "--sync--"
             else:
                 entry["targetable"] = (
