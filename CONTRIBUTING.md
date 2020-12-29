@@ -73,6 +73,9 @@ along with a suite of linters and tests to ensure code quality.
 These validations are done both on a client-side (your computer)
 and on the server-side (GitHub).
 
+You will need to [install](README.md#npm-and-webpack) `nodejs` and run `npm install`
+in order to install local versions of husky, lint-staged, and eslint.
+
 If the pre-commit validations are causing you significant problems,
 feel free to bypass the checks with `--no-verify` flag,
 such as `git commit --no-verify`,

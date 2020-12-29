@@ -229,12 +229,28 @@ ThirdParty
    |- OverlayPlugin.dll
 ```
 
-### Steps to build
+### Steps to build plugin
 
 1. Open the solution in Visual Studio (tested with Visual Studio 2017).
 1. Build for "Release" and "x64".
 1. The plugin will be built as **bin/x64/Release/CactbotOverlay.dll**.
 1. Add the built plugin directly as an ACT plugin.  In the ACT -> Plugins -> Plugin Listing tab, click the `Browse` button and find the **bin/x64/Release/CactbotOverlay.dll** where this file was built.  Then click `Add/Enable Plugin`.
+
+### npm and webpack
+
+If you are not a cactbot developer
+and are trying to modify cactbot for your own personal triggers,
+you should instead refer to the [customization documentation](docs/CactbotCustomization.md)
+instead of changing your local cactbot files.
+
+To install npm and start Webpack, follow these steps:
+
+1. Install [nodejs and npm](https://nodejs.org/en/download/)
+1. Run `npm install` in the root of the cactbot directory.
+1. Run `npm run build` or `npm start`.
+
+See the [contributing](CONTRIBUTING.md#validating-changes-via-webpack) documentation
+for more details about using Webpack.
 
 ## UI module overview
 

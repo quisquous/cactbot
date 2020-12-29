@@ -59,6 +59,7 @@ const primalOutputStrings = {
   'combined': {
     en: '${safespot1} + ${safespot2}',
     de: '${safespot1} + ${safespot2}',
+    fr: '${safespot1} + ${safespot2}',
     ja: '${safespot1} + ${safespot2}',
     cn: '${safespot1} + ${safespot2}',
     ko: '${safespot1} + ${safespot2}',
@@ -77,7 +78,7 @@ const primalOutputStrings = {
   '008E008F': {
     en: 'Under + Sides',
     de: 'Unter Ihm + Seiten',
-    fr: 'Dessous + Côtés',
+    fr: 'En dessous + Côtés',
     ja: '真ん中 + 横へ',
     cn: '正中间两侧',
     ko: '보스 아래 + 양옆',
@@ -93,7 +94,7 @@ const primalOutputStrings = {
   '008E0091': {
     en: 'Under + Intercards',
     de: 'Unter Ihm + Interkardinale Himmelsrichtungen',
-    fr: 'Dessous + Intercardinal',
+    fr: 'En dessous + Intercardinal',
     ja: '真ん中 + 斜め',
     cn: '正中间四角',
     ko: '보스 아래 + 대각',
@@ -338,6 +339,7 @@ export default {
         'Titanic Bomb Boulder': 'méga bombo rocher',
       },
       'replaceText': {
+        '\\?': ' ?',
         'Cast': 'Lancer',
         'Classical Sculpture': 'Serviteur colossal',
         'Conflag Strike': 'Ekpurosis',

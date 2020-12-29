@@ -27,6 +27,20 @@ class ThrowOnInvalidProxy {
   }
 }
 
+// Output strings for now require a field for every language, so this is a
+// helper function to generate one for literal numbers.
+const numberToOutputString = (n) => {
+  const str = n.toString();
+  return {
+    en: str,
+    de: str,
+    fr: str,
+    ja: str,
+    cn: str,
+    ko: str,
+  };
+};
+
 // General guidelines:
 // * property names should closely match English text
 // * use OnPlayer suffix for things with `${player}`
@@ -715,6 +729,17 @@ const Outputs = new ThrowOnInvalidProxy({
     cn: '东南',
     ko: '남동',
   },
+  // Literal numbers.
+  num0: numberToOutputString(0),
+  num1: numberToOutputString(1),
+  num2: numberToOutputString(2),
+  num3: numberToOutputString(3),
+  num4: numberToOutputString(4),
+  num5: numberToOutputString(5),
+  num6: numberToOutputString(6),
+  num7: numberToOutputString(7),
+  num8: numberToOutputString(8),
+  num9: numberToOutputString(9),
 });
 
 export default Outputs;
