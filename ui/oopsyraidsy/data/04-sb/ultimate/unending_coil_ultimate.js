@@ -72,7 +72,7 @@ export default {
           text: {
             en: 'hit by lightning',
             de: 'vom Blitz getroffen',
-            fr: 'frappé par la foudre',
+            fr: 'frappé(e) par la foudre',
             ja: 'チェインライトニング',
             cn: '雷光链',
             ko: '번개 맞음',

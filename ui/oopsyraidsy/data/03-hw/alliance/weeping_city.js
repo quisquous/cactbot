@@ -130,7 +130,7 @@ export default {
           reason: {
             en: 'Slid off!',
             de: 'ist runtergerutscht!',
-            fr: 'Glissé !',
+            fr: 'A glissé(e) !',
             ja: 'ノックバック',
             cn: '击退！',
             ko: '넉백됨!',

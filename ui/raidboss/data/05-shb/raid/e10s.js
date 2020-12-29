@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions.js';
 import NetRegexes from '../../../../../resources/netregexes.js';
+import Outputs from '../../../../../resources/outputs.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
@@ -12,38 +13,10 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // Note: there's no headmarker ability line for cleaving shadows.
 
 const directions = {
-  north: {
-    en: 'North',
-    de: 'Norden',
-    fr: 'Nord',
-    ja: '北へ',
-    cn: '去北边',
-    ko: '북쪽',
-  },
-  south: {
-    en: 'South',
-    de: 'Süden',
-    fr: 'Sud',
-    ja: '南へ',
-    cn: '去南边',
-    ko: '남쪽',
-  },
-  east: {
-    en: 'East',
-    de: 'Osten',
-    fr: 'Est',
-    ja: '東へ',
-    cn: '去东边',
-    ko: '동쪽',
-  },
-  west: {
-    en: 'West',
-    de: 'Westen',
-    fr: 'Ouest',
-    ja: '西へ',
-    cn: '去西边',
-    ko: '서쪽',
-  },
+  north: Outputs.north,
+  south: Outputs.south,
+  east: Outputs.east,
+  west: Outputs.west,
 };
 
 export default {
@@ -683,14 +656,7 @@ export default {
         return output.text({ player: data.ShortName(partner) });
       },
       outputStrings: {
-        text: {
-          en: 'Far Tethers (${player})',
-          de: 'Entfernte Verbindungen (${player})',
-          fr: 'Liens éloignés (${player})',
-          ja: ' (${player})から離れる',
-          cn: '远离连线 (${player})',
-          ko: '상대와 떨어지기 (${player})',
-        },
+        text: Outputs.farTethersWithPlayer,
       },
     },
     {
@@ -704,14 +670,7 @@ export default {
         return output.text({ player: data.ShortName(partner) });
       },
       outputStrings: {
-        text: {
-          en: 'Close Tethers (${player})',
-          de: 'Nahe Verbindungen (${player})',
-          fr: 'Liens proches (${player})',
-          ja: '(${player})に近づく',
-          cn: '靠近连线 (${player})',
-          ko: '상대와 가까이 붙기 (${player})',
-        },
+        text: Outputs.closeTethersWithPlayer,
       },
     },
     {
