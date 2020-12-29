@@ -682,10 +682,25 @@ export default {
       },
     },
     {
-      // For all relativities, players should look outside during the final return effect.
+      id: 'E12S Basic Relativity Shadoweye',
+      netRegex: NetRegexes.gainsEffect({ effectId: '998' }),
+      condition: (data, matches) => data.phase === 'basic',
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - 2.5,
+      suppressSeconds: 2,
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          // TODO: we could say "look away from x, y" or "look away from tanks"?
+          en: 'Look Away',
+        },
+      },
+    },
+    {
+      // For intermediate and advanced, players should look outside during the final return effect.
+      // For basic relativity, the shadoweye happens when the return puddle is dropped.
       id: 'E12S Relativity Look Outside',
       netRegex: NetRegexes.gainsEffect({ effectId: '994' }),
-      condition: Conditions.targetIsYou(),
+      condition: (data, matches) => data.phase !== 'basic' && matches.target === data.me,
       delaySeconds: (data, matches) => parseFloat(matches.duration) - 2.5,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
