@@ -80,6 +80,25 @@ const boundOfFaithHolyTetherResponse = (data, _, output) => {
   return { infoText: output.awayFromPlayer({ player: data.ShortName(targets[0]) }) };
 };
 
+const calculatePrismaticSafeZone = (images) => {
+  // Convert coordinates to 8 cardinal / intercardinal positions:
+  // N at 0, NE at 1, ... NW at 7
+  const badZones = images.map((image) =>
+    Math.round(4 - 4 * Math.atan2(image.PosX - 100, image.PosY - 100) / Math.PI));
+
+  const directions = {
+    '0': { dir1: Outputs.dirN, dir2: Outputs.dirS },
+    '1': { dir1: Outputs.dirNE, dir2: Outputs.dirSW },
+    '2': { dir1: Outputs.dirW, dir2: Outputs.dirE },
+    '3': { dir1: Outputs.dirNW, dir2: Outputs.dirSE },
+  };
+
+  const safeZones = [0, 1, 2, 3]
+    .filter((cord) => !badZones.includes(cord))
+    .map((cord) => directions[cord]);
+  return safeZones;
+};
+
 export default {
   zoneId: ZoneId.EdensPromiseAnamorphosisSavage,
   timelineFile: 'e11s.txt',
@@ -632,6 +651,42 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '569A', capture: false }),
       delaySeconds: 16.5,
       response: boundOfFaithHolyTetherResponse,
+    },
+    {
+      id: 'E11S Prismatic Deception',
+      netRegex: NetRegexes.gainsEffect({ effectId: '655' }),
+      promise: async (data) => {
+        const fateBreakersImageLocaleNames = {
+          en: 'Fatebreaker\'s image',
+          de: 'Abbild des fusionierten Ascians',
+          fr: 'double du Sabreur de destins',
+          ja: 'フェイトブレイカーの幻影',
+        };
+
+        const imageData = await window.callOverlayHandler({
+          call: 'getCombatants',
+          names: [fateBreakersImageLocaleNames[data.parserLang]],
+        });
+
+        if (imageData === null || !imageData.combatants || !imageData.combatants.length)
+          return;
+
+        if (!data.images)
+          data.images = [];
+
+        imageData.combatants.forEach((image) => {
+          data.images.push(image);
+        });
+      },
+      alertText: (data, _, output) => output.text({ ...calculatePrismaticSafeZone(data.images) }),
+      outputStrings: {
+        text: {
+          en: 'Go ${dir1} or ${dir2}',
+          fr: '${dir1} ou ${dir2}',
+          ja: '${dir1} や ${dir2} へ',
+          cn: '去 ${dir1} 或 ${dir2}',
+        },
+      },
     },
   ],
   timelineReplace: [
