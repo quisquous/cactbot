@@ -43,7 +43,7 @@ export default {
         text: {
           en: 'Away from tether marker',
           de: 'Weg von der Verbindung',
-          fr: 'Éloignez-vous du marqueur de lien',
+          fr: 'Éloignez-vous du marqueur lié',
           ja: '線から離れ',
           cn: '远离连线标志',
           ko: '이어진 표식으로부터 떨어지기',
@@ -157,7 +157,7 @@ export default {
         stackOnYourRock: {
           en: 'Stack on your rock',
           de: 'Auf deinem Stein sammeln',
-          fr: 'Restez sur votre rocher',
+          fr: 'Packez-vous avec votre rocher',
           ja: '自分の隕石と貼りつく',
           cn: '与自己的石堆重合',
           ko: '돌과 같이 맞기',

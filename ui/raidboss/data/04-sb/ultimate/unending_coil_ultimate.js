@@ -169,8 +169,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Twisters',
-          fr: 'Tornades',
           de: 'Wirbelstürme',
+          fr: 'Tornades',
           ja: '大竜巻',
           cn: '大龙卷',
           ko: '회오리',
@@ -192,8 +192,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Death Sentence',
-          fr: 'Peine de mort',
           de: 'Todesurteil',
+          fr: 'Peine de mort',
           ja: 'デスセンテンス',
           cn: '死刑',
           ko: '사형 선고',
@@ -216,8 +216,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Hatch on YOU',
-          fr: 'Éclosion sur VOUS',
           de: 'Ausbrüten auf DIR',
+          fr: 'Éclosion sur VOUS',
           ja: '自分に魔力爆散',
           cn: '点名魔力爆散',
           ko: '나에게 마력연성',
@@ -238,8 +238,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Hatch: ${players}',
-          fr: 'Éclosion: ${players}',
           de: 'Ausbrüten: ${players}',
+          fr: 'Éclosion: ${players}',
           ja: '魔力爆散${players}',
           cn: '魔力爆散${players}',
           ko: '마력연성: ${players}',
@@ -267,8 +267,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Phase 2 Push',
-          fr: 'Phase 2 poussée',
           de: 'Phase 2 Stoß',
+          fr: 'Phase 2 poussée',
           ja: 'フェーズ2',
           cn: 'P2准备',
           ko: '트윈 페이즈2',
@@ -288,8 +288,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Phase 3 Push',
-          fr: 'Phase 3 poussée',
           de: 'Phase 3 Stoß',
+          fr: 'Phase 3 poussée',
           ja: 'フェーズ3',
           cn: 'P3准备',
           ko: '트윈 페이즈3',
@@ -312,8 +312,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Spread => In',
-          fr: 'Se dispercer => Dedans',
           de: 'Verteilen => Rein',
+          fr: 'Se dispercer => Dedans',
           ja: '散開 => 密着',
           cn: '分散 => 靠近',
           ko: '산개 => 안으로',
@@ -334,8 +334,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Spread => Out',
-          fr: 'Se dispercer => Dehors',
           de: 'Verteilen => Raus',
+          fr: 'Se dispercer => Dehors',
           ja: '散開 => 離れ',
           cn: '分散 => 远离',
           ko: '산개 => 밖으로',
@@ -356,8 +356,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Stack => In',
-          fr: 'Se rassembler => Dedans',
           de: 'Stack => Rein',
+          fr: 'Se rassembler => Dedans',
           ja: '頭割り => 密着',
           cn: '集合 => 靠近',
           ko: '쉐어 => 안으로',
@@ -377,8 +377,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Stack => Out',
-          fr: 'Se rassembler => Dehors',
           de: 'Stack => Raus',
+          fr: 'Se rassembler => Dehors',
           ja: '頭割り => 離れ',
           cn: '集合 => 远离',
           ko: '쉐어 => 밖으로',
@@ -398,8 +398,8 @@ export default {
       outputStrings: {
         text: {
           en: 'In => Stack',
-          fr: 'Dedans => Se rassembler',
           de: 'Rein => Stack',
+          fr: 'Dedans => Se rassembler',
           ja: '密着 => 頭割り',
           cn: '靠近 => 集合',
           ko: '안으로 => 쉐어',
@@ -419,8 +419,8 @@ export default {
       outputStrings: {
         text: {
           en: 'In => Out',
-          fr: 'Dedans => Dehors',
           de: 'Rein => Raus',
+          fr: 'Dedans => Dehors',
           ja: '密着 => 離れ',
           cn: '靠近 => 远离',
           ko: '안으로 => 밖으로',
@@ -442,8 +442,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Away from Tank => Stack',
-          fr: 'S\'éloigner du tank => Se rassembler',
           de: 'Weg vom Tank => Stack',
+          fr: 'S\'éloigner du tank => Se rassembler',
           ja: 'タンクから離れ => 頭割り',
           cn: '远离坦克 => 集合',
           ko: '탱커 피하기 => 쉐어',
@@ -465,8 +465,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Spread => Away from Tank',
-          fr: 'Se dispercer => S\'éloigner du Tank',
           de: 'Verteilen => Weg vom Tank',
+          fr: 'Se dispercer => S\'éloigner du Tank',
           ja: '散開 => タンクから離れ',
           cn: '分散 => 远离坦克',
           ko: '산개 => 탱커 피하기',
@@ -487,8 +487,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Spread => In',
-          fr: 'Se dispercer => Dedans',
           de: 'Verteilen => Rein',
+          fr: 'Se dispercer => Dedans',
           ja: '散開 => 密着',
           cn: '分散 => 靠近',
           ko: '산개 => 안으로',
@@ -509,8 +509,8 @@ export default {
       outputStrings: {
         text: {
           en: 'In => Spread',
-          fr: 'Dedans => Se dispercer',
           de: 'Rein => Verteilen',
+          fr: 'Dedans => Se dispercer',
           ja: '密着 => 散開',
           cn: '靠近 => 分散',
           ko: '안으로 => 산개',
@@ -531,8 +531,8 @@ export default {
       outputStrings: {
         text: {
           en: 'In => Out => Spread',
-          fr: 'Dedans => Dehors => Se dispercer',
           de: 'Rein => Raus => Verteilen',
+          fr: 'Dedans => Dehors => Se dispercer',
           ja: '密着 => 離れ => 散開',
           cn: '靠近 => 远离 => 分散',
           ko: '안으로 => 밖으로 => 산개',
@@ -553,8 +553,8 @@ export default {
       outputStrings: {
         text: {
           en: 'In => Spread => Stack',
-          fr: 'Dedans => Se dispercer => Se rassembler',
           de: 'Rein => Verteilen => Stack',
+          fr: 'Dedans => Se dispercer => Se rassembler',
           ja: '密着 => 散開 => 頭割り',
           cn: '靠近 => 分散 => 集合',
           ko: '안으로 => 산개 => 쉐어',
@@ -575,8 +575,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Out => Stack => Spread',
-          fr: 'Dehors => Se rassembler => Se dispercer',
           de: 'Raus => Stack => Verteilen',
+          fr: 'Dehors => Se rassembler => Se dispercer',
           ja: '離れ => 頭割り => 散開',
           cn: '远离 => 集合 => 分散',
           ko: '밖으로 => 쉐어 => 산개',
@@ -597,8 +597,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Out => Spread => Stack',
-          fr: 'Dehors => Se dispercer => Se rassembler',
           de: 'Raus => Verteilen => Stack',
+          fr: 'Dehors => Se dispercer => Se rassembler',
           ja: '離れ => 散開 => 頭割り',
           cn: '远离 => 分散 => 集合',
           ko: '밖으로 => 산개 => 쉐어',
@@ -620,8 +620,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Thunder on YOU',
-          fr: 'Foudre sur VOUS',
           de: 'Blitz auf DIR',
+          fr: 'Foudre sur VOUS',
           ja: '自分にサンダー',
           cn: '雷点名',
           ko: '나에게 번개',
@@ -669,24 +669,24 @@ export default {
       outputStrings: {
         doom1: {
           en: 'Doom #1 on YOU',
-          fr: 'Glas #1 sur VOUS',
           de: 'Verhängnis #1 auf DIR',
+          fr: 'Glas #1 sur VOUS',
           ja: '自分に一番目死の宣告',
           cn: '死宣一号点名',
           ko: '죽음의 선고 1번',
         },
         doom2: {
           en: 'Doom #2 on YOU',
-          fr: 'Glas #2 sur VOUS',
           de: 'Verhängnis #2 auf DIR',
+          fr: 'Glas #2 sur VOUS',
           ja: '自分に二番目死の宣告',
           cn: '死宣二号点名',
           ko: '죽음의 선고 2번',
         },
         doom3: {
           en: 'Doom #3 on YOU',
-          fr: 'Glas #3 sur VOUS',
           de: 'Verhängnis #3 auf DIR',
+          fr: 'Glas #3 sur VOUS',
           ja: '自分に三番目死の宣告',
           cn: '死宣三号点名',
           ko: '죽음의 선고 3번',
@@ -754,8 +754,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Cleanse #${num}: ${player}',
-          fr: 'Purifié #${num}: ${player}',
           de: 'Medica #${num}: ${player}',
+          fr: 'Purifié #${num}: ${player}',
           ja: '解除に番目${num}: ${player}',
           cn: '解除死宣 #${num}: ${player}',
           ko: '선고 해제 ${num}: ${player}',
@@ -779,8 +779,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Fire IN',
-          fr: 'Feu EN DEDANS',
           de: 'Feuer INNEN',
+          fr: 'Feu EN DEDANS',
           ja: 'ファイアボールは密着',
           cn: '火1 分摊',
           ko: '불 같이맞기',
@@ -813,16 +813,16 @@ export default {
       outputStrings: {
         fireOut: {
           en: 'Fire OUT',
-          fr: 'Feu EN DEHORS',
           de: 'Feuer AUßEN',
+          fr: 'Feu EN DEHORS',
           ja: 'ファイアボールは離れ',
           cn: '火2 出人群',
           ko: '불 대상자 밖으로',
         },
         fireOutBeInIt: {
           en: 'Fire OUT: Be in it',
-          fr: 'Feu EN DEHORS : Allez dessus',
           de: 'Feuer AUßEN: Drin sein',
+          fr: 'Feu EN DEHORS : Allez dessus',
           ja: 'ファイアボールは離れ: 自分に密着',
           cn: '火2 补火',
           ko: '불 대상자 밖으로: 나는 같이 맞기',
@@ -864,23 +864,24 @@ export default {
       outputStrings: {
         fireIn: {
           en: 'Fire IN',
-          fr: 'Feu EN DEDANS',
           de: 'Feuer INNEN',
+          fr: 'Feu EN DEDANS',
           ja: 'ファイアボールは密着',
           cn: '火3 分摊',
           ko: '불 같이맞기',
         },
         fireInPlayersOut: {
           en: 'Fire IN (${players} out)',
-          fr: 'Feu EN DEDANS (${players} raus)',
           de: 'Feuer INNEN (${players} éviter)',
+          fr: 'Feu EN DEDANS (${players} raus)',
+          ja: 'ファイアボールは密着 (${players}は外へ)',
           cn: '火3 (${players}躲避)',
           ko: '불 같이맞기 (${players} 는 피하기)',
         },
         fireInAvoid: {
           en: 'Fire IN: AVOID!',
-          fr: 'Feu EN DEDANS : L\'ÉVITER !',
           de: 'Feuer INNEN: AUSWEICHEN!',
+          fr: 'Feu EN DEDANS : L\'ÉVITER !',
           ja: 'ファイアボールは密着: 自分に離れ',
           cn: '火3 躲避！',
           ko: '불 같이맞기: 나는 피하기',
@@ -923,16 +924,16 @@ export default {
       outputStrings: {
         fireIn: {
           en: 'Fire IN',
-          fr: 'Feu EN DEDANS',
           de: 'Feuer INNEN',
+          fr: 'Feu EN DEDANS',
           ja: 'ファイアボール密着',
           cn: '火4 分摊',
           ko: '불 같이맞기',
         },
         fireInAvoid: {
           en: 'Fire IN: AVOID!',
-          fr: 'Feu EN DEDANS : L\'ÉVITER !',
           de: 'Feuer INNEN: AUSWEICHEN!',
+          fr: 'Feu EN DEDANS : L\'ÉVITER !',
           ja: 'ファイアボールは密着: 自分に離れ',
           cn: '火4 躲避！',
           ko: '불 같이맞기: 나는 피하기',
@@ -977,6 +978,7 @@ export default {
           en: ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'],
           de: ['N', 'NO', 'O', 'SO', 'S', 'SW', 'W', 'NW'],
           fr: ['N', 'NE', 'E', 'SE', 'S', 'SO', 'O', 'NO'],
+          ja: ['北', '北東', '東', '南東', '南', '南西', '西', '北西'],
           cn: ['北', '东北', '东', '东南', '南', '西南', '西', '西北'],
           ko: ['북', '북동', '동', '남동', '남', '남서', '서', '북서'],
         };
@@ -1031,16 +1033,16 @@ export default {
       outputStrings: {
         marks: {
           en: 'Marks: ${dive1}, ${dive2}, ${dive3}',
-          fr: 'Marque : ${dive1}, ${dive2}, ${dive3}',
           de: 'Markierungen : ${dive1}, ${dive2}, ${dive3}',
+          fr: 'Marque : ${dive1}, ${dive2}, ${dive3}',
           ja: 'マーカー: ${dive1}, ${dive2}, ${dive3}',
           cn: '标记: ${dive1}, ${dive2}, ${dive3}',
           ko: '징: ${dive1}, ${dive2}, ${dive3}',
         },
         marksWide: {
           en: 'Marks: ${dive1}, ${dive2}, ${dive3} (WIDE)',
-          fr: 'Marque : ${dive1}, ${dive2}, ${dive3} (LARGE)',
           de: 'Markierungen : ${dive1}, ${dive2}, ${dive3} (GROß)',
+          fr: 'Marque : ${dive1}, ${dive2}, ${dive3} (LARGE)',
           ja: 'マーカー: ${dive1}, ${dive2}, ${dive3} (広)',
           cn: '标记: ${dive1}, ${dive2}, ${dive3} (大)',
           ko: '징: ${dive1}, ${dive2}, ${dive3} (넓음)',
@@ -1064,6 +1066,7 @@ export default {
         text: {
           en: 'Go To ${dir} with marker',
           de: 'Gehe nach ${dir} mit dem Marker',
+          ja: 'マーカー付いたまま${dir}へ',
           cn: '带着点名去${dir}',
           ko: '${dir}으로 이동',
         },
@@ -1091,8 +1094,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Dive #${num}: ${player}',
-          fr: 'Bombardement #${num} : ${player}',
           de: 'Sturz #${num} : ${player}',
+          fr: 'Bombardement #${num} : ${player}',
           ja: 'ダイブ${num}番目:${player}',
           cn: '冲 #${num}: ${player}',
           ko: '카탈 ${num}: ${player}',
@@ -1166,8 +1169,8 @@ export default {
       outputStrings: {
         text: {
           en: '${num}: ${player} (nael)',
-          fr: '${num} : ${player} (nael)',
           de: '${num}: ${player} (nael)',
+          fr: '${num} : ${player} (nael)',
           ja: '${num}: ${player} (ネール)',
           cn: '${num}: ${player} (奈尔)',
           ko: '${num}: ${player} (넬)',
@@ -1185,8 +1188,9 @@ export default {
       outputStrings: {
         text: {
           en: '${num}: ${player}',
-          fr: '${num} : ${player}',
           de: '${num}: ${player}',
+          fr: '${num} : ${player}',
+          ja: '${num}: ${player}',
           cn: '${num}：${player}',
           ko: '${num}: ${player}',
         },
@@ -1203,8 +1207,8 @@ export default {
       outputStrings: {
         text: {
           en: '${num}: ${player} (baha)',
-          fr: '${num} : ${player} (baha)',
           de: '${num}: ${player} (baha)',
+          fr: '${num} : ${player} (baha)',
           ja: '${num}: ${player} (バハ)',
           cn: '${num}: ${player} (巴哈)',
           ko: '${num}: ${player} (바하)',
@@ -1236,32 +1240,32 @@ export default {
       outputStrings: {
         twinOnYou: {
           en: 'YOU Stack for Twin',
-          fr: 'VOUS devez appâter Gémellia',
           de: 'DU stackst für Twintania',
+          fr: 'VOUS devez appâter Gémellia',
           ja: '自分にタニアには頭割り',
           cn: '双塔集合',
           ko: '내가 트윈징 대상자',
         },
         twinOnPlayer: {
           en: '8: ${player} (twin)',
-          fr: '8 : ${player} (Gémellia)',
           de: '8: ${player} (Twintania)',
+          fr: '8 : ${player} (Gémellia)',
           ja: '8: ${player} (ツインタニア)',
           cn: '8: ${player} (双塔)',
           ko: '8: ${player} (트윈타니아)',
         },
         twinOnUnknown: {
           en: '8: ??? (twin)',
-          fr: '8 : ??? (Gémellia)',
           de: '8: ??? (Twintania)',
+          fr: '8 : ??? (Gémellia)',
           ja: '8: ??? (ツインタニア)',
           cn: '8: ??? (双塔)',
           ko: '8: ??? (트윈타니아)',
         },
         stackTTS: {
           en: 'stack for twin',
-          fr: 'Se rassembler pour appâter Gémellia',
           de: 'stek für twintania',
+          fr: 'Se rassembler pour appâter Gémellia',
           ja: '頭割り',
           cn: '双塔集合',
           ko: '트윈타니아 옆에 서기',
@@ -1281,8 +1285,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Twisters',
-          fr: 'Tornades',
           de: 'Wirbelstürme',
+          fr: 'Tornades',
           ja: 'ツイスター',
           cn: '旋风冲',
           ko: '회오리',
@@ -1301,8 +1305,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Gigaflare',
-          fr: 'GigaBrasier',
           de: 'Gigaflare',
+          fr: 'GigaBrasier',
           ja: 'ギガフレア',
           cn: '十亿核爆',
           ko: '기가플레어',
@@ -1317,8 +1321,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Megaflare Stack',
-          fr: 'MegaBrasier rassemblement',
           de: 'Megaflare Stack',
+          fr: 'MegaBrasier rassemblement',
           ja: 'メガフレア頭割り',
           cn: '百万核爆集合',
           ko: '기가플레어 쉐어',
@@ -1360,32 +1364,32 @@ export default {
       outputStrings: {
         blackfireTower: {
           en: 'Tower, bait hypernova',
-          fr: 'Tour, attirez Supernova',
           de: 'Turm, Hypernova ködern',
+          fr: 'Tour, attirez Supernova',
           ja: 'タワーやスーパーノヴァ',
           cn: '踩塔, 引导超新星',
           ko: '초신성 피하고 기둥 밟기',
         },
         octetTowerPlusTwin: {
           en: 'Bait Twin, then tower',
-          fr: 'Attirez Gémellia, puis tour',
           de: 'Twintania in Turm locken',
+          fr: 'Attirez Gémellia, puis tour',
           ja: 'タニアダイブやタワー',
           cn: '引导双塔, 踩塔',
           ko: '트윈타니아 유도 후 기둥 밟기',
         },
         octetTower: {
           en: 'Get in a far tower',
-          fr: 'Aller dans une tour lointaine',
           de: 'Geh in entfernten Turm',
+          fr: 'Aller dans une tour lointaine',
           ja: '遠いタワー',
           cn: '踩远塔',
           ko: '기둥 밟기',
         },
         towerTTS: {
           en: 'tower',
-          fr: 'Tour',
           de: 'Turm',
+          fr: 'Tour',
           ja: 'タワー',
           cn: '塔',
           ko: '기둥',
@@ -1413,12 +1417,14 @@ export default {
         twinHasMegaflare: {
           en: '${player} (twin) has megaflare',
           de: '${player} (Twin) hat Megaflare',
+          ja: '${player} (ツインタニア) メガ頭割り',
           cn: '${player} (双塔) 分摊点名',
           ko: '${player} (트윈 징 대상자) => 쉐어',
         },
         twinHasTower: {
           en: '${player} (twin) needs tower',
           de: '${player} (Twin) braucht einen Turm',
+          ja: '${player} (ツインタニア) 塔を踏む',
           cn: '${player} (双塔) 需要踩塔',
           ko: '${player} (트윈 징 대상자) => 기둥',
         },
@@ -1462,24 +1468,24 @@ export default {
       outputStrings: {
         quickmarchTankTether: {
           en: 'Pick up tether',
-          fr: 'Prendre un lien',
           de: 'Verbindung holen',
+          fr: 'Prendre un lien',
           ja: 'テンペストウィング線',
           cn: '接线',
           ko: '줄 가로채기',
         },
         quickmarchNotOnYou: {
           en: 'No shaker; stack south.',
-          fr: 'Pas de Secousse; se rassembler au Sud.',
           de: 'Kein Erdstoß; im süden sammeln',
+          fr: 'Pas de Secousse; se rassembler au Sud.',
           ja: 'シェイカーない；頭割りで南',
           cn: '不地震，南侧集合',
           ko: '징 없음, 모여서 쉐어',
         },
         tenstrikeNotOnYou: {
           en: 'Stack on safe spot',
-          fr: 'Se rassembler au point sauf',
           de: 'In Sicherheit steken',
+          fr: 'Se rassembler au point sauf',
           ja: '頭割りで安全',
           cn: '安全点集合',
           ko: '안전장소에 모이기',
@@ -1513,16 +1519,16 @@ export default {
       outputStrings: {
         mornAfahYou: {
           en: 'Morn Afah #${num} (YOU)',
-          fr: 'Morn Afah #${num} (VOUS)',
           de: 'Morn Afah #${num} (DU)',
+          fr: 'Morn Afah #${num} (VOUS)',
           ja: 'モーン・アファー${num}回 (自分)',
           cn: '无尽顿悟 #${num}',
           ko: '몬 아파 ${num} (나에게)',
         },
         mornAfahPlayer: {
           en: 'Morn Afah #${num} (${player})',
-          fr: 'Morn Afah #${num} (${player})',
           de: 'Morn Afah #${num} (${player})',
+          fr: 'Morn Afah #${num} (${player})',
           ja: 'モーン・アファー${num}回 (${player})',
           cn: '无尽顿悟 #${num} (${player})',
           ko: '몬 아파 ${num} (${player})',
@@ -1546,6 +1552,7 @@ export default {
         text: {
           en: 'Akh Morn #${num}',
           de: 'Akh Morn #${num}',
+          ja: 'アク・モーン #${num}',
           cn: '死亡轮回 #${num}',
           ko: '아크 몬 ${num}',
         },
@@ -1567,8 +1574,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Exaflare #${num}',
-          fr: 'ExaBrasier #${num}',
           de: 'Exaflare #${num}',
+          fr: 'ExaBrasier #${num}',
           ja: 'エクサフレア${num}回',
           cn: '百京核爆 #${num}',
           ko: '엑사플레어 ${num}',

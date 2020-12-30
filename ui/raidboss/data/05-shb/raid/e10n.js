@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions.js';
 import NetRegexes from '../../../../../resources/netregexes.js';
+import Outputs from '../../../../../resources/outputs.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
@@ -41,10 +42,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56B7', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
-        text: {
-          en: 'Go Front',
-          de: 'Geh nach vorn',
-        },
+        text: Outputs.goFront,
       },
     },
     {
@@ -58,8 +56,8 @@ export default {
         text: {
           en: 'Shadow Side',
           de: 'Schatten Seite',
-          fr: 'Ombre à côté',
-          ja: '影同じ側へ',
+          fr: 'Allez du côté de l\'ombre',
+          ja: '影と同じ側へ',
           cn: '影子同侧',
           ko: '그림자 쪽으로',
         },
@@ -76,7 +74,7 @@ export default {
         text: {
           en: 'Opposite Shadow',
           de: 'Gegenüber des Schattens',
-          fr: 'Ombre opposée',
+          fr: 'Allez du côté opposé à l\'ombre',
           ja: '影の反対側へ',
           cn: '影子异侧',
           ko: '그림자 반대쪽으로',
@@ -183,6 +181,9 @@ export default {
           // TODO: this could be better if we knew where the shadow was
           en: 'Away From Black Lines',
           de: 'Weg von den schwarzen Linien',
+          fr: 'Éloignez-vous des lignes noires',
+          ja: '黒い線から離れる',
+          cn: '远离黑线',
         },
       },
     },
@@ -253,8 +254,9 @@ export default {
         'Fade To Shadow': 'Immersion abyssale',
         'Forward Implosion': 'Implosion frontale',
         'Forward Shadow Implosion': 'Implosion ombrale frontale',
-        'Right Giga Slash': 'Giga taillade droite',
-        'Right Shadow Slash': 'Giga taillade ombrale droite',
+        'Front/Back Shadow Implosion': 'Implosion ombrale devant/derrière',
+        'Left/Right Giga Slash': 'Giga taillade gauche/droite',
+        'Left/Right Shadow Slash': 'Giga taillade ombrale gauche/droite',
         'Shadow Warrior': 'Ombre du roi',
         'Shadow\'s Edge': 'Taillade ombrale',
         'Shadowy Eruption': 'Éruption ombrale',

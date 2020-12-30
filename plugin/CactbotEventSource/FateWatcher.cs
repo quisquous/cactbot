@@ -52,6 +52,16 @@ namespace Cactbot {
       0x143
     );
 
+    private static readonly CEDirectorOPCodes cedirector_v5_40 = new CEDirectorOPCodes(
+      0x30,
+      0x3c1
+    );
+
+    private static readonly CEDirectorOPCodes cedirector_v5_40_hotfix = new CEDirectorOPCodes(
+      0x30,
+      0x31B
+    );
+
     private struct ActorControl143{
       public ActorControl143(Type messagetype_, Assembly assembly_) {
         packetType = assembly_.GetType("Machina.FFXIV.Headers.Server_ActorControl143");
@@ -119,7 +129,7 @@ namespace Cactbot {
       ac143opcodes.Add("intl", ac143_v5_2);
 
       cedirectoropcodes = new Dictionary<string, CEDirectorOPCodes>();
-      cedirectoropcodes.Add("intl", cedirector_v5_35_hotfix);
+      cedirectoropcodes.Add("intl", cedirector_v5_40_hotfix);
 
       fates = new Dictionary<int, int>();
       ces = new Dictionary<int, CEDirectorData>();

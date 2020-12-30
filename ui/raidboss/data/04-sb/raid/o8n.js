@@ -61,8 +61,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Look At Statue',
-          fr: 'Regardez la statue',
           de: 'Statue anschauen',
+          fr: 'Regardez la statue',
           ja: '神々の像を見て',
           cn: '面对神像',
           ko: '시선 바라보기',
@@ -81,8 +81,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Look Away From Statue',
-          fr: 'Ne regardez pas la statue',
           de: 'Von Statue wegschauen',
+          fr: 'Ne regardez pas la statue',
           ja: '神々の像を見ないで',
           cn: '背对神像',
           ko: '시선 피하기',
@@ -107,8 +107,8 @@ export default {
       outputStrings: {
         text: {
           en: 'fire on YOU',
-          fr: 'Feu sur VOUS',
           de: 'Feuer auf DIR',
+          fr: 'Feu sur VOUS',
           ja: '自分にファイガ',
           cn: '火点名',
         },
@@ -132,8 +132,8 @@ export default {
       outputStrings: {
         text: {
           en: 'True Thunder',
-          fr: 'Vraie foudre',
           de: 'Wahrer Blitz',
+          fr: 'Vraie foudre',
           ja: '真サンダガ',
           cn: '真雷',
           ko: '진실 선더가',
@@ -153,8 +153,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Fake Thunder',
-          fr: 'Fausse foudre',
           de: 'Falscher Blitz',
+          fr: 'Fausse foudre',
           ja: 'にせサンダガ',
           cn: '假雷',
           ko: '거짓 선더가',
@@ -174,8 +174,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Fake Ice: Get out',
-          fr: 'Fausse glace : Sortez',
           de: 'Falsches Eis: Rausgehen',
+          fr: 'Fausse glace : Sortez',
           ja: '偽ブリザガ: 外へ',
           cn: '假冰：远离',
           ko: '거짓 블리자가: 밖으로',
@@ -195,8 +195,8 @@ export default {
       outputStrings: {
         text: {
           en: 'True Ice: Get in',
-          fr: 'Vraie glace: Rentrez dedans',
           de: 'Wahre Eis: Reingehen',
+          fr: 'Vraie glace: Rentrez dedans',
           ja: '真ブリザガ: 入る',
           cn: '真冰：靠近',
           ko: '진실 블리자가: 안으로',
@@ -216,8 +216,8 @@ export default {
       outputStrings: {
         text: {
           en: 'Fake Ice: Get in',
-          fr: 'Fausse glace: Rentrez dedans',
           de: 'Falsches Eis: Reingehen',
+          fr: 'Fausse glace: Rentrez dedans',
           ja: '偽ブリザガ: 入る',
           cn: '假冰：靠近',
           ko: '거짓 블리자가: 안으로',
@@ -237,8 +237,8 @@ export default {
       outputStrings: {
         text: {
           en: 'True Ice: Get out',
-          fr: 'Vraie glace: Sortez',
           de: 'Wahres Eis: Rausgehen',
+          fr: 'Vraie glace: Sortez',
           ja: '真ブリザガ: 外へ',
           cn: '真冰：远离',
           ko: '진실 블리자가: 밖으로',
