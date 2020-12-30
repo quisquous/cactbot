@@ -270,8 +270,8 @@ export default {
     {
       id: 'UWU 爆岩',
       netRegex: NetRegexes.startsUsing({ id: '2B6A', source: '爆破岩石' }),
-      alertText: (data, _, output) => output.text(),
       suppressSeconds: 1,
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           cn: '爆岩',
@@ -281,8 +281,8 @@ export default {
     {
       id: 'UWU 流沙',
       netRegex: NetRegexes.startsUsing({ id: '2B65', source: '泰坦' }),
-      alertText: (data, _, output) => output.text(),
       suppressSeconds: 1,
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           cn: '流沙',
