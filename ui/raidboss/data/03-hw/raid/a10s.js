@@ -18,8 +18,8 @@ const chargeOutputStrings = {
   getOut: {
     en: 'Out',
     de: 'Raus',
-    ja: '外へ',
     fr: 'Exterieur',
+    ja: '外へ',
     cn: '远离',
     ko: '밖으로',
   },

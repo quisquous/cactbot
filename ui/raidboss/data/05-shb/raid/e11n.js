@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions.js';
 import NetRegexes from '../../../../../resources/netregexes.js';
+import Outputs from '../../../../../resources/outputs.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
@@ -19,43 +20,20 @@ import ZoneId from '../../../../../resources/zone_id.js';
 
 const tetherIds = ['0002', '0005', '0006'];
 
-const unknownTarget = {
-  en: '???',
-  de: '???',
-  fr: '???',
-  ja: '???',
-  cn: '???',
-  ko: '???',
-};
-
 const boundOfFaithFireTetherResponse = (data, _, output) => {
   // cactbot-builtin-response
   output.responseOutputStrings = {
-    stackOnYou: {
-      en: 'Stack on YOU',
-      de: 'Auf DIR sammeln',
-      fr: 'Package sur VOUS',
-      ja: '自分にスタック',
-      cn: '集合点名',
-      ko: '쉐어징 대상자',
-    },
-    stackOnTarget: {
-      en: 'Stack on ${player}',
-      de: 'Auf ${player} sammeln',
-      fr: 'Packez-vous sur ${player}',
-      ja: '${player}にスタック',
-      cn: '靠近 ${player}集合',
-      ko: '"${player}" 쉐어징',
-    },
-    unknownTarget: unknownTarget,
+    stackOnYou: Outputs.stackOnYou,
+    stackOnPlayer: Outputs.stackOnPlayer,
+    unknownTarget: Outputs.unknownTarget,
   };
 
   const targets = Object.keys(data.tethers || {});
   if (targets.includes(data.me))
     return { alertText: output.stackOnYou() };
   if (targets.length === 0)
-    return { alertText: output.stackOnTarget({ player: output.unknownTarget() }) };
-  return { alertText: output.stackOnTarget({ player: data.ShortName(targets[0]) }) };
+    return { alertText: output.stackOnPlayer({ player: output.unknownTarget() }) };
+  return { alertText: output.stackOnPlayer({ player: data.ShortName(targets[0]) }) };
 };
 
 const boundOfFaithLightningTetherResponse = (data, _, output) => {
@@ -65,15 +43,19 @@ const boundOfFaithLightningTetherResponse = (data, _, output) => {
       en: 'Lightning on YOU',
       de: 'Blitz auf DIR',
       fr: 'Éclair sur VOUS',
+      ja: '自分に感電',
+      cn: '雷点名',
       ko: '번개징 대상자',
     },
     tetherInfo: {
       en: 'Lightning on ${player}',
       de: 'Blitz auf ${player}',
       fr: 'Éclair sur ${player}',
+      ja: '${player}に感電',
+      cn: '雷点${player}',
       ko: '"${player}" 번개징 대상자',
     },
-    unknownTarget: unknownTarget,
+    unknownTarget: Outputs.unknownTarget,
   };
 
   const targets = Object.keys(data.tethers || {});
@@ -87,31 +69,17 @@ const boundOfFaithLightningTetherResponse = (data, _, output) => {
 const boundOfFaithHolyTetherResponse = (data, _, output) => {
   // cactbot-builtin-response
   output.responseOutputStrings = {
-    awayFromGroup: {
-      en: 'Away from Group',
-      de: 'Weg von der Gruppe',
-      fr: 'Éloignez-vous du groupe',
-      ja: '外へ',
-      cn: '远离人群',
-      ko: '다른 사람들이랑 떨어지기',
-    },
-    awayFromTarget: {
-      en: 'Away from ${player}',
-      de: 'Weg von ${player}',
-      fr: 'Éloignez-vous de ${player}',
-      ja: '${player}から離れ',
-      cn: '远离${player}',
-      ko: '"${player}"에서 멀어지기',
-    },
-    unknownTarget: unknownTarget,
+    awayFromGroup: Outputs.awayFromGroup,
+    awayFromPlayer: Outputs.awayFromPlayer,
+    unknownTarget: Outputs.unknownTarget,
   };
 
   const targets = Object.keys(data.tethers || {});
   if (targets.includes(data.me))
     return { alarmText: output.awayFromGroup() };
   if (targets.length === 0)
-    return { infoText: output.awayFromTarget({ player: output.unknownTarget() }) };
-  return { infoText: output.awayFromTarget({ player: data.ShortName(targets[0]) }) };
+    return { infoText: output.awayFromPlayer({ player: output.unknownTarget() }) };
+  return { infoText: output.awayFromPlayer({ player: data.ShortName(targets[0]) }) };
 };
 
 
@@ -147,14 +115,7 @@ export default {
       delaySeconds: (data, matches) => parseFloat(matches.duration) - 4,
       alertText: (data, _, output) => output.awayFromGroup(),
       outputStrings: {
-        awayFromGroup: {
-          en: 'Away from Group',
-          de: 'Weg von der Gruppe',
-          fr: 'Éloignez-vous du groupe',
-          ja: '外へ',
-          cn: '远离人群',
-          ko: '다른 사람들이랑 떨어지기',
-        },
+        awayFromGroup: Outputs.awayFromGroup,
       },
     },
     {
@@ -169,8 +130,9 @@ export default {
           en: 'Line Cleave -> Knockback',
           de: 'Linien AoE -> Rückstoß',
           fr: 'AoE en ligne -> Poussée',
-          ko: '직선 장판 -> 넉백',
+          ja: '直線AoE -> ノックバック',
           cn: '直线AoE -> 击退',
+          ko: '직선 장판 -> 넉백',
         },
       },
     },
@@ -186,8 +148,9 @@ export default {
           en: 'Line Cleave -> Out',
           de: 'Linien AoE -> Raus',
           fr: 'AoE en ligne -> Extérieur',
-          ko: '직선 장판 -> 바깥으로',
+          ja: '直線AoE -> 離れる',
           cn: '直线AoE -> 远离',
+          ko: '직선 장판 -> 바깥으로',
         },
       },
     },
@@ -202,9 +165,10 @@ export default {
         text: {
           en: 'Line Cleave + Bait',
           de: 'Linien AoE -> Ködern',
-          fr: 'AoE en ligne -> Appâtez',
-          ko: '직선 장판 + 장판 유도',
+          fr: 'AoE en ligne + Attirez',
+          ja: '直線AoE -> 誘導',
           cn: '直线AoE+放置点名',
+          ko: '직선 장판 + 장판 유도',
         },
       },
     },
@@ -220,6 +184,7 @@ export default {
           en: 'Dodge Lightning First -> Rotate For Fire',
           de: 'Weiche zuerst Blitz aus -> Rotiere für Feuer',
           fr: 'Évitez l\'éclair d\'abord -> Tournez pour le Feu',
+          ja: '雷に避け -> 炎 準備',
           cn: '躲雷 -> 火击退',
           ko: '번개 먼저 피하고 -> 회전해서 화염 피하기',
         },
@@ -237,6 +202,7 @@ export default {
           en: 'Fire Knockback After Lightning',
           de: 'Feuer Rückstoß nach Blitz',
           fr: 'Poussée du Feu après l\'Éclair',
+          ja: '雷 -> 炎ノックバック',
           cn: '雷 -> 火击退',
           ko: '번개 다음 화염 넉백',
         },
@@ -294,8 +260,9 @@ export default {
           en: 'Fire: Go to Blue',
           de: 'Feuer: Geh zu Blau',
           fr: 'Feu : Allez sur le Bleu',
-          ko: '화염: 파랑으로',
+          ja: '炎: 雷側へ',
           cn: '火：去蓝门一侧',
+          ko: '화염: 파랑으로',
         },
       },
     },
@@ -312,8 +279,9 @@ export default {
           en: 'Lightning: Go to Red',
           de: 'Blitz: Geh zu Rot',
           fr: 'Éclair : Allez sur le Rouge',
-          ko: '번개: 빨강으로',
+          ja: '雷: 炎側へ',
           cn: '雷：去红门一侧',
+          ko: '번개: 빨강으로',
         },
       },
     },
@@ -359,6 +327,7 @@ export default {
         'Halo Of Flame': 'halo de feu',
       },
       'replaceText': {
+        '\\?': ' ?',
         'Ageless Serpent': 'Serpent éternel',
         'Blastburn': 'Explosion brûlante',
         'Blasting Zone': 'Zone de destruction',

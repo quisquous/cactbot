@@ -187,7 +187,7 @@ cactbot은 테스트 UI를 기본으로 제공합니다.
 ### 의존성 설치: 스크립트 방식
 
 1. `curl`이 반드시 설치되어 있어야 합니다. (의존성 파일들을 다운로드하기 위해 사용됩니다.)
-1. `./utils/fetch_deps.py` 스크립트를 실행하세요.
+1. `./util/fetch_deps.py` 스크립트를 실행하세요.
 1. **빌드하는 단계**로 이동하세요.
 
 ### 의존성 설치: 수동
@@ -253,26 +253,20 @@ ACT -> Plugins -> Plugin Listing 탭에서, `Browse` 버튼을 클릭하고 이 
 To use this module,
 point cactbot at **ui/raidboss/raidboss.html** or use the `Cactbot Raidboss` preset.
 
-This module provides a visual timeline of upcoming events in a fight, as well as text and audio
-notifications to help increase raid awareness. Text and sound alerts can be based on the fight
-timeline, or come from log messages that occur in the game, similar to ACT's "Custom Triggers".
-The module is designed to look and feel similar to the
-[BigWigs Bossmods](https://mods.curse.com/addons/wow/big-wigs) addon for World of Warcraft.
+이 모듈은 레이드의 타임라인과 레이드에서 놓칠만한 정보들을 알려주는 텍스트/사운드 알림을 제공합니다. 텍스트와 사운드 알람은 ACT의 "커스텀 트리거" 기능과 비슷한 방식으로, 전투 타임라인이나 게임에서 찍히는 로그 메시지를 기반으로 제공됩니다.
+이 모듈은 월드 오브 워크래프트의 [BigWigs Bossmods](https://www.curseforge.com/wow/addons/big-wigs) 애드온과 비슷하게 보이고 느껴지도록 디자인 되었습니다.
 
-Fight timelines are provided in files designed for the [ACT Timeline](https://github.com/grindingcoil/act_timeline)
-plugin, [documented here](http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)
-with [some extensions](../TimelineGuide.md).
+전투 타이마인은 [ACT Timeline](https://github.com/grindingcoil/act_timeline)플러그인에 맞게 디자인된 파일들을 사용합니다. [이 곳](http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)에 규칙이 정리되어 있으며,
+cactbot에서는 [약간의 확장 기능](../TimelineGuide.md)을 추가했습니다.
 
-There are three levels of text alerts, in order of escalating importance: `info`, `alert`, and `alarm`.
-Text messages will be in one of these, and more important levels are larger and more eye grabbing colors.  Text-to-speech can be configured if you prefer that over on screen text.
+텍스트 알람에는 세 단계가 있으며, 중요도에 따라 다음과 같이 분류됩니다: `info`, `alert`, 그리고 `alarm`.
+텍스트 메시지는 이 세 개 중 한가지이며, 더 중요한 알림일수록 크고 눈에 잘 띄는 색으로 표현됩니다. 화면에 나오는 텍스트보다는 TTS를 선호하는 경우 TTS로 나오도록 설정할 수 있습니다.
 
-Timeline files are found in [ui/raidboss/data/timelines](../../ui/raidboss/data/timelines). Triggers
-for text and sound alerts are found in [ui/raidboss/data/triggers](../../ui/raidboss/data/triggers).
+타임라인 파일과 트리거 파일은 [ui/raidboss/data](../../ui/raidboss/data)에서 찾을 수 있습니다. 타임라인 파일은 `.txt` 확장자를 가지며, 트리거 파일은 `.js` 확장자를 갖습니다.
 
-In this screenshot, the raidboss module is highlighted, with the timeline circled in red, and the
-text alerts circled in yellow, with an `alert`-level text message visible.
+스크린샷에서, raidboss 모듈이 하이라이트되어 있습니다. 빨간색 동그라미로 표시된 것이 타임라인이고, 노란색 동그라미로 표시된 것이 `alert` 단계의 텍스트 알람입니다.
 
-![raidboss screenshot](../../screenshots/Raidboss.png)
+![raidboss 스크린샷](../../screenshots/Raidboss.png)
 
 ### raidboss emulator
 
@@ -340,38 +334,31 @@ box above the health bar. The proc tracking is circled below in green.
 To use this module,
 point cactbot at **ui/eureka/eureka.html** or use the `Cactbot Eureka` preset.
 
-This module provides automatic tracking of NMs that are popped or have
-been killed.  It shows gales/night timers and any local tracker link
-that has been pasted in chat.  Any flags in chat are also temporarily
-included on the map.
+이 모듈은 자동으로 소환되었거나 죽은 NM을 기록하는 트래커를 제공합니다. 폭풍/밤 타이머를 보여주고, 채팅창에 올라온 에우레카 트래커 링크를 보여줍니다.
+채팅창에 올라온 깃발(\<flag\>)도 지도에 표시해 주고 있습니다.
 
-It currently does not read the tracker information directly.  However,
-if you click on the left/red "Copy killed NMs" button in the tracker to
-copy the list of currently dead NMs, you can paste it in game, e.g.
-`/echo ? NMs on cooldown: Serket (7m) > Julika (24m) > Poly (54m)`
+현재 트래커 정보를 직접적으로 불러오지는 못하지만,
+현재 소환 불가능한 NM 목록을 복사해주는 왼쪽의 빨간색 "토벌한 마물" 버튼을 클릭하면, 게임에 입력할 수 있습니다. 예시)
+`/ㄷ 토벌한 마물: 대왕 (89분) → 넘버즈 (97분) → 하즈마트 (104분) → 기수 (107분) → 카임 (119분)`
 
-If you do not see the emoji, make sure you have installed [this Windows update](https://support.microsoft.com/en-us/help/2729094/an-update-for-the-segoe-ui-symbol-font-in-windows-7-and-in-windows-ser).
+이모지가 보이지 않는다면, [이 Windows 업데이트](https://support.microsoft.com/en-us/help/2729094/an-update-for-the-segoe-ui-symbol-font-in-windows-7-and-in-windows-ser)를 설치했는지 확인하세요.
 
-![eureka screenshot](../../screenshots/promo_eureka.png)
+![eureka 스크린샷](../../screenshots/promo_eureka.png)
 
 ### [radar](../../ui/radar) 모듈
 
 To use this module,
 point cactbot at **ui/radar/radar.html** or use the `Cactbot Radar` preset.
 
-This module lets you know about nearby hunt mobs (S-rank, A-rank, etc).
-When one pops, it gives you an arrow (based on your character's heading)
-and a distance to the mob.
+이 모듈은 주위 마물(S급, A급, 등)을 알 수 있게 해줍니다.
+하나를 발견하면, 대상으로의 화살표(캐릭터의 전방 기준)나 거리를 알려줍니다.
 
-There are options to show who pulled the mob,
-as well as to configure the display of the radar.
-You can also set up custom options for different ranks
-(e.g. make noises for S rank, but be silent for B ranks),
-or set up custom triggers for any mob name you would like.
+누가 마물을 처음 공격 또는 애드냈는지 알려주는 옵션도 있습니다.
+또, 다른 등급끼리 개별적인 옵션을 설정할 수도 있습니다.(예를 들어, S급에는 소리 알림을 주게 하고, B급에는 조용히 하게 할 수 있습니다.) 다른 어떤 몬스터 이름이든 커스텀 트리거로 만들 수도 있습니다.
 
-See the `cactbot/user/radar-example.js` for more options.
+`cactbot/user/radar-example.js`에서 더 많은 옵션을 확인할 수 있습니다.
 
-![radar screenshot](../../screenshots/promo_radar.png)
+![radar 스크린샷](../../screenshots/promo_radar.png)
 
 ### [fisher](../../ui/fisher) 모듈
 
@@ -426,8 +413,8 @@ file.
 To use this module,
 point cactbot at **ui/test/test.html** or use the `Cactbot Test` preset.
 
-This module is just an onscreen test of cactbot variables and is not meant to be used while playing.
-It can be useful to try out to make sure everything is working as expected or to use to help debug overlay issues.
+이 모듈은 cactbot 변수들을 화면에 보여주는 테스트용 모듈입니다. 게임을 플레이 하는 도중에 사용하도록 만들어지지 않았습니다.
+모든 것들이 제대로 작동하고 있는지 확인하거나 오버레이 문제를 디버그할 때 유용합니다.
 
 ![테스트 스크린샷](../../screenshots/test.png)
 
@@ -474,7 +461,7 @@ user 파일을 사용하기 보다는
 
 ## 지원 언어
 
-cactbot은 현재 서비스 중인 글로벌 서버 버전 (영어, 독일어, 프랑스어, 일본어)
+cactbot은 현재 서비스 중인 글로벌 서버 버전(영어, 독일어, 프랑스어, 일본어)
 중국 서버 버전(중국어),
 그리고 한국 서버 버전(한국어)에서
 테스트되고 작동합니다.

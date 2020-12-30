@@ -368,15 +368,14 @@ class RaidbossConfigurator {
         const trig = info.triggers[id];
 
         // Don't construct triggers that won't show anything.
-        let detailCount = 0;
-        for (const detailKey in kDetailKeys) {
-          if (!this.base.developerOptions && kDetailKeys[detailKey].debugOnly)
-            continue;
-          if (!trig[detailKey] && !trig.output[detailKey])
-            continue;
-          detailCount++;
+        let hasOutputFunc = false;
+        for (const func of triggerOutputFunctions) {
+          if (trig[func]) {
+            hasOutputFunc = true;
+            break;
+          }
         }
-        if (detailCount === 0)
+        if (!hasOutputFunc && !this.base.developerOptions)
           continue;
 
         // Build the trigger label.
@@ -420,14 +419,6 @@ class RaidbossConfigurator {
           }
 
           triggerDetails.appendChild(detail);
-        }
-
-        let hasOutputFunc = false;
-        for (const func of triggerOutputFunctions) {
-          if (trig[func]) {
-            hasOutputFunc = true;
-            break;
-          }
         }
 
         // Add beforeSeconds manually for timeline triggers.
@@ -1301,9 +1292,9 @@ const templateOptions = {
         en: 'Use Browser for Text to Speech',
         de: 'Verwenden Sie den Browser für Text zu Sprache', // Machine translation
         fr: 'Utiliser le navigateur pour la synthèse vocale', // Machine Translation
-        ko: '웹브라우저를 이용해서 TTS 작동시키기',
         ja: 'ブラウザでTTS',
         cn: '忽略ACT的设置，使用Cactbot自带的Google TTS功能（需联网）',
+        ko: '웹브라우저를 이용해서 TTS 작동시키기',
       },
       type: 'checkbox',
       default: false,
@@ -1316,9 +1307,9 @@ const templateOptions = {
         en: 'Alex Ultimate: enable cactbot Wormhole strat',
         de: 'Alex Ultimate: aktiviere cactbot Wormhole Strategie',
         fr: 'Alex fatal : activer cactbot pour Wormhole strat',
-        ko: '절 알렉: cactbot 웜홀 공략방식 활성화',
         ja: '絶アレキサンダー討滅戦：cactbot「次元断絶のマーチ」ギミック',
         cn: '亚历山大绝境战：cactbot灵泉辅助功能',
+        ko: '절 알렉: cactbot 웜홀 공략방식 활성화',
       },
       type: 'checkbox',
       default: false,

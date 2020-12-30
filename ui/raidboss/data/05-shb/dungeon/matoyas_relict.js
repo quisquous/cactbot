@@ -35,7 +35,7 @@ export default {
         pullOrb: {
           en: 'Pull orb to an empty hole',
           de: 'Orb in ein Loch lenken',
-          fr: 'Placez l\'orbe dans un trou',
+          fr: 'Tirez l\'orbe vers un trou vide',
           ja: '泥団子を四隅の穴に誘導',
           cn: '诱导泥球到无敌人的风圈',
           ko: '빈 구멍으로 구슬 보내기',
@@ -112,7 +112,7 @@ export default {
         stepIn: {
           en: 'Step in Puddle near the Cloud',
           de: 'In einer Fläche nahe der Wolke stehen',
-          fr: 'Allez dans la zone au sol près du nuage',
+          fr: 'Marchez dans la zone au sol près du nuage',
           ja: '雲に近い水を踏む',
           cn: '站在靠近云朵的水流里等待浮空',
           ko: '구름 근처 물줄기 위에 서기',
@@ -139,7 +139,7 @@ export default {
         getKnocked: {
           en: 'Get Knocked into Safe (no anti-knockback)',
           de: 'Lass dich in den Safespot zurückstoßen (kein Rückstoßschutz)',
-          fr: 'Faites-vous pousser en zone safe (pas d\'anti-poussée)',
+          fr: 'Faites-vous pousser en zone sûre (pas d\'anti-poussée)',
           ja: 'ボスの正面に (堅実魔効かない)',
           cn: '站在Boss正面 (防击退无效)',
           ko: '안전한 구역으로 넉백당하기',
@@ -171,6 +171,7 @@ export default {
       netRegexFr: NetRegexes.ability({ id: '5916', source: 'mère porxie', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '5916', source: 'マザーポークシー', capture: false }),
       delaySeconds: 5,
+      suppressSeconds: 1,
       alertText: (data, _, output) => output.awayFrom(),
       outputStrings: {
         awayFrom: {
@@ -241,13 +242,13 @@ export default {
       'locale': 'de',
       'replaceSync': {
         'Aeolian Cave Sprite': 'Windhöhlen-Exergon',
-        'Clayclot Cauldron': 'Lehmgrube',
-        'Clearnote Cauldron': 'Stromkreuz',
+        'The Clayclot Cauldron': 'Lehmgrube',
+        'The Clearnote Cauldron': 'Stromkreuz',
         'Mother Porxie': 'Muttersau',
         'Mud Bubble': 'Matschblase',
         'Mudman': 'Matschmann',
         'Nixie': 'Nixchen',
-        'Woebegone Workshop': 'Geht-Weg-Werkstatt',
+        'The Woebegone Workshop': 'Geht-Weg-Werkstatt',
       },
       'replaceText': {
         'Barbeque': 'Grillfest',
@@ -278,13 +279,13 @@ export default {
       'locale': 'fr',
       'replaceSync': {
         'Aeolian Cave Sprite': 'élémentaire des cavernes venteuses',
-        'Clayclot Cauldron': 'Carrière clinquante',
-        'Clearnote Cauldron': 'Fontaine frisquette',
+        'The Clayclot Cauldron': 'La carrière clinquante',
+        'The Clearnote Cauldron': 'La fontaine frisquette',
         'Mother Porxie': 'mère porxie',
         'Mud Bubble': 'bulle de boue',
         'Mudman': 'tadboue',
         'Nixie': 'nixe',
-        'Woebegone Workshop': 'Grand four délaissé',
+        'The Woebegone Workshop': 'Grand four délaissé',
       },
       'replaceText': {
         'Barbeque': 'Grillade au barbecue',
@@ -315,13 +316,13 @@ export default {
       'locale': 'ja',
       'replaceSync': {
         'Aeolian Cave Sprite': 'ウィンドケイブ・スプライト',
-        'Clayclot Cauldron': '輝きの採土場',
-        'Clearnote Cauldron': '涼しの採水場',
+        'The Clayclot Cauldron': '輝きの採土場',
+        'The Clearnote Cauldron': '涼しの採水場',
         'Mother Porxie': 'マザーポークシー',
         'Mud Bubble': '泥団子',
         'Mudman': 'マッドマン',
         'Nixie': 'ノッケン',
-        'Woebegone Workshop': '居留守の工房',
+        'The Woebegone Workshop': '居留守の工房',
       },
       'replaceText': {
         'Barbeque': 'バーベキューグリル',

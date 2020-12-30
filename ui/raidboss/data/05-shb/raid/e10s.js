@@ -1,12 +1,20 @@
 import { Util } from '../../../../../resources/common.js';
 import Conditions from '../../../../../resources/conditions.js';
 import NetRegexes from '../../../../../resources/netregexes.js';
+import Outputs from '../../../../../resources/outputs.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
 // TODO: Fix headmarkers for groups running multiple of the same job ?
 
 // Note: there's no headmarker ability line for cleaving shadows.
+
+const directions = {
+  north: Outputs.north,
+  south: Outputs.south,
+  east: Outputs.east,
+  west: Outputs.west,
+};
 
 export default {
   zoneId: ZoneId.EdensPromiseLitanySavage,
@@ -32,7 +40,8 @@ export default {
         text: {
           en: 'Shadow Side',
           de: 'Schatten Seite',
-          fr: 'Ombre à côté',
+          fr: 'Allez du côté de l\'ombre',
+          ja: '影と同じ側へ',
           cn: '影子同侧',
           ko: '그림자 쪽으로',
         },
@@ -49,7 +58,8 @@ export default {
         text: {
           en: 'Opposite Shadow',
           de: 'Gegenüber des Schattens',
-          fr: 'Ombre opposée',
+          fr: 'Allez du côté opposé à l\'ombre',
+          ja: '影の反対側へ',
           cn: '影子异侧',
           ko: '그림자 반대쪽으로',
         },
@@ -75,6 +85,7 @@ export default {
           en: 'Go Left of Shadow',
           de: 'Geh links vom Schatten',
           fr: 'Allez à gauche de l\'ombre',
+          ja: '影の左へ',
           cn: '影子左侧',
           ko: '그림자 왼쪽으로',
         },
@@ -92,6 +103,7 @@ export default {
           en: 'Go Right of Shadow',
           de: 'Geh rechts vom Schatten',
           fr: 'Allez à droite de l\'ombre',
+          ja: '影の右へ',
           cn: '影子右侧',
           ko: '그림자 오른쪽으로',
         },
@@ -109,8 +121,9 @@ export default {
           en: 'Go Left of Shadows',
           de: 'Geh links vom Schatten',
           fr: 'Allez à gauche des ombres',
-          ko: '그림자 왼쪽',
+          ja: '影の左へ',
           cn: '影子左侧',
+          ko: '그림자 왼쪽',
         },
       },
     },
@@ -126,8 +139,9 @@ export default {
           en: 'Go Right of Shadows',
           de: 'Geh rechts vom Schatten',
           fr: 'Allez à droite des ombres',
-          ko: '그림자 오른쪽',
+          ja: '影の右へ',
           cn: '影子右侧',
+          ko: '그림자 오른쪽',
         },
       },
     },
@@ -138,7 +152,30 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5BAA' }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5BAA' }),
       condition: Conditions.caresAboutPhysical(),
-      response: Responses.tankBusterSwap(),
+      // Although this is a swap, use `tankBuster` here to give the off tank a warning and a chance
+      // to shield the main tank.  The offtank swap is delayed into the swap trigger below.
+      response: Responses.tankBuster('alert', 'info'),
+      run: (data, matches) => {
+        data.umbraTarget = matches.target;
+      },
+    },
+    {
+      id: 'E10S Umbra Smash Offtank Swap',
+      netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '5BAA' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5BAA' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5BAA' }),
+      netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5BAA' }),
+      condition: (data, matches) => data.role === 'tank' && matches.target !== data.me,
+      // This is a four hit tankbuster with a wind-up castbar.
+      // If you provoke in between the four hits, you can end up taking a hit, so the offtank
+      // needs to wait until all four hits have been applied (or something roughly there).
+      // Therefore, need a delay that is a good balance of "warning ahead of time" and
+      // "not so soon that the offtank steals the 4th hit".  For reference:
+      //   * 3rd hit = 7.3 seconds after cast starts
+      //   * 4th hit = 8.9 seconds after cast starts
+      // TODO: verify that the 4th hit is locked in with this delay (or if it could be shorter)
+      delaySeconds: 8.5,
+      response: Responses.tankBusterSwap('alert', 'alert'),
       run: (data, matches) => {
         data.umbraTarget = matches.target;
       },
@@ -160,8 +197,9 @@ export default {
           en: 'Avoid Stack!',
           de: 'Nicht Sammeln!',
           fr: 'Ne vous packez pas !',
-          ko: '공격 피하기',
+          ja: '重ならない！',
           cn: '不要重合!',
+          ko: '공격 피하기',
         },
         stack: {
           en: 'Stack',
@@ -188,15 +226,49 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5B2D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5B2D', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5B2D', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      durationSeconds: (data) => data.gigaSlashCleaveDebuffDuration,
+      alertText: (data, _, output) => {
+        let ret = '';
+        switch (data.gigaSlashCleaveDebuffId) {
+        case '973':
+          ret = output.west;
+          break;
+        case '974':
+          ret = output.east;
+          break;
+        case '975':
+          ret = output.north;
+          break;
+        case '976':
+          ret = output.south;
+          break;
+        }
+
+        delete data.gigaSlashCleaveDebuffId;
+        delete data.gigaSlashCleaveDebuffDuration;
+        if (!ret)
+          return;
+
+        return output.dropShadow({ dir: ret });
+      },
+      infoText: (data, _, output) => output.leftCleave(),
       outputStrings: {
-        text: {
+        dropShadow: {
+          en: 'Drop Shadow ${dir}',
+          fr: 'Déposez l\'ombre du côté ${dir}',
+          ja: '${dir}、影を捨てる',
+          cn: '${dir}放影子',
+          ko: '${dir}에 그림자 놓기',
+        },
+        leftCleave: {
           en: 'Left Cleave',
           de: 'Linker Cleave',
           fr: 'Cleave gauche',
+          ja: '左半面へ攻撃',
           cn: '左侧顺劈',
-          ko: '오른쪽에 그림자 오게',
+          ko: '왼쪽 공격',
         },
+        ...directions,
       },
     },
     {
@@ -205,15 +277,58 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5B2C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5B2C', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5B2C', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      durationSeconds: (data) => data.gigaSlashCleaveDebuffDuration,
+      alertText: (data, _, output) => {
+        let ret = '';
+        switch (data.gigaSlashCleaveDebuffId) {
+        case '973':
+          ret = output.east;
+          break;
+        case '974':
+          ret = output.west;
+          break;
+        case '975':
+          ret = output.south;
+          break;
+        case '976':
+          ret = output.north;
+          break;
+        }
+
+        delete data.gigaSlashCleaveDebuffId;
+        delete data.gigaSlashCleaveDebuffDuration;
+        if (!ret)
+          return;
+
+        return output.dropShadow({ dir: ret });
+      },
+      infoText: (data, _, output) => output.rightCleave(),
       outputStrings: {
-        text: {
+        dropShadow: {
+          en: 'Drop Shadow on ${dir}',
+          fr: 'Déposez l\'ombre du côté ${dir}',
+          ja: '${dir}、影を捨てる',
+          cn: '${dir}放影子',
+          ko: '${dir}에 그림자 놓기',
+        },
+        rightCleave: {
           en: 'Right Cleave',
           de: 'Rechter Cleave',
           fr: 'Cleave droit',
+          ja: '右半面へ攻撃',
           cn: '右侧顺劈',
-          ko: '왼쪽에 그림자 오게',
+          ko: '오른쪽 공격',
         },
+        ...directions,
+      },
+    },
+    {
+      id: 'E10S Shadow Servant Cleave Drop',
+      netRegex: NetRegexes.gainsEffect({ effectId: '97[3456]' }),
+      condition: Conditions.targetIsYou(),
+      run: (data, matches) => {
+        data.gigaSlashCleaveDebuffId = matches.effectId;
+        data.gigaSlashCleaveDebuffDuration = matches.duration;
       },
     },
     {
@@ -237,8 +352,9 @@ export default {
           en: 'Drop Shadow Out',
           de: 'Schatten draußen ablegen',
           fr: 'Déposez l\'ombre à l\'extérieur',
-          ko: '바깥쪽에 그림자 떨어뜨리기',
+          ja: '影を外周に捨てる',
           cn: '影子放到外圈',
+          ko: '바깥쪽에 그림자 떨어뜨리기',
         },
       },
       run: (data) => data.clones = true,
@@ -305,8 +421,9 @@ export default {
           en: '1 out, 2+3 in',
           de: '1 raus, 2+3 rein',
           fr: '1 extérieur, 2+3 intérieur',
-          ko: '1 바깥, 2+3 안쪽',
+          ja: '1番入らない、2/3番入る',
           cn: '麻将1出，2+3进',
+          ko: '1 바깥, 2+3 안쪽',
         },
       },
     },
@@ -322,8 +439,9 @@ export default {
           en: '2 out, 1+3 in',
           de: '2 raus, 1+3 rein',
           fr: '2 extérieur, 1+3 intérieur',
-          ko: '2 바깥, 1+3 안쪽',
+          ja: '2番入らない、1/3番入る',
           cn: '麻将2出，1+3进',
+          ko: '2 바깥, 1+3 안쪽',
         },
       },
     },
@@ -340,8 +458,9 @@ export default {
           en: '3 out, 1+2 in',
           de: '3 raus, 1+2 rein',
           fr: '3 extérieur, 1+2 intérieur',
-          ko: '3 바깥, 1+2 안쪽',
+          ja: '3番入らない、1/2番入る',
           cn: '麻将3出，1+2进',
+          ko: '3 바깥, 1+2 안쪽',
         },
       },
     },
@@ -358,8 +477,9 @@ export default {
           en: 'Drop Shadow Max Melee',
           de: 'Lege den Schatten im max Melee Bereich ab',
           fr: 'Déposez l\'ombre au max de la portée',
+          ja: 'タゲサークル外側に影を捨てる',
+          cn: '把影子放到Boss目标圈外',
           ko: '그림자 칼끝딜 위치에 떨어뜨리기',
-          cn: '近战把影子放到最远',
         },
       },
       run: (data) => delete data.clones,
@@ -395,8 +515,9 @@ export default {
           en: 'Orbs',
           de: 'Orbs',
           fr: 'Orbes',
-          ko: '구슬',
+          ja: '玉',
           cn: '球',
+          ko: '구슬',
         },
       },
     },
@@ -412,13 +533,15 @@ export default {
           en: 'Watch Tethered Dog',
           de: 'Achte auf den verbundenen Hund',
           fr: 'Regardez le chien lié',
-          ko: '연결된 쫄 지켜보기',
+          ja: '線で繋がった分身を注視',
           cn: '找连线的狗',
+          ko: '연결된 쫄 지켜보기',
         },
       },
     },
     {
       id: 'E10S Fade To Shadow',
+      // Fade To Shadow starts well before the Cloak of Shadows, so use that instead for initial.
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '572B', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '572B', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '572B', capture: false }),
@@ -431,13 +554,17 @@ export default {
           // TODO: this also happens twice, with tethers
           en: 'Be On Squiggles',
           de: 'Sei auf dem Kringel',
-          ko: '구불구불한 선 쪽으로',
+          fr: 'Allez sur l\'ombre tordue',
+          ja: '曲線上待機',
           cn: '站到连线为曲线的一侧',
+          ko: '구불구불한 선 쪽으로',
         },
       },
     },
     {
-      id: 'E10S Cloak of Shadows 1',
+      id: 'E10S Cloak Of Shadows',
+      // 5B13/5B14 Cloak Of Shadows both start casting at the same time but go off separately.
+      // So, use the initial 5B13 hit to time the move away trigger.
       netRegex: NetRegexes.ability({ source: 'Shadowkeeper', id: '5B13', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Schattenkönig', id: '5B13', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Roi De L\'Ombre', id: '5B13', capture: false }),
@@ -447,11 +574,12 @@ export default {
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          // TODO: this could be better if we knew where the shadow was
           en: 'Away From Squiggles',
           de: 'Weg vom Kringel',
-          ko: '곧은 선 쪽으로',
+          fr: 'Éloignez-vous de l\'ombre tordue',
+          ja: '安置へ',
           cn: '远离连线为曲线的一侧',
+          ko: '곧은 선 쪽으로',
         },
       },
     },
@@ -469,7 +597,8 @@ export default {
         text: {
           en: 'Shadow Side',
           de: 'Schatten Seite',
-          fr: 'Ombre à côté',
+          fr: 'Allez du côté de l\'ombre',
+          ja: '影と同じ側へ',
           cn: '影子同侧',
           ko: '그림자 쪽으로',
         },
@@ -487,9 +616,10 @@ export default {
         text: {
           en: 'Opposite Shadow',
           de: 'Gegenüber des Schattens',
-          fr: 'Ombre opposée',
-          ko: '그림자 반대쪽',
+          fr: 'Allez du côté opposé à l\'ombre',
+          ja: '影の反対側へ',
           cn: '影子异侧',
+          ko: '그림자 반대쪽',
         },
       },
     },
@@ -505,8 +635,9 @@ export default {
           en: 'Cleaves with towers',
           de: 'Cleaves mit Türmen',
           fr: 'Cleaves avec Tours',
-          ko: '기둥이랑 그림자 유도 동시에',
+          ja: '従僕 + 塔',
           cn: '影子+塔',
+          ko: '기둥이랑 그림자 유도 동시에',
         },
       },
     },
@@ -523,8 +654,9 @@ export default {
           en: 'Towers first, then cleaves',
           de: 'Zuerst Türme, dann cleaves',
           fr: 'Tours en premier puis cleaves',
-          ko: '기둥 먼저, 그다음 그림자 유도',
+          ja: 'まずは塔、そして従僕',
           cn: '先塔后影子',
+          ko: '기둥 먼저, 그다음 그림자 유도',
         },
       },
     },
@@ -545,15 +677,17 @@ export default {
           en: 'Puddles outside',
           de: 'Flächen nach draußen',
           fr: 'Zones au sol à l\'extérieur',
-          ko: '장판 바깥쪽에 깔기',
+          ja: '外周に捨てる',
           cn: '点名放到外圈',
+          ko: '장판 바깥쪽에 깔기',
         },
         secondPitchBog: {
           en: 'Final Puddle Positions',
           de: 'Flächen interkardinal ablegen',
           fr: 'Zones au sol en intercardinal',
-          ko: '각자 장판 위치로',
+          ja: '最後のスワンプ',
           cn: '最后一次点名放到外圈',
+          ko: '각자 장판 위치로',
         },
       },
     },
@@ -568,14 +702,7 @@ export default {
         return output.text({ player: data.ShortName(partner) });
       },
       outputStrings: {
-        text: {
-          en: 'Far Tethers (${player})',
-          de: 'Entfernte Verbindungen (${player})',
-          fr: 'Liens éloignés (${player})',
-          ja: ' (${player})に離れ',
-          cn: '远离连线 (${player})',
-          ko: '상대와 떨어지기 (${player})',
-        },
+        text: Outputs.farTethersWithPlayer,
       },
     },
     {
@@ -589,14 +716,7 @@ export default {
         return output.text({ player: data.ShortName(partner) });
       },
       outputStrings: {
-        text: {
-          en: 'Close Tethers (${player})',
-          de: 'Nahe Verbindungen (${player})',
-          fr: 'Liens proches (${player})',
-          ja: '(${player})に近づく',
-          cn: '靠近连线 (${player})',
-          ko: '상대와 가까이 붙기 (${player})',
-        },
+        text: Outputs.closeTethersWithPlayer,
       },
     },
     {
@@ -612,8 +732,9 @@ export default {
           en: 'Pick up Puddles',
           de: 'Fläche nehmen',
           fr: 'Prenez les zones au sol',
-          ko: '장판 밟아서 그림자 선 가져오기',
+          ja: 'スワンプを踏む',
           cn: '踩放下的沼泽',
+          ko: '장판 밟아서 그림자 선 가져오기',
         },
       },
     },
@@ -659,7 +780,6 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Shadowkeeper': 'Ordre royal',
         'Shadow Of A Hero': 'ombre de héros',
@@ -698,9 +818,8 @@ export default {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
-        'Shadowkeeper': '影の王命',
+        'Shadowkeeper': '影の王',
         'Shadow Of A Hero': '英雄の影',
         'Shadefire': 'シャドウファイア',
       },
