@@ -269,7 +269,7 @@ export default {
     },
     {
       id: 'UWU 爆岩',
-      netRegex: NetRegexes.startsUsing({ id: '2B6A', source: '爆破岩石' }),
+      netRegex: NetRegexes.startsUsing({ id: '2B6A', source: '爆破岩石', capture: false }),
       suppressSeconds: 1,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -280,7 +280,7 @@ export default {
     },
     {
       id: 'UWU 流沙',
-      netRegex: NetRegexes.startsUsing({ id: '2B65', source: '泰坦' }),
+      netRegex: NetRegexes.startsUsing({ id: '2B65', source: '泰坦', capture: false }),
       suppressSeconds: 1,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
