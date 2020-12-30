@@ -18,6 +18,22 @@ module.exports = {
     raidemulator: './ui/raidboss/raidemulator.js',
     test: './ui/test/test.js',
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        'raidboss_data': {
+          test: /[\\/]ui[\\/]raidboss[\\/]data[\\/]/,
+          name: 'raidboss_data',
+          chunks: 'all',
+        },
+        'oopsyraidsy_data': {
+          test: /[\\/]ui[\\/]oopsyraidsy[\\/]data[\\/]/,
+          name: 'oopsyraidsy_data',
+          chunks: 'all',
+        },
+      },
+    },
+  },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, '../dist'),
