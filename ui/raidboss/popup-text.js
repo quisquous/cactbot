@@ -168,11 +168,11 @@ class TriggerOutputProxy {
           // Ideally, response provides everything and trigger provides nothing,
           // or there's no response and trigger provides everything.  Having
           // this well-defined smooths out the collision edge cases.
-          let str = target.getReplacement(target.overrideStrings[name], params);
+          let str = target.getReplacement(target.overrideStrings[name], params, name);
           if (str === null)
-            str = target.getReplacement(target.responseOutputStrings[name], params);
+            str = target.getReplacement(target.responseOutputStrings[name], params, name);
           if (str === null)
-            str = target.getReplacement(target.outputStrings[name], params);
+            str = target.getReplacement(target.outputStrings[name], params, name);
           if (str === null) {
             console.error(`Trigger ${target.trigger.id} has missing outputString ${name}.`);
             return target.unknownValue;
@@ -183,7 +183,7 @@ class TriggerOutputProxy {
     });
   }
 
-  getReplacement(template, params) {
+  getReplacement(template, params, name) {
     if (!template)
       return null;
     if (typeof template === 'object') {
