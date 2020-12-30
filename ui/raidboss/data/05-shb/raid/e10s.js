@@ -287,38 +287,10 @@ export default {
         }
       },
       outputStrings: {
-        '1': {
-          en: '1',
-          de: '1',
-          fr: '1',
-          ja: '1',
-          cn: '1',
-          ko: '1',
-        },
-        '2': {
-          en: '2',
-          de: '2',
-          fr: '2',
-          ja: '2',
-          cn: '2',
-          ko: '2',
-        },
-        '3': {
-          en: '3',
-          de: '3',
-          fr: '3',
-          ja: '3',
-          cn: '3',
-          ko: '3',
-        },
-        'unknown': {
-          en: '?',
-          de: '?',
-          fr: '?',
-          ja: '?',
-          cn: '?',
-          ko: '?',
-        },
+        '1': Outputs.num1,
+        '2': Outputs.num2,
+        '3': Outputs.num3,
+        'unknown': Outputs.unknownTarget,
       },
     },
     {
