@@ -59,35 +59,51 @@ const artOfDarknessOutputStrings = {
 const summonDirectionOutputStrings = {
   NNE: {
     en: 'NNE',
+    de: 'NNO',
     fr: 'NNE',
+    ja: '北北東',
   },
   ENE: {
     en: 'ENE',
+    de: 'ONO',
     fr: 'ENE',
+    ja: '東北東',
   },
   ESE: {
     en: 'ESE',
+    de: 'OSO',
     fr: 'ESE',
+    ja: '東南東',
   },
   SSE: {
     en: 'SSE',
+    de: 'SSO',
     fr: 'SSE',
+    ja: '南南東',
   },
   SSW: {
     en: 'SSW',
+    de: 'SSW',
     fr: 'SSO',
+    ja: '南南西',
   },
   WSW: {
     en: 'WSW',
+    de: 'WSW',
     fr: 'OSO',
+    ja: '西南西',
   },
   WNW: {
     en: 'WNW',
+    de: 'WNW',
     fr: 'ONO',
+    ja: '西北西',
   },
   NNW: {
     en: 'NNW',
+    de: 'NNW',
     fr: 'NNO',
+    ja: '北北西',
   },
   unknown: {
     en: '???',
