@@ -198,8 +198,14 @@ class TriggerOutputProxy {
     }
 
     return template.replace(/\${\s*([^}\s]+)\s*}/g, (fullMatch, key) => {
-      if (params && key in params)
-        return params[key];
+      if (params && key in params) {
+        const str = params[key];
+        if (typeof str !== 'string' && typeof str !== 'number') {
+          console.error(`Trigger ${this.trigger.id} has non-string param value ${key}.`);
+          return this.unknownValue;
+        }
+        return str;
+      }
       console.error(`Trigger ${this.trigger.id} can't replace ${key} in ${template}.`);
       return this.unknownValue;
     });
