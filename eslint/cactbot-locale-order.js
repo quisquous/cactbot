@@ -54,7 +54,7 @@ const ruleModule = {
       },
     ],
     messages: {
-      sortKeys: 'Expected locale object keys ordered like [en, de, fr, ja, cn, ko] (\'{{beforeKey}}\' should before \'{{nextKey}}\')',
+      sortKeys: 'Expected locale object keys ordered like {{expectedOrder}} (\'{{beforeKey}}\' should before \'{{nextKey}}\')',
     },
   },
   create: function(context) {
@@ -91,6 +91,7 @@ const ruleModule = {
               loc: node.loc,
               messageId: 'sortKeys',
               data: {
+                expectedOrder: `[${orderList.join(',')}]`,
                 beforeKey: valid.beforeKey,
                 nextKey: valid.nextKey,
               },
