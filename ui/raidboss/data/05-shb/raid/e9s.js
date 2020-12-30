@@ -59,27 +59,35 @@ const artOfDarknessOutputStrings = {
 const summonDirectionOutputStrings = {
   NNE: {
     en: 'NNE',
+    fr: 'NNE',
   },
   ENE: {
     en: 'ENE',
+    fr: 'ENE',
   },
   ESE: {
     en: 'ESE',
+    fr: 'ESE',
   },
   SSE: {
     en: 'SSE',
+    fr: 'SSE',
   },
   SSW: {
     en: 'SSW',
+    fr: 'SSO',
   },
   WSW: {
     en: 'WSW',
+    fr: 'OSO',
   },
   WNW: {
     en: 'WNW',
+    fr: 'ONO',
   },
   NNW: {
     en: 'NNW',
+    fr: 'NNO',
   },
   unknown: {
     en: '???',
