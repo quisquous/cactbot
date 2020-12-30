@@ -685,7 +685,7 @@ export default {
       id: 'E12S Basic Relativity Shadoweye',
       netRegex: NetRegexes.gainsEffect({ effectId: '998' }),
       condition: (data, matches) => data.phase === 'basic',
-      delaySeconds: (data, matches) => parseFloat(matches.duration) - 2.5,
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - 3,
       suppressSeconds: 2,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
