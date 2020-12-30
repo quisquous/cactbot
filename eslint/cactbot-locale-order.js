@@ -13,8 +13,7 @@ function compareOrder(a, b) {
   const orderA = orderList.indexOf(a);
   const orderB = orderList.indexOf(b);
 
-  if (orderA === -1 || orderB === -1)
-    return 0;
+// All keys are known to be in `orderList` by the `isLocaleObject` check below.
 
   return orderA - orderB;
 }
