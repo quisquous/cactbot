@@ -624,6 +624,7 @@ export default {
         data.debuffs = data.debuffs || {};
         data.debuffs[matches.effectId.toUpperCase()] = parseFloat(matches.duration);
       },
+      durationSeconds: 20,
       infoText: (data, _, output) => {
         const unsortedIds = Object.keys(data.debuffs);
         if (unsortedIds.length !== 3)
