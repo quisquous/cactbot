@@ -268,24 +268,24 @@ export default {
       },
     },
     {
-      id: "UWU Bomb",
-      netRegex: NetRegexes.startsUsing({ id: "2B6A", source: "爆破岩石" }),
+      id: 'UWU 爆岩',
+      netRegex: NetRegexes.startsUsing({ id: '2B6A', source: '爆破岩石' }),
       alertText: (data, _, output) => output.text(),
       suppressSeconds: 1,
       outputStrings: {
         text: {
-          cn: "爆岩",
+          cn: '爆岩',
         },
       },
     },
     {
-      id: "UWU 流沙",
-      netRegex: NetRegexes.startsUsing({ id: "2B65", source: "泰坦" }),
+      id: 'UWU 流沙',
+      netRegex: NetRegexes.startsUsing({ id: '2B65', source: '泰坦' }),
       alertText: (data, _, output) => output.text(),
       suppressSeconds: 1,
       outputStrings: {
         text: {
-          cn: "流沙",
+          cn: '流沙',
         },
       },
     },
