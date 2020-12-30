@@ -654,7 +654,7 @@ export default {
     },
     {
       id: 'E11S Prismatic Deception',
-      netRegex: NetRegexes.gainsEffect({ effectId: '655' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '655', capture: false }),
       promise: async (data) => {
         const fateBreakersImageLocaleNames = {
           en: 'Fatebreaker\'s image',
@@ -678,7 +678,13 @@ export default {
           data.images.push(image);
         });
       },
-      alertText: (data, _, output) => output.text({ ...calculatePrismaticSafeZone(data.images) }),
+      alertText: (data, _, output) => {
+        const [dir1, dir2] = calculatePrismaticSafeZone(data.images);
+        return output.text({
+          dir1: dir1,
+          dir2: dir2,
+        });
+      },
       outputStrings: {
         text: {
           en: 'Go ${dir1} or ${dir2}',
