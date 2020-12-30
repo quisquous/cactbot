@@ -748,7 +748,7 @@ export default {
         const cloneOfDarknessLocaleNames = {
           en: 'Clone Of Darkness',
           de: 'Klon der Dunkelheit',
-          fr: 'Nuée de Ténèbres', // TODO: Does case sensitivity matter here? https://xivapi.com/BNpcName/9765 gives the name in lowercase
+          fr: 'Nuée de Ténèbres',
           ja: '幻影の雲',
           cn: '幻影之云',
         };
