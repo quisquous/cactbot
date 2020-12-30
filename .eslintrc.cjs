@@ -176,6 +176,9 @@ module.exports = {
       'error',
       'never',
     ],
-    'rulesdir/cactbot-locale-order': 'warn',
+    'rulesdir/cactbot-locale-order': [
+      'warn',
+      ['en', 'de', 'fr', 'ja', 'cn', 'ko'],
+    ],
   },
 };
