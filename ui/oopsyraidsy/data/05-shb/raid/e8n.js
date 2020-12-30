@@ -36,7 +36,7 @@ export default {
           reason: {
             en: 'Pushed off!',
             de: 'Runter gestoßen!',
-            fr: 'A été pousser !',
+            fr: 'A été poussé(e) !',
             ja: 'ノックバック',
             cn: '击退坠落',
             ko: '넉백됨!',
