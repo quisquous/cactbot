@@ -234,16 +234,16 @@ export default {
         let ret = '';
         switch (data.gigaSlashCleaveDebuffId) {
         case '973':
-          ret = output.west;
+          ret = output.west();
           break;
         case '974':
-          ret = output.east;
+          ret = output.east();
           break;
         case '975':
-          ret = output.north;
+          ret = output.north();
           break;
         case '976':
-          ret = output.south;
+          ret = output.south();
           break;
         }
 
@@ -258,8 +258,9 @@ export default {
       outputStrings: {
         dropShadow: {
           en: 'Drop Shadow ${dir}',
+          de: 'Schatten im ${dir} ablegen',
           fr: 'Déposez l\'ombre du côté ${dir}',
-          ja: '${dir}、影を捨てる',
+          ja: '${dir}へ、影を捨てる',
           cn: '${dir}放影子',
           ko: '${dir}에 그림자 놓기',
         },
@@ -285,16 +286,16 @@ export default {
         let ret = '';
         switch (data.gigaSlashCleaveDebuffId) {
         case '973':
-          ret = output.east;
+          ret = output.east();
           break;
         case '974':
-          ret = output.west;
+          ret = output.west();
           break;
         case '975':
-          ret = output.south;
+          ret = output.south();
           break;
         case '976':
-          ret = output.north;
+          ret = output.north();
           break;
         }
 
@@ -308,9 +309,10 @@ export default {
       infoText: (data, _, output) => output.rightCleave(),
       outputStrings: {
         dropShadow: {
-          en: 'Drop Shadow on ${dir}',
+          en: 'Drop Shadow ${dir}',
+          de: 'Schatten im ${dir} ablegen',
           fr: 'Déposez l\'ombre du côté ${dir}',
-          ja: '${dir}、影を捨てる',
+          ja: '${dir}へ、影を捨てる',
           cn: '${dir}放影子',
           ko: '${dir}에 그림자 놓기',
         },

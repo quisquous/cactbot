@@ -4,16 +4,13 @@ import Outputs from '../../../../../resources/outputs.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
-// Handle randomized headmarkers:
-// TODO: tankbuster markers
-// TODO: do the formless markers come out in hate order? if so, be smart about swap vs buster call.
-// TODO: electric slide markers
-// TODO: titan headmarkers
-
 // TODO: knockback direction from big hand after giant lasers (Palm Of Temperance 58B4/58B6/?/?)
 // TODO: for left/right reach during Blade Of Flame, call out Left + #1 alarm for #1.
-// TODO: classical sculpture healer stacks are id 0106 headmarkers, but happen earlier too :C
-// TODO: knockback from lion
+
+// TODO: somber dance triggers
+// TODO: apocalypse "get away from facing" or some such triggers
+// TODO: double apoc clockwise vs counterclockwise call would be nice
+// TODO: maybe call something for advanced, including double aero partners?
 
 // Each tether ID corresponds to a primal:
 // 008C -- Shiva
@@ -129,10 +126,219 @@ const primalOutputStrings = {
   },
 };
 
+// Due to changes introduced in patch 5.2, overhead markers now have a random offset
+// added to their ID. This offset currently appears to be set per instance, so
+// we can determine what it is from the first overhead marker we see.
+// The first 1B marker in the encounter is the formless tankbuster, ID 004F.
+const firstHeadmarker = parseInt('00DA', 16);
+const getHeadmarkerId = (data, matches) => {
+  // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 00DA.
+  // (This makes the offset 0, and !0 is true.)
+  if (typeof data.decOffset === 'undefined')
+    data.decOffset = parseInt(matches.id, 16) - firstHeadmarker;
+  // The leading zeroes are stripped when converting back to string, so we re-add them here.
+  // Fortunately, we don't have to worry about whether or not this is robust,
+  // since we know all the IDs that will be present in the encounter.
+  return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
+};
+
+// For giant lasers.
+const numberOutputStrings = [0, 1, 2, 3, 4].map((n) => {
+  const str = n.toString();
+  return {
+    en: str,
+    de: str,
+    fr: str,
+    ja: str,
+    cn: str,
+    ko: str,
+  };
+});
+
+// These keys map effect ids to `intermediateRelativityOutputStrings` keys.
+const effectIdToOutputStringKey = {
+  '690': 'flare',
+  '996': 'stack',
+  '998': 'shadoweye',
+  '99C': 'eruption',
+  '99E': 'blizzard',
+  '99F': 'aero',
+};
+
+// These are currently used for both the informative x > y > z callout,
+// but also the individual alerts.  These are kept short and snappy.
+const intermediateRelativityOutputStrings = {
+  flare: {
+    en: 'Flare',
+  },
+  stack: {
+    en: 'Stack',
+  },
+  shadoweye: {
+    en: 'Gaze',
+  },
+  eruption: {
+    en: 'Spread',
+  },
+  blizzard: {
+    en: 'Ice',
+  },
+  aero: {
+    en: 'Aero',
+  },
+};
+
 export default {
   zoneId: ZoneId.EdensPromiseEternitySavage,
   timelineFile: 'e12s.txt',
   triggers: [
+    {
+      // Headmarkers are randomized, so handle them all with a single trigger.
+      id: 'E12S Promise Headmarker',
+      netRegex: NetRegexes.headMarker({}),
+      condition: (data) => data.isDoorBoss,
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          formlessBusterAndSwap: {
+            en: 'Tank Buster + Swap',
+          },
+          formlessBusterOnYOU: {
+            en: 'Tank Buster on YOU',
+          },
+          // The first round has only one blue.
+          titanBlueSingular: {
+            en: 'Blue Weight',
+          },
+          // The second and two rounds of bombs have a partner.
+          // The third is technically fixed by role with a standard party (one dps, one !dps),
+          // but call out your partner anyway in case you've got 8 blus or something.
+          titanBlueWithPartner: {
+            en: 'Blue (with ${player})',
+          },
+          titanOrangeStack: {
+            en: 'Orange Stack',
+          },
+          titanYellowSpread: {
+            en: 'Yellow Spread',
+          },
+          // This is sort of redundant, but if folks want to put "square" or something in the text,
+          // having these be separate would allow them to configure them separately.
+          square1: numberOutputStrings[1],
+          square2: numberOutputStrings[2],
+          square3: numberOutputStrings[3],
+          square4: numberOutputStrings[4],
+          triangle1: numberOutputStrings[1],
+          triangle2: numberOutputStrings[2],
+          triangle3: numberOutputStrings[3],
+          triangle4: numberOutputStrings[4],
+        };
+
+        const id = getHeadmarkerId(data, matches);
+
+        // Track tankbuster targets, regardless if this is on you or not.
+        // Use this to make more intelligent calls when the cast starts.
+        if (id === '00DA') {
+          data.formlessTargets = data.formlessTargets || [];
+          data.formlessTargets.push(matches.target);
+        } else if (id === '00BB') {
+          data.weightTargets = data.weightTargets || [];
+          data.weightTargets.push(matches.target);
+
+          // Handle double blue titan on 2nd and 3rd iterations.
+          if (data.seenFirstBombs && data.weightTargets.length === 2) {
+            if (data.weightTargets.includes(data.me)) {
+              const partner = data.weightTargets[data.weightTargets[0] === data.me ? 1 : 0];
+              return {
+                alarmText: output.titanBlueWithPartner({ player: data.ShortName(partner) }),
+              };
+            }
+          }
+        }
+
+        // From here on out, any response is for the current player.
+        if (matches.target !== data.me)
+          return;
+
+        // Formless double tankbuster mechanic.
+        if (id === '00DA') {
+          if (data.role === 'tank')
+            return { alertText: output.formlessBusterAndSwap() };
+          // Not that you personally can do anything about it, but maybe this
+          // is your cue to yell on voice comms for cover.
+          return { alarmText: output.formlessBusterOnYOU() };
+        }
+
+        // Titan Mechanics (double blue handled above)
+        if (id === '00BB' && !data.seenFirstBombs)
+          return { alarmText: output.titanBlueSingular() };
+        if (id === '00B9')
+          return { alertText: output.titanYellowSpread() };
+        if (id === '00BA')
+          return { infoText: output.titanOrangeStack() };
+
+        // Statue laser mechanic.
+        const firstLaserMarker = '0091';
+        const lastLaserMarker = '0098';
+        if (id >= firstLaserMarker && id <= lastLaserMarker) {
+          // We could arguably tell you which giant you're tethered to by finding their position?
+          // And then saying something like "North" but that's probably more confusing than helpful.
+          // ids are sequential: #1 square, #2 square, #3 square, #4 square, #1 triangle etc
+          const decOffset = parseInt(id, 16) - parseInt(firstLaserMarker, 16);
+          return {
+            alertText: [
+              output.square1(),
+              output.square2(),
+              output.square3(),
+              output.square4(),
+              output.triangle1(),
+              output.triangle2(),
+              output.triangle3(),
+              output.triangle4(),
+            ][decOffset],
+          };
+        }
+      },
+    },
+    {
+      id: 'E12S Promise Weight Cleanup',
+      netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58A5', capture: false }),
+      run: (data) => {
+        delete data.weightTargets;
+        data.seenFirstBombs = true;
+      },
+    },
+    {
+      id: 'E12S Promise Formless Judgment',
+      netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58A9', capture: false }),
+      condition: Conditions.caresAboutPhysical(),
+      response: (data, _, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          formlessBusterAndSwap: {
+            en: 'Tank Buster + Swap',
+          },
+          tankBusters: {
+            en: 'Tank Busters',
+          },
+        };
+
+        // Already called out in the headmarker trigger.
+        if (data.formlessTargets && data.formlessTargets.includes(data.me))
+          return;
+
+        // TODO: should this call out who to cover if you are a paladin?
+        if (data.role === 'tank')
+          return { alertText: output.formlessBusterAndSwap() };
+
+        if (data.role === 'healer')
+          return { alertText: output.tankBusters() };
+
+        // Be less noisy if this is just for feint.
+        return { infoText: output.tankBusters() };
+      },
+      run: (data) => delete data.formlessTargets,
+    },
     {
       id: 'E12S Promise Rapturous Reach Left',
       netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58AD', capture: false }),
@@ -157,6 +363,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A8', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
+      run: (data) => data.isDoorBoss = true,
     },
     {
       id: 'E12S Promise Junction Shiva',
@@ -325,6 +532,181 @@ export default {
           ja: '自分にライオン線',
           cn: '狮子连线点名',
           ko: '사자 선 대상자',
+        },
+      },
+    },
+    {
+      id: 'E12S Oracle Shockwave Pulsar',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58F0', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.aoe(),
+    },
+    {
+      id: 'E12S Oracle Basic Relativity',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E0', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.bigAoe(),
+      run: (data) => data.phase = 'basic',
+    },
+    {
+      id: 'E12S Oracle Intermediate Relativity',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E1', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.bigAoe(),
+      run: (data) => data.phase = 'intermediate',
+    },
+    {
+      id: 'E12S Oracle Advanced Relativity',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E2', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.bigAoe(),
+      run: (data) => data.phase = 'advanced',
+    },
+    {
+      id: 'E12S Oracle Terminal Relativity',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E3', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.bigAoe(),
+      run: (data) => data.phase = 'terminal',
+    },
+    {
+      id: 'E12S Oracle Darkest Dance',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58BE', capture: false }),
+      infoText: (data, _, output) => {
+        if (data.role === 'tank')
+          return output.tankBait();
+        return output.partyUnder();
+      },
+      outputStrings: {
+        tankBait: {
+          en: 'Bait Far',
+        },
+        partyUnder: {
+          en: 'Get Under',
+          de: 'Unter ihn',
+          fr: 'En dessous',
+          ja: 'ボスと貼り付く',
+          cn: '去脚下',
+          ko: '보스 아래로',
+        },
+      },
+    },
+    {
+      id: 'E12S Shell Crusher',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C3', capture: false }),
+      response: Responses.getTogether('alert'),
+    },
+    {
+      id: 'E12S Spirit Taker',
+      // Spirit Taker always comes after Shell Crusher, so trigger on Shell Crusher damage
+      // to warn people a second or two earlier than `starts using Spirit Taker` would occur.
+      netRegex: NetRegexes.ability({ source: 'Oracle Of Darkness', id: '58C3', capture: false }),
+      suppressSeconds: 1,
+      response: Responses.spread('info'),
+    },
+    {
+      id: 'E12S Black Halo',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C7' }),
+      condition: Conditions.caresAboutPhysical(),
+      response: Responses.tankBuster('alert'),
+    },
+    {
+      id: 'E12S Relativity Debuff Collector',
+      // 690 Spell-In-Waiting: Flare
+      // 996 Spell-In-Waiting: Unholy Darkness
+      // 998 Spell-In-Waiting: Shadoweye
+      // 99C Spell-In-Waiting: Dark Eruption
+      // 99E Spell-In-Waiting: Dark Blizzard III
+      // 99F Spell-In-Waiting: Dark Aero III
+      netRegex: NetRegexes.gainsEffect({ effectId: ['690', '99[68CEF]'] }),
+      condition: (data, matches) => data.phase === 'intermediate' && matches.target === data.me,
+      preRun: (data, matches) => {
+        data.debuffs = data.debuffs || {};
+        data.debuffs[matches.effectId.toUpperCase()] = parseFloat(matches.duration);
+      },
+      durationSeconds: 20,
+      infoText: (data, _, output) => {
+        const unsortedIds = Object.keys(data.debuffs);
+        if (unsortedIds.length !== 3)
+          return;
+
+        // Sort effect ids descending by duration.
+        const sortedIds = unsortedIds.sort((a, b) => data.debuffs[b] - data.debuffs[a]);
+        const keys = sortedIds.map((effectId) => effectIdToOutputStringKey[effectId]);
+
+        // Stash outputstring keys to use later.
+        data.intermediateDebuffs = [keys[1], keys[2]];
+
+        return output.comboText({
+          effect1: output[keys[0]](),
+          effect2: output[keys[1]](),
+          effect3: output[keys[2]](),
+        });
+      },
+      outputStrings: Object.assign({
+        comboText: {
+          en: '${effect1} > ${effect2} > ${effect3}',
+        },
+      }, intermediateRelativityOutputStrings),
+    },
+    {
+      id: 'E12S Relativity Debuffs',
+      // Players originally get `Spell-in-Waiting: Return` or `Spell-in-Waiting: Return IV`.
+      // When Spell-in-Waiting Return IV wears off, players get Return IV effect.
+      // When Return IV effect wears off, players get Return effect.
+      // When Return effect wears off, players go back to previous locations
+      //
+      // Return = 994
+      // Return IV = 995
+      netRegex: NetRegexes.gainsEffect({ effectId: '99[45]' }),
+      condition: Conditions.targetIsYou(),
+      response: (data, _, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = Object.assign({
+          moveAway: {
+            en: 'Move!',
+            de: 'Bewegen!',
+            fr: 'Bougez !',
+            ja: '避けて！',
+            cn: '快躲开！',
+            ko: '이동하기!',
+          },
+        }, intermediateRelativityOutputStrings);
+
+        if (data.phase !== 'intermediate')
+          return { infoText: output.moveAway() };
+
+        const key = data.intermediateDebuffs && data.intermediateDebuffs.shift();
+        if (!key)
+          return { infoText: output.moveAway() };
+        return { alertText: output[key]() };
+      },
+    },
+    {
+      id: 'E12S Basic Relativity Shadoweye',
+      netRegex: NetRegexes.gainsEffect({ effectId: '998' }),
+      condition: (data, matches) => data.phase === 'basic',
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - 3,
+      suppressSeconds: 2,
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          // TODO: we could say "look away from x, y" or "look away from tanks"?
+          en: 'Look Away',
+        },
+      },
+    },
+    {
+      // For intermediate and advanced, players should look outside during the final return effect.
+      // For basic relativity, the shadoweye happens when the return puddle is dropped.
+      id: 'E12S Relativity Look Outside',
+      netRegex: NetRegexes.gainsEffect({ effectId: '994' }),
+      condition: (data, matches) => data.phase !== 'basic' && matches.target === data.me,
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - 2.5,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look Outside',
         },
       },
     },
