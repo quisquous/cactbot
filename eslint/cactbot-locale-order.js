@@ -58,12 +58,12 @@ const ruleModule = {
     },
   },
   create: function(context) {
+    // fill orderList with option,
+    // otherwise use the default one.
+    orderList = context.options[0] || defaultOrderList;
+
     return {
       ObjectExpression(node) {
-        // fill orderList with option,
-        // otherwise use the default one.
-        orderList = context.options[0] || defaultOrderList;
-
         const properties = node.properties;
 
         const isLocaleObject = properties.every((prop) => {
