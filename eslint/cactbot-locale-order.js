@@ -53,7 +53,7 @@ const ruleModule = {
       },
     ],
     messages: {
-      sortKeys: 'Expected locale object keys ordered like {{expectedOrder}} (\'{{beforeKey}}\' should before \'{{nextKey}}\')',
+      sortKeys: 'Expected locale object keys ordered like {{expectedOrder}} (\'{{beforeKey}}\' should be before \'{{nextKey}}\')',
     },
   },
   create: function(context) {
