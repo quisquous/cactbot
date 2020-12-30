@@ -767,6 +767,9 @@ export default {
         // All of the fake bosses have a BNpcID of 9020, 12379 is the real one.
         const boss = bossData.combatants.filter((boss) => boss.BNpcID === 12379)[0];
 
+        if (!boss)
+          return;
+
         data.boss = convertBossHeadingToClonePosition(boss);
 
         const cloneOfDarknessLocaleNames = {
@@ -788,6 +791,9 @@ export default {
         data.clones = cloneData.combatants;
       },
       alertText: (data, matches, output) => {
+        if (!data.boss || !data.clones)
+          return;
+
         const [clone1, clone2] = data.clones;
         return output[calculateSummonSafeZone(data.boss, clone1, clone2, matches.id)]();
       },
