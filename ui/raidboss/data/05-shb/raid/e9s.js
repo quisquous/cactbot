@@ -1,28 +1,14 @@
 import Conditions from '../../../../../resources/conditions.js';
 import NetRegexes from '../../../../../resources/netregexes.js';
+import Outputs from '../../../../../resources/outputs.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
 // TODO: Add N/S E/W callout to Rejuvenating Balm
-// TODO: Add Summon
 
 const phaserOutputStrings = {
-  sides: {
-    en: 'Sides',
-    de: 'Seiten',
-    fr: 'Côtés',
-    ja: '横へ',
-    cn: '去侧面',
-    ko: '양옆으로',
-  },
-  out: {
-    en: 'Out',
-    de: 'Raus',
-    fr: 'Extérieur',
-    ja: '外へ',
-    cn: '远离',
-    ko: '밖으로',
-  },
+  sides: Outputs.sides,
+  out: Outputs.out,
   healerStacks: {
     en: 'Healer Stacks',
     de: 'Bei den Heilern sammeln',
@@ -50,22 +36,8 @@ const phaserOutputStrings = {
 };
 
 const artOfDarknessOutputStrings = {
-  goRight: {
-    en: 'Right',
-    de: 'Rechts',
-    fr: 'Droite ',
-    ja: '右へ',
-    cn: '右',
-    ko: '오른쪽',
-  },
-  goLeft: {
-    en: 'Left',
-    de: 'Links',
-    fr: 'Gauche',
-    ja: '左へ',
-    cn: '左',
-    ko: '왼쪽',
-  },
+  goRight: Outputs.right,
+  goLeft: Outputs.left,
   stackWithPartner: {
     en: 'Stack With Partner',
     de: 'Mit Partner stacken',
@@ -82,6 +54,118 @@ const artOfDarknessOutputStrings = {
     cn: '散开',
     ko: '산개',
   },
+};
+
+const summonDirectionOutputStrings = {
+  NNE: {
+    en: 'NNE',
+    de: 'NNO',
+    fr: 'NNE',
+    ja: '北北東',
+  },
+  ENE: {
+    en: 'ENE',
+    de: 'ONO',
+    fr: 'ENE',
+    ja: '東北東',
+  },
+  ESE: {
+    en: 'ESE',
+    de: 'OSO',
+    fr: 'ESE',
+    ja: '東南東',
+  },
+  SSE: {
+    en: 'SSE',
+    de: 'SSO',
+    fr: 'SSE',
+    ja: '南南東',
+  },
+  SSW: {
+    en: 'SSW',
+    de: 'SSW',
+    fr: 'SSO',
+    ja: '南南西',
+  },
+  WSW: {
+    en: 'WSW',
+    de: 'WSW',
+    fr: 'OSO',
+    ja: '西南西',
+  },
+  WNW: {
+    en: 'WNW',
+    de: 'WNW',
+    fr: 'ONO',
+    ja: '西北西',
+  },
+  NNW: {
+    en: 'NNW',
+    de: 'NNW',
+    fr: 'NNO',
+    ja: '北北西',
+  },
+  unknown: {
+    en: '???',
+    de: '???',
+    fr: '???',
+    ja: '???',
+    cn: '???',
+    ko: '???',
+  },
+};
+
+const convertBossHeadingToClonePosition = (boss) => {
+  // Snap heading to closest card/intercard (aka PI/4).  N = PI, E = PI/2.
+  const closestRad = Math.round(boss.Heading * 4 / Math.PI) / 4 * Math.PI;
+  // Find position opposite of the boss facing, centered on 100,100.
+  return {
+    PosX: 100 - 20 * Math.round(Math.sin(closestRad)),
+    PosY: 100 - 20 * Math.round(Math.cos(closestRad)),
+  };
+};
+
+const calculateSummonSafeZone = (boss, clone1, clone2, abilityId) => {
+  // Convert coordinates to 8 cardinal / intercardinal positions:
+  // N at 0, NE at 1, ... NW at 7
+  const b = Math.round(4 - 4 * Math.atan2(boss.PosX - 100, boss.PosY - 100) / Math.PI);
+  const c1 = Math.round(4 - 4 * Math.atan2(clone1.PosX - 100, clone1.PosY - 100) / Math.PI);
+  const c2 = Math.round(4 - 4 * Math.atan2(clone2.PosX - 100, clone2.PosY - 100) / Math.PI);
+
+  const directions = {
+    '0': 'NNE',
+    '1': 'ENE',
+    '2': 'ESE',
+    '3': 'SSE',
+    '4': 'SSW',
+    '5': 'WSW',
+    '6': 'WNW',
+    '7': 'NNW',
+  };
+
+  const badZones = [];
+  for (const position of [b, c1, c2]) {
+    for (let i = 0; i < 4; ++i) {
+      let newPosition;
+      // Swiping her right
+      if (abilityId === '561E') {
+        // Off by 1 here, since N is 0 for the Clone but NNE for the safe spot
+        newPosition = ((position - i % 8) + 7) % 8;
+      } else {
+        newPosition = (position + i) % 8;
+      }
+      if (!badZones.includes(newPosition))
+        badZones.push(newPosition);
+    }
+  }
+  const safeZones = [0, 1, 2, 3, 4, 5, 6, 7]
+    .filter((pos) => !badZones.includes(pos))
+    .map((pos) => directions[pos]);
+
+  if (safeZones.length !== 1)
+    return 'unknown';
+
+  return safeZones[0];
 };
 
 export default {
@@ -148,30 +232,9 @@ export default {
           return output.avoidLaser();
       },
       outputStrings: {
-        tankBusterOnYou: {
-          en: 'Tank Buster on YOU',
-          de: 'Tank buster auf DIR',
-          fr: 'Tank buster sur VOUS',
-          ja: '自分にタンクバスター',
-          cn: '死刑点名',
-          ko: '탱버 대상자',
-        },
-        tankBusters: {
-          en: 'Tank Busters',
-          de: 'Tank buster',
-          fr: 'Tank buster',
-          ja: 'タンクバスター',
-          cn: '死刑',
-          ko: '탱버',
-        },
-        tankSwap: {
-          en: 'Tank Swap!',
-          de: 'Tankwechsel!',
-          fr: 'Tank swap !',
-          ja: 'タンクスイッチ',
-          cn: '换T！',
-          ko: '탱 교대',
-        },
+        tankBusterOnYou: Outputs.tankBusterOnYou,
+        tankBusters: Outputs.tankBusters,
+        tankSwap: Outputs.tankSwap,
         avoidLaser: {
           en: 'Avoid Laser',
           de: 'Laser ausweichen',
@@ -538,8 +601,15 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '5A95', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5A95', source: '어둠의 구름', capture: false }),
       durationSeconds: 8,
-      alertText: (data, _, output) => output['goLeft'](),
-      outputStrings: artOfDarknessOutputStrings,
+      alertText: (data, _, output) => {
+        if (!data.summon)
+          return output.text();
+      },
+      infoText: (data, _, output) => {
+        if (data.summon)
+          return output.text();
+      },
+      outputStrings: { text: artOfDarknessOutputStrings.goLeft },
     },
     {
       id: 'E9S The Art Of Darkness Left',
@@ -550,8 +620,15 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '5A96', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5A96', source: '어둠의 구름', capture: false }),
       durationSeconds: 8,
-      alertText: (data, _, output) => output['goRight'](),
-      outputStrings: artOfDarknessOutputStrings,
+      alertText: (data, _, output) => {
+        if (!data.summon)
+          return output.text();
+      },
+      infoText: (data, _, output) => {
+        if (data.summon)
+          return output.text();
+      },
+      outputStrings: { text: artOfDarknessOutputStrings.goRight },
     },
     {
       id: 'E9S Full-Perimeter Particle Beam',
@@ -650,6 +727,78 @@ export default {
           ko: '기둥 들어가기',
         },
       },
+    },
+    {
+      id: 'E9S Summon',
+      netRegex: NetRegexes.ability({ id: '5019', source: 'Cloud Of Darkness', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '5019', source: 'Wolke Der Dunkelheit', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '5019', source: 'Nuage De Ténèbres', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '5019', source: '暗闇の雲', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '5019', source: '暗黑之云', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '5019', source: '어둠의 구름', capture: false }),
+      run: (data) => data.summon = true,
+    },
+    {
+      id: 'E9S Clone The Art Of Darkness',
+      netRegex: NetRegexes.startsUsing({ id: '561[EF]', source: 'Clone Of Darkness' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '561[EF]', source: 'Klon der Dunkelheit' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '561[EF]', source: 'Nuée de Ténèbres' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '561[EF]', source: '幻影の雲' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '561[EF]', source: '幻影之云' }),
+      suppressSeconds: 1,
+      promise: async (data) => {
+        const cloudOfDarknessLocaleNames = {
+          en: 'Cloud Of Darkness',
+          de: 'Wolke Der Dunkelheit',
+          fr: 'Nuage De Ténèbres',
+          ja: '暗闇の雲',
+          cn: '暗黑之云',
+          ko: '어둠의 구름',
+        };
+
+        const bossData = await window.callOverlayHandler({
+          call: 'getCombatants',
+          names: [cloudOfDarknessLocaleNames[data.parserLang]],
+        });
+
+        if (bossData === null || !bossData.combatants || !bossData.combatants.length)
+          return;
+
+        // All of the fake bosses have a BNpcID of 9020, 12379 is the real one.
+        const boss = bossData.combatants.filter((boss) => boss.BNpcID === 12379)[0];
+
+        if (!boss)
+          return;
+
+        data.boss = convertBossHeadingToClonePosition(boss);
+
+        const cloneOfDarknessLocaleNames = {
+          en: 'Clone Of Darkness',
+          de: 'Klon der Dunkelheit',
+          fr: 'Nuée de Ténèbres',
+          ja: '幻影の雲',
+          cn: '幻影之云',
+        };
+
+        const cloneData = await window.callOverlayHandler({
+          call: 'getCombatants',
+          names: [cloneOfDarknessLocaleNames[data.parserLang]],
+        });
+
+        if (cloneData === null || !cloneData.combatants || !cloneData.combatants.length)
+          return;
+
+        data.clones = cloneData.combatants;
+      },
+      alertText: (data, matches, output) => {
+        if (!data.boss || !data.clones)
+          return;
+
+        const [clone1, clone2] = data.clones;
+        return output[calculateSummonSafeZone(data.boss, clone1, clone2, matches.id)]();
+      },
+      outputStrings: summonDirectionOutputStrings,
+      run: (data) => delete data.summon,
     },
   ],
   timelineReplace: [

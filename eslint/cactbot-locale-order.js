@@ -1,22 +1,28 @@
-const orderMap = {
-  en: 0,
-  de: 1,
-  fr: 2,
-  ja: 3,
-  cn: 4,
-  ko: 5,
-};
+const defaultOrderList = [
+  'en',
+  'de',
+  'fr',
+  'ja',
+  'cn',
+  'ko',
+];
 
+let orderList = [];
 
-function isValidOrder(a, b) {
-  const orderA = orderMap[a];
-  const orderB = orderMap[b];
+function compareOrder(a, b) {
+  const orderA = orderList.indexOf(a);
+  const orderB = orderList.indexOf(b);
 
-  if (orderA === undefined || orderB === undefined)
-    return true;
+  // All keys are known to be in `orderList` by the `isLocaleObject` check below.
+  return orderA - orderB;
+}
 
-
-  return orderA <= orderB;
+function generateValidObject(props, sourceCode) {
+  const sortedPropsText = [...props]
+    .sort((a, b) => compareOrder(a.key.name, b.key.name))
+    .map((prop) => ' '.repeat(prop.loc.start.column) + sourceCode.getText(prop))
+    .join(',\n');
+  return `{\n${sortedPropsText},\n${' '.repeat(props[0].loc.start.column - 2)}}`;
 }
 
 // ------------------------------------------------------------------------------
@@ -37,57 +43,59 @@ const ruleModule = {
       url: 'https://github.com/quisquous/cactbot/blob/main/docs/RaidbossGuide.md#trigger-elements',
     },
     fixable: 'code',
-    schema: [],
+    schema: [
+      {
+        'type': 'array',
+        'items': {
+          'type': 'string',
+        },
+      },
+    ],
     messages: {
-      sortKeys: 'Expected locale object keys to be in an order like [en, de, fr, ja, cn, ko]. \'{{thisName}}\' should be before \'{{prevName}}\'.',
+      sortKeys: 'Expected locale object keys ordered like {{expectedOrder}} (\'{{beforeKey}}\' should be before \'{{nextKey}}\')',
     },
   },
   create: function(context) {
-    let stack = null;
+    // fill orderList with option,
+    // otherwise use the default one.
+    orderList = context.options[0] || defaultOrderList;
+
     return {
       ObjectExpression(node) {
-        stack = {
-          upper: stack,
-          prev: null,
-          prevName: null,
-          numKeys: node.properties.length,
-        };
-      },
+        const properties = node.properties;
 
-      'ObjectExpression:exit'() {
-        stack = stack.upper;
-      },
-      Property(node) {
-        if (node.parent.type === 'ObjectPattern')
+        const isLocaleObject = properties.every((prop) => {
+          return prop.key && orderList.includes(prop.key.name);
+        });
+        if (!isLocaleObject)
           return;
 
-        const prevName = stack.prevName;
-        const prevNode = stack.prev;
-        const thisName = node.key.name;
+        const validList = [];
 
-        if (thisName !== null) {
-          stack.prevName = thisName;
-          stack.prev = node;
+        for (let i = 1; i < properties.length; i++) {
+          if (compareOrder(properties[i - 1].key.name, properties[i].key.name) > 0) {
+            validList.push({
+              nextKey: properties[i - 1].key.name,
+              beforeKey: properties[i].key.name,
+            });
+          }
         }
 
-        if (prevName === null || thisName === null)
-          return;
-
-        if (!isValidOrder(prevName, thisName)) {
-          const range = [prevNode.range[0], node.range[1]];
-
+        if (validList.length >= 1) {
           const sourceCode = context.getSourceCode();
-          const text = `${sourceCode.getText(node)},\n${' '.repeat(node.loc.start.column)}${sourceCode.getText(prevNode)}`;
-
-          context.report({
-            node,
-            loc: node.key.loc,
-            messageId: 'sortKeys',
-            data: {
-              thisName,
-              prevName,
-            },
-            fix: (fixer) => fixer.replaceTextRange(range, text),
+          validList.forEach((valid) => {
+            context.report({
+              node,
+              loc: node.loc,
+              messageId: 'sortKeys',
+              data: {
+                expectedOrder: `[${orderList.join(',')}]`,
+                beforeKey: valid.beforeKey,
+                nextKey: valid.nextKey,
+              },
+              fix: (fixer) =>
+                fixer.replaceTextRange(node.range, generateValidObject(properties, sourceCode)),
+            });
           });
         }
       },

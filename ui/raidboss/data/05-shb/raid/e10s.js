@@ -1,49 +1,19 @@
+import { Util } from '../../../../../resources/common.js';
 import Conditions from '../../../../../resources/conditions.js';
 import NetRegexes from '../../../../../resources/netregexes.js';
+import Outputs from '../../../../../resources/outputs.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
-// TODO: use headmarkers for limit cut number
-//       need to track tether bois
-//       HOWEVER this also uses TEA rules where the limit cut number has an offset.
-//       HOWEVER HOWEVER only the limit cut numbers use this offset
-//       the second 1B line is the #1 limit cut number, and they increment in hex by 1
+// TODO: Fix headmarkers for groups running multiple of the same job ?
 
 // Note: there's no headmarker ability line for cleaving shadows.
 
 const directions = {
-  north: {
-    en: 'North',
-    de: 'Norden',
-    fr: 'le nord',
-    ja: '北へ',
-    cn: '去北边',
-    ko: '북쪽',
-  },
-  south: {
-    en: 'South',
-    de: 'Süden',
-    fr: 'le sud',
-    ja: '南へ',
-    cn: '去南边',
-    ko: '남쪽',
-  },
-  east: {
-    en: 'East',
-    de: 'Osten',
-    fr: 'l\'est',
-    ja: '東へ',
-    cn: '去东边',
-    ko: '동쪽',
-  },
-  west: {
-    en: 'West',
-    de: 'Westen',
-    fr: 'l\'ouest',
-    ja: '西へ',
-    cn: '去西边',
-    ko: '서쪽',
-  },
+  north: Outputs.north,
+  south: Outputs.south,
+  east: Outputs.east,
+  west: Outputs.west,
 };
 
 export default {
@@ -261,16 +231,16 @@ export default {
         let ret = '';
         switch (data.gigaSlashCleaveDebuffId) {
         case '973':
-          ret = output.west;
+          ret = output.west();
           break;
         case '974':
-          ret = output.east;
+          ret = output.east();
           break;
         case '975':
-          ret = output.north;
+          ret = output.north();
           break;
         case '976':
-          ret = output.south;
+          ret = output.south();
           break;
         }
 
@@ -285,8 +255,9 @@ export default {
       outputStrings: {
         dropShadow: {
           en: 'Drop Shadow ${dir}',
-          fr: 'Déposez l\'ombre à ${dir}',
-          ja: '${dir}、影を捨てる',
+          de: 'Schatten im ${dir} ablegen',
+          fr: 'Déposez l\'ombre du côté ${dir}',
+          ja: '${dir}へ、影を捨てる',
           cn: '${dir}放影子',
           ko: '${dir}에 그림자 놓기',
         },
@@ -312,16 +283,16 @@ export default {
         let ret = '';
         switch (data.gigaSlashCleaveDebuffId) {
         case '973':
-          ret = output.east;
+          ret = output.east();
           break;
         case '974':
-          ret = output.west;
+          ret = output.west();
           break;
         case '975':
-          ret = output.south;
+          ret = output.south();
           break;
         case '976':
-          ret = output.north;
+          ret = output.north();
           break;
         }
 
@@ -335,9 +306,10 @@ export default {
       infoText: (data, _, output) => output.rightCleave(),
       outputStrings: {
         dropShadow: {
-          en: 'Drop Shadow on ${dir}',
-          fr: 'Déposez l\'ombre à ${dir}',
-          ja: '${dir}、影を捨てる',
+          en: 'Drop Shadow ${dir}',
+          de: 'Schatten im ${dir} ablegen',
+          fr: 'Déposez l\'ombre du côté ${dir}',
+          ja: '${dir}へ、影を捨てる',
           cn: '${dir}放影子',
           ko: '${dir}에 그림자 놓기',
         },
@@ -387,9 +359,59 @@ export default {
           ko: '바깥쪽에 그림자 떨어뜨리기',
         },
       },
+      run: (data) => data.clones = true,
     },
     {
-      // TODO: use headmarkers for this
+      // This checks your shadow's job against your job, since your shadow has
+      // the same job as you. If there's multiple of one job, or a shadow has
+      // a job of 0 (player died), then return '?' for the affected players.
+      id: 'E10S Shadow Of A Hero',
+      netRegex: NetRegexes.addedCombatantFull({ name: 'Shadow Of A Hero' }),
+      condition: (data) => data.clones,
+      run: (data, matches) => {
+        data.myClone = data.myClone || [];
+        const clonesJob = parseInt(matches.job, 16).toString();
+        if (clonesJob === Util.jobToJobEnum(data.job))
+          data.myClone.push(matches.id.toUpperCase());
+      },
+    },
+    {
+      id: 'E10S Shadow Of A Hero Head Marker Map',
+      netRegex: NetRegexes.headMarker({ target: 'Shadow Of A Hero' }),
+      condition: (data) => !data.shadowMarkerMap,
+      suppressSeconds: 1,
+      run: (data, matches) => {
+        data.shadowMarkerMap = {};
+        const idPivot = parseInt(matches.id, 16);
+        for (let i = 0; i < 3; ++i) {
+          const hexPivot = (idPivot + i).toString(16).toUpperCase().padStart(4, '0');
+          data.shadowMarkerMap[hexPivot] = i + 1;
+        }
+      },
+    },
+    {
+      id: 'E10S Shadow Of A Hero Head Marker',
+      netRegex: NetRegexes.headMarker({ target: 'Shadow Of A Hero' }),
+      condition: (data) => !data.headMarkerTriggered,
+      durationSeconds: 7,
+      alertText: (data, matches, output) => {
+        if (!data.myClone || data.myClone.length !== 1) {
+          data.headMarkerTriggered = true;
+          return output.unknown();
+        }
+        if (matches.targetId === data.myClone[0]) {
+          data.headMarkerTriggered = true;
+          return output[data.shadowMarkerMap[matches.id]]();
+        }
+      },
+      outputStrings: {
+        '1': Outputs.num1,
+        '2': Outputs.num2,
+        '3': Outputs.num3,
+        'unknown': Outputs.unknownTarget,
+      },
+    },
+    {
       id: 'E10S Dualspell 1',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '573A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '573A', capture: false }),
@@ -408,7 +430,6 @@ export default {
       },
     },
     {
-      // TODO: use headmarkers for this
       id: 'E10S Dualspell 2',
       netRegex: NetRegexes.ability({ source: 'Shadowkeeper', id: '573A', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Schattenkönig', id: '573A', capture: false }),
@@ -427,7 +448,6 @@ export default {
       },
     },
     {
-      // TODO: use headmarkers for this
       id: 'E10S Dualspell 3',
       netRegex: NetRegexes.ability({ source: 'Shadowkeeper', id: '573A', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Schattenkönig', id: '573A', capture: false }),
@@ -464,6 +484,7 @@ export default {
           ko: '그림자 칼끝딜 위치에 떨어뜨리기',
         },
       },
+      run: (data) => delete data.clones,
     },
     {
       id: 'E10S Swath of Silence',
@@ -683,14 +704,7 @@ export default {
         return output.text({ player: data.ShortName(partner) });
       },
       outputStrings: {
-        text: {
-          en: 'Far Tethers (${player})',
-          de: 'Entfernte Verbindungen (${player})',
-          fr: 'Liens éloignés (${player})',
-          ja: ' (${player})から離れる',
-          cn: '远离连线 (${player})',
-          ko: '상대와 떨어지기 (${player})',
-        },
+        text: Outputs.farTethersWithPlayer,
       },
     },
     {
@@ -704,14 +718,7 @@ export default {
         return output.text({ player: data.ShortName(partner) });
       },
       outputStrings: {
-        text: {
-          en: 'Close Tethers (${player})',
-          de: 'Nahe Verbindungen (${player})',
-          fr: 'Liens proches (${player})',
-          ja: '(${player})に近づく',
-          cn: '靠近连线 (${player})',
-          ko: '상대와 가까이 붙기 (${player})',
-        },
+        text: Outputs.closeTethersWithPlayer,
       },
     },
     {
