@@ -77,27 +77,33 @@ and so you might need a little bit of programming savvy.
 The general philosophy of cactbot is that
 any user configuration should only go in files in the user directory.
 This will prevent your changes from being overwritten during future cactbot updates.
-Additionally, in the future modifying cactbot files directly from a cactbot release
+Additionally, modifying cactbot files directly from a cactbot release
 will not work properly without running extra build steps.
 
 All cactbot UI modules can load user settings from the [user/](../user/) directory.
-The `raidboss` module loads `user/raidboss.js` and `user/raidboss.css`.
-The `oopsyraidsy` module loads `user/oopsyraidsy.js` and `user/oopsyraidsy.css`.
-And so on, for each module.
-These files are included after cactbot's files and can override its settings.
+The `raidboss` module loads `user/raidboss.js` and `user/raidboss.css`,
+as well as any `.js` and `.css` files inside the `user/raidboss/` directory
+with any filenames in any number of subfolders.
+(Timeline `.txt` files must be directly in the same folder as the `.js` that refers to them.)
+These user-defined files are included after cactbot's files and can override its settings.
 
-Additionally, cactbot will also load any files in a subdirectory of the same module name.
-For example, `raidboss` will also load any `.js` and `.css` files
-underneath `user/raidboss/` even if in multiple subfolders.
-This is intended to make it easier to share triggers and customizations with others.
-Timeline `.txt` files must be directly in the same folder as the `.js` that refers to them.
+Similarly, the `oopsyraidsy` module loads `user/oopsyraidsy.js` and `user/oopsyraidsy.css`,
+as well as all `.js` and `.css` files inside the `user/oopsyraidsy/` directory.
+And so on, for each module by name.
 
 cactbot loads files in subdirectories (alphabetically) before loading files in outer directories.
 This is so that `user/raidboss.js` will always be loaded last
 and can override anything that is set inside a file inside of `user/raidboss/`.
-For example, `user/alphascape/some_file.js` will load before `user/mystatic/file1.js`,
+For example, `user/alphascape/some_file.js` will load before `user/mystatic/some_file.js`,
 which will both load before `user/raidboss.js`.
-The same applies to `.css` files.
+The same ordering applies to `.css` files.
+
+In this documentation, any reference to "user-defined js file" applies to both of these.
+There is no difference between `user/raidboss.js` and `user/raidboss/some_file.js`,
+other than the order in which they load.
+Similarly, "user-defined css file" means both `user/radar.css` and `user/radar/some_file.css`.
+Subdirectories in the user folder are intended to
+make it easier to share triggers and customizations with others.
 
 You can get more information about the loading order
 by looking at the [debug messages](#check-if-your-file-is-loaded)
@@ -128,7 +134,7 @@ This is often in `%APPDATA%\Advanced Combat Tracker\Plugins\cactbot-version\cact
 
 ## Customizing Appearance
 
-A user css file can change positions, sizes, colors, etc. for components of
+A user-defined css file can change positions, sizes, colors, etc. for components of
 the UI module. See the `ui/<name>/<name>.css` to find the selectors you can modify.
 
 For example in [ui/raidboss/raidboss.css](../ui/raidboss/raidboss.css),
@@ -170,13 +176,15 @@ In general, you are on your own if you want to style cactbot with CSS.
 
 ## Overriding Raidboss Triggers
 
-You can use your `cactbot/user/raidboss.js` to override how triggers behave.
+You can use a user-defined js file
+(e.g. `user/raidboss.js` or any `.js` file under `user/raidboss/`)
+to override how triggers behave.
 You can change the text that they output,
 what jobs they run for,
 and how long they stay on screen,
 and anything else.
 
-In `cactbot/user/raidboss.js`,
+In your user-defined js file for raidboss,
 there is an `Options.Triggers` list that contains a list of trigger sets.
 You can use this to append new triggers and
 modify existing triggers.
@@ -188,7 +196,7 @@ it is worth reading the [trigger guide](RaidbossGuide.md)
 to understand what the various fields of each trigger means.
 
 In general, the pattern to follow is to add a block of code
-to your `cactbot/user/raidboss.js` line that looks like this:
+to your user-defined js file (e.g. `user/raidboss.js`) that looks like this:
 
 ```javascript
 Options.Triggers.push({
@@ -235,7 +243,7 @@ One way to adjust this is to edit the trigger output for this trigger.
 You can find the original fireball #1 trigger in
 [ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js](https://github.com/quisquous/cactbot/blob/cce8bc6b10d2210fa512bd1c8edd39c260cc3df8/ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js#L715-L743).
 
-This chunk of code is what you would paste into the bottom of your `cactbot/user/raidboss.js` file.
+This chunk of code is what you would paste into the bottom of your user-defined js file.
 
 ```javascript
 Options.Triggers.push({
@@ -279,7 +287,7 @@ Here is a modified version with a different `condition` function.
 Because this shares the same `General Provoke` id with the built-in cactbot trigger,
 it will override the built-in version.
 
-This chunk of code is what you would paste into the bottom of your `cactbot/user/raidboss.js` file.
+This chunk of code is what you would paste into the bottom of your user-defined js file.
 
 ```javascript
 Options.Triggers.push([{
