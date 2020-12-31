@@ -1,14 +1,11 @@
+import { Util } from '../../../../../resources/common.js';
 import Conditions from '../../../../../resources/conditions.js';
 import NetRegexes from '../../../../../resources/netregexes.js';
 import Outputs from '../../../../../resources/outputs.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
-// TODO: use headmarkers for limit cut number
-//       need to track tether bois
-//       HOWEVER this also uses TEA rules where the limit cut number has an offset.
-//       HOWEVER HOWEVER only the limit cut numbers use this offset
-//       the second 1B line is the #1 limit cut number, and they increment in hex by 1
+// TODO: Fix headmarkers for groups running multiple of the same job ?
 
 // Note: there's no headmarker ability line for cleaving shadows.
 
@@ -362,9 +359,59 @@ export default {
           ko: '바깥쪽에 그림자 떨어뜨리기',
         },
       },
+      run: (data) => data.clones = true,
     },
     {
-      // TODO: use headmarkers for this
+      // This checks your shadow's job against your job, since your shadow has
+      // the same job as you. If there's multiple of one job, or a shadow has
+      // a job of 0 (player died), then return '?' for the affected players.
+      id: 'E10S Shadow Of A Hero',
+      netRegex: NetRegexes.addedCombatantFull({ name: 'Shadow Of A Hero' }),
+      condition: (data) => data.clones,
+      run: (data, matches) => {
+        data.myClone = data.myClone || [];
+        const clonesJob = parseInt(matches.job, 16).toString();
+        if (clonesJob === Util.jobToJobEnum(data.job))
+          data.myClone.push(matches.id.toUpperCase());
+      },
+    },
+    {
+      id: 'E10S Shadow Of A Hero Head Marker Map',
+      netRegex: NetRegexes.headMarker({ target: 'Shadow Of A Hero' }),
+      condition: (data) => !data.shadowMarkerMap,
+      suppressSeconds: 1,
+      run: (data, matches) => {
+        data.shadowMarkerMap = {};
+        const idPivot = parseInt(matches.id, 16);
+        for (let i = 0; i < 3; ++i) {
+          const hexPivot = (idPivot + i).toString(16).toUpperCase().padStart(4, '0');
+          data.shadowMarkerMap[hexPivot] = i + 1;
+        }
+      },
+    },
+    {
+      id: 'E10S Shadow Of A Hero Head Marker',
+      netRegex: NetRegexes.headMarker({ target: 'Shadow Of A Hero' }),
+      condition: (data) => !data.headMarkerTriggered,
+      durationSeconds: 7,
+      alertText: (data, matches, output) => {
+        if (!data.myClone || data.myClone.length !== 1) {
+          data.headMarkerTriggered = true;
+          return output.unknown();
+        }
+        if (matches.targetId === data.myClone[0]) {
+          data.headMarkerTriggered = true;
+          return output[data.shadowMarkerMap[matches.id]]();
+        }
+      },
+      outputStrings: {
+        '1': Outputs.num1,
+        '2': Outputs.num2,
+        '3': Outputs.num3,
+        'unknown': Outputs.unknownTarget,
+      },
+    },
+    {
       id: 'E10S Dualspell 1',
       netRegex: NetRegexes.startsUsing({ source: 'Shadowkeeper', id: '573A', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '573A', capture: false }),
@@ -383,7 +430,6 @@ export default {
       },
     },
     {
-      // TODO: use headmarkers for this
       id: 'E10S Dualspell 2',
       netRegex: NetRegexes.ability({ source: 'Shadowkeeper', id: '573A', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Schattenkönig', id: '573A', capture: false }),
@@ -402,7 +448,6 @@ export default {
       },
     },
     {
-      // TODO: use headmarkers for this
       id: 'E10S Dualspell 3',
       netRegex: NetRegexes.ability({ source: 'Shadowkeeper', id: '573A', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Schattenkönig', id: '573A', capture: false }),
@@ -439,6 +484,7 @@ export default {
           ko: '그림자 칼끝딜 위치에 떨어뜨리기',
         },
       },
+      run: (data) => delete data.clones,
     },
     {
       id: 'E10S Swath of Silence',
