@@ -344,7 +344,7 @@ It has more fleshed out support for some jobs but is *strongly* a Work In Progre
 <details>
 <summary>Supported Jobs (Click to expand)</summary>
 
-|Job|Feature
+|Job|Feature|
 |:-:|:-:|
 |<img src="https://xivapi.com/cj/1/paladin.png" width="30px"/><br> Paladin|Shows current Oath amount, and atonement stacks. Also tracks Goring Blade DoT. |
 |<img src="https://xivapi.com/cj/1/warrior.png" width="30px"/><br> Warrior|Shows the beast amount, and tracks the remaining Storm's Eye buff time in gcds, and shows combo time remaining.|
