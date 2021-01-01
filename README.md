@@ -341,36 +341,36 @@ or raiding, and a visual pull countdown.
 
 It has more fleshed out support for some jobs but is *strongly* a Work In Progress for others.
 
-<details open>
+<details>
 <summary>Supported Jobs (Click to expand)</summary>
 
 |Job|Feature
 |:-:|:-:|
-|Paladin|Shows current oath amount (with a colored box announce when to use it), and shows remaining atonement stacks.|
+|Paladin|Shows current Oath amount, and atonement stacks. Also tracks Goring Blade DoT. |
 |Warrior|Shows the beast amount, and tracks the remaining Storm's Eye buff time in gcds.|
-|Dark Knight|Shows the blood time and darkside time.|
-|Gunbreaker|Shows No Mercy/Bloodfest duration, Cartridge amount, and shows Gnashing Fang combo time.|
-|White Mage|Shows Heal/Blood Lily amount, DoTs remaining time, and shows Assize/Lucid Dream cooldown.|
-|Scholar|Shows Aetherflow stacks, Fairy gauge amount, DoTs remaining time, and shows Aetherflow/Lucid Dream cooldown.|
-|Astrogian|Shows Seals amount, notify who or whether to play the current card, and shows Draw/Lucid Dream cooldown.|
-|Monk|Shows chakra count, remaining greased lightning time, and tracks monk buffs and debuffs.|
-|Dragoon|Shows blood/eye amount, remaining Dragon Sight time, and shows Lance Charge/Disembowel cooldown.|
-|Ninja|Shows Ninki amount, Huton/Trick Attack remaining time, and shows Bunshin/Mudras cooldown.|
+|Dark Knight|Shows the blood amount and darkside time.|
+|Gunbreaker|Shows No Mercy duration&cooldown, Bloodfest&Gnashing Fang cooldown, Cartridge amount, and shows combo time remaining.|
+|White Mage|Shows Heal&Blood Lily amount, time to next Lily, DoTs remaining time, and shows Assize&Lucid Dreaming cooldown.|
+|Scholar|Shows Aetherflow stacks, Fairy gauge amount/time remaining, DoTs remaining time, and shows Aetherflow&Lucid Dreaming cooldown.|
+|Astrogian|Shows Seals amount, notify who or whether to play the current card, DoTs remaining time, and shows Draw&Lucid Dreaming cooldown.|
+|Monk|Shows chakra count, <del>remaining greased lightning time</del> and form time, and tracks monk buffs and debuffs.|
+|Dragoon|Shows blood&eye amount, remaining Disembowel time, jump cooldown, and Lance Charge&Dragon Sight duration/cooldown.|
+|Ninja|Shows Ninki amount, Huton remaining time, Trick Attack duration&cooldown, Bunshin&Mudras cooldown, and shows combo time remaining.|
 |Samurai|⨉ Not supported currently.|
-|Bard|Shows songs playing, Repertoire stack, |
-|Machinist|Shows Heat gauge.|
-|Dancer|Shows steps duration.|
-|Black Mage|Shows DoTs remaining time.|
-|Summonner|Shows DoTs remaining time.|
-|Red Mage|Shows white/black mana, tracks procs for Verstone, Verfire and Impact, and shows the state of the melee combo in progress.|
-|Bleu Mage|Shows ruin4 stacks.|
+|Bard|Shows songs playing and remaining time, Repertoire stack, Soul Voice amount, StraightShotReady track, DoT remaining time, and a bar that show when your DoTs will tick.|
+|Machinist|Shows Heat gauge, Battery gauge, Combo Timer, Drill/Bioblaster&Air Anchor Cooldown, Wild Fire Cooldown&Duration. When Wild Fire is active, there will be a gauge to show how many GCD you have landed.|
+|Dancer|Shows Combo Timer, Feather Guage, Esprit Guage, Standard Step Cooldown, Technical Step&Flourish Cooldown & Duration.|
+|Black Mage|Shows DoTs remaining time, firestarter&thundercloud proc duration, time to next xeno, MP ticker, Fire/Ice stack and umbral heart stack.|
+|Summonner|Shows DoTs remaining time, Energy Drain Cooldown, Trance Cooldown, Aetherflow stack, Demi-Summoning time and FurtherRuin Stack Guage.|
+|Red Mage|Shows white/black mana, tracks procs for Verstone&Verfire and show cooldown of lucid dreaming.|
+|Blue Mage|Shows cooldown of offguard&lucid dreaming, and Song Of Torment DoT remaining time.|
 
 </details>
 
 In this screenshot, the jobs module is highlighted for the Red Mage job. The health and mana bars, as well
 as Red Mage white/black mana tracking is circled in purple, with the large raid buff tracking pointed to
-beside it in orange. The first step of the melee combo has been executed, which is displayed as the yellow
-box above the health bar. The proc tracking is circled below in green.
+beside it in orange. <del>The first step of the melee combo has been executed, which is displayed as the yellow
+box above the health bar.</del> The proc tracking is circled below in green.
 
 ![jobs screenshot](screenshots/Jobs.png)
 
