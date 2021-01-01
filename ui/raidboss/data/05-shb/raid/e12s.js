@@ -170,21 +170,27 @@ const effectIdToOutputStringKey = {
 const intermediateRelativityOutputStrings = {
   flare: {
     en: 'Flare',
+    ja: 'フレア',
   },
   stack: {
     en: 'Stack',
+    ja: '頭割り',
   },
   shadoweye: {
     en: 'Gaze',
+    ja: 'シャドウアイ',
   },
   eruption: {
     en: 'Spread',
+    ja: '散開',
   },
   blizzard: {
     en: 'Ice',
+    ja: 'ブリザガ',
   },
   aero: {
     en: 'Aero',
+    ja: 'エアロガ',
   },
 };
 
@@ -202,25 +208,33 @@ export default {
         output.responseOutputStrings = {
           formlessBusterAndSwap: {
             en: 'Tank Buster + Swap',
+            ja: 'タンクバスター + スイッチ',
+            cn: '死刑 + 换T',
           },
           formlessBusterOnYOU: {
             en: 'Tank Buster on YOU',
+            ja: '自分にタンクバスター',
+            cn: '死刑点名',
           },
           // The first round has only one blue.
           titanBlueSingular: {
             en: 'Blue Weight',
+            ja: '青、重圧',
           },
           // The second and two rounds of bombs have a partner.
           // The third is technically fixed by role with a standard party (one dps, one !dps),
           // but call out your partner anyway in case you've got 8 blus or something.
           titanBlueWithPartner: {
             en: 'Blue (with ${player})',
+            ja: '青、重圧 (${player}と)',
           },
           titanOrangeStack: {
             en: 'Orange Stack',
+            ja: '橙、頭割り',
           },
           titanYellowSpread: {
             en: 'Yellow Spread',
+            ja: '黄、散開',
           },
           // This is sort of redundant, but if folks want to put "square" or something in the text,
           // having these be separate would allow them to configure them separately.
@@ -317,9 +331,11 @@ export default {
         output.responseOutputStrings = {
           formlessBusterAndSwap: {
             en: 'Tank Buster + Swap',
+            ja: 'タンクバスター + スイッチ',
           },
           tankBusters: {
             en: 'Tank Busters',
+            ja: 'タンクバスター',
           },
         };
 
@@ -580,6 +596,7 @@ export default {
       outputStrings: {
         tankBait: {
           en: 'Bait Far',
+          ja: '遠くに誘導',
         },
         partyUnder: {
           en: 'Get Under',
@@ -646,6 +663,7 @@ export default {
       outputStrings: Object.assign({
         comboText: {
           en: '${effect1} > ${effect2} > ${effect3}',
+          ja: '${effect1} > ${effect2} > ${effect3}',
         },
       }, intermediateRelativityOutputStrings),
     },
@@ -693,6 +711,7 @@ export default {
         text: {
           // TODO: we could say "look away from x, y" or "look away from tanks"?
           en: 'Look Away',
+          ja: '背中を向け',
         },
       },
     },
@@ -707,6 +726,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Look Outside',
+          ja: '外に向け',
         },
       },
     },
