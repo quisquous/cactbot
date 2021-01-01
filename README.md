@@ -347,8 +347,8 @@ It has more fleshed out support for some jobs but is *strongly* a Work In Progre
 |Job|Feature
 |:-:|:-:|
 |<img src="https://xivapi.com/cj/1/paladin.png" width="30px"/><br> Paladin|Shows current Oath amount, and atonement stacks. Also tracks Goring Blade DoT. |
-|<img src="https://xivapi.com/cj/1/warrior.png" width="30px"/><br> Warrior|Shows the beast amount, and tracks the remaining Storm's Eye buff time in gcds.|
-|<img src="https://xivapi.com/cj/1/darkknight.png" width="30px"/><br> Dark Knight|Shows the blood amount and darkside time.|
+|<img src="https://xivapi.com/cj/1/warrior.png" width="30px"/><br> Warrior|Shows the beast amount, and tracks the remaining Storm's Eye buff time in gcds, and shows combo time remaining.|
+|<img src="https://xivapi.com/cj/1/darkknight.png" width="30px"/><br> Dark Knight|Shows the blood amount and darkside time, and shows combo time remaining.|
 |<img src="https://xivapi.com/cj/1/gunbreaker.png" width="30px"/><br> Gunbreaker|Shows No Mercy duration&cooldown, Bloodfest&Gnashing Fang cooldown, Cartridge amount, and shows combo time remaining.|
 |<img src="https://xivapi.com/cj/1/whitemage.png" width="30px"/><br> White Mage|Shows Heal&Blood Lily amount, time to next Lily, DoTs remaining time, and shows Assize&Lucid Dreaming cooldown.|
 |<img src="https://xivapi.com/cj/1/scholar.png" width="30px"/><br> Scholar|Shows Aetherflow stacks, Fairy gauge amount/time remaining, DoTs remaining time, and shows Aetherflow&Lucid Dreaming cooldown.|
