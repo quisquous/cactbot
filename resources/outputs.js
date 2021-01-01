@@ -657,7 +657,7 @@ const Outputs = new ThrowOnInvalidProxy({
     cn: '西南',
     ko: '남서',
   },
-  southease: {
+  southeast: {
     en: 'Southeast',
     de: 'Südosten',
     fr: 'sud-est',
