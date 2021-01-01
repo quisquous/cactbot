@@ -341,9 +341,31 @@ or raiding, and a visual pull countdown.
 
 It has more fleshed out support for some jobs but is *strongly* a Work In Progress for others.
 
-* Red Mage: Shows white/black mana, tracks procs for Verstone, Verfire and Impact, and shows the state of the melee combo in progress.
-* Warrior: Shows the beast amount, and tracks the remaining Storm's Eye buff time in gcds.
-* Monk: Shows chakra count, remaining greased lightning time, and tracks monk buffs and debuffs.
+<details open>
+<summary>Supported Jobs (Click to expand)</summary>
+
+|Job|Feature
+|:-:|:-:|
+|Paladin|Shows current oath amount (with a colored box announce when to use it), and shows remaining atonement stacks.|
+|Warrior|Shows the beast amount, and tracks the remaining Storm's Eye buff time in gcds.|
+|Dark Knight|Shows the blood time and darkside time.|
+|Gunbreaker|Shows No Mercy/Bloodfest duration, Cartridge amount, and shows Gnashing Fang combo time.|
+|White Mage|Shows Heal/Blood Lily amount, DoTs remaining time, and shows Assize/Lucid Dream cooldown.|
+|Scholar|Shows Aetherflow stacks, Fairy gauge amount, DoTs remaining time, and shows Aetherflow/Lucid Dream cooldown.|
+|Astrogian|Shows Seals amount, notify who or whether to play the current card, and shows Draw/Lucid Dream cooldown.|
+|Monk|Shows chakra count, remaining greased lightning time, and tracks monk buffs and debuffs.|
+|Dragoon|Shows blood/eye amount, remaining Dragon Sight time, and shows Lance Charge/Disembowel cooldown.|
+|Ninja|Shows Ninki amount, Huton/Trick Attack remaining time, and shows Bunshin/Mudras cooldown.|
+|Samurai|⨉ Not supported currently.|
+|Bard|Shows songs playing, Repertoire stack, |
+|Machinist|Shows Heat gauge.|
+|Dancer|Shows steps duration.|
+|Black Mage|Shows DoTs remaining time.|
+|Summonner|Shows DoTs remaining time.|
+|Red Mage|Shows white/black mana, tracks procs for Verstone, Verfire and Impact, and shows the state of the melee combo in progress.|
+|Bleu Mage|Shows ruin4 stacks.|
+
+</details>
 
 In this screenshot, the jobs module is highlighted for the Red Mage job. The health and mana bars, as well
 as Red Mage white/black mana tracking is circled in purple, with the large raid buff tracking pointed to
