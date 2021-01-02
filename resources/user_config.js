@@ -190,6 +190,21 @@ class UserConfig {
       // then also print out user files that have been loaded.
       const printUserFile = options.Debug ? (x) => console.log(x) : (x) => {};
 
+      // With user files being arbitrary javascript, and having multiple files
+      // in user folders, it's possible for later files to accidentally remove
+      // things that previous files have added.  Warn about this, since most
+      // users are not programmers.
+      const warnOnVariableResetMap = {
+        raidboss: [
+          'Triggers',
+        ],
+      };
+
+      // The values of each `warnOnVariableResetMap` field are initially set
+      // after the first file, so that if there is only one file, there are
+      // not any warnings.
+      const variableTracker = {};
+
       // In cases where the user files are local but the overlay url
       // is remote, local files needed to be read by the plugin and
       // passed to Javascript for Chrome security reasons.
@@ -206,6 +221,15 @@ class UserConfig {
             /* eslint-disable no-eval */
             eval(localFiles[jsFile]);
             /* eslint-enable no-eval */
+
+            for (const field of warnOnVariableResetMap[overlayName]) {
+              if (variableTracker[field] && variableTracker[field] !== options[field]) {
+                // Ideally users should do something like `Options.Triggers.push([etc]);`
+                // instead of `Options.Triggers = [etc];`
+                console.log(`*** WARNING: ${basePath}${jsFile} overwrites Options.${field} from previous files.`);
+              }
+              variableTracker[field] = options[field];
+            }
 
             if (this.userFileCallbacks[overlayName])
               this.userFileCallbacks[overlayName](jsFile, localFiles, options, basePath);
