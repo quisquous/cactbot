@@ -561,7 +561,7 @@ at least make a loop that goes 30 seconds ahead.
 Here's what a completed version of the first phase loop looks like.
 
 Note that we've used the times from **timeline_adjust.py** rather
-than the original times. (Also `cactbot-highlight` if you're prefer that.)
+than the original times. (You could also use `cactbot-highlight` if you prefer that.)
 This is so that when we jump from 52.2 to 24.4 that all of the
 relative times stay the same.  In both cases when `Gate Of Tartarus`
 occurs, there's a `Shield Skewer` in 5.4 seconds after it.
