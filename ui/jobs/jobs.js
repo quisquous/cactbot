@@ -1793,7 +1793,6 @@ class Bars {
             eyeBox.duration = 0;
             eyeBox.duration = Math.min(old + 10, 30);
           }
-          return;
         }
         if (skill === kAbility.StormsEye) {
           eyeBox.duration = 0;
@@ -1808,7 +1807,6 @@ class Bars {
             eyeBox.duration = 0;
             eyeBox.duration = Math.min(old + 30, 59.5);
           }
-          return;
         }
         if (skill === kAbility.StormsEye) {
           if (eyeBox.duration > 0) {
