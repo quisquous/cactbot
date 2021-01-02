@@ -90,9 +90,9 @@ const primalOutputStrings = {
     ko: '${safespot1} + ${safespot2}',
   },
   'stock': {
-    en: 'Stack: ${text}',
+    en: 'Stock: ${text}',
     de: 'Sammeln: ${text}',
-    fr: 'Package : ${text}',
+    fr: 'Stocker : ${text}',
     ja: 'ストック: ${text}',
     cn: '暂存: ${text}',
     ko: '저장: ${text}',
