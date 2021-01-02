@@ -99,6 +99,7 @@ const kPrefixToCategory = {
   },
   'user': {
     en: 'User Triggers',
+    fr: 'Triggers Utilisateur',
   },
 };
 
