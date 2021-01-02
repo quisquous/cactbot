@@ -50,6 +50,7 @@ const primalOutputStrings = {
   '0091': {
     en: 'Intercards',
     de: 'Interkardinale Himmelsrichtungen',
+    fr: 'Intercardinaux',
     ja: '斜め',
     cn: '四角',
     ko: '대각',
@@ -58,6 +59,7 @@ const primalOutputStrings = {
   '008E008F': {
     en: 'Under + Sides',
     de: 'Runter + Seiten',
+    fr: 'En dessous + côtés',
     ja: '真ん中 + 横へ',
     cn: '正中间两侧',
     ko: '보스 아래 + 양옆',
@@ -65,6 +67,7 @@ const primalOutputStrings = {
   '008E0090': {
     en: 'North/South + Out',
     de: 'Norden/Süden + Raus',
+    fr: 'Nord/Sud + Extérieur',
     ja: '北/南 + 外へ',
     cn: '南北远离',
     ko: '북/남 + 바깥',
@@ -72,6 +75,7 @@ const primalOutputStrings = {
   '008E0091': {
     en: 'Under + Intercards',
     de: 'Runter + Interkardinale Himmerlsrichtungen',
+    fr: 'En dessous + Intercardinaux',
     ja: '真ん中 + 斜め',
     cn: '正中间四角',
     ko: '보스 아래 + 대각',
@@ -80,13 +84,15 @@ const primalOutputStrings = {
   'combined': {
     en: '${safespot1} + ${safespot2}',
     de: '${safespot1} + ${safespot2}',
+    fr: '${safespot1} + ${safespot2}',
     ja: '${safespot1} + ${safespot2}',
     cn: '${safespot1} + ${safespot2}',
     ko: '${safespot1} + ${safespot2}',
   },
   'stock': {
-    en: 'Stock: ${text}',
+    en: 'Stack: ${text}',
     de: 'Sammeln: ${text}',
+    fr: 'Package : ${text}',
     ja: 'ストック: ${text}',
     cn: '暂存: ${text}',
     ko: '저장: ${text}',
@@ -94,6 +100,7 @@ const primalOutputStrings = {
   'junctionSuffix': {
     en: '${text} (${junction})',
     de: '${text} (${junction})',
+    fr: '${text} (${junction})',
     ja: '${text} (${junction})',
     cn: '${text} (${junction})',
     ko: '${text} (${junction})',
@@ -103,6 +110,7 @@ const primalOutputStrings = {
     // Shiva spread.
     en: 'spread',
     de: 'verteilen',
+    fr: 'dispersion',
     ja: '散開',
     cn: '散开',
     ko: '산개',
@@ -111,6 +119,7 @@ const primalOutputStrings = {
     // Titan healer stacks.
     en: 'stacks',
     de: 'sammeln',
+    fr: 'packages',
     ja: 'ヒラ頭割り',
     cn: '治疗分摊',
     ko: '쉐어',
@@ -120,6 +129,7 @@ const primalOutputStrings = {
     // This is deliberately "stack" singular (vs Titan "stacks").
     en: 'group stack',
     de: 'In Gruppen sammeln',
+    fr: 'package en groupe',
     ja: '頭割り',
     cn: '集合',
     ko: '그룹 쉐어',
@@ -170,26 +180,32 @@ const effectIdToOutputStringKey = {
 const intermediateRelativityOutputStrings = {
   flare: {
     en: 'Flare',
+    fr: 'Brasier',
     ja: 'フレア',
   },
   stack: {
     en: 'Stack',
+    fr: 'Packez-vous',
     ja: '頭割り',
   },
   shadoweye: {
     en: 'Gaze',
+    fr: 'Regard',
     ja: 'シャドウアイ',
   },
   eruption: {
     en: 'Spread',
+    fr: 'Dispersez-vous',
     ja: '散開',
   },
   blizzard: {
     en: 'Ice',
+    fr: 'Glace',
     ja: 'ブリザガ',
   },
   aero: {
     en: 'Aero',
+    fr: 'Vent',
     ja: 'エアロガ',
   },
 };
@@ -208,17 +224,20 @@ export default {
         output.responseOutputStrings = {
           formlessBusterAndSwap: {
             en: 'Tank Buster + Swap',
+            fr: 'Tank buster + Swap',
             ja: 'タンクバスター + スイッチ',
             cn: '死刑 + 换T',
           },
           formlessBusterOnYOU: {
             en: 'Tank Buster on YOU',
+            fr: 'Tank buster sur VOUS',
             ja: '自分にタンクバスター',
             cn: '死刑点名',
           },
           // The first round has only one blue.
           titanBlueSingular: {
             en: 'Blue Weight',
+            fr: 'Poids bleu',
             ja: '青、重圧',
           },
           // The second and two rounds of bombs have a partner.
@@ -226,14 +245,17 @@ export default {
           // but call out your partner anyway in case you've got 8 blus or something.
           titanBlueWithPartner: {
             en: 'Blue (with ${player})',
+            fr: 'Bleu (avec ${player})',
             ja: '青、重圧 (${player}と)',
           },
           titanOrangeStack: {
             en: 'Orange Stack',
+            fr: 'Orange, package',
             ja: '橙、頭割り',
           },
           titanYellowSpread: {
             en: 'Yellow Spread',
+            fr: 'Jaune, dispersion',
             ja: '黄、散開',
           },
           // This is sort of redundant, but if folks want to put "square" or something in the text,
@@ -331,10 +353,12 @@ export default {
         output.responseOutputStrings = {
           formlessBusterAndSwap: {
             en: 'Tank Buster + Swap',
+            fr: 'Tank buster + Swap',
             ja: 'タンクバスター + スイッチ',
           },
           tankBusters: {
             en: 'Tank Busters',
+            fr: 'Tank busters',
             ja: 'タンクバスター',
           },
         };
@@ -406,6 +430,7 @@ export default {
         diamondDust: {
           en: 'Big AOE, Get Middle',
           de: 'Große AoE, geh in die Mitte',
+          fr: 'Grosse AoE, allez au milieu',
           ja: '大ダメージ、中へ',
           cn: '超大伤害，去中间',
           ko: '대형 장판, 중앙으로',
@@ -436,6 +461,7 @@ export default {
         junctionWithCast: {
           en: 'Healer Stacks',
           de: 'Heiler-Gruppen',
+          fr: 'Packages Heals',
           ja: 'ヒラ頭割り',
           cn: '治疗分摊',
           ko: '힐러 쉐어',
@@ -443,6 +469,7 @@ export default {
         earthenFury: {
           en: 'Big AOE, Bombs Soon',
           de: 'Große AoE, bald Bomben',
+          fr: 'Grosse AoE, Bombes bientôt',
           ja: '大ダメージ、まもなく岩落とし',
           cn: '超大伤害，即将落石',
           ko: '대형 장판, 곧 폭탄',
@@ -545,6 +572,7 @@ export default {
         text: {
           en: 'Lion Tether on YOU',
           de: 'Löwen-Verbindung auf DIR',
+          fr: 'Lien lion sur VOUS',
           ja: '自分にライオン線',
           cn: '狮子连线点名',
           ko: '사자 선 대상자',
@@ -596,6 +624,7 @@ export default {
       outputStrings: {
         tankBait: {
           en: 'Bait Far',
+          fr: 'Attirez loin',
           ja: '遠くに誘導',
         },
         partyUnder: {
@@ -663,6 +692,7 @@ export default {
       outputStrings: Object.assign({
         comboText: {
           en: '${effect1} > ${effect2} > ${effect3}',
+          fr: '${effect1} > ${effect2} > ${effect3}',
           ja: '${effect1} > ${effect2} > ${effect3}',
         },
       }, intermediateRelativityOutputStrings),
@@ -711,6 +741,7 @@ export default {
         text: {
           // TODO: we could say "look away from x, y" or "look away from tanks"?
           en: 'Look Away',
+          fr: 'Regardez ailleurs',
           ja: '背中を向け',
         },
       },
@@ -726,6 +757,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Look Outside',
+          fr: 'Regardez vers l\'extérieur',
           ja: '外に向け',
         },
       },
