@@ -783,11 +783,6 @@ const userFileHandler = (name, files, options, basePath) => {
   if (!options.Triggers)
     return;
 
-  // TODO: right now, it's a bit of a foot-gun that users could have a root level
-  // raidboss.js that says `Options.Triggers = [/*etc*/]` which will clobber any
-  // inheritance from anybody else.  Should we warn about this?  Should we
-  // (somehow??) attempt to work around this?
-
   for (const set of options.Triggers) {
     // Annotate triggers with where they came from.  Note, options is passed in repeatedly
     // as multiple sets of user files add triggers, so only process each file once.
