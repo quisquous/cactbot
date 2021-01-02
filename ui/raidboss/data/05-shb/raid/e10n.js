@@ -240,7 +240,6 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Shadowkeeper': 'Ordre royal',
       },

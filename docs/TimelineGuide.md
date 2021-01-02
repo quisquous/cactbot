@@ -522,7 +522,11 @@ Let's just assume it's 27.8
 The best tool for making perfect loops is **util/timeline_adjust.py**.
 This script will walk through a timeline file and print out the same
 timeline file, adjusted by any amount, positive or negative.
-(Note: it will not adjust jumps.)
+
+If you are using VSCode, you can also use the [adjust time feature](https://github.com/MaikoTan/cactbot-highlight#adjust-time) from the [cactbot-highlight](https://marketplace.visualstudio.com/items?itemName=MaikoTan.cactbot-highlight) extension,
+which offer a simple way to adjust time in one-click.
+
+(Note: they both will not adjust jumps.)
 
 Here's an abbreviated version of the output from running this command:
 
@@ -557,7 +561,7 @@ at least make a loop that goes 30 seconds ahead.
 Here's what a completed version of the first phase loop looks like.
 
 Note that we've used the times from **timeline_adjust.py** rather
-than the original times.
+than the original times. (You could also use `cactbot-highlight` if you prefer that.)
 This is so that when we jump from 52.2 to 24.4 that all of the
 relative times stay the same.  In both cases when `Gate Of Tartarus`
 occurs, there's a `Shield Skewer` in 5.4 seconds after it.
