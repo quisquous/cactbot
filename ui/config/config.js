@@ -10,6 +10,7 @@ import '../oopsyraidsy/oopsyraidsy_config.js';
 import '../radar/radar_config.js';
 import '../raidboss/raidboss_config.js';
 import '../../resources/common.js';
+import Regexes from '../../resources/regexes.js';
 
 const Options = {};
 let gConfig = null;
@@ -543,8 +544,8 @@ export default class CactbotConfigurator {
 
       // cactbot triggers all use zoneId, but user triggers in the wild
       // may also use zoneRegex or also have errors and not have either.
-      let title = triggerSet.filename;
-      let zoneId = undefined;
+      let title = '???';
+      let zoneId = 'undefined';
       if ('zoneId' in triggerSet) {
         zoneId = triggerSet.zoneId;
         // Use the translatable zone info name, if possible.
@@ -552,7 +553,12 @@ export default class CactbotConfigurator {
         if (zoneInfo)
           title = this.translate(zoneInfo.name);
       } else if ('zoneRegex' in triggerSet) {
-        title = `/${triggerSet.zoneRegex.source}/`;
+        // zoneRegex can be a localized object.
+        let zoneRegex = this.translate(triggerSet.zoneRegex);
+        if (typeof zoneRegex === 'string')
+          zoneRegex = Regexes.parse(zoneRegex);
+        if (zoneRegex instanceof RegExp)
+          title = `/${zoneRegex.source}/`;
       }
 
       userMap[fileKey] = {
