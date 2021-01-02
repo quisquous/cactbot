@@ -50,7 +50,7 @@ const primalOutputStrings = {
   '0091': {
     en: 'Intercards',
     de: 'Interkardinale Himmelsrichtungen',
-    fr: 'Intercardinaux',
+    fr: 'Intercardinal',
     ja: '斜め',
     cn: '四角',
     ko: '대각',
@@ -75,7 +75,7 @@ const primalOutputStrings = {
   '008E0091': {
     en: 'Under + Intercards',
     de: 'Runter + Interkardinale Himmerlsrichtungen',
-    fr: 'En dessous + Intercardinaux',
+    fr: 'En dessous + Intercardinal',
     ja: '真ん中 + 斜め',
     cn: '正中间四角',
     ko: '보스 아래 + 대각',
@@ -624,7 +624,7 @@ export default {
       outputStrings: {
         tankBait: {
           en: 'Bait Far',
-          fr: 'Attirez loin',
+          fr: 'Attirez au loin',
           ja: '遠くに誘導',
         },
         partyUnder: {

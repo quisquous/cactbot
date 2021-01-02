@@ -248,7 +248,7 @@ export default {
         text: {
           en: 'X to cards, + to intercards',
           de: 'X in die Cardinalen, + in die Intercardinale Himmelsrichtungen',
-          fr: 'X sur les cardinaux, + en intercadinaux',
+          fr: 'X sur les cardinaux, + en intercadinal',
           ja: 'クロスは東西南北に、十字は四隅に',
           cn: '靠边放剑(十字四角)',
           ko: 'X는 동서남북, +는 대각위치로',
