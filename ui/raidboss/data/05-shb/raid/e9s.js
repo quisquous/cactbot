@@ -805,7 +805,6 @@ export default {
     {
       'locale': 'de',
       'replaceSync': {
-        'Hypercharged Cloud': 'pulsierend(?:e|er|es|en) Wolke',
         'Cloud Of Darkness': 'Wolke der Dunkelheit',
       },
       'replaceText': {
@@ -815,9 +814,7 @@ export default {
         'Summon': 'Rufen',
         'Rejuvenating Balm': 'Aktivierte Kugel',
         'Particle Concentration': 'Wellenkugel',
-        '(?<!(Full-Perimeter|Ground-Razing) )Particle Beam': 'Partikelstrahl',
         'Obscure Woods': 'Finsterer Wald',
-        'Hypercharged Dispersal': 'Elektrisierte Zerstreuung',
         'Hypercharged Condensation': 'Elektrisierte Kondensation',
         'Ground-Razing Particle Beam': 'Radialer Partikelstrahl',
         'Full-Perimeter Particle Beam': 'Partikelstrahl-Beschuss',
@@ -833,7 +830,6 @@ export default {
     {
       'locale': 'fr',
       'replaceSync': {
-        'Hypercharged Cloud': 'nuage palpitant',
         'Cloud Of Darkness': 'Nuage de Ténèbres',
       },
       'replaceText': {
@@ -846,9 +842,7 @@ export default {
         'Rejuvenating Balm': 'Tir vivifiant',
         'Particle Concentration': 'Rayon sphérique',
         'Phaser Unlimited': 'Faisceau de particules bondissant',
-        '(?<!(Full-Perimeter|Ground-Razing) )Particle Beam': 'Rayon explosif',
         'Obscure Woods': 'Forêt obscure',
-        'Hypercharged Dispersal': 'Dissipation',
         'Hypercharged Condensation': 'Aspiration particulaire',
         'Ground-Razing Particle Beam': 'Faisceau de particules radiant',
         'Full-Perimeter Particle Beam': 'Faisceau de particules balayant',
@@ -862,7 +856,6 @@ export default {
     {
       'locale': 'ja',
       'replaceSync': {
-        'Hypercharged Cloud': '波動雲',
         'Cloud Of Darkness': '暗闇の雲',
       },
       'replaceText': {
@@ -873,9 +866,7 @@ export default {
         'Rejuvenating Balm': '活性弾',
         'Phaser Unlimited': '跳躍波動砲',
         'Particle Concentration': '波動球',
-        '(?<!(Full-Perimeter|Ground-Razing) )Particle Beam': '波動爆発',
         'Obscure Woods': '暗黒森林',
-        'Hypercharged Dispersal': '被吸収',
         'Hypercharged Condensation': '波動雲吸引',
         'Ground-Razing Particle Beam': '放射式 波動砲',
         'Full-Perimeter Particle Beam': '掃射式 波動砲',
