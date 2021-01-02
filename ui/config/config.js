@@ -96,6 +96,9 @@ const kPrefixToCategory = {
     cn: '暗影之逆焰 (5.x)',
     ko: '칠흑의 반역자 (5.x)',
   },
+  'user': {
+    en: 'User Triggers',
+  },
 };
 
 // Translating data subfolders to encounter type.
@@ -482,7 +485,7 @@ export default class CactbotConfigurator {
     parent.appendChild(div);
   }
 
-  processFiles(files) {
+  processFiles(files, userTriggerSets) {
     const map = {};
     for (const filename in files) {
       if (!filename.endsWith('.js'))
@@ -522,10 +525,44 @@ export default class CactbotConfigurator {
         filename: filename,
         fileKey: fileKey,
         prefixKey: prefixKey,
-        typeKey: typeKey,
         prefix: this.translate(kPrefixToCategory[prefixKey]),
+        section: this.translate(kPrefixToCategory[prefixKey]),
         type: this.translate(kDirectoryToCategory[typeKey]),
         title: title,
+        triggerSet: triggerSet,
+        zoneId: zoneId,
+      };
+    }
+
+    const userMap = {};
+    let userFileIdx = 0;
+    for (const triggerSet of userTriggerSets || []) {
+      if (!triggerSet)
+        continue;
+      const fileKey = `user/${triggerSet.filename}/${userFileIdx++}`;
+
+      // cactbot triggers all use zoneId, but user triggers in the wild
+      // may also use zoneRegex or also have errors and not have either.
+      let title = triggerSet.filename;
+      let zoneId = undefined;
+      if ('zoneId' in triggerSet) {
+        zoneId = triggerSet.zoneId;
+        // Use the translatable zone info name, if possible.
+        const zoneInfo = ZoneInfo[zoneId];
+        if (zoneInfo)
+          title = this.translate(zoneInfo.name);
+      } else if ('zoneRegex' in triggerSet) {
+        title = `/${triggerSet.zoneRegex.source}/`;
+      }
+
+      userMap[fileKey] = {
+        filename: triggerSet.filename,
+        fileKey: fileKey,
+        prefixKey: 'user',
+        prefix: this.translate(kPrefixToCategory['user']),
+        section: triggerSet.filename,
+        title: title,
+        type: null,
         triggerSet: triggerSet,
         zoneId: zoneId,
       };
@@ -561,6 +598,10 @@ export default class CactbotConfigurator {
     const sortedMap = {};
     for (const key of sortedEntries)
       sortedMap[key] = map[key];
+
+    // Tack on user triggers at the end in the order they were eval'd.
+    for (const key in userMap)
+      sortedMap[key] = userMap[key];
 
     return sortedMap;
   }

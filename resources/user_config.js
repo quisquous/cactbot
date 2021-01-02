@@ -125,6 +125,10 @@ class UserConfig {
       reloadOnce();
     });
 
+    this.loadUserFiles(overlayName, options, callback);
+  }
+
+  loadUserFiles(overlayName, options, callback) {
     const readOptions = callOverlayHandler({
       call: 'cactbotLoadData',
       overlay: 'options',
