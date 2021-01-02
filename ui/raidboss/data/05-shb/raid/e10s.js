@@ -686,7 +686,7 @@ export default {
         secondPitchBog: {
           en: 'Final Puddle Positions',
           de: 'Flächen interkardinal ablegen',
-          fr: 'Zones au sol en intercardinal',
+          fr: 'Zones au sol en intercardinaux',
           ja: '最後のスワンプ',
           cn: '最后一次点名放到外圈',
           ko: '각자 장판 위치로',
