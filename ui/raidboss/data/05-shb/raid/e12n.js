@@ -70,7 +70,7 @@ const primalOutputStrings = {
   '0091': {
     en: 'Intercards',
     de: 'Interkardinale Himmelsrichtungen',
-    fr: 'Intercardinal',
+    fr: 'Intercardinaux',
     ja: '斜め',
     cn: '四角',
     ko: '대각',
@@ -94,7 +94,7 @@ const primalOutputStrings = {
   '008E0091': {
     en: 'Under + Intercards',
     de: 'Unter Ihm + Interkardinale Himmelsrichtungen',
-    fr: 'En dessous + Intercardinal',
+    fr: 'En dessous + Intercardinaux',
     ja: '真ん中 + 斜め',
     cn: '正中间四角',
     ko: '보스 아래 + 대각',
