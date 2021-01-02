@@ -367,6 +367,9 @@ export default {
       // a job of 0 (player died), then return '?' for the affected players.
       id: 'E10S Shadow Of A Hero',
       netRegex: NetRegexes.addedCombatantFull({ name: 'Shadow Of A Hero' }),
+      netRegexDe: NetRegexes.addedCombatantFull({ name: 'Schatten Eines Helden' }),
+      netRegexFr: NetRegexes.addedCombatantFull({ name: 'Ombre De Héros' }),
+      netRegexJa: NetRegexes.addedCombatantFull({ name: '英雄の影' }),
       condition: (data) => data.clones,
       run: (data, matches) => {
         data.myClone = data.myClone || [];
@@ -378,6 +381,9 @@ export default {
     {
       id: 'E10S Shadow Of A Hero Head Marker Map',
       netRegex: NetRegexes.headMarker({ target: 'Shadow Of A Hero' }),
+      netRegexDe: NetRegexes.headMarker({ target: 'Schatten Eines Helden' }),
+      netRegexFr: NetRegexes.headMarker({ target: 'Ombre De Héros' }),
+      netRegexJa: NetRegexes.headMarker({ target: '英雄の影' }),
       condition: (data) => !data.shadowMarkerMap,
       suppressSeconds: 1,
       run: (data, matches) => {
@@ -392,6 +398,9 @@ export default {
     {
       id: 'E10S Shadow Of A Hero Head Marker',
       netRegex: NetRegexes.headMarker({ target: 'Shadow Of A Hero' }),
+      netRegexDe: NetRegexes.headMarker({ target: 'Schatten Eines Helden' }),
+      netRegexFr: NetRegexes.headMarker({ target: 'Ombre De Héros' }),
+      netRegexJa: NetRegexes.headMarker({ target: '英雄の影' }),
       condition: (data) => !data.headMarkerTriggered,
       durationSeconds: 7,
       alertText: (data, matches, output) => {

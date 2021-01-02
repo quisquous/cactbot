@@ -180,31 +180,37 @@ const effectIdToOutputStringKey = {
 const intermediateRelativityOutputStrings = {
   flare: {
     en: 'Flare',
+    de: 'Flare',
     fr: 'Brasier',
     ja: 'フレア',
   },
   stack: {
     en: 'Stack',
+    de: 'Sammeln',
     fr: 'Packez-vous',
     ja: '頭割り',
   },
   shadoweye: {
     en: 'Gaze',
+    de: 'Blick',
     fr: 'Regard',
     ja: 'シャドウアイ',
   },
   eruption: {
     en: 'Spread',
+    de: 'Verteilen',
     fr: 'Dispersez-vous',
     ja: '散開',
   },
   blizzard: {
     en: 'Ice',
+    de: 'Eis',
     fr: 'Glace',
     ja: 'ブリザガ',
   },
   aero: {
     en: 'Aero',
+    de: 'Wind',
     fr: 'Vent',
     ja: 'エアロガ',
   },
@@ -224,12 +230,14 @@ export default {
         output.responseOutputStrings = {
           formlessBusterAndSwap: {
             en: 'Tank Buster + Swap',
+            de: 'Tankbuster + Wechsel',
             fr: 'Tank buster + Swap',
             ja: 'タンクバスター + スイッチ',
             cn: '死刑 + 换T',
           },
           formlessBusterOnYOU: {
             en: 'Tank Buster on YOU',
+            de: 'Tankbuster auf DIR',
             fr: 'Tank buster sur VOUS',
             ja: '自分にタンクバスター',
             cn: '死刑点名',
@@ -237,6 +245,7 @@ export default {
           // The first round has only one blue.
           titanBlueSingular: {
             en: 'Blue Weight',
+            de: 'Blau - Gewicht',
             fr: 'Poids bleu',
             ja: '青、重圧',
           },
@@ -245,16 +254,19 @@ export default {
           // but call out your partner anyway in case you've got 8 blus or something.
           titanBlueWithPartner: {
             en: 'Blue (with ${player})',
+            de: 'Blau (mit ${player})',
             fr: 'Bleu (avec ${player})',
             ja: '青、重圧 (${player}と)',
           },
           titanOrangeStack: {
             en: 'Orange Stack',
+            de: 'Orange - versammeln',
             fr: 'Orange, package',
             ja: '橙、頭割り',
           },
           titanYellowSpread: {
             en: 'Yellow Spread',
+            de: 'Gelb - Verteilen',
             fr: 'Jaune, dispersion',
             ja: '黄、散開',
           },
@@ -339,6 +351,9 @@ export default {
     {
       id: 'E12S Promise Weight Cleanup',
       netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58A5', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58A5', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58A5', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A5', capture: false }),
       run: (data) => {
         delete data.weightTargets;
         data.seenFirstBombs = true;
@@ -347,17 +362,22 @@ export default {
     {
       id: 'E12S Promise Formless Judgment',
       netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58A9', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58A9', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58A9', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A9', capture: false }),
       condition: Conditions.caresAboutPhysical(),
       response: (data, _, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           formlessBusterAndSwap: {
             en: 'Tank Buster + Swap',
+            de: 'Tankbuster + Wechsel',
             fr: 'Tank buster + Swap',
             ja: 'タンクバスター + スイッチ',
           },
           tankBusters: {
             en: 'Tank Busters',
+            de: 'Tankbuster',
             fr: 'Tank busters',
             ja: 'タンクバスター',
           },
@@ -582,12 +602,18 @@ export default {
     {
       id: 'E12S Oracle Shockwave Pulsar',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58F0', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58F0', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58F0', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58F0', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
       id: 'E12S Oracle Basic Relativity',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E0', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E0', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E0', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E0', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
       run: (data) => data.phase = 'basic',
@@ -595,6 +621,9 @@ export default {
     {
       id: 'E12S Oracle Intermediate Relativity',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E1', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E1', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E1', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E1', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
       run: (data) => data.phase = 'intermediate',
@@ -602,6 +631,9 @@ export default {
     {
       id: 'E12S Oracle Advanced Relativity',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E2', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E2', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E2', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E2', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
       run: (data) => data.phase = 'advanced',
@@ -609,6 +641,9 @@ export default {
     {
       id: 'E12S Oracle Terminal Relativity',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E3', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E3', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E3', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E3', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
       run: (data) => data.phase = 'terminal',
@@ -616,6 +651,9 @@ export default {
     {
       id: 'E12S Oracle Darkest Dance',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58BE', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58BE', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58BE', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58BE', capture: false }),
       infoText: (data, _, output) => {
         if (data.role === 'tank')
           return output.tankBait();
@@ -624,6 +662,7 @@ export default {
       outputStrings: {
         tankBait: {
           en: 'Bait Far',
+          de: 'Ködern - Weit weg',
           fr: 'Attirez au loin',
           ja: '遠くに誘導',
         },
@@ -640,6 +679,9 @@ export default {
     {
       id: 'E12S Shell Crusher',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C3', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58C3', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58C3', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58C3', capture: false }),
       response: Responses.getTogether('alert'),
     },
     {
@@ -647,12 +689,18 @@ export default {
       // Spirit Taker always comes after Shell Crusher, so trigger on Shell Crusher damage
       // to warn people a second or two earlier than `starts using Spirit Taker` would occur.
       netRegex: NetRegexes.ability({ source: 'Oracle Of Darkness', id: '58C3', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Orakel Der Dunkelheit', id: '58C3', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Prêtresse Des Ténèbres', id: '58C3', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '闇の巫女', id: '58C3', capture: false }),
       suppressSeconds: 1,
       response: Responses.spread('info'),
     },
     {
       id: 'E12S Black Halo',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C7' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58C7' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58C7' }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58C7' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster('alert'),
     },
@@ -692,6 +740,7 @@ export default {
       outputStrings: Object.assign({
         comboText: {
           en: '${effect1} > ${effect2} > ${effect3}',
+          de: '${effect1} > ${effect2} > ${effect3}',
           fr: '${effect1} > ${effect2} > ${effect3}',
           ja: '${effect1} > ${effect2} > ${effect3}',
         },
@@ -741,6 +790,7 @@ export default {
         text: {
           // TODO: we could say "look away from x, y" or "look away from tanks"?
           en: 'Look Away',
+          de: 'Wegschauen',
           fr: 'Regardez ailleurs',
           ja: '背中を向け',
         },
@@ -757,6 +807,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Look Outside',
+          de: 'Nach draußen schauen',
           fr: 'Regardez vers l\'extérieur',
           ja: '外に向け',
         },
@@ -839,7 +890,6 @@ export default {
         '(?<!Junction )Titan': 'Titan',
         'Triple Apocalypse': 'Dreifache Apokalypse',
         'Under The Weight': 'Wucht der Erde',
-        '(?<!Dark )Water III': 'Aquaga',
         'Weight Of The World': 'Schwere der Erde',
       },
     },
@@ -918,7 +968,6 @@ export default {
         '(?<!Junction )Titan': 'Titan',
         'Triple Apocalypse': 'Apocalypse triple',
         'Under The Weight': 'Pression tellurique',
-        '(?<!Dark )Water III': 'Méga Eau',
         'Weight Of The World': 'Poids du monde',
       },
     },
@@ -1000,7 +1049,6 @@ export default {
         '(?<!Junction )Titan': 'タイタン',
         'Triple Apocalypse': 'アポカリプス・トリプル',
         'Under The Weight': '大地の重圧',
-        '(?<!Dark )Water III': 'ウォタガ',
         'Weight Of The World': '大陸の重み',
       },
     },

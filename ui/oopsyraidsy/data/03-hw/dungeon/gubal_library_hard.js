@@ -74,6 +74,7 @@ export default {
           blame: e.targetName,
           text: {
             en: 'Shocked Imp',
+            de: 'Schockierter Imp',
             ja: 'カッパを解除しなかった',
             cn: '河童状态吃了暴雷',
           },
