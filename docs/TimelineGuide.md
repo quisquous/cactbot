@@ -523,7 +523,7 @@ The best tool for making perfect loops is **util/timeline_adjust.py**.
 This script will walk through a timeline file and print out the same
 timeline file, adjusted by any amount, positive or negative.
 
-If you are using VSCode, you can also use the [adjust time feature](https://github.com/MaikoTan/cactbot-highlight#adjust-time) from [cactbot-highlight](https://marketplace.visualstudio.com/items?itemName=MaikoTan.cactbot-highlight) extension,
+If you are using VSCode, you can also use the [adjust time feature](https://github.com/MaikoTan/cactbot-highlight#adjust-time) from the [cactbot-highlight](https://marketplace.visualstudio.com/items?itemName=MaikoTan.cactbot-highlight) extension,
 which offer a simple way to adjust time in one-click.
 
 (Note: they both will not adjust jumps.)
