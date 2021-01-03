@@ -216,6 +216,17 @@ const intermediateRelativityOutputStrings = {
   },
 };
 
+const directions = {
+  0: Outputs.north,
+  1: Outputs.northeast,
+  2: Outputs.east,
+  3: Outputs.southeast,
+  4: Outputs.south,
+  5: Outputs.southwest,
+  6: Outputs.west,
+  7: Outputs.northwest,
+};
+
 export default {
   zoneId: ZoneId.EdensPromiseEternitySavage,
   timelineFile: 'e12s.txt',
@@ -811,6 +822,35 @@ export default {
           fr: 'Regardez vers l\'extérieur',
           ja: '外に向け',
         },
+      },
+    },
+    {
+      id: 'E12S Basic Relativity Yellow Hourglass',
+      // Orient where "Yellow" Anger Hourglass spawns
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9824' }),
+      condition: (data, matches) => data.phase === 'basic',
+      durationSeconds: 15,
+      infoText: (data, _, output) => output.hourglass({
+        dir1: "" + output[data.yellow](),
+      }),
+      outputStrings: {
+        ...directions,
+        hourglass: {
+          en: 'Yellow: ${dir1}',
+        },
+      },
+      preRun: (data, matches) => {
+        const y = parseFloat(matches.y) + 75;
+        const x = parseFloat(matches.x);
+
+        // Positions are the 8 cardinals + numerical slop on a radius=20 circle.
+        // Positions are also moved downward 75
+        // N = (0, -95), E = (20, -75), S = (0, -55), W = (-20, -75)
+        // NE = (14, -89), SE = (14, -61), SW = (-14, -61), NW = (-14, -89)
+        // Map N = 0, NE = 1, ..., NW = 7
+        const dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+
+        data.yellow = dir;
       },
     },
   ],
