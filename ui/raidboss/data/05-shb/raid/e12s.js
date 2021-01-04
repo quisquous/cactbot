@@ -831,7 +831,7 @@ export default {
       condition: (data, matches) => data.phase === 'basic',
       durationSeconds: 15,
       infoText: (data, _, output) => output.hourglass({
-        dir1: "" + output[data.yellow](),
+        dir1: output[data.yellow](),
       }),
       outputStrings: {
         ...directions,
