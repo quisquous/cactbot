@@ -6,7 +6,7 @@ import '../../../resources/common.js';
 // fiddle: http://jsfiddle.net/v1ddnsvh/8/
 /* global window */
 
-var IMAGE_PATH = '../../../resources/icon';
+var IMAGE_PATH = '../../../resources/ffxiv';
 var EncountersArray = [];
 
 var React = window.React;

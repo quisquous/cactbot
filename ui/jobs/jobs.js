@@ -837,7 +837,7 @@ class BuffTracker {
         gainEffect: EffectId.Medicated,
         loseEffect: EffectId.Medicated,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/potion.png',
+        icon: '../../resources/ffxiv/status/potion.png',
         borderColor: '#AA41B2',
         sortKey: 0,
         cooldown: 270,
@@ -846,7 +846,7 @@ class BuffTracker {
         mobGainsEffect: EffectId.AstralAttenuation,
         mobLosesEffect: EffectId.AstralAttenuation,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/wind.png',
+        icon: '../../resources/ffxiv/status/wind.png',
         borderColor: '#9bdec0',
         sortKey: 0,
       },
@@ -854,7 +854,7 @@ class BuffTracker {
         mobGainsEffect: EffectId.AstralAttenuation,
         mobLosesEffect: EffectId.AstralAttenuation,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/lightning.png',
+        icon: '../../resources/ffxiv/status/lightning.png',
         borderColor: '#e0cb5c',
         sortKey: 0,
       },
@@ -862,7 +862,7 @@ class BuffTracker {
         mobGainsEffect: EffectId.UmbralAttenuation,
         mobLosesEffect: EffectId.UmbralAttenuation,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/earth.png',
+        icon: '../../resources/ffxiv/status/earth.png',
         borderColor: '#96855a',
         sortKey: 0,
       },
@@ -870,7 +870,7 @@ class BuffTracker {
         mobGainsEffect: EffectId.UmbralAttenuation,
         mobLosesEffect: EffectId.UmbralAttenuation,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/water.png',
+        icon: '../../resources/ffxiv/status/water.png',
         borderColor: '#4d8bc9',
         sortKey: 0,
       },
@@ -878,14 +878,14 @@ class BuffTracker {
         mobGainsEffect: EffectId.PhysicalAttenuation,
         mobLosesEffect: EffectId.PhysicalAttenuation,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/physical.png',
+        icon: '../../resources/ffxiv/status/physical.png',
         borderColor: '#fff712',
         sortKey: 0,
       },
       offguard: {
         gainAbility: kAbility.OffGuard,
         durationSeconds: 15,
-        icon: '../../resources/icon/status/offguard.png',
+        icon: '../../resources/ffxiv/status/offguard.png',
         borderColor: '#47bf41',
         sortKey: 1,
         cooldown: 60,
@@ -894,7 +894,7 @@ class BuffTracker {
       peculiar: {
         gainAbility: kAbility.PeculiarLight,
         durationSeconds: 15,
-        icon: '../../resources/icon/status/peculiar-light.png',
+        icon: '../../resources/ffxiv/status/peculiar-light.png',
         borderColor: '#F28F7B',
         sortKey: 1,
         cooldown: 60,
@@ -903,7 +903,7 @@ class BuffTracker {
       trick: {
         gainAbility: kAbility.TrickAttack,
         durationSeconds: 15,
-        icon: '../../resources/icon/status/trick-attack.png',
+        icon: '../../resources/ffxiv/status/trick-attack.png',
         // Magenta.
         borderColor: '#FC4AE6',
         sortKey: 1,
@@ -913,7 +913,7 @@ class BuffTracker {
         gainEffect: EffectId.BattleLitany,
         loseEffect: EffectId.BattleLitany,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/battle-litany.png',
+        icon: '../../resources/ffxiv/status/battle-litany.png',
         // Cyan.
         borderColor: '#099',
         sortKey: 2,
@@ -927,7 +927,7 @@ class BuffTracker {
         gainAbility: kAbility.Embolden,
         loseEffect: EffectId.Embolden,
         durationSeconds: 20,
-        icon: '../../resources/icon/status/embolden.png',
+        icon: '../../resources/ffxiv/status/embolden.png',
         // Lime.
         borderColor: '#57FC4A',
         sortKey: 3,
@@ -937,7 +937,7 @@ class BuffTracker {
         gainEffect: EffectId.TheArrow,
         loseEffect: EffectId.TheArrow,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/arrow.png',
+        icon: '../../resources/ffxiv/status/arrow.png',
         // Light Blue.
         borderColor: '#37ccee',
         sortKey: 4,
@@ -946,7 +946,7 @@ class BuffTracker {
         gainEffect: EffectId.TheBalance,
         loseEffect: EffectId.TheBalance,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/balance.png',
+        icon: '../../resources/ffxiv/status/balance.png',
         // Orange.
         borderColor: '#ff9900',
         sortKey: 4,
@@ -955,7 +955,7 @@ class BuffTracker {
         gainEffect: EffectId.TheBole,
         loseEffect: EffectId.TheBole,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/bole.png',
+        icon: '../../resources/ffxiv/status/bole.png',
         // Green.
         borderColor: '#22dd77',
         sortKey: 4,
@@ -964,7 +964,7 @@ class BuffTracker {
         gainEffect: EffectId.TheEwer,
         loseEffect: EffectId.TheEwer,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/ewer.png',
+        icon: '../../resources/ffxiv/status/ewer.png',
         // Light Blue.
         borderColor: '#66ccdd',
         sortKey: 4,
@@ -973,7 +973,7 @@ class BuffTracker {
         gainEffect: EffectId.TheSpear,
         loseEffect: EffectId.TheSpear,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/spear.png',
+        icon: '../../resources/ffxiv/status/spear.png',
         // Dark Blue.
         borderColor: '#4477dd',
         sortKey: 4,
@@ -982,7 +982,7 @@ class BuffTracker {
         gainEffect: EffectId.TheSpire,
         loseEffect: EffectId.TheSpire,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/spire.png',
+        icon: '../../resources/ffxiv/status/spire.png',
         // Yellow.
         borderColor: '#ddd044',
         sortKey: 4,
@@ -991,7 +991,7 @@ class BuffTracker {
         gainEffect: EffectId.LadyOfCrowns,
         loseEffect: EffectId.LadyOfCrowns,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/lady-of-crowns.png',
+        icon: '../../resources/ffxiv/status/lady-of-crowns.png',
         // Purple.
         borderColor: '#9e5599',
         sortKey: 4,
@@ -1000,7 +1000,7 @@ class BuffTracker {
         gainEffect: EffectId.LordOfCrowns,
         loseEffect: EffectId.LordOfCrowns,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/lord-of-crowns.png',
+        icon: '../../resources/ffxiv/status/lord-of-crowns.png',
         // Dark Red.
         borderColor: '#9a2222',
         sortKey: 4,
@@ -1009,7 +1009,7 @@ class BuffTracker {
         gainEffect: EffectId.Devilment,
         loseEffect: EffectId.Devilment,
         durationSeconds: 20,
-        icon: '../../resources/icon/status/devilment.png',
+        icon: '../../resources/ffxiv/status/devilment.png',
         // Dark Green.
         borderColor: '#006400',
         sortKey: 5,
@@ -1019,7 +1019,7 @@ class BuffTracker {
         gainEffect: EffectId.StandardFinish,
         loseEffect: EffectId.StandardFinish,
         durationSeconds: 60,
-        icon: '../../resources/icon/status/standard-finish.png',
+        icon: '../../resources/ffxiv/status/standard-finish.png',
         // Green.
         borderColor: '#32CD32',
         sortKey: 6,
@@ -1028,7 +1028,7 @@ class BuffTracker {
         gainEffect: EffectId.TechnicalFinish,
         loseEffect: EffectId.TechnicalFinish,
         durationSeconds: 20,
-        icon: '../../resources/icon/status/technical-finish.png',
+        icon: '../../resources/ffxiv/status/technical-finish.png',
         // Dark Peach.
         borderColor: '#E0757C',
         sortKey: 6,
@@ -1038,7 +1038,7 @@ class BuffTracker {
         gainEffect: EffectId.BattleVoice,
         loseEffect: EffectId.BattleVoice,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/battlevoice.png',
+        icon: '../../resources/ffxiv/status/battlevoice.png',
         // Red.
         borderColor: '#D6371E',
         sortKey: 7,
@@ -1047,7 +1047,7 @@ class BuffTracker {
       chain: {
         gainAbility: kAbility.ChainStratagem,
         durationSeconds: 15,
-        icon: '../../resources/icon/status/chain-stratagem.png',
+        icon: '../../resources/ffxiv/status/chain-stratagem.png',
         // Blue.
         borderColor: '#4674E5',
         sortKey: 8,
@@ -1057,7 +1057,7 @@ class BuffTracker {
         gainEffect: EffectId.LeftEye,
         loseEffect: EffectId.LeftEye,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/dragon-sight.png',
+        icon: '../../resources/ffxiv/status/dragon-sight.png',
         // Orange.
         borderColor: '#FA8737',
         sortKey: 9,
@@ -1067,7 +1067,7 @@ class BuffTracker {
         gainEffect: EffectId.RightEye,
         loseEffect: EffectId.RightEye,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/dragon-sight.png',
+        icon: '../../resources/ffxiv/status/dragon-sight.png',
         // Orange.
         borderColor: '#FA8737',
         sortKey: 10,
@@ -1077,7 +1077,7 @@ class BuffTracker {
         gainEffect: EffectId.Brotherhood,
         loseEffect: EffectId.Brotherhood,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/brotherhood.png',
+        icon: '../../resources/ffxiv/status/brotherhood.png',
         // Dark Orange.
         borderColor: '#994200',
         sortKey: 11,
@@ -1087,7 +1087,7 @@ class BuffTracker {
         gainEffect: EffectId.Devotion,
         loseEffect: EffectId.Devotion,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/devotion.png',
+        icon: '../../resources/ffxiv/status/devotion.png',
         // Yellow.
         borderColor: '#ffbf00',
         sortKey: 12,
@@ -1097,7 +1097,7 @@ class BuffTracker {
         gainEffect: EffectId.Divination,
         loseEffect: EffectId.Divination,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/divination.png',
+        icon: '../../resources/ffxiv/status/divination.png',
         // Dark purple.
         borderColor: '#5C1F58',
         sortKey: 13,
@@ -3688,7 +3688,7 @@ class Bars {
           'white',
           this.options.BigBuffBorderSize,
           'yellow', 'yellow',
-          '../../resources/icon/status/food.png');
+          '../../resources/ffxiv/status/food.png');
       this.o.leftBuffsList.addElement('foodbuff', div, -1);
     }
   }
