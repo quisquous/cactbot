@@ -216,17 +216,6 @@ const intermediateRelativityOutputStrings = {
   },
 };
 
-const directions = {
-  0: Outputs.north,
-  1: Outputs.northeast,
-  2: Outputs.east,
-  3: Outputs.southeast,
-  4: Outputs.south,
-  5: Outputs.southwest,
-  6: Outputs.west,
-  7: Outputs.northwest,
-};
-
 export default {
   zoneId: ZoneId.EdensPromiseEternitySavage,
   timelineFile: 'e12s.txt',
@@ -826,10 +815,10 @@ export default {
     },
     {
       id: 'E12S Basic Relativity Yellow Hourglass',
-      // Orient where "Yellow" Anger Hourglass spawns
+      // Orient where "Yellow" Anger's Hourglass spawns
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9824' }),
-      condition: (data, matches) => data.phase === 'basic',
-      preRun: (data, matches) => {
+      durationSeconds: 15,
+      infoText: (data, _, output) => {
         const y = parseFloat(matches.y) + 75;
         const x = parseFloat(matches.x);
 
@@ -838,18 +827,34 @@ export default {
         // N = (0, -95), E = (20, -75), S = (0, -55), W = (-20, -75)
         // NE = (14, -89), SE = (14, -61), SW = (-14, -61), NW = (-14, -89)
         // Map N = 0, NE = 1, ..., NW = 7
+        const dirs = {
+          0: Outputs.north(),
+          1: Outputs.northeast(),
+          2: Outputs.east(),
+          3: Outputs.southeast(),
+          4: Outputs.south(),
+          5: Outputs.southwest(),
+          6: Outputs.west(),
+          7: Outputs.northwest(),
+        };
+
         const dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 
-        data.yellow = dir;
+        return output.hourglass({
+          dir: dirs[dir],
+        });
       },
-      durationSeconds: 15,
-      infoText: (data, _, output) => output.hourglass({
-        dir1: output[data.yellow](),
-      }),
       outputStrings: {
-        ...directions,
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
         hourglass: {
-          en: 'Yellow: ${dir1}',
+          en: 'Yellow: ${dir}',
         },
       },
     },
