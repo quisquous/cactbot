@@ -203,8 +203,6 @@
 
 
 Bundled projects:
-	* CefSharp (3-clause BSD license)
-		https://github.com/cefsharp/CefSharp
 	* jquery (MIT license)
 		https://jquery.com/
 	* FFXIVPluginHelper.cs (custom license allowing sublicensing)
