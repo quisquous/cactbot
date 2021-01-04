@@ -828,14 +828,14 @@ export default {
         // NE = (14, -89), SE = (14, -61), SW = (-14, -61), NW = (-14, -89)
         // Map N = 0, NE = 1, ..., NW = 7
         const dirs = {
-          0: Outputs.north(),
-          1: Outputs.northeast(),
-          2: Outputs.east(),
-          3: Outputs.southeast(),
-          4: Outputs.south(),
-          5: Outputs.southwest(),
-          6: Outputs.west(),
-          7: Outputs.northwest(),
+          0: output.north(),
+          1: output.northeast(),
+          2: output.east(),
+          3: output.southeast(),
+          4: output.south(),
+          5: output.southwest(),
+          6: output.west(),
+          7: output.northwest(),
         };
 
         const dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
