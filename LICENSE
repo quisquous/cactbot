@@ -203,8 +203,6 @@
 
 
 Bundled projects:
-	* jquery (MIT license)
-		https://jquery.com/
 	* FFXIVPluginHelper.cs (custom license allowing sublicensing)
 		https://github.com/xtuaok/ACT_EnmityPlugin/
 	* FF14 fish tracker app (MIT license)
