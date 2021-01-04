@@ -818,7 +818,7 @@ export default {
       // Orient where "Yellow" Anger's Hourglass spawns
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9824' }),
       durationSeconds: 15,
-      infoText: (data, _, output) => {
+      infoText: (data, matches, output) => {
         const y = parseFloat(matches.y) + 75;
         const x = parseFloat(matches.x);
 
