@@ -520,3 +520,14 @@ international (English, German, French, Japanese) version,
 the current Chinese version,
 and the current Korean version.
 Some translations are still a work in progress.
+
+## Licensing, Trademarks, Copyright
+
+cactbot is open source under the [Apache License, Version 2.0](LICENSE).
+
+FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.
+
+Final Fantasy art and icons reused non-commercially under the
+[FINAL FANTASY® XIV Materials Usage License](https://support.na.square-enix.com/rule.php?id=5382).
+
+See the [LICENSE](LICENSE) file for more details about other bundled projects.
