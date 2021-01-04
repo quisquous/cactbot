@@ -829,16 +829,6 @@ export default {
       // Orient where "Yellow" Anger Hourglass spawns
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9824' }),
       condition: (data, matches) => data.phase === 'basic',
-      durationSeconds: 15,
-      infoText: (data, _, output) => output.hourglass({
-        dir1: output[data.yellow](),
-      }),
-      outputStrings: {
-        ...directions,
-        hourglass: {
-          en: 'Yellow: ${dir1}',
-        },
-      },
       preRun: (data, matches) => {
         const y = parseFloat(matches.y) + 75;
         const x = parseFloat(matches.x);
@@ -851,6 +841,16 @@ export default {
         const dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 
         data.yellow = dir;
+      },
+      durationSeconds: 15,
+      infoText: (data, _, output) => output.hourglass({
+        dir1: output[data.yellow](),
+      }),
+      outputStrings: {
+        ...directions,
+        hourglass: {
+          en: 'Yellow: ${dir1}',
+        },
       },
     },
   ],
