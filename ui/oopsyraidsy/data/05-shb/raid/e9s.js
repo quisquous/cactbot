@@ -35,6 +35,9 @@ export default {
     'E9S Condensed Anti-Air Particle Beam': '5615', // anti-air "tank spread"
     'E9S Condensed Wide-Angle Particle Beam': '5610', // wide-angle "tank laser"
   },
+  gainsEffectWarn: {
+    'E9S Stygian Tendrils': '952', // standing in the brambles
+  },
   triggers: [
     {
       // Art Of Darkness Partner Stack
