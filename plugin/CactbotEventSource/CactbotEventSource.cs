@@ -481,7 +481,13 @@ namespace Cactbot {
       // There's also a win api function we could call, but that's a bit gross.
       // However, this is an easy case where filename is known to be rooted in top_dir,
       // so use this hacky solution for now.  Hi, ngld.
-      return filename.Replace(top_dir, "");
+      string initial = filename;
+      filename = filename.Replace(top_dir, "");
+      // top_dir may or may not have a trailing slash, so remove that as well.
+      // user_config.js expects filenames to not have a beginning slash.
+      while (filename[0] == '\\' || filename[0] == '/')
+        filename = filename.Substring(1);
+      return filename;
     }
 
     private Dictionary<string, string> GetLocalUserFiles(string config_dir, string overlay_name) {
