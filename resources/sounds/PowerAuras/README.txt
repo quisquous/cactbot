@@ -1,1 +1,0 @@
-These files are from the WeakAuras mod for World of Warcraft.

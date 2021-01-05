@@ -18,7 +18,7 @@ const Options = {
   AlertSound: '../../resources/sounds/BigWigs/Alert.ogg',
   AlarmSound: '../../resources/sounds/BigWigs/Alarm.ogg',
   LongSound: '../../resources/sounds/BigWigs/Long.ogg',
-  PullSound: '../../resources/sounds/PowerAuras/sonar.ogg',
+  PullSound: '../../resources/sounds/freesound/sonar.ogg',
 
   AudioAllowed: true,
 

@@ -6,7 +6,7 @@ import './radar_config.js';
 import '../../resources/common.js';
 
 const Options = {
-  PopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
+  PopSound: '../../resources/sounds/freesound/sonar.ogg',
   RankOptions: {
     'S': {
       Type: 'mob',

@@ -3632,7 +3632,7 @@ class Bars {
       this.gpAlarmReady = true;
     } else if (this.gpAlarmReady && !this.gpPotion && this.gp >= this.options.GpAlarmPoint) {
       this.gpAlarmReady = false;
-      const audio = new Audio('../../resources/sounds/PowerAuras/kaching.ogg');
+      const audio = new Audio('../../resources/sounds/freesound/power_up.ogg');
       audio.volume = this.options.GpAlarmSoundVolume;
       audio.play();
     }
@@ -3742,7 +3742,7 @@ class Bars {
     if (inCountdown !== showingCountdown) {
       this.o.pullCountdown.duration = seconds;
       if (inCountdown && this.options.PlayCountdownSound) {
-        const audio = new Audio('../../resources/sounds/PowerAuras/sonar.ogg');
+        const audio = new Audio('../../resources/sounds/freesound/sonar.ogg');
         audio.volume = 0.3;
         audio.play();
       }
