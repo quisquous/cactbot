@@ -863,37 +863,28 @@ export default {
       // Collect Sorrow's Hourglass locations
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9823' }),
       run: (data, matches) => {
-        const id = parseInt(matches.id, 16);
+        const id = matches.id.toUpperCase();
         const y = parseFloat(matches.y) + 75;
         const x = parseFloat(matches.x);
 
-        // Positions are NE, N, NW, SW, S, SE + numerical slop on a radius=20 circle.
+        // Positions are NE, N, NW, SW, S, SE + numerical slop on a radius=10 circle.
         // Positions are also moved downward 75
         // N = (0, -86), S = (0, -64)
         // NE = (10, -80), SE = (10, -69), SW = (-10, -69), NW = (-10, -80)
-        // Map NW = 0, N = 1, ..., W = 7
+        // Map NW = 0, NE = 1, ..., W = 7
         const dir = Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 
         data.sorrows = data.sorrows || {};
-        data.sorrows[id] = [dir, false];
+        data.sorrows[id] = dir;
       },
     },
     {
-      id: 'E12S Adv Relativity Hourglass Collect Yellow Tethers',
+      id: 'E12S Adv Relativity Hourglass Yellow Tether',
       // '0086' is the Yellow tether that buffs "Quicken"
       // '0085' is the Red tether that buffs "Slow"
       netRegex: NetRegexes.tether({ id: '0086' }),
-      run: (data, matches) => {
-        const id = parseInt(matches.sourceId, 16);
-        data.sorrows[id][1] = true;
-      },
-    },
-    {
-      id: 'E12S Adv Relativity Speed',
-      // Orient where Oracle Quickens Sorrow's Hourglass
-      netRegex: NetRegexes.startsUsing({ id: '58DD' }),
-      // Tethers happen on same interval, add some delay
-      delaySeconds: 0.5,
+      // Only need to grab first match
+      supressSeconds: 3,
       durationSeconds: 8,
       infoText: (data, matches, output) => {
         const dirs = {
@@ -907,18 +898,14 @@ export default {
           7: output.west(),
         };
 
-        const sorrows = [];
-
-        // Push yellow tethered hourglasses to array
-        for (const [key, value] of Object.entries(data.sorrows))
-          if (value[1]) sorrows.push(value[0]);
-
-        // Sort for North half first
-        sorrows.sort((a, b) => a - b);
+        const sorrow1 = data.sorrows[matches.sourceId.toUpperCase()];
+        
+        // Calculate opposite side
+        const sorrow2 = (sorrow1 + 4) % 8;
 
         return output.hourglass({
-          dir1: dirs[sorrows[0]],
-          dir2: dirs[sorrows[1]],
+          dir1: sorrow1 < sorrow2 ? dirs[sorrow1] : dirs[sorrow2],
+          dir2: sorrow1 > sorrow2 ? dirs[sorrow1] : dirs[sorrow2],
         });
       },
       outputStrings: {
