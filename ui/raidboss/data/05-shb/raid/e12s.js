@@ -910,9 +910,8 @@ export default {
         const sorrows = [];
 
         // Push yellow tethered hourglasses to array
-        for (const [key, value] of Object.entries(data.sorrows)){
+        for (const [key, value] of Object.entries(data.sorrows))
           if (value[1]) sorrows.push(value[0]);
-        }
 
         return output.hourglass({
           dir1: dirs[sorrows[0]],
