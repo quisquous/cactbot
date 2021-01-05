@@ -4,6 +4,7 @@ import { triggerOutputFunctions } from '../../resources/responses.js';
 import UserConfig from '../../resources/user_config.js';
 import { Util } from '../../resources/common.js';
 import raidbossFileData from './data/manifest.txt';
+import raidbossOptions from './raidboss_options.js';
 
 const kOptionKeys = {
   output: 'Output',
@@ -310,14 +311,16 @@ class RaidbossConfigurator {
     this.timelineLang = this.base.getOption('raidboss', 'TimelineLanguage', this.base.lang);
   }
 
-  buildUI(container, raidbossFiles) {
-    const fileMap = this.processRaidbossFiles(raidbossFiles);
+  buildUI(container, raidbossFiles, userOptions) {
+    const fileMap = this.processRaidbossFiles(raidbossFiles, userOptions);
 
     const expansionDivs = {};
 
     for (const key in fileMap) {
       const info = fileMap[key];
-      const expansion = info.prefix;
+      // "expansion" here is technically section, which includes "general triggers"
+      // and one section per user file.
+      const expansion = info.section;
 
       if (Object.keys(info.triggers).length === 0)
         continue;
@@ -348,7 +351,7 @@ class RaidbossConfigurator {
         triggerContainer.classList.toggle('collapsed');
       };
 
-      const parts = [info.title, info.type, expansion];
+      const parts = [info.title, info.type, info.prefix];
       for (let i = 0; i < parts.length; ++i) {
         if (!parts[i])
           continue;
@@ -380,7 +383,8 @@ class RaidbossConfigurator {
 
         // Build the trigger label.
         const triggerDiv = document.createElement('div');
-        triggerDiv.innerHTML = trig.id;
+        triggerDiv.innerHTML = trig.isMissingId ? '(???)' : trig.id;
+
         triggerDiv.classList.add('trigger');
         triggerOptions.appendChild(triggerDiv);
 
@@ -389,7 +393,9 @@ class RaidbossConfigurator {
         triggerDetails.classList.add('trigger-details');
         triggerOptions.appendChild(triggerDetails);
 
-        triggerDetails.appendChild(this.buildTriggerOptions(trig, triggerDiv));
+        // TODO: add a note that this trigger has no id and can't be configured.
+        if (!trig.isMissingId)
+          triggerDetails.appendChild(this.buildTriggerOptions(trig, triggerDiv));
 
         // Append some details about the trigger so it's more obvious what it is.
         for (const detailKey in kDetailKeys) {
@@ -420,6 +426,9 @@ class RaidbossConfigurator {
 
           triggerDetails.appendChild(detail);
         }
+
+        if (trig.isMissingId)
+          continue;
 
         // Add beforeSeconds manually for timeline triggers.
         if (trig.isTimelineTrigger) {
@@ -702,8 +711,11 @@ class RaidbossConfigurator {
     return trig;
   }
 
-  processRaidbossFiles(files) {
-    const map = this.base.processFiles(files);
+  processRaidbossFiles(files, userOptions) {
+    // `files` is map of filename => triggerSet (for trigger files)
+    // `map` is a sorted map of shortened zone key => { various fields, triggerSet }
+    const map = this.base.processFiles(files, userOptions.Triggers);
+    let triggerIdx = 0;
     for (const [key, item] of Object.entries(map)) {
       // TODO: maybe each trigger set needs a zone name, and we should
       // use that instead of the filename???
@@ -720,13 +732,17 @@ class RaidbossConfigurator {
       item.triggers = {};
       for (const key in rawTriggers) {
         for (const trig of rawTriggers[key]) {
+          triggerIdx++;
           if (!trig.id) {
-            // TODO: add testing that all triggers have a globally unique id.
-            // console.error('missing trigger id in ' + filename + ': ' + JSON.stringify(trig));
-            continue;
+            // Give triggers with no id some "unique" string so that they can
+            // still be added to the set and show up in the ui.
+            trig.id = `!!NoIdTrigger${triggerIdx}`;
+            trig.isMissingId = true;
           }
 
           trig.isTimelineTrigger = key === 'timeline';
+          // Also, if a user has two of the same id in the same triggerSet (?!)
+          // then only the second trigger will show up.
           item.triggers[trig.id] = this.processTrigger(trig);
         }
       }
@@ -818,7 +834,10 @@ const userFileHandler = (name, files, options, basePath) => {
 const templateOptions = {
   buildExtraUI: (base, container) => {
     const builder = new RaidbossConfigurator(base);
-    builder.buildUI(container, raidbossFileData);
+    const userOptions = { ...raidbossOptions };
+    UserConfig.loadUserFiles('raidboss', userOptions, () => {
+      builder.buildUI(container, raidbossFileData, userOptions);
+    });
   },
   processExtraOptions: (options, savedConfig) => {
     // raidboss will look up this.options.PerTriggerAutoConfig to find these values.
