@@ -223,14 +223,14 @@ const matchedPositionToDir = (matches) => {
   const x = parseFloat(matches.x);
 
   // In Basic Relativity, hourglass positions are the 8 cardinals + numerical
-  //  numerical slop on a radius=20 circle.
+  // slop on a radius=20 circle.
   // N = (0, -95), E = (20, -75), S = (0, -55), W = (-20, -75)
   // NE = (14, -89), SE = (14, -61), SW = (-14, -61), NW = (-14, -89)
   //
   // In Advanced Relativity, hourglass positions are the 3 northern positions and
   // three southern positions, plus numerical slop on a radius=10 circle
-  //  NW = (-10, -80), N = (0, -86), NE = (10, -80)
-  //  SW = (-10, -69), S = (0, -64), SE = (10, -69)
+  // NW = (-10, -80), N = (0, -86), NE = (10, -80)
+  // SW = (-10, -69), S = (0, -64), SE = (10, -69)
   //
   // Starting with northwest to favor sorting between north and south for
   // Advanced Relativity party splits.
