@@ -860,7 +860,7 @@ export default {
     },
     {
       id: 'E12S Adv Relativity Hourglass Collect',
-      // Collect Sorrow Hourglass locations
+      // Collect Sorrow's Hourglass locations
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9823' }),
       run: (data, matches) => {
         const id = parseInt(matches.id, 16);
@@ -871,8 +871,8 @@ export default {
         // Positions are also moved downward 75
         // N = (0, -86), S = (0, -64)
         // NE = (10, -80), SE = (10, -69), SW = (-10, -69), NW = (-10, -80)
-        // Map N = 0, NE = 1, ..., NW = 7
-        const dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+        // Map NW = 0, N = 1, ..., W = 7
+        const dir = Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 
         data.sorrows = data.sorrows || {};
         data.sorrows[id] = [dir, false];
@@ -890,21 +890,21 @@ export default {
     },
     {
       id: 'E12S Adv Relativity Speed',
-      // Orient where Oracle Quickens Sorrow Hourglass
+      // Orient where Oracle Quickens Sorrow's Hourglass
       netRegex: NetRegexes.startsUsing({ id: '58DD' }),
       // Tethers happen on same interval, add some delay
       delaySeconds: 0.5,
       durationSeconds: 8,
       infoText: (data, matches, output) => {
         const dirs = {
-          0: output.north(),
-          1: output.northeast(),
-          2: output.east(),
-          3: output.southeast(),
-          4: output.south(),
-          5: output.southwest(),
-          6: output.west(),
-          7: output.northwest(),
+          0: output.northwest(),
+          1: output.north(),
+          2: output.northeast(),
+          3: output.east(),
+          4: output.southeast(),
+          5: output.south(),
+          6: output.southwest(),
+          7: output.west(),
         };
 
         const sorrows = [];
@@ -913,6 +913,9 @@ export default {
         for (const [key, value] of Object.entries(data.sorrows))
           if (value[1]) sorrows.push(value[0]);
 
+        // Sort for North half first
+        sorrows.sort((a, b) => a - b);
+        
         return output.hourglass({
           dir1: dirs[sorrows[0]],
           dir2: dirs[sorrows[1]],
