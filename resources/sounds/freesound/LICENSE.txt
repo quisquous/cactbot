@@ -10,7 +10,10 @@ power_up.ogg
   https://freesound.org/people/GameAudio/sounds/220173/
   https://creativecommons.org/publicdomain/zero/1.0/
 
-
 sonar.ogg
   https://freesound.org/people/NoiseCollector/sounds/6164/
   https://creativecommons.org/licenses/by/3.0/
+
+water_drop.ogg
+  https://freesound.org/people/paespedro/sounds/174718/
+  https://creativecommons.org/publicdomain/zero/1.0/
