@@ -251,7 +251,7 @@ const dirToOutput = (dir) => {
     6: output.southwest(),
     7: output.west(),
   };
-   return (dirs[dir]);
+  return (dirs[dir]);
 };
 
 export default {
