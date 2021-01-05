@@ -1,6 +1,11 @@
 These sounds from freesound.org and licensed via Creative Commons licenses.
-The details of each license for each sound is listed below.
+The details of each license along with source for each sound is listed below.
 All sounds have been converted from .wav to .ogg for space.
+
+amy/
+  http://www.freesound.org/people/Timbre/sounds/83033/
+  https://creativecommons.org/licenses/by-nc/3.0/
+  modifications: sound cut into separate files
 
 percussion_hit.ogg
   https://freesound.org/people/Stumber/sounds/207863/
