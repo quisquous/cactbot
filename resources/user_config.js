@@ -205,6 +205,7 @@ class UserConfig {
           'Triggers',
         ],
       };
+      warnOnVariableResetMap[overlayName] = warnOnVariableResetMap[overlayName] || [];
 
       // The values of each `warnOnVariableResetMap` field are initially set
       // after the first file, so that if there is only one file, there are
