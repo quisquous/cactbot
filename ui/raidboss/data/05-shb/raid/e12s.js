@@ -895,7 +895,7 @@ export default {
       // Tethers happen on same interval, add some delay
       delaySeconds: 0.5,
       durationSeconds: 8,
-      infoText: (data, matches, output) => {
+      infoText: (data, _, output) => {
         const dirs = {
           0: output.north(),
           1: output.northeast(),
