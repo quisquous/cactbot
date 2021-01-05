@@ -891,8 +891,8 @@ export default {
       // '0086' is the Yellow tether that buffs "Quicken"
       // '0085' is the Red tether that buffs "Slow"
       netRegex: NetRegexes.tether({ id: '0086' }),
-      suppressSeconds: 3,
       durationSeconds: 8,
+      suppressSeconds: 3,
       infoText: (data, matches, output) => {
         const sorrow1 = data.sorrows[matches.sourceId.toUpperCase()];
 
