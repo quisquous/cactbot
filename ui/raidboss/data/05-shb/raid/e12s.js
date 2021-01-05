@@ -915,7 +915,7 @@ export default {
 
         // Sort for North half first
         sorrows.sort((a, b) => a - b);
-        
+
         return output.hourglass({
           dir1: dirs[sorrows[0]],
           dir2: dirs[sorrows[1]],
