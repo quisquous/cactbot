@@ -207,8 +207,12 @@ Bundled projects with different licenses:
         https://github.com/xtuaok/ACT_EnmityPlugin/
     * FF14 fish tracker app (MIT license)
         https://github.com/icykoneko/ff14-fish-tracker-app
-    * art from Final Fantasy XIV in resources/ffxiv (FINAL FANTASY® XIV Materials Usage License)
+    * resources/ffxiv: art from Final Fantasy XIV (FINAL FANTASY® XIV Materials Usage License)
         reused non-comercially via https://support.na.square-enix.com/rule.php?id=5382
         FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.
-    * freesound.org sounds in resources/sounds/freesound (Creative Commons)
-        see: resources/sounds/freesound/LICENSE.txt for details and attribution
+    * resources/sounds/BigWigs: sounds from BigWigs WoW mod (CreativeCommons)
+        see: resources/sounds/BigWigs/LICENSE.txt
+    * resources/sounds/freesound: sounds from freesound.org (Creative Commons)
+        see: resources/sounds/freesound/LICENSE.txt
+    * resources/sounds/Overwatch: sounds from OverWatch (Creative Commons)
+        see: resources/sounds/Overwatch/LICENSE.txt
