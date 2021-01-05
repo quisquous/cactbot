@@ -899,7 +899,7 @@ export default {
         };
 
         const sorrow1 = data.sorrows[matches.sourceId.toUpperCase()];
-        
+
         // Calculate opposite side
         const sorrow2 = (sorrow1 + 4) % 8;
 
