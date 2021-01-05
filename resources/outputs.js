@@ -289,6 +289,7 @@ const Outputs = new ThrowOnInvalidProxy({
     fr: 'Allez Devant',
     ja: '前へ',
     cn: '去前面',
+    ko: '앞으로',
   },
   // getUnder is used when you have to get into the bosses hitbox
   getUnder: {
