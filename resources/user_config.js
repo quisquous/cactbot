@@ -143,10 +143,6 @@ class UserConfig {
       const basePath = e.detail.userLocation.replace(/[/\\]*$/, '') + '\\';
       const localFiles = e.detail.localUserFiles;
 
-      const sortedFiles = this.sortUserFiles(Object.keys(localFiles));
-      const jsFiles = this.filterUserFiles(sortedFiles, overlayName, '.js');
-      const cssFiles = this.filterUserFiles(sortedFiles, overlayName, '.css');
-
       // The plugin auto-detects the language, so set this first.
       // If options files want to override it, they can for testing.
 
@@ -212,10 +208,12 @@ class UserConfig {
       // not any warnings.
       const variableTracker = {};
 
-      // In cases where the user files are local but the overlay url
-      // is remote, local files needed to be read by the plugin and
-      // passed to Javascript for Chrome security reasons.
       if (localFiles) {
+        // localFiles may be null if there is no valid user directory.
+        const sortedFiles = this.sortUserFiles(Object.keys(localFiles));
+        const jsFiles = this.filterUserFiles(sortedFiles, overlayName, '.js');
+        const cssFiles = this.filterUserFiles(sortedFiles, overlayName, '.css');
+
         for (const jsFile of jsFiles) {
           try {
             printUserFile(`local user file: ${basePath}${jsFile}`);
