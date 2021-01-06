@@ -240,7 +240,7 @@ const matchedPositionToDir = (matches) => {
 };
 
 // Convert dir to Output
-const dirToOutput = (dir) => {
+const dirToOutput = (dir, output) => {
   const dirs = {
     0: output.northwest(),
     1: output.north(),
@@ -858,7 +858,7 @@ export default {
       durationSeconds: 15,
       infoText: (data, matches, output) => {
         return output.hourglass({
-          dir: dirToOutput(matchedPositionToDir(matches)),
+          dir: dirToOutput(matchedPositionToDir(matches), output),
         });
       },
       outputStrings: {
@@ -900,8 +900,8 @@ export default {
         const sorrow2 = (sorrow1 + 4) % 8;
 
         return output.hourglass({
-          dir1: sorrow1 < sorrow2 ? dirToOutput(sorrow1) : dirToOutput(sorrow2),
-          dir2: sorrow1 > sorrow2 ? dirToOutput(sorrow1) : dirToOutput(sorrow2),
+          dir1: sorrow1 < sorrow2 ? dirToOutput(sorrow1, output) : dirToOutput(sorrow2, output),
+          dir2: sorrow1 > sorrow2 ? dirToOutput(sorrow1, output) : dirToOutput(sorrow2, output),
         });
       },
       outputStrings: {
