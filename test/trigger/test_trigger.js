@@ -4,7 +4,7 @@
 // TODO: Remove ` ?` before each hex value once global prefix `^.{14} ` is added.
 // JavaScript doesn't allow for possessive operators in regular expressions.
 
-import { triggerFunctions, triggerOutputFunctions, builtInResponseStr } from '../../resources/responses.js';
+import { triggerFunctions, triggerTextOutputFunctions, builtInResponseStr } from '../../resources/responses.js';
 import fs from 'fs';
 import path from 'path';
 
@@ -449,7 +449,7 @@ const testOutputStrings = (file, triggerSet) => {
           continue;
         }
         if (typeof trigger.outputStrings !== 'object') {
-          for (const func of triggerOutputFunctions) {
+          for (const func of triggerTextOutputFunctions) {
             if (trigger[func]) {
               errorFunc(`${file}: '${trigger.id}' missing field outputStrings.`);
               break;

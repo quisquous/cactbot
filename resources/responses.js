@@ -43,13 +43,19 @@ export const triggerFunctions = [
   'outputStrings',
 ];
 
-// Trigger fields that can produce output.
-export const triggerOutputFunctions = [
+// Trigger fields that can produce text output.
+export const triggerTextOutputFunctions = [
   'alarmText',
   'alertText',
   'infoText',
   'response',
   'tts',
+];
+
+// If a trigger has any of these, then it has a visible/audio effect.
+export const triggerOutputFunctions = [
+  ...triggerTextOutputFunctions,
+  'sound',
 ];
 
 export const severityMap = {
