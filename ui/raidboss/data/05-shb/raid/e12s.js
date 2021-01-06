@@ -216,6 +216,44 @@ const intermediateRelativityOutputStrings = {
   },
 };
 
+// Returns integer value of x, y in matches based on cardinal or intercardinal
+const matchedPositionToDir = (matches) => {
+  // Positions are moved downward 75
+  const y = parseFloat(matches.y) + 75;
+  const x = parseFloat(matches.x);
+
+  // In Basic Relativity, hourglass positions are the 8 cardinals + numerical
+  // slop on a radius=20 circle.
+  // N = (0, -95), E = (20, -75), S = (0, -55), W = (-20, -75)
+  // NE = (14, -89), SE = (14, -61), SW = (-14, -61), NW = (-14, -89)
+  //
+  // In Advanced Relativity, hourglass positions are the 3 northern positions and
+  // three southern positions, plus numerical slop on a radius=10 circle
+  // NW = (-10, -80), N = (0, -86), NE = (10, -80)
+  // SW = (-10, -69), S = (0, -64), SE = (10, -69)
+  //
+  // Starting with northwest to favor sorting between north and south for
+  // Advanced Relativity party splits.
+  // Map NW = 0, N = 1, ..., W = 7
+
+  return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
+};
+
+// Convert dir to Output
+const dirToOutput = (dir, output) => {
+  const dirs = {
+    0: output.northwest(),
+    1: output.north(),
+    2: output.northeast(),
+    3: output.east(),
+    4: output.southeast(),
+    5: output.south(),
+    6: output.southwest(),
+    7: output.west(),
+  };
+  return (dirs[dir]);
+};
+
 export default {
   zoneId: ZoneId.EdensPromiseEternitySavage,
   timelineFile: 'e12s.txt',
@@ -810,6 +848,73 @@ export default {
           de: 'Nach draußen schauen',
           fr: 'Regardez vers l\'extérieur',
           ja: '外に向け',
+        },
+      },
+    },
+    {
+      id: 'E12S Basic Relativity Yellow Hourglass',
+      // Orient where "Yellow" Anger's Hourglass spawns
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9824' }),
+      durationSeconds: 15,
+      infoText: (data, matches, output) => {
+        return output.hourglass({
+          dir: dirToOutput(matchedPositionToDir(matches), output),
+        });
+      },
+      outputStrings: {
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+        hourglass: {
+          en: 'Yellow: ${dir}',
+        },
+      },
+    },
+    {
+      id: 'E12S Adv Relativity Hourglass Collect',
+      // Collect Sorrow's Hourglass locations
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9823' }),
+      run: (data, matches) => {
+        const id = matches.id.toUpperCase();
+
+        data.sorrows = data.sorrows || {};
+        data.sorrows[id] = matchedPositionToDir(matches);
+      },
+    },
+    {
+      id: 'E12S Adv Relativity Hourglass Collect Yellow Tethers',
+      // '0086' is the Yellow tether that buffs "Quicken"
+      // '0085' is the Red tether that buffs "Slow"
+      netRegex: NetRegexes.tether({ id: '0086' }),
+      durationSeconds: 8,
+      suppressSeconds: 3,
+      infoText: (data, matches, output) => {
+        const sorrow1 = data.sorrows[matches.sourceId.toUpperCase()];
+
+        // Calculate opposite side
+        const sorrow2 = (sorrow1 + 4) % 8;
+
+        return output.hourglass({
+          dir1: sorrow1 < sorrow2 ? dirToOutput(sorrow1, output) : dirToOutput(sorrow2, output),
+          dir2: sorrow1 > sorrow2 ? dirToOutput(sorrow1, output) : dirToOutput(sorrow2, output),
+        });
+      },
+      outputStrings: {
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+        hourglass: {
+          en: 'Yellow: ${dir1} / ${dir2}',
         },
       },
     },
