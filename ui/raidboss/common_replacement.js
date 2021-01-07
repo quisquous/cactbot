@@ -220,6 +220,13 @@ export const commonReplacement = {
       cn: '--无法选中--',
       ko: '--타겟 불가능--',
     },
+    '--west--': {
+      de: '--westen--',
+      fr: '--ouest--',
+      ja: '--西--',
+      cn: '--西--',
+      ko: '--서쪽--',
+    },
     [textKeys.E]: {
       de: 'O',
       fr: 'E',
