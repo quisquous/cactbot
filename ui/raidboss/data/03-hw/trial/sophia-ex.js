@@ -389,12 +389,12 @@ export default {
         });
       },
       outputStrings: {
-        north: Outputs.north,
-        south: Outputs.south,
-        northwest: Outputs.northwest,
-        northeast: Outputs.northeast,
-        southwest: Outputs.southwest,
-        southeast: Outputs.southeast,
+        north: Outputs.dirN,
+        south: Outputs.dirS,
+        northwest: Outputs.dirNW,
+        northeast: Outputs.dirNE,
+        southwest: Outputs.dirSW,
+        southeast: Outputs.dirSE,
         multiple: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
