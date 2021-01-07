@@ -161,7 +161,7 @@ export const commonReplacement = {
       de: '--süden--',
       fr: '--sud--',
       ja: '--南--',
-      cn: '--南面--',
+      cn: '--南--',
       ko: '--남쪽--',
     },
     '--southeast--': {
@@ -238,7 +238,7 @@ export const commonReplacement = {
       de: 'S',
       fr: 'S',
       ja: '南',
-      cn: '南面',
+      cn: '南',
       ko: '남',
     },
     [textKeys.W]: {
