@@ -62,6 +62,7 @@ const summonDirectionOutputStrings = {
     de: 'NNO',
     fr: 'NNE',
     ja: '北北東',
+    cn: '上偏右(北偏东)',
     ko: '1시',
   },
   ENE: {
@@ -69,6 +70,7 @@ const summonDirectionOutputStrings = {
     de: 'ONO',
     fr: 'ENE',
     ja: '東北東',
+    cn: '右偏上(东偏北)',
     ko: '2시',
   },
   ESE: {
@@ -76,6 +78,7 @@ const summonDirectionOutputStrings = {
     de: 'OSO',
     fr: 'ESE',
     ja: '東南東',
+    cn: '右偏下(东偏南)',
     ko: '4시',
   },
   SSE: {
@@ -83,6 +86,7 @@ const summonDirectionOutputStrings = {
     de: 'SSO',
     fr: 'SSE',
     ja: '南南東',
+    cn: '下偏右(南偏东)',
     ko: '5시',
   },
   SSW: {
@@ -90,6 +94,7 @@ const summonDirectionOutputStrings = {
     de: 'SSW',
     fr: 'SSO',
     ja: '南南西',
+    cn: '下偏左(南偏西)',
     ko: '7시',
   },
   WSW: {
@@ -97,6 +102,7 @@ const summonDirectionOutputStrings = {
     de: 'WSW',
     fr: 'OSO',
     ja: '西南西',
+    cn: '左偏下(西偏南)',
     ko: '8시',
   },
   WNW: {
@@ -104,6 +110,7 @@ const summonDirectionOutputStrings = {
     de: 'WNW',
     fr: 'ONO',
     ja: '西北西',
+    cn: '左偏上(西偏北)',
     ko: '10시',
   },
   NNW: {
@@ -111,6 +118,7 @@ const summonDirectionOutputStrings = {
     de: 'NNW',
     fr: 'NNO',
     ja: '北北西',
+    cn: '上偏左(北偏西)',
     ko: '11시',
   },
   unknown: {
