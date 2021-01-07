@@ -919,7 +919,7 @@ Unused.
 
 ### 21: Network6D (Actor Control Lines)
 
-See also: [nari director update documentation](https://nonowazu.github.io/nari/types/event/directorupdate.html)
+See also: [nari director update documentation](https://xivlogs.github.io/nari/types/event/directorupdate.html)
 
 To control aspects of the user interface, the game sends packets called Actor Controls. These are broken into 3 types: ActorControl, ActorControlSelf, and ActorControlTarget. If ActorControl is global, then ActorControlSelf / ActorControlTarget affects individual actor(s).
 
