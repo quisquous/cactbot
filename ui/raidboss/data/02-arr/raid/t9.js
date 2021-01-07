@@ -3,6 +3,7 @@ import NetRegexes from '../../../../../resources/netregexes.js';
 import Regexes from '../../../../../resources/regexes.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
+import Outputs from '../../../../../resources/outputs.js';
 
 const diveDirections = {
   unknown: {
@@ -13,70 +14,14 @@ const diveDirections = {
     cn: '?',
     ko: '?',
   },
-  north: {
-    en: 'N',
-    de: 'N',
-    fr: 'N',
-    ja: '北',
-    cn: '北',
-    ko: '북',
-  },
-  northeast: {
-    en: 'NE',
-    de: 'NO',
-    fr: 'NE',
-    ja: '北東',
-    cn: '东北',
-    ko: '북동',
-  },
-  east: {
-    en: 'E',
-    de: 'O',
-    fr: 'E',
-    ja: '東',
-    cn: '东',
-    ko: '동',
-  },
-  southeast: {
-    en: 'SE',
-    de: 'SO',
-    fr: 'SE',
-    ja: '東南',
-    cn: '南東',
-    ko: '남동',
-  },
-  south: {
-    en: 'S',
-    de: 'S',
-    fr: 'S',
-    ja: '南',
-    cn: '南',
-    ko: '남',
-  },
-  southwest: {
-    en: 'SW',
-    de: 'SW',
-    fr: 'SO',
-    ja: '南西',
-    cn: '西南',
-    ko: '남서',
-  },
-  west: {
-    en: 'W',
-    de: 'W',
-    fr: 'O',
-    ja: '西',
-    cn: '西',
-    ko: '서',
-  },
-  northwest: {
-    en: 'NW',
-    de: 'NW',
-    fr: 'NO',
-    ja: '北西',
-    cn: '西北',
-    ko: '북서',
-  },
+  north: Outputs.dirN,
+  northeast: Outputs.dirNE,
+  east: Outputs.dirE,
+  southeast: Outputs.dirSE,
+  south: Outputs.dirS,
+  southwest: Outputs.dirSW,
+  west: Outputs.dirW,
+  northwest: Outputs.dirNW,
 };
 
 export default {
