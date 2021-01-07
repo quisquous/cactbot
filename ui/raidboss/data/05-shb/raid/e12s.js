@@ -912,6 +912,7 @@ export default {
       // '0086' is the Yellow tether that buffs "Quicken"
       // '0085' is the Red tether that buffs "Slow"
       netRegex: NetRegexes.tether({ id: '0086' }),
+      condition: (data, matches) => data.phase === 'advanced',
       durationSeconds: 8,
       suppressSeconds: 3,
       infoText: (data, matches, output) => {
