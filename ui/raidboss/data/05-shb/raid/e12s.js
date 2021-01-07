@@ -183,36 +183,42 @@ const intermediateRelativityOutputStrings = {
     de: 'Flare',
     fr: 'Brasier',
     ja: 'フレア',
+    ko: '플레어',
   },
   stack: {
     en: 'Stack',
     de: 'Sammeln',
     fr: 'Packez-vous',
     ja: '頭割り',
+    ko: '쉐어',
   },
   shadoweye: {
     en: 'Gaze',
     de: 'Blick',
     fr: 'Regard',
     ja: 'シャドウアイ',
+    ko: '마안',
   },
   eruption: {
     en: 'Spread',
     de: 'Verteilen',
     fr: 'Dispersez-vous',
     ja: '散開',
+    ko: '산개',
   },
   blizzard: {
     en: 'Ice',
     de: 'Eis',
     fr: 'Glace',
     ja: 'ブリザガ',
+    ko: '블리자가',
   },
   aero: {
     en: 'Aero',
     de: 'Wind',
     fr: 'Vent',
     ja: 'エアロガ',
+    ko: '에어로가',
   },
 };
 
@@ -272,6 +278,7 @@ export default {
             fr: 'Tank buster + Swap',
             ja: 'タンクバスター + スイッチ',
             cn: '死刑 + 换T',
+            ko: '탱버 + 교대',
           },
           formlessBusterOnYOU: {
             en: 'Tank Buster on YOU',
@@ -279,6 +286,7 @@ export default {
             fr: 'Tank buster sur VOUS',
             ja: '自分にタンクバスター',
             cn: '死刑点名',
+            ko: '탱버 대상자',
           },
           // The first round has only one blue.
           titanBlueSingular: {
@@ -286,6 +294,7 @@ export default {
             de: 'Blau - Gewicht',
             fr: 'Poids bleu',
             ja: '青、重圧',
+            ko: '파랑',
           },
           // The second and two rounds of bombs have a partner.
           // The third is technically fixed by role with a standard party (one dps, one !dps),
@@ -295,18 +304,21 @@ export default {
             de: 'Blau (mit ${player})',
             fr: 'Bleu (avec ${player})',
             ja: '青、重圧 (${player}と)',
+            ko: '파랑 (다른 대상자: ${player})',
           },
           titanOrangeStack: {
             en: 'Orange Stack',
             de: 'Orange - versammeln',
             fr: 'Orange, package',
             ja: '橙、頭割り',
+            ko: '주황: 집합',
           },
           titanYellowSpread: {
             en: 'Yellow Spread',
             de: 'Gelb - Verteilen',
             fr: 'Jaune, dispersion',
             ja: '黄、散開',
+            ko: '노랑: 산개',
           },
           // This is sort of redundant, but if folks want to put "square" or something in the text,
           // having these be separate would allow them to configure them separately.
@@ -412,12 +424,14 @@ export default {
             de: 'Tankbuster + Wechsel',
             fr: 'Tank buster + Swap',
             ja: 'タンクバスター + スイッチ',
+            ko: '탱버 + 교대',
           },
           tankBusters: {
             en: 'Tank Busters',
             de: 'Tankbuster',
             fr: 'Tank busters',
             ja: 'タンクバスター',
+            ko: '탱버',
           },
         };
 
@@ -444,6 +458,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58AD', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58AD', capture: false }),
       response: Responses.goLeft('info'),
+      run: (data) => data.isDoorBoss = true,
     },
     {
       id: 'E12S Promise Rapturous Reach Right',
@@ -452,6 +467,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58AE', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58AE', capture: false }),
       response: Responses.goRight('info'),
+      run: (data) => data.isDoorBoss = true,
     },
     {
       id: 'E12S Promise Obliteration',
@@ -461,7 +477,6 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A8', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
-      run: (data) => data.isDoorBoss = true,
     },
     {
       id: 'E12S Promise Junction Shiva',
@@ -703,6 +718,7 @@ export default {
           de: 'Ködern - Weit weg',
           fr: 'Attirez au loin',
           ja: '遠くに誘導',
+          ko: '멀리 유도하기',
         },
         partyUnder: {
           en: 'Get Under',
@@ -781,6 +797,7 @@ export default {
           de: '${effect1} > ${effect2} > ${effect3}',
           fr: '${effect1} > ${effect2} > ${effect3}',
           ja: '${effect1} > ${effect2} > ${effect3}',
+          ko: '${effect1} > ${effect2} > ${effect3}',
         },
       }, intermediateRelativityOutputStrings),
     },
@@ -831,6 +848,7 @@ export default {
           de: 'Wegschauen',
           fr: 'Regardez ailleurs',
           ja: '背中を向け',
+          ko: '뒤돌기',
         },
       },
     },
@@ -848,6 +866,7 @@ export default {
           de: 'Nach draußen schauen',
           fr: 'Regardez vers l\'extérieur',
           ja: '外に向け',
+          ko: '바깥 보기',
         },
       },
     },
@@ -873,6 +892,7 @@ export default {
         hourglass: {
           en: 'Yellow: ${dir}',
           fr: 'Jaune : ${dir}',
+          ko: '노랑: ${dir}',
         },
       },
     },
@@ -892,6 +912,7 @@ export default {
       // '0086' is the Yellow tether that buffs "Quicken"
       // '0085' is the Red tether that buffs "Slow"
       netRegex: NetRegexes.tether({ id: '0086' }),
+      condition: (data, matches) => data.phase === 'advanced',
       durationSeconds: 8,
       suppressSeconds: 3,
       infoText: (data, matches, output) => {
@@ -917,6 +938,7 @@ export default {
         hourglass: {
           en: 'Yellow: ${dir1} / ${dir2}',
           fr: 'Jaune : ${dir1} / ${dir2}',
+          ko: '노랑: ${dir1} / ${dir2}',
         },
       },
     },
