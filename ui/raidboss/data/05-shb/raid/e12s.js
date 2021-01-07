@@ -444,6 +444,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58AD', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58AD', capture: false }),
       response: Responses.goLeft('info'),
+      run: (data) => data.isDoorBoss = true,
     },
     {
       id: 'E12S Promise Rapturous Reach Right',
@@ -452,6 +453,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58AE', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58AE', capture: false }),
       response: Responses.goRight('info'),
+      run: (data) => data.isDoorBoss = true,
     },
     {
       id: 'E12S Promise Obliteration',
@@ -461,7 +463,6 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A8', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
-      run: (data) => data.isDoorBoss = true,
     },
     {
       id: 'E12S Promise Junction Shiva',
