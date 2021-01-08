@@ -55,7 +55,6 @@ module.exports = {
       },
       {
         test: /data[\\\/](?!manifest\.txt).*\.txt$/,
-        // TODO: we could also strip comments and blank lines from timelines
         use: [
           {
             loader: 'raw-loader',
