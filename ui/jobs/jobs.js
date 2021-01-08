@@ -1304,27 +1304,19 @@ class Bars {
     const lang = this.options.ParserLanguage;
     this.countdownStartRegex = LocaleRegex.countdownStart[lang] || LocaleRegex.countdownStart['en'];
     this.countdownCancelRegex = LocaleRegex.countdownCancel[lang] || LocaleRegex.countdownCancel['en'];
-    const craftingStartRegex = LocaleRegex.craftingStart[lang] || LocaleRegex.craftingStart['en'];
-    const trialCraftingStartRegex = LocaleRegex.trialCraftingStart[lang] || LocaleRegex.trialCraftingStart['en'];
-    const craftingFinishRegex = LocaleRegex.craftingFinish[lang] || LocaleRegex.craftingFinish['en'];
-    const trialCraftingFinishRegex = LocaleRegex.trialCraftingFinish[lang] || LocaleRegex.trialCraftingFinish['en'];
-    const craftingFailRegex = LocaleRegex.craftingFail[lang] || LocaleRegex.craftingFail['en'];
-    const craftingCancelRegex = LocaleRegex.craftingCancel[lang] || LocaleRegex.craftingCancel['en'];
-    const trialCraftingFailRegex = LocaleRegex.trialCraftingFail[lang] || LocaleRegex.trialCraftingFail['en'];
-    const trialCraftingCancelRegex = LocaleRegex.trialCraftingCancel[lang] || LocaleRegex.trialCraftingCancel['en'];
     this.craftingStartRegexes = [
-      craftingStartRegex,
-      trialCraftingStartRegex,
+      LocaleRegex.craftingStart[lang] || LocaleRegex.craftingStart['en'],
+      LocaleRegex.trialCraftingStart[lang] || LocaleRegex.trialCraftingStart['en'],
     ];
     this.craftingFinishRegexes = [
-      craftingFinishRegex,
-      trialCraftingFinishRegex,
+      LocaleRegex.craftingFinish[lang] || LocaleRegex.craftingFinish['en'],
+      LocaleRegex.trialCraftingFinish[lang] || LocaleRegex.trialCraftingFinish['en'],
     ];
     this.craftingStopRegexes = [
-      craftingFailRegex,
-      craftingCancelRegex,
-      trialCraftingFailRegex,
-      trialCraftingCancelRegex,
+      LocaleRegex.craftingFail[lang] || LocaleRegex.craftingFail['en'],
+      LocaleRegex.craftingCancel[lang] || LocaleRegex.craftingCancel['en'],
+      LocaleRegex.trialCraftingFail[lang] || LocaleRegex.trialCraftingFail['en'],
+      LocaleRegex.trialCraftingCancel[lang] || LocaleRegex.trialCraftingCancel['en'],
     ];
   }
 
