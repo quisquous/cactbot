@@ -21,11 +21,17 @@ hideall "--sync--"
 81.8 "Rejuvenating Balm" sync /:Cloud Of Darkness:5618:/
 92.3 "--sync--" sync /:Cloud Of Darkness:5627:/
 101.6 "Phaser Unlimited 1" sync /:Cloud Of Darkness:56(1[23]|0[DE]):/ window 4,4
+103.7 "--1--" sync /:Cloud Of Darkness:56(14|0F):/
+105.7 "--2--" sync /:Cloud Of Darkness:561[05]:/
+109.0 "--3--" sync /:Cloud Of Darkness:5B0[01]:/
 112.8 "--sync--" sync /:Cloud Of Darkness:5627:/
 126.2 "Ground-Razing Particle Beam" sync /:Cloud Of Darkness:5625:/
 133.0 "--sync--" sync /:Cloud Of Darkness:5627:/
 144.4 "The Second Art Of Darkness" sync /:Cloud Of Darkness:560[12]:/
 159.5 "Phaser Unlimited 2" sync /:Cloud Of Darkness:56(1[23]|0[DE]):/ window 4,4
+161.6 "--1--" sync /:Cloud Of Darkness:56(14|0F):/
+163.6 "--2--" sync /:Cloud Of Darkness:561[05]:/
+166.9 "--3--" sync /:Cloud Of Darkness:5B0[01]:/
 182.1 "Devouring Dark" sync /:Cloud Of Darkness:5623:/
 189.7 "--sync--" sync /:Cloud Of Darkness:5627:/
 
@@ -52,6 +58,9 @@ hideall "--sync--"
 377.3 "Particle Concentration" sync /:Cloud Of Darkness:5620:/
 387.8 "--sync--" sync /:Cloud Of Darkness:5627:/
 397.3 "Phaser Unlimited 3" sync /:Cloud Of Darkness:56(1[23]|0[DE]):/ window 4,4
+399.4 "--1--" sync /:Cloud Of Darkness:56(14|0F):/
+401.4 "--2--" sync /:Cloud Of Darkness:561[05]:/
+404.7 "--3--" sync /:Cloud Of Darkness:5B0[01]:/
 411.1 "--sync--" sync /:Cloud Of Darkness:5627:/
 418.9 "Ground-Razing Particle Beam" sync /:Cloud Of Darkness:5625:/
 425.2 "--sync--" sync /:Cloud Of Darkness:5627:/
