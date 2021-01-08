@@ -1301,22 +1301,22 @@ class Bars {
     this.isPVPZone = false;
     this.crafting = false;
 
-    const lang = this.options.ParserLanguage;
-    this.countdownStartRegex = LocaleRegex.countdownStart[lang] || LocaleRegex.countdownStart['en'];
-    this.countdownCancelRegex = LocaleRegex.countdownCancel[lang] || LocaleRegex.countdownCancel['en'];
+    const getCurrentRegex = (regexes) => regexes[this.options.ParserLanguage] || regexes['en'];
+    this.countdownStartRegex = getCurrentRegex(LocaleRegex.countdownStart);
+    this.countdownCancelRegex = getCurrentRegex(LocaleRegex.countdownCancel);
     this.craftingStartRegexes = [
-      LocaleRegex.craftingStart[lang] || LocaleRegex.craftingStart['en'],
-      LocaleRegex.trialCraftingStart[lang] || LocaleRegex.trialCraftingStart['en'],
+      getCurrentRegex(LocaleRegex.craftingStart),
+      getCurrentRegex(LocaleRegex.trialCraftingStart),
     ];
     this.craftingFinishRegexes = [
-      LocaleRegex.craftingFinish[lang] || LocaleRegex.craftingFinish['en'],
-      LocaleRegex.trialCraftingFinish[lang] || LocaleRegex.trialCraftingFinish['en'],
+      getCurrentRegex(LocaleRegex.craftingFinish),
+      getCurrentRegex(LocaleRegex.trialCraftingFinish),
     ];
     this.craftingStopRegexes = [
-      LocaleRegex.craftingFail[lang] || LocaleRegex.craftingFail['en'],
-      LocaleRegex.craftingCancel[lang] || LocaleRegex.craftingCancel['en'],
-      LocaleRegex.trialCraftingFail[lang] || LocaleRegex.trialCraftingFail['en'],
-      LocaleRegex.trialCraftingCancel[lang] || LocaleRegex.trialCraftingCancel['en'],
+      getCurrentRegex(LocaleRegex.craftingFail),
+      getCurrentRegex(LocaleRegex.craftingCancel),
+      getCurrentRegex(LocaleRegex.trialCraftingFail),
+      getCurrentRegex(LocaleRegex.trialCraftingCancel),
     ];
   }
 
