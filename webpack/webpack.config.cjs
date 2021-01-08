@@ -56,7 +56,14 @@ module.exports = {
       {
         test: /data[\\\/](?!manifest\.txt).*\.txt$/,
         // TODO: we could also strip comments and blank lines from timelines
-        use: ['raw-loader'],
+        use: [
+          {
+            loader: 'raw-loader',
+          },
+          {
+            loader: './webpack/loaders/timeline-loader.cjs',
+          },
+        ],
       },
     ],
   },
