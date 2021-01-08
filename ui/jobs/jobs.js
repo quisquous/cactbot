@@ -3753,13 +3753,8 @@ class Bars {
     // Hide CP Bar when not crafting
     const container = document.getElementById('jobs-container');
 
-    const anyRegexMatched = (line, array) => {
-      for (const regex of array) {
-        if (regex.test(line))
-          return true;
-      }
-      return false;
-    };
+    const anyRegexMatched = (line, array) =>
+      array.some((regex) => regex.test(line));
 
     if (!this.crafting) {
       if (anyRegexMatched(log, this.craftingStartRegexes))
@@ -3768,15 +3763,10 @@ class Bars {
       if (anyRegexMatched(log, this.craftingStopRegexes)) {
         this.crafting = false;
       } else {
-        for (const regex of this.craftingFinishRegexes) {
+        this.crafting = !this.craftingFinishRegexes.some((regex) => {
           const m = regex.exec(log);
-          if (m) {
-            if (!m.groups.player || m.groups.player === this.me) {
-              this.crafting = false;
-              break;
-            }
-          }
-        }
+          return m && (!m.groups.player || m.groups.player === this.me);
+        });
       }
     }
 
