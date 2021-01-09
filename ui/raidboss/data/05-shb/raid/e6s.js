@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions.js';
 import NetRegexes from '../../../../../resources/netregexes.js';
+import Outputs from '../../../../../resources/outputs.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
@@ -127,38 +128,10 @@ export default {
           cn: '???',
           ko: '???',
         },
-        north: {
-          en: 'north',
-          de: 'nord',
-          fr: 'nord',
-          ja: '北',
-          cn: '北',
-          ko: '북',
-        },
-        south: {
-          en: 'south',
-          de: 'süd',
-          fr: 'sud',
-          ja: '南',
-          cn: '南',
-          ko: '남',
-        },
-        west: {
-          en: 'west',
-          de: 'west',
-          fr: 'ouest',
-          ja: '西',
-          cn: '西',
-          ko: '서',
-        },
-        east: {
-          en: 'east',
-          de: 'ost',
-          fr: 'est',
-          ja: '東',
-          cn: '东',
-          ko: '동',
-        },
+        north: Outputs.north,
+        south: Outputs.south,
+        west: Outputs.west,
+        east: Outputs.east,
       },
     },
     {

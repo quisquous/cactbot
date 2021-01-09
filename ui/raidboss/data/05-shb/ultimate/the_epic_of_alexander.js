@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions.js';
 import NetRegexes from '../../../../../resources/netregexes.js';
+import Outputs from '../../../../../resources/outputs.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
@@ -2930,23 +2931,11 @@ export default {
         return output[data.secondTrineResponse]();
       },
       outputStrings: {
-        north: {
-          en: 'North',
-          de: 'Norden',
-          fr: 'Nord',
-          ja: '北へ',
-          cn: '北',
-          ko: '북쪽으로',
-        },
-        east: {
-          en: 'East',
-          de: 'Osten',
-          fr: 'Est',
-          ja: '東へ',
-          cn: '东',
-          ko: '동쪽으로',
-        },
+        north: Outputs.north,
+        east: Outputs.east,
         south: {
+          // It is a bit different in JA/CN that players should go middle instead of south,
+          // so leave it alone.
           en: 'South',
           de: 'Süden',
           fr: 'Sud',
@@ -2954,14 +2943,7 @@ export default {
           cn: '中间',
           ko: '가운데로',
         },
-        west: {
-          en: 'West',
-          de: 'Westen',
-          fr: 'Ouest',
-          ja: '西へ',
-          cn: '西',
-          ko: '서쪽으로',
-        },
+        west: Outputs.west,
       },
     },
     {
