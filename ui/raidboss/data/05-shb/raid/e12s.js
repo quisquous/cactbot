@@ -662,6 +662,21 @@ export default {
       response: Responses.aoe(),
     },
     {
+      id: 'E12S Relativity Phase',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E[0-3]' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E[0-3]' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E[0-3]' }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E[0-3]' }),
+      run: (data, matches) => {
+        data.phase = {
+          '58E0': 'basic',
+          '58E1': 'intermediate',
+          '58E2': 'advanced',
+          '58E3': 'terminal',
+        }[matches.id];
+      },
+    },
+    {
       id: 'E12S Oracle Basic Relativity',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E0', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E0', capture: false }),
@@ -669,7 +684,6 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E0', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
-      run: (data) => data.phase = 'basic',
     },
     {
       id: 'E12S Oracle Intermediate Relativity',
@@ -679,7 +693,6 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E1', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
-      run: (data) => data.phase = 'intermediate',
     },
     {
       id: 'E12S Oracle Advanced Relativity',
@@ -689,7 +702,6 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E2', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
-      run: (data) => data.phase = 'advanced',
     },
     {
       id: 'E12S Oracle Terminal Relativity',
@@ -699,7 +711,6 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E3', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
-      run: (data) => data.phase = 'terminal',
     },
     {
       id: 'E12S Oracle Darkest Dance',
