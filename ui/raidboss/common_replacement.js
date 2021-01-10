@@ -23,6 +23,8 @@ const textKeys = {
   Tank: '(?<= \\(|\\/)Tanks?(?=\\)|\\/)',
   Healer: '(?<= \\(|\\/)Healers?(?=\\)|\\/)',
   DPS: '(?<= \\(|\\/)DPS(?=\\)|\\/)',
+  // Match `--1--` style text.
+  Number: '--(\\s*\\d+\\s*)--',
 };
 
 export const commonReplacement = {
@@ -296,6 +298,13 @@ export const commonReplacement = {
       ja: 'DPS',
       cn: 'DPS',
       ko: '딜러',
+    },
+    [textKeys.Number]: {
+      de: '--$1--',
+      fr: '--$1--',
+      ja: '--$1--',
+      cn: '--$1--',
+      ko: '--$1--',
     },
   },
 };

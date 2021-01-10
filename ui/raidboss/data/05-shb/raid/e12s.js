@@ -936,9 +936,6 @@ export default {
         'Sorrow\'s Hourglass': 'Sanduhr der Sorge',
       },
       'replaceText': {
-        '--1--': '--1--',
-        '--2--': '--2--',
-        '--3--': '--3--',
         'Advanced Relativity': 'Fortgeschrittene Relativität',
         '(?<!(Singular|Dual|Triple) )Apocalypse': 'Apokalypse',
         'Basic Relativity': 'Grundlegende Relativität',
@@ -1014,9 +1011,6 @@ export default {
         'Sorrow\'s Hourglass': 'sablier de chagrin',
       },
       'replaceText': {
-        '--1--': '--1--',
-        '--2--': '--2--',
-        '--3--': '--3--',
         'Advanced Relativity': 'Relativité avancée',
         '(?<!(Singular|Dual|Triple) )Apocalypse': 'Apocalypse',
         'Basic Relativity': 'Relativité basique',
@@ -1092,9 +1086,6 @@ export default {
         'Sorrow\'s Hourglass': '悲しみの砂時計',
       },
       'replaceText': {
-        '--1--': '--1--',
-        '--2--': '--2--',
-        '--3--': '--3--',
         'Advanced Relativity': '時間圧縮・急',
         '(?<!(Singular|Dual|Triple) )Apocalypse': 'アポカリプス',
         'Basic Relativity': '時間圧縮・序',
