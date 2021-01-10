@@ -1301,30 +1301,22 @@ class Bars {
     this.isPVPZone = false;
     this.crafting = false;
 
-    const lang = this.options.ParserLanguage;
-    this.countdownStartRegex = LocaleRegex.countdownStart[lang] || LocaleRegex.countdownStart['en'];
-    this.countdownCancelRegex = LocaleRegex.countdownCancel[lang] || LocaleRegex.countdownCancel['en'];
-    const craftingStartRegex = LocaleRegex.craftingStart[lang] || LocaleRegex.craftingStart['en'];
-    const trialCraftingStartRegex = LocaleRegex.trialCraftingStart[lang] || LocaleRegex.trialCraftingStart['en'];
-    const craftingFinishRegex = LocaleRegex.craftingFinish[lang] || LocaleRegex.craftingFinish['en'];
-    const trialCraftingFinishRegex = LocaleRegex.trialCraftingFinish[lang] || LocaleRegex.trialCraftingFinish['en'];
-    const craftingFailRegex = LocaleRegex.craftingFail[lang] || LocaleRegex.craftingFail['en'];
-    const craftingCancelRegex = LocaleRegex.craftingCancel[lang] || LocaleRegex.craftingCancel['en'];
-    const trialCraftingFailRegex = LocaleRegex.trialCraftingFail[lang] || LocaleRegex.trialCraftingFail['en'];
-    const trialCraftingCancelRegex = LocaleRegex.trialCraftingCancel[lang] || LocaleRegex.trialCraftingCancel['en'];
+    const getCurrentRegex = (regexes) => regexes[this.options.ParserLanguage] || regexes['en'];
+    this.countdownStartRegex = getCurrentRegex(LocaleRegex.countdownStart);
+    this.countdownCancelRegex = getCurrentRegex(LocaleRegex.countdownCancel);
     this.craftingStartRegexes = [
-      craftingStartRegex,
-      trialCraftingStartRegex,
+      getCurrentRegex(LocaleRegex.craftingStart),
+      getCurrentRegex(LocaleRegex.trialCraftingStart),
     ];
     this.craftingFinishRegexes = [
-      craftingFinishRegex,
-      trialCraftingFinishRegex,
+      getCurrentRegex(LocaleRegex.craftingFinish),
+      getCurrentRegex(LocaleRegex.trialCraftingFinish),
     ];
     this.craftingStopRegexes = [
-      craftingFailRegex,
-      craftingCancelRegex,
-      trialCraftingFailRegex,
-      trialCraftingCancelRegex,
+      getCurrentRegex(LocaleRegex.craftingFail),
+      getCurrentRegex(LocaleRegex.craftingCancel),
+      getCurrentRegex(LocaleRegex.trialCraftingFail),
+      getCurrentRegex(LocaleRegex.trialCraftingCancel),
     ];
   }
 
@@ -3753,13 +3745,8 @@ class Bars {
     // Hide CP Bar when not crafting
     const container = document.getElementById('jobs-container');
 
-    const anyRegexMatched = (line, array) => {
-      for (const regex of array) {
-        if (regex.test(line))
-          return true;
-      }
-      return false;
-    };
+    const anyRegexMatched = (line, array) =>
+      array.some((regex) => regex.test(line));
 
     if (!this.crafting) {
       if (anyRegexMatched(log, this.craftingStartRegexes))
@@ -3768,15 +3755,10 @@ class Bars {
       if (anyRegexMatched(log, this.craftingStopRegexes)) {
         this.crafting = false;
       } else {
-        for (const regex of this.craftingFinishRegexes) {
+        this.crafting = !this.craftingFinishRegexes.some((regex) => {
           const m = regex.exec(log);
-          if (m) {
-            if (!m.groups.player || m.groups.player === this.me) {
-              this.crafting = false;
-              break;
-            }
-          }
-        }
+          return m && (!m.groups.player || m.groups.player === this.me);
+        });
       }
     }
 
