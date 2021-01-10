@@ -5,7 +5,7 @@
 [![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/quisquous/cactbot/Test/main)](https://github.com/quisquous/cactbot/actions?query=workflow%3ATest+branch%3Amain)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/quisquous/cactbot?color=brightgreen&sort=semver)](https://github.com/quisquous/cactbot/releases/latest)
 
-🌎 [[English](../../README.md)] [**한국어**]
+🌎 [[English](../../README.md)] [[简体中文](../zh-CN/README.md)] [**한국어**]
 
 1. [정보](#정보)
 1. [설치하기](#설치하기)
