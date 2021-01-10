@@ -1,13 +1,14 @@
 'use strict';
 
+const commentRegex = /(?:^(?:[^"]*)#.*$|(?<=^[^"]*"[^"]*".*)#.*$)/i;
+
 module.exports = function(content, map, meta) {
   let ret = '';
 
   content.split(/\r?\n/).forEach((_line) => {
-    let line = _line.trim();
-    if (!line || line.startsWith('#'))
+    const line = _line.replace(commentRegex, '').trim();
+    if (!line)
       return;
-    line = line.replace(/#.*$/, '').trim();
     ret += line + '\r\n';
   });
 
