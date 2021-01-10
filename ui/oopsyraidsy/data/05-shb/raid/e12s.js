@@ -71,7 +71,7 @@ export default {
         return matches.target !== data.pillarIdToOwner[matches.sourceId];
       },
       mistake: (e, data, matches) => {
-        const pillarOwner = data.pillarIdToOwner[matches.sourceId];
+        const pillarOwner = data.ShortName(data.pillarIdToOwner[matches.sourceId]);
         return {
           type: 'fail',
           blame: matches.target,
@@ -159,17 +159,18 @@ export default {
         const hasFireDebuff = data.fire && data.fire.includes(matches.target);
 
         if (hasSmallLion || hasFireDebuff) {
+          const ownerNick = data.ShortName(owner);
           return {
             type: 'fail',
             blame: owner,
             name: matches.target,
             text: {
-              en: `${matches.ability} (from ${owner})`,
-              de: `${matches.ability} (von ${owner})`,
-              fr: `${matches.ability} (de ${owner})`,
-              ja: `${matches.ability} (${owner}から)`,
-              cn: `${matches.ability} (来自${owner})`,
-              ko: `${matches.ability} (from ${owner})`,
+              en: `${matches.ability} (from ${ownerNick})`,
+              de: `${matches.ability} (von ${ownerNick})`,
+              fr: `${matches.ability} (de ${ownerNick})`,
+              ja: `${matches.ability} (${ownerNick}から)`,
+              cn: `${matches.ability} (来自${ownerNick})`,
+              ko: `${matches.ability} (from ${ownerNick})`,
             },
           };
         }
