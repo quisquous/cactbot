@@ -9,6 +9,22 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // TODO: Dark Aero III 58D4 should not be a share except on advanced relativity for double aero.
 // (for gains effect, single aero = ~23 seconds, double aero = ~31 seconds duration)
 
+// Due to changes introduced in patch 5.2, overhead markers now have a random offset
+// added to their ID. This offset currently appears to be set per instance, so
+// we can determine what it is from the first overhead marker we see.
+// The first 1B marker in the encounter is the formless tankbuster, ID 004F.
+const firstHeadmarker = parseInt('00DA', 16);
+const getHeadmarkerId = (data, matches) => {
+  // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 00DA.
+  // (This makes the offset 0, and !0 is true.)
+  if (typeof data.decOffset === 'undefined')
+    data.decOffset = parseInt(matches.id, 16) - firstHeadmarker;
+  // The leading zeroes are stripped when converting back to string, so we re-add them here.
+  // Fortunately, we don't have to worry about whether or not this is robust,
+  // since we know all the IDs that will be present in the encounter.
+  return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
+};
+
 export default {
   zoneId: ZoneId.EdensPromiseEternitySavage,
   damageWarn: {
@@ -36,7 +52,6 @@ export default {
   shareFail: {
     'E12S Promise Weight Of The World': '58A5', // Titan bomb blue marker
     'E12S Promise Pulse Of The Land': '58A3', // Titan bomb yellow marker
-    'E12S Promise Blade Of Flame': '58B3', // Classic Sculpture laser
     'E12S Oracle Dark Eruption 1': '58CE', // Initial warmup spread mechanic
     'E12S Oracle Dark Eruption 2': '58CD', // Relativity spread mechanic
     'E12S Oracle Black Halo': '58C7', // Tankbuster cleave
@@ -53,6 +68,123 @@ export default {
       condition: (e) => e.damage > 0,
       mistake: (e, data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
+      },
+    },
+    {
+      id: 'E12S Headmarker',
+      netRegex: NetRegexes.headMarker({}),
+      run: (e, data, matches) => {
+        const id = getHeadmarkerId(data, matches);
+        const firstLaserMarker = '0091';
+        const lastLaserMarker = '0098';
+        if (id >= firstLaserMarker && id <= lastLaserMarker) {
+          // ids are sequential: #1 square, #2 square, #3 square, #4 square, #1 triangle etc
+          const decOffset = parseInt(id, 16) - parseInt(firstLaserMarker, 16);
+
+          // decOffset is 0-7, so map 0-3 to 1-4 and 4-7 to 1-4.
+          data.laserNameToNum = data.laserNameToNum || {};
+          data.laserNameToNum[matches.target] = decOffset % 4 + 1;
+        }
+      },
+    },
+    {
+      // These sculptures are added at the start of the fight, so we need to check where they
+      // use the "Classical Sculpture" ability and end up on the arena for real.
+      id: 'E12S Promise Chiseled Sculpture Classical Sculpture',
+      netRegex: NetRegexes.abilityFull({ source: 'Chiseled Sculpture', id: '58B2' }),
+      run: (e, data, matches) => {
+        // This will run per person that gets hit by the same sculpture, but that's fine.
+        // Record the y position of each sculpture so we can use it for better text later.
+        data.sculptureYPositions = data.sculptureYPositions || [];
+        data.sculptureYPositions[matches.sourceId.toUpperCase()] = parseFloat(matches.y);
+      },
+    },
+    {
+      // The source of the tether is the player, the target is the sculpture.
+      id: 'E12S Promise Chiseled Sculpture Tether',
+      netRegex: NetRegexes.tether({ target: 'Chiseled Sculpture', id: tetherIds }),
+      run: (e, data, matches) => {
+        data.sculptureTetherNameToId = data.sculptureTetherNameToId || {};
+        data.sculptureTetherNameToId[matches.target] = matches.sourceId.toUpperCase();
+      },
+    },
+    {
+      id: 'E12S Promise Blade Of Flame Counter',
+      netRegex: NetRegexes.ability({ source: 'Chiseled Sculpture', id: '58B3' }),
+      // TODO: ok we *really* need suppressSeconds for this to work.
+      suppressSeconds: 1,
+      run: (e, data, matches) => {
+        data.bladeOfFlameCount = data.bladeOfFlameCount || 0;
+        data.bladeOfFlameCount++;
+      },
+    },
+    {
+      // This is the Chiseled Sculpture laser with the limit cut dots.
+      id: 'E12S Promise Blade Of Flame',
+      netRegex: NetRegexes.ability({ source: 'Chiseled Sculpture', id: '58B3' }),
+      mistake: (e, data, matches) => {
+        if (!laserNameToNum || !sculptureTetherNameToId || !data.sculptureYPositions)
+          return;
+
+        // Hitting only one person is just fine.
+        if (e.type === '15')
+          return;
+
+        // Find the person who has this laser number and is tethered to this statue.
+        const number = (data.bladeOfFlameCount || 0) + 1;
+        const sourceId = matches.sourceId.toUpperCase();
+        const names = Object.keys(data.laserNameToNum);
+        const withNum = names.filter((name) => data.laserNameToNum[name] === number);
+        const owners = withNum.filter((name) => data.sculptureTetherNameToId[name] === sourceId);
+
+        // if some logic error, just abort.
+        if (owners.length !== 1)
+          return;
+
+        // The owner hitting themselves isn't a mistake...technically.
+        if (owners[0] === matches.target)
+          return;
+
+        // Now try to figure out which statue is which.
+        // People can put these wherever.  They could go sideways, or diagonal, or whatever.
+        // It seems mooooost people put these north / south (on the south edge of the arena).
+        // Let's say a minimum of 10 yalms apart in the y direction to consider them "north/south".
+        const minimumYalmsForStatues = 10;
+
+        let isStatuePositionKnown = false;
+        let isStatueNorth = false;
+        const sculptureIds = Object.keys(data.sculptureYPositions);
+        if (sculptureIds.length === 2 && data.sculptureYPositions.includes[sourceId]) {
+          const otherId = sculptureIds[0] === sourceId ? sculptureIds[1] : sculptureIds[0];
+          const sourceY = data.sculptureYPositions[sourceId];
+          const otherY = data.sculptureYPositions[otherId];
+          const yDiff = Math.abs(sourceY - otherY);
+          if (yDiff > minimumYalmsForStatues) {
+            isStatuePositionKnown = true;
+            isStatueNorth = sourceY < otherY;
+          }
+        }
+
+        const owner = data.ShortName(owner);
+        let text = {
+          en: `${matches.ability} (from ${owner}, #${number})`,
+        };
+        if (isStatuePositionKnown && isStatueNorth) {
+          text = {
+            en: `${matches.ability} (from ${owner}, #${number} north statue)`,
+          };
+        } else if (isStatuePositionKnown && !isStatueNorth) {
+          text = {
+            en: `${matches.ability} (from ${owner}, #${number} south statue)`,
+          };
+        }
+
+        return {
+          type: 'fail',
+          name: matches.target,
+          blame: owner,
+          text: text,
+        };
       },
     },
     {
