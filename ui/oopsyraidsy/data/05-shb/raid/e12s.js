@@ -4,8 +4,6 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // TODO: add separate damageWarn-esque icon for damage downs?
 // TODO: 58A6 Under The Weight / 58B2 Classical Sculpture missing somebody in party warning?
 // TODO: figure out what classical sculpture number you are and say if you took the wrong laser?
-// TODO: small lion 58B9 can hit non tethered people, but warn if hitting other tethers?
-// TODO: warn if small lion 58B9 hits folks who already have fire debuff
 // TODO: 58CA Dark Water III / 58C5 Shell Crusher should hit everyone in party
 // TODO: Dark Aero III 58D4 should not be a share except on advanced relativity for double aero.
 // (for gains effect, single aero = ~23 seconds, double aero = ~31 seconds duration)
@@ -38,7 +36,6 @@ export default {
     'E12S Promise Weight Of The World': '58A5', // Titan bomb blue marker
     'E12S Promise Pulse Of The Land': '58A3', // Titan bomb yellow marker
     'E12S Promise Blade Of Flame': '58B3', // Classic Sculpture laser
-    'E12S Promise Kingsblaze': '4F9E', // Big lion breath
     'E12S Oracle Dark Eruption 1': '58CE', // Initial warmup spread mechanic
     'E12S Oracle Dark Eruption 2': '58CD', // Relativity spread mechanic
     'E12S Oracle Black Halo': '58C7', // Tankbuster cleave
@@ -106,6 +103,116 @@ export default {
             cn: `${matches.ability} (单吃)`,
             ko: `${matches.ability} (혼자 맞음)`,
           },
+        };
+      },
+    },
+    {
+      id: 'E12S Promise Gain Fire Resistance Down II',
+      // The Beastly Sculpture gives a 3 second debuff, the Regal Sculpture gives a 14s one.
+      netRegex: NetRegexes.gainsEffect({ effectId: '832' }),
+      run: (e, data, matches) => {
+        data.fire = data.fire || {};
+        data.fire[matches.target] = true;
+      },
+    },
+    {
+      id: 'E12S Promise Lose Fire Resistance Down II',
+      netRegex: NetRegexes.losesEffect({ effectId: '832' }),
+      run: (e, data, matches) => {
+        data.fire = data.fire || {};
+        data.fire[matches.target] = false;
+      },
+    },
+    {
+      id: 'E12S Promise Small Lion Tether',
+      netRegex: NetRegexes.tether({ source: 'Beastly Sculpture', id: '0011' }),
+      netRegexDe: NetRegexes.tether({ source: 'Abbild Eines Löwen', id: '0011' }),
+      netRegexFr: NetRegexes.tether({ source: 'Création Léonine', id: '0011' }),
+      netRegexJa: NetRegexes.tether({ source: '創られた獅子', id: '0011' }),
+      run: (e, data, matches) => {
+        data.smallLionIdToOwner = data.smallLionIdToOwner || {};
+        data.smallLionIdToOwner[matches.sourceId.toUpperCase()] = matches.target;
+        data.smallLionOwners = data.smallLionOwners || [];
+        data.smallLionOwners.push(matches.target);
+      },
+    },
+    {
+      id: 'E12S Promise Small Lion Lionsblaze',
+      netRegex: NetRegexes.ability({ source: 'Beastly Sculpture', id: '58B9' }),
+      netRegexDe: NetRegexes.ability({ source: 'Abbild Eines Löwen', id: '58B9' }),
+      netRegexFr: NetRegexes.ability({ source: 'Création Léonine', id: '58B9' }),
+      netRegexJa: NetRegexes.ability({ source: '創られた獅子', id: '58B9' }),
+      mistake: (e, data, matches) => {
+        // Folks baiting the big lion second can take the first small lion hit,
+        // so it's not sufficient to check only the owner.
+        if (!data.smallLionOwners)
+          return;
+        const owner = data.smallLionOwners[matches.sourceId.toUpperCase()];
+        if (!owner)
+          return;
+        if (matches.target === owner)
+          return;
+
+        // If the target also has a small lion tether, that is always a mistake.
+        // Otherwise, it's only a mistake if the target has a fire debuff.
+        const hasSmallLion = data.smallLionOwners.includes(matches.target);
+        const hasFireDebuff = data.fire && data.fire.includes(matches.target);
+
+        if (hasSmallLion || hasFireDebuff) {
+          return {
+            type: 'fail',
+            blame: owner,
+            name: matches.target,
+            text: {
+              en: `${matches.ability} (from ${owner})`,
+              de: `${matches.ability} (von ${owner})`,
+              fr: `${matches.ability} (de ${owner})`,
+              ja: `${matches.ability} (${owner}から)`,
+              cn: `${matches.ability} (来自${owner})`,
+              ko: `${matches.ability} (from ${owner})`,
+            },
+          };
+        }
+      },
+    },
+    {
+      id: 'E12S Promise North Big Lion',
+      netRegex: NetRegexes.addedCombatantFull({ name: 'Regal Sculpture' }),
+      run: (e, data, matches) => {
+        const y = parseFloat(matches.y);
+        const centerY = 75;
+        if (y < centerY)
+          data.northBigLion = matches.sourceId.toUpperCase();
+      },
+    },
+    {
+      id: 'E12S Promise Big Lion Kingsblaze',
+      netRegex: NetRegexes.ability({ source: 'Regal Sculpture', id: '4F9E' }),
+      mistake: (e, data, matches) => {
+        const singleTarget = e.type === '15';
+        const hasFireDebuff = data.fire && data.fire.includes(matches.target);
+
+        // Success iff only one person takes it and they have no fire debuff.
+        if (singleTarget && !hasFireDebuff)
+          return;
+
+        let text = matches.ability;
+        if (data.northBigLion) {
+          if (data.northBigLion === matches.sourceId) {
+            text = {
+              en: `${matches.ability} (north big lion)`,
+            };
+          } else {
+            text = {
+              en: `${matches.ability} (south big lion)`,
+            };
+          }
+        }
+
+        return {
+          type: 'fail',
+          name: matches.target,
+          text: text,
         };
       },
     },
