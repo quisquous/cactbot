@@ -165,17 +165,17 @@ export default {
           }
         }
 
-        const owner = data.ShortName(owner);
+        const ownerNick = data.ShortName(owner);
         let text = {
-          en: `${matches.ability} (from ${owner}, #${number})`,
+          en: `${matches.ability} (from ${ownerNick}, #${number})`,
         };
         if (isStatuePositionKnown && isStatueNorth) {
           text = {
-            en: `${matches.ability} (from ${owner}, #${number} north statue)`,
+            en: `${matches.ability} (from ${ownerNick}, #${number} north statue)`,
           };
         } else if (isStatuePositionKnown && !isStatueNorth) {
           text = {
-            en: `${matches.ability} (from ${owner}, #${number} south statue)`,
+            en: `${matches.ability} (from ${ownerNick}, #${number} south statue)`,
           };
         }
 
