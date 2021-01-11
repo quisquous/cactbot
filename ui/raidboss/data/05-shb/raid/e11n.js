@@ -184,7 +184,7 @@ export default {
           en: 'Dodge Lightning First -> Rotate For Fire',
           de: 'Weiche zuerst Blitz aus -> Rotiere für Feuer',
           fr: 'Évitez l\'éclair d\'abord -> Tournez pour le Feu',
-          ja: '雷に避け -> 炎 準備',
+          ja: '雷を避ける -> 炎 準備',
           cn: '躲雷 -> 火击退',
           ko: '번개 먼저 피하고 -> 회전해서 화염 피하기',
         },
