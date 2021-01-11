@@ -18,9 +18,9 @@ const bunnyLabel = {
 
 const Options = {
   Debug: false,
-  PopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
-  BunnyPopSound: '../../resources/sounds/WeakAuras/WaterDrop.ogg',
-  CriticalPopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
+  PopSound: '../../resources/sounds/freesound/sonar.ogg',
+  BunnyPopSound: '../../resources/sounds/freesound/water_drop.ogg',
+  CriticalPopSound: '../../resources/sounds/freesound/sonar.ogg',
   timeStrings: {
     weatherFor: {
       en: (nowMs, stopTime) => {

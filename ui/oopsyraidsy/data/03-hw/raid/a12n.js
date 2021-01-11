@@ -35,6 +35,7 @@ export default {
           blame: matches.target,
           text: {
             en: 'Didn\'t Spread!',
+            de: 'Nicht verteilt!',
             fr: 'Ne s\'est pas dispersé(e) !',
             ja: '散開しなかった!',
             cn: '没有散开!',

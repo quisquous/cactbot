@@ -82,6 +82,7 @@ export default {
           fr: 'Geôle sur VOUS',
           ja: '自分にジェイル',
           cn: '石牢点名',
+          ko: '돌감옥 대상자',
         },
         jails: {
           en: 'Jails',

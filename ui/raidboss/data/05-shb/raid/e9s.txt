@@ -13,27 +13,27 @@ hideall "--sync--"
 27.1 "The Art Of Darkness (P/S)" sync /:Cloud Of Darkness:5B4[56]:/
 36.8 "The Art Of Darkness (P/S)" sync /:Cloud Of Darkness:5B4[56]:/
 47.5 "Devouring Dark" sync /:Cloud Of Darkness:5623:/
-55.6 "--sync--" sync /:Cloud Of Darkness:5627:/
 
 ## Woods
 63.1 "Obscure Woods" sync /:Cloud Of Darkness:55EE:/
 74.3 "Flood Of Obscurity" sync /:Cloud Of Darkness:5907:/
 81.8 "Rejuvenating Balm" sync /:Cloud Of Darkness:5618:/
-92.3 "--sync--" sync /:Cloud Of Darkness:5627:/
 101.6 "Phaser Unlimited 1" sync /:Cloud Of Darkness:56(1[23]|0[DE]):/ window 4,4
-112.8 "--sync--" sync /:Cloud Of Darkness:5627:/
+103.7 "--1--" sync /:Cloud Of Darkness:56(14|0F):/
+105.7 "--2--" sync /:Cloud Of Darkness:561[05]:/
+109.0 "--3--" sync /:Cloud Of Darkness:5B0[01]:/
 126.2 "Ground-Razing Particle Beam" sync /:Cloud Of Darkness:5625:/
-133.0 "--sync--" sync /:Cloud Of Darkness:5627:/
 144.4 "The Second Art Of Darkness" sync /:Cloud Of Darkness:560[12]:/
 159.5 "Phaser Unlimited 2" sync /:Cloud Of Darkness:56(1[23]|0[DE]):/ window 4,4
+161.6 "--1--" sync /:Cloud Of Darkness:56(14|0F):/
+163.6 "--2--" sync /:Cloud Of Darkness:561[05]:/
+166.9 "--3--" sync /:Cloud Of Darkness:5B0[01]:/
 182.1 "Devouring Dark" sync /:Cloud Of Darkness:5623:/
-189.7 "--sync--" sync /:Cloud Of Darkness:5627:/
 
 ## Tiles
 197.7 "Empty Plane" sync /:Cloud Of Darkness:55EF:/
 208.9 "Flood Of Emptiness" sync /:Cloud Of Darkness:55F0:/
 216.0 "Hypercharged Condensation" sync /:Cloud Of Darkness:560C:/
-223.5 "--sync--" sync /:Cloud Of Darkness:5627:/
 231.2 "Full-Perimeter Particle Beam" sync /:Cloud Of Darkness:5629:/
 248.5 "The Art Of Darkness (L/R)" sync /:Cloud Of Darkness:5A9[56]:/
 264.3 "The Art Of Darkness (P/S)" sync /:Cloud Of Darkness:55F[BE]:/
@@ -43,34 +43,27 @@ hideall "--sync--"
 285.9 "Summon" sync /:Cloud Of Darkness:5019:/
 301.2 "The Art Of Darkness (L/R)" sync /:Cloud Of Darkness:5A9[56]:/
 314.8 "Devouring Dark" sync /:Cloud Of Darkness:5623:/
-322.3 "--sync--" sync /:Cloud Of Darkness:5627:/
 337.4 "The Third Art Of Darkness" sync /:Cloud Of Darkness:560[34]:/
 
 ## Woods
 358.0 "Obscure Woods" sync /:Cloud Of Darkness:55EE:/
 369.2 "Flood Of Obscurity" sync /:Cloud Of Darkness:5907:/
 377.3 "Particle Concentration" sync /:Cloud Of Darkness:5620:/
-387.8 "--sync--" sync /:Cloud Of Darkness:5627:/
 397.3 "Phaser Unlimited 3" sync /:Cloud Of Darkness:56(1[23]|0[DE]):/ window 4,4
-411.1 "--sync--" sync /:Cloud Of Darkness:5627:/
+399.4 "--1--" sync /:Cloud Of Darkness:56(14|0F):/
+401.4 "--2--" sync /:Cloud Of Darkness:561[05]:/
+404.7 "--3--" sync /:Cloud Of Darkness:5B0[01]:/
 418.9 "Ground-Razing Particle Beam" sync /:Cloud Of Darkness:5625:/
-425.2 "--sync--" sync /:Cloud Of Darkness:5627:/
 433.0 "Rejuvenating Balm" sync /:Cloud Of Darkness:5618:/
 444.6 "The Second Art Of Darkness" sync /:Cloud Of Darkness:560[12]:/
-452.6 "--sync--" sync /:Cloud Of Darkness:5627:/
 461.3 "Devouring Dark" sync /:Cloud Of Darkness:5623:/
-468.7 "--sync--" sync /:Cloud Of Darkness:5627:/
 
 ## Tiles
 476.7 "Empty Plane" sync /:Cloud Of Darkness:55EF:/
-482.2 "--sync--" sync /:Cloud Of Darkness:5627:/
 487.9 "Flood Of Emptiness" sync /:Cloud Of Darkness:55F0:/
-490.2 "--sync--" sync /:Cloud Of Darkness:5627:/
 495.0 "Hypercharged Condensation" sync /:Cloud Of Darkness:560C:/
-502.3 "--sync--" sync /:Cloud Of Darkness:5627:/
 510.2 "Full-Perimeter Particle Beam" sync /:Cloud Of Darkness:5629:/
 527.5 "The Art Of Darkness (L/R)" sync /:Cloud Of Darkness:5A9[56]:/
-531.2 "--sync--" sync /:Cloud Of Darkness:5627:/
 543.3 "The Art Of Darkness (P/S)" sync /:Cloud Of Darkness:55F[BE]:/
 564.2 "The Art Of Darkness (L/R)" sync /:Cloud Of Darkness:5A9[56]:/
 580.0 "The Art Of Darkness (P/S)" sync /:Cloud Of Darkness:55F[BE]:/

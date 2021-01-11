@@ -206,8 +206,6 @@ export default {
         data.phase = 'alpha';
         data.alphaCount = (data.alphaCount || 0) + 1;
 
-        // Common setup.
-        data.dieDieDieSound = '../../resources/sounds/Overwatch/Reaper_-_Die_die_die.ogg';
         // TODO: should have options for this.
         data.dieOnLaser = 1;
         data.shouldDieOnLaser = function() {
@@ -336,10 +334,6 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '240E', source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '240E', source: '네오 엑스데스', capture: false }),
       durationSeconds: 6,
-      sound: function(data) {
-        if (data.shouldDieOnLaser())
-          return data.dieDieDieSound;
-      },
       alarmText: function(data, _, output) {
         if (data.shouldDieOnLaser())
           return output.dieOnInside();
@@ -394,10 +388,6 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '240F', source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '240F', source: '네오 엑스데스', capture: false }),
       durationSeconds: 6,
-      sound: function(data) {
-        if (data.shouldDieOnLaser())
-          return data.dieDieDieSound;
-      },
       alarmText: function(data, _, output) {
         if (data.shouldDieOnLaser())
           return output.dieOnOutside();
@@ -452,10 +442,6 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '2411', source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2411', source: '네오 엑스데스', capture: false }),
       durationSeconds: 6,
-      sound: function(data) {
-        if (data.shouldDieOnLaser())
-          return data.dieDieDieSound;
-      },
       alarmText: function(data, _, output) {
         if (!data.shouldDieOnLaser())
           return;
@@ -540,10 +526,6 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '2412', source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2412', source: '네오 엑스데스', capture: false }),
       durationSeconds: 6,
-      sound: function(data) {
-        if (data.shouldDieOnLaser())
-          return data.dieDieDieSound;
-      },
       alarmText: function(data, _, output) {
         if (!data.shouldDieOnLaser())
           return;

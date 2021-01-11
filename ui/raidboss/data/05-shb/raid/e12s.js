@@ -50,6 +50,7 @@ const primalOutputStrings = {
   '0091': {
     en: 'Intercards',
     de: 'Interkardinale Himmelsrichtungen',
+    fr: 'Intercardinal',
     ja: '斜め',
     cn: '四角',
     ko: '대각',
@@ -58,6 +59,7 @@ const primalOutputStrings = {
   '008E008F': {
     en: 'Under + Sides',
     de: 'Runter + Seiten',
+    fr: 'En dessous + côtés',
     ja: '真ん中 + 横へ',
     cn: '正中间两侧',
     ko: '보스 아래 + 양옆',
@@ -65,6 +67,7 @@ const primalOutputStrings = {
   '008E0090': {
     en: 'North/South + Out',
     de: 'Norden/Süden + Raus',
+    fr: 'Nord/Sud + Extérieur',
     ja: '北/南 + 外へ',
     cn: '南北远离',
     ko: '북/남 + 바깥',
@@ -72,6 +75,7 @@ const primalOutputStrings = {
   '008E0091': {
     en: 'Under + Intercards',
     de: 'Runter + Interkardinale Himmerlsrichtungen',
+    fr: 'En dessous + Intercardinal',
     ja: '真ん中 + 斜め',
     cn: '正中间四角',
     ko: '보스 아래 + 대각',
@@ -80,6 +84,7 @@ const primalOutputStrings = {
   'combined': {
     en: '${safespot1} + ${safespot2}',
     de: '${safespot1} + ${safespot2}',
+    fr: '${safespot1} + ${safespot2}',
     ja: '${safespot1} + ${safespot2}',
     cn: '${safespot1} + ${safespot2}',
     ko: '${safespot1} + ${safespot2}',
@@ -87,6 +92,7 @@ const primalOutputStrings = {
   'stock': {
     en: 'Stock: ${text}',
     de: 'Sammeln: ${text}',
+    fr: 'Stocker : ${text}',
     ja: 'ストック: ${text}',
     cn: '暂存: ${text}',
     ko: '저장: ${text}',
@@ -94,6 +100,7 @@ const primalOutputStrings = {
   'junctionSuffix': {
     en: '${text} (${junction})',
     de: '${text} (${junction})',
+    fr: '${text} (${junction})',
     ja: '${text} (${junction})',
     cn: '${text} (${junction})',
     ko: '${text} (${junction})',
@@ -103,6 +110,7 @@ const primalOutputStrings = {
     // Shiva spread.
     en: 'spread',
     de: 'verteilen',
+    fr: 'dispersion',
     ja: '散開',
     cn: '散开',
     ko: '산개',
@@ -111,6 +119,7 @@ const primalOutputStrings = {
     // Titan healer stacks.
     en: 'stacks',
     de: 'sammeln',
+    fr: 'packages',
     ja: 'ヒラ頭割り',
     cn: '治疗分摊',
     ko: '쉐어',
@@ -120,6 +129,7 @@ const primalOutputStrings = {
     // This is deliberately "stack" singular (vs Titan "stacks").
     en: 'group stack',
     de: 'In Gruppen sammeln',
+    fr: 'package en groupe',
     ja: '頭割り',
     cn: '集合',
     ko: '그룹 쉐어',
@@ -170,22 +180,84 @@ const effectIdToOutputStringKey = {
 const intermediateRelativityOutputStrings = {
   flare: {
     en: 'Flare',
+    de: 'Flare',
+    fr: 'Brasier',
+    ja: 'フレア',
+    ko: '플레어',
   },
   stack: {
     en: 'Stack',
+    de: 'Sammeln',
+    fr: 'Packez-vous',
+    ja: '頭割り',
+    ko: '쉐어',
   },
   shadoweye: {
     en: 'Gaze',
+    de: 'Blick',
+    fr: 'Regard',
+    ja: 'シャドウアイ',
+    ko: '마안',
   },
   eruption: {
     en: 'Spread',
+    de: 'Verteilen',
+    fr: 'Dispersez-vous',
+    ja: '散開',
+    ko: '산개',
   },
   blizzard: {
     en: 'Ice',
+    de: 'Eis',
+    fr: 'Glace',
+    ja: 'ブリザガ',
+    ko: '블리자가',
   },
   aero: {
     en: 'Aero',
+    de: 'Wind',
+    fr: 'Vent',
+    ja: 'エアロガ',
+    ko: '에어로가',
   },
+};
+
+// Returns integer value of x, y in matches based on cardinal or intercardinal
+const matchedPositionToDir = (matches) => {
+  // Positions are moved downward 75
+  const y = parseFloat(matches.y) + 75;
+  const x = parseFloat(matches.x);
+
+  // In Basic Relativity, hourglass positions are the 8 cardinals + numerical
+  // slop on a radius=20 circle.
+  // N = (0, -95), E = (20, -75), S = (0, -55), W = (-20, -75)
+  // NE = (14, -89), SE = (14, -61), SW = (-14, -61), NW = (-14, -89)
+  //
+  // In Advanced Relativity, hourglass positions are the 3 northern positions and
+  // three southern positions, plus numerical slop on a radius=10 circle
+  // NW = (-10, -80), N = (0, -86), NE = (10, -80)
+  // SW = (-10, -69), S = (0, -64), SE = (10, -69)
+  //
+  // Starting with northwest to favor sorting between north and south for
+  // Advanced Relativity party splits.
+  // Map NW = 0, N = 1, ..., W = 7
+
+  return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
+};
+
+// Convert dir to Output
+const dirToOutput = (dir, output) => {
+  const dirs = {
+    0: output.northwest(),
+    1: output.north(),
+    2: output.northeast(),
+    3: output.east(),
+    4: output.southeast(),
+    5: output.south(),
+    6: output.southwest(),
+    7: output.west(),
+  };
+  return (dirs[dir]);
 };
 
 export default {
@@ -202,25 +274,51 @@ export default {
         output.responseOutputStrings = {
           formlessBusterAndSwap: {
             en: 'Tank Buster + Swap',
+            de: 'Tankbuster + Wechsel',
+            fr: 'Tank buster + Swap',
+            ja: 'タンクバスター + スイッチ',
+            cn: '死刑 + 换T',
+            ko: '탱버 + 교대',
           },
           formlessBusterOnYOU: {
             en: 'Tank Buster on YOU',
+            de: 'Tankbuster auf DIR',
+            fr: 'Tank buster sur VOUS',
+            ja: '自分にタンクバスター',
+            cn: '死刑点名',
+            ko: '탱버 대상자',
           },
           // The first round has only one blue.
           titanBlueSingular: {
             en: 'Blue Weight',
+            de: 'Blau - Gewicht',
+            fr: 'Poids bleu',
+            ja: '青、重圧',
+            ko: '파랑',
           },
           // The second and two rounds of bombs have a partner.
           // The third is technically fixed by role with a standard party (one dps, one !dps),
           // but call out your partner anyway in case you've got 8 blus or something.
           titanBlueWithPartner: {
             en: 'Blue (with ${player})',
+            de: 'Blau (mit ${player})',
+            fr: 'Bleu (avec ${player})',
+            ja: '青、重圧 (${player}と)',
+            ko: '파랑 (다른 대상자: ${player})',
           },
           titanOrangeStack: {
             en: 'Orange Stack',
+            de: 'Orange - versammeln',
+            fr: 'Orange, package',
+            ja: '橙、頭割り',
+            ko: '주황: 집합',
           },
           titanYellowSpread: {
             en: 'Yellow Spread',
+            de: 'Gelb - Verteilen',
+            fr: 'Jaune, dispersion',
+            ja: '黄、散開',
+            ko: '노랑: 산개',
           },
           // This is sort of redundant, but if folks want to put "square" or something in the text,
           // having these be separate would allow them to configure them separately.
@@ -303,6 +401,9 @@ export default {
     {
       id: 'E12S Promise Weight Cleanup',
       netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58A5', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58A5', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58A5', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A5', capture: false }),
       run: (data) => {
         delete data.weightTargets;
         data.seenFirstBombs = true;
@@ -311,15 +412,26 @@ export default {
     {
       id: 'E12S Promise Formless Judgment',
       netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58A9', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58A9', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58A9', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A9', capture: false }),
       condition: Conditions.caresAboutPhysical(),
       response: (data, _, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           formlessBusterAndSwap: {
             en: 'Tank Buster + Swap',
+            de: 'Tankbuster + Wechsel',
+            fr: 'Tank buster + Swap',
+            ja: 'タンクバスター + スイッチ',
+            ko: '탱버 + 교대',
           },
           tankBusters: {
             en: 'Tank Busters',
+            de: 'Tankbuster',
+            fr: 'Tank busters',
+            ja: 'タンクバスター',
+            ko: '탱버',
           },
         };
 
@@ -346,6 +458,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58AD', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58AD', capture: false }),
       response: Responses.goLeft('info'),
+      run: (data) => data.isDoorBoss = true,
     },
     {
       id: 'E12S Promise Rapturous Reach Right',
@@ -354,6 +467,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58AE', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58AE', capture: false }),
       response: Responses.goRight('info'),
+      run: (data) => data.isDoorBoss = true,
     },
     {
       id: 'E12S Promise Obliteration',
@@ -363,7 +477,6 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A8', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
-      run: (data) => data.isDoorBoss = true,
     },
     {
       id: 'E12S Promise Junction Shiva',
@@ -390,6 +503,7 @@ export default {
         diamondDust: {
           en: 'Big AOE, Get Middle',
           de: 'Große AoE, geh in die Mitte',
+          fr: 'Grosse AoE, allez au milieu',
           ja: '大ダメージ、中へ',
           cn: '超大伤害，去中间',
           ko: '대형 장판, 중앙으로',
@@ -420,6 +534,7 @@ export default {
         junctionWithCast: {
           en: 'Healer Stacks',
           de: 'Heiler-Gruppen',
+          fr: 'Packages Heals',
           ja: 'ヒラ頭割り',
           cn: '治疗分摊',
           ko: '힐러 쉐어',
@@ -427,6 +542,7 @@ export default {
         earthenFury: {
           en: 'Big AOE, Bombs Soon',
           de: 'Große AoE, bald Bomben',
+          fr: 'Grosse AoE, Bombes bientôt',
           ja: '大ダメージ、まもなく岩落とし',
           cn: '超大伤害，即将落石',
           ko: '대형 장판, 곧 폭탄',
@@ -529,6 +645,7 @@ export default {
         text: {
           en: 'Lion Tether on YOU',
           de: 'Löwen-Verbindung auf DIR',
+          fr: 'Lien lion sur VOUS',
           ja: '自分にライオン線',
           cn: '狮子连线点名',
           ko: '사자 선 대상자',
@@ -538,40 +655,69 @@ export default {
     {
       id: 'E12S Oracle Shockwave Pulsar',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58F0', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58F0', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58F0', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58F0', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
+      id: 'E12S Relativity Phase',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E[0-3]' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E[0-3]' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E[0-3]' }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E[0-3]' }),
+      run: (data, matches) => {
+        data.phase = {
+          '58E0': 'basic',
+          '58E1': 'intermediate',
+          '58E2': 'advanced',
+          '58E3': 'terminal',
+        }[matches.id];
+      },
+    },
+    {
       id: 'E12S Oracle Basic Relativity',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E0', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E0', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E0', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E0', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
-      run: (data) => data.phase = 'basic',
     },
     {
       id: 'E12S Oracle Intermediate Relativity',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E1', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E1', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E1', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E1', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
-      run: (data) => data.phase = 'intermediate',
     },
     {
       id: 'E12S Oracle Advanced Relativity',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E2', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E2', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E2', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E2', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
-      run: (data) => data.phase = 'advanced',
     },
     {
       id: 'E12S Oracle Terminal Relativity',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58E3', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E3', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E3', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E3', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
-      run: (data) => data.phase = 'terminal',
     },
     {
       id: 'E12S Oracle Darkest Dance',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58BE', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58BE', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58BE', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58BE', capture: false }),
       infoText: (data, _, output) => {
         if (data.role === 'tank')
           return output.tankBait();
@@ -580,6 +726,10 @@ export default {
       outputStrings: {
         tankBait: {
           en: 'Bait Far',
+          de: 'Ködern - Weit weg',
+          fr: 'Attirez au loin',
+          ja: '遠くに誘導',
+          ko: '멀리 유도하기',
         },
         partyUnder: {
           en: 'Get Under',
@@ -594,6 +744,9 @@ export default {
     {
       id: 'E12S Shell Crusher',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C3', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58C3', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58C3', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58C3', capture: false }),
       response: Responses.getTogether('alert'),
     },
     {
@@ -601,12 +754,18 @@ export default {
       // Spirit Taker always comes after Shell Crusher, so trigger on Shell Crusher damage
       // to warn people a second or two earlier than `starts using Spirit Taker` would occur.
       netRegex: NetRegexes.ability({ source: 'Oracle Of Darkness', id: '58C3', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Orakel Der Dunkelheit', id: '58C3', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Prêtresse Des Ténèbres', id: '58C3', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '闇の巫女', id: '58C3', capture: false }),
       suppressSeconds: 1,
       response: Responses.spread('info'),
     },
     {
       id: 'E12S Black Halo',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C7' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58C7' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58C7' }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58C7' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster('alert'),
     },
@@ -646,6 +805,10 @@ export default {
       outputStrings: Object.assign({
         comboText: {
           en: '${effect1} > ${effect2} > ${effect3}',
+          de: '${effect1} > ${effect2} > ${effect3}',
+          fr: '${effect1} > ${effect2} > ${effect3}',
+          ja: '${effect1} > ${effect2} > ${effect3}',
+          ko: '${effect1} > ${effect2} > ${effect3}',
         },
       }, intermediateRelativityOutputStrings),
     },
@@ -693,6 +856,10 @@ export default {
         text: {
           // TODO: we could say "look away from x, y" or "look away from tanks"?
           en: 'Look Away',
+          de: 'Wegschauen',
+          fr: 'Regardez ailleurs',
+          ja: '背中を向け',
+          ko: '뒤돌기',
         },
       },
     },
@@ -707,6 +874,82 @@ export default {
       outputStrings: {
         text: {
           en: 'Look Outside',
+          de: 'Nach draußen schauen',
+          fr: 'Regardez vers l\'extérieur',
+          ja: '外に向け',
+          ko: '바깥 보기',
+        },
+      },
+    },
+    {
+      id: 'E12S Basic Relativity Yellow Hourglass',
+      // Orient where "Yellow" Anger's Hourglass spawns
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9824' }),
+      durationSeconds: 15,
+      infoText: (data, matches, output) => {
+        return output.hourglass({
+          dir: dirToOutput(matchedPositionToDir(matches), output),
+        });
+      },
+      outputStrings: {
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+        hourglass: {
+          en: 'Yellow: ${dir}',
+          fr: 'Jaune : ${dir}',
+          ko: '노랑: ${dir}',
+        },
+      },
+    },
+    {
+      id: 'E12S Adv Relativity Hourglass Collect',
+      // Collect Sorrow's Hourglass locations
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9823' }),
+      run: (data, matches) => {
+        const id = matches.id.toUpperCase();
+
+        data.sorrows = data.sorrows || {};
+        data.sorrows[id] = matchedPositionToDir(matches);
+      },
+    },
+    {
+      id: 'E12S Adv Relativity Hourglass Collect Yellow Tethers',
+      // '0086' is the Yellow tether that buffs "Quicken"
+      // '0085' is the Red tether that buffs "Slow"
+      netRegex: NetRegexes.tether({ id: '0086' }),
+      condition: (data, matches) => data.phase === 'advanced',
+      durationSeconds: 8,
+      suppressSeconds: 3,
+      infoText: (data, matches, output) => {
+        const sorrow1 = data.sorrows[matches.sourceId.toUpperCase()];
+
+        // Calculate opposite side
+        const sorrow2 = (sorrow1 + 4) % 8;
+
+        return output.hourglass({
+          dir1: sorrow1 < sorrow2 ? dirToOutput(sorrow1, output) : dirToOutput(sorrow2, output),
+          dir2: sorrow1 > sorrow2 ? dirToOutput(sorrow1, output) : dirToOutput(sorrow2, output),
+        });
+      },
+      outputStrings: {
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+        hourglass: {
+          en: 'Yellow: ${dir1} / ${dir2}',
+          fr: 'Jaune : ${dir1} / ${dir2}',
+          ko: '노랑: ${dir1} / ${dir2}',
         },
       },
     },
@@ -725,9 +968,6 @@ export default {
         'Sorrow\'s Hourglass': 'Sanduhr der Sorge',
       },
       'replaceText': {
-        '--1--': '--1--',
-        '--2--': '--2--',
-        '--3--': '--3--',
         'Advanced Relativity': 'Fortgeschrittene Relativität',
         '(?<!(Singular|Dual|Triple) )Apocalypse': 'Apokalypse',
         'Basic Relativity': 'Grundlegende Relativität',
@@ -787,7 +1027,6 @@ export default {
         '(?<!Junction )Titan': 'Titan',
         'Triple Apocalypse': 'Dreifache Apokalypse',
         'Under The Weight': 'Wucht der Erde',
-        '(?<!Dark )Water III': 'Aquaga',
         'Weight Of The World': 'Schwere der Erde',
       },
     },
@@ -804,9 +1043,6 @@ export default {
         'Sorrow\'s Hourglass': 'sablier de chagrin',
       },
       'replaceText': {
-        '--1--': '--1--',
-        '--2--': '--2--',
-        '--3--': '--3--',
         'Advanced Relativity': 'Relativité avancée',
         '(?<!(Singular|Dual|Triple) )Apocalypse': 'Apocalypse',
         'Basic Relativity': 'Relativité basique',
@@ -866,7 +1102,6 @@ export default {
         '(?<!Junction )Titan': 'Titan',
         'Triple Apocalypse': 'Apocalypse triple',
         'Under The Weight': 'Pression tellurique',
-        '(?<!Dark )Water III': 'Méga Eau',
         'Weight Of The World': 'Poids du monde',
       },
     },
@@ -883,9 +1118,6 @@ export default {
         'Sorrow\'s Hourglass': '悲しみの砂時計',
       },
       'replaceText': {
-        '--1--': '--1--',
-        '--2--': '--2--',
-        '--3--': '--3--',
         'Advanced Relativity': '時間圧縮・急',
         '(?<!(Singular|Dual|Triple) )Apocalypse': 'アポカリプス',
         'Basic Relativity': '時間圧縮・序',
@@ -948,7 +1180,6 @@ export default {
         '(?<!Junction )Titan': 'タイタン',
         'Triple Apocalypse': 'アポカリプス・トリプル',
         'Under The Weight': '大地の重圧',
-        '(?<!Dark )Water III': 'ウォタガ',
         'Weight Of The World': '大陸の重み',
       },
     },

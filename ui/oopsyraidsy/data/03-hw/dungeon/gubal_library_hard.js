@@ -69,7 +69,16 @@ export default {
         return data.hasImp[e.targetName];
       },
       mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: 'Shocked Imp' };
+        return {
+          type: 'warn',
+          blame: e.targetName,
+          text: {
+            en: 'Shocked Imp',
+            de: 'Schockierter Imp',
+            ja: 'カッパを解除しなかった',
+            cn: '河童状态吃了暴雷',
+          },
+        };
       },
     },
     {

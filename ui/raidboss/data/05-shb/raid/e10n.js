@@ -184,6 +184,7 @@ export default {
           fr: 'Éloignez-vous des lignes noires',
           ja: '黒い線から離れる',
           cn: '远离黑线',
+          ko: '그림자 피하기',
         },
       },
     },
@@ -240,7 +241,6 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Shadowkeeper': 'Ordre royal',
       },

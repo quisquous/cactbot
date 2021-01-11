@@ -18,3 +18,4 @@ cp $BASE/*.md $OUT/
 mkdir -p $OUT/user/
 cp $BASE/user/README.txt $OUT/user/
 cp $BASE/user/*-example.* $OUT/user/
+cp $BASE/user/test-override.txt $OUT/user/

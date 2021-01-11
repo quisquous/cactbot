@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions.js';
 import NetRegexes from '../../../../../resources/netregexes.js';
+import Outputs from '../../../../../resources/outputs.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
@@ -637,48 +638,12 @@ export default {
         }[v];
       },
       outputStrings: {
-        east: {
-          en: 'East',
-          de: 'Osten',
-          ja: '東',
-          cn: '东',
-          ko: '동쪽(3시)',
-        },
-        northeast: {
-          en: 'Northeast',
-          de: 'Nordosten',
-          ja: '北東',
-          cn: '东北',
-          ko: '북동쪽(1시)',
-        },
-        northwest: {
-          en: 'Northwest',
-          de: 'Nordwesten',
-          ja: '北西',
-          cn: '西北',
-          ko: '북서쪽(11시)',
-        },
-        southeast: {
-          en: 'Southeast',
-          de: 'Südosten',
-          ja: '南東',
-          cn: '东南',
-          ko: '남동쪽(5시)',
-        },
-        southwest: {
-          en: 'Southwest',
-          de: 'Südwesten',
-          ja: '南西',
-          cn: '西南',
-          ko: '남서쪽(7시)',
-        },
-        west: {
-          en: 'West',
-          de: 'Westen',
-          ja: '西',
-          cn: '西',
-          ko: '서쪽(9시)',
-        },
+        east: Outputs.east,
+        northeast: Outputs.northeast,
+        northwest: Outputs.northwest,
+        southeast: Outputs.southeast,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
       },
     },
   ],
