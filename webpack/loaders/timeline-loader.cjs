@@ -1,6 +1,6 @@
 'use strict';
 
-const commentRegex = /(?:^(?:[^"]*)#.*$|(?<=^[^"]*"[^"]*".*)#.*$)/i;
+const commentRegex = /(?<=^(?:[^"/]*(?:|"[^"]*"))[^"/]*(?:|sync\s*\/[^/]*\/[^"/]*))#.*$/i;
 
 module.exports = function(content, map, meta) {
   let ret = '';
