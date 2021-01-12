@@ -24,6 +24,7 @@ known_mapping = {
     "Brotherhood": "1185",
     "Embolden": "1297",
     "Technical Finish": "1822",
+    "Sheltron": "1856",
     "Lord of Crowns": "1876",
     "Lady of Crowns": "1877",
     "Divination": "1878",
