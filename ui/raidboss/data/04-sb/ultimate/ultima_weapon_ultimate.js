@@ -11,14 +11,14 @@ export default {
     {
       id: 'UWU Diffractive Laser',
       regex: /Diffractive Laser/,
-      beforeSeconds: 3,
+      beforeSeconds: 5,
       condition: (data) => data.role === 'healer' || data.role === 'tank',
       response: Responses.tankBuster(),
     },
     {
       id: 'UWU Diffractive Laser Aviod',
       regex: /Diffractive Laser/,
-      beforeSeconds: 3,
+      beforeSeconds: 5,
       condition: (data) => data.role === 'dps',
       response: Responses.tankCleave(),
     },
