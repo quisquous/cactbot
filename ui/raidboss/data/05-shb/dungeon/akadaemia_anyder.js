@@ -68,7 +68,7 @@ export default {
           en: 'Away From Swimming Shark',
           de: 'Weg vom schwimmenden Hai',
           fr: 'Éloignez-vous du requin qui nage',
-          ja: '水中サメから離れ',
+          ja: '水中サメから離れる',
           cn: '远离水中BOSS',
           ko: '물 속 상어 멀리 떨어지기',
         },

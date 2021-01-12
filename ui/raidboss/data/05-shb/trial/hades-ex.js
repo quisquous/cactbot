@@ -439,7 +439,7 @@ export default {
           en: 'Heal T/H to Full',
           de: 'Heile T/H voll',
           fr: 'Soignez T/H max vie',
-          ja: 'タンク／ヒーラーを満タンさせ',
+          ja: 'タンク／ヒーラーのHPを満タンに',
           cn: '奶满T奶',
           ko: '탱/힐 풀피로 만들기',
         },
