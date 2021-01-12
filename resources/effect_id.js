@@ -988,6 +988,7 @@ export default {
   'SharperFangAndClaw': '322',
   'SheerWill': '6C1',
   'ShellL': '66B',
+  'Sheltron': '740',
   'ShieldOath': '573',
   'ShieldOfTheHeavens': '3B1',
   'ShieldProtocolA': '8F0',
