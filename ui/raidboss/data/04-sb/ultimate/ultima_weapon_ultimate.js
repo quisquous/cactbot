@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions.js';
 import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
 // Ultima Weapon Ultimate
@@ -11,14 +12,17 @@ export default {
       id: 'UWU Diffractive Laser',
       regex: /Diffractive Laser/,
       beforeSeconds: 3,
-      infoText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          // todo: en: "",
-          cn: '躲避顺劈',
-        },
-      },
+      condition: (data) => data.role === 'healer' || data.role === 'tank',
+      response: Responses.tankCleave(),
     },
+    {
+      id: 'UWU Diffractive Laser Aviod',
+      regex: /Diffractive Laser/,
+      beforeSeconds: 3,
+      condition: (data) => data.role !== 'healer' && data.role !== 'tank',
+      response: Responses.avoidTankCleave(),
+    },
+
     {
       id: 'UWU Feather Rain',
       regex: /Feather Rain/,
