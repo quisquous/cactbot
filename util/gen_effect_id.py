@@ -24,6 +24,7 @@ known_mapping = {
     "Brotherhood": "1185",
     "Embolden": "1297",
     "Technical Finish": "1822",
+    "Sheltron": "1856",
     "Lord of Crowns": "1876",
     "Lady of Crowns": "1877",
     "Divination": "1878",
@@ -33,7 +34,6 @@ known_mapping = {
     "The Spear": "1885",
     "The Ewer": "1886",
     "The Spire": "1887",
-    "Sheltron": "1856",
     "Sword Oath": "1902",
     "Tactician": "1951",
     # This is for others, 1821 is for self.
