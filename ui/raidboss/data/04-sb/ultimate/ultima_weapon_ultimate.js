@@ -13,14 +13,14 @@ export default {
       regex: /Diffractive Laser/,
       beforeSeconds: 3,
       condition: (data) => data.role === 'healer' || data.role === 'tank',
-      response: Responses.tankCleave(),
+      response: Responses.tankBuster(),
     },
     {
       id: 'UWU Diffractive Laser Aviod',
       regex: /Diffractive Laser/,
       beforeSeconds: 3,
       condition: (data) => data.role !== 'healer' && data.role !== 'tank',
-      response: Responses.avoidTankCleave(),
+      response: Responses.tankCleave(),
     },
 
     {
