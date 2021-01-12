@@ -606,7 +606,6 @@ export default {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Warrior Of Light': '빛의 전사',
         'Spectral Bard': '환상빛의 음유시인',
@@ -635,6 +634,8 @@ export default {
         'Elddragon Dive': '고룡 강타',
         'Flare Breath': '타오르는 숨결',
         'Imbued Coruscance': '마법검: 빛나는 도검',
+        'Imbued Fire/Blizzard': '마법검 파이가/블리자가',
+        'Absolute Fire/Blizard': '앱솔루트 파이가/블리자가',
         'Katon: San': '화둔술 3',
         'Meteor Impact': '운석 낙하',
         'Perfect Decimation': '완전 섬멸',
