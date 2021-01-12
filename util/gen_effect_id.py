@@ -33,6 +33,7 @@ known_mapping = {
     "The Spear": "1885",
     "The Ewer": "1886",
     "The Spire": "1887",
+    "Sheltron": "740",
     "Sword Oath": "1902",
     "Tactician": "1951",
     # This is for others, 1821 is for self.
