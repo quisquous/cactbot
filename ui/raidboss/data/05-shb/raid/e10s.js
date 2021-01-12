@@ -564,7 +564,7 @@ export default {
           // TODO: this could be better if we knew where the shadow was
           // TODO: this also happens twice, with tethers
           en: 'Be On Squiggles',
-          de: 'Sei auf dem Kringel',
+          de: 'Sei auf den geschwungenen Linien',
           fr: 'Allez sur l\'ombre tordue',
           ja: '曲線上待機',
           cn: '站到连线为曲线的一侧',
@@ -586,7 +586,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Away From Squiggles',
-          de: 'Weg vom Kringel',
+          de: 'Weg von den geschwungenen Linien',
           fr: 'Éloignez-vous de l\'ombre tordue',
           ja: '安置へ',
           cn: '远离连线为曲线的一侧',
