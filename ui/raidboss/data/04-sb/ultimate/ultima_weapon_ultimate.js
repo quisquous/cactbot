@@ -19,7 +19,7 @@ export default {
       id: 'UWU Diffractive Laser Aviod',
       regex: /Diffractive Laser/,
       beforeSeconds: 3,
-      condition: (data) => data.role !== 'healer' && data.role !== 'tank',
+      condition: (data) => data.role === 'dps',
       response: Responses.tankCleave(),
     },
 
