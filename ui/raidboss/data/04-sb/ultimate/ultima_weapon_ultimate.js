@@ -8,6 +8,18 @@ export default {
   timelineFile: 'ultima_weapon_ultimate.txt',
   timelineTriggers: [
     {
+      id: 'UWU Diffractive Laser',
+      regex: /Diffractive Laser/,
+      beforeSeconds: 3,
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          // todo: en: "",
+          cn: '躲避顺劈',
+        },
+      },
+    },
+    {
       id: 'UWU Feather Rain',
       regex: /Feather Rain/,
       beforeSeconds: 3,
