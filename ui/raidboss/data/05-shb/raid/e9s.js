@@ -790,7 +790,7 @@ export default {
 
         const cloneOfDarknessLocaleNames = {
           en: 'Clone Of Darkness',
-          de: 'Klon der Dunkelheit',
+          de: 'Klon Der Dunkelheit',
           fr: 'Nuée de Ténèbres',
           ja: '幻影の雲',
           cn: '幻影之云',

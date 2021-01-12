@@ -902,6 +902,7 @@ export default {
         northwest: Outputs.northwest,
         hourglass: {
           en: 'Yellow: ${dir}',
+          de: 'Gelb: ${dir}',
           fr: 'Jaune : ${dir}',
           ko: '노랑: ${dir}',
         },
@@ -948,6 +949,7 @@ export default {
         northwest: Outputs.northwest,
         hourglass: {
           en: 'Yellow: ${dir1} / ${dir2}',
+          de: 'Gelb: ${dir1} / ${dir2}',
           fr: 'Jaune : ${dir1} / ${dir2}',
           ko: '노랑: ${dir1} / ${dir2}',
         },
