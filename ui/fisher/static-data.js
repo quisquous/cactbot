@@ -948,6 +948,32 @@ export default {
       '30491': '巨鲱',
       '30492': '墨贝',
       '30593': '倒挂金钟的花蕾',
+      '31578': '第三期重建用的雷纹鱼',
+      '31579': '第三期重建用的鳄龟',
+      '31580': '第三期重建用的骨舌鱼',
+      '31581': '第三期重建用的泥仙人',
+      '31582': '第三期重建用的弹涂鱼',
+      '31583': '第三期重建用的菜蛙',
+      '31584': '第三期重建用的黄金鳅',
+      '31585': '第三期重建用的仙女鲈',
+      '31586': '第三期重建用的洞穴螯虾',
+      '31587': '第三期重建用的绿灯球藻',
+      '31588': '第三期重建用的徘徊鲶鱼',
+      '31589': '第三期重建用的稻鱼',
+      '31590': '第三期重建用的蛉蝎',
+      '31591': '第三期重建用的白影',
+      '31592': '第三期重建用的无齿翼龙',
+      '31593': '第三期重建用的皇家披风',
+      '31594': '第三期重建用的蓝色美杜莎',
+      '31595': '第三期重建用的飞翼鲂',
+      '31596': '第三期重建用的特供白丽鱼',
+      '31597': '第三期重建用的特供飞蝠鲼',
+      '31598': '第三期重建用的特供沧龙',
+      '31599': '第三期重建用的特供飞沙鱼',
+      '31600': '第三期重建用的特供始祖鸟',
+      '31601': '第三期重建用的特供飞龙',
+      '31602': '第三期重建用的特供云鲨',
+      '31603': '第三期重建用的特供旋齿鲨',
     },
     'de': {
       '4776': [
@@ -5216,6 +5242,89 @@ export default {
         'Messerkinne',
       ],
       '32114': 'Placodus',
+      '32882': 'Himmelsang-Zagas',
+      '32883': [
+        'Himmelsang-Goldschmiedkrabbe',
+        'Himmelsang-Goldschmiedkrabben',
+      ],
+      '32884': [
+        'Himmelsang-Bitterling',
+        'Himmelsang-Bitterlinge',
+      ],
+      '32885': [
+        'Himmelsang-Wels',
+        'Himmelsang-Welse',
+      ],
+      '32886': [
+        'Himmelsang-Gletscherkern',
+        'Himmelsang-Gletscherkerne',
+      ],
+      '32887': 'Himmelsang-Gurami',
+      '32888': [
+        'Himmelsang-Kavalleriekatfisch',
+        'Himmelsang-Kavalleriekatfische',
+      ],
+      '32889': 'Himmelsang-Manasegler',
+      '32890': [
+        'Himmelsang-Sternenblume',
+        'Himmelsang-Sternenblumen',
+      ],
+      '32891': [
+        'Himmelsang-Rivierakrabbe',
+        'Himmelsang-Rivierakrabben',
+      ],
+      '32892': [
+        'Himmelsang-Plattschwanz',
+        'Himmelsang-Plattschwänze',
+      ],
+      '32893': 'Himmelsang-Proto-Hropken',
+      '32894': [
+        'Himmelsang-Geisterfee',
+        'Himmelsang-Geisterfeen',
+      ],
+      '32895': [
+        'Himmelsang-Aschenfisch',
+        'Himmelsang-Aschenfische',
+      ],
+      '32896': 'Himmelsang-Weißpferdchen',
+      '32897': [
+        'Himmelsang-Meerwolke',
+        'Himmelsang-Meerwolken',
+      ],
+      '32898': [
+        'Himmelsang-Fächerfisch',
+        'Himmelsang-Fächerfische',
+      ],
+      '32899': [
+        'Himmelsang-Sonnenfisch',
+        'Himmelsang-Sonnenfische',
+      ],
+      '32900': [
+        'Himmelsang-Schweißfisch',
+        'Himmelsang-Schweißfische',
+      ],
+      '32901': 'Himmelsang-Schnitzer',
+      '32902': 'Himmelsang-Thalaos',
+      '32903': [
+        'Himmelsang-Blausturm',
+        'Himmelsang-Blaustürme',
+      ],
+      '32904': [
+        'Himmelsang-Marrella',
+        'Himmelsang-Marrellas',
+      ],
+      '32905': [
+        'Himmelsang-Rotnamitaro',
+        'Himmelsang-Rotnamitaros',
+      ],
+      '32906': [
+        'Himmelsang-Greif',
+        'Himmelsang-Greifen',
+      ],
+      '32907': [
+        'Himmelsang-Meganeura',
+        'Himmelsang-Meganeuras',
+      ],
     },
     'en': {
       '4776': [
@@ -8197,6 +8306,68 @@ export default {
         'knifejaws',
       ],
       '32114': 'placodus',
+      '32882': 'grade 4 skybuilders\' zagas khaal',
+      '32883': [
+        'grade 4 skybuilders\' goldsmith crab',
+        'grade 4 skybuilders\' goldsmith crabs',
+      ],
+      '32884': [
+        'grade 4 skybuilders\' common bitterling',
+        'grade 4 skybuilders\' common bitterlings',
+      ],
+      '32885': 'grade 4 skybuilders\' skyloach',
+      '32886': [
+        'grade 4 skybuilders\' glacier core',
+        'grade 4 skybuilders\' glacier cores',
+      ],
+      '32887': 'grade 4 skybuilders\' kissing fish',
+      '32888': 'grade 4 skybuilders\' cavalry catfish',
+      '32889': [
+        'grade 4 skybuilders\' manasail',
+        'grade 4 skybuilders\' manasails',
+      ],
+      '32890': [
+        'grade 4 skybuilders\' starflower',
+        'grade 4 skybuilders\' starflowers',
+      ],
+      '32891': [
+        'grade 4 skybuilders\' cyan crab',
+        'grade 4 skybuilders\' cyan crabs',
+      ],
+      '32892': 'grade 4 skybuilders\' fickle krait',
+      '32893': [
+        'grade 4 skybuilders\' proto-hropken',
+        'grade 4 skybuilders\' proto-hropkens',
+      ],
+      '32894': [
+        'grade 4 skybuilders\' ghost faerie',
+        'grade 4 skybuilders\' ghost faeries',
+      ],
+      '32895': 'grade 4 skybuilders\' ashfish',
+      '32896': 'grade 4 skybuilders\' whitehorse',
+      '32897': [
+        'grade 4 skybuilders\' ocean cloud',
+        'grade 4 skybuilders\' ocean clouds',
+      ],
+      '32898': 'grade 4 skybuilders\' black fanfish',
+      '32899': 'grade 4 skybuilders\' sunfish',
+      '32900': 'grade 4 artisanal skybuilders\' sweatfish',
+      '32901': [
+        'grade 4 artisanal skybuilders\' sculptor',
+        'grade 4 artisanal skybuilders\' sculptors',
+      ],
+      '32902': 'grade 4 artisanal skybuilders\' little Thalaos',
+      '32903': 'grade 4 artisanal skybuilders\' lightning chaser',
+      '32904': 'grade 4 artisanal skybuilders\' marrella',
+      '32905': 'grade 4 artisanal skybuilders\' crimson namitaro',
+      '32906': [
+        'grade 4 artisanal skybuilders\' griffin',
+        'grade 4 artisanal skybuilders\' griffins',
+      ],
+      '32907': [
+        'grade 4 artisanal skybuilders\' meganeura',
+        'grade 4 artisanal skybuilders\' meganeurae',
+      ],
     },
     'fr': {
       '4776': [
@@ -10971,7 +11142,7 @@ export default {
         'dragon de mer touffu',
         'dragons de mer touffus',
       ],
-      '27456': 'Henodus',
+      '27456': 'henodus',
       '27457': [
         'tête-d\'hast',
         'têtes-d\'hast',
@@ -11835,8 +12006,8 @@ export default {
         'bijoux-princiers',
       ],
       '32057': [
-        'poisson-boite',
-        'poissons-boites',
+        'poisson-boîte',
+        'poissons-boîtes',
       ],
       '32058': [
         'raie-goobbue',
@@ -12031,8 +12202,8 @@ export default {
         'lévicivelles',
       ],
       '32109': [
-        'châtaigne-perliaire',
-        'châtaignes-perliaires',
+        'châtaigne-perlière',
+        'châtaignes-perlières',
       ],
       '32110': [
         'poisson-troll',
@@ -12050,6 +12221,107 @@ export default {
       '32114': [
         'placodus',
         'placodi',
+      ],
+      '32882': 'zagas de restauration (4e phase)',
+      '32883': [
+        'crabe orfèvre de restauration (4e phase)',
+        'crabes orfèvres de restauration (4e phase)',
+      ],
+      '32884': [
+        'bouvière ordinaire de restauration (4e phase)',
+        'bouvières ordinaires de restauration (4e phase)',
+      ],
+      '32885': [
+        'loche céleste de restauration (4e phase)',
+        'loches célestes de restauration (4e phase)',
+      ],
+      '32886': [
+        'noyau de glacier de restauration (4e phase)',
+        'noyaux de glacier de restauration (4e phase)',
+      ],
+      '32887': [
+        'gourami embrasseur de restauration (4e phase)',
+        'gouramis embrasseurs de restauration (4e phase)',
+      ],
+      '32888': [
+        'poisson-chat de cavalerie de restauration (4e phase)',
+        'poissons-chats de cavalerie de restauration (4e phase)',
+      ],
+      '32889': [
+        'voile-de-mana de restauration (4e phase)',
+        'voiles-de-mana de restauration (4e phase)',
+      ],
+      '32890': [
+        'fleur des étoiles de restauration (4e phase)',
+        'fleurs des étoiles de restauration (4e phase)',
+      ],
+      '32891': [
+        'crabe céruléen de restauration (4e phase)',
+        'crabes céruléens de restauration (4e phase)',
+      ],
+      '32892': [
+        'bongare volage de restauration (4e phase)',
+        'bongares volages de restauration (4e phase)',
+      ],
+      '32893': [
+        'protohropken fonctionnel de restauration (4e phase)',
+        'protohropkens fonctionnels de restauration (4e phase)',
+      ],
+      '32894': [
+        'fée fantôme de restauration (4e phase)',
+        'fées fantômes de restauration (4e phase)',
+      ],
+      '32895': [
+        'poisson-cendre de restauration (4e phase)',
+        'poissons-cendres de restauration (4e phase)',
+      ],
+      '32896': [
+        'chevalier servant de restauration (4e phase)',
+        'chevaliers servants de restauration (4e phase)',
+      ],
+      '32897': [
+        'méduse médusante de restauration (4e phase)',
+        'méduses médusantes de restauration (4e phase)',
+      ],
+      '32898': [
+        'poisson-éventail noir de restauration (4e phase)',
+        'poissons-éventails noirs de restauration (4e phase)',
+      ],
+      '32899': [
+        'poisson-lune de restauration (4e phase)',
+        'poissons-lunes de restauration (4e phase)',
+      ],
+      '32900': [
+        'poisson-suée sur commande de restauration (4e phase)',
+        'poissons-suées sur commande de restauration (4e phase)',
+      ],
+      '32901': [
+        'sculpteur sur commande de restauration (4e phase)',
+        'sculpteurs sur commande de restauration (4e phase)',
+      ],
+      '32902': [
+        'petit Thalaos sur commande de restauration (4e phase)',
+        'petits Thalaos sur commande de restauration (4e phase)',
+      ],
+      '32903': [
+        'tempête-bleue sur commande de restauration (4e phase)',
+        'tempêtes-bleues sur commande de restauration (4e phase)',
+      ],
+      '32904': [
+        'marrella sur commande de restauration (4e phase)',
+        'marrellae sur commande de restauration (4e phase)',
+      ],
+      '32905': [
+        'namitaro rutilant sur commande de restauration (4e phase)',
+        'namitaro rutilants sur commande de restauration (4e phase)',
+      ],
+      '32906': [
+        'griffon sur commande de restauration (4e phase)',
+        'griffons sur commande de restauration (4e phase)',
+      ],
+      '32907': [
+        'meganeura sur commande de restauration (4e phase)',
+        'meganeurae sur commande de restauration (4e phase)',
       ],
     },
     'ja': {
@@ -13091,6 +13363,32 @@ export default {
       '32112': 'ゴールデンソール',
       '32113': 'ナイフジョー',
       '32114': 'プラコドゥス',
+      '32882': '第四次復興用のザガス',
+      '32883': '第四次復興用のゴールドスミスクラブ',
+      '32884': '第四次復興用のカネヒラ',
+      '32885': '第四次復興用のスカイローチ',
+      '32886': '第四次復興用のグレイシャーコア',
+      '32887': '第四次復興用のキッシング・グラミー',
+      '32888': '第四次復興用の斬馬魚',
+      '32889': '第四次復興用のマナセイル',
+      '32890': '第四次復興用のスターフラワー',
+      '32891': '第四次復興用のシアンクラブ',
+      '32892': '第四次復興用の不忠蛇',
+      '32893': '第四次復興用のオプロプケン',
+      '32894': '第四次復興用のクリア・ハルオネ',
+      '32895': '第四次復興用のアンデッドフィッシュ',
+      '32896': '第四次復興用のホワイトホース',
+      '32897': '第四次復興用のオーシャンクラウド',
+      '32898': '第四次復興用のクロズキン',
+      '32899': '第四次復興用のモラモラ',
+      '32900': '第四次復興用の特注スウェットフィッシュ',
+      '32901': '第四次復興用の特注スカルプター',
+      '32902': '第四次復興用の特注リトルサラオス',
+      '32903': '第四次復興用の特注ブルーストーム',
+      '32904': '第四次復興用の特注マーレラ',
+      '32905': '第四次復興用の特注レッドナミタロ',
+      '32906': '第四次復興用の特注グリフィン',
+      '32907': '第四次復興用の特注メガネウラ',
     },
     'ko': {
       '4776': '말름미역',
@@ -14280,6 +14578,21 @@ export default {
       '30031': '제2차 부흥용 특별 주문 하늘유영어[검사필]',
       '30032': '제2차 부흥용 특별 주문 익룡어[검사필]',
       '30033': '제2차 부흥용 특별 주문 용의 혼[검사필]',
+      '30432': '죄살포자',
+      '30433': '식인악어',
+      '30434': '끈고기',
+      '30435': '라우니스크',
+      '30436': '금망치',
+      '30437': '기록파괴범',
+      '30438': '두목우무문어',
+      '30439': '단백석새우',
+      '30487': '청게',
+      '30488': '방패조개',
+      '30489': '낚싯바늘고기',
+      '30490': '구름향초',
+      '30491': '큰청어',
+      '30492': '잉크셸',
+      '30593': '후크시아 꽃봉오리',
     },
   },
   'placefish': {
@@ -16066,6 +16379,10 @@ export default {
       31587,
       31588,
       31589,
+      32890,
+      32891,
+      32892,
+      32893,
     ],
     '2259': [
       12728,
@@ -16080,6 +16397,10 @@ export default {
       31579,
       31580,
       31581,
+      32882,
+      32883,
+      32884,
+      32885,
     ],
     '2260': [
       12729,
@@ -16094,6 +16415,10 @@ export default {
       31583,
       31584,
       31585,
+      32886,
+      32887,
+      32888,
+      32889,
     ],
     '2262': [
       12732,
@@ -16110,6 +16435,11 @@ export default {
       31592,
       31596,
       31600,
+      32894,
+      32895,
+      32896,
+      32900,
+      32904,
     ],
     '2263': [
       12732,
@@ -16126,6 +16456,11 @@ export default {
       31593,
       31597,
       31602,
+      32894,
+      32895,
+      32897,
+      32901,
+      32905,
     ],
     '2264': [
       12814,
@@ -16140,6 +16475,11 @@ export default {
       31594,
       31598,
       31601,
+      32894,
+      32895,
+      32898,
+      32902,
+      32906,
     ],
     '2500': [
       20030,
@@ -16608,6 +16948,11 @@ export default {
       31595,
       31599,
       31603,
+      32894,
+      32895,
+      32899,
+      32903,
+      32907,
     ],
     '3532': [
       30006,
@@ -16616,6 +16961,12 @@ export default {
       30011,
       31590,
       31591,
+      31596,
+      31597,
+      31600,
+      31602,
+      32894,
+      32895,
     ],
     '3533': [
       30008,
@@ -16624,6 +16975,12 @@ export default {
       30013,
       31590,
       31591,
+      31598,
+      31599,
+      31601,
+      31603,
+      32894,
+      32895,
     ],
     '3621': [
       32055,
@@ -16946,6 +17303,8 @@ export default {
       '3455': '罗塔诺海海面幻海流',
       '3458': '缪栎之泪',
       '3489': '摇风云海',
+      '3532': '息风云海',
+      '3533': '狂风云海',
     },
     'de': {
       '28': [
