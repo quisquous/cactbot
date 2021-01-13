@@ -22,7 +22,6 @@ export default {
       condition: (data) => data.role === 'dps',
       response: Responses.tankCleave(),
     },
-
     {
       id: 'UWU Feather Rain',
       regex: /Feather Rain/,
