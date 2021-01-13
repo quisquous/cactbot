@@ -276,9 +276,9 @@ export default class TimerBar extends HTMLElement {
       <div id="root" class="timerbar-root">
         <div id="bg" class="timerbar-bg"></div>
         <div id="fg" class="timerbar-fg"></div>
-        <div class="text-container"><div id="righttext" class="text timerbar-righttext"></div></div>
-        <div class="text-container"><div id="centertext" class="text timerbar-centertext"></div></div>
         <div class="text-container"><div id="lefttext" class="text timerbar-lefttext"></div></div>
+        <div class="text-container"><div id="centertext" class="text timerbar-centertext"></div></div>
+        <div class="text-container"><div id="righttext" class="text timerbar-righttext"></div></div>
       </div>
     `;
   }
