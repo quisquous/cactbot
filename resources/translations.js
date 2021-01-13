@@ -49,8 +49,6 @@ export const LocaleNetRegex = {};
     },
     // Recipe name always start with \ue0bb
     // HQ icon is \ue03c
-    // TODO:KO have not launched patch 5.3 yet, so they do not have trial synthesis.
-    // Translation will be added once launch.
     craftingStart: {
       en: 'You begin synthesizing (?<count>(an?|\\d+) )?\ue0bb(?<recipe>.*)\\.',
       de: 'Du hast begonnen, durch Synthese (?<count>(ein(e|es|em|er)?|\\d+) )?\ue0bb(?<recipe>.*) herzustellen\\.',
@@ -65,6 +63,7 @@ export const LocaleNetRegex = {};
       fr: 'Vous commencez une synthèse d\'essai pour une? \ue0bb(?<recipe>.*)\\.',
       ja: '(?<player>\\y{Name})は\ue0bb(?<recipe>.*)の製作練習を開始した。',
       cn: '(?<player>\\y{Name})开始练习制作\ue0bb(?<recipe>.*)。',
+      ko: '\ue0bb(?<recipe>.*) 제작 연습을 시작합니다.',
     },
     craftingFinish: {
       en: 'You synthesize (?<count>(an?|\\d+) )?\ue0bb(?<recipe>.*)(\ue03c)?\\.',
@@ -80,6 +79,7 @@ export const LocaleNetRegex = {};
       fr: 'Votre synthèse d\'essai pour fabriquer \ue0bb(?<recipe>.*) a été couronnée de succès!',
       ja: '(?<player>\\y{Name})は\ue0bb(?<recipe>.*)の製作練習に成功した！',
       cn: '(?<player>\\y{Name})练习制作\ue0bb(?<recipe>.*)成功了！',
+      ko: '\ue0bb(?<recipe>.*) 제작 연습에 성공했습니다!',
     },
     craftingFail: {
       en: 'Your synthesis fails!',
@@ -95,6 +95,7 @@ export const LocaleNetRegex = {};
       fr: 'Votre synthèse d\'essai pour fabriquer \ue0bb(?<recipe>.*) s\'est soldée par un échec\\.{3}',
       ja: '(?<player>\\y{Name})は\ue0bb(?<recipe>.*)の製作練習に失敗した……',
       cn: '(?<player>\\y{Name})练习制作\ue0bb(?<recipe>.*)失败了……',
+      ko: '\ue0bb(?<recipe>.*) 제작 연습에 실패했습니다……\\.',
     },
     craftingCancel: {
       en: 'You cancel the synthesis\\.',
@@ -110,6 +111,7 @@ export const LocaleNetRegex = {};
       fr: 'Vous avez interrompu la synthèse d\'essai\\.',
       ja: '(?<player>\\y{Name})は製作練習を中止した。',
       cn: '(?<player>\\y{Name})停止了练习。',
+      ko: '제작 연습을 중지했습니다\\.',
     },
   };
 
