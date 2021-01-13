@@ -485,12 +485,12 @@ export default {
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Drop Shadow Max Melee',
-          de: 'Lege den Schatten im max Melee Bereich ab',
-          fr: 'Déposez l\'ombre au max de la portée',
-          ja: 'タゲサークル外側に影を捨てる',
-          cn: '把影子放到Boss目标圈外',
-          ko: '그림자 칼끝딜 위치에 떨어뜨리기',
+          en: 'Drop Shadow Out',
+          de: 'Schatten draußen ablegen',
+          fr: 'Déposez l\'ombre à l\'extérieur',
+          ja: '影を外周に捨てる',
+          cn: '影子放到外圈',
+          ko: '바깥쪽에 그림자 떨어뜨리기',
         },
       },
       run: (data) => delete data.clones,
@@ -502,7 +502,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Ombre De Héros', id: '5BBF', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '英雄の影', id: '5BBF', capture: false }),
       suppressSeconds: 3,
-      response: Responses.getUnder(),
+      response: Responses.moveAway(),
     },
     {
       id: 'E10S Distant Scream',
