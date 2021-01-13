@@ -42,7 +42,9 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2B84', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
-        cn: '中间激光',
+        text: {
+          cn: '中间激光',
+        },
       },
     },
     {
@@ -55,7 +57,9 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2B85', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
-        cn: '右侧激光',
+        text: {
+          cn: '右侧激光',
+        },
       },
     },
     {
@@ -68,7 +72,9 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2B86', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
-        cn: '左侧激光',
+        text: {
+          cn: '左侧激光',
+        },
       },
     },
     // Phases
