@@ -354,7 +354,6 @@ export default {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Chicken Knife': '치킨 나이프 던지기',
         'Necrobomb': '사령 폭탄',
@@ -372,6 +371,7 @@ export default {
         'Chaos Storm': '혼돈의 폭풍',
         'Chicken Knife': '치킨 나이프 던지기',
         'Coward\'s Cunning': '겁쟁이의 일격',
+        '(?<!Shadow)Dash': '달음질',
         'Dark Deluge': '검은 파도',
         'Death Throes': '물귀신 작전',
         'Falling Rock': '낙석',
@@ -389,7 +389,6 @@ export default {
         'Wild Anguish': '야수의 고통',
         'Wild Rage': '야수의 분노',
         'Wild Rampage': '야수의 격노',
-        'Wild Anguish x4': '야수의 고통 x4',
       },
     },
   ],
