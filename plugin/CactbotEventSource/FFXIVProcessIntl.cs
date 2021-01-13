@@ -40,6 +40,9 @@ namespace Cactbot {
 
       [FieldOffset(0x1C4)]
       public CharacterDetails charDetails;
+
+      [FieldOffset(0x1977)]
+      public byte shieldPercentage;
     }
 
     [StructLayout(LayoutKind.Explicit)]
@@ -71,10 +74,6 @@ namespace Cactbot {
 
       [FieldOffset(0x1F)]
       public byte level;
-
-      // TODO: find this again
-      // [FieldOffset(0x65)]
-      // public short shieldPercentage;
     }
     public FFXIVProcessIntl(ILogger logger) : base(logger) { }
 
@@ -199,10 +198,7 @@ namespace Cactbot {
           // This doesn't exist in memory, so just send the right value.
           // As there are other versions that still have it, don't change the event.
           entity.max_mp = 10000;
-
-          // TODO: fix me
-          // entity.shield_value = mem.charDetails.shieldPercentage * entity.max_hp / 100;
-          entity.shield_value = 0;
+          entity.shield_value = mem.shieldPercentage * entity.max_hp / 100;
 
           if (IsGatherer(entity.job)) {
             entity.gp = mem.charDetails.gp;
