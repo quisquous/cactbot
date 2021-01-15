@@ -203,7 +203,7 @@ export default {
         text: {
           en: 'Get hit by Ribbit',
           de: 'Lass dich von Quaaak treffen',
-          ja: 'クルルルルを受け',
+          ja: 'クルルルルを受ける',
           cn: 'BOSS正面吃呱呱',
           ko: '개굴장판 맞기',
         },
@@ -331,7 +331,7 @@ export default {
         text: {
           en: 'Mindjack: Left',
           de: 'Geistlenkung: Links',
-          ja: 'マインドジャック: 左折',
+          ja: 'マインドジャック: 左方向',
           cn: '精神控制：向左',
           ko: '정신 장악: 왼쪽',
         },
@@ -350,7 +350,7 @@ export default {
         text: {
           en: 'Mindjack: Right',
           de: 'Geistlenkung: Rechts',
-          ja: 'マインドジャック: 右折',
+          ja: 'マインドジャック: 右方向',
           cn: '精神控制：向右',
           ko: '정신 장악: 오른쪽',
         },
