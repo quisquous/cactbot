@@ -183,6 +183,7 @@ const intermediateRelativityOutputStrings = {
     de: 'Flare',
     fr: 'Brasier',
     ja: 'フレア',
+    cn: '核爆',
     ko: '플레어',
   },
   stack: {
@@ -190,6 +191,7 @@ const intermediateRelativityOutputStrings = {
     de: 'Sammeln',
     fr: 'Packez-vous',
     ja: '頭割り',
+    cn: '分摊',
     ko: '쉐어',
   },
   shadoweye: {
@@ -197,6 +199,7 @@ const intermediateRelativityOutputStrings = {
     de: 'Blick',
     fr: 'Regard',
     ja: 'シャドウアイ',
+    cn: '暗黑眼',
     ko: '마안',
   },
   eruption: {
@@ -204,6 +207,7 @@ const intermediateRelativityOutputStrings = {
     de: 'Verteilen',
     fr: 'Dispersez-vous',
     ja: '散開',
+    cn: '散开',
     ko: '산개',
   },
   blizzard: {
@@ -211,6 +215,7 @@ const intermediateRelativityOutputStrings = {
     de: 'Eis',
     fr: 'Glace',
     ja: 'ブリザガ',
+    cn: '冰三',
     ko: '블리자가',
   },
   aero: {
@@ -218,6 +223,7 @@ const intermediateRelativityOutputStrings = {
     de: 'Wind',
     fr: 'Vent',
     ja: 'エアロガ',
+    cn: '风三',
     ko: '에어로가',
   },
 };
@@ -294,6 +300,7 @@ export default {
             de: 'Blau - Gewicht',
             fr: 'Poids bleu',
             ja: '青、重圧',
+            cn: '蓝色重压',
             ko: '파랑',
           },
           // The second and two rounds of bombs have a partner.
@@ -304,6 +311,7 @@ export default {
             de: 'Blau (mit ${player})',
             fr: 'Bleu (avec ${player})',
             ja: '青、重圧 (${player}と)',
+            cn: '蓝色重压 (与${player})',
             ko: '파랑 (다른 대상자: ${player})',
           },
           titanOrangeStack: {
@@ -311,6 +319,7 @@ export default {
             de: 'Orange - versammeln',
             fr: 'Orange, package',
             ja: '橙、頭割り',
+            cn: '橙色分摊',
             ko: '주황: 집합',
           },
           titanYellowSpread: {
@@ -318,6 +327,7 @@ export default {
             de: 'Gelb - Verteilen',
             fr: 'Jaune, dispersion',
             ja: '黄、散開',
+            cn: '黄色散开',
             ko: '노랑: 산개',
           },
           // This is sort of redundant, but if folks want to put "square" or something in the text,
@@ -424,6 +434,7 @@ export default {
             de: 'Tankbuster + Wechsel',
             fr: 'Tank buster + Swap',
             ja: 'タンクバスター + スイッチ',
+            cn: '坦克死刑 + 换T',
             ko: '탱버 + 교대',
           },
           tankBusters: {
@@ -431,6 +442,7 @@ export default {
             de: 'Tankbuster',
             fr: 'Tank busters',
             ja: 'タンクバスター',
+            cn: '坦克死刑',
             ko: '탱버',
           },
         };
@@ -729,6 +741,7 @@ export default {
           de: 'Ködern - Weit weg',
           fr: 'Attirez au loin',
           ja: '遠くに誘導',
+          cn: '向外诱导',
           ko: '멀리 유도하기',
         },
         partyUnder: {
@@ -808,6 +821,7 @@ export default {
           de: '${effect1} > ${effect2} > ${effect3}',
           fr: '${effect1} > ${effect2} > ${effect3}',
           ja: '${effect1} > ${effect2} > ${effect3}',
+          cn: '${effect1} > ${effect2} > ${effect3}',
           ko: '${effect1} > ${effect2} > ${effect3}',
         },
       }, intermediateRelativityOutputStrings),
@@ -859,6 +873,7 @@ export default {
           de: 'Wegschauen',
           fr: 'Regardez ailleurs',
           ja: '背中を向け',
+          cn: '背对',
           ko: '뒤돌기',
         },
       },
@@ -877,6 +892,7 @@ export default {
           de: 'Nach draußen schauen',
           fr: 'Regardez vers l\'extérieur',
           ja: '外に向け',
+          cn: '背对',
           ko: '바깥 보기',
         },
       },
@@ -904,6 +920,8 @@ export default {
           en: 'Yellow: ${dir}',
           de: 'Gelb: ${dir}',
           fr: 'Jaune : ${dir}',
+          ja: '黄色: ${dir}',
+          cn: '黄色: ${dir}',
           ko: '노랑: ${dir}',
         },
       },
@@ -951,6 +969,8 @@ export default {
           en: 'Yellow: ${dir1} / ${dir2}',
           de: 'Gelb: ${dir1} / ${dir2}',
           fr: 'Jaune : ${dir1} / ${dir2}',
+          ja: '黄色: ${dir1} / ${dir2}',
+          cn: '黄色: ${dir1} / ${dir2}',
           ko: '노랑: ${dir1} / ${dir2}',
         },
       },
