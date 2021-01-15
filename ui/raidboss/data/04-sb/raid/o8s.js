@@ -188,7 +188,7 @@ export default {
           en: 'Future: Stack and Through',
           de: 'Zukunft: Sammeln und Durchlaufen',
           fr: 'Futur : Stack et traversez',
-          ja: '未来: シェア後ボスを通り抜ける',
+          ja: '未来: 頭割り後ボスを通り抜ける',
           cn: '分摊穿boss',
           ko: '미래: 맞고 통과해가기',
         },
