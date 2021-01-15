@@ -638,13 +638,13 @@ namespace Cactbot {
       [FieldOffset(0x07)]
       private byte chargeTimerState;
 
-      public bool overheated {
+      public bool overheatActive {
         get {
           return (chargeTimerState & 0x1) == 1;
         }
       }
 
-      public bool queenActive {
+      public bool robotActive {
         get {
           return (chargeTimerState & 0x2) == 1;
         }
