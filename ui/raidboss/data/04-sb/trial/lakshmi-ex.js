@@ -307,7 +307,7 @@ export default {
           en: 'Move Away',
           de: 'Weg da',
           fr: 'Éloignez-vous',
-          ja: '離れ',
+          ja: '離れる',
           cn: '远离大锤落点',
           ko: '피하기',
         },
