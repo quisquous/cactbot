@@ -216,7 +216,7 @@ export default {
         text: {
           en: 'Mindjack: Right',
           de: 'Geistlenkung: Rechts',
-          ja: 'マインドジャック: 右方向',
+          ja: 'マインドジャック: 右折',
           cn: '右',
           ko: '정신장악: 오른쪽',
         },
@@ -248,7 +248,7 @@ export default {
         text: {
           en: 'Mindjack: Left',
           de: 'Geistlenkung: Links',
-          ja: 'マインドジャック: 左方向',
+          ja: 'マインドジャック: 左折',
           cn: '左',
           ko: '정신장악: 왼쪽',
         },
