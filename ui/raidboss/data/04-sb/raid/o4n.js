@@ -64,7 +64,7 @@ export default {
         text: {
           en: 'Move around',
           de: 'Bewegen',
-          ja: '動く続ける',
+          ja: '動き続ける',
           cn: '不停移动',
           ko: '움직이기',
         },
@@ -149,7 +149,7 @@ export default {
         text: {
           en: 'Avoid black holes',
           de: 'Weiche den Schwarzen Löchern aus',
-          ja: 'ブラックホールに離れ',
+          ja: 'ブラックホールから離れる',
           cn: '远离黑洞',
           ko: '블랙홀 피하기',
         },
