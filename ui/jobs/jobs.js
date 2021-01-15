@@ -2277,6 +2277,16 @@ class Bars {
       classList: ['mnk-color-chakra'],
     });
 
+    const getLightningStacksViaLevel = (level) => {
+      if (level < 20)
+        return 1;
+      else if (level < 40)
+        return 2;
+      else if (level < 76)
+        return 3;
+      return 4;
+    };
+
     const lightningFgColors = [];
     for (let i = 0; i <= 3; ++i)
       lightningFgColors.push(computeBackgroundColorFrom(lightningTimer, 'mnk-color-lightning-' + i));
@@ -2292,7 +2302,15 @@ class Bars {
           p.classList.remove('dim');
       }
 
-      this.lightningStacks = jobDetail.lightningStacks;
+      // TODO: Remove this.lightningStacks,
+      // and change code to calculate speed by level in this.CalcGCDFromStat function
+      //
+      // For now, we just assign this.lightningStacks as corresponding stacks via current level,
+      // to compact server whose patch version below 5.4.
+      if (['cn', 'ko'].includes(this.options.ParserLanguage))
+        this.lightningStacks = jobDetail.lightningStacks;
+      else
+        this.lightningStacks = getLightningStacksViaLevel(this.level);
       lightningTimer.fg = lightningFgColors[this.lightningStacks];
       if (this.lightningStacks === 0) {
         // Show sad red bar when you've lost all your pancakes.
