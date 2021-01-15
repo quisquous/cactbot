@@ -87,7 +87,7 @@ export default {
         othersStackOnHoly: {
           en: 'others stack on ${holyTargets}',
           de: 'andere stacken auf ${holyTargets}',
-          ja: '他は${holyTargets}に頭割り',
+          ja: '他は${holyTargets}と頭割り',
           cn: '其他分摊${holyTargets}',
           ko: '${holyTargets} 다른 쉐어징',
         },
@@ -101,7 +101,7 @@ export default {
         stackOnHoly: {
           en: 'Stack on ${holyTargets}',
           de: 'Stack auf ${holyTargets}',
-          ja: '${holyTargets}に頭割り',
+          ja: '${holyTargets}と頭割り',
           cn: '分摊${holyTargets}',
           ko: '${holyTargets} 쉐어징',
         },
@@ -216,7 +216,7 @@ export default {
         text: {
           en: 'Mindjack: Right',
           de: 'Geistlenkung: Rechts',
-          ja: 'マインドジャック: 右折',
+          ja: 'マインドジャック: 右方向',
           cn: '右',
           ko: '정신장악: 오른쪽',
         },
@@ -248,7 +248,7 @@ export default {
         text: {
           en: 'Mindjack: Left',
           de: 'Geistlenkung: Links',
-          ja: 'マインドジャック: 左折',
+          ja: 'マインドジャック: 左方向',
           cn: '左',
           ko: '정신장악: 왼쪽',
         },
