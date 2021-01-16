@@ -84,6 +84,7 @@ export default {
     {
       id: 'Test Oops',
       netRegex: NetRegexes.echo({ line: '.*oops.*' }),
+      suppressSeconds: 10,
       mistake: function(e, data, matches) {
         return { type: 'fail', blame: data.me, text: matches.line };
       },
