@@ -1,41 +1,81 @@
 # Oopsy Raidsy Trigger Format
 
-## Oopsy File Format
+## File Structure
 
-Each file in this directory should be valid JavaScript and should be listed in **manifest.txt**.
-
-Each file should look something like this:
+Each file is a module that exports a single trigger set, and should be listed in **manifest.txt**.
 
 ```javascript
-[{
+import ZoneId from '../path/to/resources/zone_id.js';
+// Other imports here.
+
+export default {
   zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,
+  damageWarn: {
+    'UCU Lunar Dynamo': '26BC',
+    // ...
+  },
+  damageFail: {
+    'UCU Twister': '26AB',
+    // ...
+  },
+  gainsEffectWarn: {
+    'UCU Doom': 'D2',
+    // ...
+  },
+  gainsEffectFail: {
+    'UCU Doom': 'D2',
+    // ...
+  },
+  shareWarn: {
+    'UCU Megaflare': '26DB',
+    // ...
+  },
+  shareFail: {
+    'UCU Megaflare': '26DB',
+    // ...
+  },
   triggers: [
     { /* ..trigger 1.. */ },
     { /* ..trigger 2.. */ },
     { /* ..trigger 3.. */ },
   ]
-},
-{
-  zoneId: ZoneId.TheFinalCoilOfBahamutTurn4,
-  triggers: [
-    { /* ..trigger 1.. */ },
-    { /* ..trigger 2.. */ },
-    { /* ..trigger 3.. */ },
-  ]
-}]
+};
 ```
 
-Each file should evaluate to an array of trigger sets.
-A trigger set has either a `zoneId` or a `zoneRegex` that matches against the current zone for whether all of its triggers should be applied.
-The set of `ZoneId` constants come from [zone_id.js](../resources/zone_id.js).
-`zoneRegex` is a regex that matches against the name of the zone,
-and is still available as backwards compatibility
-with how zones used to be specified.
-If the zone matches, then the triggers will be valid in that zone, otherwise ignored.
-`triggers` holds an array of triggers in the trigger set.
+### Trigger Set Properties
+
+**zoneId**:
+A shortened name for the zone to use these triggers in.
+The set of id names can be found in [zone_id.js](../resources/zone_id.js).
+Prefer using this over zoneRegex.
+A trigger set must have one of zoneId or zoneRegex to specify the zone
+(but not both).
+
+**zoneRegex**:
+A regular expression that matches against the zone name (coming from ACT).
+If the regular expression matches, then the triggers will apply to that zone.
+
+**damageWarn** and **damageFail**:
+An object contains properties like `'trigger id': 'damage action id'`,
+which provides an easy way to apply triggers via damage action id (in hex).
+When a player was hit by these action,
+a message (default to action name) would be shown.
+
+**damageWarn** shows the message as `warn`,
+and **damageFail** shows it as `fail`.
+
+**gainsEffectWarn** and **gainsEffectFail**:
+Just like **damageWarn** and **damageFail**, but triggered when hit by an effect (id in hex).
+
+**shareWarn** and **shareFail**:
+Just like **damageWarn** and **damageFail**,
+triggered when multiple players share damage which should only be on one player.
+
+**triggers**:
+An array of triggers in the trigger set.
 See below for the format of each of individual triggers.
 
-## Oopsy Trigger format
+## Trigger Structure
 
 Each trigger is an object with the following fields.  All fields are optional.
 
