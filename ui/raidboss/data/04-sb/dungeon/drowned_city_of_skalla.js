@@ -59,7 +59,7 @@ export default {
           en: 'avoid eye lasers',
           de: 'Augenlaser ausweichen',
           fr: 'Évitez les lasers',
-          ja: '前方レザーに避け',
+          ja: '前方レーザーを避ける',
           cn: '避开眼部激光',
           ko: '레이저 피하기',
         },

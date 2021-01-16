@@ -122,7 +122,7 @@ export default {
         thunderTTS: {
           en: 'thunder',
           de: 'blitzga',
-          ja: '離れ',
+          ja: '離れる',
           cn: '远离',
           ko: '선더가',
         },
@@ -359,7 +359,7 @@ export default {
         dieOnInside: {
           en: 'Die on Inside',
           de: 'Innen sterben',
-          ja: '中に死ぬ',
+          ja: '中で死ぬ',
           cn: '在里面死亡',
           ko: '안쪽 레이저 맞기',
         },
@@ -373,7 +373,7 @@ export default {
         outOutOut: {
           en: 'out out out',
           de: 'raus raus raus',
-          ja: '出ていて！',
+          ja: '出て出て！',
           cn: '出去出去',
           ko: '바깥으로',
         },
@@ -413,7 +413,7 @@ export default {
         dieOnOutside: {
           en: 'Die on Outside',
           de: 'Außen sterben',
-          ja: '外に死ぬ',
+          ja: '外で死ぬ',
           cn: '在外面死亡',
           ko: '바깥 레이저 맞기',
         },
@@ -490,21 +490,21 @@ export default {
         dieOnRightBlue: {
           en: 'Die On Right Blue',
           de: 'In Blauem rechts sterben',
-          ja: '右の青色に死ぬ',
+          ja: '右の青色で死ぬ',
           cn: '在右边蓝色死亡',
           ko: '오른쪽 파랑 맞기',
         },
         dieOnLeftPurple: {
           en: 'Die On Left Purple',
           de: 'In Pinkem links sterben',
-          ja: '左の紫色に死ぬ',
+          ja: '左の紫色で死ぬ',
           cn: '在左边紫色死亡',
           ko: '왼쪽 보라 맞기',
         },
         dieOnColorSides: {
           en: 'Die on color sides',
           de: 'Auf Farben sterben',
-          ja: '同じ色に死ぬ',
+          ja: '同じ色で死ぬ',
           cn: '在同色一边死亡',
           ko: '색깔 맞기',
         },
@@ -574,21 +574,21 @@ export default {
         dieOnLeftBlue: {
           en: 'Die On Left Blue',
           de: 'Auf Blauem links sterben',
-          ja: '左の青色に死ぬ',
+          ja: '左の青色で死ぬ',
           cn: '在左边蓝色死亡',
           ko: '왼쪽 파랑 맞기',
         },
         dieOnRightPurple: {
           en: 'Die On Right Purple',
           de: 'Auf Pinkem rechts sterben',
-          ja: '右の紫色に死ぬ',
+          ja: '右の紫色で死ぬ',
           cn: '在右边紫色死亡',
           ko: '오른쪽 보라 맞기',
         },
         dieOnColorSides: {
           en: 'Die on color sides',
           de: 'Auf Farben sterben',
-          ja: '同じ色に死ぬ',
+          ja: '同じ色で死ぬ',
           cn: '在同色一边死亡',
           ko: '색깔 맞기',
         },
@@ -892,7 +892,7 @@ export default {
         text: {
           en: 'shriek: get mid, look away',
           de: 'Schrei: Zur mitte und wegschauen',
-          ja: '呪詛の叫声: 中へ、外に向け',
+          ja: '呪詛の叫声: 中へ、外を向け',
           cn: '石化点名',
           ko: '중앙으로, 바깥보기',
         },
@@ -929,7 +929,7 @@ export default {
         waterStackUnderNeo: {
           en: 'water: stack under neo',
           de: 'Wasser: Unter Neo stacken',
-          ja: '水属性圧縮: ボスの下に頭割り',
+          ja: '水属性圧縮: ボスの下で頭割り',
           cn: '去下面',
           ko: '물: 보스 아래 모이기',
         },
@@ -1005,7 +1005,7 @@ export default {
         stackUnderBossOnWaterhealer: {
           en: 'Stack under boss on ${waterHealer}',
           de: 'Unter Boss auf ${waterHealer} stacken',
-          ja: 'ボスの下に${waterHealer}と頭割り',
+          ja: 'ボスの下で${waterHealer}と頭割り',
           cn: '分摊于${waterHealer}',
           ko: '보스 아래에서 "${waterHealer}"에게 모이기',
         },

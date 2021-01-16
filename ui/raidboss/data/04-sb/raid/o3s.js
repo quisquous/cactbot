@@ -87,7 +87,7 @@ export default {
         othersStackOnHoly: {
           en: 'others stack on ${holyTargets}',
           de: 'andere stacken auf ${holyTargets}',
-          ja: '他は${holyTargets}に頭割り',
+          ja: '他は${holyTargets}と頭割り',
           cn: '其他分摊${holyTargets}',
           ko: '${holyTargets} 다른 쉐어징',
         },
@@ -101,7 +101,7 @@ export default {
         stackOnHoly: {
           en: 'Stack on ${holyTargets}',
           de: 'Stack auf ${holyTargets}',
-          ja: '${holyTargets}に頭割り',
+          ja: '${holyTargets}と頭割り',
           cn: '分摊${holyTargets}',
           ko: '${holyTargets} 쉐어징',
         },

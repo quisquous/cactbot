@@ -185,7 +185,7 @@ export default {
         text: {
           en: 'Line Cleave + Bait',
           de: 'Linien AoE -> Ködern',
-          fr: 'AoE en ligne + Attirez',
+          fr: 'AoE en ligne -> Déposez au sol',
           ja: '直線範囲 -> AoE誘導',
           cn: '直线 -> 放光点名',
           ko: '직선 장판 + 장판 유도',
@@ -617,7 +617,7 @@ export default {
         text: {
           en: 'Protean -> Holy Groups -> Line Cleave -> Bait -> Away',
           de: 'Himmelsrichtung -> Sanctus Gruppen -> Linien AoE -> Ködern -> Weg',
-          fr: 'Position -> Groupes -> AoE en ligne -> Attirez -> Éloignez-vous',
+          fr: 'Position -> Groupes -> AoE en ligne -> Déposez au sol -> Éloignez-vous',
           ja: '8方向散開 -> 3方向頭割り -> 直線範囲 -> AoE誘導 -> 離れる',
           cn: '八方 -> 光三向分摊 -> 直线 -> 放光点名 -> 离开',
           ko: '8산개 -> 홀리 그룹 쉐어 -> 직선 장판 -> 장판 유도 -> 피하기',

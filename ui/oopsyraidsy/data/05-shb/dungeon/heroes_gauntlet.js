@@ -30,9 +30,6 @@ export default {
     'THG Raging Slice 2': '520B', // Berserker line cleave
     'THG Wild Rage': '5203', // Berserker blue knockback puck
   },
-  damageFail: {
-    'THG Wild Rampage': '5207', // Berserker hide in a crater aoe
-  },
   shareWarn: {
     'THG Absolute Thunder IV': '5245', // headmarker aoe from blm
     'THG Moondiver': '5233', // headmarker aoe from drg
@@ -57,6 +54,15 @@ export default {
       condition: (e) => e.type === '15',
       mistake: function(e, data, matches) {
         return { type: 'warn', blame: matches.target, text: matches.ability };
+      },
+    },
+    {
+      id: 'THG Wild Rampage',
+      netRegex: NetRegexes.ability({ id: '5207' }),
+      // This is zero damage if you are in the crater.
+      condition: (e) => e.damage > 0,
+      mistake: function(e, data, matches) {
+        return { type: 'fail', blame: matches.target, text: matches.ability };
       },
     },
   ],

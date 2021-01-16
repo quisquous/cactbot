@@ -203,7 +203,7 @@ export default {
         text: {
           en: 'Get hit by Ribbit',
           de: 'Lass dich von Quaaak treffen',
-          ja: 'クルルルルを受け',
+          ja: 'クルルルルを受ける',
           cn: 'BOSS正面吃呱呱',
           ko: '개굴장판 맞기',
         },
