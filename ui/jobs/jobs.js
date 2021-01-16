@@ -2263,10 +2263,18 @@ class Bars {
   }
 
   setupMnk() {
-    const lightningTimer = this.addTimerBar({
-      id: 'mnk-timers-lightning',
-      fgColor: 'mnk-color-lightning-0',
-    });
+    // TODO: Remove this timer when cn/ko update 5.4
+    let lightningTimer = null;
+    if (['cn', 'ko'].includes(this.options.ParserLanguage)) {
+      lightningTimer = this.addTimerBar({
+        id: 'mnk-timers-lightning',
+        fgColor: 'mnk-color-lightning-0',
+      });
+
+      const lightningFgColors = [];
+      for (let i = 0; i <= 3; ++i)
+        lightningFgColors.push(computeBackgroundColorFrom(lightningTimer, 'mnk-color-lightning-' + i));
+    }
 
     const formTimer = this.addTimerBar({
       id: 'mnk-timers-combo',
@@ -2287,9 +2295,6 @@ class Bars {
       return 4;
     };
 
-    const lightningFgColors = [];
-    for (let i = 0; i <= 3; ++i)
-      lightningFgColors.push(computeBackgroundColorFrom(lightningTimer, 'mnk-color-lightning-' + i));
 
     this.jobFuncs.push((jobDetail) => {
       const chakra = jobDetail.chakraStacks;
@@ -2304,30 +2309,30 @@ class Bars {
 
       // TODO: Remove this.lightningStacks,
       // and change code to calculate speed by level in this.CalcGCDFromStat function
-      //
-      // For now, we just assign this.lightningStacks as corresponding stacks via current level,
-      // to compact server whose patch version below 5.4.
-      if (['cn', 'ko'].includes(this.options.ParserLanguage))
+      // when cn/ko update 5.4
+      if (lightningTimer) {
         this.lightningStacks = jobDetail.lightningStacks;
-      else
-        this.lightningStacks = getLightningStacksViaLevel(this.level);
-      lightningTimer.fg = lightningFgColors[this.lightningStacks];
-      if (this.lightningStacks === 0) {
-        // Show sad red bar when you've lost all your pancakes.
-        lightningTimer.style = 'fill';
-        lightningTimer.value = 0;
-        lightningTimer.duration = 0;
-      } else {
-        lightningTimer.style = 'empty';
+        lightningTimer.fg = lightningFgColors[this.lightningStacks];
+        if (this.lightningStacks === 0) {
+          // Show sad red bar when you've lost all your pancakes.
+          lightningTimer.style = 'fill';
+          lightningTimer.value = 0;
+          lightningTimer.duration = 0;
+        } else {
+          lightningTimer.style = 'empty';
 
-        // Setting the duration resets the timer bar to 0, so set
-        // duration first before adjusting the value.
-        const old = parseFloat(lightningTimer.duration) - parseFloat(lightningTimer.elapsed);
-        const lightningSeconds = jobDetail.lightningMilliseconds / 1000.0;
-        if (lightningSeconds > old) {
-          lightningTimer.duration = 16;
-          lightningTimer.value = lightningSeconds;
+          // Setting the duration resets the timer bar to 0, so set
+          // duration first before adjusting the value.
+          const old = parseFloat(lightningTimer.duration) - parseFloat(lightningTimer.elapsed);
+          const lightningSeconds = jobDetail.lightningMilliseconds / 1000.0;
+          if (lightningSeconds > old) {
+            lightningTimer.duration = 16;
+            lightningTimer.value = lightningSeconds;
+          }
         }
+      } else {
+        // For now, we just assign this.lightningStacks as corresponding stacks via current level
+        this.lightningStacks = getLightningStacksViaLevel(this.level);
       }
     });
 
