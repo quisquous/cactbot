@@ -102,7 +102,7 @@ const kPrefixToCategory = {
     de: 'Benutzer Trigger',
     fr: 'Triggers Utilisateur',
     ja: 'ユーザートリガー',
-    cn: '用户自定义触发器',
+    cn: '自定义触发器',
   },
 };
 
