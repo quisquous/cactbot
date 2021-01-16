@@ -65,7 +65,7 @@ a message (default to action name) would be shown.
 and **damageFail** shows it as `fail`.
 
 **gainsEffectWarn** and **gainsEffectFail**:
-Just like **damageWarn** and **damageFail**, but triggered when hitted by effect (id in hex).
+Just like **damageWarn** and **damageFail**, but triggered when hit by an effect (id in hex).
 
 **shareWarn** and **shareFail**:
 Just like **damageWarn** and **damageFail**,
