@@ -54,7 +54,7 @@ export default {
     },
     {
       id: 'Heroes Gauntlet Spectral White Mage Absolute Protect',
-      netRegex: NetRegexes.startsUsing({ id: '524D', source: 'Spectral White Mage', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '524D', source: 'Spectral White Mage' }),
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt('alert'),
     },
