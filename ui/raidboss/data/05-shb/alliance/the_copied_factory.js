@@ -914,7 +914,7 @@ export default {
         'Warehouse C': 'l\'entrepôt C',
       },
       'replaceText': {
-      	'\\?': ' ?',
+        '\\?': ' ?',
         '360-Degree Bombing Maneuver': 'Attaque : tir de missiles circulaire',
         'Adds': 'Adds',
         'Anti-Personnel Missile': 'Pluie de missiles antipersonnel',
