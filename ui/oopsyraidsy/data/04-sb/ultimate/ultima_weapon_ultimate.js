@@ -21,7 +21,6 @@ export default {
     {
       id: 'UWU Windburn',
       netRegex: NetRegexes.gainsEffect({ effectId: 'EB' }),
-      // TODO: implement suppressSeconds <_<
       suppressSeconds: 2,
       mistake: function(e, data, matches) {
         return { type: 'warn', blame: e.target, text: e.effect };
@@ -33,7 +32,6 @@ export default {
       id: 'UWU Featherlance',
       damageRegex: '2B43',
       collectSeconds: 0.5,
-      // TODO: implement suppress
       suppressSeconds: 5,
       mistake: function(e) {
         return { type: 'fail', blame: e[0].targetName, text: e[0].attackerName };

@@ -89,6 +89,7 @@ Each trigger is an object with the following fields.  All fields are optional.
 * `abilityRegex`: regex that matches the ids of any type of ability.
 * `collectSeconds`: float (or function returning float)
 * `delaySeconds`: float (or function returning float) for how long to wait before executing this trigger.  Ignored if `collectSeconds > 0`.
+* `suppressSeconds`: float (or function returning float) for how long to ignore future matches to this trigger (including additional collection).
 * `deathReason`: overrides the reason that a player died if the player dies without taking any more damage.  This is for things that kill you without an obvious log line, e.g. forgetting to clear Beyond Death.
 * `mistake`: returns a single mistake or an array of mistakes to add to the live list.  See below for the `mistake` format.
 * `run`: function that just runs, but does not return anything
