@@ -29,7 +29,7 @@ export default {
         text: {
           en: 'Be Near Boss',
           de: 'sei in der Nähe des Bosses',
-          fr: 'Près du boss',
+          fr: 'Soyez près du boss',
           ja: 'ボスに貼りつく',
           cn: '靠近Boss',
           ko: '보스 근처로',
@@ -45,7 +45,7 @@ export default {
         text: {
           en: 'Move to South Edge',
           de: 'zur südlichen Kante',
-          fr: 'Allez au Sud',
+          fr: 'Allez vers le bord sud',
           ja: '南へ',
           cn: '前往南侧边缘',
           ko: '남쪽으로',
@@ -89,7 +89,7 @@ export default {
         text: {
           en: 'Look for Lasers',
           de: 'Pass auf die Laser auf',
-          fr: 'Attention aux lasers',
+          fr: 'Repérez les lasers',
           ja: 'レーザーを避ける',
           cn: '小心激光',
           ko: '레이저 확인',
@@ -163,7 +163,7 @@ export default {
         text: {
           en: 'Dodge Moving Circle',
           de: 'Bewegenden Kreisen ausweichen',
-          fr: 'Evitez les cercles mouvants',
+          fr: 'Esquivez les cercles mouvants',
           ja: '動いてるサークルを避ける',
           cn: '躲避移动圆圈',
           ko: '시계방향 회전하면서 나오는 장판 피하기',
@@ -221,7 +221,7 @@ export default {
         text: {
           en: 'Dodge Falling Walls',
           de: 'Den fallenden Wände asuweichen',
-          fr: 'Eviter les murs tombants',
+          fr: 'Esquivez les murs tombants',
           ja: '倒れてくる壁を避ける',
           cn: '躲避倒塌墙壁',
           ko: '넘어지는 벽 피하기',
@@ -242,7 +242,7 @@ export default {
         text: {
           en: 'Spread Tethers',
           de: 'Verbindungen Verteilen',
-          fr: 'Ecartez les liens',
+          fr: 'Dispersez les liens',
           ja: '散開、線を断つ',
           cn: '散开扯断连线',
           ko: '산개 선 (탱 혼자도 가능)',
@@ -280,7 +280,7 @@ export default {
         text: {
           en: 'Dodge Electric Floor',
           de: 'Elektrischem Boden ausweichen',
-          fr: 'Evitez le sol électrifié',
+          fr: 'Esquivez le sol électrifié',
           ja: '電気床を避ける',
           cn: '躲避带电地板',
           ko: '바닥 장판 피하기',
@@ -540,7 +540,7 @@ export default {
         text: {
           en: 'Puddle on YOU',
           de: 'Fläche auf dir',
-          fr: 'Flaques sur VOUS',
+          fr: 'Zone au sol sur VOUS',
           ja: '自分に水溜り',
           cn: '水圈点名',
           ko: '징 대상자',
@@ -556,7 +556,7 @@ export default {
         text: {
           en: 'Get Out + Dodge Homing AoE',
           de: 'Geh Raus + Zielsuch-AoE ausweichen',
-          fr: 'Dehors + Evitez l\'AoE',
+          fr: 'Sortez + Esquivez l\'AoE',
           ja: '外 + AoE',
           cn: '远离 + 躲避弹幕',
           ko: '바깥으로 빠지고 따라오는 장판 피하기',
@@ -618,7 +618,7 @@ export default {
         text: {
           en: 'Look For Wall Saws',
           de: 'Halt nach den kleinen Sägen ausschau',
-          fr: 'Repérez les scies',
+          fr: 'Repérez les scies murales',
           ja: 'マルクス突撃',
           cn: '观察墙壁',
           ko: '양옆 톱 확인',
@@ -674,7 +674,7 @@ export default {
         text: {
           en: 'Laser Buster on YOU',
           de: 'Laser Tankbuster auf DIR',
-          fr: 'Laser Tankbuster sur VOUS',
+          fr: 'Tank buster laser sur VOUS',
           ja: '自分にレーザー',
           cn: '激光点名',
           ko: '레이저 대상자',
@@ -715,7 +715,7 @@ export default {
         text: {
           en: 'Dodge Overhead Saws',
           de: 'Sägen über dem Kopf ausweichen',
-          fr: 'Evitez la scie au-dessus de vous',
+          fr: 'Esquivez les scies aériennes',
           ja: 'マルクス支援',
           cn: '躲避头顶锯',
           ko: '톱 없는 쪽으로 피하기',
@@ -757,7 +757,7 @@ export default {
         text: {
           en: 'Go Behind Untethered Tank',
           de: 'Hinter den nicht verbundenen Panzer gehen',
-          fr: 'Derrière le tank non-lié',
+          fr: 'Allez derrière le tank non-lié',
           ja: '線のない戦車の後ろへ',
           cn: '没连线的坦克后躲避',
           ko: '연결되지 않은 탱크 뒤로 숨기',
@@ -789,7 +789,7 @@ export default {
         text: {
           en: 'Get in the bubble',
           de: 'Geh in die Kuppel',
-          fr: 'Allez dans les bulles',
+          fr: 'Allez dans la bulle',
           ja: '泡に入る',
           cn: '进入圈圈',
           ko: '안전지대 안으로 들어가기',
@@ -914,6 +914,7 @@ export default {
         'Warehouse C': 'l\'entrepôt C',
       },
       'replaceText': {
+      	'\\?': ' ?',
         '360-Degree Bombing Maneuver': 'Attaque : tir de missiles circulaire',
         'Adds': 'Adds',
         'Anti-Personnel Missile': 'Pluie de missiles antipersonnel',
@@ -926,7 +927,7 @@ export default {
         'Crusher Adds': 'Broyeurs',
         'Crushing Wheel': 'Scie circulaire',
         'Demolish Structure': 'Démolition de plate-forme',
-        'Diffuse Laser': 'Laser diffractif',
+        '(?<!Wide-Angle )Diffuse Laser': 'Laser diffractif',
         'Energy Assault': 'Tirs en éventail',
         'Energy Barrage': 'Rideau de balles',
         'Energy Blast': 'Fission de balle',
@@ -954,7 +955,11 @@ export default {
         'Marx Activation': 'Activation de Marx',
         'Marx Crush': 'Pinçage de Marx',
         'Marx Impact': 'Chute de Marx',
-        'Marx Smash': 'Coup de Marx',
+        'Marx Smash(?! )': 'Coup de Marx',
+        'Marx Smash B/F': 'Coup de Marx Der/Dev',
+        'Marx Smash F/B': 'Coup de Marx Dev/Der',
+        'Marx Smash L/R': 'Coup de Marx G/D',
+        'Marx Smash R/L': 'Coup de Marx D/G',
         'Marx Thrust': 'Charge de Marx',
         'Neutralization': 'Tir de suppression',
         'Precision Guided Missile': 'Missile à tête chercheuse ultraprécise',
@@ -972,6 +977,7 @@ export default {
         'Total Annihilation Maneuver': 'Attaque : bombardement dévastateur',
         'Undock': 'Désamarrage',
         'Wall Mechanic': 'Mécanique du mur',
+        'Wide-Angle Diffuse Laser': 'Super laser diffractif',
       },
     },
     {
