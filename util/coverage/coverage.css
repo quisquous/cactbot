@@ -52,14 +52,14 @@ body > div {
 
 #expansion-grid {
   display: grid;
-  grid-template-columns: max-content repeat(6, minmax(60px, max-content));
+  grid-template-columns: max-content repeat(7, minmax(60px, max-content));
   column-gap: 20px;
   row-gap: 10px;
 }
 
 #zone-grid {
   display: grid;
-  grid-template-columns: max-content repeat(4, minmax(60px, max-content));
+  grid-template-columns: max-content repeat(5, minmax(60px, max-content));
   column-gap: 20px;
   row-gap: 10px;
   justify-items: left;
