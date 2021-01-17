@@ -169,6 +169,9 @@ const tests = {
       const locale = trans.locale;
       if (!locale)
         continue;
+      // English is a partial translation.
+      if (locale === 'en')
+        continue;
 
       if (trans.missingTranslations)
         continue;
