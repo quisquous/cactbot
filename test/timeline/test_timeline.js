@@ -169,6 +169,14 @@ const tests = {
       const locale = trans.locale;
       if (!locale)
         continue;
+      // English is a partial translation.
+      if (locale === 'en') {
+        if (trans.missingTranslations)
+          errorFunc(`${triggersFile}:locale ${locale}:should not specify missingTranslations`);
+        if (trans.replaceSync)
+          errorFunc(`${triggersFile}:locale ${locale}:should not specify replaceSync`);
+        continue;
+      }
 
       if (trans.missingTranslations)
         continue;

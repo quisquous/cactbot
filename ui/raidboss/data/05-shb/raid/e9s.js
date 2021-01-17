@@ -819,6 +819,12 @@ export default {
   ],
   timelineReplace: [
     {
+      'locale': 'en',
+      'replaceText': {
+        'The Art Of Darkness(?! \\\\())': 'Art Of Dark (Clock/Stacks)',
+      },
+    },
+    {
       'locale': 'de',
       'replaceSync': {
         'Cloud Of Darkness': 'Wolke der Dunkelheit',
