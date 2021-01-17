@@ -53,6 +53,12 @@ export default {
       },
     },
     {
+      id: 'Heroes Gauntlet Spectral White Mage Absolute Protect',
+      netRegex: NetRegexes.startsUsing({ id: '524D', source: 'Spectral White Mage', capture: false }),
+      condition: (data) => data.CanSilence(),
+      response: Responses.interrupt('alert'),
+    },
+    {
       id: 'Heroes Gauntlet Large Zombie Tether',
       netRegex: NetRegexes.tether({ id: '004F' }),
       condition: Conditions.targetIsYou(),
