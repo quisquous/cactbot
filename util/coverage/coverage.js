@@ -157,7 +157,9 @@ const zoneGridHeaders = {
     ja: 'タイムライン',
     cn: '时间轴',
   },
-  // TODO: oopsy
+  oopsy: {
+    en: 'Oopsy',
+  },
   // TODO: missing translation items
 };
 
@@ -177,6 +179,10 @@ const miscStrings = {
     fr: 'Total',
     ja: '概要',
     cn: '总览',
+  },
+  // Oopsy label for the expansion table.
+  oopsy: {
+    ...zoneGridHeaders.oopsy,
   },
   // Warning when generator hasn't been run.
   runGenerator: {
@@ -206,6 +212,7 @@ const buildExpansionGrid = (container, lang, totals) => {
     const text = translate(contentTypeToLabel[contentType], lang);
     addDiv(container, 'label', text);
   }
+  addDiv(container, 'label', translate(miscStrings.oopsy, lang));
 
   // By expansion.
   for (const exVersion in exVersionToName) {
@@ -214,23 +221,26 @@ const buildExpansionGrid = (container, lang, totals) => {
 
     const versionInfo = totals.byExpansion[exVersion];
     const overall = versionInfo.overall;
-    addDiv(container, 'data', `${overall.num} / ${overall.total}`);
+    addDiv(container, 'data', `${overall.raidboss} / ${overall.total}`);
 
     for (const contentType of contentTypeLabelOrder) {
       const accum = versionInfo.byContentType[contentType];
-      const text = accum.total ? `${accum.num} / ${accum.total}` : undefined;
+      const text = accum.total ? `${accum.raidboss} / ${accum.total}` : undefined;
       addDiv(container, 'data', text);
     }
+
+    addDiv(container, 'data', `${overall.oopsy} / ${overall.total}`);
   }
 
   // Totals.
   addDiv(container, 'label');
-  addDiv(container, 'data', `${totals.overall.num} / ${totals.overall.total}`);
+  addDiv(container, 'data', `${totals.overall.raidboss} / ${totals.overall.total}`);
   for (const contentType of contentTypeLabelOrder) {
     const accum = totals.byContentType[contentType];
-    const text = accum.total ? `${accum.num} / ${accum.total}` : undefined;
+    const text = accum.total ? `${accum.raidboss} / ${accum.total}` : undefined;
     addDiv(container, 'data', text);
   }
+  addDiv(container, 'data', `${totals.overall.oopsy} / ${totals.overall.total}`);
 };
 
 const buildZoneGrid = (container, lang, coverage) => {
@@ -247,6 +257,7 @@ const buildZoneGrid = (container, lang, coverage) => {
         continue;
 
       const zoneCoverage = coverage[zoneId] ? coverage[zoneId] : {
+        oopsy: {},
         triggers: {},
         timeline: {},
       };
@@ -267,18 +278,23 @@ const buildZoneGrid = (container, lang, coverage) => {
           addDiv(container, 'text', name);
         },
         triggers: () => {
-          const triggerEmoji = zoneCoverage.triggers.num > 0 ? '✔️' : undefined;
-          addDiv(container, 'emoji', triggerEmoji);
+          const emoji = zoneCoverage.triggers && zoneCoverage.triggers.num > 0 ? '✔️' : undefined;
+          addDiv(container, 'emoji', emoji);
         },
         timeline: () => {
-          let timelineEmoji = undefined;
-          if (zoneCoverage.timeline.timelineNeedsFixing)
-            timelineEmoji = '⚠️';
-          else if (zoneCoverage.timeline.hasFile)
-            timelineEmoji = '✔️';
+          let emoji = undefined;
+          if (zoneCoverage.timeline) {
+            if (zoneCoverage.timeline.timelineNeedsFixing)
+              emoji = '⚠️';
+            else if (zoneCoverage.timeline.hasFile)
+              emoji = '✔️';
+          }
 
-
-          addDiv(container, 'emoji', timelineEmoji);
+          addDiv(container, 'emoji', emoji);
+        },
+        oopsy: () => {
+          const emoji = zoneCoverage.oopsy && zoneCoverage.oopsy.num > 0 ? '✔️' : undefined;
+          addDiv(container, 'emoji', emoji);
         },
       };
 
