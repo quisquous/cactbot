@@ -55,6 +55,11 @@ export default {
     {
       id: 'Heroes Gauntlet Spectral White Mage Absolute Protect',
       netRegex: NetRegexes.startsUsing({ id: '524D', source: 'Spectral White Mage' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '524D', source: 'Phantom-Weißmagier' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '524D', source: 'Mage Blanc Spectral' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '524D', source: '幻光の白魔道士' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '524D', source: '幻光白魔法师' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '524D', source: '환상빛의 백마도사' }),
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt('alert'),
     },
