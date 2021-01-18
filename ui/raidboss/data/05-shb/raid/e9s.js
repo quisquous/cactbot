@@ -855,11 +855,10 @@ export default {
         'Cloud Of Darkness': 'Nuage de Ténèbres',
       },
       'replaceText': {
-        '\\(L/R\\)': '(G/D)',
-        '\\(P/S\\)': '(Po/Pa)',
+        '\\(L/R\\)': '(G/D)', 
         'The Third Art Of Darkness': 'Arts ténébreux triple',
         'The Second Art Of Darkness': 'Arts ténébreux double',
-        'The Art Of Darkness': 'Arts ténébreux',
+        'The Art Of Darkness(?! \\\\())': 'Arts ténébreux (Pos/Packs)',
         'Summon': 'Invocation',
         'Rejuvenating Balm': 'Tir vivifiant',
         'Particle Concentration': 'Rayon sphérique',
