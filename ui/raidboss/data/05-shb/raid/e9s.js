@@ -856,10 +856,9 @@ export default {
       },
       'replaceText': {
         '\\(L/R\\)': '(G/D)',
-        '\\(P/S\\)': '(Po/Pa)',
         'The Third Art Of Darkness': 'Arts ténébreux triple',
         'The Second Art Of Darkness': 'Arts ténébreux double',
-        'The Art Of Darkness': 'Arts ténébreux',
+        'The Art Of Darkness(?! \\\\())': 'Arts ténébreux (Pos/Packs)',
         'Summon': 'Invocation',
         'Rejuvenating Balm': 'Tir vivifiant',
         'Particle Concentration': 'Rayon sphérique',
