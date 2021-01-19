@@ -102,7 +102,7 @@ export default {
     {
       // The source of the tether is the player, the target is the sculpture.
       id: 'E12S Promise Chiseled Sculpture Tether',
-      netRegex: NetRegexes.tether({ target: 'Chiseled Sculpture', id: tetherIds }),
+      netRegex: NetRegexes.tether({ target: 'Chiseled Sculpture', id: '0011' }),
       run: (e, data, matches) => {
         data.sculptureTetherNameToId = data.sculptureTetherNameToId || {};
         data.sculptureTetherNameToId[matches.target] = matches.sourceId.toUpperCase();
@@ -123,7 +123,7 @@ export default {
       id: 'E12S Promise Blade Of Flame',
       netRegex: NetRegexes.ability({ source: 'Chiseled Sculpture', id: '58B3' }),
       mistake: (e, data, matches) => {
-        if (!laserNameToNum || !sculptureTetherNameToId || !data.sculptureYPositions)
+        if (!data.laserNameToNum || !data.sculptureTetherNameToId || !data.sculptureYPositions)
           return;
 
         // Hitting only one person is just fine.
