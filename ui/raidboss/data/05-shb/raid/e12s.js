@@ -921,8 +921,8 @@ export default {
           // TODO: Verify these localizations:
           // de: 'Schau weg von ${player1} und ${player2}',
           // fr: 'Ne regardez pas ${player1} et ${player2}',
-          // ja: '${player1}と${player2}を見ない',
-          // cn: '背对${player1}和${player2}',
+          ja: '${player1}と${player2}を見ない',
+          cn: '背对${player1}和${player2}',
           // ko: '${player1}와 ${player2}에게서 뒤돌기',
         },
         lookAwayFromPlayer: Outputs.lookAwayFromPlayer,
