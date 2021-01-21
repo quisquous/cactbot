@@ -4,8 +4,6 @@ import ZoneId from '../../../../../resources/zone_id.js';
 //       e.g. picking up your first pitch bog puddle will cause you to die to the damage
 //       your shadow takes from Deepshadow Nova or Distant Scream.
 // TODO: 573B Blighting Blitz issues during limit cut numbers
-// TODO: shackle apart/together failures
-// TODO: tower (void pulse) failures
 
 export default {
   zoneId: ZoneId.EdensPromiseLitanySavage,
@@ -38,4 +36,30 @@ export default {
   shareFail: {
     'E10S Shadow\'s Edge': '5725', // Tankbuster single target followup
   },
+  triggers: [
+    {
+      id: 'E10S Damage Down Orbs',
+      netRegex: NetRegexes.gainsEffect({ source: 'Flameshadow', effectId: '82C', capture: false }),
+      netRegexDe: NetRegexes.gainsEffect({ source: 'Schattenflamme', effectId: '82C', capture: false }),
+      netRegexFr: NetRegexes.gainsEffect({ source: 'Flamme ombrale', effectId: '82C', capture: false }),
+      netRegexJa: NetRegexes.gainsEffect({ source: 'シャドウフレイム', effectId: '82C', capture: false }),
+      mistake: (e, data, matches) => {
+        return { type: 'damage', blame: matches.target, text: `${matches.effect} (partial stack)` };
+      },
+    },
+    {
+      id: 'E10S Damage Down Boss',
+      // Shackles being messed up appear to just give the Damage Down, with nothing else.
+      // Messing up towers is the Thrice-Come Ruin effect (9E2), but also Damage Down.
+      // TODO: some of these will be duplicated with others, like `E10S Throne Of Shadow`.
+      // Maybe it'd be nice to figure out how to put the damage marker on that?
+      netRegex: NetRegexes.gainsEffect({ source: 'Shadowkeeper', effectId: '82C', capture: false }),
+      netRegexDe: NetRegexes.gainsEffect({ source: 'Schattenkönig', effectId: '82C', capture: false }),
+      netRegexFr: NetRegexes.gainsEffect({ source: 'Roi De L\'Ombre', effectId: '82C', capture: false }),
+      netRegexJa: NetRegexes.gainsEffect({ source: '影の王', effectId: '82C', capture: false }),
+      mistake: (e, data, matches) => {
+        return { type: 'damage', blame: matches.target, text: `${matches.effect}` };
+      },
+    },
+  ],
 };
