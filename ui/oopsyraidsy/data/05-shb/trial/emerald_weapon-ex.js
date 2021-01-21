@@ -14,7 +14,7 @@ export default {
     'EmeraldEx Tertius Terminus Est Explosion': '55CE', // sword explosions
     'EmeraldEx Airborne Explosion': '55BD', // exaflare
     'EmeraldEx Sidescathe 1': '55D4', // left/right cleave
-    'EmeraldEx Sidescathe 2': '55D4', // left/right cleave
+    'EmeraldEx Sidescathe 2': '55D5', // left/right cleave
     'EmeraldEx Shots Fired': '55B7', // rank and file soldiers
     'EmeraldEx Secundus Terminus Est': '55CB', // dropped + and x headmarkers
     'EmeraldEx Expire': '55D1', // ground aoe on boss "get out"
