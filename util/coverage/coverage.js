@@ -50,6 +50,7 @@ const exVersionToShortName = {
     fr: 'ARR',
     ja: '新生',
     cn: '2.X',
+    ko: '신생',
   },
   '1': {
     en: 'HW',
@@ -57,6 +58,7 @@ const exVersionToShortName = {
     fr: 'HW',
     ja: '蒼天',
     cn: '3.X',
+    ko: '창천',
   },
   '2': {
     en: 'SB',
@@ -64,6 +66,7 @@ const exVersionToShortName = {
     fr: 'SB',
     ja: '紅蓮',
     cn: '4.X',
+    ko: '홍련',
   },
   '3': {
     en: 'ShB',
@@ -71,6 +74,7 @@ const exVersionToShortName = {
     fr: 'ShB',
     ja: '漆黒',
     cn: '5.X',
+    ko: '칠흑',
   },
 };
 
@@ -81,6 +85,7 @@ const contentTypeToLabel = {
     fr: 'Raid',
     ja: 'レイド',
     cn: '大型任务',
+    ko: '레이드',
   },
   [ContentType.Trials]: {
     en: 'Trial',
@@ -88,6 +93,7 @@ const contentTypeToLabel = {
     fr: 'Défi',
     ja: '討伐戦',
     cn: '讨伐战',
+    ko: '토벌전',
   },
   [ContentType.UltimateRaids]: {
     en: 'Ult',
@@ -95,6 +101,7 @@ const contentTypeToLabel = {
     fr: 'Fatal',
     ja: '絶',
     cn: '绝境战',
+    ko: '절',
   },
   [ContentType.Dungeons]: {
     en: 'Dgn',
@@ -102,6 +109,7 @@ const contentTypeToLabel = {
     fr: 'Djn',
     ja: 'ID',
     cn: '迷宫挑战',
+    ko: '던전',
   },
   [ContentType.Guildhests]: {
     en: 'Hest',
@@ -109,6 +117,7 @@ const contentTypeToLabel = {
     fr: 'Op. Guilde',
     ja: 'ギルド',
     cn: '行会令',
+    ko: '길드작전',
   },
 };
 
@@ -128,6 +137,7 @@ const zoneGridHeaders = {
     fr: 'Ext',
     ja: 'パッチ',
     cn: '资料片',
+    ko: '확장팩',
   },
   type: {
     en: 'Type',
@@ -135,6 +145,7 @@ const zoneGridHeaders = {
     fr: 'Type',
     ja: 'タイプ',
     cn: '类型',
+    ko: '분류',
   },
   name: {
     en: 'Name',
@@ -142,6 +153,7 @@ const zoneGridHeaders = {
     fr: 'Nom',
     ja: '名前',
     cn: '名称',
+    ko: '이름',
   },
   triggers: {
     en: 'Triggers',
@@ -149,6 +161,7 @@ const zoneGridHeaders = {
     fr: 'Triggers',
     ja: 'トリガー',
     cn: '触发器',
+    ko: '트리거',
   },
   timeline: {
     en: 'Timeline',
@@ -156,12 +169,14 @@ const zoneGridHeaders = {
     fr: 'Timeline',
     ja: 'タイムライン',
     cn: '时间轴',
+    ko: '타임라인',
   },
   oopsy: {
     en: 'Oopsy',
     fr: 'Oopsy',
     ja: 'Oopsy',
     cn: '犯错监控',
+    ko: 'Oopsy',
   },
   // TODO: missing translation items
 };
@@ -174,6 +189,7 @@ const miscStrings = {
     fr: 'Contenus présents dans Cactbot',
     ja: 'Cactbot コンテンツ完成度',
     cn: 'Cactbot 内容覆盖率',
+    ko: 'Cactbot 컨텐츠 커버리지',
   },
   // Overall label for the expansion table.
   overall: {
@@ -182,6 +198,7 @@ const miscStrings = {
     fr: 'Total',
     ja: '概要',
     cn: '总览',
+    ko: '전체',
   },
   // Oopsy label for the expansion table.
   oopsy: {
@@ -194,6 +211,7 @@ const miscStrings = {
     fr: 'Erreur : Lancez node util/gen_coverage_report.js pour générer des données.',
     ja: 'エラー：node util/gen_coverage_report.js を実行し、データを生成しよう。',
     cn: '错误：请先运行 node util/gen_coverage_report.js 以生成数据。',
+    ko: '에러: 데이터를 생성하려면 node util/gen_coverage_report.js를 실행하세요.',
   },
 };
 
