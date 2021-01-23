@@ -860,22 +860,72 @@ export default {
       },
     },
     {
-      id: 'E12S Basic Relativity Shadoweye',
+      id: 'E12S Oracle Basic Relativity Shadow Eye Me',
+      netRegex: NetRegexes.gainsEffect({ effectId: '998' }),
+      condition: (data, matches) => data.phase === 'basic',
+      preRun: (data, matches) => {
+        data.eyes = data.eyes || [];
+        data.eyes.push(matches.target);
+      },
+      // Delay so that we don't overwrite Hourglass callout
+      delaySeconds: 4,
+      infoText: (data, matches, output) => {
+        // The trigger repeats for collection; only call out first match
+        if (data.eyes.includes(data.me) && !data.eyecalled) {
+          data.eyecalled = true;
+          return output.text();
+        }
+        return;
+      },
+      outputStrings: {
+        text: {
+          en: 'Eye on YOU',
+          de: 'Auge auf DIR',
+          fr: 'Œil sur VOUS',
+          ja: '自分に目',
+          cn: '石化眼点名',
+          ko: '시선징 대상자',
+        },
+      },
+    },
+    {
+      id: 'E12S Oracle Basic Relativity Shadow Eye Other',
       netRegex: NetRegexes.gainsEffect({ effectId: '998' }),
       condition: (data, matches) => data.phase === 'basic',
       delaySeconds: (data, matches) => parseFloat(matches.duration) - 3,
-      suppressSeconds: 2,
-      infoText: (data, _, output) => output.text(),
+      suppressSeconds: 3,
+      alertText: (data, matches, output) => {
+        const player1 = data.eyes[0];
+        const player2 = data.eyes.length === 2 ? data.eyes[1] : false;
+
+        if (player1 !== data.me && player2 !== data.me) {
+          // Call out both player names if you don't have eye
+          return output.lookAwayFromPlayers({
+            player1: data.ShortName(player1),
+            player2: data.ShortName(player2),
+          });
+        } else if (player1 === data.me && player2) {
+          // Call out second player name if exists and you have eye
+          return output.lookAwayFromPlayer({ player: data.ShortName(player2) });
+        } else if (player2 === data.me) {
+          // Call out first player name if you have eye
+          return output.lookAwayFromPlayer({ player: data.ShortName(player1) });
+        }
+
+        // Return empty when only you have eye
+        return;
+      },
       outputStrings: {
-        text: {
-          // TODO: we could say "look away from x, y" or "look away from tanks"?
-          en: 'Look Away',
-          de: 'Wegschauen',
-          fr: 'Regardez ailleurs',
-          ja: '背中を向け',
-          cn: '背对',
-          ko: '뒤돌기',
+        lookAwayFromPlayers: {
+          en: 'Look Away from ${player1} and ${player2}',
+          // TODO: Verify these localizations:
+          // de: 'Schau weg von ${player1} und ${player2}',
+          // fr: 'Ne regardez pas ${player1} et ${player2}',
+          ja: '${player1}と${player2}を見ない',
+          cn: '背对${player1}和${player2}',
+          // ko: '${player1}와 ${player2}에게서 뒤돌기',
         },
+        lookAwayFromPlayer: Outputs.lookAwayFromPlayer,
       },
     },
     {
