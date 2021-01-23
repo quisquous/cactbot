@@ -32,6 +32,8 @@ body > div {
 .label {
   font-weight: bold;
   font-size: 20px;
+  position: sticky;
+  top: 0;
 }
 
 #expansion-grid > .label {
