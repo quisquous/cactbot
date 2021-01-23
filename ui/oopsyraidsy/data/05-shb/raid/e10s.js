@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
 // TODO: hitting shadow of the hero with abilities can cause you to take damage, list those?
