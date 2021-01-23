@@ -49,30 +49,35 @@ export default {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Chyme Of The Mountain': 'Gebirgsbrei',
       },
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Chyme Of The Mountain': 'Chyme des montagnes',
       },
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Chyme Of The Mountain': 'キームス・マウンテン',
       },
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Chyme Of The Mountain': '圣山之糜',
       },
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Chyme Of The Mountain': '산의 유미즙',
       },
