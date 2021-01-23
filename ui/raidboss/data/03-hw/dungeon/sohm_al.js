@@ -12,13 +12,13 @@ export default {
       id: 'Sohm Al Raskovnik Bloody Caress',
       regex: /Bloody Caress/,
       beforeSeconds: 3,
-      response: Responses.tankBuster(),
+      response: Responses.tankBuster('info'),
     },
     {
       id: 'Sohm Al Myath Third Leg Forward',
       regex: /Third Leg Forward/,
       beforeSeconds: 3,
-      response: Responses.tankBuster(),
+      response: Responses.tankBuster('info'),
     },
     {
       id: 'Sohm Al Tioman Abyssic Buster',
