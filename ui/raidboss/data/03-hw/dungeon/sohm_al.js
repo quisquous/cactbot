@@ -75,7 +75,7 @@ export default {
         'Hess Afah': 'Hess Afah',
         'Myath': 'Myath',
         'Raskovnik': 'Raskovnik',
-        'The Wound': 'Lavendellichtung',
+        'The Wound': 'Wunde',
         'Tioman': 'Tioman',
       },
       'replaceText': {
@@ -109,7 +109,7 @@ export default {
         'Hess Afah': 'Hess Afah',
         'Myath': 'Myath',
         'Raskovnik': 'Raskovnik',
-        'The Wound': 'La Talure',
+        'The Wound': 'La Plaie',
         'Tioman': 'Tioman',
       },
       'replaceText': {
@@ -143,7 +143,7 @@ export default {
         'Hess Afah': 'ヘス・アファー',
         'Myath': 'マイス',
         'Raskovnik': 'ラスコヴニク',
-        'The Wound': '紫黒のギャップ',
+        'The Wound': '霊峰の傷',
         'Tioman': 'ティオマン',
       },
       'replaceText': {
@@ -177,7 +177,7 @@ export default {
         'Hess Afah': '永望顶',
         'Myath': '迈斯龙',
         'Raskovnik': '破锁花王',
-        'The Wound': '紫黑裂痕',
+        'The Wound': '灵伤',
         'Tioman': '刁曼',
       },
       'replaceText': {
