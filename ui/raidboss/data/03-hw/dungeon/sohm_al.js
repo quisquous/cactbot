@@ -6,6 +6,7 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // Sohm Al (normal)
 export default {
   zoneId: ZoneId.SohmAl,
+  timelineFile: 'sohm_al.txt',
   triggers: [
     {
       id: 'Sohm Al Myath Stack',
