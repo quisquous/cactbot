@@ -231,13 +231,29 @@ ThirdParty
    |- OverlayPlugin.dll
 ```
 
-### 빌드하는 단계
+### 플러그인을 빌드하는 단계
 
 1. 솔루션을 Visual Studio로 여세요. (Visual Studio 2017에서 작동을 테스트하고 있습니다).
 1. "Release"와 "x64" 설정으로 빌드하세요.
 1. 플러그인은 **bin/x64/Release/CactbotOverlay.dll**에 빌드될 겁니다.
 1. 빌드된 플러그인을 ACT에 플러그인으로 직접 추가하세요.
 ACT -> Plugins -> Plugin Listing 탭에서, `Browse` 버튼을 클릭하고 이 파일이 빌드된 **bin/x64/Release/CactbotOverlay.dll**을 찾으세요.  그리고 `Add/Enable Plugin`을 클릭하세요.
+
+### npm과 webpack
+
+cactbot 개발자가 아니고
+개인적인 목적으로 수정하는 경우에는
+[Cactbot 사용자 설정](./CactbotCustomization.md) 문서를 참고해야 합니다.
+cactbot 파일을 직접 수정하는 것은 권장하지 않습니다.
+
+npm을 설치하고 Webpack을 실행하려면, 다음 과정을 따르세요:
+
+1. [nodejs와 npm](https://nodejs.org/ko/download/)을 설치합니다.
+1. cactbot 최상위 디렉토리에서 `npm install`을 실행합니다.
+1. `npm run build` 또는 `npm start`를 실행합니다.
+
+Webpack에 대해 더 자세히 알고 싶다면
+[기여하기](../../CONTRIBUTING.md#validating-changes-via-webpack) 문서를 보세요.
 
 ## UI 모듈 개요
 
@@ -256,7 +272,12 @@ point cactbot at **ui/raidboss/raidboss.html** or use the `Cactbot Raidboss` pre
 이 모듈은 레이드의 타임라인과 레이드에서 놓칠만한 정보들을 알려주는 텍스트/사운드 알림을 제공합니다. 텍스트와 사운드 알람은 ACT의 "커스텀 트리거" 기능과 비슷한 방식으로, 전투 타임라인이나 게임에서 찍히는 로그 메시지를 기반으로 제공됩니다.
 이 모듈은 월드 오브 워크래프트의 [BigWigs Bossmods](https://www.curseforge.com/wow/addons/big-wigs) 애드온과 비슷하게 보이고 느껴지도록 디자인 되었습니다.
 
-전투 타이마인은 [ACT Timeline](https://github.com/grindingcoil/act_timeline)플러그인에 맞게 디자인된 파일들을 사용합니다. [이 곳](http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)에 규칙이 정리되어 있으며,
+[이 페이지](https://quisquous.github.io/cactbot/util/coverage/coverage.html?lang=ko)에는
+현재 cactbot이 지원하는 컨텐츠 목록이 나열되어 있습니다.
+지원하는 컨텐츠는 계속해서 늘리고 있습니다.
+하지만 많은 수의 오래된 컨텐츠들은 아직도 지원되지 않습니다.
+
+전투 타임라인은 [ACT Timeline](https://github.com/grindingcoil/act_timeline)플러그인에 맞게 디자인된 파일들을 사용합니다. [이 곳](http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)에 규칙이 정리되어 있으며,
 cactbot에서는 [약간의 확장 기능](../TimelineGuide.md)을 추가했습니다.
 
 텍스트 알람에는 세 단계가 있으며, 중요도에 따라 다음과 같이 분류됩니다: `info`, `alert`, 그리고 `alarm`.
@@ -318,14 +339,36 @@ or raiding, and a visual pull countdown.
 
 It has more fleshed out support for some jobs but is *strongly* a Work In Progress for others.
 
-* Red Mage: Shows white/black mana, tracks procs for Verstone, Verfire and Impact, and shows the state of the melee combo in progress.
-* Warrior: Shows the beast amount, and tracks the remaining Storm's Eye buff time in gcds.
-* Monk: Shows chakra count, remaining greased lightning time, and tracks monk buffs and debuffs.
+<details>
+<summary>지원하는 잡 (클릭해서 확장)</summary>
+
+|잡|기능|
+|:-:|:-:|
+|<img src="../../resources/ffxiv/jobs/pld-large.png" width="30px"/><br> 나이트|Shows current Oath amount, and atonement stacks. Also tracks Goring Blade DoT. |
+|<img src="../../resources/ffxiv/jobs/war-large.png" width="30px"/><br> 전사|Shows the beast amount, and tracks the remaining Storm's Eye buff time in gcds, and shows combo time remaining.|
+|<img src="../../resources/ffxiv/jobs/drk-large.png" width="30px"/><br> 암흑기사|Shows the blood amount and darkside time, and shows combo time remaining.|
+|<img src="../../resources/ffxiv/jobs/gnb-large.png" width="30px"/><br> 건브레이커|Shows No Mercy duration&cooldown, Bloodfest&Gnashing Fang cooldown, Cartridge amount, and shows combo time remaining.|
+|<img src="../../resources/ffxiv/jobs/whm-large.png" width="30px"/><br> 백마도사|Shows Heal&Blood Lily amount, time to next Lily, DoTs remaining time, and shows Assize&Lucid Dreaming cooldown.|
+|<img src="../../resources/ffxiv/jobs/sch-large.png" width="30px"/><br> 학자|Shows Aetherflow stacks, Fairy gauge amount/time remaining, DoTs remaining time, and shows Aetherflow&Lucid Dreaming cooldown.|
+|<img src="../../resources/ffxiv/jobs/ast-large.png" width="30px"/><br> 점성술사|Shows Seals amount, notify who or whether to play the current card, DoTs remaining time, and shows Draw&Lucid Dreaming cooldown.|
+|<img src="../../resources/ffxiv/jobs/mnk-large.png" width="30px"/><br> 몽크|Shows chakra count, <del>remaining greased lightning time</del> and form time, and tracks monk buffs and debuffs.|
+|<img src="../../resources/ffxiv/jobs/drg-large.png" width="30px"/><br> 용기사|Shows blood&eye amount, remaining Disembowel time, jump cooldown, and Lance Charge&Dragon Sight duration/cooldown.|
+|<img src="../../resources/ffxiv/jobs/nin-large.png" width="30px"/><br> 닌자|Shows Ninki amount, Huton remaining time, Trick Attack duration&cooldown, Bunshin&Mudras cooldown, and shows combo time remaining.|
+|<img src="../../resources/ffxiv/jobs/sam-large.png" width="30px"/><br> 사무라이|⨉ Not supported currently.|
+|<img src="../../resources/ffxiv/jobs/brd-large.png" width="30px"/><br> 음유시인|Shows songs playing and remaining time, Repertoire stack, Soul Voice amount, StraightShotReady track, DoT remaining time, and a bar that show when your DoTs will tick.|
+|<img src="../../resources/ffxiv/jobs/mch-large.png" width="30px"/><br> 기공사|Shows Heat gauge, Battery gauge, Combo Timer, Drill/Bioblaster&Air Anchor Cooldown, Wild Fire Cooldown&Duration. When Wild Fire is active, there will be a gauge to show how many GCD you have landed.|
+|<img src="../../resources/ffxiv/jobs/dnc-large.png" width="30px"/><br> 무도가|Shows Combo Timer, Feather Guage, Esprit Guage, Standard Step Cooldown, Technical Step&Flourish Cooldown & Duration.|
+|<img src="../../resources/ffxiv/jobs/blm-large.png" width="30px"/><br> 흑마도사|Shows DoTs remaining time, firestarter&thundercloud proc duration, time to next xeno, MP ticker, Fire/Ice stack and umbral heart stack.|
+|<img src="../../resources/ffxiv/jobs/smn-large.png" width="30px"/><br> 소환사|Shows DoTs remaining time, Energy Drain Cooldown, Trance Cooldown, Aetherflow stack, Demi-Summoning time and FurtherRuin Stack Guage.|
+|<img src="../../resources/ffxiv/jobs/rdm-large.png" width="30px"/><br> 적마도사|Shows white/black mana, tracks procs for Verstone&Verfire and show cooldown of lucid dreaming.|
+|<img src="../../resources/ffxiv/jobs/blu-large.png" width="30px"/><br> 청마도사|Shows cooldown of offguard&lucid dreaming, and Song Of Torment DoT remaining time.|
+
+</details>
 
 In this screenshot, the jobs module is highlighted for the Red Mage job. The health and mana bars, as well
 as Red Mage white/black mana tracking is circled in purple, with the large raid buff tracking pointed to
-beside it in orange. The first step of the melee combo has been executed, which is displayed as the yellow
-box above the health bar. The proc tracking is circled below in green.
+beside it in orange. <del>The first step of the melee combo has been executed, which is displayed as the yellow
+box above the health bar.</del> The proc tracking is circled below in green.
 
 ![jobs screenshot](../../screenshots/Jobs.png)
 
@@ -466,3 +509,13 @@ cactbot은 현재 서비스 중인 글로벌 서버 버전(영어, 독일어, �
 그리고 한국 서버 버전(한국어)에서
 테스트되고 작동합니다.
 일부 번역은 계속 진행 중입니다.
+
+## 라이선스, 상표, 저작권
+
+cactbot은 [아파치 2.0 라이선스](LICENSE)에 따른 오픈 소스 프로젝트입니다.
+
+FINAL FANTASY / 파이널 판타지는 Square Enix Holdings Co., Ltd의 등록 상표입니다.
+
+파이널 판타지 아트와 아이콘는 [FINAL FANTASY® XIV Materials Usage License](https://support.na.square-enix.com/rule.php?id=5382)에 따라 비상업적 목적으로 재사용됩니다.
+
+다른 번들 프로젝트에 대한 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
