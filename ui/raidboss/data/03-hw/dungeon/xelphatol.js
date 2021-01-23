@@ -157,7 +157,7 @@ export default {
         'Tozol Huatotl': 'Tozol Huatotl',
       },
       'replaceText': {
-        '\\(buster\\)': '(Tankbuster)',
+        '\\(buster\\)': '(Tank buster)',
         '\\(line\\)': '(Ligne)',
         '\\(aoe\\)': '(AoE)',
         'Aerial Blast': 'Rafale aérienne',
