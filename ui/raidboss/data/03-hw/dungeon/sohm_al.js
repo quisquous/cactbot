@@ -7,6 +7,26 @@ import ZoneId from '../../../../../resources/zone_id.js';
 export default {
   zoneId: ZoneId.SohmAl,
   timelineFile: 'sohm_al.txt',
+  timelineTriggers: [
+    {
+      id: 'Sohm Al Raskovnik Bloody Caress',
+      regex: /Bloody Caress/,
+      beforeSeconds: 3,
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'Sohm Al Myath Third Leg Forward',
+      regex: /Third Leg Forward/,
+      beforeSeconds: 3,
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'Sohm Al Tioman Abyssic Buster',
+      regex: /Abyssic Buster/,
+      beforeSeconds: 3,
+      response: Responses.tankCleave(),
+    },
+  ],
   triggers: [
     {
       id: 'Sohm Al Myath Stack',
