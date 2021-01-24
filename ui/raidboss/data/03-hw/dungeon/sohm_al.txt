@@ -66,7 +66,7 @@ hideall "--Reset--"
 373.4 "Bloody Caress" # sync /:Raskovnik:ED1:/
 
 # jump back to group 1
-500.0 "--sync--" sync /:1395:Raskovnik/ window 500,0 jump 103.0
+500.0 "--sync--" sync /:1395:Raskovnik/ window 500,0 jump 100.0
 
 
 ### Myath
