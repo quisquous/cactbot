@@ -30,6 +30,8 @@ hideall "--Reset--"
 119.6 "Flower Devour" sync /:Raskovnik:1392:/
 125.4 "Spit" sync /:Raskovnik:1393:/
 126.5 "--sync--" sync /:Raskovnik:1394:/
+# Inside Loop
+# Raskovnik would use this loop 4 times?
 136.0 "Floral Trap" sync /:Raskovnik:1391:/ jump 114.6
 141.0 "Flower Devour" # sync /:Raskovnik:1392:/
 146.8 "Spit" # sync /:Raskovnik:1393:/
@@ -37,12 +39,15 @@ hideall "--Reset--"
 157.1 "Floral Trap" # sync /:Raskovnik:1391:/
 162.1 "Flower Devour" # sync /:Raskovnik:1392:/
 167.9 "Spit" # sync /:Raskovnik:1393:/
+# Inside Loop
+
 # Loop
-200.0 "Sweet Scent" sync /:Raskovnik:1395:/ jump 103.0
-211.8 "Floral Trap" # sync /:Raskovnik:1391:/
-216.8 "Flower Devour" # sync /:Raskovnik:1392:/
-222.6 "Spit" # sync /:Raskovnik:1393:/
-223.7 "--sync--" # sync /:Raskovnik:1394:/
+200.0 "--sync--" sync /:1395:Raskovnik/ window 97,0 jump 100.0
+203.0 "Sweet Scent" sync /:Raskovnik:1395:/ window 97,0 jump 103.0
+214.8 "Floral Trap" # sync /:Raskovnik:1391:/
+219.8 "Flower Devour" # sync /:Raskovnik:1392:/
+225.6 "Spit" # sync /:Raskovnik:1393:/
+226.7 "--sync--" # sync /:Raskovnik:1394:/
 
 # Group 2
 300.0 "--sync--" sync /:ED6:Raskovnik/ window 300,0
