@@ -11,8 +11,8 @@ export default {
     {
       id: 'Sohm Al Raskovnik Bloody Caress',
       regex: /Bloody Caress/,
-      condition: Conditions.caresAboutPhysical(),
       beforeSeconds: 4,
+      condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster('info'),
     },
     {
@@ -24,8 +24,8 @@ export default {
     {
       id: 'Sohm Al Tioman Abyssic Buster',
       regex: /Abyssic Buster/,
-      condition: Conditions.caresAboutPhysical(),
       beforeSeconds: 4,
+      condition: Conditions.caresAboutPhysical(),
       response: Responses.tankCleave(),
     },
   ],
