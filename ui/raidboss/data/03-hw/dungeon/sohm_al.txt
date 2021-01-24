@@ -134,10 +134,13 @@ hideall "--Reset--"
 
 # 00:0044:Tioman:Arrogant insects! Be crushed beneath the weight of my fury!
 2200.0 "Heavensfall" sync /:Tioman:EE7:/ window 200,0
-2223.5 "Dark Star" # sync /:Tioman:EE4:/
-2246.9 "Dark Star" # sync /:Tioman:EE4:/
-2270.5 "Dark Star" # sync /:Tioman:EE4:/
-# TODO: didn't see an Enrage?
+2223.5 "Dark Star" sync /:Tioman:EE4:/ window 5,5
+2246.9 "Dark Star" sync /:Tioman:EE4:/ window 5,5
+2270.4 "Dark Star" sync /:Tioman:EE4:/ window 5,5 jump 2223.5
+2293.8 "Dark Star" sync /:Tioman:EE4:/ window 5,5
+2317.3 "Dark Star" sync /:Tioman:EE4:/ window 5,5
+# Tioman keeps using Dark Star every 23.5 seconds,
+# increasing Damage Up stacks, maximum is 16.
 
 # Jump back to normal loop
 2300.0 "--sync--" sync /:Tioman:366:/ window 100,0
