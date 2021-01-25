@@ -1,5 +1,6 @@
 body {
   margin: 20px;
+  padding-top: 2em;
 }
 
 div {
@@ -32,8 +33,10 @@ body > div {
 .label {
   font-weight: bold;
   font-size: 20px;
+  background-color: white;
   position: sticky;
   top: 0;
+  padding: 3px 0;
 }
 
 #expansion-grid > .label {
@@ -65,4 +68,9 @@ body > div {
   column-gap: 20px;
   row-gap: 10px;
   justify-items: left;
+}
+
+#expansion-grid > div,
+#zone-grid > div {
+  width: 100%;
 }
