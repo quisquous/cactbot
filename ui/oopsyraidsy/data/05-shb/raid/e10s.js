@@ -40,10 +40,10 @@ export default {
   triggers: [
     {
       id: 'E10S Damage Down Orbs',
-      netRegex: NetRegexes.gainsEffect({ source: 'Flameshadow', effectId: '82C', capture: false }),
-      netRegexDe: NetRegexes.gainsEffect({ source: 'Schattenflamme', effectId: '82C', capture: false }),
-      netRegexFr: NetRegexes.gainsEffect({ source: 'Flamme ombrale', effectId: '82C', capture: false }),
-      netRegexJa: NetRegexes.gainsEffect({ source: 'シャドウフレイム', effectId: '82C', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ source: 'Flameshadow', effectId: '82C' }),
+      netRegexDe: NetRegexes.gainsEffect({ source: 'Schattenflamme', effectId: '82C' }),
+      netRegexFr: NetRegexes.gainsEffect({ source: 'Flamme ombrale', effectId: '82C' }),
+      netRegexJa: NetRegexes.gainsEffect({ source: 'シャドウフレイム', effectId: '82C' }),
       mistake: (e, data, matches) => {
         return { type: 'damage', blame: matches.target, text: `${matches.effect} (partial stack)` };
       },
@@ -54,10 +54,10 @@ export default {
       // Messing up towers is the Thrice-Come Ruin effect (9E2), but also Damage Down.
       // TODO: some of these will be duplicated with others, like `E10S Throne Of Shadow`.
       // Maybe it'd be nice to figure out how to put the damage marker on that?
-      netRegex: NetRegexes.gainsEffect({ source: 'Shadowkeeper', effectId: '82C', capture: false }),
-      netRegexDe: NetRegexes.gainsEffect({ source: 'Schattenkönig', effectId: '82C', capture: false }),
-      netRegexFr: NetRegexes.gainsEffect({ source: 'Roi De L\'Ombre', effectId: '82C', capture: false }),
-      netRegexJa: NetRegexes.gainsEffect({ source: '影の王', effectId: '82C', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ source: 'Shadowkeeper', effectId: '82C' }),
+      netRegexDe: NetRegexes.gainsEffect({ source: 'Schattenkönig', effectId: '82C' }),
+      netRegexFr: NetRegexes.gainsEffect({ source: 'Roi De L\'Ombre', effectId: '82C' }),
+      netRegexJa: NetRegexes.gainsEffect({ source: '影の王', effectId: '82C' }),
       mistake: (e, data, matches) => {
         return { type: 'damage', blame: matches.target, text: `${matches.effect}` };
       },
