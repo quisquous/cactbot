@@ -19,8 +19,6 @@ export default {
     'E10S Giga Slash Box 2': '570D', // Giga slash box from four ground shadows
     'E10S Giga Slash Quadruple 1': '56EC', // quadruple set of giga slash cleaves
     'E10S Giga Slash Quadruple 2': '56E9', // quadruple set of giga slash cleaves
-    'E10S Barbs Of Agony 1': '572A', // Shadow Warrior 4 dog room cleave
-    'E10S Barbs Of Agony 2': '5B27', // Shadow Warrior 4 dog room cleave
     'E10S Cloak Of Shadows 1': '5B13', // initial non-squiggly line explosions
     'E10S Cloak Of Shadows 2': '5B14', // second squiggly line explosions
     'E10S Throne Of Shadow': '5717', // standing up get out
@@ -60,6 +58,16 @@ export default {
       netRegexJa: NetRegexes.gainsEffect({ source: '影の王', effectId: '82C' }),
       mistake: (e, data, matches) => {
         return { type: 'damage', blame: matches.target, text: `${matches.effect}` };
+      },
+    },
+    {
+      // Shadow Warrior 4 dog room cleave
+      // This can be mitigated by the whole group, so add a damage condition.
+      id: 'E10S Barbs Of Agony',
+      netRegex: NetRegexes.ability({ id: ['572A', '5B27'] }),
+      condition: (e) => e.damage > 0,
+      mistake: (e, data, matches) => {
+        return { type: 'warn', blame: matches.target, text: matches.ability };
       },
     },
   ],
