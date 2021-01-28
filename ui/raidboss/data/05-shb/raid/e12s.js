@@ -918,8 +918,8 @@ export default {
       outputStrings: {
         lookAwayFromPlayers: {
           en: 'Look Away from ${player1} and ${player2}',
+          de: 'Schau weg von ${player1} und ${player2}',
           // TODO: Verify these localizations:
-          // de: 'Schau weg von ${player1} und ${player2}',
           // fr: 'Ne regardez pas ${player1} et ${player2}',
           ja: '${player1}と${player2}を見ない',
           cn: '背对${player1}和${player2}',

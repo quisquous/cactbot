@@ -44,6 +44,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Middle Laser',
+          de: 'Laser (Mitte)',
           cn: '中间激光',
         },
       },
@@ -60,6 +61,7 @@ export default {
       outputStrings: {
         text: {
           en: 'North Laser',
+          de: 'Laser (Norden)',
           cn: '右侧激光',
         },
       },
@@ -76,6 +78,7 @@ export default {
       outputStrings: {
         text: {
           en: 'East Laser',
+          de: 'Laser (Osten)',
           cn: '左侧激光',
         },
       },
