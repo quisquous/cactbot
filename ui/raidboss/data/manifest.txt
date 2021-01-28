@@ -50,6 +50,7 @@
 03-hw/dungeon/gubal_library_hard.js
 03-hw/dungeon/gubal_library_hard.txt
 03-hw/dungeon/sohm_al.js
+03-hw/dungeon/sohm_al.txt
 03-hw/dungeon/sohm_al_hard.js
 03-hw/dungeon/sohm_al_hard.txt
 03-hw/dungeon/the_vault.js
