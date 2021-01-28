@@ -45,6 +45,7 @@ export default {
         text: {
           en: 'Middle Laser',
           de: 'Laser (Mitte)',
+          fr: 'Laser (Milieu)',
           cn: '中间激光',
         },
       },
@@ -62,6 +63,7 @@ export default {
         text: {
           en: 'North Laser',
           de: 'Laser (Norden)',
+          fr: 'Laser (Nord)',
           cn: '右侧激光',
         },
       },
@@ -79,6 +81,7 @@ export default {
         text: {
           en: 'East Laser',
           de: 'Laser (Osten)',
+          fr: 'Laser (Est)',
           cn: '左侧激光',
         },
       },
