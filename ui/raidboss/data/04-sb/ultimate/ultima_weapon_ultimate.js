@@ -43,6 +43,7 @@ export default {
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
+          en: 'Middle Laser',
           cn: '中间激光',
         },
       },
@@ -58,6 +59,7 @@ export default {
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
+          en: 'North Laser',
           cn: '右侧激光',
         },
       },
@@ -73,6 +75,7 @@ export default {
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
+          en: 'East Laser',
           cn: '左侧激光',
         },
       },
