@@ -173,6 +173,7 @@ const zoneGridHeaders = {
   },
   oopsy: {
     en: 'Oopsy',
+    de: 'Oopsy',
     fr: 'Oopsy',
     ja: 'Oopsy',
     cn: '犯错监控',
