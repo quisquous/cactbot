@@ -2213,7 +2213,7 @@ class Bars {
       // Show whether you already have this seal
       // O means it's OK to play this card
       // X means don't play this card directly if time permits
-      if (card === 'None')
+      if (!cardsMap[card])
         cardBox.innerText = '';
       else if (seals.includes(cardsMap[card].seal))
         cardBox.innerText = 'X';
