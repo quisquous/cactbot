@@ -4,7 +4,6 @@ import ZoneId from '../../../../../resources/zone_id.js';
 
 // TODO: add separate damageWarn-esque icon for damage downs?
 // TODO: 58A6 Under The Weight / 58B2 Classical Sculpture missing somebody in party warning?
-// TODO: figure out what classical sculpture number you are and say if you took the wrong laser?
 // TODO: 58CA Dark Water III / 58C5 Shell Crusher should hit everyone in party
 // TODO: Dark Aero III 58D4 should not be a share except on advanced relativity for double aero.
 // (for gains effect, single aero = ~23 seconds, double aero = ~31 seconds duration)
