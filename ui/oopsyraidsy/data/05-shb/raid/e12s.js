@@ -1,4 +1,5 @@
 import NetRegexes from '../../../../../resources/netregexes.js';
+import Outputs from '../../../../../resources/outputs.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
 // TODO: add separate damageWarn-esque icon for damage downs?
@@ -138,16 +139,16 @@ export default {
     },
     {
       id: 'E12S Promise Small Lion Lionsblaze',
-      netRegex: NetRegexes.ability({ source: 'Beastly Sculpture', id: '58B9' }),
-      netRegexDe: NetRegexes.ability({ source: 'Abbild Eines Löwen', id: '58B9' }),
-      netRegexFr: NetRegexes.ability({ source: 'Création Léonine', id: '58B9' }),
-      netRegexJa: NetRegexes.ability({ source: '創られた獅子', id: '58B9' }),
+      netRegex: NetRegexes.abilityFull({ source: 'Beastly Sculpture', id: '58B9' }),
+      netRegexDe: NetRegexes.abilityFull({ source: 'Abbild Eines Löwen', id: '58B9' }),
+      netRegexFr: NetRegexes.abilityFull({ source: 'Création Léonine', id: '58B9' }),
+      netRegexJa: NetRegexes.abilityFull({ source: '創られた獅子', id: '58B9' }),
       mistake: (e, data, matches) => {
         // Folks baiting the big lion second can take the first small lion hit,
         // so it's not sufficient to check only the owner.
         if (!data.smallLionOwners)
           return;
-        const owner = data.smallLionOwners[matches.sourceId.toUpperCase()];
+        const owner = data.smallLionIdToOwner[matches.sourceId.toUpperCase()];
         if (!owner)
           return;
         if (matches.target === owner)
@@ -160,17 +161,34 @@ export default {
 
         if (hasSmallLion || hasFireDebuff) {
           const ownerNick = data.ShortName(owner);
+
+          const centerY = -75;
+          const x = parseFloat(matches.x);
+          const y = parseFloat(matches.y);
+          let dirObj = null;
+          if (y < centerY) {
+            if (x > 0)
+              dirObj = Outputs.dirNE;
+            else
+              dirObj = Outputs.dirNW;
+          } else {
+            if (x > 0)
+              dirObj = Outputs.dirSE;
+            else
+              dirObj = Outputs.dirSW;
+          }
+
           return {
             type: 'fail',
             blame: owner,
             name: matches.target,
             text: {
-              en: `${matches.ability} (from ${ownerNick})`,
-              de: `${matches.ability} (von ${ownerNick})`,
-              fr: `${matches.ability} (de ${ownerNick})`,
-              ja: `${matches.ability} (${ownerNick}から)`,
-              cn: `${matches.ability} (来自${ownerNick})`,
-              ko: `${matches.ability} (from ${ownerNick})`,
+              en: `${matches.ability} (from ${ownerNick}, ${dirObj['en']})`,
+              de: `${matches.ability} (von ${ownerNick}, ${dirObj['de']})`,
+              fr: `${matches.ability} (de ${ownerNick}, ${dirObj['fr']})`,
+              ja: `${matches.ability} (${ownerNick}から, ${dirObj['ja']})`,
+              cn: `${matches.ability} (来自${ownerNick}, ${dirObj['cn']}`,
+              ko: `${matches.ability} (from ${ownerNick}, ${dirObj['ko']})`,
             },
           };
         }
@@ -181,7 +199,7 @@ export default {
       netRegex: NetRegexes.addedCombatantFull({ name: 'Regal Sculpture' }),
       run: (e, data, matches) => {
         const y = parseFloat(matches.y);
-        const centerY = 75;
+        const centerY = -75;
         if (y < centerY)
           data.northBigLion = matches.id.toUpperCase();
       },
@@ -190,30 +208,44 @@ export default {
       id: 'E12S Promise Big Lion Kingsblaze',
       netRegex: NetRegexes.ability({ source: 'Regal Sculpture', id: '4F9E' }),
       mistake: (e, data, matches) => {
-        const singleTarget = e.type === '15';
+        const singleTarget = matches.type === '21';
         const hasFireDebuff = data.fire && data.fire[matches.target];
 
         // Success iff only one person takes it and they have no fire debuff.
         if (singleTarget && !hasFireDebuff)
           return;
 
-        let text = matches.ability;
+        const output = {
+          northBigLion: {
+            en: 'north big lion',
+          },
+          southBigLion: {
+            en: 'south big lion',
+          },
+          shared: {
+            en: 'shared',
+          },
+          fireDebuff: {
+            en: 'had fire',
+          },
+        };
+
+        const labels = [];
         if (data.northBigLion) {
-          if (data.northBigLion === matches.sourceId) {
-            text = {
-              en: `${matches.ability} (north big lion)`,
-            };
-          } else {
-            text = {
-              en: `${matches.ability} (south big lion)`,
-            };
-          }
+          if (data.northBigLion === matches.sourceId)
+            labels.push(output.northBigLion[data.parserLang] || output.northBigLion['en']);
+          else
+            labels.push(output.southBigLion[data.parserLang] || output.southBigLion['en']);
         }
+        if (!singleTarget)
+          labels.push(output.shared[data.parserLang] || output.shared['en']);
+        if (hasFireDebuff)
+          labels.push(output.fireDebuff[data.parserLang] || output.fireDebuff['en']);
 
         return {
           type: 'fail',
           name: matches.target,
-          text: text,
+          text: `${matches.ability} (${labels.join(', ')})`,
         };
       },
     },
