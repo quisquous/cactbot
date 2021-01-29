@@ -95,7 +95,7 @@ export default {
       run: (e, data, matches) => {
         // This will run per person that gets hit by the same sculpture, but that's fine.
         // Record the y position of each sculpture so we can use it for better text later.
-        data.sculptureYPositions = data.sculptureYPositions || [];
+        data.sculptureYPositions = data.sculptureYPositions || {};
         data.sculptureYPositions[matches.sourceId.toUpperCase()] = parseFloat(matches.y);
       },
     },
@@ -105,14 +105,14 @@ export default {
       netRegex: NetRegexes.tether({ target: 'Chiseled Sculpture', id: '0011' }),
       run: (e, data, matches) => {
         data.sculptureTetherNameToId = data.sculptureTetherNameToId || {};
-        data.sculptureTetherNameToId[matches.target] = matches.sourceId.toUpperCase();
+        data.sculptureTetherNameToId[matches.source] = matches.targetId.toUpperCase();
       },
     },
     {
       id: 'E12S Promise Blade Of Flame Counter',
       netRegex: NetRegexes.ability({ source: 'Chiseled Sculpture', id: '58B3' }),
-      // TODO: ok we *really* need suppressSeconds for this to work.
       suppressSeconds: 1,
+      delaySeconds: 1,
       run: (e, data, matches) => {
         data.bladeOfFlameCount = data.bladeOfFlameCount || 0;
         data.bladeOfFlameCount++;
@@ -148,13 +148,13 @@ export default {
         // Now try to figure out which statue is which.
         // People can put these wherever.  They could go sideways, or diagonal, or whatever.
         // It seems mooooost people put these north / south (on the south edge of the arena).
-        // Let's say a minimum of 10 yalms apart in the y direction to consider them "north/south".
-        const minimumYalmsForStatues = 10;
+        // Let's say a minimum of 2 yalms apart in the y direction to consider them "north/south".
+        const minimumYalmsForStatues = 2;
 
         let isStatuePositionKnown = false;
         let isStatueNorth = false;
         const sculptureIds = Object.keys(data.sculptureYPositions);
-        if (sculptureIds.length === 2 && data.sculptureYPositions.includes[sourceId]) {
+        if (sculptureIds.length === 2 && sculptureIds.includes(sourceId)) {
           const otherId = sculptureIds[0] === sourceId ? sculptureIds[1] : sculptureIds[0];
           const sourceY = data.sculptureYPositions[sourceId];
           const otherY = data.sculptureYPositions[otherId];
@@ -165,17 +165,18 @@ export default {
           }
         }
 
+        const owner = owners[0];
         const ownerNick = data.ShortName(owner);
         let text = {
           en: `${matches.ability} (from ${ownerNick}, #${number})`,
         };
         if (isStatuePositionKnown && isStatueNorth) {
           text = {
-            en: `${matches.ability} (from ${ownerNick}, #${number} north statue)`,
+            en: `${matches.ability} (from ${ownerNick}, #${number} north)`,
           };
         } else if (isStatuePositionKnown && !isStatueNorth) {
           text = {
-            en: `${matches.ability} (from ${ownerNick}, #${number} south statue)`,
+            en: `${matches.ability} (from ${ownerNick}, #${number} south)`,
           };
         }
 
