@@ -185,6 +185,10 @@ module.exports = {
           // copy sounds and images
           from: 'resources/@(ffxiv|sounds)/**/*',
         },
+        {
+          // copy more html in raidboss module,
+          from: 'ui/raidboss/raidboss_*.html',
+        },
       ],
     }),
   ],
