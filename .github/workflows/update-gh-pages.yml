@@ -33,13 +33,11 @@ jobs:
           npm install
           npm run coverage-report
           npm run build
-      - name: git setup
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-      - name: git commit and push
-        run: |
-          git checkout -B gh-pages
-          git add dist resources --force
-          git commit -m "gh-pages build"
-          git push origin gh-pages --force
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          user_name: "github-actions"
+          user_email: "github-actions@github.com"
+          commit_message: "gh-pages build: ${{ github.event.head_commit.message }}"
