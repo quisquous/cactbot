@@ -6,8 +6,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
-const cactbotBinaryRelease = 'bin/x64/Release';
-
 const cactbotModules = {
   config: 'ui/config/config',
   coverage: 'util/coverage/coverage',
