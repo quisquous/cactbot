@@ -140,7 +140,11 @@ module.exports = {
     filename: '[name].js',
     path: path.resolve(__dirname, '../dist'),
   },
-  devServer: { writeToDisk: true },
+  devServer: {
+    contentBase: './dist',
+    inline: false,
+    writeToDisk: true,
+  },
   module: {
     rules: [
       {
@@ -186,7 +190,7 @@ module.exports = {
           from: 'resources/@(ffxiv|sounds)/**/*',
         },
         {
-          // copy more html in raidboss module,
+          // copy more html in raidboss module
           from: 'ui/raidboss/raidboss_*.html',
         },
       ],
