@@ -65,7 +65,14 @@ jobs:
     - name: MSBuild
       run: msbuild /p:Configuration=Release /p:Platform=x64 plugin/Cactbot.sln
       shell: cmd
-    
+
+    - uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
     - name: Install Node Dependencies
       run: |
         npm install
