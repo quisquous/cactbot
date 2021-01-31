@@ -4,6 +4,9 @@ import UserConfig from '../../resources/user_config.js';
 
 import '../../resources/common.js';
 
+import '../../resources/defaults.css';
+import './fisher.css';
+
 const Options = {
   IQRHookQuantity: 100,
   IQRTugQuantity: 10,

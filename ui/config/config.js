@@ -12,6 +12,9 @@ import '../radar/radar_config.js';
 import '../raidboss/raidboss_config.js';
 import '../../resources/common.js';
 
+import '../../resources/defaults.css';
+import './config.css';
+
 const Options = {};
 let gConfig = null;
 

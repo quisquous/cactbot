@@ -3,6 +3,8 @@ import { coverage, coverageTotals } from './coverage_report.js';
 import ZoneInfo from '../../resources/zone_info.js';
 import ContentType from '../../resources/content_type.js';
 
+import './coverage.css';
+
 // TODO: these tables are pretty wide, add some sort of alternating highlight?
 // TODO: make it possible to click on a zone row and highlight/link to it.
 

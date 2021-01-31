@@ -7,6 +7,9 @@ import { getWeather, findNextWeather, findNextWeatherNot, findNextNight, findNex
 import './eureka_config.js';
 import '../../resources/common.js';
 
+import '../../resources/defaults.css';
+import './eureka.css';
+
 const bunnyLabel = {
   en: 'Bunny',
   de: 'Hase',

@@ -21,6 +21,10 @@ import Tooltip from './emulator/ui/Tooltip.js';
 import UserConfig from '../../resources/user_config.js';
 import raidbossFileData from './data/manifest.txt';
 
+
+import '../../resources/defaults.css';
+import './raidemulator.css';
+
 // @TODO: Some way to not have this be a global?
 
 // See user/raidboss-example.js for documentation.

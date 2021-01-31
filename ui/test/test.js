@@ -1,5 +1,7 @@
 import '../../resources/common.js';
 
+import '../../resources/defaults.css';
+
 addOverlayListener('ChangeZone', (e) => {
   document.getElementById('currentZone').innerText = `currentZone: ${e.zoneName} (${e.zoneID})`;
 });

@@ -3,6 +3,9 @@ import UserConfig from '../../../resources/user_config.js';
 
 import '../../../resources/common.js';
 
+import '../../../resources/defaults.css';
+import './dps.css';
+
 // fiddle: http://jsfiddle.net/v1ddnsvh/8/
 /* global window */
 
@@ -44,44 +47,44 @@ var ____Class0=React.Component;for(var ____Class0____Key in ____Class0){if(____C
         return (
             this.props.perSecond === '---' ? null :
             React.createElement("li", {
-                className: 'row ' + this.props.job.toLowerCase() + (this.props.isSelf ? ' self' : ''), 
-                onClick: this.props.onClick}, 
+                className: 'row ' + this.props.job.toLowerCase() + (this.props.isSelf ? ' self' : ''),
+                onClick: this.props.onClick},
                 React.createElement("div", {
-                    className: "bar", 
-                    style: {width: width}}), 
-                    React.createElement("div", {className: "text-overlay"}, 
-                        React.createElement("div", {className: "stats"}, 
-                            React.createElement("span", {className: "total"}, 
+                    className: "bar",
+                    style: {width: width}}),
+                    React.createElement("div", {className: "text-overlay"},
+                        React.createElement("div", {className: "stats"},
+                            React.createElement("span", {className: "total"},
                                 this.props.totalFormatted
-                            ), 
+                            ),
 
                             this.props.additional ?
-                            React.createElement("span", {className: "additional"}, 
+                            React.createElement("span", {className: "additional"},
                                 "[", this.props.additional, "]"
-                            ) : null, 
+                            ) : null,
 
 
-                            "(", 
-                            React.createElement("span", {className: "ps"}, 
+                            "(",
+                            React.createElement("span", {className: "ps"},
                                 this.props.perSecond, ","
-                            ), 
+                            ),
 
-                            React.createElement("span", {className: "percent"}, 
+                            React.createElement("span", {className: "percent"},
                                 this.props.percentage
-                            ), 
+                            ),
                             ")"
-                        ), 
-                        React.createElement("div", {className: "info"}, 
-                            React.createElement("span", {className: "job-icon"}, 
+                        ),
+                        React.createElement("div", {className: "info"},
+                            React.createElement("span", {className: "job-icon"},
                                 React.createElement("img", {src: this.jobImage(this.props.job)})
-                            ), 
-                            React.createElement("span", {className: "rank"}, 
+                            ),
+                            React.createElement("span", {className: "rank"},
                                 this.props.rank, "."
-                            ), 
-                            React.createElement("span", {className: "character-name"}, 
+                            ),
+                            React.createElement("span", {className: "character-name"},
                                 this.props.characterName
-                            ), 
-                            React.createElement("span", {className: "character-job"}, 
+                            ),
+                            React.createElement("span", {className: "character-job"},
                                 this.props.job
                             )
                         )
@@ -147,52 +150,52 @@ var ____Class2=React.Component;for(var ____Class2____Key in ____Class2){if(____C
         }
 
         return (
-            React.createElement("div", {className: ("header " + (this.state.expanded ? '' : 'collapsed'))}, 
-                React.createElement("div", {className: "encounter-header"}, 
-                    React.createElement("div", {className: "encounter-data ff-header"}, 
-                        React.createElement("span", {className: "target-name dropdown-parent", onClick: this.handleEncounterClick.bind(this)}, 
-                            encounter.title, 
-                            React.createElement("div", {className: ("dropdown-menu encounters-list-dropdown " + (this.state.showEncountersList ? '' : 'hidden'))}, 
-                                React.createElement("div", {onClick: this.props.onSelectEncounter.bind(this, null)}, 
+            React.createElement("div", {className: ("header " + (this.state.expanded ? '' : 'collapsed'))},
+                React.createElement("div", {className: "encounter-header"},
+                    React.createElement("div", {className: "encounter-data ff-header"},
+                        React.createElement("span", {className: "target-name dropdown-parent", onClick: this.handleEncounterClick.bind(this)},
+                            encounter.title,
+                            React.createElement("div", {className: ("dropdown-menu encounters-list-dropdown " + (this.state.showEncountersList ? '' : 'hidden'))},
+                                React.createElement("div", {onClick: this.props.onSelectEncounter.bind(this, null)},
                                     "Current Fight"
-                                ), 
+                                ),
 
                                 EncountersArray.map(function(encounter, i) {
                                     return (
-                                        React.createElement("div", {key: i, onClick: this.props.onSelectEncounter.bind(this, i)}, 
+                                        React.createElement("div", {key: i, onClick: this.props.onSelectEncounter.bind(this, i)},
                                             encounter.Encounter.title
                                         )
                                     );
 
                                 }.bind(this))
                             )
-                        ), 
-                        React.createElement("span", {className: "duration"}, 
+                        ),
+                        React.createElement("span", {className: "duration"},
                             "(", encounter.duration, ")"
-                        ), 
+                        ),
                         React.createElement("span", {className: ("arrow " + (this.state.expanded ? 'up' : 'down')), onClick: this.handleExtraDetails.bind(this)})
-                    ), 
+                    ),
 
                     React.createElement("div", {
-                        className: "chart-view-switcher", 
-                        onClick: this.props.onViewChange}, 
+                        className: "chart-view-switcher",
+                        onClick: this.props.onViewChange},
                         this.props.currentView
                     )
-                ), 
-                React.createElement("div", {className: "extra-details"}, 
-                    React.createElement("div", {className: "extra-row damage"}, 
-                        React.createElement("div", {className: "cell"}, 
-                            React.createElement("span", {className: "label ff-header"}, "Damage"), 
-                            React.createElement("span", {className: "value ff-text"}, 
+                ),
+                React.createElement("div", {className: "extra-details"},
+                    React.createElement("div", {className: "extra-row damage"},
+                        React.createElement("div", {className: "cell"},
+                            React.createElement("span", {className: "label ff-header"}, "Damage"),
+                            React.createElement("span", {className: "value ff-text"},
                                 formatNumber(encounter.damage)
                             )
-                        ), 
-                        React.createElement("div", {className: "cell"}, 
-                            React.createElement("span", {className: "label ff-header"}, "DPS"), 
-                            React.createElement("span", {className: "value ff-text"}, 
+                        ),
+                        React.createElement("div", {className: "cell"},
+                            React.createElement("span", {className: "label ff-header"}, "DPS"),
+                            React.createElement("span", {className: "value ff-text"},
                                 formatNumber(encounter.encdps)
                             )
-                        ), 
+                        ),
                         // TODO: encounter['crithit%'] appears to always be zero.
                         // https://github.com/ngld/OverlayPlugin/issues/189
                         React.createElement("div", {className: "cell"},
@@ -201,41 +204,41 @@ var ____Class2=React.Component;for(var ____Class2____Key in ____Class2){if(____C
                                 (formatNumber(100 / encounter.hits * encounter.crithits) + "%")
                             )
                         ),
-                        React.createElement("div", {className: "cell"}, 
-                            React.createElement("span", {className: "label ff-header"}, "Miss"), 
-                            React.createElement("span", {className: "value ff-text"}, 
+                        React.createElement("div", {className: "cell"},
+                            React.createElement("span", {className: "label ff-header"}, "Miss"),
+                            React.createElement("span", {className: "value ff-text"},
                                 encounter['misses']
                             )
-                        ), 
-                        React.createElement("div", {className: "cell"}, 
-                            React.createElement("span", {className: "label ff-header"}, "Max"), 
-                            React.createElement("span", {className: "value ff-text"}, 
+                        ),
+                        React.createElement("div", {className: "cell"},
+                            React.createElement("span", {className: "label ff-header"}, "Max"),
+                            React.createElement("span", {className: "value ff-text"},
                                 encounter.maxhit
                             )
                         )
-                    ), 
-                    React.createElement("div", {className: "extra-row healing"}, 
-                        React.createElement("div", {className: "cell"}, 
-                            React.createElement("span", {className: "label ff-header"}, "Heals"), 
-                            React.createElement("span", {className: "value ff-text"}, 
+                    ),
+                    React.createElement("div", {className: "extra-row healing"},
+                        React.createElement("div", {className: "cell"},
+                            React.createElement("span", {className: "label ff-header"}, "Heals"),
+                            React.createElement("span", {className: "value ff-text"},
                                 formatNumber(encounter.healed)
                             )
-                        ), 
-                        React.createElement("div", {className: "cell"}, 
-                            React.createElement("span", {className: "label ff-header"}, "HPS"), 
-                            React.createElement("span", {className: "value ff-text"}, 
+                        ),
+                        React.createElement("div", {className: "cell"},
+                            React.createElement("span", {className: "label ff-header"}, "HPS"),
+                            React.createElement("span", {className: "value ff-text"},
                                 formatNumber(encounter.enchps)
                             )
-                        ), 
-                        React.createElement("div", {className: "cell"}, 
-                            React.createElement("span", {className: "label ff-header"}, "Crits"), 
-                            React.createElement("span", {className: "value ff-text"}, 
+                        ),
+                        React.createElement("div", {className: "cell"},
+                            React.createElement("span", {className: "label ff-header"}, "Crits"),
+                            React.createElement("span", {className: "value ff-text"},
                                 encounter['critheal%']
                             )
-                        ), 
-                        React.createElement("div", {className: "cell"}, 
-                            React.createElement("span", {className: "label ff-header"}, "Max"), 
-                            React.createElement("span", {className: "value ff-text"}, 
+                        ),
+                        React.createElement("div", {className: "cell"},
+                            React.createElement("span", {className: "label ff-header"}, "Max"),
+                            React.createElement("span", {className: "value ff-text"},
                                 encounter.maxheal
                             )
                         )
@@ -333,13 +336,13 @@ var ____Class3=React.Component;for(var ____Class3____Key in ____Class3){if(____C
                 if (stats) {
                     rows.push(
                         React.createElement(CombatantCompact, React.__spread({
-                            onClick: this.props.onClick, 
-                            encounterDamage: this.props.encounterDamage, 
-                            rank: rank, 
-                            data: combatant, 
-                            isSelf: isSelf, 
-                            key: combatant.name, 
-                            max: maxdps}, 
+                            onClick: this.props.onClick,
+                            encounterDamage: this.props.encounterDamage,
+                            rank: rank,
+                            data: combatant,
+                            isSelf: isSelf,
+                            key: combatant.name,
+                            max: maxdps},
                             stats)
                         )
                     );
@@ -350,7 +353,7 @@ var ____Class3=React.Component;for(var ____Class3____Key in ____Class3){if(____C
         }
 
         return (
-            React.createElement("ul", {className: "combatants"}, 
+            React.createElement("ul", {className: "combatants"},
                 rows
             )
         );
@@ -471,18 +474,18 @@ var ____Class4=React.Component;for(var ____Class4____Key in ____Class4){if(____C
 
         return (
             React.createElement("div", {
-                onClick: this.handleClick, 
-                className: 'damage-meter' + (!this.props.parseData.isActive ? ' inactive' : '') + (!this.props.noJobColors ? ' show-job-colors' : '')}, 
+                onClick: this.handleClick,
+                className: 'damage-meter' + (!this.props.parseData.isActive ? ' inactive' : '') + (!this.props.noJobColors ? ' show-job-colors' : '')},
                 React.createElement(Header, {
-                    encounter: encounterData, 
-                    onViewChange: this.handleViewChange.bind(this), 
-                    onSelectEncounter: this.handleSelectEncounter.bind(this), 
+                    encounter: encounterData,
+                    onViewChange: this.handleViewChange.bind(this),
+                    onSelectEncounter: this.handleSelectEncounter.bind(this),
                     currentView: this.props.chartViews[this.state.currentViewIndex]}
-                    ), 
+                    ),
                 React.createElement(Combatants, {
-                    currentView: this.props.chartViews[this.state.currentViewIndex], 
-                    onClick: this.handleCombatRowClick, 
-                    data: data, 
+                    currentView: this.props.chartViews[this.state.currentViewIndex],
+                    onClick: this.handleCombatRowClick,
+                    data: data,
                     encounterDamage: encounterData.damage})
             )
         );

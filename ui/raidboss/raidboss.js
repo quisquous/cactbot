@@ -11,6 +11,9 @@ import raidbossFileData from './data/manifest.txt';
 
 import Options from './raidboss_options.js';
 
+import '../../resources/defaults.css';
+import './raidboss.css';
+
 UserConfig.getUserConfigLocation('raidboss', Options, (e) => {
   // Query params override default and user options.
   // This allows for html files that say "timeline only" or "alerts only".

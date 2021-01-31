@@ -12,6 +12,10 @@ import './oopsyraidsy_config.js';
 
 import oopsyFileData from './data/manifest.txt';
 
+// import common css
+import '../../resources/defaults.css';
+import './oopsy_common.css';
+
 const Options = {
   Triggers: [],
   PlayerNicks: {},

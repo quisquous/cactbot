@@ -5,6 +5,9 @@ import UserConfig from '../../resources/user_config.js';
 import './radar_config.js';
 import '../../resources/common.js';
 
+import '../../resources/defaults.css';
+import './radar.css';
+
 const Options = {
   PopSound: '../../resources/sounds/freesound/sonar.ogg',
   RankOptions: {

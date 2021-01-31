@@ -15,6 +15,9 @@ import '../../resources/timerbox.js';
 import '../../resources/timericon.js';
 import '../../resources/widgetlist.js';
 
+import '../../resources/defaults.css';
+import './jobs.css';
+
 const kWellFedContentTypes = [
   ContentType.Dungeons,
   ContentType.Trials,
