@@ -43,6 +43,13 @@ jobs:
       - name: Build Cactbot Plugin
         run: |
           dotnet build plugin/Cactbot.sln /p:Configuration=Release /p:Platform=x64
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: Install Node Dependencies
         run: |
           npm install
