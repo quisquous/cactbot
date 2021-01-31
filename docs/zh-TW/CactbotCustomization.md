@@ -174,7 +174,7 @@ Options.Triggers.push({
 您需要將以下的程式碼貼上至您的使用者自定義js檔案底部。
 
 ```javascript
-Options.Triggers.push([{
+Options.Triggers.push({
   zoneId: ZoneId.MatchAll,
   triggers: [
     {
@@ -198,7 +198,7 @@ Options.Triggers.push([{
       },
     },
   ],
-]);
+});
 ```
 
 當然，您也可以直接刪除整個 `condition` 函式， 這是因為沒有condition的觸發器在匹配到正則時永遠會執行。

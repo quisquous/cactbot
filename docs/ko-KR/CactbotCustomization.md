@@ -256,7 +256,7 @@ Options.Triggers.push({
 이 코드들을 `cactbot/user/raidboss.js` 파일 아래 부분에 붙여넣습니다.
 
 ```javascript
-Options.Triggers.push([{
+Options.Triggers.push({
   zoneId: ZoneId.MatchAll,
   triggers: [
     {
@@ -280,7 +280,7 @@ Options.Triggers.push([{
       },
     },
   ],
-]);
+});
 ```
 
 이 경우에는 그냥 `condition` 함수를 완전히 지워버리는 방법도 있습니다.
@@ -401,7 +401,7 @@ User 폴더의 위치를 모른다면, [User 디렉토리 설정하기](#User-�
 
 1) `user` 폴더의 `raidboss.js` 파일을 편집 프로그램으로 엽니다. (메모장으로도 가능하며, 추가 프로그램을 설치할 의향이 있다면, [notepad++](https://notepad-plus-plus.org/downloads/)를 추천합니다.) 해당 파일이 없다면, 새로 만듭니다. 확장자가 js로 생성됐는지 반드시 확인하세요.
 
-1) 다음 코드 블록을 `raidboss.js` 파일 가장 아래에 붙여넣습니다.  
+1) 다음 코드 블록을 `raidboss.js` 파일 가장 아래에 붙여넣습니다.
 
     ```javascript
     Options.Triggers.push({
@@ -416,7 +416,7 @@ User 폴더의 위치를 모른다면, [User 디렉토리 설정하기](#User-�
 
 1) [데이터 목록](../../ui/raidboss/data)에서 지금 수정하고 싶은 레이드나 던전의 `.js` 파일을 찾아서 여세요. 해당하는 던전의 영문명은 직접 알아내야 합니다.
 
-1) `raidboss.js` 파일에 붙여넣은 내용 중, `ZoneId.SomeId`를 지우고 그 위치에 방금 찾아서 연 `.js` 파일에 나와있는 `zoneId`를 붙여넣습니다.  
+1) `raidboss.js` 파일에 붙여넣은 내용 중, `ZoneId.SomeId`를 지우고 그 위치에 방금 찾아서 연 `.js` 파일에 나와있는 `zoneId`를 붙여넣습니다.
 예시) `e8s.js`에는 `ZoneId.EdensVerseRefulgenceSavage`가 `zoneId`로 적혀있으므로, `ZoneId.SomeId`를 지우고 `ZoneId.EdensVerseRefulgenceSavage`를 붙여넣습니다.
 
 1) trigger 내부 중괄호와 쉼표를 지우고, `.js` 파일 내에서 수정하길 원하는 트리거를 그대로 붙여넣습니다. (id 바로 위에 있는 중괄호부터 복사해야 합니다.)
