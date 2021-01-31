@@ -2,8 +2,11 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 const cactbotModules = {
@@ -15,6 +18,7 @@ const cactbotModules = {
   fisher: 'ui/fisher/fisher',
   jobs: 'ui/jobs/jobs',
   oopsyraidsy: 'ui/oopsyraidsy/oopsyraidsy',
+  oopsyraidsySummary: 'ui/oopsyraidsy/oopsy_summary',
   pullcounter: 'ui/pullcounter/pullcounter',
   radar: 'ui/radar/radar',
   raidboss: 'ui/raidboss/raidboss',
@@ -70,7 +74,7 @@ const cactbotHtmlChunksMap = {
   'ui/oopsyraidsy/oopsy_summary.html': {
     chunks: [
       cactbotChunks.oopsyraidsyData,
-      cactbotModules.oopsyraidsy,
+      cactbotModules.oopsyraidsySummary,
     ],
   },
   'ui/oopsyraidsy/oopsyraidsy.html': {
@@ -119,6 +123,13 @@ module.exports = {
     })(),
   },
   optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserWebpackPlugin(),
+      new CssMinimizerPlugin({
+        parallel: true,
+      }),
+    ],
     splitChunks: {
       cacheGroups: {
         'raidboss_data': {
@@ -147,7 +158,20 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '',
+            },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              url: false,
+            },
+          },
+        ],
       },
       {
         test: /data[\\\/]manifest\.txt$/,
@@ -173,6 +197,9 @@ module.exports = {
   plugins: [
     new webpack.ProgressPlugin(),
     new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
     ...(() => Object.entries(cactbotHtmlChunksMap).map(([file, config]) => new HtmlWebpackPlugin({
       template: file,
       filename: file,
@@ -180,9 +207,9 @@ module.exports = {
     })))(),
     new CopyPlugin({
       patterns: [
-        {
-          from: '@(ui|resources|util)/**/*.css',
-        },
+        // {
+        //   from: '@(ui|resources|util)/**/*.css',
+        // },
         {
           // copy sounds and images
           from: 'resources/@(ffxiv|sounds)/**/*',
