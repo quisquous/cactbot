@@ -6,12 +6,11 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // O2S - Deltascape 2.0 Savage
 export default {
   zoneId: ZoneId.DeltascapeV20Savage,
-  timelineNeedsFixing: true,
   timelineFile: 'o2s.txt',
   timelineTriggers: [
     {
       id: 'O2S Double Stack',
-      regex: /Double Stack/,
+      regex: /Gravitational Manipulation/,
       beforeSeconds: 6,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -316,6 +315,7 @@ export default {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': 'Katastroph',
       },
@@ -359,13 +359,13 @@ export default {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': 'カタストロフィー',
       },
       'replaceText': {
         '\\(center\\)': '(中央)',
         '\\(T/H\\)': '(タンク/ヒラ)',
-        '\\(troll\\)': '(死神の瞳)',
         '-100 Gs': '重力マイナス100',
         '(?<!-)100 Gs': '重力100',
         'Antilight': '暗黒光',
@@ -384,13 +384,13 @@ export default {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': '灾变者',
       },
       'replaceText': {
         '\\(center\\)': '(中央)',
         '\\(T/H\\)': '(T/奶)',
-        '\\(troll\\)': '(死神之瞳)',
         '-100 Gs': '重力-100',
         '(?<!-)100 Gs': '重力100',
         'Antilight': '暗黑光',
@@ -409,6 +409,7 @@ export default {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': '카타스트로피',
       },
