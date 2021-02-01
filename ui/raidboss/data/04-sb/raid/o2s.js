@@ -18,6 +18,7 @@ export default {
         text: {
           en: 'DPS: Levitate',
           de: 'DDs hoch',
+          fr: 'DPS : Lévitation',
           ja: 'DPS: 浮上',
           cn: 'DPS浮空',
           ko: '딜러: 공중부양',
@@ -69,6 +70,7 @@ export default {
         text: {
           en: '-100 Gs: Go north/south and look away',
           de: '-100G: Nach Norden/Süden und wegschauen',
+          fr: 'Gravité -100 : Allez au nord/sud et détournez le regard',
           ja: '-100 G: 北/南へ、ボスを見ないで',
           cn: '前往南边/北边并背对boss',
           ko: '중력 마이너스 100: 남/북쪽에서 바깥쪽 보기',
@@ -109,6 +111,7 @@ export default {
         earthquake: {
           en: 'Earthquake',
           de: 'Erdbeben',
+          fr: 'Grand séisme',
           ja: '地震',
           cn: '地震',
           ko: '대지진',
@@ -116,6 +119,7 @@ export default {
         earthquakeLevitate: {
           en: 'Earthquake: Levitate',
           de: 'Erdbeben: Schweben',
+          fr: 'Grand séisme : Lévitation',
           ja: '地震: 浮上',
           cn: '地震：漂浮',
           ko: '대지진: 공중부양',
@@ -123,6 +127,7 @@ export default {
         levitate: {
           en: 'levitate',
           de: 'schweben',
+          fr: 'Lévitation',
           ja: '浮上',
           cn: '漂浮',
           ko: '공중부양',
@@ -145,6 +150,7 @@ export default {
         dpsUpTanksHealersDown: {
           en: 'DPS up, T/H down',
           de: 'DDs hoch, T/H runter',
+          fr: 'DPS en haut, T/H en bas',
           ja: 'DPS浮上 タンクヒラ降下',
           cn: 'DPS升起，T奶下降',
           ko: '딜러 공중부양, 탱힐 강하',
@@ -152,6 +158,7 @@ export default {
         dpsLevitate: {
           en: 'DPS: Levitate',
           de: 'DDs: Schweben',
+          fr: 'DPS : Lévitation',
           ja: 'DPS: 浮上',
           cn: 'DPS浮空',
           ko: '딜러: 공중부양',
@@ -159,6 +166,7 @@ export default {
         dpsUp: {
           en: 'dps up',
           de: 'dee dees hoch',
+          fr: 'DPS en haut',
           ja: 'DPS浮上',
           cn: 'DPS升起',
           ko: '딜러 공중부양',
@@ -210,6 +218,7 @@ export default {
         maniacalProbeTanksHealers: {
           en: 'Maniacal Probe: Tanks & Healers',
           de: 'Tentakeltanz: Tanks & Heiler',
+          fr: 'Farandole de tentacules : Tank et Heals',
           ja: '触手乱舞: タンク/ヒーラー',
           cn: 'T奶触手',
           ko: '촉수 난무: 탱/힐',
@@ -217,6 +226,7 @@ export default {
         maniacalProbeDps: {
           en: 'Maniacal Probe: DPS',
           de: 'Tentakeltanz: DDs',
+          fr: 'Farandole de tentacules : DPS',
           ja: '触手乱舞: DPS',
           cn: 'DPS触手',
           ko: '촉수 난무: 딜러',
@@ -224,6 +234,7 @@ export default {
         dpsProbe: {
           en: 'dps probe',
           de: 'dee dees tentakel',
+          fr: 'DPS tentacules',
           ja: 'dpsに触手乱舞',
           cn: 'dps触手',
           ko: '딜러 촉수 난무',
@@ -231,6 +242,7 @@ export default {
         tankHealProbe: {
           en: 'tank heal probe',
           de: 'tenks heiler tentakel',
+          fr: 'Tank/Heal tentacules',
           ja: 'タンクヒラに触手乱舞',
           cn: 'T奶触手',
           ko: '탱힐 촉수난무',
@@ -248,6 +260,7 @@ export default {
         elevateOutsideStack: {
           en: 'Unstable Gravity: Elevate and outside stack',
           de: 'Schwerkraftschwankung: Schweben und außen stacken',
+          fr: 'Gravité instable : Lévitez et packez-vous à l\'extérieur',
           ja: 'グラビティバースト: 浮上集合',
           cn: '升起并分摊',
           ko: '중력 폭탄: 공중부양 및 쉐어',
@@ -255,6 +268,7 @@ export default {
         floatForBomb: {
           en: 'float for bomb',
           de: 'schweben für bombe',
+          fr: 'Flottez pour la bombe',
           ja: '浮上集合',
           cn: '升起并分摊',
           ko: '중력 폭탄',
@@ -284,6 +298,7 @@ export default {
         sixFulmsUnder: {
           en: '6 Fulms Under',
           de: 'Versinkend',
+          fr: 'Enfoncement',
           ja: '沈下',
           cn: '下陷',
           ko: '하강',
@@ -291,6 +306,7 @@ export default {
         sixFulmsUnderLevitate: {
           en: '6 Fulms Under: Levitate',
           de: 'Versinkend: Schweben',
+          fr: 'Enfoncement : Lévitation',
           ja: '沈下: 浮上',
           cn: '下陷：悬浮',
           ko: '하강: 공중부양',
@@ -298,6 +314,7 @@ export default {
         float: {
           en: 'float',
           de: 'schweben',
+          fr: 'Flottez',
           ja: '浮上',
           cn: '悬浮',
           ko: '공중부양',
@@ -338,15 +355,16 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': 'Catastrophe',
       },
       'replaceText': {
+        '\\(center\\)': '(centre)',
         '-100 Gs': 'Gravité -100',
         '(?<!-)100 Gs': 'Gravité 100',
         'Antilight': 'Lumière obscure',
         'Death\'s Gaze': 'Œil de la Mort',
+        'Double Stack': 'Double package',
         'Earthquake': 'Grand séisme',
         'Epicenter': 'Épicentre',
         'Evilsphere': 'Sphère démoniaque',
@@ -354,6 +372,7 @@ export default {
         'Gravitational Wave': 'Onde gravitationnelle',
         'Long Drop': 'Chute ininterrompue',
         'Paranormal Wave': 'Onde maudite',
+        'Probes': 'Tentacules',
         'Unstable Gravity': 'Gravité instable',
       },
     },
