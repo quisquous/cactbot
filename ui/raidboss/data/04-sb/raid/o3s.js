@@ -87,6 +87,7 @@ export default {
         othersStackOnHoly: {
           en: 'others stack on ${holyTargets}',
           de: 'andere stacken auf ${holyTargets}',
+          fr: 'les autres se packent sur ${holyTargets}',
           ja: '他は${holyTargets}と頭割り',
           cn: '其他分摊${holyTargets}',
           ko: '${holyTargets} 다른 쉐어징',
@@ -94,6 +95,7 @@ export default {
         getOut: {
           en: 'Get out',
           de: 'Raus da',
+          fr: 'Sortez',
           ja: '出て',
           cn: '出去',
           ko: '밖으로',
@@ -101,6 +103,7 @@ export default {
         stackOnHoly: {
           en: 'Stack on ${holyTargets}',
           de: 'Stack auf ${holyTargets}',
+          fr: 'Packez-vous sur ${holyTargets}',
           ja: '${holyTargets}と頭割り',
           cn: '分摊${holyTargets}',
           ko: '${holyTargets} 쉐어징',
@@ -108,6 +111,7 @@ export default {
         stackOnYou: {
           en: 'Stack on YOU',
           de: 'Stack auf DIR',
+          fr: 'Package sur VOUS',
           ja: '自分に頭割り',
           cn: '分摊点名',
           ko: '쉐어징 대상자',
@@ -165,6 +169,7 @@ export default {
         goSouthStackOnYou: {
           en: 'Go south: stack on YOU',
           de: 'Nach Süden: stack auf DIR',
+          fr: 'Allez au sud : package sur VOUS',
           ja: '南へ: 自分に頭割り',
           cn: '去南边分摊点名',
           ko: '남쪽으로: 쉐어징 대상자',
@@ -172,6 +177,7 @@ export default {
         goNorth: {
           en: 'go north',
           de: 'nach norden',
+          fr: 'allez au nord',
           ja: '南へ',
           cn: '去南边',
           ko: '북쪽으로',
@@ -179,6 +185,7 @@ export default {
         goSouthStackOnFriend: {
           en: 'go south: stack on friend',
           de: 'nach süden: stack auf freund',
+          fr: 'allez au sud : package sur un ami',
           ja: '南へ: 頭割り',
           cn: '去南边分摊',
           ko: '남쪽으로: 쉐어징',
@@ -186,6 +193,7 @@ export default {
         stackOutside: {
           en: 'stack outside',
           de: 'außen stacken',
+          fr: 'packez-vous à l\'extérieur',
           ja: '外へ: 頭割り',
           cn: '去外面分摊',
           ko: '밖으로: 쉐어징',
@@ -193,6 +201,7 @@ export default {
         goNorth2: {
           en: 'go north',
           de: 'nach norden',
+          fr: 'allez au nord',
           ja: '南へ',
           cn: '去南边',
           ko: '북쪽으로',
@@ -200,6 +209,7 @@ export default {
         stackInside: {
           en: 'stack inside',
           de: 'innen stacken',
+          fr: 'packez-vous à l\'intérieur',
           ja: '中へ: 頭割り',
           cn: '去里面分摊',
           ko: '안으로: 쉐어징',
@@ -216,6 +226,7 @@ export default {
         text: {
           en: 'Mindjack: Right',
           de: 'Geistlenkung: Rechts',
+          fr: 'Contrainte mentale : vers la droite',
           ja: 'マインドジャック: 右折',
           cn: '右',
           ko: '정신장악: 오른쪽',
@@ -232,6 +243,7 @@ export default {
         text: {
           en: 'Mindjack: Forward',
           de: 'Geistlenkung: Vorwärts',
+          fr: 'Contrainte mentale : vers l\'avant',
           ja: 'マインドジャック: 前進',
           cn: '前',
           ko: '정신장악: 앞쪽',
@@ -248,6 +260,7 @@ export default {
         text: {
           en: 'Mindjack: Left',
           de: 'Geistlenkung: Links',
+          fr: 'Contrainte mentale : vers la gauche',
           ja: 'マインドジャック: 左折',
           cn: '左',
           ko: '정신장악: 왼쪽',
@@ -264,6 +277,7 @@ export default {
         text: {
           en: 'Mindjack: Back',
           de: 'Geistlenkung: Zurück',
+          fr: 'Contrainte mentale : vers l\'arrière',
           ja: 'マインドジャック: 後退',
           cn: '后',
           ko: '정신장악: 뒤쪽',
@@ -319,6 +333,7 @@ export default {
         text: {
           en: 'The Queen\'s Waltz: Books',
           de: 'Tanz der Königin: Bücher',
+          fr: 'Danse de la reine : Livres',
           ja: '女王の舞い: 本',
           cn: '中间两排分格站位',
           ko: '여왕의 춤: 책',
@@ -326,6 +341,7 @@ export default {
         tts: {
           en: 'books',
           de: 'bücher',
+          fr: 'livres',
           ja: '本',
           cn: '书',
           ko: '책',
@@ -346,6 +362,7 @@ export default {
         text: {
           en: 'The Queen\'s Waltz: Clock',
           de: 'Tanz der Königin: Uhr',
+          fr: 'Danse de la reine : Position',
           ja: '女王の舞い: 散開',
           cn: '万变水波站位',
           ko: '여왕의 춤: 산개',
@@ -353,6 +370,7 @@ export default {
         tts: {
           en: 'clock',
           de: 'uhr',
+          fr: 'position',
           ja: '散開',
           cn: '万变水波',
           ko: '산개',
@@ -373,6 +391,7 @@ export default {
         text: {
           en: 'The Queen\'s Waltz: Crystal Square',
           de: 'Tanz der Königin: Kristallfeld',
+          fr: 'Danse de la reine : Carré de cristal',
           ja: '女王の舞い: 床',
           cn: '站在蓝地板',
           ko: '여왕의 춤: 대지',
@@ -380,6 +399,7 @@ export default {
         tts: {
           en: 'blue square',
           de: 'blaues feld',
+          fr: 'Carré bleu',
           ja: '青い床',
           cn: '蓝地板',
           ko: '파란 장판',
@@ -400,6 +420,7 @@ export default {
         text: {
           en: 'The Queen\'s Waltz: Tethers',
           de: 'Tanz der Königin: Ranken',
+          fr: 'Danse de la reine : Liens',
           ja: '女王の舞い: 茨',
           cn: '先集中后扯线',
           ko: '여왕의 춤: 가시',
@@ -407,6 +428,7 @@ export default {
         tts: {
           en: 'tethers',
           de: 'ranken',
+          fr: 'liens',
           ja: '茨を引く',
           cn: '扯线',
           ko: '가시',
@@ -457,29 +479,49 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Halicarnassus': 'Halicarnasse',
       },
       'replaceText': {
+        '\\(Books\\)': '(Livres)',
+        '\\(Clock\\)': '(Positions)',
+        '\\(Crystals\\)': '(Cristaux)',
+        '\\(Ninjas/Giant\\)': '(Ninjas/Géant)',
+        '\\(Random\\)': '(Aléatoire)',
+        '\\(Tethers\\)': '(Liens)',
+        '\\(Ultimate\\)': '(Ultime)',
+        '--Apanda Spawns--': '--Apparitions d\'Apanda--',
+        '--Great Dragon Spawns--': '--Apparitions de dragon suprême--',
+        '--Ninjas \\+ Giant Spawn--': '--Apparition de Ninjas + Géant --',
+        '--White Flame Spawns--': '--Apparitions de Flamme blanche--',
         'Blizzard': 'Glace',
         'Critical Hit': 'Attaque critique',
+        'Cross Reaper': 'Fauchaison',
         'Dimensional Wave': 'Onde dimensionnelle',
+        'DPS Morph': 'Transformation DPS',
+        'Dragon Conal AoE': 'Cône de Dragon AoE',
         'Fire': 'Feu',
+        'Gusting Gouge': 'Gouge cisaillante',
         'Haste': 'Hâte',
+        'Healers Morph': 'Transformation Healers',
         'Magic Hammer': 'Marteau magique',
         'Mindjack': 'Contrainte mentale',
         'Oink': 'Abracadabri',
         'Panel Swap': 'Remplacement des cases',
         'Place Dark Token': 'Pions obscurs en jeu',
         'Place Token': 'Pion en jeu',
+        'Random Elemental': 'Élémentaire aléatoire',
         'Ribbit': 'Coâââ',
         'Spellblade Holy': 'Magilame Miracle',
         'Squelch': 'Abracadabra',
+        'Stench of Death': 'Parfum de mort',
+        'Tanks Morph': 'Transformation Tanks',
+        'Tethers': 'Liens',
         'The Game': 'Début de partie',
         'The Playing Field': 'Plateau de jeu',
         '(The )?Queen\'s Waltz': 'Danse de la reine',
         'Thunder': 'Foudre',
+        'Ultimum': 'Déclin dimensionnel',
       },
     },
     {
