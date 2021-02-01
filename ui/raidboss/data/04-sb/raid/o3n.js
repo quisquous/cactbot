@@ -89,7 +89,7 @@ export default {
         out: {
           en: 'Out',
           de: 'Raus',
-          fr: 'Dehors',
+          fr: 'Extérieur',
           ja: '外へ',
           cn: '远离',
           ko: '밖으로',
@@ -97,6 +97,7 @@ export default {
         stackOnHolytargets: {
           en: 'Stack on ${holyTargets}',
           de: 'Stack auf ${holyTargets}',
+          fr: 'Packez-vous sur ${holyTargets}',
           ja: '${holyTargets}にスタック',
           cn: '靠近 ${holyTargets}集合',
           ko: '"${holyTargets}" 쉐어징',
@@ -140,6 +141,7 @@ export default {
         getOnCrystalSquare: {
           en: 'Get on crystal square',
           de: 'Kristallfeld',
+          fr: 'Allez sur un carré de cristal',
           ja: '青い床に',
           cn: '站在蓝地板',
           ko: '파란 장판으로',
@@ -147,6 +149,7 @@ export default {
         blueSquare: {
           en: 'blue square',
           de: 'blaues feld',
+          fr: 'Carré bleu',
           ja: '青い床',
           cn: '蓝地板',
           ko: '파란 장판',
@@ -169,6 +172,7 @@ export default {
         text: {
           en: 'Grab dragon',
           de: 'Drachen nehmen',
+          fr: 'Attrapez le dragon',
           ja: 'ドラゴンを取って',
           cn: '拉住巨龙',
           ko: '용 잡기',
@@ -203,6 +207,7 @@ export default {
         text: {
           en: 'Get hit by Ribbit',
           de: 'Lass dich von Quaaak treffen',
+          fr: 'Soyez frappé par Coâââ',
           ja: 'クルルルルを受ける',
           cn: 'BOSS正面吃呱呱',
           ko: '개굴장판 맞기',
@@ -253,6 +258,7 @@ export default {
         standOnFrogTile: {
           en: 'Stand on frog tile',
           de: 'Auf Frosch-Fläche stehen',
+          fr: 'Tenez-vous sur la grenouille',
           ja: 'カエルパネルを踏む',
           cn: '站在呱呱方块',
           ko: '개구리 장판으로',
@@ -260,6 +266,7 @@ export default {
         standOnShield: {
           en: 'Stand on shield',
           de: 'Auf Schild-Fläche stehen',
+          fr: 'Tenez-vous sur le bouclier',
           ja: 'タンクパネルを踏む',
           cn: '站在坦克方块',
           ko: '방패 장판으로',
@@ -267,6 +274,7 @@ export default {
         standOnCross: {
           en: 'Stand on cross',
           de: 'Auf Kreuz-Fläche stehen',
+          fr: 'Tenez-vous sur la croix',
           ja: 'ヒーラーパネルを踏む',
           cn: '站在治疗方块',
           ko: '십자가 장판으로',
@@ -274,6 +282,7 @@ export default {
         standOnSword: {
           en: 'Stand on sword',
           de: 'Auf Schwert-Fläche stehen',
+          fr: 'Tenez-vous sur l\'épée',
           ja: 'DPSパネルを踏む',
           cn: '站在DPS方块',
           ko: '검 장판으로',
@@ -293,6 +302,7 @@ export default {
         text: {
           en: 'Mindjack: Forward',
           de: 'Geistlenkung: Vorwärts',
+          fr: 'Contrainte mentale : vers l\'avant',
           ja: 'マインドジャック: 前進',
           cn: '精神控制：向前',
           ko: '정신 장악: 앞쪽',
@@ -312,6 +322,7 @@ export default {
         text: {
           en: 'Mindjack: Back',
           de: 'Geistlenkung: Zurück',
+          fr: 'Contrainte mentale : vers l\'arrière',
           ja: 'マインドジャック: 後退',
           cn: '精神控制：向后',
           ko: '정신 장악: 뒤쪽',
@@ -331,6 +342,7 @@ export default {
         text: {
           en: 'Mindjack: Left',
           de: 'Geistlenkung: Links',
+          fr: 'Contrainte mentale : vers la gauche',
           ja: 'マインドジャック: 左折',
           cn: '精神控制：向左',
           ko: '정신 장악: 왼쪽',
@@ -350,6 +362,7 @@ export default {
         text: {
           en: 'Mindjack: Right',
           de: 'Geistlenkung: Rechts',
+          fr: 'Contrainte mentale : vers la droite',
           ja: 'マインドジャック: 右折',
           cn: '精神控制：向右',
           ko: '정신 장악: 오른쪽',
@@ -401,11 +414,18 @@ export default {
         'Soul Reaper': 'faucheur d\'âmes',
       },
       'replaceText': {
+        '\\(avoid\\)': '(éviter)',
+        '\\(Starry End\\)': '(Fin étoilée)',
+        '\\(Sword Dance\\)': '(Danse du sabre)',
+        '\\(symbols\\)': '(symboles)',
+        '\\(take\\)': '(prendre)',
+        '\\(toad\\)': '(crapaud)',
+        '\\(Uplift\\)': '(Exhaussement)',
         'Aetherial Pull': 'Aspiration',
         'Aetherial Tear': 'Déchirure dimensionnelle',
         'Cross Reaper': 'Fauchaison',
         'Dimensional Wave': 'Onde dimensionnelle',
-        'Frost Breath': 'Souffle glacé',
+        'Frost Breath\\?': 'Souffle glacé ?',
         'Gusting Gouge': 'Gouge cisaillante',
         'Holy Blur': 'Brume sacrée',
         'Holy Edge': 'Taille sacrée',
@@ -423,7 +443,6 @@ export default {
         'The Playing Field': 'Plateau de jeu',
         'The Queen\'s Waltz': 'Danse de la reine',
         'Ultimum': 'Déclin dimensionnel',
-        'Uplift': 'Exhaussement',
       },
     },
     {
