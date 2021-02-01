@@ -1,92 +1,79 @@
 # Omega - Deltascape V4.0 (Savage) - O4S
-# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
-# Shasta's reddit: /u/shastaxc
-# Last Updated: 08/01/2017
 
-#############################################################
-########CUSTOMIZE your timeline. Remove the hashtag from
-########the beginning of the following lines to prevent
-########them from appearing on your timeline.
+hideall "--Reset--"
+hideall "--sync--"
 
-#hideall "--Reset--"
-#########DPS CAN HIDE THESE
-
-
-#########HEALERS CAN HIDE THESE
-
-
-#########TANKS CAN HIDE THESE
-
-##############################################################
-################## Windows 8 & 10 Voices ##################
-########REMOVE THE HASTAG to select a voice
-#define speaker "voice" "Microsoft Zira Desktop" 0 100
-#define speaker "voice" "Microsoft David Desktop" 0 100
-
-#################### Windows 7 Voices ####################
-########REMOVE THE HASTAG to select a voice
-#define speaker "voice" "Microsoft Anna" 0 100
-
-################ CUSTOMIZE Call Outs #####################
-########REMOVE THE HASHTAG to enable each call out
-
-
-##############################################################
 0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
+# -ii 23F2 23F8 2400 240C 2410 2413 2414 2415 241B 2421 2422 242F 2431 2432 244C 244D 245E 24DC
 
-######Phase 1
-13	"Dualcast"	sync /:Exdeath:23F4:/ window 20,0
-16	"Blizzard III"
-19	"Blizzard III"
-24	"Dualcast"
-31	"Thunder III"
-37	"Dualcast"
-43	"Fire III (DPS)"	#Fire III on DPS
-47	"Fire III (T/H)"	#Fire III on Tanks & Healers
-54	"White Hole"
-66	"--Untargetable--"
-73	"Knockback"
-75	"Holy"
-78	"Flare" duration 5	#1 tank, 1 healer, 1 DPS
-79	"Zombie Breath"
+# Exfaust
+0 "Start" sync /Engage!/ window 0,1
+3.8 "--sync--" sync /:Exdeath:23F2:/ window 3.8,0
+12.2 "Dualcast" sync /:Exdeath:23F4:/ window 12.2,5
+16.8 "--sync--" sync /:Exdeath:23F7:/
+17.3 "Blizzard III" sync /:Exdeath:23F8:/
+19.9 "Blizzard III" sync /:Exdeath:23F8:/
+24.8 "Dualcast" sync /:Exdeath:23F4:/
+30.8 "--sync--" sync /:Exdeath:23F9:/
+31.5 "Thunder III" sync /:Exdeath:23FA:/
+32.6 "Thunder III" sync /:Exdeath:23FA:/
+37.9 "Dualcast" sync /:Exdeath:23F4:/
+42.5 "--sync--" sync /:Exdeath:23F5:/
+43.1 "Fire III" sync /:Exdeath:23F6:/
+47.1 "Fire III" sync /:Exdeath:23F6:/
+53.6 "White Hole" sync /:Exdeath:23FF:/
+64.7 "The Decisive Battle" sync /:Exdeath:2408:/
+66.5 "--untargetable--"
 
+70.6 "--sync--" sync /:Exdeath:240A:/
+71.8 "Collision" sync /:Exdeath:2409:/
+73.8 "Holy" sync /:Exdeath:2403:/
+77.7 "Zombie Breath" sync /:Exdeath:240B:/
+82.4 "Flare" sync /:Exdeath:2401:/
 
-######Phase 2
-86	"--Targetable--"
-90	"Random Elemental"	#Enhanced Thunder/Fire/Blizzard III
-97	"Vacuum Wave (1)"
-107	"White Hole"
-119	"Black Hole"	#Black Holes tether to Tanks & Healers + AoE dmg + HP Down Debuff
-119.01	"HP Down Debuff" duration 21  #Debuff is 20 seconds but applies to people staggered over time
-128	"Fire III (DPS)"	#Fire III on DPS
-132	"Fire III (T/H)"	#Fire III on Tanks & Healers
-135	"Holy"	#Stack Mechanic
-144	"White Hole"
-159	"Thunder III"
-167	"Meteor"
-180	"--Untargetable--"
-186	"Knockback"	#Collision
-188	"Holy"	#Stack Mechanic
-191	"Flare" duration 5	#1 tank, 1 healer, 1 DPS
-192	"Zombie Breath"
+85.2 "--targetable--"
+89.2 "Blizzard III/Fire III/Thunder III" sync /:Exdeath:23F[BCD]:/
+95.4 "Vacuum Wave" sync /:Exdeath:23FE:/
+105.6 "White Hole" sync /:Exdeath:23FF:/
+118.0 "Black Hole" sync /:Exdeath:2406:/
+123.1 "Dualcast" sync /:Exdeath:23F4:/
+127.7 "--sync--" sync /:Exdeath:23F5:/
+128.3 "Fire III" sync /:Exdeath:23F6:/
+132.2 "Fire III" sync /:Exdeath:23F6:/
+134.8 "Holy" sync /:Exdeath:240[23]:/
+144.0 "White Hole" sync /:Exdeath:23FF:/
+153.1 "Dualcast" sync /:Exdeath:23F4:/
+159.1 "--sync--" sync /:Exdeath:23F9:/
+159.8 "Thunder III" sync /:Exdeath:23FA:/
+160.9 "Thunder III" sync /:Exdeath:23FA:/
+166.1 "Meteor" sync /:Exdeath:2404:/
+179.4 "The Decisive Battle" sync /:Exdeath:2408:/
+181.5 "--untargetable--"
 
-######Phase 3
-200	"--Targetable--"
-203	"Random Elemental"	#Enhanced Thunder/Fire/Blizzard III
-210	"Vacuum Wave (1)"	#Vacuum Wave
-220	"White Hole"	#Need full HP
-232	"Black Hole"	#Black Holes tether to Tanks & Healers + AoE dmg + HP Down Debuff
-232.01	"HP Down Debuff" duration 21  #Debuff is 20 seconds but applies to people staggered over time
-241	"Blizzard III"	#Healers + DPS
-243	"Blizzard III"	#Healers + DPS
-243	"Flare" duration 5	#1 tank, 1 healer, 1 DPS
-258	"White Hole"	#Need full HP
-265	"Dualcast"
-273	"Thunder III"
-280	"Meteor"	#Party wipe if boss HP>65%
-282	"--Untargetable--"
-344	"--LB Gauge Resets--"
+185.3 "--sync--" sync /:Exdeath:240A:/
+186.4 "Collision" sync /:Exdeath:2409:/
+188.7 "Holy" sync /:Exdeath:2403:/
+192.4 "Zombie Breath" sync /:Exdeath:240B:/
+197.1 "Flare" sync /:Exdeath:2401:/
+
+200.0 "--targetable--"
+203.9 "Blizzard III/Fire III/Thunder III" sync /:Exdeath:23F[BCD]:/
+210.3 "Vacuum Wave" sync /:Exdeath:23FE:/
+220.5 "White Hole" sync /:Exdeath:23FF:/
+232.8 "Black Hole" sync /:Exdeath:2406:/
+237.9 "Dualcast" sync /:Exdeath:23F4:/
+242.5 "--sync--" sync /:Exdeath:23F7:/
+243.0 "Blizzard III" sync /:Exdeath:23F8:/
+245.6 "Blizzard III" sync /:Exdeath:23F8:/
+249.6 "Flare" sync /:Exdeath:2401:/
+258.8 "White Hole" sync /:Exdeath:23FF:/
+267.9 "Dualcast" sync /:Exdeath:23F4:/
+274.0 "--sync--" sync /:Exdeath:23F9:/
+274.7 "Thunder III" sync /:Exdeath:23FA:/
+275.8 "Thunder III" sync /:Exdeath:23FA:/
+281.0 "Meteor" sync /:Exdeath:2404:/
+282.0 "--untargetable--"
 
 ######################################################
 ######Neo Phase 1
@@ -209,3 +196,128 @@
 1246	"Frenzied Fist x9"	#Small Raid AoEs
 1253	"Frenzied Sphere (8)"	#Big Raid AoE
 1266	"Enrage"	#Long Almagest
+
+
+0 "Start" sync /Engage!/ window 0,1
+7.7 "Almagest" sync /:Neo Exdeath:2417:/
+16.7 "Aero III" sync /:Neo Exdeath:2419:/
+26.7 "Delta Attack" sync /:Neo Exdeath:241E:/
+27.2 "Blizzard III" sync /:Neo Exdeath:23F8:/
+27.4 "Thunder III" sync /:Neo Exdeath:23FA:/
+27.7 "Fire III" sync /:Neo Exdeath:23F6:/
+28.4 "Thunder III" sync /:Neo Exdeath:23FA:/
+30.2 "Blizzard III" sync /:Neo Exdeath:23F8:/
+30.7 "Fire III" sync /:Neo Exdeath:23F6:/
+
+42.7 "Grand Cross Alpha" sync /:Neo Exdeath:242B:/
+53.7 "Flood Of Naught (charge)" sync /:Neo Exdeath:2416:/
+61.7 "Flood Of Naught (colors)" sync /:Neo Exdeath:(2411|2412):/
+73.2 "Double Attack" sync /:Neo Exdeath:241C:/
+83.8 "Emptiness x8" sync /:Neo Exdeath:2420:/ duration 10
+91.8 "Flood Of Naught (lasers)" sync /:Neo Exdeath:(240E|240F):/
+101.9 "Aero III" sync /:Neo Exdeath:2419:/
+
+116.0 "Grand Cross Delta" sync /:Neo Exdeath:242C:/
+129.0 "Flood Of Naught (colors/lasers)" sync /:Neo Exdeath:(2411|2412|240E|240F):/
+138.0 "Almagest" sync /:Neo Exdeath:2417:/
+149.1 "Aero III" sync /:Neo Exdeath:2419:/
+158.9 "Earth Shaker" sync /:Neo Exdeath:241A:/
+164.4 "Vacuum Wave" sync /:Neo Exdeath:241D:/
+178.4 "Emptiness x8" sync /:Neo Exdeath:2420:/ duration 10
+186.4 "Light And Darkness" sync /:Neo Exdeath:241F:/
+192.4 "Flare" sync /:Neo Exdeath:2401:/
+192.4 "Holy" sync /:Neo Exdeath:2403:/
+192.4 "Flare" sync /:Neo Exdeath:2401:/
+197.4 "Flood Of Naught (lasers)" sync /:Neo Exdeath:(240E|240F):/
+211.4 "Meteor" sync /:Neo Exdeath:2424:/
+224.4 "Flood Of Naught (colors)" sync /:Neo Exdeath:(2411|2412):/
+237.4 "Charybdis" sync /:Neo Exdeath:2423:/
+244.9 "Double Attack" sync /:Neo Exdeath:241C:/
+260.4 "Almagest" sync /:Neo Exdeath:2417:/
+266.4 "Vacuum Wave" sync /:Neo Exdeath:241D:/
+272.4 "Aero III" sync /:Neo Exdeath:2419:/
+277.5 "Emptiness x8" sync /:Neo Exdeath:2420:/ duration 10
+
+286.5 "Grand Cross Alpha" sync /:Neo Exdeath:242B:/
+297.5 "Flood Of Naught (charge)" sync /:Neo Exdeath:2416:/
+305.5 "Flood Of Naught (colors)" sync /:Neo Exdeath:(2411|2412):/
+322.5 "Delta Attack" sync /:Neo Exdeath:241E:/
+323.0 "Blizzard III" sync /:Neo Exdeath:23F8:/
+323.2 "Thunder III" sync /:Neo Exdeath:23FA:/
+323.5 "Fire III" sync /:Neo Exdeath:23F6:/
+324.2 "Thunder III" sync /:Neo Exdeath:23FA:/
+326.0 "Blizzard III" sync /:Neo Exdeath:23F8:/
+326.5 "Fire III" sync /:Neo Exdeath:23F6:/
+330.5 "Flood Of Naught (colors/lasers)" sync /:Neo Exdeath:(2411|2412|240E|240F):/
+
+339.5 "Grand Cross Omega" sync /:Neo Exdeath:242D:/
+346.5 "The Final Battle" sync /:Neo Exdeath:242A:/
+354.6 "Flood Of Naught" sync /:Neo Exdeath:(2411|2412|240E|240F):/
+359.6 "Flood Of Naught" sync /:Neo Exdeath:(2411|2412|240E|240F):/
+365.6 "Flood Of Naught" sync /:Neo Exdeath:(2411|2412|240E|240F):/
+378.1 "Flood Of Naught (charge)" sync /:Neo Exdeath:2416:/
+389.1 "Almagest" sync /:Neo Exdeath:2417:/
+
+396.3 "Emptiness x8" sync /:Neo Exdeath:2420:/ duration 10
+404.4 "Flood Of Naught" sync /:Neo Exdeath:(2411|2412|240E|240F):/
+414.6 "Aero III" sync /:Neo Exdeath:2419:/
+
+428.6 "Grand Cross Delta" sync /:Neo Exdeath:242C:/
+441.6 "Flood Of Naught (colors/lasers)" sync /:Neo Exdeath:(2411|2412|240E|240F):/
+450.6 "Almagest" sync /:Neo Exdeath:2417:/
+461.6 "Aero III" sync /:Neo Exdeath:2419:/
+471.3 "Earth Shaker" sync /:Neo Exdeath:241A:/
+476.8 "Vacuum Wave" sync /:Neo Exdeath:241D:/
+490.8 "Emptiness x8" sync /:Neo Exdeath:2420:/ duration 10
+498.8 "Light And Darkness" sync /:Neo Exdeath:241F:/
+504.8 "Flare" sync /:Neo Exdeath:2401:/
+504.8 "Holy" sync /:Neo Exdeath:2403:/
+509.8 "Flood Of Naught (lasers)" sync /:Neo Exdeath:(240E|240F):/
+523.8 "Meteor" sync /:Neo Exdeath:2424:/
+536.8 "Flood Of Naught (colors)" sync /:Neo Exdeath:(2411|2412):/
+549.8 "Charybdis" sync /:Neo Exdeath:2423:/
+557.3 "Double Attack" sync /:Neo Exdeath:241C:/
+572.8 "Almagest" sync /:Neo Exdeath:2417:/
+578.8 "Vacuum Wave" sync /:Neo Exdeath:241D:/
+584.8 "Aero III" sync /:Neo Exdeath:2419:/
+589.9 "Emptiness x8" sync /:Neo Exdeath:2420:/ duration 10
+
+598.9 "Grand Cross Alpha" sync /:Neo Exdeath:242B:/
+609.9 "Flood Of Naught (charge)" sync /:Neo Exdeath:2416:/
+617.9 "Flood Of Naught (colors)" sync /:Neo Exdeath:(2411|2412):/
+634.9 "Delta Attack" sync /:Neo Exdeath:241E:/
+635.4 "Blizzard III" sync /:Neo Exdeath:23F8:/
+635.6 "Thunder III" sync /:Neo Exdeath:23FA:/
+635.9 "Fire III" sync /:Neo Exdeath:23F6:/
+636.6 "Thunder III" sync /:Neo Exdeath:23FA:/
+638.4 "Blizzard III" sync /:Neo Exdeath:23F8:/
+638.9 "Fire III" sync /:Neo Exdeath:23F6:/
+642.9 "Flood Of Naught" sync /:Neo Exdeath:(2411|2412|240E|240F):/
+
+652.1 "Neverwhere" sync /:Neo Exdeath:2426:/
+660.2 "Charybdis" sync /:Neo Exdeath:2423:/
+663.4 "Flying Frenzy" sync /:Neo Exdeath:2427:/
+664.4 "Frenzied Fist x9" # sync /:Neo Exdeath:2428:/
+671.2 "Frenzied Sphere" sync /:Neo Exdeath:2429:/
+673.2 "Flying Frenzy" sync /:Neo Exdeath:2427:/
+674.1 "Frenzied Fist x9" # sync /:Neo Exdeath:2428:/
+681.0 "Frenzied Sphere" sync /:Neo Exdeath:2429:/
+683.2 "Flying Frenzy" sync /:Neo Exdeath:2427:/
+684.1 "Frenzied Fist x9" # sync /:Neo Exdeath:2428:/
+691.0 "Frenzied Sphere" sync /:Neo Exdeath:2429:/
+693.2 "Flying Frenzy" sync /:Neo Exdeath:2427:/
+694.1 "Frenzied Fist x9" # sync /:Neo Exdeath:2428:/
+701.0 "Frenzied Sphere" sync /:Neo Exdeath:2429:/
+703.2 "Flying Frenzy" sync /:Neo Exdeath:2427:/
+704.1 "Frenzied Fist x9" # sync /:Neo Exdeath:2428:/
+711.0 "Frenzied Sphere" sync /:Neo Exdeath:2429:/
+713.2 "Flying Frenzy" sync /:Neo Exdeath:2427:/
+714.1 "Frenzied Fist x9" # sync /:Neo Exdeath:2428:/
+721.0 "Frenzied Sphere" sync /:Neo Exdeath:2429:/
+723.2 "Flying Frenzy" sync /:Neo Exdeath:2427:/
+724.1 "Frenzied Fist x9" # sync /:Neo Exdeath:2428:/
+731.0 "Frenzied Sphere" sync /:Neo Exdeath:2429:/
+733.2 "Flying Frenzy" sync /:Neo Exdeath:2427:/
+734.1 "Frenzied Fist x9" # sync /:Neo Exdeath:2428:/
+741.0 "Frenzied Sphere" sync /:Neo Exdeath:2429:/
+753.2 "Almagest" sync /:Neo Exdeath:2418:/
