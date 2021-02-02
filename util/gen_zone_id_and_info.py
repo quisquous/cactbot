@@ -32,6 +32,22 @@ synthetic_ids = {
 }
 
 synthetic_zone_info = {
+    901: {
+        "contentType": 16,
+        "exVersion": 1,
+        "name": {
+            "cn": "天上福地云冠群岛",
+            "de": "Das Diadem - Erschließung",
+            "en": "The Diadem",
+            "fr": "Le Diadème",
+            "ja": "雲海採集 ディアデム諸島",
+            "ko": "디아뎀 제도",
+        },
+        "offsetX": 0,
+        "offsetY": 0,
+        "sizeFactor": 100,
+        "weatherRate": 0,
+    },
     930: {
         "contentType": 4,
         "exVersion": 3,
