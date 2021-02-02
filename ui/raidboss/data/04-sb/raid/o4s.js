@@ -1123,6 +1123,12 @@ export default {
   ],
   timelineReplace: [
     {
+      'locale': 'en',
+      'replaceText': {
+        'Blizzard III/Fire III/Thunder III': 'Blizzard/Fire/Thunder III',
+      },
+    },
+    {
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {

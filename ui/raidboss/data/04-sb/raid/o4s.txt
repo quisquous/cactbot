@@ -5,7 +5,7 @@ hideall "--sync--"
 
 0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
-# -ii 23F2 23F8 2400 240C 2410 2413 2414 2415 241B 2421 2422 242F 2431 2432 244C 244D 245E 24DC
+# -ii 23F2 23F8 2400 240C
 
 # Exfaust
 3.8 "--sync--" sync /:Exdeath:23F2:/ window 3.8,0
@@ -75,6 +75,9 @@ hideall "--sync--"
 282.0 "--untargetable--"
 
 
+# -ii 2410 2413 2414 2415 241B 2421 2422 242F 2431 2432 244C 244D 245E 24DC
+# -p 242C:1116 242D:1339.5 2426:1652.1
+
 # Neo Exdeath
 1002.0 "--sync--" sync /:2417:Neo Exdeath/ window 1002,5
 1007.7 "Almagest" sync /:Neo Exdeath:2417:/ window 1008,5
@@ -111,6 +114,7 @@ hideall "--sync--"
 1192.8 "--targetable"
 1197.6 "Flood Of Naught (lasers)" sync /:Neo Exdeath:(240E|240F):/
 1211.6 "Meteor" sync /:Neo Exdeath:2424:/
+1212.3 "--adds targetable--"
 1224.7 "Flood Of Naught (colors)" sync /:Neo Exdeath:(2411|2412):/
 1237.4 "Charybdis" sync /:Neo Exdeath:2423:/
 1244.9 "Double Attack" sync /:Neo Exdeath:241C:/
@@ -161,6 +165,7 @@ hideall "--sync--"
 1505.2 "--targetable--"
 1509.8 "Flood Of Naught (lasers)" sync /:Neo Exdeath:(240E|240F):/
 1523.8 "Meteor" sync /:Neo Exdeath:2424:/
+1524.5 "--adds targetable--"
 1536.8 "Flood Of Naught (colors)" sync /:Neo Exdeath:(2411|2412):/
 1549.8 "Charybdis" sync /:Neo Exdeath:2423:/
 1557.3 "Double Attack" sync /:Neo Exdeath:241C:/
