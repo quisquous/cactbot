@@ -16,7 +16,7 @@ hideall "--Reset--"
 8.7 "Tremblor" sync /:Catastrophe:2373:/
 17.4 "Earthquake" sync /:Catastrophe:2374:/ window 18,10
 24.6 "100 Gs" sync /:Catastrophe:2355:/
-32.8 "Antilight (center)" sync /:Catastrophe:2361:/ duration 13
+32.8 "Antilight (center)" sync /:Catastrophe:2361:/
 50.0 "Gravitational Wave" sync /:Catastrophe:2372:/
 60.3 "Gravitational Manipulation" sync /:Catastrophe:2363:/
 63.4 "Gravitational Distortion" sync /:Catastrophe:2369:/
@@ -47,13 +47,13 @@ hideall "--Reset--"
 217.8 "Death's Gaze" sync /:Catastrophe:236F:/
 227.8 "100 Gs" sync /:Catastrophe:2355:/
 
-235.8 "Antilight (center)" sync /:Catastrophe:2361:/ duration 13
+235.8 "Antilight (center)" sync /:Catastrophe:2361:/
 238.3 "Unstable Gravity (T/H)" sync /:Catastrophe:236C:/
 243.3 "Gravitational Wave" sync /:Catastrophe:2372:/
 254.3 "Long Drop" sync /:Catastrophe:236B:/
 265.2 "100 Gs" sync /:Catastrophe:2355:/
 
-273.2 "Antilight (ground)" sync /:Catastrophe:2361:/ duration 13
+273.2 "Antilight (ground)" sync /:Catastrophe:2361:/
 277.2 "Tremblor" sync /:Catastrophe:2373:/
 280.7 "Tremblor" sync /:Catastrophe:2373:/
 289.2 "Earthquake" sync /:Catastrophe:2374:/
@@ -67,7 +67,7 @@ hideall "--Reset--"
 346.2 "Gravitational Explosion" sync /:Catastrophe:2367:/
 348.2 "Main Quake" sync /:Catastrophe:2359:/
 
-349.2 "Antilight (center)" sync /:Catastrophe:2361:/ duration 13
+349.2 "Antilight (center)" sync /:Catastrophe:2361:/
 351.7 "Unstable Gravity (DPS)" sync /:Catastrophe:236C:/
 356.7 "100 Gs" sync /:Catastrophe:2355:/
 367.7 "Long Drop" sync /:Catastrophe:236B:/
@@ -76,7 +76,7 @@ hideall "--Reset--"
 392.6 "Evilsphere" sync /:Catastrophe:2371:/
 399.6 "Paranormal Wave 3" sync /:Catastrophe:2370:/
 
-409.6 "Antilight (ground)" sync /:Catastrophe:2361:/ duration 13
+409.6 "Antilight (ground)" sync /:Catastrophe:2361:/
 416.6 "100 Gs" sync /:Catastrophe:2355:/
 427.6 "Maniacal Probe (T/H)" sync /:Catastrophe:235A:/
 437.6 "Erosion" sync /:Fleshy Member:235B:/
@@ -86,7 +86,7 @@ hideall "--Reset--"
 459.6 "Gravitational Explosion" sync /:Catastrophe:2367:/
 461.6 "Main Quake" sync /:Catastrophe:2359:/
 
-462.6 "Antilight (center)" sync /:Catastrophe:2361:/ duration 13
+462.6 "Antilight (center)" sync /:Catastrophe:2361:/
 465.1 "Unstable Gravity (T/H)" sync /:Catastrophe:236C:/
 470.1 "100 Gs" sync /:Catastrophe:2355:/
 481.1 "Long Drop" sync /:Catastrophe:236B:/
@@ -95,7 +95,7 @@ hideall "--Reset--"
 497.0 "Gravitational Wave" sync /:Catastrophe:2372:/
 
 499.0 "Paranormal Wave 1" sync /:Catastrophe:2370:/
-507.0 "Antilight (ground)" sync /:Catastrophe:2361:/ duration 13
+507.0 "Antilight (ground)" sync /:Catastrophe:2361:/
 514.0 "100 Gs" sync /:Catastrophe:2355:/
 519.0 "Paranormal Wave 2" sync /:Catastrophe:2370:/
 531.0 "Evilsphere" sync /:Catastrophe:2371:/
@@ -104,7 +104,7 @@ hideall "--Reset--"
 550.0 "Gravitational Distortion" sync /:Catastrophe:2369:/
 555.0 "Gravitational Explosion" sync /:Catastrophe:2367:/
 
-562.0 "Antilight (ground)" sync /:Catastrophe:2361:/ duration 13
+562.0 "Antilight (ground)" sync /:Catastrophe:2361:/
 568.0 "Tremblor" #sync /:Catastrophe:2373:/
 568.5 "100 Gs" sync /:Catastrophe:2355:/
 570.5 "Tremblor" #sync /:Catastrophe:2373:/
@@ -114,13 +114,13 @@ hideall "--Reset--"
 600.0 "-100 Gs" sync /:Catastrophe:235E:/
 610.0 "Death's Gaze" sync /:Catastrophe:236F:/
 
-615.0 "Antilight (ground)" sync /:Catastrophe:2361:/ duration 13
+615.0 "Antilight (ground)" sync /:Catastrophe:2361:/
 621.0 "Tremblor" #sync /:Catastrophe:2373:/
 621.5 "100 Gs" sync /:Catastrophe:2355:/
 623.5 "Tremblor" #sync /:Catastrophe:2373:/
 632.0 "Earthquake" sync /:Catastrophe:2374:/
 
-562.0 "Antilight (ground)" sync /:Catastrophe:2361:/ duration 13
+562.0 "Antilight (ground)" sync /:Catastrophe:2361:/
 568.0 "Tremblor" #sync /:Catastrophe:2373:/
 568.5 "100 Gs" sync /:Catastrophe:2355:/
 570.5 "Tremblor" #sync /:Catastrophe:2373:/
@@ -130,7 +130,7 @@ hideall "--Reset--"
 600.0 "-100 Gs" sync /:Catastrophe:235E:/
 610.0 "Death's Gaze" sync /:Catastrophe:236F:/
 
-615.0 "Antilight (ground)" sync /:Catastrophe:2361:/ duration 13
+615.0 "Antilight (ground)" sync /:Catastrophe:2361:/
 621.0 "Tremblor" #sync /:Catastrophe:2373:/
 621.5 "100 Gs" sync /:Catastrophe:2355:/
 623.5 "Tremblor" #sync /:Catastrophe:2373:/
