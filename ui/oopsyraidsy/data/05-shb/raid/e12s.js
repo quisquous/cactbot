@@ -63,7 +63,7 @@ export default {
       // Big circle ground aoes during Shiva junction.
       // This can be shielded through as long as that person doesn't stack.
       id: 'E12S Icicle Impact',
-      netRegex: NetRegexes.ability({ id: '4E5A' }),
+      damageRegex: '4E5A',
       condition: (e) => e.damage > 0,
       mistake: (e, data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };

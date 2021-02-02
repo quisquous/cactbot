@@ -64,7 +64,7 @@ export default {
       // Shadow Warrior 4 dog room cleave
       // This can be mitigated by the whole group, so add a damage condition.
       id: 'E10S Barbs Of Agony',
-      netRegex: NetRegexes.ability({ id: ['572A', '5B27'] }),
+      damageRegex: ['572A', '5B27'],
       condition: (e) => e.damage > 0,
       mistake: (e, data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };

@@ -64,7 +64,7 @@ export default {
       // arguably a healer might need to do something about that, so maybe
       // it's ok to still show as a warning??
       id: 'E9S Condensed Anti-Air Particle Beam',
-      netRegex: NetRegexes.ability({ id: '5615' }),
+      damageRegex: '5615',
       condition: (e) => e.type !== '15' && e.damage > 0,
       mistake: (e, data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.ability };
@@ -73,7 +73,7 @@ export default {
     {
       // Anti-air "out".  This can be invulned by a tank along with the spread above.
       id: 'E9S Anti-Air Phaser Unlimited',
-      netRegex: NetRegexes.ability({ id: '5612' }),
+      damageRegex: '5612',
       condition: (e) => e.damage > 0,
       mistake: (e, data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
