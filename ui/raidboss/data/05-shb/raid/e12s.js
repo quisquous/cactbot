@@ -804,15 +804,19 @@ export default {
           water: intermediateRelativityOutputStrings.stack,
           longFire: {
             en: 'Long Fire',
+            de: 'langes Feuer',
           },
           shortFire: {
             en: 'Short Fire',
+            de: 'kurzes Feuer',
           },
           longIce: {
             en: 'Long Ice',
+            de: 'langes Eis',
           },
           shortIce: {
             en: 'Short Ice',
+            de: 'kurzes Eis',
           },
         };
 

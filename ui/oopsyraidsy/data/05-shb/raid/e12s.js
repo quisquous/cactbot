@@ -168,14 +168,17 @@ export default {
         const ownerNick = data.ShortName(owner);
         let text = {
           en: `${matches.ability} (from ${ownerNick}, #${number})`,
+          de: `${matches.ability} (von ${ownerNick}, #${number})`,
         };
         if (isStatuePositionKnown && isStatueNorth) {
           text = {
             en: `${matches.ability} (from ${ownerNick}, #${number} north)`,
+            de: `${matches.ability} (von ${ownerNick}, #${number} norden)`,
           };
         } else if (isStatuePositionKnown && !isStatueNorth) {
           text = {
             en: `${matches.ability} (from ${ownerNick}, #${number} south)`,
+            de: `${matches.ability} (von ${ownerNick}, #${number} Süden)`,
           };
         }
 
@@ -350,15 +353,19 @@ export default {
         const output = {
           northBigLion: {
             en: 'north big lion',
+            de: 'Nordem, großer Löwe',
           },
           southBigLion: {
             en: 'south big lion',
+            de: 'Süden, großer Löwe',
           },
           shared: {
             en: 'shared',
+            de: 'geteilt',
           },
           fireDebuff: {
             en: 'had fire',
+            de: 'hatte Feuer',
           },
         };
 
