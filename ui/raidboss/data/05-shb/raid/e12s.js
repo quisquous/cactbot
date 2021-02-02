@@ -783,7 +783,61 @@ export default {
       response: Responses.tankBuster('alert'),
     },
     {
-      id: 'E12S Relativity Debuff Collector',
+      id: 'E12S Basic Relativity Debuffs',
+      // 997 Spell-In-Waiting: Dark Fire III
+      // 998 Spell-In-Waiting: Shadoweye
+      // 99D Spell-In-Waiting: Dark Water III
+      // 99E Spell-In-Waiting: Dark Blizzard III
+      netRegex: NetRegexes.gainsEffect({ effectId: '99[78DE]' }),
+      condition: (data, matches) => data.phase === 'basic' && matches.target === data.me,
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          shadoweye: {
+            en: 'Eye on YOU',
+            de: 'Auge auf DIR',
+            fr: 'Œil sur VOUS',
+            ja: '自分に目',
+            cn: '石化眼点名',
+            ko: '시선징 대상자',
+          },
+          water: intermediateRelativityOutputStrings.stack,
+          longFire: {
+            en: 'Long Fire',
+          },
+          shortFire: {
+            en: 'Short Fire',
+          },
+          longIce: {
+            en: 'Long Ice',
+          },
+          shortIce: {
+            en: 'Short Ice',
+          },
+        };
+
+        if (matches.effectId === '998')
+          return { infoText: output.shadoweye() };
+        if (matches.effectId === '99D')
+          return { infoText: output.water() };
+
+        // Long fire/ice is 15 seconds, short fire/ice is 29 seconds.
+        const isLong = parseFloat(matches.duration) > 20;
+
+        if (matches.effectId === '997') {
+          if (isLong)
+            return { alertText: output.longFire() };
+          return { alertText: output.shortFire() };
+        }
+        if (matches.effectId === '99E') {
+          if (isLong)
+            return { alertText: output.longIce() };
+          return { alertText: output.shortIce() };
+        }
+      },
+    },
+    {
+      id: 'E12S Intermediate Relativity Debuff Collector',
       // 690 Spell-In-Waiting: Flare
       // 996 Spell-In-Waiting: Unholy Darkness
       // 998 Spell-In-Waiting: Shadoweye
@@ -860,32 +914,12 @@ export default {
       },
     },
     {
-      id: 'E12S Oracle Basic Relativity Shadow Eye Me',
+      id: 'E12S Oracle Basic Relativity Shadow Eye Collector',
       netRegex: NetRegexes.gainsEffect({ effectId: '998' }),
       condition: (data, matches) => data.phase === 'basic',
-      preRun: (data, matches) => {
+      run: (data, matches) => {
         data.eyes = data.eyes || [];
         data.eyes.push(matches.target);
-      },
-      // Delay so that we don't overwrite Hourglass callout
-      delaySeconds: 4,
-      infoText: (data, matches, output) => {
-        // The trigger repeats for collection; only call out first match
-        if (data.eyes.includes(data.me) && !data.eyecalled) {
-          data.eyecalled = true;
-          return output.text();
-        }
-        return;
-      },
-      outputStrings: {
-        text: {
-          en: 'Eye on YOU',
-          de: 'Auge auf DIR',
-          fr: 'Œil sur VOUS',
-          ja: '自分に目',
-          cn: '石化眼点名',
-          ko: '시선징 대상자',
-        },
       },
     },
     {
