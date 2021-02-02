@@ -315,9 +315,9 @@ export default {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': 'Katastroph',
+        'Fleshy Member': 'Tentakel',
       },
       'replaceText': {
         '-100 Gs': 'Minus 100 G',
@@ -334,13 +334,20 @@ export default {
         'Paranormal Wave': 'Paranormale Welle',
         'Probes': 'Sonden',
         'Unstable Gravity': 'Schwerkraftschwankung',
+        'Tremblor': 'Erschütterung',
+        'Gravitational Manipulation': 'Schwerkraftmanipulation',
+        'Gravitational Explosion': 'Gravitationsknall',
+        'Erosion': 'Erosion',
+        'Main Quake': 'Hauptbeben',
+        'Maniacal Probe': 'Tentakeltanz',
+        'Gravitational Collapse': 'Gravitationseinbruch',
       },
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': 'Catastrophe',
+        'Fleshy Member': 'tentacule',
       },
       'replaceText': {
         '-100 Gs': 'Gravité -100',
@@ -355,13 +362,20 @@ export default {
         'Long Drop': 'Chute ininterrompue',
         'Paranormal Wave': 'Onde maudite',
         'Unstable Gravity': 'Gravité instable',
+        'Tremblor': 'Tremblement de terre',
+        'Gravitational Manipulation': 'Manipulation gravitationnelle',
+        'Gravitational Explosion': 'Explosion gravitationnelle',
+        'Erosion': 'Érosion',
+        'Main Quake': 'Secousse principale',
+        'Maniacal Probe': 'Farandole de tentacules',
+        'Gravitational Collapse': 'Effondrement gravitationnel',
       },
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': 'カタストロフィー',
+        'Fleshy Member': '触手',
       },
       'replaceText': {
         '\\(center\\)': '(中央)',
@@ -380,13 +394,20 @@ export default {
         'Paranormal Wave': '呪詛波',
         'Probes': '触手乱舞',
         'Unstable Gravity': 'グラビティバースト',
+        'Tremblor': '地震',
+        'Gravitational Manipulation': '重力操作',
+        'Gravitational Explosion': '重力爆発',
+        'Erosion': '浸食',
+        'Main Quake': '本震',
+        'Maniacal Probe': '触手乱舞',
+        'Gravitational Collapse': '重力崩壊',
       },
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': '灾变者',
+        'Fleshy Member': '触手',
       },
       'replaceText': {
         '\\(center\\)': '(中央)',
@@ -405,13 +426,20 @@ export default {
         'Paranormal Wave': '诅咒波',
         'Probes': '引导',
         'Unstable Gravity': '重力爆发',
+        'Tremblor': '地震',
+        'Gravitational Manipulation': '重力操纵',
+        'Gravitational Explosion': '重力爆发',
+        'Erosion': '侵入',
+        'Main Quake': '主震',
+        'Maniacal Probe': '触手乱舞',
+        'Gravitational Collapse': '重力崩坏',
       },
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': '카타스트로피',
+        'Fleshy Member': '촉수',
       },
       'replaceText': {
         '-100 Gs': '중력 -100',
@@ -430,6 +458,13 @@ export default {
         'Probes': '촉수 유도',
         'Unstable Gravity': '중력 폭발',
         'T/H': '탱/힐',
+        'Tremblor': '지진',
+        'Gravitational Manipulation': '중력 조작',
+        'Gravitational Explosion': '중력 폭발',
+        'Erosion': '침식',
+        'Main Quake': '본진',
+        'Maniacal Probe': '촉수 난무',
+        'Gravitational Collapse': '중력 붕괴',
       },
     },
   ],

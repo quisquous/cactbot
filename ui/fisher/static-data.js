@@ -4975,6 +4975,17 @@ export default {
         'sonderbestelltes Federfall-Helicoprionen',
         'sonderbestellter Federfall-Helicoprionen',
       ],
+      '31770': 'Feuerspeier',
+      '31771': [
+        'ranzige Mogpom',
+        'ranzigen Mogpom',
+        'ranziges Mogpom',
+        'ranziger Mogpom',
+        'ranzige Mogpoms',
+        'ranzigen Mogpoms',
+        'ranziges Mogpoms',
+        'ranziger Mogpoms',
+      ],
       '32049': [
         'Mondlichtguppy',
         'Mondlichtguppys',
@@ -8102,6 +8113,14 @@ export default {
         'grade 3 artisanal skybuilders\' helicoprion',
         'grade 3 artisanal skybuilders\' helicoprions',
       ],
+      '31770': [
+        'flintstrike',
+        'flintstrikes',
+      ],
+      '31771': [
+        'pickled pom',
+        'pickled poms',
+      ],
       '32049': [
         'moonlight guppy',
         'moonlight guppies',
@@ -8315,7 +8334,10 @@ export default {
         'grade 4 skybuilders\' common bitterling',
         'grade 4 skybuilders\' common bitterlings',
       ],
-      '32885': 'grade 4 skybuilders\' skyloach',
+      '32885': [
+        'grade 4 skybuilders\' skyloach',
+        'grade 4 skybuilders\' skyloaches',
+      ],
       '32886': [
         'grade 4 skybuilders\' glacier core',
         'grade 4 skybuilders\' glacier cores',
@@ -8344,7 +8366,10 @@ export default {
         'grade 4 skybuilders\' ghost faeries',
       ],
       '32895': 'grade 4 skybuilders\' ashfish',
-      '32896': 'grade 4 skybuilders\' whitehorse',
+      '32896': [
+        'grade 4 skybuilders\' whitehorse',
+        'grade 4 skybuilders\' whitehorses',
+      ],
       '32897': [
         'grade 4 skybuilders\' ocean cloud',
         'grade 4 skybuilders\' ocean clouds',
@@ -8357,7 +8382,10 @@ export default {
         'grade 4 artisanal skybuilders\' sculptors',
       ],
       '32902': 'grade 4 artisanal skybuilders\' little Thalaos',
-      '32903': 'grade 4 artisanal skybuilders\' lightning chaser',
+      '32903': [
+        'grade 4 artisanal skybuilders\' lightning chaser',
+        'grade 4 artisanal skybuilders\' lightning chasers',
+      ],
       '32904': 'grade 4 artisanal skybuilders\' marrella',
       '32905': 'grade 4 artisanal skybuilders\' crimson namitaro',
       '32906': [
@@ -11973,6 +12001,14 @@ export default {
         'hélicoprion sur commande de restauration (3e phase)',
         'hélicoprions sur commande de restauration (3e phase)',
       ],
+      '31770': [
+        'poisson follet',
+        'poissons follets',
+      ],
+      '31771': [
+        'morimog',
+        'morimogs',
+      ],
       '32049': [
         'guppy du clair-de-lune',
         'guppys du clair-de-lune',
@@ -13297,6 +13333,8 @@ export default {
       '31601': '第三次復興用の特注ワイバーン',
       '31602': '第三次復興用の特注クラウドシャーク',
       '31603': '第三次復興用の特注ヘリコプリオン',
+      '31770': 'ファイアエミッター',
+      '31771': 'ポクリポン',
       '32049': 'ムーンライトグッピー',
       '32050': 'ドンの軍扇',
       '32051': 'ヘノドゥス・グランディス',
@@ -16274,6 +16312,7 @@ export default {
       12811,
       12818,
       15638,
+      31771,
     ],
     '2113': [
       12753,
@@ -16323,6 +16362,7 @@ export default {
       12779,
       12791,
       16753,
+      31770,
     ],
     '2177': [
       12776,
