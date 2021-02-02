@@ -1042,7 +1042,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '241E', source: 'ネオエクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '241E', source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '241E', source: '네오 엑스데스', capture: false }),
-      response: Responses.stackMarker(),
+      response: Responses.getTogether(),
     },
     {
       id: 'O4S Neo Almagest',
@@ -1123,7 +1123,14 @@ export default {
   ],
   timelineReplace: [
     {
+      'locale': 'en',
+      'replaceText': {
+        'Blizzard III/Fire III/Thunder III': 'Blizzard/Fire/Thunder III',
+      },
+    },
+    {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Exdeath': 'Exdeath',
       },
@@ -1208,6 +1215,7 @@ export default {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Exdeath': 'エクスデス',
       },
@@ -1253,6 +1261,7 @@ export default {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         '(?<! )Exdeath': '艾克斯迪司',
         'Neo Exdeath': '新生艾克斯迪司',
@@ -1301,6 +1310,7 @@ export default {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Exdeath': '엑스데스',
       },
