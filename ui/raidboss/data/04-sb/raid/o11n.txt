@@ -48,6 +48,7 @@ hideall "--sync--"
 
 ## Midphase
 534.5 "Program Loop" sync /:Omega:3273:/ window 150,150
+534.5 "--untargetable--"
 549.6 "Executable" sync /:Level Checker:35A8:/
 570.6 "Executable" sync /:Level Checker:35A8:/
 574.6 "Reset" sync /:Level Checker:35AA:/
@@ -57,6 +58,7 @@ hideall "--sync--"
 1000.0 "--sync--" sync /Engaging Delta Attack protocol/ window 1500,100
 1007.0 "--sync--" sync / 14:327B:Omega/ window 1500,100
 1037.0 "Delta Attack" sync /:Omega:327B:/ window 1500,100
+1048.4 "--targetable--"
 
 ## Loop
 1060.3 "Peripheral Synthesis" sync /:Omega:3270:/ window 10,10
