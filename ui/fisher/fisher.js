@@ -32,6 +32,7 @@ class Fisher {
     this.mooching = false;
     this.snagging = false;
     this.chum = false;
+    this.chumOnCatch = false;
 
     this.placeFish = null;
     this.hookTimes = null;
@@ -265,11 +266,12 @@ class Fisher {
         'castTimestamp': +this.castStart,
         'hookTime': (this.castEnd - this.castStart),
         'reelTime': (this.castGet - this.castEnd),
-        'chum': this.chum ? 1 : 0,
+        'chum': this.chumOnCatch ? 1 : 0,
         'snagging': this.snagging,
       });
     }
 
+    this.chumOnCatch = false;
     if (this.mooching) {
       this.handleBait(this.baseBait);
       this.mooching = false;
@@ -312,12 +314,9 @@ class Fisher {
   }
 
   handleChumFade() {
-    // Chum fades just before the catch appears, so we need to
-    // delay it to record the catch with chum active
-    const _this = this;
-    setTimeout(() => {
-      _this.chum = false;
-    }, 1000);
+    // Chum fades just before the catch appears
+    this.chumOnCatch = true;
+    this.chum = false;
   }
 
   handleQuit() {

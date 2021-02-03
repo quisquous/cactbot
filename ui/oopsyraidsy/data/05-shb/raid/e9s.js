@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
 // TODO: 561D Evil Seed hits everyone, hard to know if there's a double tap
@@ -8,7 +9,6 @@ export default {
   zoneId: ZoneId.EdensPromiseUmbraSavage,
   damageWarn: {
     'E9S Bad Vibrations': '561C', // tethered outside giant tree ground aoes
-    'E9S Anti-Air Phaser Unlimited': '5612', // anti-air "out"
     'E9S Wide-Angle Particle Beam': '5B00', // anti-air "sides"
     'E9S Wide-Angle Phaser Unlimited': '560E', // wide-angle "sides"
     'E9S Anti-Air Particle Beam': '5B01', // wide-angle "out"
@@ -32,7 +32,6 @@ export default {
     'E9S Hyper-Focused Particle Beam': '55FD', // Art Of Darkness protean
   },
   shareFail: {
-    'E9S Condensed Anti-Air Particle Beam': '5615', // anti-air "tank spread"
     'E9S Condensed Wide-Angle Particle Beam': '5610', // wide-angle "tank laser"
   },
   gainsEffectWarn: {
@@ -57,6 +56,27 @@ export default {
             ko: `${matches.ability} (혼자 맞음)`,
           },
         };
+      },
+    },
+    {
+      // Anti-air "tank spread".  This can be stacked by two tanks invulning.
+      // Note: this will still show something for holmgang/living, but
+      // arguably a healer might need to do something about that, so maybe
+      // it's ok to still show as a warning??
+      id: 'E9S Condensed Anti-Air Particle Beam',
+      damageRegex: '5615',
+      condition: (e) => e.type !== '15' && e.damage > 0,
+      mistake: (e, data, matches) => {
+        return { type: 'fail', blame: matches.target, text: matches.ability };
+      },
+    },
+    {
+      // Anti-air "out".  This can be invulned by a tank along with the spread above.
+      id: 'E9S Anti-Air Phaser Unlimited',
+      damageRegex: '5612',
+      condition: (e) => e.damage > 0,
+      mistake: (e, data, matches) => {
+        return { type: 'warn', blame: matches.target, text: matches.ability };
       },
     },
   ],

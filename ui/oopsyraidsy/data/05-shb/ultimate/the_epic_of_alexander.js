@@ -56,7 +56,6 @@ export default {
       id: 'TEA Outburst',
       damageRegex: '482A',
       collectSeconds: 0.5,
-      // TODO: implement suppress
       suppressSeconds: 5,
       mistake: function(e, data) {
         return { type: 'fail', blame: e[0].targetName, text: e[0].attackerName };

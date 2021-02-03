@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions.js';
 import NetRegexes from '../../../../../resources/netregexes.js';
+import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
 // Ultima Weapon Ultimate
@@ -7,6 +8,12 @@ export default {
   zoneId: ZoneId.TheWeaponsRefrainUltimate,
   timelineFile: 'ultima_weapon_ultimate.txt',
   timelineTriggers: [
+    {
+      id: 'UWU Diffractive Laser',
+      regex: /Diffractive Laser/,
+      beforeSeconds: 5,
+      response: Responses.tankCleave(),
+    },
     {
       id: 'UWU Feather Rain',
       regex: /Feather Rain/,
@@ -25,6 +32,63 @@ export default {
     },
   ],
   triggers: [
+    {
+      id: 'UWU Aetherochemical Laser Middle',
+      netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2B84', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2B84', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2B84', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'アルテマウェポン', id: '2B84', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2B84', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2B84', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Middle Laser',
+          de: 'Laser (Mitte)',
+          fr: 'Laser (Milieu)',
+          ja: 'レーザー (中央)',
+          cn: '中间激光',
+        },
+      },
+    },
+    {
+      id: 'UWU Aetherochemical Laser Right',
+      netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2B85', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2B85', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2B85', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'アルテマウェポン', id: '2B85', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2B85', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2B85', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'North Laser',
+          de: 'Laser (Norden)',
+          fr: 'Laser (Nord)',
+          ja: 'レーザー (北)',
+          cn: '右侧激光',
+        },
+      },
+    },
+    {
+      id: 'UWU Aetherochemical Laser Left',
+      netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2B86', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2B86', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2B86', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'アルテマウェポン', id: '2B86', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2B86', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2B86', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'East Laser',
+          de: 'Laser (Osten)',
+          fr: 'Laser (Est)',
+          ja: 'レーザー (東)',
+          cn: '左侧激光',
+        },
+      },
+    },
     // Phases
     {
       id: 'UWU Suppression Phase',

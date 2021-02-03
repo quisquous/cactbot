@@ -1777,51 +1777,37 @@ class Bars {
     });
 
     this.comboFuncs.push((skill) => {
-      // TODO: remove this condition when KO launch patch 5.3
-      if (this.options.ParserLanguage === 'ko') {
-        if (skill === kAbility.MythrilTempest) {
-          if (eyeBox.duration > 0) {
-            const old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
-            eyeBox.duration = 0;
-            eyeBox.duration = Math.min(old + 10, 30);
-          }
+      // TODO: handle flags where you don't hit something.
+      // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
+      if (skill === kAbility.MythrilTempest) {
+        if (eyeBox.duration > 0) {
+          const old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
+          eyeBox.duration = 0;
+          eyeBox.duration = Math.min(old + 30, 59.5);
         }
-        if (skill === kAbility.StormsEye) {
+      }
+      if (skill === kAbility.StormsEye) {
+        if (eyeBox.duration > 0) {
+          const old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
+          eyeBox.duration = 0;
+          eyeBox.duration = Math.min(old + 30, 59.5);
+          // Storm's Eye applies with some animation delay here, and on the next
+          // Storm's Eye, it snapshots the damage when the gcd is started, so
+          // add some of a gcd here in duration time from when it's applied.
+        } else {
           eyeBox.duration = 0;
           eyeBox.duration = 30 + 1;
         }
-      } else {
-        // TODO: handle flags where you don't hit something.
-        // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
-        if (skill === kAbility.MythrilTempest) {
-          if (eyeBox.duration > 0) {
-            const old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
-            eyeBox.duration = 0;
-            eyeBox.duration = Math.min(old + 30, 59.5);
-          }
-        }
-        if (skill === kAbility.StormsEye) {
-          if (eyeBox.duration > 0) {
-            const old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
-            eyeBox.duration = 0;
-            eyeBox.duration = Math.min(old + 30, 59.5);
-            // Storm's Eye applies with some animation delay here, and on the next
-            // Storm's Eye, it snapshots the damage when the gcd is started, so
-            // add some of a gcd here in duration time from when it's applied.
-          } else {
-            eyeBox.duration = 0;
-            eyeBox.duration = 30 + 1;
-          }
-        }
-        this.abilityFuncMap[kAbility.InnerRelease] = () => {
-          if (eyeBox.duration > 0) {
-            const old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
-            eyeBox.duration = 0;
-            eyeBox.duration = Math.min(old + 15, 59.5);
-          }
-          return;
-        };
       }
+      this.abilityFuncMap[kAbility.InnerRelease] = () => {
+        if (eyeBox.duration > 0) {
+          const old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
+          eyeBox.duration = 0;
+          eyeBox.duration = Math.min(old + 15, 59.5);
+        }
+        return;
+      };
+
       // Min number of skills until eye without breaking combo.
       let minSkillsUntilEye;
       if (skill === kAbility.HeavySwing) {
@@ -2227,7 +2213,7 @@ class Bars {
       // Show whether you already have this seal
       // O means it's OK to play this card
       // X means don't play this card directly if time permits
-      if (card === 'None')
+      if (!cardsMap[card])
         cardBox.innerText = '';
       else if (seals.includes(cardsMap[card].seal))
         cardBox.innerText = 'X';
@@ -2277,10 +2263,18 @@ class Bars {
   }
 
   setupMnk() {
-    const lightningTimer = this.addTimerBar({
-      id: 'mnk-timers-lightning',
-      fgColor: 'mnk-color-lightning-0',
-    });
+    // TODO: Remove this timer when cn/ko update 5.4
+    let lightningTimer = null;
+    if (['cn', 'ko'].includes(this.options.ParserLanguage)) {
+      lightningTimer = this.addTimerBar({
+        id: 'mnk-timers-lightning',
+        fgColor: 'mnk-color-lightning-0',
+      });
+
+      const lightningFgColors = [];
+      for (let i = 0; i <= 3; ++i)
+        lightningFgColors.push(computeBackgroundColorFrom(lightningTimer, 'mnk-color-lightning-' + i));
+    }
 
     const formTimer = this.addTimerBar({
       id: 'mnk-timers-combo',
@@ -2291,9 +2285,16 @@ class Bars {
       classList: ['mnk-color-chakra'],
     });
 
-    const lightningFgColors = [];
-    for (let i = 0; i <= 3; ++i)
-      lightningFgColors.push(computeBackgroundColorFrom(lightningTimer, 'mnk-color-lightning-' + i));
+    const getLightningStacksViaLevel = (level) => {
+      if (level < 20)
+        return 1;
+      else if (level < 40)
+        return 2;
+      else if (level < 76)
+        return 3;
+      return 4;
+    };
+
 
     this.jobFuncs.push((jobDetail) => {
       const chakra = jobDetail.chakraStacks;
@@ -2306,24 +2307,32 @@ class Bars {
           p.classList.remove('dim');
       }
 
-      this.lightningStacks = jobDetail.lightningStacks;
-      lightningTimer.fg = lightningFgColors[this.lightningStacks];
-      if (this.lightningStacks === 0) {
-        // Show sad red bar when you've lost all your pancakes.
-        lightningTimer.style = 'fill';
-        lightningTimer.value = 0;
-        lightningTimer.duration = 0;
-      } else {
-        lightningTimer.style = 'empty';
+      // TODO: Remove this.lightningStacks,
+      // and change code to calculate speed by level in this.CalcGCDFromStat function
+      // when cn/ko update 5.4
+      if (lightningTimer) {
+        this.lightningStacks = jobDetail.lightningStacks;
+        lightningTimer.fg = lightningFgColors[this.lightningStacks];
+        if (this.lightningStacks === 0) {
+          // Show sad red bar when you've lost all your pancakes.
+          lightningTimer.style = 'fill';
+          lightningTimer.value = 0;
+          lightningTimer.duration = 0;
+        } else {
+          lightningTimer.style = 'empty';
 
-        // Setting the duration resets the timer bar to 0, so set
-        // duration first before adjusting the value.
-        const old = parseFloat(lightningTimer.duration) - parseFloat(lightningTimer.elapsed);
-        const lightningSeconds = jobDetail.lightningMilliseconds / 1000.0;
-        if (lightningSeconds > old) {
-          lightningTimer.duration = 16;
-          lightningTimer.value = lightningSeconds;
+          // Setting the duration resets the timer bar to 0, so set
+          // duration first before adjusting the value.
+          const old = parseFloat(lightningTimer.duration) - parseFloat(lightningTimer.elapsed);
+          const lightningSeconds = jobDetail.lightningMilliseconds / 1000.0;
+          if (lightningSeconds > old) {
+            lightningTimer.duration = 16;
+            lightningTimer.value = lightningSeconds;
+          }
         }
+      } else {
+        // For now, we just assign this.lightningStacks as corresponding stacks via current level
+        this.lightningStacks = getLightningStacksViaLevel(this.level);
       }
     });
 

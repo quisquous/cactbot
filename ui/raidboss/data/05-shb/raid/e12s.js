@@ -183,6 +183,7 @@ const intermediateRelativityOutputStrings = {
     de: 'Flare',
     fr: 'Brasier',
     ja: 'フレア',
+    cn: '核爆',
     ko: '플레어',
   },
   stack: {
@@ -190,6 +191,7 @@ const intermediateRelativityOutputStrings = {
     de: 'Sammeln',
     fr: 'Packez-vous',
     ja: '頭割り',
+    cn: '分摊',
     ko: '쉐어',
   },
   shadoweye: {
@@ -197,6 +199,7 @@ const intermediateRelativityOutputStrings = {
     de: 'Blick',
     fr: 'Regard',
     ja: 'シャドウアイ',
+    cn: '暗黑眼',
     ko: '마안',
   },
   eruption: {
@@ -204,6 +207,7 @@ const intermediateRelativityOutputStrings = {
     de: 'Verteilen',
     fr: 'Dispersez-vous',
     ja: '散開',
+    cn: '散开',
     ko: '산개',
   },
   blizzard: {
@@ -211,6 +215,7 @@ const intermediateRelativityOutputStrings = {
     de: 'Eis',
     fr: 'Glace',
     ja: 'ブリザガ',
+    cn: '冰三',
     ko: '블리자가',
   },
   aero: {
@@ -218,6 +223,7 @@ const intermediateRelativityOutputStrings = {
     de: 'Wind',
     fr: 'Vent',
     ja: 'エアロガ',
+    cn: '风三',
     ko: '에어로가',
   },
 };
@@ -294,6 +300,7 @@ export default {
             de: 'Blau - Gewicht',
             fr: 'Poids bleu',
             ja: '青、重圧',
+            cn: '蓝色重压',
             ko: '파랑',
           },
           // The second and two rounds of bombs have a partner.
@@ -304,6 +311,7 @@ export default {
             de: 'Blau (mit ${player})',
             fr: 'Bleu (avec ${player})',
             ja: '青、重圧 (${player}と)',
+            cn: '蓝色重压 (与${player})',
             ko: '파랑 (다른 대상자: ${player})',
           },
           titanOrangeStack: {
@@ -311,6 +319,7 @@ export default {
             de: 'Orange - versammeln',
             fr: 'Orange, package',
             ja: '橙、頭割り',
+            cn: '橙色分摊',
             ko: '주황: 집합',
           },
           titanYellowSpread: {
@@ -318,6 +327,7 @@ export default {
             de: 'Gelb - Verteilen',
             fr: 'Jaune, dispersion',
             ja: '黄、散開',
+            cn: '黄色散开',
             ko: '노랑: 산개',
           },
           // This is sort of redundant, but if folks want to put "square" or something in the text,
@@ -424,6 +434,7 @@ export default {
             de: 'Tankbuster + Wechsel',
             fr: 'Tank buster + Swap',
             ja: 'タンクバスター + スイッチ',
+            cn: '坦克死刑 + 换T',
             ko: '탱버 + 교대',
           },
           tankBusters: {
@@ -431,6 +442,7 @@ export default {
             de: 'Tankbuster',
             fr: 'Tank busters',
             ja: 'タンクバスター',
+            cn: '坦克死刑',
             ko: '탱버',
           },
         };
@@ -729,6 +741,7 @@ export default {
           de: 'Ködern - Weit weg',
           fr: 'Attirez au loin',
           ja: '遠くに誘導',
+          cn: '向外诱导',
           ko: '멀리 유도하기',
         },
         partyUnder: {
@@ -770,7 +783,65 @@ export default {
       response: Responses.tankBuster('alert'),
     },
     {
-      id: 'E12S Relativity Debuff Collector',
+      id: 'E12S Basic Relativity Debuffs',
+      // 997 Spell-In-Waiting: Dark Fire III
+      // 998 Spell-In-Waiting: Shadoweye
+      // 99D Spell-In-Waiting: Dark Water III
+      // 99E Spell-In-Waiting: Dark Blizzard III
+      netRegex: NetRegexes.gainsEffect({ effectId: '99[78DE]' }),
+      condition: (data, matches) => data.phase === 'basic' && matches.target === data.me,
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          shadoweye: {
+            en: 'Eye on YOU',
+            de: 'Auge auf DIR',
+            fr: 'Œil sur VOUS',
+            ja: '自分に目',
+            cn: '石化眼点名',
+            ko: '시선징 대상자',
+          },
+          water: intermediateRelativityOutputStrings.stack,
+          longFire: {
+            en: 'Long Fire',
+            de: 'langes Feuer',
+          },
+          shortFire: {
+            en: 'Short Fire',
+            de: 'kurzes Feuer',
+          },
+          longIce: {
+            en: 'Long Ice',
+            de: 'langes Eis',
+          },
+          shortIce: {
+            en: 'Short Ice',
+            de: 'kurzes Eis',
+          },
+        };
+
+        if (matches.effectId === '998')
+          return { infoText: output.shadoweye() };
+        if (matches.effectId === '99D')
+          return { infoText: output.water() };
+
+        // Long fire/ice is 15 seconds, short fire/ice is 29 seconds.
+        const isLong = parseFloat(matches.duration) > 20;
+
+        if (matches.effectId === '997') {
+          if (isLong)
+            return { alertText: output.longFire() };
+          return { alertText: output.shortFire() };
+        }
+        if (matches.effectId === '99E') {
+          if (isLong)
+            return { alertText: output.longIce() };
+          return { alertText: output.shortIce() };
+        }
+      },
+    },
+    {
+      id: 'E12S Intermediate Relativity Debuff Collector',
       // 690 Spell-In-Waiting: Flare
       // 996 Spell-In-Waiting: Unholy Darkness
       // 998 Spell-In-Waiting: Shadoweye
@@ -808,6 +879,7 @@ export default {
           de: '${effect1} > ${effect2} > ${effect3}',
           fr: '${effect1} > ${effect2} > ${effect3}',
           ja: '${effect1} > ${effect2} > ${effect3}',
+          cn: '${effect1} > ${effect2} > ${effect3}',
           ko: '${effect1} > ${effect2} > ${effect3}',
         },
       }, intermediateRelativityOutputStrings),
@@ -846,21 +918,52 @@ export default {
       },
     },
     {
-      id: 'E12S Basic Relativity Shadoweye',
+      id: 'E12S Oracle Basic Relativity Shadow Eye Collector',
+      netRegex: NetRegexes.gainsEffect({ effectId: '998' }),
+      condition: (data, matches) => data.phase === 'basic',
+      run: (data, matches) => {
+        data.eyes = data.eyes || [];
+        data.eyes.push(matches.target);
+      },
+    },
+    {
+      id: 'E12S Oracle Basic Relativity Shadow Eye Other',
       netRegex: NetRegexes.gainsEffect({ effectId: '998' }),
       condition: (data, matches) => data.phase === 'basic',
       delaySeconds: (data, matches) => parseFloat(matches.duration) - 3,
-      suppressSeconds: 2,
-      infoText: (data, _, output) => output.text(),
+      suppressSeconds: 3,
+      alertText: (data, matches, output) => {
+        const player1 = data.eyes[0];
+        const player2 = data.eyes.length === 2 ? data.eyes[1] : false;
+
+        if (player1 !== data.me && player2 !== data.me) {
+          // Call out both player names if you don't have eye
+          return output.lookAwayFromPlayers({
+            player1: data.ShortName(player1),
+            player2: data.ShortName(player2),
+          });
+        } else if (player1 === data.me && player2) {
+          // Call out second player name if exists and you have eye
+          return output.lookAwayFromPlayer({ player: data.ShortName(player2) });
+        } else if (player2 === data.me) {
+          // Call out first player name if you have eye
+          return output.lookAwayFromPlayer({ player: data.ShortName(player1) });
+        }
+
+        // Return empty when only you have eye
+        return;
+      },
       outputStrings: {
-        text: {
-          // TODO: we could say "look away from x, y" or "look away from tanks"?
-          en: 'Look Away',
-          de: 'Wegschauen',
-          fr: 'Regardez ailleurs',
-          ja: '背中を向け',
-          ko: '뒤돌기',
+        lookAwayFromPlayers: {
+          en: 'Look Away from ${player1} and ${player2}',
+          de: 'Schau weg von ${player1} und ${player2}',
+          fr: 'Ne regardez pas ${player1} et ${player2}',
+          ja: '${player1}と${player2}を見ない',
+          cn: '背对${player1}和${player2}',
+          // TODO: Verify this localization:
+          // ko: '${player1}와 ${player2}에게서 뒤돌기',
         },
+        lookAwayFromPlayer: Outputs.lookAwayFromPlayer,
       },
     },
     {
@@ -877,6 +980,7 @@ export default {
           de: 'Nach draußen schauen',
           fr: 'Regardez vers l\'extérieur',
           ja: '外に向け',
+          cn: '背对',
           ko: '바깥 보기',
         },
       },
@@ -902,7 +1006,10 @@ export default {
         northwest: Outputs.northwest,
         hourglass: {
           en: 'Yellow: ${dir}',
+          de: 'Gelb: ${dir}',
           fr: 'Jaune : ${dir}',
+          ja: '黄色: ${dir}',
+          cn: '黄色: ${dir}',
           ko: '노랑: ${dir}',
         },
       },
@@ -948,7 +1055,10 @@ export default {
         northwest: Outputs.northwest,
         hourglass: {
           en: 'Yellow: ${dir1} / ${dir2}',
+          de: 'Gelb: ${dir1} / ${dir2}',
           fr: 'Jaune : ${dir1} / ${dir2}',
+          ja: '黄色: ${dir1} / ${dir2}',
+          cn: '黄色: ${dir1} / ${dir2}',
           ko: '노랑: ${dir1} / ${dir2}',
         },
       },

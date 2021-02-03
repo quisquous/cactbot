@@ -790,7 +790,7 @@ export default {
 
         const cloneOfDarknessLocaleNames = {
           en: 'Clone Of Darkness',
-          de: 'Klon der Dunkelheit',
+          de: 'Klon Der Dunkelheit',
           fr: 'Nuée de Ténèbres',
           ja: '幻影の雲',
           cn: '幻影之云',
@@ -818,6 +818,12 @@ export default {
     },
   ],
   timelineReplace: [
+    {
+      'locale': 'en',
+      'replaceText': {
+        'The Art Of Darkness(?! \\\\())': 'Art Of Dark (Clock/Stacks)',
+      },
+    },
     {
       'locale': 'de',
       'replaceSync': {
@@ -850,10 +856,9 @@ export default {
       },
       'replaceText': {
         '\\(L/R\\)': '(G/D)',
-        '\\(P/S\\)': '(Po/Pa)',
         'The Third Art Of Darkness': 'Arts ténébreux triple',
         'The Second Art Of Darkness': 'Arts ténébreux double',
-        'The Art Of Darkness': 'Arts ténébreux',
+        'The Art Of Darkness(?! \\\\())': 'Arts ténébreux (Pos/Packs)',
         'Summon': 'Invocation',
         'Rejuvenating Balm': 'Tir vivifiant',
         'Particle Concentration': 'Rayon sphérique',

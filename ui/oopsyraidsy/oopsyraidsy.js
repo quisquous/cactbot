@@ -726,6 +726,7 @@ class DamageTracker {
     this.lastDamage = {};
     // Trigger ID -> { events: [], matches: [] }
     this.activeTriggers = {};
+    this.triggerSuppress = {};
 
     for (let i = 0; i < this.timers.length; ++i)
       window.clearTimeout(this.timers[i]);
@@ -928,13 +929,23 @@ class DamageTracker {
   }
 
   OnTrigger(trigger, evt, matches) {
+    const triggerTime = Date.now();
+
     // If using named groups, treat matches.groups as matches
     // so triggers can do things like matches.target.
     if (matches && matches.groups)
       matches = matches.groups;
 
-    if (trigger.id && !IsTriggerEnabled(this.options, trigger.id))
-      return;
+    if (trigger.id) {
+      if (!IsTriggerEnabled(this.options, trigger.id))
+        return;
+
+      if (trigger.id in this.triggerSuppress) {
+        if (this.triggerSuppress[trigger.id] > triggerTime)
+          return;
+        delete this.triggerSuppress[trigger.id];
+      }
+    }
 
     if ('condition' in trigger) {
       if (!trigger.condition(evt, this.data, matches))
@@ -958,8 +969,10 @@ class DamageTracker {
     else
       delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds, evt, matches) : 0;
 
+    const suppress = 'suppressSeconds' in trigger ? ValueOrFunction(trigger.suppressSeconds) : 0;
+    if (trigger.id && suppress > 0)
+      this.triggerSuppress[trigger.id] = triggerTime + (suppress * 1000);
 
-    const triggerTime = Date.now();
     const f = (function() {
       let eventParam = evt;
       let matchesParam = matches;

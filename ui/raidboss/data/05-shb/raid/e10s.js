@@ -485,12 +485,12 @@ export default {
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Drop Shadow Max Melee',
-          de: 'Lege den Schatten im max Melee Bereich ab',
-          fr: 'Déposez l\'ombre au max de la portée',
-          ja: 'タゲサークル外側に影を捨てる',
-          cn: '把影子放到Boss目标圈外',
-          ko: '그림자 칼끝딜 위치에 떨어뜨리기',
+          en: 'Drop Shadow Out',
+          de: 'Schatten draußen ablegen',
+          fr: 'Déposez l\'ombre à l\'extérieur',
+          ja: '影を外周に捨てる',
+          cn: '影子放到外圈',
+          ko: '바깥쪽에 그림자 떨어뜨리기',
         },
       },
       run: (data) => delete data.clones,
@@ -502,7 +502,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Ombre De Héros', id: '5BBF', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '英雄の影', id: '5BBF', capture: false }),
       suppressSeconds: 3,
-      response: Responses.getUnder(),
+      response: Responses.moveAway(),
     },
     {
       id: 'E10S Distant Scream',
@@ -564,7 +564,7 @@ export default {
           // TODO: this could be better if we knew where the shadow was
           // TODO: this also happens twice, with tethers
           en: 'Be On Squiggles',
-          de: 'Sei auf dem Kringel',
+          de: 'Sei auf den geschwungenen Linien',
           fr: 'Allez sur l\'ombre tordue',
           ja: '曲線上待機',
           cn: '站到连线为曲线的一侧',
@@ -580,13 +580,12 @@ export default {
       netRegexDe: NetRegexes.ability({ source: 'Schattenkönig', id: '5B13', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Roi De L\'Ombre', id: '5B13', capture: false }),
       netRegexJa: NetRegexes.ability({ source: '影の王', id: '5B13', capture: false }),
-      delaySeconds: 4,
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away From Squiggles',
-          de: 'Weg vom Kringel',
+          de: 'Weg von den geschwungenen Linien',
           fr: 'Éloignez-vous de l\'ombre tordue',
           ja: '安置へ',
           cn: '远离连线为曲线的一侧',
