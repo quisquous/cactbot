@@ -73,9 +73,7 @@ export default {
     {
       id: 'HadesEx Death Shriek',
       damageRegex: '47CB',
-      condition: function(e, data) {
-        return e.damage > 0;
-      },
+      condition: (e) => e.damage > 0,
       mistake: function(e, data) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },

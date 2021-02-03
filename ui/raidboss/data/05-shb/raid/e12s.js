@@ -482,7 +482,7 @@ export default {
       run: (data) => data.isDoorBoss = true,
     },
     {
-      id: 'E12S Promise Obliteration',
+      id: 'E12S Promise Maleficium',
       netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58A8', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58A8', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58A8', capture: false }),
@@ -783,7 +783,65 @@ export default {
       response: Responses.tankBuster('alert'),
     },
     {
-      id: 'E12S Relativity Debuff Collector',
+      id: 'E12S Basic Relativity Debuffs',
+      // 997 Spell-In-Waiting: Dark Fire III
+      // 998 Spell-In-Waiting: Shadoweye
+      // 99D Spell-In-Waiting: Dark Water III
+      // 99E Spell-In-Waiting: Dark Blizzard III
+      netRegex: NetRegexes.gainsEffect({ effectId: '99[78DE]' }),
+      condition: (data, matches) => data.phase === 'basic' && matches.target === data.me,
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          shadoweye: {
+            en: 'Eye on YOU',
+            de: 'Auge auf DIR',
+            fr: 'Œil sur VOUS',
+            ja: '自分に目',
+            cn: '石化眼点名',
+            ko: '시선징 대상자',
+          },
+          water: intermediateRelativityOutputStrings.stack,
+          longFire: {
+            en: 'Long Fire',
+            de: 'langes Feuer',
+          },
+          shortFire: {
+            en: 'Short Fire',
+            de: 'kurzes Feuer',
+          },
+          longIce: {
+            en: 'Long Ice',
+            de: 'langes Eis',
+          },
+          shortIce: {
+            en: 'Short Ice',
+            de: 'kurzes Eis',
+          },
+        };
+
+        if (matches.effectId === '998')
+          return { infoText: output.shadoweye() };
+        if (matches.effectId === '99D')
+          return { infoText: output.water() };
+
+        // Long fire/ice is 15 seconds, short fire/ice is 29 seconds.
+        const isLong = parseFloat(matches.duration) > 20;
+
+        if (matches.effectId === '997') {
+          if (isLong)
+            return { alertText: output.longFire() };
+          return { alertText: output.shortFire() };
+        }
+        if (matches.effectId === '99E') {
+          if (isLong)
+            return { alertText: output.longIce() };
+          return { alertText: output.shortIce() };
+        }
+      },
+    },
+    {
+      id: 'E12S Intermediate Relativity Debuff Collector',
       // 690 Spell-In-Waiting: Flare
       // 996 Spell-In-Waiting: Unholy Darkness
       // 998 Spell-In-Waiting: Shadoweye
@@ -860,32 +918,12 @@ export default {
       },
     },
     {
-      id: 'E12S Oracle Basic Relativity Shadow Eye Me',
+      id: 'E12S Oracle Basic Relativity Shadow Eye Collector',
       netRegex: NetRegexes.gainsEffect({ effectId: '998' }),
       condition: (data, matches) => data.phase === 'basic',
-      preRun: (data, matches) => {
+      run: (data, matches) => {
         data.eyes = data.eyes || [];
         data.eyes.push(matches.target);
-      },
-      // Delay so that we don't overwrite Hourglass callout
-      delaySeconds: 4,
-      infoText: (data, matches, output) => {
-        // The trigger repeats for collection; only call out first match
-        if (data.eyes.includes(data.me) && !data.eyecalled) {
-          data.eyecalled = true;
-          return output.text();
-        }
-        return;
-      },
-      outputStrings: {
-        text: {
-          en: 'Eye on YOU',
-          de: 'Auge auf DIR',
-          fr: 'Œil sur VOUS',
-          ja: '自分に目',
-          cn: '石化眼点名',
-          ko: '시선징 대상자',
-        },
       },
     },
     {
@@ -1072,9 +1110,10 @@ export default {
         'Junction Titan': 'Verbindung: Titan',
         'Laser Eye': 'Laserauge',
         'Lionsblaze': 'Löwenfeuer',
+        'Maleficium': 'Maleficium',
         'Maelstrom': 'Mahlstrom',
         'Memory\'s End': 'Ende der Erinnerungen',
-        'Obliteration': 'Auslöschung',
+        'Obliteration Laser': 'Auslöschung',
         'Palm Of Temperance': 'Hand der Mäßigung',
         'Paradise Lost': 'Verlorenes Paradies',
         'Pillar Pierce': 'Säulendurchschlag',
@@ -1147,9 +1186,10 @@ export default {
         'Junction Titan': 'Associer : Titan',
         'Laser Eye': 'Faisceau maser',
         'Lionsblaze': 'Feu léonin',
+        'Maleficium': 'Maleficium',
         'Maelstrom': 'Maelström',
         'Memory\'s End': 'Mort des souvenirs',
-        'Obliteration': 'Maleficium',
+        'Obliteration Laser': 'Oblitération',
         'Palm Of Temperance': 'Paume de tempérance',
         'Paradise Lost': 'Paradis perdu',
         'Pillar Pierce': 'Frappe puissante',
@@ -1224,9 +1264,9 @@ export default {
         'Junction Titan': 'ジャンクション：タイタン',
         'Laser Eye': 'メーザーアイ',
         'Lionsblaze': '獅子の業火',
+        'Maleficium': 'マレフィキウム',
         'Maelstrom': 'メイルシュトローム',
         'Memory\'s End': 'エンド・オブ・メモリーズ',
-        'Obliteration(?! Laser)': 'マレフィキウム',
         'Obliteration Laser': 'マレフィキウム レーザー',
         'Palm Of Temperance': '拒絶の手',
         'Paradise Lost': 'パラダイスロスト',

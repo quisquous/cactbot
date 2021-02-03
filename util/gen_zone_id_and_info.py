@@ -32,6 +32,22 @@ synthetic_ids = {
 }
 
 synthetic_zone_info = {
+    901: {
+        "contentType": 16,
+        "exVersion": 1,
+        "name": {
+            "cn": "天上福地云冠群岛",
+            "de": "Das Diadem - Erschließung",
+            "en": "The Diadem",
+            "fr": "Le Diadème",
+            "ja": "雲海採集 ディアデム諸島",
+            "ko": "디아뎀 제도",
+        },
+        "offsetX": 0,
+        "offsetY": 0,
+        "sizeFactor": 100,
+        "weatherRate": 0,
+    },
     930: {
         "contentType": 4,
         "exVersion": 3,
@@ -185,6 +201,11 @@ def generate_name_data(territory_map, cfc_map, place_name_map):
             print_error("collision", name_key, territory_map, territory_id)
             continue
 
+        # Ignore collisions with known ids.
+        if name_key in known_ids and known_ids[name_key] != int(territory_id):
+            print_error("skipping", name_key, territory_map, territory_id)
+            continue
+
         # If this is a collision with an existing name,
         # remove the old one.
         if name_key in map:
@@ -195,9 +216,6 @@ def generate_name_data(territory_map, cfc_map, place_name_map):
             continue
 
         territory_to_cfc_map[territory_id] = cfc_id_for_name
-        if name_key in known_ids and known_ids[name_key] != int(territory_id):
-            print_error("skipping", name_key, territory_map, territory_id)
-            continue
 
         map[name_key] = int(territory_id)
 

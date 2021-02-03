@@ -229,7 +229,7 @@ export default {
         'Flames Of Rebirth': '転生の炎',
         'Flames Of Unforgiveness': '煉獄の爆炎',
         'Fountain Of Fire': '霊泉の炎',
-        'Fountain Tick': '霊泉の炎: ',
+        'Fountain Tick ': '霊泉の炎: ',
         'Redfire Plume': '赤熱の炎柱',
         'Redfire(?! )': '紅蓮の炎',
         'Revelation': 'リヴァレーション',
