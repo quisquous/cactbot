@@ -112,7 +112,7 @@ export default {
         text: {
           en: 'Stand in the gap',
           de: 'In der Lücke stehen',
-          fr: 'Tenez-vous à l\'écart',
+          fr: 'Placez-vous à l\'écart',
           ja: '狭間に',
           cn: '远离中间位置',
           ko: '빈틈에 서기',
