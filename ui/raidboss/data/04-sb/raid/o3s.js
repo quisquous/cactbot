@@ -87,7 +87,7 @@ export default {
         othersStackOnHoly: {
           en: 'others stack on ${holyTargets}',
           de: 'andere stacken auf ${holyTargets}',
-          fr: 'les autres se packent sur ${holyTargets}',
+          fr: 'Les autres se packent sur ${holyTargets}',
           ja: '他は${holyTargets}と頭割り',
           cn: '其他分摊${holyTargets}',
           ko: '${holyTargets} 다른 쉐어징',
@@ -169,7 +169,7 @@ export default {
         goSouthStackOnYou: {
           en: 'Go south: stack on YOU',
           de: 'Nach Süden: stack auf DIR',
-          fr: 'Allez au sud : package sur VOUS',
+          fr: 'Allez au sud : Package sur VOUS',
           ja: '南へ: 自分に頭割り',
           cn: '去南边分摊点名',
           ko: '남쪽으로: 쉐어징 대상자',
@@ -177,7 +177,7 @@ export default {
         goNorth: {
           en: 'go north',
           de: 'nach norden',
-          fr: 'allez au nord',
+          fr: 'Allez au nord',
           ja: '南へ',
           cn: '去南边',
           ko: '북쪽으로',
@@ -185,7 +185,7 @@ export default {
         goSouthStackOnFriend: {
           en: 'go south: stack on friend',
           de: 'nach süden: stack auf freund',
-          fr: 'allez au sud : package sur un ami',
+          fr: 'Allez au sud : Package sur un ami',
           ja: '南へ: 頭割り',
           cn: '去南边分摊',
           ko: '남쪽으로: 쉐어징',
@@ -193,7 +193,7 @@ export default {
         stackOutside: {
           en: 'stack outside',
           de: 'außen stacken',
-          fr: 'packez-vous à l\'extérieur',
+          fr: 'Packez-vous à l\'extérieur',
           ja: '外へ: 頭割り',
           cn: '去外面分摊',
           ko: '밖으로: 쉐어징',
@@ -201,7 +201,7 @@ export default {
         goNorth2: {
           en: 'go north',
           de: 'nach norden',
-          fr: 'allez au nord',
+          fr: 'Allez au nord',
           ja: '南へ',
           cn: '去南边',
           ko: '북쪽으로',
@@ -209,7 +209,7 @@ export default {
         stackInside: {
           en: 'stack inside',
           de: 'innen stacken',
-          fr: 'packez-vous à l\'intérieur',
+          fr: 'Packez-vous à l\'intérieur',
           ja: '中へ: 頭割り',
           cn: '去里面分摊',
           ko: '안으로: 쉐어징',
@@ -226,7 +226,7 @@ export default {
         text: {
           en: 'Mindjack: Right',
           de: 'Geistlenkung: Rechts',
-          fr: 'Contrainte mentale : vers la droite',
+          fr: 'Contrainte mentale : Vers la droite',
           ja: 'マインドジャック: 右折',
           cn: '右',
           ko: '정신장악: 오른쪽',
@@ -243,7 +243,7 @@ export default {
         text: {
           en: 'Mindjack: Forward',
           de: 'Geistlenkung: Vorwärts',
-          fr: 'Contrainte mentale : vers l\'avant',
+          fr: 'Contrainte mentale : Vers l\'avant',
           ja: 'マインドジャック: 前進',
           cn: '前',
           ko: '정신장악: 앞쪽',
@@ -260,7 +260,7 @@ export default {
         text: {
           en: 'Mindjack: Left',
           de: 'Geistlenkung: Links',
-          fr: 'Contrainte mentale : vers la gauche',
+          fr: 'Contrainte mentale : Vers la gauche',
           ja: 'マインドジャック: 左折',
           cn: '左',
           ko: '정신장악: 왼쪽',
@@ -277,7 +277,7 @@ export default {
         text: {
           en: 'Mindjack: Back',
           de: 'Geistlenkung: Zurück',
-          fr: 'Contrainte mentale : vers l\'arrière',
+          fr: 'Contrainte mentale : Vers l\'arrière',
           ja: 'マインドジャック: 後退',
           cn: '后',
           ko: '정신장악: 뒤쪽',
@@ -399,7 +399,7 @@ export default {
         tts: {
           en: 'blue square',
           de: 'blaues feld',
-          fr: 'Carré bleu',
+          fr: 'carré bleu',
           ja: '青い床',
           cn: '蓝地板',
           ko: '파란 장판',

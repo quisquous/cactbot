@@ -375,7 +375,7 @@ export default {
         dieInInIn: {
           en: 'die in in in',
           de: 'sterben rein rein rein',
-          fr: 'Mourrez--intérieur x3',
+          fr: 'Mourrez Intérieur Intérieur Intérieur',
           ja: '死になさい！',
           cn: '死亡',
           ko: '안쪽 레이저 맞기',
@@ -383,7 +383,7 @@ export default {
         outOutOut: {
           en: 'out out out',
           de: 'raus raus raus',
-          fr: 'Extérieur x3',
+          fr: 'Extérieur Extérieur Extérieur',
           ja: '出て出て！',
           cn: '出去出去',
           ko: '바깥으로',
@@ -433,7 +433,7 @@ export default {
         dieOutOutOut: {
           en: 'die out out out',
           de: 'sterben raus raus raus',
-          fr: 'Mourrez--extérieur x3',
+          fr: 'Mourrez Extérieur Extérieur Extérieur',
           ja: '死になさい！',
           cn: '在外面死亡',
           ko: '바깥 레이저 맞기',
@@ -441,7 +441,7 @@ export default {
         inInIn: {
           en: 'in in in',
           de: 'rein rein rein',
-          fr: 'Intérieur x3',
+          fr: 'Intérieur Intérieur Intérieur',
           ja: '入れ入れ',
           cn: '进去进去',
           ko: '안으로',

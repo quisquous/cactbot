@@ -258,7 +258,7 @@ export default {
         standOnFrogTile: {
           en: 'Stand on frog tile',
           de: 'Auf Frosch-Fläche stehen',
-          fr: 'Tenez-vous sur la grenouille',
+          fr: 'Placez-vous sur la grenouille',
           ja: 'カエルパネルを踏む',
           cn: '站在呱呱方块',
           ko: '개구리 장판으로',
@@ -266,7 +266,7 @@ export default {
         standOnShield: {
           en: 'Stand on shield',
           de: 'Auf Schild-Fläche stehen',
-          fr: 'Tenez-vous sur le bouclier',
+          fr: 'Placez-vous sur le bouclier',
           ja: 'タンクパネルを踏む',
           cn: '站在坦克方块',
           ko: '방패 장판으로',
@@ -274,7 +274,7 @@ export default {
         standOnCross: {
           en: 'Stand on cross',
           de: 'Auf Kreuz-Fläche stehen',
-          fr: 'Tenez-vous sur la croix',
+          fr: 'Placez-vous sur la croix',
           ja: 'ヒーラーパネルを踏む',
           cn: '站在治疗方块',
           ko: '십자가 장판으로',
@@ -282,7 +282,7 @@ export default {
         standOnSword: {
           en: 'Stand on sword',
           de: 'Auf Schwert-Fläche stehen',
-          fr: 'Tenez-vous sur l\'épée',
+          fr: 'Placez-vous sur l\'épée',
           ja: 'DPSパネルを踏む',
           cn: '站在DPS方块',
           ko: '검 장판으로',

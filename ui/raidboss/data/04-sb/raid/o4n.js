@@ -24,7 +24,7 @@ export default {
         text: {
           en: 'Cleanse Doom soon',
           de: 'Reinige Verhängnis bald',
-          fr: 'Guérison => Glas bientot',
+          fr: 'Guérison sur le Glas bientot',
           ja: '死の宣告にエスナ',
           cn: '驱散死宣',
           ko: '죽음의 선고 해제하기',
