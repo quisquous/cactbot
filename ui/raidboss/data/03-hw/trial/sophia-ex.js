@@ -640,7 +640,7 @@ export default {
     {
       'locale': 'ja',
       'replaceSync': {
-        'Aion Teleos': 'Aion Teleos',
+        'Aion Teleos': 'アイオーン・ソフィア',
         'Barbelo': 'バルベロ',
         'Sophia': 'ソフィア',
         'The First Demiurge': '一の従者',
@@ -667,8 +667,9 @@ export default {
         'Quasar': 'クエーサー',
         'Ring of Pain': 'リング・オブ・ペイン',
         'The Scales Of Wisdom': 'バランス・オブ・ウィズダム',
+        '(?<= )Tethers': '線',
         'Thunder II\\/III': 'サンダー/サンダガ',
-        'Thunder II(?!(?:I|\\/))': 'サンダラ',
+        'Thunder II(?!(?:I|\\/I))': 'サンダラ',
         'Thunder III': 'サンダガ',
         'Vertical Kenoma': '前後堅守',
         'Zombification': 'ゾンビー',

@@ -101,6 +101,7 @@ export default {
         'Chandrahas': 'チャンドラハース',
         'Clone Spawn': '幻影出現',
         'Clone Dash': '幻影突進',
+        '(?<= )Dash(?= )': '突進',
         'Dragonfly Avatar': '武辺の化身',
         'Final Liberation': '光焔【滅】',
         'Laughing Rose': '月気弾',
