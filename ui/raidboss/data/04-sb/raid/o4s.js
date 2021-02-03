@@ -1245,6 +1245,7 @@ export default {
         'Almagest': 'Almageste',
         'Black Hole': 'Trou noir',
         'Blizzard III': 'Méga Glace',
+        'Blizzard III/Fire III/Thunder III': 'Méga Glace/Feu/Foudre',
         'Charge': 'Charge',
         'Charybdis': 'Charybde',
         'Collision': 'Impact',
