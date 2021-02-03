@@ -555,6 +555,7 @@ export default {
         '\\(clock/out\\)': '(時針回り/外へ)',
         '\\(everyone\\)': '(全員)',
         '\\(numbers\\)': '(数字)',
+        '\\(offtank\\)': '(ST)',
         '\\(orbs\\)': '(玉)',
         '\\(out/clock\\)': '(外へ/時針回り)',
         '\\(shield\\)': '(シールド)',
