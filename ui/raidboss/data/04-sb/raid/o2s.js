@@ -389,13 +389,6 @@ export default {
         'Paranormal Wave': 'Onde maudite',
         'Tremblor': 'Tremblement de terre',
         'Unstable Gravity': 'Gravité instable',
-        'Tremblor': 'Tremblement de terre',
-        'Gravitational Manipulation': 'Manipulation gravitationnelle',
-        'Gravitational Explosion': 'Explosion gravitationnelle',
-        'Erosion': 'Érosion',
-        'Main Quake': 'Secousse principale',
-        'Maniacal Probe': 'Farandole de tentacules',
-        'Gravitational Collapse': 'Effondrement gravitationnel',
       },
     },
     {
