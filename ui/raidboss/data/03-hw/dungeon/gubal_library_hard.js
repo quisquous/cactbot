@@ -377,6 +377,7 @@ export default {
         'Top Shelf Tome': '上製本',
       },
       'replaceText': {
+        '\\(buster\\)': '(バスター)',
         'Bibliocide': '火炎',
         'Book Drop': '本落下',
         'Check Out': '選書',
@@ -389,7 +390,8 @@ export default {
         'Issue': '刊行',
         'Magnetism': '磁力',
         'Meteor Impact': 'メテオインパクト',
-        'Properties Of Darkness': 'ダークの章',
+        'Properties Of Darkness II': 'ダークラの章',
+        'Properties Of Darkness(?! II)': 'ダークの章',
         'Properties Of Imps': 'カッパの章',
         'Properties Of Quakes': 'クエイガの章',
         'Properties Of Thunder III': 'サンダガの章',
