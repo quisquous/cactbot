@@ -266,6 +266,7 @@ export default {
         'Regula van Hydrus': 'レグラ・ヴァン・ヒュドルス',
       },
       'replaceText': {
+        '(?<= )Appears': '出現',
         'Aetherochemical Grenado': '魔導榴弾',
         'Ancient Circle': 'エンシェントリング',
         'Ancient Eruption': 'エンシェントエラプション',

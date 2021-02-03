@@ -387,7 +387,7 @@ export default {
       },
       'replaceText': {
         '--timestop--': '--時間停止--',
-        '(?<!Radiant )Sacrament': '十字の秘蹟',
+        '(?<! )Sacrament': '十字の秘蹟',
         'Almost Holy': 'プチホーリー',
         'Arrhidaeus\'s Lanner': 'アリダイオス・ランナー',
         'Blazing Scourge': '白光の鞭',
@@ -407,6 +407,7 @@ export default {
         'Mega Holy': 'メガホーリー',
         'Punishing Heat': '懲罰の熱線',
         'Radiant Sacrament': '拝火の秘蹟',
+        '\\(Radiant\\?\\) Sacrament': '十字/拝火の秘蹟',
         'Smash': 'スマッシュ',
         'Summon Alexander': 'アレキサンダー召喚',
         'Temporal Stasis': '時間停止',
