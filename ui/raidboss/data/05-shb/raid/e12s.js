@@ -399,7 +399,7 @@ export default {
       // Headmarkers are randomized, so use a generic headMarker regex with no criteria.
       id: 'E12S Promise Chiseled Sculpture',
       netRegex: NetRegexes.headMarker({}),
-      condition: (data) => data.isDoorBoss && matches.target !== data.me,
+      condition: (data) => data.isDoorBoss && matches.target === data.me,
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
