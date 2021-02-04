@@ -66,7 +66,7 @@ export default {
         text: {
           en: 'Stand in blue',
           de: 'Im Blauen stehen',
-          fr: 'Tenez-vous dans le bleu',
+          fr: 'Placez-vous dans le bleu',
           ja: '青色を踏む',
           cn: '站在蓝色区域',
           ko: '파랑장판에 서기',
@@ -82,7 +82,7 @@ export default {
         text: {
           en: 'Stand in red',
           de: 'Im Roten stehen',
-          fr: 'Tenez-vous dans le rouge',
+          fr: 'Placez-vous dans le rouge',
           ja: '赤色を踏む',
           cn: '站在红色区域',
           ko: '빨강장판에 서기',

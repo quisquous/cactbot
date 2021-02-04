@@ -606,7 +606,7 @@ export default {
         standByDarkCircles: {
           en: 'Stand By Dark Circles',
           de: 'Zu den dunklen Kreisen',
-          fr: 'Tenez-vous près des cercles ténèbreux',
+          fr: 'Placez-vous près des cercles ténèbreux',
           ja: '黒リングに近づく',
           cn: '靠近黑圈',
           ko: '어두운 원 옆에 서기',
@@ -614,7 +614,7 @@ export default {
         standByLightCircles: {
           en: 'Stand By Light Circles',
           de: 'zu den hellen Kreisen',
-          fr: 'Tenez-vous près des cercles lumineux',
+          fr: 'Placez-vous près des cercles lumineux',
           ja: '白リングに近づく',
           cn: '靠近白圈',
           ko: '밝은 원 옆에 서기',
