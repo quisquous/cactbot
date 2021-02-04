@@ -411,8 +411,8 @@ when their names are called out
 ```javascript
 Options.PlayerNicks = {
   // 'Firstname Lastname': 'Nickname',
-  'Banana Nana', 'Nana',
-  'The Great\'one', 'Joe', // The Great'one => Joe, needs a backslash for the apostrophe
+  'Banana Nana': 'Nana',
+  'The Great\'one': 'Joe', // The Great'one => Joe, needs a backslash for the apostrophe
   'Viewing Cutscene': 'Cut',
   // etc, with more nicknames
 };

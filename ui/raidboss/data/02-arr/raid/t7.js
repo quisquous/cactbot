@@ -301,6 +301,7 @@ export default {
         'Renaud': 'ルノー',
       },
       'replaceText': {
+        '(.*) Adds?': '雑魚: $1',
         'Circle Blade': 'サークルブレード',
         'Circle Of Flames': 'サークル・オブ・フレイム',
         'Cursed Shriek': '呪詛の叫声',
