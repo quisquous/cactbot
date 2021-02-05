@@ -136,6 +136,37 @@ const primalOutputStrings = {
   },
 };
 
+const statueBaitResponse = (data, _, output) => {
+  // cactbot-builtin-response
+  output.responseOutputStrings = {
+    inner: {
+      en: 'Bait Inner Statue',
+    },
+    outer: {
+      en: 'Bait Outer Statue',
+    },
+    unknown: {
+      en: '???',
+    },
+    sides: Outputs.sides,
+  };
+  data.statueLaserCount = data.statueLaserCount + 1 || 1;
+  let response;
+  if (data.statueLaserCount === data.statueTetherNumber)
+    response = { alertText: output[data.statueDir]() };
+  else
+    response = { infoText: output.sides() };
+
+  if (data.statueLaserCount >= 4) {
+    delete data.statueTetherNumber;
+    delete data.statueLaserCount;
+    delete data.statueLastId;
+    delete data.statues;
+  }
+
+  return response;
+};
+
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
 // added to their ID. This offset currently appears to be set per instance, so
 // we can determine what it is from the first overhead marker we see.
@@ -400,6 +431,8 @@ export default {
       id: 'E12S Promise Chiseled Sculpture',
       netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => data.isDoorBoss && matches.target === data.me,
+      // Show headmarker number for whole phase
+      durationSeconds: 20,
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -421,10 +454,9 @@ export default {
         const firstLaserMarker = '0091';
         const lastLaserMarker = '0098';
         if (id >= firstLaserMarker && id <= lastLaserMarker) {
-          // We could arguably tell you which giant you're tethered to by finding their position?
-          // And then saying something like "North" but that's probably more confusing than helpful.
           // ids are sequential: #1 square, #2 square, #3 square, #4 square, #1 triangle etc
           const decOffset = parseInt(id, 16) - parseInt(firstLaserMarker, 16);
+          data.statueTetherNumber = (decOffset % 4) + 1;
           return {
             alertText: [
               output.square1(),
@@ -439,6 +471,108 @@ export default {
           };
         }
       },
+    },
+    {
+      id: 'E12S Promise Chiseled Sculpture Tether',
+      netRegex: NetRegexes.tether({ target: 'Chiseled Sculpture', id: '0011' }),
+      durationSeconds: 20,
+      promise: async (data, matches) => {
+        // Calculate distance to center to determine inner vs outer
+        data.statues = data.statues || [];
+        if (data.statues.filter((s) => s.id === matches.targetId).length === 0) {
+          // Push statue to array immediately or else async causes the array
+          // to get duplicates of the statues
+          const statue = {
+            id: matches.targetId,
+          };
+          data.statues.push(statue);
+          const statueId = parseInt(matches.targetId, 16);
+          const statueData = await window.callOverlayHandler({
+            call: 'getCombatants',
+            ids: [statueId],
+          });
+
+          if (statueData === null || !statueData.combatants || !statueData.combatants.length)
+            return;
+
+          // Center = 0, -75
+          const x = statueData.combatants[0].PosX;
+          const y = statueData.combatants[0].PosY - -75;
+          statue.dist = Math.hypot(x, y);
+          if (data.statues.length > 1) {
+            // Sort so that closest statue (inner) is first
+            data.statues.sort((a, b) => a.dist - b.dist);
+          }
+        }
+      },
+      infoText: (data, matches, output) => {
+        // Player is the source of the tether for this one, oddly enough
+        if (data.me !== matches.source)
+          return;
+
+        if (data.statues.length > 0 && data.statues[0].id === matches.targetId)
+          data.statueDir = 'inner';
+        else if (data.statues.length > 1 && data.statues[1].id === matches.targetId)
+          data.statueDir = 'outer';
+        else
+          data.statueDir = 'unknown';
+
+        return output[data.statueDir]();
+      },
+      outputStrings: {
+        inner: {
+          en: 'Inner Statue',
+        },
+        outer: {
+          en: 'Outer Statue',
+        },
+        unknown: {
+          en: '???',
+        },
+      },
+    },
+    {
+      id: 'E12S Promise Palm Of Temperance SE',
+      netRegex: NetRegexes.startsUsing({ source: 'Guardian Of Eden', id: '58B4', capture: false }),
+      durationSeconds: 10,
+      infoText: (_1, _2, output) => output.knockback(),
+      outputStrings: {
+        knockback: {
+          en: 'Knockback SE',
+        },
+      },
+    },
+    {
+      id: 'E12S Promise Palm Of Temperance SW',
+      netRegex: NetRegexes.startsUsing({ source: 'Guardian Of Eden', id: '58B5', capture: false }),
+      durationSeconds: 10,
+      infoText: (_1, _2, output) => output.knockback(),
+      outputStrings: {
+        knockback: {
+          en: 'Knockback SW',
+        },
+      },
+    },
+    {
+      // Time the first dodge for lasers from the Rapturous Reach left/right split
+      id: 'E12S Promise Statue Laser First',
+      netRegex: NetRegexes.startsUsing({ source: 'Eden\'s Promise', id: '58A[DE]', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58A[DE]', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58A[DE]', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A[DE]', capture: false }),
+      // Check against `data.statueDir` to limit this trigger to just the Chiseled Sculpture phase
+      condition: (data) => data.statueDir !== undefined,
+      durationSeconds: 5,
+      response: statueBaitResponse,
+    },
+    {
+      // Time the other dodges from the previous lasers going off
+      id: 'E12S Promise Statue 2nd/3rd/4th Laser',
+      netRegex: NetRegexes.ability({ source: 'Chiseled Sculpture', id: '58B3', capture: false }),
+      condition: (data) => (console.log(data) || true) && data.statueLaserCount < 4,
+      durationSeconds: 3,
+      suppressSeconds: 1,
+      response: statueBaitResponse,
     },
     {
       id: 'E12S Promise Weight Cleanup',
