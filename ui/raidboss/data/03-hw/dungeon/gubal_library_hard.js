@@ -114,7 +114,7 @@ export default {
         text: {
           en: 'Stand in red',
           de: 'Im Roten stehen',
-          fr: 'Tenez-vous dans le rouge',
+          fr: 'Placez-vous dans le rouge',
           ja: '赤色に入る',
           cn: '站在红色',
           ko: '빨강장판에 서기',
@@ -130,7 +130,7 @@ export default {
         text: {
           en: 'Stand in blue',
           de: 'Im Blauen stehen',
-          fr: 'Tenez-vous dans le bleu',
+          fr: 'Placez-vous dans le bleu',
           ja: '青色に入る',
           cn: '站在蓝色',
           ko: '파랑장판에 서기',
@@ -185,7 +185,7 @@ export default {
         text: {
           en: 'Stand in light circle',
           de: 'Im hellen Kreis stehen',
-          fr: 'Tenez-vous dans le cercle blanc',
+          fr: 'Placez-vous dans le cercle blanc',
           ja: '白い輪に入る',
           cn: '去白色区域',
           ko: '빛 장판으로',
@@ -205,7 +205,7 @@ export default {
         text: {
           en: 'Stand in dark circle',
           de: 'Im dunklen Kreis stehen',
-          fr: 'Tenez-vous dans le cercle noir',
+          fr: 'Placez-vous dans le cercle noir',
           ja: '黒い輪に入る',
           cn: '去黑色区域',
           ko: '어둠 장판으로',

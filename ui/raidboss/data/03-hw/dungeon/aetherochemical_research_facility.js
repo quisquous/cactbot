@@ -112,7 +112,7 @@ export default {
         text: {
           en: 'Stand in dark portal',
           de: 'Im dunklen Portal stehen',
-          fr: 'Tenez-vous dans un portail noir',
+          fr: 'Placez-vous dans un portail noir',
           ja: '黒い玉に入る',
           cn: '进入黑洞',
           ko: '검은 포탈에 들어가기',

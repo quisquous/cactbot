@@ -82,7 +82,7 @@ export default {
         text: {
           en: 'Stand in a tower',
           de: 'Im Turm stehen',
-          fr: 'Tenez-vous dans une tour',
+          fr: 'Placez-vous dans une tour',
           ja: '塔を踏む',
           cn: '踩塔',
           ko: '장판 들어가기',

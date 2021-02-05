@@ -178,7 +178,7 @@ export default {
         text: {
           en: 'Stand in Alarum Puddle',
           de: 'In Alarm Fläche stehen',
-          fr: 'Tenez-vous dans la zone de l\'Alarum',
+          fr: 'Placez-vous dans la zone de l\'Alarum',
           ja: '紫色の沼に入る',
           cn: '站进紫色圈圈',
           ko: '경보기 장판 밟기',
