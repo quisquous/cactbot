@@ -307,27 +307,27 @@ hideall "--sync--"
 3526.2 "Lots Cast" sync /:Aetherial Bolt:5B6A:/
 3527.9 "--unstunned--"
 
-3539.5 "Bombslinger" sync /:Queen's Warrior:5AFD:/
-3546.6 "Reversal Of Forces" sync /:Queen's Warrior:57FF:/
-3555.7 "Above Board" sync /:Queen's Warrior:57FC:/
-3556.7 "--stunned--"
-3558.7 "Lots Cast" sync /:Aetherial Bolt:57FE:/
-3561.7 "Lots Cast" sync /:Aetherial Burst:57FD:/
-3562.4 "--unstunned--"
-3570.8 "Blood And Bone" sync /:Queen's Warrior:5800:/
-3581.0 "Blood And Bone" sync /:Queen's Warrior:5800:/
+3536.5 "Bombslinger" sync /:Queen's Warrior:5AFD:/ window 10,10
+3543.6 "Reversal Of Forces" sync /:Queen's Warrior:57FF:/
+3552.7 "Above Board" sync /:Queen's Warrior:57FC:/
+3553.7 "--stunned--"
+3555.7 "Lots Cast" sync /:Aetherial Bolt:57FE:/
+3558.7 "Lots Cast" sync /:Aetherial Burst:57FD:/
+3559.4 "--unstunned--"
+3567.8 "Blood And Bone" sync /:Queen's Warrior:5800:/
+3578.0 "Blood And Bone" sync /:Queen's Warrior:5800:/
 
 # FIXME: is this a loop back to the beginning?
 # The Bombslinger/Above Board timings don't seem like there can fit
 # an optional Reversal Of Forces here, but not clear if this is random.
-3589.2 "Bombslinger" sync /:Queen's Warrior:5AFD:/ window 30,30 jump 3511.1
-3598.3 "Above Board" #sync /:Queen's Warrior:57FC:/
-3599.3 "--stunned--"
-3601.3 "Lots Cast" #sync /:Aetherial Burst:5B6B:/
-3604.3 "Lots Cast" #sync /:Aetherial Bolt:5B6A:/
-3606.0 "--unstunned--"
-3617.6 "Bombslinger" #sync /:Queen's Warrior:5AFD:/
-3624.7 "Reversal Of Forces" #sync /:Queen's Warrior:57FF:/
+3586.2 "Bombslinger" sync /:Queen's Warrior:5AFD:/ window 30,30 jump 3511.1
+3595.3 "Above Board" #sync /:Queen's Warrior:57FC:/
+3596.3 "--stunned--"
+3598.3 "Lots Cast" #sync /:Aetherial Burst:5B6B:/
+3601.3 "Lots Cast" #sync /:Aetherial Bolt:5B6A:/
+3603.0 "--unstunned--"
+3614.6 "Bombslinger" #sync /:Queen's Warrior:5AFD:/
+3621.7 "Reversal Of Forces" #sync /:Queen's Warrior:57FF:/
 
 # Queen's Knight
 # (local jumps to other blocks)
@@ -372,8 +372,10 @@ hideall "--sync--"
 # -p 57A3:5011.3
 # (no -ii, a refreshingly direct timeline)
 5000.0 "--sync--" sync /00:0839:Pride of the Lion will be sealed off/ window 10000,0
-5008.3 "--sync--" sync /:57A3:Bozjan Phantom/ window 10,10
+
 # one circle, one square
+5008.3 "--sync--" sync /:57A3:Bozjan Phantom/ window 10,10
+5011.3 "Weave Miasma" sync /:Bozjan Phantom:57A3:/
 5025.5 "Manipulate Miasma" sync /:Bozjan Phantom:57A4:/
 5026.5 "Swirling Miasma 1" sync /:Bozjan Phantom:57A9:/
 5028.1 "Swirling Miasma 2" #sync /:Bozjan Phantom:57AA:/
@@ -443,7 +445,7 @@ hideall "--sync--"
 
 ### Trinity Avowed
 # -p 5975:7013
-# -ii -p 5975:7 5962 4F55 4F99 5B24 5968 4F56 4F9A 5964 5969 5965 5967 596A 596C
+# -ii 5962 4F55 4F99 5B24 5968 4F56 4F9A 5964 5969 5965 5967 596A 596C
 7000.0 "--sync--" sync /00:0839:The Vault of Singing Crystal will be sealed off/ window 10000,0
 7008.0 "--sync--" sync /:5975:Trinity Avowed/ window 10,10
 7013.0 "Wrath Of Bozja" sync /:Trinity Avowed:5975:/
@@ -504,6 +506,7 @@ hideall "--sync--"
 7353.3 "Flashvane" sync /:Trinity Avowed:5972:/
 7359.5 "Unseen Eye" sync /:Trinity Avowed:5BB4:/
 7370.8 "Gleaming Arrow" sync /:Avowed Avatar:5974:/
+7370.8 "Flames Of Bozja" sync /:Trinity Avowed:597E:/ duration 8
 7379.0 "--sync--" sync /:Trinity Avowed:5B39:/
 
 # swords, 2 levels of temperature

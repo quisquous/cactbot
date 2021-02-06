@@ -324,7 +324,7 @@ export default {
     // *** Bozjan Phantom
     {
       id: 'Delubrum Phantom Weave Miasma',
-      netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: ['57A3', '57A4'], capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57A3', capture: false }),
       preRun: (data) => data.weaveMismaCount = (data.weaveMiasmaCount || 0) + 1,
       delaySeconds: 3,
       infoText: (data, _, output) => {
