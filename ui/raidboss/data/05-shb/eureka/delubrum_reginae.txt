@@ -182,6 +182,7 @@ hideall "--sync--"
 2091.5 "Reverberating Roar" sync /:Dahu:575B:/
 2105.0 "Hot Charge" sync /:Dahu:5764:/
 2109.8 "Hot Charge" sync /:Dahu:5764:/
+
 2116.6 "Firebreathe" sync /:Dahu:5765:/
 2129.8 "--sync--" sync /:Marchosias:5758:/
 2130.8 "Reverberating Roar" sync /:Dahu:575B:/
@@ -193,11 +194,23 @@ hideall "--sync--"
 2156.2 "Head Down" sync /:Marchosias:5756:/
 2162.7 "Feral Howl" sync /:Dahu:5755:/
 2166.2 "Hunter's Claw" sync /:Marchosias:5757:/
-2172.9 "Firebreathe" sync /:Dahu:5759:/
-# ??? Have seen 575E / 575B here instead of 5766 / 575D ???
-2194.9 "Heat Breath" sync /:Dahu:5766:/ # <- ??? what is this
-2205.5 "Ripper Claw" sync /:Dahu:575D:/
-# ??? this surely loops at some point
+2172.9 "Firebreathe x5" sync /:Dahu:5759:/
+2195.1 "Heat Breath" sync /:Dahu:5766:/
+2205.7 "Tail Swing" sync /:Dahu:575F:/
+2217.9 "Reverberating Roar" sync /:Dahu:575B:/
+2231.8 "Hot Charge" sync /:Dahu:5764:/
+2236.7 "Hot Charge" sync /:Dahu:5764:/
+
+2243.6 "Firebreathe" sync /:Dahu:5765:/ window 50,50 jump 2116.6
+2256.8 "--sync--" #sync /:Marchosias:5758:/
+2257.8 "Reverberating Roar" #sync /:Dahu:575B:/
+2263.1 "Head Down" #sync /:Marchosias:5756:/
+2269.8 "Head Down" #sync /:Marchosias:5756:/
+2276.0 "Right-Sided Shockwave/Left-Sided Shockwave" #sync /:Dahu:576[12]:/
+2276.5 "Head Down" #sync /:#Marchosias:5756:/
+2278.5 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:576[12]:/
+2283.2 "Head Down" #sync /:Marchosias:5756:/
+2289.7 "Feral Howl" #sync /:Dahu:5755:/
 
 
 ### Queen's Guard
