@@ -1,11 +1,10 @@
+import NetRegexes from '../../../../../resources/netregexes.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
 // TODO: hitting shadow of the hero with abilities can cause you to take damage, list those?
 //       e.g. picking up your first pitch bog puddle will cause you to die to the damage
 //       your shadow takes from Deepshadow Nova or Distant Scream.
 // TODO: 573B Blighting Blitz issues during limit cut numbers
-// TODO: shackle apart/together failures
-// TODO: tower (void pulse) failures
 
 export default {
   zoneId: ZoneId.EdensPromiseLitanySavage,
@@ -20,8 +19,6 @@ export default {
     'E10S Giga Slash Box 2': '570D', // Giga slash box from four ground shadows
     'E10S Giga Slash Quadruple 1': '56EC', // quadruple set of giga slash cleaves
     'E10S Giga Slash Quadruple 2': '56E9', // quadruple set of giga slash cleaves
-    'E10S Barbs Of Agony 1': '572A', // Shadow Warrior 4 dog room cleave
-    'E10S Barbs Of Agony 2': '5B27', // Shadow Warrior 4 dog room cleave
     'E10S Cloak Of Shadows 1': '5B13', // initial non-squiggly line explosions
     'E10S Cloak Of Shadows 2': '5B14', // second squiggly line explosions
     'E10S Throne Of Shadow': '5717', // standing up get out
@@ -38,4 +35,40 @@ export default {
   shareFail: {
     'E10S Shadow\'s Edge': '5725', // Tankbuster single target followup
   },
+  triggers: [
+    {
+      id: 'E10S Damage Down Orbs',
+      netRegex: NetRegexes.gainsEffect({ source: 'Flameshadow', effectId: '82C' }),
+      netRegexDe: NetRegexes.gainsEffect({ source: 'Schattenflamme', effectId: '82C' }),
+      netRegexFr: NetRegexes.gainsEffect({ source: 'Flamme ombrale', effectId: '82C' }),
+      netRegexJa: NetRegexes.gainsEffect({ source: 'シャドウフレイム', effectId: '82C' }),
+      mistake: (e, data, matches) => {
+        return { type: 'damage', blame: matches.target, text: `${matches.effect} (partial stack)` };
+      },
+    },
+    {
+      id: 'E10S Damage Down Boss',
+      // Shackles being messed up appear to just give the Damage Down, with nothing else.
+      // Messing up towers is the Thrice-Come Ruin effect (9E2), but also Damage Down.
+      // TODO: some of these will be duplicated with others, like `E10S Throne Of Shadow`.
+      // Maybe it'd be nice to figure out how to put the damage marker on that?
+      netRegex: NetRegexes.gainsEffect({ source: 'Shadowkeeper', effectId: '82C' }),
+      netRegexDe: NetRegexes.gainsEffect({ source: 'Schattenkönig', effectId: '82C' }),
+      netRegexFr: NetRegexes.gainsEffect({ source: 'Roi De L\'Ombre', effectId: '82C' }),
+      netRegexJa: NetRegexes.gainsEffect({ source: '影の王', effectId: '82C' }),
+      mistake: (e, data, matches) => {
+        return { type: 'damage', blame: matches.target, text: `${matches.effect}` };
+      },
+    },
+    {
+      // Shadow Warrior 4 dog room cleave
+      // This can be mitigated by the whole group, so add a damage condition.
+      id: 'E10S Barbs Of Agony',
+      damageRegex: ['572A', '5B27'],
+      condition: (e) => e.damage > 0,
+      mistake: (e, data, matches) => {
+        return { type: 'warn', blame: matches.target, text: matches.ability };
+      },
+    },
+  ],
 };

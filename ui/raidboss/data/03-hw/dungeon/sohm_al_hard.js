@@ -291,6 +291,12 @@ export default {
         'Lava Scorpion': '熔岩蝎',
       },
       'replaceText': {
+        '\\(Adds x2\\)': '(小怪x2)',
+        '\\(Adds x4\\)': '(小怪x4)',
+        '\\(Back\\)': '(后)',
+        '\\(Front\\)': '(前)',
+        '\\(Readies\\)': '(准备)',
+        '\\(Ring\\)': '(月环)',
         'Wild Horn': '野性利角',
         'Spore Sac': '孢囊',
         'Realm Shaker': '震撼领域',

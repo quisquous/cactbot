@@ -580,7 +580,6 @@ export default {
       netRegexDe: NetRegexes.ability({ source: 'Schattenkönig', id: '5B13', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Roi De L\'Ombre', id: '5B13', capture: false }),
       netRegexJa: NetRegexes.ability({ source: '影の王', id: '5B13', capture: false }),
-      delaySeconds: 4,
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
       outputStrings: {

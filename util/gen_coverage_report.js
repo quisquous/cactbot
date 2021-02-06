@@ -4,6 +4,7 @@ import eslint from 'eslint';
 import ZoneInfo from '../resources/zone_info.js';
 import contentList from '../resources/content_list.js';
 import ZoneId from '../resources/zone_id.js';
+import { oopsyTriggerSetFields } from '../ui/oopsyraidsy/oopsy_fields.js';
 
 // Used for trigger eval.
 import Regexes from '../resources/regexes.js';
@@ -26,7 +27,7 @@ const readManifest = (filename) => {
   return lines;
 };
 
-const processTriggerFile = (triggerFile, zoneId, triggerSet, timelineContents, coverage) => {
+const processRaidbossFile = (triggerFile, zoneId, triggerSet, timelineContents, coverage) => {
   let numTriggers = 0;
   if (triggerSet.triggers)
     numTriggers += triggerSet.triggers.length;
@@ -36,8 +37,6 @@ const processTriggerFile = (triggerFile, zoneId, triggerSet, timelineContents, c
   // TODO: have find_missing_timeline_translations.js return a set of
   // translations that are missing so that we can include percentage translated
   // here as well.
-
-  // TODO: also include oopsy
 
   coverage[zoneId] = coverage[zoneId] || {};
 
@@ -93,9 +92,62 @@ const processRaidbossCoverage = async (manifest, coverage) => {
 
     if (Array.isArray(zoneId)) {
       for (const id of zoneId)
-        processTriggerFile(line, id, triggerSet, timelineContents, coverage);
+        processRaidbossFile(line, id, triggerSet, timelineContents, coverage);
     } else {
-      processTriggerFile(line, zoneId, triggerSet, timelineContents, coverage);
+      processRaidbossFile(line, zoneId, triggerSet, timelineContents, coverage);
+    }
+  }
+};
+
+const processOopsyFile = (triggerFile, zoneId, triggerSet, coverage) => {
+  let numTriggers = 0;
+
+  for (const field of oopsyTriggerSetFields) {
+    const obj = triggerSet[field];
+    if (!obj)
+      continue;
+    if (typeof obj !== 'object')
+      continue;
+    // These can be either arrays or objects.
+    numTriggers += Object.keys(obj).length;
+  }
+
+  // TODO: have find_missing_timeline_translations.js return a set of
+  // translations that are missing so that we can include percentage translated
+  // here as well.
+
+  coverage[zoneId] = coverage[zoneId] || {};
+
+  Object.assign(coverage[zoneId], {
+    oopsy: {
+      num: numTriggers,
+    },
+  });
+};
+
+const processOopsyCoverage = async (manifest, coverage) => {
+  const manifestLines = readManifest(manifest);
+  const dataDir = path.dirname(manifest);
+  for (const line of manifestLines) {
+    if (!line.endsWith('.js'))
+      continue;
+    const triggerFileName = path.join(dataDir, line).replace(/\\/g, '/');
+    const triggerSet = (await import(triggerFileName)).default;
+    const zoneId = triggerSet.zoneId;
+    if (zoneId === undefined) {
+      console.error(`${line}: Missing ZoneId`);
+      continue;
+    }
+
+    // Only process real zones.
+    if (zoneId === ZoneId.MatchAll || !ZoneInfo[zoneId] || !contentList.includes(zoneId))
+      continue;
+
+    if (Array.isArray(zoneId)) {
+      for (const id of zoneId)
+        processOopsyFile(line, id, triggerSet, coverage);
+    } else {
+      processOopsyFile(line, zoneId, triggerSet, coverage);
     }
   }
 };
@@ -114,21 +166,23 @@ const buildTotals = (coverage) => {
   const contentTypes = Array.from(contentTypeSet);
   const versions = Array.from(versionSet);
 
+  const defaultTotal = { raidboss: 0, oopsy: 0, total: 0 };
+
   // Initialize return object.
   const totals = {
     byExpansion: {},
     byContentType: {},
-    overall: { num: 0, total: 0 },
+    overall: { ...defaultTotal },
   };
   for (const contentType of contentTypes)
-    totals.byContentType[contentType] = { num: 0, total: 0 };
+    totals.byContentType[contentType] = { ...defaultTotal };
   for (const exVersion of versions) {
     const versionInfo = {
       byContentType: {},
-      overall: { num: 0, total: 0 },
+      overall: { ...defaultTotal },
     };
     for (const contentType of contentTypes)
-      versionInfo.byContentType[contentType] = { num: 0, total: 0 };
+      versionInfo.byContentType[contentType] = { ...defaultTotal };
     totals.byExpansion[exVersion] = versionInfo;
   }
 
@@ -146,13 +200,19 @@ const buildTotals = (coverage) => {
     totals.overall.total++;
 
     if (coverage[zoneId]) {
-      const hasTriggers = coverage[zoneId].triggers.num > 0;
-      const hasTimeline = coverage[zoneId].timeline.hasFile;
+      const hasTriggers = coverage[zoneId].triggers && coverage[zoneId].triggers.num > 0;
+      const hasTimeline = coverage[zoneId].timeline && coverage[zoneId].timeline.hasFile;
       if (hasTriggers || hasTimeline) {
-        accum.num++;
-        versionInfo.overall.num++;
-        totals.byContentType[zoneInfo.contentType].num++;
-        totals.overall.num++;
+        accum.raidboss++;
+        versionInfo.overall.raidboss++;
+        totals.byContentType[zoneInfo.contentType].raidboss++;
+        totals.overall.raidboss++;
+      }
+      if (coverage[zoneId].oopsy && coverage[zoneId].oopsy.num > 0) {
+        accum.oopsy++;
+        versionInfo.overall.oopsy++;
+        totals.byContentType[zoneInfo.contentType].oopsy++;
+        totals.overall.oopsy++;
       }
     }
   }
@@ -193,6 +253,7 @@ const writeCoverageReport = async (outputFileName, coverage, totals) => {
   process.chdir(path.dirname(process.argv[1]));
   const coverage = {};
   await processRaidbossCoverage(raidbossManifest, coverage);
+  await processOopsyCoverage(oopsyManifest, coverage);
   const totals = buildTotals(coverage);
   writeCoverageReport(outputFileName, coverage, totals);
 })().catch((e) => {

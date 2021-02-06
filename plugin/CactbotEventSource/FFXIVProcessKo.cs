@@ -144,6 +144,29 @@ namespace Cactbot {
         }
       }
 
+      p = SigScan(kJobDataSignature, kJobDataSignatureOffset, kJobDataSignatureRIP);
+      if (p.Count != 1) {
+        logger_.LogError("Job signature found " + p.Count + " matches");
+      } else {
+        job_data_outer_addr_ = IntPtr.Add(p[0], kJobDataOuterStructOffset);
+      }
+
+      p = SigScan(kInCombatSignature, kInCombatBaseOffset, kInCombatBaseRIP);
+      if (p.Count != 1) {
+        logger_.LogError("In combat signature found " + p.Count + " matches");
+      } else {
+        var baseAddress = p[0];
+        p = SigScan(kInCombatSignature, kInCombatOffsetOffset, kInCombatOffsetRIP);
+        if (p.Count != 1) {
+          logger_.LogError("In combat offset signature found " + p.Count + " matches");
+        } else {
+          // Abuse sigscan here to return 64-bit "pointer" which we will mask into the 32-bit immediate integer we need.
+          // TODO: maybe sigscan should be able to return different types?
+          int offset = (int)(((UInt64)p[0]) & 0xFFFFFFFF);
+          in_combat_addr_ = IntPtr.Add(baseAddress, offset);
+        }
+      }
+
       p = SigScan(kBaitSignature, kBaitBaseOffset, kBaitBaseRIP);
       if (p.Count != 1) {
         logger_.LogError("Bait signature found " + p.Count + " matches");
@@ -615,13 +638,13 @@ namespace Cactbot {
       [FieldOffset(0x07)]
       private byte chargeTimerState;
 
-      public bool overheated {
+      public bool overheatActive {
         get {
           return (chargeTimerState & 0x1) == 1;
         }
       }
 
-      public bool queenActive {
+      public bool robotActive {
         get {
           return (chargeTimerState & 0x2) == 1;
         }

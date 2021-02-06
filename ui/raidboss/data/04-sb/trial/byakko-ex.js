@@ -216,7 +216,7 @@ export default {
           en: 'Get away',
           de: 'Weg da',
           fr: 'Éloignez-vous',
-          ja: '離れ',
+          ja: '離れる',
           cn: '远离',
           ko: '멀리가기',
         },

@@ -6,7 +6,6 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // O4S - Deltascape 4.0 Savage
 export default {
   zoneId: ZoneId.DeltascapeV40Savage,
-  timelineNeedsFixing: true,
   timelineFile: 'o4s.txt',
   timelineTriggers: [
     {
@@ -18,6 +17,7 @@ export default {
         text: {
           en: 'Vacuum Wave soon',
           de: 'Vakuumwelle bald',
+          fr: 'Vague de vide bientôt',
           ja: 'まもなく真空波',
           cn: '马上真空波',
           ko: '곧 진공파',
@@ -54,6 +54,7 @@ export default {
         text: {
           en: 'Fire III',
           de: 'Feuga',
+          fr: 'Méga Feu',
           ja: 'ファイガ',
           cn: '静止',
           ko: '파이가',
@@ -74,6 +75,7 @@ export default {
         text: {
           en: 'Blizzard III',
           de: 'Eisga',
+          fr: 'Méga Glace',
           ja: 'ブリザガ',
           cn: '蛇皮走位',
           ko: '블리자가',
@@ -108,6 +110,7 @@ export default {
         thunderBuster: {
           en: 'Thunder III: Tank buster',
           de: 'Blitzga: Tank buster',
+          fr: 'Méga Foudre : Tank buster',
           ja: 'サンダガ: タンクバスター',
           cn: '雷三：坦克死刑',
           ko: '선더가: 탱버',
@@ -115,6 +118,7 @@ export default {
         thunder: {
           en: 'Thunder III',
           de: 'Blitzga',
+          fr: 'Méga Foudre',
           ja: 'サンダガ',
           cn: '雷三',
           ko: '선더가',
@@ -122,7 +126,8 @@ export default {
         thunderTTS: {
           en: 'thunder',
           de: 'blitzga',
-          ja: '離れ',
+          fr: 'foudre',
+          ja: '離れる',
           cn: '远离',
           ko: '선더가',
         },
@@ -186,6 +191,7 @@ export default {
         text: {
           en: 'Flare on you',
           de: 'Flare auf dir',
+          fr: 'Brasier sur vous',
           ja: '自分にフレア',
           cn: '核爆点名',
           ko: '플레어 대상자',
@@ -352,6 +358,7 @@ export default {
         goOutside: {
           en: 'Go Outside',
           de: 'Nach Außen',
+          fr: 'Allez à l\'extérieur',
           ja: '外に出る',
           cn: '去外面',
           ko: '바깥으로',
@@ -359,13 +366,15 @@ export default {
         dieOnInside: {
           en: 'Die on Inside',
           de: 'Innen sterben',
-          ja: '中に死ぬ',
+          fr: 'Mourrez à l\'intérieur',
+          ja: '中で死ぬ',
           cn: '在里面死亡',
           ko: '안쪽 레이저 맞기',
         },
         dieInInIn: {
           en: 'die in in in',
           de: 'sterben rein rein rein',
+          fr: 'Mourrez Intérieur Intérieur Intérieur',
           ja: '死になさい！',
           cn: '死亡',
           ko: '안쪽 레이저 맞기',
@@ -373,7 +382,8 @@ export default {
         outOutOut: {
           en: 'out out out',
           de: 'raus raus raus',
-          ja: '出ていて！',
+          fr: 'Extérieur Extérieur Extérieur',
+          ja: '出て出て！',
           cn: '出去出去',
           ko: '바깥으로',
         },
@@ -406,6 +416,7 @@ export default {
         goInside: {
           en: 'Go Inside',
           de: 'Rein gehen',
+          fr: 'Allez à l\'intérieur',
           ja: '中に入る',
           cn: '去里面',
           ko: '안으로',
@@ -413,13 +424,15 @@ export default {
         dieOnOutside: {
           en: 'Die on Outside',
           de: 'Außen sterben',
-          ja: '外に死ぬ',
+          fr: 'Mourrez à l\'extérieur',
+          ja: '外で死ぬ',
           cn: '在外面死亡',
           ko: '바깥 레이저 맞기',
         },
         dieOutOutOut: {
           en: 'die out out out',
           de: 'sterben raus raus raus',
+          fr: 'Mourrez Extérieur Extérieur Extérieur',
           ja: '死になさい！',
           cn: '在外面死亡',
           ko: '바깥 레이저 맞기',
@@ -427,6 +440,7 @@ export default {
         inInIn: {
           en: 'in in in',
           de: 'rein rein rein',
+          fr: 'Intérieur Intérieur Intérieur',
           ja: '入れ入れ',
           cn: '进去进去',
           ko: '안으로',
@@ -469,6 +483,7 @@ export default {
         leftOnPurple: {
           en: 'Left On Purple',
           de: 'Links auf Pink',
+          fr: 'À gauche sur le violet',
           ja: '左の紫色に',
           cn: '左边紫色',
           ko: '왼쪽 보라',
@@ -476,6 +491,7 @@ export default {
         rightOnBlue: {
           en: 'Right On Blue',
           de: 'Rechts auf Blau',
+          fr: 'À droite sur le bleu',
           ja: '右の青色に',
           cn: '右边蓝色',
           ko: '오른쪽 파랑',
@@ -483,6 +499,7 @@ export default {
         colorSides: {
           en: 'Color sides',
           de: 'Farbige Seiten',
+          fr: 'Côtés de couleur',
           ja: '同じ色に',
           cn: '颜色一侧',
           ko: '색깔 맞기',
@@ -490,27 +507,31 @@ export default {
         dieOnRightBlue: {
           en: 'Die On Right Blue',
           de: 'In Blauem rechts sterben',
-          ja: '右の青色に死ぬ',
+          fr: 'Mourrez à droite sur le bleu',
+          ja: '右の青色で死ぬ',
           cn: '在右边蓝色死亡',
           ko: '오른쪽 파랑 맞기',
         },
         dieOnLeftPurple: {
           en: 'Die On Left Purple',
           de: 'In Pinkem links sterben',
-          ja: '左の紫色に死ぬ',
+          fr: 'Mourrez à gauche sur le violet',
+          ja: '左の紫色で死ぬ',
           cn: '在左边紫色死亡',
           ko: '왼쪽 보라 맞기',
         },
         dieOnColorSides: {
           en: 'Die on color sides',
           de: 'Auf Farben sterben',
-          ja: '同じ色に死ぬ',
+          fr: 'Mourrez sur les côtés de couleur',
+          ja: '同じ色で死ぬ',
           cn: '在同色一边死亡',
           ko: '색깔 맞기',
         },
         colors: {
           en: 'colors',
           de: 'Farben',
+          fr: 'Couleurs',
           ja: '色',
           cn: '看颜色',
           ko: '색깔',
@@ -553,6 +574,7 @@ export default {
         beRightOnPurple: {
           en: 'Be Right On Purple',
           de: 'Rechts auf Pink',
+          fr: 'Soyez à droite sur le violet',
           ja: '右の紫色に',
           cn: '去右边紫色',
           ko: '오른쪽 보라 맞기',
@@ -560,6 +582,7 @@ export default {
         beLeftOnBlue: {
           en: 'Be Left On Blue',
           de: 'Links auf Blau',
+          fr: 'Soyez à gauche sur le bleu',
           ja: '左の青色に',
           cn: '去左边蓝色',
           ko: '왼쪽 파랑 맞기',
@@ -567,6 +590,7 @@ export default {
         colorSides: {
           en: 'Color sides',
           de: 'Farbige Seiten',
+          fr: 'Côtés de couleur',
           ja: '同じ色に',
           cn: '颜色一侧',
           ko: '색깔 방향',
@@ -574,27 +598,31 @@ export default {
         dieOnLeftBlue: {
           en: 'Die On Left Blue',
           de: 'Auf Blauem links sterben',
-          ja: '左の青色に死ぬ',
+          fr: 'Mourrez à gauche sur le bleu',
+          ja: '左の青色で死ぬ',
           cn: '在左边蓝色死亡',
           ko: '왼쪽 파랑 맞기',
         },
         dieOnRightPurple: {
           en: 'Die On Right Purple',
           de: 'Auf Pinkem rechts sterben',
-          ja: '右の紫色に死ぬ',
+          fr: 'Mourrez à droite sur le violet',
+          ja: '右の紫色で死ぬ',
           cn: '在右边紫色死亡',
           ko: '오른쪽 보라 맞기',
         },
         dieOnColorSides: {
           en: 'Die on color sides',
           de: 'Auf Farben sterben',
-          ja: '同じ色に死ぬ',
+          fr: 'Mourrez sur les côtés de couleur',
+          ja: '同じ色で死ぬ',
           cn: '在同色一边死亡',
           ko: '색깔 맞기',
         },
         colors: {
           en: 'colors',
           de: 'farben',
+          fr: 'Couleurs',
           ja: '色',
           cn: '颜色',
           ko: '색깔',
@@ -650,6 +678,7 @@ export default {
         chargeBeBehindOtherTank: {
           en: 'Charge: be behind other tank',
           de: 'Aufladung: hinter anderen Tank',
+          fr: 'Charge : Soyez derrière l\'autre tank',
           ja: '突進: 他のタンクの後ろに',
           cn: '站在另一个坦克后面',
           ko: '탱커 뒤에 있기',
@@ -657,6 +686,7 @@ export default {
         chargeBeInTheVeryBack: {
           en: 'Charge: be in the very back',
           de: 'Aufladung: Ganz nach hinten',
+          fr: 'Charge : Soyez tout au fond',
           ja: '突進: 後ろの遠くへ',
           cn: '去后面',
           ko: '가장 뒤에 있기',
@@ -664,6 +694,7 @@ export default {
         chargeBeInFront: {
           en: 'Charge: be in front!',
           de: 'Aufladung: Ganz nach vorn',
+          fr: 'Charge : Soyez devant !',
           ja: '突進: 前方に',
           cn: '去前面',
           ko: '앞쪽으로',
@@ -671,6 +702,7 @@ export default {
         chargeBeBehindTanks: {
           en: 'Charge: be behind tanks',
           de: 'Aufladung: Hinter die Tanks',
+          fr: 'Charge : Soyez derrière les tanks',
           ja: '突進: タンクの後ろに',
           cn: '站在坦克后面',
           ko: '탱커 뒤로',
@@ -678,6 +710,7 @@ export default {
         charge: {
           en: 'charge',
           de: 'aufladung',
+          fr: 'Charge',
           ja: '無の氾濫',
           cn: '充能',
           ko: '무의 범람',
@@ -703,6 +736,7 @@ export default {
         doubleAttack: {
           en: 'Double Attack',
           de: 'Doppelangriff',
+          fr: 'Double attaque',
           ja: 'ダブルアタック',
           cn: '双重攻击',
           ko: '이중 공격',
@@ -710,6 +744,7 @@ export default {
         doubleAttackGetOut: {
           en: 'Double Attack: Get out',
           de: 'Doppelangriff: Raus da',
+          fr: 'Double attaque : Sortez',
           ja: 'ダブルアタック: 外へ',
           cn: '双重攻击：去外面',
           ko: '이중 공격: 밖으로',
@@ -730,6 +765,7 @@ export default {
         text: {
           en: 'Grand Cross Alpha: Go to middle',
           de: 'Supernova Alpha: In die Mitte',
+          fr: 'Croix suprême alpha : Allez au milieu',
           ja: 'グランドクロス・アルファ: 中央に',
           cn: '前往中间集合',
           ko: '그랜드크로스: 알파, 중앙으로',
@@ -737,6 +773,7 @@ export default {
         tts: {
           en: 'go to middle',
           de: 'In die Mitte',
+          fr: 'allez au milieu',
           ja: '中央に',
           cn: '前往中间',
           ko: '중앙으로',
@@ -773,6 +810,7 @@ export default {
         beInFront: {
           en: 'Grand Cross Delta: Be in front of boss',
           de: 'Supernova Delta: Vor den Boss',
+          fr: 'Croix suprême delta : Soyez devant le boss',
           ja: 'グランドクロス・デルタ: ボスの前に',
           cn: '站在boss前面',
           ko: '그랜드크로스: 델타, 보스 범위 끝으로',
@@ -780,6 +818,7 @@ export default {
         beOnSides: {
           en: 'Grand Cross Delta: Be on sides of boss',
           de: 'Supernova Delta: An die Seiten vom Boss',
+          fr: 'Croix suprême delta : Soyez sur les côtés du boss',
           ja: 'グランドクロス・デルタ: ボスの横に',
           cn: '站在boss后面',
           ko: '그랜드크로스: 델타, 보스 옆쪽으로',
@@ -787,6 +826,7 @@ export default {
         beInsideBoss: {
           en: 'Grand Cross Delta: Inside boss',
           de: 'Supernvoa Delta: In den Boss',
+          fr: 'Croix suprême delta : À l\'intérieur du boss',
           ja: 'グランドクロス・デルタ: ボスの真ん中に',
           cn: '站在boss中间',
           ko: '그랜드크로스: 델타, 보스 안쪽으로',
@@ -794,6 +834,7 @@ export default {
         beInFrontTTS: {
           en: 'delta: be in front',
           de: 'delta: vor den boss',
+          fr: 'delta : soyez devant',
           ja: 'ボスの前に',
           cn: '去前面',
           ko: '델타, 보스 범위 끝으로',
@@ -801,6 +842,7 @@ export default {
         beOnSidesTTS: {
           en: 'delta: be on sides',
           de: 'delta: an die seiten',
+          fr: 'delta : soyez sur les côtés',
           ja: 'ボスの横に',
           cn: '去两侧',
           ko: '델타, 보스 옆쪽으로',
@@ -808,6 +850,7 @@ export default {
         beInsideBossTTS: {
           en: 'delta: be inside boss',
           de: 'delta: in den boss',
+          fr: 'delta : À l\'intérieur du boss',
           ja: 'ボスの真ん中に',
           cn: '去boss中间',
           ko: '델타, 보스 안쪽으로',
@@ -848,6 +891,7 @@ export default {
         lookAwayAndStop: {
           en: 'look away and stop',
           de: 'wegschauen und stehenbleiben',
+          fr: 'regardez ailleurs et arrêtez',
           ja: '見ない、動かない',
           cn: '看外面并静止',
           ko: '바라보지 말고 멈추기',
@@ -855,6 +899,7 @@ export default {
         stop: {
           en: 'stop',
           de: 'Stopp',
+          fr: 'Arrêtez',
           ja: '動かない',
           cn: '静止',
           ko: '멈추기',
@@ -872,6 +917,7 @@ export default {
         text: {
           en: 'Acceleration Bomb',
           de: 'Beschleunigungsbombe',
+          fr: 'Bombe à accélération',
           ja: '加速度爆弾',
           cn: '加速度炸弹',
           ko: '가속도 폭탄',
@@ -892,7 +938,8 @@ export default {
         text: {
           en: 'shriek: get mid, look away',
           de: 'Schrei: Zur mitte und wegschauen',
-          ja: '呪詛の叫声: 中へ、外に向け',
+          fr: 'Cri : allez au milieu, regardez ailleurs',
+          ja: '呪詛の叫声: 中へ、外を向け',
           cn: '石化点名',
           ko: '중앙으로, 바깥보기',
         },
@@ -922,6 +969,7 @@ export default {
         waterOnYou: {
           en: 'water on you',
           de: 'wasser auf dir',
+          fr: 'Eau sur vous',
           ja: '自分に水属性圧縮',
           cn: '水点名',
           ko: '물 대상자',
@@ -929,7 +977,8 @@ export default {
         waterStackUnderNeo: {
           en: 'water: stack under neo',
           de: 'Wasser: Unter Neo stacken',
-          ja: '水属性圧縮: ボスの下に頭割り',
+          fr: 'Eau : packez-vous sous Néo',
+          ja: '水属性圧縮: ボスの下で頭割り',
           cn: '去下面',
           ko: '물: 보스 아래 모이기',
         },
@@ -955,6 +1004,7 @@ export default {
         stackOnWaterhealer: {
           en: 'Stack on ${waterHealer}',
           de: 'Stack auf ${waterHealer}',
+          fr: 'Packez-vous sur ${waterHealer}',
           ja: '${waterHealer}に頭割り',
           cn: '分摊于${waterHealer}',
           ko: '"${waterHealer}"에게 모이기',
@@ -962,6 +1012,7 @@ export default {
         stackOnWater: {
           en: 'Stack on water',
           de: 'Bei Wasser stacken',
+          fr: 'Packez-vous sur l\'eau',
           ja: '水持ちと頭割り',
           cn: '和水点名分摊',
           ko: '물 쉐어',
@@ -980,6 +1031,7 @@ export default {
         beyondDeath: {
           en: 'Beyond Death',
           de: 'Jenseis Des Jenseits',
+          fr: 'Outre-mort',
           ja: '死の超越',
           cn: '超越死亡',
           ko: '죽음 초월',
@@ -1005,13 +1057,15 @@ export default {
         stackUnderBossOnWaterhealer: {
           en: 'Stack under boss on ${waterHealer}',
           de: 'Unter Boss auf ${waterHealer} stacken',
-          ja: 'ボスの下に${waterHealer}と頭割り',
+          fr: 'Packez-vous sous le boss sur ${waterHealer}',
+          ja: 'ボスの下で${waterHealer}と頭割り',
           cn: '分摊于${waterHealer}',
           ko: '보스 아래에서 "${waterHealer}"에게 모이기',
         },
         stackOnWater: {
           en: 'Stack on water',
           de: 'Auf Wasser stacken',
+          fr: 'Packez-vous sur l\'eau',
           ja: '水と頭割り',
           cn: '和水点名分摊',
           ko: '물 쉐어',
@@ -1042,7 +1096,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '241E', source: 'ネオエクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '241E', source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '241E', source: '네오 엑스데스', capture: false }),
-      response: Responses.stackMarker(),
+      response: Responses.getTogether(),
     },
     {
       id: 'O4S Neo Almagest',
@@ -1060,6 +1114,7 @@ export default {
         almagest: {
           en: 'Almagest',
           de: 'Almagest',
+          fr: 'Almageste',
           ja: 'アルマゲスト',
           cn: '大AOE',
           ko: '알마게스트',
@@ -1100,6 +1155,7 @@ export default {
         stack: {
           en: 'Light and Darkness: Stack',
           de: 'Licht und Dunkel: Stack',
+          fr: 'Clair-obscur : Packez-vous',
           ja: 'ライト・アンド・ダークネス: 頭割り',
           cn: '分摊点名',
           ko: '빛과 어둠: 모이기',
@@ -1107,6 +1163,7 @@ export default {
         flareOnYou: {
           en: 'Flare on you',
           de: 'Flare auf dir',
+          fr: 'Brasier sur vous',
           ja: '自分にフレア',
           cn: '核爆点名',
           ko: '플레어 대상자',
@@ -1114,6 +1171,7 @@ export default {
         stackTTS: {
           en: 'stack',
           de: 'stek',
+          fr: 'packez-vous',
           ja: '頭割り',
           cn: '分摊',
           ko: '모이기',
@@ -1123,7 +1181,14 @@ export default {
   ],
   timelineReplace: [
     {
+      'locale': 'en',
+      'replaceText': {
+        'Blizzard III/Fire III/Thunder III': 'Blizzard/Fire/Thunder III',
+      },
+    },
+    {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Exdeath': 'Exdeath',
       },
@@ -1169,26 +1234,29 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Exdeath': 'Exdeath',
       },
       'replaceText': {
+        '\\(colors\\)': '(couleurs)',
+        '\\(colors/lasers\\)': '(couleurs/lasers)',
         'Aero III': 'Méga Vent',
         'Almagest': 'Almageste',
         'Black Hole': 'Trou noir',
-        'Blizzard III': 'Méga Glace',
+        'Blizzard III(?!/)': 'Méga Glace',
+        'Blizzard III/Fire III/Thunder III': 'Méga Glace/Feu/Foudre',
         'Charge': 'Charge',
         'Charybdis': 'Charybde',
-        'Cursed Shriek': 'Cri maudit',
+        'Collision': 'Impact',
         'Delta Attack': 'Attaque Delta',
         'Double Attack': 'Double attaque',
         'Dualcast': 'Chaîne de sorts',
         'Earth Shaker': 'Secousse',
         'Emptiness': 'Désolation du néant',
-        'Fire III': 'Méga Feu',
+        '(?<!/)Fire III(?!/)': 'Méga Feu',
         'Flare': 'Brasier',
         'Flood of Naught': 'Crue du néant',
+        'Flying Frenzy': 'Démence',
         'Forked Lightning': 'Éclair ramifié',
         'Frenzied Fist': 'Poing de la démence',
         'Frenzied Sphere': 'Démence terminale',
@@ -1199,7 +1267,9 @@ export default {
         'Light and Darkness': 'Clair-obscur',
         'Meteor': 'Météore',
         'Neverwhere': 'Anarchie',
-        'Thunder III': 'Méga Foudre',
+        'The Decisive Battle': 'Combat décisif',
+        'The Final Battle': 'Lutte finale',
+        '(?<!/)Thunder III': 'Méga Foudre',
         'Vacuum Wave': 'Vague de vide',
         'Water': 'Eau',
         'White Hole': 'Trou blanc',
@@ -1208,6 +1278,7 @@ export default {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Exdeath': 'エクスデス',
       },
@@ -1253,6 +1324,7 @@ export default {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         '(?<! )Exdeath': '艾克斯迪司',
         'Neo Exdeath': '新生艾克斯迪司',
@@ -1301,6 +1373,7 @@ export default {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Exdeath': '엑스데스',
       },

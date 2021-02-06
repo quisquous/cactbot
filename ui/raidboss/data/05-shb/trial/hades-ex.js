@@ -1034,6 +1034,7 @@ export default {
         'Lahabrea\'s Shade': 'ラハブレアの影',
         'Lahabrea\'s and Igeyorhm\'s Shades': 'ラハブレアとイゲオルム',
         'Nabriales\'s Shade': 'ナプリアレスの影',
+        'Our plea transcends': 'その強き願いは、魂の境界さえ超えた……！',
         'Shadow of the Ancients': '古代人の影',
       },
       'replaceText': {
@@ -1054,7 +1055,7 @@ export default {
         'Blizzard IV': 'ブリザジャ',
         'Blizzard Sphere': 'ブリザードスフィア',
         'Broken Faith': 'ブロークンフェイス',
-        'Captivity': 'キャプティビティ',
+        '(?<! )Captivity': 'キャプティビティ',
         'Dark Current': 'ダークストリーム',
         'Dark Flame': 'ダークフレイム',
         'Dark Freeze': 'ダークフリーズ',
@@ -1066,6 +1067,7 @@ export default {
         'Forked Lightning': 'フォークライトニング',
         'Gigantomachy': 'ギガントマキア',
         'Height Of Chaos': 'ハイト・オブ・カオス',
+        'Life In Captivity': 'ライフ・オブ・キャプティビティ',
         'Magic Chakram/Spear': 'マジックチャクラム／マジックスピア',
         'Magic Spear/Chakram': 'マジックスピア／マジックチャクラム',
         'Megiddo Flame': 'メギドフレイム',
@@ -1096,6 +1098,7 @@ export default {
         'Lahabrea\'s Shade': '拉哈布雷亚之影',
         'Lahabrea\'s and Igeyorhm\'s Shades': '拉哈布雷亚与以格约姆之影',
         'Nabriales\'s Shade': '那布里亚勒斯之影',
+        'Our plea transcends': '你们强大的意志已超越肉体与灵魂的境界！',
         'Shadow of the Ancients': '古代人之影',
       },
       'replaceText': {

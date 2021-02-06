@@ -165,7 +165,7 @@ export default {
         text: {
           en: 'Line Cleave + Bait',
           de: 'Linien AoE -> Ködern',
-          fr: 'AoE en ligne + Attirez',
+          fr: 'AoE en ligne -> Déposez au sol',
           ja: '直線AoE -> 誘導',
           cn: '直线AoE+放置点名',
           ko: '직선 장판 + 장판 유도',

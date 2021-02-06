@@ -31,7 +31,6 @@ export default {
     {
       id: 'VarisEx Terminus Est',
       damageRegex: '4CB4',
-      // TODO: actually implement suppressSeconds.
       suppressSeconds: 1,
       mistake: function(e, data) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
