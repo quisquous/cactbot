@@ -173,7 +173,6 @@ export default {
       },
     },
     {
-      // TODO: is this true if you see a Feral Howl #4 and onward?
       id: 'Delubrum Dahu Feral Howl',
       netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '5755', capture: false }),
       alertText: (data, _, output) => {
@@ -187,6 +186,8 @@ export default {
           en: 'Unavoidable Knockback',
         },
         knockbackAvoid: {
+          // This is also unavoidable, but that's really wordy and hopefully
+          // you figured that out the first time.
           en: 'Knockback (Avoid Adds)',
         },
       },
@@ -199,12 +200,16 @@ export default {
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Go Opposite First Charge',
+          en: 'Follow Second Charge',
         },
       },
     },
     {
-      // TODO: is this true? I haven't seen this.
+      id: 'Delubrum Dahu Heat Breath',
+      netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '5766', capture: false }),
+      response: Responses.tankCleave(),
+    },
+    {
       id: 'Delubrum Dahu Ripper Claw',
       netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '575D', capture: false }),
       response: Responses.awayFromFront('alert'),
@@ -508,7 +513,7 @@ export default {
     },
     {
       id: 'Delubrum Queen Reversal Of Forces',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '59D4', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: '59D4', capture: false }),
       run: (data) => data.reversalOfForces = true,
     },
     {

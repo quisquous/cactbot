@@ -62,7 +62,6 @@ hideall "--sync--"
 
 # (Merciful jump?)
 1168.9 "--sync--" sync /:Trinity Seeker:5A97:/ jump 1500 window 80,80
-1168.9 "Verdant Path?" #sync /:Trinity Seeker:5A97:/
 1176.5 "Act Of Mercy?" #sync /:Trinity Seeker:5AB2:/
 1183.7 "First Mercy?" #sync /:Trinity Seeker:5B5D:/
 1186.9 "Second Mercy?" #sync /:Trinity Seeker:5B5E:/
@@ -90,7 +89,6 @@ hideall "--sync--"
 
 # (Merciful jump?)
 1370.9 "--sync--" sync /:Trinity Seeker:5A97:/ jump 1500 window 80,80
-1370.9 "Verdant Path?" #sync /:Trinity Seeker:5A97:/
 1378.5 "Act Of Mercy?" #sync /:Trinity Seeker:5AB2:/
 1385.7 "First Mercy?" #sync /:Trinity Seeker:5B5D:/
 1388.9 "Second Mercy?" #sync /:Trinity Seeker:5B5E:/
@@ -144,7 +142,6 @@ hideall "--sync--"
 1740.9 "--sync--" sync /:Trinity Seeker:5A9A:/
 1747.0 "Iron Splitter" sync /:Trinity Seeker:5AA3:/
 1758.1 "Verdant Tempest" sync /:Trinity Seeker:5AB6:/
-1767.3 "Verdant Path" sync /:Trinity Seeker:5A97:/
 1767.3 "Verdant Path" # -> baleful / merciful jump
 
 # (Baleful jump?)
@@ -156,7 +153,6 @@ hideall "--sync--"
 
 # (Merciful jump?)
 1767.3 "--sync--" sync /:Trinity Seeker:5A97:/ jump 1500 window 80,80
-1767.3 "Verdant Path?" #sync /:Trinity Seeker:5A97:/
 1774.9 "Act Of Mercy?" #sync /:Trinity Seeker:5AB2:/
 1782.1 "First Mercy?" #sync /:Trinity Seeker:5B5D:/
 1785.3 "Second Mercy?" #sync /:Trinity Seeker:5B5E:/
