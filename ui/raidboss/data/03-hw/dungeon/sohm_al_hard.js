@@ -48,7 +48,7 @@ export default {
           en: 'Away from large pod',
           de: 'Weg vom großen Pod',
           fr: 'Éloignez-vous des spores',
-          ja: 'スポアサックに離れ',
+          ja: 'スポアサックから離れる',
           cn: '远离大孢囊',
           ko: '큰 포자 주머니에게서 떨어지기',
         },
