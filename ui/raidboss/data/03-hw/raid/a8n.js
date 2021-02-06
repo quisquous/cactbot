@@ -352,7 +352,7 @@ export default {
         text: {
           en: 'Avoid Mirage Dashes',
           de: 'Weiche den Replikant Ansturm aus',
-          ja: 'ミラージュの正面に離れ',
+          ja: 'ミラージュの正面から離れる',
           cn: '躲避分身冲锋',
           ko: '환영 돌진 피하기',
         },
