@@ -23,6 +23,9 @@ export default {
     {
       id: 'Delubrum Seeker Verdant Tempest',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AB6', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AB6', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AB6', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AB6', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -36,10 +39,14 @@ export default {
       // * Third Mercy: 5B5F
       // * Fourth Mercy: 5B60
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5B5D', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5B5D', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5B5D', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5B5D', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get In, Watch Swords',
+          de: 'Geh rein, achte auf die Schwerter',
         },
       },
     },
@@ -47,15 +54,22 @@ export default {
       id: 'Delubrum Seeker Baleful Swath',
       // This is an early warning for casters for Baleful Swath on the Verdant Path cast.
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5A98', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5A98', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5A98', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5A98', capture: false }),
       response: Responses.goFrontBack('info'),
     },
     {
       id: 'Delubrum Seeker Baleful Blade Out',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AA1', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AA1', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AA1', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AA1', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Out Behind Barricade',
+          de: 'Geh raus, hinter die Barrikaden',
         },
       },
     },
@@ -63,10 +77,14 @@ export default {
       id: 'Delubrum Seeker Baleful Blade Knockback',
       // We could call this on Phantom Edge 5AA0, but maybe that's too early?
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AA2', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AA2', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AA2', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AA2', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Knocked Into Barricade',
+          de: 'Rückstoß in die Barrikaden',
         },
       },
     },
@@ -81,10 +99,14 @@ export default {
     {
       id: 'Delubrum Seeker Iron Impact',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5ADB', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5ADB', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5ADB', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5ADB', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Line Stack',
+          de: 'In einer Linie sammeln',
         },
       },
     },
@@ -97,11 +119,15 @@ export default {
       // positioning data on starts casting would be a huge help.
       // TODO: we could call out directions with getCombatants? (The center appears to be 0, 278.)
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AA3', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AA3', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AA3', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AA3', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           // FIXME: this could be worded better
           en: 'Opposite Color From Boss',
+          de: 'Auf die vom Boss entgegengesetze Farbe gehen',
         },
       },
     },
@@ -113,6 +139,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Chain on YOU',
+          de: 'Kette auf DIR',
         },
       },
     },
@@ -133,12 +160,16 @@ export default {
     {
       id: 'Delubrum Seeker Seasons of Mercy',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AAA', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AAA', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AAA', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AAA', capture: false }),
       // 5 second cast time + 2 seconds before flower appears - 1 second for reading time?
       delaySeconds: 6,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Far From Purple / Look Away From Orb',
+          de: 'Weit weg von Lila / Vom Orb wegschauen',
         },
       },
     },
@@ -146,6 +177,9 @@ export default {
     {
       id: 'Delubrum Dahu Shockwave',
       netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: ['5761', '5762'] }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: ['5761', '5762'] }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Dahu', id: ['5761', '5762'] }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ダウー', id: ['5761', '5762'] }),
       // There's a 3s slow windup on the first, then a 1s opposite cast.
       suppressSeconds: 10,
       alertText: (data, matches, output) => {
@@ -173,8 +207,12 @@ export default {
       },
     },
     {
+      // TODO: is this true if you see a Feral Howl #4 and onward?
       id: 'Delubrum Dahu Feral Howl',
       netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '5755', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: '5755', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Dahu', id: '5755', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ダウー', id: '5755', capture: false }),
       alertText: (data, _, output) => {
         if (data.seenFeralHowl)
           return output.knockbackAvoid();
@@ -184,40 +222,55 @@ export default {
       outputStrings: {
         knockback: {
           en: 'Unavoidable Knockback',
+          de: 'Unvermeidbarer Rückstoß',
         },
         knockbackAvoid: {
           // This is also unavoidable, but that's really wordy and hopefully
           // you figured that out the first time.
           en: 'Knockback (Avoid Adds)',
+          de: 'Rückstoß (vermeide die Adds)',
         },
       },
     },
     {
       id: 'Delubrum Dahu Hot Charge',
       netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '5764', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: '5764', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Dahu', id: '5764', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ダウー', id: '5764', capture: false }),
       // This happens twice in a row
       suppressSeconds: 10,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Follow Second Charge',
+          de: 'Folge dem 2. Ansturm',
         },
       },
     },
     {
       id: 'Delubrum Dahu Heat Breath',
       netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '5766' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: '5766' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Dahu', id: '5766' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ダウー', id: '5766' }),
       response: Responses.tankCleave(),
     },
     {
       id: 'Delubrum Dahu Ripper Claw',
       netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '575D', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: '575D', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Dahu', id: '575D', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ダウー', id: '575D', capture: false }),
       response: Responses.awayFromFront('alert'),
     },
     // *** Queen's Guard ***
     {
       id: 'Delubrum Guard Secrets Revealed',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5B6E', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5B6E', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5B6E', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5B6E', capture: false }),
       infoText: (data, _, output) => {
         if (data.seenSecretsRevealed)
           return output.followUntethered();
@@ -226,9 +279,11 @@ export default {
       outputStrings: {
         awayFromTethered: {
           en: 'Away from tethered adds',
+          de: 'Weg von den verbundenen Adds',
         },
         followUntethered: {
           en: 'Follow untethered adds',
+          de: 'Folge den nicht verbundenen Adds',
         },
       },
       run: (data) => data.seenSecretsRevealed = true,
@@ -236,44 +291,64 @@ export default {
     {
       id: 'Delubrum Guard Rapid Sever Soldier',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5809' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5809' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5809' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5809' }),
       condition: tankBusterOnParty,
       response: Responses.tankBuster(),
     },
     {
       id: 'Delubrum Guard Blood And Bone Soldier',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5808', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5808', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5808', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5808', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
       id: 'Delubrum Guard Shot In The Dark',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Gunner', id: '5811' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schütze Der Königin', id: '5811' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fusilier De La Reine', id: '5811' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ガンナー', id: '5811' }),
       condition: tankBusterOnParty,
       response: Responses.tankBuster(),
     },
     {
       id: 'Delubrum Guard Automatic Turret',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Gunner', id: '580B', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schütze Der Königin', id: '580B', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fusilier De La Reine', id: '580B', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ガンナー', id: '580B', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid Laser Bounces',
+          de: 'Weiche den abgelenken Lasern aus',
         },
       },
     },
     {
       id: 'Delubrum Guard Queen\'s Shot',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Gunner', id: '5810', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schütze Der Königin', id: '5810', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fusilier De La Reine', id: '5810', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ガンナー', id: '5810', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
       id: 'Delubrum Guard Reversal Of Forces',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: '57FF', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegerin Der Königin', id: '57FF', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Guerrière De La Reine', id: '57FF', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ウォリアー', id: '57FF', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stand On Small Bomb',
+          de: 'Auf kleinen Bomben stehen',
         },
       },
       run: (data) => data.reversalOfForces = true,
@@ -281,6 +356,9 @@ export default {
     {
       id: 'Delubrum Guard Above Board',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: '57FC', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegerin Der Königin', id: '57FC', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Guerrière De La Reine', id: '57FC', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ウォリアー', id: '57FC', capture: false }),
       alertText: (data, _, output) => {
         if (data.reversalOfForces)
           return;
@@ -290,34 +368,50 @@ export default {
       outputStrings: {
         text: {
           en: 'Stand On Large Bomb',
+          de: 'Auf großen Bomben stehen',
         },
       },
     },
     {
       id: 'Delubrum Guard Blood And Bone Warrior',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: '5800', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegerin Der Königin', id: '5800', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Guerrière De La Reine', id: '5800', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ウォリアー', id: '5800', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
       id: 'Delubrum Guard Shield Omen',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '57F1', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '57F1', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '57F1', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '57F1', capture: false }),
       response: Responses.getUnder(),
     },
     {
       id: 'Delubrum Guard Sword Omen',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '57F0', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '57F0', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '57F0', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '57F0', capture: false }),
       response: Responses.getOut(),
     },
     {
       id: 'Delubrum Guard Rapid Sever Knight',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '57FB' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '57FB' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '57FB' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '57FB' }),
       condition: tankBusterOnParty,
       response: Responses.tankBuster(),
     },
     {
       id: 'Delubrum Guard Blood And Bone Knight',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '57FA', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '57FA', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '57FA', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '57FA', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -325,6 +419,9 @@ export default {
     {
       id: 'Delubrum Phantom Weave Miasma',
       netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57A3', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57A3', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '57A3', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57A3', capture: false }),
       preRun: (data) => data.weaveMismaCount = (data.weaveMiasmaCount || 0) + 1,
       delaySeconds: 3,
       infoText: (data, _, output) => {
@@ -335,15 +432,20 @@ export default {
       outputStrings: {
         weaveNoKnockback: {
           en: 'Go To North Circle',
+          de: 'Geh zum Kreis im Norden',
         },
         weaveWithKnockback: {
           en: 'Get Knocked Back To Circle',
+          de: 'Lass dich zum Kreis im Norden zurückstoßen',
         },
       },
     },
     {
       id: 'Delubrum Phantom Malediction Of Agony',
       netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57AF', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57AF', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '57AF', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57AF', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -352,6 +454,9 @@ export default {
       // "57AB Summon" is used here to avoid an additional name to translate.
       // "57AC Undying Hatred" is from Stuffy Wraith.
       netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57AB', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57AB', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '57AB', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57AB', capture: false }),
       delaySeconds: 5,
       // This is covered by Weave Miasma after the first "learn how this works" action.
       suppressSeconds: 9999,
@@ -359,12 +464,16 @@ export default {
       outputStrings: {
         text: {
           en: 'Unavoidable Knockback',
+          de: 'Unvermeidbarer Rückstoß',
         },
       },
     },
     {
       id: 'Delubrum Phantom Excruciation',
       netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '5809' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '5809' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '5809' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '5809' }),
       condition: tankBusterOnParty,
       response: Responses.tankBuster(),
     },
@@ -372,11 +481,17 @@ export default {
     {
       id: 'Delubrum Avowed Wrath Of Bozja',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5975' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5975' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5975' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5975' }),
       response: Responses.tankCleave('alert'),
     },
     {
       id: 'Delubrum Avowed Glory Of Bozja',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5976', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5976', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5976', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5976', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -388,11 +503,15 @@ export default {
       // e.g. 5960, 5962, 4F55, 4556, 4F99, 4F9A.
       // So we could give directions here, but probably that's just more confusing.
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '597C', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '597C', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '597C', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '597C', capture: false }),
       delaySeconds: 10,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stand In Opposite Meteor',
+          de: 'Steh im entgegengesetztem Meteor',
         },
       },
     },
@@ -400,11 +519,15 @@ export default {
       id: 'Delubrum Avowed Shimmering Shot',
       // See comments on Freedom Of Bozja above.
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '597F', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '597F', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '597F', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '597F', capture: false }),
       delaySeconds: 3,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go To Opposite Sword',
+          de: 'Gehe in das entgegengesetzte Schwert',
         },
       },
     },
@@ -421,11 +544,15 @@ export default {
       // 5970 = left cleave, cold+1
       id: 'Delubrum Avowed Hot And Cold Cleaves',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5BAF', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5BAF', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5BAF', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5BAF', capture: false }),
       delaySeconds: 3,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Be In Opposite Cleave',
+          de: 'Gehe in den entgegengesetzte Cleave',
         },
       },
     },
@@ -433,11 +560,15 @@ export default {
       id: 'Delubrum Avowed Unseen Eye',
       // Unseen Eye always happens before Gleaming Arrow starts casting.
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5980', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5980', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5980', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5980', capture: false }),
       delaySeconds: 6,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid Outside Add Lines',
+          de: 'Weiche den äußeren Add-Laser aus',
         },
       },
     },
@@ -445,22 +576,32 @@ export default {
       id: 'Delubrum Avowed Fury Of Bozja',
       // Allegiant Arsenal 5987 = staff (out), followed up with Fury of Bozja 5973
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5987', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5987', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5987', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5987', capture: false }),
       response: Responses.getOut('alert'),
     },
     {
       id: 'Delubrum Avowed Flashvane',
       // Allegiant Arsenal 5986 = bow (get behind), followed up by Flashvane 5972
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5986', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5986', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5986', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5986', capture: false }),
       response: Responses.getBehind('alert'),
     },
     {
       id: 'Delubrum Avowed Infernal Slash',
       // Allegiant Arsenal 5985 = sword (get front), followed up by Infernal Slash 5971
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5985', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5985', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5985', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5985', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get In Front',
+          de: 'Geh vor den Boss',
         },
       },
     },
@@ -468,12 +609,18 @@ export default {
     {
       id: 'Delubrum Queen Empyrean Iniquity',
       netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C8', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59C8', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59C8', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59C8', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
       id: 'Delubrum Queen Cleansing Slash',
       netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C5' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59C5' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59C5' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59C5' }),
       condition: tankBusterOnParty,
       // Probably this is where you swap, but maybe that's not something you can
       // count on in an alliance raid, where there might not even be another tank.
@@ -482,38 +629,55 @@ export default {
     {
       id: 'Delubrum Queen Cleansing Slash Bleed',
       netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C5' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59C5' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59C5' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59C5' }),
       condition: (data) => data.CanCleanse(),
       delaySeconds: 5,
       infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
           en: 'Esuna ${player}',
+          de: 'Medica ${player}',
         },
       },
     },
     {
       id: 'Delubrum Queen Northswain\'s Glow',
       netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C3', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59C3', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59C3', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59C3', capture: false }),
       alertText: (data, _, output) => output.text(),
+      // Technically, this is "away from where the moving lines intersect each other"
+      // but "away from orbs" also will do the trick here.
       outputStrings: {
         text: {
           en: 'Away from Line Intersections',
+          de: 'Geh weg von den Linienkreuzungen',
         },
       },
     },
     {
       id: 'Delubrum Queen Automatic Turret',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Gunner', id: '59DE', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schütze Der Königin', id: '59DE', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fusilier De La Reine', id: '59DE', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ガンナー', id: '59DE', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid Laser Bounces',
+          de: 'Weiche den abgelenken Lasern aus',
         },
       },
     },
     {
       id: 'Delubrum Queen Reversal Of Forces',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: '59D4', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegerin Der Königin', id: '59D4', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Guerrière De La Reine', id: '59D4', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ウォリアー', id: '59D4', capture: false }),
       run: (data) => data.reversalOfForces = true,
     },
     {
@@ -522,6 +686,9 @@ export default {
       // reversal at that point.
       id: 'Delubrum Queen Heaven\'s Wrath',
       netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C7', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59C7', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59C7', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59C7', capture: false }),
       alertText: (data, _, output) => {
         if (!data.seenHeavensWrath)
           return output.getKnockedTowardsMiddle();
@@ -532,12 +699,15 @@ export default {
       outputStrings: {
         getKnockedTowardsMiddle: {
           en: 'Get Knocked Towards Middle',
+          de: 'Zur Mitte zurückstoßen lassen',
         },
         getKnockedToSmallBomb: {
           en: 'Get Knocked To Small Bomb',
+          de: 'Zu kleinen Bomben zurückstoßen lassen',
         },
         getKnockedToLargeBomb: {
           en: 'Get Knocked To Large Bomb',
+          de: 'Zu großen Bomben zurückstoßen lassen',
         },
       },
       run: (data) => {
@@ -548,48 +718,69 @@ export default {
     {
       id: 'Delubrum Queen Judgment Blade Right',
       netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C2', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59C2', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59C2', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59C2', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Find Charge, Dodge Right',
+          de: 'Halte nach dem Ansturm ausschau, weiche nach rechts aus',
         },
       },
     },
     {
       id: 'Delubrum Queen Judgment Blade Left',
       netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C1', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59C1', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59C1', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59C1', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Find Charge, Dodge Left',
+          de: 'Halte nach dem Ansturm ausschau, weiche nach links aus',
         },
       },
     },
     {
       id: 'Delubrum Queen Gods Save The Queen',
       netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C9', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59C9', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59C9', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59C9', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
       id: 'Delubrum Queen Secrets Revealed',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5B8A', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5B8A', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5B8A', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5B8A', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away from tethered adds',
+          de: 'Weg von verbundenen Adds',
         },
       },
     },
     {
       id: 'Delubrum Queen Shield Omen',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '59CB', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '59CB', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '59CB', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '59CB', capture: false }),
       delaySeconds: 2.5,
       response: Responses.getUnder('alarm'),
     },
     {
       id: 'Delubrum Queen Sword Omen',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '59CA', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '59CA', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '59CA', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '59CA', capture: false }),
       delaySeconds: 2.5,
       response: Responses.getOut('alert'),
     },
