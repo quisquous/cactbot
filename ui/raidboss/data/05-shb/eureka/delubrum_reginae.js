@@ -44,6 +44,12 @@ export default {
       },
     },
     {
+      id: 'Delubrum Seeker Baleful Swath',
+      // This is an early warning for casters for Baleful Swath on the Verdant Path cast.
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5A98', capture: false }),
+      response: Responses.goFrontBack('info'),
+    },
+    {
       id: 'Delubrum Seeker Baleful Blade Out',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AA1', capture: false }),
       alertText: (data, _, output) => output.text(),
@@ -177,7 +183,9 @@ export default {
       },
       run: (data) => data.seenFeralHowl = true,
       outputStrings: {
-        knockback: Outputs.knockback,
+        knockback: {
+          en: 'Unavoidable Knockback',
+        },
         knockbackAvoid: {
           en: 'Knockback (Avoid Adds)',
         },
@@ -204,7 +212,7 @@ export default {
     // *** Queen's Guard ***
     {
       id: 'Delubrum Guard Secrets Revealed',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '56BE', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5B6E', capture: false }),
       infoText: (data, _, output) => {
         if (data.seenSecretsRevealed)
           return output.followUntethered();
@@ -221,13 +229,13 @@ export default {
       run: (data) => data.seenSecretsRevealed = true,
     },
     {
-      id: 'Delubrum Guard Rapid Sever',
+      id: 'Delubrum Guard Rapid Sever Soldier',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5809' }),
       condition: tankBusterOnParty,
       response: Responses.tankBuster(),
     },
     {
-      id: 'Delubrum Guard Blood And Bone',
+      id: 'Delubrum Guard Blood And Bone Soldier',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5808', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
@@ -243,18 +251,20 @@ export default {
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Gunner', id: '580B', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
-        text: 'Avoid Laser Bounces',
+        text: {
+          en: 'Avoid Laser Bounces',
+        },
       },
     },
     {
       id: 'Delubrum Guard Queen\'s Shot',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5810', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Gunner', id: '5810', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
       id: 'Delubrum Guard Reversal Of Forces',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '57FF', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: '57FF', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -265,7 +275,7 @@ export default {
     },
     {
       id: 'Delubrum Guard Above Board',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '57FC', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: '57FC', capture: false }),
       alertText: (data, _, output) => {
         if (data.reversalOfForces)
           return;
@@ -279,6 +289,12 @@ export default {
       },
     },
     {
+      id: 'Delubrum Guard Blood And Bone Warrior',
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: '5800', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.aoe(),
+    },
+    {
       id: 'Delubrum Guard Shield Omen',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '57F1', capture: false }),
       response: Responses.getUnder(),
@@ -288,10 +304,22 @@ export default {
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '57F0', capture: false }),
       response: Responses.getOut(),
     },
+    {
+      id: 'Delubrum Guard Rapid Sever Knight',
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '57FB' }),
+      condition: tankBusterOnParty,
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'Delubrum Guard Blood And Bone Knight',
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '57FA', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.aoe(),
+    },
     // *** Bozjan Phantom
     {
       id: 'Delubrum Phantom Weave Miasma',
-      netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57A3', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: ['57A3', '57A4'], capture: false }),
       preRun: (data) => data.weaveMismaCount = (data.weaveMiasmaCount || 0) + 1,
       delaySeconds: 3,
       infoText: (data, _, output) => {
@@ -324,7 +352,9 @@ export default {
       suppressSeconds: 9999,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
-        text: 'Unavoidable Knockback',
+        text: {
+          en: 'Unavoidable Knockback',
+        },
       },
     },
     {
@@ -356,7 +386,9 @@ export default {
       delaySeconds: 10,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
-        text: 'Stand In Opposite Meteor',
+        text: {
+          en: 'Stand In Opposite Meteor',
+        },
       },
     },
     {
@@ -366,7 +398,9 @@ export default {
       delaySeconds: 3,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
-        text: 'Go To Opposite Sword',
+        text: {
+          en: 'Go To Opposite Sword',
+        },
       },
     },
     {
@@ -385,7 +419,9 @@ export default {
       delaySeconds: 3,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
-        text: 'Be In Opposite Cleave',
+        text: {
+          en: 'Be In Opposite Cleave',
+        },
       },
     },
     {
@@ -395,7 +431,9 @@ export default {
       delaySeconds: 6,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
-        text: 'Avoid Outside Add Lines',
+        text: {
+          en: 'Avoid Outside Add Lines',
+        },
       },
     },
     {
@@ -416,7 +454,9 @@ export default {
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5985', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
-        text: 'Get In Front',
+        text: {
+          en: 'Get In Front',
+        },
       },
     },
     // *** The Queen
@@ -441,17 +481,19 @@ export default {
       delaySeconds: 5,
       infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
       outputStrings: {
-        text: 'Esuna ${player}',
+        text: {
+          en: 'Esuna ${player}',
+        },
       },
     },
     {
       id: 'Delubrum Queen Northswain\'s Glow',
       netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C3', capture: false }),
       alertText: (data, _, output) => output.text(),
-      // Technically, this is "away from where the moving lines intersect each other"
-      // but "away from orbs" also will do the trick here.
       outputStrings: {
-        text: 'Away from Orbs',
+        text: {
+          en: 'Away from Line Intersections',
+        },
       },
     },
     {
@@ -459,12 +501,14 @@ export default {
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Gunner', id: '59DE', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
-        text: 'Avoid Laser Bounces',
+        text: {
+          en: 'Avoid Laser Bounces',
+        },
       },
     },
     {
       id: 'Delubrum Queen Reversal Of Forces',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5759D4FF', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '59D4', capture: false }),
       run: (data) => data.reversalOfForces = true,
     },
     {
@@ -501,7 +545,9 @@ export default {
       netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C2', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
-        text: 'Find Charge, Dodge Right',
+        text: {
+          en: 'Find Charge, Dodge Right',
+        },
       },
     },
     {
@@ -509,7 +555,9 @@ export default {
       netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C1', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
-        text: 'Find Charge, Dodge Left',
+        text: {
+          en: 'Find Charge, Dodge Left',
+        },
       },
     },
     {
@@ -531,11 +579,13 @@ export default {
     {
       id: 'Delubrum Queen Shield Omen',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '59CB', capture: false }),
+      delaySeconds: 2.5,
       response: Responses.getUnder('alarm'),
     },
     {
       id: 'Delubrum Queen Sword Omen',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '59CA', capture: false }),
+      delaySeconds: 2.5,
       response: Responses.getOut('alert'),
     },
   ],

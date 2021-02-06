@@ -554,7 +554,9 @@ hideall "--sync--"
 9171.0 "Gods Save The Queen" sync /:The Queen:59C9:/
 9192.3 "--middle--" sync /:The Queen:5BCB:/
 9200.7 "Queen's Edict" sync /:The Queen:59BE:/
+9223.4 "--stunned--"
 9225.5 "Queen's Justice" sync /:The Queen:59BF:/ # only on failure
+9229.3 "--unstunned--"
 9239.9 "Cleansing Slash" sync /:The Queen:59C5:/
 
 9253.1 "Relentless Play" sync /:The Queen:59FC:/
@@ -576,9 +578,11 @@ hideall "--sync--"
 9308.6 "--middle--" sync /:The Queen:5BCB:/
 9316.8 "Queen's Edict" sync /:The Queen:59BE:/
 9338.0 "Beck And Call To Arms" sync /:The Queen:5B99:/
+9339.5 "--stunned--"
 9341.7 "Queen's Justice" sync /:Queen's Warrior:59BF:/ # only on failure
 9342.4 "The Means" sync /:(Queen's Gunner|Queen's Warrior):59B[BD]:/
 9342.4 "The Ends" sync /:(Queen's Soldier|Queen's Knight):59B[AC]:/
+9345.4 "--unstunned--"
 9354.5 "Cleansing Slash" sync /:The Queen:59C5:/
 
 9367.7 "Relentless Play" sync /:The Queen:59FC:/
