@@ -26,6 +26,7 @@ export default {
     'Delubrum Dahu Falling Rock': '575C', // ground aoe from Reverberating Roar
     'Delubrum Dahu Hot Charge': '5764', // double charge
     'Delubrum Dahu Ripper Claw': '575D', // frontal cleave
+    'Delubrum Dahu Tail Swing': '575F', // tail swing ;)
     'Delubrum Guard Pawn Off': '5806', // Queen's Soldier Secrets Revealed tethered clone aoe
     'Delubrum Guard Turret\'s Tour 1': '580D', // Queen's Gunner reflective turret shot
     'Delubrum Guard Turret\'s Tour 2': '580E', // Queen's Gunner reflective turret shot
@@ -64,6 +65,7 @@ export default {
     'Delubrum Avowed Cold Shock': '595F', // too much cold or failing to regulate temperature
   },
   shareFail: {
+    'Delubrum Dahu Heat Breath': '5766', // tank cleave
     'Delubrum Avowed Wrath Of Bozja': '5975', // tank cleave
   },
   gainsEffectWarn: {
