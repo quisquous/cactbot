@@ -4,8 +4,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-# TODO: need loop for Dahu
-
 # Note: various "Blast" are renamed "Elemental Blast" and various "Arrow" are renamed
 # to be "Elemental Arrow" to avoid having too many skills on the timeline.
 
