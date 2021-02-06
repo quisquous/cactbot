@@ -84,8 +84,8 @@ export default {
       id: 'Swallows Compass Six Fulms Under',
       netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (data, _, output) => output.text(),
       suppressSeconds: 2, // If the user stays in, they will get more reminders.
+      alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'OUT OF THE LAKE',
@@ -165,7 +165,7 @@ export default {
     },
     {
       id: 'Swallows Compass Long End Call',
-      netRegex: NetRegexes.tether({ id: '0029' }),
+      netRegex: NetRegexes.tether({ id: '0029', capture: false }),
       delaySeconds: 0.5,
       alertText: (data, _, output) => {
         if (data.tethers.includes(data.me)) {
