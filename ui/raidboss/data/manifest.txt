@@ -108,6 +108,8 @@
 04-sb/dungeon/ghimlyt_dark.txt
 04-sb/dungeon/hells_lid.js
 04-sb/dungeon/hells_lid.txt
+04-sb/dungeon/swallows_compass.js
+04-sb/dungeon/swallows_compass.txt
 04-sb/dungeon/temple_of_the_fist.js
 04-sb/dungeon/temple_of_the_fist.txt
 04-sb/dungeon/the_burn.js
