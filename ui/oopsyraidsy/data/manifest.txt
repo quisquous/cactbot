@@ -70,8 +70,9 @@
 05-shb/trial/innocence-ex.js
 05-shb/trial/innocence.js
 05-shb/trial/shiva-un.js
-05-shb/trial/titania-ex.js
 05-shb/trial/titania.js
+05-shb/trial/titania-ex.js
+05-shb/trial/titan-un.js
 05-shb/trial/varis-ex.js
 05-shb/trial/wol.js
 05-shb/trial/wol-ex.js
