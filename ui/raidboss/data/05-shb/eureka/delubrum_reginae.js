@@ -206,7 +206,7 @@ export default {
     },
     {
       id: 'Delubrum Dahu Heat Breath',
-      netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '5766', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '5766' }),
       response: Responses.tankCleave(),
     },
     {
