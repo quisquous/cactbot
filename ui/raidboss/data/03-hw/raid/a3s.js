@@ -317,7 +317,7 @@ export default {
           en: 'Embolus: Move Boss',
           de: 'Pfropfen: Boss bewegen',
           fr: 'Caillot : Déplacez le boss',
-          ja: 'エンボラス: ボスを引き離れる',
+          ja: 'エンボラス: ボスを引いて離れる',
           cn: '水球出现：拉走BOSS',
           ko: '물구슬: 보스 주차 옮기기',
         },
