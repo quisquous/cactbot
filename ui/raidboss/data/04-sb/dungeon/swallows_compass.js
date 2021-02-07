@@ -150,7 +150,6 @@ export default {
       // The ability use here is unnamed, the teleport to the center to begin the intermission.
       id: 'Swallows Compass Intermission Tracking',
       netRegex: NetRegexes.ability({ id: '2CC7', source: 'Qitian Dasheng', capture: false }),
-      condition: (data) => !data.seenIntermission,
       run: (data) => data.seenIntermission = true,
     },
     {
