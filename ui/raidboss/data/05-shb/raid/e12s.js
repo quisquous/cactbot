@@ -271,8 +271,8 @@ export default {
   timelineFile: 'e12s.txt',
   triggers: [
     {
-      // Headmarkers are randomized, so handle them all with a single trigger.
-      id: 'E12S Promise Headmarker',
+      // Headmarkers are randomized, so use a generic headMarker regex with no criteria.
+      id: 'E12S Promise Formless Judgment You',
       netRegex: NetRegexes.headMarker({}),
       condition: (data) => data.isDoorBoss,
       response: (data, matches, output) => {
@@ -294,6 +294,39 @@ export default {
             cn: '死刑点名',
             ko: '탱버 대상자',
           },
+        };
+
+        const id = getHeadmarkerId(data, matches);
+
+        // Track tankbuster targets, regardless if this is on you or not.
+        // Use this to make more intelligent calls when the cast starts.
+        if (id === '00DA') {
+          data.formlessTargets = data.formlessTargets || [];
+          data.formlessTargets.push(matches.target);
+        }
+
+        // From here on out, any response is for the current player.
+        if (matches.target !== data.me)
+          return;
+
+        // Formless double tankbuster mechanic.
+        if (id === '00DA') {
+          if (data.role === 'tank')
+            return { alertText: output.formlessBusterAndSwap() };
+          // Not that you personally can do anything about it, but maybe this
+          // is your cue to yell on voice comms for cover.
+          return { alarmText: output.formlessBusterOnYOU() };
+        }
+      },
+    },
+    {
+      // Headmarkers are randomized, so use a generic headMarker regex with no criteria.
+      id: 'E12S Promise Junction Titan Bombs',
+      netRegex: NetRegexes.headMarker({}),
+      condition: (data) => data.isDoorBoss,
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
           // The first round has only one blue.
           titanBlueSingular: {
             en: 'Blue Weight',
@@ -330,26 +363,11 @@ export default {
             cn: '黄色散开',
             ko: '노랑: 산개',
           },
-          // This is sort of redundant, but if folks want to put "square" or something in the text,
-          // having these be separate would allow them to configure them separately.
-          square1: numberOutputStrings[1],
-          square2: numberOutputStrings[2],
-          square3: numberOutputStrings[3],
-          square4: numberOutputStrings[4],
-          triangle1: numberOutputStrings[1],
-          triangle2: numberOutputStrings[2],
-          triangle3: numberOutputStrings[3],
-          triangle4: numberOutputStrings[4],
         };
 
         const id = getHeadmarkerId(data, matches);
 
-        // Track tankbuster targets, regardless if this is on you or not.
-        // Use this to make more intelligent calls when the cast starts.
-        if (id === '00DA') {
-          data.formlessTargets = data.formlessTargets || [];
-          data.formlessTargets.push(matches.target);
-        } else if (id === '00BB') {
+        if (id === '00BB') {
           data.weightTargets = data.weightTargets || [];
           data.weightTargets.push(matches.target);
 
@@ -368,15 +386,6 @@ export default {
         if (matches.target !== data.me)
           return;
 
-        // Formless double tankbuster mechanic.
-        if (id === '00DA') {
-          if (data.role === 'tank')
-            return { alertText: output.formlessBusterAndSwap() };
-          // Not that you personally can do anything about it, but maybe this
-          // is your cue to yell on voice comms for cover.
-          return { alarmText: output.formlessBusterOnYOU() };
-        }
-
         // Titan Mechanics (double blue handled above)
         if (id === '00BB' && !data.seenFirstBombs)
           return { alarmText: output.titanBlueSingular() };
@@ -384,6 +393,29 @@ export default {
           return { alertText: output.titanYellowSpread() };
         if (id === '00BA')
           return { infoText: output.titanOrangeStack() };
+      },
+    },
+    {
+      // Headmarkers are randomized, so use a generic headMarker regex with no criteria.
+      id: 'E12S Promise Chiseled Sculpture',
+      netRegex: NetRegexes.headMarker({}),
+      condition: (data, matches) => data.isDoorBoss && matches.target === data.me,
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          // This is sort of redundant, but if folks want to put "square" or something in the text,
+          // having these be separate would allow them to configure them separately.
+          square1: numberOutputStrings[1],
+          square2: numberOutputStrings[2],
+          square3: numberOutputStrings[3],
+          square4: numberOutputStrings[4],
+          triangle1: numberOutputStrings[1],
+          triangle2: numberOutputStrings[2],
+          triangle3: numberOutputStrings[3],
+          triangle4: numberOutputStrings[4],
+        };
+
+        const id = getHeadmarkerId(data, matches);
 
         // Statue laser mechanic.
         const firstLaserMarker = '0091';

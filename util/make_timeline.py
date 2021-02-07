@@ -260,6 +260,7 @@ def main(args):
         "",
         "2P",
         "Crystal Exarch",
+        "Mikoto",
     ]
 
     # Format the phase timings

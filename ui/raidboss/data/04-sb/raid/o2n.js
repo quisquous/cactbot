@@ -45,6 +45,7 @@ export default {
         stackMarkerOnYou: {
           en: 'Stack marker on YOU',
           de: 'Sammeln Marker auf DIR',
+          fr: 'Package marqueur sur VOUS',
           ja: '自分に集合',
           cn: '集合点名',
           ko: '쉐어징 대상자',
@@ -52,6 +53,7 @@ export default {
         stackOn: {
           en: 'Stack on ${player}',
           de: 'Sammeln auf ${player}',
+          fr: 'Packez-vous sur ${player}',
           ja: '${player}に集合',
           cn: '靠近${player}集合',
           ko: '${player} 쉐어징',
@@ -69,6 +71,7 @@ export default {
         text: {
           en: 'Levitate',
           de: 'Schweben',
+          fr: 'Lévitation',
           ja: '浮上',
           cn: '浮空',
           ko: '공중부양',
@@ -101,6 +104,7 @@ export default {
         text: {
           en: '-100 Gs: Go north/south',
           de: '-100G: Nach Norden/Süden',
+          fr: 'Gravité -100 : Allez au nord/sud',
           ja: '-100 G: 北/南へ',
           cn: '去北边/南边',
           ko: '중력 마이너스 100: 남/북쪽으로',
@@ -137,6 +141,7 @@ export default {
         earthquake: {
           en: 'Earthquake',
           de: 'Erdbeben',
+          fr: 'Grand séisme',
           ja: '地震',
           cn: '地震',
           ko: '대지진',
@@ -144,6 +149,7 @@ export default {
         levitate: {
           en: 'Levitate',
           de: 'Schweben',
+          fr: 'Lévitation',
           ja: '浮上',
           cn: '浮空',
           ko: '공중부양',
@@ -180,6 +186,7 @@ export default {
         sixFulmsUnder: {
           en: '6 Fulms Under',
           de: 'Versinkend',
+          fr: 'Enfoncement',
           ja: '沈下',
           cn: '下陷',
           ko: '하강',
@@ -187,6 +194,7 @@ export default {
         levitate: {
           en: 'Levitate',
           de: 'Schweben',
+          fr: 'Lévitation',
           ja: '浮上',
           cn: '浮空',
           ko: '공중부양',
@@ -194,6 +202,7 @@ export default {
         float: {
           en: 'float',
           de: 'schweben',
+          fr: 'Flottez',
           ja: '浮上',
           cn: '浮空',
           ko: '공중부양',
@@ -250,6 +259,7 @@ export default {
         levitate: {
           en: 'Levitate',
           de: 'Levitation',
+          fr: 'Lévitation',
           ja: '浮上',
           cn: '浮空',
           ko: '공중부양',
@@ -257,6 +267,7 @@ export default {
         goCenterAndDontLevitate: {
           en: 'Go center and don\'t levitate',
           de: 'Geh in die Mitte und nicht schweben',
+          fr: 'Allez au centre et pas de lévitation',
           ja: '中央に浮かばず集合',
           cn: '中间集合不要浮空',
           ko: '공중부양 하지않고 가운데로',
@@ -264,6 +275,7 @@ export default {
         dontLevitate: {
           en: 'Don\'t levitate',
           de: 'Nicht schweben',
+          fr: 'Pas de lévitation',
           ja: '浮上はしない',
           cn: '不要浮空',
           ko: '공중부양 하지않기',

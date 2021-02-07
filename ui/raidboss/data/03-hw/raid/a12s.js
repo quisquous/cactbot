@@ -178,7 +178,7 @@ export default {
           en: 'Far Tethers (${player})',
           de: 'Entfernte Verbindungen (${player})',
           fr: 'Liens éloignés (${player})',
-          ja: ' (${player})に離れ',
+          ja: ' (${player})から離れる',
           cn: '远离连线 (${player})',
           ko: '접근금지: 상대와 떨어지기 (${player})',
         },

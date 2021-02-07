@@ -132,7 +132,7 @@ export default {
           en: 'Lasers',
           de: 'Laser',
           fr: 'Lasers',
-          ja: 'レザー',
+          ja: 'レーザー',
           cn: '十字圣礼',
           ko: '십자 성례',
         },

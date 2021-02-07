@@ -111,7 +111,7 @@ hideall "--sync--"
 1189.5 "--untargetable--"
 1192.4 "Flare" sync /:Neo Exdeath:2401:/
 1192.4 "Holy" sync /:Neo Exdeath:2403:/
-1192.8 "--targetable"
+1192.8 "--targetable--"
 1197.6 "Flood Of Naught (lasers)" sync /:Neo Exdeath:(240E|240F):/
 1211.6 "Meteor" sync /:Neo Exdeath:2424:/
 1212.3 "--adds targetable--"
