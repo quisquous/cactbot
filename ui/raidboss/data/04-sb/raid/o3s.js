@@ -438,7 +438,14 @@ export default {
   ],
   timelineReplace: [
     {
+      'locale': 'en',
+      'replaceText': {
+        'Oink/Ribbit/Squelch': 'Random Animal',
+      },
+    },
+    {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Halicarnassus': 'Halikarnassos',
       },
@@ -479,6 +486,7 @@ export default {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Halicarnassus': 'Halicarnasse',
       },
@@ -526,6 +534,7 @@ export default {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Halicarnassus': 'ハリカルナッソス',
       },
@@ -569,6 +578,7 @@ export default {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Halicarnassus': '哈利卡纳苏斯',
       },
@@ -612,6 +622,7 @@ export default {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Halicarnassus': '할리카르나소스',
       },
