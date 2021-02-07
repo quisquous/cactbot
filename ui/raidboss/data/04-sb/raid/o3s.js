@@ -6,7 +6,6 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // O3S - Deltascape 3.0 Savage
 export default {
   zoneId: ZoneId.DeltascapeV30Savage,
-  timelineNeedsFixing: true,
   timelineFile: 'o3s.txt',
   triggers: [
     {
