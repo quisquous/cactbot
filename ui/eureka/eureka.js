@@ -2158,7 +2158,7 @@ const Options = {
             de: 'Vigil',
             fr: 'Vigile de feu',
             ja: 'ヴィジル',
-            cn: '石卫塔',
+            cn: '守夜',
           },
           x: 28.4,
           y: 29.5,
