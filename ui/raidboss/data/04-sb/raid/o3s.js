@@ -440,6 +440,7 @@ export default {
       'locale': 'en',
       'replaceText': {
         'Oink/Ribbit/Squelch': 'Random Animal',
+        'Spellblade Blizzard/Fire/Thunder': 'Elemental Spellblade',
       },
     },
     {

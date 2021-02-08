@@ -100,8 +100,8 @@ hideall "--sync--"
 456.0 "The Queen's Waltz (Random)" sync /:Halicarnassus:230[68AE]:/
 469.0 "Dimensional Wave" sync /:Halicarnassus:22F6:/
 477.1 "Haste" sync /:Halicarnassus:22F4:/ window 30,30
-480.8 "Spellblade Blizzard/Fire/Thunder" sync /:Halicarnassus:22E[CDE]:/
-485.4 "Spellblade Fire/Thunder/Blizzard" sync /:Halicarnassus:22E[CDE]:/
+480.8 "Spellblade Blizzard/Fire/Thunder 1" sync /:Halicarnassus:22E[CDE]:/
+485.4 "Spellblade Blizzard/Fire/Thunder 2" sync /:Halicarnassus:22E[CDE]:/
 491.5 "Dimensional Wave" sync /:Halicarnassus:22F6:/
 501.7 "Place Token (Ninjas/Giant)" sync /:Halicarnassus:22FB:/
 512.0 "Haste III" sync /:Halicarnassus:22F5:/
@@ -129,8 +129,8 @@ hideall "--sync--"
 635.2 "The Queen's Waltz (Random)" sync /:Halicarnassus:230[68AE]:/
 648.4 "Dimensional Wave" sync /:Halicarnassus:22F6:/ window 30,15
 656.5 "Haste" sync /:Halicarnassus:22F4:/
-660.1 "Spellblade Blizzard/Fire/Thunder" sync /:Halicarnassus:22E[CDE]:/
-665.0 "Spellblade Fire/Thunder/Blizzard" sync /:Halicarnassus:22E[CDE]:/
+660.1 "Spellblade Blizzard/Fire/Thunder 1" sync /:Halicarnassus:22E[CDE]:/
+665.0 "Spellblade Blizzard/Fire/Thunder 2" sync /:Halicarnassus:22E[CDE]:/
 671.1 "Dimensional Wave" sync /:Halicarnassus:22F6:/
 681.2 "The Playing Field" sync /:Halicarnassus:2300:/
 688.3 "The Game (Enrage)" sync /:Halicarnassus:2301:/
