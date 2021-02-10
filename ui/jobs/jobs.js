@@ -3897,7 +3897,7 @@ class Bars {
         const effectId = m.groups.effectId.toUpperCase();
         const f = this.gainEffectFuncMap[effectId];
         if (f)
-          f(name, m.groups);
+          f(effectId, m.groups);
         this.buffTracker.onYouGainEffect(effectId, m.groups);
       }
       m = log.match(kMobGainsEffectRegex);
@@ -3912,7 +3912,7 @@ class Bars {
           this.dotTarget.push(m.groups.targetId);
         const f = this.mobGainEffectFromYouFuncMap[effectId];
         if (f)
-          f(name, m.groups);
+          f(effectId, m.groups);
       }
     } else if (type === '30') {
       let m = log.match(kYouLoseEffectRegex);
@@ -3920,7 +3920,7 @@ class Bars {
         const effectId = m.groups.effectId.toUpperCase();
         const f = this.loseEffectFuncMap[effectId];
         if (f)
-          f(name, m.groups);
+          f(effectId, m.groups);
         this.buffTracker.onYouLoseEffect(effectId, m.groups);
       }
       m = log.match(kMobLosesEffectRegex);
