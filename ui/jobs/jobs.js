@@ -3908,7 +3908,7 @@ class Bars {
       m = log.match(kMobGainsEffectFromYouRegex);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
-        if (effectId in this.mobGainEffectFromYouFuncMap)
+        if (trackedDoTs.includes(effectId))
           this.dotTarget.push(m.groups.targetId);
         const f = this.mobGainEffectFromYouFuncMap[effectId];
         if (f)
