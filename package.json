@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "node_modules/.bin/webpack --config webpack/webpack.config.cjs --mode production",
-    "start": "node_modules/.bin/webpack-dev-server --config webpack/webpack.config.cjs --mode development",
+    "start": "node_modules/.bin/webpack-dev-server --config webpack/webpack.config.cjs --mode development --devtool source-map",
     "lint": "node_modules/.bin/eslint **/*.{js,cjs,mjs}",
     "lintfix": "node_modules/.bin/eslint --fix **/*.{js,cjs,mjs}",
     "stylelint": "node_modules/.bin/stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
