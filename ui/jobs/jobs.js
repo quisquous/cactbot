@@ -3963,7 +3963,7 @@ class Bars {
       if (line[2] === this.lastAttackedDotTarget &&
         line[4] === 'DoT' &&
         line[5] === '0') {
-        // 0 if not fleld setting DoT
+        // 0 if not field setting DoT
         this.updateDotTimerFuncs.forEach((f) => {
           if (f)
             f();
