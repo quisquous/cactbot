@@ -49,6 +49,7 @@ export default {
         text: {
           en: 'Avoid Fire Orbs',
           de: 'Weiche den Feuerorbs aus',
+          ko: '불구슬 피하기',
         },
       },
     },
@@ -66,6 +67,7 @@ export default {
         text: {
           en: 'Away From Fireballs',
           de: 'Weg von den Feuerkugeln',
+          ko: '불구슬 피하기',
         },
       },
     },
@@ -104,6 +106,7 @@ export default {
         text: {
           en: '5x Puddles on YOU',
           de: '5x Flächen auf DIR',
+          ko: '5회 장판 대상자',
         },
       },
     },
@@ -128,6 +131,7 @@ export default {
         text: {
           en: 'OUT OF THE LAKE',
           de: 'RAUS AUS DEM SEE',
+          ko: '물웅덩이에서 벗어나기',
         },
       },
     },
@@ -191,10 +195,12 @@ export default {
         dynamo: {
           en: 'Close to blue staff',
           de: 'Nahe am blauen Stab',
+          ko: '파랑 지팡이 근처로',
         },
         chariot: {
           en: 'Away from red staff',
           de: 'Weg vom roten Stab',
+          ko: '빨강 지팡이에서 떨어지기',
         },
       },
       run: (data) => delete data.dynamo,
@@ -244,14 +250,17 @@ export default {
         target: {
           en: 'Laser on YOU',
           de: 'Laser auf DIR',
+          ko: '레이저 대상자',
         },
         knockback: {
           en: 'Knockback laser on YOU',
           de: 'Rückstoßlaser auf DIR',
+          ko: '넉백 레이저 대상자',
         },
         avoid: {
           en: 'Avoid tethers',
           de: 'Vermeide die Verbindungen',
+          ko: '선 피하기',
         },
       },
       run: (data) => delete data.tethers,
