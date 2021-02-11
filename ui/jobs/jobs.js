@@ -1289,6 +1289,7 @@ class Bars {
     this.mudraTriggerCd = true;
 
     this.dotTarget = [];
+    this.trackedDoTs = [];
     this.comboFuncs = [];
     this.jobFuncs = [];
     this.changeZoneFuncs = [];
@@ -1552,6 +1553,9 @@ class Bars {
 
     // Hide UI except HP and MP bar if in pvp area.
     this.UpdateUIVisibility();
+
+    // set up DoT effect ids for tracking target
+    this.trackedDoTs = Object.keys(this.mobGainEffectFromYouFuncMap);
   }
 
   validateKeys() {
@@ -3889,7 +3893,6 @@ class Bars {
     const log = e.rawLine;
 
     const type = line[0];
-    const trackedDoTs = Object.keys(this.mobGainEffectFromYouFuncMap);
 
     if (type === '26') {
       let m = log.match(kYouGainEffectRegex);
@@ -3908,7 +3911,7 @@ class Bars {
       m = log.match(kMobGainsEffectFromYouRegex);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
-        if (trackedDoTs.includes(effectId))
+        if (this.trackedDoTs.includes(effectId))
           this.dotTarget.push(m.groups.targetId);
         const f = this.mobGainEffectFromYouFuncMap[effectId];
         if (f)
@@ -3931,7 +3934,7 @@ class Bars {
       m = log.match(kMobLosesEffectFromYouRegex);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
-        if (trackedDoTs.includes(effectId)) {
+        if (this.trackedDoTs.includes(effectId)) {
           const index = this.dotTarget.indexOf(m.groups.targetId);
           if (index > -1)
             this.dotTarget.splice(index, 1);
