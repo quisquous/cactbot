@@ -14,8 +14,8 @@ const kAddleJobs = [...kCasterDpsJobs];
 const kCleanseJobs = ['BLU', 'BRD', ...kHealerJobs];
 const kAllRoles = ['tank', 'healer', 'dps', 'crafter', 'gatherer', 'none'];
 
-type Role = typeof kAllRoles[number]
-type Job = 'NONE' | typeof kDpsJobs[number]
+export type Role = typeof kAllRoles[number]
+export type Job = 'NONE' | typeof kDpsJobs[number]
 type ID =
   0
   | 1
@@ -99,47 +99,15 @@ const kJobEnumToName: { [key in ID]: Job } = {
   38: 'DNC',
 };
 
-const kNameToJobEnum: { [key in Job]: ID } = {
-  'NONE': 0,
-  'GLA': 1,
-  'PGL': 2,
-  'MRD': 3,
-  'LNC': 4,
-  'ARC': 5,
-  'CNJ': 6,
-  'THM': 7,
-  'CRP': 8,
-  'BSM': 9,
-  'ARM': 10,
-  'GSM': 11,
-  'LTW': 12,
-  'WVR': 13,
-  'ALC': 14,
-  'CUL': 15,
-  'MIN': 16,
-  'BTN': 17,
-  'FSH': 18,
-  'PLD': 19,
-  'MNK': 20,
-  'WAR': 21,
-  'DRG': 22,
-  'BRD': 23,
-  'WHM': 24,
-  'BLM': 25,
-  'ACN': 26,
-  'SMN': 27,
-  'SCH': 28,
-  'ROG': 29,
-  'NIN': 30,
-  'MCH': 31,
-  'DRK': 32,
-  'AST': 33,
-  'SAM': 34,
-  'RDM': 35,
-  'BLU': 36,
-  'GNB': 37,
-  'DNC': 38,
-};
+function swap(data: Record<ID, string>) {
+  const ret: Record<string, ID> = {};
+  for (const [key, value] of Object.entries(data))
+    ret[value] = parseInt(key) as ID;
+
+  return ret;
+}
+
+const kNameToJobEnum: { [key in Job]: ID } = swap(kJobEnumToName);
 
 const jobToRoleMap: Map<Job, Role> = (() => {
   function addToMap(map: Map<Job, Role>, keys: Job[], value: Role) {
@@ -154,9 +122,10 @@ const jobToRoleMap: Map<Job, Role> = (() => {
   addToMap(map, kGatheringJobs, 'gatherer');
 
   return new Proxy(map, {
-    get: function(target, element) {
+    get: function(target, element: string) {
+      if (element === 'get') return (s: string) => target.get.call(target, s); // bypass `Map.get() `
       if (target.has(element))
-        return target.get(element);
+        return target.get(element) || '';
       console.log(`Unknown job role ${element}`);
       return '';
     },
@@ -168,19 +137,18 @@ export function jobEnumToJob(id: ID): Job {
 }
 
 export function jobToJobEnum(job: Job): ID {
-  return kNameToJobEnum[job];
+  return kNameToJobEnum[job] || 0;
 }
 
-
 export function jobToRole(job: Job): Role {
-  return jobToRoleMap.get(job) as Role;
+  return jobToRoleMap.get(job) || '';
 }
 
 export function getAllRoles(): Role[] {
   return kAllRoles;
 }
 
-export function isTankJob(job: Job):boolean {
+export function isTankJob(job: Job): boolean {
   return kTankJobs.includes(job);
 }
 
@@ -242,3 +210,25 @@ export function canAddle(job: Job): boolean {
   return kAddleJobs.includes(job);
 }
 
+export default {
+  jobEnumToJob,
+  jobToJobEnum,
+  jobToRole,
+  getAllRoles,
+  isTankJob,
+  isHealerJob,
+  isMeleeDpsJob,
+  isRangedDpsJob,
+  isCasterDpsJob,
+  isDpsJob,
+  isCraftingJob,
+  isGatheringJob,
+  isCombatJob,
+  canStun,
+  canSilence,
+  canSleep,
+  canCleanse,
+  canFeint,
+  jobToRoleMap,
+  canAddle,
+};

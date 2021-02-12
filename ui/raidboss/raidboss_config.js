@@ -294,7 +294,7 @@ class DoNothingFuncProxy {
       },
 
       get(target, name) {
-        return () => { };
+        return () => {};
       },
     });
   }
@@ -554,7 +554,7 @@ class RaidbossConfigurator {
       currentHP: 1000,
       options: this.base.configOptions,
       ShortName: (x) => x,
-      StopCombat: () => { },
+      StopCombat: () => {},
       ParseLocaleFloat: parseFloat,
       CanStun: () => Util.canStun(this.job),
       CanSilence: () => Util.canSilence(this.job),

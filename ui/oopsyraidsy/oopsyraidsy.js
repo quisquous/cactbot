@@ -9,6 +9,7 @@ import ZoneId from '../../resources/zone_id.js';
 import ZoneInfo from '../../resources/zone_info.js';
 
 import './oopsyraidsy_config.js';
+import '../../resources/common';
 
 import oopsyFileData from './data/manifest.txt';
 

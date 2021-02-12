@@ -1,21 +1,28 @@
 // For consistency with Responses, Conditions
 // are also functions.
 
+/**
+ * @typedef { import("../typing/data.d.ts").Data } Data
+ */
 
 export default class Conditions {
   static targetIsYou() {
-    return (data, matches) => data.me === matches.target;
+    return (/** Data */data, matches) => data.me === matches.target;
   }
+
   static targetIsNotYou() {
-    return (data, matches) => data.me !== matches.target;
+    return (/** Data */data, matches) => data.me !== matches.target;
   }
+
   static caresAboutAOE() {
-    return (data) => data.role === 'tank' || data.role === 'healer' || data.CanAddle() || data.job === 'BLU';
+    return (/** Data */data) => data.role === 'tank' || data.role === 'healer' || data.CanAddle() || data.job === 'BLU';
   }
+
   static caresAboutMagical() {
-    return (data) => data.role === 'tank' || data.role === 'healer' || data.CanAddle() || data.job === 'BLU';
+    return (/** Data */data) => data.role === 'tank' || data.role === 'healer' || data.CanAddle() || data.job === 'BLU';
   }
+
   static caresAboutPhysical() {
-    return (data) => data.role === 'tank' || data.role === 'healer' || data.CanFeint() || data.job === 'BLU';
+    return (/** Data */data) => data.role === 'tank' || data.role === 'healer' || data.CanFeint() || data.job === 'BLU';
   }
 }

@@ -26,7 +26,10 @@ module.exports = {
       'extends': [
         'plugin:@typescript-eslint/recommended',
       ],
-      'rules': { '@typescript-eslint/ban-ts-comment': 1 },
+      'rules': {
+        '@typescript-eslint/no-non-null-assertion': 2,
+        '@typescript-eslint/no-explicit-any': 2,
+      },
     },
   ],
   'ignorePatterns': [
@@ -51,7 +54,7 @@ module.exports = {
   'settings': {
     'import/resolver': {
       'node': {
-        'extensions': ['.js', '.jsx', '.ts', '.tsx'],
+        'extensions': ['.ts', '.js'],
       },
     },
   },

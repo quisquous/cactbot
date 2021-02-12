@@ -1,7 +1,7 @@
 {
   "name": "cactbot",
   "license": "Apache-2.0",
-  "type": "module",
+  "typings": "./typings",
   "repository": {
     "type": "git",
     "url": "https://github.com/quisquous/cactbot"
@@ -13,11 +13,12 @@
     "lintfix": "node_modules/.bin/eslint --fix **/*.{js,cjs,mjs,ts}",
     "stylelint": "node_modules/.bin/stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
     "markdownlint": "node_modules/.bin/markdownlint . --ignore node_modules --ignore publish --ignore CactbotOverlay/ThirdParty",
-    "test": "python test/run_tests.py",
+    "test": "jest --coverage && python test/run_tests.py",
     "lint-staged": "node_modules/.bin/lint-staged",
     "coverage-report": "node util/gen_coverage_report.js"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.20",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.0",
     "chai": "^4.2.0",
@@ -27,12 +28,14 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-rulesdir": "^0.1.0",
     "husky": "^4.2.5",
+    "jest": "^26.6.3",
     "lint-staged": "^10.0.8",
     "markdownlint-cli": "^0.20.0",
     "raw-loader": "^4.0.2",
     "style-loader": "^2.0.0",
     "stylelint": "^13.8.0",
     "stylelint-config-standard": "^19.0.0",
+    "ts-jest": "^26.5.1",
     "ts-loader": "^8.0.17",
     "typescript": "^4.1.5",
     "webpack": "^5.11.0",

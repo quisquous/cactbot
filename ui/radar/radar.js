@@ -3,7 +3,7 @@ import NetRegexes from '../../resources/netregexes.js';
 import UserConfig from '../../resources/user_config.js';
 
 import './radar_config.js';
-import '../../resources/common.ts';
+import '../../resources/common.js';
 
 const Options = {
   PopSound: '../../resources/sounds/freesound/sonar.ogg',

@@ -132,7 +132,7 @@ export const addRemotePlayerSelectUI = function(lang) {
     const forceTTS = document.getElementById('player-select-tts').checked;
     let playerName = '';
     let radioIndex = 0;
-    for (; ;) {
+    for (;;) {
       radioIndex++;
       const elem = document.getElementById('player-radio-' + radioIndex);
       if (!elem)
@@ -156,7 +156,7 @@ export const addRemotePlayerSelectUI = function(lang) {
     // Use 1/0 to be consistent with other query parameters rather than string true/false.
     paramMap.forceTTS = forceTTS ? 1 : 0;
 
-    // TODO: OverlayPlugin common.ts doesn't support uri encoded OVERLAY_WS parameters.
+    // TODO: OverlayPlugin common.js doesn't support uri encoded OVERLAY_WS parameters.
     // So this can't use URLSearchParams.toString yet.  Manually build string.
     let search = '?';
     for (const [k, v] of Object.entries(paramMap))

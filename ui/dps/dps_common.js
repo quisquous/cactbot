@@ -1,3 +1,4 @@
+import '../../resources/common';
 import ContentType from '../../resources/content_type.js';
 import * as Util from '../../resources/util';
 import ZoneInfo from '../../resources/zone_info.js';

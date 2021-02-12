@@ -13,7 +13,7 @@ import _Regexes from './regexes.js';
 const Regexes = _Regexes;
 import { Responses as _Responses } from './responses.js';
 const Responses = _Responses;
-import { Util as _Util } from './common.ts';
+import * as _Util from './util';
 const Util = _Util;
 import _ZoneId from './zone_id.js';
 const ZoneId = _ZoneId;

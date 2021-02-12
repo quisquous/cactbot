@@ -138,7 +138,7 @@
 
     if (ws) {
       msg.rseq = rseqCounter++;
-      p = new Promise((resolve) => {
+      p = new Promise((resolve, reject) => {
         responsePromises[msg.rseq] = resolve;
       });
 

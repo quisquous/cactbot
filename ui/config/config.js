@@ -10,7 +10,7 @@ import '../jobs/jobs_config.js';
 import '../oopsyraidsy/oopsyraidsy_config.js';
 import '../radar/radar_config.js';
 import '../raidboss/raidboss_config.js';
-import '../../resources/common.ts';
+import '../../resources/common.js';
 
 const Options = {};
 let gConfig = null;
