@@ -2,7 +2,7 @@ import PartyTracker from '../../resources/party.js';
 import Regexes from '../../resources/regexes.js';
 import { triggerOutputFunctions } from '../../resources/responses.js';
 import UserConfig from '../../resources/user_config.js';
-import { Util } from '../../resources/common.js';
+import * as Util from '../../resources/util';
 import raidbossFileData from './data/manifest.txt';
 import raidbossOptions from './raidboss_options.js';
 
@@ -294,7 +294,7 @@ class DoNothingFuncProxy {
       },
 
       get(target, name) {
-        return () => {};
+        return () => { };
       },
     });
   }
@@ -554,7 +554,7 @@ class RaidbossConfigurator {
       currentHP: 1000,
       options: this.base.configOptions,
       ShortName: (x) => x,
-      StopCombat: () => {},
+      StopCombat: () => { },
       ParseLocaleFloat: parseFloat,
       CanStun: () => Util.canStun(this.job),
       CanSilence: () => Util.canSilence(this.job),

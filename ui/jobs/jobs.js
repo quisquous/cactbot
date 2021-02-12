@@ -4,7 +4,7 @@ import { LocaleRegex } from '../../resources/translations.js';
 import Regexes from '../../resources/regexes.js';
 import NetRegexes from '../../resources/netregexes.js';
 import UserConfig from '../../resources/user_config.js';
-import { Util } from '../../resources/common.js';
+import * as Util from '../../resources/util';
 import ZoneInfo from '../../resources/zone_info.js';
 import ZoneId from '../../resources/zone_id.js';
 
@@ -1835,7 +1835,7 @@ class Bars {
       // Because thresholds are nonmonotonic (when finishing a combo)
       // be careful about setting them in ways that are visually poor.
       if (eyeBox.value >= oldThreshold &&
-          eyeBox.value >= newThreshold)
+        eyeBox.value >= newThreshold)
         eyeBox.threshold = newThreshold;
       else
         eyeBox.threshold = oldThreshold;
@@ -3651,7 +3651,7 @@ class Bars {
     if (!opacityContainer)
       return;
     if (this.inCombat || !this.options.LowerOpacityOutOfCombat ||
-        Util.isCraftingJob(this.job) || Util.isGatheringJob(this.job))
+      Util.isCraftingJob(this.job) || Util.isGatheringJob(this.job))
       opacityContainer.style.opacity = 1.0;
     else
       opacityContainer.style.opacity = this.options.OpacityOutOfCombat;

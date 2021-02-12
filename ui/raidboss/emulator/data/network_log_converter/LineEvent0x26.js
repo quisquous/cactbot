@@ -1,6 +1,6 @@
 import LineEvent from './LineEvent.js';
 import EmulatorCommon from '../../EmulatorCommon.js';
-import { Util } from '../../../../../resources/common.js';
+import { Util } from '../../../../../resources/common.ts';
 
 // Network status effect event
 export class LineEvent0x26 extends LineEvent {

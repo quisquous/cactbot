@@ -2,7 +2,7 @@ import FisherUI from './fisher-ui.js';
 import SeaBase from './seabase.js';
 import UserConfig from '../../resources/user_config.js';
 
-import '../../resources/common.js';
+import '../../resources/common.ts';
 
 const Options = {
   IQRHookQuantity: 100,

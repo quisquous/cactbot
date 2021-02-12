@@ -1,4 +1,4 @@
-import { Util } from './common.js';
+import * as Util from './util.ts';
 
 export default class PartyTracker {
   constructor() {

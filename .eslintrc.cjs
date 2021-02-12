@@ -48,6 +48,13 @@ module.exports = {
   'plugins': [
     'rulesdir',
   ],
+  'settings': {
+    'import/resolver': {
+      'node': {
+        'extensions': ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+  },
   'rules': {
     'arrow-spacing': [
       'error',

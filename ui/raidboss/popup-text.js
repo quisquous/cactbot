@@ -3,7 +3,7 @@ import BrowserTTSEngine from './browser_tts_engine.js';
 import { addPlayerChangedOverrideListener } from '../../resources/player_override.js';
 import PartyTracker from '../../resources/party.js';
 import Regexes from '../../resources/regexes.js';
-import { Util } from '../../resources/common.js';
+import * as Util from '../../resources/util';
 import ZoneId from '../../resources/zone_id.js';
 
 // There should be (at most) six lines of instructions.
@@ -378,7 +378,7 @@ export class PopupText {
       if (haveZoneId && set.zoneId === undefined) {
         const filename = set.filename ? `'${set.filename}'` : '(user file)';
         console.error(`Trigger set has zoneId, but with nothing specified in ${filename}.  ` +
-                      `Did you misspell the ZoneId.ZoneName?`);
+          `Did you misspell the ZoneId.ZoneName?`);
         continue;
       }
 
@@ -684,14 +684,14 @@ export class PopupText {
 
       // The trigger body must run synchronously when there is no promise.
       if (promise)
-        promise.then(triggerPostPromise, () => {});
+        promise.then(triggerPostPromise, () => { });
       else
         triggerPostPromise();
     };
 
     // The trigger body must run synchronously when there is no delay.
     if (delayPromise)
-      delayPromise.then(triggerPostDelay, () => {});
+      delayPromise.then(triggerPostDelay, () => { });
     else
       triggerPostDelay();
   }

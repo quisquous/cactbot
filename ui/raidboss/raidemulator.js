@@ -1,4 +1,4 @@
-import '../../resources/common.js';
+import '../../resources/common.ts';
 import './raidboss_config.js';
 
 import EmulatedMap from './emulator/ui/EmulatedMap.js';

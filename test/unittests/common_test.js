@@ -1,9 +1,9 @@
-import { Util } from '../../resources/common.js';
+import * as Util from '../../resources/util';
 import chai from 'chai';
 
 const { assert } = chai;
 
-// Duplicate values from common.js
+// Duplicate values from common.ts
 // Expect to update these as patches and expansions change job capabilities
 const jobs = (() => {
   class Job {
@@ -43,7 +43,7 @@ const jobs = (() => {
 })();
 
 const tests = {
-  // Check test job values match actual values from common.js and return their expected values
+  // Check test job values match actual values from common.ts and return their expected values
   actionsTest: () => {
     [['Addle', Util.canAddle], ['Cleanse', Util.canCleanse], ['Feint', Util.canFeint], ['Silence', Util.canSilence], ['Sleep', Util.canSleep], ['Stun', Util.canStun]]
       .forEach(([action, functionCall]) => {
