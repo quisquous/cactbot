@@ -112,113 +112,116 @@ const cactbotHtmlChunksMap = {
   },
 };
 
-module.exports = {
-  entry: {
-    ...(() => {
-      const ret = {};
-      Object.values(cactbotModules).forEach((_module) => {
-        ret[_module] = './' + _module + '.js';
-      });
-      return ret;
-    })(),
-  },
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new TerserWebpackPlugin(),
-      new CssMinimizerPlugin({
-        parallel: true,
-      }),
-    ],
-    splitChunks: {
-      cacheGroups: {
-        'raidboss_data': {
-          test: /[\\/]ui[\\/]raidboss[\\/]data[\\/]/,
-          name: cactbotChunks.raidbossData,
-          chunks: 'all',
-        },
-        'oopsyraidsy_data': {
-          test: /[\\/]ui[\\/]oopsyraidsy[\\/]data[\\/]/,
-          name: cactbotChunks.oopsyraidsyData,
-          chunks: 'all',
+module.exports = function (env, argv) {
+  return {
+    entry: {
+      ...(() => {
+        const ret = {};
+        Object.values(cactbotModules).forEach((_module) => {
+          ret[_module] = './' + _module + '.js';
+        });
+        return ret;
+      })(),
+    },
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserWebpackPlugin(),
+        new CssMinimizerPlugin({
+          parallel: true,
+        }),
+      ],
+      splitChunks: {
+        cacheGroups: {
+          'raidboss_data': {
+            test: /[\\/]ui[\\/]raidboss[\\/]data[\\/]/,
+            name: cactbotChunks.raidbossData,
+            chunks: 'all',
+          },
+          'oopsyraidsy_data': {
+            test: /[\\/]ui[\\/]oopsyraidsy[\\/]data[\\/]/,
+            name: cactbotChunks.oopsyraidsyData,
+            chunks: 'all',
+          },
         },
       },
     },
-  },
-  output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, '../dist'),
-  },
-  devServer: {
-    contentBase: './dist',
-    inline: false,
-    writeToDisk: true,
-  },
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '',
-            },
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              url: false,
-            },
-          },
-        ],
-      },
-      {
-        test: /data[\\\/]manifest\.txt$/,
-        use: [
-          {
-            loader: './webpack/loaders/manifest-loader.cjs',
-          },
-        ],
-      },
-      {
-        test: /data[\\\/](?!manifest\.txt).*\.txt$/,
-        use: [
-          {
-            loader: 'raw-loader',
-          },
-          {
-            loader: './webpack/loaders/timeline-loader.cjs',
-          },
-        ],
-      },
-    ],
-  },
-  plugins: [
-    new webpack.ProgressPlugin(),
-    new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-    }),
-    ...(() => Object.entries(cactbotHtmlChunksMap).map(([file, config]) => new HtmlWebpackPlugin({
-      template: file,
-      filename: file,
-      ...config,
-    })))(),
-    new CopyPlugin({
-      patterns: [
-        // {
-        //   from: '@(ui|resources|util)/**/*.css',
-        // },
+    devtool: argv.mode === 'development' ? 'source-map' : undefined,
+    output: {
+      filename: '[name].js',
+      path: path.resolve(__dirname, '../dist'),
+    },
+    devServer: {
+      contentBase: './dist',
+      inline: false,
+      writeToDisk: true,
+    },
+    module: {
+      rules: [
         {
-          // copy sounds and images
-          from: 'resources/@(ffxiv|sounds)/**/*',
+          test: /\.css$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: '',
+              },
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                url: false,
+              },
+            },
+          ],
         },
         {
-          // copy more html in raidboss module
-          from: 'ui/raidboss/raidboss_*.html',
+          test: /data[\\\/]manifest\.txt$/,
+          use: [
+            {
+              loader: './webpack/loaders/manifest-loader.cjs',
+            },
+          ],
+        },
+        {
+          test: /data[\\\/](?!manifest\.txt).*\.txt$/,
+          use: [
+            {
+              loader: 'raw-loader',
+            },
+            {
+              loader: './webpack/loaders/timeline-loader.cjs',
+            },
+          ],
         },
       ],
-    }),
-  ],
+    },
+    plugins: [
+      new webpack.ProgressPlugin(),
+      new CleanWebpackPlugin(),
+      new MiniCssExtractPlugin({
+        filename: '[name].css',
+      }),
+      ...(() => Object.entries(cactbotHtmlChunksMap).map(([file, config]) => new HtmlWebpackPlugin({
+        template: file,
+        filename: file,
+        ...config,
+      })))(),
+      new CopyPlugin({
+        patterns: [
+          // {
+          //   from: '@(ui|resources|util)/**/*.css',
+          // },
+          {
+            // copy sounds and images
+            from: 'resources/@(ffxiv|sounds)/**/*',
+          },
+          {
+            // copy more html in raidboss module
+            from: 'ui/raidboss/raidboss_*.html',
+          },
+        ],
+      }),
+    ],
+  };
 };
