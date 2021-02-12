@@ -50,6 +50,7 @@
 03-hw/dungeon/gubal_library_hard.js
 03-hw/dungeon/gubal_library_hard.txt
 03-hw/dungeon/sohm_al.js
+03-hw/dungeon/sohm_al.txt
 03-hw/dungeon/sohm_al_hard.js
 03-hw/dungeon/sohm_al_hard.txt
 03-hw/dungeon/the_vault.js
@@ -108,6 +109,8 @@
 04-sb/dungeon/ghimlyt_dark.txt
 04-sb/dungeon/hells_lid.js
 04-sb/dungeon/hells_lid.txt
+04-sb/dungeon/swallows_compass.js
+04-sb/dungeon/swallows_compass.txt
 04-sb/dungeon/temple_of_the_fist.js
 04-sb/dungeon/temple_of_the_fist.txt
 04-sb/dungeon/the_burn.js
@@ -218,6 +221,8 @@
 05-shb/dungeon/twinning.txt
 05-shb/eureka/bozjan_southern_front.js
 05-shb/eureka/bozjan_southern_front.txt
+05-shb/eureka/delubrum_reginae.js
+05-shb/eureka/delubrum_reginae.txt
 05-shb/etc/the_diadem.js
 05-shb/raid/e1n.js
 05-shb/raid/e1n.txt

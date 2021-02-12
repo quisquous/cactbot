@@ -261,7 +261,7 @@ export default {
         'Resin Bomb': '粘着弾',
         'Royal Fount': 'ロイヤルファウント',
         'Self-Destruct': '自爆',
-        'Sturm Doll': 'シュツルムドール',
+        'Sturm Doll Add': '雑魚: シュツルムドール',
       },
     },
     {

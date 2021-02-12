@@ -43,6 +43,17 @@ jobs:
       - name: Build Cactbot Plugin
         run: |
           dotnet build plugin/Cactbot.sln /p:Configuration=Release /p:Platform=x64
+
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+      - uses: actions/cache@v2
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: Install Node Dependencies
         run: |
           npm install

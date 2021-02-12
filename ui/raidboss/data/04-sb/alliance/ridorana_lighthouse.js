@@ -663,6 +663,12 @@ export default {
         'Yiazmat': '鬼龍ヤズマット',
       },
       'replaceText': {
+        '\\(close\\)': '(近い)',
+        '\\(combo\\)': '(コンボ)',
+        '\\(cross\\)': '(十字)',
+        '\\(orbit\\)': '(曲線)',
+        '\\(far\\)': '(遠い)',
+        '\\(single\\)': '(一撃)',
         'Accelerate': '突貫する',
         'Annihilation Mode': 'ジェノサイドチップ',
         'Archaeodemon spawn': 'アルケオデーモン',

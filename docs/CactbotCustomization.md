@@ -290,7 +290,7 @@ it will override the built-in version.
 This chunk of code is what you would paste into the bottom of your user-defined js file.
 
 ```javascript
-Options.Triggers.push([{
+Options.Triggers.push({
   zoneId: ZoneId.MatchAll,
   triggers: [
     {
@@ -314,7 +314,7 @@ Options.Triggers.push([{
       },
     },
   ],
-]);
+});
 ```
 
 You could also just delete the `condition` function entirely here,
@@ -411,8 +411,8 @@ when their names are called out
 ```javascript
 Options.PlayerNicks = {
   // 'Firstname Lastname': 'Nickname',
-  'Banana Nana', 'Nana',
-  'The Great\'one', 'Joe', // The Great'one => Joe, needs a backslash for the apostrophe
+  'Banana Nana': 'Nana',
+  'The Great\'one': 'Joe', // The Great'one => Joe, needs a backslash for the apostrophe
   'Viewing Cutscene': 'Cut',
   // etc, with more nicknames
 };

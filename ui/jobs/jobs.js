@@ -1291,9 +1291,12 @@ class Bars {
     this.circleOfPower = 0;
     this.mudraTriggerCd = true;
 
+    this.dotTarget = [];
+    this.trackedDoTs = [];
     this.comboFuncs = [];
     this.jobFuncs = [];
     this.changeZoneFuncs = [];
+    this.updateDotTimerFuncs = [];
     this.gainEffectFuncMap = {};
     this.mobGainEffectFromYouFuncMap = {};
     this.loseEffectFuncMap = {};
@@ -1553,6 +1556,9 @@ class Bars {
 
     // Hide UI except HP and MP bar if in pvp area.
     this.UpdateUIVisibility();
+
+    // set up DoT effect ids for tracking target
+    this.trackedDoTs = Object.keys(this.mobGainEffectFromYouFuncMap);
   }
 
   validateKeys() {
@@ -2216,7 +2222,7 @@ class Bars {
       // Show whether you already have this seal
       // O means it's OK to play this card
       // X means don't play this card directly if time permits
-      if (card === 'None')
+      if (!cardsMap[card])
         cardBox.innerText = '';
       else if (seals.includes(cardsMap[card].seal))
         cardBox.innerText = 'X';
@@ -2668,15 +2674,16 @@ class Bars {
     const repertoireBox = this.addResourceBox({
       classList: ['brd-color-song'],
     });
-    this.repertoireTimer = this.addTimerBar({
+    const repertoireTimer = this.addTimerBar({
       id: 'brd-timers-repertoire',
       fgColor: 'brd-color-song',
     });
     // Only with-DoT-target you last attacked will trigger this timer.
     // So it work not well in mutiple targets fight.
-    this.UpdateDotTimer = () => {
-      this.repertoireTimer.duration = 2.91666;
-    };
+    this.updateDotTimerFuncs.push(() => {
+      repertoireTimer.duration = 2.91666;
+    });
+
     const soulVoiceBox = this.addResourceBox({
       classList: ['brd-color-soulvoice'],
     });
@@ -3889,13 +3896,14 @@ class Bars {
     const log = e.rawLine;
 
     const type = line[0];
+
     if (type === '26') {
       let m = log.match(kYouGainEffectRegex);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
         const f = this.gainEffectFuncMap[effectId];
         if (f)
-          f(name, m.groups);
+          f(effectId, m.groups);
         this.buffTracker.onYouGainEffect(effectId, m.groups);
       }
       m = log.match(kMobGainsEffectRegex);
@@ -3903,13 +3911,22 @@ class Bars {
         const effectId = m.groups.effectId.toUpperCase();
         this.buffTracker.onMobGainsEffect(effectId, m.groups);
       }
+      m = log.match(kMobGainsEffectFromYouRegex);
+      if (m) {
+        const effectId = m.groups.effectId.toUpperCase();
+        if (this.trackedDoTs.includes(effectId))
+          this.dotTarget.push(m.groups.targetId);
+        const f = this.mobGainEffectFromYouFuncMap[effectId];
+        if (f)
+          f(effectId, m.groups);
+      }
     } else if (type === '30') {
       let m = log.match(kYouLoseEffectRegex);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
         const f = this.loseEffectFuncMap[effectId];
         if (f)
-          f(name, m.groups);
+          f(effectId, m.groups);
         this.buffTracker.onYouLoseEffect(effectId, m.groups);
       }
       m = log.match(kMobLosesEffectRegex);
@@ -3917,8 +3934,17 @@ class Bars {
         const effectId = m.groups.effectId.toUpperCase();
         this.buffTracker.onMobLosesEffect(effectId, m.groups);
       }
+      m = log.match(kMobLosesEffectFromYouRegex);
+      if (m) {
+        const effectId = m.groups.effectId.toUpperCase();
+        if (this.trackedDoTs.includes(effectId)) {
+          const index = this.dotTarget.indexOf(m.groups.targetId);
+          if (index > -1)
+            this.dotTarget.splice(index, 1);
+        }
+      }
     } else if (type === '21' || type === '22') {
-      const m = log.match(kYouUseAbilityRegex);
+      let m = log.match(kYouUseAbilityRegex);
       if (m) {
         const id = m.groups.id;
         this.combo.HandleAbility(id);
@@ -3931,40 +3957,7 @@ class Bars {
         if (m)
           this.buffTracker.onUseAbility(m.groups.id, m.groups);
       }
-    }
-    // For extremely complex BRD
-    if (this.job !== 'BRD')
-      return;
-    if (!this.dotTarget)
-      this.dotTarget = [];
-    const brdDoTs = Object.freeze([
-      EffectId.Stormbite,
-      EffectId.Windbite,
-      EffectId.CausticBite,
-      EffectId.VenomousBite,
-    ]);
-    if (type === '26') {
-      const m = log.match(kMobGainsEffectFromYouRegex);
-      if (m) {
-        const effectId = m.groups.effectId.toUpperCase();
-        if (Object.values(brdDoTs).includes(effectId))
-          this.dotTarget.push(m.groups.targetId);
-        const f = this.mobGainEffectFromYouFuncMap[effectId];
-        if (f)
-          f(name, m.groups);
-      }
-    } else if (type === '30') {
-      const m = log.match(kMobLosesEffectFromYouRegex);
-      if (m) {
-        const effectId = m.groups.effectId.toUpperCase();
-        if (Object.values(brdDoTs).includes(effectId)) {
-          const index = this.dotTarget.indexOf(m.groups.targetId);
-          if (index > -1)
-            this.dotTarget.splice(index, 1);
-        }
-      }
-    } else if (type === '21' || type === '22') {
-      const m = log.match(kYouUseAbilityRegex);
+      m = log.match(kYouUseAbilityRegex);
       if (m) {
         if (this.dotTarget.includes(m.groups.targetId))
           this.lastAttackedDotTarget = m.groups.targetId;
@@ -3975,8 +3968,13 @@ class Bars {
       // but lastAttackedDotTarget must be your main target.
       if (line[2] === this.lastAttackedDotTarget &&
         line[4] === 'DoT' &&
-        line[5] === '0') // 0 if not fleld setting DoT
-        this.UpdateDotTimer();
+        line[5] === '0') {
+        // 0 if not field setting DoT
+        this.updateDotTimerFuncs.forEach((f) => {
+          if (f)
+            f();
+        });
+      }
     }
   }
 

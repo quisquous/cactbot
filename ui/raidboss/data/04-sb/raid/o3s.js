@@ -6,7 +6,6 @@ import ZoneId from '../../../../../resources/zone_id.js';
 // O3S - Deltascape 3.0 Savage
 export default {
   zoneId: ZoneId.DeltascapeV30Savage,
-  timelineNeedsFixing: true,
   timelineFile: 'o3s.txt',
   triggers: [
     {
@@ -87,6 +86,7 @@ export default {
         othersStackOnHoly: {
           en: 'others stack on ${holyTargets}',
           de: 'andere stacken auf ${holyTargets}',
+          fr: 'Les autres se packent sur ${holyTargets}',
           ja: '他は${holyTargets}と頭割り',
           cn: '其他分摊${holyTargets}',
           ko: '${holyTargets} 다른 쉐어징',
@@ -94,6 +94,7 @@ export default {
         getOut: {
           en: 'Get out',
           de: 'Raus da',
+          fr: 'Sortez',
           ja: '出て',
           cn: '出去',
           ko: '밖으로',
@@ -101,6 +102,7 @@ export default {
         stackOnHoly: {
           en: 'Stack on ${holyTargets}',
           de: 'Stack auf ${holyTargets}',
+          fr: 'Packez-vous sur ${holyTargets}',
           ja: '${holyTargets}と頭割り',
           cn: '分摊${holyTargets}',
           ko: '${holyTargets} 쉐어징',
@@ -108,6 +110,7 @@ export default {
         stackOnYou: {
           en: 'Stack on YOU',
           de: 'Stack auf DIR',
+          fr: 'Package sur VOUS',
           ja: '自分に頭割り',
           cn: '分摊点名',
           ko: '쉐어징 대상자',
@@ -165,6 +168,7 @@ export default {
         goSouthStackOnYou: {
           en: 'Go south: stack on YOU',
           de: 'Nach Süden: stack auf DIR',
+          fr: 'Allez au sud : Package sur VOUS',
           ja: '南へ: 自分に頭割り',
           cn: '去南边分摊点名',
           ko: '남쪽으로: 쉐어징 대상자',
@@ -172,6 +176,7 @@ export default {
         goNorth: {
           en: 'go north',
           de: 'nach norden',
+          fr: 'Allez au nord',
           ja: '南へ',
           cn: '去南边',
           ko: '북쪽으로',
@@ -179,6 +184,7 @@ export default {
         goSouthStackOnFriend: {
           en: 'go south: stack on friend',
           de: 'nach süden: stack auf freund',
+          fr: 'Allez au sud : Package sur un ami',
           ja: '南へ: 頭割り',
           cn: '去南边分摊',
           ko: '남쪽으로: 쉐어징',
@@ -186,6 +192,7 @@ export default {
         stackOutside: {
           en: 'stack outside',
           de: 'außen stacken',
+          fr: 'Packez-vous à l\'extérieur',
           ja: '外へ: 頭割り',
           cn: '去外面分摊',
           ko: '밖으로: 쉐어징',
@@ -193,6 +200,7 @@ export default {
         goNorth2: {
           en: 'go north',
           de: 'nach norden',
+          fr: 'Allez au nord',
           ja: '南へ',
           cn: '去南边',
           ko: '북쪽으로',
@@ -200,6 +208,7 @@ export default {
         stackInside: {
           en: 'stack inside',
           de: 'innen stacken',
+          fr: 'Packez-vous à l\'intérieur',
           ja: '中へ: 頭割り',
           cn: '去里面分摊',
           ko: '안으로: 쉐어징',
@@ -216,6 +225,7 @@ export default {
         text: {
           en: 'Mindjack: Right',
           de: 'Geistlenkung: Rechts',
+          fr: 'Contrainte mentale : Vers la droite',
           ja: 'マインドジャック: 右折',
           cn: '右',
           ko: '정신장악: 오른쪽',
@@ -232,6 +242,7 @@ export default {
         text: {
           en: 'Mindjack: Forward',
           de: 'Geistlenkung: Vorwärts',
+          fr: 'Contrainte mentale : Vers l\'avant',
           ja: 'マインドジャック: 前進',
           cn: '前',
           ko: '정신장악: 앞쪽',
@@ -248,6 +259,7 @@ export default {
         text: {
           en: 'Mindjack: Left',
           de: 'Geistlenkung: Links',
+          fr: 'Contrainte mentale : Vers la gauche',
           ja: 'マインドジャック: 左折',
           cn: '左',
           ko: '정신장악: 왼쪽',
@@ -264,6 +276,7 @@ export default {
         text: {
           en: 'Mindjack: Back',
           de: 'Geistlenkung: Zurück',
+          fr: 'Contrainte mentale : Vers l\'arrière',
           ja: 'マインドジャック: 後退',
           cn: '后',
           ko: '정신장악: 뒤쪽',
@@ -319,6 +332,7 @@ export default {
         text: {
           en: 'The Queen\'s Waltz: Books',
           de: 'Tanz der Königin: Bücher',
+          fr: 'Danse de la reine : Livres',
           ja: '女王の舞い: 本',
           cn: '中间两排分格站位',
           ko: '여왕의 춤: 책',
@@ -326,6 +340,7 @@ export default {
         tts: {
           en: 'books',
           de: 'bücher',
+          fr: 'livres',
           ja: '本',
           cn: '书',
           ko: '책',
@@ -346,6 +361,7 @@ export default {
         text: {
           en: 'The Queen\'s Waltz: Clock',
           de: 'Tanz der Königin: Uhr',
+          fr: 'Danse de la reine : Position',
           ja: '女王の舞い: 散開',
           cn: '万变水波站位',
           ko: '여왕의 춤: 산개',
@@ -353,6 +369,7 @@ export default {
         tts: {
           en: 'clock',
           de: 'uhr',
+          fr: 'position',
           ja: '散開',
           cn: '万变水波',
           ko: '산개',
@@ -373,6 +390,7 @@ export default {
         text: {
           en: 'The Queen\'s Waltz: Crystal Square',
           de: 'Tanz der Königin: Kristallfeld',
+          fr: 'Danse de la reine : Carré de cristal',
           ja: '女王の舞い: 床',
           cn: '站在蓝地板',
           ko: '여왕의 춤: 대지',
@@ -380,6 +398,7 @@ export default {
         tts: {
           en: 'blue square',
           de: 'blaues feld',
+          fr: 'carré bleu',
           ja: '青い床',
           cn: '蓝地板',
           ko: '파란 장판',
@@ -400,6 +419,7 @@ export default {
         text: {
           en: 'The Queen\'s Waltz: Tethers',
           de: 'Tanz der Königin: Ranken',
+          fr: 'Danse de la reine : Liens',
           ja: '女王の舞い: 茨',
           cn: '先集中后扯线',
           ko: '여왕의 춤: 가시',
@@ -407,6 +427,7 @@ export default {
         tts: {
           en: 'tethers',
           de: 'ranken',
+          fr: 'liens',
           ja: '茨を引く',
           cn: '扯线',
           ko: '가시',
@@ -416,7 +437,15 @@ export default {
   ],
   timelineReplace: [
     {
+      'locale': 'en',
+      'replaceText': {
+        'Oink/Ribbit/Squelch': 'Random Animal',
+        'Spellblade Blizzard/Fire/Thunder': 'Elemental Spellblade',
+      },
+    },
+    {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Halicarnassus': 'Halikarnassos',
       },
@@ -457,33 +486,60 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
+        'Apanda': 'Apanda',
         'Halicarnassus': 'Halicarnasse',
+        'Soul Reaper': 'Faucheur D\'âmes',
       },
       'replaceText': {
-        'Blizzard': 'Glace',
+        '\\(Books\\)': '(Livres)',
+        '\\(Clock\\)': '(Positions)',
+        '\\(Crystals\\)': '(Cristaux)',
+        '\\(Great Dragon\\)': '(Dragon suprême)',
+        '\\(Ninjas/Giant\\)': '(Ninjas/Géant)',
+        '\\(Random\\)': '(Aléatoire)',
+        '\\(Soul Reapers\\)': '(Faucheurs D\'âmes)',
+        '\\(Spellblade Books\\)': '(Livres de sorts)',
+        '\\(Thorns\\)': '(Ronces)',
+        '\\(Tethers\\)': '(Liens)',
+        '\\(White Flame\\)': '(Flamme blanche)',
         'Critical Hit': 'Attaque critique',
+        'Cross Reaper': 'Fauchaison',
         'Dimensional Wave': 'Onde dimensionnelle',
-        'Fire': 'Feu',
+        'Frost Breath': 'Souffle glacé',
+        'Grand Sword': 'Grande épée',
+        'Gusting Gouge': 'Gouge cisaillante',
         'Haste': 'Hâte',
+        'Holy Blur': 'Brume sacrée',
+        'Holy Edge': 'Taille sacrée',
         'Magic Hammer': 'Marteau magique',
         'Mindjack': 'Contrainte mentale',
-        'Oink': 'Abracadabri',
+        'Oink(?!/)': 'Abracadabri',
+        'Oink/Ribbit/Squelch': 'Animal aléatoire',
         'Panel Swap': 'Remplacement des cases',
         'Place Dark Token': 'Pions obscurs en jeu',
         'Place Token': 'Pion en jeu',
-        'Ribbit': 'Coâââ',
+        'Pole Shift': 'Inversion des pôles',
+        'Pummel': 'Torgnole',
+        'Ray of White': 'Tir blanc',
+        '(?<!/)Ribbit(?!/)': 'Coâââ',
+        'Spellblade Blizzard/Fire/Thunder': 'Magilame élémentaire',
+        'Spellblade Blizzard III': 'Magilame Méga Glace',
+        'Spellblade Fire III': 'Magilame Méga Feu',
         'Spellblade Holy': 'Magilame Miracle',
-        'Squelch': 'Abracadabra',
+        'Spellblade Thunder III': 'Magilame Méga Foudre',
+        '(?<!/)Squelch': 'Abracadabra',
+        'Sword Dance': 'Danse du sabre',
         'The Game': 'Début de partie',
         'The Playing Field': 'Plateau de jeu',
-        '(The )?Queen\'s Waltz': 'Danse de la reine',
-        'Thunder': 'Foudre',
+        'The Queen\'s Waltz': 'Danse de la reine',
+        'Uplift': 'Exhaussement',
+        'White Wind': 'Vent blanc',
       },
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Halicarnassus': 'ハリカルナッソス',
       },
@@ -527,6 +583,7 @@ export default {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Halicarnassus': '哈利卡纳苏斯',
       },
@@ -570,6 +627,7 @@ export default {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Halicarnassus': '할리카르나소스',
       },

@@ -93,7 +93,7 @@ export default {
           en: 'Laser Tethers',
           de: 'Laser Verbindungen',
           fr: 'Liens laser',
-          ja: 'レザー線',
+          ja: 'レーザー線',
           cn: '镭射连线',
           ko: '레이저 선',
         },

@@ -84,7 +84,7 @@ export default {
           en: 'Use a cage',
           de: 'Benutze einen Käfig',
           fr: 'Utilisez un incubateur',
-          ja: 'キメラ培養器を使って',
+          ja: 'キメラ培養器を使う',
           cn: '打开笼子',
           ko: '감옥 해제',
         },

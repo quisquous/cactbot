@@ -112,7 +112,7 @@ export default {
         text: {
           en: 'Stand in dark portal',
           de: 'Im dunklen Portal stehen',
-          fr: 'Tenez-vous dans un portail noir',
+          fr: 'Placez-vous dans un portail noir',
           ja: '黒い玉に入る',
           cn: '进入黑洞',
           ko: '검은 포탈에 들어가기',
@@ -134,7 +134,7 @@ export default {
           en: 'Avoid your orb--pop others\'',
           de: 'Weiche deinem Orb aus - löse die Orbs der anderen aus',
           fr: 'Évitez votre orbe, éclatez les autres',
-          ja: '自分の玉に避け、他人の玉を砕ける',
+          ja: '自分の玉を避け、他人の玉を砕く',
           cn: '躲开自己的球，去撞别人的球',
           ko: '내 구체는 피하고, 다른 구체 터트리기',
         },
@@ -266,6 +266,7 @@ export default {
         'Regula van Hydrus': 'レグラ・ヴァン・ヒュドルス',
       },
       'replaceText': {
+        '(?<= )Appears': '出現',
         'Aetherochemical Grenado': '魔導榴弾',
         'Ancient Circle': 'エンシェントリング',
         'Ancient Eruption': 'エンシェントエラプション',

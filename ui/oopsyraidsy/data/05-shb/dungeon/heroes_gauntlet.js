@@ -58,7 +58,7 @@ export default {
     },
     {
       id: 'THG Wild Rampage',
-      netRegex: NetRegexes.ability({ id: '5207' }),
+      damageRegex: '5207',
       // This is zero damage if you are in the crater.
       condition: (e) => e.damage > 0,
       mistake: function(e, data, matches) {

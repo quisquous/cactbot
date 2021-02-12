@@ -46,6 +46,11 @@ namespace Cactbot {
       0x30,
       0x299
     );
+    
+    private static readonly CEDirectorOPCodes cedirector_v5_35_cn = new CEDirectorOPCodes(
+      0x30,
+      0x144
+    );
 
     private static readonly CEDirectorOPCodes cedirector_v5_35_hotfix = new CEDirectorOPCodes(
       0x30,
@@ -65,6 +70,11 @@ namespace Cactbot {
     private static readonly CEDirectorOPCodes cedirector_v5_41 = new CEDirectorOPCodes(
       0x30,
       0x118
+    );
+
+    private static readonly CEDirectorOPCodes cedirector_v5_45 = new CEDirectorOPCodes(
+      0x30,
+      0x3e1
     );
 
     private struct ActorControl143{
@@ -134,8 +144,9 @@ namespace Cactbot {
       ac143opcodes.Add("intl", ac143_v5_2);
 
       cedirectoropcodes = new Dictionary<string, CEDirectorOPCodes>();
-      cedirectoropcodes.Add("intl", cedirector_v5_41);
+      cedirectoropcodes.Add("intl", cedirector_v5_45);
 
+      cedirectoropcodes.Add("cn", cedirector_v5_35_cn);
       fates = new Dictionary<int, int>();
       ces = new Dictionary<int, CEDirectorData>();
 

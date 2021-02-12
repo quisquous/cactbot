@@ -147,7 +147,7 @@ export default {
         text: {
           en: 'Drop Web Outside',
           de: 'Spinnennetz draußen ablegen',
-          ja: 'ウェブを外周に捨て',
+          ja: 'ウェブを外周に捨てる',
           cn: '蛛网点名，放在场边',
           ko: '거미줄 바깥쪽으로 빼기',
         },
@@ -302,14 +302,14 @@ export default {
         tankLasers: {
           en: 'Tank lasers--Avoid party',
           de: 'Tank lasers--Weg von der Party',
-          ja: 'タンクレザー - 外に',
+          ja: 'タンクレーザー - 外に',
           cn: '坦克激光--远离人群',
           ko: '탱커 레이저-- 피하기',
         },
         avoidTanks: {
           en: 'Avoid tanks',
           de: 'Weg von den Tanks',
-          ja: 'タンクに離れ',
+          ja: 'タンクから離れる',
           cn: '远离坦克',
           ko: '탱커 피하기',
         },
@@ -397,7 +397,7 @@ export default {
         text: {
           en: 'Close to axes, avoid bulbs',
           de: 'Nahe den Äxten, vermeide Knospen',
-          ja: '刃物の髪に近づく、丸い髪に離れ',
+          ja: '刃物の髪に近づき、丸い髪から離れる',
           cn: '靠近斧状发，远离球状发',
           ko: '도끼모양에 붙고, 둥근모양은 피하기',
         },
@@ -428,7 +428,7 @@ export default {
         text: {
           en: 'Avoid purple circles',
           de: 'Vermeide die lilanen Flächen',
-          ja: '紫の円範囲を避け',
+          ja: '紫の円範囲を避ける',
           cn: '远离紫圈',
           ko: '보라색 원 피하기',
         },
@@ -470,7 +470,7 @@ export default {
         avoidSkyLasers: {
           en: 'Avoid Sky Lasers',
           de: 'Himmelslaser ausweichen',
-          ja: '潜地式波動砲に避け',
+          ja: '潜地式波動砲を避ける',
           cn: '躲避追踪AOE',
           ko: '하늘 레이저 피하기',
         },
