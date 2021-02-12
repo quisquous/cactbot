@@ -112,7 +112,7 @@ const cactbotHtmlChunksMap = {
   },
 };
 
-module.exports = function (env, argv) {
+module.exports = function(env, argv) {
   return {
     entry: {
       ...(() => {
