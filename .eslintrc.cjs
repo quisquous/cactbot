@@ -20,6 +20,14 @@ module.exports = {
         'sourceType': 'script',
       },
     },
+    {
+      'files': ['**/*.ts'],
+      'parser': '@typescript-eslint/parser',
+      'extends': [
+        'plugin:@typescript-eslint/recommended',
+      ],
+      'rules': { '@typescript-eslint/ban-ts-comment': 1 },
+    },
   ],
   'ignorePatterns': [
     'dist/',

@@ -44,6 +44,10 @@ module.exports = function(env, argv) {
     module: {
       rules: [
         {
+          test: /\.ts$/,
+          loader: 'ts-loader',
+        },
+        {
           test: /\.css$/,
           use: ['style-loader', 'css-loader'],
         },

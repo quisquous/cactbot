@@ -13,7 +13,7 @@ import '../../resources/resourcebar.js';
 import '../../resources/timerbar.js';
 import '../../resources/timerbox.js';
 import '../../resources/timericon.js';
-import '../../resources/widgetlist.js';
+import '../../resources/widgetlist.ts';
 
 const kWellFedContentTypes = [
   ContentType.Dungeons,
