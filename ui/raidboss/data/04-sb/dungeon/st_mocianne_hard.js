@@ -47,7 +47,7 @@ export default {
     {
       id: 'St Mocianne Hard Fault Warren',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      suppressSeconds: 5,
+      suppressSeconds: 5, // There are two (!!) simultaneous head markers on the same target here.
       response: Responses.stackMarkerOn(),
     },
     {
