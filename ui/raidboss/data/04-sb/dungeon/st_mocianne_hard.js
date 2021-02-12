@@ -29,7 +29,7 @@ export default {
     },
     {
       id: 'St Mocianne Hard Vine Whip',
-      netRegex: NetRegexes.startsUsing({ id: '2E48' }),
+      netRegex: NetRegexes.startsUsing({ id: '2E48', source: 'Nullchu' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
