@@ -1,7 +1,7 @@
 import EmulatorCommon from '../EmulatorCommon.js';
 import EventBus from '../EventBus.js';
 import Tooltip from './Tooltip.js';
-import * as Util from '../../../../resources/util';
+import { Util } from '../../../../resources/common.js';
 
 export default class EmulatedPartyInfo extends EventBus {
   constructor(emulator) {

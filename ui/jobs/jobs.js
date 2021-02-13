@@ -4,12 +4,11 @@ import { LocaleRegex } from '../../resources/translations.js';
 import Regexes from '../../resources/regexes.js';
 import NetRegexes from '../../resources/netregexes.js';
 import UserConfig from '../../resources/user_config.js';
-import * as Util from '../../resources/util';
+import { Util } from '../../resources/common.js';
 import ZoneInfo from '../../resources/zone_info.js';
 import ZoneId from '../../resources/zone_id.js';
 
 import './jobs_config.js';
-import '../../resources/common';
 import '../../resources/resourcebar.js';
 import '../../resources/timerbar.js';
 import '../../resources/timerbox.js';

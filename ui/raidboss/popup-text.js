@@ -3,7 +3,7 @@ import BrowserTTSEngine from './browser_tts_engine.js';
 import { addPlayerChangedOverrideListener } from '../../resources/player_override.js';
 import PartyTracker from '../../resources/party.js';
 import Regexes from '../../resources/regexes.js';
-import * as Util from '../../resources/util';
+import { Util } from '../../resources/common.js';
 import ZoneId from '../../resources/zone_id.js';
 
 // There should be (at most) six lines of instructions.

@@ -1,10 +1,9 @@
-import { Job, Role } from '../resources/util';
 import PartyTracker from '../resources/party.js';
 
 export interface Data {
-  job: Job;
+  job: string;
   me: string;
-  role: Role,
+  role: string,
   party: PartyTracker,
   lang: string,
   currentHP: number,

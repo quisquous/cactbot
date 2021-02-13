@@ -4,12 +4,11 @@ import NetRegexes from '../../resources/netregexes.js';
 import PartyTracker from '../../resources/party.js';
 import Regexes from '../../resources/regexes.js';
 import UserConfig from '../../resources/user_config.js';
-import * as Util from '../../resources/util';
+import { Util } from '../../resources/common.js';
 import ZoneId from '../../resources/zone_id.js';
 import ZoneInfo from '../../resources/zone_info.js';
 
 import './oopsyraidsy_config.js';
-import '../../resources/common';
 
 import oopsyFileData from './data/manifest.txt';
 

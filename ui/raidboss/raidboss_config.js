@@ -2,7 +2,7 @@ import PartyTracker from '../../resources/party.js';
 import Regexes from '../../resources/regexes.js';
 import { triggerOutputFunctions } from '../../resources/responses.js';
 import UserConfig from '../../resources/user_config.js';
-import * as Util from '../../resources/util';
+import { Util } from '../../resources/common.js';
 import raidbossFileData from './data/manifest.txt';
 import raidbossOptions from './raidboss_options.js';
 
