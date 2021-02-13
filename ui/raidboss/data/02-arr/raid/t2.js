@@ -35,7 +35,7 @@ export default {
           en: 'Rot on ${player}',
           de: 'Fäulnis auf ${player}',
           fr: 'Pourriture sur ${player}',
-          ja: '自分に${player}',
+          ja: '${player}にアラガンロット',
           cn: '毒点 ${player}',
         },
         rotOnYou: {
