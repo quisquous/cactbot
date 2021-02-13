@@ -59,7 +59,6 @@
   },
   "dependencies": {
     "argparse": "^1.0.10",
-    "esm": "^3.2.25",
     "ts-node": "^9.1.1"
   }
 }
