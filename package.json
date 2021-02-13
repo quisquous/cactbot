@@ -55,6 +55,7 @@
     "*.css": "stylelint",
     "*.{js,cjs,mjs,ts}": "eslint",
     "*.md": "markdownlint",
+    "*.d.ts": "tsc --noEmit",
     "*.py": "python -m pylint --errors-only"
   },
   "dependencies": {
