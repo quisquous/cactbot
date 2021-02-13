@@ -1,6 +1,7 @@
 // For consistency with Responses, Conditions
 // are also functions.
 
+
 export default class Conditions {
   static targetIsYou() {
     return (data, matches) => data.me === matches.target;
