@@ -26,7 +26,7 @@ export interface BaseTrigger {
   condition?(data: Data, matches: Match): boolean,
   preRun?(data: Data, matches: Match): void,
   delaySeconds?: number,
-  durationSeconds?: number,
+  durationSeconds?: number | ((data: Data, matches: Match) => number),
   suppressSeconds?: number,
   promise?(data: Data, matches): void,
   sound?: string,
