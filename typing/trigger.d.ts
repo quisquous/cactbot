@@ -6,9 +6,12 @@ export interface Output {
 
 interface Match extends RegExpMatchArray {
   target?: string
+  [key: string]: string
 }
 
-type Response = (data: Data, matches: Match, output: Output) => string
+
+type LanguageText = Record<lang, string>
+type Response = (data: Data, matches: Match, output: Output) => string | LanguageText
 
 export interface BaseTrigger {
   id: string,
@@ -19,8 +22,8 @@ export interface BaseTrigger {
   regexFr?: RegExp,
   regexJa?: RegExp,
   regexKo?: RegExp,
-  condition?(data: Data, matches): boolean,
-  preRun?(data, matches): void,
+  condition?(data: Data, matches: Match): boolean,
+  preRun?(data: Data, matches: Match): void,
   delaySeconds?: number,
   durationSeconds?: number,
   suppressSeconds?: number,
@@ -28,11 +31,11 @@ export interface BaseTrigger {
   sound?: string,
   soundVolume?: number,
   response?: Response,
-  alarmText?: Record<lang, string> | Response,
-  alertText?: Record<lang, string> | Response,
-  infoText?: Record<lang, string> | Response,
-  tts?: Record<lang, string>,
-  run?(data: Data, matches): void,
+  alarmText?: LanguageText | Response,
+  alertText?: LanguageText | Response,
+  infoText?: LanguageText | Response,
+  tts?: LanguageText,
+  run?(data: Data, matches: Match): void,
   outputStrings?: Record<string, unknown>,
 }
 
