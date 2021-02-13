@@ -1,0 +1,108 @@
+import EffectId from '../../../resources/effect_id.js';
+import { kAbility } from '../constants.js';
+import { computeBackgroundColorFrom } from '../utils.js';
+
+export function setupNin(bars) {
+  const ninki = bars.addResourceBox({
+    classList: ['nin-color-ninki'],
+  });
+  const hutonBox = bars.addProcBox({
+    id: 'nin-procs-huton',
+    fgColor: 'nin-color-huton',
+    threshold: 20,
+  });
+  const trickAttack = bars.addProcBox({
+    id: 'nin-procs-trickattack',
+    fgColor: 'nin-color-trickattack',
+  });
+  const bunshin = bars.addProcBox({
+    id: 'nin-procs-bunshin',
+    fgColor: 'nin-color-bunshin',
+  });
+  bars.abilityFuncMap[kAbility.Bunshin] = () => {
+    bunshin.duration = 0;
+    bunshin.duration = 90;
+  };
+  const ninjutsu = bars.addProcBox({
+    id: 'nin-procs-ninjutsu',
+    fgColor: 'nin-color-ninjutsu',
+  });
+  // Ninjutsu's cooldown begins to countdown at the first mudra.
+  bars.gainEffectFuncMap[EffectId.Mudra] = () => {
+    if (!bars.mudraTriggerCd)
+      return;
+    const old = parseFloat(ninjutsu.duration) - parseFloat(ninjutsu.elapsed);
+    if (old > 0) {
+      ninjutsu.duration = 0;
+      ninjutsu.duration = old + 20;
+    } else {
+      ninjutsu.duration = 0;
+      ninjutsu.duration = 20 - 0.5;
+    }
+    bars.mudraTriggerCd = false;
+  };
+  // On each mudra, Mudra effect will be gain once,
+  // use bars.mudraTriggerCd to tell that whether bars mudra trigger cooldown.
+  bars.loseEffectFuncMap[EffectId.Mudra] = () => {
+    bars.mudraTriggerCd = true;
+  };
+  bars.gainEffectFuncMap[EffectId.Kassatsu] = () => {
+    bars.mudraTriggerCd = false;
+  };
+  bars.loseEffectFuncMap[EffectId.Kassatsu] = () => {
+    bars.mudraTriggerCd = true;
+  };
+  bars.abilityFuncMap[kAbility.Hide] = () => {
+    ninjutsu.duration = 0;
+  };
+  bars.statChangeFuncMap['NIN'] = () => {
+    trickAttack.valuescale = bars.gcdSkill();
+    bars.abilityFuncMap[kAbility.TrickAttack] = () => {
+      trickAttack.duration = 0;
+      trickAttack.duration = 15;
+      trickAttack.threshold = 1000;
+      trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack.active');
+      setTimeout(() => {
+        trickAttack.duration = 45;
+        trickAttack.threshold = bars.gcdSkill() * 4;
+        trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack');
+      }, 15000);
+    };
+    bunshin.valuescale = bars.gcdSkill();
+    bunshin.threshold = bars.gcdSkill() * 8;
+    ninjutsu.valuescale = bars.gcdSkill();
+    ninjutsu.threshold = bars.gcdSkill() * 2;
+  };
+
+  bars.jobFuncs.push((jobDetail) => {
+    if (jobDetail.hutonMilliseconds > 0) {
+      if (bars.huton !== 1)
+        bars.huton = 1;
+    } else if (bars.huton === 1) {
+      bars.huton = 0;
+    }
+    ninki.innerText = jobDetail.ninkiAmount;
+    ninki.parentNode.classList.remove('high', 'low');
+    if (jobDetail.ninkiAmount < 50)
+      ninki.parentNode.classList.add('low');
+    else if (jobDetail.ninkiAmount >= 90)
+      ninki.parentNode.classList.add('high');
+    const oldSeconds = parseFloat(hutonBox.duration) - parseFloat(hutonBox.elapsed);
+    const seconds = jobDetail.hutonMilliseconds / 1000.0;
+    if (!hutonBox.duration || seconds > oldSeconds) {
+      hutonBox.duration = 0;
+      hutonBox.duration = seconds;
+    }
+  });
+  const comboTimer = bars.addTimerBar({
+    id: 'nin-timers-combo',
+    fgColor: 'combo-color',
+  });
+  bars.comboFuncs.push((skill) => {
+    comboTimer.duration = 0;
+    if (bars.combo.isFinalSkill)
+      return;
+    if (skill)
+      comboTimer.duration = 15;
+  });
+}

@@ -1,0 +1,98 @@
+import { kAbility } from '../constants.js';
+import { computeBackgroundColorFrom } from '../utils.js';
+
+export function setupDrg(bars) {
+  // Boxes
+  const highJumpBox = bars.addProcBox({
+    id: 'drg-procs-highjump',
+    fgColor: 'drg-color-highjump',
+  });
+  [
+    kAbility.HighJump,
+    kAbility.Jump,
+  ].forEach((ability) => {
+    bars.abilityFuncMap[ability] = () => {
+      highJumpBox.duration = 0;
+      highJumpBox.duration = 30;
+    };
+  });
+  const disembowelBox = bars.addProcBox({
+    id: 'drg-procs-disembowel',
+    fgColor: 'drg-color-disembowel',
+  });
+  bars.comboFuncs.push((skill) => {
+    if (skill === kAbility.Disembowel) {
+      disembowelBox.duration = 0;
+      disembowelBox.duration = 30 + 1;
+    }
+  });
+  const lanceChargeBox = bars.addProcBox({
+    id: 'drg-procs-lancecharge',
+    fgColor: 'drg-color-lancecharge',
+    threshold: 20,
+  });
+  bars.abilityFuncMap[kAbility.LanceCharge] = () => {
+    lanceChargeBox.duration = 0;
+    lanceChargeBox.duration = 20;
+    lanceChargeBox.fg = computeBackgroundColorFrom(lanceChargeBox, 'drg-color-lancecharge.active');
+    setTimeout(() => {
+      lanceChargeBox.duration = 70;
+      lanceChargeBox.fg = computeBackgroundColorFrom(lanceChargeBox, 'drg-color-lancecharge');
+    }, 20000);
+  };
+  const dragonSightBox = bars.addProcBox({
+    id: 'drg-procs-dragonsight',
+    fgColor: 'drg-color-dragonsight',
+    threshold: 20,
+  });
+  bars.abilityFuncMap[kAbility.DragonSight] = () => {
+    dragonSightBox.duration = 0;
+    dragonSightBox.duration = 20;
+    dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight.active');
+    setTimeout(() => {
+      dragonSightBox.duration = 100;
+      dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight');
+    }, 20000);
+  };
+  bars.statChangeFuncMap['DRG'] = () => {
+    disembowelBox.valuescale = bars.gcdSkill();
+    disembowelBox.threshold = bars.gcdSkill() * 5;
+    highJumpBox.valuescale = bars.gcdSkill();
+    highJumpBox.threshold = bars.gcdSkill() + 1;
+  };
+
+  // Gauge
+  const blood = bars.addResourceBox({
+    classList: ['drg-color-blood'],
+  });
+  const eyes = bars.addResourceBox({
+    classList: ['drg-color-eyes'],
+  });
+  bars.jobFuncs.push((jobDetail) => {
+    blood.parentNode.classList.remove('blood', 'life');
+    if (jobDetail.bloodMilliseconds > 0) {
+      blood.parentNode.classList.add('blood');
+      blood.innerText = Math.ceil(jobDetail.bloodMilliseconds / 1000);
+      if (jobDetail.bloodMilliseconds < 5000)
+        blood.parentNode.classList.remove('blood');
+    } else if (jobDetail.lifeMilliseconds > 0) {
+      blood.parentNode.classList.add('life');
+      blood.innerText = Math.ceil(jobDetail.lifeMilliseconds / 1000);
+    } else {
+      blood.innerText = '';
+    }
+
+    eyes.parentNode.classList.remove('zero', 'one', 'two');
+    if (jobDetail.lifeMilliseconds > 0 || jobDetail.bloodMilliseconds > 0) {
+      eyes.innerText = jobDetail.eyesAmount;
+      if (jobDetail.eyesAmount === 0)
+        eyes.parentNode.classList.add('zero');
+      else if (jobDetail.eyesAmount === 1)
+        eyes.parentNode.classList.add('one');
+      else if (jobDetail.eyesAmount === 2)
+        eyes.parentNode.classList.add('two');
+    } else {
+      eyes.innerText = '';
+    }
+  });
+}
