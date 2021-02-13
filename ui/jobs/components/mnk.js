@@ -130,7 +130,9 @@ export function setupMnk(bars) {
     formTimer.duration = parseFloat(matches.duration);
     formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
   };
-  bars.onYouGainEffect(EffectId.OpoOpoForm, changeFormFunc);
-  bars.onYouGainEffect(EffectId.RaptorForm, changeFormFunc);
-  bars.onYouGainEffect(EffectId.CoeurlForm, changeFormFunc);
+  bars.onYouGainEffect([
+    EffectId.OpoOpoForm,
+    EffectId.RaptorForm,
+    EffectId.CoeurlForm,
+  ], changeFormFunc);
 }

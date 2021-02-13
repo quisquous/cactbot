@@ -79,24 +79,23 @@ export function setupDnc(bars) {
       flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
     }, flourish.duration * 1000);
   });
-  [
+  bars.onYouLoseEffect([
     EffectId.FlourishingCascade,
     EffectId.FlourishingFountain,
     EffectId.FlourishingShower,
     EffectId.FlourishingWindmill,
     EffectId.FlourishingFanDance,
-  ].forEach((effect) => {
-    bars.onYouLoseEffect(effect, () => {
-      if (!(flourishEffect.includes(effect)))
-        flourishEffect.push(effect);
-      if (flourishEffect.length === 5 && flourishIsActive) {
-        flourish.duration = 60 - flourish.elapsed;
-        flourishIsActive = false;
-        flourish.threshold = bars.gcdSkill + 1;
-        flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
-      }
-    });
+  ], () => {
+    if (!(flourishEffect.includes(effect)))
+      flourishEffect.push(effect);
+    if (flourishEffect.length === 5 && flourishIsActive) {
+      flourish.duration = 60 - flourish.elapsed;
+      flourishIsActive = false;
+      flourish.threshold = bars.gcdSkill + 1;
+      flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
+    }
   });
+
 
   const featherGauge = bars.addResourceBox({
     classList: ['dnc-color-feather'],
