@@ -24,7 +24,7 @@ export function setupSch(bars) {
     fgColor: 'sch-color-lucid',
   });
 
-  bars.jobFuncs.push((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail) => {
     const aetherflow = jobDetail.aetherflowStacks;
     const fairygauge = jobDetail.fairyGauge;
     const milli = Math.ceil(jobDetail.fairyMilliseconds / 1000);
@@ -40,7 +40,7 @@ export function setupSch(bars) {
     }
 
     // dynamically annouce user depends on their aetherflow stacks right now
-    aetherflowBox.threshold = bars.gcdSpell() * (aetherflow || 1) + 1;
+    aetherflowBox.threshold = bars.gcdSpell * (aetherflow || 1) + 1;
 
     const p = aetherflowStackBox.parentNode;
     const s = parseFloat(aetherflowBox.duration || 0) - parseFloat(aetherflowBox.elapsed);
@@ -52,33 +52,33 @@ export function setupSch(bars) {
     }
   });
 
-  bars.abilityFuncMap[kAbility.Biolysis] = () => {
+  bars.onUseAbility(kAbility.Biolysis, () => {
     bioBox.duration = 0;
     bioBox.duration = 30;
-  };
-  bars.abilityFuncMap[kAbility.Bio] = () => {
+  });
+  bars.onUseAbility(kAbility.Bio, () => {
     bioBox.duration = 0;
     bioBox.duration = 30;
-  };
-  bars.abilityFuncMap[kAbility.Bio2] = () => {
+  });
+  bars.onUseAbility(kAbility.Bio2, () => {
     bioBox.duration = 0;
     bioBox.duration = 30;
-  };
-  bars.abilityFuncMap[kAbility.Aetherflow] = () => {
+  });
+  bars.onUseAbility(kAbility.Aetherflow, () => {
     aetherflowBox.duration = 0;
     aetherflowBox.duration = 60;
     aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
-  };
-  bars.abilityFuncMap[kAbility.LucidDreaming] = () => {
+  });
+  bars.onUseAbility(kAbility.LucidDreaming, () => {
     lucidBox.duration = 0;
     lucidBox.duration = 60;
-  };
+  });
 
   bars.statChangeFuncMap['SCH'] = () => {
-    bioBox.valuescale = bars.gcdSpell();
-    bioBox.threshold = bars.gcdSpell() + 1;
-    aetherflowBox.valuescale = bars.gcdSpell();
-    lucidBox.valuescale = bars.gcdSpell();
-    lucidBox.threshold = bars.gcdSpell() + 1;
+    bioBox.valuescale = bars.gcdSpell;
+    bioBox.threshold = bars.gcdSpell + 1;
+    aetherflowBox.valuescale = bars.gcdSpell;
+    lucidBox.valuescale = bars.gcdSpell;
+    lucidBox.threshold = bars.gcdSpell + 1;
   };
 }

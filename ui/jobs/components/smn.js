@@ -67,7 +67,7 @@ export function setupSmn(bars) {
     refreshFurtherRuin();
   });
 
-  bars.jobFuncs.push((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail) => {
     const stack = jobDetail.aetherflowStacks;
     const summoned = jobDetail.bahamutSummoned;
     const time = Math.ceil(jobDetail.stanceMilliseconds / 1000);
@@ -106,63 +106,63 @@ export function setupSmn(bars) {
       demiSummoningBox.parentNode.classList.remove('last');
   });
 
-  bars.abilityFuncMap[kAbility.Miasma] = () => {
+  bars.onUseAbility(kAbility.Miasma, () => {
     miasmaBox.duration = 0;
     miasmaBox.duration = 30;
-  };
-  bars.abilityFuncMap[kAbility.Miasma3] = () => {
+  });
+  bars.onUseAbility(kAbility.Miasma3, () => {
     miasmaBox.duration = 0;
     miasmaBox.duration = 30;
-  };
-  bars.abilityFuncMap[kAbility.BioSmn] = () => {
+  });
+  bars.onUseAbility(kAbility.BioSmn, () => {
     bioSmnBox.duration = 0;
     bioSmnBox.duration = 30;
-  };
-  bars.abilityFuncMap[kAbility.BioSmn2] = () => {
+  });
+  bars.onUseAbility(kAbility.BioSmn2, () => {
     bioSmnBox.duration = 0;
     bioSmnBox.duration = 30;
-  };
-  bars.abilityFuncMap[kAbility.Bio3] = () => {
+  });
+  bars.onUseAbility(kAbility.Bio3, () => {
     bioSmnBox.duration = 0;
     bioSmnBox.duration = 30;
-  };
-  bars.abilityFuncMap[kAbility.Tridisaster] = () => {
+  });
+  bars.onUseAbility(kAbility.Tridisaster, () => {
     miasmaBox.duration = 0;
     miasmaBox.duration = 30;
     bioSmnBox.duration = 0;
     bioSmnBox.duration = 30;
-  };
+  });
 
-  bars.abilityFuncMap[kAbility.EnergyDrain] = () => {
+  bars.onUseAbility(kAbility.EnergyDrain, () => {
     energyDrainBox.duration = 0;
     energyDrainBox.duration = 30;
     aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
-  };
-  bars.abilityFuncMap[kAbility.EnergySiphon] = () => {
+  });
+  bars.onUseAbility(kAbility.EnergySiphon, () => {
     energyDrainBox.duration = 0;
     energyDrainBox.duration = 30;
     aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
-  };
+  });
   // Trance cooldown is 55s,
   // but wait till 60s will be better on matching raidbuffs.
   // Threshold will be used to tell real cooldown.
-  bars.abilityFuncMap[kAbility.DreadwyrmTrance] = () => {
+  bars.onUseAbility(kAbility.DreadwyrmTrance, () => {
     tranceBox.duration = 0;
     tranceBox.duration = 60;
-  };
-  bars.abilityFuncMap[kAbility.FirebirdTrance] = () => {
+  });
+  bars.onUseAbility(kAbility.FirebirdTrance, () => {
     tranceBox.duration = 0;
     tranceBox.duration = 60;
-  };
+  });
 
   bars.statChangeFuncMap['SMN'] = () => {
-    miasmaBox.valuescale = bars.gcdSpell();
-    miasmaBox.threshold = bars.gcdSpell() + 1;
-    bioSmnBox.valuescale = bars.gcdSpell();
-    bioSmnBox.threshold = bars.gcdSpell() + 1;
-    energyDrainBox.valuescale = bars.gcdSpell();
-    energyDrainBox.threshold = bars.gcdSpell() + 1;
-    tranceBox.valuescale = bars.gcdSpell();
-    tranceBox.threshold = bars.gcdSpell() + 7;
+    miasmaBox.valuescale = bars.gcdSpell;
+    miasmaBox.threshold = bars.gcdSpell + 1;
+    bioSmnBox.valuescale = bars.gcdSpell;
+    bioSmnBox.threshold = bars.gcdSpell + 1;
+    energyDrainBox.valuescale = bars.gcdSpell;
+    energyDrainBox.threshold = bars.gcdSpell + 1;
+    tranceBox.valuescale = bars.gcdSpell;
+    tranceBox.threshold = bars.gcdSpell + 7;
   };
 }

@@ -37,7 +37,7 @@ export function setupMnk(bars) {
   };
 
 
-  bars.jobFuncs.push((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail) => {
     const chakra = jobDetail.chakraStacks;
     if (textBox.innerText !== chakra) {
       textBox.innerText = chakra;
@@ -97,23 +97,23 @@ export function setupMnk(bars) {
     threshold: 5,
   });
 
-  bars.abilityFuncMap[kAbility.TwinSnakes] = () => {
+  bars.onUseAbility(kAbility.TwinSnakes, () => {
     twinSnakesBox.duration = 0;
     twinSnakesBox.duration = 15;
-  };
-  bars.abilityFuncMap[kAbility.FourPointFury] = () => {
+  });
+  bars.onUseAbility(kAbility.FourPointFury, () => {
     // FIXME: using bars at zero.
     const old = parseFloat(twinSnakesBox.duration) - parseFloat(twinSnakesBox.elapsed);
     twinSnakesBox.duration = 0;
     if (old > 0)
       twinSnakesBox.duration = Math.min(old + 10, 15);
-  };
-  bars.abilityFuncMap[kAbility.Demolish] = () => {
+  });
+  bars.onUseAbility(kAbility.Demolish, () => {
     demolishBox.duration = 0;
     // it start counting down when you cast demolish
     // but DOT appears on target about 1 second later
     demolishBox.duration = 18 + 1;
-  };
+  });
   bars.gainEffectFuncMap[EffectId.LeadenFist] = () => {
     dragonKickBox.duration = 0;
     dragonKickBox.duration = 30;

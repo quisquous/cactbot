@@ -36,7 +36,7 @@ export function setupWhm(bars) {
     bloodlilyStacks.push(d);
   }
 
-  bars.jobFuncs.push((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail) => {
     const lily = jobDetail.lilyStacks;
     // bars milliseconds is countup, so use floor instead of ceil.
     const lilysecond = Math.floor(jobDetail.lilyMilliseconds / 1000);
@@ -62,26 +62,26 @@ export function setupWhm(bars) {
       l.classList.remove('full');
   });
 
-  bars.abilityFuncMap[kAbility.Aero] = () => {
+  bars.onUseAbility(kAbility.Aero, () => {
     diaBox.duration = 0;
     diaBox.duration = 18 + 1;
-  };
-  bars.abilityFuncMap[kAbility.Aero2] = () => {
+  });
+  bars.onUseAbility(kAbility.Aero2, () => {
     diaBox.duration = 0;
     diaBox.duration = 18 + 1;
-  };
-  bars.abilityFuncMap[kAbility.Dia] = () => {
+  });
+  bars.onUseAbility(kAbility.Dia, () => {
     diaBox.duration = 0;
     diaBox.duration = 30;
-  };
-  bars.abilityFuncMap[kAbility.Assize] = () => {
+  });
+  bars.onUseAbility(kAbility.Assize, () => {
     assizeBox.duration = 0;
     assizeBox.duration = 45;
-  };
-  bars.abilityFuncMap[kAbility.LucidDreaming] = () => {
+  });
+  bars.onUseAbility(kAbility.LucidDreaming, () => {
     lucidBox.duration = 0;
     lucidBox.duration = 60;
-  };
+  });
 
   bars.gainEffectFuncMap[EffectId.PresenceOfMind] = () => {
     bars.presenceOfMind = 1;
@@ -91,11 +91,11 @@ export function setupWhm(bars) {
   };
 
   bars.statChangeFuncMap['WHM'] = () => {
-    diaBox.valuescale = bars.gcdSpell();
-    diaBox.threshold = bars.gcdSpell() + 1;
-    assizeBox.valuescale = bars.gcdSpell();
-    assizeBox.threshold = bars.gcdSpell() + 1;
-    lucidBox.valuescale = bars.gcdSpell();
-    lucidBox.threshold = bars.gcdSpell() + 1;
+    diaBox.valuescale = bars.gcdSpell;
+    diaBox.threshold = bars.gcdSpell + 1;
+    assizeBox.valuescale = bars.gcdSpell;
+    assizeBox.threshold = bars.gcdSpell + 1;
+    lucidBox.valuescale = bars.gcdSpell;
+    lucidBox.threshold = bars.gcdSpell + 1;
   };
 }

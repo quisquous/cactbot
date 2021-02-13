@@ -11,10 +11,10 @@ export function setupDrg(bars) {
     kAbility.HighJump,
     kAbility.Jump,
   ].forEach((ability) => {
-    bars.abilityFuncMap[ability] = () => {
+    bars.onUseAbility(ability, () => {
       highJumpBox.duration = 0;
       highJumpBox.duration = 30;
-    };
+    });
   });
   const disembowelBox = bars.addProcBox({
     id: 'drg-procs-disembowel',
@@ -31,7 +31,7 @@ export function setupDrg(bars) {
     fgColor: 'drg-color-lancecharge',
     threshold: 20,
   });
-  bars.abilityFuncMap[kAbility.LanceCharge] = () => {
+  bars.onUseAbility(kAbility.LanceCharge, () => {
     lanceChargeBox.duration = 0;
     lanceChargeBox.duration = 20;
     lanceChargeBox.fg = computeBackgroundColorFrom(lanceChargeBox, 'drg-color-lancecharge.active');
@@ -39,13 +39,13 @@ export function setupDrg(bars) {
       lanceChargeBox.duration = 70;
       lanceChargeBox.fg = computeBackgroundColorFrom(lanceChargeBox, 'drg-color-lancecharge');
     }, 20000);
-  };
+  });
   const dragonSightBox = bars.addProcBox({
     id: 'drg-procs-dragonsight',
     fgColor: 'drg-color-dragonsight',
     threshold: 20,
   });
-  bars.abilityFuncMap[kAbility.DragonSight] = () => {
+  bars.onUseAbility(kAbility.DragonSight, () => {
     dragonSightBox.duration = 0;
     dragonSightBox.duration = 20;
     dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight.active');
@@ -53,12 +53,12 @@ export function setupDrg(bars) {
       dragonSightBox.duration = 100;
       dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight');
     }, 20000);
-  };
+  });
   bars.statChangeFuncMap['DRG'] = () => {
-    disembowelBox.valuescale = bars.gcdSkill();
-    disembowelBox.threshold = bars.gcdSkill() * 5;
-    highJumpBox.valuescale = bars.gcdSkill();
-    highJumpBox.threshold = bars.gcdSkill() + 1;
+    disembowelBox.valuescale = bars.gcdSkill;
+    disembowelBox.threshold = bars.gcdSkill * 5;
+    highJumpBox.valuescale = bars.gcdSkill;
+    highJumpBox.threshold = bars.gcdSkill + 1;
   };
 
   // Gauge
@@ -68,7 +68,7 @@ export function setupDrg(bars) {
   const eyes = bars.addResourceBox({
     classList: ['drg-color-eyes'],
   });
-  bars.jobFuncs.push((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail) => {
     blood.parentNode.classList.remove('blood', 'life');
     if (jobDetail.bloodMilliseconds > 0) {
       blood.parentNode.classList.add('blood');

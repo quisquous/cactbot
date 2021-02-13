@@ -19,20 +19,20 @@ export function setupDnc(bars) {
     id: 'dnc-procs-standardstep',
     fgColor: 'dnc-color-standardstep',
   });
-  bars.abilityFuncMap[kAbility.StandardStep] = () => {
+  bars.onUseAbility(kAbility.StandardStep, () => {
     standardStep.duration = 0;
     standardStep.duration = 30;
-  };
+  });
 
   // TechnicalStep cooldown on begin dance, but effect appear when TechnicalFinish.
   const technicalStep = bars.addProcBox({
     id: 'dnc-procs-technicalstep',
     fgColor: 'dnc-color-technicalstep',
   });
-  bars.abilityFuncMap[kAbility.TechnicalStep] = () => {
+  bars.onUseAbility(kAbility.TechnicalStep, () => {
     technicalStep.duration = 0;
     technicalStep.duration = 120;
-  };
+  });
   let technicalIsActive = false;
   let elapsed = 0;
   [
@@ -41,7 +41,7 @@ export function setupDnc(bars) {
     kAbility.DoubleTechnicalFinish,
     kAbility.SingleTechnicalFinish,
   ].forEach((ability) => {
-    bars.abilityFuncMap[ability] = () => {
+    bars.onUseAbility(ability, () => {
       // Avoid mutiple call in one TechnicalFinish.
       if (technicalIsActive)
         return;
@@ -53,10 +53,10 @@ export function setupDnc(bars) {
       setTimeout(() => {
         technicalIsActive = false;
         technicalStep.duration = 100 - elapsed;
-        technicalStep.threshold = bars.gcdSkill() + 1;
+        technicalStep.threshold = bars.gcdSkill + 1;
         technicalStep.fg = computeBackgroundColorFrom(technicalStep, 'dnc-color-technicalstep');
       }, technicalStep.duration * 1000);
-    };
+    });
   });
 
   // When cast Flourish, show proc remain time until all procs have been used.
@@ -66,7 +66,7 @@ export function setupDnc(bars) {
   });
   let flourishEffect = [];
   let flourishIsActive = false;
-  bars.abilityFuncMap[kAbility.Flourish] = () => {
+  bars.onUseAbility(kAbility.Flourish, () => {
     flourish.duration = 0;
     flourish.duration = 20;
     flourishEffect = [];
@@ -76,10 +76,10 @@ export function setupDnc(bars) {
     setTimeout(() => {
       flourish.duration = 40;
       flourishIsActive = false;
-      flourish.threshold = bars.gcdSkill() + 1;
+      flourish.threshold = bars.gcdSkill + 1;
       flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
     }, flourish.duration * 1000);
-  };
+  });
   [
     EffectId.FlourishingCascade,
     EffectId.FlourishingFountain,
@@ -93,7 +93,7 @@ export function setupDnc(bars) {
       if (flourishEffect.length === 5 && flourishIsActive) {
         flourish.duration = 60 - flourish.elapsed;
         flourishIsActive = false;
-        flourish.threshold = bars.gcdSkill() + 1;
+        flourish.threshold = bars.gcdSkill + 1;
         flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
       }
     };
@@ -105,7 +105,7 @@ export function setupDnc(bars) {
   const espritGauge = bars.addResourceBox({
     classList: ['dnc-color-esprit'],
   });
-  bars.jobFuncs.push((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail) => {
     espritGauge.innerText = jobDetail.esprit;
     featherGauge.innerText = jobDetail.feathers;
     if (jobDetail.esprit >= 80)
@@ -115,11 +115,11 @@ export function setupDnc(bars) {
   });
 
   bars.statChangeFuncMap['DNC'] = () => {
-    standardStep.valuescale = bars.gcdSkill();
-    standardStep.threshold = bars.gcdSkill() + 1;
-    technicalStep.valuescale = bars.gcdSkill();
-    technicalStep.threshold = bars.gcdSkill() + 1;
-    flourish.valuescale = bars.gcdSkill();
-    flourish.threshold = bars.gcdSkill() + 1;
+    standardStep.valuescale = bars.gcdSkill;
+    standardStep.threshold = bars.gcdSkill + 1;
+    technicalStep.valuescale = bars.gcdSkill;
+    technicalStep.threshold = bars.gcdSkill + 1;
+    flourish.valuescale = bars.gcdSkill;
+    flourish.threshold = bars.gcdSkill + 1;
   };
 }

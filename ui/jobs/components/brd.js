@@ -47,11 +47,11 @@ export function setupBrd(bars) {
     };
   });
   bars.statChangeFuncMap['BRD'] = () => {
-    stormBiteBox.valuescale = bars.gcdSkill();
-    stormBiteBox.threshold = bars.gcdSkill() * 2;
-    causticBiteBox.valuescale = bars.gcdSkill();
-    causticBiteBox.threshold = bars.gcdSkill() * 2;
-    songBox.valuescale = bars.gcdSkill();
+    stormBiteBox.valuescale = bars.gcdSkill;
+    stormBiteBox.threshold = bars.gcdSkill * 2;
+    causticBiteBox.valuescale = bars.gcdSkill;
+    causticBiteBox.threshold = bars.gcdSkill * 2;
+    songBox.valuescale = bars.gcdSkill;
   };
 
   // Song
@@ -75,7 +75,7 @@ export function setupBrd(bars) {
     classList: ['brd-color-soulvoice'],
   });
 
-  bars.jobFuncs.push((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail) => {
     songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song');
     repertoireBox.parentNode.classList.remove('minuet', 'ballad', 'paeon', 'full');
     repertoireBox.innerText = '';

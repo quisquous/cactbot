@@ -156,8 +156,6 @@ class Bars {
 
     this.skillSpeed = 0;
     this.spellSpeed = 0;
-    this.gcdSkill = () => this.CalcGCDFromStat(this.skillSpeed);
-    this.gcdSpell = () => this.CalcGCDFromStat(this.spellSpeed);
 
     this.presenceOfMind = 0;
     this.shifu = 0;
@@ -185,7 +183,15 @@ class Bars {
     this.crafting = false;
   }
 
-  UpdateUIVisibility() {
+  get gcdSkill() {
+    return this._calcGCDFromStat(this.skillSpeed);
+  }
+
+  get gcdSpell() {
+    return this._calcGCDFromStat(this.spellSpeed);
+  }
+
+  _updateUIVisibility() {
     const bars = document.getElementById('bars');
     if (bars) {
       const barList = bars.children;
@@ -199,7 +205,7 @@ class Bars {
     }
   }
 
-  UpdateJob() {
+  _updateJob() {
     this.comboFuncs = [];
     this.jobFuncs = [];
     this.changeZoneFuncs = [];
@@ -215,7 +221,7 @@ class Bars {
       const seconds = parseFloat(matches.duration);
       const now = Date.now(); // This is in ms.
       this.foodBuffExpiresTimeMs = now + (seconds * 1000);
-      this.UpdateFoodBuff();
+      this._updateFoodBuff();
     };
 
     let container = document.getElementById('jobs-container');
@@ -407,20 +413,20 @@ class Bars {
     if (setup[this.job])
       setup[this.job].bind(null, this)();
 
-    this.validateKeys();
+    this._validateKeys();
 
     // Many jobs use the gcd to calculate thresholds and value scaling.
     // Run this initially to set those values.
-    this.UpdateJobBarGCDs();
+    this._updateJobBarGCDs();
 
     // Hide UI except HP and MP bar if in pvp area.
-    this.UpdateUIVisibility();
+    this._updateUIVisibility();
 
     // set up DoT effect ids for tracking target
     this.trackedDoTs = Object.keys(this.mobGainEffectFromYouFuncMap);
   }
 
-  validateKeys() {
+  _validateKeys() {
     // Keys in JavaScript are converted to strings, so test string equality
     // here to verify that effects and abilities have been spelled correctly.
     for (const key in this.abilityFuncMap) {
@@ -545,13 +551,23 @@ class Bars {
     return bar;
   }
 
-  OnComboChange(skill) {
+  onJobDetailUpdate(callback) {
+    this.jobFuncs.push(callback);
+  }
+
+  onUseAbility(abilityIds, callback) {
+    if (Array.isArray(abilityIds))
+      abilityIds.forEach((id) => this.abilityFuncMap[id] = callback);
+    this.abilityFuncMap[abilityIds] = callback;
+  }
+
+  _onComboChange(skill) {
     for (let i = 0; i < this.comboFuncs.length; ++i)
       this.comboFuncs[i](skill);
   }
 
   // Source: http://theoryjerks.akhmorning.com/guide/speed/
-  CalcGCDFromStat(stat, actionDelay) {
+  _calcGCDFromStat(stat, actionDelay) {
     // default calculates for a 2.50s recast
     actionDelay = actionDelay || 2500;
 
@@ -606,13 +622,13 @@ class Bars {
     return gcdC / 100;
   }
 
-  UpdateJobBarGCDs() {
+  _updateJobBarGCDs() {
     const f = this.statChangeFuncMap[this.job];
     if (f)
       f();
   }
 
-  UpdateHealth() {
+  _updateHealth() {
     if (!this.o.healthBar) return;
     this.o.healthBar.value = this.hp;
     this.o.healthBar.maxvalue = this.maxHP;
@@ -628,7 +644,7 @@ class Bars {
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color');
   }
 
-  UpdateMPTicker() {
+  _updateMPTicker() {
     if (!this.o.mpTicker) return;
     const delta = this.mp - this.prevMP;
     this.prevMP = this.mp;
@@ -658,8 +674,8 @@ class Bars {
     this.o.mpTicker.fg = computeBackgroundColorFrom(this.o.mpTicker, colorTag);
   }
 
-  UpdateMana() {
-    this.UpdateMPTicker();
+  _updateMana() {
+    this._updateMPTicker();
 
     if (!this.o.manaBar) return;
     this.o.manaBar.value = this.mp;
@@ -692,13 +708,13 @@ class Bars {
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color');
   }
 
-  updateCp() {
+  _updateCp() {
     if (!this.o.cpBar) return;
     this.o.cpBar.value = this.cp;
     this.o.cpBar.maxvalue = this.maxCP;
   }
 
-  UpdateGp() {
+  _updateGp() {
     if (!this.o.gpBar) return;
     this.o.gpBar.value = this.gp;
     this.o.gpBar.maxvalue = this.maxGP;
@@ -714,7 +730,7 @@ class Bars {
     }
   }
 
-  UpdateOpacity() {
+  _updateOpacity() {
     const opacityContainer = document.getElementById('opacity-container');
     if (!opacityContainer)
       return;
@@ -725,7 +741,7 @@ class Bars {
       opacityContainer.style.opacity = this.options.OpacityOutOfCombat;
   }
 
-  UpdateFoodBuff() {
+  _updateFoodBuff() {
     // Non-combat jobs don't set up the left buffs list.
     if (!this.init || !this.o.leftBuffsList)
       return;
@@ -754,7 +770,7 @@ class Bars {
     if (!canShow || showAfterMs > 0) {
       this.o.leftBuffsList.removeElement('foodbuff');
       if (canShow)
-        this.foodBuffTimer = window.setTimeout(this.UpdateFoodBuff.bind(this), showAfterMs);
+        this.foodBuffTimer = window.setTimeout(this._updateFoodBuff.bind(this), showAfterMs);
     } else {
       const div = makeAuraTimerIcon(
           'foodbuff', -1, 1,
@@ -769,31 +785,31 @@ class Bars {
     }
   }
 
-  OnPartyWipe(e) {
+  _onPartyWipe(e) {
     // TODO: add reset for job-specific ui
     if (this.buffTracker)
       this.buffTracker.clear();
   }
 
-  OnInCombatChanged(e) {
+  _onInCombatChanged(e) {
     if (this.inCombat === e.detail.inGameCombat)
       return;
 
     this.inCombat = e.detail.inGameCombat;
     if (this.inCombat)
-      this.SetPullCountdown(0);
+      this._setPullCountdown(0);
 
-    this.UpdateOpacity();
-    this.UpdateFoodBuff();
-    this.UpdateMPTicker();
+    this._updateOpacity();
+    this._updateFoodBuff();
+    this._updateMPTicker();
   }
 
-  OnChangeZone(e) {
+  _onChangeZone(e) {
     const zoneInfo = ZoneInfo[e.zoneID];
     this.contentType = zoneInfo ? zoneInfo.contentType : 0;
     this.dotTarget = [];
 
-    this.UpdateFoodBuff();
+    this._updateFoodBuff();
     if (this.buffTracker)
       this.buffTracker.clear();
 
@@ -807,10 +823,10 @@ class Bars {
     }
 
     // Hide UI except HP and MP bar if change to pvp area.
-    this.UpdateUIVisibility();
+    this._updateUIVisibility();
   }
 
-  SetPullCountdown(seconds) {
+  _setPullCountdown(seconds) {
     if (!this.o.pullCountdown) return;
 
     const inCountdown = seconds > 0;
@@ -825,7 +841,7 @@ class Bars {
     }
   }
 
-  OnCraftingLog(log) {
+  _onCraftingLog(log) {
     // Hide CP Bar when not crafting
     const container = document.getElementById('jobs-container');
 
@@ -852,7 +868,7 @@ class Bars {
       container.classList.add('hide');
   }
 
-  OnPlayerChanged(e) {
+  _onPlayerChanged(e) {
     if (this.me !== e.detail.name) {
       this.me = e.detail.name;
       // setup regexes prior to the combo tracker
@@ -860,7 +876,7 @@ class Bars {
     }
 
     if (!this.init) {
-      this.combo = setupComboTracker(this.OnComboChange.bind(this));
+      this.combo = setupComboTracker(this._onComboChange.bind(this));
       this.init = true;
     }
 
@@ -876,7 +892,7 @@ class Bars {
       this.combo.AbortCombo();
       // Update MP ticker as umbral stacks has changed.
       this.umbralStacks = 0;
-      this.UpdateMPTicker();
+      this._updateMPTicker();
       updateJob = updateHp = updateMp = updateCp = updateGp = true;
       if (!Util.isGatheringJob(this.job))
         this.gpAlarmReady = false;
@@ -911,23 +927,23 @@ class Bars {
       updateGp = true;
     }
     if (updateJob) {
-      this.UpdateJob();
+      this._updateJob();
       // On reload, we need to set the opacity after setting up the job bars.
-      this.UpdateOpacity();
+      this._updateOpacity();
       // Set up the buff tracker after the job bars are created.
       this.buffTracker = new BuffTracker(
           this.options, this.me, this.o.leftBuffsList, this.o.rightBuffsList);
     }
     if (updateHp)
-      this.UpdateHealth();
+      this._updateHealth();
     if (updateMp)
-      this.UpdateMana();
+      this._updateMana();
     if (updateCp)
-      this.updateCp();
+      this._updateCp();
     if (updateGp)
-      this.UpdateGp();
+      this._updateGp();
     if (updateLevel)
-      this.UpdateFoodBuff();
+      this._updateFoodBuff();
 
     if (e.detail.jobDetail) {
       for (let i = 0; i < this.jobFuncs.length; ++i)
@@ -935,7 +951,7 @@ class Bars {
     }
   }
 
-  UpdateEnmityTargetData(e) {
+  _updateEnmityTargetData(e) {
     const target = e.Target;
 
     let update = false;
@@ -949,12 +965,12 @@ class Bars {
       update = true;
     }
     if (update) {
-      this.UpdateHealth();
-      this.UpdateMana();
+      this._updateHealth();
+      this._updateMana();
     }
   }
 
-  OnNetLog(e) {
+  _onNetLog(e) {
     if (!this.init)
       return;
     const line = e.line;
@@ -1043,7 +1059,7 @@ class Bars {
     }
   }
 
-  OnLogEvent(e) {
+  _onLogEvent(e) {
     if (!this.init)
       return;
 
@@ -1055,26 +1071,26 @@ class Bars {
         const r = log.match(this.regexes.countdownStartRegex);
         if (r) {
           const seconds = parseFloat(r.groups.time);
-          this.SetPullCountdown(seconds);
+          this._setPullCountdown(seconds);
           continue;
         }
         if (log.search(this.regexes.countdownCancelRegex) >= 0) {
-          this.SetPullCountdown(0);
+          this._setPullCountdown(0);
           continue;
         }
         if (log.search(/:test:jobs:/) >= 0) {
-          this.Test();
+          this._test();
           continue;
         }
         if (log[16] === 'C') {
           const stats = log.match(this.regexes.StatsRegex).groups;
           this.skillSpeed = stats.skillSpeed;
           this.spellSpeed = stats.spellSpeed;
-          this.UpdateJobBarGCDs();
+          this._updateJobBarGCDs();
           continue;
         }
         if (Util.isCraftingJob(this.job))
-          this.OnCraftingLog(log);
+          this._onCraftingLog(log);
       } else if (log[15] === '1') {
         // TODO: consider flags for missing.
         // flags:damage is 1:0 in most misses.
@@ -1092,7 +1108,7 @@ class Bars {
     }
   }
 
-  Test() {
+  _test() {
     const logs = [];
     const t = '[10:10:10.000] ';
     logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30.2 Seconds.');
@@ -1109,7 +1125,7 @@ class Bars {
     logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.');
     logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Brotherhood from Other Guy for 15.0 Seconds.');
     const e = { detail: { logs: logs } };
-    this.OnLogEvent(e);
+    this._onLogEvent(e);
   }
 }
 

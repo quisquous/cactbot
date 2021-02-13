@@ -18,7 +18,7 @@ export function setupPld(bars) {
     classList: ['pld-color-atonement'],
   });
 
-  bars.jobFuncs.push((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail) => {
     const oath = jobDetail.oath;
     if (oathBox.innerText === oath)
       return;
@@ -64,7 +64,7 @@ export function setupPld(bars) {
   bars.loseEffectFuncMap[EffectId.SwordOath] = () => setAtonement(atonementBox, 0);
 
   bars.statChangeFuncMap['PLD'] = () => {
-    goreBox.valuescale = bars.gcdSkill();
-    goreBox.threshold = bars.gcdSkill() * 3 + 0.3;
+    goreBox.valuescale = bars.gcdSkill;
+    goreBox.threshold = bars.gcdSkill * 3 + 0.3;
   };
 }

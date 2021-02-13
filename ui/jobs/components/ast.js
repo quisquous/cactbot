@@ -33,7 +33,7 @@ export function setupAst(bars) {
     classList: ['ast-color-seal'],
   });
 
-  bars.jobFuncs.push((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail) => {
     const card = jobDetail.heldCard;
     const seals = jobDetail.arcanums.split(', ').filter((seal) => seal !== 'None');
 
@@ -64,34 +64,34 @@ export function setupAst(bars) {
       sealBox.parentNode.classList.remove('ready');
   });
 
-  bars.abilityFuncMap[kAbility.Combust3] = () => {
+  bars.onUseAbility(kAbility.Combust3, () => {
     combustBox.duration = 0;
     combustBox.duration = 30;
-  };
-  bars.abilityFuncMap[kAbility.Combust2] = () => {
+  });
+  bars.onUseAbility(kAbility.Combust2, () => {
     combustBox.duration = 0;
     combustBox.duration = 30;
-  };
-  bars.abilityFuncMap[kAbility.Combust] = () => {
+  });
+  bars.onUseAbility(kAbility.Combust, () => {
     combustBox.duration = 0;
     combustBox.duration = 18;
-  };
+  });
 
-  bars.abilityFuncMap[kAbility.Draw] = () => {
+  bars.onUseAbility(kAbility.Draw, () => {
     drawBox.duration = 0;
     drawBox.duration = 30;
-  };
-  bars.abilityFuncMap[kAbility.LucidDreaming] = () => {
+  });
+  bars.onUseAbility(kAbility.LucidDreaming, () => {
     lucidBox.duration = 0;
     lucidBox.duration = 60;
-  };
+  });
 
   bars.statChangeFuncMap['AST'] = () => {
-    combustBox.valuescale = bars.gcdSpell();
-    combustBox.threshold = bars.gcdSpell() + 1;
-    drawBox.valuescale = bars.gcdSpell();
-    drawBox.threshold = bars.gcdSpell() + 1;
-    lucidBox.valuescale = bars.gcdSpell();
-    lucidBox.threshold = bars.gcdSpell() + 1;
+    combustBox.valuescale = bars.gcdSpell;
+    combustBox.threshold = bars.gcdSpell + 1;
+    drawBox.valuescale = bars.gcdSpell;
+    drawBox.threshold = bars.gcdSpell + 1;
+    lucidBox.valuescale = bars.gcdSpell;
+    lucidBox.threshold = bars.gcdSpell + 1;
   };
 }

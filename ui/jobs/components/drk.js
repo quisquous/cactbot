@@ -8,7 +8,7 @@ export function setupDrk(bars) {
     threshold: 10,
   });
 
-  bars.jobFuncs.push((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail) => {
     const blood = jobDetail.blood;
     if (bloodBox.innerText === blood)
       return;

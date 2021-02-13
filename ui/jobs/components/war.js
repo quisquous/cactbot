@@ -6,7 +6,7 @@ export function setupWar(bars) {
     classList: ['war-color-beast'],
   });
 
-  bars.jobFuncs.push((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail) => {
     const beast = jobDetail.beast;
     if (textBox.innerText === beast)
       return;
@@ -56,14 +56,14 @@ export function setupWar(bars) {
         eyeBox.duration = 30 + 1;
       }
     }
-    bars.abilityFuncMap[kAbility.InnerRelease] = () => {
+    bars.onUseAbility(kAbility.InnerRelease, () => {
       if (eyeBox.duration > 0) {
         const old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
         eyeBox.duration = 0;
         eyeBox.duration = Math.min(old + 15, 59.5);
       }
       return;
-    };
+    });
 
     // Min number of skills until eye without breaking combo.
     let minSkillsUntilEye;
@@ -81,7 +81,7 @@ export function setupWar(bars) {
     // The new threshold is "can I finish the current combo and still
     // have time to do a Storm's Eye".
     const oldThreshold = parseFloat(eyeBox.threshold);
-    const newThreshold = (minSkillsUntilEye + 2) * bars.gcdSkill();
+    const newThreshold = (minSkillsUntilEye + 2) * bars.gcdSkill;
 
     // Because thresholds are nonmonotonic (when finishing a combo)
     // be careful about setting them in ways that are visually poor.
@@ -107,6 +107,6 @@ export function setupWar(bars) {
   };
 
   bars.statChangeFuncMap['WAR'] = () => {
-    eyeBox.valuescale = bars.gcdSkill();
+    eyeBox.valuescale = bars.gcdSkill;
   };
 }

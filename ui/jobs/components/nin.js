@@ -19,10 +19,10 @@ export function setupNin(bars) {
     id: 'nin-procs-bunshin',
     fgColor: 'nin-color-bunshin',
   });
-  bars.abilityFuncMap[kAbility.Bunshin] = () => {
+  bars.onUseAbility(kAbility.Bunshin, () => {
     bunshin.duration = 0;
     bunshin.duration = 90;
-  };
+  });
   const ninjutsu = bars.addProcBox({
     id: 'nin-procs-ninjutsu',
     fgColor: 'nin-color-ninjutsu',
@@ -52,29 +52,29 @@ export function setupNin(bars) {
   bars.loseEffectFuncMap[EffectId.Kassatsu] = () => {
     bars.mudraTriggerCd = true;
   };
-  bars.abilityFuncMap[kAbility.Hide] = () => {
+  bars.onUseAbility(kAbility.Hide, () => {
     ninjutsu.duration = 0;
-  };
+  });
   bars.statChangeFuncMap['NIN'] = () => {
-    trickAttack.valuescale = bars.gcdSkill();
-    bars.abilityFuncMap[kAbility.TrickAttack] = () => {
+    trickAttack.valuescale = bars.gcdSkill;
+    bars.onUseAbility(kAbility.TrickAttack, () => {
       trickAttack.duration = 0;
       trickAttack.duration = 15;
       trickAttack.threshold = 1000;
       trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack.active');
       setTimeout(() => {
         trickAttack.duration = 45;
-        trickAttack.threshold = bars.gcdSkill() * 4;
+        trickAttack.threshold = bars.gcdSkill * 4;
         trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack');
       }, 15000);
-    };
-    bunshin.valuescale = bars.gcdSkill();
-    bunshin.threshold = bars.gcdSkill() * 8;
-    ninjutsu.valuescale = bars.gcdSkill();
-    ninjutsu.threshold = bars.gcdSkill() * 2;
+    });
+    bunshin.valuescale = bars.gcdSkill;
+    bunshin.threshold = bars.gcdSkill * 8;
+    ninjutsu.valuescale = bars.gcdSkill;
+    ninjutsu.threshold = bars.gcdSkill * 2;
   };
 
-  bars.jobFuncs.push((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail) => {
     if (jobDetail.hutonMilliseconds > 0) {
       if (bars.huton !== 1)
         bars.huton = 1;

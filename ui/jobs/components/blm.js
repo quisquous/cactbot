@@ -23,22 +23,22 @@ export function setupBlm(bars) {
   // bars could have two boxes here for the rare case where you
   // have two long-lived enemies, but it's an edge case that
   // maybe only makes sense in ucob?
-  bars.abilityFuncMap[kAbility.Thunder1] = () => {
+  bars.onUseAbility(kAbility.Thunder1, () => {
     thunderDot.duration = 0;
     thunderDot.duration = 18;
-  };
-  bars.abilityFuncMap[kAbility.Thunder2] = () => {
+  });
+  bars.onUseAbility(kAbility.Thunder2, () => {
     thunderDot.duration = 0;
     thunderDot.duration = 12;
-  };
-  bars.abilityFuncMap[kAbility.Thunder3] = () => {
+  });
+  bars.onUseAbility(kAbility.Thunder3, () => {
     thunderDot.duration = 0;
     thunderDot.duration = 24;
-  };
-  bars.abilityFuncMap[kAbility.Thunder4] = () => {
+  });
+  bars.onUseAbility(kAbility.Thunder4, () => {
     thunderDot.duration = 0;
     thunderDot.duration = 18;
-  };
+  });
 
   bars.gainEffectFuncMap[EffectId.Thundercloud] = (_, matches) => {
     thunderProc.duration = 0;
@@ -88,7 +88,7 @@ export function setupBlm(bars) {
     classList: ['blm-xeno-timer'],
   });
 
-  bars.jobFuncs.push((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail) => {
     if (bars.umbralStacks !== jobDetail.umbralStacks) {
       bars.umbralStacks = jobDetail.umbralStacks;
       bars.UpdateMPTicker();

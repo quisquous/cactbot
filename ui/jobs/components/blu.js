@@ -17,25 +17,25 @@ export function setupBlu(bars) {
   });
 
   bars.statChangeFuncMap['BLU'] = () => {
-    offguardBox.threshold = bars.gcdSpell() * 2;
-    tormentBox.threshold = bars.gcdSpell() * 3;
-    lucidBox.threshold = bars.gcdSpell() + 1;
+    offguardBox.threshold = bars.gcdSpell * 2;
+    tormentBox.threshold = bars.gcdSpell * 3;
+    lucidBox.threshold = bars.gcdSpell + 1;
   };
 
-  bars.abilityFuncMap[kAbility.OffGuard] = () => {
+  bars.onUseAbility(kAbility.OffGuard, () => {
     offguardBox.duration = 0;
     offguardBox.duration = bars.CalcGCDFromStat(bars.spellSpeed, 60000);
-  };
-  bars.abilityFuncMap[kAbility.PeculiarLight] = () => {
+  });
+  bars.onUseAbility(kAbility.PeculiarLight, () => {
     offguardBox.duration = 0;
     offguardBox.duration = bars.CalcGCDFromStat(bars.spellSpeed, 60000);
-  };
-  bars.abilityFuncMap[kAbility.SongOfTorment] = () => {
+  });
+  bars.onUseAbility(kAbility.SongOfTorment, () => {
     tormentBox.duration = 0;
     tormentBox.duration = 30;
-  };
-  bars.abilityFuncMap[kAbility.LucidDreaming] = () => {
+  });
+  bars.onUseAbility(kAbility.LucidDreaming, () => {
     lucidBox.duration = 0;
     lucidBox.duration = 60;
-  };
+  });
 }

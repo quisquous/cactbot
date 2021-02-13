@@ -21,7 +21,7 @@ export function setupMch(bars) {
   const batteryGauge = bars.addResourceBox({
     classList: ['mch-color-battery'],
   });
-  bars.jobFuncs.push((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail) => {
     heatGauge.innerText = jobDetail.heat;
     batteryGauge.innerText = jobDetail.battery;
     // These two seconds are shown by half adjust, not like others' ceil.
@@ -86,9 +86,9 @@ export function setupMch(bars) {
     kAbility.HeatBlast,
     kAbility.AutoCrossbow,
   ].forEach((ability) => {
-    bars.abilityFuncMap[ability] = () => {
+    bars.onUseAbility(ability, () => {
       refreshWildFireGuage();
-    };
+    });
   });
 
   const drillBox = bars.addProcBox({
@@ -99,11 +99,11 @@ export function setupMch(bars) {
     kAbility.Drill,
     kAbility.Bioblaster,
   ].forEach((ability) => {
-    bars.abilityFuncMap[ability] = () => {
+    bars.onUseAbility(ability, () => {
       drillBox.duration = 0;
       drillBox.duration = bars.CalcGCDFromStat(bars.skillSpeed, 20000);
       refreshWildFireGuage();
-    };
+    });
   });
 
   const airAnchorBox = bars.addProcBox({
@@ -114,18 +114,18 @@ export function setupMch(bars) {
     kAbility.AirAnchor,
     kAbility.HotShot,
   ].forEach((ability) => {
-    bars.abilityFuncMap[ability] = () => {
+    bars.onUseAbility(ability, () => {
       airAnchorBox.duration = 0;
       airAnchorBox.duration = bars.CalcGCDFromStat(bars.skillSpeed, 40000);
       refreshWildFireGuage();
-    };
+    });
   });
 
   const wildFireBox = bars.addProcBox({
     id: 'mch-procs-wildfire',
     fgColor: 'mch-color-wildfire',
   });
-  bars.abilityFuncMap[kAbility.WildFire] = () => {
+  bars.onUseAbility(kAbility.WildFire, () => {
     wildFireBox.duration = 0;
     wildFireBox.duration = 10;
     wildFireBox.threshold = 1000;
@@ -136,21 +136,21 @@ export function setupMch(bars) {
     wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire.active');
     setTimeout(() => {
       wildFireBox.duration = 110;
-      wildFireBox.threshold = bars.gcdSkill() + 1;
+      wildFireBox.threshold = bars.gcdSkill + 1;
       wildFireActive = false;
       wildFireGCD = -1;
       refreshWildFireGuage();
       stacksContainer.classList.add('hide');
       wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire');
     }, 10000);
-  };
+  });
 
   bars.statChangeFuncMap['MCH'] = () => {
-    drillBox.valuescale = bars.gcdSkill();
-    drillBox.threshold = bars.gcdSkill() * 3 + 1;
-    airAnchorBox.valuescale = bars.gcdSkill();
-    airAnchorBox.threshold = bars.gcdSkill() * 3 + 1;
-    wildFireBox.valuescale = bars.gcdSkill();
-    wildFireBox.threshold = bars.gcdSkill() + 1;
+    drillBox.valuescale = bars.gcdSkill;
+    drillBox.threshold = bars.gcdSkill * 3 + 1;
+    airAnchorBox.valuescale = bars.gcdSkill;
+    airAnchorBox.threshold = bars.gcdSkill * 3 + 1;
+    wildFireBox.valuescale = bars.gcdSkill;
+    wildFireBox.threshold = bars.gcdSkill + 1;
   };
 }

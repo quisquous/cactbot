@@ -51,16 +51,16 @@ export function setupRdm(bars) {
     id: 'rdm-procs-lucid',
     fgColor: 'rdm-color-lucid',
   });
-  bars.abilityFuncMap[kAbility.LucidDreaming] = () => {
+  bars.onUseAbility(kAbility.LucidDreaming, () => {
     lucidBox.duration = 0;
     lucidBox.duration = 60;
-  };
+  });
   bars.statChangeFuncMap['RDM'] = () => {
-    lucidBox.valuescale = bars.gcdSpell();
-    lucidBox.threshold = bars.gcdSpell() + 1;
+    lucidBox.valuescale = bars.gcdSpell;
+    lucidBox.threshold = bars.gcdSpell + 1;
   };
 
-  bars.jobFuncs.push((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail) => {
     const white = jobDetail.whiteMana;
     const black = jobDetail.blackMana;
 
@@ -87,12 +87,12 @@ export function setupRdm(bars) {
 
   bars.gainEffectFuncMap[EffectId.VerstoneReady] = (name, matches) => {
     whiteProc.duration = 0;
-    whiteProc.duration = parseFloat(matches.duration) - bars.gcdSpell();
+    whiteProc.duration = parseFloat(matches.duration) - bars.gcdSpell;
   };
   bars.loseEffectFuncMap[EffectId.VerstoneReady] = () => whiteProc.duration = 0;
   bars.gainEffectFuncMap[EffectId.VerfireReady] = (name, matches) => {
     blackProc.duration = 0;
-    blackProc.duration = parseFloat(matches.duration) - bars.gcdSpell();
+    blackProc.duration = parseFloat(matches.duration) - bars.gcdSpell;
   };
   bars.loseEffectFuncMap[EffectId.VerfireReady] = () => blackProc.duration = 0;
 }
