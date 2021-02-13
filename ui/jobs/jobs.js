@@ -28,7 +28,7 @@ import {
   setupSmn,
   setupRdm,
   setupBlu,
-} from './job/index.js';
+} from './components/index.js';
 
 import './jobs_config.js';
 import '../../resources/resourcebar.js';
