@@ -8,13 +8,13 @@ export function setupBrd(bars) {
     threshold: 1000,
   });
   straightShotProc.bigatzero = false;
-  bars.gainEffectFuncMap[EffectId.StraightShotReady] = () => {
+  bars.onYouGainEffect(EffectId.StraightShotReady, () => {
     straightShotProc.duration = 0;
     straightShotProc.duration = 10;
-  };
-  bars.loseEffectFuncMap[EffectId.StraightShotReady] = () => {
+  });
+  bars.onYouLoseEffect(EffectId.StraightShotReady, () => {
     straightShotProc.duration = 0;
-  };
+  });
   // DoT
   const causticBiteBox = bars.addProcBox({
     id: 'brd-procs-causticbite',
@@ -125,26 +125,26 @@ export function setupBrd(bars) {
   // Paeon -> runs out -> ethos -> within 30s -> Minuet/Ballad -> muse -> muse ends
   // Paeon -> runs out -> ethos -> ethos runs out
   // Track Paeon Stacks through to next song GCD buff
-  bars.gainEffectFuncMap[EffectId.ArmysMuse] = () => {
+  bars.onYouGainEffect(EffectId.ArmysMuse, () => {
     // We just entered Minuet/Ballad, add muse effect
     // If we let paeon run out, get the temp stacks from ethos
     bars.museStacks = ethosStacks ? ethosStacks : bars.paeonStacks;
     bars.paeonStacks = 0;
-  };
-  bars.loseEffectFuncMap[EffectId.ArmysMuse] = () => {
+  });
+  bars.onYouLoseEffect(EffectId.ArmysMuse, () => {
     // Muse effect ends
     bars.museStacks = 0;
     bars.paeonStacks = 0;
-  };
-  bars.gainEffectFuncMap[EffectId.ArmysEthos] = () => {
+  });
+  bars.onYouGainEffect(EffectId.ArmysEthos, () => {
     // Not under muse or paeon, so store the stacks
     ethosStacks = bars.paeonStacks;
     bars.paeonStacks = 0;
-  };
-  bars.loseEffectFuncMap[EffectId.ArmysEthos] = () => {
+  });
+  bars.onYouLoseEffect(EffectId.ArmysEthos, () => {
     // Didn't use a song and ethos ran out
     ethosStacks = 0;
     bars.museStacks = 0;
     bars.paeonStacks = 0;
-  };
+  });
 }

@@ -98,13 +98,13 @@ export function setupWar(bars) {
       comboTimer.duration = 15;
   });
 
-  bars.loseEffectFuncMap[EffectId.StormsEye] = () => {
+  bars.onYouLoseEffect(EffectId.StormsEye, () => {
     // Because storm's eye is tracked from the hit, and the ability is delayed,
     // you can have the sequence: Storm's Eye (ability), loses effect, gains effect.
     // To fix bars, don't "lose" unless it's been going on a bit.
     if (eyeBox.elapsed > 10)
       eyeBox.duration = 0;
-  };
+  });
 
   bars.onStatChange('WAR', () => {
     eyeBox.valuescale = bars.gcdSkill;

@@ -54,14 +54,14 @@ export function setupSmn(bars) {
         ruin4Stacks[i].classList.remove('active');
     }
   };
-  bars.gainEffectFuncMap[EffectId.FurtherRuin] = (name, e) => {
+  bars.onYouGainEffect(EffectId.FurtherRuin, (name, e) => {
     furtherRuin = parseInt(e.count);
     refreshFurtherRuin();
-  };
-  bars.loseEffectFuncMap[EffectId.FurtherRuin] = () => {
+  });
+  bars.onYouLoseEffect(EffectId.FurtherRuin, () => {
     furtherRuin = 0;
     refreshFurtherRuin();
-  };
+  });
   bars.changeZoneFuncs.push((e) => {
     furtherRuin = 0;
     refreshFurtherRuin();

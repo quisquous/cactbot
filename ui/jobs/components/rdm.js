@@ -85,14 +85,14 @@ export function setupRdm(bars) {
     }
   });
 
-  bars.gainEffectFuncMap[EffectId.VerstoneReady] = (name, matches) => {
+  bars.onYouGainEffect(EffectId.VerstoneReady, (name, matches) => {
     whiteProc.duration = 0;
     whiteProc.duration = parseFloat(matches.duration) - bars.gcdSpell;
-  };
-  bars.loseEffectFuncMap[EffectId.VerstoneReady] = () => whiteProc.duration = 0;
-  bars.gainEffectFuncMap[EffectId.VerfireReady] = (name, matches) => {
+  });
+  bars.onYouLoseEffect(EffectId.VerstoneReady, () => whiteProc.duration = 0);
+  bars.onYouGainEffect(EffectId.VerfireReady, (name, matches) => {
     blackProc.duration = 0;
     blackProc.duration = parseFloat(matches.duration) - bars.gcdSpell;
-  };
-  bars.loseEffectFuncMap[EffectId.VerfireReady] = () => blackProc.duration = 0;
+  });
+  bars.onYouLoseEffect(EffectId.VerfireReady, () => blackProc.duration = 0);
 }

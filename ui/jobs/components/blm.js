@@ -34,20 +34,20 @@ export function setupBlm(bars) {
     thunderDot.duration = thunderDurationMap[abilityId];
   });
 
-  bars.gainEffectFuncMap[EffectId.Thundercloud] = (_, matches) => {
+  bars.onYouGainEffect(EffectId.Thundercloud, (_, matches) => {
     thunderProc.duration = 0;
     thunderProc.duration = parseFloat(matches.duration);
-  };
-  bars.loseEffectFuncMap[EffectId.Thundercloud] = () => thunderProc.duration = 0;
+  });
+  bars.onYouLoseEffect(EffectId.Thundercloud, () => thunderProc.duration = 0);
 
-  bars.gainEffectFuncMap[EffectId.Firestarter] = (_, matches) => {
+  bars.onYouGainEffect(EffectId.Firestarter, (_, matches) => {
     fireProc.duration = 0;
     fireProc.duration = parseFloat(matches.duration);
-  };
-  bars.loseEffectFuncMap[EffectId.Firestarter] = () => fireProc.duration = 0;
+  });
+  bars.onYouLoseEffect(EffectId.Firestarter, () => fireProc.duration = 0);
 
-  bars.gainEffectFuncMap[EffectId.CircleOfPower] = () => bars.circleOfPower = 1;
-  bars.loseEffectFuncMap[EffectId.CircleOfPower] = () => bars.circleOfPower = 0;
+  bars.onYouGainEffect(EffectId.CircleOfPower, () => bars.circleOfPower = 1);
+  bars.onYouLoseEffect(EffectId.CircleOfPower, () => bars.circleOfPower = 0);
 
   // It'd be super nice to use grid here.
   // Maybe some day when cactbot uses new cef.

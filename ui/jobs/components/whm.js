@@ -79,12 +79,12 @@ export function setupWhm(bars) {
     lucidBox.duration = 60;
   });
 
-  bars.gainEffectFuncMap[EffectId.PresenceOfMind] = () => {
+  bars.onYouGainEffect(EffectId.PresenceOfMind, () => {
     bars.presenceOfMind = 1;
-  };
-  bars.loseEffectFuncMap[EffectId.PresenceOfMind] = () => {
+  });
+  bars.onYouLoseEffect(EffectId.PresenceOfMind, () => {
     bars.presenceOfMind = 0;
-  };
+  });
 
   bars.onStatChange('WHM', () => {
     diaBox.valuescale = bars.gcdSpell;

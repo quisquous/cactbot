@@ -53,6 +53,10 @@
     "*.py": "python -m pylint --errors-only"
   },
   "dependencies": {
-    "argparse": "^1.0.10"
+    "@typescript-eslint/eslint-plugin": "^4.15.0",
+    "@typescript-eslint/parser": "^4.15.0",
+    "argparse": "^1.0.10",
+    "ts-loader": "^8.0.17",
+    "typescript": "^4.1.5"
   }
 }

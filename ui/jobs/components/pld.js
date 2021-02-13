@@ -58,10 +58,10 @@ export function setupPld(bars) {
   // As atonement counts down, the player gets successive "gains effects"
   // for the same effect, but with different counts.  When the last stack
   // falls off, then there's a "lose effect" line.
-  bars.gainEffectFuncMap[EffectId.SwordOath] = (name, matches) => {
+  bars.onYouGainEffect(EffectId.SwordOath, (name, matches) => {
     setAtonement(atonementBox, parseInt(matches.count));
-  };
-  bars.loseEffectFuncMap[EffectId.SwordOath] = () => setAtonement(atonementBox, 0);
+  });
+  bars.onYouLoseEffect(EffectId.SwordOath, () => setAtonement(atonementBox, 0));
 
   bars.onStatChange('PLD', () => {
     goreBox.valuescale = bars.gcdSkill;

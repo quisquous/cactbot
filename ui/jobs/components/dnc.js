@@ -86,7 +86,7 @@ export function setupDnc(bars) {
     EffectId.FlourishingWindmill,
     EffectId.FlourishingFanDance,
   ].forEach((effect) => {
-    bars.loseEffectFuncMap[effect] = () => {
+    bars.onYouLoseEffect(effect, () => {
       if (!(flourishEffect.includes(effect)))
         flourishEffect.push(effect);
       if (flourishEffect.length === 5 && flourishIsActive) {
@@ -95,7 +95,7 @@ export function setupDnc(bars) {
         flourish.threshold = bars.gcdSkill + 1;
         flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
       }
-    };
+    });
   });
 
   const featherGauge = bars.addResourceBox({

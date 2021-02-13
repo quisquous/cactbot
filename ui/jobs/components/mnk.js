@@ -114,23 +114,23 @@ export function setupMnk(bars) {
     // but DOT appears on target about 1 second later
     demolishBox.duration = 18 + 1;
   });
-  bars.gainEffectFuncMap[EffectId.LeadenFist] = () => {
+  bars.onYouGainEffect(EffectId.LeadenFist, () => {
     dragonKickBox.duration = 0;
     dragonKickBox.duration = 30;
-  };
-  bars.loseEffectFuncMap[EffectId.LeadenFist] = () => dragonKickBox.duration = 0;
-  bars.gainEffectFuncMap[EffectId.PerfectBalance] = (name, matches) => {
+  });
+  bars.onYouLoseEffect(EffectId.LeadenFist, () => dragonKickBox.duration = 0);
+  bars.onYouGainEffect(EffectId.PerfectBalance, (name, matches) => {
     formTimer.duration = 0;
     formTimer.duration = parseFloat(matches.duration);
     formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-pb');
-  };
+  });
 
   const changeFormFunc = (name, matches) => {
     formTimer.duration = 0;
     formTimer.duration = parseFloat(matches.duration);
     formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
   };
-  bars.gainEffectFuncMap[EffectId.OpoOpoForm] = changeFormFunc;
-  bars.gainEffectFuncMap[EffectId.RaptorForm] = changeFormFunc;
-  bars.gainEffectFuncMap[EffectId.CoeurlForm] = changeFormFunc;
+  bars.onYouGainEffect(EffectId.OpoOpoForm, changeFormFunc);
+  bars.onYouGainEffect(EffectId.RaptorForm, changeFormFunc);
+  bars.onYouGainEffect(EffectId.CoeurlForm, changeFormFunc);
 }

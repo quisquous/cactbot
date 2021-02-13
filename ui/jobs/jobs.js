@@ -551,6 +551,18 @@ class Bars {
     return bar;
   }
 
+  onYouGainEffect(effectIds, callback) {
+    if (Array.isArray(effectIds))
+      effectIds.forEach((id) => this.gainEffectFuncMap[id] = callback);
+    this.gainEffectFuncMap[effectIds] = callback;
+  }
+
+  onYouLoseEffect(effectIds, callback) {
+    if (Array.isArray(effectIds))
+      effectIds.forEach((id) => this.loseEffectFuncMap[id] = callback);
+    this.loseEffectFuncMap[effectIds] = callback;
+  }
+
   onJobDetailUpdate(callback) {
     this.jobFuncs.push(callback);
   }
