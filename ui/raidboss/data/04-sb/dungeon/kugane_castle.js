@@ -56,6 +56,7 @@ export default {
     {
       id: 'Kugane Castle Gratuity',
       netRegex: NetRegexes.ability({ id: '1EAE', source: 'Kageyama', capture: false }),
+      suppressSeconds: 15, // No point in notifying repeatedly
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -64,10 +65,8 @@ export default {
       },
     },
     {
-      // The NPC here is Dragon's Head x4
       id: 'Kugane Castle Dragons Lair',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '3305', capture: false }),
-      suppressSeconds: 5,
+      netRegex: NetRegexes.ability({ id: '1EA6', source: 'Yojimbo', capture: false }),
       response: Responses.killAdds(),
     },
   ],
