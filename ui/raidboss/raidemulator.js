@@ -66,7 +66,7 @@ const Options = {
     emulatedPartyInfo = new EmulatedPartyInfo(emulator);
     emulatedMap = new EmulatedMap(emulator);
     emulatedWebSocket = new RaidEmulatorOverlayApiHook(emulator);
-    logConverterWorker = new Worker('../../dist/raidemulator_worker.bundle.js');
+    logConverterWorker = new Worker('../../dist/raidemulatorWorker.bundle.js');
 
     // Listen for the user to click a player in the party list on the right
     // and persist that over to the emulator
