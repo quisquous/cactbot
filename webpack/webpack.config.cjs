@@ -118,7 +118,7 @@ module.exports = function(env, argv) {
       ...(() => {
         const ret = {};
         Object.values(cactbotModules).forEach((_module) => {
-          ret[_module] = './' + _module + '.js';
+          ret[_module] = `./${_module}.js`;
         });
         return ret;
       })(),
