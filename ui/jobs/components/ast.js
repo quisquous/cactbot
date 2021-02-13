@@ -82,12 +82,12 @@ export function setupAst(bars) {
     lucidBox.duration = 60;
   });
 
-  bars.statChangeFuncMap['AST'] = () => {
+  bars.onStatChange('AST', () => {
     combustBox.valuescale = bars.gcdSpell;
     combustBox.threshold = bars.gcdSpell + 1;
     drawBox.valuescale = bars.gcdSpell;
     drawBox.threshold = bars.gcdSpell + 1;
     lucidBox.valuescale = bars.gcdSpell;
     lucidBox.threshold = bars.gcdSpell + 1;
-  };
+  });
 }

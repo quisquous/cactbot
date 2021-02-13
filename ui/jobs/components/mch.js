@@ -142,12 +142,12 @@ export function setupMch(bars) {
     }, 10000);
   });
 
-  bars.statChangeFuncMap['MCH'] = () => {
+  bars.onStatChange('MCH', () => {
     drillBox.valuescale = bars.gcdSkill;
     drillBox.threshold = bars.gcdSkill * 3 + 1;
     airAnchorBox.valuescale = bars.gcdSkill;
     airAnchorBox.threshold = bars.gcdSkill * 3 + 1;
     wildFireBox.valuescale = bars.gcdSkill;
     wildFireBox.threshold = bars.gcdSkill + 1;
-  };
+  });
 }

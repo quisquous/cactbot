@@ -16,11 +16,11 @@ export function setupBlu(bars) {
     fgColor: 'blu-color-lucid',
   });
 
-  bars.statChangeFuncMap['BLU'] = () => {
+  bars.onStatChange('BLU', () => {
     offguardBox.threshold = bars.gcdSpell * 2;
     tormentBox.threshold = bars.gcdSpell * 3;
     lucidBox.threshold = bars.gcdSpell + 1;
-  };
+  });
 
   bars.onUseAbility(kAbility.OffGuard, () => {
     offguardBox.duration = 0;

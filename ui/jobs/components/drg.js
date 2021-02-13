@@ -54,12 +54,12 @@ export function setupDrg(bars) {
       dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight');
     }, 20000);
   });
-  bars.statChangeFuncMap['DRG'] = () => {
+  bars.onStatChange('DRG', () => {
     disembowelBox.valuescale = bars.gcdSkill;
     disembowelBox.threshold = bars.gcdSkill * 5;
     highJumpBox.valuescale = bars.gcdSkill;
     highJumpBox.threshold = bars.gcdSkill + 1;
-  };
+  });
 
   // Gauge
   const blood = bars.addResourceBox({

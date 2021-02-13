@@ -66,13 +66,13 @@ export function setupNin(bars) {
       trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack');
     }, 15000);
   });
-  bars.statChangeFuncMap['NIN'] = () => {
+  bars.onStatChange('NIN', () => {
     trickAttack.valuescale = bars.gcdSkill;
     bunshin.valuescale = bars.gcdSkill;
     bunshin.threshold = bars.gcdSkill * 8;
     ninjutsu.valuescale = bars.gcdSkill;
     ninjutsu.threshold = bars.gcdSkill * 2;
-  };
+  });
 
   bars.onJobDetailUpdate((jobDetail) => {
     if (jobDetail.hutonMilliseconds > 0) {

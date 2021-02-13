@@ -31,13 +31,13 @@ export function setupGnb(bars) {
     bloodfestBox.duration = 90;
   });
 
-  bars.statChangeFuncMap['GNB'] = () => {
+  bars.onStatChange('GNB', () => {
     gnashingFangBox.valuescale = bars.gcdSkill;
     gnashingFangBox.threshold = bars.gcdSkill * 3;
     noMercyBox.valuescale = bars.gcdSkill;
     bloodfestBox.valuescale = bars.gcdSkill;
     bloodfestBox.threshold = bars.gcdSkill * 2 + 1;
-  };
+  });
   // Combos
   const gnashingFangBox = bars.addProcBox({
     id: 'gnb-procs-gnashingfang',

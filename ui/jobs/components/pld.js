@@ -63,8 +63,8 @@ export function setupPld(bars) {
   };
   bars.loseEffectFuncMap[EffectId.SwordOath] = () => setAtonement(atonementBox, 0);
 
-  bars.statChangeFuncMap['PLD'] = () => {
+  bars.onStatChange('PLD', () => {
     goreBox.valuescale = bars.gcdSkill;
     goreBox.threshold = bars.gcdSkill * 3 + 0.3;
-  };
+  });
 }

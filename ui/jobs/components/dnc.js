@@ -113,12 +113,12 @@ export function setupDnc(bars) {
       espritGauge.parentNode.classList.remove('high');
   });
 
-  bars.statChangeFuncMap['DNC'] = () => {
+  bars.onStatChange('DNC', () => {
     standardStep.valuescale = bars.gcdSkill;
     standardStep.threshold = bars.gcdSkill + 1;
     technicalStep.valuescale = bars.gcdSkill;
     technicalStep.threshold = bars.gcdSkill + 1;
     flourish.valuescale = bars.gcdSkill;
     flourish.threshold = bars.gcdSkill + 1;
-  };
+  });
 }

@@ -55,10 +55,10 @@ export function setupRdm(bars) {
     lucidBox.duration = 0;
     lucidBox.duration = 60;
   });
-  bars.statChangeFuncMap['RDM'] = () => {
+  bars.onStatChange('RDM', () => {
     lucidBox.valuescale = bars.gcdSpell;
     lucidBox.threshold = bars.gcdSpell + 1;
-  };
+  });
 
   bars.onJobDetailUpdate((jobDetail) => {
     const white = jobDetail.whiteMana;

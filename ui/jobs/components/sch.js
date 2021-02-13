@@ -71,11 +71,11 @@ export function setupSch(bars) {
     lucidBox.duration = 60;
   });
 
-  bars.statChangeFuncMap['SCH'] = () => {
+  bars.onStatChange('SCH', () => {
     bioBox.valuescale = bars.gcdSpell;
     bioBox.threshold = bars.gcdSpell + 1;
     aetherflowBox.valuescale = bars.gcdSpell;
     lucidBox.valuescale = bars.gcdSpell;
     lucidBox.threshold = bars.gcdSpell + 1;
-  };
+  });
 }

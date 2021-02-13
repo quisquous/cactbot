@@ -46,13 +46,13 @@ export function setupBrd(bars) {
       causticBiteBox.duration = 30 - 0.5;
     };
   });
-  bars.statChangeFuncMap['BRD'] = () => {
+  bars.onStatChange('BRD', () => {
     stormBiteBox.valuescale = bars.gcdSkill;
     stormBiteBox.threshold = bars.gcdSkill * 2;
     causticBiteBox.valuescale = bars.gcdSkill;
     causticBiteBox.threshold = bars.gcdSkill * 2;
     songBox.valuescale = bars.gcdSkill;
-  };
+  });
 
   // Song
   const songBox = bars.addProcBox({

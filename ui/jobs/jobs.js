@@ -555,6 +555,10 @@ class Bars {
     this.jobFuncs.push(callback);
   }
 
+  onStatChange(job, callback) {
+    this.statChangeFuncMap[job] = callback;
+  }
+
   onUseAbility(abilityIds, callback) {
     if (Array.isArray(abilityIds))
       abilityIds.forEach((id) => this.abilityFuncMap[id] = callback);

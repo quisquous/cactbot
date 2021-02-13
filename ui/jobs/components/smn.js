@@ -144,7 +144,7 @@ export function setupSmn(bars) {
     tranceBox.duration = 60;
   });
 
-  bars.statChangeFuncMap['SMN'] = () => {
+  bars.onStatChange('SMN', () => {
     miasmaBox.valuescale = bars.gcdSpell;
     miasmaBox.threshold = bars.gcdSpell + 1;
     bioSmnBox.valuescale = bars.gcdSpell;
@@ -153,5 +153,5 @@ export function setupSmn(bars) {
     energyDrainBox.threshold = bars.gcdSpell + 1;
     tranceBox.valuescale = bars.gcdSpell;
     tranceBox.threshold = bars.gcdSpell + 7;
-  };
+  });
 }

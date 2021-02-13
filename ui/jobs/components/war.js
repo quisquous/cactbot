@@ -106,7 +106,7 @@ export function setupWar(bars) {
       eyeBox.duration = 0;
   };
 
-  bars.statChangeFuncMap['WAR'] = () => {
+  bars.onStatChange('WAR', () => {
     eyeBox.valuescale = bars.gcdSkill;
-  };
+  });
 }

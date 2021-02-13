@@ -86,12 +86,12 @@ export function setupWhm(bars) {
     bars.presenceOfMind = 0;
   };
 
-  bars.statChangeFuncMap['WHM'] = () => {
+  bars.onStatChange('WHM', () => {
     diaBox.valuescale = bars.gcdSpell;
     diaBox.threshold = bars.gcdSpell + 1;
     assizeBox.valuescale = bars.gcdSpell;
     assizeBox.threshold = bars.gcdSpell + 1;
     lucidBox.valuescale = bars.gcdSpell;
     lucidBox.threshold = bars.gcdSpell + 1;
-  };
+  });
 }
