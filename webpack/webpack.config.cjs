@@ -115,7 +115,7 @@ const cactbotHtmlChunksMap = {
 module.exports = function(env, argv) {
   const entries = {};
   Object.values(cactbotModules).forEach((_module) => {
-    ret[_module] = `./${_module}.js`;
+    entries[_module] = `./${_module}.js`;
   });
 
   const htmlPluginRules =
