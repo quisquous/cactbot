@@ -113,16 +113,22 @@ const cactbotHtmlChunksMap = {
 };
 
 module.exports = function(env, argv) {
+  const entries = {};
+  Object.values(cactbotModules).forEach((_module) => {
+    ret[_module] = `./${_module}.js`;
+  });
+
+  const htmlPluginRules =
+    Object
+      .entries(cactbotHtmlChunksMap)
+      .map(([file, config]) => new HtmlWebpackPlugin({
+        template: file,
+        filename: file,
+        ...config,
+      }));
+
   return {
-    entry: {
-      ...(() => {
-        const ret = {};
-        Object.values(cactbotModules).forEach((_module) => {
-          ret[_module] = `./${_module}.js`;
-        });
-        return ret;
-      })(),
-    },
+    entry: entries,
     optimization: {
       minimize: true,
       minimizer: [
@@ -202,11 +208,7 @@ module.exports = function(env, argv) {
       new MiniCssExtractPlugin({
         filename: '[name].css',
       }),
-      ...(() => Object.entries(cactbotHtmlChunksMap).map(([file, config]) => new HtmlWebpackPlugin({
-        template: file,
-        filename: file,
-        ...config,
-      })))(),
+      ...htmlPluginRules,
       new CopyPlugin({
         patterns: [
           {
