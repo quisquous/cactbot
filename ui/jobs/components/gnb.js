@@ -64,7 +64,7 @@ export function setupGnb(bars) {
   bars.onUseAbility(kAbility.WickedTalon, () => {
     cartridgeComboTimer.duration = 0;
   });
-  bars.comboFuncs.push((skill) => {
+  bars.onCombo((skill) => {
     comboTimer.duration = 0;
     cartridgeComboTimer.duration = 0;
     if (bars.combo.isFinalSkill)

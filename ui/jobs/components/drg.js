@@ -20,7 +20,7 @@ export function setupDrg(bars) {
     id: 'drg-procs-disembowel',
     fgColor: 'drg-color-disembowel',
   });
-  bars.comboFuncs.push((skill) => {
+  bars.onCombo((skill) => {
     if (skill === kAbility.Disembowel) {
       disembowelBox.duration = 0;
       disembowelBox.duration = 30 + 1;

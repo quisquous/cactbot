@@ -551,6 +551,10 @@ class Bars {
     return bar;
   }
 
+  onCombo(callback) {
+    this.comboFuncs.push(callback);
+  }
+
   onYouGainEffect(effectIds, callback) {
     if (Array.isArray(effectIds))
       effectIds.forEach((id) => this.gainEffectFuncMap[id] = callback);

@@ -40,7 +40,7 @@ export function setupPld(bars) {
     fgColor: 'pld-color-gore',
   });
 
-  bars.comboFuncs.push((skill) => {
+  bars.onCombo((skill) => {
     if (skill === kAbility.GoringBlade) {
       goreBox.duration = 0;
       // Technically, goring blade is 21, but 2.43 * 9 = 21.87, so if you

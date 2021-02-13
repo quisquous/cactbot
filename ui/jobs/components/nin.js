@@ -98,7 +98,7 @@ export function setupNin(bars) {
     id: 'nin-timers-combo',
     fgColor: 'combo-color',
   });
-  bars.comboFuncs.push((skill) => {
+  bars.onCombo((skill) => {
     comboTimer.duration = 0;
     if (bars.combo.isFinalSkill)
       return;

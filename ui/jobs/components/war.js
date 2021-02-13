@@ -33,7 +33,7 @@ export function setupWar(bars) {
     fgColor: 'combo-color',
   });
 
-  bars.comboFuncs.push((skill) => {
+  bars.onCombo((skill) => {
     // TODO: handle flags where you don't hit something.
     // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
     if (skill === kAbility.MythrilTempest) {
