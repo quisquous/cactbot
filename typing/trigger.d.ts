@@ -1,7 +1,7 @@
 import { Data } from './data.d.ts';
 
 export interface Output {
-  text(): string,
+  [key: string]: () => string
 }
 
 interface Match extends RegExpMatchArray {
