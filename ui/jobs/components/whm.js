@@ -62,11 +62,7 @@ export function setupWhm(bars) {
       l.classList.remove('full');
   });
 
-  bars.onUseAbility(kAbility.Aero, () => {
-    diaBox.duration = 0;
-    diaBox.duration = 18 + 1;
-  });
-  bars.onUseAbility(kAbility.Aero2, () => {
+  bars.onUseAbility([kAbility.Aero, kAbility.Aero2], () => {
     diaBox.duration = 0;
     diaBox.duration = 18 + 1;
   });

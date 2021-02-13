@@ -23,21 +23,15 @@ export function setupBlm(bars) {
   // bars could have two boxes here for the rare case where you
   // have two long-lived enemies, but it's an edge case that
   // maybe only makes sense in ucob?
-  bars.onUseAbility(kAbility.Thunder1, () => {
+  const thunderDurationMap = {
+    [kAbility.Thunder1]: 18,
+    [kAbility.Thunder2]: 12,
+    [kAbility.Thunder3]: 24,
+    [kAbility.Thunder4]: 18,
+  };
+  bars.onUseAbility(Object.keys(thunderDurationMap), (abilityId) => {
     thunderDot.duration = 0;
-    thunderDot.duration = 18;
-  });
-  bars.onUseAbility(kAbility.Thunder2, () => {
-    thunderDot.duration = 0;
-    thunderDot.duration = 12;
-  });
-  bars.onUseAbility(kAbility.Thunder3, () => {
-    thunderDot.duration = 0;
-    thunderDot.duration = 24;
-  });
-  bars.onUseAbility(kAbility.Thunder4, () => {
-    thunderDot.duration = 0;
-    thunderDot.duration = 18;
+    thunderDot.duration = thunderDurationMap[abilityId];
   });
 
   bars.gainEffectFuncMap[EffectId.Thundercloud] = (_, matches) => {

@@ -52,18 +52,15 @@ export function setupSch(bars) {
     }
   });
 
-  bars.onUseAbility(kAbility.Biolysis, () => {
+  bars.onUseAbility([
+    kAbility.Bio,
+    kAbility.Bio2,
+    kAbility.Biolysis,
+  ], () => {
     bioBox.duration = 0;
     bioBox.duration = 30;
   });
-  bars.onUseAbility(kAbility.Bio, () => {
-    bioBox.duration = 0;
-    bioBox.duration = 30;
-  });
-  bars.onUseAbility(kAbility.Bio2, () => {
-    bioBox.duration = 0;
-    bioBox.duration = 30;
-  });
+
   bars.onUseAbility(kAbility.Aetherflow, () => {
     aetherflowBox.duration = 0;
     aetherflowBox.duration = 60;

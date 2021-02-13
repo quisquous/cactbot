@@ -55,19 +55,19 @@ export function setupNin(bars) {
   bars.onUseAbility(kAbility.Hide, () => {
     ninjutsu.duration = 0;
   });
+  bars.onUseAbility(kAbility.TrickAttack, () => {
+    trickAttack.duration = 0;
+    trickAttack.duration = 15;
+    trickAttack.threshold = 1000;
+    trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack.active');
+    setTimeout(() => {
+      trickAttack.duration = 45;
+      trickAttack.threshold = bars.gcdSkill * 4;
+      trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack');
+    }, 15000);
+  });
   bars.statChangeFuncMap['NIN'] = () => {
     trickAttack.valuescale = bars.gcdSkill;
-    bars.onUseAbility(kAbility.TrickAttack, () => {
-      trickAttack.duration = 0;
-      trickAttack.duration = 15;
-      trickAttack.threshold = 1000;
-      trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack.active');
-      setTimeout(() => {
-        trickAttack.duration = 45;
-        trickAttack.threshold = bars.gcdSkill * 4;
-        trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack');
-      }, 15000);
-    });
     bunshin.valuescale = bars.gcdSkill;
     bunshin.threshold = bars.gcdSkill * 8;
     ninjutsu.valuescale = bars.gcdSkill;

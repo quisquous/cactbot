@@ -106,39 +106,29 @@ export function setupSmn(bars) {
       demiSummoningBox.parentNode.classList.remove('last');
   });
 
-  bars.onUseAbility(kAbility.Miasma, () => {
+  // Tridisaster refresh miasma and bio both, so written twice below.
+  bars.onUseAbility([
+    kAbility.Miasma,
+    kAbility.Miasma3,
+    kAbility.Tridisaster,
+  ], () => {
     miasmaBox.duration = 0;
     miasmaBox.duration = 30;
   });
-  bars.onUseAbility(kAbility.Miasma3, () => {
-    miasmaBox.duration = 0;
-    miasmaBox.duration = 30;
-  });
-  bars.onUseAbility(kAbility.BioSmn, () => {
-    bioSmnBox.duration = 0;
-    bioSmnBox.duration = 30;
-  });
-  bars.onUseAbility(kAbility.BioSmn2, () => {
-    bioSmnBox.duration = 0;
-    bioSmnBox.duration = 30;
-  });
-  bars.onUseAbility(kAbility.Bio3, () => {
-    bioSmnBox.duration = 0;
-    bioSmnBox.duration = 30;
-  });
-  bars.onUseAbility(kAbility.Tridisaster, () => {
-    miasmaBox.duration = 0;
-    miasmaBox.duration = 30;
+  bars.onUseAbility([
+    kAbility.BioSmn,
+    kAbility.BioSmn2,
+    kAbility.Bio3,
+    kAbility.Tridisaster,
+  ], () => {
     bioSmnBox.duration = 0;
     bioSmnBox.duration = 30;
   });
 
-  bars.onUseAbility(kAbility.EnergyDrain, () => {
-    energyDrainBox.duration = 0;
-    energyDrainBox.duration = 30;
-    aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
-  });
-  bars.onUseAbility(kAbility.EnergySiphon, () => {
+  bars.onUseAbility([
+    kAbility.EnergyDrain,
+    kAbility.EnergySiphon,
+  ], () => {
     energyDrainBox.duration = 0;
     energyDrainBox.duration = 30;
     aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
@@ -146,11 +136,10 @@ export function setupSmn(bars) {
   // Trance cooldown is 55s,
   // but wait till 60s will be better on matching raidbuffs.
   // Threshold will be used to tell real cooldown.
-  bars.onUseAbility(kAbility.DreadwyrmTrance, () => {
-    tranceBox.duration = 0;
-    tranceBox.duration = 60;
-  });
-  bars.onUseAbility(kAbility.FirebirdTrance, () => {
+  bars.onUseAbility([
+    kAbility.DreadwyrmTrance,
+    kAbility.FirebirdTrance,
+  ], () => {
     tranceBox.duration = 0;
     tranceBox.duration = 60;
   });

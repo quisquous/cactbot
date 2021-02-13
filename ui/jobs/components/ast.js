@@ -64,11 +64,7 @@ export function setupAst(bars) {
       sealBox.parentNode.classList.remove('ready');
   });
 
-  bars.onUseAbility(kAbility.Combust3, () => {
-    combustBox.duration = 0;
-    combustBox.duration = 30;
-  });
-  bars.onUseAbility(kAbility.Combust2, () => {
+  bars.onUseAbility([kAbility.Combust2, kAbility.Combust3], () => {
     combustBox.duration = 0;
     combustBox.duration = 30;
   });

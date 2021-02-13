@@ -7,15 +7,15 @@ export function setupDrg(bars) {
     id: 'drg-procs-highjump',
     fgColor: 'drg-color-highjump',
   });
-  [
+
+  bars.onUseAbility([
     kAbility.HighJump,
     kAbility.Jump,
-  ].forEach((ability) => {
-    bars.onUseAbility(ability, () => {
-      highJumpBox.duration = 0;
-      highJumpBox.duration = 30;
-    });
+  ], () => {
+    highJumpBox.duration = 0;
+    highJumpBox.duration = 30;
   });
+
   const disembowelBox = bars.addProcBox({
     id: 'drg-procs-disembowel',
     fgColor: 'drg-color-disembowel',

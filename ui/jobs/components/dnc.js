@@ -35,28 +35,27 @@ export function setupDnc(bars) {
   });
   let technicalIsActive = false;
   let elapsed = 0;
-  [
+
+  bars.onUseAbility([
     kAbility.QuadrupleTechnicalFinish,
     kAbility.TripleTechnicalFinish,
     kAbility.DoubleTechnicalFinish,
     kAbility.SingleTechnicalFinish,
-  ].forEach((ability) => {
-    bars.onUseAbility(ability, () => {
-      // Avoid mutiple call in one TechnicalFinish.
-      if (technicalIsActive)
-        return;
-      elapsed = technicalStep.elapsed;
-      technicalIsActive = true;
-      technicalStep.duration = 20;
-      technicalStep.threshold = 1000;
-      technicalStep.fg = computeBackgroundColorFrom(technicalStep, 'dnc-color-technicalstep.active');
-      setTimeout(() => {
-        technicalIsActive = false;
-        technicalStep.duration = 100 - elapsed;
-        technicalStep.threshold = bars.gcdSkill + 1;
-        technicalStep.fg = computeBackgroundColorFrom(technicalStep, 'dnc-color-technicalstep');
-      }, technicalStep.duration * 1000);
-    });
+  ], () => {
+    // Avoid mutiple call in one TechnicalFinish.
+    if (technicalIsActive)
+      return;
+    elapsed = technicalStep.elapsed;
+    technicalIsActive = true;
+    technicalStep.duration = 20;
+    technicalStep.threshold = 1000;
+    technicalStep.fg = computeBackgroundColorFrom(technicalStep, 'dnc-color-technicalstep.active');
+    setTimeout(() => {
+      technicalIsActive = false;
+      technicalStep.duration = 100 - elapsed;
+      technicalStep.threshold = bars.gcdSkill + 1;
+      technicalStep.fg = computeBackgroundColorFrom(technicalStep, 'dnc-color-technicalstep');
+    }, technicalStep.duration * 1000);
   });
 
   // When cast Flourish, show proc remain time until all procs have been used.

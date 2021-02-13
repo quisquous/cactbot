@@ -75,7 +75,8 @@ export function setupMch(bars) {
       }, 100);
     }
   };
-  [
+
+  bars.onUseAbility([
     kAbility.SplitShot,
     kAbility.SlugShot,
     kAbility.CleanShot,
@@ -85,40 +86,36 @@ export function setupMch(bars) {
     kAbility.SpreadShot,
     kAbility.HeatBlast,
     kAbility.AutoCrossbow,
-  ].forEach((ability) => {
-    bars.onUseAbility(ability, () => {
-      refreshWildFireGuage();
-    });
+  ], () => {
+    refreshWildFireGuage();
   });
 
   const drillBox = bars.addProcBox({
     id: 'mch-procs-drill',
     fgColor: 'mch-color-drill',
   });
-  [
+
+  bars.onUseAbility([
     kAbility.Drill,
     kAbility.Bioblaster,
-  ].forEach((ability) => {
-    bars.onUseAbility(ability, () => {
-      drillBox.duration = 0;
-      drillBox.duration = bars.CalcGCDFromStat(bars.skillSpeed, 20000);
-      refreshWildFireGuage();
-    });
+  ], () => {
+    drillBox.duration = 0;
+    drillBox.duration = bars.CalcGCDFromStat(bars.skillSpeed, 20000);
+    refreshWildFireGuage();
   });
 
   const airAnchorBox = bars.addProcBox({
     id: 'mch-procs-airanchor',
     fgColor: 'mch-color-airanchor',
   });
-  [
+
+  bars.onUseAbility([
     kAbility.AirAnchor,
     kAbility.HotShot,
-  ].forEach((ability) => {
-    bars.onUseAbility(ability, () => {
-      airAnchorBox.duration = 0;
-      airAnchorBox.duration = bars.CalcGCDFromStat(bars.skillSpeed, 40000);
-      refreshWildFireGuage();
-    });
+  ], () => {
+    airAnchorBox.duration = 0;
+    airAnchorBox.duration = bars.CalcGCDFromStat(bars.skillSpeed, 40000);
+    refreshWildFireGuage();
   });
 
   const wildFireBox = bars.addProcBox({
