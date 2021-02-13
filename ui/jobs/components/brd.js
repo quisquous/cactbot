@@ -12,9 +12,7 @@ export function setupBrd(bars) {
     straightShotProc.duration = 0;
     straightShotProc.duration = 10;
   });
-  bars.onYouLoseEffect(EffectId.StraightShotReady, () => {
-    straightShotProc.duration = 0;
-  });
+  bars.onYouLoseEffect(EffectId.StraightShotReady, () => straightShotProc.duration = 0);
   // DoT
   const causticBiteBox = bars.addProcBox({
     id: 'brd-procs-causticbite',
@@ -64,9 +62,7 @@ export function setupBrd(bars) {
   });
   // Only with-DoT-target you last attacked will trigger bars timer.
   // So it work not well in mutiple targets fight.
-  bars.UpdateDotTimer = () => {
-    bars.repertoireTimer.duration = 2.91666;
-  };
+  bars.UpdateDotTimer = () => bars.repertoireTimer.duration = 2.91666;
   const soulVoiceBox = bars.addResourceBox({
     classList: ['brd-color-soulvoice'],
   });

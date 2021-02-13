@@ -43,18 +43,10 @@ export function setupNin(bars) {
   });
   // On each mudra, Mudra effect will be gain once,
   // use bars.mudraTriggerCd to tell that whether bars mudra trigger cooldown.
-  bars.onYouLoseEffect(EffectId.Mudra, () => {
-    bars.mudraTriggerCd = true;
-  });
-  bars.onYouGainEffect(EffectId.Kassatsu, () => {
-    bars.mudraTriggerCd = false;
-  });
-  bars.onYouLoseEffect(EffectId.Kassatsu, () => {
-    bars.mudraTriggerCd = true;
-  });
-  bars.onUseAbility(kAbility.Hide, () => {
-    ninjutsu.duration = 0;
-  });
+  bars.onYouLoseEffect(EffectId.Mudra, () => bars.mudraTriggerCd = true);
+  bars.onYouGainEffect(EffectId.Kassatsu, () => bars.mudraTriggerCd = false);
+  bars.onYouLoseEffect(EffectId.Kassatsu, () => bars.mudraTriggerCd = true);
+  bars.onUseAbility(kAbility.Hide, () => ninjutsu.duration = 0);
   bars.onUseAbility(kAbility.TrickAttack, () => {
     trickAttack.duration = 0;
     trickAttack.duration = 15;
