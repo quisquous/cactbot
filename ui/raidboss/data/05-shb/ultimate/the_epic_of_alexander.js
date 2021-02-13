@@ -1640,7 +1640,7 @@ export default {
           de: 'Köder Sprung mit Cooldowns',
           fr: 'Attirez le Saut avec des Cooldowns',
           ja: 'スパジャン誘導',
-          cn: '引导冷却跳跃',
+          cn: '减伤引导跳跃',
           ko: '슈퍼 점프 유도',
         },
       },
