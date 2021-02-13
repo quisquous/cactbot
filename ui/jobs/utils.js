@@ -167,13 +167,3 @@ export function computeBackgroundColorFrom(element, classList) {
   element.removeChild(div);
   return color;
 }
-
-export function makeFuncMap(map, abilityIds, func) {
-  if (typeof abilityIds === 'string') {
-    map[abilityIds] = func;
-  } else {
-    abilityIds.forEach((id) => {
-      map[id] = func;
-    });
-  }
-}
