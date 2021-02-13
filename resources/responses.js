@@ -215,8 +215,11 @@ export const Responses = {
         const target = getTarget(matches);
         if (target === data.me)
           return output.cleaveOnYou();
-        if (data.role === 'tank') {
+        if (data.role === 'tank' || data.job === 'BLU') {
           // targetless tank cleave
+          // BLU players should always get this generic cleave message.
+          // We have no robust way to determine whether they have tank Mimicry on,
+          // and it's really annoying for a BLU tank to be told to avoid cleaves when they can't.
           return output.cleaveNoTarget();
         }
         return output.avoidCleave();
