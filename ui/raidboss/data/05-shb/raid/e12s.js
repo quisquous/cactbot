@@ -399,7 +399,7 @@ export default {
       // Headmarkers are randomized, so use a generic headMarker regex with no criteria.
       id: 'E12S Promise Chiseled Sculpture',
       netRegex: NetRegexes.headMarker({}),
-      condition: (data) => data.isDoorBoss && matches.target === data.me,
+      condition: (data, matches) => data.isDoorBoss && matches.target === data.me,
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -992,8 +992,7 @@ export default {
           fr: 'Ne regardez pas ${player1} et ${player2}',
           ja: '${player1}と${player2}を見ない',
           cn: '背对${player1}和${player2}',
-          // TODO: Verify this localization:
-          // ko: '${player1}와 ${player2}에게서 뒤돌기',
+          ko: '${player1}와 ${player2}에게서 뒤돌기',
         },
         lookAwayFromPlayer: Outputs.lookAwayFromPlayer,
       },

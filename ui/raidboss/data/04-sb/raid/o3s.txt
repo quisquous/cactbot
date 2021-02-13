@@ -1,176 +1,136 @@
 # Omega - Deltascape V3.0 (Savage) - O3S
-# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
-# Shasta's reddit: /u/shastaxc
-# Last Updated: 07/31/2017
+# Halicarnassus
 
-#############################################################
-########CUSTOMIZE your timeline. Remove the hashtag from
-########the beginning of the following lines to prevent
-########them from appearing on your timeline.
+hideall "--Reset--"
+hideall "--sync--"
 
-#hideall "--Reset--"
-#########DPS CAN HIDE THESE
-#hideall "Critical Hit"
-#hideall "Haste"
-#hideall "Dimensional Wave"
-#hideall "The Playing Field"
-#hideall "The Game"
-#hideall "Place Token (Apanda)"
-#hideall "Place Token (Ninjas/Giant)"
-#hideall "Place Dark Token"
-
-#########HEALERS CAN HIDE THESE
-#hideall "Haste"
-#hideall "Dimensional Wave"
-#hideall "The Playing Field"
-#hideall "The Game"
-#hideall "Place Token (Apanda)"
-#hideall "Place Token (Ninjas/Giant)"
-#hideall "Place Dark Token"
-
-#########TANKS CAN HIDE THESE
-#hideall "Haste"
-#hideall "The Playing Field"
-#hideall "The Game"
-#hideall "Place Token (Apanda)"
-#hideall "Place Token (Ninjas/Giant)"
-#hideall "Place Dark Token"
-
-##############################################################
-################## Windows 8 & 10 Voices ##################
-########REMOVE THE HASTAG to select a voice
-#define speaker "voice" "Microsoft Zira Desktop" 0 100
-#define speaker "voice" "Microsoft David Desktop" 0 100
-
-#################### Windows 7 Voices ####################
-########REMOVE THE HASTAG to select a voice
-#define speaker "voice" "Microsoft Anna" 0 100
-
-################ CUSTOMIZE Call Outs #####################
-########REMOVE THE HASHTAG to enable each call out
-#alertall "Dimensional Wave" before 3 speak "voice" "AoE"
-#alertall "Critical Hit" before 3 speak "voice" "Tank Buster"
-#alertall "Queen's Waltz (Clock)" before 3 speak "voice" "Surround Boss"
-#alertall "Queen's Waltz (Crystals)" before 5 speak "voice" "Go Blue Tile"
-#alertall "Queen's Waltz (Books)" before 5 speak "voice" "Individual Tiles"
-#alertall "Oink" before 3 speak "voice" "stack"
-#alertall "Ribbit" before 1 speak "voice" "ribbit cone"
-#alertall "Squelch" before 3 speak "voice" "look away"
-#alertall "Mindjack" before 0 speak "voice" "look at your debuff"
-#alertall "Magic Hammer" before 5 speak "voice" "stack on individual tiles"
-#alertall "Tanks Morph" before 3 speak "voice" "tanks morph"
-#alertall "Healers Morph" before 3 speak "voice" "healers morph"
-#alertall "DPS Morph" before 3 speak "voice" "DPS morph"
-#alertall "Place Token" before 3 speak "voice" "add spawn"
-
-##############################################################
 0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
-########Phase 1
-0	"Start" sync /:Engage!/ window 0,1
-10	"Critical Hit"	sync /:Halicarnassus:22EB:/ window 10,10	#Tank buster
-19	"Spellblade Holy"	duration 6 #4 players spread/stack
-37	"Queen's Waltz (Clock)"	#Spread around boss
-41	"Haste"
-44	"Random Elemental" #Fire, Blizz, or Thunder
-50	"Dimensional Wave"	#AoE
-59	"The Playing Field"
-65	"Oink"	#Stack with another player
-72	"The Game"	#Stand on role tiles
+# -ii 22EA 22FE 2309 230C 230F 2315
 
-########Phase 2
-81	"Panel Swap"	sync /:Halicarnassus:2304:/ window 30	#Arena changes
-90	"Queen's Waltz (Tethers)"	#Applies thorny tethers
-93	"Tethers"	#Run from partner Healer/Tank always tethered to a DPS. Never Healer-Healer, tank-tank, tank-healer, dps-dps.
-95	"Fire"	#Spellblade Fire III
-99	"Haste"
-103	"Thunder"	#Spellblade Thunder III
-108	"Critical Hit"	#Tank Buster
-115	"Dimensional Wave"	#AoE
-121	"Place Token"	#Spawns add
-122	"--White Flame Spawns--"
-132	"Haste"
-136	"Blizzard"	#Spellblade Blizzard III
-143	"Mindjack" duration 13  #Applies 13s facing debuffs
-155	"Queen's Waltz (Tethers)"	#Applies thorny tethers
-157	"Tethers"	#Run from partner
-160	"Fire"	#Spellblade Fire III
-167	"Dimensional Wave"	#AoE
+0 "Start" sync /Engage!/ window 0,1
+1.7 "--sync--" sync /:Halicarnassus:22EA:/ window 1.7,2
+10.7 "Critical Hit" sync /:Halicarnassus:22EB:/ window 10.7,5
+19.7 "Spellblade Holy" sync /:Halicarnassus:22EF:/
+25.4 "Pole Shift" # sync /:Halicarnassus:22F[23]:/
+28.4 "Holy Blur/Holy Edge" sync /:Halicarnassus:22F[01]:/
+37.4 "The Queen's Waltz (Clock)" sync /:Halicarnassus:2306:/ window 37.4,5
+37.9 "Sword Dance" sync /:Halicarnassus:2307:/
+41.4 "Haste" sync /:Halicarnassus:22F4:/
+44.8 "Spellblade Thunder III" sync /:Halicarnassus:22EE:/
+50.3 "Dimensional Wave" sync /:Halicarnassus:22F6:/
+59.3 "The Playing Field" sync /:Halicarnassus:2300:/
+65.3 "Oink" sync /:Halicarnassus:22F9:/
+72.3 "The Game" sync /:Halicarnassus:2301:/ window 72.3,10
 
-########Phase 3
-174	"Panel Swap"	sync /:Halicarnassus:2304:/ window 30	#Arena changes
-180	"Place Token"	#spawns add
-181	"--Great Dragon Spawns--"	#Spawns add
-191	"Queen's Waltz (Crystals)"	#AoE + Stand on blue tiles
-197	"Ribbit"
-203	"Dimensional Wave"	#Dimensional Wave
-203	"Dragon Conal AoE" #Frostbite
-217	"Critical Hit"	#Tank Buster
-228	"Place Dark Token"	#spawns 5 untargetable adds
-240	"Queen's Waltz (Crystals)"	#AoE + Stand on blue tiles
-#242	"Cross Reaper/Gusting Gouge"	#Middle AoE + knockback on edge tiles
-248	"Random Elemental" #Fire, Blizz, or Thunder
-253	"Dimensional Wave"	#AoE
+81.2 "Panel Swap (Thorns)" sync /:Halicarnassus:2304:/
+83.2 "--center--" sync /:Halicarnassus:2305:/
+89.5 "The Queen's Waltz (Tethers)" sync /:Halicarnassus:2308:/
+94.2 "Spellblade Fire III" sync /:Halicarnassus:22EC:/
+98.2 "Haste" sync /:Halicarnassus:22F4:/
+101.5 "Spellblade Thunder III" sync /:Halicarnassus:22EE:/
+107.0 "Critical Hit" sync /:Halicarnassus:22EB:/
+113.0 "Dimensional Wave" sync /:Halicarnassus:22F6:/ window 30,30
+119.0 "Place Token (White Flame)" sync /:Halicarnassus:22FB:/
+124.9 "Ray of White" # sync /:White Flame:2310:/
+129.9 "White Wind" # sync /:White Flame:2311:/
+130.0 "Haste" sync /:Halicarnassus:22F4:/
+131.9 "Ray of White" # sync /:White Flame:2310:/
+133.5 "Spellblade Blizzard III" sync /:Halicarnassus:22ED:/
+135.9 "Ray of White" # sync /:White Flame:2310:/
+140.5 "Mindjack" sync /:Halicarnassus:22FA:/ window 140,10
+146.0 "--center--" sync /:Halicarnassus:2305:/
+152.6 "The Queen's Waltz (Tethers)" sync /:Halicarnassus:2308:/
+157.6 "Spellblade Fire III" sync /:Halicarnassus:22EC:/
+163.6 "Dimensional Wave" sync /:Halicarnassus:22F6:/
 
-########Phase 4
-260	"Panel Swap"	sync /:Halicarnassus:2304:/ window 30	#Arena changes
-267	"Queen's Waltz (Books)"	#Spread, one person per tile (Folio)
-274	"Oink"	#Stack with another player
-279	"Place Token (Apanda)"	#Spawns add
-280	"--Apanda Spawns--"
-292	"Queen's Waltz (Books)"	#Spread, one person per tile (Folio)
-295	"Magic Hammer"	#Requires delay of spread for Queen's Waltz for middle 4 players
-299	"Squelch"	#Look away from boss
-305	"Dimensional Wave"	#AoE
-311	"Critical Hit"	#Tank Buster
-323	"Dimensional Wave"	#AoE
-328	"Spellblade Holy (Ultimate)"	#5 players; 3 spreads, 2 stacks. Get book buffs.
-336	"Queen's Waltz (Ultimate)"	#Spread, one person per tile (Folio)
-347	"Dimensional Wave"	#AoE
+171.1 "Panel Swap (Cave)" sync /:Halicarnassus:2304:/ window 85,10
+176.1 "Place Token (Great Dragon)" sync /:Halicarnassus:22FB:/
+187.1 "The Queen's Waltz (Crystals)" sync /:Halicarnassus:230A:/
+187.9 "Frost Breath" # sync /:Great Dragon:2312:/
+188.0 "--sync--" sync /:Halicarnassus:230B:/
+188.4 "Uplift" sync /:Halicarnassus:230D:/
+193.3 "Ribbit" sync /:Halicarnassus:22F7:/ window 193.3,10
+197.9 "Frost Breath" # sync /:Great Dragon:2312:/
+199.3 "Dimensional Wave" sync /:Halicarnassus:22F6:/
+212.3 "Critical Hit" sync /:Halicarnassus:22EB:/
+223.3 "Place Dark Token (Soul Reapers)" sync /:Halicarnassus:22FC:/
+235.3 "The Queen's Waltz (Crystals)" sync /:Halicarnassus:230A:/
+236.2 "--sync--" sync /:Halicarnassus:230B:/
+236.6 "Uplift" sync /:Halicarnassus:230D:/
+236.6 "Cross Reaper/Gusting Gouge" sync /:Soul Reaper:22F[DF]:/
+239.3 "Haste" sync /:Halicarnassus:22F4:/
+242.9 "Spellblade Blizzard/Fire/Thunder" sync /:Halicarnassus:22E[CDE]:/
+248.3 "Dimensional Wave" sync /:Halicarnassus:22F6:/ window 30,30
 
-########Phase 5
-355	"Panel Swap"	sync /:Halicarnassus:2304:/ window 30
-360	"The Playing Field"
-371	"Tanks Morph"	#Ribbit, Squelch, or Oink
-377	"Healers Morph"	#Ribbit, Squelch, or Oink
-383	"DPS Morph"	#Ribbit, Squelch, or Oink
-390	"The Game"	#Get on square by role
-402	"Queen's Waltz (Random)"
-412	"Spellblade Holy" duration 6	#Stack/spread, only 2 people this time
-428	"Critical Hit"	#Tank Buster
-437	"Mindjack" duration 13	#Applies 13s facing debuffs
-#442	"Place Dark Token"	#Spawns 9 untargetable adds
-#457	"Stench of Death/Gusting Gouge"	#Middle AoE + lengthen tethers
-463	"Queen's Waltz (Random)"
-477	"Dimensional Wave"	#AoE
-485	"Haste"
-489	"Random Elemental" #Fire, Blizz, or Thunder
-493	"Random Elemental" #Fire, Blizz, or Thunder
-500	"Dimensional Wave"	#AoE
-510	"Place Token (Ninjas/Giant)"	#Spawns ninja adds + iron giant
-511	"--Ninjas + Giant Spawn--"
-520	"Haste III"	sync /:22F5:Halicarnassus/ window 100
-524	"Dimensional Wave"	#AoE
-530	"Dimensional Wave"	#AoE
-535	"Dimensional Wave"	#AoE
-541	"Dimensional Wave"	#AoE
-548	"The Queen's Waltz (Random)"	#Spread around boss
-553	"Random Elemental"	#Fire, Blizz, or Thunder
-563	"Dimensional Wave"	#Dimensional Wave
-569	"Critical Hit"	#Tank Buster
-580	"The Queen's Waltz (Random)"	#Spread, one person per tile (Folio)
-589	"Spellblade Holy" duration 6	#4 players spread/stack
-605	"Critical Hit"	#Tank Buster
-614	"Mindjack" duration 13  #Applies 13s facing debuffs
-#619	"Place Dark Token"	#Spawns 9 untargetable adds
-#633	"Stench of Death/Cross Reaper/Gusting Gouge"	#Middle AoE + knockback on edge tiles + lengthen tethers
-641	"Queen's Waltz (Random)"	#Applies thorny tethers
-#643	"Tethers"	#Run from partner
-654	"Dimensional Wave"	#AoE
-662	"Haste"
-665	"Random Elemental"	#Fire, Blizz, or Thunder
-670	"Random Elemental"	#Fire, Blizz, or Thunder
-676	"Dimensional Wave"	#AoE
-686	"The Playing Field"
-693	"The Game"	#Enrage
-703 "--Enrage--"
+254.3 "Panel Swap (library)" sync /:Halicarnassus:2304:/
+261.3 "The Queen's Waltz (Books)" sync /:Halicarnassus:230E:/ window 261.3,10
+268.3 "Oink" sync /:Halicarnassus:22F9:/
+273.3 "Place Token (Apanda)" sync /:Halicarnassus:22FB:/
+281.2 "Pummel" # sync /:Apanda:2313:/
+286.4 "The Queen's Waltz (Books)" sync /:Halicarnassus:230E:/
+288.7 "Magic Hammer" sync /:Apanda:2314:/
+292.4 "Squelch" sync /:Halicarnassus:22F8:/ window 292.4,10
+294.8 "Pummel" # sync /:Apanda:2313:/
+298.5 "Dimensional Wave" sync /:Halicarnassus:22F6:/
+302.9 "Pummel" # sync /:Apanda:2313:/
+304.6 "Critical Hit" sync /:Halicarnassus:22EB:/
+316.6 "Dimensional Wave" sync /:Halicarnassus:22F6:/
+321.6 "Spellblade Holy" sync /:Halicarnassus:22EF:/
+329.6 "The Queen's Waltz (Spellblade Books)" sync /:Halicarnassus:230E:/ window 30,30
+330.5 "Holy Blur/Holy Edge" sync /:Halicarnassus:22F[01]:/
+339.5 "Dimensional Wave" sync /:Halicarnassus:22F6:/
+
+347.5 "Panel Swap (thorns)" sync /:Halicarnassus:2304:/
+352.5 "The Playing Field" sync /:Halicarnassus:2300:/ window 250,20
+362.5 "Oink/Ribbit/Squelch 1" sync /:Halicarnassus:22F[789]:/
+368.7 "Oink/Ribbit/Squelch 2" sync /:Halicarnassus:22F[789]:/
+374.7 "Oink/Ribbit/Squelch 3" sync /:Halicarnassus:22F[789]:/
+381.7 "The Game" sync /:Halicarnassus:2301:/
+388.0 "--teleport--" sync /:Halicarnassus:2305:/
+394.5 "The Queen's Waltz (Random)" sync /:Halicarnassus:230[68AE]:/
+403.8 "Spellblade Holy" sync /:Halicarnassus:22EF:/
+409.9 "Pole Shift" # sync /:Halicarnassus:22F[23]:/
+412.9 "Holy Blur/Holy Edge" sync /:Halicarnassus:22F[01]:/
+420.1 "Critical Hit" sync /:Halicarnassus:22EB:/
+429.3 "Mindjack" sync /:Halicarnassus:22FA:/
+434.5 "Place Dark Token (Soul Reapers)" sync /:Halicarnassus:22FC:/
+448.1 "Cross Reaper/Gusting Gouge" sync /:Soul Reaper:22F[DF]:/
+449.7 "--teleport--" sync /:Halicarnassus:2305:/
+456.0 "The Queen's Waltz (Random)" sync /:Halicarnassus:230[68AE]:/
+469.0 "Dimensional Wave" sync /:Halicarnassus:22F6:/
+477.1 "Haste" sync /:Halicarnassus:22F4:/ window 30,30
+480.8 "Spellblade Blizzard/Fire/Thunder 1" sync /:Halicarnassus:22E[CDE]:/
+485.4 "Spellblade Blizzard/Fire/Thunder 2" sync /:Halicarnassus:22E[CDE]:/
+491.5 "Dimensional Wave" sync /:Halicarnassus:22F6:/
+501.7 "Place Token (Ninjas/Giant)" sync /:Halicarnassus:22FB:/
+512.0 "Haste III" sync /:Halicarnassus:22F5:/
+512.7 "Grand Sword" # sync /:Iron Giant:2316:/
+516.5 "Dimensional Wave 1" sync /:Halicarnassus:22F6:/
+518.7 "Grand Sword" # sync /:Iron Giant:2316:/
+522.1 "Dimensional Wave 2" sync /:Halicarnassus:22F6:/
+527.7 "Dimensional Wave 3" sync /:Halicarnassus:22F6:/
+533.3 "Dimensional Wave 4" sync /:Halicarnassus:22F6:/
+535.5 "--teleport--" sync /:Halicarnassus:2305:/
+540.9 "The Queen's Waltz (Random)" sync /:Halicarnassus:230[68AE]:/
+545.5 "Spellblade Blizzard/Fire/Thunder" sync /:Halicarnassus:22E[CDE]:/
+555.6 "Dimensional Wave" sync /:Halicarnassus:22F6:/
+561.7 "Critical Hit" sync /:Halicarnassus:22EB:/ window 30,15
+567.0 "--teleport--" sync /:Halicarnassus:2305:/
+573.3 "The Queen's Waltz (Random)" sync /:Halicarnassus:230[68AE]:/
+582.6 "Spellblade Holy" sync /:Halicarnassus:22EF:/
+588.6 "Pole Shift" # sync /:Halicarnassus:22F[23]:/
+591.6 "Holy Blur/Holy Edge" sync /:Halicarnassus:22F[01]:/
+598.8 "Critical Hit" sync /:Halicarnassus:22EB:/
+608.0 "Mindjack" sync /:Halicarnassus:22FA:/
+613.2 "Place Dark Token (Soul Reapers)" sync /:Halicarnassus:22FC:/
+626.7 "Cross Reaper/Gusting Gouge" sync /:Soul Reaper:22F[DF]:/
+628.5 "--teleport--" sync /:Halicarnassus:2305:/
+635.2 "The Queen's Waltz (Random)" sync /:Halicarnassus:230[68AE]:/
+648.4 "Dimensional Wave" sync /:Halicarnassus:22F6:/ window 30,15
+656.5 "Haste" sync /:Halicarnassus:22F4:/
+660.1 "Spellblade Blizzard/Fire/Thunder 1" sync /:Halicarnassus:22E[CDE]:/
+665.0 "Spellblade Blizzard/Fire/Thunder 2" sync /:Halicarnassus:22E[CDE]:/
+671.1 "Dimensional Wave" sync /:Halicarnassus:22F6:/
+681.2 "The Playing Field" sync /:Halicarnassus:2300:/
+688.3 "The Game (Enrage)" sync /:Halicarnassus:2301:/

@@ -212,10 +212,10 @@ export const Responses = {
     };
     return {
       [defaultInfoText(sev)]: (data, matches, output) => {
+        const target = getTarget(matches);
+        if (target === data.me)
+          return output.cleaveOnYou();
         if (data.role === 'tank') {
-          const target = getTarget(matches);
-          if (target === data.me)
-            return output.cleaveOnYou();
           // targetless tank cleave
           return output.cleaveNoTarget();
         }

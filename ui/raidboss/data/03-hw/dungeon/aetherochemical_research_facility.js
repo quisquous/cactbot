@@ -134,7 +134,7 @@ export default {
           en: 'Avoid your orb--pop others\'',
           de: 'Weiche deinem Orb aus - löse die Orbs der anderen aus',
           fr: 'Évitez votre orbe, éclatez les autres',
-          ja: '自分の玉に避け、他人の玉を砕ける',
+          ja: '自分の玉を避け、他人の玉を砕く',
           cn: '躲开自己的球，去撞别人的球',
           ko: '내 구체는 피하고, 다른 구체 터트리기',
         },

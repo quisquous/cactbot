@@ -46,6 +46,11 @@ namespace Cactbot {
       0x30,
       0x299
     );
+    
+    private static readonly CEDirectorOPCodes cedirector_v5_35_cn = new CEDirectorOPCodes(
+      0x30,
+      0x144
+    );
 
     private static readonly CEDirectorOPCodes cedirector_v5_35_hotfix = new CEDirectorOPCodes(
       0x30,
@@ -141,6 +146,7 @@ namespace Cactbot {
       cedirectoropcodes = new Dictionary<string, CEDirectorOPCodes>();
       cedirectoropcodes.Add("intl", cedirector_v5_45);
 
+      cedirectoropcodes.Add("cn", cedirector_v5_35_cn);
       fates = new Dictionary<int, int>();
       ces = new Dictionary<int, CEDirectorData>();
 
