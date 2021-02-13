@@ -690,7 +690,7 @@ const statChangeParams = [
   }
 
   export function validateParams(
-    f: Readonly<{ [s: string]: boolean | string | string[] | undefined }>,
+    f: Readonly<{ [s: string]: any }>,
     funcName: string,
     params: Readonly<string[]>
   ) {
