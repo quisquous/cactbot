@@ -28,23 +28,19 @@ export function setupBrd(bars) {
   // so it doesn't need to be handled separately.
   // Log line of getting DoT comes a little late after DoT appear on target,
   // so -0.5s
-  [
+  bars.onMobGainsEffectFromYou([
     EffectId.Stormbite,
     EffectId.Windbite,
-  ].forEach((effect) => {
-    bars.mobGainEffectFromYouFuncMap[effect] = () => {
-      stormBiteBox.duration = 0;
-      stormBiteBox.duration = 30 - 0.5;
-    };
+  ], () => {
+    stormBiteBox.duration = 0;
+    stormBiteBox.duration = 30 - 0.5;
   });
-  [
+  bars.onMobGainsEffectFromYou([
     EffectId.CausticBite,
     EffectId.VenomousBite,
-  ].forEach((effect) => {
-    bars.mobGainEffectFromYouFuncMap[effect] = () => {
-      causticBiteBox.duration = 0;
-      causticBiteBox.duration = 30 - 0.5;
-    };
+  ], () => {
+    causticBiteBox.duration = 0;
+    causticBiteBox.duration = 30 - 0.5;
   });
   bars.onStatChange('BRD', () => {
     stormBiteBox.valuescale = bars.gcdSkill;
