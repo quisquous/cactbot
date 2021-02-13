@@ -4,7 +4,13 @@ from pathlib import Path
 import re
 import subprocess
 import sys
-from definitions import CactbotModule, DATA_DIRECTORY, PROJECT_ROOT_DIRECTORY, TEST_DIRECTORY
+from definitions import (
+    CactbotModule,
+    DATA_DIRECTORY,
+    PROJECT_ROOT_DIRECTORY,
+    TEST_DIRECTORY,
+    NODE_COMMAND,
+)
 
 TIMELINE_DIRECTORY = "timeline"
 
@@ -63,7 +69,7 @@ def main():
         # Run individual timeline tests
         for test_file in TIMELINE_TEST_DIRECTORY.iterdir():
             exit_status |= subprocess.call(
-                ["node", str(test_file), str(filepath), str(trigger_filename)]
+                NODE_COMMAND + [str(test_file), str(filepath), str(trigger_filename)], shell=True,
             )
 
     return exit_status
