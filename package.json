@@ -14,7 +14,7 @@
     "lintfix": "node_modules/.bin/eslint --fix **/*.{js,cjs,mjs,ts}",
     "stylelint": "node_modules/.bin/stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
     "markdownlint": "node_modules/.bin/markdownlint . --ignore node_modules --ignore publish --ignore CactbotOverlay/ThirdParty",
-    "test": "python test/run_tests.py",
+    "test": "tsc typing/*.d.ts --noEmit && python test/run_tests.py",
     "lint-staged": "node_modules/.bin/lint-staged",
     "coverage-report": "node util/gen_coverage_report.js"
   },

@@ -1,10 +1,11 @@
-import { Data } from './data.d.ts';
+import { lang } from './global';
+import { Data } from './data';
 
 export interface Output {
   [key: string]: () => string
 }
 
-interface Match extends RegExpMatchArray {
+interface Match {
   target?: string
   [key: string]: string
 }
