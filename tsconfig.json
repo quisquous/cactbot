@@ -37,7 +37,6 @@
   "exclude": [
     "./eslint",
     "./.eslintrc.cjs",
-    "./jest.config.mjs",
     "./webpack",
     "./dist"
   ]
