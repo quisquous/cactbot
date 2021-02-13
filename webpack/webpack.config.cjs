@@ -209,9 +209,6 @@ module.exports = function(env, argv) {
       })))(),
       new CopyPlugin({
         patterns: [
-          // {
-          //   from: '@(ui|resources|util)/**/*.css',
-          // },
           {
             // copy sounds and images
             from: 'resources/@(ffxiv|sounds)/**/*',
