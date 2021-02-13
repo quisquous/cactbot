@@ -1159,25 +1159,25 @@ let gBars;
 
 UserConfig.getUserConfigLocation('jobs', Options, () => {
   addOverlayListener('onPlayerChangedEvent', (e) => {
-    gBars.OnPlayerChanged(e);
+    gBars._onPlayerChanged(e);
   });
   addOverlayListener('EnmityTargetData', (e) => {
-    gBars.UpdateEnmityTargetData(e);
+    gBars._updateEnmityTargetData(e);
   });
   addOverlayListener('onPartyWipe', (e) => {
-    gBars.OnPartyWipe(e);
+    gBars._onPartyWipe(e);
   });
   addOverlayListener('onInCombatChangedEvent', (e) => {
-    gBars.OnInCombatChanged(e);
+    gBars._onInCombatChanged(e);
   });
   addOverlayListener('ChangeZone', (e) => {
-    gBars.OnChangeZone(e);
+    gBars._onChangeZone(e);
   });
   addOverlayListener('onLogEvent', (e) => {
-    gBars.OnLogEvent(e);
+    gBars._onLogEvent(e);
   });
   addOverlayListener('LogLine', (e) => {
-    gBars.OnNetLog(e);
+    gBars._onNetLog(e);
   });
 
   gBars = new Bars(Options);

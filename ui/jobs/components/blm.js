@@ -85,7 +85,7 @@ export function setupBlm(bars) {
   bars.onJobDetailUpdate((jobDetail) => {
     if (bars.umbralStacks !== jobDetail.umbralStacks) {
       bars.umbralStacks = jobDetail.umbralStacks;
-      bars.UpdateMPTicker();
+      bars._updateMPTicker();
     }
     const fouls = jobDetail.foulCount;
     for (let i = 0; i < 2; ++i) {
