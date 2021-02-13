@@ -109,6 +109,8 @@
 04-sb/dungeon/ghimlyt_dark.txt
 04-sb/dungeon/hells_lid.js
 04-sb/dungeon/hells_lid.txt
+04-sb/dungeon/kugane_castle.js
+04-sb/dungeon/kugane_castle.txt
 04-sb/dungeon/st_mocianne_hard.js
 04-sb/dungeon/st_mocianne_hard.txt
 04-sb/dungeon/swallows_compass.js
