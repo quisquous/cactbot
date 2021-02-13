@@ -4,6 +4,12 @@ export interface Output {
   text(): string,
 }
 
+interface Match extends RegExpMatchArray {
+  target?: string
+}
+
+type Response = (data: Data, matches: Match, output: Output) => string
+
 export interface BaseTrigger {
   id: string,
   disabled?: boolean,
@@ -21,11 +27,11 @@ export interface BaseTrigger {
   promise?(data: Data, matches): void,
   sound?: string,
   soundVolume?: number,
-  response?(data: Data, matches, output: Output): string,
-  alarmText?: Record<string, string>,
-  alertText?: Record<string, string>,
-  infoText?: Record<string, string>,
-  tts?: Record<string, string>,
+  response?: Response,
+  alarmText?: Record<lang, string> | Response,
+  alertText?: Record<lang, string> | Response,
+  infoText?: Record<lang, string> | Response,
+  tts?: Record<lang, string>,
   run?(data: Data, matches): void,
   outputStrings?: Record<string, unknown>,
 }
