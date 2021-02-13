@@ -27,9 +27,11 @@ export function setupNin(bars) {
     id: 'nin-procs-ninjutsu',
     fgColor: 'nin-color-ninjutsu',
   });
+
+  let mudraTriggerCd = true;
   // Ninjutsu's cooldown begins to countdown at the first mudra.
   bars.onYouGainEffect(EffectId.Mudra, () => {
-    if (!bars.mudraTriggerCd)
+    if (!mudraTriggerCd)
       return;
     const old = parseFloat(ninjutsu.duration) - parseFloat(ninjutsu.elapsed);
     if (old > 0) {
@@ -39,13 +41,13 @@ export function setupNin(bars) {
       ninjutsu.duration = 0;
       ninjutsu.duration = 20 - 0.5;
     }
-    bars.mudraTriggerCd = false;
+    mudraTriggerCd = false;
   });
   // On each mudra, Mudra effect will be gain once,
-  // use bars.mudraTriggerCd to tell that whether bars mudra trigger cooldown.
-  bars.onYouLoseEffect(EffectId.Mudra, () => bars.mudraTriggerCd = true);
-  bars.onYouGainEffect(EffectId.Kassatsu, () => bars.mudraTriggerCd = false);
-  bars.onYouLoseEffect(EffectId.Kassatsu, () => bars.mudraTriggerCd = true);
+  // use mudraTriggerCd to tell that whether bars mudra trigger cooldown.
+  bars.onYouLoseEffect(EffectId.Mudra, () => mudraTriggerCd = true);
+  bars.onYouGainEffect(EffectId.Kassatsu, () => mudraTriggerCd = false);
+  bars.onYouLoseEffect(EffectId.Kassatsu, () => mudraTriggerCd = true);
   bars.onUseAbility(kAbility.Hide, () => ninjutsu.duration = 0);
   bars.onUseAbility(kAbility.TrickAttack, () => {
     trickAttack.duration = 0;

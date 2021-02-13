@@ -164,7 +164,6 @@ class Bars {
     this.paeonStacks = 0;
     this.museStacks = 0;
     this.circleOfPower = 0;
-    this.mudraTriggerCd = true;
 
     this.dotTarget = [];
     this.trackedDoTs = [];
