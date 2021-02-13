@@ -34,6 +34,7 @@ export default {
     'E12S Promise Ferostorm': '4E46', // Garuda get intercardinals cast (damage down)
     'E12S Promise Judgment Jolt': '4E47', // Ramuh get out cast (damage down)
     'E12S Promise Shatter': '589C', // Ice Pillar explosion if tether not gotten
+    'E12S Promise Impact': '58A1', // Titan bomb drop
     'E12S Oracle Dark Blizard III': '58D3', // Relativity donut mechanic
     'E12S Oracle Apocalypse': '58E6', // Light up circle explosions (damage down)
   },
