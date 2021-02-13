@@ -327,14 +327,16 @@ class OopsyLiveList {
     div.classList.add('mistake-row');
 
     // click-to-copy function
-    div.addEventListener('click', (e) => {
-      const str = e.target.childNodes[0].textContent;
+    div.addEventListener('click', () => {
+      const mistakeText = div.childNodes[1].textContent;
+      const mistakeTime = div.childNodes[2].textContent;
+      const str = mistakeTime ? `[${mistakeTime}] ${mistakeText}` : mistakeText;
       const el = document.createElement('textarea');
       el.value = str;
-      e.target.appendChild(el);
+      document.body.appendChild(el);
       el.select();
       document.execCommand('copy');
-      e.target.removeChild(el);
+      document.body.removeChild(el);
 
       // copied message
       const msg = document.createElement('div');
