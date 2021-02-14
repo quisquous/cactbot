@@ -56,7 +56,7 @@ export function setup(bars) {
   const repertoireBox = bars.addResourceBox({
     classList: ['brd-color-song'],
   });
-  bars.repertoireTimer = bars.addTimerBar({
+  const repertoireTimer = bars.addTimerBar({
     id: 'brd-timers-repertoire',
     fgColor: 'brd-color-song',
   });

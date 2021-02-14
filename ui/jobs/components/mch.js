@@ -1,5 +1,5 @@
 import { kAbility } from '../constants.js';
-import { computeBackgroundColorFrom } from '../utils.js';
+import { calcGCDFromStat, computeBackgroundColorFrom } from '../utils.js';
 
 export function setup(bars) {
   const comboTimer = bars.addTimerBar({

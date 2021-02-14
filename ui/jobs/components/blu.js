@@ -1,4 +1,5 @@
 import { kAbility } from '../constants.js';
+import { calcGCDFromStat } from '../utils.js';
 
 export function setup(bars) {
   const offguardBox = bars.addProcBox({
