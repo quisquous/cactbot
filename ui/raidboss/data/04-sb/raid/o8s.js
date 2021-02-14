@@ -522,7 +522,7 @@ export default {
       condition: (data) => {
         return (data.antics && data.fireMarker === 'spread') || (data.truths && data.fireMarker === 'stack');
       },
-      response: Responses.stack(),
+      response: Responses.getTogether(),
       run: function(data) {
         data.lastFire = 'stack';
         delete data.fireMarker;
