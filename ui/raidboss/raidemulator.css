@@ -376,6 +376,19 @@ div.row.encountersRow {
   height: 2rem;
 }
 
+.importProgressModal .progress,
+.importProgressModal .progress-bar {
+  height: 2rem;
+}
+
+.importProgressModal .label {
+  font-size: 1.25rem;
+}
+
+.importProgressModal .btn:disabled .doneBtnTimeout {
+  display: none;
+}
+
 .partyInfoColumn .map .mapBackground {
   background-color: grey;
 }

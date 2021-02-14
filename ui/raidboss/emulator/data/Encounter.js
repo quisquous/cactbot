@@ -88,4 +88,8 @@ export default class Encounter {
 
     this.startStatus = [...this.startStatus].sort().join(', ');
   }
+
+  shouldPersistFight() {
+    return this.firstPlayerAbility > 0 && this.firstEnemyAbility > 0;
+  }
 }

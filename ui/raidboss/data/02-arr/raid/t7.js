@@ -167,7 +167,7 @@ export default {
           en: 'Dodge Shriek',
           de: 'Schrei Der Verwünschung ausweichen',
           fr: 'Esquivez le cri maudit',
-          ja: '呪詛の叫声に避け',
+          ja: '呪詛の叫声を避ける',
           cn: '躲避诅咒之嚎',
           ko: '저주의 외침 피하기',
         },

@@ -19,7 +19,7 @@ export default class EventBus {
   on(event, callback = undefined, scope = undefined) {
     const events = event.split(' ');
     const ret = {};
-    scope = scope !== undefined ? scope : window;
+    scope = scope !== undefined ? scope : (typeof window === 'undefined' ? {} : window);
     for (const event of events) {
       this.listeners[event] = this.listeners[event] || [];
       if (callback !== undefined)

@@ -16,6 +16,28 @@
   </head>
   <body class="bg-secondary">
     <div class="modal-backdrop hide"></div>
+    <div class="modal importProgressModal text-dark" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Log File Import Progress</h5>
+          </div>
+          <div class="modal-body">
+            <div class="progress position-relative">
+              <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="position-absolute w-100 text-center label"></div>
+            </div>
+            <p>
+              <h3>Latest encounter:</h3>
+              <span class="encounterLabel"></span>
+            </p>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" disabled>Done<span class="doneBtnTimeout"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="modal deleteDBModal text-dark" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
