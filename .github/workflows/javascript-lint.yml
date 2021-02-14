@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '**/*.js'
+      - '**/*.ts'
       - '**/*.cjs'
       - '**/*.mjs'
       - '**/*.json'
@@ -11,6 +12,7 @@ on:
   pull_request:
     paths:
       - '**/*.js'
+      - '**/*.ts'
       - '**/*.cjs'
       - '**/*.mjs'
       - '**/*.json'
