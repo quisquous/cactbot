@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
+    "target": "ES2020",
+    "module": "ES2020",
     "allowJs": true,
-    "checkJs": false,
+    "checkJs": true,
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
@@ -11,21 +11,17 @@
     "rootDir": "./",
     "strict": true,
     "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictBindCallApply": true,
-    "strictPropertyInitialization": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedParameters": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
+    "noPropertyAccessFromIndexSignature": false, // used by trigger output strings
     "moduleResolution": "node",
     "baseUrl": "./",
     "esModuleInterop": true,
-    "experimentalDecorators": false,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
@@ -38,6 +34,7 @@
     "./eslint",
     "./.eslintrc.cjs",
     "./webpack",
+    "./util",
     "./dist"
   ]
 }
