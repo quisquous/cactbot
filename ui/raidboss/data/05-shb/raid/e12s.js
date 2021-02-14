@@ -837,18 +837,22 @@ export default {
           longFire: {
             en: 'Long Fire',
             de: 'langes Feuer',
+            ko: '느린 파이가',
           },
           shortFire: {
             en: 'Short Fire',
             de: 'kurzes Feuer',
+            ko: '빠른 파이가',
           },
           longIce: {
             en: 'Long Ice',
             de: 'langes Eis',
+            ko: '느린 블리자가',
           },
           shortIce: {
             en: 'Short Ice',
             de: 'kurzes Eis',
+            ko: '빠른 블리자가',
           },
         };
 

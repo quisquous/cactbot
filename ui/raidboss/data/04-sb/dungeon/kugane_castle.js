@@ -61,6 +61,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Grab gold piles',
+          ko: '금화 은화 줍기',
         },
       },
     },

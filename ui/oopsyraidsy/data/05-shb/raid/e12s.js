@@ -170,16 +170,19 @@ export default {
         let text = {
           en: `${matches.ability} (from ${ownerNick}, #${number})`,
           de: `${matches.ability} (von ${ownerNick}, #${number})`,
+          ko: `${matches.ability} (대상자 "${ownerNick}", ${number}번)`,
         };
         if (isStatuePositionKnown && isStatueNorth) {
           text = {
             en: `${matches.ability} (from ${ownerNick}, #${number} north)`,
             de: `${matches.ability} (von ${ownerNick}, #${number} norden)`,
+            ko: `${matches.ability} (대상자 "${ownerNick}", ${number}번 북쪽)`,
           };
         } else if (isStatuePositionKnown && !isStatueNorth) {
           text = {
             en: `${matches.ability} (from ${ownerNick}, #${number} south)`,
             de: `${matches.ability} (von ${ownerNick}, #${number} Süden)`,
+            ko: `${matches.ability} (대상자 "${ownerNick}", ${number}번 남쪽)`,
           };
         }
 
@@ -218,7 +221,7 @@ export default {
             fr: `${matches.ability} (de ${pillarOwner})`,
             ja: `${matches.ability} (${pillarOwner}から)`,
             cn: `${matches.ability} (来自${pillarOwner})`,
-            ko: `${matches.ability} (from ${pillarOwner})`,
+            ko: `${matches.ability} (대상자 "${pillarOwner}")`,
           },
         };
       },
@@ -324,7 +327,7 @@ export default {
               fr: `${matches.ability} (de ${ownerNick}, ${dirObj['fr']})`,
               ja: `${matches.ability} (${ownerNick}から, ${dirObj['ja']})`,
               cn: `${matches.ability} (来自${ownerNick}, ${dirObj['cn']}`,
-              ko: `${matches.ability} (from ${ownerNick}, ${dirObj['ko']})`,
+              ko: `${matches.ability} (대상자 "${ownerNick}", ${dirObj['ko']})`,
             },
           };
         }
@@ -355,18 +358,22 @@ export default {
           northBigLion: {
             en: 'north big lion',
             de: 'Nordem, großer Löwe',
+            ko: '북쪽 큰 사자',
           },
           southBigLion: {
             en: 'south big lion',
             de: 'Süden, großer Löwe',
+            ko: '남쪽 큰 사자',
           },
           shared: {
             en: 'shared',
             de: 'geteilt',
+            ko: '같이 맞음',
           },
           fireDebuff: {
             en: 'had fire',
             de: 'hatte Feuer',
+            ko: '화염 디버프 받음',
           },
         };
 
