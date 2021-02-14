@@ -46,8 +46,8 @@ export function setup(bars) {
   });
   bars.onYouLoseEffect(EffectId.Firestarter, () => fireProc.duration = 0);
 
-  bars.onYouGainEffect(EffectId.CircleOfPower, () => bars.circleOfPower = 1);
-  bars.onYouLoseEffect(EffectId.CircleOfPower, () => bars.circleOfPower = 0);
+  bars.onYouGainEffect(EffectId.CircleOfPower, () => bars.speedBuffs.circleOfPower = 1);
+  bars.onYouLoseEffect(EffectId.CircleOfPower, () => bars.speedBuffs.circleOfPower = 0);
 
   // It'd be super nice to use grid here.
   // Maybe some day when cactbot uses new cef.

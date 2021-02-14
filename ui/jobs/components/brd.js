@@ -107,8 +107,8 @@ export function setup(bars) {
     }
 
     // GCD calculate
-    if (jobDetail.songName === 'Paeon' && bars.paeonStacks !== jobDetail.songProcs)
-      bars.paeonStacks = jobDetail.songProcs;
+    if (jobDetail.songName === 'Paeon' && bars.speedBuffs.paeonStacks !== jobDetail.songProcs)
+      bars.speedBuffs.paeonStacks = jobDetail.songProcs;
   });
   let ethosStacks = 0;
 
@@ -120,23 +120,23 @@ export function setup(bars) {
   bars.onYouGainEffect(EffectId.ArmysMuse, () => {
     // We just entered Minuet/Ballad, add muse effect
     // If we let paeon run out, get the temp stacks from ethos
-    bars.museStacks = ethosStacks ? ethosStacks : bars.paeonStacks;
-    bars.paeonStacks = 0;
+    bars.speedBuffs.museStacks = ethosStacks ? ethosStacks : bars.speedBuffs.paeonStacks;
+    bars.speedBuffs.paeonStacks = 0;
   });
   bars.onYouLoseEffect(EffectId.ArmysMuse, () => {
     // Muse effect ends
-    bars.museStacks = 0;
-    bars.paeonStacks = 0;
+    bars.speedBuffs.museStacks = 0;
+    bars.speedBuffs.paeonStacks = 0;
   });
   bars.onYouGainEffect(EffectId.ArmysEthos, () => {
     // Not under muse or paeon, so store the stacks
-    ethosStacks = bars.paeonStacks;
-    bars.paeonStacks = 0;
+    ethosStacks = bars.speedBuffs.paeonStacks;
+    bars.speedBuffs.paeonStacks = 0;
   });
   bars.onYouLoseEffect(EffectId.ArmysEthos, () => {
     // Didn't use a song and ethos ran out
     ethosStacks = 0;
-    bars.museStacks = 0;
-    bars.paeonStacks = 0;
+    bars.speedBuffs.museStacks = 0;
+    bars.speedBuffs.paeonStacks = 0;
   });
 }

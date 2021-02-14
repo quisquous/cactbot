@@ -70,10 +70,10 @@ export function setup(bars) {
 
   bars.onJobDetailUpdate((jobDetail) => {
     if (jobDetail.hutonMilliseconds > 0) {
-      if (bars.huton !== 1)
-        bars.huton = 1;
-    } else if (bars.huton === 1) {
-      bars.huton = 0;
+      if (bars.speedBuffs.huton !== 1)
+        bars.speedBuffs.huton = 1;
+    } else if (bars.speedBuffs.huton === 1) {
+      bars.speedBuffs.huton = 0;
     }
     ninki.innerText = jobDetail.ninkiAmount;
     ninki.parentNode.classList.remove('high', 'low');

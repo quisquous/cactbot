@@ -48,13 +48,13 @@ export function setup(bars) {
         p.classList.remove('dim');
     }
 
-    // TODO: Remove bars.lightningStacks,
+    // TODO: Remove bars.speedBuffs.lightningStacks,
     // and change code to calculate speed by level in calcGCDFromStat function
     // when cn/ko update 5.4
     if (lightningTimer) {
-      bars.lightningStacks = jobDetail.lightningStacks;
-      lightningTimer.fg = lightningFgColors[bars.lightningStacks];
-      if (bars.lightningStacks === 0) {
+      bars.speedBuffs.lightningStacks = jobDetail.lightningStacks;
+      lightningTimer.fg = lightningFgColors[bars.speedBuffs.lightningStacks];
+      if (bars.speedBuffs.lightningStacks === 0) {
         // Show sad red bar when you've lost all your pancakes.
         lightningTimer.style = 'fill';
         lightningTimer.value = 0;
@@ -72,8 +72,9 @@ export function setup(bars) {
         }
       }
     } else {
-      // For now, we just assign bars.lightningStacks as corresponding stacks via current level
-      bars.lightningStacks = getLightningStacksViaLevel(bars.level);
+      // For now, we just assign bars.speedBuffs.lightningStacks
+      // as corresponding stacks via current level
+      bars.speedBuffs.lightningStacks = getLightningStacksViaLevel(bars.level);
     }
   });
 
