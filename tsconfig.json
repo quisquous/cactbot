@@ -29,13 +29,13 @@
     "./ui",
     "./types",
     "./resources",
+    "./util",
     "./test"
   ],
   "exclude": [
     "./eslint",
     "./.eslintrc.cjs",
     "./webpack",
-    "./util",
     "./dist",
     "**/*.spec.ts"
   ]
