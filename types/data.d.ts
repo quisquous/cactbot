@@ -19,9 +19,7 @@ export interface Data {
   options: Option;
   ShortName(x: string): string;
   StopCombat(): void;
-  /**
-   * @deprecated Use parseFloat instead
-   */
+  /** @deprecated Use parseFloat instead */
   ParseLocaleFloat(string: string): number;
   CanStun(): boolean;
   CanSilence(): boolean;
