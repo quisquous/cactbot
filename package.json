@@ -42,7 +42,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "engines": {
-    "node": ">=13.2.0"
+    "node": ">=14.15.5"
   },
   "stylelint": {
     "extends": "stylelint-config-standard"
