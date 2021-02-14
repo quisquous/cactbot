@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '**/*.js'
+      - '**/*.ts'
       - '**/*.py'
       - 'package*.json'
       - 'ui/raidboss/**'
@@ -11,6 +12,7 @@ on:
   pull_request:
     paths:
       - '**/*.js'
+      - '**/*.ts'
       - '**/*.py'
       - 'package*.json'
       - 'ui/raidboss/**'
