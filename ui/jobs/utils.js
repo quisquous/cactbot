@@ -2,7 +2,7 @@ import { Util } from '../../resources/common.js';
 import NetRegexes from '../../resources/netregexes.js';
 import Regexes from '../../resources/regexes.js';
 import { LocaleRegex } from '../../resources/translations.js';
-import ComboTracker from './ComboTracker.js';
+import ComboTracker from './combo_tracker.js';
 import { kAbility, kComboBreakers, kMeleeWithMpJobs } from './constants.js';
 
 const getLocaleRegex = (locale, regexes) => regexes[locale] || regexes['en'];
