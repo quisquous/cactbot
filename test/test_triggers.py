@@ -29,7 +29,9 @@ def main():
     for filepath in Path(CactbotModule.RAIDBOSS.directory(), DATA_DIRECTORY).glob("**/*.js"):
         # Run individual trigger tests
         for test_file in TRIGGER_TEST_DIRECTORY.iterdir():
-            exit_status |= subprocess.call(NODE_COMMAND + [str(test_file), str(filepath)])
+            exit_status |= subprocess.call(
+                NODE_COMMAND + [str(test_file), str(filepath)], shell=True
+            )
 
     return exit_status
 

@@ -20,7 +20,7 @@ def main():
 
     # Run individual unit tests
     for test_file in UNITTEST_TEST_DIRECTORY.iterdir():
-        exit_status |= subprocess.call(NODE_COMMAND + [str(test_file)])
+        exit_status |= subprocess.call(NODE_COMMAND + [str(test_file)], shell=True)
 
     return exit_status
 
