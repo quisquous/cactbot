@@ -3,7 +3,7 @@
 from pathlib import Path
 import subprocess
 import sys
-from definitions import PROJECT_ROOT_DIRECTORY, TEST_DIRECTORY
+from definitions import PROJECT_ROOT_DIRECTORY, TEST_DIRECTORY, NODE_COMMAND
 
 UNITTEST_DIRECTORY = "unittests"
 
@@ -20,7 +20,7 @@ def main():
 
     # Run individual unit tests
     for test_file in UNITTEST_TEST_DIRECTORY.iterdir():
-        exit_status |= subprocess.call(["node", str(test_file)])
+        exit_status |= subprocess.call(NODE_COMMAND + [str(test_file)])
 
     return exit_status
 

@@ -7,7 +7,6 @@ import EmulatorCommon from './emulator/EmulatorCommon.js';
 import Encounter from './emulator/data/Encounter.js';
 import EncounterTab from './emulator/ui/EncounterTab.js';
 import LogEventHandler from './emulator/data/LogEventHandler.js';
-import NetworkLogConverter from './emulator/data/NetworkLogConverter.js';
 import Persistor from './emulator/data/Persistor.js';
 import { PopupTextGenerator } from './popup-text.js';
 import ProgressBar from './emulator/ui/ProgressBar.js';
@@ -52,42 +51,27 @@ const Options = {
   let timelineController;
   let popupText;
   let persistor;
-  let logEventHandler;
   let encounterTab;
   let emulatedPartyInfo;
   let emulatedMap;
   let emulatedWebSocket;
-  let logConverter;
   let timelineUI;
+  let logConverterWorker;
 
   document.addEventListener('DOMContentLoaded', () => {
     emulator = new RaidEmulator(Options);
     progressBar = new ProgressBar(emulator);
     persistor = new Persistor();
-    logEventHandler = new LogEventHandler();
     encounterTab = new EncounterTab(persistor);
     emulatedPartyInfo = new EmulatedPartyInfo(emulator);
     emulatedMap = new EmulatedMap(emulator);
     emulatedWebSocket = new RaidEmulatorOverlayApiHook(emulator);
-    logConverter = new NetworkLogConverter();
+    logConverterWorker = new Worker('../../dist/raidemulatorWorker.bundle.js');
 
     // Listen for the user to click a player in the party list on the right
     // and persist that over to the emulator
     emulatedPartyInfo.on('selectPerspective', (id) => {
       emulator.selectPerspective(id);
-    });
-
-    // Listen for the log parser to dispatch a fight
-    logEventHandler.on('fight', (day, zoneId, zoneName, lines) => {
-      const enc = new Encounter(day, zoneId, zoneName, lines);
-      // If there's not both a player and an enemy ability, don't persist the encounter
-      if (!(enc.firstPlayerAbility > 0 && enc.firstEnemyAbility > 0))
-        return;
-
-      emulator.addEncounter(enc);
-      persistor.persistEncounter(enc).then(() => {
-        encounterTab.refresh();
-      });
     });
 
     // Listen for the user to attempt to load an encounter from the encounters pane
@@ -214,30 +198,71 @@ const Options = {
             });
           } else {
             // Assume it's a log file?
-            file.text().then((txt) => {
-              // Import a network file by passing it to LogEventHandler to convert it
-              logConverter.convertFile(txt).then((lines) => {
-                const localLogHandler = new LogEventHandler();
-                localLogHandler.currentDate = EmulatorCommon.timeToDateString(lines[0].timestamp);
+            const importModal = showModal('.importProgressModal');
+            const bar = importModal.querySelector('.progress-bar');
+            bar.style.width = '0px';
+            const label = importModal.querySelector('.label');
+            label.innerText = '';
+            const encLabel = importModal.querySelector('.encounterLabel');
+            encLabel.innerText = 'N/A';
 
-                const promises = [];
+            const doneButton = importModal.querySelector('.btn');
+            doneButton.disabled = true;
 
-                // Listen for LogEventHandler to dispatch fights and persist them
-                localLogHandler.on('fight', async (day, zoneId, zoneName, lines) => {
-                  const enc = new Encounter(day, zoneId, zoneName, lines);
-                  if (!(enc.firstPlayerAbility > 0 && enc.firstEnemyAbility > 0))
-                    return;
-                  emulator.addEncounter(enc);
+            const doneButtonTimeout = doneButton.querySelector('.doneBtnTimeout');
+
+            const promises = [];
+
+            logConverterWorker.onmessage = (msg) => {
+              switch (msg.data.type) {
+              case 'progress':
+                {
+                  const percent = ((msg.data.bytes / msg.data.totalBytes) * 100).toFixed(2);
+                  bar.style.width = percent + '%';
+                  label.innerText = `${msg.data.bytes}/${msg.data.totalBytes} bytes, ${msg.data.lines} lines (${percent}%)`;
+                }
+                break;
+              case 'encounter':
+                {
+                  const enc = msg.data.encounter;
+
+                  encLabel.innerText = `
+                  Zone: ${enc.encounterZoneName}
+                  Encounter: ${msg.data.name}
+                  Start: ${new Date(enc.startTimestamp)}
+                  End: ${new Date(enc.endTimestamp)}
+                  Duration: ${EmulatorCommon.msToDuration(enc.endTimestamp - enc.startTimestamp)}
+                  Pull Duration: ${EmulatorCommon.msToDuration(enc.endTimestamp - enc.engageAt)}
+                  Started By: ${enc.startStatus}
+                  End Status: ${enc.endStatus}
+                  Line Count: ${enc.logLines.length}
+                  `;
+                  // Objects sent via message are raw objects, not typed.
+                  // Need to get the name another way and override for Persistor.
+                  enc.combatantTracker.getMainCombatantName = () => msg.data.name;
                   promises.push(persistor.persistEncounter(enc));
-                });
-
-                localLogHandler.parseLogs(lines);
-                localLogHandler.endFight();
-
+                }
+                break;
+              case 'done':
                 Promise.all(promises).then(() => {
                   encounterTab.refresh();
+                  doneButton.disabled = false;
+                  let seconds = 5;
+                  doneButtonTimeout.innerText = ` (${seconds})`;
+                  const interval = window.setInterval(() => {
+                    --seconds;
+                    doneButtonTimeout.innerText = ` (${seconds})`;
+                    if (seconds === 0) {
+                      window.clearInterval(interval);
+                      hideModal('.importProgressModal');
+                    }
+                  }, 1000);
                 });
-              });
+                break;
+              }
+            };
+            file.arrayBuffer().then((b) => {
+              logConverterWorker.postMessage(b, [b]);
             });
           }
         };
@@ -362,12 +387,10 @@ const Options = {
           timelineController: timelineController,
           popupText: popupText,
           persistor: persistor,
-          logEventHandler: logEventHandler,
           encounterTab: encounterTab,
           emulatedPartyInfo: emulatedPartyInfo,
           emulatedMap: emulatedMap,
           emulatedWebSocket: emulatedWebSocket,
-          logConverter: logConverter,
           timelineUI: timelineUI,
         };
       });
@@ -384,6 +407,7 @@ function showModal(selector) {
   backdrop.classList.remove('hide');
   modal.classList.add('show');
   modal.style.display = 'block';
+  return modal;
 }
 
 function hideModal(selector = '.modal.show') {
@@ -395,4 +419,5 @@ function hideModal(selector = '.modal.show') {
   backdrop.classList.add('hide');
   modal.classList.remove('show');
   modal.style.display = '';
+  return modal;
 }

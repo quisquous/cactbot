@@ -104,8 +104,8 @@ export const Util = (() => {
 })();
 
 (function() {
-  // Exit early if running within Node
-  if (typeof location === 'undefined')
+  // Exit early if not running within a `Window` scope
+  if (typeof Window === 'undefined' || !(globalThis instanceof Window))
     return;
 
   const wsUrl = /[\?&]OVERLAY_WS=([^&]+)/.exec(location.href);

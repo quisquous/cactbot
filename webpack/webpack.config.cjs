@@ -17,6 +17,7 @@ module.exports = function(env, argv) {
       radar: './ui/radar/radar.js',
       raidboss: './ui/raidboss/raidboss.js',
       raidemulator: './ui/raidboss/raidemulator.js',
+      raidemulatorWorker: './ui/raidboss/emulator/data/NetworkLogConverterWorker.js',
       test: './ui/test/test.js',
     },
     optimization: {
@@ -43,6 +44,10 @@ module.exports = function(env, argv) {
     devServer: { writeToDisk: true },
     module: {
       rules: [
+        {
+          test: /\.ts$/,
+          loader: 'ts-loader',
+        },
         {
           test: /\.css$/,
           use: ['style-loader', 'css-loader'],
