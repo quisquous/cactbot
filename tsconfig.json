@@ -35,6 +35,7 @@
     "./.eslintrc.cjs",
     "./webpack",
     "./util",
-    "./dist"
+    "./dist",
+    "**/*.spec.ts"
   ]
 }
