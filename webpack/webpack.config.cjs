@@ -17,7 +17,7 @@ const cactbotModules = {
   eureka: 'ui/eureka/eureka',
   fisher: 'ui/fisher/fisher',
   jobs: 'ui/jobs/jobs',
-  oopsyraidsy: 'ui/oopsyraidsy/oopsyraidsy',
+  oopsyraidsyLive: 'ui/oopsyraidsy/oopsy_live',
   oopsyraidsySummary: 'ui/oopsyraidsy/oopsy_summary',
   pullcounter: 'ui/pullcounter/pullcounter',
   radar: 'ui/radar/radar',
@@ -80,7 +80,7 @@ const cactbotHtmlChunksMap = {
   'ui/oopsyraidsy/oopsyraidsy.html': {
     chunks: [
       cactbotChunks.oopsyraidsyData,
-      cactbotModules.oopsyraidsy,
+      cactbotModules.oopsyraidsyLive,
     ],
   },
   'ui/pullcounter/pullcounter.html': {

@@ -1,3 +1,3 @@
-import './oopsy_common.js';
+import './oopsyraidsy.js';
 
 import './oopsy_summary.css';
