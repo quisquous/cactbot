@@ -167,3 +167,58 @@ export function computeBackgroundColorFrom(element, classList) {
   element.removeChild(div);
   return color;
 }
+
+export function makeAuraTimerIcon(name, seconds, opacity, iconWidth, iconHeight, iconText,
+    barHeight, textHeight, textColor, borderSize, borderColor, barColor, auraIcon) {
+  const div = document.createElement('div');
+  div.style.opacity = opacity;
+
+  const icon = document.createElement('timer-icon');
+  icon.width = iconWidth;
+  icon.height = iconHeight;
+  icon.bordersize = borderSize;
+  icon.textcolor = textColor;
+  div.appendChild(icon);
+
+  const barDiv = document.createElement('div');
+  barDiv.style.position = 'relative';
+  barDiv.style.top = iconHeight;
+  div.appendChild(barDiv);
+
+  if (seconds >= 0) {
+    const bar = document.createElement('timer-bar');
+    bar.width = iconWidth;
+    bar.height = barHeight;
+    bar.fg = barColor;
+    bar.duration = seconds;
+    barDiv.appendChild(bar);
+  }
+
+  if (textHeight > 0) {
+    const text = document.createElement('div');
+    text.classList.add('text');
+    text.style.width = iconWidth;
+    text.style.height = textHeight;
+    text.style.overflow = 'hidden';
+    text.style.fontSize = textHeight - 1;
+    text.style.whiteSpace = 'pre';
+    text.style.position = 'relative';
+    text.style.top = iconHeight;
+    text.style.fontFamily = 'arial';
+    text.style.fontWeight = 'bold';
+    text.style.color = textColor;
+    text.style.textShadow = '-1px 0 3px black, 0 1px 3px black, 1px 0 3px black, 0 -1px 3px black';
+    text.style.paddingBottom = textHeight / 4;
+
+    text.innerText = name;
+    div.appendChild(text);
+  }
+
+  if (iconText)
+    icon.text = iconText;
+  icon.bordercolor = borderColor;
+  icon.icon = auraIcon;
+  icon.duration = seconds;
+
+  return div;
+}
