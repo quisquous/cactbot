@@ -24,8 +24,13 @@ module.exports = {
       'files': ['**/*.ts'],
       'parser': '@typescript-eslint/parser',
       'plugins': ['@typescript-eslint'],
+      'parserOptions': {
+        'tsconfigRootDir': __dirname,
+        'project': ['./tsconfig.json'],
+      },
       'extends': [
         'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
       ],
       'rules': {
         '@typescript-eslint/no-non-null-assertion': 2,
