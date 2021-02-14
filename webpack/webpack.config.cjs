@@ -219,6 +219,17 @@ module.exports = function(env, argv) {
             // copy more html in raidboss module
             from: 'ui/raidboss/raidboss_*.html',
           },
+          {
+            // copy images under radar and eureka
+            // TODO: directly `import` images into js code
+            from: 'ui/@(radar|eureka)/*.png',
+          },
+          {
+            // copy all the skins folder under modules,
+            // only raidboss for now though.
+            from: 'ui/*/skins/**/*',
+            noErrorOnMissing: true,
+          },
         ],
       }),
     ],
