@@ -62,7 +62,7 @@ export function setup(bars) {
   });
   // Only with-DoT-target you last attacked will trigger bars timer.
   // So it work not well in mutiple targets fight.
-  bars.UpdateDotTimer = () => bars.repertoireTimer.duration = 2.91666;
+  bars.updateDotTimerFuncs.push(() => repertoireTimer.duration = 2.91666);
   const soulVoiceBox = bars.addResourceBox({
     classList: ['brd-color-soulvoice'],
   });
