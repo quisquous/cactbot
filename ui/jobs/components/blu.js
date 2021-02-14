@@ -24,11 +24,11 @@ export function setup(bars) {
 
   bars.onUseAbility(kAbility.OffGuard, () => {
     offguardBox.duration = 0;
-    offguardBox.duration = bars.CalcGCDFromStat(bars.spellSpeed, 60000);
+    offguardBox.duration = calcGCDFromStat(bars, bars.spellSpeed, 60000);
   });
   bars.onUseAbility(kAbility.PeculiarLight, () => {
     offguardBox.duration = 0;
-    offguardBox.duration = bars.CalcGCDFromStat(bars.spellSpeed, 60000);
+    offguardBox.duration = calcGCDFromStat(bars, bars.spellSpeed, 60000);
   });
   bars.onUseAbility(kAbility.SongOfTorment, () => {
     tormentBox.duration = 0;

@@ -54,6 +54,62 @@ export function doesJobNeedMPBar(job) {
   return Util.isCasterDpsJob(job) || Util.isHealerJob(job) || kMeleeWithMpJobs.includes(job);
 }
 
+// Source: http://theoryjerks.akhmorning.com/guide/speed/
+export function calcGCDFromStat(bars, stat, actionDelay) {
+  // default calculates for a 2.50s recast
+  actionDelay = actionDelay || 2500;
+
+  // If stats haven't been updated, use a reasonable default value.
+  if (stat === 0)
+    return actionDelay / 1000;
+
+
+  let type1Buffs = 0;
+  let type2Buffs = 0;
+  if (bars.job === 'BLM') {
+    type1Buffs += bars.speedBuffs.circleOfPower ? 15 : 0;
+  } else if (bars.job === 'WHM') {
+    type1Buffs += bars.speedBuffs.presenceOfMind ? 20 : 0;
+  } else if (bars.job === 'SAM') {
+    if (bars.speedBuffs.shifu) {
+      if (bars.level > 77)
+        type1Buffs += 13;
+      else type1Buffs += 10;
+    }
+  }
+
+  if (bars.job === 'NIN') {
+    type2Buffs += bars.speedBuffs.huton ? 15 : 0;
+  } else if (bars.job === 'MNK') {
+    type2Buffs += 5 * bars.speedBuffs.lightningStacks;
+  } else if (bars.job === 'BRD') {
+    type2Buffs += 4 * bars.speedBuffs.paeonStacks;
+    switch (bars.speedBuffs.museStacks) {
+    case 1:
+      type2Buffs += 1;
+      break;
+    case 2:
+      type2Buffs += 2;
+      break;
+    case 3:
+      type2Buffs += 4;
+      break;
+    case 4:
+      type2Buffs += 12;
+      break;
+    }
+  }
+  // TODO: this probably isn't useful to track
+  const astralUmbralMod = 100;
+
+  const gcdMs = Math.floor(1000 - Math.floor(130 * (stat - kLevelMod[bars.level][0]) /
+    kLevelMod[bars.level][1])) * actionDelay / 1000;
+  const a = (100 - type1Buffs) / 100;
+  const b = (100 - type2Buffs) / 100;
+  const gcdC = Math.floor(Math.floor((a * b) * gcdMs / 10) * astralUmbralMod / 100);
+  return gcdC / 100;
+}
+
 export function computeBackgroundColorFrom(element, classList) {
   const div = document.createElement('div');
   const classes = classList.split('.');

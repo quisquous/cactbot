@@ -5,10 +5,10 @@ import UserConfig from '../../resources/user_config.js';
 import { Util } from '../../resources/common.js';
 import ZoneInfo from '../../resources/zone_info.js';
 import ZoneId from '../../resources/zone_id.js';
-import { kWellFedContentTypes, kLevelMod, kMPCombatRate, kMPNormalRate, kMPUI1Rate, kMPUI2Rate, kMPUI3Rate, kMPTickInterval } from './constants.js';
+import { kWellFedContentTypes, kMPCombatRate, kMPNormalRate, kMPUI1Rate, kMPUI2Rate, kMPUI3Rate, kMPTickInterval } from './constants.js';
 import { BuffTracker } from './buff_tracker.js';
 import ComboTracker from './combo_tracker.js';
-import { RegexesHolder, computeBackgroundColorFrom, doesJobNeedMPBar, makeAuraTimerIcon } from './utils.js';
+import { RegexesHolder, computeBackgroundColorFrom, calcGCDFromStat, doesJobNeedMPBar, makeAuraTimerIcon } from './utils.js';
 
 import { getSetup } from './components/index.js';
 
@@ -84,13 +84,15 @@ class Bars {
     this.skillSpeed = 0;
     this.spellSpeed = 0;
 
-    this.presenceOfMind = 0;
-    this.shifu = 0;
-    this.huton = 0;
-    this.lightningStacks = 0;
-    this.paeonStacks = 0;
-    this.museStacks = 0;
-    this.circleOfPower = 0;
+    this.speedBuffs = {
+      presenceOfMind: 0,
+      shifu: 0,
+      huton: 0,
+      lightningStacks: 0,
+      paeonStacks: 0,
+      museStacks: 0,
+      circleOfPower: 0,
+    };
 
     this.dotTarget = [];
     this.trackedDoTs = [];
@@ -110,11 +112,11 @@ class Bars {
   }
 
   get gcdSkill() {
-    return this._calcGCDFromStat(this.skillSpeed);
+    return calcGCDFromStat(this, this.skillSpeed);
   }
 
   get gcdSpell() {
-    return this._calcGCDFromStat(this.spellSpeed);
+    return calcGCDFromStat(this, this.spellSpeed);
   }
 
   _updateUIVisibility() {
@@ -497,62 +499,6 @@ class Bars {
   _onComboChange(skill) {
     for (let i = 0; i < this.comboFuncs.length; ++i)
       this.comboFuncs[i](skill);
-  }
-
-  // Source: http://theoryjerks.akhmorning.com/guide/speed/
-  _calcGCDFromStat(stat, actionDelay) {
-    // default calculates for a 2.50s recast
-    actionDelay = actionDelay || 2500;
-
-    // If stats haven't been updated, use a reasonable default value.
-    if (stat === 0)
-      return actionDelay / 1000;
-
-
-    let type1Buffs = 0;
-    let type2Buffs = 0;
-    if (this.job === 'BLM') {
-      type1Buffs += this.circleOfPower ? 15 : 0;
-    } else if (this.job === 'WHM') {
-      type1Buffs += this.presenceOfMind ? 20 : 0;
-    } else if (this.job === 'SAM') {
-      if (this.shifu) {
-        if (this.level > 77)
-          type1Buffs += 13;
-        else type1Buffs += 10;
-      }
-    }
-
-    if (this.job === 'NIN') {
-      type2Buffs += this.huton ? 15 : 0;
-    } else if (this.job === 'MNK') {
-      type2Buffs += 5 * this.lightningStacks;
-    } else if (this.job === 'BRD') {
-      type2Buffs += 4 * this.paeonStacks;
-      switch (this.museStacks) {
-      case 1:
-        type2Buffs += 1;
-        break;
-      case 2:
-        type2Buffs += 2;
-        break;
-      case 3:
-        type2Buffs += 4;
-        break;
-      case 4:
-        type2Buffs += 12;
-        break;
-      }
-    }
-    // TODO: this probably isn't useful to track
-    const astralUmbralMod = 100;
-
-    const gcdMs = Math.floor(1000 - Math.floor(130 * (stat - kLevelMod[this.level][0]) /
-      kLevelMod[this.level][1])) * actionDelay / 1000;
-    const a = (100 - type1Buffs) / 100;
-    const b = (100 - type2Buffs) / 100;
-    const gcdC = Math.floor(Math.floor((a * b) * gcdMs / 10) * astralUmbralMod / 100);
-    return gcdC / 100;
   }
 
   _updateJobBarGCDs() {

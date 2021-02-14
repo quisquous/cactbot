@@ -49,7 +49,7 @@ export function setup(bars) {
     }
 
     // TODO: Remove bars.lightningStacks,
-    // and change code to calculate speed by level in bars.CalcGCDFromStat function
+    // and change code to calculate speed by level in calcGCDFromStat function
     // when cn/ko update 5.4
     if (lightningTimer) {
       bars.lightningStacks = jobDetail.lightningStacks;

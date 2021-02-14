@@ -100,7 +100,7 @@ export function setup(bars) {
     kAbility.Bioblaster,
   ], () => {
     drillBox.duration = 0;
-    drillBox.duration = bars.CalcGCDFromStat(bars.skillSpeed, 20000);
+    drillBox.duration = calcGCDFromStat(bars, bars.skillSpeed, 20000);
     refreshWildFireGuage();
   });
 
@@ -114,7 +114,7 @@ export function setup(bars) {
     kAbility.HotShot,
   ], () => {
     airAnchorBox.duration = 0;
-    airAnchorBox.duration = bars.CalcGCDFromStat(bars.skillSpeed, 40000);
+    airAnchorBox.duration = calcGCDFromStat(bars, bars.skillSpeed, 40000);
     refreshWildFireGuage();
   });
 

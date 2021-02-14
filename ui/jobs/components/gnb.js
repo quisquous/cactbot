@@ -53,7 +53,7 @@ export function setup(bars) {
   });
   bars.onUseAbility(kAbility.GnashingFang, () => {
     gnashingFangBox.duration = 0;
-    gnashingFangBox.duration = bars.CalcGCDFromStat(bars.skillSpeed, 30000);
+    gnashingFangBox.duration = calcGCDFromStat(bars, bars.skillSpeed, 30000);
     cartridgeComboTimer.duration = 0;
     cartridgeComboTimer.duration = 15;
   });
