@@ -23,7 +23,6 @@ export interface Data {
    * @deprecated Use parseFloat instead
    */
   ParseLocaleFloat(string: string): number;
-  IsPlayerId?(id: string): boolean;
   CanStun(): boolean;
   CanSilence(): boolean;
   CanSleep(): boolean;
