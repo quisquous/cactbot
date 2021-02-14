@@ -1,4 +1,4 @@
-export function setupDrk(bars) {
+export function setup(bars) {
   const bloodBox = bars.addResourceBox({
     classList: ['drk-color-blood'],
   });

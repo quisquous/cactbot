@@ -1,7 +1,7 @@
 import { kAbility } from '../constants.js';
 import { computeBackgroundColorFrom } from '../utils.js';
 
-export function setupMch(bars) {
+export function setup(bars) {
   const comboTimer = bars.addTimerBar({
     id: 'mch-timers-combo',
     fgColor: 'combo-color',

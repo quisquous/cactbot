@@ -1,7 +1,7 @@
 import EffectId from '../../../resources/effect_id.js';
 import { computeBackgroundColorFrom } from '../utils.js';
 
-export function setupBrd(bars) {
+export function setup(bars) {
   const straightShotProc = bars.addProcBox({
     id: 'brd-procs-straightshotready',
     fgColor: 'brd-color-straightshotready',

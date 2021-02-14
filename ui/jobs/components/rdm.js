@@ -1,7 +1,7 @@
 import EffectId from '../../../resources/effect_id.js';
 import { kAbility } from '../constants.js';
 
-export function setupRdm(bars) {
+export function setup(bars) {
   const container = bars.addJobBarContainer();
 
   const incs = 20;

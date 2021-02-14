@@ -2,7 +2,7 @@ import EffectId from '../../../resources/effect_id.js';
 import { kAbility } from '../constants.js';
 import { computeBackgroundColorFrom } from '../utils.js';
 
-export function setupNin(bars) {
+export function setup(bars) {
   const ninki = bars.addResourceBox({
     classList: ['nin-color-ninki'],
   });

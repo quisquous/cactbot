@@ -4,7 +4,7 @@ import { computeBackgroundColorFrom } from '../utils.js';
 
 const lightningFgColors = [];
 
-export function setupMnk(bars) {
+export function setup(bars) {
   // TODO: Remove bars timer when cn/ko update 5.4
   let lightningTimer = null;
   if (['cn', 'ko'].includes(bars.options.ParserLanguage)) {

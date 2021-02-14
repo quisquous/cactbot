@@ -10,26 +10,7 @@ import { BuffTracker } from './buff_tracker.js';
 import ComboTracker from './combo_tracker.js';
 import { RegexesHolder, computeBackgroundColorFrom, doesJobNeedMPBar, makeAuraTimerIcon } from './utils.js';
 
-import {
-  setupPld,
-  setupWar,
-  setupDrk,
-  setupGnb,
-  setupWhm,
-  setupSch,
-  setupAst,
-  setupMnk,
-  setupDrg,
-  setupNin,
-  setupSam,
-  setupBrd,
-  setupMch,
-  setupDnc,
-  setupBlm,
-  setupSmn,
-  setupRdm,
-  setupBlu,
-} from './components/index.js';
+import { getSetup } from './components/index.js';
 
 import './jobs_config.js';
 import '../../resources/resourcebar.js';
@@ -335,28 +316,9 @@ class Bars {
       this.o.mpTicker.loop = true;
     }
 
-    const setup = {
-      'PLD': setupPld,
-      'WAR': setupWar,
-      'DRK': setupDrk,
-      'GNB': setupGnb,
-      'WHM': setupWhm,
-      'SCH': setupSch,
-      'AST': setupAst,
-      'MNK': setupMnk,
-      'DRG': setupDrg,
-      'NIN': setupNin,
-      'SAM': setupSam,
-      'BRD': setupBrd,
-      'MCH': setupMch,
-      'DNC': setupDnc,
-      'BLM': setupBlm,
-      'SMN': setupSmn,
-      'RDM': setupRdm,
-      'BLU': setupBlu,
-    };
-    if (setup[this.job])
-      setup[this.job].bind(null, this)();
+    const setup = getSetup(this.job);
+    if (setup)
+      setup.bind(null, this)();
 
     this._validateKeys();
 

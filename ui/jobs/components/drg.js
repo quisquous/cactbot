@@ -1,7 +1,7 @@
 import { kAbility } from '../constants.js';
 import { computeBackgroundColorFrom } from '../utils.js';
 
-export function setupDrg(bars) {
+export function setup(bars) {
   // Boxes
   const highJumpBox = bars.addProcBox({
     id: 'drg-procs-highjump',

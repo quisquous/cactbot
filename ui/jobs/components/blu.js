@@ -1,6 +1,6 @@
 import { kAbility } from '../constants.js';
 
-export function setupBlu(bars) {
+export function setup(bars) {
   const offguardBox = bars.addProcBox({
     id: 'blu-procs-offguard',
     fgColor: 'blu-color-offguard',

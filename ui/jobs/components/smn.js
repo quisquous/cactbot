@@ -2,7 +2,7 @@ import EffectId from '../../../resources/effect_id.js';
 import { kAbility } from '../constants.js';
 import { computeBackgroundColorFrom } from '../utils.js';
 
-export function setupSmn(bars) {
+export function setup(bars) {
   const aetherflowStackBox = bars.addResourceBox({
     classList: ['smn-color-aetherflow'],
   });

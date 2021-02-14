@@ -1,7 +1,7 @@
 import { kAbility } from '../constants.js';
 import { computeBackgroundColorFrom } from '../utils.js';
 
-export function setupGnb(bars) {
+export function setup(bars) {
   const cartridgeBox = bars.addResourceBox({
     classList: ['gnb-color-cartridge'],
   });

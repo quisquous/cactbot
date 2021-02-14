@@ -1,7 +1,7 @@
 import EffectId from '../../../resources/effect_id.js';
 import { kAbility } from '../constants.js';
 
-export function setupBlm(bars) {
+export function setup(bars) {
   const thunderDot = bars.addProcBox({
     id: 'blm-dot-thunder',
     fgColor: 'blm-color-dot',

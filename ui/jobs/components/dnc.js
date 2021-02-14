@@ -2,7 +2,7 @@ import EffectId from '../../../resources/effect_id.js';
 import { kAbility } from '../constants.js';
 import { computeBackgroundColorFrom } from '../utils.js';
 
-export function setupDnc(bars) {
+export function setup(bars) {
   const comboTimer = bars.addTimerBar({
     id: 'dnc-timers-combo',
     fgColor: 'combo-color',

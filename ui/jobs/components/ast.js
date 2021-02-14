@@ -9,7 +9,7 @@ const cardsMap = {
   'Spire': { 'bonus': 'range', 'seal': 'Celestial' },
 };
 
-export function setupAst(bars) {
+export function setup(bars) {
   const combustBox = bars.addProcBox({
     id: 'ast-procs-combust',
     fgColor: 'ast-color-combust',

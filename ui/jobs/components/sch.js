@@ -1,6 +1,6 @@
 import { kAbility } from '../constants.js';
 
-export function setupSch(bars) {
+export function setup(bars) {
   const aetherflowStackBox = bars.addResourceBox({
     classList: ['sch-color-aetherflow'],
   });

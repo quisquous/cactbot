@@ -10,7 +10,7 @@ const setAtonement = (atonementBox, stacks) => {
     p.classList.add('any');
 };
 
-export function setupPld(bars) {
+export function setup(bars) {
   const oathBox = bars.addResourceBox({
     classList: ['pld-color-oath'],
   });

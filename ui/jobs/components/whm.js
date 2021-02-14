@@ -1,7 +1,7 @@
 import EffectId from '../../../resources/effect_id.js';
 import { kAbility } from '../constants.js';
 
-export function setupWhm(bars) {
+export function setup(bars) {
   const lilyBox = bars.addResourceBox({
     classList: ['whm-color-lily'],
   });
