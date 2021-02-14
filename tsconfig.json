@@ -27,7 +27,7 @@
   },
   "include": [
     "./ui",
-    "./typings",
+    "./types",
     "./resources",
     "./test"
   ],
