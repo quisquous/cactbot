@@ -1,3 +1,5 @@
+import { kAbility, kComboBreakers } from './constants.js';
+
 export default class ComboTracker {
   constructor(comboBreakers, callback) {
     this.comboTimer = undefined;
