@@ -2,8 +2,7 @@ import { Util } from '../../resources/common.js';
 import NetRegexes from '../../resources/netregexes.js';
 import Regexes from '../../resources/regexes.js';
 import { LocaleRegex } from '../../resources/translations.js';
-import ComboTracker from './combo_tracker.js';
-import { kAbility, kComboBreakers, kMeleeWithMpJobs } from './constants.js';
+import { kMeleeWithMpJobs } from './constants.js';
 
 const getLocaleRegex = (locale, regexes) => regexes[locale] || regexes['en'];
 
@@ -49,108 +48,6 @@ export class RegexesHolder {
     this.MobGainsEffectFromYouRegex = NetRegexes.gainsEffect({ targetId: '4.{7}', source: playerName });
     this.MobLosesEffectFromYouRegex = NetRegexes.losesEffect({ targetId: '4.{7}', source: playerName });
   }
-}
-
-export function setupComboTracker(callback) {
-  const comboTracker = new ComboTracker(kComboBreakers, callback);
-  // PLD
-  comboTracker.AddCombo([
-    kAbility.FastBlade,
-    kAbility.RiotBlade,
-    kAbility.GoringBlade,
-  ]);
-  // WAR
-  comboTracker.AddCombo([
-    kAbility.HeavySwing,
-    kAbility.Maim,
-    kAbility.StormsEye,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.HeavySwing,
-    kAbility.Maim,
-    kAbility.StormsPath,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.Overpower,
-    kAbility.MythrilTempest,
-  ]);
-  // DRK
-  comboTracker.AddCombo([
-    kAbility.HardSlash,
-    kAbility.SyphonStrike,
-    kAbility.Souleater,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.Unleash,
-    kAbility.StalwartSoul,
-  ]);
-  // GNB
-  comboTracker.AddCombo([
-    kAbility.KeenEdge,
-    kAbility.BrutalShell,
-    kAbility.SolidBarrel,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.DemonSlice,
-    kAbility.DemonSlaughter,
-  ]);
-  // DRG
-  comboTracker.AddCombo([
-    kAbility.TrueThrust,
-    kAbility.Disembowel,
-    kAbility.ChaosThrust,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.RaidenThrust,
-    kAbility.Disembowel,
-    kAbility.ChaosThrust,
-  ]);
-  // NIN
-  comboTracker.AddCombo([
-    kAbility.SpinningEdge,
-    kAbility.GustSlash,
-    kAbility.AeolianEdge,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.SpinningEdge,
-    kAbility.GustSlash,
-    kAbility.ArmorCrush,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.DeathBlossom,
-    kAbility.HakkeMujinsatsu,
-  ]);
-  // MCH
-  comboTracker.AddCombo([
-    kAbility.SplitShot,
-    kAbility.SlugShot,
-    kAbility.CleanShot,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.HeatedSplitShot,
-    kAbility.SlugShot,
-    kAbility.CleanShot,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.HeatedSplitShot,
-    kAbility.HeatedSlugShot,
-    kAbility.CleanShot,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.HeatedSplitShot,
-    kAbility.HeatedSlugShot,
-    kAbility.HeatedCleanShot,
-  ]);
-  // DNC
-  comboTracker.AddCombo([
-    kAbility.Cascade,
-    kAbility.Fountain,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.Windmill,
-    kAbility.Bladeshower,
-  ]);
-  return comboTracker;
 }
 
 export function doesJobNeedMPBar(job) {

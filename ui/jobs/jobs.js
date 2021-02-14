@@ -7,7 +7,8 @@ import ZoneInfo from '../../resources/zone_info.js';
 import ZoneId from '../../resources/zone_id.js';
 import { kWellFedContentTypes, kLevelMod, kMPCombatRate, kMPNormalRate, kMPUI1Rate, kMPUI2Rate, kMPUI3Rate, kMPTickInterval } from './constants.js';
 import { BuffTracker } from './buff_tracker.js';
-import { RegexesHolder, computeBackgroundColorFrom, doesJobNeedMPBar, setupComboTracker, makeAuraTimerIcon } from './utils.js';
+import ComboTracker from './combo_tracker.js';
+import { RegexesHolder, computeBackgroundColorFrom, doesJobNeedMPBar, makeAuraTimerIcon } from './utils.js';
 
 import {
   setupPld,
@@ -846,7 +847,7 @@ class Bars {
     }
 
     if (!this.init) {
-      this.combo = setupComboTracker(this._onComboChange.bind(this));
+      this.combo = ComboTracker.setup(this._onComboChange.bind(this));
       this.init = true;
     }
 
