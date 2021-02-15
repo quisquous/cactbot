@@ -1,3 +1,5 @@
+import './overlay_plugin_api.js';
+
 // TODO:
 // The convention of "import X as _X; const X = _X;" is currently
 // being used as a method to workaround for downstream code
@@ -17,7 +19,7 @@ import { Responses as _Responses } from './responses.js';
 const Responses = _Responses;
 import _Outputs from './outputs.js';
 const Outputs = _Outputs;
-import { Util as _Util } from './common.js';
+import _Util from './util.js';
 const Util = _Util;
 import _ZoneId from './zone_id.js';
 const ZoneId = _ZoneId;

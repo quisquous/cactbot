@@ -1,4 +1,4 @@
-import { Util } from '../../../../../resources/common.js';
+import Util from '../../../../../resources/util.js';
 import Conditions from '../../../../../resources/conditions.js';
 import NetRegexes from '../../../../../resources/netregexes.js';
 import Outputs from '../../../../../resources/outputs.js';
