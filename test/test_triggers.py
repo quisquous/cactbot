@@ -3,7 +3,13 @@
 from pathlib import Path
 import subprocess
 import sys
-from definitions import CactbotModule, DATA_DIRECTORY, PROJECT_ROOT_DIRECTORY, TEST_DIRECTORY
+from definitions import (
+    CactbotModule,
+    DATA_DIRECTORY,
+    PROJECT_ROOT_DIRECTORY,
+    TEST_DIRECTORY,
+    NODE_COMMAND,
+)
 
 TRIGGER_DIRECTORY = "trigger"
 
@@ -23,7 +29,7 @@ def main():
     for filepath in Path(CactbotModule.RAIDBOSS.directory(), DATA_DIRECTORY).glob("**/*.js"):
         # Run individual trigger tests
         for test_file in TRIGGER_TEST_DIRECTORY.iterdir():
-            exit_status |= subprocess.call(["node", str(test_file), str(filepath)])
+            exit_status |= subprocess.call(NODE_COMMAND + [str(test_file), str(filepath)])
 
     return exit_status
 

@@ -402,6 +402,29 @@ export default {
       },
     },
     {
+      // Precedes fake abilities
+      id: 'O8S Jester\'s Antics',
+      netRegex: NetRegexes.gainsEffect({ effectId: '5CE', capture: false }),
+      suppressSeconds: 1, // Every Kefka entity gains this at once.
+      run: (data) => data.antics = true,
+    },
+    {
+      // Precedes real abilities
+      id: 'O8S Jester\'s Truths',
+      netRegex: NetRegexes.gainsEffect({ effectId: '5CF', capture: false }),
+      suppressSeconds: 1, // Every Kefka entity gains this at once.
+      run: (data) => data.truths = true,
+    },
+    {
+      id: 'O8S Jester Cleanup',
+      netRegex: NetRegexes.losesEffect({ effectId: ['5CE', '5CF'], capture: false }),
+      suppressSeconds: 1,
+      run: (data) => {
+        delete data.antics;
+        delete data.truths;
+      },
+    },
+    {
       id: 'O8S Mana Charge',
       netRegex: NetRegexes.startsUsing({ id: '28D1', source: 'Kefka', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '28D1', source: 'Kefka', capture: false }),
@@ -454,24 +477,35 @@ export default {
       },
     },
     {
-      // From ACT log lines, there's not any way to know the fire type as it's used.
-      // The ability id is always 14:28CE:Kefka starts using Flagrant Fire on Kefka.
-      // However, you can remind forgetful people during mana release and figure out
-      // the type based on the damage it does.
+      // This may be real or fake. We're just storing this briefly
+      // so we can use it to call the first fire correctly.
+      // 007F is the spread marker, 0080 is the stack marker
+      id: 'O8S Fire Head Marker',
+      netRegex: NetRegexes.headMarker({ id: ['007F', '0080'] }),
+      suppressSeconds: 2,
+      run: (data, matches) => data.fireMarker = matches.id === '007F' ? 'spread' : 'stack',
+    },
+    {
+      // Kefka doesn't directly use the Fire abilities. Rather, he casts 28CE on himself,
+      // then instantly casts either the real or fake Fire on resolution.
       //
       // 28CE: ability id on use
       // 28CF: damage from mana charge
       // 2B32: damage from mana release
       id: 'O8S Fire Spread',
-      netRegex: NetRegexes.ability({ id: '28CF', source: 'Kefka', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '28CF', source: 'Kefka', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '28CF', source: 'Kefka', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '28CF', source: 'ケフカ', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '28CF', source: '凯夫卡', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '28CF', source: '케프카', capture: false }),
-      suppressSeconds: 40,
+      netRegex: NetRegexes.startsUsing({ id: '28CE', source: 'Kefka', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '28CE', source: 'Kefka', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '28CE', source: 'Kefka', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '28CE', source: 'ケフカ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '28CE', source: '凯夫卡', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '28CE', source: '케프카', capture: false }),
+      condition: (data) => {
+        return (data.truths && data.fireMarker === 'spread') || (data.antics && data.fireMarker === 'stack');
+      },
+      response: Responses.spread(),
       run: function(data) {
         data.lastFire = 'spread';
+        delete data.fireMarker;
       },
     },
     {
@@ -479,15 +513,19 @@ export default {
       // 28D0: damage from mana charge
       // 2B33: damage from mana release
       id: 'O8S Fire Stack',
-      netRegex: NetRegexes.ability({ id: '28D0', source: 'Kefka', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '28D0', source: 'Kefka', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '28D0', source: 'Kefka', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '28D0', source: 'ケフカ', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '28D0', source: '凯夫卡', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '28D0', source: '케프카', capture: false }),
-      suppressSeconds: 40,
+      netRegex: NetRegexes.startsUsing({ id: '28CE', source: 'Kefka', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '28CE', source: 'Kefka', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '28CE', source: 'Kefka', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '28CE', source: 'ケフカ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '28CE', source: '凯夫卡', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '28CE', source: '케프카', capture: false }),
+      condition: (data) => {
+        return (data.antics && data.fireMarker === 'spread') || (data.truths && data.fireMarker === 'stack');
+      },
+      response: Responses.getTogether(),
       run: function(data) {
         data.lastFire = 'stack';
+        delete data.fireMarker;
       },
     },
     {
