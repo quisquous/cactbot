@@ -2,6 +2,7 @@
   "name": "cactbot",
   "license": "Apache-2.0",
   "type": "module",
+  "types": "./types",
   "repository": {
     "type": "git",
     "url": "https://github.com/quisquous/cactbot"
@@ -9,15 +10,17 @@
   "scripts": {
     "build": "node_modules/.bin/webpack --config webpack/webpack.config.cjs --mode production",
     "start": "node_modules/.bin/webpack-dev-server --config webpack/webpack.config.cjs --mode development",
-    "lint": "node_modules/.bin/eslint **/*.{js,cjs,mjs}",
-    "lintfix": "node_modules/.bin/eslint --fix **/*.{js,cjs,mjs}",
+    "lint": "node_modules/.bin/eslint **/*.{js,cjs,mjs,ts}",
+    "lintfix": "node_modules/.bin/eslint --fix **/*.{js,cjs,mjs,ts}",
     "stylelint": "node_modules/.bin/stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
     "markdownlint": "node_modules/.bin/markdownlint . --ignore node_modules --ignore publish --ignore CactbotOverlay/ThirdParty",
-    "test": "python test/run_tests.py",
+    "test": "tsc types/*.d.ts --noEmit && python test/run_tests.py",
     "lint-staged": "node_modules/.bin/lint-staged",
     "coverage-report": "node util/gen_coverage_report.js"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.15.0",
+    "@typescript-eslint/parser": "^4.15.0",
     "chai": "^4.2.0",
     "css-loader": "^4.3.0",
     "eslint": "^7.14.0",
@@ -31,12 +34,15 @@
     "style-loader": "^2.0.0",
     "stylelint": "^13.8.0",
     "stylelint-config-standard": "^19.0.0",
+    "ts-loader": "^8.0.17",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.5",
     "webpack": "^5.11.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
   "engines": {
-    "node": ">=13.2.0"
+    "node": ">=14.15.0"
   },
   "stylelint": {
     "extends": "stylelint-config-standard"
@@ -48,8 +54,9 @@
   },
   "lint-staged": {
     "*.css": "stylelint",
-    "*.{js,cjs,mjs}": "eslint",
+    "*.{js,cjs,mjs,ts}": "eslint",
     "*.md": "markdownlint",
+    "*.ts": "tsc --noEmit",
     "*.py": "python -m pylint --errors-only"
   },
   "dependencies": {

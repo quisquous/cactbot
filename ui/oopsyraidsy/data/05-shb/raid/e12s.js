@@ -34,6 +34,7 @@ export default {
     'E12S Promise Ferostorm': '4E46', // Garuda get intercardinals cast (damage down)
     'E12S Promise Judgment Jolt': '4E47', // Ramuh get out cast (damage down)
     'E12S Promise Shatter': '589C', // Ice Pillar explosion if tether not gotten
+    'E12S Promise Impact': '58A1', // Titan bomb drop
     'E12S Oracle Dark Blizard III': '58D3', // Relativity donut mechanic
     'E12S Oracle Apocalypse': '58E6', // Light up circle explosions (damage down)
   },
@@ -169,16 +170,22 @@ export default {
         let text = {
           en: `${matches.ability} (from ${ownerNick}, #${number})`,
           de: `${matches.ability} (von ${ownerNick}, #${number})`,
+          ja: `${matches.ability} (${ownerNick}から、#${number})`,
+          cn: `${matches.ability} (来自${ownerNick}，#${number})`,
         };
         if (isStatuePositionKnown && isStatueNorth) {
           text = {
             en: `${matches.ability} (from ${ownerNick}, #${number} north)`,
             de: `${matches.ability} (von ${ownerNick}, #${number} norden)`,
+            ja: `${matches.ability} (北の${ownerNick}から、#${number})`,
+            cn: `${matches.ability} (来自北方${ownerNick}，#${number})`,
           };
         } else if (isStatuePositionKnown && !isStatueNorth) {
           text = {
             en: `${matches.ability} (from ${ownerNick}, #${number} south)`,
             de: `${matches.ability} (von ${ownerNick}, #${number} Süden)`,
+            ja: `${matches.ability} (南の${ownerNick}から、#${number})`,
+            cn: `${matches.ability} (来自南方${ownerNick}，#${number})`,
           };
         }
 
@@ -342,6 +349,9 @@ export default {
     {
       id: 'E12S Promise Big Lion Kingsblaze',
       netRegex: NetRegexes.ability({ source: 'Regal Sculpture', id: '4F9E' }),
+      netRegexDe: NetRegexes.ability({ source: 'Abbild eines großen Löwen', id: '4F9E' }),
+      netRegexFr: NetRegexes.ability({ source: 'création léonine royale', id: '4F9E' }),
+      netRegexJa: NetRegexes.ability({ source: '創られた獅子王', id: '4F9E' }),
       mistake: (e, data, matches) => {
         const singleTarget = matches.type === '21';
         const hasFireDebuff = data.fire && data.fire[matches.target];
@@ -354,18 +364,26 @@ export default {
           northBigLion: {
             en: 'north big lion',
             de: 'Nordem, großer Löwe',
+            ja: '大ライオン(北)',
+            cn: '北方大狮子',
           },
           southBigLion: {
             en: 'south big lion',
             de: 'Süden, großer Löwe',
+            ja: '大ライオン(南)',
+            cn: '南方大狮子',
           },
           shared: {
             en: 'shared',
             de: 'geteilt',
+            ja: '重ねた',
+            cn: '重叠',
           },
           fireDebuff: {
             en: 'had fire',
             de: 'hatte Feuer',
+            ja: '炎付き',
+            cn: '火Debuff',
           },
         };
 

@@ -837,18 +837,26 @@ export default {
           longFire: {
             en: 'Long Fire',
             de: 'langes Feuer',
+            ja: 'ファイガ(遅い)',
+            cn: '长火',
           },
           shortFire: {
             en: 'Short Fire',
             de: 'kurzes Feuer',
+            ja: 'ファイガ(早い)',
+            cn: '短火',
           },
           longIce: {
             en: 'Long Ice',
             de: 'langes Eis',
+            ja: 'ブリザガ(遅い)',
+            cn: '长冰',
           },
           shortIce: {
             en: 'Short Ice',
             de: 'kurzes Eis',
+            ja: 'ブリザガ(早い)',
+            cn: '短冰',
           },
         };
 
