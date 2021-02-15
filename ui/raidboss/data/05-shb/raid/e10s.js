@@ -1,6 +1,6 @@
 import { Util } from '../../../../../resources/common.js';
 import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
+import NetRegexes from '../../../../../resources/netregexes.ts';
 import Outputs from '../../../../../resources/outputs.js';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';

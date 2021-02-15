@@ -1,6 +1,6 @@
 import { Util } from '../../resources/common.js';
-import NetRegexes from '../../resources/netregexes.js';
-import Regexes from '../../resources/regexes.js';
+import NetRegexes from '../../resources/netregexes.ts';
+import Regexes from '../../resources/regexes.ts';
 import { LocaleRegex } from '../../resources/translations.js';
 import { kMeleeWithMpJobs, kLevelMod } from './constants.js';
 

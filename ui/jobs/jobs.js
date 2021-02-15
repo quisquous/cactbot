@@ -1,6 +1,6 @@
 import EffectId from '../../resources/effect_id.js';
 import ContentType from '../../resources/content_type.js';
-import Regexes from '../../resources/regexes.js';
+import Regexes from '../../resources/regexes.ts';
 import UserConfig from '../../resources/user_config.js';
 import { Util } from '../../resources/common.js';
 import ZoneInfo from '../../resources/zone_info.js';

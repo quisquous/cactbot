@@ -1,8 +1,8 @@
 import ContentType from '../../resources/content_type.js';
 import { LocaleNetRegex } from '../../resources/translations.js';
-import NetRegexes from '../../resources/netregexes.js';
+import NetRegexes from '../../resources/netregexes.ts';
 import PartyTracker from '../../resources/party.js';
-import Regexes from '../../resources/regexes.js';
+import Regexes from '../../resources/regexes.ts';
 import UserConfig from '../../resources/user_config.js';
 import { Util } from '../../resources/common.js';
 import ZoneId from '../../resources/zone_id.js';

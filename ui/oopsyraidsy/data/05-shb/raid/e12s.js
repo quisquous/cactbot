@@ -1,4 +1,4 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
+import NetRegexes from '../../../../../resources/netregexes.ts';
 import Outputs from '../../../../../resources/outputs.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 

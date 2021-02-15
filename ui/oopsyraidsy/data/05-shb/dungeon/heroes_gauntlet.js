@@ -1,4 +1,4 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
+import NetRegexes from '../../../../../resources/netregexes.ts';
 import ZoneId from '../../../../../resources/zone_id.js';
 
 // TODO: Berserker 2nd/3rd wild anguish should be shared with just a rock

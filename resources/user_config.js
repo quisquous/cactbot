@@ -7,9 +7,9 @@
 // Used by downstream eval
 import _Conditions from './conditions.js';
 const Conditions = _Conditions;
-import _NetRegexes from './netregexes.js';
+import _NetRegexes from './netregexes.ts';
 const NetRegexes = _NetRegexes;
-import _Regexes from './regexes.js';
+import _Regexes from './regexes.ts';
 const Regexes = _Regexes;
 import { Responses as _Responses } from './responses.js';
 const Responses = _Responses;

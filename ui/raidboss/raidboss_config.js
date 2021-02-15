@@ -1,5 +1,5 @@
 import PartyTracker from '../../resources/party.js';
-import Regexes from '../../resources/regexes.js';
+import Regexes from '../../resources/regexes.ts';
 import { triggerOutputFunctions } from '../../resources/responses.js';
 import UserConfig from '../../resources/user_config.js';
 import { Util } from '../../resources/common.js';

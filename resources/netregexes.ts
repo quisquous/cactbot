@@ -1,4 +1,4 @@
-import Regexes, { Params } from './regexes';
+import Regexes, { Params } from './regexes.ts';
 
 interface BaseParam {
   timestamp?: string;

@@ -7,8 +7,8 @@ import ZoneId from '../resources/zone_id.js';
 import { oopsyTriggerSetFields } from '../ui/oopsyraidsy/oopsy_fields.js';
 
 // Used for trigger eval.
-import Regexes from '../resources/regexes.js';
-import NetRegexes from '../resources/netregexes.js';
+import Regexes from '../resources/regexes.ts';
+import NetRegexes from '../resources/netregexes.ts';
 import Conditions from '../resources/conditions.js';
 import { Responses, triggerFunctions, triggerOutputFunctions, builtInResponseStr } from '../resources/responses.js';
 
