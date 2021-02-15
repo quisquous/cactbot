@@ -1,0 +1,57 @@
+### Delubrum Reginae (Savage)
+# https://docs.google.com/document/d/1gIVcGtFXgwd-7IwyVLP8ybGOXfbdz1jfgNCPW1G2hMM/edit
+# https://docs.google.com/document/d/e/2PACX-1vTatqkLm8ybALnifyPd8qKsqUDSNppLSjJsbexfLrZq3aMusnI1b_MeYO1FZMIP2ISAgMdO3WE3GS2n/pub
+
+hideall "--Reset--"
+hideall "--sync--"
+
+# Note: various "Blast" are renamed "Elemental Blast" and various "Arrow" are renamed
+# to be "Elemental Arrow" to avoid having too many skills on the timeline.
+
+# Note: The various "is no longer sealed" messages are localized to each
+# boss, as the Stygimoloch Warrior and Dahu areas can be seen from one
+# another, and so a generic "is no longer sealed" from one would stop
+# any timeline running for those in the other.
+0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
+
+### Slimes and Golems
+# TODO
+2000.0 "--sync--"
+
+### Trinity Seeker
+4000.0 "--sync--" sync / 00:0839:The Theater of One will be sealed off/ window 10000,0
+4000.0 "--Reset--" sync / 00:0839:The Theater of One is no longer sealed/ window 0,2000 jump 0
+
+
+### Stygimoloch Warrior
+# TODO: this and Dahu can be seen from each other.
+# Jump here via injected "1961" auto? or some other ability similar to castrum timeline.
+#6000.0 "--sync--" sync / 00:0839:Pride of the Lioness will be sealed off/ window 10000,0
+#6000.0 "--Reset--" sync / 00:0839:Pride of the Lioness is no longer sealed/ window 0,2000 jump 0
+
+### Dahu
+8000.0 "--sync--" sync / 00:0839:The Hall of Supplication will be sealed off/ window 10000,0
+8000.0 "--Reset--" sync / 00:0839:The Hall of Supplication is no longer sealed/ window 0,2000 jump 0
+
+### Queen's Guard
+10000.0 "--sync--" sync / 00:0839:The Hall of Hieromancy will be sealed off/ window 10000,0
+10000.0 "--Reset--" sync / 00:0839:The Hall of Hieromancy is no longer sealed/ window 0,2000 jump 0
+# ranged auto should be reasonably timed
+10002.5 "--sync--" sync /:Queen's Gunner:5857:/ window 3,1
+
+
+### Bozjan Phantom
+12000.0 "--sync--" sync / 00:0839:Pride of the Lion will be sealed off/ window 10000,0
+12000.0 "--Reset--" sync / 00:0839:Pride of the Lion is no longer sealed/ window 0,2000 jump 0
+
+### Trinity Avowed
+14000.0 "--sync--" sync / 00:0839:The Vault of Singing Crystal will be sealed off/ window 10000,0
+14000.0 "--Reset--" sync / 00:0839:The Vault of Singing Crystal is no longer sealed/ window 0,2000 jump 0
+
+### Stygimoloch Lord
+16000.0 "--sync--" sync / 00:0839:The Path of Divine Clarity will be sealed off/ window 10000,0
+16000.0 "--Reset--" sync / 00:0839:The Path of Divine Clarity is no longer sealed/ window 0,2000 jump 0
+
+### The Queen
+18000.0 "--sync--" sync / 00:0839:Queensheart will be sealed off/ window 10000,0
+18000.0 "--Reset--" sync / 00:0839:Queensheart is no longer sealed/ window 0,2000 jump 0
