@@ -388,8 +388,6 @@ export default {
           fireDebuff: {
             en: 'had fire',
             de: 'hatte Feuer',
-            
-            
             ja: '炎付き',
             cn: '火Debuff',
             ko: '화염 디버프 받음',
