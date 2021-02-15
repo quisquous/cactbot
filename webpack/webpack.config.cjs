@@ -46,7 +46,14 @@ module.exports = function(env, argv) {
       rules: [
         {
           test: /\.ts$/,
-          loader: 'ts-loader',
+          use: {
+            loader: 'ts-loader',
+            options: {
+              // TODO: disable type checking for now
+              // enable this when we refactor all TypeScript
+              transpileOnly: true,
+            },
+          },
         },
         {
           test: /\.css$/,
@@ -72,6 +79,9 @@ module.exports = function(env, argv) {
           ],
         },
       ],
+    },
+    resolve: {
+      extensions: ['.ts'],
     },
   };
 };
