@@ -20,6 +20,23 @@ module.exports = {
         'sourceType': 'script',
       },
     },
+    {
+      'files': ['**/*.ts'],
+      'parser': '@typescript-eslint/parser',
+      'plugins': ['@typescript-eslint'],
+      'parserOptions': {
+        'tsconfigRootDir': __dirname,
+        'project': ['./tsconfig.json'],
+      },
+      'extends': [
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+      ],
+      'rules': {
+        '@typescript-eslint/no-non-null-assertion': 2,
+        '@typescript-eslint/no-explicit-any': 2,
+      },
+    },
   ],
   'ignorePatterns': [
     'dist/',
@@ -40,6 +57,13 @@ module.exports = {
   'plugins': [
     'rulesdir',
   ],
+  'settings': {
+    'import/resolver': {
+      'node': {
+        'extensions': ['.d.ts', '.ts', '.js'],
+      },
+    },
+  },
   'rules': {
     'arrow-spacing': [
       'error',

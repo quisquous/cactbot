@@ -11,6 +11,7 @@ DATA_DIRECTORY = "data"
 TEST_DIRECTORY = "test"
 UI_DIRECTORY = "ui"
 MANIFEST_FILENAME = "manifest.txt"
+NODE_COMMAND = ["node"]
 
 
 class CactbotModule(Enum):
