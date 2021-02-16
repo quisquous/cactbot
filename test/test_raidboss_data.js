@@ -40,16 +40,29 @@ const processInputs = (inputPath) => {
   });
 };
 
-processInputs(process.argv.slice(1));
+// Run automatically via mocha, but also allow for running individual
+// directories / files via the command-line.
+// TODO: use this with lint-staged to run on individual file changes.
+const defaultInput = ['ui/raidboss/'];
+const inputs = process.argv.length > 2 ? process.argv.slice(1) : defaultInput;
+processInputs(inputs);
 
+// Globals are the only way to pass additional fields to the test files below.
+// Invoking mocha manually here means that this file can either be run directly
+// via node to run individual files or as part of a larger mocha invocation.
+// TODO: Unfortunately, this also leads to multiple "pass" messages.  Maybe
+// this script can invoke Mocha if not in Mocha but import some shared helper
+// to run the tests when run directly??
 global.manifestFiles = manifestFiles;
 global.timelineFiles = timelineFiles;
 global.triggersFiles = triggersFiles;
 
+if (timelineFiles.length > 0)
+  mocha.addFile(path.posix.join(path.relative(process.cwd(), './test/helper/test_timeline.js')));
+
+// TODO:
 // if (manifestFiles.length > 0)
 //   mocha.addFile(path.posix.join(path.relative(process.cwd(), './test/manifests.spec.js')));
-if (timelineFiles.length > 0)
-  mocha.addFile(path.posix.join(path.relative(process.cwd(), './test/timelines.spec.js')));
 // if (triggersFiles.length > 0)
 //   mocha.addFile(path.posix.join(path.relative(process.cwd(), './test/triggers.spec.js')));
 

@@ -1,11 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import chai from 'chai';
-import { Timeline } from '../ui/raidboss/timeline.js';
-import { commonReplacement, partialCommonReplacementKeys } from '../ui/raidboss/common_replacement.js';
-import Regexes from '../resources/regexes.js';
+import { Timeline } from '../../ui/raidboss/timeline.js';
+import { commonReplacement, partialCommonReplacementKeys } from '../../ui/raidboss/common_replacement.js';
+import Regexes from '../../resources/regexes.js';
 
-import Mocha from 'mocha';
+// This file should not be run directly and is instead run via test_raidboss_data.js.
 
 const { expect } = chai;
 
@@ -95,7 +95,7 @@ describe('timeline test', () => {
 
     describe(`${timelineFile}`, () => {
       before(async () => {
-        const importPath = '../' + path.relative(process.cwd(), triggersFile).replace(/\\/g, '/');
+        const importPath = '../../' + path.relative(process.cwd(), triggersFile).replace(/\\/g, '/');
         timelineText = String(fs.readFileSync(timelineFile));
         triggerSet = (await import(importPath)).default;
         timeline = new Timeline(timelineText, null, triggerSet.timelineTriggers);
