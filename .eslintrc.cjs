@@ -200,6 +200,7 @@ module.exports = {
       'error',
       'never',
     ],
+    'valid-jsdoc': 'off',
     'rulesdir/cactbot-locale-order': [
       'warn',
       ['en', 'de', 'fr', 'ja', 'cn', 'ko'],
