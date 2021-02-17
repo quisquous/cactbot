@@ -839,24 +839,28 @@ export default {
             de: 'langes Feuer',
             ja: 'ファイガ(遅い)',
             cn: '长火',
+            ko: '느린 파이가',
           },
           shortFire: {
             en: 'Short Fire',
             de: 'kurzes Feuer',
             ja: 'ファイガ(早い)',
             cn: '短火',
+            ko: '빠른 파이가',
           },
           longIce: {
             en: 'Long Ice',
             de: 'langes Eis',
             ja: 'ブリザガ(遅い)',
             cn: '长冰',
+            ko: '느린 블리자가',
           },
           shortIce: {
             en: 'Short Ice',
             de: 'kurzes Eis',
             ja: 'ブリザガ(早い)',
             cn: '短冰',
+            ko: '빠른 블리자가',
           },
         };
 

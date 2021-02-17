@@ -1,4 +1,4 @@
-import { Util } from '../../resources/common.js';
+import Util from '../../resources/util.js';
 import NetRegexes from '../../resources/netregexes.js';
 import Regexes from '../../resources/regexes.js';
 import { LocaleRegex } from '../../resources/translations.js';

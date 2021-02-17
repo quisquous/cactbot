@@ -5,7 +5,6 @@ import ZoneInfo from '../../resources/zone_info.js';
 import { getWeather, findNextWeather, findNextWeatherNot, findNextNight, findNextDay, isNightTime } from '../../resources/weather.js';
 
 import './eureka_config.js';
-import '../../resources/common.js';
 
 const bunnyLabel = {
   en: 'Bunny',

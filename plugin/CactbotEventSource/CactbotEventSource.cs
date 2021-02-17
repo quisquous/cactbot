@@ -345,7 +345,7 @@ namespace Cactbot {
       //   OverlayPluginApi is usually injected after the overlay is done loading while an overlay that's reloaded or
       //   loaded later on will see the OverlayPluginApi before the page has loaded.
       // * The overlay JavaScript sets up the initial event handlers and calls the cactbotLoadUser handler through
-      //   getUserConfigLocation. These actions are queued by the JS implementation in common.js until OverlayPluginApi
+      //   getUserConfigLocation. These actions are queued by the JS implementation in overlay_plugin_api.js until OverlayPluginApi
       //   (or the WebSocket) is available. Once it is, the event subscriptions and handler calls are transmitted.
       // * OverlayPlugin stores the event subscriptions and executes the C# handlers which in this case means
       //   FetchUserFiles is called. That method loads the user files and returns them. The result is now transmitted
