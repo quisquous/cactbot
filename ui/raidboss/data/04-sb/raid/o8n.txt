@@ -80,5 +80,5 @@ hideall "--sync--"
 425 "Thrumming Thunder"
 431 "Timely Teleport"
 431 "--untargetable--"
-434 "--utargetable--"
+434 "--targetable--"
 434 "Aero/Ruin" duration 3
