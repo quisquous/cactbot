@@ -43,7 +43,7 @@ namespace Cactbot {
     }
     //
     // CE Opcode History
-    // Global
+    // Intl
     // v5.35            0x299
     // v5.35h           0x143
     // v5.40            0x3c1
@@ -56,12 +56,12 @@ namespace Cactbot {
     // v5.35            0x144
     //
 
-    private static readonly CEDirectorOPCodes cedirector_v5_35_cn = new CEDirectorOPCodes(
+    private static readonly CEDirectorOPCodes cedirector_cn = new CEDirectorOPCodes(
       0x30,
       0x144
     );
 
-    private static readonly CEDirectorOPCodes cedirector_v5_45hotfix = new CEDirectorOPCodes(
+    private static readonly CEDirectorOPCodes cedirector_intl = new CEDirectorOPCodes(
       0x30,
       0x1f5
     );
@@ -133,9 +133,9 @@ namespace Cactbot {
       ac143opcodes.Add("intl", ac143_v5_2);
 
       cedirectoropcodes = new Dictionary<string, CEDirectorOPCodes>();
-      cedirectoropcodes.Add("intl", cedirector_v5_45hotfix);
+      cedirectoropcodes.Add("cn", cedirector_cn);
+      cedirectoropcodes.Add("intl", cedirector_intl);
 
-      cedirectoropcodes.Add("cn", cedirector_v5_35_cn);
       fates = new Dictionary<int, int>();
       ces = new Dictionary<int, CEDirectorData>();
 
