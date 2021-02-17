@@ -1,7 +1,23 @@
 import fs from 'fs';
 import path from 'path';
-
 import Mocha from 'mocha';
+
+import testTimelineFiles from './helper/test_timeline.js';
+
+// This file runs in one of two ways:
+// (1) As a part of Mocha's normal execution, running all the files in test...
+//     In this case, this file will call all of the testXFiles functions
+//     itself so that there is only run() of Mocha.
+// (2) Called directly via node with optional filenames being passed via argv...
+//     In this case, this is for something like lint-staged.  This file will
+//     pass all of the filenames it finds into globals and add
+//     test_data_runner.js as a test, which will take thiose globals and call
+//     all of the same testXFiles functions.
+//
+// This weird dance allows for both partial testing of data files for lint-staged
+// while only having a single Mocha execution when running implicitly as a part
+// of Mocha.
+
 const mocha = new Mocha();
 
 const walkDir = (dir, callback) => {
@@ -40,35 +56,30 @@ const processInputs = (inputPath) => {
   });
 };
 
+const insideMocha = typeof global.describe === 'function';
+
 // Run automatically via mocha, but also allow for running individual
 // directories / files via the command-line.
 // TODO: use this with lint-staged to run on individual file changes.
 const defaultInput = ['ui/raidboss/'];
-const inputs = process.argv.length > 2 ? process.argv.slice(1) : defaultInput;
+const inputs = !insideMocha && process.argv.length > 2 ? process.argv.slice(1) : defaultInput;
 processInputs(inputs);
 
-// Globals are the only way to pass additional fields to the test files below.
-// Invoking mocha manually here means that this file can either be run directly
-// via node to run individual files or as part of a larger mocha invocation.
-// TODO: Unfortunately, this also leads to multiple "pass" messages.  Maybe
-// this script can invoke Mocha if not in Mocha but import some shared helper
-// to run the tests when run directly??
-global.manifestFiles = manifestFiles;
-global.timelineFiles = timelineFiles;
-global.triggersFiles = triggersFiles;
+if (insideMocha) {
+  testTimelineFiles(timelineFiles);
+} else {
+  // Globals are the only way to pass additional fields to the test files below.
+  // Because we are running mocha programatically here, the file names must be
+  // passed via globals.  We can't add files after Mocha has started, unfortunately.
+  global.manifestFiles = manifestFiles;
+  global.timelineFiles = timelineFiles;
+  global.triggersFiles = triggersFiles;
+  mocha.addFile(path.posix.join(path.relative(process.cwd(), './test/helper/test_data_runner.js')));
 
-if (timelineFiles.length > 0)
-  mocha.addFile(path.posix.join(path.relative(process.cwd(), './test/helper/test_timeline.js')));
-
-// TODO:
-// if (manifestFiles.length > 0)
-//   mocha.addFile(path.posix.join(path.relative(process.cwd(), './test/manifests.spec.js')));
-// if (triggersFiles.length > 0)
-//   mocha.addFile(path.posix.join(path.relative(process.cwd(), './test/triggers.spec.js')));
-
-mocha.loadFilesAsync()
-  .then(() => mocha.run((failures) => process.exitCode = failures ? 1 : 0))
-  .catch((error) => {
-    console.error(error);
-    process.exitCode = 1;
-  });
+  mocha.loadFilesAsync()
+    .then(() => mocha.run((failures) => process.exitCode = failures ? 1 : 0))
+    .catch((error) => {
+      console.error(error);
+      process.exitCode = 1;
+    });
+}
