@@ -3,6 +3,7 @@ import path from 'path';
 import Mocha from 'mocha';
 
 import testTimelineFiles from './helper/test_timeline.js';
+import testTriggerFiles from './helper/test_trigger.js';
 
 // This file runs in one of two ways:
 // (1) As a part of Mocha's normal execution, running all the files in test...
@@ -34,7 +35,7 @@ const walkDir = (dir, callback) => {
 
 const manifestFiles = [];
 const timelineFiles = [];
-const triggersFiles = [];
+const triggerFiles = [];
 
 const processInputs = (inputPath) => {
   inputPath.forEach((path) => {
@@ -44,12 +45,12 @@ const processInputs = (inputPath) => {
         manifestFiles.push(filepath);
         return;
       }
-      if (filename.endsWith('.txt')) {
+      if (/\/raidboss\/data\/.*\.txt/.test(filepath)) {
         timelineFiles.push(filepath);
         return;
       }
-      if (filename.endsWith('.js')) {
-        triggersFiles.push(filepath);
+      if (/\/raidboss\/data\/.*\.js/.test(filepath)) {
+        triggerFiles.push(filepath);
         return;
       }
     });
@@ -66,6 +67,7 @@ const inputs = !insideMocha && process.argv.length > 2 ? process.argv.slice(1) :
 processInputs(inputs);
 
 if (insideMocha) {
+  testTriggerFiles(triggerFiles);
   testTimelineFiles(timelineFiles);
 } else {
   // Globals are the only way to pass additional fields to the test files below.
@@ -73,7 +75,7 @@ if (insideMocha) {
   // passed via globals.  We can't add files after Mocha has started, unfortunately.
   global.manifestFiles = manifestFiles;
   global.timelineFiles = timelineFiles;
-  global.triggersFiles = triggersFiles;
+  global.triggerFiles = triggerFiles;
   mocha.addFile(path.posix.join(path.relative(process.cwd(), './test/helper/test_data_runner.js')));
 
   mocha.loadFilesAsync()

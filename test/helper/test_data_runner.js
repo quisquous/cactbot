@@ -1,4 +1,5 @@
 import testTimelineFiles from './test_timeline.js';
+import testTriggerFiles from './test_trigger.js';
 
 // This file is added to mocha by test_raidboss_data.js when Mocha is being
 // run programatically.  This makes it possible for lint-staged to run
@@ -8,5 +9,6 @@ import testTimelineFiles from './test_timeline.js';
 // and runs them, this file will not be run.  Instead, test_raidboss_data.js
 // will call these test functions below itself.
 
+testTriggerFiles(global.triggerFiles);
 testTimelineFiles(global.timelineFiles);
-// TODO: also test manifests and triggers here.
+// TODO: also test manifests here.
