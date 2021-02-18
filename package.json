@@ -58,7 +58,8 @@
     "*.{js,cjs,mjs,ts}": "eslint",
     "*.md": "markdownlint",
     "*.ts": "tsc --noEmit",
-    "*.py": "python -m pylint --errors-only"
+    "*.py": "python -m pylint --errors-only",
+    "ui/(raidboss|oopsyraidsy)/data/**": "node test/test_raidboss_data.js"
   },
   "dependencies": {
     "argparse": "^1.0.10"
