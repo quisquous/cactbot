@@ -132,14 +132,21 @@ const testTimelineFiles = (timelineFiles) => {
 
             // For both texts and syncs...
             for (const testCase of testCases) {
-            // For every unique replaceable text or sync the timeline knows about...
+              // For every unique replaceable text or sync the timeline knows about...
               for (const orig of testCase.items) {
-              // For every translation for that timeline...
+                // For every translation for that timeline...
+
+                // Do a first pass to find which regexes, if any will apply to orig.
+                const translateMatches = [];
                 for (const [regex, replaceText] of testCase.replace) {
                   const replaced = orig.replace(regex, replaceText);
                   if (orig === replaced)
                     continue;
+                  translateMatches.push([regex, replaceText, replaced]);
+                }
 
+                // Now do a second O(n^2) pass, only against regexes which apply.
+                for (const [regex, replaceText, replaced] of translateMatches) {
                   // If we get here, then |regex| is a valid replacemnt in |orig|.
                   // The goal is to ensure via testing that there are no ordering
                   // constraints in the timeline translations.  To fix these issues,
@@ -148,11 +155,8 @@ const testTimelineFiles = (timelineFiles) => {
                   // (1) Verify that there is no pre-replacement collision,.
                   // i.e. two regexes that apply to the same text or sync.
                   // e.g. "Holy IV" is affected by both /Holy IV/ and /Holy/.
-                  for (const [otherRegex, otherReplaceText] of testCase.replace) {
+                  for (const [otherRegex, otherReplaceText, otherReplaced] of translateMatches) {
                     if (regex === otherRegex)
-                      continue;
-                    const otherReplaced = orig.replace(otherRegex, otherReplaceText);
-                    if (orig === otherReplaced)
                       continue;
 
                     // If we get here, then there is a pre-replacement collision.
@@ -170,7 +174,8 @@ const testTimelineFiles = (timelineFiles) => {
 
                   // (2) Verify that there is no post-replacement collision with this text,
                   // i.e. a regex that applies to the replaced text that another regex
-                  // has already modified.
+                  // has already modified.  We need to look through everything here
+                  // and not just through translateMatches, unfortunately.
                   for (const [otherRegex, otherReplaceText] of testCase.replace) {
                     if (regex === otherRegex)
                       continue;
