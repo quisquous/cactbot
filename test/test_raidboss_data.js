@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import Mocha from 'mocha';
 
+import testManifestFiles from './helper/test_manifest.js';
 import testTimelineFiles from './helper/test_timeline.js';
 import testTriggerFiles from './helper/test_trigger.js';
 
@@ -40,8 +41,7 @@ const triggerFiles = [];
 const processInputs = (inputPath) => {
   inputPath.forEach((path) => {
     walkDir(path, (filepath) => {
-      const filename = filepath.split('/').slice(-1)[0];
-      if (filename === 'manifest.txt') {
+      if (/\/(?:raidboss|oopsyraidsy)\/data\/manifest.txt/.test(filepath)) {
         manifestFiles.push(filepath);
         return;
       }
@@ -62,12 +62,13 @@ const insideMocha = typeof global.describe === 'function';
 // Run automatically via mocha, but also allow for running individual
 // directories / files via the command-line.
 // TODO: use this with lint-staged to run on individual file changes.
-const defaultInput = ['ui/raidboss/'];
+const defaultInput = ['ui/raidboss/data', 'ui/oopsyraidsy/data'];
 const inputs = !insideMocha && process.argv.length > 2 ? process.argv.slice(1) : defaultInput;
 processInputs(inputs);
 
 if (insideMocha) {
   testTriggerFiles(triggerFiles);
+  testManifestFiles(manifestFiles);
   testTimelineFiles(timelineFiles);
 } else {
   // Globals are the only way to pass additional fields to the test files below.
