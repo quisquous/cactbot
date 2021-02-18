@@ -3,8 +3,8 @@ import chai from 'chai';
 
 const { assert } = chai;
 
-const tests = {
-  sortUserFiles: () => {
+describe('config tests', () => {
+  it('user files are sorted correctly', () => {
     const unsortedKeys = [
       'b but with some spaces/file.js',
       'b/subdir1/z/z/z/nested_file.js',
@@ -33,9 +33,9 @@ const tests = {
     ];
 
     assert.deepEqual(UserConfig.sortUserFiles(unsortedKeys), sortedKeys);
-  },
+  });
 
-  filterUserFiles: () => {
+  it('user files are filtered correctly', () => {
     const keys = [
       'ignoreme/raidboss/ignored.js',
       'oopsyraidsy/turnoffjunk/raidboss.js',
@@ -82,17 +82,5 @@ const tests = {
       'raidboss/prettytimelines/something else.css',
       'raidboss.css',
     ]);
-  },
-};
-
-const keys = Object.keys(tests);
-let exitCode = 0;
-for (let i = 0; i < keys.length; ++i) {
-  try {
-    tests[keys[i]]();
-  } catch (e) {
-    console.log(e);
-    exitCode = 1;
-  }
-}
-process.exit(exitCode);
+  });
+});
