@@ -5,7 +5,7 @@ import { Timeline } from '../../ui/raidboss/timeline.js';
 import { commonReplacement, partialCommonReplacementKeys } from '../../ui/raidboss/common_replacement.js';
 import Regexes from '../../resources/regexes.js';
 
-const { expect } = chai;
+const { assert } = chai;
 
 const raidbossDataPath = './ui/raidboss/data/';
 
@@ -73,7 +73,7 @@ function getTestCases(trans, skipPartialCommon) {
         continue;
       }
       if (key in testCase.replace)
-        expect(key, `${triggersFile}:locale ${trans.locale}:common replacement '${key}' found in ${testCase.type}`).to.be.null;
+        assert.isNull(key, `${triggersFile}:locale ${trans.locale}:common replacement '${key}' found in ${testCase.type}`);
       testCase.replace[key] = common[key][trans.locale];
     }
   }
@@ -104,9 +104,9 @@ const testTimelineFiles = (timelineFiles) => {
         it('should load without errors', () => {
           for (const e of timeline.errors) {
             if (e.line && e.lineNumber)
-              expect(e, `${timelineFile}:${e.lineNumber}:${e.error}:${e.line}`).to.be.null;
+              assert.isNull(e, `${timelineFile}:${e.lineNumber}:${e.error}:${e.line}`);
             else
-              expect(e, `${timelineFile}:${e.error}`).to.be.null;
+              assert.isNull(e, `${timelineFile}:${e.error}`);
           }
         });
         it('should not have translation conflicts', () => {
@@ -117,7 +117,7 @@ const testTimelineFiles = (timelineFiles) => {
           for (const trans of translations) {
             const locale = trans.locale;
             // TODO: maybe this needs to be in the triggers test instead
-            expect(locale, `${triggersFile}: missing locale in translation block`).to.not.be.undefined;
+            assert.isDefined(locale, `${triggersFile}: missing locale in translation block`);
 
             // Note: even if translations are missing, they should not have conflicts.
             const testCases = getTestCases(trans);
@@ -162,7 +162,7 @@ const testTimelineFiles = (timelineFiles) => {
                     const otherSecond = replaced.replace(Regexes.parse(otherRegex),
                         testCase.replace[otherRegex]);
 
-                    expect(otherFirst, `${triggersFile}:locale ${locale}: pre-translation collision on ${testCase.type} '${orig}' for '${regex}' and '${otherRegex}'`).to.equal(otherSecond);
+                    assert.equal(otherFirst, otherSecond, `${triggersFile}:locale ${locale}: pre-translation collision on ${testCase.type} '${orig}' for '${regex}' and '${otherRegex}'`);
                   }
 
                   // (2) Verify that there is no post-replacement collision with this text,
@@ -184,7 +184,7 @@ const testTimelineFiles = (timelineFiles) => {
                         testCase.replace[otherRegex]);
                     otherFirst = otherFirst.replace(Regexes.parse(regex), testCase.replace[regex]);
 
-                    expect(otherFirst, `${triggersFile}:locale ${locale}: post-translation collision on ${testCase.type} '${orig}' for '${regex}' => '${testCase.replace[regex]}', then '${otherRegex}'`).to.equal(otherSecond);
+                    assert.equal(otherFirst, otherSecond, `${triggersFile}:locale ${locale}: post-translation collision on ${testCase.type} '${orig}' for '${regex}' => '${testCase.replace[regex]}', then '${otherRegex}'`);
                   }
                 }
               }
@@ -228,7 +228,7 @@ const testTimelineFiles = (timelineFiles) => {
                     break;
                   }
                 }
-                expect(matched, `${triggersFile}:locale ${locale}:no translation for ${testCase.type} '${item}'`).to.be.true;
+                assert(matched, `${triggersFile}:locale ${locale}:no translation for ${testCase.type} '${item}'`);
               }
             }
           }
@@ -253,7 +253,7 @@ const testTimelineFiles = (timelineFiles) => {
             for (const testCase of testCases) {
               for (const regex in testCase.replace) {
                 for (const bad of badRegex)
-                  expect(Regexes.parse(regex).source.match(bad), `${triggersFile}:locale ${locale}:invalid character in ${testCase.type} '${regex}'`).to.be.null;
+                  assert.isNull(Regexes.parse(regex).source.match(bad), `${triggersFile}:locale ${locale}:invalid character in ${testCase.type} '${regex}'`);
               }
             }
           }
@@ -262,9 +262,9 @@ const testTimelineFiles = (timelineFiles) => {
           for (const sync of timeline.syncStarts) {
             const regex = sync.regex.source;
             if (regex.includes('is no longer sealed'))
-              expect(regex.includes('00:0839:.*is no longer sealed'), `${timelineFile}:${sync.lineNumber} 'is no longer sealed' sync must be exactly '00:0839:.*is no longer sealed'`).to.be.true;
+              assert(regex.includes('00:0839:.*is no longer sealed'), `${timelineFile}:${sync.lineNumber} 'is no longer sealed' sync must be exactly '00:0839:.*is no longer sealed'`);
             else if (regex.includes('will be sealed'))
-              expect(regex.match('00:0839:.*will be sealed'), `${timelineFile}:${sync.lineNumber} 'will be sealed' sync must be preceded by '00:0839:'`).to.be.true;
+              assert(regex.match('00:0839:.*will be sealed'), `${timelineFile}:${sync.lineNumber} 'will be sealed' sync must be preceded by '00:0839:'`);
           }
         });
       });
