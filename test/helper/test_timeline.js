@@ -47,16 +47,23 @@ const setup = (timelineFiles) => {
 };
 
 function getTestCases(trans, skipPartialCommon) {
+  const syncMap = new Map();
+  for (const key in trans.replaceSync)
+    syncMap.set(Regexes.parse(key), trans.replaceSync[key]);
+  const textMap = new Map();
+  for (const key in trans.replaceText)
+    textMap.set(Regexes.parse(key), trans.replaceText[key]);
+
   const testCases = [
     {
       type: 'replaceSync',
       items: new Set(timeline.syncStarts.map((x) => x.regex.source)),
-      replace: Object.assign({}, trans.replaceSync),
+      replace: syncMap,
     },
     {
       type: 'replaceText',
       items: new Set(timeline.events.map((x) => x.text)),
-      replace: Object.assign({}, trans.replaceText),
+      replace: textMap,
     },
   ];
 
@@ -66,15 +73,16 @@ function getTestCases(trans, skipPartialCommon) {
     for (const key in common) {
       if (skipPartialCommon && partialCommonReplacementKeys.includes(key))
         continue;
+      const regexKey = Regexes.parse(key);
       if (!common[key][trans.locale]) {
         // To avoid throwing a "missing translation" error for
         // every single common translation, automatically add noops.
-        testCase.replace[key] = key;
+        testCase.replace.set(regexKey, key);
         continue;
       }
-      if (key in testCase.replace)
-        assert.isNull(key, `${triggersFile}:locale ${trans.locale}:common replacement '${key}' found in ${testCase.type}`);
-      testCase.replace[key] = common[key][trans.locale];
+      if (testCase.replace.has(regexKey))
+        assert.fail(`${triggersFile}:locale ${trans.locale}:common replacement '${key}' found in ${testCase.type}`);
+      testCase.replace.set(regexKey, common[key][trans.locale]);
     }
   }
 
@@ -127,8 +135,8 @@ const testTimelineFiles = (timelineFiles) => {
             // For every unique replaceable text or sync the timeline knows about...
               for (const orig of testCase.items) {
               // For every translation for that timeline...
-                for (const regex in testCase.replace) {
-                  const replaced = orig.replace(Regexes.parse(regex), testCase.replace[regex]);
+                for (const [regex, replaceText] of testCase.replace) {
+                  const replaced = orig.replace(regex, replaceText);
                   if (orig === replaced)
                     continue;
 
@@ -140,11 +148,10 @@ const testTimelineFiles = (timelineFiles) => {
                   // (1) Verify that there is no pre-replacement collision,.
                   // i.e. two regexes that apply to the same text or sync.
                   // e.g. "Holy IV" is affected by both /Holy IV/ and /Holy/.
-                  for (const otherRegex in testCase.replace) {
+                  for (const [otherRegex, otherReplaceText] of testCase.replace) {
                     if (regex === otherRegex)
                       continue;
-                    const otherReplaced =
-                      orig.replace(Regexes.parse(otherRegex), testCase.replace[otherRegex]);
+                    const otherReplaced = orig.replace(otherRegex, otherReplaceText);
                     if (orig === otherReplaced)
                       continue;
 
@@ -155,12 +162,8 @@ const testTimelineFiles = (timelineFiles) => {
                     // e.g. "Magnetism/Repel" is affected by both /Magnetism/ and /Repel/,
                     // however these are independent and could be applied in either order.
 
-                    const otherFirst = otherReplaced.replace(
-                        Regexes.parse(regex),
-                        testCase.replace[regex],
-                    );
-                    const otherSecond = replaced.replace(Regexes.parse(otherRegex),
-                        testCase.replace[otherRegex]);
+                    const otherFirst = otherReplaced.replace(regex, replaceText);
+                    const otherSecond = replaced.replace(otherRegex, otherReplaceText);
 
                     assert.equal(otherFirst, otherSecond, `${triggersFile}:locale ${locale}: pre-translation collision on ${testCase.type} '${orig}' for '${regex}' and '${otherRegex}'`);
                   }
@@ -168,11 +171,10 @@ const testTimelineFiles = (timelineFiles) => {
                   // (2) Verify that there is no post-replacement collision with this text,
                   // i.e. a regex that applies to the replaced text that another regex
                   // has already modified.
-                  for (const otherRegex in testCase.replace) {
+                  for (const [otherRegex, otherReplaceText] of testCase.replace) {
                     if (regex === otherRegex)
                       continue;
-                    const otherSecond =
-                      replaced.replace(Regexes.parse(otherRegex), testCase.replace[otherRegex]);
+                    const otherSecond = replaced.replace(otherRegex, otherReplaceText);
                     if (replaced === otherSecond)
                       continue;
 
@@ -180,9 +182,8 @@ const testTimelineFiles = (timelineFiles) => {
                     // Verify if these two regexes can be applied in either order
                     // to get the same result, if so, then this collision can be
                     // safely ignored.
-                    let otherFirst = orig.replace(Regexes.parse(otherRegex),
-                        testCase.replace[otherRegex]);
-                    otherFirst = otherFirst.replace(Regexes.parse(regex), testCase.replace[regex]);
+                    let otherFirst = orig.replace(otherRegex, otherReplaceText);
+                    otherFirst = otherFirst.replace(regex, replaceText);
 
                     assert.equal(otherFirst, otherSecond, `${triggersFile}:locale ${locale}: post-translation collision on ${testCase.type} '${orig}' for '${regex}' => '${testCase.replace[regex]}', then '${otherRegex}'`);
                   }
@@ -222,8 +223,8 @@ const testTimelineFiles = (timelineFiles) => {
                 if (isIgnored(item))
                   continue;
                 let matched = false;
-                for (const regex in testCase.replace) {
-                  if (Regexes.parse(regex).test(item)) {
+                for (const regex of testCase.replace.keys()) {
+                  if (regex.test(item)) {
                     matched = true;
                     break;
                   }
@@ -251,9 +252,9 @@ const testTimelineFiles = (timelineFiles) => {
             ].map((x) => Regexes.parse(x));
 
             for (const testCase of testCases) {
-              for (const regex in testCase.replace) {
+              for (const regex of testCase.replace.keys()) {
                 for (const bad of badRegex)
-                  assert.isNull(Regexes.parse(regex).source.match(bad), `${triggersFile}:locale ${locale}:invalid character in ${testCase.type} '${regex}'`);
+                  assert.isNull(regex.source.match(bad), `${triggersFile}:locale ${locale}:invalid character in ${testCase.type} '${regex}'`);
               }
             }
           }
