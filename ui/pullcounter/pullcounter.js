@@ -1,4 +1,3 @@
-import '../../resources/common.js';
 import { LocaleRegex } from '../../resources/translations.js';
 import Regexes from '../../resources/regexes.ts';
 import UserConfig from '../../resources/user_config.js';

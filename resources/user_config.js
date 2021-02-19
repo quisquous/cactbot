@@ -1,3 +1,5 @@
+import './overlay_plugin_api.js';
+
 // TODO:
 // The convention of "import X as _X; const X = _X;" is currently
 // being used as a method to workaround for downstream code
@@ -5,19 +7,24 @@
 // create a variable of the same name, the eval()'d code does not know
 // about the import, and thus throws ReferenceErrors.
 // Used by downstream eval
-import _Conditions from './conditions.js';
+import _Conditions from './conditions';
 const Conditions = _Conditions;
-import _NetRegexes from './netregexes.ts';
+import _ContentType from './content_type.js';
+const ContentType = _ContentType;
+import _NetRegexes from './netregexes';
 const NetRegexes = _NetRegexes;
 import _Regexes from './regexes.ts';
 const Regexes = _Regexes;
 import { Responses as _Responses } from './responses.js';
 const Responses = _Responses;
-import { Util as _Util } from './common.js';
+import _Outputs from './outputs.js';
+const Outputs = _Outputs;
+import _Util from './util.js';
 const Util = _Util;
 import _ZoneId from './zone_id.js';
 const ZoneId = _ZoneId;
-
+import _ZoneInfo from './zone_info.js';
+const ZoneInfo = _ZoneInfo;
 
 class UserConfig {
   constructor() {

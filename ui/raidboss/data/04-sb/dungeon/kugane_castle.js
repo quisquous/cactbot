@@ -73,6 +73,7 @@ export default {
         text: {
           en: 'Grab gold piles',
           de: 'Sammle die Goldhaufen',
+          ko: '금화 은화 줍기',
         },
       },
     },

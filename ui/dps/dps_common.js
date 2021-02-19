@@ -1,5 +1,5 @@
 import ContentType from '../../resources/content_type.js';
-import { Util } from '../../resources/common.js';
+import Util from '../../resources/util.js';
 import ZoneInfo from '../../resources/zone_info.js';
 
 export const Options = {

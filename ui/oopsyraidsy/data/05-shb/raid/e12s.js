@@ -172,6 +172,7 @@ export default {
           de: `${matches.ability} (von ${ownerNick}, #${number})`,
           ja: `${matches.ability} (${ownerNick}から、#${number})`,
           cn: `${matches.ability} (来自${ownerNick}，#${number})`,
+          ko: `${matches.ability} (대상자 "${ownerNick}", ${number}번)`,
         };
         if (isStatuePositionKnown && isStatueNorth) {
           text = {
@@ -179,6 +180,7 @@ export default {
             de: `${matches.ability} (von ${ownerNick}, #${number} norden)`,
             ja: `${matches.ability} (北の${ownerNick}から、#${number})`,
             cn: `${matches.ability} (来自北方${ownerNick}，#${number})`,
+            ko: `${matches.ability} (대상자 "${ownerNick}", ${number}번 북쪽)`,
           };
         } else if (isStatuePositionKnown && !isStatueNorth) {
           text = {
@@ -186,6 +188,7 @@ export default {
             de: `${matches.ability} (von ${ownerNick}, #${number} Süden)`,
             ja: `${matches.ability} (南の${ownerNick}から、#${number})`,
             cn: `${matches.ability} (来自南方${ownerNick}，#${number})`,
+            ko: `${matches.ability} (대상자 "${ownerNick}", ${number}번 남쪽)`,
           };
         }
 
@@ -224,7 +227,7 @@ export default {
             fr: `${matches.ability} (de ${pillarOwner})`,
             ja: `${matches.ability} (${pillarOwner}から)`,
             cn: `${matches.ability} (来自${pillarOwner})`,
-            ko: `${matches.ability} (from ${pillarOwner})`,
+            ko: `${matches.ability} (대상자 "${pillarOwner}")`,
           },
         };
       },
@@ -330,7 +333,7 @@ export default {
               fr: `${matches.ability} (de ${ownerNick}, ${dirObj['fr']})`,
               ja: `${matches.ability} (${ownerNick}から, ${dirObj['ja']})`,
               cn: `${matches.ability} (来自${ownerNick}, ${dirObj['cn']}`,
-              ko: `${matches.ability} (from ${ownerNick}, ${dirObj['ko']})`,
+              ko: `${matches.ability} (대상자 "${ownerNick}", ${dirObj['ko']})`,
             },
           };
         }
@@ -366,24 +369,28 @@ export default {
             de: 'Nordem, großer Löwe',
             ja: '大ライオン(北)',
             cn: '北方大狮子',
+            ko: '북쪽 큰 사자',
           },
           southBigLion: {
             en: 'south big lion',
             de: 'Süden, großer Löwe',
             ja: '大ライオン(南)',
             cn: '南方大狮子',
+            ko: '남쪽 큰 사자',
           },
           shared: {
             en: 'shared',
             de: 'geteilt',
             ja: '重ねた',
             cn: '重叠',
+            ko: '같이 맞음',
           },
           fireDebuff: {
             en: 'had fire',
             de: 'hatte Feuer',
             ja: '炎付き',
             cn: '火Debuff',
+            ko: '화염 디버프 받음',
           },
         };
 
