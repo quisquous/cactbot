@@ -1,3 +1,4 @@
+import testManifestFiles from './test_manifest.js';
 import testTimelineFiles from './test_timeline.js';
 import testTriggerFiles from './test_trigger.js';
 
@@ -10,5 +11,5 @@ import testTriggerFiles from './test_trigger.js';
 // will call these test functions below itself.
 
 testTriggerFiles(global.triggerFiles);
+testManifestFiles(global.manifestFiles);
 testTimelineFiles(global.timelineFiles);
-// TODO: also test manifests here.
