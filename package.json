@@ -14,7 +14,7 @@
     "lintfix": "node_modules/.bin/eslint --fix **/*.{js,cjs,mjs,ts}",
     "stylelint": "node_modules/.bin/stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
     "markdownlint": "node_modules/.bin/markdownlint . --ignore node_modules --ignore publish --ignore CactbotOverlay/ThirdParty",
-    "test": "python test/run_tests.py",
+    "test": "node_modules/.bin/mocha",
     "lint-staged": "node_modules/.bin/lint-staged",
     "coverage-report": "node util/gen_coverage_report.js"
   },
@@ -30,6 +30,7 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.0.8",
     "markdownlint-cli": "^0.20.0",
+    "mocha": "^8.2.1",
     "raw-loader": "^4.0.2",
     "style-loader": "^2.0.0",
     "stylelint": "^13.8.0",
@@ -57,7 +58,8 @@
     "*.{js,cjs,mjs,ts}": "eslint",
     "*.md": "markdownlint",
     "*.ts": "tsc --noEmit",
-    "*.py": "python -m pylint --errors-only"
+    "*.py": "python -m pylint --errors-only",
+    "ui/(raidboss|oopsyraidsy)/data/**": "node test/test_raidboss_data.js"
   },
   "dependencies": {
     "argparse": "^1.0.10"
