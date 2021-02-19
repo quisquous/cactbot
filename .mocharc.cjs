@@ -12,12 +12,5 @@ module.exports = {
      // (2) remove from exclude list here
      // (3) remove from test/*.py files where referenced.
      'test/trigger/test_trigger.js',
-     'test/unittests/common_test.js',
-     'test/unittests/config_test.js',
-     'test/unittests/netregex_test.js',
-     'test/unittests/regex_test.js',
-     'test/unittests/resources_test.js',
-     'test/unittests/responses_test.js',
-     'test/util/regex_util.js',
    ],
 };
