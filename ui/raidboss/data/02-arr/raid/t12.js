@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions.js';
+import Conditions from '../../../../../resources/conditions.ts';
 import NetRegexes from '../../../../../resources/netregexes.ts';
 import ZoneId from '../../../../../resources/zone_id.js';
 

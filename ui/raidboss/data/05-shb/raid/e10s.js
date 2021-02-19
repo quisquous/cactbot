@@ -1,5 +1,5 @@
 import Util from '../../../../../resources/util.js';
-import Conditions from '../../../../../resources/conditions.js';
+import Conditions from '../../../../../resources/conditions.ts';
 import NetRegexes from '../../../../../resources/netregexes.ts';
 import Outputs from '../../../../../resources/outputs.js';
 import { Responses } from '../../../../../resources/responses.js';

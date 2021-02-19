@@ -1,4 +1,4 @@
-import Conditions from '../../../../../resources/conditions.js';
+import Conditions from '../../../../../resources/conditions.ts';
 import NetRegexes from '../../../../../resources/netregexes.ts';
 import Regexes from '../../../../../resources/regexes.ts';
 import { Responses } from '../../../../../resources/responses.js';

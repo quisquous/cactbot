@@ -9,7 +9,7 @@ import { oopsyTriggerSetFields } from '../ui/oopsyraidsy/oopsy_fields.js';
 // Used for trigger eval.
 import Regexes from '../resources/regexes.ts';
 import NetRegexes from '../resources/netregexes.ts';
-import Conditions from '../resources/conditions.js';
+import Conditions from '../resources/conditions.ts';
 import { Responses, triggerFunctions, triggerOutputFunctions, builtInResponseStr } from '../resources/responses.js';
 
 // Paths are relative to current file.
