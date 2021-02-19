@@ -1,4 +1,4 @@
-import Regexes, { Params } from './regexes';
+import Regexes, { Params } from './regexes.ts';
 
 interface Fields {
   field: string;
@@ -49,7 +49,7 @@ function parseHelper(
   Regexes.validateParams(params, funcName, ['capture', ...validFields]);
 
   // Find the last key we care about, so we can shorten the regex if needed.
-  const capture = Regexes.trueIfUndefined(params.capture as boolean);
+  const capture = Regexes.trueIfUndefined(params.capture);
   const fieldKeys = Object.keys(fields);
   let maxKey;
   if (capture) {
@@ -86,10 +86,15 @@ function parseHelper(
     const fieldName = fields[key]?.field;
     const fieldValue = fields[key]?.value?.toString() ?? matchDefault;
 
-    if (fieldName)
-      str += Regexes.maybeCapture(capture, fieldName, params[fieldName], fieldValue) + separator;
-    else
+    if (fieldName) {
+      str += Regexes.maybeCapture(
+          // more accurate type instead of `as` cast
+          // maybe this function needs a refactoring
+          capture, fieldName, (params as { [s: string]: string })[fieldName], fieldValue) +
+          separator;
+    } else {
       str += fieldValue + separator;
+    }
 
 
     // Stop if we're not capturing and don't care about future fields.

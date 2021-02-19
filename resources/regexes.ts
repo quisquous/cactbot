@@ -244,7 +244,7 @@ export default class Regexes {
    * fields: targetId, target, id, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1b-networktargeticon-head-markers
    */
-  static headMarker(f: Params<typeof headMarkerParams[number]>) {
+  static headMarker(f: Params<typeof headMarkerParams[number]>): RegExp {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'headMarker', headMarkerParams);
@@ -259,7 +259,7 @@ export default class Regexes {
 
   // fields: name, capture
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#03-addcombatant
-  static addedCombatant(f: Params<typeof addedCombatantParams[number]>) {
+  static addedCombatant(f: Params<typeof addedCombatantParams[number]>): RegExp {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'addedCombatant', addedCombatantParams);
@@ -274,7 +274,7 @@ export default class Regexes {
    * fields: id, name, hp, x, y, z, npcId, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#03-addcombatant
    */
-  static addedCombatantFull(f: Params<typeof addedCombatantFullParams[number]>) {
+  static addedCombatantFull(f: Params<typeof addedCombatantFullParams[number]>): RegExp {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'addedCombatantFull', addedCombatantFullParams);
@@ -297,7 +297,7 @@ export default class Regexes {
    * fields: id, name, hp, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#04-removecombatant
    */
-  static removingCombatant(f: Params<typeof removingCombatantParams[number]>) {
+  static removingCombatant(f: Params<typeof removingCombatantParams[number]>): RegExp {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'removingCombatant', removingCombatantParams);
@@ -317,7 +317,7 @@ export default class Regexes {
 
   // fields: targetId, target, effect, source, duration, capture
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1a-networkbuff
-  static gainsEffect(f: Params<typeof gainsEffectParams[number]>) {
+  static gainsEffect(f: Params<typeof gainsEffectParams[number]>): RegExp {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'gainsEffect', gainsEffectParams);
@@ -342,7 +342,7 @@ export default class Regexes {
    *         data0, data1, data2, data3, data4
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#26-networkstatuseffects
    */
-  static statusEffectExplicit(f: Params<typeof statusEffectExplicitParams[number]>) {
+  static statusEffectExplicit(f: Params<typeof statusEffectExplicitParams[number]>): RegExp {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'statusEffectExplicit', statusEffectExplicitParams);
@@ -380,7 +380,7 @@ export default class Regexes {
    * fields: targetId, target, effect, source, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove
    */
-  static losesEffect(f: Params<typeof losesEffectParams[number]>) {
+  static losesEffect(f: Params<typeof losesEffectParams[number]>): RegExp {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'losesEffect', losesEffectParams);
@@ -401,7 +401,7 @@ export default class Regexes {
    * fields: source, sourceId, target, targetId, id, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#23-networktether
    */
-  static tether(f: Params<typeof tetherParams[number]>) {
+  static tether(f: Params<typeof tetherParams[number]>): RegExp {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'tether', tetherParams);
@@ -423,7 +423,7 @@ export default class Regexes {
    * fields: target, source, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#19-networkdeath
    */
-  static wasDefeated(f: Params<typeof wasDefeatedParams[number]>) {
+  static wasDefeated(f: Params<typeof wasDefeatedParams[number]>): RegExp {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'wasDefeated', wasDefeatedParams);
@@ -441,7 +441,7 @@ export default class Regexes {
    * fields: name, hp, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#0d-combatanthp
    */
-  static hasHP(f: Params<typeof hasHPParams[number]>) {
+  static hasHP(f: Params<typeof hasHPParams[number]>): RegExp {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'hasHP', hasHPParams);
@@ -459,7 +459,7 @@ export default class Regexes {
    * fields: code, line, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
    */
-  static echo(f: Params<typeof echoParams[number]>) {
+  static echo(f: Params<typeof echoParams[number]>): RegExp {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'echo', echoParams);
@@ -475,7 +475,7 @@ export default class Regexes {
    * fields: code, line, name, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
    */
-  static dialog(f: Params<typeof dialogParams[number]>) {
+  static dialog(f: Params<typeof dialogParams[number]>): RegExp {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'dialog', dialogParams);
@@ -493,7 +493,7 @@ export default class Regexes {
    * fields: code, line, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
    */
-  static message(f: Params<typeof messageParams[number]>) {
+  static message(f: Params<typeof messageParams[number]>): RegExp {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'message', messageParams);
@@ -508,7 +508,7 @@ export default class Regexes {
    * fields: code, line, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
    */
-  static gameLog(f: Params<typeof gameLogParams[number]>) {
+  static gameLog(f: Params<typeof gameLogParams[number]>): RegExp {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'gameLog', gameLogParams);
@@ -527,7 +527,7 @@ export default class Regexes {
    * Some game log lines have names in them, but not all.  All network log lines for these
    * have empty fields, but these get dropped by the ACT FFXV plugin.
    */
-  static gameNameLog(f: Params<typeof gameNameLogParams[number]>) {
+  static gameNameLog(f: Params<typeof gameNameLogParams[number]>): RegExp {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'gameNameLog', gameNameLogParams);
@@ -546,7 +546,7 @@ export default class Regexes {
    *         skillSpeed, spellSpeed, tenacity, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#0c-playerstats
    */
-  static statChange(f: Params<typeof statChangeParams[number]>) {
+  static statChange(f: Params<typeof statChangeParams[number]>): RegExp {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'statChange', statChangeParams);
@@ -578,7 +578,7 @@ export default class Regexes {
    * fields: name, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#01-changezone
    */
-  static changeZone(f: Params<typeof changeZoneParams[number]>) {
+  static changeZone(f: Params<typeof changeZoneParams[number]>): RegExp {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'statChange', statChangeParams);
@@ -594,7 +594,7 @@ export default class Regexes {
    * fields: instance, command, data0, data1, data2, data3
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#21-network6d-actor-control-lines
    */
-  static network6d(f: Params<typeof network6dParams[number]>) {
+  static network6d(f: Params<typeof network6dParams[number]>): RegExp {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'network6d', network6dParams);
@@ -647,16 +647,22 @@ export default class Regexes {
    * like /insensitive/i are dropped.
    */
   static anyOf(...args: (string|string[]|RegExp)[]): string {
-    let array: (string|RegExp)[];
+    const anyOfArray = (array: (string|RegExp)[]): string => {
+      return `(?:${array.map((elem) => elem instanceof RegExp ? elem.source : elem).join('|')})`;
+    };
+    let array: (string|RegExp)[] = [];
     if (args.length === 1) {
-      if (!Array.isArray(args[0]))
-        return args[0] instanceof RegExp ? args[0].source : args[0];
-      array = args[0];
+      if (Array.isArray(args[0]))
+        array = args[0];
+      else if (args[0])
+        array = [args[0]];
+      else
+        array = [];
     } else {
-      array = args as (string|RegExp)[];
+      // TODO: more accurate type instead of `as` cast
+      array = args as string[];
     }
-
-    return `(?:${array.map((elem) => elem instanceof RegExp ? elem.source : elem).join('|')})`;
+    return anyOfArray(array);
   }
 
   static parse(regexpString: RegExp | string): RegExp {
@@ -691,24 +697,24 @@ export default class Regexes {
   }
 
   // Like Regex.Regexes.parse, but force global flag.
-  static parseGlobal(regexpString: RegExp) {
+  static parseGlobal(regexpString: RegExp): RegExp {
     const regex = Regexes.parse(regexpString);
     let modifiers = 'gi';
     modifiers += (regexpString.multiline ? 'm' : '');
     return new RegExp(regex.source, modifiers);
   }
 
-  static trueIfUndefined(value?: boolean) {
+  static trueIfUndefined(value?: boolean): boolean {
     if (typeof (value) === 'undefined')
       return true;
     return !!value;
   }
 
   static validateParams(
-    f: Readonly<{ [s: string]: any }>,
-    funcName: string,
-    params: Readonly<string[]>
-  ) {
+      f: Readonly<{ [s: string]: unknown }>,
+      funcName: string,
+      params: Readonly<string[]>,
+  ): void {
     if (f === null)
       return;
     if (typeof f !== 'object')
@@ -716,7 +722,7 @@ export default class Regexes {
     const keys = Object.keys(f);
     for (let k = 0; k < keys.length; ++k) {
       const key = keys[k];
-      if (!params.includes(key)) {
+      if (key && !params.includes(key)) {
         throw new Error(`${funcName}: invalid parameter '${key}'.  ` +
             `Valid params: ${JSON.stringify(params)}`);
       }
