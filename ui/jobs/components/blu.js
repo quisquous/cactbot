@@ -35,6 +35,14 @@ export function setup(bars) {
     tormentBox.duration = 0;
     tormentBox.duration = 30;
   });
+  bars.onUseAbility(kAbility.AetherialSpark, () => {
+    tormentBox.duration = 0;
+    tormentBox.duration = 15 + 0.5;
+  });
+  bars.onUseAbility(kAbility.Nightbloom, () => {
+    tormentBox.duration = 0;
+    tormentBox.duration = 60 + 0.8;
+  });
   bars.onUseAbility(kAbility.LucidDreaming, () => {
     lucidBox.duration = 0;
     lucidBox.duration = 60;
