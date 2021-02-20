@@ -7,4 +7,13 @@ module.exports = {
      // Run via test_raidboss_data.js.
      'test/helper/*',
    ],
+   loader: [
+     'ts-node/esm',
+   ],
+   extension: [
+     '.js',
+     '.cjs',
+     '.mjs',
+     '.ts',
+   ],
 };

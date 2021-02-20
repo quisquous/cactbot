@@ -1,9 +1,9 @@
-import Util from '../../resources/util.js';
+import Util from '../../resources/util.ts';
 import chai from 'chai';
 
 const { assert } = chai;
 
-// Duplicate values from util.js
+// Duplicate values from util.ts
 // Expect to update these as patches and expansions change job capabilities
 const jobs = (() => {
   class Job {
