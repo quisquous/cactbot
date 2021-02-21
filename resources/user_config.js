@@ -19,7 +19,7 @@ import { Responses as _Responses } from './responses.js';
 const Responses = _Responses;
 import _Outputs from './outputs.js';
 const Outputs = _Outputs;
-import _Util from './util.js';
+import _Util from './util.ts';
 const Util = _Util;
 import _ZoneId from './zone_id.js';
 const ZoneId = _ZoneId;
