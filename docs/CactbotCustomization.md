@@ -431,12 +431,12 @@ User files are `eval`'d in JavaScript,
 and thus cannot `import` in the same way that built-in trigger files do.
 User javascript files have access to the following globals:
 
-- [Conditions](../resources/conditions.js)
+- [Conditions](../resources/conditions.ts)
 - [ContentType](../resources/content_type.js)
 - [NetRegexes](../resources/netregexes.js)
 - [Regexes](../resources/regexes.js)
 - [Responses](../resources/responses.js)
-- [Outputs](../resources/outputs.js)
+- [Outputs](../resources/outputs.ts)
 - [Util](../resources/common.js)
 - [ZoneId](../resources/zone_id.js)
 - [ZoneInfo](../resources/zone_info.js)
