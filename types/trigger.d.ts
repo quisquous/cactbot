@@ -13,9 +13,9 @@ type TranslatableText = {
 
 type TranslatedText = {
   en: string;
-  de: string
-  fr: string
-  ja: string
-  cn: string
-  ko: string
+  de: string;
+  fr: string;
+  ja: string;
+  cn: string;
+  ko: string;
 };
