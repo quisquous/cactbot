@@ -1,6 +1,6 @@
 export type Params<T extends string> =
   Partial<Record<T, string | string[]> &
-  { 'timestamp': string, 'capture': boolean }>;
+  { 'timestamp': string; 'capture': boolean }>;
 
 type ValidStringOrArray = string | string[];
 
