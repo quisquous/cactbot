@@ -47,7 +47,7 @@ module.exports = {
         }],
         'object-shorthand': 'error',
         '@typescript-eslint/method-signature-style': ['error', 'method'],
-        '@typescript-eslint/explicit-module-boundary-types': ['error'],
+        '@typescript-eslint/explicit-module-boundary-types': ['error', { 'allowHigherOrderFunctions': false }],
         'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
       },
     },
