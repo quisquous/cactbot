@@ -16,7 +16,7 @@
     "markdownlint": "node_modules/.bin/markdownlint . --ignore node_modules --ignore publish --ignore CactbotOverlay/ThirdParty",
     "test": "node_modules/.bin/mocha",
     "lint-staged": "node_modules/.bin/lint-staged",
-    "coverage-report": "node util/gen_coverage_report.js"
+    "coverage-report": "node --loader ts-node/esm util/gen_coverage_report.js"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.15.0",
@@ -59,7 +59,7 @@
     "*.md": "markdownlint",
     "*.ts": "tsc --noEmit",
     "*.py": "python -m pylint --errors-only",
-    "ui/(raidboss|oopsyraidsy)/data/**": "node --loader ts-node/esm.mjs test/test_raidboss_data.js"
+    "ui/(raidboss|oopsyraidsy)/data/**": "node --loader ts-node/esm test/test_raidboss_data.js"
   },
   "dependencies": {
     "argparse": "^1.0.10"
