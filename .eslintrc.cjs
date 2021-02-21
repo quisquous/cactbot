@@ -45,6 +45,7 @@ module.exports = {
             'requireLast': true,
           },
         }],
+        'object-shorthand': 'error',
         '@typescript-eslint/method-signature-style': ['error', 'method'],
         '@typescript-eslint/explicit-module-boundary-types': ['error'],
         'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
