@@ -378,7 +378,7 @@ export class PopupText {
       if (haveZoneId && set.zoneId === undefined) {
         const filename = set.filename ? `'${set.filename}'` : '(user file)';
         console.error(`Trigger set has zoneId, but with nothing specified in ${filename}.  ` +
-                      `Did you misspell the ZoneId.ZoneName?`);
+          `Did you misspell the ZoneId.ZoneName?`);
         continue;
       }
 

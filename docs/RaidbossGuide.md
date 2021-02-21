@@ -181,7 +181,7 @@ We're not there yet, but there's always someday.)
 Activates the trigger if the function returns `true`.
 If it does not return `true`, nothing is shown/sounded/run.
 If multiple functions are present on the trigger, this has first priority to run.
-(Pre-made "canned" conditions are available within [conditions.js](https://github.com/quisquous/cactbot/blob/main/resources/conditions.js).
+(Pre-made "canned" conditions are available within [conditions.ts](https://github.com/quisquous/cactbot/blob/main/resources/conditions.ts).
 Generally speaking it's best to use one of these if it fits the situation.)
 
 **preRun: function(data, matches, output)**
@@ -386,7 +386,7 @@ Use of these helpers makes automated testing significantly easier,
 and allows humans to catch errors and inconsistencies more easily when reviewing pull requests.
 
 Currently, three separate elements have pre-made structures defined:
-[Condition](https://github.com/quisquous/cactbot/blob/main/resources/conditions.js), [Regex](https://github.com/quisquous/cactbot/blob/main/resources/regexes.js), and [Response](https://github.com/quisquous/cactbot/blob/main/resources/responses.js).
+[Condition](https://github.com/quisquous/cactbot/blob/main/resources/conditions.ts), [Regex](https://github.com/quisquous/cactbot/blob/main/resources/regexes.js), and [Response](https://github.com/quisquous/cactbot/blob/main/resources/responses.js).
 `Condition` functions take no arguments. Almost all `Response` functions take one optional argument, `severity`,
 used to determine what level of popup text to display to the user when the trigger activates.
 `Regex` functions can take several arguments [(`gainsEffect()` is a good example)](https://github.com/quisquous/cactbot/blob/dcdf3ee4cd1b6d5bdfb9a8052cc9e4c9b10844d8/resources/regexes.js#L176) depending on which log line is being matched against,
