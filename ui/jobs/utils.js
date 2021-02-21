@@ -1,4 +1,4 @@
-import Util from '../../resources/util.js';
+import Util from '../../resources/util.ts';
 import NetRegexes from '../../resources/netregexes.ts';
 import Regexes from '../../resources/regexes.ts';
 import { LocaleRegex } from '../../resources/translations.js';

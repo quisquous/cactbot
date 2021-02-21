@@ -1,4 +1,4 @@
-import Util from '../../../../../resources/util.js';
+import Util from '../../../../../resources/util.ts';
 import Conditions from '../../../../../resources/conditions.ts';
 import NetRegexes from '../../../../../resources/netregexes.ts';
 import Outputs from '../../../../../resources/outputs.js';

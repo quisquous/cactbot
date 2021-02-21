@@ -4,7 +4,7 @@ import NetRegexes from '../../resources/netregexes.ts';
 import PartyTracker from '../../resources/party.js';
 import Regexes from '../../resources/regexes.ts';
 import UserConfig from '../../resources/user_config.js';
-import Util from '../../resources/util.js';
+import Util from '../../resources/util.ts';
 import ZoneId from '../../resources/zone_id.js';
 import ZoneInfo from '../../resources/zone_info.js';
 
