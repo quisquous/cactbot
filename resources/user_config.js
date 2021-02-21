@@ -17,7 +17,7 @@ import _Regexes from './regexes.ts';
 const Regexes = _Regexes;
 import { Responses as _Responses } from './responses.js';
 const Responses = _Responses;
-import _Outputs from './outputs.js';
+import _Outputs from './outputs.ts';
 const Outputs = _Outputs;
 import _Util from './util.ts';
 const Util = _Util;

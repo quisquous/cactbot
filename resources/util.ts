@@ -119,33 +119,33 @@ const jobToRoleMap: Map<Job, Role> = (() => {
 })();
 
 const Util = {
-  jobEnumToJob: (id: number): Job => {
+  jobEnumToJob: (id: number) => {
     const job = allJobs.find((job: Job) => nameToJobEnum[job] === id);
     return job ?? 'NONE';
   },
-  jobToJobEnum: (job: Job): number => nameToJobEnum[job],
-  jobToRole: (job: Job): Role => {
+  jobToJobEnum: (job: Job) => nameToJobEnum[job],
+  jobToRole: (job: Job) => {
     const role = jobToRoleMap.get(job);
     return role ?? 'none';
   },
   getAllRoles: (): readonly Role[] => allRoles,
-  isTankJob: (job: Job): boolean => tankJobs.includes(job),
-  isHealerJob: (job: Job): boolean => healerJobs.includes(job),
-  isMeleeDpsJob: (job: Job): boolean => meleeDpsJobs.includes(job),
-  isRangedDpsJob: (job: Job): boolean => rangedDpsJobs.includes(job),
-  isCasterDpsJob: (job: Job): boolean => casterDpsJobs.includes(job),
-  isDpsJob: (job: Job): boolean => dpsJobs.includes(job),
-  isCraftingJob: (job: Job): boolean => craftingJobs.includes(job),
-  isGatheringJob: (job: Job): boolean => gatheringJobs.includes(job),
-  isCombatJob: (job: Job): boolean => {
+  isTankJob: (job: Job) => tankJobs.includes(job),
+  isHealerJob: (job: Job) => healerJobs.includes(job),
+  isMeleeDpsJob: (job: Job) => meleeDpsJobs.includes(job),
+  isRangedDpsJob: (job: Job) => rangedDpsJobs.includes(job),
+  isCasterDpsJob: (job: Job) => casterDpsJobs.includes(job),
+  isDpsJob: (job: Job) => dpsJobs.includes(job),
+  isCraftingJob: (job: Job) => craftingJobs.includes(job),
+  isGatheringJob: (job: Job) => gatheringJobs.includes(job),
+  isCombatJob: (job: Job) => {
     return !craftingJobs.includes(job) && !gatheringJobs.includes(job);
   },
-  canStun: (job: Job): boolean => stunJobs.includes(job),
-  canSilence: (job: Job): boolean => silenceJobs.includes(job),
-  canSleep: (job: Job): boolean => sleepJobs.includes(job),
-  canCleanse: (job: Job): boolean => cleanseJobs.includes(job),
-  canFeint: (job: Job): boolean => feintJobs.includes(job),
-  canAddle: (job: Job): boolean => addleJobs.includes(job),
-};
+  canStun: (job: Job) => stunJobs.includes(job),
+  canSilence: (job: Job) => silenceJobs.includes(job),
+  canSleep: (job: Job) => sleepJobs.includes(job),
+  canCleanse: (job: Job) => cleanseJobs.includes(job),
+  canFeint: (job: Job) => feintJobs.includes(job),
+  canAddle: (job: Job) => addleJobs.includes(job),
+} as const;
 
 export default Util;

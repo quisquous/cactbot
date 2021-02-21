@@ -17,14 +17,14 @@ export interface Data {
   lang: string;
   currentHP: number;
   options: Option;
-  ShortName(x: string): string;
-  StopCombat(): void;
+  ShortName: (x: string) => string;
+  StopCombat: () => void;
   /** @deprecated Use parseFloat instead */
-  ParseLocaleFloat(string: string): number;
-  CanStun(): boolean;
-  CanSilence(): boolean;
-  CanSleep(): boolean;
-  CanCleanse(): boolean;
-  CanFeint(): boolean;
-  CanAddle(): boolean;
+  ParseLocaleFloat: (string: string) => number;
+  CanStun: () => boolean;
+  CanSilence: () => boolean;
+  CanSleep: () => boolean;
+  CanCleanse: () => boolean;
+  CanFeint: () => boolean;
+  CanAddle: () => boolean;
 }
