@@ -42,7 +42,7 @@ module.exports = {
           },
           'singleline': {
             'delimiter': 'semi',
-            'requireLast': true,
+            'requireLast': false,
           },
         }],
         'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
