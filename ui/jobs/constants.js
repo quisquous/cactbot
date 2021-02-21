@@ -237,6 +237,8 @@ export const kAbility = {
   SongOfTorment: '2C7A',
   OffGuard: '2C93',
   PeculiarLight: '2C9D',
+  AetherialSpark: '5AF1',
+  Nightbloom: '5AFA',
   // Role Action
   LucidDreaming: '1D8A',
 };
