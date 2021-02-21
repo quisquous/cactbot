@@ -1,4 +1,4 @@
-import Regexes, { Params } from './regexes';
+import Regexes, { Params } from './regexes.js';
 
 interface Fields {
   field: string;
