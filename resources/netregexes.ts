@@ -1,4 +1,4 @@
-import Regexes, { Params } from './regexes.ts';
+import Regexes, { Params } from './regexes';
 
 interface Fields {
   field: string;
@@ -34,11 +34,11 @@ const statChangeParams = ['job', 'strength', 'dexterity', 'vitality', 'intellige
 const changeZoneParams = ['id', 'name'] as const;
 const network6dParams = ['instance', 'command', 'data0', 'data1', 'data2', 'data3'] as const;
 
-function parseHelper(
-    params: { timestamp?: string, capture?: boolean },
+const parseHelper = (
+    params: { timestamp?: string; capture?: boolean },
     funcName: string,
-    fields: { [s: string]: Fields; },
-): RegExp {
+    fields: { [s: string]: Fields },
+): RegExp => {
   params = params ?? {};
   const validFields: string[] = [];
   for (const value of Object.values(fields)) {
@@ -102,7 +102,7 @@ function parseHelper(
       break;
   }
   return Regexes.parse(str);
-}
+};
 
 export default class NetRegexes {
   /**
