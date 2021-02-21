@@ -2,7 +2,7 @@ import { TranslatableText } from '../types/trigger';
 
 // Output strings for now require a field for every language, so this is a
 // helper function to generate one for literal numbers.
-function numberToOutputString(n: number): TranslatableText {
+const numberToOutputString = function(n: number): TranslatableText {
   const str = n.toString();
   return {
     en: str,
@@ -12,7 +12,7 @@ function numberToOutputString(n: number): TranslatableText {
     cn: str,
     ko: str,
   };
-}
+};
 
 // General guidelines:
 // * property names should closely match English text
