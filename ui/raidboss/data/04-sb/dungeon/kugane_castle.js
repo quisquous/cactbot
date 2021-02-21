@@ -50,6 +50,7 @@ export default {
         text: {
           en: 'Harakiri tether on YOU',
           de: 'Harakiri Verbindung auf DIR',
+          cn: '切腹点名',
         },
       },
     },
@@ -73,6 +74,7 @@ export default {
         text: {
           en: 'Grab gold piles',
           de: 'Sammle die Goldhaufen',
+          cn: '捡金币',
           ko: '금화 은화 줍기',
         },
       },
