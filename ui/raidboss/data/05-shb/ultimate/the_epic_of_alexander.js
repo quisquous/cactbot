@@ -1,6 +1,6 @@
-import Conditions from '../../../../../resources/conditions.js';
+import Conditions from '../../../../../resources/conditions.ts';
 import NetRegexes from '../../../../../resources/netregexes.js';
-import Outputs from '../../../../../resources/outputs.js';
+import Outputs from '../../../../../resources/outputs.ts';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
@@ -1640,7 +1640,7 @@ export default {
           de: 'Köder Sprung mit Cooldowns',
           fr: 'Attirez le Saut avec des Cooldowns',
           ja: 'スパジャン誘導',
-          cn: '引导冷却跳跃',
+          cn: '减伤引导跳跃',
           ko: '슈퍼 점프 유도',
         },
       },
