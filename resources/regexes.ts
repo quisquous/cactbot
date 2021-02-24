@@ -4,8 +4,8 @@ export type Params<T extends string> =
 
 type ValidStringOrArray = string | string[];
 
-const startsUsingParams = ['source', 'id', 'ability', 'target'] as const;
-const abilityParams = ['source', 'sourceId', 'id', 'ability', 'targetId', 'target'] as const;
+const startsUsingParams = ['timestamp', 'source', 'id', 'ability', 'target', 'capture'] as const;
+const abilityParams = ['timestamp', 'source', 'sourceId', 'id', 'ability', 'targetId', 'target', 'capture'] as const;
 const abilityFullParams = [
   'timestamp',
   'sourceId',
@@ -48,8 +48,8 @@ const abilityFullParams = [
   'heading',
   'capture',
 ] as const;
-const headMarkerParams = ['targetId', 'target', 'id'] as const;
-const addedCombatantParams = ['name'] as const;
+const headMarkerParams = ['timestamp', 'targetId', 'target', 'id', 'capture'] as const;
+const addedCombatantParams = ['timestamp', 'name', 'capture'] as const;
 const addedCombatantFullParams = [
   'timestamp',
   'id',
@@ -68,12 +68,12 @@ const removingCombatantParams = [
   'id',
   'name',
   'hp',
-  'capture',
   'x',
   'y',
   'z',
+  'capture',
 ] as const;
-const gainsEffectParams = ['targetId', 'target', 'effect', 'source', 'duration'] as const;
+const gainsEffectParams = ['timestamp', 'targetId', 'target', 'effect', 'source', 'duration', 'capture'] as const;
 const statusEffectExplicitParams = [
   'timestamp',
   'targetId',
@@ -94,7 +94,7 @@ const statusEffectExplicitParams = [
   'data4',
   'capture',
 ] as const;
-const losesEffectParams = ['targetId', 'target', 'effect', 'source'] as const;
+const losesEffectParams = ['timestamp', 'targetId', 'target', 'effect', 'source', 'capture'] as const;
 const statChangeParams = [
   'timestamp',
   'job',
@@ -115,16 +115,16 @@ const statChangeParams = [
   'tenacity',
   'capture',
 ] as const;
-const tetherParams = ['source', 'sourceId', 'target', 'targetId', 'id'] as const;
-const wasDefeatedParams = ['target', 'source'] as const;
-const hasHPParams = ['name', 'hp'] as const;
-const echoParams = ['code', 'line'] as const;
-const dialogParams = ['code', 'line', 'name'] as const;
-const messageParams = ['code', 'line'] as const;
-const gameLogParams = ['code', 'line'] as const;
-const gameNameLogParams = ['code', 'name', 'line'] as const;
-const changeZoneParams = ['name'] as const;
-const network6dParams = ['instance', 'command', 'data0', 'data1', 'data2', 'data3'] as const;
+const tetherParams = ['timestamp', 'source', 'sourceId', 'target', 'targetId', 'id', 'capture'] as const;
+const wasDefeatedParams = ['timestamp', 'target', 'source', 'capture'] as const;
+const hasHPParams = ['timestamp', 'name', 'hp', 'capture'] as const;
+const echoParams = ['timestamp', 'code', 'line', 'capture'] as const;
+const dialogParams = ['timestamp', 'code', 'line', 'name', 'capture'] as const;
+const messageParams = ['timestamp', 'code', 'line', 'capture'] as const;
+const gameLogParams = ['timestamp', 'code', 'line', 'capture'] as const;
+const gameNameLogParams = ['timestamp', 'code', 'name', 'line', 'capture'] as const;
+const changeZoneParams = ['timestamp', 'name', 'capture'] as const;
+const network6dParams = ['timestamp', 'instance', 'command', 'data0', 'data1', 'data2', 'data3', 'capture'] as const;
 
 export default class Regexes {
   /**
@@ -581,7 +581,7 @@ export default class Regexes {
   static changeZone(f: Params<typeof changeZoneParams[number]>): RegExp {
     if (typeof f === 'undefined')
       f = {};
-    Regexes.validateParams(f, 'statChange', statChangeParams);
+    Regexes.validateParams(f, 'changeZone', changeZoneParams);
     const capture = Regexes.trueIfUndefined(f.capture);
     const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
       ' 01:Changed Zone to ' +
