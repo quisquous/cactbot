@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    // nullish coalescing operator not supported in OverlayPlugin's Chrome M75
+    // TODO: change to ES2020 once OverlayPlugin rolls CEF past M80.
+    "target": "ES2019",
     "module": "ES2020",
     "allowJs": true,
     "checkJs": false,
