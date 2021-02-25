@@ -35,6 +35,20 @@ module.exports = {
       'rules': {
         '@typescript-eslint/no-non-null-assertion': 2,
         '@typescript-eslint/no-explicit-any': 2,
+        '@typescript-eslint/member-delimiter-style': ['error', {
+          'multiline': {
+            'delimiter': 'semi',
+            'requireLast': true,
+          },
+          'singleline': {
+            'delimiter': 'semi',
+            'requireLast': false,
+          },
+        }],
+        'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
+        'object-shorthand': ['error', 'consistent'],
+        '@typescript-eslint/method-signature-style': ['error', 'property'],
+        '@typescript-eslint/explicit-module-boundary-types': ['error', { 'allowHigherOrderFunctions': false }],
       },
     },
   ],
