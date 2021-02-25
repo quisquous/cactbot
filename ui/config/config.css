@@ -229,6 +229,7 @@ html {
 
 .trigger-detail {
   display: inline;
+  align-self: center;
 }
 
 .alarm-text {
