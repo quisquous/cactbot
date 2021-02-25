@@ -19,9 +19,57 @@ hideall "--sync--"
 2000.0 "--sync--"
 
 ### Trinity Seeker
+# -p 5AD3:4011.4 5A98:4079.5
+# -ii 5B33 5B94 5AB8 5AB9 5ABA 5ABB 5ABC 5AD1 5B2A 5B2B
 4000.0 "--sync--" sync / 00:0839:The Theater of One will be sealed off/ window 10000,0
 4000.0 "--Reset--" sync / 00:0839:The Theater of One is no longer sealed/ window 0,2000 jump 0
 
+# Initial Merciful Air
+4011.4 "Verdant Tempest" sync /:Trinity Seeker:5AD3:/ window 20,20
+4015.6 "--sync--" sync /:Trinity Seeker:5A9A:/
+4020.0 "Manifest Avatar" sync /:Trinity Seeker:5ADA:/
+4028.2 "First Mercy" sync /:Trinity Seeker:5B61:/
+4031.4 "Second Mercy" sync /:Trinity Seeker:5B62:/
+4034.6 "Third Mercy" sync /:Trinity Seeker:5B63:/
+4037.8 "Fourth Mercy" sync /:Trinity Seeker:5B64:/
+4040.2 "Mercy Fourfold" #sync /:Trinity Seeker:5B94:/
+4042.1 "Mercy Fourfold" #sync /:Trinity Seeker:5B94:/
+4042.8 "Seasons Of Mercy" sync /:Seeker Avatar:5AC7:/
+4044.0 "Mercy Fourfold" #sync /:Trinity Seeker:5B94:/
+4045.9 "Mercy Fourfold" #sync /:Trinity Seeker:5B94:/
+4047.3 "Merciful Breeze" sync /:Trinity Seeker:5AC8:/
+4048.8 "Merciful Moon" sync /:Aetherial Orb:5AC9:/
+4051.3 "Merciful Breeze" sync /:Trinity Seeker:5AC8:/
+4054.7 "Merciful Blooms" sync /:Trinity Seeker:5ACA:/
+4062.0 "Verdant Tempest" sync /:Trinity Seeker:5AD3:/
+4074.2 "Merciful Arc" sync /:Trinity Seeker:5AD4:/
+
+# Initial Baleful Air (80% or time push)
+4076.5 "--sync--" sync /:5A98:Trinity Seeker/ window 80,20
+4079.5 "Verdant Path" sync /:Trinity Seeker:5A98:/
+4084.1 "Baleful Swathe" sync /:Trinity Seeker:5AD0:/
+4092.2 "Baleful Onslaught" sync /:Trinity Seeker:5AD5:/
+4099.3 "Phantom Edge?" sync /:Trinity Seeker:5ABD:/
+4105.5 "Baleful Onslaught" sync /:Trinity Seeker:5AD6:/
+4117.8 "--sync--" sync /:Trinity Seeker:5A9A:/
+4121.7 "Scorching Shackle" sync /:Trinity Seeker:5ACB:/
+4126.9 "Baleful Blade" sync /:Trinity Seeker:5ABE:/
+4132.1 "Manifest Avatar" sync /:Trinity Seeker:5ADA:/
+4138.8 "Baleful Comet" sync /:Seeker Avatar:5AD7:/
+4139.8 "Baleful Comet" sync /:Seeker Avatar:5AD7:/
+4140.8 "Baleful Comet" sync /:Seeker Avatar:5AD7:/
+4141.8 "Baleful Comet" sync /:Seeker Avatar:5AD7:/
+4142.2 "Phantom Edge" sync /:Trinity Seeker:5ABD:/
+4144.4 "--sync--" sync /:Trinity Seeker:5A9A:/
+4146.4 "Baleful Firestorm" sync /:Seeker Avatar:5AD8:/
+4148.4 "Baleful Firestorm" sync /:Seeker Avatar:5AD8:/
+4150.4 "Baleful Firestorm" sync /:Seeker Avatar:5AD8:/
+4152.4 "Baleful Firestorm" sync /:Seeker Avatar:5AD8:/
+4153.5 "Baleful Blade" sync /:Trinity Seeker:5ABF:/
+4162.6 "Verdant Tempest" sync /:Trinity Seeker:5AD3:/
+4171.7 "Verdant Path" sync /:Trinity Seeker:5A99:/
+
+# TODO: in progress
 
 ### Stygimoloch Warrior
 # TODO: this and Dahu can be seen from each other.
@@ -30,8 +78,62 @@ hideall "--sync--"
 #6000.0 "--Reset--" sync / 00:0839:Pride of the Lioness is no longer sealed/ window 0,2000 jump 0
 
 ### Dahu
+# -p 576D:8008.4
+# -ii 576C 5B43
 8000.0 "--sync--" sync / 00:0839:The Hall of Supplication will be sealed off/ window 10000,0
 8000.0 "--Reset--" sync / 00:0839:The Hall of Supplication is no longer sealed/ window 0,2000 jump 0
+8008.4 "Reverberating Roar" sync /:Dahu:576D:/ window 10,2.5
+8013.5 "Falling Rock x6" duration 10 #sync /:Dahu:576E:/
+8014.5 "Reverberating Roar" sync /:Dahu:576D:/
+8022.7 "Hot Charge 1" sync /:Dahu:5773:/
+8027.5 "Hot Charge 2" sync /:Dahu:5773:/
+8034.3 "Firebreathe" sync /:Dahu:5774:/
+8046.5 "--sync--" sync /:Marchosias:576A:/
+8051.8 "Head Down" sync /:Marchosias:5768:/
+8057.5 "Head Down" sync /:Marchosias:5768:/
+8061.4 "Spit Flame" sync /:Dahu:5776:/
+8061.6 "Spit Flame 1" #sync /:Dahu:5777:/
+8062.7 "Spit Flame 2" #sync /:Dahu:5777:/
+8063.8 "Spit Flame 3" #sync /:Dahu:5777:/
+8065.0 "Spit Flame 4" #sync /:Dahu:5777:/
+8069.1 "Head Down" sync /:Marchosias:5768:/
+8071.1 "Right-Sided Shockwave/Left-Sided Shockwave" #sync /:Dahu:(5770|5771|5772|576F):/
+8073.7 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:(5770|5771|5772|576F):/
+8074.8 "Head Down" sync /:Marchosias:5768:/
+8081.4 "Feral Howl" sync /:Dahu:5767:/
+8083.5 "--knockback--" sync /:Dahu:5B35:/ # TODO: confirm
+8084.9 "Hunter's Claw" sync /:Marchosias:5769:/
+8091.5 "Firebreathe x5" sync /:Dahu:576B:/ duration 8.7
+8112.5 "--sync--" sync /:Crowned Marchosias:576A:/
+8117.5 "--sync--" sync /:Crowned Marchosias:576A:/
+8122.5 "--sync--" sync /:Crowned Marchosias:576A:/
+8142.5 "--sync--" sync /:Marchosias:576A:/
+8142.5 "Reverberating Roar" sync /:Dahu:576D:/
+8147.6 "Falling Rock x6" duration 10 #sync /:Dahu:576E:/
+8147.7 "Head Down" sync /:Marchosias:5768:/
+8151.6 "Right-Sided Shockwave/Left-Sided Shockwave" #sync /:Dahu:(5770|5771|5772|576F):/
+8153.4 "Head Down" sync /:Marchosias:5768:/
+8154.1 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:(5770|5771|5772|576F):/
+8159.1 "Head Down" sync /:Marchosias:5768:/
+8164.7 "Spit Flame" sync /:Dahu:5776:/
+8165.0 "Spit Flame 1" #sync /:Dahu:5777:/
+8166.1 "Spit Flame 2" #sync /:Dahu:5777:/
+8167.3 "Spit Flame 3" #sync /:Dahu:5777:/
+8168.4 "Spit Flame 4" #sync /:Dahu:5777:/
+8174.6 "Hysteric Assault" sync /:Dahu:5778:/
+8177.7 "Burn" sync /:Dahu:5463:/
+8178.1 "Hunter's Claw" sync /:Marchosias:5769:/
+8187.6 "Head Down" sync /:Marchosias:5768:/
+8188.9 "Firebreathe x5" sync /:Dahu:576B:/ duration 8.7
+8209.9 "Right-Sided Shockwave/Left-Sided Shockwave" #sync /:Dahu:(5770|5771|5772|576F):/
+8212.5 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:(5770|5771|5772|576F):/
+
+# TODO: is this a loop?
+8221.4 "Hot Charge 1" sync /:Dahu:5773:/
+8226.2 "Hot Charge 2" sync /:Dahu:5773:/
+8233.0 "Firebreathe" sync /:Dahu:5774:/
+# ???
+
 
 ### Queen's Guard
 10000.0 "--sync--" sync / 00:0839:The Hall of Hieromancy will be sealed off/ window 10000,0

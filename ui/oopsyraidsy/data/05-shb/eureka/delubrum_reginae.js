@@ -5,7 +5,7 @@ import ZoneId from '../../../../../resources/zone_id.js';
 export default {
   zoneId: ZoneId.DelubrumReginae,
   damageWarn: {
-    'Delubrum Seeker Mercy Fourfold': '5B34', // Four glowing sword half room cleaves
+    'Delubrum Seeker Mercy Fourfold': '5B94', // Four glowing sword half room cleaves
     'Delubrum Seeker Baleful Swathe': '5AB4', // Ground aoe to either side of boss
     'Delubrum Seeker Baleful Blade': '5B28', // Hide behind pillars attack
     'Delubrum Seeker Iron Splitter Blue 1': '5AA4', // Blue ring explosion
