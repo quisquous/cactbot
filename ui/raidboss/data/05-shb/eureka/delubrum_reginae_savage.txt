@@ -12,7 +12,7 @@ hideall "--sync--"
 # boss, as the Stygimoloch Warrior and Dahu areas can be seen from one
 # another, and so a generic "is no longer sealed" from one would stop
 # any timeline running for those in the other.
-0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
+0.0 "--Reset--" sync / 21:........:40000010:/ window 20000 jump 0
 
 ### Slimes and Golems
 # TODO
@@ -21,7 +21,7 @@ hideall "--sync--"
 ### Trinity Seeker
 # -p 5AD3:4011.4 5A98:4079.5
 # -ii 5B33 5B94 5AB8 5AB9 5ABA 5ABB 5ABC 5AD1 5B2A 5B2B
-4000.0 "--sync--" sync / 00:0839:The Theater of One will be sealed off/ window 10000,0
+4000.0 "--sync--" sync / 00:0839:The Theater of One will be sealed off/ window 20000,0
 4000.0 "--Reset--" sync / 00:0839:The Theater of One is no longer sealed/ window 0,2000 jump 0
 
 # Initial Merciful Air
@@ -45,6 +45,7 @@ hideall "--sync--"
 4074.2 "Merciful Arc" sync /:Trinity Seeker:5AD4:/
 
 # Initial Baleful Air (80% or time push)
+# TODO: add in phantom edges
 4076.5 "--sync--" sync /:5A98:Trinity Seeker/ window 80,20
 4079.5 "Verdant Path" sync /:Trinity Seeker:5A98:/
 4084.1 "Baleful Swathe" sync /:Trinity Seeker:5AD0:/
@@ -74,13 +75,13 @@ hideall "--sync--"
 ### Stygimoloch Warrior
 # TODO: this and Dahu can be seen from each other.
 # Jump here via injected "1961" auto? or some other ability similar to castrum timeline.
-#6000.0 "--sync--" sync / 00:0839:Pride of the Lioness will be sealed off/ window 10000,0
+#6000.0 "--sync--" sync / 00:0839:Pride of the Lioness will be sealed off/ window 20000,0
 #6000.0 "--Reset--" sync / 00:0839:Pride of the Lioness is no longer sealed/ window 0,2000 jump 0
 
 ### Dahu
 # -p 576D:8008.4
 # -ii 576C 1961
-8000.0 "--sync--" sync / 00:0839:The Hall of Supplication will be sealed off/ window 10000,0
+8000.0 "--sync--" sync / 00:0839:The Hall of Supplication will be sealed off/ window 20000,0
 8000.0 "--Reset--" sync / 00:0839:The Hall of Supplication is no longer sealed/ window 0,2000 jump 0
 8008.4 "Reverberating Roar" sync /:Dahu:576D:/ window 10,2.5
 8013.5 "Falling Rock x6" duration 10 #sync /:Dahu:576E:/
@@ -139,24 +140,156 @@ hideall "--sync--"
 
 
 ### Queen's Guard
-10000.0 "--sync--" sync / 00:0839:The Hall of Hieromancy will be sealed off/ window 10000,0
+10000.0 "--sync--" sync / 00:0839:The Hall of Hieromancy will be sealed off/ window 20000,0
 10000.0 "--Reset--" sync / 00:0839:The Hall of Hieromancy is no longer sealed/ window 0,2000 jump 0
 # ranged auto should be reasonably timed
 10002.5 "--sync--" sync /:Queen's Gunner:5857:/ window 3,1
 
 
 ### Bozjan Phantom
-12000.0 "--sync--" sync / 00:0839:Pride of the Lion will be sealed off/ window 10000,0
+# -p 57BD:12011.1
+# -ii 5B36 1963 57C1
+#
+# 8:27 encounter https://www.fflogs.com/reports/zGbK1PZy8WLTk96V#fight=10
+# Swirling = Donut
+# Creeping = Long
+# Lingering = Circle
+#
+# Phases:
+# Manipulate -> Invert -> Adds -> then loop Manipulate+Buster OR Invert+Buster
+
+12000.0 "--sync--" sync / 00:0839:Pride of the Lion will be sealed off/ window 20000,0
 12000.0 "--Reset--" sync / 00:0839:Pride of the Lion is no longer sealed/ window 0,2000 jump 0
+12007.1 "--sync--" sync /:57BD:Bozjan Phantom/ window 20000,0
+12011.1 "Malediction of Agony" sync /:Bozjan Phantom:57BD:/
+12019.2 "Weave Miasma" sync /:Bozjan Phantom:57B2:/
+
+# Manipulate Miasma Phase (go Swirling -> Creeping lanes)
+12035.4 "Manipulate Miasma" sync /:Bozjan Phantom:57B3:/
+12036.4 "Swirling Miasma 1" sync /:Bozjan Phantom:57B8:/
+12038.0 "Swirling Miasma 2" #sync /:Bozjan Phantom:57B9:/
+12039.6 "Swirling Miasma 3" #sync /:Bozjan Phantom:57B9:/
+12041.2 "Swirling Miasma 4" #sync /:Bozjan Phantom:57B9:/
+12042.8 "Swirling Miasma 5" #sync /:Bozjan Phantom:57B9:/
+12044.4 "Swirling Miasma 6" #sync /:Bozjan Phantom:57B9:/
+12046.0 "Swirling Miasma 7" #sync /:Bozjan Phantom:57B9:/
+12046.4 "Creeping Miasma 1" sync /:Bozjan Phantom:57B4:/
+12047.6 "Swirling Miasma 8" #sync /:Bozjan Phantom:57B9:/
+12047.9 "Creeping Miasma 2" #sync /:Bozjan Phantom:57B5:/
+12049.5 "Creeping Miasma 3" #sync /:Bozjan Phantom:57B5:/
+12051.1 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12052.7 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12054.3 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12055.9 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12057.5 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12063.5 "Weave Miasma" sync /:Bozjan Phantom:57B2:/
+
+# Invert Miasma Phase (go Lingering -> Creeping -> Creeping lanes)
+12079.6 "Invert Miasma" sync /:Bozjan Phantom:59EE:/
+12080.6 "Creeping Miasma 1" sync /:Bozjan Phantom:57B4:/
+12082.2 "Creeping Miasma 2" #sync /:Bozjan Phantom:57B5:/
+12083.8 "Creeping Miasma 3" #sync /:Bozjan Phantom:57B5:/
+12085.4 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12087.0 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12088.6 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12090.2 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12090.6 "Creeping Miasma 1" sync /:Bozjan Phantom:57B4:/
+12091.8 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12092.0 "Creeping Miasma 2" #sync /:Bozjan Phantom:57B5:/
+12093.6 "Creeping Miasma 3" #sync /:Bozjan Phantom:57B5:/
+12095.2 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12096.8 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12098.4 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12100.0 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12100.7 "--middle--" sync /:Bozjan Phantom:57AD:/
+12101.6 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+
+# Add phase
+12105.1 "Summon Adds" sync /:Bozjan Phantom:57C0:/
+12106.1 "--untargetable--"
+12155.2 "Malediction of Ruin Enrage" sync /:Bozjan Phantom:5B37:/
+12157.2 "--targetable--"
+
+# Start of loop block
+12162.3 "--sync--" sync /:57B2:Bozjan Phantom/ window 50,50
+12165.3 "Weave Miasma" sync /:Bozjan Phantom:57B2:/
+12171.5 "Summon" sync /:Bozjan Phantom:57BA:/
+12187.6 "Undying Hatred" sync /:Stuffy Wraith:57C2:/
+
+12191.5 "Manipulate Miasma?" sync /:Bozjan Phantom:57B3:/ jump 12300
+12191.5 "Invert Miasma?" sync /:Bozjan Phantom:59EE:/ jump 12500
+
+# Manipulate Miasma Phase (go Swirling -> Creeping lanes)
+12300.0 "Manipulate Miasma" sync /:Bozjan Phantom:57B3:/
+12301.0 "Swirling Miasma 1" #sync /:Bozjan Phantom:57B8:/
+12302.7 "Swirling Miasma 2" #sync /:Bozjan Phantom:57B9:/
+12304.3 "Swirling Miasma 3" #sync /:Bozjan Phantom:57B9:/
+12305.9 "Swirling Miasma 4" #sync /:Bozjan Phantom:57B9:/
+12307.5 "Swirling Miasma 5" #sync /:Bozjan Phantom:57B9:/
+12309.1 "Swirling Miasma 6" #sync /:Bozjan Phantom:57B9:/
+12310.7 "Swirling Miasma 7" #sync /:Bozjan Phantom:57B9:/
+12311.0 "Creeping Miasma 1" sync /:Bozjan Phantom:57B4:/
+12312.2 "Swirling Miasma 8" #sync /:Bozjan Phantom:57B9:/
+12312.4 "Creeping Miasma 2" #sync /:Bozjan Phantom:57B5:/
+12314.0 "Creeping Miasma 3" #sync /:Bozjan Phantom:57B5:/
+12314.0 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12315.6 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12317.0 "--middle--" sync /:Bozjan Phantom:57AD:/ # "Transference"
+12317.2 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12318.8 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12320.4 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12322.0 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+
+# Tank buster and AoE Intermediary Loop
+12324.3 "Vile Wave" sync /:Bozjan Phantom:57BF:/
+12340.4 "Ice Spikes" sync /:Bozjan Phantom:57BC:/
+12351.5 "Excruciation" sync /:Bozjan Phantom:57BE:/
+12357.6 "Malediction of Agony" sync /:Bozjan Phantom:57BD:/
+12368.9 "Weave Miasma" sync /:Bozjan Phantom:57B2:/ window 100,100 jump 12165.3
+12375.0 "Summon" #sync /:Bozjan Phantom:57BA:/
+12391.1 "Undying Hatred" #sync /:Stuffy Wraith:57C2:/
+12395.0 "Manipulate Miasma?" #sync /:Bozjan Phantom:57B3:/
+12395.0 "Invert Miasma?" #sync /:Bozjan Phantom:59EE:/
+
+# Invert Miasma Phase (go Lingering -> Creeping -> Creeping lanes)
+12500.0 "Invert Miasma" sync /:Bozjan Phantom:59EE:/
+12501.0 "Creeping Miasma 1" sync /:Bozjan Phantom:57B4:/
+12502.6 "Creeping Miasma 2" #sync /:Bozjan Phantom:57B5:/
+12504.2 "Creeping Miasma 3" #sync /:Bozjan Phantom:57B5:/
+12505.8 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12507.4 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12509.0 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12510.6 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12511.0 "Creeping Miasma 1" sync /:Bozjan Phantom:57B4:/
+12512.5 "Creeping Miasma 2" #sync /:Bozjan Phantom:57B5:/
+12514.1 "Creeping Miasma 3" #sync /:Bozjan Phantom:57B5:/
+12515.7 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12517.1 "--middle--" sync /:Bozjan Phantom:57AD:/ # "Transference"
+12517.3 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12518.9 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12520.5 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+12522.1 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
+
+# Invert Miasma Loop
+12524.4 "Vile Wave" sync /:Bozjan Phantom:57BF:/
+12540.5 "Ice Spikes" sync /:Bozjan Phantom:57BC:/
+12551.6 "Excruciation" sync /:Bozjan Phantom:57BE:/
+12557.7 "Malediction of Agony" sync /:Bozjan Phantom:57BD:/
+12568.9 "Weave Miasma" sync /:Bozjan Phantom:57B2:/ window 100,100 jump 12165.3
+12575.1 "Summon" sync /:Bozjan Phantom:57BA:/
+12591.2 "Undying Hatred" sync /:Stuffy Wraith:57C2:/
+12395.1 "Manipulate Miasma?" #sync /:Bozjan Phantom:57B3:/
+12395.1 "Invert Miasma?" #sync /:Bozjan Phantom:59EE:/
+
 
 ### Trinity Avowed
-14000.0 "--sync--" sync / 00:0839:The Vault of Singing Crystal will be sealed off/ window 10000,0
+14000.0 "--sync--" sync / 00:0839:The Vault of Singing Crystal will be sealed off/ window 20000,0
 14000.0 "--Reset--" sync / 00:0839:The Vault of Singing Crystal is no longer sealed/ window 0,2000 jump 0
 
 ### Stygimoloch Lord
-16000.0 "--sync--" sync / 00:0839:The Path of Divine Clarity will be sealed off/ window 10000,0
+16000.0 "--sync--" sync / 00:0839:The Path of Divine Clarity will be sealed off/ window 20000,0
 16000.0 "--Reset--" sync / 00:0839:The Path of Divine Clarity is no longer sealed/ window 0,2000 jump 0
 
 ### The Queen
-18000.0 "--sync--" sync / 00:0839:Queensheart will be sealed off/ window 10000,0
+18000.0 "--sync--" sync / 00:0839:Queensheart will be sealed off/ window 20000,0
 18000.0 "--Reset--" sync / 00:0839:Queensheart is no longer sealed/ window 0,2000 jump 0
