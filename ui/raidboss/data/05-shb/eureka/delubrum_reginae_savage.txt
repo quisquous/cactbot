@@ -105,9 +105,9 @@ hideall "--sync--"
 8083.5 "--knockback--" sync /:Dahu:5B35:/
 8084.9 "Hunter's Claw" sync /:Marchosias:5769:/
 8091.5 "Firebreathe x5" sync /:Dahu:576B:/ duration 8.7
-8112.5 "--adds--" sync /:Crowned Marchosias:576A:/
-8117.5 "--adds--" sync /:Crowned Marchosias:576A:/
-8122.5 "--adds--" sync /:Crowned Marchosias:576A:/
+8112.5 "--sync--" sync /:Crowned Marchosias:576A:/
+8117.5 "--sync--" sync /:Crowned Marchosias:576A:/
+8122.5 "--sync--" sync /:Crowned Marchosias:576A:/
 8142.5 "--sync--" sync /:Marchosias:576A:/
 8142.5 "Reverberating Roar" sync /:Dahu:576D:/
 8147.6 "Falling Rock x6" duration 10 #sync /:Dahu:576E:/
@@ -211,7 +211,7 @@ hideall "--sync--"
 12157.2 "--targetable--"
 
 # Start of loop block
-12162.3 "--sync--" sync /:57B2:Bozjan Phantom/ window 50,50
+12162.3 "--sync--" sync /:57B2:Bozjan Phantom/ window 100,50
 12165.3 "Weave Miasma" sync /:Bozjan Phantom:57B2:/
 12171.5 "Summon" sync /:Bozjan Phantom:57BA:/
 12187.6 "Undying Hatred" sync /:Stuffy Wraith:57C2:/
@@ -276,8 +276,8 @@ hideall "--sync--"
 12551.6 "Excruciation" sync /:Bozjan Phantom:57BE:/
 12557.7 "Malediction of Agony" sync /:Bozjan Phantom:57BD:/
 12568.9 "Weave Miasma" sync /:Bozjan Phantom:57B2:/ window 100,100 jump 12165.3
-12575.1 "Summon" sync /:Bozjan Phantom:57BA:/
-12591.2 "Undying Hatred" sync /:Stuffy Wraith:57C2:/
+12575.1 "Summon" #sync /:Bozjan Phantom:57BA:/
+12591.2 "Undying Hatred" #sync /:Stuffy Wraith:57C2:/
 12395.1 "Manipulate Miasma?" #sync /:Bozjan Phantom:57B3:/
 12395.1 "Invert Miasma?" #sync /:Bozjan Phantom:59EE:/
 
@@ -291,5 +291,137 @@ hideall "--sync--"
 16000.0 "--Reset--" sync / 00:0839:The Path of Divine Clarity is no longer sealed/ window 0,2000 jump 0
 
 ### The Queen
+# -p 59F9:18015.3
+# -ii 5B77 5B22 59ED 53EE 53EF 5A2E 5A04 5A05 5B85 5B84 5A1E 5A01 5A28 5A2A 59F7 5B5B 5B5C 5B73 5B74 5B75 5B76 5B41
+# -it "The Queen"
+# TODO: what is 5BCB? (--middle--?)
+# TODO: what is 55A8?
+# TODO: stun timing
 18000.0 "--sync--" sync / 00:0839:Queensheart will be sealed off/ window 20000,0
 18000.0 "--Reset--" sync / 00:0839:Queensheart is no longer sealed/ window 0,2000 jump 0
+18010.3 "--sync--" sync /:59F9:The Queen/ window 20,20
+18015.3 "Empyrean Iniquity" sync /:The Queen:59F9:/
+18025.5 "--sync--" sync /:The Queen:5BCB:/
+18033.9 "Queen's Will" sync /:The Queen:59E6:/
+18040.0 "Northswain's Glow" sync /:The Queen:59F3:/
+18048.2 "Beck And Call To Arms" sync /:The Queen:5B99:/
+18050.8 "Northswain's Glow" sync /:The Queen:59F4:/
+18052.5 "The Means" sync /:Queen's Warrior:59E8:/
+18052.5 "The Ends" sync /:Queen's Knight:59E7:/
+18056.3 "Beck And Call To Arms" sync /:The Queen:5B9A:/
+18060.6 "The Means" sync /:Queen's Gunner:59EA:/
+18060.6 "The Ends" sync /:Queen's Soldier:59E9:/
+18076.5 "Cleansing Slash 1" sync /:The Queen:59F5:/
+18079.7 "Cleansing Slash 2" sync /:The Queen:5BB8:/
+18088.8 "Empyrean Iniquity" sync /:The Queen:59F9:/
+18097.0 "--sync--" sync /:The Queen:5BCB:/
+18105.2 "Queen's Edict" sync /:The Queen:59EC:/
+18108.3 "--untargetable--"
+18124.7 "Beck And Call To Arms" sync /:The Queen:5B9B:/
+18129.0 "The Means" sync /:Queen's Warrior:59E8:/
+18129.0 "The Ends" sync /:Queen's Knight:59E7:/
+18136.5 "Beck And Call To Arms" sync /:The Queen:5B9C:/
+18140.8 "The Means" sync /:Queen's Gunner:59EA:/
+18140.8 "The Ends" sync /:Queen's Soldier:59E9:/
+
+18141.0 "Queen's Justice" sync /:The Queen:59EB:/
+18156.0 "Queen's Justice" sync /:The Queen:59EB:/
+18157.6 "Gunnhildr's Blades" sync /:The Queen:5B21:/
+18160.7 "--targetable--"
+18167.9 "--sync--" sync /:The Queen:5BCB:/
+18171.3 "--sync--" sync /:The Queen:55A8:/
+18178.4 "Gods Save The Queen" sync /:The Queen:59FA:/
+18194.7 "--sync--" sync /:The Queen:5BCB:/
+18198.1 "--sync--" sync /:The Queen:55A8:/
+18203.1 "Unlucky Lot x5" duration 8 sync /:Ball Lightning:55B6:/
+18198.1 "--sync--" sync /:The Queen:55A8:/
+18210.0 "Maelstrom's Bolt" sync /:The Queen:59EF:/
+
+18224.2 "Relentless Play 1" sync /:The Queen:59FC:/ window 20,20
+18231.3 "Reversal Of Forces" sync /:Queen's Warrior:5A0E:/
+18231.3 "Automatic Turret" sync /:Queen's Gunner:5A2B:/
+18235.3 "Northswain's Glow" sync /:The Queen:59F3:/
+18237.4 "Reading" sync /:Queen's Gunner:5A2C:/
+18246.0 "Northswain's Glow" sync /:The Queen:59F4:/
+18246.3 "Winds Of Weight" sync /:Queen's Warrior:5A0F:/
+18246.3 "Winds Of Fate" sync /:Queen's Warrior:5A11:/
+18246.3 "Weight Of Fortune" sync /:Queen's Warrior:5A10:/
+18247.5 "Queen's Shot" sync /:Queen's Gunner:5A2D:/
+18251.0 "Turret's Tour" sync /:Automatic Turret:5A2F:/
+18260.4 "Cleansing Slash 1" sync /:The Queen:59F5:/
+18263.6 "Cleansing Slash 2" sync /:The Queen:5BB8:/
+
+18276.8 "Relentless Play 2" sync /:The Queen:59FC:/ window 20,20
+18282.9 "Sword Omen/Shield Omen" sync /:Queen's Knight:59F[DE]:/
+18287.9 "--untargetable--"
+18292.5 "Double Gambit" sync /:Queen's Soldier:5A1B:/
+18296.3 "Optimal Offensive" sync /:Queen's Knight:5A03:/
+18298.2 "Judgment Blade" sync /:The Queen:59F[12]:/
+18298.9 "Unlucky Lot" sync /:Aetherial Sphere:5A06:/
+18300.7 "Secrets Revealed" sync /:Queen's Soldier:5B8B:/
+18300.8 "--sync--" sync /:Soldier Avatar:5B8C:/
+18309.9 "Judgment Blade" sync /:The Queen:59F[12]:/
+18312.6 "Pawn Off" sync /:Soldier Avatar:5A1D:/
+
+18314.6 "--targetable--"
+18324.7 "Empyrean Iniquity" sync /:The Queen:59F9:/
+18332.9 "--sync--" sync /:The Queen:5BCB:/
+18341.3 "Queen's Edict" sync /:The Queen:59EC:/
+18344.4 "--untargetable--"
+18360.8 "Beck And Call To Arms" sync /:The Queen:5B9B:/
+18365.1 "The Means" sync /:Queen's Warrior:59E8:/
+18365.1 "The Ends" sync /:Queen's Knight:59E7:/
+18372.6 "Beck And Call To Arms" sync /:The Queen:5B9C:/
+18376.9 "The Means" sync /:Queen's Gunner:59EA:/
+18376.9 "The Ends" sync /:Queen's Soldier:59E9:/
+18377.1 "Queen's Justice" sync /:The Queen:59EB:/
+18392.1 "Queen's Justice" sync /:The Queen:59EB:/
+18393.8 "Gunnhildr's Blades" sync /:The Queen:5B21:/
+18396.9 "--targetable--"
+18404.1 "Cleansing Slash 1" sync /:The Queen:59F5:/
+18407.3 "Cleansing Slash 2" sync /:The Queen:5BB8:/
+
+18422.5 "Relentless Play 3" sync /:The Queen:59FC:/ window 20,20
+18428.6 "Sword Omen/Shield Omen" sync /:Queen's Knight:59F[DE]:/
+18437.9 "Automatic Turret" sync /:Queen's Gunner:5A26:/
+18440.0 "Optimal Play" sync /:Queen's Knight:5A00:/
+18446.0 "Turret's Tour" sync /:Queen's Gunner:5A27:/
+18446.6 "--sync--" sync /:The Queen:5BCB:/
+18446.6 "Turret's Tour" #sync /:Automatic Turret:5A29:/
+18447.6 "Turret's Tour" #sync /:Automatic Turret:5A29:/
+18449.9 "--sync--" sync /:The Queen:55A8:/
+18454.9 "Unlucky Lot x5" duration 8 #sync /:Ball Lightning:55B6:/
+18461.8 "Maelstrom's Bolt" sync /:The Queen:59EF:/
+18474.9 "Empyrean Iniquity" sync /:The Queen:59F9:/
+
+18488.1 "Relentless Play 4" sync /:The Queen:59FC:/ window 20,20
+18494.2 "Bombslinger" sync /:Queen's Warrior:5B3F:/
+18501.3 "Reversal Of Forces" sync /:Queen's Warrior:5A0E:/
+18503.2 "Heaven's Wrath" sync /:The Queen:59F6:/
+18509.0 "--knockback--" sync /:The Queen:59F8:/
+18511.3 "--untargetable--"
+18512.2 "Icy Portent" sync /:Queen's Soldier:5A22:/
+18515.5 "Above Board" sync /:Queen's Warrior:5A0B:/
+18515.5 "--sync--" sync /:Queen's Warrior:5B8E:/
+18518.5 "Lots Cast" sync /(:Aetherial Burst:5B89:|:Aetherial Bolt:5A0D:)/
+18521.5 "Lots Cast" #sync /:Aetherial Bolt:5B88:/
+18522.7 "Lots Cast" #sync /:Aetherial Bolt:5BB6:/
+18525.6 "--targetable--"
+
+18530.7 "Relentless Play 5" sync /:The Queen:59FC:/
+18538.8 "Blood And Bone" sync /:Queen's Knight:5A08:/
+18538.8 "Blood And Bone" sync /:Queen's Warrior:5A16:/
+18541.8 "Queen's Shot" sync /:Queen's Gunner:5A35:/
+18541.8 "Blood And Bone" sync /:Queen's Soldier:5A23:/
+18546.9 "Blood And Bone" sync /:Queen's Knight:5A08:/
+18546.9 "Blood And Bone" sync /:Queen's Warrior:5A16:/
+18549.9 "Queen's Shot" sync /:Queen's Gunner:5A35:/
+18549.9 "Blood And Bone" sync /:Queen's Soldier:5A23:/
+18552.7 "Empyrean Iniquity" sync /:The Queen:59F9:/
+18558.9 "Blood And Bone" sync /:Queen's Knight:5A08:/
+18561.9 "Blood And Bone" sync /:Queen's Warrior:5A16:/
+18565.0 "Blood And Bone" sync /:Queen's Soldier:5A23:/
+18567.9 "Queen's Shot" sync /:Queen's Gunner:5A35:/
+18574.6 "--sync--" sync /:The Queen:55A8:/
+18586.7 "Gods Save The Queen Enrage" sync /:The Queen:5B5A:/
+18586.7 "--untargetable--"
