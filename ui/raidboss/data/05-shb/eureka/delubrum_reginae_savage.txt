@@ -51,7 +51,7 @@ hideall "--sync--"
 4092.2 "Baleful Onslaught" sync /:Trinity Seeker:5AD5:/
 4099.3 "Phantom Edge?" sync /:Trinity Seeker:5ABD:/
 4105.5 "Baleful Onslaught" sync /:Trinity Seeker:5AD6:/
-4117.8 "--sync--" sync /:Trinity Seeker:5A9A:/
+4117.8 "--middle--" sync /:Trinity Seeker:5A9A:/
 4121.7 "Scorching Shackle" sync /:Trinity Seeker:5ACB:/
 4126.9 "Baleful Blade" sync /:Trinity Seeker:5ABE:/
 4132.1 "Manifest Avatar" sync /:Trinity Seeker:5ADA:/
@@ -60,7 +60,7 @@ hideall "--sync--"
 4140.8 "Baleful Comet" sync /:Seeker Avatar:5AD7:/
 4141.8 "Baleful Comet" sync /:Seeker Avatar:5AD7:/
 4142.2 "Phantom Edge" sync /:Trinity Seeker:5ABD:/
-4144.4 "--sync--" sync /:Trinity Seeker:5A9A:/
+4144.4 "--middle--" sync /:Trinity Seeker:5A9A:/
 4146.4 "Baleful Firestorm" sync /:Seeker Avatar:5AD8:/
 4148.4 "Baleful Firestorm" sync /:Seeker Avatar:5AD8:/
 4150.4 "Baleful Firestorm" sync /:Seeker Avatar:5AD8:/
@@ -79,7 +79,7 @@ hideall "--sync--"
 
 ### Dahu
 # -p 576D:8008.4
-# -ii 576C 5B43
+# -ii 576C 1961
 8000.0 "--sync--" sync / 00:0839:The Hall of Supplication will be sealed off/ window 10000,0
 8000.0 "--Reset--" sync / 00:0839:The Hall of Supplication is no longer sealed/ window 0,2000 jump 0
 8008.4 "Reverberating Roar" sync /:Dahu:576D:/ window 10,2.5
@@ -97,23 +97,23 @@ hideall "--sync--"
 8063.8 "Spit Flame 3" #sync /:Dahu:5777:/
 8065.0 "Spit Flame 4" #sync /:Dahu:5777:/
 8069.1 "Head Down" sync /:Marchosias:5768:/
-8071.1 "Right-Sided Shockwave/Left-Sided Shockwave" #sync /:Dahu:(5770|5771|5772|576F):/
-8073.7 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:(5770|5771|5772|576F):/
+8071.1 "Right-Sided Shockwave/Left-Sided Shockwave" #sync /:Dahu:57(70|6F):/
+8073.7 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:577[12]:/
 8074.8 "Head Down" sync /:Marchosias:5768:/
 8081.4 "Feral Howl" sync /:Dahu:5767:/
-8083.5 "--knockback--" sync /:Dahu:5B35:/ # TODO: confirm
+8083.5 "--knockback--" sync /:Dahu:5B35:/
 8084.9 "Hunter's Claw" sync /:Marchosias:5769:/
 8091.5 "Firebreathe x5" sync /:Dahu:576B:/ duration 8.7
-8112.5 "--sync--" sync /:Crowned Marchosias:576A:/
-8117.5 "--sync--" sync /:Crowned Marchosias:576A:/
-8122.5 "--sync--" sync /:Crowned Marchosias:576A:/
+8112.5 "--adds--" sync /:Crowned Marchosias:576A:/
+8117.5 "--adds--" sync /:Crowned Marchosias:576A:/
+8122.5 "--adds--" sync /:Crowned Marchosias:576A:/
 8142.5 "--sync--" sync /:Marchosias:576A:/
 8142.5 "Reverberating Roar" sync /:Dahu:576D:/
 8147.6 "Falling Rock x6" duration 10 #sync /:Dahu:576E:/
 8147.7 "Head Down" sync /:Marchosias:5768:/
-8151.6 "Right-Sided Shockwave/Left-Sided Shockwave" #sync /:Dahu:(5770|5771|5772|576F):/
+8151.6 "Right-Sided Shockwave/Left-Sided Shockwave" #sync /:Dahu:57(70|6F):/
 8153.4 "Head Down" sync /:Marchosias:5768:/
-8154.1 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:(5770|5771|5772|576F):/
+8154.1 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:577[12]:/
 8159.1 "Head Down" sync /:Marchosias:5768:/
 8164.7 "Spit Flame" sync /:Dahu:5776:/
 8165.0 "Spit Flame 1" #sync /:Dahu:5777:/
@@ -121,14 +121,17 @@ hideall "--sync--"
 8167.3 "Spit Flame 3" #sync /:Dahu:5777:/
 8168.4 "Spit Flame 4" #sync /:Dahu:5777:/
 8174.6 "Hysteric Assault" sync /:Dahu:5778:/
-8177.7 "Burn" sync /:Dahu:5463:/
+8175.5 "--knockback--" sync /:Dahu:5B43:/
+
+8177.7 "Burn x2" sync /:Dahu:5463:/
 8178.1 "Hunter's Claw" sync /:Marchosias:5769:/
 8187.6 "Head Down" sync /:Marchosias:5768:/
 8188.9 "Firebreathe x5" sync /:Dahu:576B:/ duration 8.7
-8209.9 "Right-Sided Shockwave/Left-Sided Shockwave" #sync /:Dahu:(5770|5771|5772|576F):/
-8212.5 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:(5770|5771|5772|576F):/
+8209.9 "Right-Sided Shockwave/Left-Sided Shockwave" #sync /:Dahu:57(70|6F):/
+8212.5 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:577[12]:/
 
-# TODO: is this a loop?
+# TODO: this is a loop but the adds get weird if there's only one charge?
+# long pull: https://www.fflogs.com/reports/tFXmDTp4dvcZMK9G#fight=8
 8221.4 "Hot Charge 1" sync /:Dahu:5773:/
 8226.2 "Hot Charge 2" sync /:Dahu:5773:/
 8233.0 "Firebreathe" sync /:Dahu:5774:/
