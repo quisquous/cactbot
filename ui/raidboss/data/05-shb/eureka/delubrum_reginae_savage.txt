@@ -130,8 +130,10 @@ hideall "--sync--"
 6209.9 "Right-Sided Shockwave/Left-Sided Shockwave" #sync /:Dahu:57(70|6F):/
 6212.5 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:577[12]:/
 
+# This is a single or a double hot charge.
 6221.4 "Hot Charge 1" sync /:Dahu:5773:/
-6226.2 "Hot Charge 2" sync /:Dahu:5773:/
+6226.2 "Hot Charge 2?" sync /:Dahu:5773:/
+6228.0 "--sync--" sync /:5774:Dahu/ window 20,20
 6233.0 "Firebreathe" sync /:Dahu:5774:/
 6246.3 "--sync--" sync /:Crowned Marchosias:576A:/
 6251.3 "--sync--" sync /:Crowned Marchosias:576A:/
@@ -163,8 +165,9 @@ hideall "--sync--"
 
 # Probably a loop, but you shouldn't see this charge, let alone the previous one.
 6367.8 "Hot Charge 1" sync /:Dahu:5773:/
-6372.6 "Hot Charge 2" sync /:Dahu:5773:/
-6379.4 "Firebreathe" sync /:Dahu:5774:/ window 100,100 jump 6233.0
+6372.6 "Hot Charge 2?" sync /:Dahu:5773:/
+6374.4 "--sync--" sync /:5774:Dahu/ window 100,100 jump 6228.0
+6379.4 "Firebreathe" sync /:Dahu:5774:/
 6398.6 "Reverberating Roar" #sync /:Dahu:576D:/
 6407.7 "Reverberating Roar" #sync /:Dahu:576D:/
 6435.9 "Reverberating Roar" #sync /:Dahu:576D:/
