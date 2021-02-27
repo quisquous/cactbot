@@ -40,22 +40,24 @@ export function setup(bars) {
     id: 'sam-procs-shifu',
     fgColor: 'sam-color-shifu',
   });
-  bars.onCombo((skill) => {
-    if (skill === kAbility.Shifu) {
-      shifu.duration = 0;
-      shifu.duration = 40;
-    }
+  bars.onYouGainEffect(EffectId.Shifu, (name, matches) => {
+    shifu.duration = 0;
+    shifu.duration = matches.duration - 0.5; // -0.5s for log line delay
+  });
+  bars.onYouLoseEffect(EffectId.Shifu, () => {
+    shifu.duration = 0;
   });
 
   const jinpu = bars.addProcBox({
     id: 'sam-procs-jinpu',
     fgColor: 'sam-color-jinpu',
   });
-  bars.onCombo((skill) => {
-    if (skill === kAbility.Jinpu) {
-      jinpu.duration = 0;
-      jinpu.duration = 40;
-    }
+  bars.onYouGainEffect(EffectId.Jinpu, (name, matches) => {
+    jinpu.duration = 0;
+    jinpu.duration = matches.duration - 0.5; // -0.5s for log line delay
+  });
+  bars.onYouLoseEffect(EffectId.Jinpu, () => {
+    jinpu.duration = 0;
   });
 
   const tsubameGaeshi = bars.addProcBox({
@@ -65,7 +67,7 @@ export function setup(bars) {
   bars.onUseAbility([
     kAbility.KaeshiHiganbana,
     kAbility.KaeshiGoken,
-    kAbility.KaeshiSetsugekka
+    kAbility.KaeshiSetsugekka,
   ], () => {
     tsubameGaeshi.duration = 0;
     tsubameGaeshi.duration = 60;
