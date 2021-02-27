@@ -425,6 +425,22 @@ so it's generally preferable to let the config tool set everything you can,
 and only use user files in order to set things that the config tool does not
 provide access to.
 
+## Global Trigger File Imports
+
+User files are `eval`'d in JavaScript,
+and thus cannot `import` in the same way that built-in trigger files do.
+User javascript files have access to the following globals:
+
+- [Conditions](../resources/conditions.ts)
+- [ContentType](../resources/content_type.js)
+- [NetRegexes](../resources/netregexes.js)
+- [Regexes](../resources/regexes.js)
+- [Responses](../resources/responses.js)
+- [Outputs](../resources/outputs.ts)
+- [Util](../resources/common.js)
+- [ZoneId](../resources/zone_id.js)
+- [ZoneInfo](../resources/zone_info.js)
+
 ## Debugging User Files
 
 ### Check the OverlayPlugin log for errors

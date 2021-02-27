@@ -1,4 +1,4 @@
-import Regexes from '../../resources/regexes.js';
+import Regexes from '../../resources/regexes.ts';
 import UserConfig from '../../resources/user_config.js';
 import ZoneInfo from '../../resources/zone_info.js';
 import contentList from '../../resources/content_list.js';
@@ -10,7 +10,6 @@ import '../jobs/jobs_config.js';
 import '../oopsyraidsy/oopsyraidsy_config.js';
 import '../radar/radar_config.js';
 import '../raidboss/raidboss_config.js';
-import '../../resources/common.js';
 
 import '../../resources/defaults.css';
 import './config.css';

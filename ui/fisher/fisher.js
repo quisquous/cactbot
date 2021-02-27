@@ -2,7 +2,7 @@ import FisherUI from './fisher-ui.js';
 import SeaBase from './seabase.js';
 import UserConfig from '../../resources/user_config.js';
 
-import '../../resources/common.js';
+import '../../resources/overlay_plugin_api.js';
 
 import '../../resources/defaults.css';
 import './fisher.css';

@@ -1,5 +1,6 @@
 'use strict';
 
+const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
@@ -8,6 +9,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const { resourceUsage } = require('process');
+const { NormalModuleReplacementPlugin } = require('webpack');
 
 const cactbotModules = {
   config: 'ui/config/config',
@@ -111,6 +114,29 @@ const cactbotHtmlChunksMap = {
     ],
   },
 };
+
+// See https://github.com/quisquous/cactbot/pull/2466#issuecomment-782918099
+// for more details about how we got here.  Typescript imports should use
+// `import x from './foo.js', however foo.js might not exist and might
+// really be foo.ts on disk.  WebPack will handle './foo' and even './foo.ts'
+// but ts-node can only handle './foo.js'.  This resolving plugin intercepts
+// any imports for js files and if the js file doesn't exist on disk,
+// tries to use a ts file of the same name.
+const replacementPlugin = new NormalModuleReplacementPlugin(
+    /\.js$/,
+    (resource) => {
+      const importPath = resource.request;
+      const basePath = resource.context;
+      const filename = path.resolve(basePath, importPath);
+
+      // If this is a .js file that exists, return it directly.
+      if (fs.existsSync(filename))
+        return;
+
+      // Otherwise, attempt to find a .ts file in the same location.
+      resource.request = resource.request.replace(/\.js$/, '.ts');
+    },
+);
 
 module.exports = function(env, argv) {
   const entries = {};
@@ -236,6 +262,7 @@ module.exports = function(env, argv) {
           },
         ],
       }),
+      replacementPlugin,
     ],
   };
 };

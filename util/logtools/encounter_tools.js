@@ -1,4 +1,4 @@
-import NetRegexes from '../../resources/netregexes.js';
+import NetRegexes from '../../resources/netregexes.ts';
 import ZoneInfo from '../../resources/zone_info.js';
 import ContentType from '../../resources/content_type.js';
 

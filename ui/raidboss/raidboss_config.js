@@ -1,8 +1,8 @@
 import PartyTracker from '../../resources/party.js';
-import Regexes from '../../resources/regexes.js';
+import Regexes from '../../resources/regexes.ts';
 import { triggerOutputFunctions } from '../../resources/responses.js';
 import UserConfig from '../../resources/user_config.js';
-import { Util } from '../../resources/common.js';
+import Util from '../../resources/util.ts';
 import raidbossFileData from './data/manifest.txt';
 import raidbossOptions from './raidboss_options.js';
 
@@ -239,6 +239,22 @@ const kMiscTranslations = {
     cn: '(默认值)',
     ko: '(기본값)',
   },
+  // Shown when the UI can't decipher the output of a function.
+  valueIsFunction: {
+    en: '(function)',
+  },
+  // Warning label for triggers without ids or overridden triggers.
+  warning: {
+    en: '⚠️ warning',
+  },
+  // Shows up for triggers without ids.
+  missingId: {
+    en: 'missing id field',
+  },
+  // Shows up for triggers that are overridden by other triggers.
+  overriddenByFile: {
+    en: 'overridden by "${file}"',
+  },
 };
 
 const validDurationOrUndefined = (val) => {
@@ -246,6 +262,23 @@ const validDurationOrUndefined = (val) => {
   if (!isNaN(val) && val >= 0)
     return val;
   return undefined;
+};
+
+const canBeConfigured = (trig) => !trig.isMissingId && !trig.overriddenByFile;
+
+const addTriggerDetail = (container, labelText, detailText, detailCls) => {
+  const label = document.createElement('div');
+  label.innerText = labelText;
+  label.classList.add('trigger-label');
+  container.appendChild(label);
+
+  const detail = document.createElement('div');
+  detail.classList.add('trigger-detail');
+  detail.innerText = detailText;
+  container.appendChild(detail);
+
+  if (detailCls)
+    detail.classList.add(detailCls);
 };
 
 // This is used both for top level Options and for PerTriggerAutoConfig settings.
@@ -393,9 +426,21 @@ class RaidbossConfigurator {
         triggerDetails.classList.add('trigger-details');
         triggerOptions.appendChild(triggerDetails);
 
-        // TODO: add a note that this trigger has no id and can't be configured.
-        if (!trig.isMissingId)
+        if (canBeConfigured(trig))
           triggerDetails.appendChild(this.buildTriggerOptions(trig, triggerDiv));
+
+        if (trig.isMissingId) {
+          addTriggerDetail(triggerDetails,
+              this.base.translate(kMiscTranslations.warning),
+              this.base.translate(kMiscTranslations.missingId));
+        }
+        if (trig.overriddenByFile) {
+          const baseText = this.base.translate(kMiscTranslations.overriddenByFile);
+          const detailText = baseText.replace('${file}', trig.overriddenByFile);
+          addTriggerDetail(triggerDetails,
+              this.base.translate(kMiscTranslations.warning),
+              detailText);
+        }
 
         // Append some details about the trigger so it's more obvious what it is.
         for (const detailKey in kDetailKeys) {
@@ -405,29 +450,25 @@ class RaidbossConfigurator {
             continue;
           if (!trig[detailKey] && !trig.output[detailKey])
             continue;
-          const label = document.createElement('div');
-          label.innerText = this.base.translate(kDetailKeys[detailKey].label);
-          label.classList.add('trigger-label');
-          triggerDetails.appendChild(label);
 
-          const detail = document.createElement('div');
-          detail.classList.add('trigger-detail');
-
-          const output = trig.output[detailKey];
-          detail.classList.add(kDetailKeys[detailKey].cls);
+          const detailCls = [kDetailKeys[detailKey].cls];
+          let detailText;
           if (trig.output[detailKey]) {
-            detail.innerText = trig.output[detailKey];
+            detailText = trig.output[detailKey];
           } else if (typeof trig[detailKey] === 'function') {
-            detail.innerText = '(function)';
-            detail.classList.add('function-text');
+            detailText = this.base.translate(kMiscTranslations.valueIsFunction);
+            detailCls.push('function-text');
           } else {
-            detail.innerText = trig[detailKey];
+            detailText = trig[detailKey];
           }
 
-          triggerDetails.appendChild(detail);
+          addTriggerDetail(triggerDetails,
+              this.base.translate(kDetailKeys[detailKey].label),
+              detailText,
+              detailCls);
         }
 
-        if (trig.isMissingId)
+        if (!canBeConfigured(trig))
           continue;
 
         // Add beforeSeconds manually for timeline triggers.
@@ -716,6 +757,11 @@ class RaidbossConfigurator {
     // `map` is a sorted map of shortened zone key => { various fields, triggerSet }
     const map = this.base.processFiles(files, userOptions.Triggers);
     let triggerIdx = 0;
+
+    // While walking through triggers, record any previous triggers with the same
+    // id so that the ui can disable overriding information.
+    const previousTriggerWithId = {};
+
     for (const [key, item] of Object.entries(map)) {
       // TODO: maybe each trigger set needs a zone name, and we should
       // use that instead of the filename???
@@ -739,6 +785,12 @@ class RaidbossConfigurator {
             trig.id = `!!NoIdTrigger${triggerIdx}`;
             trig.isMissingId = true;
           }
+
+          // Track if this trigger overrides any previous trigger.
+          const previous = previousTriggerWithId[trig.id];
+          if (previous)
+            previous.overriddenByFile = triggerSet.filename;
+          previousTriggerWithId[trig.id] = trig;
 
           trig.isTimelineTrigger = key === 'timeline';
           // Also, if a user has two of the same id in the same triggerSet (?!)

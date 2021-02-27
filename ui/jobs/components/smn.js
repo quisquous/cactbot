@@ -106,11 +106,9 @@ export function setup(bars) {
       demiSummoningBox.parentNode.classList.remove('last');
   });
 
-  // Tridisaster refresh miasma and bio both, so written twice below.
   bars.onUseAbility([
     kAbility.Miasma,
     kAbility.Miasma3,
-    kAbility.Tridisaster,
   ], () => {
     miasmaBox.duration = 0;
     miasmaBox.duration = 30;
@@ -119,12 +117,18 @@ export function setup(bars) {
     kAbility.BioSmn,
     kAbility.BioSmn2,
     kAbility.Bio3,
-    kAbility.Tridisaster,
   ], () => {
     bioSmnBox.duration = 0;
     bioSmnBox.duration = 30;
   });
-
+  // Tridisaster refresh miasma and bio both, so repeat below.
+  // TODO: remake onXxx like node's EventEmitter
+  bars.onUseAbility(kAbility.Tridisaster, () => {
+    miasmaBox.duration = 0;
+    miasmaBox.duration = 30;
+    bioSmnBox.duration = 0;
+    bioSmnBox.duration = 30;
+  });
   bars.onUseAbility([
     kAbility.EnergyDrain,
     kAbility.EnergySiphon,

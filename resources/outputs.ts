@@ -1,35 +1,8 @@
-// TODO: make this a static class with static members
-//       this requires babel-eslint or being patient.
-
-// Throw exceptions on invalid property names to catch easy typos.
-class ThrowOnInvalidProxy {
-  constructor(obj) {
-    this.obj = obj;
-
-    if ('toJSON' in obj)
-      throw new Error('Cannot have toJSON property.');
-
-    return new Proxy(this, {
-      set(target, property, value) {
-        throw new Error('Cannot set readonly object.');
-      },
-
-      get(target, name) {
-        if (name === 'toJSON')
-          return JSON.stringify(obj);
-
-        if (name in target.obj)
-          return target.obj[name];
-
-        throw new Error(`Unknown property ${name}`);
-      },
-    });
-  }
-}
+import { TranslatableText } from '../types/trigger';
 
 // Output strings for now require a field for every language, so this is a
 // helper function to generate one for literal numbers.
-const numberToOutputString = (n) => {
+const numberToOutputString = function(n: number): TranslatableText {
   const str = n.toString();
   return {
     en: str,
@@ -47,7 +20,7 @@ const numberToOutputString = (n) => {
 // * use OnTarget suffix for things with `${name}`
 // * any other parameters (of which there are none, currently) should use consistent suffixes.
 // * the value of each property should be a single object with localized keys
-const Outputs = new ThrowOnInvalidProxy({
+export default {
   aoe: {
     en: 'aoe',
     de: 'AoE',
@@ -741,6 +714,5 @@ const Outputs = new ThrowOnInvalidProxy({
   num7: numberToOutputString(7),
   num8: numberToOutputString(8),
   num9: numberToOutputString(9),
-});
+} as const;
 
-export default Outputs;

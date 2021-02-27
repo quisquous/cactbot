@@ -1,11 +1,11 @@
-import Regexes from '../../resources/regexes.js';
-import regexCaptureTest from '../util/regex_util.js';
+import Regexes from '../../resources/regexes.ts';
+import regexCaptureTest from '../helper/regex_util.js';
 import chai from 'chai';
 
 const { assert } = chai;
 
-const tests = {
-  startsUsing: () => {
+describe('regex tests', () => {
+  it('startsUsing', () => {
     const lines = [
       '[14:13:23.660] 14:5B2:Twintania starts using Death Sentence on Potato Chippy.',
       '[12:25:03.586] 14:6CE:Phlegethon starts using Megiddo Flame on Unknown.',
@@ -18,8 +18,8 @@ const tests = {
     assert.equal(matches.source, 'Twintania');
     assert.equal(matches.ability, 'Death Sentence');
     assert.equal(matches.target, 'Potato Chippy');
-  },
-  ability: () => {
+  });
+  it('ability', () => {
     const lines = [
       '[11:48:11.476] 16:10683258:Okonomi Yaki:3F40:Double Standard Finish:10683258:Okonomi Yaki:50F:71D0000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:783:783:10000:10000:0:1000:-265.2183:-77.28939:4.323432:1.70142:783:783:10000:10000:0:1000:-265.2183:-77.28939:4.323432:1.70142:0000AC32',
       '[12:05:12.479] 15:4007CA96:Graffias:366:Attack:106E8400:Tako Yaki:710003:3F0000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:967:1107:10000:10000:0:1000:223.4988:-147.7532:-39.29175:-3.109571:1604:10948:0:0:0:1000:225.452:-145.6169:-39.29175:-3.013695:0000B2D4',
@@ -56,8 +56,8 @@ const tests = {
     assert.equal(matches.y, '-145.6169');
     assert.equal(matches.z, '-39.29175');
     assert.equal(matches.heading, '-3.013695');
-  },
-  headMarker: () => {
+  });
+  it('headMarker', () => {
     const lines = [
       '[21:51:06.027] 1B:107C73B8:Aloo Gobi:0000:5DC3:00C0:0000:0000:0000:',
       '[20:23:38.707] 1B:10595B8B:Baked Potato:0000:0000:0017:0000:0000:0000:',
@@ -69,8 +69,8 @@ const tests = {
     assert.equal(matches.targetId, '107C73B8');
     assert.equal(matches.target, 'Aloo Gobi');
     assert.equal(matches.id, '00C0');
-  },
-  addedCombatant: () => {
+  });
+  it('addedCombatant', () => {
     const lines = [
       '[12:11:18.753] 03:4000226B:Added new combatant Valar.  Job: N/A Level: 50 Max HP: 10195 Max MP: 2800 Pos: (-461.2344,269.7031,41.6) (82100000002399).',
       '[12:19:45.493] 03:103410A1:Added new combatant Pot Pie(Goblin).  Job: Brd Level: 50 Max HP: 6701 Max MP: 10000 Pos: (-109.8864,-43.24811,38.21077).',
@@ -95,8 +95,8 @@ const tests = {
     assert.equal(matches.id, '103410A1');
     // Optional.
     assert.isUndefined(matches.npcId);
-  },
-  removingCombatant: () => {
+  });
+  it('removingCombatant', () => {
     const lines = [
       '[19:21:04.737] 04:40006379:Removing combatant Demi-Phoenix.  Max HP: 561184. Pos: (86.62549,117.9675,0).',
       '[19:22:02.069] 04:40006274:Removing combatant Eden.  Max HP: 21495808. Pos: (100,100,0).',
@@ -107,8 +107,8 @@ const tests = {
     const matches = lines[0].match(Regexes.removingCombatant()).groups;
     assert.equal(matches.name, 'Demi-Phoenix');
     assert.equal(matches.hp, '561184');
-  },
-  gainsEffect: () => {
+  });
+  it('gainsEffect', () => {
     const lines = [
       '[21:46:43.348] 1A:10595A8C:Papas Fritas gains the effect of Battle Litany from Potato Casserole for 20.00 Seconds.',
       '[21:51:06.027] 1A:10686259:Patatas Bravas gains the effect of Doom from  for 10.00 Seconds.',
@@ -122,8 +122,8 @@ const tests = {
     assert.equal(matches.effect, 'Battle Litany');
     assert.equal(matches.source, 'Potato Casserole');
     assert.equal(matches.duration, '20.00');
-  },
-  statusEffectExplicit: () => {
+  });
+  it('statusEffectExplicit', () => {
     const lines = [
       '[23:24:13.184] 26:4000D3EB::00505015:148000:148000:0:0:0:0:117.5402:107.2556:2.384186E-07:-1.963573:03E8:0:0:840893:40800000:E0000000:',
       '[23:24:15.679] 26:4000D3E6::0050501C:0:148000:0:0:0:0:84.83353:101.1907:-1.105378E-08:2.79271:0:A5:0:',
@@ -146,8 +146,8 @@ const tests = {
     assert.equal(matches.data2, '0');
     assert.equal(matches.data3, '0A0168');
     assert.equal(matches.data4, '41F00000');
-  },
-  losesEffect: () => {
+  });
+  it('losesEffect', () => {
     const lines = [
       '[21:58:30.880] 1E:10686259:Hash Brown loses the effect of Light In The Dark from .',
       '[21:48:06.010] 1E:1076C23F:Tater Tot loses the effect of Enhanced Wheeling Thrust from Tater Tot.',
@@ -165,8 +165,8 @@ const tests = {
     assert.equal(matches.targetId, '1076C23F');
     // Test valid source.
     assert.equal(matches.source, 'Tater Tot');
-  },
-  tether: () => {
+  });
+  it('tether', () => {
     const lines = [
       '[21:49:14.345] 23:4000804B:Shadow of the Ancients:106CAF53:Dum Aloo:3CDF:0000:0011:106CAF53:000F:7F10:',
       '[19:39:36.673] 23:40005B1A:Voidwalker:40005C4E:The Hand of Erebos:D1A8:0000:005C:40005C4E:000F:7F1E:',
@@ -180,8 +180,8 @@ const tests = {
     assert.equal(matches.targetId, '106CAF53');
     assert.equal(matches.target, 'Dum Aloo');
     assert.equal(matches.id, '0011');
-  },
-  wasDefeated: () => {
+  });
+  it('wasDefeated', () => {
     const lines = [
       '[19:39:36.673] 19:Tini Poutini was defeated by Ovni.',
       '[19:39:36.673] 19:The Scourge Of Meracydia was defeated by Unknown.',
@@ -192,8 +192,8 @@ const tests = {
     const matches = lines[0].match(Regexes.wasDefeated()).groups;
     assert.equal(matches.target, 'Tini Poutini');
     assert.equal(matches.source, 'Ovni');
-  },
-  hasHP: () => {
+  });
+  it('hasHP', () => {
     const lines = [
       '[21:14:50.793] 0D:Tini Poutini HP at 96%.',
       '[21:16:25.491] 0D:Potato Chippy HP at 64%.',
@@ -204,8 +204,8 @@ const tests = {
     const matches = lines[0].match(Regexes.hasHP()).groups;
     assert.equal(matches.name, 'Tini Poutini');
     assert.equal(matches.hp, '96');
-  },
-  gameLog: () => {
+  });
+  it('gameLog', () => {
     const echoLines = [
       '[12:18:38.000] 00:0038:cactbot wipe',
       '[03:12:18.000] 00:0038:end',
@@ -256,8 +256,8 @@ const tests = {
     allLines.push(...messageLines);
     allLines.push(...namedLines);
     regexCaptureTest(Regexes.gameLog, allLines);
-  },
-  statchange: () => {
+  });
+  it('statchange', () => {
     const lines = [
       '[20:29:29.752] 0C:Player Stats: 23:311:4093:4245:295:280:340:4094:2496:2675:295:282:2334:578:380:0:382',
       '[12:50:15.438] 0C:Player Stats: 17:311:348:1010:347:315:340:311:380:380:347:315:340:380:380:0:380',
@@ -282,8 +282,8 @@ const tests = {
     assert.equal(matches.skillSpeed, '578');
     assert.equal(matches.spellSpeed, '380');
     assert.equal(matches.tenacity, '382');
-  },
-  changeZone: () => {
+  });
+  it('changeZone', () => {
     const lines = [
       '[20:29:29.752] 01:Changed Zone to The Lavender Beds.',
       '[12:50:15.438] 01:Changed Zone to The Unending Coil Of Bahamut (Ultimate).',
@@ -292,8 +292,8 @@ const tests = {
 
     const matches = lines[0].match(Regexes.changeZone()).groups;
     assert.equal(matches.name, 'The Lavender Beds');
-  },
-  network6D: () => {
+  });
+  it('network6D', () => {
     const lines = [
       '[23:12:47.000] 21:8003757D:80000004:1AF3:01:02:03',
       '[19:39:13.000] 21:8003753A:8000000C:1C:19F:00:00',
@@ -309,17 +309,5 @@ const tests = {
     assert.equal(matches.data1, '01');
     assert.equal(matches.data2, '02');
     assert.equal(matches.data3, '03');
-  },
-};
-
-const keys = Object.keys(tests);
-let exitCode = 0;
-for (let i = 0; i < keys.length; ++i) {
-  try {
-    tests[keys[i]]();
-  } catch (e) {
-    console.log(e);
-    exitCode = 1;
-  }
-}
-process.exit(exitCode);
+  });
+});

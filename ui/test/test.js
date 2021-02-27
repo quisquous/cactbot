@@ -1,4 +1,4 @@
-import '../../resources/common.js';
+import '../../resources/overlay_plugin_api.js';
 
 import '../../resources/defaults.css';
 

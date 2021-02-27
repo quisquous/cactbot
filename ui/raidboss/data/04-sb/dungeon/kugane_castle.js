@@ -1,5 +1,5 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
+import Conditions from '../../../../../resources/conditions.ts';
+import NetRegexes from '../../../../../resources/netregexes.ts';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
@@ -50,6 +50,7 @@ export default {
         text: {
           en: 'Harakiri tether on YOU',
           de: 'Harakiri Verbindung auf DIR',
+          cn: '切腹点名',
         },
       },
     },
@@ -73,6 +74,8 @@ export default {
         text: {
           en: 'Grab gold piles',
           de: 'Sammle die Goldhaufen',
+          cn: '捡金币',
+          ko: '금화 은화 줍기',
         },
       },
     },

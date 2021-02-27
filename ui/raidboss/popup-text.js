@@ -2,8 +2,8 @@ import AutoplayHelper from './autoplay_helper.js';
 import BrowserTTSEngine from './browser_tts_engine.js';
 import { addPlayerChangedOverrideListener } from '../../resources/player_override.js';
 import PartyTracker from '../../resources/party.js';
-import Regexes from '../../resources/regexes.js';
-import { Util } from '../../resources/common.js';
+import Regexes from '../../resources/regexes.ts';
+import Util from '../../resources/util.ts';
 import ZoneId from '../../resources/zone_id.js';
 
 // There should be (at most) six lines of instructions.
@@ -417,10 +417,7 @@ export class PopupText {
       }
       // Adjust triggers for the parser language.
       if (set.triggers && this.options.AlertsEnabled) {
-        // Filter out disabled triggers
-        const enabledTriggers = set.triggers.filter((trigger) => !('disabled' in trigger && trigger.disabled));
-
-        for (const trigger of enabledTriggers) {
+        for (const trigger of set.triggers) {
           // Add an additional resolved regex here to save
           // time later.  This will clobber each time we
           // load this, but that's ok.
@@ -491,9 +488,10 @@ export class PopupText {
         this.resetWhenOutOfCombat &= set.resetWhenOutOfCombat;
     }
 
-    // Store all the collected triggers in order.
-    this.triggers = orderedTriggers.asList();
-    this.netTriggers = orderedNetTriggers.asList();
+    // Store all the collected triggers in order, and filter out disabled triggers.
+    const filterEnabled = (trigger) => !('disabled' in trigger && trigger.disabled);
+    this.triggers = orderedTriggers.asList().filter(filterEnabled);
+    this.netTriggers = orderedNetTriggers.asList().filter(filterEnabled);
 
     this.timelineLoader.SetTimelines(
         timelineFiles,

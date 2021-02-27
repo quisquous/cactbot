@@ -1,5 +1,4 @@
 import './raidboss_config.js';
-import '../../resources/common.js';
 import '../../resources/timerbar.js';
 
 import { PopupText, PopupTextGenerator } from './popup-text.js';

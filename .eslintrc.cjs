@@ -35,6 +35,20 @@ module.exports = {
       'rules': {
         '@typescript-eslint/no-non-null-assertion': 2,
         '@typescript-eslint/no-explicit-any': 2,
+        '@typescript-eslint/member-delimiter-style': ['error', {
+          'multiline': {
+            'delimiter': 'semi',
+            'requireLast': true,
+          },
+          'singleline': {
+            'delimiter': 'semi',
+            'requireLast': false,
+          },
+        }],
+        'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
+        'object-shorthand': ['error', 'consistent'],
+        '@typescript-eslint/method-signature-style': ['error', 'property'],
+        '@typescript-eslint/explicit-module-boundary-types': ['error', { 'allowHigherOrderFunctions': false }],
       },
     },
   ],
@@ -55,12 +69,17 @@ module.exports = {
     'plugin:import/errors',
   ],
   'plugins': [
+    'import',
     'rulesdir',
   ],
   'settings': {
     'import/resolver': {
       'node': {
         'extensions': ['.d.ts', '.ts', '.js'],
+      },
+      'typescript': {
+        'alwaysTryTypes': true,
+        'project': './tsconfig.json',
       },
     },
   },
@@ -200,6 +219,7 @@ module.exports = {
       'error',
       'never',
     ],
+    'valid-jsdoc': 'off',
     'rulesdir/cactbot-locale-order': [
       'warn',
       ['en', 'de', 'fr', 'ja', 'cn', 'ko'],
