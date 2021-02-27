@@ -73,8 +73,8 @@ hideall "--sync--"
 # TODO: in progress
 
 ### Dahu
-# -p 576D:8008.4
-# -ii 576C 1961
+# -p 576D:6008.4
+# -ii 576C 1961 576E
 # Can't use a "is no longer sealed" message here, as the Stygimoloch Warrior and Dahu can
 # see each other's zone sealing messages and 00:0044 messages, but not abilities.
 # Dahu will only start if you are not in the Duel, and if Dahu starts first, the Duel will
@@ -83,7 +83,6 @@ hideall "--sync--"
 6000.0 "--sync--" sync / 00:0839:The Hall of Supplication will be sealed off/ window 6000,0
 6000.0 "--Reset--" sync / 19:Dahu was defeated by/ window 0,2000 jump 0
 6008.4 "Reverberating Roar" sync /:Dahu:576D:/ window 10,2.5
-6013.5 "Falling Rock x6" duration 10 #sync /:Dahu:576E:/
 6014.5 "Reverberating Roar" sync /:Dahu:576D:/
 6022.7 "Hot Charge 1" sync /:Dahu:5773:/
 6027.5 "Hot Charge 2" sync /:Dahu:5773:/
@@ -91,6 +90,7 @@ hideall "--sync--"
 6046.5 "--sync--" sync /:Marchosias:576A:/
 6051.8 "Head Down" sync /:Marchosias:5768:/
 6057.5 "Head Down" sync /:Marchosias:5768:/
+
 6061.4 "Spit Flame" sync /:Dahu:5776:/
 6061.6 "Spit Flame 1" #sync /:Dahu:5777:/
 6062.7 "Spit Flame 2" #sync /:Dahu:5777:/
@@ -115,6 +115,7 @@ hideall "--sync--"
 6153.4 "Head Down" sync /:Marchosias:5768:/
 6154.1 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:577[12]:/
 6159.1 "Head Down" sync /:Marchosias:5768:/
+
 6164.7 "Spit Flame" sync /:Dahu:5776:/
 6165.0 "Spit Flame 1" #sync /:Dahu:5777:/
 6166.1 "Spit Flame 2" #sync /:Dahu:5777:/
@@ -122,7 +123,6 @@ hideall "--sync--"
 6168.4 "Spit Flame 4" #sync /:Dahu:5777:/
 6174.6 "Hysteric Assault" sync /:Dahu:5778:/
 6175.5 "--knockback--" sync /:Dahu:5B43:/
-
 6177.7 "Burn x2" sync /:Dahu:5463:/
 6178.1 "Hunter's Claw" sync /:Marchosias:5769:/
 6187.6 "Head Down" sync /:Marchosias:5768:/
@@ -130,12 +130,44 @@ hideall "--sync--"
 6209.9 "Right-Sided Shockwave/Left-Sided Shockwave" #sync /:Dahu:57(70|6F):/
 6212.5 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:577[12]:/
 
-# TODO: this is a loop but the adds get weird if there's only one charge?
-# long pull: https://www.fflogs.com/reports/tFXmDTp4dvcZMK9G#fight=8
 6221.4 "Hot Charge 1" sync /:Dahu:5773:/
 6226.2 "Hot Charge 2" sync /:Dahu:5773:/
 6233.0 "Firebreathe" sync /:Dahu:5774:/
-# ???
+6246.3 "--sync--" sync /:Crowned Marchosias:576A:/
+6251.3 "--sync--" sync /:Crowned Marchosias:576A:/
+6252.2 "Reverberating Roar" sync /:Dahu:576D:/
+6256.3 "--sync--" sync /:Crowned Marchosias:576A:/
+6261.3 "Reverberating Roar" sync /:Dahu:576D:/
+6289.5 "Reverberating Roar" sync /:Dahu:576D:/
+6289.5 "--sync--" sync /:Marchosias:576A:/
+6289.5 "--sync--" sync /:Marchosias:576A:/
+6294.7 "Head Down" sync /:Marchosias:5768:/
+6298.6 "Right-Sided Shockwave/Left-Sided Shockwave" #sync /:Dahu:57(70|6F):/
+6300.4 "Head Down" sync /:Marchosias:5768:/
+6301.1 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:577[12]:/
+6306.0 "Head Down" sync /:Marchosias:5768:/
+6306.0 "Head Down" sync /:Marchosias:5768:/
+
+6311.7 "Spit Flame 1" sync /:Dahu:5776:/
+6312.1 "Spit Flame 2" sync /:Dahu:5777:/
+6313.3 "Spit Flame 3" sync /:Dahu:5777:/
+6314.4 "Spit Flame 4" sync /:Dahu:5777:/
+6320.6 "Hysteric Assault" sync /:Dahu:5778:/
+6321.5 "--knockback--" sync /:Dahu:5B43:/
+6323.7 "Burn x2" sync /:Dahu:5463:/
+6324.1 "Hunter's Claw" sync /:Marchosias:5769:/
+6334.4 "Head Down" sync /:Marchosias:5768:/
+6335.2 "Firebreathe" sync /:Dahu:576B:/
+6356.2 "Right-Sided Shockwave/Left-Sided Shockwave" #sync /:Dahu:57(70|6F):/
+6358.8 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:577[12]:/
+
+# Probably a loop, but you shouldn't see this charge, let alone the previous one.
+6367.8 "Hot Charge 1" sync /:Dahu:5773:/
+6372.6 "Hot Charge 2" sync /:Dahu:5773:/
+6379.4 "Firebreathe" sync /:Dahu:5774:/ window 100,100 jump 6233.0
+6398.6 "Reverberating Roar" #sync /:Dahu:576D:/
+6407.7 "Reverberating Roar" #sync /:Dahu:576D:/
+6435.9 "Reverberating Roar" #sync /:Dahu:576D:/
 
 
 ### Stygimoloch Warrior
