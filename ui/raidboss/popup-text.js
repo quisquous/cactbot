@@ -2,7 +2,7 @@ import AutoplayHelper from './autoplay_helper.js';
 import BrowserTTSEngine from './browser_tts_engine.js';
 import { addPlayerChangedOverrideListener } from '../../resources/player_override.js';
 import PartyTracker from '../../resources/party.js';
-import Regexes from '../../resources/regexes.js';
+import Regexes from '../../resources/regexes.ts';
 import Util from '../../resources/util.ts';
 import ZoneId from '../../resources/zone_id.js';
 

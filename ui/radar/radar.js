@@ -1,5 +1,5 @@
 import gMonster from '../../resources/hunt.js';
-import NetRegexes from '../../resources/netregexes.js';
+import NetRegexes from '../../resources/netregexes.ts';
 import UserConfig from '../../resources/user_config.js';
 
 import './radar_config.js';

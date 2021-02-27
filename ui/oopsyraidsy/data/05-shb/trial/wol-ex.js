@@ -1,4 +1,4 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
+import NetRegexes from '../../../../../resources/netregexes.ts';
 import ZoneId from '../../../../../resources/zone_id.js';
 
 // TODO: Radiant Braver is 4EF7/4EF8(x2), shouldn't get hit by both?

@@ -69,12 +69,17 @@ module.exports = {
     'plugin:import/errors',
   ],
   'plugins': [
+    'import',
     'rulesdir',
   ],
   'settings': {
     'import/resolver': {
       'node': {
         'extensions': ['.d.ts', '.ts', '.js'],
+      },
+      'typescript': {
+        'alwaysTryTypes': true,
+        'project': './tsconfig.json',
       },
     },
   },
@@ -214,6 +219,7 @@ module.exports = {
       'error',
       'never',
     ],
+    'valid-jsdoc': 'off',
     'rulesdir/cactbot-locale-order': [
       'warn',
       ['en', 'de', 'fr', 'ja', 'cn', 'ko'],

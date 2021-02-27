@@ -1,4 +1,4 @@
-import Regexes from '../../resources/regexes.js';
+import Regexes from '../../resources/regexes.ts';
 import regexCaptureTest from '../helper/regex_util.js';
 import chai from 'chai';
 
