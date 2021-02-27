@@ -218,5 +218,6 @@ module.exports = {
       'warn',
       ['en', 'de', 'fr', 'ja', 'cn', 'ko'],
     ],
+    'rulesdir/cactbot-output-strings': 'error',
   },
 };
