@@ -1,4 +1,4 @@
-import Regexes from '../../resources/regexes.ts';
+import Regexes from '../../resources/regexes.js';
 import UserConfig from '../../resources/user_config.js';
 import ZoneId from '../../resources/zone_id.js';
 import ZoneInfo from '../../resources/zone_info.js';

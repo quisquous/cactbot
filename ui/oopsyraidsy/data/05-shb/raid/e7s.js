@@ -1,4 +1,4 @@
-import NetRegexes from '../../../../../resources/netregexes.ts';
+import NetRegexes from '../../../../../resources/netregexes.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
 // TODO: missing an orb during tornado phase

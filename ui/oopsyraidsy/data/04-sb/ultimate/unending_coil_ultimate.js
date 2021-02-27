@@ -1,4 +1,4 @@
-import NetRegexes from '../../../../../resources/netregexes.ts';
+import NetRegexes from '../../../../../resources/netregexes.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 
 // UCU - The Unending Coil Of Bahamut (Ultimate)

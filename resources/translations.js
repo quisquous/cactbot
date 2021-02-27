@@ -1,5 +1,5 @@
-import Regexes from './regexes.ts';
-import NetRegexes from './netregexes.ts';
+import Regexes from './regexes.js';
+import NetRegexes from './netregexes.js';
 
 export const LocaleRegex = {};
 export const LocaleNetRegex = {};

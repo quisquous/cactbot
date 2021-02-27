@@ -18,7 +18,7 @@
 // function that sets outputStrings and returns an object without doing
 // anything with data or matches.  See `responses_test.js`.
 
-import Outputs from './outputs.ts';
+import Outputs from './outputs.js';
 
 export const builtInResponseStr = 'cactbot-builtin-response';
 

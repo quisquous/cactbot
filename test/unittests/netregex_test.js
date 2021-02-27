@@ -1,5 +1,5 @@
-import Regexes from '../../resources/regexes.ts';
-import NetRegexes from '../../resources/netregexes.ts';
+import Regexes from '../../resources/regexes.js';
+import NetRegexes from '../../resources/netregexes.js';
 import regexCaptureTest from '../helper/regex_util.js';
 import chai from 'chai';
 

@@ -1,4 +1,4 @@
-import Util from './util.ts';
+import Util from './util.js';
 
 // Will redirect calls from `onPlayerChangedEvent` to |func| overriding with
 // |playerName| and their job.  Job is important for raidboss.

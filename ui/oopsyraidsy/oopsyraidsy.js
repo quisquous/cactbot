@@ -1,10 +1,10 @@
 import ContentType from '../../resources/content_type.js';
 import { LocaleNetRegex } from '../../resources/translations.js';
-import NetRegexes from '../../resources/netregexes.ts';
+import NetRegexes from '../../resources/netregexes.js';
 import PartyTracker from '../../resources/party.js';
-import Regexes from '../../resources/regexes.ts';
+import Regexes from '../../resources/regexes.js';
 import UserConfig from '../../resources/user_config.js';
-import Util from '../../resources/util.ts';
+import Util from '../../resources/util.js';
 import ZoneId from '../../resources/zone_id.js';
 import ZoneInfo from '../../resources/zone_info.js';
 
