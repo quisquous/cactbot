@@ -256,7 +256,7 @@ hideall "--sync--"
 
 ### Queen's Guard
 # -p 5831:10016.6 5825:10205 5844:10605 581E:11005
-# -ii 5858 4B33 4B34 4B35 4B36 5821 5854 5813 5834 584D 5718 581B 581C 5B72 5822 5A94 583E 5856 5851 5B70 5838 584D 583A 5847 5849 58F5 5830 581F 590A 590B 590C
+# -ii 1961 5858 4B33 4B34 4B35 4B36 5821 5854 5813 5834 584D 5718 581B 581C 5B72 5822 5A94 583E 5856 5851 5B70 5838 584D 583A 5847 5849 58F5 5830 581F 590A 590B 590C 59BE
 
 # Note: there are number of pairs of abilities that go together (but are both going off).
 # - 5831 (5821)
@@ -267,6 +267,8 @@ hideall "--sync--"
 # - 5843 (5856)
 # - 5B9F (5BA0)
 # - 5820 (581F)
+# - 5823 (59BE)
+
 10000.0 "--sync--" sync / 00:0839:The Hall of Hieromancy will be sealed off/ window 20000,0
 10000.0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 0,2000 jump 0
 # ranged auto should be reasonably timed
@@ -336,15 +338,12 @@ hideall "--sync--"
 10442.3 "Rapid Sever" sync /:Queen's Warrior:5832:/
 
 # If either die, they will start casting enrage.
-# ??? this timing is a guess for the natural push.
-10451.1 "--sync--" sync /:5823:Queen's Knight/ window 300,10
-10451.1 "--sync--" sync /:5833:Queen's Warrior/ window 300,10
-10461.1 "Blood And Bone Enrage" sync /:Queen's Knight:5823:/
-# these ability ids are unknown, and timing is a guess from soldier/gunner enrage
-10464.2 "Blood And Bone" #sync /:Queen's Soldier:???:/ window 10,10 # x infinity
-10467.3 "Blood And Bone" #sync /:Queen's Soldier:???:/
-10470.4 "Blood And Bone" #sync /:Queen's Soldier:???:/
-10473.5 "Blood And Bone" #sync /:Queen's Soldier:???:/
+10451.8 "--sync--" sync /:5823:Queen's Knight/ window 300,10
+10451.8 "--sync--" sync /:5833:Queen's Warrior/ window 300,10
+10461.8 "Blood and Bone Enrage" sync /:Queen's Warrior:5833:/
+10464.9 "Blood and Bone Enrage" sync /:Queen's Knight:5B9D:/ window 10,10 # x infinity
+10468.0 "Blood and Bone Enrage" sync /:Queen's Knight:5B9D:/
+10471.1 "Blood and Bone Enrage" sync /:Queen's Knight:5B9D:/
 
 
 # Phase 3: Soldier + Gunner section
@@ -391,10 +390,10 @@ hideall "--sync--"
 10853.7 "--sync--" sync /:5843:Queen's Soldier/ window 300,10
 10853.7 "--sync--" sync /:5856:Queen's Gunner/ window 300,10
 10863.7 "Blood And Bone Enrage" sync /:Queen's Soldier:5843:/
-10866.8 "Blood And Bone" sync /:Queen's Soldier:5B9F:/ window 10,10 # x infinity
-10869.9 "Blood And Bone" sync /:Queen's Soldier:5B9F:/
-10873.0 "Blood And Bone" sync /:Queen's Soldier:5B9F:/
-10876.1 "Blood And Bone" sync /:Queen's Soldier:5B9F:/
+10866.8 "Blood And Bone Enrage" sync /:Queen's Soldier:5B9F:/ window 10,10 # x infinity
+10869.9 "Blood And Bone Enrage" sync /:Queen's Soldier:5B9F:/
+10873.0 "Blood And Bone Enrage" sync /:Queen's Soldier:5B9F:/
+10876.1 "Blood And Bone Enrage" sync /:Queen's Soldier:5B9F:/
 
 
 # Phase 4: Aetherial Wards
@@ -410,7 +409,7 @@ hideall "--sync--"
 11049.1 "Coat Of Arms" sync /:Aetherial Ward:5820:/
 11066.2 "Coat Of Arms" sync /:Aetherial Ward:5820:/
 # 70s enrage cast, started 3 seconds after Strongpoint Defense.
-11078.0 "Blood And Bone Enrage" sync /:Queen;s Knight:5909:/
+11078.0 "Blood And Bone Enrage" sync /:Queen's Knight:5909:/
 
 
 ### Bozjan Phantom
