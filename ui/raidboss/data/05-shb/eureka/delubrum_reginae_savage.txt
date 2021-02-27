@@ -19,24 +19,36 @@ hideall "--sync--"
 2000.0 "--sync--"
 
 ### Trinity Seeker
-# -p 5AD3:4011.4 5A98:4079.5
-# -ii 5B33 5B94 5AB8 5AB9 5ABA 5ABB 5ABC 5AD1 5B2A 5B2B
+# -p 5AD3:4011.4 5A98:4079.5 5A99:4171.7 5A97:4265.8
+# -ii 1961 1963 5B33 5AB8 5AB9 5ABA 5ABB 5ABC 5AD1 5B2A 5B2B 5AC1 5AC2 5AC3 5AC4 5AC5 5AC6 5ACB 5BBC 5ACD
 4000.0 "--sync--" sync / 00:0839:The Theater of One will be sealed off/ window 20000,0
 4000.0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 0,2000 jump 0
 
+# Note: it is likely that there are additional hp pushes on later Verdant Paths.
+# It is known that the first one is 80%, but I have seen 0-10 second variations
+# on when the other Verdant Paths occur.  This timeline has the slowest versions,
+# but with lots of extra syncs to future proof possible hp pushes.
+
+# TODO: I have marked all of the phantom edges I have seen, but there may be
+# one or two missing in the final phase.
+
+# TODO: Scorching Shackle is the damage when you fail chains, but it would
+# be nice to add --chains-- or something in the places where they appear.
+
 # Initial Merciful Air
-4011.4 "Verdant Tempest" sync /:Trinity Seeker:5AD3:/ window 20,20
-4015.6 "--sync--" sync /:Trinity Seeker:5A9A:/
+4006.4 "--sync--" sync /:5AD3:Trinity Seeker/ window 20,20
+4011.4 "Verdant Tempest" sync /:Trinity Seeker:5AD3:/
+4015.6 "--middle--" sync /:Trinity Seeker:5A9A:/
 4020.0 "Manifest Avatar" sync /:Trinity Seeker:5ADA:/
 4028.2 "First Mercy" sync /:Trinity Seeker:5B61:/
 4031.4 "Second Mercy" sync /:Trinity Seeker:5B62:/
 4034.6 "Third Mercy" sync /:Trinity Seeker:5B63:/
 4037.8 "Fourth Mercy" sync /:Trinity Seeker:5B64:/
-4040.2 "Mercy Fourfold" #sync /:Trinity Seeker:5B94:/
-4042.1 "Mercy Fourfold" #sync /:Trinity Seeker:5B94:/
+4040.2 "Mercy Fourfold 1" #sync /:Trinity Seeker:5B94:/
+4042.1 "Mercy Fourfold 2" #sync /:Trinity Seeker:5B94:/
 4042.8 "Seasons Of Mercy" sync /:Seeker Avatar:5AC7:/
-4044.0 "Mercy Fourfold" #sync /:Trinity Seeker:5B94:/
-4045.9 "Mercy Fourfold" #sync /:Trinity Seeker:5B94:/
+4044.0 "Mercy Fourfold 3" #sync /:Trinity Seeker:5B94:/
+4045.9 "Mercy Fourfold 4" #sync /:Trinity Seeker:5B94:/
 4047.3 "Merciful Breeze" sync /:Trinity Seeker:5AC8:/
 4048.8 "Merciful Moon" sync /:Aetherial Orb:5AC9:/
 4051.3 "Merciful Breeze" sync /:Trinity Seeker:5AC8:/
@@ -45,32 +57,149 @@ hideall "--sync--"
 4074.2 "Merciful Arc" sync /:Trinity Seeker:5AD4:/
 
 # Initial Baleful Air (80% or time push)
-# TODO: add in phantom edges
 4076.5 "--sync--" sync /:5A98:Trinity Seeker/ window 80,20
 4079.5 "Verdant Path" sync /:Trinity Seeker:5A98:/
 4084.1 "Baleful Swathe" sync /:Trinity Seeker:5AD0:/
 4092.2 "Baleful Onslaught" sync /:Trinity Seeker:5AD5:/
-4099.3 "Phantom Edge?" sync /:Trinity Seeker:5ABD:/
+4099.3 "Phantom Edge" sync /:Trinity Seeker:5ABD:/
 4105.5 "Baleful Onslaught" sync /:Trinity Seeker:5AD6:/
+4115.6 "Phantom Edge?" sync /:Trinity Seeker:5ABD:/
 4117.8 "--middle--" sync /:Trinity Seeker:5A9A:/
-4121.7 "Scorching Shackle" sync /:Trinity Seeker:5ACB:/
-4126.9 "Baleful Blade" sync /:Trinity Seeker:5ABE:/
+4126.9 "Baleful Blade" sync /:Trinity Seeker:5AB[EF]:/
 4132.1 "Manifest Avatar" sync /:Trinity Seeker:5ADA:/
-4138.8 "Baleful Comet" sync /:Seeker Avatar:5AD7:/
-4139.8 "Baleful Comet" sync /:Seeker Avatar:5AD7:/
-4140.8 "Baleful Comet" sync /:Seeker Avatar:5AD7:/
-4141.8 "Baleful Comet" sync /:Seeker Avatar:5AD7:/
-4142.2 "Phantom Edge" sync /:Trinity Seeker:5ABD:/
+4138.8 "Baleful Comet 1" #sync /:Seeker Avatar:5AD7:/
+4139.8 "Baleful Comet 2" #sync /:Seeker Avatar:5AD7:/
+4140.8 "Baleful Comet 3" #sync /:Seeker Avatar:5AD7:/
+4141.8 "Baleful Comet 4" #sync /:Seeker Avatar:5AD7:/
+4142.2 "Phantom Edge?" sync /:Trinity Seeker:5ABD:/
 4144.4 "--middle--" sync /:Trinity Seeker:5A9A:/
-4146.4 "Baleful Firestorm" sync /:Seeker Avatar:5AD8:/
-4148.4 "Baleful Firestorm" sync /:Seeker Avatar:5AD8:/
-4150.4 "Baleful Firestorm" sync /:Seeker Avatar:5AD8:/
-4152.4 "Baleful Firestorm" sync /:Seeker Avatar:5AD8:/
-4153.5 "Baleful Blade" sync /:Trinity Seeker:5ABF:/
+4146.4 "Baleful Firestorm 1" #sync /:Seeker Avatar:5AD8:/
+4148.4 "Baleful Firestorm 2" #sync /:Seeker Avatar:5AD8:/
+4150.4 "Baleful Firestorm 3" #sync /:Seeker Avatar:5AD8:/
+4152.4 "Baleful Firestorm 4" #sync /:Seeker Avatar:5AD8:/
+4153.5 "Baleful Blade" sync /:Trinity Seeker:5AB[EF]:/
 4162.6 "Verdant Tempest" sync /:Trinity Seeker:5AD3:/
-4171.7 "Verdant Path" sync /:Trinity Seeker:5A99:/
 
-# TODO: in progress
+# Initial Iron Air
+4168.7 "--sync--" sync /:5A99:Trinity Seeker/ window 200,20
+4171.7 "Verdant Path" sync /:Trinity Seeker:5A99:/
+4176.6 "Iron Impact" sync /:Trinity Seeker:5AD2:/
+4180.7 "--middle--" sync /:Trinity Seeker:5A9A:/
+4184.9 "Manifest Avatar" sync /:Trinity Seeker:5ADA:/
+4196.6 "--jump--" sync /:Trinity Seeker:5A9A:/
+4197.7 "Iron Rose" sync /:Seeker Avatar:5AD9:/
+4203.5 "Iron Splitter" sync /:Trinity Seeker:5AC0:/
+4207.7 "--middle--" sync /:Trinity Seeker:5A9A:/
+4211.9 "Manifest Avatar" sync /:Trinity Seeker:5ADA:/
+4216.1 "--jump--" sync /:Trinity Seeker:5A9A:/
+4223.0 "Iron Splitter" sync /:Trinity Seeker:5AC0:/
+4225.2 "Dead Iron" sync /:Seeker Avatar:5ACC:/
+4228.3 "--jump--" sync /:Trinity Seeker:5A9A:/
+4232.5 "Dead Iron" sync /:Seeker Avatar:5B44:/
+4235.1 "Iron Splitter" sync /:Trinity Seeker:5AC0:/
+4239.9 "Iron Rose" sync /:Seeker Avatar:5AD9:/
+4251.3 "Verdant Tempest" sync /:Trinity Seeker:5AD3:/
+4265.8 "Verdant Path" sync /:Trinity Seeker:5A97:/
+
+# Merciful Air v2
+4262.8 "--sync--" sync /:5A97:Trinity Seeker/ window 300,10
+4265.8 "Verdant Path" sync /:Trinity Seeker:5A97:/
+4270.4 "Act Of Mercy" sync /:Trinity Seeker:5ACF:/
+4276.5 "--middle--" sync /:Trinity Seeker:5A9A:/
+4280.8 "Manifest Avatar" sync /:Trinity Seeker:5ADA:/
+4286.9 "Baleful Comet 1" #sync /:Seeker Avatar:5AD7:/
+4287.9 "Baleful Comet 2" #sync /:Seeker Avatar:5AD7:/
+4288.9 "Baleful Comet 3" #sync /: Seeker Avatar:5AD7:/
+4289.9 "Baleful Comet 4" #sync /:Seeker Avatar:5AD7:/
+4290.9 "--middle--" sync /:Trinity Seeker:5A9A:/
+4294.5 "Baleful Firestorm" #sync /:Seeker Avatar:5AD8:/
+4295.1 "First Mercy" sync /:Trinity Seeker:5B61:/
+4296.5 "Baleful Firestorm" #sync /:Seeker Avatar:5AD8:/
+4298.3 "Second Mercy" sync /:Trinity Seeker:5B62:/
+4298.5 "Baleful Firestorm" #sync /:Seeker Avatar:5AD8:/
+4300.5 "Baleful Firestorm" #sync /:Seeker Avatar:5AD8:/
+4301.5 "Third Mercy" sync /:Trinity Seeker:5B63:/
+4304.7 "Fourth Mercy" sync /:Trinity Seeker:5B64:/
+4307.1 "Mercy Fourfold 1" #sync /:Trinity Seeker:5B94:/
+4309.0 "Mercy Fourfold 2" #sync /:Trinity Seeker:5B94:/
+4309.7 "Seasons Of Mercy" sync /:Seeker Avatar:5AC7:/
+4311.0 "Mercy Fourfold 3" #sync /:Trinity Seeker:5B94:/
+4312.9 "Mercy Fourfold 4" #sync /:Trinity Seeker:5B94:/
+4314.3 "Merciful Breeze" sync /:Trinity Seeker:5AC8:/
+4315.8 "Merciful Moon" sync /:Aetherial Orb:5AC9:/
+4318.4 "Merciful Breeze" sync /:Trinity Seeker:5AC8:/
+4321.8 "Merciful Blooms" sync /:Trinity Seeker:5ACA:/
+4335.2 "Verdant Tempest" sync /:Trinity Seeker:5AD3:/
+4346.5 "Merciful Arc" sync /:Trinity Seeker:5AD4:/
+4349.7 "--middle--" sync /:Trinity Seeker:5A9A:/
+4354.0 "Manifest Avatar" sync /:Trinity Seeker:5ADA:/
+4361.2 "First Mercy" sync /:Trinity Seeker:5B61:/
+4364.4 "Second Mercy" sync /:Trinity Seeker:5B62:/
+4365.4 "--jump--" sync /:Seeker Avatar:5A9A:/
+4367.6 "Third Mercy" sync /:Trinity Seeker:5B63:/
+4370.8 "Fourth Mercy" sync /:Trinity Seeker:5B64:/
+4371.6 "Iron Splitter" sync /:Seeker Avatar:5AC0:/
+4373.2 "Mercy Fourfold 1" #sync /:Trinity Seeker:5B94:/
+4375.1 "Mercy Fourfold 2" #sync /:Trinity Seeker:5B94:/
+4377.0 "Mercy Fourfold 3" #sync /:Trinity Seeker:5B94:/
+4378.9 "Mercy Fourfold 4" #sync /:Trinity Seeker:5B94:/
+4380.6 "Iron Splitter" sync /:Seeker Avatar:5AC0:/
+4382.8 "--jump--" sync /:Seeker Avatar:5A9A:/
+4389.5 "Iron Splitter" sync /:Seeker Avatar:5AC0:/
+4390.3 "Seasons Of Mercy" sync /:Trinity Seeker:5AC7:/
+4394.8 "Merciful Breeze" sync /:Trinity Seeker:5AC8:/
+4396.3 "Merciful Moon" sync /:Aetherial Orb:5AC9:/
+4398.9 "Merciful Breeze" sync /:Trinity Seeker:5AC8:/
+4400.9 "Iron Rose" sync /:Seeker Avatar:5AD9:/
+4402.2 "Merciful Blooms" sync /:Trinity Seeker:5ACA:/
+4412.3 "Verdant Tempest" sync /:Trinity Seeker:5AD3:/
+4425.5 "Verdant Path" sync /:Trinity Seeker:5A98:/
+
+# Baleful Air v2
+4422.5 "--sync--" sync /:5A98:Trinity Seeker/ window 300,10
+4425.5 "Verdant Path" sync /:Trinity Seeker:5A98:/
+4430.2 "Baleful Swathe" sync /:Trinity Seeker:5AD0:/
+4433.4 "--middle--" sync /:Trinity Seeker:5A9A:/
+4437.8 "Manifest Avatar" sync /:Trinity Seeker:5ADA:/
+4448.0 "Phantom Edge" sync /:Trinity Seeker:5ABD:/
+4450.2 "--middle--" sync /:Trinity Seeker:5A9A:/
+4451.1 "First Mercy" sync /:Seeker Avatar:5B61:/
+4454.3 "Second Mercy" sync /:Seeker Avatar:5B62:/
+4457.5 "Third Mercy" sync /:Seeker Avatar:5B63:/
+4459.2 "Baleful Blade" sync /:Trinity Seeker:5ABF:/
+4460.7 "Fourth Mercy" sync /:Seeker Avatar:5B64:/
+4463.1 "Mercy Fourfold 1" #sync /:Trinity Seeker:5B94:/
+4465.0 "Mercy Fourfold 2" #sync /:Trinity Seeker:5B94:/
+4466.9 "Mercy Fourfold 3" #sync /:Trinity Seeker:5B94:/
+4468.8 "Mercy Fourfold 4" #sync /:Trinity Seeker:5B94:/
+4482.4 "Verdant Tempest" sync /:Trinity Seeker:5AD3:/
+4484.6 "--middle--" sync /:Trinity Seeker:5A9A:/
+4488.8 "Manifest Avatar" sync /:Trinity Seeker:5ADA:/
+4498.4 "Phantom Edge?" sync /:Trinity Seeker:5ABD:/
+4500.1 "--jump--" sync /:Trinity Seeker:5A9A:/
+4504.9 "Iron Splitter" sync /:Seeker Avatar:5AC0:/
+4509.2 "Baleful Blade" sync /:Trinity Seeker:5AB[EF]:/
+4514.5 "--middle--" sync /:Trinity Seeker:5A9A:/
+4518.7 "Manifest Avatar" sync /:Trinity Seeker:5ADA:/
+4530.9 "First Mercy" sync /:Seeker Avatar:5B61:/
+4534.1 "Second Mercy" sync /:Seeker Avatar:5B62:/
+4537.3 "Third Mercy" sync /:Seeker Avatar:5B63:/
+4540.5 "Fourth Mercy" sync /:Seeker Avatar:5B64:/
+4543.0 "Mercy Fourfold 1" #sync /:Trinity Seeker:5B94:/
+4544.0 "--middle--" sync /:Trinity Seeker:5A9A:/
+4544.9 "Mercy Fourfold 2" #sync /:Trinity Seeker:5B94:/
+4546.8 "Mercy Fourfold 3" #sync /:Trinity Seeker:5B94:/
+4548.7 "Mercy Fourfold 4" #sync /:Trinity Seeker:5B94:/
+4553.1 "Baleful Blade" sync /:Trinity Seeker:5ABE:/
+4568.4 "Baleful Onslaught" sync /:Trinity Seeker:5AD5:/
+
+# Enrage
+4580.9 "--sync--" sync /:5BBA:Trinity Seeker/ window 1000,10
+4590.9 "Verdant Tempest" sync /:Trinity Seeker:5BBA:/
+4593.0 "Verdant Tempest" sync /:Trinity Seeker:5BBB:/ window 10,10 # x infinity
+4595.0 "Verdant Tempest" sync /:Trinity Seeker:5BBB:/
+4597.0 "Verdant Tempest" sync /:Trinity Seeker:5BBB:/
+
 
 ### Dahu
 # -p 576D:6008.4
@@ -555,9 +684,11 @@ hideall "--sync--"
 14000.0 "--sync--" sync / 00:0839:The Vault of Singing Crystal will be sealed off/ window 20000,0
 14000.0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 0,2000 jump 0
 
+
 ### Stygimoloch Lord
 16000.0 "--sync--" sync / 00:0839:The Path of Divine Clarity will be sealed off/ window 20000,0
 16000.0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 0,2000 jump 0
+
 
 ### The Queen
 # -p 59F9:18015.3
