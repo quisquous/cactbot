@@ -73,16 +73,15 @@ export function setup(bars) {
     tsubameGaeshi.duration = 60;
   });
 
-  const gurenSenei = bars.addProcBox({
-    id: 'sam-procs-gurensenei',
-    fgColor: 'sam-color-gurensenei',
+  const higanbana = bars.addProcBox({
+    id: 'sam-procs-higanbana',
+    fgColor: 'sam-color-higanbana',
   });
-  bars.onUseAbility([
-    kAbility.HissatsuGuren,
-    kAbility.HissatsuSenei,
+  bars.onMobGainsEffectFromYou([
+    EffectId.Higanbana,
   ], () => {
-    gurenSenei.duration = 0;
-    gurenSenei.duration = 120;
+    higanbana.duration = 0;
+    higanbana.duration = 60 - 0.5; // -0.5s for log line delay
   });
 
   bars.onStatChange('SAM', () => {
@@ -92,7 +91,7 @@ export function setup(bars) {
     jinpu.threshold = bars.gcdSkill * 6;
     tsubameGaeshi.valuescale = bars.gcdSkill;
     tsubameGaeshi.threshold = bars.gcdSkill * 4;
-    gurenSenei.valuescale = bars.gcdSkill;
-    gurenSenei.threshold = bars.gcdSkill * 4;
+    higanbana.valuescale = bars.gcdSkill;
+    higanbana.threshold = bars.gcdSkill * 4;
   });
 }

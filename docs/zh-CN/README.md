@@ -293,7 +293,7 @@ ThirdParty
 |  <img src="../../resources/ffxiv/jobs/mnk-large.png" width="30px" /><br> 武僧  | 显示斗气档数，<del>剩余的疾风迅雷Buff时间</del>(5.4疾风迅雷将被删除)，身形持续时间，并监控连击效果提高、双掌打buff和破碎拳DoT时间。 |
 | <img src="../../resources/ffxiv/jobs/drg-large.png" width="30px" /><br> 龙骑士  |               显示龙血时间&龙眼数，开膛枪buff剩余时间，跳跃的冷却时间，以及猛枪&巨龙视线的持续时间和冷却时间。               |
 |  <img src="../../resources/ffxiv/jobs/nin-large.png" width="30px" /><br> 忍者  |                显示忍气量，风遁剩余时间，攻其不备持续时间&冷却时间，分身之术&结印的冷却，并显示连击剩余时间。                 |
-|  <img src="../../resources/ffxiv/jobs/sam-large.png" width="30px" /><br> 武士  |           显示剑气量，默想深度档数，士风&阵风的持续时间，燕回返&必杀剑：红莲/闪影的冷却时间，并显示连击剩余时间。                                     |
+|  <img src="../../resources/ffxiv/jobs/sam-large.png" width="30px" /><br> 武士  |           显示剑气量，默想深度档数，士风&阵风&彼岸花的持续时间，燕回返的冷却时间，并显示连击剩余时间。                                     |
 | <img src="../../resources/ffxiv/jobs/brd-large.png" width="30px" /><br> 吟游诗人 |        显示当前歌谣及其持续时间，诗心档数，灵魂之声量，直线射击预备buff监控，DoT持续时间，以及显示你的DoT造成伤害时机的计时条。        |
 | <img src="../../resources/ffxiv/jobs/mch-large.png" width="30px" /><br> 机工士  |    显示热量计、电能计、连击计时器、钻头/毒菌冲击&空气锚的冷却时间，野火的冷却时间&持续时间。 当野火发动时，将显示你已在野火中打出的GCD数目。     |
 |  <img src="../../resources/ffxiv/jobs/dnc-large.png" width="30px" /><br> 舞者  |                   显示连击计时器、幻扇量谱、伶俐量谱、标准舞步冷却、技巧舞步&百花争艳的冷却&持续时间。                   |
