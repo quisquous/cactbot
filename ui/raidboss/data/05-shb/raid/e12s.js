@@ -917,7 +917,7 @@ export default {
           effect3: output[keys[2]](),
         });
       },
-      outputStrings: Object.assign({
+      outputStrings: {
         comboText: {
           en: '${effect1} > ${effect2} > ${effect3}',
           de: '${effect1} > ${effect2} > ${effect3}',
@@ -926,7 +926,8 @@ export default {
           cn: '${effect1} > ${effect2} > ${effect3}',
           ko: '${effect1} > ${effect2} > ${effect3}',
         },
-      }, intermediateRelativityOutputStrings),
+        ...intermediateRelativityOutputStrings,
+      },
     },
     {
       id: 'E12S Relativity Debuffs',
