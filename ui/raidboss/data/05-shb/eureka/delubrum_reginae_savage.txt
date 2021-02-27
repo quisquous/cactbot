@@ -686,8 +686,128 @@ hideall "--sync--"
 
 
 ### Stygimoloch Lord
+# -p 57D7:16015.3 57C3:16204.5
+# -ii 1961 55A6 57D0 57CE 57DD 57DC 57C8 57CA 57C6 57CC 5B38 57D3 57D6 57E2 501B 57DF 501A
+# -it "Stygimoloch Lord"
 16000.0 "--sync--" sync / 00:0839:The Path of Divine Clarity will be sealed off/ window 20000,0
 16000.0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 0,2000 jump 0
+
+# Note: 57CF is the cast for Whack but 57D1 is the instant damage.
+# Similarly, 57C4 is the cast for Devastating Bolt, but 57C5/57C6 is the delayed damage.
+# Both of these casts are renamed as --sync-- to clean up the timeline.
+
+# Phase 1
+16008.3 "--sync--" sync /:57D7:Stygimoloch Lord:/ window 15,15
+16015.3 "Foe Splitter" sync /:Stygimoloch Lord:57D7:/ window 17000,0
+16023.4 "Vicious Swipe" sync /:Stygimoloch Lord:5552:/
+16028.5 "--sync--" sync /:Stygimoloch Lord:57CF:/
+16028.5 "Whack 1" #sync /:Stygimoloch Lord:57D1:/
+16030.5 "Whack 2" #sync /:Stygimoloch Lord:57D1:/
+16032.5 "Whack 3" #sync /:Stygimoloch Lord:57D1:/
+16042.8 "1111-Tonze Swing" sync /:Stygimoloch Lord:57D8:/
+16056.0 "Rapid Bolts" sync /:Stygimoloch Lord:57CD:/ duration 12.8
+16063.1 "Rapid Bolts" sync /:Stygimoloch Lord:57CD:/ duration 12.8
+16070.4 "Rush" sync /:Stygimoloch Lord:57D9:/
+16074.7 "Rush" sync /:Stygimoloch Lord:57D9:/
+# ??? does this loop? is there a natural push here?
+
+# Phase 2: Adds (70%)
+# This phase is awkward to have a timeline for, as the Stygimoloch Lord repeats
+# in a loop, but the adds are on an 18s timer which doesn't line up with the
+# loop.  Therefore, we'll just unroll this loop a few times and drop the
+# Mana Flame after a while.  Most logs don't even see the 2nd Fateful Words.
+16200.0 "--untargetable--" sync /:Stygimoloch Lord:57DA:/
+16201.5 "--sync--" sync /:57C3:Stygimoloch Lord/ window 210,0
+16204.5 "Memory of the Labyrinth" sync /:Stygimoloch Lord:57C3:/
+16205.1 "--adds--"
+16215.4 "Mana Flame" sync /:Ball Of Fire:57DE:/
+16223.2 "Entrapment" sync /:Stygimoloch Monk:57DB:/
+16232.8 "Labyrinthine Fate" sync /:Stygimoloch Lord:57C7:/
+16233.4 "Mana Flame" sync /:Ball Of Fire:57DE:/
+
+16241.1 "Fateful Words" sync /:Stygimoloch Lord:57C9:/
+16247.2 "--sync--" sync /:Stygimoloch Lord:57C4:/
+16251.3 "Mana Flame" sync /:Ball Of Fire:57DE:/
+16251.7 "Devastating Bolt" sync /:Stygimoloch Lord:57C5:/
+16257.5 "Rending Bolt" sync /:Stygimoloch Lord:57CB:/
+16269.3 "Mana Flame" sync /:Ball Of Fire:57DE:/
+16271.7 "Labyrinthine Fate" sync /:Stygimoloch Lord:57C7:/
+16277.9 "--sync--" sync /:Stygimoloch Lord:57C4:/
+16282.4 "Devastating Bolt" sync /:Stygimoloch Lord:57C5:/
+16287.2 "Mana Flame" sync /:Ball Of Fire:57DE:/
+16288.3 "Rending Bolt" sync /:Stygimoloch Lord:57CB:/
+16296.4 "Mana Flame" sync /:Ball Of Fire:57DE:/
+
+16296.6 "Fateful Words" sync /:Stygimoloch Lord:57C9:/
+16304.7 "Rending Bolt" sync /:Stygimoloch Lord:57CB:/
+16305.2 "Mana Flame" sync /:Ball Of Fire:57DE:/
+16309.1 "--sync--" sync /:Stygimoloch Lord:57C4:/
+16313.6 "Devastating Bolt" sync /:Stygimoloch Lord:57C5:/
+16323.3 "Mana Flame" sync /:Ball Of Fire:57DE:/
+16327.4 "Labyrinthine Fate" sync /:Stygimoloch Lord:57C7:/
+16333.7 "--sync--" sync /:Stygimoloch Lord:57C4:/
+16338.2 "Devastating Bolt" sync /:Stygimoloch Lord:57C5:/
+16341.3 "Mana Flame" sync /:Ball Of Fire:57DE:/
+16344.0 "Rending Bolt" sync /:Stygimoloch Lord:57CB:/
+
+16352.3 "Fateful Words" sync /:Stygimoloch Lord:57C9:/
+16359.3 "Mana Flame" sync /:Ball Of Fire:57DE:/
+16360.5 "Rending Bolt" sync /:Stygimoloch Lord:57CB:/
+16364.8 "--sync--" sync /:Stygimoloch Lord:57C4:/
+16369.3 "Devastating Bolt" sync /:Stygimoloch Lord:57C5:/
+16377.4 "Mana Flame" sync /:Ball Of Fire:57DE:/
+16383.1 "Labyrinthine Fate" sync /:Stygimoloch Lord:57C7:/
+16389.4 "--sync--" sync /:Stygimoloch Lord:57C4:/
+16393.9 "Devastating Bolt" sync /:Stygimoloch Lord:57C5:/
+16395.4 "Mana Flame" sync /:Ball Of Fire:57DE:/
+16399.7 "Rending Bolt" sync /:Stygimoloch Lord:57CB:/
+
+# Drop Mana Flame callouts in order to make a loop.
+16408.0 "Fateful Words" sync /:Stygimoloch Lord:57C9:/
+16416.2 "Rending Bolt" sync /:Stygimoloch Lord:57CB:/
+16420.5 "--sync--" sync /:Stygimoloch Lord:57C4:/
+16425.0 "Devastating Bolt" sync /:Stygimoloch Lord:57C5:/
+16438.8 "Labyrinthine Fate" sync /:Stygimoloch Lord:57C7:/
+16445.1 "--sync--" sync /:Stygimoloch Lord:57C4:/
+16449.6 "Devastating Bolt" sync /:Stygimoloch Lord:57C5:/
+16455.4 "Rending Bolt" sync /:Stygimoloch Lord:57CB:/
+
+16463.7 "Fateful Words" sync /:Stygimoloch Lord:57C9:/ window 50,50 jump 16408
+16471.9 "Rending Bolt" #sync /:Stygimoloch Lord:57CB:/
+16476.2 "--sync--" #sync /:Stygimoloch Lord:57C4:/
+16480.7 "Devastating Bolt" #sync /:Stygimoloch Lord:57C5:/
+16494.5 "Labyrinthine Fate" #sync /:Stygimoloch Lord:57C7:/
+16500.8 "--sync--" #sync /:Stygimoloch Lord:57C4:/
+16505.3 "Devastating Bolt" #sync /:Stygimoloch Lord:57C5:/
+16511.1 "Rending Bolt" #sync /:Stygimoloch Lord:57CB:/
+
+
+# Phase 3: Victory Lap (once adds are dead)
+17000.0 "--targetable--" sync / 22:........:Stygimoloch Lord:........:Stygimoloch Lord/ window 800,0
+17008.2 "--sync--" sync /:57D2:Stygimoloch Lord/ window 1010,0
+17013.2 "Thunderous Discharge" sync /:Stygimoloch Lord:57D2:/
+17028.4 "Rapid Bolts 1" sync /:Stygimoloch Lord:57CD:/ duration 12.8
+17040.5 "1111-Tonze Swing" sync /:Stygimoloch Lord:57D8:/
+17051.6 "Rapid Bolts 2" sync /:Stygimoloch Lord:57CD:/ duration 12.8
+17058.7 "Rapid Bolts 3" sync /:Stygimoloch Lord:57CD:/ duration 12.8
+17065.8 "Crushing Hoof" sync /:Stygimoloch Lord:57D5:/
+17072.0 "--sync--" sync /:Stygimoloch Lord:57CF:/
+17072.0 "Whack 1" sync /:Stygimoloch Lord:57D1:/
+17074.0 "Whack 2" sync /:Stygimoloch Lord:57D1:/
+17076.0 "Whack 3" sync /:Stygimoloch Lord:57D1:/
+17092.5 "Foe Splitter" sync /:Stygimoloch Lord:57D7:/
+17097.7 "Vicious Swipe" sync /:Stygimoloch Lord:5552:/
+17102.8 "--sync--" sync /:Stygimoloch Lord:57CF:/
+17102.8 "Whack 1" sync /:Stygimoloch Lord:57D1:/
+17104.8 "Whack 2" sync /:Stygimoloch Lord:57D1:/
+17106.8 "Whack 3" sync /:Stygimoloch Lord:57D1:/
+
+# loop block
+17121.3 "Thunderous Discharge" sync /:Stygimoloch Lord:57D2:/ window 80,80 jump 17013.2
+17136.5 "Rapid Bolts 1" #sync /:Stygimoloch Lord:57CD:/ duration 12.8
+17148.6 "1111-Tonze Swing" #sync /:Stygimoloch Lord:57D8:/
+17159.7 "Rapid Bolts 2" #sync /:Stygimoloch Lord:57CD:/ duration 12.8
+17166.8 "Rapid Bolts 3" #sync /:Stygimoloch Lord:57CD:/ duration 12.8
 
 
 ### The Queen
