@@ -22,7 +22,7 @@ hideall "--sync--"
 # -p 5AD3:4011.4 5A98:4079.5
 # -ii 5B33 5B94 5AB8 5AB9 5ABA 5ABB 5ABC 5AD1 5B2A 5B2B
 4000.0 "--sync--" sync / 00:0839:The Theater of One will be sealed off/ window 20000,0
-4000.0 "--Reset--" sync / 00:0839:The Theater of One is no longer sealed/ window 0,2000 jump 0
+4000.0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 0,2000 jump 0
 
 # Initial Merciful Air
 4011.4 "Verdant Tempest" sync /:Trinity Seeker:5AD3:/ window 20,20
@@ -72,76 +72,159 @@ hideall "--sync--"
 
 # TODO: in progress
 
-### Stygimoloch Warrior
-# TODO: this and Dahu can be seen from each other.
-# Jump here via injected "1961" auto? or some other ability similar to castrum timeline.
-#6000.0 "--sync--" sync / 00:0839:Pride of the Lioness will be sealed off/ window 20000,0
-#6000.0 "--Reset--" sync / 00:0839:Pride of the Lioness is no longer sealed/ window 0,2000 jump 0
-
 ### Dahu
 # -p 576D:8008.4
 # -ii 576C 1961
-8000.0 "--sync--" sync / 00:0839:The Hall of Supplication will be sealed off/ window 20000,0
-8000.0 "--Reset--" sync / 00:0839:The Hall of Supplication is no longer sealed/ window 0,2000 jump 0
-8008.4 "Reverberating Roar" sync /:Dahu:576D:/ window 10,2.5
-8013.5 "Falling Rock x6" duration 10 #sync /:Dahu:576E:/
-8014.5 "Reverberating Roar" sync /:Dahu:576D:/
-8022.7 "Hot Charge 1" sync /:Dahu:5773:/
-8027.5 "Hot Charge 2" sync /:Dahu:5773:/
-8034.3 "Firebreathe" sync /:Dahu:5774:/
-8046.5 "--sync--" sync /:Marchosias:576A:/
-8051.8 "Head Down" sync /:Marchosias:5768:/
-8057.5 "Head Down" sync /:Marchosias:5768:/
-8061.4 "Spit Flame" sync /:Dahu:5776:/
-8061.6 "Spit Flame 1" #sync /:Dahu:5777:/
-8062.7 "Spit Flame 2" #sync /:Dahu:5777:/
-8063.8 "Spit Flame 3" #sync /:Dahu:5777:/
-8065.0 "Spit Flame 4" #sync /:Dahu:5777:/
-8069.1 "Head Down" sync /:Marchosias:5768:/
-8071.1 "Right-Sided Shockwave/Left-Sided Shockwave" #sync /:Dahu:57(70|6F):/
-8073.7 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:577[12]:/
-8074.8 "Head Down" sync /:Marchosias:5768:/
-8081.4 "Feral Howl" sync /:Dahu:5767:/
-8083.5 "--knockback--" sync /:Dahu:5B35:/
-8084.9 "Hunter's Claw" sync /:Marchosias:5769:/
-8091.5 "Firebreathe x5" sync /:Dahu:576B:/ duration 8.7
-8112.5 "--sync--" sync /:Crowned Marchosias:576A:/
-8117.5 "--sync--" sync /:Crowned Marchosias:576A:/
-8122.5 "--sync--" sync /:Crowned Marchosias:576A:/
-8142.5 "--sync--" sync /:Marchosias:576A:/
-8142.5 "Reverberating Roar" sync /:Dahu:576D:/
-8147.6 "Falling Rock x6" duration 10 #sync /:Dahu:576E:/
-8147.7 "Head Down" sync /:Marchosias:5768:/
-8151.6 "Right-Sided Shockwave/Left-Sided Shockwave" #sync /:Dahu:57(70|6F):/
-8153.4 "Head Down" sync /:Marchosias:5768:/
-8154.1 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:577[12]:/
-8159.1 "Head Down" sync /:Marchosias:5768:/
-8164.7 "Spit Flame" sync /:Dahu:5776:/
-8165.0 "Spit Flame 1" #sync /:Dahu:5777:/
-8166.1 "Spit Flame 2" #sync /:Dahu:5777:/
-8167.3 "Spit Flame 3" #sync /:Dahu:5777:/
-8168.4 "Spit Flame 4" #sync /:Dahu:5777:/
-8174.6 "Hysteric Assault" sync /:Dahu:5778:/
-8175.5 "--knockback--" sync /:Dahu:5B43:/
+# Can't use a "is no longer sealed" message here, as the Stygimoloch Warrior and Dahu can
+# see each other's zone sealing messages and 00:0044 messages, but not abilities.
+# Dahu will only start if you are not in the Duel, and if Dahu starts first, the Duel will
+# override it.  Dahu will only end when Dahu is killed, which can only be seen if you
+# are in the Dahu fight.
+6000.0 "--sync--" sync / 00:0839:The Hall of Supplication will be sealed off/ window 6000,0
+6000.0 "--Reset--" sync / 19:Dahu was defeated by/ window 0,2000 jump 0
+6008.4 "Reverberating Roar" sync /:Dahu:576D:/ window 10,2.5
+6013.5 "Falling Rock x6" duration 10 #sync /:Dahu:576E:/
+6014.5 "Reverberating Roar" sync /:Dahu:576D:/
+6022.7 "Hot Charge 1" sync /:Dahu:5773:/
+6027.5 "Hot Charge 2" sync /:Dahu:5773:/
+6034.3 "Firebreathe" sync /:Dahu:5774:/
+6046.5 "--sync--" sync /:Marchosias:576A:/
+6051.8 "Head Down" sync /:Marchosias:5768:/
+6057.5 "Head Down" sync /:Marchosias:5768:/
+6061.4 "Spit Flame" sync /:Dahu:5776:/
+6061.6 "Spit Flame 1" #sync /:Dahu:5777:/
+6062.7 "Spit Flame 2" #sync /:Dahu:5777:/
+6063.8 "Spit Flame 3" #sync /:Dahu:5777:/
+6065.0 "Spit Flame 4" #sync /:Dahu:5777:/
+6069.1 "Head Down" sync /:Marchosias:5768:/
+6071.1 "Right-Sided Shockwave/Left-Sided Shockwave" #sync /:Dahu:57(70|6F):/
+6073.7 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:577[12]:/
+6074.8 "Head Down" sync /:Marchosias:5768:/
+6081.4 "Feral Howl" sync /:Dahu:5767:/
+6083.5 "--knockback--" sync /:Dahu:5B35:/
+6084.9 "Hunter's Claw" sync /:Marchosias:5769:/
+6091.5 "Firebreathe x5" sync /:Dahu:576B:/ duration 8.7
+6112.5 "--sync--" sync /:Crowned Marchosias:576A:/
+6117.5 "--sync--" sync /:Crowned Marchosias:576A:/
+6122.5 "--sync--" sync /:Crowned Marchosias:576A:/
+6142.5 "--sync--" sync /:Marchosias:576A:/
+6142.5 "Reverberating Roar" sync /:Dahu:576D:/
+6147.6 "Falling Rock x6" duration 10 #sync /:Dahu:576E:/
+6147.7 "Head Down" sync /:Marchosias:5768:/
+6151.6 "Right-Sided Shockwave/Left-Sided Shockwave" #sync /:Dahu:57(70|6F):/
+6153.4 "Head Down" sync /:Marchosias:5768:/
+6154.1 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:577[12]:/
+6159.1 "Head Down" sync /:Marchosias:5768:/
+6164.7 "Spit Flame" sync /:Dahu:5776:/
+6165.0 "Spit Flame 1" #sync /:Dahu:5777:/
+6166.1 "Spit Flame 2" #sync /:Dahu:5777:/
+6167.3 "Spit Flame 3" #sync /:Dahu:5777:/
+6168.4 "Spit Flame 4" #sync /:Dahu:5777:/
+6174.6 "Hysteric Assault" sync /:Dahu:5778:/
+6175.5 "--knockback--" sync /:Dahu:5B43:/
 
-8177.7 "Burn x2" sync /:Dahu:5463:/
-8178.1 "Hunter's Claw" sync /:Marchosias:5769:/
-8187.6 "Head Down" sync /:Marchosias:5768:/
-8188.9 "Firebreathe x5" sync /:Dahu:576B:/ duration 8.7
-8209.9 "Right-Sided Shockwave/Left-Sided Shockwave" #sync /:Dahu:57(70|6F):/
-8212.5 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:577[12]:/
+6177.7 "Burn x2" sync /:Dahu:5463:/
+6178.1 "Hunter's Claw" sync /:Marchosias:5769:/
+6187.6 "Head Down" sync /:Marchosias:5768:/
+6188.9 "Firebreathe x5" sync /:Dahu:576B:/ duration 8.7
+6209.9 "Right-Sided Shockwave/Left-Sided Shockwave" #sync /:Dahu:57(70|6F):/
+6212.5 "Left-Sided Shockwave/Right-Sided Shockwave" #sync /:Dahu:577[12]:/
 
 # TODO: this is a loop but the adds get weird if there's only one charge?
 # long pull: https://www.fflogs.com/reports/tFXmDTp4dvcZMK9G#fight=8
-8221.4 "Hot Charge 1" sync /:Dahu:5773:/
-8226.2 "Hot Charge 2" sync /:Dahu:5773:/
-8233.0 "Firebreathe" sync /:Dahu:5774:/
+6221.4 "Hot Charge 1" sync /:Dahu:5773:/
+6226.2 "Hot Charge 2" sync /:Dahu:5773:/
+6233.0 "Firebreathe" sync /:Dahu:5774:/
 # ???
+
+
+### Stygimoloch Warrior
+# -p 5796:8012.1
+# -ii 579E 579A 5790 578B 5787 5788 5782 5786 5784 578D 5791 1961 57A0 57A1 579F 57AB 57AE
+
+# This is the zone, but can't use this sync as it can be seen by Dahu.  Sync to autos instead.
+#8000.0 "--sync--" sync / 00:0839:Pride of the Lioness will be sealed off/ window 20000,0
+8000.0 "--Reset--" sync / 00:0044:Stygimoloch Warrior:Why\.\.\.won't\.\.\.you\.\.\./ window 0,2000 jump 0
+# TODO: is there a reset dialog line for losing?
+# Alternatively, we could always insert " 19:${data.me} was defeated by" from script.
+
+8002.1 "--sync--" sync /:Stygimoloch Warrior:1961:/ window 20000,0
+8009.1 "--sync--" sync /:5796:Stygimoloch Warrior/ window 20,20
+8012.1 "Surge of Vigor" sync /:Stygimoloch Warrior:5796:/
+8024.3 "Unrelenting Charge x3" sync /:Stygimoloch Warrior:5799:/
+8035.4 "--north--" sync /:Stygimoloch Warrior:577C:/
+8039.7 "Entrapment" sync /:Stygimoloch Warrior:577D:/
+8040.5 "--knockback--" sync /:Stygimoloch Warrior:577E:/
+8061.8 "Lethal Blow" sync /:Stygimoloch Warrior:577F:/
+8067.9 "Vicious Swipe" sync /:Stygimoloch Warrior:5797:/
+8069.9 "--knockback--"
+8069.9 "Crazed Rampage" sync /:Stygimoloch Warrior:5798:/
+8081.0 "Focused Tremor" sync /:Stygimoloch Warrior:578E:/
+8083.2 "--corner--" sync /:Stygimoloch Warrior:577C:/
+8089.8 "Focused Tremor 1" #sync /:Stygimoloch Warrior:578F:/
+8091.8 "Focused Tremor 2" #sync /:Stygimoloch Warrior:578F:/
+8093.8 "Focused Tremor 3" #sync /:Stygimoloch Warrior:578F:/
+8095.8 "Focused Tremor 4" #sync /:Stygimoloch Warrior:578F:/
+8099.4 "Forceful Strike" sync /:Stygimoloch Warrior:5792:/
+8109.5 "--middle--" sync /:Stygimoloch Warrior:577C:/
+8113.7 "Inescapable Entrapment" sync /:Stygimoloch Warrior:5780:/
+
+# Single Trap
+8120.8 "--sync--" sync /:578[15]:Stygimoloch Warrior/ window 20,20
+8133.8 "Surging Flames/Withering Curse?" sync /:Stygimoloch Warrior:578[15]:/
+8133.8 "--sync--" sync /:Stygimoloch Warrior:5781:/ jump 8137.3 # if Surging Flames, skip +3.5s ahead
+8136.4 "Devour?" sync /:Stygimoloch Warrior:5789:/ # only if Withering Curse
+
+# Round 2
+8146.6 "--sync--" sync /:5796:Stygimoloch Warrior/ window 20,20
+8149.6 "Surge of Vigor" sync /:Stygimoloch Warrior:5796:/
+8163.7 "Focused Tremor x16" sync /:Stygimoloch Warrior:578E:/ duration 30.7
+8167.8 "--middle--" sync /:Stygimoloch Warrior:577C:/
+8178.2 "Flailing Strike x7" sync /:Stygimoloch Warrior:578C:/ duration 8.7
+8191.7 "Vicious Swipe" sync /:Stygimoloch Warrior:5797:/
+8193.7 "--knockback--"
+8193.7 "Crazed Rampage" sync /:Stygimoloch Warrior:5798:/
+8202.9 "--middle--" sync /:Stygimoloch Warrior:577C:/
+8207.2 "Inescapable Entrapment" sync /:Stygimoloch Warrior:5780:/
+
+# Triple Trap
+8210.4 "--sync--" sync /:578[15]:Stygimoloch Warrior/ window 20,20
+8223.4 "Surging Flames/Withering Curse?" sync /:Stygimoloch Warrior:578[15]:/
+8223.4 "--sync--" sync /:Stygimoloch Warrior:5781:/ jump 8223.9 # if Surging Flames, skip +3.5s ahead
+8225.8 "Devour?" sync /:Stygimoloch Warrior:5789:/ # only if Withering Curse
+8229.9 "--sync--" sync /:5783:Stygimoloch Warrior/ window 20,20
+8239.9 "Surging Flood" sync /:Stygimoloch Warrior:5783:/
+8248.1 "Leaping Spark x3" sync /:Stygimoloch Warrior:578A:/
+
+# From here on is without log
+# Unsure which ID Coerce is: 5795, 5794, 5793
+8263.1 "Coerce" sync /:Stygimoloch Warrior:579[345]:/ window 20,20
+
+# Round 3
+8269.1 "Surge of Vigor" sync /:Stygimoloch Warrior:5796:/ window 20,20
+8284.0 "Focused Tremor" sync /:Stygimoloch Warrior:578E:/
+8286.3 "--corner--" sync /:Stygimoloch Warrior:577C:/
+8292.8 "Focused Tremor 1" sync /:Stygimoloch Warrior:578F:/
+8294.8 "Focused Tremor 2" #sync /:Stygimoloch Warrior:578F:/
+8296.8 "Focused Tremor 3" #sync /:Stygimoloch Warrior:578F:/
+8298.8 "Focused Tremor 4" #sync /:Stygimoloch Warrior:578F:/
+8302.4 "Forceful Strike" sync /:Stygimoloch Warrior:5792:/
+
+# Round 4
+8315.1 "Surge of Vigor" sync /:Stygimoloch Warrior:5796:/ window 20,20
+8327.3 "Unrelenting Charge x3" sync /:Stygimoloch Warrior:5799:/
+8336.3 "Vicious Swipe" sync /:Stygimoloch Warrior:5797:/
+8338.3 "--knockback--"
+8338.3 "Crazed Rampage" sync /:Stygimoloch Warrior:5798:/
+8348.3 "--middle--" sync /:Stygimoloch Warrior:577C:/
+
+8359.1 "Sun's Ire (Enrage)" sync /:Stygimoloch Warrior:577A:/ window 20,20
+
 
 
 ### Queen's Guard
 10000.0 "--sync--" sync / 00:0839:The Hall of Hieromancy will be sealed off/ window 20000,0
-10000.0 "--Reset--" sync / 00:0839:The Hall of Hieromancy is no longer sealed/ window 0,2000 jump 0
+10000.0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 0,2000 jump 0
 # ranged auto should be reasonably timed
 10002.5 "--sync--" sync /:Queen's Gunner:5857:/ window 3,1
 
@@ -159,7 +242,7 @@ hideall "--sync--"
 # Manipulate -> Invert -> Adds -> then loop Manipulate+Buster OR Invert+Buster
 
 12000.0 "--sync--" sync / 00:0839:Pride of the Lion will be sealed off/ window 20000,0
-12000.0 "--Reset--" sync / 00:0839:Pride of the Lion is no longer sealed/ window 0,2000 jump 0
+12000.0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 0,2000 jump 0
 12007.1 "--sync--" sync /:57BD:Bozjan Phantom/ window 20000,0
 12011.1 "Malediction of Agony" sync /:Bozjan Phantom:57BD:/
 12019.2 "Weave Miasma" sync /:Bozjan Phantom:57B2:/
@@ -284,11 +367,11 @@ hideall "--sync--"
 
 ### Trinity Avowed
 14000.0 "--sync--" sync / 00:0839:The Vault of Singing Crystal will be sealed off/ window 20000,0
-14000.0 "--Reset--" sync / 00:0839:The Vault of Singing Crystal is no longer sealed/ window 0,2000 jump 0
+14000.0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 0,2000 jump 0
 
 ### Stygimoloch Lord
 16000.0 "--sync--" sync / 00:0839:The Path of Divine Clarity will be sealed off/ window 20000,0
-16000.0 "--Reset--" sync / 00:0839:The Path of Divine Clarity is no longer sealed/ window 0,2000 jump 0
+16000.0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 0,2000 jump 0
 
 ### The Queen
 # -p 59F9:18015.3
@@ -298,7 +381,7 @@ hideall "--sync--"
 # TODO: what is 55A8?
 # TODO: stun timing
 18000.0 "--sync--" sync / 00:0839:Queensheart will be sealed off/ window 20000,0
-18000.0 "--Reset--" sync / 00:0839:Queensheart is no longer sealed/ window 0,2000 jump 0
+18000.0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 0,2000 jump 0
 18010.3 "--sync--" sync /:59F9:The Queen/ window 20,20
 18015.3 "Empyrean Iniquity" sync /:The Queen:59F9:/
 18025.5 "--sync--" sync /:The Queen:5BCB:/
