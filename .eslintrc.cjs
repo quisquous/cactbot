@@ -21,7 +21,7 @@ module.exports = {
       },
     },
     {
-      'files': ['**/raidboss/data/**/*.(ts|js)'],
+      'files': ['**/raidboss/data/**/*'],
       'rules': {
         'rulesdir/cactbot-output-strings': 'error',
       },
