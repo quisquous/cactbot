@@ -1014,7 +1014,7 @@ export default {
         'Trinity Seeker': 'trinité soudée',
       },
       'replaceText': {
-      	'\\?': ' ?',
+        '\\?': ' ?',
         'Above Board': 'Aire de flottement',
         'Act Of Mercy': 'Fendreciel rédempteur',
         'Allegiant Arsenal': 'Changement d\'arme',
