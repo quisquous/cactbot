@@ -61,48 +61,48 @@ const ruleModule = {
               node: node,
               messageId: 'noOutputStrings',
             });
-          } else {
-            const outputStringProps = (() => {
-              const propNames = [];
-              const outputProps = node.properties.find((prop) => prop.key && prop.key.name === 'outputStrings');
-              if (outputProps && outputProps.value && outputProps.value.properties) {
-                getAllKeys(outputProps.value.properties, spreadNameMaps)
-                  .forEach((n) => propNames.push(n));
-              } else if (outputProps && t.isIdentifier(outputProps.value)) {
-                const obj = spreadNameMaps.get(outputProps.value.name);
-                if (obj)
-                  getAllKeys(obj, spreadNameMaps).forEach((n) => propNames.push(n));
-              }
-              return propNames;
-            })();
-            if (!outputStringProps) return;
-            const textFunctions = node
-              .properties
-              .filter((prop) => textProps.includes(prop.key.name))
-              .map((prop) => prop.value);
-            textFunctions.forEach((func) => {
-              if (!t.isFunctionExpression(func) && !t.isArrowFunctionExpression(func)) return;
-              const outputParam = func.params[2] && func.params[2].name;
-              if (!outputParam) return;
-
-              const source = sourceCode.getText(func);
-              const m = source.match(new RegExp(`(?<=\\b${outputParam}\\.)(\\w+)(?=\\()`, 'g'));
-              if (!m) return;
-
-              m.forEach((outputProperty) => {
-                if (!outputStringProps.includes(outputProperty)) {
-                  context.report({
-                    node: func,
-                    messageId: 'notFoundProperty',
-                    data: {
-                      prop: outputProperty,
-                      outputParam: outputParam,
-                    },
-                  });
-                }
-              });
-            });
+            return;
           }
+          const outputStringProps = (() => {
+            const propNames = [];
+            const outputProps = node.properties.find((prop) => prop.key && prop.key.name === 'outputStrings');
+            if (outputProps && outputProps.value && outputProps.value.properties) {
+              getAllKeys(outputProps.value.properties, spreadNameMaps)
+                .forEach((n) => propNames.push(n));
+            } else if (outputProps && t.isIdentifier(outputProps.value)) {
+              const obj = spreadNameMaps.get(outputProps.value.name);
+              if (obj)
+                getAllKeys(obj, spreadNameMaps).forEach((n) => propNames.push(n));
+            }
+            return propNames;
+          })();
+          if (!outputStringProps) return;
+          const textFunctions = node
+            .properties
+            .filter((prop) => textProps.includes(prop.key.name))
+            .map((prop) => prop.value);
+          textFunctions.forEach((func) => {
+            if (!t.isFunctionExpression(func) && !t.isArrowFunctionExpression(func)) return;
+            const outputParam = func.params[2] && func.params[2].name;
+            if (!outputParam) return;
+
+            const source = sourceCode.getText(func);
+            const m = source.match(new RegExp(`(?<=\\b${outputParam}\\.)(\\w+)(?=\\()`, 'g'));
+            if (!m) return;
+
+            m.forEach((outputProperty) => {
+              if (!outputStringProps.includes(outputProperty)) {
+                context.report({
+                  node: func,
+                  messageId: 'notFoundProperty',
+                  data: {
+                    prop: outputProperty,
+                    outputParam: outputParam,
+                  },
+                });
+              }
+            });
+          });
         }
       },
     };
