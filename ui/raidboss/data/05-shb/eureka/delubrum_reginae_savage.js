@@ -53,6 +53,7 @@ export default {
           // "Intercardinals" may confuse people between absolute and relative,
           // so add in the "of boss" just to be extra clear.
           en: 'Go Intercardinal of Boss',
+          de: 'Geh in eine Intercardinale Himmelsrichtung vom Boss',
         },
       },
     },
@@ -68,6 +69,7 @@ export default {
           avoidTankCleave: Outputs.avoidTankCleave,
           sharedTankBuster: {
             en: 'Shared Tank Buster',
+            de: 'Geteilter Tank Buster',
           },
         };
 
@@ -86,6 +88,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Stillness Tank Cleave',
+          de: 'Stille Tank Cleave',
         },
       },
     },
@@ -99,6 +102,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Hide Behind Barricade',
+          de: 'Hinter den Barrikaden verstecken',
         },
       },
     },
@@ -112,6 +116,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Knockback Into Barricade',
+          de: 'Rückstoß in die Barrikaden',
         },
       },
     },
@@ -157,6 +162,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Take Outside Bombs',
+          de: 'Nimm die äußeren Bomben',
         },
       },
     },
@@ -170,6 +176,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Knockback Away From Sphere',
+          de: 'Rückstoß weg von der Sphere',
         },
       },
     },
@@ -183,6 +190,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Out, Avoid Cleaves',
+          de: 'Raus, weiche den Cleaves aus',
         },
       },
     },
@@ -196,6 +204,7 @@ export default {
       outputStrings: {
         text: {
           en: 'In, Avoid Cleaves',
+          de: 'Rein, weiche den Cleaves aus',
         },
       },
     },
@@ -210,6 +219,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Spellforge on physical dps',
+          de: 'Zauberschmied auf physische DDs',
         },
       },
     },
@@ -223,7 +233,8 @@ export default {
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Steelstring on magical dps',
+          en: 'Steelsting on magical dps',
+          de: 'Stahlstachels auf magische DDs',
         },
       },
     },
@@ -275,6 +286,7 @@ export default {
           avoidCleave: Outputs.avoidTankCleave,
           cleaveOn: {
             en: 'Tank Cleave on ${player}',
+            de: 'Tank Cleave auf ${player}',
           },
         };
         if (matches.target === data.me)
