@@ -26,9 +26,6 @@ hideall "--sync--"
 # on when the other Verdant Paths occur.  This timeline has the slowest versions,
 # but with lots of extra syncs to future proof possible hp pushes.
 
-# TODO: I have marked all of the phantom edges I have seen, but there may be
-# one or two missing in the final phase.
-
 # TODO: Scorching Shackle is the damage when you fail chains, but it would
 # be nice to add --chains-- or something in the places where they appear.
 
