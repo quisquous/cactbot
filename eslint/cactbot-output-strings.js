@@ -42,7 +42,7 @@ const ruleModule = {
     schema: [],
     messages: {
       noOutputStrings: 'no outputStrings in trigger',
-      notFoundProperty: 'not found \'{{prop}}\' in \'{{outputParam}}\'',
+      notFoundProperty: 'no \'{{prop}}\' in \'{{outputParam}}\'',
     },
   },
   create: function(context) {
