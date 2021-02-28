@@ -82,18 +82,18 @@ const ruleModule = {
               .map((prop) => prop.value);
             textFunctions.forEach((func) => {
               if (t.isFunctionExpression(func) || t.isArrowFunctionExpression(func)) {
-                const param = func.params[2] && func.params[2].name;
+                const outputParam = func.params[2] && func.params[2].name;
                 const source = sourceCode.getText(func);
-                const m = source.match(new RegExp(`(?<=${param}\\.)(\\w+)(?=\\()`, 'g'));
+                const m = source.match(new RegExp(`(?<=${outputParam}\\.)(\\w+)(?=\\()`, 'g'));
                 if (m) {
-                  m.forEach((output) => {
-                    if (!outputStringProps.includes(output)) {
+                  m.forEach((outputProperty) => {
+                    if (!outputStringProps.includes(outputProperty)) {
                       context.report({
                         node: func,
                         messageId: 'notFoundProperty',
                         data: {
-                          prop: output,
-                          outputParam: param,
+                          prop: outputProperty,
+                          outputParam: outputParam,
                         },
                       });
                     }
