@@ -1,18 +1,21 @@
-import Util from './util.ts';
+import { Party } from '../types/global';
+import { Job, Role } from '../types/job.js';
+import Util from './util.js';
 
 export default class PartyTracker {
+  details: Party[];
+  partyNames_: string[];
+  partyIds_: string[];
+  allianceNames_: string[];
+  allianceIds_: string[];
+  nameToRole_: Record<string, Role>;
+  idToName_: Record<string, string>;
+  roleToPartyNames_: Record<Role, string[]>;
   constructor() {
     this.onPartyChanged({ party: [] });
-  }
-
-  // Bind this to PartyChanged events.
-  onPartyChanged(e) {
-    if (!e || !e.party)
-      return;
 
     // original event data
-    this.details = e.party;
-
+    this.details = [];
     this.partyNames_ = [];
     this.partyIds_ = [];
     this.allianceNames_ = [];
@@ -21,9 +24,17 @@ export default class PartyTracker {
     this.idToName_ = {};
 
     // role -> [names] but only for party
-    this.roleToPartyNames_ = {};
+    this.roleToPartyNames_ = {} as Record<Role, string[]>;
     for (const role of Util.getAllRoles())
       this.roleToPartyNames_[role] = [];
+  }
+
+  // Bind this to PartyChanged events.
+  onPartyChanged(e: { party: Party[]}): void {
+    if (!e || !e.party)
+      return;
+
+    this.details = e.party;
 
     for (const p of e.party) {
       this.allianceIds_.push(p.id);
@@ -41,99 +52,99 @@ export default class PartyTracker {
   }
 
   // returns an array of the names of players in your immediate party
-  get partyNames() {
+  get partyNames(): string[] {
     return this.partyNames_;
   }
 
-  get partyIds() {
+  get partyIds(): string[] {
     return this.partyIds_;
   }
 
   // returns an array of the names of players in your alliance
-  get allianceNames() {
+  get allianceNames(): string[] {
     return this.allianceNames_;
   }
 
   // returns an array of the names of tanks in your immediate party
-  get tankNames() {
+  get tankNames(): string[] {
     return this.roleToPartyNames_['tank'];
   }
 
   // returns an array of the names of healers in your immediate party
-  get healerNames() {
+  get healerNames(): string[] {
     return this.roleToPartyNames_['healer'];
   }
 
   // returns an array of the names of dps players in your immediate party
-  get dpsNames() {
+  get dpsNames(): string[] {
     return this.roleToPartyNames_['dps'];
   }
 
   // returns true iff the named player in your alliance is a particular role
-  isRole(name, role) {
+  isRole(name: string, role: string): boolean {
     return this.nameToRole_[name] === role;
   }
 
   // returns true iff the named player in your alliance is a tank
-  isTank(name) {
+  isTank(name: string): boolean {
     return this.isRole(name, 'tank');
   }
 
   // returns true iff the named player in your alliance is a healer
-  isHealer(name) {
+  isHealer(name: string): boolean {
     return this.isRole(name, 'healer');
   }
 
   // returns true iff the named player in your alliance is a dps
-  isDPS(name) {
+  isDPS(name: string): boolean {
     return this.isRole(name, 'dps');
   }
 
   // returns true iff the named player is in your immediate party
-  inParty(name) {
+  inParty(name: string): boolean {
     return this.partyNames.includes(name);
   }
 
   // returns true iff the named player is in your alliance
-  inAlliance(name) {
+  inAlliance(name: string): boolean {
     return this.allianceNames.includes(name);
   }
 
   // for a named player, returns the other tank in your immediate party
   // if named player is not a tank, or there's not exactly two tanks
   // in your immediate party, returns null.
-  otherTank(name) {
+  otherTank(name: string): string | null {
     const names = this.tankNames;
     if (names.length !== 2)
       return null;
     if (names[0] === name)
-      return names[1];
+      return names[1] as string;
     if (names[1] === name)
-      return names[0];
+      return names[0] as string;
     return null;
   }
 
   // see: otherTank, but for healers.
-  otherHealer(name) {
-    const names = this.roleToPartyNames['healer'];
+  otherHealer(name: string): string | null {
+    const names = this.roleToPartyNames_['healer'];
     if (names.length !== 2)
       return null;
     if (names[0] === name)
-      return names[1];
+      return names[1] as string;
     if (names[1] === name)
-      return names[0];
+      return names[0] as string;
     return null;
   }
 
   // returns the job name of the specified party member
-  jobName(name) {
+  jobName(name: string): Job | null {
     const partyIndex = this.partyNames.indexOf(name);
     if (partyIndex >= 0)
-      return Util.jobEnumToJob(this.details[partyIndex].job);
+      return Util.jobEnumToJob(this.details[partyIndex]?.job as number);
     return null;
   }
 
-  nameFromId(id) {
+  nameFromId(id: string): string | undefined {
     return this.idToName_[id];
   }
 }
