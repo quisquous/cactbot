@@ -816,8 +816,8 @@ export default {
     {
       'locale': 'en',
       'replaceText': {
-        'Right-Sided Shockwave/Left-Sided Shockwave': 'Right/Left-Sided Shockwave',
-        'Left-Sided Shockwave/Right-Sided Shockwave': 'Left/Right-Sided Shockwave',
+        'Right-Sided Shockwave/Left-Sided Shockwave': 'Right/Left Shockwave',
+        'Left-Sided Shockwave/Right-Sided Shockwave': 'Left/Right Shockwave',
         'Sword Omen/Shield Omen': 'Sword/Shield Omen',
         'Shield Omen/Sword Omen': 'Shield/Sword Omen',
       },
