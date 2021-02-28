@@ -35,7 +35,7 @@ const changeZoneParams = ['id', 'name'] as const;
 const network6dParams = ['instance', 'command', 'data0', 'data1', 'data2', 'data3'] as const;
 
 const parseHelper = (
-    params: { timestamp?: string; capture?: boolean },
+    params: { timestamp?: string; capture?: boolean } | undefined,
     funcName: string,
     fields: { [s: string]: Fields },
 ): RegExp => {
@@ -108,7 +108,7 @@ export default class NetRegexes {
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#14-networkstartscasting
    */
-  static startsUsing(params: Params<typeof startsUsingParams[number]>): RegExp {
+  static startsUsing(params?: Params<typeof startsUsingParams[number]>): RegExp {
     return parseHelper(params, 'startsUsing', {
       0: { field: 'type', value: '20' },
       1: { field: 'timestamp' },
@@ -127,7 +127,7 @@ export default class NetRegexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#15-networkability
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#16-networkaoeability
    */
-  static ability(params: Params<typeof abilityParams[number]>): RegExp {
+  static ability(params?: Params<typeof abilityParams[number]>): RegExp {
     return parseHelper(params, 'ability', {
       0: { field: 'type', value: '2[12]' },
       1: { field: 'timestamp' },
@@ -145,7 +145,7 @@ export default class NetRegexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#15-networkability
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#16-networkaoeability
    */
-  static abilityFull(params: Params<typeof abilityFullParams[number]>): RegExp {
+  static abilityFull(params?: Params<typeof abilityFullParams[number]>): RegExp {
     return parseHelper(params, 'abilityFull', {
       0: { field: 'type', value: '2[12]' },
       1: { field: 'timestamp' },
@@ -170,7 +170,7 @@ export default class NetRegexes {
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1b-networktargeticon-head-markers
    */
-  static headMarker(params: Params<typeof headMarkerParams[number]>): RegExp {
+  static headMarker(params?: Params<typeof headMarkerParams[number]>): RegExp {
     return parseHelper(params, 'headMarker', {
       0: { field: 'type', value: '27' },
       1: { field: 'timestamp' },
@@ -184,7 +184,7 @@ export default class NetRegexes {
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#03-addcombatant
    */
-  static addedCombatant(params: Params<typeof addedCombatantParams[number]>): RegExp {
+  static addedCombatant(params?: Params<typeof addedCombatantParams[number]>): RegExp {
     return parseHelper(params, 'addedCombatant', {
       0: { field: 'type', value: '03' },
       1: { field: 'timestamp' },
@@ -197,7 +197,7 @@ export default class NetRegexes {
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#03-addcombatant
    */
-  static addedCombatantFull(params: Params<typeof addedCombatantFullParams[number]>): RegExp {
+  static addedCombatantFull(params?: Params<typeof addedCombatantFullParams[number]>): RegExp {
     return parseHelper(params, 'addedCombatantFull', {
       0: { field: 'type', value: '03' },
       1: { field: 'timestamp' },
@@ -222,7 +222,7 @@ export default class NetRegexes {
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#04-removecombatant
    */
-  static removingCombatant(params: Params<typeof removingCombatantParams[number]>): RegExp {
+  static removingCombatant(params?: Params<typeof removingCombatantParams[number]>): RegExp {
     return parseHelper(params, 'removingCombatant', {
       0: { field: 'type', value: '04' },
       1: { field: 'timestamp' },
@@ -236,7 +236,7 @@ export default class NetRegexes {
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1a-networkbuff
    */
-  static gainsEffect(params: Params<typeof gainsEffectParams[number]>): RegExp {
+  static gainsEffect(params?: Params<typeof gainsEffectParams[number]>): RegExp {
     return parseHelper(params, 'gainsEffect', {
       0: { field: 'type', value: '26' },
       1: { field: 'timestamp' },
@@ -256,7 +256,7 @@ export default class NetRegexes {
    * Prefer gainsEffect over this function unless you really need extra data.
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#26-networkstatuseffects
    */
-  static statusEffectExplicit(params: Params<typeof statusEffectExplicitParams[number]>): RegExp {
+  static statusEffectExplicit(params?: Params<typeof statusEffectExplicitParams[number]>): RegExp {
     return parseHelper(params, 'statusEffectExplicit', {
       0: { field: 'type', value: '38' },
       1: { field: 'timestamp' },
@@ -280,7 +280,7 @@ export default class NetRegexes {
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove
    */
-  static losesEffect(params: Params<typeof losesEffectParams[number]>): RegExp {
+  static losesEffect(params?: Params<typeof losesEffectParams[number]>): RegExp {
     return parseHelper(params, 'losesEffect', {
       0: { field: 'type', value: '30' },
       1: { field: 'timestamp' },
@@ -298,7 +298,7 @@ export default class NetRegexes {
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#23-networktether
    */
-  static tether(params: Params<typeof tetherParams[number]>): RegExp {
+  static tether(params?: Params<typeof tetherParams[number]>): RegExp {
     return parseHelper(params, 'tether', {
       0: { field: 'type', value: '35' },
       1: { field: 'timestamp' },
@@ -315,7 +315,7 @@ export default class NetRegexes {
    * 'target' was defeated by 'source'
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#19-networkdeath
    */
-  static wasDefeated(params: Params<typeof wasDefeatedParams[number]>): RegExp {
+  static wasDefeated(params?: Params<typeof wasDefeatedParams[number]>): RegExp {
     return parseHelper(params, 'wasDefeated', {
       0: { field: 'type', value: '25' },
       1: { field: 'timestamp' },
@@ -330,7 +330,7 @@ export default class NetRegexes {
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
    */
-  static echo(params: Params<typeof echoParams[number]>): RegExp {
+  static echo(params?: Params<typeof echoParams[number]>): RegExp {
     if (typeof params === 'undefined')
       params = {};
     Regexes.validateParams(params, 'echo', ['type', 'timestamp', 'code', 'name', 'line', 'capture']);
@@ -342,7 +342,7 @@ export default class NetRegexes {
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
    */
-  static dialog(params: Params<typeof dialogParams[number]>): RegExp {
+  static dialog(params?: Params<typeof dialogParams[number]>): RegExp {
     if (typeof params === 'undefined')
       params = {};
     Regexes.validateParams(params, 'dialog', ['type', 'timestamp', 'code', 'name', 'line', 'capture']);
@@ -354,7 +354,7 @@ export default class NetRegexes {
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
    */
-  static message(params: Params<typeof messageParams[number]>): RegExp {
+  static message(params?: Params<typeof messageParams[number]>): RegExp {
     if (typeof params === 'undefined')
       params = {};
     Regexes.validateParams(params, 'message', ['type', 'timestamp', 'code', 'name', 'line', 'capture']);
@@ -367,7 +367,7 @@ export default class NetRegexes {
    * fields: code, name, line, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
    */
-  static gameLog(params: Params<typeof gameLogParams[number]>): RegExp {
+  static gameLog(params?: Params<typeof gameLogParams[number]>): RegExp {
     return parseHelper(params, 'gameLog', {
       0: { field: 'type', value: '00' },
       1: { field: 'timestamp' },
@@ -381,7 +381,7 @@ export default class NetRegexes {
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
    */
-  static gameNameLog(params: Params<typeof gameNameLogParams[number]>): RegExp {
+  static gameNameLog(params?: Params<typeof gameNameLogParams[number]>): RegExp {
     // for compat with Regexes.
     return NetRegexes.gameLog(params);
   }
@@ -390,7 +390,7 @@ export default class NetRegexes {
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#0c-playerstats
    */
-  static statChange(params: Params<typeof statChangeParams[number]>): RegExp {
+  static statChange(params?: Params<typeof statChangeParams[number]>): RegExp {
     return parseHelper(params, 'statChange', {
       0: { field: 'type', value: '12' },
       1: { field: 'timestamp' },
@@ -417,7 +417,7 @@ export default class NetRegexes {
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#01-changezone
    */
-  static changeZone(params: Params<typeof changeZoneParams[number]>): RegExp {
+  static changeZone(params?: Params<typeof changeZoneParams[number]>): RegExp {
     return parseHelper(params, 'changeZone', {
       0: { field: 'type', value: '01' },
       1: { field: 'timestamp' },
@@ -430,7 +430,7 @@ export default class NetRegexes {
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#21-network6d-actor-control-lines
    */
-  static network6d(params: Params<typeof network6dParams[number]>): RegExp {
+  static network6d(params?: Params<typeof network6dParams[number]>): RegExp {
     return parseHelper(params, 'network6d', {
       0: { field: 'type', value: '33' },
       1: { field: 'timestamp' },
