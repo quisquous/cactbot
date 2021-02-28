@@ -26,9 +26,6 @@ hideall "--sync--"
 # on when the other Verdant Paths occur.  This timeline has the slowest versions,
 # but with lots of extra syncs to future proof possible hp pushes.
 
-# TODO: I have marked all of the phantom edges I have seen, but there may be
-# one or two missing in the final phase.
-
 # TODO: Scorching Shackle is the damage when you fail chains, but it would
 # be nice to add --chains-- or something in the places where they appear.
 
@@ -180,13 +177,15 @@ hideall "--sync--"
 4534.1 "Second Mercy" sync /:Seeker Avatar:5B62:/
 4537.3 "Third Mercy" sync /:Seeker Avatar:5B63:/
 4540.5 "Fourth Mercy" sync /:Seeker Avatar:5B64:/
+4541.8 "Phantom Edge?" sync /:Trinity Seeker:5ABD:/
 4543.0 "Mercy Fourfold 1" #sync /:Trinity Seeker:5B94:/
 4544.0 "--middle--" sync /:Trinity Seeker:5A9A:/
 4544.9 "Mercy Fourfold 2" #sync /:Trinity Seeker:5B94:/
 4546.8 "Mercy Fourfold 3" #sync /:Trinity Seeker:5B94:/
 4548.7 "Mercy Fourfold 4" #sync /:Trinity Seeker:5B94:/
-4553.1 "Baleful Blade" sync /:Trinity Seeker:5ABE:/
-4568.4 "Baleful Onslaught" sync /:Trinity Seeker:5AD5:/
+4553.1 "Baleful Blade" sync /:Trinity Seeker:5AB[EF]:/
+4562.3 "Phantom Edge?" sync /:Trinity Seeker:5ABD:/
+4568.4 "Baleful Onslaught" sync /:Trinity Seeker:5AD[56]:/
 
 # Enrage
 4580.9 "--sync--" sync /:5BBA:Trinity Seeker/ window 1000,10
