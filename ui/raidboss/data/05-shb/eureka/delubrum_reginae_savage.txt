@@ -920,7 +920,7 @@ hideall "--sync--"
 18503.2 "Heaven's Wrath" sync /:The Queen:59F6:/
 18509.0 "--knockback--" sync /:The Queen:59F8:/
 18511.3 "--untargetable--"
-18512.2 "Icy Portent" sync /:Queen's Soldier:5A22:/
+18512.2 "Icy Portent/Fiery Portent" sync /:Queen's Soldier:5A2[12]:/
 18515.5 "Above Board" sync /:Queen's Warrior:5A0B:/
 18515.5 "--sync--" sync /:Queen's Warrior:5B8E:/
 18518.5 "Lots Cast" sync /(:Aetherial Burst:5B89:|:Aetherial Bolt:5A0D:)/
