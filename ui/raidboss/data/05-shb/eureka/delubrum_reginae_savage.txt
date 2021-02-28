@@ -180,6 +180,7 @@ hideall "--sync--"
 4534.1 "Second Mercy" sync /:Seeker Avatar:5B62:/
 4537.3 "Third Mercy" sync /:Seeker Avatar:5B63:/
 4540.5 "Fourth Mercy" sync /:Seeker Avatar:5B64:/
+4541.8 "Phantom Edge?" sync /:Trinity Seeker:5ABD:/
 4543.0 "Mercy Fourfold 1" #sync /:Trinity Seeker:5B94:/
 4544.0 "--middle--" sync /:Trinity Seeker:5A9A:/
 4544.9 "Mercy Fourfold 2" #sync /:Trinity Seeker:5B94:/
