@@ -96,7 +96,6 @@ hideall "--sync--"
 4235.1 "Iron Splitter" sync /:Trinity Seeker:5AC0:/
 4239.9 "Iron Rose" sync /:Seeker Avatar:5AD9:/
 4251.3 "Verdant Tempest" sync /:Trinity Seeker:5AD3:/
-4265.8 "Verdant Path" sync /:Trinity Seeker:5A97:/
 
 # Merciful Air v2
 4262.8 "--sync--" sync /:5A97:Trinity Seeker/ window 300,10
@@ -150,7 +149,6 @@ hideall "--sync--"
 4400.9 "Iron Rose" sync /:Seeker Avatar:5AD9:/
 4402.2 "Merciful Blooms" sync /:Trinity Seeker:5ACA:/
 4412.3 "Verdant Tempest" sync /:Trinity Seeker:5AD3:/
-4425.5 "Verdant Path" sync /:Trinity Seeker:5A98:/
 
 # Baleful Air v2
 4422.5 "--sync--" sync /:5A98:Trinity Seeker/ window 300,10
