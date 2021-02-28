@@ -20,6 +20,16 @@ const tankBusterOnParty = (data, matches) => {
 export default {
   zoneId: ZoneId.DelubrumReginaeSavage,
   timelineFile: 'delubrum_reginae_savage.txt',
+  timelineTriggers: [
+    {
+      id: 'DelubrumSav Lord Vicious Swipe',
+      regex: /Vicious Swipe/,
+      // There are different timings in the first and second phase.
+      // Consistently use 5 seconds beforehand for both.
+      beforeSeconds: 5,
+      response: Responses.knockback(),
+    },
+  ],
   triggers: [
     {
       id: 'DelubrumSav Seeker Baleful Swath',
@@ -34,7 +44,9 @@ export default {
       alertText: (data, _, outputs) => outputs.text(),
       outputStrings: {
         text: {
-          en: 'Intercardinals',
+          // "Intercardinals" may confuse people between absolute and relative,
+          // so add in the "of boss" just to be extra clear.
+          en: 'Go Intercardinal of Boss',
         },
       },
     },
@@ -71,9 +83,7 @@ export default {
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Get Out Behind Barricade',
-          de: 'Geh raus, hinter die Barrikaden',
-          ko: '밖으로, 바리케이트 뒤로',
+          en: 'Hide Behind Barricade',
         },
       },
     },
@@ -83,7 +93,7 @@ export default {
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'In Front Of Barricade',
+          en: 'Knockback Into Barricade',
         },
       },
     },
@@ -222,11 +232,6 @@ export default {
           return { alertText: output.cleaveOn({ player: data.ShortName(matches.target) }) };
         return { infoText: output.avoidCleave() };
       },
-    },
-    {
-      id: 'DelubrumSav Lord Vicious Swipe',
-      netRegex: NetRegexes.startsUsing({ source: 'Stygimoloch Lord', id: '5552', capture: false }),
-      response: Responses.knockback(),
     },
     {
       id: 'DelubrumSav Lord 1111-Tonze Swing',
