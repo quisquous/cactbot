@@ -183,9 +183,9 @@ hideall "--sync--"
 4544.9 "Mercy Fourfold 2" #sync /:Trinity Seeker:5B94:/
 4546.8 "Mercy Fourfold 3" #sync /:Trinity Seeker:5B94:/
 4548.7 "Mercy Fourfold 4" #sync /:Trinity Seeker:5B94:/
-4553.1 "Baleful Blade" sync /:Trinity Seeker:5ABE:/
+4553.1 "Baleful Blade" sync /:Trinity Seeker:5AB[EF]:/
 4562.3 "Phantom Edge?" sync /:Trinity Seeker:5ABD:/
-4568.4 "Baleful Onslaught" sync /:Trinity Seeker:5AD5:/
+4568.4 "Baleful Onslaught" sync /:Trinity Seeker:5AD[56]:/
 
 # Enrage
 4580.9 "--sync--" sync /:5BBA:Trinity Seeker/ window 1000,10
