@@ -86,7 +86,7 @@ const ruleModule = {
               if (!outputParam) return;
 
               const source = sourceCode.getText(func);
-              const m = source.match(new RegExp(`(?<=${outputParam}\\.)(\\w+)(?=\\()`, 'g'));
+              const m = source.match(new RegExp(`(?<=\\b${outputParam}\\.)(\\w+)(?=\\()`, 'g'));
               if (!m) return;
 
               m.forEach((outputProperty) => {
