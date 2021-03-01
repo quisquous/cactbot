@@ -165,7 +165,7 @@ export default {
           fr: 'Gauche, puis droite',
           ja: '左 => 右',
           cn: '左 => 右',
-          ko: '왼쪽, 그리고 오른쪽',
+          ko: '왼쪽부터 => 오른쪽',
         },
         rightThenLeft: {
           en: 'Right, Then Left',
@@ -173,7 +173,7 @@ export default {
           fr: 'Droite, puis gauche',
           ja: '右 => 左',
           cn: '右 => 左',
-          ko: '오른쪽, 그리고 왼쪽',
+          ko: '오른쪽부터 => 왼쪽',
         },
       },
     },
@@ -282,7 +282,7 @@ export default {
         text: {
           en: 'Spellforge on physical dps',
           de: 'Zauberschmied auf physische DDs',
-          ja: '魔法！受けてスペルフォージ',
+          ja: '魔法！スペルフォージを貰う',
           ko: '마법속성! 스펠포지를 받으세요',
         },
       },
@@ -299,7 +299,7 @@ export default {
         text: {
           en: 'Steelsting on magical dps',
           de: 'Stahlstachels auf magische DDs',
-          ja: '物理！受けてスチールスティング',
+          ja: '物理！スチールスティングを貰う',
           ko: '물리속성! 스틸스팅을 받으세요',
         },
       },
