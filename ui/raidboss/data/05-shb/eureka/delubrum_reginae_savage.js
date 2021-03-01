@@ -313,7 +313,7 @@ export default {
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Dispel to Warrior',
+          en: 'Dispel Warrior's Boost',
           ja: 'ウォリアーにディスペル！',
           ko: '워리어에게 디스펠을!',
         },
