@@ -79,7 +79,7 @@ export default {
       },
     },
     {
-      id: 'DelubrumSav Seeker Baleful Onslaught Stillness',
+      id: 'DelubrumSav Seeker Baleful Onslaught Solo',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AD6', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AD6', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AD6', capture: false }),
@@ -87,8 +87,8 @@ export default {
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Stillness Tank Cleave',
-          de: 'Stille Tank Cleave',
+          en: 'Solo Tank Cleave',
+          de: 'Solo Tank Cleave',
         },
       },
     },
