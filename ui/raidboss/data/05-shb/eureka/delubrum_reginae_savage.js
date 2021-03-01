@@ -17,6 +17,10 @@ const tankBusterOnParty = (data, matches) => {
   return data.party.inParty(data.target);
 };
 
+const caresAboutTankBuster = (data) => {
+  return data.role === 'tank' || data.role === 'healer';
+};
+
 export default {
   zoneId: ZoneId.DelubrumReginaeSavage,
   timelineFile: 'delubrum_reginae_savage.txt',
@@ -157,7 +161,7 @@ export default {
           fr: 'Gauche, puis droite',
           ja: '左 => 右',
           cn: '左 => 右',
-          ko: '왼쪽부터 => 오른쪽',
+          ko: '왼쪽 => 오른쪽',
         },
         rightThenLeft: {
           en: 'Right, Then Left',
@@ -165,7 +169,7 @@ export default {
           fr: 'Droite, puis gauche',
           ja: '右 => 左',
           cn: '右 => 左',
-          ko: '오른쪽부터 => 왼쪽',
+          ko: '오른쪽 => 왼쪽',
         },
       },
     },
@@ -373,6 +377,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '594E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '594E', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '594E', capture: false }),
+      conditions: caresAboutTankBuster(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -389,6 +394,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5BB5', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5BB5', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5BB5', capture: false }),
+      conditions: caresAboutTankBuster(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
