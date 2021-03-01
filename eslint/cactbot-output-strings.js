@@ -64,62 +64,62 @@ const ruleModule = {
     return {
       ObjectExpression(node) {
         const propNames = getAllKeys(node.properties, context);
-        if (propNames.includes('id') && propNames.some((name) => textProps.includes(name))) {
-          if (!node.properties.find((prop) => prop.key && prop.key.name === 'outputStrings')) {
-            context.report({
-              node: node,
-              messageId: 'noOutputStrings',
-            });
-            return;
-          }
-          const outputStringProps = (() => {
-            const propNames = [];
-            const outputProps = node.properties.find((prop) => prop.key && prop.key.name === 'outputStrings');
-            if (outputProps && outputProps.value && outputProps.value.properties) {
-              getAllKeys(outputProps.value.properties, context)
-                .forEach((n) => propNames.push(n));
-            } else if (outputProps && t.isIdentifier(outputProps.value)) {
-              const obj = context
-                .getScope()
-                .variables
-                .find((variable) => variable.name === outputProps.value.name);
-              if (obj) {
-                obj.defs.forEach((def) => {
-                  const props = def.node.init && def.node.init.properties;
-                  getAllKeys(props, context).forEach((n) => propNames.push(n));
-                });
-              }
-            }
-            return propNames;
-          })();
-          if (!outputStringProps) return;
-          const textFunctions = node
-            .properties
-            .filter((prop) => textProps.includes(prop.key.name))
-            .map((prop) => prop.value);
-          textFunctions.forEach((func) => {
-            if (!t.isFunctionExpression(func) && !t.isArrowFunctionExpression(func)) return;
-            const outputParam = func.params[2] && func.params[2].name;
-            if (!outputParam) return;
+        if (!propNames.includes('id') || !propNames.some((name) => textProps.includes(name))) return;
 
-            const source = sourceCode.getText(func);
-            const m = source.match(new RegExp(`(?<=\\b${outputParam}\\.)(\\w+)(?=\\()`, 'g'));
-            if (!m) return;
-
-            m.forEach((outputProperty) => {
-              if (!outputStringProps.includes(outputProperty)) {
-                context.report({
-                  node: func,
-                  messageId: 'notFoundProperty',
-                  data: {
-                    prop: outputProperty,
-                    outputParam: outputParam,
-                  },
-                });
-              }
-            });
+        if (!node.properties.find((prop) => prop.key && prop.key.name === 'outputStrings')) {
+          context.report({
+            node: node,
+            messageId: 'noOutputStrings',
           });
+          return;
         }
+        const outputStringProps = (() => {
+          const propNames = [];
+          const outputProps = node.properties.find((prop) => prop.key && prop.key.name === 'outputStrings');
+          if (outputProps && outputProps.value && outputProps.value.properties) {
+            getAllKeys(outputProps.value.properties, context)
+              .forEach((n) => propNames.push(n));
+          } else if (outputProps && t.isIdentifier(outputProps.value)) {
+            const obj = context
+              .getScope()
+              .variables
+              .find((variable) => variable.name === outputProps.value.name);
+            if (obj) {
+              obj.defs.forEach((def) => {
+                const props = def.node.init && def.node.init.properties;
+                getAllKeys(props, context).forEach((n) => propNames.push(n));
+              });
+            }
+          }
+          return propNames;
+        })();
+        if (!outputStringProps) return;
+        const textFunctions = node
+          .properties
+          .filter((prop) => textProps.includes(prop.key.name))
+          .map((prop) => prop.value);
+        textFunctions.forEach((func) => {
+          if (!t.isFunctionExpression(func) && !t.isArrowFunctionExpression(func)) return;
+          const outputParam = func.params[2] && func.params[2].name;
+          if (!outputParam) return;
+
+          const source = sourceCode.getText(func);
+          const m = source.match(new RegExp(`(?<=\\b${outputParam}\\.)(\\w+)(?=\\()`, 'g'));
+          if (!m) return;
+
+          m.forEach((outputProperty) => {
+            if (!outputStringProps.includes(outputProperty)) {
+              context.report({
+                node: func,
+                messageId: 'notFoundProperty',
+                data: {
+                  prop: outputProperty,
+                  outputParam: outputParam,
+                },
+              });
+            }
+          });
+        });
       },
     };
   },
