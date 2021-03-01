@@ -1,14 +1,19 @@
 const t = require('@babel/types');
 const textProps = ['alarmText', 'alertText', 'infoText', 'tts'];
 
+/** @typedef {import("eslint").Rule.RuleContext} Context */
 /**
  * get all keys name from object literal expression
  * @param {(t.Property|t.SpreadElement)[]} props
- * @param {Map<string, (t.Property|t.SpreadElement)[]>} spreadNameMaps
+ * @param {Context} context
  * @return {string[]}
  */
-const getAllKeys = (props, spreadNameMaps) => {
+const getAllKeys = (props, context) => {
   const propKeys = [];
+
+  if (typeof props === 'undefined') return propKeys;
+
+  const vars = context.getScope().variables;
 
   props.forEach((prop) => {
     if (t.isProperty(prop)) {
@@ -17,9 +22,18 @@ const getAllKeys = (props, spreadNameMaps) => {
       else if (t.isLiteral(prop.key))
         propKeys.push(prop.key.value);
     } else if (t.isSpreadElement(prop)) {
-      if (t.isIdentifier(prop.argument) && spreadNameMaps.has(prop.argument.name)) {
-        getAllKeys(spreadNameMaps.get(prop.argument.name), spreadNameMaps)
-          .forEach((name) => propKeys.push(name));
+      if (t.isIdentifier(prop.argument)) {
+        const variable = vars.find((v) => v.name === prop.argument.name);
+        if (!variable) return;
+        const props = variable.defs.map((def) => {
+          if (t.isVariableDeclarator(def.node) && t.isObjectExpression(def.node.init))
+            return def.node.init.properties;
+        })
+          .filter((p) => typeof p !== 'undefined')
+          .forEach((p) => {
+            getAllKeys(p, context)
+              .forEach((name) => propKeys.push(name));
+          });
       }
     }
   });
@@ -47,14 +61,9 @@ const ruleModule = {
   },
   create: function(context) {
     const sourceCode = context.getSourceCode();
-    const spreadNameMaps = new Map();
     return {
-      VariableDeclarator(node) {
-        if (t.isIdentifier(node.id) && t.isObjectExpression(node.init))
-          spreadNameMaps.set(node.id.name, node.init.properties);
-      },
       ObjectExpression(node) {
-        const propNames = getAllKeys(node.properties, spreadNameMaps);
+        const propNames = getAllKeys(node.properties, context);
         if (propNames.includes('id') && propNames.some((name) => textProps.includes(name))) {
           if (!node.properties.find((prop) => prop.key && prop.key.name === 'outputStrings')) {
             context.report({
@@ -67,12 +76,19 @@ const ruleModule = {
             const propNames = [];
             const outputProps = node.properties.find((prop) => prop.key && prop.key.name === 'outputStrings');
             if (outputProps && outputProps.value && outputProps.value.properties) {
-              getAllKeys(outputProps.value.properties, spreadNameMaps)
+              getAllKeys(outputProps.value.properties, context)
                 .forEach((n) => propNames.push(n));
             } else if (outputProps && t.isIdentifier(outputProps.value)) {
-              const obj = spreadNameMaps.get(outputProps.value.name);
-              if (obj)
-                getAllKeys(obj, spreadNameMaps).forEach((n) => propNames.push(n));
+              const obj = context
+                .getScope()
+                .variables
+                .find((variable) => variable.name === outputProps.value.name);
+              if (obj) {
+                obj.defs.forEach((def) => {
+                  const props = def.node.init && def.node.init.properties;
+                  getAllKeys(props, context).forEach((n) => propNames.push(n));
+                });
+              }
             }
             return propNames;
           })();
