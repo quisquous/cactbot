@@ -56,7 +56,7 @@ hideall "--sync--"
 4105.5 "Baleful Onslaught" sync /:Trinity Seeker:5AD6:/
 4115.6 "Phantom Edge?" sync /:Trinity Seeker:5ABD:/
 4117.8 "--middle--" sync /:Trinity Seeker:5A9A:/
-4118.4 "--chains--" sync /23:0000:0000:0080:/ duration 3.1
+4118.4 "--chains--" duration 3.1 # sync /23:0000:0000:0080:/ 
 4126.9 "Baleful Blade" sync /:Trinity Seeker:5AB[EF]:/
 4132.1 "Manifest Avatar" sync /:Trinity Seeker:5ADA:/
 4138.8 "Baleful Comet 1" #sync /:Seeker Avatar:5AD7:/
@@ -120,7 +120,7 @@ hideall "--sync--"
 4315.8 "Merciful Moon" sync /:Aetherial Orb:5AC9:/
 4318.4 "Merciful Breeze" sync /:Trinity Seeker:5AC8:/
 4321.8 "Merciful Blooms" sync /:Trinity Seeker:5ACA:/
-4325.1 "--chains--" sync /23:0000:0000:0080:/ duration 3.1
+4325.1 "--chains--" duration 3.1 # sync /23:0000:0000:0080:/ 
 4335.2 "Verdant Tempest" sync /:Trinity Seeker:5AD3:/
 4346.5 "Merciful Arc" sync /:Trinity Seeker:5AD4:/
 4349.7 "--middle--" sync /:Trinity Seeker:5A9A:/
@@ -163,7 +163,7 @@ hideall "--sync--"
 4465.0 "Mercy Fourfold 2" #sync /:Trinity Seeker:5B94:/
 4466.9 "Mercy Fourfold 3" #sync /:Trinity Seeker:5B94:/
 4468.8 "Mercy Fourfold 4" #sync /:Trinity Seeker:5B94:/
-4472.2 "--chains--" sync /23:0000:0000:0080:/ duration 3.1
+4472.2 "--chains--" duration 3.1 # sync /23:0000:0000:0080:/ 
 4482.4 "Verdant Tempest" sync /:Trinity Seeker:5AD3:/
 4484.6 "--middle--" sync /:Trinity Seeker:5A9A:/
 4488.8 "Manifest Avatar" sync /:Trinity Seeker:5ADA:/
@@ -175,7 +175,7 @@ hideall "--sync--"
 4518.7 "Manifest Avatar" sync /:Trinity Seeker:5ADA:/
 4530.9 "First Mercy" sync /:Seeker Avatar:5B61:/
 4534.1 "Second Mercy" sync /:Seeker Avatar:5B62:/
-4534.7 "--chains--" sync /23:0000:0000:0080:/ duration 3.1
+4534.7 "--chains--" duration 3.1 # sync /23:0000:0000:0080:/ 
 4537.3 "Third Mercy" sync /:Seeker Avatar:5B63:/
 4540.5 "Fourth Mercy" sync /:Seeker Avatar:5B64:/
 4541.8 "Phantom Edge?" sync /:Trinity Seeker:5ABD:/
