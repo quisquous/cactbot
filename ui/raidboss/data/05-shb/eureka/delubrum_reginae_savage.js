@@ -84,10 +84,10 @@ export default {
     },
     {
       id: 'DelubrumSav Seeker Baleful Onslaught',
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AD6', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AD6', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AD6', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AD6', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AD6' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AD6' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AD6' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AD6' }),
       response: Responses.tankCleave(),
     },
     {
@@ -183,8 +183,8 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: '5773', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Dahu', id: '5773', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダウー', id: '5773', capture: false }),
-      suppressSeconds: 8,
       preRun: (data) => data.dahuHotCharge = (data.dahuHotCharge || 0) + 1,
+      suppressSeconds: 8,
       alertText: (data, _, output) => {
         if (data.dahuHotCharge === 2)
           return output.followCharge();
