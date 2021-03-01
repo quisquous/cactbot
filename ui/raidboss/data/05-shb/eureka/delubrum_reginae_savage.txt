@@ -175,7 +175,7 @@ hideall "--sync--"
 4518.7 "Manifest Avatar" sync /:Trinity Seeker:5ADA:/
 4530.9 "First Mercy" sync /:Seeker Avatar:5B61:/
 4534.1 "Second Mercy" sync /:Seeker Avatar:5B62:/
-4534.7 "--chains--" sync /23:0000:0000:0080:/ duration 3.1 # Good
+4534.7 "--chains--" sync /23:0000:0000:0080:/ duration 3.1
 4537.3 "Third Mercy" sync /:Seeker Avatar:5B63:/
 4540.5 "Fourth Mercy" sync /:Seeker Avatar:5B64:/
 4541.8 "Phantom Edge?" sync /:Trinity Seeker:5ABD:/
