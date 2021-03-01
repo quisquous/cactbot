@@ -83,14 +83,6 @@ export default {
       },
     },
     {
-      id: 'DelubrumSav Seeker Baleful Onslaught',
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AD6' }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AD6' }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AD6' }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AD6' }),
-      response: Responses.tankCleave(),
-    },
-    {
       id: 'DelubrumSav Seeker Baleful Blade Out',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5ABE', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5ABE', capture: false }),
@@ -174,35 +166,6 @@ export default {
           ja: '右 => 左',
           cn: '右 => 左',
           ko: '오른쪽부터 => 왼쪽',
-        },
-      },
-    },
-    {
-      id: 'DelubrumSav Dahu Hot Charge',
-      netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '5773', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: '5773', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Dahu', id: '5773', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ダウー', id: '5773', capture: false }),
-      preRun: (data) => data.dahuHotCharge = (data.dahuHotCharge || 0) + 1,
-      suppressSeconds: 8,
-      alertText: (data, _, output) => {
-        if (data.dahuHotCharge === 2)
-          return output.followCharge();
-        return output.followSecond();
-      },
-      outputStrings: {
-        followCharge: {
-          en: 'Follow Charge',
-          de: 'Folge Ansturm',
-          fr: 'Suivez la charge',
-          ja: '突進を追いかけて',
-          ko: '돌진을 따라가세요',
-        },
-        followSecond: {
-          en: 'Follow Second Charge',
-          de: 'Folge dem 2. Ansturm',
-          fr: '2回目の突進を追いかけて',
-          ko: '두번째 돌진을 따라가세요',
         },
       },
     },
@@ -313,7 +276,7 @@ export default {
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Dispel Warrior's Boost',
+          en: 'Dispel Warrior\'s Boost',
           ja: 'ウォリアーにディスペル！',
           ko: '워리어에게 디스펠을!',
         },
@@ -405,7 +368,7 @@ export default {
       },
     },
     {
-      id: 'DelubrumSav Avowed Wrath Of Bozja MT',
+      id: 'DelubrumSav Avowed Wrath Of Bozja 1',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '594E', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '594E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '594E', capture: false }),
@@ -421,7 +384,7 @@ export default {
       },
     },
     {
-      id: 'DelubrumSav Avowed Wrath Of Bozja ST',
+      id: 'DelubrumSav Avowed Wrath Of Bozja 2',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5BB5', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5BB5', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5BB5', capture: false }),
@@ -544,16 +507,12 @@ export default {
         },
       },
     },
-    /*
     {
       id: 'DelubrumSav Queen Knight Optimal Offensive Sword',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '5A02', capture: false }),
-      netRegexDe:
-        NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '5A02', capture: false }),
-      netRegexFr:
-        NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '5A02', capture: false }),
-      netRegexJa:
-        NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '5A02', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '5A02', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '5A02', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '5A02', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -566,12 +525,9 @@ export default {
     {
       id: 'DelubrumSav Queen Knight Optimal Offensive Shield',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '5A03', capture: false }),
-      netRegexDe:
-        NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '5A03', capture: false }),
-      netRegexFr:
-        NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '5A03', capture: false }),
-      netRegexJa:
-        NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '5A03', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '5A03', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '5A03', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '5A03', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -585,31 +541,25 @@ export default {
     {
       id: 'DelubrumSav Queen Knight Optimal Play Sword',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '59FF', capture: false }),
-      netRegexDe:
-        NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '59FF', capture: false }),
-      netRegexFr:
-        NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '59FF', capture: false }),
-      netRegexJa:
-        NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '59FF', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '59FF', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '59FF', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '59FF', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Out, Avoid Cleaves',
           de: 'Raus, weiche den Cleaves aus',
           ja: '外へ、つめ確認',
-          ko: '발톱없는 곳 멀리!',
+          ko: '발톱없는 곳 멀리',
         },
       },
     },
     {
       id: 'DelubrumSav Queen Knight Optimal Play Shield',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '5A00', capture: false }),
-      netRegexDe:
-        NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '5A00', capture: false }),
-      netRegexFr:
-        NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '5A00', capture: false }),
-      netRegexJa:
-        NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '5A00', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '5A00', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '5A00', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '5A00', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -620,7 +570,6 @@ export default {
         },
       },
     },
-    */
   ],
   timelineReplace: [
     {
