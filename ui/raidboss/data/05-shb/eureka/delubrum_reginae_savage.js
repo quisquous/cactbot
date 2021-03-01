@@ -54,6 +54,8 @@ export default {
           // so add in the "of boss" just to be extra clear.
           en: 'Go Intercardinal of Boss',
           de: 'Geh in eine Intercardinale Himmelsrichtung vom Boss',
+          ja: '斜めに回避',
+          ko: '십자공격! 비스듬히 피해욧',
         },
       },
     },
@@ -70,6 +72,8 @@ export default {
           sharedTankBuster: {
             en: 'Shared Tank Buster',
             de: 'Geteilter Tank Buster',
+            ja: 'タンクのみ頭割り',
+            ko: '쉐어버스터',
           },
         };
 
@@ -79,18 +83,12 @@ export default {
       },
     },
     {
-      id: 'DelubrumSav Seeker Baleful Onslaught Stillness',
+      id: 'DelubrumSav Seeker Baleful Onslaught',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AD6', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AD6', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AD6', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AD6', capture: false }),
-      alertText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Stillness Tank Cleave',
-          de: 'Stille Tank Cleave',
-        },
-      },
+      response: Responses.tankCleave(),
     },
     {
       id: 'DelubrumSav Seeker Baleful Blade Out',
@@ -103,6 +101,8 @@ export default {
         text: {
           en: 'Hide Behind Barricade',
           de: 'Hinter den Barrikaden verstecken',
+          ja: 'バリケートの後ろに',
+          ko: '목책 뒤로 피하세욧!',
         },
       },
     },
@@ -117,6 +117,31 @@ export default {
         text: {
           en: 'Knockback Into Barricade',
           de: 'Rückstoß in die Barrikaden',
+          ja: 'バリケートにノックバック',
+          ko: '목책으로 넉백!',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Seeker Verdant Tempest',
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AD3', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.aoe(),
+    },
+    {
+      id: 'DelubrumSav Seeker Iron Impact',
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5A99', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5A99', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5A99', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5A99', capture: false }),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Line Stack',
+          de: 'In einer Linie sammeln',
+          fr: 'Package en ligne',
+          ja: '後ろに頭割り',
+          ko: '한줄로 뭉쳐모이세요',
         },
       },
     },
@@ -140,7 +165,7 @@ export default {
           fr: 'Gauche, puis droite',
           ja: '左 => 右',
           cn: '左 => 右',
-          ko: '왼쪽 => 오른쪽',
+          ko: '왼쪽, 그리고 오른쪽',
         },
         rightThenLeft: {
           en: 'Right, Then Left',
@@ -148,7 +173,36 @@ export default {
           fr: 'Droite, puis gauche',
           ja: '右 => 左',
           cn: '右 => 左',
-          ko: '오른쪽 => 왼쪽',
+          ko: '오른쪽, 그리고 왼쪽',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Dahu Hot Charge',
+      netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '5773', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: '5773', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Dahu', id: '5773', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ダウー', id: '5773', capture: false }),
+      suppressSeconds: 8,
+      preRun: (data) => data.dahuHotCharge = (data.dahuHotCharge || 0) + 1,
+      alertText: (data, _, output) => {
+        if (data.dahuHotCharge === 2)
+          return output.followCharge();
+        return output.followSecond();
+      },
+      outputStrings: {
+        followCharge: {
+          en: 'Follow Charge',
+          de: 'Folge Ansturm',
+          fr: 'Suivez la charge',
+          ja: '突進を追いかけて',
+          ko: '돌진을 따라가세요',
+        },
+        followSecond: {
+          en: 'Follow Second Charge',
+          de: 'Folge dem 2. Ansturm',
+          fr: '2回目の突進を追いかけて',
+          ko: '두번째 돌진을 따라가세요',
         },
       },
     },
@@ -163,6 +217,8 @@ export default {
         text: {
           en: 'Take Outside Bombs',
           de: 'Nimm die äußeren Bomben',
+          ja: 'ナイトの突進、外の爆弾へ',
+          ko: '나이트 돌진! 맨바깥으로!',
         },
       },
     },
@@ -177,6 +233,8 @@ export default {
         text: {
           en: 'Knockback Away From Sphere',
           de: 'Rückstoß weg von der Sphere',
+          ja: 'ナイトの突進、タマからノックバック',
+          ko: '나이트 돌진! 구슬도 넉백!',
         },
       },
     },
@@ -191,6 +249,8 @@ export default {
         text: {
           en: 'Out, Avoid Cleaves',
           de: 'Raus, weiche den Cleaves aus',
+          ja: '外へ、つめ確認',
+          ko: '발톱없는 곳 바깥쪽으로',
         },
       },
     },
@@ -205,6 +265,8 @@ export default {
         text: {
           en: 'In, Avoid Cleaves',
           de: 'Rein, weiche den Cleaves aus',
+          ja: '中へ、つめ確認',
+          ko: '발톱없는 곳 발밑으로',
         },
       },
     },
@@ -220,6 +282,8 @@ export default {
         text: {
           en: 'Spellforge on physical dps',
           de: 'Zauberschmied auf physische DDs',
+          ja: '魔法！受けてスペルフォージ',
+          ko: '마법속성! 스펠포지를 받으세요',
         },
       },
     },
@@ -235,8 +299,75 @@ export default {
         text: {
           en: 'Steelsting on magical dps',
           de: 'Stahlstachels auf magische DDs',
+          ja: '物理！受けてスチールスティング',
+          ko: '물리속성! 스틸스팅을 받으세요',
         },
       },
+    },
+    {
+      id: 'DelubrumSav Guard Warrior Boost',
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: '582D', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegerin Der Königin', id: '582D', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Guerrière De La Reine', id: '582D', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ウォリアー', id: '582D', capture: false }),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dispel to Warrior',
+          ja: 'ウォリアーにディスペル！',
+          ko: '워리어에게 디스펠을!',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Guard Soldier Great Ball Of Fire',
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '583B', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '583B', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '583B', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '583B', capture: false }),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Remember small fireballs',
+          ja: '小さなファイアボールをおぼえて',
+          ko: '작은 불구슬 위치를 기억하세요!',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Guard Soldier Fiery Portent',
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: ['583F', '5A21'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: ['583F', '5A21'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: ['583F', '5A21'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: ['583F', '5A21'], capture: false }),
+      suppressSeconds: 3,
+      response: Responses.stopEverything(),
+    },
+    {
+      id: 'DelubrumSav Guard Soldier Icy Portent',
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: ['5840', '5A22'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: ['5840', '5A22'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: ['5840', '5A22'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: ['5840', '5A22'], capture: false }),
+      suppressSeconds: 3,
+      response: Responses.moveAround(),
+    },
+    {
+      id: 'DelubrumSav Phantom Malediction Of Ruin',
+      netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57C1' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57C1' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '57C1' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57C1' }),
+      delaySeconds: 15,
+      response: Responses.interrupt(),
+    },
+    {
+      id: 'DelubrumSav Phantom Vile Wave',
+      netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57BF', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57BF', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '57BF', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57BF', capture: false }),
+      response: Responses.getBehind('alert'),
     },
     {
       id: 'DelubrumSav Avowed Fury Of Bozja',
@@ -268,9 +399,51 @@ export default {
         text: {
           en: 'Get In Front',
           de: 'Geh vor den Boss',
-          ko: '정면에 서기',
+          ja: 'アヴァウドの前へ',
+          ko: '보스 앞으로 가세요',
         },
       },
+    },
+    {
+      id: 'DelubrumSav Avowed Wrath Of Bozja MT',
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '594E', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '594E', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '594E', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '594E', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Shared Tank Buster',
+          de: 'Geteilter Tank Buster',
+          ja: 'MT組タンク頭割り',
+          ko: 'MT 쉐어버스터!',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Avowed Wrath Of Bozja ST',
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5BB5', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5BB5', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5BB5', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5BB5', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Shared Tank Buster',
+          de: 'Geteilter Tank Buster',
+          ja: 'ST組タンク頭割り',
+          ko: 'ST 쉐어버스터!',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Avowed Glory Of Bozja',
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5B32', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5B32', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5B32', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5B32', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.aoe(),
     },
     {
       id: 'DelubrumSav Lord Foe Splitter',
@@ -287,6 +460,8 @@ export default {
           cleaveOn: {
             en: 'Tank Cleave on ${player}',
             de: 'Tank Cleave auf ${player}',
+            ja: '前方範囲攻撃: ${player}',
+            ko: '탱크클레브: ${player}',
           },
         };
         if (matches.target === data.me)
@@ -304,6 +479,148 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'スティギモロク・ロード', id: '57D8', capture: false }),
       response: Responses.getOut(),
     },
+    {
+      id: 'DelubrumSav Lord Thunderous Discharge',
+      netRegex: NetRegexes.startsUsing({ source: 'Stygimoloch Lord', id: '57D2', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Anführer-Stygimoloch', id: '57D2', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Seigneur Stygimoloch', id: '57D2', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'スティギモロク・ロード', id: '57D2', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.aoe(),
+    },
+    {
+      id: 'DelubrumSav Queen Empyrean Iniquity',
+      netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59F9', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59F9', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59F9', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59F9', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.aoe(),
+    },
+    {
+      id: 'DelubrumSav Queen Cleansing Slash',
+      netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59F5' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59F5' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59F5' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59F5' }),
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'DelubrumSav Queen Gods Save The Queen',
+      netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59FA', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59FA', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59FA', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59FA', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.bigAoe(),
+    },
+    {
+      id: 'DelubrumSav Queen Judgment Blade Left',
+      netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59F1', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59F1', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59F1', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59F1', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Queen\'s Charge, Dodge Left',
+          ja: '女王の突進! 右へ',
+          ko: '여왕 돌진! 오른쪽으로!',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Queen Judgment Blade Right',
+      netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59F2', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59F2', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59F2', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59F2', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Queen\'s Charge, Dodge Right',
+          ja: '女王の突進! 左へ',
+          ko: '여왕 돌진! 왼쪽으로!',
+        },
+      },
+    },
+    /*
+    {
+      id: 'DelubrumSav Queen Knight Optimal Offensive Sword',
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '5A02', capture: false }),
+      netRegexDe:
+        NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '5A02', capture: false }),
+      netRegexFr:
+        NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '5A02', capture: false }),
+      netRegexJa:
+        NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '5A02', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Outside',
+          ja: 'ナイトの突進、外へ',
+          ko: '나이트 돌진! 맨바깥으로!',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Queen Knight Optimal Offensive Shield',
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '5A03', capture: false }),
+      netRegexDe:
+        NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '5A03', capture: false }),
+      netRegexFr:
+        NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '5A03', capture: false }),
+      netRegexJa:
+        NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '5A03', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Knockback Away From Sphere',
+          de: 'Rückstoß weg von der Sphere',
+          ja: 'ナイトの突進、タマからノックバック',
+          ko: '나이트 돌진! 구슬도 넉백!',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Queen Knight Optimal Play Sword',
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '59FF', capture: false }),
+      netRegexDe:
+        NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '59FF', capture: false }),
+      netRegexFr:
+        NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '59FF', capture: false }),
+      netRegexJa:
+        NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '59FF', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Out, Avoid Cleaves',
+          de: 'Raus, weiche den Cleaves aus',
+          ja: '外へ、つめ確認',
+          ko: '발톱없는 곳 멀리!',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Queen Knight Optimal Play Shield',
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '5A00', capture: false }),
+      netRegexDe:
+        NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '5A00', capture: false }),
+      netRegexFr:
+        NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '5A00', capture: false }),
+      netRegexJa:
+        NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '5A00', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'In, Avoid Cleaves',
+          de: 'Rein, weiche den Cleaves aus',
+          ja: '中へ、つめ確認',
+          ko: '발톱없는 곳 발밑으로',
+        },
+      },
+    },
+    */
   ],
   timelineReplace: [
     {
