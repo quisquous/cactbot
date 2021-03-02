@@ -1,48 +1,4 @@
-const allJobs = <const>[
-  'NONE',
-  'GLA',
-  'PGL',
-  'MRD',
-  'LNC',
-  'ARC',
-  'CNJ',
-  'THM',
-  'CRP',
-  'BSM',
-  'ARM',
-  'GSM',
-  'LTW',
-  'WVR',
-  'ALC',
-  'CUL',
-  'MIN',
-  'BTN',
-  'FSH',
-  'PLD',
-  'MNK',
-  'WAR',
-  'DRG',
-  'BRD',
-  'WHM',
-  'BLM',
-  'ACN',
-  'SMN',
-  'SCH',
-  'ROG',
-  'NIN',
-  'MCH',
-  'DRK',
-  'AST',
-  'SAM',
-  'RDM',
-  'BLU',
-  'GNB',
-  'DNC',
-];
-type Job = typeof allJobs[number];
-
-const allRoles = <const>['tank', 'healer', 'dps', 'crafter', 'gatherer', 'none'];
-type Role = typeof allRoles[number];
+import { Job, Role } from '../types/job';
 
 // TODO: it'd be nice to not repeat job names, but at least Record enforces that all are set.
 const nameToJobEnum: Record<Job, number> = {
@@ -86,6 +42,9 @@ const nameToJobEnum: Record<Job, number> = {
   GNB: 37,
   DNC: 38,
 };
+
+const allJobs = Object.keys(nameToJobEnum) as Job[];
+const allRoles = ['tank', 'healer', 'dps', 'crafter', 'gatherer', 'none'] as Role[];
 
 const tankJobs: Job[] = ['GLA', 'PLD', 'MRD', 'WAR', 'DRK', 'GNB'];
 const healerJobs: Job[] = ['CNJ', 'WHM', 'SCH', 'AST'];

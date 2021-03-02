@@ -47,6 +47,7 @@ export default {
         text: {
           en: 'Get In, Watch Swords',
           de: 'Geh rein, achte auf die Schwerter',
+          fr: 'À l\'intérieur, regardez les épées',
           ko: '안으로, 검 확인',
         },
       },
@@ -71,6 +72,7 @@ export default {
         text: {
           en: 'Get Out Behind Barricade',
           de: 'Geh raus, hinter die Barrikaden',
+          fr: 'À l\'extérieur, derrière la barricade',
           ko: '밖으로, 바리케이트 뒤로',
         },
       },
@@ -87,6 +89,7 @@ export default {
         text: {
           en: 'Get Knocked Into Barricade',
           de: 'Rückstoß in die Barrikaden',
+          fr: 'Faites-vous pousser dans la barricade',
           ko: '바리케이트로 넉백당하기',
         },
       },
@@ -110,6 +113,7 @@ export default {
         text: {
           en: 'Line Stack',
           de: 'In einer Linie sammeln',
+          fr: 'Package en ligne',
           ko: '직선 쉐어',
         },
       },
@@ -132,6 +136,7 @@ export default {
           // FIXME: this could be worded better
           en: 'Opposite Color From Boss',
           de: 'Auf die vom Boss entgegengesetze Farbe gehen',
+          fr: 'Couleur opposée au Boss',
           ko: '보스 반대 색깔',
         },
       },
@@ -145,6 +150,7 @@ export default {
         text: {
           en: 'Chain on YOU',
           de: 'Kette auf DIR',
+          fr: 'Chaîne sur VOUS',
           ko: '사슬 대상자',
         },
       },
@@ -176,6 +182,7 @@ export default {
         text: {
           en: 'Far From Purple / Look Away From Orb',
           de: 'Weit weg von Lila / Vom Orb wegschauen',
+          fr: 'Éloignez-vous du violet / Ne regardez pas l\'orbe',
           ko: '보라에서 떨어지기 / 구슬 바라보지 말기',
         },
       },
@@ -230,6 +237,7 @@ export default {
         knockback: {
           en: 'Unavoidable Knockback',
           de: 'Unvermeidbarer Rückstoß',
+          fr: 'Poussée inévitable',
           ko: '넉백 방지 불가',
         },
         knockbackAvoid: {
@@ -237,6 +245,7 @@ export default {
           // you figured that out the first time.
           en: 'Knockback (Avoid Adds)',
           de: 'Rückstoß (vermeide die Adds)',
+          fr: 'Poussée (Évitez les adds)',
         },
       },
     },
@@ -253,6 +262,7 @@ export default {
         text: {
           en: 'Follow Second Charge',
           de: 'Folge dem 2. Ansturm',
+          fr: 'Suivez la deuxième charge',
           ko: '두번째 돌진 따라가기',
         },
       },
@@ -289,11 +299,13 @@ export default {
         awayFromTethered: {
           en: 'Away from tethered adds',
           de: 'Weg von den verbundenen Adds',
+          fr: 'Éloignez-vous des adds liés',
           ko: '선 연결된 쫄에서 떨어지기',
         },
         followUntethered: {
           en: 'Follow untethered adds',
           de: 'Folge den nicht verbundenen Adds',
+          fr: 'Suivez les adds non liés',
           ko: '선 연결되지 않은 쫄 따라가기',
         },
       },
@@ -337,6 +349,7 @@ export default {
         text: {
           en: 'Avoid Laser Bounces',
           de: 'Weiche den abgelenken Lasern aus',
+          fr: 'Évitez les rebonds de laser',
         },
       },
     },
@@ -360,6 +373,7 @@ export default {
         text: {
           en: 'Stand On Small Bomb',
           de: 'Auf kleinen Bomben stehen',
+          fr: 'Placez-vous sur une petite bombe',
           ko: '작은 폭탄 위에 서기',
         },
       },
@@ -381,6 +395,7 @@ export default {
         text: {
           en: 'Stand On Large Bomb',
           de: 'Auf großen Bomben stehen',
+          fr: 'Placez-vous sur une grosse bombe',
           ko: '큰 폭탄 위에 서기',
         },
       },
@@ -446,11 +461,13 @@ export default {
         weaveNoKnockback: {
           en: 'Go To North Circle',
           de: 'Geh zum Kreis im Norden',
+          fr: 'Allez au donut Nord',
           ko: '북쪽 원으로 이동',
         },
         weaveWithKnockback: {
           en: 'Get Knocked Back To Circle',
           de: 'Lass dich zum Kreis im Norden zurückstoßen',
+          fr: 'Faites-vous pousser dans le donut',
           ko: '원으로 넉백 당하기',
         },
       },
@@ -480,6 +497,7 @@ export default {
         text: {
           en: 'Unavoidable Knockback',
           de: 'Unvermeidbarer Rückstoß',
+          fr: 'Poussée inévitable',
           ko: '넉백 방지 불가',
         },
       },
@@ -528,6 +546,7 @@ export default {
         text: {
           en: 'Stand In Opposite Meteor',
           de: 'Steh im entgegengesetztem Meteor',
+          fr: 'Placez-vous au météore de l\'élément opposé',
           ko: '반대쪽 메테오에 서기',
         },
       },
@@ -545,6 +564,7 @@ export default {
         text: {
           en: 'Go To Opposite Sword',
           de: 'Gehe in das entgegengesetzte Schwert',
+          fr: 'Allez à l\'épée de l\'élément opposé',
           ko: '반대쪽 칼로 이동',
         },
       },
@@ -571,6 +591,7 @@ export default {
         text: {
           en: 'Be In Opposite Cleave',
           de: 'Gehe in den entgegengesetzte Cleave',
+          fr: 'Soyez à l\'opposé du cleave',
         },
       },
     },
@@ -587,6 +608,7 @@ export default {
         text: {
           en: 'Avoid Outside Add Lines',
           de: 'Weiche den äußeren Add-Laser aus',
+          fr: 'Évitez les lignes extérieures',
         },
       },
     },
@@ -620,6 +642,7 @@ export default {
         text: {
           en: 'Get In Front',
           de: 'Geh vor den Boss',
+          fr: 'Soyez devant',
           ko: '정면에 서기',
         },
       },
@@ -658,6 +681,7 @@ export default {
         text: {
           en: 'Esuna ${player}',
           de: 'Medica ${player}',
+          fr: 'Guérison sur ${player}',
           ko: '"${player}" 에스나',
         },
       },
@@ -675,6 +699,7 @@ export default {
         text: {
           en: 'Away from Line Intersections',
           de: 'Geh weg von den Linienkreuzungen',
+          fr: 'Éloignez-vous des intersections de ligne',
           ko: '대각선에서 떨어지기',
         },
       },
@@ -690,6 +715,7 @@ export default {
         text: {
           en: 'Avoid Laser Bounces',
           de: 'Weiche den abgelenken Lasern aus',
+          fr: 'Évitez les rebonds de laser',
         },
       },
     },
@@ -721,16 +747,19 @@ export default {
         getKnockedTowardsMiddle: {
           en: 'Get Knocked Towards Middle',
           de: 'Zur Mitte zurückstoßen lassen',
+          fr: 'Faites-vous pousser vers le milieu',
           ko: '중앙으로 넉백 당하기',
         },
         getKnockedToSmallBomb: {
           en: 'Get Knocked To Small Bomb',
           de: 'Zu kleinen Bomben zurückstoßen lassen',
+          fr: 'Faites-vous pousser sur une petite bombe',
           ko: '작은 폭탄으로 넉백당하기',
         },
         getKnockedToLargeBomb: {
           en: 'Get Knocked To Large Bomb',
           de: 'Zu großen Bomben zurückstoßen lassen',
+          fr: 'Faites-vous pousser sur une grosse bombe',
           ko: '큰 폭탄으로 넉백당하기',
         },
       },
@@ -750,6 +779,7 @@ export default {
         text: {
           en: 'Find Charge, Dodge Right',
           de: 'Halte nach dem Ansturm ausschau, weiche nach rechts aus',
+          fr: 'Repérez la charge, esquivez à droite',
           ko: '돌진 찾고, 오른쪽 피하기',
         },
       },
@@ -765,6 +795,7 @@ export default {
         text: {
           en: 'Find Charge, Dodge Left',
           de: 'Halte nach dem Ansturm ausschau, weiche nach links aus',
+          fr: 'Repérez la charge, esquivez à gauche',
           ko: '돌진 찾고, 왼쪽 피하기',
         },
       },
@@ -789,6 +820,7 @@ export default {
         text: {
           en: 'Away from tethered adds',
           de: 'Weg von verbundenen Adds',
+          fr: 'Éloignez-vous des adds liés',
           ko: '선 연결된 쫄 피하기',
         },
       },
@@ -816,8 +848,8 @@ export default {
     {
       'locale': 'en',
       'replaceText': {
-        'Right-Sided Shockwave/Left-Sided Shockwave': 'Right/Left-Sided Shockwave',
-        'Left-Sided Shockwave/Right-Sided Shockwave': 'Left/Right-Sided Shockwave',
+        'Right-Sided Shockwave/Left-Sided Shockwave': 'Right/Left Shockwave',
+        'Left-Sided Shockwave/Right-Sided Shockwave': 'Left/Right Shockwave',
         'Sword Omen/Shield Omen': 'Sword/Shield Omen',
         'Shield Omen/Sword Omen': 'Shield/Sword Omen',
       },
@@ -982,6 +1014,7 @@ export default {
         'Trinity Seeker': 'trinité soudée',
       },
       'replaceText': {
+        '\\?': ' ?',
         'Above Board': 'Aire de flottement',
         'Act Of Mercy': 'Fendreciel rédempteur',
         'Allegiant Arsenal': 'Changement d\'arme',

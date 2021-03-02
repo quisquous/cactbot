@@ -44,6 +44,7 @@
 05-shb/dungeon/the_grand_cosmos.js
 05-shb/dungeon/twinning.js
 05-shb/eureka/delubrum_reginae.js
+05-shb/eureka/delubrum_reginae_savage.js
 05-shb/raid/e1n.js
 05-shb/raid/e1s.js
 05-shb/raid/e2n.js
