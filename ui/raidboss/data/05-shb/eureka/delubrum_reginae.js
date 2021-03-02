@@ -253,8 +253,8 @@ export default {
           // you figured that out the first time.
           en: 'Knockback (Avoid Adds)',
           de: 'Rückstoß (vermeide die Adds)',
-          cn: '击退 (避开小怪)',
           fr: 'Poussée (Évitez les adds)',
+          cn: '击退 (避开小怪)',
         },
       },
     },
@@ -361,8 +361,8 @@ export default {
         text: {
           en: 'Avoid Laser Bounces',
           de: 'Weiche den abgelenken Lasern aus',
-          cn: '躲避激光',
           fr: 'Évitez les rebonds de laser',
+          cn: '躲避激光',
         },
       },
     },
@@ -611,8 +611,8 @@ export default {
         text: {
           en: 'Be In Opposite Cleave',
           de: 'Gehe in den entgegengesetzte Cleave',
-          cn: '吃相反温度的顺劈',
           fr: 'Soyez à l\'opposé du cleave',
+          cn: '吃相反温度的顺劈',
         },
       },
     },
@@ -629,8 +629,8 @@ export default {
         text: {
           en: 'Avoid Outside Add Lines',
           de: 'Weiche den äußeren Add-Laser aus',
-          cn: '躲避小怪冲锋',
           fr: 'Évitez les lignes extérieures',
+          cn: '躲避小怪冲锋',
         },
       },
     },
@@ -740,8 +740,8 @@ export default {
         text: {
           en: 'Avoid Laser Bounces',
           de: 'Weiche den abgelenken Lasern aus',
-          cn: '躲避激光',
           fr: 'Évitez les rebonds de laser',
+          cn: '躲避激光',
         },
       },
     },
