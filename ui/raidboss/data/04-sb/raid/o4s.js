@@ -41,7 +41,7 @@ export default {
       },
     },
     {
-      // Fire III not after Dualcast.
+      // Fire III + Dualcast.
       id: 'O4S Exdeath Fire III Counter',
       netRegex: NetRegexes.startsUsing({ id: '23F5', source: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '23F5', source: 'Exdeath', capture: false }),
@@ -62,7 +62,7 @@ export default {
       },
     },
     {
-      // Blizzard III not after Dualcast.
+      // Blizzard III + Dualcast.
       id: 'O4S Exdeath Blizzard III',
       netRegex: NetRegexes.startsUsing({ id: '23F7', source: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '23F7', source: 'Exdeath', capture: false }),
@@ -83,7 +83,7 @@ export default {
       },
     },
     {
-      // Thunder III not after Dualcast.
+      // Thunder III + Dualcast.
       id: 'O4S Exdeath Thunder III',
       netRegex: NetRegexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
