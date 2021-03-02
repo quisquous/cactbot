@@ -42,6 +42,9 @@ module.exports = function(env, argv) {
       path: path.resolve(__dirname, '../dist'),
     },
     devServer: { writeToDisk: true },
+    resolve: {
+      extensions: ['.ts', '.js'],
+    },
     module: {
       rules: [
         {
