@@ -1,5 +1,5 @@
 import { commonReplacement } from './common_replacement.js';
-import Regexes from '../../resources/regexes.ts';
+import Regexes from '../../resources/regexes';
 import { LocaleRegex } from '../../resources/translations.js';
 
 const timelineInstructions = {

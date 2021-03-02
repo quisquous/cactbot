@@ -1,8 +1,8 @@
 import EffectId from '../../resources/effect_id.js';
 import ContentType from '../../resources/content_type.js';
-import Regexes from '../../resources/regexes.ts';
+import Regexes from '../../resources/regexes';
 import UserConfig from '../../resources/user_config.js';
-import Util from '../../resources/util.ts';
+import Util from '../../resources/util';
 import ZoneInfo from '../../resources/zone_info.js';
 import ZoneId from '../../resources/zone_id.js';
 import { kWellFedContentTypes, kMPCombatRate, kMPNormalRate, kMPUI1Rate, kMPUI2Rate, kMPUI3Rate, kMPTickInterval } from './constants.js';

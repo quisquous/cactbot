@@ -1,4 +1,4 @@
-import NetRegexes from '../../../../../resources/netregexes.ts';
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id.js';
 
 // Shiva Extreme

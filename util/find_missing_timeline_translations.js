@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import Regexes from '../resources/regexes.ts';
+import Regexes from '../resources/regexes';
 import { Timeline } from '../ui/raidboss/timeline.js';
 import { commonReplacement, partialCommonReplacementKeys } from '../ui/raidboss/common_replacement.js';
 

@@ -1,5 +1,5 @@
 import { LocaleNetRegex } from '../../../resources/translations.js';
-import NetRegexes from '../../../resources/netregexes.ts';
+import NetRegexes from '../../../resources/netregexes';
 
 export default class EmulatorCommon {
   static cloneData(data, exclude = ['options', 'party']) {

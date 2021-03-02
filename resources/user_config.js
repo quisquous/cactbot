@@ -7,19 +7,19 @@ import './overlay_plugin_api.js';
 // create a variable of the same name, the eval()'d code does not know
 // about the import, and thus throws ReferenceErrors.
 // Used by downstream eval
-import _Conditions from './conditions.ts';
+import _Conditions from './conditions';
 const Conditions = _Conditions;
 import _ContentType from './content_type.js';
 const ContentType = _ContentType;
-import _NetRegexes from './netregexes.ts';
+import _NetRegexes from './netregexes';
 const NetRegexes = _NetRegexes;
-import _Regexes from './regexes.ts';
+import _Regexes from './regexes';
 const Regexes = _Regexes;
 import { Responses as _Responses } from './responses.js';
 const Responses = _Responses;
-import _Outputs from './outputs.ts';
+import _Outputs from './outputs';
 const Outputs = _Outputs;
-import _Util from './util.ts';
+import _Util from './util';
 const Util = _Util;
 import _ZoneId from './zone_id.js';
 const ZoneId = _ZoneId;
