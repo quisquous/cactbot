@@ -1,4 +1,4 @@
-import NetRegexes from '../../../../../resources/netregexes';
+import NetRegexes from '../../../../../resources/netregexes.ts';
 import ZoneId from '../../../../../resources/zone_id.js';
 
 // 565A/568D Sinsmoke Bound Of Faith share

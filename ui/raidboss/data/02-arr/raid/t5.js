@@ -1,5 +1,5 @@
-import NetRegexes from '../../../../../resources/netregexes';
-import Regexes from '../../../../../resources/regexes';
+import NetRegexes from '../../../../../resources/netregexes.ts';
+import Regexes from '../../../../../resources/regexes.ts';
 import { Responses } from '../../../../../resources/responses.js';
 import ZoneId from '../../../../../resources/zone_id.js';
 

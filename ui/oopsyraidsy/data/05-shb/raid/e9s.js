@@ -1,4 +1,4 @@
-import NetRegexes from '../../../../../resources/netregexes';
+import NetRegexes from '../../../../../resources/netregexes.ts';
 import ZoneId from '../../../../../resources/zone_id.js';
 
 // TODO: 561D Evil Seed hits everyone, hard to know if there's a double tap

@@ -1,4 +1,4 @@
-import Util from '../../resources/util';
+import Util from '../../resources/util.ts';
 import chai from 'chai';
 
 const { assert } = chai;

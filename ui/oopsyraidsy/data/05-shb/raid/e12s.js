@@ -1,5 +1,5 @@
-import NetRegexes from '../../../../../resources/netregexes';
-import Outputs from '../../../../../resources/outputs';
+import NetRegexes from '../../../../../resources/netregexes.ts';
+import Outputs from '../../../../../resources/outputs.ts';
 import ZoneId from '../../../../../resources/zone_id.js';
 
 // TODO: add separate damageWarn-esque icon for damage downs?
