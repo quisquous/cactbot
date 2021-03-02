@@ -48,6 +48,13 @@ module.exports = function(env, argv) {
     module: {
       rules: [
         {
+          // this will allow importing without extension in js files.
+          test: /\.m?js$/,
+          resolve: {
+            fullySpecified: false,
+          },
+        },
+        {
           test: /\.ts$/,
           loader: 'ts-loader',
         },
