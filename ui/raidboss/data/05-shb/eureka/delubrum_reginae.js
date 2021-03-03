@@ -781,7 +781,7 @@ export default {
           en: 'Get Knocked To Small Bomb',
           de: 'Zu kleinen Bomben zurückstoßen lassen',
           fr: 'Faites-vous pousser sur une petite bombe',
-          cn: '击退到小的炸弹',
+          cn: '击退到小炸弹',
           ko: '작은 폭탄으로 넉백당하기',
         },
         getKnockedToLargeBomb: {
