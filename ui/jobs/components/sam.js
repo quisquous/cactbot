@@ -2,9 +2,6 @@ import EffectId from '../../../resources/effect_id.js';
 import { kAbility } from '../constants.js';
 
 export function setup(bars) {
-  bars.onYouGainEffect(EffectId.Shifu, () => bars.speedBuffs.shifu = 1);
-  bars.onYouLoseEffect(EffectId.Shifu, () => bars.speedBuffs.shifu = 0);
-
   const comboTimer = bars.addTimerBar({
     id: 'sam-timers-combo',
     fgColor: 'combo-color',
@@ -40,19 +37,21 @@ export function setup(bars) {
     id: 'sam-procs-shifu',
     fgColor: 'sam-color-shifu',
   });
-  bars.onYouGainEffect(EffectId.Shifu, (name, matches) => {
+  bars.onYouGainEffect(EffectId.Shifu, (id, matches) => {
     shifu.duration = 0;
     shifu.duration = matches.duration - 0.5; // -0.5s for log line delay
+    bars.speedBuffs.shifu = 1;
   });
   bars.onYouLoseEffect(EffectId.Shifu, () => {
     shifu.duration = 0;
+    bars.speedBuffs.shifu = 0;
   });
 
   const jinpu = bars.addProcBox({
     id: 'sam-procs-jinpu',
     fgColor: 'sam-color-jinpu',
   });
-  bars.onYouGainEffect(EffectId.Jinpu, (name, matches) => {
+  bars.onYouGainEffect(EffectId.Jinpu, (id, matches) => {
     jinpu.duration = 0;
     jinpu.duration = matches.duration - 0.5; // -0.5s for log line delay
   });
@@ -77,9 +76,7 @@ export function setup(bars) {
     id: 'sam-procs-higanbana',
     fgColor: 'sam-color-higanbana',
   });
-  bars.onMobGainsEffectFromYou([
-    EffectId.Higanbana,
-  ], () => {
+  bars.onMobGainsEffectFromYou(EffectId.Higanbana, () => {
     higanbana.duration = 0;
     higanbana.duration = 60 - 0.5; // -0.5s for log line delay
   });
