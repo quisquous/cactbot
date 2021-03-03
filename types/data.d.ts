@@ -1,5 +1,6 @@
 import PartyTracker from '../resources/party.js';
 import { Lang } from './global';
+import { Job, Role } from './job';
 
 export interface Option {
   ParserLanguage: Lang;
@@ -10,9 +11,9 @@ export interface Option {
 }
 
 export interface Data {
-  job: string;
+  job: Job;
   me: string;
-  role: string;
+  role: Role;
   party: PartyTracker;
   lang: string;
   currentHP: number;

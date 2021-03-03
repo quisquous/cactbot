@@ -43,7 +43,7 @@ export default {
         text: {
           en: 'Spread + Avoid Crystals',
           de: 'Verteilen + Kristall meiden',
-          fr: 'Écartez-vous & évitez les cristaux',
+          fr: 'Dispersez-vous + évitez les cristaux',
           ja: '散開 + 水晶を避ける',
           cn: '散开并远离水晶',
           ko: '산개 + 크리스탈 피하기',
