@@ -382,6 +382,7 @@
 /* Box 1 default at left 0, so not needed to define */
 
 /* Box 2/4 */
+#drk-procs-bloodweapon,
 #drg-procs-highjump,
 #nin-procs-trickattack,
 #brd-procs-stormbite,
@@ -392,6 +393,7 @@
 }
 
 /* Box 3/4 */
+#drk-procs-delirium,
 #drg-procs-lancecharge,
 #nin-procs-bunshin,
 #brd-procs-song,
@@ -402,6 +404,7 @@
 }
 
 /* Box 4/4 */
+#drk-procs-livingshadow,
 #drg-procs-dragonsight,
 #nin-procs-ninjutsu,
 #brd-procs-straightshotready,
@@ -557,6 +560,30 @@
 
 .drk-color-darkside {
   background-color: rgb(129, 33, 138);
+}
+
+.drk-color-bloodweapon {
+  background-color: rgb(133, 0, 0, 0.7);
+}
+
+.drk-color-bloodweapon.active {
+  background-color: rgb(199, 0, 0);
+}
+
+.drk-color-delirium {
+  background-color: rgb(255, 80, 80, 0.6);
+}
+
+.drk-color-delirium.active {
+  background-color: rgb(255, 80, 80);
+}
+
+.drk-color-livingshadow {
+  background-color: rgb(123, 58, 126, 0.5);
+}
+
+.drk-color-livingshadow.active {
+  background-color: rgb(179, 0, 189);
 }
 
 /* GNB */
