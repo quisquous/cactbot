@@ -1,4 +1,4 @@
-import StubbedPopupText from '../overrides/StubbedPopupText.js';
+import StubbedPopupText from '../overrides/StubbedPopupText';
 
 export default class RaidEmulatorPopupText extends StubbedPopupText {
   constructor(options, timelineLoader, raidbossFileData) {

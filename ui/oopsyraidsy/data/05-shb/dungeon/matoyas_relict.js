@@ -1,4 +1,4 @@
-import ZoneId from '../../../../../resources/zone_id.js';
+import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: could include 5484 Mudman Rocky Roll as a shareWarn, but it's low damage and common.
 

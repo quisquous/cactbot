@@ -1,5 +1,5 @@
-import EffectId from '../../../resources/effect_id.js';
-import { computeBackgroundColorFrom } from '../utils.js';
+import EffectId from '../../../resources/effect_id';
+import { computeBackgroundColorFrom } from '../utils';
 
 export function setup(bars) {
   const straightShotProc = bars.addProcBox({

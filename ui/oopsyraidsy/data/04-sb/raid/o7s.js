@@ -1,4 +1,4 @@
-import ZoneId from '../../../../../resources/zone_id.js';
+import ZoneId from '../../../../../resources/zone_id';
 
 // O7S - Sigmascape 3.0 Savage
 export default {

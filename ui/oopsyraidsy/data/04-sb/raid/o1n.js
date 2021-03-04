@@ -1,4 +1,4 @@
-import ZoneId from '../../../../../resources/zone_id.js';
+import ZoneId from '../../../../../resources/zone_id';
 
 // O1N - Deltascape 1.0 Normal
 export default {

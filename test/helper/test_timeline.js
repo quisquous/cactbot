@@ -1,9 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import chai from 'chai';
-import { Timeline } from '../../ui/raidboss/timeline.js';
-import { commonReplacement, partialCommonReplacementKeys } from '../../ui/raidboss/common_replacement.js';
-import Regexes from '../../resources/regexes.ts';
+import { Timeline } from '../../ui/raidboss/timeline';
+import { commonReplacement, partialCommonReplacementKeys } from '../../ui/raidboss/common_replacement';
+import Regexes from '../../resources/regexes';
 
 const { assert } = chai;
 

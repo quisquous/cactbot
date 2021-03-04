@@ -1,4 +1,4 @@
-import { TimelineUI } from '../../timeline.js';
+import { TimelineUI } from '../../timeline';
 
 export default class RaidEmulatorTimelineUI extends TimelineUI {
   constructor(options) {

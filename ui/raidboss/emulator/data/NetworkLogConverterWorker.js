@@ -1,8 +1,8 @@
-import EmulatorCommon from '../EmulatorCommon.js';
-import Encounter from './Encounter.js';
-import LogEventHandler from './LogEventHandler.js';
-import NetworkLogConverter from './NetworkLogConverter.js';
-import LogRepository from './network_log_converter/LogRepository.js';
+import EmulatorCommon from '../EmulatorCommon';
+import Encounter from './Encounter';
+import LogEventHandler from './LogEventHandler';
+import NetworkLogConverter from './NetworkLogConverter';
+import LogRepository from './network_log_converter/LogRepository';
 
 onmessage = async (msg) => {
   const logConverter = new NetworkLogConverter();

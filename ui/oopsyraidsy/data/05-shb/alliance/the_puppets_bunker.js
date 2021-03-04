@@ -1,4 +1,4 @@
-import ZoneId from '../../../../../resources/zone_id.js';
+import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: 5093 taking High-Powered Laser with a vuln (because of taking two)
 // TODO: 4FB5 taking High-Powered Laser with a vuln (because of taking two)

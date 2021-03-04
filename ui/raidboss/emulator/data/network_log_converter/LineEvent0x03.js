@@ -1,6 +1,6 @@
-import LineEvent from './LineEvent.js';
-import EmulatorCommon from '../../EmulatorCommon.js';
-import Util from '../../../../../resources/util.ts';
+import LineEvent from './LineEvent';
+import EmulatorCommon from '../../EmulatorCommon';
+import Util from '../../../../../resources/util';
 
 // Added combatant event
 export class LineEvent0x03 extends LineEvent {
