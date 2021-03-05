@@ -1,6 +1,12 @@
 import '../../resources/overlay_plugin_api';
 import { PlayerChangedEvent } from '../../types/shadow-dom';
 
+const elementMustNonNull = function <T>(el: T | null): T {
+  // I'm not sure if this is a good idea.
+  if (el === null)
+    throw new Error('please Reload this Overlay');
+  return el;
+};
 
 addOverlayListener('ChangeZone', (e) => {
   document.getElementById('currentZone').innerText = `currentZone: ${e.zoneName} (${e.zoneID})`;
@@ -11,26 +17,26 @@ addOverlayListener('onInCombatChangedEvent', (e) => {
 });
 
 addOverlayListener('onPlayerChangedEvent', (e: PlayerChangedEvent) => {
-  document.getElementById('hp').innerText = e.detail.currentHP + '/' + e.detail.maxHP + ' (' + e.detail.currentShield + ')';
+  elementMustNonNull(document.getElementById('hp')).innerText = e.detail.currentHP + '/' + e.detail.maxHP + ' (' + e.detail.currentShield + ')';
   document.getElementById('mp').innerText = e.detail.currentMP + '/' + e.detail.maxMP;
   document.getElementById('cp').innerText = e.detail.currentCP + '/' + e.detail.maxCP;
   document.getElementById('gp').innerText = e.detail.currentGP + '/' + e.detail.maxGP;
   document.getElementById('job').innerText = e.detail.level + ' ' + e.detail.job;
   document.getElementById('debug').innerText = e.detail.debugJob;
 
-  const jobInfoEl = document.getElementById('jobinfo');
+  const jobInfoEl = elementMustNonNull(document.getElementById('jobinfo'));
   if (e.detail.job === 'RDM')
     jobInfoEl.innerText = `${e.detail.jobDetail.whiteMana} | ${e.detail.jobDetail.blackMana}`;
   else if (e.detail.job === 'WAR')
-    jobInfoEl.innerText = e.detail.jobDetail.beast;
+    jobInfoEl.innerText = e.detail.jobDetail.beast.toString();
   else if (e.detail.job === 'DRK')
     jobInfoEl.innerText = `${e.detail.jobDetail.blood} | ${e.detail.jobDetail.darksideMilliseconds} | ${e.detail.jobDetail.darkArts} | ${e.detail.jobDetail.livingShadowMilliseconds}`;
   else if (e.detail.job === 'GNB')
-    jobInfoEl.innerText = e.detail.jobDetail.cartridges + e.detail.jobDetail.continuationState;
+    jobInfoEl.innerText = `${e.detail.jobDetail.cartridges} ${e.detail.jobDetail.continuationState}`;
   else if (e.detail.job === 'PLD')
-    jobInfoEl.innerText = e.detail.jobDetail.oath;
+    jobInfoEl.innerText = e.detail.jobDetail.oath.toString();
   else if (e.detail.job === 'BRD')
-    jobInfoEl.innerText = e.detail.jobDetail.songName + ' | ' + e.detail.jobDetail.songProcs + ' | ' + e.detail.jobDetail.soulGauge + ' | ' + e.detail.jobDetail.songMilliseconds;
+    jobInfoEl.innerText = `${e.detail.jobDetail.songName} | ${e.detail.jobDetail.songProcs} | ${e.detail.jobDetail.soulGauge} | ${e.detail.jobDetail.songMilliseconds}`;
   // todo: done above
   else if (e.detail.job === 'DNC')
     jobInfoEl.innerText = e.detail.jobDetail.feathers + ' | ' + e.detail.jobDetail.esprit + ' | (' + e.detail.jobDetail.steps + ') | ' + e.detail.jobDetail.currentStep;
