@@ -251,7 +251,7 @@ class WidgetList extends HTMLElement {
     this._elements[id] = sortKeyFn;
     this._sorted.push(id);
     this._sorted.sort((a, b) => {
-      return (this._elements[a]?.() || 0) - (this._elements[b]?.() || 0);
+      return (this._elements[a]?.() ?? 0) - (this._elements[b]?.() ?? 0);
     });
 
     element.style.position = 'relative';
