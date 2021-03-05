@@ -31,6 +31,7 @@ addOverlayListener('onPlayerChangedEvent', (e: PlayerChangedEvent) => {
     jobInfoEl.innerText = e.detail.jobDetail.oath;
   else if (e.detail.job === 'BRD')
     jobInfoEl.innerText = e.detail.jobDetail.songName + ' | ' + e.detail.jobDetail.songProcs + ' | ' + e.detail.jobDetail.soulGauge + ' | ' + e.detail.jobDetail.songMilliseconds;
+  // todo: done above
   else if (e.detail.job === 'DNC')
     jobInfoEl.innerText = e.detail.jobDetail.feathers + ' | ' + e.detail.jobDetail.esprit + ' | (' + e.detail.jobDetail.steps + ') | ' + e.detail.jobDetail.currentStep;
   else if (e.detail.job === 'NIN')

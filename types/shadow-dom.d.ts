@@ -1,4 +1,12 @@
-import { ChangeZoneEvent, InCombatChangedEvent, PlayerChangedEvent } from './events';
+import {
+  BRD,
+  ChangeZoneEvent,
+  DRK,
+  GNB,
+  InCombatChangedEvent, PLD,
+  RDM,
+  WAR,
+} from './events';
 
 export {};
 
@@ -73,34 +81,14 @@ interface _playerChangedDetail<K, D> {
 }
 
 
-export interface RDM {
-  whiteMana: number;
-  blackMana: number;
-}
-
-export interface WAR {
-  beast: number;
-}
-
-export interface DRK {
-  blood: number;
-  darksideMilliseconds: number;
-  darkArts: number;
-  livingShadowMilliseconds: number;
-}
-
-export interface GNB {
-  cartridges: number;
-  continuationState: number;
-}
-
-
 // todo: complete this type
 export interface PlayerChangedEvent {
   detail: _playerChangedDetail<'WAR', WAR>
       | _playerChangedDetail<'RDM', RDM>
       | _playerChangedDetail<'DRK', DRK>
-      | _playerChangedDetail<'GNB', GNB>;
+      | _playerChangedDetail<'GNB', GNB>
+      | _playerChangedDetail<'PLD', PLD>
+      | _playerChangedDetail<'BRD', BRD>;
 }
 
 
