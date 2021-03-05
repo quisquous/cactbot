@@ -46,3 +46,8 @@ jobs:
       - name: npm run lint
         run: |
           npm run lint
+
+
+      - name: tsc
+        run: |
+          npx tsc --noEmit
