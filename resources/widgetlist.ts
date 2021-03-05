@@ -276,7 +276,7 @@ class WidgetList extends HTMLElement {
       this.rootElement.removeChild(container);
       return element;
     }
-    return undefined;
+    return;
   }
 
   clear() {
