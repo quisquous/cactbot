@@ -1,4 +1,4 @@
-import EffectId from '../../../resources/effect_id.js';
+import EffectId from '../../../resources/effect_id';
 
 export function setup(bars) {
   bars.onYouGainEffect(EffectId.Shifu, () => bars.speedBuffs.shifu = 1);

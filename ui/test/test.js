@@ -1,4 +1,4 @@
-import '../../resources/overlay_plugin_api.js';
+import '../../resources/overlay_plugin_api';
 
 addOverlayListener('ChangeZone', (e) => {
   document.getElementById('currentZone').innerText = `currentZone: ${e.zoneName} (${e.zoneID})`;

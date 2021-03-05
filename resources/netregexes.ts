@@ -1,4 +1,4 @@
-import Regexes, { Params } from './regexes.js';
+import Regexes, { Params } from './regexes';
 
 interface Fields {
   field: string;
@@ -91,7 +91,7 @@ const parseHelper = (
           // more accurate type instead of `as` cast
           // maybe this function needs a refactoring
           capture, fieldName, (params as { [s: string]: string })[fieldName], fieldValue) +
-          separator;
+        separator;
     } else {
       str += fieldValue + separator;
     }

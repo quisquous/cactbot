@@ -1,4 +1,4 @@
-import UserConfig from '../../resources/user_config.js';
+import UserConfig from '../../resources/user_config';
 
 UserConfig.registerOptions('general', {
   options: [

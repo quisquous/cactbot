@@ -1,5 +1,5 @@
-import { InitDpsModule, Options } from '../dps_common.js';
-import UserConfig from '../../../resources/user_config.js';
+import { InitDpsModule, Options } from '../dps_common';
+import UserConfig from '../../../resources/user_config';
 
 // fiddle: http://jsfiddle.net/v1ddnsvh/8/
 /* global window */
