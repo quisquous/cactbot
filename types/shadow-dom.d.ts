@@ -1,9 +1,9 @@
 import {
   BRD,
-  ChangeZoneEvent,
+  ChangeZoneEvent, DNC,
   DRK,
   GNB,
-  InCombatChangedEvent, PLD,
+  InCombatChangedEvent, NIN, PLD,
   RDM,
   WAR,
 } from './events';
@@ -68,7 +68,9 @@ export interface PlayerChangedEvent {
       | _playerChangedDetail<'DRK', DRK>
       | _playerChangedDetail<'GNB', GNB>
       | _playerChangedDetail<'PLD', PLD>
-      | _playerChangedDetail<'BRD', BRD>;
+      | _playerChangedDetail<'BRD', BRD>
+      | _playerChangedDetail<'DNC', DNC>
+      | _playerChangedDetail<'NIN', NIN>;
 }
 
 

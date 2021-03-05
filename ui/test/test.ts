@@ -7,22 +7,25 @@ const elementMustNonNull = function <T>(el: T | null): T {
     throw new Error('please Reload this Overlay');
   return el;
 };
+const getElementById = function(id: string): HTMLElement {
+  return elementMustNonNull(document.getElementById(id));
+};
 
 addOverlayListener('ChangeZone', (e) => {
-  document.getElementById('currentZone').innerText = `currentZone: ${e.zoneName} (${e.zoneID})`;
+  getElementById('currentZone').innerText = `currentZone: ${e.zoneName} (${e.zoneID})`;
 });
 
 addOverlayListener('onInCombatChangedEvent', (e) => {
-  document.getElementById('inCombat').innerText = 'inCombat: act: ' + (e.detail.inACTCombat ? 'yes' : 'no') + ' game: ' + (e.detail.inGameCombat ? 'yes' : 'no');
+  getElementById('inCombat').innerText = 'inCombat: act: ' + (e.detail.inACTCombat ? 'yes' : 'no') + ' game: ' + (e.detail.inGameCombat ? 'yes' : 'no');
 });
 
 addOverlayListener('onPlayerChangedEvent', (e: PlayerChangedEvent) => {
-  elementMustNonNull(document.getElementById('hp')).innerText = e.detail.currentHP + '/' + e.detail.maxHP + ' (' + e.detail.currentShield + ')';
-  document.getElementById('mp').innerText = e.detail.currentMP + '/' + e.detail.maxMP;
-  document.getElementById('cp').innerText = e.detail.currentCP + '/' + e.detail.maxCP;
-  document.getElementById('gp').innerText = e.detail.currentGP + '/' + e.detail.maxGP;
-  document.getElementById('job').innerText = e.detail.level + ' ' + e.detail.job;
-  document.getElementById('debug').innerText = e.detail.debugJob;
+  getElementById('hp').innerText = e.detail.currentHP + '/' + e.detail.maxHP + ' (' + e.detail.currentShield + ')';
+  getElementById('mp').innerText = e.detail.currentMP + '/' + e.detail.maxMP;
+  getElementById('cp').innerText = e.detail.currentCP + '/' + e.detail.maxCP;
+  getElementById('gp').innerText = e.detail.currentGP + '/' + e.detail.maxGP;
+  getElementById('job').innerText = e.detail.level + ' ' + e.detail.job;
+  getElementById('debug').innerText = e.detail.debugJob;
 
   const jobInfoEl = elementMustNonNull(document.getElementById('jobinfo'));
   if (e.detail.job === 'RDM')
@@ -37,11 +40,11 @@ addOverlayListener('onPlayerChangedEvent', (e: PlayerChangedEvent) => {
     jobInfoEl.innerText = e.detail.jobDetail.oath.toString();
   else if (e.detail.job === 'BRD')
     jobInfoEl.innerText = `${e.detail.jobDetail.songName} | ${e.detail.jobDetail.songProcs} | ${e.detail.jobDetail.soulGauge} | ${e.detail.jobDetail.songMilliseconds}`;
-  // todo: done above
   else if (e.detail.job === 'DNC')
-    jobInfoEl.innerText = e.detail.jobDetail.feathers + ' | ' + e.detail.jobDetail.esprit + ' | (' + e.detail.jobDetail.steps + ') | ' + e.detail.jobDetail.currentStep;
+    jobInfoEl.innerText = `${e.detail.jobDetail.feathers} | ${e.detail.jobDetail.esprit} | (${e.detail.jobDetail.steps}) | ${e.detail.jobDetail.currentStep}`;
   else if (e.detail.job === 'NIN')
-    jobInfoEl.innerText = e.detail.jobDetail.hutonMilliseconds + ' | ' + e.detail.jobDetail.ninkiAmount;
+    jobInfoEl.innerText = `${e.detail.jobDetail.hutonMilliseconds} | ${e.detail.jobDetail.ninkiAmount}`;
+  // todo: done above
   else if (e.detail.job === 'DRG')
     jobInfoEl.innerText = e.detail.jobDetail.bloodMilliseconds + ' | ' + e.detail.jobDetail.lifeMilliseconds + ' | ' + e.detail.jobDetail.eyesAmount;
   else if (e.detail.job === 'BLM')
@@ -69,21 +72,21 @@ addOverlayListener('onPlayerChangedEvent', (e: PlayerChangedEvent) => {
   else
     jobInfoEl.innerText = '';
 
-  document.getElementById('pos').innerText = e.detail.pos.x.toFixed(2) + ',' + e.detail.pos.y.toFixed(2) + ',' + e.detail.pos.z.toFixed(2);
-  document.getElementById('rotation').innerText = e.detail.rotation;
-  document.getElementById('bait').innerText = e.detail.bait;
+  getElementById('pos').innerText = e.detail.pos.x.toFixed(2) + ',' + e.detail.pos.y.toFixed(2) + ',' + e.detail.pos.z.toFixed(2);
+  getElementById('rotation').innerText = e.detail.rotation.toString();
+  getElementById('bait').innerText = e.detail.bait.toString();
 });
 
 addOverlayListener('EnmityTargetData', (e) => {
   const target = e.Target;
   if (!target) {
-    document.getElementById('target').innerText = '--';
-    document.getElementById('tid').innerText = '';
-    document.getElementById('tdistance').innerText = '';
+    getElementById('target').innerText = '--';
+    getElementById('tid').innerText = '';
+    getElementById('tdistance').innerText = '';
   } else {
-    document.getElementById('target').innerText = target.Name;
-    document.getElementById('tid').innerText = target.ID.toString(16);
-    document.getElementById('tdistance').innerText = target.Distance;
+    getElementById('target').innerText = target.Name;
+    getElementById('tid').innerText = target.ID.toString(16);
+    getElementById('tdistance').innerText = target.Distance.toString();
   }
 });
 

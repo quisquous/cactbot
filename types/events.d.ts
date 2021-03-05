@@ -42,3 +42,16 @@ export interface BRD {
   soulGauge: number;
   songMilliseconds: number;
 }
+
+export interface DNC {
+  // todo: don't know
+  feathers;
+  esprit: number;
+  steps;
+  currentStep;
+}
+
+export interface NIN {
+  hutonMilliseconds: number;
+  ninkiAmount: number;
+}
