@@ -54,7 +54,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint-staged"
+      "pre-commit": "tsc --noEmit && npm run lint-staged"
     }
   },
   "lint-staged": {

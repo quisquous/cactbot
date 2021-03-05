@@ -1,17 +1,36 @@
 // NOTE
 // This class should be considered deprecated, and any users of this class should
 // just switch over to using CSS grid.
+type Sorter = () => number;
 
 class WidgetList extends HTMLElement {
+  private _nextId = 1;
+  private _nameToId: { [key: string]: number } = {};
+  private _elements: { [key: number]: Sorter } = {};
+  private _sorted: number[] = [];
+  private _elementwidth = 100;
+  private _elementheight = 100;
+  private _xinc1 = 1;
+  private _xinc2 = 0;
+  private _yinc1 = 0;
+  private _yinc2 = 1;
+  private _rowcolsize = 5;
+  private _maxnumber = 1000;
+  private _connected = false;
+  private rootElement: HTMLElement;
+
   static get observedAttributes() {
     return ['toward', 'elementwidth', 'elementheight', 'rowcolsize', 'maxnumber'];
   }
 
   // All visual dimensions are scaled by this.
-  set scale(s) {
-    this.setAttribute('scale', s);
+  set scale(s: string | null) {
+    if (s === null)
+      this.removeAttribute('scale');
+    else
+      this.setAttribute('scale', s);
   }
-  get scale() {
+  get scale(): string | null {
     return this.getAttribute('scale');
   }
 
@@ -21,24 +40,33 @@ class WidgetList extends HTMLElement {
   // and the second being the direction is wraps for the next
   // row/column. eg. "left down" will grow a list toward the left,
   // and subsequent rows will be below the first.
-  set toward(s) {
-    this.setAttribute('toward', s);
+  set toward(s: string | null) {
+    if (s === null)
+      this.removeAttribute('toward');
+    else
+      this.setAttribute('toward', s);
   }
-  get toward() {
+  get toward(): string | null {
     return this.getAttribute('toward');
   }
 
   // The elementwidth of each element in the list.
-  set elementwidth(w) {
-    this.setAttribute('elementwidth', w);
+  set elementwidth(w: string | null) {
+    if (w === null)
+      this.removeAttribute('elementwidth');
+    else
+      this.setAttribute('elementwidth', w);
   }
   get elementwidth() {
     return this.getAttribute('elementwidth');
   }
 
   // The height of each element in the list.
-  set elementheight(w) {
-    this.setAttribute('elementheight', w);
+  set elementheight(w: string | null) {
+    if (w === null)
+      this.removeAttribute('elementheight');
+    else
+      this.setAttribute('elementheight', w);
   }
   get elementheight() {
     return this.getAttribute('elementheight');
@@ -46,16 +74,22 @@ class WidgetList extends HTMLElement {
 
   // The number of elements to show before wrapping to a new
   // row/column.
-  set rowcolsize(w) {
-    this.setAttribute('rowcolsize', w);
+  set rowcolsize(w: string | null) {
+    if (w === null)
+      this.removeAttribute('rowcolsize');
+    else
+      this.setAttribute('rowcolsize', w);
   }
   get rowcolsize() {
     return this.getAttribute('rowcolsize');
   }
 
   // The maximum number of widgets to show at a time.
-  set maxnumber(w) {
-    this.setAttribute('maxnumber', w);
+  set maxnumber(w: string | null) {
+    if (w === null)
+      this.removeAttribute('maxnumber');
+    else
+      this.setAttribute('maxnumber', w);
   }
   get maxnumber() {
     return this.getAttribute('maxnumber');
@@ -65,39 +99,18 @@ class WidgetList extends HTMLElement {
   constructor() {
     super();
     const root = this.attachShadow({ mode: 'open' });
-    this.init(root);
-  }
-
-  // These would be used by document.registerElement, which is deprecated but
-  // ACT uses an old CEF which has this instead of the newer APIs.
-  createdCallback() {
-    const root = this.createShadowRoot();
-    this.init(root);
-  }
-  // Convert from the deprecated API names to the modern API names.
-  attachedCallback() {
-    this.connectedCallback();
-  }
-  detachedCallback() {
-    this.disconnectedCallback();
-  }
-
-  init(root) {
     root.innerHTML = `
       <div id="root" style="position: relative"></div>
     `;
 
-    this._nextId = 1;
-    this._nameToId = {};
-    this._elements = {};
-    this._sorted = [];
+    if (this.shadowRoot === null)
+      throw new Error('shadowRoot of widget-list is null');
 
-    this.rootElement = this.shadowRoot.getElementById('root');
+    this.rootElement = this.shadowRoot.getElementById('root') as HTMLElement;
   }
 
-  connectedCallback() {
+  attachedCallback() {
     // Default values.
-    this._scale = 1;
     this._elementwidth = 100;
     this._elementheight = 100;
     this._rowcolsize = 5;
@@ -113,7 +126,6 @@ class WidgetList extends HTMLElement {
     // reach the next row/column.
     this._yinc2 = 1;
 
-    if (this.scale !== null) this._scale = Math.max(parseFloat(this.scale), 0.01);
     if (this.elementwidth !== null) this._elementwidth = Math.max(parseInt(this.elementwidth), 1);
     if (this.elementheight !== null)
       this._elementheight = Math.max(parseInt(this.elementheight), 1);
@@ -125,11 +137,11 @@ class WidgetList extends HTMLElement {
     this.layout();
   }
 
-  disconnectedCallback() {
+  detachedCallback() {
     this._connected = false;
   }
 
-  parseToward(toward) {
+  parseToward(toward: string) {
     const t = toward.split(' ');
     if (t.length !== 2) {
       console.log('widget-list: Invalid toward format');
@@ -199,7 +211,7 @@ class WidgetList extends HTMLElement {
     this._yinc2 = y2inc;
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(name: string, _: string, newValue: string) {
     if (name === 'toward') {
       this.parseToward(newValue);
       this.layout();
@@ -218,7 +230,7 @@ class WidgetList extends HTMLElement {
     }
   }
 
-  addElement(name, element, sortKey) {
+  addElement(name: string, element: HTMLElement, sortKey: number | Sorter) {
     const id = this._nextId;
     this._nextId = this._nextId + 1;
 
@@ -238,42 +250,33 @@ class WidgetList extends HTMLElement {
     this._nameToId[name] = id;
     this._elements[id] = sortKeyFn;
     this._sorted.push(id);
-    const that = this;
     this._sorted.sort((a, b) => {
-      return that._elements[a]() - that._elements[b]();
+      return (this._elements[a]?.() || 0) - (this._elements[b]?.() || 0);
     });
 
     element.style.position = 'relative';
-    element.style.left = element.style.top = 0;
+    element.style.left = element.style.top = '0';
 
     const container = document.createElement('div');
     container.appendChild(element);
-    container.id = 'child' + id;
+    container.id = `child${id}`;
 
     this.rootElement.appendChild(container);
 
     this.layout();
   }
 
-  removeElement(name) {
+  removeElement(name: string) {
     const id = this._nameToId[name];
     if (!id)
       return;
-    const container = this.shadowRoot.getElementById('child' + id);
-    const element = container.childNodes[0];
-    this.rootElement.removeChild(container);
-
-    delete this._nameToId[name];
-    delete this._elements[id];
-    for (const i in this._sorted) {
-      if (this._sorted[i] === id) {
-        this._sorted.splice(i, 1);
-        break;
-      }
+    const container = this.shadowRoot?.getElementById(`child${id}`);
+    if (container !== null && container !== undefined) {
+      const element = container.childNodes[0];
+      this.rootElement.removeChild(container);
+      return element;
     }
-
-    this.layout();
-    return element;
+    return undefined;
   }
 
   clear() {
@@ -285,32 +288,33 @@ class WidgetList extends HTMLElement {
     if (!this._connected)
       return;
 
-    this.rootElement.style.width = this._rowcolsize * this._elementwidth;
-    this.rootElement.style.height = this._rowcolsize * this._elementheight;
+    this.rootElement.style.width = String(this._rowcolsize * this._elementwidth);
+    this.rootElement.style.height = String(this._rowcolsize * this._elementheight);
 
     let x = this._xinc1 < 0 ? -this._elementwidth : 0;
     let y = this._yinc1 < 0 ? -this._elementheight : 0;
     let rowcolindex = 0;
     let count = 0;
 
-    for (const i in this._sorted) {
-      const id = this._sorted[i];
-      console.assert(id !== 0, 'An id in _sorted isn\'t in _elements?');
-      const container = this.shadowRoot.getElementById('child' + id);
-      console.assert(container !== null, 'Element with id child' + id + ' is missing?');
+    this._sorted.forEach((id: number) => {
+      if (id === 0)
+        throw new Error('An id in _sorted isn\'t in _elements?');
+      const container = this.shadowRoot?.getElementById(`child${id}`);
+      if (container === null || container === undefined)
+        throw new Error(`Element with id child${id} is missing?`);
 
       if (count >= this._maxnumber) {
         container.style.display = 'none';
-        continue;
-      } else {
-        container.style.display = 'block';
+        return;
       }
+      container.style.display = 'block';
+
 
       count++;
 
       container.style.position = 'absolute';
-      container.style.left = x;
-      container.style.top = y;
+      container.style.left = String(x);
+      container.style.top = String(y);
 
       x = x + (this._xinc1 * this._elementwidth);
       y = y + (this._yinc1 * this._elementheight);
@@ -322,35 +326,26 @@ class WidgetList extends HTMLElement {
         y = y + (this._yinc2 * this._elementheight);
         rowcolindex = 0;
       }
-    }
+    });
   }
 
   test() {
     for (let i = 0; i < 8; ++i) {
       const div = document.createElement('div');
-      div.style.width = this._elementwidth * 3 / 4;
-      div.style.height = this._elementheight * 3 / 4;
+      div.style.width = String(this._elementwidth * 3 / 4);
+      div.style.height = String(this._elementheight * 3 / 4);
       div.style.overflow = 'hidden';
-      div.style.backgroundColor = '#' + parseInt(Math.random() * 10) + '' + parseInt(Math.random() * 10) + '' + parseInt(Math.random() * 10);
+      div.style.backgroundColor = `#${Math.random() * 10}${Math.random() * 10}${Math.random() * 10}`;
       div.style.textAlign = 'center';
       div.style.fontFamily = 'arial';
-      div.style.fontSize = this._elementheight / 6;
+      div.style.fontSize = String(this._elementheight / 6);
       div.style.fontWeight = 'bold';
       div.style.color = 'white';
       div.style.textShadow = '-1px 0 3px black, 0 1px 3px black, 1px 0 3px black, 0 -1px 3px black';
-      div.innerHTML = '<br/>' + (i + 1);
-      this.addElement('test' + i, div, () => {
-        0;
-      });
+      div.innerHTML = `<br/>${i + 1}`;
+      this.addElement(`test${i}`, div, () => 0);
     }
   }
 }
 
-if (window.customElements) {
-  // Preferred method but old CEF doesn't have this.
-  window.customElements.define('widget-list', WidgetList);
-} else {
-  document.registerElement('widget-list', {
-    prototype: Object.create(WidgetList.prototype),
-  });
-}
+window.customElements.define('widget-list', WidgetList);

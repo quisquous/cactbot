@@ -11,6 +11,7 @@
     ],
     // nullish coalescing operator not supported in OverlayPlugin's Chrome M75
     // TODO: change to ES2020 once OverlayPlugin rolls CEF past M80.
+    // remember to update target in package.json lint-staged tsc flags.
     "target": "ES2019",
     "module": "ES2020",
     "allowJs": true,

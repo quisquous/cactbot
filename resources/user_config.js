@@ -1,78 +1,46 @@
 import './overlay_plugin_api';
 
-import Conditions from './conditions';
-import ContentType from './content_type';
-import NetRegexes from './netregexes';
-import Regexes from './regexes';
-import { Responses } from './responses';
-import Outputs from './outputs';
-import Util from './util';
-import ZoneId from './zone_id';
-import ZoneInfo from './zone_info';
-import { Lang, OverlayName } from 'types/global';
-import { Option } from '../types/data';
-import { LoadUserEvent, OverlayStateUpdateEvent } from '../types/events';
-
-declare function callOverlayHandler(param: { call: 'cactbotLoadData'; overlay: string }): Promise<{
-  data: {
-    [key in OverlayName]?: string;
-  };
-}>;
-declare function callOverlayHandler(param: { call: 'cactbotRequestState' }): void;
-
-type Callback = () => void
-
-type OptionTemplate = {
-  options: {
-    id: string;
-    name: {
-      en: string;
-      de: string;
-      fr: string;
-      ja: string;
-      cn: string;
-      ko: string;
-    };
-    type: 'checkbox' | 'float' | 'directory' | 'fail' | 'integer';
-    debugOnly: boolean;
-  }[];
-}
-type UserFileCallback = (
-    jsFile: string,
-    localFiles: string[],
-    options: Option,
-    basePath: string,
-) => void
+// TODO:
+// The convention of "import X as _X; const X = _X;" is currently
+// being used as a method to workaround for downstream code
+// that is running via eval(). Because importing statements do not
+// create a variable of the same name, the eval()'d code does not know
+// about the import, and thus throws ReferenceErrors.
+// Used by downstream eval
+import _Conditions from './conditions';
+const Conditions = _Conditions;
+import _ContentType from './content_type';
+const ContentType = _ContentType;
+import _NetRegexes from './netregexes';
+const NetRegexes = _NetRegexes;
+import _Regexes from './regexes';
+const Regexes = _Regexes;
+import { Responses as _Responses } from './responses';
+const Responses = _Responses;
+import _Outputs from './outputs';
+const Outputs = _Outputs;
+import _Util from './util';
+const Util = _Util;
+import _ZoneId from './zone_id';
+const ZoneId = _ZoneId;
+import _ZoneInfo from './zone_info';
+const ZoneInfo = _ZoneInfo;
 
 class UserConfig {
-  optionTemplates: {
-    [key in OverlayName]?: OptionTemplate;
-  };
-  savedConfig: null | {
-    [key in OverlayName]?: {};
-  };
-  userFileCallbacks: {
-    [key in OverlayName]?: UserFileCallback;
-  };
   constructor() {
     this.optionTemplates = {};
     this.savedConfig = null;
     this.userFileCallbacks = {};
   }
-  registerOptions(
-      overlayName: OverlayName,
-      optionTemplates: OptionTemplate,
-      userFileCallback: UserFileCallback,
-  ): void {
+  registerOptions(overlayName, optionTemplates, userFileCallback) {
     this.optionTemplates[overlayName] = optionTemplates;
     if (userFileCallback)
       this.userFileCallbacks[overlayName] = userFileCallback;
   }
 
-
-  sortUserFiles(keys: string[]): string[] {
+  sortUserFiles(keys) {
     // Helper data structure for subdirectories.
-    const splitKeyMap: Record<string, string[]> = {};
+    const splitKeyMap = {};
     for (const key of keys)
       splitKeyMap[key] = key.toUpperCase().split(/[/\\]/);
 
@@ -135,7 +103,7 @@ class UserConfig {
   // that extension that have `overlayName` either as their entire filename (no subdir)
   // or are inside a root-level subdirectory named `overlayName`/  The extension should
   // include the period separator, e.g. ".js".  All comparisons are case insensitive.
-  filterUserFiles(paths: string[], origOverlayName: OverlayName, origExtension: string): string[] {
+  filterUserFiles(paths, origOverlayName, origExtension) {
     const extension = origExtension.toLowerCase();
     const overlayName = origOverlayName.toLowerCase();
     return paths.filter((origPath) => {
@@ -144,11 +112,13 @@ class UserConfig {
         return false;
       if (path === `${overlayName}${extension}`)
         return true;
-      return path.startsWith(`${overlayName}/`) || path.startsWith(`${overlayName}\\`);
+      if (path.startsWith(`${overlayName}/`) || path.startsWith(`${overlayName}\\`))
+        return true;
+      return false;
     });
   }
 
-  getUserConfigLocation(overlayName: OverlayName, options: Option, callback: Callback) {
+  getUserConfigLocation(overlayName, options, callback) {
     let currentlyReloading = false;
     const reloadOnce = () => {
       if (currentlyReloading)
@@ -167,13 +137,13 @@ class UserConfig {
     this.loadUserFiles(overlayName, options, callback);
   }
 
-  loadUserFiles(overlayName: OverlayName, options: Option, callback: Callback) {
+  loadUserFiles(overlayName, options, callback) {
     const readOptions = callOverlayHandler({
       call: 'cactbotLoadData',
       overlay: 'options',
     });
 
-    const loadUser = async (e: LoadUserEvent) => {
+    const loadUser = async (e) => {
       // The basePath isn't using for anything other than cosmetic printing of full paths,
       // so replace any slashes here for uniformity.  In case anybody is using cactbot on
       // Linux (?!?), support any style of slashes elsewhere.
@@ -227,17 +197,13 @@ class UserConfig {
 
       // If the overlay has a "Debug" setting, set to true via the config tool,
       // then also print out user files that have been loaded.
-      const printUserFile = options.Debug ? console.log : () => {
-        return undefined;
-      };
+      const printUserFile = options.Debug ? (x) => console.log(x) : (x) => {};
 
       // With user files being arbitrary javascript, and having multiple files
       // in user folders, it's possible for later files to accidentally remove
       // things that previous files have added.  Warn about this, since most
       // users are not programmers.
-      const warnOnVariableResetMap: {
-        [key in OverlayName]?: string[]
-      } = {
+      const warnOnVariableResetMap = {
         raidboss: [
           'Triggers',
         ],
@@ -265,19 +231,7 @@ class UserConfig {
             // issues, it's unlikely that these will be able to be anything but eval forever.
             //
             /* eslint-disable no-eval */
-            window.eval.call({
-              Conditions,
-              ContentType,
-              NetRegexes,
-              Regexes,
-              Responses,
-              Outputs,
-              Util,
-              ZoneId,
-              ZoneInfo,
-              Options,
-              ...window,
-            }, localFiles[jsFile]);
+            eval(localFiles[jsFile]);
             /* eslint-enable no-eval */
 
             for (const field of warnOnVariableResetMap[overlayName]) {
@@ -291,7 +245,7 @@ class UserConfig {
 
             if (this.userFileCallbacks[overlayName])
               this.userFileCallbacks[overlayName](jsFile, localFiles, options, basePath);
-          } catch (e: Error) {
+          } catch (e) {
             // Be very visible for users.
             console.log('*** ERROR IN USER FILE ***');
             console.log(e.stack);
@@ -334,7 +288,7 @@ class UserConfig {
     });
   }
 
-  handleSkin(skinName: 'default' | 'lippe') {
+  handleSkin(skinName) {
     if (!skinName || skinName === 'default')
       return;
 
@@ -347,21 +301,21 @@ class UserConfig {
     const skinHref = basePath + 'skins/' + skinName + '/' + skinName + '.css';
     this.appendCSSLink(skinHref);
   }
-  appendJSLink(src: string) {
+  appendJSLink(src) {
     const userJS = document.createElement('script');
     userJS.setAttribute('type', 'text/javascript');
     userJS.setAttribute('src', src);
     userJS.setAttribute('async', false);
     document.getElementsByTagName('head')[0].appendChild(userJS);
   }
-  appendCSSLink(href: string) {
+  appendCSSLink(href) {
     const userCSS = document.createElement('link');
     userCSS.setAttribute('rel', 'stylesheet');
     userCSS.setAttribute('type', 'text/css');
     userCSS.setAttribute('href', href);
     document.getElementsByTagName('head')[0].appendChild(userCSS);
   }
-  processOptions(options: Option, savedConfig, template) {
+  processOptions(options, savedConfig, template) {
     // Take options from the template, find them in savedConfig,
     // and apply them to options. This also handles setting
     // defaults for anything in the template, even if it does not
@@ -401,7 +355,7 @@ class UserConfig {
     if (template.processExtraOptions)
       template.processExtraOptions(options, savedConfig);
   }
-  addUnlockText(lang: Lang) {
+  addUnlockText(lang) {
     const unlockText = {
       en: '🔓 Unlocked (lock overlay before using)',
       de: '🔓 Entsperrt (Sperre das Overlay vor der Nutzung)',
@@ -430,11 +384,11 @@ export default new UserConfig();
 
 if (typeof document !== 'undefined') {
   // This event comes early and is not cached, so set up event listener immediately.
-  document.addEventListener('onOverlayStateUpdate', ((e: OverlayStateUpdateEvent) => {
+  document.addEventListener('onOverlayStateUpdate', (e) => {
     const docClassList = document.documentElement.classList;
     if (e.detail.isLocked)
       docClassList.remove('resizeHandle', 'unlocked');
     else
       docClassList.add('resizeHandle', 'unlocked');
-  }) as EventListener);
+  });
 }
