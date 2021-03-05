@@ -1,9 +1,9 @@
 import fs from 'fs';
 import readline from 'readline';
-import Anonymizer from './anonymizer.js';
-import Splitter from './splitter.js';
-import { EncounterCollector } from './encounter_tools.js';
-import ZoneId from '../../resources/zone_id.js';
+import Anonymizer from './anonymizer';
+import Splitter from './splitter';
+import { EncounterCollector } from './encounter_tools';
+import ZoneId from '../../resources/zone_id';
 import argparse from 'argparse';
 
 // TODO: add options for not splitting / not anonymizing.

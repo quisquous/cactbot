@@ -1,5 +1,5 @@
-import EmulatorCommon from '../EmulatorCommon.js';
-import StubbedPopupText from '../overrides/StubbedPopupText.js';
+import EmulatorCommon from '../EmulatorCommon';
+import StubbedPopupText from '../overrides/StubbedPopupText';
 
 export default class PopupTextAnalysis extends StubbedPopupText {
   OnTriggerInternal(trigger, matches) {

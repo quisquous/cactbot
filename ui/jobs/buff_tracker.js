@@ -1,6 +1,6 @@
-import EffectId from '../../resources/effect_id.js';
-import { kAbility } from './constants.js';
-import { makeAuraTimerIcon } from './utils.js';
+import EffectId from '../../resources/effect_id';
+import { kAbility } from './constants';
+import { makeAuraTimerIcon } from './utils';
 
 // TODO: consider using real times and not setTimeout times as these can drift.
 export class Buff {

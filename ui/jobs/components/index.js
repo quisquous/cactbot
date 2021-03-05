@@ -1,21 +1,21 @@
-import { setup as setupPld } from './pld.js';
-import { setup as setupWar } from './war.js';
-import { setup as setupDrk } from './drk.js';
-import { setup as setupGnb } from './gnb.js';
-import { setup as setupWhm } from './whm.js';
-import { setup as setupSch } from './sch.js';
-import { setup as setupAst } from './ast.js';
-import { setup as setupMnk } from './mnk.js';
-import { setup as setupDrg } from './drg.js';
-import { setup as setupNin } from './nin.js';
-import { setup as setupSam } from './sam.js';
-import { setup as setupBrd } from './brd.js';
-import { setup as setupMch } from './mch.js';
-import { setup as setupDnc } from './dnc.js';
-import { setup as setupBlm } from './blm.js';
-import { setup as setupSmn } from './smn.js';
-import { setup as setupRdm } from './rdm.js';
-import { setup as setupBlu } from './blu.js';
+import { setup as setupPld } from './pld';
+import { setup as setupWar } from './war';
+import { setup as setupDrk } from './drk';
+import { setup as setupGnb } from './gnb';
+import { setup as setupWhm } from './whm';
+import { setup as setupSch } from './sch';
+import { setup as setupAst } from './ast';
+import { setup as setupMnk } from './mnk';
+import { setup as setupDrg } from './drg';
+import { setup as setupNin } from './nin';
+import { setup as setupSam } from './sam';
+import { setup as setupBrd } from './brd';
+import { setup as setupMch } from './mch';
+import { setup as setupDnc } from './dnc';
+import { setup as setupBlm } from './blm';
+import { setup as setupSmn } from './smn';
+import { setup as setupRdm } from './rdm';
+import { setup as setupBlu } from './blu';
 
 export function getSetup(job) {
   return {

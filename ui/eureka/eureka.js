@@ -1,10 +1,10 @@
-import Regexes from '../../resources/regexes.ts';
-import UserConfig from '../../resources/user_config.js';
-import ZoneId from '../../resources/zone_id.js';
-import ZoneInfo from '../../resources/zone_info.js';
-import { getWeather, findNextWeather, findNextWeatherNot, findNextNight, findNextDay, isNightTime } from '../../resources/weather.js';
+import Regexes from '../../resources/regexes';
+import UserConfig from '../../resources/user_config';
+import ZoneId from '../../resources/zone_id';
+import ZoneInfo from '../../resources/zone_info';
+import { getWeather, findNextWeather, findNextWeatherNot, findNextNight, findNextDay, isNightTime } from '../../resources/weather';
 
-import './eureka_config.js';
+import './eureka_config';
 
 const bunnyLabel = {
   en: 'Bunny',

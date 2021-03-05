@@ -1,4 +1,4 @@
-import ZoneId from '../../../../../resources/zone_id.js';
+import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: check tethers being cut (when they shouldn't)
 // TODO: check for concussed debuff

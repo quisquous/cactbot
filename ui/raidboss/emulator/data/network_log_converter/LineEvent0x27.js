@@ -1,4 +1,4 @@
-import LineEvent from './LineEvent.js';
+import LineEvent from './LineEvent';
 
 // Network update hp event
 export class LineEvent0x27 extends LineEvent {

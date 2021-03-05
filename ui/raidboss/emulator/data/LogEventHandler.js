@@ -1,6 +1,6 @@
-import EmulatorCommon from '../EmulatorCommon.js';
-import EventBus from '../EventBus.js';
-import { LocaleNetRegex } from '../../../../resources/translations.js';
+import EmulatorCommon from '../EmulatorCommon';
+import EventBus from '../EventBus';
+import { LocaleNetRegex } from '../../../../resources/translations';
 
 export default class LogEventHandler extends EventBus {
   static doesLineMatch(line, regexes) {

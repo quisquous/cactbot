@@ -1,6 +1,6 @@
 import { Party } from '../types/global';
 import { Job, Role } from '../types/job.js';
-import Util from './util.js';
+import Util from './util';
 
 export default class PartyTracker {
   details: Party[];

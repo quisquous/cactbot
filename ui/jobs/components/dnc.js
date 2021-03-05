@@ -1,6 +1,6 @@
-import EffectId from '../../../resources/effect_id.js';
-import { kAbility } from '../constants.js';
-import { computeBackgroundColorFrom } from '../utils.js';
+import EffectId from '../../../resources/effect_id';
+import { kAbility } from '../constants';
+import { computeBackgroundColorFrom } from '../utils';
 
 export function setup(bars) {
   const comboTimer = bars.addTimerBar({

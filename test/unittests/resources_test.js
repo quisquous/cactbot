@@ -1,6 +1,6 @@
-import contentList from '../../resources/content_list.js';
-import ZoneId from '../../resources/zone_id.js';
-import ZoneInfo from '../../resources/zone_info.js';
+import contentList from '../../resources/content_list';
+import ZoneId from '../../resources/zone_id';
+import ZoneInfo from '../../resources/zone_info';
 
 import chai from 'chai';
 const { assert } = chai;
