@@ -1,5 +1,5 @@
 00-misc/general.js
-00-misc/test.ts
+00-misc/test.js
 00-misc/test.txt
 02-arr/dungeon/brayfloxs_longstop.js
 02-arr/dungeon/haukke_manor.js
