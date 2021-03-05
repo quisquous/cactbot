@@ -19,9 +19,9 @@ addOverlayListener('onPlayerChangedEvent', (e: PlayerChangedEvent) => {
   document.getElementById('debug').innerText = e.detail.debugJob;
 
   const jobInfoEl = document.getElementById('jobinfo');
-  if (e.detail.job === 'RDM') {
+  if (e.detail.job === 'RDM')
     jobInfoEl.innerText = `${e.detail.jobDetail.whiteMana} | ${e.detail.jobDetail.blackMana}`;
-  } else if (e.detail.job === 'WAR')
+  else if (e.detail.job === 'WAR')
     jobInfoEl.innerText = e.detail.jobDetail.beast;
   else if (e.detail.job === 'DRK')
     jobInfoEl.innerText = `${e.detail.jobDetail.blood} | ${e.detail.jobDetail.darksideMilliseconds} | ${e.detail.jobDetail.darkArts} | ${e.detail.jobDetail.livingShadowMilliseconds}`;
@@ -89,16 +89,16 @@ addOverlayListener('onGameActiveChangedEvent', () => {
 });
 
 addOverlayListener('onLogEvent', (e) => {
-  for (let i = 0; i < e.detail.logs.length; i++) {
+  e.detail.logs.forEach((item) => {
     // Match "/echo tts:<stuff>"
-    const r = e.detail.logs[i].match('00:0038:tts:(.*)');
+    const r = /00:0038:tts:(.*)/.exec(item);
     if (r) {
       callOverlayHandler({
         call: 'cactbotSay',
-        text: r[1],
+        text: r[1] as string,
       });
     }
-  }
+  });
 });
 
 addOverlayListener('onUserFileChanged', (e) => {

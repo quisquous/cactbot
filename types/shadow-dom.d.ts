@@ -23,6 +23,8 @@ declare global {
     createShadowRoot: () => ShadowRoot;
   }
 
+  declare function callOverlayHandler(param: { call: 'cactbotSay'; text: string } | { call: 'cactbotRequestState' }): void
+
   declare function addOverlayListener<K extends keyof CustomEventMap>(
       type: K,
       listener: (this: Window, ev: CustomEventMap[K]) => void
