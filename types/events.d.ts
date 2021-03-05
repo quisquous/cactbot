@@ -1,19 +1,12 @@
-import { Lang } from './global';
+export interface ChangeZoneEvent {
+  zoneName: string;
+  zoneID: number;
+}
 
-export interface LoadUserEvent {
+export interface InCombatChangedEvent {
   detail: {
-    userLocation: string;
-    localUserFiles: Record<string, string>;
-    language: Lang;
-    parserLanguage: Lang;
-    displayLanguage: Lang;
-    systemLocale: string;
-
+    inACTCombat: boolean;
+    inGameCombat: boolean;
   };
 }
 
-export interface OverlayStateUpdateEvent extends Event {
-  detail: {
-    isLocked: boolean;
-  };
-}
