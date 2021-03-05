@@ -38,10 +38,10 @@ type OptionTemplate = {
   }[];
 }
 type UserFileCallback = (
-  jsFile: string,
-  localFiles: string[],
-  options: Option,
-  basePath: string,
+    jsFile: string,
+    localFiles: string[],
+    options: Option,
+    basePath: string,
 ) => void
 
 class UserConfig {
@@ -60,14 +60,15 @@ class UserConfig {
     this.userFileCallbacks = {};
   }
   registerOptions(
-    overlayName: OverlayName,
-    optionTemplates: OptionTemplate,
-    userFileCallback: UserFileCallback,
+      overlayName: OverlayName,
+      optionTemplates: OptionTemplate,
+      userFileCallback: UserFileCallback,
   ): void {
     this.optionTemplates[overlayName] = optionTemplates;
     if (userFileCallback)
       this.userFileCallbacks[overlayName] = userFileCallback;
   }
+
 
   sortUserFiles(keys: string[]): string[] {
     // Helper data structure for subdirectories.
@@ -219,9 +220,9 @@ class UserConfig {
       const userOptions = await readOptions || {};
       this.savedConfig = userOptions.data || {};
       this.processOptions(
-        options,
-        this.savedConfig[overlayName] || {},
-        this.optionTemplates[overlayName],
+          options,
+          this.savedConfig[overlayName] || {},
+          this.optionTemplates[overlayName],
       );
 
       // If the overlay has a "Debug" setting, set to true via the config tool,
