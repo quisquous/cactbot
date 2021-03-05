@@ -346,8 +346,6 @@ export class PopupText {
     this.resetWhenOutOfCombat = true;
 
     const orderedTriggers = new OrderedTriggerList();
-    const orderedNetTriggers = new OrderedTriggerList();
-    const orderedTimelineTriggers = new OrderedTriggerList();
 
     // Recursively/iteratively process timeline entries for triggers.
     // Functions get called with data, arrays get iterated, strings get appended.
@@ -440,7 +438,7 @@ export class PopupText {
           const netRegex = trigger[netRegexParserLang] || trigger.netRegex;
           if (netRegex) {
             trigger.localNetRegex = Regexes.parse(netRegex);
-            orderedNetTriggers.push(trigger);
+            orderedTriggers.push(trigger);
           }
 
           if (!regex && !netRegex) {
@@ -479,7 +477,8 @@ export class PopupText {
       if (set.timelineTriggers) {
         for (const trigger of set.timelineTriggers) {
           this.ProcessTrigger(trigger);
-          orderedTimelineTriggers.push(trigger);
+          trigger.isTimelineTrigger = true;
+          orderedTriggers.push(trigger);
         }
       }
       if (set.timelineStyles)
@@ -490,19 +489,30 @@ export class PopupText {
 
     // Store all the collected triggers in order, and filter out disabled triggers.
     const filterEnabled = (trigger) => !('disabled' in trigger && trigger.disabled);
-    this.triggers = orderedTriggers.asList().filter(filterEnabled);
-    this.netTriggers = orderedNetTriggers.asList().filter(filterEnabled);
+    const allTriggers = orderedTriggers.asList().filter(filterEnabled);
+
+    this.triggers = allTriggers.filter((trigger) => trigger.localRegex);
+    this.netTriggers = allTriggers.filter((trigger) => trigger.localNetRegex);
+    const timelineTriggers = allTriggers.filter((trigger) => trigger.isTimelineTrigger);
 
     this.timelineLoader.SetTimelines(
         timelineFiles,
         timelines,
         replacements,
-        orderedTimelineTriggers.asList(),
+        timelineTriggers,
         timelineStyles,
     );
   }
 
   ProcessTrigger(trigger) {
+    // These properties are used internally by ReloadTimelines only and should
+    // not exist on user triggers.  However, the trigger objects themselves are
+    // reused when reloading pages, and so it is impossible to verify that
+    // these properties don't exist.  Therefore, just delete them silently.
+    delete trigger.localRegex;
+    delete trigger.localNetRegex;
+    delete trigger.isTimelineTrigger;
+
     trigger.output = new TriggerOutputProxy(trigger, this.options.DisplayLanguage,
         this.options.PerTriggerAutoConfig);
   }
