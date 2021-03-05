@@ -1,4 +1,4 @@
-import { Responses, severityMap, triggerFunctions, builtInResponseStr } from '../../resources/responses.js';
+import { Responses, severityMap, triggerFunctions, builtInResponseStr } from '../../resources/responses';
 import chai from 'chai';
 const { assert } = chai;
 // test_trigger.js will validate the field names, so no need to do that here.

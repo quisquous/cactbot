@@ -1,7 +1,7 @@
-import Combatant from './Combatant.js';
-import CombatantJobSearch from './CombatantJobSearch.js';
-import CombatantState from './CombatantState.js';
-import PetNamesByLang from '../../../../resources/pet_names.js';
+import Combatant from './Combatant';
+import CombatantJobSearch from './CombatantJobSearch';
+import CombatantState from './CombatantState';
+import PetNamesByLang from '../../../../resources/pet_names';
 
 export default class CombatantTracker {
   constructor(logLines, language) {

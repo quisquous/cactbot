@@ -1,10 +1,10 @@
-import PartyTracker from '../../resources/party.js';
-import Regexes from '../../resources/regexes.ts';
-import { triggerOutputFunctions } from '../../resources/responses.js';
-import UserConfig from '../../resources/user_config.js';
-import Util from '../../resources/util.ts';
+import PartyTracker from '../../resources/party';
+import Regexes from '../../resources/regexes';
+import { triggerOutputFunctions } from '../../resources/responses';
+import UserConfig from '../../resources/user_config';
+import Util from '../../resources/util';
 import raidbossFileData from './data/manifest.txt';
-import raidbossOptions from './raidboss_options.js';
+import raidbossOptions from './raidboss_options';
 
 const kOptionKeys = {
   output: 'Output',

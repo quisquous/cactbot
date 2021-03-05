@@ -1,15 +1,15 @@
-import Regexes from '../../resources/regexes.ts';
-import UserConfig from '../../resources/user_config.js';
-import ZoneInfo from '../../resources/zone_info.js';
-import contentList from '../../resources/content_list.js';
+import Regexes from '../../resources/regexes';
+import UserConfig from '../../resources/user_config';
+import ZoneInfo from '../../resources/zone_info';
+import contentList from '../../resources/content_list';
 
 // Load other config files
-import './general_config.js';
-import '../eureka/eureka_config.js';
-import '../jobs/jobs_config.js';
-import '../oopsyraidsy/oopsyraidsy_config.js';
-import '../radar/radar_config.js';
-import '../raidboss/raidboss_config.js';
+import './general_config';
+import '../eureka/eureka_config';
+import '../jobs/jobs_config';
+import '../oopsyraidsy/oopsyraidsy_config';
+import '../radar/radar_config';
+import '../raidboss/raidboss_config';
 
 const Options = {};
 let gConfig = null;

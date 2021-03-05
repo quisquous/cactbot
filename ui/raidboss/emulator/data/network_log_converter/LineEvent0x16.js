@@ -1,5 +1,5 @@
-import LineEvent from './LineEvent.js';
-import { LineEvent0x15 } from './LineEvent0x15.js';
+import LineEvent from './LineEvent';
+import { LineEvent0x15 } from './LineEvent0x15';
 
 // Ability hit multiple/no target event
 // Duplicate of 0x15 as far as data

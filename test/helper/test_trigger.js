@@ -4,7 +4,7 @@
 // TODO: Remove ` ?` before each hex value once global prefix `^.{14} ` is added.
 // JavaScript doesn't allow for possessive operators in regular expressions.
 
-import { triggerFunctions, triggerTextOutputFunctions, builtInResponseStr } from '../../resources/responses.js';
+import { triggerFunctions, triggerTextOutputFunctions, builtInResponseStr } from '../../resources/responses';
 import fs from 'fs';
 import path from 'path';
 import chai from 'chai';

@@ -1,11 +1,11 @@
-import EmulatorCommon from '../EmulatorCommon.js';
-import EventBus from '../EventBus.js';
-import { PopupTextGenerator } from '../../popup-text.js';
-import RaidEmulatorTimelineController from '../overrides/RaidEmulatorTimelineController.js';
-import RaidEmulatorTimelineUI from '../overrides/RaidEmulatorTimelineUI.js';
-import PopupTextAnalysis from '../data/PopupTextAnalysis.js';
-import { TimelineLoader } from '../../timeline.js';
-import Util from '../../../../resources/util.ts';
+import EmulatorCommon from '../EmulatorCommon';
+import EventBus from '../EventBus';
+import { PopupTextGenerator } from '../../popup-text';
+import RaidEmulatorTimelineController from '../overrides/RaidEmulatorTimelineController';
+import RaidEmulatorTimelineUI from '../overrides/RaidEmulatorTimelineUI';
+import PopupTextAnalysis from '../data/PopupTextAnalysis';
+import { TimelineLoader } from '../../timeline';
+import Util from '../../../../resources/util';
 import raidbossFileData from '../../data/manifest.txt';
 
 export default class AnalyzedEncounter extends EventBus {

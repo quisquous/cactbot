@@ -1,4 +1,4 @@
-import LineEvent from './LineEvent.js';
+import LineEvent from './LineEvent';
 
 // Tether event
 export class LineEvent0x23 extends LineEvent {

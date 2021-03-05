@@ -1,8 +1,8 @@
-import NetRegexes from '../../resources/netregexes.ts';
-import ZoneInfo from '../../resources/zone_info.js';
-import ContentType from '../../resources/content_type.js';
+import NetRegexes from '../../resources/netregexes';
+import ZoneInfo from '../../resources/zone_info';
+import ContentType from '../../resources/content_type';
 
-import { commonReplacement, syncKeys } from '../../ui/raidboss/common_replacement.js';
+import { commonReplacement, syncKeys } from '../../ui/raidboss/common_replacement';
 
 // TODO: add some error checking that a zone has been found before a fight.
 // This can happen on partial logs.

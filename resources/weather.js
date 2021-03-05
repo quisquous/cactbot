@@ -1,5 +1,5 @@
-import gWeatherRates from './weather_rate.js';
-import ZoneInfo from './zone_info.js';
+import gWeatherRates from './weather_rate';
+import ZoneInfo from './zone_info';
 
 export function getWeather(timeMs, zoneId) {
   const chance = getWeatherChanceValue(timeMs);
