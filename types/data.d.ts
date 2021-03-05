@@ -10,7 +10,7 @@ export interface Option {
   SystemLocale: string;
   ShortLocale: string;
   Debug: boolean;
-  Skin: 'default' | 'lippe';
+  Skin: string;
   // [key: string]: unknown;
   // todo: complete this type
 }
