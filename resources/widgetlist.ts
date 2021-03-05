@@ -297,11 +297,15 @@ class WidgetList extends HTMLElement {
     let count = 0;
 
     this._sorted.forEach((id: number) => {
-      if (id === 0)
-        throw new Error('An id in _sorted isn\'t in _elements?');
+      if (id === 0) {
+        console.error('An id in _sorted isn\'t in _elements?');
+        return;
+      }
       const container = this.shadowRoot?.getElementById(`child${id}`);
-      if (container === null || container === undefined)
-        throw new Error(`Element with id child${id} is missing?`);
+      if (container === null || container === undefined) {
+        console.error(`Element with id child${id} is missing?`);
+        return;
+      }
 
       if (count >= this._maxnumber) {
         container.style.display = 'none';
