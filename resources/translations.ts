@@ -1,6 +1,6 @@
 import { Lang } from '../types/global';
-import Regexes from './regexes.js';
-import NetRegexes from './netregexes.js';
+import Regexes from './regexes';
+import NetRegexes from './netregexes';
 
 // Fill in LocaleRegex so that things like LocaleRegex.countdownStart.de is a valid regex.
 const localeLines = {
