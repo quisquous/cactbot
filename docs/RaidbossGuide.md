@@ -63,7 +63,7 @@ These files live alongside their parent trigger file in the appropriate folder. 
 
 **timeline**
 Optional extra lines to include as part of the timeline.
-The value may be string or an array of strings,
+The value may be a string or an array of strings,
 or a `function(data)` that returns string or an array of strings,
 or an array contains different kinds of items above.
 
