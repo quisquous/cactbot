@@ -463,38 +463,38 @@ When writing triggers, prefer using `Outputs` if possible to avoid duplication.
 A simple example using `outputStrings` and `Outputs` as below:
 
 ```javascript
-    {
-      id: 'E9S Zero-Form Devouring Dark',
-      netRegex: NetRegexes.startsUsing({ id: '5623', source: 'Cloud Of Darkness' }),
-      durationSeconds: 4,
-      alertText: function(data, matches, output) {
-        if (data.me === matches.target)
-          return output.tankBusterOnYou();
+{
+  id: 'E9S Zero-Form Devouring Dark',
+  netRegex: NetRegexes.startsUsing({ id: '5623', source: 'Cloud Of Darkness' }),
+  durationSeconds: 4,
+  alertText: function(data, matches, output) {
+    if (data.me === matches.target)
+      return output.tankBusterOnYou();
 
-        if (data.role === 'tank')
-          return output.tankSwap();
+    if (data.role === 'tank')
+      return output.tankSwap();
 
-        if (data.role === 'healer')
-          return output.tankBusters({ player: data.ShortName(matches.target) });
-      },
-      infoText: function(data, _, output) {
-        if (data.role !== 'tank' && data.role !== 'healer')
-          return output.avoidLaser();
-      },
-      outputStrings: {
-        tankBusterOnYou: Outputs.tankBusterOnYou,
-        tankBusters: Outputs.tankBusters,
-        tankSwap: Outputs.tankSwap,
-        avoidLaser: {
-          en: 'Avoid Laser',
-          de: 'Laser ausweichen',
-          fr: 'Évitez le laser',
-          ja: 'レーザー注意',
-          cn: '躲避击退激光',
-          ko: '레이저 피하기',
-        },
-      },
+    if (data.role === 'healer')
+      return output.tankBusters({ player: data.ShortName(matches.target) });
+  },
+  infoText: function(data, _, output) {
+    if (data.role !== 'tank' && data.role !== 'healer')
+      return output.avoidLaser();
+  },
+  outputStrings: {
+    tankBusterOnYou: Outputs.tankBusterOnYou,
+    tankBusters: Outputs.tankBusters,
+    tankSwap: Outputs.tankSwap,
+    avoidLaser: {
+      en: 'Avoid Laser',
+      de: 'Laser ausweichen',
+      fr: 'Évitez le laser',
+      ja: 'レーザー注意',
+      cn: '躲避击退激光',
+      ko: '레이저 피하기',
     },
+  },
+},
 ```
 
 ## Timeline Info
