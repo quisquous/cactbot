@@ -1,7 +1,7 @@
-import NetRegexes from '../../../../../resources/netregexes.ts';
-import Regexes from '../../../../../resources/regexes.ts';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import NetRegexes from '../../../../../resources/netregexes';
+import Regexes from '../../../../../resources/regexes';
+import { Responses } from '../../../../../resources/responses';
+import ZoneId from '../../../../../resources/zone_id';
 
 export default {
   zoneId: ZoneId.TheBindingCoilOfBahamutTurn5,

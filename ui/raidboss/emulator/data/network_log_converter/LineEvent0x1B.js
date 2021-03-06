@@ -1,4 +1,4 @@
-import LineEvent from './LineEvent.js';
+import LineEvent from './LineEvent';
 
 // Head marker event
 export class LineEvent0x1B extends LineEvent {

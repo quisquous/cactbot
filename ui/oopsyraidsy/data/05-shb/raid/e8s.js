@@ -1,5 +1,5 @@
-import NetRegexes from '../../../../../resources/netregexes.ts';
-import ZoneId from '../../../../../resources/zone_id.js';
+import NetRegexes from '../../../../../resources/netregexes';
+import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: rush hitting the crystal
 // TODO: adds not being killed

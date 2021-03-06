@@ -1,4 +1,4 @@
-import { kAbility, kComboBreakers } from './constants.js';
+import { kAbility, kComboBreakers } from './constants';
 
 export default class ComboTracker {
   constructor(comboBreakers, callback) {

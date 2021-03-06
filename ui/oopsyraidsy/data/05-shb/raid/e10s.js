@@ -1,5 +1,5 @@
-import NetRegexes from '../../../../../resources/netregexes.ts';
-import ZoneId from '../../../../../resources/zone_id.js';
+import NetRegexes from '../../../../../resources/netregexes';
+import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: hitting shadow of the hero with abilities can cause you to take damage, list those?
 //       e.g. picking up your first pitch bog puddle will cause you to die to the damage

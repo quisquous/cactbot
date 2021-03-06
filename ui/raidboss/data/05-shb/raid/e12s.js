@@ -1,8 +1,8 @@
-import Conditions from '../../../../../resources/conditions.ts';
-import NetRegexes from '../../../../../resources/netregexes.ts';
-import Outputs from '../../../../../resources/outputs.ts';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
+import { Responses } from '../../../../../resources/responses';
+import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: knockback direction from big hand after giant lasers (Palm Of Temperance 58B4/58B6/?/?)
 // TODO: for left/right reach during Blade Of Flame, call out Left + #1 alarm for #1.
@@ -917,7 +917,7 @@ export default {
           effect3: output[keys[2]](),
         });
       },
-      outputStrings: Object.assign({
+      outputStrings: {
         comboText: {
           en: '${effect1} > ${effect2} > ${effect3}',
           de: '${effect1} > ${effect2} > ${effect3}',
@@ -926,7 +926,8 @@ export default {
           cn: '${effect1} > ${effect2} > ${effect3}',
           ko: '${effect1} > ${effect2} > ${effect3}',
         },
-      }, intermediateRelativityOutputStrings),
+        ...intermediateRelativityOutputStrings,
+      },
     },
     {
       id: 'E12S Relativity Debuffs',

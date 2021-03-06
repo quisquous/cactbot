@@ -1,4 +1,4 @@
-import { Timeline } from '../../timeline.js';
+import { Timeline } from '../../timeline';
 
 export default class RaidEmulatorTimeline extends Timeline {
   constructor(text, replacements, triggers, styles, options) {

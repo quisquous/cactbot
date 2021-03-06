@@ -1,6 +1,6 @@
-import DpsPhaseTracker from './dps_phase_tracker.js';
-import { InitDpsModule, Options } from '../dps_common.js';
-import UserConfig from '../../../resources/user_config.js';
+import DpsPhaseTracker from './dps_phase_tracker';
+import { InitDpsModule, Options } from '../dps_common';
+import UserConfig from '../../../resources/user_config';
 
 const rows = 10;
 let rdpsMax = 0;

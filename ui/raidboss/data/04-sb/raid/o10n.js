@@ -1,5 +1,5 @@
-import NetRegexes from '../../../../../resources/netregexes.ts';
-import ZoneId from '../../../../../resources/zone_id.js';
+import NetRegexes from '../../../../../resources/netregexes';
+import ZoneId from '../../../../../resources/zone_id';
 
 // O10N - Alphascape 2.0
 export default {

@@ -1,8 +1,8 @@
 // TODO: is the first byte of ids always flags, such that "..000000" is always empty?
 const emptyIds = ['E0000000', '80000000'];
 
-import logDefinitions from './netlog_defs.js';
-import FakeNameGenerator from './fake_name_generator.js';
+import logDefinitions from './netlog_defs';
+import FakeNameGenerator from './fake_name_generator';
 
 // notifier here is a { warn: (str) => {} } object to return errors in a more structured way.
 

@@ -1,4 +1,4 @@
-import ContentType from '../../resources/content_type.js';
+import ContentType from '../../resources/content_type';
 
 
 export const kMeleeWithMpJobs = ['PLD', 'DRK'];

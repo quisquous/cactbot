@@ -1,4 +1,4 @@
-import LineEvent from './LineEvent.js';
+import LineEvent from './LineEvent';
 
 // Ability hit single target event
 export class LineEvent0x15 extends LineEvent {

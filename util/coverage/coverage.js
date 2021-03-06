@@ -1,7 +1,7 @@
-import contentList from '../../resources/content_list.js';
-import { coverage, coverageTotals } from './coverage_report.js';
-import ZoneInfo from '../../resources/zone_info.js';
-import ContentType from '../../resources/content_type.js';
+import contentList from '../../resources/content_list';
+import { coverage, coverageTotals } from './coverage_report';
+import ZoneInfo from '../../resources/zone_info';
+import ContentType from '../../resources/content_type';
 
 // TODO: these tables are pretty wide, add some sort of alternating highlight?
 // TODO: make it possible to click on a zone row and highlight/link to it.

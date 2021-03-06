@@ -1,6 +1,6 @@
-import testManifestFiles from './test_manifest.js';
-import testTimelineFiles from './test_timeline.js';
-import testTriggerFiles from './test_trigger.js';
+import testManifestFiles from './test_manifest';
+import testTimelineFiles from './test_timeline';
+import testTriggerFiles from './test_trigger';
 
 // This file is added to mocha by test_raidboss_data.js when Mocha is being
 // run programatically.  This makes it possible for lint-staged to run

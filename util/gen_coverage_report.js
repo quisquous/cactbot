@@ -1,23 +1,23 @@
 import fs from 'fs';
 import path from 'path';
 import eslint from 'eslint';
-import ZoneInfo from '../resources/zone_info.js';
-import contentList from '../resources/content_list.js';
-import ZoneId from '../resources/zone_id.js';
-import { oopsyTriggerSetFields } from '../ui/oopsyraidsy/oopsy_fields.js';
+import ZoneInfo from '../resources/zone_info';
+import contentList from '../resources/content_list';
+import ZoneId from '../resources/zone_id';
+import { oopsyTriggerSetFields } from '../ui/oopsyraidsy/oopsy_fields';
 
 // Used for trigger eval.
-import Regexes from '../resources/regexes.ts';
-import NetRegexes from '../resources/netregexes.ts';
-import Conditions from '../resources/conditions.ts';
-import { Responses, triggerFunctions, triggerOutputFunctions, builtInResponseStr } from '../resources/responses.js';
+import Regexes from '../resources/regexes';
+import NetRegexes from '../resources/netregexes';
+import Conditions from '../resources/conditions';
+import { Responses, triggerFunctions, triggerOutputFunctions, builtInResponseStr } from '../resources/responses';
 
 // Paths are relative to current file.
 // We can't import the manifest directly from util/ because that's webpack magic,
 // so need to do the same processing its loader would do.
 const raidbossManifest = '../ui/raidboss/data/manifest.txt';
 const oopsyManifest = '../ui/oopsyraidsy/data/manifest.txt';
-const outputFileName = 'coverage/coverage_report.js';
+const outputFileName = 'coverage/coverage_report';
 
 const readManifest = (filename) => {
   const contents = fs.readFileSync(filename);
