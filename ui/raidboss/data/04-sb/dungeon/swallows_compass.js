@@ -49,6 +49,7 @@ export default {
         text: {
           en: 'Avoid Fire Orbs',
           de: 'Weiche den Feuerorbs aus',
+          ja: '火の玉から避ける',
           ko: '불구슬 피하기',
         },
       },
@@ -67,6 +68,7 @@ export default {
         text: {
           en: 'Away From Fireballs',
           de: 'Weg von den Feuerkugeln',
+          ja: '(大きい)火の玉から避ける',
           ko: '불구슬 피하기',
         },
       },
@@ -106,6 +108,7 @@ export default {
         text: {
           en: '5x Puddles on YOU',
           de: '5x Flächen auf DIR',
+          ja: '自分に追尾AoE',
           ko: '5회 장판 대상자',
         },
       },
@@ -131,6 +134,7 @@ export default {
         text: {
           en: 'OUT OF THE LAKE',
           de: 'RAUS AUS DEM SEE',
+          ja: '青いエリアを踏まない',
           ko: '물웅덩이에서 벗어나기',
         },
       },
@@ -195,11 +199,13 @@ export default {
         dynamo: {
           en: 'Close to blue staff',
           de: 'Nahe am blauen Stab',
+          ja: '如意棒に近づく',
           ko: '파랑 지팡이 근처로',
         },
         chariot: {
           en: 'Away from red staff',
           de: 'Weg vom roten Stab',
+          ja: '如意棒から離れる',
           ko: '빨강 지팡이에서 떨어지기',
         },
       },
@@ -250,16 +256,19 @@ export default {
         target: {
           en: 'Laser on YOU',
           de: 'Laser auf DIR',
+          ja: '自分にレーザー',
           ko: '레이저 대상자',
         },
         knockback: {
           en: 'Knockback laser on YOU',
           de: 'Rückstoßlaser auf DIR',
+          ja: '自分にノックバックレーザー',
           ko: '넉백 레이저 대상자',
         },
         avoid: {
           en: 'Avoid tethers',
           de: 'Vermeide die Verbindungen',
+          ja: '線から離れる',
           ko: '선 피하기',
         },
       },
@@ -353,7 +362,7 @@ export default {
         'Flames Of Hate': '怨念の炎',
         'Greater Palm': '大掌底',
         'Might Of The Tengu': '天狗礫',
-        'Mirage': 'Mirage',
+        'Mirage': '蜃気楼',
         'Mount Huaguo': '花果山',
         'Mountain Falls': '山津波',
         'Mythmaker': '驚天動地',
