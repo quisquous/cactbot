@@ -24,18 +24,4 @@ export default {
   },
   triggers: [
   ],
-  timelineReplace: [
-    {
-      'locale': 'en',
-      'replaceText': {
-        'Right-Sided Shockwave/Left-Sided Shockwave': 'Right/Left Shockwave',
-        'Left-Sided Shockwave/Right-Sided Shockwave': 'Left/Right Shockwave',
-        'Sword Omen/Shield Omen': 'Sword/Shield Omen',
-        'Shield Omen/Sword Omen': 'Shield/Sword Omen',
-        'Flashvane/Fury Of Bozja/Infernal Slash': 'Random Arsenal',
-        'Icy Portent/Fiery Portent': 'Icy/Fiery Portent',
-        'Fiery Portent/Icy Portent': 'Fiery/Icy Portent',
-      },
-    },
-  ],
 };
