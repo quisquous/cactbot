@@ -242,18 +242,26 @@ const kMiscTranslations = {
   // Shown when the UI can't decipher the output of a function.
   valueIsFunction: {
     en: '(function)',
+    ja: '(関数)',
+    cn: '(函数)',
   },
   // Warning label for triggers without ids or overridden triggers.
   warning: {
     en: '⚠️ warning',
+    ja: '⚠️ 警告',
+    cn: '⚠️ 警告',
   },
   // Shows up for triggers without ids.
   missingId: {
     en: 'missing id field',
+    ja: 'idがありません',
+    cn: '缺少id属性',
   },
   // Shows up for triggers that are overridden by other triggers.
   overriddenByFile: {
     en: 'overridden by "${file}"',
+    ja: '"${file}"に上書きました',
+    cn: '被"${file}"文件覆盖',
   },
 };
 
