@@ -110,41 +110,53 @@ const localeLines = {
     cn: '(?<player>\\y{Name})停止了练习。',
     ko: '제작 연습을 중지했습니다\\.',
   },
-};
+} as const;
+
+type LocaleLine = { en: string } & Partial<Record<Exclude<Lang, 'en'>, string>>;
 
 type LocaleRegexesObj = Record<keyof typeof localeLines, Record<Lang, RegExp>>;
 
-// Here overrides the build-in Proxy type definition
-// because it assumes that the source object type should
-// be the same as the target object, but here we use
-// proxy to dynamically return RegExp instead of strings
-// in the source object. So create a hacky Type to override
-// the default definition to make this work.
-interface OverrideProxyConstructor {
-  new <T, H extends Record<string, unknown>>(target: T, handler: ProxyHandler<H>): H;
+class RegexSet {
+  regexes?: LocaleRegexesObj;
+  netRegexes?: LocaleRegexesObj;
+
+  get localeRegex(): LocaleRegexesObj {
+    if (this.regexes) return this.regexes;
+    this.regexes = this.buildLocaleRegexes(localeLines, (s: string) => Regexes.gameLog({ line: s + '.*?' }));
+    return this.regexes;
+  }
+
+  get localeNetRegex(): LocaleRegexesObj {
+    if (this.regexes) return this.regexes;
+    this.regexes = this.buildLocaleRegexes(localeLines, (s: string) => NetRegexes.gameLog({ line: s + '[^|]*?' }));
+    return this.regexes;
+  }
+
+  buildLocaleRegexes(
+      locales: typeof localeLines,
+      builder: (s: string) => RegExp,
+  ): LocaleRegexesObj {
+    return Object.fromEntries(
+        Object
+          .entries(locales)
+          .map(([key, lines]) => [key, this.buildLocaleRegex(lines, builder)]),
+    ) as LocaleRegexesObj;
+  }
+
+  buildLocaleRegex(lines: LocaleLine, builder: (s: string) => RegExp): Record<Lang, RegExp> {
+    const regexEn = builder(lines.en);
+    return {
+      en: regexEn,
+      de: lines.de ? builder(lines.de) : regexEn,
+      fr: lines.fr ? builder(lines.fr) : regexEn,
+      ja: lines.ja ? builder(lines.ja) : regexEn,
+      cn: lines.cn ? builder(lines.cn) : regexEn,
+      ko: lines.ko ? builder(lines.ko) : regexEn,
+    };
+  }
 }
-const OverrideProxy = Proxy as OverrideProxyConstructor;
 
-const buildLocaleRegex = (type: 'regex' | 'netregex'): LocaleRegexesObj => {
-  return new OverrideProxy(localeLines, {
-    get(target: LocaleRegexesObj, p: string) {
-      if (p in target) {
-        return new OverrideProxy(target[p as keyof LocaleRegexesObj], {
-          get(target: { [s: string]: string;
-        }, p: string): RegExp | null {
-            if (p in target) {
-              if (type === 'regex')
-                return Regexes.gameLog({ line: (target[p] as string) + '.*?' });
-              return NetRegexes.gameLog({ line: (target[p] as string) + '[^|]*?' });
-            }
-            return null;
-          },
-        });
-      }
-      return null;
-    },
-  });
-};
+const regexSet = new RegexSet();
 
-export const LocaleRegex = buildLocaleRegex('regex');
-export const LocaleNetRegex = buildLocaleRegex('netregex');
+export const LocaleRegex = regexSet.localeRegex;
+export const LocaleNetRegex = regexSet.localeNetRegex;
