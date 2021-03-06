@@ -457,7 +457,7 @@ given Square's extremely talented fight design team, it's not always going to *b
 ## Outputs
 
 In order to reduce duplications across trigger sets,
-cactbot built a set of locale strings including some text wisely used between triggers.
+cactbot has a set of locale strings that includes text repeatedly used by triggers.
 So we can easily reference to those translated text instead of translating/copy it one more time.
 
 A simple example using `outputStrings` and `Outputs` as below:
