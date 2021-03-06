@@ -113,35 +113,35 @@ export default class PartyTracker {
   // for a named player, returns the other tank in your immediate party
   // if named player is not a tank, or there's not exactly two tanks
   // in your immediate party, returns null.
-  otherTank(name: string): string | null {
+  otherTank(name: string): string | undefined {
     const names = this.tankNames;
     if (names.length !== 2)
-      return null;
+      return;
     if (names[0] === name)
-      return names[1] as string;
+      return names[1];
     if (names[1] === name)
-      return names[0] as string;
-    return null;
+      return names[0];
+    return;
   }
 
   // see: otherTank, but for healers.
-  otherHealer(name: string): string | null {
+  otherHealer(name: string): string | undefined {
     const names = this.roleToPartyNames_['healer'];
     if (names.length !== 2)
-      return null;
+      return;
     if (names[0] === name)
-      return names[1] as string;
+      return names[1];
     if (names[1] === name)
-      return names[0] as string;
-    return null;
+      return names[0];
+    return;
   }
 
   // returns the job name of the specified party member
-  jobName(name: string): Job | null {
+  jobName(name: string): Job | undefined {
     const partyIndex = this.partyNames.indexOf(name);
     if (partyIndex >= 0)
       return Util.jobEnumToJob(this.details[partyIndex]?.job as number);
-    return null;
+    return;
   }
 
   nameFromId(id: string): string | undefined {
