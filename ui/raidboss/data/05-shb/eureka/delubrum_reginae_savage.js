@@ -54,6 +54,7 @@ export default {
           // so add in the "of boss" just to be extra clear.
           en: 'Go Intercardinal of Boss',
           de: 'Geh in eine Intercardinale Himmelsrichtung vom Boss',
+          ja: 'ボスの斜めへ',
         },
       },
     },
@@ -70,6 +71,7 @@ export default {
           sharedTankBuster: {
             en: 'Shared Tank Buster',
             de: 'Geteilter Tank Buster',
+            ja: '頭割りタンクバスター',
           },
         };
 
@@ -89,6 +91,7 @@ export default {
         text: {
           en: 'Solo Tank Cleave',
           de: 'Solo Tank Cleave',
+          ja: 'ソロタンクバスター',
         },
       },
     },
@@ -103,6 +106,7 @@ export default {
         text: {
           en: 'Hide Behind Barricade',
           de: 'Hinter den Barrikaden verstecken',
+          ja: '柵の後ろに',
         },
       },
     },
@@ -117,6 +121,7 @@ export default {
         text: {
           en: 'Knockback Into Barricade',
           de: 'Rückstoß in die Barrikaden',
+          ja: '柵に吹き飛ばされる',
         },
       },
     },
@@ -163,6 +168,7 @@ export default {
         text: {
           en: 'Take Outside Bombs',
           de: 'Nimm die äußeren Bomben',
+          ja: '外の爆弾を取る',
         },
       },
     },
@@ -177,6 +183,7 @@ export default {
         text: {
           en: 'Knockback Away From Sphere',
           de: 'Rückstoß weg von der Sphere',
+          ja: 'ノックバック、玉から離れる',
         },
       },
     },
@@ -191,6 +198,7 @@ export default {
         text: {
           en: 'Out, Avoid Cleaves',
           de: 'Raus, weiche den Cleaves aus',
+          ja: '外へ、範囲攻撃注意',
         },
       },
     },
@@ -205,6 +213,7 @@ export default {
         text: {
           en: 'In, Avoid Cleaves',
           de: 'Rein, weiche den Cleaves aus',
+          ja: '中へ、範囲攻撃注意',
         },
       },
     },
@@ -220,6 +229,7 @@ export default {
         text: {
           en: 'Spellforge on physical dps',
           de: 'Zauberschmied auf physische DDs',
+          ja: '物理DPSはスペルフォージ',
         },
       },
     },
@@ -235,6 +245,7 @@ export default {
         text: {
           en: 'Steelsting on magical dps',
           de: 'Stahlstachels auf magische DDs',
+          ja: '魔法DPSはスチールスティング',
         },
       },
     },
@@ -268,6 +279,7 @@ export default {
         text: {
           en: 'Get In Front',
           de: 'Geh vor den Boss',
+          ja: 'ボスの正面へ',
           ko: '정면에 서기',
         },
       },
@@ -287,6 +299,7 @@ export default {
           cleaveOn: {
             en: 'Tank Cleave on ${player}',
             de: 'Tank Cleave auf ${player}',
+            ja: '${player}に範囲攻撃',
           },
         };
         if (matches.target === data.me)
@@ -703,7 +716,6 @@ export default {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Aetherial Bolt': '魔弾',
         'Aetherial Burst': '大魔弾',
@@ -746,6 +758,9 @@ export default {
         'Why\\.\\.\\.won\'t\\.\\.\\.you\\.\\.\\.': 'グオオオォォ…… 敗レル……ナンテ……',
       },
       'replaceText': {
+        '--adds--': '--雑魚--',
+        '--chains--': '--鎖--',
+        '--middle--': '--中央--',
         '1111-Tonze Swing': '1111トンズ・スイング',
         'Above Board': '浮遊波',
         'Act Of Mercy': '破天鋭刃風',
@@ -865,6 +880,7 @@ export default {
         'Spiteful Spirit': '闘気',
         'Strongpoint Defense': '絶対防御',
         'Summon(?! Adds)': '召喚',
+        'Summon Adds': '雑魚召喚',
         'Sun\'s Ire': '焼討ち',
         'Surge of Vigor': '奮発',
         'Surging Flames': '火攻め',
