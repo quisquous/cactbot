@@ -63,11 +63,11 @@ These files live alongside their parent trigger file in the appropriate folder. 
 
 **timeline**
 Optional extra lines to include as part of the timeline.
-The value may be string or an array of strings,
+The value may be a string or an array of strings,
 or a `function(data)` that returns string or an array of strings,
 or an array contains different kinds of items above.
 
-There is is a complete example uses **timeline** property in [test.js](../ui/raidboss/data/00-misc/test.js).
+There is a complete example that uses the **timeline** property in [test.js](../ui/raidboss/data/00-misc/test.js).
 
 **locale**
 Optional locale to restrict the trigger file to, e.g. 'en', 'ko', 'fr'. If not present, applies to all locales.
@@ -457,8 +457,8 @@ given Square's extremely talented fight design team, it's not always going to *b
 ## Outputs
 
 In order to reduce duplications across trigger sets,
-cactbot built a set of locale strings including some text wisely used between triggers.
-So we can easily reference to those translated text instead of translating/copy it one more time.
+cactbot has a set of locale strings that includes text repeatedly used by triggers.
+When writing triggers, prefer using `Outputs` if possible to avoid duplication.
 
 A simple example using `outputStrings` and `Outputs` as below:
 
