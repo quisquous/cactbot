@@ -581,11 +581,8 @@ export default {
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Go To Opposite Sword',
-          de: 'Gehe in das entgegengesetzte Schwert',
-          fr: 'Allez à l\'épée de l\'élément opposé',
-          cn: '接相反温度的剑',
-          ko: '반대쪽 칼로 이동',
+          en: 'Go To Opposite Arrow',
+          de: 'Gehe in die entgegengesetzten Pfeile',
         },
       },
     },
