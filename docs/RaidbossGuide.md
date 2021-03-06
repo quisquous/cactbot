@@ -458,7 +458,7 @@ given Square's extremely talented fight design team, it's not always going to *b
 
 In order to reduce duplications across trigger sets,
 cactbot has a set of locale strings that includes text repeatedly used by triggers.
-So we can easily reference to those translated text instead of translating/copy it one more time.
+When writing triggers, prefer using `Outputs` if possible to avoid duplication.
 
 A simple example using `outputStrings` and `Outputs` as below:
 
