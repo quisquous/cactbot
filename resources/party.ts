@@ -121,7 +121,6 @@ export default class PartyTracker {
       return names[1];
     if (names[1] === name)
       return names[0];
-    return;
   }
 
   // see: otherTank, but for healers.
@@ -133,7 +132,6 @@ export default class PartyTracker {
       return names[1];
     if (names[1] === name)
       return names[0];
-    return;
   }
 
   // returns the job name of the specified party member
@@ -141,7 +139,6 @@ export default class PartyTracker {
     const partyIndex = this.partyNames.indexOf(name);
     if (partyIndex >= 0)
       return Util.jobEnumToJob(this.details[partyIndex]?.job as number);
-    return;
   }
 
   nameFromId(id: string): string | undefined {
