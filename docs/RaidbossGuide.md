@@ -463,35 +463,38 @@ So we can easily reference to those translated text instead of translating/copy 
 A simple example using `outputStrings` and `Outputs` as below:
 
 ```javascript
-{
-  id: 'E12S Basic Relativity Yellow Hourglass',
-  // Orient where "Yellow" Anger's Hourglass spawns
-  netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9824' }),
-  durationSeconds: 15,
-  infoText: (data, matches, output) => {
-    return output.hourglass({
-      dir: dirToOutput(matchedPositionToDir(matches), output),
-    });
-  },
-  outputStrings: {
-    north: Outputs.north,
-    northeast: Outputs.northeast,
-    east: Outputs.east,
-    southeast: Outputs.southeast,
-    south: Outputs.south,
-    southwest: Outputs.southwest,
-    west: Outputs.west,
-    northwest: Outputs.northwest,
-    hourglass: {
-      en: 'Yellow: ${dir}',
-      de: 'Gelb: ${dir}',
-      fr: 'Jaune : ${dir}',
-      ja: '黄色: ${dir}',
-      cn: '黄色: ${dir}',
-      ko: '노랑: ${dir}',
+    {
+      id: 'E9S Zero-Form Devouring Dark',
+      netRegex: NetRegexes.startsUsing({ id: '5623', source: 'Cloud Of Darkness' }),
+      durationSeconds: 4,
+      alertText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return output.tankBusterOnYou();
+
+        if (data.role === 'tank')
+          return output.tankSwap();
+
+        if (data.role === 'healer')
+          return output.tankBusters({ player: data.ShortName(matches.target) });
+      },
+      infoText: function(data, _, output) {
+        if (data.role !== 'tank' && data.role !== 'healer')
+          return output.avoidLaser();
+      },
+      outputStrings: {
+        tankBusterOnYou: Outputs.tankBusterOnYou,
+        tankBusters: Outputs.tankBusters,
+        tankSwap: Outputs.tankSwap,
+        avoidLaser: {
+          en: 'Avoid Laser',
+          de: 'Laser ausweichen',
+          fr: 'Évitez le laser',
+          ja: 'レーザー注意',
+          cn: '躲避击退激光',
+          ko: '레이저 피하기',
+        },
+      },
     },
-  },
-},
 ```
 
 ## Timeline Info
