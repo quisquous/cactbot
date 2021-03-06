@@ -48,6 +48,8 @@ A trigger set must have one of zoneId or zoneRegex to specify the zone
 A regular expression that matches against the zone name (coming from ACT).
 If the regular expression matches, then the triggers will apply to that zone.
 
+For players in CN/KR, zone names can be Chinese/Korean, though other players always see English. Your Regex should cover them. The current zone name can be found on title or main UI of ACT.
+
 **overrideTimelineFile**
 An optional boolean value that specifies that the `timelineFile` and `timeline`
 specified in this trigger set override all timelines previously found.
@@ -61,6 +63,11 @@ These files live alongside their parent trigger file in the appropriate folder. 
 
 **timeline**
 Optional extra lines to include as part of the timeline.
+The value may be a string or an array of strings,
+or a `function(data)` that returns string or an array of strings,
+or an array contains different kinds of items above.
+
+There is a complete example that uses the **timeline** property in [test.js](../ui/raidboss/data/00-misc/test.js).
 
 **locale**
 Optional locale to restrict the trigger file to, e.g. 'en', 'ko', 'fr'. If not present, applies to all locales.
@@ -80,9 +87,10 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
 {
   id: 'id string',
   disabled: false,
-  // Note: prefer to use the regex helpers from [regexes.js](https://github.com/quisquous/cactbot/blob/main/resources/regexes.js)
+  // Note: prefer to use the regex helpers from [netregexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/netregexes.ts)
   netRegex: /trigger-regex-for-network-log-lines/,
   netRegexFr: /trigger-regex-for-network-log-lines-but-in-French/
+  // Note: prefer to use the regex helpers from [regexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts)
   regex: /trigger-regex-for-act-log-lines/,
   regexFr: /trigger-regex-for-act-log-lines-but-in-French/,
   condition: function(data, matches, output) { return true if it should run },
@@ -153,8 +161,8 @@ The `netRegex` version matches against network log lines,
 while the `regex` version matches against regular ACT log lines.
 
 More commonly, however, a regex replacement is used instead of a bare regex.
-Helper functions defined in [regexes.js](https://github.com/quisquous/cactbot/blob/main/resources/regexes.js)
-and in [netregexes.js](https://github.com/quisquous/cactbot/blob/main/resources/netregexes.js)
+Helper functions defined in [regexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts)
+and in [netregexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/netregexes.ts)
 take the parameters that would otherwise be extracted via match groups.
 From here, the functions automatically construct the regex that should
 be matched against.
@@ -386,13 +394,13 @@ Use of these helpers makes automated testing significantly easier,
 and allows humans to catch errors and inconsistencies more easily when reviewing pull requests.
 
 Currently, three separate elements have pre-made structures defined:
-[Condition](https://github.com/quisquous/cactbot/blob/main/resources/conditions.ts), [Regex](https://github.com/quisquous/cactbot/blob/main/resources/regexes.js), and [Response](https://github.com/quisquous/cactbot/blob/main/resources/responses.js).
+[Condition](https://github.com/quisquous/cactbot/blob/main/resources/conditions.ts), [Regex](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts), [NetRegex](https://github.com/quisquous/cactbot/blob/main/resources/netregexes.ts), and [Response](https://github.com/quisquous/cactbot/blob/main/resources/responses.js).
 `Condition` functions take no arguments. Almost all `Response` functions take one optional argument, `severity`,
 used to determine what level of popup text to display to the user when the trigger activates.
-`Regex` functions can take several arguments [(`gainsEffect()` is a good example)](https://github.com/quisquous/cactbot/blob/dcdf3ee4cd1b6d5bdfb9a8052cc9e4c9b10844d8/resources/regexes.js#L176) depending on which log line is being matched against,
+`Regex`(`NetRegex`) functions can take several arguments [(`gainsEffect()` is a good example)](https://github.com/quisquous/cactbot/blob/dcdf3ee4cd1b6d5bdfb9a8052cc9e4c9b10844d8/resources/regexes.js#L176) depending on which log line is being matched against,
 but generally a contributor would include the `source`, (name of the caster/user of the ability to match,)
 the `id`, (the hex ability ID, such as `2478`,) and whether or not the regex should capture the matches (`capture: false`.)
-`Regex` functions capture by default, but standard practice is to specify non-capturing unless a trigger element requires captures.
+`Regex`(`NetRegex`) functions capture by default, but standard practice is to specify non-capturing unless a trigger element requires captures.
 
 A sample trigger that makes use of all these elements:
 
@@ -445,6 +453,49 @@ This deprecation applies only to work intended for the cactbot repository.)
 
 Use of canned conditions and responses is recommended where possible, although
 given Square's extremely talented fight design team, it's not always going to *be* possible.
+
+## Outputs
+
+In order to reduce duplications across trigger sets,
+cactbot has a set of locale strings that includes text repeatedly used by triggers.
+When writing triggers, prefer using `Outputs` if possible to avoid duplication.
+
+A simple example using `outputStrings` and `Outputs` as below:
+
+```javascript
+{
+  id: 'E9S Zero-Form Devouring Dark',
+  netRegex: NetRegexes.startsUsing({ id: '5623', source: 'Cloud Of Darkness' }),
+  durationSeconds: 4,
+  alertText: function(data, matches, output) {
+    if (data.me === matches.target)
+      return output.tankBusterOnYou();
+
+    if (data.role === 'tank')
+      return output.tankSwap();
+
+    if (data.role === 'healer')
+      return output.tankBusters({ player: data.ShortName(matches.target) });
+  },
+  infoText: function(data, _, output) {
+    if (data.role !== 'tank' && data.role !== 'healer')
+      return output.avoidLaser();
+  },
+  outputStrings: {
+    tankBusterOnYou: Outputs.tankBusterOnYou,
+    tankBusters: Outputs.tankBusters,
+    tankSwap: Outputs.tankSwap,
+    avoidLaser: {
+      en: 'Avoid Laser',
+      de: 'Laser ausweichen',
+      fr: 'Évitez le laser',
+      ja: 'レーザー注意',
+      cn: '躲避击退激光',
+      ko: '레이저 피하기',
+    },
+  },
+},
+```
 
 ## Timeline Info
 
