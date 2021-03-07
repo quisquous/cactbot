@@ -23,7 +23,7 @@ type Subscriber<T> = {
 type EventParameter = Parameters<EventMap[EventType]>[0];
 type VoidFunc<T> = (...args: T[]) => void;
 
-const wsUrl = /[\?&]OVERLAY_WS=([^&]+)/.exec(location.href);
+const wsUrl = /[\?&]OVERLAY_WS=([^&]+)/.exec(window.location.href);
 let ws: WebSocket | null = null;
 let queue: (
   { [s: string]: unknown } |
