@@ -1,7 +1,7 @@
 // OverlayPlugin API setup
 // Import for side-effects.
 
-import { EventMap, EventType } from 'types/global';
+import { EventMap, EventType, IOverlayHandler } from '../types/event';
 
 // TODO: export an interface that exposes overlayplugin functions
 // that importers can use instead of asking window for arbitrary fields.
@@ -160,42 +160,6 @@ export const removeOverlayListener = <T extends EventType>(event: T, cb: EventMa
 
     if (pos && pos > -1) list?.splice(pos, 1);
   }
-};
-
-type IOverlayHandler = {
-  // OutputPlugin build-in
-  (msg: {
-    call: 'subscribe';
-    events: string[];
-  }): Promise<void>;
-  // TODO: add OverlayPlugin build-in handlers
-  // Cactbot
-  // TODO: fill up all handler types
-  (msg: {
-    call: 'cactbotReloadOverlays';
-  }): Promise<void>;
-  (msg: {
-    call: 'cactbotLoadUser';
-  }): Promise<void>;
-  (msg: {
-    call: 'cactbotRequestPlayerUpdate';
-  }): Promise<void>;
-  (msg: {
-    call: 'cactbotRequestState';
-  }): Promise<void>;
-  (msg: {
-    call: 'cactbotSay';
-    text: string;
-  }): Promise<void>;
-  (msg: {
-    call: 'cactbotSaveData';
-  }): Promise<void>;
-  (msg: {
-    call: 'cactbotLoadData';
-  }): Promise<void>;
-  (msg: {
-    call: 'cactbotChooseDirectory';
-  }): Promise<void>;
 };
 
 export const callOverlayHandler: IOverlayHandler = (
