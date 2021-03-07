@@ -1,4 +1,4 @@
-import './overlay_plugin_api';
+import { callOverlayHandler, addOverlayListener } from './overlay_plugin_api';
 
 // TODO:
 // The convention of "import X as _X; const X = _X;" is currently
@@ -127,10 +127,10 @@ class UserConfig {
       window.location.reload();
     };
 
-    window.addOverlayListener('onUserFileChanged', () => {
+    addOverlayListener('onUserFileChanged', () => {
       reloadOnce();
     });
-    window.addOverlayListener('onForceReload', () => {
+    addOverlayListener('onForceReload', () => {
       reloadOnce();
     });
 

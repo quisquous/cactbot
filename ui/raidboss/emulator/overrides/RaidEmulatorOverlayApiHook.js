@@ -1,16 +1,18 @@
+import { callOverlayHandler, addOverlayListener, removeOverlayListener } from '../../../../resources/overlay_plugin_api';
+
 export default class RaidEmulatorOverlayApiHook {
   constructor(emulator) {
     this.emulator = emulator;
     this.originalDispatch = window.dispatchOverlayEvent;
-    this.originalAdd = window.addOverlayListener;
-    this.originalRemove = window.removeOverlayListener;
-    this.originalCall = window.callOverlayHandler;
+    this.originalAdd = addOverlayListener;
+    this.originalRemove = removeOverlayListener;
+    this.originalCall = callOverlayHandler;
     this.timestampOffset = 0;
 
     window.dispatchOverlayEvent = this.dispatch.bind(this);
-    window.addOverlayListener = this.add.bind(this);
-    window.removeOverlayListener = this.remove.bind(this);
-    window.callOverlayHandler = this.call.bind(this);
+    addOverlayListener = this.add.bind(this);
+    removeOverlayListener = this.remove.bind(this);
+    callOverlayHandler = this.call.bind(this);
 
     emulator.on('tick', (timestampOffset) => {
       this.timestampOffset = timestampOffset;

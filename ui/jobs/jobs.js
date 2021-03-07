@@ -1,3 +1,5 @@
+import { addOverlayListener } from '../../resources/overlay_plugin_api';
+
 import EffectId from '../../resources/effect_id';
 import ContentType from '../../resources/content_type';
 import Regexes from '../../resources/regexes';

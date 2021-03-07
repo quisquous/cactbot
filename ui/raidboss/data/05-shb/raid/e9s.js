@@ -1,3 +1,5 @@
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
+
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
@@ -772,7 +774,7 @@ export default {
           ko: '어둠의 구름',
         };
 
-        const bossData = await window.callOverlayHandler({
+        const bossData = await callOverlayHandler({
           call: 'getCombatants',
           names: [cloudOfDarknessLocaleNames[data.parserLang]],
         });
@@ -796,7 +798,7 @@ export default {
           cn: '幻影之云',
         };
 
-        const cloneData = await window.callOverlayHandler({
+        const cloneData = await callOverlayHandler({
           call: 'getCombatants',
           names: [cloneOfDarknessLocaleNames[data.parserLang]],
         });
