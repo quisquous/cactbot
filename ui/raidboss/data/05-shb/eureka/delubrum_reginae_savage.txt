@@ -1299,7 +1299,7 @@ hideall "--sync--"
 20282.9 "Sword Omen/Shield Omen" sync /:Queen's Knight:59F[DE]:/
 20287.9 "--untargetable--"
 20292.5 "Double Gambit" sync /:Queen's Soldier:5A1B:/
-20296.3 "Optimal Offensive" sync /:Queen's Knight:5A03:/
+20296.3 "Optimal Offensive" sync /:Queen's Knight:5A0[23]:/
 20298.2 "Judgment Blade" sync /:The Queen:59F[12]:/
 20298.9 "Unlucky Lot" sync /:Aetherial Sphere:5A06:/
 20300.7 "Secrets Revealed" sync /:Queen's Soldier:5B8B:/
@@ -1328,7 +1328,7 @@ hideall "--sync--"
 20422.5 "Relentless Play 3" sync /:The Queen:59FC:/ window 20,20
 20428.6 "Sword Omen/Shield Omen" sync /:Queen's Knight:59F[DE]:/
 20437.9 "Automatic Turret" sync /:Queen's Gunner:5A26:/
-20440.0 "Optimal Play" sync /:Queen's Knight:5A00:/
+20440.0 "Optimal Play" sync /:Queen's Knight:(5A00|59FF):/
 20446.0 "Turret's Tour" sync /:Queen's Gunner:5A27:/
 20446.6 "--sync--" sync /:The Queen:5BCB:/
 20446.6 "Turret's Tour" #sync /:Automatic Turret:5A29:/
