@@ -788,6 +788,7 @@ export default {
         'Right Arm Unit': 'ライトアームユニット',
       },
       'replaceText': {
+        'I am the Omega': 'ワタシはオメガであり',
         'Advanced Optical Laser': 'オプチカルレーザーS',
         'Advanced Suppression': '援護プログラムS',
         '(?<! )Archive All': 'アーカイブオール',
