@@ -1,10 +1,6 @@
 // OverlayPlugin API setup
-// Import for side-effects.
 
 import { EventMap, EventType, IOverlayHandler } from '../types/event';
-
-// TODO: export an interface that exposes overlayplugin functions
-// that importers can use instead of asking window for arbitrary fields.
 
 declare global {
   interface Window {
