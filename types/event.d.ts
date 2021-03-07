@@ -263,7 +263,7 @@ export type EventType = keyof EventMap;
 
 interface CactbotLoadUserRet {
   userLocation: string;
-  localUserFiles: string | null;
+  localUserFiles: Record<string, string> | null;
   parserLanguage: Lang;
   systemLocale: string;
   displayLanguage: Lang;
