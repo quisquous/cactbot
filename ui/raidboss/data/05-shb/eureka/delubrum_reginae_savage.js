@@ -277,6 +277,24 @@ export default {
       response: Responses.moveAround('alert'),
     },
     {
+      id: 'DelubrumSav Guard Fiery Portent',
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '583F', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '583F', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '583F', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '583F', capture: false }),
+      delaySeconds: 4,
+      response: Responses.stopEverything('alert'),
+    },
+    {
+      id: 'DelubrumSav Guard Icy Portent',
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5840', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5840', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5840', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5840', capture: false }),
+      delaySeconds: 4,
+      response: Responses.moveAround('alert'),
+    },
+    {
       id: 'DelubrumSav Phantom Malediction Of Agony',
       netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57BD', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57BD', capture: false }),
@@ -307,20 +325,20 @@ export default {
     },
     {
       id: 'DelubrumSav Phantom Vile Wave',
-      netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57BF', capture: false  }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57BF', capture: false  }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '57BF', capture: false  }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57BF', capture: false  }),
+      netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57BF', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57BF', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '57BF', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57BF', capture: false }),
       response: Responses.getBehind('alert'),
     },
     {
       id: 'DelubrumSav Phantom Ice Spikes',
       // Ice Spikes (effectId: '9E0') reflects damage, wait for Dispel
       // Buff expires about 16 seconds on first cast, ~8 seconds later casts)
-      netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57BC', capture: false  }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57BC', capture: false  }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '57BC', capture: false  }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57BC', capture: false  }),
+      netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57BC', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57BC', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '57BC', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57BC', capture: false }),
       delaySeconds: 3,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -431,7 +449,9 @@ export default {
       // First set of debuffs go out 7.7 seconds before Fateful Word is cast
       // Remaining set of debuffs go out 24.3 seconds before Fateful Word is cast
       netRegex: NetRegexes.gainsEffect({ effectId: '97[EF]' }),
-      condition: (data, matches) => { return (matches.target === data.me); },
+      condition: (data, matches) => {
+        return (matches.target === data.me);
+      },
       delaySeconds: (data, matches) => {
         if (data.secondFates)
           return 21;
