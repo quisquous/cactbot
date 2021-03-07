@@ -328,25 +328,21 @@ Here's an example of a custom trigger that prints "Get out!!!",
 one second after you receive an effect called "Forked Lightning".
 
 ```javascript
-Options.Triggers.push([
-  {
-    zoneId: ZoneId.MatchAll,
-    triggers: [
-      {
-        // This id is made up, and is not overriding a cactbot trigger.
-        id: 'Personal Forked Lightning',
-        regex: Regexes.gainsEffect({ effect: 'Forked Lightning' }),
-        condition: (data, matches) => { return matches.target === data.me; },
-        delaySeconds: 1,
-        alertText: 'Get out!!!',
-      },
+Options.Triggers.push({
+  zoneId: ZoneId.MatchAll,
+  triggers: [
+    {
+      // This id is made up, and is not overriding a cactbot trigger.
+      id: 'Personal Forked Lightning',
+      regex: Regexes.gainsEffect({ effect: 'Forked Lightning' }),
+      condition: (data, matches) => { return matches.target === data.me; },
+      delaySeconds: 1,
+      alertText: 'Get out!!!',
+    },
 
-      // ... other triggers here, if you want
-    ],
-  },
-
-  // ... other zones here, if you want
-]);
+    // ... other triggers here, if you want
+  ],
+});
 ```
 
 Your best resources for learning how to write cactbot triggers
@@ -433,11 +429,11 @@ User javascript files have access to the following globals:
 
 - [Conditions](../resources/conditions.ts)
 - [ContentType](../resources/content_type.js)
-- [NetRegexes](../resources/netregexes.js)
-- [Regexes](../resources/regexes.js)
+- [NetRegexes](../resources/netregexes.ts)
+- [Regexes](../resources/regexes.ts)
 - [Responses](../resources/responses.js)
 - [Outputs](../resources/outputs.ts)
-- [Util](../resources/common.js)
+- [Util](../resources/util.ts)
 - [ZoneId](../resources/zone_id.js)
 - [ZoneInfo](../resources/zone_info.js)
 
