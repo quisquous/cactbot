@@ -190,7 +190,7 @@ hideall "--sync--"
 
 # Enrage
 4580.9 "--sync--" sync /:5BBA:Trinity Seeker/ window 1000,10
-4590.9 "Verdant Tempest" sync /:Trinity Seeker:5BBA:/
+4590.9 "Verdant Tempest Enrage" sync /:Trinity Seeker:5BBA:/
 4593.0 "Verdant Tempest" sync /:Trinity Seeker:5BBB:/ window 10,10 # x infinity
 4595.0 "Verdant Tempest" sync /:Trinity Seeker:5BBB:/
 4597.0 "Verdant Tempest" sync /:Trinity Seeker:5BBB:/
