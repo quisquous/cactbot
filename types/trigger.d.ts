@@ -1,4 +1,4 @@
-import { Lang } from './global';
+import { NotEnLang } from './global';
 
 export type Matches = {
   target?: string;
@@ -6,16 +6,12 @@ export type Matches = {
 }
 
 
-type TranslatableText = {
-  [s in Lang]: string;
+export type TranslatableText = {
+  en: string;
+  [s in NotEnLang]?: string;
 };
 
-
-type TranslatedText = {
-  en: string;
-  de: string;
-  fr: string;
-  ja: string;
-  cn: string;
-  ko: string;
+export type TranslatableObject<T> = {
+  en: T;
+  [s in NotEnLang]?: T;
 };
