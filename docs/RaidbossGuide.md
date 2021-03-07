@@ -446,7 +446,7 @@ While this doesn't reduce the number of lines we need to match the locale regexe
 Use of bare regexes is deprecated. *Always* use the appropriate canned function unless there is a very specific
 reason not to. Attempting to use a bare regex will cause a build failure when the pull request is submitted.
 If a bare regex must be used for whatever reason (if, say, a new log line is added to ACT,)
-pull requests to update `regexes.js` are strongly encouraged.
+pull requests to update `regexes.ts` are strongly encouraged.
 
 (Note that if you are writing triggers for just your personal use, you are free to do what you want.
 This deprecation applies only to work intended for the cactbot repository.)
