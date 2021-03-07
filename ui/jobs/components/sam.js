@@ -14,6 +14,39 @@ export function setup(bars) {
       comboTimer.duration = 15;
   });
 
+  const stacksContainer = document.createElement('div');
+  stacksContainer.id = 'sam-stacks';
+  bars.addJobBarContainer().appendChild(stacksContainer);
+
+  const setsuContainer = document.createElement('div');
+  setsuContainer.id = 'sam-stacks-setsu';
+  stacksContainer.appendChild(setsuContainer);
+  const setsu = [];
+  for (let i = 0; i < 1; ++i) {
+    const d = document.createElement('div');
+    setsuContainer.appendChild(d);
+    setsu.push(d);
+  }
+
+  const getsuContainer = document.createElement('div');
+  getsuContainer.id = 'sam-stacks-getsu';
+  stacksContainer.appendChild(getsuContainer);
+  const getsu = [];
+  for (let i = 0; i < 1; ++i) {
+    const d = document.createElement('div');
+    getsuContainer.appendChild(d);
+    getsu.push(d);
+  }
+
+  const kaContainer = document.createElement('div');
+  kaContainer.id = 'sam-stacks-ka';
+  stacksContainer.appendChild(kaContainer);
+  const ka = [];
+  for (let i = 0; i < 1; ++i) {
+    const d = document.createElement('div');
+    kaContainer.appendChild(d);
+    ka.push(d);
+  }
   const kenkiGauge = bars.addResourceBox({
     classList: ['sam-color-kenki'],
   });
@@ -31,6 +64,24 @@ export function setup(bars) {
       meditationGauge.parentNode.classList.add('high');
     else
       meditationGauge.parentNode.classList.remove('high');
+    for (let i = 0; i < 1; ++i) {
+      if (jobDetail.setsu > i)
+        setsu[i].classList.add('active');
+      else
+        setsu[i].classList.remove('active');
+    }
+    for (let i = 0; i < 1; ++i) {
+      if (jobDetail.getsu > i)
+        getsu[i].classList.add('active');
+      else
+        getsu[i].classList.remove('active');
+    }
+    for (let i = 0; i < 1; ++i) {
+      if (jobDetail.ka > i)
+        ka[i].classList.add('active');
+      else
+        ka[i].classList.remove('active');
+    }
   });
 
   const shifu = bars.addProcBox({

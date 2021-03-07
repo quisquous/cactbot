@@ -83,7 +83,7 @@
   display: block;
   position: relative;
   width: 100%;
-  height: 10px;
+  height: 8px;
   margin-top: 1px;
 }
 
@@ -270,6 +270,13 @@
   height: 12px;
 }
 
+#sam-stacks {
+  display: flex;
+  margin-top: 1px;
+  width: 206px;
+  height: 12px;
+}
+
 #mch-stacks {
   display: flex;
   margin-top: 1px;
@@ -305,6 +312,13 @@
 #blm-stacks-heart,
 #blm-stacks-xeno {
   width: 50%;
+  height: 100%;
+}
+
+#sam-stacks-setsu,
+#sam-stacks-getsu,
+#sam-stacks-ka {
+  width: 33%;
   height: 100%;
 }
 
@@ -345,8 +359,31 @@
   height: 100%;
 }
 
+#sam-stacks-setsu > div,
+#sam-stacks-getsu > div,
+#sam-stacks-ka > div {
+  background-color: rgba(174, 227, 235, 0.2);
+  margin-right: 2px;
+  display: inline-block;
+  border: 1px solid black;
+  width: calc(100% - 4px);
+  height: 100%;
+}
+
 #whm-stacks-bloodlily > div.active {
   background-color: rgb(190, 43, 30);
+}
+
+#sam-stacks-setsu > div.active {
+  background-color: rgb(139, 209, 242);
+}
+
+#sam-stacks-getsu > div.active {
+  background-color: rgb(185, 185, 242);
+}
+
+#sam-stacks-ka > div.active {
+  background-color: rgb(237, 180, 180);
 }
 
 #mch-stacks-wildfire > div.active {
