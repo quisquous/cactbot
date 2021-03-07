@@ -277,24 +277,6 @@ export default {
       response: Responses.moveAround('alert'),
     },
     {
-      id: 'DelubrumSav Guard Fiery Portent',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '583F', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '583F', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '583F', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '583F', capture: false }),
-      delaySeconds: 4,
-      response: Responses.stopEverything('alert'),
-    },
-    {
-      id: 'DelubrumSav Guard Icy Portent',
-      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5840', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5840', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5840', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5840', capture: false }),
-      delaySeconds: 4,
-      response: Responses.moveAround('alert'),
-    },
-    {
       id: 'DelubrumSav Phantom Malediction Of Agony',
       netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57BD', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57BD', capture: false }),
@@ -440,31 +422,6 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Seigneur Stygimoloch', id: '57D8', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'スティギモロク・ロード', id: '57D8', capture: false }),
       response: Responses.getOut(),
-    },
-    {
-      id: 'DelubrumSav Lord Fateful Words',
-      // 97E: Wanderer's Fate, Pushes outward on Fateful Word cast
-      // 97F: Sacrifice's Fate, Pulls to middle on Fateful Word cast
-      // Labyrinthine Fate is cast and 1 second later debuffs are applied
-      // First set of debuffs go out 7.7 seconds before Fateful Word is cast
-      // Remaining set of debuffs go out 24.3 seconds before Fateful Word is cast
-      netRegex: NetRegexes.gainsEffect({ effectId: '97[EF]' }),
-      condition: (data, matches) => {
-        return (matches.target === data.me);
-      },
-      delaySeconds: (data, matches) => {
-        if (data.secondFates)
-          return 21;
-        data.secondFates = 1;
-        return 4;
-      },
-      response: (data, matches) => {
-        if (matches.effectId === '97F')
-          return Responses.getOut('alert');
-        else if (matches.effectId === '97E')
-          return Responses.getIn('alert');
-        return;
-      },
     },
     {
       id: 'DelubrumSav Queen Empyrean Iniquity',
