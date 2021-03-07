@@ -23,7 +23,7 @@ type Subscriber<T> = {
 type EventParameter = Parameters<EventMap[EventType]>[0];
 type VoidFunc<T> = (...args: T[]) => void;
 
-const wsUrl = /[\?&]OVERLAY_WS=([^&]+)/.exec(window.location.href);
+let wsUrl: RegExpExecArray | null = null;
 let ws: WebSocket | null = null;
 let queue: (
   { [s: string]: unknown } |
@@ -50,93 +50,94 @@ const sendMessage = (
       window.OverlayPluginApi.callHandler(JSON.stringify(msg), cb);
   }
 };
+if (typeof window !== 'undefined') {
+  wsUrl = /[\?&]OVERLAY_WS=([^&]+)/.exec(window.location.href);
+  if (wsUrl) {
+    const connectWs = function() {
+      ws = new WebSocket(wsUrl?.[1] as string);
 
-if (wsUrl) {
-  const connectWs = function() {
-    ws = new WebSocket(wsUrl[1] as string);
+      ws.addEventListener('error', (e) => {
+        console.error(e);
+      });
 
-    ws.addEventListener('error', (e) => {
-      console.error(e);
-    });
+      ws.addEventListener('open', () => {
+        console.log('Connected!');
 
-    ws.addEventListener('open', () => {
-      console.log('Connected!');
+        const q = queue;
+        queue = [];
+
+        sendMessage({
+          call: 'subscribe',
+          events: Object.keys(subscribers),
+        });
+
+        for (const msg of q) {
+          if (!Array.isArray(msg))
+            sendMessage(msg);
+        }
+      });
+
+      ws.addEventListener('message', (_msg) => {
+        try {
+          const msg = JSON.parse(_msg.data) as EventParameter & {rseq?: number};
+
+          if (msg.rseq !== undefined && responsePromises[msg.rseq]) {
+            responsePromises[msg.rseq]?.(msg);
+            delete responsePromises[msg.rseq];
+          } else {
+            processEvent(msg);
+          }
+        } catch (e) {
+          console.error('Invalid message received: ', _msg);
+          return;
+        }
+      });
+
+      ws.addEventListener('close', () => {
+        queue = [];
+
+        console.log('Trying to reconnect...');
+        // Don't spam the server with retries.
+        setTimeout(() => {
+          connectWs();
+        }, 300);
+      });
+    };
+
+    connectWs();
+  } else {
+    const waitForApi = function() {
+      if (!window.OverlayPluginApi || !window.OverlayPluginApi.ready) {
+        setTimeout(waitForApi, 300);
+        return;
+      }
 
       const q = queue;
       queue = [];
+
+      window.__OverlayCallback = processEvent;
 
       sendMessage({
         call: 'subscribe',
         events: Object.keys(subscribers),
       });
 
-      for (const msg of q) {
-        if (!Array.isArray(msg))
-          sendMessage(msg);
+      for (const item of q) {
+        if (Array.isArray(item))
+          sendMessage(item[0], item[1]);
       }
-    });
+    };
 
-    ws.addEventListener('message', (_msg) => {
-      try {
-        const msg = JSON.parse(_msg.data) as EventParameter & {rseq?: number};
+    waitForApi();
+  }
 
-        if (msg.rseq !== undefined && responsePromises[msg.rseq]) {
-          responsePromises[msg.rseq]?.(msg);
-          delete responsePromises[msg.rseq];
-        } else {
-          processEvent(msg);
-        }
-      } catch (e) {
-        console.error('Invalid message received: ', _msg);
-        return;
-      }
-    });
-
-    ws.addEventListener('close', () => {
-      queue = [];
-
-      console.log('Trying to reconnect...');
-      // Don't spam the server with retries.
-      setTimeout(() => {
-        connectWs();
-      }, 300);
-    });
+  const processEvent = <T extends EventType>(msg: Parameters<EventMap[T]>[0]): void => {
+    const subs = subscribers[msg.type];
+    subs?.forEach((sub) => sub(msg as unknown));
   };
 
-  connectWs();
-} else {
-  const waitForApi = function() {
-    if (!window.OverlayPluginApi || !window.OverlayPluginApi.ready) {
-      setTimeout(waitForApi, 300);
-      return;
-    }
-
-    const q = queue;
-    queue = [];
-
-    window.__OverlayCallback = processEvent;
-
-    sendMessage({
-      call: 'subscribe',
-      events: Object.keys(subscribers),
-    });
-
-    for (const item of q) {
-      if (Array.isArray(item))
-        sendMessage(item[0], item[1]);
-    }
-  };
-
-  waitForApi();
+  window.dispatchOverlayEvent = processEvent;
 }
-
-const processEvent = <T extends EventType>(msg: Parameters<EventMap[T]>[0]): void => {
-  const subs = subscribers[msg.type];
-  subs?.forEach((sub) => sub(msg as unknown));
-};
-
-window.dispatchOverlayEvent = processEvent;
-
 export const addOverlayListener = <T extends EventType>(event: T, cb: EventMap[T]): void => {
   if (!subscribers[event]) {
     subscribers[event] = [];
