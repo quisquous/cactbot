@@ -8,6 +8,9 @@ import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: headmarkers of course have a random offset here eyeroll
 
+const seekerCenterX = -0.01531982;
+const seekerCenterY = 277.9735;
+
 // TODO: promote something like this to Conditions?
 const tankBusterOnParty = (data, matches) => {
   if (data.target === data.me)
@@ -55,6 +58,20 @@ export default {
           en: 'Go Intercardinal of Boss',
           de: 'Geh in eine Intercardinale Himmelsrichtung vom Boss',
           ja: 'ボスの斜めへ',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Seeker Iron Impact',
+      // This is an early warning on the Verdant Path cast.
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5A99', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5A99', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5A99', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5A99', capture: false }),
+      alertText: (data, _, outputs) => outputs.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Behind For Line Stack',
         },
       },
     },
@@ -122,6 +139,70 @@ export default {
           en: 'Knockback Into Barricade',
           de: 'Rückstoß in die Barrikaden',
           ja: '柵に吹き飛ばされる',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Seeker Dead Iron',
+      // Headmarkers are randomized, so use the tether instead.
+      netRegex: NetRegexes.tether({ target: 'Trinity Seeker', id: '01DB' }),
+      condition: (data, matches) => matches.source === data.me,
+      alarmText: (data, _, output) => output.earthshaker(),
+      outputStrings: {
+        earthshaker: Outputs.earthshakerOnYou,
+      },
+    },
+    {
+      id: 'DelubrumSav Seeker Iron Splitter',
+      netRegex: NetRegexes.startsUsing({ source: ['Trinity Seeker', 'Seeker Avatar'], id: '5AC0' }),
+      preRun: (data) => delete data.ironSplitter,
+      promise: async (data, matches) => {
+        const seekerData = await window.callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
+        });
+
+        if (seekerData === null) {
+          console.error(`Iron Splitter: null data`);
+          return;
+        }
+        if (!seekerData.combatants) {
+          console.error(`Iron Splitter: null combatants`);
+          return;
+        }
+        if (seekerData.combatants.length !== 1) {
+          console.error(`Iron Splitter: expected 1, got ${seekerData.combatants.length}`);
+          return;
+        }
+
+        const seeker = seekerData.combatants[0];
+        const x = seeker.PosX - seekerCenterX;
+        const y = seeker.PosY - seekerCenterY;
+        data.splitterDist = Math.hypot(x, y);
+      },
+      alertText: (data, _, output) => {
+        if (data.splitterDist === undefined)
+          return;
+
+        // All 100 examples I've looked at only hit distance=10, or distance=~14
+        // Guessing at the other distances, if they exist.
+        //
+        // blue inner = 0?
+        // white inner = 6?
+        // blue middle = 10
+        // white middle = 14
+        // blue outer = 18?
+        // white outer = 22?
+
+        const isWhite = Math.floor(data.splitterDist / 4) % 2;
+        return isWhite ? output.goBlue() : output.goWhite();
+      },
+      outputStrings: {
+        goBlue: {
+          en: 'Go Blue',
+        },
+        goWhite: {
+          en: 'Go White',
         },
       },
     },
