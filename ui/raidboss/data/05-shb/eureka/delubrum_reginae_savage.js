@@ -453,7 +453,7 @@ export default {
           getOut: Outputs.out,
           getIn: Outputs.in,
         };
-        
+
         if (matches.effectId === '97F')
           return { alertText: output.getOut() };
         else if (matches.effectId === '97E')
