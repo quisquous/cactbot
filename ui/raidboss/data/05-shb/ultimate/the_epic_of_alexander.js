@@ -747,7 +747,7 @@ export default {
     {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Numbers',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: function(data, matches) {
         // Here and elsewhere, it's probably best to check for whether the user is the target first,
         // as that should short-circuit more often.
@@ -811,7 +811,7 @@ export default {
     {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Knockback',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: function(data, matches) {
         return data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
       },
@@ -951,7 +951,7 @@ export default {
     },
     {
       id: 'TEA Ice Marker',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: function(data, matches) {
         return data.me === matches.target && getHeadmarkerId(data, matches) === '0043';
       },
@@ -993,7 +993,7 @@ export default {
     },
     {
       id: 'TEA Enumeration YOU',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: function(data, matches) {
         return data.me === matches.target && getHeadmarkerId(data, matches) === '0041';
       },
@@ -1011,7 +1011,7 @@ export default {
     },
     {
       id: 'TEA Enumeration Everyone',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: function(data, matches) {
         return getHeadmarkerId(data, matches) === '0041';
       },
@@ -1501,7 +1501,7 @@ export default {
     },
     {
       id: 'TEA Judgment Crystal',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: function(data, matches) {
         return data.me === matches.target && getHeadmarkerId(data, matches) === '0060';
       },
@@ -1680,7 +1680,7 @@ export default {
     },
     {
       id: 'TEA Cactbot Wormhole Strat',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: function(data, matches) {
         if (!data.options.cactbotWormholeStrat)
           return false;
@@ -1812,7 +1812,7 @@ export default {
     },
     {
       id: 'TEA Incinerating Heat',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: function(data, matches) {
         return getHeadmarkerId(data, matches) === '005D';
       },
@@ -1915,7 +1915,7 @@ export default {
     },
     {
       id: 'TEA Perfect Optical Sight Stack',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: function(data, matches) {
         return getHeadmarkerId(data, matches) === '003E';
       },
@@ -2079,6 +2079,39 @@ export default {
       run: function(data, matches) {
         data.tetherBois = data.tetherBois || {};
         data.tetherBois[matches.targetId] = matches.source;
+      },
+    },
+    {
+      id: 'TEA Alpha Safe Location',
+      netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '489F' }),
+      netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '489F' }),
+      netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '489F' }),
+      netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '489F' }),
+      netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '489F' }),
+      netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '489F' }),
+      preRun(data, matches) {
+        // 4 points positive mean right
+        //  x: '78.28883', y: '91.00694', heading positive
+        //  x: '91.00694', y: '78.28883', heading positive
+        //  x: '108.9931', y: '78.28883', heading negative
+        //  x: '121.7112', y: '91.00694', heading negative
+
+        data.Sacrament = data.Sacrament ?? [];
+        data.Sacrament.push(parseFloat(matches.heading) > 0);
+      },
+      alarmText(data, _, output) {
+        if (data.Sacrament.length !== 3) return;
+        if (data.Sacrament.filter((x) => x).length === 2)
+          return output.cLeft();
+        return output.cRight();
+      },
+      outputStrings: {
+        cRight: {
+          cn: 'C点右侧安全',
+        },
+        cLeft: {
+          cn: 'C点左侧安全',
+        },
       },
     },
     {
