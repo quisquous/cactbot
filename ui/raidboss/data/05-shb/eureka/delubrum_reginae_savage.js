@@ -167,6 +167,30 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Guard Blood And Bone Warrior and Knight',
+      // 4B34 from Queen's Warrior
+      // 4B33 from Queen's Knight
+      netRegex: NetRegexes.startsUsing({ source: ['Queen\'s Warrior', 'Queen\'s Knight'], id: '4B3[34]', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Kriegerin Der Königin', 'Ritter Der Königin'], id: '4B3[34]', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Guerrière De La Reine', 'Chevalier De La Reine'], id: '4B3[34]', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['クイーンズ・ウォリアー', 'クイーンズ・ナイト'], id: '4B3[34]', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      suppressSeconds: 1,
+      response: Responses.aoe(),
+    },
+    {
+      id: 'DelubrumSav Guard Queen\'s Shot and Blood And Bone Soldier',
+      // 4B36 from Queen's Gunner
+      // 4B35 from Queen's Soldier
+      netRegex: NetRegexes.startsUsing({ source: ['Queen\'s Gunner', 'Queen\'s Soldier'], id: '4B3[56]', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Schütze Der Königin', 'Soldat Der Königin'], id: '4B3[56]', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Fusilier De La Reine', 'Soldat De La Reine'], id: '4B3[56]', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['クイーンズ・ガンナー', 'クイーンズ・ソルジャー'], id: '4B3[56]', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      suppressSeconds: 1,
+      response: Responses.aoe(),
+    },
+    {
       id: 'DelubrumSav Guard Optimal Offensive Sword',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '5819', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '5819', capture: false }),
@@ -278,6 +302,23 @@ export default {
       delaySeconds: (data, matches) => parseFloat(matches.duration) - 2.5,
       durationSeconds: 5.5,
       response: Responses.moveAround('alert'),
+    },
+    {
+      id: 'DelubrumSav Guard Coat of Arms',
+      netRegex: NetRegexes.ability({ source: 'Aetherial Ward', id: '5820' }),
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - 2.5,
+      suppressSeconds: 1,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stop attacking',
+          de: 'Angriffe stoppen',
+          fr: 'Arrêtez d\'attaquer',
+          ja: 'ブロックしない側に攻撃',
+          cn: '攻击未格挡的方向',
+          ko: '공격 중지',
+        },
+      },
     },
     {
       id: 'DelubrumSav Phantom Malediction Of Agony',
