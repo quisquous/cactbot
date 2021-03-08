@@ -2099,6 +2099,7 @@ export default {
         data.Sacrament = data.Sacrament ?? [];
         data.Sacrament.push(parseFloat(matches.heading) > 0);
       },
+      durationSeconds: 20,
       alarmText(data, _, output) {
         if (data.Sacrament.length !== 3) return;
         if (data.Sacrament.filter((x) => x).length === 2)
