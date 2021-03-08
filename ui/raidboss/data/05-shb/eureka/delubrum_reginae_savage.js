@@ -342,10 +342,10 @@ export default {
     },
     {
       id: 'DelubrumSav Avowed Wrath Of Bozja',
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '594E' }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '594E' }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '594E' }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '594E' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '594E', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '594E', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '594E', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '594E', capture: false }),
       response: (data, _, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
