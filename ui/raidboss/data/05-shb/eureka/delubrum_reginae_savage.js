@@ -29,6 +29,7 @@ export default {
       beforeSeconds: 5,
       response: Responses.knockback(),
     },
+    
   ],
   triggers: [
     {
@@ -368,7 +369,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5B32', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5B32', capture: false }),
       condition: Conditions.caresAboutAOE(),
-      response: Responses.aoe(),
+      response: Responses.bigAoe(),
     },
     {
       id: 'DelubrumSav Avowed Fury Of Bozja',
@@ -446,7 +447,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59F9', capture: false }),
       condition: Conditions.caresAboutAOE(),
       suppressSeconds: 1,
-      response: Responses.aoe(),
+      response: Responses.bigAoe(),
     },
     {
       id: 'DelubrumSav Queen Cleansing Slash',
