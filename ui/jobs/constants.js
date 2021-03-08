@@ -162,6 +162,12 @@ export const kAbility = {
   Mangetsu: '1D3C',
   Oka: '1D3D',
   Enpi: '1D3E',
+  MeikyoShisui: '1D4B',
+  KaeshiHiganbana: '4064',
+  KaeshiGoken: '4065',
+  KaeshiSetsugekka: '4066',
+  HissatsuGuren: '1D48',
+  HissatsuSenei: '4061',
   // BRD
   // MCH
   SplitShot: 'B32',
@@ -328,6 +334,18 @@ export const kComboBreakers = Object.freeze([
   kAbility.DeathBlossom,
   kAbility.HakkeMujinsatsu,
   kAbility.ThrowingDagger,
+  // SAM
+  kAbility.Hakaze,
+  kAbility.Jinpu,
+  kAbility.Gekko,
+  kAbility.Shifu,
+  kAbility.Kasha,
+  kAbility.Yukikaze,
+  kAbility.Fuga,
+  kAbility.Mangetsu,
+  kAbility.Oka,
+  kAbility.Enpi,
+  kAbility.MeikyoShisui,
   // MCH
   kAbility.SplitShot,
   kAbility.SlugShot,

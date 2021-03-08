@@ -83,7 +83,7 @@
   display: block;
   position: relative;
   width: 100%;
-  height: 10px;
+  height: 8px;
   margin-top: 1px;
 }
 
@@ -234,6 +234,7 @@
 
 /* Space for 2 resource boxes */
 .drg #right-side-icons,
+.sam #right-side-icons,
 .brd #right-side-icons,
 .mch #right-side-icons,
 .dnc #right-side-icons,
@@ -263,6 +264,13 @@
 
 /* Stacks */
 #whm-stacks {
+  display: flex;
+  margin-top: 1px;
+  width: 206px;
+  height: 12px;
+}
+
+#sam-stacks {
   display: flex;
   margin-top: 1px;
   width: 206px;
@@ -307,6 +315,17 @@
   height: 100%;
 }
 
+#sam-stacks-setsu,
+#sam-stacks-getsu,
+#sam-stacks-ka {
+  background-color: rgba(174, 227, 235, 0.2);
+  margin-right: 2px;
+  display: inline-block;
+  border: 1px solid black;
+  width: calc(33% - 4px);
+  height: 100%;
+}
+
 #whm-stacks-bloodlily > div,
 #blm-stacks-heart > div {
   background-color: rgba(174, 227, 235, 0.2);
@@ -348,6 +367,18 @@
   background-color: rgb(190, 43, 30);
 }
 
+#sam-stacks-setsu.active {
+  background-color: rgb(139, 209, 242);
+}
+
+#sam-stacks-getsu.active {
+  background-color: rgb(185, 185, 242);
+}
+
+#sam-stacks-ka.active {
+  background-color: rgb(237, 180, 180);
+}
+
 #mch-stacks-wildfire > div.active {
   background-color: rgb(250, 0, 0);
 }
@@ -384,6 +415,7 @@
 /* Box 2/4 */
 #drg-procs-highjump,
 #nin-procs-trickattack,
+#sam-procs-jinpu,
 #brd-procs-stormbite,
 #smn-procs-biosmn {
   position: relative;
@@ -394,6 +426,7 @@
 /* Box 3/4 */
 #drg-procs-lancecharge,
 #nin-procs-bunshin,
+#sam-procs-higanbana,
 #brd-procs-song,
 #smn-procs-energydrain {
   position: relative;
@@ -404,6 +437,7 @@
 /* Box 4/4 */
 #drg-procs-dragonsight,
 #nin-procs-ninjutsu,
+#sam-procs-tsubamegaeshi,
 #brd-procs-straightshotready,
 #smn-procs-trance {
   position: relative;
@@ -807,6 +841,37 @@
 }
 
 /* SAM */
+.sam-color-kenki {
+  background-color: rgb(255, 150, 150);
+}
+
+.sam-color-kenki.high {
+  background-color: rgb(255, 50, 50);
+}
+
+.sam-color-meditation {
+  background-color: rgb(188, 76, 35);
+}
+
+.sam-color-meditation.high {
+  background-color: rgb(255, 255, 160);
+}
+
+.sam-color-shifu {
+  background-color: rgb(200, 180, 90);
+}
+
+.sam-color-jinpu {
+  background-color: rgb(60, 160, 160);
+}
+
+.sam-color-tsubamegaeshi {
+  background-color: rgb(150, 100, 230);
+}
+
+.sam-color-higanbana {
+  background-color: rgb(220, 115, 60);
+}
 
 /* BRD */
 .brd-color-causticbite {
