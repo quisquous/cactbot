@@ -2510,7 +2510,7 @@ export default {
           de: 'Lila Köder: locke O',
           fr: 'Attirez le Violet : attirez à l\'E',
           ja: '逃亡監察: 東へ',
-          cn: '紫色引导: 东',
+          cn: '大暗: 东',
           ko: '보라/도망감찰: 유도역할/동쪽',
         },
         orangeBait: {
@@ -2518,7 +2518,7 @@ export default {
           de: 'Orange Köder: locke N',
           fr: 'Attirez l\'Orange : attirez au N',
           ja: '接触保護: 北へ',
-          cn: '橙色引导: 北',
+          cn: '大光: 北',
           ko: '노랑/접촉보호: 유도역할/북쪽',
         },
         purpleNoTether: {
@@ -2526,7 +2526,7 @@ export default {
           de: 'Lila, keine Verbindung: O->W',
           fr: 'Violet, pas de lien : E->O',
           ja: '逃亡禁止, 線無し: 東から西へ',
-          cn: '紫色, 无连线: 东->西',
+          cn: '小暗, 无连线: 东->西',
           ko: '보라/접촉금지/선없음: 동→서',
         },
         orangeNoTether: {
@@ -2535,7 +2535,7 @@ export default {
           de: 'Orange, keine Verbindung: O->N',
           fr: 'Orange, pas de lien : E->N',
           ja: '接触禁止, 線無し: 東から北へ',
-          cn: '橙色, 无连线: 东->北',
+          cn: '小光, 无连线: 东->北',
           ko: '노랑/접촉금지/선없음: 동→북',
         },
         purpleCloseTether: {
@@ -2543,7 +2543,7 @@ export default {
           de: 'Lila, nahe Verbindungr: O->N',
           fr: 'Violet, lien rapproché : E->N',
           ja: '逃亡禁止, 接近強制: 東から北へ',
-          cn: '紫色, 接近连线: 东->北',
+          cn: '小暗, 接近连线: 东->北',
           ko: '보라/도망금지/강제접근: 동→북',
         },
         orangeCloseTether: {
@@ -2551,7 +2551,7 @@ export default {
           de: 'Orange, nahe Verbindung: O->N',
           fr: 'Orange, lien rapproché : E->N',
           ja: '接触禁止, 接近強制: 東から北へ',
-          cn: '橙色, 接近连线: 东->北',
+          cn: '小光, 接近连线: 东->北',
           ko: '노랑/접촉금지/강제접근: 동→북',
         },
         purpleFarTether: {
@@ -2559,7 +2559,7 @@ export default {
           de: 'Lila, entfernte Verbindung: O->S',
           fr: 'Violet, lien éloigné : E->S',
           ja: '逃亡禁止, 接近禁止: 東から南へ',
-          cn: '紫色, 远离连线: 东->南',
+          cn: '小暗, 远离连线: 东->南',
           ko: '보라/도망금지/접근금지: 동→남',
         },
         orangeFarTether: {
@@ -2567,7 +2567,7 @@ export default {
           de: 'Orange, entfernte Verbindung: O->N',
           fr: 'Orange, lien éloigné : E->N',
           ja: '接触禁止, 接近禁止: 東から北へ',
-          cn: '橙色, 远离连线: 东->北',
+          cn: '小光, 远离连线: 东->北',
           ko: '노랑/접촉금지/접근금지: 동→북',
         },
       },
