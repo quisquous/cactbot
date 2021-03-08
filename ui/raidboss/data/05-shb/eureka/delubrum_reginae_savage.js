@@ -462,6 +462,15 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Lord Thunderous Discharge',
+      netRegex: NetRegexes.startsUsing({ source: 'Stygimoloch Lord', id: '57D2', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Anführer-Stygimoloch', id: '57D2', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Seigneur Stygimoloch', id: '57D2', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'スティギモロク・ロード', id: '57D2', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.aoe(),
+    },
+    {
       id: 'DelubrumSav Lord 1111-Tonze Swing',
       netRegex: NetRegexes.startsUsing({ source: 'Stygimoloch Lord', id: '57D8', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Anführer-Stygimoloch', id: '57D8', capture: false }),
