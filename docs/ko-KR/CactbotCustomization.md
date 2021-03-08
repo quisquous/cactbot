@@ -546,6 +546,22 @@ Options.Triggers.push({
 });
 ```
 
+## Global 트리거 파일 Import
+
+유저 파일들은 자바스크립트로 `eval` 됩니다,
+따라서 기본으로 제공되는 트리거 파일들과 같은 방식으로 `import` 할 수 없습니다.
+유저 자바스크립트 파일들은 다음 global들에 접근할 수 있습니다:
+
+- [Conditions](../../resources/conditions.ts)
+- [ContentType](../../resources/content_type.js)
+- [NetRegexes](../../resources/netregexes.ts)
+- [Regexes](../../resources/regexes.ts)
+- [Responses](../../resources/responses.js)
+- [Outputs](../../resources/outputs.ts)
+- [Util](../../resources/util.ts)
+- [ZoneId](../../resources/zone_id.js)
+- [ZoneInfo](../../resources/zone_info.js)
+
 ## User 파일 디버깅
 
 ### 오버레이 플러그인 로그에 에러가 나오는지 확인하세요

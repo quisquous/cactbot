@@ -352,9 +352,9 @@ It has more fleshed out support for some jobs but is *strongly* a Work In Progre
 |<img src="../../resources/ffxiv/jobs/sch-large.png" width="30px"/><br> 학자|Shows Aetherflow stacks, Fairy gauge amount/time remaining, DoTs remaining time, and shows Aetherflow&Lucid Dreaming cooldown.|
 |<img src="../../resources/ffxiv/jobs/ast-large.png" width="30px"/><br> 점성술사|Shows Seals amount, notify who or whether to play the current card, DoTs remaining time, and shows Draw&Lucid Dreaming cooldown.|
 |<img src="../../resources/ffxiv/jobs/mnk-large.png" width="30px"/><br> 몽크|Shows chakra count, <del>remaining greased lightning time</del> and form time, and tracks monk buffs and debuffs.|
-|<img src="../../resources/ffxiv/jobs/drg-large.png" width="30px"/><br> 용기사|Shows blood&eye amount, remaining Disembowel time, jump cooldown, and Lance Charge&Dragon Sight duration/cooldown.|
+|<img src="../../resources/ffxiv/jobs/drg-large.png" width="30px"/><br> 용기사|용혈과 용눈 갯수, 몸통 가르기 버프 남은 시간, 점프 쿨, 돌격하는 창과 용의 시선 지속 시간/쿨타임을 보여줍니다.|
 |<img src="../../resources/ffxiv/jobs/nin-large.png" width="30px"/><br> 닌자|Shows Ninki amount, Huton remaining time, Trick Attack duration&cooldown, Bunshin&Mudras cooldown, and shows combo time remaining.|
-|<img src="../../resources/ffxiv/jobs/sam-large.png" width="30px"/><br> 사무라이|⨉ 현재 지원하지 않습니다.|
+|<img src="../../resources/ffxiv/jobs/sam-large.png" width="30px"/><br> 사무라이|Shows Kenki amount, Meditation stacks, Shifu&Jinpu&Higanbana duration, Tsubame-gaeshi cooldown, and shows combo time remaining.|
 |<img src="../../resources/ffxiv/jobs/brd-large.png" width="30px"/><br> 음유시인|Shows songs playing and remaining time, Repertoire stack, Soul Voice amount, StraightShotReady track, DoT remaining time, and a bar that show when your DoTs will tick.|
 |<img src="../../resources/ffxiv/jobs/mch-large.png" width="30px"/><br> 기공사|Shows Heat gauge, Battery gauge, Combo Timer, Drill/Bioblaster&Air Anchor Cooldown, Wild Fire Cooldown&Duration. When Wild Fire is active, there will be a gauge to show how many GCD you have landed.|
 |<img src="../../resources/ffxiv/jobs/dnc-large.png" width="30px"/><br> 무도가|Shows Combo Timer, Feather Guage, Esprit Guage, Standard Step Cooldown, Technical Step&Flourish Cooldown & Duration.|
