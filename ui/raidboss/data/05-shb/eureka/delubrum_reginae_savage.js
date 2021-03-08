@@ -346,7 +346,20 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '594E' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '594E' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '594E' }),
-      response: Responses.tankCleave('alert'),
+      response: (data, _, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          avoidTankCleave: Outputs.avoidTankCleave,
+          sharedTankBuster: {
+            en: 'Shared Tank Buster',
+            de: 'Geteilter Tank Buster',
+          },
+        };
+
+        if (data.role === 'tank' || data.role === 'healer')
+          return { alertText: output.sharedTankBuster() };
+        return { infoText: output.avoidTankCleave() };
+      },
     },
     {
       id: 'DelubrumSav Avowed Glory Of Bozja',
