@@ -265,7 +265,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '583F', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '583F', capture: false }),
       delaySeconds: 4,
-      response: Responses.stopEverything('alert'),
+      response: Responses.stopEverything('alarm'),
     },
     {
       id: 'DelubrumSav Guard Icy Portent',
