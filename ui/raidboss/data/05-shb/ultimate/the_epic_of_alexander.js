@@ -113,7 +113,7 @@ const radiantOutputStrings = {
     de: 'Sacrement Norden',
     fr: 'Sacrement Nord',
     ja: '拝火は北',
-    cn: '拜火 北',
+    cn: '北侧月环',
     ko: '성례: 북',
   },
   east: {
@@ -121,7 +121,7 @@ const radiantOutputStrings = {
     de: 'Sacrement Osten',
     fr: 'Sacrement Est',
     ja: '拝火は東',
-    cn: '拜火 东',
+    cn: '东侧月环',
     ko: '성례: 동',
   },
   south: {
@@ -129,7 +129,7 @@ const radiantOutputStrings = {
     de: 'Sacrement Süden',
     fr: 'Sacrement Sud',
     ja: '拝火は南',
-    cn: '拜火 南',
+    cn: '南侧月环',
     ko: '성례: 남',
   },
   west: {
@@ -137,7 +137,7 @@ const radiantOutputStrings = {
     de: 'Sacrement Westen',
     fr: 'Sacrement Ouest',
     ja: '拝火は西',
-    cn: '拜火 西',
+    cn: '西侧月环',
     ko: '성례: 서',
   },
 };
