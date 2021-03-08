@@ -489,7 +489,7 @@ export default {
     {
       id: 'DelubrumSav Queen Ball Lightning',
       // Players with Reflect should destroy one for party to stand in the shield left behind
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '7974' }),
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '7974', capture: false }),
       suppressSeconds: 1,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
