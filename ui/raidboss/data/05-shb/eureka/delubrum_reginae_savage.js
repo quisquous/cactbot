@@ -486,6 +486,23 @@ export default {
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
+    {
+      id: 'DelubrumSav Queen Ball Lightning',
+      // Players with Reflect should destroy one for party to stand in the shield left behind
+      netRegex: NetRegexes.addedCombatant({ npcNameId: '7974' }),
+      suppressSeconds: 1,
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Orbs',
+          de: 'Orbs',
+          fr: 'Orbes',
+          ja: '玉',
+          cn: '球',
+          ko: '구슬',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
