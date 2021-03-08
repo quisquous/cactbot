@@ -780,15 +780,15 @@ export default {
       'locale': 'ja',
       'replaceSync': {
         'Left Arm Unit': 'レフトアームユニット',
-        'Omega(?!-)': 'オメガ',
+        '(?<! )Omega(?!-)': 'オメガ',
         'Omega-F': 'オメガF',
         'Omega-M': 'オメガM',
         'Optical Unit': 'オプチカルユニット',
         'Rear Power Unit': 'リアユニット',
         'Right Arm Unit': 'ライトアームユニット',
+        'I am the Omega': 'ワタシはオメガであり',
       },
       'replaceText': {
-        'I am the Omega': 'ワタシはオメガであり',
         'Advanced Optical Laser': 'オプチカルレーザーS',
         'Advanced Suppression': '援護プログラムS',
         '(?<! )Archive All': 'アーカイブオール',

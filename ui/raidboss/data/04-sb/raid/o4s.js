@@ -1190,7 +1190,6 @@ export default {
       'locale': 'de',
       'replaceSync': {
         'Exdeath': 'Exdeath',
-        'Neo Exdeath': 'Neo Exdeath',
       },
       'replaceText': {
         '\\(charge\\)': '(Aufladung)',
@@ -1232,7 +1231,6 @@ export default {
       'locale': 'fr',
       'replaceSync': {
         'Exdeath': 'Exdeath',
-        'Neo Exdeath': 'Neo Exdeath',
       },
       'replaceText': {
         '\\(colors\\)': '(couleurs)',
@@ -1274,7 +1272,7 @@ export default {
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
-        'Exdeath': 'エクスデス',
+        '(?<! )Exdeath': 'エクスデス',
         'Neo Exdeath': 'ネオエクスデス',
       },
       'replaceText': {
@@ -1356,7 +1354,8 @@ export default {
       'locale': 'ko',
       'missingTranslations': true,
       'replaceSync': {
-        'Exdeath': '엑스데스',
+        '(?<! )Exdeath': '엑스데스',
+        'Neo Exdeath': '네오 엑스데스',
       },
       'replaceText': {
         'Aero III': '에어로가',
