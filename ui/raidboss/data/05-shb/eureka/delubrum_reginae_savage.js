@@ -495,11 +495,6 @@ export default {
       outputStrings: {
         text: {
           en: 'Orbs',
-          de: 'Orbs',
-          fr: 'Orbes',
-          ja: '玉',
-          cn: '球',
-          ko: '구슬',
         },
       },
     },
