@@ -462,6 +462,21 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Lord Devastating Bolt',
+      netRegex: NetRegexes.startsUsing({ source: 'Stygimoloch Lord', id: '57C5', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Anführer-Stygimoloch', id: '57C5', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Seigneur Stygimoloch', id: '57C5', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'スティギモロク・ロード', id: '57C5', capture: false }),
+      durationSeconds: 4,
+      suppressSeconds: 1,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get In Nook',
+        },
+      },
+    },
+    {
       id: 'DelubrumSav Lord Thunderous Discharge',
       netRegex: NetRegexes.startsUsing({ source: 'Stygimoloch Lord', id: '57D2', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Anführer-Stygimoloch', id: '57D2', capture: false }),
