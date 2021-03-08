@@ -2160,7 +2160,7 @@ export default {
           de: 'Ehrenstrafe aud DIR',
           fr: 'Diffamation sur VOUS',
           ja: '名誉罰',
-          cn: '名誉罪',
+          cn: '大圈点名',
           ko: '명예형: 보스 밑에서 나 홀로!!!',
         },
         solidarity: {
@@ -2168,7 +2168,7 @@ export default {
           de: 'Urteil Kollektivstrafe: stack',
           fr: 'Peine collective : packez-vous',
           ja: '集団罰: ',
-          cn: '集团罪',
+          cn: '分摊点名',
           ko: '집단형: 오른쪽/함께 맞기',
         },
         severity: {
@@ -2176,7 +2176,7 @@ export default {
           de: 'Erschwertes: geteilter stack ausweichen',
           fr: 'Sévérité : éloignez-vous du package',
           ja: '加重罰',
-          cn: '加重罪：远离分摊',
+          cn: '电点名：远离分摊',
           ko: '가중형; 왼쪽/가중형끼리 모이기',
         },
         noDebuff: {
