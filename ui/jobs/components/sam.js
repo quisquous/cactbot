@@ -46,15 +46,15 @@ export function setup(bars) {
     else
       meditationGauge.parentNode.classList.remove('high');
 
-    if (jobDetail.setsu > 0)
+    if (jobDetail.setsu)
       sen[0].classList.add('active');
     else
       sen[0].classList.remove('active');
-    if (jobDetail.getsu > 0)
+    if (jobDetail.getsu)
       sen[1].classList.add('active');
     else
       sen[1].classList.remove('active');
-    if (jobDetail.ka > 0)
+    if (jobDetail.ka)
       sen[2].classList.add('active');
     else
       sen[2].classList.remove('active');
