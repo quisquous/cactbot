@@ -2103,14 +2103,14 @@ export default {
       alarmText(data, _, output) {
         if (data.Sacrament.length !== 3) return;
         if (data.Sacrament.filter((x) => x).length === 2)
-          return output.sourceLeft();
-        return output.sourceRight();
+          return output.southLeft();
+        return output.southRight();
       },
       outputStrings: {
-        sourceRight: {
+        southRight: {
           cn: '东南安全',
         },
-        sourceLeft: {
+        southLeft: {
           cn: '西南安全',
         },
       },
