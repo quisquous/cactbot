@@ -135,6 +135,9 @@ if (typeof window !== 'undefined') {
   window.dispatchOverlayEvent = processEvent;
 }
 export const addOverlayListener = <T extends EventType>(event: T, cb: EventMap[T]): void => {
+  if (kOverrides.addOverlayListenerOverride)
+    return kOverrides.addOverlayListenerOverride(event, cb);
+
   if (!subscribers[event]) {
     subscribers[event] = [];
 
@@ -150,6 +153,9 @@ export const addOverlayListener = <T extends EventType>(event: T, cb: EventMap[T
 };
 
 export const removeOverlayListener = <T extends EventType>(event: T, cb: EventMap[T]): void => {
+  if (kOverrides.removeOverlayListenerOverride)
+    return kOverrides.removeOverlayListenerOverride(event, cb);
+
   if (subscribers[event]) {
     const list = subscribers[event];
     const pos = list?.indexOf(cb as VoidFunc<unknown>);
@@ -162,6 +168,9 @@ export const callOverlayHandler: IOverlayHandler = (
     _msg: { [s: string]: unknown },
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> => {
+  if (kOverrides.callOverlayHandlerOverride)
+    return kOverrides.callOverlayHandlerOverride(_msg as Parameters<IOverlayHandler>[0]);
+
   const msg = {
     ..._msg,
     rseq: 0,
@@ -184,4 +193,29 @@ export const callOverlayHandler: IOverlayHandler = (
   }
 
   return p;
+};
+
+interface Overrides {
+  addOverlayListenerOverride?: <T extends EventType>(event: T, cb: EventMap[T]) => void;
+  removeOverlayListenerOverride?: <T extends EventType>(event: T, cb: EventMap[T]) => void;
+  callOverlayHandlerOverride?: IOverlayHandler;
+}
+
+const kOverrides: Overrides = {};
+export const setOverride = (overrides: {
+    addOverlayListenerOverride?: <T extends EventType>(event: T, cb: EventMap[T]) => void;
+    removeOverlayListenerOverride?: <T extends EventType>(event: T, cb: EventMap[T]) => void;
+    callOverlayHandlerOverride?: IOverlayHandler;
+  }): void => {
+  const {
+    addOverlayListenerOverride,
+    removeOverlayListenerOverride,
+    callOverlayHandlerOverride,
+  } = overrides;
+  if (addOverlayListenerOverride)
+    kOverrides.addOverlayListenerOverride = addOverlayListener;
+  if (removeOverlayListenerOverride)
+    kOverrides.removeOverlayListenerOverride = removeOverlayListener;
+  if (callOverlayHandlerOverride)
+    kOverrides.callOverlayHandlerOverride = callOverlayHandler;
 };
