@@ -29,7 +29,6 @@ export default {
       beforeSeconds: 5,
       response: Responses.knockback(),
     },
-    
   ],
   triggers: [
     {
@@ -459,6 +458,24 @@ export default {
       // Probably this is where you swap, but maybe that's not something you can
       // count on in an alliance raid, where there might not even be another tank.
       response: Responses.tankBuster(),
+    },
+    {
+      id: 'DelubrumSav Queen Cleansing Slash Doom',
+      // The 5BB8 Cleansing Slash (or getting hit by 59F5 then 5BB8?) applies a cleansable Doom (38E), if damage is taken
+      netRegex: NetRegexes.gainsEffect({ source: 'The Queen', effectId: '38E' }),
+      netRegexDe: NetRegexes.gainsEffect({ source: 'Kriegsgöttin', effectId: '38E' }),
+      netRegexFr: NetRegexes.gainsEffect({ source: 'Garde-La-Reine', effectId: '38E' }),
+      netRegexJa: NetRegexes.gainsEffect({ source: 'セイブ・ザ・クイーン', effectId: '38E' }),
+      condition: (data) => data.CanCleanse(),
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
+      outputStrings: {
+        text: {
+          en: 'Esuna ${player}',
+          de: 'Medica ${player}',
+          fr: 'Guérison sur ${player}',
+          ko: '"${player}" 에스나',
+        },
+      },
     },
     {
       id: 'DelubrumSav Queen Gods Save The Queen',
