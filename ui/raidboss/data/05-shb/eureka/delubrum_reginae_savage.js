@@ -461,7 +461,7 @@ export default {
     },
     {
       id: 'DelubrumSav Queen Cleansing Slash Doom',
-      // The 5BB8 Cleansing Slash (or getting hit by 59F5 then 5BB8?) applies a cleansable Doom (38E), if damage is taken
+      // Each Cleansing Slash applies a cleansable Doom (38E), if damage is taken
       netRegex: NetRegexes.gainsEffect({ source: 'The Queen', effectId: '38E' }),
       netRegexDe: NetRegexes.gainsEffect({ source: 'Kriegsgöttin', effectId: '38E' }),
       netRegexFr: NetRegexes.gainsEffect({ source: 'Garde-La-Reine', effectId: '38E' }),
