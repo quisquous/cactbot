@@ -264,7 +264,8 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '583F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '583F', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '583F', capture: false }),
-      delaySeconds: 4,
+      delaySeconds: 3.5,
+      durationSeconds: 5.5,
       response: Responses.stopEverything('alarm'),
     },
     {
@@ -273,7 +274,8 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5840', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5840', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5840', capture: false }),
-      delaySeconds: 4,
+      delaySeconds: 3.5,
+      durationSeconds: 5.5,
       response: Responses.moveAround('alert'),
     },
     {
@@ -325,7 +327,7 @@ export default {
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Stop Attacking, Wait for Dispel',
+          en: 'Stop Attacking, Dispel Ice Spikes',
         },
       },
     },
