@@ -243,6 +243,7 @@ const kMiscTranslations = {
   valueIsFunction: {
     en: '(function)',
     de: '(Funktion)',
+    fr: '(Fonction)',
     ja: '(関数)',
     cn: '(函数)',
   },
@@ -250,6 +251,7 @@ const kMiscTranslations = {
   warning: {
     en: '⚠️ warning',
     de: '⚠️ Warnung',
+    fr: '⚠️ Attention',
     ja: '⚠️ 警告',
     cn: '⚠️ 警告',
   },
@@ -257,6 +259,7 @@ const kMiscTranslations = {
   missingId: {
     en: 'missing id field',
     de: 'Fehlendes ID Feld',
+    fr: 'Champ ID manquant',
     ja: 'idがありません',
     cn: '缺少id属性',
   },
@@ -264,6 +267,7 @@ const kMiscTranslations = {
   overriddenByFile: {
     en: 'overridden by "${file}"',
     de: 'Überschrieben durch "${file}"',
+    fr: 'Écrasé(e) par "${file}"',
     ja: '"${file}"に上書きました',
     cn: '被"${file}"文件覆盖',
   },
