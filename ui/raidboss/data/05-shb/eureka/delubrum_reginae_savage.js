@@ -450,13 +450,13 @@ export default {
     },
     {
       id: 'DelubrumSav Queen Cleansing Slash',
+      // First hit of Cleansing Slash can be dodged by tank invlunerability
+      // Both first and Second hit, 5BB8, will require tank swaps if damage is taken
       netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59F5' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59F5' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59F5' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59F5' }),
       condition: tankBusterOnParty,
-      // Probably this is where you swap, but maybe that's not something you can
-      // count on in an alliance raid, where there might not even be another tank.
       response: Responses.tankBuster(),
     },
     {
