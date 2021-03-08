@@ -318,7 +318,11 @@
 #sam-stacks-setsu,
 #sam-stacks-getsu,
 #sam-stacks-ka {
-  width: 33%;
+  background-color: rgba(174, 227, 235, 0.2);
+  margin-right: 2px;
+  display: inline-block;
+  border: 1px solid black;
+  width: calc(33% - 4px);
   height: 100%;
 }
 
@@ -359,30 +363,19 @@
   height: 100%;
 }
 
-#sam-stacks-setsu > div,
-#sam-stacks-getsu > div,
-#sam-stacks-ka > div {
-  background-color: rgba(174, 227, 235, 0.2);
-  margin-right: 2px;
-  display: inline-block;
-  border: 1px solid black;
-  width: calc(100% - 4px);
-  height: 100%;
-}
-
 #whm-stacks-bloodlily > div.active {
   background-color: rgb(190, 43, 30);
 }
 
-#sam-stacks-setsu > div.active {
+#sam-stacks-setsu.active {
   background-color: rgb(139, 209, 242);
 }
 
-#sam-stacks-getsu > div.active {
+#sam-stacks-getsu.active {
   background-color: rgb(185, 185, 242);
 }
 
-#sam-stacks-ka > div.active {
+#sam-stacks-ka.active {
   background-color: rgb(237, 180, 180);
 }
 

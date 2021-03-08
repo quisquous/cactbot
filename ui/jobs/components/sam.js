@@ -14,45 +14,26 @@ export function setup(bars) {
       comboTimer.duration = 15;
   });
 
-  const stacksContainer = document.createElement('div');
-  stacksContainer.id = 'sam-stacks';
-  bars.addJobBarContainer().appendChild(stacksContainer);
+  const senContainer = document.createElement('div');
+  senContainer.id = 'sam-stacks';
+  bars.addJobBarContainer().appendChild(senContainer);
+  const sen = [
+    document.createElement('div'),
+    document.createElement('div'),
+    document.createElement('div'),
+  ];
+  sen[0].id = 'sam-stacks-setsu';
+  sen[1].id = 'sam-stacks-getsu';
+  sen[2].id = 'sam-stacks-ka';
+  sen.forEach((e) => senContainer.appendChild(e));
 
-  const setsuContainer = document.createElement('div');
-  setsuContainer.id = 'sam-stacks-setsu';
-  stacksContainer.appendChild(setsuContainer);
-  const setsu = [];
-  for (let i = 0; i < 1; ++i) {
-    const d = document.createElement('div');
-    setsuContainer.appendChild(d);
-    setsu.push(d);
-  }
-
-  const getsuContainer = document.createElement('div');
-  getsuContainer.id = 'sam-stacks-getsu';
-  stacksContainer.appendChild(getsuContainer);
-  const getsu = [];
-  for (let i = 0; i < 1; ++i) {
-    const d = document.createElement('div');
-    getsuContainer.appendChild(d);
-    getsu.push(d);
-  }
-
-  const kaContainer = document.createElement('div');
-  kaContainer.id = 'sam-stacks-ka';
-  stacksContainer.appendChild(kaContainer);
-  const ka = [];
-  for (let i = 0; i < 1; ++i) {
-    const d = document.createElement('div');
-    kaContainer.appendChild(d);
-    ka.push(d);
-  }
   const kenkiGauge = bars.addResourceBox({
     classList: ['sam-color-kenki'],
   });
   const meditationGauge = bars.addResourceBox({
     classList: ['sam-color-meditation'],
   });
+
   bars.onJobDetailUpdate((jobDetail) => {
     kenkiGauge.innerText = jobDetail.kenki;
     meditationGauge.innerText = jobDetail.meditationStacks;
@@ -64,24 +45,19 @@ export function setup(bars) {
       meditationGauge.parentNode.classList.add('high');
     else
       meditationGauge.parentNode.classList.remove('high');
-    for (let i = 0; i < 1; ++i) {
-      if (jobDetail.setsu > i)
-        setsu[i].classList.add('active');
-      else
-        setsu[i].classList.remove('active');
-    }
-    for (let i = 0; i < 1; ++i) {
-      if (jobDetail.getsu > i)
-        getsu[i].classList.add('active');
-      else
-        getsu[i].classList.remove('active');
-    }
-    for (let i = 0; i < 1; ++i) {
-      if (jobDetail.ka > i)
-        ka[i].classList.add('active');
-      else
-        ka[i].classList.remove('active');
-    }
+
+    if (jobDetail.setsu > 0)
+      sen[0].classList.add('active');
+    else
+      sen[0].classList.remove('active');
+    if (jobDetail.getsu > 0)
+      sen[1].classList.add('active');
+    else
+      sen[1].classList.remove('active');
+    if (jobDetail.ka > 0)
+      sen[2].classList.add('active');
+    else
+      sen[2].classList.remove('active');
   });
 
   const shifu = bars.addProcBox({
