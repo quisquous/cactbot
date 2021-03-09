@@ -1,9 +1,9 @@
 import { Lang } from './global';
 
-export type Matches = {
-  target?: string;
-  [s: string]: string;
-}
+export type Matches<T> =
+  T extends (params?: infer R) => RegExp ?
+  { [s in Exclude<keyof R, 'capture'>]: string } :
+  { [s: string]: string };
 
 
 type TranslatableText = {
