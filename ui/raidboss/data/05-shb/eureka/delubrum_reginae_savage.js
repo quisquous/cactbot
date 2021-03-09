@@ -553,7 +553,6 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59F5' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59F5' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59F5' }),
-      condition: tankBusterOnParty,
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -565,8 +564,8 @@ export default {
             cn: '死刑 + 换T',
             ko: '탱버 + 교대',
           },
-          tankBusters: Outputs.tankBusters,
           tankBusterOnYou: Outputs.tankBusterOnYou,
+          tankBusterOnPlayer: Outputs.tankBusterOnPlayer,
           tankInvuln: {
             en: 'Invuln Tank Buster',
           },
