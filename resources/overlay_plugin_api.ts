@@ -73,7 +73,7 @@ const sendMessage = (
     if (queue)
       queue.push(msg);
     else
-      ws?.send(JSON.stringify(msg));
+      ws.send(JSON.stringify(msg));
   } else {
     if (queue)
       queue.push([msg, cb]);
@@ -170,8 +170,8 @@ if (typeof window !== 'undefined') {
   window.dispatchOverlayEvent = processEvent;
 }
 export const addOverlayListener: IAddOverlayListener = (event, cb): void => {
-  if (kOverrides.addOverlayListenerOverride)
-    return kOverrides.addOverlayListenerOverride(event, cb);
+  if (overrides.addOverlayListenerOverride)
+    return overrides.addOverlayListenerOverride(event, cb);
 
   if (!subscribers[event]) {
     subscribers[event] = [];
@@ -188,8 +188,8 @@ export const addOverlayListener: IAddOverlayListener = (event, cb): void => {
 };
 
 export const removeOverlayListener: IRemoveOverlayListener = (event, cb): void => {
-  if (kOverrides.removeOverlayListenerOverride)
-    return kOverrides.removeOverlayListenerOverride(event, cb);
+  if (overrides.removeOverlayListenerOverride)
+    return overrides.removeOverlayListenerOverride(event, cb);
 
   if (subscribers[event]) {
     const list = subscribers[event];
@@ -203,10 +203,11 @@ export const callOverlayHandler: IOverlayHandler = (
     _msg: { [s: string]: unknown },
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> => {
-  if (kOverrides.callOverlayHandlerOverride)
-    return kOverrides.callOverlayHandlerOverride(
-      _msg as Parameters<IOverlayHandler>[0]
+  if (overrides.callOverlayHandlerOverride) {
+    return overrides.callOverlayHandlerOverride(
+      _msg as Parameters<IOverlayHandler>[0],
     ) as Promise<unknown>;
+  }
 
   const msg = {
     ..._msg,
@@ -233,7 +234,7 @@ export const callOverlayHandler: IOverlayHandler = (
 };
 
 
-const kOverrides: Overrides = {};
+const overrides: Overrides = {};
 export const setOverride = (overrides: {
     addOverlayListenerOverride?: IAddOverlayListener;
     removeOverlayListenerOverride?: IRemoveOverlayListener;
@@ -245,11 +246,11 @@ export const setOverride = (overrides: {
     callOverlayHandlerOverride,
   } = overrides;
   if (addOverlayListenerOverride)
-    kOverrides.addOverlayListenerOverride = addOverlayListener;
+    overrides.addOverlayListenerOverride = addOverlayListener;
   if (removeOverlayListenerOverride)
-    kOverrides.removeOverlayListenerOverride = removeOverlayListener;
+    overrides.removeOverlayListenerOverride = removeOverlayListener;
   if (callOverlayHandlerOverride)
-    kOverrides.callOverlayHandlerOverride = callOverlayHandler;
+    overrides.callOverlayHandlerOverride = callOverlayHandler;
 };
 
 window.addOverlayListener = addOverlayListener;
