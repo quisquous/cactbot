@@ -535,15 +535,6 @@ export default {
       response: Responses.getOut(),
     },
     {
-      id: 'DelubrumSav Queen Empyrean Iniquity',
-      netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59F9', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59F9', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59F9', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59F9', capture: false }),
-      condition: Conditions.caresAboutAOE(),
-      response: Responses.bigAoe(),
-    },
-    {
       id: 'DelubrumSav Queen Cleansing Slash',
       // PLD and GNB tank invulnerabilities do not get Physical Vulnerability Up
       // Tank swap will be required between the two hits if not using a tank invulnerability
@@ -578,10 +569,11 @@ export default {
               return { alertText: output.tankInvuln() };
             return { alertText: output.tankBusterAndSwap() };
           }
-          return { alertText: output.tankBusterOnYou() };
+          return { alarmText: output.tankBusterOnYou() };
         }
         if (data.role === 'healer')
           return { alertText: output.tankBusters() };
+      },
     },
     {
       id: 'DelubrumSav Queen Cleansing Slash Doom',
