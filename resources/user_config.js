@@ -1,5 +1,3 @@
-import { callOverlayHandler, addOverlayListener } from './overlay_plugin_api';
-
 // TODO:
 // The convention of "import X as _X; const X = _X;" is currently
 // being used as a method to workaround for downstream code
@@ -7,6 +5,8 @@ import { callOverlayHandler, addOverlayListener } from './overlay_plugin_api';
 // create a variable of the same name, the eval()'d code does not know
 // about the import, and thus throws ReferenceErrors.
 // Used by downstream eval
+import * as OverlayPluginApi from './overlay_plugin_api';
+const { addOverlayListener, removeOverlayListener, callOverlayHandler } = OverlayPluginApi;
 import _Conditions from './conditions';
 const Conditions = _Conditions;
 import _ContentType from './content_type';
