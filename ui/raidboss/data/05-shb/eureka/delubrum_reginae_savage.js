@@ -68,7 +68,7 @@ export default {
     },
     {
       id: 'DelubrumSav Queen Gods Save The Queen',
-      regex: /Gods Save The Queen[^ ]/,
+      regex: /Gods Save The Queen$/,
       beforeSeconds: 7,
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
@@ -619,6 +619,27 @@ export default {
           en: 'Reflect Orbs',
         },
       },
+    },
+    {
+      id: 'DelubrumSav Queen Fiery Portent',
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5A21' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5A21' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5A21' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5A21' }),
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - 2.5,
+      durationSeconds: 5.5,
+      response: Responses.stopEverything('alarm'),
+    },
+    {
+      id: 'DelubrumSav Queen Icy Portent',
+      // Assuming you need to move for 3 seconds (duration of Pyretic from Fiery Portent)
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5A22' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5A22' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5A22' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5A22' }),
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - 2.5,
+      durationSeconds: 5.5,
+      response: Responses.moveAround('alert'),
     },
     {
       id: 'DelubrumSav Queen Guard AoEs',
