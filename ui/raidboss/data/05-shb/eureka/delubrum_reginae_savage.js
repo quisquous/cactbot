@@ -22,6 +22,14 @@ export default {
   timelineFile: 'delubrum_reginae_savage.txt',
   timelineTriggers: [
     {
+      id: 'DelubrumSav Avowed Glory Of Bozja',
+      regex: /Glory Of Bozja/,
+      // Cast itself is 5.5 seconds, add more warning
+      beforeSeconds: 7,
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.bigAoe(),
+    },
+    {
       id: 'DelubrumSav Lord Vicious Swipe',
       regex: /Vicious Swipe/,
       // There are different timings in the first and second phase.
@@ -49,6 +57,14 @@ export default {
         getOut: Outputs.out,
         getIn: Outputs.in,
       },
+    },
+    {
+      id: 'DelubrumSav Queen Empyrean Iniquity',
+      regex: /Empyrean Iniquity/,
+      // Cast itself is 5 seconds, add more warning
+      beforeSeconds: 7,
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.bigAoe(),
     },
   ],
   triggers: [
@@ -425,15 +441,6 @@ export default {
       },
     },
     {
-      id: 'DelubrumSav Avowed Glory Of Bozja',
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5B32', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5B32', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5B32', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5B32', capture: false }),
-      condition: Conditions.caresAboutAOE(),
-      response: Responses.bigAoe(),
-    },
-    {
       id: 'DelubrumSav Avowed Fury Of Bozja',
       // Allegiant Arsenal 5987 = staff (out), followed up with Fury of Bozja 594C
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5987', capture: false }),
@@ -613,6 +620,30 @@ export default {
       outputStrings: {
         text: {
           en: 'Reflect Orbs',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Queen Guard AoEs',
+      // 5A16 from Queen's Warrior
+      // 5A08 from Queen's Knight
+      // 5A35 from Queen's Gunner
+      // 5A23 from Queen's Soldier
+      // These happen in sets:
+      //   Set 1 Double AoE, 3 seconds later Double AoE
+      //   Set 2 5 seconds later, Double AoE, 3 seconds later Double AoE, 3 seconds later AoE + Bleed (from Queen)
+      //   Set 3 1.3 seconds later, Single AoEs every 3 seconds all while bleed from set 2 persists
+      netRegex: NetRegexes.startsUsing({ source: ['Queen\'s Warrior', 'Queen\'s Knight', 'Queen\'s Gunner', 'Queen\'s Soldier'], id: ['5A16', '5A08', '5A35', '5A23'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Kriegerin Der Königin', 'Ritter Der Königin', 'Schütze Der Königin', 'Soldat Der Königin'], id: ['5A16', '5A08', '5A35', '5A23'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Guerrière De La Reine', 'Chevalier De La Reine', 'Fusilier De La Reine', 'Soldat De La Reine'], id: ['5A16', '5A08', '5A35', '5A23'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['クイーンズ・ウォリアー', 'クイーンズ・ナイト', 'クイーンズ・ガンナー', 'クイーンズ・ソルジャー'], id: ['5A16', '5A08', '5A35', '5A23'], capture: false }),
+      condition: Conditions.caresAboutAOE(),
+       // Only call out the beginning of a set of two casts
+      suppressSeconds: 5,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Multiple Guard\'s AOEs',
         },
       },
     },
