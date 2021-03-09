@@ -571,15 +571,15 @@ export default {
             en: 'Invuln Tank Buster',
           },
         };
-        
-        if (data.me === matches.target)
+
+        if (data.me === matches.target) {
           if (data.job === 'PLD' || data.job === 'GNB')
             return { alertText: output.tankInvuln() };
           else if (data.role === 'tank')
             return { alertText: output.tankBusterAndSwap() };
           else
             return { alarmText: output.tankBusterOnYou() };
-        else if (data.role === 'healer')
+        } else if (data.role === 'healer')
           return { alertText: output.tankBusters() };
       },
     },
