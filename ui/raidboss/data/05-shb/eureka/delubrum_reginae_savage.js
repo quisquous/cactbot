@@ -69,6 +69,7 @@ export default {
     {
       id: 'DelubrumSav Queen Gods Save The Queen',
       regex: /Gods Save The Queen$/,
+      // Cast in the timeline is 5 seconds, but there is an additional 1 second cast before damage
       beforeSeconds: 7,
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
