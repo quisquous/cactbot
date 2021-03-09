@@ -59,6 +59,14 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Lord Thunderous Discharge',
+      regex: /Thunderous Discharge/,
+      // Cast in the timeline is 5 seconds, but there is an additional .5 second cast before damage
+      beforeSeconds: 7,
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.aoe(),
+    },
+    {
       id: 'DelubrumSav Queen Empyrean Iniquity',
       regex: /Empyrean Iniquity/,
       // Cast itself is 5 seconds, add more warning
@@ -533,15 +541,6 @@ export default {
           en: 'Get In Nook',
         },
       },
-    },
-    {
-      id: 'DelubrumSav Lord Thunderous Discharge',
-      netRegex: NetRegexes.startsUsing({ source: 'Stygimoloch Lord', id: '57D2', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Anführer-Stygimoloch', id: '57D2', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Seigneur Stygimoloch', id: '57D2', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'スティギモロク・ロード', id: '57D2', capture: false }),
-      condition: Conditions.caresAboutAOE(),
-      response: Responses.aoe(),
     },
     {
       id: 'DelubrumSav Lord 1111-Tonze Swing',
