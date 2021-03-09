@@ -579,7 +579,8 @@ export default {
             return { alertText: output.tankBusterAndSwap() };
           else
             return { alarmText: output.tankBusterOnYou() };
-        } else if (data.role === 'healer')
+        }
+        if (data.role === 'healer')
           return { alertText: output.tankBusters() };
       },
     },
