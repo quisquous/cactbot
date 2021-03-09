@@ -590,7 +590,7 @@ export default {
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Orbs',
+          en: 'Reflect Orbs',
         },
       },
     },
