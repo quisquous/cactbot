@@ -10,7 +10,21 @@ declare global {
       ready: boolean;
       callHandler: (msg: string, cb?: (value: string) => unknown) => void;
     };
+    addOverlayListener: IAddOverlayListener;
+    removeOverlayListener: IRemoveOverlayListener;
+    callOverlayHandler: IOverlayHandler;
   }
+}
+
+
+type IAddOverlayListener = <T extends EventType>(event: T, cb: EventMap[T]) => void;
+type IRemoveOverlayListener = <T extends EventType>(event: T, cb: EventMap[T]) => void;
+
+
+interface Overrides {
+  addOverlayListenerOverride?: IAddOverlayListener;
+  removeOverlayListenerOverride?: IRemoveOverlayListener;
+  callOverlayHandlerOverride?: IOverlayHandler;
 }
 
 type Subscriber<T> = {
@@ -129,12 +143,12 @@ if (typeof window !== 'undefined') {
 
   const processEvent = <T extends EventType>(msg: Parameters<EventMap[T]>[0]): void => {
     const subs = subscribers[msg.type];
-    subs?.forEach((sub) => sub(msg as unknown));
+    subs?.forEach((sub) => sub(msg));
   };
 
   window.dispatchOverlayEvent = processEvent;
 }
-export const addOverlayListener = <T extends EventType>(event: T, cb: EventMap[T]): void => {
+export const addOverlayListener: IAddOverlayListener = (event, cb): void => {
   if (kOverrides.addOverlayListenerOverride)
     return kOverrides.addOverlayListenerOverride(event, cb);
 
@@ -152,7 +166,7 @@ export const addOverlayListener = <T extends EventType>(event: T, cb: EventMap[T
   subscribers[event]?.push(cb as VoidFunc<unknown>);
 };
 
-export const removeOverlayListener = <T extends EventType>(event: T, cb: EventMap[T]): void => {
+export const removeOverlayListener: IRemoveOverlayListener = (event, cb): void => {
   if (kOverrides.removeOverlayListenerOverride)
     return kOverrides.removeOverlayListenerOverride(event, cb);
 
@@ -169,7 +183,9 @@ export const callOverlayHandler: IOverlayHandler = (
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> => {
   if (kOverrides.callOverlayHandlerOverride)
-    return kOverrides.callOverlayHandlerOverride(_msg as Parameters<IOverlayHandler>[0]);
+    return kOverrides.callOverlayHandlerOverride(
+      _msg as Parameters<IOverlayHandler>[0]
+    ) as Promise<unknown>;
 
   const msg = {
     ..._msg,
@@ -195,16 +211,11 @@ export const callOverlayHandler: IOverlayHandler = (
   return p;
 };
 
-interface Overrides {
-  addOverlayListenerOverride?: <T extends EventType>(event: T, cb: EventMap[T]) => void;
-  removeOverlayListenerOverride?: <T extends EventType>(event: T, cb: EventMap[T]) => void;
-  callOverlayHandlerOverride?: IOverlayHandler;
-}
 
 const kOverrides: Overrides = {};
 export const setOverride = (overrides: {
-    addOverlayListenerOverride?: <T extends EventType>(event: T, cb: EventMap[T]) => void;
-    removeOverlayListenerOverride?: <T extends EventType>(event: T, cb: EventMap[T]) => void;
+    addOverlayListenerOverride?: IAddOverlayListener;
+    removeOverlayListenerOverride?: IRemoveOverlayListener;
     callOverlayHandlerOverride?: IOverlayHandler;
   }): void => {
   const {
@@ -219,3 +230,7 @@ export const setOverride = (overrides: {
   if (callOverlayHandlerOverride)
     kOverrides.callOverlayHandlerOverride = callOverlayHandler;
 };
+
+window.addOverlayListener = addOverlayListener;
+window.removeOverlayListener = removeOverlayListener;
+window.callOverlayHandler = callOverlayHandler;
