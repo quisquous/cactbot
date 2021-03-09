@@ -119,8 +119,8 @@ export const removeOverlayListener: IRemoveOverlayListener = (event, cb): void =
 };
 
 export const callOverlayHandler: IOverlayHandler = (
-  _msg: { [s: string]: unknown },
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    _msg: { [s: string]: unknown },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> => {
   if (overrides.callOverlayHandlerOverride) {
     return overrides.callOverlayHandlerOverride(
