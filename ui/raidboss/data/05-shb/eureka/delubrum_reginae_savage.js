@@ -39,11 +39,11 @@ export default {
       // First set of debuffs go out 7.7 seconds before Fateful Word is cast
       // Remaining set of debuffs go out 24.3 seconds before Fateful Word is cast
       beforeSeconds: 3.5,
-      response: (data, _, output) => {
+      alertText: (data, _, output) => {
         if (data.labyrinthineFate === '97F')
-          return { alertText: output.getOut() };
+          return { output.getOut() };
         else if (data.labyrinthineFate === '97E')
-          return { alertText: output.getIn() };
+          return { output.getIn() };
       },
       outputStrings: {
         getOut: Outputs.out,
