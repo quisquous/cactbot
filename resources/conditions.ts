@@ -6,11 +6,11 @@ import { Data } from '../types/data';
 import { Matches } from '../types/trigger';
 
 export default {
-  targetIsYou(): (data: Data, matches: Matches) => boolean {
-    return (data: Data, matches: Matches) => data.me === matches.target;
+  targetIsYou(): (data: Data, matches: Matches<unknown>) => boolean {
+    return (data: Data, matches: Matches<unknown>) => data.me === matches.target;
   },
-  targetIsNotYou(): (data: Data, matches: Matches) => boolean {
-    return (data: Data, matches: Matches) => data.me !== matches.target;
+  targetIsNotYou(): (data: Data, matches: Matches<unknown>) => boolean {
+    return (data: Data, matches: Matches<unknown>) => data.me !== matches.target;
   },
   caresAboutAOE(): (data: Data) => boolean {
     return (data: Data) => data.role === 'tank' || data.role === 'healer' || data.CanAddle() || data.job === 'BLU';
