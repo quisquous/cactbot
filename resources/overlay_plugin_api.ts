@@ -235,7 +235,7 @@ export const callOverlayHandler: IOverlayHandler = (
 
 
 const overrides: Overrides = {};
-export const setOverride = (overrides: {
+export const setOverride = (override: {
     addOverlayListenerOverride?: IAddOverlayListener;
     removeOverlayListenerOverride?: IRemoveOverlayListener;
     callOverlayHandlerOverride?: IOverlayHandler;
@@ -244,7 +244,7 @@ export const setOverride = (overrides: {
     addOverlayListenerOverride,
     removeOverlayListenerOverride,
     callOverlayHandlerOverride,
-  } = overrides;
+  } = override;
   if (addOverlayListenerOverride)
     overrides.addOverlayListenerOverride = addOverlayListener;
   if (removeOverlayListenerOverride)
