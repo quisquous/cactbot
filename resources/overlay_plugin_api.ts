@@ -5,7 +5,7 @@ import { EventMap, EventType, IOverlayHandler } from '../types/event';
 declare global {
   interface Window {
     __OverlayCallback: EventMap[EventType];
-    dispatchOverlayEvent: EventMap[EventType];
+    dispatchOverlayEvent?: typeof processEvent;
     OverlayPluginApi: {
       ready: boolean;
       callHandler: (msg: string, cb?: (value: string) => unknown) => void;
@@ -46,6 +46,7 @@ interface Overrides {
   addOverlayListenerOverride?: IAddOverlayListener;
   removeOverlayListenerOverride?: IRemoveOverlayListener;
   callOverlayHandlerOverride?: IOverlayHandler;
+  dispatchOverlayEvent?: typeof processEvent;
 }
 
 type Subscriber<T> = {
@@ -162,13 +163,18 @@ if (typeof window !== 'undefined') {
     waitForApi();
   }
 
-  const processEvent = <T extends EventType>(msg: Parameters<EventMap[T]>[0]): void => {
-    const subs = subscribers[msg.type];
-    subs?.forEach((sub) => sub(msg));
-  };
-
+  // Assign in `window` object to ensure backward compatiability
+  window.addOverlayListener = addOverlayListener;
+  window.removeOverlayListener = removeOverlayListener;
+  window.callOverlayHandler = callOverlayHandler;
   window.dispatchOverlayEvent = processEvent;
 }
+
+const processEvent = <T extends EventType>(msg: Parameters<EventMap[T]>[0]): void => {
+  const subs = subscribers[msg.type];
+  subs?.forEach((sub) => sub(msg));
+};
+
 export const addOverlayListener: IAddOverlayListener = (event, cb): void => {
   if (overrides.addOverlayListenerOverride)
     return overrides.addOverlayListenerOverride(event, cb);
@@ -239,11 +245,13 @@ export const setOverride = (override: {
     addOverlayListenerOverride?: IAddOverlayListener;
     removeOverlayListenerOverride?: IRemoveOverlayListener;
     callOverlayHandlerOverride?: IOverlayHandler;
+    dispatchOverlayEventOverride: typeof processEvent;
   }): void => {
   const {
     addOverlayListenerOverride,
     removeOverlayListenerOverride,
     callOverlayHandlerOverride,
+    dispatchOverlayEventOverride,
   } = override;
   if (addOverlayListenerOverride)
     overrides.addOverlayListenerOverride = addOverlayListener;
@@ -251,8 +259,6 @@ export const setOverride = (override: {
     overrides.removeOverlayListenerOverride = removeOverlayListener;
   if (callOverlayHandlerOverride)
     overrides.callOverlayHandlerOverride = callOverlayHandler;
+  if (dispatchOverlayEventOverride)
+    overrides.dispatchOverlayEvent = dispatchOverlayEventOverride;
 };
-
-window.addOverlayListener = addOverlayListener;
-window.removeOverlayListener = removeOverlayListener;
-window.callOverlayHandler = callOverlayHandler;
