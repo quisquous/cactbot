@@ -149,7 +149,9 @@ export default {
       condition: (data, matches) => matches.source === data.me,
       alarmText: (data, _, output) => output.earthshaker(),
       outputStrings: {
-        earthshaker: Outputs.earthshakerOnYou,
+        earthshaker: {
+          en: 'Earthshaker, away from boss',
+        },
       },
     },
     {
@@ -199,10 +201,10 @@ export default {
       },
       outputStrings: {
         goBlue: {
-          en: 'Go Blue',
+          en: 'Blue Stone',
         },
         goWhite: {
-          en: 'Go White',
+          en: 'White Sand',
         },
       },
     },
