@@ -119,7 +119,7 @@ export interface JobDetail {
 }
 
 export interface EventMap {
-  // #region OverlayPlugin build-in Event
+  // #region OverlayPlugin built-in Event
   'CombatData': (ev: {
     type: 'CombatData';
   }) => void;
