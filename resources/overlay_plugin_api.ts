@@ -82,6 +82,100 @@ const sendMessage = (
       window.OverlayPluginApi.callHandler(JSON.stringify(msg), cb);
   }
 };
+
+const processEvent = <T extends EventType>(msg: Parameters<EventMap[T]>[0]): void => {
+  const subs = subscribers[msg.type];
+  subs?.forEach((sub) => sub(msg));
+};
+
+export const addOverlayListener: IAddOverlayListener = (event, cb): void => {
+  if (overrides.addOverlayListenerOverride)
+    return overrides.addOverlayListenerOverride(event, cb);
+
+  if (!subscribers[event]) {
+    subscribers[event] = [];
+
+    if (!queue) {
+      sendMessage({
+        call: 'subscribe',
+        events: [event],
+      });
+    }
+  }
+
+  subscribers[event]?.push(cb as VoidFunc<unknown>);
+};
+
+export const removeOverlayListener: IRemoveOverlayListener = (event, cb): void => {
+  if (overrides.removeOverlayListenerOverride)
+    return overrides.removeOverlayListenerOverride(event, cb);
+
+  if (subscribers[event]) {
+    const list = subscribers[event];
+    const pos = list?.indexOf(cb as VoidFunc<unknown>);
+
+    if (pos && pos > -1) list?.splice(pos, 1);
+  }
+};
+
+export const callOverlayHandler: IOverlayHandler = (
+  _msg: { [s: string]: unknown },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+): Promise<any> => {
+  if (overrides.callOverlayHandlerOverride) {
+    return overrides.callOverlayHandlerOverride(
+      _msg as Parameters<IOverlayHandler>[0],
+    ) as Promise<unknown>;
+  }
+
+  const msg = {
+    ..._msg,
+    rseq: 0,
+  };
+  let p: Promise<unknown>;
+
+  if (ws) {
+    msg.rseq = rseqCounter++;
+    p = new Promise((resolve) => {
+      responsePromises[msg.rseq] = resolve;
+    });
+
+    sendMessage(msg);
+  } else {
+    p = new Promise((resolve) => {
+      sendMessage(msg, (data) => {
+        resolve(data === null ? null : JSON.parse(data));
+      });
+    });
+  }
+
+  return p;
+};
+
+
+const overrides: Overrides = {};
+export const setOverride = (override: {
+  addOverlayListenerOverride?: IAddOverlayListener;
+  removeOverlayListenerOverride?: IRemoveOverlayListener;
+  callOverlayHandlerOverride?: IOverlayHandler;
+  dispatchOverlayEventOverride: typeof processEvent;
+}): void => {
+  const {
+    addOverlayListenerOverride,
+    removeOverlayListenerOverride,
+    callOverlayHandlerOverride,
+    dispatchOverlayEventOverride,
+  } = override;
+  if (addOverlayListenerOverride)
+    overrides.addOverlayListenerOverride = addOverlayListener;
+  if (removeOverlayListenerOverride)
+    overrides.removeOverlayListenerOverride = removeOverlayListener;
+  if (callOverlayHandlerOverride)
+    overrides.callOverlayHandlerOverride = callOverlayHandler;
+  if (dispatchOverlayEventOverride)
+    overrides.dispatchOverlayEvent = dispatchOverlayEventOverride;
+};
+
 if (typeof window !== 'undefined') {
   wsUrl = /[\?&]OVERLAY_WS=([^&]+)/.exec(window.location.href);
   if (wsUrl) {
@@ -169,96 +263,3 @@ if (typeof window !== 'undefined') {
   window.callOverlayHandler = callOverlayHandler;
   window.dispatchOverlayEvent = processEvent;
 }
-
-const processEvent = <T extends EventType>(msg: Parameters<EventMap[T]>[0]): void => {
-  const subs = subscribers[msg.type];
-  subs?.forEach((sub) => sub(msg));
-};
-
-export const addOverlayListener: IAddOverlayListener = (event, cb): void => {
-  if (overrides.addOverlayListenerOverride)
-    return overrides.addOverlayListenerOverride(event, cb);
-
-  if (!subscribers[event]) {
-    subscribers[event] = [];
-
-    if (!queue) {
-      sendMessage({
-        call: 'subscribe',
-        events: [event],
-      });
-    }
-  }
-
-  subscribers[event]?.push(cb as VoidFunc<unknown>);
-};
-
-export const removeOverlayListener: IRemoveOverlayListener = (event, cb): void => {
-  if (overrides.removeOverlayListenerOverride)
-    return overrides.removeOverlayListenerOverride(event, cb);
-
-  if (subscribers[event]) {
-    const list = subscribers[event];
-    const pos = list?.indexOf(cb as VoidFunc<unknown>);
-
-    if (pos && pos > -1) list?.splice(pos, 1);
-  }
-};
-
-export const callOverlayHandler: IOverlayHandler = (
-    _msg: { [s: string]: unknown },
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-): Promise<any> => {
-  if (overrides.callOverlayHandlerOverride) {
-    return overrides.callOverlayHandlerOverride(
-      _msg as Parameters<IOverlayHandler>[0],
-    ) as Promise<unknown>;
-  }
-
-  const msg = {
-    ..._msg,
-    rseq: 0,
-  };
-  let p: Promise<unknown>;
-
-  if (ws) {
-    msg.rseq = rseqCounter++;
-    p = new Promise((resolve) => {
-      responsePromises[msg.rseq] = resolve;
-    });
-
-    sendMessage(msg);
-  } else {
-    p = new Promise((resolve) => {
-      sendMessage(msg, (data) => {
-        resolve(data === null ? null : JSON.parse(data));
-      });
-    });
-  }
-
-  return p;
-};
-
-
-const overrides: Overrides = {};
-export const setOverride = (override: {
-    addOverlayListenerOverride?: IAddOverlayListener;
-    removeOverlayListenerOverride?: IRemoveOverlayListener;
-    callOverlayHandlerOverride?: IOverlayHandler;
-    dispatchOverlayEventOverride: typeof processEvent;
-  }): void => {
-  const {
-    addOverlayListenerOverride,
-    removeOverlayListenerOverride,
-    callOverlayHandlerOverride,
-    dispatchOverlayEventOverride,
-  } = override;
-  if (addOverlayListenerOverride)
-    overrides.addOverlayListenerOverride = addOverlayListener;
-  if (removeOverlayListenerOverride)
-    overrides.removeOverlayListenerOverride = removeOverlayListener;
-  if (callOverlayHandlerOverride)
-    overrides.callOverlayHandlerOverride = callOverlayHandler;
-  if (dispatchOverlayEventOverride)
-    overrides.dispatchOverlayEvent = dispatchOverlayEventOverride;
-};
