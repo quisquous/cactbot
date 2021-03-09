@@ -41,9 +41,9 @@ export default {
       beforeSeconds: 3.5,
       alertText: (data, _, output) => {
         if (data.labyrinthineFate === '97F')
-          return { output.getOut() };
+          return output.getOut();
         else if (data.labyrinthineFate === '97E')
-          return { output.getIn() };
+          return output.getIn();
       },
       outputStrings: {
         getOut: Outputs.out,
