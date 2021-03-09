@@ -630,15 +630,15 @@ export default {
       // 5A35 from Queen's Gunner
       // 5A23 from Queen's Soldier
       // These happen in sets:
-      //   Set 1 Double AoE, 3 seconds later Double AoE
-      //   Set 2 5 seconds later, Double AoE, 3 seconds later Double AoE, 3 seconds later AoE + Bleed (from Queen)
-      //   Set 3 1.3 seconds later, Single AoEs every 3 seconds all while bleed from set 2 persists
+      // Set 1 Double AoE, 3 seconds later Double AoE
+      // Set 2 5 seconds later, Double AoE, 3 seconds later Double AoE, 3 seconds later AoE + Bleed
+      // Set 3 1.3 seconds later, Single AoEs every 3 seconds all while bleed from set 2 persists
       netRegex: NetRegexes.startsUsing({ source: ['Queen\'s Warrior', 'Queen\'s Knight', 'Queen\'s Gunner', 'Queen\'s Soldier'], id: ['5A16', '5A08', '5A35', '5A23'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: ['Kriegerin Der Königin', 'Ritter Der Königin', 'Schütze Der Königin', 'Soldat Der Königin'], id: ['5A16', '5A08', '5A35', '5A23'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Guerrière De La Reine', 'Chevalier De La Reine', 'Fusilier De La Reine', 'Soldat De La Reine'], id: ['5A16', '5A08', '5A35', '5A23'], capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: ['クイーンズ・ウォリアー', 'クイーンズ・ナイト', 'クイーンズ・ガンナー', 'クイーンズ・ソルジャー'], id: ['5A16', '5A08', '5A35', '5A23'], capture: false }),
       condition: Conditions.caresAboutAOE(),
-       // Only call out the beginning of a set of two casts
+      // Only call out the beginning of a set of two casts
       suppressSeconds: 5,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
