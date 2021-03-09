@@ -500,7 +500,6 @@ export default {
           return { alertText: output.getOut() };
         else if (matches.effectId === '97E')
           return { alertText: output.getIn() };
-        return;
       },
     },
     {
