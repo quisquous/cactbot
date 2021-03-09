@@ -7,6 +7,12 @@
 // Used by downstream eval
 import * as OverlayPluginApi from './overlay_plugin_api';
 const { addOverlayListener, removeOverlayListener, callOverlayHandler } = OverlayPluginApi;
+if (typeof window !== 'undefined') {
+  // for backward compatiability
+  window.addOverlayListener = addOverlayListener;
+  window.removeOverlayListener = removeOverlayListener;
+  window.callOverlayHandler = callOverlayHandler;
+}
 import _Conditions from './conditions';
 const Conditions = _Conditions;
 import _ContentType from './content_type';

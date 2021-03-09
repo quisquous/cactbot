@@ -257,9 +257,5 @@ if (typeof window !== 'undefined') {
     waitForApi();
   }
 
-  // Assign in `window` object to ensure backward compatiability
-  window.addOverlayListener = addOverlayListener;
-  window.removeOverlayListener = removeOverlayListener;
-  window.callOverlayHandler = callOverlayHandler;
   window.dispatchOverlayEvent = processEvent;
 }
