@@ -573,16 +573,15 @@ export default {
         };
 
         if (data.me === matches.target) {
-          if (data.job === 'PLD' || data.job === 'GNB')
-            return { alertText: output.tankInvuln() };
-          else if (data.role === 'tank')
+          if (data.role === 'tank') {
+            if (data.job === 'PLD' || data.job === 'GNB')
+              return { alertText: output.tankInvuln() };
             return { alertText: output.tankBusterAndSwap() };
-          else
-            return { alarmText: output.tankBusterOnYou() };
+          }
+          return { alertText: output.tankBusterOnYou() };
         }
         if (data.role === 'healer')
           return { alertText: output.tankBusters() };
-      },
     },
     {
       id: 'DelubrumSav Queen Cleansing Slash Doom',
