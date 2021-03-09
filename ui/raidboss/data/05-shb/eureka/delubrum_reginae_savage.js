@@ -168,24 +168,24 @@ export default {
     },
     {
       id: 'DelubrumSav Guard Blood And Bone Warrior and Knight',
-      // 4B34 from Queen's Warrior
-      // 4B33 from Queen's Knight
-      netRegex: NetRegexes.startsUsing({ source: ['Queen\'s Warrior', 'Queen\'s Knight'], id: '4B3[34]', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: ['Kriegerin Der Königin', 'Ritter Der Königin'], id: '4B3[34]', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: ['Guerrière De La Reine', 'Chevalier De La Reine'], id: '4B3[34]', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: ['クイーンズ・ウォリアー', 'クイーンズ・ナイト'], id: '4B3[34]', capture: false }),
+      // 5831 from Queen's Warrior
+      // 5821 from Queen's Knight
+      netRegex: NetRegexes.startsUsing({ source: ['Queen\'s Warrior', 'Queen\'s Knight'], id: '58[23]1', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Kriegerin Der Königin', 'Ritter Der Königin'], id: '58[23]1', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Guerrière De La Reine', 'Chevalier De La Reine'], id: '58[23]1', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['クイーンズ・ウォリアー', 'クイーンズ・ナイト'], id: '58[23]1', capture: false }),
       condition: Conditions.caresAboutAOE(),
       suppressSeconds: 1,
       response: Responses.aoe(),
     },
     {
       id: 'DelubrumSav Guard Queen\'s Shot and Blood And Bone Soldier',
-      // 4B36 from Queen's Gunner
-      // 4B35 from Queen's Soldier
-      netRegex: NetRegexes.startsUsing({ source: ['Queen\'s Gunner', 'Queen\'s Soldier'], id: '4B3[56]', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: ['Schütze Der Königin', 'Soldat Der Königin'], id: '4B3[56]', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: ['Fusilier De La Reine', 'Soldat De La Reine'], id: '4B3[56]', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: ['クイーンズ・ガンナー', 'クイーンズ・ソルジャー'], id: '4B3[56]', capture: false }),
+      // 5854 from Queen's Gunner
+      // 5841 from Queen's Soldier
+      netRegex: NetRegexes.startsUsing({ source: ['Queen\'s Gunner', 'Queen\'s Soldier'], id: '58(54|41)', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Schütze Der Königin', 'Soldat Der Königin'], id: '58(54|41)', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Fusilier De La Reine', 'Soldat De La Reine'], id: '58(54|41)', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['クイーンズ・ガンナー', 'クイーンズ・ソルジャー'], id: '58(54|41)', capture: false }),
       condition: Conditions.caresAboutAOE(),
       suppressSeconds: 1,
       response: Responses.aoe(),
