@@ -580,8 +580,8 @@ export default {
           }
           return { alarmText: output.tankBusterOnYou() };
         }
-        if (data.role === 'healer')
-          return { alertText: output.tankBusters() };
+        if (data.role === 'healer' || data.role === 'tank')
+          return { alertText: output.tankBusterOnPlayer({ player: matches.target });
       },
     },
     {
