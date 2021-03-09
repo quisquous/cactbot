@@ -29,6 +29,29 @@ export default {
       beforeSeconds: 5,
       response: Responses.knockback(),
     },
+    {
+      id: 'DelubrumSav Lord Fateful Words',
+      regex: /Fateful Words/,
+      // Paired with trigger id 'DelubrumSav Lord Labyrinthine Fate Collect'
+      // 97E: Wanderer's Fate, Pushes outward on Fateful Word cast
+      // 97F: Sacrifice's Fate, Pulls to middle on Fateful Word cast
+      // Labyrinthine Fate is cast and 1 second later debuffs are applied
+      // First set of debuffs go out 7.7 seconds before Fateful Word is cast
+      // Remaining set of debuffs go out 24.3 seconds before Fateful Word is cast
+      beforeSeconds: 3.5,
+      response: (data, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          getOut: Outputs.out,
+          getIn: Outputs.in,
+        };
+
+        if (data.labyrinthineFate === '97F')
+          return { alertText: output.getOut() };
+        else if (data.labyrinthineFate === '97E')
+          return { alertText: output.getIn() };
+      },
+    },
   ],
   triggers: [
     {
@@ -473,33 +496,14 @@ export default {
       },
     },
     {
-      id: 'DelubrumSav Lord Fateful Words',
-      // 97E: Wanderer's Fate, Pushes outward on Fateful Word cast
-      // 97F: Sacrifice's Fate, Pulls to middle on Fateful Word cast
-      // Labyrinthine Fate is cast and 1 second later debuffs are applied
-      // First set of debuffs go out 7.7 seconds before Fateful Word is cast
-      // Remaining set of debuffs go out 24.3 seconds before Fateful Word is cast
+      id: 'DelubrumSav Lord Labyrinthine Fate Collect',
+      // Result used by timelineTrigger id 'DelubrumSav Lord Fateful Words'
       netRegex: NetRegexes.gainsEffect({ effectId: '97[EF]' }),
       condition: (data, matches) => {
         return (matches.target === data.me);
       },
-      delaySeconds: (data, matches) => {
-        if (data.secondFates)
-          return 21;
-        data.secondFates = 1;
-        return 4;
-      },
-      response: (data, matches, output) => {
-        // cactbot-builtin-response
-        output.responseOutputStrings = {
-          getOut: Outputs.out,
-          getIn: Outputs.in,
-        };
-
-        if (matches.effectId === '97F')
-          return { alertText: output.getOut() };
-        else if (matches.effectId === '97E')
-          return { alertText: output.getIn() };
+      run: (data, matches) => {
+        data.labyrinthineFate = matches.effectId;
       },
     },
     {
