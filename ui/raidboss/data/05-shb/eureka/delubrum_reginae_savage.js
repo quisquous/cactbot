@@ -66,6 +66,13 @@ export default {
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
     },
+    {
+      id: 'DelubrumSav Queen Gods Save The Queen',
+      regex: /Gods Save The Queen[^ ]/,
+      beforeSeconds: 7,
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.aoe(),
+    },
   ],
   triggers: [
     {
@@ -600,15 +607,6 @@ export default {
           ko: '"${player}" 에스나',
         },
       },
-    },
-    {
-      id: 'DelubrumSav Queen Gods Save The Queen',
-      netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59FA', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59FA', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59FA', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59FA', capture: false }),
-      condition: Conditions.caresAboutAOE(),
-      response: Responses.aoe(),
     },
     {
       id: 'DelubrumSav Queen Ball Lightning',
