@@ -545,14 +545,43 @@ export default {
     },
     {
       id: 'DelubrumSav Queen Cleansing Slash',
-      // First hit of Cleansing Slash can be dodged by tank invlunerability
-      // Both first and Second hit, 5BB8, will require tank swaps if damage is taken
+      // PLD and GNB tank invulnerabilities do not get Physical Vulnerability Up
+      // Tank swap will be required between the two hits if not using a tank invulnerability
+      // Tank swap required after second hit if not using PLD or GNB tank invulnerabilities
+      // To avoid bad swaps between 11 other tanks, only mention swap to targetted tank
       netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59F5' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59F5' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59F5' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59F5' }),
       condition: tankBusterOnParty,
-      response: Responses.tankBuster(),
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          tankBusterAndSwap: {
+            en: 'Tank Buster + Swap',
+            de: 'Tankbuster + Wechsel',
+            fr: 'Tank buster + Swap',
+            ja: 'タンクバスター + スイッチ',
+            cn: '死刑 + 换T',
+            ko: '탱버 + 교대',
+          },
+          tankBusters: Outputs.tankBusters,
+          tankBusterOnYou: Outputs.tankBusterOnYou,
+          tankInvuln: {
+            en: 'Invuln Tank Buster',
+          },
+        };
+        
+        if (data.me === matches.target)
+          if (data.job === 'PLD' || data.job === 'GNB')
+            return { alertText: output.tankInvuln() };
+          else if (data.role === 'tank')
+            return { alertText: output.tankBusterAndSwap() };
+          else
+            return { alarmText: output.tankBusterOnYou() };
+        else if (data.role === 'healer')
+          return { alertText: output.tankBusters() };
+      },
     },
     {
       id: 'DelubrumSav Queen Cleansing Slash Doom',
