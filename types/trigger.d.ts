@@ -5,9 +5,9 @@ export type Matches = {
   [s: string]: string;
 }
 
-export type TranslatedText = Record<Lang, string>;
+export type FullLocaleText = Record<Lang, string>;
 
-export type TranslatableText = {
+export type LocaleText = {
   en: string;
   [s in NotEnLang]?: string;
 };
