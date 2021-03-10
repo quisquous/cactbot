@@ -399,7 +399,7 @@ export default {
             en: 'Go North, Unavoidable Knocbkack',
           },
         };
-        
+
         if (matches.y === -403.5)
           return { alertText: output.goNorth() };
         return { alertText: output.goSouth() };
