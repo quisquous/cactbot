@@ -383,23 +383,26 @@ export default {
       response: Responses.aoe(),
     },
     {
-      id: 'DelubrumSav Phantom Undying Hatred',
-      // "57BA Summon" is used here to avoid an additional name to translate.
-      // "57C2 Undying Hatred" is from Stuffy Wraith.
-      // TODO: Callout spawn location as well (north/south)
-      netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57BA', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57BA', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '57BA', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57BA', capture: false }),
-      delaySeconds: 5,
-      alertText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Unavoidable Knockback',
-          de: 'Unvermeidbarer Rückstoß',
-          fr: 'Poussée inévitable',
-          ko: '넉백 방지 불가',
-        },
+      id: 'DelubrumSav Phantom Stuffy Wrath',
+      // Spawns after 57BA Summon, either North (-403.5) or South (-344.5)
+      // Casts 57C2 Undying Hatred
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9756' }),
+      durationSeconds: 5,
+      suppressSeconds: 1,
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          goSouth: {
+            en: 'Go South, Unavoidable Knocbkack',
+          },
+          goNorth: {
+            en: 'Go North, Unavoidable Knocbkack',
+          },
+        };
+        
+        if (matches.y === -403.5)
+          return { alertText: output.goNorth() };
+        return { alertText: output.goSouth() };
       },
     },
     {
