@@ -113,7 +113,7 @@ const radiantOutputStrings = {
     de: 'Sacrement Norden',
     fr: 'Sacrement Nord',
     ja: '拝火は北',
-    cn: '上方（北）月环',
+    cn: '月环上（北）',
     ko: '성례: 북',
   },
   east: {
@@ -121,7 +121,7 @@ const radiantOutputStrings = {
     de: 'Sacrement Osten',
     fr: 'Sacrement Est',
     ja: '拝火は東',
-    cn: '左侧（东）月环',
+    cn: '月环左（东）',
     ko: '성례: 동',
   },
   south: {
@@ -129,7 +129,7 @@ const radiantOutputStrings = {
     de: 'Sacrement Süden',
     fr: 'Sacrement Sud',
     ja: '拝火は南',
-    cn: '下方（南）月环',
+    cn: '月环下（南）',
     ko: '성례: 남',
   },
   west: {
@@ -137,7 +137,7 @@ const radiantOutputStrings = {
     de: 'Sacrement Westen',
     fr: 'Sacrement Ouest',
     ja: '拝火は西',
-    cn: '左侧（西）月环',
+    cn: '月环左（西）',
     ko: '성례: 서',
   },
 };
@@ -2905,7 +2905,7 @@ export default {
           de: 'Warte in der Mitte, ausweichen nach Süden',
           fr: 'Attendez au milieu, esquivez au Sud',
           ja: '中央から南へ',
-          cn: '中间 -> 南',
+          cn: '右下 -> 右上',
           ko: '가운데서 남쪽으로',
         },
         goSouthDodgeNorth: {
