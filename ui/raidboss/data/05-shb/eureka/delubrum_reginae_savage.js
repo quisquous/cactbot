@@ -72,6 +72,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Get Behind For Line Stack',
+          de: 'Geh hinter den Boss für Linien-Stack',
         },
       },
     },
@@ -146,17 +147,24 @@ export default {
       id: 'DelubrumSav Seeker Dead Iron',
       // Headmarkers are randomized, so use the tether instead.
       netRegex: NetRegexes.tether({ target: 'Trinity Seeker', id: '01DB' }),
+      netRegexDe: NetRegexes.tether({ target: 'Trinität Der Sucher', id: '01DB' }),
+      netRegexFr: NetRegexes.tether({ target: 'Trinité Soudée', id: '01DB' }),
+      netRegexJa: NetRegexes.tether({ target: 'トリニティ・シーカー', id: '01DB' }),
       condition: (data, matches) => matches.source === data.me,
       alarmText: (data, _, output) => output.earthshaker(),
       outputStrings: {
         earthshaker: {
           en: 'Earthshaker, away from boss',
+          de: 'Erdstoß, weg vom Boss',
         },
       },
     },
     {
       id: 'DelubrumSav Seeker Iron Splitter',
       netRegex: NetRegexes.startsUsing({ source: ['Trinity Seeker', 'Seeker Avatar'], id: '5AC0' }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Trinität Der Sucher', 'Spaltteil Der Sucher'], id: '5AC0' }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Trinité Soudée', 'Clone De La Trinité Soudée'], id: '5AC0' }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['トリニティ・シーカー', 'シーカーの分体'], id: '5AC0' }),
       preRun: (data) => delete data.ironSplitter,
       promise: async (data, matches) => {
         const seekerData = await window.callOverlayHandler({
@@ -202,9 +210,11 @@ export default {
       outputStrings: {
         goBlue: {
           en: 'Blue Stone',
+          de: 'Blauer Stein',
         },
         goWhite: {
           en: 'White Sand',
+          de: 'Weißer Sand',
         },
       },
     },
@@ -416,7 +426,6 @@ export default {
     },
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Aetherial Bolt': 'Magiegeschoss',
         'Aetherial Burst': 'Magiebombe',
@@ -426,6 +435,7 @@ export default {
         'Automatic Turret': 'Selbstschuss-Gyrocopter',
         'Avowed Avatar': 'Spaltteil der Eingeschworenen',
         'Ball Of Fire': 'Feuerball',
+        'Ball Lightning': 'Elektrosphäre',
         'Bozjan Phantom': 'Bozja-Phantom',
         'Crowned Marchosias': 'Marchosias-Leittier',
         'Dahu': 'Dahu',
@@ -461,6 +471,7 @@ export default {
       },
       'replaceText': {
         '--adds--': '--Adds--',
+        '--chains--': '--Ketten--',
         '--knockback--': '--Rückstoß--',
         '1111-Tonze Swing': '1111-Tonzen-Schwung',
         'Above Board': 'Über dem Feld',
@@ -625,6 +636,7 @@ export default {
         'Automatic Turret': 'Auto-tourelle',
         'Avowed Avatar': 'clone de la trinité féale',
         'Ball Of Fire': 'Boule de flammes',
+        'Ball Lightning': 'Orbe de Foudre',
         'Bozjan Phantom': 'fantôme bozjien',
         'Crowned Marchosias': 'marchosias alpha',
         'Dahu': 'dahu',
@@ -818,6 +830,7 @@ export default {
         'Automatic Turret': 'オートタレット',
         'Avowed Avatar': 'アヴァウドの分体',
         'Ball Of Fire': '火炎球',
+        'Ball Lightning': '雷球',
         'Bozjan Phantom': 'ボズヤ・ファントム',
         'Crowned Marchosias': 'アルファ・マルコシアス',
         'Dahu': 'ダウー',
