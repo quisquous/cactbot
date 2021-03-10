@@ -85,16 +85,11 @@ export function setup(bars) {
   const refreshWildFireGuage = () => {
     for (let i = 0; i < 6; ++i) {
       wildFireStacks[i].classList.remove('fix', 'active');
-      if (wildFireActive) {
-        if (wildFireCounts > i)
+      if (wildFireCounts > i) {
+        if (wildFireActive)
           wildFireStacks[i].classList.add('active');
         else
-          wildFireStacks[i].classList.remove('active');
-      } else {
-        if (wildFireCounts > i)
           wildFireStacks[i].classList.add('fix');
-        else
-          wildFireStacks[i].classList.remove('fix');
       }
     }
   };
