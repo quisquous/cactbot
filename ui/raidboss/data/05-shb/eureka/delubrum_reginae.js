@@ -6,6 +6,9 @@ import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: warnings for mines after bosses?
 
+const seekerCenterX = -0.01531982;
+const seekerCenterY = 277.9735;
+
 // TODO: promote something like this to Conditions?
 const tankBusterOnParty = (data, matches) => {
   if (data.target === data.me)
@@ -128,26 +131,55 @@ export default {
     },
     {
       id: 'Delubrum Seeker Iron Splitter',
-      // Note: 5AA3 is used as starts casting for both of these abilities, but the damage
-      // comes out with different ability ids.
-      // Note: 5A9A is a respositioning ability, but the location data is stale and represents where
-      // the boss was, and not where the boss ends up.  This is another case where knowing combatant
-      // positioning data on starts casting would be a huge help.
-      // TODO: we could call out directions with getCombatants? (The center appears to be 0, 278.)
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AA3', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AA3', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AA3', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AA3', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AA3' }),
+      preRun: (data) => delete data.ironSplitter,
+      promise: async (data, matches) => {
+        const seekerData = await window.callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
+        });
+
+        if (seekerData === null) {
+          console.error(`Iron Splitter: null data`);
+          return;
+        }
+        if (!seekerData.combatants) {
+          console.error(`Iron Splitter: null combatants`);
+          return;
+        }
+        if (seekerData.combatants.length !== 1) {
+          console.error(`Iron Splitter: expected 1, got ${seekerData.combatants.length}`);
+          return;
+        }
+
+        const seeker = seekerData.combatants[0];
+        const x = seeker.PosX - seekerCenterX;
+        const y = seeker.PosY - seekerCenterY;
+        data.splitterDist = Math.hypot(x, y);
+      },
+      alertText: (data, _, output) => {
+        if (data.splitterDist === undefined)
+          return;
+
+        // All 100 examples I've looked at only hit distance=10, or distance=~14
+        // Guessing at the other distances, if they exist.
+        //
+        // blue inner = 0?
+        // white inner = 6?
+        // blue middle = 10
+        // white middle = 14
+        // blue outer = 18?
+        // white outer = 22?
+
+        const isWhite = Math.floor(data.splitterDist / 4) % 2;
+        return isWhite ? output.goBlue() : output.goWhite();
+      },
       outputStrings: {
-        text: {
-          // FIXME: this could be worded better
-          en: 'Opposite Color From Boss',
-          de: 'Auf die vom Boss entgegengesetze Farbe gehen',
-          fr: 'Couleur opposée au Boss',
-          ja: 'ボスに異なる色を踏む',
-          cn: '站异色地板上',
-          ko: '보스 반대 색깔',
+        goBlue: {
+          en: 'Blue Stone',
+        },
+        goWhite: {
+          en: 'White Sand',
         },
       },
     },
