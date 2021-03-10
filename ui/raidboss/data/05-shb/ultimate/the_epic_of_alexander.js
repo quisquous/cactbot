@@ -2905,7 +2905,7 @@ export default {
           de: 'Warte in der Mitte, ausweichen nach Süden',
           fr: 'Attendez au milieu, esquivez au Sud',
           ja: '中央から南へ',
-          cn: '右下 -> 右上',
+          cn: '中间 -> 南',
           ko: '가운데서 남쪽으로',
         },
         goSouthDodgeNorth: {
