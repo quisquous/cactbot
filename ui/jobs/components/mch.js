@@ -1,4 +1,5 @@
 import { kAbility } from '../constants';
+import EffectId from '../../../resources/effect_id';
 import { calcGCDFromStat, computeBackgroundColorFrom } from '../utils';
 
 export function setup(bars) {
@@ -6,7 +7,6 @@ export function setup(bars) {
     id: 'mch-timers-combo',
     fgColor: 'combo-color',
   });
-
   bars.onCombo((skill) => {
     comboTimer.duration = 0;
     if (bars.combo.isFinalSkill)
@@ -41,12 +41,31 @@ export function setup(bars) {
     }
   });
 
-  // Wild Fire Gauge
-  let wildFireActive = false;
-  // exclude WildFire it self, for some code neatness reason.
-  let wildFireGCD = -1;
-  let cooldown = false;
+  const drillBox = bars.addProcBox({
+    id: 'mch-procs-drill',
+    fgColor: 'mch-color-drill',
+  });
+  bars.onUseAbility([
+    kAbility.Drill,
+    kAbility.Bioblaster,
+  ], () => {
+    drillBox.duration = 0;
+    drillBox.duration = calcGCDFromStat(bars, bars.skillSpeed, 20000);
+  });
 
+  const airAnchorBox = bars.addProcBox({
+    id: 'mch-procs-airanchor',
+    fgColor: 'mch-color-airanchor',
+  });
+  bars.onUseAbility([
+    kAbility.AirAnchor,
+    kAbility.HotShot,
+  ], () => {
+    airAnchorBox.duration = 0;
+    airAnchorBox.duration = calcGCDFromStat(bars, bars.skillSpeed, 40000);
+  });
+
+  // Wild Fire Gauge
   const stacksContainer = document.createElement('div');
   stacksContainer.id = 'mch-stacks';
   stacksContainer.classList.add('hide');
@@ -60,86 +79,52 @@ export function setup(bars) {
     wildFireContainer.appendChild(d);
     wildFireStacks.push(d);
   }
+
+  let wildFireCounts = 0;
+  let wildFireActive = false;
   const refreshWildFireGuage = () => {
-    if (wildFireActive && !cooldown) {
-      wildFireGCD = wildFireGCD + 1;
-      for (let i = 0; i < 6; ++i) {
-        if (wildFireGCD > i)
+    for (let i = 0; i < 6; ++i) {
+      wildFireStacks[i].classList.remove('fix', 'active');
+      if (wildFireActive) {
+        if (wildFireCounts > i)
           wildFireStacks[i].classList.add('active');
         else
           wildFireStacks[i].classList.remove('active');
+      } else {
+        if (wildFireCounts > i)
+          wildFireStacks[i].classList.add('fix');
+        else
+          wildFireStacks[i].classList.remove('fix');
       }
-      cooldown = true;
-      setTimeout(() => {
-        cooldown = false;
-      }, 100);
     }
   };
-
-  bars.onUseAbility([
-    kAbility.SplitShot,
-    kAbility.SlugShot,
-    kAbility.CleanShot,
-    kAbility.HeatedSplitShot,
-    kAbility.HeatedSlugShot,
-    kAbility.HeatedCleanShot,
-    kAbility.SpreadShot,
-    kAbility.HeatBlast,
-    kAbility.AutoCrossbow,
-  ], () => {
+  bars.onMobGainsEffectFromYou(EffectId.Wildfire, (id, e) => {
+    wildFireCounts = e.count;
     refreshWildFireGuage();
   });
-
-  const drillBox = bars.addProcBox({
-    id: 'mch-procs-drill',
-    fgColor: 'mch-color-drill',
-  });
-
-  bars.onUseAbility([
-    kAbility.Drill,
-    kAbility.Bioblaster,
-  ], () => {
-    drillBox.duration = 0;
-    drillBox.duration = calcGCDFromStat(bars, bars.skillSpeed, 20000);
-    refreshWildFireGuage();
-  });
-
-  const airAnchorBox = bars.addProcBox({
-    id: 'mch-procs-airanchor',
-    fgColor: 'mch-color-airanchor',
-  });
-
-  bars.onUseAbility([
-    kAbility.AirAnchor,
-    kAbility.HotShot,
-  ], () => {
-    airAnchorBox.duration = 0;
-    airAnchorBox.duration = calcGCDFromStat(bars, bars.skillSpeed, 40000);
-    refreshWildFireGuage();
-  });
-
   const wildFireBox = bars.addProcBox({
     id: 'mch-procs-wildfire',
     fgColor: 'mch-color-wildfire',
   });
   bars.onUseAbility(kAbility.WildFire, () => {
     wildFireBox.duration = 0;
-    wildFireBox.duration = 10;
+    wildFireBox.duration = 10 + 0.9; // animation delay
     wildFireBox.threshold = 1000;
     wildFireActive = true;
-    wildFireGCD = -1;
     refreshWildFireGuage();
     stacksContainer.classList.remove('hide');
     wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire.active');
     setTimeout(() => {
-      wildFireBox.duration = 110;
+      wildFireBox.duration = 110 - 0.9;
       wildFireBox.threshold = bars.gcdSkill + 1;
-      wildFireActive = false;
-      wildFireGCD = -1;
-      refreshWildFireGuage();
-      stacksContainer.classList.add('hide');
       wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire');
+      wildFireActive = false;
+      refreshWildFireGuage();
     }, 10000);
+    setTimeout(() => {
+      stacksContainer.classList.add('hide');
+      wildFireCounts = 0;
+    }, 12500);
   });
 
   bars.onStatChange('MCH', () => {
