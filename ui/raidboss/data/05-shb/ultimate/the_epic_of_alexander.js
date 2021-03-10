@@ -137,7 +137,7 @@ const radiantOutputStrings = {
     de: 'Sacrement Westen',
     fr: 'Sacrement Ouest',
     ja: '拝火は西',
-    cn: '左侧（西)月环',
+    cn: '左侧（西）月环',
     ko: '성례: 서',
   },
 };
