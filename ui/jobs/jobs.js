@@ -102,6 +102,7 @@ class Bars {
     this.updateDotTimerFuncs = [];
     this.gainEffectFuncMap = {};
     this.mobGainEffectFromYouFuncMap = {};
+    this.mobLoseEffectFromYouFuncMap = {};
     this.loseEffectFuncMap = {};
     this.statChangeFuncMap = {};
     this.abilityFuncMap = {};
@@ -139,6 +140,7 @@ class Bars {
     this.changeZoneFuncs = [];
     this.gainEffectFuncMap = {};
     this.mobGainEffectFromYouFuncMap = {};
+    this.mobLoseEffectFromYouFuncMap = {};
     this.loseEffectFuncMap = {};
     this.statChangeFuncMap = {};
     this.abilityFuncMap = {};
@@ -468,6 +470,12 @@ class Bars {
     if (Array.isArray(effectIds))
       effectIds.forEach((id) => this.mobGainEffectFromYouFuncMap[id] = callback);
     this.mobGainEffectFromYouFuncMap[effectIds] = callback;
+  }
+
+  onMobLosesEffectFromYou(effectIds, callback) {
+    if (Array.isArray(effectIds))
+      effectIds.forEach((id) => this.mobLoseEffectFromYouFuncMap[id] = callback);
+    this.mobLoseEffectFromYouFuncMap[effectIds] = callback;
   }
 
   onYouGainEffect(effectIds, callback) {
@@ -902,6 +910,9 @@ class Bars {
           if (index > -1)
             this.dotTarget.splice(index, 1);
         }
+        const f = this.mobLoseEffectFromYouFuncMap[effectId];
+        if (f)
+          f(effectId, m.groups);
       }
     } else if (type === '21' || type === '22') {
       let m = log.match(this.regexes.YouUseAbilityRegex);

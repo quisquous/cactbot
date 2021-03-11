@@ -97,6 +97,10 @@ export function setup(bars) {
     wildFireCounts = e.count;
     refreshWildFireGuage();
   });
+  bars.onMobLosesEffectFromYou(EffectId.Wildfire, () => {
+    wildFireActive = false;
+    refreshWildFireGuage();
+  });
   const wildFireBox = bars.addProcBox({
     id: 'mch-procs-wildfire',
     fgColor: 'mch-color-wildfire',
@@ -113,8 +117,6 @@ export function setup(bars) {
       wildFireBox.duration = 110 - 0.9;
       wildFireBox.threshold = bars.gcdSkill + 1;
       wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire');
-      wildFireActive = false;
-      refreshWildFireGuage();
     }, 10000);
     setTimeout(() => {
       stacksContainer.classList.add('hide');
