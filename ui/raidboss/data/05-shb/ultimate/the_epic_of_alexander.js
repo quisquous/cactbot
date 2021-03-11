@@ -747,7 +747,7 @@ export default {
     {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Numbers',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: function(data, matches) {
         // Here and elsewhere, it's probably best to check for whether the user is the target first,
         // as that should short-circuit more often.
@@ -811,7 +811,7 @@ export default {
     {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Knockback',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: function(data, matches) {
         return data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
       },
@@ -951,7 +951,7 @@ export default {
     },
     {
       id: 'TEA Ice Marker',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: function(data, matches) {
         return data.me === matches.target && getHeadmarkerId(data, matches) === '0043';
       },
@@ -993,7 +993,7 @@ export default {
     },
     {
       id: 'TEA Enumeration YOU',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: function(data, matches) {
         return data.me === matches.target && getHeadmarkerId(data, matches) === '0041';
       },
@@ -1011,7 +1011,7 @@ export default {
     },
     {
       id: 'TEA Enumeration Everyone',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: function(data, matches) {
         return getHeadmarkerId(data, matches) === '0041';
       },
@@ -1501,7 +1501,7 @@ export default {
     },
     {
       id: 'TEA Judgment Crystal',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: function(data, matches) {
         return data.me === matches.target && getHeadmarkerId(data, matches) === '0060';
       },
@@ -1680,7 +1680,7 @@ export default {
     },
     {
       id: 'TEA Cactbot Wormhole Strat',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: function(data, matches) {
         if (!data.options.cactbotWormholeStrat)
           return false;
@@ -1812,7 +1812,7 @@ export default {
     },
     {
       id: 'TEA Incinerating Heat',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: function(data, matches) {
         return getHeadmarkerId(data, matches) === '005D';
       },
@@ -1915,7 +1915,7 @@ export default {
     },
     {
       id: 'TEA Perfect Optical Sight Stack',
-      netRegex: NetRegexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({}),
       condition: function(data, matches) {
         return getHeadmarkerId(data, matches) === '003E';
       },
@@ -2873,7 +2873,7 @@ export default {
           de: 'Warte in der Mitte, ausweichen nach Norden',
           fr: 'Attendez au milieu, esquivez au Nord',
           ja: '中央から北へ',
-          cn: '中间 -> 北',
+          cn: '上 -> 右',
           ko: '가운데서 북쪽으로',
         },
         goNorthDodgeSouth: {
@@ -2881,7 +2881,7 @@ export default {
           de: 'Geh nach Norden, ausweichen nach Süden',
           fr: 'Allez 1 au Nord, esquivez au Sud',
           ja: '北から中央へ',
-          cn: '北 -> 中间',
+          cn: '右 -> 上',
           ko: '북쪽에서 가운데로',
         },
         goNorthDodgeWest: {
@@ -2889,7 +2889,7 @@ export default {
           de: 'Geh nach Norden, ausweichen nach Westen',
           fr: 'Allez 1 au Nord, esquivez à l\'Ouest',
           ja: '北から西へ',
-          cn: '北 -> 西',
+          cn: '右 -> 中',
           ko: '북쪽에서 서쪽으로',
         },
         goSouthDodgeEast: {
@@ -2897,7 +2897,7 @@ export default {
           de: 'Geh nach Süden, ausweichen nach Osten',
           fr: 'Allez 1 au Sud, esquivez à l\'Est',
           ja: '南から東へ',
-          cn: '南 -> 东',
+          cn: '中 -> 右',
           ko: '남쪽에서 동쪽으로',
         },
         waitMiddleDodgeSouth: {
@@ -2905,7 +2905,7 @@ export default {
           de: 'Warte in der Mitte, ausweichen nach Süden',
           fr: 'Attendez au milieu, esquivez au Sud',
           ja: '中央から南へ',
-          cn: '中间 -> 南',
+          cn: '左 -> 中',
           ko: '가운데서 남쪽으로',
         },
         goSouthDodgeNorth: {
@@ -2913,7 +2913,7 @@ export default {
           de: 'Geh nach Süden, ausweichen nach Norden',
           fr: 'Allez 1 au Sud, esquivez au Nord',
           ja: '南から北へ',
-          cn: '南 -> 北',
+          cn: '中 -> 左',
           ko: '남쪽에서 북쪽으로',
         },
       },
