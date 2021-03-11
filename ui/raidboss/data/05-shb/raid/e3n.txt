@@ -16,8 +16,8 @@ hideall "--sync--"
 51.1 "Monster Wave" sync /:Leviathan:3FCA:/
 55.1 "Freak Wave" sync /:Leviathan:3FCB:/
 60.2 "Temporary Current" sync /:Leviathan:3FC[DE]:/
-70.4 "Tidal Roar" sync /:Leviathan:3FC4:/
-77.4 "Rip Current" sync /:Leviathan:3FC6:/ window 30,30
+70.4 "Tidal Roar" sync /:Leviathan:3FC4:/ window 30,30
+77.4 "Rip Current" sync /:Leviathan:3FC6:/
 98.7 "Tidal Wave" sync /:Leviathan:3FD3:/
 
 105.6 "Undersea Quake" sync /:Leviathan:3FD0:/ window 105.6,10
