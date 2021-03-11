@@ -1,5 +1,5 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import NetRegexes from '../../../../../resources/netregexes';
+import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: FIX luminous aetheroplasm warning not working
 // TODO: FIX doll death not working

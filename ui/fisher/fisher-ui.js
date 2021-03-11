@@ -1,4 +1,4 @@
-import TimerBar from '../../resources/timerbar.js';
+import TimerBar from '../../resources/timerbar';
 
 class FisherBar extends TimerBar {
   stop() {

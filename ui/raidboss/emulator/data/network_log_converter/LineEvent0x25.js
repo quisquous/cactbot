@@ -1,5 +1,5 @@
-import LineEvent from './LineEvent.js';
-import { LineEvent0x1E } from './LineEvent0x1E.js';
+import LineEvent from './LineEvent';
+import { LineEvent0x1E } from './LineEvent0x1E';
 
 // Action sync event
 export class LineEvent0x25 extends LineEvent {

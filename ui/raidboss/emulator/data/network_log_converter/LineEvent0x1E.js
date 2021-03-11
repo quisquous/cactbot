@@ -1,6 +1,6 @@
-import LineEvent from './LineEvent.js';
-import { LineEvent0x1A } from './LineEvent0x1A.js';
-import EmulatorCommon from '../../EmulatorCommon.js';
+import LineEvent from './LineEvent';
+import { LineEvent0x1A } from './LineEvent0x1A';
+import EmulatorCommon from '../../EmulatorCommon';
 
 // Lose status effect event
 // Extend the gain status event to reduce duplicate code since they're

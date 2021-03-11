@@ -1,7 +1,7 @@
-import Conditions from '../../../../../resources/conditions.ts';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
+import { Responses } from '../../../../../resources/responses';
+import ZoneId from '../../../../../resources/zone_id';
 
 export default {
   zoneId: ZoneId.TheBurn,
@@ -43,7 +43,7 @@ export default {
         text: {
           en: 'Spread + Avoid Crystals',
           de: 'Verteilen + Kristall meiden',
-          fr: 'Écartez-vous & évitez les cristaux',
+          fr: 'Dispersez-vous + évitez les cristaux',
           ja: '散開 + 水晶を避ける',
           cn: '散开并远离水晶',
           ko: '산개 + 크리스탈 피하기',

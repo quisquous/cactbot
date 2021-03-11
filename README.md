@@ -356,7 +356,7 @@ It has more fleshed out support for some jobs but is *strongly* a Work In Progre
 |<img src="./resources/ffxiv/jobs/mnk-large.png" width="30px"/><br> Monk|Shows chakra count, <del>remaining greased lightning time</del> and form time, and tracks monk buffs and debuffs.|
 |<img src="./resources/ffxiv/jobs/drg-large.png" width="30px"/><br> Dragoon|Shows blood&eye amount, remaining Disembowel time, jump cooldown, and Lance Charge&Dragon Sight duration/cooldown.|
 |<img src="./resources/ffxiv/jobs/nin-large.png" width="30px"/><br> Ninja|Shows Ninki amount, Huton remaining time, Trick Attack duration&cooldown, Bunshin&Mudras cooldown, and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/sam-large.png" width="30px"/><br> Samurai|⨉ Not supported currently.|
+|<img src="./resources/ffxiv/jobs/sam-large.png" width="30px"/><br> Samurai|Shows Kenki amount, Meditation stacks, Shifu&Jinpu&Higanbana duration, Tsubame-gaeshi cooldown, and shows combo time remaining.|
 |<img src="./resources/ffxiv/jobs/brd-large.png" width="30px"/><br> Bard|Shows songs playing and remaining time, Repertoire stack, Soul Voice amount, StraightShotReady track, DoT remaining time, and a bar that show when your DoTs will tick.|
 |<img src="./resources/ffxiv/jobs/mch-large.png" width="30px"/><br> Machinist|Shows Heat gauge, Battery gauge, Combo Timer, Drill/Bioblaster&Air Anchor Cooldown, Wild Fire Cooldown&Duration. When Wild Fire is active, there will be a gauge to show how many GCD you have landed.|
 |<img src="./resources/ffxiv/jobs/dnc-large.png" width="30px"/><br> Dancer|Shows Combo Timer, Feather Guage, Esprit Guage, Standard Step Cooldown, Technical Step&Flourish Cooldown & Duration.|

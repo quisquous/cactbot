@@ -1,6 +1,6 @@
-import Regexes from '../../resources/regexes.js';
-import NetRegexes from '../../resources/netregexes.js';
-import regexCaptureTest from '../helper/regex_util.js';
+import Regexes from '../../resources/regexes';
+import NetRegexes from '../../resources/netregexes';
+import regexCaptureTest from '../helper/regex_util';
 import chai from 'chai';
 
 const { assert } = chai;

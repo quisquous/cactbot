@@ -1,6 +1,6 @@
-import EventBus from '../EventBus.js';
-import LogRepository from './network_log_converter/LogRepository.js';
-import ParseLine from './network_log_converter/ParseLine.js';
+import EventBus from '../EventBus';
+import LogRepository from './network_log_converter/LogRepository';
+import ParseLine from './network_log_converter/ParseLine';
 
 export default class NetworkLogConverter extends EventBus {
   async convertFile(data) {

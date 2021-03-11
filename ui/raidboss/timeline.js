@@ -1,6 +1,6 @@
-import { commonReplacement } from './common_replacement.js';
-import Regexes from '../../resources/regexes.js';
-import { LocaleRegex } from '../../resources/translations.js';
+import { commonReplacement } from './common_replacement';
+import Regexes from '../../resources/regexes';
+import { LocaleRegex } from '../../resources/translations';
 
 const timelineInstructions = {
   en: [

@@ -1,8 +1,8 @@
-import Conditions from '../../../../../resources/conditions.ts';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import Regexes from '../../../../../resources/regexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
+import Regexes from '../../../../../resources/regexes';
+import { Responses } from '../../../../../resources/responses';
+import ZoneId from '../../../../../resources/zone_id';
 
 // UCU - The Unending Coil Of Bahamut (Ultimate)
 export default {
@@ -172,7 +172,7 @@ export default {
           de: 'Wirbelstürme',
           fr: 'Tornades',
           ja: '大竜巻',
-          cn: '大龙卷',
+          cn: '旋风',
           ko: '회오리',
         },
       },
@@ -1383,7 +1383,7 @@ export default {
           de: 'Geh in entfernten Turm',
           fr: 'Aller dans une tour lointaine',
           ja: '遠いタワー',
-          cn: '踩远塔',
+          cn: '踩远处的塔',
           ko: '기둥 밟기',
         },
         towerTTS: {
@@ -1479,7 +1479,7 @@ export default {
           de: 'Kein Erdstoß; im süden sammeln',
           fr: 'Pas de Secousse; se rassembler au Sud.',
           ja: 'シェイカーない；頭割りで南',
-          cn: '不地震，南侧集合',
+          cn: '无点名，南侧集合',
           ko: '징 없음, 모여서 쉐어',
         },
         tenstrikeNotOnYou: {

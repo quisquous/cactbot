@@ -42,8 +42,18 @@ module.exports = function(env, argv) {
       path: path.resolve(__dirname, '../dist'),
     },
     devServer: { writeToDisk: true },
+    resolve: {
+      extensions: ['.ts', '.js'],
+    },
     module: {
       rules: [
+        {
+          // this will allow importing without extension in js files.
+          test: /\.m?js$/,
+          resolve: {
+            fullySpecified: false,
+          },
+        },
         {
           test: /\.ts$/,
           loader: 'ts-loader',

@@ -1,8 +1,8 @@
-import Util from '../../resources/util.ts';
-import NetRegexes from '../../resources/netregexes.js';
-import Regexes from '../../resources/regexes.js';
-import { LocaleRegex } from '../../resources/translations.js';
-import { kMeleeWithMpJobs, kLevelMod } from './constants.js';
+import Util from '../../resources/util';
+import NetRegexes from '../../resources/netregexes';
+import Regexes from '../../resources/regexes';
+import { LocaleRegex } from '../../resources/translations';
+import { kMeleeWithMpJobs, kLevelMod } from './constants';
 
 const getLocaleRegex = (locale, regexes) => regexes[locale] || regexes['en'];
 

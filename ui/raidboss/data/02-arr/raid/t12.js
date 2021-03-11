@@ -1,6 +1,6 @@
-import Conditions from '../../../../../resources/conditions.ts';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
+import ZoneId from '../../../../../resources/zone_id';
 
 export default {
   zoneId: ZoneId.TheFinalCoilOfBahamutTurn3,

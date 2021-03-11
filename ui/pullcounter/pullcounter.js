@@ -1,7 +1,7 @@
-import { LocaleRegex } from '../../resources/translations.js';
-import Regexes from '../../resources/regexes.js';
-import UserConfig from '../../resources/user_config.js';
-import ZoneId from '../../resources/zone_id.js';
+import { LocaleRegex } from '../../resources/translations';
+import Regexes from '../../resources/regexes';
+import UserConfig from '../../resources/user_config';
+import ZoneId from '../../resources/zone_id';
 
 const Options = {
   Language: 'en',

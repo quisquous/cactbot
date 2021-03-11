@@ -1,5 +1,5 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import NetRegexes from '../../../../../resources/netregexes';
+import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: is there a different ability if the shield duty action isn't used properly?
 // TODO: is there an ability from Raiden (the bird) if you get eaten?

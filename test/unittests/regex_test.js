@@ -1,5 +1,5 @@
-import Regexes from '../../resources/regexes.js';
-import regexCaptureTest from '../helper/regex_util.js';
+import Regexes from '../../resources/regexes';
+import regexCaptureTest from '../helper/regex_util';
 import chai from 'chai';
 
 const { assert } = chai;

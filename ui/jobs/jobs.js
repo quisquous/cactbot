@@ -1,23 +1,23 @@
-import EffectId from '../../resources/effect_id.js';
-import ContentType from '../../resources/content_type.js';
-import Regexes from '../../resources/regexes.js';
-import UserConfig from '../../resources/user_config.js';
-import Util from '../../resources/util.ts';
-import ZoneInfo from '../../resources/zone_info.js';
-import ZoneId from '../../resources/zone_id.js';
-import { kWellFedContentTypes, kMPCombatRate, kMPNormalRate, kMPUI1Rate, kMPUI2Rate, kMPUI3Rate, kMPTickInterval } from './constants.js';
-import { BuffTracker } from './buff_tracker.js';
-import ComboTracker from './combo_tracker.js';
-import { RegexesHolder, computeBackgroundColorFrom, calcGCDFromStat, doesJobNeedMPBar, makeAuraTimerIcon } from './utils.js';
+import EffectId from '../../resources/effect_id';
+import ContentType from '../../resources/content_type';
+import Regexes from '../../resources/regexes';
+import UserConfig from '../../resources/user_config';
+import Util from '../../resources/util';
+import ZoneInfo from '../../resources/zone_info';
+import ZoneId from '../../resources/zone_id';
+import { kWellFedContentTypes, kMPCombatRate, kMPNormalRate, kMPUI1Rate, kMPUI2Rate, kMPUI3Rate, kMPTickInterval } from './constants';
+import { BuffTracker } from './buff_tracker';
+import ComboTracker from './combo_tracker';
+import { RegexesHolder, computeBackgroundColorFrom, calcGCDFromStat, doesJobNeedMPBar, makeAuraTimerIcon } from './utils';
 
-import { getSetup } from './components/index.js';
+import { getSetup } from './components/index';
 
-import './jobs_config.js';
-import '../../resources/resourcebar.js';
-import '../../resources/timerbar.js';
-import '../../resources/timerbox.js';
-import '../../resources/timericon.js';
-import '../../resources/widgetlist.js';
+import './jobs_config';
+import '../../resources/resourcebar';
+import '../../resources/timerbar';
+import '../../resources/timerbox';
+import '../../resources/timericon';
+import '../../resources/widgetlist';
 
 // See user/jobs-example.js for documentation.
 const Options = {

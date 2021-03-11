@@ -1,22 +1,22 @@
-import './raidboss_config.js';
+import './raidboss_config';
 
-import EmulatedMap from './emulator/ui/EmulatedMap.js';
-import EmulatedPartyInfo from './emulator/ui/EmulatedPartyInfo.js';
-import EmulatorCommon from './emulator/EmulatorCommon.js';
-import Encounter from './emulator/data/Encounter.js';
-import EncounterTab from './emulator/ui/EncounterTab.js';
-import LogEventHandler from './emulator/data/LogEventHandler.js';
-import Persistor from './emulator/data/Persistor.js';
-import { PopupTextGenerator } from './popup-text.js';
-import ProgressBar from './emulator/ui/ProgressBar.js';
-import RaidEmulator from './emulator/data/RaidEmulator.js';
-import RaidEmulatorOverlayApiHook from './emulator/overrides/RaidEmulatorOverlayApiHook.js';
-import RaidEmulatorPopupText from './emulator/overrides/RaidEmulatorPopupText.js';
-import RaidEmulatorTimelineController from './emulator/overrides/RaidEmulatorTimelineController.js';
-import RaidEmulatorTimelineUI from './emulator/overrides/RaidEmulatorTimelineUI.js';
-import { TimelineLoader } from './timeline.js';
-import Tooltip from './emulator/ui/Tooltip.js';
-import UserConfig from '../../resources/user_config.js';
+import EmulatedMap from './emulator/ui/EmulatedMap';
+import EmulatedPartyInfo from './emulator/ui/EmulatedPartyInfo';
+import EmulatorCommon from './emulator/EmulatorCommon';
+import Encounter from './emulator/data/Encounter';
+import EncounterTab from './emulator/ui/EncounterTab';
+import LogEventHandler from './emulator/data/LogEventHandler';
+import Persistor from './emulator/data/Persistor';
+import { PopupTextGenerator } from './popup-text';
+import ProgressBar from './emulator/ui/ProgressBar';
+import RaidEmulator from './emulator/data/RaidEmulator';
+import RaidEmulatorOverlayApiHook from './emulator/overrides/RaidEmulatorOverlayApiHook';
+import RaidEmulatorPopupText from './emulator/overrides/RaidEmulatorPopupText';
+import RaidEmulatorTimelineController from './emulator/overrides/RaidEmulatorTimelineController';
+import RaidEmulatorTimelineUI from './emulator/overrides/RaidEmulatorTimelineUI';
+import { TimelineLoader } from './timeline';
+import Tooltip from './emulator/ui/Tooltip';
+import UserConfig from '../../resources/user_config';
 import raidbossFileData from './data/manifest.txt';
 
 // @TODO: Some way to not have this be a global?

@@ -1,4 +1,4 @@
-import EmulatorCommon from '../../EmulatorCommon.js';
+import EmulatorCommon from '../../EmulatorCommon';
 
 /**
  * Generic class to track an FFXIV log line

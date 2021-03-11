@@ -1,10 +1,13 @@
-import Conditions from '../../../../../resources/conditions.ts';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import Outputs from '../../../../../resources/outputs.ts';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
+import { Responses } from '../../../../../resources/responses';
+import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: warnings for mines after bosses?
+
+const seekerCenterX = -0.01531982;
+const seekerCenterY = 277.9735;
 
 // TODO: promote something like this to Conditions?
 const tankBusterOnParty = (data, matches) => {
@@ -47,6 +50,9 @@ export default {
         text: {
           en: 'Get In, Watch Swords',
           de: 'Geh rein, achte auf die Schwerter',
+          fr: 'À l\'intérieur, regardez les épées',
+          ja: '中へ、剣を見る',
+          cn: '靠近观察剑',
           ko: '안으로, 검 확인',
         },
       },
@@ -71,6 +77,9 @@ export default {
         text: {
           en: 'Get Out Behind Barricade',
           de: 'Geh raus, hinter die Barrikaden',
+          fr: 'À l\'extérieur, derrière la barricade',
+          ja: '柵の後ろに',
+          cn: '栅栏后躲避',
           ko: '밖으로, 바리케이트 뒤로',
         },
       },
@@ -87,6 +96,9 @@ export default {
         text: {
           en: 'Get Knocked Into Barricade',
           de: 'Rückstoß in die Barrikaden',
+          fr: 'Faites-vous pousser dans la barricade',
+          ja: '柵に吹き飛ばされる',
+          cn: '击退到栅栏上',
           ko: '바리케이트로 넉백당하기',
         },
       },
@@ -110,29 +122,64 @@ export default {
         text: {
           en: 'Line Stack',
           de: 'In einer Linie sammeln',
+          fr: 'Package en ligne',
+          ja: '直線頭割り',
+          cn: '直线分摊',
           ko: '직선 쉐어',
         },
       },
     },
     {
       id: 'Delubrum Seeker Iron Splitter',
-      // Note: 5AA3 is used as starts casting for both of these abilities, but the damage
-      // comes out with different ability ids.
-      // Note: 5A9A is a respositioning ability, but the location data is stale and represents where
-      // the boss was, and not where the boss ends up.  This is another case where knowing combatant
-      // positioning data on starts casting would be a huge help.
-      // TODO: we could call out directions with getCombatants? (The center appears to be 0, 278.)
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AA3', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AA3', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AA3', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AA3', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AA3' }),
+      preRun: (data) => delete data.ironSplitter,
+      promise: async (data, matches) => {
+        const seekerData = await window.callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
+        });
+
+        if (seekerData === null) {
+          console.error(`Iron Splitter: null data`);
+          return;
+        }
+        if (!seekerData.combatants) {
+          console.error(`Iron Splitter: null combatants`);
+          return;
+        }
+        if (seekerData.combatants.length !== 1) {
+          console.error(`Iron Splitter: expected 1, got ${seekerData.combatants.length}`);
+          return;
+        }
+
+        const seeker = seekerData.combatants[0];
+        const x = seeker.PosX - seekerCenterX;
+        const y = seeker.PosY - seekerCenterY;
+        data.splitterDist = Math.hypot(x, y);
+      },
+      alertText: (data, _, output) => {
+        if (data.splitterDist === undefined)
+          return;
+
+        // All 100 examples I've looked at only hit distance=10, or distance=~14
+        // Guessing at the other distances, if they exist.
+        //
+        // blue inner = 0?
+        // white inner = 6?
+        // blue middle = 10
+        // white middle = 14
+        // blue outer = 18?
+        // white outer = 22?
+
+        const isWhite = Math.floor(data.splitterDist / 4) % 2;
+        return isWhite ? output.goBlue() : output.goWhite();
+      },
       outputStrings: {
-        text: {
-          // FIXME: this could be worded better
-          en: 'Opposite Color From Boss',
-          de: 'Auf die vom Boss entgegengesetze Farbe gehen',
-          ko: '보스 반대 색깔',
+        goBlue: {
+          en: 'Blue Stone',
+        },
+        goWhite: {
+          en: 'White Sand',
         },
       },
     },
@@ -145,6 +192,9 @@ export default {
         text: {
           en: 'Chain on YOU',
           de: 'Kette auf DIR',
+          fr: 'Chaîne sur VOUS',
+          ja: '自分に鎖',
+          cn: '锁链点名',
           ko: '사슬 대상자',
         },
       },
@@ -176,6 +226,9 @@ export default {
         text: {
           en: 'Far From Purple / Look Away From Orb',
           de: 'Weit weg von Lila / Vom Orb wegschauen',
+          fr: 'Éloignez-vous du violet / Ne regardez pas l\'orbe',
+          ja: '床の花から離れ、玉を見ない',
+          cn: '远离紫色花纹，背对球',
           ko: '보라에서 떨어지기 / 구슬 바라보지 말기',
         },
       },
@@ -230,6 +283,9 @@ export default {
         knockback: {
           en: 'Unavoidable Knockback',
           de: 'Unvermeidbarer Rückstoß',
+          fr: 'Poussée inévitable',
+          ja: '避けないノックバック',
+          cn: '击退 (防击退无效)',
           ko: '넉백 방지 불가',
         },
         knockbackAvoid: {
@@ -237,6 +293,9 @@ export default {
           // you figured that out the first time.
           en: 'Knockback (Avoid Adds)',
           de: 'Rückstoß (vermeide die Adds)',
+          fr: 'Poussée (Évitez les adds)',
+          ja: 'ノックバック (雑魚に触らない)',
+          cn: '击退 (避开小怪)',
         },
       },
     },
@@ -253,6 +312,9 @@ export default {
         text: {
           en: 'Follow Second Charge',
           de: 'Folge dem 2. Ansturm',
+          fr: 'Suivez la deuxième charge',
+          ja: '2回目の突進に追う',
+          cn: '紧跟第二次冲锋',
           ko: '두번째 돌진 따라가기',
         },
       },
@@ -289,11 +351,17 @@ export default {
         awayFromTethered: {
           en: 'Away from tethered adds',
           de: 'Weg von den verbundenen Adds',
+          fr: 'Éloignez-vous des adds liés',
+          ja: '線に繋がる雑魚から離れる',
+          cn: '远离连线小怪',
           ko: '선 연결된 쫄에서 떨어지기',
         },
         followUntethered: {
           en: 'Follow untethered adds',
           de: 'Folge den nicht verbundenen Adds',
+          fr: 'Suivez les adds non liés',
+          ja: '線に繋がらない雑魚から離れる',
+          cn: '靠近无连线小怪',
           ko: '선 연결되지 않은 쫄 따라가기',
         },
       },
@@ -337,6 +405,9 @@ export default {
         text: {
           en: 'Avoid Laser Bounces',
           de: 'Weiche den abgelenken Lasern aus',
+          fr: 'Évitez les rebonds de laser',
+          ja: 'レーザーを避ける',
+          cn: '躲避激光',
         },
       },
     },
@@ -360,6 +431,9 @@ export default {
         text: {
           en: 'Stand On Small Bomb',
           de: 'Auf kleinen Bomben stehen',
+          fr: 'Placez-vous sur une petite bombe',
+          ja: '小さい爆弾を踏む',
+          cn: '站在小炸弹上',
           ko: '작은 폭탄 위에 서기',
         },
       },
@@ -381,6 +455,9 @@ export default {
         text: {
           en: 'Stand On Large Bomb',
           de: 'Auf großen Bomben stehen',
+          fr: 'Placez-vous sur une grosse bombe',
+          ja: '大きい爆弾を踏む',
+          cn: '站在大炸弹上',
           ko: '큰 폭탄 위에 서기',
         },
       },
@@ -446,11 +523,17 @@ export default {
         weaveNoKnockback: {
           en: 'Go To North Circle',
           de: 'Geh zum Kreis im Norden',
+          fr: 'Allez au donut Nord',
+          ja: '北のドーナツ範囲に入る',
+          cn: '去上面(北面)月环',
           ko: '북쪽 원으로 이동',
         },
         weaveWithKnockback: {
           en: 'Get Knocked Back To Circle',
           de: 'Lass dich zum Kreis im Norden zurückstoßen',
+          fr: 'Faites-vous pousser dans le donut',
+          ja: '北のドーナツ範囲へ吹き飛ばされる',
+          cn: '击退到上面(北面)月环中',
           ko: '원으로 넉백 당하기',
         },
       },
@@ -480,6 +563,9 @@ export default {
         text: {
           en: 'Unavoidable Knockback',
           de: 'Unvermeidbarer Rückstoß',
+          fr: 'Poussée inévitable',
+          ja: '避けないノックバック',
+          cn: '击退 (防击退无效)',
           ko: '넉백 방지 불가',
         },
       },
@@ -528,6 +614,9 @@ export default {
         text: {
           en: 'Stand In Opposite Meteor',
           de: 'Steh im entgegengesetztem Meteor',
+          fr: 'Placez-vous au météore de l\'élément opposé',
+          ja: '体温と逆のメテオを受ける',
+          cn: '接相反温度的陨石',
           ko: '반대쪽 메테오에 서기',
         },
       },
@@ -543,9 +632,9 @@ export default {
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Go To Opposite Sword',
-          de: 'Gehe in das entgegengesetzte Schwert',
-          ko: '반대쪽 칼로 이동',
+          en: 'Go To Opposite Arrow',
+          de: 'Gehe in die entgegengesetzten Pfeile',
+          ja: '体温と逆の矢へ',
         },
       },
     },
@@ -571,6 +660,9 @@ export default {
         text: {
           en: 'Be In Opposite Cleave',
           de: 'Gehe in den entgegengesetzte Cleave',
+          fr: 'Soyez à l\'opposé du cleave',
+          ja: '体温と逆の氷炎刃を受ける',
+          cn: '吃相反温度的顺劈',
         },
       },
     },
@@ -587,6 +679,9 @@ export default {
         text: {
           en: 'Avoid Outside Add Lines',
           de: 'Weiche den äußeren Add-Laser aus',
+          fr: 'Évitez les lignes extérieures',
+          ja: '雑魚の突進を避ける',
+          cn: '躲避小怪冲锋',
         },
       },
     },
@@ -620,6 +715,9 @@ export default {
         text: {
           en: 'Get In Front',
           de: 'Geh vor den Boss',
+          fr: 'Soyez devant',
+          ja: 'ボスの正面へ',
+          cn: '去正面',
           ko: '정면에 서기',
         },
       },
@@ -658,6 +756,9 @@ export default {
         text: {
           en: 'Esuna ${player}',
           de: 'Medica ${player}',
+          fr: 'Guérison sur ${player}',
+          ja: 'エスナ: ${player}',
+          cn: '解除死亡宣告: ${player}',
           ko: '"${player}" 에스나',
         },
       },
@@ -675,6 +776,9 @@ export default {
         text: {
           en: 'Away from Line Intersections',
           de: 'Geh weg von den Linienkreuzungen',
+          fr: 'Éloignez-vous des intersections de ligne',
+          ja: '十字から離れる',
+          cn: '远离线的交点',
           ko: '대각선에서 떨어지기',
         },
       },
@@ -690,6 +794,9 @@ export default {
         text: {
           en: 'Avoid Laser Bounces',
           de: 'Weiche den abgelenken Lasern aus',
+          fr: 'Évitez les rebonds de laser',
+          ja: 'レーザーを避ける',
+          cn: '躲避激光',
         },
       },
     },
@@ -721,16 +828,25 @@ export default {
         getKnockedTowardsMiddle: {
           en: 'Get Knocked Towards Middle',
           de: 'Zur Mitte zurückstoßen lassen',
+          fr: 'Faites-vous pousser vers le milieu',
+          ja: '中へ吹き飛ばされる',
+          cn: '击退到中间',
           ko: '중앙으로 넉백 당하기',
         },
         getKnockedToSmallBomb: {
           en: 'Get Knocked To Small Bomb',
           de: 'Zu kleinen Bomben zurückstoßen lassen',
+          fr: 'Faites-vous pousser sur une petite bombe',
+          ja: '小さい爆弾へ吹き飛ばされる',
+          cn: '击退到小炸弹',
           ko: '작은 폭탄으로 넉백당하기',
         },
         getKnockedToLargeBomb: {
           en: 'Get Knocked To Large Bomb',
           de: 'Zu großen Bomben zurückstoßen lassen',
+          fr: 'Faites-vous pousser sur une grosse bombe',
+          ja: '大きい爆弾へ吹き飛ばされる',
+          cn: '击退到大炸弹',
           ko: '큰 폭탄으로 넉백당하기',
         },
       },
@@ -750,6 +866,9 @@ export default {
         text: {
           en: 'Find Charge, Dodge Right',
           de: 'Halte nach dem Ansturm ausschau, weiche nach rechts aus',
+          fr: 'Repérez la charge, esquivez à droite',
+          ja: '右へ、突進を避ける',
+          cn: '去右侧躲避冲锋',
           ko: '돌진 찾고, 오른쪽 피하기',
         },
       },
@@ -765,6 +884,9 @@ export default {
         text: {
           en: 'Find Charge, Dodge Left',
           de: 'Halte nach dem Ansturm ausschau, weiche nach links aus',
+          fr: 'Repérez la charge, esquivez à gauche',
+          ja: '左へ、突進を避ける',
+          cn: '去左侧躲避冲锋',
           ko: '돌진 찾고, 왼쪽 피하기',
         },
       },
@@ -789,6 +911,9 @@ export default {
         text: {
           en: 'Away from tethered adds',
           de: 'Weg von verbundenen Adds',
+          fr: 'Éloignez-vous des adds liés',
+          ja: '線に繋がる雑魚から離れる',
+          cn: '远离连线小怪',
           ko: '선 연결된 쫄 피하기',
         },
       },
@@ -816,8 +941,8 @@ export default {
     {
       'locale': 'en',
       'replaceText': {
-        'Right-Sided Shockwave/Left-Sided Shockwave': 'Right/Left-Sided Shockwave',
-        'Left-Sided Shockwave/Right-Sided Shockwave': 'Left/Right-Sided Shockwave',
+        'Right-Sided Shockwave/Left-Sided Shockwave': 'Right/Left Shockwave',
+        'Left-Sided Shockwave/Right-Sided Shockwave': 'Left/Right Shockwave',
         'Sword Omen/Shield Omen': 'Sword/Shield Omen',
         'Shield Omen/Sword Omen': 'Shield/Sword Omen',
       },
@@ -982,6 +1107,7 @@ export default {
         'Trinity Seeker': 'trinité soudée',
       },
       'replaceText': {
+        '\\?': ' ?',
         'Above Board': 'Aire de flottement',
         'Act Of Mercy': 'Fendreciel rédempteur',
         'Allegiant Arsenal': 'Changement d\'arme',
@@ -1071,7 +1197,6 @@ export default {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Aetherial Bolt': '魔弾',
         'Aetherial Burst': '大魔弾',
@@ -1103,6 +1228,10 @@ export default {
         'Trinity Seeker': 'トリニティ・シーカー',
       },
       'replaceText': {
+        '--explosion--': '--爆発--',
+        '--knockback--': '--ノックバック--',
+        '--stunned--': '--スタンされる--',
+        '--unstunned--': '--スタンされない--',
         'Above Board': '浮遊波',
         'Act Of Mercy': '破天鋭刃風',
         'Allegiant Arsenal': 'ウェポンチェンジ',
@@ -1118,6 +1247,8 @@ export default {
         'Creeping Miasma': '瘴気流',
         'Dead Iron': '熱拳振動波',
         'Double Gambit': '幻影術',
+        'Elemental Arrow': '熱/凍気矢',
+        'Elemental Blast': '熱/凍気弾',
         'Elemental Impact': '着弾',
         'Empyrean Iniquity': '天魔鬼神爆',
         'Excruciation': '激痛',

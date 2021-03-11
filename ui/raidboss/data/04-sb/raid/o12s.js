@@ -1,8 +1,8 @@
-import Conditions from '../../../../../resources/conditions.ts';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import Outputs from '../../../../../resources/outputs.ts';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
+import { Responses } from '../../../../../resources/responses';
+import ZoneId from '../../../../../resources/zone_id';
 
 // O12S - Alphascape 4.0 Savage
 
@@ -780,12 +780,13 @@ export default {
       'locale': 'ja',
       'replaceSync': {
         'Left Arm Unit': 'レフトアームユニット',
-        'Omega(?!-)': 'オメガ',
+        '(?<! )Omega(?!-)': 'オメガ',
         'Omega-F': 'オメガF',
         'Omega-M': 'オメガM',
         'Optical Unit': 'オプチカルユニット',
         'Rear Power Unit': 'リアユニット',
         'Right Arm Unit': 'ライトアームユニット',
+        'I am the Omega': 'ワタシはオメガであり',
       },
       'replaceText': {
         'Advanced Optical Laser': 'オプチカルレーザーS',

@@ -21,6 +21,12 @@ module.exports = {
       },
     },
     {
+      'files': ['**/raidboss/data/**/*'],
+      'rules': {
+        'rulesdir/cactbot-output-strings': 'error',
+      },
+    },
+    {
       'files': ['**/*.ts'],
       'parser': '@typescript-eslint/parser',
       'plugins': ['@typescript-eslint'],
@@ -69,12 +75,17 @@ module.exports = {
     'plugin:import/errors',
   ],
   'plugins': [
+    'import',
     'rulesdir',
   ],
   'settings': {
     'import/resolver': {
       'node': {
         'extensions': ['.d.ts', '.ts', '.js'],
+      },
+      'typescript': {
+        'alwaysTryTypes': true,
+        'project': './tsconfig.json',
       },
     },
   },
@@ -214,6 +225,7 @@ module.exports = {
       'error',
       'never',
     ],
+    'valid-jsdoc': 'off',
     'rulesdir/cactbot-locale-order': [
       'warn',
       ['en', 'de', 'fr', 'ja', 'cn', 'ko'],
