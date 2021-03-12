@@ -452,6 +452,11 @@ export default {
     {
       id: 'DelubrumSav Guard Coat of Arms',
       netRegex: NetRegexes.ability({ source: 'Aetherial Ward', id: '5820' }),
+      netRegexDe: NetRegexes.ability({ source: 'Magisch(?:e|er|es|en) Barriere', id: '5820' }),
+      netRegexFr: NetRegexes.ability({ source: 'Barrière Magique', id: '5820' }),
+      netRegexJa: NetRegexes.ability({ source: '魔法障壁', id: '5820' }),
+      netRegexCn: NetRegexes.ability({ source: '魔法障壁', id: '5820' }),
+      netRegexKo: NetRegexes.ability({ source: '마법 장벽', id: '5820' }),
       delaySeconds: (data, matches) => parseFloat(matches.duration) - 2.5,
       suppressSeconds: 1,
       alertText: (data, _, output) => output.text(),
@@ -487,9 +492,11 @@ export default {
         output.responseOutputStrings = {
           goSouth: {
             en: 'Go South, Unavoidable Knocbkack',
+            de: 'Geh nach Süden, unvermeidbarer Rückstoß',
           },
           goNorth: {
             en: 'Go North, Unavoidable Knocbkack',
+            de: 'Geh nach Norden, unvermeidbarer Rückstoß',
           },
         };
 
@@ -520,6 +527,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Stop Attacking, Dispel Ice Spikes',
+          de: 'Angriffe stoppen, entferne Eisstachel',
         },
       },
     },
@@ -634,6 +642,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Get In Nook',
+          de: 'Geh in die Ecke',
         },
       },
     },
@@ -670,6 +679,7 @@ export default {
           tankBusterOnPlayer: Outputs.tankBusterOnPlayer,
           tankInvuln: {
             en: 'Invuln Tank Buster',
+            de: 'Unverwundbarkeit für Tank Buster benutzen',
           },
         };
 
@@ -712,6 +722,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Reflect Orbs',
+          de: 'Reflektiere Orbs',
         },
       },
     },
@@ -757,6 +768,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Multiple AOEs',
+          de: 'Mehrere AoEs',
         },
       },
     },
