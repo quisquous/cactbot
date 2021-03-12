@@ -523,9 +523,7 @@ export default {
       id: 'DelubrumSav Lord Labyrinthine Fate Collect',
       // Result used by timelineTrigger id 'DelubrumSav Lord Fateful Words'
       netRegex: NetRegexes.gainsEffect({ effectId: '97[EF]' }),
-      condition: (data, matches) => {
-        return (matches.target === data.me);
-      },
+      condition: Conditions.targetIsYou(),
       run: (data, matches) => {
         data.labyrinthineFate = matches.effectId;
       },
