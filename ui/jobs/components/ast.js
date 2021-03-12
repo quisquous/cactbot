@@ -35,7 +35,7 @@ export function setup(bars) {
 
   bars.onJobDetailUpdate((jobDetail) => {
     const card = jobDetail.heldCard;
-    const seals = jobDetail.arcanums.split(', ').filter((seal) => seal !== 'None');
+    const seals = jobDetail.arcanums;
 
     // Show on which kind of jobs your card plays better by color
     // Blue on melee, purple on ranged, and grey when no card
