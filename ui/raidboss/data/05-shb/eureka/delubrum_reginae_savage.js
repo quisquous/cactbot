@@ -25,6 +25,14 @@ export default {
   timelineFile: 'delubrum_reginae_savage.txt',
   timelineTriggers: [
     {
+      id: 'DelubrumSav Avowed Glory Of Bozja',
+      regex: /Glory Of Bozja/,
+      // Cast itself is 5.5 seconds, add more warning
+      beforeSeconds: 7,
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.bigAoe(),
+    },
+    {
       id: 'DelubrumSav Lord Vicious Swipe',
       regex: /Vicious Swipe/,
       // There are different timings in the first and second phase.
@@ -32,8 +40,62 @@ export default {
       beforeSeconds: 5,
       response: Responses.knockback(),
     },
+    {
+      id: 'DelubrumSav Lord Fateful Words',
+      regex: /Fateful Words/,
+      // Paired with trigger id 'DelubrumSav Lord Labyrinthine Fate Collect'
+      // 97E: Wanderer's Fate, Pushes outward on Fateful Word cast
+      // 97F: Sacrifice's Fate, Pulls to middle on Fateful Word cast
+      // Labyrinthine Fate is cast and 1 second later debuffs are applied
+      // First set of debuffs go out 7.7 seconds before Fateful Word is cast
+      // Remaining set of debuffs go out 24.3 seconds before Fateful Word is cast
+      beforeSeconds: 3.5,
+      alertText: (data, _, output) => {
+        if (data.labyrinthineFate === '97F')
+          return output.getOut();
+        else if (data.labyrinthineFate === '97E')
+          return output.getIn();
+      },
+      outputStrings: {
+        getOut: Outputs.out,
+        getIn: Outputs.in,
+      },
+    },
+    {
+      id: 'DelubrumSav Lord Thunderous Discharge',
+      regex: /Thunderous Discharge/,
+      // Cast in the timeline is 5 seconds, but there is an additional .5 second cast before damage
+      beforeSeconds: 7,
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.aoe(),
+    },
+    {
+      id: 'DelubrumSav Queen Empyrean Iniquity',
+      regex: /Empyrean Iniquity/,
+      // Cast itself is 5 seconds, add more warning
+      beforeSeconds: 7,
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.bigAoe(),
+    },
+    {
+      id: 'DelubrumSav Queen Gods Save The Queen',
+      regex: /Gods Save The Queen$/,
+      // Cast in the timeline is 5 seconds, but there is an additional 1 second cast before damage
+      beforeSeconds: 7,
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.aoe(),
+    },
   ],
   triggers: [
+    {
+      id: 'DelubrumSav Seeker Verdant Tempest',
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AD3', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AD3', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AD3', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AD3', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.aoe(),
+    },
     {
       id: 'DelubrumSav Seeker Baleful Swath',
       // This is an early warning on the Verdant Path cast.
@@ -251,6 +313,30 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Guard Blood And Bone Warrior and Knight',
+      // 5831 from Queen's Warrior
+      // 5821 from Queen's Knight
+      netRegex: NetRegexes.startsUsing({ source: ['Queen\'s Warrior', 'Queen\'s Knight'], id: ['5831', '5821'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Kriegerin Der Königin', 'Ritter Der Königin'], id: ['5831', '5821'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Guerrière De La Reine', 'Chevalier De La Reine'], id: ['5831', '5821'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['クイーンズ・ウォリアー', 'クイーンズ・ナイト'], id: ['5831', '5821'], capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      suppressSeconds: 1,
+      response: Responses.aoe(),
+    },
+    {
+      id: 'DelubrumSav Guard Queen\'s Shot and Blood And Bone Soldier',
+      // 5854 from Queen's Gunner
+      // 5841 from Queen's Soldier
+      netRegex: NetRegexes.startsUsing({ source: ['Queen\'s Gunner', 'Queen\'s Soldier'], id: ['5854', '5841'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Schütze Der Königin', 'Soldat Der Königin'], id: ['5854', '5841'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Fusilier De La Reine', 'Soldat De La Reine'], id: ['5854', '5841'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['クイーンズ・ガンナー', 'クイーンズ・ソルジャー'], id: ['5854', '5841'], capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      suppressSeconds: 1,
+      response: Responses.aoe(),
+    },
+    {
       id: 'DelubrumSav Guard Optimal Offensive Sword',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Knight', id: '5819', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '5819', capture: false }),
@@ -343,6 +429,131 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Guard Fiery Portent',
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '583F' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '583F' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '583F' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '583F' }),
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - 2.5,
+      durationSeconds: 5.5,
+      response: Responses.stopEverything('alarm'),
+    },
+    {
+      id: 'DelubrumSav Guard Icy Portent',
+      // Assuming you need to move for 3 seconds (duration of Pyretic from Fiery Portent)
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5840' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5840' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5840' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5840' }),
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - 2.5,
+      durationSeconds: 5.5,
+      response: Responses.moveAround('alert'),
+    },
+    {
+      id: 'DelubrumSav Guard Coat of Arms',
+      netRegex: NetRegexes.ability({ source: 'Aetherial Ward', id: '5820' }),
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - 2.5,
+      suppressSeconds: 1,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stop attacking',
+          de: 'Angriffe stoppen',
+          fr: 'Arrêtez d\'attaquer',
+          ja: 'ブロックしない側に攻撃',
+          cn: '攻击未格挡的方向',
+          ko: '공격 중지',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Phantom Malediction Of Agony',
+      netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57BD', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57BD', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '57BD', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57BD', capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      response: Responses.aoe(),
+    },
+    {
+      id: 'DelubrumSav Phantom Stuffy Wrath',
+      // Spawns after 57BA Summon, either North (-403.5) or South (-344.5)
+      // Casts 57C2 Undying Hatred
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9756' }),
+      durationSeconds: 5,
+      suppressSeconds: 1,
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          goSouth: {
+            en: 'Go South, Unavoidable Knocbkack',
+          },
+          goNorth: {
+            en: 'Go North, Unavoidable Knocbkack',
+          },
+        };
+
+        // The sum of the two possible spawn locations divided by two.
+        if (parseFloat(matches.y) < -374)
+          return { alertText: output.goNorth() };
+        return { alertText: output.goSouth() };
+      },
+    },
+    {
+      id: 'DelubrumSav Phantom Vile Wave',
+      netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57BF', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57BF', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '57BF', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57BF', capture: false }),
+      response: Responses.getBehind('alert'),
+    },
+    {
+      id: 'DelubrumSav Phantom Ice Spikes',
+      // Ice Spikes (effectId: '9E0') reflects damage, wait for Dispel
+      // Buff expires about 16 seconds on first cast, ~8 seconds later casts)
+      netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57BC', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57BC', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '57BC', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57BC', capture: false }),
+      delaySeconds: 3,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stop Attacking, Dispel Ice Spikes',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Phantom Excruciation',
+      netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57BE' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57BE' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '57BE' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57BE' }),
+      condition: tankBusterOnParty,
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'DelubrumSav Avowed Wrath Of Bozja',
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '594E', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '594E', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '594E', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '594E', capture: false }),
+      response: (data, _, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          avoidTankCleave: Outputs.avoidTankCleave,
+          sharedTankBuster: {
+            en: 'Shared Tank Buster',
+            de: 'Geteilter Tank Buster',
+          },
+        };
+
+        if (data.role === 'tank' || data.role === 'healer')
+          return { alertText: output.sharedTankBuster() };
+        return { infoText: output.avoidTankCleave() };
+      },
+    },
+    {
       id: 'DelubrumSav Avowed Fury Of Bozja',
       // Allegiant Arsenal 5987 = staff (out), followed up with Fury of Bozja 594C
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5987', capture: false }),
@@ -403,12 +614,151 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Lord Labyrinthine Fate Collect',
+      // Result used by timelineTrigger id 'DelubrumSav Lord Fateful Words'
+      netRegex: NetRegexes.gainsEffect({ effectId: '97[EF]' }),
+      condition: Conditions.targetIsYou(),
+      run: (data, matches) => {
+        data.labyrinthineFate = matches.effectId;
+      },
+    },
+    {
+      id: 'DelubrumSav Lord Devastating Bolt',
+      netRegex: NetRegexes.startsUsing({ source: 'Stygimoloch Lord', id: '57C5', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Anführer-Stygimoloch', id: '57C5', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Seigneur Stygimoloch', id: '57C5', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'スティギモロク・ロード', id: '57C5', capture: false }),
+      durationSeconds: 4,
+      suppressSeconds: 1,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get In Nook',
+        },
+      },
+    },
+    {
       id: 'DelubrumSav Lord 1111-Tonze Swing',
       netRegex: NetRegexes.startsUsing({ source: 'Stygimoloch Lord', id: '57D8', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Anführer-Stygimoloch', id: '57D8', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Seigneur Stygimoloch', id: '57D8', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'スティギモロク・ロード', id: '57D8', capture: false }),
       response: Responses.getOut(),
+    },
+    {
+      id: 'DelubrumSav Queen Cleansing Slash',
+      // PLD and GNB tank invulnerabilities do not get Physical Vulnerability Up
+      // Tank swap will be required between the two hits if not using a tank invulnerability
+      // Tank swap required after second hit if not using PLD or GNB tank invulnerabilities
+      // To avoid bad swaps between 11 other tanks, only mention swap to targetted tank
+      netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59F5' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59F5' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59F5' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59F5' }),
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          tankBusterAndSwap: {
+            en: 'Tank Buster + Swap',
+            de: 'Tankbuster + Wechsel',
+            fr: 'Tank buster + Swap',
+            ja: 'タンクバスター + スイッチ',
+            cn: '死刑 + 换T',
+            ko: '탱버 + 교대',
+          },
+          tankBusterOnYou: Outputs.tankBusterOnYou,
+          tankBusterOnPlayer: Outputs.tankBusterOnPlayer,
+          tankInvuln: {
+            en: 'Invuln Tank Buster',
+          },
+        };
+
+        if (data.me === matches.target) {
+          if (data.role === 'tank') {
+            if (data.job === 'PLD' || data.job === 'GNB')
+              return { alertText: output.tankInvuln() };
+            return { alertText: output.tankBusterAndSwap() };
+          }
+          return { alarmText: output.tankBusterOnYou() };
+        }
+        if (data.role === 'healer' || data.role === 'tank')
+          return { alertText: output.tankBusterOnPlayer({ player: matches.target }) };
+      },
+    },
+    {
+      id: 'DelubrumSav Queen Cleansing Slash Doom',
+      // Each Cleansing Slash applies a cleansable Doom (38E), if damage is taken
+      netRegex: NetRegexes.gainsEffect({ source: 'The Queen', effectId: '38E' }),
+      netRegexDe: NetRegexes.gainsEffect({ source: 'Kriegsgöttin', effectId: '38E' }),
+      netRegexFr: NetRegexes.gainsEffect({ source: 'Garde-La-Reine', effectId: '38E' }),
+      netRegexJa: NetRegexes.gainsEffect({ source: 'セイブ・ザ・クイーン', effectId: '38E' }),
+      condition: (data) => data.CanCleanse(),
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
+      outputStrings: {
+        text: {
+          en: 'Esuna ${player}',
+          de: 'Medica ${player}',
+          fr: 'Guérison sur ${player}',
+          ko: '"${player}" 에스나',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Queen Ball Lightning',
+      // Players with Reflect should destroy one for party to stand in the shield left behind
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '7974', capture: false }),
+      suppressSeconds: 1,
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Reflect Orbs',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Queen Fiery Portent',
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5A21' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5A21' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5A21' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5A21' }),
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - 2.5,
+      durationSeconds: 5.5,
+      response: Responses.stopEverything('alarm'),
+    },
+    {
+      id: 'DelubrumSav Queen Icy Portent',
+      // Assuming you need to move for 3 seconds (duration of Pyretic from Fiery Portent)
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5A22' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5A22' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5A22' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5A22' }),
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - 2.5,
+      durationSeconds: 5.5,
+      response: Responses.moveAround('alert'),
+    },
+    {
+      id: 'DelubrumSav Queen Guard AoEs',
+      // 5A16 from Queen's Warrior
+      // 5A08 from Queen's Knight
+      // 5A35 from Queen's Gunner
+      // 5A23 from Queen's Soldier
+      // These happen in sets:
+      // Set 1 Double AoE, 3 seconds later Double AoE
+      // Set 2 5 seconds later, Double AoE, 3 seconds later Double AoE, 3 seconds later AoE + Bleed
+      // Set 3 1.3 seconds later, Single AoEs every 3 seconds all while bleed from set 2 persists
+      netRegex: NetRegexes.startsUsing({ source: ['Queen\'s Warrior', 'Queen\'s Knight', 'Queen\'s Gunner', 'Queen\'s Soldier'], id: ['5A16', '5A08', '5A35', '5A23'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Kriegerin Der Königin', 'Ritter Der Königin', 'Schütze Der Königin', 'Soldat Der Königin'], id: ['5A16', '5A08', '5A35', '5A23'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Guerrière De La Reine', 'Chevalier De La Reine', 'Fusilier De La Reine', 'Soldat De La Reine'], id: ['5A16', '5A08', '5A35', '5A23'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['クイーンズ・ウォリアー', 'クイーンズ・ナイト', 'クイーンズ・ガンナー', 'クイーンズ・ソルジャー'], id: ['5A16', '5A08', '5A35', '5A23'], capture: false }),
+      condition: Conditions.caresAboutAOE(),
+      // Only call out the beginning of a set of two casts
+      suppressSeconds: 5,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Multiple AOEs',
+        },
+      },
     },
   ],
   timelineReplace: [
