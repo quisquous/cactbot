@@ -56,7 +56,7 @@ hideall "--sync--"
 4105.5 "Baleful Onslaught" sync /:Trinity Seeker:5AD6:/
 4115.6 "Phantom Edge?" sync /:Trinity Seeker:5ABD:/
 4117.8 "--middle--" sync /:Trinity Seeker:5A9A:/
-4118.4 "--chains--" duration 3.1 # sync /23:0000:0000:0080:/ 
+4118.4 "--chains--" duration 3.1 # sync /23:0000:0000:0080:/
 4126.9 "Baleful Blade" sync /:Trinity Seeker:5AB[EF]:/
 4132.1 "Manifest Avatar" sync /:Trinity Seeker:5ADA:/
 4138.8 "Baleful Comet 1" #sync /:Seeker Avatar:5AD7:/
@@ -120,7 +120,7 @@ hideall "--sync--"
 4315.8 "Merciful Moon" sync /:Aetherial Orb:5AC9:/
 4318.4 "Merciful Breeze" sync /:Trinity Seeker:5AC8:/
 4321.8 "Merciful Blooms" sync /:Trinity Seeker:5ACA:/
-4325.1 "--chains--" duration 3.1 # sync /23:0000:0000:0080:/ 
+4325.1 "--chains--" duration 3.1 # sync /23:0000:0000:0080:/
 4335.2 "Verdant Tempest" sync /:Trinity Seeker:5AD3:/
 4346.5 "Merciful Arc" sync /:Trinity Seeker:5AD4:/
 4349.7 "--middle--" sync /:Trinity Seeker:5A9A:/
@@ -163,7 +163,7 @@ hideall "--sync--"
 4465.0 "Mercy Fourfold 2" #sync /:Trinity Seeker:5B94:/
 4466.9 "Mercy Fourfold 3" #sync /:Trinity Seeker:5B94:/
 4468.8 "Mercy Fourfold 4" #sync /:Trinity Seeker:5B94:/
-4472.2 "--chains--" duration 3.1 # sync /23:0000:0000:0080:/ 
+4472.2 "--chains--" duration 3.1 # sync /23:0000:0000:0080:/
 4482.4 "Verdant Tempest" sync /:Trinity Seeker:5AD3:/
 4484.6 "--middle--" sync /:Trinity Seeker:5A9A:/
 4488.8 "Manifest Avatar" sync /:Trinity Seeker:5ADA:/
@@ -175,7 +175,7 @@ hideall "--sync--"
 4518.7 "Manifest Avatar" sync /:Trinity Seeker:5ADA:/
 4530.9 "First Mercy" sync /:Seeker Avatar:5B61:/
 4534.1 "Second Mercy" sync /:Seeker Avatar:5B62:/
-4534.7 "--chains--" duration 3.1 # sync /23:0000:0000:0080:/ 
+4534.7 "--chains--" duration 3.1 # sync /23:0000:0000:0080:/
 4537.3 "Third Mercy" sync /:Seeker Avatar:5B63:/
 4540.5 "Fourth Mercy" sync /:Seeker Avatar:5B64:/
 4541.8 "Phantom Edge?" sync /:Trinity Seeker:5ABD:/
@@ -382,7 +382,7 @@ hideall "--sync--"
 
 
 ### Queen's Guard
-# -p 5831:10016.6 5825:10205 5844:10605 581E:11005
+# -p 5831:10016.6 5825:10056.1 5844:10617 581E:11005
 # -ii 1961 5858 4B33 4B34 4B35 4B36 5821 5854 5813 5834 584D 5718 581B 581C 5B72 5822 5A94 583E 5856 5851 5B70 5838 584D 583A 5847 5849 58F5 5830 581F 590A 590B 590C 59BE
 
 # Note: there are number of pairs of abilities that go together (but are both going off).
@@ -405,136 +405,144 @@ hideall "--sync--"
 10011.5 "--sync--" sync /:5831:Queen's Warrior/ window 20,20
 10016.6 "Blood And Bone" sync /:Queen's Warrior:5831:/
 10025.6 "Blood And Bone" sync /:Queen's Soldier:5841:/
-### ??? repeat ???
+10030.6 "--untargetable--"
 
 
 # Phase 2: Warrior + Knight section
-10200.0 "--sync--" sync /:5825:Queen's Warrior/ window 200,0
-10205.0 "Relentless Battery" sync /:Queen's Warrior:5825:/
-10211.1 "Shield Omen/Sword Omen" sync /:Queen's Knight:581[45]:/
+10033.9 "--targetable--" sync /22:........:Queen's Knight:........:Queen's Knight:01/ window 25,0
+10051.1 "--sync--" sync /:5825:Queen's Warrior/ window 60,20
+10056.1 "Relentless Battery" sync /:Queen's Warrior:5825:/
+10062.2 "Shield Omen/Sword Omen" sync /:Queen's Knight:581[45]:/
 
-10212.1 "Bombslinger" sync /:Queen's Warrior:5AFE:/
-10219.2 "Reversal Of Forces" sync /:Queen's Warrior:5829:/
-10219.2 "--sync--" sync /:Queen's Warrior:5A94:/
-10228.4 "Optimal Offensive" sync /:Queen's Knight:581[9A]:/
-10230.3 "Above Board" sync /:Queen's Warrior:5826:/
-10231.0 "Unlucky Lot" #sync /:Aetherial Sphere:581D:/
-10233.4 "Lots Cast" #sync /:Aetherial Bolt:5828:/
-10236.4 "Lots Cast" #sync /:Aetherial Burst:5827:/
-10237.6 "Lots Cast" #sync /:Aetherial Burst:5BB7:/
+10063.2 "Bombslinger" sync /:Queen's Warrior:5AFE:/
+10070.3 "Reversal Of Forces" sync /:Queen's Warrior:5829:/
+10070.3 "--sync--" sync /:Queen's Warrior:5A94:/
+10079.5 "Optimal Offensive" sync /:Queen's Knight:581[9A]:/
+10081.4 "Above Board" sync /:Queen's Warrior:5826:/
+10082.1 "Unlucky Lot" #sync /:Aetherial Sphere:581D:/
+10084.5 "Lots Cast" #sync /:Aetherial Bolt:5828:/
+10087.5 "Lots Cast" #sync /:Aetherial Burst:5827:/
+10088.7 "Lots Cast" #sync /:Aetherial Burst:5BB7:/
 
-10246.5 "Boost" sync /:Queen's Warrior:582D:/
-10254.7 "Blood And Bone" sync /:Queen's Warrior:5831:/
-10269.9 "Relentless Battery" sync /:Queen's Warrior:5825:/
-10277.0 "Reversal Of Forces" sync /:Queen's Warrior:5829:/
-10285.1 "Shield Omen/Sword Omen" sync /:Queen's Knight:581[45]:/
-10286.2 "Winds Of Weight" sync /:Queen's Warrior:582A:/
-10286.2 "Winds Of Fate" sync /:Queen's Warrior:582C:/
-10286.2 "Weight Of Fortune" sync /:Queen's Warrior:582B:/
-10293.3 "Optimal Play" sync /:Queen's Knight:581[67]:/
-10295.3 "Boost" sync /:Queen's Warrior:582D:/
-10303.5 "Blood And Bone" sync /:Queen's Warrior:5831:/
-10312.6 "Rapid Sever" sync /:Queen's Warrior:5832:/
+10097.6 "Boost" sync /:Queen's Warrior:582D:/
+10105.8 "Blood And Bone" sync /:Queen's Warrior:5831:/
+10121.0 "Relentless Battery" sync /:Queen's Warrior:5825:/
+10128.1 "Reversal Of Forces" sync /:Queen's Warrior:5829:/
+10136.2 "Shield Omen/Sword Omen" sync /:Queen's Knight:581[45]:/
+10137.3 "Winds Of Weight" sync /:Queen's Warrior:582A:/
+10137.3 "Winds Of Fate" sync /:Queen's Warrior:582C:/
+10137.3 "Weight Of Fortune" sync /:Queen's Warrior:582B:/
+10144.4 "Optimal Play" sync /:Queen's Knight:581[67]:/
+10146.4 "Boost" sync /:Queen's Warrior:582D:/
+10154.6 "Blood And Bone" sync /:Queen's Warrior:5831:/
+10163.7 "Rapid Sever" sync /:Queen's Warrior:5832:/
 
 # loop, unrolled so there can be an explicit enrage
-10334.8 "Relentless Battery" sync /:Queen's Warrior:5825:/
-10341.0 "Shield Omen/Sword Omen" sync /:Queen's Knight:581[45]:/
+10185.9 "Relentless Battery" sync /:Queen's Warrior:5825:/
+10192.1 "Shield Omen/Sword Omen" sync /:Queen's Knight:581[45]:/
 
-10341.9 "Bombslinger" sync /:Queen's Warrior:5AFE:/
-10349.0 "Reversal Of Forces" sync /:Queen's Warrior:5829:/
-10358.3 "Optimal Offensive" sync /:Queen's Knight:581[9A]:/
-10359.9 "Unlucky Lot" #sync /:Aetherial Sphere:581D:/
-10360.1 "Above Board" sync /:Queen's Warrior:5826:/
-10360.1 "--sync--" sync /:Queen's Warrior:5B72:/
-10363.1 "Lots Cast" #sync /:Aetherial Burst:5B6D:/
-10366.1 "Lots Cast" #sync /:Aetherial Bolt:5B6C:/
-10367.3 "Lots Cast" #sync /:Aetherial Bolt:5BB7:/
+10193.0 "Bombslinger" sync /:Queen's Warrior:5AFE:/
+10200.1 "Reversal Of Forces" sync /:Queen's Warrior:5829:/
+10209.4 "Optimal Offensive" sync /:Queen's Knight:581[9A]:/
+10211.0 "Unlucky Lot" #sync /:Aetherial Sphere:581D:/
+10211.2 "Above Board" sync /:Queen's Warrior:5826:/
+10211.2 "--sync--" sync /:Queen's Warrior:5B72:/
+10214.2 "Lots Cast" #sync /:Aetherial Burst:5B6D:/
+10217.2 "Lots Cast" #sync /:Aetherial Bolt:5B6C:/
+10218.4 "Lots Cast" #sync /:Aetherial Bolt:5BB7:/
 
-10376.2 "Boost" sync /:Queen's Warrior:582D:/
-10384.4 "Blood And Bone" sync /:Queen's Warrior:5831:/
-10399.6 "Relentless Battery" sync /:Queen's Warrior:5825:/
-10406.7 "Reversal Of Forces" sync /:Queen's Warrior:5829:/
-10414.8 "Shield Omen/Sword Omen" sync /:Queen's Knight:581[45]:/
-10415.9 "Winds Of Weight" sync /:Queen's Warrior:582A:/
-10415.9 "Winds Of Fate" sync /:Queen's Warrior:582C:/
-10415.9 "Winds Of Fate" sync /:Queen's Warrior:582C:/
-10415.9 "Weight Of Fortune" sync /:Queen's Warrior:582B:/
-10423.0 "Optimal Play" sync /:Queen's Knight:581[67]:/
-10425.0 "Boost" sync /:Queen's Warrior:582D:/
-10433.2 "Blood And Bone" sync /:Queen's Warrior:5831:/
-10442.3 "Rapid Sever" sync /:Queen's Warrior:5832:/
+10227.3 "Boost" sync /:Queen's Warrior:582D:/
+10235.5 "Blood And Bone" sync /:Queen's Warrior:5831:/
+10250.7 "Relentless Battery" sync /:Queen's Warrior:5825:/
+10257.8 "Reversal Of Forces" sync /:Queen's Warrior:5829:/
+10265.9 "Shield Omen/Sword Omen" sync /:Queen's Knight:581[45]:/
+10267.0 "Winds Of Weight" sync /:Queen's Warrior:582A:/
+10267.0 "Winds Of Fate" sync /:Queen's Warrior:582C:/
+10267.0 "Winds Of Fate" sync /:Queen's Warrior:582C:/
+10267.0 "Weight Of Fortune" sync /:Queen's Warrior:582B:/
+10274.1 "Optimal Play" sync /:Queen's Knight:581[67]:/
+10276.1 "Boost" sync /:Queen's Warrior:582D:/
+10284.3 "Blood And Bone" sync /:Queen's Warrior:5831:/
+10293.4 "Rapid Sever" sync /:Queen's Warrior:5832:/
 
 # If either die, they will start casting enrage.
-10451.8 "--sync--" sync /:5823:Queen's Knight/ window 300,10
-10451.8 "--sync--" sync /:5833:Queen's Warrior/ window 300,10
-10461.8 "Blood and Bone Enrage" sync /:Queen's Warrior:5833:/
-10464.9 "Blood and Bone Enrage" sync /:Queen's Knight:5B9D:/ window 10,10 # x infinity
-10468.0 "Blood and Bone Enrage" sync /:Queen's Knight:5B9D:/
-10471.1 "Blood and Bone Enrage" sync /:Queen's Knight:5B9D:/
-
+10302.9 "--sync--" sync /:5823:Queen's Knight/ window 300,10
+10302.9 "--sync--" sync /:5833:Queen's Warrior/ window 300,10
+10312.9 "Blood and Bone Enrage" sync /:Queen's Warrior:5833:/
+10316.0 "Blood and Bone Enrage" sync /:Queen's Knight:5B9D:/ window 10,10 # x infinity
+10319.1 "Blood and Bone Enrage" sync /:Queen's Knight:5B9D:/
+10322.2 "Blood and Bone Enrage" sync /:Queen's Knight:5B9D:/
 
 # Phase 3: Soldier + Gunner section
-10600.0 "--sync--" sync /:5844:Queen's Gunner/ window 600,0
-10605.0 "Relentless Battery" sync /:Queen's Gunner:5844:/
-10611.2 "Great Ball Of Fire" sync /:Queen's Soldier:583B:/
-10620.3 "Fool's Gambit" sync /:Queen's Soldier:583C:/
-10623.2 "Automatic Turret" sync /:Queen's Gunner:584A:/
-10629.3 "Reading" sync /:Queen's Gunner:584B:/
-10635.9 "Burn" sync /:Immolating Flame:583E:/
-10639.5 "Queen's Shot" sync /:Queen's Gunner:584C:/
-10643.0 "Turret's Tour" sync /:Automatic Turret:584E:/
-10653.6 "Rapid Sever" sync /:Queen's Soldier:5842:/
-10653.6 "Shot In The Dark" sync /:Queen's Gunner:5855:/
-10662.7 "Blood And Bone" sync /:Queen's Soldier:5841:/
-10677.9 "Relentless Battery" sync /:Queen's Gunner:5844:/
-10684.0 "Gun Turret" sync /:Queen's Gunner:584F:/
-10691.1 "Higher Power" sync /:Queen's Gunner:5853:/
-10698.1 "Sniper Shot" sync /:Gun Turret:5850:/
-
-10703.0 "Blood And Bone" sync /:Queen's Soldier:5841:/
-10720.2 "Icy Portent/Fiery Portent" sync /:Queen's Soldier:(583F|5840):/
-10735.4 "Relentless Battery" sync /:Queen's Gunner:5844:/
-10741.5 "Double Gambit" sync /:Queen's Soldier:5837:/
-10749.5 "Automatic Turret" sync /:Queen's Gunner:584A:/
-10749.7 "Secrets Revealed" sync /:Queen's Soldier:5B6F:/
-10755.7 "Reading" sync /:Queen's Gunner:584B:/
-10765.9 "Queen's Shot" sync /:Queen's Gunner:584C:/
-10766.3 "Pawn Off" sync /:Soldier Avatar:5839:/
-10769.4 "Turret's Tour" sync /:Automatic Turret:584E:/
-10780.1 "Blood And Bone" sync /:Queen's Soldier:5841:/
-10789.3 "Shot In The Dark" sync /:Queen's Gunner:5855:/
-10789.3 "Rapid Sever" sync /:Queen's Soldier:5842:/
-10804.5 "Relentless Battery" sync /:Queen's Gunner:5844:/
-10810.6 "Automatic Turret" sync /:Queen's Gunner:5845:/
-10818.8 "Turret's Tour" sync /:Queen's Gunner:5846:/
-10819.4 "Turret's Tour" sync /:Automatic Turret:5848:/ # ?? skip this ability name?
-10825.6 "Fiery Portent/Icy Portent" sync /:Queen's Soldier:(583F|5840):/
-10835.8 "Blood And Bone" sync /:Queen's Soldier:5841:/
-10844.9 "Rapid Sever" sync /:Queen's Soldier:5842:/
-10844.9 "Shot In The Dark" sync /:Queen's Gunner:5855:/
+10600.0 "--sync--" sync /22:........:Queen's Gunner::........::Queen's Gunner:01/ window 600,0
+10612.0 "--sync--" sync /:5844:Queen's Gunner/ window 600,0
+10617.0 "Relentless Battery" sync /:Queen's Gunner:5844:/
+10623.2 "Great Ball Of Fire" sync /:Queen's Soldier:583B:/
+10632.3 "Fool's Gambit" sync /:Queen's Soldier:583C:/
+10635.2 "Automatic Turret" sync /:Queen's Gunner:584A:/
+10641.3 "Reading" sync /:Queen's Gunner:584B:/
+10647.9 "Burn" sync /:Immolating Flame:583E:/
+10651.5 "Queen's Shot" sync /:Queen's Gunner:584C:/
+10655.0 "Turret's Tour" sync /:Automatic Turret:584E:/
+10665.6 "Rapid Sever" sync /:Queen's Soldier:5842:/
+10665.6 "Shot In The Dark" sync /:Queen's Gunner:5855:/
+10674.7 "Blood And Bone" sync /:Queen's Soldier:5841:/
+10689.9 "Relentless Battery" sync /:Queen's Gunner:5844:/
+10696.0 "Gun Turret" sync /:Queen's Gunner:584F:/
+10696.8 "--targetable--" # gun turret
+10703.1 "Higher Power" sync /:Queen's Gunner:5853:/
+10710.1 "Sniper Shot" sync /:Gun Turret:5850:/
+10715.0 "Blood And Bone" sync /:Queen's Soldier:5841:/
+10728.4 "--gun turret enrage--"
+10732.2 "Icy Portent/Fiery Portent" sync /:Queen's Soldier:(583F|5840):/
+10747.4 "Relentless Battery" sync /:Queen's Gunner:5844:/
+10753.5 "Double Gambit" sync /:Queen's Soldier:5837:/
+10761.5 "Automatic Turret" sync /:Queen's Gunner:584A:/
+10761.7 "Secrets Revealed" sync /:Queen's Soldier:5B6F:/
+10767.7 "Reading" sync /:Queen's Gunner:584B:/
+10777.9 "Queen's Shot" sync /:Queen's Gunner:584C:/
+10778.3 "Pawn Off" sync /:Soldier Avatar:5839:/
+10781.4 "Turret's Tour" sync /:Automatic Turret:584E:/
+10792.1 "Blood And Bone" sync /:Queen's Soldier:5841:/
+10801.3 "Shot In The Dark" sync /:Queen's Gunner:5855:/
+10801.3 "Rapid Sever" sync /:Queen's Soldier:5842:/
+10816.5 "Relentless Battery" sync /:Queen's Gunner:5844:/
+10822.6 "Automatic Turret" sync /:Queen's Gunner:5845:/
+10830.8 "Turret's Tour 1" sync /:Queen's Gunner:5846:/
+10831.4 "Turret's Tour 2" sync /:Automatic Turret:5848:/
+10837.6 "Fiery Portent/Icy Portent" sync /:Queen's Soldier:(583F|5840):/
+10847.8 "Blood And Bone" sync /:Queen's Soldier:5841:/
+10856.9 "Rapid Sever" sync /:Queen's Soldier:5842:/
+10856.9 "Shot In The Dark" sync /:Queen's Gunner:5855:/
 
 # If either die, they will start casting enrage.
-10853.7 "--sync--" sync /:5843:Queen's Soldier/ window 300,10
-10853.7 "--sync--" sync /:5856:Queen's Gunner/ window 300,10
-10863.7 "Blood And Bone Enrage" sync /:Queen's Soldier:5843:/
-10866.8 "Blood And Bone Enrage" sync /:Queen's Soldier:5B9F:/ window 10,10 # x infinity
-10869.9 "Blood And Bone Enrage" sync /:Queen's Soldier:5B9F:/
-10873.0 "Blood And Bone Enrage" sync /:Queen's Soldier:5B9F:/
-10876.1 "Blood And Bone Enrage" sync /:Queen's Soldier:5B9F:/
+10865.7 "--sync--" sync /:5843:Queen's Soldier/ window 300,10
+10865.7 "--sync--" sync /:5856:Queen's Gunner/ window 300,10
+10875.7 "Blood And Bone Enrage" sync /:Queen's Soldier:5843:/
+10878.8 "Blood And Bone Enrage" sync /:Queen's Soldier:5B9F:/ window 10,10 # x infinity
+10881.9 "Blood And Bone Enrage" sync /:Queen's Soldier:5B9F:/
+10885.0 "Blood And Bone Enrage" sync /:Queen's Soldier:5B9F:/
+10888.1 "Blood And Bone Enrage" sync /:Queen's Soldier:5B9F:/
 
 
 # Phase 4: Aetherial Wards
 11000.0 "--sync--" sync /:581E:Queen's Knight/ window 1000,0
 11005.0 "Strongpoint Defense" sync /:Queen's Knight:581E:/
 11005.0 "Spiteful Spirit" sync /:Queen's Warrior:582E:/
-11014.9 "Coat Of Arms" sync /:Aetherial Ward:5820:/
-11016.1 "Fracture" sync /:Spiritual Sphere:5B95:/
-11020.2 "Fracture" sync /:Spiritual Sphere:5B95:/
-11032.1 "Coat Of Arms" sync /:Aetherial Ward:5820:/
-11046.2 "Fracture" sync /:Spiritual Sphere:5B95:/
-11050.2 "Fracture" sync /:Spiritual Sphere:5B95:/
-11049.1 "Coat Of Arms" sync /:Aetherial Ward:5820:/
-11066.2 "Coat Of Arms" sync /:Aetherial Ward:5820:/
+11006.0 "--2x Aura Sphere--"
+11007.9 "--12x Spiritual Sphere--"
+11014.8 "Coat Of Arms" sync /:Aetherial Ward:5820:/
+11016.0 "Fracture 1" sync /:Spiritual Sphere:5B95:/
+11020.0 "Fracture 2" sync /:Spiritual Sphere:5B95:/
+11020.0 "--Spite Check--"
+11032.0 "Coat Of Arms" sync /:Aetherial Ward:5820:/
+11037.9 "--12x Spiritual Sphere--"
+11039.9 "--2x Aura Sphere--"
+11046.0 "Fracture 1" sync /:Spiritual Sphere:5B95:/
+11049.0 "Coat Of Arms" sync /:Aetherial Ward:5820:/
+11050.0 "Fracture 2" sync /:Spiritual Sphere:5B95:/
+11054.1 "--Spite Check--"
+11066.1 "Coat Of Arms" sync /:Aetherial Ward:5820:/
 # 70s enrage cast, started 3 seconds after Strongpoint Defense.
 11078.0 "Blood And Bone Enrage" sync /:Queen's Knight:5909:/
 
