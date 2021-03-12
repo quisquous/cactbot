@@ -400,7 +400,8 @@ export default {
           },
         };
 
-        if (matches.y === -403.5)
+        // The sum of the two possible spawn locations divided by two.
+        if (parseFloat(matches.y) < -374)
           return { alertText: output.goNorth() };
         return { alertText: output.goSouth() };
       },
