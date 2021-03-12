@@ -120,11 +120,6 @@ const ruleModule = {
         }
       },
       [`Property[key.name=/${textProps.join('|')}/] > :function[params.length=3] CallExpression > MemberExpression`]: function(node) {
-        const parent = node.parent;
-        console.log(parent.callee);
-        console.log(stack.triggerID);
-        // console.log(parent.arguments);
-
         if (node.object.name === stack.outputParam &&
           node.computed === false &&
           t.isIdentifier(node.property) &&
