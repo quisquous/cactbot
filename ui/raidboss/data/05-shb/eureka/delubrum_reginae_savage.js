@@ -663,7 +663,7 @@ export default {
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Multiple Guards\' AOEs',
+          en: 'Multiple AOEs',
         },
       },
     },
