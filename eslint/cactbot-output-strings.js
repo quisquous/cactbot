@@ -19,10 +19,13 @@ const ruleModule = {
     messages: {
       noOutputStrings: 'no outputStrings in trigger',
       notFoundProperty: 'no \'{{prop}}\' in \'{{outputParam}}\'',
+      notFoundTemplate: 'no \'{{prop}}\' in \'{{outputParam}}\'',
+      inConsistentlyFormat: 'output string has different template on key \'{{key}}\'',
     },
   },
   create: function(context) {
     const globalVars = new Map();
+    const outputTemplates = new Map();
     const stack = {
       outputParam: null,
       outputProperties: [],
@@ -54,12 +57,43 @@ const ruleModule = {
       return propKeys;
     };
 
+    const arrayContainSameElement = (arr) => {
+      return arr.every((v) => JSON.stringify(v) === JSON.stringify(arr[0]));
+    };
 
     return {
-      'Program > VariableDeclaration > VariableDeclarator > ObjectExpression'(node) {
+      /**
+       *
+       * @param node {t.ObjectExpression}
+       */
+      'Property[key.name=/outputStrings/] > ObjectExpression': function(node) {
+        const outputTemplateKey = {};
+        for (const outputString of node.properties) {
+          // each outputString
+          const values = [];
+          outputString.value.properties.forEach((x) => {
+            values.push(x.value.value);
+          });
+          const v = values.map((x) => Array.from(x.matchAll(/\${\s*([^}\s]+)\s*}/g))).map((x) => x.length ? x.map((v) => v[1]) : null);
+          if (!arrayContainSameElement(v)) {
+            context.report({
+              node: outputString.key,
+              messageId: 'inConsistentlyFormat',
+              data: {
+                key: outputString.key.name,
+              },
+            });
+          } else {
+            outputTemplateKey[outputString.key.name] = v[0];
+          }
+          const triggerID = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'id').value.value;
+          outputTemplates.set(triggerID, outputTemplateKey);
+        }
+      },
+      'Program > VariableDeclaration > VariableDeclarator > ObjectExpression': function(node) {
         globalVars.set(node.parent.id.name, getAllKeys(node.properties));
       },
-      [`Property[key.name=/${textProps.join('|')}/] > :function`](node) {
+      [`Property[key.name=/${textProps.join('|')}/] > :function`]: function(node) {
         const props = getAllKeys(node.parent.parent.properties);
         if (props.find((prop) => prop === 'outputStrings')) {
           stack.inTriggerFunc = true;
@@ -69,6 +103,7 @@ const ruleModule = {
             t.isIdentifier(outputValue)
               ? (globalVars.get(outputValue.name) || [])
               : getAllKeys(outputValue.properties);
+          stack.triggerID = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'id').value.value;
           return;
         }
         context.report({
@@ -76,14 +111,20 @@ const ruleModule = {
           messageId: 'noOutputStrings',
         });
       },
-      [`Property[key.name=/${textProps.join('|')}/] > :function:exit`]() {
+      [`Property[key.name=/${textProps.join('|')}/] > :function:exit`]: function() {
         if (stack.inTriggerFunc) {
           stack.inTriggerFunc = false;
           stack.outputParam = null;
           stack.outputProperties = [];
+          stack.triggerID = null;
         }
       },
-      [`Property[key.name=/${textProps.join('|')}/] > :function[params.length=3] CallExpression > MemberExpression`](node) {
+      [`Property[key.name=/${textProps.join('|')}/] > :function[params.length=3] CallExpression > MemberExpression`]: function(node) {
+        const parent = node.parent;
+        console.log(parent.callee);
+        console.log(stack.triggerID);
+        // console.log(parent.arguments);
+
         if (node.object.name === stack.outputParam &&
           node.computed === false &&
           t.isIdentifier(node.property) &&
