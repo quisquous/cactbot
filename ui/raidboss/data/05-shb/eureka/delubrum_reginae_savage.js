@@ -20,6 +20,21 @@ const tankBusterOnParty = (data, matches) => {
   return data.party.inParty(data.target);
 };
 
+const getFacing = (combatant) => {
+  // Snap heading to closest card/intercard (aka PI/4).  N = PI, E = PI/2.
+  const facing = Math.round(combatant.Heading * 4 / Math.PI) / 4 * Math.PI;
+
+  if (facing === Math.PI)
+    return 0;
+  if (facing === Math.PI / 2)
+    return 1;
+  if (facing === -Math.PI)
+    return 2;
+  if (facing === -Math.PI / 2)
+    return 3;
+  return -1;
+};
+
 export default {
   zoneId: ZoneId.DelubrumReginaeSavage,
   timelineFile: 'delubrum_reginae_savage.txt',
@@ -594,6 +609,454 @@ export default {
           ja: 'ボスの正面へ',
           ko: '정면에 서기',
         },
+      },
+    },
+    {
+      id: 'DelubrumSav Avowed Temperature Collect',
+      // These come from Environment, Trinity Avowed, Avowed Avatar, Swirling Orb
+      // 89C Normal
+      // 89D Running Hot: +1
+      // 8DC Running Cold: -1
+      // 8E2 Running Cold: -2
+      // 8A4 Running Hot: +2
+      netRegex: NetRegexes.gainsEffect({ effectId: ['89C', '89D', '8DC', '8E2', '8A4'] }),
+      condition: Conditions.targetIsYou(),
+      run: (data, matches) => {
+        const temperature = {
+          '89C': 0,
+          '89D': 1,
+          '8DC': -1,
+          '8E2': -2,
+          '8A4': 2,
+        };
+        data.currentTemperature = temperature[matches.effectId];
+      },
+    },
+    {
+      id: 'DelubrumSav Avowed Brand Collect',
+      // These come from Environment, E0000000
+      // 8E5 Hot Brand: +1
+      // 8F3 Hot Brand: +2
+      // 8F4 Cold Brand: +1
+      // 8F8 Cold Brand: +2
+      netRegex: NetRegexes.gainsEffect({ effectId: ['8E5', '8F3', '8F4', '8F8'] }),
+      condition: Conditions.targetIsYou(),
+      run: (data, matches) => {
+        const brand = {
+          '8E5': 1,
+          '8F3': 2,
+          '8F4': -1,
+          '8F8': -2,
+        };
+        data.currentBrand = brand[matches.effectId];
+      },
+    },
+    {
+      id: 'DelubrumSav Avowed Hot And Cold Unwavering Apparations',
+      // The buffs come out before the spell cast
+      // Trinity Avowed and/or Avowed Avatar receive one of these buffs:
+      // 08F9: Hot Blade: +1
+      // 08FA: Hot Blade: +2
+      // 08FB: Cold Blade: -1
+      // 08FC: Cold Blade: -2
+      // Positional data in statusEffectsParams is often not up to date, use promise
+      //
+      // Trigger delayed until after Blade Of Entropy happens about ~100ms after
+      // to get left/right cleave info
+      netRegex: NetRegexes.gainsEffect({ effectId: ['08F9', '08FA', '08FB', '08FC'] }),
+      delaySeconds: 0.3,
+      suppressSeconds: 1,
+      promise: async (data, matches, output) => {
+        const trinityLocaleNames = {
+          en: 'Trinity Avowed',
+          de: 'Trinität Der Eingeschworenen',
+          fr: 'Trinité Féale',
+          ja: 'トリニティ・アヴァウ',
+        };
+
+        const avatarLocaleNames = {
+          en: 'Avowed Avatar',
+          de: 'Spaltteil der Eingeschworenen',
+          fr: 'Clone De La Trinité Féale',
+          ja: 'アヴァウドの分体',
+        };
+
+        // select the Trinity and Avatars
+        let combatantNameBoss = null;
+        let combatantNameAvatar = null;
+        combatantNameBoss = trinityLocaleNames[data.parserLang];
+        combatantNameAvatar = avatarLocaleNames[data.parserLang];
+
+        let combatantDataBoss = null;
+        const combatantDataAvatars = null;
+        if (combatantNameBoss) {
+          combatantDataBoss = await window.callOverlayHandler({
+            call: 'getCombatants',
+            names: [combatantNameBoss],
+          });
+        }
+        if (combatantNameAvatar) {
+          combatantDataBoss = await window.callOverlayHandler({
+            call: 'getCombatants',
+            names: [combatantNameAvatar],
+          });
+        }
+
+        // if we could not retrieve combatant data, the
+        // trigger will not work, so just resume promise here
+        if (!(combatantDataBoss !== null &&
+          combatantDataBoss.combatants &&
+          combatantDataBoss.combatants.length) ||
+          !(combatantDataAvatar !== null &&
+          combatantDataAvatar.combatants &&
+          combatantDataAvatar.combatants.length)) {
+          data.safeZone = null;
+          return;
+        }
+
+        // we need to filter for the Trinity Avowed with the lowest ID
+        // that one is always cleaving on one of the cardinals
+        // Trinity Avowed is always East (-87, -267)
+        const eastCombatant =
+          combatantDataBoss.combatants.sort((a, b) => a.ID - b.ID).pop();
+
+        // we need to filter for the three Avowed Avatars with the lowest IDs
+        // as they cast cleave at the different cardinals
+        // First Avowed Avatar is always North (-277, -97)
+        const northCombatant =
+          combatantDataAvatar.combatants.sort((a, b) => a.ID - b.ID).pop();
+
+        // Second Avowed Avatar is always West (-87, -277)
+        const westCombatant =
+          combatantDataAvatar.combatants.sort((a, b) => a.ID - b.ID).pop();
+
+        // Third Avowed Avatar is always South (-277, -77)
+        const southCombatant =
+          combatantDataAvatar.combatants.sort((a, b) => a.ID - b.ID).pop();
+
+        // Get facings
+        const eastCombatantFacing = getFacing(eastCombatant);
+        const northCombatantFacing = getFacing(northCombatant);
+        const westCombatantFacing = getFacing(westCombatant);
+        const southCombatantFacing = getFacing(southCombatant);
+
+        // Get Blade of Entropy data
+        const eastCombatantBlade = data.blades[eastCombatant.ID];
+        const northCombatantBlade = data.blades[northCombatant.ID];
+        const westCombatantBlade = data.blades[westCombatant.ID];
+        const southCombatantBlade = data.blades[southCombatant.ID];
+
+        const bladeValues = {
+          '5942': 1,
+          '5943': -1,
+          '5946': 1,
+          '5947': -1,
+          '5956': 2,
+          '5957': -2,
+          '595A': 2,
+          '595B': -2,
+        };
+
+        // 1 = Right
+        // 0 = Left
+        const bladeSides = {
+          '5942': 1,
+          '5943': 1,
+          '5946': 0,
+          '5947': 0,
+          '5956': 1,
+          '5957': 1,
+          '595A': 0,
+          '595B': 0,
+        };
+
+        // Calculate Zone Values
+        //     0   1
+        // 2   3   4   5
+        // 6   7   8   9
+        //    10   11
+        const zones = {
+          0: 0,
+          1: 0,
+          2: 0,
+          3: 0,
+          4: 0,
+          5: 0,
+          6: 0,
+          7: 0,
+          8: 0,
+          9: 0,
+          10: 0,
+          11: 0,
+        };
+
+        // East combatant zone contribution
+        if (eastCombatantFacing === 0 || eastCombatantFacing === 2) {
+          // East facing North/South must cleave these zones
+          zone[5] += bladeSides[eastCombatantBlade];
+          zone[9] += bladeSides[eastCombatantBlade];
+        } else if ((bladeSides[eastCombatantBlade] && eastCombatantFacing === 1) ||
+          (!bladeSides[eastCombatantBlade] && eastCombatantFacing === 3)) {
+          // East facing East cleaving right or facing West cleaving left
+          zone[6] += bladeSides[eastCombatantBlade];
+          zone[7] += bladeSides[eastCombatantBlade];
+          zone[8] += bladeSides[eastCombatantBlade];
+          zone[9] += bladeSides[eastCombatantBlade];
+          zone[10] += bladeSides[eastCombatantBlade];
+          zone[11] += bladeSides[eastCombatantBlade];
+        } else if ((!bladeSides[eastCombatantBlade] && eastCombatantFacing === 1) ||
+          (bladeSides[eastCombatantBlade] && eastCombatantFacing === 3)) {
+          // East facing East cleaving left or facing West cleaving right
+          zone[0] += bladeSides[eastCombatantBlade];
+          zone[1] += bladeSides[eastCombatantBlade];
+          zone[2] += bladeSides[eastCombatantBlade];
+          zone[3] += bladeSides[eastCombatantBlade];
+          zone[4] += bladeSides[eastCombatantBlade];
+          zone[5] += bladeSides[eastCombatantBlade];
+        }
+
+        // North combatant zone contribution
+        if (northCombatantFacing === 1 || northCombatantFacing === 3) {
+          // North facing East/West must cleave these zones
+          zone[0] += bladeSides[northCombatantBlade];
+          zone[1] += bladeSides[northCombatantBlade];
+        } else if ((bladeSides[northCombatantBlade] && northCombatantFacing === 0) ||
+          (!bladeSides[northCombatantBlade] && northCombatantFacing === 2)) {
+          // North facing North cleaving right or South cleaving left
+          zone[1] += bladeSides[northCombatantBlade];
+          zone[4] += bladeSides[northCombatantBlade];
+          zone[5] += bladeSides[northCombatantBlade];
+          zone[8] += bladeSides[northCombatantBlade];
+          zone[9] += bladeSides[northCombatantBlade];
+          zone[11] += bladeSides[northCombatantBlade];
+        } else if ((!bladeSides[northCombatantBlade] && northCombatantFacing === 0) ||
+          (bladeSides[northCombatantBlade] && northCombatantFacing === 2)) {
+          // North facing North cleaving left or South cleaving right
+          zone[0] += bladeSides[northCombatantBlade];
+          zone[2] += bladeSides[northCombatantBlade];
+          zone[3] += bladeSides[northCombatantBlade];
+          zone[6] += bladeSides[northCombatantBlade];
+          zone[7] += bladeSides[northCombatantBlade];
+          zone[10] += bladeSides[northCombatantBlade];
+        }
+
+        // West combatant zone contribution
+        if (westCombatantFacing === 0 || westCombatantFacing === 2) {
+          // West facing North/South must cleave these zones
+          zone[2] += bladeSides[westCombatantBlade];
+          zone[6] += bladeSides[westCombatantBlade];
+        } else if ((bladeSides[westCombatantBlade] && westCombatantFacing === 1) ||
+          (!bladeSides[westCombatantBlade] && westCombatantFacing === 3)) {
+          // West facing East cleaving right or West cleaving left
+          zone[6] += bladeSides[westCombatantBlade];
+          zone[7] += bladeSides[westCombatantBlade];
+          zone[8] += bladeSides[westCombatantBlade];
+          zone[9] += bladeSides[westCombatantBlade];
+          zone[10] += bladeSides[westCombatantBlade];
+          zone[11] += bladeSides[westCombatantBlade];
+        } else if ((!bladeSides[westCombatantBlade] && westCombatantFacing === 1) ||
+          (bladeSides[westCombatantBlade] && westCombatantFacing === 3)) {
+          // West facing East cleaving left or West cleaving right
+          zone[0] += bladeSides[westCombatantBlade];
+          zone[1] += bladeSides[westCombatantBlade];
+          zone[2] += bladeSides[westCombatantBlade];
+          zone[3] += bladeSides[westCombatantBlade];
+          zone[4] += bladeSides[westCombatantBlade];
+          zone[5] += bladeSides[westCombatantBlade];
+        }
+
+        // South combatant zone contribution
+        if (southCombatantFacing === 1 || southCombatantFacing === 3) {
+          // South facing East/West must cleave these zones
+          zone[10] += bladeSides[southCombatantBlade];
+          zone[11] += bladeSides[southCombatantBlade];
+        } else if ((bladeSides[southCombatantBlade] && southCombatantFacing === 0) ||
+          (!bladeSides[southCombatantBlade] && southCombatantFacing === 2)) {
+          // South facing North cleaving right or South cleaving left
+          zone[1] += bladeSides[southCombatantBlade];
+          zone[4] += bladeSides[southCombatantBlade];
+          zone[5] += bladeSides[southCombatantBlade];
+          zone[8] += bladeSides[southCombatantBlade];
+          zone[9] += bladeSides[southCombatantBlade];
+          zone[11] += bladeSides[southCombatantBlade];
+        } else if ((!bladeSides[southCombatantBlade] && southCombatantFacing === 0) ||
+          (bladeSides[southCombatantBlade] && southCombatantFacing === 2)) {
+          // South facing North cleaving left or South cleaving right
+          zone[0] += bladeSides[southCombatantBlade];
+          zone[2] += bladeSides[southCombatantBlade];
+          zone[3] += bladeSides[southCombatantBlade];
+          zone[6] += bladeSides[southCombatantBlade];
+          zone[7] += bladeSides[southCombatantBlade];
+          zone[10] += bladeSides[southCombatantBlade];
+        }
+
+        // Calculate location needed for current temperature and brand
+        let currentBrand = 0;
+        let currentTemperature = 0;
+
+        if (data.currentBrand)
+          currentBrand = data.currentBrand;
+        if (data.currentTemperature)
+          currentTemperature = data.currentTemperature;
+
+        const resultantTemperature = currentTemperature + currentBrand;
+
+        // Check for Safe Zone and find necessary adjacentZone
+        let safeZone = null;
+        let adjacentZones = null;
+        if (zone[3] === 0) {
+          adjacentZones = {
+            0: zone[0],
+            1: zone[4],
+            2: zone[7],
+            3: zone[2],
+          };
+          safeZone = output.northwest();
+        } else if (zone[4] === 0) {
+          adjacentZones = {
+            0: zone[1],
+            1: zone[5],
+            2: zone[8],
+            3: zone[3],
+          };
+          safeZone = output.northeast();
+        } else if (zone[7] === 0) {
+          adjacentZones = {
+            0: zone[3],
+            1: zone[8],
+            2: zone[10],
+            3: zone[6],
+          };
+          safeZone = output.southwest();
+        } else if (zone[8] === 0) {
+          adjacentZones = {
+            0: zone[4],
+            1: zone[9],
+            2: zone[11],
+            3: zone[7],
+          };
+          safeZone = output.southeast();
+        } else {
+          safeZone = null;
+          adjacentZones = null;
+        }
+
+        // Find which adjacent zone to go to
+        // There should only be one add cleaving in these adjacent zones
+        let adjacentZone = null;
+        if (resultantTemperature) {
+          if (abs(resultantTemperature) < 3) {
+            // Aim for 0, if possible, else aim for 1. if possible...
+            if (resultantTemperature + adjacentZones[0] === 0)
+              adjacentZone = output.north();
+            else if (resultantTemperature + adjacentZones[1] === 0)
+              adjacentZone = output.east();
+            else if (resultantTemperature + adjacentZones[2] === 0)
+              adjacentZone = output.south();
+            else if (resultantTemperature + adjacentZones[3] === 0)
+              adjacentZone = output.west();
+            else if (abs(resultantTemperature + adjacentZones[0]) === 1)
+              adjacentZone = output.north();
+            else if (abs(resultantTemperature + adjacentZones[1]) === 1)
+              adjacentZone = output.east();
+            else if (abs(resultantTemperature + adjacentZones[2]) === 1)
+              adjacentZone = output.south();
+            else if (abs(resultantTemperature + adjacentZones[3]) === 1)
+              adjacentZone = output.west();
+            else
+              adjacentZone = null;
+          } else {
+            // Aim for 1, if possible, else aim for 2, if possible...
+            if (abs(resultantTemperature + adjacentZones[0]) === 1)
+              adjacentZone = output.north();
+            else if (abs(resultantTemperature + adjacentZones[1]) === 1)
+              adjacentZone = output.east();
+            else if (abs(resultantTemperature + adjacentZones[2]) === 1)
+              adjacentZone = output.west();
+            else if (abs(resultantTemperature + adjacentZones[3]) === 1)
+              adjacentZone = output.south();
+            if (abs(resultantTemperature + adjacentZones[0]) === 2)
+              adjacentZone = output.north();
+            else if (abs(resultantTemperature + adjacentZones[1]) === 2)
+              adjacentZone = output.east();
+            else if (abs(resultantTemperature + adjacentZones[2]) === 2)
+              adjacentZone = output.west();
+            else if (abs(resultantTemperature + adjacentZones[3]) === 2)
+              adjacentZone = output.south();
+            else
+              adjacentZone = null;
+          }
+        } else {
+          adjacentZone = null;
+        }
+
+        if (safeZone && adjacentZone)
+          data.safeZone = output.getCleaved({ dir1: adjacentZone, dir2: safeZone });
+        else if (safeZone)
+          data.safeZone = output.safeSpot({ dir: safeZone });
+        else
+          data.safeZone = null;
+      },
+      infoText: function(data, _, output) {
+        return !data.safeZone ? output.unknown() : data.safeZone;
+      },
+      outputStrings: {
+        getCleaved: {
+          en: 'Get cleaved ${dir1} of ${dir2} Safe Spot',
+        },
+        safeSpot: {
+          en: 'Safe Spot: ${dir}',
+        },
+        unknown: {
+          en: '???',
+          de: '???',
+          fr: '???',
+          ja: '???',
+          cn: '???',
+          ko: '???',
+        },
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+      },
+    },
+    {
+      id: 'DelubrumSav Avowed Blade of Entropy Collect',
+      // Used to get whether left or right cleave is happening and temperature value
+      // Trinity Avowed or Avowed Avatar cast these pairs
+      // +1 Cleaves
+      // 5942 = right cleave, heat (1) paired with 5944
+      // 5943 = right cleave, cold (1) paired with 5945
+      // 5944 = right cleave, heat (1) paired with 5942
+      // 5945 = right cleave, cold (1) paired with 5943
+      //
+      // 5946 = left cleave, cold (1) paired with 5948
+      // 5947 = left cleave, heat (1) paired with 5949
+      // 5948 = left cleave, cold (1) paired with 5946
+      // 5949 = left cleave, heat (1) paired with 5947
+      //
+      // +2 Cleaves
+      // 5956 = right cleave, heat (2) paired with 5958
+      // 5957 = right cleave, cold (2) paired with 5959
+      // 5958 = right cleave, heat (2) paired with 5956
+      // 5959 = right cleave, cold (2) paired with 5957
+      //
+      // 595A = left cleave heat (2) paired with 595C
+      // 595B = left cleave cold (2) paired with 595D
+      // 595C = left cleave heat (2) paired with 595A
+      // 595D = left cleave cold (2) paired with 595B
+      netRegex: NetRegexes.startsUsing({ source: ['Trinity Avowed', 'Avowed Avatar'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Trinität Der Eingeschworenen', 'Spaltteil der Eingeschworenen'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Trinité Féale', 'Clone De La Trinité Féale'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['トリニティ・アヴァウド', 'アヴァウドの分体'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
+      run: (data, matches) => {
+        data.blades = data.blades || {};
+        data.blades[matches.targetId.toUpperCase()] = matches.id;
       },
     },
     {
