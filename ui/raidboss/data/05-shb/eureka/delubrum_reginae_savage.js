@@ -696,7 +696,7 @@ export default {
           });
         }
         if (combatantNameAvatar) {
-          combatantDataBoss = await window.callOverlayHandler({
+          combatantDataAvatars = await window.callOverlayHandler({
             call: 'getCombatants',
             names: [combatantNameAvatar],
           });
@@ -707,9 +707,9 @@ export default {
         if (!(combatantDataBoss !== null &&
           combatantDataBoss.combatants &&
           combatantDataBoss.combatants.length) ||
-          !(combatantDataAvatar !== null &&
-          combatantDataAvatar.combatants &&
-          combatantDataAvatar.combatants.length)) {
+          !(combatantDataAvatars !== null &&
+          combatantDataAvatars.combatants &&
+          combatantDataAvatars.combatants.length)) {
           data.safeZone = null;
           return;
         }
@@ -724,15 +724,15 @@ export default {
         // as they cast cleave at the different cardinals
         // First Avowed Avatar is always North (-277, -97)
         const northCombatant =
-          combatantDataAvatar.combatants.sort((a, b) => a.ID - b.ID).pop();
+          combatantDataAvatars.combatants.sort((a, b) => a.ID - b.ID).pop();
 
         // Second Avowed Avatar is always West (-87, -277)
         const westCombatant =
-          combatantDataAvatar.combatants.sort((a, b) => a.ID - b.ID).pop();
+          combatantDataAvatars.combatants.sort((a, b) => a.ID - b.ID).pop();
 
         // Third Avowed Avatar is always South (-277, -77)
         const southCombatant =
-          combatantDataAvatar.combatants.sort((a, b) => a.ID - b.ID).pop();
+          combatantDataAvatars.combatants.sort((a, b) => a.ID - b.ID).pop();
 
         // Get facings
         const eastCombatantFacing = getFacing(eastCombatant);
