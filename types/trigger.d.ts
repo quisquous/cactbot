@@ -1,18 +1,21 @@
-import { Lang, NotEnLang } from './global';
+import { Lang } from './global';
 
 export type Matches = {
   target?: string;
   [s: string]: string;
 }
 
-export type FullLocaleText = Record<Lang, string>;
 
-export type LocaleText = {
-  en: string;
-  [s in NotEnLang]?: string;
+type TranslatableText = {
+  [s in Lang]: string;
 };
 
-export type TranslatableObject<T> = {
-  en: T;
-  [s in NotEnLang]?: T;
+
+type TranslatedText = {
+  en: string;
+  de: string;
+  fr: string;
+  ja: string;
+  cn: string;
+  ko: string;
 };

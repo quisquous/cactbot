@@ -1,4 +1,3 @@
-import { callOverlayHandler } from '../../resources/overlay_plugin_api';
 import Regexes from '../../resources/regexes';
 import UserConfig from '../../resources/user_config';
 import ZoneInfo from '../../resources/zone_info';

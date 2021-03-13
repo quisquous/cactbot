@@ -1,5 +1,3 @@
-import { addOverlayListener } from './overlay_plugin_api';
-
 import Util from './util';
 
 // Will redirect calls from `onPlayerChangedEvent` to |func| overriding with
@@ -32,11 +30,11 @@ export const addPlayerChangedOverrideListener = function(playerName, func) {
     func(e);
   };
 
-  addOverlayListener('onPlayerChangedEvent', onPlayerChanged);
+  window.addOverlayListener('onPlayerChangedEvent', onPlayerChanged);
   if (!playerName)
     return;
 
-  addOverlayListener('PartyChanged', (e) => {
+  window.addOverlayListener('PartyChanged', (e) => {
     const player = e.party.find((p) => p.name === playerName);
     if (!player)
       return;
@@ -216,7 +214,7 @@ export const addRemotePlayerSelectUI = function(lang) {
     for (const name of allianceNames)
       addRadio(name, name, 'player-radio-alliance');
   };
-  addOverlayListener('PartyChanged', (e) => {
+  window.addOverlayListener('PartyChanged', (e) => {
     buildList(e.party);
   });
   buildList([]);

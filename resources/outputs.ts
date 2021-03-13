@@ -1,8 +1,8 @@
-import { FullLocaleText } from '../types/trigger';
+import { TranslatableText } from '../types/trigger';
 
 // Output strings for now require a field for every language, so this is a
 // helper function to generate one for literal numbers.
-const numberToOutputString = function(n: number): FullLocaleText {
+const numberToOutputString = function(n: number): TranslatableText {
   const str = n.toString();
   return {
     en: str,

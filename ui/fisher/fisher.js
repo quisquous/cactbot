@@ -1,5 +1,3 @@
-import { addOverlayListener } from '../../resources/overlay_plugin_api';
-
 import FisherUI from './fisher-ui';
 import SeaBase from './seabase';
 import UserConfig from '../../resources/user_config';

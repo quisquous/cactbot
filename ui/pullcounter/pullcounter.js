@@ -1,5 +1,3 @@
-import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
-
 import { LocaleRegex } from '../../resources/translations';
 import Regexes from '../../resources/regexes';
 import UserConfig from '../../resources/user_config';
