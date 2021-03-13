@@ -132,6 +132,9 @@ export default {
     {
       id: 'Delubrum Seeker Iron Splitter',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AA3' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AA3' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AA3' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AA3' }),
       preRun: (data) => delete data.ironSplitter,
       promise: async (data, matches) => {
         const seekerData = await window.callOverlayHandler({
@@ -177,9 +180,11 @@ export default {
       outputStrings: {
         goBlue: {
           en: 'Blue Stone',
+          de: 'Blauer Stein',
         },
         goWhite: {
           en: 'White Sand',
+          de: 'Weißer Sand',
         },
       },
     },
