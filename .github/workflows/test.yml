@@ -43,6 +43,10 @@ jobs:
         run: |
           npm ci
 
+      - name: TypeScript checking
+        run: |
+          npm run tsc:no-emit
+
       - name: npm test
         run: |
           npm test
