@@ -1,9 +1,15 @@
 import { Lang } from './global';
 
+export interface BaseRegExp<T> extends RegExp {
+  groups?: {
+    [s in T]?: string;
+  };
+}
+
 export type Matches<T> =
-  T extends (params?: infer R) => RegExp ?
-  { [s in Exclude<keyof R, 'capture'>]: string } :
-  { [s: string]: string };
+  T extends BaseRegExp ? T['groups'] :
+  T extends RegExp ? { [s: string]: string } :
+  unknown;
 
 
 type TranslatableText = {
