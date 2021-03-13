@@ -88,6 +88,8 @@ const processEvent = <T extends EventType>(msg: Parameters<EventMap[T]>[0]): voi
   subs?.forEach((sub) => sub(msg));
 };
 
+export const dispatchOverlayEvent = processEvent;
+
 export const addOverlayListener: IAddOverlayListener = (event, cb): void => {
   if (overrides.addOverlayListenerOverride)
     return overrides.addOverlayListenerOverride(event, cb);
@@ -256,6 +258,4 @@ if (typeof window !== 'undefined') {
 
     waitForApi();
   }
-
-  window.dispatchOverlayEvent = processEvent;
 }

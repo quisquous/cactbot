@@ -6,13 +6,6 @@
 // about the import, and thus throws ReferenceErrors.
 // Used by downstream eval
 import * as OverlayPluginApi from './overlay_plugin_api';
-const { addOverlayListener, removeOverlayListener, callOverlayHandler } = OverlayPluginApi;
-if (typeof window !== 'undefined') {
-  // for backward compatiability
-  window.addOverlayListener = addOverlayListener;
-  window.removeOverlayListener = removeOverlayListener;
-  window.callOverlayHandler = callOverlayHandler;
-}
 import _Conditions from './conditions';
 const Conditions = _Conditions;
 import _ContentType from './content_type';
@@ -31,6 +24,31 @@ import _ZoneId from './zone_id';
 const ZoneId = _ZoneId;
 import _ZoneInfo from './zone_info';
 const ZoneInfo = _ZoneInfo;
+
+const registerWindowGlobal = () => {
+  const {
+    addOverlayListener,
+    removeOverlayListener,
+    callOverlayHandler,
+    dispatchOverlayEvent,
+  } = OverlayPluginApi;
+  if (typeof window !== 'undefined') {
+    // for backward compatiability
+    window.addOverlayListener = addOverlayListener;
+    window.removeOverlayListener = removeOverlayListener;
+    window.callOverlayHandler = callOverlayHandler;
+    window.dispatchOverlayEvent = dispatchOverlayEvent;
+  }
+};
+
+const unregisterWindowGlobal = () => {
+  if (typeof window !== 'undefined') {
+    window.addOverlayListener = undefined;
+    window.removeOverlayListener = undefined;
+    window.callOverlayHandler = undefined;
+    window.dispatchOverlayEvent = undefined;
+  }
+};
 
 class UserConfig {
   constructor() {
@@ -232,6 +250,13 @@ class UserConfig {
             printUserFile(`local user file: ${basePath}${jsFile}`);
             const Options = options;
 
+            // register OverlayPlugin APIs to global Window object,
+            // This move is for backwards compatibility with user files;
+            // Cactbot's own files should not use Window to get these APIs,
+            // but should read their exports directly from the
+            // `resources/overlay_plugin_api.ts` file.
+            registerWindowGlobal();
+
             // This is the one eval cactbot should ever need, which is for handling user files.
             // Because user files can be located anywhere on disk and there's backwards compat
             // issues, it's unlikely that these will be able to be anything but eval forever.
@@ -239,6 +264,10 @@ class UserConfig {
             /* eslint-disable no-eval */
             eval(localFiles[jsFile]);
             /* eslint-enable no-eval */
+
+            // Unassign Window to ensure that these variables
+            // are not read by the Cactbot built-in files.
+            unregisterWindowGlobal();
 
             for (const field of warnOnVariableResetMap[overlayName]) {
               if (variableTracker[field] && variableTracker[field] !== options[field]) {
