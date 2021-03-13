@@ -383,6 +383,10 @@
   background-color: rgb(250, 0, 0);
 }
 
+#mch-stacks-wildfire > div.fix {
+  background-color: rgb(190, 80, 70);
+}
+
 #blm-stacks-heart > div.active {
   background-color: rgb(174, 227, 235);
 }
