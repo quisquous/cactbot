@@ -688,7 +688,7 @@ export default {
         combatantNameAvatar = avatarLocaleNames[data.parserLang];
 
         let combatantDataBoss = null;
-        const combatantDataAvatars = null;
+        let combatantDataAvatars = null;
         if (combatantNameBoss) {
           combatantDataBoss = await window.callOverlayHandler({
             call: 'getCombatants',
@@ -716,7 +716,7 @@ export default {
 
         // we need to filter for the Trinity Avowed with the lowest ID
         // that one is always cleaving on one of the cardinals
-        // Trinity Avowed is always East (-87, -267)
+        // Trinity Avowed is always East (-267, -87)
         const eastCombatant =
           combatantDataBoss.combatants.sort((a, b) => a.ID - b.ID).pop();
 
@@ -726,7 +726,7 @@ export default {
         const northCombatant =
           combatantDataAvatars.combatants.sort((a, b) => a.ID - b.ID).pop();
 
-        // Second Avowed Avatar is always West (-87, -277)
+        // Second Avowed Avatar is always West (-277, -87)
         const westCombatant =
           combatantDataAvatars.combatants.sort((a, b) => a.ID - b.ID).pop();
 
