@@ -41,7 +41,7 @@ jobs:
 
       - name: TypeScript checking
         run: |
-          npm run tsc:no-emit
+          npm run tsc-no-emit
 
       - name: npm run lint
         run: |
