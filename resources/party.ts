@@ -1,4 +1,4 @@
-import { Party } from '../types/global';
+import { Party } from '../types/event';
 import { Job, Role } from '../types/job.js';
 import Util from './util';
 

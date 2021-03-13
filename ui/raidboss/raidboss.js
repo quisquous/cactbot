@@ -1,3 +1,5 @@
+import { addOverlayListener } from '../../resources/overlay_plugin_api';
+
 import './raidboss_config';
 import '../../resources/timerbar';
 

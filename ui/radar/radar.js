@@ -1,3 +1,5 @@
+import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
+
 import gMonster from '../../resources/hunt';
 import NetRegexes from '../../resources/netregexes';
 import UserConfig from '../../resources/user_config';
