@@ -469,25 +469,29 @@ class Bars {
   onMobGainsEffectFromYou(effectIds, callback) {
     if (Array.isArray(effectIds))
       effectIds.forEach((id) => this.mobGainEffectFromYouFuncMap[id] = callback);
-    this.mobGainEffectFromYouFuncMap[effectIds] = callback;
+    else
+      this.mobGainEffectFromYouFuncMap[effectIds] = callback;
   }
 
   onMobLosesEffectFromYou(effectIds, callback) {
     if (Array.isArray(effectIds))
       effectIds.forEach((id) => this.mobLoseEffectFromYouFuncMap[id] = callback);
-    this.mobLoseEffectFromYouFuncMap[effectIds] = callback;
+    else
+      this.mobLoseEffectFromYouFuncMap[effectIds] = callback;
   }
 
   onYouGainEffect(effectIds, callback) {
     if (Array.isArray(effectIds))
       effectIds.forEach((id) => this.gainEffectFuncMap[id] = callback);
-    this.gainEffectFuncMap[effectIds] = callback;
+    else
+      this.gainEffectFuncMap[effectIds] = callback;
   }
 
   onYouLoseEffect(effectIds, callback) {
     if (Array.isArray(effectIds))
       effectIds.forEach((id) => this.loseEffectFuncMap[id] = callback);
-    this.loseEffectFuncMap[effectIds] = callback;
+    else
+      this.loseEffectFuncMap[effectIds] = callback;
   }
 
   onJobDetailUpdate(callback) {
@@ -501,7 +505,8 @@ class Bars {
   onUseAbility(abilityIds, callback) {
     if (Array.isArray(abilityIds))
       abilityIds.forEach((id) => this.abilityFuncMap[id] = callback);
-    this.abilityFuncMap[abilityIds] = callback;
+    else
+      this.abilityFuncMap[abilityIds] = callback;
   }
 
   _onComboChange(skill) {

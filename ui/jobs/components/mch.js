@@ -82,7 +82,7 @@ export function setup(bars) {
 
   let wildFireCounts = 0;
   let wildFireActive = false;
-  const refreshWildFireGuage = () => {
+  const refreshWildFireGauge = () => {
     for (let i = 0; i < 6; ++i) {
       wildFireStacks[i].classList.remove('fix', 'active');
       if (wildFireCounts > i) {
@@ -96,11 +96,11 @@ export function setup(bars) {
   bars.onMobGainsEffectFromYou(EffectId.Wildfire, (id, e) => {
     wildFireActive = true;
     wildFireCounts = e.count;
-    refreshWildFireGuage();
+    refreshWildFireGauge();
   });
   bars.onMobLosesEffectFromYou(EffectId.Wildfire, () => {
     wildFireActive = false;
-    refreshWildFireGuage();
+    refreshWildFireGauge();
   });
   const wildFireBox = bars.addProcBox({
     id: 'mch-procs-wildfire',
@@ -120,7 +120,7 @@ export function setup(bars) {
     setTimeout(() => {
       stacksContainer.classList.add('hide');
       wildFireCounts = 0;
-    }, 12500);
+    }, 15000);
   });
 
   bars.onStatChange('MCH', () => {
