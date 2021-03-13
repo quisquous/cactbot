@@ -97,6 +97,7 @@ export function setup(bars) {
     wildFireActive = true;
     wildFireCounts = e.count;
     refreshWildFireGauge();
+    stacksContainer.classList.remove('hide');
   });
   bars.onMobLosesEffectFromYou(EffectId.Wildfire, () => {
     wildFireActive = false;
@@ -110,7 +111,6 @@ export function setup(bars) {
     wildFireBox.duration = 0;
     wildFireBox.duration = 10 + 0.9; // animation delay
     wildFireBox.threshold = 1000;
-    stacksContainer.classList.remove('hide');
     wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire.active');
     setTimeout(() => {
       wildFireBox.duration = 110 - 0.9;
