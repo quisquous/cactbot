@@ -606,9 +606,18 @@ hideall "--sync--"
 12101.6 "Lingering Miasma" #sync /:Bozjan Phantom:57B7:/
 
 # Add phase
+# TODO: unclear if these adds are on a timer (~3 logs were +/- 1 second) or if
+# they just pop when previous set is done.  Include here for clarity, but
+# don't bother syncing so that the enrage is correct, regardless.
 12105.1 "Summon Adds" sync /:Bozjan Phantom:57C0:/
+12105.8 "1x Misty Wraith"
+12105.8 "2x Bloody Wraith"
 12106.1 "--untargetable--"
-12155.2 "Malediction of Ruin Enrage" sync /:Bozjan Phantom:5B37:/
+12115.8 "2x Misty Wraith"
+12115.8 "2x Bloody Wraith"
+12128.0 "3x Misty Wraith"
+12128.0 "3x Bloody Wraith"
+12155.2 "Malediction of Ruin Enrage" sync /:Bozjan Phantom:57C1:/
 12157.2 "--targetable--"
 
 # Start of loop block
