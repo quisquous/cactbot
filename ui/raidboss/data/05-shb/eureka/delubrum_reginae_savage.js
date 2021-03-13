@@ -472,9 +472,7 @@ export default {
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Remove yellow; apply purple (spellforge)',
-          de: 'Zauberschmied auf physische DDs',
-          ja: '物理DPSはスペルフォージ',
+          en: 'Remove yellow; apply purple',
         },
       },
     },
@@ -488,9 +486,7 @@ export default {
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Remove purple; apply yellow (steelsting)',
-          de: 'Stahlstachels auf magische DDs',
-          ja: '魔法DPSはスチールスティング',
+          en: 'Remove purple; apply yellow',
         },
       },
     },
