@@ -25,6 +25,18 @@ export default {
   timelineFile: 'delubrum_reginae_savage.txt',
   timelineTriggers: [
     {
+      id: 'DelubrumSav Seeker Baleful Comet',
+      regex: /Baleful Comet 1/,
+      beforeSeconds: 8,
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          // Comets have impact damage when dropping, so warn to avoid this.
+          en: 'Get in for comets',
+        },
+      },
+    },
+    {
       id: 'DelubrumSav Avowed Glory Of Bozja',
       regex: /Glory Of Bozja/,
       // Cast itself is 5.5 seconds, add more warning
@@ -313,6 +325,60 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Dahu Hot Charge',
+      netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '5773', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: '5773', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Dahu', id: '5773', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ダウー', id: '5773', capture: false }),
+      suppressSeconds: 10,
+      alertText: (data, _, output) => {
+        if (data.seenHotCharge)
+          return output.oneOrTwoCharges();
+        return output.followSecondCharge();
+      },
+      run: (data) => data.seenHotCharge = true,
+      outputStrings: {
+        oneOrTwoCharges: {
+          en: 'Follow One or Two Charges',
+        },
+        followSecondCharge: {
+          en: 'Follow Second Charge',
+          de: 'Folge dem 2. Ansturm',
+          fr: 'Suivez la deuxième charge',
+          ja: '2回目の突進に追う',
+          cn: '紧跟第二次冲锋',
+          ko: '두번째 돌진 따라가기',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Dahu Feral Howl',
+      netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '5767', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: '5767', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Dahu', id: '5767', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ダウー', id: '5767', capture: false }),
+      alertText: (data, _, output) => output.knockback(),
+      outputStrings: {
+        knockback: {
+          en: 'Knockback to safe spot',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Dahu Hysteric Assault',
+      netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '5778', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: '5778', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Dahu', id: '5778', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ダウー', id: '5778', capture: false }),
+      alertText: (data, _, output) => output.knockback(),
+      outputStrings: {
+        knockback: {
+          // TODO: find headmarkers and call flares separately.
+          en: 'Knockback (flares away)',
+        },
+      },
+    },
+    {
       id: 'DelubrumSav Guard Blood And Bone Warrior and Knight',
       // 5831 from Queen's Warrior
       // 5821 from Queen's Knight
@@ -406,7 +472,7 @@ export default {
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Spellforge on physical dps',
+          en: 'Remove yellow; apply purple (spellforge)',
           de: 'Zauberschmied auf physische DDs',
           ja: '物理DPSはスペルフォージ',
         },
@@ -422,9 +488,35 @@ export default {
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Steelsting on magical dps',
+          en: 'Remove purple; apply yellow (steelsting)',
           de: 'Stahlstachels auf magische DDs',
           ja: '魔法DPSはスチールスティング',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Guard Boost',
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: '582D', capture: false }),
+      netRegexDe: NetRegexes.tether({ source: 'Kriegerin Der Königin', id: '582D', capture: false }),
+      netRegexFr: NetRegexes.tether({ source: 'Guerrière De La Reine', id: '582D', capture: false }),
+      netRegexJa: NetRegexes.tether({ source: 'クイーンズ・ウォリアー', id: '582D', capture: false }),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dispel Warrior Boost',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Guard Higher Power',
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Gunner', id: '5853', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schütze Der Königin', id: '5853', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fusilier De La Reine', id: '5853', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ガンナー', id: '5853', capture: false }),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dispel Gun Turrets',
         },
       },
     },
