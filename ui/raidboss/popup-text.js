@@ -1,5 +1,3 @@
-import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
-
 import AutoplayHelper from './autoplay_helper';
 import BrowserTTSEngine from './browser_tts_engine';
 import { addPlayerChangedOverrideListener } from '../../resources/player_override';
@@ -241,7 +239,7 @@ export class PopupText {
     } else {
       this.ttsSay = function(text) {
         const cmd = { 'call': 'cactbotSay', 'text': text };
-        callOverlayHandler(cmd);
+        window.callOverlayHandler(cmd);
       };
     }
 
