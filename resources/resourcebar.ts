@@ -1,96 +1,123 @@
-class ResourceBar extends HTMLElement {
-  static get observedAttributes() {
+export class ResourceBar extends HTMLElement {
+  foregroundElement: HTMLDivElement;
+  backgroundElement: HTMLDivElement;
+  extraUnderElement: HTMLDivElement;
+  extraOverElement: HTMLDivElement;
+  leftTextElement: HTMLDivElement;
+  centerTextElement: HTMLDivElement;
+  rightTextElement: HTMLDivElement;
+  kBackgroundOpacity: number;
+  kBorderSize: number;
+  kTextLeftRightEdgePadding: number;
+  kTextTopBottomEdgePadding: number;
+  _value: number;
+  _maxValue: number;
+  _width: number;
+  _height: number;
+  _bg: string;
+  _fg: string;
+  _extraColor: string;
+  _extraValue: number;
+  _scale: number;
+  _towardRight: boolean;
+  _styleFill: boolean;
+  _leftText: string;
+  _centerText: string;
+  _rightText: string;
+  _connected: boolean;
+
+  static get observedAttributes(): string[] {
     return ['value', 'maxvalue', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'toward', 'extravalue', 'extracolor'];
   }
 
   // All visual dimensions are scaled by this.
-  set scale(s) {
-    this.setAttribute('scale', s);
+  set scale(s: string | null) {
+    this.setAttribute('scale', s ?? '');
   }
-  get scale() {
+  get scale(): string | null {
     return this.getAttribute('scale');
   }
 
   // Background color.
-  set bg(c) {
-    this.setAttribute('bg', c);
+  set bg(c: string | null) {
+    this.setAttribute('bg', c ?? '');
   }
-  get bg() {
+  get bg(): string | null {
     return this.getAttribute('bg');
   }
 
-  set extraColor(c) {
-    this.setAttribute('extraColor', c);
+  set extraColor(c: string | null) {
+    this.setAttribute('extraColor', c ?? '');
   }
-  get extraColor() {
+  get extraColor(): string | null {
     return this.getAttribute('extraColor');
   }
 
   // Foreground color.
-  set fg(c) {
-    this.setAttribute('fg', c);
+  set fg(c: string | null) {
+    this.setAttribute('fg', c ?? '');
   }
-  get fg() {
+  get fg(): string | null {
     return this.getAttribute('fg');
   }
 
   // The width of the bar, in pixels (before |scale|).
-  set width(w) {
-    this.setAttribute('width', w);
+  set width(w: string | null) {
+    this.setAttribute('width', w ?? '');
   }
-  get width() {
+  get width(): string | null {
     return this.getAttribute('width');
   }
 
   // The height of the bar, in pixels (before |scale|).
-  set height(w) {
-    this.setAttribute('height', w);
+  set height(w: string | null) {
+    this.setAttribute('height', w ?? '');
   }
-  get height() {
+  get height(): string | null {
     return this.getAttribute('height');
   }
 
   // A value between 0 and |maxvalue|, indicating the amount of progress.
-  set value(s) {
-    this.setAttribute('value', s);
+  set value(s: string | null) {
+    this.setAttribute('value', s ?? '');
   }
-  get value() {
+  get value(): string | null {
     return this.getAttribute('value');
   }
 
   // A value between 0 and |maxvalue|, indicating the amount of "extra"
   // resource that exists.  Usually used for shields on a health bar.
-  set extraValue(s) {
-    this.setAttribute('extravalue', s);
+  set extraValue(s: string | null) {
+    this.setAttribute('extravalue', s ?? '');
   }
-  get extraValue() {
+  get extraValue(): string | null {
     return this.getAttribute('extravalue');
   }
 
   // The maximum value where when reached the progress bar will show 100%.
-  set maxvalue(s) {
-    this.setAttribute('maxvalue', s);
+  set maxvalue(s: string | null) {
+    this.setAttribute('maxvalue', s ?? '');
   }
-  get maxvalue() {
+  get maxvalue(): string | null {
     return this.getAttribute('maxvalue');
   }
 
   // If "right" then fills left-to-right (the default). If "left" then
   // fills right-to-left.
-  set toward(t) {
-    this.setAttribute('toward', t);
+  set toward(t: string | null) {
+    this.setAttribute('toward', t ?? '');
   }
-  get toward() {
+  get toward(): string | null {
     return this.getAttribute('toward');
   }
 
   // If "fill" then the progress goes empty-to-full, if "empty" then the
   // progress bar starts full and goes to empty.
-  set style(s) {
-    this.setAttribute('style', s);
+  set style(s: 'empty' | 'full' | null) {
+    this.setAttribute('style', s ?? 'empty');
   }
-  get style() {
-    return this.getAttribute('style');
+  get style(): 'empty' | 'full' | null {
+    return this.getAttribute('style') as 'empty' | 'full' | null;
   }
 
   // Chooses what should be shown in the text field in each area of
@@ -100,22 +127,22 @@ class ResourceBar extends HTMLElement {
   // "maxvalue" - shows the current and maximum raw values.
   // "percent" - shows the percentage.
   // anything else - the given text is shown literally.
-  set lefttext(p) {
-    this.setAttribute('lefttext', p);
+  set lefttext(p: string | null) {
+    this.setAttribute('lefttext', p ?? '');
   }
-  get lefttext() {
+  get lefttext(): string | null {
     return this.getAttribute('lefttext');
   }
-  set righttext(p) {
-    this.setAttribute('righttext', p);
+  set righttext(p: string | null) {
+    this.setAttribute('righttext', p ?? '');
   }
-  get righttext() {
+  get righttext(): string | null {
     return this.getAttribute('righttext');
   }
-  set centertext(p) {
-    this.setAttribute('centertext', p);
+  set centertext(p: string | null) {
+    this.setAttribute('centertext', p ?? '');
   }
-  get centertext() {
+  get centertext(): string | null {
     return this.getAttribute('centertext');
   }
 
@@ -124,23 +151,72 @@ class ResourceBar extends HTMLElement {
     super();
     const root = this.attachShadow({ mode: 'open' });
     this.init(root);
+
+    this._connected = false;
+
+    this.foregroundElement = this.shadowRoot?.getElementById('fg') as HTMLDivElement;
+    this.backgroundElement = this.shadowRoot?.getElementById('bg') as HTMLDivElement;
+    this.extraUnderElement = this.shadowRoot?.getElementById('extra-under') as HTMLDivElement;
+    this.extraOverElement = this.shadowRoot?.getElementById('extra-over') as HTMLDivElement;
+    this.leftTextElement = this.shadowRoot?.getElementById('lefttext') as HTMLDivElement;
+    this.centerTextElement = this.shadowRoot?.getElementById('centertext') as HTMLDivElement;
+    this.rightTextElement = this.shadowRoot?.getElementById('righttext') as HTMLDivElement;
+    // Constants.
+    this.kBackgroundOpacity = 0.8;
+    this.kBorderSize = 1;
+    this.kTextLeftRightEdgePadding = this.kBorderSize * 3;
+    this.kTextTopBottomEdgePadding = this.kBorderSize * 2;
+
+    // Default values.
+    this._value = 0;
+    this._maxValue = 1;
+    this._width = 200;
+    this._height = 20;
+    this._bg = 'rgba(0, 0, 0, 0.7)';
+    this._fg = 'green';
+    this._extraColor = 'yellow';
+    this._extraValue = 0;
+    this._scale = 1;
+    this._towardRight = true;
+    this._styleFill = true;
+    this._leftText = '';
+    this._centerText = '';
+    this._rightText = '';
+
+    if (this.value !== null) this._value = Math.max(parseFloat(this.value), 0);
+    if (this.maxvalue !== null) this._maxValue = Math.max(parseFloat(this.maxvalue), 0);
+    if (this.extraValue !== null) this._extraValue = Math.max(0, parseInt(this.extraValue));
+    if (this.extraColor !== null) this._extraColor = this.extraColor;
+    if (this.width !== null) this._width = Math.max(parseInt(this.width), 1);
+    if (this.height !== null) this._height = Math.max(parseInt(this.height), 1);
+    if (this.bg !== null) this._bg = this.bg;
+    if (this.fg !== null) this._fg = this.fg;
+    if (this.scale !== null) this._scale = Math.max(parseFloat(this.scale), 0.01);
+    if (this.toward !== null) this._towardRight = this.toward !== 'left';
+    if (this.style !== null) this._styleFill = this.style !== 'empty';
+    if (this.lefttext !== null) this._leftText = this.lefttext;
+    if (this.centertext !== null) this._centerText = this.centertext;
+    if (this.righttext !== null) this._rightText = this.righttext;
   }
 
-  // These would be used by document.registerElement, which is deprecated but
-  // ACT uses an old CEF which has this instead of the newer APIs.
-  createdCallback() {
-    const root = this.createShadowRoot();
-    this.init(root);
-  }
-  // Convert from the deprecated API names to the modern API names.
-  attachedCallback() {
-    this.connectedCallback();
-  }
-  detachedCallback() {
-    this.disconnectedCallback();
-  }
+  // // These would be used by document.registerElement, which is deprecated but
+  // // ACT uses an old CEF which has this instead of the newer APIs.
+  // createdCallback(): void {
+  //   const root = this.createShadowRoot();
+  //   this.init(root);
+  // }
+  // createShadowRoot(): void {
+  //   throw new Error("Method not implemented.");
+  // }
+  // // Convert from the deprecated API names to the modern API names.
+  // attachedCallback(): void {
+  //   this.connectedCallback();
+  // }
+  // detachedCallback(): void {
+  //   this.disconnectedCallback();
+  // }
 
-  init(root) {
+  init(root: ShadowRoot): void {
     root.innerHTML = `
       <style>
         #bg {
@@ -181,64 +257,18 @@ class ResourceBar extends HTMLElement {
     `;
   }
 
-  connectedCallback() {
-    this.foregroundElement = this.shadowRoot.getElementById('fg');
-    this.backgroundElement = this.shadowRoot.getElementById('bg');
-    this.extraUnderElement = this.shadowRoot.getElementById('extra-under');
-    this.extraOverElement = this.shadowRoot.getElementById('extra-over');
-    this.backgroundElement = this.shadowRoot.getElementById('bg');
-    this.leftTextElement = this.shadowRoot.getElementById('lefttext');
-    this.centerTextElement = this.shadowRoot.getElementById('centertext');
-    this.rightTextElement = this.shadowRoot.getElementById('righttext');
-
-    // Constants.
-    this.kBackgroundOpacity = 0.8;
-    this.kBorderSize = 1;
-    this.kTextLeftRightEdgePadding = this.kBorderSize * 3;
-    this.kTextTopBottomEdgePadding = this.kBorderSize * 2;
-
-    // Default values.
-    this._value = 0;
-    this._maxValue = 1;
-    this._width = 200;
-    this._height = 20;
-    this._bg = 'rgba(0, 0, 0, 0.7)';
-    this._fg = 'green';
-    this._extraColor = 'yellow';
-    this._extraValue = 0;
-    this._scale = 1;
-    this._towardRight = true;
-    this._styleFill = true;
-    this._leftText = '';
-    this._centerText = '';
-    this._rightText = '';
-
-    if (this.value !== null) this._value = Math.max(parseFloat(this.value), 0);
-    if (this.maxvalue !== null) this._maxValue = Math.max(parseFloat(this.maxvalue), 0);
-    if (this.extraValue !== null) this._extraValue = Math.max(0, this.extraValue);
-    if (this.extraColor !== null) this._extraColor = this.extraColor;
-    if (this.width !== null) this._width = Math.max(parseInt(this.width), 1);
-    if (this.height !== null) this._height = Math.max(parseInt(this.height), 1);
-    if (this.bg !== null) this._bg = this.bg;
-    if (this.fg !== null) this._fg = this.fg;
-    if (this.scale !== null) this._scale = Math.max(parseFloat(this.scale), 0.01);
-    if (this.toward !== null) this._towardRight = this.toward !== 'left';
-    if (this.style !== null) this._styleFill = this.style !== 'empty';
-    if (this.lefttext !== null) this._leftText = this.lefttext;
-    if (this.centertext !== null) this._centerText = this.centertext;
-    if (this.righttext !== null) this._rightText = this.righttext;
-
+  connectedCallback(): void {
     this._connected = true;
     this.layout();
     this.updateText();
     this.draw();
   }
 
-  disconnectedCallback() {
+  disconnectedCallback(): void {
     this._connected = false;
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(name: string, oldValue: string | number, newValue: string): void {
     if (name === 'value') {
       this._value = Math.max(parseFloat(newValue), 0);
     } else if (name === 'maxvalue') {
@@ -284,7 +314,7 @@ class ResourceBar extends HTMLElement {
       this.draw();
   }
 
-  layout() {
+  layout(): void {
     if (!this._connected)
       return;
 
@@ -306,16 +336,16 @@ class ResourceBar extends HTMLElement {
     extraUnderStyle.backgroundColor = this._extraColor;
     extraOverStyle.backgroundColor = this._extraColor;
 
-    backgroundStyle.opacity = this.kBackgroundOpacity;
+    backgroundStyle.opacity = this.kBackgroundOpacity.toString();
 
-    backgroundStyle.width = this._width * this._scale;
-    backgroundStyle.height = this._height * this._scale;
+    backgroundStyle.width = (this._width * this._scale).toString();
+    backgroundStyle.height = (this._height * this._scale).toString();
 
-    const updateBar = (style) => {
-      style.width = (this._width - this.kBorderSize * 2) * this._scale;
-      style.height = (this._height - this.kBorderSize * 2) * this._scale;
-      style.left = this.kBorderSize * this._scale;
-      style.top = this.kBorderSize * this._scale;
+    const updateBar = (style: CSSStyleDeclaration) => {
+      style.width = ((this._width - this.kBorderSize * 2) * this._scale).toString();
+      style.height = ((this._height - this.kBorderSize * 2) * this._scale).toString();
+      style.left = (this.kBorderSize * this._scale).toString();
+      style.top = (this.kBorderSize * this._scale).toString();
       if (this._towardRight)
         style.transformOrigin = '0% 0%';
       else
@@ -326,15 +356,16 @@ class ResourceBar extends HTMLElement {
     updateBar(extraOverStyle);
 
     const halfHeight = (this._height - this.kBorderSize * 2) * this._scale * 0.5;
-    extraOverStyle.height = halfHeight;
-    extraOverStyle.top = halfHeight + (this.kBorderSize * this._scale);
+    extraOverStyle.height = (halfHeight).toString();
+    extraOverStyle.top = (halfHeight + (this.kBorderSize * this._scale)).toString();
 
     const widthPadding = this.kBorderSize * 4 + this.kTextLeftRightEdgePadding * 2;
-    lTextStyle.width = (this._width - widthPadding) * this._scale;
+    lTextStyle.width = ((this._width - widthPadding) * this._scale).toString();
     const heightPadding = this.kBorderSize * 4 + this.kTextTopBottomEdgePadding * 2;
-    lTextStyle.height = (this._height - heightPadding) * this._scale;
-    lTextStyle.left = (this.kBorderSize + this.kTextLeftRightEdgePadding) * this._scale;
-    lTextStyle.top = (this.kBorderSize + this.kTextTopBottomEdgePadding) * this._scale;
+    lTextStyle.height = ((this._height - heightPadding) * this._scale).toString();
+    lTextStyle.left =
+      ((this.kBorderSize + this.kTextLeftRightEdgePadding) * this._scale).toString();
+    lTextStyle.top = ((this.kBorderSize + this.kTextTopBottomEdgePadding) * this._scale).toString();
     lTextStyle.fontSize = lTextStyle.height;
 
     cTextStyle.width = rTextStyle.width = lTextStyle.width;
@@ -344,7 +375,7 @@ class ResourceBar extends HTMLElement {
     cTextStyle.fontSize = rTextStyle.fontSize = lTextStyle.fontSize;
   }
 
-  updateText() {
+  updateText(): void {
     // These values are filled in during draw() when the values change.
     if (this._leftText !== 'value' && this._leftText !== 'maxvalue' &&
         this._leftText !== 'percent') {
@@ -360,62 +391,54 @@ class ResourceBar extends HTMLElement {
       this.rightTextElement.innerHTML = this._rightText;
   }
 
-  draw() {
+  draw(): void {
     let percent = this._maxValue <= 0 ? 1 : this._value / this._maxValue;
     // Keep it between 0 and 1.
     percent = Math.min(1, Math.max(0, percent));
     if (!this._styleFill)
       percent = 1.0 - percent;
-    this.foregroundElement.style.transform = 'scale(' + percent + ',1)';
+    this.foregroundElement.style.transform = `scale(${percent},1)`;
 
     // Calculate extra bars.
     const extraUnderPercent =
       Math.min(this._maxValue - this._value, this._extraValue) / this._maxValue;
     const valueWidth = percent * this.foregroundElement.clientWidth * (this._towardRight ? 1 : -1);
-    this.extraUnderElement.style.transform = 'translate(' + valueWidth + 'px,0px)' +
-      ' scale(' + extraUnderPercent + ',1)';
+    this.extraUnderElement.style.transform = `translate(${valueWidth}px,0px) scale(${extraUnderPercent},1)`;
 
     let extraOverPercent =
       Math.max(this._extraValue + this._value - this._maxValue, 0) / this._maxValue;
     if (!this._maxValue)
       extraOverPercent = 0;
-    this.extraOverElement.style.transform = 'scale(' + extraOverPercent + ',1)';
+    this.extraOverElement.style.transform = `scale(${extraOverPercent},1)`;
 
     // Text.
     const totalValue = this._value + this._extraValue;
     const totalPercent = totalValue / this._maxValue;
     if (this._leftText !== '') {
       if (this._leftText === 'value')
-        this.leftTextElement.innerHTML = totalValue;
+        this.leftTextElement.innerHTML = totalValue.toString();
       else if (this._leftText === 'maxvalue')
-        this.leftTextElement.innerHTML = totalValue + ' / ' + this._maxValue;
+        this.leftTextElement.innerHTML = `${totalValue} / ${this._maxValue}`;
       else if (this._leftText === 'percent')
-        this.leftTextElement.innerHTML = parseInt(totalPercent * 100) + ' %';
+        this.leftTextElement.innerHTML = `${(totalPercent * 100).toFixed()} %`;
     }
     if (this._centerText !== '') {
       if (this._centerText === 'value')
-        this.centerTextElement.innerHTML = totalValue;
+        this.centerTextElement.innerHTML = totalValue.toString();
       else if (this._centerText === 'maxvalue')
-        this.centerTextElement.innerHTML = totalValue + ' / ' + this._maxValue;
+        this.centerTextElement.innerHTML = `${totalValue} / ${this._maxValue}`;
       else if (this._centerText === 'percent')
-        this.centerTextElement.innerHTML = parseInt(totalPercent * 100) + ' %';
+        this.centerTextElement.innerHTML = `${(totalPercent * 100).toFixed()} %`;
     }
     if (this._rightText !== '') {
       if (this._rightText === 'value')
-        this.rightTextElement.innerHTML = totalValue;
+        this.rightTextElement.innerHTML = totalValue.toString();
       else if (this._rightText === 'maxvalue')
-        this.rightTextElement.innerHTML = totalValue + ' / ' + this._maxValue;
+        this.rightTextElement.innerHTML = `${totalValue} / ${this._maxValue}`;
       else if (this._rightText === 'percent')
-        this.rightTextElement.innerHTML = parseInt(totalPercent * 100) + ' %';
+        this.rightTextElement.innerHTML = `${(totalPercent * 100).toFixed()} %`;
     }
   }
 }
 
-if (window.customElements) {
-  // Preferred method but old CEF doesn't have this.
-  window.customElements.define('resource-bar', ResourceBar);
-} else {
-  document.registerElement('resource-bar', {
-    prototype: Object.create(ResourceBar.prototype),
-  });
-}
+window.customElements.define('resource-bar', ResourceBar);
