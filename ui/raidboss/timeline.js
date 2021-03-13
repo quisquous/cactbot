@@ -57,9 +57,9 @@ const activeText = {
   en: 'Active:',
   de: 'aktiv:',
   fr: 'Active :',
-  ja: '進行:',
-  cn: '进行中:',
-  ko: '진행중:',
+  ja: '(進行):',
+  cn: '(进行中):',
+  ko: 'Active:',
 };
 
 function computeBackgroundColorFrom(element, classList) {
