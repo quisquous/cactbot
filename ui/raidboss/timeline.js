@@ -55,7 +55,7 @@ const timelineInstructions = {
 
 const activeText = {
   en: 'Active:',
-  de: 'aktiv:',
+  de: 'Aktiv:',
   fr: 'Active :',
   ja: '(進行):',
   cn: '(进行中):',
