@@ -113,11 +113,11 @@ export class ResourceBar extends HTMLElement {
 
   // If "fill" then the progress goes empty-to-full, if "empty" then the
   // progress bar starts full and goes to empty.
-  set style(s: 'empty' | 'full' | null) {
-    this.setAttribute('style', s ?? 'empty');
+  set styleFill(s: 'empty' | 'full' | null) {
+    this.setAttribute('styleFill', s ?? 'empty');
   }
-  get style(): 'empty' | 'full' | null {
-    return this.getAttribute('style') as 'empty' | 'full' | null;
+  get styleFill(): 'empty' | 'full' | null {
+    return this.getAttribute('styleFill') as 'empty' | 'full' | null;
   }
 
   // Chooses what should be shown in the text field in each area of
@@ -193,7 +193,7 @@ export class ResourceBar extends HTMLElement {
     if (this.fg !== null) this._fg = this.fg;
     if (this.scale !== null) this._scale = Math.max(parseFloat(this.scale), 0.01);
     if (this.toward !== null) this._towardRight = this.toward !== 'left';
-    if (this.style !== null) this._styleFill = this.style !== 'empty';
+    if (this.styleFill !== null) this._styleFill = this.styleFill !== 'empty';
     if (this.lefttext !== null) this._leftText = this.lefttext;
     if (this.centertext !== null) this._centerText = this.centertext;
     if (this.righttext !== null) this._rightText = this.righttext;
