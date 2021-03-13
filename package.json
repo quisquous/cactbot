@@ -10,6 +10,7 @@
   "scripts": {
     "build": "node_modules/.bin/webpack --config webpack/webpack.config.cjs --mode production",
     "start": "node_modules/.bin/webpack-dev-server --config webpack/webpack.config.cjs --mode development",
+    "tsc-no-emit": "node_modules/.bin/tsc --noEmit",
     "lint": "node_modules/.bin/eslint **/*.{js,cjs,mjs,ts}",
     "lintfix": "node_modules/.bin/eslint --fix **/*.{js,cjs,mjs,ts}",
     "stylelint": "node_modules/.bin/stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
