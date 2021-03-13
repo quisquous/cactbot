@@ -21,18 +21,9 @@ const tankBusterOnParty = (data, matches) => {
 };
 
 const getFacing = (combatant) => {
-  // Snap heading to closest card/intercard (aka PI/4).  N = PI, E = PI/2.
-  const facing = Math.round(combatant.Heading * 4 / Math.PI) / 4 * Math.PI;
-
-  if (facing === Math.PI)
-    return 0;
-  if (facing === Math.PI / 2)
-    return 1;
-  if (facing === -Math.PI)
-    return 2;
-  if (facing === -Math.PI / 2)
-    return 3;
-  return -1;
+  // Snap heading to closest card.
+  // N = 0, E = 1, S = 2, W = 3
+  return (2 - Math.round(combatant.Heading * 4 / Math.PI) / 2) % 4;
 };
 
 export default {
@@ -728,11 +719,11 @@ export default {
 
         // Second Avowed Avatar is always West (-277, -87)
         const westCombatant =
-          combatantDataAvatars.combatants.sort((a, b) => a.ID - b.ID).pop();
+          combatantDataAvatars.combatants.pop();
 
         // Third Avowed Avatar is always South (-277, -77)
         const southCombatant =
-          combatantDataAvatars.combatants.sort((a, b) => a.ID - b.ID).pop();
+          combatantDataAvatars.combatants.pop();
 
         // Get facings
         const eastCombatantFacing = getFacing(eastCombatant);
@@ -1056,7 +1047,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: ['トリニティ・アヴァウド', 'アヴァウドの分体'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
       run: (data, matches) => {
         data.blades = data.blades || {};
-        data.blades[matches.targetId.toUpperCase()] = matches.id;
+        data.blades[matches.sourceId.toUpperCase()] = matches.id;
       },
     },
     {
