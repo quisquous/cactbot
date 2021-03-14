@@ -664,7 +664,8 @@ export default {
       // to get left/right cleave info
       netRegex: NetRegexes.gainsEffect({ effectId: ['8F9', '8FA', '8FB', '8FC'] }),
       delaySeconds: 0.3,
-      suppressSeconds: 1,
+      durationSeconds: 9.7,
+      suppressSeconds: 8,
       promise: async (data, matches, output) => {
         const trinityLocaleNames = {
           en: 'Trinity Avowed',
