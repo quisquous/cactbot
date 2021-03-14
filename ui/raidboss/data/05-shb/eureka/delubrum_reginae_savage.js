@@ -1071,7 +1071,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: ['トリニティ・アヴァウド', 'アヴァウドの分体'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
       run: (data, matches) => {
         data.blades = data.blades || {};
-        data.blades[matches.sourceId.toUpperCase()] = matches.id.toUpperCase();
+        data.blades[parseInt(matches.sourceId,16)] = matches.id.toUpperCase();
       },
     },
     {
