@@ -733,11 +733,11 @@ export default {
         // that one is always cleaving on one of the cardinals
         // Trinity Avowed is always East (-267, -87)
         const eastCombatant =
-          combatantDataBoss.combatants.sort((a, b) => a.ID - b.ID).pop();
+          combatantDataBoss.combatants.sort((a, b) => b.ID - a.ID).pop();
 
         // we need to filter for the three Avowed Avatars with the lowest IDs
         // as they cast cleave at the different cardinals
-        const avatarOne = combatantDataAvatars.combatants.sort((a, b) => a.ID - b.ID).pop();
+        const avatarOne = combatantDataAvatars.combatants.sort((a, b) => b.ID - a.ID).pop();
         const avatarTwo = combatantDataAvatars.combatants.pop();
         const avatarThree = combatantDataAvatars.combatants.pop();
 
@@ -1071,7 +1071,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: ['トリニティ・アヴァウド', 'アヴァウドの分体'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
       run: (data, matches) => {
         data.blades = data.blades || {};
-        data.blades[parseInt(matches.sourceId,16)] = matches.id.toUpperCase();
+        data.blades[parseInt(matches.sourceId, 16)] = matches.id.toUpperCase();
       },
     },
     {
