@@ -984,51 +984,21 @@ export default {
           adjacentZones = null;
         }
 
-        // Find which adjacent zone to go to
+        // Calculate which adjacent zone to go to if needed
         // There should only be one add cleaving in these adjacent zones
-        let adjacentZone = null;
+        let adjacentZone = null
         if (resultantTemperature) {
-          if (abs(resultantTemperature) < 3) {
-            // Aim for 0, if possible, else aim for 1. if possible...
-            if (resultantTemperature + adjacentZones[0] === 0)
-              adjacentZone = output.north();
-            else if (resultantTemperature + adjacentZones[1] === 0)
-              adjacentZone = output.east();
-            else if (resultantTemperature + adjacentZones[2] === 0)
-              adjacentZone = output.south();
-            else if (resultantTemperature + adjacentZones[3] === 0)
-              adjacentZone = output.west();
-            else if (abs(resultantTemperature + adjacentZones[0]) === 1)
-              adjacentZone = output.north();
-            else if (abs(resultantTemperature + adjacentZones[1]) === 1)
-              adjacentZone = output.east();
-            else if (abs(resultantTemperature + adjacentZones[2]) === 1)
-              adjacentZone = output.south();
-            else if (abs(resultantTemperature + adjacentZones[3]) === 1)
-              adjacentZone = output.west();
-            else
-              adjacentZone = null;
-          } else {
-            // Aim for 1, if possible, else aim for 2, if possible...
-            if (abs(resultantTemperature + adjacentZones[0]) === 1)
-              adjacentZone = output.north();
-            else if (abs(resultantTemperature + adjacentZones[1]) === 1)
-              adjacentZone = output.east();
-            else if (abs(resultantTemperature + adjacentZones[2]) === 1)
-              adjacentZone = output.west();
-            else if (abs(resultantTemperature + adjacentZones[3]) === 1)
-              adjacentZone = output.south();
-            if (abs(resultantTemperature + adjacentZones[0]) === 2)
-              adjacentZone = output.north();
-            else if (abs(resultantTemperature + adjacentZones[1]) === 2)
-              adjacentZone = output.east();
-            else if (abs(resultantTemperature + adjacentZones[2]) === 2)
-              adjacentZone = output.west();
-            else if (abs(resultantTemperature + adjacentZones[3]) === 2)
-              adjacentZone = output.south();
-            else
-              adjacentZone = null;
-          }
+          // Find the adjecent zone that gets closest to 0
+          const calculatedZones = Object.values(adjacentZones).map(i => Math.abs(resultantTemperature + i));
+
+          // Use zone closest to zero as output
+          const dirs = {
+            0: output.north(),
+            1: output.east(),
+            2: output.south(),
+            3: output.west(),
+          };
+          adjacentZone = dirs[Object.values(calculatedZones).indexOf(calculatedZones.sort((a, b) => b - a).pop())];
         } else {
           adjacentZone = null;
         }
