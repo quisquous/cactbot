@@ -713,7 +713,7 @@ export default {
           data.safeZone = null;
           return;
         }
-          if (combatantDataAvatars === null) {
+        if (combatantDataAvatars === null) {
           console.error(`Avowed Avatar: null data`);
           data.safeZone = null;
           return;
@@ -723,7 +723,6 @@ export default {
           data.safeZone = null;
           return;
         }
-
         if (combatantDataAvatars.combatants.legnth < 3) {
           console.error(`Avowed Avatar: expected at least 3 combatants got ${combatantDataAvatars.combatants.length}`);
           data.safeZone = null;
@@ -742,7 +741,7 @@ export default {
         const avatarTwo = combatantDataAvatars.combatants.pop();
         const avatarThree = combatantDataAvatars.combatants.pop();
 
-        let combatantPositions = {};
+        const combatantPositions = {};
         combatantPositions[getUnwaveringPosition(avatarOne)] = avatarOne;
         combatantPositions[getUnwaveringPosition(avatarTwo)] = avatarTwo;
         combatantPositions[getUnwaveringPosition(avatarThree)] = avatarTwo;
