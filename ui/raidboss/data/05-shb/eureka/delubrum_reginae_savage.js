@@ -30,6 +30,7 @@ export default {
       // Cast itself is 5.5 seconds, add more warning
       beforeSeconds: 7,
       condition: Conditions.caresAboutAOE(),
+      suppressSeconds: 1,
       response: Responses.bigAoe(),
     },
     {
@@ -38,6 +39,7 @@ export default {
       // There are different timings in the first and second phase.
       // Consistently use 5 seconds beforehand for both.
       beforeSeconds: 5,
+      suppressSeconds: 1,
       response: Responses.knockback(),
     },
     {
@@ -50,6 +52,7 @@ export default {
       // First set of debuffs go out 7.7 seconds before Fateful Word is cast
       // Remaining set of debuffs go out 24.3 seconds before Fateful Word is cast
       beforeSeconds: 3.5,
+      suppressSeconds: 1,
       alertText: (data, _, output) => {
         if (data.labyrinthineFate === '97F')
           return output.getOut();
@@ -67,6 +70,7 @@ export default {
       // Cast in the timeline is 5 seconds, but there is an additional .5 second cast before damage
       beforeSeconds: 7,
       condition: Conditions.caresAboutAOE(),
+      suppressSeconds: 1,
       response: Responses.aoe(),
     },
     {
@@ -75,6 +79,7 @@ export default {
       // Cast itself is 5 seconds, add more warning
       beforeSeconds: 7,
       condition: Conditions.caresAboutAOE(),
+      suppressSeconds: 1,
       response: Responses.bigAoe(),
     },
     {
@@ -83,6 +88,7 @@ export default {
       // Cast in the timeline is 5 seconds, but there is an additional 1 second cast before damage
       beforeSeconds: 7,
       condition: Conditions.caresAboutAOE(),
+      suppressSeconds: 1,
       response: Responses.aoe(),
     },
   ],
