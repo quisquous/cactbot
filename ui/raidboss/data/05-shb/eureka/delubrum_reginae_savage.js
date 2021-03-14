@@ -647,7 +647,7 @@ export default {
           '8F4': -1,
           '8F8': -2,
         };
-        data.currentBrand = brand[matches.effectIdtoUpperCase()];
+        data.currentBrand = brand[matches.effectId.toUpperCase()];
       },
     },
     {
