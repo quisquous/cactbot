@@ -829,7 +829,7 @@ export default {
 
         // Helper function for changing zone temperature
         const addZoneTemperature = (zoneIndex, bladeValue) => {
-          bladeValue < 0 ? coldZone[zoneIndex] += bladeValue : hotZone[zoneIndex] += bladeValue;
+          bladeValue < 0 ? coldZones[zoneIndex] += bladeValue : hotZones[zoneIndex] += bladeValue;
         };
 
         // East combatant zone contribution
