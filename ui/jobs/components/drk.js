@@ -71,11 +71,11 @@ export function setup(bars) {
   });
   bars.onUseAbility(kAbility.Delirium, () => {
     delirium.duration = 0;
-    delirium.duration = 10;
-    delirium.threshold = 10;
+    delirium.duration = 10 + 0.5;
+    delirium.threshold = 20;
     delirium.fg = computeBackgroundColorFrom(delirium, 'drk-color-delirium.active');
     setTimeout(() => {
-      delirium.duration = 80;
+      delirium.duration = 80 - 0.5;
       delirium.threshold = bars.gcdSkill * 2;
       delirium.fg = computeBackgroundColorFrom(delirium, 'drk-color-delirium');
     }, 10000);
