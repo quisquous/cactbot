@@ -654,15 +654,15 @@ export default {
       id: 'DelubrumSav Avowed Hot And Cold Unwavering Apparations',
       // The buffs come out before the spell cast
       // Trinity Avowed and/or Avowed Avatar receive one of these buffs:
-      // 08F9: Hot Blade: +1
-      // 08FA: Hot Blade: +2
-      // 08FB: Cold Blade: -1
-      // 08FC: Cold Blade: -2
+      // 8F9: Hot Blade: +1
+      // 8FA: Hot Blade: +2
+      // 8FB: Cold Blade: -1
+      // 8FC: Cold Blade: -2
       // Positional data in statusEffectsParams is often not up to date, use promise
       //
       // Trigger delayed until after Blade Of Entropy happens about ~100ms after
       // to get left/right cleave info
-      netRegex: NetRegexes.gainsEffect({ effectId: ['08F9', '08FA', '08FB', '08FC'] }),
+      netRegex: NetRegexes.gainsEffect({ effectId: ['8F9', '8FA', '8FB', '8FC'] }),
       delaySeconds: 0.3,
       suppressSeconds: 1,
       promise: async (data, matches, output) => {
