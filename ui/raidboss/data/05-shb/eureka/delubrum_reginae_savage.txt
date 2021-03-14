@@ -98,8 +98,6 @@ hideall "--sync--"
 2230.0 "Ruins Golem x2" sync / 03:........:Added new combatant Ruins Golem\./
 2230.0 "Ruins Golem x2" sync / 03:........:Added new combatant Ruins Golem\./
 2240.0 "Ruins Golem x2" sync / 03:........:Added new combatant Ruins Golem\./
-2240.0 "Ruins Golem x2" sync / 03:........:Added new combatant Ruins Golem\./
-2250.1 "Ruins Golem x2" sync / 03:........:Added new combatant Ruins Golem\./
 2250.1 "Ruins Golem x2" sync / 03:........:Added new combatant Ruins Golem\./
 2260.0 "Ruins Golem x2" sync / 03:........:Added new combatant Ruins Golem\./
 2270.0 "Ruins Golem x2" sync / 03:........:Added new combatant Ruins Golem\./
