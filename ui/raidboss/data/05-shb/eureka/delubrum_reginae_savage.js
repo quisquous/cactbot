@@ -986,10 +986,11 @@ export default {
 
         // Calculate which adjacent zone to go to if needed
         // There should only be one add cleaving in these adjacent zones
-        let adjacentZone = null
+        let adjacentZone = null;
         if (resultantTemperature) {
           // Find the adjecent zone that gets closest to 0
-          const calculatedZones = Object.values(adjacentZones).map(i => Math.abs(resultantTemperature + i));
+          const calculatedZones = Object.values(adjacentZones).map((i) =>
+            Math.abs(resultantTemperature + i));
 
           // Use zone closest to zero as output
           const dirs = {
@@ -998,7 +999,8 @@ export default {
             2: output.south(),
             3: output.west(),
           };
-          adjacentZone = dirs[Object.values(calculatedZones).indexOf(calculatedZones.sort((a, b) => b - a).pop())];
+          adjacentZone = dirs[Object.values(calculatedZones).indexOf(calculatedZones.sort((a, b) =>
+            b - a).pop())];
         } else {
           adjacentZone = null;
         }
