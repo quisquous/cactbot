@@ -415,6 +415,7 @@ hideall "--sync--"
 10062.2 "Shield Omen/Sword Omen" sync /:Queen's Knight:581[45]:/
 
 10063.2 "Bombslinger" sync /:Queen's Warrior:5AFE:/
+10066.3 "--tethers--"
 10070.3 "Reversal Of Forces" sync /:Queen's Warrior:5829:/
 10070.3 "--sync--" sync /:Queen's Warrior:5A94:/
 10079.5 "Optimal Offensive" sync /:Queen's Knight:581[9A]:/
@@ -427,6 +428,7 @@ hideall "--sync--"
 10097.6 "Boost" sync /:Queen's Warrior:582D:/
 10105.8 "Blood And Bone" sync /:Queen's Warrior:5831:/
 10121.0 "Relentless Battery" sync /:Queen's Warrior:5825:/
+10124.1 "--tethers--"
 10128.1 "Reversal Of Forces" sync /:Queen's Warrior:5829:/
 10136.2 "Shield Omen/Sword Omen" sync /:Queen's Knight:581[45]:/
 10137.3 "Winds Of Weight" sync /:Queen's Warrior:582A:/
@@ -442,6 +444,7 @@ hideall "--sync--"
 10192.1 "Shield Omen/Sword Omen" sync /:Queen's Knight:581[45]:/
 
 10193.0 "Bombslinger" sync /:Queen's Warrior:5AFE:/
+10196.1 "--tethers--"
 10200.1 "Reversal Of Forces" sync /:Queen's Warrior:5829:/
 10209.4 "Optimal Offensive" sync /:Queen's Knight:581[9A]:/
 10211.0 "Unlucky Lot" #sync /:Aetherial Sphere:581D:/
@@ -454,6 +457,7 @@ hideall "--sync--"
 10227.3 "Boost" sync /:Queen's Warrior:582D:/
 10235.5 "Blood And Bone" sync /:Queen's Warrior:5831:/
 10250.7 "Relentless Battery" sync /:Queen's Warrior:5825:/
+10253.8 "--tethers--"
 10257.8 "Reversal Of Forces" sync /:Queen's Warrior:5829:/
 10265.9 "Shield Omen/Sword Omen" sync /:Queen's Knight:581[45]:/
 10267.0 "Winds Of Weight" sync /:Queen's Warrior:582A:/
@@ -1299,6 +1303,7 @@ hideall "--sync--"
 20210.0 "Maelstrom's Bolt" sync /:The Queen:59EF:/
 
 20224.2 "Relentless Play 1" sync /:The Queen:59FC:/ window 20,20
+20227.3 "--tethers--"
 20231.3 "Reversal Of Forces" sync /:Queen's Warrior:5A0E:/
 20231.3 "Automatic Turret" sync /:Queen's Gunner:5A2B:/
 20235.3 "Northswain's Glow" sync /:The Queen:59F3:/
@@ -1357,6 +1362,7 @@ hideall "--sync--"
 
 20488.1 "Relentless Play 4" sync /:The Queen:59FC:/ window 20,20
 20494.2 "Bombslinger" sync /:Queen's Warrior:5B3F:/
+20497.3 "--tethers--"
 20501.3 "Reversal Of Forces" sync /:Queen's Warrior:5A0E:/
 20503.2 "Heaven's Wrath" sync /:The Queen:59F6:/
 20509.0 "--knockback--" sync /:The Queen:59F8:/
