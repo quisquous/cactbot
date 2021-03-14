@@ -850,8 +850,8 @@ hideall "--sync--"
 14785.9 "--sync--" sync /:5987:Trinity Avowed/ window 70,10 jump 14300
 14794.1 "Fury Of Bozja?" #sync /:Trinity Avowed:594C:/
 # -> Staff v1 (seen bow)?
-15700.0 "--sync--" sync /:5987:Trinity Avowed/ window 70,10 jump 15700
-15703.0 "Allegiant Arsenal" sync /:Trinity Avowed:5987:/
+14785.9 "--sync--" sync /:5987:Trinity Avowed/ window 70,10 jump 15700
+14794.1 "Allegiant Arsenal" sync /:Trinity Avowed:5987:/
 
 
 # Bow v1 (seen sword)
