@@ -26,6 +26,14 @@ const getFacing = (combatant) => {
   return (2 - Math.round(combatant.Heading * 4 / Math.PI) / 2) % 4;
 };
 
+const getUnwaveringPosition = (combatant) => {
+  // Positions are moved downward 87 and left 277
+  const y = combatant.PosY + 87;
+  const x = combatant.PosX + 277;
+  // N = 0, E = 1, S = 2, W = 3
+  return Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4;
+};
+
 export default {
   zoneId: ZoneId.DelubrumReginaeSavage,
   timelineFile: 'delubrum_reginae_savage.txt',
@@ -440,7 +448,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '583F' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '583F' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '583F' }),
-      delaySeconds: (data, matches) => parseFloat(matches.duration) - 2.5,
+      delaySeconds: (data, matches) => parseFloat(matches.castTime) - 2.5,
       durationSeconds: 5.5,
       response: Responses.stopEverything('alarm'),
     },
@@ -451,7 +459,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5840' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5840' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5840' }),
-      delaySeconds: (data, matches) => parseFloat(matches.duration) - 2.5,
+      delaySeconds: (data, matches) => parseFloat(matches.castTime) - 2.5,
       durationSeconds: 5.5,
       response: Responses.moveAround('alert'),
     },
@@ -463,7 +471,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: '魔法障壁', id: '5820' }),
       netRegexCn: NetRegexes.ability({ source: '魔法障壁', id: '5820' }),
       netRegexKo: NetRegexes.ability({ source: '마법 장벽', id: '5820' }),
-      delaySeconds: (data, matches) => parseFloat(matches.duration) - 2.5,
+      delaySeconds: (data, matches) => parseFloat(matches.castTime) - 2.5,
       suppressSeconds: 1,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -620,7 +628,7 @@ export default {
           '8E2': -2,
           '8A4': 2,
         };
-        data.currentTemperature = temperature[matches.effectId];
+        data.currentTemperature = temperature[matches.effectId.toUpperCase()];
       },
     },
     {
@@ -639,7 +647,7 @@ export default {
           '8F4': -1,
           '8F8': -2,
         };
-        data.currentBrand = brand[matches.effectId];
+        data.currentBrand = brand[matches.effectIdtoUpperCase()];
       },
     },
     {
@@ -695,12 +703,29 @@ export default {
 
         // if we could not retrieve combatant data, the
         // trigger will not work, so just resume promise here
-        if (!(combatantDataBoss !== null &&
-          combatantDataBoss.combatants &&
-          combatantDataBoss.combatants.length) ||
-          !(combatantDataAvatars !== null &&
-          combatantDataAvatars.combatants &&
-          combatantDataAvatars.combatants.length)) {
+        if (combatantDataBoss === null) {
+          console.error(`Trinity Avowed: null data`);
+          data.safeZone = null;
+          return;
+        }
+        if (!combatantDataBoss.combatants) {
+          console.error(`Trinity Avowed: null combatants`);
+          data.safeZone = null;
+          return;
+        }
+          if (combatantDataAvatars === null) {
+          console.error(`Avowed Avatar: null data`);
+          data.safeZone = null;
+          return;
+        }
+        if (!combatantDataAvatars.combatants) {
+          console.error(`Avowed Avatar: null combatants`);
+          data.safeZone = null;
+          return;
+        }
+
+        if (combatantDataAvatars.combatants.legnth < 3) {
+          console.error(`Avowed Avatar: expected at least 3 combatants got ${combatantDataAvatars.combatants.length}`);
           data.safeZone = null;
           return;
         }
@@ -713,17 +738,25 @@ export default {
 
         // we need to filter for the three Avowed Avatars with the lowest IDs
         // as they cast cleave at the different cardinals
-        // First Avowed Avatar is always North (-277, -97)
-        const northCombatant =
-          combatantDataAvatars.combatants.sort((a, b) => a.ID - b.ID).pop();
+        const avatarOne = combatantDataAvatars.combatants.sort((a, b) => a.ID - b.ID).pop();
+        const avatarTwo = combatantDataAvatars.combatants.pop();
+        const avatarThree = combatantDataAvatars.combatants.pop();
 
-        // Second Avowed Avatar is always West (-277, -87)
-        const westCombatant =
-          combatantDataAvatars.combatants.pop();
+        let combatantPositions = {};
+        combatantPositions[getUnwaveringPosition(avatarOne)] = avatarOne;
+        combatantPositions[getUnwaveringPosition(avatarTwo)] = avatarTwo;
+        combatantPositions[getUnwaveringPosition(avatarThree)] = avatarTwo;
 
-        // Third Avowed Avatar is always South (-277, -77)
-        const southCombatant =
-          combatantDataAvatars.combatants.pop();
+        // Avowed Avatars can spawn in the other positions
+        // Determine the location of Avowed Avatars
+        // North Avowed Avatar (-277, -97)
+        const northCombatant = combatantPositions[0];
+
+        // West Avowed Avatar (-277, -87)
+        const westCombatant = combatantPositions[3];
+
+        // South Avowed Avatar (-277, -77)
+        const southCombatant = combatantPositions[2];
 
         // Get facings
         const eastCombatantFacing = getFacing(eastCombatant);
@@ -1047,7 +1080,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: ['トリニティ・アヴァウド', 'アヴァウドの分体'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
       run: (data, matches) => {
         data.blades = data.blades || {};
-        data.blades[matches.sourceId.toUpperCase()] = matches.id;
+        data.blades[matches.sourceId.toUpperCase()] = matches.id.toUpperCase();
       },
     },
     {
@@ -1081,7 +1114,7 @@ export default {
       netRegex: NetRegexes.gainsEffect({ effectId: '97[EF]' }),
       condition: Conditions.targetIsYou(),
       run: (data, matches) => {
-        data.labyrinthineFate = matches.effectId;
+        data.labyrinthineFate = matches.effectId.toUpperCase();
       },
     },
     {
@@ -1186,7 +1219,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5A21' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5A21' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5A21' }),
-      delaySeconds: (data, matches) => parseFloat(matches.duration) - 2.5,
+      delaySeconds: (data, matches) => parseFloat(matches.castTime) - 2.5,
       durationSeconds: 5.5,
       response: Responses.stopEverything('alarm'),
     },
@@ -1197,7 +1230,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5A22' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5A22' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5A22' }),
-      delaySeconds: (data, matches) => parseFloat(matches.duration) - 2.5,
+      delaySeconds: (data, matches) => parseFloat(matches.castTime) - 2.5,
       durationSeconds: 5.5,
       response: Responses.moveAround('alert'),
     },
