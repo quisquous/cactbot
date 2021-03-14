@@ -798,7 +798,21 @@ export default {
         // 2   3   4   5
         // 6   7   8   9
         //    10   11
-        const zones = {
+        const hotZones = {
+          0: 0,
+          1: 0,
+          2: 0,
+          3: 0,
+          4: 0,
+          5: 0,
+          6: 0,
+          7: 0,
+          8: 0,
+          9: 0,
+          10: 0,
+          11: 0,
+        };
+        const coldZones = {
           0: 0,
           1: 0,
           2: 0,
@@ -813,104 +827,109 @@ export default {
           11: 0,
         };
 
+        // Helper function for changing zone temperature
+        const addZoneTemperature = (zoneIndex, bladeValue) => {
+          bladeValue < 0 ? coldZone[zoneIndex] += bladeValue : hotZone[zoneIndex] += bladeValue;
+        };
+
         // East combatant zone contribution
         if (eastCombatantFacing === 0 || eastCombatantFacing === 2) {
           // East facing North/South must cleave these zones
-          zone[5] += bladeValues[eastCombatantBlade];
-          zone[9] += bladeValues[eastCombatantBlade];
+          addZoneTemperature(5, bladeValues[eastCombatantBlade]);
+          addZoneTemperature(9, bladeValues[eastCombatantBlade]);
         } else if ((bladeSides[eastCombatantBlade] && eastCombatantFacing === 1) ||
           (!bladeSides[eastCombatantBlade] && eastCombatantFacing === 3)) {
           // East facing East cleaving right or facing West cleaving left
-          zone[6] += bladeValues[eastCombatantBlade];
-          zone[7] += bladeValues[eastCombatantBlade];
-          zone[8] += bladeValues[eastCombatantBlade];
-          zone[9] += bladeValues[eastCombatantBlade];
-          zone[10] += bladeValues[eastCombatantBlade];
-          zone[11] += bladeValues[eastCombatantBlade];
+          addZoneTemperature(6, bladeValues[eastCombatantBlade]);
+          addZoneTemperature(7, bladeValues[eastCombatantBlade]);
+          addZoneTemperature(8, bladeValues[eastCombatantBlade]);
+          addZoneTemperature(9, bladeValues[eastCombatantBlade]);
+          addZoneTemperature(10, bladeValues[eastCombatantBlade]);
+          addZoneTemperature(11, bladeValues[eastCombatantBlade]);
         } else if ((!bladeSides[eastCombatantBlade] && eastCombatantFacing === 1) ||
           (bladeSides[eastCombatantBlade] && eastCombatantFacing === 3)) {
           // East facing East cleaving left or facing West cleaving right
-          zone[0] += bladeValues[eastCombatantBlade];
-          zone[1] += bladeValues[eastCombatantBlade];
-          zone[2] += bladeValues[eastCombatantBlade];
-          zone[3] += bladeValues[eastCombatantBlade];
-          zone[4] += bladeValues[eastCombatantBlade];
-          zone[5] += bladeValues[eastCombatantBlade];
+          addZoneTemperature(0, bladeValues[eastCombatantBlade]);
+          addZoneTemperature(1, bladeValues[eastCombatantBlade]);
+          addZoneTemperature(2, bladeValues[eastCombatantBlade]);
+          addZoneTemperature(3, bladeValues[eastCombatantBlade]);
+          addZoneTemperature(4, bladeValues[eastCombatantBlade]);
+          addZoneTemperature(5, bladeValues[eastCombatantBlade]);
         }
 
         // North combatant zone contribution
         if (northCombatantFacing === 1 || northCombatantFacing === 3) {
           // North facing East/West must cleave these zones
-          zone[0] += bladeValues[northCombatantBlade];
-          zone[1] += bladeValues[northCombatantBlade];
+          addZoneTemperature(0, bladeValues[northCombatantBlade]);
+          addZoneTemperature(1, bladeValues[northCombatantBlade]);
         } else if ((bladeSides[northCombatantBlade] && northCombatantFacing === 0) ||
           (!bladeSides[northCombatantBlade] && northCombatantFacing === 2)) {
           // North facing North cleaving right or South cleaving left
-          zone[1] += bladeValues[northCombatantBlade];
-          zone[4] += bladeValues[northCombatantBlade];
-          zone[5] += bladeValues[northCombatantBlade];
-          zone[8] += bladeValues[northCombatantBlade];
-          zone[9] += bladeValues[northCombatantBlade];
-          zone[11] += bladeValues[northCombatantBlade];
+          addZoneTemperature(1, bladeValues[northCombatantBlade]);
+          addZoneTemperature(4, bladeValues[northCombatantBlade]);
+          addZoneTemperature(5, bladeValues[northCombatantBlade]);
+          addZoneTemperature(8, bladeValues[northCombatantBlade]);
+          addZoneTemperature(9, bladeValues[northCombatantBlade]);
+          addZoneTemperature(11, bladeValues[northCombatantBlade]);
         } else if ((!bladeSides[northCombatantBlade] && northCombatantFacing === 0) ||
           (bladeSides[northCombatantBlade] && northCombatantFacing === 2)) {
           // North facing North cleaving left or South cleaving right
-          zone[0] += bladeValues[northCombatantBlade];
-          zone[2] += bladeValues[northCombatantBlade];
-          zone[3] += bladeValues[northCombatantBlade];
-          zone[6] += bladeValues[northCombatantBlade];
-          zone[7] += bladeValues[northCombatantBlade];
-          zone[10] += bladeValues[northCombatantBlade];
+          addZoneTemperature(0, bladeValues[northCombatantBlade]);
+          addZoneTemperature(2, bladeValues[northCombatantBlade]);
+          addZoneTemperature(3, bladeValues[northCombatantBlade]);
+          addZoneTemperature(6, bladeValues[northCombatantBlade]);
+          addZoneTemperature(7, bladeValues[northCombatantBlade]);
+          addZoneTemperature(10, bladeValues[northCombatantBlade]);
         }
 
         // West combatant zone contribution
         if (westCombatantFacing === 0 || westCombatantFacing === 2) {
           // West facing North/South must cleave these zones
-          zone[2] += bladeValues[westCombatantBlade];
-          zone[6] += bladeValues[westCombatantBlade];
+          addZoneTemperature(2, bladeValues[westCombatantBlade]);
+          addZoneTemperature(6, bladeValues[westCombatantBlade]);
         } else if ((bladeSides[westCombatantBlade] && westCombatantFacing === 1) ||
           (!bladeSides[westCombatantBlade] && westCombatantFacing === 3)) {
           // West facing East cleaving right or West cleaving left
-          zone[6] += bladeValues[westCombatantBlade];
-          zone[7] += bladeValues[westCombatantBlade];
-          zone[8] += bladeValues[westCombatantBlade];
-          zone[9] += bladeValues[westCombatantBlade];
-          zone[10] += bladeValues[westCombatantBlade];
-          zone[11] += bladeValues[westCombatantBlade];
+          addZoneTemperature(6, bladeValues[westCombatantBlade]);
+          addZoneTemperature(7, bladeValues[westCombatantBlade]);
+          addZoneTemperature(8, bladeValues[westCombatantBlade]);
+          addZoneTemperature(9, bladeValues[westCombatantBlade]);
+          addZoneTemperature(10, bladeValues[westCombatantBlade]);
+          addZoneTemperature(11, bladeValues[westCombatantBlade]);
         } else if ((!bladeSides[westCombatantBlade] && westCombatantFacing === 1) ||
           (bladeSides[westCombatantBlade] && westCombatantFacing === 3)) {
           // West facing East cleaving left or West cleaving right
-          zone[0] += bladeValues[westCombatantBlade];
-          zone[1] += bladeValues[westCombatantBlade];
-          zone[2] += bladeValues[westCombatantBlade];
-          zone[3] += bladeValues[westCombatantBlade];
-          zone[4] += bladeValues[westCombatantBlade];
-          zone[5] += bladeValues[westCombatantBlade];
+          addZoneTemperature(0, bladeValues[westCombatantBlade]);
+          addZoneTemperature(1, bladeValues[westCombatantBlade]);
+          addZoneTemperature(2, bladeValues[westCombatantBlade]);
+          addZoneTemperature(3, bladeValues[westCombatantBlade]);
+          addZoneTemperature(4, bladeValues[westCombatantBlade]);
+          addZoneTemperature(5, bladeValues[westCombatantBlade]);
         }
 
         // South combatant zone contribution
         if (southCombatantFacing === 1 || southCombatantFacing === 3) {
           // South facing East/West must cleave these zones
-          zone[10] += bladeValues[southCombatantBlade];
-          zone[11] += bladeValues[southCombatantBlade];
+          addZoneTemperature(10, bladeValues[southCombatantBlade]);
+          addZoneTemperature(11, bladeValues[southCombatantBlade]);
         } else if ((bladeSides[southCombatantBlade] && southCombatantFacing === 0) ||
           (!bladeSides[southCombatantBlade] && southCombatantFacing === 2)) {
           // South facing North cleaving right or South cleaving left
-          zone[1] += bladeValues[southCombatantBlade];
-          zone[4] += bladeValues[southCombatantBlade];
-          zone[5] += bladeValues[southCombatantBlade];
-          zone[8] += bladeValues[southCombatantBlade];
-          zone[9] += bladeValues[southCombatantBlade];
-          zone[11] += bladeValues[southCombatantBlade];
+          addZoneTemperature(1, bladeValues[southCombatantBlade]);
+          addZoneTemperature(4, bladeValues[southCombatantBlade]);
+          addZoneTemperature(5, bladeValues[southCombatantBlade]);
+          addZoneTemperature(8, bladeValues[southCombatantBlade]);
+          addZoneTemperature(9, bladeValues[southCombatantBlade]);
+          addZoneTemperature(11, bladeValues[southCombatantBlade]);
         } else if ((!bladeSides[southCombatantBlade] && southCombatantFacing === 0) ||
           (bladeSides[southCombatantBlade] && southCombatantFacing === 2)) {
           // South facing North cleaving left or South cleaving right
-          zone[0] += bladeValues[southCombatantBlade];
-          zone[2] += bladeValues[southCombatantBlade];
-          zone[3] += bladeValues[southCombatantBlade];
-          zone[6] += bladeValues[southCombatantBlade];
-          zone[7] += bladeValues[southCombatantBlade];
-          zone[10] += bladeValues[southCombatantBlade];
+          addZoneTemperature(0, bladeValues[southCombatantBlade]);
+          addZoneTemperature(2, bladeValues[southCombatantBlade]);
+          addZoneTemperature(3, bladeValues[southCombatantBlade]);
+          addZoneTemperature(6, bladeValues[southCombatantBlade]);
+          addZoneTemperature(7, bladeValues[southCombatantBlade]);
+          addZoneTemperature(10, bladeValues[southCombatantBlade]);
         }
 
         // Calculate location needed for current temperature and brand
@@ -925,38 +944,39 @@ export default {
         const resultantTemperature = currentTemperature + currentBrand;
 
         // Check for Safe Zone and find necessary adjacentZone
+        // adjacentZones only have one add cleaving them, so we can add the two map keys
         let safeZone = null;
         let adjacentZones = null;
-        if (zone[3] === 0) {
+        if (hotZones[3] === 0 && coldZones[3] === 0) {
           adjacentZones = {
-            0: zone[0],
-            1: zone[4],
-            2: zone[7],
-            3: zone[2],
+            0: hotZones[0] + coldZones[0],
+            1: hotZones[4] + coldZones[4],
+            2: hotZones[7] + coldZones[7],
+            3: hotZones[2] + coldZones[2],
           };
           safeZone = output.northwest();
-        } else if (zone[4] === 0) {
+        } else if (hotZones[4] === 0 && coldZones[4] === 0) {
           adjacentZones = {
-            0: zone[1],
-            1: zone[5],
-            2: zone[8],
-            3: zone[3],
+            0: hotZones[1] + coldZones[1],
+            1: hotZones[5] + coldZones[5],
+            2: hotZones[8] + coldZones[8],
+            3: hotZones[3] + coldZones[3],
           };
           safeZone = output.northeast();
-        } else if (zone[7] === 0) {
+        } else if (hotZones[7] === 0 && coldZones[7] === 0) {
           adjacentZones = {
-            0: zone[3],
-            1: zone[8],
-            2: zone[10],
-            3: zone[6],
+            0: hotZones[3] + coldZones[3],
+            1: hotZones[8] + coldZones[8],
+            2: hotZones[10] + coldZones[10],
+            3: hotZones[6] + coldZones[6],
           };
           safeZone = output.southwest();
-        } else if (zone[8] === 0) {
+        } else if (hotZones[8] === 0 && coldZones[8] === 0) {
           adjacentZones = {
-            0: zone[4],
-            1: zone[9],
-            2: zone[11],
-            3: zone[7],
+            0: hotZones[4] + coldZones[4],
+            1: hotZones[9] + coldZones[9],
+            2: hotZones[11] + coldZones[11],
+            3: hotZones[7] + coldZones[7],
           };
           safeZone = output.southeast();
         } else {
