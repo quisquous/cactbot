@@ -816,101 +816,101 @@ export default {
         // East combatant zone contribution
         if (eastCombatantFacing === 0 || eastCombatantFacing === 2) {
           // East facing North/South must cleave these zones
-          zone[5] += bladeSides[eastCombatantBlade];
-          zone[9] += bladeSides[eastCombatantBlade];
+          zone[5] += bladeValues[eastCombatantBlade];
+          zone[9] += bladeValues[eastCombatantBlade];
         } else if ((bladeSides[eastCombatantBlade] && eastCombatantFacing === 1) ||
           (!bladeSides[eastCombatantBlade] && eastCombatantFacing === 3)) {
           // East facing East cleaving right or facing West cleaving left
-          zone[6] += bladeSides[eastCombatantBlade];
-          zone[7] += bladeSides[eastCombatantBlade];
-          zone[8] += bladeSides[eastCombatantBlade];
-          zone[9] += bladeSides[eastCombatantBlade];
-          zone[10] += bladeSides[eastCombatantBlade];
-          zone[11] += bladeSides[eastCombatantBlade];
+          zone[6] += bladeValues[eastCombatantBlade];
+          zone[7] += bladeValues[eastCombatantBlade];
+          zone[8] += bladeValues[eastCombatantBlade];
+          zone[9] += bladeValues[eastCombatantBlade];
+          zone[10] += bladeValues[eastCombatantBlade];
+          zone[11] += bladeValues[eastCombatantBlade];
         } else if ((!bladeSides[eastCombatantBlade] && eastCombatantFacing === 1) ||
           (bladeSides[eastCombatantBlade] && eastCombatantFacing === 3)) {
           // East facing East cleaving left or facing West cleaving right
-          zone[0] += bladeSides[eastCombatantBlade];
-          zone[1] += bladeSides[eastCombatantBlade];
-          zone[2] += bladeSides[eastCombatantBlade];
-          zone[3] += bladeSides[eastCombatantBlade];
-          zone[4] += bladeSides[eastCombatantBlade];
-          zone[5] += bladeSides[eastCombatantBlade];
+          zone[0] += bladeValues[eastCombatantBlade];
+          zone[1] += bladeValues[eastCombatantBlade];
+          zone[2] += bladeValues[eastCombatantBlade];
+          zone[3] += bladeValues[eastCombatantBlade];
+          zone[4] += bladeValues[eastCombatantBlade];
+          zone[5] += bladeValues[eastCombatantBlade];
         }
 
         // North combatant zone contribution
         if (northCombatantFacing === 1 || northCombatantFacing === 3) {
           // North facing East/West must cleave these zones
-          zone[0] += bladeSides[northCombatantBlade];
-          zone[1] += bladeSides[northCombatantBlade];
+          zone[0] += bladeValues[northCombatantBlade];
+          zone[1] += bladeValues[northCombatantBlade];
         } else if ((bladeSides[northCombatantBlade] && northCombatantFacing === 0) ||
           (!bladeSides[northCombatantBlade] && northCombatantFacing === 2)) {
           // North facing North cleaving right or South cleaving left
-          zone[1] += bladeSides[northCombatantBlade];
-          zone[4] += bladeSides[northCombatantBlade];
-          zone[5] += bladeSides[northCombatantBlade];
-          zone[8] += bladeSides[northCombatantBlade];
-          zone[9] += bladeSides[northCombatantBlade];
-          zone[11] += bladeSides[northCombatantBlade];
+          zone[1] += bladeValues[northCombatantBlade];
+          zone[4] += bladeValues[northCombatantBlade];
+          zone[5] += bladeValues[northCombatantBlade];
+          zone[8] += bladeValues[northCombatantBlade];
+          zone[9] += bladeValues[northCombatantBlade];
+          zone[11] += bladeValues[northCombatantBlade];
         } else if ((!bladeSides[northCombatantBlade] && northCombatantFacing === 0) ||
           (bladeSides[northCombatantBlade] && northCombatantFacing === 2)) {
           // North facing North cleaving left or South cleaving right
-          zone[0] += bladeSides[northCombatantBlade];
-          zone[2] += bladeSides[northCombatantBlade];
-          zone[3] += bladeSides[northCombatantBlade];
-          zone[6] += bladeSides[northCombatantBlade];
-          zone[7] += bladeSides[northCombatantBlade];
-          zone[10] += bladeSides[northCombatantBlade];
+          zone[0] += bladeValues[northCombatantBlade];
+          zone[2] += bladeValues[northCombatantBlade];
+          zone[3] += bladeValues[northCombatantBlade];
+          zone[6] += bladeValues[northCombatantBlade];
+          zone[7] += bladeValues[northCombatantBlade];
+          zone[10] += bladeValues[northCombatantBlade];
         }
 
         // West combatant zone contribution
         if (westCombatantFacing === 0 || westCombatantFacing === 2) {
           // West facing North/South must cleave these zones
-          zone[2] += bladeSides[westCombatantBlade];
-          zone[6] += bladeSides[westCombatantBlade];
+          zone[2] += bladeValues[westCombatantBlade];
+          zone[6] += bladeValues[westCombatantBlade];
         } else if ((bladeSides[westCombatantBlade] && westCombatantFacing === 1) ||
           (!bladeSides[westCombatantBlade] && westCombatantFacing === 3)) {
           // West facing East cleaving right or West cleaving left
-          zone[6] += bladeSides[westCombatantBlade];
-          zone[7] += bladeSides[westCombatantBlade];
-          zone[8] += bladeSides[westCombatantBlade];
-          zone[9] += bladeSides[westCombatantBlade];
-          zone[10] += bladeSides[westCombatantBlade];
-          zone[11] += bladeSides[westCombatantBlade];
+          zone[6] += bladeValues[westCombatantBlade];
+          zone[7] += bladeValues[westCombatantBlade];
+          zone[8] += bladeValues[westCombatantBlade];
+          zone[9] += bladeValues[westCombatantBlade];
+          zone[10] += bladeValues[westCombatantBlade];
+          zone[11] += bladeValues[westCombatantBlade];
         } else if ((!bladeSides[westCombatantBlade] && westCombatantFacing === 1) ||
           (bladeSides[westCombatantBlade] && westCombatantFacing === 3)) {
           // West facing East cleaving left or West cleaving right
-          zone[0] += bladeSides[westCombatantBlade];
-          zone[1] += bladeSides[westCombatantBlade];
-          zone[2] += bladeSides[westCombatantBlade];
-          zone[3] += bladeSides[westCombatantBlade];
-          zone[4] += bladeSides[westCombatantBlade];
-          zone[5] += bladeSides[westCombatantBlade];
+          zone[0] += bladeValues[westCombatantBlade];
+          zone[1] += bladeValues[westCombatantBlade];
+          zone[2] += bladeValues[westCombatantBlade];
+          zone[3] += bladeValues[westCombatantBlade];
+          zone[4] += bladeValues[westCombatantBlade];
+          zone[5] += bladeValues[westCombatantBlade];
         }
 
         // South combatant zone contribution
         if (southCombatantFacing === 1 || southCombatantFacing === 3) {
           // South facing East/West must cleave these zones
-          zone[10] += bladeSides[southCombatantBlade];
-          zone[11] += bladeSides[southCombatantBlade];
+          zone[10] += bladeValues[southCombatantBlade];
+          zone[11] += bladeValues[southCombatantBlade];
         } else if ((bladeSides[southCombatantBlade] && southCombatantFacing === 0) ||
           (!bladeSides[southCombatantBlade] && southCombatantFacing === 2)) {
           // South facing North cleaving right or South cleaving left
-          zone[1] += bladeSides[southCombatantBlade];
-          zone[4] += bladeSides[southCombatantBlade];
-          zone[5] += bladeSides[southCombatantBlade];
-          zone[8] += bladeSides[southCombatantBlade];
-          zone[9] += bladeSides[southCombatantBlade];
-          zone[11] += bladeSides[southCombatantBlade];
+          zone[1] += bladeValues[southCombatantBlade];
+          zone[4] += bladeValues[southCombatantBlade];
+          zone[5] += bladeValues[southCombatantBlade];
+          zone[8] += bladeValues[southCombatantBlade];
+          zone[9] += bladeValues[southCombatantBlade];
+          zone[11] += bladeValues[southCombatantBlade];
         } else if ((!bladeSides[southCombatantBlade] && southCombatantFacing === 0) ||
           (bladeSides[southCombatantBlade] && southCombatantFacing === 2)) {
           // South facing North cleaving left or South cleaving right
-          zone[0] += bladeSides[southCombatantBlade];
-          zone[2] += bladeSides[southCombatantBlade];
-          zone[3] += bladeSides[southCombatantBlade];
-          zone[6] += bladeSides[southCombatantBlade];
-          zone[7] += bladeSides[southCombatantBlade];
-          zone[10] += bladeSides[southCombatantBlade];
+          zone[0] += bladeValues[southCombatantBlade];
+          zone[2] += bladeValues[southCombatantBlade];
+          zone[3] += bladeValues[southCombatantBlade];
+          zone[6] += bladeValues[southCombatantBlade];
+          zone[7] += bladeValues[southCombatantBlade];
+          zone[10] += bladeValues[southCombatantBlade];
         }
 
         // Calculate location needed for current temperature and brand
