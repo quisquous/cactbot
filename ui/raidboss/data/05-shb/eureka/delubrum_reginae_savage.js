@@ -665,7 +665,7 @@ export default {
       netRegex: NetRegexes.gainsEffect({ effectId: ['8F9', '8FA', '8FB', '8FC'] }),
       delaySeconds: 0.3,
       durationSeconds: 9.7,
-      suppressSeconds: 8,
+      suppressSeconds: 9.5,
       promise: async (data, matches, output) => {
         const trinityLocaleNames = {
           en: 'Trinity Avowed',
