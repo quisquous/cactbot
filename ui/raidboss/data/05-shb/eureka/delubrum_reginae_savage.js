@@ -662,10 +662,14 @@ export default {
       //
       // Trigger delayed until after Blade Of Entropy happens about ~100ms after
       // to get left/right cleave info
-      netRegex: NetRegexes.gainsEffect({ effectId: ['8F9', '8FA', '8FB', '8FC'] }),
+      // Ignoring Trinity Avowed due to Environment 'randomly' refreshing its buff
+      netRegex: NetRegexes.gainsEffect({ target: 'Avowed Avatar', effectId: ['8F9', '8FA', '8FB', '8FC'] }),
+      netRegex: NetRegexesDe.gainsEffect({ target: 'Spaltteil der Eingeschworenen', effectId: ['8F9', '8FA', '8FB', '8FC'] }),
+      netRegex: NetRegexesFr.gainsEffect({ target: 'Clone De La Trinité Féale', effectId: ['8F9', '8FA', '8FB', '8FC'] }),
+      netRegex: NetRegexesJa.gainsEffect({ target: 'アヴァウドの分体', effectId: ['8F9', '8FA', '8FB', '8FC'] }),
       delaySeconds: 1,
       durationSeconds: 9,
-      suppressSeconds: 9.5,
+      suppressSeconds: 1,
       promise: async (data, matches, output) => {
         const trinityLocaleNames = {
           en: 'Trinity Avowed',
