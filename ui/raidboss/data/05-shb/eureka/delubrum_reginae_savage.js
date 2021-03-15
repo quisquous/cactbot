@@ -1011,7 +1011,7 @@ export default {
         }
 
         if (safeZone && adjacentZone)
-          data.safeZone = output.getCleaved({ dir1: adjacentZone, dir2: safeZone });
+          data.safeZone = output.getCleaved({ dir1: safeZone, dir2: adjacentZone });
         else if (safeZone)
           data.safeZone = output.safeSpot({ dir: safeZone });
         else
@@ -1022,10 +1022,10 @@ export default {
       },
       outputStrings: {
         getCleaved: {
-          en: 'Get cleaved ${dir1} of ${dir2} Safe Spot',
+          en: 'Safe Spot inside ${dir1}, Get cleaved 1 square ${dir2}',
         },
         safeSpot: {
-          en: 'Safe Spot: ${dir}',
+          en: 'Safe Spot: inside ${dir}',
         },
         unknown: {
           en: '???',
