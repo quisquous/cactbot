@@ -749,7 +749,7 @@ export default {
         const combatantPositions = {};
         combatantPositions[getUnwaveringPosition(avatarOne)] = avatarOne;
         combatantPositions[getUnwaveringPosition(avatarTwo)] = avatarTwo;
-        combatantPositions[getUnwaveringPosition(avatarThree)] = avatarTwo;
+        combatantPositions[getUnwaveringPosition(avatarThree)] = avatarThree;
 
         // Avowed Avatars can spawn in the other positions
         // Determine the location of Avowed Avatars
