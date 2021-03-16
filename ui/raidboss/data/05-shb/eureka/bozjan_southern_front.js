@@ -1217,7 +1217,7 @@ export default {
         'Twin Agonies': '쌍마사왕참',
         'Voltstream': '번개 급류',
         'Warped Light': '섬광포',
-        'Water IV': 'ウォタジャ',
+        'Water IV': '워터쟈',
         'Winds\' Peak': '초급렬풍파',
       },
     },
