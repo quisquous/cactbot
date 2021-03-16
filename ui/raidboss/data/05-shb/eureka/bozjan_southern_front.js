@@ -1199,6 +1199,7 @@ export default {
         'Nature\'s Blood': '파도지령참',
         'Nature\'s Pulse': '파도지령충',
         'Obey': '명령 따르기',
+        'Orb': '구슬',
         'Pentagust': '다섯 갈래 돌풍',
         'Polar Magnetism': '자석 변환',
         'Pole Shift': '자기장 전환',
