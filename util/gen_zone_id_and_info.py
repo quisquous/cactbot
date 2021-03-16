@@ -40,6 +40,7 @@ synthetic_zone_info = {
             "en": "The Akh Afah Amphitheatre (Unreal)",
             "fr": "L'Amphithéâtre d'Akh Afah (irréel)",
             "ja": "幻シヴァ討滅戦",
+            "ko": "환 시바 토벌전",
         },
         "offsetX": 0,
         "offsetY": 0,
