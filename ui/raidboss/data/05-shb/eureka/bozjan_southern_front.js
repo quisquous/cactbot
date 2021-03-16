@@ -1161,6 +1161,7 @@ export default {
         'Verdant Plume': '진녹색 날개',
       },
       'replaceText': {
+        '--Lyon Passage--': '--라이언 통과--',
         '(?<!Command: )Chain Cannon': '기관총 일제 발사',
         '(?<!Command: )Dive Formation': '대물 일제 돌격',
         '(?<!Command: )Infrared Blast': '대물 열선',
