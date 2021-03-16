@@ -1144,7 +1144,6 @@ export default {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         '4Th Legion Helldiver': 'IV군단 헬다이버',
         'Adrammelech': '아드람멜렉',
