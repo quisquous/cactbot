@@ -663,14 +663,14 @@ export default {
       // Trigger delayed until after Blade Of Entropy happens about ~100ms after
       // to get left/right cleave info
       // Ignoring Trinity Avowed due to Environment 'randomly' refreshing its buff
-      netRegex: NetRegexes.gainsEffect({ target: 'Avowed Avatar', effectId: ['8F9', '8FA', '8FB', '8FC'] }),
-      netRegexDe: NetRegexes.gainsEffect({ target: 'Spaltteil der Eingeschworenen', effectId: ['8F9', '8FA', '8FB', '8FC'] }),
-      netRegexFr: NetRegexes.gainsEffect({ target: 'Clone De La Trinité Féale', effectId: ['8F9', '8FA', '8FB', '8FC'] }),
-      netRegexJa: NetRegexes.gainsEffect({ target: 'アヴァウドの分体', effectId: ['8F9', '8FA', '8FB', '8FC'] }),
+      netRegex: NetRegexes.gainsEffect({ target: 'Avowed Avatar', effectId: ['8F9', '8FA', '8FB', '8FC'], capture: false }),
+      netRegexDe: NetRegexes.gainsEffect({ target: 'Spaltteil der Eingeschworenen', effectId: ['8F9', '8FA', '8FB', '8FC'], capture: false }),
+      netRegexFr: NetRegexes.gainsEffect({ target: 'Clone De La Trinité Féale', effectId: ['8F9', '8FA', '8FB', '8FC'], capture: false }),
+      netRegexJa: NetRegexes.gainsEffect({ target: 'アヴァウドの分体', effectId: ['8F9', '8FA', '8FB', '8FC'], capture: false }),
       delaySeconds: 1,
       durationSeconds: 9,
       suppressSeconds: 1,
-      promise: async (data, matches, output) => {
+      promise: async (data, _, output) => {
         const trinityLocaleNames = {
           en: 'Trinity Avowed',
           de: 'Trinität Der Eingeschworenen',
@@ -1017,7 +1017,7 @@ export default {
         else
           data.safeZone = null;
       },
-      infoText: function(data, _, output) {
+      infoText: (data, _, output) => {
         return !data.safeZone ? output.unknown() : data.safeZone;
       },
       outputStrings: {
