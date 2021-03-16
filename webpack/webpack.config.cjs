@@ -17,7 +17,6 @@ module.exports = function(env, argv) {
       radar: './ui/radar/radar.js',
       raidboss: './ui/raidboss/raidboss.js',
       raidemulator: './ui/raidboss/raidemulator.js',
-      raidemulatorWorker: './ui/raidboss/emulator/data/NetworkLogConverterWorker.js',
       test: './ui/test/test.js',
     },
     optimization: {
@@ -47,6 +46,25 @@ module.exports = function(env, argv) {
     },
     module: {
       rules: [
+        {
+          // Worker has to go before normal js
+          test: /NetworkLogConverterWorker\.(?:c|m)?js$/,
+          loader: 'worker-loader',
+          options: {
+            esModule: true,
+            inline: 'fallback',
+            worker: {
+              type: 'Worker',
+              options: {
+                type: 'classic',
+                name: 'NetworkLogConverterWorker',
+              },
+            },
+          },
+          resolve: {
+            fullySpecified: false,
+          },
+        },
         {
           // this will allow importing without extension in js files.
           test: /\.m?js$/,

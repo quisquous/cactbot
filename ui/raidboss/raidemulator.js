@@ -18,6 +18,9 @@ import { TimelineLoader } from './timeline';
 import Tooltip from './emulator/ui/Tooltip';
 import UserConfig from '../../resources/user_config';
 import raidbossFileData from './data/manifest.txt';
+// eslint can't detect the custom loader for the worker
+// eslint-disable-next-line import/default
+import NetworkLogConverterWorker from './emulator/data/NetworkLogConverterWorker';
 
 // @TODO: Some way to not have this be a global?
 
@@ -65,7 +68,7 @@ const Options = {
     emulatedPartyInfo = new EmulatedPartyInfo(emulator);
     emulatedMap = new EmulatedMap(emulator);
     emulatedWebSocket = new RaidEmulatorOverlayApiHook(emulator);
-    logConverterWorker = new Worker('../../dist/raidemulatorWorker.bundle.js');
+    logConverterWorker = new NetworkLogConverterWorker();
 
     // Listen for the user to click a player in the party list on the right
     // and persist that over to the emulator
