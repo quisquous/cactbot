@@ -1183,6 +1183,7 @@ export default {
         'Energy Generation': '에너지 구체 생성',
         'Explosion': '폭산',
         'False Thunder': '인공 번개',
+        'Frigid(?! )': '냉랭한',
         'Fervid Pulse': '열렬한 고동',
         'Fire IV': '파이쟈',
         'Flare': '플레어',
