@@ -65,7 +65,7 @@ UserConfig.registerOptions('eureka', {
         fr: 'Jouer un son pour l\'apparition des escarmouches',
         ja: 'スカーミッシュ通知機能を有効にする',
         cn: '冲突战出现时播放提示音',
-        ko: 'skirmishes 알림 소리 켜기',
+        ko: '돌발 교전 알림 소리 켜기',
       },
       type: 'checkbox',
       default: false,
