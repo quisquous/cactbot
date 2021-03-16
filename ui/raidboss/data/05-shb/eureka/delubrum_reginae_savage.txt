@@ -972,11 +972,11 @@ hideall "--sync--"
 14788.9 "Allegiant Arsenal"
 
 # -> Sword v1 (seen bow)?
-14785.9 "--sync--" sync /:5987:Trinity Avowed/ window 70,10 jump 14300
-14794.1 "Fury Of Bozja?" #sync /:Trinity Avowed:594C:/
+14785.9 "--sync--" sync /:5985:Trinity Avowed/ window 70,10 jump 14300
+14794.1 "Infernal Slash?" #sync /:Trinity Avowed:594A:/
 # -> Staff v1 (seen bow)?
 14785.9 "--sync--" sync /:5987:Trinity Avowed/ window 70,10 jump 15700
-14794.1 "Allegiant Arsenal" sync /:Trinity Avowed:5987:/
+14794.1 "Fury Of Bozja?" #sync /:Trinity Avowed:594C:/
 
 
 # Bow v1 (seen sword)
@@ -1215,14 +1215,14 @@ hideall "--sync--"
 16345.0 "Gleaming Arrow" sync /:Avowed Avatar:594D:/
 16350.5 "--sync--" sync /:Trinity Avowed:5984:/
 16357.6 "Glory Of Bozja" sync /:Trinity Avowed:594F:/
-16359.2 "Allegiant Arsenal"
+16369.4 "Allegiant Arsenal"
 
 # -> Sword v2?
-16356.2 "--sync--" sync /:5985:Trinity Avowed/ window 70,10 jump 15900
-16364.4 "Infernal Slash?" #sync /:Trinity Avowed:594A:/
+16366.4 "--sync--" sync /:5985:Trinity Avowed/ window 70,10 jump 15900
+16374.6 "Infernal Slash?" #sync /:Trinity Avowed:594A:/
 # -> Bow v2?
-16356.2 "--sync--" sync /:5986:Trinity Avowed/ window 70,10 jump 16100
-16364.4 "Flashvane?" #sync /:Trinity Avowed:594B:/
+16366.4 "--sync--" sync /:5986:Trinity Avowed/ window 70,10 jump 16100
+16374.6 "Flashvane?" #sync /:Trinity Avowed:594B:/
 
 
 # Enrage
