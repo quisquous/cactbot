@@ -499,9 +499,9 @@ export default {
     {
       id: 'DelubrumSav Guard Boost',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: '582D', capture: false }),
-      netRegexDe: NetRegexes.tether({ source: 'Kriegerin Der Königin', id: '582D', capture: false }),
-      netRegexFr: NetRegexes.tether({ source: 'Guerrière De La Reine', id: '582D', capture: false }),
-      netRegexJa: NetRegexes.tether({ source: 'クイーンズ・ウォリアー', id: '582D', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegerin Der Königin', id: '582D', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Guerrière De La Reine', id: '582D', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ウォリアー', id: '582D', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
