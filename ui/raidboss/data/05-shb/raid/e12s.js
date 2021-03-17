@@ -400,43 +400,189 @@ export default {
       id: 'E12S Promise Chiseled Sculpture',
       netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => data.isDoorBoss && matches.target === data.me,
-      response: (data, matches, output) => {
-        // cactbot-builtin-response
-        output.responseOutputStrings = {
-          // This is sort of redundant, but if folks want to put "square" or something in the text,
-          // having these be separate would allow them to configure them separately.
-          square1: numberOutputStrings[1],
-          square2: numberOutputStrings[2],
-          square3: numberOutputStrings[3],
-          square4: numberOutputStrings[4],
-          triangle1: numberOutputStrings[1],
-          triangle2: numberOutputStrings[2],
-          triangle3: numberOutputStrings[3],
-          triangle4: numberOutputStrings[4],
-        };
-
+      run: (data, matches) => {
         const id = getHeadmarkerId(data, matches);
 
         // Statue laser mechanic.
         const firstLaserMarker = '0091';
         const lastLaserMarker = '0098';
         if (id >= firstLaserMarker && id <= lastLaserMarker) {
-          // We could arguably tell you which giant you're tethered to by finding their position?
-          // And then saying something like "North" but that's probably more confusing than helpful.
           // ids are sequential: #1 square, #2 square, #3 square, #4 square, #1 triangle etc
           const decOffset = parseInt(id, 16) - parseInt(firstLaserMarker, 16);
-          return {
-            alertText: [
-              output.square1(),
-              output.square2(),
-              output.square3(),
-              output.square4(),
-              output.triangle1(),
-              output.triangle2(),
-              output.triangle3(),
-              output.triangle4(),
-            ][decOffset],
-          };
+          data.statueTetherNumber = (decOffset % 4) + 1;
+        }
+      },
+    },
+    {
+      id: 'E12S Promise Chiseled Sculpture Collector',
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9818' }),
+      run: (data, matches) => {
+        // Collect both sculptures up front, so when we find the tether on the
+        // current player we can look up both of them immediately.
+        data.statueIds = data.statueIds || [];
+        data.statueIds.push(parseInt(matches.id, 16));
+      },
+    },
+    {
+      id: 'E12S Promise Chiseled Sculpture Tether',
+      // This always directly follows the 1B: headmarker line.
+      netRegex: NetRegexes.tether({ target: 'Chiseled Sculpture', id: '0011' }),
+      condition: (data, matches) => matches.source === data.me,
+      durationSeconds: (data) => {
+        // Handle laser #1 differently to not collide with the rapturous reach.
+        if (data.statueTetherNumber === 0)
+          return 3.5;
+        if (data.statueTetherNumber)
+          return data.statueTetherNumber * 3 + 4.5;
+        return 8;
+      },
+      promise: async (data, matches) => {
+        // Set an initial value here, just in case anything errors.
+        data.statueDir = 'unknown';
+
+        // Calculate distance to center to determine inner vs outer
+        const statueData = await window.callOverlayHandler({
+          call: 'getCombatants',
+          ids: data.statueIds,
+        });
+
+        if (statueData === null) {
+          console.error(`sculpture: null statueData`);
+          return;
+        }
+        if (!statueData.combatants) {
+          console.error(`sculpture: null combatants`);
+          return;
+        }
+        if (statueData.combatants.length !== 2) {
+          console.error(`sculpture: unexpected length: ${JSON.stringify(statueData)}`);
+          return;
+        }
+
+        // Mark up statue objects with their distance to the center and
+        // convert their decimal id to an 8 character hex id.
+        const statues = statueData.combatants;
+        for (const statue of statues) {
+          const centerX = 0;
+          const centerY = -75;
+          const x = statue.PosX - centerX;
+          const y = statue.PosY - centerY;
+          statue.dist = Math.hypot(x, y);
+          statue.hexId = `00000000${statue.ID.toString(16)}`.slice(-8).toUpperCase();
+        }
+
+        // Sort so that closest statue (inner) is first
+        statues.sort((a, b) => a.dist - b.dist);
+
+        if (statues[0].hexId === matches.targetId)
+          data.statueDir = 'inner';
+        else if (statues[1].hexId === matches.targetId)
+          data.statueDir = 'outer';
+        else
+          console.error(`sculpture: missing ${matches.targetId}, ${JSON.stringify(statues)}`);
+      },
+      infoText: (data, _, output) => {
+        const numStr = {
+          1: output.laser1(),
+          2: output.laser2(),
+          3: output.laser3(),
+          4: output.laser4(),
+        }[data.statueTetherNumber];
+
+        if (!numStr) {
+          console.error(`sculpture: invalid tether number: ${data.statueTetherNumber}`);
+          return;
+        }
+
+        return output[data.statueDir]({ num: numStr });
+      },
+      outputStrings: {
+        laser1: numberOutputStrings[1],
+        laser2: numberOutputStrings[2],
+        laser3: numberOutputStrings[3],
+        laser4: numberOutputStrings[4],
+        inner: {
+          en: '#${num} (Inner)',
+        },
+        outer: {
+          en: '#${num} (Outer)',
+        },
+        unknown: {
+          en: '#${num} (???)',
+        },
+      },
+    },
+    {
+      id: 'E12S Promise Palm Of Temperance SE',
+      netRegex: NetRegexes.startsUsing({ source: 'Guardian Of Eden', id: '58B4', capture: false }),
+      durationSeconds: 10,
+      infoText: (data, _, output) => output.knockback(),
+      outputStrings: {
+        knockback: {
+          en: 'SE Knockback',
+        },
+      },
+    },
+    {
+      id: 'E12S Promise Palm Of Temperance SW',
+      netRegex: NetRegexes.startsUsing({ source: 'Guardian Of Eden', id: '58B5', capture: false }),
+      durationSeconds: 10,
+      infoText: (data, _, output) => output.knockback(),
+      outputStrings: {
+        knockback: {
+          en: 'SW Knockback',
+        },
+      },
+    },
+    {
+      id: 'E12S Promise Statue 2nd/3rd/4th Laser',
+      netRegex: NetRegexes.ability({ source: 'Chiseled Sculpture', id: '58B3', capture: false }),
+      condition: (data) => !data.statueLaserCount || data.statueLaserCount < 4,
+      durationSeconds: 3,
+      suppressSeconds: 1,
+      response: (data, _, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          laser1: numberOutputStrings[1],
+          laser2: numberOutputStrings[2],
+          laser3: numberOutputStrings[3],
+          laser4: numberOutputStrings[4],
+          baitInner: {
+            en: 'Bait Inner #${num}',
+          },
+          baitOuter: {
+            en: 'Bait Outer #${num}',
+          },
+          baitUnknown: {
+            en: 'Bait #${num}',
+          },
+        };
+        // Start one ahead, so that it calls out #2 after #1 has finished.
+        data.statueLaserCount = data.statueLaserCount + 1 || 2;
+
+        const numStr = {
+          1: output.laser1(),
+          2: output.laser2(),
+          3: output.laser3(),
+          4: output.laser4(),
+        }[data.statueLaserCount];
+
+        // The lasers are VERY noisy and flashy, so don't print anything when not you.
+        // This also helps prevent confusion with the knockback direction trigger.
+        if (data.statueLaserCount !== data.statueTetherNumber)
+          return;
+
+        if (data.statueDir === 'inner')
+          return { alertText: output.baitInner({ num: numStr }) };
+        else if (data.statueDir === 'outer')
+          return { alertText: output.baitOuter({ num: numStr }) };
+        return { alertText: output.baitUnknown({ num: numStr }) };
+      },
+      run: (data) => {
+        if (data.statueLaserCount >= 4) {
+          // Prevent future rapturous reach calls from thinking this is during lasers.
+          delete data.statueTetherNumber;
+          delete data.statueDir;
         }
       },
     },
@@ -501,7 +647,30 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58AD', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58AD', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58AD', capture: false }),
-      response: Responses.goLeft('info'),
+      response: (data, _, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          goLeft: Outputs.left,
+          goLeftBaitInner: {
+            en: 'Left + Bait Inner #1',
+          },
+          goLeftBaitOuter: {
+            en: 'Left + Bait Outer #1',
+          },
+          goLeftBaitUnknown: {
+            en: 'Left + Bait #1',
+          },
+        };
+
+        if (data.statueTetherNumber !== 1)
+          return { infoText: output.goLeft() };
+
+        if (data.statueDir === 'inner')
+          return { alarmText: output.goLeftBaitInner() };
+        else if (data.statueDir === 'outer')
+          return { alarmText: output.goLeftBaitOuter() };
+        return { alarmText: output.goLeftBaitUnknown() };
+      },
       run: (data) => data.isDoorBoss = true,
     },
     {
@@ -510,7 +679,30 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58AE', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58AE', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58AE', capture: false }),
-      response: Responses.goRight('info'),
+      response: (data, _, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          goRight: Outputs.right,
+          goRightBaitInner: {
+            en: 'Right + Bait Inner #1',
+          },
+          goRightBaitOuter: {
+            en: 'Right + Bait Outer #1',
+          },
+          goRightBaitUnknown: {
+            en: 'Right + Bait #1',
+          },
+        };
+
+        if (data.statueTetherNumber !== 1)
+          return { infoText: output.goRight() };
+
+        if (data.statueDir === 'inner')
+          return { alarmText: output.goRightBaitInner() };
+        else if (data.statueDir === 'outer')
+          return { alarmText: output.goRightBaitOuter() };
+        return { alarmText: output.goRightBaitUnknown() };
+      },
       run: (data) => data.isDoorBoss = true,
     },
     {
