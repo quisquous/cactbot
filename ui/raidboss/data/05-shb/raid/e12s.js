@@ -989,8 +989,8 @@ export default {
         // select the Oracle Of Darkness with same source id
         let oracleData = null;
         oracleData = await window.callOverlayHandler({
-            call: 'getCombatants',
-            ids: [parseInt(matches.sourceId, 16)],
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
         });
 
         // if we could not retrieve combatant data, the
