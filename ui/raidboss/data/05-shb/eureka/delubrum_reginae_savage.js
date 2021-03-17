@@ -821,7 +821,7 @@ export default {
         } else if ((westCombatantFacing === dirNum.north || westCombatantFacing === dirNum.south) &&
           (northCombatantFacing === dirNum.east || northCombatantFacing === dirNum.west)) {
           // if west cleaving west and north cleaving north, safe spot is nw
-             safeZone = output.northwest();
+          safeZone = output.northwest();
         } else {
           // facing of two critical combatants did not evaluate properly
           safeZone = output.unknown();
