@@ -980,51 +980,42 @@ export default {
     },
     {
       id: 'E12S Oracle Cataclysm',
-      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C2', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58C2', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58C2', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58C2', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C2' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58C2' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58C2' }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58C2' }),
       delaySeconds: 0.5,
-      promise: async (data, _, output) => {
-        const oracleLocaleNames = {
-          en: 'Oracle Of Darkness',
-          de: 'Orakel Der Dunkelheit',
-          fr: 'Prêtresse Des Ténèbres',
-          ja: '闇の巫女',
-        };
-
-        // select the Oracle Of Darkness
-        let combatantName = null;
-        combatantName = oracleLocaleNames[data.parserLang];
-
-        let combatantData = null;
-        if (combatantName) {
-          combatantData = await window.callOverlayHandler({
+      promise: async (data, matches, output) => {
+        // select the Oracle Of Darkness with same source id
+        let oracleData = null;
+        oracleData = await window.callOverlayHandler({
             call: 'getCombatants',
-            names: [combatantName],
-          });
-        }
+            ids: [parseInt(matches.sourceId, 16)],
+        });
 
         // if we could not retrieve combatant data, the
         // trigger will not work, so just resume promise here
-        if (combatantData === null) {
+        if (oracleData === null) {
           console.error(`Oracle Of Darkness: null data`);
           data.safeZone = null;
           return;
         }
-        if (!combatantData.combatants) {
+        if (!oracleData.combatants) {
           console.error(`Oracle Of Darkness: null combatants`);
           data.safeZone = null;
           return;
         }
+        if (oracleData.combatants.length !== 1) {
+          console.error(`Oracle Of Darkness: expected 1, got ${oracleData.combatants.length}`);
+          data.safeZone = null;
+          return;
+        }
 
-        // we need to filter for the Oracle Of Darkness with the highest ID
-        // as that one is the one that always casts Cataclysm
-        const combatant = combatantData.combatants.sort((a, b) => a.ID - b.ID).pop();
+        const oracle = oracleData.combatants[0];
 
         // Snap heading to closest card and add 2 for opposite direction
         // N = 0, E = 1, S = 2, W = 3
-        const cardinal = ((2 - Math.round(combatant.Heading * 4 / Math.PI) / 2) + 2) % 4;
+        const cardinal = ((2 - Math.round(oracle.Heading * 4 / Math.PI) / 2) + 2) % 4;
 
         const dirs = {
           0: output.north(),
