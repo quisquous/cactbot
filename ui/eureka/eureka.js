@@ -154,7 +154,7 @@ const Options = {
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)分(钟*)\)/),
     },
     ko: {
-      'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)\ue0bb(에우레카: (?:아네모스|파고스|피로스|히다토스) 지대|남부 보즈야 전선) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)\ue0bb(?:에우레카: (?:아네모스|파고스|피로스|히다토스) 지대|남부 보즈야 전선) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/([\w-]{6})(?:[^\w-]|$)/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)토벌한 마물: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)분\)/),

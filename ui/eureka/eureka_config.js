@@ -91,7 +91,7 @@ UserConfig.registerOptions('eureka', {
         fr: 'Jouer un son pour l\'apparition des duels',
         ja: '一騎打ち通知機能を有効にする',
         cn: '一对一决斗出现时播放提示音',
-        ko: 'duels 알림 소리 켜기',
+        ko: '결투 알림 소리 켜기',
       },
       type: 'checkbox',
       default: false,
