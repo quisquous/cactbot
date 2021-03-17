@@ -20,20 +20,6 @@ const tankBusterOnParty = (data, matches) => {
   return data.party.inParty(data.target);
 };
 
-const getFacing = (combatant) => {
-  // Snap heading to closest card.
-  // N = 0, E = 1, S = 2, W = 3
-  return (2 - Math.round(combatant.Heading * 4 / Math.PI) / 2) % 4;
-};
-
-const getUnwaveringPosition = (combatant) => {
-  // Positions are moved downward 87 and left 277
-  const y = combatant.PosY + 87;
-  const x = combatant.PosX + 277;
-  // N = 0, E = 1, S = 2, W = 3
-  return Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4;
-};
-
 export default {
   zoneId: ZoneId.DelubrumReginaeSavage,
   timelineFile: 'delubrum_reginae_savage.txt',
@@ -733,6 +719,20 @@ export default {
           data.safeZone = null;
           return;
         }
+
+        const getFacing = (combatant) => {
+          // Snap heading to closest card.
+          // N = 0, E = 1, S = 2, W = 3
+          return (2 - Math.round(combatant.Heading * 4 / Math.PI) / 2) % 4;
+        };
+
+        const getUnwaveringPosition = (combatant) => {
+          // Positions are moved downward 87 and left 277
+          const y = combatant.PosY + 87;
+          const x = combatant.PosX + 277;
+          // N = 0, E = 1, S = 2, W = 3
+          return Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4;
+        };
 
         // we need to filter for the Trinity Avowed with the lowest ID
         // that one is always cleaving on one of the cardinals
