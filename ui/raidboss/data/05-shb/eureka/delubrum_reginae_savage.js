@@ -845,7 +845,7 @@ export default {
         // Calculate which adjacent zone to go to, if needed
         let adjacentZone = null;
         if (effectiveTemperature) {
-          // Find the adjecent zone that gets closest to 0
+          // Find the adjacent zone that gets closest to 0
           const calculatedZones = Object.values(adjacentZones).map((i) =>
             Math.abs(effectiveTemperature + i));
 
