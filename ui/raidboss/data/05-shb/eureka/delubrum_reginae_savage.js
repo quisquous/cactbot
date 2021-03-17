@@ -884,7 +884,6 @@ export default {
         }
 
         // Callout safe spot and get cleaved spot if both are known
-        // Callout adjacent spot if failed to get facing, pray someone called out the safe spot
         // Callout safe spot only if no need to be cleaved
         if (adjacentZone)
           data.safeZone = output.getCleaved({ dir1: safeZone, dir2: adjacentZone });
