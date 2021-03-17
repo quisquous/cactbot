@@ -801,39 +801,57 @@ export default {
         // Create map to improve readability of safeZone conditions
         const dirNum = { north: 0, east: 1, south: 2, west: 3 };
 
-        // Two of the combatants are always cleaving outside
-        // Combatants cannot cleave inside if facing is parallel to edge
-        // This results in a + where the center is safe and the edges
-        //  of the + are cleaved by one combatant
+        // Only need to check cleaves from two parallel clones to determine safe spots
+        // because if the clone is cleaving inside, then we know where other clones
+        // are cleaving in order to make a '+' where the ends are each cleaved by one
+        // clone and the middle square is safe
         let safeZone = null;
-        if ((eastCombatantFacing === dirNum.north || eastCombatantFacing === dirNum.south) &&
-          (southCombatantFacing === dirNum.east || southCombatantFacing === dirNum.west)) {
-          // if east cleaving east and south cleaving south, safe spot is se
-          safeZone = output.southeast();
-        } else if ((eastCombatantFacing === dirNum.north || eastCombatantFacing === dirNum.south) &&
-          (northCombatantFacing === dirNum.east || northCombatantFacing === dirNum.west)) {
-          // if east cleaving east and north cleaving north, safe spot is ne
-          safeZone = output.northeast();
-        } else if ((westCombatantFacing === dirNum.north || westCombatantFacing === dirNum.south) &&
-          (southCombatantFacing === dirNum.east || southCombatantFacing === dirNum.west)) {
-          // if west cleaving west and south cleaving south, safe spot is sw
+        let adjacentZones = {};
+        if ((northCombatantFacing === dirNum.north && bladeSides[northCombatantBlade]) ||
+          (northCombatantFacing === dirNum.south && !bladeSides[northCombatantBlade])) {
+          // North clone cleaving inside east
           safeZone = output.southwest();
-        } else if ((westCombatantFacing === dirNum.north || westCombatantFacing === dirNum.south) &&
-          (northCombatantFacing === dirNum.east || northCombatantFacing === dirNum.west)) {
-          // if west cleaving west and north cleaving north, safe spot is nw
+          adjacentZones = {
+            0: bladeValues[eastCombatantBlade],
+            1: bladeValues[northCombatantBlade],
+            2: bladeValues[southCombatantBlade],
+            3: bladeValues[westCombatantBlade],
+          };
+        } else if ((northCombatantFacing === dirNum.north && !bladeSides[northCombatantBlade]) ||
+          (northCombatantFacing === dirNum.south && bladeSides[northCombatantBlade])) {
+          // North clone cleaving inside west
+          safeZone = output.southeast();
+          adjacentZones = {
+            0: bladeValues[westCombatantBlade],
+            1: bladeValues[eastCombatantBlade],
+            2: bladeValues[southCombatantBlade],
+            3: bladeValues[northCombatantBlade],
+          };
+        } else if ((southCombatantFacing === dirNum.south && bladeSides[southCombatantBlade]) ||
+          (southCombatantFacing === dirNum.north && !bladeSides[southCombatantBlade])) {
+          // South clone cleaving inside west
+          safeZone = output.northeast();
+          adjacentZones = {
+            0: bladeValues[northCombatantBlade],
+            1: bladeValues[eastCombatantBlade],
+            2: bladeValues[westCombatantBlade],
+            3: bladeValues[southCombatantBlade],
+          };
+        } else if ((southCombatantFacing === dirNum.north && bladeSides[southCombatantBlade]) ||
+          (southCombatantFacing === dirNum.south && !bladeSides[southCombatantBlade])) {
+          // South clone cleaving inside east
           safeZone = output.northwest();
+          adjacentZones = {
+            0: bladeValues[northCombatantBlade],
+            1: bladeValues[southCombatantBlade],
+            2: bladeValues[eastCombatantBlade],
+            3: bladeValues[westCombatantBlade],
+          };
         } else {
-          // facing of two critical combatants did not evaluate properly
+          // facing did not evaluate properly
           safeZone = output.unknown();
+          adjacentZones = null;
         }
-
-        // Zones adjacent to safe spot are always cleaved by one combatant
-        const adjacentZones = {
-          0: bladeValues[northCombatantBlade],
-          1: bladeValues[eastCombatantBlade],
-          2: bladeValues[southCombatantBlade],
-          3: bladeValues[westCombatantBlade],
-        };
 
         let currentBrand = 0;
         let currentTemperature = 0;
@@ -847,7 +865,7 @@ export default {
 
         // Calculate which adjacent zone to go to, if needed
         let adjacentZone = null;
-        if (effectiveTemperature) {
+        if (effectiveTemperature && adjacentZones) {
           // Find the adjacent zone that gets closest to 0
           const calculatedZones = Object.values(adjacentZones).map((i) =>
             Math.abs(effectiveTemperature + i));
