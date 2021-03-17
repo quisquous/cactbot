@@ -181,10 +181,12 @@ export default {
         goBlue: {
           en: 'Blue Stone',
           de: 'Blauer Stein',
+          fr: 'Pierre bleue',
         },
         goWhite: {
           en: 'White Sand',
           de: 'Weißer Sand',
+          fr: 'Sable blanc',
         },
       },
     },
@@ -639,6 +641,7 @@ export default {
         text: {
           en: 'Go To Opposite Arrow',
           de: 'Gehe in die entgegengesetzten Pfeile',
+          fr: 'Allez à la flèche de l\'élément opposé',
           ja: '体温と逆の矢へ',
         },
       },
@@ -1080,7 +1083,6 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Aetherial Bolt': 'petite bombe',
         'Aetherial Burst': 'énorme bombe',
@@ -1128,6 +1130,8 @@ export default {
         'Creeping Miasma': 'Coulée miasmatique',
         'Dead Iron': 'Vague des poings de feu',
         'Double Gambit': 'Manipulation des ombres',
+        'Elemental Arrow': 'Flèche élémentaire',
+        'Elemental Blast': 'Explosion élémentaire',
         'Elemental Impact': 'Impact',
         'Empyrean Iniquity': 'Injustice empyréenne',
         'Excruciation': 'Atroce douleur',
