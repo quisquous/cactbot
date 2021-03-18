@@ -55,6 +55,14 @@ namespace Cactbot {
     // CN
     // v5.35            0x144
     //
+    // KR
+    // v5.35            0x0347
+    //
+
+    private static readonly CEDirectorOPCodes cedirector_ko = new CEDirectorOPCodes(
+      0x30,
+      0x0347
+    );
 
     private static readonly CEDirectorOPCodes cedirector_cn = new CEDirectorOPCodes(
       0x30,
@@ -133,6 +141,7 @@ namespace Cactbot {
       ac143opcodes.Add("intl", ac143_v5_2);
 
       cedirectoropcodes = new Dictionary<string, CEDirectorOPCodes>();
+      cedirectoropcodes.Add("ko", cedirector_ko);
       cedirectoropcodes.Add("cn", cedirector_cn);
       cedirectoropcodes.Add("intl", cedirector_intl);
 
