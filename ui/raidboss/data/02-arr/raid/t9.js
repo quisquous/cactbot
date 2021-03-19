@@ -452,7 +452,7 @@ export default {
       outputStrings: {
         ...diveDirections,
         safeZone: {
-          en: 'Safe zone: ${dir}',
+          en: 'Safe zone: ${di}',
           de: 'Sichere Zone: ${dir}',
           fr: 'Zone sûre : ${dir}',
           ja: '安置: ${dir}',

@@ -57,39 +57,41 @@ const ruleModule = {
       return propKeys;
     };
 
+    const extractTemplate = function(node) {
+      const outputTemplateKey = {};
+      for (const outputString of node.properties.filter((s) => s.type !== 'SpreadElement')) {
+        // each outputString
+        const values = [];
+        outputString.value.properties.forEach((x) => {
+          values.push(x.value.value);
+        });
+        const v = values.map((x) => Array.from(x.matchAll(/\${\s*([^}\s]+)\s*}/g))).map((x) => x.length ? x.map((v) => v[1]) : null);
+        if (!arrayContainSameElement(v)) {
+          // context.report({
+          //   node: outputString.key,
+          //   messageId: 'inConsistentlyFormat',
+          //   data: {
+          //     key: outputString.key.name,
+          //   },
+          // });
+        } else {
+          outputTemplateKey[outputString.key.name] = v[0];
+        }
+        const triggerID = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'id').value.value;
+        outputTemplates.set(triggerID, outputTemplateKey);
+      }
+    };
+
     const arrayContainSameElement = (arr) => {
       return arr.every((v) => JSON.stringify(v) === JSON.stringify(arr[0]));
     };
 
     return {
-      /**
-       *
-       * @param node {t.ObjectExpression}
-       */
-      'Property[key.name=/outputStrings/] > ObjectExpression': function(node) {
-        const outputTemplateKey = {};
-        for (const outputString of node.properties) {
-          // each outputString
-          const values = [];
-          outputString.value.properties.forEach((x) => {
-            values.push(x.value.value);
-          });
-          const v = values.map((x) => Array.from(x.matchAll(/\${\s*([^}\s]+)\s*}/g))).map((x) => x.length ? x.map((v) => v[1]) : null);
-          if (!arrayContainSameElement(v)) {
-            context.report({
-              node: outputString.key,
-              messageId: 'inConsistentlyFormat',
-              data: {
-                key: outputString.key.name,
-              },
-            });
-          } else {
-            outputTemplateKey[outputString.key.name] = v[0];
-          }
-          const triggerID = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'id').value.value;
-          outputTemplates.set(triggerID, outputTemplateKey);
-        }
-      },
+      // /**
+      //  *
+      //  * @param node {t.ObjectExpression}
+      //  */
+      // 'Property[key.name=/outputStrings/] > ObjectExpression':
       'Program > VariableDeclaration > VariableDeclarator > ObjectExpression': function(node) {
         globalVars.set(node.parent.id.name, getAllKeys(node.properties));
       },
@@ -99,6 +101,7 @@ const ruleModule = {
           stack.inTriggerFunc = true;
           stack.outputParam = node.params[2] && node.params[2].name;
           const outputValue = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'outputStrings').value;
+          extractTemplate(outputValue);
           stack.outputProperties =
             t.isIdentifier(outputValue)
               ? (globalVars.get(outputValue.name) || [])
@@ -132,6 +135,22 @@ const ruleModule = {
               outputParam: stack.outputParam,
             },
           });
+        } else {
+          // console.log(stack.triggerID, node.property.name);
+          if (typeof node.parent.callee.parent.arguments === 'undefined') {
+            if (typeof node.parent.callee.parent.arguments !== 'undefined') {
+              context.report({
+                node: node,
+                messageId: 'inConsistentlyFormat',
+                data: {
+                  key: 'kk',
+                },
+              });
+            }
+          } else {
+            console.log(node.parent.callee.parent.arguments);
+            console.log(outputTemplates.get(stack.triggerID)[node.property.name]);
+          }
         }
       },
     };
