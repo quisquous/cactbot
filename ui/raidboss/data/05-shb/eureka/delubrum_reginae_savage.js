@@ -299,6 +299,111 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Seeker Baleful Comet Direction',
+      netRegex: NetRegexes.abilityFull({ source: 'Seeker Avatar', id: '5AD7' }),
+      condition: (data, matches) => {
+        data.seekerCometIds = data.seekerCometIds || [];
+        data.seekerCometIds.push(parseInt(matches.sourceId, 16));
+        return data.seekerCometIds.length === 2;
+      },
+      delaySeconds: 0.5,
+      // In case this hits multiple people.
+      // (Note: Suppressed status is checked before condition, but the field evaluated after.)
+      suppressSeconds: 0.5,
+      promise: async (data, matches) => {
+        // The avatars get moved right before the comets, and the position data
+        // is stale in the combat log.  :C
+        const cometData = await window.callOverlayHandler({
+          call: 'getCombatants',
+          ids: data.seekerCometIds.slice(0, 2),
+        });
+
+        if (cometData === null) {
+          console.error('Baleful Comet: null cometData');
+          return;
+        }
+        if (!cometData.combatants) {
+          cometData.error('Baleful Comet: null combatants');
+          return;
+        }
+        if (!cometData.combatants.length) {
+          console.error('Baleful Comet: empty combatants');
+          return;
+        }
+        if (cometData.combatants.length !== 2) {
+          console.error(`Baleful Comet: weird length: ${cometData.combatants.length}`);
+          return;
+        }
+
+        data.seekerCometData = cometData.combatants;
+      },
+      infoText: (data, matches, output) => {
+        // The returned data does not come back in the same order.
+        // Sort by the original order.
+        data.seekerCometData.sort((a, b) => {
+          return data.seekerCometIds.indexOf(a.ID) - data.seekerCometIds.indexOf(b.ID);
+        });
+
+        const [firstDir, secondDir] = data.seekerCometData.map((comet) => {
+          const x = comet.PosX - seekerCenterX;
+          const y = comet.PosY - seekerCenterY;
+          const dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+          return dir;
+        });
+
+        let rotateStr = output.unknown();
+        let safeDir;
+        if (Math.abs(secondDir - firstDir) === 1) {
+          rotateStr = secondDir > firstDir ? output.clockwise() : output.counterclockwise();
+          safeDir = (secondDir > firstDir ? firstDir - 1 + 8 : firstDir + 1) % 8;
+        } else {
+          // edge case where one dir is 0 and the other is 7.
+          rotateStr = firstDir === 7 ? output.clockwise() : output.counterclockwise();
+          safeDir = firstDir === 7 ? safeDir = 6 : safeDir = 1;
+        }
+
+        const initialDir = [
+          'north',
+          'northeast',
+          'east',
+          'southeast',
+          'south',
+          'southwest',
+          'west',
+          'northwest',
+        ][safeDir];
+
+        return output.text({ dir: output[initialDir](), rotate: rotateStr });
+      },
+      outputStrings: {
+        unknown: Outputs.unknownTarget,
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+        clockwise: {
+          en: 'Clockwise',
+        },
+        counterclockwise: {
+          en: 'Counter-clock',
+        },
+        text: {
+          en: 'Go ${dir}, then ${rotate}',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Seeker Baleful Comet Cleanup',
+      netRegex: NetRegexes.ability({ source: 'Seeker Avatar', id: '5AD7', capture: false }),
+      delaySeconds: 10,
+      suppressSeconds: 10,
+      run: (data) => delete data.seekerCometIds,
+    },
+    {
       id: 'DelubrumSav Dahu Shockwave',
       netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: ['5770', '576F'] }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: ['5770', '576F'] }),
