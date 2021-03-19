@@ -84,6 +84,7 @@ export const kAbility = {
   TheBlackestNight: '1CE1',
   BloodWeapon: 'E29',
   Delirium: '1CDE',
+  LivingShadow: '4058',
   // GNB
   KeenEdge: '3F09',
   BrutalShell: '3F0B',
