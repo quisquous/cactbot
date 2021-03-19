@@ -7,6 +7,23 @@ import ZoneId from '../../../../../resources/zone_id';
 // TODO: warnings for mines after bosses?
 
 // TODO: headmarkers of course have a random offset here eyeroll
+const headmarker = {
+  mercifulArc: '00F3',
+  burningChains: '00EE',
+  earthshaker: '00ED',
+  spitFlame1: '004F',
+  spitFlame2: '0050',
+  spitFlame3: '0051',
+  spitFlame4: '0052',
+  flare: '0057',
+  reversal: '00FF', // also tether 0087
+  spiteSmite: '0017',
+  wrath: '0100',
+  foeSplitter: '00C6',
+  thunder: '00A0',
+  edictSuccess: '0088',
+  edictFailure: '0089',
+};
 
 const seekerCenterX = -0.01531982;
 const seekerCenterY = 277.9735;
@@ -18,6 +35,34 @@ const tankBusterOnParty = (data, matches) => {
   if (data.role !== 'healer')
     return false;
   return data.party.inParty(data.target);
+};
+
+const numberOutputStrings = [0, 1, 2, 3, 4].map((n) => {
+  const str = n.toString();
+  return {
+    en: str,
+    de: str,
+    fr: str,
+    ja: str,
+    cn: str,
+    ko: str,
+  };
+});
+
+// Due to changes introduced in patch 5.2, overhead markers now have a random offset
+// added to their ID. This offset currently appears to be set per instance, so
+// we can determine what it is from the first overhead marker we see.
+const getHeadmarkerId = (data, matches) => {
+  if (data.decOffset === undefined) {
+    // If we don't know, return garbage to avoid accidentally running other triggers.
+    if (!data.firstUnknownHeadmarker)
+      return '0000';
+
+    data.decOffset = parseInt(matches.id, 16) - parseInt(data.firstUnknownHeadmarker, 16);
+  }
+  // The leading zeroes are stripped when converting back to string, so we re-add them here.
+  const hexId = (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase();
+  return `000${hexId}`.slice(-4);
 };
 
 export default {
@@ -116,6 +161,16 @@ export default {
   ],
   triggers: [
     {
+      id: 'DelubrumSav Seeker Phase',
+      // Sets the phase when seeing the Verdant Tempest cast.
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AD3', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AD3', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AD3', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AD3', capture: false }),
+      // Note: this headmarker *could* be skipped, so we will change this later.
+      run: (data) => data.firstUnknownHeadmarker = headmarker.mercifulArc,
+    },
+    {
       id: 'DelubrumSav Seeker Verdant Tempest',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AD3', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AD3', capture: false }),
@@ -132,6 +187,9 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5A98', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5A98', capture: false }),
       response: Responses.goFrontBack('info'),
+      // Merciful arc can be skipped, so if we get here, the next headmarker is burning chains.
+      // If we have seen merciful arc, this is a noop.
+      run: (data) => data.firstUnknownHeadmarker = headmarker.burningChains,
     },
     {
       id: 'DelubrumSav Seeker Act Of Mercy',
@@ -414,6 +472,38 @@ export default {
       run: (data) => delete data.seekerCometIds,
     },
     {
+      id: 'DelubrumSav Seeker Burning Chains',
+      netRegex: NetRegexes.headMarker(),
+      condition: (data, matches) => {
+        if (data.me !== matches.target)
+          return false;
+        return getHeadmarkerId(data, matches) === headmarker.burningChains;
+      },
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Chain on YOU',
+          de: 'Kette auf DIR',
+          fr: 'Chaîne sur VOUS',
+          ja: '自分に鎖',
+          cn: '锁链点名',
+          ko: '사슬 대상자',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Seeker Burning Chains Move',
+      netRegex: NetRegexes.gainsEffect({ effectId: '301' }),
+      condition: Conditions.targetIsYou(),
+      response: Responses.breakChains(),
+    },
+    {
+      id: 'DelubrumSav Seeker Merciful Arc',
+      netRegex: NetRegexes.headMarker(),
+      condition: (data, matches) => getHeadmarkerId(data, matches) === headmarker.mercifulArc,
+      response: Responses.tankCleave(),
+    },
+    {
       id: 'DelubrumSav Dahu Shockwave',
       netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: ['5770', '576F'] }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: ['5770', '576F'] }),
@@ -457,7 +547,10 @@ export default {
           return output.oneOrTwoCharges();
         return output.followSecondCharge();
       },
-      run: (data) => data.seenHotCharge = true,
+      run: (data) => {
+        data.seenHotCharge = true;
+        data.firstUnknownHeadmarker = headmarker.spitFlame1;
+      },
       outputStrings: {
         oneOrTwoCharges: {
           en: 'Follow One or Two Charges',
@@ -471,6 +564,33 @@ export default {
           cn: '紧跟第二次冲锋',
           ko: '두번째 돌진 따라가기',
         },
+      },
+    },
+    {
+      id: 'DelubrumSav Dahu Spit Flame',
+      netRegex: NetRegexes.headMarker(),
+      condition: (data, matches) => {
+        if (data.me !== matches.target)
+          return false;
+        const id = getHeadmarkerId(data, matches);
+        return id >= headmarker.spitFlame1 && id <= headmarker.spitFlame4;
+      },
+      durationSeconds: 7,
+      alarmText: (data, matches, output) => {
+        const id = getHeadmarkerId(data, matches);
+        const num = headmarker.spitFlame4 - id + 1;
+        return {
+          1: output.one(),
+          2: output.two(),
+          3: output.three(),
+          4: output.four(),
+        }[num];
+      },
+      outputStrings: {
+        one: numberOutputStrings[1],
+        two: numberOutputStrings[2],
+        three: numberOutputStrings[3],
+        four: numberOutputStrings[4],
       },
     },
     {
@@ -488,19 +608,38 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Dahu Flare',
+      netRegex: NetRegexes.headMarker(),
+      condition: (data, matches) => {
+        if (data.me !== matches.target)
+          return false;
+        const id = getHeadmarkerId(data, matches);
+        return id === headmarker.flare;
+      },
+      run: (data) => data.hystericFlare = true,
+    },
+    {
       id: 'DelubrumSav Dahu Hysteric Assault',
       netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '5778', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: '5778', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Dahu', id: '5778', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダウー', id: '5778', capture: false }),
-      alertText: (data, _, output) => output.knockback(),
-      outputStrings: {
-        knockback: {
-          // TODO: find headmarkers and call flares separately.
-          en: 'Knockback (flares away)',
-          de: 'Rückstoß (Flares weg)',
-        },
+      response: (data, _, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          knockbackNoFlare: {
+            en: 'Knockback (no flare)',
+          },
+          knockbackWithFlare: {
+            en: 'Flare + Knockback (get away)',
+          },
+        };
+
+        if (data.hystericFlare)
+          return { alarmText: output.knockbackWithFlare() };
+        return { alertText: output.knockbackNoFlare() };
       },
+      run: (data) => delete data.hystericFlare,
     },
     {
       id: 'DelubrumSav Guard Blood And Bone Warrior and Knight',
@@ -842,6 +981,8 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Anführer-Stygimoloch', id: '57D7' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Seigneur Stygimoloch', id: '57D7' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'スティギモロク・ロード', id: '57D7' }),
+      // THANKFULLY this starts using comes out immediately before the headmarker line.
+      preRun: (data) => data.firstUnknownHeadmarker = headmarker.foeSplitter,
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -859,6 +1000,21 @@ export default {
         if (tankBusterOnParty(data, matches))
           return { alertText: output.cleaveOn({ player: data.ShortName(matches.target) }) };
         return { infoText: output.avoidCleave() };
+      },
+    },
+    {
+      id: 'DelubrumSav Lord Rapid Bolts',
+      netRegex: NetRegexes.headMarker(),
+      condition: (data, matches) => {
+        if (data.me !== matches.target)
+          return false;
+        return getHeadmarkerId(data, matches) === headmarker.thunder;
+      },
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop thunder outside',
+        },
       },
     },
     {
