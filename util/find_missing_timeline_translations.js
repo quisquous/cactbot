@@ -4,16 +4,19 @@ import Regexes from '../resources/regexes';
 import { Timeline } from '../ui/raidboss/timeline';
 import { commonReplacement, partialCommonReplacementKeys } from '../ui/raidboss/common_replacement';
 
-const triggersFile = process.argv[2];
-const locale = process.argv[3];
-const localeReg = 'regex' + locale[0].toUpperCase() + locale[1];
-findMissing(triggersFile, locale, localeReg);
+let kTriggersFile;
+let kLocale;
+let kLocaleReg;
 
-async function findMissing(triggersFile, locale, localeReg) {
+export async function findMissing(triggersFile, locale, localeReg) {
+  kTriggersFile = triggersFile;
+  kLocale = locale;
+  kLocaleReg = localeReg;
+
   // Hackily assume that any file with a txt file of the same name is a trigger/timeline.
   const timelineFile = triggersFile.replace(/\.js$/, '.txt');
   if (!fs.existsSync(timelineFile))
-    process.exit(-1);
+    return;
 
   const timelineText = String(fs.readFileSync(timelineFile));
   const timeline = new Timeline(timelineText);
@@ -40,7 +43,7 @@ async function findMissing(triggersFile, locale, localeReg) {
     break;
   }
 
-  findMissingRegex(triggerSet.triggers, triggerLines, timeline, trans, localeReg);
+  findMissingRegex(triggerSet.triggers, triggerLines, timeline, trans);
   findMissingTimeline(timelineFile, triggerSet, timeline, trans);
 }
 
@@ -67,7 +70,7 @@ function findLineNumberByTriggerId(text, id) {
   return '?';
 }
 
-function findMissingRegex(triggers, triggerLines, timeline, trans, localeReg) {
+function findMissingRegex(triggers, triggerLines, timeline, trans) {
   for (const trigger of triggers) {
     let origRegex = trigger.regex;
     if (!origRegex)
@@ -90,12 +93,12 @@ function findMissingRegex(triggers, triggerLines, timeline, trans, localeReg) {
       const replace = Regexes.parseGlobal(regex);
       if (transRegex.match(replace))
         foundMatch = true;
-      transRegex = transRegex.replace(replace, commonReplacement.replaceSync[regex][locale]);
+      transRegex = transRegex.replace(replace, commonReplacement.replaceSync[regex][kLocale]);
     }
 
     transRegex = transRegex.toLowerCase();
 
-    let locRegex = trigger[localeReg];
+    let locRegex = trigger[kLocaleReg];
     if (locRegex) {
       // Things are in a good state if the translation regex matches the
       // locale regex.
@@ -106,7 +109,7 @@ function findMissingRegex(triggers, triggerLines, timeline, trans, localeReg) {
       // If we have a match, then something translated it *AND* it is
       // different than what is there.  This is the worst case scenario.
       if (foundMatch)
-        console.log(`${triggersFile}:${lineNumber} ${trigger.id}: incorrect timelineReplace for regex, got '${transRegex}', needed ${localeReg} '${locRegex}'`);
+        console.log(`${kTriggersFile}:${lineNumber} ${trigger.id}: incorrect timelineReplace for regex, got '${transRegex}', needed ${kLocaleReg} '${locRegex}'`);
     }
     // Things *might* be in a good state if we have any translation for this.
     if (foundMatch)
@@ -126,9 +129,9 @@ function findMissingRegex(triggers, triggerLines, timeline, trans, localeReg) {
 
     // In any case, if we have no match for this, then this is missing.
     if (locRegex)
-      console.log(`${triggersFile}:${lineNumber} ${trigger.id}: missing timelineReplace for regex '${origRegex}' (but have ${localeReg})`);
+      console.log(`${kTriggersFile}:${lineNumber} ${trigger.id}: missing timelineReplace for regex '${origRegex}' (but have ${kLocaleReg})`);
     else
-      console.log(`${triggersFile}:${lineNumber} ${trigger.id}: missing timelineReplace for regex '${origRegex}'`);
+      console.log(`${kTriggersFile}:${lineNumber} ${trigger.id}: missing timelineReplace for regex '${origRegex}'`);
   }
 }
 
@@ -170,7 +173,7 @@ function findMissingTimeline(timelineFile, triggerSet, timeline, trans) {
       }
 
       if (key in testCase.replace) {
-        console.log(`${triggersFile}: duplicated common translation of '${key}`);
+        console.log(`${kTriggersFile}: duplicated common translation of '${key}`);
         continue;
       }
 
@@ -215,5 +218,5 @@ function findMissingTimeline(timelineFile, triggerSet, timeline, trans) {
     console.log(output[key]);
 
   if (keys.length === 0 && trans.missingTranslations)
-    console.log(`${triggersFile}: missingTranslations set true when not needed`);
+    console.log(`${kTriggersFile}: missingTranslations set true when not needed`);
 }
