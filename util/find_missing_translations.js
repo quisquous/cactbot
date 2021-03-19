@@ -23,9 +23,11 @@ parser.addArgument(['-f', '--filter'], {
 // Directory names to ignore when looking for JavaScript files.
 const ignoreDirs = [
   '.git',
+  'dist',
+  'node_modules',
   'publish',
   'ThirdParty',
-  'node_modules',
+  'user',
 ];
 
 // All valid two letter locale names.
