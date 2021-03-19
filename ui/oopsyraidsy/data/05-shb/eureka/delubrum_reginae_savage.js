@@ -92,7 +92,6 @@ export default {
     'DelubrumSav Queen The Means 2': '59EA', // The Queen's Beck and Call cross aoe from adds
     'DelubrumSav Queen The End 1': '59E8', // Also The Queen's Beck and Call cross aoe from adds
     'DelubrumSav Queen The End 2': '59E9', // Also The Queen's Beck and Call cross aoe from adds
-    'DelubrumSav Queen Queen\'s Justice': '59EB', // failing to walk the right number of squares
     'DelubrumSav Queen Gunnhildr\'s Blades': '5B22', // outside blue room enclosure
     'DelubrumSav Queen Optimal Offensive Sword': '5A02', // middle explosion
     'DelubrumSav Queen Optimal Offensive Shield': '5A03', // middle explosion
@@ -108,6 +107,7 @@ export default {
   damageFail: {
     'DelubrumSav Avowed Heat Shock': '5927', // too much heat or failing to regulate temperature
     'DelubrumSav Avowed Cold Shock': '5928', // too much cold or failing to regulate temperature
+    'DelubrumSav Queen Queen\'s Justice': '59EB', // failing to walk the right number of squares
   },
   shareWarn: {
     'DelubrumSav Lord Foe Splitter': '57D7', // tank cleave

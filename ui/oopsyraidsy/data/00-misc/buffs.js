@@ -243,5 +243,9 @@ export default {
 
     missedHeal({ id: 'White Wind', abilityId: '2C8E' }),
     missedHeal({ id: 'Gobskin', abilityId: '4780' }),
+
+    // TODO: export all of these missed functions into their own helper
+    // and then add this to the Delubrum Reginae files directly.
+    missedMitigationAbility({ id: 'Lost Aethershield', abilityId: '5753' }),
   ],
 };
