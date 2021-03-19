@@ -43,7 +43,11 @@ export default class RaidEmulatorTimelineController extends TimelineController {
     e.detail.logs.forEach((line) => {
       this.activeTimeline.emulatedTimeOffset = line.offset;
       this.ui.emulatedTimeOffset = line.offset;
-      this.activeTimeline.OnLogLine(line.properCaseConvertedLine || line.convertedLine);
+      this.activeTimeline.timebase = this.activeTimeline.timebase || line.timestamp;
+      this.activeTimeline.OnLogLine(
+          line.properCaseConvertedLine || line.convertedLine,
+          line.timestamp);
+      this.activeTimeline._OnUpdateTimer(line.timestamp);
     });
   }
 }
