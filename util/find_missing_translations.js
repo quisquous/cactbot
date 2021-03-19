@@ -138,7 +138,7 @@ const parseJavascriptFile = (file, locales) => {
 const run = async (args) => {
   const files = findAllJavascriptFiles(args['filter']);
   for (const file of files) {
-    await findMissing(file, args['locale'], 'regex' + args['locale'][0].toUpperCase() + args['locale'][1]);
+    await findMissing(file, args['locale']);
     parseJavascriptFile(file, [args['locale']]);
   }
 };
