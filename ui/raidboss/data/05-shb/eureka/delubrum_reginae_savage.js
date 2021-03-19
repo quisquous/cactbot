@@ -38,12 +38,20 @@ export default {
     },
     {
       id: 'DelubrumSav Avowed Glory Of Bozja',
-      regex: /Glory Of Bozja/,
+      regex: /Glory Of Bozja(?! Enrage)/,
       // Cast itself is 5.5 seconds, add more warning
       beforeSeconds: 7,
       condition: Conditions.caresAboutAOE(),
+      // Count the number of Glory of Bozja so that people alternating mitigation
+      // can more easily assign themselves to even or odd glories.
+      preRun: (data) => data.gloryOfBozjaCount = (data.gloryOfBozjaCount || 0) + 1,
       suppressSeconds: 1,
-      response: Responses.bigAoe(),
+      alertText: (data, _, output) => output.aoeNum({ num: data.gloryOfBozjaCount }),
+      outputStrings: {
+        aoeNum: {
+          en: 'Big AOE + Bleed (#${num})',
+        },
+      },
     },
     {
       id: 'DelubrumSav Lord Vicious Swipe',
@@ -575,6 +583,28 @@ export default {
       response: Responses.aoe(),
     },
     {
+      id: 'DelubrumSav Phantom Weave Miasma',
+      netRegex: NetRegexes.startsUsing({ source: 'Bozjan Phantom', id: '57B2', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57B2', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '57B2', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57B2', capture: false }),
+      infoText: (data, _, output) => {
+        data.weaveCount = (data.weaveCount || 0) + 1;
+        if (data.weaveCount === 1)
+          return output.firstWeave();
+        else if (data.weaveCount === 2)
+          return output.secondWeave();
+      },
+      outputStrings: {
+        firstWeave: {
+          en: 'Go North (donut bottom/circle top)',
+        },
+        secondWeave: {
+          en: 'Stay South (square bottom/circle top)',
+        },
+      },
+    },
+    {
       id: 'DelubrumSav Phantom Stuffy Wrath',
       // Spawns after 57BA Summon, either North (-403.5) or South (-344.5)
       // Casts 57C2 Undying Hatred
@@ -585,12 +615,10 @@ export default {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           goSouth: {
-            en: 'Go South, Unavoidable Knocbkack',
-            de: 'Geh nach Süden, unvermeidbarer Rückstoß',
+            en: 'Go South; Knockback to Glowing Donut',
           },
           goNorth: {
-            en: 'Go North, Unavoidable Knocbkack',
-            de: 'Geh nach Norden, unvermeidbarer Rückstoß',
+            en: 'Go North; Knockback to Glowing Circle',
           },
         };
 
