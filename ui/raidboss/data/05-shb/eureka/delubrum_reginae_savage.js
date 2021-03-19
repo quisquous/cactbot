@@ -618,7 +618,7 @@ export default {
             en: 'Go South; Knockback to Glowing Donut',
           },
           goNorth: {
-            en: 'Go North; Knockback to Glowing Circle',
+            en: 'Go North; Knockback from Glowing Circle',
           },
         };
 
