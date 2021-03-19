@@ -11,12 +11,14 @@ export default class RaidEmulator extends EventBus {
     this.currentTimestamp = null;
     this.currentLogLineIndex = null;
     this.lastLogTimestamp = null;
+    this.internalTimestampTracker = null;
   }
   addEncounter(encounter) {
     this.encounters.push(encounter);
   }
   setCurrent(index) {
     this.currentEncounter = new AnalyzedEncounter(this.options, this.encounters[index], this);
+    this.dispatch('preCurrentEncounterChanged', this.currentEncounter);
     this.currentEncounter.analyze(this.popupText).then(() => {
       this.dispatch('currentEncounterChanged', this.currentEncounter);
     });
@@ -44,6 +46,7 @@ export default class RaidEmulator extends EventBus {
     this.currentTimestamp = this.currentTimestamp ||
       this.currentEncounter.encounter.logLines[firstIndex].timestamp;
     this.currentLogLineIndex = this.currentLogLineIndex || firstIndex - 1;
+    this.internalTimestampTracker = Date.now();
     // Use setInterval since it should account for differences in execution time automagically
     this.playing = window.setInterval(this.tick.bind(this), RaidEmulator.playbackSpeed);
     this.dispatch('play');
@@ -52,6 +55,7 @@ export default class RaidEmulator extends EventBus {
 
   pause() {
     window.clearInterval(this.playing);
+    this.internalTimestampTracker = null;
     this.playing = null;
     this.dispatch('pause');
     return true;
@@ -61,6 +65,8 @@ export default class RaidEmulator extends EventBus {
     await this.dispatch('preSeek', time);
     this.currentLogLineIndex = -1;
     let logs = [];
+    const playing = this.playing;
+    this.playing = null;
     for (let i = this.currentLogLineIndex + 1;
       i < this.currentEncounter.encounter.logLines.length;
       ++i) {
@@ -89,6 +95,7 @@ export default class RaidEmulator extends EventBus {
 
     await this.dispatch('postSeek', time);
     await this.dispatch('tick', this.currentTimestamp, this.lastLogTimestamp);
+    this.playing = playing;
   }
 
   async tick() {
@@ -96,8 +103,11 @@ export default class RaidEmulator extends EventBus {
       this.pause();
       return;
     }
+    if (this.playing === null)
+      return;
     const logs = [];
-    const lastTimestamp = this.currentTimestamp + RaidEmulator.playbackSpeed;
+    const timeDiff = Date.now() - this.internalTimestampTracker;
+    const lastTimestamp = this.currentTimestamp + timeDiff;
     for (let i = this.currentLogLineIndex + 1;
       i < this.currentEncounter.encounter.logLines.length;
       ++i) {
@@ -109,7 +119,8 @@ export default class RaidEmulator extends EventBus {
       }
       break;
     }
-    this.currentTimestamp += RaidEmulator.playbackSpeed;
+    this.currentTimestamp += timeDiff;
+    this.internalTimestampTracker += timeDiff;
     if (logs.length)
       await this.dispatch('emitLogs', { logs: logs });
 

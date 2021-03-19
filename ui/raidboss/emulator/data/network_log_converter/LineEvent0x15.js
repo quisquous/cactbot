@@ -50,10 +50,11 @@ export class LineEvent0x15 extends LineEvent {
     this.sourceMp = parts[36 + offset];
     this.sourceMaxMp = parts[37 + offset];
 
-    this.sourceX = parts[40 + offset];
-    this.sourceY = parts[41 + offset];
-    this.sourceZ = parts[42 + offset];
-    this.sourceHeading = parts[43 + offset];
+    // Also map these to x/y/z/heading for combatant state updates
+    this.x = this.sourceX = parts[40 + offset];
+    this.y = this.sourceY = parts[41 + offset];
+    this.z = this.sourceZ = parts[42 + offset];
+    this.heading = this.sourceHeading = parts[43 + offset];
   }
 }
 
