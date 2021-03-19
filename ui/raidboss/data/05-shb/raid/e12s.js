@@ -979,6 +979,72 @@ export default {
       },
     },
     {
+      id: 'E12S Oracle Cataclysm',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C2' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58C2' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58C2' }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58C2' }),
+      delaySeconds: 0.5,
+      promise: async (data, matches, output) => {
+        // select the Oracle Of Darkness with same source id
+        let oracleData = null;
+        oracleData = await window.callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
+        });
+
+        // if we could not retrieve combatant data, the
+        // trigger will not work, so just resume promise here
+        if (oracleData === null) {
+          console.error(`Oracle Of Darkness: null data`);
+          data.safeZone = null;
+          return;
+        }
+        if (!oracleData.combatants) {
+          console.error(`Oracle Of Darkness: null combatants`);
+          data.safeZone = null;
+          return;
+        }
+        if (oracleData.combatants.length !== 1) {
+          console.error(`Oracle Of Darkness: expected 1, got ${oracleData.combatants.length}`);
+          data.safeZone = null;
+          return;
+        }
+
+        const oracle = oracleData.combatants[0];
+
+        // Snap heading to closest card and add 2 for opposite direction
+        // N = 0, E = 1, S = 2, W = 3
+        const cardinal = ((2 - Math.round(oracle.Heading * 4 / Math.PI) / 2) + 2) % 4;
+
+        const dirs = {
+          0: output.north(),
+          1: output.east(),
+          2: output.south(),
+          3: output.west(),
+        };
+
+        data.safeZone = dirs[cardinal];
+      },
+      infoText: (data, _, output) => {
+        return !data.safeZone ? output.unknown() : data.safeZone;
+      },
+      outputStrings: {
+        unknown: {
+          en: '???',
+          de: '???',
+          fr: '???',
+          ja: '???',
+          cn: '???',
+          ko: '???',
+        },
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+      },
+    },
+    {
       id: 'E12S Shell Crusher',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C3', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58C3', capture: false }),
