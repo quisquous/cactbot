@@ -427,6 +427,9 @@ export default {
       id: 'E12S Promise Chiseled Sculpture Tether',
       // This always directly follows the 1B: headmarker line.
       netRegex: NetRegexes.tether({ target: 'Chiseled Sculpture', id: '0011' }),
+      netRegexDe: NetRegexes.tether({ target: 'Abbild Eines Mannes', id: '0011' }),
+      netRegexFr: NetRegexes.tether({ target: 'Création Masculine', id: '0011' }),
+      netRegexJa: NetRegexes.tether({ target: '創られた男', id: '0011' }),
       condition: (data, matches) => matches.source === data.me,
       durationSeconds: (data) => {
         // Handle laser #1 differently to not collide with the rapturous reach.
@@ -503,40 +506,54 @@ export default {
         laser4: numberOutputStrings[4],
         inner: {
           en: '#${num} (Inner)',
+          de: '#${num} (innen)',
         },
         outer: {
           en: '#${num} (Outer)',
+          de: '#${num} (außen)',
         },
         unknown: {
           en: '#${num} (???)',
+          de: '#${num} (???)',
         },
       },
     },
     {
       id: 'E12S Promise Palm Of Temperance SE',
       netRegex: NetRegexes.startsUsing({ source: 'Guardian Of Eden', id: '58B4', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Wächter Von Eden', id: '58B4', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Gardien D\'Éden', id: '58B4', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ガーディアン・オブ・エデン', id: '58B4', capture: false }),
       durationSeconds: 10,
       infoText: (data, _, output) => output.knockback(),
       outputStrings: {
         knockback: {
           en: 'SE Knockback',
+          de: 'SO Rückstoß',
         },
       },
     },
     {
       id: 'E12S Promise Palm Of Temperance SW',
       netRegex: NetRegexes.startsUsing({ source: 'Guardian Of Eden', id: '58B5', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Wächter Von Eden', id: '58B5', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Gardien D\'Éden', id: '58B5', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ガーディアン・オブ・エデン', id: '58B5', capture: false }),
       durationSeconds: 10,
       infoText: (data, _, output) => output.knockback(),
       outputStrings: {
         knockback: {
           en: 'SW Knockback',
+          de: 'SW Rückstoß',
         },
       },
     },
     {
       id: 'E12S Promise Statue 2nd/3rd/4th Laser',
       netRegex: NetRegexes.ability({ source: 'Chiseled Sculpture', id: '58B3', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Abbild Eines Mannes', id: '58B3', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Création Masculine', id: '58B3', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '創られた男', id: '58B3', capture: false }),
       condition: (data) => !data.statueLaserCount || data.statueLaserCount < 4,
       durationSeconds: 3,
       suppressSeconds: 1,
@@ -549,12 +566,15 @@ export default {
           laser4: numberOutputStrings[4],
           baitInner: {
             en: 'Bait Inner #${num}',
+            de: 'Köder innen #${num}',
           },
           baitOuter: {
             en: 'Bait Outer #${num}',
+            de: 'Köder außen #${num}',
           },
           baitUnknown: {
             en: 'Bait #${num}',
+            de: 'Köder #${num}',
           },
         };
         // Start one ahead, so that it calls out #2 after #1 has finished.
@@ -653,12 +673,15 @@ export default {
           goLeft: Outputs.left,
           goLeftBaitInner: {
             en: 'Left + Bait Inner #1',
+            de: 'Links + Köder innen #1',
           },
           goLeftBaitOuter: {
             en: 'Left + Bait Outer #1',
+            de: 'Links + Köder außen #1',
           },
           goLeftBaitUnknown: {
             en: 'Left + Bait #1',
+            de: 'Links + Köder #1',
           },
         };
 
@@ -685,12 +708,15 @@ export default {
           goRight: Outputs.right,
           goRightBaitInner: {
             en: 'Right + Bait Inner #1',
+            de: 'Rechts + Köder innen #1',
           },
           goRightBaitOuter: {
             en: 'Right + Bait Outer #1',
+            de: 'Rechts + Köder außen #1',
           },
           goRightBaitUnknown: {
             en: 'Right + Bait #1',
+            de: 'Rechts + Köder #1',
           },
         };
 
