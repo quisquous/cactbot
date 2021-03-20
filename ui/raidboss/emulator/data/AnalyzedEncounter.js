@@ -20,12 +20,25 @@ export default class AnalyzedEncounter extends EventBus {
 
   selectPerspective(ID) {
     const partyMember = this.encounter.combatantTracker.combatants[ID];
+    this.popupText.partyTracker.onPartyChanged({
+      party: this.encounter.combatantTracker.partyMembers.map((ID) => {
+        return {
+          name: this.encounter.combatantTracker.combatants[ID].name,
+          job: Util.jobToJobEnum(this.encounter.combatantTracker.combatants[ID].job),
+          inParty: true,
+        };
+      }),
+    });
     this.popupText.OnPlayerChange({
       detail: {
         name: partyMember.name,
         job: partyMember.job,
         currentHP: partyMember.getState(this.encounter.logLines[0].timestamp).HP,
       },
+    });
+    this.popupText.OnChangeZone({
+      zoneName: this.encounter.encounterZoneName,
+      zoneID: parseInt(this.encounter.encounterZoneId, 16),
     });
   }
 

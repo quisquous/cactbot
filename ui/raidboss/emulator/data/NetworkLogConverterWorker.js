@@ -31,7 +31,7 @@ onmessage = async (msg) => {
     nextOffset < buf.length && nextOffset !== -1;
     currentOffset = nextOffset) {
     nextOffset = buf.indexOf(0x0A, nextOffset + 1);
-    const line = decoder.decode(buf.slice(currentOffset + 1, nextOffset)).trim();
+    const line = decoder.decode(buf.slice(currentOffset, nextOffset)).trim();
     if (line.length) {
       ++lineCount;
       lines.push(line);
