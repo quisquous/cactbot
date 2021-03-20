@@ -87,7 +87,7 @@ export default {
     'DelubrumSav Lord Rapid Bolts': '57C3', // dropped lightning aoes
     'DelubrumSav Lord 1111-Tonze Swing': '57D8', // very large "get out" swing
 
-    'DelubrumSav Queen Northswain\'s Glow': '594F', // expanding lines with explosion intersections
+    'DelubrumSav Queen Northswain\'s Glow': '59F4', // expanding lines with explosion intersections
     'DelubrumSav Queen The Means 1': '59E7', // The Queen's Beck and Call cross aoe from adds
     'DelubrumSav Queen The Means 2': '59EA', // The Queen's Beck and Call cross aoe from adds
     'DelubrumSav Queen The End 1': '59E8', // Also The Queen's Beck and Call cross aoe from adds
