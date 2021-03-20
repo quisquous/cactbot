@@ -17,7 +17,8 @@
     "markdownlint": "node_modules/.bin/markdownlint . --ignore node_modules --ignore publish --ignore CactbotOverlay/ThirdParty",
     "test": "node_modules/.bin/mocha",
     "lint-staged": "node_modules/.bin/lint-staged",
-    "coverage-report": "node --loader ts-node/esm util/gen_coverage_report.js"
+    "coverage-report": "node --loader ts-node/esm util/gen_coverage_report.js",
+    "find-translations": "node --loader ts-node/esm util/find_missing_translations.js"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.15.0",
