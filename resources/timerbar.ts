@@ -1,26 +1,26 @@
 export default class TimerBar extends HTMLElement {
-  _duration: number;
-  _start: number;
-  _width: string;
-  _height: string;
-  _bg: string;
-  _fg: string;
-  _towardRight: boolean;
-  _styleFill: boolean;
-  _leftText: string;
-  _centerText: string;
-  _rightText: string;
-  _hideAfter: number;
-  _loop: boolean;
   rootElement: HTMLElement;
   foregroundElement: HTMLElement;
   backgroundElement: HTMLElement;
   leftTextElement: HTMLElement;
   centerTextElement: HTMLElement;
   rightTextElement: HTMLElement;
-  _connected: boolean;
-  _hideTimer: number | null;
-  _animationFrame: number | null;
+  private _duration: number;
+  private _start: number;
+  private _width: string;
+  private _height: string;
+  private _bg: string;
+  private _fg: string;
+  private _towardRight: boolean;
+  private _styleFill: boolean;
+  private _leftText: string;
+  private _centerText: string;
+  private _rightText: string;
+  private _hideAfter: number;
+  private _loop: boolean;
+  private _connected: boolean;
+  private _hideTimer: number | null;
+  private _animationFrame: number | null;
 
   static get observedAttributes(): string[] {
     return ['duration', 'value', 'elapsed', 'hideafter', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'style', 'toward', 'loop'];
