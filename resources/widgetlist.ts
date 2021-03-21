@@ -114,29 +114,6 @@ class WidgetList extends HTMLElement {
   }
 
   attachedCallback() {
-    // Default values.
-    this._elementwidth = 100;
-    this._elementheight = 100;
-    this._rowcolsize = 5;
-    this._maxnumber = 1000;
-    // Multiplier how far to move X for each item.
-    this._xinc1 = 1;
-    // Multiplier how far to move Y for each item.
-    this._yinc1 = 0;
-    // When reaching rowcolsize, multiplier to move X to
-    // reach the next row/column.
-    this._xinc2 = 0;
-    // When reaching rowcolsize, multiplier to move Y to
-    // reach the next row/column.
-    this._yinc2 = 1;
-
-    if (this.elementwidth !== null) this._elementwidth = Math.max(parseInt(this.elementwidth), 1);
-    if (this.elementheight !== null)
-      this._elementheight = Math.max(parseInt(this.elementheight), 1);
-    if (this.rowcolsize !== null) this._rowcolsize = Math.max(parseInt(this.rowcolsize), 1);
-    if (this.toward !== null) this.parseToward(this.toward);
-    if (this.maxnumber !== null) this._maxnumber = Math.max(parseInt(this.maxnumber), 1);
-
     this._connected = true;
     this.layout();
   }
