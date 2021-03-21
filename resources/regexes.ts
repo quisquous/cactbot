@@ -4,7 +4,7 @@ export type Params<T extends string> =
   Partial<Record<Exclude<T, 'timestamp' | 'capture'>, string | string[]> &
   { 'timestamp': string; 'capture': boolean }>;
 
-export type Return<T extends string> = BaseRegExp<Exclude<T, 'capture'>>;
+export type Regex<T extends string> = BaseRegExp<Exclude<T, 'capture'>>;
 
 type ValidStringOrArray = string | string[];
 
@@ -157,7 +157,7 @@ export default class Regexes {
    * fields: source, id, ability, target, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#14-networkstartscasting
    */
-  static startsUsing(f?: Params<StartsUsingParams>): Return<StartsUsingParams> {
+  static startsUsing(f?: Params<StartsUsingParams>): Regex<StartsUsingParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'startsUsing', startsUsingParams);
@@ -183,7 +183,7 @@ export default class Regexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#15-networkability
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#16-networkaoeability
    */
-  static ability(f?: Params<AbilityParams>): Return<AbilityParams> {
+  static ability(f?: Params<AbilityParams>): Regex<AbilityParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'ability', abilityParams);
@@ -212,7 +212,7 @@ export default class Regexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#15-networkability
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#16-networkaoeability
    */
-  static abilityFull(f?: Params<AbilityFullParams>): Return<AbilityFullParams> {
+  static abilityFull(f?: Params<AbilityFullParams>): Regex<AbilityFullParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'abilityFull', abilityFullParams);
@@ -270,7 +270,7 @@ export default class Regexes {
    * fields: targetId, target, id, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1b-networktargeticon-head-markers
    */
-  static headMarker(f?: Params<HeadMarkerParams>): Return<HeadMarkerParams> {
+  static headMarker(f?: Params<HeadMarkerParams>): Regex<HeadMarkerParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'headMarker', headMarkerParams);
@@ -285,7 +285,7 @@ export default class Regexes {
 
   // fields: name, capture
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#03-addcombatant
-  static addedCombatant(f?: Params<AddedCombatantParams>): Return<AddedCombatantParams> {
+  static addedCombatant(f?: Params<AddedCombatantParams>): Regex<AddedCombatantParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'addedCombatant', addedCombatantParams);
@@ -302,7 +302,7 @@ export default class Regexes {
    */
   static addedCombatantFull(
       f?: Params<AddedCombatantFullParams>,
-  ): Return<AddedCombatantFullParams> {
+  ): Regex<AddedCombatantFullParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'addedCombatantFull', addedCombatantFullParams);
@@ -325,7 +325,7 @@ export default class Regexes {
    * fields: id, name, hp, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#04-removecombatant
    */
-  static removingCombatant(f?: Params<RemovingCombatantParams>): Return<RemovingCombatantParams> {
+  static removingCombatant(f?: Params<RemovingCombatantParams>): Regex<RemovingCombatantParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'removingCombatant', removingCombatantParams);
@@ -345,7 +345,7 @@ export default class Regexes {
 
   // fields: targetId, target, effect, source, duration, capture
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1a-networkbuff
-  static gainsEffect(f?: Params<GainsEffectParams>): Return<GainsEffectParams> {
+  static gainsEffect(f?: Params<GainsEffectParams>): Regex<GainsEffectParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'gainsEffect', gainsEffectParams);
@@ -372,7 +372,7 @@ export default class Regexes {
    */
   static statusEffectExplicit(
       f?: Params<StatusEffectExplicitParams>,
-  ): Return<StatusEffectExplicitParams> {
+  ): Regex<StatusEffectExplicitParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'statusEffectExplicit', statusEffectExplicitParams);
@@ -410,7 +410,7 @@ export default class Regexes {
    * fields: targetId, target, effect, source, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove
    */
-  static losesEffect(f?: Params<LosesEffectParams>): Return<LosesEffectParams> {
+  static losesEffect(f?: Params<LosesEffectParams>): Regex<LosesEffectParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'losesEffect', losesEffectParams);
@@ -431,7 +431,7 @@ export default class Regexes {
    * fields: source, sourceId, target, targetId, id, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#23-networktether
    */
-  static tether(f?: Params<TetherParams>): Return<TetherParams> {
+  static tether(f?: Params<TetherParams>): Regex<TetherParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'tether', tetherParams);
@@ -453,7 +453,7 @@ export default class Regexes {
    * fields: target, source, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#19-networkdeath
    */
-  static wasDefeated(f?: Params<WasDefeatedParams>): Return<WasDefeatedParams> {
+  static wasDefeated(f?: Params<WasDefeatedParams>): Regex<WasDefeatedParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'wasDefeated', wasDefeatedParams);
@@ -471,7 +471,7 @@ export default class Regexes {
    * fields: name, hp, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#0d-combatanthp
    */
-  static hasHP(f?: Params<HasHPParams>): Return<HasHPParams> {
+  static hasHP(f?: Params<HasHPParams>): Regex<HasHPParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'hasHP', hasHPParams);
@@ -489,7 +489,7 @@ export default class Regexes {
    * fields: code, line, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
    */
-  static echo(f?: Params<EchoParams>): Return<EchoParams> {
+  static echo(f?: Params<EchoParams>): Regex<EchoParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'echo', echoParams);
@@ -505,7 +505,7 @@ export default class Regexes {
    * fields: code, line, name, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
    */
-  static dialog(f?: Params<DialogParams>): Return<DialogParams> {
+  static dialog(f?: Params<DialogParams>): Regex<DialogParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'dialog', dialogParams);
@@ -523,7 +523,7 @@ export default class Regexes {
    * fields: code, line, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
    */
-  static message(f?: Params<MessageParams>): Return<MessageParams> {
+  static message(f?: Params<MessageParams>): Regex<MessageParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'message', messageParams);
@@ -538,7 +538,7 @@ export default class Regexes {
    * fields: code, line, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
    */
-  static gameLog(f?: Params<GameLogParams>): Return<GameLogParams> {
+  static gameLog(f?: Params<GameLogParams>): Regex<GameLogParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'gameLog', gameLogParams);
@@ -557,7 +557,7 @@ export default class Regexes {
    * Some game log lines have names in them, but not all.  All network log lines for these
    * have empty fields, but these get dropped by the ACT FFXV plugin.
    */
-  static gameNameLog(f?: Params<GameNameLogParams>): Return<GameNameLogParams> {
+  static gameNameLog(f?: Params<GameNameLogParams>): Regex<GameNameLogParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'gameNameLog', gameNameLogParams);
@@ -576,7 +576,7 @@ export default class Regexes {
    *         skillSpeed, spellSpeed, tenacity, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#0c-playerstats
    */
-  static statChange(f?: Params<StatChangeParams>): Return<StatChangeParams> {
+  static statChange(f?: Params<StatChangeParams>): Regex<StatChangeParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'statChange', statChangeParams);
@@ -608,7 +608,7 @@ export default class Regexes {
    * fields: name, capture
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#01-changezone
    */
-  static changeZone(f?: Params<ChangeZoneParams>): Return<ChangeZoneParams> {
+  static changeZone(f?: Params<ChangeZoneParams>): Regex<ChangeZoneParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'changeZone', changeZoneParams);
@@ -624,7 +624,7 @@ export default class Regexes {
    * fields: instance, command, data0, data1, data2, data3
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#21-network6d-actor-control-lines
    */
-  static network6d(f?: Params<Network6dParams>): Return<Network6dParams> {
+  static network6d(f?: Params<Network6dParams>): Regex<Network6dParams> {
     if (typeof f === 'undefined')
       f = {};
     Regexes.validateParams(f, 'network6d', network6dParams);
