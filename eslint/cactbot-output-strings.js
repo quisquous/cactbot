@@ -20,7 +20,8 @@ const ruleModule = {
       noOutputStrings: 'no outputStrings in trigger',
       notFoundProperty: 'no \'{{prop}}\' in \'{{outputParam}}\'',
       notFoundTemplate: '`output.{{prop}}(...)` doesn\'t have template \'{{template}}\'.',
-      tooMuchParams: 'function `output.{{call}}()` take only {{num}} params',
+      missingTemplateValue: 'template \'{{prop}}\' is missing',
+      tooManyParams: 'function `output.{{call}}()` take only {{num}} params',
     },
   },
   create: function(context) {
@@ -144,7 +145,7 @@ const ruleModule = {
               outputTemplate === undefined) {
               context.report({
                 node,
-                messageId: 'tooMuchParams',
+                messageId: 'tooManyParams',
                 data: {
                   call: node.property.name,
                   num: '0',
@@ -154,14 +155,29 @@ const ruleModule = {
           } else if (args.length !== 1) {
             context.report({
               node,
-              messageId: 'tooMuchParams',
+              messageId: 'tooManyParams',
               data: {
                 call: node.property.name,
                 num: '1',
               },
             });
           } else {
-            for (const key of getAllKeys(args[0].properties)) {
+            const keysInParams = getAllKeys(args[0].properties);
+            if (!(outputTemplate === null || outputTemplate === undefined)) {
+              for (const key of outputTemplate) {
+                if (!keysInParams.includes(key)) {
+                  context.report({
+                    node,
+                    messageId: 'missingTemplateValue',
+                    data: {
+                      prop: key,
+                    },
+                  });
+                }
+              }
+            }
+
+            for (const key of keysInParams) {
               if (outputTemplate === null || outputTemplate === undefined)
                 continue;
               if (!outputTemplate.includes(key)) {
