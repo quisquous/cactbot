@@ -3,6 +3,10 @@
 // just switch over to using CSS grid.
 type Sorter = () => number;
 
+const getRandomInt = function(max: number) {
+  return Math.floor(Math.random() * Math.floor(max));
+};
+
 class WidgetList extends HTMLElement {
   private _nextId = 1;
   private _nameToId: { [key: string]: number } = {};
@@ -339,7 +343,7 @@ class WidgetList extends HTMLElement {
       div.style.width = String(this._elementwidth * 3 / 4);
       div.style.height = String(this._elementheight * 3 / 4);
       div.style.overflow = 'hidden';
-      div.style.backgroundColor = `#${Math.random() * 10}${Math.random() * 10}${Math.random() * 10}`;
+      div.style.backgroundColor = `#${getRandomInt(9)}${getRandomInt(9)}${getRandomInt(9)}`;
       div.style.textAlign = 'center';
       div.style.fontFamily = 'arial';
       div.style.fontSize = String(this._elementheight / 6);
