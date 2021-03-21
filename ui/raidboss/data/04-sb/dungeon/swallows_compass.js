@@ -49,6 +49,7 @@ export default {
         text: {
           en: 'Avoid Fire Orbs',
           de: 'Weiche den Feuerorbs aus',
+          fr: 'Évitez les orbes de feu',
           ja: '火の玉から避ける',
           ko: '불구슬 피하기',
         },
@@ -68,6 +69,7 @@ export default {
         text: {
           en: 'Away From Fireballs',
           de: 'Weg von den Feuerkugeln',
+          fr: 'Éloignez-vous des boules de feu',
           ja: '(大きい)火の玉から避ける',
           ko: '불구슬 피하기',
         },
@@ -108,6 +110,7 @@ export default {
         text: {
           en: '5x Puddles on YOU',
           de: '5x Flächen auf DIR',
+          fr: '5x Zones au sol sur VOUS',
           ja: '自分に追尾AoE',
           ko: '5회 장판 대상자',
         },
@@ -134,6 +137,7 @@ export default {
         text: {
           en: 'OUT OF THE LAKE',
           de: 'RAUS AUS DEM SEE',
+          fr: 'SORTEZ DU LAC',
           ja: '青いエリアを踏まない',
           ko: '물웅덩이에서 벗어나기',
         },
@@ -199,12 +203,14 @@ export default {
         dynamo: {
           en: 'Close to blue staff',
           de: 'Nahe am blauen Stab',
+          fr: 'Rapprochez-vous du bâton bleu',
           ja: '如意棒に近づく',
           ko: '파랑 지팡이 근처로',
         },
         chariot: {
           en: 'Away from red staff',
           de: 'Weg vom roten Stab',
+          fr: 'Éloignez-vous du bâton rouge',
           ja: '如意棒から離れる',
           ko: '빨강 지팡이에서 떨어지기',
         },
@@ -256,18 +262,21 @@ export default {
         target: {
           en: 'Laser on YOU',
           de: 'Laser auf DIR',
+          fr: 'Laser sur VOUS',
           ja: '自分にレーザー',
           ko: '레이저 대상자',
         },
         knockback: {
           en: 'Knockback laser on YOU',
           de: 'Rückstoßlaser auf DIR',
+          fr: 'Poussée laser sur VOUS',
           ja: '自分にノックバックレーザー',
           ko: '넉백 레이저 대상자',
         },
         avoid: {
           en: 'Avoid tethers',
           de: 'Vermeide die Verbindungen',
+          fr: 'Évitez les liens',
           ja: '線から離れる',
           ko: '선 피하기',
         },
@@ -322,6 +331,7 @@ export default {
         'The Heart Of The Dragon': 'Salle des Alignements',
       },
       'replaceText': {
+        '\\?': ' ?',
         'Both Ends': 'Coup de bâton tournicotant',
         'Clout Of The Tengu': 'Tengu-kaze',
         'Equal Of Heaven': 'Égal des Cieux',
