@@ -10,7 +10,6 @@ import ZoneId from '../../../../../resources/zone_id';
 // TODO: somber dance triggers
 // TODO: apocalypse "get away from facing" or some such triggers
 // TODO: double apoc clockwise vs counterclockwise call would be nice
-// TODO: maybe call something for advanced, including double aero partners?
 
 // Each tether ID corresponds to a primal:
 // 008C -- Shiva
@@ -1317,7 +1316,7 @@ export default {
       id: 'E12S Basic Relativity Yellow Hourglass',
       // Orient where "Yellow" Anger's Hourglass spawns
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9824' }),
-      durationSeconds: 15,
+      durationSeconds: 10,
       infoText: (data, matches, output) => {
         return output.hourglass({
           dir: dirToOutput(matchedPositionToDir(matches), output),
@@ -1388,6 +1387,79 @@ export default {
           ja: '黄色: ${dir1} / ${dir2}',
           cn: '黄色: ${dir1} / ${dir2}',
           ko: '노랑: ${dir1} / ${dir2}',
+        },
+      },
+    },
+    {
+      id: 'E12S Dark Water Stacks',
+      netRegex: NetRegexes.gainsEffect({ effectId: '99D' }),
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - 3,
+      suppressSeconds: 5,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack Groups',
+        },
+      },
+    },
+    {
+      id: 'E12S Double Aero Finder',
+      netRegex: NetRegexes.gainsEffect({ effectId: '99F' }),
+      // In advanced, Aero comes in ~23 and ~31s flavors
+      condition: (data, matches) => data.phase === 'advanced' && parseFloat(matches.duration) > 28,
+      infoText: (data, matches, output) => {
+        data.doubleAero = data.doubleAero || [];
+        data.doubleAero.push(data.ShortName(matches.target));
+
+        if (data.doubleAero.length !== 2)
+          return;
+
+        return output.text({ name1: data.doubleAero[0], name2: data.doubleAero[1] });
+      },
+      // This will collide with 'E12S Adv Relativity Buff Collector', sorry.
+      tts: null,
+      outputStrings: {
+        text: {
+          en: 'Double Aero: ${name1}, ${name2}',
+        },
+      },
+    },
+    {
+      id: 'E12S Adv Relativity Buff Collector',
+      // 997 Spell-In-Waiting: Dark Fire III
+      // 998 Spell-In-Waiting: Shadoweye
+      // 99F Spell-In-Waiting: Dark Aero III
+      netRegex: NetRegexes.gainsEffect({ effectId: '99[78F]' }),
+      condition: (data, matches) => data.phase === 'advanced' && data.me === matches.target,
+      durationSeconds: 15,
+      alertText: (data, matches, output) => {
+        const id = matches.effectId.toUpperCase();
+
+        // The shadoweye and the double aero person gets aero, so only consider the final aero.
+        if (id === '99F') {
+          if (parseFloat(matches.duration) < 28)
+            return;
+          return output.doubleAero();
+        }
+        if (id === '997')
+          return output.spread();
+        if (id === '998')
+          return output.shadoweye();
+      },
+      outputStrings: {
+        shadoweye: {
+          en: 'Eye on YOU',
+          de: 'Auge auf DIR',
+          fr: 'Œil sur VOUS',
+          ja: '自分に目',
+          cn: '石化眼点名',
+          ko: '시선징 대상자',
+        },
+        doubleAero: {
+          en: 'Double Aero on YOU',
+        },
+        spread: {
+          en: 'Spread on YOU',
         },
       },
     },
