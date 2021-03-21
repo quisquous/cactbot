@@ -81,15 +81,14 @@ const ruleModule = {
     };
 
     return {
-      // /**
-      //  *
-      //  * @param node {t.ObjectExpression}
-      //  */
-      // 'Property[key.name=/outputStrings/] > ObjectExpression':
-      'Program > VariableDeclaration > VariableDeclarator > ObjectExpression': function(node) {
+      /**
+       *
+       * @param node {t.ObjectExpression}
+       */
+      'Program > VariableDeclaration > VariableDeclarator > ObjectExpression'(node) {
         globalVars.set(node.parent.id.name, getAllKeys(node.properties));
       },
-      [`Property[key.name=/${textProps.join('|')}/] > :function`]: function(node) {
+      [`Property[key.name=/${textProps.join('|')}/] > :function`](node) {
         const props = getAllKeys(node.parent.parent.properties);
         if (props.find((prop) => prop === 'outputStrings')) {
           stack.inTriggerFunc = true;
@@ -108,7 +107,7 @@ const ruleModule = {
           messageId: 'noOutputStrings',
         });
       },
-      [`Property[key.name=/${textProps.join('|')}/] > :function:exit`]: function() {
+      [`Property[key.name=/${textProps.join('|')}/] > :function:exit`]() {
         if (stack.inTriggerFunc) {
           stack.inTriggerFunc = false;
           stack.outputParam = null;
@@ -116,7 +115,11 @@ const ruleModule = {
           stack.triggerID = null;
         }
       },
-      [`Property[key.name=/${textProps.join('|')}/] > :function[params.length=3] CallExpression > MemberExpression`]: function(node) {
+      /**
+       *
+       * @param node {t.MemberExpression}
+       */
+      [`Property[key.name=/${textProps.join('|')}/] > :function[params.length=3] CallExpression > MemberExpression`](node) {
         if (node.object.name === stack.outputParam &&
           node.computed === false &&
           t.isIdentifier(node.property) &&
