@@ -32,10 +32,10 @@ type TargetableMatches = Matches<Regex<
 
 export default {
   targetIsYou(): (data: Data, matches: TargetableMatches) => boolean {
-    return (data: Data, matches: TargetableMatches) => data.me === matches?.target;
+    return (data: Data, matches: TargetableMatches) => data.me === matches.target;
   },
   targetIsNotYou(): (data: Data, matches: TargetableMatches) => boolean {
-    return (data: Data, matches: TargetableMatches) => data.me !== matches?.target;
+    return (data: Data, matches: TargetableMatches) => data.me !== matches.target;
   },
   caresAboutAOE(): (data: Data) => boolean {
     return (data: Data) => data.role === 'tank' || data.role === 'healer' || data.CanAddle() || data.job === 'BLU';
