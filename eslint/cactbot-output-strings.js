@@ -165,7 +165,7 @@ const ruleModule = {
             const keysInParams = getAllKeys(args[0].properties);
             if (outputTemplate !== null && outputTemplate !== undefined) {
               for (const key of outputTemplate) {
-                if (!keysInParams.includes(key)) {
+                if (args[0].type !== 'Identifier' && !keysInParams.includes(key)) {
                   context.report({
                     node,
                     messageId: 'missingTemplateValue',
