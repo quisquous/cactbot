@@ -15,10 +15,10 @@ import {
   LosesEffectParams,
   TetherParams,
   WasDefeatedParams,
-  Return,
+  Regex,
 } from '../resources/regexes';
 
-type TargetableMatches = Matches<Return<
+type TargetableMatches = Matches<Regex<
   StartsUsingParams |
   AbilityParams |
   AbilityFullParams |
