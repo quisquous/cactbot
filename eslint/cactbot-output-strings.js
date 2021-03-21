@@ -162,7 +162,7 @@ const ruleModule = {
             });
           } else {
             for (const key of getAllKeys(args[0].properties)) {
-              if (!outputTemplate.includes(key)) {
+              if (outputTemplate && !outputTemplate.includes(key)) {
                 context.report({
                   node,
                   messageId: 'notFoundTemplate',
