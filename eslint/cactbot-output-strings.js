@@ -19,8 +19,9 @@ const ruleModule = {
     messages: {
       noOutputStrings: 'no outputStrings in trigger',
       notFoundProperty: 'no \'{{prop}}\' in \'{{outputParam}}\'',
-      notFoundTemplate: 'no \'{{prop}}\' in \'{{outputParam}}\'',
-      inConsistentlyFormat: 'output string has different template on key \'{{key}}\'',
+      notFoundTemplate: '`output.{{outputParam}}(data)` doesn\'t take property \'{{prop}}\' on `data`',
+      tooMuchParams: 'function `output.{{call}}()` take only {{num}} params',
+      inConsistentlyFormat: 'outputStrings \'{{outputParam}}\' in trigger \'{{ triggerID }}\' has inconsistently template',
     },
   },
   create: function(context) {
@@ -66,18 +67,11 @@ const ruleModule = {
           values.push(x.value.value);
         });
         const v = values.map((x) => Array.from(x.matchAll(/\${\s*([^}\s]+)\s*}/g))).map((x) => x.length ? x.map((v) => v[1]) : null);
-        if (!arrayContainSameElement(v)) {
-          // context.report({
-          //   node: outputString.key,
-          //   messageId: 'inConsistentlyFormat',
-          //   data: {
-          //     key: outputString.key.name,
-          //   },
-          // });
-        } else {
-          outputTemplateKey[outputString.key.name] = v[0];
-        }
         const triggerID = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'id').value.value;
+
+        if (arrayContainSameElement(v))
+          outputTemplateKey[outputString.key.name] = v[0];
+
         outputTemplates.set(triggerID, outputTemplateKey);
       }
     };
@@ -135,21 +129,43 @@ const ruleModule = {
               outputParam: stack.outputParam,
             },
           });
-        } else {
-          // console.log(stack.triggerID, node.property.name);
-          if (typeof node.parent.callee.parent.arguments === 'undefined') {
-            if (typeof node.parent.callee.parent.arguments !== 'undefined') {
+        }
+        if (t.isIdentifier(node.property) && stack.outputProperties.includes(node.property.name)) {
+          const args = node.parent.callee.parent.arguments;
+          const outputTemplate = outputTemplates.get(stack.triggerID)[node.property.name];
+          if (args.length === 0) {
+            if (outputTemplate === undefined) {
               context.report({
-                node: node,
-                messageId: 'inConsistentlyFormat',
+                node,
+                messageId: 'tooMuchParams',
                 data: {
-                  key: 'kk',
+                  call: node.property.name,
+                  num: 0,
                 },
               });
             }
+          } else if (args.length !== 1) {
+            context.report({
+              node,
+              messageId: 'tooMuchParams',
+              data: {
+                call: node.property.name,
+                num: 1,
+              },
+            });
           } else {
-            console.log(node.parent.callee.parent.arguments);
-            console.log(outputTemplates.get(stack.triggerID)[node.property.name]);
+            for (const key of getAllKeys(args[0].properties)) {
+              if (!outputTemplate.includes(key)) {
+                context.report({
+                  node,
+                  messageId: 'notFoundTemplate',
+                  data: {
+                    prop: key,
+                    outputParam: node.property.name,
+                  },
+                });
+              }
+            }
           }
         }
       },
