@@ -1,6 +1,6 @@
 class TimerBox extends HTMLElement {
-  _start: number;
-  _duration: number;
+  private _start: number;
+  private _duration: number;
   rootElement: HTMLDivElement;
   largeBoxElement: HTMLDivElement;
   largeBoxBackgroundElement: HTMLDivElement;
@@ -9,25 +9,25 @@ class TimerBox extends HTMLElement {
   smallBoxBackgroundElement: HTMLDivElement;
   smallBoxForegroundElement: HTMLDivElement;
   timerElement: HTMLDivElement;
-  kLargeSize: number;
-  kSmallSize: number;
-  kBorderSize: number;
-  kFontSize: number;
-  kAnimateMS: number;
-  _threshold: number;
-  _bg: string;
-  _fg: string;
-  _scale: number;
-  _valueScale: number;
-  _towardTop: boolean;
-  _styleFill: boolean;
-  _hideAfter: number;
-  _bigAtZero: boolean;
-  _roundUpThreshold: boolean;
-  _connected: boolean;
-  _hideTimer: number | null;
-  _timer: number | null;
-  _animationFrame: number | null;
+  readonly kLargeSize: number;
+  readonly kSmallSize: number;
+  readonly kBorderSize: number;
+  readonly kFontSize: number;
+  readonly kAnimateMS: number;
+  private _threshold: number;
+  private _bg: string;
+  private _fg: string;
+  private _scale: number;
+  private _valueScale: number;
+  private _towardTop: boolean;
+  private _styleFill: boolean;
+  private _hideAfter: number;
+  private _bigAtZero: boolean;
+  private _roundUpThreshold: boolean;
+  private _connected: boolean;
+  private _hideTimer: number | null;
+  private _timer: number | null;
+  private _animationFrame: number | null;
 
   static get observedAttributes(): string[] {
     return ['duration', 'threshold', 'bg', 'fg', 'toward', 'style', 'hideafter', 'bigatzero', 'roundupthreshold'];
