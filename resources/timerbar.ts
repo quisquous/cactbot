@@ -1,92 +1,115 @@
 export default class TimerBar extends HTMLElement {
-  static get observedAttributes() {
+  _duration: number;
+  _start: number;
+  _width: string;
+  _height: string;
+  _bg: string;
+  _fg: string;
+  _towardRight: boolean;
+  _styleFill: boolean;
+  _leftText: string;
+  _centerText: string;
+  _rightText: string;
+  _hideAfter: number;
+  _loop: boolean;
+  rootElement: HTMLElement;
+  foregroundElement: HTMLElement;
+  backgroundElement: HTMLElement;
+  leftTextElement: HTMLElement;
+  centerTextElement: HTMLElement;
+  rightTextElement: HTMLElement;
+  _connected: boolean;
+  _hideTimer: number | null;
+  _animationFrame: number | null;
+
+  static get observedAttributes(): string[] {
     return ['duration', 'value', 'elapsed', 'hideafter', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'style', 'toward', 'loop'];
   }
 
   // Background color.
-  set bg(c) {
-    this.setAttribute('bg', c);
+  set bg(c: string | null) {
+    this.setAttribute('bg', c ?? '');
   }
-  get bg() {
+  get bg(): string | null {
     return this.getAttribute('bg');
   }
 
   // Foreground color.
-  set fg(c) {
-    this.setAttribute('fg', c);
+  set fg(c: string | null) {
+    this.setAttribute('fg', c ?? '');
   }
-  get fg() {
+  get fg(): string | null {
     return this.getAttribute('fg');
   }
 
   // The width of the bar.
-  set width(w) {
-    this.setAttribute('width', w);
+  set width(w: string | null) {
+    this.setAttribute('width', w ?? '');
   }
-  get width() {
+  get width(): string | null {
     return this.getAttribute('width');
   }
 
   // The height of the bar.
-  set height(w) {
-    this.setAttribute('height', w);
+  set height(w: string | null) {
+    this.setAttribute('height', w ?? '');
   }
-  get height() {
+  get height(): string | null {
     return this.getAttribute('height');
   }
 
   // The total length of time to count down.
-  set duration(s) {
+  set duration(s: string) {
     this.attributeChangedCallback('duration', this.duration, s);
   }
-  get duration() {
+  get duration(): string {
     return this._duration.toString();
   }
 
   // The length remaining in the count down.
-  set value(s) {
+  set value(s: string) {
     this.attributeChangedCallback('value', this.value, s);
   }
-  get value() {
+  get value(): string {
     if (!this._start) return this._duration.toString();
-    const elapsedMs = new Date() - this._start;
+    const elapsedMs = new Date().getTime() - this._start;
     return Math.max(0, this._duration - (elapsedMs / 1000)).toString();
   }
 
   // The elapsed time.
-  set elapsed(s) {
+  set elapsed(s: string) {
     this.attributeChangedCallback('elapsed', this.elapsed, s);
   }
-  get elapsed() {
+  get elapsed(): string {
     if (!this._start) return '0';
-    return ((new Date() - this._start) / 1000).toString();
+    return ((new Date().getTime() - this._start) / 1000).toString();
   }
 
   // If "right" then animates left-to-right (the default). If "left"
   // then animates right-to-left.
-  set toward(t) {
-    this.setAttribute('toward', t);
+  set toward(t: 'left' | 'right' | null) {
+    this.setAttribute('toward', t ?? '');
   }
-  get toward() {
-    return this.getAttribute('toward');
+  get toward(): 'left' | 'right' | null {
+    return this.getAttribute('toward') as 'left' | 'right' | null;
   }
 
   // If "fill" then the progress goes empty-to-full, if "empty" then the
   // progress bar starts full and goes to empty.
-  set style(s) {
-    this.setAttribute('style', s);
+  set styleFill(s: 'empty' | 'full' | null) {
+    this.setAttribute('style', s ?? '');
   }
-  get style() {
-    return this.getAttribute('style');
+  get styleFill(): 'empty' | 'full' | null {
+    return this.getAttribute('style') as 'empty' | 'full' | null;
   }
 
   // When the bar reaches 0, it is hidden after this many seconds. If ""
   // then it is not hidden.
-  set hideafter(h) {
-    this.setAttribute('hideafter', h);
+  set hideafter(h: string) {
+    this.setAttribute('hideafter', h ?? '');
   }
-  get hideafter() {
-    return this.getAttribute('hideafter');
+  get hideafter(): string {
+    return this.getAttribute('hideafter') ?? '';
   }
 
   // Chooses what should be shown in the text field in each area of
@@ -99,33 +122,33 @@ export default class TimerBar extends HTMLElement {
   //             the duration.
   // "elapsed"   - shows the elapsed time
   // anything else - the given text is shown literally.
-  set lefttext(p) {
-    this.setAttribute('lefttext', p);
+  set lefttext(p: string | null) {
+    this.setAttribute('lefttext', p ?? '');
   }
-  get lefttext() {
+  get lefttext(): string | null {
     return this.getAttribute('lefttext');
   }
-  set righttext(p) {
-    this.setAttribute('righttext', p);
+  set righttext(p: string | null) {
+    this.setAttribute('righttext', p ?? '');
   }
-  get righttext() {
+  get righttext(): string | null {
     return this.getAttribute('righttext');
   }
-  set centertext(p) {
-    this.setAttribute('centertext', p);
+  set centertext(p: string | null) {
+    this.setAttribute('centertext', p ?? '');
   }
-  get centertext() {
+  get centertext(): string | null {
     return this.getAttribute('centertext');
   }
 
   // If this attribute is present, the timer will loop forever.
-  set loop(l) {
+  set loop(l: boolean) {
     if (l)
       this.setAttribute('loop', '');
     else
       this.removeAttribute('loop');
   }
-  get loop() {
+  get loop(): boolean {
     return this.hasAttribute('loop');
   }
 
@@ -134,24 +157,11 @@ export default class TimerBar extends HTMLElement {
     super();
     const root = this.attachShadow({ mode: 'open' });
     this.init(root);
-  }
 
-  // These would be used by document.registerElement, which is deprecated but
-  // ACT uses an old CEF which has this instead of the newer APIs.
-  createdCallback() {
-    const root = this.createShadowRoot();
-    this.init(root);
-  }
-  // Convert from the deprecated API names to the modern API names.
-  attachedCallback() {
-    this.connectedCallback();
-  }
-  detachedCallback() {
-    this.disconnectedCallback();
-  }
+    this._connected = false;
 
-  init(root) {
     // Default values.
+    this._start = 0;
     this._duration = 0;
     this._width = '100%';
     this._height = '100%';
@@ -164,7 +174,35 @@ export default class TimerBar extends HTMLElement {
     this._rightText = '';
     this._hideAfter = -1;
     this._loop = false;
+    this._hideTimer = 0;
+    this._animationFrame = 0;
 
+    this.rootElement = this.shadowRoot?.getElementById('root') as HTMLDivElement;
+    this.foregroundElement = this.shadowRoot?.getElementById('fg') as HTMLDivElement;
+    this.backgroundElement = this.shadowRoot?.getElementById('bg') as HTMLDivElement;
+    this.leftTextElement = this.shadowRoot?.getElementById('lefttext') as HTMLDivElement;
+    this.centerTextElement = this.shadowRoot?.getElementById('centertext') as HTMLDivElement;
+    this.rightTextElement = this.shadowRoot?.getElementById('righttext') as HTMLDivElement;
+  }
+
+  // // These would be used by document.registerElement, which is deprecated but
+  // // ACT uses an old CEF which has this instead of the newer APIs.
+  // createdCallback() {
+  //   const root = this.createShadowRoot();
+  //   this.init(root);
+  // }
+  // createShadowRoot() {
+  //   throw new Error("Method not implemented.");
+  // }
+  // // Convert from the deprecated API names to the modern API names.
+  // attachedCallback() {
+  //   this.connectedCallback();
+  // }
+  // detachedCallback() {
+  //   this.disconnectedCallback();
+  // }
+
+  init(root: ShadowRoot): void {
     root.innerHTML = `
       <style>
         .timerbar-root {
@@ -283,14 +321,7 @@ export default class TimerBar extends HTMLElement {
     `;
   }
 
-  connectedCallback() {
-    this.rootElement = this.shadowRoot.getElementById('root');
-    this.foregroundElement = this.shadowRoot.getElementById('fg');
-    this.backgroundElement = this.shadowRoot.getElementById('bg');
-    this.leftTextElement = this.shadowRoot.getElementById('lefttext');
-    this.centerTextElement = this.shadowRoot.getElementById('centertext');
-    this.rightTextElement = this.shadowRoot.getElementById('righttext');
-
+  connectedCallback(): void {
     this._connected = true;
     this.layout();
     this.updateText();
@@ -300,11 +331,11 @@ export default class TimerBar extends HTMLElement {
       this.advance();
   }
 
-  disconnectedCallback() {
+  disconnectedCallback(): void {
     this._connected = false;
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(name: string, oldValue: string | number, newValue: string): void {
     if (name === 'duration') {
       this._duration = Math.max(parseFloat(newValue), 0);
       this.setvalue(this._duration);
@@ -361,7 +392,7 @@ export default class TimerBar extends HTMLElement {
       this.draw();
   }
 
-  layout() {
+  layout(): void {
     if (!this._connected)
       return;
 
@@ -372,13 +403,13 @@ export default class TimerBar extends HTMLElement {
 
     // To start full and animate to empty, we animate backwards and flip
     // the direction.
-    if (this._towardRight ^ this._styleFill)
+    if (this._towardRight !== this._styleFill)
       this.foregroundElement.style.transformOrigin = '100% 0%';
     else
       this.foregroundElement.style.transformOrigin = '0% 0%';
   }
 
-  updateText() {
+  updateText(): void {
     const varyingTexts = ['elapsed', 'duration', 'percent', 'remain'];
     // These values are filled in during draw() when the values change.
     if (!varyingTexts.includes(this._leftText)) {
@@ -392,8 +423,8 @@ export default class TimerBar extends HTMLElement {
       this.rightTextElement.innerHTML = this._rightText;
   }
 
-  draw() {
-    const elapsedSec = (new Date() - this._start) / 1000;
+  draw(): void {
+    const elapsedSec = (new Date().getTime() - this._start) / 1000;
     const remainSec = Math.max(0, this._duration - elapsedSec);
     let percent = this._duration <= 0 ? 0 : remainSec / this._duration;
     // Keep it between 0 and 1.
@@ -402,14 +433,14 @@ export default class TimerBar extends HTMLElement {
     const displayElapsed = elapsedSec.toFixed(1);
     if (this._styleFill)
       percent = 1.0 - percent;
-    this.foregroundElement.style.width = percent * 100 + '%';
+    this.foregroundElement.style.width = `${percent * 100}%`;
     if (this._leftText !== '') {
       if (this._leftText === 'remain')
         this.leftTextElement.innerHTML = displayRemain;
       else if (this._leftText === 'duration')
-        this.leftTextElement.innerHTML = displayRemain + ' / ' + this._duration;
+        this.leftTextElement.innerHTML = `${displayRemain} / ${this._duration}`;
       else if (this._leftText === 'percent')
-        this.leftTextElement.innerHTML = (percent * 100).toFixed(1) + ' %';
+        this.leftTextElement.innerHTML = `${(percent * 100).toFixed(1)} %`;
       else if (this._leftText === 'elapsed')
         this.leftTextElement.innerHTML = displayElapsed;
     }
@@ -417,9 +448,9 @@ export default class TimerBar extends HTMLElement {
       if (this._centerText === 'remain')
         this.centerTextElement.innerHTML = displayRemain;
       else if (this._centerText === 'duration')
-        this.centerTextElement.innerHTML = displayRemain + ' / ' + this._duration;
+        this.centerTextElement.innerHTML = `${displayRemain} / ${this._duration}`;
       else if (this._centerText === 'percent')
-        this.centerTextElement.innerHTML = (percent * 100).toFixed(1) + ' %';
+        this.centerTextElement.innerHTML = `${(percent * 100).toFixed(1)} %`;
       else if (this._centerText === 'elapsed')
         this.centerTextElement.innerHTML = displayElapsed;
     }
@@ -427,40 +458,40 @@ export default class TimerBar extends HTMLElement {
       if (this._rightText === 'remain')
         this.rightTextElement.innerHTML = displayRemain;
       else if (this._rightText === 'duration')
-        this.rightTextElement.innerHTML = displayRemain + ' / ' + this._duration;
+        this.rightTextElement.innerHTML = `${displayRemain} / ${this._duration}`;
       else if (this._rightText === 'percent')
-        this.rightTextElement.innerHTML = (percent * 100).toFixed(1) + ' %';
+        this.rightTextElement.innerHTML = `${(percent * 100).toFixed(1)} %`;
       else if (this._rightText === 'elapsed')
         this.rightTextElement.innerHTML = displayElapsed;
     }
   }
 
   // Apply all styles from an object where keys are CSS properties
-  applyStyles(styles) {
+  applyStyles(styles: { [s: string]: string}): void {
     const s = Object.keys(styles).map((k) => {
-      return `${k}:${styles[k]};`;
+      return `${k}:${styles?.[k] ?? ''};`;
     }).join('');
 
-    this.shadowRoot.getElementById('lefttext').style.cssText += s;
-    this.shadowRoot.getElementById('centertext').style.cssText += s;
-    this.shadowRoot.getElementById('righttext').style.cssText += s;
+    (this.shadowRoot?.getElementById('lefttext') as HTMLDivElement).style.cssText += s;
+    (this.shadowRoot?.getElementById('centertext') as HTMLDivElement).style.cssText += s;
+    (this.shadowRoot?.getElementById('righttext') as HTMLDivElement).style.cssText += s;
   }
 
-  setvalue(remainSec) {
+  setvalue(remainSec: number): void {
     const elapsedSec = Math.max(0, this._duration - remainSec);
-    this._start = new Date() - (elapsedSec * 1000);
+    this._start = new Date().getTime() - (elapsedSec * 1000);
 
     if (!this._connected) return;
 
     this.show();
-    clearTimeout(this._hideTimer);
+    clearTimeout(this._hideTimer ?? 0);
     this._hideTimer = null;
 
     this.advance();
   }
 
-  advance() {
-    const elapsedSec = (new Date() - this._start) / 1000;
+  advance(): void {
+    const elapsedSec = (new Date().getTime() - this._start) / 1000;
     if (elapsedSec >= this._duration) {
       // Timer completed
       if (this._loop && this._duration > 0) {
@@ -473,11 +504,11 @@ export default class TimerBar extends HTMLElement {
       // if they set the same duration again it will count.
       this._duration = 0;
       if (this._hideAfter > 0)
-        this._hideTimer = setTimeout(this.hide.bind(this), this._hideAfter * 1000);
+        this._hideTimer = window.setTimeout(this.hide.bind(this), this._hideAfter * 1000);
       else if (this._hideAfter === 0)
         this.hide();
 
-      window.cancelAnimationFrame(this._animationFrame);
+      window.cancelAnimationFrame(this._animationFrame ?? 0);
       this._animationFrame = null;
     } else {
       // Timer not completed, request another animation frame
@@ -487,22 +518,16 @@ export default class TimerBar extends HTMLElement {
     this.draw();
   }
 
-  show() {
+  show(): void {
     if (this._connected)
       this.rootElement.style.display = 'block';
   }
 
-  hide() {
+  hide(): void {
     if (this._connected)
       this.rootElement.style.display = 'none';
   }
 }
 
-if (window.customElements) {
-  // Preferred method but old CEF doesn't have this.
-  window.customElements.define('timer-bar', TimerBar);
-} else {
-  document.registerElement('timer-bar', {
-    prototype: Object.create(TimerBar.prototype),
-  });
-}
+
+window.customElements.define('timer-bar', TimerBar);
