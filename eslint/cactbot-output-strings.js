@@ -68,13 +68,13 @@ const ruleModule = {
           if (x.value.value !== undefined)
             values.push(x.value.value);
         });
-        const templateIDs = values.map((x) => Array.from(x.matchAll(/\${\s*([^}\s]+)\s*}/g))).map((x) => x.length ? x.map((v) => v[1]) : null);
-        const triggerID = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'id').value.value;
+        const templateIds = values.map((x) => Array.from(x.matchAll(/\${\s*([^}\s]+)\s*}/g))).map((x) => x.length ? x.map((v) => v[1]) : null);
+        const triggerId = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'id').value.value;
 
-        if (arrayContainSameElement(templateIDs))
-          outputTemplateKey[outputString.key.name] = templateIDs[0];
+        if (arrayContainSameElement(templateIds))
+          outputTemplateKey[outputString.key.name] = templateIds[0];
 
-        outputTemplates.set(triggerID, outputTemplateKey);
+        outputTemplates.set(triggerId, outputTemplateKey);
       }
     };
 
