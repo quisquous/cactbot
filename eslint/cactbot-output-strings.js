@@ -64,7 +64,8 @@ const ruleModule = {
         // each outputString
         const values = [];
         outputString.value.properties.forEach((x) => {
-          values.push(x.value.value);
+          if (x.value.value !== undefined)
+            values.push(x.value.value);
         });
         const v = values.map((x) => Array.from(x.matchAll(/\${\s*([^}\s]+)\s*}/g))).map((x) => x.length ? x.map((v) => v[1]) : null);
         const triggerID = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'id').value.value;

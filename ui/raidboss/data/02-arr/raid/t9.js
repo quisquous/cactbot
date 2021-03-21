@@ -452,7 +452,7 @@ export default {
       outputStrings: {
         ...diveDirections,
         safeZone: {
-          en: 'Safe zone: ${di}',
+          en: 'Safe zone: ${dir}',
           de: 'Sichere Zone: ${dir}',
           fr: 'Zone sûre : ${dir}',
           ja: '安置: ${dir}',
@@ -484,9 +484,9 @@ export default {
           en: 'Go To ${marker} (in ${dir})',
           de: 'Gehe zu ${marker} (im ${dir})',
           fr: 'Allez en ${marker} (au ${dir})',
-          ja: '${marker}に行く' + ' (あと ${dir}秒)',
+          ja: '${marker}に行く (あと ${dir}秒)',
           cn: '去${marker} (在 ${dir}秒)',
-          ko: '${marker}로 이동' + ' (${dir}쪽)',
+          ko: '${marker}로 이동 (${dir}쪽)',
         },
         goToMarker: {
           en: 'Go To ${marker}',
