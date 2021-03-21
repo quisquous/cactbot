@@ -18,7 +18,7 @@ module.exports = function(env, argv) {
       raidboss: './ui/raidboss/raidboss.js',
       raidemulator: './ui/raidboss/raidemulator.js',
       raidemulatorWorker: './ui/raidboss/emulator/data/NetworkLogConverterWorker.js',
-      test: './ui/test/test.ts',
+      test: './ui/test/test.js',
     },
     optimization: {
       splitChunks: {
