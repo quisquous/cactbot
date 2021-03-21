@@ -61,7 +61,8 @@ const ruleModule = {
     const extractTemplate = function(node) {
       if (node.properties === undefined) return;
       const outputTemplateKey = {};
-      for (const outputString of node.properties.filter((s) => !t.isSpreadElement(s) && s.value.type !== 'MemberExpression')) {
+      for (const outputString of
+        node.properties.filter((s) => !t.isSpreadElement(s) && !t.isMemberExpression(s.value))) {
         // each outputString
         const values = [];
 
