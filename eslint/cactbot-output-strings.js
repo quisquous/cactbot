@@ -163,7 +163,7 @@ const ruleModule = {
             });
           } else {
             const keysInParams = getAllKeys(args[0].properties);
-            if (!(outputTemplate === null || outputTemplate === undefined)) {
+            if (outputTemplate !== null && outputTemplate !== undefined) {
               for (const key of outputTemplate) {
                 if (!keysInParams.includes(key)) {
                   context.report({
@@ -175,20 +175,18 @@ const ruleModule = {
                   });
                 }
               }
-            }
 
-            for (const key of keysInParams) {
-              if (outputTemplate === null || outputTemplate === undefined)
-                continue;
-              if (!outputTemplate.includes(key)) {
-                context.report({
-                  node,
-                  messageId: 'notFoundTemplate',
-                  data: {
-                    prop: key,
-                    outputParam: node.property.name,
-                  },
-                });
+              for (const key of keysInParams) {
+                if (!outputTemplate.includes(key)) {
+                  context.report({
+                    node,
+                    messageId: 'notFoundTemplate',
+                    data: {
+                      prop: key,
+                      outputParam: node.property.name,
+                    },
+                  });
+                }
               }
             }
           }
