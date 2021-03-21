@@ -20,7 +20,7 @@ const ruleModule = {
       noOutputStrings: 'no outputStrings in trigger',
       notFoundProperty: 'no \'{{prop}}\' in \'{{outputParam}}\'',
       notFoundTemplate: '`output.{{prop}}(...)` doesn\'t have template \'{{template}}\'.',
-      missingTemplateValue: 'template \'{{prop}}\' is missing',
+      missingTemplateValue: 'template \'{{prop}}\' is missing in function call',
       tooManyParams: 'function `output.{{call}}()` take only {{num}} params',
     },
   },
