@@ -61,7 +61,7 @@ let ws: WebSocket | null = null;
 let queue: (
   { [s: string]: unknown } |
   [{ [s: string]: unknown }, ((value: string | null) => unknown) | undefined]
-)[] = [];
+)[] | null = [];
 let rseqCounter = 0;
 const responsePromises: Record<number, (value: unknown) => void> = {};
 
@@ -72,12 +72,12 @@ const sendMessage = (
     cb?: (value: string | null) => unknown,
 ): void => {
   if (ws) {
-    if (queue.length > 0)
+    if (queue)
       queue.push(msg);
     else
       ws.send(JSON.stringify(msg));
   } else {
-    if (queue.length > 0)
+    if (queue)
       queue.push([msg, cb]);
     else
       window.OverlayPluginApi.callHandler(JSON.stringify(msg), cb);
@@ -102,7 +102,7 @@ export const addOverlayListener: IAddOverlayListener = (event, cb): void => {
   if (!subscribers[event]) {
     subscribers[event] = [];
 
-    if (!queue || queue.length === 0) {
+    if (!queue) {
       sendMessage({
         call: 'subscribe',
         events: [event],
@@ -203,8 +203,8 @@ export const init = (): void => {
         ws.addEventListener('open', () => {
           console.log('Connected!');
 
-          const q = queue;
-          queue = [];
+          const q = queue ?? [];
+          queue = null;
 
           sendMessage({
             call: 'subscribe',
@@ -234,7 +234,7 @@ export const init = (): void => {
         });
 
         ws.addEventListener('close', () => {
-          queue = [];
+          queue = null;
 
           console.log('Trying to reconnect...');
           // Don't spam the server with retries.
@@ -252,8 +252,8 @@ export const init = (): void => {
           return;
         }
 
-        const q = queue;
-        queue = [];
+        const q = queue ?? [];
+        queue = null;
 
         window.__OverlayCallback = processEvent;
 
