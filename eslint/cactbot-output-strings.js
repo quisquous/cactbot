@@ -98,9 +98,10 @@ const ruleModule = {
           stack.outputParam = node.params[2] && node.params[2].name;
           const outputValue = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'outputStrings').value;
           extractTemplate(outputValue);
-          stack.outputProperties = t.isIdentifier(outputValue)
-            ? (globalVars.get(outputValue.name) || [])
-            : getAllKeys(outputValue.properties);
+          stack.outputProperties =
+            t.isIdentifier(outputValue)
+              ? (globalVars.get(outputValue.name) || [])
+              : getAllKeys(outputValue.properties);
           stack.triggerID = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'id').value.value;
           return;
         }
