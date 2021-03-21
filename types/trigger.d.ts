@@ -9,7 +9,7 @@ export interface BaseRegExp<T> extends RegExp {
 export type Matches<T> =
   T extends BaseRegExp ? T['groups'] :
   T extends RegExp ? { [s: string]: string } :
-  unknown;
+  never;
 
 
 type TranslatableText = {
