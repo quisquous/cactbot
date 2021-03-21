@@ -56,7 +56,7 @@ const kPullText = {
   ko: '풀링',
 };
 
-class Bars {
+export class Bars {
   constructor(options) {
     this.options = options;
     this.init = false;
