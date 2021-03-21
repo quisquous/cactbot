@@ -137,9 +137,10 @@ const ruleModule = {
         }
         if (t.isIdentifier(node.property) && stack.outputProperties.includes(node.property.name)) {
           const args = node.parent.callee.parent.arguments;
-          const outputTemplate = outputTemplates.get(stack.triggerID)[node.property.name];
+          const outputOfTriggerID = outputTemplates.get(stack.triggerID) ?? {};
+          const outputTemplate = outputOfTriggerID[node.property.name];
           if (args.length === 0) {
-            if ((node.property.name in outputTemplates.get(stack.triggerID)) &&
+            if ((node.property.name in outputOfTriggerID) &&
               outputTemplate === undefined) {
               context.report({
                 node,
