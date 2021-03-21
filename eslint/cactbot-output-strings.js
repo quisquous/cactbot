@@ -21,7 +21,6 @@ const ruleModule = {
       notFoundProperty: 'no \'{{prop}}\' in \'{{outputParam}}\'',
       notFoundTemplate: '`output.{{outputParam}}(data)` doesn\'t take property \'{{prop}}\' on `data`',
       tooMuchParams: 'function `output.{{call}}()` take only {{num}} params',
-      inConsistentlyFormat: 'outputStrings \'{{outputParam}}\' in trigger \'{{ triggerID }}\' has inconsistently template',
     },
   },
   create: function(context) {
