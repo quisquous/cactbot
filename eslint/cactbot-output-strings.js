@@ -59,10 +59,12 @@ const ruleModule = {
     };
 
     const extractTemplate = function(node) {
+      if (node.properties === undefined) return;
       const outputTemplateKey = {};
-      for (const outputString of node.properties.filter((s) => s.type !== 'SpreadElement')) {
+      for (const outputString of node.properties.filter((s) => s.type !== 'SpreadElement' && s.value.type !== 'MemberExpression')) {
         // each outputString
         const values = [];
+
         outputString.value.properties.forEach((x) => {
           if (x.value.value !== undefined)
             values.push(x.value.value);
@@ -96,10 +98,9 @@ const ruleModule = {
           stack.outputParam = node.params[2] && node.params[2].name;
           const outputValue = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'outputStrings').value;
           extractTemplate(outputValue);
-          stack.outputProperties =
-            t.isIdentifier(outputValue)
-              ? (globalVars.get(outputValue.name) || [])
-              : getAllKeys(outputValue.properties);
+          stack.outputProperties = t.isIdentifier(outputValue)
+            ? (globalVars.get(outputValue.name) || [])
+            : getAllKeys(outputValue.properties);
           stack.triggerID = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'id').value.value;
           return;
         }
@@ -138,13 +139,14 @@ const ruleModule = {
           const args = node.parent.callee.parent.arguments;
           const outputTemplate = outputTemplates.get(stack.triggerID)[node.property.name];
           if (args.length === 0) {
-            if (outputTemplate === undefined) {
+            if ((node.property.name in outputTemplates.get(stack.triggerID)) &&
+              outputTemplate === undefined) {
               context.report({
                 node,
                 messageId: 'tooMuchParams',
                 data: {
                   call: node.property.name,
-                  num: 0,
+                  num: '0',
                 },
               });
             }
@@ -154,7 +156,7 @@ const ruleModule = {
               messageId: 'tooMuchParams',
               data: {
                 call: node.property.name,
-                num: 1,
+                num: '1',
               },
             });
           } else {
