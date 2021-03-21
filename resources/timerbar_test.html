@@ -11,12 +11,12 @@
   }
  </style>
  </head>
- 
+
  <body>
  <div style="display: inline-block; ">
  1. This starts from 2s and doesn't disappear.
  <div class="test" id=d1></div>
- 
+
  2/13. These 2 start from 2s and do disappear after 1/2s.
  <div class="test" id=d2></div>
  <div class="test" id=d13></div>
@@ -26,7 +26,7 @@
 
  4. This starts from 2s repeatedly with a 1s break in between.
  <div class="test" id=d4></div>
- 
+
  11/12. These 2 start from 2s, then restart from 2s half-way.
  <div class="test" id=d11></div>
  <div class="test" id=d12></div>
@@ -34,7 +34,7 @@
  5/6. These 2 start start from 2s and disappear after 0s.
  <div class="test" id=d5></div>
  <div class="test" id=d6></div>
- 
+
  7/8. These 2 start from 1/3 left with 2s remaining.
  <div class="test" id=d7></div>
  <div class="test" id=d8></div>
@@ -44,11 +44,11 @@
  10. This is already finished but does hide.
  <div class="test" id=d10></div>
  </div>
- 
+
  <div style="display: inline-block; margin-left: 2em; border-left: 1px solid grey; padding-left: 2em; ">
  b1. This starts from 2s and doesn't disappear.
  <div class="test" id=b1></div>
- 
+
  b2/b13. These 2 start from 2s and do disappear after 1/2s.
  <div class="test" id=b2></div>
  <div class="test" id=b13></div>
@@ -66,7 +66,7 @@
  b5/b6. These 2 start start from 2s and disappear after 0s.
  <div class="test" id=b5></div>
  <div class="test" id=b6></div>
- 
+
  b7/b8. These 2 start from 1/3 left with 2s remaining.
  <div class="test" id=b7></div>
  <div class="test" id=b8></div>
@@ -76,7 +76,7 @@
  b10. This is already finished but does hide.
  <div class="test" id=b10></div>
  </div>
- 
+
  <div style="display: inline-block; margin-left: 2em; border-left: 1px solid grey; padding-left: 2em; ">
  c1. Green foreground
  <div class="test" id=c1></div>
@@ -104,19 +104,19 @@
  <div class="test" id=c12></div>
  c13. Style fill / Toward right.
  <div class="test" id=c13></div>
- 
+
  </body>
- 
- 
+
+
  <script>
   var only = '';
- 
+
   var bar;
 
   if (!only || only == 1) {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.duration = 2;
     document.getElementById('d1').appendChild(bar);
   }
@@ -124,7 +124,7 @@
   if (!only || only == 2) {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.duration = 2;
     bar.hideafter = 0.5;
     document.getElementById('d2').appendChild(bar);
@@ -133,7 +133,7 @@
   if (!only || only == 13) {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.duration = 2;
     document.getElementById('d13').appendChild(bar);
     (function() {
@@ -147,7 +147,7 @@
   if (!only || only == 3) {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.duration = 2;
     bar.hideafter = 0;
     document.getElementById('d3').appendChild(bar);
@@ -161,11 +161,11 @@
       repeat();
     })();
   }
-  
+
   if (!only || only == 4) {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     document.getElementById('d4').appendChild(bar);
     (function(){
       var repeatingBar = bar;
@@ -176,11 +176,11 @@
       repeat();
     })();
   }
-  
+
   if (!only || only == 5) {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.hideafter = 0;
     bar.value = 0;
     bar.duration = 2;
@@ -190,7 +190,7 @@
   if (!only || only == 6) {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.hideafter = 0;
     document.getElementById('d6').appendChild(bar);
     bar.value = 0;
@@ -200,7 +200,7 @@
   if (!only || only == 7) {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.hideafter = 0;
     bar.duration = 6;
     bar.value = 2;
@@ -210,7 +210,7 @@
   if (!only || only == 8) {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.hideafter = 0;
     bar.duration = 6;
     document.getElementById('d8').appendChild(bar);
@@ -220,15 +220,15 @@
   if (!only || only == 9) {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'empty';
+    bar.styleFill = empty;
     bar.duration = 0;
     document.getElementById('d9').appendChild(bar);
   }
-  
+
   if (!only || only == 10) {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'empty';
+    bar.styleFill = empty;
     bar.hideafter = 0;
     bar.duration = 1;
     bar.value = 0;
@@ -238,7 +238,7 @@
   if (!only || only == 11) {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.hideafter = 0;
     document.getElementById('d11').appendChild(bar);
     bar.duration = 2;
@@ -251,7 +251,7 @@
   if (!only || only == 12) {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.hideafter = 0;
     document.getElementById('d12').appendChild(bar);
     bar.duration = 2;
@@ -264,7 +264,7 @@
   if (!only || only == 'b1') {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.duration = 2;
     document.getElementById('b1').appendChild(bar);
   }
@@ -272,7 +272,7 @@
   if (!only || only == 'b2') {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.duration = 2;
     bar.hideafter = 0.5;
     document.getElementById('b2').appendChild(bar);
@@ -281,7 +281,7 @@
   if (!only || only == 'b13') {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.duration = 2;
     document.getElementById('b13').appendChild(bar);
     (function() {
@@ -295,7 +295,7 @@
   if (!only || only == 'b3') {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.duration = 2;
     bar.hideafter = 0;
     document.getElementById('b3').appendChild(bar);
@@ -309,11 +309,11 @@
       repeat();
     })();
   }
-  
+
   if (!only || only == 'b4') {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     document.getElementById('b4').appendChild(bar);
     (function(){
       var repeatingBar = bar;
@@ -324,11 +324,11 @@
       repeat();
     })();
   }
-  
+
   if (!only || only == 'b5') {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.hideafter = 0;
     bar.elapsed = 2;
     bar.duration = 2;
@@ -338,7 +338,7 @@
   if (!only || only == 'b6') {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.hideafter = 0;
     document.getElementById('b6').appendChild(bar);
     bar.elapsed = 2;
@@ -348,7 +348,7 @@
   if (!only || only == 'b7') {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.hideafter = 0;
     bar.duration = 6;
     bar.elapsed = 4;
@@ -358,7 +358,7 @@
   if (!only || only == 'b8') {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.hideafter = 0;
     bar.duration = 6;
     document.getElementById('b8').appendChild(bar);
@@ -368,15 +368,15 @@
   if (!only || only == 'b9') {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'empty';
+    bar.styleFill = empty;
     bar.duration = 0;
     document.getElementById('b9').appendChild(bar);
   }
-  
+
   if (!only || only == 'b10') {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'empty';
+    bar.styleFill = empty;
     bar.hideafter = 0;
     bar.duration = 1;
     bar.elapsed = 1;
@@ -386,7 +386,7 @@
   if (!only || only == 'b11') {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.hideafter = 0;
     document.getElementById('b11').appendChild(bar);
     bar.duration = 2;
@@ -399,7 +399,7 @@
   if (!only || only == 'b12') {
     bar = document.createElement('timer-bar');
     bar.lefttext = "remain";
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.hideafter = 0;
     document.getElementById('b12').appendChild(bar);
     bar.duration = 2;
@@ -435,7 +435,7 @@
     bar.centertext = 'elapsed';
     bar.righttext = 'percent';
   }
-  
+
   if (!only || only == 'c4') {
     bar = document.createElement('timer-bar');
     bar.duration = 10000;
@@ -499,7 +499,7 @@
     bar.duration = 100;
     bar.value = 90;
     document.getElementById('c10').appendChild(bar);
-    bar.style = 'empty';
+    bar.styleFill = empty;
     bar.toward = 'left';
   }
 
@@ -508,7 +508,7 @@
     bar.duration = 100;
     bar.value = 90;
     document.getElementById('c11').appendChild(bar);
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.toward = 'left';
   }
 
@@ -517,7 +517,7 @@
     bar.duration = 100;
     bar.value = 90;
     document.getElementById('c12').appendChild(bar);
-    bar.style = 'empty';
+    bar.styleFill = empty;
     bar.toward = 'right';
   }
 
@@ -526,7 +526,7 @@
     bar.duration = 100;
     bar.value = 90;
     document.getElementById('c13').appendChild(bar);
-    bar.style = 'fill';
+    bar.styleFill = fill;
     bar.toward = 'right';
   }
   </script>

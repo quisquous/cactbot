@@ -78,11 +78,11 @@ export default class FisherUI {
       if ((min && min !== 'undefined') && (max && max !== 'undefined')) {
         row.opacity = 0.8;
         bar.duration = min / 1000;
-        bar.style = 'fill';
+        bar.styleFill = 'fill';
         // Step two: empty until the maximum time
         timeouts.push(setTimeout(() => {
           row.style.opacity = 1;
-          bar.style = 'empty';
+          bar.styleFill = 'empty';
           bar.value = 0;
           bar.duration = (max - min) / 1000;
           timeouts.push(setTimeout(() => {
