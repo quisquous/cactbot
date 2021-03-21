@@ -6,8 +6,11 @@ export interface Option {
   ParserLanguage: Lang;
   LangShortLocale: Lang;
   DisplayLanguage: Lang;
-  [key: string]: unknown;
-  // todo: complete this type
+  Language: Lang;
+  SystemLocale: string;
+  ShortLocale: string;
+  Debug: boolean;
+  Skin: string;
 }
 
 export interface Data {
