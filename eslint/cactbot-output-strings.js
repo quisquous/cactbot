@@ -61,7 +61,7 @@ const ruleModule = {
     const extractTemplate = function(node) {
       if (node.properties === undefined) return;
       const outputTemplateKey = {};
-      for (const outputString of node.properties.filter((s) => s.type !== 'SpreadElement' && s.value.type !== 'MemberExpression')) {
+      for (const outputString of node.properties.filter((s) => !t.isSpreadElement(s) && s.value.type !== 'MemberExpression')) {
         // each outputString
         const values = [];
 
@@ -165,7 +165,7 @@ const ruleModule = {
             const keysInParams = getAllKeys(args[0].properties);
             if (outputTemplate !== null && outputTemplate !== undefined) {
               for (const key of outputTemplate) {
-                if (args[0].type !== 'Identifier' && !keysInParams.includes(key)) {
+                if (!t.isIdentifier(args[0]) && !keysInParams.includes(key)) {
                   context.report({
                     node,
                     messageId: 'missingTemplateValue',
