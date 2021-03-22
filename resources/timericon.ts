@@ -170,20 +170,6 @@ export default class TimerIcon extends HTMLElement {
     if (this.textcolor !== null) this._textColor = this.textcolor;
   }
 
-  // // These would be used by document.registerElement, which is deprecated but
-  // // ACT uses an old CEF which has this instead of the newer APIs.
-  // createdCallback() {
-  //   const root = this.createShadowRoot();
-  //   this.init(root);
-  // }
-  // // Convert from the deprecated API names to the modern API names.
-  // attachedCallback() {
-  //   this.connectedCallback();
-  // }
-  // detachedCallback() {
-  //   this.disconnectedCallback();
-  // }
-
   init(root: ShadowRoot): void {
     root.innerHTML = `
       <style>
