@@ -227,10 +227,14 @@ export default {
       id: 'Delubrum Seeker Merciful Moon',
       // 4 second warning
       netRegex: NetRegexes.startsUsing({ source: 'Aetherial Orb', id: '5AAC', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Magiekugel', id: '5AAC', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Amas D\'Éther Élémentaire', id: '5AAC', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '魔力塊', id: '5AAC', capture: false }),
       alertText: (data, _, output) => output.lookAway(),
       outputStrings: {
         lookAway: {
           en: 'Look Away From Orb',
+          de: 'Schau weg vom Orb',
         },
       },
     },
@@ -238,11 +242,15 @@ export default {
       id: 'Delubrum Seeker Merciful Blooms',
       // Call this on the ability of Merciful Moon, it starts casting much earlier.
       netRegex: NetRegexes.ability({ source: 'Aetherial Orb', id: '5AAC', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Magiekugel', id: '5AAC', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Amas D\'Éther Élémentaire', id: '5AAC', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '魔力塊', id: '5AAC', capture: false }),
       suppressSeconds: 1,
       infoText: (data, _, output) => output.awayFromPurple(),
       outputStrings: {
         awayFromPurple: {
           en: 'Away From Purple',
+          de: 'Schau weg von Lila',
         },
       },
     },
@@ -654,15 +662,19 @@ export default {
       outputStrings: {
         plusTwo: {
           en: 'Go to +2 Heat Meteor',
+          de: 'Geh zum +2 Heiß Meteor',
         },
         plusOne: {
           en: 'Go to +1 Heat Meteor',
+          de: 'Geh zum +1 Heiß Meteor',
         },
         minusOne: {
           en: 'Go to -1 Cold Meteor',
+          de: 'Geh zum -1 Kalt Meteor',
         },
         minusTwo: {
           en: 'Go to -2 Cold Meteor',
+          de: 'Geh zum -2 Kalt Meteor',
         },
         unknownTemperature: {
           en: 'Stand In Opposite Meteor',
@@ -699,15 +711,19 @@ export default {
       outputStrings: {
         plusTwo: {
           en: 'Follow +2 Heat Arrow',
+          de: 'Folge dem +2 Heiß Pfeilen',
         },
         plusOne: {
           en: 'Follow +1 Heat Arrow',
+          de: 'Folge dem +1 Heiß Pfeilen',
         },
         minusOne: {
           en: 'Follow -1 Cold Arrow',
+          de: 'Folge dem -1 Kalt Pfeilen',
         },
         minusTwo: {
           en: 'Follow -2 Cold Arrow',
+          de: 'Folge dem -2 Kalt Pfeilen',
         },
         unknownTemperature: {
           en: 'Follow Opposite Arrow',
@@ -736,24 +752,31 @@ export default {
         output.responseOutputStrings = {
           left: {
             en: 'Left',
+            de: 'Links',
           },
           right: {
             en: 'Right',
+            de: 'Rechts',
           },
           plusTwo: {
             en: 'Be in ${side} Cleave (+2 Hot)',
+            de: 'Sei im ${side} Cleave (+2 Heiß)',
           },
           plusOne: {
             en: 'Be in ${side} Cleave (+1 Hot)',
+            de: 'Sei im ${side} Cleave (+1 Heiß)',
           },
           minusOne: {
             en: 'Be in ${side} Cleave (-1 Cold)',
+            de: 'Sei im ${side} Cleave (-1 Kalt)',
           },
           minusTwo: {
             en: 'Be in ${side} Cleave (-2 Cold)',
+            de: 'Sei im ${side} Cleave (-2 Kalt)',
           },
           avoid: {
             en: 'Go ${side} (avoid!)',
+            de: 'Go ${side} (avoid!)',
           },
         };
 
@@ -789,6 +812,9 @@ export default {
     {
       id: 'Delubrum Avowed Gleaming Arrow Collect',
       netRegex: NetRegexes.startsUsing({ source: 'Avowed Avatar', id: '5974' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Spaltteil Der Eingeschworenen', id: '5974' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Clone De La Trinité Féale', id: '5974' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アヴァウドの分体', id: '5974' }),
       run: (data, matches) => {
         data.unseenIds = data.unseenIds || [];
         data.unseenIds.push(parseInt(matches.sourceId, 16));
@@ -797,6 +823,9 @@ export default {
     {
       id: 'Delubrum Avowed Gleaming Arrow',
       netRegex: NetRegexes.startsUsing({ source: 'Avowed Avatar', id: '5974' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Spaltteil Der Eingeschworenen', id: '5974' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Clone De La Trinité Féale', id: '5974' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アヴァウドの分体', id: '5974' }),
       delaySeconds: 0.5,
       suppressSeconds: 10,
       promise: async (data, matches) => {
@@ -860,9 +889,11 @@ export default {
       outputStrings: {
         bowDark: {
           en: 'On Dark (E/W of center)',
+          de: 'Auf Dunkel (O/W von der Mitte)',
         },
         bowLight: {
           en: 'On Light (diagonal from center)',
+          de: 'Auf Licht (Diagonal von der Mitte)',
         },
       },
     },

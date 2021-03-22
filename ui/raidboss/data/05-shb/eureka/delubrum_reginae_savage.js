@@ -369,6 +369,9 @@ export default {
     {
       id: 'DelubrumSav Seeker Baleful Comet Direction',
       netRegex: NetRegexes.abilityFull({ source: 'Seeker Avatar', id: '5AD7' }),
+      netRegexDe: NetRegexes.abilityFull({ source: 'Spaltteil Der Sucher', id: '5AD7' }),
+      netRegexFr: NetRegexes.abilityFull({ source: 'Clone De La Trinité Soudée', id: '5AD7' }),
+      netRegexJa: NetRegexes.abilityFull({ source: 'シーカーの分体', id: '5AD7' }),
       condition: (data, matches) => {
         data.seekerCometIds = data.seekerCometIds || [];
         data.seekerCometIds.push(parseInt(matches.sourceId, 16));
@@ -455,18 +458,24 @@ export default {
         northwest: Outputs.northwest,
         clockwise: {
           en: 'Clockwise',
+          de: 'Im Uhrzeigersinn',
         },
         counterclockwise: {
           en: 'Counter-clock',
+          de: 'Gegen den Uhrzeigersinn',
         },
         text: {
           en: 'Go ${dir}, then ${rotate}',
+          de: 'Geh nach ${dir}, danach ${rotate}',
         },
       },
     },
     {
       id: 'DelubrumSav Seeker Baleful Comet Cleanup',
       netRegex: NetRegexes.ability({ source: 'Seeker Avatar', id: '5AD7', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Spaltteil Der Sucher', id: '5AD7', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Clone De La Trinité Soudée', id: '5AD7', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'シーカーの分体', id: '5AD7', capture: false }),
       delaySeconds: 10,
       suppressSeconds: 10,
       run: (data) => delete data.seekerCometIds,
@@ -629,9 +638,11 @@ export default {
         output.responseOutputStrings = {
           knockbackNoFlare: {
             en: 'Knockback (no flare)',
+            de: 'Rückstoß (keine Flare)',
           },
           knockbackWithFlare: {
             en: 'Flare + Knockback (get away)',
+            de: 'Flare + Rückstoß (geh weg)',
           },
         };
 
@@ -1014,6 +1025,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Drop thunder outside',
+          de: 'Lege Blitz draußen ab',
         },
       },
     },
