@@ -1,4 +1,4 @@
-class TimerBox extends HTMLElement {
+export default class TimerBox extends HTMLElement {
   private _start: number;
   private _duration: number;
   rootElement: HTMLDivElement;
@@ -190,7 +190,7 @@ class TimerBox extends HTMLElement {
     if (this.hideafter !== null && this.hideafter !== '') this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
   }
 
-  init(root: ShadowRoot) {
+  init(root: ShadowRoot): void {
     root.innerHTML = `
       <style>
         .bg {
@@ -225,13 +225,13 @@ class TimerBox extends HTMLElement {
     `;
   }
 
-  connectedCallback() {
+  connectedCallback(): void {
     this._connected = true;
     this.layout();
     this.draw();
   }
 
-  disconnectedCallback() {
+  disconnectedCallback(): void {
     this._duration = 0;
     this._connected = false;
   }
@@ -274,7 +274,7 @@ class TimerBox extends HTMLElement {
     this.draw();
   }
 
-  layout() {
+  layout(): void {
     // To start full and animate to empty, we animate backwards and flip
     // the direction.
     let towardTop = this._towardTop;
@@ -320,7 +320,7 @@ class TimerBox extends HTMLElement {
       largeForegroundStyle.transformOrigin = '0% 100%';
   }
 
-  draw() {
+  draw(): void {
     if (!this._connected) return;
 
     const elapsedSec = (new Date().getTime() - this._start) / 1000;
@@ -360,7 +360,7 @@ class TimerBox extends HTMLElement {
     this.timerElement.innerHTML = Math.ceil(remainingSec / this._valueScale).toString();
   }
 
-  reset() {
+  reset(): void {
     if (!this._connected) return;
 
     this.show();
@@ -373,7 +373,7 @@ class TimerBox extends HTMLElement {
     this.advance();
   }
 
-  advance() {
+  advance(): void {
     const elapsedSec = (new Date().getTime() - this._start) / 1000;
     if (elapsedSec >= this._duration) {
       // Sets the attribute to 0 so users can see the counter is done, and
