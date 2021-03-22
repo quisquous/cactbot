@@ -150,7 +150,7 @@ export const makeAuraTimerIcon = (
     barHeight: number,
     textHeight: number,
     textColor: string,
-    borderSize: string,
+    borderSize: number,
     borderColor: string,
     barColor: string,
     auraIcon: string,
@@ -161,7 +161,7 @@ export const makeAuraTimerIcon = (
   const icon = document.createElement('timer-icon') as TimerIcon;
   icon.width = iconWidth.toString();
   icon.height = iconHeight.toString();
-  icon.bordersize = borderSize;
+  icon.bordersize = borderSize.toString();
   icon.textcolor = textColor;
   div.appendChild(icon);
 
