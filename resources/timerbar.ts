@@ -185,23 +185,6 @@ export default class TimerBar extends HTMLElement {
     this.rightTextElement = this.shadowRoot?.getElementById('righttext') as HTMLDivElement;
   }
 
-  // // These would be used by document.registerElement, which is deprecated but
-  // // ACT uses an old CEF which has this instead of the newer APIs.
-  // createdCallback() {
-  //   const root = this.createShadowRoot();
-  //   this.init(root);
-  // }
-  // createShadowRoot() {
-  //   throw new Error("Method not implemented.");
-  // }
-  // // Convert from the deprecated API names to the modern API names.
-  // attachedCallback() {
-  //   this.connectedCallback();
-  // }
-  // detachedCallback() {
-  //   this.disconnectedCallback();
-  // }
-
   init(root: ShadowRoot): void {
     root.innerHTML = `
       <style>
