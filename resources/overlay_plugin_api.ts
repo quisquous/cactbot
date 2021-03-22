@@ -270,6 +270,14 @@ export const init = (): void => {
 
       waitForApi();
     }
+
+    // Here the OverlayPlugin API is registered to the window object,
+    // but this is mainly for backwards compatibility.For cactbot's built-in files,
+    // it is recommended to use the various functions exported in resources/overlay_plugin_api.ts.
+    window.addOverlayListener = addOverlayListener;
+    window.removeOverlayListener = removeOverlayListener;
+    window.callOverlayHandler = callOverlayHandler;
+    window.dispatchOverlayEvent = dispatchOverlayEvent;
   }
 
   inited = true;
