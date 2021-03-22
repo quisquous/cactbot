@@ -190,20 +190,6 @@ class TimerBox extends HTMLElement {
     if (this.hideafter !== null && this.hideafter !== '') this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
   }
 
-  // // These would be used by document.registerElement, which is deprecated but
-  // // ACT uses an old CEF which has this instead of the newer APIs.
-  // createdCallback() {
-  //   const root = this.createShadowRoot();
-  //   this.init(root);
-  // }
-  // // Convert from the deprecated API names to the modern API names.
-  // attachedCallback() {
-  //   this.connectedCallback();
-  // }
-  // detachedCallback() {
-  //   this.disconnectedCallback();
-  // }
-
   init(root: ShadowRoot) {
     root.innerHTML = `
       <style>
