@@ -36,69 +36,69 @@ export default class TimerBox extends HTMLElement {
   // The full duration of the current countdown. When this is changed,
   // the countdown restarts at the new value. If set to 0 then countdowns
   // are stopped.
-  set duration(d: string | null) {
-    this.setAttribute('duration', d ?? '');
+  set duration(d: string) {
+    this.setAttribute('duration', d);
   }
-  get duration(): string | null {
-    return this.getAttribute('duration');
+  get duration(): string {
+    return this.getAttribute('duration') ?? '';
   }
 
   // Below this a large box is shown, above it a small box is shown.
-  set threshold(t: string | null) {
-    this.setAttribute('threshold', t ?? '');
+  set threshold(t: string) {
+    this.setAttribute('threshold', t);
   }
-  get threshold(): string | null {
-    return this.getAttribute('threshold');
+  get threshold(): string {
+    return this.getAttribute('threshold') ?? '';
   }
 
   // All visual dimensions are scaled by this.
-  set scale(s: string | null) {
-    this.setAttribute('scale', s ?? '');
+  set scale(s: string) {
+    this.setAttribute('scale', s);
   }
-  get scale(): string | null {
-    return this.getAttribute('scale');
+  get scale(): string {
+    return this.getAttribute('scale') ?? '';
   }
 
   // The displayed value is scaled by this.
-  set valuescale(s: string | null) {
-    this.setAttribute('valuescale', s ?? '');
+  set valuescale(s: string) {
+    this.setAttribute('valuescale', s);
   }
-  get valuescale(): string | null {
-    return this.getAttribute('valuescale');
+  get valuescale(): string {
+    return this.getAttribute('valuescale') ?? '';
   }
 
   // Background color.
-  set bg(c: string | null) {
-    this.setAttribute('bg', c ?? '');
+  set bg(c: string) {
+    this.setAttribute('bg', c);
   }
-  get bg(): string | null {
-    return this.getAttribute('bg');
+  get bg(): string {
+    return this.getAttribute('bg') ?? '';
   }
 
   // Foreground color.
-  set fg(c: string | null) {
-    this.setAttribute('fg', c ?? '');
+  set fg(c: string) {
+    this.setAttribute('fg', c);
   }
-  get fg(): string | null {
-    return this.getAttribute('fg');
+  get fg(): string {
+    return this.getAttribute('fg') ?? '';
   }
 
   // If "top" then animates bottom-to-top. If "bottom" then animates
   // top-to-bottom.
-  set toward(t: 'top' | 'bottom' | null) {
-    this.setAttribute('toward', t ?? '');
+  set toward(t: 'top' | 'bottom') {
+    this.setAttribute('toward', t);
   }
-  get toward(): 'top' | 'bottom' | null {
-    return this.getAttribute('toward') as 'top' | 'bottom' | null;
+  get toward(): 'top' | 'bottom' {
+    return this.getAttribute('toward') as 'top' | 'bottom';
   }
 
   // If "fill" then the animation goes empty-to-full, if "empty" then the
   // animation starts full and goes to empty.
-  set styleFill(s: 'fill' | 'empty' | null) {
-    this.setAttribute('style', s ?? '');
+  set styleFill(s: 'fill' | 'empty') {
+    this.setAttribute('style', s);
   }
-  get styleFill(): 'fill' | 'empty' | null {
-    return this.getAttribute('style') as 'fill' | 'empty' | null;
+  get styleFill(): 'fill' | 'empty' {
+    return this.getAttribute('style') as 'fill' | 'empty';
   }
 
   // When the timer reaches 0, it is hidden after this many seconds. If ""
@@ -132,11 +132,11 @@ export default class TimerBox extends HTMLElement {
   }
 
   // Whether to round up the value to the nearest integer before thresholding.
-  set roundupthreshold(r: string | null) {
-    this.setAttribute('roundupthreshold', r ?? '');
+  set roundupthreshold(r: string) {
+    this.setAttribute('roundupthreshold', r);
   }
-  get roundupthreshold(): string | null {
-    return this.getAttribute('roundupthreshold');
+  get roundupthreshold(): string {
+    return this.getAttribute('roundupthreshold') ?? '';
   }
 
   // This would be used with window.customElements.
