@@ -9,6 +9,9 @@ import ZoneId from '../../../../../resources/zone_id';
 const seekerCenterX = -0.01531982;
 const seekerCenterY = 277.9735;
 
+const avowedCenterX = -272;
+const avowedCenterY = -82;
+
 // TODO: promote something like this to Conditions?
 const tankBusterOnParty = (data, matches) => {
   if (data.target === data.me)
@@ -221,22 +224,33 @@ export default {
       response: Responses.earthshaker('alert'),
     },
     {
-      id: 'Delubrum Seeker Seasons of Mercy',
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AAA', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AAA', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AAA', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AAA', capture: false }),
-      // 5 second cast time + 2 seconds before flower appears - 1 second for reading time?
-      delaySeconds: 6,
-      alertText: (data, _, output) => output.text(),
+      id: 'Delubrum Seeker Merciful Moon',
+      // 4 second warning
+      netRegex: NetRegexes.startsUsing({ source: 'Aetherial Orb', id: '5AAC', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Magiekugel', id: '5AAC', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Amas D\'Éther Élémentaire', id: '5AAC', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '魔力塊', id: '5AAC', capture: false }),
+      alertText: (data, _, output) => output.lookAway(),
       outputStrings: {
-        text: {
-          en: 'Far From Purple / Look Away From Orb',
-          de: 'Weit weg von Lila / Vom Orb wegschauen',
-          fr: 'Éloignez-vous du violet / Ne regardez pas l\'orbe',
-          ja: '床の花から離れ、玉を見ない',
-          cn: '远离紫色花纹，背对球',
-          ko: '보라에서 떨어지기 / 구슬 바라보지 말기',
+        lookAway: {
+          en: 'Look Away From Orb',
+          de: 'Schau weg vom Orb',
+        },
+      },
+    },
+    {
+      id: 'Delubrum Seeker Merciful Blooms',
+      // Call this on the ability of Merciful Moon, it starts casting much earlier.
+      netRegex: NetRegexes.ability({ source: 'Aetherial Orb', id: '5AAC', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Magiekugel', id: '5AAC', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Amas D\'Éther Élémentaire', id: '5AAC', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '魔力塊', id: '5AAC', capture: false }),
+      suppressSeconds: 1,
+      infoText: (data, _, output) => output.awayFromPurple(),
+      outputStrings: {
+        awayFromPurple: {
+          en: 'Away From Purple',
+          de: 'Schau weg von Lila',
         },
       },
     },
@@ -605,9 +619,24 @@ export default {
       response: Responses.aoe(),
     },
     {
+      id: 'Delubrum Avowed Hot And Cold',
+      // 89D: Running Hot: +1
+      // 8A4: Running Hot: +2
+      // 8DC: Running Cold: -1
+      // 8E2: Running Cold: -2
+      netRegex: NetRegexes.gainsEffect({ effectId: ['89D', '8A4', '8DC', '8E2'] }),
+      condition: Conditions.targetIsYou(),
+      run: (data, matches) => {
+        data.avowedTemperature = {
+          '89D': 1,
+          '8A4': 2,
+          '8DC': -1,
+          '8E2': -2,
+        }[matches.effectId.toUpperCase()];
+      },
+    },
+    {
       id: 'Delubrum Avowed Freedom Of Bozja',
-      // Hot And Cold headmarkers do not show up in log lines.
-      // Additionally, the Running Cold -n, Running Hot +n debuffs do not have gains effect lines.
       // Arguably, the Elemental Impact (meteor falling) has different ids depending on orb type,
       // e.g. 5960, 5962, 4F55, 4556, 4F99, 4F9A.
       // So we could give directions here, but probably that's just more confusing.
@@ -616,9 +645,38 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '597C', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '597C', capture: false }),
       delaySeconds: 10,
-      alertText: (data, _, output) => output.text(),
+      alertText: (data, _, output) => {
+        switch (data.avowedTemperature) {
+        case 2:
+          return output.minusTwo();
+        case 1:
+          return output.minusOne();
+        case -1:
+          return output.plusOne();
+        case -2:
+          return output.plusTwo();
+        default:
+          return output.unknownTemperature();
+        }
+      },
       outputStrings: {
-        text: {
+        plusTwo: {
+          en: 'Go to +2 Heat Meteor',
+          de: 'Geh zum +2 Heiß Meteor',
+        },
+        plusOne: {
+          en: 'Go to +1 Heat Meteor',
+          de: 'Geh zum +1 Heiß Meteor',
+        },
+        minusOne: {
+          en: 'Go to -1 Cold Meteor',
+          de: 'Geh zum -1 Kalt Meteor',
+        },
+        minusTwo: {
+          en: 'Go to -2 Cold Meteor',
+          de: 'Geh zum -2 Kalt Meteor',
+        },
+        unknownTemperature: {
           en: 'Stand In Opposite Meteor',
           de: 'Steh im entgegengesetztem Meteor',
           fr: 'Placez-vous au météore de l\'élément opposé',
@@ -636,10 +694,39 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '597F', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '597F', capture: false }),
       delaySeconds: 3,
-      alertText: (data, _, output) => output.text(),
+      alertText: (data, _, output) => {
+        switch (data.avowedTemperature) {
+        case 2:
+          return output.minusTwo();
+        case 1:
+          return output.minusOne();
+        case -1:
+          return output.plusOne();
+        case -2:
+          return output.plusTwo();
+        default:
+          return output.unknownTemperature();
+        }
+      },
       outputStrings: {
-        text: {
-          en: 'Go To Opposite Arrow',
+        plusTwo: {
+          en: 'Follow +2 Heat Arrow',
+          de: 'Folge dem +2 Heiß Pfeilen',
+        },
+        plusOne: {
+          en: 'Follow +1 Heat Arrow',
+          de: 'Folge dem +1 Heiß Pfeilen',
+        },
+        minusOne: {
+          en: 'Follow -1 Cold Arrow',
+          de: 'Folge dem -1 Kalt Pfeilen',
+        },
+        minusTwo: {
+          en: 'Follow -2 Cold Arrow',
+          de: 'Folge dem -2 Kalt Pfeilen',
+        },
+        unknownTemperature: {
+          en: 'Follow Opposite Arrow',
           de: 'Gehe in die entgegengesetzten Pfeile',
           fr: 'Allez à la flèche de l\'élément opposé',
           ja: '体温と逆の矢へ',
@@ -647,8 +734,6 @@ export default {
       },
     },
     {
-      // TODO: There is no gains effect line for gaining an effect.
-      // We could use "suffering" and then have personal callouts here.
       // 5B65 = right cleave, heat+2
       // 5B66 = right cleave, cold+2
       // 5B67 = left cleave, heat+2
@@ -658,38 +743,157 @@ export default {
       // 596F = left cleave, heat+1
       // 5970 = left cleave, cold+1
       id: 'Delubrum Avowed Hot And Cold Cleaves',
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5BAF', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5BAF', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5BAF', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5BAF', capture: false }),
-      delaySeconds: 3,
-      alertText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Be In Opposite Cleave',
-          de: 'Gehe in den entgegengesetzte Cleave',
-          fr: 'Soyez à l\'opposé du cleave',
-          ja: '体温と逆の氷炎刃を受ける',
-          cn: '吃相反温度的顺劈',
-        },
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: ['5B6[5-8]', '596[DEF]', '5970'] }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: ['5B6[5-8]', '596[DEF]', '5970'] }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: ['5B6[5-8]', '596[DEF]', '5970'] }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: ['5B6[5-8]', '596[DEF]', '5970'] }),
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          left: {
+            en: 'Left',
+            de: 'Links',
+          },
+          right: {
+            en: 'Right',
+            de: 'Rechts',
+          },
+          plusTwo: {
+            en: 'Be in ${side} Cleave (+2 Hot)',
+            de: 'Sei im ${side} Cleave (+2 Heiß)',
+          },
+          plusOne: {
+            en: 'Be in ${side} Cleave (+1 Hot)',
+            de: 'Sei im ${side} Cleave (+1 Heiß)',
+          },
+          minusOne: {
+            en: 'Be in ${side} Cleave (-1 Cold)',
+            de: 'Sei im ${side} Cleave (-1 Kalt)',
+          },
+          minusTwo: {
+            en: 'Be in ${side} Cleave (-2 Cold)',
+            de: 'Sei im ${side} Cleave (-2 Kalt)',
+          },
+          avoid: {
+            en: 'Go ${side} (avoid!)',
+            de: 'Go ${side} (avoid!)',
+          },
+        };
+
+        const isLeft = ['5B67', '5B68', '596F', '5970'].includes(matches.id);
+        const side = isLeft ? output.left() : output.right();
+        const safeSide = isLeft ? output.right() : output.left();
+        const avoidInfoText = { infoText: output.avoid({ side: safeSide }) };
+
+        switch (matches.id) {
+        case '5B66':
+        case '5B68':
+          if (data.avowedTemperature === 2)
+            return { alertText: output.minusTwo({ side: side }) };
+          return avoidInfoText;
+        case '596E':
+        case '5970':
+          if (data.avowedTemperature === 1)
+            return { alertText: output.minusOne({ side: side }) };
+          return avoidInfoText;
+        case '596D':
+        case '596F':
+          if (data.avowedTemperature === -1)
+            return { alertText: output.plusOne({ side: side }) };
+          return avoidInfoText;
+        case '5B65':
+        case '5B67':
+          if (data.avowedTemperature === -2)
+            return { alertText: output.plusTwo({ side: side }) };
+          return avoidInfoText;
+        }
       },
     },
     {
-      id: 'Delubrum Avowed Unseen Eye',
-      // Unseen Eye always happens before Gleaming Arrow starts casting.
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5980', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5980', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5980', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5980', capture: false }),
-      delaySeconds: 6,
-      infoText: (data, _, output) => output.text(),
+      id: 'Delubrum Avowed Gleaming Arrow Collect',
+      netRegex: NetRegexes.startsUsing({ source: 'Avowed Avatar', id: '5974' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Spaltteil Der Eingeschworenen', id: '5974' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Clone De La Trinité Féale', id: '5974' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アヴァウドの分体', id: '5974' }),
+      run: (data, matches) => {
+        data.unseenIds = data.unseenIds || [];
+        data.unseenIds.push(parseInt(matches.sourceId, 16));
+      },
+    },
+    {
+      id: 'Delubrum Avowed Gleaming Arrow',
+      netRegex: NetRegexes.startsUsing({ source: 'Avowed Avatar', id: '5974' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Spaltteil Der Eingeschworenen', id: '5974' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Clone De La Trinité Féale', id: '5974' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アヴァウドの分体', id: '5974' }),
+      delaySeconds: 0.5,
+      suppressSeconds: 10,
+      promise: async (data, matches) => {
+        const unseenIds = data.unseenIds;
+        console.error(`Gleaming Arrow: ids: ${JSON.stringify(unseenIds)}`);
+        const unseenData = await window.callOverlayHandler({
+          call: 'getCombatants',
+          ids: unseenIds,
+        });
+
+        if (unseenData === null) {
+          console.error(`Gleaming Arrow: null data`);
+          return;
+        }
+        if (!unseenData.combatants) {
+          console.error(`Gleaming Arrow: null combatants`);
+          return;
+        }
+        if (unseenData.combatants.length !== unseenIds.length) {
+          console.error(`Gleaming Arrow: expected ${unseenIds.length}, got ${unseenData.combatants.length}`);
+          return;
+        }
+
+        data.unseenBadRows = [];
+        data.unseenBadCols = [];
+
+        for (const avatar of unseenData.combatants) {
+          const x = avatar.PosX - avowedCenterX;
+          const y = avatar.PosY - avowedCenterY;
+
+          // y=-107 = north side, x = -252, -262, -272, -282, -292
+          // x=-247 = left side, y = -62, -72, -82, -92, -102
+          // Thus, the possible deltas are -20, -10, 0, +10, +20.
+          // The other coordinate is +/-25 from center.
+          const maxDist = 22;
+
+          if (Math.abs(x) < maxDist) {
+            const col = parseInt(Math.round((x + 20) / 10));
+            data.unseenBadCols.push(col);
+          }
+          if (Math.abs(y) < maxDist) {
+            const row = parseInt(Math.round((y + 20) / 10));
+            data.unseenBadRows.push(row);
+          }
+        }
+
+        data.unseenBadRows.sort();
+        data.unseenBadCols.sort();
+      },
+      alertText: (data, _, output) => {
+        delete data.unseenIds;
+
+        const rows = data.unseenBadRows;
+        const cols = data.unseenBadCols;
+
+        // consider asserting that badCols are 0, 2, 4 here.
+        if (rows.includes(2))
+          return output.bowLight();
+        return output.bowDark();
+      },
       outputStrings: {
-        text: {
-          en: 'Avoid Outside Add Lines',
-          de: 'Weiche den äußeren Add-Laser aus',
-          fr: 'Évitez les lignes extérieures',
-          ja: '雑魚の突進を避ける',
-          cn: '躲避小怪冲锋',
+        bowDark: {
+          en: 'On Dark (E/W of center)',
+          de: 'Auf Dunkel (O/W von der Mitte)',
+        },
+        bowLight: {
+          en: 'On Light (diagonal from center)',
+          de: 'Auf Licht (Diagonal von der Mitte)',
         },
       },
     },

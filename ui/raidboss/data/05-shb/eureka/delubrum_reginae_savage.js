@@ -7,6 +7,23 @@ import ZoneId from '../../../../../resources/zone_id';
 // TODO: warnings for mines after bosses?
 
 // TODO: headmarkers of course have a random offset here eyeroll
+const headmarker = {
+  mercifulArc: '00F3',
+  burningChains: '00EE',
+  earthshaker: '00ED',
+  spitFlame1: '004F',
+  spitFlame2: '0050',
+  spitFlame3: '0051',
+  spitFlame4: '0052',
+  flare: '0057',
+  reversal: '00FF', // also tether 0087
+  spiteSmite: '0017',
+  wrath: '0100',
+  foeSplitter: '00C6',
+  thunder: '00A0',
+  edictSuccess: '0088',
+  edictFailure: '0089',
+};
 
 const seekerCenterX = -0.01531982;
 const seekerCenterY = 277.9735;
@@ -18,6 +35,34 @@ const tankBusterOnParty = (data, matches) => {
   if (data.role !== 'healer')
     return false;
   return data.party.inParty(data.target);
+};
+
+const numberOutputStrings = [0, 1, 2, 3, 4].map((n) => {
+  const str = n.toString();
+  return {
+    en: str,
+    de: str,
+    fr: str,
+    ja: str,
+    cn: str,
+    ko: str,
+  };
+});
+
+// Due to changes introduced in patch 5.2, overhead markers now have a random offset
+// added to their ID. This offset currently appears to be set per instance, so
+// we can determine what it is from the first overhead marker we see.
+const getHeadmarkerId = (data, matches) => {
+  if (data.decOffset === undefined) {
+    // If we don't know, return garbage to avoid accidentally running other triggers.
+    if (!data.firstUnknownHeadmarker)
+      return '0000';
+
+    data.decOffset = parseInt(matches.id, 16) - parseInt(data.firstUnknownHeadmarker, 16);
+  }
+  // The leading zeroes are stripped when converting back to string, so we re-add them here.
+  const hexId = (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase();
+  return `000${hexId}`.slice(-4);
 };
 
 export default {
@@ -33,6 +78,7 @@ export default {
         text: {
           // Comets have impact damage when dropping, so warn to avoid this.
           en: 'Get in for comets',
+          de: 'Geh rein für Kometen',
         },
       },
     },
@@ -50,6 +96,7 @@ export default {
       outputStrings: {
         aoeNum: {
           en: 'Big AOE + Bleed (#${num})',
+          de: 'Große AoE + Blutung (#${num})',
         },
       },
     },
@@ -114,6 +161,16 @@ export default {
   ],
   triggers: [
     {
+      id: 'DelubrumSav Seeker Phase',
+      // Sets the phase when seeing the Verdant Tempest cast.
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AD3', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AD3', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AD3', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AD3', capture: false }),
+      // Note: this headmarker *could* be skipped, so we will change this later.
+      run: (data) => data.firstUnknownHeadmarker = headmarker.mercifulArc,
+    },
+    {
       id: 'DelubrumSav Seeker Verdant Tempest',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AD3', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AD3', capture: false }),
@@ -130,6 +187,9 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5A98', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5A98', capture: false }),
       response: Responses.goFrontBack('info'),
+      // Merciful arc can be skipped, so if we get here, the next headmarker is burning chains.
+      // If we have seen merciful arc, this is a noop.
+      run: (data) => data.firstUnknownHeadmarker = headmarker.burningChains,
     },
     {
       id: 'DelubrumSav Seeker Act Of Mercy',
@@ -307,6 +367,152 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Seeker Baleful Comet Direction',
+      netRegex: NetRegexes.abilityFull({ source: 'Seeker Avatar', id: '5AD7' }),
+      netRegexDe: NetRegexes.abilityFull({ source: 'Spaltteil Der Sucher', id: '5AD7' }),
+      netRegexFr: NetRegexes.abilityFull({ source: 'Clone De La Trinité Soudée', id: '5AD7' }),
+      netRegexJa: NetRegexes.abilityFull({ source: 'シーカーの分体', id: '5AD7' }),
+      condition: (data, matches) => {
+        data.seekerCometIds = data.seekerCometIds || [];
+        data.seekerCometIds.push(parseInt(matches.sourceId, 16));
+        return data.seekerCometIds.length === 2;
+      },
+      delaySeconds: 0.5,
+      // In case this hits multiple people.
+      // (Note: Suppressed status is checked before condition, but the field evaluated after.)
+      suppressSeconds: 0.5,
+      promise: async (data, matches) => {
+        // The avatars get moved right before the comets, and the position data
+        // is stale in the combat log.  :C
+        const cometData = await window.callOverlayHandler({
+          call: 'getCombatants',
+          ids: data.seekerCometIds.slice(0, 2),
+        });
+
+        if (cometData === null) {
+          console.error('Baleful Comet: null cometData');
+          return;
+        }
+        if (!cometData.combatants) {
+          cometData.error('Baleful Comet: null combatants');
+          return;
+        }
+        if (!cometData.combatants.length) {
+          console.error('Baleful Comet: empty combatants');
+          return;
+        }
+        if (cometData.combatants.length !== 2) {
+          console.error(`Baleful Comet: weird length: ${cometData.combatants.length}`);
+          return;
+        }
+
+        data.seekerCometData = cometData.combatants;
+      },
+      infoText: (data, matches, output) => {
+        // The returned data does not come back in the same order.
+        // Sort by the original order.
+        data.seekerCometData.sort((a, b) => {
+          return data.seekerCometIds.indexOf(a.ID) - data.seekerCometIds.indexOf(b.ID);
+        });
+
+        const [firstDir, secondDir] = data.seekerCometData.map((comet) => {
+          const x = comet.PosX - seekerCenterX;
+          const y = comet.PosY - seekerCenterY;
+          const dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+          return dir;
+        });
+
+        let rotateStr = output.unknown();
+        let safeDir;
+        if (Math.abs(secondDir - firstDir) === 1) {
+          rotateStr = secondDir > firstDir ? output.clockwise() : output.counterclockwise();
+          safeDir = (secondDir > firstDir ? firstDir - 1 + 8 : firstDir + 1) % 8;
+        } else {
+          // edge case where one dir is 0 and the other is 7.
+          rotateStr = firstDir === 7 ? output.clockwise() : output.counterclockwise();
+          safeDir = firstDir === 7 ? safeDir = 6 : safeDir = 1;
+        }
+
+        const initialDir = [
+          'north',
+          'northeast',
+          'east',
+          'southeast',
+          'south',
+          'southwest',
+          'west',
+          'northwest',
+        ][safeDir];
+
+        return output.text({ dir: output[initialDir](), rotate: rotateStr });
+      },
+      outputStrings: {
+        unknown: Outputs.unknownTarget,
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+        clockwise: {
+          en: 'Clockwise',
+          de: 'Im Uhrzeigersinn',
+        },
+        counterclockwise: {
+          en: 'Counter-clock',
+          de: 'Gegen den Uhrzeigersinn',
+        },
+        text: {
+          en: 'Go ${dir}, then ${rotate}',
+          de: 'Geh nach ${dir}, danach ${rotate}',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Seeker Baleful Comet Cleanup',
+      netRegex: NetRegexes.ability({ source: 'Seeker Avatar', id: '5AD7', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Spaltteil Der Sucher', id: '5AD7', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Clone De La Trinité Soudée', id: '5AD7', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'シーカーの分体', id: '5AD7', capture: false }),
+      delaySeconds: 10,
+      suppressSeconds: 10,
+      run: (data) => delete data.seekerCometIds,
+    },
+    {
+      id: 'DelubrumSav Seeker Burning Chains',
+      netRegex: NetRegexes.headMarker(),
+      condition: (data, matches) => {
+        if (data.me !== matches.target)
+          return false;
+        return getHeadmarkerId(data, matches) === headmarker.burningChains;
+      },
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Chain on YOU',
+          de: 'Kette auf DIR',
+          fr: 'Chaîne sur VOUS',
+          ja: '自分に鎖',
+          cn: '锁链点名',
+          ko: '사슬 대상자',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Seeker Burning Chains Move',
+      netRegex: NetRegexes.gainsEffect({ effectId: '301' }),
+      condition: Conditions.targetIsYou(),
+      response: Responses.breakChains(),
+    },
+    {
+      id: 'DelubrumSav Seeker Merciful Arc',
+      netRegex: NetRegexes.headMarker(),
+      condition: (data, matches) => getHeadmarkerId(data, matches) === headmarker.mercifulArc,
+      response: Responses.tankCleave(),
+    },
+    {
       id: 'DelubrumSav Dahu Shockwave',
       netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: ['5770', '576F'] }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: ['5770', '576F'] }),
@@ -350,10 +556,14 @@ export default {
           return output.oneOrTwoCharges();
         return output.followSecondCharge();
       },
-      run: (data) => data.seenHotCharge = true,
+      run: (data) => {
+        data.seenHotCharge = true;
+        data.firstUnknownHeadmarker = headmarker.spitFlame1;
+      },
       outputStrings: {
         oneOrTwoCharges: {
           en: 'Follow One or Two Charges',
+          de: 'Folge dem 1. oder 2. Ansturm',
         },
         followSecondCharge: {
           en: 'Follow Second Charge',
@@ -366,6 +576,33 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Dahu Spit Flame',
+      netRegex: NetRegexes.headMarker(),
+      condition: (data, matches) => {
+        if (data.me !== matches.target)
+          return false;
+        const id = getHeadmarkerId(data, matches);
+        return id >= headmarker.spitFlame1 && id <= headmarker.spitFlame4;
+      },
+      durationSeconds: 7,
+      alarmText: (data, matches, output) => {
+        const id = getHeadmarkerId(data, matches);
+        const num = headmarker.spitFlame4 - id + 1;
+        return {
+          1: output.one(),
+          2: output.two(),
+          3: output.three(),
+          4: output.four(),
+        }[num];
+      },
+      outputStrings: {
+        one: numberOutputStrings[1],
+        two: numberOutputStrings[2],
+        three: numberOutputStrings[3],
+        four: numberOutputStrings[4],
+      },
+    },
+    {
       id: 'DelubrumSav Dahu Feral Howl',
       netRegex: NetRegexes.startsUsing({ source: 'Dahu', id: '5767', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: '5767', capture: false }),
@@ -375,8 +612,20 @@ export default {
       outputStrings: {
         knockback: {
           en: 'Knockback to safe spot',
+          de: 'Rückstoß in den sicheren Bereich',
         },
       },
+    },
+    {
+      id: 'DelubrumSav Dahu Flare',
+      netRegex: NetRegexes.headMarker(),
+      condition: (data, matches) => {
+        if (data.me !== matches.target)
+          return false;
+        const id = getHeadmarkerId(data, matches);
+        return id === headmarker.flare;
+      },
+      run: (data) => data.hystericFlare = true,
     },
     {
       id: 'DelubrumSav Dahu Hysteric Assault',
@@ -384,13 +633,24 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: '5778', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Dahu', id: '5778', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダウー', id: '5778', capture: false }),
-      alertText: (data, _, output) => output.knockback(),
-      outputStrings: {
-        knockback: {
-          // TODO: find headmarkers and call flares separately.
-          en: 'Knockback (flares away)',
-        },
+      response: (data, _, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          knockbackNoFlare: {
+            en: 'Knockback (no flare)',
+            de: 'Rückstoß (keine Flare)',
+          },
+          knockbackWithFlare: {
+            en: 'Flare + Knockback (get away)',
+            de: 'Flare + Rückstoß (geh weg)',
+          },
+        };
+
+        if (data.hystericFlare)
+          return { alarmText: output.knockbackWithFlare() };
+        return { alertText: output.knockbackNoFlare() };
       },
+      run: (data) => delete data.hystericFlare,
     },
     {
       id: 'DelubrumSav Guard Blood And Bone Warrior and Knight',
@@ -487,6 +747,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Remove yellow; apply purple',
+          de: 'Entferne Gelb; nimm Lila',
         },
       },
     },
@@ -501,6 +762,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Remove purple; apply yellow',
+          de: 'Entferne Lila; nimm Gelb',
         },
       },
     },
@@ -514,6 +776,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Dispel Warrior Boost',
+          de: 'Reinige Kriegerin Buff',
         },
       },
     },
@@ -527,6 +790,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Dispel Gun Turrets',
+          de: 'Reinige Schützetürme',
         },
       },
     },
@@ -598,9 +862,11 @@ export default {
       outputStrings: {
         firstWeave: {
           en: 'Go North (donut bottom/circle top)',
+          de: 'Geh nach Norden (Donut unten/Kreise oben)',
         },
         secondWeave: {
           en: 'Stay South (square bottom/circle top)',
+          de: 'Geh nach Süden (Viereck unten/Kreise oben)',
         },
       },
     },
@@ -616,9 +882,11 @@ export default {
         output.responseOutputStrings = {
           goSouth: {
             en: 'Go South; Knockback to Glowing Donut',
+            de: 'Geh nach Süden; Rückstoß zum leuchtenden Donut',
           },
           goNorth: {
             en: 'Go North; Knockback from Glowing Circle',
+            de: 'Geh nach Norden; Rückstoß zum leuchtenden Kreis',
           },
         };
 
@@ -724,6 +992,8 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Anführer-Stygimoloch', id: '57D7' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Seigneur Stygimoloch', id: '57D7' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'スティギモロク・ロード', id: '57D7' }),
+      // THANKFULLY this starts using comes out immediately before the headmarker line.
+      preRun: (data) => data.firstUnknownHeadmarker = headmarker.foeSplitter,
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -741,6 +1011,22 @@ export default {
         if (tankBusterOnParty(data, matches))
           return { alertText: output.cleaveOn({ player: data.ShortName(matches.target) }) };
         return { infoText: output.avoidCleave() };
+      },
+    },
+    {
+      id: 'DelubrumSav Lord Rapid Bolts',
+      netRegex: NetRegexes.headMarker(),
+      condition: (data, matches) => {
+        if (data.me !== matches.target)
+          return false;
+        return getHeadmarkerId(data, matches) === headmarker.thunder;
+      },
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop thunder outside',
+          de: 'Lege Blitz draußen ab',
+        },
       },
     },
     {
@@ -910,8 +1196,8 @@ export default {
     },
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
+        '(?<!Crowned )Marchosias': 'Marchosias',
         'Aetherial Bolt': 'Magiegeschoss',
         'Aetherial Burst': 'Magiebombe',
         'Aetherial Orb': 'Magiekugel',
@@ -919,15 +1205,17 @@ export default {
         'Aetherial Ward': 'Magiewall',
         'Automatic Turret': 'Selbstschuss-Gyrocopter',
         'Avowed Avatar': 'Spaltteil der Eingeschworenen',
-        'Ball Of Fire': 'Feuerball',
         'Ball Lightning': 'Elektrosphäre',
+        'Ball Of Fire': 'Feuerball',
+        'Bicolor Golem': 'zweifarbig(?:e|er|es|en) Golem',
         'Bozjan Phantom': 'Bozja-Phantom',
+        'Bozjan Soldier': 'Bozja-Soldat',
         'Crowned Marchosias': 'Marchosias-Leittier',
         'Dahu': 'Dahu',
         'Dahu was defeated by': 'hat Dahu besiegt',
+        'Grim Reaper': 'Grausamer Schlitzer',
         'Gun Turret': 'Geschützturm',
         'Immolating Flame': 'Flammensturm',
-        '(?<!Crowned )Marchosias': 'Marchosias',
         'Pride of the Lion(?!ess)': 'Saal des Löwen',
         'Pride of the Lioness': 'Segen der Löwin',
         'Queen\'s Gunner': 'Schütze der Königin',
@@ -935,6 +1223,8 @@ export default {
         'Queen\'s Soldier': 'Soldat der Königin',
         'Queen\'s Warrior': 'Kriegerin der Königin',
         'Queensheart': 'Saal der Dienerinnen',
+        'Ruins Golem': 'Ruinengolem',
+        'Sanguine Clot': 'schauerlich(?:e|er|es|en) Blutgerinsel',
         'Seeker Avatar': 'Spaltteil der Sucher',
         'Soldier Avatar': 'Spaltteil des Soldaten',
         'Spark Arrow': 'Feuerpfeil',
@@ -952,16 +1242,22 @@ export default {
         'The Vault of Singing Crystal': 'Ort des Klingenden Kristalls',
         'Trinity Avowed': 'Trinität der Eingeschworenen',
         'Trinity Seeker': 'Trinität der Sucher',
+        'Viscous Clot': 'zäh(?:e|er|es|en) Blutgerinsel',
         'Why\\.\\.\\.won\'t\\.\\.\\.you\\.\\.\\.': 'Neiiin! Wie ist das möglich',
       },
       'replaceText': {
+        '(?<!C)Rush': 'Stürmen',
+        '(?<!Inescapable )Entrapment': 'Fallenlegen',
+        '--Spite Check--': '--Meditation Check--',
         '--adds--': '--Adds--',
+        '--bleed--': '--Blutung--',
         '--chains--': '--Ketten--',
-        '--knockback--': '--Rückstoß--',
+        '--tethers--': '--Verbindungen--',
         '1111-Tonze Swing': '1111-Tonzen-Schwung',
         'Above Board': 'Über dem Feld',
         'Act Of Mercy': 'Schneller Stich des Dolches',
         'Allegiant Arsenal': 'Waffenwechsel',
+        'Aura Sphere': 'Kampfwind',
         'Automatic Turret': 'Selbstschuss-Gyrocopter',
         'Baleful Blade': 'Stoß der Edelklinge',
         'Baleful Comet': 'Flammenstapel der Edelklinge',
@@ -971,16 +1267,20 @@ export default {
         'Beck And Call To Arms': 'Feuerbefehl',
         'Blade Of Entropy': 'Eisflammenklinge',
         'Blood And Bone': 'Wellenschlag',
+        'Bloody Wraith': 'blutrünstig(?:e|er|es|en) Schrecken',
         'Bombslinger': 'Bombenabwurf',
         'Boost': 'Kräfte sammeln',
+        'Bozjan Soldier': 'Bozja-Soldat',
         'Burn': 'Verbrennung',
         'Cleansing Slash': 'Säubernder Schnitt',
         'Coat Of Arms': 'Trotz',
         'Coerce': 'Zwang',
+        'Core Combustion': 'Brennender Kern',
         'Crazed Rampage': 'Gereizter Wutlauf',
         'Creeping Miasma': 'Miasmahauch',
         'Crushing Hoof': 'Tödlicher Druck',
         'Dead Iron': 'Woge der Feuerfaust',
+        'Death Scythe': 'Todessichel',
         'Devastating Bolt': 'Heftiger Donner',
         'Devour': 'Verschlingen',
         'Double Gambit': 'Illusionsmagie',
@@ -989,7 +1289,6 @@ export default {
         'Elemental Brand': 'Eisflammenfluch',
         'Elemental Impact': 'Einschlag',
         'Empyrean Iniquity': 'Empyreische Interdiktion',
-        '(?<!Inescapable )Entrapment': 'Fallenlegen',
         'Excruciation': 'Fürchterlicher Schmerz',
         'Falling Rock': 'Steinschlag',
         'Fateful Words': 'Worte des Verderbens',
@@ -1048,6 +1347,8 @@ export default {
         'Merciful Breeze': 'Yukikaze des Dolches',
         'Merciful Moon': 'Gekko des Dolches',
         'Mercy Fourfold': 'Viererdolch',
+        'Metamorphose': 'Materiewandel',
+        'Misty Wraith': 'flüchtig(?:e|er|es|en) Schrecken',
         'Northswain\'s Glow': 'Stella Polaris',
         'Optimal Offensive': 'Beste Attacke',
         'Optimal Play': 'Bestes Manöver',
@@ -1067,7 +1368,8 @@ export default {
         'Reverberating Roar': 'Einsturzgefahr',
         'Reversal Of Forces': 'Materieinversion',
         'Right-Sided Shockwave': 'Rechte Schockwelle',
-        '(?<!C)Rush': 'Stürmen',
+        'Ruins Golem': 'Ruinengolem',
+        'Sanguine Clot': 'schauerlich(?:e|er|es|en) Blutgerinsel',
         'Seasons Of Mercy': 'Setsugekka des Dolches',
         'Second Mercy': '2. Streich: Viererdolch-Haltung',
         'Secrets Revealed': 'Enthüllte Geheimnisse',
@@ -1075,11 +1377,12 @@ export default {
         'Shimmering Shot': 'Glitzerpfeil',
         'Shot In The Dark': 'Einhändiger Schuss',
         'Sniper Shot': 'Fangschuss',
+        'Spiritual Sphere': 'Seelenwind',
         'Spit Flame': 'Flammenspucke',
         'Spiteful Spirit': 'Meditation',
         'Strongpoint Defense': 'Absolutschild',
-        'Summon(?! Adds)': 'Beschwörung',
         'Summon Adds': 'Add-Beschwörung',
+        'Summon(?! Adds)': 'Beschwörung',
         'Sun\'s Ire': 'Flammenschlag',
         'Surge of Vigor': 'Eifer',
         'Surging Flames': 'Feuerangriff',
@@ -1100,6 +1403,7 @@ export default {
         'Verdant Tempest': 'Zauberwind des Grünen Pfades',
         'Vicious Swipe': 'Frenetischer Feger',
         'Vile Wave': 'Welle der Boshaftigkeit',
+        'Viscous Clot': 'zäh(?:e|er|es|en) Blutgerinsel',
         'Weave Miasma': 'Miasmathese',
         'Weight Of Fortune': 'Erdrückende Kraft',
         'Whack': 'Wildes Schlagen',
@@ -1113,6 +1417,7 @@ export default {
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
+        '(?<!Crowned )Marchosias': 'marchosias',
         'Aetherial Bolt': 'petite bombe',
         'Aetherial Burst': 'énorme bombe',
         'Aetherial Orb': 'amas d\'éther élémentaire',
@@ -1120,14 +1425,16 @@ export default {
         'Aetherial Ward': 'Barrière magique',
         'Automatic Turret': 'Auto-tourelle',
         'Avowed Avatar': 'clone de la trinité féale',
-        'Ball Of Fire': 'Boule de flammes',
         'Ball Lightning': 'Orbe de Foudre',
+        'Ball Of Fire': 'Boule de flammes',
+        'Bicolor Golem': 'golem bicolore',
         'Bozjan Phantom': 'fantôme bozjien',
+        'Bozjan Soldier': 'soldat bozjien',
         'Crowned Marchosias': 'marchosias alpha',
         'Dahu': 'dahu',
+        'Grim Reaper': 'Couperet funeste',
         'Gun Turret': 'Tourelle dirigée',
         'Immolating Flame': 'grande boule de feu tourbillonnante',
-        '(?<!Crowned )Marchosias': 'marchosias',
         'Pride of the Lion(?!ess)': 'Hall du Lion',
         'Pride of the Lioness': 'Bénédiction de la Lionne',
         'Queen\'s Gunner': 'fusilier de la reine',
@@ -1135,6 +1442,8 @@ export default {
         'Queen\'s Soldier': 'soldat de la reine',
         'Queen\'s Warrior': 'guerrière de la reine',
         'Queensheart': 'Chambre des prêtresses',
+        'Ruins Golem': 'golem des ruines',
+        'Sanguine Clot': 'caillot terrifiant',
         'Seeker Avatar': 'clone de la trinité soudée',
         'Soldier Avatar': 'double de soldat',
         'Spark Arrow': 'volée de flèches de feu',
@@ -1152,13 +1461,17 @@ export default {
         'The Vault of Singing Crystal': 'Chambre des cristaux chantants',
         'Trinity Avowed': 'trinité féale',
         'Trinity Seeker': 'trinité soudée',
+        'Viscous Clot': 'caillot visqueux',
         'Why\\.\\.\\.won\'t\\.\\.\\.you\\.\\.\\.': 'Grrroooargh.... Cette humaine... est forte...',
       },
       'replaceText': {
+        '(?<!C)Rush': 'Ruée',
+        '(?<!Inescapable )Entrapment': 'Pose de pièges',
         '1111-Tonze Swing': 'Swing de 1111 tonz',
         'Above Board': 'Aire de flottement',
         'Act Of Mercy': 'Fendreciel rédempteur',
         'Allegiant Arsenal': 'Changement d\'arme',
+        'Aura Sphere': 'sphère de brutalité',
         'Automatic Turret': 'Auto-tourelle',
         'Baleful Blade': 'Assaut singulier',
         'Baleful Comet': 'Choc des flammes singulier',
@@ -1168,23 +1481,26 @@ export default {
         'Beck And Call To Arms': 'Ordre d\'attaquer',
         'Blade Of Entropy': 'Sabre du feu et de la glace',
         'Blood And Bone': 'Onde tranchante',
+        'Bloody Wraith': 'spectre sanglant',
         'Bombslinger': 'Jet de bombe',
         'Boost': 'Renforcement',
+        'Bozjan Soldier': 'soldat bozjien',
         'Burn': 'Combustion',
         'Cleansing Slash': 'Taillade purifiante',
         'Coat Of Arms': 'Bouclier directionnel',
         'Coerce': 'Ordre irrefusable',
+        'Core Combustion': 'Noyau brûlant',
         'Crazed Rampage': 'Tranchage final',
         'Creeping Miasma': 'Coulée miasmatique',
         'Crushing Hoof': 'Saut pesant',
         'Dead Iron': 'Vague des poings de feu',
+        'Death Scythe': 'Faux de la mort',
         'Devastating Bolt': 'Cercle de foudre',
         'Devour': 'Dévoration',
         'Double Gambit': 'Manipulation des ombres',
         'Elemental Brand': 'Malédiction du feu et de la glace',
         'Elemental Impact': 'Impact',
         'Empyrean Iniquity': 'Injustice empyréenne',
-        '(?<!Inescapable )Entrapment': 'Pose de pièges',
         'Excruciation': 'Atroce douleur',
         'Falling Rock': 'Chute de pierre',
         'Fateful Words': 'Mots de calamité',
@@ -1243,6 +1559,8 @@ export default {
         'Merciful Breeze': 'Yukikaze rédempteur',
         'Merciful Moon': 'Gekkô rédempteur',
         'Mercy Fourfold': 'Quatuor de lames rédemptrices',
+        'Metamorphose': 'Nature changeante',
+        'Misty Wraith': 'spectre vaporeux',
         'Northswain\'s Glow': 'Étoile du Nord',
         'Optimal Offensive': 'Charge de maître d\'armes',
         'Optimal Play': 'Technique de maître d\'armes',
@@ -1262,7 +1580,8 @@ export default {
         'Reverberating Roar': 'Cri disloquant',
         'Reversal Of Forces': 'Inversion des masses',
         'Right-Sided Shockwave': 'Onde de choc droite',
-        '(?<!C)Rush': 'Ruée',
+        'Ruins Golem': 'golem des ruines',
+        'Sanguine Clot': 'caillot terrifiant',
         'Seasons Of Mercy': 'Setsugekka rédempteur',
         'Second Mercy': 'Deuxième lame rédemptrice',
         'Secrets Revealed': 'Corporification',
@@ -1270,6 +1589,7 @@ export default {
         'Shimmering Shot': 'Flèches scintillantes',
         'Shot In The Dark': 'Tir à une main',
         'Sniper Shot': 'Entre les yeux',
+        'Spiritual Sphere': 'sphère immatérielle',
         'Spit Flame': 'Crachat enflammé',
         'Spiteful Spirit': 'Sphère de brutalité',
         'Strongpoint Defense': 'Défense absolue',
@@ -1294,6 +1614,7 @@ export default {
         'Verdant Tempest': 'Tempête de la Voie verdoyante',
         'Vicious Swipe': 'Vrille tranchante',
         'Vile Wave': 'Vague de malveillance',
+        'Viscous Clot': 'caillot visqueux',
         'Weave Miasma': 'Miasmologie',
         'Weight Of Fortune': 'Pesanteur excessive',
         'Whack': 'Tannée',
@@ -1307,6 +1628,7 @@ export default {
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
+        '(?<!Crowned )Marchosias': 'マルコシアス',
         'Aetherial Bolt': '魔弾',
         'Aetherial Burst': '大魔弾',
         'Aetherial Orb': '魔力塊',
@@ -1314,14 +1636,16 @@ export default {
         'Aetherial Ward': '魔法障壁',
         'Automatic Turret': 'オートタレット',
         'Avowed Avatar': 'アヴァウドの分体',
-        'Ball Of Fire': '火炎球',
         'Ball Lightning': '雷球',
+        'Ball Of Fire': '火炎球',
+        'Bicolor Golem': 'バイカラー・ゴーレム',
         'Bozjan Phantom': 'ボズヤ・ファントム',
+        'Bozjan Soldier': 'ボズヤ・ソルジャー',
         'Crowned Marchosias': 'アルファ・マルコシアス',
         'Dahu': 'ダウー',
+        'Grim Reaper': 'グリムクリーバー',
         'Gun Turret': 'ガンタレット',
         'Immolating Flame': '大火焔',
-        '(?<!Crowned )Marchosias': 'マルコシアス',
         'Pride of the Lion(?!ess)': '雄獅子の広間',
         'Pride of the Lioness': '雌獅子の加護',
         'Queen\'s Gunner': 'クイーンズ・ガンナー',
@@ -1329,6 +1653,8 @@ export default {
         'Queen\'s Soldier': 'クイーンズ・ソルジャー',
         'Queen\'s Warrior': 'クイーンズ・ウォリアー',
         'Queensheart': '巫女たちの広間',
+        'Ruins Golem': 'ルーイン・ゴーレム',
+        'Sanguine Clot': 'オウガリッシュ・クロット',
         'Seeker Avatar': 'シーカーの分体',
         'Soldier Avatar': 'ソルジャーの分体',
         'Spark Arrow': 'ファイアアロー',
@@ -1346,15 +1672,19 @@ export default {
         'The Vault of Singing Crystal': '響き合う水晶の間',
         'Trinity Avowed': 'トリニティ・アヴァウド',
         'Trinity Seeker': 'トリニティ・シーカー',
+        'Viscous Clot': 'ヴィスカス・クロット',
         'Why\\.\\.\\.won\'t\\.\\.\\.you\\.\\.\\.': 'グオオオォォ…… 敗レル……ナンテ……',
       },
       'replaceText': {
+        '(?<!C)Rush': '突進',
+        '(?<!Inescapable )Entrapment': '掛罠',
         '--adds--': '--雑魚--',
         '--chains--': '--鎖--',
         '1111-Tonze Swing': '1111トンズ・スイング',
         'Above Board': '浮遊波',
         'Act Of Mercy': '破天鋭刃風',
         'Allegiant Arsenal': 'ウェポンチェンジ',
+        'Aura Sphere': '闘気',
         'Automatic Turret': 'オートタレット',
         'Baleful Blade': '豪剣強襲撃',
         'Baleful Comet': '豪剣焔襲撃',
@@ -1364,23 +1694,26 @@ export default {
         'Beck And Call To Arms': '攻撃命令',
         'Blade Of Entropy': '氷炎刃',
         'Blood And Bone': '波動斬',
+        'Bloody Wraith': 'ブラッディ・レイス',
         'Bombslinger': '爆弾投擲',
         'Boost': 'ためる',
+        'Bozjan Soldier': 'ボズヤ・ソルジャー',
         'Burn': '燃焼',
         'Cleansing Slash': '乱命割殺斬',
         'Coat Of Arms': '偏向防御',
         'Coerce': '強要',
+        'Core Combustion': '心核熱',
         'Crazed Rampage': 'キリキリ舞い',
         'Creeping Miasma': '瘴気流',
         'Crushing Hoof': '重圧殺',
         'Dead Iron': '熱拳振動波',
+        'Death Scythe': 'デスサイズ',
         'Devastating Bolt': '激雷',
         'Devour': '捕食',
         'Double Gambit': '幻影術',
         'Elemental Brand': '氷炎の呪印',
         'Elemental Impact': '着弾',
         'Empyrean Iniquity': '天魔鬼神爆',
-        '(?<!Inescapable )Entrapment': '掛罠',
         'Excruciation': '激痛',
         'Falling Rock': '落石',
         'Fateful Words': '呪いの言葉',
@@ -1439,6 +1772,8 @@ export default {
         'Merciful Breeze': '鋭刃雪風',
         'Merciful Moon': '鋭刃月光',
         'Mercy Fourfold': '鋭刃四刀流',
+        'Metamorphose': '性質変化',
+        'Misty Wraith': 'ミスティ・レイス',
         'Northswain\'s Glow': '北斗骨砕斬',
         'Optimal Offensive': '武装突撃',
         'Optimal Play': '武装戦技',
@@ -1458,7 +1793,8 @@ export default {
         'Reverberating Roar': '崩落誘発',
         'Reversal Of Forces': '質量転換',
         'Right-Sided Shockwave': 'ライトサイド・ショックウェーブ',
-        '(?<!C)Rush': '突進',
+        'Ruins Golem': 'ルーイン・ゴーレム',
+        'Sanguine Clot': 'オウガリッシュ・クロット',
         'Seasons Of Mercy': '鋭刃雪月花',
         'Second Mercy': '二手：鋭刃四刀の構え',
         'Secrets Revealed': '実体結像',
@@ -1466,11 +1802,12 @@ export default {
         'Shimmering Shot': 'トゥインクルアロー',
         'Shot In The Dark': '片手撃ち',
         'Sniper Shot': '狙撃',
+        'Spiritual Sphere': '霊気',
         'Spit Flame': 'フレイムスピット',
         'Spiteful Spirit': '闘気',
         'Strongpoint Defense': '絶対防御',
-        'Summon(?! Adds)': '召喚',
         'Summon Adds': '雑魚召喚',
+        'Summon(?! Adds)': '召喚',
         'Sun\'s Ire': '焼討ち',
         'Surge of Vigor': '奮発',
         'Surging Flames': '火攻め',
@@ -1491,6 +1828,7 @@ export default {
         'Verdant Tempest': '翠流魔風塵',
         'Vicious Swipe': 'キリ揉み',
         'Vile Wave': '悪意の波動',
+        'Viscous Clot': 'ヴィスカス・クロット',
         'Weave Miasma': '瘴気術',
         'Weight Of Fortune': '過重力',
         'Whack': '乱打',
