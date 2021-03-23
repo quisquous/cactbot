@@ -1,17 +1,6 @@
 import PartyTracker from '../resources/party.js';
-import { Lang } from './global';
+import { Option } from './global';
 import { Job, Role } from './job';
-
-export interface Option {
-  ParserLanguage: Lang;
-  LangShortLocale: Lang;
-  DisplayLanguage: Lang;
-  Language: Lang;
-  SystemLocale: string;
-  ShortLocale: string;
-  Debug: boolean;
-  Skin: string;
-}
 
 export interface Data {
   job: Job;
