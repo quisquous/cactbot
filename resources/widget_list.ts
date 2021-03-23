@@ -44,59 +44,44 @@ class WidgetList extends HTMLElement {
   // and the second being the direction is wraps for the next
   // row/column. eg. "left down" will grow a list toward the left,
   // and subsequent rows will be below the first.
-  set toward(s: string | null) {
-    if (s === null)
-      this.removeAttribute('toward');
-    else
-      this.setAttribute('toward', s);
+  set toward(s: string) {
+    this.setAttribute('toward', s);
   }
-  get toward(): string | null {
-    return this.getAttribute('toward');
+  get toward(): string {
+    return this.getAttribute('toward') ?? '';
   }
 
   // The elementwidth of each element in the list.
-  set elementwidth(w: string | null) {
-    if (w === null)
-      this.removeAttribute('elementwidth');
-    else
-      this.setAttribute('elementwidth', w);
+  set elementwidth(w: string) {
+    this.setAttribute('elementwidth', w);
   }
-  get elementwidth() {
-    return this.getAttribute('elementwidth');
+  get elementwidth(): string {
+    return this.getAttribute('elementwidth') ?? '';
   }
 
   // The height of each element in the list.
-  set elementheight(w: string | null) {
-    if (w === null)
-      this.removeAttribute('elementheight');
-    else
-      this.setAttribute('elementheight', w);
+  set elementheight(w: string) {
+    this.setAttribute('elementheight', w);
   }
-  get elementheight() {
-    return this.getAttribute('elementheight');
+  get elementheight(): string {
+    return this.getAttribute('elementheight') ?? '';
   }
 
   // The number of elements to show before wrapping to a new
   // row/column.
-  set rowcolsize(w: string | null) {
-    if (w === null)
-      this.removeAttribute('rowcolsize');
-    else
-      this.setAttribute('rowcolsize', w);
+  set rowcolsize(w: string) {
+    this.setAttribute('rowcolsize', w);
   }
-  get rowcolsize() {
-    return this.getAttribute('rowcolsize');
+  get rowcolsize(): string {
+    return this.getAttribute('rowcolsize') ?? '';
   }
 
   // The maximum number of widgets to show at a time.
-  set maxnumber(w: string | null) {
-    if (w === null)
-      this.removeAttribute('maxnumber');
-    else
-      this.setAttribute('maxnumber', w);
+  set maxnumber(w: string) {
+    this.setAttribute('maxnumber', w);
   }
-  get maxnumber() {
-    return this.getAttribute('maxnumber');
+  get maxnumber(): string {
+    return this.getAttribute('maxnumber') ?? '';
   }
 
   // This would be used with window.customElements.
