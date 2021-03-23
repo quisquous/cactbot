@@ -155,13 +155,15 @@ const ruleModule = {
             }
 
             if (node.property.name in outputOfTriggerID) {
-              context.report({
-                node,
-                messageId: 'missingTemplateValue',
-                data: {
-                  prop: outputTemplate,
-                },
-              });
+              if (outputOfTriggerID[node.property.name] !== null) {
+                context.report({
+                  node,
+                  messageId: 'missingTemplateValue',
+                  data: {
+                    prop: outputTemplate,
+                  },
+                });
+              }
             }
           } else if (args.length !== 1) {
             context.report({
