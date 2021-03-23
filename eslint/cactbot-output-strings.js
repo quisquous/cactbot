@@ -26,7 +26,6 @@ const ruleModule = {
   },
   create: function(context) {
     const globalVars = new Map();
-    const outputTemplates = new Map();
     const stack = {
       outputParam: null,
       outputProperties: [],
@@ -60,6 +59,7 @@ const ruleModule = {
 
     const extractTemplate = function(node) {
       if (node.properties === undefined) return;
+      const triggerId = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'id')?.value?.value;
       const outputTemplateKey = {};
       for (const outputString of
         node.properties.filter((s) => !t.isSpreadElement(s) && !t.isMemberExpression(s.value))) {
@@ -71,13 +71,12 @@ const ruleModule = {
             values.push(x.value.value);
         });
         const templateIds = values.map((x) => Array.from(x.matchAll(/\${\s*([^}\s]+)\s*}/g))).map((x) => x.length ? x.map((v) => v[1]) : null);
-        const triggerId = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'id').value.value;
+
 
         if (arrayContainSameElement(templateIds))
           outputTemplateKey[outputString.key.name] = templateIds[0];
-
-        outputTemplates.set(triggerId, outputTemplateKey);
       }
+      return outputTemplateKey;
     };
 
     const arrayContainSameElement = (arr) => {
@@ -98,12 +97,12 @@ const ruleModule = {
           stack.inTriggerFunc = true;
           stack.outputParam = node.params[2] && node.params[2].name;
           const outputValue = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'outputStrings').value;
-          extractTemplate(outputValue);
+          stack.outputTemplates = extractTemplate(outputValue);
           stack.outputProperties =
             t.isIdentifier(outputValue)
               ? (globalVars.get(outputValue.name) || [])
               : getAllKeys(outputValue.properties);
-          stack.triggerID = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'id').value.value;
+          stack.triggerID = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'id')?.value?.value;
           return;
         }
         context.report({
@@ -117,6 +116,8 @@ const ruleModule = {
           stack.outputParam = null;
           stack.outputProperties = [];
           stack.triggerID = null;
+          stack.trigger = null;
+          stack.outputProperties = {};
         }
       },
       /**
@@ -139,8 +140,8 @@ const ruleModule = {
         }
         if (t.isIdentifier(node.property) && stack.outputProperties.includes(node.property.name)) {
           const args = node.parent.callee.parent.arguments;
-          const outputOfTriggerID = outputTemplates.get(stack.triggerID) ?? {};
-          const outputTemplate = outputOfTriggerID[node.property.name];
+          const outputOfTriggerID = stack.outputTemplates ?? {};
+          const outputTemplate = outputOfTriggerID?.[node.property.name];
 
           if (args.length === 0) {
             if ((node.property.name in outputOfTriggerID) && outputTemplate === undefined) {
