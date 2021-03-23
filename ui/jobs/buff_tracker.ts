@@ -1,10 +1,50 @@
+import { Matches } from '../../types/trigger';
+import WidgetList from '../../resources/widgetlist';
 import EffectId from '../../resources/effect_id';
 import { kAbility } from './constants';
 import { makeAuraTimerIcon } from './utils';
+import { IOptions } from './types';
+
+export interface BuffInfo {
+  name?: string;
+  gainAbility?: string;
+  gainEffect?: string;
+  loseEffect?: string;
+  mobGainsEffect?: string;
+  mobLosesEffect?: string;
+  durationSeconds?: number;
+  useEffectDuration?: boolean;
+  icon: string;
+  side?: 'left' | 'right';
+  borderColor: string;
+  sortKey: number;
+  cooldown?: number;
+  sharesCooldownWith?: string[];
+  hide?: boolean;
+}
+
+export interface Aura {
+  addCallback: () => void;
+  removeCallback: () => void;
+  addTimeout: number | null;
+  /** id in `window.clearTimeout(id)` */
+  removeTimeout: number | null;
+}
 
 // TODO: consider using real times and not setTimeout times as these can drift.
 export class Buff {
-  constructor(name, info, list, options) {
+  name: string;
+  info: BuffInfo;
+  options: IOptions;
+  activeList: WidgetList;
+  cooldownList: WidgetList;
+  readyList: WidgetList;
+  active: Aura | null;
+  cooldown: Record<string, Aura>;
+  ready: Record<string, Aura>;
+  readySortKeyBase: number;
+  cooldownSortKeyBase: number;
+  constructor(name: string, info: BuffInfo, list: WidgetList, options: IOptions) {
     this.name = name;
     this.info = info;
     this.options = options;
@@ -25,12 +65,12 @@ export class Buff {
     this.cooldownSortKeyBase = 2000;
   }
 
-  addCooldown(source, effectSeconds) {
+  addCooldown(source: string, effectSeconds: number): void {
     if (!this.info.cooldown)
       return;
     if (this.cooldown[source]) {
       // Unexpected use of the same cooldown by the same name.
-      this.cooldown[source].removeCallback();
+      this.cooldown[source]?.removeCallback();
     }
 
     const cooldownKey = 'c:' + this.name + ':' + source;
@@ -46,19 +86,19 @@ export class Buff {
         secondsUntilShow, this.cooldownSortKeyBase, 'grey', '', 0.5, addReadyCallback);
   }
 
-  addReady(source) {
+  addReady(source: string): void {
     if (this.ready[source]) {
       // Unexpected use of the same cooldown by the same name.
-      this.ready[source].removeCallback();
+      this.ready[source]?.removeCallback();
     }
 
     // TODO: could consider looking at the party list to make initials unique?
     let txt = '';
     const initials = source.split(' ');
     if (initials.length === 2)
-      txt = initials[0][0] + initials[1][0];
+      txt = `${initials[0]?.charAt(0) ?? '?'}${initials[1]?.charAt(0) ?? '?'}`;
     else
-      txt = initials[0];
+      txt = initials[0] ?? '?';
 
     const color = this.info.borderColor;
 
@@ -67,9 +107,18 @@ export class Buff {
         this.readySortKeyBase, color, txt, 0.6);
   }
 
-  makeAura(key, list, seconds, secondsUntilShow,
-      adjustSort, textColor, txt, opacity, expireCallback) {
-    const aura = {};
+  makeAura(
+      key: string,
+      list: WidgetList,
+      seconds: number,
+      secondsUntilShow: number,
+      adjustSort: number,
+      textColor: string,
+      txt: string,
+      opacity: number,
+      expireCallback?: () => void,
+  ): Aura {
+    const aura: Aura = {} as Aura;
     aura.removeCallback = () => {
       list.removeElement(key);
       if (aura.addTimeout) {
@@ -113,19 +162,19 @@ export class Buff {
     return aura;
   }
 
-  clear() {
+  clear(): void {
     this.onLose();
 
-    const cooldownKeys = Object.keys(this.cooldown);
-    for (let i = 0; i < cooldownKeys.length; ++i)
-      this.cooldown[cooldownKeys[i]].removeCallback();
+    Object.values(this.cooldown).forEach((aura) => {
+      aura?.removeCallback();
+    });
 
-    const readyKeys = Object.keys(this.ready);
-    for (let i = 0; i < readyKeys.length; ++i)
-      this.ready[readyKeys[i]].removeCallback();
+    Object.values(this.ready).forEach((aura) => {
+      aura.removeCallback();
+    });
   }
 
-  clearCooldown(source) {
+  clearCooldown(source: string): void {
     const ready = this.ready[source];
     if (ready)
       ready.removeCallback();
@@ -134,14 +183,14 @@ export class Buff {
       cooldown.removeCallback();
   }
 
-  onGain(seconds, source) {
+  onGain(seconds: number, source: string): void {
     this.onLose();
     this.clearCooldown(source);
     this.active = this.makeAura(this.name, this.activeList, seconds, 0, 0, 'white', '', 1);
     this.addCooldown(source, seconds);
   }
 
-  onLose() {
+  onLose(): void {
     if (!this.active)
       return;
     this.active.removeCallback();
@@ -150,7 +199,24 @@ export class Buff {
 }
 
 export class BuffTracker {
-  constructor(options, playerName, leftBuffDiv, rightBuffDiv) {
+  buffInfo: Record<string, BuffInfo>;
+  options: IOptions;
+  playerName: string;
+  leftBuffDiv: WidgetList;
+  rightBuffDiv: WidgetList;
+  buffs: Record<string, Buff>;
+  gainEffectMap: Record<string, BuffInfo[]>;
+  loseEffectMap: Record<string, BuffInfo[]>;
+  gainAbilityMap: Record<string, BuffInfo[]>;
+  mobGainsEffectMap: Record<string, BuffInfo[]>;
+  mobLosesEffectMap: Record<string, BuffInfo[]>;
+
+  constructor(
+      options: IOptions,
+      playerName: string,
+      leftBuffDiv: WidgetList,
+      rightBuffDiv: WidgetList,
+  ) {
     this.options = options;
     this.playerName = playerName;
     this.leftBuffDiv = leftBuffDiv;
@@ -430,7 +496,6 @@ export class BuffTracker {
       },
     };
 
-    const keys = Object.keys(this.buffInfo);
     this.gainEffectMap = {};
     this.loseEffectMap = {};
     this.gainAbilityMap = {};
@@ -445,99 +510,100 @@ export class BuffTracker {
       mobLosesEffect: this.mobLosesEffectMap,
     };
 
-    for (let i = 0; i < keys.length; ++i) {
-      const buff = this.buffInfo[keys[i]];
-      buff.name = keys[i];
+    for (const key in this.buffInfo) {
+      const buff = this.buffInfo[key];
+      if (!buff) continue;
+      buff.name = key;
 
-      const overrides = this.options.PerBuffOptions[buff.name] || {};
-      buff.borderColor = overrides.borderColor || buff.borderColor;
-      buff.icon = overrides.icon || buff.icon;
-      buff.side = overrides.side || buff.side || 'right';
-      buff.sortKey = overrides.sortKey || buff.sortKey;
-      buff.hide = overrides.hide === undefined ? buff.hide : overrides.hide;
+      const overrides = this.options.PerBuffOptions[buff.name] ?? null;
+      buff.borderColor = overrides?.borderColor ?? buff.borderColor;
+      buff.icon = overrides?.icon ?? buff.icon;
+      buff.side = overrides?.side ?? buff.side ?? 'right';
+      buff.sortKey = overrides?.sortKey || buff.sortKey;
+      buff.hide = overrides?.hide ?? buff.hide ?? false;
 
       for (const prop in propToMapMap) {
         if (!(prop in buff))
           continue;
-        const key = buff[prop];
+        const key = buff[prop as keyof typeof propToMapMap];
         if (typeof key === 'undefined') {
           console.error('undefined value for key ' + prop + ' for buff ' + buff.name);
           continue;
         }
 
-        const map = propToMapMap[prop];
+        const map = propToMapMap[prop as keyof typeof propToMapMap];
         map[key] = map[key] || [];
-        map[key].push(buff);
+        map[key]?.push(buff);
       }
     }
 
-    const v520 = {
-      // identical with latest patch
-      /* example
-      trick: {
-        durationSeconds: 10,
-      },
-      */
-    };
+    // const v520 = {
+    //   // identical with latest patch
+    //   /* example
+    //   trick: {
+    //     durationSeconds: 10,
+    //   },
+    //   */
+    // };
 
-    const buffOverrides = {
-      cn: v520,
-      ko: v520,
-    };
+    // const buffOverrides = {
+    //   cn: v520,
+    //   ko: v520,
+    // };
 
-    for (const key in buffOverrides[this.options.ParserLanguage]) {
-      for (const key2 in buffOverrides[this.options.ParserLanguage][key])
-        this.buffInfo[key][key2] = buffOverrides[this.options.ParserLanguage][key][key2];
-    }
+    // for (const key in buffOverrides[this.options.ParserLanguage]) {
+    //   for (const key2 in buffOverrides[this.options.ParserLanguage][key])
+    //     this.buffInfo[key][key2] = buffOverrides[this.options.ParserLanguage][key][key2];
+    // }
   }
 
-  onUseAbility(id, matches) {
+  onUseAbility(id: string, matches: Matches): void {
     const buffs = this.gainAbilityMap[id];
     if (!buffs)
       return;
 
     for (const b of buffs)
-      this.onBigBuff(b.name, b.durationSeconds, b, matches.source);
+      this.onBigBuff(b.name ?? '', b.durationSeconds ?? 0, b, matches.source ?? '');
   }
 
-  onGainEffect(buffs, matches) {
+  onGainEffect(buffs: BuffInfo[] | undefined, matches: Matches): void {
     if (!buffs)
       return;
     for (const b of buffs) {
       let seconds = -1;
       if (b.useEffectDuration)
-        seconds = parseFloat(matches.duration);
+        seconds = parseFloat(matches.duration ?? '0');
       else if ('durationSeconds' in b)
-        seconds = b.durationSeconds;
+        seconds = b.durationSeconds ?? seconds;
 
-      this.onBigBuff(b.name, seconds, b, matches.source);
+      this.onBigBuff(b.name ?? '', seconds, b, matches.source ?? '');
     }
   }
 
-  onLoseEffect(buffs, matches) {
+  onLoseEffect(buffs: BuffInfo[] | undefined, _matches: Matches): void {
     if (!buffs)
       return;
     for (const b of buffs)
-      this.onLoseBigBuff(b.name);
+      this.onLoseBigBuff(b.name ?? '');
   }
 
-  onYouGainEffect(name, matches) {
+  onYouGainEffect(name: string, matches: Matches): void {
     this.onGainEffect(this.gainEffectMap[name], matches);
   }
 
-  onYouLoseEffect(name, matches) {
+  onYouLoseEffect(name: string, matches: Matches): void {
     this.onLoseEffect(this.loseEffectMap[name], matches);
   }
 
-  onMobGainsEffect(name, matches) {
+  onMobGainsEffect(name: string, matches: Matches): void {
     this.onGainEffect(this.mobGainsEffectMap[name], matches);
   }
 
-  onMobLosesEffect(name, matches) {
+  onMobLosesEffect(name: string, matches: Matches): void {
     this.onLoseEffect(this.mobLosesEffectMap[name], matches);
   }
 
-  onBigBuff(name, seconds, info, source) {
+  onBigBuff(name: string, seconds: number, info: BuffInfo, source: string): void {
     if (seconds <= 0)
       return;
 
@@ -558,19 +624,17 @@ export class BuffTracker {
         existingBuff.clearCooldown(source);
     }
 
-    buff.onGain(seconds, source);
+    buff?.onGain(seconds, source);
   }
 
-  onLoseBigBuff(name) {
+  onLoseBigBuff(name: string): void {
     const buff = this.buffs[name];
     if (!buff)
       return;
     buff.onLose();
   }
 
-  clear() {
-    const keys = Object.keys(this.buffs);
-    for (let i = 0; i < keys.length; ++i)
-      this.buffs[keys[i]].clear();
+  clear(): void {
+    Object.values(this.buffs).forEach((buff) => buff.clear());
   }
 }

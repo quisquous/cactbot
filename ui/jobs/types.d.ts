@@ -1,5 +1,6 @@
 import { Option as BaseOption} from '../../types/data';
 import { Job } from '../../types/job';
+import { BuffInfo } from './buff_tracker';
 
 export interface IDefaultOptions {
   JustBuffTracker: boolean;
@@ -28,9 +29,7 @@ export interface IInitOptions {
   MaxLevel: number;
 
   PerBuffOptions: {
-    [s: string]: {
-      hide?: boolean;
-    };
+    [s: string]: BuffInfo;
   };
 
   FarThresholdOffence: number;
