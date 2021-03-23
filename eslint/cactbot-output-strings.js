@@ -57,9 +57,12 @@ const ruleModule = {
       return propKeys;
     };
 
+    /**
+     *
+     * @param node {t.ObjectExpression}
+     */
     const extractTemplate = function(node) {
       if (node.properties === undefined) return;
-      const triggerId = node.parent.parent.properties.find((prop) => prop.key && prop.key.name === 'id')?.value?.value;
       const outputTemplateKey = {};
       for (const outputString of
         node.properties.filter((s) => !t.isSpreadElement(s) && !t.isMemberExpression(s.value))) {
