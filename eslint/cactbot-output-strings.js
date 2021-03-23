@@ -116,8 +116,7 @@ const ruleModule = {
           stack.outputParam = null;
           stack.outputProperties = [];
           stack.triggerID = null;
-          stack.trigger = null;
-          stack.outputProperties = {};
+          stack.outputTemplates = {};
         }
       },
       /**
