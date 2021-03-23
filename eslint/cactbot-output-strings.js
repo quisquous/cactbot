@@ -64,14 +64,13 @@ const ruleModule = {
       for (const outputString of
         node.properties.filter((s) => !t.isSpreadElement(s) && !t.isMemberExpression(s.value))) {
         // each outputString
-        const values = [];
+        const values = outputString.value.properties
+          .map((x) => x.value.value)
+          .filter((x) => x !== undefined);
 
-        outputString.value.properties.forEach((x) => {
-          if (x.value.value !== undefined)
-            values.push(x.value.value);
-        });
-        const templateIds = values.map((x) => Array.from(x.matchAll(/\${\s*([^}\s]+)\s*}/g))).map((x) => x.length ? x.map((v) => v[1]) : null);
-
+        const templateIds = values
+          .map((x) => Array.from(x.matchAll(/\${\s*([^}\s]+)\s*}/g)))
+          .map((x) => x.length ? x.map((v) => v[1]) : null);
 
         if (arrayContainSameElement(templateIds))
           outputTemplateKey[outputString.key.name] = templateIds[0];
