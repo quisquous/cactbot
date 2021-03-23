@@ -141,15 +141,25 @@ const ruleModule = {
           const args = node.parent.callee.parent.arguments;
           const outputOfTriggerID = outputTemplates.get(stack.triggerID) ?? {};
           const outputTemplate = outputOfTriggerID[node.property.name];
+
           if (args.length === 0) {
-            if ((node.property.name in outputOfTriggerID) &&
-              outputTemplate === undefined) {
+            if ((node.property.name in outputOfTriggerID) && outputTemplate === undefined) {
               context.report({
                 node,
                 messageId: 'tooManyParams',
                 data: {
                   call: node.property.name,
                   num: '0',
+                },
+              });
+            }
+
+            if (node.property.name in outputOfTriggerID) {
+              context.report({
+                node,
+                messageId: 'missingTemplateValue',
+                data: {
+                  prop: outputTemplate,
                 },
               });
             }
@@ -183,8 +193,8 @@ const ruleModule = {
                     node,
                     messageId: 'notFoundTemplate',
                     data: {
-                      prop: key,
-                      outputParam: node.property.name,
+                      prop: node.property.name,
+                      template: key,
                     },
                   });
                 }
