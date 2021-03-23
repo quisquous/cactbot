@@ -1159,7 +1159,7 @@ export default {
           shortIce: {
             en: 'Short Ice',
             de: 'kurzes Eis',
-            fr: 'Glace courte'
+            fr: 'Glace courte',
             ja: 'ブリザガ(早い)',
             cn: '短冰',
             ko: '빠른 블리자가',
