@@ -56,3 +56,14 @@ export interface HandlerMap {
 }
 
 export type HandlerType = keyof HandlerMap;
+
+export interface Option {
+  ParserLanguage: Lang;
+  LangShortLocale: Lang;
+  DisplayLanguage: Lang;
+  Language: Lang;
+  SystemLocale: string;
+  ShortLocale: string;
+  Debug: boolean;
+  Skin: string;
+}
