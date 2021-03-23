@@ -507,14 +507,17 @@ export default {
         inner: {
           en: '#${num} (Inner)',
           de: '#${num} (innen)',
+          fr: '#${num} (Intérieur)',
         },
         outer: {
           en: '#${num} (Outer)',
           de: '#${num} (außen)',
+          fr: '#${num} (Extérieur)',
         },
         unknown: {
           en: '#${num} (???)',
           de: '#${num} (???)',
+          fr: '#${num} (???)',
         },
       },
     },
@@ -530,6 +533,7 @@ export default {
         knockback: {
           en: 'SE Knockback',
           de: 'SO Rückstoß',
+          fr: 'SE Poussée',
         },
       },
     },
@@ -545,6 +549,7 @@ export default {
         knockback: {
           en: 'SW Knockback',
           de: 'SW Rückstoß',
+          fr: 'SO Poussée',
         },
       },
     },
@@ -567,14 +572,17 @@ export default {
           baitInner: {
             en: 'Bait Inner #${num}',
             de: 'Köder innen #${num}',
+            fr: 'Orientez vers l\'intérieur #${num}',
           },
           baitOuter: {
             en: 'Bait Outer #${num}',
             de: 'Köder außen #${num}',
+            fr: 'Orientez vers l\'extérieur #${num}',
           },
           baitUnknown: {
             en: 'Bait #${num}',
             de: 'Köder #${num}',
+            fr: 'Orientez #${num}',
           },
         };
         // Start one ahead, so that it calls out #2 after #1 has finished.
@@ -674,14 +682,17 @@ export default {
           goLeftBaitInner: {
             en: 'Left + Bait Inner #1',
             de: 'Links + Köder innen #1',
+            fr: 'Gauche + Orientez vers l\'intérieur #1',
           },
           goLeftBaitOuter: {
             en: 'Left + Bait Outer #1',
             de: 'Links + Köder außen #1',
+            fr: 'Gauche + Orientez vers l\'extérieur #1',
           },
           goLeftBaitUnknown: {
             en: 'Left + Bait #1',
             de: 'Links + Köder #1',
+            fr: 'Gauche + Orientez #1',
           },
         };
 
@@ -709,14 +720,17 @@ export default {
           goRightBaitInner: {
             en: 'Right + Bait Inner #1',
             de: 'Rechts + Köder innen #1',
+            fr: 'Droite + Orientez vers l\'intérieur #1',
           },
           goRightBaitOuter: {
             en: 'Right + Bait Outer #1',
             de: 'Rechts + Köder außen #1',
+            fr: 'Droite + Orientez vers l\'extérieur #1',
           },
           goRightBaitUnknown: {
             en: 'Right + Bait #1',
             de: 'Rechts + Köder #1',
+            fr: 'Droite + Orientez #1',
           },
         };
 
@@ -1121,6 +1135,7 @@ export default {
           longFire: {
             en: 'Long Fire',
             de: 'langes Feuer',
+            fr: 'Feu long',
             ja: 'ファイガ(遅い)',
             cn: '长火',
             ko: '느린 파이가',
@@ -1128,6 +1143,7 @@ export default {
           shortFire: {
             en: 'Short Fire',
             de: 'kurzes Feuer',
+            fr: 'Feu court',
             ja: 'ファイガ(早い)',
             cn: '短火',
             ko: '빠른 파이가',
@@ -1135,6 +1151,7 @@ export default {
           longIce: {
             en: 'Long Ice',
             de: 'langes Eis',
+            fr: 'Glace longue',
             ja: 'ブリザガ(遅い)',
             cn: '长冰',
             ko: '느린 블리자가',
@@ -1142,6 +1159,7 @@ export default {
           shortIce: {
             en: 'Short Ice',
             de: 'kurzes Eis',
+            fr: 'Glace courte'
             ja: 'ブリザガ(早い)',
             cn: '短冰',
             ko: '빠른 블리자가',
