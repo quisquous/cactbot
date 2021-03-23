@@ -29,95 +29,95 @@ export default class TimerIcon extends HTMLElement {
   }
 
   // All visual dimensions are scaled by this.
-  set scale(s: string | null) {
-    this.setAttribute('scale', s ?? '');
+  set scale(s: string) {
+    this.setAttribute('scale', s);
   }
-  get scale(): string | null {
-    return this.getAttribute('scale');
+  get scale(): string {
+    return this.getAttribute('scale') ?? '';
   }
 
   // Border color.
-  set bordercolor(c: string | null) {
-    this.setAttribute('bordercolor', c ?? '');
+  set bordercolor(c: string) {
+    this.setAttribute('bordercolor', c);
   }
-  get bordercolor(): string | null {
-    return this.getAttribute('bordercolor');
+  get bordercolor(): string {
+    return this.getAttribute('bordercolor') ?? '';
   }
 
   // Border size for the inner colored border.
-  set bordersize(c: string | null) {
-    this.setAttribute('bordersize', c ?? '');
+  set bordersize(c: string) {
+    this.setAttribute('bordersize', c);
   }
-  get bordersize(): string | null {
-    return this.getAttribute('bordersize');
+  get bordersize(): string {
+    return this.getAttribute('bordersize') ?? '';
   }
 
   // The width of the icon, in pixels (before |scale|).
-  set width(w: string | null) {
-    this.setAttribute('width', w ?? '');
+  set width(w: string) {
+    this.setAttribute('width', w);
   }
-  get width(): string | null {
-    return this.getAttribute('width');
+  get width(): string {
+    return this.getAttribute('width') ?? '';
   }
 
   // The height of the icon, in pixels (before |scale|).
-  set height(h: string | null) {
-    this.setAttribute('height', h ?? '');
+  set height(h: string) {
+    this.setAttribute('height', h);
   }
-  get height(): string | null {
-    return this.getAttribute('height');
+  get height(): string {
+    return this.getAttribute('height') ?? '';
   }
 
   // The length of time to count down.
-  set duration(s: string | null) {
-    this.setAttribute('duration', s ?? '');
+  set duration(s: string) {
+    this.setAttribute('duration', s);
   }
-  get duration(): string | null {
-    return this.getAttribute('duration');
+  get duration(): string {
+    return this.getAttribute('duration') ?? '';
   }
 
   // When the timer reaches 0, it is hidden after this many seconds. If ""
   // then it is not hidden.
-  set hideafter(h: string | null) {
-    this.setAttribute('hideafter', h ?? '');
+  set hideafter(h: string) {
+    this.setAttribute('hideafter', h);
   }
-  get hideafter(): string | null {
-    return this.getAttribute('hideafter');
+  get hideafter(): string {
+    return this.getAttribute('hideafter') ?? '';
   }
 
   // Sets the path to the image to show in the icon.
-  set icon(p: string | null) {
-    this.setAttribute('icon', p ?? '');
+  set icon(p: string) {
+    this.setAttribute('icon', p);
   }
-  get icon(): string | null {
-    return this.getAttribute('icon');
+  get icon(): string {
+    return this.getAttribute('icon') ?? '';
   }
 
   // Sets the number of pixels to zoom the icon. The image will be
   // grown by this amout and cropped to the widget.
-  set zoom(p: string | null) {
-    this.setAttribute('zoom', p ?? '');
+  set zoom(p: string) {
+    this.setAttribute('zoom', p);
   }
-  get zoom(): string | null {
-    return this.getAttribute('zoom');
+  get zoom(): string {
+    return this.getAttribute('zoom') ?? '';
   }
 
   // Sets what text should be shown in the icon. If empty, no text.
   // If 'remain', the number of seconds left, if 'elapsed', the number
   // of seconds active. If 'percent', the percentage of time remaining.
   // Otherwise, the literal text is shown.
-  set text(p: string | null) {
-    this.setAttribute('text', p ?? '');
+  set text(p: string) {
+    this.setAttribute('text', p);
   }
-  get text(): string | null {
-    return this.getAttribute('text');
+  get text(): string {
+    return this.getAttribute('text') ?? '';
   }
 
-  set textcolor(p: string | null) {
-    this.setAttribute('textcolor', p ?? '');
+  set textcolor(p: string) {
+    this.setAttribute('textcolor', p);
   }
-  get textcolor(): string | null {
-    return this.getAttribute('textcolor');
+  get textcolor(): string {
+    return this.getAttribute('textcolor') ?? '';
   }
 
   // This would be used with window.customElements.
