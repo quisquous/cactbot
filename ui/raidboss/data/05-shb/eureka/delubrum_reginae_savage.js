@@ -637,6 +637,40 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Avowed Blade of Entropy Collect',
+      // Used to get whether left or right cleave is happening and temperature value
+      // Trinity Avowed or Avowed Avatar cast these pairs
+      // +1 Cleaves
+      // 5942 = right cleave, heat (1) paired with 5944
+      // 5943 = right cleave, cold (1) paired with 5945
+      // 5944 = right cleave, heat (1) paired with 5942
+      // 5945 = right cleave, cold (1) paired with 5943
+      //
+      // 5946 = left cleave, cold (1) paired with 5948
+      // 5947 = left cleave, heat (1) paired with 5949
+      // 5948 = left cleave, cold (1) paired with 5946
+      // 5949 = left cleave, heat (1) paired with 5947
+      //
+      // +2 Cleaves
+      // 5956 = right cleave, heat (2) paired with 5958
+      // 5957 = right cleave, cold (2) paired with 5959
+      // 5958 = right cleave, heat (2) paired with 5956
+      // 5959 = right cleave, cold (2) paired with 5957
+      //
+      // 595A = left cleave heat (2) paired with 595C
+      // 595B = left cleave cold (2) paired with 595D
+      // 595C = left cleave heat (2) paired with 595A
+      // 595D = left cleave cold (2) paired with 595B
+      netRegex: NetRegexes.startsUsing({ source: ['Trinity Avowed', 'Avowed Avatar'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Trinität Der Eingeschworenen', 'Spaltteil der Eingeschworenen'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Trinité Féale', 'Clone De La Trinité Féale'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['トリニティ・アヴァウド', 'アヴァウドの分体'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
+      run: (data, matches) => {
+        data.blades = data.blades || {};
+        data.blades[parseInt(matches.sourceId, 16)] = matches.id.toUpperCase();
+      },
+    },
+    {
       id: 'DelubrumSav Avowed Hot And Cold Unwavering Apparations',
       // The buffs come out before the spell cast
       // Trinity Avowed and/or Avowed Avatar receive one of these buffs:
@@ -911,40 +945,6 @@ export default {
         southwest: Outputs.southwest,
         west: Outputs.west,
         northwest: Outputs.northwest,
-      },
-    },
-    {
-      id: 'DelubrumSav Avowed Blade of Entropy Collect',
-      // Used to get whether left or right cleave is happening and temperature value
-      // Trinity Avowed or Avowed Avatar cast these pairs
-      // +1 Cleaves
-      // 5942 = right cleave, heat (1) paired with 5944
-      // 5943 = right cleave, cold (1) paired with 5945
-      // 5944 = right cleave, heat (1) paired with 5942
-      // 5945 = right cleave, cold (1) paired with 5943
-      //
-      // 5946 = left cleave, cold (1) paired with 5948
-      // 5947 = left cleave, heat (1) paired with 5949
-      // 5948 = left cleave, cold (1) paired with 5946
-      // 5949 = left cleave, heat (1) paired with 5947
-      //
-      // +2 Cleaves
-      // 5956 = right cleave, heat (2) paired with 5958
-      // 5957 = right cleave, cold (2) paired with 5959
-      // 5958 = right cleave, heat (2) paired with 5956
-      // 5959 = right cleave, cold (2) paired with 5957
-      //
-      // 595A = left cleave heat (2) paired with 595C
-      // 595B = left cleave cold (2) paired with 595D
-      // 595C = left cleave heat (2) paired with 595A
-      // 595D = left cleave cold (2) paired with 595B
-      netRegex: NetRegexes.startsUsing({ source: ['Trinity Avowed', 'Avowed Avatar'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
-      netRegexDe: NetRegexes.startsUsing({ source: ['Trinität Der Eingeschworenen', 'Spaltteil der Eingeschworenen'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
-      netRegexFr: NetRegexes.startsUsing({ source: ['Trinité Féale', 'Clone De La Trinité Féale'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
-      netRegexJa: NetRegexes.startsUsing({ source: ['トリニティ・アヴァウド', 'アヴァウドの分体'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
-      run: (data, matches) => {
-        data.blades = data.blades || {};
-        data.blades[parseInt(matches.sourceId, 16)] = matches.id.toUpperCase();
       },
     },
     {
