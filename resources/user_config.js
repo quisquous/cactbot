@@ -181,7 +181,7 @@ class UserConfig {
 
       // If the overlay has a "Debug" setting, set to true via the config tool,
       // then also print out user files that have been loaded.
-      const printUserFile = options.Debug ? (x) => console.log(x) : (x) => { };
+      const printUserFile = options.Debug ? (x) => console.log(x) : (x) => {};
 
       // With user files being arbitrary javascript, and having multiple files
       // in user folders, it's possible for later files to accidentally remove
