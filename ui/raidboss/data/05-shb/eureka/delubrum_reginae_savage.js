@@ -846,40 +846,40 @@ export default {
           // North clone cleaving inside east (and therefore east clone cleaving north).
           safeZone = output.southwest();
           adjacentZones = {
-            0: bladeValues[eastCombatantBlade],
-            1: bladeValues[northCombatantBlade],
-            2: bladeValues[southCombatantBlade],
-            3: bladeValues[westCombatantBlade],
+            dirNum.north: bladeValues[eastCombatantBlade],
+            dirNum.east: bladeValues[northCombatantBlade],
+            dirNum.south: bladeValues[southCombatantBlade],
+            dirNum.west: bladeValues[westCombatantBlade],
           };
         } else if ((northCombatantFacing === dirNum.north && !bladeSides[northCombatantBlade]) ||
           (northCombatantFacing === dirNum.south && bladeSides[northCombatantBlade])) {
           // North clone cleaving inside west (and therefore west clone cleaving north).
           safeZone = output.southeast();
           adjacentZones = {
-            0: bladeValues[westCombatantBlade],
-            1: bladeValues[eastCombatantBlade],
-            2: bladeValues[southCombatantBlade],
-            3: bladeValues[northCombatantBlade],
+            dirNum.north: bladeValues[westCombatantBlade],
+            dirNum.east: bladeValues[eastCombatantBlade],
+            dirNum.south: bladeValues[southCombatantBlade],
+            dirNum.west: bladeValues[northCombatantBlade],
           };
         } else if ((southCombatantFacing === dirNum.south && bladeSides[southCombatantBlade]) ||
           (southCombatantFacing === dirNum.north && !bladeSides[southCombatantBlade])) {
           // South clone cleaving inside west (and therefore west clone cleaving south).
           safeZone = output.northeast();
           adjacentZones = {
-            0: bladeValues[northCombatantBlade],
-            1: bladeValues[eastCombatantBlade],
-            2: bladeValues[westCombatantBlade],
-            3: bladeValues[southCombatantBlade],
+            dirNum.north: bladeValues[northCombatantBlade],
+            dirNum.east: bladeValues[eastCombatantBlade],
+            dirNum.south: bladeValues[westCombatantBlade],
+            dirNum.west: bladeValues[southCombatantBlade],
           };
         } else if ((southCombatantFacing === dirNum.north && bladeSides[southCombatantBlade]) ||
           (southCombatantFacing === dirNum.south && !bladeSides[southCombatantBlade])) {
           // South clone cleaving inside east (and therefore east clone cleaving south).
           safeZone = output.northwest();
           adjacentZones = {
-            0: bladeValues[northCombatantBlade],
-            1: bladeValues[southCombatantBlade],
-            2: bladeValues[eastCombatantBlade],
-            3: bladeValues[westCombatantBlade],
+            dirNum.north: bladeValues[northCombatantBlade],
+            dirNum.east: bladeValues[southCombatantBlade],
+            dirNum.south: bladeValues[eastCombatantBlade],
+            dirNum.west: bladeValues[westCombatantBlade],
           };
         } else {
           // facing did not evaluate properly
@@ -901,10 +901,10 @@ export default {
 
           // Use zone closest to zero as output
           const dirs = {
-            0: output.north(),
-            1: output.east(),
-            2: output.south(),
-            3: output.west(),
+            dirNum.north: output.north(),
+            dirNum.east: output.east(),
+            dirNum.south: output.south(),
+            dirNum.west: output.west(),
           };
           adjacentZone = dirs[Object.values(calculatedZones).indexOf(calculatedZones.sort((a, b) =>
             b - a).pop())];
