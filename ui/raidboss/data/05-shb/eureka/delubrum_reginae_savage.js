@@ -853,13 +853,8 @@ export default {
           adjacentZones = null;
         }
 
-        let currentBrand = 0;
-        let currentTemperature = 0;
-
-        if (data.currentBrand)
-          currentBrand = data.currentBrand;
-        if (data.currentTemperature)
-          currentTemperature = data.currentTemperature;
+        const currentBrand = data.currentBrand ? data.currentBrand : 0;
+        const currentTemperature = data.currentTemperature ? data.currentTemperature : 0;
 
         const effectiveTemperature = currentTemperature + currentBrand;
 
