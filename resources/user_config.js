@@ -224,7 +224,7 @@ class UserConfig {
                 ${str}
 
               })(this)`);
-             /* eslint-enable no-eval */
+              /* eslint-enable no-eval */
             }).call({
               Options,
               Conditions,
