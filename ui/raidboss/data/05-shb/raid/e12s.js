@@ -1358,7 +1358,7 @@ export default {
       // '0085' is the Red tether that buffs "Slow"
       netRegex: NetRegexes.tether({ id: '0086' }),
       condition: (data, matches) => data.phase === 'advanced',
-      durationSeconds: 8,
+      durationSeconds: 4,
       suppressSeconds: 3,
       infoText: (data, matches, output) => {
         const sorrow1 = data.sorrows[matches.sourceId.toUpperCase()];
@@ -1393,6 +1393,12 @@ export default {
     {
       id: 'E12S Dark Water Stacks',
       netRegex: NetRegexes.gainsEffect({ effectId: '99D' }),
+      // During Advanced Relativity, there is a very short Dark Water III stack (12s)
+      // that applies when people position themselves for the initial Return placement.
+      // Most strategies auto-handle this, and so this feels like noise.  MOREVER,
+      // using suppress here without this conditional will pick one of the short/long
+      // Dark Water III buffs and suppress the other, so this is a load-bearing conditional.
+      condition: (data, matches) => parseFloat(matches.duration) > 13,
       delaySeconds: (data, matches) => parseFloat(matches.duration) - 3,
       suppressSeconds: 5,
       alertText: (data, _, output) => output.text(),
