@@ -714,7 +714,7 @@ export default {
           data.safeZone = null;
           return;
         }
-        if (combatantDataAvatars.combatants.legnth < 3) {
+        if (combatantDataAvatars.combatants.length < 3) {
           console.error(`Avowed Avatar: expected at least 3 combatants got ${combatantDataAvatars.combatants.length}`);
           data.safeZone = null;
           return;
