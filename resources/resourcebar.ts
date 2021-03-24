@@ -1,4 +1,4 @@
-export class ResourceBar extends HTMLElement {
+export default class ResourceBar extends HTMLElement {
   foregroundElement: HTMLDivElement;
   backgroundElement: HTMLDivElement;
   extraUnderElement: HTMLDivElement;
