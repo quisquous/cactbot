@@ -809,7 +809,7 @@ export default {
         let adjacentZones = {};
         if ((northCombatantFacing === dirNum.north && bladeSides[northCombatantBlade]) ||
           (northCombatantFacing === dirNum.south && !bladeSides[northCombatantBlade])) {
-          // North clone cleaving inside east
+          // North clone cleaving inside east (and therefore east clone cleaving north).
           safeZone = output.southwest();
           adjacentZones = {
             0: bladeValues[eastCombatantBlade],
