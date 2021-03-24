@@ -924,7 +924,7 @@ export default {
       },
       outputStrings: {
         getCleaved: {
-          en: 'Safe Spot inside ${dir1}, Get cleaved 1 square ${dir2}',
+          en: '${dir1} Safe Spot => ${dir2} for cleave',
         },
         safeSpot: {
           en: '${dir} Safe Spot',
