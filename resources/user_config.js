@@ -225,7 +225,6 @@ class UserConfig {
 
               })(this)`);
             }).call({
-              ...window,
               Options,
               Conditions,
               ContentType,
@@ -234,7 +233,7 @@ class UserConfig {
               Responses,
               Outputs,
               Util,
-              ZoneId: ZoneId,
+              ZoneId,
               ZoneInfo,
             }, localFiles[jsFile].toString());
 
