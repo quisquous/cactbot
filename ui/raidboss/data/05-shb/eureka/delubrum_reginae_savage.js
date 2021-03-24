@@ -839,7 +839,7 @@ export default {
           };
         } else if ((southCombatantFacing === dirNum.north && bladeSides[southCombatantBlade]) ||
           (southCombatantFacing === dirNum.south && !bladeSides[southCombatantBlade])) {
-          // South clone cleaving inside east
+          // South clone cleaving inside east (and therefore east clone cleaving south).
           safeZone = output.northwest();
           adjacentZones = {
             0: bladeValues[northCombatantBlade],
