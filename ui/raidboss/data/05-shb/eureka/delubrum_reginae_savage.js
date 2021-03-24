@@ -887,7 +887,7 @@ export default {
         else
           data.safeZone = null;
       },
-      infoText: (data, _, output) => {
+      alertText: (data, _, output) => {
         return !data.safeZone ? output.unknown() : data.safeZone;
       },
       outputStrings: {
