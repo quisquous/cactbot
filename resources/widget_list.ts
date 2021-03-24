@@ -23,7 +23,7 @@ export default class WidgetList extends HTMLElement {
   private _connected = false;
   private rootElement: HTMLElement;
 
-  static get observedAttributes() {
+  static get observedAttributes(): string[] {
     return ['toward', 'elementwidth', 'elementheight', 'rowcolsize', 'maxnumber'];
   }
 
@@ -95,16 +95,16 @@ export default class WidgetList extends HTMLElement {
     this.rootElement = this.shadowRoot.getElementById('root') as HTMLElement;
   }
 
-  attachedCallback() {
+  connectedCallback(): void {
     this._connected = true;
     this.layout();
   }
 
-  detachedCallback() {
+  disconnectedCallback(): void {
     this._connected = false;
   }
 
-  parseToward(toward: string) {
+  parseToward(toward: string): void {
     const t = toward.split(' ');
     if (t.length !== 2) {
       console.log('widget-list: Invalid toward format');
@@ -174,7 +174,7 @@ export default class WidgetList extends HTMLElement {
     this._yinc2 = y2inc;
   }
 
-  attributeChangedCallback(name: string, _: string, newValue: string) {
+  attributeChangedCallback(name: string, _: string, newValue: string): void {
     if (name === 'toward') {
       this.parseToward(newValue);
       this.layout();
@@ -193,7 +193,7 @@ export default class WidgetList extends HTMLElement {
     }
   }
 
-  addElement(name: string, element: HTMLElement, sortKey: number | Sorter) {
+  addElement(name: string, element: HTMLElement, sortKey: number | Sorter): void {
     const id = this._nextId;
     this._nextId = this._nextId + 1;
 
@@ -229,7 +229,7 @@ export default class WidgetList extends HTMLElement {
     this.layout();
   }
 
-  removeElement(name: string) {
+  removeElement(name: string): ChildNode | undefined {
     const id = this._nameToId[name];
     if (!id)
       return;
@@ -242,12 +242,12 @@ export default class WidgetList extends HTMLElement {
     return;
   }
 
-  clear() {
+  clear(): void {
     for (const name in this._nameToId)
       this.removeElement(name);
   }
 
-  layout() {
+  layout(): void {
     if (!this._connected)
       return;
 
@@ -296,7 +296,7 @@ export default class WidgetList extends HTMLElement {
     });
   }
 
-  test() {
+  test(): void {
     for (let i = 0; i < 8; ++i) {
       const div = document.createElement('div');
       div.style.width = String(this._elementwidth * 3 / 4);
