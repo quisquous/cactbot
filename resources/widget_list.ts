@@ -7,7 +7,7 @@ const getRandomInt = function(max: number) {
   return Math.floor(Math.random() * Math.floor(max));
 };
 
-class WidgetList extends HTMLElement {
+export default class WidgetList extends HTMLElement {
   private _nextId = 1;
   private _nameToId: { [key: string]: number } = {};
   private _elements: { [key: number]: Sorter } = {};
