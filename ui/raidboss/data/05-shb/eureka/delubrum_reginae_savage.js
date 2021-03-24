@@ -893,7 +893,7 @@ export default {
           en: 'Safe Spot inside ${dir1}, Get cleaved 1 square ${dir2}',
         },
         safeSpot: {
-          en: 'Safe Spot: inside ${dir}',
+          en: '${dir} Safe Spot',
         },
         unknown: {
           en: '???',
