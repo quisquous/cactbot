@@ -874,8 +874,6 @@ export default {
           };
           adjacentZone = dirs[Object.values(calculatedZones).indexOf(calculatedZones.sort((a, b) =>
             b - a).pop())];
-        } else {
-          adjacentZone = null;
         }
 
         // Callout safe spot and get cleaved spot if both are known
