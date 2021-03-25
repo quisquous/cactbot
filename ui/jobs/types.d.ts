@@ -1,4 +1,4 @@
-import { Option as BaseOption} from '../../types/data';
+import { Option as BaseOption } from '../../types/data';
 import { Job } from '../../types/job';
 import { BuffInfo } from './buff_tracker';
 
@@ -29,7 +29,7 @@ export interface IInitOptions {
   MaxLevel: number;
 
   PerBuffOptions: {
-    [s: string]: BuffInfo;
+    [s: string]: Partial<BuffInfo>;
   };
 
   FarThresholdOffence: number;
@@ -44,3 +44,5 @@ export interface IInitOptions {
 }
 
 export type IOptions = BaseOption & IDefaultOptions & IInitOptions;
+
+export type JobFunc = (id: string, matches: Matches) => void;
