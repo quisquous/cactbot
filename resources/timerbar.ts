@@ -96,11 +96,11 @@ export default class TimerBar extends HTMLElement {
 
   // If "fill" then the progress goes empty-to-full, if "empty" then the
   // progress bar starts full and goes to empty.
-  set styleFill(s: 'empty' | 'full') {
+  set styleFill(s: 'empty' | 'fill') {
     this.setAttribute('style', s);
   }
-  get styleFill(): 'empty' | 'full' {
-    return this.getAttribute('style') as 'empty' | 'full';
+  get styleFill(): 'empty' | 'fill' {
+    return this.getAttribute('style') as 'empty' | 'fill';
   }
 
   // When the bar reaches 0, it is hidden after this many seconds. If ""
