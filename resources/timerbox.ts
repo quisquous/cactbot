@@ -113,7 +113,7 @@ export default class TimerBox extends HTMLElement {
   // When the timer reaches 0, it is big if this is true.
   set bigatzero(big: boolean) {
     if (big)
-      this.setAttribute('bigatzero');
+      this.setAttribute('bigatzero', '');
     else
       this.removeAttribute('bigatzero');
   }
@@ -137,7 +137,7 @@ export default class TimerBox extends HTMLElement {
   // Whether to round up the value to the nearest integer before thresholding.
   set roundupthreshold(r: boolean) {
     if (r)
-      this.setAttribute('roundupthreshold');
+      this.setAttribute('roundupthreshold', '');
     else
       this.removeAttribute('roundupthreshold');
   }
