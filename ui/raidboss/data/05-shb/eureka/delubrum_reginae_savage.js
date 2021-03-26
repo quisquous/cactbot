@@ -32,6 +32,9 @@ const seekerCenterY = 277.9735;
 const avowedCenterX = -272;
 const avowedCenterY = -82;
 
+const queenCenterX = -272;
+const queenCenterY = -415;
+
 // TODO: promote something like this to Conditions?
 const tankBusterOnParty = (data, matches) => {
   if (data.target === data.me)
@@ -169,6 +172,182 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AD3', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
+      // Clean up the swords here for consistency.  There's a raidwide between every set.
+      // TODO: we could also do this on starts casting First Mercy, which might be cleaner?
+      run: (data) => {
+        delete data.seekerSwords;
+        delete data.calledSeekerSwords;
+        delete data.seekerFirstMercy;
+      },
+    },
+    {
+      id: 'DelubrumSav Seeker First Mercy',
+      netRegex: NetRegexes.abilityFull({ source: ['Trinity Seeker', 'Seeker Avatar'], id: '5B61' }),
+      run: (data, matches) => data.seekerFirstMercy = matches,
+    },
+    {
+      id: 'DelubrumSav Seeker Mercy Swords',
+      netRegex: NetRegexes.gainsEffect({ target: ['Trinity Seeker', 'Seeker Avatar'], effectId: '808' }),
+      durationSeconds: 10,
+      alertText: (data, matches, output) => {
+        if (data.calledSeekerSwords)
+          return;
+
+        // These are deleted in Verdant Tempest for consistency.
+        data.seekerSwords = data.seekerSwords || [];
+        data.seekerSwords.push(matches.count.toUpperCase());
+        console.error(`Swords: GLOW: ${JSON.stringify(matches)}`);
+
+        if (data.seekerSwords.length <= 1 || data.seekerSwords.length >= 4)
+          return;
+
+        if (!data.seekerFirstMercy) {
+          console.error(`Swords: missing first mercy`);
+          return;
+        }
+
+        const posX = parseFloat(data.seekerFirstMercy.x) - seekerCenterX;
+        const posY = parseFloat(data.seekerFirstMercy.y) - seekerCenterY;
+
+        const isClone = Math.hypot(posX, posY) > 10;
+        // 0 = N, 1 = E, etc
+        const pos = Math.round(2 - 2 * Math.atan2(posX, posY) / Math.PI) % 4;
+        const heading = Math.round(2 - 2 * data.seekerFirstMercy.heading / Math.PI) % 4;
+        const cleaves = data.seekerSwords;
+        console.log(`SWORD DEBUG: ${JSON.stringify(cleaves)}, ${posX}, ${posY}, ${isClone}, ${pos}, ${heading}`);
+
+        // Seen two cleaves, is this enough information to call??
+        // If no, we will wait until we have seen the third.
+        if (data.seekerSwords.length === 2) {
+          // Named constants for readability.
+          const dir = { north: 0, east: 1, south: 2, west: 3 };
+
+          // Find boss-relative safe zones.
+          const cleavetoSafeZones = {
+            // Front right cleave.
+            F7: [dir.south, dir.west],
+            // Back right cleave.
+            F8: [dir.west, dir.north],
+            // Back left cleave.
+            F9: [dir.north, dir.east],
+            // Front left cleave.
+            FA: [dir.east, dir.south],
+          };
+
+          const first = cleavetoSafeZones[cleaves[0]];
+          const second = cleavetoSafeZones[cleaves[1]];
+
+          const intersect = first.filter((safe) => second.includes(safe));
+          if (intersect.length === 2) {
+            console.error(`Sword: weird intersect: ${JSON.stringify(data.seekerSwords)}`);
+            return;
+          }
+          // This is a bad pattern.  Need to wait for three swords.
+          if (intersect.length === 0)
+            return;
+
+          if (isClone) {
+            // intersect[0] is north===front of boss.  Rotate so that north===out.
+            const cardinal = (4 + intersect[0] - pos + heading) % 4;
+
+            // Trinity Seeker has a lot of limbs and people have a VERY hard time with
+            // left vs right at the best of times.  Use "in and out" here on the clone
+            // to make sure this doesn't get messed up.  This may mean that there is a
+            // simpler left->right pattern that could be called, but we're ignoring it
+            // for clarity of communication.
+            data.calledSeekerSwords = true;
+            if (cardinal === dir.north) {
+              data.calledSeekerSwords = true;
+              return output.double({ dir1: output.out(), dir2: output.in() });
+            } else if (cardinal === dir.south) {
+              return output.double({ dir1: output.in(), dir2: output.out() });
+            }
+
+            // We'll call it the hard way.
+            return;
+          }
+
+          data.calledSeekerSwords = true;
+          const cardinal = intersect[0];
+          if (cardinal === dir.north)
+            return output.double({ dir1: output.north(), dir2: output.south() });
+          if (cardinal === dir.east)
+            return output.double({ dir1: output.east(), dir2: output.west() });
+          if (cardinal === dir.south)
+            return output.double({ dir1: output.south(), dir2: output.north() });
+          if (cardinal === dir.west)
+            return output.double({ dir1: output.west(), dir2: output.east() });
+          // Or not?
+          data.calledSeekerSwords = false;
+          return;
+        }
+
+
+        // Find the cleave we're missing and add it to the list.
+        const finalCleaveList = ['F7', 'F8', 'F9', 'FA'].filter((id) => !cleaves.includes(id));
+        if (finalCleaveList.length !== 1) {
+          console.error(`Swords: bad intersection ${JSON.stringify(data.seekerSwords)}`);
+          return;
+        }
+        cleaves.push(finalCleaveList[0]);
+
+
+        // Seen three clones, which means we weren't able to call with two.
+        // Try to call out something the best we can.
+        if (isClone) {
+          const cardinal = (4 + intersect[0] - pos + heading) % 4;
+          data.calledSeekerSwords = true;
+
+          const cleaveToDirection = {
+            // Front right cleave.
+            F7: output.in(),
+            // Back right cleave.
+            F8: output.out(),
+            // Back left cleave.
+            F9: output.out(),
+            // Front left cleave.
+            FA: output.in(),
+          };
+
+          const dirs = cleaves.map((id) => cleaveToDirection[id]);
+          return output.quadruple({ dir1: dirs[0], dir2: dirs[1], dir3: dirs[2], dir4: dirs[3] });
+        }
+
+        const cleaveToDirection = {
+          // Front right cleave.
+          F7: output.dirSW(),
+          // Back right cleave.
+          F8: output.dirNW(),
+          // Back left cleave.
+          F9: output.dirNE(),
+          // Front left cleave.
+          FA: output.dirSE(),
+        };
+
+        data.calledSeekerSwords = true;
+        const dirs = cleaves.map((id) => cleaveToDirection[id]);
+        return output.quadruple({ dir1: dirs[0], dir2: dirs[1], dir3: dirs[2], dir4: dirs[3] });
+      },
+      outputStrings: {
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+        in: Outputs.in,
+        out: Outputs.out,
+        // Backup for bad patterns.
+        dirNE: Outputs.dirNE,
+        dirSE: Outputs.dirSE,
+        dirSW: Outputs.dirSW,
+        dirNW: Outputs.dirNW,
+
+        double: {
+          en: '${dir1} > ${dir2}',
+        },
+        quadruple: {
+          en: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
+        },
+      },
     },
     {
       id: 'DelubrumSav Seeker Sword Cleanup',
@@ -2413,6 +2592,17 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Queen Ball Lightning Bubble',
+      netRegex: NetRegexes.wasDefeated({ target: 'Ball Lightning', capture: false }),
+      suppressSeconds: 20,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get in Bubble',
+        },
+      },
+    },
+    {
       id: 'DelubrumSav Queen Fiery Portent',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5A21' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5A21' }),
@@ -2494,6 +2684,170 @@ export default {
           fr: 'Multiple AoEs',
           ja: '連続AoE',
           cn: '连续AoE',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Queen Super Chess Pre-Cleanup',
+      // On Queen's Edict cast.
+      netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59EC', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59EC', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59EC', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59EC', capture: false }),
+      run: (data) => {
+
+      },
+    },
+    {
+      id: 'DelubrumSav Queen Super Chess',
+      // TODO: this would be a million times better if we could figure out where the safe spot was.
+      // https://imgur.com/a/q2tmXLi
+      netRegex: NetRegexes.gainsEffect({ target: ['Queen\'s Knight', 'Queen\'s Warrior', 'Queen\'s Soldier', 'Queen\'s Gunner'], effectId: '808', count: 'E[2-4]' }),
+      condition: (data, matches) => {
+        data.chessMatches = data.chessMatches || [];
+        data.chessMatches.push(matches);
+        console.log(`CHESS DEBUG: ${JSON.stringify(data.chessMatches)}`);
+        return data.chessMatches.length === 4;
+      },
+      promise: async (data) => {
+        const ids = data.chessMatches.map((matches) => parseInt(matches.targetId, 16));
+        const chessData = await window.callOverlayHandler({
+          call: 'getCombatants',
+          ids: ids,
+        });
+
+        if (chessData === null) {
+          console.error(`Chess: null data`);
+          return;
+        }
+        if (!chessData.combatants) {
+          console.error(`Chess: null combatants`);
+          return;
+        }
+        if (chessData.combatants.length !== 4) {
+          console.error(`Chess: expected 4, got ${chessData.combatants.length}`);
+          return;
+        }
+
+        data.chessCombatants = chessData.combatants;
+        console.log(`CHESS DEBUG: ${JSON.stringify(data.chessCombatants)}`);
+      },
+      infoText: (data, _, output) => {
+        const vfxToSteps = {
+          E2: 1,
+          E3: 2,
+          E4: 3,
+        };
+
+        const idToSteps = {};
+        for (const matches in data.chessMatches)
+          idToSteps[parseInt(matches.targetId, 16)] = vfxToSteps[matches.count];
+
+        // +x = east, +y = south
+        const findCol = (c) => Math.round((c.PosX - queenCenterX) / 10);
+        const findRow = (c) => Math.round((c.PosY - queenCenterY) / 10);
+
+        // All of them start one square from the middle/corner, and move towards the corner.
+        // the "north combatant" here is the one moving to the north.
+        const northCombatant = data.chessCombatants.find(findRow(c) === 1);
+        const eastCombatant = data.chessCombatants.find(findCol(c) === -1);
+        const southCombatant = data.chessCombatants.find(findRow(c) === -1);
+        const westCombatant = data.chessCombatants.find(findCol(c) === 1);
+
+        console.log(`CHESS DEBUG: ${JSON.stringify(northCombatant)}, ${JSON.stringify(eastCombatant)}, ${JSON.stringify(southCombatant)}, ${JSON.stringify(westCombatant)}`);
+        if (!northId || !eastId || !southId || !westId) {
+          console.log(`Chess missing id: ${JSON.stringify(northCombatant)}, ${JSON.stringify(eastCombatant)}, ${JSON.stringify(southCombatant)}, ${JSON.stringify(westCombatant)}`);
+          return;
+        }
+
+        const northSteps = idToSteps[northCombatant.ID];
+        const eastSteps = idToSteps[eastCombatant.ID];
+        const southSteps = idToSteps[southCombatant.ID];
+        const westSteps = idToSteps[westCombatant.ID];
+
+        let knownUnsafe = false;
+
+        let backStr;
+        if (northSteps !== 3 && southSteps !== 3) {
+          backStr = output.backWallSafe();
+        } else if (northSteps === 3 && southSteps === 3) {
+          knownUnsafe = true;
+          backStr = output.backWallUnsafe();
+        } else if (northSteps === 3) {
+          backStr = output.northWallUnsafe();
+        } else {
+          backStr = output.southWallUnsafe();
+        }
+
+        let sideStr;
+        if (eastSteps !== 3 && westSteps !== 3) {
+          backStr = output.sideWallSafe();
+        } else if (eastSteps === 3 && westSteps === 3) {
+          knownUnsafe = true;
+          backStr = output.sideWallUnsafe();
+        } else if (eastSteps === 3) {
+          backStr = output.eastWallUnsafe();
+        } else {
+          backStr = output.westWallUnsafe();
+        }
+
+        // The "five" followup only matters when all walls are potentially safe.
+        // It will probably be confusing if you don't know what you're doing, regardless.
+        if (knownUnsafe)
+          return output.combineNoFive({ side: sideStr, back: backStr });
+
+        // If the north combatant is not moving two, the south combatant starts on
+        // that line, so that is always safe.
+        let fiveStr;
+        if (northSteps !== 2)
+          fiveStr = output.northFive();
+        else if (northSteps !== 1 && southSteps !== 1)
+          fiveStr = output.middleFive();
+        else
+          fiveStr = output.southFive();
+
+
+        return output.combine({ side: sideStr, back: backStr, five: fiveStr });
+      },
+      outputStrings: {
+        combine: {
+          en: '${side}, ${back} (${five})',
+        },
+        combineNoFive: {
+          en: '${side}, ${back}',
+        },
+        backWallSafe: {
+          en: 'Back Wall Safe',
+        },
+        backWallUnsafe: {
+          en: 'Back Wall Unsafe',
+        },
+        northWallUnsafe: {
+          en: 'North Wall Unsafe',
+        },
+        southWallUnsafe: {
+          en: 'South Wall Unsafe',
+        },
+        sideWallSafe: {
+          en: 'Side Wall Safe',
+        },
+        sideWallUnsafe: {
+          en: 'Side Wall Unsafe',
+        },
+        eastWallUnsafe: {
+          en: 'East Wall Unsafe',
+        },
+        westWallUnsafe: {
+          en: 'West Wall Unsafe',
+        },
+        northFive: {
+          en: '5\'s north',
+        },
+        middleFive: {
+          en: '5\'s middle',
+        },
+        southFive: {
+          en: '5\'s south',
         },
       },
     },

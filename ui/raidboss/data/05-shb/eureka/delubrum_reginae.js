@@ -35,6 +35,10 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AB6', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
+      run: (data) => {
+        delete data.calledSeekerSwords;
+        delete data.seekerSwords;
+      },
     },
     {
       id: 'Delubrum Seeker Sword Cleanup',
@@ -681,6 +685,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57A3', capture: false }),
       preRun: (data) => data.weaveMiasmaCount = (data.weaveMiasmaCount || 0) + 1,
       delaySeconds: 3,
+      alertText: (data) => data.weaveMiasmaCount,
       infoText: (data, _, output) => {
         if (data.weaveMiasmaCount && data.weaveMiasmaCount >= 3)
           return output.weaveWithKnockback();
@@ -1234,7 +1239,12 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Kriegerin Der Königin', id: '59D4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrière De La Reine', id: '59D4', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ウォリアー', id: '59D4', capture: false }),
-      run: (data) => data.reversalOfForces = true,
+      alertText: (data, _, output) => output.text(),
+      run: (data) => {
+        data.reversalOfForces = true;
+        console.log(`REVERSAL DEBUG: ${data.seenHeavensWrath}, ${data.reversalOfForces}`);
+      },
+      outputStrings: { text: { en: 'REVERSAL ' } },
     },
     {
       // Called during the knockback cast itself, not during the 59C6 Heaven's Wrath
@@ -1248,6 +1258,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ id: '59C7', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '59C7', capture: false }),
       alertText: (data, _, output) => {
+        console.log(`WRATH DEBUG: ${data.seenHeavensWrath}, ${data.reversalOfForces}`);
         if (!data.seenHeavensWrath)
           return output.getKnockedTowardsMiddle();
         if (data.reversalOfForces)
