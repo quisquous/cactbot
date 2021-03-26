@@ -87,10 +87,16 @@ const parseJavascriptFile = (file, locales) => {
   let keys = [];
   let openMatch = null;
 
-  const openObjRe = new RegExp('(\\s*)(.*{)\\s*');
+  const openObjRe = new RegExp('(\\s*)(.*{)\\s*$');
   const keyRe = new RegExp('\\s*(\\w{2}):');
 
   lineReader.on('line', (line, idx = lineCounter()) => {
+    // Immediately exit if the file is auto-generated
+    if (line.match('// Auto-generated')) {
+      lineReader.close();
+      lineReader.removeAllListeners();
+    }
+
     // Any time we encounter what looks like a new object, start over.
     // FIXME: this deliberately simplifies and will ignore nested objects.
     // That's what we get for parsing javascript with regex.
