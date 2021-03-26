@@ -113,11 +113,11 @@ export default class ResourceBar extends HTMLElement {
 
   // If "fill" then the progress goes empty-to-full, if "empty" then the
   // progress bar starts full and goes to empty.
-  set styleFill(s: 'empty' | 'fill') {
+  set styleFill(s: 'empty' | 'full') {
     this.setAttribute('styleFill', s);
   }
-  get styleFill(): 'empty' | 'fill' {
-    return this.getAttribute('styleFill') as 'empty' | 'fill';
+  get styleFill(): 'empty' | 'full' {
+    return this.getAttribute('styleFill') as 'empty' | 'full';
   }
 
   // Chooses what should be shown in the text field in each area of
