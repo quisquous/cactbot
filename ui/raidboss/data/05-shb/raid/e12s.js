@@ -4,11 +4,6 @@ import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
-// TODO: knockback direction from big hand after giant lasers (Palm Of Temperance 58B4/58B6/?/?)
-// TODO: for left/right reach during Blade Of Flame, call out Left + #1 alarm for #1.
-
-// TODO: somber dance triggers
-// TODO: apocalypse "get away from facing" or some such triggers
 // TODO: double apoc clockwise vs counterclockwise call would be nice
 
 // Each tether ID corresponds to a primal:
@@ -975,10 +970,11 @@ export default {
     },
     {
       id: 'E12S Oracle Darkest Dance',
-      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58BE', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58BE', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58BE', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58BE', capture: false }),
+      // Darkest and Somber Dance both.
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: ['58BE', '58BD'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: ['58BE', '58BD'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: ['58BE', '58BD'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: ['58BE', '58BD'], capture: false }),
       infoText: (data, _, output) => {
         if (data.role === 'tank')
           return output.tankBait();
@@ -1000,6 +996,28 @@ export default {
           ja: 'ボスと貼り付く',
           cn: '去脚下',
           ko: '보스 아래로',
+        },
+      },
+    },
+    {
+      id: 'E12S Oracle Somber Dance',
+      // Call for second hit of somber dance after first hit lands.
+      netRegex: NetRegexes.ability({ source: 'Oracle Of Darkness', id: '58BD', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Orakel Der Dunkelheit', id: '58BD', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Prêtresse Des Ténèbres', id: '58BD', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '闇の巫女', id: '58BD', capture: false }),
+      suppressSeconds: 5,
+      infoText: (data, _, output) => {
+        if (data.role === 'tank')
+          return output.tankBait();
+        return output.partyOut();
+      },
+      outputStrings: {
+        tankBait: {
+          en: 'Bait Close',
+        },
+        partyOut: {
+          en: 'Party Out',
         },
       },
     },
@@ -1391,6 +1409,54 @@ export default {
       },
     },
     {
+      id: 'E12S Initial Dark Water',
+      netRegex: NetRegexes.gainsEffect({ effectId: '99D' }),
+      condition: (data, matches) => !data.phase,
+      delaySeconds: (data, matches) => {
+        const duration = parseFloat(matches.duration);
+        return data.seenInitialSpread ? duration - 6 : duration - 8;
+      },
+      durationSeconds: 5,
+      suppressSeconds: 5,
+      alertText: (data, _, output) => {
+        data.seenInitialStacks = true;
+        if (data.seenInitialSpread)
+          return output.knockbackIntoStackGroups();
+        return output.stackGroups();
+      },
+      outputStrings: {
+        stackGroups: {
+          en: 'Stack Groups',
+        },
+        knockbackIntoStackGroups: {
+          en: 'Knockback Into Stack Groups',
+        },
+      },
+    },
+    {
+      id: 'E12S Initial Dark Eruption',
+      netRegex: NetRegexes.gainsEffect({ effectId: '99C' }),
+      condition: (data, matches) => !data.phase,
+      delaySeconds: (data, matches) => {
+        const duration = parseFloat(matches.duration);
+        return data.seenInitialSpread ? duration - 6 : duration - 8;
+      },
+      durationSeconds: 5,
+      suppressSeconds: 5,
+      alertText: (data, _, output) => {
+        data.seenInitialSpread = true;
+        if (data.seenInitialStacks)
+          return output.knockbackIntoSpread();
+        return output.spread();
+      },
+      outputStrings: {
+        spread: Outputs.spread,
+        knockbackIntoSpread: {
+          en: 'Knockback Into Spread',
+        },
+      },
+    },
+    {
       id: 'E12S Dark Water Stacks',
       netRegex: NetRegexes.gainsEffect({ effectId: '99D' }),
       // During Advanced Relativity, there is a very short Dark Water III stack (12s)
@@ -1398,8 +1464,8 @@ export default {
       // Most strategies auto-handle this, and so this feels like noise.  MOREVER,
       // using suppress here without this conditional will pick one of the short/long
       // Dark Water III buffs and suppress the other, so this is a load-bearing conditional.
-      condition: (data, matches) => parseFloat(matches.duration) > 13,
-      delaySeconds: (data, matches) => parseFloat(matches.duration) - 3,
+      condition: (data, matches) => data.phase && parseFloat(matches.duration) > 13,
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - 4,
       suppressSeconds: 5,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
