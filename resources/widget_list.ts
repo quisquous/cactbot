@@ -28,11 +28,14 @@ export default class WidgetList extends HTMLElement {
   }
 
   // All visual dimensions are scaled by this.
-  set scale(s: string) {
-    this.setAttribute('scale', s);
+  set scale(s: string | null) {
+    if (s === null)
+      this.removeAttribute('scale');
+    else
+      this.setAttribute('scale', s);
   }
-  get scale(): string {
-    return this.getAttribute('scale') ?? '';
+  get scale(): string | null {
+    return this.getAttribute('scale');
   }
 
   // The direction that the list should grow. It can specify two
