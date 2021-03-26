@@ -987,6 +987,357 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Avowed Temperature Collect',
+      // These come from Environment, Trinity Avowed, Avowed Avatar, Swirling Orb
+      // 89C Normal
+      // 89D Running Hot: +1
+      // 8DC Running Cold: -1
+      // 8E2 Running Cold: -2
+      // 8A4 Running Hot: +2
+      netRegex: NetRegexes.gainsEffect({ effectId: ['89C', '89D', '8DC', '8E2', '8A4'] }),
+      condition: Conditions.targetIsYou(),
+      run: (data, matches) => {
+        const temperature = {
+          '89C': 0,
+          '89D': 1,
+          '8DC': -1,
+          '8E2': -2,
+          '8A4': 2,
+        };
+        data.currentTemperature = temperature[matches.effectId.toUpperCase()];
+      },
+    },
+    {
+      id: 'DelubrumSav Avowed Brand Collect',
+      // These come from Environment, E0000000
+      // 8E5 Hot Brand: +1
+      // 8F3 Hot Brand: +2
+      // 8F4 Cold Brand: +1
+      // 8F8 Cold Brand: +2
+      netRegex: NetRegexes.gainsEffect({ effectId: ['8E5', '8F3', '8F4', '8F8'] }),
+      condition: Conditions.targetIsYou(),
+      run: (data, matches) => {
+        const brand = {
+          '8E5': 1,
+          '8F3': 2,
+          '8F4': -1,
+          '8F8': -2,
+        };
+        data.currentBrand = brand[matches.effectId.toUpperCase()];
+      },
+    },
+    {
+      id: 'DelubrumSav Avowed Blade of Entropy Collect',
+      // Used to get whether left or right cleave is happening and temperature value
+      // Trinity Avowed or Avowed Avatar cast these pairs
+      // +1 Cleaves
+      // 5942 = right cleave, heat (1) paired with 5944
+      // 5943 = right cleave, cold (1) paired with 5945
+      // 5944 = right cleave, heat (1) paired with 5942
+      // 5945 = right cleave, cold (1) paired with 5943
+      //
+      // 5946 = left cleave, cold (1) paired with 5948
+      // 5947 = left cleave, heat (1) paired with 5949
+      // 5948 = left cleave, cold (1) paired with 5946
+      // 5949 = left cleave, heat (1) paired with 5947
+      //
+      // +2 Cleaves
+      // 5956 = right cleave, heat (2) paired with 5958
+      // 5957 = right cleave, cold (2) paired with 5959
+      // 5958 = right cleave, heat (2) paired with 5956
+      // 5959 = right cleave, cold (2) paired with 5957
+      //
+      // 595A = left cleave heat (2) paired with 595C
+      // 595B = left cleave cold (2) paired with 595D
+      // 595C = left cleave heat (2) paired with 595A
+      // 595D = left cleave cold (2) paired with 595B
+      netRegex: NetRegexes.startsUsing({ source: ['Trinity Avowed', 'Avowed Avatar'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Trinität Der Eingeschworenen', 'Spaltteil der Eingeschworenen'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Trinité Féale', 'Clone De La Trinité Féale'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['トリニティ・アヴァウド', 'アヴァウドの分体'], id: ['5942', '5943', '5946', '5947', '5956', '5957', '595A', '595B'] }),
+      run: (data, matches) => {
+        data.blades = data.blades || {};
+        data.blades[parseInt(matches.sourceId, 16)] = matches.id.toUpperCase();
+      },
+    },
+    {
+      id: 'DelubrumSav Avowed Hot And Cold Unwavering Apparations',
+      // The buffs come out before the spell cast
+      // Trinity Avowed and/or Avowed Avatar receive one of these buffs:
+      // 8F9: Hot Blade: +1
+      // 8FA: Hot Blade: +2
+      // 8FB: Cold Blade: -1
+      // 8FC: Cold Blade: -2
+      // Positional data in statusEffectsParams is often not up to date, use promise
+      //
+      // Trigger delayed until after Blade Of Entropy happens about ~100ms after
+      // to get left/right cleave info
+      // Ignoring Trinity Avowed due to Environment 'randomly' refreshing its buff
+      netRegex: NetRegexes.gainsEffect({ target: 'Avowed Avatar', effectId: ['8F9', '8FA', '8FB', '8FC'], capture: false }),
+      netRegexDe: NetRegexes.gainsEffect({ target: 'Spaltteil der Eingeschworenen', effectId: ['8F9', '8FA', '8FB', '8FC'], capture: false }),
+      netRegexFr: NetRegexes.gainsEffect({ target: 'Clone De La Trinité Féale', effectId: ['8F9', '8FA', '8FB', '8FC'], capture: false }),
+      netRegexJa: NetRegexes.gainsEffect({ target: 'アヴァウドの分体', effectId: ['8F9', '8FA', '8FB', '8FC'], capture: false }),
+      delaySeconds: 0.5,
+      durationSeconds: 9.5,
+      suppressSeconds: 1,
+      promise: async (data, _, output) => {
+        const trinityLocaleNames = {
+          en: 'Trinity Avowed',
+          de: 'Trinität Der Eingeschworenen',
+          fr: 'Trinité Féale',
+          ja: 'トリニティ・アヴァウ',
+        };
+
+        const avatarLocaleNames = {
+          en: 'Avowed Avatar',
+          de: 'Spaltteil der Eingeschworenen',
+          fr: 'Clone De La Trinité Féale',
+          ja: 'アヴァウドの分体',
+        };
+
+        // select the Trinity and Avatars
+        let combatantNameBoss = null;
+        let combatantNameAvatar = null;
+        combatantNameBoss = trinityLocaleNames[data.parserLang];
+        combatantNameAvatar = avatarLocaleNames[data.parserLang];
+
+        let combatantDataBoss = null;
+        let combatantDataAvatars = null;
+        if (combatantNameBoss) {
+          combatantDataBoss = await window.callOverlayHandler({
+            call: 'getCombatants',
+            names: [combatantNameBoss],
+          });
+        }
+        if (combatantNameAvatar) {
+          combatantDataAvatars = await window.callOverlayHandler({
+            call: 'getCombatants',
+            names: [combatantNameAvatar],
+          });
+        }
+
+        // if we could not retrieve combatant data, the
+        // trigger will not work, so just resume promise here
+        if (combatantDataBoss === null) {
+          console.error(`Trinity Avowed: null data`);
+          data.safeZone = null;
+          return;
+        }
+        if (!combatantDataBoss.combatants) {
+          console.error(`Trinity Avowed: null combatants`);
+          data.safeZone = null;
+          return;
+        }
+        if (combatantDataAvatars === null) {
+          console.error(`Avowed Avatar: null data`);
+          data.safeZone = null;
+          return;
+        }
+        if (!combatantDataAvatars.combatants) {
+          console.error(`Avowed Avatar: null combatants`);
+          data.safeZone = null;
+          return;
+        }
+        if (combatantDataAvatars.combatants.length < 3) {
+          console.error(`Avowed Avatar: expected at least 3 combatants got ${combatantDataAvatars.combatants.length}`);
+          data.safeZone = null;
+          return;
+        }
+
+        const getFacing = (combatant) => {
+          // Snap heading to closest card.
+          // N = 0, E = 1, S = 2, W = 3
+          return (2 - Math.round(combatant.Heading * 4 / Math.PI) / 2) % 4;
+        };
+
+        const getUnwaveringPosition = (combatant) => {
+          // Positions are moved downward 87 and left 277
+          const y = combatant.PosY + 87;
+          const x = combatant.PosX + 277;
+          // N = 0, E = 1, S = 2, W = 3
+          return Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4;
+        };
+
+        // we need to filter for the Trinity Avowed with the lowest ID
+        // that one is always cleaving on one of the cardinals
+        // Trinity Avowed is always East (-267, -87)
+        const eastCombatant =
+          combatantDataBoss.combatants.sort((a, b) => b.ID - a.ID).pop();
+
+        // we need to filter for the three Avowed Avatars with the lowest IDs
+        // as they cast cleave at the different cardinals
+        const avatarOne = combatantDataAvatars.combatants.sort((a, b) => b.ID - a.ID).pop();
+        const avatarTwo = combatantDataAvatars.combatants.pop();
+        const avatarThree = combatantDataAvatars.combatants.pop();
+
+        const combatantPositions = {};
+        combatantPositions[getUnwaveringPosition(avatarOne)] = avatarOne;
+        combatantPositions[getUnwaveringPosition(avatarTwo)] = avatarTwo;
+        combatantPositions[getUnwaveringPosition(avatarThree)] = avatarThree;
+
+        // Avowed Avatars can spawn in the other positions
+        // Determine the location of Avowed Avatars
+        // North Avowed Avatar (-277, -97)
+        const northCombatant = combatantPositions[0];
+
+        // West Avowed Avatar (-277, -87)
+        const westCombatant = combatantPositions[3];
+
+        // South Avowed Avatar (-277, -77)
+        const southCombatant = combatantPositions[2];
+
+        // Get facings
+        const eastCombatantFacing = getFacing(eastCombatant);
+        const northCombatantFacing = getFacing(northCombatant);
+        const westCombatantFacing = getFacing(westCombatant);
+        const southCombatantFacing = getFacing(southCombatant);
+
+        // Get Blade of Entropy data
+        const eastCombatantBlade = data.blades[eastCombatant.ID];
+        const northCombatantBlade = data.blades[northCombatant.ID];
+        const westCombatantBlade = data.blades[westCombatant.ID];
+        const southCombatantBlade = data.blades[southCombatant.ID];
+
+        const bladeValues = {
+          '5942': 1,
+          '5943': -1,
+          '5946': 1,
+          '5947': -1,
+          '5956': 2,
+          '5957': -2,
+          '595A': 2,
+          '595B': -2,
+        };
+
+        // 1 = Right
+        // 0 = Left
+        const bladeSides = {
+          '5942': 1,
+          '5943': 1,
+          '5946': 0,
+          '5947': 0,
+          '5956': 1,
+          '5957': 1,
+          '595A': 0,
+          '595B': 0,
+        };
+
+        // Create map to improve readability of safeZone conditions
+        const dirNum = { north: 0, east: 1, south: 2, west: 3 };
+
+        // Only need to check cleaves from two parallel clones to determine safe spots
+        // because if the clone is cleaving inside, then we know where other clones
+        // are cleaving in order to make a '+' where the ends are each cleaved by one
+        // clone and the middle square is safe
+        let safeZone = null;
+        let adjacentZones = {};
+        if ((northCombatantFacing === dirNum.north && bladeSides[northCombatantBlade]) ||
+          (northCombatantFacing === dirNum.south && !bladeSides[northCombatantBlade])) {
+          // North clone cleaving inside east (and therefore east clone cleaving north).
+          safeZone = output.southwest();
+          adjacentZones = {
+            [dirNum.north]: bladeValues[eastCombatantBlade],
+            [dirNum.east]: bladeValues[northCombatantBlade],
+            [dirNum.south]: bladeValues[southCombatantBlade],
+            [dirNum.west]: bladeValues[westCombatantBlade],
+          };
+        } else if ((northCombatantFacing === dirNum.north && !bladeSides[northCombatantBlade]) ||
+          (northCombatantFacing === dirNum.south && bladeSides[northCombatantBlade])) {
+          // North clone cleaving inside west (and therefore west clone cleaving north).
+          safeZone = output.southeast();
+          adjacentZones = {
+            [dirNum.north]: bladeValues[westCombatantBlade],
+            [dirNum.east]: bladeValues[eastCombatantBlade],
+            [dirNum.south]: bladeValues[southCombatantBlade],
+            [dirNum.west]: bladeValues[northCombatantBlade],
+          };
+        } else if ((southCombatantFacing === dirNum.south && bladeSides[southCombatantBlade]) ||
+          (southCombatantFacing === dirNum.north && !bladeSides[southCombatantBlade])) {
+          // South clone cleaving inside west (and therefore west clone cleaving south).
+          safeZone = output.northeast();
+          adjacentZones = {
+            [dirNum.north]: bladeValues[northCombatantBlade],
+            [dirNum.east]: bladeValues[eastCombatantBlade],
+            [dirNum.south]: bladeValues[westCombatantBlade],
+            [dirNum.west]: bladeValues[southCombatantBlade],
+          };
+        } else if ((southCombatantFacing === dirNum.north && bladeSides[southCombatantBlade]) ||
+          (southCombatantFacing === dirNum.south && !bladeSides[southCombatantBlade])) {
+          // South clone cleaving inside east (and therefore east clone cleaving south).
+          safeZone = output.northwest();
+          adjacentZones = {
+            [dirNum.north]: bladeValues[northCombatantBlade],
+            [dirNum.east]: bladeValues[southCombatantBlade],
+            [dirNum.south]: bladeValues[eastCombatantBlade],
+            [dirNum.west]: bladeValues[westCombatantBlade],
+          };
+        } else {
+          // facing did not evaluate properly
+          safeZone = output.unknown();
+          adjacentZones = null;
+        }
+
+        const currentBrand = data.currentBrand ? data.currentBrand : 0;
+        const currentTemperature = data.currentTemperature ? data.currentTemperature : 0;
+
+        const effectiveTemperature = currentTemperature + currentBrand;
+
+        // Calculate which adjacent zone to go to, if needed
+        let adjacentZone = null;
+        if (effectiveTemperature && adjacentZones) {
+          // Find the adjacent zone that gets closest to 0
+          const calculatedZones = Object.values(adjacentZones).map((i) =>
+            Math.abs(effectiveTemperature + i));
+
+          // Use zone closest to zero as output
+          const dirs = {
+            [dirNum.north]: output.north(),
+            [dirNum.east]: output.east(),
+            [dirNum.south]: output.south(),
+            [dirNum.west]: output.west(),
+          };
+          adjacentZone = dirs[Object.values(calculatedZones).indexOf(calculatedZones.sort((a, b) =>
+            b - a).pop())];
+        }
+
+        // Callout safe spot and get cleaved spot if both are known
+        // Callout safe spot only if no need to be cleaved
+        if (adjacentZone)
+          data.safeZone = output.getCleaved({ dir1: safeZone, dir2: adjacentZone });
+        else if (safeZone)
+          data.safeZone = output.safeSpot({ dir: safeZone });
+        else
+          data.safeZone = null;
+      },
+      alertText: (data, _, output) => {
+        return !data.safeZone ? output.unknown() : data.safeZone;
+      },
+      outputStrings: {
+        getCleaved: {
+          en: '${dir1} Safe Spot => ${dir2} for cleave',
+        },
+        safeSpot: {
+          en: '${dir} Safe Spot',
+        },
+        unknown: {
+          en: '???',
+          de: '???',
+          fr: '???',
+          ja: '???',
+          cn: '???',
+          ko: '???',
+        },
+        north: Outputs.north,
+        northeast: Outputs.northeast,
+        east: Outputs.east,
+        southeast: Outputs.southeast,
+        south: Outputs.south,
+        southwest: Outputs.southwest,
+        west: Outputs.west,
+        northwest: Outputs.northwest,
+      },
+    },
+    {
       id: 'DelubrumSav Lord Foe Splitter',
       netRegex: NetRegexes.startsUsing({ source: 'Stygimoloch Lord', id: '57D7' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Anführer-Stygimoloch', id: '57D7' }),
