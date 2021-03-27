@@ -4,13 +4,7 @@ import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
-// TODO: knockback direction from big hand after giant lasers (Palm Of Temperance 58B4/58B6/?/?)
-// TODO: for left/right reach during Blade Of Flame, call out Left + #1 alarm for #1.
-
-// TODO: somber dance triggers
-// TODO: apocalypse "get away from facing" or some such triggers
 // TODO: double apoc clockwise vs counterclockwise call would be nice
-// TODO: maybe call something for advanced, including double aero partners?
 
 // Each tether ID corresponds to a primal:
 // 008C -- Shiva
@@ -990,10 +984,11 @@ export default {
     },
     {
       id: 'E12S Oracle Darkest Dance',
-      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58BE', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58BE', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58BE', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58BE', capture: false }),
+      // Darkest and Somber Dance both.
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: ['58BE', '58BD'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: ['58BE', '58BD'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: ['58BE', '58BD'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: ['58BE', '58BD'], capture: false }),
       infoText: (data, _, output) => {
         if (data.role === 'tank')
           return output.tankBait();
@@ -1015,6 +1010,28 @@ export default {
           ja: 'ボスと貼り付く',
           cn: '去脚下',
           ko: '보스 아래로',
+        },
+      },
+    },
+    {
+      id: 'E12S Oracle Somber Dance',
+      // Call for second hit of somber dance after first hit lands.
+      netRegex: NetRegexes.ability({ source: 'Oracle Of Darkness', id: '58BD', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Orakel Der Dunkelheit', id: '58BD', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Prêtresse Des Ténèbres', id: '58BD', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '闇の巫女', id: '58BD', capture: false }),
+      suppressSeconds: 5,
+      infoText: (data, _, output) => {
+        if (data.role === 'tank')
+          return output.tankBait();
+        return output.partyOut();
+      },
+      outputStrings: {
+        tankBait: {
+          en: 'Bait Close',
+        },
+        partyOut: {
+          en: 'Party Out',
         },
       },
     },
@@ -1335,7 +1352,7 @@ export default {
       id: 'E12S Basic Relativity Yellow Hourglass',
       // Orient where "Yellow" Anger's Hourglass spawns
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9824' }),
-      durationSeconds: 15,
+      durationSeconds: 10,
       infoText: (data, matches, output) => {
         return output.hourglass({
           dir: dirToOutput(matchedPositionToDir(matches), output),
@@ -1377,7 +1394,7 @@ export default {
       // '0085' is the Red tether that buffs "Slow"
       netRegex: NetRegexes.tether({ id: '0086' }),
       condition: (data, matches) => data.phase === 'advanced',
-      durationSeconds: 8,
+      durationSeconds: 4,
       suppressSeconds: 3,
       infoText: (data, matches, output) => {
         const sorrow1 = data.sorrows[matches.sourceId.toUpperCase()];
@@ -1406,6 +1423,136 @@ export default {
           ja: '黄色: ${dir1} / ${dir2}',
           cn: '黄色: ${dir1} / ${dir2}',
           ko: '노랑: ${dir1} / ${dir2}',
+        },
+      },
+    },
+    {
+      id: 'E12S Initial Dark Water',
+      netRegex: NetRegexes.gainsEffect({ effectId: '99D' }),
+      condition: (data, matches) => !data.phase,
+      delaySeconds: (data, matches) => {
+        const duration = parseFloat(matches.duration);
+        return data.seenInitialSpread ? duration - 6 : duration - 8;
+      },
+      durationSeconds: 5,
+      suppressSeconds: 5,
+      alertText: (data, _, output) => {
+        data.seenInitialStacks = true;
+        if (data.seenInitialSpread)
+          return output.knockbackIntoStackGroups();
+        return output.stackGroups();
+      },
+      outputStrings: {
+        stackGroups: {
+          en: 'Stack Groups',
+        },
+        knockbackIntoStackGroups: {
+          en: 'Knockback Into Stack Groups',
+        },
+      },
+    },
+    {
+      id: 'E12S Initial Dark Eruption',
+      netRegex: NetRegexes.gainsEffect({ effectId: '99C' }),
+      condition: (data, matches) => !data.phase,
+      delaySeconds: (data, matches) => {
+        const duration = parseFloat(matches.duration);
+        return data.seenInitialSpread ? duration - 6 : duration - 8;
+      },
+      durationSeconds: 5,
+      suppressSeconds: 5,
+      alertText: (data, _, output) => {
+        data.seenInitialSpread = true;
+        if (data.seenInitialStacks)
+          return output.knockbackIntoSpread();
+        return output.spread();
+      },
+      outputStrings: {
+        spread: Outputs.spread,
+        knockbackIntoSpread: {
+          en: 'Knockback Into Spread',
+        },
+      },
+    },
+    {
+      id: 'E12S Dark Water Stacks',
+      netRegex: NetRegexes.gainsEffect({ effectId: '99D' }),
+      // During Advanced Relativity, there is a very short Dark Water III stack (12s)
+      // that applies when people position themselves for the initial Return placement.
+      // Most strategies auto-handle this, and so this feels like noise.  HOWEVER,
+      // using suppress here without this conditional will pick one of the short/long
+      // Dark Water III buffs and suppress the other, so this is a load-bearing conditional.
+      // Additionally, `data.phase` is checked here to avoid colliding with the special
+      // case of the first dark water in `E12S Initial Dark Water`.
+      condition: (data, matches) => data.phase && parseFloat(matches.duration) > 13,
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - 4,
+      suppressSeconds: 5,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack Groups',
+        },
+      },
+    },
+    {
+      id: 'E12S Double Aero Finder',
+      netRegex: NetRegexes.gainsEffect({ effectId: '99F' }),
+      // In advanced, Aero comes in ~23 and ~31s flavors
+      condition: (data, matches) => data.phase === 'advanced' && parseFloat(matches.duration) > 28,
+      infoText: (data, matches, output) => {
+        data.doubleAero = data.doubleAero || [];
+        data.doubleAero.push(data.ShortName(matches.target));
+
+        if (data.doubleAero.length !== 2)
+          return;
+
+        data.doubleAero.sort();
+        return output.text({ name1: data.doubleAero[0], name2: data.doubleAero[1] });
+      },
+      // This will collide with 'E12S Adv Relativity Buff Collector', sorry.
+      tts: null,
+      outputStrings: {
+        text: {
+          en: 'Double Aero: ${name1}, ${name2}',
+        },
+      },
+    },
+    {
+      id: 'E12S Adv Relativity Buff Collector',
+      // 997 Spell-In-Waiting: Dark Fire III
+      // 998 Spell-In-Waiting: Shadoweye
+      // 99F Spell-In-Waiting: Dark Aero III
+      netRegex: NetRegexes.gainsEffect({ effectId: '99[78F]' }),
+      condition: (data, matches) => data.phase === 'advanced' && data.me === matches.target,
+      durationSeconds: 15,
+      alertText: (data, matches, output) => {
+        const id = matches.effectId.toUpperCase();
+
+        // The shadoweye and the double aero person gets aero, so only consider the final aero.
+        if (id === '99F') {
+          if (parseFloat(matches.duration) < 28)
+            return;
+          return output.doubleAero();
+        }
+        if (id === '997')
+          return output.spread();
+        if (id === '998')
+          return output.shadoweye();
+      },
+      outputStrings: {
+        shadoweye: {
+          en: 'Eye on YOU',
+          de: 'Auge auf DIR',
+          fr: 'Œil sur VOUS',
+          ja: '自分に目',
+          cn: '石化眼点名',
+          ko: '시선징 대상자',
+        },
+        doubleAero: {
+          en: 'Double Aero on YOU',
+        },
+        spread: {
+          en: 'Spread on YOU',
         },
       },
     },
