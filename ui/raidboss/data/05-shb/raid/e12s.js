@@ -1461,9 +1461,11 @@ export default {
       netRegex: NetRegexes.gainsEffect({ effectId: '99D' }),
       // During Advanced Relativity, there is a very short Dark Water III stack (12s)
       // that applies when people position themselves for the initial Return placement.
-      // Most strategies auto-handle this, and so this feels like noise.  MOREVER,
+      // Most strategies auto-handle this, and so this feels like noise.  HOWEVER,
       // using suppress here without this conditional will pick one of the short/long
       // Dark Water III buffs and suppress the other, so this is a load-bearing conditional.
+      // Additionally, `data.phase` is checked here to avoid colliding with the special
+      // case of the first dark water in `E12S Initial Dark Water`.
       condition: (data, matches) => data.phase && parseFloat(matches.duration) > 13,
       delaySeconds: (data, matches) => parseFloat(matches.duration) - 4,
       suppressSeconds: 5,
@@ -1486,6 +1488,7 @@ export default {
         if (data.doubleAero.length !== 2)
           return;
 
+        data.doubleAero.sort();
         return output.text({ name1: data.doubleAero[0], name2: data.doubleAero[1] });
       },
       // This will collide with 'E12S Adv Relativity Buff Collector', sorry.
