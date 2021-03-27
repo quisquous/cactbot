@@ -20,7 +20,7 @@ const ruleModule = {
       notFoundProperty: 'no \'{{prop}}\' in \'{{outputParam}}\'',
       notFoundTemplate: '`output.{{prop}}(...)` doesn\'t have template \'{{template}}\'.',
       missingTemplateValue: 'template \'{{prop}}\' is missing in function call',
-      tooManyParams: 'function `output.{{call}}()` take only {{num}} params',
+      tooManyParams: 'function `output.{{call}}()` take only 1 params',
       typeError: 'function `output.{{call}}(...) take only object as params',
     },
   },
@@ -214,7 +214,6 @@ const ruleModule = {
               messageId: 'tooManyParams',
               data: {
                 call: node.property.name,
-                num: '1',
               },
             });
           }
