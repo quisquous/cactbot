@@ -1,29 +1,14 @@
-// TODO:
-// The convention of "import X as _X; const X = _X;" is currently
-// being used as a method to workaround for downstream code
-// that is running via eval(). Because importing statements do not
-// create a variable of the same name, the eval()'d code does not know
-// about the import, and thus throws ReferenceErrors.
-// Used by downstream eval
-import { addOverlayListener, callOverlayHandler } from './overlay_plugin_api';
-import _Conditions from './conditions';
-const Conditions = _Conditions;
-import _ContentType from './content_type';
-const ContentType = _ContentType;
-import _NetRegexes from './netregexes';
-const NetRegexes = _NetRegexes;
-import _Regexes from './regexes';
-const Regexes = _Regexes;
-import { Responses as _Responses } from './responses';
-const Responses = _Responses;
-import _Outputs from './outputs';
-const Outputs = _Outputs;
-import _Util from './util';
-const Util = _Util;
-import _ZoneId from './zone_id';
-const ZoneId = _ZoneId;
-import _ZoneInfo from './zone_info';
-const ZoneInfo = _ZoneInfo;
+import './overlay_plugin_api';
+
+import Conditions from './conditions';
+import ContentType from './content_type';
+import NetRegexes from './netregexes';
+import Regexes from './regexes';
+import { Responses } from './responses';
+import Outputs from './outputs';
+import Util from './util';
+import ZoneId from './zone_id';
+import ZoneInfo from './zone_info';
 
 class UserConfig {
   constructor() {
@@ -230,8 +215,28 @@ class UserConfig {
             // issues, it's unlikely that these will be able to be anything but eval forever.
             //
             /* eslint-disable no-eval */
-            eval(localFiles[jsFile]);
-            /* eslint-enable no-eval */
+            (function(str) {
+              return eval(`(function (ctx) {
+                let { Conditions, NetRegexes, Regexes,
+                      Responses, Outputs, Util,
+                      ZoneId, ZoneInfo, Options } = ctx
+
+                ${str}
+
+              })(this)`);
+              /* eslint-enable no-eval */
+            }).call({
+              Options,
+              Conditions,
+              ContentType,
+              NetRegexes,
+              Regexes,
+              Responses,
+              Outputs,
+              Util,
+              ZoneId,
+              ZoneInfo,
+            }, localFiles[jsFile].toString());
 
             for (const field of warnOnVariableResetMap[overlayName]) {
               if (variableTracker[field] && variableTracker[field] !== options[field]) {
