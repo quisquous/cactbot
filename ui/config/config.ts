@@ -3,6 +3,7 @@ import Regexes from '../../resources/regexes';
 import UserConfig from '../../resources/user_config';
 import ZoneInfo from '../../resources/zone_info';
 import contentList from '../../resources/content_list';
+import { Option } from '../../types/global';
 
 // Load other config files
 import './general_config';
@@ -13,7 +14,7 @@ import '../radar/radar_config';
 import '../raidboss/raidboss_config';
 
 const Options = {};
-let gConfig = null;
+let gConfig: CactbotConfigurator | null = null;
 
 // Text in the butter bar, to prompt the user to reload after a config change.
 const kReloadText = {
@@ -168,7 +169,7 @@ const kDirectoryToCategory = {
 
 // TODO: maybe we should also sort all the filenames properly too?
 // TODO: use ZoneId to get this
-const fileNameToTitle = (filename) => {
+const fileNameToTitle = (filename: string) => {
   // Strip directory and extension.
   const file = filename.replace(/^.*\//, '').replace('.js', '');
   // Remove non-name characters (probably).
@@ -184,7 +185,14 @@ const fileNameToTitle = (filename) => {
 };
 
 export default class CactbotConfigurator {
-  constructor(configOptions, savedConfig) {
+  contents: {
+    general: string[];
+    raidboss: string[];
+    jobs: string[];
+  };
+  configOptions: Option;
+
+  constructor(configOptions: Option, savedConfig: Record<string, unknown>) {
     // Predefined, only for ordering purposes.
     this.contents = {
       // top level
@@ -239,17 +247,17 @@ export default class CactbotConfigurator {
   // any key is missing.
   // e.g. (foo, bar, baz, 5) with {foo: { bar: { baz: 3 } } } will return
   // the value 3.  Requires at least two args.
-  getOption() {
-    const num = arguments.length;
+  getOption(...args: string[]) {
+    const num = args.length;
     if (num < 2) {
       console.error('getOption requires at least two args');
       return;
     }
 
-    const defaultValue = arguments[num - 1];
+    const defaultValue = args[num - 1];
     let objOrValue = this.savedConfig;
     for (let i = 0; i < num - 1; ++i) {
-      objOrValue = objOrValue[arguments[i]];
+      objOrValue = objOrValue[args[i]];
       if (typeof objOrValue === 'undefined')
         return defaultValue;
     }

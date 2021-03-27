@@ -5,6 +5,38 @@ import UserConfig from '../../resources/user_config';
 import Util from '../../resources/util';
 import raidbossFileData from './data/manifest.txt';
 import raidbossOptions from './raidboss_options';
+import { BaseTrigger, TriggerFile, TriggerSet } from '../../types/cactbot';
+import { Data } from '../../types/data';
+import { ManiFest } from '../../types/mainfest';
+
+interface Options {
+  TextAlertsEnabled: boolean;
+  SoundAlertsEnabled: boolean;
+  SpokenAlertsEnabled: boolean;
+}
+
+interface UserOptions {
+  Triggers: TriggerSet<Data>[];
+}
+
+interface Config {
+  lang: string;
+
+  getOption: (overlayName: string, optionName: string, lang: string) => string;
+
+  processFiles: (files: Record<string, TriggerFile>, triggers: TriggerSet<Data>[]) => Map<string,
+      {
+        filename: string;
+        fileKey: string;
+        prefixKey: string;
+        prefix: string;
+        section: string;
+        type: string;
+        title: string;
+        triggerSet: unknown;
+        zoneId: number;
+      }>;
+}
 
 const kOptionKeys = {
   output: 'Output',
@@ -78,7 +110,7 @@ const kTriggerOptions = {
 };
 
 const kDetailKeys = {
-  'triggerRegex': {
+  triggerRegex: {
     label: {
       en: 'regex',
       de: 'regex',
@@ -90,7 +122,7 @@ const kDetailKeys = {
     cls: 'regex-text',
     debugOnly: true,
   },
-  'triggerNetRegex': {
+  triggerNetRegex: {
     label: {
       en: 'netregex',
       de: 'netregex',
@@ -101,7 +133,7 @@ const kDetailKeys = {
     cls: 'regex-text',
     debugOnly: true,
   },
-  'timelineRegex': {
+  timelineRegex: {
     label: {
       en: 'timeline',
       de: 'timeline',
@@ -113,7 +145,7 @@ const kDetailKeys = {
     cls: 'regex-text',
     debugOnly: true,
   },
-  'beforeSeconds': {
+  beforeSeconds: {
     label: {
       en: 'before (sec)',
       de: 'Vorher (Sekunden)',
@@ -124,7 +156,7 @@ const kDetailKeys = {
     cls: 'before-seconds-text',
     generatedManually: true,
   },
-  'condition': {
+  condition: {
     label: {
       en: 'condition',
       de: 'condition',
@@ -136,7 +168,7 @@ const kDetailKeys = {
     cls: 'condition-text',
     debugOnly: true,
   },
-  'duration': {
+  duration: {
     label: {
       en: 'duration (sec)',
       de: 'Dauer (Sekunden)',
@@ -148,7 +180,7 @@ const kDetailKeys = {
     cls: 'duration-text',
     generatedManually: true,
   },
-  'preRun': {
+  preRun: {
     label: {
       en: 'preRun',
       de: 'preRun',
@@ -160,7 +192,7 @@ const kDetailKeys = {
     cls: 'prerun-text',
     debugOnly: true,
   },
-  'alarmText': {
+  alarmText: {
     label: {
       en: 'alarm',
       de: 'alarm',
@@ -171,7 +203,7 @@ const kDetailKeys = {
     },
     cls: 'alarm-text',
   },
-  'alertText': {
+  alertText: {
     label: {
       en: 'alert',
       de: 'alert',
@@ -182,7 +214,7 @@ const kDetailKeys = {
     },
     cls: 'alert-text',
   },
-  'infoText': {
+  infoText: {
     label: {
       en: 'info',
       de: 'info',
@@ -193,7 +225,7 @@ const kDetailKeys = {
     },
     cls: 'info-text',
   },
-  'tts': {
+  tts: {
     label: {
       en: 'tts',
       de: 'tts',
@@ -204,7 +236,7 @@ const kDetailKeys = {
     },
     cls: 'tts-text',
   },
-  'sound': {
+  sound: {
     label: {
       en: 'sound',
       de: 'sound',
@@ -215,7 +247,7 @@ const kDetailKeys = {
     },
     cls: 'sound-text',
   },
-  'run': {
+  run: {
     label: {
       en: 'run',
       de: 'run',
@@ -273,16 +305,25 @@ const kMiscTranslations = {
   },
 };
 
-const validDurationOrUndefined = (val) => {
-  val = parseFloat(val);
-  if (!isNaN(val) && val >= 0)
-    return val;
+const validDurationOrUndefined = (val: string) => {
+  const parsed = parseFloat(val);
+  if (!isNaN(parsed) && parsed >= 0) return parsed;
   return undefined;
 };
 
-const canBeConfigured = (trig) => !trig.isMissingId && !trig.overriddenByFile;
+interface Trig extends BaseTrigger<Data> {
+  isMissingId: boolean;
+  overriddenByFile: boolean;
+}
 
-const addTriggerDetail = (container, labelText, detailText, detailCls) => {
+const canBeConfigured = (trig: Trig) => !trig.isMissingId && !trig.overriddenByFile;
+
+const addTriggerDetail = (
+    container: HTMLElement,
+    labelText: string,
+    detailText: string,
+    detailCls: string,
+): void => {
   const label = document.createElement('div');
   label.innerText = labelText;
   label.classList.add('trigger-label');
@@ -293,14 +334,13 @@ const addTriggerDetail = (container, labelText, detailText, detailCls) => {
   detail.innerText = detailText;
   container.appendChild(detail);
 
-  if (detailCls)
-    detail.classList.add(detailCls);
+  if (detailCls) detail.classList.add(detailCls);
 };
 
 // This is used both for top level Options and for PerTriggerAutoConfig settings.
 // Unfortunately due to poor decisions in the past, PerTriggerOptions has different
 // fields here.  This should be fixed.
-function setOptionsFromOutputValue(options, value) {
+const setOptionsFromOutputValue = (options: Options, value: string) => {
   if (value === 'default') {
     // Nothing.
   } else if (value === 'textAndSound') {
@@ -326,41 +366,56 @@ function setOptionsFromOutputValue(options, value) {
   } else {
     console.error('unknown output type: ' + value);
   }
-}
+};
 
 // Helper for doing nothing during trigger eval, but still recording any
 // calls to `output.responseOutputStrings = x;` via callback.
 class DoNothingFuncProxy {
-  constructor(outputStringsCallback) {
+  constructor(outputStringsCallback: ((v: Record<string, unknown>) => void)) {
     return new Proxy(this, {
       set(target, property, value) {
         if (property === 'responseOutputStrings') {
           outputStringsCallback(value);
           return true;
         }
-
+        return false;
         // Ignore other property setting here.
       },
 
       get(target, name) {
-        return () => {};
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        return () => {
+        };
       },
     });
   }
 }
 
+
 class RaidbossConfigurator {
-  constructor(cactbotConfigurator) {
+  base: Config;
+  alertsLang: string;
+  timelineLang: string;
+
+  constructor(cactbotConfigurator: Config) {
     this.base = cactbotConfigurator;
 
     // TODO: is it worth adding the complexity to reflect this change in triggers that use it?
     // This is probably where using something like vue or react would be easier.
     // For the moment, folks can just reload, for real.
-    this.alertsLang = this.base.getOption('raidboss', 'AlertsLanguage', this.base.lang);
-    this.timelineLang = this.base.getOption('raidboss', 'TimelineLanguage', this.base.lang);
+    this.alertsLang = this.base.getOption(
+        'raidboss',
+        'AlertsLanguage',
+        this.base.lang,
+    );
+    this.timelineLang = this.base.getOption(
+        'raidboss',
+        'TimelineLanguage',
+        this.base.lang,
+    );
   }
 
-  buildUI(container, raidbossFiles, userOptions) {
+  buildUI(container: HTMLElement, raidbossFiles: ManiFest, userOptions) {
     const fileMap = this.processRaidbossFiles(raidbossFiles, userOptions);
 
     const expansionDivs = {};
@@ -371,12 +426,14 @@ class RaidbossConfigurator {
       // and one section per user file.
       const expansion = info.section;
 
-      if (Object.keys(info.triggers).length === 0)
-        continue;
+      if (Object.keys(info.triggers).length === 0) continue;
 
       if (!expansionDivs[expansion]) {
         const expansionContainer = document.createElement('div');
-        expansionContainer.classList.add('trigger-expansion-container', 'collapsed');
+        expansionContainer.classList.add(
+            'trigger-expansion-container',
+            'collapsed',
+        );
         container.appendChild(expansionContainer);
 
         const expansionHeader = document.createElement('div');
@@ -402,8 +459,7 @@ class RaidbossConfigurator {
 
       const parts = [info.title, info.type, info.prefix];
       for (let i = 0; i < parts.length; ++i) {
-        if (!parts[i])
-          continue;
+        if (!parts[i]) continue;
         const partDiv = document.createElement('div');
         partDiv.classList.add('trigger-file-header-part');
         partDiv.innerText = parts[i];
@@ -427,8 +483,7 @@ class RaidbossConfigurator {
             break;
           }
         }
-        if (!hasOutputFunc && !this.base.developerOptions)
-          continue;
+        if (!hasOutputFunc && !this.base.developerOptions) continue;
 
         // Build the trigger label.
         const triggerDiv = document.createElement('div');
@@ -442,30 +497,37 @@ class RaidbossConfigurator {
         triggerDetails.classList.add('trigger-details');
         triggerOptions.appendChild(triggerDetails);
 
-        if (canBeConfigured(trig))
-          triggerDetails.appendChild(this.buildTriggerOptions(trig, triggerDiv));
+        if (canBeConfigured(trig)) {
+          triggerDetails.appendChild(
+              this.buildTriggerOptions(trig, triggerDiv),
+          );
+        }
 
         if (trig.isMissingId) {
-          addTriggerDetail(triggerDetails,
+          addTriggerDetail(
+              triggerDetails,
               this.base.translate(kMiscTranslations.warning),
-              this.base.translate(kMiscTranslations.missingId));
+              this.base.translate(kMiscTranslations.missingId),
+          );
         }
         if (trig.overriddenByFile) {
-          const baseText = this.base.translate(kMiscTranslations.overriddenByFile);
+          const baseText = this.base.translate(
+              kMiscTranslations.overriddenByFile,
+          );
           const detailText = baseText.replace('${file}', trig.overriddenByFile);
-          addTriggerDetail(triggerDetails,
+          addTriggerDetail(
+              triggerDetails,
               this.base.translate(kMiscTranslations.warning),
-              detailText);
+              detailText,
+          );
         }
 
         // Append some details about the trigger so it's more obvious what it is.
         for (const detailKey in kDetailKeys) {
-          if (kDetailKeys[detailKey].generatedManually)
-            continue;
+          if (kDetailKeys[detailKey].generatedManually) continue;
           if (!this.base.developerOptions && kDetailKeys[detailKey].debugOnly)
             continue;
-          if (!trig[detailKey] && !trig.output[detailKey])
-            continue;
+          if (!trig[detailKey] && !trig.output[detailKey]) continue;
 
           const detailCls = [kDetailKeys[detailKey].cls];
           let detailText;
@@ -478,14 +540,15 @@ class RaidbossConfigurator {
             detailText = trig[detailKey];
           }
 
-          addTriggerDetail(triggerDetails,
+          addTriggerDetail(
+              triggerDetails,
               this.base.translate(kDetailKeys[detailKey].label),
               detailText,
-              detailCls);
+              detailCls,
+          );
         }
 
-        if (!canBeConfigured(trig))
-          continue;
+        if (!canBeConfigured(trig)) continue;
 
         // Add beforeSeconds manually for timeline triggers.
         if (trig.isTimelineTrigger) {
@@ -507,16 +570,27 @@ class RaidbossConfigurator {
 
           // Say "(default)" for more complicated things like functions.
           let defaultValue = kMiscTranslations.valueDefault;
-          if (trig.beforeSeconds === undefined)
-            defaultValue = 0;
+          if (trig.beforeSeconds === undefined) defaultValue = 0;
           else if (typeof trig.beforeSeconds === 'number')
             defaultValue = trig.beforeSeconds;
 
           input.placeholder = this.base.translate(defaultValue);
-          input.value = this.base.getOption('raidboss', 'triggers', trig.id, optionKey, '');
+          input.value = this.base.getOption(
+              'raidboss',
+              'triggers',
+              trig.id,
+              optionKey,
+              '',
+          );
           const setFunc = () => {
             const val = validDurationOrUndefined(input.value) || '';
-            this.base.setOption('raidboss', 'triggers', trig.id, optionKey, val);
+            this.base.setOption(
+                'raidboss',
+                'triggers',
+                trig.id,
+                optionKey,
+                val,
+            );
           };
           input.onchange = setFunc;
           input.oninput = setFunc;
@@ -541,11 +615,25 @@ class RaidbossConfigurator {
           div.appendChild(input);
           input.type = 'text';
           input.step = 'any';
-          input.placeholder = this.base.translate(kMiscTranslations.valueDefault);
-          input.value = this.base.getOption('raidboss', 'triggers', trig.id, optionKey, '');
+          input.placeholder = this.base.translate(
+              kMiscTranslations.valueDefault,
+          );
+          input.value = this.base.getOption(
+              'raidboss',
+              'triggers',
+              trig.id,
+              optionKey,
+              '',
+          );
           const setFunc = () => {
             const val = validDurationOrUndefined(input.value) || '';
-            this.base.setOption('raidboss', 'triggers', trig.id, optionKey, val);
+            this.base.setOption(
+                'raidboss',
+                'triggers',
+                trig.id,
+                optionKey,
+                val,
+            );
           };
           input.onchange = setFunc;
           input.oninput = setFunc;
@@ -572,8 +660,23 @@ class RaidbossConfigurator {
           div.appendChild(input);
           input.type = 'text';
           input.placeholder = template;
-          input.value = this.base.getOption('raidboss', 'triggers', trig.id, optionKey, key, '');
-          const setFunc = () => this.base.setOption('raidboss', 'triggers', trig.id, optionKey, key, input.value);
+          input.value = this.base.getOption(
+              'raidboss',
+              'triggers',
+              trig.id,
+              optionKey,
+              key,
+              '',
+          );
+          const setFunc = () =>
+              this.base.setOption(
+                  'raidboss',
+                  'triggers',
+                  trig.id,
+                  optionKey,
+                  key,
+                  input.value,
+              );
           input.onchange = setFunc;
           input.oninput = setFunc;
 
@@ -585,9 +688,8 @@ class RaidbossConfigurator {
 
   // This duplicates the raidboss function of the same name.
   valueOrFunction(f, data, matches, output) {
-    const result = (typeof f === 'function') ? f(data, matches, output) : f;
-    if (result !== Object(result))
-      return result;
+    const result = typeof f === 'function' ? f(data, matches, output) : f;
+    if (result !== Object(result)) return result;
     if (result[this.alertsLang])
       return this.valueOrFunction(result[this.alertsLang]);
     if (result[this.timelineLang])
@@ -597,7 +699,7 @@ class RaidbossConfigurator {
     return this.valueOrFunction(result['en']);
   }
 
-  processTrigger(trig) {
+  processTrigger(trig: Trig) {
     // TODO: with some hackiness (e.g. regexes?) we could figure out which
     // output string came from which alert type (alarm, alert, info, tts).
     trig.output = new DoNothingFuncProxy((outputStrings) => {
@@ -611,7 +713,8 @@ class RaidbossConfigurator {
       currentHP: 1000,
       options: this.base.configOptions,
       ShortName: (x) => x,
-      StopCombat: () => {},
+      StopCombat: () => {
+      },
       ParseLocaleFloat: parseFloat,
       CanStun: () => Util.canStun(this.job),
       CanSilence: () => Util.canSilence(this.job),
@@ -652,7 +755,6 @@ class RaidbossConfigurator {
     for (let i = 0; i < kFakeData.length; ++i)
       kFakeData[i] = Object.assign({}, kFakeData[i], kBaseFakeData);
 
-
     const kFakeMatches = {
       // TODO: really should convert all triggers to use regexes.js.
       // Mooooost triggers use matches[1] to be a name.
@@ -678,7 +780,6 @@ class RaidbossConfigurator {
       capture: true,
     };
 
-
     const output = {};
     const keys = ['alarmText', 'alertText', 'infoText', 'tts', 'sound'];
 
@@ -686,9 +787,13 @@ class RaidbossConfigurator {
     // This could get much more complicated if we wanted it to.
     const evalTrigger = (trig, key, idx) => {
       try {
-        const result = this.valueOrFunction(trig[key], kFakeData[idx], kFakeMatches, trig.output);
-        if (!result)
-          return false;
+        const result = this.valueOrFunction(
+            trig[key],
+            kFakeData[idx],
+            kFakeMatches,
+            trig.output,
+        );
+        if (!result) return false;
 
         // Super hack:
         if (result.includes('undefined') || result.includes('NaN'))
@@ -716,16 +821,14 @@ class RaidbossConfigurator {
             // TODO: check if this has builtInResponseStr first.
             response = response(kFakeData[d], kFakeMatches, trig.output);
           }
-          if (!response)
-            continue;
+          if (!response) continue;
 
-          if (!trig.outputStrings) {
-            for (const key of keys)
-              evalTrigger(response, key, d);
-          }
+          if (!trig.outputStrings)
+            for (const key of keys) evalTrigger(response, key, d);
+
           break;
         } catch (e) {
-          continue;
+
         }
       }
     }
@@ -734,12 +837,9 @@ class RaidbossConfigurator {
     // outputStrings will indicate more clearly what the trigger says.
     if (!trig.outputStrings) {
       for (const key of keys) {
-        if (!trig[key])
-          continue;
-        for (let d = 0; d < kFakeData.length; ++d) {
-          if (evalTrigger(trig, key, d))
-            break;
-        }
+        if (!trig[key]) continue;
+        for (let d = 0; d < kFakeData.length; ++d)
+          if (evalTrigger(trig, key, d)) break;
       }
     }
 
@@ -749,12 +849,11 @@ class RaidbossConfigurator {
 
     const getRegex = (baseField) => {
       const shortLanguage = lang.charAt(0).toUpperCase() + lang.slice(1);
-      const langSpecificRegex = trig[baseField + shortLanguage] || trig[baseField];
-      if (!langSpecificRegex)
-        return;
+      const langSpecificRegex =
+          trig[baseField + shortLanguage] || trig[baseField];
+      if (!langSpecificRegex) return;
       const baseRegex = Regexes.parse(langSpecificRegex);
-      if (!baseRegex)
-        return;
+      if (!baseRegex) return;
       return Regexes.parse(baseRegex);
     };
 
@@ -768,7 +867,7 @@ class RaidbossConfigurator {
     return trig;
   }
 
-  processRaidbossFiles(files, userOptions) {
+  processRaidbossFiles(files: ManiFest, userOptions: UserOptions) {
     // `files` is map of filename => triggerSet (for trigger files)
     // `map` is a sorted map of shortened zone key => { various fields, triggerSet }
     const map = this.base.processFiles(files, userOptions.Triggers);
@@ -786,8 +885,7 @@ class RaidbossConfigurator {
         timeline: [],
       };
       const triggerSet = item.triggerSet;
-      if (triggerSet.triggers)
-        rawTriggers.trigger.push(...triggerSet.triggers);
+      if (triggerSet.triggers) rawTriggers.trigger.push(...triggerSet.triggers);
       if (triggerSet.timelineTriggers)
         rawTriggers.timeline.push(...triggerSet.timelineTriggers);
 
@@ -804,8 +902,7 @@ class RaidbossConfigurator {
 
           // Track if this trigger overrides any previous trigger.
           const previous = previousTriggerWithId[trig.id];
-          if (previous)
-            previous.overriddenByFile = triggerSet.filename;
+          if (previous) previous.overriddenByFile = triggerSet.filename;
           previousTriggerWithId[trig.id] = trig;
 
           trig.isTimelineTrigger = key === 'timeline';
@@ -826,20 +923,29 @@ class RaidbossConfigurator {
     const updateLabel = (input) => {
       if (input.value === 'hidden' || input.value === 'disabled')
         labelDiv.classList.add('disabled');
-      else
-        labelDiv.classList.remove('disabled');
+      else labelDiv.classList.remove('disabled');
     };
 
     const input = document.createElement('select');
     div.appendChild(input);
 
-    const selectValue = this.base.getOption('raidboss', 'triggers', trig.id, optionKey, 'default');
+    const selectValue = this.base.getOption(
+        'raidboss',
+        'triggers',
+        trig.id,
+        optionKey,
+        'default',
+    );
 
     for (const key in kTriggerOptions) {
       // Hide debug only options unless they are selected.
       // Otherwise, it will look weird to pick something like 'Disabled',
       // but then not show it when developer options are turned off.
-      if (!this.base.developerOptions && kTriggerOptions[key].debugOnly && key !== selectValue)
+      if (
+          !this.base.developerOptions &&
+          kTriggerOptions[key].debugOnly &&
+          key !== selectValue
+      )
         continue;
       const elem = document.createElement('option');
       elem.innerHTML = this.base.translate(kTriggerOptions[key].label);
@@ -852,9 +958,14 @@ class RaidbossConfigurator {
       input.onchange = () => {
         updateLabel(input);
         let value = input.value;
-        if (value.includes('default'))
-          value = 'default';
-        this.base.setOption('raidboss', 'triggers', trig.id, optionKey, input.value);
+        if (value.includes('default')) value = 'default';
+        this.base.setOption(
+            'raidboss',
+            'triggers',
+            trig.id,
+            optionKey,
+            input.value,
+        );
       };
     }
 
@@ -864,14 +975,12 @@ class RaidbossConfigurator {
 
 // Raidboss needs to do some extra processing of user files.
 const userFileHandler = (name, files, options, basePath) => {
-  if (!options.Triggers)
-    return;
+  if (!options.Triggers) return;
 
   for (const set of options.Triggers) {
     // Annotate triggers with where they came from.  Note, options is passed in repeatedly
     // as multiple sets of user files add triggers, so only process each file once.
-    if (set.isUserTriggerSet)
-      continue;
+    if (set.isUserTriggerSet) continue;
 
     // `filename` here is just cosmetic for better debug printing to make it more clear
     // where a trigger or an override is coming from.
@@ -889,7 +998,9 @@ const userFileHandler = (name, files, options, basePath) => {
       delete set.timelineFile;
 
       if (!(timelineFile in files)) {
-        console.log(`ERROR: '${name}' specifies non-existent timeline file '${timelineFile}'.`);
+        console.log(
+            `ERROR: '${name}' specifies non-existent timeline file '${timelineFile}'.`,
+        );
         continue;
       }
 
@@ -900,7 +1011,7 @@ const userFileHandler = (name, files, options, basePath) => {
 };
 
 const templateOptions = {
-  buildExtraUI: (base, container) => {
+  buildExtraUI: (base: Config, container: HTMLElement) => {
     const builder = new RaidbossConfigurator(base);
     const userOptions = { ...raidbossOptions };
     UserConfig.loadUserFiles('raidboss', userOptions, () => {
@@ -913,8 +1024,7 @@ const templateOptions = {
 
     options[optionName] = options[optionName] || {};
     const triggers = savedConfig.triggers;
-    if (!triggers)
-      return;
+    if (!triggers) return;
 
     const perTrigger = options[optionName];
 
@@ -929,23 +1039,22 @@ const templateOptions = {
       const autoConfig = {};
 
       const output = triggers[id][kOptionKeys.output];
-      if (output)
-        Object.assign(autoConfig, outputObjs[output]);
+      if (output) Object.assign(autoConfig, outputObjs[output]);
 
-      const duration = validDurationOrUndefined(triggers[id][kOptionKeys.duration]);
-      if (duration)
-        autoConfig[kOptionKeys.duration] = duration;
+      const duration = validDurationOrUndefined(
+          triggers[id][kOptionKeys.duration],
+      );
+      if (duration) autoConfig[kOptionKeys.duration] = duration;
 
-      const beforeSeconds = validDurationOrUndefined(triggers[id][kOptionKeys.beforeSeconds]);
-      if (beforeSeconds)
-        autoConfig[kOptionKeys.beforeSeconds] = beforeSeconds;
+      const beforeSeconds = validDurationOrUndefined(
+          triggers[id][kOptionKeys.beforeSeconds],
+      );
+      if (beforeSeconds) autoConfig[kOptionKeys.beforeSeconds] = beforeSeconds;
 
       const outputStrings = triggers[id][kOptionKeys.outputStrings];
-      if (outputStrings)
-        autoConfig[kOptionKeys.outputStrings] = outputStrings;
+      if (outputStrings) autoConfig[kOptionKeys.outputStrings] = outputStrings;
 
-      if (output || duration || outputStrings)
-        perTrigger[id] = autoConfig;
+      if (output || duration || outputStrings) perTrigger[id] = autoConfig;
     }
   },
   options: [
@@ -1081,8 +1190,7 @@ const templateOptions = {
       default: 'default',
       debug: true,
       setterFunc: (options, value) => {
-        if (value === 'default')
-          return;
+        if (value === 'default') return;
         options['AlertsLanguage'] = value;
       },
     },
@@ -1156,8 +1264,7 @@ const templateOptions = {
       default: 'default',
       debug: true,
       setterFunc: (options, value) => {
-        if (value === 'default')
-          return;
+        if (value === 'default') return;
         options['TimelineLanguage'] = value;
       },
     },
@@ -1174,28 +1281,28 @@ const templateOptions = {
       type: 'select',
       options: {
         en: {
-          'Default': 'default',
-          'lippe': 'lippe',
+          Default: 'default',
+          lippe: 'lippe',
         },
         de: {
-          'Default': 'default',
-          'lippe': 'lippe',
+          Default: 'default',
+          lippe: 'lippe',
         },
         fr: {
-          'Défaut': 'default',
-          'lippe': 'lippe',
+          Défaut: 'default',
+          lippe: 'lippe',
         },
         ja: {
-          '初期設定': 'default',
-          'lippe': 'lippe',
+          初期設定: 'default',
+          lippe: 'lippe',
         },
         cn: {
-          '默认': 'default',
-          'lippe': 'lippe',
+          默认: 'default',
+          lippe: 'lippe',
         },
         ko: {
-          '기본': 'default',
-          'lippe': 'lippe',
+          기본: 'default',
+          lippe: 'lippe',
         },
       },
       default: 'default',
@@ -1416,7 +1523,8 @@ const templateOptions = {
         en: 'e8s: enable cactbot Uptime Knockback strat',
         de: 'e8s: aktiviere cactbot Uptime Knockback Strategie',
         fr: 'e8s : activer cactbot pour Uptime Knockback strat',
-        ja: 'エデン零式共鳴編４層：cactbot「ヘヴンリーストライク (ノックバック)」ギミック',
+        ja:
+            'エデン零式共鳴編４層：cactbot「ヘヴンリーストライク (ノックバック)」ギミック',
         cn: 'E8S: 启用cactbot的击退提示功能',
         ko: '공명 영웅 4층: cactbot 정확한 타이밍 넉백방지 공략 활성화',
       },

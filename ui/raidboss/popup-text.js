@@ -466,7 +466,7 @@ export class PopupText {
           const dir = set.filename.substring(0, set.filename.lastIndexOf('/'));
           timelineFiles.push(dir + '/' + set.timelineFile);
         } else {
-          // Note: For user files, this should get handled by raidboss_config.js,
+          // Note: For user files, this should get handled by raidboss_config.ts,
           // where `timelineFile` should get converted to `timeline`.
           console.error('Can\'t specify timelineFile in non-manifest file:' + set.timelineFile);
         }

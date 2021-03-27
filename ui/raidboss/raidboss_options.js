@@ -2,7 +2,7 @@
 
 // See user/raidboss-example.js for documentation.
 const Options = {
-  // These options are ones that are not auto-defined by raidboss_config.js.
+  // These options are ones that are not auto-defined by raidboss_config.ts.
   PlayerNicks: {},
 
   InfoSound: '../../resources/sounds/freesound/percussion_hit.ogg',

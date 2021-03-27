@@ -21,5 +21,6 @@ module.exports = function(content, map, meta) {
 
   outputStr += '};';
 
+  console.log(`${importStr}\n${outputStr}`);
   return `${importStr}\n${outputStr}`;
 };
