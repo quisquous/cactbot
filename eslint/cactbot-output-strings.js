@@ -1,7 +1,6 @@
 const t = require('@babel/types');
 const textProps = ['alarmText', 'alertText', 'infoText', 'tts'];
 
-
 /**
  * @type {import("eslint").Rule.RuleModule}
  */
@@ -22,6 +21,7 @@ const ruleModule = {
       notFoundTemplate: '`output.{{prop}}(...)` doesn\'t have template \'{{template}}\'.',
       missingTemplateValue: 'template \'{{prop}}\' is missing in function call',
       tooManyParams: 'function `output.{{call}}()` take only {{num}} params',
+      typeError: 'function `output.{{call}}(...) take only object as params',
     },
   },
   create: function(context) {
@@ -141,23 +141,12 @@ const ruleModule = {
         }
         if (t.isIdentifier(node.property) && stack.outputProperties.includes(node.property.name)) {
           const args = node.parent.callee.parent.arguments;
-          const outputOfTriggerID = stack.outputTemplates ?? {};
-          const outputTemplate = outputOfTriggerID?.[node.property.name];
+          const outputOfTriggerId = stack.outputTemplates ?? {};
+          const outputTemplate = outputOfTriggerId?.[node.property.name];
 
           if (args.length === 0) {
-            if ((node.property.name in outputOfTriggerID) && outputTemplate === undefined) {
-              context.report({
-                node,
-                messageId: 'tooManyParams',
-                data: {
-                  call: node.property.name,
-                  num: '0',
-                },
-              });
-            }
-
-            if (node.property.name in outputOfTriggerID) {
-              if (outputOfTriggerID[node.property.name] !== null) {
+            if (node.property.name in outputOfTriggerId) {
+              if (outputOfTriggerId[node.property.name] !== null) {
                 context.report({
                   node,
                   messageId: 'missingTemplateValue',
@@ -167,16 +156,31 @@ const ruleModule = {
                 });
               }
             }
-          } else if (args.length !== 1) {
-            context.report({
-              node,
-              messageId: 'tooManyParams',
-              data: {
-                call: node.property.name,
-                num: '1',
-              },
-            });
-          } else {
+          } else if (args.length === 1) {
+            if (t.isObjectExpression(args[0])) {
+              const passedKeys = getAllKeys(args[0].properties);
+              if (outputTemplate === null) {
+                if (passedKeys.length !== 0) {
+                  context.report({
+                    node,
+                    messageId: 'notFoundTemplate',
+                    data: {
+                      prop: node.property.name,
+                      template: passedKeys,
+                    },
+                  });
+                }
+              }
+            } else if (t.isLiteral(args[0])) {
+              context.report({
+                node,
+                messageId: 'typeError',
+                data: {
+                  call: node.property.name,
+                },
+              });
+            }
+
             const keysInParams = getAllKeys(args[0].properties);
             if (outputTemplate !== null && outputTemplate !== undefined) {
               for (const key of outputTemplate) {
@@ -204,6 +208,15 @@ const ruleModule = {
                 }
               }
             }
+          } else if (args.length !== 1) {
+            context.report({
+              node,
+              messageId: 'tooManyParams',
+              data: {
+                call: node.property.name,
+                num: '1',
+              },
+            });
           }
         }
       },

@@ -21,6 +21,7 @@
     "find-translations": "node --loader ts-node/esm util/find_missing_translations.js"
   },
   "devDependencies": {
+    "@babel/types": "7.12.7",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.1",
     "@zoltu/typescript-transformer-append-js-extension": "^1.0.1",
