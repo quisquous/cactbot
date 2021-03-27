@@ -159,17 +159,15 @@ const ruleModule = {
           } else if (args.length === 1) {
             if (t.isObjectExpression(args[0])) {
               const passedKeys = getAllKeys(args[0].properties);
-              if (outputTemplate === null) {
-                if (passedKeys.length !== 0) {
-                  context.report({
-                    node,
-                    messageId: 'notFoundTemplate',
-                    data: {
-                      prop: node.property.name,
-                      template: passedKeys,
-                    },
-                  });
-                }
+              if (outputTemplate === null && passedKeys.length !== 0) {
+                context.report({
+                  node,
+                  messageId: 'notFoundTemplate',
+                  data: {
+                    template: passedKeys.join(', '),
+                    prop: node.property.name,
+                  },
+                });
               }
             } else if (t.isLiteral(args[0])) {
               context.report({
