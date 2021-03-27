@@ -348,7 +348,7 @@ It has more fleshed out support for some jobs but is *strongly* a Work In Progre
 |:-:|:-:|
 |<img src="./resources/ffxiv/jobs/pld-large.png" width="30px"/><br> Paladin|Shows current Oath amount, and atonement stacks. Also tracks Goring Blade DoT. |
 |<img src="./resources/ffxiv/jobs/war-large.png" width="30px"/><br> Warrior|Shows the beast amount, and tracks the remaining Storm's Eye buff time in gcds, and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/drk-large.png" width="30px"/><br> Dark Knight|Shows the blood amount and darkside time, and shows combo time remaining.|
+|<img src="./resources/ffxiv/jobs/drk-large.png" width="30px"/><br> Dark Knight|Shows the blood amount and darkside time, BloodWeapon&Delirium&LivingShadow duration and cooldown, and shows combo time remaining.|
 |<img src="./resources/ffxiv/jobs/gnb-large.png" width="30px"/><br> Gunbreaker|Shows No Mercy duration&cooldown, Bloodfest&Gnashing Fang cooldown, Cartridge amount, and shows combo time remaining.|
 |<img src="./resources/ffxiv/jobs/whm-large.png" width="30px"/><br> White Mage|Shows Heal&Blood Lily amount, time to next Lily, DoTs remaining time, and shows Assize&Lucid Dreaming cooldown.|
 |<img src="./resources/ffxiv/jobs/sch-large.png" width="30px"/><br> Scholar|Shows Aetherflow stacks, Fairy gauge amount/time remaining, DoTs remaining time, and shows Aetherflow&Lucid Dreaming cooldown.|
@@ -356,7 +356,7 @@ It has more fleshed out support for some jobs but is *strongly* a Work In Progre
 |<img src="./resources/ffxiv/jobs/mnk-large.png" width="30px"/><br> Monk|Shows chakra count, <del>remaining greased lightning time</del> and form time, and tracks monk buffs and debuffs.|
 |<img src="./resources/ffxiv/jobs/drg-large.png" width="30px"/><br> Dragoon|Shows blood&eye amount, remaining Disembowel time, jump cooldown, and Lance Charge&Dragon Sight duration/cooldown.|
 |<img src="./resources/ffxiv/jobs/nin-large.png" width="30px"/><br> Ninja|Shows Ninki amount, Huton remaining time, Trick Attack duration&cooldown, Bunshin&Mudras cooldown, and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/sam-large.png" width="30px"/><br> Samurai|⨉ Not supported currently.|
+|<img src="./resources/ffxiv/jobs/sam-large.png" width="30px"/><br> Samurai|Shows Kenki amount, Meditation stacks, Shifu&Jinpu&Higanbana duration, Tsubame-gaeshi cooldown, and shows combo time remaining.|
 |<img src="./resources/ffxiv/jobs/brd-large.png" width="30px"/><br> Bard|Shows songs playing and remaining time, Repertoire stack, Soul Voice amount, StraightShotReady track, DoT remaining time, and a bar that show when your DoTs will tick.|
 |<img src="./resources/ffxiv/jobs/mch-large.png" width="30px"/><br> Machinist|Shows Heat gauge, Battery gauge, Combo Timer, Drill/Bioblaster&Air Anchor Cooldown, Wild Fire Cooldown&Duration. When Wild Fire is active, there will be a gauge to show how many GCD you have landed.|
 |<img src="./resources/ffxiv/jobs/dnc-large.png" width="30px"/><br> Dancer|Shows Combo Timer, Feather Guage, Esprit Guage, Standard Step Cooldown, Technical Step&Flourish Cooldown & Duration.|

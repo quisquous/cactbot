@@ -1,4 +1,4 @@
-import LineEvent from './LineEvent.js';
+import LineEvent from './LineEvent';
 
 // Limit gauge event
 export class LineEvent0x24 extends LineEvent {

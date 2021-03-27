@@ -1,7 +1,7 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
+import { Responses } from '../../../../../resources/responses';
+import ZoneId from '../../../../../resources/zone_id';
 
 export default {
   zoneId: ZoneId.TheSeatOfSacrifice,
@@ -418,7 +418,7 @@ export default {
         '--active time event--': '--Aktives Zeitevent--',
         'Absolute Blizzard III': 'Absolutes Eisga',
         'Absolute Fire III': 'Absolutes Feuga',
-        'Absolute Fire/Blizard': 'Absolutes Feuga/Eisga',
+        'Absolute Fire/Blizzard': 'Absolutes Feuga/Eisga',
         'Absolute Holy': 'Absolutes Sanctus',
         'Absolute Teleport': 'Absoluter Teleport',
         'Ascendance': 'Himmelstanz',
@@ -468,7 +468,6 @@ export default {
         '\\(In\\)': '(Intérieur)',
         '\\(Out\\)': '(Extérieur)',
         'Absolute Blizzard III': 'Méga Glace absolue',
-        'Absolute Fire/Blizard': 'Méga Feu/Glace absolue',
         'Absolute Fire/Blizzard': 'Méga Feu/Glace absolue',
         'Absolute Fire III': 'Méga Feu absolu',
         'Absolute Holy': 'Miracle absolu',
@@ -521,7 +520,7 @@ export default {
         '--active time event--': '--QTE--',
         'Absolute Blizzard III': 'アブソリュートブリザガ',
         'Absolute Fire III': 'アブソリュートファイガ',
-        'Absolute Fire/Blizard': 'アブソリュート ファイガ／ブリザガ',
+        'Absolute Fire/Blizzard': 'アブソリュート ファイガ／ブリザガ',
         'Absolute Holy': 'アブソリュートホーリー',
         'Absolute Teleport': 'アブソリュートテレポ',
         'Ascendance': 'アセンダンス',
@@ -572,7 +571,7 @@ export default {
         '--active time event--': '--XJB按--',
         'Absolute Blizzard III': '绝对冰封',
         'Absolute Fire III': '绝对爆炎',
-        'Absolute Fire/Blizard': '绝对爆炎/绝对冰封',
+        'Absolute Fire/Blizzard': '绝对爆炎/绝对冰封',
         'Absolute Holy': '绝对神圣',
         'Absolute Teleport': '绝对传送',
         'Ascendance': '生辰星位',
@@ -635,7 +634,7 @@ export default {
         'Flare Breath': '타오르는 숨결',
         'Imbued Coruscance': '마법검: 빛나는 도검',
         'Imbued Fire/Blizzard': '마법검 파이가/블리자가',
-        'Absolute Fire/Blizard': '앱솔루트 파이가/블리자가',
+        'Absolute Fire/Blizzard': '앱솔루트 파이가/블리자가',
         'Katon: San': '화둔술 3',
         'Meteor Impact': '운석 낙하',
         'Perfect Decimation': '완전 섬멸',

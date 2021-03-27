@@ -1,4 +1,4 @@
-import ZoneId from '../../../../../resources/zone_id.js';
+import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: Scouring Tsunami (3CE0) on somebody other than target
 // TODO: Sweeping Tsunami (3FF5) on somebody other than tanks

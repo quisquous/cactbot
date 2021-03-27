@@ -1,6 +1,6 @@
-import CombatantTracker from './CombatantTracker.js';
-import LogEventHandler from './LogEventHandler.js';
-import PetNamesByLang from '../../../../resources/pet_names.js';
+import CombatantTracker from './CombatantTracker';
+import LogEventHandler from './LogEventHandler';
+import PetNamesByLang from '../../../../resources/pet_names';
 
 export default class Encounter {
   constructor(encounterDay, encounterZoneId, encounterZoneName, logLines) {
@@ -87,5 +87,9 @@ export default class Encounter {
     this.playbackOffset = this.logLines[this.firstLineIndex].offset;
 
     this.startStatus = [...this.startStatus].sort().join(', ');
+  }
+
+  shouldPersistFight() {
+    return this.firstPlayerAbility > 0 && this.firstEnemyAbility > 0;
   }
 }

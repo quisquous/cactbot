@@ -1,8 +1,8 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import Outputs from '../../../../../resources/outputs.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
+import { Responses } from '../../../../../resources/responses';
+import ZoneId from '../../../../../resources/zone_id';
 
 // In your cactbot/user/raidboss.js file, add the line:
 //   Options.cactbotWormholeStrat = true;
@@ -113,7 +113,7 @@ const radiantOutputStrings = {
     de: 'Sacrement Norden',
     fr: 'Sacrement Nord',
     ja: '拝火は北',
-    cn: '拜火 北',
+    cn: '月环上（北）',
     ko: '성례: 북',
   },
   east: {
@@ -121,7 +121,7 @@ const radiantOutputStrings = {
     de: 'Sacrement Osten',
     fr: 'Sacrement Est',
     ja: '拝火は東',
-    cn: '拜火 东',
+    cn: '月环右（东）',
     ko: '성례: 동',
   },
   south: {
@@ -129,7 +129,7 @@ const radiantOutputStrings = {
     de: 'Sacrement Süden',
     fr: 'Sacrement Sud',
     ja: '拝火は南',
-    cn: '拜火 南',
+    cn: '月环下（南）',
     ko: '성례: 남',
   },
   west: {
@@ -137,7 +137,7 @@ const radiantOutputStrings = {
     de: 'Sacrement Westen',
     fr: 'Sacrement Ouest',
     ja: '拝火は西',
-    cn: '拜火 西',
+    cn: '月环左（西）',
     ko: '성례: 서',
   },
 };
@@ -2003,7 +2003,7 @@ export default {
         de: 'Orange',
         fr: 'Orange',
         ja: '接触禁止',
-        cn: '接触禁止',
+        cn: '小光',
         ko: '접촉금지',
       },
       outputStrings: {
@@ -2012,7 +2012,7 @@ export default {
           de: 'Orange (Anziehen)',
           fr: 'Orange (Attraction)',
           ja: '接触禁止',
-          cn: '接触禁止',
+          cn: '小光',
           ko: '노랑/접촉금지',
         },
       },
@@ -2028,7 +2028,7 @@ export default {
           de: 'Orange locken: Geh Weg',
           fr: 'Attirez l\'orange : Éloignez-vous',
           ja: '接触保護',
-          cn: '接触保护',
+          cn: '大光: 远离人群',
           ko: '노랑/접촉보호; 유도역할/혼자 멀리 있기',
         },
       },
@@ -2043,7 +2043,7 @@ export default {
         de: 'Lila',
         fr: 'Violet',
         ja: '逃亡禁止',
-        cn: '逃亡禁止',
+        cn: '小暗',
         ko: '도망금지',
       },
       outputStrings: {
@@ -2052,7 +2052,7 @@ export default {
           de: 'Lila (Abstoßen)',
           fr: 'Violet (Répulsion)',
           ja: '逃亡禁止',
-          cn: '逃亡禁止',
+          cn: '小暗',
           ko: '보라/도망금지',
         },
       },
@@ -2068,7 +2068,7 @@ export default {
           de: 'Lila locken: Hinter der Gruppe sein',
           fr: 'Attirez le violet : Soyez derrière le groupe',
           ja: '逃亡監察',
-          cn: '逃亡监察',
+          cn: '大暗: 去人群后面',
           ko: '보라/도망감찰; 유도역할/사람들 뒤에 있기',
         },
       },
@@ -2160,7 +2160,7 @@ export default {
           de: 'Ehrenstrafe aud DIR',
           fr: 'Diffamation sur VOUS',
           ja: '名誉罰',
-          cn: '名誉罪',
+          cn: '大圈点名',
           ko: '명예형: 보스 밑에서 나 홀로!!!',
         },
         solidarity: {
@@ -2168,7 +2168,7 @@ export default {
           de: 'Urteil Kollektivstrafe: stack',
           fr: 'Peine collective : packez-vous',
           ja: '集団罰: ',
-          cn: '集团罪',
+          cn: '分摊点名',
           ko: '집단형: 오른쪽/함께 맞기',
         },
         severity: {
@@ -2176,7 +2176,7 @@ export default {
           de: 'Erschwertes: geteilter stack ausweichen',
           fr: 'Sévérité : éloignez-vous du package',
           ja: '加重罰',
-          cn: '加重罪：远离分摊',
+          cn: '电点名：远离分摊',
           ko: '가중형; 왼쪽/가중형끼리 모이기',
         },
         noDebuff: {
@@ -2510,7 +2510,7 @@ export default {
           de: 'Lila Köder: locke O',
           fr: 'Attirez le Violet : attirez à l\'E',
           ja: '逃亡監察: 東へ',
-          cn: '紫色引导: 东',
+          cn: '大暗: 东',
           ko: '보라/도망감찰: 유도역할/동쪽',
         },
         orangeBait: {
@@ -2518,7 +2518,7 @@ export default {
           de: 'Orange Köder: locke N',
           fr: 'Attirez l\'Orange : attirez au N',
           ja: '接触保護: 北へ',
-          cn: '橙色引导: 北',
+          cn: '大光: 北',
           ko: '노랑/접촉보호: 유도역할/북쪽',
         },
         purpleNoTether: {
@@ -2526,7 +2526,7 @@ export default {
           de: 'Lila, keine Verbindung: O->W',
           fr: 'Violet, pas de lien : E->O',
           ja: '逃亡禁止, 線無し: 東から西へ',
-          cn: '紫色, 无连线: 东->西',
+          cn: '小暗, 无连线: 东->西',
           ko: '보라/접촉금지/선없음: 동→서',
         },
         orangeNoTether: {
@@ -2535,7 +2535,7 @@ export default {
           de: 'Orange, keine Verbindung: O->N',
           fr: 'Orange, pas de lien : E->N',
           ja: '接触禁止, 線無し: 東から北へ',
-          cn: '橙色, 无连线: 东->北',
+          cn: '小光, 无连线: 东->北',
           ko: '노랑/접촉금지/선없음: 동→북',
         },
         purpleCloseTether: {
@@ -2543,7 +2543,7 @@ export default {
           de: 'Lila, nahe Verbindungr: O->N',
           fr: 'Violet, lien rapproché : E->N',
           ja: '逃亡禁止, 接近強制: 東から北へ',
-          cn: '紫色, 接近连线: 东->北',
+          cn: '小暗, 接近连线: 东->北',
           ko: '보라/도망금지/강제접근: 동→북',
         },
         orangeCloseTether: {
@@ -2551,7 +2551,7 @@ export default {
           de: 'Orange, nahe Verbindung: O->N',
           fr: 'Orange, lien rapproché : E->N',
           ja: '接触禁止, 接近強制: 東から北へ',
-          cn: '橙色, 接近连线: 东->北',
+          cn: '小光, 接近连线: 东->北',
           ko: '노랑/접촉금지/강제접근: 동→북',
         },
         purpleFarTether: {
@@ -2559,7 +2559,7 @@ export default {
           de: 'Lila, entfernte Verbindung: O->S',
           fr: 'Violet, lien éloigné : E->S',
           ja: '逃亡禁止, 接近禁止: 東から南へ',
-          cn: '紫色, 远离连线: 东->南',
+          cn: '小暗, 远离连线: 东->南',
           ko: '보라/도망금지/접근금지: 동→남',
         },
         orangeFarTether: {
@@ -2567,7 +2567,7 @@ export default {
           de: 'Orange, entfernte Verbindung: O->N',
           fr: 'Orange, lien éloigné : E->N',
           ja: '接触禁止, 接近禁止: 東から北へ',
-          cn: '橙色, 远离连线: 东->北',
+          cn: '小光, 远离连线: 东->北',
           ko: '노랑/접촉금지/접근금지: 동→북',
         },
       },

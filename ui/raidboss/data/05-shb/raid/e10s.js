@@ -1,9 +1,9 @@
-import { Util } from '../../../../../resources/common.js';
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import Outputs from '../../../../../resources/outputs.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import Util from '../../../../../resources/util';
+import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
+import { Responses } from '../../../../../resources/responses';
+import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: Fix headmarkers for groups running multiple of the same job ?
 
@@ -373,7 +373,7 @@ export default {
       condition: (data) => data.clones,
       run: (data, matches) => {
         data.myClone = data.myClone || [];
-        const clonesJob = parseInt(matches.job, 16).toString();
+        const clonesJob = parseInt(matches.job, 16);
         if (clonesJob === Util.jobToJobEnum(data.job))
           data.myClone.push(matches.id.toUpperCase());
       },

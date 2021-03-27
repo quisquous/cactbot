@@ -1,8 +1,8 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import Outputs from '../../../../../resources/outputs.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
+import { Responses } from '../../../../../resources/responses';
+import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: knockback direction from big hand after giant lasers (Palm Of Temperance 58B4/58B6/?/?)
 // TODO: for left/right reach during Blade Of Flame, call out Left + #1 alarm for #1.
@@ -400,43 +400,217 @@ export default {
       id: 'E12S Promise Chiseled Sculpture',
       netRegex: NetRegexes.headMarker({}),
       condition: (data, matches) => data.isDoorBoss && matches.target === data.me,
-      response: (data, matches, output) => {
-        // cactbot-builtin-response
-        output.responseOutputStrings = {
-          // This is sort of redundant, but if folks want to put "square" or something in the text,
-          // having these be separate would allow them to configure them separately.
-          square1: numberOutputStrings[1],
-          square2: numberOutputStrings[2],
-          square3: numberOutputStrings[3],
-          square4: numberOutputStrings[4],
-          triangle1: numberOutputStrings[1],
-          triangle2: numberOutputStrings[2],
-          triangle3: numberOutputStrings[3],
-          triangle4: numberOutputStrings[4],
-        };
-
+      run: (data, matches) => {
         const id = getHeadmarkerId(data, matches);
 
         // Statue laser mechanic.
         const firstLaserMarker = '0091';
         const lastLaserMarker = '0098';
         if (id >= firstLaserMarker && id <= lastLaserMarker) {
-          // We could arguably tell you which giant you're tethered to by finding their position?
-          // And then saying something like "North" but that's probably more confusing than helpful.
           // ids are sequential: #1 square, #2 square, #3 square, #4 square, #1 triangle etc
           const decOffset = parseInt(id, 16) - parseInt(firstLaserMarker, 16);
-          return {
-            alertText: [
-              output.square1(),
-              output.square2(),
-              output.square3(),
-              output.square4(),
-              output.triangle1(),
-              output.triangle2(),
-              output.triangle3(),
-              output.triangle4(),
-            ][decOffset],
-          };
+          data.statueTetherNumber = (decOffset % 4) + 1;
+        }
+      },
+    },
+    {
+      id: 'E12S Promise Chiseled Sculpture Collector',
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9818' }),
+      run: (data, matches) => {
+        // Collect both sculptures up front, so when we find the tether on the
+        // current player we can look up both of them immediately.
+        data.statueIds = data.statueIds || [];
+        data.statueIds.push(parseInt(matches.id, 16));
+      },
+    },
+    {
+      id: 'E12S Promise Chiseled Sculpture Tether',
+      // This always directly follows the 1B: headmarker line.
+      netRegex: NetRegexes.tether({ target: 'Chiseled Sculpture', id: '0011' }),
+      netRegexDe: NetRegexes.tether({ target: 'Abbild Eines Mannes', id: '0011' }),
+      netRegexFr: NetRegexes.tether({ target: 'Création Masculine', id: '0011' }),
+      netRegexJa: NetRegexes.tether({ target: '創られた男', id: '0011' }),
+      condition: (data, matches) => matches.source === data.me,
+      durationSeconds: (data) => {
+        // Handle laser #1 differently to not collide with the rapturous reach.
+        if (data.statueTetherNumber === 0)
+          return 3.5;
+        if (data.statueTetherNumber)
+          return data.statueTetherNumber * 3 + 4.5;
+        return 8;
+      },
+      promise: async (data, matches) => {
+        // Set an initial value here, just in case anything errors.
+        data.statueDir = 'unknown';
+
+        // Calculate distance to center to determine inner vs outer
+        const statueData = await window.callOverlayHandler({
+          call: 'getCombatants',
+          ids: data.statueIds,
+        });
+
+        if (statueData === null) {
+          console.error(`sculpture: null statueData`);
+          return;
+        }
+        if (!statueData.combatants) {
+          console.error(`sculpture: null combatants`);
+          return;
+        }
+        if (statueData.combatants.length !== 2) {
+          console.error(`sculpture: unexpected length: ${JSON.stringify(statueData)}`);
+          return;
+        }
+
+        // Mark up statue objects with their distance to the center and
+        // convert their decimal id to an 8 character hex id.
+        const statues = statueData.combatants;
+        for (const statue of statues) {
+          const centerX = 0;
+          const centerY = -75;
+          const x = statue.PosX - centerX;
+          const y = statue.PosY - centerY;
+          statue.dist = Math.hypot(x, y);
+          statue.hexId = `00000000${statue.ID.toString(16)}`.slice(-8).toUpperCase();
+        }
+
+        // Sort so that closest statue (inner) is first
+        statues.sort((a, b) => a.dist - b.dist);
+
+        if (statues[0].hexId === matches.targetId)
+          data.statueDir = 'inner';
+        else if (statues[1].hexId === matches.targetId)
+          data.statueDir = 'outer';
+        else
+          console.error(`sculpture: missing ${matches.targetId}, ${JSON.stringify(statues)}`);
+      },
+      infoText: (data, _, output) => {
+        const numStr = {
+          1: output.laser1(),
+          2: output.laser2(),
+          3: output.laser3(),
+          4: output.laser4(),
+        }[data.statueTetherNumber];
+
+        if (!numStr) {
+          console.error(`sculpture: invalid tether number: ${data.statueTetherNumber}`);
+          return;
+        }
+
+        return output[data.statueDir]({ num: numStr });
+      },
+      outputStrings: {
+        laser1: numberOutputStrings[1],
+        laser2: numberOutputStrings[2],
+        laser3: numberOutputStrings[3],
+        laser4: numberOutputStrings[4],
+        inner: {
+          en: '#${num} (Inner)',
+          de: '#${num} (innen)',
+          fr: '#${num} (Intérieur)',
+        },
+        outer: {
+          en: '#${num} (Outer)',
+          de: '#${num} (außen)',
+          fr: '#${num} (Extérieur)',
+        },
+        unknown: {
+          en: '#${num} (???)',
+          de: '#${num} (???)',
+          fr: '#${num} (???)',
+        },
+      },
+    },
+    {
+      id: 'E12S Promise Palm Of Temperance SE',
+      netRegex: NetRegexes.startsUsing({ source: 'Guardian Of Eden', id: '58B4', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Wächter Von Eden', id: '58B4', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Gardien D\'Éden', id: '58B4', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ガーディアン・オブ・エデン', id: '58B4', capture: false }),
+      durationSeconds: 10,
+      infoText: (data, _, output) => output.knockback(),
+      outputStrings: {
+        knockback: {
+          en: 'SE Knockback',
+          de: 'SO Rückstoß',
+          fr: 'SE Poussée',
+        },
+      },
+    },
+    {
+      id: 'E12S Promise Palm Of Temperance SW',
+      netRegex: NetRegexes.startsUsing({ source: 'Guardian Of Eden', id: '58B5', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Wächter Von Eden', id: '58B5', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Gardien D\'Éden', id: '58B5', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ガーディアン・オブ・エデン', id: '58B5', capture: false }),
+      durationSeconds: 10,
+      infoText: (data, _, output) => output.knockback(),
+      outputStrings: {
+        knockback: {
+          en: 'SW Knockback',
+          de: 'SW Rückstoß',
+          fr: 'SO Poussée',
+        },
+      },
+    },
+    {
+      id: 'E12S Promise Statue 2nd/3rd/4th Laser',
+      netRegex: NetRegexes.ability({ source: 'Chiseled Sculpture', id: '58B3', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Abbild Eines Mannes', id: '58B3', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Création Masculine', id: '58B3', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '創られた男', id: '58B3', capture: false }),
+      condition: (data) => !data.statueLaserCount || data.statueLaserCount < 4,
+      durationSeconds: 3,
+      suppressSeconds: 1,
+      response: (data, _, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          laser1: numberOutputStrings[1],
+          laser2: numberOutputStrings[2],
+          laser3: numberOutputStrings[3],
+          laser4: numberOutputStrings[4],
+          baitInner: {
+            en: 'Bait Inner #${num}',
+            de: 'Köder innen #${num}',
+            fr: 'Orientez vers l\'intérieur #${num}',
+          },
+          baitOuter: {
+            en: 'Bait Outer #${num}',
+            de: 'Köder außen #${num}',
+            fr: 'Orientez vers l\'extérieur #${num}',
+          },
+          baitUnknown: {
+            en: 'Bait #${num}',
+            de: 'Köder #${num}',
+            fr: 'Orientez #${num}',
+          },
+        };
+        // Start one ahead, so that it calls out #2 after #1 has finished.
+        data.statueLaserCount = data.statueLaserCount + 1 || 2;
+
+        const numStr = {
+          1: output.laser1(),
+          2: output.laser2(),
+          3: output.laser3(),
+          4: output.laser4(),
+        }[data.statueLaserCount];
+
+        // The lasers are VERY noisy and flashy, so don't print anything when not you.
+        // This also helps prevent confusion with the knockback direction trigger.
+        if (data.statueLaserCount !== data.statueTetherNumber)
+          return;
+
+        if (data.statueDir === 'inner')
+          return { alertText: output.baitInner({ num: numStr }) };
+        else if (data.statueDir === 'outer')
+          return { alertText: output.baitOuter({ num: numStr }) };
+        return { alertText: output.baitUnknown({ num: numStr }) };
+      },
+      run: (data) => {
+        if (data.statueLaserCount >= 4) {
+          // Prevent future rapturous reach calls from thinking this is during lasers.
+          delete data.statueTetherNumber;
+          delete data.statueDir;
         }
       },
     },
@@ -501,7 +675,36 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58AD', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58AD', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58AD', capture: false }),
-      response: Responses.goLeft('info'),
+      response: (data, _, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          goLeft: Outputs.left,
+          goLeftBaitInner: {
+            en: 'Left + Bait Inner #1',
+            de: 'Links + Köder innen #1',
+            fr: 'Gauche + Orientez vers l\'intérieur #1',
+          },
+          goLeftBaitOuter: {
+            en: 'Left + Bait Outer #1',
+            de: 'Links + Köder außen #1',
+            fr: 'Gauche + Orientez vers l\'extérieur #1',
+          },
+          goLeftBaitUnknown: {
+            en: 'Left + Bait #1',
+            de: 'Links + Köder #1',
+            fr: 'Gauche + Orientez #1',
+          },
+        };
+
+        if (data.statueTetherNumber !== 1)
+          return { infoText: output.goLeft() };
+
+        if (data.statueDir === 'inner')
+          return { alarmText: output.goLeftBaitInner() };
+        else if (data.statueDir === 'outer')
+          return { alarmText: output.goLeftBaitOuter() };
+        return { alarmText: output.goLeftBaitUnknown() };
+      },
       run: (data) => data.isDoorBoss = true,
     },
     {
@@ -510,7 +713,36 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58AE', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58AE', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58AE', capture: false }),
-      response: Responses.goRight('info'),
+      response: (data, _, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          goRight: Outputs.right,
+          goRightBaitInner: {
+            en: 'Right + Bait Inner #1',
+            de: 'Rechts + Köder innen #1',
+            fr: 'Droite + Orientez vers l\'intérieur #1',
+          },
+          goRightBaitOuter: {
+            en: 'Right + Bait Outer #1',
+            de: 'Rechts + Köder außen #1',
+            fr: 'Droite + Orientez vers l\'extérieur #1',
+          },
+          goRightBaitUnknown: {
+            en: 'Right + Bait #1',
+            de: 'Rechts + Köder #1',
+            fr: 'Droite + Orientez #1',
+          },
+        };
+
+        if (data.statueTetherNumber !== 1)
+          return { infoText: output.goRight() };
+
+        if (data.statueDir === 'inner')
+          return { alarmText: output.goRightBaitInner() };
+        else if (data.statueDir === 'outer')
+          return { alarmText: output.goRightBaitOuter() };
+        return { alarmText: output.goRightBaitUnknown() };
+      },
       run: (data) => data.isDoorBoss = true,
     },
     {
@@ -787,6 +1019,72 @@ export default {
       },
     },
     {
+      id: 'E12S Oracle Cataclysm',
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C2' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58C2' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58C2' }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58C2' }),
+      delaySeconds: 0.5,
+      promise: async (data, matches, output) => {
+        // select the Oracle Of Darkness with same source id
+        let oracleData = null;
+        oracleData = await window.callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
+        });
+
+        // if we could not retrieve combatant data, the
+        // trigger will not work, so just resume promise here
+        if (oracleData === null) {
+          console.error(`Oracle Of Darkness: null data`);
+          data.safeZone = null;
+          return;
+        }
+        if (!oracleData.combatants) {
+          console.error(`Oracle Of Darkness: null combatants`);
+          data.safeZone = null;
+          return;
+        }
+        if (oracleData.combatants.length !== 1) {
+          console.error(`Oracle Of Darkness: expected 1, got ${oracleData.combatants.length}`);
+          data.safeZone = null;
+          return;
+        }
+
+        const oracle = oracleData.combatants[0];
+
+        // Snap heading to closest card and add 2 for opposite direction
+        // N = 0, E = 1, S = 2, W = 3
+        const cardinal = ((2 - Math.round(oracle.Heading * 4 / Math.PI) / 2) + 2) % 4;
+
+        const dirs = {
+          0: output.north(),
+          1: output.east(),
+          2: output.south(),
+          3: output.west(),
+        };
+
+        data.safeZone = dirs[cardinal];
+      },
+      infoText: (data, _, output) => {
+        return !data.safeZone ? output.unknown() : data.safeZone;
+      },
+      outputStrings: {
+        unknown: {
+          en: '???',
+          de: '???',
+          fr: '???',
+          ja: '???',
+          cn: '???',
+          ko: '???',
+        },
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+      },
+    },
+    {
       id: 'E12S Shell Crusher',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C3', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58C3', capture: false }),
@@ -837,18 +1135,34 @@ export default {
           longFire: {
             en: 'Long Fire',
             de: 'langes Feuer',
+            fr: 'Feu long',
+            ja: 'ファイガ(遅い)',
+            cn: '长火',
+            ko: '느린 파이가',
           },
           shortFire: {
             en: 'Short Fire',
             de: 'kurzes Feuer',
+            fr: 'Feu court',
+            ja: 'ファイガ(早い)',
+            cn: '短火',
+            ko: '빠른 파이가',
           },
           longIce: {
             en: 'Long Ice',
             de: 'langes Eis',
+            fr: 'Glace longue',
+            ja: 'ブリザガ(遅い)',
+            cn: '长冰',
+            ko: '느린 블리자가',
           },
           shortIce: {
             en: 'Short Ice',
             de: 'kurzes Eis',
+            fr: 'Glace courte',
+            ja: 'ブリザガ(早い)',
+            cn: '短冰',
+            ko: '빠른 블리자가',
           },
         };
 
@@ -905,7 +1219,7 @@ export default {
           effect3: output[keys[2]](),
         });
       },
-      outputStrings: Object.assign({
+      outputStrings: {
         comboText: {
           en: '${effect1} > ${effect2} > ${effect3}',
           de: '${effect1} > ${effect2} > ${effect3}',
@@ -914,7 +1228,8 @@ export default {
           cn: '${effect1} > ${effect2} > ${effect3}',
           ko: '${effect1} > ${effect2} > ${effect3}',
         },
-      }, intermediateRelativityOutputStrings),
+        ...intermediateRelativityOutputStrings,
+      },
     },
     {
       id: 'E12S Relativity Debuffs',
@@ -1110,7 +1425,7 @@ export default {
       },
       'replaceText': {
         'Advanced Relativity': 'Fortgeschrittene Relativität',
-        '(?<!(Singular|Dual|Triple) )Apocalypse': 'Apokalypse',
+        '(?<! )Apocalypse': 'Apokalypse',
         'Basic Relativity': 'Grundlegende Relativität',
         'Black Halo': 'Geschwärzter Schein',
         'Blade Of Flame': 'Flammenschwert',
@@ -1186,7 +1501,7 @@ export default {
       },
       'replaceText': {
         'Advanced Relativity': 'Relativité avancée',
-        '(?<!(Singular|Dual|Triple) )Apocalypse': 'Apocalypse',
+        '(?<! )Apocalypse': 'Apocalypse',
         'Basic Relativity': 'Relativité basique',
         'Black Halo': 'Halo de noirceur',
         'Blade Of Flame': 'Flammes de Lumière colossales',
@@ -1262,7 +1577,7 @@ export default {
       },
       'replaceText': {
         'Advanced Relativity': '時間圧縮・急',
-        '(?<!(Singular|Dual|Triple) )Apocalypse': 'アポカリプス',
+        '(?<! )Apocalypse': 'アポカリプス',
         'Basic Relativity': '時間圧縮・序',
         'Black Halo': 'ブラックヘイロー',
         'Blade Of Flame': '巨兵の光炎',

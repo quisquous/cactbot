@@ -1,4 +1,4 @@
-import UserConfig from '../../resources/user_config.js';
+import UserConfig from '../../resources/user_config';
 
 UserConfig.registerOptions('eureka', {
   options: [
@@ -65,7 +65,7 @@ UserConfig.registerOptions('eureka', {
         fr: 'Jouer un son pour l\'apparition des escarmouches',
         ja: 'スカーミッシュ通知機能を有効にする',
         cn: '冲突战出现时播放提示音',
-        ko: 'skirmishes 알림 소리 켜기',
+        ko: '돌발 교전 알림 소리 켜기',
       },
       type: 'checkbox',
       default: false,
@@ -78,7 +78,7 @@ UserConfig.registerOptions('eureka', {
         fr: 'Jouer un son pour l\'apparition des affrontement cruciaux',
         ja: 'CE通知機能を有効にする',
         cn: '紧急遭遇战(CE)出现时播放提示音',
-        ko: 'critical engagements 알림 소리 켜기',
+        ko: '비상 교전(CE) 알림 소리 켜기',
       },
       type: 'checkbox',
       default: true,
@@ -91,7 +91,7 @@ UserConfig.registerOptions('eureka', {
         fr: 'Jouer un son pour l\'apparition des duels',
         ja: '一騎打ち通知機能を有効にする',
         cn: '一对一决斗出现时播放提示音',
-        ko: 'duels 알림 소리 켜기',
+        ko: '결투 알림 소리 켜기',
       },
       type: 'checkbox',
       default: false,
@@ -136,7 +136,7 @@ UserConfig.registerOptions('eureka', {
         fr: 'Volume du son d\'apparition des affrontements cruciaux (0-1)',
         ja: 'CE通知音量 (0-1)',
         cn: 'critical engagement提示音量（0-1）',
-        ko: 'critical engagement 알림 소리 크기 (0-1)',
+        ko: '비상 교전(CE) 알림 소리 크기 (0-1)',
       },
       type: 'float',
       default: 0.3,

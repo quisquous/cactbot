@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '**/*.js'
+      - '**/*.ts'
       - '**/*.cjs'
       - '**/*.mjs'
       - '**/*.json'
@@ -11,6 +12,7 @@ on:
   pull_request:
     paths:
       - '**/*.js'
+      - '**/*.ts'
       - '**/*.cjs'
       - '**/*.mjs'
       - '**/*.json'
@@ -22,9 +24,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - uses: actions/setup-node@v2-beta
+      - uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: '14'
 
       - uses: actions/cache@v2
         with:
@@ -36,6 +38,10 @@ jobs:
       - name: Install Dependencies
         run: |
           npm ci
+
+      - name: TypeScript checking
+        run: |
+          npm run tsc-no-emit
 
       - name: npm run lint
         run: |

@@ -1,7 +1,7 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
+import { Responses } from '../../../../../resources/responses';
+import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: some sort of warning about extra tank damage during bow phase?
 // TODO: should the post-staff "spread" happen unconditionally prior to marker?
@@ -239,7 +239,7 @@ export default {
           en: 'Avoid Laser',
           de: 'Laser ausweichen',
           fr: 'Évitez le laser',
-          ja: 'アバランチに避け',
+          ja: 'アバランチを避ける',
           cn: '躲避击退激光',
           ko: '레이저 피하기',
         },

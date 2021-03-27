@@ -1,5 +1,5 @@
-import LineEvent from './LineEvent.js';
-import EmulatorCommon from '../../EmulatorCommon.js';
+import LineEvent from './LineEvent';
+import EmulatorCommon from '../../EmulatorCommon';
 
 // Ability use event
 export class LineEvent0x14 extends LineEvent {

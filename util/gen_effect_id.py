@@ -46,6 +46,8 @@ known_mapping = {
     "Windbite": "129",
     "Venomous Bite": "124",
     "Flourishing Fan Dance": "1820",
+    "Higanbana": "1228",
+    "Wildfire": "861",
 }
 
 

@@ -41,40 +41,37 @@ namespace Cactbot {
       public int size;
       public int opcode;
     }
+    //
+    // CE Opcode History
+    // Intl
+    // v5.35            0x299
+    // v5.35h           0x143
+    // v5.40            0x3c1
+    // v5.40h           0x31b
+    // v5.41            0x31B
+    // v5.45            0x3e1
+    // v5.45h           0x1f5
+    //
+    // CN
+    // v5.35            0x144
+    //
+    // KR
+    // v5.35            0x0347
+    //
 
-    private static readonly CEDirectorOPCodes cedirector_v5_35 = new CEDirectorOPCodes(
+    private static readonly CEDirectorOPCodes cedirector_ko = new CEDirectorOPCodes(
       0x30,
-      0x299
+      0x0347
     );
-    
-    private static readonly CEDirectorOPCodes cedirector_v5_35_cn = new CEDirectorOPCodes(
+
+    private static readonly CEDirectorOPCodes cedirector_cn = new CEDirectorOPCodes(
       0x30,
       0x144
     );
 
-    private static readonly CEDirectorOPCodes cedirector_v5_35_hotfix = new CEDirectorOPCodes(
+    private static readonly CEDirectorOPCodes cedirector_intl = new CEDirectorOPCodes(
       0x30,
-      0x143
-    );
-
-    private static readonly CEDirectorOPCodes cedirector_v5_40 = new CEDirectorOPCodes(
-      0x30,
-      0x3c1
-    );
-
-    private static readonly CEDirectorOPCodes cedirector_v5_40_hotfix = new CEDirectorOPCodes(
-      0x30,
-      0x31B
-    );
-
-    private static readonly CEDirectorOPCodes cedirector_v5_41 = new CEDirectorOPCodes(
-      0x30,
-      0x118
-    );
-
-    private static readonly CEDirectorOPCodes cedirector_v5_45 = new CEDirectorOPCodes(
-      0x30,
-      0x3e1
+      0x1f5
     );
 
     private struct ActorControl143{
@@ -144,9 +141,10 @@ namespace Cactbot {
       ac143opcodes.Add("intl", ac143_v5_2);
 
       cedirectoropcodes = new Dictionary<string, CEDirectorOPCodes>();
-      cedirectoropcodes.Add("intl", cedirector_v5_45);
+      cedirectoropcodes.Add("ko", cedirector_ko);
+      cedirectoropcodes.Add("cn", cedirector_cn);
+      cedirectoropcodes.Add("intl", cedirector_intl);
 
-      cedirectoropcodes.Add("cn", cedirector_v5_35_cn);
       fates = new Dictionary<int, int>();
       ces = new Dictionary<int, CEDirectorData>();
 

@@ -1,8 +1,8 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import Regexes from '../../../../../resources/regexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
+import Regexes from '../../../../../resources/regexes';
+import { Responses } from '../../../../../resources/responses';
+import ZoneId from '../../../../../resources/zone_id';
 
 export default {
   zoneId: ZoneId.TheFinalCoilOfBahamutTurn2,
@@ -97,7 +97,7 @@ export default {
           en: 'Out of Middle',
           de: 'Raus aus der Mitte',
           fr: 'Hors du milieu',
-          ja: '中央から離れ',
+          ja: '中央から離れる',
           cn: '离开中间',
           ko: '중앙에서 벗어나기',
         },

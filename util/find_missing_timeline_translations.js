@@ -1,19 +1,14 @@
 import fs from 'fs';
 import path from 'path';
-import Regexes from '../resources/regexes.js';
-import { Timeline } from '../ui/raidboss/timeline.js';
-import { commonReplacement, partialCommonReplacementKeys } from '../ui/raidboss/common_replacement.js';
+import Regexes from '../resources/regexes';
+import { Timeline } from '../ui/raidboss/timeline';
+import { commonReplacement, partialCommonReplacementKeys } from '../ui/raidboss/common_replacement';
 
-const triggersFile = process.argv[2];
-const locale = process.argv[3];
-const localeReg = 'regex' + locale[0].toUpperCase() + locale[1];
-findMissing(triggersFile, locale, localeReg);
-
-async function findMissing(triggersFile, locale, localeReg) {
+export async function findMissing(triggersFile, locale) {
   // Hackily assume that any file with a txt file of the same name is a trigger/timeline.
   const timelineFile = triggersFile.replace(/\.js$/, '.txt');
   if (!fs.existsSync(timelineFile))
-    process.exit(-1);
+    return;
 
   const timelineText = String(fs.readFileSync(timelineFile));
   const timeline = new Timeline(timelineText);
@@ -40,8 +35,8 @@ async function findMissing(triggersFile, locale, localeReg) {
     break;
   }
 
-  findMissingRegex(triggerSet.triggers, triggerLines, timeline, trans, localeReg);
-  findMissingTimeline(timelineFile, triggerSet, timeline, trans);
+  findMissingRegex(triggerSet.triggers, triggerLines, timeline, trans, triggersFile, locale);
+  findMissingTimeline(timelineFile, triggerSet, timeline, trans, triggersFile);
 }
 
 // An extremely hacky helper to turn a trigger id back into a line number.
@@ -67,7 +62,7 @@ function findLineNumberByTriggerId(text, id) {
   return '?';
 }
 
-function findMissingRegex(triggers, triggerLines, timeline, trans, localeReg) {
+function findMissingRegex(triggers, triggerLines, timeline, trans, triggersFile, locale) {
   for (const trigger of triggers) {
     let origRegex = trigger.regex;
     if (!origRegex)
@@ -95,6 +90,7 @@ function findMissingRegex(triggers, triggerLines, timeline, trans, localeReg) {
 
     transRegex = transRegex.toLowerCase();
 
+    const localeReg = 'regex' + locale[0].toUpperCase() + locale[1];
     let locRegex = trigger[localeReg];
     if (locRegex) {
       // Things are in a good state if the translation regex matches the
@@ -132,7 +128,7 @@ function findMissingRegex(triggers, triggerLines, timeline, trans, localeReg) {
   }
 }
 
-function findMissingTimeline(timelineFile, triggerSet, timeline, trans) {
+function findMissingTimeline(timelineFile, triggerSet, timeline, trans, triggersFile) {
   // Don't bother translating timelines that are old.
   if (triggerSet.timelineNeedsFixing)
     return;

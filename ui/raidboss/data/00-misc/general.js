@@ -1,5 +1,5 @@
-import NetRegexes from '../../../../resources/netregexes.js';
-import ZoneId from '../../../../resources/zone_id.js';
+import NetRegexes from '../../../../resources/netregexes';
+import ZoneId from '../../../../resources/zone_id';
 
 const caresAboutTankStuff = (data) => {
   return data.role === 'tank' || data.role === 'healer' || data.job === 'BLU';
@@ -41,6 +41,8 @@ export default {
       },
       suppressSeconds: 0.5,
       infoText: function(data, matches, output) {
+        if (matches.targetId === 'E0000000')
+          return output.noTarget({ player: data.ShortName(matches.source) });
         return output.text({ player: data.ShortName(matches.source) });
       },
       outputStrings: {
@@ -51,6 +53,11 @@ export default {
           ja: '挑発: ${player}',
           cn: '挑衅: ${player}',
           ko: '도발: ${player}',
+        },
+        noTarget: {
+          en: 'Provoke: ${player} (missed)',
+          ja: '挑発: ${player} (タゲなし)',
+          cn: '挑衅: ${player} (无目标)',
         },
       },
     },

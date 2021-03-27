@@ -1,14 +1,14 @@
-import ContentType from '../../resources/content_type.js';
-import { LocaleNetRegex } from '../../resources/translations.js';
-import NetRegexes from '../../resources/netregexes.js';
-import PartyTracker from '../../resources/party.js';
-import Regexes from '../../resources/regexes.js';
-import UserConfig from '../../resources/user_config.js';
-import { Util } from '../../resources/common.js';
-import ZoneId from '../../resources/zone_id.js';
-import ZoneInfo from '../../resources/zone_info.js';
+import ContentType from '../../resources/content_type';
+import { LocaleNetRegex } from '../../resources/translations';
+import NetRegexes from '../../resources/netregexes';
+import PartyTracker from '../../resources/party';
+import Regexes from '../../resources/regexes';
+import UserConfig from '../../resources/user_config';
+import Util from '../../resources/util';
+import ZoneId from '../../resources/zone_id';
+import ZoneInfo from '../../resources/zone_info';
 
-import './oopsyraidsy_config.js';
+import './oopsyraidsy_config';
 
 import oopsyFileData from './data/manifest.txt';
 
@@ -327,14 +327,16 @@ class OopsyLiveList {
     div.classList.add('mistake-row');
 
     // click-to-copy function
-    div.addEventListener('click', (e) => {
-      const str = e.target.childNodes[0].textContent;
+    div.addEventListener('click', () => {
+      const mistakeText = div.childNodes[1].textContent;
+      const mistakeTime = div.childNodes[2].textContent;
+      const str = mistakeTime ? `[${mistakeTime}] ${mistakeText}` : mistakeText;
       const el = document.createElement('textarea');
       el.value = str;
-      e.target.appendChild(el);
+      document.body.appendChild(el);
       el.select();
       document.execCommand('copy');
-      e.target.removeChild(el);
+      document.body.removeChild(el);
 
       // copied message
       const msg = document.createElement('div');

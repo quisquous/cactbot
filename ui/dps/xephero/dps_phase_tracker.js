@@ -1,4 +1,4 @@
-import { LocaleRegex } from '../../../resources/translations.js';
+import { LocaleRegex } from '../../../resources/translations';
 
 const kTestPhaseStart = 'cactbot phase start';
 const kTestPhaseEnd = 'cactbot phase end';

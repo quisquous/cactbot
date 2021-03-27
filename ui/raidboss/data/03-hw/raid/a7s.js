@@ -1,7 +1,7 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
+import { Responses } from '../../../../../resources/responses';
+import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: stun call for True Heart sprint ability?
 
@@ -292,7 +292,7 @@ export default {
         'Big Doll': 'Große Puppe',
         'Bomb(?!(s|en))': 'Bombe',
         'Bombs': 'Bomben',
-        '(?<![Big|Small] )Doll': 'Puppe',
+        '(?<! )Doll': 'Puppe',
         'Flamethrower': 'Flammenwerfer',
         'Hammertime': 'Hammertime',
         'Jails': 'Gefängnisse',
@@ -348,7 +348,7 @@ export default {
         'Big Doll': '大きいドール',
         'Bomb(?!s)': '爆弾',
         'Bombs': '爆弾',
-        '(?<![Big|Small] )Doll': 'ドール',
+        '(?<! )Doll': 'ドール',
         'Flamethrower': 'フレイムスロアー',
         'Hammertime': 'オシオキ',
         'Jails': '隔離部屋',
@@ -380,7 +380,7 @@ export default {
         'Big Doll': '大人偶',
         'Bomb(?!(s|en))': '炸弹',
         'Bombs': '炸弹',
-        '(?<![Big|Small] )Doll': '人偶',
+        '(?<! )Doll': '人偶',
         'Flamethrower': '火焰喷射器',
         'Hammertime': '惩戒',
         'Jails': '监狱',
@@ -414,7 +414,7 @@ export default {
         'Big Doll': '큰 인형',
         'Bomb(?!s)': '폭탄',
         'Bombs': '폭탄',
-        '(?<![Big|Small] )Doll': '인형',
+        '(?<! )Doll': '인형',
         'Flamethrower': '화염 방사',
         'Get Prey': '인형뽑기',
         'Get Tether': '밧줄',

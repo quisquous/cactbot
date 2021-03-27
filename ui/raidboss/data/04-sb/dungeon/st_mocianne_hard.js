@@ -1,7 +1,7 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
+import { Responses } from '../../../../../resources/responses';
+import ZoneId from '../../../../../resources/zone_id';
 
 export default {
   zoneId: ZoneId.SaintMociannesArboretumHard,
@@ -16,6 +16,8 @@ export default {
         text: {
           en: 'Be On A Platform',
           de: 'BSei auf einer Plattform',
+          ja: '円形床の上へ',
+          cn: '站台子上',
         },
       },
     },
@@ -53,6 +55,8 @@ export default {
         text: {
           en: 'Sludge puddle on YOU',
           de: 'Schlammfläche auf DIR',
+          ja: '自分にスラッジボム',
+          cn: '泥浆炸弹点名',
         },
       },
     },
@@ -81,6 +85,8 @@ export default {
         text: {
           en: 'Get behind flower',
           de: 'Geh hinter die Blume',
+          ja: 'ボスの後ろへ',
+          cn: '躲背后',
         },
       },
     },
@@ -120,6 +126,8 @@ export default {
         text: {
           en: 'Conveyors: Avoid Golem Lines',
           de: 'Transportbänder: Weiche den Golemlinien aus',
+          ja: '強制移動: ゴーレムの直線を避ける',
+          cn: '传送: 注意躲开巨像的直线AoE',
         },
       },
     },
@@ -159,6 +167,8 @@ export default {
         text: {
           en: 'Spread + Stay Off Platforms',
           de: 'Verteilen + runter von den Plattformen',
+          ja: '散開、円形床に落とさないよう',
+          cn: '分散，出台子',
         },
       },
     },
@@ -175,6 +185,8 @@ export default {
         text: {
           en: 'Push Mud Pie On Platform',
           de: 'Schiebe Schlammklumpen auf eine Plattform',
+          ja: 'スライムを円形床に吹き飛ばす',
+          cn: '把小怪推到台子上',
         },
       },
     },
@@ -191,6 +203,8 @@ export default {
         text: {
           en: 'Push Mud Pie Out Of Cone',
           de: 'Schiebe Schlammklumpen aus der Kegel-AoE',
+          ja: 'スライムを範囲外へ吹き飛ばす',
+          cn: '把小怪推出AoE',
         },
       },
     },
@@ -271,7 +285,6 @@ export default {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Kingsloam': '汚泥王の謁見室',
         'Lakhamu': 'ラハム',
@@ -282,6 +295,8 @@ export default {
         'Zymology': '腐臭の庭',
       },
       'replaceText': {
+        '\\(inner\\)': '(中)',
+        '\\(outer\\)': '(外)',
         'Bog Bequest': 'ドロドロ外無双',
         'Devour': '捕食',
         'Earth Shaker': 'アースシェイカー',
@@ -307,7 +322,6 @@ export default {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Kingsloam': '污泥王谒见室',
         'Lakhamu': '拉哈穆',
@@ -318,6 +332,8 @@ export default {
         'Zymology': '腐臭庭园',
       },
       'replaceText': {
+        '\\(inner\\)': '(内)',
+        '\\(outer\\)': '(外)',
         'Bog Bequest': '污泥外无双',
         'Devour': '捕食',
         'Earth Shaker': '大地摇动',

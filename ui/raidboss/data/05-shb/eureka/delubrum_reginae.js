@@ -1,10 +1,16 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import Outputs from '../../../../../resources/outputs.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
+import { Responses } from '../../../../../resources/responses';
+import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: warnings for mines after bosses?
+
+const seekerCenterX = -0.01531982;
+const seekerCenterY = 277.9735;
+
+const avowedCenterX = -272;
+const avowedCenterY = -82;
 
 // TODO: promote something like this to Conditions?
 const tankBusterOnParty = (data, matches) => {
@@ -47,6 +53,9 @@ export default {
         text: {
           en: 'Get In, Watch Swords',
           de: 'Geh rein, achte auf die Schwerter',
+          fr: 'À l\'intérieur, regardez les épées',
+          ja: '中へ、剣を見る',
+          cn: '靠近观察剑',
           ko: '안으로, 검 확인',
         },
       },
@@ -71,6 +80,9 @@ export default {
         text: {
           en: 'Get Out Behind Barricade',
           de: 'Geh raus, hinter die Barrikaden',
+          fr: 'À l\'extérieur, derrière la barricade',
+          ja: '柵の後ろに',
+          cn: '栅栏后躲避',
           ko: '밖으로, 바리케이트 뒤로',
         },
       },
@@ -87,6 +99,9 @@ export default {
         text: {
           en: 'Get Knocked Into Barricade',
           de: 'Rückstoß in die Barrikaden',
+          fr: 'Faites-vous pousser dans la barricade',
+          ja: '柵に吹き飛ばされる',
+          cn: '击退到栅栏上',
           ko: '바리케이트로 넉백당하기',
         },
       },
@@ -110,29 +125,71 @@ export default {
         text: {
           en: 'Line Stack',
           de: 'In einer Linie sammeln',
+          fr: 'Package en ligne',
+          ja: '直線頭割り',
+          cn: '直线分摊',
           ko: '직선 쉐어',
         },
       },
     },
     {
       id: 'Delubrum Seeker Iron Splitter',
-      // Note: 5AA3 is used as starts casting for both of these abilities, but the damage
-      // comes out with different ability ids.
-      // Note: 5A9A is a respositioning ability, but the location data is stale and represents where
-      // the boss was, and not where the boss ends up.  This is another case where knowing combatant
-      // positioning data on starts casting would be a huge help.
-      // TODO: we could call out directions with getCombatants? (The center appears to be 0, 278.)
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AA3', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AA3', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AA3', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AA3', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AA3' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AA3' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AA3' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AA3' }),
+      preRun: (data) => delete data.ironSplitter,
+      promise: async (data, matches) => {
+        const seekerData = await window.callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
+        });
+
+        if (seekerData === null) {
+          console.error(`Iron Splitter: null data`);
+          return;
+        }
+        if (!seekerData.combatants) {
+          console.error(`Iron Splitter: null combatants`);
+          return;
+        }
+        if (seekerData.combatants.length !== 1) {
+          console.error(`Iron Splitter: expected 1, got ${seekerData.combatants.length}`);
+          return;
+        }
+
+        const seeker = seekerData.combatants[0];
+        const x = seeker.PosX - seekerCenterX;
+        const y = seeker.PosY - seekerCenterY;
+        data.splitterDist = Math.hypot(x, y);
+      },
+      alertText: (data, _, output) => {
+        if (data.splitterDist === undefined)
+          return;
+
+        // All 100 examples I've looked at only hit distance=10, or distance=~14
+        // Guessing at the other distances, if they exist.
+        //
+        // blue inner = 0?
+        // white inner = 6?
+        // blue middle = 10
+        // white middle = 14
+        // blue outer = 18?
+        // white outer = 22?
+
+        const isWhite = Math.floor(data.splitterDist / 4) % 2;
+        return isWhite ? output.goBlue() : output.goWhite();
+      },
       outputStrings: {
-        text: {
-          // FIXME: this could be worded better
-          en: 'Opposite Color From Boss',
-          de: 'Auf die vom Boss entgegengesetze Farbe gehen',
-          ko: '보스 반대 색깔',
+        goBlue: {
+          en: 'Blue Stone',
+          de: 'Blauer Stein',
+          fr: 'Pierre bleue',
+        },
+        goWhite: {
+          en: 'White Sand',
+          de: 'Weißer Sand',
+          fr: 'Sable blanc',
         },
       },
     },
@@ -145,6 +202,9 @@ export default {
         text: {
           en: 'Chain on YOU',
           de: 'Kette auf DIR',
+          fr: 'Chaîne sur VOUS',
+          ja: '自分に鎖',
+          cn: '锁链点名',
           ko: '사슬 대상자',
         },
       },
@@ -164,19 +224,33 @@ export default {
       response: Responses.earthshaker('alert'),
     },
     {
-      id: 'Delubrum Seeker Seasons of Mercy',
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5AAA', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AAA', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AAA', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AAA', capture: false }),
-      // 5 second cast time + 2 seconds before flower appears - 1 second for reading time?
-      delaySeconds: 6,
-      alertText: (data, _, output) => output.text(),
+      id: 'Delubrum Seeker Merciful Moon',
+      // 4 second warning
+      netRegex: NetRegexes.startsUsing({ source: 'Aetherial Orb', id: '5AAC', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Magiekugel', id: '5AAC', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Amas D\'Éther Élémentaire', id: '5AAC', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '魔力塊', id: '5AAC', capture: false }),
+      alertText: (data, _, output) => output.lookAway(),
       outputStrings: {
-        text: {
-          en: 'Far From Purple / Look Away From Orb',
-          de: 'Weit weg von Lila / Vom Orb wegschauen',
-          ko: '보라에서 떨어지기 / 구슬 바라보지 말기',
+        lookAway: {
+          en: 'Look Away From Orb',
+          de: 'Schau weg vom Orb',
+        },
+      },
+    },
+    {
+      id: 'Delubrum Seeker Merciful Blooms',
+      // Call this on the ability of Merciful Moon, it starts casting much earlier.
+      netRegex: NetRegexes.ability({ source: 'Aetherial Orb', id: '5AAC', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Magiekugel', id: '5AAC', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Amas D\'Éther Élémentaire', id: '5AAC', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '魔力塊', id: '5AAC', capture: false }),
+      suppressSeconds: 1,
+      infoText: (data, _, output) => output.awayFromPurple(),
+      outputStrings: {
+        awayFromPurple: {
+          en: 'Away From Purple',
+          de: 'Schau weg von Lila',
         },
       },
     },
@@ -230,6 +304,9 @@ export default {
         knockback: {
           en: 'Unavoidable Knockback',
           de: 'Unvermeidbarer Rückstoß',
+          fr: 'Poussée inévitable',
+          ja: '避けないノックバック',
+          cn: '击退 (防击退无效)',
           ko: '넉백 방지 불가',
         },
         knockbackAvoid: {
@@ -237,6 +314,9 @@ export default {
           // you figured that out the first time.
           en: 'Knockback (Avoid Adds)',
           de: 'Rückstoß (vermeide die Adds)',
+          fr: 'Poussée (Évitez les adds)',
+          ja: 'ノックバック (雑魚に触らない)',
+          cn: '击退 (避开小怪)',
         },
       },
     },
@@ -253,6 +333,9 @@ export default {
         text: {
           en: 'Follow Second Charge',
           de: 'Folge dem 2. Ansturm',
+          fr: 'Suivez la deuxième charge',
+          ja: '2回目の突進に追う',
+          cn: '紧跟第二次冲锋',
           ko: '두번째 돌진 따라가기',
         },
       },
@@ -289,11 +372,17 @@ export default {
         awayFromTethered: {
           en: 'Away from tethered adds',
           de: 'Weg von den verbundenen Adds',
+          fr: 'Éloignez-vous des adds liés',
+          ja: '線に繋がる雑魚から離れる',
+          cn: '远离连线小怪',
           ko: '선 연결된 쫄에서 떨어지기',
         },
         followUntethered: {
           en: 'Follow untethered adds',
           de: 'Folge den nicht verbundenen Adds',
+          fr: 'Suivez les adds non liés',
+          ja: '線に繋がらない雑魚から離れる',
+          cn: '靠近无连线小怪',
           ko: '선 연결되지 않은 쫄 따라가기',
         },
       },
@@ -337,6 +426,9 @@ export default {
         text: {
           en: 'Avoid Laser Bounces',
           de: 'Weiche den abgelenken Lasern aus',
+          fr: 'Évitez les rebonds de laser',
+          ja: 'レーザーを避ける',
+          cn: '躲避激光',
         },
       },
     },
@@ -360,6 +452,9 @@ export default {
         text: {
           en: 'Stand On Small Bomb',
           de: 'Auf kleinen Bomben stehen',
+          fr: 'Placez-vous sur une petite bombe',
+          ja: '小さい爆弾を踏む',
+          cn: '站在小炸弹上',
           ko: '작은 폭탄 위에 서기',
         },
       },
@@ -381,6 +476,9 @@ export default {
         text: {
           en: 'Stand On Large Bomb',
           de: 'Auf großen Bomben stehen',
+          fr: 'Placez-vous sur une grosse bombe',
+          ja: '大きい爆弾を踏む',
+          cn: '站在大炸弹上',
           ko: '큰 폭탄 위에 서기',
         },
       },
@@ -446,11 +544,17 @@ export default {
         weaveNoKnockback: {
           en: 'Go To North Circle',
           de: 'Geh zum Kreis im Norden',
+          fr: 'Allez au donut Nord',
+          ja: '北のドーナツ範囲に入る',
+          cn: '去上面(北面)月环',
           ko: '북쪽 원으로 이동',
         },
         weaveWithKnockback: {
           en: 'Get Knocked Back To Circle',
           de: 'Lass dich zum Kreis im Norden zurückstoßen',
+          fr: 'Faites-vous pousser dans le donut',
+          ja: '北のドーナツ範囲へ吹き飛ばされる',
+          cn: '击退到上面(北面)月环中',
           ko: '원으로 넉백 당하기',
         },
       },
@@ -480,6 +584,9 @@ export default {
         text: {
           en: 'Unavoidable Knockback',
           de: 'Unvermeidbarer Rückstoß',
+          fr: 'Poussée inévitable',
+          ja: '避けないノックバック',
+          cn: '击退 (防击退无效)',
           ko: '넉백 방지 불가',
         },
       },
@@ -512,9 +619,24 @@ export default {
       response: Responses.aoe(),
     },
     {
+      id: 'Delubrum Avowed Hot And Cold',
+      // 89D: Running Hot: +1
+      // 8A4: Running Hot: +2
+      // 8DC: Running Cold: -1
+      // 8E2: Running Cold: -2
+      netRegex: NetRegexes.gainsEffect({ effectId: ['89D', '8A4', '8DC', '8E2'] }),
+      condition: Conditions.targetIsYou(),
+      run: (data, matches) => {
+        data.avowedTemperature = {
+          '89D': 1,
+          '8A4': 2,
+          '8DC': -1,
+          '8E2': -2,
+        }[matches.effectId.toUpperCase()];
+      },
+    },
+    {
       id: 'Delubrum Avowed Freedom Of Bozja',
-      // Hot And Cold headmarkers do not show up in log lines.
-      // Additionally, the Running Cold -n, Running Hot +n debuffs do not have gains effect lines.
       // Arguably, the Elemental Impact (meteor falling) has different ids depending on orb type,
       // e.g. 5960, 5962, 4F55, 4556, 4F99, 4F9A.
       // So we could give directions here, but probably that's just more confusing.
@@ -523,11 +645,43 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '597C', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '597C', capture: false }),
       delaySeconds: 10,
-      alertText: (data, _, output) => output.text(),
+      alertText: (data, _, output) => {
+        switch (data.avowedTemperature) {
+        case 2:
+          return output.minusTwo();
+        case 1:
+          return output.minusOne();
+        case -1:
+          return output.plusOne();
+        case -2:
+          return output.plusTwo();
+        default:
+          return output.unknownTemperature();
+        }
+      },
       outputStrings: {
-        text: {
+        plusTwo: {
+          en: 'Go to +2 Heat Meteor',
+          de: 'Geh zum +2 Heiß Meteor',
+        },
+        plusOne: {
+          en: 'Go to +1 Heat Meteor',
+          de: 'Geh zum +1 Heiß Meteor',
+        },
+        minusOne: {
+          en: 'Go to -1 Cold Meteor',
+          de: 'Geh zum -1 Kalt Meteor',
+        },
+        minusTwo: {
+          en: 'Go to -2 Cold Meteor',
+          de: 'Geh zum -2 Kalt Meteor',
+        },
+        unknownTemperature: {
           en: 'Stand In Opposite Meteor',
           de: 'Steh im entgegengesetztem Meteor',
+          fr: 'Placez-vous au météore de l\'élément opposé',
+          ja: '体温と逆のメテオを受ける',
+          cn: '接相反温度的陨石',
           ko: '반대쪽 메테오에 서기',
         },
       },
@@ -540,18 +694,46 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '597F', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '597F', capture: false }),
       delaySeconds: 3,
-      alertText: (data, _, output) => output.text(),
+      alertText: (data, _, output) => {
+        switch (data.avowedTemperature) {
+        case 2:
+          return output.minusTwo();
+        case 1:
+          return output.minusOne();
+        case -1:
+          return output.plusOne();
+        case -2:
+          return output.plusTwo();
+        default:
+          return output.unknownTemperature();
+        }
+      },
       outputStrings: {
-        text: {
-          en: 'Go To Opposite Sword',
-          de: 'Gehe in das entgegengesetzte Schwert',
-          ko: '반대쪽 칼로 이동',
+        plusTwo: {
+          en: 'Follow +2 Heat Arrow',
+          de: 'Folge dem +2 Heiß Pfeilen',
+        },
+        plusOne: {
+          en: 'Follow +1 Heat Arrow',
+          de: 'Folge dem +1 Heiß Pfeilen',
+        },
+        minusOne: {
+          en: 'Follow -1 Cold Arrow',
+          de: 'Folge dem -1 Kalt Pfeilen',
+        },
+        minusTwo: {
+          en: 'Follow -2 Cold Arrow',
+          de: 'Folge dem -2 Kalt Pfeilen',
+        },
+        unknownTemperature: {
+          en: 'Follow Opposite Arrow',
+          de: 'Gehe in die entgegengesetzten Pfeile',
+          fr: 'Allez à la flèche de l\'élément opposé',
+          ja: '体温と逆の矢へ',
         },
       },
     },
     {
-      // TODO: There is no gains effect line for gaining an effect.
-      // We could use "suffering" and then have personal callouts here.
       // 5B65 = right cleave, heat+2
       // 5B66 = right cleave, cold+2
       // 5B67 = left cleave, heat+2
@@ -561,32 +743,157 @@ export default {
       // 596F = left cleave, heat+1
       // 5970 = left cleave, cold+1
       id: 'Delubrum Avowed Hot And Cold Cleaves',
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5BAF', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5BAF', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5BAF', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5BAF', capture: false }),
-      delaySeconds: 3,
-      alertText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Be In Opposite Cleave',
-          de: 'Gehe in den entgegengesetzte Cleave',
-        },
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: ['5B6[5-8]', '596[DEF]', '5970'] }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: ['5B6[5-8]', '596[DEF]', '5970'] }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: ['5B6[5-8]', '596[DEF]', '5970'] }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: ['5B6[5-8]', '596[DEF]', '5970'] }),
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          left: {
+            en: 'Left',
+            de: 'Links',
+          },
+          right: {
+            en: 'Right',
+            de: 'Rechts',
+          },
+          plusTwo: {
+            en: 'Be in ${side} Cleave (+2 Hot)',
+            de: 'Sei im ${side} Cleave (+2 Heiß)',
+          },
+          plusOne: {
+            en: 'Be in ${side} Cleave (+1 Hot)',
+            de: 'Sei im ${side} Cleave (+1 Heiß)',
+          },
+          minusOne: {
+            en: 'Be in ${side} Cleave (-1 Cold)',
+            de: 'Sei im ${side} Cleave (-1 Kalt)',
+          },
+          minusTwo: {
+            en: 'Be in ${side} Cleave (-2 Cold)',
+            de: 'Sei im ${side} Cleave (-2 Kalt)',
+          },
+          avoid: {
+            en: 'Go ${side} (avoid!)',
+            de: 'Go ${side} (avoid!)',
+          },
+        };
+
+        const isLeft = ['5B67', '5B68', '596F', '5970'].includes(matches.id);
+        const side = isLeft ? output.left() : output.right();
+        const safeSide = isLeft ? output.right() : output.left();
+        const avoidInfoText = { infoText: output.avoid({ side: safeSide }) };
+
+        switch (matches.id) {
+        case '5B66':
+        case '5B68':
+          if (data.avowedTemperature === 2)
+            return { alertText: output.minusTwo({ side: side }) };
+          return avoidInfoText;
+        case '596E':
+        case '5970':
+          if (data.avowedTemperature === 1)
+            return { alertText: output.minusOne({ side: side }) };
+          return avoidInfoText;
+        case '596D':
+        case '596F':
+          if (data.avowedTemperature === -1)
+            return { alertText: output.plusOne({ side: side }) };
+          return avoidInfoText;
+        case '5B65':
+        case '5B67':
+          if (data.avowedTemperature === -2)
+            return { alertText: output.plusTwo({ side: side }) };
+          return avoidInfoText;
+        }
       },
     },
     {
-      id: 'Delubrum Avowed Unseen Eye',
-      // Unseen Eye always happens before Gleaming Arrow starts casting.
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5980', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5980', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5980', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5980', capture: false }),
-      delaySeconds: 6,
-      infoText: (data, _, output) => output.text(),
+      id: 'Delubrum Avowed Gleaming Arrow Collect',
+      netRegex: NetRegexes.startsUsing({ source: 'Avowed Avatar', id: '5974' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Spaltteil Der Eingeschworenen', id: '5974' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Clone De La Trinité Féale', id: '5974' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アヴァウドの分体', id: '5974' }),
+      run: (data, matches) => {
+        data.unseenIds = data.unseenIds || [];
+        data.unseenIds.push(parseInt(matches.sourceId, 16));
+      },
+    },
+    {
+      id: 'Delubrum Avowed Gleaming Arrow',
+      netRegex: NetRegexes.startsUsing({ source: 'Avowed Avatar', id: '5974' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Spaltteil Der Eingeschworenen', id: '5974' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Clone De La Trinité Féale', id: '5974' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アヴァウドの分体', id: '5974' }),
+      delaySeconds: 0.5,
+      suppressSeconds: 10,
+      promise: async (data, matches) => {
+        const unseenIds = data.unseenIds;
+        console.error(`Gleaming Arrow: ids: ${JSON.stringify(unseenIds)}`);
+        const unseenData = await window.callOverlayHandler({
+          call: 'getCombatants',
+          ids: unseenIds,
+        });
+
+        if (unseenData === null) {
+          console.error(`Gleaming Arrow: null data`);
+          return;
+        }
+        if (!unseenData.combatants) {
+          console.error(`Gleaming Arrow: null combatants`);
+          return;
+        }
+        if (unseenData.combatants.length !== unseenIds.length) {
+          console.error(`Gleaming Arrow: expected ${unseenIds.length}, got ${unseenData.combatants.length}`);
+          return;
+        }
+
+        data.unseenBadRows = [];
+        data.unseenBadCols = [];
+
+        for (const avatar of unseenData.combatants) {
+          const x = avatar.PosX - avowedCenterX;
+          const y = avatar.PosY - avowedCenterY;
+
+          // y=-107 = north side, x = -252, -262, -272, -282, -292
+          // x=-247 = left side, y = -62, -72, -82, -92, -102
+          // Thus, the possible deltas are -20, -10, 0, +10, +20.
+          // The other coordinate is +/-25 from center.
+          const maxDist = 22;
+
+          if (Math.abs(x) < maxDist) {
+            const col = parseInt(Math.round((x + 20) / 10));
+            data.unseenBadCols.push(col);
+          }
+          if (Math.abs(y) < maxDist) {
+            const row = parseInt(Math.round((y + 20) / 10));
+            data.unseenBadRows.push(row);
+          }
+        }
+
+        data.unseenBadRows.sort();
+        data.unseenBadCols.sort();
+      },
+      alertText: (data, _, output) => {
+        delete data.unseenIds;
+
+        const rows = data.unseenBadRows;
+        const cols = data.unseenBadCols;
+
+        // consider asserting that badCols are 0, 2, 4 here.
+        if (rows.includes(2))
+          return output.bowLight();
+        return output.bowDark();
+      },
       outputStrings: {
-        text: {
-          en: 'Avoid Outside Add Lines',
-          de: 'Weiche den äußeren Add-Laser aus',
+        bowDark: {
+          en: 'On Dark (E/W of center)',
+          de: 'Auf Dunkel (O/W von der Mitte)',
+        },
+        bowLight: {
+          en: 'On Light (diagonal from center)',
+          de: 'Auf Licht (Diagonal von der Mitte)',
         },
       },
     },
@@ -620,6 +927,9 @@ export default {
         text: {
           en: 'Get In Front',
           de: 'Geh vor den Boss',
+          fr: 'Soyez devant',
+          ja: 'ボスの正面へ',
+          cn: '去正面',
           ko: '정면에 서기',
         },
       },
@@ -658,6 +968,9 @@ export default {
         text: {
           en: 'Esuna ${player}',
           de: 'Medica ${player}',
+          fr: 'Guérison sur ${player}',
+          ja: 'エスナ: ${player}',
+          cn: '解除死亡宣告: ${player}',
           ko: '"${player}" 에스나',
         },
       },
@@ -675,6 +988,9 @@ export default {
         text: {
           en: 'Away from Line Intersections',
           de: 'Geh weg von den Linienkreuzungen',
+          fr: 'Éloignez-vous des intersections de ligne',
+          ja: '十字から離れる',
+          cn: '远离线的交点',
           ko: '대각선에서 떨어지기',
         },
       },
@@ -690,6 +1006,9 @@ export default {
         text: {
           en: 'Avoid Laser Bounces',
           de: 'Weiche den abgelenken Lasern aus',
+          fr: 'Évitez les rebonds de laser',
+          ja: 'レーザーを避ける',
+          cn: '躲避激光',
         },
       },
     },
@@ -721,16 +1040,25 @@ export default {
         getKnockedTowardsMiddle: {
           en: 'Get Knocked Towards Middle',
           de: 'Zur Mitte zurückstoßen lassen',
+          fr: 'Faites-vous pousser vers le milieu',
+          ja: '中へ吹き飛ばされる',
+          cn: '击退到中间',
           ko: '중앙으로 넉백 당하기',
         },
         getKnockedToSmallBomb: {
           en: 'Get Knocked To Small Bomb',
           de: 'Zu kleinen Bomben zurückstoßen lassen',
+          fr: 'Faites-vous pousser sur une petite bombe',
+          ja: '小さい爆弾へ吹き飛ばされる',
+          cn: '击退到小炸弹',
           ko: '작은 폭탄으로 넉백당하기',
         },
         getKnockedToLargeBomb: {
           en: 'Get Knocked To Large Bomb',
           de: 'Zu großen Bomben zurückstoßen lassen',
+          fr: 'Faites-vous pousser sur une grosse bombe',
+          ja: '大きい爆弾へ吹き飛ばされる',
+          cn: '击退到大炸弹',
           ko: '큰 폭탄으로 넉백당하기',
         },
       },
@@ -750,6 +1078,9 @@ export default {
         text: {
           en: 'Find Charge, Dodge Right',
           de: 'Halte nach dem Ansturm ausschau, weiche nach rechts aus',
+          fr: 'Repérez la charge, esquivez à droite',
+          ja: '右へ、突進を避ける',
+          cn: '去右侧躲避冲锋',
           ko: '돌진 찾고, 오른쪽 피하기',
         },
       },
@@ -765,6 +1096,9 @@ export default {
         text: {
           en: 'Find Charge, Dodge Left',
           de: 'Halte nach dem Ansturm ausschau, weiche nach links aus',
+          fr: 'Repérez la charge, esquivez à gauche',
+          ja: '左へ、突進を避ける',
+          cn: '去左侧躲避冲锋',
           ko: '돌진 찾고, 왼쪽 피하기',
         },
       },
@@ -789,6 +1123,9 @@ export default {
         text: {
           en: 'Away from tethered adds',
           de: 'Weg von verbundenen Adds',
+          fr: 'Éloignez-vous des adds liés',
+          ja: '線に繋がる雑魚から離れる',
+          cn: '远离连线小怪',
           ko: '선 연결된 쫄 피하기',
         },
       },
@@ -816,8 +1153,8 @@ export default {
     {
       'locale': 'en',
       'replaceText': {
-        'Right-Sided Shockwave/Left-Sided Shockwave': 'Right/Left-Sided Shockwave',
-        'Left-Sided Shockwave/Right-Sided Shockwave': 'Left/Right-Sided Shockwave',
+        'Right-Sided Shockwave/Left-Sided Shockwave': 'Right/Left Shockwave',
+        'Left-Sided Shockwave/Right-Sided Shockwave': 'Left/Right Shockwave',
         'Sword Omen/Shield Omen': 'Sword/Shield Omen',
         'Shield Omen/Sword Omen': 'Shield/Sword Omen',
       },
@@ -856,7 +1193,6 @@ export default {
       },
       'replaceText': {
         '--explosion--': '--Explosion--',
-        '--knockback--': '--Rückstoß--',
         '--stunned--': '--betäubt--',
         '--unstunned--': '--nicht länger betäubt--',
         'Above Board': 'Über dem Feld',
@@ -950,7 +1286,6 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Aetherial Bolt': 'petite bombe',
         'Aetherial Burst': 'énorme bombe',
@@ -982,6 +1317,10 @@ export default {
         'Trinity Seeker': 'trinité soudée',
       },
       'replaceText': {
+        '\\?': ' ?',
+        '--explosion--': '--explosion--',
+        '--stunned--': '--étourdi(e)--',
+        '--unstunned--': '--non étourdi(e)--',
         'Above Board': 'Aire de flottement',
         'Act Of Mercy': 'Fendreciel rédempteur',
         'Allegiant Arsenal': 'Changement d\'arme',
@@ -997,6 +1336,8 @@ export default {
         'Creeping Miasma': 'Coulée miasmatique',
         'Dead Iron': 'Vague des poings de feu',
         'Double Gambit': 'Manipulation des ombres',
+        'Elemental Arrow': 'Flèche élémentaire',
+        'Elemental Blast': 'Explosion élémentaire',
         'Elemental Impact': 'Impact',
         'Empyrean Iniquity': 'Injustice empyréenne',
         'Excruciation': 'Atroce douleur',
@@ -1022,7 +1363,7 @@ export default {
         'Iron Impact': 'Canon d\'ardeur des poings de feu',
         'Iron Splitter': 'Fracas des poings de feu',
         'Judgment Blade': 'Lame du jugement',
-        'Left-Sided Shockwave': 'Onde de choc gauche',
+        'Left-Sided Shockwave/Right-Sided Shockwave': 'Onde de choc gauche/droite',
         'Lots Cast': 'Bombe ensorcelée',
         'Malediction Of Agony': 'Malédiction lancinante',
         'Manipulate Miasma': 'Contrôle des miasmes',
@@ -1043,17 +1384,17 @@ export default {
         'Relentless Play': 'Ordre d\'attaque coordonnée',
         'Reverberating Roar': 'Cri disloquant',
         'Reversal Of Forces': 'Inversion des masses',
-        'Right-Sided Shockwave': 'Onde de choc droite',
+        'Right-Sided Shockwave/Left-Sided Shockwave': 'Onde de choc droite/gauche',
         'Seasons Of Mercy': 'Setsugekka rédempteur',
         'Second Mercy': 'Deuxième lame rédemptrice',
         'Secrets Revealed': 'Corporification',
-        'Shield Omen': 'Posture du bouclier',
+        'Shield Omen/Sword Omen': 'Posture du bouclier/épée',
         'Shimmering Shot': 'Flèches scintillantes',
         'Shot In The Dark': 'Tir à une main',
         'Strongpoint Defense': 'Défense absolue',
         'Summon': 'Invocation',
         'Swirling Miasma': 'Anneau miasmatique',
-        'Sword Omen': 'Posture de l\'épée',
+        'Sword Omen/Shield Omen': 'Posture d\'épée/bouclier',
         'Tail Swing': 'Queue balayante',
         'The Ends': 'Croix lacérante',
         'The Means': 'Croix perforante',
@@ -1071,7 +1412,6 @@ export default {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Aetherial Bolt': '魔弾',
         'Aetherial Burst': '大魔弾',
@@ -1103,6 +1443,9 @@ export default {
         'Trinity Seeker': 'トリニティ・シーカー',
       },
       'replaceText': {
+        '--explosion--': '--爆発--',
+        '--stunned--': '--スタンされる--',
+        '--unstunned--': '--スタンされない--',
         'Above Board': '浮遊波',
         'Act Of Mercy': '破天鋭刃風',
         'Allegiant Arsenal': 'ウェポンチェンジ',
@@ -1118,6 +1461,8 @@ export default {
         'Creeping Miasma': '瘴気流',
         'Dead Iron': '熱拳振動波',
         'Double Gambit': '幻影術',
+        'Elemental Arrow': '熱/凍気矢',
+        'Elemental Blast': '熱/凍気弾',
         'Elemental Impact': '着弾',
         'Empyrean Iniquity': '天魔鬼神爆',
         'Excruciation': '激痛',

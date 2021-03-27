@@ -1,5 +1,5 @@
-import NetRegexes from '../../../../resources/netregexes.js';
-import ZoneId from '../../../../resources/zone_id.js';
+import NetRegexes from '../../../../resources/netregexes';
+import ZoneId from '../../../../resources/zone_id';
 
 // Abilities seem instant.
 const abilityCollectSeconds = 0.5;
@@ -243,5 +243,9 @@ export default {
 
     missedHeal({ id: 'White Wind', abilityId: '2C8E' }),
     missedHeal({ id: 'Gobskin', abilityId: '4780' }),
+
+    // TODO: export all of these missed functions into their own helper
+    // and then add this to the Delubrum Reginae files directly.
+    missedMitigationAbility({ id: 'Lost Aethershield', abilityId: '5753' }),
   ],
 };

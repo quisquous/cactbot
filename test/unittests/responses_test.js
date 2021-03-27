@@ -1,12 +1,12 @@
-import { Responses, severityMap, triggerFunctions, builtInResponseStr } from '../../resources/responses.js';
+import { Responses, severityMap, triggerFunctions, builtInResponseStr } from '../../resources/responses';
 import chai from 'chai';
 const { assert } = chai;
 // test_trigger.js will validate the field names, so no need to do that here.
 
 const outputStringSetterStr = 'output.responseOutputStrings = ';
 
-const tests = {
-  defaultSeverity: () => {
+describe('response tests', () => {
+  it('responses with default severity are valid', () => {
     for (const response in Responses) {
       let result = Responses[response]();
       if (typeof result === 'function') {
@@ -22,8 +22,8 @@ const tests = {
       // Must have at least one valid field.
       assert.isNotEmpty(result);
     }
-  },
-  singleSeverity: () => {
+  });
+  it('responses with a single explicit severity are valid', () => {
     for (const response in Responses) {
       const result = Responses[response]();
 
@@ -48,8 +48,8 @@ const tests = {
         assert.property(result, severityMap[sev]);
       }
     }
-  },
-  doubleSeverity: () => {
+  });
+  it('responses with a double explicit severities are valid', () => {
     // TODO: we could figure out which has multiple parameters programatically.
     const doubleFuncs = [
       'tankBuster',
@@ -78,17 +78,5 @@ const tests = {
         }
       }
     }
-  },
-};
-
-const keys = Object.keys(tests);
-let exitCode = 0;
-for (let i = 0; i < keys.length; ++i) {
-  try {
-    tests[keys[i]]();
-  } catch (e) {
-    console.log(e);
-    exitCode = 1;
-  }
-}
-process.exit(exitCode);
+  });
+});

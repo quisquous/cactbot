@@ -1,9 +1,9 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import NetRegexes from '../../../../../resources/netregexes';
+import { Responses } from '../../../../../resources/responses';
+import ZoneId from '../../../../../resources/zone_id';
 
 export default {
-  zoneId: [ZoneId.TheDiadem, ZoneId.TheDiadem521],
+  zoneId: ZoneId.TheDiadem,
   resetWhenOutOfCombat: false,
   triggers: [
     {

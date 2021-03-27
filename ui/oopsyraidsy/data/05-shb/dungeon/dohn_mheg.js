@@ -1,5 +1,5 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import NetRegexes from '../../../../../resources/netregexes';
+import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: Missing Growing tethers on boss 2.
 // (Maybe gather party member names on the previous TIIIIMBEEEEEER cast for comparison?)

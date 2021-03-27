@@ -1,5 +1,5 @@
-import { LocaleNetRegex } from '../../../resources/translations.js';
-import NetRegexes from '../../../resources/netregexes.js';
+import { LocaleNetRegex } from '../../../resources/translations';
+import NetRegexes from '../../../resources/netregexes';
 
 export default class EmulatorCommon {
   static cloneData(data, exclude = ['options', 'party']) {

@@ -1,6 +1,6 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
+import ZoneId from '../../../../../resources/zone_id';
 
 export default {
   zoneId: ZoneId.TheFinalCoilOfBahamutTurn3,
@@ -64,7 +64,7 @@ export default {
           en: 'Away from ${player}',
           de: 'Weg von ${player}',
           fr: 'Éloignez-vous de ${player}',
-          ja: '${player}に離れ',
+          ja: '${player}から離れる',
           cn: '远离${player}',
           ko: '"${player}"에게서 멀어지기',
         },
@@ -124,7 +124,7 @@ export default {
           en: 'Bluefire Away',
           de: 'Blaufeuer wegbringen',
           fr: 'Flamme bleue, éloignez-vous',
-          ja: '青碧の炎、離れ',
+          ja: '青碧の炎、離れる',
           cn: '蓝火远离',
           ko: '청벽의 불꽃 대상자',
         },

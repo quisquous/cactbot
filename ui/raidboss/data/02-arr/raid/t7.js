@@ -1,8 +1,8 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import Regexes from '../../../../../resources/regexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
+import Regexes from '../../../../../resources/regexes';
+import { Responses } from '../../../../../resources/responses';
+import ZoneId from '../../../../../resources/zone_id';
 
 export default {
   zoneId: ZoneId.TheSecondCoilOfBahamutTurn2,
@@ -167,7 +167,7 @@ export default {
           en: 'Dodge Shriek',
           de: 'Schrei Der Verwünschung ausweichen',
           fr: 'Esquivez le cri maudit',
-          ja: '呪詛の叫声に避け',
+          ja: '呪詛の叫声を避ける',
           cn: '躲避诅咒之嚎',
           ko: '저주의 외침 피하기',
         },

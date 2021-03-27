@@ -1,9 +1,8 @@
-import gMonster from '../../resources/hunt.js';
-import NetRegexes from '../../resources/netregexes.js';
-import UserConfig from '../../resources/user_config.js';
+import gMonster from '../../resources/hunt';
+import NetRegexes from '../../resources/netregexes';
+import UserConfig from '../../resources/user_config';
 
-import './radar_config.js';
-import '../../resources/common.js';
+import './radar_config';
 
 const Options = {
   PopSound: '../../resources/sounds/freesound/sonar.ogg',

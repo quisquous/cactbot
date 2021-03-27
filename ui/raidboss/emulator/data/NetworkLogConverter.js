@@ -1,25 +1,21 @@
-import LogRepository from './network_log_converter/LogRepository.js';
-import ParseLine from './network_log_converter/ParseLine.js';
+import EventBus from '../EventBus';
+import LogRepository from './network_log_converter/LogRepository';
+import ParseLine from './network_log_converter/ParseLine';
 
-export default class NetworkLogConverter {
-  constructor(options) {
-    this.EnableProperCaseBug = true;
-
-    for (const i in options)
-      this[i] = options[i];
-  }
-
+export default class NetworkLogConverter extends EventBus {
   async convertFile(data) {
+    const repo = new LogRepository();
     const ret = await this.convertLines(
         // Split data into an array of separate lines, removing any blank lines.
         data.split(NetworkLogConverter.lineSplitRegex).filter((l) => l !== ''),
+        repo,
     );
     return ret;
   }
 
-  async convertLines(lines) {
+  async convertLines(lines, repo) {
     this.Combatants = {};
-    const repo = new LogRepository();
+    repo = repo || new LogRepository();
     lines = lines.map((l) => ParseLine.parse(repo, l)).filter((l) => l);
 
     for (let i = 0; i < lines.length; ++i) {

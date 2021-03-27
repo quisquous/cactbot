@@ -41,8 +41,41 @@ module.exports = function(env, argv) {
       path: path.resolve(__dirname, '../dist'),
     },
     devServer: { writeToDisk: true },
+    resolve: {
+      extensions: ['.ts', '.js'],
+    },
     module: {
       rules: [
+        {
+          // Worker has to go before normal js
+          test: /NetworkLogConverterWorker\.(?:c|m)?js$/,
+          loader: 'worker-loader',
+          options: {
+            esModule: true,
+            inline: 'fallback',
+            worker: {
+              type: 'Worker',
+              options: {
+                type: 'classic',
+                name: 'NetworkLogConverterWorker',
+              },
+            },
+          },
+          resolve: {
+            fullySpecified: false,
+          },
+        },
+        {
+          // this will allow importing without extension in js files.
+          test: /\.m?js$/,
+          resolve: {
+            fullySpecified: false,
+          },
+        },
+        {
+          test: /\.ts$/,
+          loader: 'ts-loader',
+        },
         {
           test: /\.css$/,
           use: ['style-loader', 'css-loader'],

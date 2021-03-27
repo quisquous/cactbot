@@ -1,4 +1,4 @@
-import { LineEvent0x03 } from './LineEvent0x03.js';
+import { LineEvent0x03 } from './LineEvent0x03';
 
 // Removed combatant event
 // Extend the add combatant event to reduce duplicate code since they're

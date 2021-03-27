@@ -1,8 +1,8 @@
-import Conditions from '../../../../../resources/conditions.js';
-import NetRegexes from '../../../../../resources/netregexes.js';
-import Regexes from '../../../../../resources/regexes.js';
-import { Responses } from '../../../../../resources/responses.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import Conditions from '../../../../../resources/conditions';
+import NetRegexes from '../../../../../resources/netregexes';
+import Regexes from '../../../../../resources/regexes';
+import { Responses } from '../../../../../resources/responses';
+import ZoneId from '../../../../../resources/zone_id';
 
 export default {
   zoneId: ZoneId.TheSecondCoilOfBahamutTurn1,
@@ -115,7 +115,7 @@ export default {
           en: 'Avoid Devour',
           de: 'Weiche Verschlingen aus',
           fr: 'Évitez Dévoration',
-          ja: '捕食に避け',
+          ja: '捕食を避ける',
           cn: '躲开吞食',
         },
         jumpInNewThorns: {
@@ -129,7 +129,7 @@ export default {
           en: 'Devour: Get Eaten',
           de: 'Verschlingen: Gefressen werden',
           fr: 'Dévoration : Faites-vous manger',
-          ja: '捕食: 捕食され',
+          ja: '捕食: 捕食される',
           cn: '捕食点名',
         },
       },
@@ -233,14 +233,14 @@ export default {
           en: 'Share Laser (on YOU)',
           de: 'Geteilter Laser (auf DIR)',
           fr: 'Partagez le laser (sur VOUS)',
-          ja: '(自分に)頭割りレザー',
+          ja: '(自分に)頭割りレーザー',
           cn: '分摊激光点名',
         },
         shareLaserOn: {
           en: 'Share Laser (on ${player})',
           de: 'Geteilter Laser (auf ${player})',
           fr: 'Partage de laser (sur ${player})',
-          ja: '(${player})に頭割りレザー',
+          ja: '(${player})に頭割りレーザー',
           cn: '分摊激光点(on ${player})',
         },
       },

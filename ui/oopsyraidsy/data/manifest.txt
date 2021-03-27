@@ -14,6 +14,7 @@
 03-hw/raid/a12n.js
 04-sb/dungeon/ala_mhigo.js
 04-sb/dungeon/bardams_mettle.js
+04-sb/dungeon/kugane_castle.js
 04-sb/dungeon/st_mocianne_hard.js
 04-sb/dungeon/swallows_compass.js
 04-sb/dungeon/temple_of_the_fist.js
@@ -43,6 +44,7 @@
 05-shb/dungeon/the_grand_cosmos.js
 05-shb/dungeon/twinning.js
 05-shb/eureka/delubrum_reginae.js
+05-shb/eureka/delubrum_reginae_savage.js
 05-shb/raid/e1n.js
 05-shb/raid/e1s.js
 05-shb/raid/e2n.js

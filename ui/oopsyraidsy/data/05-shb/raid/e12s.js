@@ -1,6 +1,6 @@
-import NetRegexes from '../../../../../resources/netregexes.js';
-import Outputs from '../../../../../resources/outputs.js';
-import ZoneId from '../../../../../resources/zone_id.js';
+import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
+import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: add separate damageWarn-esque icon for damage downs?
 // TODO: 58A6 Under The Weight / 58B2 Classical Sculpture missing somebody in party warning?
@@ -34,7 +34,8 @@ export default {
     'E12S Promise Ferostorm': '4E46', // Garuda get intercardinals cast (damage down)
     'E12S Promise Judgment Jolt': '4E47', // Ramuh get out cast (damage down)
     'E12S Promise Shatter': '589C', // Ice Pillar explosion if tether not gotten
-    'E12S Oracle Dark Blizard III': '58D3', // Relativity donut mechanic
+    'E12S Promise Impact': '58A1', // Titan bomb drop
+    'E12S Oracle Dark Blizzard III': '58D3', // Relativity donut mechanic
     'E12S Oracle Apocalypse': '58E6', // Light up circle explosions (damage down)
   },
   damageFail: {
@@ -169,16 +170,25 @@ export default {
         let text = {
           en: `${matches.ability} (from ${ownerNick}, #${number})`,
           de: `${matches.ability} (von ${ownerNick}, #${number})`,
+          ja: `${matches.ability} (${ownerNick}から、#${number})`,
+          cn: `${matches.ability} (来自${ownerNick}，#${number})`,
+          ko: `${matches.ability} (대상자 "${ownerNick}", ${number}번)`,
         };
         if (isStatuePositionKnown && isStatueNorth) {
           text = {
             en: `${matches.ability} (from ${ownerNick}, #${number} north)`,
             de: `${matches.ability} (von ${ownerNick}, #${number} norden)`,
+            ja: `${matches.ability} (北の${ownerNick}から、#${number})`,
+            cn: `${matches.ability} (来自北方${ownerNick}，#${number})`,
+            ko: `${matches.ability} (대상자 "${ownerNick}", ${number}번 북쪽)`,
           };
         } else if (isStatuePositionKnown && !isStatueNorth) {
           text = {
             en: `${matches.ability} (from ${ownerNick}, #${number} south)`,
             de: `${matches.ability} (von ${ownerNick}, #${number} Süden)`,
+            ja: `${matches.ability} (南の${ownerNick}から、#${number})`,
+            cn: `${matches.ability} (来自南方${ownerNick}，#${number})`,
+            ko: `${matches.ability} (대상자 "${ownerNick}", ${number}번 남쪽)`,
           };
         }
 
@@ -217,7 +227,7 @@ export default {
             fr: `${matches.ability} (de ${pillarOwner})`,
             ja: `${matches.ability} (${pillarOwner}から)`,
             cn: `${matches.ability} (来自${pillarOwner})`,
-            ko: `${matches.ability} (from ${pillarOwner})`,
+            ko: `${matches.ability} (대상자 "${pillarOwner}")`,
           },
         };
       },
@@ -323,7 +333,7 @@ export default {
               fr: `${matches.ability} (de ${ownerNick}, ${dirObj['fr']})`,
               ja: `${matches.ability} (${ownerNick}から, ${dirObj['ja']})`,
               cn: `${matches.ability} (来自${ownerNick}, ${dirObj['cn']}`,
-              ko: `${matches.ability} (from ${ownerNick}, ${dirObj['ko']})`,
+              ko: `${matches.ability} (대상자 "${ownerNick}", ${dirObj['ko']})`,
             },
           };
         }
@@ -342,6 +352,9 @@ export default {
     {
       id: 'E12S Promise Big Lion Kingsblaze',
       netRegex: NetRegexes.ability({ source: 'Regal Sculpture', id: '4F9E' }),
+      netRegexDe: NetRegexes.ability({ source: 'Abbild eines großen Löwen', id: '4F9E' }),
+      netRegexFr: NetRegexes.ability({ source: 'création léonine royale', id: '4F9E' }),
+      netRegexJa: NetRegexes.ability({ source: '創られた獅子王', id: '4F9E' }),
       mistake: (e, data, matches) => {
         const singleTarget = matches.type === '21';
         const hasFireDebuff = data.fire && data.fire[matches.target];
@@ -354,18 +367,30 @@ export default {
           northBigLion: {
             en: 'north big lion',
             de: 'Nordem, großer Löwe',
+            ja: '大ライオン(北)',
+            cn: '北方大狮子',
+            ko: '북쪽 큰 사자',
           },
           southBigLion: {
             en: 'south big lion',
             de: 'Süden, großer Löwe',
+            ja: '大ライオン(南)',
+            cn: '南方大狮子',
+            ko: '남쪽 큰 사자',
           },
           shared: {
             en: 'shared',
             de: 'geteilt',
+            ja: '重ねた',
+            cn: '重叠',
+            ko: '같이 맞음',
           },
           fireDebuff: {
             en: 'had fire',
             de: 'hatte Feuer',
+            ja: '炎付き',
+            cn: '火Debuff',
+            ko: '화염 디버프 받음',
           },
         };
 
