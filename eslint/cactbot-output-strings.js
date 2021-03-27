@@ -20,7 +20,7 @@ const ruleModule = {
       notFoundProperty: 'no \'{{prop}}\' in \'{{outputParam}}\'',
       notFoundTemplate: '`output.{{prop}}(...)` doesn\'t have template \'{{template}}\'.',
       missingTemplateValue: 'template \'{{prop}}\' is missing in function call',
-      tooManyParams: 'function `output.{{call}}()` take only 1 params',
+      tooManyParams: 'function `output.{{call}}()` takes only 1 parameter',
       typeError: 'function `output.{{call}}(...) take only object as params',
     },
   },
