@@ -208,7 +208,8 @@ const ruleModule = {
                 }
               }
             }
-          } else if (args.length !== 1) {
+          } else {
+            // args.length > 1
             context.report({
               node,
               messageId: 'tooManyParams',
