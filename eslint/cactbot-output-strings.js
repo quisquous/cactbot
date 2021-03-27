@@ -21,7 +21,7 @@ const ruleModule = {
       notFoundTemplate: '`output.{{prop}}(...)` doesn\'t have template \'{{template}}\'.',
       missingTemplateValue: 'template \'{{prop}}\' is missing in function call',
       tooManyParams: 'function `output.{{call}}()` takes only 1 parameter',
-      typeError: 'function `output.{{call}}(...) take only object as params',
+      typeError: 'function `output.{{call}}(...) only takes an object as a parameter',
     },
   },
   create: function(context) {
