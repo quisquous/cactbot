@@ -3,7 +3,7 @@ import Regexes from '../../resources/regexes';
 import UserConfig from '../../resources/user_config';
 import ZoneInfo from '../../resources/zone_info';
 import contentList from '../../resources/content_list';
-import { Option } from '../../types/global';
+import { Lang, Option } from '../../types/global';
 
 // Load other config files
 import './general_config';
@@ -191,6 +191,9 @@ export default class CactbotConfigurator {
     jobs: string[];
   };
   configOptions: Option;
+  public readonly lang: Lang;
+  private readonly developerOptions: boolean;
+  private readonly savedConfig: Record<string, unknown>;
 
   constructor(configOptions: Option, savedConfig: Record<string, unknown>) {
     // Predefined, only for ordering purposes.
@@ -207,7 +210,7 @@ export default class CactbotConfigurator {
     // Otherwise, use the operating system language as a default for the config tool.
     this.lang = configOptions.DisplayLanguage || configOptions.ShortLocale;
     this.savedConfig = savedConfig || {};
-    this.developerOptions = this.getOption('general', 'ShowDeveloperOptions', false);
+    this.developerOptions = this.getOption(['general', 'ShowDeveloperOptions'], false);
 
     const templates = UserConfig.optionTemplates;
     for (const group in templates) {
@@ -247,14 +250,13 @@ export default class CactbotConfigurator {
   // any key is missing.
   // e.g. (foo, bar, baz, 5) with {foo: { bar: { baz: 3 } } } will return
   // the value 3.  Requires at least two args.
-  getOption(...args: string[]) {
-    const num = args.length;
-    if (num < 2) {
-      console.error('getOption requires at least two args');
+  public getOption<T>(path: string[], defaultValue: T): T {
+    const num = path.length;
+    if (num < 1) {
+      console.error('getOption requires at least one args');
       return;
     }
 
-    const defaultValue = args[num - 1];
     let objOrValue = this.savedConfig;
     for (let i = 0; i < num - 1; ++i) {
       objOrValue = objOrValue[args[i]];

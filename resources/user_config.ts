@@ -9,22 +9,75 @@ import Outputs from './outputs';
 import Util from './util';
 import ZoneId from './zone_id';
 import ZoneInfo from './zone_info';
+import { Lang, Option as _Option } from '../types/global';
+import RaidbossOption from '../ui/raidboss/raidboss_options';
+import { TranslatableText } from '../types/trigger';
+
+type Option = { [key: string]: unknown } & _Option & typeof RaidbossOption;
+
+type SavedConfigValueType = {
+  [key: string]: unknown;
+};
+
+type UserFileCallback = (
+    jsFile: string,
+    localFiles: Record<string, string>,
+    options: Option,
+    basePath: string
+) => void
+
+type OptionTemplate = {
+  options: {
+    id: string;
+    name: TranslatableText;
+    setterFunc?: (options: unknown, value: unknown) => void;
+    type: 'float' | 'select' | 'integer' | 'checkbox' | string;
+    default: unknown;
+    debug?: boolean;
+    debugOnly?: boolean;
+    options?: {
+      [key in Lang]?: { [key: string]: string }
+    };
+  }[];
+  buildExtraUI: (base: UserConfig, container: HTMLElement) => void;
+  processExtraOptions: (options: unknown, savedConfig: unknown) => void;
+}
+
+
+declare const callOverlayHandler: (call: Record<string, unknown>) => any;
+
+declare global {
+  interface Window {
+    // todo: should be removed after https://github.com/quisquous/cactbot/pull/2611 is merged
+    addOverlayListener: (eventName: string, handler: unknown) => void;
+  }
+
+}
 
 class UserConfig {
+  private readonly optionTemplates: Record<string, OptionTemplate[]>;
+  private savedConfig: null | Record<string, SavedConfigValueType>;
+  private readonly userFileCallbacks: Record<string, UserFileCallback>;
+
   constructor() {
     this.optionTemplates = {};
     this.savedConfig = null;
     this.userFileCallbacks = {};
   }
-  registerOptions(overlayName, optionTemplates, userFileCallback) {
+
+  public registerOptions(
+      overlayName: string,
+      optionTemplates: OptionTemplate[],
+      userFileCallback: UserFileCallback,
+  ): void {
     this.optionTemplates[overlayName] = optionTemplates;
     if (userFileCallback)
       this.userFileCallbacks[overlayName] = userFileCallback;
   }
 
-  sortUserFiles(keys) {
+  protected sortUserFiles(keys: string[]) {
     // Helper data structure for subdirectories.
-    const splitKeyMap = {};
+    const splitKeyMap: Record<string, string[]> = {};
     for (const key of keys)
       splitKeyMap[key] = key.toUpperCase().split(/[/\\]/);
 
@@ -38,29 +91,34 @@ class UserConfig {
     //  * b/some_file.js
     //  * root_file1.js
     //  * root_file2.js
-    return keys.sort((a, b) => {
-      const maxLen = Math.max(splitKeyMap[a].length, splitKeyMap[b].length);
+    return keys.sort((a: string, b: string) => {
+      const elA = splitKeyMap[a];
+      const elB = splitKeyMap[b];
+      if (elA === undefined || elB === undefined)
+        return 0;
+
+      const maxLen = Math.max(elA.length, elB.length);
 
       for (let idx = 0; idx < maxLen; ++idx) {
         // If both subdirectories or both files, then compare names.
-        const isLastA = splitKeyMap[a].length - 1 === idx;
-        const isLastB = splitKeyMap[b].length - 1 === idx;
+        const isLastA = elA.length - 1 === idx;
+        const isLastB = elB.length - 1 === idx;
         if (isLastA && isLastB) {
           // If both last, then this is a filename comparison.
 
           // First, compare filename without extension.
-          const fileA = splitKeyMap[a][idx].replace(/\.[^\.]*$/, '');
-          const fileB = splitKeyMap[b][idx].replace(/\.[^\.]*$/, '');
+          const fileA = elA[idx].replace(/\.[^.]*$/, '');
+          const fileB = elB[idx].replace(/\.[^.]*$/, '');
           const filenameOnlyDiff = fileA.localeCompare(fileB);
           if (filenameOnlyDiff)
             return filenameOnlyDiff;
 
           // Second, compare including the extension.
           // Always return something here, see note below.
-          return splitKeyMap[a][idx].localeCompare(splitKeyMap[b][idx]);
+          return elA[idx].localeCompare(elB[idx]);
         } else if (!isLastA && !isLastB) {
           // If both not last, this is a subdirectory comparison.
-          const diff = splitKeyMap[a][idx].localeCompare(splitKeyMap[b][idx]);
+          const diff = elA[idx].localeCompare(elB[idx]);
           if (diff)
             return diff;
         }
@@ -70,11 +128,11 @@ class UserConfig {
         // If so, then there's a mismatch in number of directories, and we know one
         // the one with a filename should be sorted last.
 
-        if (splitKeyMap[a].length - 1 <= idx) {
+        if (elA.length - 1 <= idx) {
           // a has fewer subdirectories, so should be sorted last.
           return 1;
         }
-        if (splitKeyMap[b].length - 1 <= idx) {
+        if (elB.length - 1 <= idx) {
           // a has more subdirectories, so should be sorted first.
           return -1;
         }
@@ -87,7 +145,7 @@ class UserConfig {
   // that extension that have `overlayName` either as their entire filename (no subdir)
   // or are inside a root-level subdirectory named `overlayName`/  The extension should
   // include the period separator, e.g. ".js".  All comparisons are case insensitive.
-  filterUserFiles(paths, origOverlayName, origExtension) {
+  protected filterUserFiles(paths: string[], origOverlayName: string, origExtension: string) {
     const extension = origExtension.toLowerCase();
     const overlayName = origOverlayName.toLowerCase();
     return paths.filter((origPath) => {
@@ -102,7 +160,7 @@ class UserConfig {
     });
   }
 
-  getUserConfigLocation(overlayName, options, callback) {
+  public getUserConfigLocation(overlayName: string, options: Option, callback: () => void) {
     let currentlyReloading = false;
     const reloadOnce = () => {
       if (currentlyReloading)
@@ -121,13 +179,22 @@ class UserConfig {
     this.loadUserFiles(overlayName, options, callback);
   }
 
-  loadUserFiles(overlayName, options, callback) {
-    const readOptions = callOverlayHandler({
+  loadUserFiles(overlayName: string, options: Option, callback?: () => void) {
+    const readOptions: Promise<{ data: { [key: string]: SavedConfigValueType } }> = callOverlayHandler({
       call: 'cactbotLoadData',
       overlay: 'options',
     });
 
-    const loadUser = async (e) => {
+    const loadUser = async (e: {
+      detail: {
+        language: Lang;
+        parserLanguage: Lang;
+        displayLanguage: Lang;
+        systemLocale: string;
+        userLocation: string;
+        localUserFiles: Record<string, string>;
+      };
+    }) => {
       // The basePath isn't using for anything other than cosmetic printing of full paths,
       // so replace any slashes here for uniformity.  In case anybody is using cactbot on
       // Linux (?!?), support any style of slashes elsewhere.
@@ -181,13 +248,15 @@ class UserConfig {
 
       // If the overlay has a "Debug" setting, set to true via the config tool,
       // then also print out user files that have been loaded.
-      const printUserFile = options.Debug ? (x) => console.log(x) : (x) => {};
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      const printUserFile = options.Debug ? (x?: unknown) => console.log(x) : () => {
+      };
 
       // With user files being arbitrary javascript, and having multiple files
       // in user folders, it's possible for later files to accidentally remove
       // things that previous files have added.  Warn about this, since most
       // users are not programmers.
-      const warnOnVariableResetMap = {
+      const warnOnVariableResetMap: { [key: string]: string[] } = {
         raidboss: [
           'Triggers',
         ],
@@ -215,11 +284,13 @@ class UserConfig {
             // issues, it's unlikely that these will be able to be anything but eval forever.
             //
             /* eslint-disable no-eval */
-            (function(str) {
-              return eval(`(function (ctx) {
-                let { Conditions, NetRegexes, Regexes,
-                      Responses, Outputs, Util,
-                      ZoneId, ZoneInfo, Options } = ctx
+            (function(str?: string) {
+              eval(`(function(ctx) {
+                let {
+                  Conditions, NetRegexes, Regexes,
+                  Responses, Outputs, Util,
+                  ZoneId, ZoneInfo, Options
+                } = ctx
 
                 ${str}
 
@@ -236,7 +307,7 @@ class UserConfig {
               Util,
               ZoneId,
               ZoneInfo,
-            }, localFiles[jsFile].toString());
+            }, localFiles[jsFile]);
 
             for (const field of warnOnVariableResetMap[overlayName]) {
               if (variableTracker[field] && variableTracker[field] !== options[field]) {
@@ -247,12 +318,14 @@ class UserConfig {
               variableTracker[field] = options[field];
             }
 
-            if (this.userFileCallbacks[overlayName])
-              this.userFileCallbacks[overlayName](jsFile, localFiles, options, basePath);
+            this.userFileCallbacks[overlayName]?.(jsFile, localFiles, options, basePath);
           } catch (e) {
             // Be very visible for users.
             console.log('*** ERROR IN USER FILE ***');
-            console.log(e.stack);
+            if (e instanceof Error)
+              console.log(e.stack);
+            else
+              console.log(e);
           }
         }
 
@@ -264,8 +337,11 @@ class UserConfig {
         for (const cssFile of cssFiles) {
           printUserFile(`local user file: ${basePath}${cssFile}`);
           const userCssText = document.createElement('style');
-          userCssText.innerText = localFiles[cssFile];
-          document.getElementsByTagName('head')[0].appendChild(userCssText);
+          const cssContent = localFiles[cssFile];
+          if (userCssText === undefined || cssContent === undefined)
+            continue;
+          userCssText.innerText = cssContent;
+          document.getElementsByTagName('head')?.[0]?.appendChild(userCssText);
         }
       }
 
@@ -292,7 +368,7 @@ class UserConfig {
     });
   }
 
-  handleSkin(skinName) {
+  protected handleSkin(skinName: string) {
     if (!skinName || skinName === 'default')
       return;
 
@@ -305,28 +381,36 @@ class UserConfig {
     const skinHref = basePath + 'skins/' + skinName + '/' + skinName + '.css';
     this.appendCSSLink(skinHref);
   }
-  appendJSLink(src) {
+
+  appendJSLink(src: string) {
     const userJS = document.createElement('script');
     userJS.setAttribute('type', 'text/javascript');
     userJS.setAttribute('src', src);
     userJS.setAttribute('async', false);
-    document.getElementsByTagName('head')[0].appendChild(userJS);
+    document.getElementsByTagName('head')?.[0]?.appendChild(userJS);
   }
-  appendCSSLink(href) {
+
+  appendCSSLink(href: string) {
     const userCSS = document.createElement('link');
     userCSS.setAttribute('rel', 'stylesheet');
     userCSS.setAttribute('type', 'text/css');
     userCSS.setAttribute('href', href);
-    document.getElementsByTagName('head')[0].appendChild(userCSS);
+    document.getElementsByTagName('head')?.[0]?.appendChild(userCSS);
   }
-  processOptions(options, savedConfig, template) {
+
+  protected processOptions(
+      options: Option,
+      savedConfig: SavedConfigValueType,
+      template?: OptionTemplate | OptionTemplate[],
+  ): void {
     // Take options from the template, find them in savedConfig,
     // and apply them to options. This also handles setting
     // defaults for anything in the template, even if it does not
     // exist in savedConfig.
     if (Array.isArray(template)) {
-      for (let i = 0; i < template.length; ++i)
-        this.processOptions(options, savedConfig, template[i]);
+      template.forEach((item) => {
+        this.processOptions(options, savedConfig, item);
+      });
       return;
     }
 
@@ -335,9 +419,7 @@ class UserConfig {
       return;
 
     const templateOptions = template.options || [];
-    for (let i = 0; i < templateOptions.length; ++i) {
-      const opt = templateOptions[i];
-
+    templateOptions.forEach((opt) => {
       // Grab the saved value or the default to set in options.
       const value = opt.id in savedConfig ? savedConfig[opt.id] : opt.default;
 
@@ -352,14 +434,15 @@ class UserConfig {
         options[opt.id] = parseFloat(value);
       else
         options[opt.id] = value;
-    }
+    });
 
     // For things like raidboss that build extra UI, also give them a chance
     // to handle anything that has been set on that UI.
     if (template.processExtraOptions)
       template.processExtraOptions(options, savedConfig);
   }
-  addUnlockText(lang) {
+
+  addUnlockText(lang: Lang) {
     const unlockText = {
       en: '🔓 Unlocked (lock overlay before using)',
       de: '🔓 Entsperrt (Sperre das Overlay vor der Nutzung)',
@@ -378,8 +461,9 @@ class UserConfig {
       // Set element display to none in case the page has not included defaults.css.
       textElem.style.display = 'none';
       document.body.append(textElem);
+    } else {
+      textElem.innerHTML = unlockText[lang] || unlockText['en'];
     }
-    textElem.innerHTML = unlockText[lang] || unlockText['en'];
   }
 }
 
@@ -396,3 +480,4 @@ if (typeof document !== 'undefined') {
       docClassList.add('resizeHandle', 'unlocked');
   });
 }
+
