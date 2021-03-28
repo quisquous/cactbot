@@ -210,7 +210,7 @@ export default {
           // so add in the "of boss" just to be extra clear.
           en: 'Go Intercardinal of Boss',
           de: 'Geh in eine Intercardinale Himmelsrichtung vom Boss',
-          fr: 'Allez à l\'intercadinal du boss',
+          fr: 'Allez en intercardinal du boss',
           ja: 'ボスの斜めへ',
         },
       },
