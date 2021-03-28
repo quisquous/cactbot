@@ -1059,6 +1059,7 @@ export default {
             fr: 'Partagez le Tank buster',
           },
         };
+
         if (data.role === 'tank' || data.role === 'healer')
           return { alertText: output.sharedTankBuster() };
         return { infoText: output.avoidTankCleave() };
