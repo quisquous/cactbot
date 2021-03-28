@@ -9,13 +9,13 @@ import Outputs from './outputs';
 import Util from './util';
 import ZoneId from './zone_id';
 import ZoneInfo from './zone_info';
-import { Lang, Option as _Option } from '../types/global';
+import { Lang, Option as _Option, OverlayName } from '../types/global';
 import RaidbossOption from '../ui/raidboss/raidboss_options';
 import { TranslatableText } from '../types/trigger';
 
 type Option = _Option & typeof RaidbossOption & { [key: string]: unknown };
 
-type SavedConfigValueType = Record<string, Record<string, unknown>>;
+type SavedConfigValueType = Record<string, unknown>;
 
 type UserFileCallback = (
     jsFile: string,
@@ -68,7 +68,7 @@ declare global {
 
 class UserConfig {
   public readonly optionTemplates: Record<string, OptionTemplate>;
-  private savedConfig: null | Record<string, SavedConfigValueType>;
+  private savedConfig: null | Record<OverlayName, SavedConfigValueType>;
   private readonly userFileCallbacks: Record<string, UserFileCallback>;
 
   constructor() {
@@ -174,7 +174,7 @@ class UserConfig {
     });
   }
 
-  public getUserConfigLocation(overlayName: string, options: Option, callback: () => void) {
+  public getUserConfigLocation(overlayName: OverlayName, options: Option, callback: () => void) {
     let currentlyReloading = false;
     const reloadOnce = () => {
       if (currentlyReloading)
@@ -193,7 +193,7 @@ class UserConfig {
     this.loadUserFiles(overlayName, options, callback);
   }
 
-  loadUserFiles(overlayName: string, options: Option, callback?: () => void) {
+  loadUserFiles(overlayName: OverlayName, options: Option, callback?: () => void) {
     const readOptions: Promise<{
       data: Record<string, SavedConfigValueType>;
     }> = callOverlayHandler({
