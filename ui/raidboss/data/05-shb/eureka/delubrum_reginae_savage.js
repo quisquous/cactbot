@@ -2061,6 +2061,7 @@ export default {
         '--adds--': '--adds--',
         '--bleed--': '--saignement--',
         '--chains--': '--chaînes--',
+        '--stunned--': '--étourdi(e)--',
         '--tethers--': '--liens--',
         '(?<!C)Rush': 'Ruée',
         '(?<!Inescapable )Entrapment': 'Pose de pièges',
