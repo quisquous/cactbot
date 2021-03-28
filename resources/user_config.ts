@@ -63,6 +63,9 @@ declare global {
     addOverlayListener: (eventName: string, handler: unknown) => void;
   }
 
+  interface DocumentEventMap {
+    ['onOverlayStateUpdate']: CustomEvent<{ isLocked: boolean }>;
+  }
 }
 
 class UserConfig {
@@ -114,22 +117,24 @@ class UserConfig {
         // If both subdirectories or both files, then compare names.
         const isLastA = elA.length - 1 === idx;
         const isLastB = elB.length - 1 === idx;
+        const componentA = elA[idx] ?? '';
+        const componentB = elB[idx] ?? '';
+
         if (isLastA && isLastB) {
           // If both last, then this is a filename comparison.
-
           // First, compare filename without extension.
-          const fileA = elA[idx].replace(/\.[^.]*$/, '');
-          const fileB = elB[idx].replace(/\.[^.]*$/, '');
-          const filenameOnlyDiff = fileA.localeCompare(fileB);
+          const fileA = componentA.replace(/\.[^.]*$/, '');
+          const fileB = componentB.replace(/\.[^.]*$/, '');
+          const filenameOnlyDiff = fileA?.localeCompare(fileB ?? '');
           if (filenameOnlyDiff)
             return filenameOnlyDiff;
 
           // Second, compare including the extension.
           // Always return something here, see note below.
-          return elA[idx].localeCompare(elB[idx]);
+          return componentA.localeCompare(componentB);
         } else if (!isLastA && !isLastB) {
           // If both not last, this is a subdirectory comparison.
-          const diff = elA[idx].localeCompare(elB[idx]);
+          const diff = componentA.localeCompare(componentB);
           if (diff)
             return diff;
         }
