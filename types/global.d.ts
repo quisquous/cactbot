@@ -1,4 +1,15 @@
 export type Lang = 'en' | 'de' | 'fr' | 'ja' | 'cn' | 'ko';
+export type OverlayName =
+    'config'
+    | 'dps'
+    | 'eureka'
+    | 'fisher'
+    | 'job'
+    | 'oopsyraidsy'
+    | 'pullcounter'
+    | 'radar'
+    | 'raidboss'
+    | 'test';
 
 export type NonEnLang = Exclude<Lang, 'en'>;
 

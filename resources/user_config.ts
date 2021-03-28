@@ -13,11 +13,9 @@ import { Lang, Option as _Option } from '../types/global';
 import RaidbossOption from '../ui/raidboss/raidboss_options';
 import { TranslatableText } from '../types/trigger';
 
-type Option = { [key: string]: unknown } & _Option & typeof RaidbossOption;
+type Option = _Option & typeof RaidbossOption & { [key: string]: unknown };
 
-type SavedConfigValueType = {
-  [key: string]: unknown;
-};
+type SavedConfigValueType = Record<string, Record<string, unknown>>;
 
 type UserFileCallback = (
     jsFile: string,
@@ -31,7 +29,7 @@ export type OptionTemplate = {
     id: string;
     name: TranslatableText;
     setterFunc?: (options: unknown, value: unknown) => void;
-    type: 'float' | 'select' | 'integer' | 'checkbox' | string;
+    type: 'float' | 'select' | 'integer' | 'checkbox';
     default: unknown;
     debug?: boolean;
     debugOnly?: boolean;
@@ -89,7 +87,7 @@ class UserConfig {
       this.userFileCallbacks[overlayName] = userFileCallback;
   }
 
-  protected sortUserFiles(keys: string[]) {
+  sortUserFiles(keys: string[]) {
     // Helper data structure for subdirectories.
     const splitKeyMap: Record<string, string[]> = {};
     for (const key of keys)
@@ -161,7 +159,7 @@ class UserConfig {
   // that extension that have `overlayName` either as their entire filename (no subdir)
   // or are inside a root-level subdirectory named `overlayName`/  The extension should
   // include the period separator, e.g. ".js".  All comparisons are case insensitive.
-  protected filterUserFiles(paths: string[], origOverlayName: string, origExtension: string) {
+  filterUserFiles(paths: string[], origOverlayName: string, origExtension: string) {
     const extension = origExtension.toLowerCase();
     const overlayName = origOverlayName.toLowerCase();
     return paths.filter((origPath) => {
