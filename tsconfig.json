@@ -1,6 +1,7 @@
 {
   "ts-node": {
-    "compiler": "ttypescript"
+    "compiler": "ttypescript",
+    "transpileOnly": true
   },
   "compilerOptions": {
     "plugins": [

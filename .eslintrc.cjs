@@ -28,6 +28,15 @@ module.exports = {
       },
     },
     {
+      'files': ['test/**/*.ts'],
+      'env': {
+        mocha: true,
+      },
+      'plugins': [
+        'mocha',
+      ],
+    },
+    {
       'files': ['**/*.ts'],
       'parser': '@typescript-eslint/parser',
       'plugins': ['@typescript-eslint'],

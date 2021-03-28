@@ -26,7 +26,7 @@ type UserFileCallback = (
     basePath: string
 ) => void
 
-type OptionTemplate = {
+export type OptionTemplate = {
   options: {
     id: string;
     name: TranslatableText;
@@ -69,7 +69,7 @@ declare global {
 }
 
 class UserConfig {
-  private readonly optionTemplates: Record<string, OptionTemplate[]>;
+  public readonly optionTemplates: Record<string, OptionTemplate>;
   private savedConfig: null | Record<string, SavedConfigValueType>;
   private readonly userFileCallbacks: Record<string, UserFileCallback>;
 
@@ -81,7 +81,7 @@ class UserConfig {
 
   public registerOptions(
       overlayName: string,
-      optionTemplates: OptionTemplate[],
+      optionTemplates: OptionTemplate,
       userFileCallback: UserFileCallback,
   ): void {
     this.optionTemplates[overlayName] = optionTemplates;

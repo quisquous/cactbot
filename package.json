@@ -24,6 +24,8 @@
   },
   "devDependencies": {
     "@babel/types": "7.12.*",
+    "@types/chai": "^4.2.15",
+    "@types/mocha": "^8.2.2",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.1",
     "@zoltu/typescript-transformer-append-js-extension": "^1.0.1",
@@ -34,6 +36,7 @@
     "eslint-config-google": "^0.9.1",
     "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-mocha": "^8.1.0",
     "eslint-plugin-rulesdir": "^0.1.0",
     "eslint-plugin-tsc": "^2.0.0",
     "husky": "^4.2.5",
