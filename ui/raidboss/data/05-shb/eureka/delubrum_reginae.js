@@ -546,7 +546,7 @@ export default {
         weaveNoKnockback: {
           en: 'Go To North Circle',
           de: 'Geh zum Kreis im Norden',
-          fr: 'Allez au donut Nord',
+          fr: 'Allez au cercle Nord',
           ja: '北のドーナツ範囲に入る',
           cn: '去上面(北面)月环',
           ko: '북쪽 원으로 이동',
@@ -554,7 +554,7 @@ export default {
         weaveWithKnockback: {
           en: 'Get Knocked Back To Circle',
           de: 'Lass dich zum Kreis im Norden zurückstoßen',
-          fr: 'Faites-vous pousser dans le donut',
+          fr: 'Faites-vous pousser dans le cercle',
           ja: '北のドーナツ範囲へ吹き飛ばされる',
           cn: '击退到上面(北面)月环中',
           ko: '원으로 넉백 당하기',
@@ -1413,7 +1413,7 @@ export default {
         'Strongpoint Defense': 'Défense absolue',
         'Summon': 'Invocation',
         'Swirling Miasma': 'Anneau miasmatique',
-        'Sword Omen/Shield Omen': 'Posture d\'épée/bouclier',
+        'Sword Omen/Shield Omen': 'Posture de l\'épée/bouclier',
         'Tail Swing': 'Queue balayante',
         'The Ends': 'Croix lacérante',
         'The Means': 'Croix perforante',
