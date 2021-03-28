@@ -21,7 +21,7 @@ export default class WidgetList extends HTMLElement {
   private _connected = false;
   private rootElement: HTMLElement;
   // bypass shadowRoot maybe null in base class
-  shadow: ShadowRoot;
+  private shadow: ShadowRoot;
 
   static get observedAttributes(): string[] {
     return ['toward', 'elementwidth', 'elementheight', 'rowcolsize', 'maxnumber'];
