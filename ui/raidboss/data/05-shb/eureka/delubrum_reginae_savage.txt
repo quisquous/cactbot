@@ -1373,7 +1373,6 @@ hideall "--sync--"
 # -it "The Queen"
 # TODO: what is 5BCB? (--middle--?)
 # TODO: what is 55A8?
-# TODO: stun timing
 20000.0 "--sync--" sync / 00:0839:Queensheart will be sealed off/ window 20000,0
 20000.0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 0,2000 jump 0
 20010.3 "--sync--" sync /:59F9:The Queen/ window 20,20
