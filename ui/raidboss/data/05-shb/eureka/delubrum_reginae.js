@@ -143,26 +143,32 @@ export default {
         north: {
           en: 'Front',
           de: 'Vorne',
+          fr: 'Devant',
         },
         east: {
           en: 'Right',
           de: 'Rechts',
+          fr: 'À droite',
         },
         south: {
           en: 'Back',
           de: 'Hinten',
+          fr: 'Derrière',
         },
         west: {
           en: 'Left',
           de: 'Links',
+          fr: 'À gauche',
         },
         double: {
           en: '${dir1} > ${dir2}',
           de: '${dir1} > ${dir2}',
+          fr: '${dir1} > ${dir2}',
         },
         quadruple: {
           en: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
           de: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
+          fr: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
         },
       },
     },
@@ -868,32 +874,32 @@ export default {
           left: {
             en: 'Left',
             de: 'Links',
-            fr: 'Gauche',
+            fr: 'À gauche',
           },
           right: {
             en: 'Right',
             de: 'Rechts',
-            fr: 'Droite',
+            fr: 'À droite',
           },
           plusTwo: {
             en: 'Be in ${side} Cleave (+2 Hot)',
             de: 'Sei im ${side} Cleave (+2 Heiß)',
-            fr: 'Soyez à ${side} Cleave (+2 chaud)',
+            fr: 'Soyez du ${side} Cleave (+2 chaud)',
           },
           plusOne: {
             en: 'Be in ${side} Cleave (+1 Hot)',
             de: 'Sei im ${side} Cleave (+1 Heiß)',
-            fr: 'Soyez à ${side} Cleave (+1 chaud)',
+            fr: 'Soyez du ${side} Cleave (+1 chaud)',
           },
           minusOne: {
             en: 'Be in ${side} Cleave (-1 Cold)',
             de: 'Sei im ${side} Cleave (-1 Kalt)',
-            fr: 'Soyez à ${side} Cleave (-1 froid)',
+            fr: 'Soyez du ${side} Cleave (-1 froid)',
           },
           minusTwo: {
             en: 'Be in ${side} Cleave (-2 Cold)',
             de: 'Sei im ${side} Cleave (-2 Kalt)',
-            fr: 'Soyez à ${side} Cleave (-2 froid)',
+            fr: 'Soyez du ${side} Cleave (-2 froid)',
           },
           avoid: {
             en: 'Go ${side} (avoid!)',
