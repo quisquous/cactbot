@@ -54,7 +54,6 @@ export default {
         if (data.calledSeekerSwords)
           return;
 
-        // These are deleted in Verdant Tempest for consistency.
         data.seekerSwords = data.seekerSwords || [];
         data.seekerSwords.push(matches.count.toUpperCase());
 
