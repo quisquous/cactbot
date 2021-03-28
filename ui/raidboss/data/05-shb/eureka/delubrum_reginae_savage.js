@@ -484,7 +484,6 @@ export default {
           en: 'Go ${dir}, then ${rotate}',
           de: 'Geh nach ${dir}, danach ${rotate}',
           fr: 'Allez à ${dir}, puis ${rotate}',
-          en: 'Allez à ${dir}, puis ${rotate}',
         },
       },
     },
@@ -805,7 +804,7 @@ export default {
         text: {
           en: 'Dispel Warrior Boost',
           de: 'Reinige Kriegerin Buff',
-          fr: 'Dissipez le boos du Guerrier',
+          fr: 'Dissipez le boost du Guerrier',
         },
       },
     },
@@ -878,23 +877,23 @@ export default {
         },
         lightningNoTether: {
           en: 'Lightning (no tether)',
-          fr: 'Lumière (non lié)',
+          fr: 'Lumière (non liée)',
         },
         bigNoTether: {
           en: 'Big Bomb (no tether)',
-          fr: 'Grose bombe (non lié)',
+          fr: 'Grosse bombe (non liée)',
         },
         bigWithTether: {
           en: 'Big Bomb (tethered)',
-          fr: 'Grosse bombe (lié)',
+          fr: 'Grosse bombe (liée)',
         },
         smallNoTether: {
           en: 'Small Bomb (no tether)',
-          fr: 'Petite bombe (non lié)',
+          fr: 'Petite bombe (non liée)',
         },
         smallWithTether: {
           en: 'Small Bomb (tethered)',
-          fr: 'Petite bombe (lié)',
+          fr: 'Petite bombe (liée)',
         },
       },
       run: (data) => {
@@ -1769,7 +1768,7 @@ export default {
         text: {
           en: 'Multiple AOEs',
           de: 'Mehrere AoEs',
-          fr: 'Multiple AoEs'
+          fr: 'Multiple AoEs',
         },
       },
     },
