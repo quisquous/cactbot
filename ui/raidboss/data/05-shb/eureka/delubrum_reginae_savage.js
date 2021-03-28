@@ -2063,6 +2063,7 @@ export default {
         '--chains--': '--chaînes--',
         '--stunned--': '--étourdi(e)--',
         '--tethers--': '--liens--',
+        '--unstunned--': '--non étourdi(e)--',
         '(?<!C)Rush': 'Ruée',
         '(?<!Inescapable )Entrapment': 'Pose de pièges',
         '1111-Tonze Swing': 'Swing de 1111 tonz',
