@@ -99,7 +99,7 @@ export default {
         text: {
           en: 'Get Knocked Into Barricade',
           de: 'Rückstoß in die Barrikaden',
-          fr: 'Faites-vous pousser dans la barricade',
+          fr: 'Faites-vous pousser contre la barricade',
           ja: '柵に吹き飛ばされる',
           cn: '击退到栅栏上',
           ko: '바리케이트로 넉백당하기',
@@ -235,6 +235,7 @@ export default {
         lookAway: {
           en: 'Look Away From Orb',
           de: 'Schau weg vom Orb',
+          fr: 'Ne regardez pas l\'orbe',
         },
       },
     },
@@ -251,6 +252,7 @@ export default {
         awayFromPurple: {
           en: 'Away From Purple',
           de: 'Schau weg von Lila',
+          fr: 'Éloignez-vous du violet',
         },
       },
     },
@@ -663,18 +665,22 @@ export default {
         plusTwo: {
           en: 'Go to +2 Heat Meteor',
           de: 'Geh zum +2 Heiß Meteor',
+          fr: 'Allez au météore de chaleur +2',
         },
         plusOne: {
           en: 'Go to +1 Heat Meteor',
           de: 'Geh zum +1 Heiß Meteor',
+          fr: 'Allez au météore de chaleur +1',
         },
         minusOne: {
           en: 'Go to -1 Cold Meteor',
           de: 'Geh zum -1 Kalt Meteor',
+          fr: 'Allez au météore de froid -1',
         },
         minusTwo: {
           en: 'Go to -2 Cold Meteor',
           de: 'Geh zum -2 Kalt Meteor',
+          fr: 'Allez au météore de froid -2',
         },
         unknownTemperature: {
           en: 'Stand In Opposite Meteor',
@@ -712,23 +718,27 @@ export default {
         plusTwo: {
           en: 'Follow +2 Heat Arrow',
           de: 'Folge dem +2 Heiß Pfeilen',
+          fr: 'Suivez la flèche de chaleur +2',
         },
         plusOne: {
           en: 'Follow +1 Heat Arrow',
           de: 'Folge dem +1 Heiß Pfeilen',
+          fr: 'Suivez la flèche de chaleur +1',
         },
         minusOne: {
           en: 'Follow -1 Cold Arrow',
           de: 'Folge dem -1 Kalt Pfeilen',
+          fr: 'Suivez la flèche de froid -1',
         },
         minusTwo: {
           en: 'Follow -2 Cold Arrow',
           de: 'Folge dem -2 Kalt Pfeilen',
+          fr: 'Suivez la flèche de froid -2',
         },
         unknownTemperature: {
           en: 'Follow Opposite Arrow',
           de: 'Gehe in die entgegengesetzten Pfeile',
-          fr: 'Allez à la flèche de l\'élément opposé',
+          fr: 'Suivez la flèche de l\'élément opposé',
           ja: '体温と逆の矢へ',
         },
       },
@@ -753,30 +763,37 @@ export default {
           left: {
             en: 'Left',
             de: 'Links',
+            fr: 'Gauche',
           },
           right: {
             en: 'Right',
             de: 'Rechts',
+            fr: 'Droite',
           },
           plusTwo: {
             en: 'Be in ${side} Cleave (+2 Hot)',
             de: 'Sei im ${side} Cleave (+2 Heiß)',
+            fr: 'Soyez à ${side} Cleave (+2 chaud)',
           },
           plusOne: {
             en: 'Be in ${side} Cleave (+1 Hot)',
             de: 'Sei im ${side} Cleave (+1 Heiß)',
+            fr: 'Soyez à ${side} Cleave (+1 chaud)',
           },
           minusOne: {
             en: 'Be in ${side} Cleave (-1 Cold)',
             de: 'Sei im ${side} Cleave (-1 Kalt)',
+            fr: 'Soyez à ${side} Cleave (-1 froid)',
           },
           minusTwo: {
             en: 'Be in ${side} Cleave (-2 Cold)',
             de: 'Sei im ${side} Cleave (-2 Kalt)',
+            fr: 'Soyez à ${side} Cleave (-2 froid)',
           },
           avoid: {
             en: 'Go ${side} (avoid!)',
             de: 'Go ${side} (avoid!)',
+            fr: 'Allez à ${side} (évitez !)',
           },
         };
 
@@ -890,10 +907,12 @@ export default {
         bowDark: {
           en: 'On Dark (E/W of center)',
           de: 'Auf Dunkel (O/W von der Mitte)',
+          fr: 'Sur une foncée (E/O du centre)',
         },
         bowLight: {
           en: 'On Light (diagonal from center)',
           de: 'Auf Licht (Diagonal von der Mitte)',
+          fr: 'Sur une claire (diagonale du centre)',
         },
       },
     },
