@@ -295,6 +295,34 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Seeker Merciful Moon',
+      // No cast time on this in savage, but Merciful Blooms cast is a ~3s warning.
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5ACA', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5ACA', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5ACA', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5ACA', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look Away From Orb',
+          de: 'Schau weg vom Orb',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Seeker Merciful Blooms',
+      // Call this on the ability of Merciful Moon, it starts casting much earlier.
+      netRegex: NetRegexes.ability({ source: 'Aetherial Orb', id: '5AC9', capture: false }),
+      suppressSeconds: 1,
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away From Purple',
+          de: 'Schau weg von Lila',
+        },
+      },
+    },
+    {
       id: 'DelubrumSav Seeker Dead Iron',
       // Headmarkers are randomized, so use the tether instead.
       netRegex: NetRegexes.tether({ target: 'Trinity Seeker', id: '01DB' }),
@@ -890,6 +918,62 @@ export default {
       delaySeconds: (data, matches) => parseFloat(matches.castTime) - 2.5,
       durationSeconds: 5.5,
       response: Responses.moveAround('alert'),
+    },
+    {
+      id: 'DelubrumSav Guard Above Board Warning',
+      // 5826 in Guard fight, 5A0B in Queen fight.
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: ['5826', '5A0B'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegerin Der Königin', id: ['5826', '5A0B'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Guerrière De La Reine', id: ['5826', '5A0B'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ウォリアー', id: ['5826', '5A0B'], capture: false }),
+      delaySeconds: 9.5,
+      response: Responses.moveAway('info'),
+    },
+    {
+      id: 'DelubrumSav Guard Queen\'s Shot',
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Gunner', id: '584C', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schütze Der Königin', id: '584C', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fusilier De La Reine', id: '584C', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ガンナー', id: '584C', capture: false }),
+      // This has a 7 second cast time.
+      delaySeconds: 3.5,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          // Hard to say "point the opening in the circle around you at the gunner" succinctly.
+          en: 'Point at the Gunner',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Queen Queen\'s Shot',
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Gunner', id: '5A2D', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schütze Der Königin', id: '5A2D', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fusilier De La Reine', id: '5A2D', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ガンナー', id: '5A2D', capture: false }),
+      // This has a 7 second cast time.
+      delaySeconds: 3.5,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          // This gunner is always in the northwest during Queen, vs in Guard where it is tankable.
+          en: 'Point at the Gunner (in northwest)',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Guard Queen\'s Shot Followup',
+      netRegex: NetRegexes.ability({ source: 'Queen\'s Gunner', id: ['584C', '5A2D'], capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Schütze Der Königin', id: ['584C', '5A2D'], capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Fusilier De La Reine', id: ['584C', '5A2D'], capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'クイーンズ・ガンナー', id: ['584C', '5A2D'], capture: false }),
+      suppressSeconds: 1,
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Point at the Turret',
+        },
+      },
     },
     {
       id: 'DelubrumSav Guard Coat of Arms',
@@ -1661,11 +1745,31 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Queen Dispel',
+      // Players with Dispel should Dispel all the buffs on The Queen.
+      // Critical Strikes = 705 is the first one.
+      netRegex: NetRegexes.gainsEffect({ target: 'The Queen', effectId: '705', capture: false }),
+      netRegexDe: NetRegexes.gainsEffect({ target: 'Kriegsgöttin', effectId: '705', capture: false }),
+      netRegexFr: NetRegexes.gainsEffect({ target: 'Garde-La-Reine', effectId: '705', capture: false }),
+      netRegexJa: NetRegexes.gainsEffect({ target: 'セイブ・ザ・クイーン', effectId: '705', capture: false }),
+      condition: (data) => {
+        data.queenDispelCount = (data.queenDispelCount || 0) + 1;
+        // The third time she gains this effect is the enrage, and there's no need to dispel.
+        return data.queenDispelCount <= 2;
+      },
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dispel Queen',
+        },
+      },
+    },
+    {
       id: 'DelubrumSav Queen Ball Lightning',
       // Players with Reflect should destroy one for party to stand in the shield left behind
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '7974', capture: false }),
       suppressSeconds: 1,
-      infoText: (data, _, output) => output.text(),
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Reflect Orbs',
@@ -1693,6 +1797,42 @@ export default {
       delaySeconds: (data, matches) => parseFloat(matches.castTime) - 2.5,
       durationSeconds: 5.5,
       response: Responses.moveAround('alert'),
+    },
+    {
+      id: 'DelubrumSav Queen Judgment Blade Right',
+      netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59F2', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59F2', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59F2', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59F2', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Find Charge, Dodge Right',
+          de: 'Halte nach dem Ansturm ausschau, weiche nach rechts aus',
+          fr: 'Repérez la charge, esquivez à droite',
+          ja: '右へ、突進を避ける',
+          cn: '去右侧躲避冲锋',
+          ko: '돌진 찾고, 오른쪽 피하기',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Queen Judgment Blade Left',
+      netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59F1', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59F1', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59F1', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59F1', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Find Charge, Dodge Left',
+          de: 'Halte nach dem Ansturm ausschau, weiche nach links aus',
+          fr: 'Repérez la charge, esquivez à gauche',
+          ja: '左へ、突進を避ける',
+          cn: '去左侧躲避冲锋',
+          ko: '돌진 찾고, 왼쪽 피하기',
+        },
+      },
     },
     {
       id: 'DelubrumSav Queen Guard AoEs',
@@ -1791,7 +1931,9 @@ export default {
         '--adds--': '--Adds--',
         '--bleed--': '--Blutung--',
         '--chains--': '--Ketten--',
+        '--stunned--': '--betäubt--',
         '--tethers--': '--Verbindungen--',
+        '--unstunned--': '--nicht länger betäubt--',
         '1111-Tonze Swing': '1111-Tonzen-Schwung',
         'Above Board': 'Über dem Feld',
         'Act Of Mercy': 'Schneller Stich des Dolches',
