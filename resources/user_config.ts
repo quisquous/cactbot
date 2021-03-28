@@ -44,7 +44,18 @@ type OptionTemplate = {
 }
 
 
-declare const callOverlayHandler: (call: Record<string, unknown>) => any;
+interface LoadUserEvent {
+  detail: {
+    language: Lang;
+    parserLanguage: Lang;
+    displayLanguage: Lang;
+    systemLocale: string;
+    userLocation: string;
+    localUserFiles: Record<string, string>;
+  };
+}
+
+declare const callOverlayHandler: <T>(call: Record<string, unknown>) => T;
 
 declare global {
   interface Window {
@@ -180,21 +191,14 @@ class UserConfig {
   }
 
   loadUserFiles(overlayName: string, options: Option, callback?: () => void) {
-    const readOptions: Promise<{ data: { [key: string]: SavedConfigValueType } }> = callOverlayHandler({
+    const readOptions: Promise<{
+      data: Record<string, SavedConfigValueType>;
+    }> = callOverlayHandler({
       call: 'cactbotLoadData',
       overlay: 'options',
     });
 
-    const loadUser = async (e: {
-      detail: {
-        language: Lang;
-        parserLanguage: Lang;
-        displayLanguage: Lang;
-        systemLocale: string;
-        userLocation: string;
-        localUserFiles: Record<string, string>;
-      };
-    }) => {
+    const loadUser = async (e: LoadUserEvent) => {
       // The basePath isn't using for anything other than cosmetic printing of full paths,
       // so replace any slashes here for uniformity.  In case anybody is using cactbot on
       // Linux (?!?), support any style of slashes elsewhere.
@@ -266,7 +270,7 @@ class UserConfig {
       // The values of each `warnOnVariableResetMap` field are initially set
       // after the first file, so that if there is only one file, there are
       // not any warnings.
-      const variableTracker = {};
+      const variableTracker: Record<string, unknown> = {};
 
       if (localFiles) {
         // localFiles may be null if there is no valid user directory.
@@ -283,9 +287,10 @@ class UserConfig {
             // Because user files can be located anywhere on disk and there's backwards compat
             // issues, it's unlikely that these will be able to be anything but eval forever.
             //
-            /* eslint-disable no-eval */
             (function(str?: string) {
-              eval(`(function(ctx) {
+              if (str) {
+                /* eslint-disable no-eval */
+                eval(`(function(ctx) {
                 let {
                   Conditions, NetRegexes, Regexes,
                   Responses, Outputs, Util,
@@ -295,7 +300,8 @@ class UserConfig {
                 ${str}
 
               })(this)`);
-              /* eslint-enable no-eval */
+                /* eslint-enable no-eval */
+              }
             }).call({
               Options,
               Conditions,
@@ -309,7 +315,7 @@ class UserConfig {
               ZoneInfo,
             }, localFiles[jsFile]);
 
-            for (const field of warnOnVariableResetMap[overlayName]) {
+            for (const field of warnOnVariableResetMap[overlayName] ?? []) {
               if (variableTracker[field] && variableTracker[field] !== options[field]) {
                 // Ideally users should do something like `Options.Triggers.push([etc]);`
                 // instead of `Options.Triggers = [etc];`
@@ -352,19 +358,25 @@ class UserConfig {
       callOverlayHandler({ call: 'cactbotRequestState' });
     };
 
-    callOverlayHandler({
+    callOverlayHandler<Promise<LoadUserEvent>>({
       call: 'cactbotLoadUser',
       source: location.href,
       overlayName: overlayName,
     }).then((e) => {
       // Wait for DOMContentLoaded if needed.
       if (document.readyState !== 'loading') {
-        loadUser(e);
+        loadUser(e).catch((e) => {
+          console.error(e);
+        });
         return;
       }
       document.addEventListener('DOMContentLoaded', () => {
-        loadUser(e);
+        loadUser(e).catch((e) => {
+          console.error(e);
+        });
       });
+    }).catch((e) => {
+      console.error(e);
     });
   }
 
@@ -386,7 +398,7 @@ class UserConfig {
     const userJS = document.createElement('script');
     userJS.setAttribute('type', 'text/javascript');
     userJS.setAttribute('src', src);
-    userJS.setAttribute('async', false);
+    userJS.setAttribute('async', 'false');
     document.getElementsByTagName('head')?.[0]?.appendChild(userJS);
   }
 
@@ -429,9 +441,9 @@ class UserConfig {
       if (opt.setterFunc)
         opt.setterFunc(options, value);
       else if (opt.type === 'integer')
-        options[opt.id] = parseInt(value);
+        options[opt.id] = parseInt(String(value));
       else if (opt.type === 'float')
-        options[opt.id] = parseFloat(value);
+        options[opt.id] = parseFloat(String(value));
       else
         options[opt.id] = value;
     });
