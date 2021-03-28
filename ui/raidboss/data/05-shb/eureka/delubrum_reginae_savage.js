@@ -82,6 +82,7 @@ export default {
           // Comets have impact damage when dropping, so warn to avoid this.
           en: 'Get in for comets',
           de: 'Geh rein für Kometen',
+          fr: 'Entrez pour les comètes',
         },
       },
     },
@@ -100,6 +101,7 @@ export default {
         aoeNum: {
           en: 'Big AOE + Bleed (#${num})',
           de: 'Große AoE + Blutung (#${num})',
+          fr: 'Grosse AoE + Saignement (#${num})',
         },
       },
     },
@@ -208,6 +210,7 @@ export default {
           // so add in the "of boss" just to be extra clear.
           en: 'Go Intercardinal of Boss',
           de: 'Geh in eine Intercardinale Himmelsrichtung vom Boss',
+          fr: 'Allez en intercardinal du boss',
           ja: 'ボスの斜めへ',
         },
       },
@@ -224,6 +227,7 @@ export default {
         text: {
           en: 'Get Behind For Line Stack',
           de: 'Geh hinter den Boss für Linien-Stack',
+          fr: 'Passez derrière pour le package en ligne',
         },
       },
     },
@@ -240,6 +244,7 @@ export default {
           sharedTankBuster: {
             en: 'Shared Tank Buster',
             de: 'Geteilter Tank Buster',
+            fr: 'Partagez le Tank buster',
             ja: '頭割りタンクバスター',
           },
         };
@@ -260,6 +265,7 @@ export default {
         text: {
           en: 'Solo Tank Cleave',
           de: 'Solo Tank Cleave',
+          fr: 'Tank cleave solo',
           ja: 'ソロタンクバスター',
         },
       },
@@ -275,6 +281,7 @@ export default {
         text: {
           en: 'Hide Behind Barricade',
           de: 'Hinter den Barrikaden verstecken',
+          fr: 'Cachez-vous derrière la barricade',
           ja: '柵の後ろに',
         },
       },
@@ -290,6 +297,7 @@ export default {
         text: {
           en: 'Knockback Into Barricade',
           de: 'Rückstoß in die Barrikaden',
+          fr: 'Poussée contre la barricade',
           ja: '柵に吹き飛ばされる',
         },
       },
@@ -338,6 +346,7 @@ export default {
         earthshaker: {
           en: 'Earthshaker, away from boss',
           de: 'Erdstoß, weg vom Boss',
+          fr: 'Secousse, éloignez-vous du boss',
         },
       },
     },
@@ -393,10 +402,12 @@ export default {
         goBlue: {
           en: 'Blue Stone',
           de: 'Blauer Stein',
+          fr: 'Pierre bleue',
         },
         goWhite: {
           en: 'White Sand',
           de: 'Weißer Sand',
+          fr: 'Sable blanc',
         },
       },
     },
@@ -493,14 +504,17 @@ export default {
         clockwise: {
           en: 'Clockwise',
           de: 'Im Uhrzeigersinn',
+          fr: 'Sens horaire',
         },
         counterclockwise: {
           en: 'Counter-clock',
           de: 'Gegen den Uhrzeigersinn',
+          fr: 'Anti-horaire',
         },
         text: {
           en: 'Go ${dir}, then ${rotate}',
           de: 'Geh nach ${dir}, danach ${rotate}',
+          fr: 'Allez à ${dir}, puis ${rotate}',
         },
       },
     },
@@ -598,6 +612,7 @@ export default {
         oneOrTwoCharges: {
           en: 'Follow One or Two Charges',
           de: 'Folge dem 1. oder 2. Ansturm',
+          fr: 'Suivez 1 ou 2 charges',
         },
         followSecondCharge: {
           en: 'Follow Second Charge',
@@ -647,6 +662,7 @@ export default {
         knockback: {
           en: 'Knockback to safe spot',
           de: 'Rückstoß in den sicheren Bereich',
+          fr: 'Poussée en zone sûre',
         },
       },
     },
@@ -673,10 +689,12 @@ export default {
           knockbackNoFlare: {
             en: 'Knockback (no flare)',
             de: 'Rückstoß (keine Flare)',
+            fr: 'Poussée (pas de brasier)',
           },
           knockbackWithFlare: {
             en: 'Flare + Knockback (get away)',
             de: 'Flare + Rückstoß (geh weg)',
+            fr: 'Brasier + poussée (éloignez-vous)',
           },
         };
 
@@ -721,6 +739,7 @@ export default {
         text: {
           en: 'Take Outside Bombs',
           de: 'Nimm die äußeren Bomben',
+          fr: 'Prenez les bombes extérieur',
           ja: '外の爆弾を取る',
         },
       },
@@ -736,6 +755,7 @@ export default {
         text: {
           en: 'Knockback Away From Sphere',
           de: 'Rückstoß weg von der Sphere',
+          fr: 'Poussée loin de la sphère',
           ja: 'ノックバック、玉から離れる',
         },
       },
@@ -751,6 +771,7 @@ export default {
         text: {
           en: 'Out, Avoid Cleaves',
           de: 'Raus, weiche den Cleaves aus',
+          fr: 'À l\'extérieur, évitez les cleaves',
           ja: '外へ、範囲攻撃注意',
         },
       },
@@ -766,6 +787,7 @@ export default {
         text: {
           en: 'In, Avoid Cleaves',
           de: 'Rein, weiche den Cleaves aus',
+          fr: 'À l\'intérieur, évitez les cleaves',
           ja: '中へ、範囲攻撃注意',
         },
       },
@@ -782,6 +804,7 @@ export default {
         text: {
           en: 'Remove yellow; apply purple',
           de: 'Entferne Gelb; nimm Lila',
+          fr: 'Retirez le jaune; appliquez le violet',
         },
       },
     },
@@ -797,6 +820,7 @@ export default {
         text: {
           en: 'Remove purple; apply yellow',
           de: 'Entferne Lila; nimm Gelb',
+          fr: 'Retirez le violet; appliquez le jaune',
         },
       },
     },
@@ -811,6 +835,7 @@ export default {
         text: {
           en: 'Dispel Warrior Boost',
           de: 'Reinige Kriegerin Buff',
+          fr: 'Dissipez le boost du Guerrier',
         },
       },
     },
@@ -825,6 +850,7 @@ export default {
         text: {
           en: 'Dispel Gun Turrets',
           de: 'Reinige Schützetürme',
+          fr: 'Dissipez la Tourelle dirigée',
         },
       },
     },
@@ -879,26 +905,32 @@ export default {
         windTether: {
           en: 'Wind (tethered)',
           de: 'Wind (Verbindung)',
+          fr: 'Vent (lié)',
         },
         lightningNoTether: {
           en: 'Lightning (no tether)',
           de: 'Blitz (keine Verbindung)',
+          fr: 'Lumière (non liée)',
         },
         bigNoTether: {
           en: 'Big Bomb (no tether)',
           de: 'Große Bombe (keine Verbindung)',
+          fr: 'Grosse bombe (non liée)',
         },
         bigWithTether: {
           en: 'Big Bomb (tethered)',
           de: 'Große Bombe (Verbindung)',
+          fr: 'Grosse bombe (liée)',
         },
         smallNoTether: {
           en: 'Small Bomb (no tether)',
           de: 'Kleine Bombe (keine Verbindung)',
+          fr: 'Petite bombe (non liée)',
         },
         smallWithTether: {
           en: 'Small Bomb (tethered)',
           de: 'Kleine Bombe (Verbindung)',
+          fr: 'Petite bombe (liée)',
         },
       },
       run: (data) => {
@@ -1035,10 +1067,12 @@ export default {
         firstWeave: {
           en: 'Go North (donut bottom/circle top)',
           de: 'Geh nach Norden (Donut unten/Kreise oben)',
+          fr: 'Allez au nord (donut bas/cercle haut)',
         },
         secondWeave: {
           en: 'Stay South (square bottom/circle top)',
           de: 'Geh nach Süden (Viereck unten/Kreise oben)',
+          fr: 'Restez au sud (fond carré/cercle haut)',
         },
       },
     },
@@ -1055,10 +1089,12 @@ export default {
           goSouth: {
             en: 'Go South; Knockback to Glowing Donut',
             de: 'Geh nach Süden; Rückstoß zum leuchtenden Donut',
+            fr: 'Allez au sud; Poussée du donut brillant',
           },
           goNorth: {
             en: 'Go North; Knockback from Glowing Circle',
             de: 'Geh nach Norden; Rückstoß zum leuchtenden Kreis',
+            fr: 'Allez au nord; Poussée du cercle brillant',
           },
         };
 
@@ -1090,6 +1126,7 @@ export default {
         text: {
           en: 'Stop Attacking, Dispel Ice Spikes',
           de: 'Angriffe stoppen, entferne Eisstachel',
+          fr: 'Arrêtez d\'attaquer, dissipez les pics de glace',
         },
       },
     },
@@ -1115,6 +1152,7 @@ export default {
           sharedTankBuster: {
             en: 'Shared Tank Buster',
             de: 'Geteilter Tank Buster',
+            fr: 'Partagez le Tank buster',
           },
         };
 
@@ -1156,6 +1194,7 @@ export default {
         text: {
           en: 'Get In Front',
           de: 'Geh vor den Boss',
+          fr: 'Soyez devant',
           ja: 'ボスの正面へ',
           ko: '정면에 서기',
         },
@@ -1259,14 +1298,14 @@ export default {
         const trinityLocaleNames = {
           en: 'Trinity Avowed',
           de: 'Trinität Der Eingeschworenen',
-          fr: 'Trinité Féale',
+          fr: 'Trinité féale',
           ja: 'トリニティ・アヴァウ',
         };
 
         const avatarLocaleNames = {
           en: 'Avowed Avatar',
           de: 'Spaltteil der Eingeschworenen',
-          fr: 'Clone De La Trinité Féale',
+          fr: 'Clone de la Trinité féale',
           ja: 'アヴァウドの分体',
         };
 
@@ -1491,10 +1530,12 @@ export default {
         getCleaved: {
           en: '${dir1} Safe Spot => ${dir2} for cleave',
           de: 'Sichere Stelle ${dir1} => ${dir2} für Cleave',
+          fr: '${dir1} Zone sûre => ${dir2} pour le cleave',
         },
         safeSpot: {
           en: '${dir} Safe Spot',
           de: 'Sichere Stelle ${dir}',
+          fr: '${dir} Zone sûre',
         },
         unknown: {
           en: '???',
@@ -1612,26 +1653,32 @@ export default {
         bowDark: {
           en: 'Dark (E/W of center)',
           de: 'Dunkel (O/W von der Mitte)',
+          fr: 'Foncée (E/O du centre)',
         },
         bowLight: {
           en: 'Light (diagonal from center)',
           de: 'Licht (Diagonal von der Mitte)',
+          fr: 'Claire (diagonale du centre)',
         },
         staffOutsideCorner: {
           en: 'Outside Corner',
           de: 'Äußere Ecken',
+          fr: 'Coin extérieur',
         },
         staffInsideCorner: {
           en: 'Inside Corner',
           de: 'Innere Ecken',
+          fr: 'Coin intérieur',
         },
         staffOutsideColInsideRow: {
           en: 'N/S of Corner',
           de: 'N/S von der Ecke',
+          fr: 'N/S du coin',
         },
         staffInsideColOutsideRow: {
           en: 'E/W of Corner',
           de: 'O/W von der Ecke',
+          fr: 'E/O du coin',
         },
       },
     },
@@ -1652,6 +1699,7 @@ export default {
           cleaveOn: {
             en: 'Tank Cleave on ${player}',
             de: 'Tank Cleave auf ${player}',
+            fr: 'Tank Cleave sur ${player}',
             ja: '${player}に範囲攻撃',
           },
         };
@@ -1675,6 +1723,7 @@ export default {
         text: {
           en: 'Drop thunder outside',
           de: 'Lege Blitz draußen ab',
+          fr: 'Déposez la foudre à l\'extérieur',
         },
       },
     },
@@ -1700,6 +1749,7 @@ export default {
         text: {
           en: 'Get In Nook',
           de: 'Geh in die Ecke',
+          fr: 'Entrez dans un recoin',
         },
       },
     },
@@ -1737,6 +1787,7 @@ export default {
           tankInvuln: {
             en: 'Invuln Tank Buster',
             de: 'Unverwundbarkeit für Tank Buster benutzen',
+            fr: 'Invincible sur le Tank buster',
           },
         };
 
@@ -1801,6 +1852,7 @@ export default {
         text: {
           en: 'Reflect Orbs',
           de: 'Reflektiere Orbs',
+          fr: 'Reflétez les orbes',
         },
       },
     },
@@ -1883,6 +1935,7 @@ export default {
         text: {
           en: 'Multiple AOEs',
           de: 'Mehrere AoEs',
+          fr: 'Multiple AoEs',
         },
       },
     },
@@ -2123,7 +2176,6 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         '(?<!Crowned )Marchosias': 'marchosias',
         'Aetherial Bolt': 'petite bombe',
@@ -2173,6 +2225,14 @@ export default {
         'Why\\.\\.\\.won\'t\\.\\.\\.you\\.\\.\\.': 'Grrroooargh.... Cette humaine... est forte...',
       },
       'replaceText': {
+        '\\?': ' ?',
+        '--Spite Check--': '--Vague de brutalité--',
+        '--adds--': '--adds--',
+        '--bleed--': '--saignement--',
+        '--chains--': '--chaînes--',
+        '--stunned--': '--étourdi(e)--',
+        '--tethers--': '--liens--',
+        '--unstunned--': '--non étourdi(e)--',
         '(?<!C)Rush': 'Ruée',
         '(?<!Inescapable )Entrapment': 'Pose de pièges',
         '1111-Tonze Swing': 'Swing de 1111 tonz',
@@ -2206,6 +2266,8 @@ export default {
         'Devastating Bolt': 'Cercle de foudre',
         'Devour': 'Dévoration',
         'Double Gambit': 'Manipulation des ombres',
+        'Elemental Arrow': 'Flèche élémentaire',
+        'Elemental Blast': 'Explosion élémentaire',
         'Elemental Brand': 'Malédiction du feu et de la glace',
         'Elemental Impact': 'Impact',
         'Empyrean Iniquity': 'Injustice empyréenne',
@@ -2213,12 +2275,13 @@ export default {
         'Falling Rock': 'Chute de pierre',
         'Fateful Words': 'Mots de calamité',
         'Feral Howl': 'Rugissement sauvage',
-        'Fiery Portent': 'Rideau de flammes',
+        'Fiery Portent/Icy Portent': 'Rideau de flammes/givre',
         'Firebreathe': 'Souffle de lave',
         'First Mercy': 'Première lame rédemptrice',
         'Flailing Strike': 'Hachage rotatif',
         'Flames Of Bozja': 'Flammes de Bozja',
-        'Flashvane': 'Flèches fulgurantes',
+        'Flashvane(?!/)': 'Flèches fulgurantes',
+        'Flashvane/Fury Of Bozja/Infernal Slash': 'Arsenal aléatoire',
         'Focused Tremor': 'Séisme localisé',
         'Foe Splitter': 'Fendoir horizontal',
         'Fool\'s Gambit': 'Manipulation des sens',
@@ -2226,7 +2289,7 @@ export default {
         'Fourth Mercy': 'Quatrième lame rédemptrice',
         'Fracture': 'Fracture',
         'Freedom Of Bozja': 'Liberté de Bozja',
-        'Fury Of Bozja': 'Furie de Bozja',
+        '(?<!/)Fury Of Bozja(?!/)': 'Furie de Bozja',
         'Gleaming Arrow': 'Flèche miroitante',
         'Glory Of Bozja': 'Gloire de Bozja',
         'Gods Save The Queen': 'Que les Dieux gardent la Reine',
@@ -2241,9 +2304,9 @@ export default {
         'Hunter\'s Claw': 'Griffes prédatrices',
         'Hysteric Assault': 'Assaut forcené',
         'Ice Spikes': 'Pointes de glace',
-        'Icy Portent': 'Rideau de givre',
+        'Icy Portent/Fiery Portent': 'Rideau de givre/flammes',
         'Inescapable Entrapment': 'Parterre de pièges',
-        'Infernal Slash': 'Taillade de Yama',
+        '(?<!/)Infernal Slash': 'Taillade de Yama',
         'Invert Miasma': 'Contrôle des miasmes inversé',
         'Iron Impact': 'Canon d\'ardeur des poings de feu',
         'Iron Rose': 'Canon de pugnacité des poings de feu',
@@ -2251,7 +2314,7 @@ export default {
         'Judgment Blade': 'Lame du jugement',
         'Labyrinthine Fate': 'Malédiction du seigneur du dédale',
         'Leaping Spark': 'Éclairs en série',
-        'Left-Sided Shockwave': 'Onde de choc gauche',
+        'Left-Sided Shockwave/Right-Sided Shockwave': 'Onde de choc gauche/droite',
         'Lethal Blow': 'Charge ultime',
         'Lingering Miasma': 'Nuage miasmatique',
         'Lots Cast': 'Bombe ensorcelée',
@@ -2287,13 +2350,13 @@ export default {
         'Rending Bolt': 'Pluie de foudre',
         'Reverberating Roar': 'Cri disloquant',
         'Reversal Of Forces': 'Inversion des masses',
-        'Right-Sided Shockwave': 'Onde de choc droite',
+        'Right-Sided Shockwave/Left-Sided Shockwave': 'Onde de choc droite/gauche',
         'Ruins Golem': 'golem des ruines',
         'Sanguine Clot': 'caillot terrifiant',
         'Seasons Of Mercy': 'Setsugekka rédempteur',
         'Second Mercy': 'Deuxième lame rédemptrice',
         'Secrets Revealed': 'Corporification',
-        'Shield Omen': 'Posture du bouclier',
+        'Shield Omen/Sword Omen': 'Posture du bouclier/épée',
         'Shimmering Shot': 'Flèches scintillantes',
         'Shot In The Dark': 'Tir à une main',
         'Sniper Shot': 'Entre les yeux',
@@ -2302,12 +2365,13 @@ export default {
         'Spiteful Spirit': 'Sphère de brutalité',
         'Strongpoint Defense': 'Défense absolue',
         'Summon(?! Adds)': 'Invocation',
+        'Summon Adds': 'Ajouts d\'invocation',
         'Sun\'s Ire': 'Ire ardente',
         'Surge of Vigor': 'Zèle',
         'Surging Flames': 'Déferlante de feu',
         'Surging Flood': 'Déferlante d\'eau',
         'Swirling Miasma': 'Anneau miasmatique',
-        'Sword Omen': 'Posture de l\'épée',
+        'Sword Omen/Shield Omen': 'Posture de l\'épée/bouclier',
         'The Ends': 'Croix lacérante',
         'The Means': 'Croix perforante',
         'Third Mercy': 'Troisième lame rédemptrice',
