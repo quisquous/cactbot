@@ -1,5 +1,7 @@
 import UserConfig from '../../resources/user_config';
 import oopsyFileData from './data/manifest.txt';
+import CactbotConfigurator from '../config/config';
+import { Lang } from '../../types/global';
 
 const oopsyHelpers = [
   'damageWarn',
@@ -36,13 +38,15 @@ const kTriggerOptions = {
 };
 
 class OopsyConfigurator {
-  constructor(cactbotConfigurator) {
+  private base: CactbotConfigurator;
+  private optionKey: 'oopsyraidsy';
+
+  constructor(cactbotConfigurator: CactbotConfigurator) {
     this.base = cactbotConfigurator;
-    this.lang = this.base.lang;
     this.optionKey = 'oopsyraidsy';
   }
 
-  buildUI(container, files) {
+  buildUI(container: HTMLElement, files: Record<string, string>) {
     const fileMap = this.processOopsyFiles(files);
 
     const expansionDivs = {};
@@ -113,7 +117,7 @@ class OopsyConfigurator {
     }
   }
 
-  buildTriggerOptions(id, labelDiv) {
+  buildTriggerOptions(id: string, labelDiv: HTMLDivElement) {
     const kField = 'Output';
     const div = document.createElement('div');
     div.classList.add('trigger-options');
@@ -151,7 +155,7 @@ class OopsyConfigurator {
     return div;
   }
 
-  processOopsyFiles(files) {
+  processOopsyFiles(files: string[]): Record<string, string> {
     const map = this.base.processFiles(files);
 
     for (const [key, item] of Object.entries(map)) {
@@ -180,19 +184,20 @@ class OopsyConfigurator {
   }
 }
 
+
 UserConfig.registerOptions('oopsyraidsy', {
   buildExtraUI: (base, container) => {
     const builder = new OopsyConfigurator(base);
     builder.buildUI(container, oopsyFileData);
   },
-  processExtraOptions: (options, savedConfig) => {
+  processExtraOptions: (options: { PerTriggerAutoConfig: Record<string, { enabled: boolean }> }, savedConfig) => {
     options['PerTriggerAutoConfig'] = options['PerTriggerAutoConfig'] || {};
     const triggers = savedConfig.triggers;
     if (!triggers)
       return;
 
-    for (const id in triggers) {
-      const output = triggers[id]['Output'];
+    for (const [id, trigger] of Object.entries(triggers)) {
+      const output = trigger['Output'];
       if (!output)
         continue;
 

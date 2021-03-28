@@ -27,7 +27,7 @@ UserConfig.registerOptions('eureka', {
       },
       type: 'float',
       default: 90,
-      setterFunc: (options, value) => {
+      setterFunc: (options, value: number) => {
         options['FlagTimeoutMs'] = value * 1000;
       },
     },
@@ -95,6 +95,9 @@ UserConfig.registerOptions('eureka', {
       },
       type: 'checkbox',
       default: false,
+      setterFunc: (options, value: boolean) => {
+        options['PopVolume'] = value;
+      },
     },
     {
       id: 'PopVolume',
@@ -108,7 +111,7 @@ UserConfig.registerOptions('eureka', {
       },
       type: 'float',
       default: 1,
-      setterFunc: (options, value) => {
+      setterFunc: (options, value: number) => {
         options['PopVolume'] = value;
       },
     },
@@ -124,7 +127,7 @@ UserConfig.registerOptions('eureka', {
       },
       type: 'float',
       default: 0.3,
-      setterFunc: (options, value) => {
+      setterFunc: (options, value: number) => {
         options['BunnyPopVolume'] = value;
       },
     },
@@ -140,7 +143,7 @@ UserConfig.registerOptions('eureka', {
       },
       type: 'float',
       default: 0.3,
-      setterFunc: (options, value) => {
+      setterFunc: (options, value: number) => {
         options['CriticalPopVolume'] = value;
       },
     },
@@ -156,7 +159,7 @@ UserConfig.registerOptions('eureka', {
       },
       type: 'float',
       default: 1,
-      setterFunc: (options, value) => {
+      setterFunc: (options, value: number) => {
         options['RefreshRateMs'] = value * 1000;
       },
     },

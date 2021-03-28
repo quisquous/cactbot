@@ -97,7 +97,7 @@ UserConfig.registerOptions('general', {
       },
       default: 'default',
       debug: true,
-      setterFunc: (options, value) => {
+      setterFunc: (options, value: string) => {
         if (value === 'default')
           return;
         options['DisplayLanguage'] = value;

@@ -24,21 +24,33 @@ type UserFileCallback = (
     basePath: string
 ) => void
 
-export type OptionTemplate = {
-  options: {
-    id: string;
-    name: TranslatableText;
-    setterFunc?: (options: unknown, value: unknown) => void;
-    type: 'float' | 'select' | 'integer' | 'checkbox';
-    default: unknown;
-    debug?: boolean;
-    debugOnly?: boolean;
-    options?: {
-      [key in Lang]?: { [key: string]: string }
-    };
-  }[];
-  buildExtraUI: (base: UserConfig, container: HTMLElement) => void;
-  processExtraOptions: (options: unknown, savedConfig: unknown) => void;
+interface _Op<T, V> {
+  id: string;
+  name: TranslatableText;
+  // todo: Union for real value
+  setterFunc?: (options: SavedConfigValueType, value: V) => void;
+  type: T;
+  default?: unknown;
+  debug?: boolean;
+  debugOnly?: boolean;
+  options?: {
+    [key in Lang]?: { [key: string]: string }
+  };
+}
+
+type _U = _Op<'float', number>
+    | _Op<'integer', number>
+    | _Op<'checkbox', boolean>
+    | _Op<'directory', string>
+    | _Op<'select', string>
+
+interface OptionTemplate<T, V> {
+  options: _U[];
+  buildExtraUI?: (base: UserConfig, container: HTMLElement) => void;
+  processExtraOptions?: (
+      options: T,
+      savedConfig: V,
+  ) => void;
 }
 
 
@@ -66,6 +78,16 @@ declare global {
   }
 }
 
+interface SavedConfigMap {
+  'oopsyraidsy': [{
+    PerTriggerAutoConfig: Record<string, { enabled: boolean }>;
+  }, {
+    triggers: Record<string, { Output: string }>;
+  }];
+  'radar': [Record<string, unknown>, Record<string, unknown>];
+}
+
+
 class UserConfig {
   public readonly optionTemplates: Record<string, OptionTemplate>;
   private savedConfig: null | Record<OverlayName, SavedConfigValueType>;
@@ -77,10 +99,10 @@ class UserConfig {
     this.userFileCallbacks = {};
   }
 
-  public registerOptions(
-      overlayName: string,
-      optionTemplates: OptionTemplate,
-      userFileCallback: UserFileCallback,
+  public registerOptions<K extends keyof SavedConfigMap>(
+      overlayName: K,
+      optionTemplates: OptionTemplate<SavedConfigMap[K][0], SavedConfigMap[K][1]>,
+      userFileCallback?: UserFileCallback,
   ): void {
     this.optionTemplates[overlayName] = optionTemplates;
     if (userFileCallback)
