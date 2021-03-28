@@ -1029,9 +1029,11 @@ export default {
       outputStrings: {
         tankBait: {
           en: 'Bait Close',
+          de: 'Köder nah',
         },
         partyOut: {
           en: 'Party Out',
+          de: 'Gruppe raus',
         },
       },
     },
@@ -1445,9 +1447,11 @@ export default {
       outputStrings: {
         stackGroups: {
           en: 'Stack Groups',
+          de: 'In Gruppen sammeln',
         },
         knockbackIntoStackGroups: {
           en: 'Knockback Into Stack Groups',
+          de: 'Rückstoß, dann in Gruppen sammeln',
         },
       },
     },
@@ -1471,6 +1475,7 @@ export default {
         spread: Outputs.spread,
         knockbackIntoSpread: {
           en: 'Knockback Into Spread',
+          de: 'Rückstoß dann verteilen',
         },
       },
     },
@@ -1491,6 +1496,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Stack Groups',
+          de: 'In Gruppen sammeln',
         },
       },
     },
@@ -1514,6 +1520,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Double Aero: ${name1}, ${name2}',
+          de: 'Doppel Windga: ${name1}, ${name2}',
         },
       },
     },
@@ -1550,9 +1557,11 @@ export default {
         },
         doubleAero: {
           en: 'Double Aero on YOU',
+          de: 'Doppel Windga auf DIR',
         },
         spread: {
           en: 'Spread on YOU',
+          de: 'Verteilen auf DIR',
         },
       },
     },
