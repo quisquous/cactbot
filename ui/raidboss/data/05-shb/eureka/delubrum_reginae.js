@@ -36,27 +36,124 @@ export default {
       response: Responses.aoe(),
     },
     {
-      id: 'Delubrum Seeker Mercy Fourfold',
-      // No indication which sword is which, but that's honestly for the best
-      // because how would you even describe these directions.  The boss has
-      // a full circle targetting circle too to only make it worse.
-      // * First Mercy: 5B5D
-      // * Second Mercy: 5B5E
-      // * Third Mercy: 5B5F
-      // * Fourth Mercy: 5B60
+      id: 'Delubrum Seeker Sword Cleanup',
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Seeker', id: '5B5D', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5B5D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5B5D', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5B5D', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      run: (data) => {
+        delete data.calledSeekerSwords;
+        delete data.seekerSwords;
+      },
+    },
+    {
+      id: 'Delubrum Seeker Mercy Swords',
+      netRegex: NetRegexes.gainsEffect({ target: ['Trinity Seeker', 'Seeker Avatar'], effectId: '808' }),
+      durationSeconds: 10,
+      alertText: (data, matches, output) => {
+        if (data.calledSeekerSwords)
+          return;
+
+        data.seekerSwords = data.seekerSwords || [];
+        data.seekerSwords.push(matches.count.toUpperCase());
+
+        if (data.seekerSwords.length <= 1)
+          return;
+
+        const cleaves = data.seekerSwords;
+
+        // Seen two cleaves, is this enough information to call??
+        // If no, we will wait until we have seen the third.
+        if (data.seekerSwords.length === 2) {
+          // Named constants for readability.
+          const dir = { north: 0, east: 1, south: 2, west: 3 };
+
+          // Find boss-relative safe zones.
+          const cleavetoSafeZones = {
+            // Front right cleave.
+            F7: [dir.south, dir.west],
+            // Back right cleave.
+            F8: [dir.west, dir.north],
+            // Front left cleave.
+            F9: [dir.east, dir.south],
+            // Back left cleave.
+            FA: [dir.north, dir.east],
+          };
+
+          const first = cleavetoSafeZones[cleaves[0]];
+          const second = cleavetoSafeZones[cleaves[1]];
+
+          const intersect = first.filter((safe) => second.includes(safe));
+          if (intersect.length === 2) {
+            console.error(`Sword: weird intersect: ${JSON.stringify(data.seekerSwords)}`);
+            return;
+          }
+          // This is a bad pattern.  Need to wait for three swords.
+          if (intersect.length === 0)
+            return;
+
+          data.calledSeekerSwords = true;
+          const cardinal = intersect[0];
+          if (cardinal === dir.north)
+            return output.double({ dir1: output.north(), dir2: output.south() });
+          if (cardinal === dir.east)
+            return output.double({ dir1: output.east(), dir2: output.west() });
+          if (cardinal === dir.south)
+            return output.double({ dir1: output.south(), dir2: output.north() });
+          if (cardinal === dir.west)
+            return output.double({ dir1: output.west(), dir2: output.east() });
+          // Or not?
+          data.calledSeekerSwords = false;
+          return;
+        }
+
+        const cleaveToDirection = {
+          // Front right cleave.
+          F7: output.west(),
+          // Back right cleave.
+          F8: output.west(),
+          // Front left cleave.
+          F9: output.east(),
+          // Back left cleave.
+          FA: output.east(),
+        };
+
+        // Seen three clones, which means we weren't able to call with two.
+        // Try to call out something the best we can.
+        // Find the cleave we're missing and add it to the list.
+        const allCleaveKeys = Object.keys(cleaveToDirection);
+        const finalCleaveList = allCleaveKeys.filter((id) => !cleaves.includes(id));
+        if (finalCleaveList.length !== 1) {
+          console.error(`Swords: bad intersection ${JSON.stringify(data.seekerSwords)}`);
+          return;
+        }
+        cleaves.push(finalCleaveList[0]);
+
+        data.calledSeekerSwords = true;
+        const dirs = cleaves.map((id) => cleaveToDirection[id]);
+        return output.quadruple({ dir1: dirs[0], dir2: dirs[1], dir3: dirs[2], dir4: dirs[3] });
+      },
+      // Unlike savage mode, Trinity Seeker can be pretty much anywhere.
+      // So, turn "absolute cardinal directions" into boss-relative strings.
+      // The above function uses cardinal directions to be closer to the DRS code.
       outputStrings: {
-        text: {
-          en: 'Get In, Watch Swords',
-          de: 'Geh rein, achte auf die Schwerter',
-          fr: 'À l\'intérieur, regardez les épées',
-          ja: '中へ、剣を見る',
-          cn: '靠近观察剑',
-          ko: '안으로, 검 확인',
+        north: {
+          en: 'Front',
+        },
+        east: {
+          en: 'Right',
+        },
+        south: {
+          en: 'Back',
+        },
+        west: {
+          en: 'Left',
+        },
+        double: {
+          en: '${dir1} > ${dir2}',
+        },
+        quadruple: {
+          en: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
         },
       },
     },
@@ -110,8 +207,6 @@ export default {
       // There is no castbar for 5AB7, only this headmarker.
       id: 'Delubrum Seeker Merciful Arc',
       netRegex: NetRegexes.headMarker({ id: '00F3' }),
-      condition: tankBusterOnParty,
-      // TODO: is this a cleave?
       response: Responses.tankBuster(),
     },
     {
@@ -225,11 +320,12 @@ export default {
     },
     {
       id: 'Delubrum Seeker Merciful Moon',
-      // 4 second warning
+      // 3 second warning to match savage timings.
       netRegex: NetRegexes.startsUsing({ source: 'Aetherial Orb', id: '5AAC', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Magiekugel', id: '5AAC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Amas D\'Éther Élémentaire', id: '5AAC', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '魔力塊', id: '5AAC', capture: false }),
+      delaySeconds: 1,
       alertText: (data, _, output) => output.lookAway(),
       outputStrings: {
         lookAway: {
@@ -535,7 +631,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57A3', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '57A3', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57A3', capture: false }),
-      preRun: (data) => data.weaveMismaCount = (data.weaveMiasmaCount || 0) + 1,
+      preRun: (data) => data.weaveMiasmaCount = (data.weaveMiasmaCount || 0) + 1,
       delaySeconds: 3,
       infoText: (data, _, output) => {
         if (data.weaveMiasmaCount && data.weaveMiasmaCount >= 3)
@@ -847,7 +943,6 @@ export default {
       suppressSeconds: 10,
       promise: async (data, matches) => {
         const unseenIds = data.unseenIds;
-        console.error(`Gleaming Arrow: ids: ${JSON.stringify(unseenIds)}`);
         const unseenData = await window.callOverlayHandler({
           call: 'getCombatants',
           ids: unseenIds,
@@ -1044,10 +1139,12 @@ export default {
       // where the knockback line appears.  This is mostly because we don't know about
       // reversal at that point.
       id: 'Delubrum Queen Heaven\'s Wrath',
-      netRegex: NetRegexes.startsUsing({ source: 'The Queen', id: '59C7', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59C7', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59C7', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59C7', capture: false }),
+      // This is used sometimes by The Queen and sometimes by The Queen's Gunner (?!).
+      // This could just be stale parser data though, as the name changes for the actual usage.
+      netRegex: NetRegexes.startsUsing({ id: '59C7', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '59C7', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '59C7', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '59C7', capture: false }),
       alertText: (data, _, output) => {
         if (!data.seenHeavensWrath)
           return output.getKnockedTowardsMiddle();
