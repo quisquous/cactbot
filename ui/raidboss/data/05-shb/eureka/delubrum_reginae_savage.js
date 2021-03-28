@@ -795,6 +795,79 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Guard/Queen Bombslinger',
+      // 5AFE = Bombslinger during Queen's Guard, 5B3F = Bombslinger during The Queen
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: ['5AFE', '5B3F'], capture: false }),
+      netRegexDe: NetRegexes.tether({ source: 'Kriegerin Der Königin', id: ['5AFE', '5B3F'], capture: false }),
+      netRegexFr: NetRegexes.tether({ source: 'Guerrière De La Reine', id: ['5AFE', '5B3F'], capture: false }),
+      netRegexJa: NetRegexes.tether({ source: 'クイーンズ・ウォリアー', id: ['5AFE', '5B3F'], capture: false }),
+      run: (data) => data.tetherIsBombslinger = true,
+    },
+    {
+      id: 'DelubrumSav Guard/Queen Bomb Reversal',
+      netRegex: NetRegexes.tether({ target: 'Queen\'s Warrior', id: '0010', capture: false }),
+      netRegexDe: NetRegexes.tether({ target: 'Kriegerin Der Königin', id: '0010', capture: false }),
+      netRegexFr: NetRegexes.tether({ target: 'Guerrière De La Reine', id: '0010', capture: false }),
+      netRegexJa: NetRegexes.tether({ target: 'クイーンズ・ウォリアー', id: '0010', capture: false }),
+      suppressSeconds: 1,
+      run: (data) => data.tetherOnBomb = true,
+    },
+    {
+      id: 'DelubrumSav Guard/Queen Personal Reversal',
+      netRegex: NetRegexes.tether({ target: 'Queen\'s Warrior', id: '0087' }),
+      netRegexDe: NetRegexes.tether({ target: 'Kriegerin Der Königin', id: '0087' }),
+      netRegexFr: NetRegexes.tether({ target: 'Guerrière De La Reine', id: '0087' }),
+      netRegexJa: NetRegexes.tether({ target: 'クイーンズ・ウォリアー', id: '0087' }),
+      condition: (data, matches) => matches.source === data.me,
+      run: (data) => data.tetherOnSelf = true,
+    },
+    {
+      id: 'DelubrumSav Guard/Queen Reversal Of Forces',
+      // Tethers to self (and bombs, if bombslinger) come out just before this starts casting.
+      // This is used in two places, both for Bombslinger and the Winds of Weight.
+      // 5829 = Reversal Of Forces during Queen's Guard, 5A0E = Reversal Of Forces during The Queen
+      // TODO: should we differentiate big/small/wind/lightning with alert vs info?
+      netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: ['5829', '5A0E'], capture: false }),
+      netRegexDe: NetRegexes.tether({ source: 'Kriegerin Der Königin', id: ['5829', '5A0E'], capture: false }),
+      netRegexFr: NetRegexes.tether({ source: 'Guerrière De La Reine', id: ['5829', '5A0E'], capture: false }),
+      netRegexJa: NetRegexes.tether({ source: 'クイーンズ・ウォリアー', id: ['5829', '5A0E'], capture: false }),
+      durationSeconds: 11,
+      alertText: (data, _, output) => {
+        if (data.tetherIsBombslinger) {
+          if (data.tetherOnBomb)
+            return data.tetherOnSelf ? output.bigWithTether() : output.smallNoTether();
+          return data.tetherOnSelf ? output.smallWithTether() : output.bigNoTether();
+        }
+
+        return data.tetherOnSelf ? output.windTether() : output.lightningNoTether();
+      },
+      outputStrings: {
+        windTether: {
+          en: 'Wind (tethered)',
+        },
+        lightningNoTether: {
+          en: 'Lightning (no tether)',
+        },
+        bigNoTether: {
+          en: 'Big Bomb (no tether)',
+        },
+        bigWithTether: {
+          en: 'Big Bomb (tethered)',
+        },
+        smallNoTether: {
+          en: 'Small Bomb (no tether)',
+        },
+        smallWithTether: {
+          en: 'Small Bomb (tethered)',
+        },
+      },
+      run: (data) => {
+        delete data.tetherIsBombslinger;
+        delete data.tetherOnSelf;
+        delete data.tetherOnBomb;
+      },
+    },
+    {
       id: 'DelubrumSav Guard Fiery Portent',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '583F' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '583F' }),
