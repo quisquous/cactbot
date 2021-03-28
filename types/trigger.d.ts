@@ -61,12 +61,12 @@ interface BaseTrigger<D extends unknown> {
   suppressSeconds?: number | TriggerFunction<number, D>;
   sound?: string;
   soundVolume?: number;
-  response?: TranslatableText | TriggerFunction<TranslatableText, D>;
-  alarmText?: string | TranslatableText | TriggerFunction<TranslatableText, D>;
-  alertText?: string | TranslatableText | TriggerFunction<TranslatableText, D>;
-  infoText?: string | TranslatableText | TriggerFunction<TranslatableText, D>;
-  tts?: string | TranslatableText | TriggerFunction<TranslatableText, D>;
-  outputStrings?: Record<string, string | TranslatableText>;
+  response?: TranslatedText | TriggerFunction<TranslatedText, D>;
+  alarmText?: string | TranslatedText | TriggerFunction<TranslatedText, D>;
+  alertText?: string | TranslatedText | TriggerFunction<TranslatedText, D>;
+  infoText?: string | TranslatedText | TriggerFunction<TranslatedText, D>;
+  tts?: string | TranslatedText | TriggerFunction<TranslatedText, D>;
+  outputStrings?: Record<string, string | TranslatedText>;
   run?: TriggerFunction<unknown, D>;
 }
 

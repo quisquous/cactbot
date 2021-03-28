@@ -11,22 +11,22 @@ import ZoneId from './zone_id';
 import ZoneInfo from './zone_info';
 import { Lang, Option as _Option, OverlayName } from '../types/global';
 import RaidbossOption from '../ui/raidboss/raidboss_options';
-import { TranslatableText } from '../types/trigger';
+import { TranslatedText } from '../types/trigger';
 
 type Option = _Option & typeof RaidbossOption & { [key: string]: unknown };
 
 type SavedConfigValueType = Record<string, unknown>;
 
 type UserFileCallback = (
-    jsFile: string,
-    localFiles: Record<string, string>,
-    options: Option,
-    basePath: string
+  jsFile: string,
+  localFiles: Record<string, string>,
+  options: Option,
+  basePath: string
 ) => void
 
 interface _Op<T, V> {
   id: string;
-  name: TranslatableText;
+  name: TranslatedText;
   // todo: Union for real value
   setterFunc?: (options: SavedConfigValueType, value: V) => void;
   type: T;
@@ -38,18 +38,18 @@ interface _Op<T, V> {
   };
 }
 
-type _U = _Op<'float', number>
-    | _Op<'integer', number>
-    | _Op<'checkbox', boolean>
-    | _Op<'directory', string>
-    | _Op<'select', string>
+type _U<T> = T extends { type: 'float' } ? _Op<'float', number> :
+  T extends { type: 'integer' } ? _Op<'integer', number> :
+  T extends { type: 'checkbox' } ? _Op<'checkbox', boolean> :
+  T extends { type: 'directory' } ? _Op<'directory', string> :
+  T extends { type: 'select' } ? _Op<'select', string> : never
 
 interface OptionTemplate<T, V> {
-  options: _U[];
+  options: (T extends {} ? _U<T> : never)[];
   buildExtraUI?: (base: UserConfig, container: HTMLElement) => void;
   processExtraOptions?: (
-      options: T,
-      savedConfig: V,
+    options: T,
+    savedConfig: V,
   ) => void;
 }
 
@@ -100,9 +100,9 @@ class UserConfig {
   }
 
   public registerOptions<K extends keyof SavedConfigMap>(
-      overlayName: K,
-      optionTemplates: OptionTemplate<SavedConfigMap[K][0], SavedConfigMap[K][1]>,
-      userFileCallback?: UserFileCallback,
+    overlayName: K,
+    optionTemplates: OptionTemplate<SavedConfigMap[K][0], SavedConfigMap[K][1]>,
+    userFileCallback?: UserFileCallback,
   ): void {
     this.optionTemplates[overlayName] = optionTemplates;
     if (userFileCallback)
@@ -270,9 +270,9 @@ class UserConfig {
       const userOptions = await readOptions || {};
       this.savedConfig = userOptions.data || {};
       this.processOptions(
-          options,
-          this.savedConfig[overlayName] || {},
-          this.optionTemplates[overlayName],
+        options,
+        this.savedConfig[overlayName] || {},
+        this.optionTemplates[overlayName],
       );
 
       // If the overlay has a "Debug" setting, set to true via the config tool,
@@ -312,7 +312,7 @@ class UserConfig {
             // Because user files can be located anywhere on disk and there's backwards compat
             // issues, it's unlikely that these will be able to be anything but eval forever.
             //
-            (function(str?: string) {
+            (function (str?: string) {
               if (str) {
                 /* eslint-disable no-eval */
                 eval(`(function(ctx) {
@@ -436,9 +436,9 @@ class UserConfig {
   }
 
   protected processOptions(
-      options: Option,
-      savedConfig: SavedConfigValueType,
-      template?: OptionTemplate | OptionTemplate[],
+    options: Option,
+    savedConfig: SavedConfigValueType,
+    template?: OptionTemplate | OptionTemplate[],
   ): void {
     // Take options from the template, find them in savedConfig,
     // and apply them to options. This also handles setting
