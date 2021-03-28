@@ -313,6 +313,9 @@ export default {
       id: 'DelubrumSav Seeker Merciful Blooms',
       // Call this on the ability of Merciful Moon, it starts casting much earlier.
       netRegex: NetRegexes.ability({ source: 'Aetherial Orb', id: '5AC9', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Magiekugel', id: '5AC9', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Amas D\'Éther Élémentaire', id: '5AC9', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '魔力塊', id: '5AC9', capture: false }),
       suppressSeconds: 1,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -829,9 +832,9 @@ export default {
       id: 'DelubrumSav Guard/Queen Bombslinger',
       // 5AFE = Bombslinger during Queen's Guard, 5B3F = Bombslinger during The Queen
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: ['5AFE', '5B3F'], capture: false }),
-      netRegexDe: NetRegexes.tether({ source: 'Kriegerin Der Königin', id: ['5AFE', '5B3F'], capture: false }),
-      netRegexFr: NetRegexes.tether({ source: 'Guerrière De La Reine', id: ['5AFE', '5B3F'], capture: false }),
-      netRegexJa: NetRegexes.tether({ source: 'クイーンズ・ウォリアー', id: ['5AFE', '5B3F'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegerin Der Königin', id: ['5AFE', '5B3F'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Guerrière De La Reine', id: ['5AFE', '5B3F'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ウォリアー', id: ['5AFE', '5B3F'], capture: false }),
       run: (data) => data.tetherIsBombslinger = true,
     },
     {
@@ -859,9 +862,9 @@ export default {
       // 5829 = Reversal Of Forces during Queen's Guard, 5A0E = Reversal Of Forces during The Queen
       // TODO: should we differentiate big/small/wind/lightning with alert vs info?
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Warrior', id: ['5829', '5A0E'], capture: false }),
-      netRegexDe: NetRegexes.tether({ source: 'Kriegerin Der Königin', id: ['5829', '5A0E'], capture: false }),
-      netRegexFr: NetRegexes.tether({ source: 'Guerrière De La Reine', id: ['5829', '5A0E'], capture: false }),
-      netRegexJa: NetRegexes.tether({ source: 'クイーンズ・ウォリアー', id: ['5829', '5A0E'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kriegerin Der Königin', id: ['5829', '5A0E'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Guerrière De La Reine', id: ['5829', '5A0E'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ウォリアー', id: ['5829', '5A0E'], capture: false }),
       durationSeconds: 11,
       alertText: (data, _, output) => {
         if (data.tetherIsBombslinger) {
@@ -875,21 +878,27 @@ export default {
       outputStrings: {
         windTether: {
           en: 'Wind (tethered)',
+          de: 'Wind (Verbindung)',
         },
         lightningNoTether: {
           en: 'Lightning (no tether)',
+          de: 'Blitz (keine Verbindung)',
         },
         bigNoTether: {
           en: 'Big Bomb (no tether)',
+          de: 'Große Bombe (keine Verbindung)',
         },
         bigWithTether: {
           en: 'Big Bomb (tethered)',
+          de: 'Große Bombe (Verbindung)',
         },
         smallNoTether: {
           en: 'Small Bomb (no tether)',
+          de: 'Kleine Bombe (keine Verbindung)',
         },
         smallWithTether: {
           en: 'Small Bomb (tethered)',
+          de: 'Kleine Bombe (Verbindung)',
         },
       },
       run: (data) => {
@@ -942,6 +951,7 @@ export default {
         text: {
           // Hard to say "point the opening in the circle around you at the gunner" succinctly.
           en: 'Point at the Gunner',
+          de: 'Auf den Schützen zeigen',
         },
       },
     },
@@ -958,6 +968,7 @@ export default {
         text: {
           // This gunner is always in the northwest during Queen, vs in Guard where it is tankable.
           en: 'Point at the Gunner (in northwest)',
+          de: 'Auf den Schützen zeigen (im Nord-Westen)',
         },
       },
     },
@@ -972,6 +983,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Point at the Turret',
+          de: 'Auf den Geschützturm zeigen',
         },
       },
     },
@@ -1478,9 +1490,11 @@ export default {
       outputStrings: {
         getCleaved: {
           en: '${dir1} Safe Spot => ${dir2} for cleave',
+          de: 'Sichere Stelle ${dir1} => ${dir2} für Cleave',
         },
         safeSpot: {
           en: '${dir} Safe Spot',
+          de: 'Sichere Stelle ${dir}',
         },
         unknown: {
           en: '???',
@@ -1503,6 +1517,9 @@ export default {
     {
       id: 'DelubrumSav Avowed Gleaming Arrow Collect',
       netRegex: NetRegexes.startsUsing({ source: 'Avowed Avatar', id: '594D' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Spaltteil Der Eingeschworenen', id: '594D' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Clone De La Trinité Féale', id: '594D' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アヴァウドの分体', id: '594D' }),
       run: (data, matches) => {
         data.unseenIds = data.unseenIds || [];
         data.unseenIds.push(parseInt(matches.sourceId, 16));
@@ -1511,6 +1528,9 @@ export default {
     {
       id: 'DelubrumSav Avowed Gleaming Arrow',
       netRegex: NetRegexes.startsUsing({ source: 'Avowed Avatar', id: '594D' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Spaltteil Der Eingeschworenen', id: '594D' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Clone De La Trinité Féale', id: '594D' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アヴァウドの分体', id: '594D' }),
       delaySeconds: 0.5,
       suppressSeconds: 10,
       promise: async (data, matches) => {
@@ -1591,21 +1611,27 @@ export default {
       outputStrings: {
         bowDark: {
           en: 'Dark (E/W of center)',
+          de: 'Dunkel (O/W von der Mitte)',
         },
         bowLight: {
           en: 'Light (diagonal from center)',
+          de: 'Licht (Diagonal von der Mitte)',
         },
         staffOutsideCorner: {
           en: 'Outside Corner',
+          de: 'Äußere Ecken',
         },
         staffInsideCorner: {
           en: 'Inside Corner',
+          de: 'Innere Ecken',
         },
         staffOutsideColInsideRow: {
           en: 'N/S of Corner',
+          de: 'N/S von der Ecke',
         },
         staffInsideColOutsideRow: {
           en: 'E/W of Corner',
+          de: 'O/W von der Ecke',
         },
       },
     },
@@ -1761,6 +1787,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Dispel Queen',
+          de: 'Kriegsgöttin reinigen',
         },
       },
     },
