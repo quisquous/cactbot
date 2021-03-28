@@ -49,6 +49,9 @@ export default {
     {
       id: 'Delubrum Seeker Mercy Swords',
       netRegex: NetRegexes.gainsEffect({ target: ['Trinity Seeker', 'Seeker Avatar'], effectId: '808' }),
+      netRegexDe: NetRegexes.gainsEffect({ target: ['Trinität Der Sucher', 'Spaltteil Der Sucher'], effectId: '808' }),
+      netRegexFr: NetRegexes.gainsEffect({ target: ['Trinité Soudée', 'Clone De La Trinité Soudée'], effectId: '808' }),
+      netRegexJa: NetRegexes.gainsEffect({ target: ['トリニティ・シーカー', 'シーカーの分体'], effectId: '808' }),
       durationSeconds: 10,
       alertText: (data, matches, output) => {
         if (data.calledSeekerSwords)
@@ -139,21 +142,27 @@ export default {
       outputStrings: {
         north: {
           en: 'Front',
+          de: 'Vorne',
         },
         east: {
           en: 'Right',
+          de: 'Rechts',
         },
         south: {
           en: 'Back',
+          de: 'Hinten',
         },
         west: {
           en: 'Left',
+          de: 'Links',
         },
         double: {
           en: '${dir1} > ${dir2}',
+          de: '${dir1} > ${dir2}',
         },
         quadruple: {
           en: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
+          de: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
         },
       },
     },
