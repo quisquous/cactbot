@@ -28,6 +28,9 @@ const headmarker = {
 const seekerCenterX = -0.01531982;
 const seekerCenterY = 277.9735;
 
+const avowedCenterX = -272;
+const avowedCenterY = -82;
+
 // TODO: promote something like this to Conditions?
 const tankBusterOnParty = (data, matches) => {
   if (data.target === data.me)
@@ -1032,6 +1035,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5987', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5987', capture: false }),
       response: Responses.getOut('alert'),
+      run: (data) => data.avowedPhase = 'staff',
     },
     {
       id: 'DelubrumSav Avowed Flashvane',
@@ -1041,6 +1045,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5986', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5986', capture: false }),
       response: Responses.getBehind('alert'),
+      run: (data) => data.avowedPhase = 'bow',
     },
     {
       id: 'DelubrumSav Avowed Infernal Slash',
@@ -1050,6 +1055,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5985', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5985', capture: false }),
       alertText: (data, _, output) => output.text(),
+      run: (data) => data.avowedPhase = 'sword',
       outputStrings: {
         text: {
           en: 'Get In Front',
@@ -1408,6 +1414,115 @@ export default {
         southwest: Outputs.southwest,
         west: Outputs.west,
         northwest: Outputs.northwest,
+      },
+    },
+    {
+      id: 'DelubrumSav Avowed Gleaming Arrow Collect',
+      netRegex: NetRegexes.startsUsing({ source: 'Avowed Avatar', id: '594D' }),
+      run: (data, matches) => {
+        data.unseenIds = data.unseenIds || [];
+        data.unseenIds.push(parseInt(matches.sourceId, 16));
+      },
+    },
+    {
+      id: 'DelubrumSav Avowed Gleaming Arrow',
+      netRegex: NetRegexes.startsUsing({ source: 'Avowed Avatar', id: '594D' }),
+      delaySeconds: 0.5,
+      suppressSeconds: 10,
+      promise: async (data, matches) => {
+        const unseenIds = data.unseenIds;
+        const unseenData = await window.callOverlayHandler({
+          call: 'getCombatants',
+          ids: unseenIds,
+        });
+        if (unseenData && unseenData.combatants)
+          console.error(`Gleaming Arrow: combatants: ${JSON.stringify(unseenData.combatants)}`);
+
+        if (unseenData === null) {
+          console.error(`Gleaming Arrow: null data`);
+          return;
+        }
+        if (!unseenData.combatants) {
+          console.error(`Gleaming Arrow: null combatants`);
+          return;
+        }
+        if (unseenData.combatants.length !== unseenIds.length) {
+          console.error(`Gleaming Arrow: expected ${unseenIds.length}, got ${unseenData.combatants.length}`);
+          return;
+        }
+
+        data.unseenBadRows = [];
+        data.unseenBadCols = [];
+
+        for (const avatar of unseenData.combatants) {
+          const x = avatar.PosX - avowedCenterX;
+          const y = avatar.PosY - avowedCenterY;
+
+          // y=-107 = north side, x = -252, -262, -272, -282, -292
+          // x=-247 = left side, y = -62, -72, -82, -92, -102
+          // Thus, the possible deltas are -20, -10, 0, +10, +20.
+          // The other coordinate is +/-25 from center.
+          const maxDist = 22;
+
+          if (Math.abs(x) < maxDist) {
+            const col = parseInt(Math.round((x + 20) / 10));
+            data.unseenBadCols.push(col);
+          }
+          if (Math.abs(y) < maxDist) {
+            const row = parseInt(Math.round((y + 20) / 10));
+            data.unseenBadRows.push(row);
+          }
+        }
+
+        data.unseenBadRows.sort();
+        data.unseenBadCols.sort();
+      },
+      alertText: (data, _, output) => {
+        delete data.unseenIds;
+
+        const rows = data.unseenBadRows;
+        const cols = data.unseenBadCols;
+
+        if (data.avowedPhase === 'bow') {
+          // consider asserting that badCols are 0, 2, 4 here.
+          if (rows.includes(2))
+            return output.bowLight();
+          return output.bowDark();
+        }
+
+        if (data.avowedPhase !== 'staff')
+          return;
+
+        if (cols.includes(1)) {
+          if (rows.includes(1))
+            return output.staffOutsideCorner();
+          return output.staffOutsideColInsideRow();
+        }
+        if (cols.includes(0)) {
+          if (rows.includes(0))
+            return output.staffInsideCorner();
+          return output.staffInsideColOutsideRow();
+        }
+      },
+      outputStrings: {
+        bowDark: {
+          en: 'Dark (E/W of center)',
+        },
+        bowLight: {
+          en: 'Light (diagonal from center)',
+        },
+        staffOutsideCorner: {
+          en: 'Outside Corner',
+        },
+        staffInsideCorner: {
+          en: 'Inside Corner',
+        },
+        staffOutsideColInsideRow: {
+          en: 'N/S of Corner',
+        },
+        staffInsideColOutsideRow: {
+          en: 'E/W of Corner',
+        },
       },
     },
     {
