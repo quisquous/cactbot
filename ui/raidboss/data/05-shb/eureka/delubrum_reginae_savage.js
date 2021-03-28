@@ -976,7 +976,7 @@ export default {
         secondWeave: {
           en: 'Stay South (square bottom/circle top)',
           de: 'Geh nach Süden (Viereck unten/Kreise oben)',
-          fr: 'Restez au sud (fond carré/cercle haut)'
+          fr: 'Restez au sud (fond carré/cercle haut)',
         },
       },
     },
