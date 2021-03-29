@@ -219,6 +219,10 @@ export default {
         const cleaves = data.seekerSwords;
         console.log(`SWORD DEBUG: ${JSON.stringify(cleaves)}, ${posX}, ${posY}, ${isClone}, ${pos}, ${heading}`);
 
+        // For boss, rotate so that front = cardinal north.
+        // For clones, rotate so that front/north = out.
+        const rotateDir = (dir) => (4 + dir - (isClone ? pos : 0) + heading) % 4;
+
         // Seen two cleaves, is this enough information to call??
         // If no, we will wait until we have seen the third.
         if (data.seekerSwords.length === 2) {
@@ -249,10 +253,8 @@ export default {
           if (intersect.length === 0)
             return;
 
+          const cardinal = rotateDir(intersect[0]);
           if (isClone) {
-            // intersect[0] is north===front of boss.  Rotate so that north===out.
-            const cardinal = (4 + intersect[0] - pos + heading) % 4;
-
             // Trinity Seeker has a lot of limbs and people have a VERY hard time with
             // left vs right at the best of times.  Use "in and out" here on the clone
             // to make sure this doesn't get messed up.  This may mean that there is a
@@ -271,7 +273,6 @@ export default {
           }
 
           data.calledSeekerSwords = true;
-          const cardinal = intersect[0];
           if (cardinal === dir.north)
             return output.double({ dir1: output.north(), dir2: output.south() });
           if (cardinal === dir.east)
@@ -294,41 +295,42 @@ export default {
         }
         cleaves.push(finalCleaveList[0]);
 
-
         // Seen three clones, which means we weren't able to call with two.
         // Try to call out something the best we can.
-        if (isClone) {
-          const cardinal = (4 + intersect[0] - pos + heading) % 4;
 
-          const cleaveToDirection = {
-            // Front right cleave.
-            F7: output.in(),
-            // Back right cleave.
-            F8: output.out(),
-            // Front left cleave.
-            F9: output.in(),
-            // Back left cleave.
-            FA: output.out(),
-          };
-
-          data.calledSeekerSwords = true;
-          const dirs = cleaves.map((id) => cleaveToDirection[id]);
-          return output.quadruple({ dir1: dirs[0], dir2: dirs[1], dir3: dirs[2], dir4: dirs[3] });
-        }
-
-        const cleaveToDirection = {
-          // Front right cleave.
-          F7: output.dirSW(),
-          // Back right cleave.
-          F8: output.dirNW(),
-          // Front left cleave.
-          F9: output.dirSE(),
-          // Back left cleave.
-          FA: output.dirNE(),
+        // "offset" here, being rotate 1/8 of a circle clockwise from 0=north, so 0=NE now.
+        // This is the unsafe direction.  We convert to numbers so we can rotate them.
+        const offsetDir = { frontRight: 0, backRight: 1, backLeft: 2, frontLeft: 3 };
+        const cleaveToOffsetDir = {
+          F7: offsetDir.frontRight,
+          F8: offsetDir.backRight,
+          FA: offsetDir.backLeft,
+          F9: offsetDir.frontLeft,
         };
 
+        const offsetCleaves = cleaves.map((id) => rotateDir(cleaveToOffsetDir[id]));
+
+        // Front is rotated to out.
+        const cloneOffsetCleaveToDirection = {
+          [offsetDir.frontRight]: output.in(),
+          [offsetDir.backRight]: output.out(),
+          [offsetDir.backLeft]: output.out(),
+          [offsetDir.frontLeft]: output.in(),
+        };
+
+        // Front is rotated to north.
+        const bossOffsetCleaveToDirection = {
+          [offsetDir.frontRight]: output.dirSW(),
+          [offsetDir.backRight]: output.dirNW(),
+          [offsetDir.backLeft]: output.dirNE(),
+          [offsetDir.frontLeft]: output.dirSE(),
+        };
+
+        const offsetCleaveToDirection = isClone
+          ? cloneOffsetCleaveToDirection : bossOffsetCleaveToDirection;
+
         data.calledSeekerSwords = true;
-        const dirs = cleaves.map((id) => cleaveToDirection[id]);
+        const dirs = offsetCleaves.map((dir) => offsetCleaveToDirection[dir]);
         return output.quadruple({ dir1: dirs[0], dir2: dirs[1], dir3: dirs[2], dir4: dirs[3] });
       },
       outputStrings: {
