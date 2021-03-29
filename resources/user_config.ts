@@ -12,23 +12,24 @@ import ZoneInfo from './zone_info';
 import { Lang, Option as _Option, OverlayName } from '../types/global';
 import RaidbossOption from '../ui/raidboss/raidboss_options';
 import { TranslatedText } from '../types/trigger';
+import CactbotConfigurator from '../ui/config/config';
 
 type Option = _Option & typeof RaidbossOption & { [key: string]: unknown };
 
 type SavedConfigValueType = Record<string, unknown>;
 
 type UserFileCallback = (
-  jsFile: string,
-  localFiles: Record<string, string>,
-  options: Option,
-  basePath: string
+    jsFile: string,
+    localFiles: Record<string, string>,
+    options: Option,
+    basePath: string
 ) => void
 
-interface _Op<T, V> {
+interface _Op<T, V, O = SavedConfigValueType> {
   id: string;
   name: TranslatedText;
   // todo: Union for real value
-  setterFunc?: (options: SavedConfigValueType, value: V) => void;
+  setterFunc?: (options: O, value: V) => void;
   type: T;
   default?: unknown;
   debug?: boolean;
@@ -38,18 +39,18 @@ interface _Op<T, V> {
   };
 }
 
-type _U<T> = T extends { type: 'float' } ? _Op<'float', number> :
-  T extends { type: 'integer' } ? _Op<'integer', number> :
-  T extends { type: 'checkbox' } ? _Op<'checkbox', boolean> :
-  T extends { type: 'directory' } ? _Op<'directory', string> :
-  T extends { type: 'select' } ? _Op<'select', string> : never
+type _U<T> = _Op<'float', number, T>
+    | _Op<'integer', number, T>
+    | _Op<'checkbox', boolean, T>
+    | _Op<'directory', string, T>
+    | _Op<'select', string, T>
 
-interface OptionTemplate<T, V> {
-  options: (T extends {} ? _U<T> : never)[];
-  buildExtraUI?: (base: UserConfig, container: HTMLElement) => void;
+interface OptionTemplate<T = Record<string, unknown>, V = Record<string, unknown>> {
+  options: _U<T>[];
+  buildExtraUI?: (base: CactbotConfigurator, container: HTMLElement) => void;
   processExtraOptions?: (
-    options: T,
-    savedConfig: V,
+      options: T,
+      savedConfig: V,
   ) => void;
 }
 
@@ -79,12 +80,25 @@ declare global {
 }
 
 interface SavedConfigMap {
-  'oopsyraidsy': [{
-    PerTriggerAutoConfig: Record<string, { enabled: boolean }>;
-  }, {
-    triggers: Record<string, { Output: string }>;
-  }];
-  'radar': [Record<string, unknown>, Record<string, unknown>];
+  general: [Record<string, unknown>, Record<string, unknown>];
+  raidboss: [Record<string, unknown>, Record<string, unknown>];
+  jobs: [Record<string, unknown>, Record<string, unknown>];
+  eureka: [{
+    FlagTimeoutMs: number;
+    PopVolume: number | boolean;
+    BunnyPopVolume: number;
+    CriticalPopVolume: number;
+    RefreshRateMs: number;
+  }, Record<string, unknown>];
+  oopsyraidsy: [
+    {
+      PerTriggerAutoConfig: Record<string, { enabled: boolean }>;
+    },
+    {
+      triggers: Record<string, { Output: string }>;
+    },
+  ];
+  radar: [Record<string, unknown>, Record<string, unknown>];
 }
 
 
@@ -100,9 +114,9 @@ class UserConfig {
   }
 
   public registerOptions<K extends keyof SavedConfigMap>(
-    overlayName: K,
-    optionTemplates: OptionTemplate<SavedConfigMap[K][0], SavedConfigMap[K][1]>,
-    userFileCallback?: UserFileCallback,
+      overlayName: K,
+      optionTemplates: OptionTemplate<SavedConfigMap[K][0], SavedConfigMap[K][1]>,
+      userFileCallback?: UserFileCallback,
   ): void {
     this.optionTemplates[overlayName] = optionTemplates;
     if (userFileCallback)
@@ -270,9 +284,9 @@ class UserConfig {
       const userOptions = await readOptions || {};
       this.savedConfig = userOptions.data || {};
       this.processOptions(
-        options,
-        this.savedConfig[overlayName] || {},
-        this.optionTemplates[overlayName],
+          options,
+          this.savedConfig[overlayName] || {},
+          this.optionTemplates[overlayName],
       );
 
       // If the overlay has a "Debug" setting, set to true via the config tool,
@@ -312,7 +326,7 @@ class UserConfig {
             // Because user files can be located anywhere on disk and there's backwards compat
             // issues, it's unlikely that these will be able to be anything but eval forever.
             //
-            (function (str?: string) {
+            (function(str?: string) {
               if (str) {
                 /* eslint-disable no-eval */
                 eval(`(function(ctx) {
@@ -436,9 +450,9 @@ class UserConfig {
   }
 
   protected processOptions(
-    options: Option,
-    savedConfig: SavedConfigValueType,
-    template?: OptionTemplate | OptionTemplate[],
+      options: Option,
+      savedConfig: SavedConfigValueType,
+      template?: OptionTemplate | OptionTemplate[],
   ): void {
     // Take options from the template, find them in savedConfig,
     // and apply them to options. This also handles setting
@@ -463,14 +477,16 @@ class UserConfig {
       // Options can provide custom logic to turn a value into options settings.
       // If this doesn't exist, just set the value directly.
       // Option template ids are identical to field names on Options.
-      if (opt.setterFunc)
-        opt.setterFunc(options, value);
-      else if (opt.type === 'integer')
+      if (opt.setterFunc) {
+        // todo: this type cast should be removed
+        (opt.setterFunc as (o: Option, v: unknown) => void)(options, value);
+      } else if (opt.type === 'integer') {
         options[opt.id] = parseInt(String(value));
-      else if (opt.type === 'float')
+      } else if (opt.type === 'float') {
         options[opt.id] = parseFloat(String(value));
-      else
+      } else {
         options[opt.id] = value;
+      }
     });
 
     // For things like raidboss that build extra UI, also give them a chance
