@@ -28,7 +28,6 @@ type UserFileCallback = (
 interface _Op<T, V, O = SavedConfigValueType> {
   id: string;
   name: TranslatedText;
-  // todo: Union for real value
   setterFunc?: (options: O, value: V) => void;
   type: T;
   default?: unknown;
@@ -44,6 +43,7 @@ type _U<T> = _Op<'float', number, T>
     | _Op<'checkbox', boolean, T>
     | _Op<'directory', string, T>
     | _Op<'select', string, T>
+    | _Op<'select', boolean, T>
 
 interface OptionTemplate<T = Record<string, unknown>, V = Record<string, unknown>> {
   options: _U<T>[];
@@ -81,7 +81,11 @@ declare global {
 
 interface SavedConfigMap {
   general: [Record<string, unknown>, Record<string, unknown>];
-  raidboss: [Record<string, unknown>, Record<string, unknown>];
+  raidboss: [{
+    TimelineLanguage: string;
+    PerTriggerAutoConfig: Record<string, string>;
+    AlertsLanguage: string;
+  }, Record<string, unknown>];
   jobs: [Record<string, unknown>, Record<string, unknown>];
   eureka: [{
     FlagTimeoutMs: number;
@@ -114,7 +118,7 @@ class UserConfig {
   }
 
   public registerOptions<K extends keyof SavedConfigMap>(
-      overlayName: K,
+      overlayName: string,
       optionTemplates: OptionTemplate<SavedConfigMap[K][0], SavedConfigMap[K][1]>,
       userFileCallback?: UserFileCallback,
   ): void {

@@ -49,6 +49,7 @@
     "./test"
   ],
   "exclude": [
+    "./ui/dps",
     "./eslint",
     "./.eslintrc.cjs",
     "./webpack",
