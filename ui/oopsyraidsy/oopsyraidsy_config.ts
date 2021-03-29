@@ -114,11 +114,11 @@ class OopsyConfigurator {
 
       const parts = [info.title, info.type, expansion];
       parts.forEach((item) => {
-        if (!(item))
+        if (!item)
           return;
         const partDiv = document.createElement('div');
         partDiv.classList.add('trigger-file-header-part');
-        partDiv.innerText = (item);
+        partDiv.innerText = item;
         headerDiv.appendChild(partDiv);
       });
 
@@ -198,7 +198,6 @@ class OopsyConfigurator {
       for (const prop of oopsyHelpers) {
         if (!triggerSet[prop])
           continue;
-        console.log(triggerSet);
 
         for (const id of Object.keys(triggerSet[prop] ?? {}))
           item.triggers.push({ id: id });
@@ -219,7 +218,6 @@ class OopsyConfigurator {
     return map;
   }
 }
-
 
 UserConfig.registerOptions('oopsyraidsy', {
   buildExtraUI: (base, container) => {

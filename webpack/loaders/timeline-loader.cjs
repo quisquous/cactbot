@@ -11,5 +11,6 @@ module.exports = function(content, map, meta) {
       return;
     ret += line + '\r\n';
   });
+
   return ret;
 };
