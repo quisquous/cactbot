@@ -636,7 +636,7 @@ export default {
       durationSeconds: 7,
       alarmText: (data, matches, output) => {
         const id = getHeadmarkerId(data, matches);
-        const num = headmarker.spitFlame4 - id + 1;
+        const num = parseInt(id, 16) - parseInt(headmarker.spitFlame1, 16) + 1;
         return {
           1: output.one(),
           2: output.two(),
