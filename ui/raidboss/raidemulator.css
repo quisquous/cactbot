@@ -153,11 +153,12 @@ body {
 }
 
 .triggerInfoColumn .triggerHideSkippedContainer {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 1rem;
-  height: 1rem;
+  float: left;
+}
+
+.triggerInfoColumn .triggerHideCollectorContainer {
+  float: left;
+  padding-left: 5px;
 }
 
 .progress-bar {
@@ -549,18 +550,96 @@ div.row.encountersRow {
   padding-bottom: 0.5rem;
 }
 
-.wrap-collapse .wrap-collapse-button .trigger-label {
+.wrap-collapse .wrap-collapse-button .btn {
+  width: 100%;
+}
+
+.wrap-collapse .wrap-collapse-button .btn.btn-outline-light:hover {
+  background-color: #f8f9fa80;
+}
+
+.wrap-collapse .wrap-collapse-button .trigger-label .trigger-label-time,
+.wrap-collapse .wrap-collapse-button .trigger-label .trigger-label-name {
+  float: left;
+}
+
+.wrap-collapse .wrap-collapse-button .trigger-label .trigger-label-icon,
+.wrap-collapse .wrap-collapse-button .trigger-label .trigger-label-text {
   float: right;
-  height: 31px;
-  line-height: 31px;
+}
+
+.wrap-collapse .wrap-collapse-button .trigger-label .fa {
+  line-height: 2rem;
+  width: 1em;
 }
 
 .wrap-collapse .wrap-collapse-button .trigger-label > * {
-  float: right;
+  float: left;
+  padding-right: 0.5rem;
 }
 
-.wrap-collapse .wrap-collapse-button .trigger-label .trigger-label-time {
+.wrap-collapse .wrap-collapse-button .trigger-label > div {
+  line-height: 2rem;
+  height: 2rem;
+  margin: -4px 0;
+}
+
+.wrap-collapse .wrap-collapse-button .trigger-label > div + div {
   padding-left: 0.5rem;
+}
+
+.wrap-collapse .wrap-collapse-button .trigger-label .trigger-label-icon {
+  padding-right: 0;
+}
+
+.wrap-collapse .wrap-collapse-button .btn,
+.wrap-collapse .wrap-collapse-button .btn.triggertype-data {
+  border-color: white;
+}
+
+.wrap-collapse .wrap-collapse-button .btn .trigger-label > div + div,
+.wrap-collapse .wrap-collapse-button .btn.triggertype-data .trigger-label > div + div {
+  border-left: 1px solid white;
+}
+
+.wrap-collapse .wrap-collapse-button .btn.triggertype-info {
+  border-color: #2b2;
+}
+
+.wrap-collapse .wrap-collapse-button .btn.triggertype-info .trigger-label > div + div {
+  border-left: 1px solid #2b2;
+}
+
+.wrap-collapse .wrap-collapse-button .btn.triggertype-alert {
+  border-color: #fb0;
+}
+
+.wrap-collapse .wrap-collapse-button .btn.triggertype-alert .trigger-label > div + div {
+  border-left: 1px solid #fb0;
+}
+
+.wrap-collapse .wrap-collapse-button .btn.triggertype-alarm {
+  border-color: #f30;
+}
+
+.wrap-collapse .wrap-collapse-button .btn.triggertype-alarm .trigger-label > div + div {
+  border-left: 1px solid #f30;
+}
+
+.wrap-collapse .wrap-collapse-button .btn.triggertype-tts {
+  border-color: whitesmoke;
+}
+
+.wrap-collapse .wrap-collapse-button .btn.triggertype-tts .trigger-label > div + div {
+  border-left: 1px solid whitesmoke;
+}
+
+.wrap-collapse .wrap-collapse-button .btn.triggertype-audiofile {
+  border-color: blue;
+}
+
+.wrap-collapse .wrap-collapse-button .btn.triggertype-audiofile .trigger-label > div + div {
+  border-left: 1px solid blue;
 }
 
 div.templates,
