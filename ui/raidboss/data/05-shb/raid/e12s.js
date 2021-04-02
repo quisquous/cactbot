@@ -676,17 +676,17 @@ export default {
           goLeftBaitInner: {
             en: 'Left + Bait Inner #1',
             de: 'Links + Köder innen #1',
-            fr: 'Gauche + Orientez vers l\'intérieur #1',
+            fr: 'À gauche + Orientez vers l\'intérieur #1',
           },
           goLeftBaitOuter: {
             en: 'Left + Bait Outer #1',
             de: 'Links + Köder außen #1',
-            fr: 'Gauche + Orientez vers l\'extérieur #1',
+            fr: 'À gauche + Orientez vers l\'extérieur #1',
           },
           goLeftBaitUnknown: {
             en: 'Left + Bait #1',
             de: 'Links + Köder #1',
-            fr: 'Gauche + Orientez #1',
+            fr: 'À gauche + Orientez #1',
           },
         };
 
@@ -714,17 +714,17 @@ export default {
           goRightBaitInner: {
             en: 'Right + Bait Inner #1',
             de: 'Rechts + Köder innen #1',
-            fr: 'Droite + Orientez vers l\'intérieur #1',
+            fr: 'À droite + Orientez vers l\'intérieur #1',
           },
           goRightBaitOuter: {
             en: 'Right + Bait Outer #1',
             de: 'Rechts + Köder außen #1',
-            fr: 'Droite + Orientez vers l\'extérieur #1',
+            fr: 'À droite + Orientez vers l\'extérieur #1',
           },
           goRightBaitUnknown: {
             en: 'Right + Bait #1',
             de: 'Rechts + Köder #1',
-            fr: 'Droite + Orientez #1',
+            fr: 'À droite + Orientez #1',
           },
         };
 
