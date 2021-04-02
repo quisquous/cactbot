@@ -314,6 +314,7 @@ export default {
         text: {
           en: 'Look Away From Orb',
           de: 'Schau weg vom Orb',
+          fr: 'Ne regardez pas l\'orbe',
         },
       },
     },
@@ -330,6 +331,7 @@ export default {
         text: {
           en: 'Away From Purple',
           de: 'Schau weg von Lila',
+          fr: 'Éloignez-vous du violet',
         },
       },
     },
@@ -577,7 +579,7 @@ export default {
         leftThenRight: {
           en: 'Left, Then Right',
           de: 'Links, dann Rechts',
-          fr: 'Gauche, puis droite',
+          fr: 'À gauche, puis à droite',
           ja: '左 => 右',
           cn: '左 => 右',
           ko: '왼쪽 => 오른쪽',
@@ -585,7 +587,7 @@ export default {
         rightThenLeft: {
           en: 'Right, Then Left',
           de: 'Rechts, dann Links',
-          fr: 'Droite, puis gauche',
+          fr: 'À droite, puis à gauche',
           ja: '右 => 左',
           cn: '右 => 左',
           ko: '오른쪽 => 왼쪽',
@@ -984,6 +986,7 @@ export default {
           // Hard to say "point the opening in the circle around you at the gunner" succinctly.
           en: 'Point at the Gunner',
           de: 'Auf den Schützen zeigen',
+          fr: 'Pointez sur le Fusiller',
         },
       },
     },
@@ -1001,6 +1004,7 @@ export default {
           // This gunner is always in the northwest during Queen, vs in Guard where it is tankable.
           en: 'Point at the Gunner (in northwest)',
           de: 'Auf den Schützen zeigen (im Nord-Westen)',
+          fr: 'Pointez sur le Fusiller (au nord-ouest)',
         },
       },
     },
@@ -1016,6 +1020,7 @@ export default {
         text: {
           en: 'Point at the Turret',
           de: 'Auf den Geschützturm zeigen',
+          fr: 'Pointez sur la Tourelle',
         },
       },
     },
@@ -1839,6 +1844,7 @@ export default {
         text: {
           en: 'Dispel Queen',
           de: 'Kriegsgöttin reinigen',
+          fr: 'Dissipez la Reine',
         },
       },
     },
