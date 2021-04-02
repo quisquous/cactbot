@@ -385,7 +385,7 @@ export default {
         leftThenRight: {
           en: 'Left, Then Right',
           de: 'Links, dann Rechts',
-          fr: 'Gauche, puis droite',
+          fr: 'À gauche, puis à droite',
           ja: '左 => 右',
           cn: '左 => 右',
           ko: '왼쪽 => 오른쪽',
@@ -393,7 +393,7 @@ export default {
         rightThenLeft: {
           en: 'Right, Then Left',
           de: 'Rechts, dann Links',
-          fr: 'Droite, puis gauche',
+          fr: 'À droite, puis à gauche',
           ja: '右 => 左',
           cn: '右 => 左',
           ko: '오른쪽 => 왼쪽',
