@@ -27,35 +27,47 @@ export default class TimerBar extends HTMLElement {
   }
 
   // Background color.
-  set bg(c: string) {
-    this.setAttribute('bg', c);
+  set bg(c: string | null) {
+    if (c === null)
+      this.removeAttribute('bg');
+    else
+      this.setAttribute('bg', c);
   }
-  get bg(): string {
-    return this.getAttribute('bg') ?? '';
+  get bg(): string | null {
+    return this.getAttribute('bg');
   }
 
   // Foreground color.
-  set fg(c: string) {
-    this.setAttribute('fg', c);
+  set fg(c: string | null) {
+    if (c === null)
+      this.removeAttribute('fg');
+    else
+      this.setAttribute('fg', c);
   }
-  get fg(): string {
-    return this.getAttribute('fg') ?? '';
+  get fg(): string | null {
+    return this.getAttribute('fg');
   }
 
   // The width of the bar.
-  set width(w: string) {
-    this.setAttribute('width', w);
+  set width(w: string | null) {
+    if (w === null)
+      this.removeAttribute('width');
+    else
+      this.setAttribute('width', w);
   }
-  get width(): string {
-    return this.getAttribute('width') ?? '';
+  get width(): string | null {
+    return this.getAttribute('width');
   }
 
   // The height of the bar.
-  set height(w: string) {
-    this.setAttribute('height', w);
+  set height(w: string | null) {
+    if (w === null)
+      this.removeAttribute('height');
+    else
+      this.setAttribute('height', w);
   }
-  get height(): string {
-    return this.getAttribute('height') ?? '';
+  get height(): string | null {
+    return this.getAttribute('height');
   }
 
   // The total length of time to count down.
@@ -87,29 +99,38 @@ export default class TimerBar extends HTMLElement {
 
   // If "right" then animates left-to-right (the default). If "left"
   // then animates right-to-left.
-  set toward(t: 'left' | 'right') {
-    this.setAttribute('toward', t);
+  set toward(t: 'left' | 'right' | null) {
+    if (t === null)
+      this.removeAttribute('toward');
+    else
+      this.setAttribute('toward', t);
   }
-  get toward(): 'left' | 'right' {
+  get toward(): 'left' | 'right' | null {
     return this.getAttribute('toward') as 'left' | 'right';
   }
 
   // If "fill" then the progress goes empty-to-full, if "empty" then the
   // progress bar starts full and goes to empty.
-  set styleFill(s: 'empty' | 'fill') {
-    this.setAttribute('style', s);
+  set styleFill(s: 'empty' | 'fill' | null) {
+    if (s === null)
+      this.removeAttribute('styleFill');
+    else
+      this.setAttribute('styleFill', s);
   }
-  get styleFill(): 'empty' | 'fill' {
-    return this.getAttribute('style') as 'empty' | 'fill';
+  get styleFill(): 'empty' | 'fill' | null {
+    return this.getAttribute('styleFill') as 'empty' | 'fill';
   }
 
   // When the bar reaches 0, it is hidden after this many seconds. If ""
   // then it is not hidden.
-  set hideafter(h: string) {
-    this.setAttribute('hideafter', h);
+  set hideafter(h: string | null) {
+    if (h === null)
+      this.removeAttribute('hideafter');
+    else
+      this.setAttribute('hideafter', h);
   }
-  get hideafter(): string {
-    return this.getAttribute('hideafter') ?? '';
+  get hideafter(): string | null {
+    return this.getAttribute('hideafter');
   }
 
   // Chooses what should be shown in the text field in each area of
@@ -122,23 +143,32 @@ export default class TimerBar extends HTMLElement {
   //             the duration.
   // "elapsed"   - shows the elapsed time
   // anything else - the given text is shown literally.
-  set lefttext(p: string) {
-    this.setAttribute('lefttext', p);
+  set lefttext(p: string | null) {
+    if (p === null)
+      this.removeAttribute('lefttext');
+    else
+      this.setAttribute('lefttext', p);
   }
-  get lefttext(): string {
-    return this.getAttribute('lefttext') ?? '';
+  get lefttext(): string | null {
+    return this.getAttribute('lefttext');
   }
-  set righttext(p: string) {
-    this.setAttribute('righttext', p);
+  set righttext(p: string | null) {
+    if (p === null)
+      this.removeAttribute('righttext');
+    else
+      this.setAttribute('righttext', p);
   }
-  get righttext(): string {
-    return this.getAttribute('righttext') ?? '';
+  get righttext(): string | null {
+    return this.getAttribute('righttext');
   }
-  set centertext(p: string) {
-    this.setAttribute('centertext', p);
+  set centertext(p: string | null) {
+    if (p === null)
+      this.removeAttribute('centertext');
+    else
+      this.setAttribute('centertext', p);
   }
-  get centertext(): string {
-    return this.getAttribute('centertext') ?? '';
+  get centertext(): string | null {
+    return this.getAttribute('centertext');
   }
 
   // If this attribute is present, the timer will loop forever.
@@ -360,7 +390,7 @@ export default class TimerBar extends HTMLElement {
       if (update)
         this.updateText();
     } else if (name === 'hideafter') {
-      this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
+      this._hideAfter = Math.max(parseFloat(this.hideafter ?? '0'), 0);
       if (this.value === '0') {
         if (this._hideAfter >= 0)
           this.hide();
