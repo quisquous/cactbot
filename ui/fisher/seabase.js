@@ -11,9 +11,20 @@ export default class SeaBase {
   }
 
   findKey(obj, val) {
-    return Object.keys(obj).find((x) =>
-      obj[x] === val ||
-      Array.isArray(obj[x]) && obj[x].includes(val));
+    // This is a little inefficient to lowercase everything here.
+    // However, we want the real capitalization to use for UI so can't
+    // lowercase it in the data unless we made another copy.
+    const lcVal = val.toLowerCase();
+    return Object.keys(obj).find((key) => {
+      if (Array.isArray(obj[key])) {
+        for (const subVal of obj[key]) {
+          if (subVal.toLowerCase() === lcVal)
+            return true;
+        }
+        return false;
+      }
+      return obj[key].toLowerCase() === lcVal;
+    });
   }
 
   firstIfArray(obj) {
@@ -229,14 +240,7 @@ export default class SeaBase {
   }
 
   getPlace(place) {
-    let result = this.getInfo('places', place);
-
-    // English assumes that there could be a 'the' which fails
-    // for fishing locations that include the 'The'.
-    // This should probably be a noop for other languages.
-    if (!result.id || !result.name)
-      result = this.getInfo('places', 'The ' + place);
-
+    const result = this.getInfo('places', place);
     if (!result.id || !result.name)
       console.log('failed to look up place: ' + place);
     return result;
