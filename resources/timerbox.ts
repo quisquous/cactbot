@@ -36,51 +36,69 @@ export default class TimerBox extends HTMLElement {
   // The full duration of the current countdown. When this is changed,
   // the countdown restarts at the new value. If set to 0 then countdowns
   // are stopped.
-  set duration(d: string) {
-    this.setAttribute('duration', d);
+  set duration(d: string | null) {
+    if (d === null)
+      this.removeAttribute('duration');
+    else
+      this.setAttribute('duration', d);
   }
-  get duration(): string {
-    return this.getAttribute('duration') ?? '';
+  get duration(): string | null {
+    return this.getAttribute('duration');
   }
 
   // Below this a large box is shown, above it a small box is shown.
-  set threshold(t: string) {
-    this.setAttribute('threshold', t);
+  set threshold(t: string | null) {
+    if (t === null)
+      this.removeAttribute('threshold');
+    else
+      this.setAttribute('threshold', t);
   }
-  get threshold(): string {
-    return this.getAttribute('threshold') ?? '';
+  get threshold(): string | null {
+    return this.getAttribute('threshold');
   }
 
   // All visual dimensions are scaled by this.
-  set scale(s: string) {
-    this.setAttribute('scale', s);
+  set scale(s: string | null) {
+    if (s === null)
+      this.removeAttribute('scale');
+    else
+      this.setAttribute('scale', s);
   }
-  get scale(): string {
-    return this.getAttribute('scale') ?? '';
+  get scale(): string | null {
+    return this.getAttribute('scale');
   }
 
   // The displayed value is scaled by this.
-  set valuescale(s: string) {
-    this.setAttribute('valuescale', s);
+  set valuescale(s: string | null) {
+    if (s === null)
+      this.removeAttribute('valuescale');
+    else
+      this.setAttribute('valuescale', s);
   }
-  get valuescale(): string {
-    return this.getAttribute('valuescale') ?? '';
+  get valuescale(): string | null {
+    return this.getAttribute('valuescale');
   }
 
   // Background color.
-  set bg(c: string) {
-    this.setAttribute('bg', c);
+  set bg(c: string | null) {
+    if (c === null)
+      this.removeAttribute('bg');
+    else
+      this.setAttribute('bg', c);
   }
-  get bg(): string {
-    return this.getAttribute('bg') ?? '';
+  get bg(): string | null {
+    return this.getAttribute('bg');
   }
 
   // Foreground color.
-  set fg(c: string) {
-    this.setAttribute('fg', c);
+  set fg(c: string | null) {
+    if (c === null)
+      this.removeAttribute('fg');
+    else
+      this.setAttribute('fg', c);
   }
-  get fg(): string {
-    return this.getAttribute('fg') ?? '';
+  get fg(): string | null {
+    return this.getAttribute('fg');
   }
 
   // If "top" then animates bottom-to-top. If "bottom" then animates
@@ -94,20 +112,26 @@ export default class TimerBox extends HTMLElement {
 
   // If "fill" then the animation goes empty-to-full, if "empty" then the
   // animation starts full and goes to empty.
-  set styleFill(s: 'fill' | 'empty') {
-    this.setAttribute('style', s);
+  set styleFill(s: 'fill' | 'empty' | null) {
+    if (s === null)
+      this.removeAttribute('styleFill');
+    else
+      this.setAttribute('style', s);
   }
-  get styleFill(): 'fill' | 'empty' {
-    return this.getAttribute('style') as 'fill' | 'empty';
+  get styleFill(): 'fill' | 'empty' | null {
+    return this.getAttribute('styleFill') as 'fill' | 'empty';
   }
 
   // When the timer reaches 0, it is hidden after this many seconds. If ""
   // then it is not hidden.
-  set hideafter(h: string) {
-    this.setAttribute('hideafter', h);
+  set hideafter(h: string | null) {
+    if (h === null)
+      this.removeAttribute('hideafter');
+    else
+      this.setAttribute('hideafter', h);
   }
-  get hideafter(): string {
-    return this.getAttribute('hideafter') ?? '0';
+  get hideafter(): string | null {
+    return this.getAttribute('hideafter');
   }
 
   // When the timer reaches 0, it is big if this is true.
