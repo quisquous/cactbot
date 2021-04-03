@@ -13,7 +13,7 @@ export default class RaidEmulatorOverlayApiHook {
       addOverlayListenerOverride: this.add.bind(this),
       removeOverlayListenerOverride: this.remove.bind(this),
       callOverlayHandlerOverride: this.call.bind(this),
-      dispatchOverlayEventOverride: this.add.bind(this),
+      dispatchOverlayEventOverride: this.dispatch.bind(this),
     });
 
     emulator.on('tick', (timestampOffset) => {
