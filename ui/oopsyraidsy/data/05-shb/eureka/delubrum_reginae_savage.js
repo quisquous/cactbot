@@ -8,6 +8,8 @@ import ZoneId from '../../../../../resources/zone_id';
 // TODO: Turret's Tour?
 // general traps: explosion: 5A71, poison trap: 5A72, mini: 5A73
 // duel traps: mini: 57A1, ice: 579F, toad: 57A0
+// TODO: taking mana flame without reflect
+// TODO: taking Maelstrom's Bolt without lightning buff
 
 export default {
   zoneId: ZoneId.DelubrumReginaeSavage,
@@ -64,6 +66,9 @@ export default {
     'DelubrumSav Guard Burn 1': '583D', // small fire adds
     'DelubrumSav Guard Burn 2': '583E', // large fire adds
     'DelubrumSav Guard Pawn Off': '583A', // Queen's Soldier Secrets Revealed tethered clone aoe
+    'DelubrumSav Guard Turret\'s Tour Normal 1': '5847', // "normal mode" turrets, initial lines 1
+    'DelubrumSav Guard Turret\'s Tour Normal 2': '5848', // "normal mode" turrets, initial lines 2
+    'DelubrumSav Guard Turret\'s Tour Normal 3': '5849', // "normal mode" turrets, second lines
     'DelubrumSav Guard Counterplay': '58F5', // Hitting aetherial ward directional barrier
 
     'DelubrumSav Phantom Swirling Miasma 1': '57B8', // Initial phantom donut aoe
@@ -86,13 +91,13 @@ export default {
     'DelubrumSav Lord Electrocution': '57CC', // random circle aoes
     'DelubrumSav Lord Rapid Bolts': '57C3', // dropped lightning aoes
     'DelubrumSav Lord 1111-Tonze Swing': '57D8', // very large "get out" swing
+    'DelubrumSav Lord Monk Attack': '55A6', // Monk add auto-attack
 
     'DelubrumSav Queen Northswain\'s Glow': '59F4', // expanding lines with explosion intersections
     'DelubrumSav Queen The Means 1': '59E7', // The Queen's Beck and Call cross aoe from adds
     'DelubrumSav Queen The Means 2': '59EA', // The Queen's Beck and Call cross aoe from adds
     'DelubrumSav Queen The End 1': '59E8', // Also The Queen's Beck and Call cross aoe from adds
     'DelubrumSav Queen The End 2': '59E9', // Also The Queen's Beck and Call cross aoe from adds
-    'DelubrumSav Queen Gunnhildr\'s Blades': '5B22', // outside blue room enclosure
     'DelubrumSav Queen Optimal Offensive Sword': '5A02', // middle explosion
     'DelubrumSav Queen Optimal Offensive Shield': '5A03', // middle explosion
     'DelubrumSav Queen Judgment Blade Left 1': '59F2', // dash across room with left cleave
@@ -103,13 +108,19 @@ export default {
     'DelubrumSav Queen Optimal Play Sword': '59FF', // Optimal Play Sword "get out"
     'DelubrumSav Queen Optimal Play Shield': '5A00', // Optimal play shield "get in"
     'DelubrumSav Queen Optimal Play Cleave': '5A01', // Optimal Play cleaves for sword/shield
+    'DelubrumSav Queen Turret\'s Tour Normal 1': '5A28', // "normal mode" turrets, initial lines 1
+    'DelubrumSav Queen Turret\'s Tour Normal 2': '5A2A', // "normal mode" turrets, initial lines 2
+    'DelubrumSav Queen Turret\'s Tour Normal 3': '5A29', // "normal mode" turrets, second lines
   },
   damageFail: {
     'DelubrumSav Avowed Heat Shock': '5927', // too much heat or failing to regulate temperature
     'DelubrumSav Avowed Cold Shock': '5928', // too much cold or failing to regulate temperature
     'DelubrumSav Queen Queen\'s Justice': '59EB', // failing to walk the right number of squares
+    'DelubrumSav Queen Gunnhildr\'s Blades': '5B22', // not being in the chess blue safe square
+    'DelubrumSav Queen Unlucky Lot': '55B6', // lightning orb attack
   },
   shareWarn: {
+    'DelubrumSav Seeker Phantom Baleful Onslaught': '5AD6', // solo tank cleave
     'DelubrumSav Lord Foe Splitter': '57D7', // tank cleave
   },
   gainsEffectWarn: {

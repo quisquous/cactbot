@@ -127,9 +127,9 @@ class RegexSet {
   }
 
   get localeNetRegex(): LocaleRegexesObj {
-    if (this.regexes) return this.regexes;
-    this.regexes = this.buildLocaleRegexes(localeLines, (s: string) => NetRegexes.gameLog({ line: s + '[^|]*?' }));
-    return this.regexes;
+    if (this.netRegexes) return this.netRegexes;
+    this.netRegexes = this.buildLocaleRegexes(localeLines, (s: string) => NetRegexes.gameLog({ line: s + '[^|]*?' }));
+    return this.netRegexes;
   }
 
   buildLocaleRegexes(

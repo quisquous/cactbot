@@ -586,7 +586,7 @@ export default {
       netRegex: NetRegexes.gainsEffect({ effectId: '953' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: (_, matches) => matches.duration - 3,
-      alertText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
+      alertText: (data, matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Face Laser Out',

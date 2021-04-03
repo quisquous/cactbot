@@ -4,13 +4,7 @@ import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
-// TODO: knockback direction from big hand after giant lasers (Palm Of Temperance 58B4/58B6/?/?)
-// TODO: for left/right reach during Blade Of Flame, call out Left + #1 alarm for #1.
-
-// TODO: somber dance triggers
-// TODO: apocalypse "get away from facing" or some such triggers
 // TODO: double apoc clockwise vs counterclockwise call would be nice
-// TODO: maybe call something for advanced, including double aero partners?
 
 // Each tether ID corresponds to a primal:
 // 008C -- Shiva
@@ -507,14 +501,17 @@ export default {
         inner: {
           en: '#${num} (Inner)',
           de: '#${num} (innen)',
+          fr: '#${num} (Intérieur)',
         },
         outer: {
           en: '#${num} (Outer)',
           de: '#${num} (außen)',
+          fr: '#${num} (Extérieur)',
         },
         unknown: {
           en: '#${num} (???)',
           de: '#${num} (???)',
+          fr: '#${num} (???)',
         },
       },
     },
@@ -530,6 +527,7 @@ export default {
         knockback: {
           en: 'SE Knockback',
           de: 'SO Rückstoß',
+          fr: 'SE Poussée',
         },
       },
     },
@@ -545,6 +543,7 @@ export default {
         knockback: {
           en: 'SW Knockback',
           de: 'SW Rückstoß',
+          fr: 'SO Poussée',
         },
       },
     },
@@ -567,14 +566,17 @@ export default {
           baitInner: {
             en: 'Bait Inner #${num}',
             de: 'Köder innen #${num}',
+            fr: 'Orientez vers l\'intérieur #${num}',
           },
           baitOuter: {
             en: 'Bait Outer #${num}',
             de: 'Köder außen #${num}',
+            fr: 'Orientez vers l\'extérieur #${num}',
           },
           baitUnknown: {
             en: 'Bait #${num}',
             de: 'Köder #${num}',
+            fr: 'Orientez #${num}',
           },
         };
         // Start one ahead, so that it calls out #2 after #1 has finished.
@@ -674,14 +676,17 @@ export default {
           goLeftBaitInner: {
             en: 'Left + Bait Inner #1',
             de: 'Links + Köder innen #1',
+            fr: 'À gauche + Orientez vers l\'intérieur #1',
           },
           goLeftBaitOuter: {
             en: 'Left + Bait Outer #1',
             de: 'Links + Köder außen #1',
+            fr: 'À gauche + Orientez vers l\'extérieur #1',
           },
           goLeftBaitUnknown: {
             en: 'Left + Bait #1',
             de: 'Links + Köder #1',
+            fr: 'À gauche + Orientez #1',
           },
         };
 
@@ -709,14 +714,17 @@ export default {
           goRightBaitInner: {
             en: 'Right + Bait Inner #1',
             de: 'Rechts + Köder innen #1',
+            fr: 'À droite + Orientez vers l\'intérieur #1',
           },
           goRightBaitOuter: {
             en: 'Right + Bait Outer #1',
             de: 'Rechts + Köder außen #1',
+            fr: 'À droite + Orientez vers l\'extérieur #1',
           },
           goRightBaitUnknown: {
             en: 'Right + Bait #1',
             de: 'Rechts + Köder #1',
+            fr: 'À droite + Orientez #1',
           },
         };
 
@@ -976,10 +984,11 @@ export default {
     },
     {
       id: 'E12S Oracle Darkest Dance',
-      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58BE', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58BE', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58BE', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58BE', capture: false }),
+      // Darkest and Somber Dance both.
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: ['58BE', '58BD'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: ['58BE', '58BD'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: ['58BE', '58BD'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: ['58BE', '58BD'], capture: false }),
       infoText: (data, _, output) => {
         if (data.role === 'tank')
           return output.tankBait();
@@ -1001,6 +1010,32 @@ export default {
           ja: 'ボスと貼り付く',
           cn: '去脚下',
           ko: '보스 아래로',
+        },
+      },
+    },
+    {
+      id: 'E12S Oracle Somber Dance',
+      // Call for second hit of somber dance after first hit lands.
+      netRegex: NetRegexes.ability({ source: 'Oracle Of Darkness', id: '58BD', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Orakel Der Dunkelheit', id: '58BD', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Prêtresse Des Ténèbres', id: '58BD', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '闇の巫女', id: '58BD', capture: false }),
+      suppressSeconds: 5,
+      infoText: (data, _, output) => {
+        if (data.role === 'tank')
+          return output.tankBait();
+        return output.partyOut();
+      },
+      outputStrings: {
+        tankBait: {
+          en: 'Bait Close',
+          de: 'Köder nah',
+          fr: 'Attirez proche',
+        },
+        partyOut: {
+          en: 'Party Out',
+          de: 'Gruppe raus',
+          fr: 'Groupe au loin',
         },
       },
     },
@@ -1121,6 +1156,7 @@ export default {
           longFire: {
             en: 'Long Fire',
             de: 'langes Feuer',
+            fr: 'Feu long',
             ja: 'ファイガ(遅い)',
             cn: '长火',
             ko: '느린 파이가',
@@ -1128,6 +1164,7 @@ export default {
           shortFire: {
             en: 'Short Fire',
             de: 'kurzes Feuer',
+            fr: 'Feu court',
             ja: 'ファイガ(早い)',
             cn: '短火',
             ko: '빠른 파이가',
@@ -1135,6 +1172,7 @@ export default {
           longIce: {
             en: 'Long Ice',
             de: 'langes Eis',
+            fr: 'Glace longue',
             ja: 'ブリザガ(遅い)',
             cn: '长冰',
             ko: '느린 블리자가',
@@ -1142,6 +1180,7 @@ export default {
           shortIce: {
             en: 'Short Ice',
             de: 'kurzes Eis',
+            fr: 'Glace courte',
             ja: 'ブリザガ(早い)',
             cn: '短冰',
             ko: '빠른 블리자가',
@@ -1317,7 +1356,7 @@ export default {
       id: 'E12S Basic Relativity Yellow Hourglass',
       // Orient where "Yellow" Anger's Hourglass spawns
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9824' }),
-      durationSeconds: 15,
+      durationSeconds: 10,
       infoText: (data, matches, output) => {
         return output.hourglass({
           dir: dirToOutput(matchedPositionToDir(matches), output),
@@ -1359,7 +1398,7 @@ export default {
       // '0085' is the Red tether that buffs "Slow"
       netRegex: NetRegexes.tether({ id: '0086' }),
       condition: (data, matches) => data.phase === 'advanced',
-      durationSeconds: 8,
+      durationSeconds: 4,
       suppressSeconds: 3,
       infoText: (data, matches, output) => {
         const sorrow1 = data.sorrows[matches.sourceId.toUpperCase()];
@@ -1391,6 +1430,150 @@ export default {
         },
       },
     },
+    {
+      id: 'E12S Initial Dark Water',
+      netRegex: NetRegexes.gainsEffect({ effectId: '99D' }),
+      condition: (data, matches) => !data.phase,
+      delaySeconds: (data, matches) => {
+        const duration = parseFloat(matches.duration);
+        return data.seenInitialSpread ? duration - 6 : duration - 8;
+      },
+      durationSeconds: 5,
+      suppressSeconds: 5,
+      alertText: (data, _, output) => {
+        data.seenInitialStacks = true;
+        if (data.seenInitialSpread)
+          return output.knockbackIntoStackGroups();
+        return output.stackGroups();
+      },
+      outputStrings: {
+        stackGroups: {
+          en: 'Stack Groups',
+          de: 'In Gruppen sammeln',
+          fr: 'Packez-vous en groupe',
+        },
+        knockbackIntoStackGroups: {
+          en: 'Knockback Into Stack Groups',
+          de: 'Rückstoß, dann in Gruppen sammeln',
+          fr: 'Poussée puis packez-vous en groupe',
+        },
+      },
+    },
+    {
+      id: 'E12S Initial Dark Eruption',
+      netRegex: NetRegexes.gainsEffect({ effectId: '99C' }),
+      condition: (data, matches) => !data.phase,
+      delaySeconds: (data, matches) => {
+        const duration = parseFloat(matches.duration);
+        return data.seenInitialSpread ? duration - 6 : duration - 8;
+      },
+      durationSeconds: 5,
+      suppressSeconds: 5,
+      alertText: (data, _, output) => {
+        data.seenInitialSpread = true;
+        if (data.seenInitialStacks)
+          return output.knockbackIntoSpread();
+        return output.spread();
+      },
+      outputStrings: {
+        spread: Outputs.spread,
+        knockbackIntoSpread: {
+          en: 'Knockback Into Spread',
+          de: 'Rückstoß dann verteilen',
+          fr: 'Poussée puis dispersez-vous',
+        },
+      },
+    },
+    {
+      id: 'E12S Dark Water Stacks',
+      netRegex: NetRegexes.gainsEffect({ effectId: '99D' }),
+      // During Advanced Relativity, there is a very short Dark Water III stack (12s)
+      // that applies when people position themselves for the initial Return placement.
+      // Most strategies auto-handle this, and so this feels like noise.  HOWEVER,
+      // using suppress here without this conditional will pick one of the short/long
+      // Dark Water III buffs and suppress the other, so this is a load-bearing conditional.
+      // Additionally, `data.phase` is checked here to avoid colliding with the special
+      // case of the first dark water in `E12S Initial Dark Water`.
+      condition: (data, matches) => data.phase && parseFloat(matches.duration) > 13,
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - 4,
+      suppressSeconds: 5,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack Groups',
+          de: 'In Gruppen sammeln',
+          fr: 'Packez-vous en groupe',
+        },
+      },
+    },
+    {
+      id: 'E12S Double Aero Finder',
+      netRegex: NetRegexes.gainsEffect({ effectId: '99F' }),
+      // In advanced, Aero comes in ~23 and ~31s flavors
+      condition: (data, matches) => data.phase === 'advanced' && parseFloat(matches.duration) > 28,
+      infoText: (data, matches, output) => {
+        data.doubleAero = data.doubleAero || [];
+        data.doubleAero.push(data.ShortName(matches.target));
+
+        if (data.doubleAero.length !== 2)
+          return;
+
+        data.doubleAero.sort();
+        return output.text({ name1: data.doubleAero[0], name2: data.doubleAero[1] });
+      },
+      // This will collide with 'E12S Adv Relativity Buff Collector', sorry.
+      tts: null,
+      outputStrings: {
+        text: {
+          en: 'Double Aero: ${name1}, ${name2}',
+          de: 'Doppel Windga: ${name1}, ${name2}',
+          fr: 'Double Vent : ${name1}, ${name2}',
+        },
+      },
+    },
+    {
+      id: 'E12S Adv Relativity Buff Collector',
+      // 997 Spell-In-Waiting: Dark Fire III
+      // 998 Spell-In-Waiting: Shadoweye
+      // 99F Spell-In-Waiting: Dark Aero III
+      netRegex: NetRegexes.gainsEffect({ effectId: '99[78F]' }),
+      condition: (data, matches) => data.phase === 'advanced' && data.me === matches.target,
+      durationSeconds: 15,
+      alertText: (data, matches, output) => {
+        const id = matches.effectId.toUpperCase();
+
+        // The shadoweye and the double aero person gets aero, so only consider the final aero.
+        if (id === '99F') {
+          if (parseFloat(matches.duration) < 28)
+            return;
+          return output.doubleAero();
+        }
+        if (id === '997')
+          return output.spread();
+        if (id === '998')
+          return output.shadoweye();
+      },
+      outputStrings: {
+        shadoweye: {
+          en: 'Eye on YOU',
+          de: 'Auge auf DIR',
+          fr: 'Œil sur VOUS',
+          ja: '自分に目',
+          cn: '石化眼点名',
+          ko: '시선징 대상자',
+        },
+        doubleAero: {
+          en: 'Double Aero on YOU',
+          de: 'Doppel Windga auf DIR',
+          fr: 'Double Vent sur VOUS',
+        },
+        spread: {
+          en: 'Spread on YOU',
+          de: 'Verteilen auf DIR',
+          fr: 'Dispersion sur VOUS',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
@@ -1407,7 +1590,7 @@ export default {
       },
       'replaceText': {
         'Advanced Relativity': 'Fortgeschrittene Relativität',
-        '(?<!(Singular|Dual|Triple) )Apocalypse': 'Apokalypse',
+        '(?<! )Apocalypse': 'Apokalypse',
         'Basic Relativity': 'Grundlegende Relativität',
         'Black Halo': 'Geschwärzter Schein',
         'Blade Of Flame': 'Flammenschwert',
@@ -1483,7 +1666,7 @@ export default {
       },
       'replaceText': {
         'Advanced Relativity': 'Relativité avancée',
-        '(?<!(Singular|Dual|Triple) )Apocalypse': 'Apocalypse',
+        '(?<! )Apocalypse': 'Apocalypse',
         'Basic Relativity': 'Relativité basique',
         'Black Halo': 'Halo de noirceur',
         'Blade Of Flame': 'Flammes de Lumière colossales',
@@ -1559,7 +1742,7 @@ export default {
       },
       'replaceText': {
         'Advanced Relativity': '時間圧縮・急',
-        '(?<!(Singular|Dual|Triple) )Apocalypse': 'アポカリプス',
+        '(?<! )Apocalypse': 'アポカリプス',
         'Basic Relativity': '時間圧縮・序',
         'Black Halo': 'ブラックヘイロー',
         'Blade Of Flame': '巨兵の光炎',

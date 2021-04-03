@@ -17,7 +17,7 @@ export default {
         text: {
           en: 'Big Ice: Center',
           de: 'Grosses Eis: Mitte',
-          fr: 'Grosse Glace : Milieu',
+          fr: 'Grosse Glace : Centre',
           ja: '氷: 中央',
           cn: '大冰: 中央',
         },

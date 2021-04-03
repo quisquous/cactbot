@@ -432,7 +432,7 @@ export default {
   stunTarget: {
     en: 'Stun ${name}',
     de: 'Betäubung auf ${name}',
-    fr: 'Étourdissement sur ${name}',
+    fr: 'Étourdissez ${name}',
     ja: '${name} にスタン',
     cn: '眩晕 ${name}',
     ko: '${name}기절',
