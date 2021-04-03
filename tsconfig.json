@@ -27,7 +27,6 @@
     "alwaysStrict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": false,
-    "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     //    "noPropertyAccessFromIndexSignature": false, // used by trigger output strings
