@@ -16,13 +16,8 @@ export default class SeaBase {
     // lowercase it in the data unless we made another copy.
     const lcVal = val.toLowerCase();
     return Object.keys(obj).find((key) => {
-      if (Array.isArray(obj[key])) {
-        for (const subVal of obj[key]) {
-          if (subVal.toLowerCase() === lcVal)
-            return true;
-        }
-        return false;
-      }
+      if (Array.isArray(obj[key]))
+        return obj[key].some((subVal) => subVal.toLowerCase() === lcVal);
       return obj[key].toLowerCase() === lcVal;
     });
   }
