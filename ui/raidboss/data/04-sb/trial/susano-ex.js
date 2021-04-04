@@ -233,7 +233,7 @@ export default {
         text: {
           en: 'Stun: ${player}',
           de: 'Paralyse ${player}',
-          fr: 'Stun ${player}',
+          fr: 'Étourdi(e) :  ${player}',
           ja: '${player}にスタン',
           cn: '击晕${player}',
           ko: '${player}스턴',
