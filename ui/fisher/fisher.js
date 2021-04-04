@@ -82,7 +82,7 @@ class Fisher {
       },
       'en': {
         'undiscovered': /undiscovered fishing hole/,
-        'cast': /00:08c3:(?:[\w']\.?)(?:[\w'\s]+\.?)? cast(?:s?) (?:your|his|her) line (?:on|in|at) (?:the )?([\w\s'&()]+)\./,
+        'cast': /00:08c3:(?:[\w']\.?)(?:[\w'\s]+\.?)? cast(?:s?) (?:your|his|her) line (?:on|in|at) ([\w\s'&()]+)\./,
         'bite': /00:08c3:Something bites!/,
         'catch': /00:0843:(?:[\w']\.?)(?:[\w'\s]+\.?)? land(?:s?) (?:a|an|[\d]+ )?.+?([\w\s\-\'\#\d]{3,})(?: | [^\w] |[^\w\s].+ )measuring \d/,
         'nocatch': /00:08c3:(Nothing bites\.|You reel in your line|You lose your bait|The fish gets away|You lose your |Your line breaks|The fish sense something amiss|You cannot carry any more)/,

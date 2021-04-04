@@ -140,14 +140,8 @@ def get_fish_data():
             continue
 
         for locale in locales:
-            # Occasionally, PlaceName data will have null or empty strings in the NameNoArticle field
-            # In these instances, I believe it simply defaults to the Name attribute
-            name = (
-                result["PlaceName"][f"NameNoArticle_{locale}"]
-                or result["PlaceName"][f"Name_{locale}"]
-            )
             place_id = result["PlaceName"]["ID"]
-            places[locale][place_id] = name
+            places[locale][place_id] = result["PlaceName"][f"Name_{locale}"]
 
             id_list = []
 
