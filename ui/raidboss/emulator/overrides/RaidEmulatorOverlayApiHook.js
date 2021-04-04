@@ -1,20 +1,10 @@
-import { callOverlayHandler, addOverlayListener, removeOverlayListener, setOverride } from '../../../../resources/overlay_plugin_api';
+import { callOverlayHandler, addOverlayListener, removeOverlayListener, setCallOverlayHandlerOverride } from '../../../../resources/overlay_plugin_api';
 
 export default class RaidEmulatorOverlayApiHook {
   constructor(emulator) {
     this.emulator = emulator;
-    this.originalDispatch = window.dispatchOverlayEvent;
-    this.originalAdd = addOverlayListener;
-    this.originalRemove = removeOverlayListener;
-    this.originalCall = callOverlayHandler;
+    this.originalCall = setCallOverlayHandlerOverride(this.call.bind(this)),
     this.timestampOffset = 0;
-
-    setOverride({
-      addOverlayListenerOverride: this.add.bind(this),
-      removeOverlayListenerOverride: this.remove.bind(this),
-      callOverlayHandlerOverride: this.call.bind(this),
-      dispatchOverlayEventOverride: this.dispatch.bind(this),
-    });
 
     emulator.on('tick', (timestampOffset) => {
       this.timestampOffset = timestampOffset;
@@ -28,18 +18,6 @@ export default class RaidEmulatorOverlayApiHook {
         this.timestampOffset = log.offset;
       });
     });
-  }
-
-  dispatch(msg) {
-    return this.originalDispatch(msg);
-  }
-
-  add(event, cb) {
-    return this.originalAdd(event, cb);
-  }
-
-  remove(event, cb) {
-    return this.originalRemove(event, cb);
   }
 
   call(msg) {
