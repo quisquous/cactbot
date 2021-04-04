@@ -154,7 +154,7 @@ export default {
       condition: Conditions.caresAboutAOE(),
       durationSeconds: 9,
       suppressSeconds: 1,
-      response: Responses.bigAoe(),
+      response: Responses.bigAoe('alert'),
     },
     {
       id: 'DelubrumSav Queen Gods Save The Queen',
