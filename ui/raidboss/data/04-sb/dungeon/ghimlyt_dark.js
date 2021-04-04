@@ -70,7 +70,7 @@ export default {
         left: {
           en: 'Rotate left',
           de: 'Nach links rotieren',
-          fr: 'Rotation vers la gauche',
+          fr: 'Tournez vers la gauche',
           ja: '逆時計回り',
           cn: '向左转',
           ko: '왼쪽으로 회전',
@@ -78,7 +78,7 @@ export default {
         right: {
           en: 'Rotate right',
           de: 'Nach rechts rotieren',
-          fr: 'Rotation vers la droite',
+          fr: 'Tournez vers la droite',
           ja: '時計回り',
           cn: '向右转',
           ko: '오른쪽으로 회전',
@@ -243,6 +243,7 @@ export default {
         'The Provisional Imperial Landing': 'Aire d\'atterrissage provisoire',
       },
       'replaceText': {
+        '\\?': ' ?',
         '\\(windup\\)': '(Préparation)',
         '\\(cast\\)': '(Lancement)',
         'Aglaia Bite': 'Morsure d\'Aglaia',
