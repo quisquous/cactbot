@@ -202,11 +202,9 @@ export default {
     {
       id: 'DelubrumSav Seeker Mercy Swords',
       netRegex: NetRegexes.gainsEffect({ target: ['Trinity Seeker', 'Seeker Avatar'], effectId: '808' }),
+      condition: (data) => !data.calledSeekerSwords,
       durationSeconds: 10,
       alertText: (data, matches, output) => {
-        if (data.calledSeekerSwords)
-          return;
-
         data.seekerSwords = data.seekerSwords || [];
         data.seekerSwords.push(matches.count.toUpperCase());
 
