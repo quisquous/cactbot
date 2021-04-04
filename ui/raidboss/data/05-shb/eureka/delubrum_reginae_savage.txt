@@ -1095,7 +1095,6 @@ hideall "--sync--"
 15544.8 "Elemental Blast" sync /:Tempestuous Orb:592E:/
 15550.6 "--sync--" sync /:Trinity Avowed:5984:/
 15557.7 "Glory Of Bozja" sync /:Trinity Avowed:594F:/
-15569.2 "Allegiant Arsenal"
 # -> roll into Bow v1 (final)
 15566.2 "--sync--" sync /:5986:Trinity Avowed/ window 70,10
 15569.2 "Allegiant Arsenal" sync /:Trinity Avowed:5986:/
