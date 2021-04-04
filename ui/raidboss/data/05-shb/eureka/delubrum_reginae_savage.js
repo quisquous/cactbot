@@ -1729,7 +1729,7 @@ export default {
 
         if (data.labyrinthineFate === '97F')
           return output.getOutLater();
-        else if (data.labyrinthineFate === '97E')
+        if (data.labyrinthineFate === '97E')
           return output.getInLater();
       },
       run: (data) => data.seenLabyrinthineFate = true,
