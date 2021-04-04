@@ -1756,7 +1756,7 @@ export default {
       alertText: (data, _, output) => {
         if (data.labyrinthineFate === '97F')
           return output.getOut();
-        else if (data.labyrinthineFate === '97E')
+        if (data.labyrinthineFate === '97E')
           return output.getIn();
       },
       // In case you die and don't get next debuff, clean this up so it doesn't call again.
