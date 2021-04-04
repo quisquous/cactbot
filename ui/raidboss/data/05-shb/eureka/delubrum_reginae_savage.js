@@ -2700,7 +2700,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59EC', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59EC', capture: false }),
       run: (data) => {
-        console.log(`CHESS DEBUG: cleanup`);
+        console.log(`CHESS DEBUG : cleanup`);
         delete data.chessMatches;
         delete data.chessCombatants;
       },
@@ -2713,12 +2713,12 @@ export default {
       condition: (data, matches) => {
         data.chessMatches = data.chessMatches || [];
         data.chessMatches.push(matches);
-        console.log(`CHESS DEBUG: ${JSON.stringify(data.chessMatches)}`);
+        console.log(`CHESS DEBUG matches: ${JSON.stringify(data.chessMatches)}`);
         return data.chessMatches.length === 4;
       },
       promise: async (data) => {
-        console.log(`CHESS DEBUG: running promise`);
         const ids = data.chessMatches.map((matches) => parseInt(matches.targetId, 16));
+        console.log(`CHESS DEBUG: running promise, ids: ${JSON.stringify(ids)}`);
         const chessData = await window.callOverlayHandler({
           call: 'getCombatants',
           ids: ids,
@@ -2738,7 +2738,7 @@ export default {
         }
 
         data.chessCombatants = chessData.combatants;
-        console.log(`CHESS DEBUG: ${JSON.stringify(data.chessCombatants)}`);
+        console.log(`CHESS DEBUG chessCombatants: ${JSON.stringify(data.chessCombatants)}`);
       },
       infoText: (data, _, output) => {
         const vfxToSteps = {
@@ -2750,7 +2750,7 @@ export default {
         const idToSteps = {};
         for (const matches in data.chessMatches)
           idToSteps[parseInt(matches.targetId, 16)] = vfxToSteps[matches.count];
-        console.log(`CHESS DEBUG: idToSteps: ${idToSteps}`);
+        console.log(`CHESS DEBUG: idToSteps: ${JSON.stringify(idToSteps)}`);
 
         // +x = east, +y = south
         const findCol = (c) => Math.round((c.PosX - queenCenterX) / 10);
@@ -2758,10 +2758,10 @@ export default {
 
         // All of them start one square from the middle/corner, and move towards the corner.
         // the "north combatant" here is the one moving to the north.
-        const northCombatant = data.chessCombatants.find(findRow(c) === 1);
-        const eastCombatant = data.chessCombatants.find(findCol(c) === -1);
-        const southCombatant = data.chessCombatants.find(findRow(c) === -1);
-        const westCombatant = data.chessCombatants.find(findCol(c) === 1);
+        const northCombatant = data.chessCombatants.find((c) => findRow(c) === 1);
+        const eastCombatant = data.chessCombatants.find((c) => findCol(c) === -1);
+        const southCombatant = data.chessCombatants.find((c) => findRow(c) === -1);
+        const westCombatant = data.chessCombatants.find((c) => findCol(c) === 1);
 
         console.log(`CHESS DEBUG: ${JSON.stringify(northCombatant)}, ${JSON.stringify(eastCombatant)}, ${JSON.stringify(southCombatant)}, ${JSON.stringify(westCombatant)}`);
         if (!northId || !eastId || !southId || !westId) {
