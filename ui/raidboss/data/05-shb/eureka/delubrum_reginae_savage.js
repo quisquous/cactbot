@@ -2703,6 +2703,7 @@ export default {
         console.log(`CHESS DEBUG : cleanup`);
         delete data.chessMatches;
         delete data.chessCombatants;
+        data.seenEdict = true;
       },
     },
     {
@@ -2711,6 +2712,10 @@ export default {
       // https://imgur.com/a/q2tmXLi
       netRegex: NetRegexes.gainsEffect({ target: ['Queen\'s Knight', 'Queen\'s Warrior', 'Queen\'s Soldier', 'Queen\'s Gunner'], effectId: '808', count: 'E[2-4]' }),
       condition: (data, matches) => {
+        // Ignore the initial chess with Northswain's Glow.
+        if (!data.seenEdict)
+          return false;
+
         data.chessMatches = data.chessMatches || [];
         data.chessMatches.push(matches);
         console.log(`CHESS DEBUG matches: ${JSON.stringify(data.chessMatches)}`);
@@ -2748,7 +2753,7 @@ export default {
         };
 
         const idToSteps = {};
-        for (const matches in data.chessMatches)
+        for (const matches of data.chessMatches)
           idToSteps[parseInt(matches.targetId, 16)] = vfxToSteps[matches.count];
         console.log(`CHESS DEBUG: idToSteps: ${JSON.stringify(idToSteps)}`);
 
@@ -2764,7 +2769,7 @@ export default {
         const westCombatant = data.chessCombatants.find((c) => findCol(c) === 1);
 
         console.log(`CHESS DEBUG: ${JSON.stringify(northCombatant)}, ${JSON.stringify(eastCombatant)}, ${JSON.stringify(southCombatant)}, ${JSON.stringify(westCombatant)}`);
-        if (!northId || !eastId || !southId || !westId) {
+        if (!northCombatant || !eastCombatant || !southCombatant || !westCombatant) {
           console.log(`Chess missing id: ${JSON.stringify(northCombatant)}, ${JSON.stringify(eastCombatant)}, ${JSON.stringify(southCombatant)}, ${JSON.stringify(westCombatant)}`);
           return;
         }
@@ -2773,6 +2778,10 @@ export default {
         const eastSteps = idToSteps[eastCombatant.ID];
         const southSteps = idToSteps[southCombatant.ID];
         const westSteps = idToSteps[westCombatant.ID];
+        if (!northSteps || !eastSteps || !southSteps || !westSteps) {
+          console.log(`Chess bad steps: ${JSON.stringify(data.chessMatches)}, ${JSON.stringify(data.chessCombatants)}`);
+          return;
+        }
 
         let knownUnsafe = false;
 
@@ -2790,14 +2799,14 @@ export default {
 
         let sideStr;
         if (eastSteps !== 3 && westSteps !== 3) {
-          backStr = output.sideWallSafe();
+          sideStr = output.sideWallSafe();
         } else if (eastSteps === 3 && westSteps === 3) {
           knownUnsafe = true;
-          backStr = output.sideWallUnsafe();
+          sideStr = output.sideWallUnsafe();
         } else if (eastSteps === 3) {
-          backStr = output.eastWallUnsafe();
+          sideStr = output.eastWallUnsafe();
         } else {
-          backStr = output.westWallUnsafe();
+          sideStr = output.westWallUnsafe();
         }
 
         // The "five" followup only matters when all walls are potentially safe.
@@ -2814,7 +2823,6 @@ export default {
           fiveStr = output.middleFive();
         else
           fiveStr = output.southFive();
-
 
         return output.combine({ side: sideStr, back: backStr, five: fiveStr });
       },
