@@ -9,6 +9,10 @@ import json
 import os
 import re
 
+# Write to stdout with an explicit encoding of UTF-8
+# See: https://stackoverflow.com/a/3597849
+utf8stdout = open(1, "w", encoding="utf-8", closefd=False)
+
 languages = ["en", "de", "fr", "ja", "cn", "ko"]
 regex_entries = {
     "regexEn": "en",
@@ -160,7 +164,7 @@ def parse_translations(triggers):
     try:
         ret_list = json.loads("".join(lines))
     except json.decoder.JSONDecodeError as e:
-        print("Error json format:{}".format("".join(lines)))
+        print("Error json format:{}".format("".join(lines)), file=utf8stdout)
         raise e
 
     ret_dict = {}
@@ -234,15 +238,15 @@ def print_timeline(locale, timeline_file, trans, missing_filter):
 def filter_print_timeline(text, missing_filter):
     if missing_filter == "all":
         if " #MISSINGSYNC" in text or " #MISSINGTEXT" in text:
-            print(text)
+            print(text, file=utf8stdout)
     elif missing_filter == "sync":
         if " #MISSINGSYNC" in text:
-            print(text)
+            print(text, file=utf8stdout)
     elif missing_filter == "text":
         if " #MISSINGTEXT" in text:
-            print(text)
+            print(text, file=utf8stdout)
     else:
-        print(text)
+        print(text, file=utf8stdout)
 
 
 def main(args):
