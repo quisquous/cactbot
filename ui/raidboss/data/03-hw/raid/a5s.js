@@ -440,6 +440,8 @@ export default {
         'The Clevering': 'la gobexpérimentation super-avancée',
       },
       'replaceText': {
+        '\\(NW\\)': '(NO)',
+        '\\(SE/SW\\)': '(SE/SO)',
         '--big--': '--grand--',
         '--small--': '--petit--',
         '10-Tonze Slash': 'Taillade de 10 tonz',
