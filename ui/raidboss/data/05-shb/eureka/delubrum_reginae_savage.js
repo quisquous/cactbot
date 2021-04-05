@@ -1206,6 +1206,20 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Avowed Hot And Cold Cleanup',
+      // On Hot and Cold casts.  This will clean up any lingering forced march from bow phase 1.
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5BB0', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5BB0', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5BB0', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '595BB04F', capture: false }),
+      run: (data) => {
+        delete data.currentTemperature;
+        delete data.currentBrand;
+        delete data.forcedMarch;
+        delete data.blades;
+      },
+    },
+    {
       id: 'DelubrumSav Avowed Temperature Collect',
       // These come from Environment, Trinity Avowed, Avowed Avatar, Swirling Orb
       // 89C Normal
@@ -1246,6 +1260,16 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Avowed March Collect',
+      // 50D Forward March
+      // 50E About Face
+      // 50F Left Face
+      // 510 Right Face
+      netRegex: NetRegexes.gainsEffect({ effectId: ['50D', '50E', '50F', '510'] }),
+      condition: Conditions.targetIsYou(),
+      run: (data, matches) => data.forcedMarch = matches.effectId.toUpperCase(),
+    },
+    {
       id: 'DelubrumSav Avowed Blade of Entropy Collect',
       // Used to get whether left or right cleave is happening and temperature value
       // Trinity Avowed or Avowed Avatar cast these pairs
@@ -1277,6 +1301,147 @@ export default {
       run: (data, matches) => {
         data.blades = data.blades || {};
         data.blades[parseInt(matches.sourceId, 16)] = matches.id.toUpperCase();
+      },
+    },
+    {
+      id: 'DelubrumSav Avowed Hot And Cold Shimmering Shot',
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '597F', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '597F', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '597F', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '597F', capture: false }),
+      durationSeconds: 5,
+      alertText: (data, _, output) => {
+        const currentBrand = data.currentBrand ? data.currentBrand : 0;
+        const currentTemperature = data.currentTemperature ? data.currentTemperature : 0;
+        const effectiveTemperature = (currentTemperature + currentBrand).toString();
+
+        const tempToOutput = {
+          '-2': output.plusTwo(),
+          '-1': output.plusOne(),
+          '0': output.emptySpot(),
+          '1': output.minusOne(),
+          '2': output.minusTwo(),
+        };
+        const arrowStr = effectiveTemperature in tempToOutput
+          ? tempToOutput[effectiveTemperature] : output.unknownTemperature();
+
+        const marchStr = {
+          '50D': output.forwards(),
+          '50E': output.backwards(),
+          '50F': output.left(),
+          '510': output.right(),
+        }[data.forcedMarch];
+
+        if (marchStr)
+          return output.marchToArrow({ arrow: arrowStr, dir: marchStr });
+        return output.followArrow({ arrow: arrowStr });
+      },
+      outputStrings: {
+        plusTwo: {
+          en: '+2 Heat Arrow',
+        },
+        plusOne: {
+          en: '+1 Heat Arrow',
+        },
+        emptySpot: {
+          en: 'Empty Spot',
+        },
+        minusOne: {
+          en: '-1 Cold Arrow',
+        },
+        minusTwo: {
+          en: '-2 Cold Arrow',
+        },
+        unknownTemperature: {
+          en: 'Opposite Arrow',
+        },
+        forwards: {
+          en: 'forwards',
+        },
+        backwards: {
+          en: 'backwards',
+        },
+        left: {
+          en: 'left',
+        },
+        right: {
+          en: 'right',
+        },
+        followArrow: {
+          en: 'Follow ${arrow}',
+        },
+        marchToArrow: {
+          en: 'March ${dir} to ${arrow}',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Avowed Hot And Cold Freedom Of Bozja',
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '597C', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '597C', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '597C', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '597C', capture: false }),
+      delaySeconds: 7,
+      durationSeconds: 5,
+      alertText: (data, _, output) => {
+        const currentBrand = data.currentBrand ? data.currentBrand : 0;
+        const currentTemperature = data.currentTemperature ? data.currentTemperature : 0;
+        const effectiveTemperature = (currentTemperature + currentBrand).toString();
+
+        const tempToOutput = {
+          '-2': output.plusTwo(),
+          '-1': output.plusOne(),
+          '1': output.minusOne(),
+          '2': output.minusTwo(),
+        };
+        const meteorStr = effectiveTemperature in tempToOutput
+          ? tempToOutput[effectiveTemperature] : output.unknownTemperature();
+
+        const marchStr = {
+          '50D': output.forwards(),
+          '50E': output.backwards(),
+          '50F': output.left(),
+          '510': output.right(),
+        }[data.forcedMarch];
+
+        if (marchStr)
+          return output.marchToMeteor({ meteor: meteorStr, dir: marchStr });
+        return output.goToMeteor({ meteor: meteorStr });
+      },
+      outputStrings: {
+        plusTwo: {
+          en: '+2 Heat Meteor',
+        },
+        plusOne: {
+          en: '+1 Heat Meteor',
+        },
+        minusOne: {
+          en: '-1 Cold Meteor',
+        },
+        minusTwo: {
+          en: '-2 Cold Meteor',
+        },
+        unknownTemperature: {
+          en: 'Opposite Meteor',
+        },
+        forwards: {
+          en: 'forwards',
+        },
+        backwards: {
+          en: 'backwards',
+        },
+        left: {
+          en: 'left',
+        },
+        right: {
+          en: 'right',
+        },
+        goToMeteor: {
+          en: 'Go to ${meteor} (watch clones)',
+        },
+        marchToMeteor: {
+          en: 'March ${dir} to ${meteor}',
+        },
       },
     },
     {
@@ -1498,7 +1663,6 @@ export default {
 
         const currentBrand = data.currentBrand ? data.currentBrand : 0;
         const currentTemperature = data.currentTemperature ? data.currentTemperature : 0;
-
         const effectiveTemperature = currentTemperature + currentBrand;
 
         // Calculate which adjacent zone to go to, if needed
