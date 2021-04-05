@@ -1318,6 +1318,7 @@ export default {
         const tempToOutput = {
           '-2': output.plusTwo(),
           '-1': output.plusOne(),
+          '0': output.emptySpot(),
           '1': output.minusOne(),
           '2': output.minusTwo(),
         };
@@ -1341,6 +1342,9 @@ export default {
         },
         plusOne: {
           en: '+1 Heat Arrow',
+        },
+        emptySpot: {
+          en: 'Empty Spot',
         },
         minusOne: {
           en: '-1 Cold Arrow',
