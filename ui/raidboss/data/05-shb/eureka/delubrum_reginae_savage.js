@@ -115,28 +115,6 @@ export default {
       response: Responses.knockback(),
     },
     {
-      id: 'DelubrumSav Lord Fateful Words',
-      regex: /Fateful Words/,
-      // Paired with trigger id 'DelubrumSav Lord Labyrinthine Fate Collect'
-      // 97E: Wanderer's Fate, Pushes outward on Fateful Word cast
-      // 97F: Sacrifice's Fate, Pulls to middle on Fateful Word cast
-      // Labyrinthine Fate is cast and 1 second later debuffs are applied
-      // First set of debuffs go out 7.7 seconds before Fateful Word is cast
-      // Remaining set of debuffs go out 24.3 seconds before Fateful Word is cast
-      beforeSeconds: 3.5,
-      suppressSeconds: 1,
-      alertText: (data, _, output) => {
-        if (data.labyrinthineFate === '97F')
-          return output.getOut();
-        else if (data.labyrinthineFate === '97E')
-          return output.getIn();
-      },
-      outputStrings: {
-        getOut: Outputs.out,
-        getIn: Outputs.in,
-      },
-    },
-    {
       id: 'DelubrumSav Lord Thunderous Discharge',
       regex: /Thunderous Discharge/,
       // Cast in the timeline is 5 seconds, but there is an additional .5 second cast before damage
@@ -1898,11 +1876,58 @@ export default {
     },
     {
       id: 'DelubrumSav Lord Labyrinthine Fate Collect',
-      // Result used by timelineTrigger id 'DelubrumSav Lord Fateful Words'
+      // 97E: Wanderer's Fate, Pushes outward on Fateful Word cast
+      // 97F: Sacrifice's Fate, Pulls to middle on Fateful Word cast
       netRegex: NetRegexes.gainsEffect({ effectId: '97[EF]' }),
       condition: Conditions.targetIsYou(),
-      run: (data, matches) => {
+      preRun: (data, matches) => {
         data.labyrinthineFate = matches.effectId.toUpperCase();
+      },
+      // This effect is given repeatedly.
+      suppressSeconds: 30,
+      infoText: (data, _, output) => {
+        // The first time this happens, there is ~2.5 seconds between debuff application
+        // and the start of the cast to execute that debuff.  Be less noisy on the first.
+        if (!data.seenLabyrinthineFate)
+          return;
+
+        if (data.labyrinthineFate === '97F')
+          return output.getOutLater();
+        if (data.labyrinthineFate === '97E')
+          return output.getInLater();
+      },
+      run: (data) => data.seenLabyrinthineFate = true,
+      outputStrings: {
+        getOutLater: {
+          en: '(sacrifice out, for later)',
+        },
+        getInLater: {
+          en: '(wanderer in, for later)',
+        },
+      },
+    },
+    {
+      id: 'DelubrumSav Lord Fateful Words',
+      netRegex: NetRegexes.startsUsing({ source: 'Stygimoloch Lord', id: '57C9', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Anführer-Stygimoloch', id: '57C9', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Seigneur Stygimoloch', id: '57C9', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'スティギモロク・ロード', id: '57C9', capture: false }),
+      // 97E: Wanderer's Fate, Pushes outward on Fateful Word cast
+      // 97F: Sacrifice's Fate, Pulls to middle on Fateful Word cast
+      // Labyrinthine Fate is cast and 1 second later debuffs are applied
+      // First set of debuffs go out 7.7 seconds before Fateful Word is cast
+      // Remaining set of debuffs go out 24.3 seconds before Fateful Word is cast
+      alertText: (data, _, output) => {
+        if (data.labyrinthineFate === '97F')
+          return output.getOut();
+        if (data.labyrinthineFate === '97E')
+          return output.getIn();
+      },
+      // In case you die and don't get next debuff, clean this up so it doesn't call again.
+      run: (data) => delete data.labyrinthineFate,
+      outputStrings: {
+        getOut: Outputs.out,
+        getIn: Outputs.in,
       },
     },
     {
