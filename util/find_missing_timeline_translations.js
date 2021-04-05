@@ -1,8 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import Regexes from '../resources/regexes';
+import NetRegexes from '../resources/netregexes';
 import { Timeline } from '../ui/raidboss/timeline';
 import { commonReplacement, partialCommonReplacementKeys } from '../ui/raidboss/common_replacement';
+
+NetRegexes.setFlagTranslationsNeeded(true);
 
 export async function findMissing(triggersFile, locale) {
   // Hackily assume that any file with a txt file of the same name is a trigger/timeline.
@@ -64,7 +67,7 @@ function findLineNumberByTriggerId(text, id) {
 
 function findMissingRegex(triggers, triggerLines, timeline, trans, triggersFile, locale) {
   for (const trigger of triggers) {
-    let origRegex = trigger.regex;
+    let origRegex = trigger.netRegex;
     if (!origRegex)
       continue;
 
@@ -90,7 +93,10 @@ function findMissingRegex(triggers, triggerLines, timeline, trans, triggersFile,
 
     transRegex = transRegex.toLowerCase();
 
-    const localeReg = 'regex' + locale[0].toUpperCase() + locale[1];
+    if (!NetRegexes.doesNetRegexNeedTranslation(transRegex))
+      continue;
+
+    const localeReg = 'netRegex' + locale[0].toUpperCase() + locale[1];
     let locRegex = trigger[localeReg];
     if (locRegex) {
       // Things are in a good state if the translation regex matches the
