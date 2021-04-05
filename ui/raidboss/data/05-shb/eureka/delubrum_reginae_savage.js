@@ -2721,6 +2721,7 @@ export default {
         console.log(`CHESS DEBUG matches: ${JSON.stringify(data.chessMatches)}`);
         return data.chessMatches.length === 4;
       },
+      durationSeconds: 10,
       promise: async (data) => {
         const ids = data.chessMatches.map((matches) => parseInt(matches.targetId, 16));
         console.log(`CHESS DEBUG: running promise, ids: ${JSON.stringify(ids)}`);
