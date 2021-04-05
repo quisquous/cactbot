@@ -312,6 +312,7 @@ export default {
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
+        'Archaeolion': 'Archaeolöwe',
         'Archaeodemon': 'Archaeodämon',
         'command tower': 'Kommandoturm',
         'I am Revelation': 'Seht die Offenbarung',
@@ -385,6 +386,7 @@ export default {
         'Argath Thadalfus': 'Argath Thadalfus',
         'Hashmal, Bringer Of Order': 'Hashmal le Grand Ordonnateur',
         'Rofocale': 'Rofocale le Roi centaure',
+        'Archaeolion': 'archéochimère',
       },
       'replaceText': {
         'Blizzard IV': 'Giga Glace',
@@ -436,6 +438,7 @@ export default {
         'The Lesalia Garden Ruins': 'ルザリア円庭跡',
         'The Lesalia Temple Ruins': 'ルザリア神殿跡',
         'The Palace Square': '王宮前広場',
+        'Archaeolion': 'アルケオキマイラ',
       },
       'replaceText': {
         '--face--': '--向け--',
@@ -510,6 +513,7 @@ export default {
         'The Lesalia Garden Ruins': '勒萨利亚圆庭遗迹',
         'The Lesalia Temple Ruins': '勒萨利亚神殿遗迹',
         'The Palace Square': '王宫前广场',
+        'Archaeolion': '古奇美拉',
       },
       'replaceText': {
         '--face--': '--面对--',
@@ -585,6 +589,7 @@ export default {
         'The Lesalia Temple Ruins': '르잘리아 신전 옛터',
         'The Palace Square': '왕궁 광장',
         'The heavens tremble in my wake': '이것이 바로 빛나는 \'성석\'의 힘이다!',
+        'Archaeolion': '원시 키마이라',
       },
       'replaceText': {
         '--face--': '--얼굴--',

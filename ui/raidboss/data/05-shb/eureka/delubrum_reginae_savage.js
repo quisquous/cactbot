@@ -1194,7 +1194,7 @@ export default {
       netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5BB0', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5BB0', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5BB0', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '595BB04F', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5BB0', capture: false }),
       run: (data) => {
         delete data.currentTemperature;
         delete data.currentBrand;
@@ -2059,6 +2059,11 @@ export default {
     {
       id: 'DelubrumSav Queen Ball Lightning Bubble',
       netRegex: NetRegexes.wasDefeated({ target: 'Ball Lightning', capture: false }),
+      netRegexDe: NetRegexes.wasDefeated({ target: 'Elektrosphäre', capture: false }),
+      netRegexFr: NetRegexes.wasDefeated({ target: 'Orbe De Foudre', capture: false }),
+      netRegexJa: NetRegexes.wasDefeated({ target: '雷球', capture: false }),
+      netRegexCn: NetRegexes.wasDefeated({ target: '雷球', capture: false }),
+      netRegexKo: NetRegexes.wasDefeated({ target: '뇌구', capture: false }),
       suppressSeconds: 20,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
