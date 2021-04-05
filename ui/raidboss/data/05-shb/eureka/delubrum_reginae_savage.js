@@ -90,11 +90,12 @@ export default {
       id: 'DelubrumSav Avowed Glory Of Bozja',
       regex: /Glory Of Bozja(?! Enrage)/,
       // Cast itself is 5.5 seconds, add more warning
-      beforeSeconds: 7,
+      beforeSeconds: 8,
       condition: Conditions.caresAboutAOE(),
       // Count the number of Glory of Bozja so that people alternating mitigation
       // can more easily assign themselves to even or odd glories.
       preRun: (data) => data.gloryOfBozjaCount = (data.gloryOfBozjaCount || 0) + 1,
+      durationSeconds: 8,
       suppressSeconds: 1,
       alertText: (data, _, output) => output.aoeNum({ num: data.gloryOfBozjaCount }),
       outputStrings: {
@@ -127,10 +128,11 @@ export default {
       id: 'DelubrumSav Queen Empyrean Iniquity',
       regex: /Empyrean Iniquity/,
       // Cast itself is 5 seconds, add more warning
-      beforeSeconds: 7,
+      beforeSeconds: 9,
       condition: Conditions.caresAboutAOE(),
+      durationSeconds: 9,
       suppressSeconds: 1,
-      response: Responses.bigAoe(),
+      response: Responses.bigAoe('alert'),
     },
     {
       id: 'DelubrumSav Queen Gods Save The Queen',
@@ -138,6 +140,7 @@ export default {
       // Cast in the timeline is 5 seconds, but there is an additional 1 second cast before damage
       beforeSeconds: 7,
       condition: Conditions.caresAboutAOE(),
+      durationSeconds: 5,
       suppressSeconds: 1,
       response: Responses.aoe(),
     },
@@ -714,6 +717,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '5819', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '5819', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '5819', capture: false }),
+      durationSeconds: 5,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -730,6 +734,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Ritter Der Königin', id: '581A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '581A', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '581A', capture: false }),
+      durationSeconds: 5,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -925,7 +930,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '583F' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '583F' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '583F' }),
-      delaySeconds: (data, matches) => parseFloat(matches.castTime) - 2.5,
+      delaySeconds: (data, matches) => parseFloat(matches.castTime) - 5,
       durationSeconds: 5.5,
       response: Responses.stopEverything('alarm'),
     },
@@ -936,7 +941,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5840' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5840' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5840' }),
-      delaySeconds: (data, matches) => parseFloat(matches.castTime) - 2.5,
+      delaySeconds: (data, matches) => parseFloat(matches.castTime) - 5,
       durationSeconds: 5.5,
       response: Responses.moveAround('alert'),
     },
@@ -2052,12 +2057,23 @@ export default {
       },
     },
     {
+      id: 'DelubrumSav Queen Ball Lightning Bubble',
+      netRegex: NetRegexes.wasDefeated({ target: 'Ball Lightning', capture: false }),
+      suppressSeconds: 20,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get in Bubble',
+        },
+      },
+    },
+    {
       id: 'DelubrumSav Queen Fiery Portent',
       netRegex: NetRegexes.startsUsing({ source: 'Queen\'s Soldier', id: '5A21' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5A21' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5A21' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5A21' }),
-      delaySeconds: (data, matches) => parseFloat(matches.castTime) - 2.5,
+      delaySeconds: (data, matches) => parseFloat(matches.castTime) - 5,
       durationSeconds: 5.5,
       response: Responses.stopEverything('alarm'),
     },
@@ -2068,7 +2084,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5A22' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5A22' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5A22' }),
-      delaySeconds: (data, matches) => parseFloat(matches.castTime) - 2.5,
+      delaySeconds: (data, matches) => parseFloat(matches.castTime) - 5,
       durationSeconds: 5.5,
       response: Responses.moveAround('alert'),
     },
