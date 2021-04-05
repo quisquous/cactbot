@@ -205,6 +205,25 @@ describe('regex tests', () => {
     assert.equal(matches.name, 'Tini Poutini');
     assert.equal(matches.hp, '96');
   });
+  it('zoneSealed', () => {
+    const lines = [
+      '[21:14:50.793] 00:0839:The Gloriole will be sealed off in 15 second!',
+    ];
+    regexCaptureTest(Regexes.zoneSealed, lines);
+
+    const matches = lines[0].match(Regexes.zoneSealed()).groups;
+    assert.equal(matches.name, 'The Gloriole');
+    assert.equal(matches.time, '15');
+  });
+  it('zoneUnsealed', () => {
+    const lines = [
+      '[21:14:50.793] 00:0839:The Gloriole is no longer sealed!',
+    ];
+    regexCaptureTest(Regexes.zoneUnsealed, lines);
+
+    const matches = lines[0].match(Regexes.zoneUnsealed()).groups;
+    assert.equal(matches.name, 'The Gloriole');
+  });
   it('gameLog', () => {
     const echoLines = [
       '[12:18:38.000] 00:0038:cactbot wipe',

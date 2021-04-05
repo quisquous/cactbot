@@ -129,6 +129,8 @@ const gameLogParams = ['timestamp', 'code', 'line', 'capture'] as const;
 const gameNameLogParams = ['timestamp', 'code', 'name', 'line', 'capture'] as const;
 const changeZoneParams = ['timestamp', 'name', 'capture'] as const;
 const network6dParams = ['timestamp', 'instance', 'command', 'data0', 'data1', 'data2', 'data3', 'capture'] as const;
+const zoneSealedParams = ['timestamp', 'name', 'time', 'capture'] as const;
+const zoneUnsealedParams = ['timestamp', 'name', 'capture'] as const;
 
 export type StartsUsingParams = typeof startsUsingParams[number];
 export type AbilityParams = typeof abilityParams[number];
@@ -151,6 +153,8 @@ export type GameLogParams = typeof gameLogParams[number];
 export type GameNameLogParams = typeof gameNameLogParams[number];
 export type ChangeZoneParams = typeof changeZoneParams[number];
 export type Network6dParams = typeof network6dParams[number];
+export type ZoneSealedParams = typeof zoneSealedParams[number];
+export type ZoneUnsealedParams = typeof zoneUnsealedParams[number];
 
 export default class Regexes {
   /**
@@ -481,6 +485,42 @@ export default class Regexes {
       Regexes.maybeCapture(capture, 'name', f.name, '.*?') +
       ' HP at ' +
       Regexes.maybeCapture(capture, 'hp', f.hp, '\\d+') + '%';
+    return Regexes.parse(str);
+  }
+
+
+  /**
+   * fields: name, time, capture
+   * Specialised function for zone is sealed message
+   */
+  static zoneSealed(f?: Params<ZoneSealedParams>): Regex<ZoneSealedParams> {
+    if (typeof f === 'undefined')
+      f = {};
+    Regexes.validateParams(f, 'zoneSealed', zoneSealedParams);
+    const capture = Regexes.trueIfUndefined(f.capture);
+    const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
+      ' 00:0839:' +
+      Regexes.maybeCapture(capture, 'name', f.name, '.*?') +
+      ' will be sealed off in ' +
+      Regexes.maybeCapture(capture, 'time', f.time, '.*?') +
+      ' second!';
+    return Regexes.parse(str);
+  }
+
+
+  /**
+   * fields: name, capture
+   * Specialised function for zone is no longer sealed message
+   */
+  static zoneUnsealed(f?: Params<ZoneUnsealedParams>): Regex<ZoneUnsealedParams> {
+    if (typeof f === 'undefined')
+      f = {};
+    Regexes.validateParams(f, 'zoneUnsealed', zoneUnsealedParams);
+    const capture = Regexes.trueIfUndefined(f.capture);
+    const str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
+      ' 00:0839:' +
+      Regexes.maybeCapture(capture, 'name', f.name, '.*?') +
+      ' is no longer sealed.*?';
     return Regexes.parse(str);
   }
 
