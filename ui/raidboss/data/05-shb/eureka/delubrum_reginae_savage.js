@@ -1322,39 +1322,51 @@ export default {
       outputStrings: {
         plusTwo: {
           en: '+2 Heat Arrow',
+          de: '+2 Heiß-Pfeile',
         },
         plusOne: {
           en: '+1 Heat Arrow',
+          de: '+1 Heiß-Pfeile',
         },
         emptySpot: {
           en: 'Empty Spot',
+          de: 'Leeres Feld',
         },
         minusOne: {
           en: '-1 Cold Arrow',
+          de: '-1 Kalt-Pfeile',
         },
         minusTwo: {
           en: '-2 Cold Arrow',
+          de: '-2 Kalt-Pfeile',
         },
         unknownTemperature: {
           en: 'Opposite Arrow',
+          de: 'Entgegengesetze Pfeile',
         },
         forwards: {
           en: 'forwards',
+          de: 'Vorwärts',
         },
         backwards: {
           en: 'backwards',
+          de: 'Rückwärts',
         },
         left: {
           en: 'left',
+          de: 'Links',
         },
         right: {
           en: 'right',
+          de: 'Rechts',
         },
         followArrow: {
           en: 'Follow ${arrow}',
+          de: 'Folge ${arrow}',
         },
         marchToArrow: {
           en: 'March ${dir} to ${arrow}',
+          de: 'Marchiere ${dir} zum ${arrow}',
         },
       },
     },
@@ -1394,36 +1406,47 @@ export default {
       outputStrings: {
         plusTwo: {
           en: '+2 Heat Meteor',
+          de: '+2 Heiß-Meteor',
         },
         plusOne: {
           en: '+1 Heat Meteor',
+          de: '+1 Heiß-Meteor',
         },
         minusOne: {
           en: '-1 Cold Meteor',
+          de: '-1 Kalt-Meteor',
         },
         minusTwo: {
           en: '-2 Cold Meteor',
+          de: '-2 Kalt-Meteor',
         },
         unknownTemperature: {
           en: 'Opposite Meteor',
+          de: 'Entgegengesetzer Meteor',
         },
         forwards: {
           en: 'forwards',
+          de: 'Vorwärts',
         },
         backwards: {
           en: 'backwards',
+          de: 'Rückwärts',
         },
         left: {
           en: 'left',
+          de: 'Links',
         },
         right: {
           en: 'right',
+          de: 'Rechts',
         },
         goToMeteor: {
           en: 'Go to ${meteor} (watch clones)',
+          de: 'Gehe zum ${meteor} (beachte die Klone)',
         },
         marchToMeteor: {
           en: 'March ${dir} to ${meteor}',
+          de: 'Marchiere ${dir} zum ${meteor}',
         },
       },
     },
@@ -1905,9 +1928,11 @@ export default {
       outputStrings: {
         getOutLater: {
           en: '(sacrifice out, for later)',
+          de: '(Heranziehen raus, für später)',
         },
         getInLater: {
           en: '(wanderer in, for later)',
+          de: '(Zurückschleudern rein, für später)',
         },
       },
     },
@@ -2069,6 +2094,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Get in Bubble',
+          de: 'Geh in die Blase',
         },
       },
     },
@@ -2177,7 +2203,7 @@ export default {
         'Aetherial Burst': 'Magiebombe',
         'Aetherial Orb': 'Magiekugel',
         'Aetherial Sphere': 'Ätherwind',
-        'Aetherial Ward': 'Magiewall',
+        'Aetherial Ward': 'Magisch(?:e|er|es|en) Barriere',
         'Automatic Turret': 'Selbstschuss-Gyrocopter',
         'Avowed Avatar': 'Spaltteil der Eingeschworenen',
         'Ball Lightning': 'Elektrosphäre',

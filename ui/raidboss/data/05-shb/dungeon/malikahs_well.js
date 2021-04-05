@@ -107,6 +107,7 @@ export default {
     {
       'locale': 'de',
       'replaceSync': {
+        'Pack Armadillo': 'Rudel-Gürteltier',
         'Terminus': 'Drehscheibe',
         'Malikah\'s Gift': 'Malikahs Quelle',
         'Unquestioned Acceptance': 'Residenz der Großherzigkeit',
@@ -137,6 +138,7 @@ export default {
     {
       'locale': 'fr',
       'replaceSync': {
+        'Pack Armadillo': 'Tatou Grégaire',
         'Amphibious Talos': 'Talos Amphibie',
         'Greater Armadillo': 'Grand Tatou',
         'Malikah\'s Gift': 'le Source de Malikah',
@@ -168,6 +170,7 @@ export default {
     {
       'locale': 'ja',
       'replaceSync': {
+        'Pack Armadillo': 'パック・アルマジロ',
         'Amphibious Talos': 'ハイドロタロース',
         'Greater Armadillo': 'グレーター・アルマジロ',
         'Malikah\'s Gift': 'マリカの水源',
@@ -199,6 +202,7 @@ export default {
     {
       'locale': 'ko',
       'replaceSync': {
+        'Pack Armadillo': '群落犰狳',
         'Terminus': '광차 종점',
         'Malikah\'s Gift': '말리카의 수원',
         'Unquestioned Acceptance': '시민 별장',
@@ -229,6 +233,7 @@ export default {
     {
       'locale': 'cn',
       'replaceSync': {
+        'Pack Armadillo': '무리 아르마딜로',
         'Terminus': '轨道车站',
         'Malikah\'s Gift': '马利卡水源',
         'Unquestioned Acceptance': '无偿离宫',
