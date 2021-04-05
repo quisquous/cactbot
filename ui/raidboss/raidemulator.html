@@ -152,8 +152,16 @@
           </div>
         </div>
         <div class="col-5 triggerInfoColumn border-dark border-left border-right">
-          <div class="triggerHideSkippedContainer" data-toggle="tooltip" title="Hide triggers that were not executed">
-            <input type="checkbox" name="hideSkipped" class="triggerHideSkipped" checked="checked">
+          <div class="triggerCheckboxes">
+            <div class="triggerHideSkippedContainer" data-toggle="tooltip" title="Hide triggers that were not executed">
+              <input type="checkbox" name="hideSkipped" class="triggerHideSkipped" checked="checked" id="hideSkipped">
+              <label for="hideSkipped">Hide Skipped</label>
+            </div>
+            <div class="triggerHideCollectorContainer" data-toggle="tooltip" title="Hide triggers that had no output">
+              <input type="checkbox" name="hideCollector" class="triggerHideCollector" checked="checked" id="hideCollector">
+              <label for="hideCollector">Hide Collectors</label>
+            </div>
+            <div style="clear: both"></div>
           </div>
         </div>
         <div class="col-2 partyInfoColumn">
@@ -248,15 +256,18 @@
         <pre class="json-viewer"></pre>
       </template>
       <template class="triggerLabel">
-        <div class="trigger-label">
-          <div class="trigger-label-time"></div>
-          <div class="trigger-label-text"></div>
-        </div>
       </template>
       <template class="wrapCollapse">
         <div class="wrap-collapse">
           <div class="wrap-collapse-button">
-            <button class="btn btn-outline-light btn-sm text-white" type="button"></button>
+            <button class="btn btn-outline-light btn-sm text-white" type="button">
+              <div class="trigger-label">
+                <div class="trigger-label-time"></div>
+                <div class="trigger-label-name"></div>
+                <div class="trigger-label-icon"></div>
+                <div class="trigger-label-text"></div>
+              </div>
+            </button>
           </div>
           <div class="wrap-collapse-wrapper d-none"></div>
         </div>
