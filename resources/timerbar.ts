@@ -23,7 +23,7 @@ export default class TimerBar extends HTMLElement {
   private _animationFrame: number | null;
 
   static get observedAttributes(): string[] {
-    return ['duration', 'value', 'elapsed', 'hideafter', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'style', 'toward', 'loop'];
+    return ['duration', 'value', 'elapsed', 'hideafter', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'styleFill', 'toward', 'loop'];
   }
 
   // Background color.
