@@ -30,7 +30,7 @@ export default class TimerBox extends HTMLElement {
   private _animationFrame: number | null;
 
   static get observedAttributes(): string[] {
-    return ['duration', 'threshold', 'bg', 'fg', 'toward', 'style', 'hideafter', 'bigatzero', 'roundupthreshold'];
+    return ['duration', 'threshold', 'bg', 'fg', 'toward', 'styleFill', 'hideafter', 'bigatzero', 'roundupthreshold'];
   }
 
   // The full duration of the current countdown. When this is changed,
@@ -116,7 +116,7 @@ export default class TimerBox extends HTMLElement {
     if (s === null)
       this.removeAttribute('styleFill');
     else
-      this.setAttribute('style', s);
+      this.setAttribute('styleFill', s);
   }
   get styleFill(): 'fill' | 'empty' | null {
     return this.getAttribute('styleFill') as 'fill' | 'empty';
@@ -278,7 +278,7 @@ export default class TimerBox extends HTMLElement {
     } else if (name === 'toward') {
       this._towardTop = newValue !== 'bottom';
       this.layout();
-    } else if (name === 'style') {
+    } else if (name === 'styleFill') {
       this._styleFill = newValue !== 'empty';
       this.layout();
     } else if (name === 'bg') {
