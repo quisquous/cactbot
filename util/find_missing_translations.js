@@ -135,7 +135,16 @@ const parseJavascriptFile = (file, locales) => {
 const run = async (args) => {
   const files = findAllJavascriptFiles(args['filter']);
   for (const file of files) {
-    await findMissing(file, args['locale']);
+    await findMissing(file, args['locale'], (file, line, label, message) => {
+      let str = file;
+      if (line)
+        str += `:${line}`;
+      if (label)
+        str += ` ${label}`;
+      if (message)
+        str += ` ${message}`;
+      console.log(str);
+    });
     parseJavascriptFile(file, [args['locale']]);
   }
 };
