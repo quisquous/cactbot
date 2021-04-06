@@ -399,6 +399,7 @@ export default {
         'Machinery Bay 69': 'Kampfmaschinen-Baracke 69',
         'Machinery Bay 70': 'Kampfmaschinen-Baracke 70',
         'Midan Gunner': 'Midas-Schütze',
+        'Midan Hardhelm': 'Midas-Harthelm',
         'Power Plasma Alpha': 'Kraftplasma Alpha',
         'Swindler': 'Schwindler',
         'Vortexer': 'Wirbler',
@@ -450,6 +451,7 @@ export default {
         'Power Plasma Alpha': 'plasma puissant α',
         'Swindler': 'Arnaqueur',
         'Vortexer': 'Tourbillonneur',
+        'Midan Hardhelm': 'casque-dur midin',
       },
       'replaceText': {
         '--unseal--': '--descellement--',
@@ -498,6 +500,7 @@ export default {
         'Power Plasma Alpha': 'パワープラズマα',
         'Swindler': 'スウィンドラー',
         'Vortexer': 'ボルテッカー',
+        'Midan Hardhelm': 'ミダース・ハードヘルム',
       },
       'replaceText': {
         '--unseal--': '--エリア開放--',
@@ -546,6 +549,7 @@ export default {
         'Power Plasma Alpha': '强离子体α',
         'Swindler': '欺诈者',
         'Vortexer': '环旋者',
+        'Midan Hardhelm': '弥达斯硬盔兵',
       },
       'replaceText': {
         '--unseal--': '--解除封锁--',
@@ -594,6 +598,7 @@ export default {
         'Power Plasma Alpha': '파워 플라스마 α',
         'Swindler': '조작자',
         'Vortexer': '교반자',
+        'Midan Hardhelm': '미다스 강화투구',
       },
       'replaceText': {
         '--unseal--': '--봉인 해제--',

@@ -207,7 +207,7 @@ export default {
         'Throwing Spear': 'Wurfspeer',
         'Star Shard': 'Sternensplitter',
         'Rebirth Of Bardam The Brave': 'Bardams Wiedergeburt',
-        'Looming Shadow': ' Lauernd(?:e|er|es|en) Schatten',
+        'Looming Shadow': 'Lauernd(?:e|er|es|en) Schatten',
         'Hunter Of Bardam': 'Bardams Jäger',
         'Corpsecleaner Eagle': 'Leichenputzer',
         'Garula': 'Garula',

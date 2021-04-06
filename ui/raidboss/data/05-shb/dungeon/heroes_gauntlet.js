@@ -216,6 +216,7 @@ export default {
         'Spectral Berserker': 'Phantom-Berserker',
         'Spectral Necromancer': 'Phantom-Nekromantin',
         'Spectral Thief': 'Phantom-Dieb',
+        'Spectral White Mage': 'Phantom-Weißmagier',
         'The Illuminated Plaza': 'Platz der Erleuchteten',
         'The Mount Argai Mines': 'Minen des Argai',
         'The Summer Ballroom': 'Ballsaal der Grasgrummel',
@@ -258,6 +259,7 @@ export default {
         'The Illuminated Plaza': 'Carré de l\'Aurore',
         'The Mount Argai Mines': 'Mines du mont Argai',
         'The Summer Ballroom': 'Bal des enfeuillés',
+        'Spectral White Mage': 'mage blanc spectral',
       },
       'replaceText': {
         'Absolute Dark II': 'Extra Ténèbres absolues',
@@ -297,6 +299,7 @@ export default {
         'The Illuminated Plaza': '大聖堂前広場',
         'The Mount Argai Mines': 'アルゲ鉱山',
         'The Summer Ballroom': '草人たちの踊り場',
+        'Spectral White Mage': '幻光の白魔道士',
       },
       'replaceText': {
         'Absolute Dark II': 'アブソリュートダーラ',
@@ -336,6 +339,7 @@ export default {
         'The Illuminated Plaza': '大圣堂前广场',
         'The Mount Argai Mines': '阿尔格矿山',
         'The Summer Ballroom': '草人的舞场',
+        'Spectral White Mage': '幻光白魔法师',
       },
       'replaceText': {
         'Absolute Dark II': '绝对昏暗',
@@ -375,6 +379,7 @@ export default {
         'The Illuminated Plaza': '대성당 앞 광장',
         'The Mount Argai Mines': '아르게 광산',
         'The Summer Ballroom': '풀인간의 무도회장',
+        'Spectral White Mage': '환상빛의 백마도사',
       },
       'replaceText': {
         'Absolute Dark II': '앱솔루트 다라',

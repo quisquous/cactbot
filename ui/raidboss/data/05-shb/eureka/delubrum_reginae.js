@@ -1293,6 +1293,7 @@ export default {
     {
       'locale': 'de',
       'replaceSync': {
+        'Seeker Avatar': 'Spaltteil Der Sucher',
         'Aetherial Bolt': 'Magiegeschoss',
         'Aetherial Burst': 'Magiebombe',
         'Aetherial Orb': 'Magiekugel',
@@ -1418,6 +1419,7 @@ export default {
     {
       'locale': 'fr',
       'replaceSync': {
+        'Seeker Avatar': 'Clone De La Trinité Soudée',
         'Aetherial Bolt': 'petite bombe',
         'Aetherial Burst': 'énorme bombe',
         'Aetherial Orb': 'amas d\'éther élémentaire',
@@ -1544,6 +1546,7 @@ export default {
     {
       'locale': 'ja',
       'replaceSync': {
+        'Seeker Avatar': 'シーカーの分体',
         'Aetherial Bolt': '魔弾',
         'Aetherial Burst': '大魔弾',
         'Aetherial Orb': '魔力塊',

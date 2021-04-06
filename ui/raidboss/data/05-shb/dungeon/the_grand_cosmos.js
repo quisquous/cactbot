@@ -254,6 +254,8 @@ export default {
     {
       'locale': 'de',
       'replaceSync': {
+        'Ser Hamonth': 'Sir Hamonth',
+        'Lover\'s Ring': 'Keim Des Geliebten',
         'Enslaved Love': 'versklavt(?:e|er|es|en) Liebhaber',
         'Leannan Sith': 'Leanan Sidhe',
         'Lugus': 'Lugus',
@@ -291,6 +293,8 @@ export default {
     {
       'locale': 'fr',
       'replaceSync': {
+        'Ser Hamonth': 'Sire Hamonth',
+        'Lover\'s Ring': 'Bague De L\'Amoureux',
         'Enslaved Love': 'Amour Asservi',
         'Leannan Sith': 'Leannan Sith',
         'Lugus': 'Lugus',
@@ -328,6 +332,8 @@ export default {
     {
       'locale': 'ja',
       'replaceSync': {
+        'Ser Hamonth': '幻影騎士ハモンス',
+        'Lover\'s Ring': 'ラヴァーズリング',
         'Enslaved Love': 'エンスレイブド・ラヴ',
         'Leannan Sith': 'リャナンシー',
         'Lugus': 'ルゴス',
@@ -365,6 +371,8 @@ export default {
     {
       'locale': 'cn',
       'replaceSync': {
+        'Ser Hamonth': '幻影骑士哈蒙斯',
+        'Lover\'s Ring': '恋人之戒',
         'Enslaved Love': '被奴役的爱',
         'Leannan Sith': '凉南希',
         'Lugus': '卢格斯',
@@ -402,6 +410,8 @@ export default {
     {
       'locale': 'ko',
       'replaceSync': {
+        'Ser Hamonth': '환영기사 하몬스',
+        'Lover\'s Ring': '연인의 반지',
         'Enslaved Love': '예속된 사랑',
         'Leannan Sith': '랴난시',
         'Lugus': '루구스',

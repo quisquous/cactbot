@@ -829,6 +829,7 @@ export default {
     {
       'locale': 'de',
       'replaceSync': {
+        'Clone Of Darkness': 'Klon der Dunkelheit',
         'Cloud Of Darkness': 'Wolke der Dunkelheit',
       },
       'replaceText': {
@@ -854,6 +855,7 @@ export default {
     {
       'locale': 'fr',
       'replaceSync': {
+        'Clone Of Darkness': 'Nuée de Ténèbres',
         'Cloud Of Darkness': 'Nuage de Ténèbres',
       },
       'replaceText': {
@@ -879,6 +881,7 @@ export default {
     {
       'locale': 'ja',
       'replaceSync': {
+        'Clone Of Darkness': '幻影の雲',
         'Cloud Of Darkness': '暗闇の雲',
       },
       'replaceText': {
