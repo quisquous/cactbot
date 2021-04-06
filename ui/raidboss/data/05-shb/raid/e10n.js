@@ -284,7 +284,7 @@ export default {
     {
       'locale': 'ja',
       'replaceSync': {
-        'Shadowkeeper': '影の王命',
+        'Shadowkeeper': '影の王',
       },
       'replaceText': {
         '(?<!/)Backward Implosion': 'バックワード・インプロージョン',
@@ -313,7 +313,7 @@ export default {
     {
       'locale': 'cn',
       'replaceSync': {
-        'Shadowkeeper': '影之王命',
+        'Shadowkeeper': '影之王',
       },
       'replaceText': {
         '(?<!/)Backward Implosion': '后向心聚爆',
