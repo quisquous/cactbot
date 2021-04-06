@@ -26,6 +26,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '573E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '573E', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '573E', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '573E', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -35,6 +36,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56F0', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56F0', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56F0', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56F0', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -53,6 +55,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56F3', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56F3', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56F3', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56F3', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -71,6 +74,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5717', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5717', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5717', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5717', capture: false }),
       response: Responses.getOut('alert'),
     },
     {
@@ -79,6 +83,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56EA', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56EA', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56EA', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56EA', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -97,6 +102,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56ED', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56ED', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56ED', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56ED', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -115,6 +121,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56F4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56F4', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56F4', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56F4', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -133,6 +140,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56F8', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56F8', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56F8', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56F8', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -151,6 +159,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5BAA' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5BAA' }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5BAA' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5BAA' }),
       condition: Conditions.caresAboutPhysical(),
       // Although this is a swap, use `tankBuster` here to give the off tank a warning and a chance
       // to shield the main tank.  The offtank swap is delayed into the swap trigger below.
@@ -165,6 +174,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5BAA' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5BAA' }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5BAA' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5BAA' }),
       condition: (data, matches) => data.role === 'tank' && matches.target !== data.me,
       // This is a four hit tankbuster with a wind-up castbar.
       // If you provoke in between the four hits, you can end up taking a hit, so the offtank
@@ -187,6 +197,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5B0E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5B0E', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5B0E', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5B0E', capture: false }),
       alertText: (data, _, output) => {
         if (data.me === data.umbraTarget)
           return output.avoidStack();
@@ -218,6 +229,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5B0C' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5B0C' }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5B0C' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5B0C' }),
       response: Responses.tankCleave(),
     },
     {
@@ -226,6 +238,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5B2D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5B2D', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5B2D', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5B2D', capture: false }),
       durationSeconds: (data) => data.gigaSlashCleaveDebuffDuration,
       alertText: (data, _, output) => {
         let ret = '';
@@ -278,6 +291,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5B2C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5B2C', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5B2C', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5B2C', capture: false }),
       durationSeconds: (data) => data.gigaSlashCleaveDebuffDuration,
       alertText: (data, _, output) => {
         let ret = '';
@@ -348,6 +362,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5718', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5718', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5718', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5718', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -370,6 +385,7 @@ export default {
       netRegexDe: NetRegexes.addedCombatantFull({ name: 'Schatten Eines Helden' }),
       netRegexFr: NetRegexes.addedCombatantFull({ name: 'Ombre De Héros' }),
       netRegexJa: NetRegexes.addedCombatantFull({ name: '英雄の影' }),
+      netRegexCn: NetRegexes.addedCombatantFull({ name: '英雄之影' }),
       condition: (data) => data.clones,
       run: (data, matches) => {
         data.myClone = data.myClone || [];
@@ -384,6 +400,7 @@ export default {
       netRegexDe: NetRegexes.headMarker({ target: 'Schatten Eines Helden' }),
       netRegexFr: NetRegexes.headMarker({ target: 'Ombre De Héros' }),
       netRegexJa: NetRegexes.headMarker({ target: '英雄の影' }),
+      netRegexCn: NetRegexes.headMarker({ target: '英雄之影' }),
       condition: (data) => !data.shadowMarkerMap,
       suppressSeconds: 1,
       run: (data, matches) => {
@@ -401,6 +418,7 @@ export default {
       netRegexDe: NetRegexes.headMarker({ target: 'Schatten Eines Helden' }),
       netRegexFr: NetRegexes.headMarker({ target: 'Ombre De Héros' }),
       netRegexJa: NetRegexes.headMarker({ target: '英雄の影' }),
+      netRegexCn: NetRegexes.headMarker({ target: '英雄之影' }),
       condition: (data) => !data.headMarkerTriggered,
       durationSeconds: 7,
       alertText: (data, matches, output) => {
@@ -426,6 +444,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '573A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '573A', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '573A', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '573A', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -444,6 +463,7 @@ export default {
       netRegexDe: NetRegexes.ability({ source: 'Schattenkönig', id: '573A', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Roi De L\'Ombre', id: '573A', capture: false }),
       netRegexJa: NetRegexes.ability({ source: '影の王', id: '573A', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '影之王', id: '573A', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -462,6 +482,7 @@ export default {
       netRegexDe: NetRegexes.ability({ source: 'Schattenkönig', id: '573A', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Roi De L\'Ombre', id: '573A', capture: false }),
       netRegexJa: NetRegexes.ability({ source: '影の王', id: '573A', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '影之王', id: '573A', capture: false }),
       delaySeconds: 3,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -481,6 +502,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5720', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5720', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5720', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5720', capture: false }),
       suppressSeconds: 99999,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -501,6 +523,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schatten Eines Helden', id: '5BBF', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Ombre De Héros', id: '5BBF', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '英雄の影', id: '5BBF', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '英雄之影', id: '5BBF', capture: false }),
       suppressSeconds: 3,
       response: Responses.moveAway(),
     },
@@ -510,6 +533,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5716', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5716', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5716', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5716', capture: false }),
       response: Responses.knockback('alert'),
     },
     {
@@ -518,6 +542,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5731', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5731', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5731', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5731', capture: false }),
       // TODO: maybe 4?
       delaySeconds: 3.5,
       infoText: (data, _, output) => output.text(),
@@ -538,6 +563,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5739', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5739', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5739', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5739', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -557,6 +583,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '572B', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '572B', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '572B', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '572B', capture: false }),
       delaySeconds: 4,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -580,6 +607,7 @@ export default {
       netRegexDe: NetRegexes.ability({ source: 'Schattenkönig', id: '5B13', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Roi De L\'Ombre', id: '5B13', capture: false }),
       netRegexJa: NetRegexes.ability({ source: '影の王', id: '5B13', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '影之王', id: '5B13', capture: false }),
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -601,6 +629,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '56FC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56FC', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56FC', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56FC', capture: false }),
       durationSeconds: 6,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -620,6 +649,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5700', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5700', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5700', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5700', capture: false }),
       durationSeconds: 6,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -639,6 +669,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5734', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5734', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5734', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5734', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -657,6 +688,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5734', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5734', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5734', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5734', capture: false }),
       delaySeconds: 23.3,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -676,6 +708,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5721', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5721', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5721', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5721', capture: false }),
       infoText: (data, _, output) => {
         if (data.seenPitchBog)
           return output.secondPitchBog();
@@ -736,6 +769,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Schattenkönig', id: '5BCF', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5BCF', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5BCF', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5BCF', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -862,6 +896,44 @@ export default {
         'Shadowy Eruption': 'シャドウエラプション',
         'Shackled Together': '束縛の鎖',
         'Doom Arc': 'ドゥームアーク',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Shadowkeeper': '影之王',
+        'Shadow Of A Hero': '英雄之影',
+        'Shadefire': '影火炎',
+      },
+      'replaceText': {
+        'Deepshadow Nova': '深影新星',
+        'Implosion': '向心聚爆',
+        'Throne Of Shadow': '影之王权',
+        'Giga Slash': '十亿斩击',
+        'Umbra Smash': '本影爆碎',
+        'Darkness Unleashed': '释影',
+        'Shadow\'s Edge': '影之斩击',
+        'Shadow Cleave': '影裂',
+        'Dualspell': '双重咏唱',
+        'Blighting Blitz': '凋零闪击',
+        'Shadowkeeper': '影之王命',
+        'Swath Of Silence': '寂静斩痕',
+        'Shadow Servant': '影仆从',
+        'Distant Scream': '影之狂吠',
+        'Umbral Orbs': '本影球',
+        'Flameshadow': '影烈火',
+        'Spawn Shadow': '影之增殖',
+        'Shadow Warrior': '影武者',
+        'Fade To Shadow': '潜影',
+        'Cloak Of Shadows': '影之披风',
+        'Voidgate(?! Amplifier)': '虚无之门',
+        'Void Pulse': '虚无悸动',
+        'Pitch Bog': '影之沼泽',
+        'Shackled Apart': '离别之锁',
+        'Voidgate Amplifier': '扩大虚无之门',
+        'Shadowy Eruption': '影之喷发',
+        'Shackled Together': '束缚之锁',
+        'Doom Arc': '毁灭之弧',
       },
     },
   ],
