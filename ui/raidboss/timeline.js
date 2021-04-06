@@ -273,6 +273,7 @@ export class Timeline {
           line = line.replace(commandMatch[1], '').trim();
           const sync = {
             id: uniqueid,
+            origRegexStr: commandMatch[2],
             regex: Regexes.parse(this.GetReplacedSync(commandMatch[2])),
             start: seconds - 2.5,
             end: seconds + 2.5,
