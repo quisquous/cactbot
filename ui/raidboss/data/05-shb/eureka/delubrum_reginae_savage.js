@@ -169,6 +169,9 @@ export default {
       id: 'DelubrumSav Seeker Sword Cleanup',
       // This is on First Mercy, which starts before the first ability.
       netRegex: NetRegexes.startsUsing({ source: ['Trinity Seeker', 'Seeker Avatar'], id: '5B61' }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Trinität Der Sucher', 'Spaltteil Der Sucher'], id: '5B61' }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Trinité Soudée', 'Clone De La Trinité Soudée'], id: '5B61' }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['トリニティ・シーカー', 'シーカーの分体'], id: '5B61' }),
       run: (data, matches) => {
         delete data.seekerSwords;
         delete data.calledSeekerSwords;
@@ -178,11 +181,17 @@ export default {
     {
       id: 'DelubrumSav Seeker First Mercy',
       netRegex: NetRegexes.abilityFull({ source: ['Trinity Seeker', 'Seeker Avatar'], id: '5B61' }),
+      netRegexDe: NetRegexes.abilityFull({ source: ['Trinität Der Sucher', 'Spaltteil Der Sucher'], id: '5B61' }),
+      netRegexFr: NetRegexes.abilityFull({ source: ['Trinité Soudée', 'Clone De La Trinité Soudée'], id: '5B61' }),
+      netRegexJa: NetRegexes.abilityFull({ source: ['トリニティ・シーカー', 'シーカーの分体'], id: '5B61' }),
       run: (data, matches) => data.seekerFirstMercy = matches,
     },
     {
       id: 'DelubrumSav Seeker Mercy Swords',
       netRegex: NetRegexes.gainsEffect({ target: ['Trinity Seeker', 'Seeker Avatar'], effectId: '808' }),
+      netRegexDe: NetRegexes.gainsEffect({ target: ['Trinität Der Sucher', 'Spaltteil Der Sucher'], effectId: '808' }),
+      netRegexFr: NetRegexes.gainsEffect({ target: ['Trinité Soudée', 'Clone De La Trinité Soudée'], effectId: '808' }),
+      netRegexJa: NetRegexes.gainsEffect({ target: ['トリニティ・シーカー', 'シーカーの分体'], effectId: '808' }),
       condition: (data) => !data.calledSeekerSwords,
       durationSeconds: 10,
       alertText: (data, matches, output) => {
@@ -335,9 +344,11 @@ export default {
 
         double: {
           en: '${dir1} > ${dir2}',
+          de: '${dir1} > ${dir2}',
         },
         quadruple: {
           en: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
+          de: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
         },
       },
     },
