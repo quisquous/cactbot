@@ -62,10 +62,9 @@ export type Network6dParams = typeof network6dParams[number];
 // regex created that requires a translation will begin with this string
 // and match the magicStringRegex.  This is maybe a bit goofy, but is
 // a pretty straightforward way to mark regexes for translations.
-// If issue #1306 is ever resolved, we can remove this.  Chosen
-// to create a cute noop face at the beginning of such regexes.
-const magicTranslationString = `(💧^|^)`;
-const magicStringRegex = new RegExp(`^\\(💧\\^\\|\\^\\)`);
+// If issue #1306 is ever resolved, we can remove this.
+const magicTranslationString = `^^`;
+const magicStringRegex = new RegExp('^\\^\\^');
 const keysThatRequireTranslation = [
   'ability',
   'name',
