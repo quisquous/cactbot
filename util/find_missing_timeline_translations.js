@@ -226,7 +226,7 @@ function findMissingTimeline(findMissingArgs) {
         // Because we handle syncs separately from texts, in order to
         // sort them all properly together, create a key to be used with sort().
         const sortKey = String(item.line).padStart(8, '0') + testCase.label;
-        const value = [timelineFile, item.line, testCase.label, item.text];
+        const value = [timelineFile, item.line, testCase.label, `"${item.text}"`];
         output[sortKey] = value;
       }
     }

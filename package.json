@@ -18,7 +18,8 @@
     "test": "node_modules/.bin/mocha",
     "lint-staged": "node_modules/.bin/lint-staged",
     "coverage-report": "node --loader ts-node/esm util/gen_coverage_report.js",
-    "find-translations": "node --loader ts-node/esm util/find_missing_translations.js"
+    "find-translations": "node --loader ts-node/esm util/find_missing_translations.js",
+    "translate-timeline": "node --loader ts-node/esm util/translate_timeline.js"
   },
   "devDependencies": {
     "@babel/types": "7.12.*",
