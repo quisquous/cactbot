@@ -368,7 +368,7 @@ export default class TimerBar extends HTMLElement {
     } else if (name === 'fg') {
       this._fg = newValue;
       this.layout();
-    } else if (name === 'style') {
+    } else if (name === 'styleFill') {
       this._styleFill = newValue === 'fill';
       this.layout();
     } else if (name === 'toward') {
