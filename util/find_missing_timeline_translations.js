@@ -5,6 +5,8 @@ import NetRegexes from '../resources/netregexes';
 import { Timeline } from '../ui/raidboss/timeline';
 import { commonReplacement, partialCommonReplacementKeys } from '../ui/raidboss/common_replacement';
 
+// Set a global flag to mark regexes for NetRegexes.doesNetRegexNeedTranslation.
+// See details in that function for more information.
 NetRegexes.setFlagTranslationsNeeded(true);
 
 export async function findMissing(triggersFile, locale) {
