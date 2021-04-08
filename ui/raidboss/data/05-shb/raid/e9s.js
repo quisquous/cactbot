@@ -258,7 +258,7 @@ export default {
           de: 'Laser ausweichen',
           fr: 'Évitez le laser',
           ja: 'レーザー注意',
-          cn: '躲避击退激光',
+          cn: '躲避死刑激光',
           ko: '레이저 피하기',
         },
       },

@@ -6929,6 +6929,7 @@ export default {
     'contentType': 9,
     'exVersion': 3,
     'name': {
+      'cn': '梦羽宝殿',
       'de': 'Das Karussell von Lyhe Ghiah',
       'en': 'The Shifting Oubliettes of Lyhe Ghiah',
       'fr': 'Le Jardin secret du Lyhe Ghiah',
@@ -7007,6 +7008,7 @@ export default {
     'contentType': 2,
     'exVersion': 3,
     'name': {
+      'cn': '魔术工房玛托雅工作室',
       'de': 'Matoyas Atelier',
       'en': 'Matoya\'s Relict',
       'fr': 'L\'Atelier abandonné de Matoya',
@@ -7021,6 +7023,7 @@ export default {
     'contentType': 4,
     'exVersion': 3,
     'name': {
+      'cn': '绿宝石神兵破坏作战',
       'de': 'Smaragdsturm - Entfesselung',
       'en': 'Castrum Marinum',
       'fr': 'Castrum Marinum',
@@ -7035,6 +7038,7 @@ export default {
     'contentType': 4,
     'exVersion': 3,
     'name': {
+      'cn': '绿宝石神兵狂想作战',
       'de': 'Smaragdsturm - Trauma',
       'en': 'Castrum Marinum (Extreme)',
       'fr': 'Castrum Marinum (extrême)',
@@ -7077,6 +7081,7 @@ export default {
     'contentType': 19,
     'exVersion': 0,
     'name': {
+      'cn': '九宫幻卡：官方锦标赛',
       'de': 'Triple Triad: Manderville-Turnier',
       'en': 'Triple Triad Open Tournament',
       'fr': 'Tournoi officiel de Triple Triade',
@@ -7091,6 +7096,7 @@ export default {
     'contentType': 19,
     'exVersion': 0,
     'name': {
+      'cn': '九宫幻卡：锦标赛对局室',
       'de': 'Triple Triad: Privatturnier',
       'en': 'Triple Triad Invitational Parlor',
       'fr': 'Salle de tournoi libre de Triple Triade',
@@ -7105,6 +7111,7 @@ export default {
     'contentType': 5,
     'exVersion': 3,
     'name': {
+      'cn': '伊甸希望乐园 再生之章1',
       'de': 'Edens Verheißung - Umbra',
       'en': 'Eden\'s Promise: Umbra',
       'fr': 'La Promesse d\'Éden - Nuée',
@@ -7119,6 +7126,7 @@ export default {
     'contentType': 5,
     'exVersion': 3,
     'name': {
+      'cn': '伊甸希望乐园 再生之章2',
       'de': 'Edens Verheißung - Litanei',
       'en': 'Eden\'s Promise: Litany',
       'fr': 'La Promesse d\'Éden - Litanie',
@@ -7133,6 +7141,7 @@ export default {
     'contentType': 5,
     'exVersion': 3,
     'name': {
+      'cn': '伊甸希望乐园 再生之章3',
       'de': 'Edens Verheißung - Anamorphose',
       'en': 'Eden\'s Promise: Anamorphosis',
       'fr': 'La Promesse d\'Éden - Anamorphose',
@@ -7147,6 +7156,7 @@ export default {
     'contentType': 5,
     'exVersion': 3,
     'name': {
+      'cn': '伊甸希望乐园 再生之章4',
       'de': 'Edens Verheißung - Ewigkeit',
       'en': 'Eden\'s Promise: Eternity',
       'fr': 'La Promesse d\'Éden - Éternité',
@@ -7161,6 +7171,7 @@ export default {
     'contentType': 5,
     'exVersion': 3,
     'name': {
+      'cn': '伊甸零式希望乐园 再生之章1',
       'de': 'Edens Verheißung - Umbra (episch)',
       'en': 'Eden\'s Promise: Umbra (Savage)',
       'fr': 'La Promesse d\'Éden - Nuée (sadique)',
@@ -7175,6 +7186,7 @@ export default {
     'contentType': 5,
     'exVersion': 3,
     'name': {
+      'cn': '伊甸零式希望乐园 再生之章2',
       'de': 'Edens Verheißung - Litanei (episch)',
       'en': 'Eden\'s Promise: Litany (Savage)',
       'fr': 'La Promesse d\'Éden - Litanie (sadique)',
@@ -7189,6 +7201,7 @@ export default {
     'contentType': 5,
     'exVersion': 3,
     'name': {
+      'cn': '伊甸零式希望乐园 再生之章3',
       'de': 'Edens Verheißung - Anamorphose (episch)',
       'en': 'Eden\'s Promise: Anamorphosis (Savage)',
       'fr': 'La Promesse d\'Éden - Anamorphose (sadique)',
@@ -7203,6 +7216,7 @@ export default {
     'contentType': 5,
     'exVersion': 3,
     'name': {
+      'cn': '伊甸零式希望乐园 再生之章4',
       'de': 'Edens Verheißung - Ewigkeit (episch)',
       'en': 'Eden\'s Promise: Eternity (Savage)',
       'fr': 'La Promesse d\'Éden - Éternité (sadique)',
@@ -7217,6 +7231,7 @@ export default {
     'contentType': 4,
     'exVersion': 3,
     'name': {
+      'cn': '泰坦幻巧战',
       'de': 'Traumprüfung - Titan',
       'en': 'The Navel (Unreal)',
       'fr': 'Le Nombril (irréel)',
@@ -7231,6 +7246,7 @@ export default {
     'contentType': 7,
     'exVersion': 3,
     'name': {
+      'cn': '威尔布兰德扬帆起航',
       'de': 'Gute Winde für Vylbrand',
       'en': 'The Great Ship Vylbrand',
       'fr': 'Un navire nommé Vylbrand',
@@ -7258,6 +7274,7 @@ export default {
   967: {
     'exVersion': 3,
     'name': {
+      'cn': '帝国海上基地干船坞',
       'de': 'Trockendock von Castrum Marinum',
       'en': 'Castrum Marinum Drydocks',
       'fr': 'Cale sèche de Castrum Marinum',
