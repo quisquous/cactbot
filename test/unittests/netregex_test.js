@@ -324,4 +324,18 @@ describe('netregex tests', () => {
     assert.equal(matches.data2, '02');
     assert.equal(matches.data3, '03');
   });
+  it('nameToggle', () => {
+    const lines = [
+      '34|2021-04-07T17:08:58.8340000-07:00|40003C60|Elemental Converter|40003C60|Elemental Converter|01|aa4fe93dfa73e9ca1716c02315be9d61',
+      '34|2021-04-07T17:09:05.3710000-07:00|40003CC6|Leviathan|40003CC6|Leviathan|00|167af73afc1917048b80c604f41613ea',
+      '34|2021-04-07T17:29:34.7710000-07:00|106AF611|Tini Poutini|106AF611|Tini Poutini|00|3cc6808d5c196c8421d9d8bf5329bc71',
+    ];
+
+    regexCaptureTest(NetRegexes.nameToggle, lines);
+
+    const matches = lines[0].match(NetRegexes.nameToggle()).groups;
+    assert.equal(matches.id, '40003C60');
+    assert.equal(matches.name, 'Elemental Converter');
+    assert.equal(matches.toggle, '01');
+  });
 });

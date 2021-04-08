@@ -36,6 +36,7 @@ const gameNameLogParams = ['code', 'name', 'line'] as const;
 const statChangeParams = ['job', 'strength', 'dexterity', 'vitality', 'intelligence', 'mind', 'piety', 'attackPower', 'directHit', 'criticalHit', 'attackMagicPotency', 'healMagicPotency', 'determination', 'skillSpeed', 'spellSpeed', 'tenacity'] as const;
 const changeZoneParams = ['id', 'name'] as const;
 const network6dParams = ['instance', 'command', 'data0', 'data1', 'data2', 'data3'] as const;
+const nameToggleParams = ['id', 'name', 'toggle'] as const;
 
 export type StartsUsingParams = typeof startsUsingParams[number];
 export type AbilityParams = typeof abilityParams[number];
@@ -57,6 +58,7 @@ export type GameNameLogParams = typeof gameNameLogParams[number];
 export type StatChangeParams = typeof statChangeParams[number];
 export type ChangeZoneParams = typeof changeZoneParams[number];
 export type Network6dParams = typeof network6dParams[number];
+export type NameToggleParams = typeof nameToggleParams[number];
 
 // If NetRegexes.setFlagTranslationsNeeded is set to true, then any
 // regex created that requires a translation will begin with this string
@@ -505,6 +507,19 @@ export default class NetRegexes {
       5: { field: 'data1' },
       6: { field: 'data2' },
       7: { field: 'data3' },
+    });
+  }
+
+  /**
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#22-networknametoggle
+   */
+  static nameToggle(params?: Params<NameToggleParams>): NetRegex<NameToggleParams> {
+    return parseHelper(params, 'nameToggle', {
+      0: { field: 'type', value: '34' },
+      1: { field: 'timestamp' },
+      2: { field: 'id' },
+      3: { field: 'name' },
+      6: { field: 'toggle' },
     });
   }
 }
