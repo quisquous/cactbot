@@ -2,7 +2,7 @@ import EmulatorCommon from '../EmulatorCommon';
 import StubbedPopupText from '../overrides/StubbedPopupText';
 
 export default class PopupTextAnalysis extends StubbedPopupText {
-  OnTriggerInternal(trigger, matches) {
+  OnTriggerInternal(trigger, matches, currentTime) {
     this.currentTriggerStatus = {
       initialData: EmulatorCommon.cloneData(this.data),
       condition: undefined,
@@ -14,7 +14,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
       promise: undefined,
     };
     this.currentFunction = 'initial';
-    super.OnTriggerInternal(trigger, matches);
+    super.OnTriggerInternal(trigger, matches, currentTime);
   }
 
   async OnLog(e) {

@@ -602,6 +602,9 @@ export class PopupText {
   }
 
   OnLog(e) {
+    // This could conceivably be determined based on the line's contents as well, but
+    // not sure if that's worth the effort
+    const currentTime = +new Date();
     for (const log of e.detail.logs) {
       if (log.includes('00:0038:cactbot wipe'))
         this.SetInCombat(false);
@@ -609,32 +612,33 @@ export class PopupText {
       for (const trigger of this.triggers) {
         const r = log.match(trigger.localRegex);
         if (r)
-          this.OnTrigger(trigger, r);
+          this.OnTrigger(trigger, r, currentTime);
       }
     }
   }
 
   OnNetLog(e) {
     const log = e.rawLine;
+    // This could conceivably be determined based on `new Date(e.line[1])` as well, but
+    // not sure if that's worth the effort
+    const currentTime = +new Date();
     for (const trigger of this.netTriggers) {
       const r = log.match(trigger.localNetRegex);
       if (r)
-        this.OnTrigger(trigger, r);
+        this.OnTrigger(trigger, r, currentTime);
     }
   }
 
-  OnTrigger(trigger, matches) {
+  OnTrigger(trigger, matches, currentTime) {
     try {
-      this.OnTriggerInternal(trigger, matches);
+      this.OnTriggerInternal(trigger, matches, currentTime);
     } catch (e) {
       onTriggerException(trigger, e);
     }
   }
 
-  OnTriggerInternal(trigger, matches) {
-    const now = +new Date();
-
-    if (this._onTriggerInternalCheckSuppressed(trigger, now))
+  OnTriggerInternal(trigger, matches, currentTime) {
+    if (this._onTriggerInternalCheckSuppressed(trigger, currentTime))
       return;
 
     // If using named groups, treat matches.groups as matches
@@ -644,7 +648,7 @@ export class PopupText {
 
     // Set up a helper object so we don't have to throw
     // a ton of info back and forth between subfunctions
-    const triggerHelper = this._onTriggerInternalGetHelper(trigger, matches, now);
+    const triggerHelper = this._onTriggerInternalGetHelper(trigger, matches, currentTime);
 
     if (!this._onTriggerInternalCondition(triggerHelper))
       return;
@@ -1073,6 +1077,7 @@ export class PopupTextGenerator {
   }
 
   Trigger(trigger, matches) {
-    this.popupText.OnTrigger(trigger, matches);
+    const currentTime = +new Date();
+    this.popupText.OnTrigger(trigger, matches, currentTime);
   }
 }
