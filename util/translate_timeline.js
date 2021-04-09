@@ -3,6 +3,7 @@ import path from 'path';
 import { ArgumentParser } from 'argparse';
 import { findMissing } from './find_missing_timeline_translations';
 import { Timeline } from '../ui/raidboss/timeline';
+import { walkDir } from './file_utils';
 
 const parser = new ArgumentParser({
   addHelp: true,
@@ -19,20 +20,6 @@ parser.addArgument(['-t', '--timeline'], {
 });
 
 const rootDir = 'ui/raidboss/data';
-
-// TODO: this is duplicated from find_missing_translations.js
-// Do we need a util util? <_<
-const walkDir = (dir, callback) => {
-  if (fs.statSync(dir).isFile()) {
-    callback(path.join(dir));
-    return;
-  }
-  fs.readdirSync(dir).forEach((f) => {
-    const dirPath = path.posix.join(dir, f);
-    const isDirectory = fs.statSync(dirPath).isDirectory();
-    isDirectory ? walkDir(dirPath, callback) : callback(path.join(dir, f));
-  });
-};
 
 const findTriggersFile = (shortName) => {
   // strip extensions if provided.
