@@ -55,7 +55,8 @@ const findAllJavascriptFiles = (filter) => {
       return;
     if (filter !== undefined && !filepath.includes(filter))
       return;
-    arr.push(filepath);
+    // These are full paths, so use backslashes to match Windows path names.
+    arr.push(filepath.replace(/\//g, '\\'));
   });
   return arr;
 };
