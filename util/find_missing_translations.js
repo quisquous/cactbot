@@ -4,6 +4,7 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import readline from 'readline';
 import { findMissing } from './find_missing_timeline_translations';
+import { walkDir } from './file_utils';
 
 const parser = new argparse.ArgumentParser({
   addHelp: true,
@@ -43,19 +44,6 @@ const nonZoneregexLocales = new Set([...allLocales].filter((locale) => {
 
 // Where to start looking for files.
 const basePath = () => path.dirname(path.dirname(fileURLToPath(import.meta.url)));
-
-// Utility function to walk directories
-const walkDir = (dir, callback) => {
-  if (fs.statSync(dir).isFile()) {
-    callback(path.posix.join(dir));
-    return;
-  }
-  fs.readdirSync(dir).forEach((f) => {
-    const dirPath = path.posix.join(dir, f);
-    const isDirectory = fs.statSync(dirPath).isDirectory();
-    isDirectory ? walkDir(dirPath, callback) : callback(path.posix.join(dir, f));
-  });
-};
 
 // Return a list of all javascript filenames found under basePath()
 const findAllJavascriptFiles = (filter) => {
