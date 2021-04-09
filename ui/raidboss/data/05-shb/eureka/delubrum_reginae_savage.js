@@ -345,10 +345,12 @@ export default {
         double: {
           en: '${dir1} > ${dir2}',
           de: '${dir1} > ${dir2}',
+          fr: '${dir1} > ${dir2}',
         },
         quadruple: {
           en: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
           de: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
+          fr: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
         },
       },
     },
@@ -684,7 +686,7 @@ export default {
         text: {
           en: 'Go ${dir}, then ${rotate}',
           de: 'Geh nach ${dir}, danach ${rotate}',
-          fr: 'Allez à ${dir}, puis ${rotate}',
+          fr: 'Direction ${dir}, puis ${rotate}',
         },
       },
     },
@@ -1510,50 +1512,62 @@ export default {
         plusTwo: {
           en: '+2 Heat Arrow',
           de: '+2 Heiß-Pfeile',
+          fr: 'Flèche de chaleur +2',
         },
         plusOne: {
           en: '+1 Heat Arrow',
           de: '+1 Heiß-Pfeile',
+          fr: 'Flèche de chaleur +1',
         },
         emptySpot: {
           en: 'Empty Spot',
           de: 'Leeres Feld',
+          fr: 'Emplacement vide',
         },
         minusOne: {
           en: '-1 Cold Arrow',
           de: '-1 Kalt-Pfeile',
+          fr: 'Flèche de froid -1',
         },
         minusTwo: {
           en: '-2 Cold Arrow',
           de: '-2 Kalt-Pfeile',
+          fr: 'Flèche de froid -1',
         },
         unknownTemperature: {
           en: 'Opposite Arrow',
           de: 'Entgegengesetze Pfeile',
+          fr: 'Flèche de l\'élément opposé',
         },
         forwards: {
           en: 'forwards',
           de: 'Vorwärts',
+          fr: 'Vers l\'avant',
         },
         backwards: {
           en: 'backwards',
           de: 'Rückwärts',
+          fr: 'Vers l\'arrière',
         },
         left: {
           en: 'left',
           de: 'Links',
+          fr: 'À gauche',
         },
         right: {
           en: 'right',
           de: 'Rechts',
+          fr: 'À droite',
         },
         followArrow: {
           en: 'Follow ${arrow}',
           de: 'Folge ${arrow}',
+          fr: 'Suivez ${arrow}',
         },
         marchToArrow: {
           en: 'March ${dir} to ${arrow}',
           de: 'Marchiere ${dir} zum ${arrow}',
+          fr: 'Marqueur ${dir} de ${arrow}',
         },
       },
     },
@@ -1594,46 +1608,57 @@ export default {
         plusTwo: {
           en: '+2 Heat Meteor',
           de: '+2 Heiß-Meteor',
+          fr: 'Météore de chaleur +2',
         },
         plusOne: {
           en: '+1 Heat Meteor',
           de: '+1 Heiß-Meteor',
+          fr: 'Météore de chaleur +1',
         },
         minusOne: {
           en: '-1 Cold Meteor',
           de: '-1 Kalt-Meteor',
+          fr: 'Météore de froid -1',
         },
         minusTwo: {
           en: '-2 Cold Meteor',
           de: '-2 Kalt-Meteor',
+          fr: 'Météore de froid -2',
         },
         unknownTemperature: {
           en: 'Opposite Meteor',
           de: 'Entgegengesetzer Meteor',
+          fr: 'Météore de l\'élément opposé',
         },
         forwards: {
           en: 'forwards',
           de: 'Vorwärts',
+          fr: 'Vers l\'avant',
         },
         backwards: {
           en: 'backwards',
           de: 'Rückwärts',
+          fr: 'Vers l\'arrière',
         },
         left: {
           en: 'left',
           de: 'Links',
+          fr: 'À gauche',
         },
         right: {
           en: 'right',
           de: 'Rechts',
+          fr: 'À droite',
         },
         goToMeteor: {
           en: 'Go to ${meteor} (watch clones)',
           de: 'Gehe zum ${meteor} (beachte die Klone)',
+          fr: 'Allez au ${meteor} (regardez les clones)',
         },
         marchToMeteor: {
           en: 'March ${dir} to ${meteor}',
           de: 'Marchiere ${dir} zum ${meteor}',
+          fr: 'Marqueur ${dir} du ${meteor}',
         },
       },
     },
@@ -2116,10 +2141,12 @@ export default {
         getOutLater: {
           en: '(sacrifice out, for later)',
           de: '(Heranziehen raus, für später)',
+          fr: '(sacrifice à l\'extérieur, pour plus tard)',
         },
         getInLater: {
           en: '(wanderer in, for later)',
           de: '(Zurückschleudern rein, für später)',
+          fr: '(errant à l\'intérieur, pour plus tard)',
         },
       },
     },
@@ -2282,6 +2309,7 @@ export default {
         text: {
           en: 'Get in Bubble',
           de: 'Geh in die Blase',
+          fr: 'Entrez dans la bulle',
         },
       },
     },
