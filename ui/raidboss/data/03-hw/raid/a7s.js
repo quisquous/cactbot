@@ -143,11 +143,11 @@ export default {
       // This does not include the initial tether, unfortunately.
       // This is another case of "added combatant with initial tether".
       netRegex: NetRegexes.tether({ source: 'Boomtype Magitek Gobwalker G-VII', id: '0011' }),
-      netRegexDe: NetRegexes.tether({ source: 'Gobumm-Stampfer Vii', id: '0011' }),
-      netRegexFr: NetRegexes.tether({ source: 'Gobblindé Magitek G-Vii Boumbardier', id: '0011' }),
-      netRegexJa: NetRegexes.tether({ source: 'Vii号ゴブリウォーカーB型', id: '0011' }),
-      netRegexKo: NetRegexes.tether({ source: 'Vii호 고블린워커 B형', id: '0011' }),
-      netRegexCn: NetRegexes.tether({ source: '爆破型7号哥布林战车', id: '0011' }),
+      netRegexDe: NetRegexes.tether({ source: 'Gob-Stampfer VII-L', id: '0011' }),
+      netRegexFr: NetRegexes.tether({ source: 'gobblindé magitek G-VII Lamineur', id: '0011' }),
+      netRegexJa: NetRegexes.tether({ source: 'VII号ゴブリウォーカーL型', id: '0011' }),
+      netRegexKo: NetRegexes.tether({ source: 'VII호 고블린워커 L형', id: '0011' }),
+      netRegexCn: NetRegexes.tether({ source: '7号哥布林战车L型', id: '0011' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
       infoText: (data, _, output) => output.text(),
@@ -204,11 +204,11 @@ export default {
     {
       id: 'A7S Stickyloom',
       netRegex: NetRegexes.ability({ source: 'Boomtype Magitek Gobwalker G-VII', id: '16F2' }),
-      netRegexDe: NetRegexes.ability({ source: 'Gobumm-Stampfer Vii', id: '16F2' }),
-      netRegexFr: NetRegexes.ability({ source: 'Gobblindé Magitek G-Vii Boumbardier', id: '16F2' }),
-      netRegexJa: NetRegexes.ability({ source: 'Vii号ゴブリウォーカーB型', id: '16F2' }),
-      netRegexKo: NetRegexes.ability({ source: 'Vii호 고블린워커 B형', id: '16F2' }),
-      netRegexCn: NetRegexes.ability({ source: '爆破型7号哥布林战车', id: '16F2' }),
+      netRegexDe: NetRegexes.ability({ source: 'Gob-Stampfer VII-L', id: '16F2' }),
+      netRegexFr: NetRegexes.ability({ source: 'gobblindé magitek G-VII Lamineur', id: '16F2' }),
+      netRegexJa: NetRegexes.ability({ source: 'VII号ゴブリウォーカーL型', id: '16F2' }),
+      netRegexKo: NetRegexes.ability({ source: 'VII호 고블린워커 L형', id: '16F2' }),
+      netRegexCn: NetRegexes.ability({ source: '7号哥布林战车L型', id: '16F2' }),
       run: function(data, matches) {
         data.stickyloom = matches.target;
       },
