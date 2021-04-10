@@ -3,18 +3,103 @@ import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
+import Outputs from '../../../../../resources/outputs';
 
 // TODO: we could consider a timeline trigger for the Tidal Roar raidwide,
 // but it barely does 25% health, has no startsUsing, and the timeline for
 // this fight is not reliable enough to use.
 
-// TODO: we could consider doing some getCombatants shenanigans to call
-// out which side to run to for all of the dives.
+// TODO: it'd be nice to call out the dives too, but there is no log line
+// or combatant in the right place until ~4.5s after the nameplate toggles.
+// This is about 1-2s after the splash appears, and so feels really late.
+// Unfortunately the dives also have multiple combatants in plausible
+// positions (+/-7, +/-20) and so more work would need to be done to tell
+// them apart.
 
 export default {
   zoneId: ZoneId.TheWhorleaterExtreme,
   timelineFile: 'levi-ex.txt',
   triggers: [
+    {
+      id: 'LeviEx Dive Counter Tidal Wave Reset',
+      netRegex: NetRegexes.ability({ source: 'Leviathan', id: '82E', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Leviathan', id: '82E', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Léviathan', id: '82E', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'リヴァイアサン', id: '82E', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '利维亚桑', id: '82E', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '리바이어선', id: '82E', capture: false }),
+      run: (data) => {
+        // There's always a slam after Tidal Wave.
+        data.diveCounter = 1;
+        // If you are running this unsynced and don't hit the button,
+        // then prevent "Hit the Button" calls on future dives.
+        data.converter = false;
+      },
+    },
+    {
+      id: 'LeviEx Dive Counter Body Slam Reset',
+      netRegex: NetRegexes.ability({ source: 'Leviathan', id: '82A', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Leviathan', id: '82A', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Léviathan', id: '82A', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'リヴァイアサン', id: '82A', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '利维亚桑', id: '82A', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '리바이어선', id: '82A', capture: false }),
+      // Redundant, but this will keep things on track if anything goes awry.
+      run: (data) => data.diveCounter = 1,
+    },
+    {
+      id: 'LeviEx Dive Counter Wave Spume Adjust',
+      netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
+      suppressSeconds: 5,
+      // Usually the pattern is slam / dive / dive / slam, but after wave spumes appear,
+      // there is a single dive then a slam.  Adjust for this one-off case here.
+      run: (data) => data.diveCounter = 2,
+    },
+    {
+      id: 'LeviEx Slam Location',
+      netRegex: NetRegexes.nameToggle({ name: 'Leviathan', toggle: '00', capture: false }),
+      netRegexDe: NetRegexes.nameToggle({ name: 'Leviathan', toggle: '00', capture: false }),
+      netRegexFr: NetRegexes.nameToggle({ name: 'Léviathan', toggle: '00', capture: false }),
+      netRegexJa: NetRegexes.nameToggle({ name: 'リヴァイアサン', toggle: '00', capture: false }),
+      netRegexCn: NetRegexes.nameToggle({ name: '利维亚桑', toggle: '00', capture: false }),
+      netRegexKo: NetRegexes.nameToggle({ name: '리바이어선', toggle: '00', capture: false }),
+      condition: (data) => {
+        data.diveCounter = (data.diveCounter || 0) + 1;
+        return data.diveCounter % 3 === 1;
+      },
+      // Actor moves between 4.6s and 4.7s; add a tiny bit of time for certainty.
+      delaySeconds: 5,
+      promise: async (data) => {
+        const callData = await callOverlayHandler({
+          call: 'getCombatants',
+        });
+        if (!callData || !callData.combatants || !callData.combatants.length) {
+          console.error('Dive: failed to get combatants: ${JSON.stringify(callData)}');
+          return;
+        }
+        // This is the real levi, according to hp.
+        data.slamLevis = callData.combatants.filter((c) => c.BNpcID === 2802);
+      },
+      alertText: (data, _, output) => {
+        // Slams happen at +/-~14.6 +/-~13.
+        const filtered = data.slamLevis.filter((c) => {
+          const offsetX = Math.abs(Math.abs(c.PosX) - 14.6);
+          const offsetY = Math.abs(Math.abs(c.PosY) - 13);
+          return offsetX < 1 && offsetY < 1;
+        });
+        if (filtered.length !== 1)
+          return;
+        const levi = filtered[0];
+        if (levi.PosY > 0)
+          return output.north();
+        return output.south();
+      },
+      outputStrings: {
+        north: Outputs.north,
+        south: Outputs.south,
+      },
+    },
     {
       id: 'LeviEx Veil of the Whorl',
       netRegex: NetRegexes.ability({ source: 'Leviathan', id: '875', capture: false }),
