@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
 // It's hard to capture the reflection abilities from Leviathan's Head and Tail if you use
