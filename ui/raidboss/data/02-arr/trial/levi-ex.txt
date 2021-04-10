@@ -1,5 +1,5 @@
 ### Leviathan Extreme
-# -p 82A:33.1 82E:268.6
+# -p 82A:33.1 82E:286.5
 # -ii 828 823 824 825 829 82B 77D 752 74E 88A 74A 749 82D 88B 831 792 791 747
 # -it "Leviathan"
 
@@ -53,7 +53,7 @@ hideall "--sync--"
 59.3 "Tail Whip" sync /:Leviathan's Tail:827:/
 60.4 "Waterspout" sync /:Leviathan:742:/
 73.8 "Dread Tide" sync /:Leviathan:754:/
-77.9 "Tidal Roar" sync /:Leviathan:74B:/
+77.9 "Tidal Roar" sync /:Leviathan:74B:/ window 30,30
 
 85.2 "--untargetable--"
 88.3 "Grand Fall" sync /:Leviathan:82F:/
@@ -62,7 +62,7 @@ hideall "--sync--"
 95.8 "Spinning Dive" sync /:Leviathan:82C:/
 101.5 "--targetable--"
 
-101.6 "Body Slam" sync /:Leviathan:82A:/
+101.6 "Body Slam" sync /:Leviathan:82A:/ window 30,30
 106.0 "Briny Veil" sync /:Leviathan:831:/
 110.7 "--Wavetooth Sahagin (E)--"
 121.0 "Dread Tide" sync /:Leviathan:754:/
@@ -70,7 +70,7 @@ hideall "--sync--"
 126.0 "Tail Whip" sync /:Leviathan's Tail:827:/
 132.3 "Waterspout" sync /:Leviathan:742:/
 145.7 "Dread Tide" sync /:Leviathan:754:/
-149.8 "Tidal Roar" sync /:Leviathan:74B:/
+149.8 "Tidal Roar" sync /:Leviathan:74B:/ window 30,30
 
 154.9 "--untargetable--"
 158.0 "Grand Fall x3" #sync /:Leviathan:82F:/
@@ -78,14 +78,14 @@ hideall "--sync--"
 165.4 "Spinning Dive" sync /:Leviathan:82C:/
 171.1 "--targetable--"
 
-171.2 "Body Slam" sync /:Leviathan:82A:/
+171.2 "Body Slam" sync /:Leviathan:82A:/ window 30,30
 180.8 "--4x Gyre Spume--"
 192.7 "Dread Tide" sync /:Leviathan:754:/
 196.3 "Tail Whip" #sync /:Leviathan's Tail:827:/
 196.8 "Aqua Breath" sync /:Leviathan:826:/
 204.0 "Waterspout" sync /:Leviathan:742:/
 217.3 "Dread Tide" sync /:Leviathan:754:/
-221.4 "Tidal Roar" sync /:Leviathan:74B:/
+221.4 "Tidal Roar" sync /:Leviathan:74B:/ window 30,30
 
 228.9 "--untargetable--"
 232.0 "Grand Fall x3" #sync /:Leviathan:82F:/
@@ -93,7 +93,7 @@ hideall "--sync--"
 239.4 "Spinning Dive" sync /:Leviathan:82C:/
 245.1 "--targetable--"
 
-245.2 "Body Slam" sync /:Leviathan:82A:/
+245.2 "Body Slam" sync /:Leviathan:82A:/ window 30,30
 267.5 "Dread Tide" sync /:Leviathan:754:/
 
 275.2 "--untargetable--"
@@ -105,13 +105,13 @@ hideall "--sync--"
 
 ### Phase 3: Two Sets of Orbs (50% -> 20%?)
 299.2 "--targetable--"
-299.3 "Body Slam" sync /:Leviathan:82A:/
+299.3 "Body Slam" sync /:Leviathan:82A:/ window 30,30
 301.3 "--2x Wavespine Sahagin (S)--"
 318.6 "Aqua Breath" sync /:Leviathan:826:/
 318.6 "Tail Whip" #sync /:Leviathan's Tail:827:/
 322.7 "Waterspout" sync /:Leviathan:742:/
 329.9 "Dread Tide" sync /:Leviathan:754:/
-338.1 "Tidal Roar" sync /:Leviathan:74B:/
+338.1 "Tidal Roar" sync /:Leviathan:74B:/ window 30,30
 
 347.3 "--untargetable--"
 350.4 "Grand Fall" sync /:Leviathan:82F:/
@@ -119,70 +119,72 @@ hideall "--sync--"
 357.8 "Spinning Dive" sync /:Leviathan:82C:/
 
 363.5 "--targetable--"
-363.6 "Body Slam" sync /:Leviathan:82A:/
+363.6 "Body Slam" sync /:Leviathan:82A:/ window 30,30
 364.9 "--4x Gyre Spume--"
 382.9 "Aqua Breath" sync /:Leviathan:826:/
 385.0 "Tail Whip" #sync /:Leviathan's Tail:827:/
 387.1 "Waterspout" sync /:Leviathan:742:/
 394.3 "Dread Tide" sync /:Leviathan:754:/
 402.4 "--4x Wave Spume--"
-402.5 "Tidal Roar" sync /:Leviathan:74B:/
+402.5 "Tidal Roar" sync /:Leviathan:74B:/ window 30,30
 
 413.8 "--untargetable--"
 416.9 "Grand Fall x3" #sync /:Leviathan:82F:/
 419.4 "Spinning Dive" sync /:Leviathan:82C:/
 
+
 425.1 "--targetable--"
 425.2 "Body Slam" sync /:Leviathan:82A:/
 435.3 "Dread Tide" sync /:Leviathan:754:/
-437.6 "Aqua Burst" sync /:Wave Spume:888:/
+439.6 "Aqua Burst" sync /:Wave Spume:888:/
 442.5 "Aqua Breath" sync /:Leviathan:826:/
 446.6 "Waterspout" sync /:Leviathan:742:/
-
-456.9 "--untargetable--"
-460.0 "Grand Fall x3" #sync /:Leviathan:82F:/
-462.5 "Spinning Dive" sync /:Leviathan:82C:/
-468.2 "Tidal Wave" sync /:Leviathan:82E:/ window 150,100
+455.8 "Dread Tide" sync /:Leviathan:754:/
+462.5 "--untargetable--"
+465.6 "Grand Fall x3" #sync /:Leviathan:82F:/
+468.1 "Spinning Dive" sync /:Leviathan:82C:/
+468.1 "--untargetable--"
+473.9 "Tidal Wave" sync /:Leviathan:82E:/ window 150,100
 
 
 ### Phase 4: more adds, enrage
-480.9 "--targetable--"
-481.0 "Body Slam" sync /:Leviathan:82A:/
-482.5 "--Wavetooth Sahagin (NW)--"
-494.6 "Tidal Roar" sync /:Leviathan:74B:/
-502.8 "Aqua Breath" sync /:Leviathan:826:/
-506.9 "Waterspout" sync /:Leviathan:742:/
-506.9 "Tail Whip" #sync /:Leviathan's Tail:827:/
-514.1 "Dread Tide" sync /:Leviathan:754:/
-518.2 "Tidal Roar" sync /:Leviathan:74B:/
+486.6 "--targetable--"
+486.7 "Body Slam" sync /:Leviathan:82A:/ window 30,30
+488.2 "--Wavetooth Sahagin (NW)--"
+500.3 "Tidal Roar" sync /:Leviathan:74B:/
+508.5 "Aqua Breath" sync /:Leviathan:826:/
+512.6 "Waterspout" sync /:Leviathan:742:/
+512.6 "Tail Whip" #sync /:Leviathan's Tail:827:/
+519.8 "Dread Tide" sync /:Leviathan:754:/
+523.9 "Tidal Roar" sync /:Leviathan:74B:/ window 30,30
 
-526.4 "--untargetable--"
-529.5 "Grand Fall x3" #sync /:Leviathan:82F:/
-532.0 "Spinning Dive" sync /:Leviathan:82C:/
-536.9 "Spinning Dive" sync /:Leviathan:82C:/
+532.1 "--untargetable--"
+535.2 "Grand Fall x3" #sync /:Leviathan:82F:/
+537.7 "Spinning Dive" sync /:Leviathan:82C:/
+542.6 "Spinning Dive" sync /:Leviathan:82C:/
 
-542.6 "--targetable--"
-542.7 "Body Slam" sync /:Leviathan:82A:/
-557.9 "Dread Tide" sync /:Leviathan:754:/
-562.0 "Tidal Roar" sync /:Leviathan:74B:/
-575.4 "Dread Tide" sync /:Leviathan:754:/
-581.6 "Tidal Roar" sync /:Leviathan:74B:/
-595.2 "--2x Wavespine Sahagin--" # ? not sure where
-595.9 "Tidal Roar" sync /:Leviathan:74B:/
-604.1 "Aqua Breath" sync /:Leviathan:826:/
-608.2 "Waterspout" sync /:Leviathan:742:/
-609.1 "Tail Whip" #sync /:Leviathan's Tail:827:/
-615.4 "Dread Tide" sync /:Leviathan:754:/
-619.5 "Tidal Roar" sync /:Leviathan:74B:/
+548.3 "--targetable--"
+548.4 "Body Slam" sync /:Leviathan:82A:/ window 30,30
+563.6 "Dread Tide" sync /:Leviathan:754:/
+567.7 "Tidal Roar" sync /:Leviathan:74B:/
+581.1 "Dread Tide" sync /:Leviathan:754:/
+587.3 "Tidal Roar" sync /:Leviathan:74B:/
+600.9 "--2x Wavespine Sahagin--" # ? not sure where
+601.6 "Tidal Roar" sync /:Leviathan:74B:/
+609.8 "Aqua Breath" sync /:Leviathan:826:/
+613.9 "Waterspout" sync /:Leviathan:742:/
+614.8 "Tail Whip" #sync /:Leviathan's Tail:827:/
+621.1 "Dread Tide" sync /:Leviathan:754:/
+625.2 "Tidal Roar" sync /:Leviathan:74B:/ window 10,30
 
-628.4 "--untargetable--"
-631.5 "Grand Fall x3" sync /:Leviathan:82F:/
-634.0 "Spinning Dive" sync /:Leviathan:82C:/
-638.9 "Spinning Dive" sync /:Leviathan:82C:/
+634.1 "--untargetable--"
+637.2 "Grand Fall x3" sync /:Leviathan:82F:/
+639.7 "Spinning Dive" sync /:Leviathan:82C:/
+644.6 "Spinning Dive" sync /:Leviathan:82C:/
 
-644.6 "--targetable--"
-644.7 "Body Slam" sync /:Leviathan:82A:/
-659.9 "Dread Tide" sync /:Leviathan:754:/
+650.3 "--targetable--"
+650.4 "Body Slam" sync /:Leviathan:82A:/ window 30,30
+665.6 "Dread Tide" sync /:Leviathan:754:/
 
-663.9 "--untargetable--"
-671.2 "Tidal Wave Enrage" sync /:Leviathan:82E:/
+669.6 "--untargetable--"
+676.9 "Tidal Wave Enrage" sync /:Leviathan:82E:/
