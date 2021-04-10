@@ -64,7 +64,7 @@ hideall "--sync--"
 
 101.6 "Body Slam" sync /:Leviathan:82A:/
 106.0 "Briny Veil" sync /:Leviathan:831:/
-110.7 "--Wavetooth Sagahin (E)--"
+110.7 "--Wavetooth Sahagin (E)--"
 121.0 "Dread Tide" sync /:Leviathan:754:/
 125.1 "Aqua Breath" sync /:Leviathan:826:/
 126.0 "Tail Whip" sync /:Leviathan's Tail:827:/
@@ -148,7 +148,7 @@ hideall "--sync--"
 ### Phase 4: more adds, enrage
 480.9 "--targetable--"
 481.0 "Body Slam" sync /:Leviathan:82A:/
-482.5 "--Wavetooth Sagahin (NW)--"
+482.5 "--Wavetooth Sahagin (NW)--"
 494.6 "Tidal Roar" sync /:Leviathan:74B:/
 502.8 "Aqua Breath" sync /:Leviathan:826:/
 506.9 "Waterspout" sync /:Leviathan:742:/
