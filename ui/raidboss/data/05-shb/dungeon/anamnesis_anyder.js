@@ -12,7 +12,7 @@ export default {
     {
       id: 'AnAnyder Fetid Fang',
       netRegex: NetRegexes.startsUsing({ source: 'Unknown', id: ['4B69', '4B72'] }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Unbekannt(?:e|er|es|en)', id: ['4B69', '4B72'] }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'abscheulich[a] Monstrum', id: ['4B69', '4B72'] }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Inconnu', id: ['4B69', '4B72'] }),
       netRegexJa: NetRegexes.startsUsing({ source: '正体不明', id: ['4B69', '4B72'] }),
       netRegexCn: NetRegexes.startsUsing({ source: '不明物体', id: ['4B69', '4B72'] }),
@@ -23,7 +23,7 @@ export default {
     {
       id: 'AnAnyder Scrutiny',
       netRegex: NetRegexes.startsUsing({ source: 'Unknown', id: '4E25', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Unbekannt(?:e|er|es|en)', id: '4E25', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'abscheulich[a] Monstrum', id: '4E25', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Inconnu', id: '4E25', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '正体不明', id: '4E25', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '不明物体', id: '4E25', capture: false }),
@@ -45,7 +45,7 @@ export default {
     {
       id: 'AnAnyder Inscrutability',
       netRegex: NetRegexes.startsUsing({ source: 'Unknown', id: '4B6A', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Unbekannt(?:e|er|es|en)', id: '4B6A', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'abscheulich[a] Monstrum', id: '4B6A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Inconnu', id: '4B6A', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '正体不明', id: '4B6A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '不明物体', id: '4B6A', capture: false }),
@@ -56,7 +56,7 @@ export default {
     {
       id: 'AnAnyder Luminous Ray',
       netRegex: NetRegexes.startsUsing({ source: 'Unknown', id: '4E2[67]', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Unbekannt(?:e|er|es|en)', id: '4E2[67]', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'abscheulich[a] Monstrum', id: '4E2[67]', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Inconnu', id: '4E2[67]', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '正体不明', id: '4E2[67]', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '不明物体', id: '4E2[67]', capture: false }),
