@@ -30,7 +30,7 @@ export default {
         text: {
           en: 'Attack Tail Only',
           de: 'Nur den Schwanz angreifen',
-          fr: 'Attaquez seulement la tête',
+          fr: 'Attaquez seulement la queue',
         },
       },
     },
@@ -49,7 +49,7 @@ export default {
         text: {
           en: 'Attack Head Only',
           de: 'Nur den Kopf angreifen',
-          fr: 'Attaquez seulement la queue',
+          fr: 'Attaquez seulement la tête',
         },
       },
     },
