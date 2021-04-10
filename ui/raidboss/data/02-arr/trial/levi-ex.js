@@ -30,6 +30,7 @@ export default {
         text: {
           en: 'Attack Tail Only',
           de: 'Nur den Schwanz angreifen',
+          fr: 'Attaquez seulement la queue',
         },
       },
     },
@@ -48,6 +49,7 @@ export default {
         text: {
           en: 'Attack Head Only',
           de: 'Nur den Kopf angreifen',
+          fr: 'Attaquez seulement la tête',
         },
       },
     },
@@ -91,6 +93,7 @@ export default {
         text: {
           en: 'Hit The Button!',
           de: 'Mit Elementarumwandler interagieren!',
+          fr: 'Activez la barrière !',
         },
       },
     },
