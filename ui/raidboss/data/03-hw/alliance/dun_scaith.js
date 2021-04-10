@@ -64,7 +64,7 @@ export default {
         text: {
           en: 'Cleanse Doom soon!',
           de: 'Verhängnis bald reinigen!',
-          fr: 'Guerrissez Glas bientot',
+          fr: 'Dissipez le Glas bientôt !',
           ja: '死の宣告、エスナ！',
           cn: '尽快驱散死亡宣告！',
           ko: '죽음의 선고 해제',
@@ -93,7 +93,7 @@ export default {
         text: {
           en: 'Kill sprites',
           de: 'Exergone töten',
-          fr: 'Tuez les adds',
+          fr: 'Tuez les élémentaires',
           ja: 'スプライトを倒す',
           cn: '击杀虚无元精',
           ko: '정령 잡기',
@@ -147,7 +147,7 @@ export default {
         text: {
           en: 'Avoid death squares',
           de: 'Weiche den Todes-Feldern aus',
-          fr: 'Evitez les carrés mortels',
+          fr: 'Évitez les carrés de mort',
           ja: 'ヴォイド・デスジャ、エリアの外に',
           cn: '离开即死区域',
           ko: '검은 장판 피하기',
@@ -165,7 +165,7 @@ export default {
         text: {
           en: 'Drop scythe outside',
           de: 'Sense draußen ablegen',
-          fr: 'Posez à l\'extérieur',
+          fr: 'Déposez la faux à l\'extérieur',
           ja: 'ブラックウインド、外に置く',
           cn: '场地边缘放镰刀',
           ko: '외곽으로',
@@ -243,6 +243,7 @@ export default {
         goToAnyUntethered: {
           en: 'Go To Any Untethered',
           de: 'Gehe zu einem Unverbundenen',
+          fr: 'Allez sous une Gueule non liée',
           ja: '線のないアトモスに近づく',
           cn: '靠近无线小怪',
           ko: '아트모스 근처로',
@@ -250,6 +251,7 @@ export default {
         avoidAllUntethered: {
           en: 'Avoid All Untethered',
           de: 'Vermeide alle Unverbundenen',
+          fr: 'Évitez toutes les Gueules non liées',
           ja: '線のないアトモスから離れる',
           cn: '远离无线小怪',
           ko: '모든 아트모스 피하기',
@@ -257,7 +259,7 @@ export default {
         goToUntetheredBlue: {
           en: 'Go to Untethered Blue',
           de: 'Gehe zu dem nicht verbundenen blauem Atomos',
-          fr: 'Allez vers la Gueule bleue non-liée',
+          fr: 'Allez sous une Gueule bleue non liée',
           ja: '線のない青色アトモスに近づく',
           cn: '靠近蓝色小怪',
           ko: '파란 아트모스로 이동',
@@ -265,7 +267,7 @@ export default {
         goToUntetheredYellow: {
           en: 'Go to Untethered Yellow',
           de: 'Gehe zu dem nicht verbundenen gelben Atomos',
-          fr: 'Allez vers la Gueule jaune non-liée',
+          fr: 'Allez sous une Gueule jaune non liée',
           ja: '線のない黄色アトモスに近づく',
           cn: '靠近黄色小怪',
           ko: '노란 아트모스로 이동',
@@ -273,7 +275,7 @@ export default {
         avoidUntetheredBlue: {
           en: 'Avoid Untethered Blue',
           de: 'Weiche dem nicht verbundenen blauem Atomos aus',
-          fr: 'Evitez Gueule bleue non-liée',
+          fr: 'Évitez une Gueule bleue non liée',
           ja: '線のない青色アトモスから離れる',
           cn: '远离蓝色小怪',
           ko: '파란 아트모스 피하기',
@@ -281,7 +283,7 @@ export default {
         avoidUntetheredYellow: {
           en: 'Avoid Untethered Yellow',
           de: 'Weiche dem nicht verbundenen gelben Atomos aus',
-          fr: 'Evitez Gueule jaune non-liée',
+          fr: 'Évitez une Gueule jaune non liée',
           ja: '線のない黄色アトモスから離れる',
           cn: '远离黄色小怪',
           ko: '노란 아트모스 피하기',
@@ -309,7 +311,7 @@ export default {
         text: {
           en: 'Avoid puddles',
           de: 'Flächen ausweichen',
-          fr: 'Evitez les zones au sol',
+          fr: 'Évitez les zones au sol',
           ja: '円範囲攻撃、避ける',
           cn: '离开圈圈',
           ko: '장판 피하기',
@@ -326,7 +328,7 @@ export default {
         text: {
           en: 'Change puddles to water',
           de: 'Ändere Flächen zu Wasser',
-          fr: 'Changez en eau',
+          fr: 'Changez les zones au sol en eau',
           ja: '青い水に入れ替える',
           cn: '将地上的圈踩成蓝色',
           ko: '파란 장판으로 바꾸기',
@@ -343,7 +345,7 @@ export default {
         text: {
           en: 'Change puddles to fire',
           de: 'Ändere Flächen zu Feuer',
-          fr: 'Changez en feu',
+          fr: 'Changez les zones au sol en feu',
           ja: '赤い火に入れ替える',
           cn: '将地上的圈踩成红色',
           ko: '빨간 장판으로 바꾸기',
@@ -372,7 +374,7 @@ export default {
         text: {
           en: 'Prey--Avoid party and keep moving',
           de: 'Markiert - Weg von der Gruppe und bleib in Bewegung',
-          fr: 'Marquage - Evitez les autres et bougez',
+          fr: 'Marquage - Évitez les autres et bougez',
           ja: 'マーキング - 外に移動し続ける',
           cn: '离开人群并保持移动',
           ko: '파티에게서 떨어지고 움직이기',
@@ -390,7 +392,7 @@ export default {
         text: {
           en: 'Avoid Bit AoEs',
           de: 'Weiche den Bit AoEs aus',
-          fr: 'Evitez les AoE des forets',
+          fr: 'Évitez les AoE des forets',
           ja: 'AoEを避ける',
           cn: '躲避小型AOE',
           ko: '비트 장판 피하기',
@@ -429,7 +431,7 @@ export default {
         text: {
           en: 'Avoid arm slaps',
           de: 'Weiche den Armschlägen aus',
-          fr: 'Evitez les bras',
+          fr: 'Évitez les claques de bras',
           ja: '影の手を避ける',
           cn: '站在boss背后方向',
           ko: '날개 피하기',
@@ -460,7 +462,7 @@ export default {
         text: {
           en: 'Avoid line AoEs',
           de: 'Weiche den Linien AoEs aus',
-          fr: 'Evitez les AoE en ligne',
+          fr: 'Évitez les AoEs en ligne',
           ja: 'スカアハの正面に立たない',
           cn: '躲开boss正面路线',
           ko: '직선 장판 피하기',
@@ -520,7 +522,7 @@ export default {
         text: {
           en: 'Avoid AoE, Kill Connla',
           de: 'Weiche AoE aus, besiege Connla',
-          fr: 'Evitez les AoE, tuez Connla',
+          fr: 'Évitez les AoE, tuez Connla',
           ja: 'AoEを避け、コンラを倒す',
           cn: '躲避AOE后击杀康拉',
           ko: '장판 피하며 콘라 처치',
@@ -538,7 +540,7 @@ export default {
         text: {
           en: 'Take orb outside',
           de: 'Orb nach außen bringen',
-          fr: 'Prenez l\'orb à l\'extérieur',
+          fr: 'Prenez l\'orbe à l\'extérieur',
           ja: '黒い球体を外に引く',
           cn: '把球带出人群，移动到球不再出现为止',
           ko: '외곽으로 유도',
@@ -662,7 +664,7 @@ export default {
         stackOnAndLookAway: {
           en: 'Stack on ${player} and look away',
           de: 'Sammeln bei ${player} und wewg schauen',
-          fr: 'Package sur ${player} et regardez ailleurs',
+          fr: 'Packez-vous sur ${player} et regardez ailleurs',
           ja: '${player}に頭割り、見ない',
           cn: '靠近并背对${player}分摊',
           ko: '${player} 쉐어, 바라보지않기',
@@ -795,7 +797,6 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Aether': 'sphère éthérée',
         'Aether Collector': 'accumulateur d\'éther',
@@ -822,6 +823,10 @@ export default {
         'Wailing Atomos': 'gueule gémissante',
       },
       'replaceText': {
+        '--deathgate spawn--': '--apparition des portes de mort--',
+        '--lifegate spawn--': '--apparition des portes de vie--',
+        '--shadows gather--': '--pouvoir des ombres--',
+        '--towers appear--': '--apparition des tours--',
         'Aether Bend': 'Diffraction éthérée',
         'Aetherial Pool': 'Attraction éthéréenne',
         'Aetherochemical Flare': 'Brasier magismologique',
@@ -848,6 +853,7 @@ export default {
         'Hollow Night(?!mare)': 'Nuit nihil',
         'Hollow Nightmare': 'Cauchemar nihil',
         'Hollow Omen': 'Présage nihil',
+        'Hollow Terror': 'Terreur nihil',
         'Hollowshield': 'Bouclier nihil',
         'Jester\'s Jig': 'Gigue du bouffon',
         'Jester\'s Reap': 'Bouffon du roi',
@@ -856,6 +862,7 @@ export default {
         'Juggling Sphere': 'Sphère jongleuse',
         'Light Pillar': 'Colonne lumineuse',
         'Manos': 'Concentration ombrale',
+        'Night Terror': 'Terreur nocturne',
         '(?<!Hollow )Nightmare': 'Cauchemar',
         'Noctoshield': 'Nocto-bouclier',
         'Nox': 'Nox',
@@ -871,14 +878,16 @@ export default {
         'Soar': 'Ascension',
         'Spike Of Darkness': 'Pointes des ténèbres',
         'Supernova': 'Démence spatiale',
-        'Terror': 'Terreur',
+        '(?<! )Terror': 'Terreur',
         'Thirty Arrows': 'Trente flèches',
         'Thirty Cries': 'Trente cris',
         'Thirty Sickles': 'Trente faucilles',
         'Thirty Souls': 'Trente âmes',
         'Thirty Thorns': 'Trente épines',
         'Touchdown': 'Atterrissage',
-        'Void Aero II': 'Extra Vent du néant',
+        'Ultimate Terror': 'Terreur ultime',
+        'Void Aero II(?!I)': 'Extra Vent du néant',
+        'Void Aero III': 'Méga Vent du néant',
         'Void Aero IV': 'Giga Vent du néant',
         'Void Blizzard III': 'Méga Glace du néant',
         'Void Blizzard IV': 'Giga Glace du néant',

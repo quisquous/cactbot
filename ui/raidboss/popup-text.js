@@ -694,14 +694,14 @@ export class PopupText {
 
       // The trigger body must run synchronously when there is no promise.
       if (promise)
-        promise.then(triggerPostPromise, () => {});
+        promise.then(triggerPostPromise, (e) => onTriggerException(trigger, e));
       else
         triggerPostPromise();
     };
 
     // The trigger body must run synchronously when there is no delay.
     if (delayPromise)
-      delayPromise.then(triggerPostDelay, () => {});
+      delayPromise.then(triggerPostDelay, (e) => onTriggerException(trigger, e));
     else
       triggerPostDelay();
   }
