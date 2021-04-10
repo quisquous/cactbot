@@ -26,8 +26,8 @@ export default class RaidEmulatorTimeline extends Timeline {
       return;
 
     this.SyncTo(this.emulatedFightSync +
-      ((timestampOffset - this.emulatedFightSyncLastOffset) / 1000));
-    this._OnUpdateTimer();
+      ((timestampOffset - this.emulatedFightSyncLastOffset) / 1000), timestampOffset);
+    this._OnUpdateTimer(timestampOffset);
   }
 
   // Override
@@ -35,8 +35,8 @@ export default class RaidEmulatorTimeline extends Timeline {
   }
 
   // Override
-  SyncTo(fightNow) {
-    super.SyncTo(fightNow);
+  SyncTo(fightNow, currentTime) {
+    super.SyncTo(fightNow, currentTime);
 
     this.emulatedFightSync = fightNow;
     this.emulatedFightSyncLastOffset = this.emulatedTimeOffset;
