@@ -788,7 +788,7 @@ export class TimelineUI {
     bar.righttext = 'remain';
     bar.lefttext = e.text;
     bar.toward = 'right';
-    bar.style = !channeling ? 'fill' : 'empty';
+    bar.stylefill = !channeling ? 'fill' : 'empty';
 
     if (e.style)
       bar.applyStyles(e.style);
@@ -883,7 +883,7 @@ export class TimelineUI {
       this.debugFightTimer.duration = 10000; // anything big
       this.debugFightTimer.lefttext = 'elapsed';
       this.debugFightTimer.toward = 'right';
-      this.debugFightTimer.style = 'fill';
+      this.debugFightTimer.stylefill = 'fill';
       this.debugFightTimer.bg = 'transparent';
       this.debugFightTimer.fg = 'transparent';
       this.debugElement.appendChild(this.debugFightTimer);

@@ -56,11 +56,11 @@ export function setup(bars) {
       lightningTimer.fg = lightningFgColors[bars.speedBuffs.lightningStacks];
       if (bars.speedBuffs.lightningStacks === 0) {
         // Show sad red bar when you've lost all your pancakes.
-        lightningTimer.style = 'fill';
+        lightningTimer.stylefill = 'fill';
         lightningTimer.value = 0;
         lightningTimer.duration = 0;
       } else {
-        lightningTimer.style = 'empty';
+        lightningTimer.stylefill = 'empty';
 
         // Setting the duration resets the timer bar to 0, so set
         // duration first before adjusting the value.
