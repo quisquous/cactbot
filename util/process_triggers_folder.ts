@@ -82,6 +82,7 @@ const processAllFiles = async (root: string, tscCmd: string) => {
   fs.rmdirSync(root, { recursive: true });
 
   // Generate javascript from typescript.
+  // TODO: replace this with programatic use of TypeScript API.
   execSync(tscCmd);
 
   // Process files.
