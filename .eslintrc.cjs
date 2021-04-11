@@ -24,6 +24,7 @@ module.exports = {
       'files': ['**/raidboss/data/**/*'],
       'rules': {
         'rulesdir/cactbot-output-strings': 'error',
+        'rulesdir/cactbot-timeline-triggers': 'error',
       },
     },
     {
