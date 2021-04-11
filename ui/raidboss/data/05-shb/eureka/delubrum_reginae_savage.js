@@ -2418,7 +2418,7 @@ export default {
         'Aetherial Burst': 'Magiebombe',
         'Aetherial Orb': 'Magiekugel',
         'Aetherial Sphere': 'Ätherwind',
-        'Aetherial Ward': 'Magisch(?:e|er|es|en) Barriere',
+        'Aetherial Ward': 'Barriere',
         'Automatic Turret': 'Selbstschuss-Gyrocopter',
         'Avowed Avatar': 'Spaltteil der Eingeschworenen',
         'Ball Lightning': 'Elektrosphäre',

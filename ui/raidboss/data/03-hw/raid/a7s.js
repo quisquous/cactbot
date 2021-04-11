@@ -282,7 +282,7 @@ export default {
       'missingTranslations': true,
       'replaceSync': {
         'Bomb': 'Bombe',
-        'Boomtype Magitek Gobwalker G-VII': 'Gobumm-Stampfer VII',
+        'Boomtype Magitek Gobwalker G-VII': 'Gob-Stampfer VII-L',
         'Padlock': 'Vorhängeschloss',
         'Quickthinx Allthoughts': 'Denkfix',
         'Shanoa': 'Schwarz(?:e|er|es|en) Katze',
@@ -314,7 +314,7 @@ export default {
       'missingTranslations': true,
       'replaceSync': {
         'Bomb': 'bombe',
-        'Boomtype Magitek Gobwalker G-VII': 'gobblindé magitek G-VII Boumbardier',
+        'Boomtype Magitek Gobwalker G-VII': 'gobblindé magitek G-VII Lamineur',
         'electrocution gallery': 'square d\'exécution publique',
         'Padlock': 'cadenas',
         'Quickthinx Allthoughts': 'Quickthinx le Cerveau',
@@ -335,7 +335,7 @@ export default {
       'missingTranslations': true,
       'replaceSync': {
         'Bomb': '爆弾',
-        'Boomtype Magitek Gobwalker G-VII': 'VII号ゴブリウォーカーB型',
+        'Boomtype Magitek Gobwalker G-VII': 'VII号ゴブリウォーカーL型',
         'Electrocution gallery': '公開処刑広場',
         'Frostbite': '凍傷',
         'Padlock': '錠前',
@@ -370,7 +370,7 @@ export default {
       'missingTranslations': true,
       'replaceSync': {
         'Bomb': '炸弹',
-        'Boomtype Magitek Gobwalker G-VII': '爆破型7号哥布林战车',
+        'Boomtype Magitek Gobwalker G-VII': 'VII호 고블린워커 L형',
         'Padlock': '牢门的锁',
         'Quickthinx Allthoughts': '万事通 奎克辛克斯',
         'Shanoa': '夏诺雅',
@@ -402,7 +402,7 @@ export default {
       'missingTranslations': true,
       'replaceSync': {
         'Bomb': '폭탄',
-        'Boomtype Magitek Gobwalker G-VII': 'VII호 고블린워커 B형',
+        'Boomtype Magitek Gobwalker G-VII': '7号哥布林战车L型',
         'Padlock': '자물쇠',
         'Quickthinx Allthoughts': '만능의 퀵싱크스',
         'Shanoa': '샤노아',

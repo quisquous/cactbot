@@ -216,7 +216,7 @@ export default {
         'Spectral Berserker': 'Phantom-Berserker',
         'Spectral Necromancer': 'Phantom-Nekromantin',
         'Spectral Thief': 'Phantom-Dieb',
-        'Spectral White Mage': 'Phantom-Weißmagier',
+        'Spectral White Mage': 'Phantom-Weißmagierin',
         'The Illuminated Plaza': 'Platz der Erleuchteten',
         'The Mount Argai Mines': 'Minen des Argai',
         'The Summer Ballroom': 'Ballsaal der Grasgrummel',
