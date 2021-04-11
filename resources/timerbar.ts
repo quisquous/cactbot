@@ -12,7 +12,7 @@ export default class TimerBar extends HTMLElement {
   private _bg: string;
   private _fg: string;
   private _towardRight: boolean;
-  private _styleFill: boolean;
+  private _fill: boolean;
   private _leftText: string;
   private _centerText: string;
   private _rightText: string;
@@ -23,7 +23,7 @@ export default class TimerBar extends HTMLElement {
   private _animationFrame: number | null;
 
   static get observedAttributes(): string[] {
-    return ['duration', 'value', 'elapsed', 'hideafter', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'styleFill', 'toward', 'loop'];
+    return ['duration', 'value', 'elapsed', 'hideafter', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'stylefill', 'toward', 'loop'];
   }
 
   // Background color.
@@ -111,14 +111,14 @@ export default class TimerBar extends HTMLElement {
 
   // If "fill" then the progress goes empty-to-full, if "empty" then the
   // progress bar starts full and goes to empty.
-  set styleFill(s: 'empty' | 'fill' | null) {
+  set stylefill(s: 'empty' | 'fill' | null) {
     if (s === null)
-      this.removeAttribute('styleFill');
+      this.removeAttribute('stylefill');
     else
-      this.setAttribute('styleFill', s);
+      this.setAttribute('stylefill', s);
   }
-  get styleFill(): 'empty' | 'fill' | null {
-    return this.getAttribute('styleFill') as 'empty' | 'fill';
+  get stylefill(): 'empty' | 'fill' | null {
+    return this.getAttribute('stylefill') as 'empty' | 'fill';
   }
 
   // When the bar reaches 0, it is hidden after this many seconds. If ""
@@ -198,7 +198,7 @@ export default class TimerBar extends HTMLElement {
     this._bg = 'black';
     this._fg = 'yellow';
     this._towardRight = false;
-    this._styleFill = false;
+    this._fill = false;
     this._leftText = '';
     this._centerText = '';
     this._rightText = '';
@@ -368,8 +368,8 @@ export default class TimerBar extends HTMLElement {
     } else if (name === 'fg') {
       this._fg = newValue;
       this.layout();
-    } else if (name === 'styleFill') {
-      this._styleFill = newValue === 'fill';
+    } else if (name === 'stylefill') {
+      this._fill = newValue === 'fill';
       this.layout();
     } else if (name === 'toward') {
       this._towardRight = newValue === 'right';
@@ -416,7 +416,7 @@ export default class TimerBar extends HTMLElement {
 
     // To start full and animate to empty, we animate backwards and flip
     // the direction.
-    if (this._towardRight !== this._styleFill)
+    if (this._towardRight !== this._fill)
       this.foregroundElement.style.transformOrigin = '100% 0%';
     else
       this.foregroundElement.style.transformOrigin = '0% 0%';
@@ -444,7 +444,7 @@ export default class TimerBar extends HTMLElement {
     percent = Math.min(1, Math.max(0, percent));
     const displayRemain = remainSec ? remainSec.toFixed(1) : '';
     const displayElapsed = elapsedSec.toFixed(1);
-    if (this._styleFill)
+    if (this._fill)
       percent = 1.0 - percent;
     this.foregroundElement.style.width = `${percent * 100}%`;
     if (this._leftText !== '') {

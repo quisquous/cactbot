@@ -316,7 +316,7 @@ class Bars {
       this.o.mpTicker.width = window.getComputedStyle(this.o.mpTickContainer).width;
       this.o.mpTicker.height = window.getComputedStyle(this.o.mpTickContainer).height;
       this.o.mpTicker.bg = computeBackgroundColorFrom(this.o.mpTicker, 'bar-border-color');
-      this.o.mpTicker.styleFill = 'fill';
+      this.o.mpTicker.stylefill = 'fill';
       this.o.mpTicker.loop = true;
     }
 
@@ -544,10 +544,10 @@ class Bars {
     // Hide out of combat if requested
     if (!this.options.ShowMPTickerOutOfCombat && !this.inCombat) {
       this.o.mpTicker.duration = 0;
-      this.o.mpTicker.styleFill = 'empty';
+      this.o.mpTicker.stylefill = 'empty';
       return;
     }
-    this.o.mpTicker.styleFill = 'fill';
+    this.o.mpTicker.stylefill = 'fill';
 
     const baseTick = this.inCombat ? kMPCombatRate : kMPNormalRate;
     let umbralTick = 0;
