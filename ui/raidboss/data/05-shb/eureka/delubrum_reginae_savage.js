@@ -1,6 +1,7 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -530,7 +531,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: ['トリニティ・シーカー', 'シーカーの分体'], id: '5AC0' }),
       preRun: (data) => delete data.ironSplitter,
       promise: async (data, matches) => {
-        const seekerData = await window.callOverlayHandler({
+        const seekerData = await callOverlayHandler({
           call: 'getCombatants',
           ids: [parseInt(matches.sourceId, 16)],
         });
@@ -601,7 +602,7 @@ export default {
       promise: async (data, matches) => {
         // The avatars get moved right before the comets, and the position data
         // is stale in the combat log.  :C
-        const cometData = await window.callOverlayHandler({
+        const cometData = await callOverlayHandler({
           call: 'getCombatants',
           ids: data.seekerCometIds.slice(0, 2),
         });
@@ -1706,13 +1707,13 @@ export default {
         let combatantDataBoss = null;
         let combatantDataAvatars = null;
         if (combatantNameBoss) {
-          combatantDataBoss = await window.callOverlayHandler({
+          combatantDataBoss = await callOverlayHandler({
             call: 'getCombatants',
             names: [combatantNameBoss],
           });
         }
         if (combatantNameAvatar) {
-          combatantDataAvatars = await window.callOverlayHandler({
+          combatantDataAvatars = await callOverlayHandler({
             call: 'getCombatants',
             names: [combatantNameAvatar],
           });
@@ -1963,7 +1964,7 @@ export default {
       suppressSeconds: 10,
       promise: async (data, matches) => {
         const unseenIds = data.unseenIds;
-        const unseenData = await window.callOverlayHandler({
+        const unseenData = await callOverlayHandler({
           call: 'getCombatants',
           ids: unseenIds,
         });

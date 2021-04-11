@@ -1,6 +1,7 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -250,7 +251,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AA3' }),
       preRun: (data) => delete data.ironSplitter,
       promise: async (data, matches) => {
-        const seekerData = await window.callOverlayHandler({
+        const seekerData = await callOverlayHandler({
           call: 'getCombatants',
           ids: [parseInt(matches.sourceId, 16)],
         });
@@ -958,7 +959,7 @@ export default {
       suppressSeconds: 10,
       promise: async (data, matches) => {
         const unseenIds = data.unseenIds;
-        const unseenData = await window.callOverlayHandler({
+        const unseenData = await callOverlayHandler({
           call: 'getCombatants',
           ids: unseenIds,
         });
