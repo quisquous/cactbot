@@ -130,7 +130,7 @@ Options.Triggers.push({
 
 若您只是想修改 `信息文本`，你可以 [通过cactbot配置界面改变触发器文本](#changing-trigger-text-with-the-cactbot-ui) 实现。
 
-其中一种调整方式是编辑触发器的输出。 您可以在 [ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js](https://github.com/quisquous/cactbot/blob/cce8bc6b10d2210fa512bd1c8edd39c260cc3df8/ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js#L715-L743) 中找到原本的 fireball #1 触发器。
+其中一种调整方式是编辑触发器的输出。 您可以在 [ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js](https://github.com/quisquous/cactbot/blob/triggers/04-sb/ultimate/unending_coil_ultimate.js#:~:text=UCU%20Nael%20Fireball%201) 中找到原本的 fireball #1 触发器。
 
 您需要将以下的代码粘贴至您的用户自定义js文件底部。
 
@@ -167,7 +167,7 @@ Options.Triggers.push({
 
 ### 例2：使挑衅提示适用于全职业
 
-目前，只有团队成员的挑衅会触发提示，并且不是所有职业都能收到提示。 该例子展示了如何使其适用于所有职业。 该挑衅触发器可以在 [ui/raidboss/data/00-misc/general.js](https://github.com/quisquous/cactbot/blob/cce8bc6b10d2210fa512bd1c8edd39c260cc3df8/ui/raidboss/data/00-misc/general.js#L11-L30) 中找到。
+目前，只有团队成员的挑衅会触发提示，并且不是所有职业都能收到提示。 该例子展示了如何使其适用于所有职业。 该挑衅触发器可以在 [ui/raidboss/data/00-misc/general.js](https://github.com/quisquous/cactbot/blob/triggers/00-misc/general.js#:~:text=General%20Provoke) 中找到。
 
 我们需要修改 `condition` 函数(function)。 由于此处的id与内置的 `General Provoke` 触发器一致，因此会覆盖同名的内置触发器。
 
