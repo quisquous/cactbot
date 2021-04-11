@@ -3,23 +3,10 @@ import eslint from 'eslint';
 import fs from 'fs';
 import path from 'path';
 import process from 'process';
+import { walkDirAsync } from './file_utils';
 
 const root = '../dist/triggers/ui/raidboss/data/';
 const tscCmd = `..\\node_modules\\.bin\\tsc --build ..\\tsconfig_triggers.json`;
-
-// Utility function to walk directories
-const asyncWalkDir = async (dir: string, callback: (filename: string) => Promise<void>) => {
-  if (fs.statSync(dir).isFile()) {
-    await callback(path.posix.join(dir));
-    return;
-  }
-  const subdirs = fs.readdirSync(dir);
-  for (const subdir of subdirs) {
-    const dirPath = path.posix.join(dir, subdir);
-    const isDirectory = fs.statSync(dirPath).isDirectory();
-    await (isDirectory ? asyncWalkDir(dirPath, callback) : callback(dirPath));
-  }
-};
 
 // Probably we could do this more cleanly with babel, but we'll just regex for simplicitly.
 const removeImports = (lines: string[]) => {
@@ -98,7 +85,7 @@ const processAllFiles = async (root: string, tscCmd: string) => {
   execSync(tscCmd);
 
   // Process files.
-  await asyncWalkDir(root, async (filename) => processFile(filename));
+  await walkDirAsync(root, async (filename) => processFile(filename));
   process.exit(0);
 };
 
