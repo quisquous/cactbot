@@ -155,7 +155,7 @@ export default {
       // This head marker is used on players and NPCs, so we have to exclude NPCs explicitly.
       id: 'Ghimlyt Dark Heirsbane',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
-      condition: (data, matches) => matches.targetId[0] !== '4' && Conditions.caresAboutPhysical()(data, matches),
+      condition: (data, matches) => matches.targetId[0] !== '4' && Conditions.caresAboutPhysical()(data),
       response: Responses.tankBuster(),
     },
     {
