@@ -141,7 +141,6 @@ export default {
     {
       id: 'LeviEx Wavespine Sahagin Add',
       netRegex: NetRegexes.addedCombatant({ name: 'Wavespine Sahagin', capture: false }),
-      netRegexCn: NetRegexes.addedCombatant({ name: '波棘鱼人', capture: false }),
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -170,7 +169,6 @@ export default {
     {
       id: 'LeviEx Gyre Spume',
       netRegex: NetRegexes.addedCombatant({ name: 'Gyre Spume', capture: false }),
-      netRegexCn: NetRegexes.addedCombatant({ name: '游涡泡沫', capture: false }),
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -183,7 +181,6 @@ export default {
     {
       id: 'LeviEx Wave Spume',
       netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
-      netRegexCn: NetRegexes.addedCombatant({ name: '巨浪泡沫', capture: false }),
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -196,7 +193,6 @@ export default {
     {
       id: 'LeviEx Wave Spume Explosion',
       netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
-      netRegexCn: NetRegexes.addedCombatant({ name: '巨浪泡沫', capture: false }),
       // ~35.2 seconds from added combatant until :Aqua Burst:888: explosion.
       // Tell everybody because not much else going on in this fight,
       // and other people need to get away.
