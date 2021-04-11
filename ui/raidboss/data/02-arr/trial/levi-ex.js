@@ -240,7 +240,7 @@ export default {
           en: 'Hit The Button!',
           de: 'Mit Elementarumwandler interagieren!',
           fr: 'Activez la barrière !',
-          cn: '打开开关',
+          cn: '打开开关！',
         },
       },
     },
