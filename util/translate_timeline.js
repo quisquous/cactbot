@@ -3,7 +3,7 @@ import path from 'path';
 import { ArgumentParser } from 'argparse';
 import { findMissing } from './find_missing_timeline_translations';
 import { Timeline } from '../ui/raidboss/timeline';
-import { walkDir } from './file_utils';
+import { walkDirSync } from './file_utils';
 
 const parser = new ArgumentParser({
   addHelp: true,
@@ -26,7 +26,7 @@ const findTriggersFile = (shortName) => {
   shortName = shortName.replace(/\.(?:js|txt)$/, '');
 
   let found = undefined;
-  walkDir(rootDir, (filename) => {
+  walkDirSync(rootDir, (filename) => {
     if (filename.endsWith(`${shortName}.js`))
       found = filename;
   });

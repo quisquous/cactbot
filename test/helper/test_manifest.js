@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import chai from 'chai';
-import { walkDir } from '../../util/file_utils';
+import { walkDirSync } from '../../util/file_utils';
 const { assert } = chai;
 
 const testManifestFile = (file) => {
@@ -14,7 +14,7 @@ const testManifestFile = (file) => {
     manifestLines = contents.split('\n').filter((x) => !/^\s*$/.test(x)).map((x) => x.trim());
 
     const basePath = path.dirname(file);
-    walkDir(basePath, (filePath) => {
+    walkDirSync(basePath, (filePath) => {
       const relative = path.relative(basePath, filePath);
       // Manifests use forward slashes, so match that here.
       const withForwardSlashes = relative.replace(/\\/g, '/');

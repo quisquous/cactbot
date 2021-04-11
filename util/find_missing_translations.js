@@ -4,7 +4,7 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import readline from 'readline';
 import { findMissing } from './find_missing_timeline_translations';
-import { walkDir } from './file_utils';
+import { walkDirSync } from './file_utils';
 
 const parser = new argparse.ArgumentParser({
   addHelp: true,
@@ -48,7 +48,7 @@ const basePath = () => path.dirname(path.dirname(fileURLToPath(import.meta.url))
 // Return a list of all javascript filenames found under basePath()
 const findAllJavascriptFiles = (filter) => {
   const arr = [];
-  walkDir(basePath(), (filepath) => {
+  walkDirSync(basePath(), (filepath) => {
     if (ignoreDirs.some((str) => filepath.includes(str)))
       return;
     if (!filepath.endsWith('.js'))

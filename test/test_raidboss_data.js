@@ -5,7 +5,7 @@ import Mocha from 'mocha';
 import testManifestFiles from './helper/test_manifest';
 import testTimelineFiles from './helper/test_timeline';
 import testTriggerFiles from './helper/test_trigger';
-import { walkDir } from '../util/file_utils';
+import { walkDirSync } from '../util/file_utils';
 
 // This file runs in one of two ways:
 // (1) As a part of Mocha's normal execution, running all the files in test...
@@ -29,7 +29,7 @@ const triggerFiles = [];
 
 const processInputs = (inputPath) => {
   inputPath.forEach((path) => {
-    walkDir(path, (filepath) => {
+    walkDirSync(path, (filepath) => {
       if (/\/(?:raidboss|oopsyraidsy)\/data\/manifest.txt/.test(filepath)) {
         manifestFiles.push(filepath);
         return;
