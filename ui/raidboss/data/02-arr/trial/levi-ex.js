@@ -1,6 +1,4 @@
-import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
-import { Responses } from '../../../../../resources/responses';
 import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -54,15 +52,67 @@ export default {
       },
     },
     {
-      id: 'LeviEx Dreadwash',
-      netRegex: NetRegexes.startsUsing({ source: 'Wavetooth Sahagin', id: '749' }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Wellenzahn-Sahagin', id: '749' }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Sahuagin Dent-Du-Ressac', id: '749' }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ウェイブトゥース・サハギン', id: '749' }),
-      netRegexCn: NetRegexes.startsUsing({ source: '波齿鱼人', id: '749' }),
-      netRegexKo: NetRegexes.startsUsing({ source: '물결이빨 사하긴', id: '749' }),
-      condition: (data) => data.CanStun(),
-      response: Responses.stun('alarm'),
+      id: 'LeviEx Wavespine Sahagin Add',
+      netRegex: NetRegexes.addedCombatant({ name: 'Wavespine Sahagin', capture: false }),
+      suppressSeconds: 5,
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Adds',
+        },
+      },
+    },
+    {
+      id: 'LeviEx Wavetooth Sahagin Add',
+      netRegex: NetRegexes.addedCombatant({ name: 'Wavetooth Sahagin', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Wellenzahn-Sahagin', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Sahuagin Dent-Du-Ressac', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'ウェイブトゥース・サハギン', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '波齿鱼人', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '물결이빨 사하긴', capture: false }),
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Wavetooth Add',
+        },
+      },
+    },
+    {
+      id: 'LeviEx Gyre Spume',
+      netRegex: NetRegexes.addedCombatant({ name: 'Gyre Spume', capture: false }),
+      suppressSeconds: 5,
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Gyre Spumes',
+        },
+      },
+    },
+    {
+      id: 'LeviEx Wave Spume',
+      netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
+      suppressSeconds: 5,
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Wave Spume Adds',
+        },
+      },
+    },
+    {
+      id: 'LeviEx Wave Spume Explosion',
+      netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
+      // ~35.2 seconds from added combatant until :Aqua Burst:888: explosion.
+      // Tell everybody because not much else going on in this fight,
+      // and other people need to get away.
+      delaySeconds: 30,
+      suppressSeconds: 5,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Burst Soon',
+        },
+      },
     },
     {
       id: 'LeviEx Elemental Converter',
