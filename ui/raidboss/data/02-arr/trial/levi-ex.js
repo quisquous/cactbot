@@ -155,6 +155,7 @@ export default {
         text: {
           en: 'Kill Adds',
           de: 'Besiege Adds',
+          fr: 'Tuez les adds',
         },
       },
     },
@@ -171,6 +172,7 @@ export default {
         text: {
           en: 'Kill Wavetooth Add',
           de: 'Besiege Wellenzahn Add',
+          fr: 'Tuez l\'add Dent-du-ressac',
         },
       },
     },
@@ -188,6 +190,7 @@ export default {
         text: {
           en: 'Kill Gyre Spumes',
           de: 'Besiege Gischtblase',
+          fr: 'Tuez les écumes concentriques',
         },
       },
     },
@@ -205,6 +208,7 @@ export default {
         text: {
           en: 'Wave Spume Adds',
           de: 'Gischtwelle Adds',
+          fr: 'Tuez les écumes ondulantes',
         },
       },
     },
@@ -226,6 +230,7 @@ export default {
         text: {
           en: 'Burst Soon',
           de: 'Gischtwelle platzen gleich',
+          fr: 'Burst bientôt',
         },
       },
     },
@@ -307,6 +312,7 @@ export default {
         'Wavespine Sahagin': 'Sahuagin épine-du-ressac',
       },
       'replaceText': {
+        '\\(NW\\)': '(NO)',
         'Aqua Breath': 'Aquasouffle',
         'Aqua Burst': 'Explosion aquatique',
         'Body Slam': 'Charge physique',

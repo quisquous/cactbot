@@ -24,6 +24,7 @@ export default {
         text: {
           en: 'Stand on webs',
           de: 'Auf den Spinnennetzen stehen',
+          fr: 'Placez-vous dans les toiles',
           ja: 'アンキレーウェブに入る',
           cn: '站在网上',
           ko: '거미줄 위에 서기',
@@ -147,6 +148,7 @@ export default {
         text: {
           en: 'Drop Web Outside',
           de: 'Spinnennetz draußen ablegen',
+          fr: 'Déposez les toiles à l\'extérieur',
           ja: 'ウェブを外周に捨てる',
           cn: '蛛网点名，放在场边',
           ko: '거미줄 바깥쪽으로 빼기',
@@ -168,7 +170,7 @@ export default {
         text: {
           en: 'Puddles on YOU',
           de: 'Pfützen auf DIR',
-          fr: 'Mare sur VOUS',
+          fr: 'Zones au sol sur VOUS',
           ja: '自分に床範囲',
           cn: '圈圈点名',
           ko: '장판 바깥에 깔기',
@@ -225,6 +227,7 @@ export default {
         text: {
           en: 'Stand in one puddle',
           de: 'In einer Fläche stehen',
+          fr: 'Placez-vous dans une zone au sol',
           ja: '範囲に入る',
           cn: '站在圈里',
           ko: '장판으로',
@@ -240,6 +243,7 @@ export default {
         text: {
           en: 'Drop meteor back or left',
           de: 'Meteor hinten oder links ablegen',
+          fr: 'Déposez le météore derrière ou à gauche',
           ja: 'メテオ、後ろや左に置く',
           cn: '流星点名，放在背后或左边',
           ko: '메테오 뒤/왼쪽으로 빼기',
@@ -261,6 +265,7 @@ export default {
         text: {
           en: 'Get off rectangle platform',
           de: 'Von der plattform runter gehen',
+          fr: 'Descendez de la plateforme rectangle',
           ja: '通路で回避',
           cn: '离开平台',
           ko: '통로로 이동',
@@ -302,6 +307,7 @@ export default {
         tankLasers: {
           en: 'Tank lasers--Avoid party',
           de: 'Tank lasers--Weg von der Party',
+          fr: 'Tank lasers - Évitez le groupe',
           ja: 'タンクレーザー - 外に',
           cn: '坦克激光--远离人群',
           ko: '탱커 레이저-- 피하기',
@@ -309,6 +315,7 @@ export default {
         avoidTanks: {
           en: 'Avoid tanks',
           de: 'Weg von den Tanks',
+          fr: 'Évitez les tanks',
           ja: 'タンクから離れる',
           cn: '远离坦克',
           ko: '탱커 피하기',
@@ -328,6 +335,7 @@ export default {
         text: {
           en: 'Get orbs',
           de: 'Kugeln nehmen',
+          fr: 'Prenez les orbes',
           ja: '玉を取る',
           cn: '撞球',
           ko: '구슬 먹기',
@@ -397,6 +405,7 @@ export default {
         text: {
           en: 'Close to axes, avoid bulbs',
           de: 'Nahe den Äxten, vermeide Knospen',
+          fr: 'Soyez proche des haches, évitez les bulbes',
           ja: '刃物の髪に近づき、丸い髪から離れる',
           cn: '靠近斧状发，远离球状发',
           ko: '도끼모양에 붙고, 둥근모양은 피하기',
@@ -412,6 +421,7 @@ export default {
         text: {
           en: 'Avoid scythe line AoEs',
           de: 'Weiche den Sensen AOEs aus',
+          fr: 'Évitez les AoEs en lignes des faux',
           ja: '十字AoE',
           cn: '躲避镰刀直线AOE',
           ko: '직선 장판 피하기',
@@ -428,6 +438,7 @@ export default {
         text: {
           en: 'Avoid purple circles',
           de: 'Vermeide die lilanen Flächen',
+          fr: 'Évitez les cercles violets',
           ja: '紫の円範囲を避ける',
           cn: '远离紫圈',
           ko: '보라색 원 피하기',
@@ -463,6 +474,7 @@ export default {
         skyLaserOnYou: {
           en: '16x Sky Laser on YOU!',
           de: '16x Himmelslaser auf DIR!',
+          fr: '16x Lasers du ciel sur VOUS',
           ja: '自分に16連撃潜地式波動砲！',
           cn: '16连追踪AOE点名',
           ko: '16 하늘 레이저 대상자',
@@ -470,6 +482,7 @@ export default {
         avoidSkyLasers: {
           en: 'Avoid Sky Lasers',
           de: 'Himmelslaser ausweichen',
+          fr: 'Évitez les lasers du ciel',
           ja: '潜地式波動砲を避ける',
           cn: '躲避追踪AOE',
           ko: '하늘 레이저 피하기',
@@ -583,7 +596,6 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Arachne Eve': 'Arachné mère',
         'Calofisteri': 'Calofisteri',
@@ -603,6 +615,7 @@ export default {
         'The Tomb Of The Nullstone': 'Tombeau de la Clef de voûte',
       },
       'replaceText': {
+        '\\?': ' ?',
         'Acceleration Bomb': 'Bombe accélératrice',
         'Arachne Web': 'Toile d\'Arachné',
         'Aura Burst': 'Déflagration d\'aura',
@@ -634,6 +647,7 @@ export default {
         'Mega Death': 'Mégamort',
         'Megiddo Flame': 'Flamme de Megiddo',
         'Meteor(?![\\w\\s])': 'Météore',
+        'Meteor Headmarkers': 'Marqueurs de météores',
         'Meteor Impact': 'Impact de météore',
         'Necropurge': 'Nécropurge',
         'Penetration': 'Pénétration',
@@ -642,8 +656,10 @@ export default {
         'Pyramid': 'Pyramide',
         'Shadow Burst': 'Salve ténébreuse',
         'Silken Spray': 'Aspersion de soie',
+        'Sphere': 'Sphère',
         'Split End': 'Pointes fourchues',
         'Sticky Wicket': 'Projectile collant',
+        'Tank Lasers': 'Tank lasers',
         'The Widow\'s Embrace': 'Gravité arachnéenne',
         'The Widow\'s Kiss': 'Attraction arachnéenne',
         'Transfiguration': 'Transmutation',
