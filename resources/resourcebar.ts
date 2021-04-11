@@ -20,14 +20,14 @@ export default class ResourceBar extends HTMLElement {
   _extraValue: number;
   _scale: number;
   _towardRight: boolean;
-  _styleFill: boolean;
+  _fill: boolean;
   _leftText: string;
   _centerText: string;
   _rightText: string;
   _connected: boolean;
 
   static get observedAttributes(): string[] {
-    return ['value', 'maxvalue', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'toward', 'extravalue', 'extracolor'];
+    return ['value', 'maxvalue', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'toward', 'stylefill', 'extravalue', 'extracolor'];
   }
 
   // All visual dimensions are scaled by this.
@@ -113,11 +113,11 @@ export default class ResourceBar extends HTMLElement {
 
   // If "fill" then the progress goes empty-to-full, if "empty" then the
   // progress bar starts full and goes to empty.
-  set styleFill(s: 'empty' | 'full' | null) {
-    this.setAttribute('styleFill', s ?? 'empty');
+  set stylefill(s: 'empty' | 'full' | null) {
+    this.setAttribute('stylefill', s ?? 'empty');
   }
-  get styleFill(): 'empty' | 'full' | null {
-    return this.getAttribute('styleFill') as 'empty' | 'full' | null;
+  get stylefill(): 'empty' | 'full' | null {
+    return this.getAttribute('stylefill') as 'empty' | 'full' | null;
   }
 
   // Chooses what should be shown in the text field in each area of
@@ -178,7 +178,7 @@ export default class ResourceBar extends HTMLElement {
     this._extraValue = 0;
     this._scale = 1;
     this._towardRight = true;
-    this._styleFill = true;
+    this._fill = true;
     this._leftText = '';
     this._centerText = '';
     this._rightText = '';
@@ -193,7 +193,7 @@ export default class ResourceBar extends HTMLElement {
     if (this.fg !== null) this._fg = this.fg;
     if (this.scale !== null) this._scale = Math.max(parseFloat(this.scale), 0.01);
     if (this.toward !== null) this._towardRight = this.toward !== 'left';
-    if (this.styleFill !== null) this._styleFill = this.styleFill !== 'empty';
+    if (this.stylefill !== null) this._fill = this.stylefill !== 'empty';
     if (this.lefttext !== null) this._leftText = this.lefttext;
     if (this.centertext !== null) this._centerText = this.centertext;
     if (this.righttext !== null) this._rightText = this.righttext;
@@ -320,7 +320,7 @@ export default class ResourceBar extends HTMLElement {
 
     // To start full and animate to empty, we animate backwards and flip
     // the direction.
-    if (!this._styleFill)
+    if (!this._fill)
       this._towardRight = !this._towardRight;
 
     const backgroundStyle = this.backgroundElement.style;
@@ -395,7 +395,7 @@ export default class ResourceBar extends HTMLElement {
     let percent = this._maxValue <= 0 ? 1 : this._value / this._maxValue;
     // Keep it between 0 and 1.
     percent = Math.min(1, Math.max(0, percent));
-    if (!this._styleFill)
+    if (!this._fill)
       percent = 1.0 - percent;
     this.foregroundElement.style.transform = `scale(${percent},1)`;
 
