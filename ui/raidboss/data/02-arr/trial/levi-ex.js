@@ -49,6 +49,11 @@ export default {
     {
       id: 'LeviEx Dive Counter Wave Spume Adjust',
       netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Gischtwelle', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Écume Ondulante', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'ウェイブ・スピューム', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '巨浪泡沫', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '파도치는 물거품', capture: false }),
       suppressSeconds: 5,
       // Usually the pattern is slam / dive / dive / slam, but after wave spumes appear,
       // there is a single dive then a slam.  Adjust for this one-off case here.
@@ -139,11 +144,17 @@ export default {
     {
       id: 'LeviEx Wavespine Sahagin Add',
       netRegex: NetRegexes.addedCombatant({ name: 'Wavespine Sahagin', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Wellendorn-Sahagin', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Sahuagin Épine-Du-Ressac', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'ウェイブスパイン・サハギン', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '波棘鱼人', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '물결등뼈 사하긴', capture: false }),
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Kill Adds',
+          de: 'Besiege Adds',
         },
       },
     },
@@ -159,34 +170,52 @@ export default {
       outputStrings: {
         text: {
           en: 'Kill Wavetooth Add',
+          de: 'Besiege Wellenzahn Add',
         },
       },
     },
     {
       id: 'LeviEx Gyre Spume',
       netRegex: NetRegexes.addedCombatant({ name: 'Gyre Spume', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Gischtblase', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Écume Concentrique', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'ジャイヤ・スピューム', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '游涡泡沫', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '소용돌이치는 물거품', capture: false }),
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Kill Gyre Spumes',
+          de: 'Besiege Gischtblase',
         },
       },
     },
     {
       id: 'LeviEx Wave Spume',
       netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Gischtwelle', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Écume Ondulante', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'ウェイブ・スピューム', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '巨浪泡沫', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '파도치는 물거품', capture: false }),
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Wave Spume Adds',
+          de: 'Gischtwelle Adds',
         },
       },
     },
     {
       id: 'LeviEx Wave Spume Explosion',
       netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Gischtwelle', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Écume Ondulante', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'ウェイブ・スピューム', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '巨浪泡沫', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '파도치는 물거품', capture: false }),
       // ~35.2 seconds from added combatant until :Aqua Burst:888: explosion.
       // Tell everybody because not much else going on in this fight,
       // and other people need to get away.
@@ -196,6 +225,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Burst Soon',
+          de: 'Gischtwelle platzen gleich',
         },
       },
     },
@@ -240,8 +270,10 @@ export default {
         'Elemental Converter': 'Elementarumwandler',
         'Leviathan(?!\'s)': 'Leviathan',
         'Leviathan\'s Tail': 'Leviathans Schwanz',
+        'Gyre Spume': 'Gischtblase',
         'Wave Spume': 'Gischtwelle',
         'Wavetooth Sahagin': 'Wellenzahn-Sahagin',
+        'Wavespine Sahagin': 'Wellendorn-Sahagin',
       },
       'replaceText': {
         'Aqua Breath': 'Aqua-Atem',
@@ -269,8 +301,10 @@ export default {
         'Elemental Converter': 'activateur de la barrière',
         'Leviathan(?!\'s)': 'Léviathan',
         'Leviathan\'s Tail': 'queue de Léviathan',
+        'Gyre Spume': 'écume concentrique',
         'Wave Spume': 'écume ondulante',
         'Wavetooth Sahagin': 'Sahuagin dent-du-ressac',
+        'Wavespine Sahagin': 'Sahuagin épine-du-ressac',
       },
       'replaceText': {
         'Aqua Breath': 'Aquasouffle',
@@ -298,8 +332,10 @@ export default {
         'Elemental Converter': '魔法障壁発動器',
         'Leviathan(?!\'s)': 'リヴァイアサン',
         'Leviathan\'s Tail': 'リヴァイアサン・テール',
+        'Gyre Spume': 'ジャイヤ・スピューム',
         'Wave Spume': 'ウェイブ・スピューム',
         'Wavetooth Sahagin': 'ウェイブトゥース・サハギン',
+        'Wavespine Sahagin': 'ウェイブスパイン・サハギン',
       },
       'replaceText': {
         'Aqua Breath': 'アクアブレス',
@@ -327,8 +363,10 @@ export default {
         'Elemental Converter': '魔法障壁发动器',
         'Leviathan(?!\'s)': '利维亚桑',
         'Leviathan\'s Tail': '利维亚桑的尾巴',
+        'Gyre Spume': '游涡泡沫',
         'Wave Spume': '巨浪泡沫',
         'Wavetooth Sahagin': '波齿鱼人',
+        'Wavespine Sahagin': '波棘鱼人',
       },
       'replaceText': {
         'Aqua Breath': '水流吐息',
@@ -356,8 +394,10 @@ export default {
         'Elemental Converter': '마법 장벽 발동기',
         'Leviathan(?!\'s)': '리바이어선',
         'Leviathan\'s Tail': '리바이어선 꼬리',
+        'Gyre Spume': '소용돌이치는 물거품',
         'Wave Spume': '파도치는 물거품',
         'Wavetooth Sahagin': '물결이빨 사하긴',
+        'Wavespine Sahagin': '물결등뼈 사하긴',
       },
       'replaceText': {
         'Aqua Breath': '물의 숨결',

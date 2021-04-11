@@ -168,7 +168,7 @@ export default {
       'replaceSync': {
         'Sinister Bubble': 'Finster(?:e|er|es|en) Blase',
         'Rukshs Dheem': 'Rukshs Dheem',
-        'Unknown': 'Unbekannt(?:e|er|es|en)',
+        'Unknown': 'Abscheulich(?:e|er|es|en) Monstrum',
         'Kyklops': 'Kyklops',
         'Depth Grip': 'Hand des Ozeans',
         'Katharsis': 'Platz der Katharsis',
