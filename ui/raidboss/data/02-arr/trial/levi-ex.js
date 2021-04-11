@@ -114,6 +114,7 @@ export default {
           en: 'Attack Tail Only',
           de: 'Nur den Schwanz angreifen',
           fr: 'Attaquez seulement la queue',
+          cn: '攻击尾巴',
         },
       },
     },
@@ -133,17 +134,20 @@ export default {
           en: 'Attack Head Only',
           de: 'Nur den Kopf angreifen',
           fr: 'Attaquez seulement la tête',
+          cn: '攻击头部',
         },
       },
     },
     {
       id: 'LeviEx Wavespine Sahagin Add',
       netRegex: NetRegexes.addedCombatant({ name: 'Wavespine Sahagin', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '波棘鱼人', capture: false }),
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Kill Adds',
+          cn: '击杀小怪',
         },
       },
     },
@@ -159,34 +163,40 @@ export default {
       outputStrings: {
         text: {
           en: 'Kill Wavetooth Add',
+          cn: '优先击杀波齿鱼人',
         },
       },
     },
     {
       id: 'LeviEx Gyre Spume',
       netRegex: NetRegexes.addedCombatant({ name: 'Gyre Spume', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '游涡泡沫', capture: false }),
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Kill Gyre Spumes',
+          cn: '打黄泡泡',
         },
       },
     },
     {
       id: 'LeviEx Wave Spume',
       netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '巨浪泡沫', capture: false }),
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Wave Spume Adds',
+          cn: '蓝泡泡出现',
         },
       },
     },
     {
       id: 'LeviEx Wave Spume Explosion',
       netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '巨浪泡沫', capture: false }),
       // ~35.2 seconds from added combatant until :Aqua Burst:888: explosion.
       // Tell everybody because not much else going on in this fight,
       // and other people need to get away.
@@ -196,6 +206,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Burst Soon',
+          cn: '黄泡泡即将爆炸',
         },
       },
     },
@@ -229,6 +240,7 @@ export default {
           en: 'Hit The Button!',
           de: 'Mit Elementarumwandler interagieren!',
           fr: 'Activez la barrière !',
+          cn: '打开开关',
         },
       },
     },
