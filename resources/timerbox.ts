@@ -20,7 +20,7 @@ export default class TimerBox extends HTMLElement {
   private _scale: number;
   private _valueScale: number;
   private _towardTop: boolean;
-  private _styleFill: boolean;
+  private _fill: boolean;
   private _hideAfter: number;
   private _bigAtZero: boolean;
   private _roundUpThreshold: boolean;
@@ -202,7 +202,7 @@ export default class TimerBox extends HTMLElement {
     this._scale = 1;
     this._valueScale = 1;
     this._towardTop = true;
-    this._styleFill = true;
+    this._fill = true;
     this._hideAfter = -1;
     this._bigAtZero = true;
     this._roundUpThreshold = true;
@@ -216,7 +216,7 @@ export default class TimerBox extends HTMLElement {
     if (this.fg !== null) this._fg = this.fg;
     if (this.scale !== null) this._scale = Math.max(parseFloat(this.scale), 0.01);
     if (this.toward !== null) this._towardTop = this.toward !== 'bottom';
-    if (this.stylefill !== null) this._styleFill = this.stylefill !== 'empty';
+    if (this.stylefill !== null) this._fill = this.stylefill !== 'empty';
     if (this.hideafter !== null && this.hideafter !== '') this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
   }
 
@@ -279,7 +279,7 @@ export default class TimerBox extends HTMLElement {
       this._towardTop = newValue !== 'bottom';
       this.layout();
     } else if (name === 'stylefill') {
-      this._styleFill = newValue !== 'empty';
+      this._fill = newValue !== 'empty';
       this.layout();
     } else if (name === 'bg') {
       this._bg = newValue;
@@ -308,7 +308,7 @@ export default class TimerBox extends HTMLElement {
     // To start full and animate to empty, we animate backwards and flip
     // the direction.
     let towardTop = this._towardTop;
-    if (this._styleFill)
+    if (this._fill)
       towardTop = !towardTop;
 
     const largeBackgroundStyle = this.largeBoxBackgroundElement.style;
@@ -382,7 +382,7 @@ export default class TimerBox extends HTMLElement {
       this.timerElement.style.display = 'block';
       const animStartValue = this._duration > this._threshold ? this._threshold : this._duration;
       let animPercent = (animStartValue - remainingSec) / animStartValue;
-      if (!this._styleFill)
+      if (!this._fill)
         animPercent = 1.0 - animPercent;
       this.largeBoxForegroundElement.style.transform = `scale(1, ${animPercent})`;
     }
