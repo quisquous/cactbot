@@ -144,6 +144,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Kill Adds',
+          fr: 'Tuez les adds',
         },
       },
     },
@@ -159,6 +160,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Kill Wavetooth Add',
+          fr: 'Tuez l\'add Dent-du-ressac',
         },
       },
     },
@@ -170,6 +172,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Kill Gyre Spumes',
+          fr: 'Tuez les écumes concentriques',
         },
       },
     },
@@ -181,6 +184,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Wave Spume Adds',
+          fr: 'Tuez les écumes ondulantes',
         },
       },
     },
@@ -196,6 +200,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Burst Soon',
+          fr: 'Burst bientôt',
         },
       },
     },
@@ -273,6 +278,7 @@ export default {
         'Wavetooth Sahagin': 'Sahuagin dent-du-ressac',
       },
       'replaceText': {
+        '\\(NW\\)': '(NO)',
         'Aqua Breath': 'Aquasouffle',
         'Aqua Burst': 'Explosion aquatique',
         'Body Slam': 'Charge physique',
