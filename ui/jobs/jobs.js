@@ -409,7 +409,7 @@ class Bars {
 
     const timerBox = document.createElement('timer-box');
     container.appendChild(timerBox);
-    timerBox.style = 'empty';
+    timerBox.stylefill = 'empty';
     if (options.fgColor)
       timerBox.fg = computeBackgroundColorFrom(timerBox, options.fgColor);
     timerBox.bg = 'black';
