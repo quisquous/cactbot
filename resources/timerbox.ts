@@ -30,7 +30,7 @@ export default class TimerBox extends HTMLElement {
   private _animationFrame: number | null;
 
   static get observedAttributes(): string[] {
-    return ['duration', 'threshold', 'bg', 'fg', 'toward', 'styleFill', 'hideafter', 'bigatzero', 'roundupthreshold'];
+    return ['duration', 'threshold', 'bg', 'fg', 'toward', 'stylefill', 'hideafter', 'bigatzero', 'roundupthreshold'];
   }
 
   // The full duration of the current countdown. When this is changed,
@@ -112,14 +112,14 @@ export default class TimerBox extends HTMLElement {
 
   // If "fill" then the animation goes empty-to-full, if "empty" then the
   // animation starts full and goes to empty.
-  set styleFill(s: 'fill' | 'empty' | null) {
+  set stylefill(s: 'fill' | 'empty' | null) {
     if (s === null)
-      this.removeAttribute('styleFill');
+      this.removeAttribute('stylefill');
     else
-      this.setAttribute('styleFill', s);
+      this.setAttribute('stylefill', s);
   }
-  get styleFill(): 'fill' | 'empty' | null {
-    return this.getAttribute('styleFill') as 'fill' | 'empty';
+  get stylefill(): 'fill' | 'empty' | null {
+    return this.getAttribute('stylefill') as 'fill' | 'empty';
   }
 
   // When the timer reaches 0, it is hidden after this many seconds. If ""
@@ -216,7 +216,7 @@ export default class TimerBox extends HTMLElement {
     if (this.fg !== null) this._fg = this.fg;
     if (this.scale !== null) this._scale = Math.max(parseFloat(this.scale), 0.01);
     if (this.toward !== null) this._towardTop = this.toward !== 'bottom';
-    if (this.style !== null) this._styleFill = this.styleFill !== 'empty';
+    if (this.stylefill !== null) this._styleFill = this.stylefill !== 'empty';
     if (this.hideafter !== null && this.hideafter !== '') this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
   }
 
@@ -278,7 +278,7 @@ export default class TimerBox extends HTMLElement {
     } else if (name === 'toward') {
       this._towardTop = newValue !== 'bottom';
       this.layout();
-    } else if (name === 'styleFill') {
+    } else if (name === 'stylefill') {
       this._styleFill = newValue !== 'empty';
       this.layout();
     } else if (name === 'bg') {
