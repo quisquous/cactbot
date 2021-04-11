@@ -7,6 +7,9 @@ import ZoneId from '../../../../../resources/zone_id';
 // That said, dots still tick independently on both so it's likely that people will atack
 // them anyway.
 
+// TODO: Figure out why Dread Tide / Water Spout appear like shares (i.e. 0x16 id)
+// when soloing levi ex.
+
 // Leviathan Extreme
 export default {
   zoneId: ZoneId.TheWhorleaterExtreme,

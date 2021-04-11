@@ -1199,7 +1199,7 @@ export default {
     {
       id: 'DelubrumSav Guard Coat of Arms',
       netRegex: NetRegexes.startsUsing({ source: 'Aetherial Ward', id: '5820' }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Magisch(?:e|er|es|en) Barriere', id: '5820' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Barriere', id: '5820' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Barrière Magique', id: '5820' }),
       netRegexJa: NetRegexes.startsUsing({ source: '魔法障壁', id: '5820' }),
       netRegexCn: NetRegexes.startsUsing({ source: '魔法障壁', id: '5820' }),

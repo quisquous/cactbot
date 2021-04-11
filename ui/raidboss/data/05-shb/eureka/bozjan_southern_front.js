@@ -279,7 +279,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・ヘルダイバー', id: '51FE' }),
       netRegexCn: NetRegexes.startsUsing({ source: '第四军团地狱潜者', id: '51FE' }),
       netRegexKo: NetRegexes.startsUsing({ source: 'Iv군단 헬다이버', id: '51FE' }),
-      condition: tankBusterOnParty(),
+      condition: tankBusterOnParty,
       response: Responses.tankBuster(),
     },
     {
@@ -323,7 +323,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ブリューナク', id: '51DD' }),
       netRegexCn: NetRegexes.startsUsing({ source: '布里欧纳克', id: '51DD' }),
       netRegexKo: NetRegexes.startsUsing({ source: '브류나크', id: '51DD' }),
-      condition: tankBusterOnParty(),
+      condition: tankBusterOnParty,
       response: Responses.tankBuster(),
     },
     {
@@ -462,7 +462,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '阿德拉梅里克', id: '4F95' }),
       netRegexKo: NetRegexes.startsUsing({ source: '아드람멜렉', id: '4F95' }),
       // TODO: this is probably magical.
-      condition: tankBusterOnParty(),
+      condition: tankBusterOnParty,
       response: Responses.tankBuster(),
     },
     {
@@ -742,7 +742,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ドゥン', id: '517B' }),
       netRegexCn: NetRegexes.startsUsing({ source: '达温', id: '517B' }),
       netRegexKo: NetRegexes.startsUsing({ source: '다우언', id: '517B' }),
-      condition: tankBusterOnParty(),
+      condition: tankBusterOnParty,
       response: Responses.tankBuster(),
     },
     {
@@ -794,7 +794,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '獣王ライアン', id: '5174' }),
       netRegexCn: NetRegexes.startsUsing({ source: '兽王 莱昂', id: '5174' }),
       netRegexKo: NetRegexes.startsUsing({ source: '마수왕 라이언', id: '5174' }),
-      condition: tankBusterOnParty(),
+      condition: tankBusterOnParty,
       response: Responses.tankBuster(),
     },
     {
