@@ -296,7 +296,7 @@ hideall "--sync--"
 5313.0 "Bleed Attack" sync /:Ozma:37AD:/
 5319.0 "Bleed Attack" sync /:Ozma:37AD:/
 
-5332.0 "Meteor (Adds)" sync /:Cloudlarker:37B0:/
+5332.0 "Meteor (Adds)" sync /:Arsenal urolith:37B0:/
 5337.0 "Bleed Attack" sync /:Ozma:37AD:/
 5343.0 "Bleed Attack" sync /:Ozma:37AD:/
 
@@ -374,7 +374,7 @@ hideall "--sync--"
 5908.0 "Mourning Star" sync /:Ozma:37B5:/
 5911.0 "Soak Attack" sync /:Ozma:37B6:/
 #5917.1 "Shooting Star Enrage" (if this is the enrage)
-5926.0 "Meteor (Adds)" sync /:Cloudlarker:37B0:/
+5926.0 "Meteor (Adds)" sync /:Arsenal urolith:37B0:/
 5929.0 "Shooting Star" sync /:Proto Ozma:37B7:/
 5938.0 "Soak Attack" sync /:Ozma:37B6:/
 5944.0 "Soak Attack" sync /:Ozma:37B6:/
