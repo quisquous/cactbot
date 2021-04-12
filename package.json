@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@babel/types": "7.12.*",
+    "@fast-csv/parse": "^4.3.6",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.1",
     "@zoltu/typescript-transformer-append-js-extension": "^1.0.1",
