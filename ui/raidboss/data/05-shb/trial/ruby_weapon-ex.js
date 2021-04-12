@@ -269,12 +269,8 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '红宝石神兵', id: '4AFC', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '루비 웨폰', id: '4AFC', capture: false }),
       preRun: function(data) {
-        for (color of data.colors) {
-          if (color === 'blue')
-            color = 'red';
-          else
-            color = 'blue';
-        }
+        for (const id in data.colors)
+          data.colors[id] = data.colors[id] === 'red' ? 'blue' : 'red';
         data.ravens = data.ravens || {};
 
         const tmp = data.ravens.red;

@@ -1,8 +1,12 @@
 'use strict';
 
 const path = require('path');
+const webpack = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = function(env, argv) {
+  const dev = argv.mode === 'development';
+
   return {
     entry: {
       config: './ui/config/config.js',
@@ -18,6 +22,7 @@ module.exports = function(env, argv) {
       raidboss: './ui/raidboss/raidboss.js',
       raidemulator: './ui/raidboss/raidemulator.js',
       test: './ui/test/test.js',
+      ...(() => dev ? ({ timerbar: './resources/timerbar.ts' }) : ({}))(),
     },
     optimization: {
       splitChunks: {
@@ -35,7 +40,7 @@ module.exports = function(env, argv) {
         },
       },
     },
-    devtool: argv.mode === 'development' ? 'source-map' : undefined,
+    devtool: dev ? 'source-map' : undefined,
     output: {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, '../dist'),
@@ -101,5 +106,9 @@ module.exports = function(env, argv) {
         },
       ],
     },
+    plugins: [
+      new webpack.ProgressPlugin({}),
+      new CleanWebpackPlugin(),
+    ],
   };
 };

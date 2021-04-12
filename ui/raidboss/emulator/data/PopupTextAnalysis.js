@@ -2,7 +2,7 @@ import EmulatorCommon from '../EmulatorCommon';
 import StubbedPopupText from '../overrides/StubbedPopupText';
 
 export default class PopupTextAnalysis extends StubbedPopupText {
-  OnTriggerInternal(trigger, matches) {
+  OnTriggerInternal(trigger, matches, currentTime) {
     this.currentTriggerStatus = {
       initialData: EmulatorCommon.cloneData(this.data),
       condition: undefined,
@@ -14,7 +14,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
       promise: undefined,
     };
     this.currentFunction = 'initial';
-    super.OnTriggerInternal(trigger, matches);
+    super.OnTriggerInternal(trigger, matches, currentTime);
   }
 
   async OnLog(e) {
@@ -167,7 +167,6 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   _onTriggerInternalResponse(triggerHelper) {
     this.currentFunction = '_onTriggerInternalResponse';
     super._onTriggerInternalResponse(triggerHelper);
-    this.currentTriggerStatus.response = triggerHelper.response;
   }
 
   _onTriggerInternalAlarmText(triggerHelper) {
@@ -188,6 +187,11 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   _onTriggerInternalTTS(triggerHelper) {
     this.currentFunction = '_onTriggerInternalTTS';
     super._onTriggerInternalTTS(triggerHelper);
+    if (triggerHelper.ttsText !== undefined &&
+      this.currentTriggerStatus.responseType === undefined) {
+      this.currentTriggerStatus.responseType = 'tts';
+      this.currentTriggerStatus.responseLabel = triggerHelper.ttsText;
+    }
   }
 
   _onTriggerInternalPlayAudio(triggerHelper) {
@@ -208,11 +212,28 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   }
 
   _createTextFor(text, textType, lowerTextKey, duration) {
-    // No-op
+    // No-op for functionality, but store off this info for feedback
+    this.currentTriggerStatus.responseType = textType;
+    this.currentTriggerStatus.responseLabel = text;
   }
 
   _playAudioFile(url, volume) {
-    // No-op
+    // No-op for functionality, but store off this info for feedback
+
+    // If we already have text and this is a default alert sound, don't override that info
+    if (this.currentTriggerStatus.responseType) {
+      if (this.currentTriggerStatus.responseType === 'info' &&
+          url === this.options.InfoSound)
+        return;
+      if (this.currentTriggerStatus.responseType === 'alert' &&
+          url === this.options.AlertSound)
+        return;
+      if (this.currentTriggerStatus.responseType === 'alarm' &&
+          url === this.options.AlarmSound)
+        return;
+    }
+    this.currentTriggerStatus.responseType = 'audiofile';
+    this.currentTriggerStatus.responseLabel = url;
   }
 
   _scheduleRemoveText(container, e, delay) {

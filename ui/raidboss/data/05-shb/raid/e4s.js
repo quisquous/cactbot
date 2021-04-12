@@ -344,7 +344,7 @@ export default {
         text: {
           en: 'Left, Then Right',
           de: 'Links, dann Rechts',
-          fr: 'Gauche, puis droite',
+          fr: 'À gauche, puis à droite',
           ja: '左 => 右',
           cn: '左 => 右',
           ko: '왼쪽 => 오른쪽',
@@ -364,7 +364,7 @@ export default {
         text: {
           en: 'Right, Then Left',
           de: 'Rechts, dann Links',
-          fr: 'Droite, puis gauche',
+          fr: 'À droite, puis à gauche',
           ja: '右 => 左',
           cn: '右 => 左',
           ko: '오른쪽 => 왼쪽',
@@ -384,7 +384,7 @@ export default {
         text: {
           en: 'Left, Stay Left',
           de: 'Links, Links bleiben',
-          fr: 'Gauche, puis restez',
+          fr: 'À gauche, puis restez',
           ja: 'ずっと左',
           cn: '一直在左',
           ko: '왼쪽 => 왼쪽',
@@ -404,7 +404,7 @@ export default {
         text: {
           en: 'Right, Stay Right',
           de: 'Rechts, Rechts bleiben',
-          fr: 'Droite, puis restez',
+          fr: 'À droite, puis restez',
           ja: 'ずっと右',
           cn: '一直在右',
           ko: '오른쪽 => 오른쪽',

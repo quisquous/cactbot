@@ -1,3 +1,5 @@
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
+
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
@@ -256,7 +258,7 @@ export default {
           de: 'Laser ausweichen',
           fr: 'Évitez le laser',
           ja: 'レーザー注意',
-          cn: '躲避击退激光',
+          cn: '躲避死刑激光',
           ko: '레이저 피하기',
         },
       },
@@ -584,7 +586,7 @@ export default {
       netRegex: NetRegexes.gainsEffect({ effectId: '953' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: (_, matches) => matches.duration - 3,
-      alertText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
+      alertText: (data, matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Face Laser Out',
@@ -772,7 +774,7 @@ export default {
           ko: '어둠의 구름',
         };
 
-        const bossData = await window.callOverlayHandler({
+        const bossData = await callOverlayHandler({
           call: 'getCombatants',
           names: [cloudOfDarknessLocaleNames[data.parserLang]],
         });
@@ -796,7 +798,7 @@ export default {
           cn: '幻影之云',
         };
 
-        const cloneData = await window.callOverlayHandler({
+        const cloneData = await callOverlayHandler({
           call: 'getCombatants',
           names: [cloneOfDarknessLocaleNames[data.parserLang]],
         });
@@ -827,6 +829,7 @@ export default {
     {
       'locale': 'de',
       'replaceSync': {
+        'Clone Of Darkness': 'Klon der Dunkelheit',
         'Cloud Of Darkness': 'Wolke der Dunkelheit',
       },
       'replaceText': {
@@ -852,6 +855,7 @@ export default {
     {
       'locale': 'fr',
       'replaceSync': {
+        'Clone Of Darkness': 'Nuée de Ténèbres',
         'Cloud Of Darkness': 'Nuage de Ténèbres',
       },
       'replaceText': {
@@ -877,6 +881,7 @@ export default {
     {
       'locale': 'ja',
       'replaceSync': {
+        'Clone Of Darkness': '幻影の雲',
         'Cloud Of Darkness': '暗闇の雲',
       },
       'replaceText': {
@@ -903,6 +908,39 @@ export default {
         'Anti-Air Phaser Unlimited': '高射式 跳躍波動砲：零式',
         'Anti-Air Particle Beam': '高射式 波動砲',
         'Aetherosynthesis': '生気吸収',
+        '\\(L/R\\)': '(左/右)',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Clone Of Darkness': '幻影之云',
+        'Cloud Of Darkness': '暗黑之云',
+      },
+      'replaceText': {
+        'The Third Art Of Darkness': '三重暗之战技',
+        'The Second Art Of Darkness': '二重暗之战技',
+        'The Art Of Darkness': '暗之战技',
+        'Summon': '召唤',
+        'Rejuvenating Balm': '活性弹',
+        'Phaser Unlimited': '跳跃波动炮',
+        'Particle Concentration': '波动球',
+        'Obscure Woods': '暗黑森林',
+        'Hypercharged Condensation': '吸引波动云',
+        'Ground-Razing Particle Beam': '放射式波动炮',
+        'Full-Perimeter Particle Beam': '扫射式波动炮',
+        'Flood Of Obscurity': '暗之泛滥：暗黑森林',
+        'Flood Of Emptiness': '暗之泛滥：暗黑天空',
+        'Empty Plane': '暗黑天空',
+        'Devouring Dark': '暗黑侵蚀',
+        'Deluge Of Darkness': '暗之大泛滥',
+        'Dark-Energy Particle Beam': '诅咒式波动炮',
+        'Condensed Wide-Angle Particle Beam': '广角式高输出波动炮',
+        'Condensed Anti-Air Particle Beam': '高射式高输出波动炮',
+        'Bad Vibrations': '强震动',
+        'Anti-Air Phaser Unlimited': '零式高射式跳跃波动炮',
+        'Anti-Air Particle Beam': '高射式波动炮',
+        'Aetherosynthesis': '吸收生命',
         '\\(L/R\\)': '(左/右)',
       },
     },

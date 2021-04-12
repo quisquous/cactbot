@@ -20,104 +20,104 @@ export default class ResourceBar extends HTMLElement {
   _extraValue: number;
   _scale: number;
   _towardRight: boolean;
-  _styleFill: boolean;
+  _fill: boolean;
   _leftText: string;
   _centerText: string;
   _rightText: string;
   _connected: boolean;
 
   static get observedAttributes(): string[] {
-    return ['value', 'maxvalue', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'toward', 'extravalue', 'extracolor'];
+    return ['value', 'maxvalue', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'toward', 'stylefill', 'extravalue', 'extracolor'];
   }
 
   // All visual dimensions are scaled by this.
-  set scale(s: string) {
-    this.setAttribute('scale', s);
+  set scale(s: string | null) {
+    this.setAttribute('scale', s ?? '');
   }
-  get scale(): string {
-    return this.getAttribute('scale') ?? '';
+  get scale(): string | null {
+    return this.getAttribute('scale');
   }
 
   // Background color.
-  set bg(c: string) {
-    this.setAttribute('bg', c);
+  set bg(c: string | null) {
+    this.setAttribute('bg', c ?? '');
   }
-  get bg(): string {
-    return this.getAttribute('bg') ?? '';
+  get bg(): string | null {
+    return this.getAttribute('bg');
   }
 
-  set extraColor(c: string) {
-    this.setAttribute('extraColor', c);
+  set extraColor(c: string | null) {
+    this.setAttribute('extraColor', c ?? '');
   }
-  get extraColor(): string {
-    return this.getAttribute('extraColor') ?? '';
+  get extraColor(): string | null {
+    return this.getAttribute('extraColor');
   }
 
   // Foreground color.
-  set fg(c: string) {
-    this.setAttribute('fg', c);
+  set fg(c: string | null) {
+    this.setAttribute('fg', c ?? '');
   }
-  get fg(): string {
-    return this.getAttribute('fg') ?? '';
+  get fg(): string | null {
+    return this.getAttribute('fg');
   }
 
   // The width of the bar, in pixels (before |scale|).
-  set width(w: string) {
-    this.setAttribute('width', w);
+  set width(w: string | null) {
+    this.setAttribute('width', w ?? '');
   }
-  get width(): string {
-    return this.getAttribute('width') ?? '';
+  get width(): string | null {
+    return this.getAttribute('width');
   }
 
   // The height of the bar, in pixels (before |scale|).
-  set height(w: string) {
-    this.setAttribute('height', w);
+  set height(w: string | null) {
+    this.setAttribute('height', w ?? '');
   }
-  get height(): string {
-    return this.getAttribute('height') ?? '';
+  get height(): string | null {
+    return this.getAttribute('height');
   }
 
   // A value between 0 and |maxvalue|, indicating the amount of progress.
-  set value(s: string) {
-    this.setAttribute('value', s);
+  set value(s: string | null) {
+    this.setAttribute('value', s ?? '');
   }
-  get value(): string {
-    return this.getAttribute('value') ?? '';
+  get value(): string | null {
+    return this.getAttribute('value');
   }
 
   // A value between 0 and |maxvalue|, indicating the amount of "extra"
   // resource that exists.  Usually used for shields on a health bar.
-  set extraValue(s: string) {
-    this.setAttribute('extravalue', s);
+  set extraValue(s: string | null) {
+    this.setAttribute('extravalue', s ?? '');
   }
-  get extraValue(): string {
-    return this.getAttribute('extravalue') ?? '';
+  get extraValue(): string | null {
+    return this.getAttribute('extravalue');
   }
 
   // The maximum value where when reached the progress bar will show 100%.
-  set maxvalue(s: string) {
-    this.setAttribute('maxvalue', s);
+  set maxvalue(s: string | null) {
+    this.setAttribute('maxvalue', s ?? '');
   }
-  get maxvalue(): string {
-    return this.getAttribute('maxvalue') ?? '';
+  get maxvalue(): string | null {
+    return this.getAttribute('maxvalue');
   }
 
   // If "right" then fills left-to-right (the default). If "left" then
   // fills right-to-left.
-  set toward(t: string) {
-    this.setAttribute('toward', t);
+  set toward(t: string | null) {
+    this.setAttribute('toward', t ?? '');
   }
-  get toward(): string {
-    return this.getAttribute('toward') ?? '';
+  get toward(): string | null {
+    return this.getAttribute('toward');
   }
 
   // If "fill" then the progress goes empty-to-full, if "empty" then the
   // progress bar starts full and goes to empty.
-  set styleFill(s: 'empty' | 'full') {
-    this.setAttribute('styleFill', s);
+  set stylefill(s: 'empty' | 'full' | null) {
+    this.setAttribute('stylefill', s ?? 'empty');
   }
-  get styleFill(): 'empty' | 'full' {
-    return this.getAttribute('styleFill') as 'empty' | 'full';
+  get stylefill(): 'empty' | 'full' | null {
+    return this.getAttribute('stylefill') as 'empty' | 'full' | null;
   }
 
   // Chooses what should be shown in the text field in each area of
@@ -127,23 +127,23 @@ export default class ResourceBar extends HTMLElement {
   // "maxvalue" - shows the current and maximum raw values.
   // "percent" - shows the percentage.
   // anything else - the given text is shown literally.
-  set lefttext(p: string) {
-    this.setAttribute('lefttext', p);
+  set lefttext(p: string | null) {
+    this.setAttribute('lefttext', p ?? '');
   }
-  get lefttext(): string {
-    return this.getAttribute('lefttext') ?? '';
+  get lefttext(): string | null {
+    return this.getAttribute('lefttext');
   }
-  set righttext(p: string) {
-    this.setAttribute('righttext', p);
+  set righttext(p: string | null) {
+    this.setAttribute('righttext', p ?? '');
   }
-  get righttext(): string {
-    return this.getAttribute('righttext') ?? '';
+  get righttext(): string | null {
+    return this.getAttribute('righttext');
   }
-  set centertext(p: string) {
-    this.setAttribute('centertext', p);
+  set centertext(p: string | null) {
+    this.setAttribute('centertext', p ?? '');
   }
-  get centertext(): string {
-    return this.getAttribute('centertext') ?? '';
+  get centertext(): string | null {
+    return this.getAttribute('centertext');
   }
 
   // This would be used with window.customElements.
@@ -178,7 +178,7 @@ export default class ResourceBar extends HTMLElement {
     this._extraValue = 0;
     this._scale = 1;
     this._towardRight = true;
-    this._styleFill = true;
+    this._fill = true;
     this._leftText = '';
     this._centerText = '';
     this._rightText = '';
@@ -193,7 +193,7 @@ export default class ResourceBar extends HTMLElement {
     if (this.fg !== null) this._fg = this.fg;
     if (this.scale !== null) this._scale = Math.max(parseFloat(this.scale), 0.01);
     if (this.toward !== null) this._towardRight = this.toward !== 'left';
-    if (this.styleFill !== null) this._styleFill = this.styleFill !== 'empty';
+    if (this.stylefill !== null) this._fill = this.stylefill !== 'empty';
     if (this.lefttext !== null) this._leftText = this.lefttext;
     if (this.centertext !== null) this._centerText = this.centertext;
     if (this.righttext !== null) this._rightText = this.righttext;
@@ -320,7 +320,7 @@ export default class ResourceBar extends HTMLElement {
 
     // To start full and animate to empty, we animate backwards and flip
     // the direction.
-    if (!this._styleFill)
+    if (!this._fill)
       this._towardRight = !this._towardRight;
 
     const backgroundStyle = this.backgroundElement.style;
@@ -395,7 +395,7 @@ export default class ResourceBar extends HTMLElement {
     let percent = this._maxValue <= 0 ? 1 : this._value / this._maxValue;
     // Keep it between 0 and 1.
     percent = Math.min(1, Math.max(0, percent));
-    if (!this._styleFill)
+    if (!this._fill)
       percent = 1.0 - percent;
     this.foregroundElement.style.transform = `scale(${percent},1)`;
 

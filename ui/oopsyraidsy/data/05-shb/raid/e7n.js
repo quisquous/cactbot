@@ -103,7 +103,7 @@ export default {
       condition: function(e, data) {
         return !data.hasAstral || !data.hasAstral[e.targetName];
       },
-      mistake: function(e) {
+      mistake: function(e, data) {
         if (data.hasUmbral && data.hasUmbral[e.targetName])
           return { type: 'fail', blame: e.targetName, text: wrongBuff(e.abilityName) };
         // This case is probably impossible, as the debuff ticks after death,

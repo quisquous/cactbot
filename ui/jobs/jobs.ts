@@ -1,8 +1,9 @@
 import { Job } from '../../types/job';
 import { JobDetail, EventMap } from '../../types/event';
-import ContentType from '../../resources/content_type';
-import EffectId from '../../resources/effect_id';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
+
+import EffectId from '../../resources/effect_id';
+import ContentType from '../../resources/content_type';
 import Regexes from '../../resources/regexes';
 import ResourceBar from '../../resources/resourcebar';
 import TimerBar from '../../resources/timerbar';
@@ -401,7 +402,7 @@ export class Bars {
       this.o.mpTicker.width = window.getComputedStyle(this.o.mpTickContainer).width;
       this.o.mpTicker.height = window.getComputedStyle(this.o.mpTickContainer).height;
       this.o.mpTicker.bg = computeBackgroundColorFrom(this.o.mpTicker, 'bar-border-color');
-      this.o.mpTicker.styleFill = 'fill';
+      this.o.mpTicker.stylefill = 'fill';
       this.o.mpTicker.loop = true;
     }
 
@@ -496,7 +497,7 @@ export class Bars {
 
     const timerBox = document.createElement('timer-box') as unknown as TimerBox;
     container.appendChild(timerBox);
-    timerBox.styleFill = 'empty';
+    timerBox.stylefill = 'empty';
     if (options.fgColor)
       timerBox.fg = computeBackgroundColorFrom(timerBox, options.fgColor);
     timerBox.bg = 'black';
@@ -638,11 +639,11 @@ export class Bars {
 
     // Hide out of combat if requested
     if (!this.options.ShowMPTickerOutOfCombat && !this.inCombat) {
-      this.o.mpTicker.duration = '0';
-      this.o.mpTicker.styleFill = 'empty';
+      this.o.mpTicker.duration = 0;
+      this.o.mpTicker.stylefill = 'empty';
       return;
     }
-    this.o.mpTicker.styleFill = 'fill';
+    this.o.mpTicker.stylefill = 'fill';
 
     const baseTick = this.inCombat ? kMPCombatRate : kMPNormalRate;
     let umbralTick = 0;

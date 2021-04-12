@@ -1,3 +1,5 @@
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
+
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
@@ -45,7 +47,7 @@ export default {
 
         let combatantData = null;
         if (combatantName) {
-          combatantData = await window.callOverlayHandler({
+          combatantData = await callOverlayHandler({
             call: 'getCombatants',
             names: [combatantName],
           });

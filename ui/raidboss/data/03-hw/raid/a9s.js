@@ -344,6 +344,10 @@ export default {
         'The Cranial Plate': 'pont nasal',
       },
       'replaceText': {
+        '\\(NE/SW\\)': '(NE/SO)',
+        '\\(NW\\)': '(NO)',
+        '\\(NW/SE\\)': '(NO/SE)',
+        '\\(SW\\)': '(SO)',
         '(?<!Double )Scrapline': 'Corde à ferraille',
         '(?<!Scrap )Bomb(?!e)': 'Bombe',
         '--rocks fall--': '--chute des rochers--',

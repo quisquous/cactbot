@@ -426,7 +426,7 @@ export default {
         text: {
           en: 'Rotate Left',
           de: 'Links rum rotieren',
-          fr: 'Tournez à gauche',
+          fr: 'Tournez vers la gauche',
           ja: '時針回り',
           cn: '向左旋转',
           ko: '왼쪽으로 도세요',
@@ -447,7 +447,7 @@ export default {
         text: {
           en: 'Rotate Right',
           de: 'Rechts rum rotieren',
-          fr: 'Tournez à droite',
+          fr: 'Tournez vers la droite',
           ja: '逆時針回り',
           cn: '向右旋转',
           ko: '오른쪽으로 도세요',
@@ -468,7 +468,7 @@ export default {
         text: {
           en: 'Rotate Left',
           de: 'Links rum rotieren',
-          fr: 'Tournez à gauche',
+          fr: 'Tournez vers la gauche',
           ja: '時針回り',
           cn: '向左旋转',
           ko: '왼쪽으로 도세요',
@@ -489,7 +489,7 @@ export default {
         text: {
           en: 'Rotate Right',
           de: 'Rechts rum rotieren',
-          fr: 'Tournez à droite',
+          fr: 'Tournez vers la droite',
           ja: '逆時針回り',
           cn: '向右旋转',
           ko: '오른쪽으로 도세요',

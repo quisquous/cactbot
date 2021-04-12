@@ -520,14 +520,18 @@ hideall "--sync--"
 
 10063.2 "Bombslinger" sync /:Queen's Warrior:5AFE:/
 10066.3 "--tethers--"
+10069.3 "--untargetable--" # knight
 10070.3 "Reversal Of Forces" sync /:Queen's Warrior:5829:/
 10070.3 "--sync--" sync /:Queen's Warrior:5A94:/
 10079.5 "Optimal Offensive" sync /:Queen's Knight:581[9A]:/
+10081.1 "Unlucky Lot" #sync /:Aetherial Sphere:581D:/
 10081.4 "Above Board" sync /:Queen's Warrior:5826:/
-10082.1 "Unlucky Lot" #sync /:Aetherial Sphere:581D:/
+10082.4 "--stunned--" # 3 or 7 second stun
 10084.5 "Lots Cast" #sync /:Aetherial Bolt:5828:/
+#10085.8 "--targetable--" # knight, everybody stunned, so not listed
 10087.5 "Lots Cast" #sync /:Aetherial Burst:5827:/
 10088.7 "Lots Cast" #sync /:Aetherial Burst:5BB7:/
+10089.4 "--unstunned--"
 
 10097.6 "Boost" sync /:Queen's Warrior:582D:/
 10105.8 "Blood And Bone" sync /:Queen's Warrior:5831:/
@@ -549,14 +553,18 @@ hideall "--sync--"
 
 10193.0 "Bombslinger" sync /:Queen's Warrior:5AFE:/
 10196.1 "--tethers--"
+10199.1 "--untargetable--" # knight
 10200.1 "Reversal Of Forces" sync /:Queen's Warrior:5829:/
 10209.4 "Optimal Offensive" sync /:Queen's Knight:581[9A]:/
 10211.0 "Unlucky Lot" #sync /:Aetherial Sphere:581D:/
 10211.2 "Above Board" sync /:Queen's Warrior:5826:/
+10212.2 "--stunned--" # 3 or 7 second stun
 10211.2 "--sync--" sync /:Queen's Warrior:5B72:/
 10214.2 "Lots Cast" #sync /:Aetherial Burst:5B6D:/
+#10215.5 "--targetable--" # knight, everybody stunned, so not listed
 10217.2 "Lots Cast" #sync /:Aetherial Bolt:5B6C:/
 10218.4 "Lots Cast" #sync /:Aetherial Bolt:5BB7:/
+10219.2 "--unstunned--"
 
 10227.3 "Boost" sync /:Queen's Warrior:582D:/
 10235.5 "Blood And Bone" sync /:Queen's Warrior:5831:/
@@ -1087,7 +1095,6 @@ hideall "--sync--"
 15544.8 "Elemental Blast" sync /:Tempestuous Orb:592E:/
 15550.6 "--sync--" sync /:Trinity Avowed:5984:/
 15557.7 "Glory Of Bozja" sync /:Trinity Avowed:594F:/
-15569.2 "Allegiant Arsenal"
 # -> roll into Bow v1 (final)
 15566.2 "--sync--" sync /:5986:Trinity Avowed/ window 70,10
 15569.2 "Allegiant Arsenal" sync /:Trinity Avowed:5986:/
@@ -1365,7 +1372,6 @@ hideall "--sync--"
 # -it "The Queen"
 # TODO: what is 5BCB? (--middle--?)
 # TODO: what is 55A8?
-# TODO: stun timing
 20000.0 "--sync--" sync / 00:0839:Queensheart will be sealed off/ window 20000,0
 20000.0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 0,2000 jump 0
 20010.3 "--sync--" sync /:59F9:The Queen/ window 20,20
@@ -1402,7 +1408,7 @@ hideall "--sync--"
 20178.4 "Gods Save The Queen" sync /:The Queen:59FA:/
 20194.7 "--sync--" sync /:The Queen:5BCB:/
 20198.1 "--sync--" sync /:The Queen:55A8:/
-20203.1 "Unlucky Lot x5" duration 8 sync /:Ball Lightning:55B6:/
+20203.1 "Unlucky Lot x5" duration 8 #sync /:Ball Lightning:55B6:/
 20198.1 "--sync--" sync /:The Queen:55A8:/
 20210.0 "Maelstrom's Bolt" sync /:The Queen:59EF:/
 
@@ -1474,9 +1480,11 @@ hideall "--sync--"
 20512.2 "Icy Portent/Fiery Portent" sync /:Queen's Soldier:5A2[12]:/
 20515.5 "Above Board" sync /:Queen's Warrior:5A0B:/
 20515.5 "--sync--" sync /:Queen's Warrior:5B8E:/
+20516.5 "--stunned--" # 3 or 7 second stun
 20518.5 "Lots Cast" sync /(:Aetherial Burst:5B89:|:Aetherial Bolt:5A0D:)/
 20521.5 "Lots Cast" #sync /:Aetherial Bolt:5B88:/
 20522.7 "Lots Cast" #sync /:Aetherial Bolt:5BB6:/
+20523.5 "--unstunned--"
 20525.6 "--targetable--"
 
 20530.7 "Relentless Play 5" sync /:The Queen:59FC:/

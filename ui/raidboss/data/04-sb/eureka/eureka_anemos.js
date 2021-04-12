@@ -32,9 +32,9 @@ export default {
       netRegex: NetRegexes.startsUsing({ id: '29EB', source: 'Sabotender Corrido' }),
       netRegexDe: NetRegexes.startsUsing({ id: '29EB', source: 'Sabotender Corrido' }),
       netRegexFr: NetRegexes.startsUsing({ id: '29EB', source: 'Pampa Corrido' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '29EB', source: '賞金首：サボテンダー・コリード' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '29EB', source: '悬赏魔物：科里多仙人刺' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '29EB', source: '현상수배: 사보텐더 코리도' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '29EB', source: 'サボテンダー・コリード' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '29EB', source: '科里多仙人刺' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '29EB', source: '사보텐더 춤꾼' }),
       response: Responses.stackMarkerOn(),
     },
     {

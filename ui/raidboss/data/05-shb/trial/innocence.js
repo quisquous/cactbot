@@ -157,7 +157,7 @@ export default {
         text: {
           en: 'Rotate Right',
           de: 'Rechts rum rotieren',
-          fr: 'Rotation vers la droite',
+          fr: 'Tournez vers la droite',
           ja: '時針回り',
           cn: '向右旋转',
           ko: '오른쪽으로 도세요',

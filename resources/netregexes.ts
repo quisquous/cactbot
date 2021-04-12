@@ -36,6 +36,7 @@ const gameNameLogParams = ['code', 'name', 'line'] as const;
 const statChangeParams = ['job', 'strength', 'dexterity', 'vitality', 'intelligence', 'mind', 'piety', 'attackPower', 'directHit', 'criticalHit', 'attackMagicPotency', 'healMagicPotency', 'determination', 'skillSpeed', 'spellSpeed', 'tenacity'] as const;
 const changeZoneParams = ['id', 'name'] as const;
 const network6dParams = ['instance', 'command', 'data0', 'data1', 'data2', 'data3'] as const;
+const nameToggleParams = ['id', 'name', 'toggle'] as const;
 
 export type StartsUsingParams = typeof startsUsingParams[number];
 export type AbilityParams = typeof abilityParams[number];
@@ -57,6 +58,22 @@ export type GameNameLogParams = typeof gameNameLogParams[number];
 export type StatChangeParams = typeof statChangeParams[number];
 export type ChangeZoneParams = typeof changeZoneParams[number];
 export type Network6dParams = typeof network6dParams[number];
+export type NameToggleParams = typeof nameToggleParams[number];
+
+// If NetRegexes.setFlagTranslationsNeeded is set to true, then any
+// regex created that requires a translation will begin with this string
+// and match the magicStringRegex.  This is maybe a bit goofy, but is
+// a pretty straightforward way to mark regexes for translations.
+// If issue #1306 is ever resolved, we can remove this.
+const magicTranslationString = `^^`;
+const magicStringRegex = new RegExp('^\\^\\^');
+const keysThatRequireTranslation = [
+  'ability',
+  'name',
+  'source',
+  'target',
+  'line',
+];
 
 const parseHelper = (
     params: { timestamp?: string; capture?: boolean } | undefined,
@@ -90,8 +107,17 @@ const parseHelper = (
     }
   }
 
+  // For testing, it's useful to know if this is a regex that requires
+  // translation.  We test this by seeing if there are any specified
+  // fields, and if so, inserting a magic string that we can detect.
+  // This lets us differentiate between "regex that should be translated"
+  // e.g. a regex with `target` specified, and "regex that shouldn't"
+  // e.g. a gains effect with just effectId specified.
+  const transParams = Object.keys(params).filter((k) => keysThatRequireTranslation.includes(k));
+  const needsTranslations = NetRegexes.flagTranslationsNeeded && transParams.length > 0;
+
   // Build the regex from the fields.
-  let str = '^';
+  let str = needsTranslations ? magicTranslationString : '^';
   let lastKey = -1;
   for (const _key in fields) {
     const key = parseInt(_key);
@@ -129,6 +155,17 @@ const parseHelper = (
 };
 
 export default class NetRegexes {
+  static flagTranslationsNeeded = false;
+  static setFlagTranslationsNeeded(value: boolean): void {
+    NetRegexes.flagTranslationsNeeded = value;
+  }
+  static doesNetRegexNeedTranslation(regex: RegExp | string): boolean {
+    // Need to `setFlagTranslationsNeeded` before calling this function.
+    console.assert(NetRegexes.flagTranslationsNeeded);
+    const str = typeof regex === 'string' ? regex : regex.source;
+    return !!magicStringRegex.exec(str);
+  }
+
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#14-networkstartscasting
    */
@@ -470,6 +507,19 @@ export default class NetRegexes {
       5: { field: 'data1' },
       6: { field: 'data2' },
       7: { field: 'data3' },
+    });
+  }
+
+  /**
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#22-networknametoggle
+   */
+  static nameToggle(params?: Params<NameToggleParams>): NetRegex<NameToggleParams> {
+    return parseHelper(params, 'nameToggle', {
+      0: { field: 'type', value: '34' },
+      1: { field: 'timestamp' },
+      2: { field: 'id' },
+      3: { field: 'name' },
+      6: { field: 'toggle' },
     });
   }
 }

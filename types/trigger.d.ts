@@ -1,4 +1,4 @@
-import { Lang } from './global';
+import { Lang, NotEnLang } from './global';
 
 export interface BaseRegExp<T> extends RegExp {
   groups?: {
@@ -11,17 +11,14 @@ export type Matches<T> =
   T extends RegExp ? { [s: string]: string } :
   never;
 
+export type FullLocaleText = Record<Lang, string>;
 
-type TranslatableText = {
-  [s in Lang]: string;
+export type LocaleText = {
+  en: string;
+  [s in NotEnLang]?: string;
 };
 
-
-type TranslatedText = {
-  en: string;
-  de: string;
-  fr: string;
-  ja: string;
-  cn: string;
-  ko: string;
+export type LocaleObject<T> = {
+  en: T;
+  [s in NotEnLang]?: T;
 };

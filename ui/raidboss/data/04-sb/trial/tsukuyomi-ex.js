@@ -130,16 +130,16 @@ export default {
       outputStrings: {
         leftAndOut: {
           en: 'Left + Out',
-          de: 'Links + Extérieur',
-          fr: 'Gauche + Raus',
+          de: 'Links + Raus',
+          fr: 'À gauche + Extérieur',
           ja: '左へ + 外へ',
           cn: '左边 + 远离',
           ko: '왼쪽 + 밖',
         },
         leftAndIn: {
           en: 'Left + In',
-          de: 'Links + Intérieur',
-          fr: 'Gauche + Rein',
+          de: 'Links + Rein',
+          fr: 'À gauche + Intérieur',
           ja: '左へ + 中へ',
           cn: '左边 + 靠近',
           ko: '왼쪽 + 안',
@@ -162,16 +162,16 @@ export default {
       outputStrings: {
         rightAndOut: {
           en: 'Right + Out',
-          de: 'Rechts + Extérieur',
-          fr: 'Droite + Raus',
+          de: 'Rechts + Raus',
+          fr: 'À droite + Extérieur',
           ja: '右へ + 外へ',
           cn: '右边 + 远离',
           ko: '오른쪽 + 밖',
         },
         rightAndIn: {
           en: 'Right + In',
-          de: 'Rechts + Intérieur',
-          fr: 'Droite + Rein',
+          de: 'Rechts + Rein',
+          fr: 'À droite + Intérieur',
           ja: '右へ + 中へ',
           cn: '右边 + 靠近',
           ko: '오른쪽 + 안',
@@ -295,6 +295,7 @@ export default {
     {
       'locale': 'de',
       'replaceSync': {
+        'No\. No\.\.\. Not yet\. Not\. Yet\.': 'Meine Rache ... Ich will... meine Rache...',
         'Moondust': 'Mondfragment',
         'Moonlight': 'Mondlicht',
         'Specter(?! )': 'Trugbild',
@@ -303,7 +304,6 @@ export default {
         'Specter Of The Patriarch': 'Yotsuyus Ziehvater',
         'Specter Of Zenos': 'Zenos',
         'Tsukuyomi': 'Tsukuyomi',
-        'No\\\\. No\\\\.\\\\.\\\\. Not yet\\\\. Not\\\\. Yet\\\\.': 'Meine Rache ... Ich will... meine Rache...',
       },
       'replaceText': {
         'Antitwilight': 'Schönheit der Nacht',
@@ -340,6 +340,7 @@ export default {
     {
       'locale': 'fr',
       'replaceSync': {
+        'No\. No\.\.\. Not yet\. Not\. Yet\.': 'Non, je ne peux pas... échouer...',
         'Moondust': 'fragment de lune',
         'Moonlight': 'Clair de lune',
         'Specter(?! )': 'Illusion protectrice',
@@ -355,13 +356,13 @@ export default {
         'Concentrativity': 'Kenki concentré',
         'Crater': 'Explosion de fragment lunaire',
         'Dance Of The Dead': 'Danse des morts',
-        'Bright/Dark Blade': 'Lame blafarde/ténébreuse',
+        'Bright/Dark Blade': 'Lame ténébreuse/blafarde',
         'Dispersivity': 'Onde Kenki',
         'Empire adds .SW->NW.': 'Adds Impériaux (SO->NO)',
         'Hagetsu': 'Pulvérisation lunaire',
         'Homeland adds .E->W.': 'Adds Domiens (E->O)',
         'Lead Of The Underworld': 'Tir de l\'au-delà',
-        'Lead/Steel': 'Tir/Pointes De L\'au-delà',
+        'Lead/Steel': 'Tir/Pointes de l\'au-delà',
         'Lunacy': 'Efflorescence au clair de lune',
         'Lunar Halo': 'Flamboiement lunaire',
         'Lunar Rays': 'Rayons lunaires',
@@ -373,18 +374,19 @@ export default {
         'Perilune': 'Zénith lunaire',
         'Reprimand': 'Correction',
         'Steel Of The Underworld': 'Pointes de l\'au-delà',
-        'Steel/Lead': 'Pointes/Tir De L\'au-delà',
+        'Steel/Lead': 'Pointes/Tir de l\'au-delà',
         'Supreme Selenomancy': 'Sélénomancie suprême',
         'Torment Unto Death': 'Brimade meurtrière',
         'Tsuki-no-Kakera': 'Fragments lunaires',
         'Tsuki-no-Maiogi': 'Maiôgi lunaire',
-        'Waning/Waxing Grudge': 'Rancœur ténèbreuse/blafarde',
+        'Waning/Waxing Grudge': 'Rancœur blafarde/ténèbreuse',
         'Zashiki-asobi': 'Zashiki asobi',
       },
     },
     {
       'locale': 'ja',
       'replaceSync': {
+        'No\. No\.\.\. Not yet\. Not\. Yet\.': '嗚呼、まだ、あたしは…………。',
         'Moondust': '月の欠片',
         'Moonlight': '月光',
         'Specter(?! )': '幻影',
@@ -430,6 +432,7 @@ export default {
     {
       'locale': 'cn',
       'replaceSync': {
+        'No\. No\.\.\. Not yet\. Not\. Yet\.': '我不能输.*我还没有.*',
         'Moondust': '月之碎片',
         'Moonlight': '月光',
         'Specter(?! )': '幻影',
@@ -474,6 +477,7 @@ export default {
     {
       'locale': 'ko',
       'replaceSync': {
+        'No\. No\.\.\. Not yet\. Not\. Yet\.': '아아, 나는 아직…….',
         'Moondust': '달조각',
         'Moonlight': '월광',
         'Specter(?! )': '환영',

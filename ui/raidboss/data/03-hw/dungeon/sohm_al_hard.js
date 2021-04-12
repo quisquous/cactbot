@@ -209,9 +209,11 @@ export default {
       'locale': 'de',
       'replaceSync': {
         'The Wound': 'Wunde',
+        'The Scorpion\'s Tail': 'Schwanzskorpion',
         'The Lava Tube': 'Lavagrotte',
         'The Leightonward': 'Hortigolem',
         'Small Spore Sac': 'klein(?:e|er|es|en) Sporensack',
+        '(?<!Small )Spore Sac': 'Sporensack',
         'Lava Scorpion': 'Lavaskorpion',
       },
       'replaceText': {
@@ -235,6 +237,8 @@ export default {
         'The Leightonward': 'Chortocyon',
         'Small Spore Sac': 'petit sac de spores',
         'Lava Scorpion': 'scorpion de lave',
+        'The Scorpion\'s Tail': 'queue du scorpion',
+        '(?<!Small )Spore Sac': 'Sac de spores',
       },
       'replaceText': {
         '\\(Back\\)': '(Derrière)',
@@ -242,7 +246,7 @@ export default {
         '\\(Readies\\)': '(Préparation)',
         '\\(Ring\\)': '(Anneau)',
         'Wild Horn': 'Corne sauvage',
-        'Spore Sac': 'Sac de spores',
+        '(?<!Small )Spore Sac': 'Sac de spores',
         'Realm Shaker': 'Secousse tellurique',
         'Molten Silk': 'Soie en fusion',
         'Inflammable Fumes': 'Gaz inflammable',
@@ -261,6 +265,8 @@ export default {
         'The Leightonward': 'レイトンワード',
         'Small Spore Sac': 'スモール・スポアサック',
         'Lava Scorpion': 'ラーヴァ・スコーピオン',
+        'The Scorpion\'s Tail': 'テイル・スコーピオン',
+        '(?<!Small )Spore Sac': 'スポアサック',
       },
       'replaceText': {
         '\\(Adds x2\\)': '(2つ 雑魚)',
@@ -289,6 +295,8 @@ export default {
         'The Leightonward': '莱顿瓦德',
         'Small Spore Sac': '小型孢囊',
         'Lava Scorpion': '熔岩蝎',
+        'The Scorpion\'s Tail': '尖尾蝎',
+        '(?<!Small )Spore Sac': '孢囊',
       },
       'replaceText': {
         '\\(Adds x2\\)': '(小怪x2)',
@@ -317,6 +325,8 @@ export default {
         'The Leightonward': '레이튼워드',
         'Small Spore Sac': '작은 포자 주머니',
         'Lava Scorpion': '용암 전갈',
+        'The Scorpion\'s Tail': '꼬리 전갈',
+        '(?<!Small )Spore Sac': '포자 주머니',
       },
       'replaceText': {
         'Wild Horn': '사나운 뿔',

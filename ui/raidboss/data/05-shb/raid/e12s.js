@@ -4,13 +4,7 @@ import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
-// TODO: knockback direction from big hand after giant lasers (Palm Of Temperance 58B4/58B6/?/?)
-// TODO: for left/right reach during Blade Of Flame, call out Left + #1 alarm for #1.
-
-// TODO: somber dance triggers
-// TODO: apocalypse "get away from facing" or some such triggers
 // TODO: double apoc clockwise vs counterclockwise call would be nice
-// TODO: maybe call something for advanced, including double aero partners?
 
 // Each tether ID corresponds to a primal:
 // 008C -- Shiva
@@ -430,6 +424,7 @@ export default {
       netRegexDe: NetRegexes.tether({ target: 'Abbild Eines Mannes', id: '0011' }),
       netRegexFr: NetRegexes.tether({ target: 'Création Masculine', id: '0011' }),
       netRegexJa: NetRegexes.tether({ target: '創られた男', id: '0011' }),
+      netRegexCn: NetRegexes.tether({ target: '被创造的男性', id: '0011' }),
       condition: (data, matches) => matches.source === data.me,
       durationSeconds: (data) => {
         // Handle laser #1 differently to not collide with the rapturous reach.
@@ -508,16 +503,19 @@ export default {
           en: '#${num} (Inner)',
           de: '#${num} (innen)',
           fr: '#${num} (Intérieur)',
+          cn: '#${num} (内)',
         },
         outer: {
           en: '#${num} (Outer)',
           de: '#${num} (außen)',
           fr: '#${num} (Extérieur)',
+          cn: '#${num} (外)',
         },
         unknown: {
           en: '#${num} (???)',
           de: '#${num} (???)',
           fr: '#${num} (???)',
+          cn: '#${num} (???)',
         },
       },
     },
@@ -527,6 +525,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Wächter Von Eden', id: '58B4', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Gardien D\'Éden', id: '58B4', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ガーディアン・オブ・エデン', id: '58B4', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '伊甸守卫', id: '58B4', capture: false }),
       durationSeconds: 10,
       infoText: (data, _, output) => output.knockback(),
       outputStrings: {
@@ -534,6 +533,7 @@ export default {
           en: 'SE Knockback',
           de: 'SO Rückstoß',
           fr: 'SE Poussée',
+          cn: '右下（东南）击退',
         },
       },
     },
@@ -543,6 +543,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Wächter Von Eden', id: '58B5', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Gardien D\'Éden', id: '58B5', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ガーディアン・オブ・エデン', id: '58B5', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '伊甸守卫', id: '58B5', capture: false }),
       durationSeconds: 10,
       infoText: (data, _, output) => output.knockback(),
       outputStrings: {
@@ -550,6 +551,7 @@ export default {
           en: 'SW Knockback',
           de: 'SW Rückstoß',
           fr: 'SO Poussée',
+          cn: '左下（西南）击退',
         },
       },
     },
@@ -559,6 +561,8 @@ export default {
       netRegexDe: NetRegexes.ability({ source: 'Abbild Eines Mannes', id: '58B3', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Création Masculine', id: '58B3', capture: false }),
       netRegexJa: NetRegexes.ability({ source: '創られた男', id: '58B3', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '被创造的男性', id: '58B3', capture: false }),
+
       condition: (data) => !data.statueLaserCount || data.statueLaserCount < 4,
       durationSeconds: 3,
       suppressSeconds: 1,
@@ -573,16 +577,19 @@ export default {
             en: 'Bait Inner #${num}',
             de: 'Köder innen #${num}',
             fr: 'Orientez vers l\'intérieur #${num}',
+            cn: '向内诱导 #${num}',
           },
           baitOuter: {
             en: 'Bait Outer #${num}',
             de: 'Köder außen #${num}',
             fr: 'Orientez vers l\'extérieur #${num}',
+            cn: '向外诱导 #${num}',
           },
           baitUnknown: {
             en: 'Bait #${num}',
             de: 'Köder #${num}',
             fr: 'Orientez #${num}',
+            cn: '诱导 #${num}',
           },
         };
         // Start one ahead, so that it calls out #2 after #1 has finished.
@@ -620,6 +627,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58A5', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58A5', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A5', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '58A5', capture: false }),
       run: (data) => {
         delete data.weightTargets;
         data.seenFirstBombs = true;
@@ -631,6 +639,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58A9', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58A9', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A9', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '58A9', capture: false }),
       condition: Conditions.caresAboutPhysical(),
       response: (data, _, output) => {
         // cactbot-builtin-response
@@ -675,6 +684,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58AD', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58AD', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58AD', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '58AD', capture: false }),
       response: (data, _, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -682,17 +692,20 @@ export default {
           goLeftBaitInner: {
             en: 'Left + Bait Inner #1',
             de: 'Links + Köder innen #1',
-            fr: 'Gauche + Orientez vers l\'intérieur #1',
+            fr: 'À gauche + Orientez vers l\'intérieur #1',
+            cn: '左 + 向内诱导 #1',
           },
           goLeftBaitOuter: {
             en: 'Left + Bait Outer #1',
             de: 'Links + Köder außen #1',
-            fr: 'Gauche + Orientez vers l\'extérieur #1',
+            fr: 'À gauche + Orientez vers l\'extérieur #1',
+            cn: '左 + 向外诱导 #1',
           },
           goLeftBaitUnknown: {
             en: 'Left + Bait #1',
             de: 'Links + Köder #1',
-            fr: 'Gauche + Orientez #1',
+            fr: 'À gauche + Orientez #1',
+            cn: '左 + 诱导 #1',
           },
         };
 
@@ -713,6 +726,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58AE', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58AE', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58AE', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '58AE', capture: false }),
       response: (data, _, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -720,17 +734,20 @@ export default {
           goRightBaitInner: {
             en: 'Right + Bait Inner #1',
             de: 'Rechts + Köder innen #1',
-            fr: 'Droite + Orientez vers l\'intérieur #1',
+            fr: 'À droite + Orientez vers l\'intérieur #1',
+            cn: '右 + 向内诱导 #1',
           },
           goRightBaitOuter: {
             en: 'Right + Bait Outer #1',
             de: 'Rechts + Köder außen #1',
-            fr: 'Droite + Orientez vers l\'extérieur #1',
+            fr: 'À droite + Orientez vers l\'extérieur #1',
+            cn: '右 + 向外诱导 #1',
           },
           goRightBaitUnknown: {
             en: 'Right + Bait #1',
             de: 'Rechts + Köder #1',
-            fr: 'Droite + Orientez #1',
+            fr: 'À droite + Orientez #1',
+            cn: '右 + 诱导 #1',
           },
         };
 
@@ -751,6 +768,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '58A8', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58A8', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A8', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '58A8', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -839,6 +857,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '5892', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '5892', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '5892', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '5892', capture: false }),
       infoText: (data, _, output) => {
         data.stockedTethers = data.tethers;
         delete data.tethers;
@@ -856,6 +875,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: ['4E43', '5893'] }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: ['4E43', '5893'] }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: ['4E43', '5893'] }),
+      netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: ['4E43', '5893'] }),
       preRun: (data) => {
         data.castCount = data.castCount || 0;
         data.castCount++;
@@ -903,6 +923,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Edens Verheißung', id: '589D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '589D', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '589D', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '589D', capture: false }),
       delaySeconds: 4,
       response: Responses.knockback('alert'),
     },
@@ -913,6 +934,7 @@ export default {
       netRegexDe: NetRegexes.tether({ source: 'Abbild Eines Löwen', id: '0011' }),
       netRegexFr: NetRegexes.tether({ source: 'Création Léonine', id: '0011' }),
       netRegexJa: NetRegexes.tether({ source: '創られた獅子', id: '0011' }),
+      netRegexCn: NetRegexes.tether({ source: '被创造的狮子', id: '0011' }),
       condition: Conditions.targetIsYou(),
       // Don't collide with reach left/right call.
       delaySeconds: 0.5,
@@ -934,6 +956,8 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58F0', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58F0', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58F0', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58F0', capture: false }),
+
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -943,6 +967,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E[0-3]' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E[0-3]' }),
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E[0-3]' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58E[0-3]' }),
       run: (data, matches) => {
         data.phase = {
           '58E0': 'basic',
@@ -958,6 +983,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E0', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E0', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E0', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58E0', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
     },
@@ -967,6 +993,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E1', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E1', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E1', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58E1', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
     },
@@ -976,6 +1003,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E2', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E2', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58E2', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
     },
@@ -985,15 +1013,18 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58E3', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E3', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E3', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58E3', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
     },
     {
       id: 'E12S Oracle Darkest Dance',
-      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58BE', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58BE', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58BE', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58BE', capture: false }),
+      // Darkest and Somber Dance both.
+      netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: ['58BE', '58BD'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: ['58BE', '58BD'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: ['58BE', '58BD'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: ['58BE', '58BD'], capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: ['58BE', '58BD'], capture: false }),
       infoText: (data, _, output) => {
         if (data.role === 'tank')
           return output.tankBait();
@@ -1005,7 +1036,7 @@ export default {
           de: 'Ködern - Weit weg',
           fr: 'Attirez au loin',
           ja: '遠くに誘導',
-          cn: '向外诱导',
+          cn: '远诱导',
           ko: '멀리 유도하기',
         },
         partyUnder: {
@@ -1019,11 +1050,41 @@ export default {
       },
     },
     {
+      id: 'E12S Oracle Somber Dance',
+      // Call for second hit of somber dance after first hit lands.
+      netRegex: NetRegexes.ability({ source: 'Oracle Of Darkness', id: '58BD', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Orakel Der Dunkelheit', id: '58BD', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Prêtresse Des Ténèbres', id: '58BD', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '闇の巫女', id: '58BD', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '暗之巫女', id: '58BD', capture: false }),
+      suppressSeconds: 5,
+      infoText: (data, _, output) => {
+        if (data.role === 'tank')
+          return output.tankBait();
+        return output.partyOut();
+      },
+      outputStrings: {
+        tankBait: {
+          en: 'Bait Close',
+          de: 'Köder nah',
+          fr: 'Attirez proche',
+          cn: '近诱导',
+        },
+        partyOut: {
+          en: 'Party Out',
+          de: 'Gruppe raus',
+          fr: 'Groupe au loin',
+          cn: '不要靠近BOSS',
+        },
+      },
+    },
+    {
       id: 'E12S Oracle Cataclysm',
       netRegex: NetRegexes.startsUsing({ source: 'Oracle Of Darkness', id: '58C2' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58C2' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58C2' }),
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58C2' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58C2' }),
       delaySeconds: 0.5,
       promise: async (data, matches, output) => {
         // select the Oracle Of Darkness with same source id
@@ -1090,6 +1151,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58C3', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58C3', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58C3', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58C3', capture: false }),
       response: Responses.getTogether('alert'),
     },
     {
@@ -1100,6 +1162,7 @@ export default {
       netRegexDe: NetRegexes.ability({ source: 'Orakel Der Dunkelheit', id: '58C3', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Prêtresse Des Ténèbres', id: '58C3', capture: false }),
       netRegexJa: NetRegexes.ability({ source: '闇の巫女', id: '58C3', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '暗之巫女', id: '58C3', capture: false }),
       suppressSeconds: 1,
       response: Responses.spread('info'),
     },
@@ -1109,6 +1172,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Orakel Der Dunkelheit', id: '58C7' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58C7' }),
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58C7' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58C7' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster('alert'),
     },
@@ -1250,7 +1314,7 @@ export default {
             de: 'Bewegen!',
             fr: 'Bougez !',
             ja: '避けて！',
-            cn: '快躲开！',
+            cn: '快移动！',
             ko: '이동하기!',
           },
         }, intermediateRelativityOutputStrings);
@@ -1335,7 +1399,7 @@ export default {
       id: 'E12S Basic Relativity Yellow Hourglass',
       // Orient where "Yellow" Anger's Hourglass spawns
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '9824' }),
-      durationSeconds: 15,
+      durationSeconds: 10,
       infoText: (data, matches, output) => {
         return output.hourglass({
           dir: dirToOutput(matchedPositionToDir(matches), output),
@@ -1377,7 +1441,7 @@ export default {
       // '0085' is the Red tether that buffs "Slow"
       netRegex: NetRegexes.tether({ id: '0086' }),
       condition: (data, matches) => data.phase === 'advanced',
-      durationSeconds: 8,
+      durationSeconds: 4,
       suppressSeconds: 3,
       infoText: (data, matches, output) => {
         const sorrow1 = data.sorrows[matches.sourceId.toUpperCase()];
@@ -1409,6 +1473,157 @@ export default {
         },
       },
     },
+    {
+      id: 'E12S Initial Dark Water',
+      netRegex: NetRegexes.gainsEffect({ effectId: '99D' }),
+      condition: (data, matches) => !data.phase,
+      delaySeconds: (data, matches) => {
+        const duration = parseFloat(matches.duration);
+        return data.seenInitialSpread ? duration - 6 : duration - 8;
+      },
+      durationSeconds: 5,
+      suppressSeconds: 5,
+      alertText: (data, _, output) => {
+        data.seenInitialStacks = true;
+        if (data.seenInitialSpread)
+          return output.knockbackIntoStackGroups();
+        return output.stackGroups();
+      },
+      outputStrings: {
+        stackGroups: {
+          en: 'Stack Groups',
+          de: 'In Gruppen sammeln',
+          fr: 'Packez-vous en groupe',
+          cn: '集合',
+        },
+        knockbackIntoStackGroups: {
+          en: 'Knockback Into Stack Groups',
+          de: 'Rückstoß, dann in Gruppen sammeln',
+          fr: 'Poussée puis packez-vous en groupe',
+          cn: '击退分摊',
+        },
+      },
+    },
+    {
+      id: 'E12S Initial Dark Eruption',
+      netRegex: NetRegexes.gainsEffect({ effectId: '99C' }),
+      condition: (data, matches) => !data.phase,
+      delaySeconds: (data, matches) => {
+        const duration = parseFloat(matches.duration);
+        return data.seenInitialSpread ? duration - 6 : duration - 8;
+      },
+      durationSeconds: 5,
+      suppressSeconds: 5,
+      alertText: (data, _, output) => {
+        data.seenInitialSpread = true;
+        if (data.seenInitialStacks)
+          return output.knockbackIntoSpread();
+        return output.spread();
+      },
+      outputStrings: {
+        spread: Outputs.spread,
+        knockbackIntoSpread: {
+          en: 'Knockback Into Spread',
+          de: 'Rückstoß dann verteilen',
+          fr: 'Poussée puis dispersez-vous',
+          cn: '分散击退',
+        },
+      },
+    },
+    {
+      id: 'E12S Dark Water Stacks',
+      netRegex: NetRegexes.gainsEffect({ effectId: '99D' }),
+      // During Advanced Relativity, there is a very short Dark Water III stack (12s)
+      // that applies when people position themselves for the initial Return placement.
+      // Most strategies auto-handle this, and so this feels like noise.  HOWEVER,
+      // using suppress here without this conditional will pick one of the short/long
+      // Dark Water III buffs and suppress the other, so this is a load-bearing conditional.
+      // Additionally, `data.phase` is checked here to avoid colliding with the special
+      // case of the first dark water in `E12S Initial Dark Water`.
+      condition: (data, matches) => data.phase && parseFloat(matches.duration) > 13,
+      delaySeconds: (data, matches) => parseFloat(matches.duration) - 4,
+      suppressSeconds: 5,
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack Groups',
+          de: 'In Gruppen sammeln',
+          fr: 'Packez-vous en groupe',
+          cn: '集合',
+        },
+      },
+    },
+    {
+      id: 'E12S Double Aero Finder',
+      netRegex: NetRegexes.gainsEffect({ effectId: '99F' }),
+      // In advanced, Aero comes in ~23 and ~31s flavors
+      condition: (data, matches) => data.phase === 'advanced' && parseFloat(matches.duration) > 28,
+      infoText: (data, matches, output) => {
+        data.doubleAero = data.doubleAero || [];
+        data.doubleAero.push(data.ShortName(matches.target));
+
+        if (data.doubleAero.length !== 2)
+          return;
+
+        data.doubleAero.sort();
+        return output.text({ name1: data.doubleAero[0], name2: data.doubleAero[1] });
+      },
+      // This will collide with 'E12S Adv Relativity Buff Collector', sorry.
+      tts: null,
+      outputStrings: {
+        text: {
+          en: 'Double Aero: ${name1}, ${name2}',
+          de: 'Doppel Windga: ${name1}, ${name2}',
+          fr: 'Double Vent : ${name1}, ${name2}',
+          cn: '双风: ${name1}, ${name2}',
+        },
+      },
+    },
+    {
+      id: 'E12S Adv Relativity Buff Collector',
+      // 997 Spell-In-Waiting: Dark Fire III
+      // 998 Spell-In-Waiting: Shadoweye
+      // 99F Spell-In-Waiting: Dark Aero III
+      netRegex: NetRegexes.gainsEffect({ effectId: '99[78F]' }),
+      condition: (data, matches) => data.phase === 'advanced' && data.me === matches.target,
+      durationSeconds: 15,
+      alertText: (data, matches, output) => {
+        const id = matches.effectId.toUpperCase();
+
+        // The shadoweye and the double aero person gets aero, so only consider the final aero.
+        if (id === '99F') {
+          if (parseFloat(matches.duration) < 28)
+            return;
+          return output.doubleAero();
+        }
+        if (id === '997')
+          return output.spread();
+        if (id === '998')
+          return output.shadoweye();
+      },
+      outputStrings: {
+        shadoweye: {
+          en: 'Eye on YOU',
+          de: 'Auge auf DIR',
+          fr: 'Œil sur VOUS',
+          ja: '自分に目',
+          cn: '石化眼点名',
+          ko: '시선징 대상자',
+        },
+        doubleAero: {
+          en: 'Double Aero on YOU',
+          de: 'Doppel Windga auf DIR',
+          fr: 'Double Vent sur VOUS',
+          cn: '双风点名',
+        },
+        spread: {
+          en: 'Spread on YOU',
+          de: 'Verteilen auf DIR',
+          fr: 'Dispersion sur VOUS',
+          cn: '分散点名',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
@@ -1425,7 +1640,7 @@ export default {
       },
       'replaceText': {
         'Advanced Relativity': 'Fortgeschrittene Relativität',
-        '(?<!(Singular|Dual|Triple) )Apocalypse': 'Apokalypse',
+        '(?<! )Apocalypse': 'Apokalypse',
         'Basic Relativity': 'Grundlegende Relativität',
         'Black Halo': 'Geschwärzter Schein',
         'Blade Of Flame': 'Flammenschwert',
@@ -1501,7 +1716,7 @@ export default {
       },
       'replaceText': {
         'Advanced Relativity': 'Relativité avancée',
-        '(?<!(Singular|Dual|Triple) )Apocalypse': 'Apocalypse',
+        '(?<! )Apocalypse': 'Apocalypse',
         'Basic Relativity': 'Relativité basique',
         'Black Halo': 'Halo de noirceur',
         'Blade Of Flame': 'Flammes de Lumière colossales',
@@ -1577,7 +1792,7 @@ export default {
       },
       'replaceText': {
         'Advanced Relativity': '時間圧縮・急',
-        '(?<!(Singular|Dual|Triple) )Apocalypse': 'アポカリプス',
+        '(?<! )Apocalypse': 'アポカリプス',
         'Basic Relativity': '時間圧縮・序',
         'Black Halo': 'ブラックヘイロー',
         'Blade Of Flame': '巨兵の光炎',
@@ -1639,6 +1854,84 @@ export default {
         'Triple Apocalypse': 'アポカリプス・トリプル',
         'Under The Weight': '大地の重圧',
         'Weight Of The World': '大陸の重み',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Beastly Sculpture': '被创造的狮子',
+        'Bomb Boulder': '爆破岩石',
+        'Chiseled Sculpture': '被创造的男性',
+        'Eden\'s Promise': '伊甸之约',
+        'Guardian Of Eden': '伊甸守卫',
+        'Ice Pillar': '冰柱',
+        'Oracle Of Darkness': '暗之巫女',
+        'Sorrow\'s Hourglass': '悲伤的沙漏',
+      },
+      'replaceText': {
+        'Advanced Relativity': '时间压缩·转',
+        '(?<! )Apocalypse': '启示',
+        'Basic Relativity': '时间压缩·起',
+        'Black Halo': '黑色光环',
+        'Blade Of Flame': '巨兵光炎',
+        'Cast': '释放',
+        'Cataclysm': '大灾变',
+        'Classical Sculpture': '创造巨兵',
+        'Dark Aero III': '黑暗暴风',
+        'Dark Current': '黑暗奔流',
+        '(?<! )Dark Eruption(?! )': '暗炎喷发',
+        'Dark Eruption / Dark Water III': '暗炎喷发/黑暗狂水',
+        'Dark Fire III': '黑暗爆炎',
+        'Dark Water III / Dark Eruption': '黑暗狂水/暗炎喷发',
+        '(?<! )Dark Water III(?! )': '黑暗狂水',
+        'Darkest Dance': '暗夜舞蹈',
+        'Diamond Dust': '钻石星尘',
+        'Dual Apocalypse': '双重启示',
+        'Earthen Fury': '大地之怒',
+        'Empty Hate': '空无的恶意',
+        'Empty Rage': '空无的恶念',
+        'Force Of The Land': '大地之轰',
+        'Formless Judgment': '天罚波动',
+        'Frigid Stone': '冰石',
+        'Hell\'s Judgment': '地狱审判',
+        'Ice Floe': '浮冰',
+        'Ice Pillar': '冰柱',
+        'Impact': '冲击',
+        'Initialize Recall': '回想记忆',
+        'Intermediate Relativity': '时间压缩·承',
+        'Junction Shiva': '融合：希瓦',
+        'Junction Titan': '融合：泰坦',
+        'Laser Eye': '激射眼',
+        'Lionsblaze': '狮子业火',
+        'Maleficium': '邪法',
+        'Maelstrom': '巨漩涡',
+        'Memory\'s End': '记忆终结',
+        'Obliteration Laser': '邪法激光',
+        'Palm Of Temperance': '拒绝之手',
+        'Paradise Lost': '失乐园',
+        'Pillar Pierce': '激突',
+        'Plunging Ice': '落冰冲击',
+        'Pulse Of The Land': '大地之响',
+        'Quicken': '神速',
+        'Rapturous Reach': '愉悦之手',
+        'Release': '施放',
+        'Return(?! IV)': '回返',
+        'Return IV': '强回返',
+        'Shadoweye': '暗影之眼',
+        'Shell Crusher': '破盾一击',
+        'Shockwave Pulsar': '脉冲星震波',
+        'Singular Apocalypse': '单一启示',
+        'Slow': '减速',
+        'Somber Dance': '真夜舞蹈',
+        'Speed': '限速',
+        'Spell-In-Waiting': '延迟咏唱',
+        'Spirit Taker': '碎灵一击',
+        'Stock': '储存',
+        'Terminal Relativity': '时间压缩·合',
+        '(?<!Junction )Titan': '泰坦',
+        'Triple Apocalypse': '三重启示',
+        'Under The Weight': '大地的重压',
+        'Weight Of The World': '大陆之重',
       },
     },
   ],

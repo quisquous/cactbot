@@ -56,6 +56,8 @@ export default {
         },
         noTarget: {
           en: 'Provoke: ${player} (missed)',
+          de: 'Herausforderung: ${player} (verfehlt)',
+          fr: 'Provocation: ${player} (manquée)',
           ja: '挑発: ${player} (タゲなし)',
           cn: '挑衅: ${player} (无目标)',
         },

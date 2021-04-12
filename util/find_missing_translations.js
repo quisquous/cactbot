@@ -4,6 +4,7 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import readline from 'readline';
 import { findMissing } from './find_missing_timeline_translations';
+import { walkDirSync } from './file_utils';
 
 const parser = new argparse.ArgumentParser({
   addHelp: true,
@@ -44,30 +45,18 @@ const nonZoneregexLocales = new Set([...allLocales].filter((locale) => {
 // Where to start looking for files.
 const basePath = () => path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 
-// Utility function to walk directories
-const walkDir = (dir, callback) => {
-  if (fs.statSync(dir).isFile()) {
-    callback(path.posix.join(dir));
-    return;
-  }
-  fs.readdirSync(dir).forEach((f) => {
-    const dirPath = path.posix.join(dir, f);
-    const isDirectory = fs.statSync(dirPath).isDirectory();
-    isDirectory ? walkDir(dirPath, callback) : callback(path.posix.join(dir, f));
-  });
-};
-
 // Return a list of all javascript filenames found under basePath()
 const findAllJavascriptFiles = (filter) => {
   const arr = [];
-  walkDir(basePath(), (filepath) => {
+  walkDirSync(basePath(), (filepath) => {
     if (ignoreDirs.some((str) => filepath.includes(str)))
       return;
     if (!filepath.endsWith('.js'))
       return;
     if (filter !== undefined && !filepath.includes(filter))
       return;
-    arr.push(filepath);
+    // These are full paths, so use backslashes to match Windows path names.
+    arr.push(filepath.replace(/\//g, '\\'));
   });
   return arr;
 };
@@ -87,10 +76,16 @@ const parseJavascriptFile = (file, locales) => {
   let keys = [];
   let openMatch = null;
 
-  const openObjRe = new RegExp('(\\s*)(.*{)\\s*');
-  const keyRe = new RegExp('\\s*(\\w{2}):');
+  const openObjRe = new RegExp('^(\\s*)(.*{)\\s*$');
+  const keyRe = new RegExp('^\\s*(\\w{2}):');
 
   lineReader.on('line', (line, idx = lineCounter()) => {
+    // Immediately exit if the file is auto-generated
+    if (line.match('// Auto-generated')) {
+      lineReader.close();
+      lineReader.removeAllListeners();
+    }
+
     // Any time we encounter what looks like a new object, start over.
     // FIXME: this deliberately simplifies and will ignore nested objects.
     // That's what we get for parsing javascript with regex.
@@ -140,7 +135,16 @@ const parseJavascriptFile = (file, locales) => {
 const run = async (args) => {
   const files = findAllJavascriptFiles(args['filter']);
   for (const file of files) {
-    await findMissing(file, args['locale']);
+    await findMissing(file, args['locale'], (file, line, label, message) => {
+      let str = file;
+      if (line)
+        str += `:${line}`;
+      if (label)
+        str += ` ${label}`;
+      if (message)
+        str += ` ${message}`;
+      console.log(str);
+    });
     parseJavascriptFile(file, [args['locale']]);
   }
 };

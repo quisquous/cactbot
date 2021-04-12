@@ -1,19 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import chai from 'chai';
+import { walkDirSync } from '../../util/file_utils';
 const { assert } = chai;
-
-const walkDir = (dir, callback) => {
-  if (fs.statSync(dir).isFile()) {
-    callback(path.posix.join(dir));
-    return;
-  }
-  fs.readdirSync(dir).forEach((f) => {
-    const dirPath = path.posix.join(dir, f);
-    const isDirectory = fs.statSync(dirPath).isDirectory();
-    isDirectory ? walkDir(dirPath, callback) : callback(path.posix.join(dir, f));
-  });
-};
 
 const testManifestFile = (file) => {
   let manifestLines;
@@ -25,7 +14,7 @@ const testManifestFile = (file) => {
     manifestLines = contents.split('\n').filter((x) => !/^\s*$/.test(x)).map((x) => x.trim());
 
     const basePath = path.dirname(file);
-    walkDir(basePath, (filePath) => {
+    walkDirSync(basePath, (filePath) => {
       const relative = path.relative(basePath, filePath);
       // Manifests use forward slashes, so match that here.
       const withForwardSlashes = relative.replace(/\\/g, '/');

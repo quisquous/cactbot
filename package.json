@@ -18,13 +18,16 @@
     "test": "node_modules/.bin/mocha",
     "lint-staged": "node_modules/.bin/lint-staged",
     "coverage-report": "node --loader ts-node/esm util/gen_coverage_report.js",
-    "find-translations": "node --loader ts-node/esm util/find_missing_translations.js"
+    "find-translations": "node --loader ts-node/esm util/find_missing_translations.js",
+    "translate-timeline": "node --loader ts-node/esm util/translate_timeline.js"
   },
   "devDependencies": {
+    "@babel/types": "7.12.*",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.1",
     "@zoltu/typescript-transformer-append-js-extension": "^1.0.1",
     "chai": "^4.2.0",
+    "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^4.3.0",
     "eslint": "^7.14.0",
     "eslint-config-google": "^0.9.1",

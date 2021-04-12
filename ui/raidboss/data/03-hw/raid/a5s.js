@@ -386,6 +386,8 @@ export default {
         '(?<!Hummel)Faust': 'Faust',
         '(?<!Smart)Bomb': 'Bombe',
         'Hummelfaust': 'Hummelfaust',
+        'Glassy-Eyed Cobra': 'aufgerüstet(?:e|er|es|en) Kobra',
+        'Gobbledygawker': 'Gobglotzer',
         'Gobbledygroper': 'Gobgreifer',
         'Ratfinx Twinkledinks': 'Ratfix Blinkdings',
         'Smartbomb': 'Best(?:e|er|es|en) Sprengenkörper',
@@ -432,6 +434,7 @@ export default {
         '(?<!Smart)Bomb(?!e)': 'Bombe',
         '(?<!Hummel)Faust': 'Faust',
         'Glassy-Eyed Minotaur': 'Minotaure au regard vide',
+        'Glassy-Eyed Cobra': 'cobra au regard vide',
         'Gobbledygawker': 'Gobœil',
         'Gobbledygroper': 'Gobchimère',
         'Hummelfaust': 'Hummelfaust',
@@ -440,6 +443,8 @@ export default {
         'The Clevering': 'la gobexpérimentation super-avancée',
       },
       'replaceText': {
+        '\\(NW\\)': '(NO)',
+        '\\(SE/SW\\)': '(SE/SO)',
         '--big--': '--grand--',
         '--small--': '--petit--',
         '10-Tonze Slash': 'Taillade de 10 tonz',
@@ -484,6 +489,8 @@ export default {
         'Ratfinx Twinkledinks': '奇才のラットフィンクス',
         'Smartbomb': '超高性能爆弾',
         'The Clevering': 'ゴブリサイエンス研究室',
+        'Glassy-Eyed Cobra': 'ドーピング・コブラ',
+        'Gobbledygawker': 'ゴブリアイ',
       },
       'replaceText': {
         '--big--': '--巨大化--',
@@ -532,6 +539,7 @@ export default {
         'Ratfinx Twinkledinks': '奇才 拉特芬克斯',
         'Smartbomb': '超高性能炸弹',
         'The Clevering': '哥布林科学研究室',
+        'Glassy-Eyed Cobra': '兴奋眼镜蛇',
       },
       'replaceText': {
         '--big--': '--大--',
@@ -578,6 +586,8 @@ export default {
         'Ratfinx Twinkledinks': '재주꾼 랫핑크스',
         'Smartbomb': '초고성능 폭탄',
         'The Clevering': '고블린 과학 연구실',
+        'Gobbledygawker': '고블주시자',
+        'Glassy-Eyed Minotaur': '약에 찌든 미노타우로스',
       },
       'replaceText': {
         '--big--': '--커짐--',

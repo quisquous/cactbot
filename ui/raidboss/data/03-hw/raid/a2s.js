@@ -23,7 +23,7 @@ export default {
         text: {
           en: 'Stun Soon',
           de: 'Bald unterbrechen',
-          fr: 'Stun bientôt',
+          fr: 'Étourdissez bientôt',
           ja: 'まもなくスタン',
           cn: '马上眩晕',
           ko: '곧 기절',
@@ -132,7 +132,7 @@ export default {
         text: {
           en: 'Stun Soldier',
           de: 'unterbreche Soldat',
-          fr: 'Stun sur le soldat',
+          fr: 'Étourdissez le soldat',
           ja: 'スタン：ソルジャー',
           cn: '眩晕士兵',
           ko: '병사 기절시키기',
@@ -192,6 +192,9 @@ export default {
         'Magitek Gobwidow G-IX': 'Gobmygale magitek G-IX',
       },
       'replaceText': {
+        '\\(NW\\)': '(NO)',
+        '\\(mid\\)': '(milieu)',
+        '\\(SW\\)': '(SO)',
         'Blitzstrahl': 'Blitzstrahl',
         'Bodyhurt Breakblock': 'Blindage corporel',
         'Boomcannon': 'Double canon',
@@ -208,7 +211,6 @@ export default {
         'Sniper': 'Sniper',
         'Soldier': 'Soldat',
         'Wave': 'Vague',
-        '\\(mid\\)': '(milieu)',
       },
     },
     {
