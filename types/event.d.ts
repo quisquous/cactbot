@@ -160,7 +160,7 @@ export interface EventMap {
   }) => void;
 
   'EnmityTargetData': (ev: {
-    type: 'EnmityTargetData',
+    type: 'EnmityTargetData';
     Target: {
       Name: string;
       ID: number;
