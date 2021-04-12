@@ -639,7 +639,7 @@ export class Bars {
 
     // Hide out of combat if requested
     if (!this.options.ShowMPTickerOutOfCombat && !this.inCombat) {
-      this.o.mpTicker.duration = 0;
+      this.o.mpTicker.duration = '0';
       this.o.mpTicker.stylefill = 'empty';
       return;
     }
