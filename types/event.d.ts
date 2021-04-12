@@ -158,6 +158,16 @@ export interface EventMap {
     source: string;
     msg: unknown;
   }) => void;
+
+  'EnmityTargetData': (ev: {
+    type: 'EnmityTargetData';
+    Target: {
+      Name: string;
+      ID: number;
+      Distance: number;
+      EffectiveDistance: number;
+    };
+  }) => void;
   // #endregion
 
   // #region Cactbot Event
@@ -168,52 +178,68 @@ export interface EventMap {
 
   'onGameExistsEvent': (ev: {
     type: 'onGameExistsEvent';
-    exists: boolean;
+    detail: {
+      exists: boolean;
+    };
   }) => void;
 
   'onGameActiveChangedEvent': (ev: {
     type: 'onGameActiveChangedEvent';
-    active: boolean;
+    detail: {
+      active: boolean;
+    };
   }) => void;
 
   'onLogEvent': (ev: {
     type: 'onLogEvent';
-    logs: string[];
+    detail: {
+      logs: string[];
+    };
   }) => void;
 
   'onImportLogEvent': (ev: {
     type: 'onImportLogEvent';
-    logs: string[];
+    detail: {
+      logs: string[];
+    };
   }) => void;
 
   'onInCombatChangedEvent': (ev: {
     type: 'onInCombatChangedEvent';
-    inACTCombat: boolean;
-    inGameCombat: boolean;
+    detail: {
+      inACTCombat: boolean;
+      inGameCombat: boolean;
+    };
   }) => void;
 
   'onZoneChangedEvent': (ev: {
     type: 'onZoneChangedEvent';
-    zoneName: string;
+    detail: {
+      zoneName: string;
+    };
   }) => void;
 
   'onFateEvent': (ev: {
     type: 'onFateEvent';
-    eventType: 'add' | 'update' | 'remove';
-    fateID: number;
-    progress: number;
+    detail: {
+      eventType: 'add' | 'update' | 'remove';
+      fateID: number;
+      progress: number;
+    };
   }) => void;
 
   'onCEEvent': (ev: {
     type: 'onCEEvent';
-    eventType: 'add' | 'update' | 'remove';
-    data: {
-      popTime: number;
-      timeRemaining: number;
-      ceKey: number;
-      numPlayers: number;
-      status: number;
-      progress: number;
+    detail: {
+      eventType: 'add' | 'update' | 'remove';
+      data: {
+        popTime: number;
+        timeRemaining: number;
+        ceKey: number;
+        numPlayers: number;
+        status: number;
+        progress: number;
+      };
     };
   }) => void;
 
