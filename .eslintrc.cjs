@@ -40,8 +40,7 @@ module.exports = {
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
       ],
       'rules': {
-        '@typescript-eslint/no-non-null-assertion': 2,
-        '@typescript-eslint/no-explicit-any': 2,
+        '@typescript-eslint/explicit-module-boundary-types': ['error', { 'allowHigherOrderFunctions': false }],
         '@typescript-eslint/member-delimiter-style': ['error', {
           'multiline': {
             'delimiter': 'semi',
@@ -52,10 +51,12 @@ module.exports = {
             'requireLast': false,
           },
         }],
+        '@typescript-eslint/method-signature-style': ['error', 'property'],
+        '@typescript-eslint/no-non-null-assertion': 2,
+        '@typescript-eslint/no-explicit-any': 2,
+        '@typescript-eslint/unbound-method': ['error', { 'ignoreStatic': true }],
         'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
         'object-shorthand': ['error', 'consistent'],
-        '@typescript-eslint/method-signature-style': ['error', 'property'],
-        '@typescript-eslint/explicit-module-boundary-types': ['error', { 'allowHigherOrderFunctions': false }],
       },
     },
   ],
