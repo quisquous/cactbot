@@ -9,7 +9,7 @@ import { exec } from 'child_process';
 
 
 const _COINACH_EXE = 'SaintCoinach.Cmd.exe';
-const _DEFAULT_COINACH_PATHS = ['C:\\SaintCoinach\\', 'D:\\SaintCoinach\\', 'E:\\Program Files\\SaintCoinach.Cmd\\'];
+const _DEFAULT_COINACH_PATHS = ['C:\\SaintCoinach\\', 'D:\\SaintCoinach\\'];
 
 if (process.env['CACTBOT_DEFAULT_COINACH_PATH'])
   _DEFAULT_COINACH_PATHS.push(process.env['CACTBOT_DEFAULT_COINACH_PATH']);
@@ -19,7 +19,6 @@ const _FFXIV_EXE = path.join('game', 'ffxiv_dx11.exe');
 const _DEFAULT_FFXIV_PATHS = [
   'C:\\Program Files (x86)\\SquareEnix\\FINAL FANTASY XIV - A Realm Reborn',
   'D:\\Program Files (x86)\\SquareEnix\\FINAL FANTASY XIV - A Realm Reborn',
-  'C:\\Program Files\\SquareEnix\\FINAL FANTASY XIV - A Realm Reborn',
 ];
 
 if (process.env['CACTBOT_DEFAULT_FFXIV_PATH'])
