@@ -931,7 +931,7 @@ export default {
           },
           avoid: {
             en: 'Go ${side} (avoid!)',
-            de: 'Go ${side} (avoid!)',
+            de: 'Gehe nach ${side} (ausweichen!)',
             fr: 'Allez à ${side} (évitez !)',
             ko: '${side}쪽으로 피하기!',
           },
