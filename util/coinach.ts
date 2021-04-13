@@ -153,8 +153,8 @@ export class CoinachWriter {
 
     let str = JSON.stringify(d.sort());
     // # single quote style
-    str = str.replace("'", '\"')
-    str = str.replace('"', "'")
+    str = str.replace('\'', '\"');
+    str = str.replace('"', '\'');
     // # add trailing commas
     str = str.replace(/([0-9]|\'|]|})s*$/, '$1,');
     // # remove final trailing comma
