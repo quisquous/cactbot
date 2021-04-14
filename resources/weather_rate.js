@@ -1241,7 +1241,7 @@ export default {
       100,
     ],
     'weathers': [
-      'Fair Skies',
+      'Red Moon',
     ],
   },
   96: {
@@ -1678,6 +1678,22 @@ export default {
       'Fog',
       'Thunder',
       'Thunderstorms',
+    ],
+  },
+  130: {
+    'rates': [
+      60,
+      70,
+      80,
+      90,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Rain',
+      'Wind',
+      'Thunder',
+      'Snow',
     ],
   },
 };
