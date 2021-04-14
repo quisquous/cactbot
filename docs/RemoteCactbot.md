@@ -8,17 +8,21 @@ Port forwarding can give personalized triggers to each person connected.
 This method also will allow others to view dps meters
 or any other kind of overlay.
 
+## Alternatives
+
 Another way is to use the [discord bot plugin](https://github.com/Makar8000/ACT-Discord-Triggers/wiki/First-Time-Setup-Guide).
 The discord bot will play all of the tts from cactbot that you would hear
 and play it for the rest of the party.
-This is less great,
+
+For cactbot, this is less great
 because many cactbot triggers are personalized
 and it is not meant to be a generalized "raid caller"
 even if it sort of works that way.
 Currently, cactbot sounds do not play through the plugin.
 
-This guide will only cover port forwarding.
-(Patches welcome to explain anything specific for ACT Discord Triggers + cactbot.)
+If a single discord tts raidcaller is what you are really looking for,
+[Triggernometry](https://github.com/Aho-Senpai/Aho-Triggers/blob/main/Triggernometry/Docs/FAQ.md#discord-callouts-ready)
+will be a better fit than cactbot for what you are trying to do.
 
 ## Port Forwarding Overview
 

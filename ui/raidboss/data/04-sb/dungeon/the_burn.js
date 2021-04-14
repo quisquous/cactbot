@@ -241,7 +241,7 @@ export default {
         'Rock Biter': 'Felsbeißer',
         'Mist Dragon': 'Nebeldrache',
         'Dim Crystal': 'trüber Kristall',
-        'Defective Drone': 'defekte Drohne',
+        'Defective Drone': 'defekt(?:e|er|es|en) Drohne',
         'Hedetet': 'Hedetet',
       },
       'replaceText': {

@@ -59,6 +59,10 @@ log_event_types = {
     "cast": "21",
 }
 
+# Write to stdout with an explicit encoding of UTF-8
+# See: https://stackoverflow.com/a/3597849
+utf8stdout = open(1, "w", encoding="utf-8", closefd=False)
+
 
 def make_entry(overrides):
     # This should include all of the fields that any entry uses.
@@ -497,7 +501,7 @@ if __name__ == "__main__":
 
     # Actually call the script
     if not args.report or len(args.report.split(",")) == 1:
-        print("\n".join(main(args)))
+        print("\n".join(main(args)), file=utf8stdout)
     else:
         timelines = []
         tmp_args = args
@@ -505,4 +509,4 @@ if __name__ == "__main__":
             tmp_args.report = report
             timelines.append(main(tmp_args))
         timeline_aggregator = timeline_aggregator.TimelineAggregator(timelines)
-        print("\n".join(timeline_aggregator.aggregate(args.aggregate_threshold)))
+        print("\n".join(timeline_aggregator.aggregate(args.aggregate_threshold)), file=utf8stdout)

@@ -34,37 +34,6 @@ export function setup(bars) {
   });
 
   bars.onCombo((skill) => {
-    // TODO: handle flags where you don't hit something.
-    // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
-    if (skill === kAbility.MythrilTempest) {
-      if (eyeBox.duration > 0) {
-        const old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
-        eyeBox.duration = 0;
-        eyeBox.duration = Math.min(old + 30, 59.5);
-      }
-    }
-    if (skill === kAbility.StormsEye) {
-      if (eyeBox.duration > 0) {
-        const old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
-        eyeBox.duration = 0;
-        eyeBox.duration = Math.min(old + 30, 59.5);
-        // Storm's Eye applies with some animation delay here, and on the next
-        // Storm's Eye, it snapshots the damage when the gcd is started, so
-        // add some of a gcd here in duration time from when it's applied.
-      } else {
-        eyeBox.duration = 0;
-        eyeBox.duration = 30 + 1;
-      }
-    }
-    bars.onUseAbility(kAbility.InnerRelease, () => {
-      if (eyeBox.duration > 0) {
-        const old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
-        eyeBox.duration = 0;
-        eyeBox.duration = Math.min(old + 15, 59.5);
-      }
-      return;
-    });
-
     // Min number of skills until eye without breaking combo.
     let minSkillsUntilEye;
     if (skill === kAbility.HeavySwing) {
@@ -98,12 +67,12 @@ export function setup(bars) {
       comboTimer.duration = 15;
   });
 
+  bars.onYouGainEffect(EffectId.StormsEye, (id, e) => {
+    eyeBox.duration = 0;
+    eyeBox.duration = e.duration;
+  });
   bars.onYouLoseEffect(EffectId.StormsEye, () => {
-    // Because storm's eye is tracked from the hit, and the ability is delayed,
-    // you can have the sequence: Storm's Eye (ability), loses effect, gains effect.
-    // To fix bars, don't "lose" unless it's been going on a bit.
-    if (eyeBox.elapsed > 10)
-      eyeBox.duration = 0;
+    eyeBox.duration = 0;
   });
 
   bars.onStatChange('WAR', () => {

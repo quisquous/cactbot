@@ -1,39 +1,23 @@
-import { Party } from '../types/global';
+import { Party } from '../types/event';
 import { Job, Role } from '../types/job.js';
 import Util from './util';
 
 export default class PartyTracker {
-  details: Party[];
-  partyNames_: string[];
-  partyIds_: string[];
-  allianceNames_: string[];
-  allianceIds_: string[];
-  nameToRole_: Record<string, Role>;
-  idToName_: Record<string, string>;
-  roleToPartyNames_: Record<Role, string[]>;
-  constructor() {
-    this.onPartyChanged({ party: [] });
-
-    // original event data
-    this.details = [];
-    this.partyNames_ = [];
-    this.partyIds_ = [];
-    this.allianceNames_ = [];
-    this.allianceIds_ = [];
-    this.nameToRole_ = {};
-    this.idToName_ = {};
-
-    // role -> [names] but only for party
-    this.roleToPartyNames_ = {} as Record<Role, string[]>;
-    for (const role of Util.getAllRoles())
-      this.roleToPartyNames_[role] = [];
-  }
+  details: Party[] = [];
+  partyNames_: string[] = [];
+  partyIds_: string[] = [];
+  allianceNames_: string[] = [];
+  allianceIds_: string[] = [];
+  nameToRole_: Record<string, Role> = {};
+  idToName_: Record<string, string> = {};
+  roleToPartyNames_: Record<Role, string[]> = {} as Record<Role, string[]>;
 
   // Bind this to PartyChanged events.
   onPartyChanged(e: { party: Party[]}): void {
     if (!e || !e.party)
       return;
 
+    this.reset();
     this.details = e.party;
 
     for (const p of e.party) {
@@ -49,6 +33,22 @@ export default class PartyTracker {
         this.roleToPartyNames_[role].push(p.name);
       }
     }
+  }
+
+  reset(): void {
+    // original event data
+    this.details = [];
+    this.partyNames_ = [];
+    this.partyIds_ = [];
+    this.allianceNames_ = [];
+    this.allianceIds_ = [];
+    this.nameToRole_ = {};
+    this.idToName_ = {};
+
+    // role -> [names] but only for party
+    this.roleToPartyNames_ = {} as Record<Role, string[]>;
+    for (const role of Util.getAllRoles())
+      this.roleToPartyNames_[role] = [];
   }
 
   // returns an array of the names of players in your immediate party
@@ -121,7 +121,6 @@ export default class PartyTracker {
       return names[1];
     if (names[1] === name)
       return names[0];
-    return;
   }
 
   // see: otherTank, but for healers.
@@ -133,7 +132,6 @@ export default class PartyTracker {
       return names[1];
     if (names[1] === name)
       return names[0];
-    return;
   }
 
   // returns the job name of the specified party member
@@ -141,7 +139,6 @@ export default class PartyTracker {
     const partyIndex = this.partyNames.indexOf(name);
     if (partyIndex >= 0)
       return Util.jobEnumToJob(this.details[partyIndex]?.job as number);
-    return;
   }
 
   nameFromId(id: string): string | undefined {

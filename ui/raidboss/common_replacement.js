@@ -119,6 +119,7 @@ export const commonReplacement = {
       ko: '--점프--',
     },
     '--knockback--': {
+      de: '--Rückstoß--',
       fr: '--poussée--',
       ja: '--ノックバック--',
       cn: '--击退--',

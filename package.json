@@ -10,19 +10,24 @@
   "scripts": {
     "build": "node_modules/.bin/webpack --config webpack/webpack.config.cjs --mode production",
     "start": "node_modules/.bin/webpack-dev-server --config webpack/webpack.config.cjs --mode development",
+    "tsc-no-emit": "node_modules/.bin/tsc --noEmit",
     "lint": "node_modules/.bin/eslint **/*.{js,cjs,mjs,ts}",
     "lintfix": "node_modules/.bin/eslint --fix **/*.{js,cjs,mjs,ts}",
     "stylelint": "node_modules/.bin/stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
     "markdownlint": "node_modules/.bin/markdownlint . --ignore node_modules --ignore publish --ignore CactbotOverlay/ThirdParty",
     "test": "node_modules/.bin/mocha",
     "lint-staged": "node_modules/.bin/lint-staged",
-    "coverage-report": "node --loader ts-node/esm util/gen_coverage_report.js"
+    "coverage-report": "node --loader ts-node/esm util/gen_coverage_report.js",
+    "find-translations": "node --loader ts-node/esm util/find_missing_translations.js",
+    "translate-timeline": "node --loader ts-node/esm util/translate_timeline.js"
   },
   "devDependencies": {
+    "@babel/types": "7.12.*",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.1",
     "@zoltu/typescript-transformer-append-js-extension": "^1.0.1",
     "chai": "^4.2.0",
+    "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^4.3.0",
     "eslint": "^7.14.0",
     "eslint-config-google": "^0.9.1",
@@ -43,7 +48,8 @@
     "typescript": "^4.1.5",
     "webpack": "^5.11.0",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "worker-loader": "^3.0.8"
   },
   "engines": {
     "node": ">=14.15.0"

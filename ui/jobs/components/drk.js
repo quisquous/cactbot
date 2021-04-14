@@ -1,3 +1,6 @@
+import { kAbility } from '../constants.js';
+import { computeBackgroundColorFrom } from '../utils.js';
+
 export function setup(bars) {
   const bloodBox = bars.addResourceBox({
     classList: ['drk-color-blood'],
@@ -44,5 +47,53 @@ export function setup(bars) {
       return;
     if (skill)
       comboTimer.duration = 15;
+  });
+
+  const bloodWeapon = bars.addProcBox({
+    id: 'drk-procs-bloodweapon',
+    fgColor: 'drk-color-bloodweapon',
+  });
+  bars.onUseAbility(kAbility.BloodWeapon, () => {
+    bloodWeapon.duration = 0;
+    bloodWeapon.duration = 10;
+    bloodWeapon.threshold = 10;
+    bloodWeapon.fg = computeBackgroundColorFrom(bloodWeapon, 'drk-color-bloodweapon.active');
+    setTimeout(() => {
+      bloodWeapon.duration = 50;
+      bloodWeapon.threshold = bars.gcdSkill * 2;
+      bloodWeapon.fg = computeBackgroundColorFrom(bloodWeapon, 'drk-color-bloodweapon');
+    }, 10000);
+  });
+
+  const delirium = bars.addProcBox({
+    id: 'drk-procs-delirium',
+    fgColor: 'drk-color-delirium',
+  });
+  bars.onUseAbility(kAbility.Delirium, () => {
+    delirium.duration = 0;
+    delirium.duration = 10 + 0.5;
+    delirium.threshold = 20;
+    delirium.fg = computeBackgroundColorFrom(delirium, 'drk-color-delirium.active');
+    setTimeout(() => {
+      delirium.duration = 80 - 0.5;
+      delirium.threshold = bars.gcdSkill * 2;
+      delirium.fg = computeBackgroundColorFrom(delirium, 'drk-color-delirium');
+    }, 10000);
+  });
+
+  const livingShadow = bars.addProcBox({
+    id: 'drk-procs-livingshadow',
+    fgColor: 'drk-color-livingshadow',
+  });
+  bars.onUseAbility(kAbility.LivingShadow, () => {
+    livingShadow.duration = 0;
+    livingShadow.duration = 24;
+    livingShadow.threshold = 24;
+    livingShadow.fg = computeBackgroundColorFrom(livingShadow, 'drk-color-livingshadow.active');
+    setTimeout(() => {
+      livingShadow.duration = 96;
+      livingShadow.threshold = bars.gcdSkill * 4;
+      livingShadow.fg = computeBackgroundColorFrom(livingShadow, 'drk-color-livingshadow');
+    }, 24000);
   });
 }

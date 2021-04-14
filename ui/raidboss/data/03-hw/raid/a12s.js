@@ -341,6 +341,7 @@ export default {
         'The General\'s Wing': 'Aile d\'Arrhabée',
       },
       'replaceText': {
+        '\\(W\\)': '(O)',
         '(?<! )Sacrament': 'Sacrement',
         '--timestop--': '--arrêt du temps--',
         '\\(Radiant\\?\\) Sacrament': 'Sacrement (rayonnant ?)',

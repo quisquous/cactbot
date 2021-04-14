@@ -426,7 +426,7 @@ export default {
         if (data.akhMornTargets.includes(data.me))
           return;
         const players = data.akhMornTargets.map((x) => data.ShortName(x)).join(', ');
-        return { infoText: akhMornOn({ players: players }) };
+        return { infoText: output.akhMornOn({ players: players }) };
       },
     },
     {

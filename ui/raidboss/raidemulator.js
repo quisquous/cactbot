@@ -18,31 +18,11 @@ import { TimelineLoader } from './timeline';
 import Tooltip from './emulator/ui/Tooltip';
 import UserConfig from '../../resources/user_config';
 import raidbossFileData from './data/manifest.txt';
+// eslint can't detect the custom loader for the worker
+// eslint-disable-next-line import/default
+import NetworkLogConverterWorker from './emulator/data/NetworkLogConverterWorker';
 
-// @TODO: Some way to not have this be a global?
-
-// See user/raidboss-example.js for documentation.
-const Options = {
-  // These options are ones that are not auto-defined by raidboss_config.js.
-  PlayerNicks: {},
-
-  InfoSound: '../../resources/sounds/freesound/percussion_hit.ogg',
-  AlertSound: '../../resources/sounds/BigWigs/Alert.ogg',
-  AlarmSound: '../../resources/sounds/BigWigs/Alarm.ogg',
-  LongSound: '../../resources/sounds/BigWigs/Long.ogg',
-  PullSound: '../../resources/sounds/freesound/sonar.ogg',
-
-  audioAllowed: true,
-
-  DisabledTriggers: {},
-
-  PerTriggerOptions: {},
-
-  Triggers: [],
-
-  PlayerNameOverride: null,
-  PlayerJobOverride: null,
-};
+import Options from './raidboss_options';
 
 (() => {
   let emulator;
@@ -65,7 +45,7 @@ const Options = {
     emulatedPartyInfo = new EmulatedPartyInfo(emulator);
     emulatedMap = new EmulatedMap(emulator);
     emulatedWebSocket = new RaidEmulatorOverlayApiHook(emulator);
-    logConverterWorker = new Worker('../../dist/raidemulatorWorker.bundle.js');
+    logConverterWorker = new NetworkLogConverterWorker();
 
     // Listen for the user to click a player in the party list on the right
     // and persist that over to the emulator

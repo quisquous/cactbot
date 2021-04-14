@@ -53,6 +53,15 @@ const timelineInstructions = {
   ],
 };
 
+const activeText = {
+  en: 'Active:',
+  de: 'Aktiv:',
+  fr: 'Active :',
+  ja: '(進行):',
+  cn: '(进行中):',
+  ko: '시전중:',
+};
+
 function computeBackgroundColorFrom(element, classList) {
   const div = document.createElement('div');
   const classes = classList.split('.');
@@ -71,6 +80,9 @@ export class Timeline {
     this.options = options || {};
     this.perTriggerAutoConfig = this.options['PerTriggerAutoConfig'] || {};
     this.replacements = replacements;
+
+    const lang = this.options.TimelineLanguage || this.options.ParserLanguage || 'en';
+    this.activeText = lang in activeText ? activeText[lang] : activeText['en'];
 
     // A set of names which will not be notified about.
     this.ignores = {};
@@ -261,6 +273,7 @@ export class Timeline {
           line = line.replace(commandMatch[1], '').trim();
           const sync = {
             id: uniqueid,
+            origRegexStr: commandMatch[2],
             regex: Regexes.parse(this.GetReplacedSync(commandMatch[2])),
             start: seconds - 2.5,
             end: seconds + 2.5,
@@ -402,9 +415,9 @@ export class Timeline {
       this.syncTimeCallback(fightNow, false);
   }
 
-  SyncTo(fightNow) {
+  SyncTo(fightNow, currentTime) {
     // This records the actual time which aligns with "0" in the timeline.
-    const newTimebase = new Date(new Date() - fightNow * 1000);
+    const newTimebase = new Date(currentTime - fightNow * 1000);
     // Skip syncs that are too close.  Many syncs happen on abilities that
     // hit 8 to 24 people, and so this is a lot of churn.
     if (Math.abs(newTimebase - this.timebase) <= 2)
@@ -446,7 +459,7 @@ export class Timeline {
     }
   }
 
-  OnLogLine(line) {
+  OnLogLine(line, currentTime) {
     for (let i = 0; i < this.activeSyncs.length; ++i) {
       const sync = this.activeSyncs[i];
       if (line.search(sync.regex) >= 0) {
@@ -454,9 +467,9 @@ export class Timeline {
           if (!sync.jump)
             this.Stop();
           else
-            this.SyncTo(sync.jump);
+            this.SyncTo(sync.jump, currentTime);
         } else {
-          this.SyncTo(sync.time);
+          this.SyncTo(sync.time, currentTime);
         }
         break;
       }
@@ -518,7 +531,7 @@ export class Timeline {
           time: e.time + e.duration,
           sortKey: e.sortKey,
           name: e.name,
-          text: 'Active: ' + e.text,
+          text: `${this.activeText} ${e.text}`,
           isDur: true,
         };
         events.push(durationEvent);
@@ -624,16 +637,18 @@ export class Timeline {
     if (nextTime !== kBig) {
       console.assert(nextTime > fightNow, 'nextTime is in the past');
       this.updateTimer = window.setTimeout(
-          this._OnUpdateTimer.bind(this),
+          () => {
+            this._OnUpdateTimer(+new Date());
+          },
           (nextTime - fightNow) * 1000);
     }
   }
 
-  _OnUpdateTimer() {
+  _OnUpdateTimer(currentTime) {
     console.assert(this.timebase, '_OnTimerUpdate called while stopped');
 
     // This is the number of seconds into the fight (subtracting Dates gives milliseconds).
-    const fightNow = (new Date() - this.timebase) / 1000;
+    const fightNow = (currentTime - this.timebase) / 1000;
     // Send text events now or they'd be skipped by _AdvanceTimeTo().
     this._AddPassedTexts(fightNow, true);
     this._AdvanceTimeTo(fightNow);
@@ -773,7 +788,7 @@ export class TimelineUI {
     bar.righttext = 'remain';
     bar.lefttext = e.text;
     bar.toward = 'right';
-    bar.style = !channeling ? 'fill' : 'empty';
+    bar.stylefill = !channeling ? 'fill' : 'empty';
 
     if (e.style)
       bar.applyStyles(e.style);
@@ -868,7 +883,7 @@ export class TimelineUI {
       this.debugFightTimer.duration = 10000; // anything big
       this.debugFightTimer.lefttext = 'elapsed';
       this.debugFightTimer.toward = 'right';
-      this.debugFightTimer.style = 'fill';
+      this.debugFightTimer.stylefill = 'fill';
       this.debugFightTimer.bg = 'transparent';
       this.debugFightTimer.fg = 'transparent';
       this.debugElement.appendChild(this.debugFightTimer);
@@ -914,6 +929,9 @@ export class TimelineController {
   OnLogEvent(e) {
     if (!this.activeTimeline)
       return;
+
+    const currentTime = +new Date();
+
     for (const log of e.detail.logs) {
       if (LocaleRegex.countdownStart[this.options.ParserLanguage].test(log)) {
         // As you can't start a countdown while in combat, the next engage is real.
@@ -928,7 +946,7 @@ export class TimelineController {
         // we will clear this.  Therefore, this will only apply to active countdowns.
         this.suppressNextEngage = true;
       }
-      this.activeTimeline.OnLogLine(log);
+      this.activeTimeline.OnLogLine(log, currentTime);
     }
   }
 

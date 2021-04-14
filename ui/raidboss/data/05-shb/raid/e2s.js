@@ -618,6 +618,7 @@ export default {
     {
       'locale': 'de',
       'replaceSync': {
+        'The Hand Of Erebos': 'Arm Des Erebos',
         'Voidwalker': 'Nichtswandler',
       },
       'replaceText': {
@@ -647,6 +648,7 @@ export default {
     {
       'locale': 'fr',
       'replaceSync': {
+        'The Hand Of Erebos': 'Bras D\'Érèbe',
         'Voidwalker': 'Marcheuse Du Néant',
       },
       'replaceText': {
@@ -677,6 +679,7 @@ export default {
     {
       'locale': 'ja',
       'replaceSync': {
+        'The Hand Of Erebos': 'エレボスの巨腕',
         'Voidwalker': 'ヴォイドウォーカー',
       },
       'replaceText': {
@@ -707,6 +710,7 @@ export default {
     {
       'locale': 'cn',
       'replaceSync': {
+        'The Hand Of Erebos': '厄瑞玻斯的巨腕',
         'Voidwalker': '虚无行者',
       },
       'replaceText': {
@@ -736,6 +740,7 @@ export default {
     {
       'locale': 'ko',
       'replaceSync': {
+        'The Hand Of Erebos': '에레보스의 팔',
         'Voidwalker': '보이드워커',
       },
       'replaceText': {

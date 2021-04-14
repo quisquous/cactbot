@@ -1,8 +1,8 @@
-import { TranslatableText } from '../types/trigger';
+import { FullLocaleText } from '../types/trigger';
 
 // Output strings for now require a field for every language, so this is a
 // helper function to generate one for literal numbers.
-const numberToOutputString = function(n: number): TranslatableText {
+const numberToOutputString = function(n: number): FullLocaleText {
   const str = n.toString();
   return {
     en: str,
@@ -432,7 +432,7 @@ export default {
   stunTarget: {
     en: 'Stun ${name}',
     de: 'Betäubung auf ${name}',
-    fr: 'Étourdissement sur ${name}',
+    fr: 'Étourdissez ${name}',
     ja: '${name} にスタン',
     cn: '眩晕 ${name}',
     ko: '${name}기절',

@@ -1,8 +1,12 @@
 'use strict';
 
 const path = require('path');
+const webpack = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = function(env, argv) {
+  const dev = argv.mode === 'development';
+
   return {
     entry: {
       config: './ui/config/config.js',
@@ -17,8 +21,8 @@ module.exports = function(env, argv) {
       radar: './ui/radar/radar.js',
       raidboss: './ui/raidboss/raidboss.js',
       raidemulator: './ui/raidboss/raidemulator.js',
-      raidemulatorWorker: './ui/raidboss/emulator/data/NetworkLogConverterWorker.js',
       test: './ui/test/test.js',
+      ...(() => dev ? ({ timerbar: './resources/timerbar.ts' }) : ({}))(),
     },
     optimization: {
       splitChunks: {
@@ -36,7 +40,7 @@ module.exports = function(env, argv) {
         },
       },
     },
-    devtool: argv.mode === 'development' ? 'source-map' : undefined,
+    devtool: dev ? 'source-map' : undefined,
     output: {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, '../dist'),
@@ -47,6 +51,25 @@ module.exports = function(env, argv) {
     },
     module: {
       rules: [
+        {
+          // Worker has to go before normal js
+          test: /NetworkLogConverterWorker\.(?:c|m)?js$/,
+          loader: 'worker-loader',
+          options: {
+            esModule: true,
+            inline: 'fallback',
+            worker: {
+              type: 'Worker',
+              options: {
+                type: 'classic',
+                name: 'NetworkLogConverterWorker',
+              },
+            },
+          },
+          resolve: {
+            fullySpecified: false,
+          },
+        },
         {
           // this will allow importing without extension in js files.
           test: /\.m?js$/,
@@ -83,5 +106,9 @@ module.exports = function(env, argv) {
         },
       ],
     },
+    plugins: [
+      new webpack.ProgressPlugin({}),
+      new CleanWebpackPlugin(),
+    ],
   };
 };

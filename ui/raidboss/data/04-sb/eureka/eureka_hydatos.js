@@ -1059,12 +1059,12 @@ export default {
     },
     {
       id: 'BA Ozma Adds',
-      netRegex: NetRegexes.ability({ source: 'Cloudlarker', id: '37B0', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Wolkenlauerer', id: '37B0', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Arsenal Urolith', id: '37B0', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Arsenal-Urolith', id: '37B0', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Urolithe De L\'arsenal', id: '37B0', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'クラウドラーカー', id: '37B0', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '翻云狮鹫', id: '37B0', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '구름 잠복자', id: '37B0', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'アーセナル・ウロリス', id: '37B0', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '兵武乌洛里石', id: '37B0', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '무기고 요결석', id: '37B0', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -1098,11 +1098,12 @@ export default {
     {
       'locale': 'de',
       'replaceSync': {
+        '7 minutes have elapsed since your last activity..*?': 'Seit deiner letzten Aktivität sind 7 Minuten vergangen.',
         'Absolute Virtue': 'Absolut(?:e|er|es|en) Tugend',
         'Arsenal Centaur': 'Arsenal-Zentaur',
         'Art': 'Art',
         'Ball Lightning': 'Elektrosphäre',
-        'Cloudlarker': 'Wolkenlauerer',
+        'Arsenal Urolith': 'Arsenal-Urolith',
         'Ivory Palm': 'weiß(?:e|er|es|en) Hand',
         'Orlasrach': 'Orlasrach',
         'Owain': 'Owain',
@@ -1189,11 +1190,12 @@ export default {
     {
       'locale': 'fr',
       'replaceSync': {
+        '7 minutes have elapsed since your last activity..*?': 'Votre personnage est inactif depuis 7 minutes.*?',
         'Absolute Virtue': 'Vertu absolue',
         'Arsenal Centaur': 'Centaure de l\'Arsenal',
         'Art': 'Art',
         'Ball Lightning': 'Orbe de foudre',
-        'Cloudlarker': 'Urolithe de l\'Arsenal',
+        'Arsenal Urolith': 'Urolithe de l\'Arsenal',
         'Ivory Palm': 'Paume d\'ivoire',
         'Orlasrach': 'Orlasrach',
         'Owain': 'Owain',
@@ -1279,11 +1281,12 @@ export default {
     {
       'locale': 'ja',
       'replaceSync': {
+        '7 minutes have elapsed since your last activity..*?': '操作がない状態になってから7分が経過しました。.*?',
         'Absolute Virtue': 'アブソリュートヴァーチュー',
         'Arsenal Centaur': 'アーセナル・セントール',
         'Art': 'アルト',
         'Ball Lightning': '雷球',
-        'Cloudlarker': 'クラウドラーカー',
+        'Arsenal Urolith': 'アーセナル・ウロリス',
         'Ivory Palm': '白き手',
         'Orlasrach': 'オールラスラッハ',
         'Owain': 'オーウェン',
@@ -1369,11 +1372,12 @@ export default {
     {
       'locale': 'cn',
       'replaceSync': {
+        '7 minutes have elapsed since your last activity..*?': '已经7分钟没有进行任何操作.*?',
         'Absolute Virtue': '绝对的美德',
         'Arsenal Centaur': '兵武半人马',
         'Art': '亚特',
         'Ball Lightning': '闪电球',
-        'Cloudlarker': '翻云狮鹫',
+        'Arsenal Urolith': '兵武乌洛里石',
         'Ivory Palm': '白手',
         'Orlasrach': '烈焰金枪',
         'Owain': '欧文',
@@ -1461,11 +1465,12 @@ export default {
     {
       'locale': 'ko',
       'replaceSync': {
+        '7 minutes have elapsed since your last activity..*?': '7분 동안 아무 조작을 하지 않았습니다..*?',
         'Absolute Virtue': '절대미덕',
         'Arsenal Centaur': '무기고 켄타우로스',
         'Art': '아르트',
         'Ball Lightning': '전기 구체',
-        'Cloudlarker': '구름 잠복자',
+        'Arsenal Urolith': '무기고 요결석',
         'Ivory Palm': '하얀 손',
         'Orlasrach': '오를라스라흐',
         'Owain': '오와인',

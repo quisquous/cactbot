@@ -23,4 +23,17 @@ export default class CombatantState {
         Number(props.MP) || this.MP,
         Number(props.maxMP) || this.maxMP);
   }
+
+  toPluginState() {
+    return {
+      PosX: this.posX,
+      PosY: this.posY,
+      PosZ: this.posZ,
+      Heading: this.heading,
+      CurrentHP: this.HP,
+      MaxHP: this.maxHP,
+      CurrentMP: this.MP,
+      MaxMP: this.maxMP,
+    };
+  }
 }

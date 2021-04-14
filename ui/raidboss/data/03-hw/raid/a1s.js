@@ -213,8 +213,8 @@ export default {
         'Faust': 'Faust',
         'Hangar 8': 'grand hangar GH-8',
         'Machinery Bay 44': 'hangar d\'armement HA-44',
-        'Oppressor': 'Oppresseur',
-        'Oppressor 0.5': 'Oppresseur 0.5',
+        'Oppressor(?! 0)': 'Oppresseur',
+        'Oppressor 0\\\\.5': 'Oppresseur 0\\.5',
       },
       'replaceText': {
         '3000-Tonze Missile': 'Missile de 3000 tonz',
@@ -242,8 +242,8 @@ export default {
         'Faust': 'ファウスト',
         'Hangar 8': '第8大型格納庫',
         'Machinery Bay 44': '第44機工兵格納庫',
-        'Oppressor': 'オプレッサー',
-        'Oppressor 0.5': 'オプレッサー・ゼロ',
+        'Oppressor(?! 0)': 'オプレッサー',
+        'Oppressor 0\\\\.5': 'オプレッサー・ゼロ',
       },
       'replaceText': {
         '3000-Tonze Missile': '超大型ミサイル',
@@ -271,8 +271,8 @@ export default {
         'Faust': '浮士德',
         'Hangar 8': '第8大型机库',
         'Machinery Bay 44': '第44机工兵仓库',
-        'Oppressor': '压迫者',
-        'Oppressor 0.5': '压迫者零号',
+        'Oppressor(?! 0)': '压迫者',
+        'Oppressor 0\\\\.5': '压迫者零号',
       },
       'replaceText': {
         '3000-Tonze Missile': '超大型导弹',
@@ -300,8 +300,8 @@ export default {
         'Faust': '파우스트',
         'Hangar 8': '제8 대형 격납고',
         'Machinery Bay 44': '제44 기공병 격납고',
-        'Oppressor': '억압자',
-        'Oppressor 0.5': '미완성 억압자',
+        'Oppressor(?! 0)': '억압자',
+        'Oppressor 0\\\\.5': '미완성 억압자',
       },
       'replaceText': {
         '3000-Tonze Missile': '초대형 미사일',

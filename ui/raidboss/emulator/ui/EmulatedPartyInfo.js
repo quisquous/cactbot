@@ -10,7 +10,8 @@ export default class EmulatedPartyInfo extends EventBus {
     this.emulator = emulator;
     this.$partyInfo = document.querySelector('.partyInfoColumn .party');
     this.$triggerInfo = document.querySelector('.triggerInfoColumn');
-    this.$triggerHideCheckbox = document.querySelector('.triggerHideSkipped');
+    this.$triggerHideSkippedCheckbox = document.querySelector('.triggerHideSkipped');
+    this.$triggerHideCollectCheckbox = document.querySelector('.triggerHideCollector');
     this.$triggerBar = document.querySelector('.playerTriggers');
     this.triggerBars = [];
     this.latestDisplayedState = 0;
@@ -37,12 +38,17 @@ export default class EmulatedPartyInfo extends EventBus {
       this.latestDisplayedState = Math.max(this.latestDisplayedState, time);
     });
     this.updateTriggerState = () => {
-      if (this.$triggerHideCheckbox.checked)
+      if (this.$triggerHideSkippedCheckbox.checked)
         this.hideNonExecutedTriggers();
       else
         this.showNonExecutedTriggers();
+      if (this.$triggerHideCollectCheckbox.checked)
+        this.hideCollectorTriggers();
+      else
+        this.showCollectorTriggers();
     };
-    this.$triggerHideCheckbox.addEventListener('change', this.updateTriggerState);
+    this.$triggerHideSkippedCheckbox.addEventListener('change', this.updateTriggerState);
+    this.$triggerHideCollectCheckbox.addEventListener('change', this.updateTriggerState);
 
     this.$triggerItemTemplate = document.querySelector('template.triggerItem').content.firstElementChild;
     this.$playerInfoRowTemplate = document.querySelector('template.playerInfoRow').content.firstElementChild;
@@ -63,6 +69,19 @@ export default class EmulatedPartyInfo extends EventBus {
       n.classList.remove('d-none');
     });
   }
+
+  hideCollectorTriggers() {
+    this.$triggerInfo.querySelectorAll('.trigger-no-output').forEach((n) => {
+      n.classList.add('d-none');
+    });
+  }
+
+  showCollectorTriggers() {
+    this.$triggerInfo.querySelectorAll('.trigger-no-output').forEach((n) => {
+      n.classList.remove('d-none');
+    });
+  }
+
 
   /**
    * @param {RaidEmulator} emulator
@@ -219,30 +238,41 @@ export default class EmulatedPartyInfo extends EventBus {
     const $initDataViewer = this.$jsonViewerTemplate.cloneNode(true);
     $initDataViewer.textContent = JSON.stringify(per.initialData, null, 2);
 
-    $container.append(this._wrapCollapse('Initial Data', $initDataViewer, () => {
-      $initDataViewer.textContent = JSON.stringify(per.initialData, null, 2);
+    $container.append(this._wrapCollapse({
+      time: '00:00',
+      name: 'Initial Data',
+      classes: ['data'],
+      $obj: $initDataViewer,
+      callback: () => {
+        $initDataViewer.textContent = JSON.stringify(per.initialData, null, 2);
+      },
     }));
 
     const $triggerContainer = $container.querySelector('.d-flex.flex-column');
 
     for (const i in per.triggers.sort((l, r) => l.resolvedOffset - r.resolvedOffset)) {
       const $triggerDataViewer = this.$jsonViewerTemplate.cloneNode(true);
-      const buttonName = this.getTriggerFiredLabelTime(per.triggers[i]) +
-        ' - ' + per.triggers[i].triggerHelper.trigger.id;
-      const $trigger = this._wrapCollapse(buttonName, $triggerDataViewer, () => {
-        $triggerDataViewer.textContent = JSON.stringify(per.triggers[i], null, 2);
+      const triggerText = this.getTriggerLabelText(per.triggers[i]);
+      const $trigger = this._wrapCollapse({
+        time: this.getTriggerResolvedLabelTime(per.triggers[i]),
+        name: per.triggers[i].triggerHelper.trigger.id,
+        icon: this.getTriggerLabelIcon(per.triggers[i]),
+        text: triggerText,
+        classes: [per.triggers[i].status.responseType],
+        $obj: $triggerDataViewer,
+        callback: () => {
+          $triggerDataViewer.textContent = JSON.stringify(per.triggers[i], null, 2);
+        },
       });
-      const $buttonWrapper = $trigger.querySelector('.wrap-collapse-button');
-      const $label = this.$triggerLabelTemplate.cloneNode(true);
-      const $labelText = $label.querySelector('.trigger-label-text');
-      const $labelTime = $label.querySelector('.trigger-label-time');
-      $labelText.textContent = this.getTriggerLabelText(per.triggers[i]);
-      $labelTime.textContent = this.getTriggerResolvedLabelTime(per.triggers[i]);
-      $buttonWrapper.append($label);
       if (per.triggers[i].status.executed)
         $trigger.classList.add('trigger-executed');
       else
         $trigger.classList.add('trigger-not-executed');
+
+      if (triggerText === undefined)
+        $trigger.classList.add('trigger-no-output');
+      else
+        $trigger.classList.add('trigger-output');
 
       $triggerContainer.append($trigger);
     }
@@ -252,26 +282,57 @@ export default class EmulatedPartyInfo extends EventBus {
     const $finalDataViewer = this.$jsonViewerTemplate.cloneNode(true);
     $finalDataViewer.textContent = JSON.stringify(per.finalData, null, 2);
 
-    $container.append(this._wrapCollapse('Final Data', $finalDataViewer, () => {
-      $finalDataViewer.textContent = JSON.stringify(per.finalData, null, 2);
+    $container.append(this._wrapCollapse({
+      time: EmulatorCommon.timeToString(
+          encounter.encounter.duration - encounter.encounter.initialOffset,
+          false),
+      name: 'Final Data',
+      classes: ['data'],
+      $obj: $finalDataViewer,
+      callback: () => {
+        $finalDataViewer.textContent = JSON.stringify(per.finalData, null, 2);
+      },
     }));
 
     return $ret;
   }
 
   getTriggerLabelText(trigger) {
-    let ret = trigger.status.result || trigger.status.response;
+    let ret = trigger.status.responseLabel;
 
     if (typeof (ret) === 'object')
       ret = trigger.triggerHelper.valueOrFunction(ret);
-    else if (typeof (ret) === 'boolean')
-      ret = '';
+
+    if (typeof (ret) === 'boolean')
+      ret = undefined;
     else if (typeof (ret) === 'undefined')
-      ret = '';
+      ret = undefined;
     else if (typeof (ret) !== 'string')
       ret = 'Invalid Result?';
 
+    if (ret === '')
+      ret = undefined;
+
     return ret;
+  }
+
+  getTriggerLabelIcon(trigger) {
+    const type = trigger.status.responseType;
+
+    switch (type) {
+    case 'info':
+      return 'info';
+    case 'alert':
+      return 'bell';
+    case 'alarm':
+      return 'exclamation';
+    case 'tts':
+      return 'bullhorn';
+    case 'audiofile':
+      return 'volume-up';
+    }
+
+    return undefined;
   }
 
   getTriggerFiredLabelTime(Trigger) {
@@ -286,19 +347,55 @@ export default class EmulatedPartyInfo extends EventBus {
         false);
   }
 
-  _wrapCollapse(label, $obj, onclick) {
+  /**
+   * @param {object} params Parameters to use for the wrapper.
+   * @param {Element} params.$obj Object to wrap in a collapseable button
+   * @param {string} [params.time] Time to display
+   * @param {string} [params.name] Name/label of the button
+   * @param {string} [params.icon] FontAwesome icon to display
+   * @param {[string]} [params.classes] Array of classes to add to the button
+   * @param {CallableFunction} [params.onclick] Callback to trigger when clicking the button
+   */
+  _wrapCollapse(params) {
     const $ret = this.$wrapCollapseTemplate.cloneNode(true);
     const $button = $ret.querySelector('.btn');
-    $button.textContent = label;
+    const $time = $ret.querySelector('.trigger-label-time');
+    const $name = $ret.querySelector('.trigger-label-name');
+    const $icon = $ret.querySelector('.trigger-label-icon');
+    const $text = $ret.querySelector('.trigger-label-text');
+
+    if (params.name === undefined)
+      $name.parentNode.removeChild($name);
+    else
+      $name.textContent = params.name;
+
+    if (params.time === undefined)
+      $time.parentNode.removeChild($time);
+    else
+      $time.textContent = params.time;
+
+    if (params.text === undefined)
+      $text.parentNode.removeChild($text);
+    else
+      $text.textContent = params.text;
+
+    if (params.icon === undefined)
+      $icon.parentNode.removeChild($icon);
+    else
+      $icon.innerHTML = `<i class="fa fa-${params.icon}" aria-hidden="true"></i>`;
+
+    if (Array.isArray(params.classes))
+      params.classes.forEach((c) => $button.classList.add('triggertype-' + c));
+
     const $wrapper = $ret.querySelector('.wrap-collapse-wrapper');
     $button.addEventListener('click', () => {
       if ($wrapper.classList.contains('d-none'))
         $wrapper.classList.remove('d-none');
       else
         $wrapper.classList.add('d-none');
-      onclick && onclick();
+      typeof (params.onclick) === 'function' && params.onclick();
     });
-    $wrapper.append($obj);
+    $wrapper.append(params.$obj);
     return $ret;
   }
 }

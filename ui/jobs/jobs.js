@@ -1,3 +1,5 @@
+import { addOverlayListener } from '../../resources/overlay_plugin_api';
+
 import EffectId from '../../resources/effect_id';
 import ContentType from '../../resources/content_type';
 import Regexes from '../../resources/regexes';
@@ -102,6 +104,7 @@ class Bars {
     this.updateDotTimerFuncs = [];
     this.gainEffectFuncMap = {};
     this.mobGainEffectFromYouFuncMap = {};
+    this.mobLoseEffectFromYouFuncMap = {};
     this.loseEffectFuncMap = {};
     this.statChangeFuncMap = {};
     this.abilityFuncMap = {};
@@ -139,6 +142,7 @@ class Bars {
     this.changeZoneFuncs = [];
     this.gainEffectFuncMap = {};
     this.mobGainEffectFromYouFuncMap = {};
+    this.mobLoseEffectFromYouFuncMap = {};
     this.loseEffectFuncMap = {};
     this.statChangeFuncMap = {};
     this.abilityFuncMap = {};
@@ -314,7 +318,7 @@ class Bars {
       this.o.mpTicker.width = window.getComputedStyle(this.o.mpTickContainer).width;
       this.o.mpTicker.height = window.getComputedStyle(this.o.mpTickContainer).height;
       this.o.mpTicker.bg = computeBackgroundColorFrom(this.o.mpTicker, 'bar-border-color');
-      this.o.mpTicker.style = 'fill';
+      this.o.mpTicker.stylefill = 'fill';
       this.o.mpTicker.loop = true;
     }
 
@@ -405,7 +409,7 @@ class Bars {
 
     const timerBox = document.createElement('timer-box');
     container.appendChild(timerBox);
-    timerBox.style = 'empty';
+    timerBox.stylefill = 'empty';
     if (options.fgColor)
       timerBox.fg = computeBackgroundColorFrom(timerBox, options.fgColor);
     timerBox.bg = 'black';
@@ -467,19 +471,29 @@ class Bars {
   onMobGainsEffectFromYou(effectIds, callback) {
     if (Array.isArray(effectIds))
       effectIds.forEach((id) => this.mobGainEffectFromYouFuncMap[id] = callback);
-    this.mobGainEffectFromYouFuncMap[effectIds] = callback;
+    else
+      this.mobGainEffectFromYouFuncMap[effectIds] = callback;
+  }
+
+  onMobLosesEffectFromYou(effectIds, callback) {
+    if (Array.isArray(effectIds))
+      effectIds.forEach((id) => this.mobLoseEffectFromYouFuncMap[id] = callback);
+    else
+      this.mobLoseEffectFromYouFuncMap[effectIds] = callback;
   }
 
   onYouGainEffect(effectIds, callback) {
     if (Array.isArray(effectIds))
       effectIds.forEach((id) => this.gainEffectFuncMap[id] = callback);
-    this.gainEffectFuncMap[effectIds] = callback;
+    else
+      this.gainEffectFuncMap[effectIds] = callback;
   }
 
   onYouLoseEffect(effectIds, callback) {
     if (Array.isArray(effectIds))
       effectIds.forEach((id) => this.loseEffectFuncMap[id] = callback);
-    this.loseEffectFuncMap[effectIds] = callback;
+    else
+      this.loseEffectFuncMap[effectIds] = callback;
   }
 
   onJobDetailUpdate(callback) {
@@ -493,7 +507,8 @@ class Bars {
   onUseAbility(abilityIds, callback) {
     if (Array.isArray(abilityIds))
       abilityIds.forEach((id) => this.abilityFuncMap[id] = callback);
-    this.abilityFuncMap[abilityIds] = callback;
+    else
+      this.abilityFuncMap[abilityIds] = callback;
   }
 
   _onComboChange(skill) {
@@ -531,10 +546,10 @@ class Bars {
     // Hide out of combat if requested
     if (!this.options.ShowMPTickerOutOfCombat && !this.inCombat) {
       this.o.mpTicker.duration = 0;
-      this.o.mpTicker.style = 'empty';
+      this.o.mpTicker.stylefill = 'empty';
       return;
     }
-    this.o.mpTicker.style = 'fill';
+    this.o.mpTicker.stylefill = 'fill';
 
     const baseTick = this.inCombat ? kMPCombatRate : kMPNormalRate;
     let umbralTick = 0;
@@ -902,6 +917,9 @@ class Bars {
           if (index > -1)
             this.dotTarget.splice(index, 1);
         }
+        const f = this.mobLoseEffectFromYouFuncMap[effectId];
+        if (f)
+          f(effectId, m.groups);
       }
     } else if (type === '21' || type === '22') {
       let m = log.match(this.regexes.YouUseAbilityRegex);

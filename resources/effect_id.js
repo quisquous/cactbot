@@ -1313,6 +1313,7 @@ export default {
   'Whistle': '370',
   'WhiteWound': '564',
   'WideAwake': '7FF',
+  'Wildfire': '35D',
   'WillOfTheWater': '2CE',
   'WillOfTheWind': '2CD',
   'WindResistanceUp': '20A',

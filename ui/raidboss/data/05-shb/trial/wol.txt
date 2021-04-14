@@ -86,7 +86,7 @@ hideall "--Reset--"
 650.4 "Sword Of Light" sync /:Warrior Of Light:4F42:/
 668.6 "Shining Wave" sync /:Warrior Of Light:4F26:/
 
-670.7 "Absolute Fire/Blizard" sync /:Warrior Of Light:4F2[DE]:/
+670.7 "Absolute Fire/Blizzard" sync /:Warrior Of Light:4F2[DE]:/
 678.9 "Elddragon Dive" sync /:Warrior Of Light:4F29:/
 683.1 "--middle--" sync /:Warrior Of Light:4F45:/
 688.3 "Imbued Fire/Blizzard" sync /:Warrior Of Light:4F1[23]:/
@@ -106,7 +106,7 @@ hideall "--Reset--"
 752.4 "The Bitter End" sync /:Warrior Of Light:4F28:/
 756.1 "Perfect Decimation" sync /:Spectral Warrior:4F3E:/
 
-760.6 "Absolute Fire/Blizard" sync /:Warrior Of Light:4F2[DE]:/
+760.6 "Absolute Fire/Blizzard" sync /:Warrior Of Light:4F2[DE]:/
 761.0 "Perfect Decimation" sync /:Spectral Warrior:4F23:/
 772.8 "Elddragon Dive" sync /:Warrior Of Light:4F29:/
 

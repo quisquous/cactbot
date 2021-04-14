@@ -1,3 +1,4 @@
+import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
 import ContentType from '../../resources/content_type';
 import { LocaleNetRegex } from '../../resources/translations';
 import NetRegexes from '../../resources/netregexes';

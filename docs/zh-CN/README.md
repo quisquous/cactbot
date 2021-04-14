@@ -285,7 +285,7 @@ ThirdParty
 |:---------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------:|
 |  <img src="../../resources/ffxiv/jobs/pld-large.png" width="30px" /><br> 骑士  |                          显示当前的忠义值和赎罪剑层数。 以及监控沥血剑的DoT。                           |
 |  <img src="../../resources/ffxiv/jobs/war-large.png" width="30px" /><br> 战士  |               显示兽魂值，并监控剩余的暴风碎Buff时间，给出以GCD为基准的补buff提示，同时显示剩余连击时间。               |
-| <img src="../../resources/ffxiv/jobs/drk-large.png" width="30px" /><br> 暗黑骑士 |                            显示暗血值和暗黑剩余时间，并且显示剩余连击时间。                             |
+| <img src="../../resources/ffxiv/jobs/drk-large.png" width="30px" /><br> 暗黑骑士 |             显示暗血值和暗黑剩余时间，嗜血，血乱和掠影示现的持续时间和冷却时间，并且显示剩余连击时间。                             |
 | <img src="../../resources/ffxiv/jobs/gnb-large.png" width="30px" /><br> 绝枪战士 |                    显示无情的持续时间&冷却时间，血壤&烈牙的冷却时间，晶壤数量，并显示剩余连击时间。                    |
 | <img src="../../resources/ffxiv/jobs/whm-large.png" width="30px" /><br> 白魔法师 |                 显示治疗&血百合数量，距离获得下一朵治疗百合的时间，DoT剩余时间，以及法令&醒梦的冷却时间。                 |
 |  <img src="../../resources/ffxiv/jobs/sch-large.png" width="30px" /><br> 学者  |                 显示以太超流的层数、异想以太量/炽天使剩余时间、DoT剩余时间，并显示以太超流&醒梦的冷却。                  |

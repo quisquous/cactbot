@@ -18,6 +18,7 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
+    "types": [ "node" ],
     "allowSyntheticDefaultImports": true,
     "outDir": "./dist",
     "rootDir": "./",
@@ -27,7 +28,6 @@
     "alwaysStrict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": false,
-    "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     //    "noPropertyAccessFromIndexSignature": false, // used by trigger output strings
