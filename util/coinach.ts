@@ -9,21 +9,21 @@ import { exec } from 'child_process';
 import eslint from 'eslint';
 
 
-const _COINACH_EXE = 'SaintCoinach.Cmd.exe';
-const _DEFAULT_COINACH_PATHS = ['C:\\SaintCoinach\\', 'D:\\SaintCoinach\\'];
+const coinachExe = 'SaintCoinach.Cmd.exe';
+const defaultCoinachPaths = ['C:\\SaintCoinach\\', 'D:\\SaintCoinach\\'];
 
 if (process.env['CACTBOT_DEFAULT_COINACH_PATH'])
-  _DEFAULT_COINACH_PATHS.push(process.env['CACTBOT_DEFAULT_COINACH_PATH']);
+  defaultCoinachPaths.push(process.env['CACTBOT_DEFAULT_COINACH_PATH']);
 
-const _FFXIV_EXE = path.join('game', 'ffxiv_dx11.exe');
+const ffxivExe = path.join('game', 'ffxiv_dx11.exe');
 
-const _DEFAULT_FFXIV_PATHS = [
+const defaultFfxivPaths = [
   'C:\\Program Files (x86)\\SquareEnix\\FINAL FANTASY XIV - A Realm Reborn',
   'D:\\Program Files (x86)\\SquareEnix\\FINAL FANTASY XIV - A Realm Reborn',
 ];
 
 if (process.env['CACTBOT_DEFAULT_FFXIV_PATH'])
-  _DEFAULT_FFXIV_PATHS.push(process.env['CACTBOT_DEFAULT_FFXIV_PATH']);
+  defaultFfxivPaths.push(process.env['CACTBOT_DEFAULT_FFXIV_PATH']);
 
 class CoinachError extends Error {
   constructor(message?: string, cmd?: string, output?: string) {
@@ -43,8 +43,8 @@ export class CoinachReader {
     this.verbose = verbose;
 
     if (!coinachPath) {
-      for (const p of _DEFAULT_COINACH_PATHS) {
-        if (fs.existsSync(path.join(p, _COINACH_EXE))) {
+      for (const p of defaultCoinachPaths) {
+        if (fs.existsSync(path.join(p, coinachExe))) {
           coinachPath = p;
           break;
         }
@@ -52,8 +52,8 @@ export class CoinachReader {
     }
 
     if (!ffxivPath) {
-      for (const p of _DEFAULT_FFXIV_PATHS) {
-        if (fs.existsSync(path.join(p, _FFXIV_EXE))) {
+      for (const p of defaultFfxivPaths) {
+        if (fs.existsSync(path.join(p, ffxivExe))) {
           ffxivPath = p;
           break;
         }
@@ -65,9 +65,9 @@ export class CoinachReader {
     this.coinachPath = coinachPath;
     this.ffxivPath = ffxivPath;
 
-    if (!fs.existsSync(path.join(this.coinachPath, _COINACH_EXE)))
+    if (!fs.existsSync(path.join(this.coinachPath, coinachExe)))
       throw new CoinachError('invalid coinach path: ' + this.coinachPath);
-    if (!fs.existsSync(path.join(this.ffxivPath, _FFXIV_EXE)))
+    if (!fs.existsSync(path.join(this.ffxivPath, ffxivExe)))
       throw new CoinachError('invalid ffxiv path: ' + this.ffxivPath);
   }
 
@@ -80,7 +80,7 @@ export class CoinachReader {
   }
 
   async _coinachCmd(coinachCmd: string, table: string, lang: string): Promise<string[]> {
-    const cmdList = [path.join(this.coinachPath, _COINACH_EXE)];
+    const cmdList = [path.join(this.coinachPath, coinachExe)];
     const args = [this.ffxivPath, 'lang ' + lang, coinachCmd + ' ' + table];
 
     const cmd = [...cmdList, ...args].map((x) => `"${x}"`).join(' ');
