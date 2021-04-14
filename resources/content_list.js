@@ -93,6 +93,7 @@ export default [
   ZoneId.AnamnesisAnyder,
   ZoneId.TheHeroesGauntlet,
   ZoneId.MatoyasRelict,
+  ZoneId.Paglthan,
 
   // Guildhests
   ZoneId.BasicTrainingEnemyParties,
@@ -187,6 +188,7 @@ export default [
   ZoneId.CinderDrift,
   ZoneId.TheSeatOfSacrifice,
   ZoneId.CastrumMarinum,
+  ZoneId.TheCloudDeck,
 
   // High-end Trials (Shadowbringers)
   ZoneId.TheDancingPlagueExtreme,
@@ -196,8 +198,10 @@ export default [
   ZoneId.MemoriaMiseraExtreme,
   ZoneId.TheSeatOfSacrificeExtreme,
   ZoneId.CastrumMarinumExtreme,
+  ZoneId.TheCloudDeckExtreme,
   ZoneId.TheAkhAfahAmphitheatreUnreal,
   ZoneId.TheNavelUnreal,
+  ZoneId.TheWhorleaterUnreal,
 
   // Alliance Raids (A Realm Reborn)
   ZoneId.TheLabyrinthOfTheAncients,
@@ -294,6 +298,7 @@ export default [
   // Alliance Raids (Shadowbringers)
   ZoneId.TheCopiedFactory,
   ZoneId.ThePuppetsBunker,
+  ZoneId.TheTowerAtParadigmsBreach,
 
   // Normal Raids (Shadowbringers)
   ZoneId.EdensGateResurrection,

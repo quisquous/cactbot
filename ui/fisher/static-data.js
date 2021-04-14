@@ -943,7 +943,7 @@ export default {
       '30439': '蛋白石虾',
       '30487': '蓝蟹',
       '30488': '重盾贝',
-      '30489': '钓勾鱼',
+      '30489': '钓钩鱼',
       '30490': '云草',
       '30491': '巨鲱',
       '30492': '墨贝',
@@ -976,6 +976,72 @@ export default {
       '31601': '第三期重建用的特供飞龙',
       '31602': '第三期重建用的特供云鲨',
       '31603': '第三期重建用的特供旋齿鲨',
+      '32049': '月光虹鳉',
+      '32050': '元首的军扇',
+      '32051': '战盾剑齿龙鳖',
+      '32052': '深泳的古书',
+      '32053': '珍珠皮皮拉鱼',
+      '32054': '鳍人之敌',
+      '32055': '龟甲蟹',
+      '32056': '艾德薇雅的戒指',
+      '32057': '金属箱',
+      '32058': '古菩鳐',
+      '32059': '海瓦魔蛾',
+      '32060': '眼镜王蛇鱼',
+      '32061': '真麻希鲯鳅',
+      '32062': '混种薰衣草印鱼',
+      '32063': '幻光蝴蝶鱼',
+      '32064': '谢尔达莱结晶',
+      '32065': '泰坦硬甲蟹',
+      '32066': '秘银箱',
+      '32067': '雾须酒杯',
+      '32068': '帚状奇虾',
+      '32069': '火烈鳗',
+      '32070': '喷射蝠鲼',
+      '32071': '恶魔刺',
+      '32072': '美鲶',
+      '32073': '浮游翻车鱼',
+      '32074': '哈弗古法',
+      '32075': '沙利亚克河蟹',
+      '32076': '破坏神的星尘',
+      '32077': '真鲹',
+      '32078': '渗血隆头鱼',
+      '32079': '染血抛光蟹',
+      '32080': '蓝针',
+      '32081': '血红金枪鱼',
+      '32082': '落水面具',
+      '32083': '幻光鳗',
+      '32084': '素面',
+      '32085': '神谕蟹',
+      '32086': '龙堡鲷鱼',
+      '32087': '余韵',
+      '32088': '锯齿蛤蜊',
+      '32089': '幸福愿景',
+      '32090': '歼灭者',
+      '32091': '血玉金枪鱼',
+      '32092': '八鳍腔棘鱼',
+      '32093': '石英锤头鲨',
+      '32094': '海洋蟾蜍',
+      '32095': '暗鸦鲀',
+      '32096': '罗斯利特海带',
+      '32097': '鬼灯水母',
+      '32098': '蜂巢鱼',
+      '32099': '海神的睡床',
+      '32100': '雇佣兵',
+      '32101': '萨维奈鲨鱼',
+      '32102': '翡翠软玉鳗',
+      '32103': '幻光鱼龙',
+      '32104': '银杏鱼',
+      '32105': '鱼酱罐',
+      '32106': '海猎豹',
+      '32107': '罗斯利特贝',
+      '32108': '利维幼鳗',
+      '32109': '珍珠爆弹',
+      '32110': '巨魔鱼',
+      '32111': '潘诺普忒斯',
+      '32112': '金鞋底',
+      '32113': '刀颚鱼',
+      '32114': '盾齿龙',
     },
     'de': {
       '4776': [
@@ -5338,6 +5404,67 @@ export default {
         'Himmelsang-Meganeura',
         'Himmelsang-Meganeuras',
       ],
+      '33219': [
+        'dravanische Pilgermuschel',
+        'dravanischen Pilgermuschel',
+        'dravanisches Pilgermuschel',
+        'dravanischer Pilgermuschel',
+        'dravanische Pilgermuscheln',
+        'dravanischen Pilgermuscheln',
+        'dravanisches Pilgermuscheln',
+        'dravanischer Pilgermuscheln',
+      ],
+      '33220': [
+        'Wolkenalge',
+        'Wolkenalgen',
+      ],
+      '33221': 'Scharlachspringer',
+      '33222': [
+        'Weißmuschel',
+        'Weißmuscheln',
+      ],
+      '33223': [
+        'Aromafisch',
+        'Aromafische',
+      ],
+      '33316': 'Aster Trivi',
+      '33317': [
+        'Pythonscheibe',
+        'Pythonscheiben',
+      ],
+      '33318': [
+        'Stahlklinge',
+        'Stahlklingen',
+      ],
+      '33319': 'Schattenwandler',
+      '33320': [
+        'Nabaath-Säge',
+        'Nabaath-Sägen',
+      ],
+      '33321': [
+        'Dammroen-Hering',
+        'Dammroen-Heringe',
+      ],
+      '33322': 'Himmelsbetrachter',
+      '33323': [
+        'Äonenschwärze',
+        'Äonenschwärzen',
+      ],
+      '33324': [
+        'Güldene Pipira',
+        'Güldenen Pipira',
+        'Güldenes Pipira',
+        'Güldener Pipira',
+        'Güldene Pipiras',
+        'Güldenen Pipiras',
+        'Güldenes Pipiras',
+        'Güldener Pipiras',
+      ],
+      '33325': 'Mora Tecta',
+      '33326': [
+        'Marukrabbe',
+        'Marukrabben',
+      ],
     },
     'en': {
       '4776': [
@@ -8272,7 +8399,10 @@ export default {
         'crow puffer',
         'crow puffers',
       ],
-      '32096': 'Rothlyt kelp',
+      '32096': [
+        'strip of Rothlyt kelp',
+        'strips of Rothlyt kelp',
+      ],
       '32097': [
         'living lantern',
         'living lanterns',
@@ -8397,6 +8527,52 @@ export default {
       '32907': [
         'grade 4 artisanal skybuilders\' meganeura',
         'grade 4 artisanal skybuilders\' meganeurae',
+      ],
+      '33219': [
+        'Dravanian scallop',
+        'Dravanian scallops',
+      ],
+      '33220': [
+        'strip of cloud kelp',
+        'strips of cloud kelp',
+      ],
+      '33221': [
+        'scarlet frog',
+        'scarlet frogs',
+      ],
+      '33222': [
+        'white clam',
+        'white clams',
+      ],
+      '33223': 'fragrant sweetfish',
+      '33316': 'aster trivi',
+      '33317': 'python discus',
+      '33318': [
+        'steel razor',
+        'steel razors',
+      ],
+      '33319': [
+        'shadeshifter',
+        'shadeshifters',
+      ],
+      '33320': [
+        'Nabaath saw',
+        'Nabaath saws',
+      ],
+      '33321': 'Dammroen herring',
+      '33322': [
+        'celestial',
+        'celestials',
+      ],
+      '33323': [
+        'deephaunt',
+        'deephaunts',
+      ],
+      '33324': 'golden pipira',
+      '33325': 'mora tecta',
+      '33326': [
+        'Maru crab',
+        'Maru crabs',
       ],
     },
     'fr': {
@@ -11202,8 +11378,8 @@ export default {
         'lamproies vampires ambrées',
       ],
       '27464': [
-        'poisson-tigre des sables',
-        'poissons-tigres des sables',
+        'poisson tigre des sables',
+        'poissons tigres des sables',
       ],
       '27465': [
         'crabe à mitaines d\'Amh Araeng',
@@ -12361,6 +12537,64 @@ export default {
         'meganeura sur commande de restauration (4e phase)',
         'meganeurae sur commande de restauration (4e phase)',
       ],
+      '33219': [
+        'coquille dravanienne',
+        'coquilles dravaniennes',
+      ],
+      '33220': [
+        'algue des nuages',
+        'algues des nuages',
+      ],
+      '33221': [
+        'grenouille écarlate',
+        'grenouilles écarlates',
+      ],
+      '33222': [
+        'palourde blanche',
+        'palourdes blanches',
+      ],
+      '33223': [
+        'poisson-sucre parfumé',
+        'poissons-sucre parfumés',
+      ],
+      '33316': 'Aster Trivi',
+      '33317': [
+        'discus python',
+        'discus pythons',
+      ],
+      '33318': [
+        'rasoir-d\'argent',
+        'rasoirs-d\'argent',
+      ],
+      '33319': [
+        'poulpe ombromorphe',
+        'poulpes ombromorphes',
+      ],
+      '33320': [
+        'poisson tigre des Nabaath',
+        'poissons tigres des Nabaath',
+      ],
+      '33321': [
+        'hareng de Dammroen',
+        'harengs de Dammroen',
+      ],
+      '33322': [
+        'galactoscope',
+        'galactoscopes',
+      ],
+      '33323': [
+        'hanteur des abysses',
+        'hanteurs des abysses',
+      ],
+      '33324': [
+        'pipira doré',
+        'pipiras dorés',
+      ],
+      '33325': 'Mola Tecta',
+      '33326': [
+        'crabe Maru',
+        'crabes Maru',
+      ],
     },
     'ja': {
       '4776': 'マルムケルプ',
@@ -13429,6 +13663,22 @@ export default {
       '32905': '第四次復興用の特注レッドナミタロ',
       '32906': '第四次復興用の特注グリフィン',
       '32907': '第四次復興用の特注メガネウラ',
+      '33219': 'ドラヴァニアンスカラプ',
+      '33220': 'クラウドケルプ',
+      '33221': 'スカーレットフロッグ',
+      '33222': '白蜃蛤',
+      '33223': '薫香魚',
+      '33316': 'アスタートリヴィ',
+      '33317': 'パイソンディスカス',
+      '33318': 'スチールレイザーフィッシュ',
+      '33319': 'シャドウシフター',
+      '33320': 'ナバースソー',
+      '33321': 'ダメルンズチェリー',
+      '33322': '頂天眼',
+      '33323': '底闇魚',
+      '33324': 'ゴールデンピピラ',
+      '33325': 'モラ・テクタ',
+      '33326': 'マルヒルスタ',
     },
     'ko': {
       '4776': '말름미역',
@@ -15947,6 +16197,7 @@ export default {
       20091,
       22389,
       24209,
+      33221,
     ],
     '1019': [
       20066,
@@ -16105,6 +16356,7 @@ export default {
       20119,
       20123,
       24888,
+      33222,
     ],
     '1039': [
       20020,
@@ -16187,6 +16439,7 @@ export default {
       20132,
       20135,
       23070,
+      33223,
     ],
     '1049': [
       20023,
@@ -16281,6 +16534,7 @@ export default {
       12818,
       14212,
       16748,
+      33219,
     ],
     '2039': [
       12756,
@@ -16341,6 +16595,7 @@ export default {
       12757,
       12802,
       15635,
+      33220,
     ],
     '2105': [
       12734,
@@ -16645,6 +16900,7 @@ export default {
       27413,
       27414,
       27417,
+      33316,
     ],
     '3290': [
       27411,
@@ -16690,6 +16946,7 @@ export default {
       27429,
       27430,
       27435,
+      33317,
     ],
     '3296': [
       27425,
@@ -16735,6 +16992,7 @@ export default {
       27451,
       28193,
       30487,
+      33318,
     ],
     '3302': [
       27447,
@@ -16742,6 +17000,7 @@ export default {
       27449,
       27452,
       27453,
+      33319,
     ],
     '3303': [
       27446,
@@ -16777,6 +17036,7 @@ export default {
       27463,
       27464,
       28192,
+      33320,
     ],
     '3307': [
       26749,
@@ -16824,6 +17084,7 @@ export default {
       27470,
       27473,
       27479,
+      33321,
     ],
     '3313': [
       27470,
@@ -16837,6 +17098,7 @@ export default {
       27470,
       27471,
       27481,
+      33322,
     ],
     '3315': [
       27482,
@@ -16876,6 +17138,7 @@ export default {
       27485,
       27487,
       27494,
+      33323,
     ],
     '3320': [
       27495,
@@ -16900,6 +17163,7 @@ export default {
       27500,
       27505,
       28719,
+      33325,
     ],
     '3323': [
       27496,
@@ -16907,6 +17171,7 @@ export default {
       27506,
       27507,
       27508,
+      33326,
     ],
     '3324': [
       27496,
@@ -17032,6 +17297,7 @@ export default {
     '3458': [
       27482,
       27486,
+      33324,
     ],
     '3489': [
       30002,
@@ -17401,6 +17667,12 @@ export default {
       '3489': '摇风云海',
       '3532': '息风云海',
       '3533': '狂风云海',
+      '3621': '谢尔达莱群岛近海',
+      '3622': '谢尔达莱群岛近海幻海流',
+      '3623': '绯汐海近海',
+      '3624': '绯汐海近海幻海流',
+      '3625': '罗斯利特湾近海',
+      '3626': '罗斯利特湾近海幻海流',
     },
     'de': {
       '28': [
@@ -20305,7 +20577,7 @@ export default {
     '20036': 1,
     '20040': 3,
     '20043': 1,
-    '20048': 1,
+    '20048': 2,
     '20051': 3,
     '20054': 2,
     '20064': 1,

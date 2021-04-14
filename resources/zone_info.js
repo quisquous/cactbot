@@ -6051,6 +6051,7 @@ export default {
     'contentType': 19,
     'exVersion': 0,
     'name': {
+      'cn': '多玛方城战：东风战4人亲友桌（不带食断）',
       'de': '4-Spieler-Mahjong (schnelle Partie, Kuitan deaktiviert)',
       'en': 'Four-player Mahjong (Quick Match, Kuitan Disabled)',
       'fr': 'Mahjong domien<Indent/>: 4 joueurs (partie rapide sans kuitan)',
@@ -7077,6 +7078,20 @@ export default {
     'sizeFactor': 200,
     'weatherRate': 0,
   },
+  938: {
+    'contentType': 2,
+    'exVersion': 3,
+    'name': {
+      'de': 'Die Goldene Ebene von Paglth\'an',
+      'en': 'Paglth\'an',
+      'fr': 'La grande prairie de Paglth\'an',
+      'ja': '黄金平原 パガルザン',
+    },
+    'offsetX': 415,
+    'offsetY': -110,
+    'sizeFactor': 200,
+    'weatherRate': 0,
+  },
   940: {
     'contentType': 19,
     'exVersion': 0,
@@ -7227,6 +7242,34 @@ export default {
     'sizeFactor': 400,
     'weatherRate': 0,
   },
+  950: {
+    'contentType': 4,
+    'exVersion': 3,
+    'name': {
+      'de': 'Diamantblitz - Entfesselung',
+      'en': 'The Cloud Deck',
+      'fr': 'Le Tillac des Cirrus',
+      'ja': 'ダイヤウェポン捕獲作戦',
+    },
+    'offsetX': -100,
+    'offsetY': -100,
+    'sizeFactor': 400,
+    'weatherRate': 0,
+  },
+  951: {
+    'contentType': 4,
+    'exVersion': 3,
+    'name': {
+      'de': 'Diamantblitz - Trauma',
+      'en': 'The Cloud Deck (Extreme)',
+      'fr': 'Le Tillac des Cirrus (extrême)',
+      'ja': '極ダイヤウェポン捕獲作戦',
+    },
+    'offsetX': -100,
+    'offsetY': -100,
+    'sizeFactor': 400,
+    'weatherRate': 0,
+  },
   953: {
     'contentType': 4,
     'exVersion': 3,
@@ -7271,6 +7314,20 @@ export default {
     'sizeFactor': 200,
     'weatherRate': 0,
   },
+  966: {
+    'contentType': 5,
+    'exVersion': 3,
+    'name': {
+      'de': 'Der Turm, Paradigmenbrecher',
+      'en': 'The Tower at Paradigm\'s Breach',
+      'fr': 'La tour de la Contingence',
+      'ja': '希望ノ砲台：「塔」',
+    },
+    'offsetX': 808,
+    'offsetY': -772,
+    'sizeFactor': 200,
+    'weatherRate': 0,
+  },
   967: {
     'exVersion': 3,
     'name': {
@@ -7284,5 +7341,19 @@ export default {
     'offsetY': -100,
     'sizeFactor': 400,
     'weatherRate': 0,
+  },
+  972: {
+    'contentType': 4,
+    'exVersion': 3,
+    'name': {
+      'de': 'Traumprüfung - Leviathan',
+      'en': 'The Whorleater (Unreal)',
+      'fr': 'Le Briseur de marées (irréel)',
+      'ja': '幻リヴァイアサン討滅戦',
+    },
+    'offsetX': 0,
+    'offsetY': 0,
+    'sizeFactor': 400,
+    'weatherRate': 38,
   },
 };
