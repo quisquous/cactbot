@@ -180,7 +180,9 @@ export class CoinachWriter {
   }
 }
 
-const reader = new CoinachReader(null, null, true);
-reader.exd(process.argv[2] ?? '', 'en').then((lines) => {
-  new CoinachWriter(null, true).write('status.js', 'this', null, lines);
-}).catch((e) => console.error(e));
+if (require.main === module) {
+  const reader = new CoinachReader(null, null, true);
+  reader.exd(process.argv[2] ?? '', 'en').then((lines) => {
+    console.log(lines);
+  }).catch((e) => console.error(e));
+}
