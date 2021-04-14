@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 // Helper for automating SaintCoinach -- https://github.com/ufx/SaintCoinach
 
 import { promisify } from 'util';
