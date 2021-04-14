@@ -28,6 +28,7 @@ known_ids = {
 # game.  This will throw errors if anything conflicts.
 synthetic_ids = {
     "TheAkhAfahAmphitheatreUnreal": 930,
+    "TheNavelUnreal": 953,
 }
 
 synthetic_zone_info = {
@@ -46,6 +47,21 @@ synthetic_zone_info = {
         "offsetY": 0,
         "sizeFactor": 400,
         "weatherRate": 46,
+    },
+    953: {
+        "contentType": 4,
+        "exVersion": 3,
+        "name": {
+            "cn": "泰坦幻巧战",
+            "de": "Traumprüfung - Titan",
+            "en": "The Navel (Unreal)",
+            "fr": "Le Nombril (irréel)",
+            "ja": "幻タイタン討滅戦",
+        },
+        "offsetX": 0,
+        "offsetY": 0,
+        "sizeFactor": 400,
+        "weatherRate": 23,
     },
 }
 
