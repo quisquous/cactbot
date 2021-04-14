@@ -73,9 +73,11 @@ export class CoinachReader {
   async exd(table: string, lang: string): Promise<string[]> {
     return await this._coinachCmd('exd', table, lang);
   }
+
   async rawexd(table: string, lang: string): Promise<string[]> {
     return await this._coinachCmd('rawexd', table, lang);
   }
+
   async _coinachCmd(coinachCmd: string, table: string, lang: string): Promise<string[]> {
     const cmdList = [path.join(this.coinachPath, _COINACH_EXE)];
     const args = [this.ffxivPath, 'lang ' + lang, coinachCmd + ' ' + table];
@@ -93,7 +95,8 @@ export class CoinachReader {
     const output = String(promisify(exec)(cmd));
     // # Manually check output for errors.
     let m = /^([0-9])* files exported, ([0-9])* failed/m.exec(output);
-    if (!m) throw new CoinachError('Unknown output', cmd, output);
+    if (!m)
+      throw new CoinachError('Unknown output', cmd, output);
     if (m[1] === '0')
       throw new CoinachError('Zero successes', cmd, output);
     if (m[2] !== '0')
@@ -102,7 +105,8 @@ export class CoinachReader {
     // # Find directory that this export was written to.
     // # There's no way to control this.
     m = /^Definition version: ([0-9.]*)/m.exec(output);
-    if (!m) throw new CoinachError('Unknown output', cmd, output);
+    if (!m)
+      throw new CoinachError('Unknown output', cmd, output);
 
     const csvFilename = path.join(
         this.coinachPath,
@@ -122,7 +126,8 @@ export class CoinachReader {
       encoding: 'utf-8',
     })).split(/\r?\n/);
 
-    if (this.verbose) console.log(`csv lines: ${lines.length}`);
+    if (this.verbose)
+      console.log(`csv lines: ${lines.length}`);
 
     return lines;
   }
@@ -131,17 +136,21 @@ export class CoinachReader {
 export class CoinachWriter {
   cactbotPath: string;
   verbose: boolean;
+
   constructor(cactbotPath: string | null, verbose: boolean) {
     this.verbose = verbose;
 
-    if (!cactbotPath) cactbotPath = this._findCactbotPath();
+    if (!cactbotPath)
+      cactbotPath = this._findCactbotPath();
     this.cactbotPath = cactbotPath;
     if (!fs.existsSync(this.cactbotPath))
       throw new Error(`Invalid cactboth path: ${this.cactbotPath}`);
   }
+
   _findCactbotPath(): string {
     return '.';
   }
+
   write(filename: string, scriptname: string, variable: string | null, d: unknown[]): void {
     const fullPath = path.join(this.cactbotPath, filename);
 
@@ -166,7 +175,8 @@ export class CoinachWriter {
 
     fs.writeFileSync(fullPath, f);
 
-    if (this.verbose) console.log(`wrote: ${filename}`);
+    if (this.verbose)
+      console.log(`wrote: ${filename}`);
   }
 }
 
