@@ -3,6 +3,7 @@ import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import Outputs from '../../../../../resources/outputs';
+import { Responses } from '../../../../../resources/responses';
 
 // TODO: we could consider a timeline trigger for the Tidal Roar raidwide,
 // but it barely does 25% health, has no startsUsing, and the timeline for
@@ -181,6 +182,18 @@ export default {
           ko: '물결이빨 사하긴 처치',
         },
       },
+    },
+    {
+      id: 'LeviUn Wavetooth Sahagin Stun',
+      netRegex: NetRegexes.addedCombatant({ name: 'Wavetooth Sahagin' }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Wellenzahn-Sahagin' }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Sahuagin Dent-Du-Ressac' }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'ウェイブトゥース・サハギン' }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '波齿鱼人' }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '물결이빨 사하긴' }),
+      condition: (data) => data.CanStun(),
+      delaySeconds: 5,
+      response: Responses.stun('alert'),
     },
     {
       id: 'LeviUn Gyre Spume',
