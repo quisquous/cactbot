@@ -16,17 +16,17 @@ import Outputs from '../../../../../resources/outputs';
 // them apart.
 
 export default {
-  zoneId: ZoneId.TheWhorleaterExtreme,
-  timelineFile: 'levi-ex.txt',
+  zoneId: ZoneId.TheWhorleaterUnreal,
+  timelineFile: 'levi-un.txt',
   triggers: [
     {
-      id: 'LeviEx Dive Counter Tidal Wave Reset',
-      netRegex: NetRegexes.ability({ source: 'Leviathan', id: '82E', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Leviathan', id: '82E', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Léviathan', id: '82E', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'リヴァイアサン', id: '82E', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '利维亚桑', id: '82E', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '리바이어선', id: '82E', capture: false }),
+      id: 'LeviUn Dive Counter Tidal Wave Reset',
+      netRegex: NetRegexes.ability({ source: 'Leviathan', id: '5CDE', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Leviathan', id: '5CDE', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Léviathan', id: '5CDE', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'リヴァイアサン', id: '5CDE', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '利维亚桑', id: '5CDE', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '리바이어선', id: '5CDE', capture: false }),
       run: (data) => {
         // There's always a slam after Tidal Wave.
         data.diveCounter = 1;
@@ -36,18 +36,18 @@ export default {
       },
     },
     {
-      id: 'LeviEx Dive Counter Body Slam Reset',
-      netRegex: NetRegexes.ability({ source: 'Leviathan', id: '82A', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Leviathan', id: '82A', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Léviathan', id: '82A', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'リヴァイアサン', id: '82A', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '利维亚桑', id: '82A', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '리바이어선', id: '82A', capture: false }),
+      id: 'LeviUn Dive Counter Body Slam Reset',
+      netRegex: NetRegexes.ability({ source: 'Leviathan', id: '5CD2', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Leviathan', id: '5CD2', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Léviathan', id: '5CD2', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'リヴァイアサン', id: '5CD2', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '利维亚桑', id: '5CD2', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '리바이어선', id: '5CD2', capture: false }),
       // Redundant, but this will keep things on track if anything goes awry.
       run: (data) => data.diveCounter = 1,
     },
     {
-      id: 'LeviEx Dive Counter Wave Spume Adjust',
+      id: 'LeviUn Dive Counter Wave Spume Adjust',
       netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Gischtwelle', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Écume Ondulante', capture: false }),
@@ -60,7 +60,7 @@ export default {
       run: (data) => data.diveCounter = 2,
     },
     {
-      id: 'LeviEx Slam Location',
+      id: 'LeviUn Slam Location',
       netRegex: NetRegexes.nameToggle({ name: 'Leviathan', toggle: '00', capture: false }),
       netRegexDe: NetRegexes.nameToggle({ name: 'Leviathan', toggle: '00', capture: false }),
       netRegexFr: NetRegexes.nameToggle({ name: 'Léviathan', toggle: '00', capture: false }),
@@ -82,7 +82,8 @@ export default {
           return;
         }
         // This is the real levi, according to hp.
-        data.slamLevis = callData.combatants.filter((c) => c.BNpcID === 2802);
+        console.log(JSON.stringify(callData));
+        data.slamLevis = callData.combatants.filter((c) => c.BNpcID === 12669);
       },
       alertText: (data, _, output) => {
         // Slams happen at +/-~14.6 +/-~13.
@@ -104,13 +105,13 @@ export default {
       },
     },
     {
-      id: 'LeviEx Veil of the Whorl',
-      netRegex: NetRegexes.ability({ source: 'Leviathan', id: '875', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Leviathan', id: '875', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Léviathan', id: '875', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'リヴァイアサン', id: '875', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '利维亚桑', id: '875', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '리바이어선', id: '875', capture: false }),
+      id: 'LeviUn Veil of the Whorl',
+      netRegex: NetRegexes.ability({ source: 'Leviathan', id: '5CE5', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Leviathan', id: '5CE5', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Léviathan', id: '5CE5', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'リヴァイアサン', id: '5CE5', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '利维亚桑', id: '5CE5', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '리바이어선', id: '5CE5', capture: false }),
       condition: (data) => Util.isCasterDpsJob(data.job) || Util.isHealerJob(data.job),
       suppressSeconds: 9999,
       infoText: (data, _, output) => output.text(),
@@ -126,13 +127,13 @@ export default {
       },
     },
     {
-      id: 'LeviEx Mantle of the Whorl',
-      netRegex: NetRegexes.ability({ source: 'Leviathan\'s Tail', id: '874', capture: false }),
-      netRegexDe: NetRegexes.ability({ source: 'Leviathans Schwanz', id: '874', capture: false }),
-      netRegexFr: NetRegexes.ability({ source: 'Queue De Léviathan', id: '874', capture: false }),
-      netRegexJa: NetRegexes.ability({ source: 'リヴァイアサン・テール', id: '874', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '利维亚桑的尾巴', id: '874', capture: false }),
-      netRegexKo: NetRegexes.ability({ source: '리바이어선 꼬리', id: '874', capture: false }),
+      id: 'LeviUn Mantle of the Whorl',
+      netRegex: NetRegexes.ability({ source: 'Leviathan\'s Tail', id: '5CE4', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Leviathans Schwanz', id: '5CE4', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Queue De Léviathan', id: '5CE4', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'リヴァイアサン・テール', id: '5CE4', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '利维亚桑的尾巴', id: '5CE4', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '리바이어선 꼬리', id: '5CE4', capture: false }),
       condition: (data) => Util.isRangedDpsJob(data.job),
       suppressSeconds: 9999,
       infoText: (data, _, output) => output.text(),
@@ -148,7 +149,7 @@ export default {
       },
     },
     {
-      id: 'LeviEx Wavespine Sahagin Add',
+      id: 'LeviUn Wavespine Sahagin Add',
       netRegex: NetRegexes.addedCombatant({ name: 'Wavespine Sahagin', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Wellendorn-Sahagin', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Sahuagin Épine-Du-Ressac', capture: false }),
@@ -162,7 +163,7 @@ export default {
       },
     },
     {
-      id: 'LeviEx Wavetooth Sahagin Add',
+      id: 'LeviUn Wavetooth Sahagin Add',
       netRegex: NetRegexes.addedCombatant({ name: 'Wavetooth Sahagin', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Wellenzahn-Sahagin', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Sahuagin Dent-Du-Ressac', capture: false }),
@@ -182,7 +183,7 @@ export default {
       },
     },
     {
-      id: 'LeviEx Gyre Spume',
+      id: 'LeviUn Gyre Spume',
       netRegex: NetRegexes.addedCombatant({ name: 'Gyre Spume', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Gischtblase', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Écume Concentrique', capture: false }),
@@ -203,7 +204,7 @@ export default {
       },
     },
     {
-      id: 'LeviEx Wave Spume',
+      id: 'LeviUn Wave Spume',
       netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Gischtwelle', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Écume Ondulante', capture: false }),
@@ -224,7 +225,7 @@ export default {
       },
     },
     {
-      id: 'LeviEx Wave Spume Explosion',
+      id: 'LeviUn Wave Spume Explosion',
       netRegex: NetRegexes.addedCombatant({ name: 'Wave Spume', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Gischtwelle', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Écume Ondulante', capture: false }),
@@ -249,7 +250,7 @@ export default {
       },
     },
     {
-      id: 'LeviEx Elemental Converter',
+      id: 'LeviUn Elemental Converter',
       netRegex: NetRegexes.nameToggle({ name: 'Elemental Converter' }),
       netRegexDe: NetRegexes.nameToggle({ name: 'Elementarumwandler' }),
       netRegexFr: NetRegexes.nameToggle({ name: 'Activateur De La Barrière' }),
@@ -259,7 +260,7 @@ export default {
       run: (data, matches) => data.converter = !!parseInt(matches.toggle),
     },
     {
-      id: 'LeviEx Hit The Button',
+      id: 'LeviUn Hit The Button',
       netRegex: NetRegexes.nameToggle({ name: 'Leviathan', toggle: '00', capture: false }),
       netRegexDe: NetRegexes.nameToggle({ name: 'Leviathan', toggle: '00', capture: false }),
       netRegexFr: NetRegexes.nameToggle({ name: 'Léviathan', toggle: '00', capture: false }),

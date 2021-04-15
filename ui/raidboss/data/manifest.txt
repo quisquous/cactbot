@@ -292,6 +292,8 @@
 05-shb/trial/innocence.txt
 05-shb/trial/innocence-ex.js
 05-shb/trial/innocence-ex.txt
+05-shb/trial/levi-un.js
+05-shb/trial/levi-un.txt
 05-shb/trial/ruby_weapon.js
 05-shb/trial/ruby_weapon.txt
 05-shb/trial/ruby_weapon-ex.js
