@@ -219,6 +219,8 @@
 05-shb/dungeon/matoyas_relict.txt
 05-shb/dungeon/mt_gulg.js
 05-shb/dungeon/mt_gulg.txt
+05-shb/dungeon/paglthan.js
+05-shb/dungeon/paglthan.txt
 05-shb/dungeon/qitana_ravel.js
 05-shb/dungeon/qitana_ravel.txt
 05-shb/dungeon/the_grand_cosmos.js
