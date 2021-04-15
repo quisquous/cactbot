@@ -2008,8 +2008,8 @@ export default {
           en: '${dir} Safe Spot',
           de: 'Sichere Stelle ${dir}',
           fr: '${dir} Zone sûre',
-          ja: '${dir1}に安置',
-          cn: '去${dir1}方安全点',
+          ja: '${dir}に安置',
+          cn: '去${dir}方安全点',
         },
         unknown: {
           en: '???',
