@@ -38,6 +38,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Go to a lightning rod',
+          fr: 'Allez sur un paratonnerre',
         },
       },
     },
@@ -49,6 +50,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Away from lightning circles',
+          fr: 'Éloignez-vous des cercles de foudre',
         },
       },
     },
@@ -88,6 +90,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Kan Rhai on YOU',
+          fr: 'Kan Rhai sur VOUS',
         },
       },
     },
