@@ -37,7 +37,7 @@ export default {
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Drop lightning outside',
+          en: 'Go to a lightning rod',
         },
       },
     },
@@ -48,9 +48,14 @@ export default {
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Away from lightning circle',
+          en: 'Away from lightning circles',
         },
       },
+    },
+    {
+      id: 'Paglthan Ballistic',
+      netRegex: NetRegexes.startsUsing({ id: '5C97', source: 'Magitek Fortress', capture: false }),
+      response: Responses.knockback(),
     },
     {
       id: 'Paglthan Defensive Reaction',
@@ -71,13 +76,13 @@ export default {
     },
     {
       id: 'Paglthan Mega Flare',
-      netRegex: NetRegexes.headMarker({ id: 'E000' }),
+      netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Paglthan Kan Rhai',
-      netRegex: NetRegexes.headMarker({ id: '3A74' }),
+      netRegex: NetRegexes.headMarker({ id: '0104' }),
       condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
