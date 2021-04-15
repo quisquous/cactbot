@@ -87,7 +87,7 @@ export default {
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Drop AoE outside',
+          en: 'Kan Rhai on YOU',
         },
       },
     },
