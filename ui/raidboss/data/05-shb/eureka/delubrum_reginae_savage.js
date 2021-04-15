@@ -467,7 +467,7 @@ export default {
           de: 'Hinter den Barrikaden verstecken',
           fr: 'Cachez-vous derrière la barricade',
           ja: '柵の後ろに',
-          cn: '躲在栅栏之后',
+          cn: '躲在栅栏后',
         },
       },
     },
