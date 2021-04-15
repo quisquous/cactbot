@@ -521,7 +521,7 @@ export default {
           de: 'Schau weg von Lila',
           fr: 'Éloignez-vous du violet',
           ja: '花に避ける',
-          cn: '远离花',
+          cn: '远离紫花',
         },
       },
     },
