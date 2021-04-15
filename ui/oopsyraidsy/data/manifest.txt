@@ -33,6 +33,7 @@
 04-sb/ultimate/unending_coil_ultimate.js
 05-shb/alliance/the_copied_factory.js
 05-shb/alliance/the_puppets_bunker.js
+05-shb/alliance/the_tower_at_paradigms_breach.js
 05-shb/dungeon/akadaemia_anyder.js
 05-shb/dungeon/amaurot.js
 05-shb/dungeon/dohn_mheg.js

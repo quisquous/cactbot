@@ -3,4 +3,229 @@
 hideall "--Reset--"
 hideall "--sync--"
 
+# TODO: is it always center / sides for the first Colossal Impact?
+# TODO: is it always center for the Colossal Impact during lunges?
+
 0 "--Reset--" sync /00:0839:.*is no longer sealed/ window 100000 jump 0
+
+### Knave of Hearts
+# -p 5EB5:1012
+# -ii 5CEC 5CED 5CEE 5CEF 5EA5 5EA6 5CF9 5EB4 5EAF
+# -ic "2B"
+# -it "Knave Of Hearts"
+
+1000.0 "--sync--" sync /00:0839:Closed Area A will be sealed off/ window 10000,0
+1012.0 "Roar" sync /:Knave Of Hearts:5EB5:/ window 10,10
+1022.1 "Colossal Impact" sync /:Knave Of Hearts:5EA7:/
+1033.2 "Colossal Impact" sync /:Knave Of Hearts:5EA4:/
+1040.3 "--sync--" sync /:Knave Of Hearts:5EB2:/ # Magic Artillery Beta cast
+1047.4 "Magic Artillery Beta" sync /:Knave Of Hearts:5EB3:/ # damage
+
+1050.5 "Replicate" sync /:Knave Of Hearts:5EA9:/
+1061.8 "Stacking The Deck" sync /:Copied Knave:60F0:/
+1072.0 "Colossal Impact 1" sync /:Knave Of Hearts:5EA[47]:/
+1077.0 "Colossal Impact 2" sync /:Copied Knave:5EA[47]:/
+
+1089.2 "Spheroids" sync /:Knave Of Hearts:5EA8:/
+1093.4 "Knavish Bullets" sync /:Spheroid:5EAD:/
+1094.2 "--sync--" sync /:Knave Of Hearts:5EAA:/ # Magic Artillery Alpha cast
+1102.3 "Magic Artillery Alpha" sync /:Knave Of Hearts:5EAB:/ # damage
+1116.4 "Light Leap" sync /:Knave Of Hearts:5EAE:/
+1116.4 "--untargetable--"
+1118.5 "--sync--" sync /:Knave Of Hearts:5EB0:/
+1120.5 "--targetable--"
+
+1123.6 "Replicate" sync /:Knave Of Hearts:5EA9:/
+1134.9 "Stacking The Deck" sync /:Copied Knave:60F0:/
+1145.1 "Lunge 1" sync /:Knave Of Hearts:5EB1:/
+1146.2 "--sync--" sync /:Knave Of Hearts:5EB0:/
+1155.1 "Lunge 2" sync /:Copied Knave:5EB1:/
+1167.3 "Roar" sync /:Knave Of Hearts:5EB5:/
+
+1178.5 "Replicate" sync /:Knave Of Hearts:5EA9:/
+1189.8 "Stacking The Deck" sync /:Copied Knave:60F0:/
+1200.0 "Colossal Impact 1" sync /:Knave Of Hearts:5EA[47]:/
+1206.0 "Colossal Impact 2" sync /:Copied Knave:5EA[47]:/
+1208.1 "Spheroids" sync /:Knave Of Hearts:5EA8:/
+1211.0 "Colossal Impact 3" sync /:Copied Knave:5EA[47]:/
+1213.2 "--sync--" sync /:Knave Of Hearts:5EAA:/ # Magic Artillery Alpha cast
+1221.2 "Magic Barrage 1" #sync /:Spheroid:5EAC:/
+1221.3 "Magic Artillery Alpha" sync /:Knave Of Hearts:5EAB:/ # damage
+1224.2 "Magic Barrage 2" #sync /:Spheroid:5EAC:/
+1239.4 "Light Leap" sync /:Knave Of Hearts:5EAE:/
+1239.4 "--untargetable--"
+1241.5 "--sync--" sync /:Knave Of Hearts:5EB0:/
+1243.5 "--targetable--"
+
+1246.6 "Replicate" sync /:Knave Of Hearts:5EA9:/
+1257.9 "Stacking The Deck" sync /:Copied Knave:60F0:/
+1268.1 "Lunge 1" sync /:Knave Of Hearts:5EB1:/
+1269.2 "--sync--" sync /:Knave Of Hearts:5EB0:/
+1278.1 "Lunge 2" sync /:Copied Knave:5EB1:/
+1280.1 "Colossal Impact" sync /:Knave Of Hearts:60C8:/
+1287.2 "--sync--" sync /:Knave Of Hearts:5EB2:/ # Magic Artillery Beta cast
+1294.3 "Magic Artillery Beta" sync /:Knave Of Hearts:5EB3:/ # damage
+
+1305.4 "Spheroids" sync /:Knave Of Hearts:5EA8:/
+1309.6 "Knavish Bullets" sync /:Spheroid:5EAD:/
+1318.3 "Colossal Impact" sync /:Knave Of Hearts:5EA7:/
+1332.5 "Roar" sync /:Knave Of Hearts:5EB5:/
+
+# loop
+1342.7 "Replicate" sync /:Knave Of Hearts:5EA9:/ window 50,50 jump 1178.5
+1354.0 "Stacking The Deck" #sync /:Copied Knave:60F0:/
+1364.2 "Colossal Impact 1" #sync /:Knave Of Hearts:5EA7:/
+1370.2 "Colossal Impact 2" #sync /:Copied Knave:5EA7:/
+1372.3 "Spheroids" #sync /:Knave Of Hearts:5EA8:/
+1375.2 "Colossal Impact 3" #sync /:Copied Knave:5EA4:/
+1377.4 "--sync--" #sync /:Knave Of Hearts:5EAA:/ # Magic Artillery Alpha cast
+1385.4 "Magic Barrage 1" #sync /:Spheroid:5EAC:/
+1385.5 "Magic Artillery Alpha" sync /:Knave Of Hearts:5EAB:/ # damage
+1388.4 "Magic Barrage 2" #sync /:Spheroid:5EAC:/
+1403.6 "Light Leap" #sync /:Knave Of Hearts:5EAE:/
+1403.6 "--untargetable--"
+1405.7 "--sync--" #sync /:Knave Of Hearts:5EB0:/
+1407.7 "--targetable--"
+
+### Hansel & Gretel
+# -p 5C68:2012 (if Hansel starts with shield)
+# -p 5C69:2012 (if Gretel starts with shield)
+# -ii 5CEC 5CED 5CEE 5CEF 5C70 5C67 5C5C 5C6C 56CD 5C7F 5C55 61B9 61DB 5C65 5C66 5C6E 5C6F 5C57 5CF2 61BD 5C5B 5C72 61BB 55B3 5C5D 5C59 5C7D
+# -ic "2B"
+# -it "Hansel"
+
+2000.0 "--sync--" sync /00:0839:Staging Node B will be sealed off/ window 10000,0
+2012.0 "Upgraded Shield" sync /:Gretel:5C6[89]:/
+2012.0 "Upgraded Lance" sync /:Hansel:5C6[AB]:/
+2025.2 "Wail" sync /:Hansel:5C77:/
+2025.3 "Crippling Blow (G)" sync /:Gretel:5C78:/
+2035.5 "Wail" sync /:Gretel:5C76:/
+2035.6 "Crippling Blow (H)" sync /:Hansel:5C79:/
+
+2043.8 "Tandem Assault: Bloody Sweep" sync /:Gretel:61B8:/
+2046.0 "--sync--" sync /:Gretel:5C7E:/
+2056.2 "Bloody Sweep" sync /:Gretel:5C54:/
+
+2070.4 "Upgraded Shield" sync /:Gretel:5C6[89]:/
+2070.4 "Upgraded Lance" sync /:Hansel:5C6[AB]:/
+2083.6 "--sync--" sync /:Gretel:5C7A:/ # Seed Of Magic Alpha cast
+2083.6 "--sync --" sync /:Hansel:5C7B:/ # Riot Of Magic cast
+2089.4 "Seed Of Magic Alpha" sync /:Gretel:5C61:/ # damage
+2089.4 "Riot Of Magic" sync /:Hansel:5C63:/ # damage
+
+2098.9 "Tandem Assault: Passing Lance" sync /:Gretel:61BC:/
+2101.0 "--untargetable--"
+2101.1 "--sync--" sync /:Gretel:5C7E:/
+2111.3 "Passing Lance" sync /:Gretel:5C64:/
+2116.1 "--targetable--"
+
+2126.2 "Upgraded Shield" sync /:Gretel:5C6[89]:/
+2126.2 "Upgraded Lance" sync /:Hansel:5C6[AB]:/
+2139.5 "Wail" sync /:Hansel:5C77:/
+2139.6 "Crippling Blow (G)" sync /:Gretel:5C78:/
+2149.8 "Wail" sync /:Gretel:5C76:/
+2149.9 "Crippling Blow (H)" sync /:Hansel:5C79:/
+
+2162.2 "Tandem Assault: Bloody Sweep" sync /:Gretel:61B8:/
+2164.4 "--sync--" sync /:Gretel:5C7E:/
+2166.5 "Tandem" sync /:Gretel:5C58:/
+2176.7 "Transference" sync /:Gretel:5CF1:/
+2181.6 "Bloody Sweep" sync /:Gretel:5C56:/
+
+2184.9 "--sync--" sync /:Gretel:5C7E:/
+2192.1 "Wandering Trail" sync /:Gretel:5C5A:/
+2199.3 "Tandem Assault: Breakthrough" sync /:Gretel:61BA:/
+2201.4 "--untargetable--"
+2201.5 "--sync--" sync /:Gretel:5C7E:/
+2212.8 "Breakthrough" sync /:Hansel:5C5E:/
+2213.1 "Uneven Footing" sync /:Hansel & Gretel:5C5F:/
+2214.9 "--targetable--"
+
+2227.0 "Upgraded Shield" sync /:Gretel:5C6[89]:/
+2227.0 "Upgraded Lance" sync /:Hansel:5C6[AB]:/
+2240.2 "Wail" sync /:Hansel:5C77:/
+2240.3 "Crippling Blow (G)" sync /:Gretel:5C78:/
+2250.5 "Wail" sync /:Gretel:5C76:/
+2250.6 "Crippling Blow (H)" sync /:Hansel:5C79:/
+
+2262.9 "Tandem Assault: Passing Lance" sync /:Gretel:61BC:/
+2266.1 "--untargetable--"
+2266.2 "--sync--" sync /:Gretel:5C7E:/
+2267.9 "Seed Of Magic Alpha" sync /:Gretel:5C61:/
+2267.9 "Riot Of Magic" sync /:Hansel:5C63:/
+2276.4 "Passing Lance" sync /:Gretel:5C64:/
+2281.2 "--targetable--"
+
+2291.3 "Upgraded Shield" sync /:Gretel:5C6[89]:/
+2291.3 "Upgraded Lance" sync /:Hansel:5C6A:/
+2307.6 "Wandering Trail" sync /:Gretel:5C5A:/
+2315.8 "--sync--" sync /:Gretel:5C7E:/
+2322.5 "Hungry Lance" sync /:Gretel:5C71:/
+
+2334.7 "Upgraded Shield" sync /:Gretel:5C6[89]:/
+2334.7 "Upgraded Lance" sync /:Hansel:5C6[AB]:/
+2351.0 "--sync--" sync /:Gretel:5C7C:/ # Seed Of Magic Beta cast
+2353.2 "--sync--" sync /:Gretel:5C7E:/
+2359.9 "Wandering Trail" sync /:Gretel:5C5A:/
+2361.8 "Seed Of Magic Beta" sync /:Gretel:5C75:/ # damage
+
+2367.1 "Tandem Assault: Breakthrough" sync /:Gretel:61BA:/
+2369.2 "--untargetable--"
+2369.3 "--sync--" sync /:Gretel:5C7E:/
+2380.6 "Breakthrough" sync /:Hansel:5C5E:/
+2380.9 "Uneven Footing" sync /:Hansel & Gretel:5C5F:/
+2382.7 "--targetable--"
+
+2394.8 "Upgraded Shield" sync /:Gretel:5C6[89]:/
+2394.8 "Upgraded Lance" sync /:Hansel:5C6[AB]:/
+2408.1 "Wail" sync /:Hansel:5C77:/
+2408.2 "Crippling Blow (G)" sync /:Gretel:5C78:/
+2418.4 "Wail" sync /:Gretel:5C76:/
+2418.5 "Crippling Blow (H)" sync /:Hansel:5C79:/
+
+2430.8 "Tandem Assault: Bloody Sweep" sync /:Gretel:61B8:/
+2433.0 "--sync--" sync /:Gretel:5C7E:/
+2435.3 "Tandem" sync /:Gretel:5C58:/
+2445.5 "Transference" sync /:Gretel:5CF1:/
+2450.4 "Bloody Sweep" sync /:Gretel:5C56:/
+2464.6 "Upgraded Shield" sync /:Gretel:5C6[89]:/
+2464.6 "Upgraded Lance" sync /:Hansel:5C6[AB]:/
+
+# loop
+2476.9 "Tandem Assault: Passing Lance" sync /:Gretel:61BC:/ window 100,100 jump 2262.9
+2480.1 "--untargetable--"
+2480.2 "--sync--" #sync /:Gretel:5C7E:/
+2481.9 "Seed Of Magic Alpha" #sync /:Gretel:5C61:/
+2481.9 "Riot Of Magic" #sync /:Hansel:5C63:/
+2490.4 "Passing Lance" #sync /:Gretel:5C64:/
+2495.2 "--targetable--"
+
+2505.3 "Upgraded Shield" #sync /:Gretel:5C6[89]:/
+2505.3 "Upgraded Lance" #sync /:Hansel:5C6A:/
+2521.6 "Wandering Trail" #sync /:Gretel:5C5A:/
+2529.8 "--sync--" #sync /:Gretel:5C7E:/
+2536.5 "Hungry Lance" #sync /:Gretel:5C71:/
+
+
+# Enrage (when one dies)
+2700.0 "--sync--" sync /:5C73:Gretel/ window 700,0
+2700.0 "--sync--" sync /:5C74:Hansel/ window 700,0
+2708.0 "Lamentation" sync /:Gretel:5C73:/
+# ???
+
+
+
+### Assorted Trash
+3000.0 "--sync--" sync /00:0839:Staging Node C will be sealed off/ window 10000,0
+
+
+### Red Girl
+4000.0 "--sync--" sync /00:0839:Staging Node D will be sealed off/ window 10000,0
+
+
+### Trash-talking Philosophers
+5000.0 "--sync--" sync /00:0839:The Ascension Platform will be sealed off/ window 10000,0
+
+
+### False Idol / Her Inflorescence
+6000.0 "--sync--" sync /00:0839:Beyond will be sealed off/ window 10000,0

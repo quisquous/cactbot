@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
@@ -585,4 +586,12 @@ export default {
       },
     },
   ],
+=======
+import ZoneId from '../../../../../resources/zone_id';
+
+export default {
+  zoneId: ZoneId.TheCopiedFactory,
+  timelineFile: 'the_tower_at_paradigms_breach.txt',
+  triggers: [],
+>>>>>>> 08ededa0f... oopsy/timeline for the tower
 };
