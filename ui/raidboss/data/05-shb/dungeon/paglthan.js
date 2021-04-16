@@ -44,6 +44,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Go to a lightning rod',
+          fr: 'Allez sur un paratonnerre',
           de: 'Geh zu einem Blitzableiter',
         },
       },
@@ -56,6 +57,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Away from lightning circles',
+          fr: 'Éloignez-vous des cercles de foudre',
           de: 'Weg von den Blitz-Kreisen',
         },
       },
@@ -107,6 +109,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Kan Rhai on YOU',
+          fr: 'Kan Rhai sur VOUS',
           de: 'Kan Rhai auf DIR',
         },
       },
