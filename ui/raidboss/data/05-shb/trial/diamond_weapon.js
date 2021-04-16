@@ -25,16 +25,14 @@ export default {
     {
       id: 'Diamond Claw Swipe East',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5F9A', capture: false }),
-      delaySeconds: 2,
-      durationSeconds: 8,
+      durationSeconds: 10,
       outputStrings: sharedOutputStrings,
       alertText: (data, _, output) => output.teleportWest(),
     },
     {
       id: 'Diamond Claw Swipe West',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5F9B', capture: false }),
-      delaySeconds: 2,
-      durationSeconds: 8,
+      durationSeconds: 10,
       outputStrings: sharedOutputStrings,
       alertText: (data, _, output) => output.teleportEast(),
     },
