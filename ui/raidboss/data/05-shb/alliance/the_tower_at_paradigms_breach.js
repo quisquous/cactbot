@@ -309,13 +309,7 @@ export default {
       id: 'Paradigm False Idol Darker Note You',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Tank Buster and Spread',
-          de: 'Tank Buster und verteilen',
-        },
-      },
+      response: Responses.tankBuster('alert'),
     },
     {
       id: 'Paradigm False Idol Darker Note Collect',
