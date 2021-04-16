@@ -169,7 +169,6 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Amhuluk': 'Amhuluk',
         'Lunar Bahamut': 'Luna-Bahamut',
@@ -179,6 +178,9 @@ export default {
         'The Gathering Ring': 'Autel de Zolm\'ak',
       },
       'replaceText': {
+        '\\(circles\\)': '(cercles)',
+        '\\(explosions\\)': '(explosions)',
+        '--Levin orbs--': '--Orbes de foudre--',
         'Akh Morn': 'Akh Morn',
         'Big Burst': 'Grosse explosion',
         'Critical Rip': 'Griffure critique',
