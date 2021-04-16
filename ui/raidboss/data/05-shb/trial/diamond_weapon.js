@@ -114,7 +114,7 @@ export default {
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Avoid hands',
+          en: 'Avoid Bits',
         },
       },
     },
