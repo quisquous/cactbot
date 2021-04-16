@@ -87,7 +87,7 @@ export default {
       },
     },
     {
-      id: 'Paradigm Knave Magic Artillery Beta Not You',
+      id: 'Paradigm Knave Magic Artillery Beta',
       netRegex: NetRegexes.headMarker({ id: '00DA', capture: false }),
       delaySeconds: 0.5,
       durationSeconds: 4,
