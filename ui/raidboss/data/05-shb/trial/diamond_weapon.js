@@ -20,7 +20,6 @@ export default {
       id: 'Diamond Diamond Rain',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FA7', capture: false }),
       condition: Conditions.caresAboutAOE(),
-      durationSeconds: 4,
       response: Responses.aoe(),
     },
     {
@@ -43,7 +42,6 @@ export default {
       id: 'Diamond Photon Burst',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
-      durationSeconds: 4,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -80,13 +78,11 @@ export default {
       id: 'Diamond Outrage',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FD7', capture: false }),
       condition: Conditions.caresAboutAOE(),
-      durationSeconds: 4,
       response: Responses.aoe(),
     },
     {
       id: 'Diamond Auri Doomstead',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FD8' }),
-      durationSeconds: 4,
       response: Responses.tankBuster(),
     },
     {
@@ -110,7 +106,6 @@ export default {
     {
       id: 'Diamond Articulated Bits',
       netRegex: NetRegexes.ability({ source: 'The Diamond Weapon', id: '5FA9', capture: false }),
-      durationSeconds: 4,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
