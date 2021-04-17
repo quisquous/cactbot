@@ -262,7 +262,6 @@ def main(args):
         "Thancred",
         "Urianger",
         "",
-        "2P",
         "Crystal Exarch",
         "Mikoto",
     ]
