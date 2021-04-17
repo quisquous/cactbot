@@ -102,6 +102,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Away from circles',
+          fr: 'Éloignez-vous des cercles',
         },
       },
     },
@@ -125,6 +126,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Away from crosses',
+          fr: 'Éloignez-vous des croix',
         },
       },
     },
