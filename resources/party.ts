@@ -80,32 +80,32 @@ export default class PartyTracker {
     return this.roleToPartyNames_['dps'];
   }
 
-  // returns true iff the named player in your alliance is a particular role
+  // returns true if the named player in your alliance is a particular role
   isRole(name: string, role: string): boolean {
     return this.nameToRole_[name] === role;
   }
 
-  // returns true iff the named player in your alliance is a tank
+  // returns true if the named player in your alliance is a tank
   isTank(name: string): boolean {
     return this.isRole(name, 'tank');
   }
 
-  // returns true iff the named player in your alliance is a healer
+  // returns true if the named player in your alliance is a healer
   isHealer(name: string): boolean {
     return this.isRole(name, 'healer');
   }
 
-  // returns true iff the named player in your alliance is a dps
+  // returns true if the named player in your alliance is a dps
   isDPS(name: string): boolean {
     return this.isRole(name, 'dps');
   }
 
-  // returns true iff the named player is in your immediate party
+  // returns true if the named player is in your immediate party
   inParty(name: string): boolean {
     return this.partyNames.includes(name);
   }
 
-  // returns true iff the named player is in your alliance
+  // returns true if the named player is in your alliance
   inAlliance(name: string): boolean {
     return this.allianceNames.includes(name);
   }
