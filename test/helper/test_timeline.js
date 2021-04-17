@@ -144,7 +144,7 @@ const testTimelineFiles = (timelineFiles) => {
 
                 // Now do a second O(n^2) pass, only against regexes which apply.
                 for (const [regex, replaceText, replaced] of translateMatches) {
-                  // If we get here, then |regex| is a valid replacemnt in |orig|.
+                  // If we get here, then |regex| is a valid replacement in |orig|.
                   // The goal is to ensure via testing that there are no ordering
                   // constraints in the timeline translations.  To fix these issues,
                   // add negative lookahead/lookbehind assertions to make the regexes unique.

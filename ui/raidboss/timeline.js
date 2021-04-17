@@ -86,9 +86,9 @@ export class Timeline {
 
     // A set of names which will not be notified about.
     this.ignores = {};
-    // Sorted by event occurance time.
+    // Sorted by event occurrence time.
     this.events = [];
-    // Sorted by event occurance time.
+    // Sorted by event occurrence time.
     this.texts = [];
     // Sorted by sync.start time.
     this.syncStarts = [];
@@ -96,7 +96,7 @@ export class Timeline {
     this.syncEnds = [];
     // Not sorted.
     this.activeSyncs = [];
-    // Sorted by event occurance time.
+    // Sorted by event occurrence time.
     this.activeEvents = [];
     // Sorted by line.
     this.errors = [];

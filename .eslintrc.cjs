@@ -2,7 +2,7 @@
 
 const path = require('path');
 
-// RULES_DIR must be absolute so that eslint can be used programatically
+// RULES_DIR must be absolute so that eslint can be used programmatically
 // and still find the eslint/ plugin directory correctly.
 const rulesDirPlugin = require('eslint-plugin-rulesdir');
 rulesDirPlugin.RULES_DIR = path.join(__dirname, 'eslint');
