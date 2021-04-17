@@ -186,7 +186,7 @@ export default {
       id: 'A3S Ferrofluid Signs',
       netRegex: NetRegexes.headMarker({ id: ['0030', '0031'] }),
       run: function(data, matches) {
-        data.ferroMarker = data.ferroMarker || [];
+        data.ferroMarker = data.ferroMarker || {};
         data.ferroMarker[matches.target] = matches.id;
       },
     },
@@ -201,7 +201,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '살아있는 액체', id: 'F01' }),
       alertText: function(data, matches, output) {
         data.ferroTether = data.ferroTether || {};
-        data.ferroMarker = data.ferroMarker || [];
+        data.ferroMarker = data.ferroMarker || {};
         const partner = data.ferroTether[data.me];
         const marker1 = data.ferroMarker[data.me];
         const marker2 = data.ferroMarker[partner];
