@@ -1,0 +1,28 @@
+{
+  "ts-node": {
+    "compiler": "ttypescript"
+  },
+  "compilerOptions": {
+    "plugins": [
+      {
+        "transform": "@zoltu/typescript-transformer-append-js-extension/output/index.js",
+        "after": true
+      }
+    ],
+    // nullish coalescing operator not supported in OverlayPlugin's Chrome M75
+    // TODO: change to ES2020 once OverlayPlugin rolls CEF past M80.
+    "target": "ES2019",
+    "module": "ES2020",
+    "allowJs": true,
+    "types": [ "node" ],
+    "outDir": "./dist/triggers",
+    "rootDir": "./",
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "./ui/raidboss/data/"
+  ]
+}
