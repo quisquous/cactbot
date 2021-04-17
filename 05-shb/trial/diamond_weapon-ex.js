@@ -32,6 +32,7 @@ Options.Triggers.push({
         text: {
           en: 'go east -> aoe',
           de: 'Geh nach Osten -> AoE',
+          fr: 'Allez à l\'est -> AoE',
         },
       },
     },
@@ -46,6 +47,7 @@ Options.Triggers.push({
         text: {
           en: 'go west -> aoe',
           de: 'Geh nach Westen -> AoE',
+          fr: 'Allez à l\'ouest -> AoE',
         },
       },
     },
@@ -60,6 +62,7 @@ Options.Triggers.push({
         text: {
           en: 'go east -> stack',
           de: 'Geh nach Osten -> Sammeln',
+          fr: 'Allez à l\'est -> Packez-vous',
         },
       },
     },
@@ -74,6 +77,7 @@ Options.Triggers.push({
         text: {
           en: 'go west -> stack',
           de: 'Geh nach Westen -> Sammeln',
+          fr: 'Allez à l\'ouest -> Packez-vous',
         },
       },
     },
@@ -88,6 +92,7 @@ Options.Triggers.push({
         text: {
           en: 'go east -> spread',
           de: 'Geh nach Osten -> Verteilen',
+          fr: 'Allez à l\'est -> Dispersez-vous',
         },
       },
     },
@@ -102,6 +107,7 @@ Options.Triggers.push({
         text: {
           en: 'go west -> spread',
           de: 'Geh nach Westen -> Verteilen',
+          fr: 'Allez à l\'ouest -> Dispersez-vous',
         },
       },
     },
@@ -165,6 +171,7 @@ Options.Triggers.push({
         text: {
           en: 'Dodge Zig-Zag',
           de: 'Zig-Zag ausweichen',
+          fr: 'Esquivez le Zig-Zag',
         },
       },
     },
@@ -180,6 +187,7 @@ Options.Triggers.push({
         text: {
           en: 'Dodge East/West',
           de: 'Orb vom Osten/Westen ausweichen',
+          fr: 'Esquivez Est/Ouest',
         },
       },
     },
@@ -195,6 +203,7 @@ Options.Triggers.push({
         text: {
           en: 'Dodge Towards/Away',
           de: 'Hin oder weg ausweichen',
+          fr: 'Rapprochez-vous/Éloignez-vous',
         },
       },
     },
@@ -210,6 +219,7 @@ Options.Triggers.push({
         text: {
           en: 'Diagonal Knockback',
           de: 'Diagonaler Rückstoß',
+          fr: 'Poussée diagonale',
         },
       },
     },
@@ -225,6 +235,7 @@ Options.Triggers.push({
         text: {
           en: 'Dodge Bits',
           de: 'Satelliten ausweichen',
+          fr: 'Esquivez les bras',
         },
       },
     },
@@ -242,6 +253,7 @@ Options.Triggers.push({
         text: {
           en: 'Dodge Bits',
           de: 'Satelliten ausweichen',
+          fr: 'Esquivez les bras',
         },
       },
     },
@@ -256,6 +268,7 @@ Options.Triggers.push({
         text: {
           en: 'Bait Puddles',
           de: 'Flächen ködern',
+          fr: 'Placez les zones au sol',
         },
       },
     },
@@ -271,6 +284,7 @@ Options.Triggers.push({
         text: {
           en: 'Towers',
           de: 'Türme',
+          fr: 'Tours',
         },
       },
     },
@@ -306,12 +320,13 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Articulated Bit': 'bras autonome',
         'The Diamond Weapon': 'Arme Diamant',
       },
       'replaceText': {
+        '\\?': ' ?',
+        '\\(Jump\\)': '(Saut)',
         'Adamant Purge': 'Armure adaptative',
         'Aetherial Bullet': 'Rayon éthéré',
         'Articulated Bits': 'Bras autonome',
