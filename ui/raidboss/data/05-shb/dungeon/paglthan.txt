@@ -18,7 +18,7 @@ hideall "--sync--"
 31.0 "--sync--" sync /:Amhuluk:5C4C:/
 36.8 "Electric Burst" sync /:Amhuluk:5C4D:/
 48.0 "Thundercall" sync /:Amhuluk:5C50:/ window 48,10
-48.5 "--Levin Orbs--"
+48.5 "--Levin orbs--"
 61.3 "Wide Blaster" sync /:Amhuluk:60C5:/ window 61.3,10
 63.9 "Spike Flail" sync /:Amhuluk:5C4F:/
 66.1 "--sync--" sync /:Amhuluk:5C51:/

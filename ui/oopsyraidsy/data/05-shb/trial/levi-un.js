@@ -8,32 +8,33 @@ import ZoneId from '../../../../../resources/zone_id';
 // them anyway.
 
 // TODO: Figure out why Dread Tide / Waterspout appear like shares (i.e. 0x16 id).
-// Dread Tide = 823/824/825, Waterspout = 829
+// Dread Tide = 5CCA/5CCB/5CCC, Waterspout = 5CD1
 
-// Leviathan Extreme
+// Leviathan Unreal
 export default {
-  zoneId: ZoneId.TheWhorleaterExtreme,
+  zoneId: ZoneId.TheWhorleaterUnreal,
   damageWarn: {
-    'LeviEx Grand Fall': '82F', // very large circular aoe before spinny dives, applies heavy
-    'LeviEx Hydro Shot': '748', // Wavespine Sahagin aoe that gives Dropsy effect
-    'LeviEx Dreadstorm': '749', // Wavetooth Sahagin aoe that gives Hysteria effect
+    'LeviUn Grand Fall': '5CDF', // very large circular aoe before spinny dives, applies heavy
+    'LeviUn Hydroshot': '5CD5', // Wavespine Sahagin aoe that gives Dropsy effect
+    'LeviUn Dreadstorm': '5CD6', // Wavetooth Sahagin aoe that gives Hysteria effect
   },
   damageFail: {
-    'LeviEx Body Slam': '82A', // levi slam that tilts the boat
-    'LeviEx Spinning Dive 1': '88A', // levi dash across the boat with knockback
-    'LeviEx Spinning Dive 2': '88B', // levi dash across the boat with knockback
-    'LeviEx Spinning Dive 3': '82C', // levi dash across the boat with knockback
+    'LeviUn Body Slam': '5CD2', // levi slam that tilts the boat
+    'LeviUn Spinning Dive 1': '5CDB', // levi dash across the boat with knockback
+    'LeviUn Spinning Dive 2': '5CE3', // levi dash across the boat with knockback
+    'LeviUn Spinning Dive 3': '5CE8', // levi dash across the boat with knockback
+    'LeviUn Spinning Dive 4': '5CE9', // levi dash across the boat with knockback
   },
   gainsEffectWarn: {
-    'LeviEx Dropsy': '110', // standing in the hydro shot from the Wavespine Sahagin
+    'LeviUn Dropsy': '110', // standing in the hydro shot from the Wavespine Sahagin
   },
   gainsEffectFail: {
-    'LeviEx Hysteria': '128', // standing in the dreadstorm from the Wavetooth Sahagin
+    'LeviUn Hysteria': '128', // standing in the dreadstorm from the Wavetooth Sahagin
   },
   triggers: [
     {
-      id: 'LeviEx Body Slam Knocked Off',
-      netRegex: NetRegexes.ability({ id: '82A' }),
+      id: 'LeviUn Body Slam Knocked Off',
+      netRegex: NetRegexes.ability({ id: '5CD2' }),
       deathReason: (e, data, matches) => {
         return {
           type: 'fail',
