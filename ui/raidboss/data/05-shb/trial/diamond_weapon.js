@@ -53,6 +53,7 @@ export default {
       },
     },
     {
+      // There is no head marker for this mechanic, instead Unknown_5779 creates the indicator
       id: 'Diamond Diamond Flash',
       netRegex: NetRegexes.ability({ source: 'The Diamond Weapon', id: '5779' }),
       durationSeconds: 5,
