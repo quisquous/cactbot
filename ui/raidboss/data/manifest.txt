@@ -284,6 +284,8 @@
 05-shb/raid/e12s.txt
 05-shb/trial/emerald_weapon-ex.js
 05-shb/trial/emerald_weapon-ex.txt
+05-shb/trial/diamond_weapon.js
+05-shb/trial/diamond_weapon.txt
 05-shb/trial/hades.js
 05-shb/trial/hades.txt
 05-shb/trial/hades-ex.js
