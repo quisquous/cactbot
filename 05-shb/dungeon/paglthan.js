@@ -48,14 +48,7 @@ Options.Triggers.push({
       id: 'Paglthan Lightning Rod Lose',
       netRegex: NetRegexes.losesEffect({ effectId: 'A0E' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Away from lightning circles',
-          de: 'Weg von den Blitz-Kreisen',
-          fr: 'Éloignez-vous des cercles de foudre',
-        },
-      },
+      response: Responses.goMiddle(),
     },
     {
       id: 'Paglthan Ballistic',
@@ -91,13 +84,24 @@ Options.Triggers.push({
       response: Responses.stackMarkerOn(),
     },
     {
-      id: 'Paglthan Mega Flare',
+      id: 'Paglthan Mega Flare Spread',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
-      id: 'Paglthan Kan Rhai',
+      id: 'Paglthan Mega Flare Move',
+      netRegex: NetRegexes.ability({ id: '5B4D', source: 'Lunar Bahamut' }),
+      condition: Conditions.targetIsYou(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away from circles',
+        },
+      },
+    },
+    {
+      id: 'Paglthan Kan Rhai Marker',
       netRegex: NetRegexes.headMarker({ id: '0104' }),
       condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
@@ -106,6 +110,16 @@ Options.Triggers.push({
           en: 'Kan Rhai on YOU',
           de: 'Kan Rhai auf DIR',
           fr: 'Kan Rhai sur VOUS',
+        },
+      },
+    },
+    {
+      id: 'Paglthan Kan Rhai Move',
+      netRegex: NetRegexes.ability({ id: '5B4F', source: 'Lunar Bahamut', capture: false }),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away from crosses',
         },
       },
     },
