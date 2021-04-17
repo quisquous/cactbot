@@ -36,6 +36,7 @@ export default {
       outputStrings: {
         text: {
           en: 'go east -> aoe',
+          de: 'Geh nach Osten -> AoE',
         },
       },
     },
@@ -49,6 +50,7 @@ export default {
       outputStrings: {
         text: {
           en: 'go west -> aoe',
+          de: 'Geh nach Westen -> AoE',
         },
       },
     },
@@ -62,6 +64,7 @@ export default {
       outputStrings: {
         text: {
           en: 'go east -> stack',
+          de: 'Geh nach Osten -> Sammeln',
         },
       },
     },
@@ -75,6 +78,7 @@ export default {
       outputStrings: {
         text: {
           en: 'go west -> stack',
+          de: 'Geh nach Westen -> Sammeln',
         },
       },
     },
@@ -88,6 +92,7 @@ export default {
       outputStrings: {
         text: {
           en: 'go east -> spread',
+          de: 'Geh nach Osten -> Verteilen',
         },
       },
     },
@@ -101,6 +106,7 @@ export default {
       outputStrings: {
         text: {
           en: 'go west -> spread',
+          de: 'Geh nach Westen -> Verteilen',
         },
       },
     },
@@ -163,6 +169,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Dodge Zig-Zag',
+          de: 'Zig-Zag ausweichen',
         },
       },
     },
@@ -177,6 +184,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Dodge East/West',
+          de: 'Orb vom Osten/Westen ausweichen',
         },
       },
     },
@@ -191,6 +199,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Dodge Towards/Away',
+          de: 'Hin oder weg ausweichen',
         },
       },
     },
@@ -205,6 +214,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Diagonal Knockback',
+          de: 'Diagonaler Rückstoß',
         },
       },
     },
@@ -219,6 +229,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Dodge Bits',
+          de: 'Satelliten ausweichen',
         },
       },
     },
@@ -235,6 +246,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Dodge Bits',
+          de: 'Satelliten ausweichen',
         },
       },
     },
@@ -248,6 +260,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Bait Puddles',
+          de: 'Flächen ködern',
         },
       },
     },
@@ -262,7 +275,94 @@ export default {
       outputStrings: {
         text: {
           en: 'Towers',
+          de: 'Türme',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Articulated Bit': 'Satellitenarm',
+        'The Diamond Weapon': 'Diamant-Waffe',
+      },
+      'replaceText': {
+        'Adamant Purge': 'Diamantpanzer',
+        'Aetherial Bullet': 'Ätherreigen',
+        'Articulated Bits': 'Satellitenarme',
+        'Auri Arts': 'Aurische Kunst',
+        'Auri Cyclone': 'Aurischer Zyklon',
+        'Auri Doomstead': 'Aurisches Verderben',
+        '(?<!Photon )Burst': 'Einschlag',
+        'Claw Swipe': 'Klauensturm',
+        'Code Chi-Xi-Stigma': 'Code 666',
+        'Diamond Flash': 'Diamantblitz',
+        'Diamond Rain': 'Dominanz der Diamanten',
+        'Diamond Shot': 'Diamantschuss',
+        'Diamond Shrapnel': 'Diamantschub',
+        'Flood Ray': 'Flutstrahl',
+        'Homing Laser': 'Leitlaser',
+        'Outrage': 'Diamantwut',
+        'Photon Burst': 'Photonenknall',
+        'Vertical Cleave': 'Vertikalspalter',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Articulated Bit': 'bras autonome',
+        'The Diamond Weapon': 'Arme Diamant',
+      },
+      'replaceText': {
+        'Adamant Purge': 'Armure adaptative',
+        'Aetherial Bullet': 'Rayon éthéré',
+        'Articulated Bits': 'Bras autonome',
+        'Auri Arts': 'Art martial aoran',
+        'Auri Cyclone': 'Tornade aoranne',
+        'Auri Doomstead': 'Calamité aoranne',
+        '(?<!Photon )Burst': 'Explosion',
+        'Claw Swipe': 'Ruée de griffes',
+        'Code Chi-Xi-Stigma': 'Code Chi-Xi-Stigma',
+        'Diamond Flash': 'Éclair de diamant',
+        'Diamond Rain': 'Bombardement adamantin',
+        'Diamond Shot': 'Tir diamantaire',
+        'Diamond Shrapnel': 'Salve adamantine',
+        'Flood Ray': 'Déluge de rayons',
+        'Homing Laser': 'Laser auto-guidé',
+        'Outrage': 'Indignation',
+        'Photon Burst': 'Salve photonique',
+        'Vertical Cleave': 'Fente verticale',
+      },
+    },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Articulated Bit': 'アームビット',
+        'The Diamond Weapon': 'ダイヤウェポン',
+      },
+      'replaceText': {
+        'Adamant Purge': '装甲展開',
+        'Aetherial Bullet': 'エーテルバレット',
+        'Articulated Bits': 'アームビット',
+        'Auri Arts': 'アウリアーツ',
+        'Auri Cyclone': 'アウリサイクロン',
+        'Auri Doomstead': 'アウリドゥーム',
+        '(?<!Photon )Burst': '大爆発',
+        'Claw Swipe': 'クロースラッシュ',
+        'Code Chi-Xi-Stigma': 'コード666',
+        'Diamond Flash': 'ダイヤフラッシュ',
+        'Diamond Rain': 'ダイヤレイン',
+        'Diamond Shot': 'ダイヤショット',
+        'Diamond Shrapnel': 'ダイヤバースト',
+        'Flood Ray': 'フラッドレイ',
+        'Homing Laser': 'ホーミングレーザー',
+        'Outrage': 'アウトレイジ',
+        'Photon Burst': 'フォトンバースト',
+        'Vertical Cleave': 'バーチカルクリーヴ',
       },
     },
   ],
