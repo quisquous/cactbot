@@ -8,8 +8,8 @@ hideall "--sync--"
 # -it "The Diamond Weapon" -ii 5FEB 5FBE 5FAA 5FEC 5FBA 5FFD 5FBB 6055 6159 5FF9 5FCD 5FFA 5FF9 612E 5FB3 5FCE 5FD2 5FFE 5FD3 5FB4 5FB6 5FB1 5FB0 5FBF 5FAE 5FA6 5FC3 5FC9 5FCA 5FC4
 
 ### Phase 1
-0 "--sync--" sync /:5FA7:The Diamond Weapon/
 0 "Start" sync /Engage!/ window 1,1
+16.3 "--sync--" sync /:5FA7:The Diamond Weapon/ window 17,10
 21.3 "Diamond Rain" sync /:The Diamond Weapon:5FA7:/ window 25,10
 
 # 5FA2 = Spread (Homing Laser, 5FA0)
