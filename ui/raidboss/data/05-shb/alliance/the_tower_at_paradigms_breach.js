@@ -67,7 +67,17 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '5EA7', source: '複製サレタジャック', capture: false }),
       delaySeconds: 2.1,
       durationSeconds: 5,
-      response: Responses.goFrontBack(),
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Out of Middle',
+          de: 'Raus aus der Mitte',
+          fr: 'Hors du milieu',
+          ja: '中央から離れる',
+          cn: '离开中间',
+          ko: '중앙에서 벗어나기',
+        },
+      },
     },
     {
       // Also applies for Red Girl Manipulate Energy
