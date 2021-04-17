@@ -168,8 +168,8 @@ export default {
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Knockback (from clone) + Out of Middle',
-          de: 'Rückstoß (vom Klon) + Raus aus der Mitte',
+          en: 'Knockback -> Out of Middle',
+          de: 'Rückstoß -> Raus aus der Mitte',
         },
       },
     },
