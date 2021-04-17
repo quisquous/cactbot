@@ -513,6 +513,7 @@ export default {
           return output.followUntethered();
         return output.awayFromTethered();
       },
+      run: (data) => data.seenSecretsRevealed = true,
       outputStrings: {
         awayFromTethered: {
           en: 'Away from tethered adds',
@@ -531,7 +532,6 @@ export default {
           ko: '선 연결되지 않은 쫄 따라가기',
         },
       },
-      run: (data) => data.seenSecretsRevealed = true,
     },
     {
       id: 'Delubrum Guard Rapid Sever Soldier',
@@ -594,6 +594,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrière De La Reine', id: '57FF', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ウォリアー', id: '57FF', capture: false }),
       alertText: (data, _, output) => output.text(),
+      run: (data) => data.reversalOfForces = true,
       outputStrings: {
         text: {
           en: 'Stand On Small Bomb',
@@ -604,7 +605,6 @@ export default {
           ko: '작은 폭탄 위에 서기',
         },
       },
-      run: (data) => data.reversalOfForces = true,
     },
     {
       id: 'Delubrum Guard Above Board',
@@ -1254,6 +1254,10 @@ export default {
           return output.getKnockedToSmallBomb();
         return output.getKnockedToLargeBomb();
       },
+      run: (data) => {
+        data.seenHeavensWrath = true;
+        delete data.reversalOfForces;
+      },
       outputStrings: {
         getKnockedTowardsMiddle: {
           en: 'Get Knocked Towards Middle',
@@ -1279,10 +1283,6 @@ export default {
           cn: '击退到大炸弹',
           ko: '큰 폭탄으로 넉백당하기',
         },
-      },
-      run: (data) => {
-        data.seenHeavensWrath = true;
-        delete data.reversalOfForces;
       },
     },
     {

@@ -349,6 +349,7 @@ const testTriggerFile = (file) => {
       'infoText',
       'tts',
       'run',
+      'outputStrings',
     ];
 
     for (const set of [triggerSet.triggers, triggerSet.timelineTriggers]) {
