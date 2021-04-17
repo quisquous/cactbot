@@ -11,8 +11,8 @@
     "build": "node_modules/.bin/webpack --config webpack/webpack.config.cjs --mode production",
     "start": "node_modules/.bin/webpack-dev-server --config webpack/webpack.config.cjs --mode development",
     "tsc-no-emit": "node_modules/.bin/tsc --noEmit",
-    "lint": "node_modules/.bin/eslint **/*.{js,cjs,mjs,ts}",
-    "lintfix": "node_modules/.bin/eslint --fix **/*.{js,cjs,mjs,ts}",
+    "lint": "node_modules/.bin/eslint --max-warnings=0 **/*.{js,cjs,mjs,ts}",
+    "lintfix": "node_modules/.bin/eslint --max-warnings=0 --fix **/*.{js,cjs,mjs,ts}",
     "stylelint": "node_modules/.bin/stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
     "markdownlint": "node_modules/.bin/markdownlint . --ignore node_modules --ignore publish --ignore CactbotOverlay/ThirdParty",
     "test": "node_modules/.bin/mocha",
@@ -34,6 +34,7 @@
     "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-rulesdir": "^0.1.0",
+    "eslint-plugin-tsc": "^2.0.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.0.8",
     "markdownlint-cli": "^0.20.0",
@@ -64,7 +65,8 @@
   },
   "lint-staged": {
     "*.css": "stylelint",
-    "*.{js,cjs,mjs,ts}": "eslint",
+    "*.{js,cjs,mjs}": "eslint --max-warnings=0",
+    "*.ts": "eslint --max-warnings=0 --plugin tsc --rule 'tsc/config: [2, {configFile: \"./tsconfig.json\"}]'",
     "*.md": "markdownlint",
     "*.py": "python -m pylint --errors-only",
     "ui/(raidboss|oopsyraidsy)/data/**": "node --loader ts-node/esm test/test_raidboss_data.js"
