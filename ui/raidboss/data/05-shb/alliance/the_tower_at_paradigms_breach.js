@@ -57,7 +57,15 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ id: '5EA7', source: 'Jack', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5EA7', source: 'ジャック', capture: false }),
       durationSeconds: 5,
-      response: Responses.goSides(),
+      alertText: (data, _, output) => output.text(),
+      tts: {
+        en: 'Go East/West Sides',
+      },
+      outputStrings: {
+        text: {
+          en: 'Go E/W Sides',
+        },
+      },
     },
     {
       id: 'Paradigm Copied Knave Colossal Impact Middle',
@@ -68,14 +76,12 @@ export default {
       delaySeconds: 2.1,
       durationSeconds: 5,
       alertText: (data, _, output) => output.text(),
+      tts: {
+        en: 'Go North/South Sides',
+      },
       outputStrings: {
         text: {
-          en: 'Out of Middle',
-          de: 'Raus aus der Mitte',
-          fr: 'Hors du milieu',
-          ja: '中央から離れる',
-          cn: '离开中间',
-          ko: '중앙에서 벗어나기',
+          en: 'Go N/S Sides',
         },
       },
     },
