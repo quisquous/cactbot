@@ -57,12 +57,13 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '5EA7', source: 'ジャック', capture: false }),
       durationSeconds: 5,
       alertText: (data, _, output) => output.text(),
-      tts: {
-        en: 'Go East/West Sides',
-      },
+      tts: (data, _, output) => output.ttsText(),
       outputStrings: {
         text: {
           en: 'Go E/W Sides',
+        },
+        ttsText: {
+          en: 'Go East/West Sides',
         },
       },
     },
@@ -75,12 +76,13 @@ export default {
       delaySeconds: 2.1,
       durationSeconds: 5,
       alertText: (data, _, output) => output.text(),
-      tts: {
-        en: 'Go North/South Sides',
-      },
+      tts: (data, _, output) => output.ttsText(),
       outputStrings: {
         text: {
           en: 'Go N/S Sides',
+        },
+        ttsText: {
+          en: 'Go North/South Sides',
         },
       },
     },
