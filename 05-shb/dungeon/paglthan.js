@@ -97,6 +97,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Away from circles',
+          fr: 'Éloignez-vous des cercles',
         },
       },
     },
@@ -120,6 +121,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Away from crosses',
+          fr: 'Éloignez-vous des croix',
         },
       },
     },
