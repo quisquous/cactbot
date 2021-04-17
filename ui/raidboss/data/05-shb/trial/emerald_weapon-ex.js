@@ -82,6 +82,7 @@ export default {
       delaySeconds: 9,
       durationSeconds: 6,
       alertText: (data, _, output) => output.text(),
+      run: (data) => data.seenMines = true,
       outputStrings: {
         text: {
           en: 'Get Near Same Polarity Mines',
@@ -92,7 +93,6 @@ export default {
           ko: '같은 극성 폭탄쪽으로',
         },
       },
-      run: (data) => data.seenMines = true,
     },
     {
       id: 'EmeraldEx Divide Et Impera P1',

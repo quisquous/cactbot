@@ -432,6 +432,11 @@ export default {
       // to have this cleaned up before the second Second Art Of Darkness
       preRun: (data) => delete data.finalArtOfDarkness,
       infoText: (data, _, output) => output.text(),
+      run: (data) => {
+        data.artOfDarkness = [];
+        if (!data.artOfDarknessIdMap)
+          data.artOfDarknessExpected = 'right';
+      },
       outputStrings: {
         text: {
           en: 'Start Left',
@@ -441,11 +446,6 @@ export default {
           cn: '左侧开始',
           ko: '왼쪽에서 시작',
         },
-      },
-      run: (data) => {
-        data.artOfDarkness = [];
-        if (!data.artOfDarknessIdMap)
-          data.artOfDarknessExpected = 'right';
       },
     },
     {
@@ -460,6 +460,11 @@ export default {
       // to have this cleaned up before the second Second Art Of Darkness
       preRun: (data) => delete data.finalArtOfDarkness,
       infoText: (data, _, output) => output.text(),
+      run: (data) => {
+        data.artOfDarkness = [];
+        if (!data.artOfDarknessIdMap)
+          data.artOfDarknessExpected = 'left';
+      },
       outputStrings: {
         text: {
           en: 'Start Right',
@@ -469,11 +474,6 @@ export default {
           cn: '右侧开始',
           ko: '오른쪽에서 시작',
         },
-      },
-      run: (data) => {
-        data.artOfDarkness = [];
-        if (!data.artOfDarknessIdMap)
-          data.artOfDarknessExpected = 'left';
       },
     },
     {
@@ -545,8 +545,8 @@ export default {
           data.artOfDarkness.push(data.finalArtOfDarkness);
         return data.artOfDarkness.map((key) => output[key]()).join(' -> ');
       },
-      outputStrings: artOfDarknessOutputStrings,
       run: (data) => delete data.artOfDarkness,
+      outputStrings: artOfDarknessOutputStrings,
     },
     {
       id: 'E9S Empty Plane',
@@ -683,6 +683,11 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '5603', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5603', source: '어둠의 구름', capture: false }),
       infoText: (data, _, output) => output.text(),
+      run: (data) => {
+        data.artOfDarkness = [];
+        // Add this once we've seen the second charge to call out sooner.
+        data.finalArtOfDarkness = 'goRight';
+      },
       outputStrings: {
         text: {
           en: 'Start Left',
@@ -692,11 +697,6 @@ export default {
           cn: '左侧开始',
           ko: '왼쪽에서 시작',
         },
-      },
-      run: (data) => {
-        data.artOfDarkness = [];
-        // Add this once we've seen the second charge to call out sooner.
-        data.finalArtOfDarkness = 'goRight';
       },
     },
     {
@@ -708,6 +708,11 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '5604', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5604', source: '어둠의 구름', capture: false }),
       infoText: (data, _, output) => output.text(),
+      run: (data) => {
+        data.artOfDarkness = [];
+        // Add this once we've seen the second charge to call out sooner.
+        data.finalArtOfDarkness = 'goLeft';
+      },
       outputStrings: {
         text: {
           en: 'Start Right',
@@ -717,11 +722,6 @@ export default {
           cn: '右侧开始',
           ko: '오른쪽에서 시작',
         },
-      },
-      run: (data) => {
-        data.artOfDarkness = [];
-        // Add this once we've seen the second charge to call out sooner.
-        data.finalArtOfDarkness = 'goLeft';
       },
     },
     {
@@ -815,8 +815,8 @@ export default {
         const [clone1, clone2] = data.clones;
         return output[calculateSummonSafeZone(data.boss, clone1, clone2, matches.id)]();
       },
-      outputStrings: summonDirectionOutputStrings,
       run: (data) => delete data.summon,
+      outputStrings: summonDirectionOutputStrings,
     },
   ],
   timelineReplace: [

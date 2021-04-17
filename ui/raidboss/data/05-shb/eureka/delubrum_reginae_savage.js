@@ -1121,6 +1121,11 @@ export default {
 
         return data.tetherOnSelf ? output.windTether() : output.lightningNoTether();
       },
+      run: (data) => {
+        delete data.tetherIsBombslinger;
+        delete data.tetherOnSelf;
+        delete data.tetherOnBomb;
+      },
       outputStrings: {
         windTether: {
           en: 'Wind (tethered)',
@@ -1164,11 +1169,6 @@ export default {
           ja: '小さい爆弾 (線)',
           cn: '小炸弹 (连线)',
         },
-      },
-      run: (data) => {
-        delete data.tetherIsBombslinger;
-        delete data.tetherOnSelf;
-        delete data.tetherOnBomb;
       },
     },
     {

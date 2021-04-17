@@ -203,6 +203,7 @@ export default {
           return output.dynamo();
         return output.chariot();
       },
+      run: (data) => delete data.dynamo,
       outputStrings: {
         dynamo: {
           en: 'Close to blue staff',
@@ -221,7 +222,6 @@ export default {
           ko: '빨강 지팡이에서 떨어지기',
         },
       },
-      run: (data) => delete data.dynamo,
     },
     {
       id: 'Swallows Compass Five Fingered Punishment',
@@ -264,6 +264,7 @@ export default {
         }
         return output.avoid();
       },
+      run: (data) => delete data.tethers,
       outputStrings: {
         target: {
           en: 'Laser on YOU',
@@ -290,7 +291,6 @@ export default {
           ko: '선 피하기',
         },
       },
-      run: (data) => delete data.tethers,
     },
   ],
   timelineReplace: [

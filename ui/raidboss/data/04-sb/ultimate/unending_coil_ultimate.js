@@ -810,6 +810,9 @@ export default {
         if (data.fireballs[1].includes(data.me))
           return output.fireOut();
       },
+      run: function(data) {
+        data.naelFireballCount = 2;
+      },
       outputStrings: {
         fireOut: {
           en: 'Fire OUT',
@@ -827,9 +830,6 @@ export default {
           cn: '火2 补火',
           ko: '불 대상자 밖으로: 나는 같이 맞기',
         },
-      },
-      run: function(data) {
-        data.naelFireballCount = 2;
       },
     },
     {
@@ -861,6 +861,9 @@ export default {
         }
         return output.fireIn();
       },
+      run: function(data) {
+        data.naelFireballCount = 3;
+      },
       outputStrings: {
         fireIn: {
           en: 'Fire IN',
@@ -886,9 +889,6 @@ export default {
           cn: '火3 躲避！',
           ko: '불 같이맞기: 나는 피하기',
         },
-      },
-      run: function(data) {
-        data.naelFireballCount = 3;
       },
     },
     {
@@ -921,6 +921,9 @@ export default {
         if (!data.tookThreeFireballs)
           return output.fireIn();
       },
+      run: function(data) {
+        data.naelFireballCount = 4;
+      },
       outputStrings: {
         fireIn: {
           en: 'Fire IN',
@@ -938,9 +941,6 @@ export default {
           cn: '火4 躲避！',
           ko: '불 같이맞기: 나는 피하기',
         },
-      },
-      run: function(data) {
-        data.naelFireballCount = 4;
       },
     },
     {
@@ -1465,6 +1465,10 @@ export default {
             return output.tenstrikeNotOnYou();
         }
       },
+      run: function(data) {
+        if (data.trio === 'tenstrike' && data.shakers.length === 4)
+          data.shakers = [];
+      },
       outputStrings: {
         quickmarchTankTether: {
           en: 'Pick up tether',
@@ -1490,10 +1494,6 @@ export default {
           cn: '安全点集合',
           ko: '안전장소에 모이기',
         },
-      },
-      run: function(data) {
-        if (data.trio === 'tenstrike' && data.shakers.length === 4)
-          data.shakers = [];
       },
     },
     {
