@@ -26,15 +26,15 @@ export default {
       id: 'Diamond Claw Swipe East',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5F9A', capture: false }),
       durationSeconds: 10,
-      outputStrings: sharedOutputStrings,
       alertText: (data, _, output) => output.teleportWest(),
+      outputStrings: sharedOutputStrings,
     },
     {
       id: 'Diamond Claw Swipe West',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5F9B', capture: false }),
       durationSeconds: 10,
-      outputStrings: sharedOutputStrings,
       alertText: (data, _, output) => output.teleportEast(),
+      outputStrings: sharedOutputStrings,
     },
     {
       id: 'Diamond Photon Burst',
@@ -69,8 +69,8 @@ export default {
       id: 'Diamond Airship\'s Bane',
       netRegex: NetRegexes.startsUsing({ source: 'The Diamond Weapon', id: '5FE8', capture: false }),
       durationSeconds: 5,
-      outputStrings: sharedOutputStrings,
       alertText: (data, _, output) => output.teleportEast(),
+      outputStrings: sharedOutputStrings,
     },
     {
       id: 'Diamond Outrage',
