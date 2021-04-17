@@ -526,7 +526,7 @@ class Bars {
     if (!this.o.healthBar) return;
     this.o.healthBar.value = this.hp;
     this.o.healthBar.maxvalue = this.maxHP;
-    this.o.healthBar.extraValue = this.currentShield;
+    this.o.healthBar.extravalue = this.currentShield;
 
     const percent = (this.hp + this.currentShield) / this.maxHP;
 
