@@ -169,13 +169,13 @@ export default {
       delaySeconds: (data, matches) => matches.duration - 6,
       durationSeconds: 5,
       infoText: (data, _, output) => output.text(),
+      run: (data) => data.cloneLunge = true,
       outputStrings: {
         text: {
           en: 'Knockback (from clone)',
           de: 'Rückstoß (vom Klon)',
         },
       },
-      run: (data) => data.cloneLunge = true,
     },
     {
       id: 'Paradigm Copied Knave Lunge Get Middle',
@@ -342,13 +342,13 @@ export default {
         if (data.seenSphere)
           return output.text();
       },
+      run: (data) => data.seenSphere = true,
       outputStrings: {
         text: {
           en: 'Switch to white',
           de: 'Auf Weiß wechseln',
         },
       },
-      run: (data) => data.seenSphere = true,
     },
     {
       id: 'Paradigm Red Sphere Wave: Black',
@@ -360,13 +360,13 @@ export default {
         if (data.seenSphere)
           return output.text();
       },
+      run: (data) => data.seenSphere = true,
       outputStrings: {
         text: {
           en: 'Switch to black',
           de: 'Auf Schwarz wechseln',
         },
       },
-      run: (data) => data.seenSphere = true,
     },
     {
       id: 'Paradigm Meng-Zi/Xun-Zi Universal Assault',
