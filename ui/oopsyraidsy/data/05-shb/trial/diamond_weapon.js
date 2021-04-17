@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
 // Diamond Weapon Normal
@@ -17,4 +18,24 @@ export default {
   shareWarn: {
     'Diamond Weapon Homing Laser': '5FDB', // spread markers
   },
+  triggers: [
+    {
+      id: 'Diamond Weapon Vertical Cleave Knocked Off',
+      netRegex: NetRegexes.ability({ id: '5FE5' }),
+      deathReason: (e, data, matches) => {
+        return {
+          type: 'fail',
+          name: matches.target,
+          reason: {
+            en: 'Knocked off',
+            de: 'Runtergefallen',
+            fr: 'A été assommé(e)',
+            ja: 'ノックバック',
+            cn: '击退坠落',
+            ko: '넉백',
+          },
+        };
+      },
+    },
+  ],
 };
