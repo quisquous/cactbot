@@ -496,7 +496,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '(?:4C2C|4C65)', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '(?:4C2C|4C65)', capture: false }),
       alertText: function(data, _, output) {
-        data.colorMap = data.colorMap || [];
+        data.colorMap = data.colorMap || {};
         const colorTrans = data.colorMap[data.color] || {};
         const color = colorTrans[data.displayLang];
         if (!color)
@@ -611,7 +611,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C7E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C7E', capture: false }),
       alertText: function(data, _, output) {
-        data.colorMap = data.colorMap || [];
+        data.colorMap = data.colorMap || {};
         const colorTrans = data.colorMap[data.color] || {};
         const color = colorTrans[data.displayLang];
         if (!color)

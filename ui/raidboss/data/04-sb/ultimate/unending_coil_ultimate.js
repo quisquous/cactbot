@@ -956,7 +956,7 @@ export default {
       },
       run: function(data, matches) {
         // seenDragon[dragon name] => boolean
-        data.seenDragon = data.seenDragon || [];
+        data.seenDragon = data.seenDragon || {};
         data.seenDragon[matches.source] = true;
 
         const x = parseFloat(matches.x);
