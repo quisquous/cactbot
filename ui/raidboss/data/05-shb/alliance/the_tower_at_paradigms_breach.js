@@ -537,6 +537,12 @@ export default {
   ],
   timelineReplace: [
     {
+      'locale': 'en',
+      'replaceText': {
+        'White Dissonance / Black Dissonance': 'White/Black Dissonance',
+      },
+    },
+    {
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
