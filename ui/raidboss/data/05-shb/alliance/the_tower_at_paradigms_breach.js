@@ -280,7 +280,6 @@ export default {
     {
       id: 'Paradigm Hansel/Gretel Riot Of Magic',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      condition: Conditions.targetIsYou(),
       delaySeconds: 0.5,
       infoText: (data, matches, output) => {
         if (!data.seedTargets)
@@ -291,7 +290,7 @@ export default {
         if (matches.target === data.me)
           return output.stackOnYou();
 
-        return output.stackOn({ player: data.ShortName(target) });
+        return output.stackOn({ player: data.ShortName(matches.target) });
       },
       run: (data) => delete data.seedTargets,
       outputStrings: {
