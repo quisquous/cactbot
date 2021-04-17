@@ -186,7 +186,7 @@ export default {
       id: 'RubyEx Pall of Rage',
       netRegex: NetRegexes.gainsEffect({ effectId: '8A2' }),
       preRun: function(data, matches) {
-        data.colors = data.colors || [];
+        data.colors = data.colors || {};
         data.colors[matches.target] = 'blue';
       },
       infoText: function(data, matches, output) {
@@ -208,7 +208,7 @@ export default {
       id: 'RubyEx Pall of Grief',
       netRegex: NetRegexes.gainsEffect({ effectId: '8A3' }),
       preRun: function(data, matches) {
-        data.colors = data.colors || [];
+        data.colors = data.colors || {};
         data.colors[matches.target] = 'red';
       },
       infoText: function(data, matches, output) {
