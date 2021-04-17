@@ -13,7 +13,7 @@ Options.CustomMonsters = {
   //     'cn': '食人花',
   //     'ja': 'ヤテベオ',
   //   },
-  //   'hp': 1000,  // minimum hp of the momnster
+  //   'hp': 1000,  // minimum hp of the monster
   //   'rank': 'Custom',  // rank
   // },
 };

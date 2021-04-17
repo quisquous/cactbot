@@ -123,7 +123,7 @@ class CoinachWriter:
             cactbot_path = self._find_cactbot_path()
         self.cactbot_path = cactbot_path
         if not os.path.isdir(self.cactbot_path):
-            raise Exception("Invalid cactboth path: %s" % self.cactbot_path)
+            raise Exception("Invalid cactbot path: %s" % self.cactbot_path)
 
     def _find_cactbot_path(self):
         p = os.path.abspath(__file__)

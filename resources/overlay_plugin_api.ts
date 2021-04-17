@@ -11,25 +11,25 @@ declare global {
       callHandler: (msg: string, cb?: (value: string) => unknown) => void;
     };
     /**
-     * @deprecated This is for backward compatiability.
+     * @deprecated This is for backward compatibility.
      *
-     * It is recommanded to import from this file:
+     * It is recommended to import from this file:
      *
      * `import { addOverlayListener } from '/path/to/overlay_plugin_api';`
      */
     addOverlayListener: IAddOverlayListener;
     /**
-     * @deprecated This is for backward compatiability.
+     * @deprecated This is for backward compatibility.
      *
-     * It is recommanded to import from this file:
+     * It is recommended to import from this file:
      *
      * `import { removeOverlayListener } from '/path/to/overlay_plugin_api';`
      */
     removeOverlayListener: IRemoveOverlayListener;
     /**
-     * @deprecated This is for backward compatiability.
+     * @deprecated This is for backward compatibility.
      *
-     * It is recommanded to import from this file:
+     * It is recommended to import from this file:
      *
      * `import { callOverlayHandler } from '/path/to/overlay_plugin_api';`
      */

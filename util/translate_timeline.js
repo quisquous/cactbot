@@ -7,7 +7,7 @@ import { walkDirSync } from './file_utils';
 
 const parser = new ArgumentParser({
   addHelp: true,
-  description: 'Prints out a translated timeline, with annotatations on missing texts and syncs',
+  description: 'Prints out a translated timeline, with annotations on missing texts and syncs',
 });
 parser.addArgument(['-l', '--locale'], {
   required: true,
