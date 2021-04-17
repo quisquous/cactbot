@@ -37,6 +37,7 @@ export default {
         text: {
           en: 'go east -> aoe',
           de: 'Geh nach Osten -> AoE',
+          fr: 'Allez à l\'est -> AoE',
         },
       },
     },
@@ -51,6 +52,7 @@ export default {
         text: {
           en: 'go west -> aoe',
           de: 'Geh nach Westen -> AoE',
+          fr: 'Allez à l\'ouest -> AoE',
         },
       },
     },
@@ -65,6 +67,7 @@ export default {
         text: {
           en: 'go east -> stack',
           de: 'Geh nach Osten -> Sammeln',
+          fr: 'Allez à l\'est -> Packez-vous',
         },
       },
     },
@@ -79,6 +82,7 @@ export default {
         text: {
           en: 'go west -> stack',
           de: 'Geh nach Westen -> Sammeln',
+          fr: 'Allez à l\'ouest -> Packez-vous',
         },
       },
     },
@@ -93,6 +97,7 @@ export default {
         text: {
           en: 'go east -> spread',
           de: 'Geh nach Osten -> Verteilen',
+          fr: 'Allez à l\'est -> Dispersez-vous',
         },
       },
     },
@@ -107,6 +112,7 @@ export default {
         text: {
           en: 'go west -> spread',
           de: 'Geh nach Westen -> Verteilen',
+          fr: 'Allez à l\'ouest -> Dispersez-vous',
         },
       },
     },
@@ -170,6 +176,7 @@ export default {
         text: {
           en: 'Dodge Zig-Zag',
           de: 'Zig-Zag ausweichen',
+          fr: 'Esquivez le Zig-Zag',
         },
       },
     },
@@ -185,6 +192,7 @@ export default {
         text: {
           en: 'Dodge East/West',
           de: 'Orb vom Osten/Westen ausweichen',
+          fr: 'Esquivez Est/Ouest',
         },
       },
     },
@@ -200,6 +208,7 @@ export default {
         text: {
           en: 'Dodge Towards/Away',
           de: 'Hin oder weg ausweichen',
+          fr: 'Rapprochez-vous/Éloignez-vous',
         },
       },
     },
@@ -215,6 +224,7 @@ export default {
         text: {
           en: 'Diagonal Knockback',
           de: 'Diagonaler Rückstoß',
+          fr: 'Poussée diagonale',
         },
       },
     },
@@ -230,6 +240,7 @@ export default {
         text: {
           en: 'Dodge Bits',
           de: 'Satelliten ausweichen',
+          fr: 'Esquivez les bras',
         },
       },
     },
@@ -247,6 +258,7 @@ export default {
         text: {
           en: 'Dodge Bits',
           de: 'Satelliten ausweichen',
+          fr: 'Esquivez les bras',
         },
       },
     },
@@ -261,6 +273,7 @@ export default {
         text: {
           en: 'Bait Puddles',
           de: 'Flächen ködern',
+          fr: 'Placez les zones au sol',
         },
       },
     },
@@ -276,6 +289,7 @@ export default {
         text: {
           en: 'Towers',
           de: 'Türme',
+          fr: 'Tours',
         },
       },
     },
@@ -311,12 +325,13 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Articulated Bit': 'bras autonome',
         'The Diamond Weapon': 'Arme Diamant',
       },
       'replaceText': {
+        '\\?': ' ?',
+        '\\(Jump\\)': '(Saut)',
         'Adamant Purge': 'Armure adaptative',
         'Aetherial Bullet': 'Rayon éthéré',
         'Articulated Bits': 'Bras autonome',
