@@ -7,10 +7,12 @@ const sharedOutputStrings = {
   teleportEast: {
     en: 'Teleport to east platform',
     de: 'Teleport zur östlichen plattform',
+    fr: 'Téléportez-vous vers la plateforme est',
   },
   teleportWest: {
     en: 'Teleport to west platform',
     de: 'Teleport zur westlichen plattform',
+    fr: 'Téléportez-vous vers la plateforme ouest',
   },
 };
 
@@ -129,6 +131,7 @@ export default {
         text: {
           en: 'Diamond Shrapnel on YOU',
           de: 'Diamantschub auf DIR',
+          fr: 'Salve adamantine sur VOUS',
         },
       },
     },
@@ -143,6 +146,7 @@ export default {
         text: {
           en: 'Avoid Bits',
           de: 'Weiche den Satelliten aus',
+          fr: 'Évitez les bras',
         },
       },
     },
