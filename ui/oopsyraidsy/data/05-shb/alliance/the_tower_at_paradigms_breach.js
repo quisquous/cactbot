@@ -1,13 +1,18 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: missing Shock Black 2?
+// TODO: White/Black Dissonance damage is maybe when flags end in 03?
 
 export default {
   zoneId: ZoneId.TheTowerAtParadigmsBreach,
   damageWarn: {
-    'Tower Knave Colossal Impact Center': '5EA7', // Center aoe from Knave and clones
+    'Tower Knave Colossal Impact Center 1': '5EA7', // Center aoe from Knave and clones
+    'Tower Knave Colossal Impact Center 2': '60C8', // Center aoe from Knave during lunge
     'Tower Knave Colossal Impact Side 1': '5EA5', // Side aoes from Knave and clones
     'Tower Knave Colossal Impact Side 2': '5EA6', // Side aoes from Knave and clones
+    'Tower Knave Colossal Impact Side 3': '60C6', // Side aoes from Knave during lunge
+    'Tower Knave Colossal Impact Side 4': '60C7', // Side aoes from Knave during lunge
     'Tower Knave Burst': '5ED4', // Spheroid Knavish Bullets collision
     'Tower Knave Magic Barrage': '5EAC', // Spheroid line aoes
     'Tower Hansel Repay': '5C70', // Shield damage
@@ -49,7 +54,19 @@ export default {
     'Tower Red Girl Pylon Explosion': '6026', // pylon during Child's play
     'Tower Philosopher Deploy Armaments Middle': '5C02', // middle laser
     'Tower Philosopher Deploy Armaments Sides': '5C05', // sides laser
+    'Tower Philosopher Deploy Armaments 3': '6078', // goes with 5C01
+    'Tower Philosopher Deploy Armaments 4': '6079', // goes with 5C04
     'Tower Philosopher Energy Bomb': '5C05', // pink bubble
+    'Tower False Idol Made Magic Right': '5BD7', // rotating wheel going right
+    'Tower False Idol Made Magic Left': '5BD6', // rotating wheel going left
+    'Tower False Idol Lighter Note': '5BDA', // lighter note moving aoes
+    'Tower False Idol Magical Interference': '5BD5', // lasers during Rhythm Rings
+    'Tower False Idol Scattered Magic': '5BDF', // circle aoes from Seed Of Magic
+    'Tower Her Inflorescence Uneven Fotting': '5BE2', // building from Recreate Structure
+    'Tower Her Inflorescence Crash': '5BE5', // trains from Mixed Signals
+    'Tower Her Inflorescence Heavy Arms 1': '5BED', // heavy arms front/back attack
+    'Tower Her Inflorescence Heavy Arms 2': '5BEF', // heavy arms sides attack
+    'Tower Her Inflorescence Energy Scattered Magic': '5BE8', // orbs from Red Girl by train
   },
   shareWarn: {
     'Tower Knave Magic Artillery Alpha': '5EAB', // Spread
@@ -58,11 +75,14 @@ export default {
   shareFail: {
     'Tower Knave Magic Artillery Beta': '5EB3', // Tankbuster
     'Tower Red Girl Manipulate Energy': '601A', // Tankbuster
+    'Tower False Idol Darker Note': '5BDC', // Tankbuster
   },
   triggers: [
     {
-      id: 'Tower Knave Lunge Knocked Off',
-      netRegex: NetRegexes.ability({ id: '5EB1' }),
+      id: 'Tower Knocked Off',
+      // 5EB1 = Knave Lunge
+      // 5BF2 = Her Infloresence Shockwave
+      netRegex: NetRegexes.ability({ id: ['5EB1', '5BF2'] }),
       deathReason: (e, data, matches) => {
         return {
           type: 'fail',
