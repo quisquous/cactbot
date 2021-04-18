@@ -1,5 +1,5 @@
 {
-  "extends": "./tsconfig.base.jsonc",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./dist/triggers"
   },
