@@ -55,9 +55,11 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Go E/W Sides',
+          ko: '동/서쪽으로',
         },
         ttsText: {
           en: 'Go East/West Sides',
+          ko: '동쪽이나 서쪽으로',
         },
       },
     },
@@ -74,9 +76,11 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Go N/S Sides',
+          ko: '남/북쪽으로',
         },
         ttsText: {
           en: 'Go North/South Sides',
+          ko: '남쪽이나 북쪽으로',
         },
       },
     },
@@ -148,6 +152,7 @@ Options.Triggers.push({
         text: {
           en: 'Knockback (from boss)',
           de: 'Rückstoß (vom Boss)',
+          ko: '보스기준 넉백',
         },
       },
     },
@@ -166,6 +171,7 @@ Options.Triggers.push({
         text: {
           en: 'Knockback (from clone)',
           de: 'Rückstoß (vom Klon)',
+          ko: '분신기준 넉백',
         },
       },
     },
@@ -182,6 +188,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Knockback -> Get Middle',
+          ko: '넉백 -> 가운데로',
         },
       },
     },
@@ -198,6 +205,7 @@ Options.Triggers.push({
         text: {
           en: 'Knockback -> Out of Middle',
           de: 'Rückstoß -> Raus aus der Mitte',
+          ko: '넉백 -> 가운데 피하기',
         },
       },
     },
@@ -212,6 +220,7 @@ Options.Triggers.push({
         text: {
           en: 'Attack Hansel',
           de: 'Hänsel angreifen',
+          ko: '헨젤 공격',
         },
       },
     },
@@ -226,6 +235,7 @@ Options.Triggers.push({
         text: {
           en: 'Attack Gretel',
           de: 'Gretel angreifen',
+          ko: '그레텔 공격',
         },
       },
     },
@@ -336,6 +346,7 @@ Options.Triggers.push({
         text: {
           en: 'Switch to white',
           de: 'Auf Weiß wechseln',
+          ko: '하얀색으로 바꾸기',
         },
       },
     },
@@ -354,6 +365,7 @@ Options.Triggers.push({
         text: {
           en: 'Switch to black',
           de: 'Auf Schwarz wechseln',
+          ko: '검은색으로 바꾸기',
         },
       },
     },
@@ -402,6 +414,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Lighter Note on YOU',
+          ko: '장판 대상자',
         },
       },
     },
@@ -475,6 +488,7 @@ Options.Triggers.push({
         text: {
           en: 'Dodge Building Below',
           de: 'Gebäude unter einem ausweichen',
+          ko: '컨테이너 박스 피하기',
         },
       },
     },
@@ -502,6 +516,7 @@ Options.Triggers.push({
         text: {
           en: 'Go To Red Light',
           de: 'Geh zum roten Licht',
+          ko: '빨간 신호등으로',
         },
       },
     },
