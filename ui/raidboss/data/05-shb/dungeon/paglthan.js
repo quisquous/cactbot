@@ -136,24 +136,25 @@ export default {
     },
     {
       id: 'Paglthan Lunar Flare Reset',
-      netRegex: NetRegexes.startsUsing({ id: '5B49', source: 'Lunar Bahamut', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '5B49', source: 'Luna-Bahamut', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '5B49', source: 'Luna-Bahamut', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '5B49', source: 'ルナバハムート', capture: false }),
+      netRegex: NetRegexes.ability({ id: '5B49', source: 'Lunar Bahamut', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '5B49', source: 'Luna-Bahamut', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '5B49', source: 'Luna-Bahamut', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '5B49', source: 'ルナバハムート', capture: false }),
       run: (data) => data.lunarFlares = 0,
     },
     {
+      // Get middle is 4x5B4A and 4x5B4B, get outside is 5x5B4A
       id: 'Paglthan Lunar Flare',
-      netRegex: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'Lunar Bahamut', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'Luna-Bahamut', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'Luna-Bahamut', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'ルナバハムート', capture: false }),
-      preRun: (data) => (data.lunarFlares || 0) + 1,
+      netRegex: NetRegexes.startsUsing({ id: '5B4A', source: 'Lunar Bahamut', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '5B4A', source: 'Luna-Bahamut', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '5B4A', source: 'Luna-Bahamut', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '5B4A', source: 'ルナバハムート', capture: false }),
+      preRun: (data) => data.lunarFlares = (data.lunarFlares || 0) + 1,
       alertText: (data, _, output) => {
+        if (data.lunarFlares === 4)
+          return output.getMiddle();
         if (data.lunarFlares === 5)
           return output.getOutsideBetweenCircles();
-        if (data.lunarFlares === 8)
-          return output.getMiddle();
       },
       outputStrings: {
         getMiddle: {
