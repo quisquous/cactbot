@@ -116,6 +116,7 @@ export default {
           en: 'Kan Rhai on YOU',
           de: 'Kan Rhai auf DIR',
           fr: 'Kan Rhai sur VOUS',
+          ko: '십자 장판 대상자',
         },
       },
     },
@@ -127,6 +128,7 @@ export default {
         text: {
           en: 'Away from crosses',
           fr: 'Éloignez-vous des croix',
+          ko: '십자 피하기',
         },
       },
     },
