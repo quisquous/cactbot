@@ -2,6 +2,26 @@ import ZoneId from '../../../../../resources/zone_id';
 import NetRegexes from '../../../../../resources/netregexes';
 import Conditions from '../../../../../resources/conditions';
 import { Responses } from '../../../../../resources/responses';
+import Outputs from '../../../../../resources/outputs';
+
+// Due to changes introduced in patch 5.2, overhead markers now have a random offset
+// added to their ID. This offset currently appears to be set per instance, so
+// we can determine what it is from the first overhead marker we see.
+// The first 1B markers in the encounter are flares, ID 0057.
+// The lowest 1B marker in the encounter is LC #1, ID 004F.
+// P2 buster is 00F3
+// P3 Shrapnal tracking AoE is 00C5
+const firstHeadmarker = parseInt('0057', 16);
+const getHeadmarkerId = (data, matches) => {
+  // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 0057.
+  // (This makes the offset 0, and !0 is true.)
+  if (typeof data.decOffset === 'undefined')
+    data.decOffset = parseInt(matches.id, 16) - firstHeadmarker;
+  // The leading zeroes are stripped when converting back to string, so we re-add them here.
+  // Fortunately, we don't have to worry about whether or not this is robust,
+  // since we know all the IDs that will be present in the encounter.
+  return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
+};
 
 export default {
   zoneId: ZoneId.TheCloudDeckExtreme,
@@ -255,7 +275,36 @@ export default {
         },
       },
     },
-    // @TODO: phase transition cleave headmarkers, Flood Ray
+    {
+      id: 'DiamondEx Headmarker',
+      netRegex: NetRegexes.headMarker({}),
+      durationSeconds: 25,
+      infoText: (data, matches, output) => {
+        // Always get the headmarker ID, so that decOffset can be defined properly
+        const idHex = getHeadmarkerId(data, matches);
+        if (matches.target !== data.me)
+          return;
+
+        const id = parseInt(idHex, 16);
+        const firstLCMarker = parseInt('004F', 16);
+        const lastLCMarker = parseInt('0056', 16);
+
+        if (id >= firstLCMarker && id <= lastLCMarker) {
+          const decOffset = id - firstLCMarker;
+          return output[decOffset + 1]();
+        }
+      },
+      outputStrings: {
+        1: Outputs.num1,
+        2: Outputs.num2,
+        3: Outputs.num3,
+        4: Outputs.num4,
+        5: Outputs.num5,
+        6: Outputs.num6,
+        7: Outputs.num7,
+        8: Outputs.num8,
+      },
+    },
     // Phase 3
     {
       id: 'DiamondEx P3 Articulated Bits',
