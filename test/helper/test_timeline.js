@@ -108,7 +108,7 @@ const testTimelineFiles = (timelineFiles) => {
 
         before(async () => {
           // Normalize path
-          const importPath = '../../' + path.posix.relative(process.cwd(), triggersFile).replace('.ts', '.js');
+          const importPath = '../../' + path.relative(process.cwd(), triggersFile).replace('.ts', '.js');
           timelineText = String(fs.readFileSync(timelineFile));
           triggerSet = (await import(importPath)).default;
           timeline = new Timeline(timelineText, null, triggerSet.timelineTriggers);
