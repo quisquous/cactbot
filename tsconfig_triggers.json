@@ -1,4 +1,7 @@
 {
+  "ts-node": {
+    "compiler": "ttypescript"
+  },
   "compilerOptions": {
     "plugins": [
       {
@@ -11,14 +14,15 @@
     "target": "ES2019",
     "module": "ES2020",
     "allowJs": true,
-    "types": [
-      "node"
-    ],
-    "baseUrl": "./",
+    "types": [ "node" ],
+    "outDir": "./dist/triggers",
+    "rootDir": "./",
     "moduleResolution": "node",
-    "skipLibCheck": true,
+    "baseUrl": "./",
     "esModuleInterop": true,
-    "declaration": true,
-    "rootDir": "./"
-  }
+    "skipLibCheck": true
+  },
+  "include": [
+    "./ui/raidboss/data/"
+  ]
 }
