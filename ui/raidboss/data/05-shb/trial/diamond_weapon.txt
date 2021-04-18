@@ -39,9 +39,9 @@ hideall "--sync--"
 193.5 "--sync--" sync /:The Diamond Weapon:6055:/
 201.5 "--sync--" sync /:The Diamond Weapon:61A0:/
 
-201.9 "Auri Arts (Z)" sync /:The Diamond Weapon:5FF8:/
+201.9 "Auri Arts (Z)" sync /:The Diamond Weapon:5F(F8|AF):/
 201.9 "--untargetable--"
-210.2 "Auri Arts (Jump)" sync /:The Diamond Weapon:5FE4:/
+210.2 "Auri Arts (Jump)" sync /:The Diamond Weapon:5FE[45]:/
 213.6 "--targetable--"
 
 220.7 "Auri Doomstead" sync /:The Diamond Weapon:5FD8:/
@@ -58,10 +58,10 @@ hideall "--sync--"
 
 269.6 "--sync--" sync /:The Diamond Weapon:6055:/
 277.6 "--sync--" sync /:The Diamond Weapon:61A0:/
-278.0 "Auri Arts (Z)" sync /:The Diamond Weapon:5FF8:/
+278.0 "Auri Arts (Z)" sync /:The Diamond Weapon:(F8|AF):/
 278.0 "--untargetable--"
 281.8 "--sync--" sync /:The Diamond Weapon:6130:/
-286.3 "Auri Arts (Jump)" sync /:The Diamond Weapon:5FE4:/
+286.3 "Auri Arts (Jump)" sync /:The Diamond Weapon:5FE[45]:/
 289.7 "--targetable--"
 
 # Intermission
