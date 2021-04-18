@@ -232,6 +232,10 @@ html {
   align-self: center;
 }
 
+.trigger-source {
+  justify-content: flex-end;
+}
+
 .alarm-text {
   color: #f30;
 }
