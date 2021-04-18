@@ -20,8 +20,6 @@ export default class WidgetList extends HTMLElement {
   private _maxnumber = 1000;
   private _connected = false;
   private rootElement: HTMLElement;
-  // bypass shadowRoot maybe null in base class
-  private shadow: ShadowRoot;
 
   static get observedAttributes(): string[] {
     return ['toward', 'elementwidth', 'elementheight', 'rowcolsize', 'maxnumber'];
@@ -106,7 +104,6 @@ export default class WidgetList extends HTMLElement {
     root.innerHTML = `
       <div id="root" style="position: relative"></div>
     `;
-    this.shadow = root;
     this.rootElement = root.getElementById('root') as HTMLElement;
   }
 
@@ -245,7 +242,7 @@ export default class WidgetList extends HTMLElement {
     const id = this._nameToId[name];
     if (!id)
       return;
-    const container = this.shadow.getElementById(`child${id}`);
+    const container = this.shadowRoot?.getElementById(`child${id}`);
     let element = undefined;
     if (container) {
       element = container.childNodes[0];
