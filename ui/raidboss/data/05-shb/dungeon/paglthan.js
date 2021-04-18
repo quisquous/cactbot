@@ -157,8 +157,8 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'Luna-Bahamut', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'Luna-Bahamut', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'ルナバハムート', capture: false }),
-      suppressSeconds: 1,
       delaySeconds: 0.5,
+      suppressSeconds: 1,
       alertText: (data, _, output) => {
         if (data.lunarFlares === 5)
           return output.getOutsideBetweenCircles();
