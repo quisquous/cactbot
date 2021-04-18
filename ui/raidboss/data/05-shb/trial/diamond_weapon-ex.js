@@ -311,7 +311,6 @@ export default {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Articulated Bit': 'Satellitenarm',
         'The Diamond Weapon': 'Diamant-Waffe',

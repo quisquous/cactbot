@@ -113,7 +113,7 @@ hideall "--sync--"
 2070.4 "Upgraded Shield" sync /:Gretel:5C6[89]:/
 2070.4 "Upgraded Lance" sync /:Hansel:5C6[AB]:/
 2083.6 "--sync--" sync /:Gretel:5C7A:/ # Seed Of Magic Alpha cast
-2083.6 "--sync --" sync /:Hansel:5C7B:/ # Riot Of Magic cast
+2083.6 "--sync--" sync /:Hansel:5C7B:/ # Riot Of Magic cast
 2089.4 "Seed Of Magic Alpha" sync /:Gretel:5C61:/ # damage
 2089.4 "Riot Of Magic" sync /:Hansel:5C63:/ # damage
 

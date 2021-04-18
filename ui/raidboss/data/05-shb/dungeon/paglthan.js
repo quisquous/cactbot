@@ -102,6 +102,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Away from circles',
+          de: 'Weg von den Kreisen',
           fr: 'Éloignez-vous des cercles',
         },
       },
@@ -127,6 +128,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Away from crosses',
+          de: 'Weg von dem Kreuz',
           fr: 'Éloignez-vous des croix',
           ko: '십자 피하기',
         },
