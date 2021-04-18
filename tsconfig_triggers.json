@@ -1,7 +1,7 @@
 {
-  "extends": "tsconfig.base.json",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "./dist/triggers",
+    "outDir": "./dist/triggers"
   },
   "include": [
     "./ui/raidboss/data/"
