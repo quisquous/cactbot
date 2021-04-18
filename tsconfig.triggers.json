@@ -1,5 +1,8 @@
 {
   "extends": "./tsconfig.base.json",
+  "ts-node": {
+    "compiler": "ttypescript"
+  },
   "compilerOptions": {
     "outDir": "./dist/triggers"
   },

@@ -1,7 +1,4 @@
 {
-  "ts-node": {
-    "compiler": "ttypescript"
-  },
   "compilerOptions": {
     "plugins": [
       {
