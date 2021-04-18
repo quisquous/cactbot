@@ -22,30 +22,7 @@ import raidbossFileData from './data/manifest.txt';
 // eslint-disable-next-line import/default
 import NetworkLogConverterWorker from './emulator/data/NetworkLogConverterWorker';
 
-// @TODO: Some way to not have this be a global?
-
-// See user/raidboss-example.js for documentation.
-const Options = {
-  // These options are ones that are not auto-defined by raidboss_config.ts.
-  PlayerNicks: {},
-
-  InfoSound: '../../resources/sounds/freesound/percussion_hit.ogg',
-  AlertSound: '../../resources/sounds/BigWigs/Alert.ogg',
-  AlarmSound: '../../resources/sounds/BigWigs/Alarm.ogg',
-  LongSound: '../../resources/sounds/BigWigs/Long.ogg',
-  PullSound: '../../resources/sounds/freesound/sonar.ogg',
-
-  audioAllowed: true,
-
-  DisabledTriggers: {},
-
-  PerTriggerOptions: {},
-
-  Triggers: [],
-
-  PlayerNameOverride: null,
-  PlayerJobOverride: null,
-};
+import Options from './raidboss_options';
 
 (() => {
   let emulator;
@@ -124,7 +101,6 @@ const Options = {
         const firstTimestamp = enc.logLines[0].timestamp;
         for (let i = 0; i < enc.logLines.length; ++i)
           enc.logLines[i].offset = enc.logLines[i].timestamp - firstTimestamp;
-
 
         enc.firstLineIndex = 0;
 
@@ -217,15 +193,13 @@ const Options = {
 
             logConverterWorker.onmessage = (msg) => {
               switch (msg.data.type) {
-              case 'progress':
-                {
+                case 'progress': {
                   const percent = ((msg.data.bytes / msg.data.totalBytes) * 100).toFixed(2);
                   bar.style.width = percent + '%';
                   label.innerText = `${msg.data.bytes}/${msg.data.totalBytes} bytes, ${msg.data.lines} lines (${percent}%)`;
                 }
-                break;
-              case 'encounter':
-                {
+                  break;
+                case 'encounter': {
                   const enc = msg.data.encounter;
 
                   encLabel.innerText = `
@@ -244,23 +218,23 @@ const Options = {
                   enc.combatantTracker.getMainCombatantName = () => msg.data.name;
                   promises.push(persistor.persistEncounter(enc));
                 }
-                break;
-              case 'done':
-                Promise.all(promises).then(() => {
-                  encounterTab.refresh();
-                  doneButton.disabled = false;
-                  let seconds = 5;
-                  doneButtonTimeout.innerText = ` (${seconds})`;
-                  const interval = window.setInterval(() => {
-                    --seconds;
+                  break;
+                case 'done':
+                  Promise.all(promises).then(() => {
+                    encounterTab.refresh();
+                    doneButton.disabled = false;
+                    let seconds = 5;
                     doneButtonTimeout.innerText = ` (${seconds})`;
-                    if (seconds === 0) {
-                      window.clearInterval(interval);
-                      hideModal('.importProgressModal');
-                    }
-                  }, 1000);
-                });
-                break;
+                    const interval = window.setInterval(() => {
+                      --seconds;
+                      doneButtonTimeout.innerText = ` (${seconds})`;
+                      if (seconds === 0) {
+                        window.clearInterval(interval);
+                        hideModal('.importProgressModal');
+                      }
+                    }, 1000);
+                  });
+                  break;
               }
             };
             file.arrayBuffer().then((b) => {

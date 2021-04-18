@@ -1,7 +1,7 @@
 // These are the base options that raidboss expects to see.
 
 // See user/raidboss-example.js for documentation.
-const Options = {
+export default {
   // These options are ones that are not auto-defined by raidboss_config.ts.
   PlayerNicks: {},
 
@@ -22,5 +22,3 @@ const Options = {
   PlayerNameOverride: null,
   IsRemoteRaidboss: false,
 };
-
-export default Options;
