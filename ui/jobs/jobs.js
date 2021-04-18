@@ -19,7 +19,7 @@ import '../../resources/resourcebar';
 import '../../resources/timerbar';
 import '../../resources/timerbox';
 import '../../resources/timericon';
-import '../../resources/widgetlist';
+import '../../resources/widget_list';
 
 // See user/jobs-example.js for documentation.
 const Options = {
