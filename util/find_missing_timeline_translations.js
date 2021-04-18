@@ -11,7 +11,7 @@ NetRegexes.setFlagTranslationsNeeded(true);
 
 export async function findMissing(triggersFile, locale, errorFunc) {
   // Hackily assume that any file with a txt file of the same name is a trigger/timeline.
-  const timelineFile = triggersFile.replace(/\.js$/, '.txt');
+  const timelineFile = triggersFile.replace(/\.[jt]s$/, '.txt');
   if (!fs.existsSync(timelineFile))
     return;
 

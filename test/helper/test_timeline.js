@@ -23,16 +23,24 @@ const setup = (timelineFiles) => {
   timelineFiles.forEach((timelineFile) => {
     // For each timeline file, ensure that its corresponding trigger file is pointing to it.
     const filename = timelineFile.split('/').slice(-1)[0];
-    const triggerFilename = timelineFile.replace('.txt', '.js');
-    if (!fs.statSync(triggerFilename))
+    const triggerFilenameJS = timelineFile.replace('.txt', '.js');
+    const triggerFilenameTS = timelineFile.replace('.txt', '.ts');
+
+    let triggerFile;
+    if (fs.existsSync(triggerFilenameJS))
+      triggerFile = triggerFilenameJS;
+    else if (fs.existsSync(triggerFilenameTS))
+      triggerFile = triggerFilenameTS;
+    else
       throw new Error(`Error: Timeline file ${timelineFile} found without matching trigger file`);
-    const timelineFileFromFile = parseTimelineFileFromTriggerFile(triggerFilename);
+
+    const timelineFileFromFile = parseTimelineFileFromTriggerFile(triggerFile);
     if (filename !== timelineFileFromFile)
-      throw new Error(`Error: Trigger file ${triggerFilename} has \`triggerFile: '${timelineFileFromFile}'\`, but was expecting \`triggerFile: '${filename}'\``);
+      throw new Error(`Error: Trigger file ${triggerFile} has \`triggerFile: '${timelineFileFromFile}'\`, but was expecting \`triggerFile: '${filename}'\``);
 
     testFiles.push({
       timelineFile: timelineFile,
-      triggersFile: triggerFilename,
+      triggersFile: triggerFile,
     });
   });
 };
@@ -99,7 +107,8 @@ const testTimelineFiles = (timelineFiles) => {
         let timeline;
 
         before(async () => {
-          const importPath = '../../' + path.relative(process.cwd(), triggersFile).replace(/\\/g, '/');
+          // Normalize path
+          const importPath = '../../' + path.posix.relative(process.cwd(), triggersFile).replace('.ts', '.js');
           timelineText = String(fs.readFileSync(timelineFile));
           triggerSet = (await import(importPath)).default;
           timeline = new Timeline(timelineText, null, triggerSet.timelineTriggers);

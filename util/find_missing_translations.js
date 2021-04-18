@@ -51,7 +51,7 @@ const findAllJavascriptFiles = (filter) => {
   walkDirSync(basePath(), (filepath) => {
     if (ignoreDirs.some((str) => filepath.includes(str)))
       return;
-    if (!filepath.endsWith('.js'))
+    if (!filepath.endsWith('.js') && !filepath.endsWith('.ts'))
       return;
     if (filter !== undefined && !filepath.includes(filter))
       return;
