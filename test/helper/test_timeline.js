@@ -25,9 +25,15 @@ const setup = (timelineFiles) => {
     const filename = timelineFile.split('/').slice(-1)[0];
     const triggerFilenameJS = timelineFile.replace('.txt', '.js');
     const triggerFilenameTS = timelineFile.replace('.txt', '.ts');
-    if (!fs.existsSync(triggerFilenameJS) && !fs.existsSync(triggerFilenameTS))
+
+    let triggerFile;
+    if (fs.existsSync(triggerFilenameJS))
+      triggerFile = triggerFilenameJS;
+    else if (fs.existsSync(triggerFilenameTS))
+      triggerFile = triggerFilenameTS;
+    else
       throw new Error(`Error: Timeline file ${timelineFile} found without matching trigger file`);
-    const triggerFile = fs.existsSync(triggerFilenameJS) ? triggerFilenameJS : triggerFilenameTS;
+
     const timelineFileFromFile = parseTimelineFileFromTriggerFile(triggerFile);
     if (filename !== timelineFileFromFile)
       throw new Error(`Error: Trigger file ${triggerFile} has \`triggerFile: '${timelineFileFromFile}'\`, but was expecting \`triggerFile: '${filename}'\``);
@@ -102,7 +108,7 @@ const testTimelineFiles = (timelineFiles) => {
 
         before(async () => {
           // Normalize path
-          const importPath = '../../' + path.relative(process.cwd(), triggersFile).replace(/\\/g, '/').replace('.ts', '.js');
+          const importPath = '../../' + path.posix.relative(process.cwd(), triggersFile).replace('.ts', '.js');
           timelineText = String(fs.readFileSync(timelineFile));
           triggerSet = (await import(importPath)).default;
           timeline = new Timeline(timelineText, null, triggerSet.timelineTriggers);

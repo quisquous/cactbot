@@ -65,7 +65,7 @@ const run = async (args) => {
   });
 
   // TODO: this block is very duplicated with a number of other scripts.
-  const importPath = '../' + path.relative(process.cwd(), triggersFile).replace(/\\/g, '/').replace('.ts', '.js');
+  const importPath = '../' + path.posix.relative(process.cwd(), triggersFile).replace('.ts', '.js');
   const triggerSet = (await import(importPath)).default;
   const replacements = triggerSet.timelineReplace;
   const timelineText = fs.readFileSync(timelineFile).toString();

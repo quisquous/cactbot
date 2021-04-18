@@ -44,7 +44,7 @@ const testTriggerFile = (file) => {
   before(async () => {
     contents = fs.readFileSync(file) + '';
     // Normalize path
-    const importPath = '../../' + path.relative(process.cwd(), file).replace(/\\/g, '/').replace('.ts', '.js');
+    const importPath = '../../' + path.posix.relative(process.cwd(), file).replace('.ts', '.js');
     triggerSet = (await import(importPath)).default;
   });
 
