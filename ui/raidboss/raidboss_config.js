@@ -579,6 +579,27 @@ class RaidbossConfigurator {
 
           triggerDetails.appendChild(div);
         }
+
+        const label = document.createElement('div');
+        triggerDetails.appendChild(label);
+
+        const div = document.createElement('div');
+        div.classList.add('option-input-container', 'trigger-source');
+        const baseUrl = 'https://github.com/quisquous/cactbot/blob/triggers';
+        const path = key.split('-');
+        let urlFilepath;
+        if (path.length === 3) {
+          // 00-misc/general.js
+          urlFilepath = `${path[0]}-${path[1]}/${[...path].slice(2).join('-')}`;
+        } else {
+          // 02-arr/raids/t1.js
+          urlFilepath = `${path[0]}-${path[1]}/${path[2]}/${[...path].slice(3).join('-')}`;
+        }
+        const uriComponent = encodeURIComponent(`id: ${trig.id}`).replace(/\'/g, '%5C%27'); // Hack to force encoding for \'
+        const urlString = `${baseUrl}/${urlFilepath}.js#:~:text=${uriComponent}`;
+        div.innerHTML = `<a href="${urlString}" target="_blank">(View Trigger Source)</a>`;
+
+        triggerDetails.appendChild(div);
       }
     }
   }
