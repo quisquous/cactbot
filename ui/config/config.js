@@ -525,7 +525,7 @@ export default class CactbotConfigurator {
           title = this.translate(zoneInfo.name);
       }
 
-      const fileKey = filename.replace(/\//g, '-').replace(/.js$/, '');
+      const fileKey = filename.replace(/\//g, '-').replace(/.[jt]s$/, '');
       map[fileKey] = {
         filename: filename,
         fileKey: fileKey,
