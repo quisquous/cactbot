@@ -176,6 +176,7 @@ export default {
         },
         getOutsideBetweenCircles: {
           en: 'Get Outside Between Circles',
+          fr: 'Allez à l\'extérieur entre les cercles',
         },
       },
     },
