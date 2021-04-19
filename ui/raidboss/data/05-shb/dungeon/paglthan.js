@@ -97,6 +97,9 @@ export default {
     {
       id: 'Paglthan Mega Flare Move',
       netRegex: NetRegexes.ability({ id: '5B4D', source: 'Lunar Bahamut' }),
+      netRegexDe: NetRegexes.ability({ id: '5B4D', source: 'Luna-Bahamut' }),
+      netRegexFr: NetRegexes.ability({ id: '5B4D', source: 'Luna-Bahamut' }),
+      netRegexJa: NetRegexes.ability({ id: '5B4D', source: 'ルナバハムート' }),
       condition: Conditions.targetIsYou(),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
@@ -124,6 +127,9 @@ export default {
     {
       id: 'Paglthan Kan Rhai Move',
       netRegex: NetRegexes.ability({ id: '5B4F', source: 'Lunar Bahamut', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '5B4F', source: 'Luna-Bahamut', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '5B4F', source: 'Luna-Bahamut', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '5B4F', source: 'ルナバハムート', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -176,6 +182,7 @@ export default {
         },
         getOutsideBetweenCircles: {
           en: 'Get Outside Between Circles',
+          de: 'Geh zum Rand zwichen den Kreisen',
         },
       },
     },
