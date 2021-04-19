@@ -8,11 +8,15 @@ const sharedOutputStrings = {
     en: 'Teleport to east platform',
     de: 'Teleport zur östlichen plattform',
     fr: 'Téléportez-vous vers la plateforme est',
+    ja: '東の足場へテレポ',
+    cn: '传送到右边(东边)平台',
   },
   teleportWest: {
     en: 'Teleport to west platform',
     de: 'Teleport zur westlichen plattform',
     fr: 'Téléportez-vous vers la plateforme ouest',
+    ja: '西の足場へテレポ',
+    cn: '传送到左边(西边)平台',
   },
 };
 
@@ -132,6 +136,8 @@ export default {
           en: 'Diamond Shrapnel on YOU',
           de: 'Diamantschub auf DIR',
           fr: 'Salve adamantine sur VOUS',
+          ja: '自分にダイヤバースト',
+          cn: 'Diamond Shrapnel点名',
           ko: '장판 대상자',
         },
       },
@@ -148,6 +154,8 @@ export default {
           en: 'Avoid Bits',
           de: 'Weiche den Satelliten aus',
           fr: 'Évitez les bras',
+          ja: 'ビームを避ける',
+          cn: '躲避浮游炮激光',
           ko: '비트 피하기',
         },
       },

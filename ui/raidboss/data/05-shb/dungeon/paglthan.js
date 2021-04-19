@@ -183,6 +183,7 @@ export default {
         getOutsideBetweenCircles: {
           en: 'Get Outside Between Circles',
           de: 'Geh zum Rand zwichen den Kreisen',
+          fr: 'Allez à l\'extérieur entre les cercles',
         },
       },
     },
