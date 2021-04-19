@@ -135,6 +135,51 @@ export default {
       },
     },
     {
+      id: 'Paglthan Lunar Flare Reset',
+      netRegex: NetRegexes.ability({ id: '5B49', source: 'Lunar Bahamut', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '5B49', source: 'Luna-Bahamut', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '5B49', source: 'Luna-Bahamut', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '5B49', source: 'ルナバハムート', capture: false }),
+      run: (data) => data.lunarFlares = 0,
+    },
+    {
+      id: 'Paglthan Lunar Flare Collect',
+      netRegex: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'Lunar Bahamut', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'Luna-Bahamut', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'Luna-Bahamut', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'ルナバハムート', capture: false }),
+      run: (data) => data.lunarFlares = (data.lunarFlares || 0) + 1,
+    },
+    {
+      // Get middle is 4x5B4A and 4x5B4B, get outside is 5x5B4A
+      id: 'Paglthan Lunar Flare',
+      netRegex: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'Lunar Bahamut', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'Luna-Bahamut', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'Luna-Bahamut', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '5B4[AB]', source: 'ルナバハムート', capture: false }),
+      delaySeconds: 0.5,
+      suppressSeconds: 1,
+      alertText: (data, _, output) => {
+        if (data.lunarFlares === 5)
+          return output.getOutsideBetweenCircles();
+        if (data.lunarFlares === 8)
+          return output.getMiddle();
+      },
+      outputStrings: {
+        getMiddle: {
+          en: 'Get Middle',
+          de: 'In die Mitte gehen',
+          fr: 'Allez au milieu',
+          ja: '中心へ',
+          cn: '中间',
+          ko: '중앙으로',
+        },
+        getOutsideBetweenCircles: {
+          en: 'Get Outside Between Circles',
+        },
+      },
+    },
+    {
       id: 'Paglthan Flatten',
       netRegex: NetRegexes.startsUsing({ id: '5B58', source: 'Lunar Bahamut' }),
       netRegexDe: NetRegexes.startsUsing({ id: '5B58', source: 'Luna-Bahamut' }),
