@@ -399,7 +399,7 @@ hideall "--sync--"
 
 # This is adjusted 9 seconds ahead so that Compound Pod: R012 lines up.  @_@;;
 6400.7 "--sync--" sync /:519B:Compound 2P/ window 50,50
-6406.7 "Three Parts Resolve?" sync /:Compound 2P:519B:/
+6406.7 "Three Parts Disdain?" sync /:Compound 2P:519B:/
 
 
 6420.5 "Compound Pod: R012" sync /:Compound 2P:51AB:/
