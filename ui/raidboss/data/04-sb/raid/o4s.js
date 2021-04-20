@@ -744,7 +744,7 @@ export default {
         doubleAttackGetOut: {
           en: 'Double Attack: Get out',
           de: 'Doppelangriff: Raus da',
-          fr: 'Double attaque : Sortez',
+          fr: 'Double attaque : À l\'extérieur',
           ja: 'ダブルアタック: 外へ',
           cn: '双重攻击：去外面',
           ko: '이중 공격: 밖으로',
