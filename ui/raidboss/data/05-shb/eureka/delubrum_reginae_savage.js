@@ -2277,7 +2277,7 @@ export default {
         text: {
           en: 'Get In Nook',
           de: 'Geh in die Ecke',
-          fr: 'Entrez dans un recoin',
+          fr: 'Allez dans un recoin',
         },
       },
     },
@@ -2406,7 +2406,7 @@ export default {
         text: {
           en: 'Get in Bubble',
           de: 'Geh in die Blase',
-          fr: 'Entrez dans la bulle',
+          fr: 'Allez dans la bulle',
           ja: '泡に入る',
           cn: '进泡泡',
         },

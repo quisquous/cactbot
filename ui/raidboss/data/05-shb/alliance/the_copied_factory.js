@@ -556,7 +556,7 @@ export default {
         text: {
           en: 'Get Out + Dodge Homing AoE',
           de: 'Geh Raus + Zielsuch-AoE ausweichen',
-          fr: 'Sortez + Esquivez l\'AoE',
+          fr: 'À l\'extérieur + Esquivez l\'AoE',
           ja: '外 + AoE',
           cn: '远离 + 躲避弹幕',
           ko: '바깥으로 빠지고 따라오는 장판 피하기',
