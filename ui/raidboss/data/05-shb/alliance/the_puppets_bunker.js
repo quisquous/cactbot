@@ -10,7 +10,7 @@ const swipeOutputStrings = {
   right: {
     en: 'Right',
     de: 'Rechts',
-    fr: 'Droite ',
+    fr: 'À droite ',
     ja: '右へ',
     cn: '右',
     ko: '오른쪽',
@@ -18,7 +18,7 @@ const swipeOutputStrings = {
   left: {
     en: 'Left',
     de: 'Links',
-    fr: 'Gauche',
+    fr: 'À gauche',
     ja: '左へ',
     cn: '左',
     ko: '왼쪽',
@@ -108,7 +108,7 @@ export default {
         text: {
           en: 'Chasing Laser: Get Away',
           de: 'Verfolgende Laser: Weg gehen',
-          fr: 'Soutien aérien : Évitez',
+          fr: 'Soutien aérien : Éloignez-vous',
           ja: 'レーザー: 外へ',
           cn: '激光点名：快出去',
           ko: '추격 레이저: 이동',
@@ -130,7 +130,7 @@ export default {
         text: {
           en: 'Go Left, Behind Wing',
           de: 'Geh links hinter den Flügel',
-          fr: 'À gauche, derrière l\'aile',
+          fr: 'Allez à gauche, derrière l\'aile',
           ja: '左へ、翼の後ろに',
           cn: '去左边，翅膀后',
           ko: '왼쪽으로 이동 (날개 뒤)',
@@ -152,7 +152,7 @@ export default {
         text: {
           en: 'Go Right, Behind Wing',
           de: 'Geh rechts hinter den Flügel',
-          fr: 'À droite, derrière l\'aile',
+          fr: 'Allez à droite, derrière l\'aile',
           ja: '右へ、翼の後ろに',
           cn: '去右边，翅膀后',
           ko: '오른쪽으로 이동 (날개 뒤)',
@@ -186,7 +186,7 @@ export default {
         text: {
           en: 'Dodge into ring gap',
           de: 'In die Lücke des Ringes ausweichen',
-          fr: 'Esquivez en vous plaçant dans l\'ouverture',
+          fr: 'Esquivez dans les écarts de l\'anneau',
           ja: 'リングの切れ目へ',
           cn: '躲入环形缺口',
           ko: '고리 사이로 이동',
@@ -333,7 +333,7 @@ export default {
         text: {
           en: 'Dodge Sword Charges',
           de: 'Schwerteransturm ausweichen',
-          fr: 'Esquivez les charges',
+          fr: 'Esquivez les charges d\'épées',
           ja: 'ソード突進を避ける',
           cn: '躲避左右刀冲锋',
           ko: '돌진 피하기',
@@ -458,7 +458,7 @@ export default {
         text: {
           en: 'Get Outside Upper Laser',
           de: 'Raus aus dem oberen Laser',
-          fr: 'Éloignez-vous des lasers supérieurs',
+          fr: 'À l\'extérieur des lasers supérieurs',
           ja: '高いレーザー放射装置の外へ',
           cn: '躲避远程激光',
           ko: '높은 레이저 쪽 밖으로 이동',
@@ -518,7 +518,7 @@ export default {
           tankCleaveOnYou: {
             en: 'Tank Laser Cleave on YOU',
             de: 'Tank Laser cleave auf DIR',
-            fr: 'Tank Laser cleave sur VOUS',
+            fr: 'Tank laser cleave sur VOUS',
             ja: '自分にタンクレーザー',
             cn: '坦克直线激光点名',
             ko: '탱커 레이저 대상자',
@@ -526,7 +526,7 @@ export default {
           avoidTankCleaves: {
             en: 'Avoid tank laser cleaves',
             de: 'Tank Laser cleave ausweichen',
-            fr: 'Évitez les cleaves du laser sur les tanks',
+            fr: 'Évitez les Tanks laser cleaves',
             ja: 'タンクレーザーを避ける',
             cn: '躲避坦克直线激光',
             ko: '탱커 레이저 피하기',
@@ -835,7 +835,7 @@ export default {
         text: {
           en: 'Get Under Clone Corner',
           de: 'Unter den Klon in einer Ecke gehen',
-          fr: 'Allez dans un coin sous un clone',
+          fr: 'Allez sous un clone dans un coin ',
           ja: 'コーナーの分裂体の下へ',
           cn: '去分身脚下',
           ko: '구석의 분신 아래로 이동',
@@ -985,13 +985,11 @@ export default {
         'Support: Pod': 'Unterstützung: Pod-Schuss',
         'Surface Missile Impact': 'Raketeneinschlag',
         'Three Parts Disdain': 'Dreifache Hiebsequenz',
-        'Three Parts Resolve': 'Dreifache Hiebsequenz - Ende',
         'Upper Laser': 'Hauptlaser',
       },
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         '724P-Operated Superior Flight Unit \\(A-Lpha\\)': '724P : avec module de vol renforcé [A-lpha]',
         '767P-Operated Superior Flight Unit \\(B-Eta\\)': '767P : avec module de vol renforcé [B-êta]',
@@ -1012,6 +1010,12 @@ export default {
         'The passage': 'Couloir',
       },
       'replaceText': {
+        '\\?': ' ?',
+        '\\(In\\)': '(Intérieur)',
+        '\\(In/Out\\)': '(Intérieur/Extérieur)',
+        '\\(Out\\)': 'Extérieur',
+        '\\(Out/Behind\\)': '(Extérieur/Derrière)',
+        '\\(Behind\\)': 'Derrière',
         'Aerial Support: Bombardment': 'Soutien aérien : pilonnage',
         'Aerial Support: Swoop': 'Soutien aérien : assaut',
         'Anti-Personnel Missile': 'Missile antipersonnel',
@@ -1175,7 +1179,6 @@ export default {
         '(?<!Formation: )Sliding Swipe': '突進斬撃',
         'Support: Pod': '支援：ポッド射出',
         'Surface Missile Impact': '対地ミサイル着弾',
-        'Three Parts Resolve': '三連衝撃斬 終了',
         'Three Parts Disdain': '三連衝撃斬',
         'Upper Laser': '上部レーザー',
       },
@@ -1274,7 +1277,6 @@ export default {
         'Support: Pod': '支援：辅助机射出',
         'Surface Missile Impact': '对地导弹命中',
         'Three Parts Disdain': '三连冲击斩',
-        'Three Parts Resolve': '三连冲击斩 结束',
         'Upper Laser': '上方激光',
       },
     },
