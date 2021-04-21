@@ -1391,10 +1391,10 @@ Options.Triggers.push({
     {
       id: 'DelubrumSav Avowed Hot And Cold Cleanup',
       // On Hot and Cold casts.  This will clean up any lingering forced march from bow phase 1.
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5BB0', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5BB0', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5BB0', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5BB0', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: ['5BB0', '5BAF', '597B'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: ['5BB0', '5BAF', '597B'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: ['5BB0', '5BAF', '597B'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: ['5BB0', '5BAF', '597B'], capture: false }),
       run: (data) => {
         delete data.currentTemperature;
         delete data.currentBrand;
