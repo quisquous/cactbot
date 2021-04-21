@@ -74,6 +74,7 @@
 05-shb/raid/e12s.js
 05-shb/trial/diamond_weapon-ex.js
 05-shb/trial/diamond_weapon.js
+05-shb/trial/emerald_weapon.js
 05-shb/trial/hades-ex.js
 05-shb/trial/hades.js
 05-shb/trial/innocence-ex.js
