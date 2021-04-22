@@ -200,13 +200,13 @@ export class Timeline {
         continue;
       const originalLine = line;
 
-      let match = line.match(regexes.ignore);
+      let match = regexes.ignore.exec(line);
       if (match) {
         this.ignores[match[1]] = true;
         continue;
       }
 
-      match = line.match(regexes.tts);
+      match = regexes.tts.exec(line);
       if (match) {
         // TODO: Support alert sounds?
         if (match[3] === 'sound')
@@ -219,14 +219,14 @@ export class Timeline {
         });
         continue;
       }
-      match = line.match(regexes.soundAlert);
+      match = regexes.soundAlert.exec(line);
       if (match)
         continue;
-      match = line.match(regexes.speaker);
+      match = regexes.speaker.exec(line);
       if (match)
         continue;
 
-      match = line.match(regexes.popupText);
+      match = regexes.popupText.exec(line);
       if (match) {
         texts[match[2]] = texts[match[2]] || [];
         texts[match[2]].push({
@@ -237,7 +237,7 @@ export class Timeline {
         continue;
       }
 
-      match = line.match(regexes.line);
+      match = regexes.line.exec(line);
       if (!match) {
         this.errors.push({
           lineNumber: lineNumber,
@@ -263,12 +263,12 @@ export class Timeline {
         lineNumber: lineNumber,
       };
       if (line) {
-        let commandMatch = line.match(regexes.durationCommand);
+        let commandMatch = regexes.durationCommand.exec(line);
         if (commandMatch) {
           line = line.replace(commandMatch[1], '').trim();
           e.duration = parseFloat(commandMatch[2]);
         }
-        commandMatch = line.match(regexes.syncCommand);
+        commandMatch = regexes.syncCommand.exec(line);
         if (commandMatch) {
           line = line.replace(commandMatch[1], '').trim();
           const sync = {
@@ -281,7 +281,7 @@ export class Timeline {
             lineNumber: lineNumber,
           };
           if (commandMatch[3]) {
-            let argMatch = commandMatch[3].match(regexes.windowCommand);
+            let argMatch = regexes.windowCommand.exec(commandMatch[3]);
             if (argMatch) {
               line = line.replace(argMatch[1], '').trim();
               if (argMatch[2]) {
@@ -292,7 +292,7 @@ export class Timeline {
                 sync.end = seconds + (parseFloat(argMatch[3]) / 2);
               }
             }
-            argMatch = commandMatch[3].match(regexes.jumpCommand);
+            argMatch = regexes.jumpCommand.exec(commandMatch[3]);
             if (argMatch) {
               line = line.replace(argMatch[1], '').trim();
               sync.jump = parseFloat(argMatch[2]);
@@ -303,7 +303,7 @@ export class Timeline {
         }
       }
       // If there's text left that isn't a comment then we didn't parse that text so report it.
-      if (line && !line.match(regexes.comment)) {
+      if (line && !regexes.comment.exec(line)) {
         console.log('Unknown content \'' + line + '\' in timeline: ' + originalLine);
         this.errors.push({
           lineNumber: lineNumber,
@@ -349,7 +349,7 @@ export class Timeline {
       // against timeline text and insert them as text events to run.
       if (triggers) {
         for (const trigger of triggers) {
-          const m = e.name.match(trigger.regex);
+          const m = trigger.regex.exec(e.name);
           if (!m)
             continue;
 
