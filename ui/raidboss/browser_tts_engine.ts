@@ -30,7 +30,7 @@ class SpeechTTSItem implements TTSItem {
 class GoogleTTSItem implements TTSItem {
   readonly text: string;
   readonly lang: string;
-  private item?: Element | null;
+  private item: Element | null = null;
 
   constructor(text: string, lang: string) {
     this.text = text;
