@@ -108,7 +108,6 @@ export class Timeline {
     if (!this.replacements)
       return text;
 
-    const orig = text;
     for (const r of this.replacements) {
       if (r.locale && r.locale !== replaceLang)
         continue;
@@ -521,7 +520,6 @@ export class Timeline {
   }
 
   _AddDurationTimers(fightNow) {
-    let sort = false;
     const events = [];
     for (let i = 0; i < this.activeEvents.length; ++i) {
       const e = this.activeEvents[i];
@@ -538,7 +536,6 @@ export class Timeline {
         this.activeEvents.splice(i, 1);
         if (this.addTimerCallback)
           this.addTimerCallback(fightNow, durationEvent, true);
-        sort = true;
         --i;
       }
     }

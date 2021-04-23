@@ -799,7 +799,7 @@ class RaidbossConfigurator {
     // id so that the ui can disable overriding information.
     const previousTriggerWithId = {};
 
-    for (const [key, item] of Object.entries(map)) {
+    for (const item of Object.values(map)) {
       // TODO: maybe each trigger set needs a zone name, and we should
       // use that instead of the filename???
       const rawTriggers = {
