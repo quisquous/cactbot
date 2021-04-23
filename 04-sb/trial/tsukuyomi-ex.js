@@ -51,7 +51,7 @@ Options.Triggers.push({
         getOutOfFront: {
           en: 'Get out of front',
           de: 'Weg von vorn',
-          fr: 'Sortez du devant',
+          fr: 'Partez du devant',
           ja: '正面から離れる',
           cn: '远离正面',
           ko: '정면 피하기',

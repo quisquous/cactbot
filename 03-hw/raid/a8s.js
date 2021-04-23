@@ -446,7 +446,7 @@ Options.Triggers.push({
         preyGetOut: {
           en: 'Prey: Get Out',
           de: 'Makiert: Geh raus',
-          fr: 'Marquage : Sortez',
+          fr: 'Marquage : À l\'extérieur',
           ja: '赤いマーク: 外へ',
           cn: '红点名离开人群',
           ko: '빨간징: 밖으로',

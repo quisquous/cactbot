@@ -87,7 +87,7 @@ Options.Triggers.push({
         getOut: {
           en: 'Get out',
           de: 'Raus da',
-          fr: 'Sortez',
+          fr: 'À l\'extérieur',
           ja: '出て',
           cn: '出去',
           ko: '밖으로',
