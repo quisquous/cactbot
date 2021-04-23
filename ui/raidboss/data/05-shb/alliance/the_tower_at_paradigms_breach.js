@@ -62,11 +62,15 @@ export default {
         text: {
           en: 'Go E/W Sides',
           de: 'Geh seitlich nach O/W',
+          ja: '東/西側へ',
+          cn: '去东/西侧',
           ko: '동/서쪽으로',
         },
         ttsText: {
           en: 'Go East/West Sides',
           de: 'Geh seitlich nach Osten/Westen',
+          ja: '東側や西側へ',
+          cn: '去东西侧',
           ko: '동쪽이나 서쪽으로',
         },
       },
@@ -85,11 +89,15 @@ export default {
         text: {
           en: 'Go N/S Sides',
           de: 'Geh seitlich nach N/S',
+          ja: '北/南側へ',
+          cn: '去南/北侧',
           ko: '남/북쪽으로',
         },
         ttsText: {
           en: 'Go North/South Sides',
           de: 'Geh seitlich nach Norden/Süden',
+          ja: '北側や南側へ',
+          cn: '去南北侧',
           ko: '남쪽이나 북쪽으로',
         },
       },
@@ -164,6 +172,8 @@ export default {
         text: {
           en: 'Knockback (from boss)',
           de: 'Rückstoß (vom Boss)',
+          ja: 'ノックバック (ボスから)',
+          cn: '击退 (来自Boss)',
           ko: '보스기준 넉백',
         },
       },
@@ -183,6 +193,8 @@ export default {
         text: {
           en: 'Knockback (from clone)',
           de: 'Rückstoß (vom Klon)',
+          ja: 'ノックバック (複製体から)',
+          cn: '击退 (来自复制体)',
           ko: '분신기준 넉백',
         },
       },
@@ -201,6 +213,8 @@ export default {
         text: {
           en: 'Knockback -> Get Middle',
           de: 'Rückstoß -> Geh in die Mitte',
+          ja: 'ノックバック -> 中へ',
+          cn: '击退 -> 去中间',
           ko: '넉백 -> 가운데로',
         },
       },
@@ -218,6 +232,8 @@ export default {
         text: {
           en: 'Knockback -> Out of Middle',
           de: 'Rückstoß -> Raus aus der Mitte',
+          ja: 'ノックバック -> 外へ',
+          cn: '击退 -> 去外面',
           ko: '넉백 -> 가운데 피하기',
         },
       },
@@ -233,6 +249,8 @@ export default {
         text: {
           en: 'Attack Hansel',
           de: 'Hänsel angreifen',
+          ja: 'ヘンゼルに攻撃',
+          cn: '攻击Hansel',
           ko: '헨젤 공격',
         },
       },
@@ -248,6 +266,8 @@ export default {
         text: {
           en: 'Attack Gretel',
           de: 'Gretel angreifen',
+          ja: 'グレーテルに攻撃',
+          cn: '攻击Gretel',
           ko: '그레텔 공격',
         },
       },
@@ -361,6 +381,8 @@ export default {
         text: {
           en: 'Switch to white',
           de: 'Auf Weiß wechseln',
+          ja: '白に切替',
+          cn: '切换白',
           ko: '하얀색으로 바꾸기',
         },
       },
@@ -380,6 +402,8 @@ export default {
         text: {
           en: 'Switch to black',
           de: 'Auf Schwarz wechseln',
+          ja: '黒に切替',
+          cn: '切换黑',
           ko: '검은색으로 바꾸기',
         },
       },
@@ -430,6 +454,8 @@ export default {
         text: {
           en: 'Lighter Note on YOU',
           de: 'Weißer Choral auf DIR',
+          ja: '自分に連続AoE',
+          cn: '地火点名',
           ko: '장판 대상자',
         },
       },
@@ -506,6 +532,8 @@ export default {
         text: {
           en: 'Dodge Building Below',
           de: 'Gebäude unter einem ausweichen',
+          ja: '下の建物に当たらないように',
+          cn: '躲避下方建筑',
           ko: '컨테이너 박스 피하기',
         },
       },
@@ -534,6 +562,8 @@ export default {
         text: {
           en: 'Go To Red Light',
           de: 'Geh zum roten Licht',
+          ja: '赤信号の線路へ',
+          cn: '去红灯',
           ko: '빨간 신호등으로',
         },
       },
