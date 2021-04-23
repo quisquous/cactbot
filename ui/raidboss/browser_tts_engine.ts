@@ -13,11 +13,13 @@ class SpeechTTSItem implements TTSItem {
   readonly text: string;
   readonly item: SpeechSynthesisUtterance;
 
-  constructor(text: string, lang: string, voice: SpeechSynthesisVoice) {
+  constructor(text: string, lang?: string, voice?: SpeechSynthesisVoice) {
     this.text = text;
     this.item = new SpeechSynthesisUtterance(text);
-    this.item.lang = lang;
-    this.item.voice = voice;
+    if (lang)
+      this.item.lang = lang;
+    if (voice)
+      this.item.voice = voice;
   }
 
   play() {
@@ -112,11 +114,9 @@ export default class BrowserTTSEngine {
   }
 
   playSpeechTTS(text: string): void {
-    if (this.speechLang && this.speechVoice) {
-      const ttsItem = new SpeechTTSItem(text, this.speechLang, this.speechVoice);
-      this.ttsItems[text] = ttsItem;
-      ttsItem.play();
-    }
+    const ttsItem = new SpeechTTSItem(text, this.speechLang, this.speechVoice);
+    this.ttsItems[text] = ttsItem;
+    ttsItem.play();
   }
 
   playGoogleTTS(text: string): void {
