@@ -476,7 +476,7 @@ export default {
         text: {
           en: 'Hell Wind: Get Out',
           de: 'Höllenwind: Raus gehen',
-          fr: 'Vent infernal : Sortez',
+          fr: 'Vent infernal : À l\'extérieur',
           ja: 'ヘルウィンド: HP1になるよ',
           cn: '地狱之风：远离',
           ko: '홍옥징 대상자',
