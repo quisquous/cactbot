@@ -207,12 +207,12 @@ const miscStrings = {
   },
   // Warning when generator hasn't been run.
   runGenerator: {
-    en: 'Error: Run node util/gen_coverage_report.js to generate data.',
-    de: 'Error: Führe node util/gen_coverage_report.js aus um die Daten zu generieren.',
-    fr: 'Erreur : Lancez node util/gen_coverage_report.js pour générer des données.',
-    ja: 'エラー：node util/gen_coverage_report.js を実行し、データを生成しよう。',
-    cn: '错误：请先运行 node util/gen_coverage_report.js 以生成数据。',
-    ko: '에러: 데이터를 생성하려면 node util/gen_coverage_report.js를 실행하세요.',
+    en: 'Error: Run npm run coverage-report to generate data.',
+    de: 'Error: Führe npm run coverage-report aus um die Daten zu generieren.',
+    fr: 'Erreur : Lancez npm run coverage-report pour générer des données.',
+    ja: 'エラー：npm run coverage-report を実行し、データを生成しよう。',
+    cn: '错误：请先运行 npm run coverage-report 以生成数据。',
+    ko: '에러: 데이터를 생성하려면 node npm run coverage-report를 실행하세요.',
   },
 };
 
