@@ -52,6 +52,7 @@ module.exports = {
             'requireLast': false,
           },
         }],
+        '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
         'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
         'object-shorthand': ['error', 'consistent'],
         '@typescript-eslint/method-signature-style': ['error', 'property'],
