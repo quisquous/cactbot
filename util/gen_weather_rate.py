@@ -4,7 +4,7 @@ import csv
 import coinach
 import os
 
-_OUTPUT_FILE = "weather_rate.js"
+_OUTPUT_FILE = "weather_rate.ts"
 
 
 def parse_data(csvfile):
