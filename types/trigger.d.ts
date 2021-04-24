@@ -13,12 +13,10 @@ export type Matches<T> =
 
 export type FullLocaleText = Record<Lang, string>;
 
-export type LocaleText = {
-  en: string;
-  [s in NonEnLang]?: string;
-};
-
 export type LocaleObject<T> = {
   en: T;
+} & {
   [s in NonEnLang]?: T;
 };
+
+export type LocaleText = LocaleObject<string>;
