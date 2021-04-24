@@ -45,9 +45,12 @@ export type TriggerOutput =
 // The type of a non-response trigger field.
 export type TriggerFunc<Matches> = (data: Data, matches: Matches, output: Output) => TriggerOutput;
 
+// Valid fields to return from a ResponseFunc.
+type ResponseFields = 'infoText' | 'alertText' | 'alarmText' | 'tts';
+
 // The output from a response function (different from other TriggerOutput functions).
 export type ResponseOutput<Matches> = {
-  [text in SevText]?: TriggerFunc<Matches>;
+  [text in ResponseFields]?: TriggerFunc<Matches>;
 };
 // The type of a response trigger field.
 export type ResponseFunc<Matches> =
