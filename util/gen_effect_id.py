@@ -8,7 +8,7 @@ import os
 
 # Maybe this should be called Status like the table, but everything else
 # says gain/lose effects.
-_EFFECTS_OUTPUT_FILE = "effect_id.js"
+_EFFECTS_OUTPUT_FILE = "effect_id.ts"
 
 # TODO: add renaming?
 # Almagest: 563
