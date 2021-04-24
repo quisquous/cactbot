@@ -90,7 +90,7 @@ Options.Triggers.push({
         text: {
           en: 'Out of Middle',
           de: 'Raus aus der Mitte',
-          fr: 'Hors du milieu',
+          fr: 'Sortez du milieu',
           ja: '中央から離れる',
           cn: '离开中间',
           ko: '중앙에서 벗어나기',

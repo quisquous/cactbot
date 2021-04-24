@@ -55,7 +55,7 @@ Options.Triggers.push({
         text: {
           en: 'Out of blue circle',
           de: 'Raus aus dem blauen Kreis',
-          fr: 'Hors du cercle bleu',
+          fr: 'Sortez du cercle bleu',
           ja: '青い円から離れる',
           cn: '离开蓝圈',
           ko: '파란 원 바깥으로',
