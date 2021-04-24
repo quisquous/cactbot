@@ -11,6 +11,11 @@ export type Matches<T> =
   T extends RegExp ? { [s: string]: string } :
   never;
 
+// TargetedMatches can be used for generic functions in responses or conditions
+// that use matches from any number of Regex or NetRegex functions.
+export type TargetedParams = 'sourceId' | 'source' | 'targetId' | 'target';
+export type TargetedMatches = Matches<BaseRegExp<TargetedParams>>;
+
 export type FullLocaleText = Record<Lang, string>;
 
 export type LocaleObject<T> = {
@@ -22,3 +27,28 @@ export type LocaleObject<T> = {
 export type LocaleText = LocaleObject<string>;
 
 export type ZoneId = number | null;
+
+// TODO: is it awkward to have Outputs the static class and Output the unrelated type?
+// This type corresponds to TriggerOutputProxy.
+export type Output = {
+  responseOutputStrings: {
+    [outputKey: string]: LocaleText;
+  };
+} & {
+  [key in string]: (params?: { [param: string]: string | undefined }) => string;
+};
+
+// The output of any non-response raidboss trigger function.
+export type TriggerOutput =
+    void | undefined | null | LocaleText | string | number | (() => TriggerOutput);
+
+// The type of a non-response trigger field.
+export type TriggerFunc<Matches> = (data: Data, matches: Matches, output: Output) => TriggerOutput;
+
+// The output from a response function (different from other TriggerOutput functions).
+export type ResponseOutput<Matches> = {
+  [text in SevText]?: TriggerFunc<Matches>;
+};
+// The type of a response trigger field.
+export type ResponseFunc<Matches> =
+    (data: Data, matches: Matches, output: Output) => ResponseOutput<Matches>;
