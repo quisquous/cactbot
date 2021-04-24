@@ -363,6 +363,6 @@ if __name__ == "__main__":
         "tugs": tugs,
     }
 
-    filename = Path(__file__).resolve().parent.parent / "ui" / "fisher" / "static-data.js"
+    filename = Path(__file__).resolve().parent.parent / "ui" / "fisher" / "static-data.ts"
     writer = coinach.CoinachWriter()
     writer.write(filename, os.path.basename(os.path.abspath(__file__)), "gFisherData", data)
