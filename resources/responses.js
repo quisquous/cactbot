@@ -93,11 +93,11 @@ const getTarget = (matches) => {
   // Consider this as "not having a target".
   if (!matches || matches.target === matches.source)
     return null;
-  return matches.target || matches[1];
+  return matches.target;
 };
 
 const getSource = (matches) => {
-  return matches.source || matches[0];
+  return matches.source;
 };
 
 // FIXME: make this work for any number of pairs of params
