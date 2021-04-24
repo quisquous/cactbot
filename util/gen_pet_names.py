@@ -5,7 +5,7 @@ import csv
 import csv_util
 import os
 
-_OUTPUT_FILE = "pet_names.js"
+_OUTPUT_FILE = "pet_names.ts"
 
 
 if __name__ == "__main__":
