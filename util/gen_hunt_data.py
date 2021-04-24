@@ -6,7 +6,7 @@ import csv
 import csv_util
 import os
 
-_OUTPUT_FILE = "hunt.js"
+_OUTPUT_FILE = "hunt.ts"
 
 
 def update_german(list, search, replace):
