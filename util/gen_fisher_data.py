@@ -365,4 +365,22 @@ if __name__ == "__main__":
 
     filename = Path(__file__).resolve().parent.parent / "ui" / "fisher" / "static-data.ts"
     writer = coinach.CoinachWriter()
-    writer.write(filename, os.path.basename(os.path.abspath(__file__)), "gFisherData", data)
+
+    header = """import { Lang } from '../../types/global';
+
+type LangMapping = {
+  [lang in Lang]: {
+    [id: string]: string | string[];
+  };
+};
+
+type FisherData = {
+  readonly fish: LangMapping;
+  readonly placefish: { [placeId: string]: number[] };
+  readonly places: LangMapping;
+  readonly tackle: LangMapping;
+  readonly tugs: { [fishId: string]: number };
+};"""
+    writer.writeTypeScript(
+        filename, os.path.basename(os.path.abspath(__file__)), header, "FisherData", data
+    )

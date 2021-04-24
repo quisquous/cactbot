@@ -228,7 +228,7 @@ def generate_name_data(territory_map, cfc_map, place_name_map):
             raise Exception("Conflicting synthetic item", name)
         map[name] = id
 
-    # map is what gets written to zone_id.js, but it's also useful to keep additional information
+    # map is what gets written to zone_id.ts, but it's also useful to keep additional information
     # about where the name came from.
     return map, territory_to_cfc_map
 
@@ -309,10 +309,11 @@ if __name__ == "__main__":
 
     name_data, territory_to_cfc_map = generate_name_data(territory_map, cfc_map, place_name_map)
 
-    writer.write(
+    writer.writeTypeScript(
         os.path.join("resources", _ZONE_ID_OUTPUT_FILE),
         os.path.basename(os.path.abspath(__file__)),
-        "ZoneId",
+        "import { ZoneId } from '../types/trigger';",
+        "{ [zoneName: string]: ZoneId }",
         name_data,
     )
 
@@ -345,32 +346,33 @@ if __name__ == "__main__":
         territory_map, cfc_map_by_lang, map_map, territory_to_cfc_map, place_name_map_by_lang
     )
 
-    zone_info_type = """import { LocaleText } from '../types/trigger';
+    zone_info_header = """import { LocaleText } from '../types/trigger';
 
 type ZoneInfoType = {
   [zoneId: number]: {
-    exVersion: number;
-    contentType?: number;
-    name: LocaleText;
-    offsetX: number;
-    offsetY: number;
-    sizeFactor: number;
-    weatherRate: number;
+    readonly exVersion: number;
+    readonly contentType?: number;
+    readonly name: LocaleText;
+    readonly offsetX: number;
+    readonly offsetY: number;
+    readonly sizeFactor: number;
+    readonly weatherRate: number;
   };
 };"""
 
     writer.writeTypeScript(
         os.path.join("resources", _ZONE_INFO_OUTPUT_FILE),
         os.path.basename(os.path.abspath(__file__)),
-        zone_info_type,
+        zone_info_header,
         "ZoneInfoType",
         territory_info,
     )
 
     content_type_map = make_content_type_map(reader.rawexd("ContentType"))
-    writer.write(
+    writer.writeTypeScript(
         os.path.join("resources", _CONTENT_TYPE_OUTPUT_FILE),
         os.path.basename(os.path.abspath(__file__)),
-        "ContentType",
+        None,
+        "{ [contentType: string]: number }",
         generate_content_type(content_type_map),
     )

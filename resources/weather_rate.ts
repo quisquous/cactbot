@@ -3,8 +3,8 @@
 
 type WeatherRateType = {
   [zoneId: number]: {
-    rates: number[];
-    weathers: string[];
+    readonly rates: number[];
+    readonly weathers: string[];
   };
 };
 

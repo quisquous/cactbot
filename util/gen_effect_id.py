@@ -99,9 +99,10 @@ if __name__ == "__main__":
     table = csv_util.get_intl_table("Status", ["#", "Name", "Icon", "PartyListPriority"])
 
     writer = coinach.CoinachWriter(verbose=True)
-    writer.write(
+    writer.writeTypeScript(
         os.path.join("resources", _EFFECTS_OUTPUT_FILE),
         os.path.basename(os.path.abspath(__file__)),
-        "EffectId",
+        None,
+        "{ [effectName: string]: string }",
         make_effect_map(table),
     )
