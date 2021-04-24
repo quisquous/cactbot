@@ -344,10 +344,26 @@ if __name__ == "__main__":
     territory_info = generate_zone_info(
         territory_map, cfc_map_by_lang, map_map, territory_to_cfc_map, place_name_map_by_lang
     )
-    writer.write(
+
+    zone_info_type = """import { LocaleText } from '../types/trigger';
+
+type ZoneInfoType = {
+  [zoneId: number]: {
+    exVersion: number;
+    contentType?: number;
+    name: LocaleText;
+    offsetX: number;
+    offsetY: number;
+    sizeFactor: number;
+    weatherRate: number;
+  };
+};"""
+
+    writer.writeTypeScript(
         os.path.join("resources", _ZONE_INFO_OUTPUT_FILE),
         os.path.basename(os.path.abspath(__file__)),
-        "ZoneInfo",
+        zone_info_type,
+        "ZoneInfoType",
         territory_info,
     )
 

@@ -37,10 +37,19 @@ def parse_data(csvfile):
 def update(reader, writer):
     data = reader.exd("WeatherRate")
     all_rates = parse_data(data)
-    writer.write(
+
+    weather_rate_type = """type WeatherRateType = {
+  [zoneId: number]: {
+    rates: number[];
+    weathers: string[];
+  };
+};"""
+
+    writer.writeTypeScript(
         os.path.join("resources", _OUTPUT_FILE),
         os.path.basename(os.path.abspath(__file__)),
-        "gWeatherRates",
+        weather_rate_type,
+        "WeatherRateType",
         all_rates,
     )
 
