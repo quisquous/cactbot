@@ -12,9 +12,9 @@ import re
 # however, the name in ZoneId and the info in ZoneInfo contain information
 # from other tables like PlaceName and TerritoryType, so it's not strictly
 # about Territory.  Hence, "zone" as a short-to-type catch-all.
-_ZONE_ID_OUTPUT_FILE = "zone_id.js"
-_ZONE_INFO_OUTPUT_FILE = "zone_info.js"
-_CONTENT_TYPE_OUTPUT_FILE = "content_type.js"
+_ZONE_ID_OUTPUT_FILE = "zone_id.ts"
+_ZONE_INFO_OUTPUT_FILE = "zone_info.ts"
+_CONTENT_TYPE_OUTPUT_FILE = "content_type.ts"
 
 # name_key to territory_id mappings for locations with conflicts
 # these will only be added if the name is correct and will throw
