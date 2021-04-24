@@ -20,7 +20,7 @@ export interface JobDetail {
   'DRK': {
     blood: number;
     darksideMilliseconds: number;
-    darkArts: boolean;
+    darkArts: 1 | 0;
     livingShadowMilliseconds: number;
   };
   'GNB': {
@@ -140,6 +140,11 @@ export interface EventMap {
     type: 'ChangePrimaryPlayer';
     charID: string;
     charName: string;
+  }) => void;
+
+  'FileChanged': (ev: {
+    type: 'FileChanged';
+    file: string;
   }) => void;
 
   'OnlineStatusChanged': (ev: {
@@ -266,7 +271,7 @@ export interface EventMap {
       currentGP: number;
       maxGP: number;
       currentShield: number;
-      jobDetail: JobDetail[T];
+      jobDetail: JobDetail['PLD'] & JobDetail['WAR'] & JobDetail['DRK'] & JobDetail['GNB'] & JobDetail['WHM'] & JobDetail['SCH'] & JobDetail['AST'] & JobDetail['PGL'] & JobDetail['MNK'] & JobDetail['DRG'] & JobDetail['NIN'] & JobDetail['SAM'] & JobDetail['BRD'] & JobDetail['MCH'] & JobDetail['DNC'] & JobDetail['THM'] & JobDetail['BLM'] & JobDetail['ACN'] & JobDetail['SMN'] & JobDetail['RDM'];
       pos: {
         x: number;
         y: number;
@@ -281,6 +286,7 @@ export interface EventMap {
 
   'onUserFileChanged': (ev: {
     type: 'onUserFileChanged';
+    file: string;
   }) => void;
   // #endregion
 }
