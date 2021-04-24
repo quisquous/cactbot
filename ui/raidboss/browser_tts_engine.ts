@@ -1,19 +1,25 @@
+import { Lang } from 'types/global';
+
 const TTSEngineType = {
   SpeechSynthesis: 0,
   GoogleTTS: 1,
 };
 
-class TTSItem {
-  play() {}
+interface TTSItem {
+  play: () => void;
 }
 
-class SpeechTTSItem extends TTSItem {
-  constructor(text, lang, voice) {
-    super();
+class SpeechTTSItem implements TTSItem {
+  readonly text: string;
+  readonly item: SpeechSynthesisUtterance;
+
+  constructor(text: string, lang?: string, voice?: SpeechSynthesisVoice) {
     this.text = text;
     this.item = new SpeechSynthesisUtterance(text);
-    this.item.lang = lang;
-    this.item.voice = voice;
+    if (lang)
+      this.item.lang = lang;
+    if (voice)
+      this.item.voice = voice;
   }
 
   play() {
@@ -21,28 +27,44 @@ class SpeechTTSItem extends TTSItem {
   }
 }
 
-class GoogleTTSItem extends TTSItem {
-  constructor(text, lang) {
-    super();
-    this.lang = lang;
+class GoogleTTSItem implements TTSItem {
+  readonly text: string;
+  readonly lang: string;
+  private item: Element | null = null;
+
+  constructor(text: string, lang: string) {
     this.text = text;
+    this.lang = lang;
     const iframe = document.createElement('iframe');
     // remove sandbox so we can modify contents/call play on audio element later
     iframe.removeAttribute('sandbox');
     iframe.style.display = 'none';
     document.body.appendChild(iframe);
     const encText = encodeURIComponent(text);
-    iframe.contentDocument.body.innerHTML = '<audio src="https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=' + lang + '&q=' + encText + '" id="TTS">';
-    this.item = iframe.contentDocument.body.firstElementChild;
+    if (iframe.contentDocument) {
+      iframe.contentDocument.body.innerHTML = '<audio src="https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=' + lang + '&q=' + encText + '" id="TTS">';
+      this.item = iframe.contentDocument.body.firstElementChild;
+    }
   }
 
   play() {
-    this.item.play();
+    if (this.item && this.item instanceof HTMLAudioElement)
+      void this.item.play();
   }
 }
 
+type TTSItemDictionary = {
+  [key: string]: TTSItem;
+}
+
 export default class BrowserTTSEngine {
-  constructor(lang) {
+  readonly ttsItems: TTSItemDictionary = {};
+  readonly googleTTSLang;
+  private engineType = TTSEngineType.GoogleTTS;
+  private speechLang?: string;
+  private speechVoice?: SpeechSynthesisVoice;
+
+  constructor(lang: Lang) {
     this.googleTTSLang = lang === 'cn' ? 'zh' : lang;
     // TODO: should there be options for different voices here so that
     // everybody isn't forced into Microsoft Anna?
@@ -69,23 +91,18 @@ export default class BrowserTTSEngine {
         }
       };
     }
-
-    this.engineType = TTSEngineType.GoogleTTS;
-    this.ttsItems = {};
   }
 
-  play(text) {
+  play(text: string): void {
     try {
-      if (this.ttsItems[text] !== undefined)
-        this.ttsItems[text].play();
-      else
-        this.playTTS(text);
+      const ttsItem = this.ttsItems[text];
+      ttsItem ? ttsItem.play() : this.playTTS(text);
     } catch (e) {
       console.log('Exception performing TTS', e);
     }
   }
 
-  playTTS(text) {
+  playTTS(text: string): void {
     switch (this.engineType) {
     case TTSEngineType.SpeechSynthesis:
       this.playSpeechTTS(text);
@@ -96,13 +113,15 @@ export default class BrowserTTSEngine {
     }
   }
 
-  playSpeechTTS(text) {
-    this.ttsItems[text] = new SpeechTTSItem(text, this.speechLang, this.speechVoice);
-    this.ttsItems[text].play();
+  playSpeechTTS(text: string): void {
+    const ttsItem = new SpeechTTSItem(text, this.speechLang, this.speechVoice);
+    this.ttsItems[text] = ttsItem;
+    ttsItem.play();
   }
 
-  playGoogleTTS(text) {
-    this.ttsItems[text] = new GoogleTTSItem(text, this.googleTTSLang);
-    this.ttsItems[text].play();
+  playGoogleTTS(text: string): void {
+    const ttsItem = new GoogleTTSItem(text, this.googleTTSLang);
+    this.ttsItems[text] = ttsItem;
+    ttsItem.play();
   }
 }
