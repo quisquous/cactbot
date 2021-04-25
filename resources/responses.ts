@@ -149,7 +149,7 @@ type ResponsesMap = {
   [response: string]: SingleSevToResponseFunc | DoubleSevToResponseFunc;
 };
 
-export const Responses: ResponsesMap = <const>{
+export const Responses: ResponsesMap = {
   tankBuster: (targetSev: Severity, otherSev: Severity) => {
     const outputStrings = {
       noTarget: Outputs.tankBuster,
@@ -461,4 +461,4 @@ export const Responses: ResponsesMap = <const>{
     };
   },
   wakeUp: (sev: Severity) => staticResponse(defaultAlarmText(sev), Outputs.wakeUp),
-};
+} as const;
