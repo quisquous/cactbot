@@ -2,10 +2,11 @@ import PartyTracker from '../resources/party.js';
 import { Lang } from './global';
 import { Job, Role } from './job';
 
-export interface Option {
+export interface BaseOptions {
   ParserLanguage: Lang;
-  LangShortLocale: Lang;
+  ShortLocale: string;
   DisplayLanguage: Lang;
+  Skin: string;
   [key: string]: unknown;
   // todo: complete this type
 }
@@ -20,7 +21,7 @@ export interface Data {
   party: PartyTracker;
   lang: string;
   currentHP: number;
-  options: Option;
+  options: BaseOptions;
   ShortName: (x?: string) => string;
   StopCombat: () => void;
   /** @deprecated Use parseFloat instead */
