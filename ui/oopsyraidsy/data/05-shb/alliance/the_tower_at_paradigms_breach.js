@@ -68,6 +68,9 @@ export default {
     'Tower Her Inflorescence Heavy Arms 2': '5BEF', // heavy arms sides attack
     'Tower Her Inflorescence Energy Scattered Magic': '5BE8', // orbs from Red Girl by train
   },
+  damageFail: {
+    'Tower Her Inflorescence Place Of Power': '5C0D', // instadeath middle circle before black/white rings
+  },
   shareWarn: {
     'Tower Knave Magic Artillery Alpha': '5EAB', // Spread
     'Tower Hansel Seed Of Magic Alpha': '5C61', // Spread
