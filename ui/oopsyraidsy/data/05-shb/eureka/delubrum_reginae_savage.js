@@ -63,6 +63,7 @@ export default {
     'DelubrumSav Guard Optimal Play Sword': '5816', // Optimal Play Sword "get out"
     'DelubrumSav Guard Optimal Play Shield': '5817', // Optimal play shield "get in"
     'DelubrumSav Guard Optimal Play Cleave': '5818', // Optimal Play cleaves for sword/shield
+    'DelubrumSav Guard Unlucky Lot': '581D', // Queen's Knight orb explosion
     'DelubrumSav Guard Burn 1': '583D', // small fire adds
     'DelubrumSav Guard Burn 2': '583E', // large fire adds
     'DelubrumSav Guard Pawn Off': '583A', // Queen's Soldier Secrets Revealed tethered clone aoe
