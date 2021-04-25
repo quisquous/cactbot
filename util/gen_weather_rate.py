@@ -38,17 +38,17 @@ def update(reader, writer):
     data = reader.exd("WeatherRate")
     all_rates = parse_data(data)
 
-    weather_rate_type = """type WeatherRateType = {
+    header = """type WeatherRateType = {
   [zoneId: number]: {
-    rates: number[];
-    weathers: string[];
+    readonly rates: number[];
+    readonly weathers: string[];
   };
 };"""
 
     writer.writeTypeScript(
         os.path.join("resources", _OUTPUT_FILE),
         os.path.basename(os.path.abspath(__file__)),
-        weather_rate_type,
+        header,
         "WeatherRateType",
         all_rates,
     )

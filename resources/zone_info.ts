@@ -5,13 +5,13 @@ import { LocaleText } from '../types/trigger';
 
 type ZoneInfoType = {
   [zoneId: number]: {
-    exVersion: number;
-    contentType?: number;
-    name: LocaleText;
-    offsetX: number;
-    offsetY: number;
-    sizeFactor: number;
-    weatherRate: number;
+    readonly exVersion: number;
+    readonly contentType?: number;
+    readonly name: LocaleText;
+    readonly offsetX: number;
+    readonly offsetY: number;
+    readonly sizeFactor: number;
+    readonly weatherRate: number;
   };
 };
 

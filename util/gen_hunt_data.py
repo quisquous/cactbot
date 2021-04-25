@@ -102,10 +102,23 @@ def get_from_coinach(_ffxiv_game_path, _saint_conainch_cmd_path, _cactbot_path):
         all_monsters[info["name"]["en"]] = info
 
     writer = coinach.CoinachWriter(cactbot_path=_cactbot_path)
-    writer.write(
+
+    header = """import { LocaleObject } from '../types/trigger';
+type LocaleTextOrArray = LocaleObject<string | string[]>;
+
+type HuntData = {
+  [huntName: string]: {
+    readonly id: string;
+    readonly name: LocaleTextOrArray;
+    readonly rank: string;
+  };
+};"""
+
+    writer.writeTypeScript(
         os.path.join("resources", _OUTPUT_FILE),
         os.path.basename(os.path.abspath(__file__)),
-        "gMonster",
+        header,
+        "HuntData",
         all_monsters,
     )
 

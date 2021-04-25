@@ -21,9 +21,15 @@ if __name__ == "__main__":
     tables = {lang: [name for name in table.keys() if name] for lang, table in tables.items()}
 
     writer = coinach.CoinachWriter(verbose=True)
-    writer.write(
+    header = """import { Lang } from '../types/global';
+
+type PetData = {
+  [name in Lang]: readonly string[];
+};"""
+    writer.writeTypeScript(
         os.path.join("resources", _OUTPUT_FILE),
         os.path.basename(os.path.abspath(__file__)),
-        "PetNamesByLang",
+        header,
+        "PetData",
         tables,
     )

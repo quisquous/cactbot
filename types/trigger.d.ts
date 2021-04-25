@@ -20,3 +20,5 @@ export type LocaleObject<T> = {
 };
 
 export type LocaleText = LocaleObject<string>;
+
+export type ZoneId = number | null;
