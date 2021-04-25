@@ -19,7 +19,7 @@ export default class PartyTracker {
   allianceIds_: string[] = [];
   nameToRole_: Record<string, Role> = {};
   idToName_: Record<string, string> = {};
-  roleToPartyNames_: Record<Role, string[]> = emptyRoleToPartyNames;
+  roleToPartyNames_: Record<Role, string[]> = { ...emptyRoleToPartyNames };
 
   // Bind this to PartyChanged events.
   onPartyChanged(e: { party: Party[]}): void {
@@ -55,7 +55,7 @@ export default class PartyTracker {
     this.idToName_ = {};
 
     // role -> [names] but only for party
-    this.roleToPartyNames_ = emptyRoleToPartyNames;
+    this.roleToPartyNames_ = { ...emptyRoleToPartyNames };
   }
 
   // returns an array of the names of players in your immediate party
