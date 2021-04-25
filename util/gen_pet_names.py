@@ -27,9 +27,10 @@ type PetData = {
   [name in Lang]: readonly string[];
 };"""
     writer.writeTypeScript(
-        os.path.join("resources", _OUTPUT_FILE),
-        os.path.basename(os.path.abspath(__file__)),
-        header,
-        "PetData",
-        tables,
+        filename=os.path.join("resources", _OUTPUT_FILE),
+        scriptname=os.path.basename(os.path.abspath(__file__)),
+        header=header,
+        type="PetData",
+        as_const=False,
+        data=tables,
     )

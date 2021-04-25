@@ -382,5 +382,10 @@ type FisherData = {
   readonly tugs: { [fishId: string]: number };
 };"""
     writer.writeTypeScript(
-        filename, os.path.basename(os.path.abspath(__file__)), header, "FisherData", data
+        filename=filename,
+        scriptname=os.path.basename(os.path.abspath(__file__)),
+        header=header,
+        type="FisherData",
+        as_const=False,
+        data=data,
     )

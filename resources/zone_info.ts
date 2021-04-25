@@ -7370,6 +7370,6 @@ const data: ZoneInfoType = {
     'sizeFactor': 400,
     'weatherRate': 38,
   },
-};
+} as const;
 
 export default data;
