@@ -57,6 +57,12 @@ module.exports = {
         'object-shorthand': ['error', 'consistent'],
         '@typescript-eslint/method-signature-style': ['error', 'property'],
         '@typescript-eslint/explicit-module-boundary-types': ['error', { 'allowHigherOrderFunctions': false }],
+        '@typescript-eslint/consistent-type-assertions': [
+          'error', {
+            assertionStyle: 'as',
+            objectLiteralTypeAssertions: 'never',
+          },
+        ],
       },
     },
   ],
