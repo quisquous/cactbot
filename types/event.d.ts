@@ -20,7 +20,7 @@ export interface JobDetail {
   'DRK': {
     blood: number;
     darksideMilliseconds: number;
-    darkArts: boolean;
+    darkArts: 1 | 0;
     livingShadowMilliseconds: number;
   };
   'GNB': {
@@ -48,7 +48,7 @@ export interface JobDetail {
   };
   'MNK': {
     lightningStacks: number;
-    lightningStacks: number;
+    lightningMilliseconds: number;
     chakraStacks: number;
     lightningTimerFrozen: boolean;
   };
@@ -140,6 +140,11 @@ export interface EventMap {
     type: 'ChangePrimaryPlayer';
     charID: string;
     charName: string;
+  }) => void;
+
+  'FileChanged': (ev: {
+    type: 'FileChanged';
+    file: string;
   }) => void;
 
   'OnlineStatusChanged': (ev: {
@@ -251,11 +256,11 @@ export interface EventMap {
     type: 'onPartyWipe';
   }) => void;
 
-  'onPlayerChangedEvent': <T extends Job>(ev: {
+  'onPlayerChangedEvent': (ev: {
     type: 'onPlayerChangedEvent';
     detail: {
       name: string;
-      job: T;
+      job: Job;
       level: number;
       currentHP: number;
       maxHP: number;
@@ -266,7 +271,14 @@ export interface EventMap {
       currentGP: number;
       maxGP: number;
       currentShield: number;
-      jobDetail: JobDetail[T];
+      // TODO: Is there a cleaner way to do this? It would be better if there were a way to
+      // determine which job was passed in with the event and explicitly use that JobDetail
+      // Potentially add the job to the jobDetail passed back from the C# plugin, and use
+      // that information to decide the type
+      jobDetail: JobDetail['PLD'] & JobDetail['WAR'] & JobDetail['DRK'] & JobDetail['GNB'] & JobDetail['WHM'] &
+        JobDetail['SCH'] & JobDetail['AST'] & JobDetail['PGL'] & JobDetail['MNK'] & JobDetail['DRG'] &
+        JobDetail['NIN'] & JobDetail['SAM'] & JobDetail['BRD'] & JobDetail['MCH'] & JobDetail['DNC'] &
+        JobDetail['THM'] & JobDetail['BLM'] & JobDetail['ACN'] & JobDetail['SMN'] & JobDetail['RDM'];
       pos: {
         x: number;
         y: number;
@@ -281,6 +293,7 @@ export interface EventMap {
 
   'onUserFileChanged': (ev: {
     type: 'onUserFileChanged';
+    file: string;
   }) => void;
   // #endregion
 }
