@@ -2,15 +2,6 @@ import { Party } from '../types/event';
 import { Job, Role } from '../types/job.js';
 import Util from './util';
 
-const emptyRoleToPartyNames = {
-  tank: [],
-  healer: [],
-  dps: [],
-  crafter: [],
-  gatherer: [],
-  none: [],
-};
-
 export default class PartyTracker {
   details: Party[] = [];
   partyNames_: string[] = [];
@@ -19,7 +10,14 @@ export default class PartyTracker {
   allianceIds_: string[] = [];
   nameToRole_: Record<string, Role> = {};
   idToName_: Record<string, string> = {};
-  roleToPartyNames_: Record<Role, string[]> = { ...emptyRoleToPartyNames };
+  roleToPartyNames_: Record<Role, string[]> = {
+    tank: [],
+    healer: [],
+    dps: [],
+    crafter: [],
+    gatherer: [],
+    none: [],
+  };
 
   // Bind this to PartyChanged events.
   onPartyChanged(e: { party: Party[]}): void {
@@ -55,7 +53,14 @@ export default class PartyTracker {
     this.idToName_ = {};
 
     // role -> [names] but only for party
-    this.roleToPartyNames_ = { ...emptyRoleToPartyNames };
+    this.roleToPartyNames_ = {
+      tank: [],
+      healer: [],
+      dps: [],
+      crafter: [],
+      gatherer: [],
+      none: [],
+    };
   }
 
   // returns an array of the names of players in your immediate party
