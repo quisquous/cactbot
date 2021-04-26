@@ -82,7 +82,7 @@ export default {
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Vrill + Knockback',
+          en: 'Vril + Knockback',
           de: 'Vril + Rückstoß',
           fr: 'Vril + Poussée',
           ja: 'エーテル + 完全なる拒絶',
