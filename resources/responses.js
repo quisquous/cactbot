@@ -109,7 +109,7 @@ const combineFuncs = function(text1, func1, text2, func2) {
     obj[text2] = func2;
   } else {
     obj[text1] = (data, matches, output) => {
-      func1(data, matches, output) || func2(data, matches, output);
+      return func1(data, matches, output) || func2(data, matches, output);
     };
   }
   return obj;
