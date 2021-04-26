@@ -11,6 +11,7 @@ Options.Triggers.push({
         text: {
           en: 'Be On A Platform',
           de: 'BSei auf einer Plattform',
+          fr: 'Soyez sur une plateforme ',
           ja: '円形床の上へ',
           cn: '站台子上',
         },
@@ -50,6 +51,7 @@ Options.Triggers.push({
         text: {
           en: 'Sludge puddle on YOU',
           de: 'Schlammfläche auf DIR',
+          fr: 'Zone de poison au sol sur VOUS',
           ja: '自分にスラッジボム',
           cn: '泥浆炸弹点名',
           ko: '독장판 대상자',
@@ -81,6 +83,7 @@ Options.Triggers.push({
         text: {
           en: 'Get behind flower',
           de: 'Geh hinter die Blume',
+          fr: 'Passez derrière la plante',
           ja: 'ボスの後ろへ',
           cn: '躲背后',
           ko: '꽃 뒤로',
@@ -123,6 +126,7 @@ Options.Triggers.push({
         text: {
           en: 'Conveyors: Avoid Golem Lines',
           de: 'Transportbänder: Weiche den Golemlinien aus',
+          fr: 'Transporteurs : Évitez les lignes des golems',
           ja: '強制移動: ゴーレムの直線を避ける',
           cn: '传送: 注意躲开巨像的直线AoE',
           ko: '넉백: 골렘이 있는 줄 피하기',
@@ -165,6 +169,7 @@ Options.Triggers.push({
         text: {
           en: 'Spread + Stay Off Platforms',
           de: 'Verteilen + runter von den Plattformen',
+          fr: 'Dispersion + Restez hors des platesformes',
           ja: '散開、円形床に落とさないよう',
           cn: '分散，出台子',
           ko: '산개, 초록 장판 피하기',
@@ -184,6 +189,7 @@ Options.Triggers.push({
         text: {
           en: 'Push Mud Pie On Platform',
           de: 'Schiebe Schlammklumpen auf eine Plattform',
+          fr: 'Poussez la Boule de boue sur la platesforme',
           ja: 'スライムを円形床に吹き飛ばす',
           cn: '把小怪推到台子上',
           ko: '진흙 슬라임 초록 장판으로',
@@ -203,6 +209,7 @@ Options.Triggers.push({
         text: {
           en: 'Push Mud Pie Out Of Cone',
           de: 'Schiebe Schlammklumpen aus der Kegel-AoE',
+          fr: 'Poussez la Boule de boue hors du cône',
           ja: 'スライムを範囲外へ吹き飛ばす',
           cn: '把小怪推出AoE',
           ko: '진흙 슬라임 초록 장판 바깥으로',
@@ -251,7 +258,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Kingsloam': 'Salle d\'audience du roi fangeux',
         'Lakhamu': 'Lakhamu',
@@ -263,6 +269,9 @@ Options.Triggers.push({
         'Withered Belladonna': 'belladone flétrie',
       },
       'replaceText': {
+        '\\?': ' ?',
+        '\\(inner\\)': '(intérieur)',
+        '\\(outer\\)': '(extérieur)',
         'Bog Bequest': 'Sotomusô-gadoue',
         'Devour': 'Dévoration',
         'Earth Shaker': 'Secousse',

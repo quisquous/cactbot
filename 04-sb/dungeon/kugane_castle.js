@@ -45,6 +45,7 @@ Options.Triggers.push({
         text: {
           en: 'Harakiri tether on YOU',
           de: 'Harakiri Verbindung auf DIR',
+          fr: 'Lien Harakiri sur VOUS',
           ja: '自分にはらきり',
           cn: '切腹点名',
         },
@@ -70,6 +71,7 @@ Options.Triggers.push({
         text: {
           en: 'Grab gold piles',
           de: 'Sammle die Goldhaufen',
+          fr: 'Prenez les pièces d\'or',
           ja: '大判小判を拾う',
           cn: '捡金币',
           ko: '금화 은화 줍기',
@@ -128,7 +130,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Daigoro': 'Daigoro',
         'Dojun-Maru': 'Dôjun Maru',
@@ -141,6 +142,9 @@ Options.Triggers.push({
         'Zuiko-Maru': 'Zuiko Maru',
       },
       'replaceText': {
+        '\\?': ' ?',
+        '\\(inner\\)': '(intérieur)',
+        '\\(outer\\)': '(extérieur)',
         'Clearout': 'Fauchage',
         'Clockwork Medium': 'Kuchiyose mécanique',
         'Clockwork Raiton': 'Raiton mécanique',
