@@ -40,7 +40,7 @@ hideall "Alluring Arm"
 225.5 "The Pull Of Light" # end of castbar
 228.5 "The Path Of Light" duration 5.5 # hat -> cleave
 246.0 "Divine Desire" # end of castbar
-249.5 "--Chanchala over--"
+249.5 "--chanchala end--"
 
 258.2 "The Pull Of Light" # end of castbar
 266.2 "The Path Of Light" duration 5.5 # hat -> cleave
@@ -62,7 +62,7 @@ hideall "Alluring Arm"
 459.5 "Divine Doubt" # end of castbar
 470.5 "The Path Of Light" duration 5.5 # hat -> cleave
 485.2 "The Pull Of Light" # end of castbar
-488.5 "--Chanchala over--"
+488.5 "--chanchala end--"
 
 504.5 "Blissful Spear (Z)" duration 8.5 # appearing -> disappearing
 510.7 "The Pull Of Light" # end of castbar
