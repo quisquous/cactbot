@@ -18,81 +18,79 @@ hideall "Alluring Arm"
 
 # We can't sync to abilities here to make the loop visible,
 # since two adds are present, and the timeline would jerk around.
-60.0 "--sync--" sync /.*/ window 0,30 jump 30
+# A group that actually manages to bridge this gap is doing so deliberately,
+# and it's probably not necessary to account for that edge case.
 
-100.0 "--sync--" sync /:Lakshmi:2157:/ window 100,5
-107.1 "Hand Of Grace" sync /:Lakshmi:2486:/
-121.3 "Blissful Arrow" sync /:Lakshmi:2489:/
-121.9 "Blissful Spear" sync /:Lakshmi:248B:/
-132.3 "The Pull Of Light" sync /:Lakshmi:2492:/
-144.5 "Hand Of Beauty" sync /:Lakshmi:2487:/
-158.8 "Blissful Spear" sync /:Lakshmi:2494:/
-165.7 "Stotram" sync /:Lakshmi:2483:/
-167.9 "--vril spawn--"
-169.0 "--untargetable--"
+1000.0 "--sync--" sync /:Lakshmi:2157:/ window 1000,5
+1007.1 "Hand Of Grace" sync /:Lakshmi:2486:/
+1021.3 "Blissful Arrow" sync /:Lakshmi:2489:/
+1021.9 "Blissful Spear" sync /:Lakshmi:248B:/
+1032.3 "The Pull Of Light" sync /:Lakshmi:2492:/
+1044.5 "Hand Of Beauty" sync /:Lakshmi:2487:/
+1058.8 "Blissful Spear" sync /:Lakshmi:2494:/
+1065.7 "Stotram" sync /:Lakshmi:2483:/
+1067.9 "--vril spawn--"
+1069.0 "--untargetable--"
 
-169.9 "Jagadishwari" sync /:Lakshmi:2342:/ window 169.9,30
-186.1 "--sync--" sync /:Lakshmi:2459:/
-189.6 "--stun--"
-190.4 "--sync--" sync /:Lakshmi:245A:/
-191.2 "--sync--" sync /:Lakshmi:248E:/
-206.9 "Alluring Embrace" sync /:Lakshmi:2496:/
-211.3 "--targetable--"
+1069.9 "Jagadishwari" sync /:Lakshmi:2342:/ window 169.9,30
+1086.1 "--sync--" sync /:Lakshmi:2459:/
+1089.6 "--stun--"
+1090.4 "--sync--" sync /:Lakshmi:245A:/
+1091.2 "--sync--" sync /:Lakshmi:248E:/
+1106.9 "Alluring Embrace" sync /:Lakshmi:2496:/
+1111.3 "--targetable--"
 
-214.5 "Chanchala" sync /:Lakshmi:2484:/ window 214.5,15
-216.7 "--chanchala gain--"
-222.6 "Stotram" sync /:Lakshmi:249E:/
-224.5 "--vril spawn--"
-234.9 "Divine Denial" sync /:Lakshmi:2485:/ window 234.9,30
-234.9 "--vril despawn--"
-247.1 "Hand Of Beauty" sync /:Lakshmi:2487:/
-254.3 "The Pull Of Light" sync /:Lakshmi:2493:/
-261.4 "Blissful Spear" sync /:Lakshmi:2495:/
-270.7 "The Path Of Light" sync /:Lakshmi:24A1:/ window 270.7,30
-284.9 "Hand Of Grace" sync /:Lakshmi:2486:/
-292.1 "The Pall Of Light" sync /:Lakshmi:2491:/
-299.1 "Blissful Arrow" sync /:Lakshmi:248A:/
-299.7 "Blissful Spear" sync /:Lakshmi:248C:/
-305.3 "Stotram" sync /:Lakshmi:249E:/
-307.6 "--vril spawn--"
-320.2 "Divine Denial" sync /:Lakshmi:2485:/ window 30,30
-320.2 "--vril despawn--"
-321.6 "--chanchala lose--"
-334.5 "Alluring Arm" sync /:Lakshmi:2488:/
-348.8 "Blissful Arrow/Spear" sync /:Lakshmi:(2489|2494):/
-356.8 "The Pull Of Light" sync /:Lakshmi:2492:/
+1114.5 "Chanchala" sync /:Lakshmi:2484:/ window 214.5,15
+1116.7 "--chanchala gain--"
+1122.6 "Stotram" sync /:Lakshmi:249E:/
+1124.5 "--vril spawn--"
+1134.9 "Divine Denial" sync /:Lakshmi:2485:/ window 234.9,30
+1134.9 "--vril despawn--"
+1147.1 "Hand Of Beauty" sync /:Lakshmi:2487:/
+1154.3 "The Pull Of Light" sync /:Lakshmi:2493:/
+1161.4 "Blissful Spear" sync /:Lakshmi:2495:/
+1170.7 "The Path Of Light" sync /:Lakshmi:24A1:/ window 270.7,30
+1184.9 "Hand Of Grace" sync /:Lakshmi:2486:/
+1192.1 "The Pall Of Light" sync /:Lakshmi:2491:/
+1199.1 "Blissful Arrow" sync /:Lakshmi:248A:/
+1199.7 "Blissful Spear" sync /:Lakshmi:248C:/
+1205.3 "Stotram" sync /:Lakshmi:249E:/
+1207.6 "--vril spawn--"
+1220.2 "Divine Denial" sync /:Lakshmi:2485:/ window 30,30
+1220.2 "--vril despawn--"
+1221.6 "--chanchala lose--"
+1234.5 "Alluring Arm" sync /:Lakshmi:2488:/
+1248.8 "Blissful Arrow/Spear" sync /:Lakshmi:(2489|2494):/
+1256.8 "The Pull Of Light" sync /:Lakshmi:2492:/
 
-365.0 "Chanchala" sync /:Lakshmi:2484:/ window 30,30
-365.9 "--chanchala gain--"
-379.2 "Hand Of Grace" sync /:Lakshmi:2486:/
-392.4 "The Pall Of Light" sync /:Lakshmi:2491:/
-393.4 "Blissful Arrow" sync /:Lakshmi:248A:/
-394.0 "Blissful Spear" sync /:Lakshmi:248C:/
-402.6 "Stotram" sync /:Lakshmi:249E:/
-404.4 "--vril spawn--"
-417.9 "Divine Denial" sync /:Lakshmi:2485:/ window 30,30
-417.9 "--vril despawn--"
-432.1 "Alluring Arm" sync /:Lakshmi:2488:/
-446.4 "Blissful Arrow/Spear" sync /:Lakshmi:(248A|2495):/
-448.4 "The Pall Of Light" sync /:Lakshmi:2491:/ window 30,30
-460.5 "The Pull Of Light" sync /:Lakshmi:2493:/
-460.9 "--chanchala lose--"
-478.9 "Alluring Arm" sync /:Lakshmi:2488:/
-492.1 "Stotram" sync /:Lakshmi:2483:/ window 30,30
-493.9 "--vril spawn--"
-493.2 "Blissful Spear" sync /:Lakshmi:2494:/
-502.3 "The Pull Of Light" sync /:Lakshmi:2492:/
-507.4 "--vril despawn--"
-521.5 "Alluring Arm" sync /:Lakshmi:2488:/
-530.9 "The Path Of Light" sync /:Lakshmi:248F:/ window 30,30
-535.7 "Blissful Spear" sync /:Lakshmi:2494:/
-540.0 "The Pall Of Light" sync /:Lakshmi:2490:/
-552.2 "The Pull Of Light" sync /:Lakshmi:2492:/
+1265.0 "Chanchala" sync /:Lakshmi:2484:/ window 30,30
+1265.9 "--chanchala gain--"
+1279.2 "Hand Of Grace" sync /:Lakshmi:2486:/
+1292.4 "The Pall Of Light" sync /:Lakshmi:2491:/
+1293.4 "Blissful Arrow" sync /:Lakshmi:248A:/
+1294.0 "Blissful Spear" sync /:Lakshmi:248C:/
+1302.6 "Stotram" sync /:Lakshmi:249E:/
+1304.4 "--vril spawn--"
+1317.9 "Divine Denial" sync /:Lakshmi:2485:/ window 30,30
+1317.9 "--vril despawn--"
+1332.1 "Alluring Arm" sync /:Lakshmi:2488:/
+1346.4 "Blissful Arrow/Spear" sync /:Lakshmi:(248A|2495):/
+1348.4 "The Pall Of Light" sync /:Lakshmi:2491:/ window 30,30
+1360.5 "The Pull Of Light" sync /:Lakshmi:2493:/
+1360.9 "--chanchala lose--"
+1378.9 "Alluring Arm" sync /:Lakshmi:2488:/
+1392.1 "Stotram" sync /:Lakshmi:2483:/ window 30,30
+1393.9 "--vril spawn--"
+1393.2 "Blissful Spear" sync /:Lakshmi:2494:/
+1402.3 "The Pull Of Light" sync /:Lakshmi:2492:/
+1407.4 "--vril despawn--"
+1421.5 "Alluring Arm" sync /:Lakshmi:2488:/
+1430.9 "The Path Of Light" sync /:Lakshmi:248F:/ window 30,30
+1435.7 "Blissful Spear" sync /:Lakshmi:2494:/
+1440.0 "The Pall Of Light" sync /:Lakshmi:2490:/
+1452.2 "The Pull Of Light" sync /:Lakshmi:2492:/
 
-565.5 "Chanchala" sync /:Lakshmi:2484:/ window 30,30 jump 365.0
-566.4 "--chanchala gain--"
-579.7 "Hand Of Grace"
-592.9 "The Pall Of Light"
-593.9 "Blissful Arrow"
-594.5 "Blissful Spear"
-603.1 "Stotram"
+1465.5 "Chanchala" sync /:Lakshmi:2484:/ window 30,30 jump 365.0
+1466.4 "--chanchala gain--"
+1479.7 "Hand Of Grace"
+1492.9 "The Pall Of Light"

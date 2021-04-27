@@ -3,7 +3,7 @@ import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
-// Lakshmi Extreme
+// Lakshmi Normal
 export default {
   zoneId: ZoneId.Emanation,
   timelineFile: 'lakshmi.txt',
@@ -129,7 +129,7 @@ export default {
           return;
         if (data.me === matches.target)
           return output.stackOnYou();
-        return output.stack({ target: matches.target });
+        return output.stackOn({ player: matches.target });
       },
       outputStrings: {
         dontStack: {
@@ -143,8 +143,13 @@ export default {
           cn: '分摊点名',
           ko: '쉐어징 대상자',
         },
-        stack: {
-          en: 'Stack on ${target}',
+        stackOn: {
+          en: 'Stack on ${player}',
+          de: 'Sammeln auf ${player}',
+          fr: 'Packez-vous sur ${player}',
+          ja: '${player}と頭割り',
+          cn: '靠近${player}分摊',
+          ko: '"${player}" 쉐어징',
         },
       },
     },
