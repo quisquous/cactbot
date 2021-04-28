@@ -48,8 +48,13 @@ class GoogleTTSItem implements TTSItem {
   }
 
   play() {
-    if (this.item && this.item instanceof HTMLAudioElement)
-      void this.item.play();
+    if (this.item) {
+      // Unfortunately, it doesn't seem like there's a great way to avoid casting here since
+      // HTMLIFrameElement Window's version of HTMLAudioElement uses a different constructor
+      // than the global Window's version.
+      // https://github.com/microsoft/TypeScript/issues/21568
+      void (this.item as HTMLAudioElement).play();
+    }
   }
 }
 
