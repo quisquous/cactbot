@@ -160,7 +160,7 @@ class CoinachWriter:
         if self.verbose:
             print("wrote: %s" % filename)
 
-    def writeTypeScript(self, filename, scriptname, header, type, data):
+    def writeTypeScript(self, filename, scriptname, header, type, as_const, data):
         full_path = os.path.join(self.cactbot_path, filename)
         with open(full_path, "w", encoding="utf-8") as f:
             f.write("// Auto-generated from %s\n" % scriptname)
@@ -170,7 +170,10 @@ class CoinachWriter:
                 f.write(header)
                 f.write("\n\n")
 
-            f.write("const data: %s = " % type)
+            if type:
+                f.write("const data: %s = " % type)
+            else:
+                f.write("const data = ")
 
             str = json.dumps(data, sort_keys=True, indent=2, ensure_ascii=False)
             # single quote style
@@ -183,6 +186,8 @@ class CoinachWriter:
             # make keys integers, remove leading zeroes.
             str = re.sub(r"'0*([0-9]+)': {", r"\1: {", str)
             f.write(str)
+            if as_const:
+                f.write(" as const")
             f.write(";\n\nexport default data;\n")
 
         if self.verbose:

@@ -46,11 +46,12 @@ def update(reader, writer):
 };"""
 
     writer.writeTypeScript(
-        os.path.join("resources", _OUTPUT_FILE),
-        os.path.basename(os.path.abspath(__file__)),
-        header,
-        "WeatherRateType",
-        all_rates,
+        filename=os.path.join("resources", _OUTPUT_FILE),
+        scriptname=os.path.basename(os.path.abspath(__file__)),
+        header=header,
+        type="WeatherRateType",
+        as_const=False,
+        data=all_rates,
     )
 
 

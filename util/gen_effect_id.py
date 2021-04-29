@@ -100,9 +100,10 @@ if __name__ == "__main__":
 
     writer = coinach.CoinachWriter(verbose=True)
     writer.writeTypeScript(
-        os.path.join("resources", _EFFECTS_OUTPUT_FILE),
-        os.path.basename(os.path.abspath(__file__)),
-        None,
-        "{ [effectName: string]: string }",
-        make_effect_map(table),
+        filename=os.path.join("resources", _EFFECTS_OUTPUT_FILE),
+        scriptname=os.path.basename(os.path.abspath(__file__)),
+        header=None,
+        type=None,
+        as_const=True,
+        data=make_effect_map(table),
     )

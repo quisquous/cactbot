@@ -115,11 +115,12 @@ type HuntData = {
 };"""
 
     writer.writeTypeScript(
-        os.path.join("resources", _OUTPUT_FILE),
-        os.path.basename(os.path.abspath(__file__)),
-        header,
-        "HuntData",
-        all_monsters,
+        filename=os.path.join("resources", _OUTPUT_FILE),
+        scriptname=os.path.basename(os.path.abspath(__file__)),
+        header=header,
+        type="HuntData",
+        as_const=False,
+        data=all_monsters,
     )
 
     print(f"File '{_OUTPUT_FILE}' successfully created.")

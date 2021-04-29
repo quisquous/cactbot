@@ -310,11 +310,12 @@ if __name__ == "__main__":
     name_data, territory_to_cfc_map = generate_name_data(territory_map, cfc_map, place_name_map)
 
     writer.writeTypeScript(
-        os.path.join("resources", _ZONE_ID_OUTPUT_FILE),
-        os.path.basename(os.path.abspath(__file__)),
-        "import { ZoneId } from '../types/trigger';",
-        "{ [zoneName: string]: ZoneId }",
-        name_data,
+        filename=os.path.join("resources", _ZONE_ID_OUTPUT_FILE),
+        scriptname=os.path.basename(os.path.abspath(__file__)),
+        header=None,
+        type=None,
+        as_const=True,
+        data=name_data,
     )
 
     # Build up multiple languages here, for translations.
@@ -361,18 +362,20 @@ type ZoneInfoType = {
 };"""
 
     writer.writeTypeScript(
-        os.path.join("resources", _ZONE_INFO_OUTPUT_FILE),
-        os.path.basename(os.path.abspath(__file__)),
-        zone_info_header,
-        "ZoneInfoType",
-        territory_info,
+        filename=os.path.join("resources", _ZONE_INFO_OUTPUT_FILE),
+        scriptname=os.path.basename(os.path.abspath(__file__)),
+        header=zone_info_header,
+        type="ZoneInfoType",
+        as_const=True,
+        data=territory_info,
     )
 
     content_type_map = make_content_type_map(reader.rawexd("ContentType"))
     writer.writeTypeScript(
-        os.path.join("resources", _CONTENT_TYPE_OUTPUT_FILE),
-        os.path.basename(os.path.abspath(__file__)),
-        None,
-        "{ [contentType: string]: number }",
-        generate_content_type(content_type_map),
+        filename=os.path.join("resources", _CONTENT_TYPE_OUTPUT_FILE),
+        scriptname=os.path.basename(os.path.abspath(__file__)),
+        header=None,
+        type=None,
+        as_const=True,
+        data=generate_content_type(content_type_map),
     )
