@@ -342,7 +342,7 @@ export default {
   right: {
     en: 'Right',
     de: 'Rechts',
-    fr: 'À droite ',
+    fr: 'À droite',
     ja: '右へ',
     cn: '右',
     ko: '오른쪽',
