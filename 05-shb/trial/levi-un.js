@@ -184,7 +184,10 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.addedCombatant({ name: '물결이빨 사하긴' }),
       condition: (data) => data.CanStun(),
       delaySeconds: 5,
-      response: Responses.stun('alert'),
+      alertText: (data, matches, output) => output.text({ name: matches.name }),
+      outputStrings: {
+        text: Outputs.stunTarget,
+      },
     },
     {
       id: 'LeviUn Gyre Spume',
