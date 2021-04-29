@@ -1263,6 +1263,8 @@ export default {
           },
         };
 
+        if (!matches.effectId)
+          return;
         const id = matches.effectId.toUpperCase();
 
         if (id === '998')
