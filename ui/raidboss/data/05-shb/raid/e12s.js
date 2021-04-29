@@ -1263,20 +1263,24 @@ export default {
           },
         };
 
-        if (matches.effectId === '998')
+        if (!matches.effectId)
+          return;
+        const id = matches.effectId.toUpperCase();
+
+        if (id === '998')
           return { infoText: output.shadoweye() };
-        if (matches.effectId === '99D')
+        if (id === '99D')
           return { infoText: output.water() };
 
         // Long fire/ice is 15 seconds, short fire/ice is 29 seconds.
         const isLong = parseFloat(matches.duration) > 20;
 
-        if (matches.effectId === '997') {
+        if (id === '997') {
           if (isLong)
             return { alertText: output.longFire() };
           return { alertText: output.shortFire() };
         }
-        if (matches.effectId === '99E') {
+        if (id === '99E') {
           if (isLong)
             return { alertText: output.longIce() };
           return { alertText: output.shortIce() };
