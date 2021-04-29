@@ -6,7 +6,7 @@ import ZoneId from './zone_id';
 // These are not things that cactbot necessarily supports, but things that it
 // theoretically could be supporting in the future with raidboss and oopsy.
 
-export default [
+const contentList: (number | null)[] = [
   // General (cactbot custom zone id)
   ZoneId.MatchAll,
 
@@ -333,3 +333,5 @@ export default [
   ZoneId.TheWeaponsRefrainUltimate,
   ZoneId.TheEpicOfAlexanderUltimate,
 ];
+
+export default contentList;
