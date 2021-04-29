@@ -12,10 +12,12 @@ export const getWeather = (timeMs: number, zoneId: number): string | undefined =
   if (!entry)
     return;
 
-  entry.rates.forEach((rate, idx) => {
+  let idx = 0;
+  for (const rate of entry.rates) {
     if (chance < rate)
       return entry.weathers[idx];
-  });
+    idx++;
+  }
 };
 
 // From https://github.com/ufx/SaintCoinach/blob/4bf6d951957502a7faa056ffc1cc7026a18fb253/SaintCoinach/Xiv/WeatherRate.cs
