@@ -62,6 +62,7 @@ export default {
         text: {
           en: 'Go E/W Sides',
           de: 'Geh seitlich nach O/W',
+          fr: 'Allez côtés E/O',
           ja: '東/西側へ',
           cn: '去东/西侧',
           ko: '동/서쪽으로',
@@ -69,6 +70,7 @@ export default {
         ttsText: {
           en: 'Go East/West Sides',
           de: 'Geh seitlich nach Osten/Westen',
+          fr: 'Allez côtés Est/Ouest',
           ja: '東側や西側へ',
           cn: '去东西侧',
           ko: '동쪽이나 서쪽으로',
@@ -89,6 +91,7 @@ export default {
         text: {
           en: 'Go N/S Sides',
           de: 'Geh seitlich nach N/S',
+          fr: 'Allez côtés N/S',
           ja: '北/南側へ',
           cn: '去南/北侧',
           ko: '남/북쪽으로',
@@ -96,6 +99,7 @@ export default {
         ttsText: {
           en: 'Go North/South Sides',
           de: 'Geh seitlich nach Norden/Süden',
+          fr: 'Allez côtés Nord/Sud',
           ja: '北側や南側へ',
           cn: '去南北侧',
           ko: '남쪽이나 북쪽으로',
@@ -172,6 +176,7 @@ export default {
         text: {
           en: 'Knockback (from boss)',
           de: 'Rückstoß (vom Boss)',
+          fr: 'Poussée (du boss)',
           ja: 'ノックバック (ボスから)',
           cn: '击退 (来自Boss)',
           ko: '보스기준 넉백',
@@ -193,6 +198,7 @@ export default {
         text: {
           en: 'Knockback (from clone)',
           de: 'Rückstoß (vom Klon)',
+          fr: 'Poussée (du clone)',
           ja: 'ノックバック (複製体から)',
           cn: '击退 (来自复制体)',
           ko: '분신기준 넉백',
@@ -213,6 +219,7 @@ export default {
         text: {
           en: 'Knockback -> Get Middle',
           de: 'Rückstoß -> Geh in die Mitte',
+          fr: 'Poussée -> Allez au milieu',
           ja: 'ノックバック -> 中へ',
           cn: '击退 -> 去中间',
           ko: '넉백 -> 가운데로',
@@ -232,6 +239,7 @@ export default {
         text: {
           en: 'Knockback -> Out of Middle',
           de: 'Rückstoß -> Raus aus der Mitte',
+          fr: 'Poussée -> Sortez du milieu',
           ja: 'ノックバック -> 外へ',
           cn: '击退 -> 去外面',
           ko: '넉백 -> 가운데 피하기',
@@ -249,6 +257,7 @@ export default {
         text: {
           en: 'Attack Hansel',
           de: 'Hänsel angreifen',
+          fr: 'Attaquez Hansel',
           ja: 'ヘンゼルに攻撃',
           cn: '攻击Hansel',
           ko: '헨젤 공격',
@@ -266,6 +275,7 @@ export default {
         text: {
           en: 'Attack Gretel',
           de: 'Gretel angreifen',
+          fr: 'Attaquez Gretel',
           ja: 'グレーテルに攻撃',
           cn: '攻击Gretel',
           ko: '그레텔 공격',
@@ -305,7 +315,7 @@ export default {
         text: {
           en: 'Spread',
           de: 'verteilen',
-          fr: 'Eloignez-vous',
+          fr: 'Dispersez-vous',
           ja: '散開',
           cn: '散开',
           ko: '산개',
@@ -381,6 +391,7 @@ export default {
         text: {
           en: 'Switch to white',
           de: 'Auf Weiß wechseln',
+          fr: 'Passez au blanc',
           ja: '白に切替',
           cn: '切换白',
           ko: '하얀색으로 바꾸기',
@@ -402,6 +413,7 @@ export default {
         text: {
           en: 'Switch to black',
           de: 'Auf Schwarz wechseln',
+          fr: 'Passez au noir',
           ja: '黒に切替',
           cn: '切换黑',
           ko: '검은색으로 바꾸기',
@@ -454,6 +466,7 @@ export default {
         text: {
           en: 'Lighter Note on YOU',
           de: 'Weißer Choral auf DIR',
+          fr: 'Blanc : imprécation sur VOUS',
           ja: '自分に連続AoE',
           cn: '地火点名',
           ko: '장판 대상자',
@@ -532,6 +545,7 @@ export default {
         text: {
           en: 'Dodge Building Below',
           de: 'Gebäude unter einem ausweichen',
+          fr: 'Esquivez le bâtiment ci-dessous',
           ja: '下の建物に当たらないように',
           cn: '躲避下方建筑',
           ko: '컨테이너 박스 피하기',
@@ -562,6 +576,7 @@ export default {
         text: {
           en: 'Go To Red Light',
           de: 'Geh zum roten Licht',
+          fr: 'Allez au feu rouge',
           ja: '赤信号の線路へ',
           cn: '去红灯',
           ko: '빨간 신호등으로',
@@ -701,7 +716,6 @@ export default {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         '2P-Operated Flight Unit': '2P : module de vol équipé',
         'Beyond': 'Sommet',
@@ -728,6 +742,7 @@ export default {
         'Hansel & Gretel': 'duo d\'armures',
       },
       'replaceText': {
+        '--targetable\\?--': '--ciblable ?--',
         'Black Dissonance': 'Noir : rongement',
         '(?<!Tandem Assault: )Bloody Sweep': 'Balayage tranchant',
         '(?<!Tandem Assault: )Breakthrough': 'Grande ruée',
@@ -750,7 +765,8 @@ export default {
         'Lamentation': 'Lamentation',
         'Light Leap': 'Bond',
         'Lighter Note': 'Blanc : imprécation',
-        'Lightfast Blade': 'Lame éclair',
+        'Lightfast Blade(?! 1\\?)': 'Lame éclair',
+        'Lightfast Blade 1\\?': 'Lame éclair 1 ?',
         'Lunge': 'Charge',
         'Made Magic': 'Déferlante magique',
         'Magic Artillery Alpha': 'Balles magiques percutantes α',
