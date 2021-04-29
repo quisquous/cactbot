@@ -176,6 +176,8 @@
 04-sb/raid/o9s.txt
 04-sb/trial/byakko-ex.js
 04-sb/trial/byakko-ex.txt
+04-sb/trial/lakshmi.js
+04-sb/trial/lakshmi.txt
 04-sb/trial/lakshmi-ex.js
 04-sb/trial/lakshmi-ex.txt
 04-sb/trial/rathalos-ex.js
