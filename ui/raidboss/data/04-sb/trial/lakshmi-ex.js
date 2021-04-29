@@ -354,7 +354,7 @@ export default {
         'Adds Appear': 'Apparition d\'adds',
         'Alluring Arm': 'Bras séduisants',
         'Blissful Spear': 'Épieu béatifiant',
-        'Chanchala': 'Chanchala',
+        '(?<! )Chanchala(?! )': 'Chanchala',
         'Divine Denial': 'Refus divin',
         'Divine Desire': 'Désir divin',
         'Divine Doubt': 'Doute divin',
