@@ -176,7 +176,7 @@ export default {
         text: {
           en: 'Knockback (from boss)',
           de: 'Rückstoß (vom Boss)',
-          fr: 'Poussée (du boss)',
+          fr: 'Poussée (depuis le boss)',
           ja: 'ノックバック (ボスから)',
           cn: '击退 (来自Boss)',
           ko: '보스기준 넉백',
@@ -198,7 +198,7 @@ export default {
         text: {
           en: 'Knockback (from clone)',
           de: 'Rückstoß (vom Klon)',
-          fr: 'Poussée (du clone)',
+          fr: 'Poussée (depuis le clone)',
           ja: 'ノックバック (複製体から)',
           cn: '击退 (来自复制体)',
           ko: '분신기준 넉백',
@@ -239,7 +239,7 @@ export default {
         text: {
           en: 'Knockback -> Out of Middle',
           de: 'Rückstoß -> Raus aus der Mitte',
-          fr: 'Poussée -> Sortez du milieu',
+          fr: 'Poussée -> Éloignez-vous du milieu',
           ja: 'ノックバック -> 外へ',
           cn: '击退 -> 去外面',
           ko: '넉백 -> 가운데 피하기',
@@ -391,7 +391,7 @@ export default {
         text: {
           en: 'Switch to white',
           de: 'Auf Weiß wechseln',
-          fr: 'Passez au blanc',
+          fr: 'Changez en blanc',
           ja: '白に切替',
           cn: '切换白',
           ko: '하얀색으로 바꾸기',
@@ -413,7 +413,7 @@ export default {
         text: {
           en: 'Switch to black',
           de: 'Auf Schwarz wechseln',
-          fr: 'Passez au noir',
+          fr: 'Changez en noir',
           ja: '黒に切替',
           cn: '切换黑',
           ko: '검은색으로 바꾸기',
@@ -545,7 +545,7 @@ export default {
         text: {
           en: 'Dodge Building Below',
           de: 'Gebäude unter einem ausweichen',
-          fr: 'Esquivez le bâtiment ci-dessous',
+          fr: 'Esquivez le bâtiment venant du dessous',
           ja: '下の建物に当たらないように',
           cn: '躲避下方建筑',
           ko: '컨테이너 박스 피하기',
