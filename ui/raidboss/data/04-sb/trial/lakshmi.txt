@@ -90,7 +90,7 @@ hideall "Alluring Arm"
 1440.0 "The Pall Of Light" sync /:Lakshmi:2490:/
 1452.2 "The Pull Of Light" sync /:Lakshmi:2492:/
 
-1465.5 "Chanchala" sync /:Lakshmi:2484:/ window 30,30 jump 365.0
+1465.5 "Chanchala" sync /:Lakshmi:2484:/ window 30,30 jump 1365.0
 1466.4 "--chanchala start--"
 1479.7 "Hand Of Grace"
 1492.9 "The Pall Of Light"

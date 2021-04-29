@@ -347,7 +347,6 @@ export default {
         'Lakshmi': 'Lakshmi',
       },
       'replaceText': {
-        '--Chanchala over--': '--Chanchala terminé--',
         '/dance': '/danse',
         '\\(mid\\)': '(milieu)',
         '\\(out\\)': '(extérieur)',
@@ -443,7 +442,6 @@ export default {
         'The Pall Of Light': '빛의 폭포',
         'The Path Of Light': '빛의 파동',
         'The Pull Of Light': '빛의 급류',
-        'over': '끝',
       },
     },
   ],

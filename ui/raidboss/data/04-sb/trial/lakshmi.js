@@ -246,7 +246,6 @@ export default {
         'Lakshmi': 'Lakshmi',
       },
       'replaceText': {
-        '--Chanchala lose--': '--Chanchala terminé--',
         'Adds Appear': 'Apparition d\'adds',
         'Alluring Arm': 'Bras séduisants',
         'Blissful Spear': 'Épieu béatifiant',
