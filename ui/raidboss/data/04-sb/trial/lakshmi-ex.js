@@ -347,6 +347,7 @@ export default {
         'Lakshmi': 'Lakshmi',
       },
       'replaceText': {
+        '--chanchala end--': '--fin de chanchala--',
         '/dance': '/danse',
         '\\(mid\\)': '(milieu)',
         '\\(out\\)': '(extérieur)',
