@@ -63,6 +63,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'USE VRIL OR DIE',
+          fr: 'UTILISEZ VRIL OU MOURREZ',
         },
       },
     },
@@ -129,6 +130,7 @@ Options.Triggers.push({
       outputStrings: {
         dontStack: {
           en: 'Don\'t Stack!',
+          fr: 'Ne vous packez pas !',
         },
         stackOnYou: {
           en: 'Stack on YOU',
@@ -234,16 +236,24 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Dreaming Kshatriya': 'kshatriya rêveuse',
         'Lakshmi': 'Lakshmi',
+        'Vril': 'Vril',
       },
       'replaceText': {
+        '--chanchala start--': '--début de chanchala--',
+        '--chanchala end--': '--fin de chanchala--',
+        '--vril despawn--': '--disparition de vril--',
+        '--vril spawn--': '--apparition de vril--',
         'Adds Appear': 'Apparition d\'adds',
+        'Aether Drain': 'Absorption d\'éther',
         'Alluring Arm': 'Bras séduisants',
+        'Alluring Embrace': 'Étreinte séduisante',
+        'Blissful Arrow(?!/Spear)': 'Flèche béatifiante',
+        'Blissful Arrow/Spear': 'Flèche/Épieu béatifiant',
         'Blissful Spear': 'Épieu béatifiant',
-        'Chanchala': 'Chanchala',
+        '(?<! )Chanchala(?! )': 'Chanchala',
         'Divine Denial': 'Refus divin',
         'Divine Desire': 'Désir divin',
         'Divine Doubt': 'Doute divin',
@@ -251,10 +261,13 @@ Options.Triggers.push({
         'Hand Of Grace': 'Main de la grâce',
         'Hands Of Grace/Beauty': 'Main De La Grâce/Beauté',
         'Inner Demons': 'Démons intérieurs',
+        'Jagadishwari': 'Jagadishwari',
         'Stotram': 'Stotram',
-        'The Pall Of Light': 'Voile de lumière',
-        'The Path Of Light': 'Voie de lumière',
-        'The Pull Of Light': 'Flot de lumière',
+        'Tail Slap': 'Gifle caudale',
+        'The Pall Of Light': 'Voile de lumière (package)',
+        'The Path Of Light': 'Voie de lumière (OT cleave)',
+        'The Pull Of Light': 'Flot de lumière (MT buster)',
+        '(?<! )Vril(?! )': 'Vril',
       },
     },
     {
