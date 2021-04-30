@@ -169,16 +169,16 @@ export class Timeline {
     const regexes = {
       comment: /^\s*#/,
       commentLine: /#.*$/,
-      durationCommand: /(?:[^#]*?\s)?(duration\s+([0-9]+(?:\.[0-9]+)?))(\s.*)?$/,
-      ignore: /^hideall\s+\"([^"]+)\"$/,
-      jumpCommand: /(?:[^#]*?\s)?(jump\s+([0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/,
-      line: /^(([0-9]+(?:\.[0-9]+)?)\s+"(.*?)")(\s+(.*))?/,
-      popupText: /^(info|alert|alarm)text\s+\"([^"]+)\"\s+before\s+(-?[0-9]+(?:\.[0-9]+)?)(?:\s+\"([^"]+)\")?$/,
+      durationCommand: /(?:[^#]*?\s)?(?<text>duration\s+(?<seconds>[0-9]+(?:\.[0-9]+)?))(\s.*)?$/,
+      ignore: /^hideall\s+\"(?<id>[^"]+)\"$/,
+      jumpCommand: /(?:[^#]*?\s)?(?<text>jump\s+(?<seconds>[0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/,
+      line: /^(?<text>(?<time>[0-9]+(?:\.[0-9]+)?)\s+"(?<name>.*?)")(\s+(.*))?/,
+      popupText: /^(?<type>info|alert|alarm)text\s+\"(?<id>[^"]+)\"\s+before\s+(?<beforeSeconds>-?[0-9]+(?:\.[0-9]+)?)(?:\s+\"(?<text>[^"]+)\")?$/,
       soundAlert: /^define\s+soundalert\s+"[^"]*"\s+"[^"]*"$/,
       speaker: /define speaker "[^"]*"(\s+"[^"]*")?\s+(-?[0-9]+(?:\.[0-9]+)?)\s+(-?[0-9]+(?:\.[0-9]+)?)/,
-      syncCommand: /(?:[^#]*?\s)?(sync\s*\/(.*)\/)(\s.*)?$/,
-      tts: /^alertall\s+"([^"]*)"\s+before\s+(-?[0-9]+(?:\.[0-9]+)?)\s+(sound|speak\s+"[^"]*")\s+"([^"]*)"$/,
-      window: /(?:[^#]*?\s)?(window\s+(?:([0-9]+(?:\.[0-9]+)?),)?([0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/,
+      syncCommand: /(?:[^#]*?\s)?(?<text>sync\s*\/(?<regex>.*)\/)(?<args>\s.*)?$/,
+      tts: /^alertall\s+"(?<id>[^"]*)"\s+before\s+(?<beforeSeconds>-?[0-9]+(?:\.[0-9]+)?)\s+(?<command>sound|speak\s+"[^"]*")\s+"(?<text>[^"]*)"$/,
+      windowCommand: /(?:[^#]*?\s)?(?<text>window\s+(?:(?<start>[0-9]+(?:\.[0-9]+)?),)?(?<end>[0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/,
     };
 
     // Make all regexes case insensitive, and parse any special \y{} groups.
@@ -199,44 +199,47 @@ export class Timeline {
         continue;
       const originalLine = line;
 
-      const [, ignoreId] = regexes.ignore.exec(line) || [];
-      if (ignoreId) {
-        this.ignores[ignoreId] = true;
+      let match = regexes.ignore.exec(line);
+      if (match && match['groups']) {
+        const ignore = match['groups'];
+        this.ignores[ignore.id] = true;
         continue;
       }
 
-      const [, ttsId, ttsSeconds, ttsCommand, ttsText] = regexes.tts.exec(line) || [];
-      if (ttsId && ttsSeconds && ttsCommand) {
+      match = regexes.tts.exec(line);
+      if (match && match['groups']) {
+        const tts = match['groups'];
         // TODO: Support alert sounds?
-        if (ttsCommand === 'sound')
+        if (tts.command === 'sound')
           continue;
-        texts[ttsId] = texts[ttsId] || [];
-        texts[ttsId].push({
+        texts[tts.id] = texts[tts.id] || [];
+        texts[tts.id].push({
           type: 'tts',
-          secondsBefore: parseFloat(ttsSeconds),
-          text: ttsText ? ttsText : ttsId,
+          secondsBefore: parseFloat(tts.beforeSeconds),
+          text: tts.text ? tts.text : tts.id,
         });
         continue;
       }
-      let match = regexes.soundAlert.exec(line);
+      match = regexes.soundAlert.exec(line);
       if (match)
         continue;
       match = regexes.speaker.exec(line);
       if (match)
         continue;
 
-      const [, popupType, popupId, popupSeconds, popupText] = regexes.popupText.exec(line) || [];
-      if (popupType && popupId && popupSeconds) {
-        texts[popupId] = texts[popupId] || [];
-        texts[popupId].push({
-          type: popupType,
-          secondsBefore: parseFloat(popupSeconds),
-          text: popupText ? popupText : popupId,
+      match = regexes.popupText.exec(line);
+      if (match && match['groups']) {
+        const popupText = match['groups'];
+        texts[popupText.id] = texts[popupText.id] || [];
+        texts[popupText.id].push({
+          type: popupText.type,
+          secondsBefore: parseFloat(popupText.beforeSeconds),
+          text: popupText.text ? popupText.text : popupText.id,
         });
         continue;
       }
-      const [, originalText, time, name] = regexes.line.exec(line) || [];
-      if (originalText === undefined || time === undefined || name === undefined) {
+      match = regexes.line.exec(line);
+      if (!(match && match['groups'])) {
         this.errors.push({
           lineNumber: lineNumber,
           line: originalLine,
@@ -245,55 +248,61 @@ export class Timeline {
         console.log('Unknown timeline: ' + originalLine);
         continue;
       }
-      line = line.replace(originalText, '').trim();
+      const parsedLine = match['groups'];
+      line = line.replace(parsedLine.text, '').trim();
       // There can be # in the ability name, but probably not in the regex.
       line = line.replace(regexes.commentLine, '').trim();
 
-      const seconds = parseFloat(time);
+      const seconds = parseFloat(parsedLine.time);
       const e = {
         id: uniqueid++,
         time: seconds,
         // The original ability name in the timeline.  Used for hideall, infotext, etc.
-        name: name,
+        name: parsedLine.name,
         // The text to display.  Not used for any logic.
-        text: this.GetReplacedText(name),
+        text: this.GetReplacedText(parsedLine.name),
         activeTime: 0,
         lineNumber: lineNumber,
       };
       if (line) {
-        const [, durationText, durationSeconds] = regexes.durationCommand.exec(line) || [];
-        if (durationText && durationSeconds) {
-          line = line.replace(durationText, '').trim();
-          e.duration = parseFloat(durationSeconds);
+        let commandMatch = regexes.durationCommand.exec(line);
+        if (commandMatch && commandMatch['groups']) {
+          const durationCommand = commandMatch['groups'];
+          line = line.replace(durationCommand.text, '').trim();
+          e.duration = parseFloat(durationCommand.seconds);
         }
-        const [, syncText, syncRegex, syncOptions] = regexes.syncCommand.exec(line) || [];
-        if (syncText && syncRegex) {
-          line = line.replace(syncText, '').trim();
+
+        commandMatch = regexes.syncCommand.exec(line);
+        if (commandMatch && commandMatch['groups']) {
+          const syncCommand = commandMatch['groups'];
+          line = line.replace(syncCommand.text, '').trim();
           const sync = {
             id: uniqueid,
-            origRegexStr: syncRegex,
-            regex: Regexes.parse(this.GetReplacedSync(syncRegex)),
+            origRegexStr: syncCommand.regex,
+            regex: Regexes.parse(this.GetReplacedSync(syncCommand.regex)),
             start: seconds - 2.5,
             end: seconds + 2.5,
             time: seconds,
             lineNumber: lineNumber,
           };
-          if (syncOptions) {
-            const [, windowText, windowStart, windowEnd] = regexes.window.exec(syncOptions) || [];
-            if (windowText && windowEnd) {
-              line = line.replace(windowText, '').trim();
-              if (windowStart) {
-                sync.start = seconds - parseFloat(windowStart);
-                sync.end = seconds + parseFloat(windowEnd);
+          if (syncCommand.args) {
+            let argMatch = regexes.windowCommand.exec(syncCommand.args);
+            if (argMatch && argMatch['groups']) {
+              const windowCommand = argMatch['groups'];
+              line = line.replace(windowCommand.text, '').trim();
+              if (windowCommand.start) {
+                sync.start = seconds - parseFloat(windowCommand.start);
+                sync.end = seconds + parseFloat(windowCommand.end);
               } else {
-                sync.start = seconds - (parseFloat(windowEnd) / 2);
-                sync.end = seconds + (parseFloat(windowEnd) / 2);
+                sync.start = seconds - (parseFloat(windowCommand.end) / 2);
+                sync.end = seconds + (parseFloat(windowCommand.end) / 2);
               }
             }
-            const [, jumpText, jumpSeconds] = regexes.jumpCommand.exec(syncOptions) || [];
-            if (jumpText && jumpSeconds) {
-              line = line.replace(jumpText, '').trim();
-              sync.jump = parseFloat(jumpSeconds);
+            argMatch = regexes.jumpCommand.exec(syncCommand.args);
+            if (argMatch && argMatch['groups']) {
+              const jumpCommand = argMatch['groups'];
+              line = line.replace(jumpCommand.text, '').trim();
+              sync.jump = parseFloat(jumpCommand.seconds);
             }
           }
           this.syncStarts.push(sync);
@@ -324,7 +333,7 @@ export class Timeline {
           }
         }
         if (!found) {
-          const text = `No match for timeline trigger ${trigger.regex.source} in ${trigger.id}`;
+          const text = `No match for timeline trigger ${trigger.regex} in ${trigger.id}`;
           this.errors.push({ error: text });
           console.error(`*** ERROR: ${text}`);
         }
