@@ -253,38 +253,8 @@ export interface EventMap {
 
   'onPlayerChangedEvent': (ev: {
     type: 'onPlayerChangedEvent';
-    detail: {
-      name: string;
-      job: Job;
-      level: number;
-      currentHP: number;
-      maxHP: number;
-      currentMP: number;
-      maxMP: number;
-      currentCP: number;
-      maxCP: number;
-      currentGP: number;
-      maxGP: number;
-      currentShield: number;
-      // TODO: Is there a cleaner way to do this? It would be better if there were a way to
-      // determine which job was passed in with the event and explicitly use that JobDetail
-      // Potentially add the job to the jobDetail passed back from the C# plugin, and use
-      // that information to decide the type
-      jobDetail: JobDetail['PLD'] & JobDetail['WAR'] & JobDetail['DRK'] & JobDetail['GNB'] & JobDetail['WHM'] &
-        JobDetail['SCH'] & JobDetail['AST'] & JobDetail['PGL'] & JobDetail['MNK'] & JobDetail['DRG'] &
-        JobDetail['NIN'] & JobDetail['SAM'] & JobDetail['BRD'] & JobDetail['MCH'] & JobDetail['DNC'] &
-        JobDetail['THM'] & JobDetail['BLM'] & JobDetail['ACN'] & JobDetail['SMN'] & JobDetail['RDM'];
-      pos: {
-        x: number;
-        y: number;
-        z: number;
-      };
-      rotation: number;
-      bait: number;
-      debugJob: string;
-    };
-  }
-  ) => void;
+    detail: PlayerChangedRet;
+  }) => void;
 
   'onUserFileChanged': (ev: {
     type: 'onUserFileChanged';
@@ -318,6 +288,37 @@ export type SavedConfigEntry = string | number | boolean | [ SavedConfigEntry] |
 export type SavedConfig = {
   [overlayName: string]: SavedConfigEntry;
 };
+
+interface PlayerChangedRet {
+  name: string;
+  job: Job;
+  level: number;
+  currentHP: number;
+  maxHP: number;
+  currentMP: number;
+  maxMP: number;
+  currentCP: number;
+  maxCP: number;
+  currentGP: number;
+  maxGP: number;
+  currentShield: number;
+  // TODO: Is there a cleaner way to do this? It would be better if there were a way to
+  // determine which job was passed in with the event and explicitly use that JobDetail
+  // Potentially add the job to the jobDetail passed back from the C# plugin, and use
+  // that information to decide the type
+  jobDetail: JobDetail['PLD'] & JobDetail['WAR'] & JobDetail['DRK'] & JobDetail['GNB'] & JobDetail['WHM'] &
+    JobDetail['SCH'] & JobDetail['AST'] & JobDetail['PGL'] & JobDetail['MNK'] & JobDetail['DRG'] &
+    JobDetail['NIN'] & JobDetail['SAM'] & JobDetail['BRD'] & JobDetail['MCH'] & JobDetail['DNC'] &
+    JobDetail['THM'] & JobDetail['BLM'] & JobDetail['ACN'] & JobDetail['SMN'] & JobDetail['RDM'];
+  pos: {
+    x: number;
+    y: number;
+    z: number;
+  };
+  rotation: number;
+  bait: number;
+  debugJob: string;
+}
 
 export type IOverlayHandler = {
   // OutputPlugin build-in
