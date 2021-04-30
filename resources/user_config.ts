@@ -95,10 +95,11 @@ class UserConfig {
     return keys.sort((keyA, keyB) => {
       const listA = splitKeyMap[keyA];
       const listB = splitKeyMap[keyB];
+      // Convince TypeScript these two exist.
       if (listA === undefined || listB === undefined)
-        return 0; // Convince TypeScript these exist.
-      const maxLen = Math.max(listA.length, listB.length);
+        return 0;
 
+      const maxLen = Math.max(listA.length, listB.length);
       for (let idx = 0; idx < maxLen; ++idx) {
         const entryA = listA[idx];
         const entryB = listB[idx];
