@@ -65,7 +65,7 @@ Options.Triggers.push({
           en: 'Rotate left',
           de: 'Nach links rotieren',
           fr: 'Tournez vers la gauche',
-          ja: '逆時計回り',
+          ja: '反時計回り',
           cn: '向左转',
           ko: '왼쪽으로 회전',
         },
