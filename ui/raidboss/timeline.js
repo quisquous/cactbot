@@ -178,7 +178,7 @@ export class Timeline {
       speaker: /define speaker "[^"]*"(\s+"[^"]*")?\s+(-?[0-9]+(?:\.[0-9]+)?)\s+(-?[0-9]+(?:\.[0-9]+)?)/,
       syncCommand: /(?:[^#]*?\s)?(sync\s*\/(.*)\/)(\s.*)?$/,
       tts: /^alertall\s+"([^"]*)"\s+before\s+(-?[0-9]+(?:\.[0-9]+)?)\s+(sound|speak\s+"[^"]*")\s+"([^"]*)"$/,
-      windowCommand: /(?:[^#]*?\s)?(window\s+(?:([0-9]+(?:\.[0-9]+)?),)?([0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/,
+      window: /(?:[^#]*?\s)?(window\s+(?:([0-9]+(?:\.[0-9]+)?),)?([0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/,
     };
 
     // Make all regexes case insensitive, and parse any special \y{} groups.
@@ -199,45 +199,44 @@ export class Timeline {
         continue;
       const originalLine = line;
 
-      let match = regexes.ignore.exec(line);
-      if (match) {
-        this.ignores[match[1]] = true;
+      const [, ignoreId] = regexes.ignore.exec(line) || [];
+      if (ignoreId) {
+        this.ignores[ignoreId] = true;
         continue;
       }
 
-      match = regexes.tts.exec(line);
-      if (match) {
+      const [, ttsId, ttsSeconds, ttsCommand, ttsText] = regexes.tts.exec(line) || [];
+      if (ttsId && ttsSeconds && ttsCommand) {
         // TODO: Support alert sounds?
-        if (match[3] === 'sound')
+        if (ttsCommand === 'sound')
           continue;
-        texts[match[1]] = texts[match[1]] || [];
-        texts[match[1]].push({
+        texts[ttsId] = texts[ttsId] || [];
+        texts[ttsId].push({
           type: 'tts',
-          secondsBefore: parseFloat(match[2]),
-          text: match[4] ? match[4] : match[1],
+          secondsBefore: parseFloat(ttsSeconds),
+          text: ttsText ? ttsText : ttsId,
         });
         continue;
       }
-      match = regexes.soundAlert.exec(line);
+      let match = regexes.soundAlert.exec(line);
       if (match)
         continue;
       match = regexes.speaker.exec(line);
       if (match)
         continue;
 
-      match = regexes.popupText.exec(line);
-      if (match) {
-        texts[match[2]] = texts[match[2]] || [];
-        texts[match[2]].push({
-          type: match[1],
-          secondsBefore: parseFloat(match[3]),
-          text: match[4] ? match[4] : match[2],
+      const [, popupType, popupId, popupSeconds, popupText] = regexes.popupText.exec(line) || [];
+      if (popupType && popupId && popupSeconds) {
+        texts[popupId] = texts[popupId] || [];
+        texts[popupId].push({
+          type: popupType,
+          secondsBefore: parseFloat(popupSeconds),
+          text: popupText ? popupText : popupId,
         });
         continue;
       }
-
-      match = regexes.line.exec(line);
-      if (!match) {
+      const [, originalText, time, name] = regexes.line.exec(line) || [];
+      if (originalText === undefined || time === undefined || name === undefined) {
         this.errors.push({
           lineNumber: lineNumber,
           line: originalLine,
@@ -246,55 +245,55 @@ export class Timeline {
         console.log('Unknown timeline: ' + originalLine);
         continue;
       }
-      line = line.replace(match[1], '').trim();
+      line = line.replace(originalText, '').trim();
       // There can be # in the ability name, but probably not in the regex.
       line = line.replace(regexes.commentLine, '').trim();
 
-      const seconds = parseFloat(match[2]);
+      const seconds = parseFloat(time);
       const e = {
         id: uniqueid++,
         time: seconds,
         // The original ability name in the timeline.  Used for hideall, infotext, etc.
-        name: match[3],
+        name: name,
         // The text to display.  Not used for any logic.
-        text: this.GetReplacedText(match[3]),
+        text: this.GetReplacedText(name),
         activeTime: 0,
         lineNumber: lineNumber,
       };
       if (line) {
-        let commandMatch = regexes.durationCommand.exec(line);
-        if (commandMatch) {
-          line = line.replace(commandMatch[1], '').trim();
-          e.duration = parseFloat(commandMatch[2]);
+        const [, durationText, durationSeconds] = regexes.durationCommand.exec(line) || [];
+        if (durationText && durationSeconds) {
+          line = line.replace(durationText, '').trim();
+          e.duration = parseFloat(durationSeconds);
         }
-        commandMatch = regexes.syncCommand.exec(line);
-        if (commandMatch) {
-          line = line.replace(commandMatch[1], '').trim();
+        const [, syncText, syncRegex, syncOptions] = regexes.syncCommand.exec(line) || [];
+        if (syncText && syncRegex) {
+          line = line.replace(syncText, '').trim();
           const sync = {
             id: uniqueid,
-            origRegexStr: commandMatch[2],
-            regex: Regexes.parse(this.GetReplacedSync(commandMatch[2])),
+            origRegexStr: syncRegex,
+            regex: Regexes.parse(this.GetReplacedSync(syncRegex)),
             start: seconds - 2.5,
             end: seconds + 2.5,
             time: seconds,
             lineNumber: lineNumber,
           };
-          if (commandMatch[3]) {
-            let argMatch = regexes.windowCommand.exec(commandMatch[3]);
-            if (argMatch) {
-              line = line.replace(argMatch[1], '').trim();
-              if (argMatch[2]) {
-                sync.start = seconds - parseFloat(argMatch[2]);
-                sync.end = seconds + parseFloat(argMatch[3]);
+          if (syncOptions) {
+            const [, windowText, windowStart, windowEnd] = regexes.window.exec(syncOptions) || [];
+            if (windowText && windowEnd) {
+              line = line.replace(windowText, '').trim();
+              if (windowStart) {
+                sync.start = seconds - parseFloat(windowStart);
+                sync.end = seconds + parseFloat(windowEnd);
               } else {
-                sync.start = seconds - (parseFloat(argMatch[3]) / 2);
-                sync.end = seconds + (parseFloat(argMatch[3]) / 2);
+                sync.start = seconds - (parseFloat(windowEnd) / 2);
+                sync.end = seconds + (parseFloat(windowEnd) / 2);
               }
             }
-            argMatch = regexes.jumpCommand.exec(commandMatch[3]);
-            if (argMatch) {
-              line = line.replace(argMatch[1], '').trim();
-              sync.jump = parseFloat(argMatch[2]);
+            const [, jumpText, jumpSeconds] = regexes.jumpCommand.exec(syncOptions) || [];
+            if (jumpText && jumpSeconds) {
+              line = line.replace(jumpText, '').trim();
+              sync.jump = parseFloat(jumpSeconds);
             }
           }
           this.syncStarts.push(sync);
@@ -325,7 +324,7 @@ export class Timeline {
           }
         }
         if (!found) {
-          const text = `No match for timeline trigger ${trigger.regex} in ${trigger.id}`;
+          const text = `No match for timeline trigger ${trigger.regex.source} in ${trigger.id}`;
           this.errors.push({ error: text });
           console.error(`*** ERROR: ${text}`);
         }
