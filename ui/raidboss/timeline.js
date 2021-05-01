@@ -1018,7 +1018,7 @@ export class TimelineController {
     for (const timelineFile of timelineFiles) {
       const name = this.timelines[timelineFile];
       if (name)
-        text = `${text}\n${name}`;
+        text = text + '\n' + name;
       else
         console.log('Timeline file not found: ' + timelineFile);
     }
