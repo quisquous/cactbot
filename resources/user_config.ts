@@ -1,3 +1,9 @@
+import { Lang } from '../types/global';
+import { BaseOptions } from '../types/data';
+import { CactbotLoadUserRet, SavedConfig, SavedConfigEntry } from '../types/event';
+import { LocaleText } from '../types/trigger';
+import { addOverlayListener, callOverlayHandler } from './overlay_plugin_api';
+
 // TODO:
 // The convention of "import X as _X; const X = _X;" is currently
 // being used as a method to workaround for downstream code
@@ -5,7 +11,6 @@
 // create a variable of the same name, the eval()'d code does not know
 // about the import, and thus throws ReferenceErrors.
 // Used by downstream eval
-import { addOverlayListener, callOverlayHandler } from './overlay_plugin_api';
 import _Conditions from './conditions';
 const Conditions = _Conditions;
 import _ContentType from './content_type';
@@ -25,21 +30,55 @@ const ZoneId = _ZoneId;
 import _ZoneInfo from './zone_info';
 const ZoneInfo = _ZoneInfo;
 
+// Convince TypeScript and eslint that these are used.  TypeScript doesn't have a great way
+// to disable individual rules, so this is safer than disabling all rules.
+console.assert(Conditions && ContentType && NetRegexes && Regexes &&
+    Responses && Outputs && Util && ZoneId && ZoneInfo);
+
+// TODO: this type is in config.js.
+type CactbotConfigurator = unknown;
+
+// TODO: move all of these to config.js?
+type UserFileCallback = (jsFile: string, localFiles: { [filename: string]: string },
+  options: BaseOptions, basePath: string) => void;
+type ConfigValue = string | number | boolean;
+type ConfigEntry = {
+  id: string;
+  name: LocaleText;
+  type: 'checkbox' | 'select' | 'float' | 'integer' | 'directory';
+  default: ConfigValue;
+  debug?: boolean;
+  debugOnly?: boolean;
+  // For select.
+  options?: {
+    [lang in Lang]?: {
+      [selectText: string]: string;
+    }
+  };
+  setterFunc?: (options: BaseOptions, value: SavedConfigEntry) => void;
+};
+
+type OptionsTemplate = {
+  buildExtraUI?: (base: CactbotConfigurator, container: HTMLElement) => void;
+  processExtraOptions?: (options: BaseOptions, savedConfig: SavedConfigEntry) => void;
+  options: ConfigEntry[];
+};
+
 class UserConfig {
-  constructor() {
-    this.optionTemplates = {};
-    this.savedConfig = null;
-    this.userFileCallbacks = {};
-  }
-  registerOptions(overlayName, optionTemplates, userFileCallback) {
-    this.optionTemplates[overlayName] = optionTemplates;
+  private optionTemplates: { [overlayName: string]: OptionsTemplate } = {};
+  private savedConfig: SavedConfig = {};
+  private userFileCallbacks: { [overlayName: string]: UserFileCallback } = {};
+
+  registerOptions(overlayName: string, optionTemplate: OptionsTemplate,
+      userFileCallback: UserFileCallback) {
+    this.optionTemplates[overlayName] = optionTemplate;
     if (userFileCallback)
       this.userFileCallbacks[overlayName] = userFileCallback;
   }
 
-  sortUserFiles(keys) {
+  sortUserFiles(keys: string[]) {
     // Helper data structure for subdirectories.
-    const splitKeyMap = {};
+    const splitKeyMap: { [k: string]: string[] } = {};
     for (const key of keys)
       splitKeyMap[key] = key.toUpperCase().split(/[/\\]/);
 
@@ -53,29 +92,42 @@ class UserConfig {
     //  * b/some_file.js
     //  * root_file1.js
     //  * root_file2.js
-    return keys.sort((a, b) => {
-      const maxLen = Math.max(splitKeyMap[a].length, splitKeyMap[b].length);
+    return keys.sort((keyA, keyB) => {
+      const listA = splitKeyMap[keyA];
+      const listB = splitKeyMap[keyB];
+      // Convince TypeScript these two exist.
+      if (listA === undefined || listB === undefined)
+        return 0;
 
+      const maxLen = Math.max(listA.length, listB.length);
       for (let idx = 0; idx < maxLen; ++idx) {
+        const entryA = listA[idx];
+        const entryB = listB[idx];
+        // Convince TypeScript these exist.
+        // In practice, there's always at least one entry.
+        if (entryA === undefined || entryB === undefined)
+          break;
+
         // If both subdirectories or both files, then compare names.
-        const isLastA = splitKeyMap[a].length - 1 === idx;
-        const isLastB = splitKeyMap[b].length - 1 === idx;
+        const isLastA = listA.length - 1 === idx;
+        const isLastB = listB.length - 1 === idx;
+
         if (isLastA && isLastB) {
           // If both last, then this is a filename comparison.
 
           // First, compare filename without extension.
-          const fileA = splitKeyMap[a][idx].replace(/\.[^\.]*$/, '');
-          const fileB = splitKeyMap[b][idx].replace(/\.[^\.]*$/, '');
+          const fileA = entryA.replace(/\.[^\.]*$/, '');
+          const fileB = entryB.replace(/\.[^\.]*$/, '');
           const filenameOnlyDiff = fileA.localeCompare(fileB);
           if (filenameOnlyDiff)
             return filenameOnlyDiff;
 
           // Second, compare including the extension.
           // Always return something here, see note below.
-          return splitKeyMap[a][idx].localeCompare(splitKeyMap[b][idx]);
+          return entryA.localeCompare(entryB);
         } else if (!isLastA && !isLastB) {
           // If both not last, this is a subdirectory comparison.
-          const diff = splitKeyMap[a][idx].localeCompare(splitKeyMap[b][idx]);
+          const diff = entryA.localeCompare(entryB);
           if (diff)
             return diff;
         }
@@ -85,11 +137,11 @@ class UserConfig {
         // If so, then there's a mismatch in number of directories, and we know one
         // the one with a filename should be sorted last.
 
-        if (splitKeyMap[a].length - 1 <= idx) {
+        if (listA.length - 1 <= idx) {
           // a has fewer subdirectories, so should be sorted last.
           return 1;
         }
-        if (splitKeyMap[b].length - 1 <= idx) {
+        if (listB.length - 1 <= idx) {
           // a has more subdirectories, so should be sorted first.
           return -1;
         }
@@ -102,7 +154,7 @@ class UserConfig {
   // that extension that have `overlayName` either as their entire filename (no subdir)
   // or are inside a root-level subdirectory named `overlayName`/  The extension should
   // include the period separator, e.g. ".js".  All comparisons are case insensitive.
-  filterUserFiles(paths, origOverlayName, origExtension) {
+  filterUserFiles(paths: string[], origOverlayName: string, origExtension: string) {
     const extension = origExtension.toLowerCase();
     const overlayName = origOverlayName.toLowerCase();
     return paths.filter((origPath) => {
@@ -117,7 +169,7 @@ class UserConfig {
     });
   }
 
-  getUserConfigLocation(overlayName, options, callback) {
+  getUserConfigLocation(overlayName: string, options: BaseOptions, callback: () => void) {
     let currentlyReloading = false;
     const reloadOnce = () => {
       if (currentlyReloading)
@@ -136,13 +188,13 @@ class UserConfig {
     this.loadUserFiles(overlayName, options, callback);
   }
 
-  loadUserFiles(overlayName, options, callback) {
+  loadUserFiles(overlayName: string, options: BaseOptions, callback: () => void) {
     const readOptions = callOverlayHandler({
       call: 'cactbotLoadData',
       overlay: 'options',
     });
 
-    const loadUser = async (e) => {
+    const loadUser = async (e: { detail: CactbotLoadUserRet }) => {
       // The basePath isn't using for anything other than cosmetic printing of full paths,
       // so replace any slashes here for uniformity.  In case anybody is using cactbot on
       // Linux (?!?), support any style of slashes elsewhere.
@@ -186,23 +238,22 @@ class UserConfig {
       // but before css below which may load skin files.
       // processOptions needs to be called whether or not there are
       // any userOptions saved, as it sets up the defaults.
-      const userOptions = await readOptions || {};
-      this.savedConfig = userOptions.data || {};
+      this.savedConfig = (await readOptions)?.data ?? {};
       this.processOptions(
           options,
-          this.savedConfig[overlayName] || {},
+          this.savedConfig[overlayName] ?? {},
           this.optionTemplates[overlayName],
       );
 
       // If the overlay has a "Debug" setting, set to true via the config tool,
       // then also print out user files that have been loaded.
-      const printUserFile = options.Debug ? (x) => console.log(x) : (x) => {};
+      const printUserFile = options.Debug ? (x: string) => console.log(x) : () => {/* noop */};
 
       // With user files being arbitrary javascript, and having multiple files
       // in user folders, it's possible for later files to accidentally remove
       // things that previous files have added.  Warn about this, since most
       // users are not programmers.
-      const warnOnVariableResetMap = {
+      const warnOnVariableResetMap: { [overlayName: string]: string[] } = {
         raidboss: [
           'Triggers',
         ],
@@ -212,7 +263,12 @@ class UserConfig {
       // The values of each `warnOnVariableResetMap` field are initially set
       // after the first file, so that if there is only one file, there are
       // not any warnings.
-      const variableTracker = {};
+
+      // The fields that a user file sets in Options can be anything (pun not intended)
+      // and so we use `any` here.  The only operation done on this field is a !==
+      // for change detection to see if the the user file has modified it.
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const variableTracker: { [fieldName: string]: any } = {};
 
       if (localFiles) {
         // localFiles may be null if there is no valid user directory.
@@ -224,16 +280,17 @@ class UserConfig {
           try {
             printUserFile(`local user file: ${basePath}${jsFile}`);
             const Options = options;
+            console.assert(Options); // Used by eval.
 
             // This is the one eval cactbot should ever need, which is for handling user files.
             // Because user files can be located anywhere on disk and there's backwards compat
             // issues, it's unlikely that these will be able to be anything but eval forever.
             //
             /* eslint-disable no-eval */
-            eval(localFiles[jsFile]);
+            eval(localFiles[jsFile] ?? '');
             /* eslint-enable no-eval */
 
-            for (const field of warnOnVariableResetMap[overlayName]) {
+            for (const field of warnOnVariableResetMap[overlayName] ?? []) {
               if (variableTracker[field] && variableTracker[field] !== options[field]) {
                 // Ideally users should do something like `Options.Triggers.push([etc]);`
                 // instead of `Options.Triggers = [etc];`
@@ -242,12 +299,11 @@ class UserConfig {
               variableTracker[field] = options[field];
             }
 
-            if (this.userFileCallbacks[overlayName])
-              this.userFileCallbacks[overlayName](jsFile, localFiles, options, basePath);
+            this.userFileCallbacks[overlayName]?.(jsFile, localFiles, options, basePath);
           } catch (e) {
             // Be very visible for users.
             console.log('*** ERROR IN USER FILE ***');
-            console.log(e.stack);
+            console.log(e);
           }
         }
 
@@ -259,8 +315,12 @@ class UserConfig {
         for (const cssFile of cssFiles) {
           printUserFile(`local user file: ${basePath}${cssFile}`);
           const userCssText = document.createElement('style');
-          userCssText.innerText = localFiles[cssFile];
-          document.getElementsByTagName('head')[0].appendChild(userCssText);
+          const contents = localFiles[cssFile];
+          if (contents)
+            userCssText.innerText = contents;
+          const head = document.getElementsByTagName('head')[0];
+          if (head)
+            head.appendChild(userCssText);
         }
       }
 
@@ -268,26 +328,26 @@ class UserConfig {
       if (callback)
         callback();
 
-      callOverlayHandler({ call: 'cactbotRequestState' });
+      void callOverlayHandler({ call: 'cactbotRequestState' });
     };
 
-    callOverlayHandler({
+    void callOverlayHandler({
       call: 'cactbotLoadUser',
       source: location.href,
       overlayName: overlayName,
-    }).then((e) => {
+    }).then((e: { detail: CactbotLoadUserRet }) => {
       // Wait for DOMContentLoaded if needed.
       if (document.readyState !== 'loading') {
-        loadUser(e);
+        void loadUser(e);
         return;
       }
       document.addEventListener('DOMContentLoaded', () => {
-        loadUser(e);
+        void loadUser(e);
       });
     });
   }
 
-  handleSkin(skinName) {
+  handleSkin(skinName: string) {
     if (!skinName || skinName === 'default')
       return;
 
@@ -300,21 +360,25 @@ class UserConfig {
     const skinHref = basePath + 'skins/' + skinName + '/' + skinName + '.css';
     this.appendCSSLink(skinHref);
   }
-  appendJSLink(src) {
+  appendJSLink(src: string) {
     const userJS = document.createElement('script');
     userJS.setAttribute('type', 'text/javascript');
     userJS.setAttribute('src', src);
-    userJS.setAttribute('async', false);
-    document.getElementsByTagName('head')[0].appendChild(userJS);
+    userJS.setAttribute('async', 'false');
+    const head = document.getElementsByTagName('head')[0];
+    if (head)
+      head.appendChild(userJS);
   }
-  appendCSSLink(href) {
+  appendCSSLink(href: string) {
     const userCSS = document.createElement('link');
     userCSS.setAttribute('rel', 'stylesheet');
     userCSS.setAttribute('type', 'text/css');
     userCSS.setAttribute('href', href);
-    document.getElementsByTagName('head')[0].appendChild(userCSS);
+    const head = document.getElementsByTagName('head')[0];
+    if (head)
+      head.appendChild(userCSS);
   }
-  processOptions(options, savedConfig, template) {
+  processOptions(options: BaseOptions, savedConfig: SavedConfigEntry, template?: OptionsTemplate) {
     // Take options from the template, find them in savedConfig,
     // and apply them to options. This also handles setting
     // defaults for anything in the template, even if it does not
@@ -330,23 +394,36 @@ class UserConfig {
       return;
 
     const templateOptions = template.options || [];
-    for (let i = 0; i < templateOptions.length; ++i) {
-      const opt = templateOptions[i];
-
+    for (const opt of templateOptions) {
       // Grab the saved value or the default to set in options.
-      const value = opt.id in savedConfig ? savedConfig[opt.id] : opt.default;
+
+      let value: SavedConfigEntry = opt.default;
+      if (typeof savedConfig === 'object' && !Array.isArray(savedConfig)) {
+        if (opt.id in savedConfig) {
+          const newValue = savedConfig[opt.id];
+          if (newValue !== undefined)
+            value = newValue;
+        }
+      }
 
       // Options can provide custom logic to turn a value into options settings.
       // If this doesn't exist, just set the value directly.
       // Option template ids are identical to field names on Options.
-      if (opt.setterFunc)
+      if (opt.setterFunc) {
         opt.setterFunc(options, value);
-      else if (opt.type === 'integer')
-        options[opt.id] = parseInt(value);
-      else if (opt.type === 'float')
-        options[opt.id] = parseFloat(value);
-      else
+      } else if (opt.type === 'integer') {
+        if (typeof value === 'number')
+          options[opt.id] = Math.floor(value);
+        else if (typeof value === 'string')
+          options[opt.id] = parseInt(value);
+      } else if (opt.type === 'float') {
+        if (typeof value === 'number')
+          options[opt.id] = value;
+        else if (typeof value === 'string')
+          options[opt.id] = parseFloat(value);
+      } else {
         options[opt.id] = value;
+      }
     }
 
     // For things like raidboss that build extra UI, also give them a chance
@@ -354,7 +431,7 @@ class UserConfig {
     if (template.processExtraOptions)
       template.processExtraOptions(options, savedConfig);
   }
-  addUnlockText(lang) {
+  addUnlockText(lang: Lang) {
     const unlockText = {
       en: '🔓 Unlocked (lock overlay before using)',
       de: '🔓 Entsperrt (Sperre das Overlay vor der Nutzung)',
