@@ -209,19 +209,19 @@ export class Timeline {
       match = regexes.tts.exec(line);
       if (match && match['groups']) {
         const tts = match['groups'];
-        if (tts.id && tts.beforeSeconds && tts.command) {
-          // TODO: Support alert sounds?
-          if (tts.command === 'sound')
-            continue;
-          const ttsItems = texts[tts.id] || [];
-          texts[tts.id] = ttsItems;
-          ttsItems.push({
-            type: 'tts',
-            secondsBefore: parseFloat(tts.beforeSeconds),
-            text: tts.text ? tts.text : tts.id,
-          });
+        if (!tts.id || !tts.beforeSeconds || !tts.command)
           continue;
-        }
+        // TODO: Support alert sounds?
+        if (tts.command === 'sound')
+          continue;
+        const ttsItems = texts[tts.id] || [];
+        texts[tts.id] = ttsItems;
+        ttsItems.push({
+          type: 'tts',
+          secondsBefore: parseFloat(tts.beforeSeconds),
+          text: tts.text ? tts.text : tts.id,
+        });
+        continue;
       }
       match = regexes.soundAlert.exec(line);
       if (match)
@@ -233,16 +233,16 @@ export class Timeline {
       match = regexes.popupText.exec(line);
       if (match && match['groups']) {
         const popupText = match['groups'];
-        if (popupText.type && popupText.id && popupText.beforeSeconds) {
-          const popupTextItems = texts[popupText.id] || [];
-          texts[popupText.id] = popupTextItems;
-          popupTextItems.push({
-            type: popupText.type,
-            secondsBefore: parseFloat(popupText.beforeSeconds),
-            text: popupText.text ? popupText.text : popupText.id,
-          });
+        if (!popupText.type || !popupText.id || !popupText.beforeSeconds)
           continue;
-        }
+        const popupTextItems = texts[popupText.id] || [];
+        texts[popupText.id] = popupTextItems;
+        popupTextItems.push({
+          type: popupText.type,
+          secondsBefore: parseFloat(popupText.beforeSeconds),
+          text: popupText.text ? popupText.text : popupText.id,
+        });
+        continue;
       }
       match = regexes.line.exec(line);
       if (!(match && match['groups'])) {
@@ -890,8 +890,7 @@ export class TimelineUI {
     const bar = this.activeBars[e.id];
     if (bar) {
       const div = bar.parentNode;
-      if (div && div.parentNode)
-        div.parentNode.removeChild(div);
+      div?.parentNode?.removeChild(div);
       delete this.activeBars[e.id];
     }
   }
