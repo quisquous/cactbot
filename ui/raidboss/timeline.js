@@ -201,10 +201,9 @@ export class Timeline {
       let match = regexes.ignore.exec(line);
       if (match && match['groups']) {
         const ignore = match['groups'];
-        if (ignore.id) {
+        if (ignore.id)
           this.ignores[ignore.id] = true;
-          continue;
-        }
+        continue;
       }
 
       match = regexes.tts.exec(line);
@@ -858,14 +857,12 @@ export class TimelineUI {
     const activeBar = this.activeBars[e.id];
     if (activeBar) {
       const div = activeBar.parentNode;
-      if (div && div.parentNode)
-        div.parentNode.removeChild(div);
+      div?.parentNode?.removeChild(div);
     }
 
     div.style.order = e.sortKey;
     div.id = e.id;
-    if (this.timerlist)
-      this.timerlist.appendChild(div);
+    this.timerlist?.appendChild(div);
     this.activeBars[e.id] = bar;
     if (e.id in this.expireTimers) {
       window.clearTimeout(this.expireTimers[e.id]);
