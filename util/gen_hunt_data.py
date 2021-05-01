@@ -104,21 +104,29 @@ def get_from_coinach(_ffxiv_game_path, _saint_conainch_cmd_path, _cactbot_path):
     writer = coinach.CoinachWriter(cactbot_path=_cactbot_path)
 
     header = """import { LocaleObject } from '../types/trigger';
+
 type LocaleTextOrArray = LocaleObject<string | string[]>;
 
-type HuntData = {
-  [huntName: string]: {
-    readonly id: string;
-    readonly name: LocaleTextOrArray;
-    readonly rank: string;
-  };
+export type Rank = 'S' | 'SS+' | 'SS-' | 'A' | 'B';
+
+// Optional values are supported in `Options.CustomMonsters`.
+export type HuntEntry = {
+  id: string;
+  name: LocaleTextOrArray | string | string[];
+  rank?: Rank;
+  regex?: RegExp;
+  hp?: number;
+}
+
+export type HuntMap = {
+  [huntName: string]: HuntEntry;
 };"""
 
     writer.writeTypeScript(
         filename=os.path.join("resources", _OUTPUT_FILE),
         scriptname=os.path.basename(os.path.abspath(__file__)),
         header=header,
-        type="HuntData",
+        type="HuntMap",
         as_const=False,
         data=all_monsters,
     )

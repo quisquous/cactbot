@@ -70,6 +70,14 @@ class UserConfig {
   private savedConfig: SavedConfig = {};
   private userFileCallbacks: { [overlayName: string]: UserFileCallback } = {};
 
+  getDefaultBaseOptions(): BaseOptions {
+    return {
+      ParserLanguage: 'en',
+      ShortLocale: 'en',
+      DisplayLanguage: 'en',
+    };
+  }
+
   registerOptions(overlayName: string, optionTemplate: OptionsTemplate,
       userFileCallback?: UserFileCallback) {
     this.optionTemplates[overlayName] = optionTemplate;
@@ -309,7 +317,8 @@ class UserConfig {
         // This is a bit awkward to handle skin settings here, but
         // doing it after user config files and before user css files
         // allows user css to override skin-specific css as well.
-        this.handleSkin(options.Skin);
+        if (options.Skin)
+          this.handleSkin(options.Skin);
 
         for (const cssFile of cssFiles) {
           printUserFile(`local user file: ${basePath}${cssFile}`);
