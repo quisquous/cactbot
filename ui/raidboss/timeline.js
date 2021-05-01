@@ -65,8 +65,8 @@ const activeText = {
 function computeBackgroundColorFrom(element, classList) {
   const div = document.createElement('div');
   const classes = classList.split('.');
-  for (const c of classes)
-    div.classList.add(c);
+  for (const cls of classes)
+    div.classList.add(cls);
   element.appendChild(div);
   const color = window.getComputedStyle(div).backgroundColor;
   element.removeChild(div);
@@ -255,86 +255,86 @@ export class Timeline {
         continue;
       }
       const parsedLine = match['groups'];
-      if (parsedLine.text && parsedLine.time && parsedLine.name) {
-        line = line.replace(parsedLine.text, '').trim();
-        // There can be # in the ability name, but probably not in the regex.
-        line = line.replace(regexes.commentLine, '').trim();
+      if (!parsedLine.text || !parsedLine.time || !parsedLine.name)
+        continue;
+      line = line.replace(parsedLine.text, '').trim();
+      // There can be # in the ability name, but probably not in the regex.
+      line = line.replace(regexes.commentLine, '').trim();
 
-        const seconds = parseFloat(parsedLine.time);
-        const e = {
-          id: uniqueid++,
-          time: seconds,
-          // The original ability name in the timeline.  Used for hideall, infotext, etc.
-          name: parsedLine.name,
-          // The text to display.  Not used for any logic.
-          text: this.GetReplacedText(parsedLine.name),
-          activeTime: 0,
-          lineNumber: lineNumber,
-        };
-        if (line) {
-          let commandMatch = regexes.durationCommand.exec(line);
-          if (commandMatch && commandMatch['groups']) {
-            const durationCommand = commandMatch['groups'];
-            if (durationCommand.text && durationCommand.seconds) {
-              line = line.replace(durationCommand.text, '').trim();
-              e.duration = parseFloat(durationCommand.seconds);
-            }
-          }
-
-          commandMatch = regexes.syncCommand.exec(line);
-          if (commandMatch && commandMatch['groups']) {
-            const syncCommand = commandMatch['groups'];
-            if (syncCommand.text && syncCommand.regex) {
-              line = line.replace(syncCommand.text, '').trim();
-              const sync = {
-                id: uniqueid,
-                origRegexStr: syncCommand.regex,
-                regex: Regexes.parse(this.GetReplacedSync(syncCommand.regex)),
-                start: seconds - 2.5,
-                end: seconds + 2.5,
-                time: seconds,
-                lineNumber: lineNumber,
-              };
-              if (syncCommand.args) {
-                let argMatch = regexes.windowCommand.exec(syncCommand.args);
-                if (argMatch && argMatch['groups']) {
-                  const windowCommand = argMatch['groups'];
-                  if (windowCommand.text && windowCommand.end) {
-                    line = line.replace(windowCommand.text, '').trim();
-                    if (windowCommand.start) {
-                      sync.start = seconds - parseFloat(windowCommand.start);
-                      sync.end = seconds + parseFloat(windowCommand.end);
-                    } else {
-                      sync.start = seconds - (parseFloat(windowCommand.end) / 2);
-                      sync.end = seconds + (parseFloat(windowCommand.end) / 2);
-                    }
-                  }
-                }
-                argMatch = regexes.jumpCommand.exec(syncCommand.args);
-                if (argMatch && argMatch['groups']) {
-                  const jumpCommand = argMatch['groups'];
-                  if (jumpCommand.text && jumpCommand.seconds) {
-                    line = line.replace(jumpCommand.text, '').trim();
-                    sync.jump = parseFloat(jumpCommand.seconds);
-                  }
-                }
-              }
-              this.syncStarts.push(sync);
-              this.syncEnds.push(sync);
-            }
-          }
+      const seconds = parseFloat(parsedLine.time);
+      const e = {
+        id: uniqueid++,
+        time: seconds,
+        // The original ability name in the timeline.  Used for hideall, infotext, etc.
+        name: parsedLine.name,
+        // The text to display.  Not used for any logic.
+        text: this.GetReplacedText(parsedLine.name),
+        activeTime: 0,
+        lineNumber: lineNumber,
+      };
+      if (line) {
+        let commandMatch = regexes.durationCommand.exec(line);
+        if (commandMatch && commandMatch['groups']) {
+          const durationCommand = commandMatch['groups'];
+          if (!durationCommand.text || !durationCommand.seconds)
+            continue;
+          line = line.replace(durationCommand.text, '').trim();
+          e.duration = parseFloat(durationCommand.seconds);
         }
-        // If there's text left that isn't a comment then we didn't parse that text so report it.
-        if (line && !regexes.comment.exec(line)) {
-          console.log('Unknown content \'' + line + '\' in timeline: ' + originalLine);
-          this.errors.push({
+
+        commandMatch = regexes.syncCommand.exec(line);
+        if (commandMatch && commandMatch['groups']) {
+          const syncCommand = commandMatch['groups'];
+          if (!syncCommand.text || !syncCommand.regex)
+            continue;
+          line = line.replace(syncCommand.text, '').trim();
+          const sync = {
+            id: uniqueid,
+            origRegexStr: syncCommand.regex,
+            regex: Regexes.parse(this.GetReplacedSync(syncCommand.regex)),
+            start: seconds - 2.5,
+            end: seconds + 2.5,
+            time: seconds,
             lineNumber: lineNumber,
-            line: originalLine,
-            error: 'Extra text',
-          });
-        } else {
-          this.events.push(e);
+          };
+          if (syncCommand.args) {
+            let argMatch = regexes.windowCommand.exec(syncCommand.args);
+            if (argMatch && argMatch['groups']) {
+              const windowCommand = argMatch['groups'];
+              if (!windowCommand.text || !windowCommand.end)
+                continue;
+              line = line.replace(windowCommand.text, '').trim();
+              if (windowCommand.start) {
+                sync.start = seconds - parseFloat(windowCommand.start);
+                sync.end = seconds + parseFloat(windowCommand.end);
+              } else {
+                sync.start = seconds - (parseFloat(windowCommand.end) / 2);
+                sync.end = seconds + (parseFloat(windowCommand.end) / 2);
+              }
+            }
+            argMatch = regexes.jumpCommand.exec(syncCommand.args);
+            if (argMatch && argMatch['groups']) {
+              const jumpCommand = argMatch['groups'];
+              if (!jumpCommand.text || !jumpCommand.seconds)
+                continue;
+              line = line.replace(jumpCommand.text, '').trim();
+              sync.jump = parseFloat(jumpCommand.seconds);
+            }
+          }
+          this.syncStarts.push(sync);
+          this.syncEnds.push(sync);
         }
+      }
+      // If there's text left that isn't a comment then we didn't parse that text so report it.
+      if (line && !regexes.comment.exec(line)) {
+        console.log('Unknown content \'' + line + '\' in timeline: ' + originalLine);
+        this.errors.push({
+          lineNumber: lineNumber,
+          line: originalLine,
+          error: 'Extra text',
+        });
+      } else {
+        this.events.push(e);
       }
     }
 
@@ -597,18 +597,18 @@ export class Timeline {
       if (t.time > fightNow)
         break;
       if (t.type === 'info') {
-        if (this.showInfoTextCallback && t.text)
+        if (this.showInfoTextCallback)
           this.showInfoTextCallback(t.text);
       } else if (t.type === 'alert') {
-        if (this.showAlertTextCallback && t.text)
+        if (this.showAlertTextCallback)
           this.showAlertTextCallback(t.text);
       } else if (t.type === 'alarm') {
-        if (this.showAlarmTextCallback && t.text)
+        if (this.showAlarmTextCallback)
           this.showAlarmTextCallback(t.text);
       } else if (t.type === 'tts') {
-        if (this.speakTTSCallback && t.text)
+        if (this.speakTTSCallback)
           this.speakTTSCallback(t.text);
-      } else if (t.type === 'trigger' && t.trigger && t.matches) {
+      } else if (t.type === 'trigger') {
         if (this.triggerCallback)
           this.triggerCallback(t.trigger, t.matches);
       }
