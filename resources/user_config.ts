@@ -70,7 +70,7 @@ class UserConfig {
   private userFileCallbacks: { [overlayName: string]: UserFileCallback } = {};
 
   registerOptions(overlayName: string, optionTemplate: OptionsTemplate,
-      userFileCallback: UserFileCallback) {
+      userFileCallback?: UserFileCallback) {
     this.optionTemplates[overlayName] = optionTemplate;
     if (userFileCallback)
       this.userFileCallbacks[overlayName] = userFileCallback;
