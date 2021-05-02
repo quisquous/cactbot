@@ -78,6 +78,8 @@
 05-shb/trial/innocence-ex.js
 05-shb/trial/innocence.js
 05-shb/trial/levi-un.js
+05-shb/trial/ruby_weapon-ex.js
+05-shb/trial/ruby_weapon.js
 05-shb/trial/shiva-un.js
 05-shb/trial/titania.js
 05-shb/trial/titania-ex.js
