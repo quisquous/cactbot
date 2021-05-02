@@ -11,7 +11,7 @@ export const kMPUI2Rate = 0.45;
 export const kMPUI3Rate = 0.60;
 export const kMPTickInterval = 3.0;
 
-export const kWellFedContentTypes = [
+export const kWellFedContentTypes: number[] = [
   ContentType.Dungeons,
   ContentType.Trials,
   ContentType.Raids,

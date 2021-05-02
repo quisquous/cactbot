@@ -1,5 +1,7 @@
 import { Job } from '../../types/job';
 import { JobDetail, EventMap } from '../../types/event';
+import { BaseRegExp, Matches } from '../../types/trigger';
+import { GainsEffectParams } from '../../resources/netregexes';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
 
 import EffectId from '../../resources/effect_id';
@@ -10,7 +12,7 @@ import TimerBar from '../../resources/timerbar';
 import TimerBox from '../../resources/timerbox';
 import UserConfig from '../../resources/user_config';
 import Util from '../../resources/util';
-import WidgetList from '../../resources/widgetlist';
+import WidgetList from '../../resources/widget_list';
 import ZoneInfo from '../../resources/zone_info';
 import ZoneId from '../../resources/zone_id';
 
@@ -23,7 +25,6 @@ import { getSetup } from './components/index';
 
 import './jobs_config';
 import '../../resources/timericon';
-import { Matches } from '../../types/trigger';
 
 // See user/jobs-example.js for documentation.
 const Options: IInitOptions = {
@@ -233,7 +234,9 @@ export class Bars {
     this.lastAttackedDotTarget = undefined;
     this.dotTarget = [];
 
-    this.gainEffectFuncMap[EffectId.WellFed] = (id: string, matches: Matches<RegExp>) => {
+    this.gainEffectFuncMap[EffectId.WellFed] = (
+        id: string, matches: Matches<BaseRegExp<GainsEffectParams>>,
+    ) => {
       const seconds = parseFloat(matches?.duration ?? '0');
       const now = Date.now(); // This is in ms.
       this.foodBuffExpiresTimeMs = now + (seconds * 1000);
@@ -773,7 +776,7 @@ export class Bars {
     }
   }
 
-  _onPartyWipe(e: Parameters<EventMap['onPartyWipe']>[0]): void {
+  _onPartyWipe(_e: Parameters<EventMap['onPartyWipe']>[0]): void {
     // TODO: add reset for job-specific ui
     if (this.buffTracker)
       this.buffTracker.clear();
@@ -793,7 +796,7 @@ export class Bars {
   }
 
   _onChangeZone(e: Parameters<EventMap['ChangeZone']>[0]): void {
-    const zoneInfo = ZoneInfo[e.zoneID as keyof typeof ZoneInfo];
+    const zoneInfo = ZoneInfo[e.zoneID];
     this.contentType = zoneInfo?.contentType ?? 0;
     this.dotTarget = [];
 

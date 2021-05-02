@@ -1,3 +1,6 @@
+import { Bars } from '../jobs';
+import { Job } from 'types/job';
+
 import { setup as setupPld } from './pld';
 import { setup as setupWar } from './war';
 import { setup as setupDrk } from './drk';
@@ -17,7 +20,9 @@ import { setup as setupSmn } from './smn';
 import { setup as setupRdm } from './rdm';
 import { setup as setupBlu } from './blu';
 
-export function getSetup(job) {
+type SetupFunc = (bar: Bars) => void;
+
+export const getSetup = (job: Job): SetupFunc | undefined => {
   return {
     'PLD': setupPld,
     'WAR': setupWar,
@@ -37,5 +42,5 @@ export function getSetup(job) {
     'SMN': setupSmn,
     'RDM': setupRdm,
     'BLU': setupBlu,
-  }[job.toUpperCase()];
-}
+  }[job.toUpperCase()] as SetupFunc;
+};

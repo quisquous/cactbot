@@ -1,8 +1,8 @@
-import { Option as BaseOption } from '../../types/data';
+import { BaseOptions } from '../../types/data';
 import { Job } from '../../types/job';
 import { BuffInfo } from './buff_tracker';
 
-export interface IDefaultOptions {
+export interface IDefaultOptions extends BaseOptions {
   JustBuffTracker: boolean;
   LowerOpacityOutOfCombat: boolean;
   OpacityOutOfCombat: number;
@@ -43,6 +43,6 @@ export interface IInitOptions {
   BlmLowMPThreshold: number;
 }
 
-export type IOptions = BaseOption & IDefaultOptions & IInitOptions;
+export type IOptions = IDefaultOptions & IInitOptions;
 
 export type JobFunc = (id: string, matches: Matches) => void;
