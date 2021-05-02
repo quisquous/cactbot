@@ -116,16 +116,17 @@ export class Timeline {
     for (const r of this.replacements) {
       if (r.locale && r.locale !== replaceLang)
         continue;
-      if (!r[replaceKey])
+      const replacement = r[replaceKey];
+      if (!replacement)
         continue;
-      for (const [key, value] of Object.entries(r[replaceKey]))
+      for (const [key, value] of Object.entries(replacement))
         text = text.replace(Regexes.parse(key), value);
     }
     // Common Replacements
-    const replacement = commonReplacement[replaceKey];
-    if (!replacement)
+    const commonReplacement = commonReplacement[replaceKey];
+    if (!commonReplacement)
       return text;
-    for (const [key, value] of Object.entries(replacement)) {
+    for (const [key, value] of Object.entries(commonReplacement)) {
       const repl = value[replaceLang];
       if (!repl)
         continue;
