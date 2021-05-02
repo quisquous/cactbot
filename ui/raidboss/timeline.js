@@ -263,7 +263,8 @@ export class Timeline {
         continue;
       }
       const parsedLine = match['groups'];
-      if (!parsedLine.text || !parsedLine.time || !parsedLine.name)
+      // Technically the name can be empty
+      if (!parsedLine.text || !parsedLine.time || parsedLine.name === undefined)
         notReached();
       line = line.replace(parsedLine.text, '').trim();
       // There can be # in the ability name, but probably not in the regex.
