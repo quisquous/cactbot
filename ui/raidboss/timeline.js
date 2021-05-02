@@ -73,6 +73,11 @@ function computeBackgroundColorFrom(element, classList) {
   return color;
 }
 
+// TODO: Move to a centralized place
+const notReached = () => {
+  throw new Error('This code shouldn\'t be reached');
+};
+
 // This class reads the format of ACT Timeline plugin, described in
 // docs/TimelineGuide.md
 export class Timeline {
@@ -213,7 +218,7 @@ export class Timeline {
       if (match && match['groups']) {
         const tts = match['groups'];
         if (!tts.id || !tts.beforeSeconds || !tts.command)
-          continue;
+          notReached();
         // TODO: Support alert sounds?
         if (tts.command === 'sound')
           continue;
@@ -237,7 +242,7 @@ export class Timeline {
       if (match && match['groups']) {
         const popupText = match['groups'];
         if (!popupText.type || !popupText.id || !popupText.beforeSeconds)
-          continue;
+          notReached();
         const popupTextItems = texts[popupText.id] || [];
         texts[popupText.id] = popupTextItems;
         popupTextItems.push({
@@ -259,7 +264,7 @@ export class Timeline {
       }
       const parsedLine = match['groups'];
       if (!parsedLine.text || !parsedLine.time || !parsedLine.name)
-        continue;
+        notReached();
       line = line.replace(parsedLine.text, '').trim();
       // There can be # in the ability name, but probably not in the regex.
       line = line.replace(regexes.commentLine, '').trim();
@@ -280,7 +285,7 @@ export class Timeline {
         if (commandMatch && commandMatch['groups']) {
           const durationCommand = commandMatch['groups'];
           if (!durationCommand.text || !durationCommand.seconds)
-            continue;
+            notReached();
           line = line.replace(durationCommand.text, '').trim();
           e.duration = parseFloat(durationCommand.seconds);
         }
@@ -289,7 +294,7 @@ export class Timeline {
         if (commandMatch && commandMatch['groups']) {
           const syncCommand = commandMatch['groups'];
           if (!syncCommand.text || !syncCommand.regex)
-            continue;
+            notReached();
           line = line.replace(syncCommand.text, '').trim();
           const sync = {
             id: uniqueid,
@@ -305,7 +310,7 @@ export class Timeline {
             if (argMatch && argMatch['groups']) {
               const windowCommand = argMatch['groups'];
               if (!windowCommand.text || !windowCommand.end)
-                continue;
+                notReached();
               line = line.replace(windowCommand.text, '').trim();
               if (windowCommand.start) {
                 sync.start = seconds - parseFloat(windowCommand.start);
@@ -319,7 +324,7 @@ export class Timeline {
             if (argMatch && argMatch['groups']) {
               const jumpCommand = argMatch['groups'];
               if (!jumpCommand.text || !jumpCommand.seconds)
-                continue;
+                notReached();
               line = line.replace(jumpCommand.text, '').trim();
               sync.jump = parseFloat(jumpCommand.seconds);
             }
