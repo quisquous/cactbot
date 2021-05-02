@@ -52,7 +52,7 @@ body > div {
 }
 
 .emoji {
-  justify-self: center;
+  text-align: center;
 }
 
 #expansion-grid {
