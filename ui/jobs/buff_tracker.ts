@@ -1,9 +1,10 @@
-import { Matches } from '../../types/trigger';
-import WidgetList from '../../resources/widgetlist';
+import { BaseRegExp, Matches } from '../../types/trigger';
+import WidgetList from '../../resources/widget_list';
 import EffectId from '../../resources/effect_id';
 import { kAbility } from './constants';
 import { makeAuraTimerIcon } from './utils';
 import { IOptions } from './types';
+import { AbilityParams, GainsEffectParams, LosesEffectParams } from 'resources/netregexes';
 
 export interface BuffInfo {
   name?: string;
@@ -557,49 +558,55 @@ export class BuffTracker {
     // }
   }
 
-  onUseAbility(id: string, matches: Matches): void {
+  onUseAbility(id: string, matches: Matches<BaseRegExp<AbilityParams>>): void {
     const buffs = this.gainAbilityMap[id];
     if (!buffs)
       return;
 
     for (const b of buffs)
-      this.onBigBuff(b.name ?? '', b.durationSeconds ?? 0, b, matches.source ?? '');
+      this.onBigBuff(b.name ?? '', b.durationSeconds ?? 0, b, matches?.source ?? '');
   }
 
-  onGainEffect(buffs: BuffInfo[] | undefined, matches: Matches): void {
+  onGainEffect(
+      buffs: BuffInfo[] | undefined,
+      matches: Matches<BaseRegExp<GainsEffectParams>>,
+  ): void {
     if (!buffs)
       return;
     for (const b of buffs) {
       let seconds = -1;
       if (b.useEffectDuration)
-        seconds = parseFloat(matches.duration ?? '0');
+        seconds = parseFloat(matches?.duration ?? '0');
       else if ('durationSeconds' in b)
         seconds = b.durationSeconds ?? seconds;
 
-      this.onBigBuff(b.name ?? '', seconds, b, matches.source ?? '');
+      this.onBigBuff(b.name ?? '', seconds, b, matches?.source ?? '');
     }
   }
 
-  onLoseEffect(buffs: BuffInfo[] | undefined, _matches: Matches): void {
+  onLoseEffect(
+      buffs: BuffInfo[] | undefined,
+      _matches: Matches<BaseRegExp<LosesEffectParams>>,
+  ): void {
     if (!buffs)
       return;
     for (const b of buffs)
       this.onLoseBigBuff(b.name ?? '');
   }
 
-  onYouGainEffect(name: string, matches: Matches): void {
+  onYouGainEffect(name: string, matches: Matches<BaseRegExp<GainsEffectParams>>): void {
     this.onGainEffect(this.gainEffectMap[name], matches);
   }
 
-  onYouLoseEffect(name: string, matches: Matches): void {
+  onYouLoseEffect(name: string, matches: Matches<BaseRegExp<LosesEffectParams>>): void {
     this.onLoseEffect(this.loseEffectMap[name], matches);
   }
 
-  onMobGainsEffect(name: string, matches: Matches): void {
+  onMobGainsEffect(name: string, matches: Matches<BaseRegExp<GainsEffectParams>>): void {
     this.onGainEffect(this.mobGainsEffectMap[name], matches);
   }
 
-  onMobLosesEffect(name: string, matches: Matches): void {
+  onMobLosesEffect(name: string, matches: Matches<BaseRegExp<LosesEffectParams>>): void {
     this.onLoseEffect(this.mobLosesEffectMap[name], matches);
   }
 
