@@ -47,7 +47,7 @@ export default {
           de: 'Geh zu einem Blitzableiter',
           fr: 'Allez sur un paratonnerre',
           ja: '塔に円範囲を転嫁',
-          cn: '蹭一下没AoE的塔',
+          cn: '蹭一下无AoE的塔',
         },
       },
     },
