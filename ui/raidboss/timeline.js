@@ -117,7 +117,10 @@ export class Timeline {
         text = text.replace(Regexes.parse(key), value);
     }
     // Common Replacements
-    for (const [key, value] of Object.entries(commonReplacement[replaceKey])) {
+    const replacement = commonReplacement[replaceKey];
+    if (!replacement)
+      return text;
+    for (const [key, value] of Object.entries(replacement)) {
       const repl = value[replaceLang];
       if (!repl)
         continue;
@@ -743,7 +746,7 @@ export class TimelineUI {
 
     this.root = document.getElementById('timeline-container');
     if (!this.root)
-      return;
+      throw new Error('can\'t find timeline-container');
 
     this.root.classList.add('lang-' + this.lang);
     if (this.options.Skin)
