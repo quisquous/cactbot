@@ -5,7 +5,7 @@ import csv
 import csv_util
 import os
 
-_OUTPUT_FILE = "pet_names.js"
+_OUTPUT_FILE = "pet_names.ts"
 
 
 if __name__ == "__main__":
@@ -21,9 +21,16 @@ if __name__ == "__main__":
     tables = {lang: [name for name in table.keys() if name] for lang, table in tables.items()}
 
     writer = coinach.CoinachWriter(verbose=True)
-    writer.write(
-        os.path.join("resources", _OUTPUT_FILE),
-        os.path.basename(os.path.abspath(__file__)),
-        "PetNamesByLang",
-        tables,
+    header = """import { Lang } from '../types/global';
+
+type PetData = {
+  [name in Lang]: readonly string[];
+};"""
+    writer.writeTypeScript(
+        filename=os.path.join("resources", _OUTPUT_FILE),
+        scriptname=os.path.basename(os.path.abspath(__file__)),
+        header=header,
+        type="PetData",
+        as_const=False,
+        data=tables,
     )

@@ -6,25 +6,25 @@ export default class ResourceBar extends HTMLElement {
   leftTextElement: HTMLDivElement;
   centerTextElement: HTMLDivElement;
   rightTextElement: HTMLDivElement;
-  kBackgroundOpacity: number;
-  kBorderSize: number;
-  kTextLeftRightEdgePadding: number;
-  kTextTopBottomEdgePadding: number;
-  _value: number;
-  _maxValue: number;
-  _width: number;
-  _height: number;
-  _bg: string;
-  _fg: string;
-  _extraColor: string;
-  _extraValue: number;
-  _scale: number;
-  _towardRight: boolean;
-  _fill: boolean;
-  _leftText: string;
-  _centerText: string;
-  _rightText: string;
-  _connected: boolean;
+  private kBackgroundOpacity: number;
+  private kBorderSize: number;
+  private kTextLeftRightEdgePadding: number;
+  private kTextTopBottomEdgePadding: number;
+  private _value: number;
+  private _maxValue: number;
+  private _width: number;
+  private _height: number;
+  private _bg: string;
+  private _fg: string;
+  private _extraColor: string;
+  private _extraValue: number;
+  private _scale: number;
+  private _towardRight: boolean;
+  private _fill: boolean;
+  private _leftText: string;
+  private _centerText: string;
+  private _rightText: string;
+  private _connected: boolean;
 
   static get observedAttributes(): string[] {
     return ['value', 'maxvalue', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'toward', 'stylefill', 'extravalue', 'extracolor'];
@@ -32,7 +32,10 @@ export default class ResourceBar extends HTMLElement {
 
   // All visual dimensions are scaled by this.
   set scale(s: string | null) {
-    this.setAttribute('scale', s ?? '');
+    if (s === null)
+      this.removeAttribute('scale');
+    else
+      this.setAttribute('scale', s);
   }
   get scale(): string | null {
     return this.getAttribute('scale');
@@ -40,22 +43,31 @@ export default class ResourceBar extends HTMLElement {
 
   // Background color.
   set bg(c: string | null) {
-    this.setAttribute('bg', c ?? '');
+    if (c === null)
+      this.removeAttribute('bg');
+    else
+      this.setAttribute('bg', c);
   }
   get bg(): string | null {
     return this.getAttribute('bg');
   }
 
-  set extraColor(c: string | null) {
-    this.setAttribute('extraColor', c ?? '');
+  set extracolor(c: string | null) {
+    if (c === null)
+      this.removeAttribute('extracolor');
+    else
+      this.setAttribute('extracolor', c);
   }
-  get extraColor(): string | null {
+  get extracolor(): string | null {
     return this.getAttribute('extraColor');
   }
 
   // Foreground color.
   set fg(c: string | null) {
-    this.setAttribute('fg', c ?? '');
+    if (c === null)
+      this.removeAttribute('fg');
+    else
+      this.setAttribute('fg', c);
   }
   get fg(): string | null {
     return this.getAttribute('fg');
@@ -63,7 +75,10 @@ export default class ResourceBar extends HTMLElement {
 
   // The width of the bar, in pixels (before |scale|).
   set width(w: string | null) {
-    this.setAttribute('width', w ?? '');
+    if (w === null)
+      this.removeAttribute('width');
+    else
+      this.setAttribute('width', w);
   }
   get width(): string | null {
     return this.getAttribute('width');
@@ -71,7 +86,10 @@ export default class ResourceBar extends HTMLElement {
 
   // The height of the bar, in pixels (before |scale|).
   set height(w: string | null) {
-    this.setAttribute('height', w ?? '');
+    if (w === null)
+      this.removeAttribute('height');
+    else
+      this.setAttribute('height', w);
   }
   get height(): string | null {
     return this.getAttribute('height');
@@ -79,7 +97,10 @@ export default class ResourceBar extends HTMLElement {
 
   // A value between 0 and |maxvalue|, indicating the amount of progress.
   set value(s: string | null) {
-    this.setAttribute('value', s ?? '');
+    if (s === null)
+      this.removeAttribute('value');
+    else
+      this.setAttribute('value', s);
   }
   get value(): string | null {
     return this.getAttribute('value');
@@ -87,16 +108,22 @@ export default class ResourceBar extends HTMLElement {
 
   // A value between 0 and |maxvalue|, indicating the amount of "extra"
   // resource that exists.  Usually used for shields on a health bar.
-  set extraValue(s: string | null) {
-    this.setAttribute('extravalue', s ?? '');
+  set extravalue(s: string | null) {
+    if (s === null)
+      this.removeAttribute('extravalue');
+    else
+      this.setAttribute('extravalue', s);
   }
-  get extraValue(): string | null {
+  get extravalue(): string | null {
     return this.getAttribute('extravalue');
   }
 
   // The maximum value where when reached the progress bar will show 100%.
   set maxvalue(s: string | null) {
-    this.setAttribute('maxvalue', s ?? '');
+    if (s === null)
+      this.removeAttribute('maxvalue');
+    else
+      this.setAttribute('maxvalue', s);
   }
   get maxvalue(): string | null {
     return this.getAttribute('maxvalue');
@@ -105,7 +132,10 @@ export default class ResourceBar extends HTMLElement {
   // If "right" then fills left-to-right (the default). If "left" then
   // fills right-to-left.
   set toward(t: string | null) {
-    this.setAttribute('toward', t ?? '');
+    if (t === null)
+      this.removeAttribute('toward');
+    else
+      this.setAttribute('toward', t);
   }
   get toward(): string | null {
     return this.getAttribute('toward');
@@ -114,7 +144,10 @@ export default class ResourceBar extends HTMLElement {
   // If "fill" then the progress goes empty-to-full, if "empty" then the
   // progress bar starts full and goes to empty.
   set stylefill(s: 'empty' | 'full' | null) {
-    this.setAttribute('stylefill', s ?? 'empty');
+    if (s === null)
+      this.removeAttribute('stylefill');
+    else
+      this.setAttribute('stylefill', s);
   }
   get stylefill(): 'empty' | 'full' | null {
     return this.getAttribute('stylefill') as 'empty' | 'full' | null;
@@ -128,19 +161,28 @@ export default class ResourceBar extends HTMLElement {
   // "percent" - shows the percentage.
   // anything else - the given text is shown literally.
   set lefttext(p: string | null) {
-    this.setAttribute('lefttext', p ?? '');
+    if (p === null)
+      this.removeAttribute('lefttext');
+    else
+      this.setAttribute('lefttext', p);
   }
   get lefttext(): string | null {
     return this.getAttribute('lefttext');
   }
   set righttext(p: string | null) {
-    this.setAttribute('righttext', p ?? '');
+    if (p === null)
+      this.removeAttribute('righttext');
+    else
+      this.setAttribute('righttext', p);
   }
   get righttext(): string | null {
     return this.getAttribute('righttext');
   }
   set centertext(p: string | null) {
-    this.setAttribute('centertext', p ?? '');
+    if (p === null)
+      this.removeAttribute('centertext');
+    else
+      this.setAttribute('centertext', p);
   }
   get centertext(): string | null {
     return this.getAttribute('centertext');
@@ -185,8 +227,8 @@ export default class ResourceBar extends HTMLElement {
 
     if (this.value !== null) this._value = Math.max(parseFloat(this.value), 0);
     if (this.maxvalue !== null) this._maxValue = Math.max(parseFloat(this.maxvalue), 0);
-    if (this.extraValue !== null) this._extraValue = Math.max(0, parseInt(this.extraValue));
-    if (this.extraColor !== null) this._extraColor = this.extraColor;
+    if (this.extravalue !== null) this._extraValue = Math.max(0, parseInt(this.extravalue));
+    if (this.extracolor !== null) this._extraColor = this.extracolor;
     if (this.width !== null) this._width = Math.max(parseInt(this.width), 1);
     if (this.height !== null) this._height = Math.max(parseInt(this.height), 1);
     if (this.bg !== null) this._bg = this.bg;

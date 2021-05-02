@@ -1,6 +1,7 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -144,31 +145,49 @@ export default {
           en: 'Front',
           de: 'Vorne',
           fr: 'Devant',
+          ja: '前',
+          cn: '上',
+          ko: '앞',
         },
         east: {
           en: 'Right',
           de: 'Rechts',
           fr: 'À droite',
+          ja: '右',
+          cn: '右',
+          ko: '오른쪽',
         },
         south: {
           en: 'Back',
           de: 'Hinten',
           fr: 'Derrière',
+          ja: '後ろ',
+          cn: '下',
+          ko: '뒤',
         },
         west: {
           en: 'Left',
           de: 'Links',
           fr: 'À gauche',
+          ja: '左',
+          cn: '左',
+          ko: '왼쪽',
         },
         double: {
           en: '${dir1} > ${dir2}',
           de: '${dir1} > ${dir2}',
           fr: '${dir1} > ${dir2}',
+          ja: '${dir1} > ${dir2}',
+          cn: '${dir1} > ${dir2}',
+          ko: '${dir1} > ${dir2}',
         },
         quadruple: {
           en: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
           de: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
           fr: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
+          ja: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
+          cn: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
+          ko: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
         },
       },
     },
@@ -250,7 +269,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AA3' }),
       preRun: (data) => delete data.ironSplitter,
       promise: async (data, matches) => {
-        const seekerData = await window.callOverlayHandler({
+        const seekerData = await callOverlayHandler({
           call: 'getCombatants',
           ids: [parseInt(matches.sourceId, 16)],
         });
@@ -295,11 +314,17 @@ export default {
           en: 'Blue Stone',
           de: 'Blauer Stein',
           fr: 'Pierre bleue',
+          ja: '青い床へ',
+          cn: '去蓝色',
+          ko: '파랑 장판으로',
         },
         goWhite: {
           en: 'White Sand',
           de: 'Weißer Sand',
           fr: 'Sable blanc',
+          ja: '白い床へ',
+          cn: '去白色',
+          ko: '모래 장판으로',
         },
       },
     },
@@ -347,6 +372,9 @@ export default {
           en: 'Look Away From Orb',
           de: 'Schau weg vom Orb',
           fr: 'Ne regardez pas l\'orbe',
+          ja: '玉に背を向ける',
+          cn: '背对白球',
+          ko: '구슬 에게서 뒤돌기',
         },
       },
     },
@@ -364,6 +392,9 @@ export default {
           en: 'Away From Purple',
           de: 'Schau weg von Lila',
           fr: 'Éloignez-vous du violet',
+          ja: '花に避ける',
+          cn: '远离紫花',
+          ko: '보라 장판에게서 떨어지기',
         },
       },
     },
@@ -430,6 +461,7 @@ export default {
           fr: 'Poussée (Évitez les adds)',
           ja: 'ノックバック (雑魚に触らない)',
           cn: '击退 (避开小怪)',
+          ko: '넉백 (쫄 피하기)',
         },
       },
     },
@@ -481,6 +513,7 @@ export default {
           return output.followUntethered();
         return output.awayFromTethered();
       },
+      run: (data) => data.seenSecretsRevealed = true,
       outputStrings: {
         awayFromTethered: {
           en: 'Away from tethered adds',
@@ -499,7 +532,6 @@ export default {
           ko: '선 연결되지 않은 쫄 따라가기',
         },
       },
-      run: (data) => data.seenSecretsRevealed = true,
     },
     {
       id: 'Delubrum Guard Rapid Sever Soldier',
@@ -542,6 +574,7 @@ export default {
           fr: 'Évitez les rebonds de laser',
           ja: 'レーザーを避ける',
           cn: '躲避激光',
+          ko: '레이저 피하기',
         },
       },
     },
@@ -561,6 +594,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrière De La Reine', id: '57FF', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ウォリアー', id: '57FF', capture: false }),
       alertText: (data, _, output) => output.text(),
+      run: (data) => data.reversalOfForces = true,
       outputStrings: {
         text: {
           en: 'Stand On Small Bomb',
@@ -571,7 +605,6 @@ export default {
           ko: '작은 폭탄 위에 서기',
         },
       },
-      run: (data) => data.reversalOfForces = true,
     },
     {
       id: 'Delubrum Guard Above Board',
@@ -777,21 +810,33 @@ export default {
           en: 'Go to +2 Heat Meteor',
           de: 'Geh zum +2 Heiß Meteor',
           fr: 'Allez au météore de chaleur +2',
+          ja: '炎属性+2を踏む',
+          cn: '踩火+2',
+          ko: '+2 불 메테오쪽으로',
         },
         plusOne: {
           en: 'Go to +1 Heat Meteor',
           de: 'Geh zum +1 Heiß Meteor',
           fr: 'Allez au météore de chaleur +1',
+          ja: '炎属性+1を踏む',
+          cn: '踩火+1',
+          ko: '+1 불 메테오쪽으로',
         },
         minusOne: {
           en: 'Go to -1 Cold Meteor',
           de: 'Geh zum -1 Kalt Meteor',
           fr: 'Allez au météore de froid -1',
+          ja: '氷属性-1を踏む',
+          cn: '踩冰-1',
+          ko: '-1 얼음 메테오쪽으로',
         },
         minusTwo: {
           en: 'Go to -2 Cold Meteor',
           de: 'Geh zum -2 Kalt Meteor',
           fr: 'Allez au météore de froid -2',
+          ja: '氷属性-2を踏む',
+          cn: '踩冰-2',
+          ko: '-2 얼음 메테오쪽으로',
         },
         unknownTemperature: {
           en: 'Stand In Opposite Meteor',
@@ -830,27 +875,41 @@ export default {
           en: 'Follow +2 Heat Arrow',
           de: 'Folge dem +2 Heiß Pfeilen',
           fr: 'Suivez la flèche de chaleur +2',
+          ja: '炎属性+2に従う',
+          cn: '接火+2',
+          ko: '+2 불 화살쪽으로',
         },
         plusOne: {
           en: 'Follow +1 Heat Arrow',
           de: 'Folge dem +1 Heiß Pfeilen',
           fr: 'Suivez la flèche de chaleur +1',
+          ja: '炎属性+1に従う',
+          cn: '接火+1',
+          ko: '+1 불 화살쪽으로',
         },
         minusOne: {
           en: 'Follow -1 Cold Arrow',
           de: 'Folge dem -1 Kalt Pfeilen',
           fr: 'Suivez la flèche de froid -1',
+          ja: '氷属性-1に従う',
+          cn: '接冰-1',
+          ko: '-1 얼음 화살쪽으로',
         },
         minusTwo: {
           en: 'Follow -2 Cold Arrow',
           de: 'Folge dem -2 Kalt Pfeilen',
           fr: 'Suivez la flèche de froid -2',
+          ja: '氷属性-2に従う',
+          cn: '接冰-2',
+          ko: '-2 얼음 화살쪽으로',
         },
         unknownTemperature: {
           en: 'Follow Opposite Arrow',
           de: 'Gehe in die entgegengesetzten Pfeile',
           fr: 'Suivez la flèche de l\'élément opposé',
-          ja: '体温と逆の矢へ',
+          ja: '体温と逆のあみだに従う',
+          cn: '接相反温度的线',
+          ko: '반대쪽 화살 맞기',
         },
       },
     },
@@ -875,36 +934,57 @@ export default {
             en: 'Left',
             de: 'Links',
             fr: 'À gauche',
+            ja: '左',
+            cn: '左',
+            ko: '왼쪽',
           },
           right: {
             en: 'Right',
             de: 'Rechts',
             fr: 'À droite',
+            ja: '右',
+            cn: '右',
+            ko: '오른쪽',
           },
           plusTwo: {
             en: 'Be in ${side} Cleave (+2 Hot)',
             de: 'Sei im ${side} Cleave (+2 Heiß)',
             fr: 'Soyez du ${side} Cleave (+2 chaud)',
+            ja: '${side}側へ (炎属性+2)',
+            cn: '去${side}侧 (火+2)',
+            ko: '${side} 광역기 맞기 (+2 불속성)',
           },
           plusOne: {
             en: 'Be in ${side} Cleave (+1 Hot)',
             de: 'Sei im ${side} Cleave (+1 Heiß)',
             fr: 'Soyez du ${side} Cleave (+1 chaud)',
+            ja: '${side}側へ (炎属性+1)',
+            cn: '去${side}侧 (火+1)',
+            ko: '${side} 광역기 맞기 (+1 불속성)',
           },
           minusOne: {
             en: 'Be in ${side} Cleave (-1 Cold)',
             de: 'Sei im ${side} Cleave (-1 Kalt)',
             fr: 'Soyez du ${side} Cleave (-1 froid)',
+            ja: '${side}側へ (氷属性-1)',
+            cn: '去${side}侧 (冰-1)',
+            ko: '${side} 광역기 맞기 (-1 얼음속성)',
           },
           minusTwo: {
             en: 'Be in ${side} Cleave (-2 Cold)',
             de: 'Sei im ${side} Cleave (-2 Kalt)',
             fr: 'Soyez du ${side} Cleave (-2 froid)',
+            ja: '${side}側へ (氷属性-2)',
+            cn: '去${side}侧 (冰-2)',
+            ko: '${side} 광역기 맞기 (-2 얼음속성)',
           },
           avoid: {
             en: 'Go ${side} (avoid!)',
-            de: 'Go ${side} (avoid!)',
+            de: 'Gehe nach ${side} (ausweichen!)',
             fr: 'Allez à ${side} (évitez !)',
+            ja: '${side}側へ (避ける！)',
+            cn: '去${side}侧 (别吃顺劈！)',
+            ko: '${side}쪽으로 피하기!',
           },
         };
 
@@ -958,7 +1038,7 @@ export default {
       suppressSeconds: 10,
       promise: async (data, matches) => {
         const unseenIds = data.unseenIds;
-        const unseenData = await window.callOverlayHandler({
+        const unseenData = await callOverlayHandler({
           call: 'getCombatants',
           ids: unseenIds,
         });
@@ -1018,11 +1098,17 @@ export default {
           en: 'On Dark (E/W of center)',
           de: 'Auf Dunkel (O/W von der Mitte)',
           fr: 'Sur une foncée (E/O du centre)',
+          ja: '闇へ (東西)',
+          cn: '去黑色 (东西/左右)',
+          ko: '어두운 타일 (가운데 타일의 왼/오른쪽)',
         },
         bowLight: {
           en: 'On Light (diagonal from center)',
           de: 'Auf Licht (Diagonal von der Mitte)',
           fr: 'Sur une claire (diagonale du centre)',
+          ja: '光へ (斜め)',
+          cn: '去白色 (对角)',
+          ko: '밝은 타일 (가운데 타일의 대각선)',
         },
       },
     },
@@ -1120,7 +1206,7 @@ export default {
           fr: 'Éloignez-vous des intersections de ligne',
           ja: '十字から離れる',
           cn: '远离线的交点',
-          ko: '대각선에서 떨어지기',
+          ko: '선이 만나는 지점에서 떨어지기',
         },
       },
     },
@@ -1138,6 +1224,7 @@ export default {
           fr: 'Évitez les rebonds de laser',
           ja: 'レーザーを避ける',
           cn: '躲避激光',
+          ko: '레이저 피하기',
         },
       },
     },
@@ -1167,6 +1254,10 @@ export default {
           return output.getKnockedToSmallBomb();
         return output.getKnockedToLargeBomb();
       },
+      run: (data) => {
+        data.seenHeavensWrath = true;
+        delete data.reversalOfForces;
+      },
       outputStrings: {
         getKnockedTowardsMiddle: {
           en: 'Get Knocked Towards Middle',
@@ -1174,7 +1265,7 @@ export default {
           fr: 'Faites-vous pousser vers le milieu',
           ja: '中へ吹き飛ばされる',
           cn: '击退到中间',
-          ko: '중앙으로 넉백 당하기',
+          ko: '중앙에서 넉백 당하기',
         },
         getKnockedToSmallBomb: {
           en: 'Get Knocked To Small Bomb',
@@ -1192,10 +1283,6 @@ export default {
           cn: '击退到大炸弹',
           ko: '큰 폭탄으로 넉백당하기',
         },
-      },
-      run: (data) => {
-        data.seenHeavensWrath = true;
-        delete data.reversalOfForces;
       },
     },
     {

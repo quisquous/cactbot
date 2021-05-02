@@ -42,7 +42,7 @@ export function setup(bars) {
     kAbility.DoubleTechnicalFinish,
     kAbility.SingleTechnicalFinish,
   ], () => {
-    // Avoid mutiple call in one TechnicalFinish.
+    // Avoid multiple call in one TechnicalFinish.
     if (technicalIsActive)
       return;
     elapsed = technicalStep.elapsed;

@@ -7,7 +7,7 @@ import { walkDirSync } from './file_utils';
 
 const parser = new ArgumentParser({
   addHelp: true,
-  description: 'Prints out a translated timeline, with annotatations on missing texts and syncs',
+  description: 'Prints out a translated timeline, with annotations on missing texts and syncs',
 });
 parser.addArgument(['-l', '--locale'], {
   required: true,
@@ -23,11 +23,11 @@ const rootDir = 'ui/raidboss/data';
 
 const findTriggersFile = (shortName) => {
   // strip extensions if provided.
-  shortName = shortName.replace(/\.(?:js|txt)$/, '');
+  shortName = shortName.replace(/\.(?:[jt]s|txt)$/, '');
 
   let found = undefined;
   walkDirSync(rootDir, (filename) => {
-    if (filename.endsWith(`${shortName}.js`))
+    if (filename.endsWith(`${shortName}.js`) || filename.endsWith(`${shortName}.ts`))
       found = filename;
   });
   return found;
@@ -43,7 +43,7 @@ const run = async (args) => {
     return;
   }
 
-  const timelineFile = triggersFile.replace(/\.js$/, '.txt');
+  const timelineFile = triggersFile.replace(/\.[jt]s$/, '.txt');
   if (!fs.existsSync(timelineFile)) {
     console.error(`Couldn\'t find '${timelineFile}', aborting.`);
     process.exit(-2);
@@ -61,11 +61,11 @@ const run = async (args) => {
     if (label === 'text')
       textErrors[lineNumber] = true;
     else if (label === 'sync')
-      syncErrors[linenumber] = true;
+      syncErrors[lineNumber] = true;
   });
 
   // TODO: this block is very duplicated with a number of other scripts.
-  const importPath = '../' + path.relative(process.cwd(), triggersFile).replace(/\\/g, '/');
+  const importPath = '../' + path.relative(process.cwd(), triggersFile).replace('.ts', '.js');
   const triggerSet = (await import(importPath)).default;
   const replacements = triggerSet.timelineReplace;
   const timelineText = fs.readFileSync(timelineFile).toString();

@@ -118,7 +118,7 @@ export default class TimerIcon extends HTMLElement {
   }
 
   // Sets the number of pixels to zoom the icon. The image will be
-  // grown by this amout and cropped to the widget.
+  // grown by this amount and cropped to the widget.
   set zoom(p: string | null) {
     if (p === null)
       this.removeAttribute('zoom');

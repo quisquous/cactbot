@@ -61,7 +61,7 @@ export function setup(bars) {
     fgColor: 'brd-color-song',
   });
   // Only with-DoT-target you last attacked will trigger bars timer.
-  // So it work not well in mutiple targets fight.
+  // So it work not well in multiple targets fight.
   bars.updateDotTimerFuncs.push(() => repertoireTimer.duration = 2.91666);
   const soulVoiceBox = bars.addResourceBox({
     classList: ['brd-color-soulvoice'],

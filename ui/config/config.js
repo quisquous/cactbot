@@ -170,7 +170,7 @@ const kDirectoryToCategory = {
 // TODO: use ZoneId to get this
 const fileNameToTitle = (filename) => {
   // Strip directory and extension.
-  const file = filename.replace(/^.*\//, '').replace('.js', '');
+  const file = filename.replace(/^.*\//, '').replace(/\.[jt]s/g, '');
   // Remove non-name characters (probably).
   const name = file.replace(/[_-]/g, ' ');
   // Capitalize the first letter of every word.
@@ -493,7 +493,7 @@ export default class CactbotConfigurator {
   processFiles(files, userTriggerSets) {
     const map = {};
     for (const filename in files) {
-      if (!filename.endsWith('.js'))
+      if (!filename.endsWith('.js') && !filename.endsWith('.ts'))
         continue;
 
       let prefixKey = '00-misc';
@@ -525,7 +525,7 @@ export default class CactbotConfigurator {
           title = this.translate(zoneInfo.name);
       }
 
-      const fileKey = filename.replace(/\//g, '-').replace(/.js$/, '');
+      const fileKey = filename.replace(/\//g, '-').replace(/.[jt]s$/, '');
       map[fileKey] = {
         filename: filename,
         fileKey: fileKey,

@@ -1,6 +1,7 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -83,6 +84,8 @@ export default {
           en: 'Get in for comets',
           de: 'Geh rein für Kometen',
           fr: 'Entrez pour les comètes',
+          ja: 'コメットを処理',
+          cn: '接陨石',
         },
       },
     },
@@ -103,6 +106,8 @@ export default {
           en: 'Big AOE + Bleed (#${num})',
           de: 'Große AoE + Blutung (#${num})',
           fr: 'Grosse AoE + Saignement (#${num})',
+          ja: '全体攻撃 + 継続ダメージ (#${num})',
+          cn: '高伤AoE + DoT (#${num})',
         },
       },
     },
@@ -346,11 +351,15 @@ export default {
           en: '${dir1} > ${dir2}',
           de: '${dir1} > ${dir2}',
           fr: '${dir1} > ${dir2}',
+          ja: '${dir1} > ${dir2}',
+          cn: '${dir1} > ${dir2}',
         },
         quadruple: {
           en: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
           de: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
           fr: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
+          ja: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
+          cn: '${dir1} > ${dir2} > ${dir3} > ${dir4}',
         },
       },
     },
@@ -382,6 +391,7 @@ export default {
           de: 'Geh in eine Intercardinale Himmelsrichtung vom Boss',
           fr: 'Allez en intercardinal du boss',
           ja: 'ボスの斜めへ',
+          cn: '去Boss的对角线方向',
         },
       },
     },
@@ -398,6 +408,8 @@ export default {
           en: 'Get Behind For Line Stack',
           de: 'Geh hinter den Boss für Linien-Stack',
           fr: 'Passez derrière pour le package en ligne',
+          ja: '後ろに直線頭割りを準備',
+          cn: '去后方，准备直线分摊',
         },
       },
     },
@@ -416,6 +428,7 @@ export default {
             de: 'Geteilter Tank Buster',
             fr: 'Partagez le Tank buster',
             ja: '頭割りタンクバスター',
+            cn: '分摊死刑',
           },
         };
 
@@ -437,6 +450,7 @@ export default {
           de: 'Solo Tank Cleave',
           fr: 'Tank cleave solo',
           ja: 'ソロタンクバスター',
+          cn: '单吃死刑顺劈',
         },
       },
     },
@@ -453,6 +467,7 @@ export default {
           de: 'Hinter den Barrikaden verstecken',
           fr: 'Cachez-vous derrière la barricade',
           ja: '柵の後ろに',
+          cn: '躲在栅栏后',
         },
       },
     },
@@ -469,6 +484,7 @@ export default {
           de: 'Rückstoß in die Barrikaden',
           fr: 'Poussée contre la barricade',
           ja: '柵に吹き飛ばされる',
+          cn: '击退到栅栏上',
         },
       },
     },
@@ -485,6 +501,8 @@ export default {
           en: 'Look Away From Orb',
           de: 'Schau weg vom Orb',
           fr: 'Ne regardez pas l\'orbe',
+          ja: '玉に背を向ける',
+          cn: '背对白球',
         },
       },
     },
@@ -502,6 +520,8 @@ export default {
           en: 'Away From Purple',
           de: 'Schau weg von Lila',
           fr: 'Éloignez-vous du violet',
+          ja: '花に避ける',
+          cn: '远离紫花',
         },
       },
     },
@@ -519,6 +539,8 @@ export default {
           en: 'Earthshaker, away from boss',
           de: 'Erdstoß, weg vom Boss',
           fr: 'Secousse, éloignez-vous du boss',
+          ja: 'アースシェイカー、ボスから離れる',
+          cn: '大地摇动，远离Boss',
         },
       },
     },
@@ -530,7 +552,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: ['トリニティ・シーカー', 'シーカーの分体'], id: '5AC0' }),
       preRun: (data) => delete data.ironSplitter,
       promise: async (data, matches) => {
-        const seekerData = await window.callOverlayHandler({
+        const seekerData = await callOverlayHandler({
           call: 'getCombatants',
           ids: [parseInt(matches.sourceId, 16)],
         });
@@ -575,11 +597,15 @@ export default {
           en: 'Blue Stone',
           de: 'Blauer Stein',
           fr: 'Pierre bleue',
+          ja: '青い床へ',
+          cn: '去蓝色',
         },
         goWhite: {
           en: 'White Sand',
           de: 'Weißer Sand',
           fr: 'Sable blanc',
+          ja: '白い床へ',
+          cn: '去白色',
         },
       },
     },
@@ -601,7 +627,7 @@ export default {
       promise: async (data, matches) => {
         // The avatars get moved right before the comets, and the position data
         // is stale in the combat log.  :C
-        const cometData = await window.callOverlayHandler({
+        const cometData = await callOverlayHandler({
           call: 'getCombatants',
           ids: data.seekerCometIds.slice(0, 2),
         });
@@ -677,16 +703,22 @@ export default {
           en: 'Clockwise',
           de: 'Im Uhrzeigersinn',
           fr: 'Sens horaire',
+          ja: '時針回り',
+          cn: '顺时针',
         },
         counterclockwise: {
           en: 'Counter-clock',
           de: 'Gegen den Uhrzeigersinn',
           fr: 'Anti-horaire',
+          ja: '逆時針回り',
+          cn: '逆时针',
         },
         text: {
           en: 'Go ${dir}, then ${rotate}',
           de: 'Geh nach ${dir}, danach ${rotate}',
           fr: 'Direction ${dir}, puis ${rotate}',
+          ja: '${dir}へ、そして${rotate}',
+          cn: '去${dir}，然后${rotate}旋转',
         },
       },
     },
@@ -785,6 +817,8 @@ export default {
           en: 'Follow One or Two Charges',
           de: 'Folge dem 1. oder 2. Ansturm',
           fr: 'Suivez 1 ou 2 charges',
+          ja: '1回目や2回目の突進に追う',
+          cn: '紧跟第一次或第二次冲锋',
         },
         followSecondCharge: {
           en: 'Follow Second Charge',
@@ -835,6 +869,8 @@ export default {
           en: 'Knockback to safe spot',
           de: 'Rückstoß in den sicheren Bereich',
           fr: 'Poussée en zone sûre',
+          ja: '安置へノックバック',
+          cn: '击退到安全点',
         },
       },
     },
@@ -862,11 +898,15 @@ export default {
             en: 'Knockback (no flare)',
             de: 'Rückstoß (keine Flare)',
             fr: 'Poussée (pas de brasier)',
+            ja: 'ノックバック (フレアなし)',
+            cn: '击退 (无核爆)',
           },
           knockbackWithFlare: {
             en: 'Flare + Knockback (get away)',
             de: 'Flare + Rückstoß (geh weg)',
             fr: 'Brasier + poussée (éloignez-vous)',
+            ja: 'フレア + ノックバック (離れる)',
+            cn: '核爆 + 击退 (远离)',
           },
         };
 
@@ -914,6 +954,7 @@ export default {
           de: 'Nimm die äußeren Bomben',
           fr: 'Prenez les bombes extérieur',
           ja: '外の爆弾を取る',
+          cn: '吃外面的炸弹',
         },
       },
     },
@@ -931,6 +972,7 @@ export default {
           de: 'Rückstoß weg von der Sphere',
           fr: 'Poussée loin de la sphère',
           ja: 'ノックバック、玉から離れる',
+          cn: '击退，远离球',
         },
       },
     },
@@ -947,6 +989,7 @@ export default {
           de: 'Raus, weiche den Cleaves aus',
           fr: 'À l\'extérieur, évitez les cleaves',
           ja: '外へ、範囲攻撃注意',
+          cn: '远离，躲避顺劈',
         },
       },
     },
@@ -963,6 +1006,7 @@ export default {
           de: 'Rein, weiche den Cleaves aus',
           fr: 'À l\'intérieur, évitez les cleaves',
           ja: '中へ、範囲攻撃注意',
+          cn: '靠近，躲避顺劈',
         },
       },
     },
@@ -1010,6 +1054,7 @@ export default {
           en: 'Dispel Warrior Boost',
           de: 'Reinige Kriegerin Buff',
           fr: 'Dissipez le boost du Guerrier',
+          ja: 'ウォリアーにディスペル',
         },
       },
     },
@@ -1025,6 +1070,7 @@ export default {
           en: 'Dispel Gun Turrets',
           de: 'Reinige Schützetürme',
           fr: 'Dissipez la Tourelle dirigée',
+          ja: 'ガンナータレットにディスペル',
         },
       },
     },
@@ -1075,42 +1121,54 @@ export default {
 
         return data.tetherOnSelf ? output.windTether() : output.lightningNoTether();
       },
+      run: (data) => {
+        delete data.tetherIsBombslinger;
+        delete data.tetherOnSelf;
+        delete data.tetherOnBomb;
+      },
       outputStrings: {
         windTether: {
           en: 'Wind (tethered)',
           de: 'Wind (Verbindung)',
           fr: 'Vent (lié)',
+          ja: '風 (線)',
+          cn: '风 (连线)',
         },
         lightningNoTether: {
           en: 'Lightning (no tether)',
           de: 'Blitz (keine Verbindung)',
           fr: 'Lumière (non liée)',
+          ja: '雷 (線なし)',
+          cn: '雷 (无连线)',
         },
         bigNoTether: {
           en: 'Big Bomb (no tether)',
           de: 'Große Bombe (keine Verbindung)',
           fr: 'Grosse bombe (non liée)',
+          ja: '大きい爆弾 (線なし)',
+          cn: '大炸弹 (无连线)',
         },
         bigWithTether: {
           en: 'Big Bomb (tethered)',
           de: 'Große Bombe (Verbindung)',
           fr: 'Grosse bombe (liée)',
+          ja: '大きい爆弾 (線)',
+          cn: '大炸弹 (连线)',
         },
         smallNoTether: {
           en: 'Small Bomb (no tether)',
           de: 'Kleine Bombe (keine Verbindung)',
           fr: 'Petite bombe (non liée)',
+          ja: '小さい爆弾 (線なし)',
+          cn: '小炸弹 (无连线)',
         },
         smallWithTether: {
           en: 'Small Bomb (tethered)',
           de: 'Kleine Bombe (Verbindung)',
           fr: 'Petite bombe (liée)',
+          ja: '小さい爆弾 (線)',
+          cn: '小炸弹 (连线)',
         },
-      },
-      run: (data) => {
-        delete data.tetherIsBombslinger;
-        delete data.tetherOnSelf;
-        delete data.tetherOnBomb;
       },
     },
     {
@@ -1159,6 +1217,7 @@ export default {
           en: 'Point at the Gunner',
           de: 'Auf den Schützen zeigen',
           fr: 'Pointez sur le Fusiller',
+          ja: 'ガンナーに対して解析の切れ目に',
         },
       },
     },
@@ -1177,6 +1236,7 @@ export default {
           en: 'Point at the Gunner (in northwest)',
           de: 'Auf den Schützen zeigen (im Nord-Westen)',
           fr: 'Pointez sur le Fusiller (au nord-ouest)',
+          ja: '(北西) ガンナーに対して解析の切れ目に',
         },
       },
     },
@@ -1212,8 +1272,8 @@ export default {
           en: 'Stop attacking',
           de: 'Angriffe stoppen',
           fr: 'Arrêtez d\'attaquer',
-          ja: 'ブロックしない側に攻撃',
-          cn: '攻击未格挡的方向',
+          ja: '攻撃禁止',
+          cn: '停止攻击',
           ko: '공격 중지',
         },
       },
@@ -1330,6 +1390,8 @@ export default {
             en: 'Shared Tank Buster',
             de: 'Geteilter Tank Buster',
             fr: 'Partagez le Tank buster',
+            ja: '頭割りタンクバスター',
+            cn: '分摊死刑',
           },
         };
 
@@ -1373,6 +1435,7 @@ export default {
           de: 'Geh vor den Boss',
           fr: 'Soyez devant',
           ja: 'ボスの正面へ',
+          cn: '去Boss正面',
           ko: '정면에 서기',
         },
       },
@@ -1380,10 +1443,10 @@ export default {
     {
       id: 'DelubrumSav Avowed Hot And Cold Cleanup',
       // On Hot and Cold casts.  This will clean up any lingering forced march from bow phase 1.
-      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: '5BB0', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5BB0', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5BB0', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5BB0', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Trinity Avowed', id: ['5BB0', '5BAF', '597B'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: ['5BB0', '5BAF', '597B'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: ['5BB0', '5BAF', '597B'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: ['5BB0', '5BAF', '597B'], capture: false }),
       run: (data) => {
         delete data.currentTemperature;
         delete data.currentBrand;
@@ -1513,11 +1576,15 @@ export default {
           en: '+2 Heat Arrow',
           de: '+2 Heiß-Pfeile',
           fr: 'Flèche de chaleur +2',
+          ja: '炎属性+2に従う',
+          cn: '接火+2',
         },
         plusOne: {
           en: '+1 Heat Arrow',
           de: '+1 Heiß-Pfeile',
           fr: 'Flèche de chaleur +1',
+          ja: '炎属性+1に従う',
+          cn: '接火+1',
         },
         emptySpot: {
           en: 'Empty Spot',
@@ -1528,16 +1595,22 @@ export default {
           en: '-1 Cold Arrow',
           de: '-1 Kalt-Pfeile',
           fr: 'Flèche de froid -1',
+          ja: '氷属性-1に従う',
+          cn: '接冰-1',
         },
         minusTwo: {
           en: '-2 Cold Arrow',
           de: '-2 Kalt-Pfeile',
           fr: 'Flèche de froid -1',
+          ja: '氷属性-2に従う',
+          cn: '接冰-2',
         },
         unknownTemperature: {
           en: 'Opposite Arrow',
           de: 'Entgegengesetze Pfeile',
           fr: 'Flèche de l\'élément opposé',
+          ja: '体温と逆のあみだに従う',
+          cn: '接相反温度的线',
         },
         forwards: {
           en: 'forwards',
@@ -1609,26 +1682,36 @@ export default {
           en: '+2 Heat Meteor',
           de: '+2 Heiß-Meteor',
           fr: 'Météore de chaleur +2',
+          ja: '炎属性+2を踏む',
+          cn: '踩火+2',
         },
         plusOne: {
           en: '+1 Heat Meteor',
           de: '+1 Heiß-Meteor',
           fr: 'Météore de chaleur +1',
+          ja: '炎属性+1を踏む',
+          cn: '踩火+1',
         },
         minusOne: {
           en: '-1 Cold Meteor',
           de: '-1 Kalt-Meteor',
           fr: 'Météore de froid -1',
+          ja: '氷属性-1を踏む',
+          cn: '踩冰-1',
         },
         minusTwo: {
           en: '-2 Cold Meteor',
           de: '-2 Kalt-Meteor',
           fr: 'Météore de froid -2',
+          ja: '氷属性-2を踏む',
+          cn: '踩冰-2',
         },
         unknownTemperature: {
           en: 'Opposite Meteor',
           de: 'Entgegengesetzer Meteor',
           fr: 'Météore de l\'élément opposé',
+          ja: '体温と逆のメテオを受ける',
+          cn: '接相反温度的陨石',
         },
         forwards: {
           en: 'forwards',
@@ -1706,13 +1789,13 @@ export default {
         let combatantDataBoss = null;
         let combatantDataAvatars = null;
         if (combatantNameBoss) {
-          combatantDataBoss = await window.callOverlayHandler({
+          combatantDataBoss = await callOverlayHandler({
             call: 'getCombatants',
             names: [combatantNameBoss],
           });
         }
         if (combatantNameAvatar) {
-          combatantDataAvatars = await window.callOverlayHandler({
+          combatantDataAvatars = await callOverlayHandler({
             call: 'getCombatants',
             names: [combatantNameAvatar],
           });
@@ -1918,11 +2001,15 @@ export default {
           en: '${dir1} Safe Spot => ${dir2} for cleave',
           de: 'Sichere Stelle ${dir1} => ${dir2} für Cleave',
           fr: '${dir1} Zone sûre => ${dir2} pour le cleave',
+          ja: '${dir1}に安置 => ${dir2}範囲攻撃に',
+          cn: '去${dir1}方安全点 => 去${dir2}吃顺劈',
         },
         safeSpot: {
           en: '${dir} Safe Spot',
           de: 'Sichere Stelle ${dir}',
           fr: '${dir} Zone sûre',
+          ja: '${dir}に安置',
+          cn: '去${dir}方安全点',
         },
         unknown: {
           en: '???',
@@ -1963,7 +2050,7 @@ export default {
       suppressSeconds: 10,
       promise: async (data, matches) => {
         const unseenIds = data.unseenIds;
-        const unseenData = await window.callOverlayHandler({
+        const unseenData = await callOverlayHandler({
           call: 'getCombatants',
           ids: unseenIds,
         });
@@ -2088,6 +2175,7 @@ export default {
             de: 'Tank Cleave auf ${player}',
             fr: 'Tank Cleave sur ${player}',
             ja: '${player}に範囲攻撃',
+            cn: '顺劈: ${player}',
           },
         };
         if (matches.target === data.me)
@@ -2111,6 +2199,8 @@ export default {
           en: 'Drop thunder outside',
           de: 'Lege Blitz draußen ab',
           fr: 'Déposez la foudre à l\'extérieur',
+          ja: '外に捨てる',
+          cn: '外面放置雷',
         },
       },
     },
@@ -2187,7 +2277,7 @@ export default {
         text: {
           en: 'Get In Nook',
           de: 'Geh in die Ecke',
-          fr: 'Entrez dans un recoin',
+          fr: 'Allez dans un recoin',
         },
       },
     },
@@ -2226,6 +2316,8 @@ export default {
             en: 'Invuln Tank Buster',
             de: 'Unverwundbarkeit für Tank Buster benutzen',
             fr: 'Invincible sur le Tank buster',
+            ja: 'タンクバスター (被ダメージ上昇付き)',
+            cn: '易伤死刑',
           },
         };
 
@@ -2255,6 +2347,8 @@ export default {
           en: 'Esuna ${player}',
           de: 'Medica ${player}',
           fr: 'Guérison sur ${player}',
+          ja: '${player} にエスナ',
+          cn: '驱散: ${player}',
           ko: '"${player}" 에스나',
         },
       },
@@ -2278,6 +2372,7 @@ export default {
           en: 'Dispel Queen',
           de: 'Kriegsgöttin reinigen',
           fr: 'Dissipez la Reine',
+          ja: 'ボスにディスペル',
         },
       },
     },
@@ -2292,6 +2387,8 @@ export default {
           en: 'Reflect Orbs',
           de: 'Reflektiere Orbs',
           fr: 'Reflétez les orbes',
+          ja: '雷玉にリフレク',
+          cn: '反射雷球',
         },
       },
     },
@@ -2309,7 +2406,9 @@ export default {
         text: {
           en: 'Get in Bubble',
           de: 'Geh in die Blase',
-          fr: 'Entrez dans la bulle',
+          fr: 'Allez dans la bulle',
+          ja: '泡に入る',
+          cn: '进泡泡',
         },
       },
     },
@@ -2393,6 +2492,8 @@ export default {
           en: 'Multiple AOEs',
           de: 'Mehrere AoEs',
           fr: 'Multiple AoEs',
+          ja: '連続AoE',
+          cn: '连续AoE',
         },
       },
     },

@@ -359,7 +359,7 @@ export default {
         const singleTarget = matches.type === '21';
         const hasFireDebuff = data.fire && data.fire[matches.target];
 
-        // Success iff only one person takes it and they have no fire debuff.
+        // Success if only one person takes it and they have no fire debuff.
         if (singleTarget && !hasFireDebuff)
           return;
 

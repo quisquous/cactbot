@@ -43,7 +43,8 @@ const testTriggerFile = (file) => {
 
   before(async () => {
     contents = fs.readFileSync(file) + '';
-    const importPath = '../../' + path.relative(process.cwd(), file).replace(/\\/g, '/');
+    // Normalize path
+    const importPath = '../../' + path.relative(process.cwd(), file).replace('.ts', '.js');
     triggerSet = (await import(importPath)).default;
   });
 
@@ -349,6 +350,7 @@ const testTriggerFile = (file) => {
       'infoText',
       'tts',
       'run',
+      'outputStrings',
     ];
 
     for (const set of [triggerSet.triggers, triggerSet.timelineTriggers]) {

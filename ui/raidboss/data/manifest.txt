@@ -176,6 +176,8 @@
 04-sb/raid/o9s.txt
 04-sb/trial/byakko-ex.js
 04-sb/trial/byakko-ex.txt
+04-sb/trial/lakshmi.js
+04-sb/trial/lakshmi.txt
 04-sb/trial/lakshmi-ex.js
 04-sb/trial/lakshmi-ex.txt
 04-sb/trial/rathalos-ex.js
@@ -201,6 +203,8 @@
 05-shb/alliance/the_copied_factory.txt
 05-shb/alliance/the_puppets_bunker.js
 05-shb/alliance/the_puppets_bunker.txt
+05-shb/alliance/the_tower_at_paradigms_breach.js
+05-shb/alliance/the_tower_at_paradigms_breach.txt
 05-shb/dungeon/akadaemia_anyder.js
 05-shb/dungeon/akadaemia_anyder.txt
 05-shb/dungeon/amaurot.js
@@ -219,6 +223,8 @@
 05-shb/dungeon/matoyas_relict.txt
 05-shb/dungeon/mt_gulg.js
 05-shb/dungeon/mt_gulg.txt
+05-shb/dungeon/paglthan.js
+05-shb/dungeon/paglthan.txt
 05-shb/dungeon/qitana_ravel.js
 05-shb/dungeon/qitana_ravel.txt
 05-shb/dungeon/the_grand_cosmos.js
@@ -280,8 +286,12 @@
 05-shb/raid/e12n.txt
 05-shb/raid/e12s.js
 05-shb/raid/e12s.txt
+05-shb/trial/diamond_weapon-ex.js
+05-shb/trial/diamond_weapon-ex.txt
 05-shb/trial/emerald_weapon-ex.js
 05-shb/trial/emerald_weapon-ex.txt
+05-shb/trial/diamond_weapon.js
+05-shb/trial/diamond_weapon.txt
 05-shb/trial/hades.js
 05-shb/trial/hades.txt
 05-shb/trial/hades-ex.js
@@ -290,6 +300,8 @@
 05-shb/trial/innocence.txt
 05-shb/trial/innocence-ex.js
 05-shb/trial/innocence-ex.txt
+05-shb/trial/levi-un.js
+05-shb/trial/levi-un.txt
 05-shb/trial/ruby_weapon.js
 05-shb/trial/ruby_weapon.txt
 05-shb/trial/ruby_weapon-ex.js

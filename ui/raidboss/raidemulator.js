@@ -251,7 +251,7 @@ import Options from './raidboss_options';
           e.stopPropagation();
         };
 
-        // Handle drag+drop of files. Have to ignore dragenter/dragover for compatability reasons.
+        // Handle drag+drop of files. Have to ignore dragenter/dragover for compatibility reasons.
         document.body.addEventListener('dragenter', ignoreEvent);
         document.body.addEventListener('dragover', ignoreEvent);
 

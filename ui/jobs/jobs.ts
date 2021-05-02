@@ -620,7 +620,7 @@ export class Bars {
     if (!this.o.healthBar) return;
     this.o.healthBar.value = this.hp.toString();
     this.o.healthBar.maxvalue = this.maxHP.toString();
-    this.o.healthBar.extraValue = this.currentShield.toString();
+    this.o.healthBar.extravalue = this.currentShield.toString();
 
     const percent = (this.hp + this.currentShield) / this.maxHP;
 

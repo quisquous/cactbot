@@ -4,7 +4,7 @@ import csv
 import coinach
 import os
 
-_OUTPUT_FILE = "weather_rate.js"
+_OUTPUT_FILE = "weather_rate.ts"
 
 
 def parse_data(csvfile):
@@ -37,11 +37,21 @@ def parse_data(csvfile):
 def update(reader, writer):
     data = reader.exd("WeatherRate")
     all_rates = parse_data(data)
-    writer.write(
-        os.path.join("resources", _OUTPUT_FILE),
-        os.path.basename(os.path.abspath(__file__)),
-        "gWeatherRates",
-        all_rates,
+
+    header = """type WeatherRateType = {
+  [zoneId: number]: {
+    readonly rates: number[];
+    readonly weathers: string[];
+  };
+};"""
+
+    writer.writeTypeScript(
+        filename=os.path.join("resources", _OUTPUT_FILE),
+        scriptname=os.path.basename(os.path.abspath(__file__)),
+        header=header,
+        type="WeatherRateType",
+        as_const=False,
+        data=all_rates,
     )
 
 

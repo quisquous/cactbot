@@ -419,10 +419,13 @@ export default class TimerBar extends HTMLElement {
 
     // To start full and animate to empty, we animate backwards and flip
     // the direction.
-    if (this._towardRight !== this._fill)
-      this.foregroundElement.style.transformOrigin = '100% 0%';
-    else
-      this.foregroundElement.style.transformOrigin = '0% 0%';
+    if (this._towardRight !== this._fill) {
+      this.foregroundElement.style.left = '';
+      this.foregroundElement.style.right = '0px';
+    } else {
+      this.foregroundElement.style.left = '0px';
+      this.foregroundElement.style.right = '';
+    }
   }
 
   updateText(): void {

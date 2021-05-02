@@ -3,6 +3,7 @@ import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import Outputs from '../../../../../resources/outputs';
+import { Responses } from '../../../../../resources/responses';
 
 // TODO: we could consider a timeline trigger for the Tidal Roar raidwide,
 // but it barely does 25% health, has no startsUsing, and the timeline for
@@ -116,10 +117,12 @@ export default {
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Attack Tail Only',
-          de: 'Nur den Schwanz angreifen',
-          fr: 'Attaquez seulement la queue',
-          cn: '攻击尾巴',
+          en: 'Attack Head Only',
+          de: 'Nur den Kopf angreifen',
+          fr: 'Attaquez seulement la tête',
+          ja: '頭だけに攻撃',
+          cn: '攻击头部',
+          ko: '머리만 공격하기',
         },
       },
     },
@@ -136,10 +139,12 @@ export default {
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Attack Head Only',
-          de: 'Nur den Kopf angreifen',
-          fr: 'Attaquez seulement la tête',
-          cn: '攻击头部',
+          en: 'Attack Tail Only',
+          de: 'Nur den Schwanz angreifen',
+          fr: 'Attaquez seulement la queue',
+          ja: 'テールだけに攻撃',
+          cn: '攻击尾巴',
+          ko: '꼬리만 공격하기',
         },
       },
     },
@@ -154,12 +159,7 @@ export default {
       suppressSeconds: 5,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
-        text: {
-          en: 'Kill Adds',
-          de: 'Besiege Adds',
-          fr: 'Tuez les adds',
-          cn: '击杀小怪',
-        },
+        text: Outputs.killAdds,
       },
     },
     {
@@ -176,8 +176,25 @@ export default {
           en: 'Kill Wavetooth Add',
           de: 'Besiege Wellenzahn Add',
           fr: 'Tuez l\'add Dent-du-ressac',
+          ja: 'ウェイブトゥース・サハギンに攻撃',
           cn: '优先击杀波齿鱼人',
+          ko: '물결이빨 사하긴 처치',
         },
+      },
+    },
+    {
+      id: 'LeviEx Wavetooth Sahagin Stun',
+      netRegex: NetRegexes.addedCombatant({ name: 'Wavetooth Sahagin' }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Wellenzahn-Sahagin' }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Sahuagin Dent-Du-Ressac' }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'ウェイブトゥース・サハギン' }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '波齿鱼人' }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '물결이빨 사하긴' }),
+      condition: (data) => data.CanStun(),
+      delaySeconds: 5,
+      alertText: (data, matches, output) => output.text({ name: matches.name }),
+      outputStrings: {
+        text: Outputs.stunTarget,
       },
     },
     {
@@ -195,7 +212,9 @@ export default {
           en: 'Kill Gyre Spumes',
           de: 'Besiege Gischtblase',
           fr: 'Tuez les écumes concentriques',
+          ja: 'ジャイヤ・スピュームに攻撃',
           cn: '打黄泡泡',
+          ko: '노랑 물거품 처치',
         },
       },
     },
@@ -214,7 +233,9 @@ export default {
           en: 'Wave Spume Adds',
           de: 'Gischtwelle Adds',
           fr: 'Tuez les écumes ondulantes',
+          ja: 'ウェイブ・スピューム出現',
           cn: '蓝泡泡出现',
+          ko: '파랑 물거품 출현',
         },
       },
     },
@@ -237,7 +258,9 @@ export default {
           en: 'Burst Soon',
           de: 'Gischtwelle platzen gleich',
           fr: 'Burst bientôt',
+          ja: 'まもなく爆発',
           cn: '黄泡泡即将爆炸',
+          ko: '물거품 폭발',
         },
       },
     },
@@ -271,7 +294,9 @@ export default {
           en: 'Hit The Button!',
           de: 'Mit Elementarumwandler interagieren!',
           fr: 'Activez la barrière !',
+          ja: '魔法障壁を発動',
           cn: '打开开关！',
+          ko: '장벽 발동!',
         },
       },
     },

@@ -14,7 +14,7 @@ import { walkDirSync } from '../util/file_utils';
 // (2) Called directly via node with optional filenames being passed via argv...
 //     In this case, this is for something like lint-staged.  This file will
 //     pass all of the filenames it finds into globals and add
-//     test_data_runner.js as a test, which will take thiose globals and call
+//     test_data_runner.js as a test, which will take those globals and call
 //     all of the same testXFiles functions.
 //
 // This weird dance allows for both partial testing of data files for lint-staged
@@ -38,7 +38,7 @@ const processInputs = (inputPath) => {
         timelineFiles.push(filepath);
         return;
       }
-      if (/\/raidboss\/data\/.*\.js/.test(filepath)) {
+      if (/\/raidboss\/data\/.*\.[jt]s/.test(filepath)) {
         triggerFiles.push(filepath);
         return;
       }
@@ -61,7 +61,7 @@ if (insideMocha) {
   testTimelineFiles(timelineFiles);
 } else {
   // Globals are the only way to pass additional fields to the test files below.
-  // Because we are running mocha programatically here, the file names must be
+  // Because we are running mocha programmatically here, the file names must be
   // passed via globals.  We can't add files after Mocha has started, unfortunately.
   global.manifestFiles = manifestFiles;
   global.timelineFiles = timelineFiles;

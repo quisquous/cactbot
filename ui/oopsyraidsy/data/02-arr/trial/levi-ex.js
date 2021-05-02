@@ -7,8 +7,8 @@ import ZoneId from '../../../../../resources/zone_id';
 // That said, dots still tick independently on both so it's likely that people will atack
 // them anyway.
 
-// TODO: Figure out why Dread Tide / Water Spout appear like shares (i.e. 0x16 id)
-// when soloing levi ex.
+// TODO: Figure out why Dread Tide / Waterspout appear like shares (i.e. 0x16 id).
+// Dread Tide = 823/824/825, Waterspout = 829
 
 // Leviathan Extreme
 export default {
@@ -20,13 +20,9 @@ export default {
   },
   damageFail: {
     'LeviEx Body Slam': '82A', // levi slam that tilts the boat
-    'LeviEx Spinning Dive': '82C', // levi dash across the boat with knockback
-  },
-  shareWarn: {
-    'LeviEx Dread Tide 1': '823', // Triple hit line aoe from head aimed at tank
-    'LeviEx Dread Tide 2': '824', // triple hit line aoe from head aimed at tank
-    'LeviEx Dread Tide 3': '825', // triple hit line aoe from head aimed at tank
-    'LeviEx Water Spout': '829', // small circular water aoe on healers
+    'LeviEx Spinning Dive 1': '88A', // levi dash across the boat with knockback
+    'LeviEx Spinning Dive 2': '88B', // levi dash across the boat with knockback
+    'LeviEx Spinning Dive 3': '82C', // levi dash across the boat with knockback
   },
   gainsEffectWarn: {
     'LeviEx Dropsy': '110', // standing in the hydro shot from the Wavespine Sahagin

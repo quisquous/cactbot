@@ -1,6 +1,7 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -439,7 +440,7 @@ export default {
         data.statueDir = 'unknown';
 
         // Calculate distance to center to determine inner vs outer
-        const statueData = await window.callOverlayHandler({
+        const statueData = await callOverlayHandler({
           call: 'getCombatants',
           ids: data.statueIds,
         });
@@ -503,19 +504,25 @@ export default {
           en: '#${num} (Inner)',
           de: '#${num} (innen)',
           fr: '#${num} (Intérieur)',
+          ja: '#${num} (中)',
           cn: '#${num} (内)',
+          ko: '#${num} (안쪽)',
         },
         outer: {
           en: '#${num} (Outer)',
           de: '#${num} (außen)',
           fr: '#${num} (Extérieur)',
+          ja: '#${num} (外)',
           cn: '#${num} (外)',
+          ko: '#${num} (바깥쪽)',
         },
         unknown: {
           en: '#${num} (???)',
           de: '#${num} (???)',
           fr: '#${num} (???)',
+          ja: '#${num} (???)',
           cn: '#${num} (???)',
+          ko: '#${num} (???)',
         },
       },
     },
@@ -533,7 +540,9 @@ export default {
           en: 'SE Knockback',
           de: 'SO Rückstoß',
           fr: 'SE Poussée',
+          ja: '東南ノックバック',
           cn: '右下（东南）击退',
+          ko: '남동쪽(5시)에서 넉백',
         },
       },
     },
@@ -551,7 +560,9 @@ export default {
           en: 'SW Knockback',
           de: 'SW Rückstoß',
           fr: 'SO Poussée',
+          ja: '西南ノックバック',
           cn: '左下（西南）击退',
+          ko: '남서쪽(7시)에서 넉백',
         },
       },
     },
@@ -577,19 +588,25 @@ export default {
             en: 'Bait Inner #${num}',
             de: 'Köder innen #${num}',
             fr: 'Orientez vers l\'intérieur #${num}',
+            ja: '中へ誘導 #${num}',
             cn: '向内诱导 #${num}',
+            ko: '내부 유도 #${num}',
           },
           baitOuter: {
             en: 'Bait Outer #${num}',
             de: 'Köder außen #${num}',
             fr: 'Orientez vers l\'extérieur #${num}',
+            ja: '外へ誘導 #${num}',
             cn: '向外诱导 #${num}',
+            ko: '외부 유도 #${num}',
           },
           baitUnknown: {
             en: 'Bait #${num}',
             de: 'Köder #${num}',
             fr: 'Orientez #${num}',
+            ja: '誘導 #${num}',
             cn: '诱导 #${num}',
+            ko: '유도 #${num}',
           },
         };
         // Start one ahead, so that it calls out #2 after #1 has finished.
@@ -693,19 +710,25 @@ export default {
             en: 'Left + Bait Inner #1',
             de: 'Links + Köder innen #1',
             fr: 'À gauche + Orientez vers l\'intérieur #1',
+            ja: '左 + 中へ誘導 #1',
             cn: '左 + 向内诱导 #1',
+            ko: '왼쪽 + 내부 유도 #1',
           },
           goLeftBaitOuter: {
             en: 'Left + Bait Outer #1',
             de: 'Links + Köder außen #1',
             fr: 'À gauche + Orientez vers l\'extérieur #1',
+            ja: '左 + 外へ誘導 #1',
             cn: '左 + 向外诱导 #1',
+            ko: '왼쪽 + 외부 유도 #1',
           },
           goLeftBaitUnknown: {
             en: 'Left + Bait #1',
             de: 'Links + Köder #1',
             fr: 'À gauche + Orientez #1',
+            ja: '左 + 誘導 #1',
             cn: '左 + 诱导 #1',
+            ko: '왼쪽 + 유도 #1',
           },
         };
 
@@ -735,19 +758,25 @@ export default {
             en: 'Right + Bait Inner #1',
             de: 'Rechts + Köder innen #1',
             fr: 'À droite + Orientez vers l\'intérieur #1',
+            ja: '右 + 中へ誘導 #1',
             cn: '右 + 向内诱导 #1',
+            ko: '오른쪽 + 내부 유도 #1',
           },
           goRightBaitOuter: {
             en: 'Right + Bait Outer #1',
             de: 'Rechts + Köder außen #1',
             fr: 'À droite + Orientez vers l\'extérieur #1',
+            ja: '右 + 外へ誘導 #1',
             cn: '右 + 向外诱导 #1',
+            ko: '오른쪽 + 외부 유도 #1',
           },
           goRightBaitUnknown: {
             en: 'Right + Bait #1',
             de: 'Rechts + Köder #1',
             fr: 'À droite + Orientez #1',
+            ja: '右 + 誘導 #1',
             cn: '右 + 诱导 #1',
+            ko: '오른쪽 + 유도 #1',
           },
         };
 
@@ -1068,13 +1097,17 @@ export default {
           en: 'Bait Close',
           de: 'Köder nah',
           fr: 'Attirez proche',
+          ja: '近い誘導',
           cn: '近诱导',
+          ko: '가까이 붙기',
         },
         partyOut: {
           en: 'Party Out',
           de: 'Gruppe raus',
           fr: 'Groupe au loin',
+          ja: '全員離れる',
           cn: '不要靠近BOSS',
+          ko: '탱보다 멀리 있기',
         },
       },
     },
@@ -1089,7 +1122,7 @@ export default {
       promise: async (data, matches, output) => {
         // select the Oracle Of Darkness with same source id
         let oracleData = null;
-        oracleData = await window.callOverlayHandler({
+        oracleData = await callOverlayHandler({
           call: 'getCombatants',
           ids: [parseInt(matches.sourceId, 16)],
         });
@@ -1230,20 +1263,24 @@ export default {
           },
         };
 
-        if (matches.effectId === '998')
+        if (!matches.effectId)
+          return;
+        const id = matches.effectId.toUpperCase();
+
+        if (id === '998')
           return { infoText: output.shadoweye() };
-        if (matches.effectId === '99D')
+        if (id === '99D')
           return { infoText: output.water() };
 
         // Long fire/ice is 15 seconds, short fire/ice is 29 seconds.
         const isLong = parseFloat(matches.duration) > 20;
 
-        if (matches.effectId === '997') {
+        if (id === '997') {
           if (isLong)
             return { alertText: output.longFire() };
           return { alertText: output.shortFire() };
         }
-        if (matches.effectId === '99E') {
+        if (id === '99E') {
           if (isLong)
             return { alertText: output.longIce() };
           return { alertText: output.shortIce() };
@@ -1494,13 +1531,17 @@ export default {
           en: 'Stack Groups',
           de: 'In Gruppen sammeln',
           fr: 'Packez-vous en groupe',
+          ja: '頭割り',
           cn: '集合',
+          ko: '쉐어',
         },
         knockbackIntoStackGroups: {
           en: 'Knockback Into Stack Groups',
           de: 'Rückstoß, dann in Gruppen sammeln',
           fr: 'Poussée puis packez-vous en groupe',
+          ja: '頭割り位置に向かってノックバックを',
           cn: '击退分摊',
+          ko: '넉백 후 쉐어',
         },
       },
     },
@@ -1526,7 +1567,9 @@ export default {
           en: 'Knockback Into Spread',
           de: 'Rückstoß dann verteilen',
           fr: 'Poussée puis dispersez-vous',
+          ja: '散開のためノックバックを',
           cn: '分散击退',
+          ko: '넉백 후 산개',
         },
       },
     },
@@ -1549,7 +1592,9 @@ export default {
           en: 'Stack Groups',
           de: 'In Gruppen sammeln',
           fr: 'Packez-vous en groupe',
+          ja: '集合',
           cn: '集合',
+          ko: '쉐어',
         },
       },
     },
@@ -1575,7 +1620,9 @@ export default {
           en: 'Double Aero: ${name1}, ${name2}',
           de: 'Doppel Windga: ${name1}, ${name2}',
           fr: 'Double Vent : ${name1}, ${name2}',
+          ja: 'エアロガ×2: ${name1}, ${name2}',
           cn: '双风: ${name1}, ${name2}',
+          ko: '더블 에어로가: ${name1}, ${name2}',
         },
       },
     },
@@ -1614,13 +1661,17 @@ export default {
           en: 'Double Aero on YOU',
           de: 'Doppel Windga auf DIR',
           fr: 'Double Vent sur VOUS',
+          ja: '自分にエアロガ×2',
           cn: '双风点名',
+          ko: '더블 에어로가 대상자',
         },
         spread: {
           en: 'Spread on YOU',
           de: 'Verteilen auf DIR',
           fr: 'Dispersion sur VOUS',
+          ja: '自分に散開',
           cn: '分散点名',
+          ko: '산개징 대상자',
         },
       },
     },

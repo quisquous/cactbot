@@ -210,7 +210,7 @@ Options.Triggers.push({
 
 이를 해결하는 방법으로는 트리거의 출력을 수정하여 조정하는 것이 있습니다.
 fireball #1 원본 트리거는
-[ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js](https://github.com/quisquous/cactbot/blob/cce8bc6b10d2210fa512bd1c8edd39c260cc3df8/ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js#L715-L743)에서 찾을 수 있습니다.
+[ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js](https://github.com/quisquous/cactbot/blob/triggers/04-sb/ultimate/unending_coil_ultimate.js#:~:text=UCU%20Nael%20Fireball%201)에서 찾을 수 있습니다.
 
 이 코드들을 `cactbot/user/raidboss.js` 파일 아래 부분에 붙여넣습니다.
 
@@ -247,7 +247,7 @@ Options.Triggers.push({
 지금은 도발 알림이 같은 파티나 연합 파티에 있는 경우에만 작동하고, 일부 직업에 대해서만 작동하고 있습니다.
 이 예시는 어떻게 모든 플레이어에 대해 알림을 보여주도록 만들 수 있는지 보여줍니다.
 도발 트리거는
-[ui/raidboss/data/00-misc/general.js](https://github.com/quisquous/cactbot/blob/cce8bc6b10d2210fa512bd1c8edd39c260cc3df8/ui/raidboss/data/00-misc/general.js#L11-L30)에서 찾을 수 있습니다.
+[ui/raidboss/data/00-misc/general.js](https://github.com/quisquous/cactbot/blob/triggers/00-misc/general.js#:~:text=General%20Provoke)에서 찾을 수 있습니다.
 
 다음 예시는 `condition` 함수(function)가 수정된 버전입니다.
 이 트리거는 cactbot에 내장된 트리거인 `General Provoke`와 id가 동일하기 때문에

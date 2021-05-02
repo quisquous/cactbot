@@ -20,7 +20,7 @@ export interface JobDetail {
   'DRK': {
     blood: number;
     darksideMilliseconds: number;
-    darkArts: boolean;
+    darkArts: 1 | 0;
     livingShadowMilliseconds: number;
   };
   'GNB': {
@@ -48,7 +48,7 @@ export interface JobDetail {
   };
   'MNK': {
     lightningStacks: number;
-    lightningStacks: number;
+    lightningMilliseconds: number;
     chakraStacks: number;
     lightningTimerFrozen: boolean;
   };
@@ -142,6 +142,11 @@ export interface EventMap {
     charName: string;
   }) => void;
 
+  'FileChanged': (ev: {
+    type: 'FileChanged';
+    file: string;
+  }) => void;
+
   'OnlineStatusChanged': (ev: {
     type: 'OnlineStatusChanged';
     target: string; rawStatus:
@@ -158,6 +163,16 @@ export interface EventMap {
     source: string;
     msg: unknown;
   }) => void;
+
+  'EnmityTargetData': (ev: {
+    type: 'EnmityTargetData';
+    Target: {
+      Name: string;
+      ID: number;
+      Distance: number;
+      EffectiveDistance: number;
+    };
+  }) => void;
   // #endregion
 
   // #region Cactbot Event
@@ -168,52 +183,68 @@ export interface EventMap {
 
   'onGameExistsEvent': (ev: {
     type: 'onGameExistsEvent';
-    exists: boolean;
+    detail: {
+      exists: boolean;
+    };
   }) => void;
 
   'onGameActiveChangedEvent': (ev: {
     type: 'onGameActiveChangedEvent';
-    active: boolean;
+    detail: {
+      active: boolean;
+    };
   }) => void;
 
   'onLogEvent': (ev: {
     type: 'onLogEvent';
-    logs: string[];
+    detail: {
+      logs: string[];
+    };
   }) => void;
 
   'onImportLogEvent': (ev: {
     type: 'onImportLogEvent';
-    logs: string[];
+    detail: {
+      logs: string[];
+    };
   }) => void;
 
   'onInCombatChangedEvent': (ev: {
     type: 'onInCombatChangedEvent';
-    inACTCombat: boolean;
-    inGameCombat: boolean;
+    detail: {
+      inACTCombat: boolean;
+      inGameCombat: boolean;
+    };
   }) => void;
 
   'onZoneChangedEvent': (ev: {
     type: 'onZoneChangedEvent';
-    zoneName: string;
+    detail: {
+      zoneName: string;
+    };
   }) => void;
 
   'onFateEvent': (ev: {
     type: 'onFateEvent';
-    eventType: 'add' | 'update' | 'remove';
-    fateID: number;
-    progress: number;
+    detail: {
+      eventType: 'add' | 'update' | 'remove';
+      fateID: number;
+      progress: number;
+    };
   }) => void;
 
   'onCEEvent': (ev: {
     type: 'onCEEvent';
-    eventType: 'add' | 'update' | 'remove';
-    data: {
-      popTime: number;
-      timeRemaining: number;
-      ceKey: number;
-      numPlayers: number;
-      status: number;
-      progress: number;
+    detail: {
+      eventType: 'add' | 'update' | 'remove';
+      data: {
+        popTime: number;
+        timeRemaining: number;
+        ceKey: number;
+        numPlayers: number;
+        status: number;
+        progress: number;
+      };
     };
   }) => void;
 
@@ -225,11 +256,11 @@ export interface EventMap {
     type: 'onPartyWipe';
   }) => void;
 
-  'onPlayerChangedEvent': <T extends Job>(ev: {
+  'onPlayerChangedEvent': (ev: {
     type: 'onPlayerChangedEvent';
     detail: {
       name: string;
-      job: T;
+      job: Job;
       level: number;
       currentHP: number;
       maxHP: number;
@@ -240,7 +271,14 @@ export interface EventMap {
       currentGP: number;
       maxGP: number;
       currentShield: number;
-      jobDetail: JobDetail[T];
+      // TODO: Is there a cleaner way to do this? It would be better if there were a way to
+      // determine which job was passed in with the event and explicitly use that JobDetail
+      // Potentially add the job to the jobDetail passed back from the C# plugin, and use
+      // that information to decide the type
+      jobDetail: JobDetail['PLD'] & JobDetail['WAR'] & JobDetail['DRK'] & JobDetail['GNB'] & JobDetail['WHM'] &
+        JobDetail['SCH'] & JobDetail['AST'] & JobDetail['PGL'] & JobDetail['MNK'] & JobDetail['DRG'] &
+        JobDetail['NIN'] & JobDetail['SAM'] & JobDetail['BRD'] & JobDetail['MCH'] & JobDetail['DNC'] &
+        JobDetail['THM'] & JobDetail['BLM'] & JobDetail['ACN'] & JobDetail['SMN'] & JobDetail['RDM'];
       pos: {
         x: number;
         y: number;
@@ -255,6 +293,7 @@ export interface EventMap {
 
   'onUserFileChanged': (ev: {
     type: 'onUserFileChanged';
+    file: string;
   }) => void;
   // #endregion
 }
@@ -263,13 +302,20 @@ export type EventType = keyof EventMap;
 
 interface CactbotLoadUserRet {
   userLocation: string;
-  localUserFiles: Record<string, string> | null;
+  localUserFiles: { [filename: string]: string } | null;
   parserLanguage: Lang;
   systemLocale: string;
   displayLanguage: Lang;
   /** @deprecated for backwards compatibility, use parserLanguage instead */
   language: Lang;
 }
+
+// Structured JSON data saved in OverlayPlugin config files.
+export type SavedConfigEntry = string | number | boolean | [ SavedConfigEntry] |
+   { [nestedName: string]: SavedConfigEntry };
+export type SavedConfig = {
+  [overlayName: string]: SavedConfigEntry;
+};
 
 export type IOverlayHandler = {
   // OutputPlugin build-in
@@ -301,10 +347,10 @@ export type IOverlayHandler = {
   (msg: {
     call: 'cactbotSaveData';
   }): Promise<null>;
-  <T>(msg: {
+  (msg: {
     call: 'cactbotLoadData';
     overlay: string;
-  }): Promise<{ data: T } | null>;
+  }): Promise<{ data: SavedConfig } | null>;
   <T>(msg: {
     call: 'cactbotChooseDirectory';
   }): Promise<{ data: T } | null>;

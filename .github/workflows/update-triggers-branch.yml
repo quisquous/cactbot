@@ -1,0 +1,43 @@
+name: Update triggers
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  check-triggers:
+    runs-on: ubuntu-latest
+    outputs:
+      found: ${{ steps.check-triggers.outputs.found }}
+    steps:
+      - name: Check triggers Exists
+        id: check-triggers
+        shell: bash
+        run: |
+          GITHUB_URL="https://github.com/${{ github.repository }}"
+          if git ls-remote --exit-code --heads $GITHUB_URL triggers; then
+            echo "::set-output name=found::true"
+            echo "triggers branch found. Updating..."
+          else
+            echo "::set-output name=found::false"
+            echo "triggers branch not found. Skipping..."
+          fi
+  update-triggers:
+    runs-on: ubuntu-latest
+    needs: check-triggers
+    if: needs.check-triggers.outputs.found == 'true'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: |
+          npm install
+          npm run process-triggers
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/triggers/ui/raidboss/data
+          publish_branch: triggers
+          user_name: "github-actions"
+          user_email: "github-actions@github.com"
+          commit_message: "triggers build: ${{ github.event.head_commit.message }}"
+          enable_jekyll: true # Don't commit the .nojekyll file

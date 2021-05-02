@@ -86,9 +86,9 @@ export class Timeline {
 
     // A set of names which will not be notified about.
     this.ignores = {};
-    // Sorted by event occurance time.
+    // Sorted by event occurrence time.
     this.events = [];
-    // Sorted by event occurance time.
+    // Sorted by event occurrence time.
     this.texts = [];
     // Sorted by sync.start time.
     this.syncStarts = [];
@@ -96,7 +96,7 @@ export class Timeline {
     this.syncEnds = [];
     // Not sorted.
     this.activeSyncs = [];
-    // Sorted by event occurance time.
+    // Sorted by event occurrence time.
     this.activeEvents = [];
     // Sorted by line.
     this.errors = [];
@@ -108,7 +108,6 @@ export class Timeline {
     if (!this.replacements)
       return text;
 
-    const orig = text;
     for (const r of this.replacements) {
       if (r.locale && r.locale !== replaceLang)
         continue;
@@ -170,16 +169,16 @@ export class Timeline {
     const regexes = {
       comment: /^\s*#/,
       commentLine: /#.*$/,
-      durationCommand: /(?:[^#]*?\s)?(duration\s+([0-9]+(?:\.[0-9]+)?))(\s.*)?$/,
-      ignore: /^hideall\s+\"([^"]+)\"$/,
-      jumpCommand: /(?:[^#]*?\s)?(jump\s+([0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/,
-      line: /^(([0-9]+(?:\.[0-9]+)?)\s+"(.*?)")(\s+(.*))?/,
-      popupText: /^(info|alert|alarm)text\s+\"([^"]+)\"\s+before\s+(-?[0-9]+(?:\.[0-9]+)?)(?:\s+\"([^"]+)\")?$/,
+      durationCommand: /(?:[^#]*?\s)?(?<text>duration\s+(?<seconds>[0-9]+(?:\.[0-9]+)?))(\s.*)?$/,
+      ignore: /^hideall\s+\"(?<id>[^"]+)\"$/,
+      jumpCommand: /(?:[^#]*?\s)?(?<text>jump\s+(?<seconds>[0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/,
+      line: /^(?<text>(?<time>[0-9]+(?:\.[0-9]+)?)\s+"(?<name>.*?)")(\s+(.*))?/,
+      popupText: /^(?<type>info|alert|alarm)text\s+\"(?<id>[^"]+)\"\s+before\s+(?<beforeSeconds>-?[0-9]+(?:\.[0-9]+)?)(?:\s+\"(?<text>[^"]+)\")?$/,
       soundAlert: /^define\s+soundalert\s+"[^"]*"\s+"[^"]*"$/,
       speaker: /define speaker "[^"]*"(\s+"[^"]*")?\s+(-?[0-9]+(?:\.[0-9]+)?)\s+(-?[0-9]+(?:\.[0-9]+)?)/,
-      syncCommand: /(?:[^#]*?\s)?(sync\s*\/(.*)\/)(\s.*)?$/,
-      tts: /^alertall\s+"([^"]*)"\s+before\s+(-?[0-9]+(?:\.[0-9]+)?)\s+(sound|speak\s+"[^"]*")\s+"([^"]*)"$/,
-      windowCommand: /(?:[^#]*?\s)?(window\s+(?:([0-9]+(?:\.[0-9]+)?),)?([0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/,
+      syncCommand: /(?:[^#]*?\s)?(?<text>sync\s*\/(?<regex>.*)\/)(?<args>\s.*)?$/,
+      tts: /^alertall\s+"(?<id>[^"]*)"\s+before\s+(?<beforeSeconds>-?[0-9]+(?:\.[0-9]+)?)\s+(?<command>sound|speak\s+"[^"]*")\s+"(?<text>[^"]*)"$/,
+      windowCommand: /(?:[^#]*?\s)?(?<text>window\s+(?:(?<start>[0-9]+(?:\.[0-9]+)?),)?(?<end>[0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/,
     };
 
     // Make all regexes case insensitive, and parse any special \y{} groups.
@@ -200,45 +199,47 @@ export class Timeline {
         continue;
       const originalLine = line;
 
-      let match = line.match(regexes.ignore);
-      if (match) {
-        this.ignores[match[1]] = true;
+      let match = regexes.ignore.exec(line);
+      if (match && match['groups']) {
+        const ignore = match['groups'];
+        this.ignores[ignore.id] = true;
         continue;
       }
 
-      match = line.match(regexes.tts);
-      if (match) {
+      match = regexes.tts.exec(line);
+      if (match && match['groups']) {
+        const tts = match['groups'];
         // TODO: Support alert sounds?
-        if (match[3] === 'sound')
+        if (tts.command === 'sound')
           continue;
-        texts[match[1]] = texts[match[1]] || [];
-        texts[match[1]].push({
+        texts[tts.id] = texts[tts.id] || [];
+        texts[tts.id].push({
           type: 'tts',
-          secondsBefore: parseFloat(match[2]),
-          text: match[4] ? match[4] : match[1],
+          secondsBefore: parseFloat(tts.beforeSeconds),
+          text: tts.text ? tts.text : tts.id,
         });
         continue;
       }
-      match = line.match(regexes.soundAlert);
+      match = regexes.soundAlert.exec(line);
       if (match)
         continue;
-      match = line.match(regexes.speaker);
+      match = regexes.speaker.exec(line);
       if (match)
         continue;
 
-      match = line.match(regexes.popupText);
-      if (match) {
-        texts[match[2]] = texts[match[2]] || [];
-        texts[match[2]].push({
-          type: match[1],
-          secondsBefore: parseFloat(match[3]),
-          text: match[4] ? match[4] : match[2],
+      match = regexes.popupText.exec(line);
+      if (match && match['groups']) {
+        const popupText = match['groups'];
+        texts[popupText.id] = texts[popupText.id] || [];
+        texts[popupText.id].push({
+          type: popupText.type,
+          secondsBefore: parseFloat(popupText.beforeSeconds),
+          text: popupText.text ? popupText.text : popupText.id,
         });
         continue;
       }
-
-      match = line.match(regexes.line);
-      if (!match) {
+      match = regexes.line.exec(line);
+      if (!(match && match['groups'])) {
         this.errors.push({
           lineNumber: lineNumber,
           line: originalLine,
@@ -247,55 +248,61 @@ export class Timeline {
         console.log('Unknown timeline: ' + originalLine);
         continue;
       }
-      line = line.replace(match[1], '').trim();
+      const parsedLine = match['groups'];
+      line = line.replace(parsedLine.text, '').trim();
       // There can be # in the ability name, but probably not in the regex.
       line = line.replace(regexes.commentLine, '').trim();
 
-      const seconds = parseFloat(match[2]);
+      const seconds = parseFloat(parsedLine.time);
       const e = {
         id: uniqueid++,
         time: seconds,
         // The original ability name in the timeline.  Used for hideall, infotext, etc.
-        name: match[3],
+        name: parsedLine.name,
         // The text to display.  Not used for any logic.
-        text: this.GetReplacedText(match[3]),
+        text: this.GetReplacedText(parsedLine.name),
         activeTime: 0,
         lineNumber: lineNumber,
       };
       if (line) {
-        let commandMatch = line.match(regexes.durationCommand);
-        if (commandMatch) {
-          line = line.replace(commandMatch[1], '').trim();
-          e.duration = parseFloat(commandMatch[2]);
+        let commandMatch = regexes.durationCommand.exec(line);
+        if (commandMatch && commandMatch['groups']) {
+          const durationCommand = commandMatch['groups'];
+          line = line.replace(durationCommand.text, '').trim();
+          e.duration = parseFloat(durationCommand.seconds);
         }
-        commandMatch = line.match(regexes.syncCommand);
-        if (commandMatch) {
-          line = line.replace(commandMatch[1], '').trim();
+
+        commandMatch = regexes.syncCommand.exec(line);
+        if (commandMatch && commandMatch['groups']) {
+          const syncCommand = commandMatch['groups'];
+          line = line.replace(syncCommand.text, '').trim();
           const sync = {
             id: uniqueid,
-            origRegexStr: commandMatch[2],
-            regex: Regexes.parse(this.GetReplacedSync(commandMatch[2])),
+            origRegexStr: syncCommand.regex,
+            regex: Regexes.parse(this.GetReplacedSync(syncCommand.regex)),
             start: seconds - 2.5,
             end: seconds + 2.5,
             time: seconds,
             lineNumber: lineNumber,
           };
-          if (commandMatch[3]) {
-            let argMatch = commandMatch[3].match(regexes.windowCommand);
-            if (argMatch) {
-              line = line.replace(argMatch[1], '').trim();
-              if (argMatch[2]) {
-                sync.start = seconds - parseFloat(argMatch[2]);
-                sync.end = seconds + parseFloat(argMatch[3]);
+          if (syncCommand.args) {
+            let argMatch = regexes.windowCommand.exec(syncCommand.args);
+            if (argMatch && argMatch['groups']) {
+              const windowCommand = argMatch['groups'];
+              line = line.replace(windowCommand.text, '').trim();
+              if (windowCommand.start) {
+                sync.start = seconds - parseFloat(windowCommand.start);
+                sync.end = seconds + parseFloat(windowCommand.end);
               } else {
-                sync.start = seconds - (parseFloat(argMatch[3]) / 2);
-                sync.end = seconds + (parseFloat(argMatch[3]) / 2);
+                sync.start = seconds - (parseFloat(windowCommand.end) / 2);
+                sync.end = seconds + (parseFloat(windowCommand.end) / 2);
               }
             }
-            argMatch = commandMatch[3].match(regexes.jumpCommand);
-            if (argMatch) {
-              line = line.replace(argMatch[1], '').trim();
-              sync.jump = parseFloat(argMatch[2]);
+            argMatch = regexes.jumpCommand.exec(syncCommand.args);
+            if (argMatch && argMatch['groups']) {
+              const jumpCommand = argMatch['groups'];
+              line = line.replace(jumpCommand.text, '').trim();
+              sync.jump = parseFloat(jumpCommand.seconds);
             }
           }
           this.syncStarts.push(sync);
@@ -303,7 +310,7 @@ export class Timeline {
         }
       }
       // If there's text left that isn't a comment then we didn't parse that text so report it.
-      if (line && !line.match(regexes.comment)) {
+      if (line && !regexes.comment.exec(line)) {
         console.log('Unknown content \'' + line + '\' in timeline: ' + originalLine);
         this.errors.push({
           lineNumber: lineNumber,
@@ -349,7 +356,7 @@ export class Timeline {
       // against timeline text and insert them as text events to run.
       if (triggers) {
         for (const trigger of triggers) {
-          const m = e.name.match(trigger.regex);
+          const m = trigger.regex.exec(e.name);
           if (!m)
             continue;
 
@@ -521,7 +528,6 @@ export class Timeline {
   }
 
   _AddDurationTimers(fightNow) {
-    let sort = false;
     const events = [];
     for (let i = 0; i < this.activeEvents.length; ++i) {
       const e = this.activeEvents[i];
@@ -538,7 +544,6 @@ export class Timeline {
         this.activeEvents.splice(i, 1);
         if (this.addTimerCallback)
           this.addTimerCallback(fightNow, durationEvent, true);
-        sort = true;
         --i;
       }
     }
