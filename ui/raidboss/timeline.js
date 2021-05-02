@@ -857,12 +857,14 @@ export class TimelineUI {
     const activeBar = this.activeBars[e.id];
     if (activeBar) {
       const div = activeBar.parentNode;
-      div?.parentNode?.removeChild(div);
+      if (div && div.parentNode)
+        div.parentNode.removeChild(div);
     }
 
     div.style.order = e.sortKey;
     div.id = e.id;
-    this.timerlist?.appendChild(div);
+    if (this.timerlist)
+      this.timerlist.appendChild(div);
     this.activeBars[e.id] = bar;
     if (e.id in this.expireTimers) {
       window.clearTimeout(this.expireTimers[e.id]);
@@ -890,7 +892,8 @@ export class TimelineUI {
     const bar = this.activeBars[e.id];
     if (bar) {
       const div = bar.parentNode;
-      div?.parentNode?.removeChild(div);
+      if (div && div.parentNode)
+        div.parentNode.removeChild(div);
       delete this.activeBars[e.id];
     }
   }
