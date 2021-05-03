@@ -1,7 +1,19 @@
 import { kAbility, kComboBreakers } from './constants';
 
+type StartMap = Record<string, {
+  id?: string;
+  next?: StartMap;
+}>;
+
 export default class ComboTracker {
-  constructor(comboBreakers, callback) {
+  comboTimer?: number | undefined;
+  comboBreakers: readonly string[];
+  startMap: StartMap;
+  callback: (id: string | null) => void;
+  considerNext: StartMap;
+  isFinalSkill: boolean;
+
+  constructor(comboBreakers: readonly string[], callback: (id: string | null) => void) {
     this.comboTimer = undefined;
     this.comboBreakers = comboBreakers;
     // A tree of nodes.
@@ -14,11 +26,10 @@ export default class ComboTracker {
     this.isFinalSkill = false;
   }
 
-  AddCombo(skillList) {
-    let nextMap = this.startMap;
+  AddCombo(skillList: string[]): void {
+    let nextMap: StartMap = this.startMap;
 
-    for (let i = 0; i < skillList.length; ++i) {
-      const id = skillList[i];
+    skillList.forEach((id) => {
       const node = {
         id: id,
         next: {},
@@ -27,11 +38,11 @@ export default class ComboTracker {
       if (!nextMap[id])
         nextMap[id] = node;
 
-      nextMap = nextMap[id].next;
-    }
+      nextMap = nextMap[id]?.next ?? {};
+    });
   }
 
-  HandleAbility(id) {
+  HandleAbility(id: string): void {
     if (id in this.considerNext) {
       this.StateTransition(id, this.considerNext[id]);
       return;
@@ -41,15 +52,15 @@ export default class ComboTracker {
       this.AbortCombo(id);
   }
 
-  StateTransition(id, nextState) {
+  StateTransition(id: string | null, nextState?: { id?: string; next?: StartMap } | null): void {
     window.clearTimeout(this.comboTimer);
     this.comboTimer = undefined;
 
-    this.isFinalSkill = nextState && Object.keys(nextState.next).length === 0;
+    this.isFinalSkill = (nextState && Object.keys(nextState?.next ?? {}).length === 0) ?? false;
     if (nextState === null || this.isFinalSkill) {
       this.considerNext = this.startMap;
     } else {
-      this.considerNext = Object.assign({}, this.startMap, nextState.next);
+      this.considerNext = Object.assign({}, this.startMap, nextState?.next);
       const kComboDelayMs = 15000;
       this.comboTimer = window.setTimeout(() => {
         this.AbortCombo(null);
@@ -63,11 +74,11 @@ export default class ComboTracker {
       this.callback(null);
   }
 
-  AbortCombo(id) {
+  AbortCombo(id: string | null): void {
     this.StateTransition(id, null);
   }
 
-  static setup(callback) {
+  static setup(callback: (id: string | null) => void): ComboTracker {
     const comboTracker = new ComboTracker(kComboBreakers, callback);
     // PLD
     comboTracker.AddCombo([
