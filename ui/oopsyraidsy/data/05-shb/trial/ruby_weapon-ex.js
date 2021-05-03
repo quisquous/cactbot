@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: taking two different High-Powered Homing Lasers (4AD8)
