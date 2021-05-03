@@ -1,28 +1,33 @@
+import { Job } from '../../types/job';
+import { JobDetail, EventMap } from '../../types/event';
+import { BaseRegExp, Matches } from '../../types/trigger';
+import { IInitOptions, IJobsOptions, JobFunc } from './types';
+import { GainsEffectParams } from '../../resources/netregexes';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
 
 import EffectId from '../../resources/effect_id';
 import ContentType from '../../resources/content_type';
 import Regexes from '../../resources/regexes';
+import ResourceBar from '../../resources/resourcebar';
+import TimerBar from '../../resources/timerbar';
+import TimerBox from '../../resources/timerbox';
 import UserConfig from '../../resources/user_config';
 import Util from '../../resources/util';
+import WidgetList from '../../resources/widget_list';
 import ZoneInfo from '../../resources/zone_info';
 import ZoneId from '../../resources/zone_id';
-import { kWellFedContentTypes, kMPCombatRate, kMPNormalRate, kMPUI1Rate, kMPUI2Rate, kMPUI3Rate, kMPTickInterval } from './constants';
+
 import { BuffTracker } from './buff_tracker';
 import ComboTracker from './combo_tracker';
+import { kWellFedContentTypes, kMPCombatRate, kMPNormalRate, kMPUI1Rate, kMPUI2Rate, kMPUI3Rate, kMPTickInterval } from './constants';
 import { RegexesHolder, computeBackgroundColorFrom, calcGCDFromStat, doesJobNeedMPBar, makeAuraTimerIcon } from './utils';
-
 import { getSetup } from './components/index';
 
 import './jobs_config';
-import '../../resources/resourcebar';
-import '../../resources/timerbar';
-import '../../resources/timerbox';
 import '../../resources/timericon';
-import '../../resources/widget_list';
 
 // See user/jobs-example.js for documentation.
-const Options = {
+const Options: IInitOptions = {
   ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'WHM', 'SCH', 'AST', 'BLU'],
   ShowMPNumber: ['PLD', 'DRK', 'WHM', 'SCH', 'AST', 'BLM', 'BLU'],
 
@@ -53,39 +58,118 @@ const Options = {
 const kPullText = {
   en: 'Pull',
   de: 'Start',
+  fr: 'Attaque',
   ja: 'タゲ取る',
   cn: '开怪',
   ko: '풀링',
 };
 
-class Bars {
-  constructor(options) {
+export class Bars {
+  options: IJobsOptions;
+  init: boolean;
+  o: Partial<{
+    pullCountdown: TimerBar;
+    rightBuffsContainer: HTMLDivElement;
+    leftBuffsContainer: HTMLDivElement;
+    rightBuffsList: WidgetList;
+    leftBuffsList: WidgetList;
+    cpContainer: HTMLDivElement;
+    cpBar: ResourceBar;
+    gpContainer: HTMLDivElement;
+    gpBar: ResourceBar;
+    healthContainer: HTMLDivElement;
+    healthBar: ResourceBar;
+    manaContainer: HTMLDivElement;
+    manaBar: ResourceBar;
+    mpTickContainer: HTMLDivElement;
+    mpTicker: TimerBar;
+  }>;
+
+  // parameters
+  me?: string;
+  level: number;
+  job: Job;
+  hp: number;
+  maxHP: number;
+  currentShield: number;
+  mp: number;
+  prevMP: number;
+  maxMP: number;
+  cp: number;
+  maxCP: number;
+  gp: number;
+  maxGP: number;
+  umbralStacks: number;
+  skillSpeed: number;
+  spellSpeed: number;
+
+  // battle variables
+  distance: number;
+  inCombat: boolean;
+  combo?: ComboTracker;
+  regexes: RegexesHolder;
+  speedBuffs: {
+    presenceOfMind: number;
+    shifu: number;
+    huton: number;
+    lightningStacks: number;
+    paeonStacks: number;
+    museStacks: number;
+    circleOfPower: number;
+  };
+
+  dotTarget: string[];
+  trackedDoTs: string[];
+  comboFuncs: ((skill: string | null) => void)[];
+  // hard to type this when we don't know what job is now
+  jobFuncs: ((jobDetail: never) => void)[];
+  changeZoneFuncs: EventMap['ChangeZone'][];
+  updateDotTimerFuncs: (() => void)[];
+  gainEffectFuncMap: Record<string, JobFunc>;
+  mobGainEffectFromYouFuncMap: Record<string, JobFunc>;
+  mobLoseEffectFromYouFuncMap: Record<string, JobFunc>;
+  loseEffectFuncMap: Record<string, JobFunc>;
+  statChangeFuncMap: Partial<Record<Job, () => void>>;
+  abilityFuncMap: Record<string, JobFunc>;
+  contentType: number;
+  isPVPZone: boolean;
+  crafting: boolean;
+  lastAttackedDotTarget?: string;
+  foodBuffTimer: number | undefined
+  foodBuffExpiresTimeMs: number;
+  gpAlarmReady: boolean;
+  gpPotion: boolean;
+  buffTracker?: BuffTracker;
+
+  constructor(options: IJobsOptions) {
     this.options = options;
     this.init = false;
-    this.me = null;
     this.o = {};
-    this.casting = {};
-    this.job = '';
+
+    this.me = undefined;
+    this.level = 0;
+    this.job = 'NONE';
     this.hp = 0;
     this.maxHP = 0;
     this.currentShield = 0;
     this.mp = 0;
     this.prevMP = 0;
     this.maxMP = 0;
-    this.level = 0;
-    this.distance = -1;
-    this.whiteMana = -1;
-    this.blackMana = -1;
-    this.oath = -1;
+    this.cp = 0;
+    this.maxCP = 0;
+    this.gp = 0;
+    this.maxGP = 0;
     this.umbralStacks = 0;
-    this.inCombat = false;
-    this.combo = null;
-    this.comboTimer = null;
-    this.regexes = new RegexesHolder(this.options.ParserLanguage);
-
     this.skillSpeed = 0;
     this.spellSpeed = 0;
 
+    this.distance = -1;
+    this.inCombat = false;
+    this.combo = undefined;
+    this.regexes = new RegexesHolder(this.options.ParserLanguage);
+    this.foodBuffExpiresTimeMs = 0;
+    this.gpAlarmReady = false;
+    this.gpPotion = false;
     this.speedBuffs = {
       presenceOfMind: 0,
       shifu: 0,
@@ -114,29 +198,30 @@ class Bars {
     this.crafting = false;
   }
 
-  get gcdSkill() {
+  get gcdSkill(): number {
     return calcGCDFromStat(this, this.skillSpeed);
   }
 
-  get gcdSpell() {
+  get gcdSpell(): number {
     return calcGCDFromStat(this, this.spellSpeed);
   }
 
-  _updateUIVisibility() {
+  _updateUIVisibility(): void {
     const bars = document.getElementById('bars');
     if (bars) {
       const barList = bars.children;
       for (const bar of barList) {
-        if (bar.id === 'hp-bar' || bar.id === 'mp-bar') continue;
+        if (bar.id === 'hp-bar' || bar.id === 'mp-bar')
+          continue;
         if (this.isPVPZone)
-          bar.style.display = 'none';
+          (bar as HTMLDivElement).style.display = 'none';
         else
-          bar.style.display = '';
+          (bar as HTMLDivElement).style.display = '';
       }
     }
   }
 
-  _updateJob() {
+  _updateJob(): void {
     this.comboFuncs = [];
     this.jobFuncs = [];
     this.changeZoneFuncs = [];
@@ -146,11 +231,13 @@ class Bars {
     this.loseEffectFuncMap = {};
     this.statChangeFuncMap = {};
     this.abilityFuncMap = {};
-    this.lastAttackedDotTarget = null;
+    this.lastAttackedDotTarget = undefined;
     this.dotTarget = [];
 
-    this.gainEffectFuncMap[EffectId.WellFed] = (name, matches) => {
-      const seconds = parseFloat(matches.duration);
+    this.gainEffectFuncMap[EffectId.WellFed] = (
+        id: string, matches: Matches<BaseRegExp<GainsEffectParams>>,
+    ) => {
+      const seconds = parseFloat(matches?.duration ?? '0');
       const now = Date.now(); // This is in ms.
       this.foodBuffExpiresTimeMs = now + (seconds * 1000);
       this._updateFoodBuff();
@@ -161,9 +248,9 @@ class Bars {
       const root = document.getElementById('container');
       container = document.createElement('div');
       container.id = 'jobs-container';
-      root.appendChild(container);
+      root?.appendChild(container);
     }
-    while (container.childNodes.length)
+    while (container.childNodes[0])
       container.removeChild(container.childNodes[0]);
 
     this.o = {};
@@ -189,7 +276,7 @@ class Bars {
     pullCountdownContainer.id = 'pull-bar';
     // Pull counter not affected by opacity option.
     barsLayoutContainer.appendChild(pullCountdownContainer);
-    this.o.pullCountdown = document.createElement('timer-bar');
+    this.o.pullCountdown = document.createElement('timer-bar') as TimerBar;
     pullCountdownContainer.appendChild(this.o.pullCountdown);
 
     const opacityContainer = document.createElement('div');
@@ -203,9 +290,9 @@ class Bars {
 
     this.o.pullCountdown.width = window.getComputedStyle(pullCountdownContainer).width;
     this.o.pullCountdown.height = window.getComputedStyle(pullCountdownContainer).height;
-    this.o.pullCountdown.lefttext = kPullText[this.options.DisplayLanguage] || kPullText['en'];
+    this.o.pullCountdown.lefttext = kPullText[this.options.DisplayLanguage] ?? kPullText['en'];
     this.o.pullCountdown.righttext = 'remain';
-    this.o.pullCountdown.hideafter = 0;
+    this.o.pullCountdown.hideafter = '0';
     this.o.pullCountdown.fg = 'rgb(255, 120, 120)';
     this.o.pullCountdown.classList.add('lang-' + this.options.DisplayLanguage);
 
@@ -213,20 +300,20 @@ class Bars {
     this.o.rightBuffsContainer.id = 'right-side-icons';
     barsContainer.appendChild(this.o.rightBuffsContainer);
 
-    this.o.rightBuffsList = document.createElement('widget-list');
+    this.o.rightBuffsList = document.createElement('widget-list') as WidgetList;
     this.o.rightBuffsContainer.appendChild(this.o.rightBuffsList);
 
-    this.o.rightBuffsList.rowcolsize = 7;
-    this.o.rightBuffsList.maxnumber = 7;
+    this.o.rightBuffsList.rowcolsize = '7';
+    this.o.rightBuffsList.maxnumber = '7';
     this.o.rightBuffsList.toward = 'right down';
-    this.o.rightBuffsList.elementwidth = this.options.BigBuffIconWidth + 2;
+    this.o.rightBuffsList.elementwidth = (this.options.BigBuffIconWidth + 2).toString();
 
     if (this.options.JustBuffTracker) {
       // Just alias these two together so the rest of the code doesn't have
       // to care that they're the same thing.
       this.o.leftBuffsList = this.o.rightBuffsList;
-      this.o.rightBuffsList.rowcolsize = 20;
-      this.o.rightBuffsList.maxnumber = 20;
+      this.o.rightBuffsList.rowcolsize = '20';
+      this.o.rightBuffsList.maxnumber = '20';
       // Hoist the buffs up to hide everything else.
       barsLayoutContainer.appendChild(this.o.rightBuffsContainer);
       barsLayoutContainer.classList.add('justbuffs');
@@ -235,20 +322,20 @@ class Bars {
       this.o.leftBuffsContainer.id = 'left-side-icons';
       barsContainer.appendChild(this.o.leftBuffsContainer);
 
-      this.o.leftBuffsList = document.createElement('widget-list');
+      this.o.leftBuffsList = document.createElement('widget-list') as WidgetList;
       this.o.leftBuffsContainer.appendChild(this.o.leftBuffsList);
 
-      this.o.leftBuffsList.rowcolsize = 7;
-      this.o.leftBuffsList.maxnumber = 7;
+      this.o.leftBuffsList.rowcolsize = '7';
+      this.o.leftBuffsList.maxnumber = '7';
       this.o.leftBuffsList.toward = 'left down';
-      this.o.leftBuffsList.elementwidth = this.options.BigBuffIconWidth + 2;
+      this.o.leftBuffsList.elementwidth = (this.options.BigBuffIconWidth + 2).toString();
     }
 
     if (Util.isCraftingJob(this.job)) {
       this.o.cpContainer = document.createElement('div');
       this.o.cpContainer.id = 'cp-bar';
       barsContainer.appendChild(this.o.cpContainer);
-      this.o.cpBar = document.createElement('resource-bar');
+      this.o.cpBar = document.createElement('resource-bar') as ResourceBar;
       this.o.cpContainer.appendChild(this.o.cpBar);
       this.o.cpBar.width = window.getComputedStyle(this.o.cpContainer).width;
       this.o.cpBar.height = window.getComputedStyle(this.o.cpContainer).height;
@@ -261,7 +348,7 @@ class Bars {
       this.o.gpContainer = document.createElement('div');
       this.o.gpContainer.id = 'gp-bar';
       barsContainer.appendChild(this.o.gpContainer);
-      this.o.gpBar = document.createElement('resource-bar');
+      this.o.gpBar = document.createElement('resource-bar') as ResourceBar;
       this.o.gpContainer.appendChild(this.o.gpBar);
       this.o.gpBar.width = window.getComputedStyle(this.o.gpContainer).width;
       this.o.gpBar.height = window.getComputedStyle(this.o.gpContainer).height;
@@ -284,7 +371,7 @@ class Bars {
       this.o.healthContainer.classList.add('show-number');
     barsContainer.appendChild(this.o.healthContainer);
 
-    this.o.healthBar = document.createElement('resource-bar');
+    this.o.healthBar = document.createElement('resource-bar') as ResourceBar;
     this.o.healthContainer.appendChild(this.o.healthBar);
     // TODO: Let the component do this dynamically.
     this.o.healthBar.width = window.getComputedStyle(this.o.healthContainer).width;
@@ -299,7 +386,7 @@ class Bars {
       if (showMPNumber)
         this.o.manaContainer.classList.add('show-number');
 
-      this.o.manaBar = document.createElement('resource-bar');
+      this.o.manaBar = document.createElement('resource-bar') as ResourceBar;
       this.o.manaContainer.appendChild(this.o.manaBar);
       // TODO: Let the component do this dynamically.
       this.o.manaBar.width = window.getComputedStyle(this.o.manaContainer).width;
@@ -313,7 +400,7 @@ class Bars {
       this.o.mpTickContainer.id = 'mp-tick';
       barsContainer.appendChild(this.o.mpTickContainer);
 
-      this.o.mpTicker = document.createElement('timer-bar');
+      this.o.mpTicker = document.createElement('timer-bar') as TimerBar;
       this.o.mpTickContainer.appendChild(this.o.mpTicker);
       this.o.mpTicker.width = window.getComputedStyle(this.o.mpTickContainer).width;
       this.o.mpTicker.height = window.getComputedStyle(this.o.mpTickContainer).height;
@@ -339,7 +426,7 @@ class Bars {
     this.trackedDoTs = Object.keys(this.mobGainEffectFromYouFuncMap);
   }
 
-  _validateKeys() {
+  _validateKeys(): void {
     // Keys in JavaScript are converted to strings, so test string equality
     // here to verify that effects and abilities have been spelled correctly.
     for (const key in this.abilityFuncMap) {
@@ -356,37 +443,36 @@ class Bars {
     }
   }
 
-  addJobBarContainer() {
+  addJobBarContainer(): HTMLElement {
     const id = this.job.toLowerCase() + '-bar';
     let container = document.getElementById(id);
     if (!container) {
       container = document.createElement('div');
       container.id = id;
-      document.getElementById('bars').appendChild(container);
+      document.getElementById('bars')?.appendChild(container);
       container.classList.add('bar-container');
     }
     return container;
   }
 
-  addJobBoxContainer() {
+  addJobBoxContainer(): HTMLElement {
     const id = this.job.toLowerCase() + '-boxes';
     let boxes = document.getElementById(id);
     if (!boxes) {
       boxes = document.createElement('div');
       boxes.id = id;
-      document.getElementById('bars').appendChild(boxes);
+      document.getElementById('bars')?.appendChild(boxes);
       boxes.classList.add('box-container');
     }
     return boxes;
   }
 
-  addResourceBox(options) {
+  addResourceBox(options: { classList?: string[] }): HTMLElement {
     const boxes = this.addJobBoxContainer();
     const boxDiv = document.createElement('div');
-    if (options.classList) {
-      for (let i = 0; i < options.classList.length; ++i)
-        boxDiv.classList.add(options.classList[i], 'resourcebox');
-    }
+    options.classList?.forEach((className: string) => {
+      boxDiv.classList.add(className, 'resourcebox');
+    });
     boxes.appendChild(boxDiv);
 
     const textDiv = document.createElement('div');
@@ -396,28 +482,33 @@ class Bars {
     return textDiv;
   }
 
-  addProcBox(options) {
+  addProcBox(options: {
+    id?: string;
+    fgColor?: string;
+    threshold?: number;
+    scale?: number;
+  }): TimerBox {
     const id = this.job.toLowerCase() + '-procs';
 
     let container = document.getElementById(id);
     if (!container) {
       container = document.createElement('div');
       container.id = id;
-      document.getElementById('bars').appendChild(container);
+      document.getElementById('bars')?.appendChild(container);
       container.classList.add('proc-box');
     }
 
-    const timerBox = document.createElement('timer-box');
+    const timerBox = document.createElement('timer-box') as unknown as TimerBox;
     container.appendChild(timerBox);
     timerBox.stylefill = 'empty';
     if (options.fgColor)
       timerBox.fg = computeBackgroundColorFrom(timerBox, options.fgColor);
     timerBox.bg = 'black';
     timerBox.toward = 'bottom';
-    timerBox.threshold = options.threshold ? options.threshold : 0;
+    timerBox.threshold = `${options.threshold ? options.threshold : 0}`;
     timerBox.hideafter = '';
     timerBox.roundupthreshold = false;
-    timerBox.valuescale = options.scale ? options.scale : 1;
+    timerBox.valuescale = `${options.scale ? options.scale : 1}`;
     if (options.id) {
       timerBox.id = options.id;
       timerBox.classList.add('timer-box');
@@ -425,12 +516,15 @@ class Bars {
     return timerBox;
   }
 
-  addTimerBar(options) {
+  addTimerBar(options: {
+    id: string;
+    fgColor: string;
+  }): TimerBar {
     const container = this.addJobBarContainer();
 
     const timerDiv = document.createElement('div');
     timerDiv.id = options.id;
-    const timer = document.createElement('timer-bar');
+    const timer = document.createElement('timer-bar') as TimerBar;
     container.appendChild(timerDiv);
     timerDiv.appendChild(timer);
     timer.classList.add('timer-bar');
@@ -445,12 +539,16 @@ class Bars {
     return timer;
   }
 
-  addResourceBar(options) {
+  addResourceBar(options: {
+    id: string;
+    fgColor: string;
+    maxvalue: string;
+  }): ResourceBar {
     const container = this.addJobBarContainer();
 
     const barDiv = document.createElement('div');
     barDiv.id = options.id;
-    const bar = document.createElement('resource-bar');
+    const bar = document.createElement('resource-bar') as ResourceBar;
     container.appendChild(barDiv);
     barDiv.appendChild(bar);
     bar.classList.add('resourcebar');
@@ -464,69 +562,68 @@ class Bars {
     return bar;
   }
 
-  onCombo(callback) {
+  onCombo(callback: (skill: string | null) => void): void {
     this.comboFuncs.push(callback);
   }
 
-  onMobGainsEffectFromYou(effectIds, callback) {
+  onMobGainsEffectFromYou(effectIds: string | string[], callback: JobFunc): void {
     if (Array.isArray(effectIds))
       effectIds.forEach((id) => this.mobGainEffectFromYouFuncMap[id] = callback);
     else
       this.mobGainEffectFromYouFuncMap[effectIds] = callback;
   }
 
-  onMobLosesEffectFromYou(effectIds, callback) {
+  onMobLosesEffectFromYou(effectIds: string | string[], callback: JobFunc): void {
     if (Array.isArray(effectIds))
       effectIds.forEach((id) => this.mobLoseEffectFromYouFuncMap[id] = callback);
     else
       this.mobLoseEffectFromYouFuncMap[effectIds] = callback;
   }
 
-  onYouGainEffect(effectIds, callback) {
+  onYouGainEffect(effectIds: string, callback: JobFunc): void {
     if (Array.isArray(effectIds))
-      effectIds.forEach((id) => this.gainEffectFuncMap[id] = callback);
+      effectIds.forEach((id: string) => this.gainEffectFuncMap[id] = callback);
     else
       this.gainEffectFuncMap[effectIds] = callback;
   }
 
-  onYouLoseEffect(effectIds, callback) {
+  onYouLoseEffect(effectIds: string, callback: JobFunc): void {
     if (Array.isArray(effectIds))
-      effectIds.forEach((id) => this.loseEffectFuncMap[id] = callback);
+      effectIds.forEach((id: string) => this.loseEffectFuncMap[id] = callback);
     else
       this.loseEffectFuncMap[effectIds] = callback;
   }
 
-  onJobDetailUpdate(callback) {
+  onJobDetailUpdate<K extends keyof JobDetail>(callback: (jobDetail: JobDetail[K]) => void): void {
     this.jobFuncs.push(callback);
   }
 
-  onStatChange(job, callback) {
-    this.statChangeFuncMap[job] = callback;
+  onStatChange(callback: () => void): void {
+    this.statChangeFuncMap[this.job] = callback;
   }
 
-  onUseAbility(abilityIds, callback) {
+  onUseAbility(abilityIds: string | string[], callback: JobFunc): void {
     if (Array.isArray(abilityIds))
       abilityIds.forEach((id) => this.abilityFuncMap[id] = callback);
     else
       this.abilityFuncMap[abilityIds] = callback;
   }
 
-  _onComboChange(skill) {
-    for (let i = 0; i < this.comboFuncs.length; ++i)
-      this.comboFuncs[i](skill);
+  _onComboChange(skill: string | null): void {
+    this.comboFuncs.forEach((func) => func(skill));
   }
 
-  _updateJobBarGCDs() {
+  _updateJobBarGCDs(): void {
     const f = this.statChangeFuncMap[this.job];
     if (f)
       f();
   }
 
-  _updateHealth() {
+  _updateHealth(): void {
     if (!this.o.healthBar) return;
-    this.o.healthBar.value = this.hp;
-    this.o.healthBar.maxvalue = this.maxHP;
-    this.o.healthBar.extravalue = this.currentShield;
+    this.o.healthBar.value = this.hp.toString();
+    this.o.healthBar.maxvalue = this.maxHP.toString();
+    this.o.healthBar.extravalue = this.currentShield.toString();
 
     const percent = (this.hp + this.currentShield) / this.maxHP;
 
@@ -538,14 +635,14 @@ class Bars {
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color');
   }
 
-  _updateMPTicker() {
+  _updateMPTicker(): void {
     if (!this.o.mpTicker) return;
     const delta = this.mp - this.prevMP;
     this.prevMP = this.mp;
 
     // Hide out of combat if requested
     if (!this.options.ShowMPTickerOutOfCombat && !this.inCombat) {
-      this.o.mpTicker.duration = 0;
+      this.o.mpTicker.duration = '0';
       this.o.mpTicker.stylefill = 'empty';
       return;
     }
@@ -559,7 +656,7 @@ class Bars {
 
     const mpTick = Math.floor(this.maxMP * baseTick) + Math.floor(this.maxMP * umbralTick);
     if (delta === mpTick && this.umbralStacks <= 0) // MP ticks disabled in AF
-      this.o.mpTicker.duration = kMPTickInterval;
+      this.o.mpTicker.duration = kMPTickInterval.toString();
 
     // Update color based on the astral fire/ice state
     let colorTag = 'mp-tick-color';
@@ -568,12 +665,12 @@ class Bars {
     this.o.mpTicker.fg = computeBackgroundColorFrom(this.o.mpTicker, colorTag);
   }
 
-  _updateMana() {
+  _updateMana(): void {
     this._updateMPTicker();
 
     if (!this.o.manaBar) return;
-    this.o.manaBar.value = this.mp;
-    this.o.manaBar.maxvalue = this.maxMP;
+    this.o.manaBar.value = this.mp.toString();
+    this.o.manaBar.maxvalue = this.maxMP.toString();
     let lowMP = -1;
     let mediumMP = -1;
     let far = -1;
@@ -602,16 +699,16 @@ class Bars {
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color');
   }
 
-  _updateCp() {
+  _updateCp(): void {
     if (!this.o.cpBar) return;
-    this.o.cpBar.value = this.cp;
-    this.o.cpBar.maxvalue = this.maxCP;
+    this.o.cpBar.value = this.cp.toString();
+    this.o.cpBar.maxvalue = this.maxCP.toString();
   }
 
-  _updateGp() {
+  _updateGp(): void {
     if (!this.o.gpBar) return;
-    this.o.gpBar.value = this.gp;
-    this.o.gpBar.maxvalue = this.maxGP;
+    this.o.gpBar.value = this.gp.toString();
+    this.o.gpBar.maxvalue = this.maxGP.toString();
 
     // GP Alarm
     if (this.gp < this.options.GpAlarmPoint) {
@@ -620,27 +717,27 @@ class Bars {
       this.gpAlarmReady = false;
       const audio = new Audio('../../resources/sounds/freesound/power_up.ogg');
       audio.volume = this.options.GpAlarmSoundVolume;
-      audio.play();
+      void audio.play();
     }
   }
 
-  _updateOpacity() {
+  _updateOpacity(): void {
     const opacityContainer = document.getElementById('opacity-container');
     if (!opacityContainer)
       return;
     if (this.inCombat || !this.options.LowerOpacityOutOfCombat ||
         Util.isCraftingJob(this.job) || Util.isGatheringJob(this.job))
-      opacityContainer.style.opacity = 1.0;
+      opacityContainer.style.opacity = '1.0';
     else
-      opacityContainer.style.opacity = this.options.OpacityOutOfCombat;
+      opacityContainer.style.opacity = this.options.OpacityOutOfCombat.toString();
   }
 
-  _updateFoodBuff() {
+  _updateFoodBuff(): void {
     // Non-combat jobs don't set up the left buffs list.
     if (!this.init || !this.o.leftBuffsList)
       return;
 
-    const CanShowWellFedWarning = function() {
+    const CanShowWellFedWarning = () => {
       if (!this.options.HideWellFedAboveSeconds)
         return false;
       if (this.inCombat)
@@ -649,7 +746,7 @@ class Bars {
     };
 
     // Returns the number of ms until it should be shown. If <= 0, show it.
-    const TimeToShowWellFedWarning = function() {
+    const TimeToShowWellFedWarning = () => {
       const nowMs = Date.now();
       const showAtMs = this.foodBuffExpiresTimeMs - (this.options.HideWellFedAboveSeconds * 1000);
       return showAtMs - nowMs;
@@ -679,13 +776,13 @@ class Bars {
     }
   }
 
-  _onPartyWipe(e) {
+  _onPartyWipe(_e: Parameters<EventMap['onPartyWipe']>[0]): void {
     // TODO: add reset for job-specific ui
     if (this.buffTracker)
       this.buffTracker.clear();
   }
 
-  _onInCombatChanged(e) {
+  _onInCombatChanged(e: Parameters<EventMap['onInCombatChangedEvent']>[0]): void {
     if (this.inCombat === e.detail.inGameCombat)
       return;
 
@@ -698,9 +795,9 @@ class Bars {
     this._updateMPTicker();
   }
 
-  _onChangeZone(e) {
+  _onChangeZone(e: Parameters<EventMap['ChangeZone']>[0]): void {
     const zoneInfo = ZoneInfo[e.zoneID];
-    this.contentType = zoneInfo ? zoneInfo.contentType : 0;
+    this.contentType = zoneInfo?.contentType ?? 0;
     this.dotTarget = [];
 
     this._updateFoodBuff();
@@ -720,26 +817,26 @@ class Bars {
     this._updateUIVisibility();
   }
 
-  _setPullCountdown(seconds) {
+  _setPullCountdown(seconds: number): void {
     if (!this.o.pullCountdown) return;
 
     const inCountdown = seconds > 0;
     const showingCountdown = parseFloat(this.o.pullCountdown.duration) > 0;
     if (inCountdown !== showingCountdown) {
-      this.o.pullCountdown.duration = seconds;
+      this.o.pullCountdown.duration = seconds.toString();
       if (inCountdown && this.options.PlayCountdownSound) {
         const audio = new Audio('../../resources/sounds/freesound/sonar.ogg');
         audio.volume = 0.3;
-        audio.play();
+        void audio.play();
       }
     }
   }
 
-  _onCraftingLog(log) {
+  _onCraftingLog(log: string): void {
     // Hide CP Bar when not crafting
     const container = document.getElementById('jobs-container');
 
-    const anyRegexMatched = (line, array) =>
+    const anyRegexMatched = (line: string, array: RegExp[]) =>
       array.some((regex) => regex.test(line));
 
     if (!this.crafting) {
@@ -751,18 +848,18 @@ class Bars {
       } else {
         this.crafting = !this.regexes.craftingFinishRegexes.some((regex) => {
           const m = regex.exec(log);
-          return m && (!m.groups.player || m.groups.player === this.me);
+          return m && (m.groups?.player === this.me);
         });
       }
     }
 
     if (this.crafting)
-      container.classList.remove('hide');
+      container?.classList.remove('hide');
     else
-      container.classList.add('hide');
+      container?.classList.add('hide');
   }
 
-  _onPlayerChanged(e) {
+  _onPlayerChanged(e: Parameters<EventMap['onPlayerChangedEvent']>[0]): void {
     if (this.me !== e.detail.name) {
       this.me = e.detail.name;
       // setup regexes prior to the combo tracker
@@ -783,7 +880,7 @@ class Bars {
     if (e.detail.job !== this.job) {
       this.job = e.detail.job;
       // Combos are job specific.
-      this.combo.AbortCombo();
+      this.combo?.AbortCombo(null);
       // Update MP ticker as umbral stacks has changed.
       this.umbralStacks = 0;
       this._updateMPTicker();
@@ -803,7 +900,7 @@ class Bars {
       updateHp = true;
 
       if (this.hp === 0)
-        this.combo.AbortCombo(); // Death resets combos.
+        this.combo?.AbortCombo(null); // Death resets combos.
     }
     if (e.detail.currentMP !== this.mp || e.detail.maxMP !== this.maxMP) {
       this.mp = e.detail.currentMP;
@@ -840,12 +937,13 @@ class Bars {
       this._updateFoodBuff();
 
     if (e.detail.jobDetail) {
-      for (let i = 0; i < this.jobFuncs.length; ++i)
-        this.jobFuncs[i](e.detail.jobDetail);
+      this.jobFuncs.forEach((func) => {
+        func(e.detail.jobDetail as never);
+      });
     }
   }
 
-  _updateEnmityTargetData(e) {
+  _updateEnmityTargetData(e: Parameters<EventMap['EnmityTargetData']>[0]): void {
     const target = e.Target;
 
     let update = false;
@@ -864,7 +962,7 @@ class Bars {
     }
   }
 
-  _onNetLog(e) {
+  _onNetLog(e: Parameters<EventMap['LogLine']>[0]): void {
     if (!this.init)
       return;
     const line = e.line;
@@ -873,72 +971,66 @@ class Bars {
     const type = line[0];
 
     if (type === '26') {
-      let m = log.match(this.regexes.YouGainEffectRegex);
+      let m = this.regexes.YouGainEffectRegex?.exec(log);
       if (m) {
-        const effectId = m.groups.effectId.toUpperCase();
-        const f = this.gainEffectFuncMap[effectId];
-        if (f)
-          f(effectId, m.groups);
-        this.buffTracker.onYouGainEffect(effectId, m.groups);
+        const effectId = m.groups?.effectId?.toUpperCase() ?? '';
+        this.gainEffectFuncMap?.[effectId]?.(effectId, m.groups);
+        this.buffTracker?.onYouGainEffect(effectId, m.groups);
       }
-      m = log.match(this.regexes.MobGainsEffectRegex);
+      m = this.regexes.MobGainsEffectRegex?.exec(log);
       if (m) {
-        const effectId = m.groups.effectId.toUpperCase();
-        this.buffTracker.onMobGainsEffect(effectId, m.groups);
+        const effectId = m.groups?.effectId?.toUpperCase() ?? '';
+        this.buffTracker?.onMobGainsEffect(effectId, m.groups);
       }
-      m = log.match(this.regexes.MobGainsEffectFromYouRegex);
+      m = this.regexes.MobGainsEffectFromYouRegex?.exec(log);
       if (m) {
-        const effectId = m.groups.effectId.toUpperCase();
+        const effectId = m.groups?.effectId?.toUpperCase() ?? '';
         if (this.trackedDoTs.includes(effectId))
-          this.dotTarget.push(m.groups.targetId);
+          this.dotTarget.push(m.groups?.targetId as string);
         const f = this.mobGainEffectFromYouFuncMap[effectId];
         if (f)
           f(effectId, m.groups);
       }
     } else if (type === '30') {
-      let m = log.match(this.regexes.YouLoseEffectRegex);
+      let m = this.regexes.YouLoseEffectRegex?.exec(log);
       if (m) {
-        const effectId = m.groups.effectId.toUpperCase();
+        const effectId = m.groups?.effectId?.toUpperCase() ?? '';
         const f = this.loseEffectFuncMap[effectId];
         if (f)
           f(effectId, m.groups);
-        this.buffTracker.onYouLoseEffect(effectId, m.groups);
+        this.buffTracker?.onYouLoseEffect(effectId, m.groups);
       }
-      m = log.match(this.regexes.MobLosesEffectRegex);
+      m = this.regexes.MobLosesEffectRegex?.exec(log);
       if (m) {
-        const effectId = m.groups.effectId.toUpperCase();
-        this.buffTracker.onMobLosesEffect(effectId, m.groups);
+        const effectId = m.groups?.effectId?.toUpperCase() ?? '';
+        this.buffTracker?.onMobLosesEffect(effectId, m.groups);
       }
-      m = log.match(this.regexes.MobLosesEffectFromYouRegex);
+      m = this.regexes.MobLosesEffectFromYouRegex?.exec(log);
       if (m) {
-        const effectId = m.groups.effectId.toUpperCase();
+        const effectId = m.groups?.effectId?.toUpperCase() ?? '';
         if (this.trackedDoTs.includes(effectId)) {
-          const index = this.dotTarget.indexOf(m.groups.targetId);
+          const index = this.dotTarget.indexOf(m.groups?.targetId as string);
           if (index > -1)
             this.dotTarget.splice(index, 1);
         }
-        const f = this.mobLoseEffectFromYouFuncMap[effectId];
-        if (f)
-          f(effectId, m.groups);
+        this.mobLoseEffectFromYouFuncMap[effectId]?.(effectId, m.groups);
       }
     } else if (type === '21' || type === '22') {
-      let m = log.match(this.regexes.YouUseAbilityRegex);
+      let m = this.regexes.YouUseAbilityRegex?.exec(log);
       if (m) {
-        const id = m.groups.id;
-        this.combo.HandleAbility(id);
-        const f = this.abilityFuncMap[id];
-        if (f)
-          f(id, m.groups);
-        this.buffTracker.onUseAbility(id, m.groups);
+        const id = m.groups?.id ?? '';
+        this.combo?.HandleAbility(id);
+        this.abilityFuncMap[id]?.(id, m.groups);
+        this.buffTracker?.onUseAbility(id, m.groups);
       } else {
-        const m = log.match(this.regexes.AnybodyAbilityRegex);
+        const m = this.regexes.AnybodyAbilityRegex?.exec(log);
         if (m)
-          this.buffTracker.onUseAbility(m.groups.id, m.groups);
+          this.buffTracker?.onUseAbility(m.groups?.id as string, m.groups);
       }
-      m = log.match(this.regexes.YouUseAbilityRegex);
+      m = this.regexes.YouUseAbilityRegex?.exec(log);
       if (m) {
-        if (this.dotTarget.includes(m.groups.targetId))
-          this.lastAttackedDotTarget = m.groups.targetId;
+        if (this.dotTarget.includes(m.groups?.targetId as string))
+          this.lastAttackedDotTarget = m.groups?.targetId;
       }
     } else if (type === '24') {
       // line[2] is dotted target id.
@@ -948,43 +1040,38 @@ class Bars {
         line[4] === 'DoT' &&
         line[5] === '0') {
         // 0 if not field setting DoT
-        this.updateDotTimerFuncs.forEach((f) => {
-          if (f)
-            f();
-        });
+        this.updateDotTimerFuncs.forEach((f) => f());
       }
     }
   }
 
-  _onLogEvent(e) {
+  _onLogEvent(e: Parameters<EventMap['onLogEvent']>[0]): void {
     if (!this.init)
       return;
 
-    for (let i = 0; i < e.detail.logs.length; i++) {
-      const log = e.detail.logs[i];
-
+    e.detail.logs.forEach((log) => {
       // TODO: only consider this when not in battle.
       if (log[15] === '0') {
-        const r = log.match(this.regexes.countdownStartRegex);
+        const r = this.regexes.countdownStartRegex.exec(log);
         if (r) {
-          const seconds = parseFloat(r.groups.time);
+          const seconds = parseFloat(r.groups?.time ?? '0');
           this._setPullCountdown(seconds);
-          continue;
+          return;
         }
         if (log.search(this.regexes.countdownCancelRegex) >= 0) {
           this._setPullCountdown(0);
-          continue;
+          return;
         }
         if (log.search(/:test:jobs:/) >= 0) {
           this._test();
-          continue;
+          return;
         }
         if (log[16] === 'C') {
-          const stats = log.match(this.regexes.StatsRegex).groups;
-          this.skillSpeed = stats.skillSpeed;
-          this.spellSpeed = stats.spellSpeed;
+          const stats = this.regexes.StatsRegex?.exec(log)?.groups;
+          this.skillSpeed = parseInt(stats?.skillSpeed ?? '0');
+          this.spellSpeed = parseInt(stats?.spellSpeed ?? '0');
           this._updateJobBarGCDs();
-          continue;
+          return;
         }
         if (Util.isCraftingJob(this.job))
           this._onCraftingLog(log);
@@ -1002,31 +1089,32 @@ class Bars {
           }
         }
       }
-    }
+    });
   }
 
-  _test() {
+  _test(): void {
     const logs = [];
     const t = '[10:10:10.000] ';
-    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30.2 Seconds.');
-    logs.push(t + '15:10000000:Tako Yaki:1D60:Embolden:10000000:' + this.me + ':500020F:4D70000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:00001DE7');
-    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
-    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of The Balance from  for 12 Seconds.');
+    const me = this.me ?? '';
+    logs.push(`${t}1A:10000000:${me} gains the effect of Medicated from ${me} for 30.2 Seconds.`);
+    logs.push(`${t}15:10000000:Tako Yaki:1D60:Embolden:10000000:${me}:500020F:4D70000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:00001DE7'`);
+    logs.push(t + '1A:10000000:' + me + ' gains the effect of Battle Litany from  for 25 Seconds.');
+    logs.push(t + '1A:10000000:' + me + ' gains the effect of The Balance from  for 12 Seconds.');
     logs.push(t + '1A:10000000:Okonomi Yaki gains the effect of Foe Requiem from Okonomi Yaki for 9999.00 Seconds.');
     logs.push(t + '15:1048638C:Okonomi Yaki:8D2:Trick Attack:40000C96:Striking Dummy:20710103:154B:');
-    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Left Eye from That Guy for 15.0 Seconds.');
-    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Right Eye from That Guy for 15.0 Seconds.');
+    logs.push(t + '1A:10000000:' + me + ' gains the effect of Left Eye from That Guy for 15.0 Seconds.');
+    logs.push(t + '1A:10000000:' + me + ' gains the effect of Right Eye from That Guy for 15.0 Seconds.');
     logs.push(t + '15:1048638C:Tako Yaki:1D0C:Chain Stratagem:40000C96:Striking Dummy:28710103:154B:');
     logs.push(t + '15:1048638C:Tako Yaki:B45:Hypercharge:40000C96:Striking Dummy:28710103:154B:');
-    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Devotion from That Guy for 15.0 Seconds.');
-    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.');
-    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Brotherhood from Other Guy for 15.0 Seconds.');
-    const e = { detail: { logs: logs } };
+    logs.push(t + '1A:10000000:' + me + ' gains the effect of Devotion from That Guy for 15.0 Seconds.');
+    logs.push(t + '1A:10000000:' + me + ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.');
+    logs.push(t + '1A:10000000:' + me + ' gains the effect of Brotherhood from Other Guy for 15.0 Seconds.');
+    const e = { type: 'onLogEvent' as const, detail: { logs: logs } };
     this._onLogEvent(e);
   }
 }
 
-let gBars;
+let gBars: Bars;
 
 UserConfig.getUserConfigLocation('jobs', Options, () => {
   addOverlayListener('onPlayerChangedEvent', (e) => {

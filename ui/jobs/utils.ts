@@ -1,14 +1,32 @@
+import { Lang } from '../../types/global';
+import { Job } from '../../types/job';
 import Util from '../../resources/util';
 import NetRegexes from '../../resources/netregexes';
-import Regexes from '../../resources/regexes';
 import { LocaleRegex } from '../../resources/translations';
+import TimerIcon from '../../resources/timericon';
+import TimerBar from '../../resources/timerbar';
+import { Bars } from './jobs';
 import { kMeleeWithMpJobs, kLevelMod } from './constants';
 
-const getLocaleRegex = (locale, regexes) => regexes[locale] || regexes['en'];
+const getLocaleRegex = (locale: Lang, regexes: Record<Lang, RegExp>): RegExp => regexes[locale] || regexes['en'];
 
 export class RegexesHolder {
-  constructor(lang) {
-    this.StatsRegex = Regexes.statChange();
+  StatsRegex: RegExp;
+  YouGainEffectRegex: RegExp | null;
+  YouLoseEffectRegex: RegExp | null;
+  YouUseAbilityRegex: RegExp | null;
+  AnybodyAbilityRegex: RegExp | null;
+  MobGainsEffectRegex: RegExp | null;
+  MobLosesEffectRegex: RegExp | null;
+  MobGainsEffectFromYouRegex: RegExp | null;
+  MobLosesEffectFromYouRegex: RegExp | null;
+  countdownStartRegex: RegExp;
+  countdownCancelRegex: RegExp;
+  craftingStartRegexes: RegExp[];
+  craftingFinishRegexes: RegExp[];
+  craftingStopRegexes: RegExp[];
+  constructor(lang: Lang) {
+    this.StatsRegex = NetRegexes.statChange();
 
     // Regexes to be filled out once we know the player's name.
     this.YouGainEffectRegex = null;
@@ -38,7 +56,7 @@ export class RegexesHolder {
       getCurrentRegex(LocaleRegex.trialCraftingCancel),
     ];
   }
-  setup(playerName) {
+  setup(playerName: string): void {
     this.YouGainEffectRegex = NetRegexes.gainsEffect({ target: playerName });
     this.YouLoseEffectRegex = NetRegexes.losesEffect({ target: playerName });
     this.YouUseAbilityRegex = NetRegexes.ability({ source: playerName });
@@ -50,12 +68,12 @@ export class RegexesHolder {
   }
 }
 
-export function doesJobNeedMPBar(job) {
+export const doesJobNeedMPBar = (job: Job): boolean => {
   return Util.isCasterDpsJob(job) || Util.isHealerJob(job) || kMeleeWithMpJobs.includes(job);
-}
+};
 
 // Source: http://theoryjerks.akhmorning.com/guide/speed/
-export function calcGCDFromStat(bars, stat, actionDelay) {
+export const calcGCDFromStat = (bars: Bars, stat: number, actionDelay?: number): number => {
   // default calculates for a 2.50s recast
   actionDelay = actionDelay || 2500;
 
@@ -102,66 +120,80 @@ export function calcGCDFromStat(bars, stat, actionDelay) {
   // TODO: this probably isn't useful to track
   const astralUmbralMod = 100;
 
-  const gcdMs = Math.floor(1000 - Math.floor(130 * (stat - kLevelMod[bars.level][0]) /
-    kLevelMod[bars.level][1])) * actionDelay / 1000;
+  const levelMod = kLevelMod[bars.level] ?? [0, 0];
+
+  const gcdMs = Math.floor(1000 - Math.floor(130 * (stat - levelMod[0]) /
+    levelMod[1])) * actionDelay / 1000;
   const a = (100 - type1Buffs) / 100;
   const b = (100 - type2Buffs) / 100;
   const gcdC = Math.floor(Math.floor((a * b) * gcdMs / 10) * astralUmbralMod / 100);
   return gcdC / 100;
-}
+};
 
-export function computeBackgroundColorFrom(element, classList) {
+export const computeBackgroundColorFrom = (element: HTMLElement, classList: string): string => {
   const div = document.createElement('div');
   const classes = classList.split('.');
-  for (let i = 0; i < classes.length; ++i)
-    div.classList.add(classes[i]);
+  classes.forEach((className) => div.classList.add(className));
   element.appendChild(div);
   const color = window.getComputedStyle(div).backgroundColor;
   element.removeChild(div);
   return color;
-}
+};
 
-export function makeAuraTimerIcon(name, seconds, opacity, iconWidth, iconHeight, iconText,
-    barHeight, textHeight, textColor, borderSize, borderColor, barColor, auraIcon) {
+export const makeAuraTimerIcon = (
+    name: string,
+    seconds: number,
+    opacity: number,
+    iconWidth: number,
+    iconHeight: number,
+    iconText: string,
+    barHeight: number,
+    textHeight: number,
+    textColor: string,
+    borderSize: number,
+    borderColor: string,
+    barColor: string,
+    auraIcon: string,
+): HTMLDivElement => {
   const div = document.createElement('div');
-  div.style.opacity = opacity;
+  div.style.opacity = opacity.toString();
 
-  const icon = document.createElement('timer-icon');
-  icon.width = iconWidth;
-  icon.height = iconHeight;
-  icon.bordersize = borderSize;
+  const icon = document.createElement('timer-icon') as TimerIcon;
+  icon.width = iconWidth.toString();
+  icon.height = iconHeight.toString();
+  icon.bordersize = borderSize.toString();
   icon.textcolor = textColor;
   div.appendChild(icon);
 
   const barDiv = document.createElement('div');
   barDiv.style.position = 'relative';
-  barDiv.style.top = iconHeight;
+  barDiv.style.top = iconHeight.toString();
   div.appendChild(barDiv);
 
   if (seconds >= 0) {
-    const bar = document.createElement('timer-bar');
-    bar.width = iconWidth;
-    bar.height = barHeight;
+    const bar = document.createElement('timer-bar') as unknown as TimerBar;
+    bar.width = iconWidth.toString();
+    bar.height = barHeight.toString();
     bar.fg = barColor;
-    bar.duration = seconds;
+    bar.duration = seconds.toString();
     barDiv.appendChild(bar);
   }
 
   if (textHeight > 0) {
     const text = document.createElement('div');
     text.classList.add('text');
-    text.style.width = iconWidth;
-    text.style.height = textHeight;
+    text.style.width = iconWidth.toString();
+    text.style.height = textHeight.toString();
     text.style.overflow = 'hidden';
-    text.style.fontSize = textHeight - 1;
+    text.style.fontSize = (textHeight - 1).toString();
     text.style.whiteSpace = 'pre';
     text.style.position = 'relative';
-    text.style.top = iconHeight;
+    text.style.top = iconHeight.toString();
     text.style.fontFamily = 'arial';
     text.style.fontWeight = 'bold';
     text.style.color = textColor;
     text.style.textShadow = '-1px 0 3px black, 0 1px 3px black, 1px 0 3px black, 0 -1px 3px black';
-    text.style.paddingBottom = textHeight / 4;
+    text.style.paddingBottom = (textHeight / 4).toString();
 
     text.innerText = name;
     div.appendChild(text);
@@ -171,7 +203,7 @@ export function makeAuraTimerIcon(name, seconds, opacity, iconWidth, iconHeight,
     icon.text = iconText;
   icon.bordercolor = borderColor;
   icon.icon = auraIcon;
-  icon.duration = seconds;
+  icon.duration = seconds.toString();
 
   return div;
-}
+};
