@@ -9,7 +9,7 @@ import { kAbility } from './constants';
 import { makeAuraTimerIcon } from './utils';
 
 export interface BuffInfo {
-  name?: string;
+  name: string;
   gainAbility?: string;
   gainEffect?: string;
   loseEffect?: string;
@@ -203,7 +203,7 @@ export class Buff {
 }
 
 export class BuffTracker {
-  buffInfo: { [s: string]: BuffInfo };
+  buffInfo: { [s: string]: Omit<BuffInfo, 'name'> };
   options: JobsOptions;
   playerName: string;
   leftBuffDiv: WidgetList;
@@ -514,8 +514,11 @@ export class BuffTracker {
       mobLosesEffect: this.mobLosesEffectMap,
     } as const;
 
-    for (const [key, buff] of Object.entries(this.buffInfo)) {
-      buff.name = key;
+    for (const [key, buffOmitName] of Object.entries(this.buffInfo)) {
+      const buff = {
+        ...buffOmitName,
+        name: key,
+      };
 
       const overrides = this.options.PerBuffOptions[buff.name] ?? null;
       buff.borderColor = overrides?.borderColor ?? buff.borderColor;
@@ -613,7 +616,7 @@ export class BuffTracker {
     this.onLoseEffect(this.mobLosesEffectMap[name], matches);
   }
 
-  onBigBuff(name = '', seconds = 0, info: BuffInfo, source = ''): void {
+  onBigBuff(name: string, seconds = 0, info: BuffInfo, source = ''): void {
     if (seconds <= 0)
       return;
 
@@ -637,7 +640,7 @@ export class BuffTracker {
     buff?.onGain(seconds, source);
   }
 
-  onLoseBigBuff(name = ''): void {
+  onLoseBigBuff(name: string): void {
     this.buffs[name]?.onLose();
   }
 
