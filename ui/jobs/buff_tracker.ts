@@ -1,5 +1,5 @@
 import { BaseRegExp, Matches } from '../../types/trigger';
-import { IJobsOptions } from './types';
+import { JobsOptions } from './types';
 
 import WidgetList from '../../resources/widget_list';
 import EffectId from '../../resources/effect_id';
@@ -38,7 +38,7 @@ export interface Aura {
 export class Buff {
   name: string;
   info: BuffInfo;
-  options: IJobsOptions;
+  options: JobsOptions;
   activeList: WidgetList;
   cooldownList: WidgetList;
   readyList: WidgetList;
@@ -48,7 +48,7 @@ export class Buff {
   readySortKeyBase: number;
   cooldownSortKeyBase: number;
 
-  constructor(name: string, info: BuffInfo, list: WidgetList, options: IJobsOptions) {
+  constructor(name: string, info: BuffInfo, list: WidgetList, options: JobsOptions) {
     this.name = name;
     this.info = info;
     this.options = options;
@@ -200,7 +200,7 @@ export class Buff {
 
 export class BuffTracker {
   buffInfo: Record<string, BuffInfo>;
-  options: IJobsOptions;
+  options: JobsOptions;
   playerName: string;
   leftBuffDiv: WidgetList;
   rightBuffDiv: WidgetList;
@@ -212,7 +212,7 @@ export class BuffTracker {
   mobLosesEffectMap: Record<string, BuffInfo[]>;
 
   constructor(
-      options: IJobsOptions,
+      options: JobsOptions,
       playerName: string,
       leftBuffDiv: WidgetList,
       rightBuffDiv: WidgetList,

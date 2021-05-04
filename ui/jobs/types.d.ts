@@ -2,7 +2,7 @@ import { BaseOptions } from '../../types/data';
 import { Job } from '../../types/job';
 import { BuffInfo } from './buff_tracker';
 
-export interface IDefaultOptions extends BaseOptions {
+export interface NonConfigOptions extends BaseOptions {
   JustBuffTracker: boolean;
   LowerOpacityOutOfCombat: boolean;
   OpacityOutOfCombat: number;
@@ -21,7 +21,7 @@ export interface IDefaultOptions extends BaseOptions {
   GpAlarmSoundVolume: number;
 }
 
-export interface IInitOptions {
+export interface ConfigOptions {
   ShowHPNumber: Job[];
   ShowMPNumber: Job[];
   ShowMPTicker: Job[];
@@ -43,6 +43,6 @@ export interface IInitOptions {
   BlmLowMPThreshold: number;
 }
 
-export type IJobsOptions = IDefaultOptions & IInitOptions;
+export type JobsOptions = NonConfigOptions & ConfigOptions;
 
 export type JobFunc = (id: string, matches: Matches) => void;
