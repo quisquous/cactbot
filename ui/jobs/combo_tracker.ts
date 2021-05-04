@@ -7,8 +7,7 @@ type StartMap = {
   };
 };
 
-type ComboSkill = string | null;
-type ComboCallback = (id: ComboSkill) => void;
+type ComboCallback = (id?: string) => void;
 
 export default class ComboTracker {
   comboTimer?: number;
@@ -57,30 +56,30 @@ export default class ComboTracker {
       this.AbortCombo(id);
   }
 
-  StateTransition(id: ComboSkill, nextState?: StartMap[string] | null): void {
+  StateTransition(id?: string, nextState?: StartMap[string]): void {
     window.clearTimeout(this.comboTimer);
     this.comboTimer = undefined;
 
     this.isFinalSkill = (nextState && Object.keys(nextState?.next ?? {}).length === 0) ?? false;
-    if (nextState === null || this.isFinalSkill) {
+    if (!nextState || this.isFinalSkill) {
       this.considerNext = this.startMap;
     } else {
       this.considerNext = Object.assign({}, this.startMap, nextState?.next);
       const kComboDelayMs = 15000;
       this.comboTimer = window.setTimeout(() => {
-        this.AbortCombo(null);
+        this.AbortCombo();
       }, kComboDelayMs);
     }
 
     // If not aborting, then this is a valid combo skill.
-    if (nextState !== null)
+    if (nextState)
       this.callback(id);
     else
-      this.callback(null);
+      this.callback();
   }
 
-  AbortCombo(id: ComboSkill): void {
-    this.StateTransition(id, null);
+  AbortCombo(id?: string): void {
+    this.StateTransition(id);
   }
 
   static setup(callback: ComboCallback): ComboTracker {
