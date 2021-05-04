@@ -72,10 +72,8 @@ export class Buff {
   addCooldown(source: string, effectSeconds: number): void {
     if (!this.info.cooldown)
       return;
-    if (this.cooldown[source]) {
-      // Unexpected use of the same cooldown by the same name.
-      this.cooldown[source]?.removeCallback();
-    }
+    // Unexpected use of the same cooldown by the same name.
+    this.cooldown[source]?.removeCallback();
 
     const cooldownKey = 'c:' + this.name + ':' + source;
 
@@ -91,18 +89,12 @@ export class Buff {
   }
 
   addReady(source: string): void {
-    if (this.ready[source]) {
-      // Unexpected use of the same cooldown by the same name.
-      this.ready[source]?.removeCallback();
-    }
+    // Unexpected use of the same cooldown by the same name.
+    this.ready[source]?.removeCallback();
 
     // TODO: could consider looking at the party list to make initials unique?
-    let txt = '';
     const initials = source.split(' ');
-    if (initials.length === 2)
-      txt = `${initials[0]?.charAt(0) ?? '?'}${initials[1]?.charAt(0) ?? '?'}`;
-    else
-      txt = initials[0] ?? '?';
+    const txt = initials.map((str) => str.charAt(0)).join('');
 
     const color = this.info.borderColor;
 
@@ -151,8 +143,7 @@ export class Buff {
         if (seconds > 0) {
           aura.removeTimeout = window.setTimeout(() => {
             aura.removeCallback();
-            if (expireCallback)
-              expireCallback();
+            expireCallback?.();
           }, seconds * 1000);
         }
       },
@@ -175,7 +166,7 @@ export class Buff {
     this.onLose();
 
     Object.values(this.cooldown).forEach((aura) => {
-      aura?.removeCallback();
+      aura.removeCallback();
     });
 
     Object.values(this.ready).forEach((aura) => {
@@ -517,11 +508,9 @@ export class BuffTracker {
       gainAbility: this.gainAbilityMap,
       mobGainsEffect: this.mobGainsEffectMap,
       mobLosesEffect: this.mobLosesEffectMap,
-    };
+    } as const;
 
-    for (const key in this.buffInfo) {
-      const buff = this.buffInfo[key];
-      if (!buff) continue;
+    for (const [key, buff] of Object.entries(this.buffInfo)) {
       buff.name = key;
 
       const overrides = this.options.PerBuffOptions[buff.name] ?? null;
@@ -531,16 +520,18 @@ export class BuffTracker {
       buff.sortKey = overrides?.sortKey || buff.sortKey;
       buff.hide = overrides?.hide ?? buff.hide ?? false;
 
-      for (const prop in propToMapMap) {
+      for (const propStr in propToMapMap) {
+        const prop = propStr as keyof typeof propToMapMap;
+
         if (!(prop in buff))
           continue;
-        const key = buff[prop as keyof typeof propToMapMap];
+        const key = buff[prop];
         if (typeof key === 'undefined') {
           console.error('undefined value for key ' + prop + ' for buff ' + buff.name);
           continue;
         }
 
-        const map = propToMapMap[prop as keyof typeof propToMapMap];
+        const map = propToMapMap[prop];
         map[key] = map[key] || [];
         map[key]?.push(buff);
       }
@@ -572,7 +563,7 @@ export class BuffTracker {
       return;
 
     for (const b of buffs)
-      this.onBigBuff(b.name ?? '', b.durationSeconds ?? 0, b, matches?.source ?? '');
+      this.onBigBuff(b.name, b.durationSeconds, b, matches?.source);
   }
 
   onGainEffect(
@@ -588,7 +579,7 @@ export class BuffTracker {
       else if ('durationSeconds' in b)
         seconds = b.durationSeconds ?? seconds;
 
-      this.onBigBuff(b.name ?? '', seconds, b, matches?.source ?? '');
+      this.onBigBuff(b.name, seconds, b, matches?.source);
     }
   }
 
@@ -599,7 +590,7 @@ export class BuffTracker {
     if (!buffs)
       return;
     for (const b of buffs)
-      this.onLoseBigBuff(b.name ?? '');
+      this.onLoseBigBuff(b.name);
   }
 
   onYouGainEffect(name: string, matches: Matches<BaseRegExp<GainsEffectParams>>): void {
@@ -618,7 +609,7 @@ export class BuffTracker {
     this.onLoseEffect(this.mobLosesEffectMap[name], matches);
   }
 
-  onBigBuff(name: string, seconds: number, info: BuffInfo, source: string): void {
+  onBigBuff(name = '', seconds = 0, info: BuffInfo, source = ''): void {
     if (seconds <= 0)
       return;
 
@@ -642,11 +633,8 @@ export class BuffTracker {
     buff?.onGain(seconds, source);
   }
 
-  onLoseBigBuff(name: string): void {
-    const buff = this.buffs[name];
-    if (!buff)
-      return;
-    buff.onLose();
+  onLoseBigBuff(name = ''): void {
+    this.buffs[name]?.onLose();
   }
 
   clear(): void {
