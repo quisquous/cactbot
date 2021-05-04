@@ -43,8 +43,8 @@ export class Buff {
   cooldownList: WidgetList;
   readyList: WidgetList;
   active: Aura | null;
-  cooldown: Record<string, Aura>;
-  ready: Record<string, Aura>;
+  cooldown: { [s: string]: Aura };
+  ready: { [s: string]: Aura };
   readySortKeyBase: number;
   cooldownSortKeyBase: number;
 
@@ -199,17 +199,17 @@ export class Buff {
 }
 
 export class BuffTracker {
-  buffInfo: Record<string, BuffInfo>;
+  buffInfo: { [s: string]: BuffInfo };
   options: JobsOptions;
   playerName: string;
   leftBuffDiv: WidgetList;
   rightBuffDiv: WidgetList;
-  buffs: Record<string, Buff>;
-  gainEffectMap: Record<string, BuffInfo[]>;
-  loseEffectMap: Record<string, BuffInfo[]>;
-  gainAbilityMap: Record<string, BuffInfo[]>;
-  mobGainsEffectMap: Record<string, BuffInfo[]>;
-  mobLosesEffectMap: Record<string, BuffInfo[]>;
+  buffs: { [s: string]: Buff };
+  gainEffectMap: { [s: string]: BuffInfo[] };
+  loseEffectMap: { [s: string]: BuffInfo[] };
+  gainAbilityMap: { [s: string]: BuffInfo[] };
+  mobGainsEffectMap: { [s: string]: BuffInfo[] };
+  mobLosesEffectMap: { [s: string]: BuffInfo[] };
 
   constructor(
       options: JobsOptions,
