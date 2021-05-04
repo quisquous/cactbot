@@ -616,7 +616,7 @@ export default {
           en: 'Rotate right',
           de: 'Im Uhrzeigersinn ausweichen',
           fr: 'Evitez les épées dans le sens anti-horaire',
-          ja: '右へ（逆時計回り）',
+          ja: '右へ（反時計回り）',
           cn: '向右移动避开',
           ko: '오른쪽으로 돌기',
         },

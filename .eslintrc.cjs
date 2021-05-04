@@ -67,6 +67,8 @@ module.exports = {
     },
   ],
   'ignorePatterns': [
+    // Do not ignore dot files.  /o\
+    '!.*',
     'dist/',
     'plugin/',
     'publish/',

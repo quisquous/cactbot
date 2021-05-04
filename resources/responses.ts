@@ -80,19 +80,19 @@ const getText = (sev: Severity): SevText => {
   return severityMap[sev];
 };
 
-const defaultInfoText = (sev: Severity): SevText => {
+const defaultInfoText = (sev?: Severity): SevText => {
   if (!sev)
     return 'infoText';
   return getText(sev);
 };
 
-const defaultAlertText = (sev: Severity): SevText => {
+const defaultAlertText = (sev?: Severity): SevText => {
   if (!sev)
     return 'alertText';
   return getText(sev);
 };
 
-const defaultAlarmText = (sev: Severity): SevText => {
+const defaultAlarmText = (sev?: Severity): SevText => {
   if (!sev)
     return 'alarmText';
   return getText(sev);
@@ -143,14 +143,14 @@ const staticResponse = (field: SevText, text: LocaleText): StaticResponseFunc =>
   };
 };
 
-type SingleSevToResponseFunc = (sev: Severity) => TargetedResponseFunc | StaticResponseFunc;
-type DoubleSevToResponseFunc = (targetSev: Severity, otherSev: Severity) => TargetedResponseFunc;
+type SingleSevToResponseFunc = (sev?: Severity) => TargetedResponseFunc | StaticResponseFunc;
+type DoubleSevToResponseFunc = (targetSev?: Severity, otherSev?: Severity) => TargetedResponseFunc;
 type ResponsesMap = {
   [response: string]: SingleSevToResponseFunc | DoubleSevToResponseFunc;
 };
 
 export const Responses: ResponsesMap = {
-  tankBuster: (targetSev: Severity, otherSev: Severity) => {
+  tankBuster: (targetSev?: Severity, otherSev?: Severity) => {
     const outputStrings = {
       noTarget: Outputs.tankBuster,
       busterOnYou: Outputs.tankBusterOnYou,
@@ -190,7 +190,7 @@ export const Responses: ResponsesMap = {
       return combined;
     };
   },
-  tankBusterSwap: (busterSev: Severity, swapSev: Severity) => {
+  tankBusterSwap: (busterSev?: Severity, swapSev?: Severity) => {
     const outputStrings = {
       tankSwap: Outputs.tankSwap,
       busterOnYou: Outputs.tankBusterOnYou,
@@ -222,7 +222,7 @@ export const Responses: ResponsesMap = {
       return combined;
     };
   },
-  tankCleave: (sev: Severity) => (data: Data, _: unknown, output: Output) => {
+  tankCleave: (sev?: Severity) => (data: Data, _: unknown, output: Output) => {
     // cactbot-builtin-response
     output.responseOutputStrings = {
       cleaveOnYou: Outputs.tankCleaveOnYou,
@@ -245,15 +245,15 @@ export const Responses: ResponsesMap = {
       },
     };
   },
-  miniBuster: (sev: Severity) => staticResponse(defaultInfoText(sev), Outputs.miniBuster),
-  aoe: (sev: Severity) => staticResponse(defaultInfoText(sev), Outputs.aoe),
-  bigAoe: (sev: Severity) => staticResponse(defaultInfoText(sev), Outputs.bigAoe),
-  spread: (sev: Severity) => staticResponse(defaultInfoText(sev), Outputs.spread),
+  miniBuster: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.miniBuster),
+  aoe: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.aoe),
+  bigAoe: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.bigAoe),
+  spread: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.spread),
   // for stack marker situations.
-  stackMarker: (sev: Severity) => staticResponse(defaultAlertText(sev), Outputs.stackMarker),
+  stackMarker: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.stackMarker),
   // for getting together without stack marker
-  getTogether: (sev: Severity) => staticResponse(defaultAlertText(sev), Outputs.getTogether),
-  stackMarkerOn: (sev: Severity) => (data: Data, _: unknown, output: Output) => {
+  getTogether: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.getTogether),
+  stackMarkerOn: (sev?: Severity) => (data: Data, _: unknown, output: Output) => {
     // cactbot-builtin-response
     output.responseOutputStrings = {
       stackOnYou: Outputs.stackOnYou,
@@ -268,16 +268,16 @@ export const Responses: ResponsesMap = {
       },
     };
   },
-  stackMiddle: (sev: Severity) => staticResponse(defaultInfoText(sev), Outputs.stackMiddle),
-  doritoStack: (sev: Severity) => staticResponse(defaultAlertText(sev), Outputs.doritoStack),
-  spreadThenStack: (sev: Severity) => {
+  stackMiddle: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.stackMiddle),
+  doritoStack: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.doritoStack),
+  spreadThenStack: (sev?: Severity) => {
     return staticResponse(defaultAlertText(sev), Outputs.spreadThenStack);
   },
-  stackThenSpread: (sev: Severity) => {
+  stackThenSpread: (sev?: Severity) => {
     return staticResponse(defaultAlertText(sev), Outputs.stackThenSpread);
   },
-  knockback: (sev: Severity) => staticResponse(defaultAlertText(sev), Outputs.knockback),
-  knockbackOn: (targetSev: Severity, otherSev: Severity) => {
+  knockback: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.knockback),
+  knockbackOn: (targetSev?: Severity, otherSev?: Severity) => {
     const outputStrings = {
       knockbackOnYou: Outputs.knockbackOnYou,
       knockbackOnTarget: Outputs.knockbackOnPlayer,
@@ -302,9 +302,9 @@ export const Responses: ResponsesMap = {
       return combined;
     };
   },
-  lookTowards: (sev: Severity) => staticResponse(defaultInfoText(sev), Outputs.lookTowardsBoss),
-  lookAway: (sev: Severity) => staticResponse(defaultInfoText(sev), Outputs.lookAway),
-  lookAwayFromTarget: (sev: Severity) => (data: Data, _: unknown, output: Output) => {
+  lookTowards: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.lookTowardsBoss),
+  lookAway: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.lookAway),
+  lookAwayFromTarget: (sev?: Severity) => (data: Data, _: unknown, output: Output) => {
     // cactbot-builtin-response
     output.responseOutputStrings = {
       lookAwayFrom: Outputs.lookAwayFromTarget,
@@ -319,7 +319,7 @@ export const Responses: ResponsesMap = {
       },
     };
   },
-  lookAwayFromSource: (sev: Severity) => (data: Data, _: unknown, output: Output) => {
+  lookAwayFromSource: (sev?: Severity) => (data: Data, _: unknown, output: Output) => {
     // cactbot-builtin-response
     output.responseOutputStrings = {
       lookAwayFrom: Outputs.lookAwayFromTarget,
@@ -334,32 +334,32 @@ export const Responses: ResponsesMap = {
       },
     };
   },
-  getBehind: (sev: Severity) => staticResponse(defaultAlertText(sev), Outputs.getBehind),
-  goFrontOrSides: (sev: Severity) => staticResponse(defaultAlertText(sev), Outputs.goFrontOrSides),
+  getBehind: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.getBehind),
+  goFrontOrSides: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.goFrontOrSides),
   // .getUnder() is used when you have to get into the bosses hitbox
-  getUnder: (sev: Severity) => staticResponse(defaultInfoText(sev), Outputs.getUnder),
+  getUnder: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.getUnder),
   // .getIn() is more like "get close but maybe even melee range is fine"
-  getIn: (sev: Severity) => staticResponse(defaultAlertText(sev), Outputs.in),
+  getIn: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.in),
   // .getOut() means get far away
-  getOut: (sev: Severity) => staticResponse(defaultAlertText(sev), Outputs.out),
-  outOfMelee: (sev: Severity) => staticResponse(defaultInfoText(sev), Outputs.outOfMelee),
-  getInThenOut: (sev: Severity) => staticResponse(defaultInfoText(sev), Outputs.inThenOut),
-  getOutThenIn: (sev: Severity) => staticResponse(defaultInfoText(sev), Outputs.outThenIn),
-  getBackThenFront: (sev: Severity) => staticResponse(defaultInfoText(sev), Outputs.backThenFront),
-  getFrontThenBack: (sev: Severity) => staticResponse(defaultInfoText(sev), Outputs.frontThenBack),
-  goMiddle: (sev: Severity) => staticResponse(defaultAlertText(sev), Outputs.goIntoMiddle),
-  goRight: (sev: Severity) => staticResponse(defaultAlertText(sev), Outputs.right),
-  goLeft: (sev: Severity) => staticResponse(defaultAlertText(sev), Outputs.left),
-  goWest: (sev: Severity) => staticResponse(defaultAlertText(sev), Outputs.getLeftAndWest),
-  goEast: (sev: Severity) => staticResponse(defaultAlertText(sev), Outputs.getRightAndEast),
-  goFrontBack: (sev: Severity) => staticResponse(defaultAlertText(sev), Outputs.goFrontBack),
-  goSides: (sev: Severity) => staticResponse(defaultAlertText(sev), Outputs.sides),
+  getOut: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.out),
+  outOfMelee: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.outOfMelee),
+  getInThenOut: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.inThenOut),
+  getOutThenIn: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.outThenIn),
+  getBackThenFront: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.backThenFront),
+  getFrontThenBack: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.frontThenBack),
+  goMiddle: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.goIntoMiddle),
+  goRight: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.right),
+  goLeft: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.left),
+  goWest: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.getLeftAndWest),
+  goEast: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.getRightAndEast),
+  goFrontBack: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.goFrontBack),
+  goSides: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.sides),
   // .killAdds() is used for adds that will always be available
-  killAdds: (sev: Severity) => staticResponse(defaultInfoText(sev), Outputs.killAdds),
+  killAdds: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.killAdds),
   // .killExtraAdd() is used for adds that appear if a mechanic was not played correctly
-  killExtraAdd: (sev: Severity) => staticResponse(defaultInfoText(sev), Outputs.killExtraAdd),
-  awayFromFront: (sev: Severity) => staticResponse(defaultAlertText(sev), Outputs.awayFromFront),
-  sleep: (sev: Severity) => (data: Data, _: unknown, output: Output) => {
+  killExtraAdd: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.killExtraAdd),
+  awayFromFront: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.awayFromFront),
+  sleep: (sev?: Severity) => (data: Data, _: unknown, output: Output) => {
     // cactbot-builtin-response
     output.responseOutputStrings = {
       sleep: Outputs.sleepTarget,
@@ -371,7 +371,7 @@ export const Responses: ResponsesMap = {
       },
     };
   },
-  stun: (sev: Severity) => (data: Data, _: unknown, output: Output) => {
+  stun: (sev?: Severity) => (data: Data, _: unknown, output: Output) => {
     // cactbot-builtin-response
     output.responseOutputStrings = {
       stun: Outputs.stunTarget,
@@ -383,7 +383,7 @@ export const Responses: ResponsesMap = {
       },
     };
   },
-  interrupt: (sev: Severity) => (data: Data, _: unknown, output: Output) => {
+  interrupt: (sev?: Severity) => (data: Data, _: unknown, output: Output) => {
     // cactbot-builtin-response
     output.responseOutputStrings = {
       interrupt: Outputs.interruptTarget,
@@ -395,7 +395,7 @@ export const Responses: ResponsesMap = {
       },
     };
   },
-  preyOn: (targetSev: Severity, otherSev: Severity) => {
+  preyOn: (targetSev?: Severity, otherSev?: Severity) => {
     const outputStrings = {
       preyOnYou: Outputs.preyOnYou,
       preyOnTarget: Outputs.preyOnPlayer,
@@ -421,7 +421,7 @@ export const Responses: ResponsesMap = {
       return combined;
     };
   },
-  awayFrom: (sev: Severity) => (data: Data, _: unknown, output: Output) => {
+  awayFrom: (sev?: Severity) => (data: Data, _: unknown, output: Output) => {
     // cactbot-builtin-response
     output.responseOutputStrings = {
       awayFromGroup: Outputs.awayFromGroup,
@@ -436,17 +436,17 @@ export const Responses: ResponsesMap = {
       },
     };
   },
-  meteorOnYou: (sev: Severity) => staticResponse(defaultAlarmText(sev), Outputs.meteorOnYou),
-  stopMoving: (sev: Severity) => staticResponse(defaultAlarmText(sev), Outputs.stopMoving),
-  stopEverything: (sev: Severity) => staticResponse(defaultAlarmText(sev), Outputs.stopEverything),
+  meteorOnYou: (sev?: Severity) => staticResponse(defaultAlarmText(sev), Outputs.meteorOnYou),
+  stopMoving: (sev?: Severity) => staticResponse(defaultAlarmText(sev), Outputs.stopMoving),
+  stopEverything: (sev?: Severity) => staticResponse(defaultAlarmText(sev), Outputs.stopEverything),
   // move away to dodge aoes
-  moveAway: (sev: Severity) => staticResponse(defaultInfoText(sev), Outputs.moveAway),
+  moveAway: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.moveAway),
   // move around (e.g. jumping) to avoid being frozen
-  moveAround: (sev: Severity) => staticResponse(defaultInfoText(sev), Outputs.moveAround),
-  breakChains: (sev: Severity) => staticResponse(defaultInfoText(sev), Outputs.breakChains),
-  moveChainsTogether: (sev: Severity) => staticResponse(defaultInfoText(sev),
+  moveAround: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.moveAround),
+  breakChains: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.breakChains),
+  moveChainsTogether: (sev?: Severity) => staticResponse(defaultInfoText(sev),
       Outputs.moveChainsTogether),
-  earthshaker: (sev: Severity) => (data: Data, _: unknown, output: Output) => {
+  earthshaker: (sev?: Severity) => (data: Data, _: unknown, output: Output) => {
     // cactbot-builtin-response
     output.responseOutputStrings = {
       earthshaker: Outputs.earthshakerOnYou,
@@ -460,5 +460,5 @@ export const Responses: ResponsesMap = {
       },
     };
   },
-  wakeUp: (sev: Severity) => staticResponse(defaultAlarmText(sev), Outputs.wakeUp),
+  wakeUp: (sev?: Severity) => staticResponse(defaultAlarmText(sev), Outputs.wakeUp),
 } as const;

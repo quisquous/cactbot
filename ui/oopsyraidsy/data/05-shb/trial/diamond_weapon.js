@@ -13,7 +13,10 @@ export default {
   damageFail: {
     'Diamond Weapon Claw Swipe Left': '5FD9', // Adamant Purge platform cleave
     'Diamond Weapon Claw Swipe Right': '5FDA', // Adamant Purge platform cleave
-    'Diamond Weapon Airship\' Bane': '5FE8', // destroying one of the platforms after Auri Cyclone
+    'Diamond Weapon Auri Cyclone 1': '5FE6', // standing on the blue knockback puck
+    'Diamond Weapon Auri Cyclone 2': '5FE7', // standing on the blue knockback puck
+    'Diamond Weapon Airship\'s Bane 1': '5FE8', // destroying one of the platforms after Auri Cyclone
+    'Diamond Weapon Airship\'s Bane 2': '5FFE', // destroying one of the platforms after Auri Cyclone
   },
   shareWarn: {
     'Diamond Weapon Homing Laser': '5FDB', // spread markers

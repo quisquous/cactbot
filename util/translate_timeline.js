@@ -61,7 +61,7 @@ const run = async (args) => {
     if (label === 'text')
       textErrors[lineNumber] = true;
     else if (label === 'sync')
-      syncErrors[linenumber] = true;
+      syncErrors[lineNumber] = true;
   });
 
   // TODO: this block is very duplicated with a number of other scripts.

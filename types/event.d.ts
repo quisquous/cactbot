@@ -302,13 +302,20 @@ export type EventType = keyof EventMap;
 
 interface CactbotLoadUserRet {
   userLocation: string;
-  localUserFiles: Record<string, string> | null;
+  localUserFiles: { [filename: string]: string } | null;
   parserLanguage: Lang;
   systemLocale: string;
   displayLanguage: Lang;
   /** @deprecated for backwards compatibility, use parserLanguage instead */
   language: Lang;
 }
+
+// Structured JSON data saved in OverlayPlugin config files.
+export type SavedConfigEntry = string | number | boolean | [ SavedConfigEntry] |
+   { [nestedName: string]: SavedConfigEntry };
+export type SavedConfig = {
+  [overlayName: string]: SavedConfigEntry;
+};
 
 export type IOverlayHandler = {
   // OutputPlugin build-in
@@ -340,10 +347,10 @@ export type IOverlayHandler = {
   (msg: {
     call: 'cactbotSaveData';
   }): Promise<null>;
-  <T>(msg: {
+  (msg: {
     call: 'cactbotLoadData';
     overlay: string;
-  }): Promise<{ data: T } | null>;
+  }): Promise<{ data: SavedConfig } | null>;
   <T>(msg: {
     call: 'cactbotChooseDirectory';
   }): Promise<{ data: T } | null>;
