@@ -72,7 +72,7 @@ export class Buff {
   addCooldown(source: string, effectSeconds: number): void {
     if (!this.info.cooldown)
       return;
-    // Unexpected use of the same cooldown by the same name.
+    // Remove any preexisting cooldowns with the same name in case they unexpectedly exist.
     this.cooldown[source]?.removeCallback();
 
     const cooldownKey = 'c:' + this.name + ':' + source;
@@ -89,12 +89,16 @@ export class Buff {
   }
 
   addReady(source: string): void {
-    // Unexpected use of the same cooldown by the same name.
+    // Remove any preexisting cooldowns with the same name in case they unexpectedly exist.
     this.ready[source]?.removeCallback();
 
     // TODO: could consider looking at the party list to make initials unique?
     const initials = source.split(' ');
-    const txt = initials.map((str) => str.charAt(0)).join('');
+    let txt = '';
+    if (initials.length === 2)
+      txt = initials.map((str) => str.charAt(0)).join('');
+    else
+      txt = initials[0] ?? '';
 
     const color = this.info.borderColor;
 
