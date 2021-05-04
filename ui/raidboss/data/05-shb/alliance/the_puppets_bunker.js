@@ -93,7 +93,7 @@ export default {
           en: 'Go To Narrow Intersection',
           de: 'Geh zu der nahen Überschneidung',
           fr: 'Allez sur l\'intersection étroite',
-          ja: '狭く重なる範囲に',
+          ja: '狭く重なっている範囲へ',
           cn: '去窄交叉口',
           ko: '조금 겹친 곳으로 이동',
         },
