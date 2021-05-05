@@ -213,10 +213,12 @@ export class Bars {
       for (const bar of barList) {
         if (bar.id === 'hp-bar' || bar.id === 'mp-bar')
           continue;
-        if (this.isPVPZone)
-          (bar as HTMLDivElement).style.display = 'none';
-        else
-          (bar as HTMLDivElement).style.display = '';
+        if (bar instanceof HTMLDivElement) {
+          if (this.isPVPZone)
+            bar.style.display = 'none';
+          else
+            bar.style.display = '';
+        }
       }
     }
   }
