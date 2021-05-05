@@ -507,10 +507,10 @@ export class Bars {
       timerBox.fg = computeBackgroundColorFrom(timerBox, options.fgColor);
     timerBox.bg = 'black';
     timerBox.toward = 'bottom';
-    timerBox.threshold = `${options.threshold ? options.threshold : 0}`;
+    timerBox.threshold = `${options.threshold ?? 0}`;
     timerBox.hideafter = '';
     timerBox.roundupthreshold = false;
-    timerBox.valuescale = `${options.scale ? options.scale : 1}`;
+    timerBox.valuescale = `${options.scale ?? 1}`;
     if (options.id) {
       timerBox.id = options.id;
       timerBox.classList.add('timer-box');
