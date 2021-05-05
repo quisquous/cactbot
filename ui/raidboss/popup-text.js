@@ -63,6 +63,11 @@ function triggerUpperCase(str) {
 }
 
 function onTriggerException(trigger, e) {
+  // When a fight ends and there are open promises, from delaySeconds or promise itself,
+  // all promises will be rejected.  In this case there is no error; simply return without logging.
+  if (!e)
+    return;
+
   let str = 'Error in trigger: ' + (trigger.id ? trigger.id : '[unknown trigger id]');
 
   if (trigger.filename)
