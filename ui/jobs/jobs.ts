@@ -500,7 +500,7 @@ export class Bars {
       container.classList.add('proc-box');
     }
 
-    const timerBox = document.createElement('timer-box') as unknown as TimerBox;
+    const timerBox = document.createElement('timer-box') as TimerBox;
     container.appendChild(timerBox);
     timerBox.stylefill = 'empty';
     if (options.fgColor)
