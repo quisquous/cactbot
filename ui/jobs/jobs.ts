@@ -122,7 +122,7 @@ export class Bars {
   trackedDoTs: string[];
   comboFuncs: ((skill: string | null) => void)[];
   // hard to type this when we don't know what job is now
-  jobFuncs: ((jobDetail: never) => void)[];
+  jobFuncs: ((jobDetail: JobDetail[keyof JobDetail]) => void)[];
   changeZoneFuncs: EventMap['ChangeZone'][];
   updateDotTimerFuncs: (() => void)[];
   gainEffectFuncMap: Record<string, JobFunc>;
@@ -594,7 +594,8 @@ export class Bars {
       this.loseEffectFuncMap[effectIds] = callback;
   }
 
-  onJobDetailUpdate<K extends keyof JobDetail>(callback: (jobDetail: JobDetail[K]) => void): void {
+  onJobDetailUpdate<K extends keyof JobDetail>(callback: (jobDetail: JobDetail[K]) => void): void;
+  onJobDetailUpdate(callback: (jobDetail: JobDetail[keyof JobDetail]) => void): void {
     this.jobFuncs.push(callback);
   }
 
@@ -938,7 +939,7 @@ export class Bars {
 
     if (e.detail.jobDetail) {
       this.jobFuncs.forEach((func) => {
-        func(e.detail.jobDetail as never);
+        func(e.detail.jobDetail);
       });
     }
   }
