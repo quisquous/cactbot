@@ -60,7 +60,7 @@ export default class ComboTracker {
     window.clearTimeout(this.comboTimer);
     this.comboTimer = undefined;
 
-    this.isFinalSkill = (nextState && Object.keys(nextState?.next ?? {}).length === 0) ?? false;
+    this.isFinalSkill = (nextState && Object.keys(nextState.next).length === 0) ?? false;
     if (!nextState || this.isFinalSkill) {
       this.considerNext = this.startMap;
     } else {
