@@ -6,6 +6,7 @@ import { Matches, NetRegex } from '../../types/trigger';
 import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
 import HuntData, { HuntEntry, HuntMap, Rank } from '../../resources/hunt';
 import NetRegexes, { AddedCombatantFullParams } from '../../resources/netregexes';
+import { UnreachableCode } from 'resources/not_reached';
 import UserConfig from '../../resources/user_config';
 
 import './radar_config';
@@ -216,10 +217,9 @@ class Radar {
         matches.currentHp === undefined ||
         matches.x === undefined ||
         matches.y === undefined ||
-        matches.z === undefined) {
-      // not reached
-      return;
-    }
+        matches.z === undefined)
+      throw new UnreachableCode();
+
 
     if (hunt.id && matches.npcNameId !== hunt.id)
       return;
@@ -290,9 +290,9 @@ class Radar {
       th.appendChild(document.createElement('div'));
       tr.appendChild(th);
       const node = this.table.childNodes[0];
-      // TODO: not reached
-      if (node instanceof HTMLElement)
-        this.table.insertBefore(tr, node);
+      if (!(node instanceof HTMLElement))
+        throw new UnreachableCode();
+      this.table.insertBefore(tr, node);
 
       const m = {
         'id': matches.id,
