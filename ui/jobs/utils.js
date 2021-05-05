@@ -18,6 +18,8 @@ export class RegexesHolder {
     this.MobLosesEffectRegex = NetRegexes.losesEffect({ targetId: '4.{7}' });
     this.MobGainsEffectFromYouRegex = NetRegexes.gainsEffect({ targetId: '4.{7}', source: playerName });
     this.MobLosesEffectFromYouRegex = NetRegexes.losesEffect({ targetId: '4.{7}', source: playerName });
+    // use of GP Potion
+    this.cordialRegex = Regexes.ability({ source: playerName, id: '20(017FD|F5A3D|F844F|0420F|0317D)' });
 
     const getCurrentRegex = getLocaleRegex.bind(this, lang);
     this.countdownStartRegex = getCurrentRegex(LocaleRegex.countdownStart);

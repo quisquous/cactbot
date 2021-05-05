@@ -992,9 +992,7 @@ class Bars {
         // TODO: consider flags for missing.
         // flags:damage is 1:0 in most misses.
         if (log[16] === '5' || log[16] === '6') {
-          // use of GP Potion
-          const cordialRegex = Regexes.ability({ source: this.me, id: '20(017FD|F5A3D|F844F|0420F|0317D)' });
-          if (cordialRegex.test(log)) {
+          if (this.regexes.cordialRegex.test(log)) {
             this.gpPotion = true;
             setTimeout(() => {
               this.gpPotion = false;
