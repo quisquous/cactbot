@@ -17,6 +17,16 @@ import { setup as setupSmn } from './smn';
 import { setup as setupRdm } from './rdm';
 import { setup as setupBlu } from './blu';
 
+/**
+ * @callback SetupFunction
+ * @param {import("../jobs").Bars} bar
+ * @returns {void}
+ */
+
+/**
+ * @param {import("../../../types/job").Job} job
+ * @returns {SetupFunction | undefined}
+ */
 export function getSetup(job) {
   return {
     'PLD': setupPld,

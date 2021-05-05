@@ -412,8 +412,7 @@ export class Bars {
     }
 
     const setup = getSetup(this.job);
-    if (setup)
-      setup.bind(null, this)();
+    setup?.bind(null, this)();
 
     this._validateKeys();
 
