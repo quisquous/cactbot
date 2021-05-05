@@ -1,7 +1,7 @@
 import { Job } from '../../types/job';
 import { JobDetail, EventMap } from '../../types/event';
 import { BaseRegExp, Matches } from '../../types/trigger';
-import { IInitOptions, IJobsOptions, JobFunc } from './types';
+import { ConfigOptions, JobsOptions, JobFunc } from './types';
 import { GainsEffectParams } from '../../resources/netregexes';
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
 
@@ -27,7 +27,7 @@ import './jobs_config';
 import '../../resources/timericon';
 
 // See user/jobs-example.js for documentation.
-const Options: IInitOptions = {
+const Options: ConfigOptions = {
   ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'WHM', 'SCH', 'AST', 'BLU'],
   ShowMPNumber: ['PLD', 'DRK', 'WHM', 'SCH', 'AST', 'BLM', 'BLU'],
 
@@ -65,7 +65,7 @@ const kPullText = {
 };
 
 export class Bars {
-  options: IJobsOptions;
+  options: JobsOptions;
   init: boolean;
   o: Partial<{
     pullCountdown: TimerBar;
@@ -141,7 +141,7 @@ export class Bars {
   gpPotion: boolean;
   buffTracker?: BuffTracker;
 
-  constructor(options: IJobsOptions) {
+  constructor(options: JobsOptions) {
     this.options = options;
     this.init = false;
     this.o = {};
