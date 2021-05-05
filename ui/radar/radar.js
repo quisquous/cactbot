@@ -103,9 +103,12 @@ class Radar {
     this.monsters = Object.assign({}, gMonster, Options.CustomMonsters);
     this.lang = this.options.ParserLanguage || 'en';
     this.nameToMonster = {};
-    this.instanceChangedRegex =
-      instanceChangedRegexes[this.options.ParserLanguage] ||
-      instanceChangedRegexes['en'];
+    this.regex = {
+      abilityFull: NetRegexes.abilityFull(),
+      addedCombatantFull: NetRegexes.addedCombatantFull(),
+      instanceChanged: instanceChangedRegexes[this.options.ParserLanguage] || instanceChangedRegexes['en'],
+      wasDefeated: NetRegexes.wasDefeated(),
+    };
 
     for (const i in this.monsters) {
       const monster = this.monsters[i];
@@ -281,8 +284,8 @@ class Radar {
 
     // added new combatant
     if (type === '03') {
-      const matches = log.match(NetRegexes.addedCombatantFull());
-      if (matches) {
+      const matches = this.regex.addedCombatantFull.exec(log);
+      if (matches && matches.groups) {
         const monster = this.nameToMonster[matches.groups.name.toLowerCase()];
         if (monster)
           this.AddMonster(log, monster, matches.groups);
@@ -292,8 +295,8 @@ class Radar {
 
     // network ability
     if (type === '21' || type === '22') {
-      const matches = log.match(NetRegexes.abilityFull());
-      if (matches) {
+      const matches = this.regex.abilityFull.exec(log);
+      if (matches && matches.groups) {
         const monster = this.targetMonsters[matches.groups.target.toLowerCase()];
         if (monster) {
           // provoke doesn't work on hunt mobs
@@ -307,7 +310,7 @@ class Radar {
 
     // change instance
     if (type === '00') {
-      if (this.instanceChangedRegex.test(log)) {
+      if (this.regex.instanceChanged.test(log)) {
         // don't remove mobs lasting less than 10 seconds
         this.ClearTargetMonsters(10);
       }
@@ -316,8 +319,8 @@ class Radar {
 
     // removing combatant
     if (type === '25') {
-      const matches = log.match(NetRegexes.wasDefeated());
-      if (matches)
+      const matches = this.regex.wasDefeated.exec(log);
+      if (matches && matches.groups)
         this.RemoveMonster(matches.groups.target.toLowerCase());
       return;
     }
