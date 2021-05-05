@@ -920,7 +920,7 @@ export class Bars {
       this.maxGP = e.detail.maxGP;
       updateGp = true;
     }
-    if (updateJob) {
+    if (updateJob && this.o.leftBuffsList && this.o.rightBuffsList) {
       this._updateJob();
       // On reload, we need to set the opacity after setting up the job bars.
       this._updateOpacity();
