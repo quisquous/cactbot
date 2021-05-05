@@ -81,7 +81,7 @@ class Bars {
     this.inCombat = false;
     this.combo = null;
     this.comboTimer = null;
-    this.regexes = new RegexesHolder(this.options.ParserLanguage);
+    this.regexes = null;
 
     this.skillSpeed = 0;
     this.spellSpeed = 0;
@@ -766,7 +766,7 @@ class Bars {
     if (this.me !== e.detail.name) {
       this.me = e.detail.name;
       // setup regexes prior to the combo tracker
-      this.regexes.setup(this.me);
+      this.regexes = new RegexesHolder(this.options.ParserLanguage, this.me);
     }
 
     if (!this.init) {
@@ -865,7 +865,7 @@ class Bars {
   }
 
   _onNetLog(e) {
-    if (!this.init)
+    if (!this.init || !this.regexes)
       return;
     const line = e.line;
     const log = e.rawLine;
@@ -957,7 +957,7 @@ class Bars {
   }
 
   _onLogEvent(e) {
-    if (!this.init)
+    if (!this.init || !this.regexes)
       return;
 
     for (let i = 0; i < e.detail.logs.length; i++) {
