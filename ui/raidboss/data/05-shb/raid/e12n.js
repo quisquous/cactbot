@@ -167,8 +167,8 @@ export default {
           safe = data.bombs[0].east ? 'west' : 'east';
         return output[safe]();
       },
-      outputStrings: bombOutputStrings,
       run: (data) => delete data.bombs,
+      outputStrings: bombOutputStrings,
     },
     {
       id: 'E12N Boulders Explosion',

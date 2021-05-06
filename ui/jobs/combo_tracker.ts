@@ -1,7 +1,23 @@
 import { kAbility, kComboBreakers } from './constants';
 
+type StartMap = {
+  [s: string]: {
+    id: string;
+    next: StartMap;
+  };
+};
+
+type ComboCallback = (id?: string) => void;
+
 export default class ComboTracker {
-  constructor(comboBreakers, callback) {
+  comboTimer?: number;
+  comboBreakers: readonly string[];
+  startMap: StartMap;
+  callback: ComboCallback;
+  considerNext: StartMap;
+  isFinalSkill: boolean;
+
+  constructor(comboBreakers: readonly string[], callback: ComboCallback) {
     this.comboTimer = undefined;
     this.comboBreakers = comboBreakers;
     // A tree of nodes.
@@ -14,24 +30,23 @@ export default class ComboTracker {
     this.isFinalSkill = false;
   }
 
-  AddCombo(skillList) {
-    let nextMap = this.startMap;
+  AddCombo(skillList: string[]): void {
+    let nextMap: StartMap = this.startMap;
 
-    for (let i = 0; i < skillList.length; ++i) {
-      const id = skillList[i];
+    skillList.forEach((id) => {
       const node = {
         id: id,
         next: {},
       };
 
-      if (!nextMap[id])
-        nextMap[id] = node;
-
-      nextMap = nextMap[id].next;
-    }
+      let nextEntry = nextMap[id];
+      if (!nextEntry)
+        nextEntry = nextMap[id] = node;
+      nextMap = nextEntry.next;
+    });
   }
 
-  HandleAbility(id) {
+  HandleAbility(id: string): void {
     if (id in this.considerNext) {
       this.StateTransition(id, this.considerNext[id]);
       return;
@@ -41,33 +56,33 @@ export default class ComboTracker {
       this.AbortCombo(id);
   }
 
-  StateTransition(id, nextState) {
+  StateTransition(id?: string, nextState?: StartMap[string]): void {
     window.clearTimeout(this.comboTimer);
     this.comboTimer = undefined;
 
-    this.isFinalSkill = nextState && Object.keys(nextState.next).length === 0;
-    if (nextState === null || this.isFinalSkill) {
+    this.isFinalSkill = (nextState && Object.keys(nextState.next).length === 0) ?? false;
+    if (!nextState || this.isFinalSkill) {
       this.considerNext = this.startMap;
     } else {
-      this.considerNext = Object.assign({}, this.startMap, nextState.next);
+      this.considerNext = Object.assign({}, this.startMap, nextState?.next);
       const kComboDelayMs = 15000;
       this.comboTimer = window.setTimeout(() => {
-        this.AbortCombo(null);
+        this.AbortCombo();
       }, kComboDelayMs);
     }
 
     // If not aborting, then this is a valid combo skill.
-    if (nextState !== null)
+    if (nextState)
       this.callback(id);
     else
-      this.callback(null);
+      this.callback();
   }
 
-  AbortCombo(id) {
-    this.StateTransition(id, null);
+  AbortCombo(id?: string): void {
+    this.StateTransition(id);
   }
 
-  static setup(callback) {
+  static setup(callback: ComboCallback): ComboTracker {
     const comboTracker = new ComboTracker(kComboBreakers, callback);
     // PLD
     comboTracker.AddCombo([

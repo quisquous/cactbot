@@ -2,7 +2,7 @@
 
 const path = require('path');
 
-// RULES_DIR must be absolute so that eslint can be used programatically
+// RULES_DIR must be absolute so that eslint can be used programmatically
 // and still find the eslint/ plugin directory correctly.
 const rulesDirPlugin = require('eslint-plugin-rulesdir');
 rulesDirPlugin.RULES_DIR = path.join(__dirname, 'eslint');
@@ -52,14 +52,23 @@ module.exports = {
             'requireLast': false,
           },
         }],
+        '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
         'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
         'object-shorthand': ['error', 'consistent'],
         '@typescript-eslint/method-signature-style': ['error', 'property'],
         '@typescript-eslint/explicit-module-boundary-types': ['error', { 'allowHigherOrderFunctions': false }],
+        '@typescript-eslint/consistent-type-assertions': [
+          'error', {
+            assertionStyle: 'as',
+            objectLiteralTypeAssertions: 'never',
+          },
+        ],
       },
     },
   ],
   'ignorePatterns': [
+    // Do not ignore dot files.  /o\
+    '!.*',
     'dist/',
     'plugin/',
     'publish/',

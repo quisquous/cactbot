@@ -202,7 +202,7 @@ export default {
         getInSpread: {
           en: 'Get In, Spread',
           de: 'Rein gehen, verteilen',
-          fr: 'Intérieur, dispersez-vous',
+          fr: 'À l\'intérieur, dispersez-vous',
           ja: '中で散開',
           cn: '中间散开',
           ko: '보스 가까이 탱 약산개',
@@ -210,7 +210,7 @@ export default {
         inStackBehind: {
           en: 'In, Stack Behind',
           de: 'Rein, hinten stacken',
-          fr: 'Intérieur, packez derrière',
+          fr: 'À l\'intérieur, packez derrière',
           ja: '背面集合',
           cn: '背面集合',
           ko: '보스 가까이, 뒤에서 쉐어',
@@ -483,7 +483,7 @@ export default {
         text: {
           en: 'Get Outside Your Orb',
           de: 'Geh zu deinem Orb',
-          fr: 'Allez à l\'extérieur de votre orbe',
+          fr: 'À l\'extérieur de votre orbe',
           ja: 'ピュアレイを外へ誘導',
           cn: '球外站位',
           ko: '본인 레이저 바깥으로 유도',

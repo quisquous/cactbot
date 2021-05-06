@@ -8,7 +8,10 @@ import os
 
 # Maybe this should be called Status like the table, but everything else
 # says gain/lose effects.
-_EFFECTS_OUTPUT_FILE = "effect_id.js"
+_EFFECTS_OUTPUT_FILE = "effect_id.ts"
+
+# TODO: add renaming?
+# Almagest: 563
 
 # There are a looooot of duplicate effect names in pvp, and it's impossible
 # to differentiate other than manually.  There's also older effects that
@@ -96,9 +99,11 @@ if __name__ == "__main__":
     table = csv_util.get_intl_table("Status", ["#", "Name", "Icon", "PartyListPriority"])
 
     writer = coinach.CoinachWriter(verbose=True)
-    writer.write(
-        os.path.join("resources", _EFFECTS_OUTPUT_FILE),
-        os.path.basename(os.path.abspath(__file__)),
-        "EffectId",
-        make_effect_map(table),
+    writer.writeTypeScript(
+        filename=os.path.join("resources", _EFFECTS_OUTPUT_FILE),
+        scriptname=os.path.basename(os.path.abspath(__file__)),
+        header=None,
+        type=None,
+        as_const=True,
+        data=make_effect_map(table),
     )

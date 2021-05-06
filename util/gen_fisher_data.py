@@ -141,7 +141,24 @@ def get_fish_data():
 
         for locale in locales:
             place_id = result["PlaceName"]["ID"]
-            places[locale][place_id] = result["PlaceName"][f"Name_{locale}"]
+
+            if locale == "fr":
+                # This is to specifically to turn `Arbre à pappus` into `L'arbre à pappus`.
+                # Other French names already have `L'` in the front, so we can't treat it
+                # as optional in the regex.  See: #2651.
+                places[locale][place_id] = result["PlaceName"][f"Name_{locale}"]
+            else:
+                # However, English specifically is much more inconsistent about when "The"
+                # appears in the Name_en field.  "Limsa Lominsa lower decks" has a "The" in
+                # game, but not in Name_en.  "The Source" has a "The" in game, but does have
+                # one in Name_en.  Prefering NameNoArticle_en removes all "Thes" from English.
+
+                # Occasionally, PlaceName data will have null or empty strings in the NameNoArticle field.
+                # In these instances, I believe it simply defaults to the Name attribute.
+                places[locale][place_id] = (
+                    result["PlaceName"][f"NameNoArticle_{locale}"]
+                    or result["PlaceName"][f"Name_{locale}"]
+                )
 
             id_list = []
 
@@ -346,6 +363,29 @@ if __name__ == "__main__":
         "tugs": tugs,
     }
 
-    filename = Path(__file__).resolve().parent.parent / "ui" / "fisher" / "static-data.js"
+    filename = Path(__file__).resolve().parent.parent / "ui" / "fisher" / "static-data.ts"
     writer = coinach.CoinachWriter()
-    writer.write(filename, os.path.basename(os.path.abspath(__file__)), "gFisherData", data)
+
+    header = """import { Lang } from '../../types/global';
+
+type LangMapping = {
+  [lang in Lang]: {
+    [id: string]: string | string[];
+  };
+};
+
+type FisherData = {
+  readonly fish: LangMapping;
+  readonly placefish: { [placeId: string]: number[] };
+  readonly places: LangMapping;
+  readonly tackle: LangMapping;
+  readonly tugs: { [fishId: string]: number };
+};"""
+    writer.writeTypeScript(
+        filename=filename,
+        scriptname=os.path.basename(os.path.abspath(__file__)),
+        header=header,
+        type="FisherData",
+        as_const=False,
+        data=data,
+    )

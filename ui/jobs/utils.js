@@ -7,38 +7,9 @@ import { kMeleeWithMpJobs, kLevelMod } from './constants';
 const getLocaleRegex = (locale, regexes) => regexes[locale] || regexes['en'];
 
 export class RegexesHolder {
-  constructor(lang) {
+  constructor(lang, playerName) {
     this.StatsRegex = Regexes.statChange();
 
-    // Regexes to be filled out once we know the player's name.
-    this.YouGainEffectRegex = null;
-    this.YouLoseEffectRegex = null;
-    this.YouUseAbilityRegex = null;
-    this.AnybodyAbilityRegex = null;
-    this.MobGainsEffectRegex = null;
-    this.MobLosesEffectRegex = null;
-    this.MobGainsEffectFromYouRegex = null;
-    this.MobLosesEffectFromYouRegex = null;
-
-    const getCurrentRegex = getLocaleRegex.bind(this, lang);
-    this.countdownStartRegex = getCurrentRegex(LocaleRegex.countdownStart);
-    this.countdownCancelRegex = getCurrentRegex(LocaleRegex.countdownCancel);
-    this.craftingStartRegexes = [
-      getCurrentRegex(LocaleRegex.craftingStart),
-      getCurrentRegex(LocaleRegex.trialCraftingStart),
-    ];
-    this.craftingFinishRegexes = [
-      getCurrentRegex(LocaleRegex.craftingFinish),
-      getCurrentRegex(LocaleRegex.trialCraftingFinish),
-    ];
-    this.craftingStopRegexes = [
-      getCurrentRegex(LocaleRegex.craftingFail),
-      getCurrentRegex(LocaleRegex.craftingCancel),
-      getCurrentRegex(LocaleRegex.trialCraftingFail),
-      getCurrentRegex(LocaleRegex.trialCraftingCancel),
-    ];
-  }
-  setup(playerName) {
     this.YouGainEffectRegex = NetRegexes.gainsEffect({ target: playerName });
     this.YouLoseEffectRegex = NetRegexes.losesEffect({ target: playerName });
     this.YouUseAbilityRegex = NetRegexes.ability({ source: playerName });
@@ -47,6 +18,26 @@ export class RegexesHolder {
     this.MobLosesEffectRegex = NetRegexes.losesEffect({ targetId: '4.{7}' });
     this.MobGainsEffectFromYouRegex = NetRegexes.gainsEffect({ targetId: '4.{7}', source: playerName });
     this.MobLosesEffectFromYouRegex = NetRegexes.losesEffect({ targetId: '4.{7}', source: playerName });
+    // use of GP Potion
+    this.cordialRegex = Regexes.ability({ source: playerName, id: '20(017FD|F5A3D|F844F|0420F|0317D)' });
+
+    const getCurrentRegex = getLocaleRegex.bind(this, lang);
+    this.countdownStartRegex = getCurrentRegex(LocaleRegex.countdownStart);
+    this.countdownCancelRegex = getCurrentRegex(LocaleRegex.countdownCancel);
+    this.craftingStartRegexes = [
+      LocaleRegex.craftingStart,
+      LocaleRegex.trialCraftingStart,
+    ].map(getCurrentRegex);
+    this.craftingFinishRegexes = [
+      LocaleRegex.craftingFinish,
+      LocaleRegex.trialCraftingFinish,
+    ].map(getCurrentRegex);
+    this.craftingStopRegexes = [
+      LocaleRegex.craftingFail,
+      LocaleRegex.craftingCancel,
+      LocaleRegex.trialCraftingFail,
+      LocaleRegex.trialCraftingCancel,
+    ].map(getCurrentRegex);
   }
 }
 

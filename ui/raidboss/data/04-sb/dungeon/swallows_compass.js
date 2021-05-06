@@ -51,6 +51,7 @@ export default {
           de: 'Weiche den Feuerorbs aus',
           fr: 'Évitez les orbes de feu',
           ja: '火の玉を避ける',
+          cn: '躲避小火球',
           ko: '불구슬 피하기',
         },
       },
@@ -71,6 +72,7 @@ export default {
           de: 'Weg von den Feuerkugeln',
           fr: 'Éloignez-vous des boules de feu',
           ja: '(大きい)火の玉を避ける',
+          cn: '远离大火球',
           ko: '불구슬 피하기',
         },
       },
@@ -112,6 +114,7 @@ export default {
           de: '5x Flächen auf DIR',
           fr: '5x Zones au sol sur VOUS',
           ja: '自分に追尾AoE',
+          cn: '5连追踪AOE点名',
           ko: '5회 장판 대상자',
         },
       },
@@ -139,6 +142,7 @@ export default {
           de: 'RAUS AUS DEM SEE',
           fr: 'SORTEZ DU LAC',
           ja: '青いエリアを踏まない',
+          cn: '不要踩进水坑',
           ko: '물웅덩이에서 벗어나기',
         },
       },
@@ -199,12 +203,14 @@ export default {
           return output.dynamo();
         return output.chariot();
       },
+      run: (data) => delete data.dynamo,
       outputStrings: {
         dynamo: {
           en: 'Close to blue staff',
           de: 'Nahe am blauen Stab',
           fr: 'Rapprochez-vous du bâton bleu',
           ja: '如意棒に近づく',
+          cn: '靠近蓝色大圣',
           ko: '파랑 지팡이 근처로',
         },
         chariot: {
@@ -212,10 +218,10 @@ export default {
           de: 'Weg vom roten Stab',
           fr: 'Éloignez-vous du bâton rouge',
           ja: '如意棒から離れる',
+          cn: '远离红色大圣',
           ko: '빨강 지팡이에서 떨어지기',
         },
       },
-      run: (data) => delete data.dynamo,
     },
     {
       id: 'Swallows Compass Five Fingered Punishment',
@@ -258,12 +264,14 @@ export default {
         }
         return output.avoid();
       },
+      run: (data) => delete data.tethers,
       outputStrings: {
         target: {
           en: 'Laser on YOU',
           de: 'Laser auf DIR',
           fr: 'Laser sur VOUS',
           ja: '自分にレーザー',
+          cn: '直线激光点名',
           ko: '레이저 대상자',
         },
         knockback: {
@@ -271,6 +279,7 @@ export default {
           de: 'Rückstoßlaser auf DIR',
           fr: 'Poussée laser sur VOUS',
           ja: '自分にノックバックレーザー',
+          cn: '击退激光点名',
           ko: '넉백 레이저 대상자',
         },
         avoid: {
@@ -278,10 +287,10 @@ export default {
           de: 'Vermeide die Verbindungen',
           fr: 'Évitez les liens',
           ja: '線から離れる',
+          cn: '远离连线',
           ko: '선 피하기',
         },
       },
-      run: (data) => delete data.tethers,
     },
   ],
   timelineReplace: [

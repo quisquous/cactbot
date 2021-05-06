@@ -19,7 +19,7 @@ import '../../resources/resourcebar';
 import '../../resources/timerbar';
 import '../../resources/timerbox';
 import '../../resources/timericon';
-import '../../resources/widgetlist';
+import '../../resources/widget_list';
 
 // See user/jobs-example.js for documentation.
 const Options = {
@@ -81,7 +81,7 @@ class Bars {
     this.inCombat = false;
     this.combo = null;
     this.comboTimer = null;
-    this.regexes = new RegexesHolder(this.options.ParserLanguage);
+    this.regexes = null;
 
     this.skillSpeed = 0;
     this.spellSpeed = 0;
@@ -526,7 +526,7 @@ class Bars {
     if (!this.o.healthBar) return;
     this.o.healthBar.value = this.hp;
     this.o.healthBar.maxvalue = this.maxHP;
-    this.o.healthBar.extraValue = this.currentShield;
+    this.o.healthBar.extravalue = this.currentShield;
 
     const percent = (this.hp + this.currentShield) / this.maxHP;
 
@@ -766,7 +766,7 @@ class Bars {
     if (this.me !== e.detail.name) {
       this.me = e.detail.name;
       // setup regexes prior to the combo tracker
-      this.regexes.setup(this.me);
+      this.regexes = new RegexesHolder(this.options.ParserLanguage, this.me);
     }
 
     if (!this.init) {
@@ -865,7 +865,7 @@ class Bars {
   }
 
   _onNetLog(e) {
-    if (!this.init)
+    if (!this.init || !this.regexes)
       return;
     const line = e.line;
     const log = e.rawLine;
@@ -873,7 +873,7 @@ class Bars {
     const type = line[0];
 
     if (type === '26') {
-      let m = log.match(this.regexes.YouGainEffectRegex);
+      let m = this.regexes.YouGainEffectRegex.exec(log);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
         const f = this.gainEffectFuncMap[effectId];
@@ -881,12 +881,12 @@ class Bars {
           f(effectId, m.groups);
         this.buffTracker.onYouGainEffect(effectId, m.groups);
       }
-      m = log.match(this.regexes.MobGainsEffectRegex);
+      m = this.regexes.MobGainsEffectRegex.exec(log);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
         this.buffTracker.onMobGainsEffect(effectId, m.groups);
       }
-      m = log.match(this.regexes.MobGainsEffectFromYouRegex);
+      m = this.regexes.MobGainsEffectFromYouRegex.exec(log);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
         if (this.trackedDoTs.includes(effectId))
@@ -896,7 +896,7 @@ class Bars {
           f(effectId, m.groups);
       }
     } else if (type === '30') {
-      let m = log.match(this.regexes.YouLoseEffectRegex);
+      let m = this.regexes.YouLoseEffectRegex.exec(log);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
         const f = this.loseEffectFuncMap[effectId];
@@ -904,12 +904,12 @@ class Bars {
           f(effectId, m.groups);
         this.buffTracker.onYouLoseEffect(effectId, m.groups);
       }
-      m = log.match(this.regexes.MobLosesEffectRegex);
+      m = this.regexes.MobLosesEffectRegex.exec(log);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
         this.buffTracker.onMobLosesEffect(effectId, m.groups);
       }
-      m = log.match(this.regexes.MobLosesEffectFromYouRegex);
+      m = this.regexes.MobLosesEffectFromYouRegex.exec(log);
       if (m) {
         const effectId = m.groups.effectId.toUpperCase();
         if (this.trackedDoTs.includes(effectId)) {
@@ -922,7 +922,7 @@ class Bars {
           f(effectId, m.groups);
       }
     } else if (type === '21' || type === '22') {
-      let m = log.match(this.regexes.YouUseAbilityRegex);
+      let m = this.regexes.YouUseAbilityRegex.exec(log);
       if (m) {
         const id = m.groups.id;
         this.combo.HandleAbility(id);
@@ -931,11 +931,11 @@ class Bars {
           f(id, m.groups);
         this.buffTracker.onUseAbility(id, m.groups);
       } else {
-        const m = log.match(this.regexes.AnybodyAbilityRegex);
+        const m = this.regexes.AnybodyAbilityRegex.exec(log);
         if (m)
           this.buffTracker.onUseAbility(m.groups.id, m.groups);
       }
-      m = log.match(this.regexes.YouUseAbilityRegex);
+      m = this.regexes.YouUseAbilityRegex.exec(log);
       if (m) {
         if (this.dotTarget.includes(m.groups.targetId))
           this.lastAttackedDotTarget = m.groups.targetId;
@@ -957,7 +957,7 @@ class Bars {
   }
 
   _onLogEvent(e) {
-    if (!this.init)
+    if (!this.init || !this.regexes)
       return;
 
     for (let i = 0; i < e.detail.logs.length; i++) {
@@ -965,22 +965,22 @@ class Bars {
 
       // TODO: only consider this when not in battle.
       if (log[15] === '0') {
-        const r = log.match(this.regexes.countdownStartRegex);
+        const r = this.regexes.countdownStartRegex.exec(log);
         if (r) {
           const seconds = parseFloat(r.groups.time);
           this._setPullCountdown(seconds);
           continue;
         }
-        if (log.search(this.regexes.countdownCancelRegex) >= 0) {
+        if (this.regexes.countdownCancelRegex.test(log)) {
           this._setPullCountdown(0);
           continue;
         }
-        if (log.search(/:test:jobs:/) >= 0) {
+        if (/:test:jobs:/.test(log)) {
           this._test();
           continue;
         }
         if (log[16] === 'C') {
-          const stats = log.match(this.regexes.StatsRegex).groups;
+          const stats = this.regexes.StatsRegex.exec(log).groups;
           this.skillSpeed = stats.skillSpeed;
           this.spellSpeed = stats.spellSpeed;
           this._updateJobBarGCDs();
@@ -992,9 +992,7 @@ class Bars {
         // TODO: consider flags for missing.
         // flags:damage is 1:0 in most misses.
         if (log[16] === '5' || log[16] === '6') {
-          // use of GP Potion
-          const cordialRegex = Regexes.ability({ source: this.me, id: '20(017FD|F5A3D|F844F|0420F|0317D)' });
-          if (cordialRegex.test(log)) {
+          if (this.regexes.cordialRegex.test(log)) {
             this.gpPotion = true;
             setTimeout(() => {
               this.gpPotion = false;

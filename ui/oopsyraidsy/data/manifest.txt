@@ -33,6 +33,7 @@
 04-sb/ultimate/unending_coil_ultimate.js
 05-shb/alliance/the_copied_factory.js
 05-shb/alliance/the_puppets_bunker.js
+05-shb/alliance/the_tower_at_paradigms_breach.js
 05-shb/dungeon/akadaemia_anyder.js
 05-shb/dungeon/amaurot.js
 05-shb/dungeon/dohn_mheg.js
@@ -41,6 +42,7 @@
 05-shb/dungeon/malikahs_well.js
 05-shb/dungeon/matoyas_relict.js
 05-shb/dungeon/mt_gulg.js
+05-shb/dungeon/paglthan.js
 05-shb/dungeon/qitana_ravel.js
 05-shb/dungeon/the_grand_cosmos.js
 05-shb/dungeon/twinning.js
@@ -70,10 +72,15 @@
 05-shb/raid/e11s.js
 05-shb/raid/e12n.js
 05-shb/raid/e12s.js
+05-shb/trial/diamond_weapon-ex.js
+05-shb/trial/diamond_weapon.js
 05-shb/trial/hades-ex.js
 05-shb/trial/hades.js
 05-shb/trial/innocence-ex.js
 05-shb/trial/innocence.js
+05-shb/trial/levi-un.js
+05-shb/trial/ruby_weapon-ex.js
+05-shb/trial/ruby_weapon.js
 05-shb/trial/shiva-un.js
 05-shb/trial/titania.js
 05-shb/trial/titania-ex.js

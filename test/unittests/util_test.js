@@ -44,7 +44,7 @@ const jobs = (() => {
 
 describe('util tests', () => {
   // Check test job values match actual values from util.js and return their expected values
-  it('jobs should support Util.canX iff it can', () => {
+  it('jobs should support Util.canX if it can', () => {
     [['Addle', Util.canAddle], ['Cleanse', Util.canCleanse], ['Feint', Util.canFeint], ['Silence', Util.canSilence], ['Sleep', Util.canSleep], ['Stun', Util.canStun]]
       .forEach(([action, functionCall]) => {
         // If job can do X, assert canX returns true

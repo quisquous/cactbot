@@ -2,6 +2,17 @@ import { Party } from '../types/event';
 import { Job, Role } from '../types/job.js';
 import Util from './util';
 
+const emptyRoleToPartyNames = () => {
+  return {
+    tank: [],
+    healer: [],
+    dps: [],
+    crafter: [],
+    gatherer: [],
+    none: [],
+  };
+};
+
 export default class PartyTracker {
   details: Party[] = [];
   partyNames_: string[] = [];
@@ -10,7 +21,7 @@ export default class PartyTracker {
   allianceIds_: string[] = [];
   nameToRole_: Record<string, Role> = {};
   idToName_: Record<string, string> = {};
-  roleToPartyNames_: Record<Role, string[]> = {} as Record<Role, string[]>;
+  roleToPartyNames_: Record<Role, string[]> = emptyRoleToPartyNames();
 
   // Bind this to PartyChanged events.
   onPartyChanged(e: { party: Party[]}): void {
@@ -46,9 +57,7 @@ export default class PartyTracker {
     this.idToName_ = {};
 
     // role -> [names] but only for party
-    this.roleToPartyNames_ = {} as Record<Role, string[]>;
-    for (const role of Util.getAllRoles())
-      this.roleToPartyNames_[role] = [];
+    this.roleToPartyNames_ = emptyRoleToPartyNames();
   }
 
   // returns an array of the names of players in your immediate party
@@ -80,32 +89,32 @@ export default class PartyTracker {
     return this.roleToPartyNames_['dps'];
   }
 
-  // returns true iff the named player in your alliance is a particular role
+  // returns true if the named player in your alliance is a particular role
   isRole(name: string, role: string): boolean {
     return this.nameToRole_[name] === role;
   }
 
-  // returns true iff the named player in your alliance is a tank
+  // returns true if the named player in your alliance is a tank
   isTank(name: string): boolean {
     return this.isRole(name, 'tank');
   }
 
-  // returns true iff the named player in your alliance is a healer
+  // returns true if the named player in your alliance is a healer
   isHealer(name: string): boolean {
     return this.isRole(name, 'healer');
   }
 
-  // returns true iff the named player in your alliance is a dps
+  // returns true if the named player in your alliance is a dps
   isDPS(name: string): boolean {
     return this.isRole(name, 'dps');
   }
 
-  // returns true iff the named player is in your immediate party
+  // returns true if the named player is in your immediate party
   inParty(name: string): boolean {
     return this.partyNames.includes(name);
   }
 
-  // returns true iff the named player is in your alliance
+  // returns true if the named player is in your alliance
   inAlliance(name: string): boolean {
     return this.allianceNames.includes(name);
   }

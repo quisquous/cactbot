@@ -21,7 +21,7 @@ module.exports = function(env, argv) {
       radar: './ui/radar/radar.js',
       raidboss: './ui/raidboss/raidboss.js',
       raidemulator: './ui/raidboss/raidemulator.js',
-      test: './ui/test/test.js',
+      test: './ui/test/test.ts',
       ...(() => dev ? ({ timerbar: './resources/timerbar.ts' }) : ({}))(),
     },
     optimization: {

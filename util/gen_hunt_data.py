@@ -6,7 +6,7 @@ import csv
 import csv_util
 import os
 
-_OUTPUT_FILE = "hunt.js"
+_OUTPUT_FILE = "hunt.ts"
 
 
 def update_german(list, search, replace):
@@ -102,11 +102,25 @@ def get_from_coinach(_ffxiv_game_path, _saint_conainch_cmd_path, _cactbot_path):
         all_monsters[info["name"]["en"]] = info
 
     writer = coinach.CoinachWriter(cactbot_path=_cactbot_path)
-    writer.write(
-        os.path.join("resources", _OUTPUT_FILE),
-        os.path.basename(os.path.abspath(__file__)),
-        "gMonster",
-        all_monsters,
+
+    header = """import { LocaleObject } from '../types/trigger';
+type LocaleTextOrArray = LocaleObject<string | string[]>;
+
+type HuntData = {
+  [huntName: string]: {
+    readonly id: string;
+    readonly name: LocaleTextOrArray;
+    readonly rank: string;
+  };
+};"""
+
+    writer.writeTypeScript(
+        filename=os.path.join("resources", _OUTPUT_FILE),
+        scriptname=os.path.basename(os.path.abspath(__file__)),
+        header=header,
+        type="HuntData",
+        as_const=False,
+        data=all_monsters,
     )
 
     print(f"File '{_OUTPUT_FILE}' successfully created.")

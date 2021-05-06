@@ -1,24 +1,28 @@
-import gWeatherRates from './weather_rate';
+import WeatherRate from './weather_rate';
 import ZoneInfo from './zone_info';
 
-export function getWeather(timeMs, zoneId) {
+export const getWeather = (timeMs: number, zoneId: number): string | undefined => {
   const chance = getWeatherChanceValue(timeMs);
 
-  // See weather_rate.js and territory_type.js for details.
-  const rateIdx = ZoneInfo[zoneId].weatherRate;
-  const entry = gWeatherRates[rateIdx];
+  // See weather_rate.ts and territory_type.ts for details.
+  const rateIdx = ZoneInfo[zoneId]?.weatherRate;
+  if (!rateIdx)
+    return;
+  const entry = WeatherRate[rateIdx];
   if (!entry)
     return;
 
-  for (let i = 0; i < entry.rates.length; ++i) {
-    if (chance < entry.rates[i])
-      return entry.weathers[i];
+  let idx = 0;
+  for (const rate of entry.rates) {
+    if (chance < rate)
+      return entry.weathers[idx];
+    idx++;
   }
-}
+};
 
 // From https://github.com/ufx/SaintCoinach/blob/4bf6d951957502a7faa056ffc1cc7026a18fb253/SaintCoinach/Xiv/WeatherRate.cs
 // Relicensed from the "Do What the F*ck You Want To Public License".
-function getWeatherChanceValue(timeMs) {
+const getWeatherChanceValue = (timeMs: number) => {
   const unix = Math.floor(timeMs / 1000);
   // Get Eorzea hour for weather start
   const bell = unix / 175;
@@ -35,14 +39,15 @@ function getWeatherChanceValue(timeMs) {
   const step2 = ((step1 >>> 8) ^ step1) >>> 0;
 
   return step2 % 0x64;
-}
+};
 
-function floorTimeToStartOfWeather(timeMs) {
+const floorTimeToStartOfWeather = (timeMs: number) => {
   const eightHours = 1000 * 8 * 175;
   return Math.floor(timeMs / eightHours) * eightHours;
-}
+};
 
-export function findNextWeather(timeMs, zoneId, searchWeather, maxTimeMs) {
+export const findNextWeather = (timeMs: number, zoneId: number, searchWeather: string,
+    maxTimeMs?: number): number | undefined => {
   maxTimeMs = (maxTimeMs || 1000 * 60 * 1000) + timeMs;
 
   for (; timeMs < maxTimeMs; timeMs += 8 * 175 * 1000) {
@@ -51,9 +56,10 @@ export function findNextWeather(timeMs, zoneId, searchWeather, maxTimeMs) {
       return floorTimeToStartOfWeather(timeMs);
   }
   return undefined;
-}
+};
 
-export function findNextWeatherNot(timeMs, zoneId, searchWeather, maxTimeMs) {
+export const findNextWeatherNot = (timeMs: number, zoneId: number, searchWeather: string,
+    maxTimeMs?: number): number | undefined => {
   maxTimeMs = (maxTimeMs || 1000 * 60 * 1000) + timeMs;
 
   for (; timeMs < maxTimeMs; timeMs += 8 * 175 * 1000) {
@@ -62,9 +68,9 @@ export function findNextWeatherNot(timeMs, zoneId, searchWeather, maxTimeMs) {
       return floorTimeToStartOfWeather(timeMs);
   }
   return undefined;
-}
+};
 
-function findNextHour(timeMs, searchHour) {
+const findNextHour = (timeMs: number, searchHour: number) => {
   const oneHour = 1000 * 175;
   const fullDay = 24 * oneHour;
   const startOfDay = Math.floor(timeMs / fullDay) * fullDay;
@@ -72,21 +78,21 @@ function findNextHour(timeMs, searchHour) {
   if (time < timeMs)
     time += fullDay;
   return time;
-}
+};
 
-export function findNextNight(timeMs) {
+export const findNextNight = (timeMs: number): number => {
   return findNextHour(timeMs, 19);
-}
+};
 
-export function findNextDay(timeMs) {
+export const findNextDay = (timeMs: number): number => {
   return findNextHour(timeMs, 6);
-}
+};
 
-export function isNightTime(timeMs) {
+export const isNightTime = (timeMs: number): boolean => {
   const hour = (timeMs / 1000 / 175) % 24;
   return hour < 6 || hour > 19;
-}
+};
 
-function isDayTime(timeMs) {
+export const isDayTime = (timeMs: number): boolean => {
   return !isNightTime(timeMs);
-}
+};

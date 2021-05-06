@@ -1,6 +1,6 @@
 ### Leviathan Extreme
 # -p 82A:33.1 82E:286.5
-# -ii 828 823 824 825 829 82B 77D 752 74E 88A 74A 749 82D 88B 831 792 791 747
+# -ii 828 823 824 825 829 82B 752 74E 88A 74A 749 82D 88B 831 792 791 747 748
 # -it "Leviathan"
 
 # Note: Briny Veil (831) is applied initially after the first jumps and then
@@ -111,7 +111,7 @@ hideall "--sync--"
 318.6 "Tail Whip" #sync /:Leviathan's Tail:827:/
 322.7 "Waterspout" sync /:Leviathan:742:/
 329.9 "Dread Tide" sync /:Leviathan:754:/
-338.1 "Tidal Roar" sync /:Leviathan:74B:/ window 30,30
+338.1 "Tidal Roar" sync /:Leviathan:74B:/
 
 347.3 "--untargetable--"
 350.4 "Grand Fall" sync /:Leviathan:82F:/
@@ -126,7 +126,7 @@ hideall "--sync--"
 387.1 "Waterspout" sync /:Leviathan:742:/
 394.3 "Dread Tide" sync /:Leviathan:754:/
 402.4 "--4x Wave Spume--"
-402.5 "Tidal Roar" sync /:Leviathan:74B:/ window 30,30
+402.5 "Tidal Roar" sync /:Leviathan:74B:/
 
 413.8 "--untargetable--"
 416.9 "Grand Fall x3" #sync /:Leviathan:82F:/
@@ -156,7 +156,7 @@ hideall "--sync--"
 512.6 "Waterspout" sync /:Leviathan:742:/
 512.6 "Tail Whip" #sync /:Leviathan's Tail:827:/
 519.8 "Dread Tide" sync /:Leviathan:754:/
-523.9 "Tidal Roar" sync /:Leviathan:74B:/ window 30,30
+523.9 "Tidal Roar" sync /:Leviathan:74B:/
 
 532.1 "--untargetable--"
 535.2 "Grand Fall x3" #sync /:Leviathan:82F:/
@@ -175,7 +175,7 @@ hideall "--sync--"
 613.9 "Waterspout" sync /:Leviathan:742:/
 614.8 "Tail Whip" #sync /:Leviathan's Tail:827:/
 621.1 "Dread Tide" sync /:Leviathan:754:/
-625.2 "Tidal Roar" sync /:Leviathan:74B:/ window 10,30
+625.2 "Tidal Roar" sync /:Leviathan:74B:/
 
 634.1 "--untargetable--"
 637.2 "Grand Fall x3" sync /:Leviathan:82F:/

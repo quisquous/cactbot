@@ -233,7 +233,7 @@ export default {
         text: {
           en: 'Out of Triangle',
           de: 'Raus aus den Dreiecken',
-          fr: 'En dehors du triangle',
+          fr: 'Sortez du triangle',
           ja: '三角の外へ',
           cn: '站在三角外面',
           ko: '삼각형 밖으로',

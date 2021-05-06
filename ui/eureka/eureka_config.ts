@@ -12,6 +12,7 @@ UserConfig.registerOptions('eureka', {
         cn: '启用调试模式',
         ko: '디버그 모드 활성화',
       },
+      default: false,
       type: 'checkbox',
       debugOnly: true,
     },
@@ -28,6 +29,8 @@ UserConfig.registerOptions('eureka', {
       type: 'float',
       default: 90,
       setterFunc: (options, value) => {
+        if (typeof value !== 'number')
+          return;
         options['FlagTimeoutMs'] = value * 1000;
       },
     },
@@ -157,6 +160,8 @@ UserConfig.registerOptions('eureka', {
       type: 'float',
       default: 1,
       setterFunc: (options, value) => {
+        if (typeof value !== 'number')
+          return;
         options['RefreshRateMs'] = value * 1000;
       },
     },

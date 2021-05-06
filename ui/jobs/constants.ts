@@ -1,7 +1,8 @@
+import { Job } from '../../types/job';
 import ContentType from '../../resources/content_type';
 
 
-export const kMeleeWithMpJobs = ['PLD', 'DRK'];
+export const kMeleeWithMpJobs: Job[] = ['PLD', 'DRK'];
 
 export const kMPNormalRate = 0.06;
 export const kMPCombatRate = 0.02;
@@ -10,7 +11,7 @@ export const kMPUI2Rate = 0.45;
 export const kMPUI3Rate = 0.60;
 export const kMPTickInterval = 3.0;
 
-export const kWellFedContentTypes = [
+export const kWellFedContentTypes: number[] = [
   ContentType.Dungeons,
   ContentType.Trials,
   ContentType.Raids,
@@ -248,7 +249,7 @@ export const kAbility = {
   Nightbloom: '5AFA',
   // Role Action
   LucidDreaming: '1D8A',
-};
+} as const;
 
 // Full skill names of abilities that break combos.
 // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
@@ -364,7 +365,7 @@ export const kComboBreakers = Object.freeze([
 
 // [level][Sub][Div]
 // Source: http://theoryjerks.akhmorning.com/resources/levelmods/
-export const kLevelMod = [[0, 0],
+export const kLevelMod: [number, number][] = [[0, 0],
   [56, 56], [57, 57], [60, 60], [62, 62], [65, 65],
   [68, 68], [70, 70], [73, 73], [76, 76], [78, 78],
   [82, 82], [85, 85], [89, 89], [93, 93], [96, 96],

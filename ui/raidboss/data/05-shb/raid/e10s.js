@@ -364,6 +364,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5718', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5718', capture: false }),
       alertText: (data, _, output) => output.text(),
+      run: (data) => data.clones = true,
       outputStrings: {
         text: {
           en: 'Drop Shadow Out',
@@ -374,7 +375,6 @@ export default {
           ko: '바깥쪽에 그림자 떨어뜨리기',
         },
       },
-      run: (data) => data.clones = true,
     },
     {
       // This checks your shadow's job against your job, since your shadow has
@@ -505,6 +505,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5720', capture: false }),
       suppressSeconds: 99999,
       alertText: (data, _, output) => output.text(),
+      run: (data) => delete data.clones,
       outputStrings: {
         text: {
           en: 'Drop Shadow Out',
@@ -515,7 +516,6 @@ export default {
           ko: '바깥쪽에 그림자 떨어뜨리기',
         },
       },
-      run: (data) => delete data.clones,
     },
     {
       id: 'E10S Swath of Silence',
