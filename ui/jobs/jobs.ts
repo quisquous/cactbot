@@ -7,7 +7,6 @@ import { addOverlayListener } from '../../resources/overlay_plugin_api';
 
 import EffectId from '../../resources/effect_id';
 import ContentType from '../../resources/content_type';
-import Regexes from '../../resources/regexes';
 import ResourceBar from '../../resources/resourcebar';
 import TimerBar from '../../resources/timerbar';
 import TimerBox from '../../resources/timerbox';
@@ -107,7 +106,7 @@ export class Bars {
   distance: number;
   inCombat: boolean;
   combo?: ComboTracker;
-  regexes: RegexesHolder;
+  regexes?: RegexesHolder;
   speedBuffs: {
     presenceOfMind: number;
     shifu: number;
@@ -120,7 +119,7 @@ export class Bars {
 
   dotTarget: string[];
   trackedDoTs: string[];
-  comboFuncs: ((skill: string | null) => void)[];
+  comboFuncs: ((skill?: string) => void)[];
   // hard to type this when we don't know what job is now
   jobFuncs: ((jobDetail: JobDetail[keyof JobDetail]) => void)[];
   changeZoneFuncs: EventMap['ChangeZone'][];
@@ -166,7 +165,7 @@ export class Bars {
     this.distance = -1;
     this.inCombat = false;
     this.combo = undefined;
-    this.regexes = new RegexesHolder(this.options.ParserLanguage);
+    this.regexes = undefined;
     this.foodBuffExpiresTimeMs = 0;
     this.gpAlarmReady = false;
     this.gpPotion = false;
@@ -563,7 +562,7 @@ export class Bars {
     return bar;
   }
 
-  onCombo(callback: (skill: string | null) => void): void {
+  onCombo(callback: (skill?: string) => void): void {
     this.comboFuncs.push(callback);
   }
 
@@ -611,7 +610,7 @@ export class Bars {
       this.abilityFuncMap[abilityIds] = callback;
   }
 
-  _onComboChange(skill: string | null): void {
+  _onComboChange(skill?: string): void {
     this.comboFuncs.forEach((func) => func(skill));
   }
 
@@ -842,13 +841,13 @@ export class Bars {
       array.some((regex) => regex.test(line));
 
     if (!this.crafting) {
-      if (anyRegexMatched(log, this.regexes.craftingStartRegexes))
+      if (anyRegexMatched(log, this.regexes?.craftingStartRegexes ?? []))
         this.crafting = true;
     } else {
-      if (anyRegexMatched(log, this.regexes.craftingStopRegexes)) {
+      if (anyRegexMatched(log, this.regexes?.craftingStopRegexes ?? [])) {
         this.crafting = false;
       } else {
-        this.crafting = !this.regexes.craftingFinishRegexes.some((regex) => {
+        this.crafting = !this.regexes?.craftingFinishRegexes.some((regex) => {
           const m = regex.exec(log);
           return m && (m.groups?.player === this.me);
         });
@@ -865,7 +864,7 @@ export class Bars {
     if (this.me !== e.detail.name) {
       this.me = e.detail.name;
       // setup regexes prior to the combo tracker
-      this.regexes.setup(this.me);
+      this.regexes = new RegexesHolder(this.options.ParserLanguage, this.me);
     }
 
     if (!this.init) {
@@ -882,7 +881,7 @@ export class Bars {
     if (e.detail.job !== this.job) {
       this.job = e.detail.job;
       // Combos are job specific.
-      this.combo?.AbortCombo(null);
+      this.combo?.AbortCombo();
       // Update MP ticker as umbral stacks has changed.
       this.umbralStacks = 0;
       this._updateMPTicker();
@@ -902,7 +901,7 @@ export class Bars {
       updateHp = true;
 
       if (this.hp === 0)
-        this.combo?.AbortCombo(null); // Death resets combos.
+        this.combo?.AbortCombo(); // Death resets combos.
     }
     if (e.detail.currentMP !== this.mp || e.detail.maxMP !== this.maxMP) {
       this.mp = e.detail.currentMP;
@@ -965,7 +964,7 @@ export class Bars {
   }
 
   _onNetLog(e: Parameters<EventMap['LogLine']>[0]): void {
-    if (!this.init)
+    if (!this.init || !this.regexes)
       return;
     const line = e.line;
     const log = e.rawLine;
@@ -1048,28 +1047,28 @@ export class Bars {
   }
 
   _onLogEvent(e: Parameters<EventMap['onLogEvent']>[0]): void {
-    if (!this.init)
+    if (!this.init || !this.regexes)
       return;
 
     e.detail.logs.forEach((log) => {
       // TODO: only consider this when not in battle.
       if (log[15] === '0') {
-        const r = this.regexes.countdownStartRegex.exec(log);
+        const r = this.regexes?.countdownStartRegex.exec(log);
         if (r) {
           const seconds = parseFloat(r.groups?.time ?? '0');
           this._setPullCountdown(seconds);
           return;
         }
-        if (log.search(this.regexes.countdownCancelRegex) >= 0) {
+        if (this.regexes?.countdownCancelRegex.test(log)) {
           this._setPullCountdown(0);
           return;
         }
-        if (log.search(/:test:jobs:/) >= 0) {
+        if (/:test:jobs:/.test(log)) {
           this._test();
           return;
         }
         if (log[16] === 'C') {
-          const stats = this.regexes.StatsRegex?.exec(log)?.groups;
+          const stats = this.regexes?.StatsRegex?.exec(log)?.groups;
           this.skillSpeed = parseInt(stats?.skillSpeed ?? '0');
           this.spellSpeed = parseInt(stats?.spellSpeed ?? '0');
           this._updateJobBarGCDs();
@@ -1081,9 +1080,7 @@ export class Bars {
         // TODO: consider flags for missing.
         // flags:damage is 1:0 in most misses.
         if (log[16] === '5' || log[16] === '6') {
-          // use of GP Potion
-          const cordialRegex = Regexes.ability({ source: this.me, id: '20(017FD|F5A3D|F844F|0420F|0317D)' });
-          if (cordialRegex.test(log)) {
+          if (this.regexes?.cordialRegex.test(log)) {
             this.gpPotion = true;
             setTimeout(() => {
               this.gpPotion = false;

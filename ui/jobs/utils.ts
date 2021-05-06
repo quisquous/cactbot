@@ -2,6 +2,7 @@ import { Lang } from '../../types/global';
 import { Job } from '../../types/job';
 import Util from '../../resources/util';
 import NetRegexes from '../../resources/netregexes';
+import Regexes from '../../resources/regexes';
 import { LocaleRegex } from '../../resources/translations';
 import TimerIcon from '../../resources/timericon';
 import TimerBar from '../../resources/timerbar';
@@ -12,51 +13,24 @@ const getLocaleRegex = (locale: Lang, regexes: Record<Lang, RegExp>): RegExp => 
 
 export class RegexesHolder {
   StatsRegex: RegExp;
-  YouGainEffectRegex: RegExp | null;
-  YouLoseEffectRegex: RegExp | null;
-  YouUseAbilityRegex: RegExp | null;
-  AnybodyAbilityRegex: RegExp | null;
-  MobGainsEffectRegex: RegExp | null;
-  MobLosesEffectRegex: RegExp | null;
-  MobGainsEffectFromYouRegex: RegExp | null;
-  MobLosesEffectFromYouRegex: RegExp | null;
+  YouGainEffectRegex: RegExp;
+  YouLoseEffectRegex: RegExp;
+  YouUseAbilityRegex: RegExp;
+  AnybodyAbilityRegex: RegExp;
+  MobGainsEffectRegex: RegExp;
+  MobLosesEffectRegex: RegExp;
+  MobGainsEffectFromYouRegex: RegExp;
+  MobLosesEffectFromYouRegex: RegExp;
   countdownStartRegex: RegExp;
   countdownCancelRegex: RegExp;
   craftingStartRegexes: RegExp[];
   craftingFinishRegexes: RegExp[];
   craftingStopRegexes: RegExp[];
-  constructor(lang: Lang) {
-    this.StatsRegex = NetRegexes.statChange();
+  cordialRegex: RegExp;
 
-    // Regexes to be filled out once we know the player's name.
-    this.YouGainEffectRegex = null;
-    this.YouLoseEffectRegex = null;
-    this.YouUseAbilityRegex = null;
-    this.AnybodyAbilityRegex = null;
-    this.MobGainsEffectRegex = null;
-    this.MobLosesEffectRegex = null;
-    this.MobGainsEffectFromYouRegex = null;
-    this.MobLosesEffectFromYouRegex = null;
+  constructor(lang: Lang, playerName: string) {
+    this.StatsRegex = Regexes.statChange();
 
-    const getCurrentRegex = getLocaleRegex.bind(this, lang);
-    this.countdownStartRegex = getCurrentRegex(LocaleRegex.countdownStart);
-    this.countdownCancelRegex = getCurrentRegex(LocaleRegex.countdownCancel);
-    this.craftingStartRegexes = [
-      getCurrentRegex(LocaleRegex.craftingStart),
-      getCurrentRegex(LocaleRegex.trialCraftingStart),
-    ];
-    this.craftingFinishRegexes = [
-      getCurrentRegex(LocaleRegex.craftingFinish),
-      getCurrentRegex(LocaleRegex.trialCraftingFinish),
-    ];
-    this.craftingStopRegexes = [
-      getCurrentRegex(LocaleRegex.craftingFail),
-      getCurrentRegex(LocaleRegex.craftingCancel),
-      getCurrentRegex(LocaleRegex.trialCraftingFail),
-      getCurrentRegex(LocaleRegex.trialCraftingCancel),
-    ];
-  }
-  setup(playerName: string): void {
     this.YouGainEffectRegex = NetRegexes.gainsEffect({ target: playerName });
     this.YouLoseEffectRegex = NetRegexes.losesEffect({ target: playerName });
     this.YouUseAbilityRegex = NetRegexes.ability({ source: playerName });
@@ -65,6 +39,26 @@ export class RegexesHolder {
     this.MobLosesEffectRegex = NetRegexes.losesEffect({ targetId: '4.{7}' });
     this.MobGainsEffectFromYouRegex = NetRegexes.gainsEffect({ targetId: '4.{7}', source: playerName });
     this.MobLosesEffectFromYouRegex = NetRegexes.losesEffect({ targetId: '4.{7}', source: playerName });
+    // use of GP Potion
+    this.cordialRegex = Regexes.ability({ source: playerName, id: '20(017FD|F5A3D|F844F|0420F|0317D)' });
+
+    const getCurrentRegex = getLocaleRegex.bind(this, lang);
+    this.countdownStartRegex = getCurrentRegex(LocaleRegex.countdownStart);
+    this.countdownCancelRegex = getCurrentRegex(LocaleRegex.countdownCancel);
+    this.craftingStartRegexes = [
+      LocaleRegex.craftingStart,
+      LocaleRegex.trialCraftingStart,
+    ].map(getCurrentRegex);
+    this.craftingFinishRegexes = [
+      LocaleRegex.craftingFinish,
+      LocaleRegex.trialCraftingFinish,
+    ].map(getCurrentRegex);
+    this.craftingStopRegexes = [
+      LocaleRegex.craftingFail,
+      LocaleRegex.craftingCancel,
+      LocaleRegex.trialCraftingFail,
+      LocaleRegex.trialCraftingCancel,
+    ].map(getCurrentRegex);
   }
 }
 
