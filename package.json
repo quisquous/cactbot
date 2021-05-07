@@ -24,7 +24,6 @@
   },
   "devDependencies": {
     "@babel/types": "7.12.*",
-    "@types/node": "^14.14.37",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.1",
     "@zoltu/typescript-transformer-append-js-extension": "^1.0.1",
