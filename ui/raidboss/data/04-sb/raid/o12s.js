@@ -26,6 +26,7 @@ export default {
         knockback: Outputs.knockback,
         knockbackAndAvoid: {
           en: 'Knockback F + Avoid M',
+          fr: 'Poussée F + Éviter M',
         },
       },
     },
@@ -120,6 +121,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Behind => Spread',
+          fr: 'Derrière -> Dispersez-vous',
         },
       },
     },
@@ -245,6 +247,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Bring Bosses Middle, Face Eye',
+          fr: 'Placez les boss au centre, en face de l\'œil',
         },
       },
     },
@@ -262,6 +265,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Get Middle (Blades)',
+          fr: 'Allez au centre (Lames)',
         },
       },
     },
@@ -278,6 +282,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Intercards + Stack',
+          fr: 'Intercardinal + Package',
         },
       },
     },
@@ -294,6 +299,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Behind => Out + Spread',
+          fr: 'Derrière -> Extérieur + Dispersion',
         },
       },
     },
@@ -311,6 +317,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Intercards + Spread (Shield)',
+          fr: 'Intercardinal + Dispersion (Bouclier)',
         },
       },
     },
@@ -330,6 +337,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Spread => Follow M',
+          fr: 'Dispersion -> Suivez M',
         },
       },
     },
@@ -348,6 +356,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Away from M',
+          fr: 'Éloignez vous de M',
         },
       },
     },
@@ -414,6 +423,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Stack Groups',
+          fr: 'Package en groupe',
         },
       },
     },
@@ -431,6 +441,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Arrow on YOU',
+          fr: 'Flèche sur VOUS',
         },
       },
     },
@@ -629,7 +640,7 @@ export default {
         text: {
           en: 'Defamation on YOU',
           de: 'Urteil auf DIR',
-          fr: '#Médisance sur VOUS',
+          fr: 'Médisance sur VOUS',
           ja: 'サークルついた',
           cn: '严重错误：上溢',
           ko: '치명적오류:광역 8초',
