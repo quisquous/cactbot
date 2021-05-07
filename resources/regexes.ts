@@ -727,10 +727,11 @@ export default class Regexes {
   }
 
   // Like Regex.Regexes.parse, but force global flag.
-  static parseGlobal(regexpString: RegExp): RegExp {
+  static parseGlobal(regexpString: RegExp | string): RegExp {
     const regex = Regexes.parse(regexpString);
     let modifiers = 'gi';
-    modifiers += (regexpString.multiline ? 'm' : '');
+    if (regexpString instanceof RegExp)
+      modifiers += (regexpString.multiline ? 'm' : '');
     return new RegExp(regex.source, modifiers);
   }
 
