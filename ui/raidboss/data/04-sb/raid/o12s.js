@@ -26,6 +26,7 @@ export default {
         knockback: Outputs.knockback,
         knockbackAndAvoid: {
           en: 'Knockback F + Avoid M',
+          fr: 'Poussée F + Évitez M',
           cn: '女性击退 + 远离男性',
         },
       },
@@ -121,6 +122,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Behind => Spread',
+          fr: 'Derrière -> Dispersez-vous',
           cn: '背后 => 分散',
         },
       },
@@ -247,6 +249,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Bring Bosses Middle, Face Eye',
+          fr: 'Placez les boss au centre, face à l\'œil',
           cn: '把BOSS拉到中间，面向眼睛',
         },
       },
@@ -265,6 +268,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Get Middle (Blades)',
+          fr: 'Allez au centre (Lames)',
           cn: '去中间 (剑)',
         },
       },
@@ -282,6 +286,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Intercards + Stack',
+          fr: 'Intercardinal + Package',
           cn: '躲十字AoE + 分摊',
         },
       },
@@ -299,6 +304,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Behind => Out + Spread',
+          fr: 'Derrière -> Extérieur + Dispersion',
           cn: '去背后 => 远离 + 分散',
         },
       },
@@ -317,6 +323,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Intercards + Spread (Shield)',
+          fr: 'Intercardinal + Dispersion (Bouclier)',
           cn: '躲十字AoE + 分散 (盾)',
         },
       },
@@ -337,6 +344,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Spread => Follow M',
+          fr: 'Dispersion -> Suivez M',
           cn: '分散 => 去男性脚下',
         },
       },
@@ -356,6 +364,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Away from M',
+          fr: 'Éloignez-vous de M',
           cn: '远离男性',
         },
       },
@@ -423,6 +432,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Stack Groups',
+          fr: 'Package en groupe',
           cn: '分组分摊',
         },
       },
@@ -441,6 +451,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Arrow on YOU',
+          fr: 'Flèche sur VOUS',
           cn: '天箭点名',
         },
       },
@@ -640,7 +651,7 @@ export default {
         text: {
           en: 'Defamation on YOU',
           de: 'Urteil auf DIR',
-          fr: '#Médisance sur VOUS',
+          fr: 'Médisance sur VOUS',
           ja: 'サークルついた',
           cn: '严重错误：上溢',
           ko: '치명적오류:광역 8초',
