@@ -19,7 +19,7 @@ module.exports = function(env, argv) {
       oopsyraidsy: './ui/oopsyraidsy/oopsyraidsy.js',
       pullcounter: './ui/pullcounter/pullcounter.js',
       radar: './ui/radar/radar.ts',
-      raidboss: './ui/raidboss/raidboss.js',
+      raidboss: './ui/raidboss/raidboss.ts',
       raidemulator: './ui/raidboss/raidemulator.js',
       test: './ui/test/test.ts',
       ...(() => dev ? ({ timerbar: './resources/timerbar.ts' }) : ({}))(),
