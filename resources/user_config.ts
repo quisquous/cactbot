@@ -3,6 +3,7 @@ import { BaseOptions } from '../types/data';
 import { CactbotLoadUserRet, SavedConfig, SavedConfigEntry } from '../types/event';
 import { LocaleText } from '../types/trigger';
 import { addOverlayListener, callOverlayHandler } from './overlay_plugin_api';
+import { UnreachableCode } from './not_reached';
 
 // TODO:
 // The convention of "import X as _X; const X = _X;" is currently
@@ -95,18 +96,16 @@ class UserConfig {
     return keys.sort((keyA, keyB) => {
       const listA = splitKeyMap[keyA];
       const listB = splitKeyMap[keyB];
-      // Convince TypeScript these two exist.
       if (listA === undefined || listB === undefined)
-        return 0;
+        throw new UnreachableCode();
 
       const maxLen = Math.max(listA.length, listB.length);
       for (let idx = 0; idx < maxLen; ++idx) {
         const entryA = listA[idx];
         const entryB = listB[idx];
-        // Convince TypeScript these exist.
         // In practice, there's always at least one entry.
         if (entryA === undefined || entryB === undefined)
-          break;
+          throw new UnreachableCode();
 
         // If both subdirectories or both files, then compare names.
         const isLastA = listA.length - 1 === idx;
