@@ -1,6 +1,7 @@
 import { commonReplacement } from './common_replacement';
 import Regexes from '../../resources/regexes';
 import { LocaleRegex } from '../../resources/translations';
+import { UnreachableCode } from '../../resources/not_reached';
 
 const timelineInstructions = {
   en: [
@@ -72,11 +73,6 @@ const computeBackgroundColorFrom = (element, classList) => {
   const color = window.getComputedStyle(div).backgroundColor;
   element.removeChild(div);
   return color;
-};
-
-// TODO: Move to a centralized place
-const notReached = () => {
-  throw new Error('This code shouldn\'t be reached');
 };
 
 // This class reads the format of ACT Timeline plugin, described in
@@ -219,7 +215,7 @@ export class Timeline {
       if (match && match['groups']) {
         const tts = match['groups'];
         if (!tts.id || !tts.beforeSeconds || !tts.command)
-          notReached();
+          throw new UnreachableCode();
         // TODO: Support alert sounds?
         if (tts.command === 'sound')
           continue;
@@ -243,7 +239,7 @@ export class Timeline {
       if (match && match['groups']) {
         const popupText = match['groups'];
         if (!popupText.type || !popupText.id || !popupText.beforeSeconds)
-          notReached();
+          throw new UnreachableCode();
         const popupTextItems = texts[popupText.id] || [];
         texts[popupText.id] = popupTextItems;
         popupTextItems.push({
@@ -266,7 +262,7 @@ export class Timeline {
       const parsedLine = match['groups'];
       // Technically the name can be empty
       if (!parsedLine.text || !parsedLine.time || parsedLine.name === undefined)
-        notReached();
+        throw new UnreachableCode();
       line = line.replace(parsedLine.text, '').trim();
       // There can be # in the ability name, but probably not in the regex.
       line = line.replace(regexes.commentLine, '').trim();
@@ -287,7 +283,7 @@ export class Timeline {
         if (commandMatch && commandMatch['groups']) {
           const durationCommand = commandMatch['groups'];
           if (!durationCommand.text || !durationCommand.seconds)
-            notReached();
+            throw new UnreachableCode();
           line = line.replace(durationCommand.text, '').trim();
           e.duration = parseFloat(durationCommand.seconds);
         }
@@ -296,7 +292,7 @@ export class Timeline {
         if (commandMatch && commandMatch['groups']) {
           const syncCommand = commandMatch['groups'];
           if (!syncCommand.text || !syncCommand.regex)
-            notReached();
+            throw new UnreachableCode();
           line = line.replace(syncCommand.text, '').trim();
           const sync = {
             id: uniqueid,
@@ -312,7 +308,7 @@ export class Timeline {
             if (argMatch && argMatch['groups']) {
               const windowCommand = argMatch['groups'];
               if (!windowCommand.text || !windowCommand.end)
-                notReached();
+                throw new UnreachableCode();
               line = line.replace(windowCommand.text, '').trim();
               if (windowCommand.start) {
                 sync.start = seconds - parseFloat(windowCommand.start);
@@ -326,7 +322,7 @@ export class Timeline {
             if (argMatch && argMatch['groups']) {
               const jumpCommand = argMatch['groups'];
               if (!jumpCommand.text || !jumpCommand.seconds)
-                notReached();
+                throw new UnreachableCode();
               line = line.replace(jumpCommand.text, '').trim();
               sync.jump = parseFloat(jumpCommand.seconds);
             }
