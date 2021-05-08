@@ -30,7 +30,7 @@ const triggerFiles = [];
 const processInputs = (inputPath) => {
   inputPath.forEach((path) => {
     walkDirSync(path, (filepath) => {
-      if (/\/(?:raidboss|oopsyraidsy)\/data\/manifest.txt/.test(filepath)) {
+      if (/\/(?:raidboss|oopsy)_manifest.txt/.test(filepath)) {
         manifestFiles.push(filepath);
         return;
       }

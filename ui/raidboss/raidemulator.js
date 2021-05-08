@@ -17,7 +17,7 @@ import RaidEmulatorTimelineUI from './emulator/overrides/RaidEmulatorTimelineUI'
 import { TimelineLoader } from './timeline';
 import Tooltip from './emulator/ui/Tooltip';
 import UserConfig from '../../resources/user_config';
-import raidbossFileData from './data/manifest.txt';
+import raidbossFileData from './data/raidboss_manifest.txt';
 // eslint can't detect the custom loader for the worker
 // eslint-disable-next-line import/default
 import NetworkLogConverterWorker from './emulator/data/NetworkLogConverterWorker';

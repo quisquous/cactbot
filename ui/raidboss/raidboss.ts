@@ -8,7 +8,7 @@ import { TimelineController, TimelineLoader, TimelineUI } from './timeline';
 
 import UserConfig from '../../resources/user_config';
 import { addRemotePlayerSelectUI } from '../../resources/player_override';
-import raidbossFileData from './data/manifest.txt';
+import raidbossFileData from './data/raidboss_manifest.txt';
 
 import Options from './raidboss_options';
 

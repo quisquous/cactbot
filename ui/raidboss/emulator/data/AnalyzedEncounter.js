@@ -6,7 +6,7 @@ import RaidEmulatorTimelineUI from '../overrides/RaidEmulatorTimelineUI';
 import PopupTextAnalysis from '../data/PopupTextAnalysis';
 import { TimelineLoader } from '../../timeline';
 import Util from '../../../../resources/util';
-import raidbossFileData from '../../data/manifest.txt';
+import raidbossFileData from '../../data/raidboss_manifest.txt';
 
 export default class AnalyzedEncounter extends EventBus {
   constructor(options, encounter, emulator) {

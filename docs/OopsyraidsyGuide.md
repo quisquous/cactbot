@@ -2,7 +2,7 @@
 
 ## File Structure
 
-Each file is a module that exports a single trigger set, and should be listed in **manifest.txt**.
+Each file is a module that exports a single trigger set, and should be listed in **oopsy_manifest.txt**.
 
 ```javascript
 import ZoneId from '../path/to/resources/zone_id.js';

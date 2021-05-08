@@ -86,7 +86,7 @@ module.exports = function(env, argv) {
           use: ['style-loader', 'css-loader'],
         },
         {
-          test: /data[\\\/]manifest\.txt$/,
+          test: /data[\\\/]\w*_manifest\.txt$/,
           use: [
             {
               loader: './webpack/loaders/manifest-loader.cjs',
@@ -94,7 +94,7 @@ module.exports = function(env, argv) {
           ],
         },
         {
-          test: /data[\\\/](?!manifest\.txt).*\.txt$/,
+          test: /data[\\\/](?!\w*_manifest\.txt).*\.txt$/,
           use: [
             {
               loader: 'raw-loader',
