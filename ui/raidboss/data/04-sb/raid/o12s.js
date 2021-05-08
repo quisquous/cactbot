@@ -26,6 +26,7 @@ export default {
         knockback: Outputs.knockback,
         knockbackAndAvoid: {
           en: 'Knockback F + Avoid M',
+          cn: '女性击退 + 远离男性',
         },
       },
     },
@@ -120,6 +121,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Behind => Spread',
+          cn: '背后 => 分散',
         },
       },
     },
@@ -245,6 +247,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Bring Bosses Middle, Face Eye',
+          cn: '把BOSS拉到中间，面向眼睛',
         },
       },
     },
@@ -262,6 +265,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Get Middle (Blades)',
+          cn: '去中间 (剑)',
         },
       },
     },
@@ -278,6 +282,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Intercards + Stack',
+          cn: '躲十字AoE + 分摊',
         },
       },
     },
@@ -294,6 +299,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Behind => Out + Spread',
+          cn: '去背后 => 远离 + 分散',
         },
       },
     },
@@ -311,6 +317,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Intercards + Spread (Shield)',
+          cn: '躲十字AoE + 分散 (盾)',
         },
       },
     },
@@ -330,6 +337,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Spread => Follow M',
+          cn: '分散 => 去男性脚下',
         },
       },
     },
@@ -348,6 +356,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Away from M',
+          cn: '远离男性',
         },
       },
     },
@@ -414,6 +423,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Stack Groups',
+          cn: '分组分摊',
         },
       },
     },
@@ -431,6 +441,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Arrow on YOU',
+          cn: '天箭点名',
         },
       },
     },
@@ -445,7 +456,7 @@ export default {
           de: 'Omega-M angreifen',
           fr: 'Attaquez Oméga-M',
           ja: 'Mを攻撃',
-          cn: '攻击欧米茄-M',
+          cn: '攻击男性',
           ko: '오메가 M 공격',
         },
       },
@@ -461,7 +472,7 @@ export default {
           de: 'Omega-W angreifen',
           fr: 'Attaquez Oméga-F',
           ja: 'Fを攻撃',
-          cn: '攻击欧米茄-F',
+          cn: '攻击女性',
           ko: '오메가 F 공격',
         },
       },
