@@ -26,7 +26,7 @@ export default {
         knockback: Outputs.knockback,
         knockbackAndAvoid: {
           en: 'Knockback F + Avoid M',
-          cn: '女体击退 + 远离男体',
+          cn: '女性击退 + 远离男性',
         },
       },
     },
@@ -337,7 +337,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Spread => Follow M',
-          cn: '分散 => 去男体脚下',
+          cn: '分散 => 去男性脚下',
         },
       },
     },
@@ -356,7 +356,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Away from M',
-          cn: '远离男体',
+          cn: '远离男性',
         },
       },
     },
@@ -456,7 +456,7 @@ export default {
           de: 'Omega-M angreifen',
           fr: 'Attaquez Oméga-M',
           ja: 'Mを攻撃',
-          cn: '攻击男体',
+          cn: '攻击男性',
           ko: '오메가 M 공격',
         },
       },
@@ -472,7 +472,7 @@ export default {
           de: 'Omega-W angreifen',
           fr: 'Attaquez Oméga-F',
           ja: 'Fを攻撃',
-          cn: '攻击女体',
+          cn: '攻击女性',
           ko: '오메가 F 공격',
         },
       },
