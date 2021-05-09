@@ -351,7 +351,7 @@ class Radar {
         if (Math.abs(this.playerPos.z - monster.posZ) > 5)
           node.innerHTML += '&nbsp;&nbsp;' + (this.playerPos.z < monster.posZ ? '↑' : '↓');
         node.innerHTML += '<br>' + deltaVector.length().toFixed(2) + 'm';
-        if (Date.now() / 1000 <= monster.battleTime + 60) {
+        if (Date.now().valueOf() / 1000 <= monster.battleTime + 60) {
           node.innerHTML += ' ' + (monster.currentHp * 100 /
             monster.hp).toFixed(2) + '%';
         }
