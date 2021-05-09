@@ -302,7 +302,7 @@ class Radar {
         'battleTime': 0,
         'pos': new Point2D(parseFloat(matches.x), parseFloat(matches.y)),
         'posZ': parseFloat(matches.z),
-        'addTime': +Date.now(),
+        'addTime': Date.now().valueOf(),
         'dom': tr,
         'puller': undefined,
         'skipPuller': matches.hp !== matches.currentHp, // already pulled before being detected
