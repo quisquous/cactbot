@@ -264,7 +264,7 @@ class Radar {
       // Update position only if its closer than the current one
       if (newDistance < oldDistance) {
         targetMob.pos = newPos;
-        targetMob.posZ = parseFloat(matches?.z ?? '0');
+        targetMob.posZ = parseFloat(matches.z ?? '0');
 
         // Update DOM
         this.UpdateMonsterDom(targetMob);
