@@ -5,13 +5,3 @@ ignore:
 parsers:
   javascript:
     enable_partials: yes
-
-coverage:
-  status:
-    project:
-      resources:
-        paths:
-          - resources
-      triggers:
-        paths:
-          - ui/raidboss/data
