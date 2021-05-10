@@ -6,6 +6,10 @@ flags:
     paths:
       - ui/raidboss/
 
+ignore:
+  - "user"
+  - "eslint" # wildcards accepted
+
 parsers:
   javascript:
     enable_partials: yes

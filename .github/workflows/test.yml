@@ -9,6 +9,7 @@ on:
       - 'package*.json'
       - 'ui/raidboss/**'
       - '.github/workflows/test.yml'
+      - '.github/codecov.yml'
   pull_request:
     paths:
       - '**/*.js'
@@ -17,6 +18,7 @@ on:
       - 'package*.json'
       - 'ui/raidboss/**'
       - '.github/workflows/test.yml'
+      - '.github/codecov.yml'
 
 jobs:
   test:
