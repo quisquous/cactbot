@@ -3,22 +3,22 @@ name: Test
 on:
   push:
     paths:
-      - '**/*.js'
-      - '**/*.ts'
-      - '**/*.py'
-      - 'package*.json'
-      - 'ui/raidboss/**'
-      - '.github/workflows/test.yml'
-      - '.github/codecov.yml'
+      - "**/*.js"
+      - "**/*.ts"
+      - "**/*.py"
+      - "package*.json"
+      - "ui/raidboss/**"
+      - ".github/workflows/test.yml"
+      - ".github/codecov.yml"
   pull_request:
     paths:
-      - '**/*.js'
-      - '**/*.ts'
-      - '**/*.py'
-      - 'package*.json'
-      - 'ui/raidboss/**'
-      - '.github/workflows/test.yml'
-      - '.github/codecov.yml'
+      - "**/*.js"
+      - "**/*.ts"
+      - "**/*.py"
+      - "package*.json"
+      - "ui/raidboss/**"
+      - ".github/workflows/test.yml"
+      - ".github/codecov.yml"
 
 jobs:
   test:
@@ -30,7 +30,7 @@ jobs:
 
       - uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: "14"
 
       - uses: actions/cache@v2
         with:
@@ -52,3 +52,5 @@ jobs:
           npm run test:coverage
 
       - uses: codecov/codecov-action@v1
+        with:
+          flags: raidboss,resources
