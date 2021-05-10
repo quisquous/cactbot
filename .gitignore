@@ -4,6 +4,8 @@ bin/
 obj/
 packages/
 user/
+coverage
+.coverage
 
 !user/README.txt
 plugin/**/*.csproj.user
