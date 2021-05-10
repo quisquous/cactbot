@@ -5,3 +5,7 @@ flags:
   raidboss:
     paths:
       - ui/raidboss/
+
+parsers:
+  javascript:
+    enable_partials: yes
