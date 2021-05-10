@@ -3,22 +3,20 @@ name: Test
 on:
   push:
     paths:
-      - "**/*.js"
-      - "**/*.ts"
-      - "**/*.py"
-      - "package*.json"
-      - "ui/raidboss/**"
-      - ".github/workflows/test.yml"
-      - ".github/codecov.yml"
+      - '**/*.js'
+      - '**/*.ts'
+      - '**/*.py'
+      - 'package*.json'
+      - 'ui/raidboss/**'
+      - '.github/workflows/test.yml'
   pull_request:
     paths:
-      - "**/*.js"
-      - "**/*.ts"
-      - "**/*.py"
-      - "package*.json"
-      - "ui/raidboss/**"
-      - ".github/workflows/test.yml"
-      - ".github/codecov.yml"
+      - '**/*.js'
+      - '**/*.ts'
+      - '**/*.py'
+      - 'package*.json'
+      - 'ui/raidboss/**'
+      - '.github/workflows/test.yml'
 
 jobs:
   test:
