@@ -5,3 +5,15 @@ ignore:
 parsers:
   javascript:
     enable_partials: yes
+
+coverage:
+  status:
+    project:
+      default:
+        paths:
+          - ./resources
+          - ./ui/raidboss/data/00-misc
+          - ./ui/raidboss/data/02-arr
+          - ./ui/raidboss/data/03-hw
+          - ./ui/raidboss/data/04-sb
+          - ./ui/raidboss/data/05-shb
