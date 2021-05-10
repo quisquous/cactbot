@@ -9,11 +9,9 @@ parsers:
 coverage:
   status:
     project:
-      default:
+      resources:
         paths:
-          - ./resources
-          - ./ui/raidboss/data/00-misc
-          - ./ui/raidboss/data/02-arr
-          - ./ui/raidboss/data/03-hw
-          - ./ui/raidboss/data/04-sb
-          - ./ui/raidboss/data/05-shb
+          - resources
+      triggers:
+        paths:
+          - ui/raidboss/data
