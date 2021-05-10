@@ -27,6 +27,5 @@
       * unfortunately `black` does not support "Format Selection"
       */
     "editor.formatOnSaveMode": "file"
-  },
-  "prettier.singleQuote": true
+  }
 }
