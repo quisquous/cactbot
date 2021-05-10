@@ -1,6 +1,6 @@
 ignore:
-  - "user"
-  - "eslint" # wildcards accepted
+  - user
+  - eslint
 
 parsers:
   javascript:
