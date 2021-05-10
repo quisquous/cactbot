@@ -373,7 +373,7 @@ class Radar {
     let deltaTheta = Math.atan2(deltaVector.y, deltaVector.x);
     deltaTheta -= Math.PI - this.playerRotation;
     const angle = deltaTheta * 180 / Math.PI;
-    const arrowId = 'arrow-' + monster.id;
+    const arrowId = `arrow-${monster.id}`;
     const arrow = document.getElementById(arrowId);
     if (arrow)
       arrow.style.transform = `rotate(${angle}deg)`;
