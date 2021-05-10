@@ -1,0 +1,19 @@
+flags:
+  resources:
+    paths:
+      - resources/
+  00-misc:
+    paths:
+      - ui/raidboss/data/00-misc/
+  02-arr:
+    paths:
+      - ui/raidboss/data/02-arr/
+  03-hw:
+    paths:
+      - ui/raidboss/data/03-hw/
+  04-sb:
+    paths:
+      - ui/raidboss/data/04-sb/
+  05-shb:
+    paths:
+      - ui/raidboss/data/05-shb/
