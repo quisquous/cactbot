@@ -16,7 +16,7 @@
     "stylelint": "node_modules/.bin/stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
     "markdownlint": "node_modules/.bin/markdownlint . --ignore node_modules --ignore publish --ignore CactbotOverlay/ThirdParty",
     "test": "node_modules/.bin/mocha",
-    "test:coverage": " npx c8 -r=lcov -o ./.coverage npm test",
+    "test:coverage": " npx c8 -r=lcov --all -o ./.coverage npm test",
     "lint-staged": "node_modules/.bin/lint-staged",
     "coverage-report": "node --loader ts-node/esm util/gen_coverage_report.js",
     "find-translations": "node --loader ts-node/esm util/find_missing_translations.js",
