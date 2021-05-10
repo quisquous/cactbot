@@ -47,6 +47,6 @@ jobs:
 
       - name: npm test
         run: |
-          npm test:coverage
+          npm run test:coverage
 
       - uses: codecov/codecov-action@v1
