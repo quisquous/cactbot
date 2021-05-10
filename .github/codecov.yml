@@ -1,11 +1,3 @@
-flags:
-  resources:
-    paths:
-      - resources/
-  raidboss:
-    paths:
-      - ui/raidboss/
-
 ignore:
   - "user"
   - "eslint" # wildcards accepted
