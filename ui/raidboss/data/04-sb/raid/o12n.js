@@ -62,7 +62,7 @@ export default {
           de: 'Bosse auseinander ziehen',
           fr: 'Ecartez les boss',
           ja: 'ボスを引き離す',
-          cn: '分开boss',
+          cn: '拉开boss',
           ko: '보스 서로 떨어뜨리기',
         },
       },

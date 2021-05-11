@@ -26,6 +26,7 @@
 04-sb/raid/o4n.js
 04-sb/raid/o4s.js
 04-sb/raid/o7s.js
+04-sb/raid/o12s.js
 04-sb/trial/byakko-ex.js
 04-sb/trial/shinryu.js
 04-sb/trial/susano-ex.js
@@ -36,6 +37,7 @@
 05-shb/alliance/the_tower_at_paradigms_breach.js
 05-shb/dungeon/akadaemia_anyder.js
 05-shb/dungeon/amaurot.js
+05-shb/dungeon/anamnesis_anyder.js
 05-shb/dungeon/dohn_mheg.js
 05-shb/dungeon/heroes_gauntlet.js
 05-shb/dungeon/holminster_switch.js
@@ -74,6 +76,7 @@
 05-shb/raid/e12s.js
 05-shb/trial/diamond_weapon-ex.js
 05-shb/trial/diamond_weapon.js
+05-shb/trial/emerald_weapon.js
 05-shb/trial/hades-ex.js
 05-shb/trial/hades.js
 05-shb/trial/innocence-ex.js

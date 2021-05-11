@@ -1,6 +1,7 @@
 import { commonReplacement } from './common_replacement';
 import Regexes from '../../resources/regexes';
 import { LocaleRegex } from '../../resources/translations';
+import { UnreachableCode } from '../../resources/not_reached';
 
 const timelineInstructions = {
   en: [
@@ -62,7 +63,8 @@ const activeText = {
   ko: '시전중:',
 };
 
-function computeBackgroundColorFrom(element, classList) {
+// TODO: Duplicated in 'jobs'
+const computeBackgroundColorFrom = (element, classList) => {
   const div = document.createElement('div');
   const classes = classList.split('.');
   for (const cls of classes)
@@ -71,11 +73,6 @@ function computeBackgroundColorFrom(element, classList) {
   const color = window.getComputedStyle(div).backgroundColor;
   element.removeChild(div);
   return color;
-}
-
-// TODO: Move to a centralized place
-const notReached = () => {
-  throw new Error('This code shouldn\'t be reached');
 };
 
 // This class reads the format of ACT Timeline plugin, described in
@@ -218,7 +215,7 @@ export class Timeline {
       if (match && match['groups']) {
         const tts = match['groups'];
         if (!tts.id || !tts.beforeSeconds || !tts.command)
-          notReached();
+          throw new UnreachableCode();
         // TODO: Support alert sounds?
         if (tts.command === 'sound')
           continue;
@@ -242,7 +239,7 @@ export class Timeline {
       if (match && match['groups']) {
         const popupText = match['groups'];
         if (!popupText.type || !popupText.id || !popupText.beforeSeconds)
-          notReached();
+          throw new UnreachableCode();
         const popupTextItems = texts[popupText.id] || [];
         texts[popupText.id] = popupTextItems;
         popupTextItems.push({
@@ -265,7 +262,7 @@ export class Timeline {
       const parsedLine = match['groups'];
       // Technically the name can be empty
       if (!parsedLine.text || !parsedLine.time || parsedLine.name === undefined)
-        notReached();
+        throw new UnreachableCode();
       line = line.replace(parsedLine.text, '').trim();
       // There can be # in the ability name, but probably not in the regex.
       line = line.replace(regexes.commentLine, '').trim();
@@ -286,7 +283,7 @@ export class Timeline {
         if (commandMatch && commandMatch['groups']) {
           const durationCommand = commandMatch['groups'];
           if (!durationCommand.text || !durationCommand.seconds)
-            notReached();
+            throw new UnreachableCode();
           line = line.replace(durationCommand.text, '').trim();
           e.duration = parseFloat(durationCommand.seconds);
         }
@@ -295,7 +292,7 @@ export class Timeline {
         if (commandMatch && commandMatch['groups']) {
           const syncCommand = commandMatch['groups'];
           if (!syncCommand.text || !syncCommand.regex)
-            notReached();
+            throw new UnreachableCode();
           line = line.replace(syncCommand.text, '').trim();
           const sync = {
             id: uniqueid,
@@ -311,7 +308,7 @@ export class Timeline {
             if (argMatch && argMatch['groups']) {
               const windowCommand = argMatch['groups'];
               if (!windowCommand.text || !windowCommand.end)
-                notReached();
+                throw new UnreachableCode();
               line = line.replace(windowCommand.text, '').trim();
               if (windowCommand.start) {
                 sync.start = seconds - parseFloat(windowCommand.start);
@@ -325,7 +322,7 @@ export class Timeline {
             if (argMatch && argMatch['groups']) {
               const jumpCommand = argMatch['groups'];
               if (!jumpCommand.text || !jumpCommand.seconds)
-                notReached();
+                throw new UnreachableCode();
               line = line.replace(jumpCommand.text, '').trim();
               sync.jump = parseFloat(jumpCommand.seconds);
             }
@@ -358,7 +355,7 @@ export class Timeline {
           }
         }
         if (!found) {
-          const text = `No match for timeline trigger ${trigger.regex} in ${trigger.id}`;
+          const text = `No match for timeline trigger ${trigger.regex.source} in ${trigger.id}`;
           this.errors.push({ error: text });
           console.error(`*** ERROR: ${text}`);
         }
@@ -448,7 +445,7 @@ export class Timeline {
 
   SyncTo(fightNow, currentTime) {
     // This records the actual time which aligns with "0" in the timeline.
-    const newTimebase = new Date(currentTime - fightNow * 1000);
+    const newTimebase = new Date(currentTime - fightNow * 1000).valueOf();
     // Skip syncs that are too close.  Many syncs happen on abilities that
     // hit 8 to 24 people, and so this is a lot of churn.
     if (Math.abs(newTimebase - this.timebase) <= 2)
@@ -701,7 +698,7 @@ export class Timeline {
     // This is the number of seconds into the fight (subtracting Dates gives milliseconds).
     const fightNow = (currentTime - this.timebase) / 1000;
     // Send text events now or they'd be skipped by _AdvanceTimeTo().
-    this._AddPassedTexts(fightNow, true);
+    this._AddPassedTexts(fightNow);
     this._AdvanceTimeTo(fightNow);
     this._CollectActiveSyncs(fightNow);
 
@@ -756,14 +753,15 @@ export class TimelineUI {
 
     this.root.classList.add('lang-' + this.lang);
     if (this.options.Skin)
-      this.root.classList.add('skin-' + this.options.Skin);
+      this.root.classList.add(`skin-${this.options.Skin}`);
 
     this.barColor = computeBackgroundColorFrom(this.root, 'timeline-bar-color');
     this.barExpiresSoonColor = computeBackgroundColorFrom(this.root, 'timeline-bar-color.soon');
 
     this.timerlist = document.getElementById('timeline');
     if (this.timerlist)
-      this.timerlist.style.gridTemplateRows = 'repeat(' + this.options.MaxNumberOfTimerBars + ', 1fr)';
+      this.timerlist.style.gridTemplateRows = `repeat(${this.options.MaxNumberOfTimerBars}, 1fr)`;
+
     this.activeBars = {};
     this.expireTimers = {};
   }
@@ -777,7 +775,7 @@ export class TimelineUI {
     if (!helper)
       return;
     const rows = Math.max(6, this.options.MaxNumberOfTimerBars);
-    helper.style.gridTemplateRows = 'repeat(' + rows + ', 1fr)';
+    helper.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
 
     for (let i = 0; i < this.options.MaxNumberOfTimerBars; ++i) {
       const helperBar = document.createElement('div');
@@ -791,7 +789,7 @@ export class TimelineUI {
       if (i < instructions.length)
         helperBar.innerText = instructions[i];
       else
-        helperBar.innerText = i + 1;
+        helperBar.innerText = `${i + 1}`;
       helper.appendChild(helperBar);
     }
 
@@ -843,8 +841,8 @@ export class TimelineUI {
     const bar = document.createElement('timer-bar');
     div.classList.add('timer-bar');
     div.appendChild(bar);
-    bar.duration = channeling ? e.time - fightNow : this.options.ShowTimerBarsAtSeconds;
-    bar.value = e.time - fightNow;
+    bar.duration = `${channeling ? e.time - fightNow : this.options.ShowTimerBarsAtSeconds}`;
+    bar.value = `${e.time - fightNow}`;
     bar.righttext = 'remain';
     bar.lefttext = e.text;
     bar.toward = 'right';
@@ -870,8 +868,8 @@ export class TimelineUI {
         div.parentNode.removeChild(div);
     }
 
-    div.style.order = e.sortKey;
-    div.id = e.id;
+    div.style.order = e.sortKey.toString();
+    div.id = e.id.toString();
     if (this.timerlist)
       this.timerlist.appendChild(div);
     this.activeBars[e.id] = bar;
@@ -947,7 +945,7 @@ export class TimelineUI {
       this.debugFightTimer = document.createElement('timer-bar');
       this.debugFightTimer.width = '100px';
       this.debugFightTimer.height = '17px';
-      this.debugFightTimer.duration = 10000; // anything big
+      this.debugFightTimer.duration = '10000'; // anything big
       this.debugFightTimer.lefttext = 'elapsed';
       this.debugFightTimer.toward = 'right';
       this.debugFightTimer.stylefill = 'fill';
@@ -957,8 +955,8 @@ export class TimelineUI {
     }
 
     // Force this to be reset.
-    this.debugFightTimer.elapsed = 0;
-    this.debugFightTimer.elapsed = fightNow;
+    this.debugFightTimer.elapsed = '0';
+    this.debugFightTimer.elapsed = fightNow.toString();
   }
 }
 
@@ -1026,13 +1024,13 @@ export class TimelineController {
     for (const timelineFile of timelineFiles) {
       const name = this.timelines[timelineFile];
       if (name)
-        text = text + '\n' + name;
+        text = `${text}\n${name}`;
       else
-        console.log('Timeline file not found: ' + timelineFile);
+        console.log(`Timeline file not found: ${timelineFile}`);
     }
     // Append text from each block in |timelines|.
     for (const timeline of timelines)
-      text = text + '\n' + timeline;
+      text = `${text}\n${timeline}`;
 
     if (text)
       this.activeTimeline = new Timeline(text, replacements, triggers, styles, this.options);

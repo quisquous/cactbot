@@ -1,5 +1,7 @@
 # Omega - Alphascape V4.0 (Savage) - O12S
-# -ii 3326 337D 32F7 32FA 32F5 3302 32FC 32F9 32FA 32F8 32FB 32FC 330C 330B 32FE 32F2
+# -p 32FD:11.7
+# -it "Omega-M"
+# -ii 3326 337D 32F7 32FA 32F5 3302 32FC 32F9 32FA 32F8 32FB 32FC 330C 330B 32FE 32F2 3348 332C 3340 3350 3352 332D 3330 3331 3337 3338 333A 333C 333E
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -7,8 +9,8 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
 0.0 "Start" sync /00:0044:[^:]*:I am the Omega/ window 1,0
-2.4 "--sync--" sync /:Omega-M:337D:/ window 3,0.5 # first auto
-11.7 "Synthetic Shield" sync /:Omega-M:32FD:/
+2.4 "--sync--" sync /:Omega-M:337D:/ window 2.4,0.5 # first auto
+11.7 "Synthetic Shield" sync /:Omega-M:32FD:/ window 12,5
 19.7 "Suppression" sync /:Omega-M:3345:/
 26.6 "Beyond Defense" sync /:Omega-M:332B:/
 26.7 "Optical Laser" sync /:Optical Unit:3347:/
@@ -23,29 +25,33 @@ hideall "--sync--"
 87.2 "Superliminal Motion" sync /:Omega-M:3334:/
 88.2 "Advanced Optical Laser" sync /:Optical Unit:334A:/
 90.3 "Optimized Fire III" sync /:Omega-M:3335:/ # drift 0.047
-90.5 "Optimized Fire III" sync /:Omega-F:3337:/
 
 # Twin phase
-102.6 "Subject Simulation M" sync /:Omega-M:32F4:/ window 53.5
+102.6 "Subject Simulation M" sync /:Omega-M:32F4:/ window 200,10
+108.9 "--untargetable--"
 114.1 "Electric Slide" sync /:Omega:3354:/
-122.7 "Discharger + Bladework" sync /:Omega:3327:/
+122.7 "Discharger" sync /:Omega:3327:/
+122.7 "Efficient Bladework" sync /:Omega-M:3329:/
+125.7 "--targetable--"
 132.0 "Firewall" sync /:Omega:3339:/ window 132.0
 141.2 "Resonance" sync /:Omega:333B:/
 155.6 "Fundamental Synergy" sync /:Omega:333D:/
 
 # Slides
 160.7 "Advanced Suppression" sync /:Omega:3349:/
-164.2 "Electric Slide"
-166.0 "Electric Slide"
-167.7 "Electric Slide"
+163.9 "--untargetable--"
+164.2 "Electric Slide 1"
+166.0 "Electric Slide 2"
+167.7 "Electric Slide 3"
 167.8 "Advanced Optical Laser" sync /:Optical Unit:334A:/
-169.4 "Electric Slide"
+169.4 "Electric Slide 4"
+170.7 "--targetable--"
 180.1 "Laser Shower" sync /:Omega:3353:/
 189.3 "Solar Ray" sync /:Omega:3351:/
 
 # Branch point
-200.5 "Synthetic Blades/Shield" sync /:Omega-M:32FD:/ jump 1200.5  # shield: defense branch
-200.5 "--sync--" sync /:Omega:3301:/ jump 2200.5 # blades: defense branch
+200.5 "Synthetic Blades/Synthetic Shield" sync /:Omega-M:32FD:/ jump 1200.5  # shield -> blades path
+200.5 "--sync--" sync /:Omega:3301:/ jump 2200.5 # blades -> shield path
 212.2 "Operational Synergy"
 218.2 "Beyond Defense?"
 218.2 "Superliminal Steel?"
@@ -53,8 +59,8 @@ hideall "--sync--"
 221.5 "Pile Pitch"
 228.8 "Optimized Fire III"
 
-# Defense-first path
-1200.5 "Synthetic Shield" sync /:Omega:3301:/
+# Shield-first path
+1200.5 "Synthetic Shield" sync /:Omega-M:32FD:/
 1212.2 "Operational Synergy" sync /:Omega:3341:/
 1219.2 "Beyond Defense" sync /:Omega-M:332B:/
 1219.4 "Optimized Blizzard III" sync /:Omega:3333:/
@@ -68,11 +74,13 @@ hideall "--sync--"
 1260.1 "Resonance" sync /:Omega:333B:/
 1274.5 "Fundamental Synergy" sync /:Omega:333D:/
 1279.6 "Advanced Suppression" sync /:Omega:3349:/
-1282.6 "Electric Slide"
-1284.3 "Electric Slide"
-1286.0 "Electric Slide"
+1282.3 "--untargetable--"
+1282.6 "Electric Slide 1" #sync /:Omega:333F:/
+1284.3 "Electric Slide 2" #sync /:Omega:333F:/
+1286.0 "Electric Slide 3" #sync /:Omega:333F:/
 1286.5 "Advanced Optical Laser" sync /:Optical Unit:334A:/
-1287.7 "Electric Slide"
+1287.7 "Electric Slide 4" #sync /:Omega:333F:/
+1289.0 "--targetable--"
 1298.4 "Laser Shower" sync /:Omega:3353:/
 1307.4 "Solar Ray" sync /:Omega:3351:/
 1318.4 "Synthetic Blades" sync /:Omega:3301:/
@@ -93,10 +101,11 @@ hideall "--sync--"
 1404.4 "Laser Shower"
 
 # Blades-first path
+2200.5 "Synthetic Blades" sync /:Omega:3301:/
 2212.2 "Operational Synergy" sync /:Omega:3341:/
 2217.2 "Superliminal Steel" sync /:Omega:332F:/
-2220.2 "Optimized Blizzard III" sync /:Omega:3332:/
-2220.4 "Pile Pitch" sync /:Omega-M:332E:/
+2220.3 "Optimized Blizzard III" sync /:Omega:3332:/
+2220.3 "Pile Pitch" sync /:Omega-M:332E:/
 2226.2 "Superliminal Motion" sync /:Omega:3334:/
 2229.2 "Optimized Fire III" sync /:Omega:3335:/
 2230.4 "Efficient Bladework" sync /:Omega-M:332A:/
@@ -105,12 +114,14 @@ hideall "--sync--"
 2259.4 "Resonance" sync /:Omega:333B:/
 2273.4 "Fundamental Synergy" sync /:Omega:333D:/
 2278.4 "Advanced Suppression" sync /:Omega:3349:/
-2281.4 "Electric Slide" 
-2283.1 "Electric Slide"
-2284.8 "Electric Slide"
-2285.2 "Advanced Optical Laser" sync /:Optical Unit:334A:/
-2286.5 "Electric Slide"
-2297.2 "Laser Shower" sync /:Omega:3353:/
+2281.6 "--untargetable--"
+2282.0 "Electric Slide 1" #sync /:Omega:333F:/
+2283.9 "Electric Slide 2" #sync /:Omega:333F:/
+2285.5 "Advanced Optical Laser" sync /:Optical Unit:334A:/
+2285.8 "Electric Slide 3" #sync /:Omega:333F:/
+2287.7 "Electric Slide 4" #sync /:Omega:333F:/
+2288.8 "--targetable--"
+2298.2 "Laser Shower" sync /:Omega:3353:/
 2306.2 "Solar Ray" sync /:Omega:3351:/
 2317.2 "Synthetic Shield" sync /:Omega-M:32FD:/
 2328.2 "Operational Synergy" sync /:Omega:3341:/
