@@ -319,6 +319,7 @@ class Bars {
       this.o.mpTicker.height = window.getComputedStyle(this.o.mpTickContainer).height;
       this.o.mpTicker.bg = computeBackgroundColorFrom(this.o.mpTicker, 'bar-border-color');
       this.o.mpTicker.stylefill = 'fill';
+      this.o.mpTicker.toward = 'right';
       this.o.mpTicker.loop = true;
     }
 
