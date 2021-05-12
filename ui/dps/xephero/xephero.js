@@ -1,7 +1,7 @@
 import { addOverlayListener } from '../../../resources/overlay_plugin_api';
 
 import DpsPhaseTracker from './dps_phase_tracker';
-import { InitDpsModule, Options } from '../dps_common';
+import { InitDpsModule, defaultOptions } from '../dps_common';
 import UserConfig from '../../../resources/user_config';
 
 import '../../../resources/defaults.css';
@@ -157,14 +157,15 @@ function updatePhase(phase, dpsOrder) {
     maxPhaseDPS.row.addClass('highestdps');
 }
 
-UserConfig.getUserConfigLocation('xephero', Options, (e) => {
-  const tracker = new DpsPhaseTracker(Options);
+UserConfig.getUserConfigLocation('xephero', defaultOptions, () => {
+  const options = { ...defaultOptions };
+  const tracker = new DpsPhaseTracker(options);
   const onOverlayDataUpdateEvent = (e) => {
     tracker.onOverlayDataUpdate(e.detail);
     update(e.detail, tracker);
   };
 
-  InitDpsModule(onOverlayDataUpdateEvent, hideOverlay);
+  InitDpsModule(options, onOverlayDataUpdateEvent, hideOverlay);
 
   addOverlayListener('ChangeZone', (e) => {
     const currentZone = e.zoneName;
