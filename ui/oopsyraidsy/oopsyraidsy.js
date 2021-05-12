@@ -13,7 +13,7 @@ import './oopsyraidsy_config';
 
 import oopsyFileData from './data/manifest.txt';
 
-const Options = {
+const defaultOptions = {
   Triggers: [],
   PlayerNicks: {},
   DisabledTriggers: {},
@@ -219,12 +219,12 @@ Examples:
 
 /* eslint-enable */
 
-function ShortNamify(name) {
+function ShortNamify(name, options) {
   // TODO: make this unique among the party in case of first name collisions.
   // TODO: probably this should be a general cactbot utility.
 
-  if (name in Options.PlayerNicks)
-    return Options.PlayerNicks[name];
+  if (name in options.PlayerNicks)
+    return options.PlayerNicks[name];
 
   const idx = name.indexOf(' ');
   return idx < 0 ? name : name.substr(0, idx);
@@ -557,7 +557,7 @@ class MistakeCollector {
   OnMistakeText(type, blame, text, time) {
     if (!text)
       return;
-    const blameText = blame ? ShortNamify(blame) + ': ' : '';
+    const blameText = blame ? ShortNamify(blame, this.options) + ': ' : '';
     this.listView.AddLine(type, blameText + text, this.GetFormattedTime(time));
   }
 
@@ -720,7 +720,7 @@ class DamageTracker {
       role: this.role,
       party: this.partyTracker,
       inCombat: this.inCombat,
-      ShortName: ShortNamify,
+      ShortName: (name) => ShortNamify(name, this.options),
       IsPlayerId: IsPlayerId,
 
       // Deprecated.
@@ -1255,7 +1255,7 @@ class DamageTracker {
   }
 }
 
-UserConfig.getUserConfigLocation('oopsyraidsy', Options, () => {
+UserConfig.getUserConfigLocation('oopsyraidsy', defaultOptions, (options) => {
   let listView;
   let mistakeCollector;
 
@@ -1265,14 +1265,14 @@ UserConfig.getUserConfigLocation('oopsyraidsy', Options, () => {
   // Choose the ui based on whether this is the summary view or the live list.
   // They have different elements in the file.
   if (summaryElement) {
-    listView = new OopsySummaryList(Options, summaryElement);
-    mistakeCollector = new MistakeCollector(Options, listView);
+    listView = new OopsySummaryList(options, summaryElement);
+    mistakeCollector = new MistakeCollector(options, listView);
   } else {
-    listView = new OopsyLiveList(Options, liveListElement);
-    mistakeCollector = new MistakeCollector(Options, listView);
+    listView = new OopsyLiveList(options, liveListElement);
+    mistakeCollector = new MistakeCollector(options, listView);
   }
 
-  const damageTracker = new DamageTracker(Options, mistakeCollector, oopsyFileData);
+  const damageTracker = new DamageTracker(options, mistakeCollector, oopsyFileData);
 
   addOverlayListener('onLogEvent', (e) => damageTracker.OnLogEvent(e));
   addOverlayListener('LogLine', (e) => damageTracker.OnNetLog(e));

@@ -73,7 +73,6 @@ module.exports = {
     'plugin/',
     'publish/',
     'resources/lib/',
-    'ui/dps/rdmty/',
   ],
   'env': {
     'browser': true,

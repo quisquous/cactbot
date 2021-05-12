@@ -2,13 +2,21 @@ import PartyTracker from '../resources/party.js';
 import { Lang } from './global';
 import { Job, Role } from './job';
 
+// All overlay options support these fields.
+// Different overlay types should extend this interface with extra fields.
 export interface BaseOptions {
   ParserLanguage: Lang;
-  ShortLocale: string;
   DisplayLanguage: Lang;
+  ShortLocale: string;
+  SystemLocale: string;
+  Debug: boolean;
   Skin: string;
+
+  /** @deprecated for backwards compatibility, use ParserLanguage/DisplayLanguage instead */
+  Language: Lang;
+
+  // This supports setting values from config files from unknown keys in user_config.ts.
   [key: string]: unknown;
-  // todo: complete this type
 }
 
 // TODO: should this be named RaidbossData? Or can code that is using both this and oopsy

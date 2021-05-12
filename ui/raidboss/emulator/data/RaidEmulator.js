@@ -2,9 +2,10 @@ import EventBus from '../EventBus';
 import AnalyzedEncounter from './AnalyzedEncounter';
 
 export default class RaidEmulator extends EventBus {
-  constructor(options) {
+  constructor() {
     super();
-    this.options = options;
+    // Set later via setOptions.
+    this.options = undefined;
     this.encounters = [];
     this.currentEncounter = null;
     this.playing = false;
@@ -13,10 +14,14 @@ export default class RaidEmulator extends EventBus {
     this.lastLogTimestamp = null;
     this.internalTimestampTracker = null;
   }
+  setOptions(options) {
+    this.options = options;
+  }
   addEncounter(encounter) {
     this.encounters.push(encounter);
   }
   setCurrent(index) {
+    console.assert(this.options);
     this.currentEncounter = new AnalyzedEncounter(this.options, this.encounters[index], this);
     this.dispatch('preCurrentEncounterChanged', this.currentEncounter);
     this.currentEncounter.analyze(this.popupText).then(() => {

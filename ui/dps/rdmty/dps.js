@@ -1,8 +1,8 @@
-import { InitDpsModule, Options } from '../dps_common';
+import { InitDpsModule, defaultOptions } from '../dps_common';
 import UserConfig from '../../../resources/user_config';
 
 // fiddle: http://jsfiddle.net/v1ddnsvh/8/
-/* global window */
+/* eslint-disable */
 
 const IMAGE_PATH = '../../../resources/ffxiv';
 const EncountersArray = [];
@@ -573,6 +573,7 @@ Object.defineProperty(DamageMeter.prototype, 'render', {
   },
 });
 
+/* eslint-enable */
 
 DamageMeter.defaultProps = {
   chartViews: [
@@ -603,6 +604,6 @@ function hideOverlay() {
   document.getElementById('container').style.display = 'none';
 }
 
-UserConfig.getUserConfigLocation('rdmty', Options, (e) => {
-  InitDpsModule(onOverlayDataUpdate, hideOverlay);
+UserConfig.getUserConfigLocation('rdmty', defaultOptions, (options) => {
+  InitDpsModule(options, onOverlayDataUpdate, hideOverlay);
 });

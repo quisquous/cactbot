@@ -17,7 +17,7 @@ const bunnyLabel = {
   ko: '토끼',
 };
 
-const Options = {
+const defaultOptions = {
   Debug: false,
   PopSound: '../../resources/sounds/freesound/sonar.ogg',
   BunnyPopSound: '../../resources/sounds/freesound/water_drop.ogg',
@@ -3032,7 +3032,7 @@ class EurekaTracker {
   }
 }
 
-UserConfig.getUserConfigLocation('eureka', Options, (e) => {
+UserConfig.getUserConfigLocation('eureka', defaultOptions, (options) => {
   addOverlayListener('onPlayerChangedEvent', (e) => {
     gTracker.OnPlayerChange(e);
   });
@@ -3049,5 +3049,5 @@ UserConfig.getUserConfigLocation('eureka', Options, (e) => {
     gTracker.OnCE(e);
   });
 
-  gTracker = new EurekaTracker(Options);
+  gTracker = new EurekaTracker(options);
 });

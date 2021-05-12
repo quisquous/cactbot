@@ -168,7 +168,8 @@ class UserConfig {
     });
   }
 
-  getUserConfigLocation(overlayName: string, options: BaseOptions, callback: () => void) {
+  getUserConfigLocation<OverlayOptions extends BaseOptions>(overlayName: string,
+      initialOptions: OverlayOptions, callback: (options: OverlayOptions) => void) {
     let currentlyReloading = false;
     const reloadOnce = () => {
       if (currentlyReloading)
@@ -184,10 +185,11 @@ class UserConfig {
       reloadOnce();
     });
 
-    this.loadUserFiles(overlayName, options, callback);
+    this.loadUserFiles(overlayName, initialOptions, callback);
   }
 
-  loadUserFiles(overlayName: string, options: BaseOptions, callback: () => void) {
+  loadUserFiles<OverlayOptions extends BaseOptions>(overlayName: string,
+      initialOptions: OverlayOptions, callback: (options: OverlayOptions) => void) {
     const readOptions = callOverlayHandler({
       call: 'cactbotLoadData',
       overlay: 'options',
@@ -199,6 +201,8 @@ class UserConfig {
       // Linux (?!?), support any style of slashes elsewhere.
       const basePath = e.detail.userLocation.replace(/[/\\]*$/, '') + '\\';
       const localFiles = e.detail.localUserFiles;
+
+      const options: OverlayOptions = { ...initialOptions };
 
       // The plugin auto-detects the language, so set this first.
       // If options files want to override it, they can for testing.
@@ -263,11 +267,7 @@ class UserConfig {
       // after the first file, so that if there is only one file, there are
       // not any warnings.
 
-      // The fields that a user file sets in Options can be anything (pun not intended)
-      // and so we use `any` here.  The only operation done on this field is a !==
-      // for change detection to see if the the user file has modified it.
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const variableTracker: { [fieldName: string]: any } = {};
+      const variableTracker: { [fieldName: string]: unknown } = {};
 
       if (localFiles) {
         // localFiles may be null if there is no valid user directory.
@@ -325,7 +325,7 @@ class UserConfig {
 
       // Post this callback so that the js and css can be executed first.
       if (callback)
-        callback();
+        callback(options);
 
       void callOverlayHandler({ call: 'cactbotRequestState' });
     };
@@ -377,6 +377,16 @@ class UserConfig {
     if (head)
       head.appendChild(userCSS);
   }
+  // Note: this is a bit of a type hack, as `processOptions` logically operates
+  // on an `OverlayOptions extends BaseOptions` and sets values dynamically
+  // from user config values and the options template.  However, these fields
+  // that it set are dynamic and so there is no type safety to be had here.
+  // `options` has to be a `BaseOptions` here, because if `processOptions` is
+  // generic then TypeScript gets angry at the dynamic `options[opt.id] = etc`
+  // setters below.  I'm not quite smart enough to know why, sorry.
+  //
+  // TODO: should we add a "validateOptions" that does runtime verification
+  // of option fields types, in case users clobber them in broken ways???
   processOptions(options: BaseOptions, savedConfig: SavedConfigEntry, template?: OptionsTemplate) {
     // Take options from the template, find them in savedConfig,
     // and apply them to options. This also handles setting

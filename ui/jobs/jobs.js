@@ -22,7 +22,7 @@ import '../../resources/timericon';
 import '../../resources/widget_list';
 
 // See user/jobs-example.js for documentation.
-const Options = {
+const defaultOptions = {
   ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'WHM', 'SCH', 'AST', 'BLU'],
   ShowMPNumber: ['PLD', 'DRK', 'WHM', 'SCH', 'AST', 'BLM', 'BLU'],
 
@@ -1024,30 +1024,28 @@ class Bars {
   }
 }
 
-let gBars;
+UserConfig.getUserConfigLocation('jobs', defaultOptions, (options) => {
+  const bars = new Bars(options);
 
-UserConfig.getUserConfigLocation('jobs', Options, () => {
   addOverlayListener('onPlayerChangedEvent', (e) => {
-    gBars._onPlayerChanged(e);
+    bars._onPlayerChanged(e);
   });
   addOverlayListener('EnmityTargetData', (e) => {
-    gBars._updateEnmityTargetData(e);
+    bars._updateEnmityTargetData(e);
   });
   addOverlayListener('onPartyWipe', (e) => {
-    gBars._onPartyWipe(e);
+    bars._onPartyWipe(e);
   });
   addOverlayListener('onInCombatChangedEvent', (e) => {
-    gBars._onInCombatChanged(e);
+    bars._onInCombatChanged(e);
   });
   addOverlayListener('ChangeZone', (e) => {
-    gBars._onChangeZone(e);
+    bars._onChangeZone(e);
   });
   addOverlayListener('onLogEvent', (e) => {
-    gBars._onLogEvent(e);
+    bars._onLogEvent(e);
   });
   addOverlayListener('LogLine', (e) => {
-    gBars._onNetLog(e);
+    bars._onNetLog(e);
   });
-
-  gBars = new Bars(Options);
 });

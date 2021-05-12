@@ -6,7 +6,7 @@ import UserConfig from '../../resources/user_config';
 
 import './radar_config';
 
-const Options = {
+const defaultOptions = {
   PopSound: '../../resources/sounds/freesound/sonar.ogg',
   RankOptions: {
     'S': {
@@ -39,8 +39,6 @@ const Options = {
 // TODO: probably all mobs should be tracked with ids to avoid this.
 // TODO: this would also let us handle mobs with the same name better.
 const kMinDistanceBeforeSound = 100;
-
-let gRadar;
 
 const instanceChangedRegexes = {
   en: NetRegexes.gameLog({ code: '0039', line: 'You are now in the instanced area.*?' }),
@@ -94,12 +92,12 @@ function PlaySound(monster, options) {
 }
 
 class Radar {
-  constructor(element) {
+  constructor(options, element) {
     this.targetMonsters = {};
     this.playerPos = {};
     this.playerRotation = 0;
     this.table = element;
-    this.options = Options;
+    this.options = options;
     this.monsters = Object.assign({}, gMonster, Options.CustomMonsters);
     this.lang = this.options.ParserLanguage || 'en';
     this.nameToMonster = {};
@@ -350,18 +348,18 @@ class Radar {
   }
 }
 
-UserConfig.getUserConfigLocation('radar', Options, () => {
+UserConfig.getUserConfigLocation('radar', defaultOptions, (options) => {
+  const radar = new Radar(options, document.getElementById('radar-table'));
+
   addOverlayListener('LogLine', (e) => {
-    gRadar.OnNetLog(e);
+    radar.OnNetLog(e);
   });
 
   addOverlayListener('onPlayerChangedEvent', (e) => {
-    gRadar.OnPlayerChange(e);
+    radar.OnPlayerChange(e);
   });
 
   addOverlayListener('ChangeZone', (e) => {
-    gRadar.OnChangeZone(e);
+    radar.OnChangeZone(e);
   });
-
-  gRadar = new Radar(document.getElementById('radar-table'));
 });

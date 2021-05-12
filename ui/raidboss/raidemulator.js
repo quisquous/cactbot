@@ -22,7 +22,7 @@ import raidbossFileData from './data/manifest.txt';
 // eslint-disable-next-line import/default
 import NetworkLogConverterWorker from './emulator/data/NetworkLogConverterWorker';
 
-import Options from './raidboss_options';
+import defaultOptions from './raidboss_options';
 
 (() => {
   let emulator;
@@ -38,7 +38,7 @@ import Options from './raidboss_options';
   let logConverterWorker;
 
   document.addEventListener('DOMContentLoaded', () => {
-    emulator = new RaidEmulator(Options);
+    emulator = new RaidEmulator();
     progressBar = new ProgressBar(emulator);
     persistor = new Persistor();
     encounterTab = new EncounterTab(persistor);
@@ -129,23 +129,24 @@ import Options from './raidboss_options';
 
     // Wait for the DB to be ready before doing anything that might invoke the DB
     persistor.on('ready', () => {
-      UserConfig.getUserConfigLocation('raidboss', Options, (e) => {
+      UserConfig.getUserConfigLocation('raidboss', defaultOptions, (options) => {
         document.querySelector('.websocketConnected').classList.remove('d-none');
         document.querySelector('.websocketDisconnected').classList.add('d-none');
 
         // Initialize the Raidboss components, bind them to the emulator for event listeners
-        timelineUI = new RaidEmulatorTimelineUI(Options);
+        timelineUI = new RaidEmulatorTimelineUI(options);
         timelineUI.bindTo(emulator);
         timelineController =
-            new RaidEmulatorTimelineController(Options, timelineUI, raidbossFileData);
+            new RaidEmulatorTimelineController(options, timelineUI, raidbossFileData);
         timelineController.bindTo(emulator);
         popupText = new RaidEmulatorPopupText(
-            Options, new TimelineLoader(timelineController), raidbossFileData);
+            options, new TimelineLoader(timelineController), raidbossFileData);
         popupText.bindTo(emulator);
 
         timelineController.SetPopupTextInterface(new PopupTextGenerator(popupText));
 
         emulator.setPopupText(popupText);
+        emulator.setOptions(options);
 
         // Load the encounter metadata from the DB
         encounterTab.refresh();
