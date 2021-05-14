@@ -18,6 +18,11 @@ parser.addArgument(['-t', '--timeline'], {
   type: 'string',
   help: 'The timeline file to match, e.g. "a12s"',
 });
+parser.addArgument(['-c', '--colorize'], {
+  required: false,
+  type: 'string',
+  help: 'Colorize the timeline in terminal',
+});
 
 const rootDir = 'ui/raidboss/data';
 
@@ -87,16 +92,40 @@ const run = async (args) => {
     let line = timelineLines[i].trim();
 
     const lineText = lineToText[lineNumber];
-    if (lineText)
-      line = line.replace(` "${lineText.name}"`, ` "${lineText.text}"`);
-    const lineSync = lineToSync[lineNumber];
-    if (lineSync)
-      line = line.replace(`sync /${lineSync.origRegexStr}/`, `sync /${lineSync.regex.source}/`);
 
-    if (syncErrors[lineNumber])
-      line += ' #MISSINGSYNC';
-    if (textErrors[lineNumber])
-      line += ' #MISSINGTEXT';
+    if (args?.colorize === 'true') {
+      if (lineText)
+        line = line.replace(` "${lineText.name}"`, ` \x1b[93m"${lineText.text}"\x1b[0m`);
+      const lineSync = lineToSync[lineNumber];
+      if (lineSync)
+        line = line.replace(`sync /${lineSync.origRegexStr}/`, `\x1b[31msync\x1b[0m \x1b[32m/${lineSync.regex.source}/\x1b[0m`);
+
+      // if a # is in the line, dont make uneccassary colorizatiosn
+      if (line.includes('#')) {
+        line = line.replace('#', `\x1b[90m#`) + '\x1b[0m';
+      } else {
+        line = line.replace(/ window (\d+(,\d+)?)/, `\x1b[31m window\x1b[0m \x1b[35m$1\x1b[0m`);
+        line = line.replace(/ duration (\d+(\.\d+)?)/, `\x1b[31m duration\x1b[0m \x1b[35m$1\x1b[0m`);
+        line = line.replace(/ jump (\d+(\.\d+)?)/, `\x1b[31m jump\x1b[0m \x1b[35m$1\x1b[0m`);
+      }
+      // colorize the lineText.time numbers
+      line = line.replace(/^(\d+\.\d+)/, `\x1b[35m$1\x1b[0m`);
+      if (syncErrors[lineNumber])
+        line += '\x1b[90m #MISSINGSYNC\x1b[0m';
+      if (textErrors[lineNumber])
+        line += '\x1b[90m #MISSINGTEXT\x1b[0m';
+    } else {
+      if (lineText)
+        line = line.replace(` "${lineText.name}"`, ` "${lineText.text}"`);
+      const lineSync = lineToSync[lineNumber];
+      if (lineSync)
+        line = line.replace(`sync /${lineSync.origRegexStr}/`, `sync /${lineSync.regex.source}/`);
+
+      if (syncErrors[lineNumber])
+        line += ' #MISSINGSYNC';
+      if (textErrors[lineNumber])
+        line += ' #MISSINGTEXT';
+    }
     console.log(line);
   }
 };
