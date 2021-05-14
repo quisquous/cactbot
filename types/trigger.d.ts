@@ -55,3 +55,10 @@ export type ResponseOutput<Matches> = {
 // The type of a response trigger field.
 export type ResponseFunc<Matches> =
     (data: Data, matches: Matches, output: Output) => ResponseOutput<Matches>;
+
+export type TriggerAutoConfig = {
+  Output?: Output;
+  Duration?: number;
+  BeforeSeconds?: number;
+  OutputStrings?: { [outputKey: string]: Lang };
+}

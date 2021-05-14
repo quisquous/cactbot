@@ -7,6 +7,12 @@ export interface BaseOptions {
   ShortLocale: string;
   DisplayLanguage: Lang;
   Skin: string;
+  TimelineLanguage: Lang;
+  MaxNumberOfTimerBars: number;
+  BarExpiresSoonSeconds: number;
+  ShowTimerBarsAtSeconds: number;
+  KeepExpiredTimerBarsForSeconds: number;
+  PerTriggerAutoConfig: { [triggerId: string]: TriggerAutoConfig };
   [key: string]: unknown;
   // todo: complete this type
 }
