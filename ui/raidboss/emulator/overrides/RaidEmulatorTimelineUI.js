@@ -25,7 +25,7 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
       this.emulatedTimerBars = this.emulatedTimerBars.filter((bar) => {
         return bar.forceRemoveAt > timestampOffset;
       });
-      this.timeline && this.timeline.timebase && this.timeline._OnUpdateTimer();
+      this.timeline && this.timeline.timebase && this.timeline._OnUpdateTimer(lastLogTimestamp);
     });
     emulator.on('play', () => {
       this.emulatedStatus = 'play';
@@ -54,15 +54,17 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
         this.updateBar(bar, time);
       }
     });
-    emulator.on('currentEncounterChanged', () => {
-      this.timeline && this.timeline.Stop();
-      this.emulatedTimeOffset = 0;
-      for (const i in this.emulatedTimerBars) {
-        const bar = this.emulatedTimerBars[i];
-        bar.$progress.remove();
-      }
-      this.emulatedTimerBars = [];
-    });
+    emulator.on('currentEncounterChanged', this.stop.bind(this));
+  }
+
+  stop() {
+    this.timeline && this.timeline.Stop();
+    this.emulatedTimeOffset = 0;
+    for (const i in this.emulatedTimerBars) {
+      const bar = this.emulatedTimerBars[i];
+      bar.$progress.remove();
+    }
+    this.emulatedTimerBars = [];
   }
 
   updateBar(bar, timestampOffset) {
