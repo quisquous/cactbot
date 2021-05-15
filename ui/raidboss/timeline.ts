@@ -130,6 +130,15 @@ type ParsedText = {
 
 type Text = ParsedText & { time: number };
 
+interface RaidbossOptions extends BaseOptions {
+  TimelineLanguage: Lang;
+  MaxNumberOfTimerBars: number;
+  BarExpiresSoonSeconds: number;
+  ShowTimerBarsAtSeconds: number;
+  KeepExpiredTimerBarsForSeconds: number;
+  PerTriggerAutoConfig: { [triggerId: string]: TriggerAutoConfig };
+}
+
 // TODO: Duplicated in 'jobs'
 const computeBackgroundColorFrom = (element: HTMLElement, classList: string): string => {
   const div = document.createElement('div');
@@ -145,7 +154,7 @@ const computeBackgroundColorFrom = (element: HTMLElement, classList: string): st
 // This class reads the format of ACT Timeline plugin, described in
 // docs/TimelineGuide.md
 export class Timeline {
-  private options: BaseOptions;
+  private options: RaidbossOptions;
   private perTriggerAutoConfig: { [triggerId: string]: TriggerAutoConfig };
   private activeText: string;
   private replacements: Replacement[];
@@ -180,7 +189,7 @@ export class Timeline {
   private updateTimer = 0;
 
   constructor(text: string, replacements: Replacement[], triggers: Trigger[],
-      styles: Style[], options: BaseOptions) {
+      styles: Style[], options: RaidbossOptions) {
     this.options = options || {};
     this.perTriggerAutoConfig = this.options['PerTriggerAutoConfig'] || {};
     this.replacements = replacements;
@@ -858,7 +867,7 @@ export class TimelineUI {
 
   private popupText?: PopupText;
 
-  constructor(private options: BaseOptions) {
+  constructor(private options: RaidbossOptions) {
     this.options = options;
     this.init = false;
     this.lang = this.options.TimelineLanguage || this.options.ParserLanguage || 'en';
@@ -1088,7 +1097,7 @@ export class TimelineController {
   private wipeRegex: Regex<Network6dParams>;
   private activeTimeline: Timeline | null = null;
 
-  constructor(private options: BaseOptions, private ui: TimelineUI,
+  constructor(private options: RaidbossOptions, private ui: TimelineUI,
       raidbossDataFiles: { [filename: string]: string }) {
     this.options = options;
     this.ui = ui;
