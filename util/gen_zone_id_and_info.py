@@ -57,6 +57,7 @@ synthetic_zone_info = {
             "en": "The Navel (Unreal)",
             "fr": "Le Nombril (irréel)",
             "ja": "幻タイタン討滅戦",
+            "ko": "환 타이탄 토벌전",
         },
         "offsetX": 0,
         "offsetY": 0,
