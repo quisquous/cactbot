@@ -120,6 +120,7 @@ const kDetailKeys = {
       fr: 'avant (seconde)',
       ja: 'その前に (秒)',
       cn: '提前 (秒)',
+      ko: '앞당김 (초)',
     },
     cls: 'before-seconds-text',
     generatedManually: true,
@@ -200,7 +201,7 @@ const kDetailKeys = {
       fr: 'tts',
       ja: 'TTS',
       cn: 'TTS',
-      ko: 'tts',
+      ko: 'TTS',
     },
     cls: 'tts-text',
   },
@@ -246,6 +247,7 @@ const kMiscTranslations = {
     fr: '(Fonction)',
     ja: '(関数)',
     cn: '(函数)',
+    ko: '(함수)',
   },
   // Warning label for triggers without ids or overridden triggers.
   warning: {
@@ -254,6 +256,7 @@ const kMiscTranslations = {
     fr: '⚠️ Attention',
     ja: '⚠️ 警告',
     cn: '⚠️ 警告',
+    ko: '⚠️ 주의',
   },
   // Shows up for triggers without ids.
   missingId: {
@@ -262,6 +265,7 @@ const kMiscTranslations = {
     fr: 'Champ ID manquant',
     ja: 'idがありません',
     cn: '缺少id属性',
+    ko: 'ID 필드값 없음',
   },
   // Shows up for triggers that are overridden by other triggers.
   overriddenByFile: {
@@ -270,6 +274,12 @@ const kMiscTranslations = {
     fr: 'Écrasé(e) par "${file}"',
     ja: '"${file}"に上書きました',
     cn: '被"${file}"文件覆盖',
+    ko: '"${file}" 파일에서 덮어씌움',
+  },
+  // Opens trigger file on Github.
+  viewTriggerSource: {
+    en: 'view trigger source',
+    ko: '트리거 출처 열기',
   },
 };
 
@@ -597,7 +607,7 @@ class RaidbossConfigurator {
         }
         const uriComponent = encodeURIComponent(`id: ${trig.id}`).replace(/\'/g, '%5C%27'); // Hack to force encoding for \'
         const urlString = `${baseUrl}/${urlFilepath}.js#:~:text=${uriComponent}`;
-        div.innerHTML = `<a href="${urlString}" target="_blank">(View Trigger Source)</a>`;
+        div.innerHTML = `<a href="${urlString}" target="_blank">(${this.base.translate(kMiscTranslations.viewTriggerSource)})</a>`;
 
         triggerDetails.appendChild(div);
       }
