@@ -34,7 +34,7 @@ export default {
   ],
   triggers: [
     {
-      id: 'O12S Phase Init',
+      id: 'O12S Ion Efflux Phase Reset',
       netRegex: NetRegexes.startsUsing({ id: '3357', source: 'Omega', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3357', source: 'Omega', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '3357', source: 'Oméga', capture: false }),
@@ -46,6 +46,7 @@ export default {
 
         data.dpsShortStack = true;
         data.helloDebuffs = {};
+        data.calledHelloNoMarker = false;
         data.archiveMarkers = {};
         data.armValue = 0;
         data.numArms = 0;
@@ -629,7 +630,7 @@ export default {
       id: 'O12S Far Tethers',
       netRegex: NetRegexes.gainsEffect({ effectId: '689' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Far Tethers',
@@ -752,21 +753,25 @@ export default {
     },
     {
       id: 'O12S Hello World No Marker',
-      // Track Critical Synchronization Bug / Critical Overflow Bug / Latent Defect
-      netRegex: NetRegexes.gainsEffect({ effectId: ['680', '681', '686'] }),
-      preRun: function(data, matches) {
-        data.helloDebuffs[matches.target] = true;
+      // These effects are all handled elsewhere.
+      // Collect who has them and don't call them out here.
+      // 680 = Critical Synchronization Bug (short/long stack)
+      // 681 = Critical Overflow Bug (defamation)
+      // 682 = Critical Underflow Bug (rot, only on HW2)
+      // 686 = Latent Defect (blue dna marker)
+      netRegex: NetRegexes.gainsEffect({ effectId: ['680', '681', '682', '686'] }),
+      condition: (data) => !data.calledHelloNoMarker,
+      preRun: (data, matches) => {
+        data.helloDebuffs[matches.target] = matches.effectId;
       },
-      alertText: function(data, _, output) {
-        // 1 Defamation (T), 3 Blue Markers (T/H/D), 2 Stack Markers (D/D) = 6
-        // Ignore rot here to be consistent.
-        if (Object.keys(data.helloDebuffs).length !== 6)
-          return;
+      delaySeconds: 0.3,
+      suppressSeconds: 1,
+      infoText: (data, _, output) => {
         if (data.me in data.helloDebuffs)
           return;
-        data.helloDebuffs[data.me] = true;
         return output.text();
       },
+      run: (data) => data.calledHelloNoMarker = true,
       outputStrings: {
         text: {
           en: 'No Marker',
