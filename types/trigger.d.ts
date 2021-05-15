@@ -56,6 +56,12 @@ export type ResponseOutput<Matches> = {
 export type ResponseFunc<Matches> =
     (data: Data, matches: Matches, output: Output) => ResponseOutput<Matches>;
 
+export type Trigger = {
+  id: string;
+  regex: RegExp;
+  beforeSeconds: number;
+}
+
 export type TriggerAutoConfig = {
   Output?: Output;
   Duration?: number;

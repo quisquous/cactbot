@@ -6,7 +6,7 @@ import { BaseOptions } from 'types/data';
 import { Lang } from 'types/global';
 import TimerBar from 'resources/timerbar';
 import { LogEvent } from 'types/event';
-import { TriggerAutoConfig } from 'types/trigger';
+import { Trigger, TriggerAutoConfig } from 'types/trigger';
 
 const timelineInstructions = {
   en: [
@@ -77,13 +77,6 @@ type Replacement = {
 type Style = {
   style: { [key: string]: string };
   regex: RegExp;
-}
-
-type Trigger = {
-  id: string;
-  regex: RegExp;
-  beforeSeconds: number;
-  [key: string]: unknown;
 }
 
 type Event = {
