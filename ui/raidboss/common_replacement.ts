@@ -1,5 +1,7 @@
 // TODO: maybe this should be structured identically to a timelineReplace section.
 
+import { Lang, NonEnLang } from 'types/global';
+
 // It's awkward to refer to these string keys, so name them as replaceSync[keys.sealKey].
 export const syncKeys = {
   // Match Regexes, NetRegexes, and timeline constructions of seal log lines.
@@ -28,7 +30,21 @@ const textKeys = {
   Number: '--(\\s*\\d+\\s*)--',
 };
 
-export const commonReplacement = {
+type CommonReplacement = {
+  replaceSync: {
+    [replaceKey: string]: { [key in Lang]?: string };
+  };
+  replaceText: {
+    [replaceKey: string]: {
+      [key in NonEnLang]?: string;
+    } & {
+      // don't set this key, but allow us to ask if it exists
+      en?: never;
+    };
+  };
+};
+
+export const commonReplacement: CommonReplacement = {
   replaceSync: {
     [syncKeys.seal]: {
       en: '$1 will be sealed off',
@@ -316,7 +332,7 @@ export const commonReplacement = {
       ko: '--$1--',
     },
   },
-};
+} as const;
 
 // Keys into commonReplacement objects that represent "partial" translations,
 // in the sense that even if it applies, there still needs to be another

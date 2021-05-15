@@ -58,3 +58,19 @@ export type ResponseOutput<Matches> = {
 // The type of a response trigger field.
 export type ResponseFunc<Matches> =
     (data: Data, matches: Matches, output: Output) => ResponseOutput<Matches>;
+
+export type Trigger = {
+  id: string;
+  regex: RegExp;
+  // TODO: complete this type
+  [key: string]: unknown;
+}
+
+export type TimelineTrigger = Trigger & { beforeSeconds: number };
+
+export type TriggerAutoConfig = {
+  Output?: Output;
+  Duration?: number;
+  BeforeSeconds?: number;
+  OutputStrings?: { [outputKey: string]: Lang };
+}

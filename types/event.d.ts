@@ -195,12 +195,7 @@ export interface EventMap {
     };
   }) => void;
 
-  'onLogEvent': (ev: {
-    type: 'onLogEvent';
-    detail: {
-      logs: string[];
-    };
-  }) => void;
+  'onLogEvent': (ev: LogEvent) => void;
 
   'onImportLogEvent': (ev: {
     type: 'onImportLogEvent';
@@ -297,6 +292,13 @@ export interface EventMap {
   }) => void;
   // #endregion
 }
+
+export type LogEvent = {
+  type: 'onLogEvent';
+  detail: {
+    logs: string[];
+  };
+};
 
 export type EventType = keyof EventMap;
 

@@ -1,6 +1,6 @@
 declare module '*/raidboss_manifest.txt' {
   export interface RaidbossFileData {
-    [filename: string]: unknown; // TODO
+    [filename: string]: string;
   }
   const raidbossFileData: RaidbossFileData;
   export default raidbossFileData;
