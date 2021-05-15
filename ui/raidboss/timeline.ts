@@ -2,11 +2,11 @@ import { commonReplacement } from './common_replacement';
 import Regexes, { Regex, Network6dParams } from '../../resources/regexes';
 import { LocaleRegex } from '../../resources/translations';
 import { UnreachableCode } from '../../resources/not_reached';
-import { BaseOptions } from 'types/data';
+import { RaidbossOptions } from './raidboss_options';
 import { Lang } from 'types/global';
 import TimerBar from 'resources/timerbar';
 import { LogEvent } from 'types/event';
-import { Trigger, TriggerAutoConfig } from 'types/trigger';
+import { TimelineTrigger, TriggerAutoConfig } from 'types/trigger';
 
 const timelineInstructions = {
   en: [
@@ -118,19 +118,10 @@ type ParsedText = {
   secondsBefore?: number;
   text?: string;
   matches: RegExpExecArray | null;
-  trigger: Trigger;
+  trigger: TimelineTrigger;
 }
 
 type Text = ParsedText & { time: number };
-
-interface RaidbossOptions extends BaseOptions {
-  TimelineLanguage: Lang;
-  MaxNumberOfTimerBars: number;
-  BarExpiresSoonSeconds: number;
-  ShowTimerBarsAtSeconds: number;
-  KeepExpiredTimerBarsForSeconds: number;
-  PerTriggerAutoConfig: { [triggerId: string]: TriggerAutoConfig };
-}
 
 // TODO: Duplicated in 'jobs'
 const computeBackgroundColorFrom = (element: HTMLElement, classList: string): string => {
@@ -175,13 +166,13 @@ export class Timeline {
   private showAlertTextCallback: ((text: string) => void) | null = null;
   private showAlarmTextCallback: ((text: string) => void) | null = null;
   private speakTTSCallback: ((text: string) => void) | null = null;
-  private triggerCallback: ((trigger: Trigger,
+  private triggerCallback: ((trigger: TimelineTrigger,
       matches: RegExpExecArray | null) => void) | null = null;
   private syncTimeCallback: ((fightNow: number, running: boolean) => void) | null = null;
 
   private updateTimer = 0;
 
-  constructor(text: string, replacements: Replacement[], triggers: Trigger[],
+  constructor(text: string, replacements: Replacement[], triggers: TimelineTrigger[],
       styles: Style[], options: RaidbossOptions) {
     this.options = options || {};
     this.perTriggerAutoConfig = this.options['PerTriggerAutoConfig'] || {};
@@ -267,7 +258,7 @@ export class Timeline {
     ].map((x) => Regexes.parse(x));
   }
 
-  private LoadFile(text: string, triggers: Trigger[], styles: Style[]): void {
+  private LoadFile(text: string, triggers: TimelineTrigger[], styles: Style[]): void {
     this.events = [];
     this.syncStarts = [];
     this.syncEnds = [];
@@ -825,7 +816,8 @@ export class Timeline {
   public SetSpeakTTS(c: ((text: string) => void) | null): void {
     this.speakTTSCallback = c;
   }
-  public SetTrigger(c: ((trigger: Trigger, matches: RegExpExecArray | null) => void) | null): void {
+  public SetTrigger(c: ((trigger: TimelineTrigger,
+      matches: RegExpExecArray | null) => void) | null): void {
     this.triggerCallback = c;
   }
   public SetSyncTime(c: ((fightNow: number, running: boolean) => void) | null): void {
@@ -838,7 +830,7 @@ interface PopupText {
   Alert: (text: string) => void;
   Alarm: (text: string) => void;
   TTS: (text: string) => void;
-  Trigger: (trigger: Trigger, matches: RegExpExecArray | null) => void;
+  Trigger: (trigger: TimelineTrigger, matches: RegExpExecArray | null) => void;
 }
 
 export class TimelineUI {
@@ -1048,7 +1040,7 @@ export class TimelineUI {
       this.popupText.TTS(text);
   }
 
-  private OnTrigger(trigger: Trigger, matches: RegExpExecArray | null): void {
+  private OnTrigger(trigger: TimelineTrigger, matches: RegExpExecArray | null): void {
     if (this.popupText)
       this.popupText.Trigger(trigger, matches);
   }
@@ -1146,7 +1138,7 @@ export class TimelineController {
   }
 
   public SetActiveTimeline(timelineFiles: string[], timelines: string[],
-      replacements: Replacement[], triggers: Trigger[], styles: Style[]): void {
+      replacements: Replacement[], triggers: TimelineTrigger[], styles: Style[]): void {
     this.activeTimeline = null;
 
     let text = '';
@@ -1179,7 +1171,7 @@ export class TimelineLoader {
   }
 
   public SetTimelines(timelineFiles: string[], timelines: string[], replacements: Replacement[],
-      triggers: Trigger[], styles: Style[]): void {
+      triggers: TimelineTrigger[], styles: Style[]): void {
     this.timelineController.SetActiveTimeline(
         timelineFiles,
         timelines,

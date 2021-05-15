@@ -62,8 +62,11 @@ export type ResponseFunc<Matches> =
 export type Trigger = {
   id: string;
   regex: RegExp;
-  beforeSeconds: number;
+  // TODO: complete this type
+  [key: string]: unknown;
 }
+
+export type TimelineTrigger = Trigger & { beforeSeconds: number };
 
 export type TriggerAutoConfig = {
   Output?: Output;

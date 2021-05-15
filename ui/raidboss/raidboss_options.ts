@@ -1,5 +1,7 @@
 import { BaseOptions } from '../../types/data';
 import UserConfig from '../../resources/user_config';
+import { Lang } from 'types/global';
+import { TriggerAutoConfig } from 'types/trigger';
 
 // This file defines the base options that raidboss expects to see.
 
@@ -28,6 +30,7 @@ type RaidbossNonConfigOptions = {
   PullSound: string;
   AudioAllowed: boolean;
   DisabledTriggers: { [triggerId: string]: boolean };
+  PerTriggerAutoConfig: { [triggerId: string]: TriggerAutoConfig };
   PerTriggerOptions: { [triggerId: string]: PerTriggerOption };
   Triggers: unknown; // one giant TODO
   PlayerNameOverride: string | null;
@@ -48,6 +51,7 @@ const defaultRaidbossNonConfigOptions: RaidbossNonConfigOptions = {
 
   DisabledTriggers: {},
 
+  PerTriggerAutoConfig: {},
   PerTriggerOptions: {},
 
   Triggers: [],
@@ -61,8 +65,8 @@ const defaultRaidbossNonConfigOptions: RaidbossNonConfigOptions = {
 const defaultRaidbossConfigOptions = {
   Debug: false,
   DefaultAlertOutput: 'textAndSound',
-  AlertsLanguage: undefined as (string | undefined),
-  TimelineLanguage: undefined as (string | undefined),
+  AlertsLanguage: undefined as (Lang | undefined),
+  TimelineLanguage: undefined as (Lang | undefined),
   TimelineEnabled: true,
   AlertsEnabled: true,
   ShowTimerBarsAtSeconds: 30,
@@ -83,7 +87,8 @@ const defaultRaidbossConfigOptions = {
 };
 type RaidbossConfigOptions = typeof defaultRaidbossConfigOptions;
 
-interface RaidbossOptions extends BaseOptions, RaidbossNonConfigOptions, RaidbossConfigOptions {}
+export interface RaidbossOptions
+  extends BaseOptions, RaidbossNonConfigOptions, RaidbossConfigOptions {}
 
 // See user/raidboss-example.js for documentation.
 const Options: RaidbossOptions = {
