@@ -3,7 +3,7 @@ import Regexes from '../../resources/regexes';
 import { triggerOutputFunctions } from '../../resources/responses';
 import UserConfig from '../../resources/user_config';
 import Util from '../../resources/util';
-import raidbossFileData from './data/manifest.txt';
+import raidbossFileData from './data/raidboss_manifest.txt';
 import raidbossOptions from './raidboss_options';
 
 const kOptionKeys = {

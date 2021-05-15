@@ -1,5 +1,5 @@
 import UserConfig from '../../resources/user_config';
-import oopsyFileData from './data/manifest.txt';
+import oopsyFileData from './data/oopsy_manifest.txt';
 
 const oopsyHelpers = [
   'damageWarn',

@@ -308,7 +308,7 @@ An initial triggers file should look like the following:
 
 (3) Update the manifest file.
 
-Update **ui/raidboss/data/manifest.txt** with both the name of the
+Update **ui/raidboss/data/raidboss_manifest.txt** with both the name of the
 new triggers file and the new timeline file.
 
 (4) Reload raidboss

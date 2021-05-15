@@ -8,18 +8,19 @@ import { TimelineController, TimelineLoader, TimelineUI } from './timeline';
 
 import UserConfig from '../../resources/user_config';
 import { addRemotePlayerSelectUI } from '../../resources/player_override';
-import raidbossFileData from './data/manifest.txt';
+import raidbossFileData from './data/raidboss_manifest.txt';
 
 import Options from './raidboss_options';
 
-UserConfig.getUserConfigLocation('raidboss', Options, (e) => {
+UserConfig.getUserConfigLocation('raidboss', Options, () => {
   // Query params override default and user options.
   // This allows for html files that say "timeline only" or "alerts only".
   const params = new URLSearchParams(window.location.search);
 
   Options.IsRemoteRaidboss = false;
-  if (params.get('OVERLAY_WS')) {
-    const wsParam = decodeURIComponent(params.get('OVERLAY_WS'));
+  const overlayWsParam = params.get('OVERLAY_WS');
+  if (overlayWsParam) {
+    const wsParam = decodeURIComponent(overlayWsParam);
     // TODO: is there a better way to do this?? This seems better than looking for ngrok.
     const isLocal = wsParam.includes('localhost') || wsParam.includes('127.0.0.1');
     Options.IsRemoteRaidboss = !isLocal;
@@ -71,6 +72,8 @@ UserConfig.getUserConfigLocation('raidboss', Options, (e) => {
   }
 
   const container = document.getElementById('container');
+  if (!container)
+    throw new Error('Unable to find container element');
   if (!Options.AlertsEnabled)
     container.classList.add('hide-alerts');
   if (!Options.TimelineEnabled)
