@@ -243,15 +243,13 @@ export default class EmulatedPartyInfo extends EventBus {
       name: 'Initial Data',
       classes: ['data'],
       $obj: $initDataViewer,
-      callback: () => {
-        $initDataViewer.textContent = JSON.stringify(per.initialData, null, 2);
-      },
     }));
 
     const $triggerContainer = $container.querySelector('.d-flex.flex-column');
 
     for (const i in per.triggers.sort((l, r) => l.resolvedOffset - r.resolvedOffset)) {
       const $triggerDataViewer = this.$jsonViewerTemplate.cloneNode(true);
+      $triggerDataViewer.textContent = JSON.stringify(per.triggers[i], null, 2);
       const triggerText = this.getTriggerLabelText(per.triggers[i]);
       const $trigger = this._wrapCollapse({
         time: this.getTriggerResolvedLabelTime(per.triggers[i]),
@@ -260,9 +258,6 @@ export default class EmulatedPartyInfo extends EventBus {
         text: triggerText,
         classes: [per.triggers[i].status.responseType],
         $obj: $triggerDataViewer,
-        callback: () => {
-          $triggerDataViewer.textContent = JSON.stringify(per.triggers[i], null, 2);
-        },
       });
       if (per.triggers[i].status.executed)
         $trigger.classList.add('trigger-executed');
@@ -289,9 +284,6 @@ export default class EmulatedPartyInfo extends EventBus {
       name: 'Final Data',
       classes: ['data'],
       $obj: $finalDataViewer,
-      callback: () => {
-        $finalDataViewer.textContent = JSON.stringify(per.finalData, null, 2);
-      },
     }));
 
     return $ret;

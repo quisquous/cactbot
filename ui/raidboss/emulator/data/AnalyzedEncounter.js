@@ -107,17 +107,19 @@ export default class AnalyzedEncounter extends EventBus {
         popupText.runResolver = res;
       });
 
-      popupText.OnTrigger(trigger, matches);
+      const currentLine = this.encounter.logLines[currentLogIndex];
+
+      popupText.OnTrigger(trigger, matches, currentLine.timestamp);
 
       await delayPromise;
       await promisePromise;
       const triggerHelper = await runPromise;
 
-      popupText.currentTriggerStatus.finalData = EmulatorCommon.cloneData(popupText.data);
+      triggerHelper.resolver.status.finalData = EmulatorCommon.cloneData(popupText.data);
 
       popupText.callback(
-          this.encounter.logLines[currentLogIndex],
-          triggerHelper, popupText.currentTriggerStatus);
+          currentLine,
+          triggerHelper, triggerHelper.resolver.status);
     });
 
     popupText.callback = (log, triggerHelper, currentTriggerStatus, finalData) => {
@@ -129,6 +131,7 @@ export default class AnalyzedEncounter extends EventBus {
           (currentTriggerStatus.delay * 1000),
       });
     };
+    popupText.triggerResolvers = [];
 
     this.perspectives[ID] = {
       initialData: EmulatorCommon.cloneData(popupText.data, []),

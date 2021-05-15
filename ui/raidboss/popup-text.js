@@ -975,7 +975,7 @@ export class PopupText {
           arrowReplacement[this.displayLang]);
       this.ttsSay(triggerHelper.ttsText);
     } else if (triggerHelper.soundUrl && triggerHelper.soundAlertsEnabled) {
-      this._playAudioFile(triggerHelper.soundUrl, triggerHelper.soundVol);
+      this._playAudioFile(triggerHelper, triggerHelper.soundUrl, triggerHelper.soundVol);
     }
   }
 
@@ -984,13 +984,13 @@ export class PopupText {
       triggerHelper.trigger.run(this.data, triggerHelper.matches, triggerHelper.trigger.output);
   }
 
-  _createTextFor(text, textType, lowerTextKey, duration) {
+  _createTextFor(triggerHelper, text, textType, lowerTextKey, duration) {
     // info-text
     const textElementClass = textType + '-text';
     if (textType !== 'info')
       text = triggerUpperCase(text);
     const holder = this[lowerTextKey].getElementsByClassName('holder')[0];
-    const div = this._makeTextElement(text, textElementClass);
+    const div = this._makeTextElement(triggerHelper, text, textElementClass);
 
     holder.appendChild(div);
     if (holder.children.length > this.kMaxRowsOfText)
@@ -1018,7 +1018,7 @@ export class PopupText {
         // per-trigger option > trigger field > option duration by text type
         const duration = triggerHelper.duration.fromConfig ||
           triggerHelper.duration.fromTrigger || triggerHelper.duration[lowerTextKey];
-        this._createTextFor(text, textType, lowerTextKey, duration);
+        this._createTextFor(triggerHelper, text, textType, lowerTextKey, duration);
         if (!triggerHelper.soundUrl) {
           triggerHelper.soundUrl = this.options[textTypeUpper + 'Sound'];
           triggerHelper.soundVol = this.options[textTypeUpper + 'SoundVolume'];
@@ -1027,7 +1027,7 @@ export class PopupText {
     }
   }
 
-  _makeTextElement(text, className) {
+  _makeTextElement(triggerHelper, text, className) {
     const div = document.createElement('div');
     div.classList.add(className);
     div.classList.add('animate-text');
@@ -1035,7 +1035,7 @@ export class PopupText {
     return div;
   }
 
-  _playAudioFile(url, volume) {
+  _playAudioFile(triggerHelper, url, volume) {
     const audio = new Audio(url);
     audio.volume = volume || 1;
     audio.play();
