@@ -75,7 +75,7 @@ type Replacement = {
 };
 
 type Style = {
-  style: string;
+  style: { [key: string]: string };
   regex: RegExp;
 }
 
@@ -116,19 +116,19 @@ type Sync = {
   jump?: number;
 }
 
-type Text = {
+type ParsedText = {
   type: 'info' | 'alert' | 'alarm' | 'tts';
-  time: number;
   secondsBefore?: number;
   text: string;
 } | {
   type: 'trigger';
-  time: number;
   secondsBefore?: number;
   text?: string;
   matches: RegExpExecArray | null;
   trigger: Trigger;
 }
+
+type Text = ParsedText & { time: number };
 
 // TODO: Duplicated in 'jobs'
 const computeBackgroundColorFrom = (element: HTMLElement, classList: string): string => {
@@ -271,7 +271,7 @@ export class Timeline {
     this.syncEnds = [];
 
     let uniqueid = 1;
-    const texts: { [id: string]: Text[] } = {};
+    const texts: { [id: string]: ParsedText[] } = {};
     const regexes = {
       comment: /^\s*#/,
       commentLine: /#.*$/,
@@ -323,7 +323,6 @@ export class Timeline {
         texts[tts.id] = ttsItems;
         ttsItems.push({
           type: 'tts',
-          time: 0,
           secondsBefore: parseFloat(tts.beforeSeconds),
           text: tts.text ? tts.text : tts.id,
         });
@@ -344,14 +343,13 @@ export class Timeline {
         const popupTextItems = texts[popupText.id] || [];
         texts[popupText.id] = popupTextItems;
         const type = popupText.type;
-        if (type === 'info' || type === 'alert' || type === 'alarm') {
-          popupTextItems.push({
-            type: type,
-            time: 0,
-            secondsBefore: parseFloat(popupText.beforeSeconds),
-            text: popupText.text ? popupText.text : popupText.id,
-          });
-        }
+        if (type !== 'info' && type !== 'alert' && type !== 'alarm')
+          continue;
+        popupTextItems.push({
+          type: type,
+          secondsBefore: parseFloat(popupText.beforeSeconds),
+          text: popupText.text ? popupText.text : popupText.id,
+        });
         continue;
       }
       match = regexes.line.exec(line);
@@ -468,14 +466,13 @@ export class Timeline {
     for (const e of this.events) {
       for (const matchedTextEvent of texts[e.name] ?? []) {
         const type = matchedTextEvent.type;
-        if (type === 'info' || type === 'alert' || type === 'alarm') {
-          const t: Text = {
-            type: type,
-            time: e.time - (matchedTextEvent.secondsBefore || 0),
-            text: matchedTextEvent.text ?? '',
-          };
-          this.texts.push(t);
-        }
+        if (type !== 'info' && type !== 'alert' && type !== 'alarm')
+          continue;
+        this.texts.push({
+          type: type,
+          time: e.time - (matchedTextEvent.secondsBefore || 0),
+          text: matchedTextEvent.text ?? '',
+        });
       }
 
       // Rather than matching triggers at run time, pre-match all the triggers
@@ -500,7 +497,7 @@ export class Timeline {
       for (const style of styles ?? []) {
         if (!style.regex.test(e.name))
           continue;
-        Object.assign(e, { style: style.style });
+        e.style = style.style;
       }
     }
 
