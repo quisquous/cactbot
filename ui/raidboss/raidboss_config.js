@@ -278,7 +278,7 @@ const kMiscTranslations = {
   },
   // Opens trigger file on Github.
   viewTriggerSource: {
-    en: 'view trigger source',
+    en: 'View Trigger Source',
     ko: '트리거 출처 열기',
   },
 };
