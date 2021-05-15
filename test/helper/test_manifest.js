@@ -23,7 +23,7 @@ const testManifestFile = (file) => {
   });
 
   const ignorePathRegexes = [
-    /(?:^|\/)manifest\.txt$/,
+    /(?:^|\/)\w*_manifest\.txt$/,
     /(?:^|\/)readme\.\w*$/i,
   ];
 

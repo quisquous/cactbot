@@ -6,7 +6,7 @@ import RaidEmulatorTimelineUI from '../overrides/RaidEmulatorTimelineUI';
 import PopupTextAnalysis from '../data/PopupTextAnalysis';
 import { TimelineLoader } from '../../timeline';
 import Util from '../../../../resources/util';
-import raidbossFileData from '../../data/manifest.txt';
+import raidbossFileData from '../../data/raidboss_manifest.txt';
 
 export default class AnalyzedEncounter extends EventBus {
   constructor(options, encounter, emulator) {
@@ -52,6 +52,7 @@ export default class AnalyzedEncounter extends EventBus {
   }
 
   async analyzeFor(ID) {
+    let currentLogIndex = 0;
     const partyMember = this.encounter.combatantTracker.combatants[ID];
 
     if (!partyMember.job) {
@@ -65,8 +66,10 @@ export default class AnalyzedEncounter extends EventBus {
     const timelineUI = new RaidEmulatorTimelineUI(this.options);
     const timelineController =
         new RaidEmulatorTimelineController(this.options, timelineUI, raidbossFileData);
+    timelineController.bindTo(this.emulator);
     const popupText = new PopupTextAnalysis(
         this.popupText.options, new TimelineLoader(timelineController), raidbossFileData);
+    timelineUI.popupText = popupText;
 
     timelineController.SetPopupTextInterface(new PopupTextGenerator(popupText));
 
@@ -91,6 +94,32 @@ export default class AnalyzedEncounter extends EventBus {
       zoneID: parseInt(this.encounter.encounterZoneId, 16),
     });
 
+    timelineController.activeTimeline.SetTrigger(async (trigger, matches) => {
+      // Some async magic here, force waiting for the entirety of
+      // the trigger execution before continuing
+      const delayPromise = new Promise((res) => {
+        popupText.delayResolver = res;
+      });
+      const promisePromise = new Promise((res) => {
+        popupText.promiseResolver = res;
+      });
+      const runPromise = new Promise((res) => {
+        popupText.runResolver = res;
+      });
+
+      popupText.OnTrigger(trigger, matches);
+
+      await delayPromise;
+      await promisePromise;
+      const triggerHelper = await runPromise;
+
+      popupText.currentTriggerStatus.finalData = EmulatorCommon.cloneData(popupText.data);
+
+      popupText.callback(
+          this.encounter.logLines[currentLogIndex],
+          triggerHelper, popupText.currentTriggerStatus);
+    });
+
     popupText.callback = (log, triggerHelper, currentTriggerStatus, finalData) => {
       this.perspectives[ID].triggers.push({
         triggerHelper: triggerHelper,
@@ -107,7 +136,8 @@ export default class AnalyzedEncounter extends EventBus {
       finalData: popupText.data,
     };
 
-    for (const log of this.encounter.logLines) {
+    for (; currentLogIndex < this.encounter.logLines.length; ++currentLogIndex) {
+      const log = this.encounter.logLines[currentLogIndex];
       await this.dispatch('analyzeLine', log);
 
       if (this.encounter.combatantTracker.combatants[ID].hasState(log.timestamp)) {
@@ -128,6 +158,8 @@ export default class AnalyzedEncounter extends EventBus {
 
       await popupText.OnLog(event);
       await popupText.OnNetLog(event);
+      timelineController.OnLogEvent(event);
     }
+    timelineUI.stop();
   }
 }

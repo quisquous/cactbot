@@ -15,8 +15,8 @@ import { Responses, triggerFunctions, triggerOutputFunctions, builtInResponseStr
 // Paths are relative to current file.
 // We can't import the manifest directly from util/ because that's webpack magic,
 // so need to do the same processing its loader would do.
-const raidbossManifest = '../ui/raidboss/data/manifest.txt';
-const oopsyManifest = '../ui/oopsyraidsy/data/manifest.txt';
+const raidbossManifest = '../ui/raidboss/data/raidboss_manifest.txt';
+const oopsyManifest = '../ui/oopsyraidsy/data/oopsy_manifest.txt';
 const outputFileName = 'coverage/coverage_report.ts';
 
 const readManifest = (filename) => {

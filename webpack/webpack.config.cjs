@@ -18,8 +18,8 @@ module.exports = function(env, argv) {
       jobs: './ui/jobs/jobs.js',
       oopsyraidsy: './ui/oopsyraidsy/oopsyraidsy.js',
       pullcounter: './ui/pullcounter/pullcounter.js',
-      radar: './ui/radar/radar.js',
-      raidboss: './ui/raidboss/raidboss.js',
+      radar: './ui/radar/radar.ts',
+      raidboss: './ui/raidboss/raidboss.ts',
       raidemulator: './ui/raidboss/raidemulator.js',
       test: './ui/test/test.ts',
       ...(() => dev ? ({ timerbar: './resources/timerbar.ts' }) : ({}))(),
@@ -86,7 +86,7 @@ module.exports = function(env, argv) {
           use: ['style-loader', 'css-loader'],
         },
         {
-          test: /data[\\\/]manifest\.txt$/,
+          test: /data[\\\/]\w*_manifest\.txt$/,
           use: [
             {
               loader: './webpack/loaders/manifest-loader.cjs',
@@ -94,7 +94,7 @@ module.exports = function(env, argv) {
           ],
         },
         {
-          test: /data[\\\/](?!manifest\.txt).*\.txt$/,
+          test: /data[\\\/](?!\w*_manifest\.txt).*\.txt$/,
           use: [
             {
               loader: 'raw-loader',

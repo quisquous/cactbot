@@ -6,8 +6,11 @@ export interface BaseRegExp<T> extends RegExp {
   };
 }
 
+export type NetRegex<T extends string> = BaseRegExp<Exclude<T, 'capture'>>;
+
 export type Matches<T> =
   T extends BaseRegExp ? T['groups'] :
+  T extends NetRegex ? T['groups'] :
   T extends RegExp ? { [s: string]: string } :
   never;
 
