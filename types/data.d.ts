@@ -6,7 +6,7 @@ export interface BaseOptions {
   ParserLanguage: Lang;
   ShortLocale: string;
   DisplayLanguage: Lang;
-  Skin: string;
+  Skin?: string;
   [key: string]: unknown;
   // todo: complete this type
 }

@@ -18,7 +18,7 @@ module.exports = function(env, argv) {
       jobs: './ui/jobs/jobs.js',
       oopsyraidsy: './ui/oopsyraidsy/oopsyraidsy.js',
       pullcounter: './ui/pullcounter/pullcounter.js',
-      radar: './ui/radar/radar.js',
+      radar: './ui/radar/radar.ts',
       raidboss: './ui/raidboss/raidboss.js',
       raidemulator: './ui/raidboss/raidemulator.js',
       test: './ui/test/test.ts',
