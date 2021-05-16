@@ -754,7 +754,7 @@ export default {
     {
       id: 'O12S Hello World No Marker',
       // These effects are all handled elsewhere.
-      // Collect who has them and don't call them out here.
+      // Collect who has them, but don't call them out here.
       // 680 = Critical Synchronization Bug (short/long stack)
       // 681 = Critical Overflow Bug (defamation)
       // 682 = Critical Underflow Bug (rot, only on HW2)
