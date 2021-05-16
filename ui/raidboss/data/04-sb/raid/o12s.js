@@ -720,7 +720,11 @@ export default {
           return;
         if (t <= 8) {
           data.dpsShortStack = false;
-          return output.shortStackOn({ player: data.ShortName(matches.target) });
+          // It can be useful to know who has the short stack because they
+          // might need an extra shield.  However, common blu strats have
+          // folks diamondback this, so it's just noise.
+          if (data.job !== 'BLU')
+            return output.shortStackOn({ player: data.ShortName(matches.target) });
         }
         return;
       },
@@ -752,7 +756,7 @@ export default {
       },
     },
     {
-      id: 'O12S Hello World No Marker',
+      id: 'O12S Hello World Initial Debuff Collect',
       // These effects are all handled elsewhere.
       // Collect who has them, but don't call them out here.
       // 680 = Critical Synchronization Bug (short/long stack)
@@ -761,9 +765,14 @@ export default {
       // 686 = Latent Defect (blue dna marker)
       netRegex: NetRegexes.gainsEffect({ effectId: ['680', '681', '682', '686'] }),
       condition: (data) => !data.calledHelloNoMarker,
-      preRun: (data, matches) => {
+      run: (data, matches) => {
         data.helloDebuffs[matches.target] = matches.effectId;
       },
+    },
+    {
+      id: 'O12S Hello World No Marker',
+      netRegex: NetRegexes.gainsEffect({ effectId: ['680', '681', '682', '686'], capture: false }),
+      condition: (data) => !data.calledHelloNoMarker,
       delaySeconds: 0.3,
       suppressSeconds: 1,
       infoText: (data, _, output) => {
