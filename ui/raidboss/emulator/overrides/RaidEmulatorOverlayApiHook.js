@@ -33,7 +33,7 @@ export default class RaidEmulatorOverlayApiHook {
           // nextSignificantState is a bit inefficient but given that this isn't run every tick
           // we can afford to be a bit inefficient for readability's sake
           const combatantState = combatant.nextSignificantState(timestamp).toPluginState();
-          if (msg.ids && msg.ids.includes(id))
+          if (msg.ids && msg.ids.includes(parseInt(id, 16)))
             combatants.push(combatantState);
           else if (msg.names && msg.names.includes(tracker.combatants[id].name))
             combatants.push(combatantState);
