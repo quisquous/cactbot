@@ -1,10 +1,52 @@
 import LineEvent from './LineEvent';
 import EmulatorCommon from '../../EmulatorCommon';
 import Util from '../../../../../resources/util';
+import { LogRepository } from './LogRepository';
+
+export type LineEvent0x03Parts = [
+  string, // 0: ID
+  string, // 1: Timestamp
+  string, // 2: ID
+  string, // 3: Name
+  string, // 4: Job ID
+  string, // 5: Level
+  string, // 6: Owner ID
+  string, // 7: World ID
+  string, // 8: World Name
+  string, // 9: NPC Name ID
+  string, // 10: NPC Base ID
+  string, // 11: Current HP
+  string, // 12: Max HP
+  string, // 13: Current MP
+  string, // 14: Max MP
+  string, // 15: Current TP
+  string, // 16: Max TP
+  string, // 17: X
+  string, // 18: Y
+  string, // 19: Z
+  string, // 20: Heading
+  string, // 21: Unknown/Blank?
+  string, // 22: Checksum
+];
 
 // Added combatant event
 export class LineEvent0x03 extends LineEvent {
-  constructor(repo, line, parts) {
+  id: string;
+  name: string;
+  server: string;
+  jobIdHex: string;
+  jobIdDec: number;
+  jobName: string;
+  level: number;
+  hp: number;
+  maxHp: number;
+  mp: number;
+  maxMp: number;
+  x: number;
+  y: number;
+  z: number;
+  heading: number;
+  constructor(repo: LogRepository, line: string, public parts: LineEvent0x03Parts) {
     super(repo, line, parts);
 
     this.id = parts[2].toUpperCase();
@@ -36,19 +78,19 @@ export class LineEvent0x03 extends LineEvent {
     });
   }
 
-  convert() {
+  convert(): void {
     let CombatantName = this.name;
     if (this.server !== '')
       CombatantName = CombatantName + '(' + this.server + ')';
 
-    this.convertedLine = this.prefix() +
-      this.id.toUpperCase() + ':' +
-      'Added new combatant ' + CombatantName +
-      '.  Job: ' + this.jobName +
-      ' Level: ' + this.level +
-      ' Max HP: ' + this.maxHp +
-      ' Max MP: ' + this.maxMp +
-      ' Pos: (' + this.parts[17] + ',' + this.parts[18] + ',' + this.parts[19] + ')';
+    this.convertedLine = `\
+${this.prefix()}${this.id.toUpperCase()}:\
+Added new combatant ${CombatantName}.\
+  Job: ${this.jobName}\
+ Level: ${this.level}\
+ Max HP: ${this.maxHp}\
+ Max MP: ${this.maxMp}\
+ Pos: (${this.parts[17]},${this.parts[18]},${this.parts[19]})`;
 
     // This last part is guesswork for the area between 9 and 10.
     const UnknownValue = this.parts[9] +

@@ -110,5 +110,8 @@ module.exports = function(env, argv) {
       new webpack.ProgressPlugin({}),
       new CleanWebpackPlugin(),
     ],
+    stats: {
+      children: true,
+    },
   };
 };
