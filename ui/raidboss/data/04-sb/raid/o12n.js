@@ -12,7 +12,7 @@ export default {
       id: 'O12N Knockback',
       regex: /Discharger/,
       beforeSeconds: 5,
-      response: Responses.knockback('alert'),
+      response: Responses.knockback(),
     },
   ],
   triggers: [

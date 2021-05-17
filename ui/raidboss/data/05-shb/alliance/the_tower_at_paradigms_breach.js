@@ -111,7 +111,7 @@ export default {
       id: 'Paradigm Knave Magic Artillery Beta You',
       netRegex: NetRegexes.headMarker({ id: '00DA' }),
       condition: Conditions.targetIsYou(),
-      response: Responses.tankBuster('alert'),
+      response: Responses.tankBuster(),
     },
     {
       id: 'Paradigm Knave Magic Artillery Beta Collect',
@@ -477,7 +477,7 @@ export default {
       id: 'Paradigm False Idol Darker Note You',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
-      response: Responses.tankBuster('alert'),
+      response: Responses.tankBuster(),
     },
     {
       id: 'Paradigm False Idol Darker Note Collect',

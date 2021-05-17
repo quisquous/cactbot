@@ -18,7 +18,7 @@ export default {
       // Both tanks should care about the tankbuster because they can throw
       // mitigation on the other, so just always play this for both tanks.
       conditions: Conditions.caresAboutPhysical(),
-      response: Responses.tankBuster('alert'),
+      response: Responses.tankBuster(),
     },
   ],
   triggers: [

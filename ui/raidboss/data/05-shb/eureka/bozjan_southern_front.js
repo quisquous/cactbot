@@ -182,7 +182,7 @@ export default {
       netRegexJa: NetRegexes.gameLog({ line: '操作がない状態になってから7分が経過しました。.*?', capture: false }),
       netRegexCn: NetRegexes.gameLog({ line: '已经7分钟没有进行任何操作.*?', capture: false }),
       netRegexKo: NetRegexes.gameLog({ line: '7분 동안 아무 조작을 하지 않았습니다..*?', capture: false }),
-      response: Responses.wakeUp('alarm'),
+      response: Responses.wakeUp(),
     },
     {
       id: 'Bozja South Critical Engagement',
@@ -429,7 +429,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '阿尔贝雷欧的巨兽', id: '5404', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '알비레오의 야수', id: '5404', capture: false }),
       suppressSeconds: 3,
-      response: Responses.lookAway('info'),
+      response: Responses.lookAway(),
     },
     {
       id: 'Bozja South Castrum Albeleo Abyssal Cry',
@@ -440,7 +440,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '阿尔贝雷欧的恶狼', id: '5406' }),
       netRegexKo: NetRegexes.startsUsing({ source: '알비레오의 흐로드비트니르', id: '5406' }),
       condition: (data) => data.CanSilence(),
-      response: Responses.interrupt('alert'),
+      response: Responses.interrupt(),
     },
     {
       id: 'Bozja South Castrum Adrammelech Holy IV',
@@ -815,7 +815,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '獣王ライアン', id: '5173', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '兽王 莱昂', id: '5173', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '마수왕 라이언', id: '5173', capture: false }),
-      response: Responses.getBehind('alert'),
+      response: Responses.getBehind(),
     },
   ],
   timelineReplace: [

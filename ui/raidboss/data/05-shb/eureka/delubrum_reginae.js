@@ -356,7 +356,7 @@ export default {
       id: 'Delubrum Seeker Dead Iron',
       netRegex: NetRegexes.headMarker({ id: '00ED' }),
       condition: Conditions.targetIsYou(),
-      response: Responses.earthshaker('alert'),
+      response: Responses.earthshaker(),
     },
     {
       id: 'Delubrum Seeker Merciful Moon',
@@ -499,7 +499,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: '575D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Dahu', id: '575D', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダウー', id: '575D', capture: false }),
-      response: Responses.awayFromFront('alert'),
+      response: Responses.awayFromFront(),
     },
     // *** Queen's Guard ***
     {
@@ -1119,7 +1119,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5987', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5987', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5987', capture: false }),
-      response: Responses.getOut('alert'),
+      response: Responses.getOut(),
     },
     {
       id: 'Delubrum Avowed Flashvane',
@@ -1128,7 +1128,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5986', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5986', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5986', capture: false }),
-      response: Responses.getBehind('alert'),
+      response: Responses.getBehind(),
     },
     {
       id: 'Delubrum Avowed Infernal Slash',
@@ -1364,7 +1364,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Chevalier De La Reine', id: '59CA', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ナイト', id: '59CA', capture: false }),
       delaySeconds: 2.5,
-      response: Responses.getOut('alert'),
+      response: Responses.getOut(),
     },
   ],
   timelineReplace: [

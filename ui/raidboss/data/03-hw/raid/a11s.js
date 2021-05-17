@@ -391,7 +391,7 @@ export default {
       id: 'A11S Plasma Shield Shattered',
       netRegex: NetRegexes.gameLog({ line: 'The plasma shield is shattered.*?', capture: false }),
 
-      response: Responses.spread('info'),
+      response: Responses.spread(),
     },
     {
       id: 'A11S Blassty Charge',

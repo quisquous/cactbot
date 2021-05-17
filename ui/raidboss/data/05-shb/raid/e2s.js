@@ -291,7 +291,7 @@ export default {
       condition: function(data) {
         return !data.waiting;
       },
-      response: Responses.lookAwayFromTarget('alert'),
+      response: Responses.lookAwayFromTarget(),
     },
     {
       id: 'E2S Shadoweye No Waiting You',

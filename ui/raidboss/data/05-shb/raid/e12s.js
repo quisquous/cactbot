@@ -954,7 +954,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '589D', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '589D', capture: false }),
       delaySeconds: 4,
-      response: Responses.knockback('alert'),
+      response: Responses.knockback(),
     },
     {
       // We could arguably tell people where their lion is, but this is probably plenty.
@@ -1185,7 +1185,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58C3', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58C3', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58C3', capture: false }),
-      response: Responses.getTogether('alert'),
+      response: Responses.getTogether(),
     },
     {
       id: 'E12S Spirit Taker',
@@ -1197,7 +1197,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: '闇の巫女', id: '58C3', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '暗之巫女', id: '58C3', capture: false }),
       suppressSeconds: 1,
-      response: Responses.spread('info'),
+      response: Responses.spread(),
     },
     {
       id: 'E12S Black Halo',
@@ -1207,7 +1207,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58C7' }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58C7' }),
       condition: Conditions.caresAboutPhysical(),
-      response: Responses.tankBuster('alert'),
+      response: Responses.tankBuster(),
     },
     {
       id: 'E12S Basic Relativity Debuffs',

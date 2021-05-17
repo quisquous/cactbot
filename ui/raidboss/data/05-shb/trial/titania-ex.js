@@ -208,7 +208,7 @@ export default {
       condition: function(data) {
         return data.role !== 'tank' && data.role !== 'healer';
       },
-      response: Responses.tankCleave('info'),
+      response: Responses.tankCleave(),
     },
     {
       id: 'TitaniaEx Frost Rune 1',

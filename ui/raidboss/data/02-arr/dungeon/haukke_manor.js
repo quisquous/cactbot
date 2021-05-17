@@ -88,7 +88,7 @@ export default {
       // Lady's Candle Spawn
       id: 'Haukke Normal Ladys Candle',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '425', capture: false }),
-      response: Responses.killAdds('info'),
+      response: Responses.killAdds(),
     },
     {
       // 2 Lady's Handmaiden and 1 Manor Sentry Spawn

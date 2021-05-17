@@ -75,7 +75,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5717', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5717', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5717', capture: false }),
-      response: Responses.getOut('alert'),
+      response: Responses.getOut(),
     },
     {
       id: 'E10S Giga Slash Shadow Single Left',
@@ -163,7 +163,7 @@ export default {
       condition: Conditions.caresAboutPhysical(),
       // Although this is a swap, use `tankBuster` here to give the off tank a warning and a chance
       // to shield the main tank.  The offtank swap is delayed into the swap trigger below.
-      response: Responses.tankBuster('alert', 'info'),
+      response: Responses.tankBuster(),
       run: (data, matches) => {
         data.umbraTarget = matches.target;
       },
@@ -534,7 +534,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '5716', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '5716', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5716', capture: false }),
-      response: Responses.knockback('alert'),
+      response: Responses.knockback(),
     },
     {
       id: 'E10S Umbral Orbs',

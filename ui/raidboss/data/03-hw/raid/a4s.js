@@ -12,7 +12,7 @@ export default {
       regex: /Hydrothermal Missile/,
       beforeSeconds: 5,
       suppressSeconds: 5,
-      response: Responses.tankCleave('info'),
+      response: Responses.tankCleave(),
     },
   ],
   triggers: [

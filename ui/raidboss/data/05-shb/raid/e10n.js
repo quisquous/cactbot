@@ -209,7 +209,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56C7', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56C7', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56C7', capture: false }),
-      response: Responses.getOut('alert'),
+      response: Responses.getOut(),
     },
     {
       // There is technically a visual, but it comes up at precisely the same time as puddles.
@@ -220,7 +220,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Roi De L\'Ombre', id: '56C6', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56C6', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56C6', capture: false }),
-      response: Responses.knockback('alert'),
+      response: Responses.knockback(),
     },
   ],
   timelineReplace: [

@@ -25,7 +25,7 @@ export default {
       id: 'TitanHm Rock Buster',
       regex: /Rock Buster/,
       beforeSeconds: 6,
-      response: Responses.tankCleave('info'),
+      response: Responses.tankCleave(),
     },
     {
       id: 'TitanHm Tumult',
