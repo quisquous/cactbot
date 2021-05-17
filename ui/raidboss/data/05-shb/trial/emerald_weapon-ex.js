@@ -39,6 +39,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55B0' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55B0' }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '55B0' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '55B0' }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.tankBuster(),
     },
@@ -49,6 +50,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: ['55B1', '5B10'], capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: ['55B1', '5B10'], capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: ['55B1', '5B10'], capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: ['55B1', '5B10'], capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -59,6 +61,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55AA', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55AA', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '55AA', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '55AA', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -78,6 +81,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '5594', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '5594', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '5594', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '5594', capture: false }),
       condition: (data) => data.seenMines || data.role !== 'tank',
       delaySeconds: 9,
       durationSeconds: 6,
@@ -101,6 +105,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '5537', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '5537', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '5537', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '5537', capture: false }),
       alertText: (data, _, output) => {
         if (data.role === 'tank')
           return output.sharedTankStack();
@@ -157,6 +162,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55[D9]1', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55[D9]1', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '55[D9]1', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '55[D9]1', capture: false }),
       response: Responses.getOut(),
     },
     {
@@ -166,6 +172,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '555B', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '555B', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '555B', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '555B', capture: false }),
       alertText: (data, _, output) => {
         if (data.role === 'tank')
           return output.sharedTankStack();
@@ -190,6 +197,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55C3', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55C3', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '55C3', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '55C3', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -209,6 +217,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55CC', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55CC', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '55CC', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '55CC', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -228,6 +237,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55D5', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55D5', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '55D5', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '55D5', capture: false }),
       response: Responses.goLeft(),
     },
     {
@@ -237,6 +247,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55D4', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55D4', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '55D4', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '55D4', capture: false }),
       response: Responses.goRight(),
     },
     {
@@ -246,6 +257,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '5585', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '5585', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '5585', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '5585', capture: false }),
       response: Responses.knockback(),
     },
     {
@@ -256,6 +268,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '55C8', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '55C8', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '55C8', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '55C8', capture: false }),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -275,6 +288,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Spectre De Gaius', id: '55BA', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ガイウスの幻影', id: '55BA', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '盖乌斯的幻影', id: '55BA', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '55BA', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -294,6 +308,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Spectre De Gaius', id: '55C0', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ガイウスの幻影', id: '55C0', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '盖乌斯的幻影', id: '55C0', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '55C0', capture: false }),
       infoText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
