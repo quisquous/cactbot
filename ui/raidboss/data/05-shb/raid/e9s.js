@@ -763,6 +763,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ id: '561[EF]', source: 'Nuée de Ténèbres' }),
       netRegexJa: NetRegexes.startsUsing({ id: '561[EF]', source: '幻影の雲' }),
       netRegexCn: NetRegexes.startsUsing({ id: '561[EF]', source: '幻影之云' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '561[EF]', source: '환영의 구름' }),
       suppressSeconds: 1,
       promise: async (data) => {
         const cloudOfDarknessLocaleNames = {
@@ -796,6 +797,7 @@ export default {
           fr: 'Nuée de Ténèbres',
           ja: '幻影の雲',
           cn: '幻影之云',
+          ko: '환영의 구름',
         };
 
         const cloneData = await callOverlayHandler({
@@ -942,6 +944,39 @@ export default {
         'Anti-Air Particle Beam': '高射式波动炮',
         'Aetherosynthesis': '吸收生命',
         '\\(L/R\\)': '(左/右)',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Clone Of Darkness': '환영의 구름',
+        'Cloud Of Darkness': '어둠의 구름',
+      },
+      'replaceText': {
+        'The Third Art Of Darkness': '어둠의 전투술: 삼중',
+        'The Second Art Of Darkness': '어둠의 전투술: 이중',
+        'The Art Of Darkness': '어둠의 전투술',
+        'Summon': '소환',
+        'Rejuvenating Balm': '활성탄',
+        'Phaser Unlimited': '도약파동포 0식',
+        'Particle Concentration': '파동구',
+        'Obscure Woods': '암흑의 숲',
+        'Hypercharged Condensation': '파동운 흡인',
+        'Ground-Razing Particle Beam': '방사식 파동포',
+        'Full-Perimeter Particle Beam': '소사식 파동포',
+        'Flood Of Obscurity': '어둠의 범람: 암흑의 숲',
+        'Flood Of Emptiness': '어둠의 범람: 암흑의 하늘',
+        'Empty Plane': '암흑의 하늘',
+        'Devouring Dark': '어둠의 침식',
+        'Deluge Of Darkness': '어둠의 대범람',
+        'Dark-Energy Particle Beam': '저주식 파동포',
+        'Condensed Wide-Angle Particle Beam': '광각식 고출력 파동포',
+        'Condensed Anti-Air Particle Beam': '고공식 고출력 파동포',
+        'Bad Vibrations': '강력한 진동',
+        'Anti-Air Phaser Unlimited': '고공식 도약파동포 0식',
+        'Anti-Air Particle Beam': '고공식 파동포',
+        'Aetherosynthesis': '생기 흡수',
+        '\\(L/R\\)': '(좌/우)',
       },
     },
   ],
