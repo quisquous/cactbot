@@ -5,9 +5,9 @@ import { computeBackgroundColorFrom } from '../utils';
 const lightningFgColors = [];
 
 export function setup(bars) {
-  // TODO: Remove bars timer when cn/ko update 5.4
+  // TODO: Remove bars timer when ko update 5.4
   let lightningTimer = null;
-  if (['cn', 'ko'].includes(bars.options.ParserLanguage)) {
+  if (['ko'].includes(bars.options.ParserLanguage)) {
     lightningTimer = bars.addTimerBar({
       id: 'mnk-timers-lightning',
       fgColor: 'mnk-color-lightning-0',
@@ -50,7 +50,7 @@ export function setup(bars) {
 
     // TODO: Remove bars.speedBuffs.lightningStacks,
     // and change code to calculate speed by level in calcGCDFromStat function
-    // when cn/ko update 5.4
+    // when ko update 5.4
     if (lightningTimer) {
       bars.speedBuffs.lightningStacks = jobDetail.lightningStacks;
       lightningTimer.fg = lightningFgColors[bars.speedBuffs.lightningStacks];
