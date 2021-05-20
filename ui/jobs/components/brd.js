@@ -61,6 +61,7 @@ export function setup(bars) {
     fgColor: 'brd-color-song',
   });
   repertoireTimer.toward = 'right';
+  repertoireTimer.stylefill = 'fill';
   // Only with-DoT-target you last attacked will trigger bars timer.
   // So it work not well in multiple targets fight.
   bars.updateDotTimerFuncs.push(() => repertoireTimer.duration = 2.91666);
