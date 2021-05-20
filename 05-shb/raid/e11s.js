@@ -525,7 +525,7 @@ Options.Triggers.push({
           fr: 'Éclair : Allez sur le Rouge',
           ja: '雷: 安置は赤',
           cn: '雷：去红门',
-          ko: '화염: 빨강으로',
+          ko: '번개: 빨강으로',
         },
       },
     },
