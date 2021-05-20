@@ -9,6 +9,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '5554' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '5554' }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '5554' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '5554' }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.tankBuster(),
     },
@@ -19,6 +20,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: ['5555', '5556', '5B0F'], capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: ['5555', '5556', '5B0F'], capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: ['5555', '5556', '5B0F'], capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: ['5555', '5556', '5B0F'], capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -29,6 +31,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '5594', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '5594', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '5594', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '5594', capture: false }),
       condition: (data) => data.seenMines || data.role !== 'tank',
       delaySeconds: 9,
       durationSeconds: 6,
@@ -52,6 +55,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: ['553F', '5540'], capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: ['553F', '5540'], capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: ['553F', '5540'], capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: ['553F', '5540'], capture: false }),
       response: Responses.goLeft(),
     },
     {
@@ -61,6 +65,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: ['5541', '5542'], capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: ['5541', '5542'], capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: ['5541', '5542'], capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: ['5541', '5542'], capture: false }),
       response: Responses.goRight(),
     },
     {
@@ -70,6 +75,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: ['553C', '553D'], capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: ['553C', '553D'], capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: ['553C', '553D'], capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: ['553C', '553D'], capture: false }),
       // ~7s cast time.
       delaySeconds: 2,
       response: Responses.knockback(),
@@ -87,6 +93,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Knockback Arrow on YOU',
+          ko: '넉백 화살표 대상자',
         },
       },
     },
@@ -98,6 +105,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Go Cardinal With Sword',
+          ko: '동서남북으로 이동',
         },
       },
     },
@@ -109,6 +117,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Go Intercardinal With Sword',
+          ko: '대각위치로 이동',
         },
       },
     },

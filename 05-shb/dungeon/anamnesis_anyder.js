@@ -1,7 +1,6 @@
 Options.Triggers.push({
   zoneId: ZoneId.AnamnesisAnyder,
   timelineFile: 'anamnesis_anyder.txt',
-  timelineTriggers: [],
   triggers: [
     {
       id: 'AnAnyder Fetid Fang',

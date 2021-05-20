@@ -76,6 +76,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5663', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5663', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5663', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5663', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -95,6 +96,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5666', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5666', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5666', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5666', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -114,6 +116,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5668', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5668', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5668', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5668', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -133,6 +136,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5652', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5652', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5652', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5652', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -152,6 +156,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5654', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5654', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5654', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5654', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -171,6 +176,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5656', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5656', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5656', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5656', capture: false }),
       alertText: (data, _, output) => output.text(),
       outputStrings: {
         text: {
@@ -204,6 +210,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5658', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5658', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5658', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5658', capture: false }),
       response: boundOfFaithFireTetherResponse,
     },
     {
@@ -213,6 +220,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '565B', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '565B', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '565B', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '565B', capture: false }),
       response: boundOfFaithLightningTetherResponse,
     },
     {
@@ -222,6 +230,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '565F', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '565F', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '565F', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '565F', capture: false }),
       response: boundOfFaithHolyTetherResponse,
     },
     {
@@ -235,6 +244,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Double Du Sabreur De Destins', id: '5682' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカーの幻影', id: '5682' }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士的幻影', id: '5682' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커의 환영', id: '5682' }),
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -302,6 +312,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Double Du Sabreur De Destins', id: '5BC5' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカーの幻影', id: '5BC5' }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士的幻影', id: '5BC5' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커의 환영', id: '5BC5' }),
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -362,6 +373,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '56A4', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '56A4', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '56A4', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '56A4', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
     },
@@ -372,6 +384,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '56A2' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '56A2' }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '56A2' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '56A2' }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.tankBusterSwap(),
     },
@@ -382,6 +395,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.gainsEffect({ source: 'Sabreur De Destins', effectId: '993' }),
       netRegexJa: NetRegexes.gainsEffect({ source: 'フェイトブレイカー', effectId: '993' }),
       netRegexCn: NetRegexes.gainsEffect({ source: '绝命战士', effectId: '993' }),
+      netRegexKo: NetRegexes.gainsEffect({ source: '페이트브레이커', effectId: '993' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: (data, matches) => parseFloat(matches.duration) - 4,
       alertText: (data, _, output) => output.awayFromGroup(),
@@ -396,6 +410,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '566A', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '566A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '566A', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '566A', capture: false }),
       durationSeconds: 10,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -416,6 +431,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '566B', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '566B', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '566B', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '566B', capture: false }),
       durationSeconds: 10,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -436,6 +452,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5675', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5675', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5675', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5675', capture: false }),
       durationSeconds: 17,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -456,6 +473,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5676', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5676', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5676', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5676', capture: false }),
       durationSeconds: 17,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -476,6 +494,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '566E', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '566E', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '566E', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '566E', capture: false }),
       durationSeconds: 10,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -496,6 +515,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '566F', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '566F', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '566F', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '566F', capture: false }),
       durationSeconds: 10,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -516,6 +536,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5677', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5677', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5677', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5677', capture: false }),
       durationSeconds: 16,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -536,6 +557,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5678', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5678', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5678', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5678', capture: false }),
       durationSeconds: 16,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -556,6 +578,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '568A', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '568A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '568A', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '568A', capture: false }),
       durationSeconds: 12,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -576,6 +599,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '568A', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '568A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '568A', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '568A', capture: false }),
       delaySeconds: 16.5,
       response: boundOfFaithFireTetherResponse,
     },
@@ -586,6 +610,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5692', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5692', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5692', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5692', capture: false }),
       durationSeconds: 12,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -606,6 +631,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '5692', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5692', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5692', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5692', capture: false }),
       delaySeconds: 16.5,
       response: boundOfFaithLightningTetherResponse,
     },
@@ -616,6 +642,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '569A', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '569A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '569A', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '569A', capture: false }),
       durationSeconds: 12,
       infoText: (data, _, output) => output.text(),
       outputStrings: {
@@ -636,6 +663,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Sabreur De Destins', id: '569A', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '569A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '569A', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '569A', capture: false }),
       delaySeconds: 16.5,
       response: boundOfFaithHolyTetherResponse,
     },
@@ -792,6 +820,44 @@ Options.Triggers.push({
         'Solemn Charge': '急冲刺',
         'Sundered Sky': '堕狱绝技',
         'Turn Of The Heavens': '光轮召唤',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Demi-Gukumatz': '데미구쿠마츠',
+        'Fatebreaker\'s image': '페이트브레이커의 환영',
+        'Fatebreaker(?!\'s image)': '페이트브레이커',
+        'Halo of Flame': '화염 빛무리',
+      },
+      'replaceText': {
+        'Ageless Serpent': '용두용미',
+        'Blastburn': '연소 폭발',
+        'Blasting Zone': '발파 지대',
+        'Bound Of Faith': '죄의 소일 일격',
+        'Bow Shock': '원형충격파',
+        'Brightfire': '광염',
+        '(?<!Mortal )Burn Mark': '폭인',
+        'Burnished Glory': '광염광배',
+        'Burnout': '완전 연소',
+        'Burnt Strike': '연소 공격',
+        'Cycle Of Faith': '마장 연속검',
+        'Elemental Break': '원소 파괴',
+        'Floating Fetters': '부유 구속',
+        'Mortal Burn Mark': '대폭인',
+        'Powder Mark': '폭인각',
+        'Prismatic Deception': '분광 은신',
+        'Resonant Winds': '마선풍',
+        'Resounding Crack': '마난류',
+        'Right Of The Heavens': '사천 소환',
+        'Shifting Sky': '지천절기',
+        'Shining Blade': '빛나는 칼날',
+        'Sinsight': '죄의 빛',
+        'Sinsmite': '죄의 번개',
+        'Sinsmoke': '죄의 화염',
+        'Solemn Charge': '돌진격',
+        'Sundered Sky': '타옥절기',
+        'Turn Of The Heavens': '빛무리 소환',
       },
     },
   ],

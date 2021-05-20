@@ -394,6 +394,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.tether({ target: 'Création Masculine', id: '0011' }),
       netRegexJa: NetRegexes.tether({ target: '創られた男', id: '0011' }),
       netRegexCn: NetRegexes.tether({ target: '被创造的男性', id: '0011' }),
+      netRegexKo: NetRegexes.tether({ target: '창조된 남자', id: '0011' }),
       condition: (data, matches) => matches.source === data.me,
       durationSeconds: (data) => {
         // Handle laser #1 differently to not collide with the rapturous reach.
@@ -494,6 +495,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Gardien D\'Éden', id: '58B4', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ガーディアン・オブ・エデン', id: '58B4', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '伊甸守卫', id: '58B4', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에덴의 수호자', id: '58B4', capture: false }),
       durationSeconds: 10,
       infoText: (data, _, output) => output.knockback(),
       outputStrings: {
@@ -514,6 +516,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Gardien D\'Éden', id: '58B5', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ガーディアン・オブ・エデン', id: '58B5', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '伊甸守卫', id: '58B5', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에덴의 수호자', id: '58B5', capture: false }),
       durationSeconds: 10,
       infoText: (data, _, output) => output.knockback(),
       outputStrings: {
@@ -534,6 +537,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.ability({ source: 'Création Masculine', id: '58B3', capture: false }),
       netRegexJa: NetRegexes.ability({ source: '創られた男', id: '58B3', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '被创造的男性', id: '58B3', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '창조된 남자', id: '58B3', capture: false }),
       condition: (data) => !data.statueLaserCount || data.statueLaserCount < 4,
       durationSeconds: 3,
       suppressSeconds: 1,
@@ -602,6 +606,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58A5', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A5', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '58A5', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에덴의 약속', id: '58A5', capture: false }),
       run: (data) => {
         delete data.weightTargets;
         data.seenFirstBombs = true;
@@ -614,6 +619,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58A9', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A9', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '58A9', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에덴의 약속', id: '58A9', capture: false }),
       condition: Conditions.caresAboutPhysical(),
       response: (data, _, output) => {
         // cactbot-builtin-response
@@ -655,6 +661,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58AD', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58AD', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '58AD', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에덴의 약속', id: '58AD', capture: false }),
       response: (data, _, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -701,6 +708,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58AE', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58AE', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '58AE', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에덴의 약속', id: '58AE', capture: false }),
       response: (data, _, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -747,6 +755,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '58A8', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '58A8', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '58A8', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에덴의 약속', id: '58A8', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -836,6 +845,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '5892', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '5892', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '5892', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에덴의 약속', id: '5892', capture: false }),
       infoText: (data, _, output) => {
         data.stockedTethers = data.tethers;
         delete data.tethers;
@@ -853,6 +863,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: ['4E43', '5893'] }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: ['4E43', '5893'] }),
       netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: ['4E43', '5893'] }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에덴의 약속', id: ['4E43', '5893'] }),
       preRun: (data) => {
         data.castCount = data.castCount || 0;
         data.castCount++;
@@ -900,6 +911,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Promesse D\'Éden', id: '589D', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'プロミス・オブ・エデン', id: '589D', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '伊甸之约', id: '589D', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에덴의 약속', id: '589D', capture: false }),
       delaySeconds: 4,
       response: Responses.knockback('alert'),
     },
@@ -911,6 +923,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.tether({ source: 'Création Léonine', id: '0011' }),
       netRegexJa: NetRegexes.tether({ source: '創られた獅子', id: '0011' }),
       netRegexCn: NetRegexes.tether({ source: '被创造的狮子', id: '0011' }),
+      netRegexKo: NetRegexes.tether({ source: '창조된 사자', id: '0011' }),
       condition: Conditions.targetIsYou(),
       // Don't collide with reach left/right call.
       delaySeconds: 0.5,
@@ -933,6 +946,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58F0', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58F0', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58F0', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58F0', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -943,6 +957,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E[0-3]' }),
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E[0-3]' }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58E[0-3]' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58E[0-3]' }),
       run: (data, matches) => {
         data.phase = {
           '58E0': 'basic',
@@ -959,6 +974,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E0', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E0', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58E0', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58E0', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
     },
@@ -969,6 +985,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E1', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E1', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58E1', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58E1', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
     },
@@ -979,6 +996,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E2', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E2', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58E2', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58E2', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
     },
@@ -989,6 +1007,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58E3', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58E3', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58E3', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58E3', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
     },
@@ -1000,6 +1019,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: ['58BE', '58BD'], capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: ['58BE', '58BD'], capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: ['58BE', '58BD'], capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: ['58BE', '58BD'], capture: false }),
       infoText: (data, _, output) => {
         if (data.role === 'tank')
           return output.tankBait();
@@ -1032,6 +1052,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.ability({ source: 'Prêtresse Des Ténèbres', id: '58BD', capture: false }),
       netRegexJa: NetRegexes.ability({ source: '闇の巫女', id: '58BD', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '暗之巫女', id: '58BD', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '어둠의 무녀', id: '58BD', capture: false }),
       suppressSeconds: 5,
       infoText: (data, _, output) => {
         if (data.role === 'tank')
@@ -1064,6 +1085,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58C2' }),
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58C2' }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58C2' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58C2' }),
       delaySeconds: 0.5,
       promise: async (data, matches, output) => {
         // select the Oracle Of Darkness with same source id
@@ -1126,6 +1148,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58C3', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58C3', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58C3', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58C3', capture: false }),
       response: Responses.getTogether('alert'),
     },
     {
@@ -1137,6 +1160,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.ability({ source: 'Prêtresse Des Ténèbres', id: '58C3', capture: false }),
       netRegexJa: NetRegexes.ability({ source: '闇の巫女', id: '58C3', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '暗之巫女', id: '58C3', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '어둠의 무녀', id: '58C3', capture: false }),
       suppressSeconds: 1,
       response: Responses.spread('info'),
     },
@@ -1147,6 +1171,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Prêtresse Des Ténèbres', id: '58C7' }),
       netRegexJa: NetRegexes.startsUsing({ source: '闇の巫女', id: '58C7' }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗之巫女', id: '58C7' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 무녀', id: '58C7' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster('alert'),
     },
@@ -1907,6 +1932,84 @@ Options.Triggers.push({
         'Triple Apocalypse': '三重启示',
         'Under The Weight': '大地的重压',
         'Weight Of The World': '大陆之重',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Beastly Sculpture': '창조된 사자',
+        'Bomb Boulder': '바위폭탄',
+        'Chiseled Sculpture': '창조된 남자',
+        'Eden\'s Promise': '에덴의 약속',
+        'Guardian Of Eden': '에덴의 수호자',
+        'Ice Pillar': '얼음기둥',
+        'Oracle Of Darkness': '어둠의 무녀',
+        'Sorrow\'s Hourglass': '슬픔의 모래시계',
+      },
+      'replaceText': {
+        'Advanced Relativity': '시간 압축: 절정',
+        '(?<! )Apocalypse': '대재앙',
+        'Basic Relativity': '시간 압축: 발단',
+        'Black Halo': '검은 빛무리',
+        'Blade Of Flame': '거병의 광염',
+        'Cast': '발현',
+        'Cataclysm': '대격변',
+        'Classical Sculpture': '거병 창조',
+        'Dark Aero III': '다크 에어로가',
+        'Dark Current': '어둠의 급류',
+        '(?<! )Dark Eruption(?! )': '어둠의 불기둥',
+        'Dark Eruption / Dark Water III': '어둠의 불기둥 / 다크 워터가',
+        'Dark Fire III': '다크 파이가',
+        'Dark Water III / Dark Eruption': '다크 워터가 / 어둠의 불기둥',
+        '(?<! )Dark Water III(?! )': '다크 워터가',
+        'Darkest Dance': '암야의 무도기',
+        'Diamond Dust': '다이아몬드 더스트',
+        'Dual Apocalypse': '대재앙 둘',
+        'Earthen Fury': '대지의 분노',
+        'Empty Hate': '공허한 악의',
+        'Empty Rage': '공허한 적의',
+        'Force Of The Land': '대지의 고동',
+        'Formless Judgment': '천벌 파동',
+        'Frigid Stone': '얼음돌',
+        'Hell\'s Judgment': '황천의 심판',
+        'Ice Floe': '유빙',
+        'Ice Pillar': '고드름',
+        'Impact': '충격',
+        'Initialize Recall': '기억 상기',
+        'Intermediate Relativity': '시간 압축: 전개',
+        'Junction Shiva': '접속: 시바',
+        'Junction Titan': '접속: 타이탄',
+        'Laser Eye': '광선안',
+        'Lionsblaze': '사자의 업화',
+        'Maleficium': '마녀의 사술',
+        'Maelstrom': '대격동',
+        'Memory\'s End': '기억의 끝',
+        'Obliteration Laser': '',
+        'Palm Of Temperance': '거절의 손',
+        'Paradise Lost': '실낙원',
+        'Pillar Pierce': '고드름 격돌',
+        'Plunging Ice': '낙수 충격',
+        'Pulse Of The Land': '대지의 울림',
+        'Quicken': '가속',
+        'Rapturous Reach': '열락의 손',
+        'Release': '기억 방출',
+        'Return(?! IV)': '리턴',
+        'Return IV': '리턴쟈',
+        'Shadoweye': '그림자 시선',
+        'Shell Crusher': '외피 파쇄',
+        'Shockwave Pulsar': '맥동 충격파',
+        'Singular Apocalypse': '대재앙 하나',
+        'Slow': '감속',
+        'Somber Dance': '어스름 무도기',
+        'Speed': '속도 조절',
+        'Spell-In-Waiting': '지연술',
+        'Spirit Taker': '영혼 탈취',
+        'Stock': '기억 보존',
+        'Terminal Relativity': '시간 압축: 결말',
+        '(?<!Junction )Titan': '타이탄',
+        'Triple Apocalypse': '대재앙 셋',
+        'Under The Weight': '대지의 중압',
+        'Weight Of The World': '대륙의 무게',
       },
     },
   ],
