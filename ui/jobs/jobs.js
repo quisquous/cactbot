@@ -681,6 +681,7 @@ class Bars {
   }
 
   _onPartyWipe(e) {
+    // TODO: add reset for job-specific ui
     if (this.buffTracker)
       this.buffTracker.clear();
   }
