@@ -683,10 +683,6 @@ class Bars {
   _onPartyWipe(e) {
     if (this.buffTracker)
       this.buffTracker.clear();
-    // Reset job-specific ui
-    const allTimerBox = document.getElementsByClassName('timer-box');
-    for (let i = 0; i < allTimerBox.length; i++)
-      allTimerBox[i].duration = 0;
   }
 
   _onInCombatChanged(e) {

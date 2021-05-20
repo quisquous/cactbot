@@ -36,7 +36,7 @@ export function setup(bars) {
         p.classList.remove('dim');
     }
 
-    // For now, we just assign bars.speedBuffs.lightningStacks
+    // After the 5.4 changes, we just assign bars.speedBuffs.lightningStacks
     // as corresponding stacks via current level
     bars.speedBuffs.lightningStacks = getLightningStacksViaLevel(bars.level);
   });
