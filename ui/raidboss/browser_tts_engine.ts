@@ -47,15 +47,12 @@ export default class BrowserTTSEngine {
           this.speechLang = speechLang;
           this.speechVoice = voice;
           window.speechSynthesis.onvoiceschanged = null;
+        } else {
+          console.error('BrowserTTS error: could not find voice');
         }
       };
-    }
-
-    if (!this.speechVoice) {
-      if (window.speechSynthesis !== undefined)
-        console.error('BrowserTTS error: could not find voice');
-      else
-        console.error('BrowserTTS error: no browser support for window.speechSynthesis');
+    } else {
+      console.error('BrowserTTS error: no browser support for window.speechSynthesis');
     }
   }
 
