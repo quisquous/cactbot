@@ -76,7 +76,8 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '26E2', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26E2', source: '바하무트 프라임', capture: false }),
       run: function(data) {
-        if (data.resetTrio) data.resetTrio('quickmarch');
+        if (data.resetTrio)
+          data.resetTrio('quickmarch');
       },
     },
     {
@@ -88,7 +89,8 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '26E3', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26E3', source: '바하무트 프라임', capture: false }),
       run: function(data) {
-        if (data.resetTrio) data.resetTrio('blackfire');
+        if (data.resetTrio)
+          data.resetTrio('blackfire');
       },
     },
     {
@@ -100,7 +102,8 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '26E4', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26E4', source: '바하무트 프라임', capture: false }),
       run: function(data) {
-        if (data.resetTrio) data.resetTrio('fellruin');
+        if (data.resetTrio)
+          data.resetTrio('fellruin');
       },
     },
     {
@@ -112,7 +115,8 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '26E5', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26E5', source: '바하무트 프라임', capture: false }),
       run: function(data) {
-        if (data.resetTrio) data.resetTrio('heavensfall');
+        if (data.resetTrio)
+          data.resetTrio('heavensfall');
       },
     },
     {
@@ -124,7 +128,8 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '26E6', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26E6', source: '바하무트 프라임', capture: false }),
       run: function(data) {
-        if (data.resetTrio) data.resetTrio('tenstrike');
+        if (data.resetTrio)
+          data.resetTrio('tenstrike');
       },
     },
     {
@@ -136,7 +141,8 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '26E7', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26E7', source: '바하무트 프라임', capture: false }),
       run: function(data) {
-        if (data.resetTrio) data.resetTrio('octet');
+        if (data.resetTrio)
+          data.resetTrio('octet');
       },
     },
     {

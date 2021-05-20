@@ -225,20 +225,34 @@ export default class ResourceBar extends HTMLElement {
     this._centerText = '';
     this._rightText = '';
 
-    if (this.value !== null) this._value = Math.max(parseFloat(this.value), 0);
-    if (this.maxvalue !== null) this._maxValue = Math.max(parseFloat(this.maxvalue), 0);
-    if (this.extravalue !== null) this._extraValue = Math.max(0, parseInt(this.extravalue));
-    if (this.extracolor !== null) this._extraColor = this.extracolor;
-    if (this.width !== null) this._width = Math.max(parseInt(this.width), 1);
-    if (this.height !== null) this._height = Math.max(parseInt(this.height), 1);
-    if (this.bg !== null) this._bg = this.bg;
-    if (this.fg !== null) this._fg = this.fg;
-    if (this.scale !== null) this._scale = Math.max(parseFloat(this.scale), 0.01);
-    if (this.toward !== null) this._towardRight = this.toward !== 'left';
-    if (this.stylefill !== null) this._fill = this.stylefill !== 'empty';
-    if (this.lefttext !== null) this._leftText = this.lefttext;
-    if (this.centertext !== null) this._centerText = this.centertext;
-    if (this.righttext !== null) this._rightText = this.righttext;
+    if (this.value !== null)
+      this._value = Math.max(parseFloat(this.value), 0);
+    if (this.maxvalue !== null)
+      this._maxValue = Math.max(parseFloat(this.maxvalue), 0);
+    if (this.extravalue !== null)
+      this._extraValue = Math.max(0, parseInt(this.extravalue));
+    if (this.extracolor !== null)
+      this._extraColor = this.extracolor;
+    if (this.width !== null)
+      this._width = Math.max(parseInt(this.width), 1);
+    if (this.height !== null)
+      this._height = Math.max(parseInt(this.height), 1);
+    if (this.bg !== null)
+      this._bg = this.bg;
+    if (this.fg !== null)
+      this._fg = this.fg;
+    if (this.scale !== null)
+      this._scale = Math.max(parseFloat(this.scale), 0.01);
+    if (this.toward !== null)
+      this._towardRight = this.toward !== 'left';
+    if (this.stylefill !== null)
+      this._fill = this.stylefill !== 'empty';
+    if (this.lefttext !== null)
+      this._leftText = this.lefttext;
+    if (this.centertext !== null)
+      this._centerText = this.centertext;
+    if (this.righttext !== null)
+      this._rightText = this.righttext;
   }
 
   // // These would be used by document.registerElement, which is deprecated but

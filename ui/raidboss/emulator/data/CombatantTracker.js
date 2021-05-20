@@ -164,17 +164,28 @@ export default class CombatantTracker {
 
     const state = {};
 
-    if (line.x !== undefined) state.posX = line.x;
-    if (line.y !== undefined) state.posY = line.y;
-    if (line.z !== undefined) state.posZ = line.z;
-    if (line.heading !== undefined) state.heading = line.heading;
-    if (line.targetable !== undefined) state.targetable = line.targetable;
-    if (line.hp !== undefined) state.HP = line.hp;
-    if (line.maxHp !== undefined) state.maxHP = line.maxHp;
-    if (line.mp !== undefined) state.MP = line.mp;
-    if (line.maxMp !== undefined) state.maxMP = line.maxMp;
-    if (line.jobName !== undefined) state.job = line.jobName;
-    if (line.level !== undefined) state.level = line.level;
+    if (line.x !== undefined)
+      state.posX = line.x;
+    if (line.y !== undefined)
+      state.posY = line.y;
+    if (line.z !== undefined)
+      state.posZ = line.z;
+    if (line.heading !== undefined)
+      state.heading = line.heading;
+    if (line.targetable !== undefined)
+      state.targetable = line.targetable;
+    if (line.hp !== undefined)
+      state.HP = line.hp;
+    if (line.maxHp !== undefined)
+      state.maxHP = line.maxHp;
+    if (line.mp !== undefined)
+      state.MP = line.mp;
+    if (line.maxMp !== undefined)
+      state.maxMP = line.maxMp;
+    if (line.jobName !== undefined)
+      state.job = line.jobName;
+    if (line.level !== undefined)
+      state.level = line.level;
 
     return state;
   }
@@ -185,14 +196,22 @@ export default class CombatantTracker {
 
     const state = {};
 
-    if (line.targetX !== undefined) state.posX = line.targetX;
-    if (line.targetY !== undefined) state.posY = line.targetY;
-    if (line.targetZ !== undefined) state.posZ = line.targetZ;
-    if (line.targetHeading !== undefined) state.heading = line.targetHeading;
-    if (line.targetHp !== undefined) state.HP = line.targetHp;
-    if (line.targetMaxHp !== undefined) state.maxHP = line.targetMaxHp;
-    if (line.targetMp !== undefined) state.MP = line.targetMp;
-    if (line.targetMaxMp !== undefined) state.maxMP = line.targetMaxMp;
+    if (line.targetX !== undefined)
+      state.posX = line.targetX;
+    if (line.targetY !== undefined)
+      state.posY = line.targetY;
+    if (line.targetZ !== undefined)
+      state.posZ = line.targetZ;
+    if (line.targetHeading !== undefined)
+      state.heading = line.targetHeading;
+    if (line.targetHp !== undefined)
+      state.HP = line.targetHp;
+    if (line.targetMaxHp !== undefined)
+      state.maxHP = line.targetMaxHp;
+    if (line.targetMp !== undefined)
+      state.MP = line.targetMp;
+    if (line.targetMaxMp !== undefined)
+      state.maxMP = line.targetMaxMp;
 
     return state;
   }
