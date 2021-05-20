@@ -190,17 +190,28 @@ export default class TimerIcon extends HTMLElement {
     this._timer = 0;
     this._hideTimer = 0;
 
-    if (this.duration !== null) this._duration = Math.max(parseFloat(this.duration), 0);
-    if (this.width !== null) this._width = Math.max(parseInt(this.width), 1);
-    if (this.height !== null) this._height = Math.max(parseInt(this.height), 1);
-    if (this.bordercolor !== null) this._borderFg = this.bordercolor;
-    if (this.bordersize !== null) this._colorBorderSize = Math.max(parseInt(this.bordersize), 0);
-    if (this.scale !== null) this._scale = Math.max(parseFloat(this.scale), 0.01);
-    if (this.hideafter !== null && this.hideafter !== '') this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
-    if (this.icon !== null) this._icon = this.icon;
-    if (this.zoom !== null) this._zoom = Math.max(parseInt(this.zoom), 0);
-    if (this.text !== null) this._text = this.text;
-    if (this.textcolor !== null) this._textColor = this.textcolor;
+    if (this.duration !== null)
+      this._duration = Math.max(parseFloat(this.duration), 0);
+    if (this.width !== null)
+      this._width = Math.max(parseInt(this.width), 1);
+    if (this.height !== null)
+      this._height = Math.max(parseInt(this.height), 1);
+    if (this.bordercolor !== null)
+      this._borderFg = this.bordercolor;
+    if (this.bordersize !== null)
+      this._colorBorderSize = Math.max(parseInt(this.bordersize), 0);
+    if (this.scale !== null)
+      this._scale = Math.max(parseFloat(this.scale), 0.01);
+    if (this.hideafter !== null && this.hideafter !== '')
+      this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
+    if (this.icon !== null)
+      this._icon = this.icon;
+    if (this.zoom !== null)
+      this._zoom = Math.max(parseInt(this.zoom), 0);
+    if (this.text !== null)
+      this._text = this.text;
+    if (this.textcolor !== null)
+      this._textColor = this.textcolor;
   }
 
   init(root: ShadowRoot): void {

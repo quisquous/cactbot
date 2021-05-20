@@ -110,7 +110,8 @@ export const removeOverlayListener: IRemoveOverlayListener = (event, cb): void =
     const list = subscribers[event];
     const pos = list?.indexOf(cb as VoidFunc<unknown>);
 
-    if (pos && pos > -1) list?.splice(pos, 1);
+    if (pos && pos > -1)
+      list?.splice(pos, 1);
   }
 };
 
@@ -165,7 +166,8 @@ export const setCallOverlayHandlerOverride = (override?: IOverlayHandler): IOver
 };
 
 export const init = (): void => {
-  if (inited) return;
+  if (inited)
+    return;
 
   if (typeof window !== 'undefined') {
     wsUrl = /[\?&]OVERLAY_WS=([^&]+)/.exec(window.location.href);

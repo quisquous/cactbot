@@ -127,7 +127,8 @@ class Bars {
     if (bars) {
       const barList = bars.children;
       for (const bar of barList) {
-        if (bar.id === 'hp-bar' || bar.id === 'mp-bar') continue;
+        if (bar.id === 'hp-bar' || bar.id === 'mp-bar')
+          continue;
         if (this.isPVPZone)
           bar.style.display = 'none';
         else
@@ -524,7 +525,8 @@ class Bars {
   }
 
   _updateHealth() {
-    if (!this.o.healthBar) return;
+    if (!this.o.healthBar)
+      return;
     this.o.healthBar.value = this.hp;
     this.o.healthBar.maxvalue = this.maxHP;
     this.o.healthBar.extravalue = this.currentShield;
@@ -540,7 +542,8 @@ class Bars {
   }
 
   _updateMPTicker() {
-    if (!this.o.mpTicker) return;
+    if (!this.o.mpTicker)
+      return;
     const delta = this.mp - this.prevMP;
     this.prevMP = this.mp;
 
@@ -554,9 +557,12 @@ class Bars {
 
     const baseTick = this.inCombat ? kMPCombatRate : kMPNormalRate;
     let umbralTick = 0;
-    if (this.umbralStacks === -1) umbralTick = kMPUI1Rate;
-    if (this.umbralStacks === -2) umbralTick = kMPUI2Rate;
-    if (this.umbralStacks === -3) umbralTick = kMPUI3Rate;
+    if (this.umbralStacks === -1)
+      umbralTick = kMPUI1Rate;
+    if (this.umbralStacks === -2)
+      umbralTick = kMPUI2Rate;
+    if (this.umbralStacks === -3)
+      umbralTick = kMPUI3Rate;
 
     const mpTick = Math.floor(this.maxMP * baseTick) + Math.floor(this.maxMP * umbralTick);
     if (delta === mpTick && this.umbralStacks <= 0) // MP ticks disabled in AF
@@ -564,15 +570,18 @@ class Bars {
 
     // Update color based on the astral fire/ice state
     let colorTag = 'mp-tick-color';
-    if (this.umbralStacks < 0) colorTag = 'mp-tick-color.ice';
-    if (this.umbralStacks > 0) colorTag = 'mp-tick-color.fire';
+    if (this.umbralStacks < 0)
+      colorTag = 'mp-tick-color.ice';
+    if (this.umbralStacks > 0)
+      colorTag = 'mp-tick-color.fire';
     this.o.mpTicker.fg = computeBackgroundColorFrom(this.o.mpTicker, colorTag);
   }
 
   _updateMana() {
     this._updateMPTicker();
 
-    if (!this.o.manaBar) return;
+    if (!this.o.manaBar)
+      return;
     this.o.manaBar.value = this.mp;
     this.o.manaBar.maxvalue = this.maxMP;
     let lowMP = -1;
@@ -604,13 +613,15 @@ class Bars {
   }
 
   _updateCp() {
-    if (!this.o.cpBar) return;
+    if (!this.o.cpBar)
+      return;
     this.o.cpBar.value = this.cp;
     this.o.cpBar.maxvalue = this.maxCP;
   }
 
   _updateGp() {
-    if (!this.o.gpBar) return;
+    if (!this.o.gpBar)
+      return;
     this.o.gpBar.value = this.gp;
     this.o.gpBar.maxvalue = this.maxGP;
 
@@ -722,7 +733,8 @@ class Bars {
   }
 
   _setPullCountdown(seconds) {
-    if (!this.o.pullCountdown) return;
+    if (!this.o.pullCountdown)
+      return;
 
     const inCountdown = seconds > 0;
     const showingCountdown = parseFloat(this.o.pullCountdown.duration) > 0;

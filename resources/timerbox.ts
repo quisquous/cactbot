@@ -147,14 +147,16 @@ export default class TimerBox extends HTMLElement {
 
   // The length remaining in the count down.
   get value(): string {
-    if (!this._start) return this._duration.toString();
+    if (!this._start)
+      return this._duration.toString();
     const elapsedMs = new Date().getTime() - this._start;
     return Math.max(0, this._duration - (elapsedMs / 1000)).toString();
   }
 
   // The elapsed time.
   get elapsed(): string {
-    if (!this._start) return '0';
+    if (!this._start)
+      return '0';
     return ((new Date().getTime() - this._start) / 1000).toString();
   }
 
@@ -210,14 +212,22 @@ export default class TimerBox extends HTMLElement {
     this._timer = 0;
     this._animationFrame = 0;
 
-    if (this.duration !== null) this._duration = Math.max(parseFloat(this.duration), 0);
-    if (this.threshold !== null) this._threshold = parseFloat(this.threshold);
-    if (this.bg !== null) this._bg = this.bg;
-    if (this.fg !== null) this._fg = this.fg;
-    if (this.scale !== null) this._scale = Math.max(parseFloat(this.scale), 0.01);
-    if (this.toward !== null) this._towardTop = this.toward !== 'bottom';
-    if (this.stylefill !== null) this._fill = this.stylefill !== 'empty';
-    if (this.hideafter !== null && this.hideafter !== '') this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
+    if (this.duration !== null)
+      this._duration = Math.max(parseFloat(this.duration), 0);
+    if (this.threshold !== null)
+      this._threshold = parseFloat(this.threshold);
+    if (this.bg !== null)
+      this._bg = this.bg;
+    if (this.fg !== null)
+      this._fg = this.fg;
+    if (this.scale !== null)
+      this._scale = Math.max(parseFloat(this.scale), 0.01);
+    if (this.toward !== null)
+      this._towardTop = this.toward !== 'bottom';
+    if (this.stylefill !== null)
+      this._fill = this.stylefill !== 'empty';
+    if (this.hideafter !== null && this.hideafter !== '')
+      this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
   }
 
   init(root: ShadowRoot): void {
@@ -351,7 +361,8 @@ export default class TimerBox extends HTMLElement {
   }
 
   draw(): void {
-    if (!this._connected) return;
+    if (!this._connected)
+      return;
 
     const elapsedSec = (new Date().getTime() - this._start) / 1000;
     const remainingSec = Math.max(0, this._duration - elapsedSec);
@@ -391,7 +402,8 @@ export default class TimerBox extends HTMLElement {
   }
 
   reset(): void {
-    if (!this._connected) return;
+    if (!this._connected)
+      return;
 
     this.show();
     clearTimeout(this._hideTimer ?? 0);

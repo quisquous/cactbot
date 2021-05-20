@@ -503,7 +503,8 @@ export class Timeline {
     // Sort by time, but when the time is the same, sort by file order.
     // Then assign a sortKey to each event so that we can maintain that order.
     this.events.sort((a, b) => {
-      if (a.time === b.time) return a.id - b.id;
+      if (a.time === b.time)
+        return a.id - b.id;
       return a.time - b.time;
     });
     this.events.forEach((event, idx) => event.sortKey = idx);

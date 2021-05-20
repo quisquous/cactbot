@@ -58,8 +58,10 @@ export class CoinachReader {
       }
     }
 
-    if (!coinachPath) throw new CoinachError('coinach path not found');
-    if (!ffxivPath) throw new CoinachError('ffxiv path not found');
+    if (!coinachPath)
+      throw new CoinachError('coinach path not found');
+    if (!ffxivPath)
+      throw new CoinachError('ffxiv path not found');
     this.coinachPath = coinachPath;
     this.ffxivPath = ffxivPath;
 

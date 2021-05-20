@@ -65,7 +65,8 @@ export function calcGCDFromStat(bars, stat, actionDelay) {
     if (bars.speedBuffs.shifu) {
       if (bars.level > 77)
         type1Buffs += 13;
-      else type1Buffs += 10;
+      else
+        type1Buffs += 10;
     }
   }
 

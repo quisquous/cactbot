@@ -185,6 +185,7 @@ module.exports = {
     'no-undef': 'off',
     'no-unused-vars': 'off',
     'no-useless-escape': 'off',
+    'nonblock-statement-body-position': ['error', 'below'],
     'object-curly-newline': [
       'error',
       {
