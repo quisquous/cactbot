@@ -1,32 +1,33 @@
-import LineEvent from './LineEvent';
 import { LineEvent0x1A } from './LineEvent0x1A';
 import EmulatorCommon from '../../EmulatorCommon';
+import LogRepository from './LogRepository';
 
 // Lose status effect event
 // Extend the gain status event to reduce duplicate code since they're
 // the same from a data perspective
 export class LineEvent0x1E extends LineEvent0x1A {
-  constructor(repo, line, parts) {
+  constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
   }
-  convert() {
+
+  convert(_: LogRepository): void {
     let stackCountText = '';
     if (this.stacks > 0 && this.stacks < 20 &&
       LineEvent0x1A.showStackCountFor.includes(this.abilityId))
-      stackCountText = ' (' + this.stacks + ')';
+      stackCountText = ' (' + this.stacks.toString() + ')';
 
-    this.convertedLine = this.prefix() +
-      this.targetId + ':' + this.targetName +
+    this.convertedLine = this.prefix() + this.targetId +
+      ':' + this.targetName +
       ' loses the effect of ' + this.abilityName +
       ' from ' + this.fallbackResolvedTargetName +
-      '.' + stackCountText;
+      ' for ' + this.durationString + ' Seconds.' + stackCountText;
 
-    this.properCaseConvertedLine = this.prefix() +
-      this.targetId + ':' + EmulatorCommon.properCase(this.targetName) +
+    this.properCaseConvertedLine = this.prefix() + this.targetId +
+      ':' + EmulatorCommon.properCase(this.targetName) +
       ' loses the effect of ' + this.abilityName +
       ' from ' + EmulatorCommon.properCase(this.fallbackResolvedTargetName) +
-      '.' + stackCountText;
+      ' for ' + this.durationString + ' Seconds.' + stackCountText;
   }
 }
 
-export class LineEvent30 extends LineEvent0x1E {}
+export class LineEvent30 extends LineEvent0x1E { }
