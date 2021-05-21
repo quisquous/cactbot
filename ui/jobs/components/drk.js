@@ -1,6 +1,11 @@
 import { kAbility } from '../constants';
 import { computeBackgroundColorFrom } from '../utils.js';
 
+let resetFunc = null;
+let tid1;
+let tid2;
+let tid3;
+
 export function setup(bars) {
   const bloodBox = bars.addResourceBox({
     classList: ['drk-color-blood'],
@@ -58,7 +63,7 @@ export function setup(bars) {
     bloodWeapon.duration = 10;
     bloodWeapon.threshold = 10;
     bloodWeapon.fg = computeBackgroundColorFrom(bloodWeapon, 'drk-color-bloodweapon.active');
-    setTimeout(() => {
+    tid1 = setTimeout(() => {
       bloodWeapon.duration = 50;
       bloodWeapon.threshold = bars.gcdSkill * 2;
       bloodWeapon.fg = computeBackgroundColorFrom(bloodWeapon, 'drk-color-bloodweapon');
@@ -74,7 +79,7 @@ export function setup(bars) {
     delirium.duration = 10 + 0.5;
     delirium.threshold = 20;
     delirium.fg = computeBackgroundColorFrom(delirium, 'drk-color-delirium.active');
-    setTimeout(() => {
+    tid2 = setTimeout(() => {
       delirium.duration = 80 - 0.5;
       delirium.threshold = bars.gcdSkill * 2;
       delirium.fg = computeBackgroundColorFrom(delirium, 'drk-color-delirium');
@@ -90,10 +95,32 @@ export function setup(bars) {
     livingShadow.duration = 24;
     livingShadow.threshold = 24;
     livingShadow.fg = computeBackgroundColorFrom(livingShadow, 'drk-color-livingshadow.active');
-    setTimeout(() => {
+    tid3 = setTimeout(() => {
       livingShadow.duration = 96;
       livingShadow.threshold = bars.gcdSkill * 4;
       livingShadow.fg = computeBackgroundColorFrom(livingShadow, 'drk-color-livingshadow');
     }, 24000);
   });
+
+  resetFunc = (bars) => {
+    comboTimer.duration = 0;
+    bloodWeapon.duration = 0;
+    bloodWeapon.threshold = bars.gcdSkill * 2;
+    bloodWeapon.fg = computeBackgroundColorFrom(bloodWeapon, 'drk-color-bloodweapon');
+    delirium.duration = 0;
+    delirium.threshold = bars.gcdSkill * 2;
+    delirium.fg = computeBackgroundColorFrom(delirium, 'drk-color-delirium');
+    livingShadow.duration = 0;
+    livingShadow.threshold = bars.gcdSkill * 4;
+    livingShadow.fg = computeBackgroundColorFrom(livingShadow, 'drk-color-livingshadow');
+    darksideBox.duration = 0;
+    clearTimeout(tid1);
+    clearTimeout(tid2);
+    clearTimeout(tid3);
+  };
+}
+
+export function reset(bars) {
+  if (resetFunc)
+    resetFunc(bars);
 }

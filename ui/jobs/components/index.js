@@ -1,21 +1,22 @@
-import { setup as setupPld } from './pld';
-import { setup as setupWar } from './war';
-import { setup as setupDrk } from './drk';
-import { setup as setupGnb } from './gnb';
-import { setup as setupWhm } from './whm';
-import { setup as setupSch } from './sch';
-import { setup as setupAst } from './ast';
-import { setup as setupMnk } from './mnk';
-import { setup as setupDrg } from './drg';
-import { setup as setupNin } from './nin';
-import { setup as setupSam } from './sam';
-import { setup as setupBrd } from './brd';
-import { setup as setupMch } from './mch';
-import { setup as setupDnc } from './dnc';
-import { setup as setupBlm } from './blm';
-import { setup as setupSmn } from './smn';
-import { setup as setupRdm } from './rdm';
-import { setup as setupBlu } from './blu';
+import { setup as setupPld, reset as resetPld } from './pld';
+import { setup as setupWar, reset as resetWar } from './war';
+import { setup as setupDrk, reset as resetDrk } from './drk';
+import { setup as setupGnb, reset as resetGnb } from './gnb';
+import { setup as setupWhm, reset as resetWhm } from './whm';
+import { setup as setupSch, reset as resetSch } from './sch';
+import { setup as setupAst, reset as resetAst } from './ast';
+import { setup as setupMnk, reset as resetMnk } from './mnk';
+import { setup as setupDrg, reset as resetDrg } from './drg';
+import { setup as setupNin, reset as resetNin } from './nin';
+import { setup as setupSam, reset as resetSam } from './sam';
+import { setup as setupBrd, reset as resetBrd } from './brd';
+import { setup as setupMch, reset as resetMch } from './mch';
+import { setup as setupDnc, reset as resetDnc } from './dnc';
+import { setup as setupBlm, reset as resetBlm } from './blm';
+import { setup as setupSmn, reset as resetSmn } from './smn';
+import { setup as setupRdm, reset as resetRdm } from './rdm';
+import { setup as setupBlu, reset as resetBlu } from './blu';
+
 
 export function getSetup(job) {
   return {
@@ -37,5 +38,28 @@ export function getSetup(job) {
     'SMN': setupSmn,
     'RDM': setupRdm,
     'BLU': setupBlu,
+  }[job.toUpperCase()];
+}
+
+export function getReset(job) {
+  return {
+    'PLD': resetPld,
+    'WAR': resetWar,
+    'DRK': resetDrk,
+    'GNB': resetGnb,
+    'WHM': resetWhm,
+    'SCH': resetSch,
+    'AST': resetAst,
+    'MNK': resetMnk,
+    'DRG': resetDrg,
+    'NIN': resetNin,
+    'SAM': resetSam,
+    'BRD': resetBrd,
+    'MCH': resetMch,
+    'DNC': resetDnc,
+    'BLM': resetBlm,
+    'SMN': resetSmn,
+    'RDM': resetRdm,
+    'BLU': resetBlu,
   }[job.toUpperCase()];
 }

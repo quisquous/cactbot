@@ -1,6 +1,8 @@
 import EffectId from '../../../resources/effect_id';
 import { kAbility } from '../constants';
 
+let resetFunc = null;
+
 export function setup(bars) {
   const thunderDot = bars.addProcBox({
     id: 'blm-dot-thunder',
@@ -134,4 +136,15 @@ export function setup(bars) {
         xp.classList.remove('pulse');
     }
   });
+
+  resetFunc = (bars) => {
+    thunderDot.duration = 0;
+    thunderProc.duration = 0;
+    fireProc.duration = 0;
+  };
+}
+
+export function reset(bars) {
+  if (resetFunc)
+    resetFunc(bars);
 }

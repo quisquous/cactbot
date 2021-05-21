@@ -1,6 +1,8 @@
 import { kAbility } from '../constants';
 import { calcGCDFromStat } from '../utils';
 
+let resetFunc = null;
+
 export function setup(bars) {
   const offguardBox = bars.addProcBox({
     id: 'blu-procs-offguard',
@@ -48,4 +50,15 @@ export function setup(bars) {
     lucidBox.duration = 0;
     lucidBox.duration = 60;
   });
+
+  resetFunc = (bars) => {
+    tormentBox.duration = 0;
+    offguardBox.duration = 0;
+    lucidBox.duration = 0;
+  };
+}
+
+export function reset(bars) {
+  if (resetFunc)
+    resetFunc(bars);
 }

@@ -1,6 +1,9 @@
 import { kAbility } from '../constants';
 import { calcGCDFromStat, computeBackgroundColorFrom } from '../utils';
 
+let resetFunc = null;
+let tid1;
+
 export function setup(bars) {
   const cartridgeBox = bars.addResourceBox({
     classList: ['gnb-color-cartridge'],
@@ -15,7 +18,7 @@ export function setup(bars) {
     noMercyBox.duration = 20;
     noMercyBox.threshold = 1000;
     noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy.active');
-    setTimeout(() => {
+    tid1 = setTimeout(() => {
       noMercyBox.duration = 40;
       noMercyBox.threshold = bars.gcdSkill + 1;
       noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy');
@@ -78,4 +81,20 @@ export function setup(bars) {
     else
       cartridgeBox.parentNode.classList.remove('full');
   });
+
+  resetFunc = (bars) => {
+    noMercyBox.duration = 0;
+    noMercyBox.threshold = bars.gcdSkill + 1;
+    noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy');
+    bloodfestBox.duration = 0;
+    gnashingFangBox.duration = 0;
+    cartridgeComboTimer.duration = 0;
+    comboTimer.duration = 0;
+    clearTimeout(tid1);
+  };
+}
+
+export function reset(bars) {
+  if (resetFunc)
+    resetFunc(bars);
 }

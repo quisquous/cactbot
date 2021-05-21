@@ -1,6 +1,8 @@
 import EffectId from '../../../resources/effect_id';
 import { kAbility } from '../constants';
 
+let resetFunc = null;
+
 export function setup(bars) {
   const comboTimer = bars.addTimerBar({
     id: 'sam-timers-combo',
@@ -118,4 +120,17 @@ export function setup(bars) {
     higanbana.valuescale = bars.gcdSkill;
     higanbana.threshold = bars.gcdSkill * 4;
   });
+
+  resetFunc = (bars) => {
+    comboTimer.duration = 0;
+    shifu.duration = 0;
+    jinpu.duration = 0;
+    tsubameGaeshi.duration = 0;
+    higanbana.duration = 0;
+  };
+}
+
+export function reset(bars) {
+  if (resetFunc)
+    resetFunc(bars);
 }

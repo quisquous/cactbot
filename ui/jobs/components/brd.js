@@ -1,6 +1,8 @@
 import EffectId from '../../../resources/effect_id';
 import { computeBackgroundColorFrom } from '../utils';
 
+let resetFunc = null;
+
 export function setup(bars) {
   const straightShotProc = bars.addProcBox({
     id: 'brd-procs-straightshotready',
@@ -141,4 +143,18 @@ export function setup(bars) {
     bars.speedBuffs.museStacks = 0;
     bars.speedBuffs.paeonStacks = 0;
   });
+
+  resetFunc = (bars) => {
+    straightShotProc.duration = 0;
+    stormBiteBox.duration = 0;
+    causticBiteBox.duration = 0;
+    repertoireTimer.duration = 0;
+    ethosStacks = 0;
+    songBox.duration = 0;
+  };
+}
+
+export function reset(bars) {
+  if (resetFunc)
+    resetFunc(bars);
 }

@@ -2,6 +2,9 @@ import EffectId from '../../../resources/effect_id';
 import { kAbility } from '../constants';
 import { computeBackgroundColorFrom } from '../utils';
 
+let resetFunc = null;
+let tid1;
+
 export function setup(bars) {
   const ninki = bars.addResourceBox({
     classList: ['nin-color-ninki'],
@@ -54,7 +57,7 @@ export function setup(bars) {
     trickAttack.duration = 15;
     trickAttack.threshold = 1000;
     trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack.active');
-    setTimeout(() => {
+    tid1 = setTimeout(() => {
       trickAttack.duration = 45;
       trickAttack.threshold = bars.gcdSkill * 4;
       trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack');
@@ -99,4 +102,21 @@ export function setup(bars) {
     if (skill)
       comboTimer.duration = 15;
   });
+
+  resetFunc = (bars) => {
+    bunshin.duration = 0;
+    mudraTriggerCd = true;
+    ninjutsu.duration = 0;
+    trickAttack.duration = 0;
+    trickAttack.threshold = bars.gcdSkill * 4;
+    trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack');
+    hutonBox.duration = 0;
+    comboTimer.duration = 0;
+    clearTimeout(tid1);
+  };
+}
+
+export function reset(bars) {
+  if (resetFunc)
+    resetFunc(bars);
 }

@@ -1,5 +1,6 @@
 import { kAbility } from '../constants';
 
+let resetFunc = null;
 const cardsMap = {
   'Balance': { 'bonus': 'melee', 'seal': 'Solar' },
   'Bole': { 'bonus': 'range', 'seal': 'Solar' },
@@ -90,4 +91,15 @@ export function setup(bars) {
     lucidBox.valuescale = bars.gcdSpell;
     lucidBox.threshold = bars.gcdSpell + 1;
   });
+
+  resetFunc = (bars) => {
+    combustBox.duration = 0;
+    drawBox.duration = 0;
+    lucidBox.duration = 0;
+  };
+}
+
+export function reset(bars) {
+  if (resetFunc)
+    resetFunc(bars);
 }

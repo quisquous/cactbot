@@ -2,6 +2,10 @@ import { kAbility } from '../constants';
 import EffectId from '../../../resources/effect_id';
 import { calcGCDFromStat, computeBackgroundColorFrom } from '../utils';
 
+let resetFunc = null;
+let tid1;
+let tid2;
+
 export function setup(bars) {
   const comboTimer = bars.addTimerBar({
     id: 'mch-timers-combo',
@@ -112,12 +116,12 @@ export function setup(bars) {
     wildFireBox.duration = 10 + 0.9; // animation delay
     wildFireBox.threshold = 1000;
     wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire.active');
-    setTimeout(() => {
+    tid1 = setTimeout(() => {
       wildFireBox.duration = 110 - 0.9;
       wildFireBox.threshold = bars.gcdSkill + 1;
       wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire');
     }, 10000);
-    setTimeout(() => {
+    tid2 = setTimeout(() => {
       stacksContainer.classList.add('hide');
       wildFireCounts = 0;
     }, 15000);
@@ -131,4 +135,24 @@ export function setup(bars) {
     wildFireBox.valuescale = bars.gcdSkill;
     wildFireBox.threshold = bars.gcdSkill + 1;
   });
+
+  resetFunc = (bars) => {
+    comboTimer.duration = 0;
+    drillBox.duration = 0;
+    airAnchorBox.duration = 0;
+    wildFireCounts = 0;
+    wildFireActive = false;
+    refreshWildFireGauge();
+    wildFireBox.duration = 0;
+    wildFireBox.threshold = bars.gcdSkill + 1;
+    wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire');
+    stacksContainer.classList.add('hide');
+    clearTimeout(tid1);
+    clearTimeout(tid2);
+  };
+}
+
+export function reset(bars) {
+  if (resetFunc)
+    resetFunc(bars);
 }
