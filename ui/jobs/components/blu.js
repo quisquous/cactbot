@@ -49,3 +49,9 @@ export function setup(bars) {
     lucidBox.duration = 60;
   });
 }
+
+export function reset(bars) {
+  tormentBox.duration = 0;
+  offguardBox.duration = 0;
+  lucidBox.duration = 0;
+}

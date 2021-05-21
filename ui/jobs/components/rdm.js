@@ -96,3 +96,9 @@ export function setup(bars) {
   });
   bars.onYouLoseEffect(EffectId.VerfireReady, () => blackProc.duration = 0);
 }
+
+export function reset(bars) {
+  lucidBox.duration = 0;
+  whiteProc.duration = 0;
+  blackProc.duration = 0;
+}

@@ -96,3 +96,12 @@ export function setup(bars) {
     }
   });
 }
+
+export function reset(bars) {
+  highJumpBox.duration = 0;
+  disembowelBox.duration = 0;
+  lanceChargeBox.duration = 0;
+  lanceChargeBox.fg = computeBackgroundColorFrom(lanceChargeBox, 'drg-color-lancecharge');
+  dragonSightBox.duration = 0;
+  dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight');
+}

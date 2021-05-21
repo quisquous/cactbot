@@ -97,3 +97,17 @@ export function setup(bars) {
     }, 24000);
   });
 }
+
+export function reset(bars) {
+  comboTimer.duration = 0;
+  bloodWeapon.duration = 0;
+  bloodWeapon.threshold = bars.gcdSkill * 2;
+  bloodWeapon.fg = computeBackgroundColorFrom(bloodWeapon, 'drk-color-bloodweapon');
+  delirium.duration = 0;
+  delirium.threshold = bars.gcdSkill * 2;
+  delirium.fg = computeBackgroundColorFrom(delirium, 'drk-color-delirium');
+  livingShadow.duration = 0;
+  livingShadow.threshold = bars.gcdSkill * 4;
+  livingShadow.fg = computeBackgroundColorFrom(livingShadow, 'drk-color-livingshadow');
+  darksideBox.duration = 0;
+}

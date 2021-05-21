@@ -135,3 +135,10 @@ export function setup(bars) {
     }
   });
 }
+
+export function reset(bars) {
+  thunderDot.duration = 0;
+  thunderProc.duration = 0;
+  fireProc.duration = 0;
+}
+

@@ -121,3 +121,18 @@ export function setup(bars) {
     flourish.threshold = bars.gcdSkill + 1;
   });
 }
+
+export function reset(bars) {
+  comboTimer.duration = 0;
+  standardStep.duration = 0;
+  technicalStep.duration = 0;
+  technicalIsActive = false;
+  elapsed = 0;
+  technicalStep.threshold = bars.gcdSkill + 1;
+  technicalStep.fg = computeBackgroundColorFrom(technicalStep, 'dnc-color-technicalstep');
+  flourish.duration = 0;
+  flourishEffect = [];
+  flourishIsActive = false;
+  flourish.threshold = bars.gcdSkill + 1;
+  flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
+}

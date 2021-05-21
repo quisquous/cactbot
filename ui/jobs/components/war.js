@@ -79,3 +79,9 @@ export function setup(bars) {
     eyeBox.valuescale = bars.gcdSkill;
   });
 }
+
+export function reset(bars) {
+  eyeBox.duration = 0;
+  comboTimer.duration = 0;
+  minSkillsUntilEye = 3;
+}

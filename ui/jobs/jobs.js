@@ -12,7 +12,7 @@ import { BuffTracker } from './buff_tracker';
 import ComboTracker from './combo_tracker';
 import { RegexesHolder, computeBackgroundColorFrom, calcGCDFromStat, doesJobNeedMPBar, makeAuraTimerIcon } from './utils';
 
-import { getSetup } from './components/index';
+import { getSetup, getReset } from './components/index';
 
 import './jobs_config';
 import '../../resources/resourcebar';
@@ -681,9 +681,12 @@ class Bars {
   }
 
   _onPartyWipe(e) {
-    // TODO: add reset for job-specific ui
     if (this.buffTracker)
       this.buffTracker.clear();
+    // Reset job-specific ui
+    const reset = getReset(this.job);
+    if (reset)
+      reset.bind(null, this)();
   }
 
   _onInCombatChanged(e) {

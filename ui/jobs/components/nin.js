@@ -100,3 +100,14 @@ export function setup(bars) {
       comboTimer.duration = 15;
   });
 }
+
+export function reset(bars) {
+  bunshin.duration = 0;
+  mudraTriggerCd = true;
+  ninjutsu.duration = 0;
+  trickAttack.duration = 0;
+  trickAttack.threshold = bars.gcdSkill * 4;
+  trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack');
+  hutonBox.duration = 0;
+  comboTimer.duration = 0;
+}

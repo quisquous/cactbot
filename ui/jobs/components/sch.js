@@ -79,3 +79,9 @@ export function setup(bars) {
     lucidBox.threshold = bars.gcdSpell + 1;
   });
 }
+
+export function reset(bars) {
+  bioBox.duration = 0;
+  aetherflowBox.duration = 0;
+  lucidBox.duration = 0;
+}

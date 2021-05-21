@@ -91,3 +91,9 @@ export function setup(bars) {
     lucidBox.threshold = bars.gcdSpell + 1;
   });
 }
+
+export function reset(bars) {
+  diaBox.duration = 0;
+  assizeBox.duration = 0;
+  lucidBox.duration = 0;
+}

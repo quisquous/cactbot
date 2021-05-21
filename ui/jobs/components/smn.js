@@ -159,3 +159,12 @@ export function setup(bars) {
     tranceBox.threshold = bars.gcdSpell + 7;
   });
 }
+
+export function reset(bars) {
+  furtherRuin = 0;
+  refreshFurtherRuin();
+  miasmaBox.duration = 0;
+  bioSmnBox.duration = 0;
+  energyDrainBox.duration = 0;
+  tranceBox.duration = 0;
+}

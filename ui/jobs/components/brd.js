@@ -141,3 +141,12 @@ export function setup(bars) {
     bars.speedBuffs.paeonStacks = 0;
   });
 }
+
+export function reset(bars) {
+  straightShotProc.duration = 0;
+  stormBiteBox.duration = 0;
+  causticBiteBox.duration = 0;
+  repertoireTimer.duration = 0;
+  ethosStacks = 0;
+  songBox.duration = 0;
+}

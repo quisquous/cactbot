@@ -68,3 +68,8 @@ export function setup(bars) {
     goreBox.threshold = bars.gcdSkill * 3 + 0.3;
   });
 }
+
+export function reset(bars) {
+  goreBox.duration = 0;
+  setAtonement(atonementBox, 0);
+}

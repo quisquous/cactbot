@@ -137,3 +137,11 @@ export function setup(bars) {
     EffectId.CoeurlForm,
   ], changeFormFunc);
 }
+
+export function reset(bars) {
+  twinSnakesBox.duration = 0;
+  demolishBox.duration = 0;
+  dragonKickBox.duration = 0;
+  formTimer.duration = 0;
+  formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
+}

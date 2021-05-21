@@ -132,3 +132,16 @@ export function setup(bars) {
     wildFireBox.threshold = bars.gcdSkill + 1;
   });
 }
+
+export function reset(bars) {
+  comboTimer.duration = 0;
+  drillBox.duration = 0;
+  airAnchorBox.duration = 0;
+  wildFireCounts = 0;
+  wildFireActive = false;
+  refreshWildFireGauge();
+  wildFireBox.duration = 0;
+  wildFireBox.threshold = bars.gcdSkill + 1;
+  wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire');
+  stacksContainer.classList.add('hide');
+}

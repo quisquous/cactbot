@@ -79,3 +79,13 @@ export function setup(bars) {
       cartridgeBox.parentNode.classList.remove('full');
   });
 }
+
+export function reset(bars) {
+  noMercyBox.duration = 0;
+  noMercyBox.threshold = bars.gcdSkill + 1;
+  noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy');
+  bloodfestBox.duration = 0;
+  gnashingFangBox.duration = 0;
+  cartridgeComboTimer.duration = 0;
+  comboTimer.duration = 0;
+}

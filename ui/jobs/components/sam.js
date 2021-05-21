@@ -119,3 +119,11 @@ export function setup(bars) {
     higanbana.threshold = bars.gcdSkill * 4;
   });
 }
+
+export function reset(bars) {
+  comboTimer.duration = 0;
+  shifu.duration = 0;
+  jinpu.duration = 0;
+  tsubameGaeshi.duration = 0;
+  higanbana.duration = 0;
+}
