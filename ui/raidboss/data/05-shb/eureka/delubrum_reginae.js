@@ -155,7 +155,7 @@ export default {
           fr: 'À droite',
           ja: '右',
           cn: '右',
-          ko: '오른쪽',
+          ko: '오른',
         },
         south: {
           en: 'Back',
@@ -171,7 +171,7 @@ export default {
           fr: 'À gauche',
           ja: '左',
           cn: '左',
-          ko: '왼쪽',
+          ko: '왼',
         },
         double: {
           en: '${dir1} > ${dir2}',
