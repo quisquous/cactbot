@@ -2060,7 +2060,7 @@ export default {
         'Maleficium': '마녀의 사술',
         'Maelstrom': '대격동',
         'Memory\'s End': '기억의 끝',
-        'Obliteration Laser': '',
+        'Obliteration Laser': '말소 레이저',
         'Palm Of Temperance': '거절의 손',
         'Paradise Lost': '실낙원',
         'Pillar Pierce': '고드름 격돌',
