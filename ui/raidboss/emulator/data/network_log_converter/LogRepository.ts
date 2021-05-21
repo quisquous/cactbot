@@ -1,19 +1,19 @@
-export default class LogRepository {
-  constructor() {
-    this.Combatants = {};
-    this.firstTimestamp = Number.MAX_SAFE_INTEGER;
-  }
+export type Combatant = {
+  name?: string;
+  job?: string;
+  spawn: number;
+  despawn: number;
+}
 
-  updateTimestamp(timestamp) {
+export default class LogRepository {
+  Combatants: { [id: string]: Combatant } = {};
+  firstTimestamp = Number.MAX_SAFE_INTEGER;
+
+  updateTimestamp(timestamp: number): void {
     this.firstTimestamp = Math.min(this.firstTimestamp, timestamp);
   }
 
-  updateCombatant(id, c = {
-    name: undefined,
-    job: undefined,
-    spawn: undefined,
-    despawn: undefined,
-  }) {
+  updateCombatant(id: string, c: Combatant): void {
     id = id.toUpperCase();
     if (id && id.length) {
       let combatant = this.Combatants[id];
@@ -34,20 +34,24 @@ export default class LogRepository {
     }
   }
 
-  resolveName(id, name, fallbackId = null, fallbackName = null) {
+  resolveName(
+      id: string,
+      name: string,
+      fallbackId: string | null = null,
+      fallbackName: string | null = null): string {
     let ret = name;
 
     if (fallbackId !== null) {
       if (id === 'E0000000' && ret === '') {
         if (fallbackId.startsWith('4'))
-          ret = fallbackName;
+          ret = fallbackName ?? '';
         else
           ret = 'Unknown';
       }
     }
 
     if (ret === '')
-      ret = this.Combatants[id].name;
+      ret = this.Combatants[id]?.name ?? '';
 
     return ret;
   }
