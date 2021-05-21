@@ -145,5 +145,6 @@ export function setup(bars) {
 }
 
 export function reset(bars) {
-  if (resetFunc) resetFunc(bars);
+  if (resetFunc)
+    resetFunc(bars);
 }
