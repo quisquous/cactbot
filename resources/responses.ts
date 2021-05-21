@@ -18,13 +18,14 @@
 // function that sets outputStrings and returns an object without doing
 // anything with data or matches.  See `responses_test.js`.
 
-import { LocaleText, ResponseOutput, ResponseFunc, TriggerFunc, TargetedMatches, Output } from '../types/trigger';
+import { LocaleText, ResponseOutput, ResponseFunc, TriggerFunc, TargetedMatches, Output, TriggerOutput } from '../types/trigger';
 import { RaidbossData as Data } from '../types/data';
+
 import Outputs from './outputs';
 
 type TargetedResponseOutput = ResponseOutput<TargetedMatches>;
 type TargetedResponseFunc = ResponseFunc<TargetedMatches>;
-type TargetedFunc = TriggerFunc<TargetedMatches>;
+type TargetedFunc = TriggerFunc<TargetedMatches, TriggerOutput>;
 type StaticResponseFunc = ResponseFunc<unknown>;
 
 type Severity = 'info' | 'alert' | 'alarm';

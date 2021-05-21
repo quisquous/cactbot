@@ -458,7 +458,7 @@ export class Timeline {
         }
       }
       if (!found) {
-        const text = `No match for timeline trigger ${trigger.regex.source} in ${trigger.id}`;
+        const text = `No match for timeline trigger ${trigger.regex?.source ?? ''} in ${trigger?.id ?? ''}`;
         this.errors.push({ error: text });
         console.error(`*** ERROR: ${text}`);
       }
@@ -479,7 +479,7 @@ export class Timeline {
       // Rather than matching triggers at run time, pre-match all the triggers
       // against timeline text and insert them as text events to run.
       for (const trigger of triggers ?? []) {
-        const m = trigger.regex.exec(e.name);
+        const m = trigger.regex?.exec(e.name);
         if (!m)
           continue;
 

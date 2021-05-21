@@ -1,9 +1,16 @@
+import { RaidbossData } from '../../../../../types/data';
+import { Output, TriggerSet } from '../../../../../types/trigger';
+
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
-export default {
+interface Data extends RaidbossData {
+  started?: boolean;
+}
+
+const triggerSet: TriggerSet = {
   zoneId: ZoneId.TheBindingCoilOfBahamutTurn1,
   triggers: [
     {
@@ -14,7 +21,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '制御システム', id: '5A7' }),
       netRegexCn: NetRegexes.startsUsing({ source: '自卫系统', id: '5A7' }),
       netRegexKo: NetRegexes.startsUsing({ source: '제어 시스템', id: '5A7' }),
-      condition: (data) => data.CanSilence(),
+      condition: (data: Data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
     {
@@ -26,7 +33,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'カドゥケウス', id: '4B8.*?', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '神杖巨蛇', id: '4B8.*?', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '카두케우스', id: '4B8.*?', capture: false }),
-      run: (data) => data.started = true,
+      run: (data: Data) => data.started = true,
     },
     {
       id: 'T1 Regorge',
@@ -37,7 +44,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '神杖巨蛇', id: '4BA' }),
       netRegexKo: NetRegexes.ability({ source: '카두케우스', id: '4BA' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data: Data, _matches: unknown, output: Output) => output.text?.(),
       outputStrings: {
         text: {
           en: 'Spit on YOU',
@@ -56,9 +63,9 @@ export default {
       netRegexJa: NetRegexes.addedCombatant({ name: 'カドゥケウス.*?', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '神杖巨蛇.*?', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '카두케우스.*?', capture: false }),
-      condition: (data) => data.started,
+      condition: (data: Data) => data.started,
       suppressSeconds: 5,
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data: Data, _matches: unknown, output: Output) => output.text?.(),
       outputStrings: {
         text: {
           en: 'Split',
@@ -80,7 +87,7 @@ export default {
       condition: Conditions.targetIsYou(),
       delaySeconds: 8,
       suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data: Data, _matches: unknown, output: Output) => output.text?.(),
       outputStrings: {
         text: {
           en: 'Hood Swing in 10',
@@ -101,7 +108,7 @@ export default {
       netRegexKo: NetRegexes.message({ line: '알라그 유적 will be sealed off.*?', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data: Data, _matches: unknown, output: Output) => output.text?.(),
       outputStrings: {
         text: {
           en: 'Slime Soon',
@@ -122,7 +129,7 @@ export default {
       netRegexKo: NetRegexes.addedCombatant({ name: '암흑물질 슬라임.*?', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data: Data, _matches: unknown, output: Output) => output.text?.(),
       outputStrings: {
         text: {
           en: 'Slime Soon',
@@ -182,3 +189,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

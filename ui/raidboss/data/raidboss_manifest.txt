@@ -3,7 +3,7 @@
 00-misc/test.txt
 02-arr/dungeon/brayfloxs_longstop.js
 02-arr/dungeon/haukke_manor.js
-02-arr/raid/t1.js
+02-arr/raid/t1.ts
 02-arr/raid/t10.js
 02-arr/raid/t10.txt
 02-arr/raid/t11.js
@@ -39,7 +39,7 @@
 02-arr/trial/titan-nm.txt
 02-arr/trial/titan-hm.js
 02-arr/trial/titan-hm.txt
-02-arr/trial/titan-ex.js
+02-arr/trial/titan-ex.ts
 02-arr/trial/titan-ex.txt
 03-hw/alliance/dun_scaith.js
 03-hw/alliance/dun_scaith.txt
