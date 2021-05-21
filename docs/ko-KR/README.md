@@ -346,7 +346,7 @@ It has more fleshed out support for some jobs but is *strongly* a Work In Progre
 |:-:|:-:|
 |<img src="../../resources/ffxiv/jobs/pld-large.png" width="30px"/><br> 나이트|Shows current Oath amount, and atonement stacks. Also tracks Goring Blade DoT. |
 |<img src="../../resources/ffxiv/jobs/war-large.png" width="30px"/><br> 전사|Shows the beast amount, and tracks the remaining Storm's Eye buff time in gcds, and shows combo time remaining.|
-|<img src="../../resources/ffxiv/jobs/drk-large.png" width="30px"/><br> 암흑기사|Shows the blood amount and darkside time, and shows combo time remaining.|
+|<img src="../../resources/ffxiv/jobs/drk-large.png" width="30px"/><br> 암흑기사|Shows the blood amount and darkside time, BloodWeapon&Delirium&LivingShadow duration and cooldown, and shows combo time remaining.|
 |<img src="../../resources/ffxiv/jobs/gnb-large.png" width="30px"/><br> 건브레이커|Shows No Mercy duration&cooldown, Bloodfest&Gnashing Fang cooldown, Cartridge amount, and shows combo time remaining.|
 |<img src="../../resources/ffxiv/jobs/whm-large.png" width="30px"/><br> 백마도사|Shows Heal&Blood Lily amount, time to next Lily, DoTs remaining time, and shows Assize&Lucid Dreaming cooldown.|
 |<img src="../../resources/ffxiv/jobs/sch-large.png" width="30px"/><br> 학자|Shows Aetherflow stacks, Fairy gauge amount/time remaining, DoTs remaining time, and shows Aetherflow&Lucid Dreaming cooldown.|

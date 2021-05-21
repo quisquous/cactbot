@@ -378,8 +378,8 @@ Raidboss 타임라인을 덮어쓰는 것은 [Raidboss 트리거 덮어쓰기](#
 ```javascript
 Options.PlayerNicks = {
   // '이름 성': '닉네임',
-  'Banana Nana', 'Nana',
-  'The Great\'one', 'Joe', // The Great'one와 같이 이름에 작은 따옴표가 포함된 경우 그 앞에 역슬래시를 추가해야 합니다.
+  'Banana Nana': 'Nana',
+  'The Great\'one': 'Joe', // The Great'one와 같이 이름에 작은 따옴표가 포함된 경우 그 앞에 역슬래시를 추가해야 합니다.
   'Viewing Cutscene': 'Cut',
   // 기타 더 많은 닉네임을 추가할 수 있습니다.
 };
