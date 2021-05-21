@@ -838,7 +838,7 @@ export default {
           fr: 'Grosse AoE, allez au milieu',
           ja: '大ダメージ、中へ',
           cn: '超大伤害，去中间',
-          ko: '대형 장판, 중앙으로',
+          ko: '아픈 광뎀, 중앙으로',
         },
       },
     },
