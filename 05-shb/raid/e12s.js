@@ -44,7 +44,7 @@ const primalOutputStrings = {
     fr: 'En dessous + côtés',
     ja: '真ん中 + 横へ',
     cn: '正中间两侧',
-    ko: '보스 아래 + 양옆',
+    ko: '보스 안쪽 + 양옆',
   },
   '008E0090': {
     en: 'North/South + Out',
@@ -52,7 +52,7 @@ const primalOutputStrings = {
     fr: 'Nord/Sud + Extérieur',
     ja: '北/南 + 外へ',
     cn: '南北远离',
-    ko: '북/남 + 바깥',
+    ko: '남/북 + 바깥',
   },
   '008E0091': {
     en: 'Under + Intercards',
@@ -60,7 +60,7 @@ const primalOutputStrings = {
     fr: 'En dessous + Intercardinal',
     ja: '真ん中 + 斜め',
     cn: '正中间四角',
-    ko: '보스 아래 + 대각',
+    ko: '보스 안쪽 + 대각',
   },
   // Text output.
   'combined': {
@@ -104,7 +104,7 @@ const primalOutputStrings = {
     fr: 'packages',
     ja: 'ヒラ頭割り',
     cn: '治疗分摊',
-    ko: '쉐어',
+    ko: '그룹 쉐어',
   },
   'stack': {
     // Obliterate whole group laser stack.
@@ -114,7 +114,7 @@ const primalOutputStrings = {
     fr: 'package en groupe',
     ja: '頭割り',
     cn: '集合',
-    ko: '그룹 쉐어',
+    ko: '쉐어',
   },
 };
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -787,7 +787,7 @@ Options.Triggers.push({
           fr: 'Grosse AoE, allez au milieu',
           ja: '大ダメージ、中へ',
           cn: '超大伤害，去中间',
-          ko: '대형 장판, 중앙으로',
+          ko: '아픈 광뎀, 중앙으로',
         },
       },
     },
@@ -826,7 +826,7 @@ Options.Triggers.push({
           fr: 'Grosse AoE, Bombes bientôt',
           ja: '大ダメージ、まもなく岩落とし',
           cn: '超大伤害，即将落石',
-          ko: '대형 장판, 곧 폭탄',
+          ko: '아픈 광뎀, 폭탄 떨어짐',
         },
       },
     },
@@ -935,7 +935,7 @@ Options.Triggers.push({
           fr: 'Lien lion sur VOUS',
           ja: '自分にライオン線',
           cn: '狮子连线点名',
-          ko: '사자 선 대상자',
+          ko: '작은 사자 대상자',
         },
       },
     },
@@ -1040,7 +1040,7 @@ Options.Triggers.push({
           fr: 'En dessous',
           ja: 'ボスと貼り付く',
           cn: '去脚下',
-          ko: '보스 아래로',
+          ko: '보스 안쪽으로',
         },
       },
     },
@@ -1984,7 +1984,7 @@ Options.Triggers.push({
         'Maleficium': '마녀의 사술',
         'Maelstrom': '대격동',
         'Memory\'s End': '기억의 끝',
-        'Obliteration Laser': '',
+        'Obliteration Laser': '말소 레이저',
         'Palm Of Temperance': '거절의 손',
         'Paradise Lost': '실낙원',
         'Pillar Pierce': '고드름 격돌',
