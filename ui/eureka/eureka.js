@@ -2152,7 +2152,7 @@ const Options = {
             fr: 'Castrum',
             ja: 'カストルム',
             cn: '湖岸堡',
-            ko: '카스트룸',
+            ko: '공성전',
           },
           x: 18.9,
           y: 12.6,

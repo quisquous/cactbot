@@ -1414,19 +1414,6 @@ const templateOptions = {
       default: 1,
     },
     {
-      id: 'BrowserTTS',
-      name: {
-        en: 'Use Browser for Text to Speech',
-        de: 'Verwenden Sie den Browser für Text zu Sprache', // Machine translation
-        fr: 'Utiliser le navigateur pour la synthèse vocale', // Machine Translation
-        ja: 'ブラウザでTTS',
-        cn: '忽略ACT的设置，使用Cactbot自带的Google TTS功能（需联网）',
-        ko: '웹브라우저를 이용해서 TTS 작동시키기',
-      },
-      type: 'checkbox',
-      default: false,
-    },
-    {
       id: 'cactbotWormholeStrat',
       // TODO: maybe need some way to group these kinds of
       // options if we end up having a lot?

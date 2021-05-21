@@ -109,11 +109,13 @@ type Sync = {
   jump?: number;
 }
 
-type ParsedText = {
+type ParsedPopupText = {
   type: 'info' | 'alert' | 'alarm' | 'tts';
   secondsBefore?: number;
   text: string;
-} | {
+}
+
+type ParsedTriggerText = {
   type: 'trigger';
   secondsBefore?: number;
   text?: string;
@@ -121,7 +123,13 @@ type ParsedText = {
   trigger: TimelineTrigger;
 }
 
+type ParsedText = ParsedPopupText | ParsedTriggerText;
+
 type Text = ParsedText & { time: number };
+
+type AddTimerCallback = (fightNow: number, durationEvent: Event, channeling: boolean) => void;
+type PopupTextCallback = (text: string) => void;
+type TriggerCallback = (trigger: TimelineTrigger, matches: RegExpExecArray | null) => void;
 
 // TODO: Duplicated in 'jobs'
 const computeBackgroundColorFrom = (element: HTMLElement, classList: string): string => {
@@ -159,15 +167,13 @@ export class Timeline {
   private nextSyncStart = 0;
   private nextSyncEnd = 0;
 
-  private addTimerCallback: ((fightNow: number, durationEvent: Event,
-      channeling: boolean) => void) | null = null;
+  private addTimerCallback: AddTimerCallback | null = null;
   private removeTimerCallback: ((e: Event, expired: boolean) => void) | null = null;
-  private showInfoTextCallback: ((text: string) => void) | null = null;
-  private showAlertTextCallback: ((text: string) => void) | null = null;
-  private showAlarmTextCallback: ((text: string) => void) | null = null;
-  private speakTTSCallback: ((text: string) => void) | null = null;
-  private triggerCallback: ((trigger: TimelineTrigger,
-      matches: RegExpExecArray | null) => void) | null = null;
+  private showInfoTextCallback: PopupTextCallback | null = null;
+  private showAlertTextCallback: PopupTextCallback | null = null;
+  private showAlarmTextCallback: PopupTextCallback | null = null;
+  private speakTTSCallback: PopupTextCallback | null = null;
+  private triggerCallback: TriggerCallback | null = null;
   private syncTimeCallback: ((fightNow: number, running: boolean) => void) | null = null;
 
   private updateTimer = 0;
@@ -497,7 +503,8 @@ export class Timeline {
     // Sort by time, but when the time is the same, sort by file order.
     // Then assign a sortKey to each event so that we can maintain that order.
     this.events.sort((a, b) => {
-      if (a.time === b.time) return a.id - b.id;
+      if (a.time === b.time)
+        return a.id - b.id;
       return a.time - b.time;
     });
     this.events.forEach((event, idx) => event.sortKey = idx);
@@ -797,27 +804,25 @@ export class Timeline {
     this._ScheduleUpdate(fightNow);
   }
 
-  public SetAddTimer(c: ((fightNow: number, durationEvent: Event,
-      channeling: boolean) => void) | null): void {
+  public SetAddTimer(c: AddTimerCallback | null): void {
     this.addTimerCallback = c;
   }
   public SetRemoveTimer(c: ((e: Event, expired: boolean) => void) | null): void {
     this.removeTimerCallback = c;
   }
-  public SetShowInfoText(c: ((text: string) => void) | null): void {
+  public SetShowInfoText(c: PopupTextCallback | null): void {
     this.showInfoTextCallback = c;
   }
-  public SetShowAlertText(c: ((text: string) => void) | null): void {
+  public SetShowAlertText(c: PopupTextCallback | null): void {
     this.showAlertTextCallback = c;
   }
-  public SetShowAlarmText(c: ((text: string) => void) | null): void {
+  public SetShowAlarmText(c: PopupTextCallback | null): void {
     this.showAlarmTextCallback = c;
   }
-  public SetSpeakTTS(c: ((text: string) => void) | null): void {
+  public SetSpeakTTS(c: PopupTextCallback | null): void {
     this.speakTTSCallback = c;
   }
-  public SetTrigger(c: ((trigger: TimelineTrigger,
-      matches: RegExpExecArray | null) => void) | null): void {
+  public SetTrigger(c: TriggerCallback | null): void {
     this.triggerCallback = c;
   }
   public SetSyncTime(c: ((fightNow: number, running: boolean) => void) | null): void {
@@ -826,11 +831,11 @@ export class Timeline {
 }
 
 interface PopupText {
-  Info: (text: string) => void;
-  Alert: (text: string) => void;
-  Alarm: (text: string) => void;
-  TTS: (text: string) => void;
-  Trigger: (trigger: TimelineTrigger, matches: RegExpExecArray | null) => void;
+  Info: PopupTextCallback;
+  Alert: PopupTextCallback;
+  Alarm: PopupTextCallback;
+  TTS: PopupTextCallback;
+  Trigger: TriggerCallback;
 }
 
 export class TimelineUI {

@@ -1,5 +1,8 @@
-import { addOverlayListener } from './overlay_plugin_api';
+import { Party, PlayerChangedRet } from 'types/event';
+import { Lang } from 'types/global';
+import { Job } from 'types/job';
 
+import { addOverlayListener } from './overlay_plugin_api';
 import Util from './util';
 
 // Will redirect calls from `onPlayerChangedEvent` to |func| overriding with
@@ -12,14 +15,18 @@ import Util from './util';
 // jobs remotely due to gauge data being local and many bits of information
 // loaded from memory.
 
-export const addPlayerChangedOverrideListener = function(playerName, func) {
+type PlayerChangedDetail = { detail: PlayerChangedRet };
+type PlayerChangedFunc = (e: PlayerChangedDetail) => void;
+
+export const addPlayerChangedOverrideListener = (playerName: string,
+    func: PlayerChangedFunc): void => {
   if (!func)
     return;
 
-  let lastPlayerChangedEvent = null;
-  let lastPlayerJob = null;
+  let lastPlayerChangedEvent: PlayerChangedDetail | null = null;
+  let lastPlayerJob: Job | null = null;
 
-  const onPlayerChanged = (e) => {
+  const onPlayerChanged: PlayerChangedFunc = (e: PlayerChangedDetail) => {
     if (playerName) {
       e.detail.name = playerName;
       if (lastPlayerJob) {
@@ -56,7 +63,7 @@ export const addPlayerChangedOverrideListener = function(playerName, func) {
 // Only used for raidboss, but could ostensibly be reused for oopsy,
 // if there's ever player specific stuff.
 // TODO: it would be nice to show the "connected / not connected" bit in the UI.
-export const addRemotePlayerSelectUI = function(lang) {
+export const addRemotePlayerSelectUI = (lang: Lang): void => {
   const instructionTextByLang = {
     en: 'Select a Player\n(the list will update when in an instance)',
     de: 'Wähle einen Spieler\n(Diese Liste aktualisiert sich, sobald eine Instance betretten wird)',
@@ -92,7 +99,7 @@ export const addRemotePlayerSelectUI = function(lang) {
 
   // TODO: probably should save forceTTS as well, maybe save some {} options?
   const kStorageKey = 'cactbot-last-selected-player';
-  const savePlayerName = (name) => {
+  const savePlayerName = (name: string) => {
     window.localStorage.setItem(kStorageKey, name);
   };
   const loadPlayerName = () => {
@@ -130,14 +137,14 @@ export const addRemotePlayerSelectUI = function(lang) {
   buttonElem.name = 'player-select-button';
   buttonElem.innerHTML = buttonTextByLang[lang] || buttonTextByLang['en'];
   container.appendChild(buttonElem);
-  buttonElem.addEventListener('click', (e) => {
-    const forceTTS = document.getElementById('player-select-tts').checked;
+  buttonElem.addEventListener('click', () => {
+    const forceTTS = ttsElem.checked;
     let playerName = '';
     let radioIndex = 0;
     for (;;) {
       radioIndex++;
-      const elem = document.getElementById('player-radio-' + radioIndex);
-      if (!elem)
+      const elem = document.getElementById(`player-radio-${radioIndex}`);
+      if (!elem || !(elem instanceof HTMLInputElement))
         break;
       if (!elem.checked)
         continue;
@@ -150,7 +157,7 @@ export const addRemotePlayerSelectUI = function(lang) {
 
     // Preserve existing parameters.
     const currentParams = new URLSearchParams(window.location.search);
-    const paramMap = {};
+    const paramMap: { [value: string]: number | string} = {};
     // Yes, this is (v, k) and not (k, v).
     currentParams.forEach((v, k) => paramMap[k] = decodeURIComponent(v));
 
@@ -162,7 +169,7 @@ export const addRemotePlayerSelectUI = function(lang) {
     // So this can't use URLSearchParams.toString yet.  Manually build string.
     let search = '?';
     for (const [k, v] of Object.entries(paramMap))
-      search += k + '=' + v + '&';
+      search += `${k}=${v}&`;
 
     // Reload the page with more options.
     window.location.search = search;
@@ -170,16 +177,18 @@ export const addRemotePlayerSelectUI = function(lang) {
 
   const lastSelectedPlayer = loadPlayerName();
 
-  const buildList = (party) => {
-    while (listElem.firstChild)
-      listElem.removeChild(listElem.lastChild);
+  const buildList = (party: Party[]) => {
+    while (listElem.firstChild) {
+      if (listElem.lastChild)
+        listElem.removeChild(listElem.lastChild);
+    }
 
     let radioCount = 0;
 
-    const addRadio = (name, value, extraClass) => {
+    const addRadio = (name: string, value: string, extraClass: string) => {
       radioCount++;
 
-      const inputName = 'player-radio-' + radioCount;
+      const inputName = `player-radio-${radioCount}`;
 
       const inputElem = document.createElement('input');
       inputElem.type = 'radio';

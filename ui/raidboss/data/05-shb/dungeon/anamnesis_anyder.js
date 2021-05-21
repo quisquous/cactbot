@@ -6,8 +6,6 @@ import ZoneId from '../../../../../resources/zone_id';
 export default {
   zoneId: ZoneId.AnamnesisAnyder,
   timelineFile: 'anamnesis_anyder.txt',
-  timelineTriggers: [
-  ],
   triggers: [
     {
       id: 'AnAnyder Fetid Fang',

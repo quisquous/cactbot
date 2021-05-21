@@ -39,7 +39,8 @@ const ruleModule = {
     const getAllKeys = (props) => {
       const propKeys = [];
 
-      if (!props) return propKeys;
+      if (!props)
+        return propKeys;
 
       props.forEach((prop) => {
         if (t.isProperty(prop)) {
@@ -62,7 +63,8 @@ const ruleModule = {
      * @param node {t.ObjectExpression}
      */
     const extractTemplate = function(node) {
-      if (node.properties === undefined) return;
+      if (node.properties === undefined)
+        return;
       const outputTemplateKey = {};
       for (const outputString of
         node.properties.filter((s) => !t.isSpreadElement(s) && !t.isMemberExpression(s.value))) {
