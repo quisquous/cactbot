@@ -2,6 +2,8 @@ import EffectId from '../../../resources/effect_id';
 import { kAbility } from '../constants';
 import { computeBackgroundColorFrom } from '../utils';
 
+let resetFunc = null;
+
 export function setup(bars) {
   const aetherflowStackBox = bars.addResourceBox({
     classList: ['smn-color-aetherflow'],
@@ -158,13 +160,17 @@ export function setup(bars) {
     tranceBox.valuescale = bars.gcdSpell;
     tranceBox.threshold = bars.gcdSpell + 7;
   });
+
+  resetFunc = (bars) => {
+    furtherRuin = 0;
+    refreshFurtherRuin();
+    miasmaBox.duration = 0;
+    bioSmnBox.duration = 0;
+    energyDrainBox.duration = 0;
+    tranceBox.duration = 0;
+  };
 }
 
 export function reset(bars) {
-  furtherRuin = 0;
-  refreshFurtherRuin();
-  miasmaBox.duration = 0;
-  bioSmnBox.duration = 0;
-  energyDrainBox.duration = 0;
-  tranceBox.duration = 0;
+  if (resetFunc) resetFunc(bars);
 }

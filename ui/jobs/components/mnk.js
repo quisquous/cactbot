@@ -3,6 +3,7 @@ import { kAbility } from '../constants';
 import { computeBackgroundColorFrom } from '../utils';
 
 const lightningFgColors = [];
+let resetFunc = null;
 
 export function setup(bars) {
   // TODO: Remove bars timer when cn/ko update 5.4
@@ -136,12 +137,16 @@ export function setup(bars) {
     EffectId.RaptorForm,
     EffectId.CoeurlForm,
   ], changeFormFunc);
+
+  resetFunc = (bars) => {
+    twinSnakesBox.duration = 0;
+    demolishBox.duration = 0;
+    dragonKickBox.duration = 0;
+    formTimer.duration = 0;
+    formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
+  };
 }
 
 export function reset(bars) {
-  twinSnakesBox.duration = 0;
-  demolishBox.duration = 0;
-  dragonKickBox.duration = 0;
-  formTimer.duration = 0;
-  formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
+  if (resetFunc) resetFunc(bars);
 }

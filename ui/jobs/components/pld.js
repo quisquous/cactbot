@@ -1,6 +1,8 @@
 import EffectId from '../../../resources/effect_id';
 import { kAbility } from '../constants';
 
+let resetFunc = null;
+
 const setAtonement = (atonementBox, stacks) => {
   atonementBox.innerText = stacks;
   const p = atonementBox.parentNode;
@@ -67,9 +69,13 @@ export function setup(bars) {
     goreBox.valuescale = bars.gcdSkill;
     goreBox.threshold = bars.gcdSkill * 3 + 0.3;
   });
+
+  resetFunc = (bars) => {
+    goreBox.duration = 0;
+    setAtonement(atonementBox, 0);
+  };
 }
 
 export function reset(bars) {
-  goreBox.duration = 0;
-  setAtonement(atonementBox, 0);
+  if (resetFunc) resetFunc(bars);
 }
