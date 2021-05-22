@@ -73,11 +73,8 @@ export default {
         tankBuster: Outputs.tankBuster,
         avoidTether: {
           en: 'Avoid ${player} and tethers',
-          de: 'Weiche den ${player}-Verbindungen aus', // FIXME
-          fr: 'Évitez ${player} et les liens', // FIXME
           ja: '${player}と線から離れる',
           cn: '远离${player}及其连线',
-          ko: '${player}와 선 피하기', // FIXME
         },
       },
     },
