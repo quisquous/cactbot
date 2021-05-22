@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -139,14 +140,7 @@ export default {
       },
       run: (data) => delete data.busterTargets,
       outputStrings: {
-        tankBuster: {
-          en: 'Tank Buster',
-          de: 'Tank buster',
-          fr: 'Tank buster',
-          ja: 'タンクバスター',
-          cn: '坦克死刑',
-          ko: '탱버',
-        },
+        tankBuster: Outputs.tankBuster,
         avoidTankBuster: {
           en: 'Avoid tank buster',
           de: 'Tank buster ausweichen',
@@ -505,14 +499,7 @@ export default {
       },
       run: (data) => delete data.busterTargets,
       outputStrings: {
-        tankBuster: {
-          en: 'Tank Buster',
-          de: 'Tank buster',
-          fr: 'Tank buster',
-          ja: 'タンクバスター',
-          cn: '坦克死刑',
-          ko: '탱버',
-        },
+        tankBuster: Outputs.tankBuster,
         avoidTankBuster: {
           en: 'Avoid tank buster',
           de: 'Tank buster ausweichen',
