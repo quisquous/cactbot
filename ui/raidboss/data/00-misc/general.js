@@ -12,12 +12,12 @@ export default {
     {
       id: 'General Provoke',
       netRegex: NetRegexes.ability({ id: '1D6D' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         return output.text({ player: data.ShortName(matches.source) });
       },
       outputStrings: {
@@ -34,13 +34,13 @@ export default {
     {
       id: 'General Frog Legs',
       netRegex: NetRegexes.ability({ id: '4783' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
         return caresAboutTankStuff(data);
       },
       suppressSeconds: 0.5,
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (matches.targetId === 'E0000000')
           return output.noTarget({ player: data.ShortName(matches.source) });
         return output.text({ player: data.ShortName(matches.source) });
@@ -66,12 +66,12 @@ export default {
     {
       id: 'General Shirk',
       netRegex: NetRegexes.ability({ id: '1D71' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         return output.text({ player: data.ShortName(matches.source) });
       },
       outputStrings: {
@@ -88,12 +88,12 @@ export default {
     {
       id: 'General Holmgang',
       netRegex: NetRegexes.ability({ id: '2B' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         return output.text({ player: data.ShortName(matches.source) });
       },
       outputStrings: {
@@ -110,12 +110,12 @@ export default {
     {
       id: 'General Hallowed',
       netRegex: NetRegexes.ability({ id: '1E' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         return output.text({ player: data.ShortName(matches.source) });
       },
       outputStrings: {
@@ -132,12 +132,12 @@ export default {
     {
       id: 'General Superbolide',
       netRegex: NetRegexes.ability({ id: '3F18' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         return output.text({ player: data.ShortName(matches.source) });
       },
       outputStrings: {
@@ -154,12 +154,12 @@ export default {
     {
       id: 'General Living',
       netRegex: NetRegexes.ability({ id: 'E36' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         return output.text({ player: data.ShortName(matches.source) });
       },
       outputStrings: {
@@ -176,12 +176,12 @@ export default {
     {
       id: 'General Walking',
       netRegex: NetRegexes.gainsEffect({ effectId: '32B' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         return output.text({ player: data.ShortName(matches.source) });
       },
       outputStrings: {
