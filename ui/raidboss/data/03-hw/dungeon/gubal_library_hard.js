@@ -55,7 +55,7 @@ export default {
         data.markers = data.markers || [];
         data.markers.push(matches.id);
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.markers.length === 2) {
           const sameMarkers = data.markers[0] === data.markers[1];
           delete data.markers;
@@ -93,7 +93,7 @@ export default {
       netRegexCn: NetRegexes.tether({ id: '0039', source: '液态火焰' }),
       netRegexKo: NetRegexes.tether({ id: '0039', source: '액체 불꽃' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away from boss',
@@ -109,7 +109,7 @@ export default {
       id: 'Gubal Hard Sunseal',
       netRegex: NetRegexes.gainsEffect({ effectId: '46F' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stand in red',
@@ -125,7 +125,7 @@ export default {
       id: 'Gubal Hard Moonseal',
       netRegex: NetRegexes.gainsEffect({ effectId: '470' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stand in blue',
@@ -146,7 +146,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '198D', source: 'メカノスクライブ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '198D', source: '自走人偶抄写员', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '198D', source: '기계 서기', capture: false }),
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.CanSilence())
           return output.interruptMechanoscribe();
 
@@ -180,7 +180,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '1956', source: 'ストリックス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1956', source: '博学林鸮', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1956', source: '스트릭스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stand in light circle',
@@ -200,7 +200,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '1957', source: 'ストリックス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1957', source: '博学林鸮', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1957', source: '스트릭스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stand in dark circle',
@@ -220,7 +220,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '1959', source: 'ストリックス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1959', source: '博学林鸮', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1959', source: '스트릭스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Cleanse in green circle',
@@ -262,7 +262,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '195D', source: '贝希摩斯护卫', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '195D', source: '고서의 베히모스', capture: false }),
       delaySeconds: 14, // Leaving about 10s warning to complete the LoS
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hide behind boulder',

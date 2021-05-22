@@ -55,7 +55,7 @@ export default {
       regex: /Boost/,
       beforeSeconds: 10,
       suppressSeconds: 1,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Bird Soon (Purple)',
@@ -72,7 +72,7 @@ export default {
       regex: /Bomb's Away/,
       beforeSeconds: 10,
       suppressSeconds: 1,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Gorilla Soon (Red)',
@@ -89,7 +89,7 @@ export default {
       regex: /Disorienting Groan/,
       beforeSeconds: 1,
       suppressSeconds: 1,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'refresh debuff in puddle soon',
@@ -141,7 +141,7 @@ export default {
         data.bombCount++;
       },
       // We could give directions here, but "into / opposite spikey" is pretty succinct.
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.bombCount === 1)
           return output.knockBombsIntoSpikey();
 
@@ -192,7 +192,7 @@ export default {
         data.boostBombs = data.boostBombs || [];
         data.boostBombs.push(bombLocation(matches));
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.boostCount === 1) {
           if (data.boostBombs.length !== 1)
             return;
@@ -250,7 +250,7 @@ export default {
       id: 'A5S Prey',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Away',
@@ -286,7 +286,7 @@ export default {
       id: 'A5S Glupgloop',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'GLOOPYGLOOP~',
@@ -329,7 +329,7 @@ export default {
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       suppressSeconds: 30,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Cleanse (Green)',
@@ -354,7 +354,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '哥布林奇美拉', id: '366' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 100,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Break Tether (Blue)',

@@ -42,7 +42,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '1C32', source: 'スポアサック', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1C32', source: '포자 주머니', capture: false }),
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away from large pod',
@@ -168,7 +168,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '1C3E', source: '熔岩蝎' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1C3E', source: '용암 전갈' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Drop puddle outside',

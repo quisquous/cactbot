@@ -12,7 +12,7 @@ export default {
       regex: /Divine Judgment/,
       beforeSeconds: 5,
       suppressSeconds: 9999, // Let's not spam tanks if they are unlucky enough to see enrage.
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Limit break now!',
@@ -64,7 +64,7 @@ export default {
       id: 'A12N Aggravated Assault',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       // If the user is targeted for Assault, we need to ensure the stack trigger knows.
       run: function(data) {
         data.assault = true;
@@ -126,7 +126,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '1AE5', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '1AE5', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '1AE5', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Lasers',
@@ -147,7 +147,7 @@ export default {
       netRegexCn: NetRegexes.tether({ source: '亚历山大', id: '0036' }),
       netRegexKo: NetRegexes.tether({ source: '알렉산더', id: '0036' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Puddle Tether on YOU',

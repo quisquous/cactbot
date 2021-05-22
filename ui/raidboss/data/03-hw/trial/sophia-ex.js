@@ -81,7 +81,7 @@ export default {
       id: 'SophiaEX Onrush',
       regex: /Onrush/,
       beforeSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid Dash Attack',
@@ -104,7 +104,7 @@ export default {
       id: 'SophiaEX Dischordant Cleansing',
       regex: /Dischordant Cleansing/,
       beforeSeconds: 6,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stack With Partner',
@@ -120,7 +120,7 @@ export default {
       id: 'SophiaEX Quasar Bait',
       regex: /Quasar \(Snapshot\)/,
       beforeSeconds: 6,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Bait Quasar Meteors',
@@ -197,7 +197,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '19B8', source: '三の従者', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '19B8', source: '信徒其三', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '19B8', source: '제3신도', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get behind lancer',
@@ -353,7 +353,7 @@ export default {
       condition: function(data) {
         return data.clonesActive;
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid head laser',
@@ -373,10 +373,10 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '19AA', source: 'ソフィア' }),
       netRegexCn: NetRegexes.startsUsing({ id: '19AA', source: '索菲娅' }),
       netRegexKo: NetRegexes.startsUsing({ id: '19AA', source: '소피아' }),
-      durationSeconds: function(data, matches) {
+      durationSeconds: function(_data, matches) {
         return parseFloat(matches.castTime);
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         const localeCompass = {
           'N': output.north(),
           'S': output.south(),
@@ -508,7 +508,7 @@ export default {
       delaySeconds: .5,
       durationSeconds: 12, // Ensuring that forgetful people aren't forgotten.
       suppressSeconds: 5,
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         // If we somehow skipped the first set of Quasars, we won't know the locations of
         // the scale entities. Activate the sadTethers flag and wait for the actual casts.
         if (!data.scaleSophias) {
