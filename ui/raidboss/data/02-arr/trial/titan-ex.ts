@@ -1,5 +1,5 @@
 import { RaidbossData as Data } from '../../../../../types/data';
-import { Output, TriggerSet } from '../../../../../types/trigger';
+import { TriggerSet } from '../../../../../types/trigger';
 
 import Conditions from '../../../../../resources/conditions';
 import { MatchesTether } from '../../../../../resources/matches';
@@ -71,11 +71,11 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TitanEx Rock Throw',
       netRegex: NetRegexes.tether({ id: '0007' }),
       suppressSeconds: 1,
-      alertText: (data: Data, matches: MatchesTether, output: Output): string | undefined => {
+      alertText: (data, matches: MatchesTether, output) => {
         if (matches?.source === data.me || matches?.target === data.me)
           return output.jailOnYou?.();
       },
-      infoText: (data: Data, matches: MatchesTether, output: Output): string | undefined => {
+      infoText: (data, matches: MatchesTether, output) => {
         if (matches?.source !== data.me && matches?.target !== data.me)
           return output.jails?.();
       },
