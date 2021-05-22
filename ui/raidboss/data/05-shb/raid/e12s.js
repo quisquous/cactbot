@@ -101,7 +101,15 @@ const primalOutputStrings = {
     ko: '${text} (${junction})',
   },
   // Junctions.
-  'spread': Outputs.spread,
+  'spread': {
+    // Shiva spread.
+    en: 'spread',
+    de: 'verteilen',
+    fr: 'dispersion',
+    ja: '散開',
+    cn: '散开',
+    ko: '산개',
+  },
   'stacks': {
     // Titan healer stacks.
     en: 'stacks',
