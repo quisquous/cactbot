@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -127,14 +128,7 @@ export default {
           cn: '击退+水泡（静止）',
           ko: '넉백 + 주사위 (가만히)',
         },
-        knockback: {
-          en: 'Knockback on YOU',
-          de: 'Rückstoß auf DIR',
-          fr: 'Poussée sur VOUS',
-          ja: '自分にノックバック',
-          cn: '击退点名',
-          ko: '넉백 대상자',
-        },
+        knockback: Outputs.knockbackOnYou,
         knockbackWithCloudTTS: {
           en: 'knockback with cloud',
           de: 'Rückstoß mit wolke',
@@ -151,14 +145,7 @@ export default {
           cn: '水泡击退',
           ko: '넉백과 주사위',
         },
-        knockbackTTS: {
-          en: 'Knockback',
-          de: 'Rückstoß',
-          fr: 'Poussée',
-          ja: 'ノックバック',
-          cn: '击退',
-          ko: '넉백',
-        },
+        knockbackTTS: Outputs.knockback,
       },
     },
     {
