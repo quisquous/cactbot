@@ -43,7 +43,7 @@ export default {
       netRegexKo: NetRegexes.ability({ id: '4B8D', source: '라무', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '4B8D', source: '拉姆', capture: false }),
       delaySeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Look for small spear',
@@ -63,7 +63,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4B91', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4B91', source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4B91', source: '拉姆', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Look for adds',
@@ -83,7 +83,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4B90', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4B90', source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4B90', source: '拉姆', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Fury\'s Bolt',
@@ -117,7 +117,7 @@ export default {
       condition: function(data) {
         return !data.surgeProtection;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Grab an orb',
@@ -133,7 +133,7 @@ export default {
       id: 'E5N Stormcloud',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Drop cloud outside',

@@ -61,7 +61,7 @@ export default {
       condition: function(data, matches) {
         return data.me === matches.source;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Tank Laser on YOU',
@@ -90,7 +90,7 @@ export default {
       id: 'E1N Vice of Apathy Mark',
       netRegex: NetRegexes.headMarker({ id: '001C' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Drop Puddle, Run Middle',

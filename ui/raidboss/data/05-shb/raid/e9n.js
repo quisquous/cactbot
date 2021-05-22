@@ -100,7 +100,7 @@ export default {
       id: 'E9N Stygian Tether',
       netRegex: NetRegexes.headMarker({ id: '000C' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Wait Near Bramble',
@@ -128,7 +128,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: ['55DF', '55E[01]'], source: '어둠의 구름', capture: false }),
       durationSeconds: 5,
       suppressSeconds: 1,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go Sides At Tethered Wall',
@@ -149,7 +149,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '55E2', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '55E2', source: '어둠의 구름', capture: false }),
       durationSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away From Tethered Walls',
@@ -183,7 +183,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '55E8', source: '어둠의 구름', capture: false }),
       delaySeconds: 4,
       durationSeconds: 4,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Towers',

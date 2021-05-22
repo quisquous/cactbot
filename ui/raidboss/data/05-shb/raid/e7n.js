@@ -35,7 +35,7 @@ export default {
       id: 'E7N Left With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C2' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Teleporting Left',
@@ -51,7 +51,7 @@ export default {
       id: 'E7N Right With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C3' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Teleporting Right',
@@ -67,7 +67,7 @@ export default {
       id: 'E7N Forward With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C0' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Teleporting Forward',
@@ -83,7 +83,7 @@ export default {
       id: 'E7N Back With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C1' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Teleporting Back',
@@ -104,7 +104,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '盲崇', id: '4C4C', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '숭배', id: '4C4C', capture: false }),
       suppressSeconds: 1,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Teleport into donut',
@@ -136,7 +136,7 @@ export default {
       netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 3,
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         data.colorCount = data.colorCount + 1 || 0;
         if (data.colorCount === 3) {
           delete data.colorCount;
@@ -160,7 +160,7 @@ export default {
       netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 3,
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         data.colorCount = data.colorCount + 1 || 0;
         if (data.colorCount === 3) {
           delete data.colorCount;

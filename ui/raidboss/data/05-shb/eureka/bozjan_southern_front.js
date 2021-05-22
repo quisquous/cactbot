@@ -136,7 +136,7 @@ const orbOutputStrings = {
 };
 
 // TODO: promote something like this to Conditions?
-const tankBusterOnParty = (ceId) => (data, matches) => {
+const tankBusterOnParty = (ceId) => (data) => {
   if (ceId && data.ce !== ceId)
     return false;
   if (data.target === data.me)
@@ -259,7 +259,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '第四军团地狱潜者', id: '51EA', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: 'Iv군단 헬다이버', id: '51EA', capture: false }),
       condition: (data) => data.helldiver,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stand in dive charge',
@@ -292,7 +292,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: 'Iv군단 헬다이버', id: '51EC', capture: false }),
       condition: (data) => data.helldiver,
       delaySeconds: 6,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Take one tether',
@@ -358,7 +358,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '브류나크', id: '51CD', capture: false }),
       condition: (data) => !data.helldiver,
       delaySeconds: 6.5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Kill Magitek Core',
@@ -380,7 +380,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '브류나크', id: '51D0', capture: false }),
       condition: (data) => !data.helldiver,
       preRun: (data) => data.energyCount = (data.energyCount || 0) + 1,
-      infoText: (data, _, output) => {
+      infoText: (data, _matches, output) => {
         if (data.energyCount === 1)
           return output.getUnderOrb();
         if (data.energyCount === 2)
@@ -474,7 +474,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '阿德拉梅里克', id: '4F92', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '아드람멜렉', id: '4F92', capture: false }),
       delaySeconds: 4.5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Kill Meteors',
@@ -514,7 +514,7 @@ export default {
       preRun: (data) => data.fiendCount = (data.fiendCount || 0) + 1,
       durationSeconds: (data) => (data.orbs || {}).length === 4 ? 23 : 14,
       suppressSeconds: 20,
-      infoText: (data, _, output) => {
+      infoText: (data, _matches, output) => {
         // Let your actor id memes be dreams!
         // Orbs go off from highest actor id to lowest actor id, in pairs of two.
         const sortedOrbs = Object.keys(data.orbs || {}).sort().reverse();
@@ -568,7 +568,7 @@ export default {
       // 5 seconds warning.
       delaySeconds: 7.2 - 5,
       durationSeconds: 4.5,
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         data.orbOutput = data.orbOutput || [];
         const orb = data.orbOutput.shift();
         if (!orb)
@@ -587,7 +587,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '아드람멜렉', id: '4F7B', capture: false }),
       // 2.5 seconds warning, as it's weird if this shows up way before the first orb.
       delaySeconds: 9 - 2.5,
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         data.orbOutput = data.orbOutput || [];
         const orb = data.orbOutput.shift();
         if (!orb)
@@ -708,7 +708,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '达温', id: '517A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '다우언', id: '517A', capture: false }),
       delaySeconds: 5,
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         // Only the first plumage orbs have no wind.
         // If we needed to this dynamically, look for Call Beast (5192) from Lyon before this.
         const text = data.haveSeenMoltingPlumage ? output.orbWithFlutter() : output.justOrb();
@@ -754,7 +754,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '达温', id: '5175', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '다우언', id: '5175', capture: false }),
       suppressSeconds: 9999,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Follow Boss',
@@ -774,7 +774,7 @@ export default {
       netRegexJa: NetRegexes.gameLog({ line: '獣王ライアンは、王者の円壇での戦いを望んでいるようだ.*?', capture: false }),
       netRegexCn: NetRegexes.gameLog({ line: '兽王莱昂似乎很期待在王者圆坛战斗！', capture: false }),
       netRegexKo: NetRegexes.gameLog({ line: '마수왕 라이언이 왕의 단상에서 싸우려고 합니다!', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Lyon Passage Open',

@@ -57,7 +57,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3D45', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D45', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D45', source: '티타니아', capture: false }),
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.seenMistRune)
           return output.inOutThenWaterPositions();
 
@@ -95,7 +95,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '3D47', source: '티타니아', capture: false }),
       // You have 16.5 seconds until the first stack damage.
       delaySeconds: 8.5,
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.seenFlameRune)
           return output.stackMaybeRotate();
 
@@ -141,7 +141,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '42D7', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '42D7', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '42D7', source: '티타니아', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Wait For Tethers In Center',
@@ -172,7 +172,7 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '3D42', source: 'パック', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '3D42', source: '帕克', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3D42', source: '요정의 권속', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Diagonal Knockback Soon',
@@ -218,7 +218,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3D2A', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D2A', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2A', source: '티타니아', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Middle, Shiva Circles',
@@ -260,7 +260,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3D2E', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D2E', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2E', source: '티타니아', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Roots',
@@ -304,7 +304,7 @@ export default {
         data.pummelCount = data.pummelCount || 0;
         data.pummelCount++;
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         return output.text({ num: data.pummelCount });
       },
       outputStrings: {
@@ -382,7 +382,7 @@ export default {
       netRegexCn: NetRegexes.tether({ id: '0054', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.tether({ id: '0054', source: '티타니아', capture: false }),
       suppressSeconds: 60,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Initial Thunder Tether',
@@ -406,7 +406,7 @@ export default {
         data.thunderCount = data.thunderCount || 1;
       },
       suppressSeconds: 1,
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         return output.text({ num: data.thunderCount });
       },
       run: function(data) {
