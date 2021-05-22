@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -181,14 +182,7 @@ export default {
           cn: '与自己的石堆重合',
           ko: '돌과 같이 맞기',
         },
-        stackOnYou: {
-          en: 'Stack on YOU',
-          de: 'Auf DIR sammeln',
-          fr: 'Package sur VOUS',
-          ja: '自分にスタック',
-          cn: '集合点名',
-          ko: '쉐어징 대상자',
-        },
+        stackOnYou: Outputs.stackOnYou,
         stackOn: {
           en: 'Stack on ${player}',
           de: 'Auf ${player} sammeln',

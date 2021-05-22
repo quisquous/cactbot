@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -137,14 +138,7 @@ export default {
           en: 'Don\'t Stack!',
           fr: 'Ne vous packez pas !',
         },
-        stackOnYou: {
-          en: 'Stack on YOU',
-          de: 'Stack auf DIR',
-          fr: 'Package sur VOUS',
-          ja: '自分に頭割り',
-          cn: '分摊点名',
-          ko: '쉐어징 대상자',
-        },
+        stackOnYou: Outputs.stackOnYou,
         stackOn: {
           en: 'Stack on ${player}',
           de: 'Sammeln auf ${player}',

@@ -1,4 +1,5 @@
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -78,14 +79,7 @@ export default {
         delete data.holyTargets;
       },
       outputStrings: {
-        stackOnYou: {
-          en: 'Stack on YOU',
-          de: 'Auf DIR sammeln',
-          fr: 'Package sur VOUS',
-          ja: '自分にスタック',
-          cn: '集合点名',
-          ko: '쉐어징 대상자',
-        },
+        stackOnYou: Outputs.stackOnYou,
         out: {
           en: 'Out',
           de: 'Raus',
