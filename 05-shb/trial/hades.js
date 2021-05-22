@@ -50,14 +50,7 @@ Options.Triggers.push({
           cn: '死刑',
           ko: '탱버 대상자',
         },
-        busterOn: {
-          en: 'Buster on ${player}',
-          de: 'Tankbuster auf ${player}',
-          fr: 'Tank buster sur ${player}',
-          ja: '${player}にタンクバスター',
-          cn: '死刑 点${player}',
-          ko: '"${player}" 탱버',
-        },
+        busterOn: Outputs.tankBusterOnPlayer,
       },
     },
     {

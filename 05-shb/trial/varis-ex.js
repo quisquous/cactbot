@@ -180,14 +180,7 @@ Options.Triggers.push({
           cn: '远离顺劈',
           ko: '광역 탱버 피하기',
         },
-        tankBusterOn: {
-          en: 'Tank Buster on ${player}',
-          de: 'Tank buster auf ${player}',
-          fr: 'Tank buster sur ${player}',
-          ja: '${player}にタンクバスター',
-          cn: '死刑 点 ${player}',
-          ko: '"${player}" 탱버',
-        },
+        tankBusterOn: Outputs.tankBusterOnPlayer,
       },
     },
     {
