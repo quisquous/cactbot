@@ -1179,7 +1179,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '583F' }),
       delaySeconds: (data, matches) => parseFloat(matches.castTime) - 5,
       durationSeconds: 5.5,
-      response: Responses.stopEverything('alarm'),
+      response: Responses.stopEverything(),
     },
     {
       id: 'DelubrumSav Guard Icy Portent',
@@ -1200,7 +1200,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrière De La Reine', id: ['5826', '5A0B'], capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ウォリアー', id: ['5826', '5A0B'], capture: false }),
       delaySeconds: 9.5,
-      response: Responses.moveAway('info'),
+      response: Responses.moveAway(),
     },
     {
       id: 'DelubrumSav Guard Queen\'s Shot',
@@ -1347,7 +1347,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Bozja-Phantom', id: '57BF', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Fantôme Bozjien', id: '57BF', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57BF', capture: false }),
-      response: Responses.getBehind('alert'),
+      response: Responses.getBehind(),
     },
     {
       id: 'DelubrumSav Phantom Ice Spikes',
@@ -1407,7 +1407,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5987', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5987', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5987', capture: false }),
-      response: Responses.getOut('alert'),
+      response: Responses.getOut(),
       run: (data) => data.avowedPhase = 'staff',
     },
     {
@@ -1417,7 +1417,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5986', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5986', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5986', capture: false }),
-      response: Responses.getBehind('alert'),
+      response: Responses.getBehind(),
       run: (data) => data.avowedPhase = 'bow',
     },
     {
@@ -2420,7 +2420,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5A21' }),
       delaySeconds: (data, matches) => parseFloat(matches.castTime) - 5,
       durationSeconds: 5.5,
-      response: Responses.stopEverything('alarm'),
+      response: Responses.stopEverything(),
     },
     {
       id: 'DelubrumSav Queen Icy Portent',

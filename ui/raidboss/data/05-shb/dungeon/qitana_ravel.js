@@ -195,7 +195,7 @@ export default {
     {
       id: 'Qitana Confession of Faith Stack',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      response: Responses.stackMarkerOn('alert'),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'Qitana Confession of Faith Spread',

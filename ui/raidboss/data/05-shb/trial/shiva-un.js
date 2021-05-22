@@ -194,7 +194,7 @@ export default {
     {
       id: 'ShivaUn Whiteout',
       netRegex: NetRegexes.startsUsing({ id: '5376', capture: false }),
-      response: Responses.getIn('alert'),
+      response: Responses.getIn(),
     },
     {
       id: 'ShivaUn Diamond Dust',

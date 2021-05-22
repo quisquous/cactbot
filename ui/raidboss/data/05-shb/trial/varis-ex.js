@@ -205,7 +205,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD2', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '瓦厉斯·耶·加尔乌斯', id: '4CD2', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '바리스 예 갈부스', id: '4CD2', capture: false }),
-      response: Responses.getBehind('alert'),
+      response: Responses.getBehind(),
     },
     {
       // This trigger match the fourth Alea Iacta Est that Varis used.
@@ -240,7 +240,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CD7', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CD7', capture: false }),
       delaySeconds: 21.5,
-      response: Responses.knockback('alert'),
+      response: Responses.knockback(),
     },
     {
       id: 'VarisEx Reinforced Gunshield',

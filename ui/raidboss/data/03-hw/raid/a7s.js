@@ -99,7 +99,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '만능의 퀵싱크스', id: '16F8', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '万事通 奎克辛克斯', id: '16F8', capture: false }),
       condition: Conditions.caresAboutAOE(),
-      response: Responses.aoe('info'),
+      response: Responses.aoe(),
     },
     {
       id: 'A7S Bomb Tether',

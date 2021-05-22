@@ -60,7 +60,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '332C', source: 'オメガM', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '332C', source: '欧米茄M', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '332C', source: '오메가 M', capture: false }),
-      response: Responses.spread('info'),
+      response: Responses.spread(),
     },
     {
       id: 'O12S Beyond Defense Vuln',
@@ -442,7 +442,7 @@ export default {
       id: 'O12S Optimized Meteor',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
-      response: Responses.meteorOnYou('alarm'),
+      response: Responses.meteorOnYou(),
     },
     {
       id: 'O12S Optimized Sagittarius Arrow',
