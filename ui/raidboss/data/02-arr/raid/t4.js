@@ -15,7 +15,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '转盘堡', id: '4D4' }),
       netRegexKo: NetRegexes.startsUsing({ source: '보루형 회전전차', id: '4D4' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'LOS Thrust',
@@ -35,7 +35,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '转盘堡', id: '4D5' }),
       netRegexKo: NetRegexes.startsUsing({ source: '보루형 회전전차', id: '4D5' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'LOS Pox',
@@ -55,7 +55,7 @@ export default {
       netRegexCn: NetRegexes.addedCombatant({ name: '亚拉戈发条骑士', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '알라그 태엽기사', capture: false }),
       suppressSeconds: 100000,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Magic on Soldier, Physical on Knights',

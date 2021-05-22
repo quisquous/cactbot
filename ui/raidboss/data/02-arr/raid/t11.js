@@ -91,7 +91,7 @@ export default {
       regexCn: Regexes.hasHP({ name: '卡利亚', hp: '60', capture: false }),
       regexKo: Regexes.hasHP({ name: '칼리야', hp: '60', capture: false }),
       sound: 'Long',
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Out of Middle',
@@ -112,7 +112,7 @@ export default {
       netRegexCn: NetRegexes.ability({ id: 'B85', source: '雷击系统' }),
       netRegexKo: NetRegexes.ability({ id: 'B85', source: '뇌격 시스템' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Lightning on YOU',
@@ -133,7 +133,7 @@ export default {
       netRegexCn: NetRegexes.ability({ id: 'B78', source: '卡利亚', capture: false }),
       netRegexKo: NetRegexes.ability({ id: 'B78', source: '칼리야', capture: false }),
       sound: 'Long',
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Final Phase',
@@ -180,7 +180,7 @@ export default {
       netRegexCn: NetRegexes.tether({ id: '001C', target: '卡利亚', capture: false }),
       netRegexKo: NetRegexes.tether({ id: '001C', target: '칼리야', capture: false }),
       condition: (data) => data.tetherA.length === 2,
-      alarmText: (data, _, output) => {
+      alarmText: (data, _matches, output) => {
         let partner = undefined;
         if (data.tetherA[0] === data.me)
           partner = data.tetherA[1];
@@ -210,7 +210,7 @@ export default {
       netRegexCn: NetRegexes.tether({ id: '001D', target: '卡利亚', capture: false }),
       netRegexKo: NetRegexes.tether({ id: '001D', target: '칼리야', capture: false }),
       condition: (data) => data.tetherB.length === 2,
-      alarmText: (data, _, output) => {
+      alarmText: (data, _matches, output) => {
         let partner = undefined;
         if (data.tetherB[0] === data.me)
           partner = data.tetherB[1];

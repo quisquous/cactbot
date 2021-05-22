@@ -3,7 +3,6 @@ import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import Outputs from '../../../../../resources/outputs';
-import { Responses } from '../../../../../resources/responses';
 
 // TODO: we could consider a timeline trigger for the Tidal Roar raidwide,
 // but it barely does 25% health, has no startsUsing, and the timeline for
@@ -85,7 +84,7 @@ export default {
         // This is the real levi, according to hp.
         data.slamLevis = callData.combatants.filter((c) => c.BNpcID === 2802);
       },
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         // Slams happen at +/-~14.6 +/-~13.
         const filtered = data.slamLevis.filter((c) => {
           const offsetX = Math.abs(Math.abs(c.PosX) - 14.6);
@@ -114,7 +113,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '리바이어선', id: '875', capture: false }),
       condition: (data) => Util.isCasterDpsJob(data.job) || Util.isHealerJob(data.job),
       suppressSeconds: 9999,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Attack Head Only',
@@ -136,7 +135,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '리바이어선 꼬리', id: '874', capture: false }),
       condition: (data) => Util.isRangedDpsJob(data.job),
       suppressSeconds: 9999,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Attack Tail Only',
@@ -157,7 +156,7 @@ export default {
       netRegexCn: NetRegexes.addedCombatant({ name: '波棘鱼人', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '물결등뼈 사하긴', capture: false }),
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: Outputs.killAdds,
       },
@@ -170,7 +169,7 @@ export default {
       netRegexJa: NetRegexes.addedCombatant({ name: 'ウェイブトゥース・サハギン', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '波齿鱼人', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '물결이빨 사하긴', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Kill Wavetooth Add',
@@ -192,7 +191,7 @@ export default {
       netRegexKo: NetRegexes.addedCombatant({ name: '물결이빨 사하긴' }),
       condition: (data) => data.CanStun(),
       delaySeconds: 5,
-      alertText: (data, matches, output) => output.text({ name: matches.name }),
+      alertText: (_data, matches, output) => output.text({ name: matches.name }),
       outputStrings: {
         text: Outputs.stunTarget,
       },
@@ -206,7 +205,7 @@ export default {
       netRegexCn: NetRegexes.addedCombatant({ name: '游涡泡沫', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '소용돌이치는 물거품', capture: false }),
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Kill Gyre Spumes',
@@ -227,7 +226,7 @@ export default {
       netRegexCn: NetRegexes.addedCombatant({ name: '巨浪泡沫', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '파도치는 물거품', capture: false }),
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Wave Spume Adds',
@@ -252,7 +251,7 @@ export default {
       // and other people need to get away.
       delaySeconds: 30,
       suppressSeconds: 5,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Burst Soon',
@@ -288,7 +287,7 @@ export default {
       // Some delay for safety, as the button can be hit too early.
       delaySeconds: 3.5,
       suppressSeconds: 30,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hit The Button!',

@@ -19,7 +19,7 @@ export default {
       netRegexJa: NetRegexes.message({ line: '地雷が散布された.*?', capture: false }),
       netRegexCn: NetRegexes.message({ line: '地雷分布在了各处.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '지뢰가 뿌려졌습니다.*?', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       run: (data) => data.landmines = {},
       outputStrings: {
         text: {
@@ -171,7 +171,7 @@ export default {
       netRegexJa: NetRegexes.addedCombatant({ name: 'ドレッドノート', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '恐慌装甲', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '드레드노트', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Dreadnaught Add',
