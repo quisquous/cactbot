@@ -25,6 +25,7 @@ module.exports = {
       'rules': {
         'rulesdir/cactbot-output-strings': 'error',
         'rulesdir/cactbot-timeline-triggers': 'error',
+        'rulesdir/cactbot-response-default-severities': 'error',
       },
     },
     {
