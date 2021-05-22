@@ -161,8 +161,8 @@ const testTriggerFile = (file) => {
             assert.fail(`Missing 'output' param for '${currentTrigger.id}'.`);
 
 
-          containsMatches |= funcStr.includes('matches');
-          containsMatchesParam |= getParamNames(currentTriggerFunction).includes('matches');
+          containsMatches |= /(?<!_)matches/.test(funcStr);
+          containsMatchesParam |= /(?<!_)matches/.test(getParamNames(currentTriggerFunction));
 
           const builtInResponse = 'cactbot-builtin-response';
           if (funcStr.includes(builtInResponse)) {
