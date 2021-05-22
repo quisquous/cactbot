@@ -199,14 +199,7 @@ Options.Triggers.push({
           return output.text();
       },
       outputStrings: {
-        text: {
-          en: 'Spread',
-          de: 'Verteilen',
-          fr: 'Dispersez-vous',
-          ja: '散開',
-          cn: '分散',
-          ko: '산개',
-        },
+        text: Outputs.spread,
       },
     },
     {

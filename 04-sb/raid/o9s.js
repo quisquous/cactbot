@@ -162,14 +162,7 @@ Options.Triggers.push({
           delete data.entropyCount;
       },
       outputStrings: {
-        spread: {
-          en: 'Spread',
-          de: 'Verteilen',
-          fr: 'Ecartez-vous',
-          ja: '散開',
-          cn: '分散',
-          ko: '산개',
-        },
+        spread: Outputs.spread,
         spreadAndStay: {
           en: 'Spread and Stay',
           de: 'Verteilen und bleiben',

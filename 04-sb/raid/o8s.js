@@ -7,14 +7,7 @@ const strings = {
     cn: '${type}: ${dir}',
     ko: '${type}: ${dir}',
   },
-  spread: {
-    en: 'Spread',
-    de: 'verteilen',
-    fr: 'Eloignez-vous',
-    ja: '散開',
-    cn: '散开',
-    ko: '산개',
-  },
+  spread: Outputs.spread,
   stack: {
     en: 'Stack',
     de: 'Stacken',

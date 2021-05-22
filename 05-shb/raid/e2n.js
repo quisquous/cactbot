@@ -154,14 +154,7 @@ Options.Triggers.push({
           cn: '分散',
           ko: '산개 (쉐어 맞으면 안됨)',
         },
-        spread: {
-          en: 'Spread',
-          de: 'Verteilen',
-          fr: 'Dispersez-vous',
-          ja: '散開',
-          cn: '分散',
-          ko: '산개',
-        },
+        spread: Outputs.spread,
       },
     },
     {

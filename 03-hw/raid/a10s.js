@@ -17,14 +17,7 @@ const chargeOutputStrings = {
     cn: '远离',
     ko: '밖으로',
   },
-  spread: {
-    en: 'Spread',
-    de: 'Verteilen',
-    fr: 'Dispersez-vous',
-    ja: '散開',
-    cn: '分散',
-    ko: '산개',
-  },
+  spread: Outputs.spread,
   stackMarker: {
     en: 'Stack',
     de: 'Sammeln',
