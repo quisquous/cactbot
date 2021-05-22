@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -124,14 +125,7 @@ export default {
           cn: '死刑点名',
           ko: '탱버 대상자',
         },
-        tankBusters: {
-          en: 'Tank Busters',
-          de: 'Tank buster',
-          fr: 'Tank buster',
-          ja: 'タンクバスター',
-          cn: '死刑',
-          ko: '탱버',
-        },
+        tankBusters: Outputs.tankBusters,
         tankSwap: {
           en: 'Tank Swap!',
           de: 'Tankwechsel!',

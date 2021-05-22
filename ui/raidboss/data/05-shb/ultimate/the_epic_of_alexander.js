@@ -317,14 +317,7 @@ export default {
           cn: '坦克顺劈',
           ko: '광역 탱버',
         },
-        tankBusters: {
-          en: 'Tank Busters',
-          de: 'Tank buster',
-          fr: 'Tank busters',
-          ja: 'タンクバスター',
-          cn: '死刑',
-          ko: '탱크버스터',
-        },
+        tankBusters: Outputs.tankBusters,
         tankBusterOn: Outputs.tankBusterOnPlayer,
         tankBuster: Outputs.tankBuster,
         tankBusterOnYou: {
