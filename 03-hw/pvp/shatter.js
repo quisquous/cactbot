@@ -9,7 +9,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.gameLog({ line: 'Mémolithe Congelé A1 e et la glace s\'est fragilisée.*?', capture: false }),
       netRegexJa: NetRegexes.gameLog({ line: 'アイスドトームリスA1号基が起動し、氷がもろくなった！.*?', capture: false }),
       netRegexCn: NetRegexes.gameLog({ line: '冰封的石文A1启动了，冰块变得脆弱了！.*?', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Big Ice: Center',
@@ -27,7 +27,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.gameLog({ line: 'Mémolithe Congelé A2 e et la glace s\'est fragilisée.*?', capture: false }),
       netRegexJa: NetRegexes.gameLog({ line: 'アイスドトームリスA2号基が起動し、氷がもろくなった！.*?', capture: false }),
       netRegexCn: NetRegexes.gameLog({ line: '冰封的石文A2启动了，冰块变得脆弱了！.*?', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Big Ice: North',
@@ -45,7 +45,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.gameLog({ line: 'Mémolithe Congelé A3 e et la glace s\'est fragilisée.*?', capture: false }),
       netRegexJa: NetRegexes.gameLog({ line: 'アイスドトームリスA3号基が起動し、氷がもろくなった！.*?', capture: false }),
       netRegexCn: NetRegexes.gameLog({ line: '冰封的石文A3启动了，冰块变得脆弱了！.*?', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Big Ice: Southeast',
@@ -63,7 +63,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.gameLog({ line: 'Mémolithe Congelé A4 e et la glace s\'est fragilisée.*?', capture: false }),
       netRegexJa: NetRegexes.gameLog({ line: 'アイスドトームリスA4号基が起動し、氷がもろくなった！.*?', capture: false }),
       netRegexCn: NetRegexes.gameLog({ line: '冰封的石文A4启动了，冰块变得脆弱了！.*?', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Big Ice: Southwest',

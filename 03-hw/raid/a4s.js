@@ -48,7 +48,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.CanStun();
       },
-      alertText: function(data, matches, output) {
+      alertText: function(_data, matches, output) {
         return output.text({ name: matches.target });
       },
       outputStrings: {
@@ -82,7 +82,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'マニピュレーター', id: 'F5E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: 'F5E', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '操纵者', id: 'F5E', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Laser Tethers',
@@ -103,7 +103,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: 'F64' }),
       netRegexCn: NetRegexes.startsUsing({ source: '操纵者', id: 'F64' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Nisi A on YOU',
@@ -124,7 +124,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: 'F65' }),
       netRegexCn: NetRegexes.startsUsing({ source: '操纵者', id: 'F65' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Nisi B on YOU',

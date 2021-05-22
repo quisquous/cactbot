@@ -12,7 +12,7 @@ Options.Triggers.push({
     {
       id: 'A9S Power Generator',
       regex: /Power Generator/,
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         return {
           1: output.oneEachNWSE(),
           2: output.twoNW(),
@@ -63,7 +63,7 @@ Options.Triggers.push({
       id: 'A9S Alarum',
       regex: /Alarum/,
       delaySeconds: 1,
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         return {
           5: output.southeast(),
           6: output.southwest(),
@@ -96,7 +96,7 @@ Options.Triggers.push({
       id: 'A9S Bomb Explosion',
       regex: /Explosion/,
       beforeSeconds: 7,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Bombs Soon',
@@ -131,12 +131,12 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'リファビッシャー', id: '1A3C', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '废品翻新装置', id: '1A3C', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '재생자', id: '1A3C', capture: false }),
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.mainTank === data.me)
           return;
         return output.getBehind();
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.mainTank !== data.me)
           return;
         return output.scraplineOnYou();
@@ -168,7 +168,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'リファビッシャー', id: '1A3D', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '废品翻新装置', id: '1A3D', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '재생자', id: '1A3D', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stand in Alarum Puddle',
@@ -184,7 +184,7 @@ Options.Triggers.push({
       id: 'A9S Scrap Rock',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Rock on YOU',
@@ -201,7 +201,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '0017', capture: false }),
       delaySeconds: 5,
       suppressSeconds: 1,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hide Fully Behind Rock',
@@ -242,7 +242,7 @@ Options.Triggers.push({
       id: 'A9S Power Generator Add Tether',
       netRegex: NetRegexes.tether({ id: '0011', capture: false }),
       suppressSeconds: 30,
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         // Some of the last phases have multiple options.
         // This is an old fight, so just pick one for people.
         return {

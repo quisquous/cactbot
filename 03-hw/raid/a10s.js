@@ -51,7 +51,7 @@ Options.Triggers.push({
       regex: /Gobbie Adds/,
       beforeSeconds: 0,
       suppressSeconds: 1,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hit Adds With Weight Trap',
@@ -73,7 +73,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1AB2', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1AB2', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AB2', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Floor Spikes',
@@ -93,7 +93,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1AB1', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1AB1', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AB1', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Frost Lasers',
@@ -113,7 +113,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1AB0', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1AB0', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AB0', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Ceiling Weight',
@@ -143,7 +143,7 @@ Options.Triggers.push({
           '1ABB': 'stackMarker',
         }[matches.id]);
       },
-      response: function(data, _, output) {
+      response: function(data, _matches, output) {
         // cactbot-builtin-response
         output.responseOutputStrings = chargeOutputStrings;
         // Call the first one out with alert, the other two with info.
@@ -174,7 +174,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1A9[ABCE]', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1A9[ABCE]', capture: false }),
       suppressSeconds: 0.5,
-      response: function(data, _, output) {
+      response: function(data, _matches, output) {
         // cactbot-builtin-response
         output.responseOutputStrings = chargeOutputStrings;
         if (!data.charges || !data.charges.length)
@@ -296,7 +296,7 @@ Options.Triggers.push({
       id: 'A10S Brighteyes Prey Marker',
       netRegex: NetRegexes.headMarker({ id: '0029' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Prey on YOU',
@@ -316,7 +316,7 @@ Options.Triggers.push({
         return data.me === matches.target && !data.seenBrighteyes;
       },
       delaySeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Pass Prey',
@@ -336,7 +336,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: '傭兵のレイムプリクス', id: '1A92', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '佣兵雷姆普里克斯', id: '1A92', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '용병 레임브릭스', id: '1A92', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hit Floor Trap',
@@ -366,7 +366,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1A8F', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1A8F', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1A8F', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hit Boss With Ice',

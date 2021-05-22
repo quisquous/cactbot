@@ -14,7 +14,7 @@ Options.Triggers.push({
       regex: /Shining Blade/,
       beforeSeconds: 3,
       suppressSeconds: 10,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid dashes',
@@ -115,7 +115,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.tether({ id: '0001', source: '차원의 틈새' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 5,
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away from rifts',
@@ -167,7 +167,7 @@ Options.Triggers.push({
         return data.knightsActive;
       },
       suppressSeconds: 4,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Evade marching knights',

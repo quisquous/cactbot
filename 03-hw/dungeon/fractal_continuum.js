@@ -73,7 +73,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: 'F87', source: 'ミノタウロス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: 'F87', source: '弥诺陶洛斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: 'F87', source: '미노타우로스', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Use a cage',
@@ -91,7 +91,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.CanCleanse();
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Cleanse bomb',

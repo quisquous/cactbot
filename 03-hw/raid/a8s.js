@@ -17,7 +17,7 @@ Options.Triggers.push({
       id: 'A8S Swindler Add',
       regex: /Swindler/,
       beforeSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Swindler Soon',
@@ -33,7 +33,7 @@ Options.Triggers.push({
       id: 'A8S Vortexer Add',
       regex: /Vortexer/,
       beforeSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Vortexer Soon',
@@ -55,7 +55,7 @@ Options.Triggers.push({
       id: 'A8S Super Jump Soon',
       regex: /Super Jump/,
       beforeSeconds: 8,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Bait Super Jump',
@@ -78,7 +78,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '突击者', id: '162E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '맹습자', id: '162E', capture: false }),
       // Insert sound effect from Arthars here.
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Megabeamu~',
@@ -98,7 +98,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '1664', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '1664', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '1664', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Megabeamu~!',
@@ -121,7 +121,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.role === 'dps' || data.job === 'BLU';
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Kill Regulators',
@@ -153,7 +153,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.addedCombatant({ name: '爆破者幻象', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '폭파자의 환영', capture: false }),
       suppressSeconds: 99999,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Mirage',
@@ -172,7 +172,7 @@ Options.Triggers.push({
         // Verdict comes with the same headmarker.
         return data.me === matches.target && !data.seenLinkUp;
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Orb on YOU',
@@ -204,7 +204,7 @@ Options.Triggers.push({
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get High',
@@ -222,7 +222,7 @@ Options.Triggers.push({
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Down',
@@ -300,10 +300,10 @@ Options.Triggers.push({
     {
       id: 'A8S Compressed Lightning Soon',
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
-      delaySeconds: function(data, matches) {
+      delaySeconds: function(_data, matches) {
         return parseFloat(matches.duration) - 5;
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (!data.lightning)
           return;
         return output.text({ player: data.ShortName(data.lightning) });
@@ -410,11 +410,11 @@ Options.Triggers.push({
         return data.longNeedleStack && data.longNeedlePrey;
       },
       suppressSeconds: 10,
-      alarmText: function(data, _, output) {
+      alarmText: function(data, _matches, output) {
         if (data.longNeedlePrey.includes(data.me))
           return output.preyGetOut();
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.longNeedlePrey.includes(data.me))
           return;
         const target = data.longNeedleStack;
@@ -494,7 +494,7 @@ Options.Triggers.push({
       id: 'A8S Mirage Marker',
       netRegex: NetRegexes.headMarker({ id: '0008' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Mirage on YOU',
@@ -510,7 +510,7 @@ Options.Triggers.push({
       id: 'A8S Ice Missile Marker',
       netRegex: NetRegexes.headMarker({ id: '0043' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Ice Missile on YOU',
@@ -536,7 +536,7 @@ Options.Triggers.push({
         return !data.seenLinkUp;
       },
       suppressSeconds: 10,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Mines',
@@ -557,7 +557,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '165A' }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '165A' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Look Away from Mirage',
@@ -578,7 +578,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '165B' }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '165B' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Look Towards Mirage',
@@ -607,7 +607,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.gainsEffect({ effectId: '408' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Min HP: Provoke Boss => Late NE Tornado',
@@ -631,7 +631,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.gainsEffect({ effectId: '408' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 27,
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get NE Tornado',
@@ -654,7 +654,7 @@ Options.Triggers.push({
       id: 'A8S Verdict Max HP',
       netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Max HP: Provoke Boss Second',
@@ -673,7 +673,7 @@ Options.Triggers.push({
       condition: function(data, matches) {
         return matches.target === data.verdictMin && data.me === data.verdictMax;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Provoke Boss',
@@ -692,7 +692,7 @@ Options.Triggers.push({
         return data.me === matches.target && data.job === 'BLU';
       },
       delaySeconds: 27,
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Use Devour',
@@ -711,7 +711,7 @@ Options.Triggers.push({
       durationSeconds: 10,
       // TODO: we could say who to share north orbs with?
       // TODO: we could also repeat the "share north orbs" after sw orb Explosion.
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Penalty 1: SW orb -> Share 2x North Orbs',
@@ -727,7 +727,7 @@ Options.Triggers.push({
       id: 'A8S Verdict Penalty 2',
       netRegex: NetRegexes.gainsEffect({ effectId: '40A' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Penalty 2: NW Tornado',
@@ -743,7 +743,7 @@ Options.Triggers.push({
       id: 'A8S Verdict Penalty 3',
       netRegex: NetRegexes.gainsEffect({ effectId: '40B' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Penalty 3: Get a South Tornado',
@@ -762,7 +762,7 @@ Options.Triggers.push({
       delaySeconds: 28,
       // TODO: we could collect who else has penalty 3 to share the orb with?
       // TODO: we could also say who to share north orb with.
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Share last orb after gavel',
@@ -781,7 +781,7 @@ Options.Triggers.push({
       // TODO: we could say east or west here after the regulators spawn?
       // TODO: we could also say who to share north orb with.
       // TODO: we could also repeat the share after the regular dies?
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Blue Regulator -> Share 1x North Orb',
@@ -797,7 +797,7 @@ Options.Triggers.push({
       id: 'A8S Verdict Nisi B',
       netRegex: NetRegexes.gainsEffect({ effectId: '40D' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Red Regulator -> Share 1x North Orb',
@@ -853,10 +853,10 @@ Options.Triggers.push({
     {
       id: 'A8S Compressed Water Soon',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      delaySeconds: function(data, matches) {
+      delaySeconds: function(_data, matches) {
         return parseFloat(matches.duration) - 5;
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (!data.water)
           return;
         return output.text({ player: data.ShortName(data.water) });
@@ -892,7 +892,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '1716', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '1716', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '1716', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stack for Final Beam',

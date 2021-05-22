@@ -25,7 +25,7 @@ Options.Triggers.push({
         return data.role === 'tank' || data.job === 'BLU';
       },
       suppressSeconds: 1,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Move Bosses',
@@ -43,7 +43,7 @@ Options.Triggers.push({
       id: 'A3S Sluice',
       netRegex: NetRegexes.headMarker({ id: '001A' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Sluice on YOU',
@@ -59,7 +59,7 @@ Options.Triggers.push({
       id: 'A3S Digititis Tank',
       netRegex: NetRegexes.headMarker({ id: '0025' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Tank Debuff',
@@ -75,7 +75,7 @@ Options.Triggers.push({
       id: 'A3S Digititis Healer',
       netRegex: NetRegexes.headMarker({ id: '0022' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Healer Debuff',
@@ -91,7 +91,7 @@ Options.Triggers.push({
       id: 'A3S Digititis Damage',
       netRegex: NetRegexes.headMarker({ id: '0024' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Damage Debuff',
@@ -111,7 +111,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: ['リキッドハンド', 'リビングリキッド'], id: 'F09', capture: false }),
       netRegexCn: NetRegexes.ability({ source: ['活水之手', '有生命活水'], id: 'F09', capture: false }),
       netRegexKo: NetRegexes.ability({ source: ['액체 손', '살아있는 액체'], id: 'F09', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Burn Higher HP Hand',
@@ -132,7 +132,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.tether({ id: '0005', target: '有生命活水' }),
       netRegexKo: NetRegexes.tether({ id: '0005', target: '살아있는 액체' }),
       condition: (data, matches) => matches.source === data.me,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Drainage on YOU',
@@ -156,7 +156,7 @@ Options.Triggers.push({
         return data.role === 'tank';
       },
       suppressSeconds: 1,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get drainage tether',
@@ -304,7 +304,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.role === 'tank' || data.job === 'BLU';
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Embolus: Move Boss',

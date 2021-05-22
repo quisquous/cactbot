@@ -44,7 +44,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.addedCombatant({ name: 'キームス・マウンテン', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '圣山之糜', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '산의 유미즙', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Kill Chyme Add',

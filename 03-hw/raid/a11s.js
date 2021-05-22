@@ -42,7 +42,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '1A6C', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '1A6C', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '1A6C', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Clock',
@@ -72,7 +72,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '1A6E', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '1A6E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '1A6E', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Bait Optical Sight',
@@ -119,7 +119,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.addedCombatant({ name: 'イーディーディー', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '护航机甲', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: 'E\\.D\\.D\\.', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Kill Add',
@@ -139,7 +139,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.addedCombatant({ name: 'ショルダーアーマー', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '肩部装甲', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '견갑부', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Break Pauldron',
@@ -229,7 +229,7 @@ Options.Triggers.push({
       durationSeconds: function(data) {
         return data.limitCutDelay;
       },
-      infoText: (data, _, output) => output.text({ num: data.limitCutNumber }),
+      infoText: (data, _matches, output) => output.text({ num: data.limitCutNumber }),
       outputStrings: {
         text: {
           en: '${num}',
@@ -248,7 +248,7 @@ Options.Triggers.push({
       delaySeconds: function(data) {
         return data.limitCutDelay - 5;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.limitCutNumber % 2 === 1) {
           // Odds
           return output.knockbackCleave();
@@ -344,7 +344,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '1A7F', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '1A7F', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '1A7F', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hide Behind Tower',
@@ -364,7 +364,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.addedCombatant({ name: 'プラズマシールド', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '等离子护盾', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '플라스마 방어막', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Break Shield From Front',

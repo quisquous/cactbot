@@ -102,7 +102,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.tether({ source: '폭탄', id: '001F' }),
       netRegexCn: NetRegexes.tether({ source: '炸弹', id: '001F' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Bomb Spread',
@@ -118,7 +118,7 @@ Options.Triggers.push({
       id: 'A7S Jail Prey',
       netRegex: NetRegexes.headMarker({ id: '0029' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Jail Prey',
@@ -142,7 +142,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.tether({ source: '7号哥布林战车L型', id: '0011' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Jail Tether',
@@ -219,7 +219,7 @@ Options.Triggers.push({
         // If you're not in a jail, kill the padlock.
         return !data.grabbed.includes(data.me) && data.stickyloom !== data.me;
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Break Padlock',
@@ -239,7 +239,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'シャノア', id: '15EC', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '샤노아', id: '15EC', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '夏诺雅', id: '15EC', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Kill Heart',
@@ -255,7 +255,7 @@ Options.Triggers.push({
       id: 'A7S Searing Wind',
       netRegex: NetRegexes.gainsEffect({ effectId: '178' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Searing Wind on YOU',
