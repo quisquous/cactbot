@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -559,14 +560,7 @@ export default {
           cn: '死刑点名',
           ko: '탱버 대상자',
         },
-        busterOn: {
-          en: 'Buster on ${player}',
-          de: 'Tankbuster auf ${player}',
-          fr: 'Tank buster sur ${player}',
-          ja: '${player}にタンクバスター',
-          cn: '死刑点 ${player}',
-          ko: '"${player}" 탱버',
-        },
+        busterOn: Outputs.tankBusterOnPlayer,
         awayFromPlayer: {
           en: 'Away from ${player}',
           de: 'Weg von ${player}',
