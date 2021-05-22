@@ -173,14 +173,7 @@ export default {
       },
       outputStrings: {
         tankBusterOnYou: Outputs.tankBusterOnYou,
-        avoidTankCleave: {
-          en: 'Avoid tank cleave',
-          de: 'Tank Cleave ausweichen',
-          fr: 'Évitez le tank cleave',
-          ja: '前方範囲攻撃を避ける',
-          cn: '远离顺劈',
-          ko: '광역 탱버 피하기',
-        },
+        avoidTankCleave: Outputs.avoidTankCleave,
         tankBusterOn: Outputs.tankBusterOnPlayer,
       },
     },
