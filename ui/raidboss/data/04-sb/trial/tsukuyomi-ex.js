@@ -67,14 +67,7 @@ export default {
         },
         tankBusterOnYou: Outputs.tankBusterOnYou,
         busterOn: Outputs.tankBusterOnPlayer,
-        tankSwap: {
-          en: 'Tank Swap!',
-          de: 'Tankwechsel!',
-          fr: 'Tank swap !',
-          ja: 'スイッチ',
-          cn: '换T！',
-          ko: '탱 교대',
-        },
+        tankSwap: Outputs.tankSwap,
       },
     },
     {

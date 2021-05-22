@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -126,14 +127,7 @@ export default {
           cn: '冲锋点名',
           ko: '돌진 대상자',
         },
-        tankSwap: {
-          en: 'Tank Swap',
-          de: 'Tank Swap',
-          fr: 'Tank Swap',
-          ja: 'タンクスイッチ',
-          cn: '换坦克',
-          ko: '탱 교대',
-        },
+        tankSwap: Outputs.tankSwap,
       },
     },
     {
