@@ -62,32 +62,39 @@ export function setup(bars) {
     threshold: 5,
   });
 
-  bars.onUseAbility(kAbility.TwinSnakes, () => {
+  bars.onYouGainEffect(EffectId.TwinSnakes, (name, matches) => {
     twinSnakesBox.duration = 0;
-    twinSnakesBox.duration = 15;
+    // -0.5 for logline delay
+    twinSnakesBox.duration = (parseFloat(matches.duration) - 0.5).toString();
   });
-  bars.onUseAbility(kAbility.FourPointFury, () => {
-    // FIXME: using bars at zero.
-    const old = parseFloat(twinSnakesBox.duration) - parseFloat(twinSnakesBox.elapsed);
-    twinSnakesBox.duration = 0;
-    if (old > 0)
-      twinSnakesBox.duration = Math.min(old + 10, 15);
-  });
+  bars.onYouLoseEffect(EffectId.TwinSnakes, () => twinSnakesBox.duration = 0);
+
   bars.onUseAbility(kAbility.Demolish, () => {
     demolishBox.duration = 0;
     // it start counting down when you cast demolish
     // but DOT appears on target about 1 second later
     demolishBox.duration = 18 + 1;
   });
+
   bars.onYouGainEffect(EffectId.LeadenFist, () => {
     dragonKickBox.duration = 0;
     dragonKickBox.duration = 30;
   });
   bars.onYouLoseEffect(EffectId.LeadenFist, () => dragonKickBox.duration = 0);
+
+  let perfectBalanceActive = false;
   bars.onYouGainEffect(EffectId.PerfectBalance, (name, matches) => {
+    if (!perfectBalanceActive) {
+      formTimer.duration = 0;
+      formTimer.duration = parseFloat(matches.duration).toString();
+      formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-pb');
+      perfectBalanceActive = true;
+    }
+  });
+  bars.onYouLoseEffect(EffectId.PerfectBalance, () => {
     formTimer.duration = 0;
-    formTimer.duration = parseFloat(matches.duration);
-    formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-pb');
+    formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
+    perfectBalanceActive = false;
   });
 
   const changeFormFunc = (name, matches) => {
@@ -107,6 +114,7 @@ export function setup(bars) {
     dragonKickBox.duration = 0;
     formTimer.duration = 0;
     formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
+    perfectBalanceActive = false;
   };
 }
 
