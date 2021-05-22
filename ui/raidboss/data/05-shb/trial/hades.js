@@ -213,14 +213,7 @@ export default {
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
-        text: {
-          en: 'Tank Busters',
-          de: 'Tank Buster',
-          fr: 'Tank buster',
-          ja: 'タンクバスター',
-          cn: '坦克死刑',
-          ko: '탱크버스터',
-        },
+        text: Outputs.tankBusters,
       },
     },
     {

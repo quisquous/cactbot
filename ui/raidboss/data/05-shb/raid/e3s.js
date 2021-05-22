@@ -118,14 +118,7 @@ export default {
       },
       outputStrings: {
         tankBusterOnYou: Outputs.tankBusterOnYou,
-        tankBusters: {
-          en: 'Tank Busters',
-          de: 'Tank buster',
-          fr: 'Tank buster',
-          ja: 'タンクバスター',
-          cn: '死刑',
-          ko: '탱버',
-        },
+        tankBusters: Outputs.tankBusters,
         tankSwap: {
           en: 'Tank Swap!',
           de: 'Tankwechsel!',
