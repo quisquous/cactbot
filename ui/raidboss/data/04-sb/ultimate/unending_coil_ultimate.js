@@ -1616,10 +1616,10 @@ export default {
           4: [],
         };
 
-        data.resetTrio = function(trio) {
-          this.trio = trio;
-          this.shakers = [];
-          this.megaStack = [];
+        data.resetTrio = (trio) => {
+          data.trio = trio;
+          data.shakers = [];
+          data.megaStack = [];
         };
 
         // Begin copy and paste from dragon_test.js.
