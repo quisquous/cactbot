@@ -477,7 +477,7 @@ A simple example using `outputStrings` and `Outputs` as below:
     if (data.role === 'healer')
       return output.tankBusters({ player: data.ShortName(matches.target) });
   },
-  infoText: function(data, _, output) {
+  infoText: function(data, _matches, output) {
     if (data.role !== 'tank' && data.role !== 'healer')
       return output.avoidLaser();
   },
