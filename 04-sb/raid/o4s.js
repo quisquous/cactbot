@@ -207,17 +207,17 @@ Options.Triggers.push({
         data.alphaCount = (data.alphaCount || 0) + 1;
         // TODO: should have options for this.
         data.dieOnLaser = 1;
-        data.shouldDieOnLaser = function() {
-          if (!this.beyondDeath)
+        data.shouldDieOnLaser = () => {
+          if (!data.beyondDeath)
             return false;
           // Beyond death doesn't update for laser #2 if you died on
           // laser #1, so don't tell anybody to die on laser #2.
           // If you still have beyond death, it'll remind you for #3.
-          if (this.omegaLaserCount === 2 && this.omegaProbablyDiedOnLaser)
+          if (data.omegaLaserCount === 2 && data.omegaProbablyDiedOnLaser)
             return false;
-          if (this.phase !== 'omega')
+          if (data.phase !== 'omega')
             return true;
-          return this.omegaLaserCount >= this.dieOnLaser;
+          return data.omegaLaserCount >= data.dieOnLaser;
         };
       },
     },

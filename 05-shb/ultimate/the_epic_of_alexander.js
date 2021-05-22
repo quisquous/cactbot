@@ -462,13 +462,13 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '483E', capture: false }),
       run: function(data) {
         data.phase = 'brute';
-        data.resetState = function() {
-          this.enumerations = [];
-          this.buffMap = {};
-          this.tetherBois = {};
-          this.vuln = {};
-          delete this.limitCutNumber;
-          delete this.limitCutDelay;
+        data.resetState = () => {
+          data.enumerations = [];
+          data.buffMap = {};
+          data.tetherBois = {};
+          data.vuln = {};
+          delete data.limitCutNumber;
+          delete data.limitCutDelay;
         };
         data.resetState();
       },
