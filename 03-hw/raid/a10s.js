@@ -229,14 +229,7 @@ Options.Triggers.push({
           return output.shieldPlayer({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
-        tankSwap: {
-          en: 'Tank Swap!',
-          de: 'Tankwechsel!',
-          fr: 'Tank swap !',
-          ja: 'タンクスイッチ!',
-          cn: '换T！',
-          ko: '탱 교대',
-        },
+        tankSwap: Outputs.tankSwap,
         shieldPlayer: {
           en: 'Shield ${player}',
           de: 'Schild ${player}',

@@ -84,14 +84,7 @@ Options.Triggers.push({
           return output.swapThenBuster();
       },
       outputStrings: {
-        tankSwap: {
-          en: 'Tank Swap',
-          de: 'Tankwechsel',
-          fr: 'Tank Swap',
-          ja: 'スイッチ',
-          cn: '换T',
-          ko: '탱 교대',
-        },
+        tankSwap: Outputs.tankSwap,
         swapThenBuster: {
           en: 'Swap, then Buster',
           de: 'Tankwechsel, danach Tankbuster',

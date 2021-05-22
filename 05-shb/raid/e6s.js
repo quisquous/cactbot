@@ -238,14 +238,7 @@ Options.Triggers.push({
           cn: '冲锋点名',
           ko: '나에게 보스 돌진',
         },
-        tankSwap: {
-          en: 'Tank Swap',
-          de: 'Tank Swap',
-          fr: 'Tank Swap',
-          ja: 'タンクスイッチ',
-          cn: '换T',
-          ko: '탱 교대',
-        },
+        tankSwap: Outputs.tankSwap,
       },
     },
     {
