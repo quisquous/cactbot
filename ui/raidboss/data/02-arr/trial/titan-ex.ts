@@ -7,7 +7,7 @@ import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
-const triggerSet: TriggerSet = {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheNavelExtreme,
   timelineFile: 'titan-ex.txt',
   timelineTriggers: [
