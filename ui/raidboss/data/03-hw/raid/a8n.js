@@ -26,7 +26,7 @@ export default {
       id: 'A8N Super Jump Soon',
       regex: /Super Jump/,
       beforeSeconds: 8,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Bait Super Jump',
@@ -49,7 +49,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '突击者', id: '1732', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '맹습자', id: '1732', capture: false }),
       // Insert sound effect from Arthars here.
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Megabeamu~',
@@ -69,7 +69,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '174F', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '174F', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '174F', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Megabeamu~!',
@@ -92,7 +92,7 @@ export default {
       condition: function(data) {
         return data.role === 'dps' || data.job === 'BLU';
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Kill Regulators',
@@ -122,7 +122,7 @@ export default {
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get High',
@@ -140,7 +140,7 @@ export default {
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Down',
@@ -237,7 +237,7 @@ export default {
       id: 'A8N Long Needle Active Tank',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       condition: (data) => data.me === data.bruteTank && data.bruteTankOut,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Don\'t Stack! (tank cleave)',
@@ -311,7 +311,7 @@ export default {
       id: 'A8N Mirage Marker',
       netRegex: NetRegexes.headMarker({ id: '0008' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Mirage on YOU',
@@ -327,7 +327,7 @@ export default {
       id: 'A8N Ice Missile Marker',
       netRegex: NetRegexes.headMarker({ id: '0043' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Ice Missile on YOU',
@@ -348,7 +348,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '1749', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '1749', capture: false }),
       suppressSeconds: 5,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid Mirage Dashes',

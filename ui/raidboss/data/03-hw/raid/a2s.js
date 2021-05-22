@@ -18,7 +18,7 @@ export default {
       regex: /(?:Brainhurt|Bodyhurt) Breakblock/,
       beforeSeconds: 10,
       suppressSeconds: 1,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stun Soon',
@@ -40,7 +40,7 @@ export default {
       netRegexJa: NetRegexes.addedCombatant({ name: '爆弾', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '炸弹', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '폭탄', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Bomb',
@@ -88,7 +88,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: 'Ix호 고블린거미', id: '1413' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Boomcannon on YOU',
@@ -124,7 +124,7 @@ export default {
         return !data.bangyzoom;
       },
       suppressSeconds: 1,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       run: function(data) {
         data.bangyzoom = true;
       },

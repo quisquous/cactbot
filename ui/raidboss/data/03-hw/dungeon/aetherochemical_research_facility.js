@@ -106,8 +106,8 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '1105', source: '아씨엔 프라임' }),
       // The cast is ~10s, but it takes about 2s for correct execution to register
       // 6s to execute is *usually* enough time
-      delaySeconds: (data, matches) => parseFloat(matches.castTime) - 6,
-      alertText: (data, _, output) => output.text(),
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6,
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stand in dark portal',
@@ -128,7 +128,7 @@ export default {
       netRegexCn: NetRegexes.addedCombatant({ name: '混沌晶球', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '혼돈의 구체', capture: false }),
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid your orb--pop others\'',

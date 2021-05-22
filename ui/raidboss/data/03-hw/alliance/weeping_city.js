@@ -19,7 +19,7 @@ export default {
       regex: /The Widow's Kiss/,
       beforeSeconds: 5,
       // Probably kills the player if failed, so it gets an alert.
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stand on webs',
@@ -35,7 +35,7 @@ export default {
       id: 'Weeping City Punishing Ray',
       regex: /Punishing Ray/,
       beforeSeconds: 10,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Puddles',
@@ -143,7 +143,7 @@ export default {
       condition: function(data, matches) {
         return data.arachneStarted && data.me === matches.target;
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Drop Web Outside',
@@ -165,7 +165,7 @@ export default {
       id: 'Weeping City Dark Eruption',
       netRegex: NetRegexes.headMarker({ id: '0019' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Puddles on YOU',
@@ -222,7 +222,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '17CA', source: 'フォルガル', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '17CA', source: '포르갈', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '17CA', source: '弗加尔', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stand in one puddle',
@@ -238,7 +238,7 @@ export default {
       id: 'Weeping City Meteor Impact',
       netRegex: NetRegexes.headMarker({ id: '0039' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Drop meteor back or left',
@@ -260,7 +260,7 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '1826', source: 'オズマ', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '1826', source: '오즈마', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '1826', source: '奥兹玛', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get off rectangle platform',
@@ -297,7 +297,7 @@ export default {
       netRegexCn: NetRegexes.ability({ id: '1803', source: '奥兹玛', capture: false }),
       // Delaying here to avoid colliding with other Flare Star triggers.
       delaySeconds: 4,
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.role === 'tank')
           return output.tankLasers();
 
@@ -330,7 +330,7 @@ export default {
       condition: function(data) {
         return data.role === 'tank' || data.role === 'healer';
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get orbs',
@@ -346,7 +346,7 @@ export default {
       id: 'Weeping City Acceleration Bomb',
       netRegex: NetRegexes.gainsEffect({ effectId: '430' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: function(data, matches) {
+      delaySeconds: function(_data, matches) {
         return parseFloat(matches.duration) - 3;
       },
       response: Responses.stopEverything(),
@@ -400,7 +400,7 @@ export default {
       id: 'Weeping City Living Lock Axes',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['4899', '4900'], capture: false }),
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Close to axes, avoid bulbs',
@@ -416,7 +416,7 @@ export default {
       id: 'Weeping City Living Lock Scythes',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '4898', capture: false }),
       suppressSeconds: 5,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid scythe line AoEs',
@@ -433,7 +433,7 @@ export default {
       id: 'Weeping City Entanglement',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '4904', capture: false }),
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid purple circles',
