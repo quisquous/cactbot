@@ -812,14 +812,7 @@ export default {
           cn: '击退顺劈点名',
           ko: '나에게 넉백 공격',
         },
-        knockback: {
-          en: 'Knockback',
-          de: 'Rückstoß',
-          fr: 'Poussée',
-          ja: 'ノックバック',
-          cn: '击退',
-          ko: '넉백',
-        },
+        knockback: Outputs.knockback,
       },
     },
     {

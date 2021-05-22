@@ -1,6 +1,7 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Regexes from '../../../../../resources/regexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -76,14 +77,7 @@ const orbOutputStrings = {
     cn: '???',
     ko: '???',
   },
-  knockback: {
-    en: 'Knockback',
-    de: 'Rückstoß',
-    fr: 'Poussée',
-    ja: 'ノックバック',
-    cn: '击退',
-    ko: '넉백',
-  },
+  knockback: Outputs.knockback,
   stop: {
     en: 'Stop',
     de: 'Stopp',

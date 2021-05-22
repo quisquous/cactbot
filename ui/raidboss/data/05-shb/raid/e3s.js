@@ -395,14 +395,7 @@ export default {
           cn: '迟击退点名 #2',
           ko: '늦은 넉백 대상자 2',
         },
-        knockbackOnYou: {
-          en: 'Knockback on YOU',
-          de: 'Knockback auf Dir',
-          fr: 'Poussée sur VOUS',
-          ja: '自分にノックバック',
-          cn: '击退点名',
-          ko: '넉백 대상자',
-        },
+        knockbackOnYou: Outputs.knockbackOnYou,
       },
     },
     {
