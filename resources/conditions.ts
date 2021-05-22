@@ -1,7 +1,7 @@
 // For consistency with Responses, Conditions
 // are also functions.
 
-import { Data } from '../types/data';
+import { RaidbossData as Data } from '../types/data';
 import { TargetedMatches } from '../types/trigger';
 
 export default {

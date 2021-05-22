@@ -19,7 +19,7 @@
 // anything with data or matches.  See `responses_test.js`.
 
 import { LocaleText, ResponseOutput, ResponseFunc, TriggerFunc, TargetedMatches, Output } from '../types/trigger';
-import { Data } from '../types/data';
+import { RaidbossData as Data } from '../types/data';
 import Outputs from './outputs';
 
 type TargetedResponseOutput = ResponseOutput<TargetedMatches>;
