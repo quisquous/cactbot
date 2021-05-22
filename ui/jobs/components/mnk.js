@@ -64,7 +64,8 @@ export function setup(bars) {
 
   bars.onYouGainEffect(EffectId.TwinSnakes, (name, matches) => {
     twinSnakesBox.duration = 0;
-    twinSnakesBox.duration = (parseFloat(matches.duration) - 0.5).toString(); // logline delay for effect
+    // -0.5 for logline delay
+    twinSnakesBox.duration = (parseFloat(matches.duration) - 0.5).toString();
   });
   bars.onYouLoseEffect(EffectId.TwinSnakes, () => twinSnakesBox.duration = 0);
 
