@@ -89,7 +89,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'オンスローター', id: '1632', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '突击者', id: '1632', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '맹습자', id: '1632', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'dps' || data.job === 'BLU';
       },
       infoText: (_data, _matches, output) => output.text(),
@@ -165,7 +165,7 @@ export default {
     {
       id: 'A8N Enumeration',
       netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         // 0040 = 2, 0041 = 3, 0042 = 4
         const count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
         return output.text({ player: data.ShortName(matches.target), count: count });
@@ -203,7 +203,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '174C' }),
       netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '174C' }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '174C' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.bruteTank = matches.target;
       },
     },
@@ -223,7 +223,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: ['1750', '1756'] }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: ['1750', '1756'] }),
       suppressSeconds: 5,
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.bruteTankOut = matches.id === '1756';
       },
     },
@@ -278,12 +278,12 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '1750' }),
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '1750' }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '1750' }),
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (data.me !== matches.target)
           return;
         return output.superJumpOnYou();
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return;
         return output.superJumpOn({ player: data.ShortName(matches.target) });

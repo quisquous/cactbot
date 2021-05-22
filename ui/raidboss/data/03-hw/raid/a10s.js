@@ -128,7 +128,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1AB[89AB]' }),
       netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1AB[89AB]' }),
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AB[89AB]' }),
-      preRun: function(data, matches) {
+      preRun: (data, matches) => {
         data.charges = data.charges || [];
         data.charges.push({
           '1AB8': 'getIn',
@@ -137,7 +137,7 @@ export default {
           '1ABB': 'stackMarker',
         }[matches.id]);
       },
-      response: function(data, _matches, output) {
+      response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = chargeOutputStrings;
 
@@ -155,7 +155,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1A9[789]', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1A9[789]', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1A9[789]', capture: false }),
-      run: function(data) {
+      run: (data) => {
         if (data.charges)
           data.charges.shift();
       },
@@ -169,7 +169,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1A9[ABCE]', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1A9[ABCE]', capture: false }),
       suppressSeconds: 0.5,
-      response: function(data, _matches, output) {
+      response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = chargeOutputStrings;
 
@@ -188,7 +188,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1A9[789]', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1A9[789]', capture: false }),
       delaySeconds: 10,
-      run: function(data) {
+      run: (data) => {
         // Cleanup just in case.
         delete data.charges;
       },
@@ -212,12 +212,12 @@ export default {
       netRegexJa: NetRegexes.tether({ source: '傭兵のレイムプリクス', id: '0039' }),
       netRegexCn: NetRegexes.tether({ source: '佣兵雷姆普里克斯', id: '0039' }),
       netRegexKo: NetRegexes.tether({ source: '용병 레임브릭스', id: '0039' }),
-      alarmText: function(data, matches, output) {
+      alarmText: (data, matches, output) => {
         if (data.me !== matches.target)
           return;
         return output.tankSwapGetAway();
       },
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return;
         if (data.role === 'tank')
@@ -264,7 +264,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: '傭兵のレイムプリクス', id: '1AA9', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '佣兵雷姆普里克斯', id: '1AA9', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AA9', capture: false }),
-      run: function(data) {
+      run: (data) => {
         // This comes out 0.1s before every '0029' prey marker.
         data.seenBrighteyes = true;
       },
@@ -279,7 +279,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AA9', capture: false }),
       delaySeconds: 20,
       suppressSeconds: 20,
-      run: function(data) {
+      run: (data) => {
         delete data.seenBrighteyes;
       },
     },
@@ -302,7 +302,7 @@ export default {
     {
       id: 'A10S Brighteyes Prey Marker Pass',
       netRegex: NetRegexes.headMarker({ id: '0029' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         // Only need to pass on the first one.
         return data.me === matches.target && !data.seenBrighteyes;
       },

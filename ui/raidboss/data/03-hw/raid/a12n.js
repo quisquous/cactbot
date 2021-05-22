@@ -67,7 +67,7 @@ export default {
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
       // If the user is targeted for Assault, we need to ensure the stack trigger knows.
-      run: function(data) {
+      run: (data) => {
         data.assault = true;
       },
       outputStrings: {
@@ -86,7 +86,7 @@ export default {
       id: 'A12N Heat And Solidarity',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       delaySeconds: 0.5,
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         // If the user was targeted for Assault, they shouldn't stack.
         // Unfortunately, Assault comes after the Shared Sentence marker in the log,
         // so we have to use the collect + delay construction to make calls.
@@ -97,7 +97,7 @@ export default {
 
         return output.stackOn({ player: data.ShortName(matches.target) });
       },
-      run: function(data) {
+      run: (data) => {
         delete data.assault;
       },
       outputStrings: {

@@ -55,7 +55,7 @@ export default {
       netRegexJa: NetRegexes.addedCombatant({ name: 'シャノア', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '샤노아', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '夏诺雅', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.phase = data.phase || 0;
         data.phase++;
       },
@@ -63,11 +63,11 @@ export default {
     {
       id: 'A7S Sizzlebeam',
       netRegex: NetRegexes.headMarker({ id: '0018' }),
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.sizzlebeamOnYou();
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (matches.target !== data.me)
           return output.sizzlebeamOn({ player: data.ShortName(matches.target) });
       },
@@ -170,7 +170,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'シュツルムドール', id: '16FE' }),
       netRegexKo: NetRegexes.startsUsing({ source: '인형 폭기병', id: '16FE' }),
       netRegexCn: NetRegexes.startsUsing({ source: '风暴人偶', id: '16FE' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanStun();
       },
       response: Responses.stun(),
@@ -183,7 +183,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '万能のクイックシンクス', id: '16F4', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '만능의 퀵싱크스', id: '16F4', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '万事通 奎克辛克斯', id: '16F4', capture: false }),
-      run: function(data) {
+      run: (data) => {
         delete data.grabbed;
         delete data.stickyloom;
       },
@@ -196,7 +196,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: '万能のクイックシンクス', id: '15C0' }),
       netRegexKo: NetRegexes.ability({ source: '만능의 퀵싱크스', id: '15C0' }),
       netRegexCn: NetRegexes.ability({ source: '万事通 奎克辛克斯', id: '15C0' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.grabbed = data.grabbed || [];
         data.grabbed.push(matches.target);
       },
@@ -209,7 +209,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'VII号ゴブリウォーカーL型', id: '16F2' }),
       netRegexKo: NetRegexes.ability({ source: 'VII호 고블린워커 L형', id: '16F2' }),
       netRegexCn: NetRegexes.ability({ source: '7号哥布林战车L型', id: '16F2' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.stickyloom = matches.target;
       },
     },
@@ -221,7 +221,7 @@ export default {
       netRegexJa: NetRegexes.addedCombatant({ name: '錠前', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '자물쇠', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '牢门的锁', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         if (!data.grabbed)
           return false;
         // If you're not in a jail, kill the padlock.
