@@ -89,7 +89,7 @@ export function setup(bars) {
     EffectId.FlourishingShower,
     EffectId.FlourishingWindmill,
     EffectId.FlourishingFanDance,
-  ], () => {
+  ], (effect) => {
     if (!(flourishEffect.includes(effect)))
       flourishEffect.push(effect);
     if (flourishEffect.length === 5 && flourishIsActive) {
