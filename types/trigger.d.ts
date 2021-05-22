@@ -66,6 +66,8 @@ export type TriggerAutoConfig = {
 
 export type MatchesAny = { [s in T]?: string } | undefined;
 
+// Note: functions like run or preRun need to be defined as void-only as (confusingly)
+// it is not possible to assign `(d: Data) => boolean` to a void | undefined, only to void.
 type OptionalUnlessVoid<T> = T extends void ? void : T | undefined;
 export type TriggerField<Data, Return> =
     TriggerFunc<Data, MatchesAny, OptionalUnlessVoid<Return>> | OptionalUnlessVoid<Return>;
