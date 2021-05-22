@@ -4,7 +4,7 @@ const seekerCenterY = 277.9735;
 const avowedCenterX = -272;
 const avowedCenterY = -82;
 // TODO: promote something like this to Conditions?
-const tankBusterOnParty = (data, matches) => {
+const tankBusterOnParty = (data) => {
   if (data.target === data.me)
     return true;
   if (data.role !== 'healer')
@@ -184,7 +184,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AA1', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AA1', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AA1', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Out Behind Barricade',
@@ -203,7 +203,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5AA2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5AA2', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5AA2', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Knocked Into Barricade',
@@ -227,7 +227,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5ADB', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5ADB', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5ADB', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Line Stack',
@@ -268,7 +268,7 @@ Options.Triggers.push({
         const y = seeker.PosY - seekerCenterY;
         data.splitterDist = Math.hypot(x, y);
       },
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         if (data.splitterDist === undefined)
           return;
         // All 100 examples I've looked at only hit distance=10, or distance=~14
@@ -306,7 +306,7 @@ Options.Triggers.push({
       id: 'Delubrum Seeker Burning Chains',
       netRegex: NetRegexes.headMarker({ id: '00EE' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Chain on YOU',
@@ -340,7 +340,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Amas D\'Éther Élémentaire', id: '5AAC', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '魔力塊', id: '5AAC', capture: false }),
       delaySeconds: 1,
-      alertText: (data, _, output) => output.lookAway(),
+      alertText: (_data, _matches, output) => output.lookAway(),
       outputStrings: {
         lookAway: {
           en: 'Look Away From Orb',
@@ -360,7 +360,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.ability({ source: 'Amas D\'Éther Élémentaire', id: '5AAC', capture: false }),
       netRegexJa: NetRegexes.ability({ source: '魔力塊', id: '5AAC', capture: false }),
       suppressSeconds: 1,
-      infoText: (data, _, output) => output.awayFromPurple(),
+      infoText: (_data, _matches, output) => output.awayFromPurple(),
       outputStrings: {
         awayFromPurple: {
           en: 'Away From Purple',
@@ -381,7 +381,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ダウー', id: ['5761', '5762'] }),
       // There's a 3s slow windup on the first, then a 1s opposite cast.
       suppressSeconds: 10,
-      alertText: (data, matches, output) => {
+      alertText: (_data, matches, output) => {
         if (matches.id === '5761')
           return output.leftThenRight();
         return output.rightThenLeft();
@@ -412,7 +412,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Dahu', id: '5755', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Dahu', id: '5755', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダウー', id: '5755', capture: false }),
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         if (data.seenFeralHowl)
           return output.knockbackAvoid();
         return output.knockback();
@@ -447,7 +447,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ダウー', id: '5764', capture: false }),
       // This happens twice in a row
       suppressSeconds: 10,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Follow Second Charge',
@@ -482,7 +482,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5B6E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5B6E', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5B6E', capture: false }),
-      infoText: (data, _, output) => {
+      infoText: (data, _matches, output) => {
         if (data.seenSecretsRevealed)
           return output.followUntethered();
         return output.awayFromTethered();
@@ -540,7 +540,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Schütze Der Königin', id: '580B', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Fusilier De La Reine', id: '580B', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ガンナー', id: '580B', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid Laser Bounces',
@@ -567,7 +567,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Kriegerin Der Königin', id: '57FF', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrière De La Reine', id: '57FF', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ウォリアー', id: '57FF', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       run: (data) => data.reversalOfForces = true,
       outputStrings: {
         text: {
@@ -586,7 +586,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Kriegerin Der Königin', id: '57FC', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrière De La Reine', id: '57FC', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ウォリアー', id: '57FC', capture: false }),
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         if (data.reversalOfForces)
           return;
         return output.text();
@@ -655,7 +655,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ボズヤ・ファントム', id: '57A3', capture: false }),
       preRun: (data) => data.weaveMiasmaCount = (data.weaveMiasmaCount || 0) + 1,
       delaySeconds: 3,
-      infoText: (data, _, output) => {
+      infoText: (data, _matches, output) => {
         if (data.weaveMiasmaCount && data.weaveMiasmaCount >= 3)
           return output.weaveWithKnockback();
         return output.weaveNoKnockback();
@@ -699,7 +699,7 @@ Options.Triggers.push({
       delaySeconds: 5,
       // This is covered by Weave Miasma after the first "learn how this works" action.
       suppressSeconds: 9999,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Unavoidable Knockback',
@@ -765,7 +765,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '597C', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '597C', capture: false }),
       delaySeconds: 10,
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         switch (data.avowedTemperature) {
         case 2:
           return output.minusTwo();
@@ -830,7 +830,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '597F', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '597F', capture: false }),
       delaySeconds: 3,
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         switch (data.avowedTemperature) {
         case 2:
           return output.minusTwo();
@@ -1002,13 +1002,13 @@ Options.Triggers.push({
     },
     {
       id: 'Delubrum Avowed Gleaming Arrow',
-      netRegex: NetRegexes.startsUsing({ source: 'Avowed Avatar', id: '5974' }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Spaltteil Der Eingeschworenen', id: '5974' }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Clone De La Trinité Féale', id: '5974' }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'アヴァウドの分体', id: '5974' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Avowed Avatar', id: '5974', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Spaltteil Der Eingeschworenen', id: '5974', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Clone De La Trinité Féale', id: '5974', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アヴァウドの分体', id: '5974', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 10,
-      promise: async (data, matches) => {
+      promise: async (data) => {
         const unseenIds = data.unseenIds;
         const unseenData = await callOverlayHandler({
           call: 'getCombatants',
@@ -1048,12 +1048,10 @@ Options.Triggers.push({
         data.unseenBadRows.sort();
         data.unseenBadCols.sort();
       },
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         delete data.unseenIds;
-        const rows = data.unseenBadRows;
-        const cols = data.unseenBadCols;
         // consider asserting that badCols are 0, 2, 4 here.
-        if (rows.includes(2))
+        if (data.unseenBadRows.includes(2))
           return output.bowLight();
         return output.bowDark();
       },
@@ -1101,7 +1099,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Eingeschworenen', id: '5985', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Féale', id: '5985', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・アヴァウド', id: '5985', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get In Front',
@@ -1160,7 +1158,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59C3', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59C3', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59C3', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       // Technically, this is "away from where the moving lines intersect each other"
       // but "away from orbs" also will do the trick here.
       outputStrings: {
@@ -1180,7 +1178,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Schütze Der Königin', id: '59DE', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Fusilier De La Reine', id: '59DE', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ガンナー', id: '59DE', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid Laser Bounces',
@@ -1211,7 +1209,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ id: '59C7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '59C7', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '59C7', capture: false }),
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         if (!data.seenHeavensWrath)
           return output.getKnockedTowardsMiddle();
         if (data.reversalOfForces)
@@ -1255,7 +1253,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59C2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59C2', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59C2', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Find Charge, Dodge Right',
@@ -1273,7 +1271,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Kriegsgöttin', id: '59C1', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Garde-La-Reine', id: '59C1', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'セイブ・ザ・クイーン', id: '59C1', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Find Charge, Dodge Left',
@@ -1300,7 +1298,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Soldat Der Königin', id: '5B8A', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Soldat De La Reine', id: '5B8A', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'クイーンズ・ソルジャー', id: '5B8A', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away from tethered adds',

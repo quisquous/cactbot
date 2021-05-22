@@ -112,7 +112,7 @@ Options.Triggers.push({
       id: 'E7S Left With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C2' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Teleporting Left',
@@ -128,7 +128,7 @@ Options.Triggers.push({
       id: 'E7S Right With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C3' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Teleporting Right',
@@ -144,7 +144,7 @@ Options.Triggers.push({
       id: 'E7S Forward With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C0' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Teleporting Forward',
@@ -160,7 +160,7 @@ Options.Triggers.push({
       id: 'E7S Back With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C1' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Teleporting Back',
@@ -329,7 +329,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '盲崇', id: '4C70', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '숭배', id: '4C70', capture: false }),
       suppressSeconds: 1,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get under vertical add',
@@ -467,14 +467,14 @@ Options.Triggers.push({
     },
     {
       id: 'E7S Boundless Cleanup',
-      netRegex: NetRegexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5[CD]' }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Ungeläutert(?:e|er|es|en) Götzenverehrung', id: '4C5[CD]' }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Nuée D\'Idolâtries Impardonnables', id: '4C5[CD]' }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '4C5[CD]' }),
-      netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '4C5[CD]' }),
-      netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '4C5[CD]' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5[CD]', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ungeläutert(?:e|er|es|en) Götzenverehrung', id: '4C5[CD]', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Nuée D\'Idolâtries Impardonnables', id: '4C5[CD]', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '4C5[CD]', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '4C5[CD]', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '4C5[CD]', capture: false }),
       delaySeconds: 20,
-      run: function(data, matches) {
+      run: function(data) {
         delete data.boundless;
       },
     },
@@ -486,7 +486,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '(?:4C2C|4C65)', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '(?:4C2C|4C65)', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '(?:4C2C|4C65)', capture: false }),
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         data.colorMap = data.colorMap || {};
         const colorTrans = data.colorMap[data.color] || {};
         const color = colorTrans[data.displayLang];
@@ -514,7 +514,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C9A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C9A', capture: false }),
       suppressSeconds: 1,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Bait Puddles',
@@ -535,7 +535,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C76', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C76', capture: false }),
       // Can't use knockback prevention for this, so say where to get knocked back.
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Knocked Into Corner',
@@ -557,7 +557,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.ability({ source: '어둠의 우상', id: '4C7A', capture: false }),
       // Color buffs go out immediately after the cast
       delaySeconds: 0.1,
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.role === 'tank')
           return output.goSouth();
         if (data.color === 'light')
@@ -599,7 +599,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C7E', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C7E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C7E', capture: false }),
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         data.colorMap = data.colorMap || {};
         const colorTrans = data.colorMap[data.color] || {};
         const color = colorTrans[data.displayLang];

@@ -22,7 +22,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3E99', source: 'イノセンス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E99', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E99', source: '이노센스', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Look Away, Get Towers',
@@ -44,7 +44,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ id: '3EDC', source: '이노센스', capture: false }),
       // 3 seconds cast time + 9.5 seconds until next sword.
       delaySeconds: 9.5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Swords!',
@@ -88,7 +88,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3EC7', source: 'イノセンス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3EC7', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EC7', source: '이노센스', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid Charge',
@@ -108,7 +108,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '38FC', source: 'イノセンス', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '38FC', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '38FC', source: '이노센스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Line Stack',
@@ -124,7 +124,7 @@ Options.Triggers.push({
       id: 'Inno Winged Drop Of Light',
       netRegex: NetRegexes.headMarker({ id: '008A' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Circle on YOU',
@@ -146,7 +146,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '3EB1', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EB1', source: '이노센스', capture: false }),
       suppressSeconds: 1,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Rotate Right',

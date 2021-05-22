@@ -10,7 +10,7 @@
 // blastburn = burnt strike fire knockback
 // burnout = burnt strike lightning out
 // shining blade = burnt strike light bait
-const boundOfFaithFireTetherResponse = (data, _, output) => {
+const boundOfFaithFireTetherResponse = (data, _matches, output) => {
   // cactbot-builtin-response
   output.responseOutputStrings = {
     stackOnYou: Outputs.stackOnYou,
@@ -24,7 +24,7 @@ const boundOfFaithFireTetherResponse = (data, _, output) => {
     return { alertText: output.stackOnPlayer({ player: output.unknownTarget() }) };
   return { alertText: output.stackOnPlayer({ player: data.ShortName(targets[0]) }) };
 };
-const boundOfFaithLightningTetherResponse = (data, _, output) => {
+const boundOfFaithLightningTetherResponse = (data, _matches, output) => {
   // cactbot-builtin-response
   output.responseOutputStrings = {
     onYou: {
@@ -51,7 +51,7 @@ const boundOfFaithLightningTetherResponse = (data, _, output) => {
   const target = targets.length === 1 ? data.ShortName(targets[0]) : output.unknownTarget();
   return { infoText: output.tetherInfo({ player: target }) };
 };
-const boundOfFaithHolyTetherResponse = (data, _, output) => {
+const boundOfFaithHolyTetherResponse = (data, _matches, output) => {
   // cactbot-builtin-response
   output.responseOutputStrings = {
     awayFromGroup: Outputs.awayFromGroup,
@@ -77,7 +77,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5663', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5663', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5663', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Protean -> Partner Stacks',
@@ -97,7 +97,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5666', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5666', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5666', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Protean -> Spread',
@@ -117,7 +117,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5668', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5668', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5668', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Protean -> Holy Groups',
@@ -137,7 +137,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5652', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5652', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5652', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Line Cleave -> Knockback',
@@ -157,7 +157,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5654', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5654', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5654', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Line Cleave -> Out',
@@ -177,7 +177,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5656', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5656', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5656', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Line Cleave + Bait',
@@ -397,8 +397,8 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.gainsEffect({ source: '绝命战士', effectId: '993' }),
       netRegexKo: NetRegexes.gainsEffect({ source: '페이트브레이커', effectId: '993' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (data, matches) => parseFloat(matches.duration) - 4,
-      alertText: (data, _, output) => output.awayFromGroup(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
+      alertText: (_data, _matches, output) => output.awayFromGroup(),
       outputStrings: {
         awayFromGroup: Outputs.awayFromGroup,
       },
@@ -412,7 +412,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '566A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '566A', capture: false }),
       durationSeconds: 10,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Fire: Go to Blue',
@@ -433,7 +433,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '566B', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '566B', capture: false }),
       durationSeconds: 10,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Lightning: Go to Red',
@@ -454,7 +454,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5675', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5675', capture: false }),
       durationSeconds: 17,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Fire: Go to Blue',
@@ -475,7 +475,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5676', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5676', capture: false }),
       durationSeconds: 17,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Lightning: Go to Red',
@@ -496,7 +496,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '566E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '566E', capture: false }),
       durationSeconds: 10,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Fire: Go to Blue',
@@ -517,7 +517,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '566F', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '566F', capture: false }),
       durationSeconds: 10,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Lightning: Go to Red',
@@ -538,7 +538,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5677', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5677', capture: false }),
       durationSeconds: 16,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Fire: Knockback To Red -> Go Blue',
@@ -559,7 +559,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5678', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5678', capture: false }),
       durationSeconds: 16,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Lightning: Knockback To Blue -> Go Red',
@@ -580,7 +580,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '568A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '568A', capture: false }),
       durationSeconds: 12,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Protean -> Partner Stacks -> Line Cleave -> Knockback -> Stack',
@@ -612,7 +612,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5692', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5692', capture: false }),
       durationSeconds: 12,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Protean -> Spread -> Line Cleave -> Out -> Tank Cleaves',
@@ -644,7 +644,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '569A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '569A', capture: false }),
       durationSeconds: 12,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Protean -> Holy Groups -> Line Cleave -> Bait -> Away',

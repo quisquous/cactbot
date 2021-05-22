@@ -121,7 +121,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '4350', source: 'フィリア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4350', source: '斐利亚', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4350', source: '필리아', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Line Stack',

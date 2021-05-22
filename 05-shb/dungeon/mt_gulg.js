@@ -23,7 +23,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '41AB', source: 'フォーギヴン・アンビション', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '41AB', source: '得到宽恕的奢望', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '41AB', source: '면죄된 야망', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Ambition Tail Smash',
@@ -56,7 +56,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '41B2', source: 'フォーギヴン・クルエルティー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '41B2', source: '得到宽恕的残忍', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '41B2', source: '면죄된 잔혹', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Frontal Laser',
@@ -88,7 +88,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '3D00', source: '得到宽恕的残忍', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D00', source: '면죄된 잔혹', capture: false }),
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'dodge wind cones',
@@ -144,7 +144,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3D0F', source: 'フォーギヴン・ウィムズィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D0F', source: '得到宽恕的无常', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D0F', source: '면죄된 변덕', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Towers',
@@ -209,7 +209,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3D18', source: 'フォーギヴン・オブセニティー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D18', source: '得到宽恕的猥亵', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D18', source: '면죄된 외설', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'max melee range',

@@ -23,7 +23,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ source: '정체불명', id: '4E25', capture: false }),
       delaySeconds: 3,
       durationSeconds: 7,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid Arrow',
@@ -142,7 +142,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ルクスィー・ディーマ', id: '4B84', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '鲁克嘶·蒂母', id: '4B84', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루크쉬 디마', id: '4B84', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid Hands',

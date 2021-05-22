@@ -9,7 +9,7 @@ Options.Triggers.push({
       preRun: function(data) {
         data.meteor = (data.meteor || 0) + 1;
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.meteor === 1)
           return output.dropMeteorWest();
         else if (data.meteor === 2)
@@ -57,7 +57,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3CCB', source: 'ファースト・ビースト', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3CCB', source: '第一之兽', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CCB', source: '최초의 야수', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hide Behind Boulder',
@@ -88,7 +88,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3CD7', source: 'メガセリオン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3CD7', source: '至大灾兽', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CD7', source: '메가테리온', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Off',

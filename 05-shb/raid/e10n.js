@@ -40,7 +40,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56B7', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56B7', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '그림자의 왕', id: '56B7', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: Outputs.goFront,
       },
@@ -53,7 +53,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56B5', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56B5', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '그림자의 왕', id: '56B5', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Shadow Side',
@@ -73,7 +73,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56B8', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56B8', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '그림자의 왕', id: '56B8', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Opposite Shadow',
@@ -113,7 +113,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: ['56AF', '56B2'], source: '影の王' }),
       netRegexCn: NetRegexes.startsUsing({ id: ['56AF', '56B2'], source: '影之王' }),
       netRegexKo: NetRegexes.startsUsing({ id: ['56AF', '56B2'], source: '그림자의 왕' }),
-      alertText: (data, matches, output) => matches.id === '56AF' ? output.left() : output.right(),
+      alertText: (_data, matches, output) => matches.id === '56AF' ? output.left() : output.right(),
       outputStrings: {
         left: {
           en: 'Go Left of Shadows',
@@ -152,7 +152,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56DD', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '그림자의 왕', id: '56DD', capture: false }),
       delaySeconds: 10,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Puddles',
@@ -172,7 +172,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56E2', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56E2', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '그림자의 왕', id: '56E2', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Watch Tethered Dog',
@@ -193,7 +193,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '5B11', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '그림자의 왕', id: '5B11', capture: false }),
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           // TODO: this could be better if we knew where the shadow was

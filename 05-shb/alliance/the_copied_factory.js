@@ -11,7 +11,7 @@ Options.Triggers.push({
       id: 'Copied Flight Unit Lightfast',
       regex: /Lightfast Blade/,
       beforeSeconds: 15,
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         // The third lightfast blade comes very close to second,
         // so suppress its message.
         data.lightfastCount = (data.lightfastCount || 0) + 1;
@@ -34,7 +34,7 @@ Options.Triggers.push({
       id: 'Copied Engels Demolish Structure',
       regex: /Demolish Structure/,
       beforeSeconds: 15,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Move to South Edge',
@@ -78,7 +78,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '48FA', source: '多関節型：兵隊機', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48FA', source: '다관절형: 병정기', capture: false }),
       suppressSeconds: 15,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Look for Lasers',
@@ -149,7 +149,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.message({ line: 'Le bras mural droit s\'active!.*?', capture: false }),
       netRegexJa: NetRegexes.message({ line: '壁面のライトアームが稼働を始めた……！.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '벽면의 오른팔이 움직이기 시작합니다……!.*?', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       run: function(data) {
         data.alliance = data.alliance || 'A';
       },
@@ -172,7 +172,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.message({ line: 'Les lance-flammes muraux s\'activent!.*?', capture: false }),
       netRegexJa: NetRegexes.message({ line: '壁面の火炎放射器が稼働を始めた……！.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '벽면의 화염 방사기가 가동되었습니다……!.*?', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       run: function(data) {
         data.alliance = data.alliance || 'B';
       },
@@ -210,7 +210,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.message({ line: '壁面のレフトアームが稼働を始めた……！.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '벽면의 왼팔이 움직이기 시작합니다……!.*?', capture: false }),
       delaySeconds: 8,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Dodge Falling Walls',
@@ -231,7 +231,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.message({ line: '壁面のレフトアームが稼働を始めた……！.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '벽면의 왼팔이 움직이기 시작합니다……!.*?', capture: false }),
       delaySeconds: 10,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Spread Tethers',
@@ -269,7 +269,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.message({ line: '바닥 아래의 기계생명체가 수상한 움직임을 보입니다……!.*?', capture: false }),
       durationSeconds: 10,
       suppressSeconds: 15,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Dodge Electric Floor',
@@ -289,7 +289,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.message({ line: 'Le tapis roulant s\'est mis en branle!.*?', capture: false }),
       netRegexJa: NetRegexes.message({ line: '床面のローラーコンベアが稼働を始めた……！.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '바닥의 컨베이어가 움직이기 시작합니다……!.*?', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Conveyor Belts',
@@ -311,7 +311,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.message({ line: '바닥 밑에 가연성 액체가 차오릅니다……!.*?', capture: false }),
       durationSeconds: 3,
       suppressSeconds: 15,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Oil Vats',
@@ -334,7 +334,7 @@ Options.Triggers.push({
       delaySeconds: 6,
       durationSeconds: 3,
       suppressSeconds: 15,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Oil Vats',
@@ -355,7 +355,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.tether({ id: '0011', source: '中型自爆' }),
       netRegexKo: NetRegexes.tether({ id: '0011', source: '중형 자폭' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Exploder on YOU',
@@ -412,7 +412,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '472E', source: 'Engels', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '472E', source: 'エンゲルス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '472E', source: '엥겔스', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Front and Center',
@@ -432,7 +432,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '472A', source: 'Engels', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '472A', source: 'エンゲルス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '472A', source: '엥겔스', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Back and Sides',
@@ -452,7 +452,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '4746', source: 'Engels', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '4746', source: 'エンゲルス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4746', source: '엥겔스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Kill Claws',
@@ -492,7 +492,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '473C', source: 'Engels', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '473C', source: 'エンゲルス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '473C', source: '엥겔스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go Sides (Near Front)',
@@ -513,7 +513,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '473C', source: 'エンゲルス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '473C', source: '엥겔스', capture: false }),
       delaySeconds: 8,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Towers',
@@ -529,7 +529,7 @@ Options.Triggers.push({
       id: 'Copied Engels Incendiary Bombing',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Puddle on YOU',
@@ -545,7 +545,7 @@ Options.Triggers.push({
       id: 'Copied Engels Guided Missile',
       netRegex: NetRegexes.headMarker({ id: '00C5' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Out + Dodge Homing AoE',
@@ -566,7 +566,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '473F', source: 'エンゲルス', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '473F', source: '엥겔스', capture: false }),
       durationSeconds: 4,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Adds (Ignore Small)',
@@ -586,7 +586,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '474E', source: 'Engels', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '474E', source: 'エンゲルス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '474E', source: '엥겔스', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Front and Center',
@@ -607,7 +607,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '48A8', source: 'エンゲルス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48A8', source: '엥겔스', capture: false }),
       delaySeconds: 9,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Look For Wall Saws',
@@ -663,7 +663,7 @@ Options.Triggers.push({
       id: 'Copied 9S Goliath Laser Turret',
       netRegex: NetRegexes.headMarker({ id: '00A4' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Laser Buster on YOU',
@@ -704,7 +704,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '48D3', source: '９Ｓ：多脚戦車従属', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48D3', source: '9S: 다각전차 종속', capture: false }),
       delaySeconds: 4,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Dodge Overhead Saws',
@@ -746,7 +746,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '48E7', source: '9S : Avec Multipède Esclave', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '48E7', source: '９Ｓ：多脚戦車従属', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48E7', source: '9S: 다각전차 종속', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go Behind Untethered Tank',
@@ -778,7 +778,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '48EB', source: '９Ｓ：多脚戦車従属', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48EB', source: '9S: 다각전차 종속', capture: false }),
       delaySeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get in the bubble',

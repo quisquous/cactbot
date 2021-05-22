@@ -24,7 +24,7 @@ Options.Triggers.push({
       id: 'Anyder Aquatic Lance',
       netRegex: NetRegexes.headMarker({ id: '0087' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'puddle on you',
@@ -57,7 +57,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3E0A', source: 'クラドセラケ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E0A', source: '裂口鲨', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E0A', source: '클라도셀라케', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away From Swimming Shark',
@@ -77,7 +77,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3E0B', source: 'ドリオドゥス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E0B', source: '原祖鲨', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E0B', source: '돌리오두스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Sides of Swimming Shark',
@@ -163,7 +163,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '3E1A', source: '克察尔科亚特尔', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E1A', source: '케찰코아틀', capture: false }),
       delaySeconds: 4.7,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'grab orbs',

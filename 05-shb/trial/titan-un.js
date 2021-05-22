@@ -27,7 +27,7 @@ Options.Triggers.push({
       id: 'TitanUn Gaoler Adds',
       regex: /Gaoler Adds/,
       beforeSeconds: 1,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Gaoler Adds',
@@ -43,7 +43,7 @@ Options.Triggers.push({
       id: 'TitanUn Double Weight',
       regex: /Weight Of The Land 1/,
       beforeSeconds: 4,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Double Weight',

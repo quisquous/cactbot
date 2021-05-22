@@ -46,7 +46,7 @@ Options.Triggers.push({
       condition: function(data) {
         return !data.mirrorsActive;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go Front / Sides',
@@ -92,7 +92,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.mirrorsActive;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get behind, then South',
@@ -115,7 +115,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.mirrorsActive;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go Front / Sides, then North',
@@ -149,7 +149,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '冰面镜', id: '4E01', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '얼음 거울', id: '4E01', capture: false }),
       suppressSeconds: 3,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Close to mirrors',
@@ -201,7 +201,7 @@ Options.Triggers.push({
       id: 'E8N Frigid Water',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Flare on YOU',
@@ -223,7 +223,7 @@ Options.Triggers.push({
       id: 'E8N Puddle Chase',
       netRegex: NetRegexes.headMarker({ id: '00C5' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: '3x puddles on YOU',
@@ -268,7 +268,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '0017', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 2,
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.rampant[data.me])
           return output.coneOnYouAvoidTowers();
         return output.standInATower();

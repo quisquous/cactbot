@@ -193,7 +193,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: ['5B45', '55FB'], source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['5B45', '55FB'], source: '어둠의 구름', capture: false }),
       durationSeconds: (data) => data.phase === 'empty' ? 8 : 4,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: { text: artOfDarknessOutputStrings.protean },
     },
     {
@@ -205,7 +205,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: ['5B46', '55FE'], source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['5B46', '55FE'], source: '어둠의 구름', capture: false }),
       durationSeconds: (data) => data.phase === 'empty' ? 8 : 4,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: { text: artOfDarknessOutputStrings.stackWithPartner },
     },
     {
@@ -225,7 +225,7 @@ Options.Triggers.push({
         if (data.role === 'healer')
           return output.tankBusters({ player: data.ShortName(matches.target) });
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.role !== 'tank' && data.role !== 'healer')
           return output.avoidLaser();
       },
@@ -264,7 +264,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '5907', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5907', source: '어둠의 구름', capture: false }),
       delaySeconds: 3,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Place Bramble',
@@ -295,7 +295,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '5618', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5618', source: '어둠의 구름', capture: false }),
       durationSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away From Tethered Walls',
@@ -329,7 +329,7 @@ Options.Triggers.push({
           data.phaserOutputs = ['out', 'healerStacks', 'sides'];
       },
       durationSeconds: 15,
-      infoText: (data, _, output) => data.phaserOutputs.map((key) => output[key]()).join(' -> '),
+      infoText: (data, _matches, output) => data.phaserOutputs.map((key) => output[key]()).join(' -> '),
       run: (data) => data.phaserOutputs.shift(),
       outputStrings: phaserOutputStrings,
     },
@@ -342,7 +342,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '561[23]', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '561[23]', source: '어둠의 구름', capture: false }),
       delaySeconds: 7,
-      alertText: (data, _, output) => output[data.phaserOutputs.shift()](),
+      alertText: (data, _matches, output) => output[data.phaserOutputs.shift()](),
       outputStrings: phaserOutputStrings,
     },
     {
@@ -354,7 +354,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '561[23]', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '561[23]', source: '어둠의 구름', capture: false }),
       delaySeconds: 12,
-      alertText: (data, _, output) => output[data.phaserOutputs.shift()](),
+      alertText: (data, _matches, output) => output[data.phaserOutputs.shift()](),
       outputStrings: phaserOutputStrings,
     },
     {
@@ -372,7 +372,7 @@ Options.Triggers.push({
           data.phaserOutputs = ['sides', 'healerStacks', 'out'];
       },
       durationSeconds: 15,
-      infoText: (data, _, output) => data.phaserOutputs.map((key) => output[key]()).join(' -> '),
+      infoText: (data, _matches, output) => data.phaserOutputs.map((key) => output[key]()).join(' -> '),
       run: (data) => data.phaserOutputs.shift(),
       outputStrings: phaserOutputStrings,
     },
@@ -385,7 +385,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '560[DE]', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '560[DE]', source: '어둠의 구름', capture: false }),
       delaySeconds: 8,
-      alertText: (data, _, output) => output[data.phaserOutputs.shift()](),
+      alertText: (data, _matches, output) => output[data.phaserOutputs.shift()](),
       outputStrings: phaserOutputStrings,
     },
     {
@@ -397,7 +397,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '560[DE]', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '560[DE]', source: '어둠의 구름', capture: false }),
       delaySeconds: 12,
-      alertText: (data, _, output) => output[data.phaserOutputs.shift()](),
+      alertText: (data, _matches, output) => output[data.phaserOutputs.shift()](),
       outputStrings: phaserOutputStrings,
     },
     {
@@ -411,7 +411,7 @@ Options.Triggers.push({
       // The fight goes Second Art -> Third Art -> Second Art, so we want
       // to have this cleaned up before the second Second Art Of Darkness
       preRun: (data) => delete data.finalArtOfDarkness,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       run: (data) => {
         data.artOfDarkness = [];
         if (!data.artOfDarknessIdMap)
@@ -439,7 +439,7 @@ Options.Triggers.push({
       // The fight goes Second Art -> Third Art -> Second Art, so we want
       // to have this cleaned up before the second Second Art Of Darkness
       preRun: (data) => delete data.finalArtOfDarkness,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       run: (data) => {
         data.artOfDarkness = [];
         if (!data.artOfDarknessIdMap)
@@ -516,7 +516,7 @@ Options.Triggers.push({
       },
       preRun: (data, matches) => data.artOfDarkness.push(data.artOfDarknessIdMap[matches.id]),
       durationSeconds: (data) => data.finalArtOfDarkness ? 16 : 9,
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         // Perform the callout now, regardless if it's The Second or Third Art Of Darkness
         if (data.finalArtOfDarkness)
           data.artOfDarkness.push(data.finalArtOfDarkness);
@@ -546,7 +546,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '55F0', source: '暗闇の雲', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '55F0', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '55F0', source: '어둠의 구름', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Tile Positions',
@@ -563,7 +563,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.gainsEffect({ effectId: '953' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: (_, matches) => matches.duration - 3,
-      alertText: (data, matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Face Laser Out',
@@ -596,11 +596,11 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '5A95', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5A95', source: '어둠의 구름', capture: false }),
       durationSeconds: 8,
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         if (!data.summon)
           return output.text();
       },
-      infoText: (data, _, output) => {
+      infoText: (data, _matches, output) => {
         if (data.summon)
           return output.text();
       },
@@ -615,11 +615,11 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '5A96', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5A96', source: '어둠의 구름', capture: false }),
       durationSeconds: 8,
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         if (!data.summon)
           return output.text();
       },
-      infoText: (data, _, output) => {
+      infoText: (data, _matches, output) => {
         if (data.summon)
           return output.text();
       },
@@ -659,7 +659,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '5603', source: '暗闇の雲', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5603', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5603', source: '어둠의 구름', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       run: (data) => {
         data.artOfDarkness = [];
         // Add this once we've seen the second charge to call out sooner.
@@ -684,7 +684,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '5604', source: '暗闇の雲', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5604', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5604', source: '어둠의 구름', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       run: (data) => {
         data.artOfDarkness = [];
         // Add this once we've seen the second charge to call out sooner.
@@ -711,7 +711,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ id: '5620', source: '어둠의 구름', capture: false }),
       delaySeconds: 6,
       durationSeconds: 6,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Towers',

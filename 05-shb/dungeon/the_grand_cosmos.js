@@ -46,7 +46,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '476B', source: '宫殿的隐者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '476B', source: '궁전의 은자', capture: false }),
       delaySeconds: 8,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid Brooms',
@@ -100,7 +100,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '471E', source: 'リャナンシー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '471E', source: '凉南希', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '471E', source: '랴난시', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'put seeds on dirt',
@@ -157,7 +157,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '0019' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 4,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Dodge Crosses',
@@ -180,7 +180,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '00C3' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 5.5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Touch Furniture',
@@ -219,7 +219,7 @@ Options.Triggers.push({
       preRun: function(data) {
         data.firesDomain = (data.firesDomain || 0) + 1;
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.firesDomain === 1)
           return output.pointTetherAwayFromFurniture();
         return output.tetherOnYou();

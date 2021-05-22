@@ -35,7 +35,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '3C8B', source: '洛查特尔', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3C8B', source: '로차틀', capture: false }),
       delaySeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Look for pillar',
@@ -57,7 +57,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ id: '3C8D', source: '로차틀', capture: false }),
       delaySeconds: 6,
       durationSeconds: 6,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stay on left flank',
@@ -79,7 +79,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ id: '3C8E', source: '로차틀', capture: false }),
       delaySeconds: 6,
       durationSeconds: 6,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stay on right flank',
@@ -159,7 +159,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.tether({ id: '0039', source: '艾洛斯' }),
       netRegexKo: NetRegexes.tether({ id: '0039', source: '에로스' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Run Away From Boss',
@@ -175,7 +175,7 @@ Options.Triggers.push({
       id: 'Qitana Viper Poison',
       netRegex: NetRegexes.headMarker({ id: '00AB' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Drop Poison Outside',
@@ -200,7 +200,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3CA1', source: 'エロース', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3CA1', source: '艾洛斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CA1', source: '에로스', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Spread to Sides',

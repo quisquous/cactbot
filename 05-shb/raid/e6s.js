@@ -11,7 +11,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4BD3', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: ['이프리트', '락타팍샤'], id: '4BD3', capture: false }),
       delaySeconds: 11,
-      promise: async (data, _, output) => {
+      promise: async (data, _matches, output) => {
         const ifritLocaleNames = {
           en: 'Ifrit',
           de: 'Ifrit',
@@ -82,7 +82,7 @@ Options.Triggers.push({
         else
           data.safeZone = null;
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         return !data.safeZone ? output.unknown() : data.safeZone;
       },
       outputStrings: {
@@ -138,7 +138,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: ['ガルーダ', 'ラクタパクシャ'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: ['迦楼罗', '赤翼罗羯坨博叉'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: ['가루다', '락타팍샤'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid green nails',
@@ -286,7 +286,7 @@ Options.Triggers.push({
       id: 'E6S Hands of Hell',
       netRegex: NetRegexes.headMarker({ id: '0016' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Tether Marker on YOU',
@@ -314,7 +314,7 @@ Options.Triggers.push({
       id: 'E6S Hated of the Vortex Effect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BB' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Attack Garuda',
@@ -330,7 +330,7 @@ Options.Triggers.push({
       id: 'E6S Hated of the Embers Effect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BC' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Attack Ifrit',
@@ -382,7 +382,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ラクタパクシャ', id: '4C10', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '赤翼罗羯坨博叉', id: '4C10', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '락타팍샤', id: '4C10', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'go to spots for chains',
