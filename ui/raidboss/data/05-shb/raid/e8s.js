@@ -53,7 +53,7 @@ export default {
       id: 'E8S Rush',
       regex: /Rush \d/,
       beforeSeconds: 5,
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         data.rushCount = data.rushCount || 0;
         data.rushCount++;
         return output.text({ num: data.rushCount });
@@ -97,7 +97,7 @@ export default {
       // This cast is 5 seconds, so don't muddy the back/front call.
       // But also don't wait too long to give directions?
       delaySeconds: 2,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           // Sorry, there are no mirror colors in the logs (YET),
@@ -124,7 +124,7 @@ export default {
       },
       // See comments on Biting Frost First Mirror above.
       delaySeconds: 2,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go Front, Green Mirror Side',
@@ -145,7 +145,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '冰面镜', id: '4DB[78]', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '얼음 거울', id: '4DB[78]', capture: false }),
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Swap Sides',
@@ -194,7 +194,7 @@ export default {
       condition: (data) => data.role === 'tank',
       delaySeconds: 43,
       suppressSeconds: 80,
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.firstFrost === 'driving')
           return output.bitingFrostNext();
 
@@ -239,7 +239,7 @@ export default {
       netRegexCn: NetRegexes.abilityFull({ source: '希瓦', id: '4DA0' }),
       netRegexKo: NetRegexes.abilityFull({ source: '시바', id: '4DA0' }),
       suppressSeconds: 20,
-      infoText: function(data, matches, output) {
+      infoText: function(_data, matches, output) {
         const x = parseFloat(matches.x);
         if (x >= 99 && x <= 101)
           return output.northSouth();
@@ -277,7 +277,7 @@ export default {
         return data.CanCleanse();
       },
       suppressSeconds: 1,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Cleanse',
@@ -336,7 +336,7 @@ export default {
       netRegex: NetRegexes.gainsEffect({ effectId: '8CD' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 1,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Chain on YOU',
@@ -352,7 +352,7 @@ export default {
       id: 'E8S Holy Light',
       netRegex: NetRegexes.tether({ id: '0002' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Orb on YOU',
@@ -555,10 +555,10 @@ export default {
           }[Math.ceil(matches.duration)];
         }
       },
-      durationSeconds: function(data, matches) {
+      durationSeconds: function(_data, matches) {
         return matches.duration;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         return output.text({ num: data.wyrmclawNumber });
       },
       outputStrings: {
@@ -591,10 +591,10 @@ export default {
           }[Math.ceil(matches.duration)];
         }
       },
-      durationSeconds: function(data, matches) {
+      durationSeconds: function(_data, matches) {
         return matches.duration;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         return output.text({ num: data.wyrmfangNumber });
       },
       outputStrings: {
@@ -700,7 +700,7 @@ export default {
         return data.CanCleanse();
       },
       suppressSeconds: 1,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Cleanse DPS Only',
@@ -721,7 +721,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D7E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D7E', capture: false }),
       condition: (data) => data.role === 'tank',
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Tank Stack in Tower',
@@ -742,7 +742,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D7F', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D7F', capture: false }),
       condition: (data) => data.role === 'tank',
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Tank Spread in Tower',

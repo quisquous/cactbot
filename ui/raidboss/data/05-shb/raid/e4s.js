@@ -15,7 +15,7 @@ export default {
       condition: function(data) {
         return data.role === 'healer' || data.role === 'tank';
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: Outputs.tankBusters,
       },
@@ -78,7 +78,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '410C', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '410C', source: '타이탄', capture: false }),
       suppressSeconds: 1,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Look for Evil Earth Marker',
@@ -125,7 +125,7 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '40E6', source: 'タイタン', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '40E6', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '40E6', source: '타이탄', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Landslide: In Front',
@@ -155,7 +155,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '411A', source: 'タイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '411A', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '411A', source: '타이탄', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Back Corners',
@@ -171,7 +171,7 @@ export default {
       id: 'E4S Crumbling Down',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Bomb on YOU',
@@ -270,7 +270,7 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '40E8', source: 'タイタン', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '40E8', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '40E8', source: '타이탄', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Wheels: On Sides',
@@ -290,7 +290,7 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '411F', source: 'タイタン', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '411F', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '411F', source: '타이탄', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Tank Charge',
@@ -333,7 +333,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '412F', source: 'マキシタイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '412F', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '412F', source: '거대 타이탄', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Left, Then Right',
@@ -353,7 +353,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4130', source: 'マキシタイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4130', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4130', source: '거대 타이탄', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Right, Then Left',
@@ -373,7 +373,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4131', source: 'マキシタイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4131', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4131', source: '거대 타이탄', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Left, Stay Left',
@@ -393,7 +393,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4132', source: 'マキシタイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4132', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4132', source: '거대 타이탄', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Right, Stay Right',
@@ -464,7 +464,7 @@ export default {
       id: 'E4S Granite Gaol',
       netRegex: NetRegexes.headMarker({ id: '00BF' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Gaol on YOU',
@@ -490,7 +490,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4125', source: 'マキシタイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4125', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4125', source: '거대 타이탄', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'GET OFF FRONT RIGHT',
@@ -510,7 +510,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4126', source: 'マキシタイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4126', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4126', source: '거대 타이탄', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'GET OFF BACK RIGHT',
@@ -530,7 +530,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4127', source: 'マキシタイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4127', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4127', source: '거대 타이탄', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'GET OFF BACK LEFT',
@@ -550,7 +550,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4128', source: 'マキシタイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4128', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4128', source: '거대 타이탄', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'GET OFF FRONT LEFT',

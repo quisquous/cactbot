@@ -20,7 +20,7 @@ import ZoneId from '../../../../../resources/zone_id';
 
 const tetherIds = ['0002', '0005', '0006'];
 
-const boundOfFaithFireTetherResponse = (data, _, output) => {
+const boundOfFaithFireTetherResponse = (data, _matches, output) => {
   // cactbot-builtin-response
   output.responseOutputStrings = {
     stackOnYou: Outputs.stackOnYou,
@@ -36,7 +36,7 @@ const boundOfFaithFireTetherResponse = (data, _, output) => {
   return { alertText: output.stackOnPlayer({ player: data.ShortName(targets[0]) }) };
 };
 
-const boundOfFaithLightningTetherResponse = (data, _, output) => {
+const boundOfFaithLightningTetherResponse = (data, _matches, output) => {
   // cactbot-builtin-response
   output.responseOutputStrings = {
     onYou: {
@@ -66,7 +66,7 @@ const boundOfFaithLightningTetherResponse = (data, _, output) => {
   return { infoText: output.tetherInfo({ player: target }) };
 };
 
-const boundOfFaithHolyTetherResponse = (data, _, output) => {
+const boundOfFaithHolyTetherResponse = (data, _matches, output) => {
   // cactbot-builtin-response
   output.responseOutputStrings = {
     awayFromGroup: Outputs.awayFromGroup,
@@ -118,8 +118,8 @@ export default {
       netRegexCn: NetRegexes.gainsEffect({ source: '绝命战士', effectId: '993' }),
       netRegexKo: NetRegexes.gainsEffect({ source: '페이트브레이커', effectId: '993' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (data, matches) => parseFloat(matches.duration) - 4,
-      alertText: (data, _, output) => output.awayFromGroup(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
+      alertText: (_data, _matches, output) => output.awayFromGroup(),
       outputStrings: {
         awayFromGroup: Outputs.awayFromGroup,
       },
@@ -132,7 +132,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '562C', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '562C', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '562C', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Line Cleave -> Knockback',
@@ -152,7 +152,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '562E', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '562E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '562E', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Line Cleave -> Out',
@@ -172,7 +172,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカー', id: '5630', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5630', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5630', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Line Cleave + Bait',
@@ -192,7 +192,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカーの幻影', id: '5645', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士的幻影', id: '5645', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커의 환영', id: '5645', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Dodge Lightning First -> Rotate For Fire',
@@ -212,7 +212,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'フェイトブレイカーの幻影', id: '5643', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士的幻影', id: '5643', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커의 환영', id: '5643', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Fire Knockback After Lightning',
@@ -278,7 +278,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '5639', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5639', capture: false }),
       durationSeconds: 10,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Fire: Go to Blue',
@@ -299,7 +299,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '绝命战士', id: '563A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '563A', capture: false }),
       durationSeconds: 10,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Lightning: Go to Red',

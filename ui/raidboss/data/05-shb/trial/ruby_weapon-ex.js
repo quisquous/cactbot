@@ -15,7 +15,7 @@ export default {
       id: 'RubyEx Magitek Meteor Behind',
       regex: /Magitek Meteor/,
       beforeSeconds: 4,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hide Behind Meteor',
@@ -31,7 +31,7 @@ export default {
       id: 'RubyEx Magitek Meteor Away',
       regex: /Magitek Meteor/,
       beforeSeconds: 0,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away From Meteor',
@@ -77,7 +77,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AD0', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AD0', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AD0', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away from Lines',
@@ -97,7 +97,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4ACF', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4ACF', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4ACF', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get On Lines',
@@ -170,7 +170,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4B2D', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4B2D', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4B2D', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Enrage!',
@@ -279,7 +279,7 @@ export default {
       },
       // This gets cast twice (maybe once for each add)?
       suppressSeconds: 1,
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         // TODO: it'd be nice to call out which raven was alive?
         if (data.ravenDead)
           return;
@@ -321,7 +321,7 @@ export default {
       id: 'RubyEx Meteor',
       netRegex: NetRegexes.headMarker({ id: '00(?:C[A-F]|D0|D1)' }),
       condition: Conditions.targetIsYou(),
-      infoText: function(data, matches, output) {
+      infoText: function(_data, matches, output) {
         return output.text({ num: parseInt(matches.id, 16) - parseInt('00CA', 16) + 1 });
       },
       outputStrings: {
@@ -353,7 +353,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AF0', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AF0', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AF0', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away from Meteor!',
@@ -375,7 +375,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '루비 웨폰', id: '4AB6', capture: false }),
       condition: (data) => data.role === 'tank',
       delaySeconds: 11.5,
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stand in Meteor Tankbuster',
@@ -397,7 +397,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '루비 웨폰', id: '4AB6', capture: false }),
       condition: (data) => data.role !== 'tank',
       delaySeconds: 13,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Kill Meteor Adds',
@@ -413,7 +413,7 @@ export default {
       id: 'RubyEx Bradamante',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid tanks with laser',
@@ -433,7 +433,7 @@ export default {
       netRegexJa: NetRegexes.addedCombatantFull({ name: 'コメット' }),
       netRegexCn: NetRegexes.addedCombatantFull({ name: '彗星' }),
       netRegexKo: NetRegexes.addedCombatantFull({ name: '혜성' }),
-      infoText: function(data, matches, output) {
+      infoText: function(_data, matches, output) {
         // Possible positions:
         // 85.16,100.131 and 115.16,100.131
         // 100.16,85.13102 and 100.16,115.131

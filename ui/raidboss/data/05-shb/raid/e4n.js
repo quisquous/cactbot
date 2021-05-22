@@ -29,7 +29,7 @@ export default {
       condition: function(data) {
         return data.role === 'healer';
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'aoe + dot',
@@ -62,7 +62,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '40FA', source: 'タイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '40FA', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '40FA', source: '타이탄', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stand In Front',
@@ -84,7 +84,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '40F2', source: '거대 바위', capture: false }),
       delaySeconds: 6,
       suppressSeconds: 10,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hide Behind Boulder',
@@ -114,7 +114,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4102', source: 'タイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4102', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4102', source: '타이탄', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stand On Flank',

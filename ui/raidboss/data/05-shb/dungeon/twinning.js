@@ -51,7 +51,7 @@ export default {
       id: 'Twinning Impact + Pounce',
       netRegex: NetRegexes.headMarker({ id: ['003[2-5]', '005A'], capture: false }),
       suppressSeconds: 10,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Spread (avoid cages)',
@@ -123,7 +123,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '3DF8', source: '泰空', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DF8', source: '타이쿤', capture: false }),
       suppressSeconds: 15,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'cardinal lasers',
@@ -144,7 +144,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '3DF2', source: '泰空', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DF2', source: '타이쿤', capture: false }),
       suppressSeconds: 15,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'outer lasers',

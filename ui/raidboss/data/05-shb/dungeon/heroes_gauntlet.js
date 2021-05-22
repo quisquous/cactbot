@@ -40,7 +40,7 @@ export default {
       id: 'Heroes Gauntlet Spectral Tether',
       netRegex: NetRegexes.tether({ id: '000C', capture: false }),
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away from tether marker',
@@ -121,7 +121,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '5206', source: '幻光のバーサーカー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '5206', source: '幻光狂战士', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '5206', source: '환상빛의 광전사', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get in a crater',

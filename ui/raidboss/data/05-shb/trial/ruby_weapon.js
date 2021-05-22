@@ -11,7 +11,7 @@ export default {
       id: 'Ruby Magitek Meteor Behind',
       regex: /Magitek Meteor/,
       beforeSeconds: 4,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hide Behind Meteor',
@@ -27,7 +27,7 @@ export default {
       id: 'Ruby Magitek Meteor Away',
       regex: /Burst/,
       beforeSeconds: 1,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away From Meteor',
@@ -73,7 +73,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4A97', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4A97', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4A97', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away from Lines',
@@ -93,7 +93,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4A96', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4A96', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4A96', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get On Lines',
@@ -164,7 +164,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AA9', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AA9', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AA9', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Enrage!',
@@ -203,7 +203,7 @@ export default {
       id: 'Ruby Bradamante',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid meteors with laser',

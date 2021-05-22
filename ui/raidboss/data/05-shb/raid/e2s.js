@@ -16,7 +16,7 @@ export default {
       id: 'E2S Punishing Ray',
       regex: /Punishing Ray/,
       beforeSeconds: 9,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Puddles',
@@ -32,7 +32,7 @@ export default {
       id: 'E2S Buddy Circles',
       regex: /Light\/Dark Circles/,
       beforeSeconds: 5,
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stack With Partner',
@@ -114,7 +114,7 @@ export default {
       condition: function(data) {
         return data.role === 'healer';
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: Outputs.tankBusters,
       },
@@ -127,7 +127,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3E63', source: 'ヴォイドウォーカー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E63', source: '虚无行者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E63', source: '보이드워커', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Protean',
@@ -177,7 +177,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3E6B', source: 'エレボスの巨腕', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E6B', source: '厄瑞玻斯的巨腕', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E6B', source: '에레보스의 팔', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away From Hand',
@@ -214,7 +214,7 @@ export default {
       condition: function(data, matches) {
         return data.waiting && data.me === matches.target;
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Delayed Stack',
@@ -259,7 +259,7 @@ export default {
       condition: function(data, matches) {
         return data.waiting && data.me === matches.target;
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Delayed Fire',
@@ -325,7 +325,7 @@ export default {
       condition: function(data, matches) {
         return data.waiting && data.me === matches.target;
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Delayed Shadoweye',
@@ -345,7 +345,7 @@ export default {
       },
       delaySeconds: 2,
       suppressSeconds: 10,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Eye on YOU',
@@ -375,7 +375,7 @@ export default {
       condition: function(data, matches) {
         return !data.waiting && data.me === matches.target;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Flare',
@@ -404,7 +404,7 @@ export default {
       condition: function(data, matches) {
         return data.waiting && data.me === matches.target;
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Delayed Flare',
@@ -422,7 +422,7 @@ export default {
       condition: function(data, matches) {
         return data.me === matches.target && data.spell[data.me] === 'flare';
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Flare',
@@ -443,7 +443,7 @@ export default {
         return data.spell[matches.target] === 'flare' && data.spell[data.me] !== 'flare';
       },
       suppressSeconds: 10,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Flare aoes',
@@ -462,7 +462,7 @@ export default {
         return !data.waiting && data.me === matches.target;
       },
       // The "no waiting" version comes paired with a stack.
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       run: function(data) {
         data.hellWind = true;
       },
@@ -505,7 +505,7 @@ export default {
       condition: function(data, matches) {
         return data.waiting && data.me === matches.target;
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Delayed Hell Wind',
@@ -525,7 +525,7 @@ export default {
           return false;
         return data.me === matches.target && data.spell[data.me] === 'wind';
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hell Wind: wait for heals',
@@ -546,7 +546,7 @@ export default {
         return data.spell[matches.target] === 'wind';
       },
       suppressSeconds: 10,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Heal Hell Wind Targets',
@@ -575,7 +575,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4659', source: 'ヴォイドウォーカー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4659', source: '虚无行者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4659', source: '보이드워커', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'In, Protean, Sides',
@@ -595,7 +595,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '40B9', source: 'ヴォイドウォーカー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '40B9', source: '虚无行者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '40B9', source: '보이드워커', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Sides, In, Protean',

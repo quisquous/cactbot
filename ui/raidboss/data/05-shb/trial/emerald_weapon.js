@@ -40,7 +40,7 @@ export default {
       condition: (data) => data.seenMines || data.role !== 'tank',
       delaySeconds: 9,
       durationSeconds: 6,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       run: (data) => data.seenMines = true,
       outputStrings: {
         text: {
@@ -94,7 +94,7 @@ export default {
       id: 'Emerald Primus Terminus Est',
       netRegex: NetRegexes.headMarker({ id: '00F5' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Knockback Arrow on YOU',
@@ -106,7 +106,7 @@ export default {
       id: 'Emerald Secundus Terminus Est X',
       netRegex: NetRegexes.headMarker({ id: '00FE' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go Cardinal With Sword',
@@ -118,7 +118,7 @@ export default {
       id: 'Emerald Secundus Terminus Est Plus',
       netRegex: NetRegexes.headMarker({ id: '00FD' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go Intercardinal With Sword',

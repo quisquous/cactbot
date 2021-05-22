@@ -49,7 +49,7 @@ export default {
       netRegex: NetRegexes.headMarker({ id: '00C6', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (!data.busterTargets)
           return;
         if (data.busterTargets.includes(data.me))
@@ -81,7 +81,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '８１３Ｐ：拠点防衛ユニット装備', id: '5073', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '813P：装备据点防卫装置', id: '5073', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '813P: 거점 방위 유닛 장비', id: '5073', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go To Narrow Intersection',
@@ -97,7 +97,7 @@ export default {
       id: 'Puppet Aegis Aerial Support Surface Laser',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: (data, matches) => data.me === matches.target && data.phase !== 'superior',
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Chasing Laser: Get Away',
@@ -117,7 +117,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '８１３Ｐ：拠点防衛ユニット装備', id: '5080', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '813P：装备据点防卫装置', id: '5080', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '813P: 거점 방위 유닛 장비', id: '5080', capture: false }),
-      alertText: function(data, _, output) {
+      alertText: function(_data, _matches, output) {
         return output.text();
       },
       outputStrings: {
@@ -139,7 +139,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '８１３Ｐ：拠点防衛ユニット装備', id: '507F', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '813P：装备据点防卫装置', id: '507F', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '813P: 거점 방위 유닛 장비', id: '507F', capture: false }),
-      alertText: function(data, _, output) {
+      alertText: function(_data, _matches, output) {
         return output.text();
       },
       outputStrings: {
@@ -175,7 +175,7 @@ export default {
       // This is more a "if you haven't done this ever or in a while, here's a reminder."
       // Tell it once, but as this repeats nearly continously forever, only say it once.
       suppressSeconds: 9999,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Dodge into ring gap',
@@ -244,7 +244,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '경장 육지전 유닛', id: '5213', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (!data.busterTargets)
           return;
         if (data.busterTargets.includes(data.me))
@@ -278,7 +278,7 @@ export default {
       id: 'Puppet Superior Incendiary Bombing',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: (data, matches) => data.me === matches.target && data.phase === 'superior',
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Fire Puddle on YOU',
@@ -295,7 +295,7 @@ export default {
       // Note: no 1B marker for this???
       netRegex: NetRegexes.startsUsing({ id: '4FB4', capture: false }),
       suppressSeconds: 5,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Line Stack (Point Outside)',
@@ -315,7 +315,7 @@ export default {
       netRegex: NetRegexes.startsUsing({ id: '4FAB', capture: false }),
       delaySeconds: 3,
       suppressSeconds: 5,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Dodge Sword Charges',
@@ -346,7 +346,7 @@ export default {
       netRegex: NetRegexes.startsUsing({ id: '4FC5', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (!data.busterTargets)
           return;
         if (data.busterTargets.includes(data.me))
@@ -385,7 +385,7 @@ export default {
         }[matches.id]);
       },
       durationSeconds: 6,
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.swipe.length !== 1)
           return;
 
@@ -398,8 +398,8 @@ export default {
     },
     {
       id: 'Puppet Superior Sliding Swipe Others',
-      netRegex: NetRegexes.ability({ id: ['4FA[CD]', '550[DEF]', '5510'] }),
-      alertText: function(data, matches, output) {
+      netRegex: NetRegexes.ability({ id: ['4FA[CD]', '550[DEF]', '5510'], capture: false }),
+      alertText: function(data, _matches, output) {
         if (!data.swipe)
           return;
 
@@ -433,7 +433,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '９０５Ｐ：重陸戦ユニット装備', id: '4FED', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '905P：装备重型陆战装置', id: '4FED', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '905P: 중장 육지전 유닛 장비', id: '4FED', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Outside Upper Laser',
@@ -461,7 +461,7 @@ export default {
       id: 'Puppet Heavy Unconventional Voltage',
       netRegex: NetRegexes.headMarker({ id: '00AC' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Voltage cleave on YOU',
@@ -528,7 +528,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '905P: 중장 육지전 유닛 장비', id: '4FE9', capture: false }),
       // This is approximately when the pods appear.
       delaySeconds: 6,
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         data.heavyPodCount = data.heavyPodCount || 0;
         data.heavyPodCount++;
         if (data.heavyPodCount <= 2) {
@@ -568,7 +568,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '905P：装备重型陆战装置', id: '4FEC', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '905P: 중장 육지전 유닛 장비', id: '4FEC', capture: false }),
       // TODO: should this say "towers"? or...something else to indicate variable people needed?
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Turn Towers Blue',
@@ -584,7 +584,7 @@ export default {
       id: 'Puppet Hallway Targeted Laser',
       netRegex: NetRegexes.headMarker({ id: '00A4' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Laser on YOU',
@@ -687,7 +687,7 @@ export default {
       netRegex: NetRegexes.headMarker({ id: '00DA', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (!data.busterTargets)
           return;
         if (data.busterTargets.includes(data.me))
@@ -722,7 +722,7 @@ export default {
       id: 'Puppet Compound 2P Four Parts Resolve',
       netRegex: NetRegexes.headMarker({ id: ['004F', '0050', '0051', '0052'] }),
       condition: Conditions.targetIsYou(),
-      alertText: function(data, matches, output) {
+      alertText: function(_data, matches, output) {
         return {
           '004F': output.jump({ num: 1 }),
           '0050': output.cleave({ num: 1 }),
@@ -758,7 +758,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '2P：融合体', id: '51A6', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '2P: 융합체', id: '51A6', capture: false }),
       delaySeconds: 4,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Towers',
@@ -780,7 +780,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '포드: 융합체', id: '541B', capture: false }),
       suppressSeconds: 2,
       // TODO: maybe this could be smarter and we could tell you where to go??
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid Lasers',
@@ -803,7 +803,7 @@ export default {
       suppressSeconds: 2,
       // TODO: have only seen this happen for the guaranteed Puppet In at 6250.7 with 4 clones.
       // TODO: can this happen at other times??
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Under Clone Corner',
@@ -828,7 +828,7 @@ export default {
       // at corners and then teleport to two cardinals across from each other with fake
       // teleports on the other cardinals.
       // TODO: fix this if these clones can go to corners.
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Under Cardinal Clone',
@@ -852,7 +852,7 @@ export default {
       // Have seen this be either:
       // * 4 clones teleporting around the outside of the arena (corner to corner)
       // * 4 clones teleporting in (to cardinals)
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away From Clones',

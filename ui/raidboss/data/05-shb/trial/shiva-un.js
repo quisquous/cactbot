@@ -23,7 +23,7 @@ export default {
       id: 'ShivaUn Icebrand',
       regex: /Icebrand/,
       beforeSeconds: 5,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Party Share Tankbuster',
@@ -52,7 +52,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '5367', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '5367', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '5367', capture: false }),
-      response: (data, _, output) => {
+      response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           staffTankSwap: {
@@ -92,7 +92,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '5366', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '5366', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '5366', capture: false }),
-      response: (data, _, output) => {
+      response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           swordTankSwap: {
@@ -227,7 +227,7 @@ export default {
       netRegex: NetRegexes.headMarker({ id: '001A' }),
       condition: Conditions.targetIsYou(),
       // Responses.knockback does not quite give the 'laser cleave' aspect here.
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Knockback Laser on YOU',
@@ -243,7 +243,7 @@ export default {
       id: 'ShivaUn Avalanche Marker Other',
       netRegex: NetRegexes.headMarker({ id: '001A' }),
       condition: Conditions.targetIsNotYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid Laser',

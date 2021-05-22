@@ -162,7 +162,7 @@ export default {
       netRegexCn: NetRegexes.ability({ id: '586E', source: '巨型爆破岩石', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '586E', source: '거대 바위폭탄', capture: false }),
       suppressSeconds: 5,
-      infoText: (data, _, output) => {
+      infoText: (data, _matches, output) => {
         // Whichever direction has two  Titanic Bombs, the safe spot is opposite.
         let safe;
         if (data.bombs[0].north === data.bombs[1].north)
@@ -183,7 +183,7 @@ export default {
       netRegexCn: NetRegexes.ability({ id: '586F', source: '巨型爆破岩石', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '586F', source: '거대 바위폭탄', capture: false }),
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Move to last explosions',
@@ -207,7 +207,7 @@ export default {
         if (data.me === matches.target)
           return output.stackOnYou();
       },
-      infoText: (data, _, output) => {
+      infoText: (data, _matches, output) => {
         if (data.stacks.length === 1)
           return;
         const names = data.stacks.map((x) => data.ShortName(x)).sort();
@@ -278,7 +278,7 @@ export default {
       netRegex: NetRegexes.startsUsing({ id: ['4E2C', '585B', '5861'], capture: false }),
       preRun: (data) => data.tethers = data.tethers.sort(),
       delaySeconds: 0.5, // Tethers should be first in the log, but let's be SURE
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         if (data.tethers.length !== 2)
           return;
         // Leviathan's mechanics aren't easily described in a single word,
@@ -291,7 +291,7 @@ export default {
           safespot2: output[data.tethers[1]](),
         });
       },
-      infoText: (data, _, output) => {
+      infoText: (data, _matches, output) => {
         if (data.tethers.length === 2)
           return;
         return output[data.tethers[0]]();

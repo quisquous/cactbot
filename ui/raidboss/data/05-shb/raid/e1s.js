@@ -172,7 +172,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '44F4', source: 'エデン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '44F4', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '44F4', source: '에덴 프라임', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Cross Spread',
@@ -192,7 +192,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '44F8', source: 'エデン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '44F8', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '44F8', source: '에덴 프라임', capture: false }),
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.role === 'tank')
           return output.getInSpread();
 
@@ -321,7 +321,7 @@ export default {
       condition: function(data, matches) {
         return !data.paradise && data.vice === 'dps' && data.me === matches.target;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Puddle Spread',
@@ -341,7 +341,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3D7A', source: 'エデン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D7A', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D7A', source: '에덴 프라임', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stack With Partner',
@@ -359,7 +359,7 @@ export default {
       condition: function(data, matches) {
         return data.vice === 'tank' && data.me === matches.target;
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Tank Laser on YOU',
@@ -382,7 +382,7 @@ export default {
       condition: function(data) {
         return data.role !== 'tank';
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stack in front of tank',
@@ -398,7 +398,7 @@ export default {
       id: 'E1S Vice and Virtue Healer Mark YOU',
       netRegex: NetRegexes.gainsEffect({ effectId: '840' }),
       condition: Conditions.targetIsYou(),
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.paradise)
           return output.passPreyToDps();
 
@@ -434,7 +434,7 @@ export default {
         return false;
       },
       suppressSeconds: 20,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Take prey from healer',
@@ -478,7 +478,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3D80', source: 'エデン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D80', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D80', source: '에덴 프라임', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Outside Your Orb',
@@ -498,7 +498,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3D82', source: 'エデン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D82', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D82', source: '에덴 프라임', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Bait Orb Lasers Outside',

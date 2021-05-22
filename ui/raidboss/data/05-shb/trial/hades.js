@@ -81,7 +81,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '414D', source: 'ハーデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '414D', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '414D', source: '하데스', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Dodge Giant Circles',
@@ -148,7 +148,7 @@ export default {
       id: 'Hades Doom',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Cleanse Doom In Circle',
@@ -168,7 +168,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4166', source: 'ハーデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4166', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4166', source: '하데스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Right Knockback',
@@ -188,7 +188,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4165', source: 'ハーデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4165', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4165', source: '하데스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Left Knockback',
@@ -211,7 +211,7 @@ export default {
       condition: function(data) {
         return data.role === 'healer';
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: Outputs.tankBusters,
       },
@@ -222,7 +222,7 @@ export default {
       condition: function(data, matches) {
         return data.neoHades && data.me === matches.target;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Tank Buster Spread',
@@ -238,7 +238,7 @@ export default {
       id: 'Hades Hellborn Yawp',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Drop Marker Outside',
@@ -254,7 +254,7 @@ export default {
       id: 'Hades Fetters',
       netRegex: NetRegexes.headMarker({ id: '0078' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Fetters on YOU',
@@ -292,7 +292,7 @@ export default {
         return !data.seenLifeInCaptivity;
       },
       delaySeconds: 2,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Kill Jail',
@@ -316,7 +316,7 @@ export default {
       condition: function(data, matches) {
         return !data.neoHades && data.me === matches.target;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Spread (Don\'t Stack!)',
@@ -349,7 +349,7 @@ export default {
       id: 'Hades Ancient No Marker',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       delaySeconds: 0.5,
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.ancient[data.me])
           return;
         const name = Object.keys(data.ancient).find((key) => data.ancient[key] === '003E');
