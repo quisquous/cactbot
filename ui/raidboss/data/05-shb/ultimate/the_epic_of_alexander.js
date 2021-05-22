@@ -325,14 +325,7 @@ export default {
           cn: '死刑',
           ko: '탱크버스터',
         },
-        tankBusterOn: {
-          en: 'Tank Buster on ${player}',
-          de: 'Tank buster auf ${player}',
-          fr: 'Tank buster sur ${player}',
-          ja: '${player}にタンクバスター',
-          cn: '死刑 点 ${player}',
-          ko: '"${player}" 탱버',
-        },
+        tankBusterOn: Outputs.tankBusterOnPlayer,
         tankBuster: Outputs.tankBuster,
         tankBusterOnYou: Outputs.tankBusterOnYou,
       },
@@ -1457,14 +1450,7 @@ export default {
         return output.busterOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
-        busterOn: {
-          en: 'Buster on ${player}',
-          de: 'Tankbuster auf ${player}',
-          fr: 'Tank buster sur ${player}',
-          ja: '${player}にタンクバスター',
-          cn: '死刑点 ${player}',
-          ko: '${player}에게 탱크버스터',
-        },
+        busterOn: Outputs.tankBusterOnPlayer,
         tankBusterOnYou: Outputs.tankBusterOnYou,
       },
     },

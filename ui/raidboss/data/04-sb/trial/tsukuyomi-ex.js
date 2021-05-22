@@ -66,14 +66,7 @@ export default {
           ko: '정면 피하기',
         },
         tankBusterOnYou: Outputs.tankBusterOnYou,
-        busterOn: {
-          en: 'Buster on ${player}',
-          de: 'Tankbuster auf ${player}',
-          fr: 'Tank buster sur ${player}',
-          ja: '${player}にタンクバスター',
-          cn: '死刑 点${player}',
-          ko: '"${player}" 탱버',
-        },
+        busterOn: Outputs.tankBusterOnPlayer,
         tankSwap: {
           en: 'Tank Swap!',
           de: 'Tankwechsel!',

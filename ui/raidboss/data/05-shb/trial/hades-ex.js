@@ -553,14 +553,7 @@ export default {
       },
       outputStrings: {
         tankBusterOnYou: Outputs.tankBusterOnYou,
-        busterOn: {
-          en: 'Buster on ${player}',
-          de: 'Tankbuster auf ${player}',
-          fr: 'Tank buster sur ${player}',
-          ja: '${player}にタンクバスター',
-          cn: '死刑点 ${player}',
-          ko: '"${player}" 탱버',
-        },
+        busterOn: Outputs.tankBusterOnPlayer,
         awayFromPlayer: {
           en: 'Away from ${player}',
           de: 'Weg von ${player}',

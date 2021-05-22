@@ -50,14 +50,7 @@ export default {
           ko: '${player} 한테서 피하세요',
         },
         tankBusterOnYou: Outputs.tankBusterOnYou,
-        busterOn: {
-          en: 'Buster on ${player}',
-          de: 'Tankbuster auf ${player}',
-          fr: 'Tank buster sur ${player}',
-          ja: '${player}にタンクバスター',
-          cn: '死刑 点${player}',
-          ko: '"${player}" 탱버',
-        },
+        busterOn: Outputs.tankBusterOnPlayer,
       },
     },
     {
