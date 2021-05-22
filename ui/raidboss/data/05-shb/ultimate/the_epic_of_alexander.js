@@ -326,14 +326,7 @@ export default {
           ko: '탱크버스터',
         },
         tankBusterOn: Outputs.tankBusterOnPlayer,
-        tankBuster: {
-          en: 'Tank Buster',
-          de: 'Tank buster',
-          fr: 'Tank buster',
-          ja: 'タンクバスター',
-          cn: '死刑',
-          ko: '탱크버스터',
-        },
+        tankBuster: Outputs.tankBuster,
         tankBusterOnYou: {
           en: 'Tank Buster on YOU',
           de: 'Tankbuster auf DIR',
