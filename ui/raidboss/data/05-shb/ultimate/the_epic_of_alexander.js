@@ -309,14 +309,7 @@ export default {
         return output.tankCleave();
       },
       outputStrings: {
-        tankCleave: {
-          en: 'Tank Cleave',
-          de: 'Tank Cleave',
-          fr: 'Tank Cleave',
-          ja: 'タンククリーブ',
-          cn: '坦克顺劈',
-          ko: '광역 탱버',
-        },
+        tankCleave: Outputs.tankCleave,
         tankBusters: Outputs.tankBusters,
         tankBusterOn: Outputs.tankBusterOnPlayer,
         tankBuster: Outputs.tankBuster,
