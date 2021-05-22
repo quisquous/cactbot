@@ -13,7 +13,7 @@ export default {
       id: 'SusEx Cloud',
       regex: /Knockback \(cloud\)/,
       beforeSeconds: 1.5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'look for cloud',
@@ -94,7 +94,7 @@ export default {
       id: 'SusEx Knockback',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.cloud)
           return output.knockbackWithCloud();
         else if (data.churning)
@@ -102,7 +102,7 @@ export default {
 
         return output.knockback();
       },
-      tts: function(data, _, output) {
+      tts: function(data, _matches, output) {
         if (data.cloud)
           return output.knockbackWithCloudTTS();
         else if (data.churning)
@@ -165,13 +165,13 @@ export default {
       id: 'SusEx Levinbolt',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
       condition: Conditions.targetIsYou(),
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.cloud)
           return output.levinboltWithCloud();
 
         return output.levinboltOnYou();
       },
-      tts: function(data, _, output) {
+      tts: function(data, _matches, output) {
         if (data.cloud)
           return output.levinboltWithCloudTTS();
 
@@ -244,7 +244,7 @@ export default {
       id: 'SusEx Churning',
       netRegex: NetRegexes.gainsEffect({ effectId: '4F6' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: function(data, matches) {
+      delaySeconds: function(_data, matches) {
         return parseFloat(matches.duration) - 3;
       },
       response: Responses.stopEverything('alert'),

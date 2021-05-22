@@ -22,7 +22,7 @@ export default {
       id: 'The Burn Hailfire',
       netRegex: NetRegexes.headMarker({ id: '0002', capture: false }),
       condition: (data) => !data.hedetet,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hide behind crystal',
@@ -38,7 +38,7 @@ export default {
       id: 'The Burn Shardstrike',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Spread + Avoid Crystals',
@@ -58,7 +58,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3191', source: 'ヘデテト', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3191', source: '赫德提特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3191', source: '헤데테트', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hide behind crystal',
@@ -119,7 +119,7 @@ export default {
       id: 'The Burn Aetherochemical Residue',
       netRegex: NetRegexes.headMarker({ id: '0002' }),
       condition: (data, matches) => data.me === matches.target && data.hedetet,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Puddle on YOU',
@@ -136,7 +136,7 @@ export default {
       id: 'The Burn Throttle',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '7670', capture: false }),
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'In line with smoking drone',
@@ -157,7 +157,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '2D78', source: '石刃', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2D78', source: '암석 절단날', capture: false }),
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid Rock Biters',
@@ -218,7 +218,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '3144', source: '雾龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3144', source: '안개 드래곤', capture: false }),
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Bait Star Explosions',

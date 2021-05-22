@@ -28,7 +28,7 @@ export default {
       condition: function(data) {
         return data.role === 'tank';
       },
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Orb Tethers',

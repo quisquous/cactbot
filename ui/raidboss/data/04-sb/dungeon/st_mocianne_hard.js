@@ -11,7 +11,7 @@ export default {
       id: 'St Mocianne Hard Quickmire',
       regex: /Quickmire/,
       beforeSeconds: 7, // This is approximately when the sewage surge begins.
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Be On A Platform',
@@ -51,7 +51,7 @@ export default {
       id: 'St Mocianne Hard Sludge Bomb',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Sludge puddle on YOU',
@@ -83,7 +83,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '2E4F', source: 'ヌルチュー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2E4F', source: '泥口花', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2E4F', source: '누루츄', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get behind flower',
@@ -125,8 +125,8 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3132', source: 'シルトゴーレム' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3132', source: '淤泥巨像' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3132', source: '실트 골렘' }),
-      delaySeconds: (data, matches) => parseFloat(matches.duration) - 6,
-      infoText: (data, _, output) => output.text(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6,
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Conveyors: Avoid Golem Lines',
@@ -169,7 +169,7 @@ export default {
       id: 'St Mocianne Hard Quagmire',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Spread + Stay Off Platforms',
@@ -189,7 +189,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3137', source: 'トカップチ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3137', source: '枯腐泥妖', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3137', source: '진흙장사', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Push Mud Pie On Platform',
@@ -209,7 +209,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '313C', source: 'トカップチ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '313C', source: '枯腐泥妖', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '313C', source: '진흙장사', capture: false }),
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Push Mud Pie Out Of Cone',

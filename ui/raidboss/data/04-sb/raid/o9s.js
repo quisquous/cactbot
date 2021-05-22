@@ -27,11 +27,11 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3172', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3172', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3172', source: '카오스', capture: false }),
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.primordialCrust)
           return output.dieOnFrontBack();
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (!data.primordialCrust)
           return output.sides();
       },
@@ -62,11 +62,11 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3173', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3173', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3173', source: '카오스', capture: false }),
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.primordialCrust)
           return output.dieOnSides();
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (!data.primordialCrust)
           return output.frontBack();
       },
@@ -107,11 +107,11 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '317D', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '317D', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '317D', source: '카오스', capture: false }),
-      alarmText: function(data, _, output) {
+      alarmText: function(data, _matches, output) {
         if (data.role === 'tank')
           return output.orbTethers();
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.role === 'healer')
           return output.orbTethers();
       },
@@ -154,7 +154,7 @@ export default {
           return parseFloat(matches.duration) - 12;
         return parseFloat(matches.duration) - 5;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.phaseType === 'enrage' || data.phaseType === 'orb' || data.entropyCount === 1)
           return output.spread();
         else if (data.role === 'tank' || data.role === 'healer')
@@ -200,7 +200,7 @@ export default {
       condition: function(data, matches) {
         return matches.target === data.me && data.phaseType === 'fire';
       },
-      delaySeconds: function(data, matches) {
+      delaySeconds: function(_data, matches) {
         // Folks get either the 24 second or the 10 second.
         // So, delay for the opposite minus 5.
         const seconds = parseFloat(matches.duration);
@@ -210,7 +210,7 @@ export default {
         // Got 10 seconds (tank)
         return 19;
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hide Middle',
@@ -235,7 +235,7 @@ export default {
       },
       // Each big bang has its own cast, so suppress.
       suppressSeconds: 1,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hide Middle',
@@ -270,7 +270,7 @@ export default {
       delaySeconds: 5,
       suppressSeconds: 1,
       // T/H get 10s & DPS get 17s
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stack Donut',
@@ -291,7 +291,7 @@ export default {
       // T/H get 10s & DPS get 17s
       delaySeconds: 12,
       suppressSeconds: 1,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stack Donut',
@@ -312,7 +312,7 @@ export default {
       // enrage -> 6s
       delaySeconds: 1,
       suppressSeconds: 1,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stack Donut',
@@ -328,7 +328,7 @@ export default {
       id: 'O9S Knock Down Marker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.phaseType === 'water')
           return output.dropOutside();
         else if (data.phaseType === 'wind')
@@ -391,7 +391,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '318F', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '318F', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '318F', source: '카오스', capture: false }),
-      alarmText: function(data, _, output) {
+      alarmText: function(data, _matches, output) {
         if (data.wind === 'head')
           return output.backToTornado();
 
@@ -441,7 +441,7 @@ export default {
         return data.role === 'healer';
       },
       suppressSeconds: 10,
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.phaseType !== 'earth')
           return output.healAllToFull();
 
@@ -472,7 +472,7 @@ export default {
       condition: function(data, matches) {
         return data.me === matches.target && data.phaseType !== 'orb';
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       run: function(data) {
         data.primordialCrust = true;
       },
@@ -500,7 +500,7 @@ export default {
       id: 'O9S Earth Stack Marker',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       suppressSeconds: 10,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stack with partner',
@@ -532,11 +532,11 @@ export default {
       condition: function(data, matches) {
         return matches.target !== data.me && data.phaseType === 'orb';
       },
-      delaySeconds: function(data, matches) {
+      delaySeconds: function(_data, matches) {
         return parseFloat(matches.duration) - 3;
       },
       suppressSeconds: 10,
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.head === 'wind')
           return output.text();
       },
@@ -560,10 +560,10 @@ export default {
       condition: function(data, matches) {
         return matches.target === data.me && data.phaseType === 'orb';
       },
-      delaySeconds: function(data, matches) {
+      delaySeconds: function(_data, matches) {
         return parseFloat(matches.duration) - 5;
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hit DPS with Water',

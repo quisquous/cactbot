@@ -45,7 +45,7 @@ export default {
       id: 'Kugane Castle Cordage',
       netRegex: NetRegexes.tether({ id: '0011' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Harakiri tether on YOU',
@@ -71,7 +71,7 @@ export default {
       netRegexCn: NetRegexes.ability({ id: '1EAE', source: '景山', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '1EAE', source: '카게야마', capture: false }),
       suppressSeconds: 15, // No point in notifying repeatedly
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Grab gold piles',

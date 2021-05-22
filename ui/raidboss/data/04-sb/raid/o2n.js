@@ -66,7 +66,7 @@ export default {
       condition: function(data, matches) {
         return !data.levitating && Conditions.targetIsNotYou()(data, matches);
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Levitate',
@@ -99,7 +99,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '24FF', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '24FF', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '24FF', source: '카타스트로피', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: '-100 Gs: Go north/south',
@@ -129,11 +129,11 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '2512', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2512', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2512', source: '카타스트로피', capture: false }),
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (!data.levitating)
           return output.levitate();
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.levitating)
           return output.earthquake();
       },
@@ -173,15 +173,15 @@ export default {
       condition: Conditions.targetIsYou(),
       delaySeconds: 5,
       suppressSeconds: 10,
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (!data.levitating)
           return output.levitate();
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.levitating)
           return output.sixFulmsUnder();
       },
-      tts: (data, _, output) => output.float(),
+      tts: (_data, _matches, output) => output.float(),
       outputStrings: {
         sixFulmsUnder: {
           en: '6 Fulms Under',
@@ -225,7 +225,7 @@ export default {
           return 3;
         return 8;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         // The first Antilight is always blue.
         if (data.antiCounter === 0) {
           // Players who are already floating should just get an info about Petrospheres.
@@ -240,7 +240,7 @@ export default {
 
         return output.dontLevitate();
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.antiCounter === 0 && data.levitating)
           return output.antilight();
       },

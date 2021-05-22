@@ -51,7 +51,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '215E', source: 'ラクシュミ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '215E', source: '吉祥天女' }),
       netRegexKo: NetRegexes.startsUsing({ id: '215E', source: '락슈미' }),
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role === 'tank';
       },
       response: Responses.tankBuster('info'),
@@ -64,7 +64,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '215E', source: 'ラクシュミ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '215E', source: '吉祥天女' }),
       netRegexKo: NetRegexes.startsUsing({ id: '215E', source: '락슈미' }),
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role !== 'tank' && data.role !== 'healer';
       },
       response: Responses.tankBuster('alarm'),
@@ -77,7 +77,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '2149', source: 'ラクシュミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2149', source: '吉祥天女', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2149', source: '락슈미', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Vrill + Knockback',
@@ -97,7 +97,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '214B', source: 'ラクシュミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '214B', source: '吉祥天女', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '214B', source: '락슈미', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Vrill + Be Outside',
@@ -117,7 +117,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '214A', source: 'ラクシュミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '214A', source: '吉祥天女', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '214A', source: '락슈미', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Vrill + Pair Up',
@@ -194,7 +194,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '2147', source: '吉祥天女', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2147', source: '락슈미', capture: false }),
       condition: (data) => data.chancala,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Vrill for AOE',
@@ -211,7 +211,7 @@ export default {
       id: 'LakshmiEx Path of Light Marker',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
       condition: Conditions.targetIsYou(),
-      alarmText: function(data, _, output) {
+      alarmText: function(data, _matches, output) {
         if (data.chanchala)
           return output.vrillCleaveOnYou();
 
@@ -241,7 +241,7 @@ export default {
       id: 'LakshmiEx Hand of Grace',
       netRegex: NetRegexes.headMarker({ id: '006B' }),
       condition: Conditions.targetIsYou(),
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.chanchala)
           return output.vrillCrossMarker();
 
@@ -271,7 +271,7 @@ export default {
       id: 'LakshmiEx Hand of Beauty',
       netRegex: NetRegexes.headMarker({ id: '006D' }),
       condition: Conditions.targetIsYou(),
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.chanchala)
           return output.vrillFlowerMarker();
 
@@ -301,7 +301,7 @@ export default {
       id: 'LakshmiEx Water III',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Move Away',

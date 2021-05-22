@@ -17,7 +17,7 @@ export default {
       id: 'BA Raiden Levinwhorl',
       regex: /Levinwhorl/,
       beforeSeconds: 10,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Shields and Mitigation',
@@ -34,7 +34,7 @@ export default {
       regex: /Explosive Impulse/,
       beforeSeconds: 10,
       suppressSeconds: 60,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Pop Eurekan Potions',
@@ -50,7 +50,7 @@ export default {
       id: 'BA Ozma Black Hole Warning',
       regex: /Black Hole/,
       beforeSeconds: 12,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Black Hole Soon',
@@ -263,7 +263,7 @@ export default {
         return data.side === 'west' && data.mythcall;
       },
       delaySeconds: 3.5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Under Spears',
@@ -314,8 +314,8 @@ export default {
       condition: function(data) {
         return data.side === 'east';
       },
-      alertText: (data, _, output) => output.getToIce(),
-      infoText: (data, _, output) => output.switchMagia(),
+      alertText: (_data, _matches, output) => output.getToIce(),
+      infoText: (_data, _matches, output) => output.switchMagia(),
       outputStrings: {
         switchMagia: {
           en: 'Switch Magia',
@@ -345,8 +345,8 @@ export default {
       condition: function(data) {
         return data.side === 'east';
       },
-      alertText: (data, _, output) => output.getToFire(),
-      infoText: (data, _, output) => output.switchMagia(),
+      alertText: (_data, _matches, output) => output.getToFire(),
+      infoText: (_data, _matches, output) => output.switchMagia(),
       outputStrings: {
         switchMagia: {
           en: 'Switch Magia',
@@ -515,7 +515,7 @@ export default {
       condition: function(data) {
         return data.sealed;
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       run: function(data) {
         data.bracelets = 'dark';
       },
@@ -541,7 +541,7 @@ export default {
       condition: function(data) {
         return data.sealed;
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       run: function(data) {
         data.bracelets = 'light';
       },
@@ -567,7 +567,7 @@ export default {
       condition: function(data) {
         return data.sealed;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (!data.seenHostile) {
           if (data.bracelets === 'light')
             return output.awayFromLightCircles();
@@ -632,7 +632,7 @@ export default {
       condition: function(data) {
         return data.sealed;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.bracelets === 'light')
           return output.dark();
 
@@ -702,7 +702,7 @@ export default {
       condition: function(data) {
         return data.sealed;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (!data.clones)
           return;
         const wrists = data.clones.pop();
@@ -742,7 +742,7 @@ export default {
       condition: function(data) {
         return data.sealed;
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Orbs to Opposite Colors',
@@ -782,10 +782,10 @@ export default {
         data.blackHoleCount = data.blackHoleCount || 0;
         data.blackHoleCount++;
       },
-      alarmText: function(data, _, output) {
+      alarmText: function(data, _matches, output) {
         return output.blackHole({ num: data.blackHoleCount });
       },
-      tts: function(data, _, output) {
+      tts: function(data, _matches, output) {
         return output.blackHoleTTS({ num: data.blackHoleCount });
       },
       outputStrings: {
@@ -823,7 +823,7 @@ export default {
       condition: function(data) {
         return data.sealed;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Off the Platform',
@@ -847,7 +847,7 @@ export default {
         return data.sealed;
       },
       delaySeconds: 9,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Spread for Bleed',
@@ -870,7 +870,7 @@ export default {
       condition: function(data) {
         return data.sealed;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go Far',
@@ -894,7 +894,7 @@ export default {
         return data.sealed;
       },
       delaySeconds: 9,
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         // FIXME: taking multiple autos probably means tanking,
         // so probably could figure this out automatically.
         if (data.role === 'tank')
@@ -932,7 +932,7 @@ export default {
       condition: function(data) {
         return data.sealed;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Close',
@@ -956,13 +956,13 @@ export default {
         return data.sealed;
       },
       delaySeconds: 9,
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         // FIXME: taking multiple autos probably means tanking,
         // so probably could figure this out automatically.
         if (data.role === 'tank')
           return output.offtanksGetOrbs();
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.role !== 'tank')
           return output.stackAwayFromTank();
       },
@@ -997,7 +997,7 @@ export default {
         return data.sealed;
       },
       suppressSeconds: 1,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Off',
@@ -1021,7 +1021,7 @@ export default {
         return data.sealed;
       },
       suppressSeconds: 1,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Close',
@@ -1045,7 +1045,7 @@ export default {
         return data.sealed;
       },
       suppressSeconds: 1,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go Far',

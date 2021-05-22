@@ -81,7 +81,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '2788', source: 'ガーディアン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2788', source: '守护者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2788', source: '가디언', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Magitek Ray',
@@ -107,7 +107,7 @@ export default {
       id: 'O7S Orb Marker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Orb Marker',
@@ -166,7 +166,7 @@ export default {
       id: 'O7S Abandonment',
       netRegex: NetRegexes.gainsEffect({ effectId: '58A' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Abandonment: stay middle',
@@ -229,7 +229,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'ガーディアン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '守护者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '가디언', capture: false }),
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         data.loadCount = ++data.loadCount || 1;
 
         if (data.loadCount === 1) {
@@ -303,7 +303,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '276F', source: 'ガーディアン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '276F', source: '守护者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '276F', source: '가디언', capture: false }),
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         data.runCount = ++data.runCount || 1;
 
         if (data.runCount === 1)

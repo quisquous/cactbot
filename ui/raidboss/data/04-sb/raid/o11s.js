@@ -81,7 +81,7 @@ export default {
       condition: function(data) {
         return data.lastWasStarboard !== undefined;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.lastWasStarboard)
           return output.moveLeft();
 
@@ -117,7 +117,7 @@ export default {
       condition: function(data) {
         return data.lastWasStarboard !== undefined;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.lastWasStarboard)
           return output.stayRight();
 
@@ -150,7 +150,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3266', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3266', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3266', source: '오메가', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Left (then opposite)',
@@ -170,7 +170,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3268', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3268', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3268', source: '오메가', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Right (then opposite)',
@@ -191,7 +191,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '3266', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3266', source: '오메가', capture: false }),
       delaySeconds: 4,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Opposite (Left)',
@@ -212,7 +212,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '3268', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3268', source: '오메가', capture: false }),
       delaySeconds: 4,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Opposite (Right)',

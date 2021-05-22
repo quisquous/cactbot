@@ -22,7 +22,7 @@ export default {
       id: 'Bardam\'s Mettle Rush',
       netRegex: NetRegexes.tether({ id: '0039' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Run Away From Boss',
@@ -77,7 +77,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '1F01', source: 'バルダムの巨像', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1F01', source: '巴儿达木巨像', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1F01', source: '바르담 조각상', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stand in a tower',
@@ -99,7 +99,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '257D', source: 'バルダムの巨像', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '257D', source: '巴儿达木巨像', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '257D', source: '바르담 조각상', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: '8x puddles on YOU',
@@ -119,10 +119,10 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '2582', source: '落下地点' }),
       netRegexCn: NetRegexes.startsUsing({ id: '2582', source: '坠落地点' }),
       netRegexKo: NetRegexes.startsUsing({ id: '2582', source: '낙하지점' }),
-      delaySeconds: function(data, matches) {
+      delaySeconds: function(_data, matches) {
         return parseFloat(matches.castTime) - 7;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hide behind boulder',
@@ -167,7 +167,7 @@ export default {
       id: 'Bardam\'s Mettle Wingbeat You',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Knockback Laser on YOU',
@@ -183,7 +183,7 @@ export default {
       id: 'Bardam\'s Mettle Wingbeat Others',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
       condition: Conditions.targetIsNotYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid Laser',
