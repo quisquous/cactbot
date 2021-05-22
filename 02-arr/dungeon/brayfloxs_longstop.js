@@ -63,7 +63,7 @@ Options.Triggers.push({
       id: 'Brayflox Normal Pelican Adds',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '1283', capture: false }),
       suppressSeconds: 2,
-      response: Responses.killAdds('info'),
+      response: Responses.killAdds(),
     },
     {
       id: 'Brayflox Normal Ashdrake Burning Cyclone',
@@ -80,7 +80,7 @@ Options.Triggers.push({
       // Tempest Biast Spawn
       id: 'Brayflox Normal Tempest Biast',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '1285', capture: false }),
-      response: Responses.killAdds('info'),
+      response: Responses.killAdds(),
     },
     {
       id: 'Brayflox Normal Inferno Drake Burning Cyclone',

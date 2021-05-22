@@ -353,7 +353,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3A05', source: '青龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3A05', source: '青龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3A05', source: '청룡', capture: false }),
-      response: Responses.getInThenOut('info'),
+      response: Responses.getInThenOut(),
     },
     {
       id: 'SeiryuEx Sigil In Out 2',
@@ -374,7 +374,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3A03', source: '青龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3A03', source: '青龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3A03', source: '청룡', capture: false }),
-      response: Responses.getOutThenIn('info'),
+      response: Responses.getOutThenIn(),
     },
     {
       id: 'SeiryuEx Sigil Out In 2',

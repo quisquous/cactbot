@@ -43,7 +43,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '10EB', source: 'ハルマキス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '10EB', source: '赫鲁玛奇斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '10EB', source: '하르마키스', capture: false }),
-      response: Responses.lookAway('info'),
+      response: Responses.lookAway(),
     },
     {
       id: 'Facility Inertia Stream',

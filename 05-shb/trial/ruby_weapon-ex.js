@@ -132,7 +132,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AD8', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AD8', capture: false }),
       suppressSeconds: 1,
-      response: Responses.stackMarker('alert'),
+      response: Responses.stackMarker(),
     },
     {
       id: 'RubyEx Raven\'s Image',

@@ -216,7 +216,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56C7', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56C7', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '그림자의 왕', id: '56C7', capture: false }),
-      response: Responses.getOut('alert'),
+      response: Responses.getOut(),
     },
     {
       // There is technically a visual, but it comes up at precisely the same time as puddles.
@@ -228,7 +228,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: '影の王', id: '56C6', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '影之王', id: '56C6', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '그림자의 왕', id: '56C6', capture: false }),
-      response: Responses.knockback('alert'),
+      response: Responses.knockback(),
     },
   ],
   timelineReplace: [

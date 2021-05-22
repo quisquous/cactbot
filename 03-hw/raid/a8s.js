@@ -11,7 +11,7 @@ Options.Triggers.push({
       id: 'A8S Hydrothermal Missile',
       regex: /Hydrothermal Missile/,
       beforeSeconds: 3,
-      response: Responses.tankCleave('info'),
+      response: Responses.tankCleave(),
     },
     {
       id: 'A8S Swindler Add',
@@ -49,7 +49,7 @@ Options.Triggers.push({
       id: 'A8S Flarethrower',
       regex: /Flarethrower/,
       beforeSeconds: 3,
-      response: Responses.tankCleave('info'),
+      response: Responses.tankCleave(),
     },
     {
       id: 'A8S Super Jump Soon',

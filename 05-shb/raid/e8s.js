@@ -636,7 +636,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D83', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D83', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D83', capture: false }),
-      response: Responses.getIn('alert'),
+      response: Responses.getIn(),
     },
     {
       id: 'E8S Twin Stillness',

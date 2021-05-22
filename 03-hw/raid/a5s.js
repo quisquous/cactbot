@@ -24,7 +24,7 @@ Options.Triggers.push({
       regex: /Kaltstrahl/,
       // Hopefully you'll figure it out the first time.
       suppressSeconds: 9999,
-      response: Responses.tankCleave('info'),
+      response: Responses.tankCleave(),
     },
     {
       id: 'A5S Panzerschreck',
@@ -39,7 +39,7 @@ Options.Triggers.push({
       // Needs more warning than the cast.
       beforeSeconds: 7,
       suppressSeconds: 1,
-      response: Responses.getBehind('alert'),
+      response: Responses.getBehind(),
     },
     {
       id: 'A5S Boost',
@@ -97,7 +97,7 @@ Options.Triggers.push({
     {
       id: 'A5S Gobcut Stack',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      response: Responses.stackMarkerOn('alert'),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'A5S Concussion',
@@ -107,7 +107,7 @@ Options.Triggers.push({
           return false;
         return data.role === 'tank';
       },
-      response: Responses.tankBusterSwap('alarm'),
+      response: Responses.tankBusterSwap(),
     },
     {
       id: 'A5S Concussion BLU',

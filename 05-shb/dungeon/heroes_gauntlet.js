@@ -56,7 +56,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '524D', source: '幻光白魔法师' }),
       netRegexKo: NetRegexes.startsUsing({ id: '524D', source: '환상빛의 백마도사' }),
       condition: (data) => data.CanSilence(),
-      response: Responses.interrupt('alert'),
+      response: Responses.interrupt(),
     },
     {
       id: 'Heroes Gauntlet Large Zombie Tether',

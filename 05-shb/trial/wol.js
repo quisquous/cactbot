@@ -72,7 +72,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F11', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F11', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F11', capture: false }),
-      response: Responses.getUnder('info'),
+      response: Responses.getUnder(),
     },
     {
       id: 'WOL Coruscant Saber Out',

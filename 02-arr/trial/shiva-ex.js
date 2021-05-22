@@ -177,7 +177,7 @@ Options.Triggers.push({
     {
       id: 'ShivaEx Whiteout',
       netRegex: NetRegexes.startsUsing({ id: 'BEC', capture: false }),
-      response: Responses.getIn('alert'),
+      response: Responses.getIn(),
     },
     {
       id: 'ShivaEx Diamond Dust',

@@ -26,7 +26,7 @@ Options.Triggers.push({
       id: 'Puppet Aegis Anti-Personnel Laser You',
       netRegex: NetRegexes.headMarker({ id: '00C6' }),
       condition: Conditions.targetIsYou(),
-      response: Responses.tankBuster('alert'),
+      response: Responses.tankBuster(),
     },
     {
       id: 'Puppet Aegis Anti-Personnel Laser Collect',
@@ -205,7 +205,7 @@ Options.Triggers.push({
       // R012: Laser (Compound 2P)
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
-      response: Responses.spread('info'),
+      response: Responses.spread(),
     },
     {
       id: 'Puppet Light Maneuver Martial Arm Target',
@@ -216,7 +216,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '轻型陆战装置', id: '5213' }),
       netRegexKo: NetRegexes.startsUsing({ source: '경장 육지전 유닛', id: '5213' }),
       condition: Conditions.targetIsYou(),
-      response: Responses.tankBuster('alert'),
+      response: Responses.tankBuster(),
     },
     {
       id: 'Puppet Light Maneuver Martial Arm Collect',
@@ -332,7 +332,7 @@ Options.Triggers.push({
       id: 'Puppet Superior Precision Guided Missile You',
       netRegex: NetRegexes.startsUsing({ id: '4FC5' }),
       condition: Conditions.targetIsYou(),
-      response: Responses.tankBuster('alert'),
+      response: Responses.tankBuster(),
     },
     {
       id: 'Puppet Superior Precision Guided Missile Collect',
@@ -459,7 +459,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ source: '905P: 중장 육지전 유닛 장비', id: '5086', capture: false }),
       delaySeconds: 5.3,
       suppressSeconds: 5,
-      response: Responses.moveAway('info'),
+      response: Responses.moveAway(),
     },
     {
       id: 'Puppet Heavy Unconventional Voltage',
@@ -679,7 +679,7 @@ Options.Triggers.push({
       // R012: Laser also puts out 008B headmarkers on non-tanks.
       netRegex: NetRegexes.headMarker({ id: '00DA' }),
       condition: Conditions.targetIsYou(),
-      response: Responses.tankBuster('alert'),
+      response: Responses.tankBuster(),
       run: function(data, matches) {
         data.busterTargets = data.busterTargets || [];
         data.busterTargets.push(matches.target);
