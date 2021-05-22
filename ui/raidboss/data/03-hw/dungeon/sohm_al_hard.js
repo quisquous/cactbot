@@ -11,7 +11,7 @@ export default {
       id: 'Sohm Al Hard Wild Horn',
       regex: /Wild Horn/,
       beforeSeconds: 4,
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
@@ -58,10 +58,10 @@ export default {
       // The actual effect being checked here is Heavy.
       id: 'Sohm Al Hard Excretion',
       netRegex: NetRegexes.gainsEffect({ effectId: '0E' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanCleanse();
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         return output.text({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -188,7 +188,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['ラーヴァ・スコーピオン', 'テイル・スコーピオン'] }),
       netRegexCn: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['熔岩蝎', '尖尾蝎'] }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['용암 전갈', '꼬리 전갈'] }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return data.me === matches.target || data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),

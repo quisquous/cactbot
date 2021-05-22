@@ -12,7 +12,7 @@ export default {
       id: 'Facility Bastardbluss',
       regex: /Bastardbluss/,
       beforeSeconds: 4,
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer' || data.role === 'tank';
       },
       response: Responses.tankBuster(),
@@ -21,7 +21,7 @@ export default {
       id: 'Facility Hood Swing',
       regex: /Hood Swing/,
       beforeSeconds: 4,
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer' || data.role === 'tank';
       },
       response: Responses.tankBuster(),
@@ -58,7 +58,7 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '10ED', source: 'ハルマキス' }),
       netRegexCn: NetRegexes.ability({ id: '10ED', source: '赫鲁玛奇斯' }),
       netRegexKo: NetRegexes.ability({ id: '10ED', source: '하르마키스' }),
-      condition: function(data) {
+      condition: (data) => {
         // Tanks technically shouldn't assist with this mechanic
         return data.role !== 'tank';
       },
