@@ -131,7 +131,7 @@ export type Trigger = RegexTrigger | NetRegexTrigger;
 export type TimelineFunc = string | string[] | ((data: RaidbossData) => TimelineFunc);
 
 export type TriggerSet = {
-  zoneId?: number;
+  zoneId?: ZoneId | ZoneId[];
   zoneRegex?: RegExp | { [lang in Lang]?: RegExp };
   resetWhenOutOfCombat?: boolean;
   overrideTimelineFile?: boolean;
