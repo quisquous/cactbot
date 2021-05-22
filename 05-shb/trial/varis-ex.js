@@ -50,14 +50,7 @@ Options.Triggers.push({
             cn: '躲避剑气 + 集合分摊',
             ko: '분신 피하기 + 집합',
           },
-          stackMarker: {
-            en: 'Stack',
-            de: 'Sammeln',
-            fr: 'Packez-vous',
-            ja: '頭割り',
-            cn: '分摊',
-            ko: '쉐어뎀',
-          },
+          stackMarker: Outputs.stackMarker,
         };
         // In any case where you need to position stacks in the right lane,
         // use this special call, no matter how far ahead in time it is.

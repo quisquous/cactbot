@@ -432,14 +432,7 @@ Options.Triggers.push({
           cn: '远离坦克',
           ko: '탱커에서 멀어지기',
         },
-        stackOnYou: {
-          en: 'Stack on YOU',
-          de: 'Auf DIR sammeln',
-          fr: 'Package sur VOUS',
-          ja: '自分にシェア',
-          cn: '集合分摊',
-          ko: '쉐어징 대상자',
-        },
+        stackOnYou: Outputs.stackOnYou,
         stackOn: {
           en: 'Stack on ${player}',
           de: 'Auf ${player} sammeln',

@@ -142,14 +142,7 @@ Options.Triggers.push({
         return output.stack();
       },
       outputStrings: {
-        stackOnYou: {
-          en: 'Stack on YOU',
-          de: 'Stack auf DIR',
-          fr: 'Package sur VOUS',
-          ja: '自分に頭割り',
-          cn: '分摊点名',
-          ko: '쉐어징 대상자',
-        },
+        stackOnYou: Outputs.stackOnYou,
         stack: {
           en: 'Stack',
           de: 'Stack',

@@ -90,14 +90,7 @@ Options.Triggers.push({
         return output.stackOn({ players: names.join(', ') });
       },
       outputStrings: {
-        stackOnYou: {
-          en: 'Stack on YOU',
-          de: 'Sammeln auf DIR',
-          fr: 'Package sur VOUS',
-          ja: '自分に頭割り',
-          cn: '分摊点名',
-          ko: '쉐어징 대상자',
-        },
+        stackOnYou: Outputs.stackOnYou,
         stackOn: {
           en: 'Stack (${players})',
           de: 'Sammeln (${players})',
@@ -221,14 +214,7 @@ Options.Triggers.push({
         return output.stackOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
-        stackOnYou: {
-          en: 'Stack on YOU',
-          de: 'Sammeln auf DIR',
-          fr: 'Package sur VOUS',
-          ja: '自分にシェア',
-          cn: '分摊点名',
-          ko: '쉐어징 대상자',
-        },
+        stackOnYou: Outputs.stackOnYou,
         stackOn: {
           en: 'Stack on ${player}',
           de: 'Auf ${player} sammeln',
@@ -283,14 +269,7 @@ Options.Triggers.push({
         return output.stackPlayers({ players: names.join(', ') });
       },
       outputStrings: {
-        stackOnYou: {
-          en: 'Stack on YOU',
-          de: 'Sammeln auf DIR',
-          fr: 'Package sur VOUS',
-          ja: '自分に頭割り',
-          cn: '分摊点名',
-          ko: '쉐어징 대상자',
-        },
+        stackOnYou: Outputs.stackOnYou,
         stackPlayers: {
           en: 'Stack (${players})',
           de: 'Sammeln (${players})',

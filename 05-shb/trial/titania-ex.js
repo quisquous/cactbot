@@ -345,14 +345,7 @@ Options.Triggers.push({
         return output.stackOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
-        stackOnYou: {
-          en: 'Stack on YOU',
-          de: 'Auf DIR sammeln',
-          fr: 'Package sur VOUS',
-          ja: '自分に集合',
-          cn: '集合点名',
-          ko: '쉐어징 대상자',
-        },
+        stackOnYou: Outputs.stackOnYou,
         stackOn: {
           en: 'Stack on ${player}',
           de: 'Auf ${player} sammeln',

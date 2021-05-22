@@ -1840,14 +1840,7 @@ Options.Triggers.push({
           cn: '照准集合 (${players})',
           ko: '조준 대상: ${players}',
         },
-        stackOnYou: {
-          en: 'Stack on YOU',
-          de: 'Sammeln auf DIR',
-          fr: 'Package sur VOUS',
-          ja: '自分にシェア',
-          cn: '集合点名',
-          ko: '나에게 모이기',
-        },
+        stackOnYou: Outputs.stackOnYou,
       },
     },
     {
