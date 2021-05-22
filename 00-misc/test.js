@@ -46,8 +46,8 @@ Options.Triggers.push({
       id: 'Test Angry Dummy',
       regex: /Angry Dummy/,
       beforeSeconds: 2,
-      infoText: (data, matches, output) => output.stack(),
-      tts: (data, matches, output) => output.stackTTS(),
+      infoText: (_data, _matches, output) => output.stack(),
+      tts: (_data, _matches, output) => output.stackTTS(),
       outputStrings: {
         stack: {
           en: 'Stack for Angry Dummy',
@@ -72,7 +72,7 @@ Options.Triggers.push({
       regex: /Angry Dummy/,
       // Add in a huge delay to make it obvious the delay runs before promise.
       delaySeconds: 10,
-      promise: function(data, matches) {
+      promise: function(data) {
         data.delayedDummyTimestampBefore = Date.now();
         const p = new Promise((res) => {
           window.setTimeout(() => {
@@ -82,7 +82,7 @@ Options.Triggers.push({
         });
         return p;
       },
-      infoText: function(data, matches, output) {
+      infoText: function(data, _matches, output) {
         const elapsed = data.delayedDummyTimestampAfter - data.delayedDummyTimestampBefore;
         return output.elapsed({ elapsed: elapsed });
       },
@@ -110,7 +110,7 @@ Options.Triggers.push({
       preRun: (data) => {
         data.pokes = (data.pokes || 0) + 1;
       },
-      infoText: (data, _, output) => output.poke({ numPokes: data.pokes }),
+      infoText: (data, _matches, output) => output.poke({ numPokes: data.pokes }),
       outputStrings: {
         poke: {
           en: 'poke #${numPokes}',
@@ -130,7 +130,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人に活を入れた.*?', capture: false }),
       netRegexCn: NetRegexes.gameNameLog({ line: '.*激励木人.*?', capture: false }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 힘을 불어넣습니다.*?', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       tts: {
         en: 'psych',
         de: 'auf gehts',
@@ -159,7 +159,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.gameNameLog({ line: '.*看着木人高声大笑.*?', capture: false }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 보고 폭소를 터뜨립니다.*?', capture: false }),
       suppressSeconds: 5,
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       tts: {
         en: 'hahahahaha',
         de: 'hahahahaha',
@@ -189,7 +189,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 박수를 보냅니다.*?', capture: false }),
       sound: '../../resources/sounds/freesound/power_up.ogg',
       soundVolume: 0.3,
-      tts: (data, _, output) => output.text(),
+      tts: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'clapity clap',
@@ -208,7 +208,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.echo({ line: 'cactbot sprache.*?', capture: false }),
       netRegexJa: NetRegexes.echo({ line: 'cactbot言語.*?', capture: false }),
       netRegexKo: NetRegexes.echo({ line: 'cactbot 언어.*?', capture: false }),
-      infoText: (data, _, output) => {
+      infoText: (data, _matches, output) => {
         return output.text({ lang: data.parserLang });
       },
       outputStrings: {
@@ -226,7 +226,7 @@ Options.Triggers.push({
       id: 'Test Response',
       netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot test antwort.*?', capture: false }),
-      response: (data, _, output) => {
+      response: (_data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           alarmOne: '1',
