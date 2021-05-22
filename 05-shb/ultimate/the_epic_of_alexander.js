@@ -355,17 +355,7 @@ Options.Triggers.push({
         return data.role === 'healer' || data.role === 'tank';
       },
       suppressSeconds: 1,
-      infoText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'aoe',
-          de: 'AoE',
-          fr: 'AoE',
-          ja: 'AoE',
-          cn: 'AOE',
-          ko: '전체 공격',
-        },
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'TEA Water and Thunder',
