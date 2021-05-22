@@ -23,6 +23,7 @@ module.exports = {
     {
       'files': ['**/raidboss/data/**/*'],
       'rules': {
+        'no-unused-vars': ['error', { 'args': 'all', 'argsIgnorePattern': '^_' }],
         'rulesdir/cactbot-output-strings': 'error',
         'rulesdir/cactbot-timeline-triggers': 'error',
         'rulesdir/cactbot-response-default-severities': 'error',
