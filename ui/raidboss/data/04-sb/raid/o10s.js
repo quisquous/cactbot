@@ -58,7 +58,7 @@ export default {
       id: 'O10S Death From Below',
       netRegex: NetRegexes.headMarker({ id: '008F' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Death From Below',
@@ -74,7 +74,7 @@ export default {
       id: 'O10S Death From Above',
       netRegex: NetRegexes.headMarker({ id: '008E' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Death From Above',
@@ -114,7 +114,7 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '31AC', source: 'ミドガルズオルム', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '31AC', source: '尘世幻龙', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '31AC', source: '미드가르드오름', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       run: function(data) {
         data.lastSpinWasHorizontal = true;
       },
@@ -137,7 +137,7 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '31AD', source: 'ミドガルズオルム', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '31AD', source: '尘世幻龙', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '31AD', source: '미드가르드오름', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       run: function(data) {
         data.lastSpinWasHorizontal = false;
       },
@@ -163,7 +163,7 @@ export default {
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.lastSpinWasHorizontal)
           return output.getOut();
 
@@ -199,7 +199,7 @@ export default {
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.lastSpinWasHorizontal)
           return output.getIn();
 

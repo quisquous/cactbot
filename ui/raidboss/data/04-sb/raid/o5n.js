@@ -56,7 +56,7 @@ export default {
       id: 'O5N Diabolic Light',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Light',
@@ -72,7 +72,7 @@ export default {
       id: 'O5N Diabolic Wind',
       netRegex: NetRegexes.headMarker({ id: '0046' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Wind',

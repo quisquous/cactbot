@@ -22,7 +22,7 @@ export default {
       id: 'O6N Meteors',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Drop AOEs Away',

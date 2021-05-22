@@ -55,7 +55,7 @@ export default {
       condition: function(data) {
         return data.role === 'tank';
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Move bosses apart',
@@ -109,7 +109,7 @@ export default {
       id: 'O12N Packet Filter F',
       netRegex: NetRegexes.gainsEffect({ effectId: '67D' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Attack Omega-M',
@@ -125,7 +125,7 @@ export default {
       id: 'O12N Packet Filter M',
       netRegex: NetRegexes.gainsEffect({ effectId: '67C' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Attack Omega-F',

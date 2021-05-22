@@ -37,7 +37,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '23DE', source: 'アルテ・ロイテ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '23DE', source: '老者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '23DE', source: '알테 로이테', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Breath Wing: Be beside boss',

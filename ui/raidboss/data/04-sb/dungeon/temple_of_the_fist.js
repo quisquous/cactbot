@@ -61,7 +61,7 @@ export default {
       id: 'Temple Moonseal',
       netRegex: NetRegexes.headMarker({ id: '0059' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stand in blue',
@@ -77,7 +77,7 @@ export default {
       id: 'Temple Sunseal',
       netRegex: NetRegexes.headMarker({ id: '0058' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stand in red',
@@ -117,7 +117,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '1FDE', source: 'アブダ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FDE', source: '额部陀', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FDE', source: '아부다', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'watch for safe',
@@ -173,7 +173,7 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '1FE9', source: '双豹のイヴォン', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '1FE9', source: '双豹伊沃恩', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '1FE9', source: '쌍표범 이본', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid floating heads',
@@ -193,7 +193,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '1FED', source: '双豹のイヴォン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FED', source: '双豹伊沃恩', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FED', source: '쌍표범 이본', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away from marker',

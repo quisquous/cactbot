@@ -12,7 +12,7 @@ export default {
       id: 'O2S Double Stack',
       regex: /Gravitational Manipulation/,
       beforeSeconds: 6,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'DPS: Levitate',
@@ -64,7 +64,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '235E', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '235E', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '235E', source: '카타스트로피', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: '-100 Gs: Go north/south and look away',
@@ -94,15 +94,15 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '2374', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2374', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2374', source: '카타스트로피', capture: false }),
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (!data.levitating)
           return output.earthquakeLevitate();
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.levitating)
           return output.earthquake();
       },
-      tts: function(data, _, output) {
+      tts: function(data, _matches, output) {
         if (!data.levitating)
           return output.levitate();
       },
@@ -136,15 +136,15 @@ export default {
     {
       id: 'O2S Elevated',
       netRegex: NetRegexes.gainsEffect({ effectId: '54E', capture: false }),
-      alarmText: function(data, _, output) {
+      alarmText: function(data, _matches, output) {
         if (data.role.startsWith('dps') && !data.levitating)
           return output.dpsLevitate();
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (!data.role.startsWith('dps'))
           return output.dpsUpTanksHealersDown();
       },
-      tts: (data, _, output) => output.dpsUp(),
+      tts: (_data, _matches, output) => output.dpsUp(),
       outputStrings: {
         dpsUpTanksHealersDown: {
           en: 'DPS up, T/H down',
@@ -191,7 +191,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '235A', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '235A', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '235A', source: '카타스트로피', capture: false }),
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.myProbe) {
           if (!data.dpsProbe)
             return output.maniacalProbeTanksHealers();
@@ -199,7 +199,7 @@ export default {
           return output.maniacalProbeDps();
         }
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (!data.myProbe) {
           if (!data.dpsProbe)
             return output.maniacalProbeTanksHealers();
@@ -207,7 +207,7 @@ export default {
           return output.maniacalProbeDps();
         }
       },
-      tts: function(data, _, output) {
+      tts: function(data, _matches, output) {
         if (data.dpsProbe)
           return output.dpsProbe();
 
@@ -253,8 +253,8 @@ export default {
       netRegex: NetRegexes.gainsEffect({ effectId: '550' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 9,
-      alarmText: (data, _, output) => output.elevateOutsideStack(),
-      tts: (data, _, output) => output.floatForBomb(),
+      alarmText: (_data, _matches, output) => output.elevateOutsideStack(),
+      tts: (_data, _matches, output) => output.floatForBomb(),
       outputStrings: {
         elevateOutsideStack: {
           en: 'Unstable Gravity: Elevate and outside stack',
@@ -281,15 +281,15 @@ export default {
         return !data.under && matches.target === data.me;
       },
       delaySeconds: 5,
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (!data.levitating)
           return output.sixFulmsUnderLevitate();
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.levitating)
           return output.sixFulmsUnder();
       },
-      tts: (data, _, output) => output.float(),
+      tts: (_data, _matches, output) => output.float(),
       run: function(data) {
         data.under = true;
       },

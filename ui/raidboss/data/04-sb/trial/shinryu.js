@@ -67,7 +67,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '1FAD', source: '신룡' }),
       // Here and elsewhere, timings aren't always completely usable. Instead we give the user
       // a quasi-standard amount of time when notifying.
-      delaySeconds: function(data, matches) {
+      delaySeconds: function(_data, matches) {
         return matches.castTime - 4;
       },
       response: Responses.stopMoving(),
@@ -80,7 +80,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '24EF', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '24EF', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '24EF', source: '신룡', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Out of middle',
@@ -101,7 +101,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '1FAB', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FAB', source: '신룡', capture: false }),
       durationSeconds: 7,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get in water',
@@ -122,7 +122,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: '右翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: '오른쪽 날개', capture: false }),
       durationSeconds: 7,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stack in water',
@@ -143,7 +143,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '1FAC', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FAC', source: '신룡', capture: false }),
       durationSeconds: 7,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'out of water',
@@ -164,7 +164,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '1F9B', source: '右翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1F9B', source: '오른쪽 날개', capture: false }),
       durationSeconds: 7,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Spread out, no water',
@@ -184,11 +184,11 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '1FAA', source: '神龍' }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FAA', source: '神龙' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FAA', source: '신룡' }),
-      delaySeconds: function(data, matches) {
+      delaySeconds: function(_data, matches) {
         return matches.castTime - 6;
       },
       durationSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Knockback, look for water',
@@ -211,7 +211,7 @@ export default {
       condition: function(data) {
         return data.role === 'healer';
       },
-      delaySeconds: function(data, matches) {
+      delaySeconds: function(_data, matches) {
         return matches.castTime - 4;
       },
       response: Responses.aoe(),
@@ -225,7 +225,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '1F93', source: '龙尾', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1F93', source: '신룡의 꼬리', capture: false }),
       delaySeconds: 2,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Tail: Switch targets',
@@ -261,7 +261,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '1FF4', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FF4', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FF4', source: '신룡', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'avoid divebomb',
@@ -287,7 +287,7 @@ export default {
       id: 'Shinryu Normal Slap Marker',
       netRegex: NetRegexes.headMarker({ id: '0062' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Bait onto unbroken squares',

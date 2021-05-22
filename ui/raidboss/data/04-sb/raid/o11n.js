@@ -14,7 +14,7 @@ export default {
       condition: function(data) {
         return data.role === 'tank';
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Tank Tether',
@@ -101,7 +101,7 @@ export default {
       condition: function(data) {
         return data.lastWasStarboard !== undefined;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.lastWasStarboard)
           return output.moveLeft();
 
@@ -137,7 +137,7 @@ export default {
       condition: function(data) {
         return data.lastWasStarboard !== undefined;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.lastWasStarboard)
           return output.stayRight();
 
