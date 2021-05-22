@@ -277,14 +277,7 @@ export default {
       response: function(data, _matches, output) {
         // cactbot-builtin-response
         output.responseOutputStrings = {
-          text: {
-            en: 'Spread',
-            de: 'Verteilen',
-            fr: 'Dispersez-vous',
-            ja: '散開',
-            cn: '分散',
-            ko: '산개',
-          },
+          text: Outputs.spread,
         };
         // This is easily forgetable after dodging and seems to get people killed.
         // This also differentiates spread from the spread => stack in the last phase.

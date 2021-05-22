@@ -1,5 +1,6 @@
 import ZoneId from '../../../../../resources/zone_id';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import Conditions from '../../../../../resources/conditions';
 import { Responses } from '../../../../../resources/responses';
 
@@ -112,14 +113,7 @@ export default {
         return output.spread();
       },
       outputStrings: {
-        spread: {
-          en: 'Spread',
-          de: 'Verteilen',
-          fr: 'Dispersez-vous',
-          ja: '散開',
-          cn: '分散',
-          ko: '산개',
-        },
+        spread: Outputs.spread,
         ...sharedOutputStrings,
       },
     },

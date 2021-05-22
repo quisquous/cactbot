@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -168,14 +169,7 @@ export default {
           delete data.entropyCount;
       },
       outputStrings: {
-        spread: {
-          en: 'Spread',
-          de: 'Verteilen',
-          fr: 'Ecartez-vous',
-          ja: '散開',
-          cn: '分散',
-          ko: '산개',
-        },
+        spread: Outputs.spread,
         spreadAndStay: {
           en: 'Spread and Stay',
           de: 'Verteilen und bleiben',
