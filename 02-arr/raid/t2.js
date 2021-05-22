@@ -48,7 +48,7 @@ Options.Triggers.push({
       condition: Conditions.targetIsYou(),
       preRun: (data) => data.rot = true,
       delaySeconds: 11,
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         if (!data.rot)
           return;
         return output.text();

@@ -24,7 +24,7 @@ Options.Triggers.push({
       condition: (data) => data.role === 'tank' || data.role === 'healer' || data.job === 'BLU',
       delaySeconds: 30,
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Death Sentence Soon',
@@ -44,7 +44,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'メラシディアン・ワイバーン', id: '4DB', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '美拉西迪亚祸龙', id: '4DB', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '메라시디아 와이번', id: '4DB', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Liquid Hell',
@@ -154,7 +154,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '5B0', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '5B0', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5B0', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'DIVEBOMB',
@@ -176,7 +176,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5B0', capture: false }),
       delaySeconds: 60,
       suppressSeconds: 5000,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Divebombs Soon',
@@ -229,7 +229,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ツインタニア', id: '4E1', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '双塔尼亚', id: '4E1', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '트윈타니아', id: '4E1', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Twister!',

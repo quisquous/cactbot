@@ -32,7 +32,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.ability({ source: '神杖巨蛇', id: '4BA' }),
       netRegexKo: NetRegexes.ability({ source: '카두케우스', id: '4BA' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Spit on YOU',
@@ -53,7 +53,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.addedCombatant({ name: '카두케우스.*?', capture: false }),
       condition: (data) => data.started,
       suppressSeconds: 5,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Split',
@@ -75,7 +75,7 @@ Options.Triggers.push({
       condition: Conditions.targetIsYou(),
       delaySeconds: 8,
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hood Swing in 10',
@@ -96,7 +96,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.message({ line: '알라그 유적 will be sealed off.*?', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Slime Soon',
@@ -117,7 +117,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.addedCombatant({ name: '암흑물질 슬라임.*?', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Slime Soon',

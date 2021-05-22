@@ -22,7 +22,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.ability({ id: '879', source: '大王花' }),
       netRegexKo: NetRegexes.ability({ id: '879', source: '라플레시아' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => {
+      infoText: (data, _matches, output) => {
         const partners = data.thornMap[data.me];
         if (!partners)
           return output.thornsOnYou();
@@ -84,7 +84,7 @@ Options.Triggers.push({
     {
       id: 'T6 Flower',
       netRegex: NetRegexes.headMarker({ id: '000D' }),
-      alarmText: (data, _, output) => {
+      alarmText: (data, _matches, output) => {
         if (data.honey)
           return output.getEaten();
       },
@@ -163,7 +163,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '86C', source: 'ラフレシア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '86C', source: '大王花', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '86C', source: '라플레시아', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stack for Acid',

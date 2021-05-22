@@ -18,7 +18,7 @@ Options.Triggers.push({
       id: 'IfritNM Nail Add',
       regex: /Nail Add/,
       beforeSeconds: 0.5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Kill Nail',

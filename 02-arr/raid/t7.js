@@ -12,7 +12,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ id: '860', source: '프로토 키마이라', capture: false }),
       // TODO: is this silenceable in 5.0?
       condition: (data) => data.CanStun() || data.CanSilence(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Silence Ram\'s Voice',
@@ -34,7 +34,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ id: '861', source: '프로토 키마이라', capture: false }),
       // TODO: is this silenceable in 5.0?
       condition: (data) => data.CanStun() || data.CanSilence(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Silence Dragon\'s Voice',
@@ -57,7 +57,7 @@ Options.Triggers.push({
       condition: (data, matches) => data.me === matches.target && data.job === 'BLU',
       delaySeconds: 6,
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Tail Slap in 10',
@@ -77,7 +77,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.addedCombatant({ name: 'ルノー', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '雷诺', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '르노', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Renaud Add',
@@ -93,8 +93,8 @@ Options.Triggers.push({
       id: 'T7 Cursed Voice',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C3' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (data, matches) => matches.duration - 3,
-      alertText: (data, _, output) => output.text(),
+      delaySeconds: (_data, matches) => matches.duration - 3,
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Voice Soon',
@@ -224,7 +224,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '7B2', source: 'メリュジーヌ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '7B2', source: '美瑠姬奴', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '7B2', source: '멜뤼진', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Venomous Tail',

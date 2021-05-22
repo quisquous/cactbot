@@ -27,7 +27,7 @@ Options.Triggers.push({
       condition: (data) => data.role === 'healer',
       delaySeconds: 1,
       suppressSeconds: 2,
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         if (!data.pelicanPoisons)
           return;
         const names = data.pelicanPoisons.sort();
@@ -144,7 +144,7 @@ Options.Triggers.push({
       id: 'Brayflox Normal Aiatar Toxic Vomit Tank',
       netRegex: NetRegexes.gainsEffect({ effectId: '117', capture: false }),
       condition: (data) => data.role === 'tank',
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Move Boss Out of Puddles',

@@ -17,7 +17,7 @@ Options.Triggers.push({
       id: 'ShivaEx Icebrand',
       regex: /Icebrand/,
       beforeSeconds: 5,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Party Share Tankbuster',
@@ -46,7 +46,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '995', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '995', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '995', capture: false }),
-      response: (data, _, output) => {
+      response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           staffTankSwap: {
@@ -82,7 +82,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '993', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '993', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '993', capture: false }),
-      response: (data, _, output) => {
+      response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           swordTankSwap: {
@@ -208,7 +208,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '001A' }),
       condition: Conditions.targetIsYou(),
       // Responses.knockback does not quite give the 'laser cleave' aspect here.
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Knockback Laser on YOU',
@@ -224,7 +224,7 @@ Options.Triggers.push({
       id: 'ShivaEx Avalanche Marker Other',
       netRegex: NetRegexes.headMarker({ id: '001A' }),
       condition: Conditions.targetIsNotYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid Laser',

@@ -21,7 +21,7 @@ Options.Triggers.push({
       // Only the first two gigas are phase changes, the rest are in final phase.
       condition: (data) => !(data.gigaflare > 1),
       sound: 'Long',
-      infoText: (data, _, output) => {
+      infoText: (data, _matches, output) => {
         if (data.gigaflare)
           return output.text();
       },
@@ -81,7 +81,7 @@ Options.Triggers.push({
       id: 'T13 Megaflare Share',
       netRegex: NetRegexes.headMarker({ id: '0027' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Megaflare Stack',
@@ -108,7 +108,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.tether({ id: '0004', target: '至尊巴哈姆特' }),
       netRegexKo: NetRegexes.tether({ id: '0004', target: '바하무트 프라임' }),
       condition: (data, matches) => data.me === matches.source,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Tempest Tether on YOU',

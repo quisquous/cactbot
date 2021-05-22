@@ -23,7 +23,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.addedCombatant({ name: '벤누', capture: false }),
       delaySeconds: 55,
       durationSeconds: 4.5,
-      infoText: (data, _, output) => {
+      infoText: (data, _matches, output) => {
         if (data.phase >= 3)
           return;
         return output.text();
@@ -82,7 +82,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: 'B8C', source: 'フェニックス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: 'B8C', source: '不死鸟', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: 'B8C', source: '피닉스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Blackfire Spread',
@@ -98,7 +98,7 @@ Options.Triggers.push({
       id: 'T12 Whitefire',
       netRegex: NetRegexes.headMarker({ id: '0020' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Whitefire on YOU',
@@ -114,7 +114,7 @@ Options.Triggers.push({
       id: 'T12 Bluefire',
       netRegex: NetRegexes.headMarker({ id: '0021' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Bluefire Away',
