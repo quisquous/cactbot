@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -62,22 +63,21 @@ export default {
     },
     {
       id: 'Matoyas Nixie Crash-smash',
-      netRegex: NetRegexes.startsUsing({ id: '598F', source: 'Nixie' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '598F', source: 'Nixchen' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '598F', source: 'nixe' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '598F', source: 'ノッケン' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '598F', source: '水滴精' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '598F', source: '뇌켄' }),
-      condition: Conditions.targetIsNotYou(),
-      alertText: (data, _, output) => output.avoidTether(),
+      netRegex: NetRegexes.headMarker({ id: '00E6' }),
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.tankBuster();
+        return output.avoidTether({ player: matches.target });
+      },
       outputStrings: {
+        tankBuster: Outputs.tankBuster,
         avoidTether: {
-          en: 'Avoid tank and tethers',
-          de: 'Weiche den Tank-Verbindungen aus',
-          fr: 'Évitez le tank et les liens',
-          ja: 'タンクと線から離れる',
-          cn: '远离坦克及其连线',
-          ko: '탱커와 선 피하기',
+          en: 'Avoid ${player} and tethers',
+          de: 'Weiche den Tank-Verbindungen aus', // FIXME
+          fr: 'Évitez le tank et les liens', // FIXME
+          ja: '${player}と線から離れる',
+          cn: '远离${player}及其连线',
+          ko: '탱커와 선 피하기', // FIXME
         },
       },
     },
