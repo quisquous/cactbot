@@ -39,7 +39,7 @@ export default {
       id: 'T9 Dalamud Dive',
       regex: /Dalamud Dive/,
       beforeSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Dive on Main Tank',
@@ -55,7 +55,7 @@ export default {
       id: 'T9 Super Nova',
       regex: /Super Nova x3/,
       beforeSeconds: 4,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Bait Super Novas Outside',
@@ -73,9 +73,9 @@ export default {
       id: 'T9 Raven Blight You',
       netRegex: NetRegexes.gainsEffect({ effectId: '1CA' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (data, matches) => matches.duration - 5,
+      delaySeconds: (_data, matches) => matches.duration - 5,
       durationSeconds: 5,
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Blight on YOU',
@@ -91,7 +91,7 @@ export default {
       id: 'T9 Raven Blight Not You',
       netRegex: NetRegexes.gainsEffect({ effectId: '1CA' }),
       condition: Conditions.targetIsNotYou(),
-      delaySeconds: (data, matches) => matches.duration - 5,
+      delaySeconds: (_data, matches) => matches.duration - 5,
       durationSeconds: 5,
       infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
       outputStrings: {
@@ -164,7 +164,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '7F5', source: '卫月巨像', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '7F5', source: '달라가브 골렘', capture: false }),
       condition: (data) => data.CanSilence(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Silence Blue Golem',
@@ -184,7 +184,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '83B', source: 'ネール・デウス・ダーナス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '83B', source: '奈尔·神·达纳斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '83B', source: '넬 데우스 다르누스', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Heavensfall',
@@ -200,7 +200,7 @@ export default {
       id: 'T9 Garotte Twist Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '1CE' }),
       condition: (data, matches) => data.me === matches.target && !data.garotte,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       run: (data) => data.garotte = true,
       outputStrings: {
         text: {
@@ -222,7 +222,7 @@ export default {
       netRegexCn: NetRegexes.ability({ id: '7FA', source: '美拉西迪亚幽龙', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '7FA', source: '메라시디아의 유령', capture: false }),
       condition: (data) => data.garotte,
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Cleanse Garotte',
@@ -346,7 +346,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '7E6', source: '奈尔·神·达纳斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '7E6', source: '넬 데우스 다르누스', capture: false }),
       durationSeconds: 12,
-      infoText: (data, _, output) => output.marks({
+      infoText: (data, _matches, output) => output.marks({
         dir1: output[data.naelMarks[0]](),
         dir2: output[data.naelMarks[1]](),
       }),
@@ -430,7 +430,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '雷翼', id: '7FD' }),
       netRegexKo: NetRegexes.ability({ source: '번개날개', id: '7FD' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Thunder on YOU',
@@ -448,7 +448,7 @@ export default {
       delaySeconds: 3,
       durationSeconds: 6,
       suppressSeconds: 20,
-      infoText: (data, _, output) => output.safeZone({ dir: output[data.safeZone]() }),
+      infoText: (data, _matches, output) => output.safeZone({ dir: output[data.safeZone]() }),
       outputStrings: {
         ...diveDirections,
         safeZone: {
