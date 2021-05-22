@@ -66,6 +66,8 @@ module.exports = {
         'rulesdir/cactbot-output-strings': 'error',
         'rulesdir/cactbot-timeline-triggers': 'error',
         'rulesdir/cactbot-response-default-severities': 'error',
+        // Raidboss data files always export a trigger set, and explicit types are noisy.
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
       },
     },
   ],
