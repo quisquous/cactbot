@@ -68,14 +68,7 @@ const orbOutputStrings = {
     cn: '???',
     ko: '???',
   },
-  knockback: {
-    en: 'Knockback',
-    de: 'Rückstoß',
-    fr: 'Poussée',
-    ja: 'ノックバック',
-    cn: '击退',
-    ko: '넉백',
-  },
+  knockback: Outputs.knockback,
   stop: {
     en: 'Stop',
     de: 'Stopp',
