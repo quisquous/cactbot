@@ -25,14 +25,7 @@ const chargeOutputStrings = {
     ko: '밖으로',
   },
   spread: Outputs.spread,
-  stackMarker: {
-    en: 'Stack',
-    de: 'Sammeln',
-    fr: 'Packez-vous',
-    ja: '頭割り',
-    cn: '分摊',
-    ko: '쉐어뎀',
-  },
+  stackMarker: Outputs.stackMarker,
 };
 
 export default {
