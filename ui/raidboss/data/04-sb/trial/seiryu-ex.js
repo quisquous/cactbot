@@ -1,4 +1,5 @@
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -89,14 +90,7 @@ export default {
           return output.swapThenBuster();
       },
       outputStrings: {
-        tankSwap: {
-          en: 'Tank Swap',
-          de: 'Tankwechsel',
-          fr: 'Tank Swap',
-          ja: 'スイッチ',
-          cn: '换T',
-          ko: '탱 교대',
-        },
+        tankSwap: Outputs.tankSwap,
         swapThenBuster: {
           en: 'Swap, then Buster',
           de: 'Tankwechsel, danach Tankbuster',
