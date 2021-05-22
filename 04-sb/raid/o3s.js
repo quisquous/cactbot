@@ -52,12 +52,12 @@ Options.Triggers.push({
         data.holyTargets.push(matches.target);
         return data.holyTargets.length === 4;
       },
-      alarmText: function(data, _, output) {
+      alarmText: function(data, _matches, output) {
         if (data.holyTargets[1] !== data.me)
           return '';
         return output.stackOnYou();
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.holyTargets[1] === data.me)
           return;
         for (let i = 0; i < 4; ++i) {
@@ -66,7 +66,7 @@ Options.Triggers.push({
         }
         return output.stackOnHoly({ holyTargets: data.holyTargets[1] });
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         for (let i = 0; i < 4; ++i) {
           if (data.holyTargets[i] === data.me)
             return output.othersStackOnHoly({ holyTargets: data.holyTargets[1] });
@@ -129,7 +129,7 @@ Options.Triggers.push({
       delaySeconds: function(data, matches) {
         return matches.target === data.me ? 0 : 0.5;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.librarySpellbladePrinted)
           return;
         data.librarySpellbladePrinted = true;
@@ -139,7 +139,7 @@ Options.Triggers.push({
           return output.goNorth();
         return output.goSouthStackOnFriend();
       },
-      tts: function(data, _, output) {
+      tts: function(data, _matches, output) {
         if (data.librarySpellbladePrinted)
           return;
         data.librarySpellbladePrinted = true;
@@ -205,7 +205,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.gainsEffect({ effectId: '510' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Mindjack: Right',
@@ -222,7 +222,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.gainsEffect({ effectId: '50D' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Mindjack: Forward',
@@ -239,7 +239,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.gainsEffect({ effectId: '50F' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Mindjack: Left',
@@ -256,7 +256,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.gainsEffect({ effectId: '50E' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Mindjack: Back',
@@ -311,8 +311,8 @@ Options.Triggers.push({
         // spellblade holy -> waltz that ends the library phase.
         return data.phase !== 3 || !data.seenHolyThisPhase;
       },
-      alertText: (data, _, output) => output.text(),
-      tts: (data, _, output) => output.tts(),
+      alertText: (_data, _matches, output) => output.text(),
+      tts: (_data, _matches, output) => output.tts(),
       outputStrings: {
         text: {
           en: 'The Queen\'s Waltz: Books',
@@ -340,8 +340,8 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2306', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2306', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2306', source: '할리카르나소스', capture: false }),
-      infoText: (data, _, output) => output.text(),
-      tts: (data, _, output) => output.tts(),
+      infoText: (_data, _matches, output) => output.text(),
+      tts: (_data, _matches, output) => output.tts(),
       outputStrings: {
         text: {
           en: 'The Queen\'s Waltz: Clock',
@@ -369,8 +369,8 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '230A', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '230A', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '230A', source: '할리카르나소스', capture: false }),
-      infoText: (data, _, output) => output.text(),
-      tts: (data, _, output) => output.tts(),
+      infoText: (_data, _matches, output) => output.text(),
+      tts: (_data, _matches, output) => output.tts(),
       outputStrings: {
         text: {
           en: 'The Queen\'s Waltz: Crystal Square',
@@ -398,8 +398,8 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2308', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2308', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2308', source: '할리카르나소스', capture: false }),
-      infoText: (data, _, output) => output.text(),
-      tts: (data, _, output) => output.tts(),
+      infoText: (_data, _matches, output) => output.text(),
+      tts: (_data, _matches, output) => output.tts(),
       outputStrings: {
         text: {
           en: 'The Queen\'s Waltz: Tethers',

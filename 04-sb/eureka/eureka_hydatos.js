@@ -13,7 +13,7 @@ Options.Triggers.push({
       id: 'BA Raiden Levinwhorl',
       regex: /Levinwhorl/,
       beforeSeconds: 10,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Shields and Mitigation',
@@ -30,7 +30,7 @@ Options.Triggers.push({
       regex: /Explosive Impulse/,
       beforeSeconds: 10,
       suppressSeconds: 60,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Pop Eurekan Potions',
@@ -46,7 +46,7 @@ Options.Triggers.push({
       id: 'BA Ozma Black Hole Warning',
       regex: /Black Hole/,
       beforeSeconds: 12,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Black Hole Soon',
@@ -259,7 +259,7 @@ Options.Triggers.push({
         return data.side === 'west' && data.mythcall;
       },
       delaySeconds: 3.5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Under Spears',
@@ -310,8 +310,8 @@ Options.Triggers.push({
       condition: function(data) {
         return data.side === 'east';
       },
-      alertText: (data, _, output) => output.getToIce(),
-      infoText: (data, _, output) => output.switchMagia(),
+      alertText: (_data, _matches, output) => output.getToIce(),
+      infoText: (_data, _matches, output) => output.switchMagia(),
       outputStrings: {
         switchMagia: {
           en: 'Switch Magia',
@@ -341,8 +341,8 @@ Options.Triggers.push({
       condition: function(data) {
         return data.side === 'east';
       },
-      alertText: (data, _, output) => output.getToFire(),
-      infoText: (data, _, output) => output.switchMagia(),
+      alertText: (_data, _matches, output) => output.getToFire(),
+      infoText: (_data, _matches, output) => output.switchMagia(),
       outputStrings: {
         switchMagia: {
           en: 'Switch Magia',
@@ -511,7 +511,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.sealed;
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       run: function(data) {
         data.bracelets = 'dark';
       },
@@ -537,7 +537,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.sealed;
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       run: function(data) {
         data.bracelets = 'light';
       },
@@ -563,7 +563,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.sealed;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (!data.seenHostile) {
           if (data.bracelets === 'light')
             return output.awayFromLightCircles();
@@ -625,7 +625,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.sealed;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.bracelets === 'light')
           return output.dark();
         if (data.bracelets === 'dark')
@@ -694,7 +694,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.sealed;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (!data.clones)
           return;
         const wrists = data.clones.pop();
@@ -733,7 +733,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.sealed;
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Orbs to Opposite Colors',
@@ -773,10 +773,10 @@ Options.Triggers.push({
         data.blackHoleCount = data.blackHoleCount || 0;
         data.blackHoleCount++;
       },
-      alarmText: function(data, _, output) {
+      alarmText: function(data, _matches, output) {
         return output.blackHole({ num: data.blackHoleCount });
       },
-      tts: function(data, _, output) {
+      tts: function(data, _matches, output) {
         return output.blackHoleTTS({ num: data.blackHoleCount });
       },
       outputStrings: {
@@ -814,7 +814,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.sealed;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Off the Platform',
@@ -838,7 +838,7 @@ Options.Triggers.push({
         return data.sealed;
       },
       delaySeconds: 9,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Spread for Bleed',
@@ -861,7 +861,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.sealed;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go Far',
@@ -885,7 +885,7 @@ Options.Triggers.push({
         return data.sealed;
       },
       delaySeconds: 9,
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         // FIXME: taking multiple autos probably means tanking,
         // so probably could figure this out automatically.
         if (data.role === 'tank')
@@ -922,7 +922,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.sealed;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Close',
@@ -946,13 +946,13 @@ Options.Triggers.push({
         return data.sealed;
       },
       delaySeconds: 9,
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         // FIXME: taking multiple autos probably means tanking,
         // so probably could figure this out automatically.
         if (data.role === 'tank')
           return output.offtanksGetOrbs();
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.role !== 'tank')
           return output.stackAwayFromTank();
       },
@@ -987,7 +987,7 @@ Options.Triggers.push({
         return data.sealed;
       },
       suppressSeconds: 1,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Off',
@@ -1011,7 +1011,7 @@ Options.Triggers.push({
         return data.sealed;
       },
       suppressSeconds: 1,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Close',
@@ -1035,7 +1035,7 @@ Options.Triggers.push({
         return data.sealed;
       },
       suppressSeconds: 1,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go Far',

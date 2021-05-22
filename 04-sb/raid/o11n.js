@@ -10,7 +10,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.role === 'tank';
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Tank Tether',
@@ -97,7 +97,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.lastWasStarboard !== undefined;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.lastWasStarboard)
           return output.moveLeft();
         return output.stayLeft();
@@ -132,7 +132,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.lastWasStarboard !== undefined;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.lastWasStarboard)
           return output.stayRight();
         return output.moveRight();

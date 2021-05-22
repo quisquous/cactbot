@@ -86,7 +86,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '2C50', source: '暗黑之云法姆弗里特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2C50', source: '암흑의 구름 팜프리트', capture: false }),
       delaySeconds: 4.5,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Look for Tsunami',
@@ -107,7 +107,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '2C50', source: '暗黑之云法姆弗里特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2C50', source: '암흑의 구름 팜프리트', capture: false }),
       delaySeconds: 16.5,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Look for Tsunami',
@@ -128,7 +128,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '2C50', source: '暗黑之云法姆弗里特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2C50', source: '암흑의 구름 팜프리트', capture: false }),
       delaySeconds: 28.5,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Look for Tsunami',
@@ -181,7 +181,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2CDE', source: '魔人ベリアス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2CDE', source: '魔人贝利亚斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2CDE', source: '마인 벨리아스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stand on Slow Clock',
@@ -198,7 +198,7 @@ Options.Triggers.push({
       id: 'Ridorana Belias Hand of Time',
       netRegex: NetRegexes.gainsEffect({ effectId: '212' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stretch Tether Outside',
@@ -218,7 +218,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2CE6', source: '魔人ベリアス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2CE6', source: '魔人贝利亚斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2CE6', source: '마인 벨리아스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stop Clocks',
@@ -324,7 +324,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2CCD', source: '労働七号', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2CCD', source: '劳动七号', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2CCD', source: '노동 7호', capture: false }),
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         const correctMath = [-1, 4, 3, 2, 1, 0, 4, 3, 2, 1];
         return mathDirection(data.mathBaseValue, correctMath, output);
       },
@@ -338,7 +338,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2CCC', source: '労働七号', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2CCC', source: '劳动七号', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2CCC', source: '노동 7호', capture: false }),
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         const correctMath = [-1, 3, 2, 1, 0, 3, 2, 1, 0, 3];
         return mathDirection(data.mathBaseValue, correctMath, output);
       },
@@ -352,7 +352,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2CCA', source: '労働七号', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2CCA', source: '劳动七号', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2CCA', source: '노동 7호', capture: false }),
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         const correctMath = [-1, 2, 1, 0, 2, 1, 0, 2, 1, 0];
         return mathDirection(data.mathBaseValue, correctMath, output);
       },
@@ -366,7 +366,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2CCE', source: '労働七号', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2CCE', source: '劳动七号', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2CCE', source: '노동 7호', capture: false }),
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         const correctMath = [-1, 1, 0, 0, 1, 0, 1, 0, 3, 2];
         return mathDirection(data.mathBaseValue, correctMath, output);
       },
@@ -437,7 +437,7 @@ Options.Triggers.push({
       id: 'Ridorana Yiazmat Magnetic Negative',
       netRegex: NetRegexes.gainsEffect({ effectId: '60F' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Move to Postive',
@@ -453,7 +453,7 @@ Options.Triggers.push({
       id: 'Ridorana Yiazmat Magnetic Positive',
       netRegex: NetRegexes.gainsEffect({ effectId: '60E' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Move to Negative',
@@ -485,7 +485,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.addedCombatant({ name: '鬼龙的核心', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '야즈마트의 심핵', capture: false }),
       suppressSeconds: 10,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Kill Heart',

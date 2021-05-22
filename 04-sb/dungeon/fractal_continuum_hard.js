@@ -21,7 +21,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2AE5', source: 'サーヴォ・ミノタウロス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2AE5', source: '自控化弥诺陶洛斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2AE5', source: '자동제어 미노타우로스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'swipe',
@@ -41,7 +41,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '29A2', source: 'バイオ・ミノタウロス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '29A2', source: '生化弥诺陶洛斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '29A2', source: '양산체 미노타우로스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'swipe',
@@ -61,7 +61,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2AE4', source: 'サーヴォ・ミノタウロス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2AE4', source: '自控化弥诺陶洛斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2AE4', source: '자동제어 미노타우로스', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Swing',
@@ -81,7 +81,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '29A1', source: 'バイオ・ミノタウロス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '29A1', source: '生化弥诺陶洛斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '29A1', source: '양산체 미노타우로스', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Swing',
@@ -101,7 +101,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '861', source: 'サーヴォ・キマイラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '861', source: '自控化奇美拉', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '861', source: '자동제어 키마이라', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Dragon\'s Voice',
@@ -121,7 +121,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '860', source: 'サーヴォ・キマイラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '860', source: '自控化奇美拉', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '860', source: '자동제어 키마이라', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Ram\'s Voice',
@@ -141,7 +141,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '860', source: 'プロトキマイラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '860', source: '原型奇美拉', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '860', source: '프로토 키마이라', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Ram\'s Voice',
@@ -198,7 +198,7 @@ Options.Triggers.push({
       id: 'Fractal Hard Ratzon',
       netRegex: NetRegexes.headMarker({ id: '0046' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Puddle on YOU',
@@ -263,7 +263,7 @@ Options.Triggers.push({
       // it's better to just delay, since it's always a consistent 8 seconds
       // from the time effects are applied until the circles come up.
       delaySeconds: 8,
-      infoText: function(data, matches, output) {
+      infoText: function(_data, matches, output) {
         if (matches.effectId === '477')
           return output.standOnRedCircle();
         return output.standOnBlueCircle();

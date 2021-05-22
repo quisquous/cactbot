@@ -118,7 +118,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '25DD', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '25DD', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25DD', source: '신룡', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Ice: Stack and Stop',
@@ -138,7 +138,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2611', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2611', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2611', source: '신룡', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Out of middle',
@@ -159,7 +159,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '25DB', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25DB', source: '신룡', capture: false }),
       durationSeconds: 7,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get in water',
@@ -182,7 +182,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: ['271F', '25E8'], source: '右翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['271F', '25E8'], source: '오른쪽 날개', capture: false }),
       durationSeconds: 7,
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.phase === 3)
           return output.stopToGetFrozen();
         return output.stackInWater();
@@ -215,7 +215,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '25DC', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25DC', source: '신룡', capture: false }),
       durationSeconds: 7,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'out of water',
@@ -236,7 +236,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '右翼', target: '右翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '오른쪽 날개', target: '오른쪽 날개', capture: false }),
       durationSeconds: 7,
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.phase === 3)
           return output.baitBoltKeepMoving();
         return output.spreadOutNoWater();
@@ -270,7 +270,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '오른쪽 날개', target: '오른쪽 날개', capture: false }),
       condition: (data) => data.phase === 3,
       delaySeconds: 9.5,
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'move away',
@@ -290,7 +290,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.abilityFull({ id: '25EF', source: 'アイシクル', x: '-29\\.99', y: '-15', capture: false }),
       netRegexCn: NetRegexes.abilityFull({ id: '25EF', source: '冰柱', x: '-29\\.99', y: '-15', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ id: '25EF', source: '고드름', x: '-29\\.99', y: '-15', capture: false }),
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'icicle, lean west',
@@ -310,7 +310,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.abilityFull({ id: '25EF', source: 'アイシクル', x: '-29\\.99', y: '-25', capture: false }),
       netRegexCn: NetRegexes.abilityFull({ id: '25EF', source: '冰柱', x: '-29\\.99', y: '-25', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ id: '25EF', source: '고드름', x: '-29\\.99', y: '-25', capture: false }),
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'icicle, lean east',
@@ -332,7 +332,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ id: '25DA', source: '신룡', capture: false }),
       delaySeconds: 3,
       durationSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Knockback, look for water',
@@ -355,7 +355,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.role === 'healer';
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'no more heals needed',
@@ -376,7 +376,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '25E2', source: '龙尾', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25E2', source: '신룡의 꼬리', capture: false }),
       delaySeconds: 2,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Tail: Switch targets',
@@ -401,7 +401,7 @@ Options.Triggers.push({
         return data.phase === 1;
       },
       // TODO: If tail is alive, delay this message?
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Heart: Switch targets',
@@ -422,7 +422,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: '신룡', capture: false }),
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'avoid divebomb',
@@ -499,7 +499,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '264A', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '264A', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '264A', source: '신룡', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'front cleave',
@@ -522,7 +522,7 @@ Options.Triggers.push({
       condition: function(data) {
         return !data.finalWing;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       run: function(data) {
         data.finalWing = true;
       },
@@ -548,7 +548,7 @@ Options.Triggers.push({
       condition: function(data) {
         return !data.finalWing;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       run: function(data) {
         data.finalWing = true;
       },
@@ -568,7 +568,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '0061' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 3.8,
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.phase === 3)
           return output.breakTethersThenStack();
         return output.breakTethers();
@@ -596,7 +596,7 @@ Options.Triggers.push({
       id: 'ShinryuEx Tail Marker',
       netRegex: NetRegexes.headMarker({ id: '007E' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'tail marker on you',
@@ -616,11 +616,11 @@ Options.Triggers.push({
         data.shakerTargets.push(matches.target);
         return data.shakerTargets.length === 2;
       },
-      alarmText: function(data, _, output) {
+      alarmText: function(data, _matches, output) {
         if (data.shakerTargets.includes(data.me))
           return output.earthshakerOnYou();
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (!data.shakerTargets.includes(data.me))
           return output.avoidEarthshakers();
       },

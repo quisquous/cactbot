@@ -24,7 +24,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.role === 'tank' || data.role === 'healer';
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: Outputs.tankBuster,
       },
@@ -37,7 +37,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '32DA', source: '朱雀', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '32DA', source: '朱雀', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '32DA', source: '주작', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get Out',
@@ -57,7 +57,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '32DB', source: '朱雀', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '32DB', source: '朱雀', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '32DB', source: '주작', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get In',

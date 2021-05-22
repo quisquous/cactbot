@@ -59,7 +59,7 @@ Options.Triggers.push({
         data.holyTargets.push(matches.target);
         return data.holyTargets.length === 3;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.holyTargets[0] === data.me)
           return output.stackOnYou();
         for (let i = 1; i < 3; i++) {
@@ -129,8 +129,8 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2471', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2471', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2471', source: '할리카르나소스', capture: false }),
-      infoText: (data, _, output) => output.getOnCrystalSquare(),
-      tts: (data, _, output) => output.blueSquare(),
+      infoText: (_data, _matches, output) => output.getOnCrystalSquare(),
+      tts: (_data, _matches, output) => output.blueSquare(),
       outputStrings: {
         getOnCrystalSquare: {
           en: 'Get on crystal square',
@@ -161,7 +161,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.role === 'tank';
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Grab dragon',
@@ -196,7 +196,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.phaseNumber === 3 && data.gameCount % 2 === 0;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get hit by Ribbit',
@@ -231,7 +231,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ id: '246D', source: '할리카르나소스', capture: false }),
       // No point in checking whether the user has the frog debuff,
       // if they didn't get it, or got it when they shouldn't have, there's no fixing things.
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.phaseNumber === 3 && data.gameCount % 2 === 0)
           return output.standOnFrogTile();
         // Maybe there's a cleaner way to do this than just enumerating roles?
@@ -288,7 +288,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2467', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2467', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2467', source: '할리카르나소스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Mindjack: Forward',
@@ -308,7 +308,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2468', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2468', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2468', source: '할리카르나소스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Mindjack: Back',
@@ -328,7 +328,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2469', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2469', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2469', source: '할리카르나소스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Mindjack: Left',
@@ -348,7 +348,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '246A', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '246A', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '246A', source: '할리카르나소스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Mindjack: Right',

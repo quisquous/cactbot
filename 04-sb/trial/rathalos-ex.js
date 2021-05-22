@@ -11,7 +11,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: ['2853', '2863'], source: 'リオレウス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['2853', '2863'], source: '火龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['2853', '2863'], source: '리오레우스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Mangle',
@@ -31,7 +31,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: ['2856', '2861'], source: 'リオレウス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['2856', '2861'], source: '火龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['2856', '2861'], source: '리오레우스', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Rush',
@@ -51,7 +51,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: ['2859', '285B'], source: 'リオレウス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['2859', '285B'], source: '火龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['2859', '285B'], source: '리오레우스', capture: false }),
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Flaming Recoil',
@@ -67,7 +67,7 @@ Options.Triggers.push({
       id: 'RathEx Fire Breath',
       netRegex: NetRegexes.headMarker({ id: '0081' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Fire Breath on YOU',

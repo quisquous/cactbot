@@ -24,7 +24,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.role === 'tank';
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hallowed Wind Stack',
@@ -40,7 +40,7 @@ Options.Triggers.push({
       id: 'O6S Demonic Stone',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Demonic Stone on YOU',
@@ -63,7 +63,7 @@ Options.Triggers.push({
       id: 'O6S Last Kiss Marker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Last Kiss on YOU',
@@ -83,7 +83,7 @@ Options.Triggers.push({
         // don't tell them twice.
         return data.me === matches.target && data.lastKiss !== data.me;
       },
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Last Kiss on YOU',

@@ -7,7 +7,7 @@ Options.Triggers.push({
       id: 'SeiryuEx Split Group',
       regex: /Forbidden Arts 1/,
       beforeSeconds: 4,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'stack with your group',
@@ -24,7 +24,7 @@ Options.Triggers.push({
       regex: /Forbidden Arts$/,
       beforeSeconds: 1,
       suppressSeconds: 10,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'line stack',
@@ -43,7 +43,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.role === 'tank';
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Grab Tether, Point Away',
@@ -116,7 +116,7 @@ Options.Triggers.push({
         return data.role !== 'tank';
       },
       delaySeconds: 3,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away From Tanks',
@@ -149,7 +149,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '3C25', source: '青龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3C25', source: '청룡', capture: false }),
       delaySeconds: 1,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stack for Puddle AOEs',
@@ -177,7 +177,7 @@ Options.Triggers.push({
       condition: function(data, matches) {
         return data.blazing && matches.target === data.me;
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.role === 'tank' || data.role === 'healer')
           return output.spreadDpsGetTowers();
         return output.spreadTanksHealersGetTowers();
@@ -209,7 +209,7 @@ Options.Triggers.push({
           return false;
         return !data.markers.includes(data.me);
       },
-      alarmText: function(data, _, output) {
+      alarmText: function(data, _matches, output) {
         if (data.role === 'tank' || data.role === 'healer')
           return output.getTowerTankHealerTowers();
         return output.getTowerDpsTowers();
@@ -261,7 +261,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '37F7', source: '青龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '37F7', source: '青龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '37F7', source: '청룡', capture: false }),
-      alarmText: function(data, _, output) {
+      alarmText: function(data, _matches, output) {
         if (data.withForce === undefined)
           return output.goToSnakes();
         return output.outOfMiddleTowardSnakes();
@@ -309,7 +309,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.addedCombatant({ name: '蒼の式鬼', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '苍之式鬼', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '푸른 사역귀', capture: false }),
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.role === 'tank' || data.role === 'healer')
           return output.stackSouth();
         return output.stackIfNoTether();
@@ -396,7 +396,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '37CB', source: '青龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '37CB', source: '청룡', capture: false }),
       delaySeconds: 28,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Pop Sprint',

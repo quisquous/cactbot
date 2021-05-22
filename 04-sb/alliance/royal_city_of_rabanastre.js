@@ -12,7 +12,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '2633', source: '背德皇帝马提乌斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2633', source: '배덕의 황제 마티우스', capture: false }),
       delaySeconds: 11,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Kill Aqua Spheres',
@@ -30,15 +30,15 @@ Options.Triggers.push({
       id: 'Rab Mateus Breathless Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '595' }),
       condition: Conditions.targetIsYou(),
-      alarmText: function(data, _, output) {
+      alarmText: function(data, _matches, output) {
         if (data.breathless === 6)
           return output.getInBubble();
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.breathless >= 7)
           return output.breathless({ num: (data.breathless + 1) });
       },
-      tts: function(data, _, output) {
+      tts: function(data, _matches, output) {
         if (data.breathless === 6)
           return output.bubble();
       },
@@ -89,7 +89,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '263D', source: '背徳の皇帝マティウス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '263D', source: '背德皇帝马提乌斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '263D', source: '배덕의 황제 마티우스', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Move To Safe Spot',
@@ -119,7 +119,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '25CB', source: '統制者ハシュマリム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '25CB', source: '统治者哈修马利姆', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25CB', source: '통제자 하쉬말림', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Move Away',
@@ -140,7 +140,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '25D4', source: '统治者哈修马利姆', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25D4', source: '통제자 하쉬말림', capture: false }),
       delaySeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Kill Golems',
@@ -160,7 +160,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: 'D10', source: 'アルケオキマイラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: 'D10', source: '古奇美拉', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: 'D10', source: '원시 키마이라', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Dragon Voice: Move In',
@@ -180,7 +180,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: 'アルケオキマイラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: '古奇美拉', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: '원시 키마이라', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Ram Voice: Move Out',
@@ -206,7 +206,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2676', source: '人馬王ロフォカレ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2676', source: '人马王洛弗卡勒', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2676', source: '인마왕 로포칼레', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Trample',
@@ -246,7 +246,7 @@ Options.Triggers.push({
       id: 'Rab Argath Command Scatter',
       netRegex: NetRegexes.headMarker({ id: '007B' }),
       condition: Conditions.targetIsYou(),
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.maskValue)
           return output.move();
         return output.stop();
@@ -274,7 +274,7 @@ Options.Triggers.push({
       id: 'Rab Argath Command Turn',
       netRegex: NetRegexes.headMarker({ id: '007C' }),
       condition: Conditions.targetIsYou(),
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.maskValue)
           return output.lookAway();
         return output.lookTowards();

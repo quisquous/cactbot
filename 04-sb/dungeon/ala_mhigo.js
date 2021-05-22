@@ -50,7 +50,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: ['2066', '2587'], source: 'ゼノス・イェー・ガルヴァス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['2066', '2587'], source: '芝诺斯·耶·加尔乌斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['2066', '2587'], source: '제노스 예 갈부스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Out of blue circle',
@@ -80,7 +80,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: ['2068', '2588'], source: 'ゼノス・イェー・ガルヴァス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['2068', '2588'], source: '芝诺斯·耶·加尔乌斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['2068', '2588'], source: '제노스 예 갈부스', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Protean',
@@ -101,7 +101,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.tether({ id: '0029', source: '芝诺斯·耶·加尔乌斯' }),
       netRegexKo: NetRegexes.tether({ id: '0029', source: '제노스 예 갈부스' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Face tether out',

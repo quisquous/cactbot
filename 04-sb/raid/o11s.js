@@ -77,7 +77,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.lastWasStarboard !== undefined;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.lastWasStarboard)
           return output.moveLeft();
         return output.stayLeft();
@@ -112,7 +112,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.lastWasStarboard !== undefined;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.lastWasStarboard)
           return output.stayRight();
         return output.moveRight();
@@ -144,7 +144,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3266', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3266', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3266', source: '오메가', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Left (then opposite)',
@@ -164,7 +164,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3268', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3268', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3268', source: '오메가', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Right (then opposite)',
@@ -185,7 +185,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '3266', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3266', source: '오메가', capture: false }),
       delaySeconds: 4,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Opposite (Left)',
@@ -206,7 +206,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '3268', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3268', source: '오메가', capture: false }),
       delaySeconds: 4,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Opposite (Right)',

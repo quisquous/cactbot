@@ -39,7 +39,7 @@ Options.Triggers.push({
       id: 'Swallows Compass Ember Spawn',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '7201', capture: false }),
       suppressSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid Fire Orbs',
@@ -60,7 +60,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '2898', source: '天狗火', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2898', source: '텐구불', capture: false }),
       suppressSeconds: 5,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away From Fireballs',
@@ -102,7 +102,7 @@ Options.Triggers.push({
       id: 'Swallows Compass Mirage',
       netRegex: NetRegexes.headMarker({ id: '0001' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: '5x Puddles on YOU',
@@ -130,7 +130,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 2,
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'OUT OF THE LAKE',
@@ -193,7 +193,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ id: ['2BA8', '2BA9', '2BAE', '2BAF'], source: ['제천대성', '제천대성의 분신'], capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         if (data.dynamo)
           return output.dynamo();
         return output.chariot();
@@ -251,7 +251,7 @@ Options.Triggers.push({
       id: 'Swallows Compass Long End Call',
       netRegex: NetRegexes.tether({ id: '0029', capture: false }),
       delaySeconds: 0.5,
-      alertText: (data, _, output) => {
+      alertText: (data, _matches, output) => {
         if (data.tethers.includes(data.me)) {
           if (data.seenIntermission)
             return output.target();

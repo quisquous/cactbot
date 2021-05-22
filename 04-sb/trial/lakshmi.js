@@ -59,7 +59,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '2342', source: 'ラクシュミ', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '2342', source: '吉祥天女', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '2342', source: '락슈미', capture: false }),
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'USE VRIL OR DIE',
@@ -75,7 +75,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2485', source: 'ラクシュミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2485', source: '吉祥天女', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2485', source: '락슈미', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Vril + Knockback',
@@ -115,7 +115,7 @@ Options.Triggers.push({
       id: 'Lakshmi Pall of Light',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       delaySeconds: 0.5,
-      alertText: function(data, matches, output) {
+      alertText: function(data, _matches, output) {
         if (!data.avoidStack.includes(data.me))
           return;
         return output.dontStack();
@@ -161,7 +161,7 @@ Options.Triggers.push({
       id: 'Lakshmi Hand of Grace',
       netRegex: NetRegexes.headMarker({ id: '006B' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Cross Marker',
@@ -178,7 +178,7 @@ Options.Triggers.push({
       id: 'Lakshmi Hand of Beauty',
       netRegex: NetRegexes.headMarker({ id: '006D' }),
       condition: Conditions.targetIsYou(),
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.chanchala)
           return output.powerFlower();
         return output.flower();

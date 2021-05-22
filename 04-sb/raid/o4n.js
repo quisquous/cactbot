@@ -14,7 +14,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.CanCleanse();
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Cleanse Doom soon',
@@ -55,7 +55,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '24C0', source: 'エクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '24C0', source: '艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '24C0', source: '엑스데스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Move around',
@@ -102,7 +102,7 @@ Options.Triggers.push({
         return data.battleCount > 1;
       },
       delaySeconds: 6,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stand in the gap',
@@ -123,7 +123,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '240A', source: '艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '240A', source: '엑스데스', capture: false }),
       delaySeconds: 6,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Behind head--Avoid zombie breath',
@@ -143,7 +143,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '24C8', source: 'エクスデス', target: 'エクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '24C8', source: '艾克斯迪司', target: '艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '24C8', source: '엑스데스', target: '엑스데스', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid black holes',
@@ -169,7 +169,7 @@ Options.Triggers.push({
       id: 'O4N Flare',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Flare on YOU',

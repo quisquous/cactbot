@@ -6,7 +6,7 @@ Options.Triggers.push({
       id: 'Yojimbo Giga Jump',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Run Marker Away',
@@ -28,7 +28,7 @@ Options.Triggers.push({
       id: 'Yojimbo Gekko',
       netRegex: NetRegexes.headMarker({ id: '0090' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Gekko Marker',

@@ -11,7 +11,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '27DA', source: '白虎' }),
       netRegexCn: NetRegexes.startsUsing({ id: '27DA', source: '白虎' }),
       netRegexKo: NetRegexes.startsUsing({ id: '27DA', source: '백호' }),
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role === 'healer';
       },
       response: Responses.tankBuster(),
@@ -54,7 +54,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '27DD', source: '白虎', target: '白虎', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '27DD', source: '白虎', target: '白虎', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27DD', source: '백호', target: '백호', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Distant Clap',
@@ -77,7 +77,7 @@ Options.Triggers.push({
       condition: function(data, matches) {
         return data.role === 'tank' && matches.target !== data.me;
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Provoke Boss',
@@ -101,7 +101,7 @@ Options.Triggers.push({
         return data.role === 'tank' && matches.target === data.me;
       },
       delaySeconds: 12,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Provoke Boss',
@@ -135,7 +135,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27F9', source: '하얀 제왕', capture: false }),
       delaySeconds: 14,
-      alarmText: function(data, _, output) {
+      alarmText: function(data, _matches, output) {
         if (data.roarCount !== 2)
           return;
         if (data.role === 'tank')
@@ -156,7 +156,7 @@ Options.Triggers.push({
       id: 'ByaEx Bubble',
       netRegex: NetRegexes.headMarker({ id: '0065' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Drop bubble outside',
@@ -172,7 +172,7 @@ Options.Triggers.push({
       id: 'ByaEx Ominous Wind',
       netRegex: NetRegexes.gainsEffect({ effectId: '5C9' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Pink bubble',
@@ -188,7 +188,7 @@ Options.Triggers.push({
       id: 'ByaEx Puddle Marker',
       netRegex: NetRegexes.headMarker({ id: '0004' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Puddles on YOU',
@@ -204,7 +204,7 @@ Options.Triggers.push({
       id: 'ByaEx G100',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get away',
@@ -225,7 +225,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.dialog({ line: '[^:]*:駆けろ、我が半身ッ！歯向かう者どもに、牙と爪を突き立ててやれ！.*?', capture: false }),
       netRegexKo: NetRegexes.dialog({ line: '[^:]*:달려라! 나의 반신이여! 맞서는 자들에게 이빨과 발톱을 찔러넣어라!.*?', capture: false }),
       condition: (data) => data.role === 'tank',
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Tiger Add',
@@ -271,7 +271,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         return output.text({ num: data.stakeCount });
       },
       outputStrings: {

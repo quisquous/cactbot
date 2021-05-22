@@ -7,7 +7,7 @@ Options.Triggers.push({
       regex: /Stone Cudgel/,
       beforeSeconds: 4,
       suppressSeconds: 10,
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away from club/shield',
@@ -100,7 +100,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '27D4', source: '玄武', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '27D4', source: '玄武', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27D4', source: '현무', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid water orb',

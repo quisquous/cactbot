@@ -96,7 +96,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '28E4', source: '神々の像', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28E4', source: '众神之像', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28E4', source: '신들의 상', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Look Away From Statue',
@@ -136,7 +136,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '28E3', source: '神々の像', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28E3', source: '众神之像', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28E3', source: '신들의 상', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Look At Statue',
@@ -156,7 +156,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '28F1', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28F1', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28F1', source: '케프카', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Past: Stack and Stay',
@@ -176,7 +176,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '28EE', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28EE', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28EE', source: '케프카', capture: false }),
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Future: Stack and Through',
@@ -200,7 +200,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.role === 'tank' || data.role === 'healer';
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Past: Bait, then through',
@@ -224,7 +224,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.role === 'tank' || data.role === 'healer';
       },
-      alertText: (data, _, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Future: Bait, then stay',
@@ -255,11 +255,11 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2900', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2900', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2900', source: '케프카', capture: false }),
-      alarmText: function(data, _, output) {
+      alarmText: function(data, _matches, output) {
         if (data.role === 'tank')
           return output.wingsBeNearFar();
       },
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.role !== 'tank')
           return output.maxMeleeAvoidTanks();
       },
@@ -290,7 +290,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '28F[EF]', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28F[EF]', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28F[EF]', source: '케프카', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Single Wing',
@@ -360,7 +360,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '28E5', source: '众神之像' }),
       netRegexKo: NetRegexes.startsUsing({ id: '28E5', source: '신들의 상' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Confusion: Go Outside',
@@ -381,7 +381,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '28E6', source: '众神之像' }),
       netRegexKo: NetRegexes.startsUsing({ id: '28E6', source: '신들의 상' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (data, _, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Sleep: Go Inside',
@@ -439,7 +439,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '28D2', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28D2', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28D2', source: '케프카', capture: false }),
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.lastFire)
           return output[data.lastFire]();
         if (!data.lastIceDir)
@@ -533,7 +533,7 @@ Options.Triggers.push({
         data.lastThunder = 'trueThunder';
       },
       suppressSeconds: 40,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: strings.trueThunder,
       },
@@ -553,7 +553,7 @@ Options.Triggers.push({
         data.lastThunder = 'fakeThunder';
       },
       suppressSeconds: 40,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: strings.fakeThunder,
       },
@@ -573,8 +573,10 @@ Options.Triggers.push({
         data.lastIceDir = 'getOut';
       },
       suppressSeconds: 40,
-      infoText: (data, _, output) => output.text({ type: output.type(), dir: output.dir() }),
-      tts: (data, _, output) => output.dir(),
+      infoText: (_data, _matches, output) => {
+        return output.text({ type: output.type(), dir: output.dir() });
+      },
+      tts: (_data, _matches, output) => output.dir(),
       outputStrings: {
         text: strings.typeAndDir,
         type: strings.fakeIce,
@@ -596,8 +598,10 @@ Options.Triggers.push({
         data.lastIceDir = 'getIn';
       },
       suppressSeconds: 40,
-      infoText: (data, _, output) => output.text({ type: output.type(), dir: output.dir() }),
-      tts: (data, _, output) => output.dir(),
+      infoText: (_data, _matches, output) => {
+        return output.text({ type: output.type(), dir: output.dir() });
+      },
+      tts: (_data, _matches, output) => output.dir(),
       outputStrings: {
         text: strings.typeAndDir,
         type: strings.trueIce,
@@ -619,8 +623,10 @@ Options.Triggers.push({
         data.lastIceDir = 'getIn';
       },
       suppressSeconds: 40,
-      infoText: (data, _, output) => output.text({ type: output.type(), dir: output.dir() }),
-      tts: (data, _, output) => output.dir(),
+      infoText: (_data, _matches, output) => {
+        return output.text({ type: output.type(), dir: output.dir() });
+      },
+      tts: (_data, _matches, output) => output.dir(),
       outputStrings: {
         text: strings.typeAndDir,
         type: strings.fakeIce,
@@ -642,8 +648,10 @@ Options.Triggers.push({
         data.lastIceDir = 'getOut';
       },
       suppressSeconds: 40,
-      infoText: (data, _, output) => output.text({ type: output.type(), dir: output.dir() }),
-      tts: (data, _, output) => output.dir(),
+      infoText: (_data, _matches, output) => {
+        return output.text({ type: output.type(), dir: output.dir() });
+      },
+      tts: (_data, _matches, output) => output.dir(),
       outputStrings: {
         text: strings.typeAndDir,
         type: strings.trueIce,

@@ -100,7 +100,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2BDA', source: 'ツクヨミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2BDA', source: '月读', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2BDA', source: '츠쿠요미', capture: false }),
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.moonIsOut)
           return output.leftAndOut();
         return output.leftAndIn();
@@ -132,7 +132,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2BDB', source: 'ツクヨミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2BDB', source: '月读', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2BDB', source: '츠쿠요미', capture: false }),
-      infoText: function(data, _, output) {
+      infoText: function(data, _matches, output) {
         if (data.moonIsOut)
           return output.rightAndOut();
         return output.rightAndIn();
@@ -221,7 +221,7 @@ Options.Triggers.push({
       condition: function(data, matches) {
         return matches.target === data.me && data.moonlitCount >= 4;
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Move to Black!',
@@ -254,7 +254,7 @@ Options.Triggers.push({
       condition: function(data, matches) {
         return matches.target === data.me && data.moonshadowedCount >= 4;
       },
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Move to White!',

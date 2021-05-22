@@ -28,7 +28,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '31C7', source: 'ミドガルズオルム', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '31C7', source: '尘世幻龙', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '31C7', source: '미드가르드오름', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       run: function(data) {
         data.lastSpinWasHorizontal = true;
       },
@@ -51,7 +51,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '31C8', source: 'ミドガルズオルム', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '31C8', source: '尘世幻龙', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '31C8', source: '미드가르드오름', capture: false }),
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       run: function(data) {
         data.lastSpinWasHorizontal = false;
       },
@@ -77,7 +77,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.lastSpinWasHorizontal)
           return output.getOut();
         // This shouldn't happen.
@@ -112,7 +112,7 @@ Options.Triggers.push({
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
       },
-      alertText: function(data, _, output) {
+      alertText: function(data, _matches, output) {
         if (data.lastSpinWasHorizontal)
           return output.getIn();
         return output.goToCorners();

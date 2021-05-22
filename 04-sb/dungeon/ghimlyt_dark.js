@@ -6,7 +6,7 @@ Options.Triggers.push({
       id: 'Ghimlyt Dark Prometheus Laser',
       regex: /Heat/,
       beforeSeconds: 5,
-      infoText: (data, _, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid wall laser',
@@ -57,7 +57,7 @@ Options.Triggers.push({
       // 00A7 is the orange clockwise indicator. 00A8 is the blue counterclockwise one.
       id: 'Ghimlyt Dark Magitek Slash',
       netRegex: NetRegexes.headMarker({ id: ['00A7', '00A8'] }),
-      infoText: (data, matches, output) => {
+      infoText: (_data, matches, output) => {
         return matches.id === '00A7' ? output.left() : output.right();
       },
       outputStrings: {
