@@ -26,14 +26,7 @@ Options.Triggers.push({
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
-        text: {
-          en: 'Tank Buster',
-          de: 'Tankbuster',
-          fr: 'Tank buster',
-          ja: 'タンクバスター',
-          cn: '死刑',
-          ko: '탱버',
-        },
+        text: Outputs.tankBuster,
       },
     },
     {

@@ -131,14 +131,7 @@ Options.Triggers.push({
       },
       run: (data) => delete data.busterTargets,
       outputStrings: {
-        tankBuster: {
-          en: 'Tank Buster',
-          de: 'Tank buster',
-          fr: 'Tank buster',
-          ja: 'タンクバスター',
-          cn: '坦克死刑',
-          ko: '탱버',
-        },
+        tankBuster: Outputs.tankBuster,
         avoidTankBuster: {
           en: 'Avoid tank buster',
           de: 'Tank buster ausweichen',
@@ -493,14 +486,7 @@ Options.Triggers.push({
       },
       run: (data) => delete data.busterTargets,
       outputStrings: {
-        tankBuster: {
-          en: 'Tank Buster',
-          de: 'Tank buster',
-          fr: 'Tank buster',
-          ja: 'タンクバスター',
-          cn: '坦克死刑',
-          ko: '탱버',
-        },
+        tankBuster: Outputs.tankBuster,
         avoidTankBuster: {
           en: 'Avoid tank buster',
           de: 'Tank buster ausweichen',
