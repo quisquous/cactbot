@@ -10,7 +10,7 @@ interface Data extends RaidbossData {
   started?: boolean;
 }
 
-const triggerSet: TriggerSet = {
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheBindingCoilOfBahamutTurn1,
   triggers: [
     {

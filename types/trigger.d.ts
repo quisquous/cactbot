@@ -41,21 +41,21 @@ export type TriggerOutput =
     undefined | null | LocaleText | string | number | boolean | (() => TriggerOutput);
 
 // The type of a non-response trigger field.
-export type TriggerFunc<Matches, Return> =
-    (data: RaidbossData, matches: Matches, output: Output) => Return;
+export type TriggerFunc<Data, Matches, Return> =
+    (data: Data, matches: Matches, output: Output) => Return;
 
 // Valid fields to return from a ResponseFunc.
 type ResponseFields = 'infoText' | 'alertText' | 'alarmText' | 'tts';
 
 // The output from a response function (different from other TriggerOutput functions).
-export type ResponseOutput<Matches> = {
-  [text in ResponseFields]?: TriggerFunc<Matches, TriggerOutput>;
+export type ResponseOutput<Data, Matches> = {
+  [text in ResponseFields]?: TriggerFunc<Data, Matches, TriggerOutput>;
 };
 // The type of a response trigger field.
-export type ResponseFunc<Matches> =
-    (data: RaidbossData, matches: Matches, output: Output) => ResponseOutput<Matches>;
+export type ResponseFunc<Data, Matches> =
+    (data: Data, matches: Matches, output: Output) => ResponseOutput<Data, Matches>;
 
-export type ResponseField = ResponseFunc<MatchesAny> | ResponseOutput<MatchesAny>;
+export type ResponseField<Data> = ResponseFunc<Data, MatchesAny> | ResponseOutput<Data, MatchesAny>;
 
 export type TriggerAutoConfig = {
   Output?: Output;
@@ -65,7 +65,10 @@ export type TriggerAutoConfig = {
 }
 
 export type MatchesAny = { [s in T]?: string } | undefined;
-export type TriggerField<Return> = TriggerFunc<MatchesAny, Return> | Return;
+
+type OptionalUnlessVoid<T> = T extends void ? void : T | undefined;
+export type TriggerField<Data, Return> =
+    TriggerFunc<Data, MatchesAny, OptionalUnlessVoid<Return>> | OptionalUnlessVoid<Return>;
 
 // TODO: I am not sure that it is possible to type triggers such that we have some gigantic union
 // of Trigger<TetherParams> | Trigger<AbilityParams> | Trigger<AddedCombatantParams> | etc etc
@@ -80,29 +83,29 @@ export type TriggerField<Return> = TriggerFunc<MatchesAny, Return> | Return;
 // * should we handle nonsense like `condition` returning non-booleans?
 // We could have one type that built-in triggers define themselves as more strictly and then a
 // second type that popup-text.js uses and needs to do more narrowing for.
-export type BaseTrigger = {
+export type BaseTrigger<Data> = {
   id?: string;
   disabled?: boolean;
-  condition?: TriggerField<boolean | undefined>;
-  preRun?: TriggerField<void>;
-  delaySeconds?: TriggerField<number | undefined>;
-  durationSeconds?: TriggerField<number | undefined>;
-  suppressSeconds?: TriggerField<number | undefined>;
-  promise?: TriggerField<Promise<void> | undefined>;
-  sound?: TriggerField<string | undefined>;
-  soundVolume?: TriggerField<number | undefined>;
-  response?: ResponseField;
-  alarmText?: TriggerField<TriggerOutput>;
-  alertText?: TriggerField<TriggerOutput>;
-  infoText?: TriggerField<TriggerOutput>;
-  tts?: TriggerField<TriggerOutput>;
-  run?: TriggerField<void>;
+  condition?: TriggerField<Data, boolean>;
+  preRun?: TriggerField<Data, void>;
+  delaySeconds?: TriggerField<Data, number>;
+  durationSeconds?: TriggerField<Data, number>;
+  suppressSeconds?: TriggerField<Data, number>;
+  promise?: TriggerField<Promise<Data, void>>;
+  sound?: TriggerField<Data, string>;
+  soundVolume?: TriggerField<Data, number>;
+  response?: ResponseField<Data>;
+  alarmText?: TriggerField<Data, TriggerOutput>;
+  alertText?: TriggerField<Data, TriggerOutput>;
+  infoText?: TriggerField<Data, TriggerOutput>;
+  tts?: TriggerField<Data, TriggerOutput>;
+  run?: TriggerField<Data, void>;
   outputStrings?: {
     [key: string]: LocaleText;
   };
 }
 
-export type NetRegexTrigger = BaseTrigger & {
+export type NetRegexTrigger<Data> = BaseTrigger<Data> & {
   netRegex: RegExp;
   netRegexDe?: RegExp;
   netRegexFr?: RegExp;
@@ -111,7 +114,7 @@ export type NetRegexTrigger = BaseTrigger & {
   netRegexKo?: RegExp;
 }
 
-export type RegexTrigger = BaseTrigger & {
+export type RegexTrigger<Data> = BaseTrigger<Data> & {
   regex: RegExp;
   regexDe?: RegExp;
   regexFr?: RegExp;
@@ -120,17 +123,18 @@ export type RegexTrigger = BaseTrigger & {
   regexKo?: RegExp;
 }
 
-export type TimelineTrigger = BaseTrigger & {
+export type TimelineTrigger<Data> = BaseTrigger<Data> & {
   regex?: RegExp;
   // TODO: can this also be a function?
   beforeSeconds?: number;
 };
 
-export type Trigger = RegexTrigger | NetRegexTrigger;
+export type Trigger<Data> = RegexTrigger<Data> | NetRegexTrigger<Data>;
 
+// Because timeline functions run during loading, they only support the base RaidbossData.
 export type TimelineFunc = string | string[] | ((data: RaidbossData) => TimelineFunc);
 
-export type TriggerSet = {
+export type TriggerSet<Data> = {
   // ZoneId.MatchAll (aka null) is not supported in array form.
   zoneId?: ZoneId | number[];
   zoneRegex?: RegExp | { [lang in Lang]?: RegExp };
@@ -138,8 +142,8 @@ export type TriggerSet = {
   overrideTimelineFile?: boolean;
   timelineFile?: string;
   timeline?: TimelineFunc;
-  triggers?: Trigger[];
-  timelineTriggers?: TimelineTrigger[];
+  triggers?: Trigger<Data>[];
+  timelineTriggers?: TimelineTrigger<Data>[];
   timelineReplace?: {
     locale: Lang;
     missingTranslations?: boolean;
