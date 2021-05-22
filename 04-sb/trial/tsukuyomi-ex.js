@@ -56,14 +56,7 @@ Options.Triggers.push({
           cn: '远离正面',
           ko: '정면 피하기',
         },
-        tankBusterOnYou: {
-          en: 'Tank Buster on YOU',
-          de: 'Tankbuster auf DIR',
-          fr: 'Tank buster sur VOUS',
-          ja: '自分にタンクバスター',
-          cn: '死刑减伤',
-          ko: '탱버 대상자',
-        },
+        tankBusterOnYou: Outputs.tankBusterOnYou,
         busterOn: Outputs.tankBusterOnPlayer,
         tankSwap: {
           en: 'Tank Swap!',

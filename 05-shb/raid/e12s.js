@@ -259,14 +259,7 @@ Options.Triggers.push({
             cn: '死刑 + 换T',
             ko: '탱버 + 교대',
           },
-          formlessBusterOnYOU: {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tank buster sur VOUS',
-            ja: '自分にタンクバスター',
-            cn: '死刑点名',
-            ko: '탱버 대상자',
-          },
+          formlessBusterOnYOU: Outputs.tankBusterOnYou,
         };
         const id = getHeadmarkerId(data, matches);
         // Track tankbuster targets, regardless if this is on you or not.
