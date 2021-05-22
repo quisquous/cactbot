@@ -109,14 +109,7 @@ Options.Triggers.push({
       },
       infoText: (data, _, output) => output.text(),
       outputStrings: {
-        text: {
-          en: 'Tank Busters',
-          de: 'Tank buster',
-          fr: 'Tank buster',
-          ja: 'タンクバスター',
-          cn: '死刑',
-          ko: '탱버',
-        },
+        text: Outputs.tankBusters,
       },
     },
     {

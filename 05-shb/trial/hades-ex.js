@@ -409,14 +409,7 @@ Options.Triggers.push({
       suppressSeconds: 5,
       alertText: (data, _, output) => output.text(),
       outputStrings: {
-        text: {
-          en: 'Tank Busters',
-          de: 'Tankbuster',
-          fr: 'Tank buster',
-          ja: 'タンクバスター',
-          cn: '坦克死刑',
-          ko: '탱버',
-        },
+        text: Outputs.tankBusters,
       },
     },
     {
@@ -808,14 +801,7 @@ Options.Triggers.push({
           return output.tankBusters();
       },
       outputStrings: {
-        tankBusters: {
-          en: 'tank busters',
-          de: 'Tank buster',
-          fr: 'Tank buster',
-          ja: 'タンクバスター',
-          cn: '坦克死刑',
-          ko: '탱버',
-        },
+        tankBusters: Outputs.tankBusters,
         getTowers: {
           en: 'Get Towers',
           de: 'Türme nehmen',

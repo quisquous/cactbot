@@ -625,14 +625,7 @@ Options.Triggers.push({
             cn: '坦克死刑 + 换T',
             ko: '탱버 + 교대',
           },
-          tankBusters: {
-            en: 'Tank Busters',
-            de: 'Tankbuster',
-            fr: 'Tank busters',
-            ja: 'タンクバスター',
-            cn: '坦克死刑',
-            ko: '탱버',
-          },
+          tankBusters: Outputs.tankBusters,
         };
         // Already called out in the headmarker trigger.
         if (data.formlessTargets && data.formlessTargets.includes(data.me))
