@@ -1,4 +1,5 @@
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -30,14 +31,7 @@ export default {
       },
       alertText: (data, _, output) => output.text(),
       outputStrings: {
-        text: {
-          en: 'Tank Buster',
-          de: 'Tankbuster',
-          fr: 'Tank buster',
-          ja: 'タンクバスター',
-          cn: '死刑',
-          ko: '탱버',
-        },
+        text: Outputs.tankBuster,
       },
     },
     {
