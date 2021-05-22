@@ -223,14 +223,7 @@ export default {
           cn: '不要重合!',
           ko: '공격 피하기',
         },
-        stack: {
-          en: 'Stack',
-          de: 'Sammeln',
-          fr: 'Packez-vous',
-          ja: '頭割り',
-          cn: '分摊',
-          ko: '쉐어뎀',
-        },
+        stack: Outputs.stackMarker,
       },
     },
     {
