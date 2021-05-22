@@ -334,14 +334,7 @@ export default {
           ko: '"${player}" 탱버',
         },
         tankBuster: Outputs.tankBuster,
-        tankBusterOnYou: {
-          en: 'Tank Buster on YOU',
-          de: 'Tankbuster auf DIR',
-          fr: 'Tank buster sur VOUS',
-          ja: '自分にタンクバスター',
-          cn: '死刑点名',
-          ko: '나에게 탱크버스터',
-        },
+        tankBusterOnYou: Outputs.tankBusterOnYou,
       },
     },
     {
@@ -1472,14 +1465,7 @@ export default {
           cn: '死刑点 ${player}',
           ko: '${player}에게 탱크버스터',
         },
-        tankBusterOnYou: {
-          en: 'Tank Buster on YOU',
-          de: 'Tankbuster auf DIR',
-          fr: 'Tank buster sur VOUS',
-          ja: '自分にタンクバスター',
-          cn: '死刑点名',
-          ko: '나에게 탱크버스터',
-        },
+        tankBusterOnYou: Outputs.tankBusterOnYou,
       },
     },
     {

@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -48,14 +49,7 @@ export default {
           cn: '远离 ${player}',
           ko: '${player} 한테서 피하세요',
         },
-        tankBusterOnYou: {
-          en: 'Tank Buster on YOU',
-          de: 'Tankbuster auf DIR',
-          fr: 'Tank buster sur VOUS',
-          ja: '自分にタンクバスター',
-          cn: '死刑',
-          ko: '탱버 대상자',
-        },
+        tankBusterOnYou: Outputs.tankBusterOnYou,
         busterOn: {
           en: 'Buster on ${player}',
           de: 'Tankbuster auf ${player}',

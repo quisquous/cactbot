@@ -1,4 +1,5 @@
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -171,14 +172,7 @@ export default {
         return output.tankBusterOn({ player: data.ShortName(target) });
       },
       outputStrings: {
-        tankBusterOnYou: {
-          en: 'Tank Buster on YOU',
-          de: 'Tank buster auf DIR',
-          fr: 'Tank buster sur VOUS',
-          ja: '自分にタンクバスター',
-          cn: '死刑点名',
-          ko: '탱버 대상자',
-        },
+        tankBusterOnYou: Outputs.tankBusterOnYou,
         avoidTankCleave: {
           en: 'Avoid tank cleave',
           de: 'Tank Cleave ausweichen',
