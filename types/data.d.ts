@@ -11,10 +11,7 @@ export interface BaseOptions {
   // todo: complete this type
 }
 
-// TODO: should this be named RaidbossData? Or can code that is using both this and oopsy
-// differentiate themselves if they need to? Probably this *file* needs to be renamed
-// to be raidboss_data.d.ts?
-export interface Data {
+export interface RaidbossData {
   job: Job;
   me: string;
   role: Role;
