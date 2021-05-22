@@ -83,7 +83,7 @@ export function setup(bars) {
 
   let perfectBalanceActive = false;
   bars.onYouGainEffect(EffectId.PerfectBalance, (name, matches) => {
-    if (perfectBalanceActive === false) {
+    if (!perfectBalanceActive) {
       formTimer.duration = 0;
       formTimer.duration = parseFloat(matches.duration);
       formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-pb');
