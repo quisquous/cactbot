@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -12,14 +13,7 @@ const strings = {
     cn: '${type}: ${dir}',
     ko: '${type}: ${dir}',
   },
-  spread: {
-    en: 'Spread',
-    de: 'verteilen',
-    fr: 'Eloignez-vous',
-    ja: '散開',
-    cn: '散开',
-    ko: '산개',
-  },
+  spread: Outputs.spread,
   stack: {
     en: 'Stack',
     de: 'Stacken',

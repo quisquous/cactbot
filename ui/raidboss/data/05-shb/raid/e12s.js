@@ -101,15 +101,7 @@ const primalOutputStrings = {
     ko: '${text} (${junction})',
   },
   // Junctions.
-  'spread': {
-    // Shiva spread.
-    en: 'spread',
-    de: 'verteilen',
-    fr: 'dispersion',
-    ja: '散開',
-    cn: '散开',
-    ko: '산개',
-  },
+  'spread': Outputs.spread,
   'stacks': {
     // Titan healer stacks.
     en: 'stacks',
@@ -197,14 +189,7 @@ const intermediateRelativityOutputStrings = {
     cn: '暗黑眼',
     ko: '마안',
   },
-  eruption: {
-    en: 'Spread',
-    de: 'Verteilen',
-    fr: 'Dispersez-vous',
-    ja: '散開',
-    cn: '散开',
-    ko: '산개',
-  },
+  eruption: Outputs.spread,
   blizzard: {
     en: 'Ice',
     de: 'Eis',

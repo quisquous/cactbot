@@ -1844,14 +1844,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '488A', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
-        text: {
-          en: 'Spread',
-          de: 'Verteilen',
-          fr: 'Dispersez-vous',
-          ja: '散開',
-          cn: '分散',
-          ko: '산개',
-        },
+        text: Outputs.spread,
       },
     },
     {
