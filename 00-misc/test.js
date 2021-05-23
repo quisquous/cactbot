@@ -9,21 +9,21 @@ Options.Triggers.push({
     'alerttext "Final Sting" before 4 "oh no final sting in 4"',
     'alarmtext "Death" before 3',
     'alertall "Long Castbar" before 1 speak "voice" "long"',
-    function(data) {
+    (data) => {
       if (data.role !== 'tank' && data.role !== 'healer')
         return 'hideall "Super Tankbuster"';
       return 'alarmtext "Super Tankbuster" before 2';
     },
-    function(data) {
+    (data) => {
       if (!data.role.startsWith('dps'))
         return 'hideall "Pentacle Sac (DPS)"';
     },
-    function(data) {
+    (data) => {
       if (data.role !== 'healer')
         return 'hideall "Almagest"';
       return 'alarmtext "Almagest" before 0';
     },
-    function(data) {
+    (data) => {
       // <_<
       const shortName = data.me.indexOf(' ') >= 0 ? data.me.substring(0, data.me.indexOf(' ')) : data.me;
       return [
@@ -72,7 +72,7 @@ Options.Triggers.push({
       regex: /Angry Dummy/,
       // Add in a huge delay to make it obvious the delay runs before promise.
       delaySeconds: 10,
-      promise: function(data) {
+      promise: (data) => {
         data.delayedDummyTimestampBefore = Date.now();
         const p = new Promise((res) => {
           window.setTimeout(() => {
@@ -82,7 +82,7 @@ Options.Triggers.push({
         });
         return p;
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         const elapsed = data.delayedDummyTimestampAfter - data.delayedDummyTimestampBefore;
         return output.elapsed({ elapsed: elapsed });
       },
