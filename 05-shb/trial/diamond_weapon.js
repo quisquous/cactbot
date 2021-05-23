@@ -5,6 +5,7 @@ const sharedOutputStrings = {
     fr: 'Téléportez-vous vers la plateforme est',
     ja: '東の足場へテレポ',
     cn: '传送到右边(东边)平台',
+    ko: '동쪽으로 이동',
   },
   teleportWest: {
     en: 'Teleport to west platform',
@@ -12,6 +13,7 @@ const sharedOutputStrings = {
     fr: 'Téléportez-vous vers la plateforme ouest',
     ja: '西の足場へテレポ',
     cn: '传送到左边(西边)平台',
+    ko: '서쪽으로 이동',
   },
 };
 Options.Triggers.push({
