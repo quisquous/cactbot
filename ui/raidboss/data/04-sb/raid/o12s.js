@@ -836,14 +836,7 @@ export default {
         }
       },
       outputStrings: {
-        text: {
-          en: 'Stack on ${player}',
-          de: 'Stacken auf ${player}',
-          fr: 'Packez-vous sur ${player}',
-          ja: '${player}とスタック',
-          cn: '与${player}集合',
-          ko: '"${player}" 쉐어',
-        },
+        text: Outputs.stackOnPlayer,
       },
     },
     {

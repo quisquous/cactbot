@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -50,14 +51,7 @@ export default {
           cn: '集合点名',
           ko: '쉐어징 대상자',
         },
-        stackOn: {
-          en: 'Stack on ${player}',
-          de: 'Sammeln auf ${player}',
-          fr: 'Packez-vous sur ${player}',
-          ja: '${player}に集合',
-          cn: '靠近${player}集合',
-          ko: '${player} 쉐어징',
-        },
+        stackOn: Outputs.stackOnPlayer,
       },
     },
     {
