@@ -16,7 +16,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4180', source: 'ハーデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4180', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4180', source: '하데스', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.neoHades = true;
       },
     },
@@ -28,14 +28,14 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4158', source: 'ハーデス' }),
       netRegexCn: NetRegexes.startsUsing({ id: '4158', source: '哈迪斯' }),
       netRegexKo: NetRegexes.startsUsing({ id: '4158', source: '하데스' }),
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.tankBusterOnYou();
 
         if (data.role === 'healer')
           return output.busterOn({ player: data.ShortName(matches.target) });
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (matches.target === data.me)
           return;
         return output.awayFromPlayer({ player: data.ShortName(matches.target) });
@@ -208,7 +208,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4161', source: 'ハーデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4161', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4161', source: '하데스', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer';
       },
       infoText: (_data, _matches, output) => output.text(),
@@ -219,7 +219,7 @@ export default {
     {
       id: 'Hades Dual Strike',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return data.neoHades && data.me === matches.target;
       },
       alertText: (_data, _matches, output) => output.text(),
@@ -274,7 +274,7 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '4175', source: 'ハーデス', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '4175', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '4175', source: '하데스', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.seenLifeInCaptivity = true;
       },
     },
@@ -286,7 +286,7 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '417F', source: 'ハーデス', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '417F', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '417F', source: '하데스', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         // There can be multiple gaols (if the phase loops), but ability also
         // gets used during the finall phase transition.  Ignore that one.
         return !data.seenLifeInCaptivity;
@@ -313,7 +313,7 @@ export default {
     {
       id: 'Hades Ancient Darkness',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return !data.neoHades && data.me === matches.target;
       },
       alertText: (_data, _matches, output) => output.text(),
@@ -337,10 +337,10 @@ export default {
     {
       id: 'Hades Ancient Collect',
       netRegex: NetRegexes.headMarker({ id: ['0060', '003E'] }),
-      condition: function(data) {
+      condition: (data) => {
         return !data.neoHades;
       },
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.ancient = data.ancient || {};
         data.ancient[matches.target] = matches.id;
       },
@@ -349,7 +349,7 @@ export default {
       id: 'Hades Ancient No Marker',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       delaySeconds: 0.5,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.ancient[data.me])
           return;
         const name = Object.keys(data.ancient).find((key) => data.ancient[key] === '003E');
@@ -370,7 +370,7 @@ export default {
       id: 'Hades Ancient Cleanup',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       delaySeconds: 10,
-      run: function(data) {
+      run: (data) => {
         delete data.ancient;
       },
     },

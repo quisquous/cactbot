@@ -11,7 +11,7 @@ export default {
       id: 'WOL Ultimate Crossover',
       regex: /Ultimate Crossover/,
       beforeSeconds: 8,
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank';
       },
       alarmText: (_data, _matches, output) => output.text(),
@@ -53,7 +53,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ウォーリア・オブ・ライト', id: '4F27', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '光之战士', id: '4F27', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '빛의 전사', id: '4F27', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer';
       },
       suppressSeconds: 5,
@@ -118,7 +118,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F13', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F13', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F13', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.imbued = 'blizzard';
       },
     },
@@ -130,7 +130,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F12', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F12', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F12', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.imbued = 'fire';
       },
     },
@@ -142,7 +142,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F4B', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F4B', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F4B', capture: false }),
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.imbued === 'blizzard')
           return output.outMove();
         else if (data.imbued === 'fire')
@@ -185,7 +185,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F4C', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F4C', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F4C', capture: false }),
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.imbued === 'blizzard')
           return output.underMove();
         else if (data.imbued === 'fire')
@@ -291,7 +291,7 @@ export default {
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.deluge = matches.target;
       },
       outputStrings: {
@@ -309,7 +309,7 @@ export default {
       id: 'WOL Deluge of Death Cleanup',
       netRegex: NetRegexes.headMarker({ id: '0057', capture: false }),
       delaySeconds: 10,
-      run: function(data) {
+      run: (data) => {
         // Clean this up so it doesn't apply during Katon San.
         delete data.deluge;
       },

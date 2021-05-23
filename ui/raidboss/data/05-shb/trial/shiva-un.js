@@ -80,7 +80,7 @@ export default {
 
         return { infoText: output.staff() };
       },
-      run: function(data) {
+      run: (data) => {
         data.soonAfterWeaponChange = true;
       },
     },
@@ -119,7 +119,7 @@ export default {
 
         return { infoText: output.sword() };
       },
-      run: function(data) {
+      run: (data) => {
         data.soonAfterWeaponChange = true;
       },
     },
@@ -132,14 +132,14 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '시바', id: ['5366', '5367'], capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: ['5366', '5367'], capture: false }),
       delaySeconds: 30,
-      run: function(data) {
+      run: (data) => {
         data.soonAfterWeaponChange = false;
       },
     },
     {
       id: 'ShivaUn Slashing Resistance Down Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '23C' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.slashing = data.slashing || {};
         data.slashing[matches.target] = true;
       },
@@ -147,7 +147,7 @@ export default {
     {
       id: 'ShivaUn Slashing Resistance Down Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '23C' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.slashing = data.slashing || {};
         data.slashing[matches.target] = false;
       },
@@ -155,7 +155,7 @@ export default {
     {
       id: 'ShivaUn Blunt Resistance Down Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '23D' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.blunt = data.blunt || {};
         data.blunt[matches.target] = true;
       },
@@ -163,7 +163,7 @@ export default {
     {
       id: 'ShivaUn Blunt Resistance Down Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '23D' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.blunt = data.blunt || {};
         data.blunt[matches.target] = false;
       },
@@ -176,7 +176,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '5365' }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '5365' }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '5365' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.currentTank = matches.target;
       },
     },
@@ -204,7 +204,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '536C', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '536C', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '536C', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.seenDiamondDust = true;
       },
     },
@@ -217,7 +217,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '시바', id: '5368', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '5368', capture: false }),
       response: Responses.getBehind('alarm'),
-      run: function(data) {
+      run: (data) => {
         // Just in case ACT has crashed or something, make sure this state is correct.
         data.seenDiamondDust = true;
       },
@@ -263,7 +263,7 @@ export default {
       netRegexJa: NetRegexes.abilityFull({ source: 'シヴァ', id: '537B' }),
       netRegexKo: NetRegexes.abilityFull({ source: '시바', id: '537B' }),
       netRegexCn: NetRegexes.abilityFull({ source: '希瓦', id: '537B' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         // Ignore other middle circles and try to only target the Icicle Impact x9.
         if (!data.seenDiamondDust || data.soonAfterWeaponChange)
           return false;
@@ -285,7 +285,7 @@ export default {
       id: 'ShivaUn Ice Boulder',
       netRegex: NetRegexes.ability({ id: '537A' }),
       condition: Conditions.targetIsNotYou(),
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         return output.text({ player: data.ShortName(matches.target) });
       },
       outputStrings: {

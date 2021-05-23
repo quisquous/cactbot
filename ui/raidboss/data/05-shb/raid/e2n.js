@@ -34,7 +34,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3E4D', source: 'ヴォイドウォーカー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E4D', source: '虚无行者' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E4D', source: '보이드워커' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank';
       },
       response: Responses.tankBuster(),
@@ -47,7 +47,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3E4D', source: 'ヴォイドウォーカー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E4D', source: '虚无行者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E4D', source: '보이드워커', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer';
       },
       suppressSeconds: 1,
@@ -95,7 +95,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3E42', source: 'ヴォイドウォーカー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E42', source: '虚无行者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E42', source: '보이드워커', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.fireCount = data.fireCount || 0;
         data.fireCount++;
       },
@@ -119,7 +119,7 @@ export default {
     {
       id: 'E2N Dark Fire Collect',
       netRegex: NetRegexes.headMarker({ id: '00B5' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.spell = data.spell || {};
         data.spell[matches.target] = 'fire';
       },
@@ -143,10 +143,10 @@ export default {
     {
       id: 'E2N Countdown Marker Fire',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return data.me === matches.target && data.spell[data.me] === 'fire';
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.fireCount === 3)
           return output.spreadDontStack();
 
@@ -167,7 +167,7 @@ export default {
     {
       id: 'E2N Unholy Darkness Collect',
       netRegex: NetRegexes.headMarker({ id: '00B4' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.spell = data.spell || {};
         data.spell[matches.target] = 'stack';
       },
@@ -191,7 +191,7 @@ export default {
     {
       id: 'E2N Countdown Marker Unholy Darkness',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         // The third fire coincides with stack.
         // These people should avoid.
         if (data.spell[data.me] === 'fire' && data.fireCount === 3)
@@ -203,7 +203,7 @@ export default {
     {
       id: 'E2N Shadoweye Collect',
       netRegex: NetRegexes.headMarker({ id: '00B7' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.spell = data.spell || {};
         data.spell[matches.target] = 'eye';
       },
@@ -227,7 +227,7 @@ export default {
     {
       id: 'E2N Countdown Marker Shadoweye',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return data.spell[matches.target] === 'eye';
       },
       delaySeconds: 2,
@@ -236,11 +236,11 @@ export default {
     {
       id: 'E2N Countdown Marker Shadoweye You',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return data.spell[matches.target] === 'eye';
       },
       delaySeconds: 2,
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.text();
       },
@@ -259,7 +259,7 @@ export default {
       id: 'E2N Countdown Marker Cleanup',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
       delaySeconds: 10,
-      run: function(data, matches) {
+      run: (data, matches) => {
         delete data.spell[matches.target];
       },
     },

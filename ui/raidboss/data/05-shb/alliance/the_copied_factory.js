@@ -17,7 +17,7 @@ export default {
       id: 'Copied Flight Unit Lightfast',
       regex: /Lightfast Blade/,
       beforeSeconds: 15,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         // The third lightfast blade comes very close to second,
         // so suppress its message.
         data.lightfastCount = (data.lightfastCount || 0) + 1;
@@ -156,7 +156,7 @@ export default {
       netRegexJa: NetRegexes.message({ line: '壁面のライトアームが稼働を始めた……！.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '벽면의 오른팔이 움직이기 시작합니다……!.*?', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
-      run: function(data) {
+      run: (data) => {
         data.alliance = data.alliance || 'A';
       },
       outputStrings: {
@@ -179,7 +179,7 @@ export default {
       netRegexJa: NetRegexes.message({ line: '壁面の火炎放射器が稼働を始めた……！.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '벽면의 화염 방사기가 가동되었습니다……!.*?', capture: false }),
       alertText: (_data, _matches, output) => output.text(),
-      run: function(data) {
+      run: (data) => {
         data.alliance = data.alliance || 'B';
       },
       outputStrings: {
@@ -203,7 +203,7 @@ export default {
       netRegexKo: NetRegexes.message({ line: '벽면의 왼팔이 움직이기 시작합니다……!.*?', capture: false }),
       durationSeconds: 6,
       response: Responses.getOut('info'),
-      run: function(data) {
+      run: (data) => {
         data.alliance = data.alliance || 'C';
       },
     },
@@ -633,7 +633,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ id: '48F5', source: '9S : Avec Multipède Esclave' }),
       netRegexJa: NetRegexes.startsUsing({ id: '48F5', source: '９Ｓ：多脚戦車従属' }),
       netRegexKo: NetRegexes.startsUsing({ id: '48F5', source: '9S: 다각전차 종속' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return data.me === matches.target || data.role === 'healer';
       },
       response: Responses.tankBuster(),

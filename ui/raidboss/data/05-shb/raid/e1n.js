@@ -58,7 +58,7 @@ export default {
       netRegexJa: NetRegexes.tether({ id: '0011', target: 'エデン・プライム' }),
       netRegexCn: NetRegexes.tether({ id: '0011', target: '至尊伊甸' }),
       netRegexKo: NetRegexes.tether({ id: '0011', target: '에덴 프라임' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return data.me === matches.source;
       },
       alertText: (_data, _matches, output) => output.text(),
@@ -81,7 +81,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3DA1', source: 'エデン・プライム' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DA1', source: '至尊伊甸' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DA1', source: '에덴 프라임' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),

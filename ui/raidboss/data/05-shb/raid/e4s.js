@@ -12,7 +12,7 @@ export default {
       id: 'E4S Earthen Anguish',
       regex: /Earthen Anguish/,
       beforeSeconds: 3,
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer' || data.role === 'tank';
       },
       alertText: (_data, _matches, output) => output.text(),
@@ -30,7 +30,7 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '40E6', source: 'タイタン', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '40E6', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '40E6', source: '타이탄', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.phase = 'landslide';
         delete data.printedBury;
       },
@@ -43,7 +43,7 @@ export default {
       netRegexJa: NetRegexes.ability({ id: ['40E7', '40E9'], source: 'タイタン', capture: false }),
       netRegexCn: NetRegexes.ability({ id: ['40E7', '40E9'], source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.ability({ id: ['40E7', '40E9'], source: '타이탄', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.phase = 'armor';
         delete data.printedBury;
       },
@@ -56,7 +56,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4116', source: 'タイタン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '4116', source: '泰坦' }),
       netRegexKo: NetRegexes.startsUsing({ id: '4116', source: '타이탄' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
       },
       // As this seems to usually seems to be invulned,
@@ -193,11 +193,11 @@ export default {
       netRegexJa: NetRegexes.abilityFull({ id: '4142', source: 'ボムボルダー' }),
       netRegexCn: NetRegexes.abilityFull({ id: '4142', source: '爆破岩石' }),
       netRegexKo: NetRegexes.abilityFull({ id: '4142', source: '바위폭탄' }),
-      condition: function(data) {
+      condition: (data) => {
         return !data.printedBury;
       },
       durationSeconds: 7,
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         const x = matches.x;
         const y = matches.y;
 
@@ -320,7 +320,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4124', source: 'マキシタイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4124', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4124', source: '거대 타이탄', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer';
       },
       response: Responses.bigAoe(),
@@ -424,7 +424,7 @@ export default {
     {
       id: 'E4S Megalith',
       netRegex: NetRegexes.headMarker({ id: '005D' }),
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (data.role !== 'tank')
           return output.awayFromTanks();
 

@@ -28,7 +28,7 @@ export default {
       id: 'E3S Spilling Wave',
       regex: /Spilling Wave/,
       beforeSeconds: 3,
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank';
       },
       alertText: (_data, _matches, output) => output.text(),
@@ -105,11 +105,11 @@ export default {
       id: 'E3S Rip Current',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       suppressSeconds: 10,
-      alarmText: function(data, matches, output) {
+      alarmText: (data, matches, output) => {
         if (matches.target !== data.me && data.role === 'tank')
           return output.tankSwap();
       },
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.tankBusterOnYou();
 
@@ -238,7 +238,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '3FE4', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FE4', source: '리바이어선', capture: false }),
       delaySeconds: 2.9,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.flareToOutsideCorner();
 
@@ -291,7 +291,7 @@ export default {
       netRegexJa: NetRegexes.tether({ id: '005A', target: 'リヴァイアサン' }),
       netRegexCn: NetRegexes.tether({ id: '005A', target: '利维亚桑' }),
       netRegexKo: NetRegexes.tether({ id: '005A', target: '리바이어선' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return data.me === matches.source;
       },
       alertText: (_data, _matches, output) => output.text(),
@@ -314,7 +314,7 @@ export default {
       netRegexJa: NetRegexes.tether({ id: '005A', target: 'リヴァイアサン' }),
       netRegexCn: NetRegexes.tether({ id: '005A', target: '利维亚桑' }),
       netRegexKo: NetRegexes.tether({ id: '005A', target: '리바이어선' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.vent = data.vent || [];
         data.vent.push(matches.source);
       },
@@ -327,7 +327,7 @@ export default {
       netRegexJa: NetRegexes.tether({ id: '005A', target: 'リヴァイアサン', capture: false }),
       netRegexCn: NetRegexes.tether({ id: '005A', target: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.tether({ id: '005A', target: '리바이어선', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.vent.length === 2 && !data.vent.includes(data.me) && data.role !== 'tank';
       },
       infoText: (_data, _matches, output) => output.text(),
@@ -364,12 +364,12 @@ export default {
       id: 'E3S Sundering Waters',
       netRegex: NetRegexes.gainsEffect({ effectId: '73E' }),
       condition: Conditions.targetIsYou(),
-      alertText: function(_data, matches, output) {
+      alertText: (_data, matches, output) => {
         const seconds = matches.duration;
         if (seconds <= 8)
           return output.knockbackOnYou();
       },
-      infoText: function(_data, matches, output) {
+      infoText: (_data, matches, output) => {
         const seconds = matches.duration;
         if (seconds <= 8)
           return;
@@ -435,13 +435,13 @@ export default {
     {
       id: 'E3S Smothering Waters',
       netRegex: NetRegexes.gainsEffect({ effectId: '73D' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         // first tsunami stack is 25 seconds
         // second tsunami stack is 13 seconds
         // Everybody is in first stack, but tanks not in the second.
         return parseFloat(matches.duration) > 15 || data.role !== 'tank';
       },
-      delaySeconds: function(_data, matches) {
+      delaySeconds: (_data, matches) => {
         return parseFloat(matches.duration) - 3;
       },
       suppressSeconds: 1,
@@ -483,7 +483,7 @@ export default {
     {
       id: 'E3S Sweeping Waters',
       netRegex: NetRegexes.gainsEffect({ effectId: '73F' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return data.me === matches.target || data.role === 'tank';
       },
       delaySeconds: 13,
@@ -508,7 +508,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '400F', source: 'リヴァイアサン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '400F', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '400F', source: '리바이어선', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.refreshed = true;
       },
     },
@@ -564,7 +564,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3FEA', source: 'リヴァイアサン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3FEA', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FEA', source: '리바이어선', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.refreshed;
       },
       delaySeconds: 6.2,
@@ -588,7 +588,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3FEB', source: 'リヴァイアサン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3FEB', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FEB', source: '리바이어선', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.refreshed;
       },
       delaySeconds: 6.2,

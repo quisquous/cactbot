@@ -83,7 +83,7 @@ export default {
       regex: /Limit Break/,
       // 2 extra seconds over the cast.
       beforeSeconds: 8,
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         const num = data.limitBreak;
         delete data.limitBreak;
 
@@ -133,7 +133,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ウォーリア・オブ・ライト', id: '4F09', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '光之战士', id: '4F09', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '빛의 전사', id: '4F09', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer';
       },
       suppressSeconds: 5,
@@ -177,7 +177,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F3[456]' }),
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F3[456]' }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F3[456]' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         if (matches.id === '4F34')
           data.limitBreak = 1;
         if (matches.id === '4F35')
@@ -207,7 +207,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4EF3', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4EF3', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4EF3', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.imbued = data.imbued || [];
         data.imbued.push('fire');
       },
@@ -220,7 +220,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4EF4', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4EF4', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4EF4', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.imbued = data.imbued || [];
         data.imbued.push('blizzard');
       },
@@ -233,7 +233,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4EF5', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4EF5', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4EF5', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.imbued = data.imbued || [];
         data.imbued.push('holy');
       },
@@ -246,7 +246,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4EF6', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4EF6', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4EF6', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.imbued = data.imbued || [];
         data.imbued.push('stone');
       },
@@ -259,11 +259,11 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F4A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F4A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F4A', capture: false }),
-      preRun: function(data) {
+      preRun: (data) => {
         data.imbued = data.imbued || [];
         data.imbued.push('swordIn');
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         const strings = data.imbued.map((key) => output[key]());
         const msg = strings.join(' + ');
         delete data.imbued;
@@ -279,11 +279,11 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F49', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F49', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F49', capture: false }),
-      preRun: function(data) {
+      preRun: (data) => {
         data.imbued = data.imbued || [];
         data.imbued.push('swordOut');
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         const strings = data.imbued.map((key) => output[key]());
         const msg = strings.join(' + ');
         delete data.imbued;
@@ -348,7 +348,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '5151', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '5151', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '5151', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.isAddPhase = true;
       },
     },
@@ -438,11 +438,11 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '5152', capture: false }),
       // This is still 1 second before this cast goes off, giving ~7 seconds before LB is needed.
       delaySeconds: 4,
-      alarmText: function(data, _matches, output) {
+      alarmText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.text();
       },
-      run: function(data) {
+      run: (data) => {
         data.isAddPhase = false;
         data.ultimateSeen = true;
       },
@@ -539,7 +539,7 @@ export default {
       condition: (data) => data.ultimateSeen && !data.calledSpectral,
       preRun: (data) => data.calledSpectral = true,
       alertText: (_data, _matches, output) => output.text(),
-      run: function(data) {
+      run: (data) => {
         data.ninja = true;
       },
       outputStrings: {
@@ -562,7 +562,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ウォーリア・オブ・ライト', id: '4F45', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '光之战士', id: '4F45', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '빛의 전사', id: '4F45', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.calledSpectral = false;
       },
     },
@@ -576,7 +576,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: ['光之战士', '幻光忍者'], id: '4EFD', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: ['빛의 전사', '환상빛의 닌자'], id: '4EFD', capture: false }),
       delaySeconds: 30,
-      run: function(data) {
+      run: (data) => {
         delete data.ninja;
       },
     },
@@ -637,7 +637,7 @@ export default {
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: (data, matches) => data.ultimateSeen && data.me === matches.target,
       alarmText: (_data, _matches, output) => output.text(),
-      run: function(data) {
+      run: (data) => {
         data.deluge = true;
       },
       outputStrings: {
@@ -686,7 +686,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4EEF', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4EEF', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4EEF', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.quintuplecasting = true;
         data.quintuplecasts = [];
       },
@@ -700,7 +700,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '光之战士', id: '4EEF', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '빛의 전사', id: '4EEF', capture: false }),
       durationSeconds: 18.5,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         const strings = data.quintuplecasts.map((key) => output[key]());
         const msg = strings.join(' > ');
         return msg;
@@ -717,7 +717,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '光之战士', id: ['4EEF', '4EF0'], capture: false }),
       netRegexKo: NetRegexes.ability({ source: '빛의 전사', id: ['4EEF', '4EF0'], capture: false }),
       durationSeconds: 3,
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         const next = data.quintuplecasts.shift();
         // The last cast of 4EF0 will not have a next mechanic to call.
         if (next)
@@ -732,7 +732,7 @@ export default {
       durationSeconds: 2,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => `(${output.blizzard().toLowerCase()})`,
-      run: function(data) {
+      run: (data) => {
         data.quintuplecasts.push('blizzard');
       },
       outputStrings: {
@@ -746,7 +746,7 @@ export default {
       durationSeconds: 2,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => `(${output.holy().toLowerCase()})`,
-      run: function(data) {
+      run: (data) => {
         data.quintuplecasts.push('holy');
       },
       outputStrings: {
@@ -760,7 +760,7 @@ export default {
       durationSeconds: 2,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => `(${output.stone().toLowerCase()})`,
-      run: function(data) {
+      run: (data) => {
         data.quintuplecasts.push('stone');
       },
       outputStrings: {
@@ -774,7 +774,7 @@ export default {
       durationSeconds: 2,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => `(${output.fire().toLowerCase()})`,
-      run: function(data) {
+      run: (data) => {
         data.quintuplecasts.push('fire');
       },
       outputStrings: {
@@ -788,7 +788,7 @@ export default {
       durationSeconds: 2,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => `(${output.flash().toLowerCase()})`,
-      run: function(data) {
+      run: (data) => {
         data.quintuplecasts.push('flash');
       },
       outputStrings: {
