@@ -13,7 +13,7 @@ export default {
       id: 'LakshmiEx Path of Light',
       regex: /Path of Light/,
       beforeSeconds: 5,
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank';
       },
       response: Responses.tankCleave(),
@@ -28,7 +28,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '2148', source: 'ラクシュミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2148', source: '吉祥天女', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2148', source: '락슈미', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.chanchala = true;
       },
     },
@@ -40,7 +40,7 @@ export default {
       netRegexJa: NetRegexes.losesEffect({ target: 'ラクシュミ', effectId: '582', capture: false }),
       netRegexCn: NetRegexes.losesEffect({ target: '吉祥天女', effectId: '582', capture: false }),
       netRegexKo: NetRegexes.losesEffect({ target: '락슈미', effectId: '582', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.chanchala = false;
       },
     },
@@ -52,7 +52,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '215E', source: 'ラクシュミ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '215E', source: '吉祥天女' }),
       netRegexKo: NetRegexes.startsUsing({ id: '215E', source: '락슈미' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank';
       },
       response: Responses.tankBuster('info'),
@@ -65,7 +65,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '215E', source: 'ラクシュミ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '215E', source: '吉祥天女' }),
       netRegexKo: NetRegexes.startsUsing({ id: '215E', source: '락슈미' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role !== 'tank' && data.role !== 'healer';
       },
       response: Responses.tankBuster('alarm'),
@@ -133,7 +133,7 @@ export default {
     { // Stack marker
       id: 'LakshmiEx Pall of Light',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (!data.chanchala)
           return;
 
@@ -142,7 +142,7 @@ export default {
 
         return output.vrillStack();
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (data.chanchala)
           return;
 
@@ -205,7 +205,7 @@ export default {
       id: 'LakshmiEx Path of Light Marker',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
       condition: Conditions.targetIsYou(),
-      alarmText: function(data, _matches, output) {
+      alarmText: (data, _matches, output) => {
         if (data.chanchala)
           return output.vrillCleaveOnYou();
 
@@ -235,7 +235,7 @@ export default {
       id: 'LakshmiEx Hand of Grace',
       netRegex: NetRegexes.headMarker({ id: '006B' }),
       condition: Conditions.targetIsYou(),
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.chanchala)
           return output.vrillCrossMarker();
 
@@ -265,7 +265,7 @@ export default {
       id: 'LakshmiEx Hand of Beauty',
       netRegex: NetRegexes.headMarker({ id: '006D' }),
       condition: Conditions.targetIsYou(),
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.chanchala)
           return output.vrillFlowerMarker();
 

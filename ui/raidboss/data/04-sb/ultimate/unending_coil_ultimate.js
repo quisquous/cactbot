@@ -27,7 +27,7 @@ export default {
       id: 'UCU Firescorched Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '1D0' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.fireDebuff = true;
       },
     },
@@ -35,7 +35,7 @@ export default {
       id: 'UCU Firescorched Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '1D0' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.fireDebuff = false;
       },
     },
@@ -43,7 +43,7 @@ export default {
       id: 'UCU Icebitten Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '1D1' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.iceDebuff = true;
       },
     },
@@ -51,7 +51,7 @@ export default {
       id: 'UCU Icebitten Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '1D1' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.iceDebuff = false;
       },
     },
@@ -63,7 +63,7 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '26C5', source: 'ファイアホーン' }),
       netRegexCn: NetRegexes.ability({ id: '26C5', source: '火角' }),
       netRegexKo: NetRegexes.ability({ id: '26C5', source: '화염뿔' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.fireballs[data.naelFireballCount].push(matches.target);
       },
     },
@@ -75,7 +75,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '26E2', source: 'バハムート・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '26E2', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26E2', source: '바하무트 프라임', capture: false }),
-      run: function(data) {
+      run: (data) => {
         if (data.resetTrio)
           data.resetTrio('quickmarch');
       },
@@ -88,7 +88,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '26E3', source: 'バハムート・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '26E3', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26E3', source: '바하무트 프라임', capture: false }),
-      run: function(data) {
+      run: (data) => {
         if (data.resetTrio)
           data.resetTrio('blackfire');
       },
@@ -101,7 +101,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '26E4', source: 'バハムート・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '26E4', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26E4', source: '바하무트 프라임', capture: false }),
-      run: function(data) {
+      run: (data) => {
         if (data.resetTrio)
           data.resetTrio('fellruin');
       },
@@ -114,7 +114,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '26E5', source: 'バハムート・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '26E5', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26E5', source: '바하무트 프라임', capture: false }),
-      run: function(data) {
+      run: (data) => {
         if (data.resetTrio)
           data.resetTrio('heavensfall');
       },
@@ -127,7 +127,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '26E6', source: 'バハムート・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '26E6', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26E6', source: '바하무트 프라임', capture: false }),
-      run: function(data) {
+      run: (data) => {
         if (data.resetTrio)
           data.resetTrio('tenstrike');
       },
@@ -140,7 +140,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '26E7', source: 'バハムート・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '26E7', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26E7', source: '바하무트 프라임', capture: false }),
-      run: function(data) {
+      run: (data) => {
         if (data.resetTrio)
           data.resetTrio('octet');
       },
@@ -153,7 +153,7 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '26B8', source: 'ラグナロク' }),
       netRegexCn: NetRegexes.ability({ id: '26B8', source: '诸神黄昏' }),
       netRegexKo: NetRegexes.ability({ id: '26B8', source: '라그나로크' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         // This happens once during the nael transition and again during
         // the heavensfall trio.  This should proooobably hit all 8
         // people by the time you get to octet.
@@ -209,7 +209,7 @@ export default {
     {
       id: 'UCU Hatch Collect',
       netRegex: NetRegexes.headMarker({ id: '0076' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.hatch = data.hatch || [];
         data.hatch.push(matches.target);
       },
@@ -256,7 +256,7 @@ export default {
       id: 'UCU Hatch Cleanup',
       netRegex: NetRegexes.headMarker({ id: '0076', capture: false }),
       delaySeconds: 5,
-      run: function(data) {
+      run: (data) => {
         delete data.hatch;
       },
     },
@@ -637,7 +637,7 @@ export default {
     {
       id: 'UCU Nael Your Doom',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         // FIXME: temporary workaround for "gains the effect for 9999.00"
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
         if (matches.duration > 1000)
@@ -646,7 +646,7 @@ export default {
       },
       // FIXME: temporary workaround for multiple gains effects messages.
       // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223#issuecomment-513486275
-      durationSeconds: function(_data, matches) {
+      durationSeconds: (_data, matches) => {
         if (parseFloat(matches.duration) <= 6)
           return 3;
 
@@ -710,12 +710,12 @@ export default {
     {
       id: 'UCU Doom Init',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
-      condition: function(_data, matches) {
+      condition: (_data, matches) => {
         // FIXME: temporary workaround for "gains the effect for 9999.00"
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
         return matches.duration < 1000;
       },
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.dooms = data.dooms || [null, null, null];
         let order = null;
         if (parseFloat(matches.duration) < 9)
@@ -735,7 +735,7 @@ export default {
       id: 'UCU Doom Cleanup',
       netRegex: NetRegexes.gainsEffect({ effectId: 'D2', capture: false }),
       delaySeconds: 20,
-      run: function(data) {
+      run: (data) => {
         delete data.dooms;
         delete data.doomCount;
       },
@@ -779,7 +779,7 @@ export default {
       delaySeconds: 35,
       suppressSeconds: 99999,
       infoText: (_data, _matches, output) => output.text(),
-      run: function(data) {
+      run: (data) => {
         data.naelFireballCount = 1;
       },
       outputStrings: {
@@ -816,7 +816,7 @@ export default {
         if (data.fireballs[1].includes(data.me))
           return output.fireOut();
       },
-      run: function(data) {
+      run: (data) => {
         data.naelFireballCount = 2;
       },
       outputStrings: {
@@ -867,7 +867,7 @@ export default {
         }
         return output.fireIn();
       },
-      run: function(data) {
+      run: (data) => {
         data.naelFireballCount = 3;
       },
       outputStrings: {
@@ -905,7 +905,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
-      preRun: function(data) {
+      preRun: (data) => {
         const tookTwo = data.fireballs[1].filter((p) => {
           return data.fireballs[2].includes(p);
         });
@@ -927,7 +927,7 @@ export default {
         if (!data.tookThreeFireballs)
           return output.fireIn();
       },
-      run: function(data) {
+      run: (data) => {
         data.naelFireballCount = 4;
       },
       outputStrings: {
@@ -957,10 +957,10 @@ export default {
       netRegexJa: NetRegexes.abilityFull({ source: ['アイスクロウ', 'サンダーウィング', 'ライトファング', 'ダークテイル', 'ファイアホーン'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
       netRegexCn: NetRegexes.abilityFull({ source: ['冰爪', '雷翼', '光牙', '暗尾', '火角'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
       netRegexKo: NetRegexes.abilityFull({ source: ['얼음발톱', '번개날개', '빛의 송곳니', '어둠의 꼬리', '화염뿔'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return !data.seenDragon || !(matches.source in data.seenDragon);
       },
-      run: function(data, matches) {
+      run: (data, matches) => {
         // seenDragon[dragon name] => boolean
         data.seenDragon = data.seenDragon || {};
         data.seenDragon[matches.source] = true;
@@ -1021,7 +1021,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ネール・デウス・ダーナス', id: '26B6', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '奈尔·神·达纳斯', id: '26B6', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '넬 데우스 다르누스', id: '26B6', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.naelMarks && !data.calledNaelDragons;
       },
       durationSeconds: 10,
@@ -1111,10 +1111,10 @@ export default {
     {
       id: 'UCU Nael Dragon Dive Marker Counter',
       netRegex: NetRegexes.headMarker({ id: '0014', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return !data.trio;
       },
-      run: function(data) {
+      run: (data) => {
         data.naelDiveMarkerCount++;
       },
     },
@@ -1122,10 +1122,10 @@ export default {
       // Octet marker tracking (77=nael, 14=dragon, 29=baha, 2A=twin)
       id: 'UCU Octet Marker Tracking',
       netRegex: NetRegexes.headMarker({ id: ['0077', '0014', '0029'] }),
-      condition: function(data) {
+      condition: (data) => {
         return data.trio === 'octet';
       },
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.octetMarker = data.octetMarker || [];
         data.octetMarker.push(matches.target);
         if (data.octetMarker.length !== 7)
@@ -1338,7 +1338,7 @@ export default {
     {
       id: 'UCU Megaflare Stack Tracking',
       netRegex: NetRegexes.headMarker({ id: '0027' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.megaStack.push(matches.target);
       },
     },
@@ -1445,7 +1445,7 @@ export default {
     {
       id: 'UCU Earthshaker Tracking',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.shakers.push(matches.target);
       },
     },
@@ -1471,7 +1471,7 @@ export default {
             return output.tenstrikeNotOnYou();
         }
       },
-      run: function(data) {
+      run: (data) => {
         if (data.trio === 'tenstrike' && data.shakers.length === 4)
           data.shakers = [];
       },
@@ -1598,7 +1598,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '26AA', source: '双塔尼亚', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26AA', source: '트윈타니아', capture: false }),
       suppressSeconds: 99999,
-      run: function(data) {
+      run: (data) => {
         // TODO: a late white puddle can cause dragons to get seen for the next
         // phase so clear them again here.  Probably data for triggers needs
         // to be cleared at more reliable times.
@@ -1623,7 +1623,7 @@ export default {
         };
 
         // Begin copy and paste from dragon_test.js.
-        const modDistance = function(mark, dragon) {
+        const modDistance = (mark, dragon) => {
           const oneWay = (dragon - mark + 8) % 8;
           const otherWay = (mark - dragon + 8) % 8;
           const distance = Math.min(oneWay, otherWay);
@@ -1631,7 +1631,7 @@ export default {
           return distance;
         };
 
-        const badSpots = function(mark, dragon) {
+        const badSpots = (mark, dragon) => {
           // All spots between mark and dragon are bad.  If distance == 1,
           // then the dragon hits the spot behind the mark too.  e.g. N
           // mark, NE dragon will also hit NW.
@@ -1655,7 +1655,7 @@ export default {
           return bad;
         };
 
-        const findDragonMarks = function(array) {
+        const findDragonMarks = (array) => {
           const marks = [-1, -1, -1];
           const ret = {
             // Third drive is on a dragon three squares away and will cover

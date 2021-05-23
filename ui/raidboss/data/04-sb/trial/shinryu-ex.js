@@ -16,7 +16,7 @@ export default {
       netRegexJa: NetRegexes.removingCombatant({ name: '神龍', capture: false }),
       netRegexCn: NetRegexes.removingCombatant({ name: '神龙', capture: false }),
       netRegexKo: NetRegexes.removingCombatant({ name: '신룡', capture: false }),
-      run: function(data) {
+      run: (data) => {
         // Explicitly clear so ugly heart message doesn't appear after wipe.
         delete data.phase;
       },
@@ -29,7 +29,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '25DE', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '25DE', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25DE', source: '신룡', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.phase = 1;
       },
     },
@@ -41,7 +41,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '25E7', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '25E7', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25E7', source: '신룡', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.phase = 2;
       },
     },
@@ -53,7 +53,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '25E4', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '25E4', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25E4', source: '신룡', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.phase = 3;
       },
     },
@@ -65,7 +65,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '264E', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '264E', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '264E', source: '신룡', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.phase = 4;
       },
     },
@@ -77,13 +77,13 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '25F3', source: '神龍' }),
       netRegexCn: NetRegexes.startsUsing({ id: '25F3', source: '神龙' }),
       netRegexKo: NetRegexes.startsUsing({ id: '25F3', source: '신룡' }),
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.akhMornOnYou();
         else if (data.role === 'tank')
           return output.akhMornOn({ player: data.ShortName(matches.target) });
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (matches.target === data.me || data.role === 'tank')
           return;
 
@@ -188,7 +188,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: ['271F', '25E8'], source: '右翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['271F', '25E8'], source: '오른쪽 날개', capture: false }),
       durationSeconds: 7,
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.phase === 3)
           return output.stopToGetFrozen();
 
@@ -243,7 +243,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '右翼', target: '右翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '오른쪽 날개', target: '오른쪽 날개', capture: false }),
       durationSeconds: 7,
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.phase === 3)
           return output.baitBoltKeepMoving();
 
@@ -360,7 +360,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '264E', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '264E', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '264E', source: '신룡', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer';
       },
       infoText: (_data, _matches, output) => output.text(),
@@ -404,7 +404,7 @@ export default {
       netRegexJa: NetRegexes.addedCombatant({ name: '神龍の心核', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '神龙的核心', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '신룡의 심핵', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         // Prevent ugly heart message on wipe.
         return data.phase === 1;
       },
@@ -450,13 +450,13 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '260A', source: '白金龍' }),
       netRegexCn: NetRegexes.startsUsing({ id: '260A', source: '白金龙' }),
       netRegexKo: NetRegexes.startsUsing({ id: '260A', source: '백금룡' }),
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.deathSentenceOnYou();
         else if (data.role === 'healer')
           return output.deathSentenceOn({ player: data.ShortName(matches.target) });
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (matches.target !== data.me && data.role === 'tank')
           return output.deathSentenceOn({ player: data.ShortName(matches.target) });
       },
@@ -527,11 +527,11 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '2718', source: 'レフトウィング', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2718', source: '左翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2718', source: '왼쪽 날개', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return !data.finalWing;
       },
       alertText: (_data, _matches, output) => output.text(),
-      run: function(data) {
+      run: (data) => {
         data.finalWing = true;
       },
       outputStrings: {
@@ -553,11 +553,11 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '2719', source: 'ライトウィング', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2719', source: '右翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2719', source: '오른쪽 날개', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return !data.finalWing;
       },
       alertText: (_data, _matches, output) => output.text(),
-      run: function(data) {
+      run: (data) => {
         data.finalWing = true;
       },
       outputStrings: {
@@ -576,7 +576,7 @@ export default {
       netRegex: NetRegexes.headMarker({ id: '0061' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 3.8,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.phase === 3)
           return output.breakTethersThenStack();
 
@@ -620,20 +620,20 @@ export default {
     {
       id: 'ShinryuEx Shakers',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         data.shakerTargets = data.shakerTargets || [];
         data.shakerTargets.push(matches.target);
         return data.shakerTargets.length === 2;
       },
-      alarmText: function(data, _matches, output) {
+      alarmText: (data, _matches, output) => {
         if (data.shakerTargets.includes(data.me))
           return output.earthshakerOnYou();
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (!data.shakerTargets.includes(data.me))
           return output.avoidEarthshakers();
       },
-      run: function(data) {
+      run: (data) => {
         delete data.shakerTargets;
       },
       outputStrings: {

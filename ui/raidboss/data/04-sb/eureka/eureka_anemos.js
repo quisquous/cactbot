@@ -208,7 +208,7 @@ export default {
       netRegexCn: NetRegexes.wasDefeated({ target: '暗影幽灵', capture: false }),
       netRegexKo: NetRegexes.wasDefeated({ target: '그림자 망령', capture: false }),
       soundVolume: 0,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         data.wraithCount = data.wraithCount || 0;
         data.wraithCount++;
         return output.text({ num: data.wraithCount });
@@ -232,7 +232,7 @@ export default {
       netRegexJa: NetRegexes.addedCombatant({ name: 'パズズ', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '帕祖祖', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '파주주', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.wraithCount = 0;
       },
     },

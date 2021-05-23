@@ -26,7 +26,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '32DC', source: '朱雀', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '32DC', source: '朱雀', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '32DC', source: '주작', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank' || data.role === 'healer';
       },
       alertText: (_data, _matches, output) => output.text(),

@@ -26,7 +26,7 @@ export default {
       netRegexJa: NetRegexes.addedCombatant({ name: '暴風域', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '暴风领域', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '폭풍 영역', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank';
       },
       infoText: (_data, _matches, output) => output.text(),
@@ -60,7 +60,7 @@ export default {
     {
       id: 'O6S Last Kiss Tracker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.lastKiss = matches.target;
       },
     },
@@ -83,7 +83,7 @@ export default {
     {
       id: 'O6S Last Kiss',
       netRegex: NetRegexes.gainsEffect({ effectId: '5BF' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         // The person who gets the marker briefly gets the effect, so
         // don't tell them twice.
         return data.me === matches.target && data.lastKiss !== data.me;

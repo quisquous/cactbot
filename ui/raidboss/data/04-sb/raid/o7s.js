@@ -13,7 +13,7 @@ export default {
       id: 'O7S Aether Rot Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '5C3' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.rot = true;
       },
     },
@@ -21,7 +21,7 @@ export default {
       id: 'O7S Aether Rot Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '5C3' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.rot = false;
       },
     },
@@ -33,10 +33,10 @@ export default {
       netRegexJa: NetRegexes.gainsEffect({ target: 'ガーディアン', effectId: '5D3', capture: false }),
       netRegexCn: NetRegexes.gainsEffect({ target: '守护者', effectId: '5D3', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '가디언', effectId: '5D3', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return !data.first || data.seenVirus && !data.second;
       },
-      run: function(data) {
+      run: (data) => {
         if (data.seenVirus)
           data.second = 'dada';
         else
@@ -51,10 +51,10 @@ export default {
       netRegexJa: NetRegexes.gainsEffect({ target: 'ガーディアン', effectId: '5D4', capture: false }),
       netRegexCn: NetRegexes.gainsEffect({ target: '守护者', effectId: '5D4', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '가디언', effectId: '5D4', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return !data.first || data.seenVirus && !data.second;
       },
-      run: function(data) {
+      run: (data) => {
         if (data.seenVirus)
           data.second = 'biblio';
         else
@@ -69,7 +69,7 @@ export default {
       netRegexJa: NetRegexes.gainsEffect({ target: 'ガーディアン', effectId: '5D5', capture: false }),
       netRegexCn: NetRegexes.gainsEffect({ target: '守护者', effectId: '5D5', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '가디언', effectId: '5D5', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.seenVirus = true;
       },
     },
@@ -122,12 +122,12 @@ export default {
     {
       id: 'O7S Blue Marker',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
-      alarmText: function(data, matches, output) {
+      alarmText: (data, matches, output) => {
         if (data.me !== matches.target)
           return;
         return output.blueMarkerOnYou();
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return;
         return output.blueMarkerOn({ player: data.ShortName(matches.target) });
@@ -182,7 +182,7 @@ export default {
       // Aether Rot
       id: 'O7S Rot',
       netRegex: NetRegexes.gainsEffect({ effectId: '5C3' }),
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.rotOnYou();
 
@@ -229,7 +229,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'ガーディアン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '守护者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '가디언', capture: false }),
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         data.loadCount = ++data.loadCount || 1;
 
         if (data.loadCount === 1) {
@@ -303,7 +303,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '276F', source: 'ガーディアン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '276F', source: '守护者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '276F', source: '가디언', capture: false }),
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         data.runCount = ++data.runCount || 1;
 
         if (data.runCount === 1)

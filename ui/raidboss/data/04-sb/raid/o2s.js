@@ -34,7 +34,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '235A', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '235A', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '235A', source: '카타스트로피', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.probeCount = (data.probeCount || 0) + 1;
         data.dpsProbe = data.probeCount === 2 || data.probeCount === 4;
         data.myProbe = data.dpsProbe === data.role.startsWith('dps');
@@ -44,7 +44,7 @@ export default {
       id: 'O2S Levitation Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '556' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.levitating = true;
       },
     },
@@ -52,7 +52,7 @@ export default {
       id: 'O2S Levitation Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '556' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.levitating = false;
       },
     },
@@ -94,15 +94,15 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '2374', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2374', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2374', source: '카타스트로피', capture: false }),
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (!data.levitating)
           return output.earthquakeLevitate();
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.levitating)
           return output.earthquake();
       },
-      tts: function(data, _matches, output) {
+      tts: (data, _matches, output) => {
         if (!data.levitating)
           return output.levitate();
       },
@@ -136,11 +136,11 @@ export default {
     {
       id: 'O2S Elevated',
       netRegex: NetRegexes.gainsEffect({ effectId: '54E', capture: false }),
-      alarmText: function(data, _matches, output) {
+      alarmText: (data, _matches, output) => {
         if (data.role.startsWith('dps') && !data.levitating)
           return output.dpsLevitate();
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (!data.role.startsWith('dps'))
           return output.dpsUpTanksHealersDown();
       },
@@ -191,7 +191,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '235A', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '235A', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '235A', source: '카타스트로피', capture: false }),
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.myProbe) {
           if (!data.dpsProbe)
             return output.maniacalProbeTanksHealers();
@@ -199,7 +199,7 @@ export default {
           return output.maniacalProbeDps();
         }
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (!data.myProbe) {
           if (!data.dpsProbe)
             return output.maniacalProbeTanksHealers();
@@ -207,7 +207,7 @@ export default {
           return output.maniacalProbeDps();
         }
       },
-      tts: function(data, _matches, output) {
+      tts: (data, _matches, output) => {
         if (data.dpsProbe)
           return output.dpsProbe();
 
@@ -277,20 +277,20 @@ export default {
     {
       id: 'O2S 6 Fulms Under Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return !data.under && matches.target === data.me;
       },
       delaySeconds: 5,
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (!data.levitating)
           return output.sixFulmsUnderLevitate();
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.levitating)
           return output.sixFulmsUnder();
       },
       tts: (_data, _matches, output) => output.float(),
-      run: function(data) {
+      run: (data) => {
         data.under = true;
       },
       outputStrings: {
@@ -324,7 +324,7 @@ export default {
       id: 'O2S 6 Fulms Under Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '237' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.under = false;
       },
     },
