@@ -183,14 +183,7 @@ export default {
           ko: '돌과 같이 맞기',
         },
         stackOnYou: Outputs.stackOnYou,
-        stackOn: {
-          en: 'Stack on ${player}',
-          de: 'Auf ${player} sammeln',
-          fr: 'Packez-vous sur ${player}',
-          ja: '${player}にスタック',
-          cn: '靠近${player}集合',
-          ko: '"${player}" 쉐어징',
-        },
+        stackOn: Outputs.stackOnPlayer,
       },
     },
     {

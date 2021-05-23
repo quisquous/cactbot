@@ -356,14 +356,7 @@ export default {
         return output.text({ player: data.ShortName(name) });
       },
       outputStrings: {
-        text: {
-          en: 'Stack on ${player}',
-          de: 'Sammeln auf ${player}',
-          fr: 'Packez-vous sur ${player}',
-          ja: '${player} に集合',
-          cn: '靠近 ${player} 集合',
-          ko: '"${player}" 쉐어징',
-        },
+        text: Outputs.stackOnPlayer,
       },
     },
     {

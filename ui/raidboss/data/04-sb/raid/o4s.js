@@ -1,5 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -996,19 +997,12 @@ export default {
         // Something went awry, or maybe healers dead.  Just say stack on water anyway,
         // instead of trying to be smart when the healers die.
         if (data.waterHealer)
-          return output.stackOnWaterhealer({ waterHealer: data.waterHealer });
+          return output.stackOnWaterhealer({ player: data.waterHealer });
 
         return output.stackOnWater();
       },
       outputStrings: {
-        stackOnWaterhealer: {
-          en: 'Stack on ${waterHealer}',
-          de: 'Stack auf ${waterHealer}',
-          fr: 'Packez-vous sur ${waterHealer}',
-          ja: '${waterHealer}に頭割り',
-          cn: '分摊于${waterHealer}',
-          ko: '"${waterHealer}"에게 모이기',
-        },
+        stackOnWaterhealer: Outputs.stackOnPlayer,
         stackOnWater: {
           en: 'Stack on water',
           de: 'Bei Wasser stacken',

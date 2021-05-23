@@ -73,7 +73,7 @@ export default {
           if (data.holyTargets[i] === data.me)
             return output.out();
         }
-        return output.stackOnHolytargets({ holyTargets: data.holyTargets[0] });
+        return output.stackOnHolytargets({ player: data.holyTargets[0] });
       },
       run: function(data) {
         delete data.holyTargets;
@@ -88,14 +88,7 @@ export default {
           cn: '远离',
           ko: '밖으로',
         },
-        stackOnHolytargets: {
-          en: 'Stack on ${holyTargets}',
-          de: 'Stack auf ${holyTargets}',
-          fr: 'Packez-vous sur ${holyTargets}',
-          ja: '${holyTargets}にスタック',
-          cn: '靠近 ${holyTargets}集合',
-          ko: '"${holyTargets}" 쉐어징',
-        },
+        stackOnHolytargets: Outputs.stackOnPlayer,
       },
     },
     {
