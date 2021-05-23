@@ -64,7 +64,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4B03' }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4B03' }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4B03' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBusterSwap(),
@@ -148,7 +148,7 @@ export default {
       netRegexJa: NetRegexes.addedCombatantFull({ name: 'ネールの幻影' }),
       netRegexCn: NetRegexes.addedCombatantFull({ name: '奈尔的幻影' }),
       netRegexKo: NetRegexes.addedCombatantFull({ name: '넬의 환영' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         // 112,108 (east)
         // 88,108 (west)
         // TODO: it's impossible to do anything with this now,
@@ -185,11 +185,11 @@ export default {
     {
       id: 'RubyEx Pall of Rage',
       netRegex: NetRegexes.gainsEffect({ effectId: '8A2' }),
-      preRun: function(data, matches) {
+      preRun: (data, matches) => {
         data.colors = data.colors || {};
         data.colors[matches.target] = 'blue';
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.text();
       },
@@ -207,11 +207,11 @@ export default {
     {
       id: 'RubyEx Pall of Grief',
       netRegex: NetRegexes.gainsEffect({ effectId: '8A3' }),
-      preRun: function(data, matches) {
+      preRun: (data, matches) => {
         data.colors = data.colors || {};
         data.colors[matches.target] = 'red';
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.text();
       },
@@ -240,7 +240,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ネールの幻影', id: '4AFF' }),
       netRegexCn: NetRegexes.startsUsing({ source: '奈尔的幻影', id: '4AFF' }),
       netRegexKo: NetRegexes.startsUsing({ source: '넬의 환영', id: '4AFF' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         if (data.role !== 'healer' || data.role !== 'tank')
           return false;
         if (data.colors[data.me] === data.colors[matches.target])
@@ -253,7 +253,7 @@ export default {
       id: 'RubyEx Raven Death',
       netRegex: NetRegexes.losesEffect({ effectId: '8A3', capture: false }),
       suppressSeconds: 10,
-      run: function(data) {
+      run: (data) => {
         // This effect persists through death, and is removed off of everybody
         // about two seconds before the 19: defeated log line.
         // TODO: it'd be nice to say to attack the other add, if you knew which one was dead.
@@ -268,7 +268,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ルビーウェポン', id: '4AFC', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '红宝石神兵', id: '4AFC', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '루비 웨폰', id: '4AFC', capture: false }),
-      preRun: function(data) {
+      preRun: (data) => {
         for (const id in data.colors)
           data.colors[id] = data.colors[id] === 'red' ? 'blue' : 'red';
         data.ravens = data.ravens || {};
@@ -279,7 +279,7 @@ export default {
       },
       // This gets cast twice (maybe once for each add)?
       suppressSeconds: 1,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         // TODO: it'd be nice to call out which raven was alive?
         if (data.ravenDead)
           return;
@@ -321,7 +321,7 @@ export default {
       id: 'RubyEx Meteor',
       netRegex: NetRegexes.headMarker({ id: '00(?:C[A-F]|D0|D1)' }),
       condition: Conditions.targetIsYou(),
-      infoText: function(_data, matches, output) {
+      infoText: (_data, matches, output) => {
         return output.text({ num: parseInt(matches.id, 16) - parseInt('00CA', 16) + 1 });
       },
       outputStrings: {
@@ -433,7 +433,7 @@ export default {
       netRegexJa: NetRegexes.addedCombatantFull({ name: 'コメット' }),
       netRegexCn: NetRegexes.addedCombatantFull({ name: '彗星' }),
       netRegexKo: NetRegexes.addedCombatantFull({ name: '혜성' }),
-      infoText: function(_data, matches, output) {
+      infoText: (_data, matches, output) => {
         // Possible positions:
         // 85.16,100.131 and 115.16,100.131
         // 100.16,85.13102 and 100.16,115.131

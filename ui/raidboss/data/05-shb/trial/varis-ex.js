@@ -44,7 +44,7 @@ export default {
       regex: /^Festina Lente$/,
       beforeSeconds: 6,
       durationSeconds: 6,
-      response: function(data, _matches, output) {
+      response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           dodgeClonesAndStack: {
@@ -98,7 +98,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CCC', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CCC', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CCC', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.phase = 2;
       },
     },
@@ -110,7 +110,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CE2', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CE2', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CE2', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.phase = 5;
       },
     },
@@ -122,7 +122,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ヴァリスの幻影', id: '4CB3', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯的幻影', id: '4CB3', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '바리스의 환영', id: '4CB3', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.clonesActive = true;
       },
     },
@@ -154,7 +154,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CF0' }),
       netRegexCn: NetRegexes.startsUsing({ source: '瓦厉斯·耶·加尔乌斯', id: '4CF0' }),
       netRegexKo: NetRegexes.startsUsing({ source: '바리스 예 갈부스', id: '4CF0' }),
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         const target = matches.target;
         if (data.me === target)
           return output.tankBusterOnYou();
@@ -223,7 +223,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD9', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CD9', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CD9', capture: false }),
-      delaySeconds: function(data) {
+      delaySeconds: (data) => {
         return data.phase === 2 ? 20 : 10;
       },
       alertText: (_data, _matches, output) => output.text(),
@@ -267,7 +267,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CDE', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CDE', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CDE', capture: false }),
-      response: function(data, _matches, output) {
+      response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           text: Outputs.spread,
@@ -285,7 +285,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CEA', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CEA', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CEA', capture: false }),
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.grabTethers();
 
@@ -320,7 +320,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CC9', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CC9', capture: false }),
       delaySeconds: 10,
-      run: function(data) {
+      run: (data) => {
         delete data.suppressDodgeCloneCall;
       },
     },
@@ -333,13 +333,13 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '恩惠终结', id: '4CB4', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '파멸의 종착역', id: '4CB4', capture: false }),
       condition: (data) => data.clonesActive,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         // Sometimes this is called out with the stack mechanic.
         if (data.suppressDodgeCloneCall)
           return;
         return output.text();
       },
-      run: function(data) {
+      run: (data) => {
         delete data.suppressDodgeCloneCall;
         delete data.clonesActive;
       },

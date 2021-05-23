@@ -15,7 +15,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3DBC', source: '量産型カーリア' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DBC', source: '量产型卡利亚' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DBC', source: '양산형 칼리아' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanStun() || data.CanSilence();
       },
       response: Responses.stun(),
@@ -28,7 +28,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3DC0', source: 'ヴァイタライズ・レプトイド' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DC0', source: '活力化爬虫半人马' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DC0', source: '활성된 파충류' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanStun() || data.CanSilence();
       },
       response: Responses.interrupt(),
@@ -41,7 +41,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3DBA', source: 'サーヴォ・ミノタウロス' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DBA', source: '自控化弥诺陶洛斯' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DBA', source: '자동제어 미노타우로스' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanSilence();
       },
       response: Responses.interrupt(),
@@ -97,7 +97,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3DED', source: 'ミトリダテス' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DED', source: '米特里达梯' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DED', source: '미트리다테스' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
@@ -164,7 +164,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3DFB', source: 'タイクーン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DFB', source: '泰空' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DFB', source: '타이쿤' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),

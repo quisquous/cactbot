@@ -235,7 +235,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '5623', source: '暗黑之云' }),
       netRegexKo: NetRegexes.startsUsing({ id: '5623', source: '어둠의 구름' }),
       durationSeconds: 4,
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.tankBusterOnYou();
 
@@ -245,7 +245,7 @@ export default {
         if (data.role === 'healer')
           return output.tankBusters({ player: data.ShortName(matches.target) });
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.role !== 'tank' && data.role !== 'healer')
           return output.avoidLaser();
       },

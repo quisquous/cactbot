@@ -15,7 +15,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3CE5', source: 'グレーター・アルマジロ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3CE5', source: '大犰狳' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CE5', source: '거대 아르마딜로' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
@@ -53,7 +53,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4188', source: 'パック・アルマジロ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '4188', source: '群落犰狳' }),
       netRegexKo: NetRegexes.startsUsing({ id: '4188', source: '무리 아르마딜로' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanSilence();
       },
       response: Responses.interrupt('info'),
@@ -66,7 +66,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3CEB', source: 'ハイドロタロース' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3CEB', source: '水陆两用塔罗斯' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CEB', source: '수력 탈로스' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),

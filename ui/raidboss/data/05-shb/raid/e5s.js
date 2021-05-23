@@ -11,7 +11,7 @@ export default {
       id: 'E5S Stepped Leader Next',
       regex: /^Stepped Leader$/,
       beforeSeconds: 15,
-      run: function(data) {
+      run: (data) => {
         data.steppedLeaderNext = true;
       },
     },
@@ -21,7 +21,7 @@ export default {
       id: 'E5S Surge Protection Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '8B4' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.surgeProtection = true;
       },
     },
@@ -29,7 +29,7 @@ export default {
       id: 'E5S Surge Protection Loss',
       netRegex: NetRegexes.losesEffect({ effectId: '8B4' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.surgeProtection = false;
       },
     },
@@ -41,12 +41,12 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '4BA5', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '4BA5', source: '라무', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '4BA5', source: '拉姆', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return !data.seenFirstSpear;
       },
       delaySeconds: 5,
       infoText: (_data, _matches, output) => output.text(),
-      run: function(data) {
+      run: (data) => {
         data.seenFirstSpear = true;
       },
       outputStrings: {
@@ -68,7 +68,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4BAC', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4BAC', source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4BAC', source: '拉姆', capture: false }),
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.seenFirstAdd)
           return output.lookForAdds();
 
@@ -77,7 +77,7 @@ export default {
 
         return output.shortKnockback();
       },
-      run: function(data) {
+      run: (data) => {
         data.seenFirstAdd = true;
       },
       outputStrings: {
@@ -115,7 +115,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4BAA', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4BAA', source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4BAA', source: '拉姆', capture: false }),
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         // Fury's Bolt + Stepped Leader doesn't require an orb
         if (!data.surgeProtection && !data.steppedLeaderNext)
           return output.text();
@@ -134,14 +134,14 @@ export default {
     {
       id: 'E5S Fury\'s Bolt Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '8B7', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.furysBoltActive = true;
       },
     },
     {
       id: 'E5S Fury\'s Bolt Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '8B7', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.furysBoltActive = false;
       },
     },
@@ -153,14 +153,14 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4BAB', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4BAB', source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4BAB', source: '拉姆', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return !data.furysFourteenCounter || data.furysFourteenCounter < 2;
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (!data.surgeProtection)
           return output.text();
       },
-      run: function(data) {
+      run: (data) => {
         data.furysFourteenCounter = data.furysFourteenCounter || 0;
         data.furysFourteenCounter++;
       },
@@ -194,7 +194,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4BC6', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4BC6', source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4BC6', source: '拉姆', capture: false }),
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         // Fury's Bolt + Stepped Leader is a donut AoE instead
         if (!data.furysBoltActive)
           return output.readySpread();
@@ -228,7 +228,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4BC6', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4BC6', source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4BC6', source: '拉姆', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return !data.furysBoltActive;
       },
       delaySeconds: 3,
@@ -242,7 +242,7 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '4BC6', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '4BC6', source: '라무', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '4BC6', source: '拉姆', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.steppedLeaderNext = false;
       },
     },

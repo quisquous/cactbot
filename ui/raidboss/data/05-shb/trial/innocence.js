@@ -81,7 +81,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3EA3', source: 'イノセンス' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3EA3', source: '无瑕灵君' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EA3', source: '이노센스' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),

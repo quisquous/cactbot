@@ -21,7 +21,7 @@ export default {
     {
       id: 'E3N Rip Current',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),

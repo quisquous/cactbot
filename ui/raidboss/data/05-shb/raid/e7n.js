@@ -26,7 +26,7 @@ export default {
       netRegexJa: NetRegexes.tether({ source: 'ダークアイドル', id: '0025' }),
       netRegexCn: NetRegexes.tether({ source: '暗黑心象', id: '0025' }),
       netRegexKo: NetRegexes.tether({ source: '어둠의 우상', id: '0025' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
@@ -136,7 +136,7 @@ export default {
       netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 3,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         data.colorCount = data.colorCount + 1 || 0;
         if (data.colorCount === 3) {
           delete data.colorCount;
@@ -160,7 +160,7 @@ export default {
       netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 3,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         data.colorCount = data.colorCount + 1 || 0;
         if (data.colorCount === 3) {
           delete data.colorCount;
@@ -188,7 +188,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C39', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C39', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C39', capture: false }),
-      run: function(data) {
+      run: (data) => {
         delete data.colorCount;
       },
     },

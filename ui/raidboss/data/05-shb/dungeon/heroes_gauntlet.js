@@ -151,7 +151,7 @@ export default {
       // Otherwise they stack on the rock they drop.
       id: 'Heroes Gauntlet Wild Anguish Collect',
       netRegex: NetRegexes.headMarker({ id: '005D' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.anguish = data.anguish || [];
         data.anguish.push(matches.target);
       },
@@ -161,7 +161,7 @@ export default {
       netRegex: NetRegexes.headMarker({ id: '005D' }),
       delaySeconds: 1,
       suppressSeconds: 5,
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (data.anguish.length > 1)
           return output.stackOnYourRock();
 
@@ -170,7 +170,7 @@ export default {
 
         return output.stackOn({ player: data.ShortName(matches.target) });
       },
-      run: function(data) {
+      run: (data) => {
         delete data.anguish;
       },
       outputStrings: {

@@ -17,7 +17,7 @@ export default {
       id: 'HadesEx Comet',
       regex: /Comet 1/,
       beforeSeconds: 5,
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank';
       },
       infoText: (_data, _matches, output) => output.text(),
@@ -73,7 +73,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ id: '47A6', source: 'Hadès' }),
       netRegexJa: NetRegexes.startsUsing({ id: '47A6', source: 'ハーデス' }),
       netRegexKo: NetRegexes.startsUsing({ id: '47A6', source: '하데스' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
@@ -192,7 +192,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '47B8', source: 'ナプリアレスの影', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '47B8', source: '那布里亚勒斯之影', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47B8', source: '나브리알레스의 그림자', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank' || data.role === 'healer';
       },
       delaySeconds: 25,
@@ -224,7 +224,7 @@ export default {
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
-      run: function(data) {
+      run: (data) => {
         data.waterDarkMarker = true;
       },
       outputStrings: {
@@ -243,7 +243,7 @@ export default {
       netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
-      run: function(data) {
+      run: (data) => {
         data.waterDarkMarker = true;
       },
       outputStrings: {
@@ -262,7 +262,7 @@ export default {
       netRegex: NetRegexes.headMarker({ id: ['0030', '0060'], capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.waterDarkMarker)
           return;
         return output.text();
@@ -286,7 +286,7 @@ export default {
       netRegexFr: NetRegexes.tether({ id: '000E', source: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], target: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], capture: false }),
       netRegexJa: NetRegexes.tether({ id: '000E', source: ['イゲオルムの影', 'ラハブレアの影'], target: ['イゲオルムの影', 'ラハブレアの影'], capture: false }),
       netRegexKo: NetRegexes.tether({ id: '000E', source: ['이게요름의 그림자', '라하브레아의 그림자'], target: ['이게요름의 그림자', '라하브레아의 그림자'], capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank';
       },
       suppressSeconds: 10,
@@ -310,15 +310,15 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ id: '47BD', source: 'Spectre D\'Igeyorhm', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '47BD', source: 'イゲオルムの影', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47BD', source: '이게요름의 그림자', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank';
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (!data.sphereCount)
           return;
         return output.text();
       },
-      run: function(data) {
+      run: (data) => {
         data.sphereCount = (data.sphereCount || 0) + 1;
       },
       outputStrings: {
@@ -348,7 +348,7 @@ export default {
       netRegex: NetRegexes.gainsEffect({ effectId: '850' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
-      run: function(data) {
+      run: (data) => {
         data.brand = 'fire';
       },
       outputStrings: {
@@ -367,7 +367,7 @@ export default {
       netRegex: NetRegexes.gainsEffect({ effectId: '851' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
-      run: function(data) {
+      run: (data) => {
         data.brand = 'ice';
       },
       outputStrings: {
@@ -411,7 +411,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ id: ['47C3', '47C2'], source: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['47C3', '47C2'], source: ['イゲオルムの影', 'ラハブレアの影'], capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['47C3', '47C2'], source: ['이게요름의 그림자', '라하브레아의 그림자'], capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer';
       },
       suppressSeconds: 5,
@@ -423,7 +423,7 @@ export default {
     {
       id: 'HadesEx Doom',
       netRegex: NetRegexes.gainsEffect({ effectId: '6E9', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer';
       },
       suppressSeconds: 5,
@@ -442,7 +442,7 @@ export default {
     {
       id: 'HadesEx Shriek',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      delaySeconds: function(_data, matches) {
+      delaySeconds: (_data, matches) => {
         return parseFloat(matches.duration) - 2;
       },
       suppressSeconds: 2,
@@ -469,7 +469,7 @@ export default {
       id: 'HadesEx Ancient Circle',
       netRegex: NetRegexes.gainsEffect({ effectId: '83E' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: function(_data, matches) {
+      delaySeconds: (_data, matches) => {
         return parseFloat(matches.duration) - 5;
       },
       infoText: (_data, _matches, output) => output.text(),
@@ -488,7 +488,7 @@ export default {
       id: 'HadesEx Forked Lightning',
       netRegex: NetRegexes.gainsEffect({ effectId: '24B' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: function(_data, matches) {
+      delaySeconds: (_data, matches) => {
         return parseFloat(matches.duration) - 2;
       },
       alertText: (_data, _matches, output) => output.text(),
@@ -511,7 +511,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ id: '47CC', source: 'Spectre De Primo-Ascien', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '47CC', source: 'アシエン・プライムの影', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47CC', source: '아씨엔 프라임의 그림자', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank' || data.role === 'healer';
       },
       delaySeconds: 12,
@@ -535,7 +535,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ id: '47D1', source: 'Spectre De Primo-Ascien' }),
       netRegexJa: NetRegexes.startsUsing({ id: '47D1', source: 'アシエン・プライムの影' }),
       netRegexKo: NetRegexes.startsUsing({ id: '47D1', source: '아씨엔 프라임의 그림자' }),
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.tankBusterOnYou();
 
@@ -620,7 +620,7 @@ export default {
       netRegex: NetRegexes.headMarker({ id: '0064' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
-      run: function(data) {
+      run: (data) => {
         data.flame = true;
       },
       outputStrings: {
@@ -639,7 +639,7 @@ export default {
       netRegex: NetRegexes.headMarker({ id: '00C1' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
-      run: function(data) {
+      run: (data) => {
         data.freeze = true;
       },
       outputStrings: {
@@ -679,7 +679,7 @@ export default {
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
-      run: function(data) {
+      run: (data) => {
         data.netherBlast = true;
       },
       outputStrings: {
@@ -701,7 +701,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ id: '47E3', source: 'Hadès', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '47E3', source: 'ハーデス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47E3', source: '하데스', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return !data.netherBlast;
       },
       infoText: (_data, _matches, output) => output.text(),
@@ -798,15 +798,15 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ id: '47F6', source: 'Hadès', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '47F6', source: 'ハーデス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47F6', source: '하데스', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank' || data.role === 'healer';
       },
       suppressSeconds: 2,
-      alarmText: function(data, _matches, output) {
+      alarmText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.getTowers();
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.role === 'healer')
           return output.tankBusters();
       },
@@ -830,7 +830,7 @@ export default {
       netRegexFr: NetRegexes.ability({ id: '47F6', source: 'Hadès', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '47F6', source: 'ハーデス', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '47F6', source: '하데스', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank' || data.role === 'healer';
       },
       delaySeconds: 2,
