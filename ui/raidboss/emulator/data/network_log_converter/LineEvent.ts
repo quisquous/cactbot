@@ -23,7 +23,7 @@ export default class LineEvent {
   }
 
   public get timestamp(): number {
-    return parseInt(this.parts[1] ?? '0');
+    return new Date(this.parts[1] ?? '0').getTime();
   }
 
   public get checksum(): string {
