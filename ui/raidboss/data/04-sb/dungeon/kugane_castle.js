@@ -53,6 +53,7 @@ export default {
           fr: 'Lien Harakiri sur VOUS',
           ja: '自分にはらきり',
           cn: '切腹点名',
+          ko: '자폭 대상자',
         },
       },
     },

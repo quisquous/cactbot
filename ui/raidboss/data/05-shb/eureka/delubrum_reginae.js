@@ -983,7 +983,7 @@ export default {
             fr: 'Allez à ${side} (évitez !)',
             ja: '${side}側へ (避ける！)',
             cn: '去${side}侧 (别吃顺劈！)',
-            ko: '${side}쪽으로 피하기!',
+            ko: '${side}으로 피하기!',
           },
         };
 
