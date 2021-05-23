@@ -23,17 +23,18 @@ import { LineEvent36 } from './LineEvent0x24';
 import { LineEvent37 } from './LineEvent0x25';
 import { LineEvent38 } from './LineEvent0x26';
 import { LineEvent39 } from './LineEvent0x27';
+import LogRepository from './LogRepository';
 
 export default class ParseLine {
-  static parse(repo, line) {
+  static parse(repo: LogRepository, line: string): LineEvent | undefined {
     let ret;
 
     const parts = line.split('|');
     const event = parts[0];
 
     // Don't parse raw network packet lines
-    if (event === '252')
-      return false;
+    if (!event || event === '252')
+      return;
 
     // This is ugly, but Webpack prefers being explicit
     switch ('LineEvent' + event) {
@@ -115,11 +116,11 @@ export default class ParseLine {
 
     // Also don't parse lines with a non-sane date. This is 2000-01-01 00:00:00
     if (ret && ret.timestamp < 946684800)
-      return false;
+      return;
 
     // Finally, if the object marks itself as invalid, skip it
     if (ret && ret.invalid)
-      return false;
+      return;
 
     return ret;
   }
