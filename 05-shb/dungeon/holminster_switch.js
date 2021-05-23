@@ -21,7 +21,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3DC4', source: 'フォーギヴン・ディソナンス' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DC4', source: '得到宽恕的失调' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DC4', source: '면죄된 불화' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
@@ -34,7 +34,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3DCF', source: 'フォーギヴン・テスリーン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DCF', source: '得到宽恕的泰丝琳' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DCF', source: '면죄된 테슬린' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
@@ -84,7 +84,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3DD7', source: 'フィリア' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DD7', source: '斐利亚' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DD7', source: '필리아' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
@@ -93,7 +93,7 @@ Options.Triggers.push({
       id: 'Holminster Chain Down',
       netRegex: NetRegexes.headMarker({ id: '005C' }),
       condition: Conditions.targetIsNotYou(),
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         return output.text({ player: data.ShortName(matches.target) });
       },
       outputStrings: {

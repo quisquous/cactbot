@@ -21,7 +21,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '40F8', source: 'タイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '40F8', source: '泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '40F8', source: '타이탄', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer';
       },
       infoText: (_data, _matches, output) => output.text(),
@@ -44,7 +44,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '40F9', source: 'タイタン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '40F9', source: '泰坦' }),
       netRegexKo: NetRegexes.startsUsing({ id: '40F9', source: '타이탄' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),

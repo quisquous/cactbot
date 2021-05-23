@@ -46,7 +46,7 @@ Options.Triggers.push({
       id: 'E8S Rush',
       regex: /Rush \d/,
       beforeSeconds: 5,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         data.rushCount = data.rushCount || 0;
         data.rushCount++;
         return output.text({ num: data.rushCount });
@@ -83,7 +83,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D66', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D66', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D66', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         // Have not seen any frost yet.
         return !data.firstFrost;
       },
@@ -112,7 +112,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D67', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D67', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D67', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return !data.firstFrost;
       },
       // See comments on Biting Frost First Mirror above.
@@ -159,7 +159,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D66', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D66', capture: false }),
       response: Responses.getBehind(),
-      run: function(data) {
+      run: (data) => {
         data.firstFrost = data.firstFrost || 'biting';
       },
     },
@@ -172,7 +172,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D67', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D67', capture: false }),
       response: Responses.goFrontOrSides(),
-      run: function(data) {
+      run: (data) => {
         data.firstFrost = data.firstFrost || 'driving';
       },
     },
@@ -187,7 +187,7 @@ Options.Triggers.push({
       condition: (data) => data.role === 'tank',
       delaySeconds: 43,
       suppressSeconds: 80,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.firstFrost === 'driving')
           return output.bitingFrostNext();
         return output.drivingFrostNext();
@@ -231,7 +231,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.abilityFull({ source: '希瓦', id: '4DA0' }),
       netRegexKo: NetRegexes.abilityFull({ source: '시바', id: '4DA0' }),
       suppressSeconds: 20,
-      infoText: function(_data, matches, output) {
+      infoText: (_data, matches, output) => {
         const x = parseFloat(matches.x);
         if (x >= 99 && x <= 101)
           return output.northSouth();
@@ -264,7 +264,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '4D6C', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '4D6C', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '4D6C', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanCleanse();
       },
       suppressSeconds: 1,
@@ -383,11 +383,11 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: ['シヴァ', '聖竜'], id: ['4D98', '4D79'] }),
       netRegexCn: NetRegexes.startsUsing({ source: ['希瓦', '圣龙'], id: ['4D98', '4D79'] }),
       netRegexKo: NetRegexes.startsUsing({ source: ['시바', '성룡'], id: ['4D98', '4D79'] }),
-      preRun: function(data, matches) {
+      preRun: (data, matches) => {
         data.akhMornTargets = data.akhMornTargets || [];
         data.akhMornTargets.push(matches.target);
       },
-      response: function(data, matches, output) {
+      response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           akhMornOnYou: {
@@ -429,7 +429,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: ['希瓦', '圣龙'], id: ['4D98', '4D79'], capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: ['시바', '성룡'], id: ['4D98', '4D79'], capture: false }),
       delaySeconds: 15,
-      run: function(data) {
+      run: (data) => {
         delete data.akhMornTargets;
       },
     },
@@ -441,7 +441,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D7B' }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D7B' }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D7B' }),
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.mornAfahOnYou();
         if (data.role === 'tank' || data.role === 'healer' || data.CanAddle())
@@ -494,7 +494,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D77', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D77', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D77', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.options.cactbote8sUptimeKnockbackStrat;
       },
       // This gives a warning within 1.4 seconds, so you can hit arm's length.
@@ -521,7 +521,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D7C', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D7C', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D7C', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.wyrmsLament = data.wyrmsLament || 0;
         data.wyrmsLament++;
       },
@@ -530,7 +530,7 @@ Options.Triggers.push({
       id: 'E8S Wyrmclaw',
       netRegex: NetRegexes.gainsEffect({ effectId: '8D2' }),
       condition: Conditions.targetIsYou(),
-      preRun: function(data, matches) {
+      preRun: (data, matches) => {
         if (data.wyrmsLament === 1) {
           data.wyrmclawNumber = {
             '14': 1,
@@ -545,10 +545,10 @@ Options.Triggers.push({
           }[Math.ceil(matches.duration)];
         }
       },
-      durationSeconds: function(_data, matches) {
+      durationSeconds: (_data, matches) => {
         return matches.duration;
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         return output.text({ num: data.wyrmclawNumber });
       },
       outputStrings: {
@@ -566,7 +566,7 @@ Options.Triggers.push({
       id: 'E8S Wyrmfang',
       netRegex: NetRegexes.gainsEffect({ effectId: '8D3' }),
       condition: Conditions.targetIsYou(),
-      preRun: function(data, matches) {
+      preRun: (data, matches) => {
         if (data.wyrmsLament === 1) {
           data.wyrmfangNumber = {
             '20': 1,
@@ -581,10 +581,10 @@ Options.Triggers.push({
           }[Math.ceil(matches.duration)];
         }
       },
-      durationSeconds: function(_data, matches) {
+      durationSeconds: (_data, matches) => {
         return matches.duration;
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         return output.text({ num: data.wyrmfangNumber });
       },
       outputStrings: {
@@ -686,7 +686,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '4D7D', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '4D7D', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '4D7D', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanCleanse();
       },
       suppressSeconds: 1,

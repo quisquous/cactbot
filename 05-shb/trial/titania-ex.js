@@ -52,12 +52,12 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3D45', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D45', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D45', source: '티타니아', capture: false }),
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.seenMistRune)
           return output.inOutThenWaterPositions();
         return output.waterPositions();
       },
-      run: function(data) {
+      run: (data) => {
         data.seenMistRune = true;
       },
       outputStrings: {
@@ -89,12 +89,12 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ id: '3D47', source: '티타니아', capture: false }),
       // You have 16.5 seconds until the first stack damage.
       delaySeconds: 8.5,
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.seenFlameRune)
           return output.stackMaybeRotate();
         return output.stackPositions();
       },
-      run: function(data) {
+      run: (data) => {
         data.seenFlameRune = true;
       },
       outputStrings: {
@@ -185,7 +185,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3D2C', source: 'ティターニア' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D2C', source: '缇坦妮雅' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2C', source: '티타니아' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
@@ -198,7 +198,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3D2C', source: 'ティターニア' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D2C', source: '缇坦妮雅' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2C', source: '티타니아' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role !== 'tank' && data.role !== 'healer';
       },
       response: Responses.tankCleave(),
@@ -290,14 +290,14 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3D37', source: 'パック', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D37', source: '帕克', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D37', source: '요정의 권속', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank';
       },
-      preRun: function(data) {
+      preRun: (data) => {
         data.pummelCount = data.pummelCount || 0;
         data.pummelCount++;
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         return output.text({ num: data.pummelCount });
       },
       outputStrings: {
@@ -316,7 +316,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '008D' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
-      run: function(data) {
+      run: (data) => {
         data.bomb = data.bomb || {};
         data.bomb[data.me] = true;
       },
@@ -329,7 +329,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '3D3F', source: 'ピーズブロッサム', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '3D3F', source: '豌豆花', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3D3F', source: '콩나무', capture: false }),
-      run: function(data) {
+      run: (data) => {
         delete data.bomb;
       },
     },
@@ -337,7 +337,7 @@ Options.Triggers.push({
       id: 'TitaniaEx Adds Stack',
       netRegex: NetRegexes.headMarker({ id: '00A1' }),
       delaySeconds: 0.25,
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.stackOnYou();
         if (data.bomb && data.bomb[data.me])
@@ -378,14 +378,14 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '3D29', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '3D29', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3D29', source: '티타니아', capture: false }),
-      preRun: function(data) {
+      preRun: (data) => {
         data.thunderCount = data.thunderCount || 1;
       },
       suppressSeconds: 1,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         return output.text({ num: data.thunderCount });
       },
-      run: function(data) {
+      run: (data) => {
         data.thunderCount++;
       },
       outputStrings: {
@@ -407,7 +407,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3D32', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D32', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D32', source: '티타니아', capture: false }),
-      run: function(data) {
+      run: (data) => {
         delete data.thunderCount;
       },
     },

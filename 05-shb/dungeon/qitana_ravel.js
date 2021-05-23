@@ -10,7 +10,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3C89', source: 'ロツァトル' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3C89', source: '洛查特尔' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3C89', source: '로차틀' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
@@ -99,7 +99,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3C91', source: 'バッツカッチ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3C91', source: '大脚野蝠' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3C91', source: '배츠콰치' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
@@ -134,7 +134,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3C99', source: 'エロース' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3C99', source: '艾洛斯' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3C99', source: '에로스' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),

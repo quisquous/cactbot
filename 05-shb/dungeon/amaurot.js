@@ -6,10 +6,10 @@ Options.Triggers.push({
       id: 'Amaurot Meteor',
       netRegex: NetRegexes.headMarker({ id: '0039' }),
       condition: Conditions.targetIsYou(),
-      preRun: function(data) {
+      preRun: (data) => {
         data.meteor = (data.meteor || 0) + 1;
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.meteor === 1)
           return output.dropMeteorWest();
         else if (data.meteor === 2)

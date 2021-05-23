@@ -55,7 +55,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AC7' }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AC7' }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AC7' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
@@ -185,7 +185,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ネールの幻影', id: '4ABF' }),
       netRegexCn: NetRegexes.startsUsing({ source: '奈尔的幻影', id: '4ABF' }),
       netRegexKo: NetRegexes.startsUsing({ source: '넬의 환영', id: '4ABF' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         if (data.role !== 'healer' || data.role !== 'tank')
           return false;
         if (data.colors[data.me] === data.colors[matches.target])

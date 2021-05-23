@@ -202,7 +202,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '3D31', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '3D31', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3D31', source: '티타니아', capture: false }),
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.groupAddsEastOnMustardseed();
         return output.killMustardseedEast();

@@ -6,7 +6,7 @@ Options.Triggers.push({
       id: 'Dohn Mheg Rake',
       regex: /Rake/,
       beforeSeconds: 5,
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.miniBuster(),
@@ -22,7 +22,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3DAA', source: 'ドォーヌ・フーア' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DAA', source: '禁园水妖' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DAA', source: '도느 푸아' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanSilence();
       },
       response: Responses.interrupt(),
@@ -36,7 +36,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3DAB', source: 'ドォーヌ・バスケット' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DAB', source: '禁园篮筐' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DAB', source: '도느 바구니' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanStun();
       },
       response: Responses.stun('info'),
@@ -50,7 +50,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3DAF', source: 'ドォーヌ・エーディンモス' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DAF', source: '禁园爱蒂恩蛾' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DAF', source: '도느 에다인나방' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanStun();
       },
       response: Responses.stun('info'),
@@ -64,7 +64,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3DB5', source: 'ドォーヌ・ケルピー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3DB5', source: '禁园凯尔派' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DB5', source: '도느 켈피' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanStun();
       },
       response: Responses.stun('info'),
@@ -77,7 +77,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2299', source: '美眼のインク＝ゾン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '2299', source: '美眼 因克·佐恩' }),
       netRegexKo: NetRegexes.startsUsing({ id: '2299', source: '눈이 예쁜 잉크 돈' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
@@ -117,7 +117,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '35A4', source: '楽聖のインク＝ゾン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '35A4', source: '乐圣 因克·佐恩' }),
       netRegexKo: NetRegexes.startsUsing({ id: '35A4', source: '대음악가 잉크 돈' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),

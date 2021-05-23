@@ -10,7 +10,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '41AF', source: 'フォーギヴン・プレジュディス' }),
       netRegexCn: NetRegexes.startsUsing({ id: '41AF', source: '得到宽恕的偏见' }),
       netRegexKo: NetRegexes.startsUsing({ id: '41AF', source: '면죄된 편견' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanStun() || data.CanSilence();
       },
       response: Responses.interrupt('info'),
@@ -43,7 +43,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3CFB', source: 'フォーギヴン・クルエルティー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3CFB', source: '得到宽恕的残忍' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CFB', source: '면죄된 잔혹' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
@@ -131,7 +131,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3D09', source: 'フォーギヴン・ウィムズィー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D09', source: '得到宽恕的无常' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D09', source: '면죄된 변덕' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
@@ -196,7 +196,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3D12', source: 'フォーギヴン・オブセニティー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D12', source: '得到宽恕的猥亵' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D12', source: '면죄된 외설' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),

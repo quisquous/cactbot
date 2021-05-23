@@ -6,7 +6,7 @@ Options.Triggers.push({
       id: 'Anyder Lash',
       regex: /Lash/,
       beforeSeconds: 5,
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank' || data.role === 'healer';
       },
       suppressSeconds: 10,
@@ -44,7 +44,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3E04', source: ['クラドセラケ', 'ドリオドゥス'] }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E04', source: ['裂口鲨', '原祖鲨'] }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E04', source: ['클라도셀라케', '돌리오두스'] }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),
@@ -125,7 +125,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '430C', source: 'イビルアーマー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '430C', source: '恶魔装甲' }),
       netRegexKo: NetRegexes.startsUsing({ id: '430C', source: '사악한 갑옷' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanStun() || data.CanSilence();
       },
       response: Responses.interrupt(),
@@ -138,7 +138,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3E23', source: 'ケツァクウァトル' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E23', source: '克察尔科亚特尔' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E23', source: '케찰코아틀' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me || data.role === 'healer';
       },
       response: Responses.tankBuster(),

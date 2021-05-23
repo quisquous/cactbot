@@ -31,7 +31,7 @@ Options.Triggers.push({
     {
       id: 'Puppet Aegis Anti-Personnel Laser Collect',
       netRegex: NetRegexes.headMarker({ id: '00C6' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.busterTargets = data.busterTargets || [];
         data.busterTargets.push(matches.target);
       },
@@ -41,7 +41,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '00C6', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (!data.busterTargets)
           return;
         if (data.busterTargets.includes(data.me))
@@ -107,7 +107,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: '８１３Ｐ：拠点防衛ユニット装備', id: '5080', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '813P：装备据点防卫装置', id: '5080', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '813P: 거점 방위 유닛 장비', id: '5080', capture: false }),
-      alertText: function(_data, _matches, output) {
+      alertText: (_data, _matches, output) => {
         return output.text();
       },
       outputStrings: {
@@ -129,7 +129,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: '８１３Ｐ：拠点防衛ユニット装備', id: '507F', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '813P：装备据点防卫装置', id: '507F', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '813P: 거점 방위 유닛 장비', id: '507F', capture: false }),
-      alertText: function(_data, _matches, output) {
+      alertText: (_data, _matches, output) => {
         return output.text();
       },
       outputStrings: {
@@ -219,7 +219,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: '軽陸戦ユニット', id: '5213' }),
       netRegexCn: NetRegexes.startsUsing({ source: '轻型陆战装置', id: '5213' }),
       netRegexKo: NetRegexes.startsUsing({ source: '경장 육지전 유닛', id: '5213' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.busterTargets = data.busterTargets || [];
         data.busterTargets.push(matches.target);
       },
@@ -234,7 +234,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ source: '경장 육지전 유닛', id: '5213', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (!data.busterTargets)
           return;
         if (data.busterTargets.includes(data.me))
@@ -323,7 +323,7 @@ Options.Triggers.push({
     {
       id: 'Puppet Superior Precision Guided Missile Collect',
       netRegex: NetRegexes.startsUsing({ id: '4FC5' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.busterTargets = data.busterTargets || [];
         data.busterTargets.push(matches.target);
       },
@@ -333,7 +333,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.startsUsing({ id: '4FC5', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (!data.busterTargets)
           return;
         if (data.busterTargets.includes(data.me))
@@ -358,7 +358,7 @@ Options.Triggers.push({
     {
       id: 'Puppet Superior Sliding Swipe First',
       netRegex: NetRegexes.startsUsing({ id: ['4FA[CD]', '550[DEF]', '5510'] }),
-      preRun: function(data, matches) {
+      preRun: (data, matches) => {
         data.swipe = data.swipe || [];
         data.swipe.push({
           '4FAC': 'right',
@@ -370,7 +370,7 @@ Options.Triggers.push({
         }[matches.id]);
       },
       durationSeconds: 6,
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.swipe.length !== 1)
           return;
         // Call and clear the first swipe so we can not call it a second time below.
@@ -383,7 +383,7 @@ Options.Triggers.push({
     {
       id: 'Puppet Superior Sliding Swipe Others',
       netRegex: NetRegexes.ability({ id: ['4FA[CD]', '550[DEF]', '5510'], capture: false }),
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (!data.swipe)
           return;
         // The first swipe callout has been cleared to null.
@@ -475,7 +475,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: '９０５Ｐ：重陸戦ユニット装備', id: '5001' }),
       netRegexCn: NetRegexes.startsUsing({ source: '905P：装备重型陆战装置', id: '5001' }),
       netRegexKo: NetRegexes.startsUsing({ source: '905P: 중장 육지전 유닛 장비', id: '5001' }),
-      response: function(data, matches, output) {
+      response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           tankCleaveOnYou: {
@@ -510,7 +510,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ source: '905P: 중장 육지전 유닛 장비', id: '4FE9', capture: false }),
       // This is approximately when the pods appear.
       delaySeconds: 6,
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         data.heavyPodCount = data.heavyPodCount || 0;
         data.heavyPodCount++;
         if (data.heavyPodCount <= 2) {
@@ -659,7 +659,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '00DA' }),
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster(),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.busterTargets = data.busterTargets || [];
         data.busterTargets.push(matches.target);
       },
@@ -669,7 +669,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '00DA', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (!data.busterTargets)
           return;
         if (data.busterTargets.includes(data.me))
@@ -701,7 +701,7 @@ Options.Triggers.push({
       id: 'Puppet Compound 2P Four Parts Resolve',
       netRegex: NetRegexes.headMarker({ id: ['004F', '0050', '0051', '0052'] }),
       condition: Conditions.targetIsYou(),
-      alertText: function(_data, matches, output) {
+      alertText: (_data, matches, output) => {
         return {
           '004F': output.jump({ num: 1 }),
           '0050': output.cleave({ num: 1 }),

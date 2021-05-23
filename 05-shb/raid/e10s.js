@@ -749,10 +749,10 @@ Options.Triggers.push({
     {
       id: 'E10S Shackled Apart',
       netRegex: NetRegexes.tether({ id: '0082' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.source === data.me || matches.target === data.me;
       },
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         const partner = matches.source === data.me ? matches.target : matches.source;
         return output.text({ player: data.ShortName(partner) });
       },
@@ -763,10 +763,10 @@ Options.Triggers.push({
     {
       id: 'E10S Shackled Together',
       netRegex: NetRegexes.tether({ id: '0081' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.source === data.me || matches.target === data.me;
       },
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         const partner = matches.source === data.me ? matches.target : matches.source;
         return output.text({ player: data.ShortName(partner) });
       },

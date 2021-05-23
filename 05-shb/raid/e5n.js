@@ -6,7 +6,7 @@ Options.Triggers.push({
       id: 'E5N Surge Protection Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '8B4' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.surgeProtection = true;
       },
     },
@@ -14,7 +14,7 @@ Options.Triggers.push({
       id: 'E5N Surge Protection Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '8B4' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.surgeProtection = false;
       },
     },
@@ -109,7 +109,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '4B9A', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4B9A', source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4B9A', source: '拉姆', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return !data.surgeProtection;
       },
       alertText: (_data, _matches, output) => output.text(),
