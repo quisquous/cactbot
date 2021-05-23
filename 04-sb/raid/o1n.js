@@ -7,7 +7,7 @@ Options.Triggers.push({
       id: 'O1N Wyrm Tail',
       regex: /Wyrm Tail/,
       beforeSeconds: 4,
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.miniBuster(),
@@ -84,7 +84,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '23DB', source: 'アルテ・ロイテ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '23DB', source: '老者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '23DB', source: '알테 로이테', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer';
       },
       // Alert rather than info, as any further raid damage is lethal if unhealed.
@@ -98,7 +98,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '23D7', source: 'アルテ・ロイテ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '23D7', source: '老者' }),
       netRegexKo: NetRegexes.startsUsing({ id: '23D7', source: '알테 로이테' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),

@@ -12,7 +12,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.removingCombatant({ name: '魔列車', capture: false }),
       netRegexCn: NetRegexes.removingCombatant({ name: '魔列车', capture: false }),
       netRegexKo: NetRegexes.removingCombatant({ name: '마열차', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.StopCombat();
       },
     },

@@ -11,7 +11,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.gainsEffect({ target: 'ラクシュミ', effectId: '582', capture: false }),
       netRegexCn: NetRegexes.gainsEffect({ target: '吉祥天女', effectId: '582', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '락슈미', effectId: '582', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.chanchala = true;
       },
     },
@@ -23,7 +23,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.losesEffect({ target: 'ラクシュミ', effectId: '582', capture: false }),
       netRegexCn: NetRegexes.losesEffect({ target: '吉祥天女', effectId: '582', capture: false }),
       netRegexKo: NetRegexes.losesEffect({ target: '락슈미', effectId: '582', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.chanchala = false;
       },
     },
@@ -115,12 +115,12 @@ Options.Triggers.push({
       id: 'Lakshmi Pall of Light',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       delaySeconds: 0.5,
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (!data.avoidStack.includes(data.me))
           return;
         return output.dontStack();
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (data.avoidStack.includes(data.me))
           return;
         if (data.me === matches.target)
@@ -164,7 +164,7 @@ Options.Triggers.push({
       id: 'Lakshmi Hand of Beauty',
       netRegex: NetRegexes.headMarker({ id: '006D' }),
       condition: Conditions.targetIsYou(),
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.chanchala)
           return output.powerFlower();
         return output.flower();

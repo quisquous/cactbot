@@ -92,7 +92,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.addedCombatant({ name: 'ステップ・シープ', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '草原绵羊', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '초원 양', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank';
       },
       suppressSeconds: 5,

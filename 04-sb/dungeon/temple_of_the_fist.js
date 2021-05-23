@@ -6,7 +6,7 @@ Options.Triggers.push({
       id: 'Temple Pounce',
       regex: /Pounce/,
       beforeSeconds: 5,
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer' || data.role === 'tank';
       },
       response: Responses.tankBuster(),
@@ -143,10 +143,10 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '1FE6', source: '双豹のイヴォン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FE6', source: '双豹伊沃恩' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FE6', source: '쌍표범 이본' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer';
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         return output.text({ player: data.ShortName(matches.target) });
       },
       outputStrings: {

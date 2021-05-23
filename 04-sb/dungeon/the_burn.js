@@ -179,7 +179,7 @@ Options.Triggers.push({
       // Also handles Chilling Aspiration, which is randomly targeted.
       id: 'The Burn Frost Breath',
       netRegex: NetRegexes.headMarker({ id: ['001A', '000E'] }),
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.puddleCleaveOnYou();
         return output.avoidMarkerCone();

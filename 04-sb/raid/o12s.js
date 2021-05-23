@@ -33,7 +33,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3357', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3357', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3357', source: '오메가', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.isFinalOmega = true;
         data.dpsShortStack = true;
         data.helloDebuffs = {};
@@ -505,7 +505,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3364', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3364', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3364', source: '오메가', capture: false }),
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.role === 'tank' || data.job === 'BLU')
           return output.monitorsLeft();
         return output.dodgeLeft();
@@ -537,7 +537,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3365', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3365', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3365', source: '오메가', capture: false }),
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.role === 'tank' || data.job === 'BLU')
           return output.monitorsRight();
         return output.dodgeRight();
@@ -564,11 +564,11 @@ Options.Triggers.push({
     {
       id: 'O12S Target Analysis Target',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
-      alarmText: function(data, matches, output) {
+      alarmText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.vulnOnYou();
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return;
         if (data.role !== 'tank' && data.job !== 'BLU')
@@ -682,10 +682,10 @@ Options.Triggers.push({
       // Critical Synchronization Bug
       id: 'O12S Hello World Stack',
       netRegex: NetRegexes.gainsEffect({ effectId: '680' }),
-      delaySeconds: function(data, matches) {
+      delaySeconds: (data, matches) => {
         return matches.target === data.me ? 0 : 1;
       },
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         const t = parseFloat(matches.duration);
         if (data.me !== matches.target)
           return;
@@ -695,7 +695,7 @@ Options.Triggers.push({
           return output.shortStackOnYou();
         return output.longStackOnYou();
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         const t = parseFloat(matches.duration);
         if (data.me === matches.target)
           return;
@@ -797,21 +797,21 @@ Options.Triggers.push({
     {
       id: 'O12S Archive All Marker Tracking',
       netRegex: NetRegexes.headMarker({ id: ['003E', '0060'] }),
-      condition: function(data) {
+      condition: (data) => {
         return data.isFinalOmega;
       },
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.archiveMarkers[matches.target] = matches.id;
       },
     },
     {
       id: 'O12S Archive All No Marker',
       netRegex: NetRegexes.headMarker({ id: ['003E', '0060'], capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         // 4 fire markers, 1 stack marker.
         return data.isFinalOmega && Object.keys(data.archiveMarkers).length === 5;
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.me in data.archiveMarkers)
           return;
         for (const player in data.archiveMarkers) {
@@ -827,7 +827,7 @@ Options.Triggers.push({
     {
       id: 'O12S Archive All Stack Marker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return data.isFinalOmega && matches.target === data.me;
       },
       response: Responses.stackMarkerOn('info'),
@@ -835,7 +835,7 @@ Options.Triggers.push({
     {
       id: 'O12S Archive All Spread Marker',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return data.isFinalOmega && matches.target === data.me;
       },
       response: Responses.spread(),
@@ -888,7 +888,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.headMarker({ target: 'ライトアームユニット', id: ['009C', '009D'] }),
       netRegexCn: NetRegexes.headMarker({ target: '右臂组', id: ['009C', '009D'] }),
       netRegexKo: NetRegexes.headMarker({ target: '오른팔 유닛', id: ['009C', '009D'] }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         // Create a 3 digit binary value, R = 0, B = 1.
         // e.g. BBR = 110 = 6
         data.armValue *= 2;
@@ -905,10 +905,10 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.headMarker({ target: 'ライトアームユニット', id: ['009C', '009D'], capture: false }),
       netRegexCn: NetRegexes.headMarker({ target: '右臂组', id: ['009C', '009D'], capture: false }),
       netRegexKo: NetRegexes.headMarker({ target: '오른팔 유닛', id: ['009C', '009D'], capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.numArms === 3;
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         const v = parseInt(data.armValue);
         if (!(v >= 0) || v > 7)
           return;

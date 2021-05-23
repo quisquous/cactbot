@@ -11,7 +11,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '24B7', source: 'エクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '24B7', source: '艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '24B7', source: '엑스데스', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanCleanse();
       },
       alertText: (_data, _matches, output) => output.text(),
@@ -95,7 +95,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2408', source: 'エクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2408', source: '艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2408', source: '엑스데스', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         // Without a condition, this notifies on the first one, where it's meaningless.
         data.battleCount = data.battleCount || 0;
         data.battleCount += 1;

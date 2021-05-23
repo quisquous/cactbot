@@ -11,13 +11,13 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '1FA4', source: '神龍' }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FA4', source: '神龙' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FA4', source: '신룡' }),
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.akhMornOnYou();
         else if (data.role === 'tank')
           return output.akhMornOn({ player: data.ShortName(matches.target) });
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         // Nobody with Akh Morn is a direct target for Akh Rai,
         // and tanks should never be targeted for it.
         // Additionally, Akh Rai happens only after the intermission.
@@ -62,7 +62,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ id: '1FAD', source: '신룡' }),
       // Here and elsewhere, timings aren't always completely usable. Instead we give the user
       // a quasi-standard amount of time when notifying.
-      delaySeconds: function(_data, matches) {
+      delaySeconds: (_data, matches) => {
         return matches.castTime - 4;
       },
       response: Responses.stopMoving(),
@@ -179,7 +179,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '1FAA', source: '神龍' }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FAA', source: '神龙' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FAA', source: '신룡' }),
-      delaySeconds: function(_data, matches) {
+      delaySeconds: (_data, matches) => {
         return matches.castTime - 6;
       },
       durationSeconds: 5,
@@ -203,10 +203,10 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '1FA2', source: 'レフトウィング' }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FA2', source: '左翼' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FA2', source: '왼쪽 날개' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer';
       },
-      delaySeconds: function(_data, matches) {
+      delaySeconds: (_data, matches) => {
         return matches.castTime - 4;
       },
       response: Responses.aoe(),
@@ -241,10 +241,10 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '1FF4', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FF4', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FF4', source: '신룡', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return !data.finalPhase;
       },
-      run: function(data) {
+      run: (data) => {
         data.finalPhase = true;
       },
     },

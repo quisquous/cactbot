@@ -30,7 +30,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '326[24]', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '326[24]', source: '오메가', capture: false }),
       delaySeconds: 15,
-      run: function(data) {
+      run: (data) => {
         delete data.lastWasStarboard;
       },
     },
@@ -42,11 +42,11 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '326[23]', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '326[23]', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '326[23]', source: '오메가', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.lastWasStarboard === undefined;
       },
       response: Responses.goLeft(),
-      run: function(data) {
+      run: (data) => {
         data.lastWasStarboard = true;
       },
     },
@@ -58,11 +58,11 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '326[45]', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '326[45]', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '326[45]', source: '오메가', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.lastWasStarboard === undefined;
       },
       response: Responses.goRight(),
-      run: function(data) {
+      run: (data) => {
         data.lastWasStarboard = false;
       },
     },
@@ -74,10 +74,10 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3263', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3263', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3263', source: '오메가', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.lastWasStarboard !== undefined;
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.lastWasStarboard)
           return output.moveLeft();
         return output.stayLeft();
@@ -109,10 +109,10 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3265', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3265', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3265', source: '오메가', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.lastWasStarboard !== undefined;
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.lastWasStarboard)
           return output.stayRight();
         return output.moveRight();

@@ -22,11 +22,11 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3172', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3172', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3172', source: '카오스', capture: false }),
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.primordialCrust)
           return output.dieOnFrontBack();
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (!data.primordialCrust)
           return output.sides();
       },
@@ -57,11 +57,11 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3173', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3173', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3173', source: '카오스', capture: false }),
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.primordialCrust)
           return output.dieOnSides();
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (!data.primordialCrust)
           return output.frontBack();
       },
@@ -102,11 +102,11 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '317D', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '317D', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '317D', source: '카오스', capture: false }),
-      alarmText: function(data, _matches, output) {
+      alarmText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.orbTethers();
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.role === 'healer')
           return output.orbTethers();
       },
@@ -130,7 +130,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3186', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3186', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3186', source: '카오스', capture: false }),
-      run: function(data) {
+      run: (data) => {
         if (data.phaseType !== 'enrage')
           data.phaseType = 'fire';
       },
@@ -139,17 +139,17 @@ Options.Triggers.push({
       id: 'O9S Entropy Spread',
       netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
       condition: Conditions.targetIsYou(),
-      preRun: function(data) {
+      preRun: (data) => {
         data.entropyCount = data.entropyCount || 0;
         data.entropyCount += 1;
       },
-      delaySeconds: function(data, matches) {
+      delaySeconds: (data, matches) => {
         // Warn dps earlier to stack.
         if (data.role !== 'tank' && data.role !== 'healer' && data.entropyCount === 2)
           return parseFloat(matches.duration) - 12;
         return parseFloat(matches.duration) - 5;
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.phaseType === 'enrage' || data.phaseType === 'orb' || data.entropyCount === 1)
           return output.spread();
         else if (data.role === 'tank' || data.role === 'healer')
@@ -157,7 +157,7 @@ Options.Triggers.push({
         // DPS entropy #2
         return output.stackAndStayOut();
       },
-      run: function(data) {
+      run: (data) => {
         if (data.phaseType === 'orb' || data.entropyCount === 2)
           delete data.entropyCount;
       },
@@ -184,10 +184,10 @@ Options.Triggers.push({
     {
       id: 'O9S Entropy Avoid Hit',
       netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me && data.phaseType === 'fire';
       },
-      delaySeconds: function(_data, matches) {
+      delaySeconds: (_data, matches) => {
         // Folks get either the 24 second or the 10 second.
         // So, delay for the opposite minus 5.
         const seconds = parseFloat(matches.duration);
@@ -217,7 +217,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3180', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3180', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3180', source: '카오스', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.phaseType === 'fire';
       },
       // Each big bang has its own cast, so suppress.
@@ -243,7 +243,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3187', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3187', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3187', source: '카오스', capture: false }),
-      run: function(data) {
+      run: (data) => {
         if (data.phaseType !== 'enrage')
           data.phaseType = 'water';
       },
@@ -251,7 +251,7 @@ Options.Triggers.push({
     {
       id: 'O9S Dynamic Fluid 1',
       netRegex: NetRegexes.gainsEffect({ effectId: '641', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.phaseType === 'water';
       },
       delaySeconds: 5,
@@ -272,7 +272,7 @@ Options.Triggers.push({
     {
       id: 'O9S Dynamic Fluid 2',
       netRegex: NetRegexes.gainsEffect({ effectId: '641', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.phaseType === 'water';
       },
       // T/H get 10s & DPS get 17s
@@ -293,7 +293,7 @@ Options.Triggers.push({
     {
       id: 'O9S Dynamic Fluid 3',
       netRegex: NetRegexes.gainsEffect({ effectId: '641', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.phaseType === 'enrage';
       },
       // enrage -> 6s
@@ -315,7 +315,7 @@ Options.Triggers.push({
       id: 'O9S Knock Down Marker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.phaseType === 'water')
           return output.dropOutside();
         else if (data.phaseType === 'wind')
@@ -349,7 +349,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3188', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3188', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3188', source: '카오스', capture: false }),
-      run: function(data) {
+      run: (data) => {
         if (data.phaseType !== 'enrage')
           data.phaseType = 'wind';
       },
@@ -358,7 +358,7 @@ Options.Triggers.push({
       id: 'O9S Headwind',
       netRegex: NetRegexes.gainsEffect({ effectId: '642' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.wind = 'head';
       },
     },
@@ -366,7 +366,7 @@ Options.Triggers.push({
       id: 'O9S Tailwind',
       netRegex: NetRegexes.gainsEffect({ effectId: '643' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.wind = 'tail';
       },
     },
@@ -378,13 +378,13 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '318F', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '318F', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '318F', source: '카오스', capture: false }),
-      alarmText: function(data, _matches, output) {
+      alarmText: (data, _matches, output) => {
         if (data.wind === 'head')
           return output.backToTornado();
         if (data.wind === 'tail')
           return output.faceTheTornado();
       },
-      run: function(data) {
+      run: (data) => {
         delete data.wind;
       },
       outputStrings: {
@@ -415,7 +415,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3189', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3189', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3189', source: '카오스', capture: false }),
-      run: function(data) {
+      run: (data) => {
         if (data.phaseType !== 'enrage')
           data.phaseType = 'earth';
       },
@@ -423,11 +423,11 @@ Options.Triggers.push({
     {
       id: 'O9S Accretion',
       netRegex: NetRegexes.gainsEffect({ effectId: '644', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer';
       },
       suppressSeconds: 10,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.phaseType !== 'earth')
           return output.healAllToFull();
         return output.healTankshealersToFull();
@@ -454,11 +454,11 @@ Options.Triggers.push({
     {
       id: 'O9S Primordial Crust',
       netRegex: NetRegexes.gainsEffect({ effectId: '645' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return data.me === matches.target && data.phaseType !== 'orb';
       },
       infoText: (_data, _matches, output) => output.text(),
-      run: function(data) {
+      run: (data) => {
         data.primordialCrust = true;
       },
       outputStrings: {
@@ -477,7 +477,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.gainsEffect({ effectId: '645' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 30,
-      run: function(data) {
+      run: (data) => {
         delete data.primordialCrust;
       },
     },
@@ -506,25 +506,25 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '318A', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '318A', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '318A', source: '카오스', capture: false }),
-      preRun: function(data) {
+      preRun: (data) => {
         data.phaseType = 'orb';
       },
     },
     {
       id: 'O9S Orb Entropy',
       netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target !== data.me && data.phaseType === 'orb';
       },
-      delaySeconds: function(_data, matches) {
+      delaySeconds: (_data, matches) => {
         return parseFloat(matches.duration) - 3;
       },
       suppressSeconds: 10,
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.head === 'wind')
           return output.text();
       },
-      run: function(data) {
+      run: (data) => {
         delete data.wind;
       },
       outputStrings: {
@@ -541,10 +541,10 @@ Options.Triggers.push({
     {
       id: 'O9S Orb Dynamic Fluid',
       netRegex: NetRegexes.gainsEffect({ effectId: '641' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.me && data.phaseType === 'orb';
       },
-      delaySeconds: function(_data, matches) {
+      delaySeconds: (_data, matches) => {
         return parseFloat(matches.duration) - 5;
       },
       infoText: (_data, _matches, output) => output.text(),
@@ -568,7 +568,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3186', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3186', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3186', source: '카오스', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.blazeCount = data.blazeCount || 0;
         data.blazeCount++;
         if (data.blazeCount >= 3)

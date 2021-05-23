@@ -27,7 +27,7 @@ Options.Triggers.push({
     {
       id: 'Orbonne Ultima Dominion Tether',
       regex: /Demi-Virgo.*Tether/,
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank';
       },
       alertText: (_data, _matches, output) => output.text(),
@@ -145,11 +145,11 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3854', source: '聖騎士アグリアス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3854', source: '圣骑士阿格莉亚丝', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3854', source: '성기사 아그리아스', capture: false }),
-      preRun: function(data) {
+      preRun: (data) => {
         data.halidom = [];
       },
       delaySeconds: 50,
-      run: function(data) {
+      run: (data) => {
         delete data.agriasGhostCleanse;
       },
     },
@@ -157,7 +157,7 @@ Options.Triggers.push({
       id: 'Orbonne Agrias Vacuum',
       netRegex: NetRegexes.headMarker({ id: '00A5' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.agriasGhostCleanse = true;
       },
     },
@@ -169,7 +169,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3850', source: '聖騎士アグリアス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3850', source: '圣骑士阿格莉亚丝', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3850', source: '성기사 아그리아스', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return !data.agriasGhostCleanse;
       },
       infoText: (_data, _matches, output) => output.text(),
@@ -192,7 +192,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '3851', source: '模造聖域' }),
       netRegexCn: NetRegexes.ability({ id: '3851', source: '仿制圣域' }),
       netRegexKo: NetRegexes.ability({ id: '3851', source: '모조 성역' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.halidom.push(matches.target);
       },
     },
@@ -206,7 +206,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.ability({ id: '3851', source: '모조 성역', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 10,
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.agriasGhostCleanse || data.halidom.includes(data.me))
           return;
         return output.text();
@@ -348,7 +348,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3752', source: '雷神シド' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3752', source: '雷神西德' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3752', source: '뇌신 시드' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer';
       },
       response: Responses.tankBuster('info'),
@@ -361,7 +361,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3752', source: '雷神シド', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3752', source: '雷神西德', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3752', source: '뇌신 시드', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanFeint();
       },
       infoText: (_data, _matches, output) => output.text(),
@@ -395,7 +395,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3758', source: '雷神シド', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3758', source: '雷神西德', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3758', source: '뇌신 시드', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank';
       },
       alarmText: (_data, _matches, output) => output.text(),
@@ -459,7 +459,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '3751', source: '雷神シド', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '3751', source: '雷神西德', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3751', source: '뇌신 시드', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer';
       },
       suppressSeconds: 10,
@@ -723,7 +723,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3895', source: '聖天使アルテマ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3895', source: '圣天使阿尔蒂玛', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3895', source: '성천사 알테마', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer';
       },
       alertText: (_data, _matches, output) => output.text(),
@@ -746,7 +746,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '3895', source: '聖天使アルテマ', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '3895', source: '圣天使阿尔蒂玛', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3895', source: '성천사 알테마', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role !== 'healer';
       },
       // zzz
@@ -767,7 +767,7 @@ Options.Triggers.push({
       id: 'Orbonne Ultima Acceleration Bomb',
       netRegex: NetRegexes.gainsEffect({ effectId: '430' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: function(_data, matches) {
+      delaySeconds: (_data, matches) => {
         return parseFloat(matches.duration) - 1;
       },
       response: Responses.stopEverything(),

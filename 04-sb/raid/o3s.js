@@ -11,7 +11,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2304', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2304', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2304', source: '할리카르나소스', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.phase = (data.phase || 0) + 1;
         delete data.seenHolyThisPhase;
       },
@@ -26,7 +26,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '22EF', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '22EF', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '22EF', source: '할리카르나소스', capture: false }),
-      run: function(data) {
+      run: (data) => {
         // In case something went awry, clean up any holy targets
         // so the next spellblade holy can start afresh.
         delete data.holyTargets;
@@ -44,7 +44,7 @@ Options.Triggers.push({
       // So, #2 is the person everybody should stack on.
       id: 'O3S Spellblade Holy',
       netRegex: NetRegexes.headMarker({ id: ['0064', '0065'] }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         // Library phase stack markers behave differently.
         if (data.phase === 3)
           return false;
@@ -52,12 +52,12 @@ Options.Triggers.push({
         data.holyTargets.push(matches.target);
         return data.holyTargets.length === 4;
       },
-      alarmText: function(data, _matches, output) {
+      alarmText: (data, _matches, output) => {
         if (data.holyTargets[1] !== data.me)
           return '';
         return output.stackOnYou();
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.holyTargets[1] === data.me)
           return;
         for (let i = 0; i < 4; ++i) {
@@ -66,13 +66,13 @@ Options.Triggers.push({
         }
         return output.stackOnHoly({ player: data.holyTargets[1] });
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         for (let i = 0; i < 4; ++i) {
           if (data.holyTargets[i] === data.me)
             return output.othersStackOnHoly({ holyTargets: data.holyTargets[1] });
         }
       },
-      run: function(data) {
+      run: (data) => {
         delete data.holyTargets;
       },
       outputStrings: {
@@ -100,7 +100,7 @@ Options.Triggers.push({
       // Library phase spellblade holy with 2 stacks / 4 preys / 2 unmarked.
       id: 'O3S Library Spellblade',
       netRegex: NetRegexes.headMarker({ id: ['0064', '0065'] }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         // This is only for library phase.
         if (data.phase !== 3)
           return false;
@@ -112,10 +112,10 @@ Options.Triggers.push({
       // accumulate logs instead of counting marks.  Instantly print if
       // anything is on you.  The 6 triggers will all have condition=true
       // and run, but only the first one will print.
-      delaySeconds: function(data, matches) {
+      delaySeconds: (data, matches) => {
         return matches.target === data.me ? 0 : 0.5;
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.librarySpellbladePrinted)
           return;
         data.librarySpellbladePrinted = true;
@@ -125,7 +125,7 @@ Options.Triggers.push({
           return output.goNorth();
         return output.goSouthStackOnFriend();
       },
-      tts: function(data, _matches, output) {
+      tts: (data, _matches, output) => {
         if (data.librarySpellbladePrinted)
           return;
         data.librarySpellbladePrinted = true;
@@ -292,7 +292,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '230E', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '230E', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '230E', source: '할리카르나소스', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         // Deliberately skip printing the waltz message for the
         // spellblade holy -> waltz that ends the library phase.
         return data.phase !== 3 || !data.seenHolyThisPhase;

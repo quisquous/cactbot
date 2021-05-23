@@ -93,7 +93,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'アルテマウェポン', id: '2D4D', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2D4D', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2D4D', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.phase = 'suppression';
       },
     },
@@ -107,7 +107,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2D4D', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2D4D', capture: false }),
       delaySeconds: 74,
-      run: function(data) {
+      run: (data) => {
         data.phase = 'finale';
       },
     },
@@ -119,7 +119,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2B53', source: 'ガルーダ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2B53', source: '迦楼罗', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2B53', source: '가루다', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank';
       },
       alertText: (_data, _matches, output) => output.text(),
@@ -153,7 +153,7 @@ Options.Triggers.push({
     {
       id: 'UWU Garuda Mistral Song Tank',
       netRegex: NetRegexes.headMarker({ id: '0010', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank';
       },
       suppressSeconds: 5,
@@ -177,7 +177,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.addedCombatant({ name: 'スパイニープルーム', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '刺羽', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '가시돋힌 깃털', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank';
       },
       infoText: (_data, _matches, output) => output.text(),
@@ -283,13 +283,13 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['ガルーダ', 'タイタン'] }),
       netRegexCn: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['迦楼罗', '泰坦'] }),
       netRegexKo: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['가루다', '타이탄'] }),
-      preRun: function(data, matches) {
+      preRun: (data, matches) => {
         data.titanGaols = data.titanGaols || [];
         data.titanGaols.push(matches.target);
         if (data.titanGaols.length === 3)
           data.titanGaols.sort();
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.titanGaols.length !== 3)
           return;
         const idx = data.titanGaols.indexOf(data.me);
@@ -298,7 +298,7 @@ Options.Triggers.push({
         // Just return your number.
         return output.num({ num: idx + 1 });
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.titanGaols.length !== 3)
           return;
         return output.text({
@@ -335,7 +335,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '2B6A', source: 'ボムボルダー' }),
       netRegexCn: NetRegexes.ability({ id: '2B6A', source: '爆破岩石' }),
       netRegexKo: NetRegexes.ability({ id: '2B6A', source: '바위폭탄' }),
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (!data.titanGaols)
           return;
         if (!data.titanGaols.includes(matches.target))
@@ -361,7 +361,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['ガルーダ', 'タイタン'], capture: false }),
       netRegexKo: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['가루다', '타이탄'], capture: false }),
       delaySeconds: 15,
-      run: function(data) {
+      run: (data) => {
         delete data.titanGaols;
       },
     },
@@ -373,7 +373,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '2B6B', source: 'タイタン' }),
       netRegexCn: NetRegexes.ability({ id: '2B6B', source: '泰坦' }),
       netRegexKo: NetRegexes.ability({ id: '2B6B', source: '타이탄' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return data.phase === 'suppression' && data.me === matches.target;
       },
       alarmText: (_data, _matches, output) => output.text(),
@@ -396,7 +396,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'アルテマウェポン', id: '2CD3', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2CD3', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2CD3', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.phase === 'finale';
       },
       infoText: (_data, _matches, output) => output.text(),
@@ -419,7 +419,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'アルテマウェポン', id: '2CD4', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2CD4', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2CD4', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.phase === 'finale';
       },
       infoText: (_data, _matches, output) => output.text(),
@@ -442,7 +442,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'アルテマウェポン', id: '2CD5', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2CD5', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2CD5', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.phase === 'finale';
       },
       infoText: (_data, _matches, output) => output.text(),

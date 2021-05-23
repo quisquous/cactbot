@@ -212,7 +212,7 @@ Options.Triggers.push({
     {
       id: 'Fractal Hard Dischord Collect',
       netRegex: NetRegexes.headMarker({ id: ['004D', '004E'] }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data[matches.id] = matches.target;
       },
     },
@@ -221,7 +221,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: ['004D', '004E'] }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 0.5,
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         const partner = matches.id === '004D' ? '004E' : '004D';
         // If for some reason there is no partner, we get a vulnerability or bleed and are sad.
         if (!data[partner])
@@ -243,7 +243,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: ['004D', '004F'], capture: false }),
       delaySeconds: 2,
       suppressSeconds: 2,
-      run: function(data) {
+      run: (data) => {
         for (const el of ['004D', '004F'])
           delete data[el];
       },
@@ -263,7 +263,7 @@ Options.Triggers.push({
       // it's better to just delay, since it's always a consistent 8 seconds
       // from the time effects are applied until the circles come up.
       delaySeconds: 8,
-      infoText: function(_data, matches, output) {
+      infoText: (_data, matches, output) => {
         if (matches.effectId === '477')
           return output.standOnRedCircle();
         return output.standOnBlueCircle();

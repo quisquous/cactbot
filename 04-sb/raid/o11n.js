@@ -7,7 +7,7 @@ Options.Triggers.push({
       id: 'O11N Blaster',
       regex: /Blaster/,
       beforeSeconds: 3,
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank';
       },
       infoText: (_data, _matches, output) => output.text(),
@@ -50,7 +50,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '328[13]', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '328[13]', source: '오메가', capture: false }),
       delaySeconds: 15,
-      run: function(data) {
+      run: (data) => {
         delete data.lastWasStarboard;
       },
     },
@@ -62,11 +62,11 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '328[12]', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '328[12]', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '328[12]', source: '오메가', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.lastWasStarboard === undefined;
       },
       response: Responses.goLeft(),
-      run: function(data) {
+      run: (data) => {
         data.lastWasStarboard = true;
       },
     },
@@ -78,11 +78,11 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '328[34]', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '328[34]', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '328[34]', source: '오메가', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.lastWasStarboard === undefined;
       },
       response: Responses.goRight(),
-      run: function(data) {
+      run: (data) => {
         data.lastWasStarboard = false;
       },
     },
@@ -94,10 +94,10 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3282', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3282', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3282', source: '오메가', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.lastWasStarboard !== undefined;
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.lastWasStarboard)
           return output.moveLeft();
         return output.stayLeft();
@@ -129,10 +129,10 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3284', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3284', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3284', source: '오메가', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.lastWasStarboard !== undefined;
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.lastWasStarboard)
           return output.stayRight();
         return output.moveRight();

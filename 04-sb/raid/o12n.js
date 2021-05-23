@@ -19,7 +19,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: ['330F', '3310'], source: ['オメガ', 'オメガM'] }),
       netRegexCn: NetRegexes.startsUsing({ id: ['330F', '3310'], source: ['欧米茄', '欧米茄M'] }),
       netRegexKo: NetRegexes.startsUsing({ id: ['330F', '3310'], source: ['오메가', '오메가 M'] }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return data.me === matches.target || data.role === 'healer';
       },
       suppressSeconds: 1,
@@ -33,7 +33,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: ['3321', '3322'], source: ['オメガ', 'オメガM'] }),
       netRegexCn: NetRegexes.startsUsing({ id: ['3321', '3322'], source: ['欧米茄', '欧米茄M'] }),
       netRegexKo: NetRegexes.startsUsing({ id: ['3321', '3322'], source: ['오메가', '오메가 M'] }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return data.me === matches.target || data.role === 'healer';
       },
       suppressSeconds: 1,
@@ -47,7 +47,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.gainsEffect({ target: 'オメガ', effectId: '67E', capture: false }),
       netRegexCn: NetRegexes.gainsEffect({ target: '欧米茄', effectId: '67E', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '오메가', effectId: '67E', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank';
       },
       alertText: (_data, _matches, output) => output.text(),
@@ -71,12 +71,12 @@ Options.Triggers.push({
     {
       id: 'O12N Stack Spread Markers',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (data.me !== matches.target)
           return;
         return output.getOut();
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return;
         return output.stack();

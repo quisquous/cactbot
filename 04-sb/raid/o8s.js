@@ -190,7 +190,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '28F[78]', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28F[78]', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28F[78]', source: '케프카', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank' || data.role === 'healer';
       },
       alertText: (_data, _matches, output) => output.text(),
@@ -214,7 +214,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '28F[45]', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28F[45]', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28F[45]', source: '케프카', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank' || data.role === 'healer';
       },
       alertText: (_data, _matches, output) => output.text(),
@@ -248,11 +248,11 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2900', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2900', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2900', source: '케프카', capture: false }),
-      alarmText: function(data, _matches, output) {
+      alarmText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.wingsBeNearFar();
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.role !== 'tank')
           return output.maxMeleeAvoidTanks();
       },
@@ -303,12 +303,12 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2910', source: 'ケフカ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '2910', source: '凯夫卡' }),
       netRegexKo: NetRegexes.startsUsing({ id: '2910', source: '케프카' }),
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (matches.target !== data.me)
           return;
         return output.embraceOnYou();
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (matches.target === data.me)
           return;
         if (data.role === 'healer' || data.role === 'tank')
@@ -417,7 +417,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '28D1', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28D1', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28D1', source: '케프카', capture: false }),
-      run: function(data) {
+      run: (data) => {
         delete data.lastFire;
         delete data.lastThunder;
         delete data.lastIceDir;
@@ -432,7 +432,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '28D2', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28D2', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28D2', source: '케프카', capture: false }),
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.lastFire)
           return output[data.lastFire]();
         if (!data.lastIceDir)
@@ -486,7 +486,7 @@ Options.Triggers.push({
         return (data.truths && data.fireMarker === 'spread') || (data.antics && data.fireMarker === 'stack');
       },
       response: Responses.spread(),
-      run: function(data) {
+      run: (data) => {
         data.lastFire = 'spread';
         delete data.fireMarker;
       },
@@ -506,7 +506,7 @@ Options.Triggers.push({
         return (data.antics && data.fireMarker === 'spread') || (data.truths && data.fireMarker === 'stack');
       },
       response: Responses.getTogether(),
-      run: function(data) {
+      run: (data) => {
         data.lastFire = 'stack';
         delete data.fireMarker;
       },
@@ -562,7 +562,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: ['28C5', '2B2B'], source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['28C5', '2B2B'], source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['28C5', '2B2B'], source: '케프카', capture: false }),
-      preRun: function(data) {
+      preRun: (data) => {
         data.lastIceDir = 'getOut';
       },
       suppressSeconds: 40,
@@ -587,7 +587,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: ['28C9', '2B2E'], source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['28C9', '2B2E'], source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['28C9', '2B2E'], source: '케프카', capture: false }),
-      preRun: function(data) {
+      preRun: (data) => {
         data.lastIceDir = 'getIn';
       },
       suppressSeconds: 40,
@@ -612,7 +612,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: ['28C4', '2B2A'], source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['28C4', '2B2A'], source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['28C4', '2B2A'], source: '케프카', capture: false }),
-      preRun: function(data) {
+      preRun: (data) => {
         data.lastIceDir = 'getIn';
       },
       suppressSeconds: 40,
@@ -637,7 +637,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: ['28C8', '2B2D'], source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['28C8', '2B2D'], source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['28C8', '2B2D'], source: '케프카', capture: false }),
-      preRun: function(data) {
+      preRun: (data) => {
         data.lastIceDir = 'getOut';
       },
       suppressSeconds: 40,

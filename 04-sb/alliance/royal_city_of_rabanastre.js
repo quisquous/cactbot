@@ -30,19 +30,19 @@ Options.Triggers.push({
       id: 'Rab Mateus Breathless Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '595' }),
       condition: Conditions.targetIsYou(),
-      alarmText: function(data, _matches, output) {
+      alarmText: (data, _matches, output) => {
         if (data.breathless === 6)
           return output.getInBubble();
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.breathless >= 7)
           return output.breathless({ num: (data.breathless + 1) });
       },
-      tts: function(data, _matches, output) {
+      tts: (data, _matches, output) => {
         if (data.breathless === 6)
           return output.bubble();
       },
-      run: function(data) {
+      run: (data) => {
         data.breathless = data.breathless | 0;
         data.breathless++;
       },
@@ -77,7 +77,7 @@ Options.Triggers.push({
       id: 'Rab Mateus Breathless Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '595' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.breathless = 0;
       },
     },
@@ -226,7 +226,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: '冷血剣アルガス', id: '261A', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '冷血剑阿加斯', id: '261A', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '냉혈검 아르가스', id: '261A', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.maskValue = true;
       },
     },
@@ -238,7 +238,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: '冷血剣アルガス', id: '2619', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '冷血剑阿加斯', id: '2619', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '냉혈검 아르가스', id: '2619', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.maskValue = false;
       },
     },
@@ -246,7 +246,7 @@ Options.Triggers.push({
       id: 'Rab Argath Command Scatter',
       netRegex: NetRegexes.headMarker({ id: '007B' }),
       condition: Conditions.targetIsYou(),
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.maskValue)
           return output.move();
         return output.stop();
@@ -274,7 +274,7 @@ Options.Triggers.push({
       id: 'Rab Argath Command Turn',
       netRegex: NetRegexes.headMarker({ id: '007C' }),
       condition: Conditions.targetIsYou(),
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.maskValue)
           return output.lookAway();
         return output.lookTowards();

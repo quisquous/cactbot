@@ -1,4 +1,4 @@
-const mathDirection = function(mathBaseValue, correctMath, output) {
+const mathDirection = (mathBaseValue, correctMath, output) => {
   if (!correctMath)
     return;
   if (mathBaseValue < 1 || mathBaseValue > 9) {
@@ -255,7 +255,7 @@ Options.Triggers.push({
       id: 'Ridorana Construct Accelerate Spread',
       netRegex: NetRegexes.headMarker({ id: '008A' }),
       condition: Conditions.targetIsYou(),
-      preRun: function(data) {
+      preRun: (data) => {
         data.accelerateSpreadOnMe = true;
       },
       response: Responses.spread(),
@@ -263,7 +263,7 @@ Options.Triggers.push({
     {
       id: 'Ridorana Construct Accelerate Stack',
       netRegex: NetRegexes.headMarker({ id: '0064' }),
-      condition: function(data) {
+      condition: (data) => {
         return !data.accelerateSpreadOnMe;
       },
       response: Responses.stackMarkerOn(),
@@ -276,7 +276,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2C65', source: '労働七号', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2C65', source: '劳动七号', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2C65', source: '노동 7호', capture: false }),
-      run: function(data) {
+      run: (data) => {
         delete data.accelerateSpreadOnMe;
       },
     },
@@ -288,7 +288,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2C6C', source: '労働七号', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2C6C', source: '劳动七号', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2C6C', source: '노동 7호', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.mathBaseValue = 0;
       },
     },
@@ -297,7 +297,7 @@ Options.Triggers.push({
       id: 'Ridorana Construct Math HP Check 1',
       netRegex: NetRegexes.gainsEffect({ effectId: '615' }),
       condition: Conditions.targetIsYou(),
-      preRun: function(data) {
+      preRun: (data) => {
         if (!data.mathBaseValue && data.currentHP > 0 && data.currentHP < 10)
           data.mathBaseValue = data.currentHP;
       },
@@ -310,7 +310,7 @@ Options.Triggers.push({
       id: 'Ridorana Construct Math HP Check 2',
       netRegex: NetRegexes.gainsEffect({ effectId: '615' }),
       condition: Conditions.targetIsYou(),
-      preRun: function(data) {
+      preRun: (data) => {
         if (!data.mathBaseValue && data.currentHP > 0 && data.currentHP < 10)
           data.mathBaseValue = data.currentHP;
       },
@@ -418,7 +418,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2E32', source: '鬼龍ヤズマット', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2E32', source: '鬼龙雅兹玛特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2E32', source: '귀룡 야즈마트', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank';
       },
       response: Responses.awayFromFront(),
