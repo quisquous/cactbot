@@ -58,6 +58,8 @@ export default {
           name: matches.target,
           reason: {
             en: 'Pushed into wall',
+            ja: '壁へノックバック',
+            cn: '击退至墙',
           },
         };
       },
