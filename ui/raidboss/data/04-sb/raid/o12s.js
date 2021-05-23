@@ -27,6 +27,7 @@ export default {
         knockbackAndAvoid: {
           en: 'Knockback F + Avoid M',
           fr: 'Poussée F + Évitez M',
+          ja: 'Fのノックバック + Mに避ける',
           cn: '女性击退 + 远离男性',
         },
       },
@@ -124,6 +125,7 @@ export default {
         text: {
           en: 'Behind => Spread',
           fr: 'Derrière -> Dispersez-vous',
+          ja: '後ろ -> 散開',
           cn: '背后 => 分散',
         },
       },
@@ -251,6 +253,7 @@ export default {
         text: {
           en: 'Bring Bosses Middle, Face Eye',
           fr: 'Placez les boss au centre, face à l\'œil',
+          ja: 'ボスを中央に、目を見る',
           cn: '把BOSS拉到中间，面向眼睛',
         },
       },
@@ -270,6 +273,7 @@ export default {
         text: {
           en: 'Get Middle (Blades)',
           fr: 'Allez au centre (Lames)',
+          ja: '中へ (剣)',
           cn: '去中间 (剑)',
         },
       },
@@ -288,6 +292,7 @@ export default {
         text: {
           en: 'Intercards + Stack',
           fr: 'Intercardinal + Package',
+          ja: '斜め + 頭割り',
           cn: '躲十字AoE + 分摊',
         },
       },
@@ -306,6 +311,7 @@ export default {
         text: {
           en: 'Behind => Out + Spread',
           fr: 'Derrière -> Extérieur + Dispersion',
+          ja: '後ろ => 外へ + 散開',
           cn: '去背后 => 远离 + 分散',
         },
       },
@@ -325,6 +331,7 @@ export default {
         text: {
           en: 'Intercards + Spread (Shield)',
           fr: 'Intercardinal + Dispersion (Bouclier)',
+          ja: '斜め + 散開 (盾)',
           cn: '躲十字AoE + 分散 (盾)',
         },
       },
@@ -346,6 +353,7 @@ export default {
         text: {
           en: 'Spread => Follow M',
           fr: 'Dispersion -> Suivez M',
+          ja: '散開 -> Mを追う',
           cn: '分散 => 去男性脚下',
         },
       },
@@ -366,6 +374,7 @@ export default {
         text: {
           en: 'Away from M',
           fr: 'Éloignez-vous de M',
+          ja: 'Mから離れる',
           cn: '远离男性',
         },
       },
@@ -434,6 +443,7 @@ export default {
         text: {
           en: 'Stack Groups',
           fr: 'Package en groupe',
+          ja: '組み分け頭割り',
           cn: '分组分摊',
         },
       },
@@ -453,6 +463,7 @@ export default {
         text: {
           en: 'Arrow on YOU',
           fr: 'Flèche sur VOUS',
+          ja: '自分にアロー',
           cn: '天箭点名',
         },
       },

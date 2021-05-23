@@ -85,6 +85,8 @@ export default {
           blame: matches.target,
           text: {
             en: `${matches.ability} (with vuln)`,
+            ja: `${matches.ability} (被ダメージ上昇)`,
+            cn: `${matches.ability} (带易伤)`,
           },
         };
       },
