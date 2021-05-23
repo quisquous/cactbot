@@ -93,6 +93,8 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Knockback Arrow on YOU',
+          ja: '自分に吹き飛ばし矢印',
+          cn: '击退箭头点名',
           ko: '넉백 화살표 대상자',
         },
       },
@@ -105,6 +107,8 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Go Cardinal With Sword',
+          ja: '辺の中心に捨てる',
+          cn: '四边放刀',
           ko: '동서남북으로 이동',
         },
       },
@@ -117,6 +121,8 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Go Intercardinal With Sword',
+          ja: '四隅に捨てる',
+          cn: '四角放刀',
           ko: '대각위치로 이동',
         },
       },
