@@ -277,9 +277,7 @@ export default {
     {
       id: 'O2S 6 Fulms Under Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
-      condition: (data, matches) => {
-        return !data.under && matches.target === data.me;
-      },
+      condition: (data, matches) => !data.under && matches.target === data.me,
       delaySeconds: 5,
       alertText: (data, _matches, output) => {
         if (!data.levitating)

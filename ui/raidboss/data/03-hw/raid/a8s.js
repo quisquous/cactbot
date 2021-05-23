@@ -125,9 +125,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'オンスローター', id: '1632', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '突击者', id: '1632', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '맹습자', id: '1632', capture: false }),
-      condition: (data) => {
-        return data.role === 'dps' || data.job === 'BLU';
-      },
+      condition: (data) => data.role === 'dps' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -199,9 +197,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ブラスター', id: '1639' }),
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者', id: '1639' }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자', id: '1639' }),
-      condition: (data) => {
-        return data.CanSilence();
-      },
+      condition: (data) => data.CanSilence(),
       response: Responses.interrupt('alarm'),
     },
     {
@@ -307,9 +303,7 @@ export default {
     {
       id: 'A8S Compressed Lightning Soon',
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
-      delaySeconds: (_data, matches) => {
-        return parseFloat(matches.duration) - 5;
-      },
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       infoText: (data, _matches, output) => {
         if (!data.lightning)
           return;
@@ -414,9 +408,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '166A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '166A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '166A', capture: false }),
-      condition: (data) => {
-        return data.longNeedleStack && data.longNeedlePrey;
-      },
+      condition: (data) => data.longNeedleStack && data.longNeedlePrey,
       suppressSeconds: 10,
       alarmText: (data, _matches, output) => {
         if (data.longNeedlePrey.includes(data.me))
@@ -527,9 +519,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ステルス地雷', id: '165E', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '隐形地雷', id: '165E', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '은폐 지뢰', id: '165E', capture: false }),
-      condition: (data) => {
-        return !data.seenLinkUp;
-      },
+      condition: (data) => !data.seenLinkUp,
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -683,9 +673,7 @@ export default {
     {
       id: 'A8S Verdict Max HP Blu Devour',
       netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
-      condition: (data, matches) => {
-        return data.me === matches.target && data.job === 'BLU';
-      },
+      condition: (data, matches) => data.me === matches.target && data.job === 'BLU',
       delaySeconds: 27,
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -848,9 +836,7 @@ export default {
     {
       id: 'A8S Compressed Water Soon',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      delaySeconds: (_data, matches) => {
-        return parseFloat(matches.duration) - 5;
-      },
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       infoText: (data, _matches, output) => {
         if (!data.water)
           return;

@@ -360,9 +360,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '264E', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '264E', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '264E', source: '신룡', capture: false }),
-      condition: (data) => {
-        return data.role === 'healer';
-      },
+      condition: (data) => data.role === 'healer',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -527,9 +525,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '2718', source: 'レフトウィング', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2718', source: '左翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2718', source: '왼쪽 날개', capture: false }),
-      condition: (data) => {
-        return !data.finalWing;
-      },
+      condition: (data) => !data.finalWing,
       alertText: (_data, _matches, output) => output.text(),
       run: (data) => {
         data.finalWing = true;
@@ -553,9 +549,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '2719', source: 'ライトウィング', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2719', source: '右翼', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2719', source: '오른쪽 날개', capture: false }),
-      condition: (data) => {
-        return !data.finalWing;
-      },
+      condition: (data) => !data.finalWing,
       alertText: (_data, _matches, output) => output.text(),
       run: (data) => {
         data.finalWing = true;

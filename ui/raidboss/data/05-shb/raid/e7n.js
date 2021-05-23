@@ -26,9 +26,7 @@ export default {
       netRegexJa: NetRegexes.tether({ source: 'ダークアイドル', id: '0025' }),
       netRegexCn: NetRegexes.tether({ source: '暗黑心象', id: '0025' }),
       netRegexKo: NetRegexes.tether({ source: '어둠의 우상', id: '0025' }),
-      condition: (data) => {
-        return data.role === 'tank' || data.role === 'healer';
-      },
+      condition: (data) => data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {

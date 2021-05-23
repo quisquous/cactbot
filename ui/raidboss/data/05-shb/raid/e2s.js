@@ -111,9 +111,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3E61', source: 'ヴォイドウォーカー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E61', source: '虚无行者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E61', source: '보이드워커', capture: false }),
-      condition: (data) => {
-        return data.role === 'healer';
-      },
+      condition: (data) => data.role === 'healer',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: Outputs.tankBusters,
@@ -192,17 +190,13 @@ export default {
     {
       id: 'E2S Unholy Darkness No Waiting',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      condition: (data) => {
-        return !data.waiting;
-      },
+      condition: (data) => !data.waiting,
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'E2S Unholy Darkness Collect',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      condition: (data) => {
-        return data.waiting;
-      },
+      condition: (data) => data.waiting,
       run: (data, matches) => {
         data.spell = data.spell || {};
         data.spell[matches.target] = 'stack';
@@ -211,9 +205,7 @@ export default {
     {
       id: 'E2S Unholy Darkness Waiting',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      condition: (data, matches) => {
-        return data.waiting && data.me === matches.target;
-      },
+      condition: (data, matches) => data.waiting && data.me === matches.target,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -229,25 +221,19 @@ export default {
     {
       id: 'E2S Countdown Marker Unholy Darkness',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: (data, matches) => {
-        return !data.hellWind && data.spell[matches.target] === 'stack';
-      },
+      condition: (data, matches) => !data.hellWind && data.spell[matches.target] === 'stack',
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'E2S Dark Fire No Waiting',
       netRegex: NetRegexes.headMarker({ id: '004C' }),
-      condition: (data, matches) => {
-        return !data.waiting && data.me === matches.target;
-      },
+      condition: (data, matches) => !data.waiting && data.me === matches.target,
       response: Responses.spread('alert'),
     },
     {
       id: 'E2S Dark Fire Collect',
       netRegex: NetRegexes.headMarker({ id: '004C' }),
-      condition: (data) => {
-        return data.waiting;
-      },
+      condition: (data) => data.waiting,
       run: (data, matches) => {
         data.spell = data.spell || {};
         data.spell[matches.target] = 'fire';
@@ -256,9 +242,7 @@ export default {
     {
       id: 'E2S Dark Fire Waiting',
       netRegex: NetRegexes.headMarker({ id: '004C' }),
-      condition: (data, matches) => {
-        return data.waiting && data.me === matches.target;
-      },
+      condition: (data, matches) => data.waiting && data.me === matches.target,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -274,25 +258,19 @@ export default {
     {
       id: 'E2S Countdown Marker Fire',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: (data, matches) => {
-        return data.me === matches.target && data.spell[data.me] === 'fire';
-      },
+      condition: (data, matches) => data.me === matches.target && data.spell[data.me] === 'fire',
       response: Responses.spread('alert'),
     },
     {
       id: 'E2S Shadoweye No Waiting',
       netRegex: NetRegexes.headMarker({ id: '00B3' }),
-      condition: (data) => {
-        return !data.waiting;
-      },
+      condition: (data) => !data.waiting,
       response: Responses.lookAwayFromTarget(),
     },
     {
       id: 'E2S Shadoweye No Waiting You',
       netRegex: NetRegexes.headMarker({ id: '00B3' }),
-      condition: (data) => {
-        return !data.waiting;
-      },
+      condition: (data) => !data.waiting,
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.text();
@@ -311,9 +289,7 @@ export default {
     {
       id: 'E2S Shadoweye Collect',
       netRegex: NetRegexes.headMarker({ id: '00B3' }),
-      condition: (data) => {
-        return data.waiting;
-      },
+      condition: (data) => data.waiting,
       run: (data, matches) => {
         data.spell = data.spell || {};
         data.spell[matches.target] = 'eye';
@@ -322,9 +298,7 @@ export default {
     {
       id: 'E2S Shadoweye Waiting',
       netRegex: NetRegexes.headMarker({ id: '00B3' }),
-      condition: (data, matches) => {
-        return data.waiting && data.me === matches.target;
-      },
+      condition: (data, matches) => data.waiting && data.me === matches.target,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -340,9 +314,7 @@ export default {
     {
       id: 'E2S Countdown Marker Shadoweye Me',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: (data, matches) => {
-        return data.spell[matches.target] === 'eye' && matches.target === data.me;
-      },
+      condition: (data, matches) => data.spell[matches.target] === 'eye' && matches.target === data.me,
       delaySeconds: 2,
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text(),
@@ -360,9 +332,7 @@ export default {
     {
       id: 'E2S Countdown Marker Shadoweye Other',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: (data, matches) => {
-        return data.spell[matches.target] === 'eye' && data.spell[data.me] !== 'eye';
-      },
+      condition: (data, matches) => data.spell[matches.target] === 'eye' && data.spell[data.me] !== 'eye',
       delaySeconds: 2,
       suppressSeconds: 10,
       // Let's just assume these people are stacked.
@@ -372,9 +342,7 @@ export default {
     {
       id: 'E2S Flare No Waiting',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: (data, matches) => {
-        return !data.waiting && data.me === matches.target;
-      },
+      condition: (data, matches) => !data.waiting && data.me === matches.target,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -390,9 +358,7 @@ export default {
     {
       id: 'E2S Flare Collect',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: (data) => {
-        return data.waiting;
-      },
+      condition: (data) => data.waiting,
       run: (data, matches) => {
         data.spell = data.spell || {};
         data.spell[matches.target] = 'flare';
@@ -401,9 +367,7 @@ export default {
     {
       id: 'E2S Flare Waiting',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      condition: (data, matches) => {
-        return data.waiting && data.me === matches.target;
-      },
+      condition: (data, matches) => data.waiting && data.me === matches.target,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -419,9 +383,7 @@ export default {
     {
       id: 'E2S Countdown Marker Flare',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: (data, matches) => {
-        return data.me === matches.target && data.spell[data.me] === 'flare';
-      },
+      condition: (data, matches) => data.me === matches.target && data.spell[data.me] === 'flare',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -458,9 +420,7 @@ export default {
     {
       id: 'E2S Hell Wind No Waiting',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
-      condition: (data, matches) => {
-        return !data.waiting && data.me === matches.target;
-      },
+      condition: (data, matches) => !data.waiting && data.me === matches.target,
       // The "no waiting" version comes paired with a stack.
       alarmText: (_data, _matches, output) => output.text(),
       run: (data) => {
@@ -480,9 +440,7 @@ export default {
     {
       id: 'E2S Hell Wind Cleanup',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
-      condition: (data, matches) => {
-        return !data.waiting && data.me === matches.target;
-      },
+      condition: (data, matches) => !data.waiting && data.me === matches.target,
       delaySeconds: 15,
       run: (data) => {
         delete data.hellWind;
@@ -491,9 +449,7 @@ export default {
     {
       id: 'E2S Hell Wind Collect',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
-      condition: (data) => {
-        return data.waiting;
-      },
+      condition: (data) => data.waiting,
       run: (data, matches) => {
         data.spell = data.spell || {};
         data.spell[matches.target] = 'wind';
@@ -502,9 +458,7 @@ export default {
     {
       id: 'E2S Hell Wind Waiting',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
-      condition: (data, matches) => {
-        return data.waiting && data.me === matches.target;
-      },
+      condition: (data, matches) => data.waiting && data.me === matches.target,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

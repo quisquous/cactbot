@@ -45,9 +45,7 @@ export default {
       id: 'SeiryuEx Tether',
       regex: /Kanabo/,
       beforeSeconds: 7,
-      condition: (data) => {
-        return data.role === 'tank';
-      },
+      condition: (data) => data.role === 'tank',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -163,9 +161,7 @@ export default {
     {
       id: 'SeiryuEx Ascending Marker Tracking',
       netRegex: NetRegexes.headMarker({ id: '00A9' }),
-      condition: (data) => {
-        return data.blazing;
-      },
+      condition: (data) => data.blazing,
       run: (data, matches) => {
         data.markers.push(matches.target);
       },
@@ -173,9 +169,7 @@ export default {
     {
       id: 'SeiryuEx Ascending Marker You',
       netRegex: NetRegexes.headMarker({ id: '00A9' }),
-      condition: (data, matches) => {
-        return data.blazing && matches.target === data.me;
-      },
+      condition: (data, matches) => data.blazing && matches.target === data.me,
       infoText: (data, _matches, output) => {
         if (data.role === 'tank' || data.role === 'healer')
           return output.spreadDpsGetTowers();
@@ -298,9 +292,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '37F4', source: '沼の式鬼' }),
       netRegexCn: NetRegexes.startsUsing({ id: '37F4', source: '沼之式鬼' }),
       netRegexKo: NetRegexes.startsUsing({ id: '37F4', source: '늪 사역귀' }),
-      condition: (data) => {
-        return data.CanSilence();
-      },
+      condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
     {

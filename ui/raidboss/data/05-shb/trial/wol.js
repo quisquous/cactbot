@@ -11,9 +11,7 @@ export default {
       id: 'WOL Ultimate Crossover',
       regex: /Ultimate Crossover/,
       beforeSeconds: 8,
-      condition: (data) => {
-        return data.role === 'tank';
-      },
+      condition: (data) => data.role === 'tank',
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -53,9 +51,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ウォーリア・オブ・ライト', id: '4F27', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '光之战士', id: '4F27', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '빛의 전사', id: '4F27', capture: false }),
-      condition: (data) => {
-        return data.role === 'healer';
-      },
+      condition: (data) => data.role === 'healer',
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {

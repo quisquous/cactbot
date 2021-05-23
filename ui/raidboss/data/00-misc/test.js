@@ -211,9 +211,7 @@ export default {
       netRegexDe: NetRegexes.echo({ line: 'cactbot sprache.*?', capture: false }),
       netRegexJa: NetRegexes.echo({ line: 'cactbot言語.*?', capture: false }),
       netRegexKo: NetRegexes.echo({ line: 'cactbot 언어.*?', capture: false }),
-      infoText: (data, _matches, output) => {
-        return output.text({ lang: data.parserLang });
-      },
+      infoText: (data, _matches, output) => output.text({ lang: data.parserLang }),
       outputStrings: {
         text: {
           en: 'Language: ${lang}',

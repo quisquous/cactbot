@@ -17,9 +17,7 @@ export default {
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => {
-        return output.text({ player: data.ShortName(matches.source) });
-      },
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Provoke: ${player}',
@@ -71,9 +69,7 @@ export default {
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => {
-        return output.text({ player: data.ShortName(matches.source) });
-      },
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Shirk: ${player}',
@@ -93,9 +89,7 @@ export default {
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => {
-        return output.text({ player: data.ShortName(matches.source) });
-      },
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Holmgang: ${player}',
@@ -115,9 +109,7 @@ export default {
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => {
-        return output.text({ player: data.ShortName(matches.source) });
-      },
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Hallowed: ${player}',
@@ -137,9 +129,7 @@ export default {
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => {
-        return output.text({ player: data.ShortName(matches.source) });
-      },
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Bolide: ${player}',
@@ -159,9 +149,7 @@ export default {
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => {
-        return output.text({ player: data.ShortName(matches.source) });
-      },
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Living: ${player}',
@@ -181,9 +169,7 @@ export default {
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => {
-        return output.text({ player: data.ShortName(matches.source) });
-      },
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Walking: ${player}',

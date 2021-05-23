@@ -13,9 +13,7 @@ export default {
       id: 'LakshmiEx Path of Light',
       regex: /Path of Light/,
       beforeSeconds: 5,
-      condition: (data) => {
-        return data.role === 'tank';
-      },
+      condition: (data) => data.role === 'tank',
       response: Responses.tankCleave(),
     },
   ],
@@ -52,9 +50,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '215E', source: 'ラクシュミ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '215E', source: '吉祥天女' }),
       netRegexKo: NetRegexes.startsUsing({ id: '215E', source: '락슈미' }),
-      condition: (data) => {
-        return data.role === 'tank';
-      },
+      condition: (data) => data.role === 'tank',
       response: Responses.tankBuster('info'),
     },
     {
@@ -65,9 +61,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '215E', source: 'ラクシュミ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '215E', source: '吉祥天女' }),
       netRegexKo: NetRegexes.startsUsing({ id: '215E', source: '락슈미' }),
-      condition: (data) => {
-        return data.role !== 'tank' && data.role !== 'healer';
-      },
+      condition: (data) => data.role !== 'tank' && data.role !== 'healer',
       response: Responses.tankBuster('alarm'),
     },
     {

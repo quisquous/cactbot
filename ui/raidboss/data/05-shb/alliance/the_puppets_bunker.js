@@ -117,9 +117,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '８１３Ｐ：拠点防衛ユニット装備', id: '5080', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '813P：装备据点防卫装置', id: '5080', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '813P: 거점 방위 유닛 장비', id: '5080', capture: false }),
-      alertText: (_data, _matches, output) => {
-        return output.text();
-      },
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go Left, Behind Wing',
@@ -139,9 +137,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: '８１３Ｐ：拠点防衛ユニット装備', id: '507F', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '813P：装备据点防卫装置', id: '507F', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '813P: 거점 방위 유닛 장비', id: '507F', capture: false }),
-      alertText: (_data, _matches, output) => {
-        return output.text();
-      },
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go Right, Behind Wing',
