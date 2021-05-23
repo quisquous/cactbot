@@ -36,7 +36,7 @@ export default {
       netRegexJa: NetRegexes.addedCombatant({ name: '雷雲', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '雷云', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '번개구름', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.cloud = true;
       },
     },
@@ -52,17 +52,17 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '2041', source: '雷雲', target: '雷雲', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2041', source: '雷云', target: '雷云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2041', source: '번개구름', target: '번개구름', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.cloud = false;
       },
     },
     {
       id: 'SusEx Churning Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '4F6', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return !data.churning;
       },
-      run: function(data) {
+      run: (data) => {
         data.churning = true;
       },
     },
@@ -72,10 +72,10 @@ export default {
       // while having churning, but is probably ok in most cases.
       id: 'SusEx Churning Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '4F6', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.churning;
       },
-      run: function(data) {
+      run: (data) => {
         data.churning = false;
       },
     },
@@ -95,7 +95,7 @@ export default {
       id: 'SusEx Knockback',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.cloud)
           return output.knockbackWithCloud();
         else if (data.churning)
@@ -103,7 +103,7 @@ export default {
 
         return output.knockback();
       },
-      tts: function(data, _matches, output) {
+      tts: (data, _matches, output) => {
         if (data.cloud)
           return output.knockbackWithCloudTTS();
         else if (data.churning)
@@ -152,13 +152,13 @@ export default {
       id: 'SusEx Levinbolt',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
       condition: Conditions.targetIsYou(),
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.cloud)
           return output.levinboltWithCloud();
 
         return output.levinboltOnYou();
       },
-      tts: function(data, _matches, output) {
+      tts: (data, _matches, output) => {
         if (data.cloud)
           return output.levinboltWithCloudTTS();
 
@@ -202,7 +202,7 @@ export default {
     {
       id: 'SusEx Levinbolt Debug',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         data.levinbolt = matches.target;
         return (matches.target !== data.me);
       },
@@ -210,7 +210,7 @@ export default {
     {
       id: 'SusEx Levinbolt Stun',
       netRegex: NetRegexes.headMarker({ id: '006F' }),
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         // It's sometimes hard for tanks to see the line, so just give a
         // sound indicator for jumping rope back and forth.
         if (data.role === 'tank')
@@ -231,7 +231,7 @@ export default {
       id: 'SusEx Churning',
       netRegex: NetRegexes.gainsEffect({ effectId: '4F6' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: function(_data, matches) {
+      delaySeconds: (_data, matches) => {
         return parseFloat(matches.duration) - 3;
       },
       response: Responses.stopEverything('alert'),

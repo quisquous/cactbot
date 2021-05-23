@@ -16,7 +16,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '27DA', source: '白虎' }),
       netRegexCn: NetRegexes.startsUsing({ id: '27DA', source: '白虎' }),
       netRegexKo: NetRegexes.startsUsing({ id: '27DA', source: '백호' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer';
       },
       response: Responses.tankBuster(),
@@ -79,7 +79,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '27E0', source: '白虎' }),
       netRegexCn: NetRegexes.startsUsing({ id: '27E0', source: '白虎' }),
       netRegexKo: NetRegexes.startsUsing({ id: '27E0', source: '백호' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return data.role === 'tank' && matches.target !== data.me;
       },
       alertText: (_data, _matches, output) => output.text(),
@@ -102,7 +102,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '27E0', source: '白虎' }),
       netRegexCn: NetRegexes.startsUsing({ id: '27E0', source: '白虎' }),
       netRegexKo: NetRegexes.startsUsing({ id: '27E0', source: '백호' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return data.role === 'tank' && matches.target === data.me;
       },
       delaySeconds: 12,
@@ -126,7 +126,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27F9', source: '하얀 제왕', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.roarCount = data.roarCount || 0;
         data.roarCount += 1;
       },
@@ -140,7 +140,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27F9', source: '하얀 제왕', capture: false }),
       delaySeconds: 14,
-      alarmText: function(data, _matches, output) {
+      alarmText: (data, _matches, output) => {
         if (data.roarCount !== 2)
           return;
 
@@ -251,7 +251,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.stakeCount = data.stakeCount || 0;
         data.stakeCount += 1;
       },
@@ -265,7 +265,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
       delaySeconds: 20,
-      run: function(data) {
+      run: (data) => {
         delete data.stakeCount;
       },
     },
@@ -277,7 +277,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         return output.text({ num: data.stakeCount });
       },
       outputStrings: {

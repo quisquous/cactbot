@@ -11,7 +11,7 @@ export default {
       id: 'Bardam\'s Mettle Feathercut',
       regex: /Feathercut/,
       beforeSeconds: 4,
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank' || data.role === 'healer';
       },
       response: Responses.tankBuster(),
@@ -55,7 +55,7 @@ export default {
       netRegexJa: NetRegexes.message({ line: '.*物言わぬ語り部 will be sealed off.*?', capture: false }),
       netRegexCn: NetRegexes.message({ line: '.*无声的叙事者 will be sealed off.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '.*말 없는 이야기꾼 will be sealed off.*?', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.deadBardam = true;
       },
     },
@@ -119,7 +119,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '2582', source: '落下地点' }),
       netRegexCn: NetRegexes.startsUsing({ id: '2582', source: '坠落地点' }),
       netRegexKo: NetRegexes.startsUsing({ id: '2582', source: '낙하지점' }),
-      delaySeconds: function(_data, matches) {
+      delaySeconds: (_data, matches) => {
         return parseFloat(matches.castTime) - 7;
       },
       alertText: (_data, _matches, output) => output.text(),
@@ -148,7 +148,7 @@ export default {
     {
       id: 'Bardam\'s Mettle Flutterfall',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return data.me === matches.target && data.deadBardam;
       },
       response: Responses.spread(),
