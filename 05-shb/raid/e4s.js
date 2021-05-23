@@ -433,14 +433,7 @@ Options.Triggers.push({
           ko: '탱커에서 멀어지기',
         },
         stackOnYou: Outputs.stackOnYou,
-        stackOn: {
-          en: 'Stack on ${player}',
-          de: 'Auf ${player} sammeln',
-          fr: 'Packez-vous sur ${player}',
-          ja: '${player}にシェア',
-          cn: '与 ${player} 集合',
-          ko: '"${player}" 쉐어징',
-        },
+        stackOn: Outputs.stackOnPlayer,
       },
     },
     {

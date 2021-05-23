@@ -64,7 +64,7 @@ Options.Triggers.push({
           if (data.holyTargets[i] === data.me)
             return output.getOut();
         }
-        return output.stackOnHoly({ holyTargets: data.holyTargets[1] });
+        return output.stackOnHoly({ player: data.holyTargets[1] });
       },
       infoText: function(data, _matches, output) {
         for (let i = 0; i < 4; ++i) {
@@ -92,14 +92,7 @@ Options.Triggers.push({
           cn: '出去',
           ko: '밖으로',
         },
-        stackOnHoly: {
-          en: 'Stack on ${holyTargets}',
-          de: 'Stack auf ${holyTargets}',
-          fr: 'Packez-vous sur ${holyTargets}',
-          ja: '${holyTargets}と頭割り',
-          cn: '分摊${holyTargets}',
-          ko: '${holyTargets} 쉐어징',
-        },
+        stackOnHoly: Outputs.stackOnPlayer,
         stackOnYou: Outputs.stackOnYou,
       },
     },

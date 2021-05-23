@@ -126,14 +126,7 @@ Options.Triggers.push({
           cn: '分摊点名',
           ko: '쉐어징 대상자',
         },
-        stackOn: {
-          en: 'Stack on ${player}',
-          de: 'Sammeln auf ${player}',
-          fr: 'Packez-vous sur ${player}',
-          ja: '${player}と頭割り',
-          cn: '靠近${player}分摊',
-          ko: '"${player}" 쉐어징',
-        },
+        stackOn: Outputs.stackOnPlayer,
       },
     },
     {

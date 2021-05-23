@@ -133,14 +133,7 @@ Options.Triggers.push({
           fr: 'Ne vous packez pas !',
         },
         stackOnYou: Outputs.stackOnYou,
-        stackOn: {
-          en: 'Stack on ${player}',
-          de: 'Sammeln auf ${player}',
-          fr: 'Packez-vous sur ${player}',
-          ja: '${player}と頭割り',
-          cn: '靠近${player}分摊',
-          ko: '"${player}" 쉐어징',
-        },
+        stackOn: Outputs.stackOnPlayer,
       },
     },
     {
