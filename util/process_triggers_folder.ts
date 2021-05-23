@@ -4,6 +4,8 @@ import fs from 'fs';
 import path from 'path';
 import process from 'process';
 import { walkDirAsync } from './file_utils';
+import UserConfig from '../resources/user_config';
+import defaultRaidbossOptions from '../ui/raidboss/raidboss_options';
 
 const root = '../dist/triggers/ui/raidboss/data/';
 const tscCmd = `${['..', 'node_modules', '.bin', 'tsc'].join(path.sep)} --build ${['..', 'tsconfig.triggers.json'].join(path.sep)}`;
@@ -44,35 +46,57 @@ const changeExportToPush = (lines: string[]) => {
   return lines;
 };
 
-const lintToFile = async (lines: string[], outputFileName: string) => {
+const lint = async (lines: string[]) => {
   const linter = new eslint.ESLint({ fix: true });
   const contents = lines.join('\n');
   // Deliberately don't pass filename here, as dist/ is ignored in eslint.
   const results = await linter.lintText(contents);
 
   // There's only one result from lintText, as per documentation.
-  const lintResult = results[0];
-  if (!lintResult) {
-    console.error('No result from linting?');
-    process.exit(2);
-  }
-  if (lintResult.errorCount > 0 || lintResult.warningCount > 0) {
-    // Errors aren't great, but tsc can create unfixable line length errors, so ignore them.
-    console.error(`Lint ran with errors: ${JSON.stringify(lintResult.messages)}`);
-  }
-
-  // Overwrite the file, if it already exists.
-  fs.writeFileSync(outputFileName, lintResult.output);
+  return results[0];
 };
 
 const processFile = async (filename: string) => {
-  console.log(`Processing file: ${filename}`);
   const originalContents = fs.readFileSync(filename).toString();
   let lines = originalContents.split(/[\r\n]+/);
 
   lines = removeImports(lines);
   lines = changeExportToPush(lines);
-  await lintToFile(lines, filename);
+  const lintResult = await lint(lines);
+  if (!lintResult) {
+    console.error('${filename}: No result from linting?');
+    process.exit(2);
+  }
+
+  if (lintResult.errorCount > 0) {
+    console.error(`${filename}: Lint ran with errors: ${JSON.stringify(lintResult.messages)}`);
+    process.exit(3);
+  }
+
+  if (lintResult.warningCount > 0) {
+    // Warnings aren't great, but tsc can create unfixable line length warnings.
+    // Print them, but don't stop.
+    console.error(`${filename}: Lint ran with warnings: ${JSON.stringify(lintResult.messages)}`);
+  }
+
+  const contents = lintResult.output;
+  if (!contents) {
+    console.error(`${filename}: Lint returned no contents`);
+    process.exit(4);
+  }
+
+  // Validate that our regex search/replace created a valid user file that can be eval'd.
+  try {
+    const options = { ...defaultRaidbossOptions };
+    UserConfig.evalUserFile(contents, options);
+  } catch (e) {
+    console.error(`${filename}: Failed eval.`);
+    console.log(e);
+    process.exit(5);
+  }
+
+  // Overwrite the file.
+  fs.writeFileSync(filename, contents);
 };
 
 const processAllFiles = async (root: string, tscCmd: string) => {

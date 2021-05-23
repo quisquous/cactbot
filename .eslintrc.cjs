@@ -158,7 +158,7 @@ module.exports = {
       'windows',
     ],
     'max-len': [
-      'error',
+      'warn',
       {
         'code': 100,
         'ignoreRegExpLiterals': true,
