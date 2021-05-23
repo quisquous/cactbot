@@ -22,12 +22,12 @@ const seekerCenterY = 277.9735;
 const avowedCenterX = -272;
 const avowedCenterY = -82;
 // TODO: promote something like this to Conditions?
-const tankBusterOnParty = (data) => {
-  if (data.target === data.me)
+const tankBusterOnParty = (data, matches) => {
+  if (matches.target === data.me)
     return true;
   if (data.role !== 'healer')
     return false;
-  return data.party.inParty(data.target);
+  return data.party.inParty(matches.target);
 };
 const numberOutputStrings = [0, 1, 2, 3, 4].map((n) => {
   const str = n.toString();
