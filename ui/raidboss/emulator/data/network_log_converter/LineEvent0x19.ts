@@ -4,8 +4,8 @@ import LogRepository from './LogRepository';
 
 // Combatant defeated event
 export class LineEvent0x19 extends LineEvent {
-  public resolvedName: string | false;
-  public resolvedTargetName: string | false;
+  public resolvedName?: string;
+  public resolvedTargetName?: string;
   public properCaseConvertedLine = '';
 
   constructor(repo: LogRepository, line: string, parts: string[]) {
@@ -25,11 +25,9 @@ export class LineEvent0x19 extends LineEvent {
       despawn: this.timestamp,
     });
 
-    this.resolvedName = false;
     if (this.id !== '00')
       this.resolvedName = repo.resolveName(this.id, this.name);
 
-    this.resolvedTargetName = false;
     if (this.targetId !== '00')
       this.resolvedTargetName = repo.resolveName(this.targetId, this.targetName);
   }
@@ -51,8 +49,8 @@ export class LineEvent0x19 extends LineEvent {
   }
 
   convert(_: LogRepository): void {
-    const defeatedName = (this.resolvedName || this.name);
-    const killerName = (this.resolvedTargetName || this.targetName);
+    const defeatedName = (this.resolvedName ?? this.name);
+    const killerName = (this.resolvedTargetName ?? this.targetName);
     this.convertedLine = this.prefix() + defeatedName +
       ' was defeated by ' + killerName + '.';
     this.properCaseConvertedLine = this.prefix() + EmulatorCommon.properCase(defeatedName) +

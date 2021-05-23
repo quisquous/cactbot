@@ -5,6 +5,8 @@ import LogRepository from './LogRepository';
 export class LineEvent0x00 extends LineEvent {
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
+    // The exact reason for this check isn't clear anymore but may be related to
+    // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/250
     if (this.message.split('\u001f\u001f').length > 1)
       this.invalid = true;
   }

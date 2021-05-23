@@ -6,7 +6,7 @@ import LogRepository from './LogRepository';
 export class LineEvent0x01 extends LineEvent {
   public properCaseConvertedLine = '';
 
-  public get zoneID(): string {
+  public get zoneId(): string {
     return this.parts[2] ?? '';
   }
 
