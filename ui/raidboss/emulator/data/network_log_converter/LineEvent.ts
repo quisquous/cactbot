@@ -6,22 +6,28 @@ import LogRepository from './LogRepository';
  */
 export default class LineEvent {
   public offset = 0;
-  public decEvent: number;
-  public hexEvent: string;
-  public timestamp: number;
-  public networkLine: string;
   public convertedLine = '';
   public invalid = false;
   public index = 0;
 
-  constructor(repo: LogRepository, line: string, public parts: string[]) {
-    this.decEvent = parseInt(this.parts[0] || '');
-    this.hexEvent = EmulatorCommon.zeroPad(this.decEvent.toString(16).toUpperCase());
-
-    this.timestamp = +new Date(this.parts[1] || '');
-
-    this.networkLine = line;
+  constructor(repo: LogRepository, public networkLine: string, protected parts: string[]) {
     repo.updateTimestamp(this.timestamp);
+  }
+
+  public get decEvent(): number {
+    return parseInt(this.parts[0] ?? '0');
+  }
+
+  public get hexEvent(): string {
+    return EmulatorCommon.zeroPad(this.decEvent.toString(16).toUpperCase());
+  }
+
+  public get timestamp(): number {
+    return parseInt(this.parts[1] ?? '0');
+  }
+
+  public get checksum(): string {
+    return this.parts.slice(-1)[0] ?? '';
   }
 
   convert(_: LogRepository): void {
