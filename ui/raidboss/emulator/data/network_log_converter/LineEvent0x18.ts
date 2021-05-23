@@ -5,7 +5,7 @@ import LogRepository from './LogRepository';
 // DoT/HoT event
 export class LineEvent0x18 extends LineEvent {
   public resolvedName: string;
-  public effectName: string | undefined = '';
+  public effectName?: string;
   public properCaseConvertedLine = '';
 
   constructor(repo: LogRepository, line: string, parts: string[]) {
@@ -19,6 +19,9 @@ export class LineEvent0x18 extends LineEvent {
     });
 
     this.resolvedName = repo.resolveName(this.id, this.name);
+
+    if (this.effectId in LineEvent0x18.showEffectNamesFor)
+      this.effectName = LineEvent0x18.showEffectNamesFor[this.effectId] ?? '';
   }
 
   public get id(): string {
@@ -82,8 +85,6 @@ export class LineEvent0x18 extends LineEvent {
   }
 
   convert(_: LogRepository): void {
-    if (this.effectId.toUpperCase() in LineEvent0x18.showEffectNamesFor)
-      this.effectName = LineEvent0x18.showEffectNamesFor[this.effectId.toUpperCase()];
     let effectPart = '';
     if (this.effectName)
       effectPart = this.effectName + ' ';

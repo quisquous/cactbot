@@ -125,12 +125,12 @@ export class LineEvent0x03 extends LineEvent {
   }
 
   convert(_: LogRepository): void {
-    let CombatantName = this.name;
+    let combatantName = this.name;
     if (this.worldName !== '')
-      CombatantName = CombatantName + '(' + this.worldName + ')';
+      combatantName = combatantName + '(' + this.worldName + ')';
 
     this.convertedLine = this.prefix() + this.id.toUpperCase() +
-      ':Added new combatant ' + CombatantName +
+      ':Added new combatant ' + combatantName +
       '.  Job: ' + this.jobName +
       ' Level: ' + this.levelString +
       ' Max HP: ' + this.maxHpString +
@@ -138,11 +138,11 @@ export class LineEvent0x03 extends LineEvent {
       ' Pos: (' + this.xString + ',' + this.yString + ',' + this.zString + ')';
 
     // This last part is guesswork for the area between 9 and 10.
-    const UnknownValue = this.npcNameId +
+    const unknownValue = this.npcNameId +
       EmulatorCommon.zeroPad(this.npcBaseId, 8 + Math.max(0, 6 - this.npcNameId.length));
 
-    if (UnknownValue !== '00000000000000')
-      this.convertedLine += ' (' + UnknownValue + ')';
+    if (unknownValue !== '00000000000000')
+      this.convertedLine += ' (' + unknownValue + ')';
 
     this.convertedLine += '.';
   }

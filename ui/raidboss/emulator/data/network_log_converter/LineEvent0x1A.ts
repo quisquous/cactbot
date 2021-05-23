@@ -69,11 +69,11 @@ export class LineEvent0x1A extends LineEvent {
     return parseInt(this.parts[9] ?? '0');
   }
 
-  public get targetHP(): string {
+  public get targetHp(): string {
     return this.parts[10] ?? '';
   }
 
-  public get sourceHP(): string {
+  public get sourceHp(): string {
     return this.parts[11] ?? '';
   }
 
