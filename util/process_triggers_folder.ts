@@ -14,13 +14,19 @@ const tscCmd = `${['..', 'node_modules', '.bin', 'tsc'].join(path.sep)} --build 
 const removeImports = (lines: string[]) => {
   // You can't import in a user file, so remove these lines.
   // TODO: we really should test that all imports are ones that can be used in eval.
-  return lines.filter((line) => !/^import /.exec(line));
+  return lines.filter((line) => {
+    if (/^export default triggerSet;/.exec(line))
+      return false;
+    if (/^import /.exec(line))
+      return false;
+    return true;
+  });
 };
 
 const changeExportToPush = (lines: string[]) => {
   // User files are not modules and so push onto a global Options variable rather than
   // exporting, so modify these files so that they can be used directly as user files.
-  const exportRegex = /^export default {\s*/;
+  const exportRegex = /^(?:export default {|const triggerSet = {)\s*/;
   const closingRegex = /^};\s*$/;
 
   let replacedExportCount = 0;
