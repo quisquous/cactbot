@@ -14,11 +14,11 @@ Options.Triggers.push({
     {
       id: 'A4S Discord Marker',
       netRegex: NetRegexes.headMarker({ id: '00AE' }),
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.orbsOnYou();
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.orbsOn({ player: data.ShortName(matches.target) });
       },
@@ -45,10 +45,10 @@ Options.Triggers.push({
       // Stun Resistance.
       id: 'A4S Stun Leg',
       netRegex: NetRegexes.losesEffect({ effectId: '27' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanStun();
       },
-      alertText: function(_data, matches, output) {
+      alertText: (_data, matches, output) => {
         return output.text({ name: matches.target });
       },
       outputStrings: {

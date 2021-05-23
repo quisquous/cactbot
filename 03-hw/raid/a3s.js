@@ -21,7 +21,7 @@ Options.Triggers.push({
       id: 'A3S Hand of Stuff',
       regex: /Hand of Prayer\/Parting/,
       beforeSeconds: 5,
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank' || data.job === 'BLU';
       },
       suppressSeconds: 1,
@@ -152,7 +152,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.tether({ id: '0005', target: 'リビングリキッド', capture: false }),
       netRegexCn: NetRegexes.tether({ id: '0005', target: '有生命活水', capture: false }),
       netRegexKo: NetRegexes.tether({ id: '0005', target: '살아있는 액체', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank';
       },
       suppressSeconds: 1,
@@ -171,7 +171,7 @@ Options.Triggers.push({
     {
       id: 'A3S Ferrofluid Tether',
       netRegex: NetRegexes.tether({ id: '0026' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.ferroTether = data.ferroTether || {};
         data.ferroTether[matches.source] = matches.target;
         data.ferroTether[matches.target] = matches.source;
@@ -180,7 +180,7 @@ Options.Triggers.push({
     {
       id: 'A3S Ferrofluid Signs',
       netRegex: NetRegexes.headMarker({ id: ['0030', '0031'] }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.ferroMarker = data.ferroMarker || {};
         data.ferroMarker[matches.target] = matches.id;
       },
@@ -194,7 +194,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'リビングリキッド', id: 'F01' }),
       netRegexCn: NetRegexes.startsUsing({ source: '有生命活水', id: 'F01' }),
       netRegexKo: NetRegexes.startsUsing({ source: '살아있는 액체', id: 'F01' }),
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         data.ferroTether = data.ferroTether || {};
         data.ferroMarker = data.ferroMarker || {};
         const partner = data.ferroTether[data.me];
@@ -245,10 +245,10 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'リキッドレイジ', id: 'F1A' }),
       netRegexCn: NetRegexes.ability({ source: '活水之怒', id: 'F1A' }),
       netRegexKo: NetRegexes.ability({ source: '분노한 액체', id: 'F1A' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanCleanse();
       },
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         return output.text({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -265,11 +265,11 @@ Options.Triggers.push({
     {
       id: 'A3S Fluid Claw',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
-      alarmText: function(data, matches, output) {
+      alarmText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.clawOnYou();
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (data.me !== matches.target)
           return output.clawOn({ player: data.ShortName(matches.target) });
       },
@@ -301,7 +301,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'リビングリキッド', id: 'F1B', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '有生命活水', id: 'F1B', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '살아있는 액체', id: 'F1B', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'tank' || data.job === 'BLU';
       },
       infoText: (_data, _matches, output) => output.text(),

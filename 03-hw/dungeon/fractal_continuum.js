@@ -88,7 +88,7 @@ Options.Triggers.push({
     {
       id: 'Fractal Aetherochemical Bomb',
       netRegex: NetRegexes.gainsEffect({ effectId: '2D3', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanCleanse();
       },
       infoText: (_data, _matches, output) => output.text(),

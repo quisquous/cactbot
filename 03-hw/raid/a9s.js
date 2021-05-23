@@ -12,7 +12,7 @@ Options.Triggers.push({
     {
       id: 'A9S Power Generator',
       regex: /Power Generator/,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         return {
           1: output.oneEachNWSE(),
           2: output.twoNW(),
@@ -63,7 +63,7 @@ Options.Triggers.push({
       id: 'A9S Alarum',
       regex: /Alarum/,
       delaySeconds: 1,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         return {
           5: output.southeast(),
           6: output.southwest(),
@@ -118,7 +118,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'リファビッシャー', id: '1A38', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '废品翻新装置', id: '1A38', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '재생자', id: '1A38', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.stockpileCount = data.stockpileCount || 0;
         data.stockpileCount++;
       },
@@ -131,12 +131,12 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'リファビッシャー', id: '1A3C', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '废品翻新装置', id: '1A3C', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '재생자', id: '1A3C', capture: false }),
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.mainTank === data.me)
           return;
         return output.getBehind();
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.mainTank !== data.me)
           return;
         return output.scraplineOnYou();
@@ -234,7 +234,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'リファビッシャー', id: '1AFE' }),
       netRegexCn: NetRegexes.ability({ source: '废品翻新装置', id: '1AFE' }),
       netRegexKo: NetRegexes.ability({ source: '재생자', id: '1AFE' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.mainTank = matches.target;
       },
     },
@@ -242,7 +242,7 @@ Options.Triggers.push({
       id: 'A9S Power Generator Add Tether',
       netRegex: NetRegexes.tether({ id: '0011', capture: false }),
       suppressSeconds: 30,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         // Some of the last phases have multiple options.
         // This is an old fight, so just pick one for people.
         return {

@@ -6,7 +6,7 @@ Options.Triggers.push({
       id: 'A6S Magic Vulnerability Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '292' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.magicVulnerability = true;
       },
     },
@@ -14,7 +14,7 @@ Options.Triggers.push({
       id: 'A6S Magic Vulnerability Loss',
       netRegex: NetRegexes.losesEffect({ effectId: '292' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.magicVulnerability = false;
       },
     },
@@ -26,7 +26,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ブラスター', id: '15F3' }),
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者', id: '15F3' }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자', id: '15F3' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanSilence();
       },
       response: Responses.interrupt(),
@@ -39,7 +39,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ブラスター', id: '15F7', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者', id: '15F7', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자', id: '15F7', capture: false }),
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.role === 'tank' && !data.magicVulnerability)
           return output.getMines();
         return output.avoidMines();
@@ -178,7 +178,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ミダース・ハードヘルム', id: '1612' }),
       netRegexKo: NetRegexes.startsUsing({ source: '미다스 강화투구', id: '1612' }),
       netRegexCn: NetRegexes.startsUsing({ source: '弥达斯硬盔兵', id: '1612' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanStun();
       },
       response: Responses.stun(),
@@ -191,7 +191,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ミダース・ハードヘルム', id: '1613' }),
       netRegexKo: NetRegexes.startsUsing({ source: '미다스 강화투구', id: '1613' }),
       netRegexCn: NetRegexes.startsUsing({ source: '弥达斯硬盔兵', id: '1613' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanStun();
       },
       response: Responses.stun(),
@@ -199,7 +199,7 @@ Options.Triggers.push({
     {
       id: 'A6S Enumeration',
       netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         // 0040 = 2, 0041 = 3, 0042 = 4
         const count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
         return output.text({ player: data.ShortName(matches.target), count: count });
@@ -283,7 +283,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
-      run: function(data) {
+      run: (data) => {
         data.haveWater = true;
       },
       outputStrings: {
@@ -301,7 +301,7 @@ Options.Triggers.push({
       id: 'A6S Compressed Water Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '3FF' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.haveWater = false;
       },
     },
@@ -309,11 +309,11 @@ Options.Triggers.push({
       id: 'A6S Compressed Water Explode',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: function(_data, matches) {
+      delaySeconds: (_data, matches) => {
         // 5 second warning.
         return parseFloat(matches.duration) - 5;
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (!data.haveWater)
           return;
         return output.text();
@@ -334,7 +334,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
-      run: function(data) {
+      run: (data) => {
         data.haveLightning = true;
       },
       outputStrings: {
@@ -352,7 +352,7 @@ Options.Triggers.push({
       id: 'A6S Compressed Lightning Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '400' }),
       condition: Conditions.targetIsYou(),
-      run: function(data) {
+      run: (data) => {
         data.haveLightning = false;
       },
     },
@@ -360,11 +360,11 @@ Options.Triggers.push({
       id: 'A6S Compressed Lightning Explode',
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: function(_data, matches) {
+      delaySeconds: (_data, matches) => {
         // 5 second warning.
         return parseFloat(matches.duration) - 5;
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (!data.haveLightning)
           return;
         return output.text();

@@ -32,7 +32,7 @@ Options.Triggers.push({
       // Applies to both holy and blazing scourge.
       id: 'A12S Holy Blazing Scourge You',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         // Ignore Holy Scourge later in the fight.
         if (data.scourge && data.scourge.length > 2)
           return false;
@@ -53,7 +53,7 @@ Options.Triggers.push({
     {
       id: 'A12S Blazing Scourge Collect',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.scourge = data.scourge || [];
         data.scourge.push(matches.target);
       },
@@ -61,7 +61,7 @@ Options.Triggers.push({
     {
       id: 'A12S Blazing Scourge Report',
       netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         // Ignore Holy Scourge later in the fight.
         if (data.scourge && data.scourge.length > 2)
           return false;
@@ -69,7 +69,7 @@ Options.Triggers.push({
       },
       delaySeconds: 0.5,
       suppressSeconds: 1,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         // Ignore Holy Scourge later in the fight.
         if (data.scourge && data.scourge.length > 2)
           return false;
@@ -138,10 +138,10 @@ Options.Triggers.push({
     {
       id: 'A12S House Arrest',
       netRegex: NetRegexes.tether({ id: '001C' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.source === data.me || matches.target === data.me;
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         const partner = matches.source === data.me ? matches.target : matches.source;
         return output.text({ player: data.ShortName(partner) });
       },
@@ -159,10 +159,10 @@ Options.Triggers.push({
     {
       id: 'A12S Restraining Order',
       netRegex: NetRegexes.tether({ id: '001D' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.source === data.me || matches.target === data.me;
       },
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         const partner = matches.source === data.me ? matches.target : matches.source;
         return output.text({ player: data.ShortName(partner) });
       },

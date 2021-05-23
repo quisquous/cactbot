@@ -30,7 +30,7 @@ Options.Triggers.push({
     {
       id: 'A1S Hydrothermal Collect',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.hydro = data.hydro || [];
         data.hydro.push(matches.target);
       },
@@ -56,7 +56,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
       condition: Conditions.caresAboutMagical(),
       suppressSeconds: 2,
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         data.hydro = data.hydro || [];
         if (data.hydro.length === 0)
           return;
@@ -77,7 +77,7 @@ Options.Triggers.push({
       id: 'A1S Hydrothermal Cleanup',
       netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
       delaySeconds: 10,
-      run: function(data) {
+      run: (data) => {
         delete data.hydro;
       },
     },
@@ -109,7 +109,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: 'E4A', source: ['オプレッサー', 'オプレッサー・ゼロ'] }),
       netRegexCn: NetRegexes.startsUsing({ id: 'E4A', source: ['压迫者', '压迫者零号'] }),
       netRegexKo: NetRegexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'] }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.hyper = data.hyper || [];
         data.hyper.push(matches.target);
       },
@@ -136,7 +136,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'], capture: false }),
       delaySeconds: 0.3,
       suppressSeconds: 2,
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         data.hyper = data.hyper || [];
         if (data.hyper.includes(data.me))
           return;
@@ -159,7 +159,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: 'E4A', source: ['压迫者', '压迫者零号'], capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'], capture: false }),
       delaySeconds: 10,
-      run: function(data) {
+      run: (data) => {
         delete data.hyper;
       },
     },

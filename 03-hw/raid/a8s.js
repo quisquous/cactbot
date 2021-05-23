@@ -118,7 +118,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'オンスローター', id: '1632', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '突击者', id: '1632', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '맹습자', id: '1632', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'dps' || data.job === 'BLU';
       },
       infoText: (_data, _matches, output) => output.text(),
@@ -168,7 +168,7 @@ Options.Triggers.push({
     {
       id: 'A8S Discoid',
       netRegex: NetRegexes.headMarker({ id: '0023' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         // Verdict comes with the same headmarker.
         return data.me === matches.target && !data.seenLinkUp;
       },
@@ -192,7 +192,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ブラスター', id: '1639' }),
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者', id: '1639' }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자', id: '1639' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanSilence();
       },
       response: Responses.interrupt('alarm'),
@@ -260,15 +260,15 @@ Options.Triggers.push({
       // Note: also the 0045 headmarker.
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
       // TODO: do we need a Responses.effectOn() that uses matches.effect?
-      alarmText: function(data, matches, output) {
+      alarmText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.thunderOnYou();
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (data.me !== matches.target)
           return output.thunderOn({ player: data.ShortName(matches.target) });
       },
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.lightning = matches.target;
       },
       outputStrings: {
@@ -293,17 +293,17 @@ Options.Triggers.push({
     {
       id: 'A8S Compressed Lightning Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '400', capture: false }),
-      run: function(data) {
+      run: (data) => {
         delete data.lightning;
       },
     },
     {
       id: 'A8S Compressed Lightning Soon',
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
-      delaySeconds: function(_data, matches) {
+      delaySeconds: (_data, matches) => {
         return parseFloat(matches.duration) - 5;
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (!data.lightning)
           return;
         return output.text({ player: data.ShortName(data.lightning) });
@@ -322,7 +322,7 @@ Options.Triggers.push({
     {
       id: 'A8S Enumeration',
       netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         // 0040 = 2, 0041 = 3, 0042 = 4
         const count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
         return output.text({ player: data.ShortName(matches.target), count: count });
@@ -347,7 +347,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '1663' }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '1663' }),
       condition: Conditions.caresAboutPhysical(),
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.sharedTankbusterOnYou();
         if (data.role === 'tank' || data.role === 'healer')
@@ -375,14 +375,14 @@ Options.Triggers.push({
     {
       id: 'A8S Long Needle Stack Collect',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.longNeedleStack = matches.target;
       },
     },
     {
       id: 'A8S Long Needle Prey Collect',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.longNeedlePrey = data.longNeedlePrey || [];
         data.longNeedlePrey.push(matches.target);
       },
@@ -406,15 +406,15 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '166A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '166A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '166A', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return data.longNeedleStack && data.longNeedlePrey;
       },
       suppressSeconds: 10,
-      alarmText: function(data, _matches, output) {
+      alarmText: (data, _matches, output) => {
         if (data.longNeedlePrey.includes(data.me))
           return output.preyGetOut();
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.longNeedlePrey.includes(data.me))
           return;
         const target = data.longNeedleStack;
@@ -422,7 +422,7 @@ Options.Triggers.push({
           return output.stackOnYou();
         return output.stackOn({ player: data.ShortName(target) });
       },
-      run: function(data) {
+      run: (data) => {
         delete data.longNeedleStack;
         delete data.longNeedlePrey;
       },
@@ -454,12 +454,12 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '1665' }),
       netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '1665' }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '1665' }),
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (data.me !== matches.target)
           return;
         return output.superJumpOnYou();
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return;
         return output.superJumpOn({ player: data.ShortName(matches.target) });
@@ -525,7 +525,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'ステルス地雷', id: '165E', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '隐形地雷', id: '165E', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '은폐 지뢰', id: '165E', capture: false }),
-      condition: function(data) {
+      condition: (data) => {
         return !data.seenLinkUp;
       },
       suppressSeconds: 10,
@@ -591,7 +591,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '1673', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '1673', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '1673', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.seenLinkUp = true;
       },
     },
@@ -615,7 +615,7 @@ Options.Triggers.push({
     {
       id: 'A8S Verdict Min HP Collect',
       netRegex: NetRegexes.gainsEffect({ effectId: '408' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.verdictMin = matches.target;
       },
     },
@@ -639,7 +639,7 @@ Options.Triggers.push({
     {
       id: 'A8S Verdict Max HP Collect',
       netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.verdictMax = matches.target;
       },
     },
@@ -663,7 +663,7 @@ Options.Triggers.push({
       // Final Punishment effect falling off due to auto.
       id: 'A8S Verdict Max HP Provoke',
       netRegex: NetRegexes.losesEffect({ effectId: '403' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return matches.target === data.verdictMin && data.me === data.verdictMax;
       },
       alertText: (_data, _matches, output) => output.text(),
@@ -681,7 +681,7 @@ Options.Triggers.push({
     {
       id: 'A8S Verdict Max HP Blu Devour',
       netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return data.me === matches.target && data.job === 'BLU';
       },
       delaySeconds: 27,
@@ -805,15 +805,15 @@ Options.Triggers.push({
     {
       id: 'A8S Compressed Water',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      alarmText: function(data, matches, output) {
+      alarmText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.waterOnYou();
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (data.me !== matches.target)
           return output.waterOn({ player: data.ShortName(matches.target) });
       },
-      run: function(data, matches) {
+      run: (data, matches) => {
         data.water = matches.target;
       },
       outputStrings: {
@@ -838,7 +838,7 @@ Options.Triggers.push({
     {
       id: 'A8S Compressed Water Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '3FF', capture: false }),
-      run: function(data) {
+      run: (data) => {
         // rip, valiant mine sac
         delete data.water;
       },
@@ -846,10 +846,10 @@ Options.Triggers.push({
     {
       id: 'A8S Compressed Water Soon',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      delaySeconds: function(_data, matches) {
+      delaySeconds: (_data, matches) => {
         return parseFloat(matches.duration) - 5;
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (!data.water)
           return;
         return output.text({ player: data.ShortName(data.water) });

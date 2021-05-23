@@ -7,7 +7,7 @@ Options.Triggers.push({
       id: 'Gubal Hard Triclip',
       regex: /Triclip/,
       beforeSeconds: 5,
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer' || data.role === 'tank';
       },
       response: Responses.tankBuster(),
@@ -22,7 +22,7 @@ Options.Triggers.push({
       id: 'Gubal Hard Properties of Darkness',
       regex: /Darkness \(buster\)/,
       beforeSeconds: 5,
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer' || data.role === 'tank';
       },
       response: Responses.tankBuster(),
@@ -43,14 +43,14 @@ Options.Triggers.push({
     {
       id: 'Gubal Hard Ferrofluid',
       netRegex: NetRegexes.headMarker({ id: ['0030', '0031'] }),
-      condition: function(data, matches) {
+      condition: (data, matches) => {
         return data.me === matches.target || matches.targetId.slice(0, 1) === '4';
       },
-      preRun: function(data, matches) {
+      preRun: (data, matches) => {
         data.markers = data.markers || [];
         data.markers.push(matches.id);
       },
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.markers.length === 2) {
           const sameMarkers = data.markers[0] === data.markers[1];
           delete data.markers;
@@ -140,7 +140,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '198D', source: 'メカノスクライブ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '198D', source: '自走人偶抄写员', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '198D', source: '기계 서기', capture: false }),
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.CanSilence())
           return output.interruptMechanoscribe();
         if (data.CanStun())

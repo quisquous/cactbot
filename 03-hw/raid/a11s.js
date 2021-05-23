@@ -161,12 +161,12 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '1A77' }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '1A77' }),
       // TODO: maybe we need a Responses.abilityOn()
-      alarmText: function(data, matches, output) {
+      alarmText: (data, matches, output) => {
         if (data.me !== matches.target)
           return;
         return output.gaOnYou();
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return;
         return output.gaOn({ player: data.ShortName(matches.target) });
@@ -193,7 +193,7 @@ Options.Triggers.push({
     {
       id: 'A11S Limit Cut Collect',
       netRegex: NetRegexes.headMarker({ id: '00(?:4F|5[0-6])' }),
-      run: function(data, matches) {
+      run: (data, matches) => {
         const limitCutNumber = {
           '004F': 1,
           '0050': 2,
@@ -226,7 +226,7 @@ Options.Triggers.push({
       id: 'A11S Limit Cut Number',
       netRegex: NetRegexes.headMarker({ id: '00(?:4F|5[0-6])' }),
       condition: Conditions.targetIsYou(),
-      durationSeconds: function(data) {
+      durationSeconds: (data) => {
         return data.limitCutDelay;
       },
       infoText: (data, _matches, output) => output.text({ num: data.limitCutNumber }),
@@ -245,10 +245,10 @@ Options.Triggers.push({
       id: 'A11S Limit Cut Mechanic',
       netRegex: NetRegexes.headMarker({ id: '00(?:4F|5[0-6])' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: function(data) {
+      delaySeconds: (data) => {
         return data.limitCutDelay - 5;
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.limitCutNumber % 2 === 1) {
           // Odds
           return output.knockbackCleave();
@@ -297,7 +297,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.ability({ source: '巡航驱逐者', id: '1A80', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '순항추격기', id: '1A80', capture: false }),
       delaySeconds: 30,
-      run: function(data) {
+      run: (data) => {
         delete data.limitCutDelay;
         delete data.limitCutNumber;
         delete data.limitCutMap;
@@ -311,7 +311,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '1A7F' }),
       netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '1A7F' }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '1A7F' }),
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.sharedTankbusterOnYou();
         if (data.role === 'tank' || data.role === 'healer' || data.job === 'BLU')
@@ -390,12 +390,12 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '1A83' }),
       netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '1A83' }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '1A83' }),
-      alarmText: function(data, matches, output) {
+      alarmText: (data, matches, output) => {
         if (data.me !== matches.target)
           return;
         return output.chargeOnYou();
       },
-      alertText: function(data, matches, output) {
+      alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return;
         return output.chargeOn({ player: data.ShortName(matches.target) });

@@ -127,12 +127,12 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: '奇才のラットフィンクス', id: '1590', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '재주꾼 랫핑크스', id: '1590', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '奇才 拉特芬克斯', id: '1590', capture: false }),
-      preRun: function(data) {
+      preRun: (data) => {
         data.bombCount = data.bombCount || 0;
         data.bombCount++;
       },
       // We could give directions here, but "into / opposite spikey" is pretty succinct.
-      infoText: function(data, _matches, output) {
+      infoText: (data, _matches, output) => {
         if (data.bombCount === 1)
           return output.knockBombsIntoSpikey();
         return output.knockBombsOppositeSpikey();
@@ -164,7 +164,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: '奇才のラットフィンクス', id: '16A6', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '재주꾼 랫핑크스', id: '16A6', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '奇才 拉特芬克斯', id: '16A6', capture: false }),
-      run: function(data) {
+      run: (data) => {
         data.boostCount = data.boostCount || 0;
         data.boostCount++;
         data.boostBombs = [];
@@ -178,11 +178,11 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.addedCombatantFull({ name: '爆弾' }),
       netRegexKo: NetRegexes.addedCombatantFull({ name: '폭탄' }),
       netRegexCn: NetRegexes.addedCombatantFull({ name: '炸弹' }),
-      preRun: function(data, matches) {
+      preRun: (data, matches) => {
         data.boostBombs = data.boostBombs || [];
         data.boostBombs.push(bombLocation(matches));
       },
-      alertText: function(data, _matches, output) {
+      alertText: (data, _matches, output) => {
         if (data.boostCount === 1) {
           if (data.boostBombs.length !== 1)
             return;
@@ -254,10 +254,10 @@ Options.Triggers.push({
     {
       id: 'A5S Prey Healer',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.role === 'healer';
       },
-      infoText: function(data, matches, output) {
+      infoText: (data, matches, output) => {
         return output.text({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
@@ -306,7 +306,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ドーピング・コブラ', id: '16A2' }),
       netRegexKo: NetRegexes.startsUsing({ source: '약에 찌든 코브라', id: '16A2' }),
       netRegexCn: NetRegexes.startsUsing({ source: '兴奋眼镜蛇', id: '16A2' }),
-      condition: function(data) {
+      condition: (data) => {
         return data.CanStun();
       },
       suppressSeconds: 60,
