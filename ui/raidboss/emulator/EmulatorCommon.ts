@@ -130,7 +130,7 @@ export default class EmulatorCommon {
     return null;
   }
 
-  static matchStart(line: string): RegExpMatchArray | false {
+  static matchStart(line: string): RegExpMatchArray | undefined {
     let res;
     // Currently all of these regexes have groups if they match at all,
     // but be robust to that changing in the future.
@@ -158,7 +158,7 @@ export default class EmulatorCommon {
     return false;
   }
 
-  static matchEnd(line: string): RegExpMatchArray | false {
+  static matchEnd(line: string): RegExpMatchArray | undefined {
     let res;
     // Currently all of these regexes have groups if they match at all,
     // but be robust to that changing in the future.
