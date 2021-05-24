@@ -1,7 +1,8 @@
 import { LocaleNetRegex } from '../../../resources/translations';
 import NetRegexes from '../../../resources/netregexes';
+import { Lang } from 'types/global';
 
-// Disable ban-types for cloneData as it needs to work on raw objects for performance reasons.
+// Disable no-explicit-any for cloneData as it needs to work on raw objects for performance reasons.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type DataType = { [key: string]: any } | null;
 
@@ -110,6 +111,80 @@ export default class EmulatorCommon {
 
   static spacePadLeft(str: string, len: number): string {
     return str.padStart(len, ' ');
+  }
+
+  static doesLineMatch(line: string,
+      regexes: Record<Lang, RegExp> | RegExp): RegExpExecArray | null {
+    if (regexes instanceof RegExp)
+      return regexes.exec(line);
+
+    for (const langStr in regexes) {
+      const lang = langStr as keyof typeof regexes;
+      const res = regexes[lang].exec(line);
+      if (res) {
+        if (res.groups)
+          res.groups.language = lang;
+        return res;
+      }
+    }
+    return null;
+  }
+
+  static matchStart(line: string): RegExpMatchArray | undefined {
+    let res;
+    // Currently all of these regexes have groups if they match at all,
+    // but be robust to that changing in the future.
+    res = EmulatorCommon.doesLineMatch(line, EmulatorCommon.countdownRegexes);
+    if (res) {
+      res.groups ??= {};
+      res.groups.StartIn = (parseInt(res.groups.time ?? '0') * 1000).toString();
+      res.groups.StartType = 'Countdown';
+      return res;
+    }
+    res = EmulatorCommon.doesLineMatch(line, EmulatorCommon.sealRegexes);
+    if (res) {
+      res.groups ??= {};
+      res.groups.StartIn = '0';
+      res.groups.StartType = 'Seal';
+      return res;
+    }
+    res = EmulatorCommon.doesLineMatch(line, EmulatorCommon.engageRegexes);
+    if (res) {
+      res.groups ??= {};
+      res.groups.StartIn = '0';
+      res.groups.StartType = 'Engage';
+      return res;
+    }
+  }
+
+  static matchEnd(line: string): RegExpMatchArray | undefined {
+    let res;
+    // Currently all of these regexes have groups if they match at all,
+    // but be robust to that changing in the future.
+    res = EmulatorCommon.doesLineMatch(line, EmulatorCommon.winRegex);
+    if (res) {
+      res.groups ??= {};
+      res.groups.EndType = 'Win';
+      return res;
+    }
+    res = EmulatorCommon.doesLineMatch(line, EmulatorCommon.wipeRegex);
+    if (res) {
+      res.groups ??= {};
+      res.groups.EndType = 'Wipe';
+      return res;
+    }
+    res = EmulatorCommon.doesLineMatch(line, EmulatorCommon.cactbotWipeRegex);
+    if (res) {
+      res.groups ??= {};
+      res.groups.EndType = 'Cactbot Wipe';
+      return res;
+    }
+    res = EmulatorCommon.doesLineMatch(line, EmulatorCommon.unsealRegexes);
+    if (res) {
+      res.groups ??= {};
+      res.groups.EndType = 'Unseal';
+      return res;
+    }
   }
 
   static sealRegexes = LocaleNetRegex.areaSeal;

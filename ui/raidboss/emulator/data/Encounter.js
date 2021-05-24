@@ -1,6 +1,7 @@
 import CombatantTracker from './CombatantTracker';
 import LogEventHandler from './LogEventHandler';
 import PetNamesByLang from '../../../../resources/pet_names';
+import EmulatorCommon from '../EmulatorCommon';
 
 export default class Encounter {
   constructor(encounterDay, encounterZoneId, encounterZoneName, logLines) {
@@ -27,14 +28,14 @@ export default class Encounter {
 
     for (let i = 0; i < this.logLines.length; ++i) {
       const line = this.logLines[i];
-      let res = LogEventHandler.isMatchStart(line.networkLine);
+      let res = EmulatorCommon.matchStart(line.networkLine);
       if (res) {
         this.firstLineIndex = i;
         this.startStatus.add(res.groups.StartType);
         if (res.groups.StartIn >= 0)
           this.engageAt = Math.min(line.timestamp + res.groups.StartIn, this.engageAt);
       } else {
-        res = LogEventHandler.isMatchEnd(line.networkLine);
+        res = EmulatorCommon.matchEnd(line.networkLine);
         if (res) {
           this.endStatus = res.groups.EndType;
         } else if (line.id && line.targetId) {

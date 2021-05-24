@@ -38,7 +38,7 @@ onmessage = async (msg) => {
     }
 
     if (lines.length >= 1000) {
-      lines = await logConverter.convertLines(lines, repo);
+      lines = logConverter.convertLines(lines, repo);
       localLogHandler.parseLogs(lines);
       postMessage({
         type: 'progress',
@@ -50,7 +50,7 @@ onmessage = async (msg) => {
     }
   }
   if (lines.length > 0) {
-    lines = await logConverter.convertLines(lines, repo);
+    lines = logConverter.convertLines(lines, repo);
     localLogHandler.parseLogs(lines);
     lines = [];
   }
