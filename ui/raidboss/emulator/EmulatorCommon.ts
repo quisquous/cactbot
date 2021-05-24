@@ -155,7 +155,6 @@ export default class EmulatorCommon {
       res.groups.StartType = 'Engage';
       return res;
     }
-    return false;
   }
 
   static matchEnd(line: string): RegExpMatchArray | undefined {
@@ -186,7 +185,6 @@ export default class EmulatorCommon {
       res.groups.EndType = 'Unseal';
       return res;
     }
-    return false;
   }
 
   static sealRegexes = LocaleNetRegex.areaSeal;
