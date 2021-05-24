@@ -4,6 +4,17 @@ import LogEventHandler from './LogEventHandler';
 import NetworkLogConverter from './NetworkLogConverter';
 import LogRepository from './network_log_converter/LogRepository';
 
+const getClassPropertyDescriptors = (obj) => {
+  if (obj && obj !== Object.prototype) {
+    const proto = Object.getPrototypeOf(obj);
+    return {
+      ...getClassPropertyDescriptors(proto),
+      ...Object.getOwnPropertyDescriptors(obj),
+    };
+  }
+  return null;
+};
+
 onmessage = async (msg) => {
   const logConverter = new NetworkLogConverter();
   const localLogHandler = new LogEventHandler();
@@ -13,9 +24,21 @@ onmessage = async (msg) => {
   localLogHandler.on('fight', async (day, zoneId, zoneName, lines) => {
     const enc = new Encounter(day, zoneId, zoneName, lines);
     if (enc.shouldPersistFight()) {
+      // Due to using getters on LineEvent classes, we need to manually convert these over
+      const baseEnc = EmulatorCommon.cloneData(enc);
+      baseEnc.logLines = enc.logLines.map((l) => {
+        const ret = Object.assign({}, l);
+        // Get all getters on the line class and add them to the cloned object
+        const props = getClassPropertyDescriptors(l);
+        for (const prop in props) {
+          if (props[prop].get)
+            ret[prop] = l[prop];
+        }
+        return ret;
+      });
       postMessage({
         type: 'encounter',
-        encounter: enc,
+        encounter: baseEnc,
         name: enc.combatantTracker.getMainCombatantName(),
       });
     }
