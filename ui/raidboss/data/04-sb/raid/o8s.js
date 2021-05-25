@@ -489,7 +489,11 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '28CE', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28CE', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28CE', source: '케프카', capture: false }),
-      condition: (data) => (data.truths && data.fireMarker === 'spread') || (data.antics && data.fireMarker === 'stack'),
+      condition: (data) => {
+        const isTrueSpread = data.truths && data.fireMarker === 'spread';
+        const isFakeStack = data.antics && data.fireMarker === 'stack';
+        return isTrueSpread || isFakeStack;
+      },
       response: Responses.spread(),
       run: (data) => {
         data.lastFire = 'spread';
@@ -507,7 +511,11 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '28CE', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28CE', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28CE', source: '케프카', capture: false }),
-      condition: (data) => (data.antics && data.fireMarker === 'spread') || (data.truths && data.fireMarker === 'stack'),
+      condition: (data) => {
+        const isFakeSpread = data.antics && data.fireMarker === 'spread';
+        const isTrueStack = data.truths && data.fireMarker === 'stack';
+        return isFakeSpread || isTrueStack;
+      },
       response: Responses.getTogether(),
       run: (data) => {
         data.lastFire = 'stack';
