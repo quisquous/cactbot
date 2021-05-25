@@ -75,6 +75,7 @@ export default {
           en: 'Avoid ${player} and tethers',
           ja: '${player}と線から離れる',
           cn: '远离${player}及其连线',
+          ko: '${player}와 선 피하기',
         },
       },
     },
