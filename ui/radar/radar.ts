@@ -1,11 +1,11 @@
 import { BaseOptions } from '../../types/data';
 import { EventMap } from '../../types/event';
 import { Lang } from '../../types/global';
-import { Matches, NetRegex } from '../../types/trigger';
 
 import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
 import HuntData, { HuntEntry, HuntMap, Rank } from '../../resources/hunt';
-import NetRegexes, { AddedCombatantFullParams } from '../../resources/netregexes';
+import { MatchesAddedCombatantFull } from '../../resources/matches';
+import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import UserConfig from '../../resources/user_config';
 
@@ -205,7 +205,7 @@ class Radar {
   }
 
   AddMonster(log: string, hunt: HuntEntry,
-      matches: Matches<NetRegex<AddedCombatantFullParams>>) {
+      matches: MatchesAddedCombatantFull) {
     if (!this.playerPos)
       return;
     if (!matches)

@@ -6,18 +6,12 @@ export interface BaseRegExp<T> extends RegExp {
   };
 }
 
-export type NetRegex<T extends string> = BaseRegExp<Exclude<T, 'capture'>>;
-
-export type Matches<T> =
-  T extends BaseRegExp ? T['groups'] :
-  T extends NetRegex ? T['groups'] :
-  T extends RegExp ? { [s: string]: string } :
-  never;
+export type Matches<Params> = { [s in Params]?: string } | undefined;
 
 // TargetedMatches can be used for generic functions in responses or conditions
 // that use matches from any number of Regex or NetRegex functions.
 export type TargetedParams = 'sourceId' | 'source' | 'targetId' | 'target';
-export type TargetedMatches = Matches<BaseRegExp<TargetedParams>>;
+export type TargetedMatches = Matches<TargetedParams>;
 
 export type FullLocaleText = Record<Lang, string>;
 
