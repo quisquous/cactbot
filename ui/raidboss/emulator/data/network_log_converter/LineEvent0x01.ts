@@ -2,23 +2,26 @@ import LineEvent from './LineEvent';
 import EmulatorCommon from '../../EmulatorCommon';
 import LogRepository from './LogRepository';
 
+const fields = {
+  zoneId: 2,
+  zoneName: 3,
+} as const;
+
 // Zone change event
 export class LineEvent0x01 extends LineEvent {
-  public properCaseConvertedLine = '';
+  public readonly properCaseConvertedLine: string;
 
-  public get zoneId(): string {
-    return this.parts[2] ?? '';
-  }
+  public readonly zoneId: string;
+  public readonly zoneName: string;
+  public readonly zoneNameProperCase: string;
 
-  public get zoneName(): string {
-    return this.parts[3] ?? '';
-  }
+  constructor(repo: LogRepository, networkLine: string, parts: string[]) {
+    super(repo, networkLine, parts);
 
-  public get zoneNameProperCase(): string {
-    return EmulatorCommon.properCase(this.zoneName);
-  }
+    this.zoneId = parts[fields.zoneId] ?? '';
+    this.zoneName = parts[fields.zoneName] ?? '';
+    this.zoneNameProperCase = EmulatorCommon.properCase(this.zoneName);
 
-  convert(_: LogRepository): void {
     this.convertedLine = this.prefix() +
       'Changed Zone to ' + this.zoneName + '.';
     this.properCaseConvertedLine = this.prefix() +

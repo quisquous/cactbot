@@ -21,7 +21,6 @@ export default class NetworkLogConverter extends EventBus {
     let lineEvents = lines.map((l) => ParseLine.parse(repo, l)).filter(isLineEvent);
     // Call `convert` to convert the network line to non-network format and update indexing values
     lineEvents = lineEvents.map((l, i) => {
-      l.convert(repo);
       l.index = i;
       return l;
     });

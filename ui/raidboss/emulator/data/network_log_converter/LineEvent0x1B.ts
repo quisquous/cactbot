@@ -1,22 +1,24 @@
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
+const fields = {
+  targetId: 2,
+  targetName: 3,
+  headmarkerId: 6,
+} as const;
+
 // Head marker event
 export class LineEvent0x1B extends LineEvent {
+  public readonly targetId: string;
+  public readonly targetName: string;
+  public readonly headmarkerId: string;
+
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
-  }
 
-  public get targetId(): string {
-    return this.parts[2]?.toUpperCase() ?? '';
-  }
-
-  public get targetName(): string {
-    return this.parts[3] ?? '';
-  }
-
-  public get headmarkerId(): string {
-    return this.parts[6] ?? '';
+    this.targetId = parts[fields.targetId]?.toUpperCase() ?? '';
+    this.targetName = parts[fields.targetName] ?? '';
+    this.headmarkerId = parts[fields.headmarkerId] ?? '';
   }
 }
 

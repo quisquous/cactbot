@@ -2,14 +2,64 @@ import LineEvent from './LineEvent';
 import EmulatorCommon from '../../EmulatorCommon';
 import LogRepository from './LogRepository';
 
+const fields = {
+  id: 2,
+  name: 3,
+  type: 4,
+  effectId: 5,
+  damage: 6,
+  currentHp: 7,
+  maxHp: 8,
+  currentMp: 9,
+  maxMp: 10,
+  currentTp: 11,
+  maxTp: 12,
+  x: 13,
+  y: 14,
+  z: 15,
+  heading: 16,
+} as const;
+
 // DoT/HoT event
 export class LineEvent0x18 extends LineEvent {
-  public resolvedName: string;
-  public effectName?: string;
-  public properCaseConvertedLine = '';
+  public readonly properCaseConvertedLine: string;
+
+  public readonly id: string;
+  public readonly name: string;
+  public readonly type: string;
+  public readonly effectId: string;
+  public readonly damage: number;
+  public readonly currentHp: number;
+  public readonly maxHp: number;
+  public readonly currentMp: number;
+  public readonly maxMp: number;
+  public readonly currentTp: number;
+  public readonly maxTp: number;
+  public readonly x: number;
+  public readonly y: number;
+  public readonly z: number;
+  public readonly heading: number;
 
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
+
+    this.id = parts[fields.id]?.toUpperCase() ?? '';
+    this.name = parts[fields.name] ?? '';
+
+    this.type = parts[fields.type] ?? '';
+    this.effectId = parts[fields.effectId]?.toUpperCase() ?? '';
+    this.damage = parseInt(parts[fields.damage] ?? '', 16);
+
+    this.currentHp = parseInt(parts[fields.currentHp] ?? '');
+    this.maxHp = parseInt(parts[fields.maxHp] ?? '');
+    this.currentMp = parseInt(parts[fields.currentMp] ?? '');
+    this.maxMp = parseInt(parts[fields.maxMp] ?? '');
+    this.currentTp = parseInt(parts[fields.currentTp] ?? '');
+    this.maxTp = parseInt(parts[fields.maxTp] ?? '');
+    this.x = parseFloat(parts[fields.x] ?? '');
+    this.y = parseFloat(parts[fields.y] ?? '');
+    this.z = parseFloat(parts[fields.z] ?? '');
+    this.heading = parseFloat(parts[fields.heading] ?? '');
 
     repo.updateCombatant(this.id, {
       job: undefined,
@@ -18,83 +68,22 @@ export class LineEvent0x18 extends LineEvent {
       despawn: this.timestamp,
     });
 
-    this.resolvedName = repo.resolveName(this.id, this.name);
+    let effectName = '';
+    const resolvedName = repo.resolveName(this.id, this.name);
 
     if (this.effectId in LineEvent0x18.showEffectNamesFor)
-      this.effectName = LineEvent0x18.showEffectNamesFor[this.effectId] ?? '';
-  }
+      effectName = LineEvent0x18.showEffectNamesFor[this.effectId] ?? '';
 
-  public get id(): string {
-    return this.parts[2]?.toUpperCase() ?? '';
-  }
-
-  public get name(): string {
-    return this.parts[3] ?? '';
-  }
-
-  public get type(): string {
-    return this.parts[4] ?? '';
-  }
-
-  public get effectId(): string {
-    return this.parts[5]?.toUpperCase() ?? '';
-  }
-
-  public get damage(): number {
-    return parseInt(this.parts[6] ?? '', 16);
-  }
-
-  public get currentHp(): number {
-    return parseInt(this.parts[7] ?? '');
-  }
-
-  public get maxHp(): number {
-    return parseInt(this.parts[8] ?? '');
-  }
-
-  public get currentMp(): number {
-    return parseInt(this.parts[9] ?? '');
-  }
-
-  public get maxMp(): number {
-    return parseInt(this.parts[10] ?? '');
-  }
-
-  public get currentTp(): number {
-    return parseInt(this.parts[11] ?? '');
-  }
-
-  public get maxTp(): number {
-    return parseInt(this.parts[12] ?? '');
-  }
-
-  public get x(): number {
-    return parseFloat(this.parts[13] ?? '');
-  }
-
-  public get y(): number {
-    return parseFloat(this.parts[14] ?? '');
-  }
-
-  public get z(): number {
-    return parseFloat(this.parts[15] ?? '');
-  }
-
-  public get heading(): number {
-    return parseFloat(this.parts[16] ?? '');
-  }
-
-  convert(_: LogRepository): void {
     let effectPart = '';
-    if (this.effectName)
-      effectPart = this.effectName + ' ';
+    if (effectName)
+      effectPart = effectName + ' ';
 
     this.convertedLine = this.prefix() + effectPart + this.type +
-      ' Tick on ' + this.resolvedName +
+      ' Tick on ' + resolvedName +
       ' for ' + this.damage.toString() + ' damage.';
 
     this.properCaseConvertedLine = this.prefix() + effectPart + this.type +
-      ' Tick on ' + EmulatorCommon.properCase(this.resolvedName) +
+      ' Tick on ' + EmulatorCommon.properCase(resolvedName) +
       ' for ' + this.damage.toString() + ' damage.';
   }
 

@@ -2,14 +2,28 @@ import LineEvent from './LineEvent';
 import EmulatorCommon from '../../EmulatorCommon';
 import LogRepository from './LogRepository';
 
+const fields = {
+  id: 2,
+  name: 3,
+  targetId: 4,
+  targetName: 5,
+} as const;
+
 // Combatant defeated event
 export class LineEvent0x19 extends LineEvent {
-  public resolvedName?: string;
-  public resolvedTargetName?: string;
-  public properCaseConvertedLine = '';
+  public readonly properCaseConvertedLine: string;
+  public readonly id: string;
+  public readonly name: string;
+  public readonly targetId: string;
+  public readonly targetName: string;
 
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
+
+    this.id = parts[fields.id]?.toUpperCase() ?? '';
+    this.name = parts[fields.name] ?? '';
+    this.targetId = parts[fields.targetId]?.toUpperCase() ?? '';
+    this.targetName = parts[fields.targetName] ?? '';
 
     repo.updateCombatant(this.id, {
       job: undefined,
@@ -25,32 +39,17 @@ export class LineEvent0x19 extends LineEvent {
       despawn: this.timestamp,
     });
 
+    let resolvedName: string | undefined = undefined;
+    let resolvedTargetName: string | undefined = undefined;
+
     if (this.id !== '00')
-      this.resolvedName = repo.resolveName(this.id, this.name);
+      resolvedName = repo.resolveName(this.id, this.name);
 
     if (this.targetId !== '00')
-      this.resolvedTargetName = repo.resolveName(this.targetId, this.targetName);
-  }
+      resolvedTargetName = repo.resolveName(this.targetId, this.targetName);
 
-  public get id(): string {
-    return this.parts[2]?.toUpperCase() ?? '';
-  }
-
-  public get name(): string {
-    return this.parts[3] ?? '';
-  }
-
-  public get targetId(): string {
-    return this.parts[4]?.toUpperCase() ?? '';
-  }
-
-  public get targetName(): string {
-    return this.parts[5] ?? '';
-  }
-
-  convert(_: LogRepository): void {
-    const defeatedName = (this.resolvedName ?? this.name);
-    const killerName = (this.resolvedTargetName ?? this.targetName);
+    const defeatedName = (resolvedName ?? this.name);
+    const killerName = (resolvedTargetName ?? this.targetName);
     this.convertedLine = this.prefix() + defeatedName +
       ' was defeated by ' + killerName + '.';
     this.properCaseConvertedLine = this.prefix() + EmulatorCommon.properCase(defeatedName) +

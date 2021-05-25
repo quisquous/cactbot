@@ -1,21 +1,22 @@
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
+const fields = {
+  id: 2,
+  name: 3,
+} as const;
+
 // Player change event
 export class LineEvent0x02 extends LineEvent {
+  public readonly id: string;
+  public readonly name: string;
+
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
-  }
 
-  public get id(): string {
-    return this.parts[2]?.toUpperCase() ?? '';
-  }
+    this.id = parts[fields.id]?.toUpperCase() ?? '';
+    this.name = parts[fields.name] ?? '';
 
-  public get name(): string {
-    return this.parts[3] ?? '';
-  }
-
-  convert(_: LogRepository): void {
     this.convertedLine = this.prefix() + 'Changed primary player to ' + this.name + '.';
   }
 }
