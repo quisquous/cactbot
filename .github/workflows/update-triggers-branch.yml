@@ -26,7 +26,10 @@ jobs:
     needs: check-triggers
     if: needs.check-triggers.outputs.found == 'true'
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
       - name: Build
         run: |
           npm install
