@@ -1,0 +1,46 @@
+name: Post-Process Test
+
+on:
+  push:
+    paths:
+      - 'resources/**'
+      - 'ui/raidboss/**'
+      - 'ui/oopsyraidsy/**'
+      - 'util/**
+      - '.github/workflows/post-process.yml'
+  pull_request:
+    paths:
+      - 'resources/**'
+      - 'ui/raidboss/**'
+      - 'ui/oopsyraidsy/**'
+      - 'util/**
+      - '.github/workflows/post-process.yml'
+
+jobs:
+  postprocess:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Dependencies
+        run: |
+          npm ci
+
+      - name: npm run coverage-report
+        run: |
+          npm run coverage-report
+
+      - name: npm run process-triggers
+        run: |
+          npm run process-triggers
