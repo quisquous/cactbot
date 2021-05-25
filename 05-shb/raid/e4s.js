@@ -6,9 +6,7 @@ Options.Triggers.push({
       id: 'E4S Earthen Anguish',
       regex: /Earthen Anguish/,
       beforeSeconds: 3,
-      condition: (data) => {
-        return data.role === 'healer' || data.role === 'tank';
-      },
+      condition: (data) => data.role === 'healer' || data.role === 'tank',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: Outputs.tankBusters,
@@ -50,9 +48,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '4116', source: 'タイタン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '4116', source: '泰坦' }),
       netRegexKo: NetRegexes.startsUsing({ id: '4116', source: '타이탄' }),
-      condition: (data, matches) => {
-        return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
-      },
+      condition: (data, matches) => matches.target === data.me || data.role === 'tank' || data.role === 'healer',
       // As this seems to usually seems to be invulned,
       // don't make a big deal out of it.
       response: Responses.tankBuster(),
@@ -187,9 +183,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.abilityFull({ id: '4142', source: 'ボムボルダー' }),
       netRegexCn: NetRegexes.abilityFull({ id: '4142', source: '爆破岩石' }),
       netRegexKo: NetRegexes.abilityFull({ id: '4142', source: '바위폭탄' }),
-      condition: (data) => {
-        return !data.printedBury;
-      },
+      condition: (data) => !data.printedBury,
       durationSeconds: 7,
       alertText: (data, matches, output) => {
         const x = matches.x;
@@ -312,9 +306,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '4124', source: 'マキシタイタン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4124', source: '极大泰坦', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4124', source: '거대 타이탄', capture: false }),
-      condition: (data) => {
-        return data.role === 'healer';
-      },
+      condition: (data) => data.role === 'healer',
       response: Responses.bigAoe(),
     },
     {

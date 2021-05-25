@@ -82,9 +82,7 @@ Options.Triggers.push({
         else
           data.safeZone = null;
       },
-      infoText: (data, _matches, output) => {
-        return !data.safeZone ? output.unknown() : data.safeZone;
-      },
+      infoText: (data, _matches, output) => !data.safeZone ? output.unknown() : data.safeZone,
       outputStrings: {
         oneDir: {
           en: '${dir}',
@@ -219,9 +217,7 @@ Options.Triggers.push({
       // Break tether if you're the target during Ifrit+Garuda phase
       id: 'E6S Hands of Flame Tether',
       netRegex: NetRegexes.tether({ id: '0068' }),
-      condition: (data) => {
-        return data.handsOfFlame;
-      },
+      condition: (data) => data.handsOfFlame,
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.chargeOnYou();
@@ -390,9 +386,7 @@ Options.Triggers.push({
     {
       id: 'E6S Irons Of Purgatory',
       netRegex: NetRegexes.tether({ id: '006C' }),
-      condition: (data, matches) => {
-        return data.me === matches.target || data.me === matches.source;
-      },
+      condition: (data, matches) => data.me === matches.target || data.me === matches.source,
       alertText: (data, matches, output) => {
         if (data.me === matches.source)
           return output.tetheredToPlayer({ player: data.ShortName(matches.target) });

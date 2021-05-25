@@ -1102,9 +1102,7 @@ Options.Triggers.push({
         };
         data.safeZone = dirs[cardinal];
       },
-      infoText: (data, _matches, output) => {
-        return !data.safeZone ? output.unknown() : data.safeZone;
-      },
+      infoText: (data, _matches, output) => !data.safeZone ? output.unknown() : data.safeZone,
       outputStrings: {
         unknown: {
           en: '???',

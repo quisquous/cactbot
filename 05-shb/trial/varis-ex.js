@@ -215,9 +215,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD9', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CD9', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CD9', capture: false }),
-      delaySeconds: (data) => {
-        return data.phase === 2 ? 20 : 10;
-      },
+      delaySeconds: (data) => data.phase === 2 ? 20 : 10,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

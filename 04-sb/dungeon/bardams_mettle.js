@@ -6,9 +6,7 @@ Options.Triggers.push({
       id: 'Bardam\'s Mettle Feathercut',
       regex: /Feathercut/,
       beforeSeconds: 4,
-      condition: (data) => {
-        return data.role === 'tank' || data.role === 'healer';
-      },
+      condition: (data) => data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBuster(),
     },
   ],
@@ -114,9 +112,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2582', source: '落下地点' }),
       netRegexCn: NetRegexes.startsUsing({ id: '2582', source: '坠落地点' }),
       netRegexKo: NetRegexes.startsUsing({ id: '2582', source: '낙하지점' }),
-      delaySeconds: (_data, matches) => {
-        return parseFloat(matches.castTime) - 7;
-      },
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 7,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -143,9 +139,7 @@ Options.Triggers.push({
     {
       id: 'Bardam\'s Mettle Flutterfall',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: (data, matches) => {
-        return data.me === matches.target && data.deadBardam;
-      },
+      condition: (data, matches) => data.me === matches.target && data.deadBardam,
       response: Responses.spread(),
     },
     {

@@ -190,9 +190,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '28F[78]', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28F[78]', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28F[78]', source: '케프카', capture: false }),
-      condition: (data) => {
-        return data.role === 'tank' || data.role === 'healer';
-      },
+      condition: (data) => data.role === 'tank' || data.role === 'healer',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -214,9 +212,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '28F[45]', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28F[45]', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28F[45]', source: '케프카', capture: false }),
-      condition: (data) => {
-        return data.role === 'tank' || data.role === 'healer';
-      },
+      condition: (data) => data.role === 'tank' || data.role === 'healer',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -483,7 +479,9 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '28CE', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28CE', source: '케프카', capture: false }),
       condition: (data) => {
-        return (data.truths && data.fireMarker === 'spread') || (data.antics && data.fireMarker === 'stack');
+        const isTrueSpread = data.truths && data.fireMarker === 'spread';
+        const isFakeStack = data.antics && data.fireMarker === 'stack';
+        return isTrueSpread || isFakeStack;
       },
       response: Responses.spread(),
       run: (data) => {
@@ -503,7 +501,9 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '28CE', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28CE', source: '케프카', capture: false }),
       condition: (data) => {
-        return (data.antics && data.fireMarker === 'spread') || (data.truths && data.fireMarker === 'stack');
+        const isFakeSpread = data.antics && data.fireMarker === 'spread';
+        const isTrueStack = data.truths && data.fireMarker === 'stack';
+        return isFakeSpread || isTrueStack;
       },
       response: Responses.getTogether(),
       run: (data) => {

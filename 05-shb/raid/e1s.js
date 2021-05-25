@@ -141,9 +141,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3D88', source: 'エデン・プライム' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D88', source: '至尊伊甸' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D88', source: '에덴 프라임' }),
-      condition: (data, matches) => {
-        return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
-      },
+      condition: (data, matches) => matches.target === data.me || data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBusterSwap(),
     },
     {
@@ -306,9 +304,7 @@ Options.Triggers.push({
     {
       id: 'E1S Vice and Virtue DPS 1',
       netRegex: NetRegexes.headMarker({ id: '00AE' }),
-      condition: (data, matches) => {
-        return !data.paradise && data.vice === 'dps' && data.me === matches.target;
-      },
+      condition: (data, matches) => !data.paradise && data.vice === 'dps' && data.me === matches.target,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -344,9 +340,7 @@ Options.Triggers.push({
     {
       id: 'E1S Vice and Virtue Tank Mark',
       netRegex: NetRegexes.headMarker({ id: '00AE' }),
-      condition: (data, matches) => {
-        return data.vice === 'tank' && data.me === matches.target;
-      },
+      condition: (data, matches) => data.vice === 'tank' && data.me === matches.target,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -367,9 +361,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3D78', source: 'エデン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D78', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D78', source: '에덴 프라임', capture: false }),
-      condition: (data) => {
-        return data.role !== 'tank';
-      },
+      condition: (data) => data.role !== 'tank',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -441,9 +433,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3D8D', source: 'エデン・ガーデナー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D8D', source: '伊甸守护者' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D8D', source: '에덴의 수호자' }),
-      condition: (data) => {
-        return data.CanSilence();
-      },
+      condition: (data) => data.CanSilence(),
       suppressSeconds: 1,
       response: Responses.interrupt(),
     },

@@ -21,9 +21,7 @@ Options.Triggers.push({
       id: 'A3S Hand of Stuff',
       regex: /Hand of Prayer\/Parting/,
       beforeSeconds: 5,
-      condition: (data) => {
-        return data.role === 'tank' || data.job === 'BLU';
-      },
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -152,9 +150,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.tether({ id: '0005', target: 'リビングリキッド', capture: false }),
       netRegexCn: NetRegexes.tether({ id: '0005', target: '有生命活水', capture: false }),
       netRegexKo: NetRegexes.tether({ id: '0005', target: '살아있는 액체', capture: false }),
-      condition: (data) => {
-        return data.role === 'tank';
-      },
+      condition: (data) => data.role === 'tank',
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -245,12 +241,8 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'リキッドレイジ', id: 'F1A' }),
       netRegexCn: NetRegexes.ability({ source: '活水之怒', id: 'F1A' }),
       netRegexKo: NetRegexes.ability({ source: '분노한 액체', id: 'F1A' }),
-      condition: (data) => {
-        return data.CanCleanse();
-      },
-      alertText: (data, matches, output) => {
-        return output.text({ player: data.ShortName(matches.target) });
-      },
+      condition: (data) => data.CanCleanse(),
+      alertText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
           en: 'Throttle on ${player}',
@@ -301,9 +293,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'リビングリキッド', id: 'F1B', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '有生命活水', id: 'F1B', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '살아있는 액체', id: 'F1B', capture: false }),
-      condition: (data) => {
-        return data.role === 'tank' || data.job === 'BLU';
-      },
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

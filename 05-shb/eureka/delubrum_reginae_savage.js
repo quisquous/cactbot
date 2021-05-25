@@ -1908,9 +1908,7 @@ Options.Triggers.push({
         else
           data.safeZone = null;
       },
-      alertText: (data, _matches, output) => {
-        return !data.safeZone ? output.unknown() : data.safeZone;
-      },
+      alertText: (data, _matches, output) => !data.safeZone ? output.unknown() : data.safeZone,
       outputStrings: {
         getCleaved: {
           en: '${dir1} Safe Spot => ${dir2} for cleave',

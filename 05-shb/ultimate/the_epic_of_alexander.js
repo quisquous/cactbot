@@ -296,9 +296,7 @@ Options.Triggers.push({
       id: 'TEA Hand of Stuff',
       regex: /Hand of Prayer\/Parting/,
       beforeSeconds: 5,
-      condition: (data) => {
-        return data.role === 'tank';
-      },
+      condition: (data) => data.role === 'tank',
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -316,9 +314,7 @@ Options.Triggers.push({
       id: 'TEA J Kick',
       regex: /J Kick/,
       beforeSeconds: 5,
-      condition: (data) => {
-        return data.role === 'healer' || data.role === 'tank';
-      },
+      condition: (data) => data.role === 'healer' || data.role === 'tank',
       suppressSeconds: 1,
       response: Responses.aoe(),
     },
@@ -342,9 +338,7 @@ Options.Triggers.push({
       id: 'TEA Flarethrower',
       regex: /Flarethrower/,
       beforeSeconds: 8,
-      condition: (data) => {
-        return data.me === data.bruteTank && data.phase === 'brute';
-      },
+      condition: (data) => data.me === data.bruteTank && data.phase === 'brute',
       suppressSeconds: 300,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -379,9 +373,7 @@ Options.Triggers.push({
       regex: /Propeller Wind/,
       beforeSeconds: 15,
       durationSeconds: 14,
-      alertText: (data, _matches, output) => {
-        return namedNisiPass(data, output);
-      },
+      alertText: (data, _matches, output) => namedNisiPass(data, output),
       outputStrings: nisiPassOutputStrings,
     },
     {
@@ -656,9 +648,7 @@ Options.Triggers.push({
     {
       id: 'TEA Throttle',
       netRegex: NetRegexes.gainsEffect({ effectId: '2BC', capture: false }),
-      condition: (data) => {
-        return data.CanCleanse();
-      },
+      condition: (data) => data.CanCleanse(),
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -722,9 +712,7 @@ Options.Triggers.push({
         // show the number until you are done.
         return data.limitCutDelay;
       },
-      alertText: (data, _matches, output) => {
-        return output.text({ num: data.limitCutNumber });
-      },
+      alertText: (data, _matches, output) => output.text({ num: data.limitCutNumber }),
       outputStrings: {
         text: {
           en: '#${num}',
@@ -740,13 +728,9 @@ Options.Triggers.push({
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Knockback',
       netRegex: NetRegexes.headMarker({}),
-      condition: (data, matches) => {
-        return data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
-      },
+      condition: (data, matches) => data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches)),
       // This gives a warning within 5 seconds, so you can hit arm's length.
-      delaySeconds: (data) => {
-        return data.limitCutDelay - 5;
-      },
+      delaySeconds: (data) => data.limitCutDelay - 5,
       alertText: (data, matches, output) => {
         const isOddNumber = parseInt(getHeadmarkerId(data, matches), 16) & 1 === 1;
         if (data.phase === 'wormhole') {
@@ -795,9 +779,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '483F', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '483F', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '483F', capture: false }),
-      condition: (data) => {
-        return data.phase === 'brute';
-      },
+      condition: (data) => data.phase === 'brute',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -853,9 +835,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '4A72', capture: false }),
       // Nobody should be in front of cruise chaser but the tank, and this is close to
       // water thunder handling, so only tell the tank.
-      condition: (data) => {
-        return data.me === data.cruiseTank;
-      },
+      condition: (data) => data.me === data.cruiseTank,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -871,9 +851,7 @@ Options.Triggers.push({
     {
       id: 'TEA Ice Marker',
       netRegex: NetRegexes.headMarker({}),
-      condition: (data, matches) => {
-        return data.me === matches.target && getHeadmarkerId(data, matches) === '0043';
-      },
+      condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0043',
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -894,9 +872,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '4851', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '4851', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '4851', capture: false }),
-      condition: (data) => {
-        return data.role === 'tank';
-      },
+      condition: (data) => data.role === 'tank',
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -913,9 +889,7 @@ Options.Triggers.push({
     {
       id: 'TEA Enumeration YOU',
       netRegex: NetRegexes.headMarker({}),
-      condition: (data, matches) => {
-        return data.me === matches.target && getHeadmarkerId(data, matches) === '0041';
-      },
+      condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0041',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -931,9 +905,7 @@ Options.Triggers.push({
     {
       id: 'TEA Enumeration Everyone',
       netRegex: NetRegexes.headMarker({}),
-      condition: (data, matches) => {
-        return getHeadmarkerId(data, matches) === '0041';
-      },
+      condition: (data, matches) => getHeadmarkerId(data, matches) === '0041',
       preRun: (data, matches) => {
         data.enumerations = data.enumerations || [];
         data.enumerations.push(matches.target);
@@ -1116,9 +1088,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '4845', capture: false }),
       delaySeconds: 8,
       durationSeconds: 9,
-      alertText: (data, _matches, output) => {
-        return namedNisiPass(data, output);
-      },
+      alertText: (data, _matches, output) => namedNisiPass(data, output),
       outputStrings: nisiPassOutputStrings,
     },
     {
@@ -1342,9 +1312,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
       condition: (data) => data.phase === 'inception',
       delaySeconds: 3,
-      infoText: (data, matches, output) => {
-        return output.text({ player: data.ShortName(matches.target) });
-      },
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
           en: 'Shared Sentence on ${player}',
@@ -1404,9 +1372,7 @@ Options.Triggers.push({
     {
       id: 'TEA Judgment Crystal',
       netRegex: NetRegexes.headMarker({}),
-      condition: (data, matches) => {
-        return data.me === matches.target && getHeadmarkerId(data, matches) === '0060';
-      },
+      condition: (data, matches) => data.me === matches.target && getHeadmarkerId(data, matches) === '0060',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -1711,9 +1677,7 @@ Options.Triggers.push({
     {
       id: 'TEA Incinerating Heat',
       netRegex: NetRegexes.headMarker({}),
-      condition: (data, matches) => {
-        return getHeadmarkerId(data, matches) === '005D';
-      },
+      condition: (data, matches) => getHeadmarkerId(data, matches) === '005D',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -1775,9 +1739,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.ability({ source: 'Primo-Alexander', id: '4879', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'アレキサンダー・プライム', id: '4879', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '4879', capture: false }),
-      condition: (data) => {
-        return data.role === 'tank';
-      },
+      condition: (data) => data.role === 'tank',
       delaySeconds: 6,
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -1807,9 +1769,7 @@ Options.Triggers.push({
     {
       id: 'TEA Perfect Optical Sight Stack',
       netRegex: NetRegexes.headMarker({}),
-      condition: (data, matches) => {
-        return getHeadmarkerId(data, matches) === '003E';
-      },
+      condition: (data, matches) => getHeadmarkerId(data, matches) === '003E',
       preRun: (data, matches) => {
         data.opticalStack = data.opticalStack || [];
         data.opticalStack.push(matches.target);
@@ -2786,9 +2746,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '4890', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '4890', capture: false }),
       suppressSeconds: 15,
-      alertText: (data, _matches, output) => {
-        return output[data.secondTrineResponse]();
-      },
+      alertText: (data, _matches, output) => output[data.secondTrineResponse](),
       outputStrings: {
         north: Outputs.north,
         east: Outputs.east,

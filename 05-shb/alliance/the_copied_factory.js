@@ -627,9 +627,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ id: '48F5', source: '9S : Avec Multipède Esclave' }),
       netRegexJa: NetRegexes.startsUsing({ id: '48F5', source: '９Ｓ：多脚戦車従属' }),
       netRegexKo: NetRegexes.startsUsing({ id: '48F5', source: '9S: 다각전차 종속' }),
-      condition: (data, matches) => {
-        return data.me === matches.target || data.role === 'healer';
-      },
+      condition: (data, matches) => data.me === matches.target || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {

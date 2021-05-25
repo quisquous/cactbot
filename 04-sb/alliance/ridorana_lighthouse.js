@@ -263,9 +263,7 @@ Options.Triggers.push({
     {
       id: 'Ridorana Construct Accelerate Stack',
       netRegex: NetRegexes.headMarker({ id: '0064' }),
-      condition: (data) => {
-        return !data.accelerateSpreadOnMe;
-      },
+      condition: (data) => !data.accelerateSpreadOnMe,
       response: Responses.stackMarkerOn(),
     },
     {
@@ -418,9 +416,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2E32', source: '鬼龍ヤズマット', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2E32', source: '鬼龙雅兹玛特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2E32', source: '귀룡 야즈마트', capture: false }),
-      condition: (data) => {
-        return data.role === 'tank';
-      },
+      condition: (data) => data.role === 'tank',
       response: Responses.awayFromFront(),
     },
     {

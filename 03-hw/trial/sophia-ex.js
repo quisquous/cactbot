@@ -132,9 +132,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '19C4', source: 'ソフィア' }),
       netRegexCn: NetRegexes.startsUsing({ id: '19C4', source: '索菲娅' }),
       netRegexKo: NetRegexes.startsUsing({ id: '19C4', source: '소피아' }),
-      condition: (data) => {
-        return data.role === 'tank' || data.role === 'healer';
-      },
+      condition: (data) => data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBusterSwap(),
     },
     {
@@ -337,9 +335,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '1983', source: 'ソフィア', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '1983', source: '索菲娅', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '1983', source: '소피아', capture: false }),
-      condition: (data) => {
-        return data.clonesActive;
-      },
+      condition: (data) => data.clonesActive,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -360,9 +356,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '19AA', source: 'ソフィア' }),
       netRegexCn: NetRegexes.startsUsing({ id: '19AA', source: '索菲娅' }),
       netRegexKo: NetRegexes.startsUsing({ id: '19AA', source: '소피아' }),
-      durationSeconds: (_data, matches) => {
-        return parseFloat(matches.castTime);
-      },
+      durationSeconds: (_data, matches) => parseFloat(matches.castTime),
       alertText: (data, _matches, output) => {
         const localeCompass = {
           'N': output.north(),
@@ -432,9 +426,7 @@ Options.Triggers.push({
       // Because of this, we need only see one entity use a 21 log line and we can find the rest.
       id: 'SophiaEX Quasar Setup',
       netRegex: NetRegexes.abilityFull({ id: '19A[89]' }),
-      condition: (data) => {
-        return !data.scaleSophias;
-      },
+      condition: (data) => !data.scaleSophias,
       // We *really* shouldn't have to suppress this...
       suppressSeconds: 5,
       run: (data, matches) => {
@@ -525,9 +517,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '19A9', source: 'ソフィア' }),
       netRegexCn: NetRegexes.startsUsing({ id: '19A9', source: '索菲娅' }),
       netRegexKo: NetRegexes.startsUsing({ id: '19A9', source: '소피아' }),
-      condition: (data) => {
-        return data.sadTethers;
-      },
+      condition: (data) => data.sadTethers,
       durationSeconds: 10,
       suppressSeconds: 5,
       alertText: (data, matches, output) => {

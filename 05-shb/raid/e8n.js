@@ -30,9 +30,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4DDB', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4DDB', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4DDB', capture: false }),
-      condition: (data) => {
-        return !data.mirrorsActive;
-      },
+      condition: (data) => !data.mirrorsActive,
       response: Responses.getBehind(),
     },
     {
@@ -43,9 +41,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4DDC', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4DDC', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4DDC', capture: false }),
-      condition: (data) => {
-        return !data.mirrorsActive;
-      },
+      condition: (data) => !data.mirrorsActive,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -66,9 +62,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4DE2', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4DE2', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4DE2', capture: false }),
-      condition: (data) => {
-        return !data.mirrorsActive;
-      },
+      condition: (data) => !data.mirrorsActive,
       response: Responses.getOut(),
     },
     {
@@ -89,9 +83,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4DDB', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4DDB', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4DDB', capture: false }),
-      condition: (data) => {
-        return data.mirrorsActive;
-      },
+      condition: (data) => data.mirrorsActive,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -112,9 +104,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4DDC', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4DDC', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4DDC', capture: false }),
-      condition: (data) => {
-        return data.mirrorsActive;
-      },
+      condition: (data) => data.mirrorsActive,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -135,9 +125,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4DE2', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4DE2', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4DE2', capture: false }),
-      condition: (data) => {
-        return data.mirrorsActive;
-      },
+      condition: (data) => data.mirrorsActive,
       response: Responses.getOutThenIn(),
     },
     {

@@ -109,9 +109,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '4B9A', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4B9A', source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4B9A', source: '拉姆', capture: false }),
-      condition: (data) => {
-        return !data.surgeProtection;
-      },
+      condition: (data) => !data.surgeProtection,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

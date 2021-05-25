@@ -50,9 +50,7 @@ Options.Triggers.push({
     {
       id: 'O2N Gravitational Manipulation Float',
       netRegex: NetRegexes.headMarker({ id: '0071' }),
-      condition: (data, matches) => {
-        return !data.levitating && Conditions.targetIsNotYou()(data, matches);
-      },
+      condition: (data, matches) => !data.levitating && Conditions.targetIsNotYou()(data, matches),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -73,9 +71,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '250F', source: 'カタストロフィー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '250F', source: '灾变者' }),
       netRegexKo: NetRegexes.startsUsing({ id: '250F', source: '카타스트로피' }),
-      condition: (data) => {
-        return data.role === 'tank' || data.role === 'healer';
-      },
+      condition: (data) => data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {

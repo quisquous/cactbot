@@ -184,9 +184,7 @@ Options.Triggers.push({
     {
       id: 'O9S Entropy Avoid Hit',
       netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
-      condition: (data, matches) => {
-        return matches.target === data.me && data.phaseType === 'fire';
-      },
+      condition: (data, matches) => matches.target === data.me && data.phaseType === 'fire',
       delaySeconds: (_data, matches) => {
         // Folks get either the 24 second or the 10 second.
         // So, delay for the opposite minus 5.
@@ -217,9 +215,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3180', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3180', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3180', source: '카오스', capture: false }),
-      condition: (data) => {
-        return data.phaseType === 'fire';
-      },
+      condition: (data) => data.phaseType === 'fire',
       // Each big bang has its own cast, so suppress.
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text(),
@@ -251,9 +247,7 @@ Options.Triggers.push({
     {
       id: 'O9S Dynamic Fluid 1',
       netRegex: NetRegexes.gainsEffect({ effectId: '641', capture: false }),
-      condition: (data) => {
-        return data.phaseType === 'water';
-      },
+      condition: (data) => data.phaseType === 'water',
       delaySeconds: 5,
       suppressSeconds: 1,
       // T/H get 10s & DPS get 17s
@@ -272,9 +266,7 @@ Options.Triggers.push({
     {
       id: 'O9S Dynamic Fluid 2',
       netRegex: NetRegexes.gainsEffect({ effectId: '641', capture: false }),
-      condition: (data) => {
-        return data.phaseType === 'water';
-      },
+      condition: (data) => data.phaseType === 'water',
       // T/H get 10s & DPS get 17s
       delaySeconds: 12,
       suppressSeconds: 1,
@@ -293,9 +285,7 @@ Options.Triggers.push({
     {
       id: 'O9S Dynamic Fluid 3',
       netRegex: NetRegexes.gainsEffect({ effectId: '641', capture: false }),
-      condition: (data) => {
-        return data.phaseType === 'enrage';
-      },
+      condition: (data) => data.phaseType === 'enrage',
       // enrage -> 6s
       delaySeconds: 1,
       suppressSeconds: 1,
@@ -423,9 +413,7 @@ Options.Triggers.push({
     {
       id: 'O9S Accretion',
       netRegex: NetRegexes.gainsEffect({ effectId: '644', capture: false }),
-      condition: (data) => {
-        return data.role === 'healer';
-      },
+      condition: (data) => data.role === 'healer',
       suppressSeconds: 10,
       infoText: (data, _matches, output) => {
         if (data.phaseType !== 'earth')
@@ -454,9 +442,7 @@ Options.Triggers.push({
     {
       id: 'O9S Primordial Crust',
       netRegex: NetRegexes.gainsEffect({ effectId: '645' }),
-      condition: (data, matches) => {
-        return data.me === matches.target && data.phaseType !== 'orb';
-      },
+      condition: (data, matches) => data.me === matches.target && data.phaseType !== 'orb',
       infoText: (_data, _matches, output) => output.text(),
       run: (data) => {
         data.primordialCrust = true;
@@ -513,12 +499,8 @@ Options.Triggers.push({
     {
       id: 'O9S Orb Entropy',
       netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
-      condition: (data, matches) => {
-        return matches.target !== data.me && data.phaseType === 'orb';
-      },
-      delaySeconds: (_data, matches) => {
-        return parseFloat(matches.duration) - 3;
-      },
+      condition: (data, matches) => matches.target !== data.me && data.phaseType === 'orb',
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       suppressSeconds: 10,
       alertText: (data, _matches, output) => {
         if (data.head === 'wind')
@@ -541,12 +523,8 @@ Options.Triggers.push({
     {
       id: 'O9S Orb Dynamic Fluid',
       netRegex: NetRegexes.gainsEffect({ effectId: '641' }),
-      condition: (data, matches) => {
-        return matches.target === data.me && data.phaseType === 'orb';
-      },
-      delaySeconds: (_data, matches) => {
-        return parseFloat(matches.duration) - 5;
-      },
+      condition: (data, matches) => matches.target === data.me && data.phaseType === 'orb',
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

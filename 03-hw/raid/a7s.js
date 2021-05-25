@@ -162,9 +162,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'シュツルムドール', id: '16FE' }),
       netRegexKo: NetRegexes.startsUsing({ source: '인형 폭기병', id: '16FE' }),
       netRegexCn: NetRegexes.startsUsing({ source: '风暴人偶', id: '16FE' }),
-      condition: (data) => {
-        return data.CanStun();
-      },
+      condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
     {

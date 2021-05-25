@@ -28,9 +28,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.gainsEffect({ target: 'ガーディアン', effectId: '5D3', capture: false }),
       netRegexCn: NetRegexes.gainsEffect({ target: '守护者', effectId: '5D3', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '가디언', effectId: '5D3', capture: false }),
-      condition: (data) => {
-        return !data.first || data.seenVirus && !data.second;
-      },
+      condition: (data) => !data.first || data.seenVirus && !data.second,
       run: (data) => {
         if (data.seenVirus)
           data.second = 'dada';
@@ -46,9 +44,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.gainsEffect({ target: 'ガーディアン', effectId: '5D4', capture: false }),
       netRegexCn: NetRegexes.gainsEffect({ target: '守护者', effectId: '5D4', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '가디언', effectId: '5D4', capture: false }),
-      condition: (data) => {
-        return !data.first || data.seenVirus && !data.second;
-      },
+      condition: (data) => !data.first || data.seenVirus && !data.second,
       run: (data) => {
         if (data.seenVirus)
           data.second = 'biblio';

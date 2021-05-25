@@ -7,9 +7,7 @@ Options.Triggers.push({
       id: 'Gubal Hard Triclip',
       regex: /Triclip/,
       beforeSeconds: 5,
-      condition: (data) => {
-        return data.role === 'healer' || data.role === 'tank';
-      },
+      condition: (data) => data.role === 'healer' || data.role === 'tank',
       response: Responses.tankBuster(),
     },
     {
@@ -22,9 +20,7 @@ Options.Triggers.push({
       id: 'Gubal Hard Properties of Darkness',
       regex: /Darkness \(buster\)/,
       beforeSeconds: 5,
-      condition: (data) => {
-        return data.role === 'healer' || data.role === 'tank';
-      },
+      condition: (data) => data.role === 'healer' || data.role === 'tank',
       response: Responses.tankBuster(),
     },
   ],
@@ -43,9 +39,7 @@ Options.Triggers.push({
     {
       id: 'Gubal Hard Ferrofluid',
       netRegex: NetRegexes.headMarker({ id: ['0030', '0031'] }),
-      condition: (data, matches) => {
-        return data.me === matches.target || matches.targetId.slice(0, 1) === '4';
-      },
+      condition: (data, matches) => data.me === matches.target || matches.targetId.slice(0, 1) === '4',
       preRun: (data, matches) => {
         data.markers = data.markers || [];
         data.markers.push(matches.id);

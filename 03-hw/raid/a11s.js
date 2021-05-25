@@ -226,9 +226,7 @@ Options.Triggers.push({
       id: 'A11S Limit Cut Number',
       netRegex: NetRegexes.headMarker({ id: '00(?:4F|5[0-6])' }),
       condition: Conditions.targetIsYou(),
-      durationSeconds: (data) => {
-        return data.limitCutDelay;
-      },
+      durationSeconds: (data) => data.limitCutDelay,
       infoText: (data, _matches, output) => output.text({ num: data.limitCutNumber }),
       outputStrings: {
         text: {
@@ -245,9 +243,7 @@ Options.Triggers.push({
       id: 'A11S Limit Cut Mechanic',
       netRegex: NetRegexes.headMarker({ id: '00(?:4F|5[0-6])' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (data) => {
-        return data.limitCutDelay - 5;
-      },
+      delaySeconds: (data) => data.limitCutDelay - 5,
       alertText: (data, _matches, output) => {
         if (data.limitCutNumber % 2 === 1) {
           // Odds

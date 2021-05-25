@@ -117,9 +117,7 @@ Options.Triggers.push({
     {
       id: 'Weeping City Shadow Burst',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      condition: (data) => {
-        return data.arachneStarted;
-      },
+      condition: (data) => data.arachneStarted,
       response: Responses.stackMarkerOn(),
     },
     {
@@ -135,9 +133,7 @@ Options.Triggers.push({
     {
       id: 'Weeping City Arachne Web',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: (data, matches) => {
-        return data.arachneStarted && data.me === matches.target;
-      },
+      condition: (data, matches) => data.arachneStarted && data.me === matches.target,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -180,9 +176,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '17CE', source: 'サモン・サキュバス' }),
       netRegexKo: NetRegexes.startsUsing({ id: '17CE', source: '소환된 서큐버스' }),
       netRegexCn: NetRegexes.startsUsing({ id: '17CE', source: '被召唤出的梦魔' }),
-      condition: (data) => {
-        return data.CanSilence();
-      },
+      condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
     {
@@ -204,9 +198,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ id: '17CB', source: '포르갈', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '17CB', source: '弗加尔', capture: false }),
       // Hell Wind sets HP to single digits, so mitigations don't work. Don't notify non-healers.
-      condition: (data) => {
-        return data.role === 'healer';
-      },
+      condition: (data) => data.role === 'healer',
       response: Responses.aoe(),
     },
     {
@@ -321,9 +313,7 @@ Options.Triggers.push({
       // Failing to pop an orb means it will explode, dealing damage with 1808 Aethernova.
       id: 'Weeping City Flare Star Orbs',
       netRegex: NetRegexes.addedCombatantFull({ npcBaseId: '4889', capture: false }),
-      condition: (data) => {
-        return data.role === 'tank' || data.role === 'healer';
-      },
+      condition: (data) => data.role === 'tank' || data.role === 'healer',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -340,9 +330,7 @@ Options.Triggers.push({
       id: 'Weeping City Acceleration Bomb',
       netRegex: NetRegexes.gainsEffect({ effectId: '430' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => {
-        return parseFloat(matches.duration) - 3;
-      },
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       response: Responses.stopEverything(),
     },
     {
@@ -359,9 +347,7 @@ Options.Triggers.push({
       // Each party gets a stack marker, so this is the best we can do.
       id: 'Weeping City Meteor Stack',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
-      condition: (data) => {
-        return data.ozmaStarted;
-      },
+      condition: (data) => data.ozmaStarted,
       suppressSeconds: 5,
       response: Responses.stackMarker(),
     },
@@ -455,9 +441,7 @@ Options.Triggers.push({
     {
       id: 'Weeping City Particle Beam',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      condition: (data) => {
-        return data.calStarted;
-      },
+      condition: (data) => data.calStarted,
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.skyLaserOnYou();

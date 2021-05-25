@@ -11,9 +11,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '24B7', source: 'エクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '24B7', source: '艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '24B7', source: '엑스데스', capture: false }),
-      condition: (data) => {
-        return data.CanCleanse();
-      },
+      condition: (data) => data.CanCleanse(),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

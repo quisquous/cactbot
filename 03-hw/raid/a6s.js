@@ -26,9 +26,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ブラスター', id: '15F3' }),
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者', id: '15F3' }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자', id: '15F3' }),
-      condition: (data) => {
-        return data.CanSilence();
-      },
+      condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
     {
@@ -178,9 +176,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ミダース・ハードヘルム', id: '1612' }),
       netRegexKo: NetRegexes.startsUsing({ source: '미다스 강화투구', id: '1612' }),
       netRegexCn: NetRegexes.startsUsing({ source: '弥达斯硬盔兵', id: '1612' }),
-      condition: (data) => {
-        return data.CanStun();
-      },
+      condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
     {
@@ -191,9 +187,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ミダース・ハードヘルム', id: '1613' }),
       netRegexKo: NetRegexes.startsUsing({ source: '미다스 강화투구', id: '1613' }),
       netRegexCn: NetRegexes.startsUsing({ source: '弥达斯硬盔兵', id: '1613' }),
-      condition: (data) => {
-        return data.CanStun();
-      },
+      condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
     {

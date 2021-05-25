@@ -27,9 +27,7 @@ Options.Triggers.push({
     {
       id: 'Orbonne Ultima Dominion Tether',
       regex: /Demi-Virgo.*Tether/,
-      condition: (data) => {
-        return data.role === 'tank';
-      },
+      condition: (data) => data.role === 'tank',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -169,9 +167,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3850', source: '聖騎士アグリアス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3850', source: '圣骑士阿格莉亚丝', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3850', source: '성기사 아그리아스', capture: false }),
-      condition: (data) => {
-        return !data.agriasGhostCleanse;
-      },
+      condition: (data) => !data.agriasGhostCleanse,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -348,9 +344,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3752', source: '雷神シド' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3752', source: '雷神西德' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3752', source: '뇌신 시드' }),
-      condition: (data) => {
-        return data.role === 'healer';
-      },
+      condition: (data) => data.role === 'healer',
       response: Responses.tankBuster('info'),
     },
     {
@@ -361,9 +355,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3752', source: '雷神シド', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3752', source: '雷神西德', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3752', source: '뇌신 시드', capture: false }),
-      condition: (data) => {
-        return data.CanFeint();
-      },
+      condition: (data) => data.CanFeint(),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -395,9 +387,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3758', source: '雷神シド', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3758', source: '雷神西德', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3758', source: '뇌신 시드', capture: false }),
-      condition: (data) => {
-        return data.role === 'tank';
-      },
+      condition: (data) => data.role === 'tank',
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -459,9 +449,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '3751', source: '雷神シド', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '3751', source: '雷神西德', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3751', source: '뇌신 시드', capture: false }),
-      condition: (data) => {
-        return data.role === 'healer';
-      },
+      condition: (data) => data.role === 'healer',
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -723,9 +711,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3895', source: '聖天使アルテマ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3895', source: '圣天使阿尔蒂玛', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3895', source: '성천사 알테마', capture: false }),
-      condition: (data) => {
-        return data.role === 'healer';
-      },
+      condition: (data) => data.role === 'healer',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -746,9 +732,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '3895', source: '聖天使アルテマ', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '3895', source: '圣天使阿尔蒂玛', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3895', source: '성천사 알테마', capture: false }),
-      condition: (data) => {
-        return data.role !== 'healer';
-      },
+      condition: (data) => data.role !== 'healer',
       // zzz
       delaySeconds: 23.5,
       alertText: (_data, _matches, output) => output.text(),
@@ -767,9 +751,7 @@ Options.Triggers.push({
       id: 'Orbonne Ultima Acceleration Bomb',
       netRegex: NetRegexes.gainsEffect({ effectId: '430' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => {
-        return parseFloat(matches.duration) - 1;
-      },
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 1,
       response: Responses.stopEverything(),
     },
   ],

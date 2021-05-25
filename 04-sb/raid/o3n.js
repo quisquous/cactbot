@@ -19,9 +19,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '367', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '367', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '367', source: '할리카르나소스', capture: false }),
-      condition: (data) => {
-        return !data.phaseNumber;
-      },
+      condition: (data) => !data.phaseNumber,
       run: (data) => {
         // Indexing phases at 1 so as to make phases match what humans expect.
         // 1: We start here.
@@ -87,9 +85,7 @@ Options.Triggers.push({
     {
       id: 'O3N Spellblade Holy Cave',
       netRegex: NetRegexes.headMarker({ id: '0065' }),
-      condition: (data, matches) => {
-        return data.phaseNumber === 2 && data.me === matches.target;
-      },
+      condition: (data, matches) => data.phaseNumber === 2 && data.me === matches.target,
       response: Responses.spread(),
     },
     {
@@ -144,9 +140,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.addedCombatant({ name: 'ドラゴングレイト', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '巨龙', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '거대 드래곤', capture: false }),
-      condition: (data) => {
-        return data.role === 'tank';
-      },
+      condition: (data) => data.role === 'tank',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -179,9 +173,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2466', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2466', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2466', source: '할리카르나소스', capture: false }),
-      condition: (data) => {
-        return data.phaseNumber === 3 && data.gameCount % 2 === 0;
-      },
+      condition: (data) => data.phaseNumber === 3 && data.gameCount % 2 === 0,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -202,9 +194,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2466', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2466', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2466', source: '할리카르나소스', capture: false }),
-      condition: (data) => {
-        return !(data.phaseNumber === 3 && data.gameCount % 2 === 0);
-      },
+      condition: (data) => !(data.phaseNumber === 3 && data.gameCount % 2 === 0),
       response: Responses.awayFromFront(),
     },
     {

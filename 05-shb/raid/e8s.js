@@ -112,9 +112,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D67', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D67', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D67', capture: false }),
-      condition: (data) => {
-        return !data.firstFrost;
-      },
+      condition: (data) => !data.firstFrost,
       // See comments on Biting Frost First Mirror above.
       delaySeconds: 2,
       infoText: (_data, _matches, output) => output.text(),
@@ -264,9 +262,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '4D6C', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '4D6C', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '4D6C', capture: false }),
-      condition: (data) => {
-        return data.CanCleanse();
-      },
+      condition: (data) => data.CanCleanse(),
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -494,9 +490,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D77', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D77', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D77', capture: false }),
-      condition: (data) => {
-        return data.options.cactbote8sUptimeKnockbackStrat;
-      },
+      condition: (data) => data.options.cactbote8sUptimeKnockbackStrat,
       // This gives a warning within 1.4 seconds, so you can hit arm's length.
       delaySeconds: 8.6,
       durationSeconds: 1.4,
@@ -545,12 +539,8 @@ Options.Triggers.push({
           }[Math.ceil(matches.duration)];
         }
       },
-      durationSeconds: (_data, matches) => {
-        return matches.duration;
-      },
-      alertText: (data, _matches, output) => {
-        return output.text({ num: data.wyrmclawNumber });
-      },
+      durationSeconds: (_data, matches) => matches.duration,
+      alertText: (data, _matches, output) => output.text({ num: data.wyrmclawNumber }),
       outputStrings: {
         text: {
           en: 'Red #${num}',
@@ -581,12 +571,8 @@ Options.Triggers.push({
           }[Math.ceil(matches.duration)];
         }
       },
-      durationSeconds: (_data, matches) => {
-        return matches.duration;
-      },
-      alertText: (data, _matches, output) => {
-        return output.text({ num: data.wyrmfangNumber });
-      },
+      durationSeconds: (_data, matches) => matches.duration,
+      alertText: (data, _matches, output) => output.text({ num: data.wyrmfangNumber }),
       outputStrings: {
         text: {
           en: 'Blue #${num}',
@@ -686,9 +672,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '4D7D', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '4D7D', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '4D7D', capture: false }),
-      condition: (data) => {
-        return data.CanCleanse();
-      },
+      condition: (data) => data.CanCleanse(),
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {

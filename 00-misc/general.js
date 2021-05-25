@@ -13,9 +13,7 @@ Options.Triggers.push({
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => {
-        return output.text({ player: data.ShortName(matches.source) });
-      },
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Provoke: ${player}',
@@ -67,9 +65,7 @@ Options.Triggers.push({
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => {
-        return output.text({ player: data.ShortName(matches.source) });
-      },
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Shirk: ${player}',
@@ -89,9 +85,7 @@ Options.Triggers.push({
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => {
-        return output.text({ player: data.ShortName(matches.source) });
-      },
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Holmgang: ${player}',
@@ -111,9 +105,7 @@ Options.Triggers.push({
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => {
-        return output.text({ player: data.ShortName(matches.source) });
-      },
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Hallowed: ${player}',
@@ -133,9 +125,7 @@ Options.Triggers.push({
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => {
-        return output.text({ player: data.ShortName(matches.source) });
-      },
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Bolide: ${player}',
@@ -155,9 +145,7 @@ Options.Triggers.push({
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => {
-        return output.text({ player: data.ShortName(matches.source) });
-      },
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Living: ${player}',
@@ -177,9 +165,7 @@ Options.Triggers.push({
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => {
-        return output.text({ player: data.ShortName(matches.source) });
-      },
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
       outputStrings: {
         text: {
           en: 'Walking: ${player}',

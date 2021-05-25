@@ -62,9 +62,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ id: '1FAD', source: '신룡' }),
       // Here and elsewhere, timings aren't always completely usable. Instead we give the user
       // a quasi-standard amount of time when notifying.
-      delaySeconds: (_data, matches) => {
-        return matches.castTime - 4;
-      },
+      delaySeconds: (_data, matches) => matches.castTime - 4,
       response: Responses.stopMoving(),
     },
     {
@@ -179,9 +177,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '1FAA', source: '神龍' }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FAA', source: '神龙' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FAA', source: '신룡' }),
-      delaySeconds: (_data, matches) => {
-        return matches.castTime - 6;
-      },
+      delaySeconds: (_data, matches) => matches.castTime - 6,
       durationSeconds: 5,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -203,12 +199,8 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '1FA2', source: 'レフトウィング' }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FA2', source: '左翼' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FA2', source: '왼쪽 날개' }),
-      condition: (data) => {
-        return data.role === 'healer';
-      },
-      delaySeconds: (_data, matches) => {
-        return matches.castTime - 4;
-      },
+      condition: (data) => data.role === 'healer',
+      delaySeconds: (_data, matches) => matches.castTime - 4,
       response: Responses.aoe(),
     },
     {
@@ -241,9 +233,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '1FF4', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FF4', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FF4', source: '신룡', capture: false }),
-      condition: (data) => {
-        return !data.finalPhase;
-      },
+      condition: (data) => !data.finalPhase,
       run: (data) => {
         data.finalPhase = true;
       },

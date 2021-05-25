@@ -943,9 +943,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.abilityFull({ source: ['アイスクロウ', 'サンダーウィング', 'ライトファング', 'ダークテイル', 'ファイアホーン'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
       netRegexCn: NetRegexes.abilityFull({ source: ['冰爪', '雷翼', '光牙', '暗尾', '火角'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
       netRegexKo: NetRegexes.abilityFull({ source: ['얼음발톱', '번개날개', '빛의 송곳니', '어둠의 꼬리', '화염뿔'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
-      condition: (data, matches) => {
-        return !data.seenDragon || !(matches.source in data.seenDragon);
-      },
+      condition: (data, matches) => !data.seenDragon || !(matches.source in data.seenDragon),
       run: (data, matches) => {
         // seenDragon[dragon name] => boolean
         data.seenDragon = data.seenDragon || {};
@@ -1002,9 +1000,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'ネール・デウス・ダーナス', id: '26B6', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '奈尔·神·达纳斯', id: '26B6', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '넬 데우스 다르누스', id: '26B6', capture: false }),
-      condition: (data) => {
-        return data.naelMarks && !data.calledNaelDragons;
-      },
+      condition: (data) => data.naelMarks && !data.calledNaelDragons,
       durationSeconds: 10,
       infoText: (data, _matches, output) => {
         data.calledNaelDragons = true;
@@ -1092,9 +1088,7 @@ Options.Triggers.push({
     {
       id: 'UCU Nael Dragon Dive Marker Counter',
       netRegex: NetRegexes.headMarker({ id: '0014', capture: false }),
-      condition: (data) => {
-        return !data.trio;
-      },
+      condition: (data) => !data.trio,
       run: (data) => {
         data.naelDiveMarkerCount++;
       },
@@ -1103,9 +1097,7 @@ Options.Triggers.push({
       // Octet marker tracking (77=nael, 14=dragon, 29=baha, 2A=twin)
       id: 'UCU Octet Marker Tracking',
       netRegex: NetRegexes.headMarker({ id: ['0077', '0014', '0029'] }),
-      condition: (data) => {
-        return data.trio === 'octet';
-      },
+      condition: (data) => data.trio === 'octet',
       run: (data, matches) => {
         data.octetMarker = data.octetMarker || [];
         data.octetMarker.push(matches.target);

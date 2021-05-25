@@ -83,9 +83,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'オンスローター', id: '1632', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '突击者', id: '1632', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '맹습자', id: '1632', capture: false }),
-      condition: (data) => {
-        return data.role === 'dps' || data.job === 'BLU';
-      },
+      condition: (data) => data.role === 'dps' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

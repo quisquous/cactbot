@@ -144,9 +144,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3927', source: 'アルト', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3927', source: '亚特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3927', source: '아르트', capture: false }),
-      condition: (data) => {
-        return data.side === 'west';
-      },
+      condition: (data) => data.side === 'west',
       run: (data) => {
         data.mythcall = true;
       },
@@ -159,17 +157,13 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3934', source: 'アルト' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3934', source: '亚特' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3934', source: '아르트' }),
-      condition: (data) => {
-        return data.side === 'west';
-      },
+      condition: (data) => data.side === 'west',
       response: Responses.tankBuster(),
     },
     {
       id: 'BA Art Orb Marker',
       netRegex: NetRegexes.headMarker({ id: '005C' }),
-      condition: (data) => {
-        return data.side === 'west';
-      },
+      condition: (data) => data.side === 'west',
       alarmText: (data, matches, output) => {
         if (data.me !== matches.target)
           return;
@@ -202,9 +196,7 @@ Options.Triggers.push({
     {
       id: 'BA Art Piercing Dark Marker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: (data, matches) => {
-        return data.side === 'west' && data.me === matches.target;
-      },
+      condition: (data, matches) => data.side === 'west' && data.me === matches.target,
       response: Responses.spread(),
     },
     {
@@ -215,9 +207,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3928', source: 'アルト', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3928', source: '亚特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3928', source: '아르트', capture: false }),
-      condition: (data) => {
-        return data.side === 'west';
-      },
+      condition: (data) => data.side === 'west',
       response: Responses.getOut(),
     },
     {
@@ -228,9 +218,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3929', source: 'アルト', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3929', source: '亚特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3929', source: '아르트', capture: false }),
-      condition: (data) => {
-        return data.side === 'west';
-      },
+      condition: (data) => data.side === 'west',
       response: Responses.getIn(),
     },
     {
@@ -241,9 +229,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3928', source: 'アルト', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3928', source: '亚特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3928', source: '아르트', capture: false }),
-      condition: (data) => {
-        return data.side === 'west' && data.mythcall;
-      },
+      condition: (data) => data.side === 'west' && data.mythcall,
       delaySeconds: 3.5,
       response: Responses.getUnder(),
     },
@@ -255,9 +241,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3929', source: 'アルト', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3929', source: '亚特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3929', source: '아르트', capture: false }),
-      condition: (data) => {
-        return data.side === 'west' && data.mythcall;
-      },
+      condition: (data) => data.side === 'west' && data.mythcall,
       delaySeconds: 3.5,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -279,25 +263,19 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3945', source: 'オーウェン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3945', source: '欧文' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3945', source: '오와인' }),
-      condition: (data) => {
-        return data.side === 'west';
-      },
+      condition: (data) => data.side === 'west',
       response: Responses.tankBuster(),
     },
     {
       id: 'BA Owain Piercing Light Marker',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: (data, matches) => {
-        return data.side === 'east' && data.me === matches.target;
-      },
+      condition: (data, matches) => data.side === 'east' && data.me === matches.target,
       response: Responses.spread(),
     },
     {
       id: 'BA Owain Dorito Stack',
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: (data, matches) => {
-        return data.side === 'east' && data.me === matches.target;
-      },
+      condition: (data, matches) => data.side === 'east' && data.me === matches.target,
       response: Responses.doritoStack(),
     },
     {
@@ -307,9 +285,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.dialog({ line: '[^:]*:Oui... Munderg, sens le feu embraser nos âmes.*?', capture: false }),
       netRegexJa: NetRegexes.dialog({ line: '[^:]*:白の妖槍「ムンジャルグ」、燃え上がれ！.*?', capture: false }),
       netRegexCn: NetRegexes.dialog({ line: '[^:]*:红颈妖枪，点燃一切.*?', capture: false }),
-      condition: (data) => {
-        return data.side === 'east';
-      },
+      condition: (data) => data.side === 'east',
       alertText: (_data, _matches, output) => output.getToIce(),
       infoText: (_data, _matches, output) => output.switchMagia(),
       outputStrings: {
@@ -338,9 +314,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.dialog({ line: '[^:]*:C\'est bien, Munderg... Glace le sang de mes ennemis.*?', capture: false }),
       netRegexJa: NetRegexes.dialog({ line: '[^:]*:白の妖槍「ムンジャルグ」、震え凍れよ！.*?', capture: false }),
       netRegexCn: NetRegexes.dialog({ line: '[^:]*:红颈妖枪，冻结万物.*?', capture: false }),
-      condition: (data) => {
-        return data.side === 'east';
-      },
+      condition: (data) => data.side === 'east',
       alertText: (_data, _matches, output) => output.getToFire(),
       infoText: (_data, _matches, output) => output.switchMagia(),
       outputStrings: {
@@ -370,9 +344,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '3941', source: '白き手' }),
       netRegexCn: NetRegexes.ability({ id: '3941', source: '白手' }),
       netRegexKo: NetRegexes.ability({ id: '3941', source: '하얀 손' }),
-      condition: (data, matches) => {
-        return data.side === 'east' && data.me === matches.target;
-      },
+      condition: (data, matches) => data.side === 'east' && data.me === matches.target,
       response: Responses.doritoStack(),
     },
     {
@@ -383,9 +355,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '394D', source: 'オーウェン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '394D', source: '欧文', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '394D', source: '오와인', capture: false }),
-      condition: (data) => {
-        return data.side === 'east';
-      },
+      condition: (data) => data.side === 'east',
       response: Responses.getOut(),
     },
     {
@@ -396,9 +366,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3BFE', source: 'アーセナル・セントール' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3BFE', source: '兵武半人马' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3BFE', source: '무기고 켄타우로스' }),
-      condition: (data) => {
-        return data.CanSleep();
-      },
+      condition: (data) => data.CanSleep(),
       response: Responses.sleep(),
     },
     {
@@ -409,17 +377,13 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '387B', source: 'ライディーン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '387B', source: '莱丁' }),
       netRegexKo: NetRegexes.startsUsing({ id: '387B', source: '라이딘' }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       response: Responses.tankBuster(),
     },
     {
       id: 'BA Raiden Lancing Bolt',
       netRegex: NetRegexes.headMarker({ id: '008A' }),
-      condition: (data, matches) => {
-        return data.sealed && data.me === matches.target;
-      },
+      condition: (data, matches) => data.sealed && data.me === matches.target,
       response: Responses.spread(),
     },
     {
@@ -430,9 +394,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3868', source: 'ライディーン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3868', source: '莱丁', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3868', source: '라이딘', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       response: Responses.getOut(),
     },
     {
@@ -443,9 +405,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '386A', source: 'ライディーン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '386A', source: '莱丁', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '386A', source: '라이딘', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       response: Responses.getUnder(),
     },
     {
@@ -456,9 +416,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '387C', source: 'ライディーン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '387C', source: '莱丁', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '387C', source: '라이딘', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       response: Responses.getOut(),
     },
     {
@@ -469,9 +427,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '386C', source: 'ライディーン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '386C', source: '莱丁', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '386C', source: '라이딘', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       response: Responses.goLeft(),
     },
     {
@@ -482,9 +438,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '386B', source: 'ライディーン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '386B', source: '莱丁', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '386B', source: '라이딘', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       response: Responses.goRight(),
     },
     {
@@ -495,9 +449,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '379A', source: 'アブソリュートヴァーチュー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '379A', source: '绝对的美德' }),
       netRegexKo: NetRegexes.startsUsing({ id: '379A', source: '절대미덕' }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       response: Responses.tankBuster(),
     },
     {
@@ -508,9 +460,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3787', source: 'アブソリュートヴァーチュー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3787', source: '绝对的美德', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3787', source: '절대미덕', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       infoText: (_data, _matches, output) => output.text(),
       run: (data) => {
         data.bracelets = 'dark';
@@ -534,9 +484,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3786', source: 'アブソリュートヴァーチュー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3786', source: '绝对的美德', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3786', source: '절대미덕', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       infoText: (_data, _matches, output) => output.text(),
       run: (data) => {
         data.bracelets = 'light';
@@ -560,9 +508,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '378B', source: 'アブソリュートヴァーチュー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '378B', source: '绝对的美德', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '378B', source: '절대미덕', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       alertText: (data, _matches, output) => {
         if (!data.seenHostile) {
           if (data.bracelets === 'light')
@@ -622,9 +568,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3788', source: 'アブソリュートヴァーチュー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3788', source: '绝对的美德', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3788', source: '절대미덕', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       alertText: (data, _matches, output) => {
         if (data.bracelets === 'light')
           return output.dark();
@@ -659,9 +603,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.gameLog({ line: 'Relative Virtue gains the effect of Astral Essence.*?', capture: false }),
       netRegexDe: NetRegexes.gameLog({ line: 'Die Relative Tugend erhält den Effekt von.*?Arm der Lichts.*?', capture: false }),
       netRegexFr: NetRegexes.gameLog({ line: 'Vertu relative bénéficie de l\'effet.*?Bras de Lumière.*?', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       run: (data) => {
         // RV clones get buffs in the reverse order that they do their attacks in.
         data.clones = data.clones || [];
@@ -674,9 +616,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.gameLog({ line: 'Relative Virtue gains the effect of Umbral Essence.*?', capture: false }),
       netRegexDe: NetRegexes.gameLog({ line: 'Die Relative Tugend erhält den Effekt von.*?Arm der Dunkelheit.*?', capture: false }),
       netRegexFr: NetRegexes.gameLog({ line: 'Vertu relative bénéficie de l\'effet.*?Bras de Ténèbres.*?', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       run: (data) => {
         // RV clones get buffs in the reverse order that they do their attacks in.
         data.clones = data.clones || [];
@@ -691,9 +631,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3797', source: 'アブソリュートヴァーチュー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3797', source: '绝对的美德', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3797', source: '절대미덕', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       alertText: (data, _matches, output) => {
         if (!data.clones)
           return;
@@ -730,9 +668,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '3790', source: 'アブソリュートヴァーチュー', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '3790', source: '绝对的美德', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3790', source: '절대미덕', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -753,9 +689,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '3798', source: 'アブソリュートヴァーチュー', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '3798', source: '绝对的美德', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3798', source: '절대미덕', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       response: Responses.killAdds(),
     },
     {
@@ -766,19 +700,13 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'プロトオズマ', id: ['37B3', '37A5', '379F'], capture: false }),
       netRegexCn: NetRegexes.ability({ source: '奥兹玛原型', id: ['37B3', '37A5', '379F'], capture: false }),
       netRegexKo: NetRegexes.ability({ source: '프로토 오즈마', id: ['37B3', '37A5', '379F'], capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       preRun: (data) => {
         data.blackHoleCount = data.blackHoleCount || 0;
         data.blackHoleCount++;
       },
-      alarmText: (data, _matches, output) => {
-        return output.blackHole({ num: data.blackHoleCount });
-      },
-      tts: (data, _matches, output) => {
-        return output.blackHoleTTS({ num: data.blackHoleCount });
-      },
+      alarmText: (data, _matches, output) => output.blackHole({ num: data.blackHoleCount }),
+      tts: (data, _matches, output) => output.blackHoleTTS({ num: data.blackHoleCount }),
       outputStrings: {
         blackHole: {
           en: 'Black Hole ${num} / 6',
@@ -811,9 +739,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'プロトオズマ', id: '37A4', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '奥兹玛原型', id: '37A4', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '프로토 오즈마', id: '37A4', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -834,9 +760,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'プロトオズマ', id: '37A4', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '奥兹玛原型', id: '37A4', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '프로토 오즈마', id: '37A4', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       delaySeconds: 9,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -858,9 +782,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'プロトオズマ', id: '37B2', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '奥兹玛原型', id: '37B2', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '프로토 오즈마', id: '37B2', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -881,9 +803,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'プロトオズマ', id: '37B2', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '奥兹玛原型', id: '37B2', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '프로토 오즈마', id: '37B2', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       delaySeconds: 9,
       infoText: (data, _matches, output) => {
         // FIXME: taking multiple autos probably means tanking,
@@ -919,9 +839,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'プロトオズマ', id: '379E', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '奥兹玛原型', id: '379E', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '프로토 오즈마', id: '379E', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -942,9 +860,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'プロトオズマ', id: '379E', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '奥兹玛原型', id: '379E', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '프로토 오즈마', id: '379E', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       delaySeconds: 9,
       alertText: (data, _matches, output) => {
         // FIXME: taking multiple autos probably means tanking,
@@ -983,9 +899,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: ['オズマの影', 'プロトオズマの影'], id: '37A4', capture: false }),
       netRegexCn: NetRegexes.ability({ source: ['奥兹玛之影', '奥兹玛原型之影'], id: '37A4', capture: false }),
       netRegexKo: NetRegexes.ability({ source: ['오즈마의 그림자', '프로토 오즈마의 그림자'], id: '37A4', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -1007,9 +921,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: ['オズマの影', 'プロトオズマの影'], id: '37B2', capture: false }),
       netRegexCn: NetRegexes.ability({ source: ['奥兹玛之影', '奥兹玛原型之影'], id: '37B2', capture: false }),
       netRegexKo: NetRegexes.ability({ source: ['오즈마의 그림자', '프로토 오즈마의 그림자'], id: '37B2', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -1031,9 +943,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: ['オズマの影', 'プロトオズマの影'], id: '379E', capture: false }),
       netRegexCn: NetRegexes.ability({ source: ['奥兹玛之影', '奥兹玛原型之影'], id: '379E', capture: false }),
       netRegexKo: NetRegexes.ability({ source: ['오즈마의 그림자', '프로토 오즈마의 그림자'], id: '379E', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -1055,9 +965,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'アーセナル・ウロリス', id: '37B0', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '兵武乌洛里石', id: '37B0', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '무기고 요결석', id: '37B0', capture: false }),
-      condition: (data) => {
-        return data.sealed;
-      },
+      condition: (data) => data.sealed,
       delaySeconds: 2,
       suppressSeconds: 1,
       response: Responses.killAdds(),
@@ -1070,17 +978,13 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '37AA', source: 'プロトオズマ' }),
       netRegexCn: NetRegexes.ability({ id: '37AA', source: '奥兹玛原型' }),
       netRegexKo: NetRegexes.ability({ id: '37AA', source: '프로토 오즈마' }),
-      condition: (data, matches) => {
-        return data.sealed && data.me === matches.target;
-      },
+      condition: (data, matches) => data.sealed && data.me === matches.target,
       response: Responses.stopEverything(),
     },
     {
       id: 'BA Ozma Meteor',
       netRegex: NetRegexes.headMarker({ id: '0039' }),
-      condition: (data, matches) => {
-        return data.sealed && data.me === matches.target;
-      },
+      condition: (data, matches) => data.sealed && data.me === matches.target,
       response: Responses.meteorOnYou(),
     },
   ],

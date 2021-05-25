@@ -99,9 +99,7 @@ Options.Triggers.push({
       // Break tether if you're the target during Ifrit+Garuda phase
       id: 'E6N Hands of Flame Tether',
       netRegex: NetRegexes.tether({ id: '0068' }),
-      condition: (data) => {
-        return data.handsOfFlame;
-      },
+      condition: (data) => data.handsOfFlame,
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.chargeOnYou();
@@ -170,9 +168,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.ability({ source: '伊弗利特', id: '4F98', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '이프리트', id: '4F98', capture: false }),
       // Run only once, because Ifrit's other jumps are not important.
-      condition: (data) => {
-        return !data.seenSpark;
-      },
+      condition: (data) => !data.seenSpark,
       alertText: (_data, _matches, output) => output.text(),
       run: (data) => {
         data.seenSpark = true;

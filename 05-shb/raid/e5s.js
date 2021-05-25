@@ -36,9 +36,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '4BA5', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '4BA5', source: '라무', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '4BA5', source: '拉姆', capture: false }),
-      condition: (data) => {
-        return !data.seenFirstSpear;
-      },
+      condition: (data) => !data.seenFirstSpear,
       delaySeconds: 5,
       infoText: (_data, _matches, output) => output.text(),
       run: (data) => {
@@ -146,9 +144,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '4BAB', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4BAB', source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4BAB', source: '拉姆', capture: false }),
-      condition: (data) => {
-        return !data.furysFourteenCounter || data.furysFourteenCounter < 2;
-      },
+      condition: (data) => !data.furysFourteenCounter || data.furysFourteenCounter < 2,
       alertText: (data, _matches, output) => {
         if (!data.surgeProtection)
           return output.text();
@@ -220,9 +216,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '4BC6', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4BC6', source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4BC6', source: '拉姆', capture: false }),
-      condition: (data) => {
-        return !data.furysBoltActive;
-      },
+      condition: (data) => !data.furysBoltActive,
       delaySeconds: 3,
       response: Responses.moveAway('alarm'),
     },

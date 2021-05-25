@@ -45,12 +45,8 @@ Options.Triggers.push({
       // Stun Resistance.
       id: 'A4S Stun Leg',
       netRegex: NetRegexes.losesEffect({ effectId: '27' }),
-      condition: (data) => {
-        return data.CanStun();
-      },
-      alertText: (_data, matches, output) => {
-        return output.text({ name: matches.target });
-      },
+      condition: (data) => data.CanStun(),
+      alertText: (_data, matches, output) => output.text({ name: matches.target }),
       outputStrings: {
         text: {
           en: 'Stun ${name}',

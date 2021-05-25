@@ -185,9 +185,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3D2C', source: 'ティターニア' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D2C', source: '缇坦妮雅' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2C', source: '티타니아' }),
-      condition: (data, matches) => {
-        return matches.target === data.me || data.role === 'tank' || data.role === 'healer';
-      },
+      condition: (data, matches) => matches.target === data.me || data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {
@@ -198,9 +196,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3D2C', source: 'ティターニア' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D2C', source: '缇坦妮雅' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2C', source: '티타니아' }),
-      condition: (data) => {
-        return data.role !== 'tank' && data.role !== 'healer';
-      },
+      condition: (data) => data.role !== 'tank' && data.role !== 'healer',
       response: Responses.tankCleave(),
     },
     {
@@ -290,16 +286,12 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3D37', source: 'パック', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D37', source: '帕克', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D37', source: '요정의 권속', capture: false }),
-      condition: (data) => {
-        return data.role === 'tank';
-      },
+      condition: (data) => data.role === 'tank',
       preRun: (data) => {
         data.pummelCount = data.pummelCount || 0;
         data.pummelCount++;
       },
-      infoText: (data, _matches, output) => {
-        return output.text({ num: data.pummelCount });
-      },
+      infoText: (data, _matches, output) => output.text({ num: data.pummelCount }),
       outputStrings: {
         text: {
           en: 'Pummel ${num}',
@@ -382,9 +374,7 @@ Options.Triggers.push({
         data.thunderCount = data.thunderCount || 1;
       },
       suppressSeconds: 1,
-      infoText: (data, _matches, output) => {
-        return output.text({ num: data.thunderCount });
-      },
+      infoText: (data, _matches, output) => output.text({ num: data.thunderCount }),
       run: (data) => {
         data.thunderCount++;
       },

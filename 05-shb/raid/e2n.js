@@ -28,9 +28,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3E4D', source: 'ヴォイドウォーカー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E4D', source: '虚无行者' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E4D', source: '보이드워커' }),
-      condition: (data) => {
-        return data.role === 'tank';
-      },
+      condition: (data) => data.role === 'tank',
       response: Responses.tankBuster(),
     },
     {
@@ -41,9 +39,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3E4D', source: 'ヴォイドウォーカー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E4D', source: '虚无行者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E4D', source: '보이드워커', capture: false }),
-      condition: (data) => {
-        return data.role === 'healer';
-      },
+      condition: (data) => data.role === 'healer',
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -137,9 +133,7 @@ Options.Triggers.push({
     {
       id: 'E2N Countdown Marker Fire',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: (data, matches) => {
-        return data.me === matches.target && data.spell[data.me] === 'fire';
-      },
+      condition: (data, matches) => data.me === matches.target && data.spell[data.me] === 'fire',
       alertText: (data, _matches, output) => {
         if (data.fireCount === 3)
           return output.spreadDontStack();
@@ -220,18 +214,14 @@ Options.Triggers.push({
     {
       id: 'E2N Countdown Marker Shadoweye',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: (data, matches) => {
-        return data.spell[matches.target] === 'eye';
-      },
+      condition: (data, matches) => data.spell[matches.target] === 'eye',
       delaySeconds: 2,
       response: Responses.lookAwayFromTarget('alarm'),
     },
     {
       id: 'E2N Countdown Marker Shadoweye You',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
-      condition: (data, matches) => {
-        return data.spell[matches.target] === 'eye';
-      },
+      condition: (data, matches) => data.spell[matches.target] === 'eye',
       delaySeconds: 2,
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
