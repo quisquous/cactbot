@@ -80,7 +80,7 @@ const processFile = async (filename: string) => {
   }
 
   const contents = lintResult.output;
-  if (!contents) {
+  if (contents === undefined) {
     console.error(`${filename}: Lint returned no contents`);
     process.exit(4);
   }
