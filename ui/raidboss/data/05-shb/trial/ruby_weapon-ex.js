@@ -64,9 +64,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4B03' }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4B03' }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4B03' }),
-      condition: (data) => {
-        return data.role === 'tank' || data.role === 'healer';
-      },
+      condition: (data) => data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBusterSwap(),
     },
     {
@@ -321,9 +319,7 @@ export default {
       id: 'RubyEx Meteor',
       netRegex: NetRegexes.headMarker({ id: '00(?:C[A-F]|D0|D1)' }),
       condition: Conditions.targetIsYou(),
-      infoText: (_data, matches, output) => {
-        return output.text({ num: parseInt(matches.id, 16) - parseInt('00CA', 16) + 1 });
-      },
+      infoText: (_data, matches, output) => output.text({ num: parseInt(matches.id, 16) - parseInt('00CA', 16) + 1 }),
       outputStrings: {
         text: {
           en: '${num}',

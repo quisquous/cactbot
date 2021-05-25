@@ -26,9 +26,7 @@ export default {
       netRegexJa: NetRegexes.addedCombatant({ name: '暴風域', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '暴风领域', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '폭풍 영역', capture: false }),
-      condition: (data) => {
-        return data.role === 'tank';
-      },
+      condition: (data) => data.role === 'tank',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

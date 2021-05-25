@@ -221,9 +221,7 @@ export default {
     {
       id: 'Tsukuyomi Moonlit Debuff',
       netRegex: NetRegexes.gainsEffect({ effectId: '602' }),
-      condition: (data, matches) => {
-        return matches.target === data.me && data.moonlitCount >= 4;
-      },
+      condition: (data, matches) => matches.target === data.me && data.moonlitCount >= 4,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -255,9 +253,7 @@ export default {
     {
       id: 'Tsukuyomi Moonshadowed Debuff',
       netRegex: NetRegexes.gainsEffect({ effectId: '603' }),
-      condition: (data, matches) => {
-        return matches.target === data.me && data.moonshadowedCount >= 4;
-      },
+      condition: (data, matches) => matches.target === data.me && data.moonshadowedCount >= 4,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

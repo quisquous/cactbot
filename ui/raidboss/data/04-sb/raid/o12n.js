@@ -24,9 +24,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: ['330F', '3310'], source: ['オメガ', 'オメガM'] }),
       netRegexCn: NetRegexes.startsUsing({ id: ['330F', '3310'], source: ['欧米茄', '欧米茄M'] }),
       netRegexKo: NetRegexes.startsUsing({ id: ['330F', '3310'], source: ['오메가', '오메가 M'] }),
-      condition: (data, matches) => {
-        return data.me === matches.target || data.role === 'healer';
-      },
+      condition: (data, matches) => data.me === matches.target || data.role === 'healer',
       suppressSeconds: 1,
       response: Responses.tankBuster(),
     },
@@ -38,9 +36,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: ['3321', '3322'], source: ['オメガ', 'オメガM'] }),
       netRegexCn: NetRegexes.startsUsing({ id: ['3321', '3322'], source: ['欧米茄', '欧米茄M'] }),
       netRegexKo: NetRegexes.startsUsing({ id: ['3321', '3322'], source: ['오메가', '오메가 M'] }),
-      condition: (data, matches) => {
-        return data.me === matches.target || data.role === 'healer';
-      },
+      condition: (data, matches) => data.me === matches.target || data.role === 'healer',
       suppressSeconds: 1,
       response: Responses.tankBuster(),
     },
@@ -52,9 +48,7 @@ export default {
       netRegexJa: NetRegexes.gainsEffect({ target: 'オメガ', effectId: '67E', capture: false }),
       netRegexCn: NetRegexes.gainsEffect({ target: '欧米茄', effectId: '67E', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '오메가', effectId: '67E', capture: false }),
-      condition: (data) => {
-        return data.role === 'tank';
-      },
+      condition: (data) => data.role === 'tank',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

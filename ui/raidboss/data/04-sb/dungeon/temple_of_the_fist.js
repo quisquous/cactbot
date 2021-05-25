@@ -11,9 +11,7 @@ export default {
       id: 'Temple Pounce',
       regex: /Pounce/,
       beforeSeconds: 5,
-      condition: (data) => {
-        return data.role === 'healer' || data.role === 'tank';
-      },
+      condition: (data) => data.role === 'healer' || data.role === 'tank',
       response: Responses.tankBuster(),
     },
     {
@@ -148,12 +146,8 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '1FE6', source: '双豹のイヴォン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FE6', source: '双豹伊沃恩' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FE6', source: '쌍표범 이본' }),
-      condition: (data) => {
-        return data.role === 'healer';
-      },
-      infoText: (data, matches, output) => {
-        return output.text({ player: data.ShortName(matches.target) });
-      },
+      condition: (data) => data.role === 'healer',
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
           en: 'Heal ${player} soon',

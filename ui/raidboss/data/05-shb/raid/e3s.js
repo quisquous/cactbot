@@ -28,9 +28,7 @@ export default {
       id: 'E3S Spilling Wave',
       regex: /Spilling Wave/,
       beforeSeconds: 3,
-      condition: (data) => {
-        return data.role === 'tank';
-      },
+      condition: (data) => data.role === 'tank',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -291,9 +289,7 @@ export default {
       netRegexJa: NetRegexes.tether({ id: '005A', target: 'リヴァイアサン' }),
       netRegexCn: NetRegexes.tether({ id: '005A', target: '利维亚桑' }),
       netRegexKo: NetRegexes.tether({ id: '005A', target: '리바이어선' }),
-      condition: (data, matches) => {
-        return data.me === matches.source;
-      },
+      condition: (data, matches) => data.me === matches.source,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -327,9 +323,7 @@ export default {
       netRegexJa: NetRegexes.tether({ id: '005A', target: 'リヴァイアサン', capture: false }),
       netRegexCn: NetRegexes.tether({ id: '005A', target: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.tether({ id: '005A', target: '리바이어선', capture: false }),
-      condition: (data) => {
-        return data.vent.length === 2 && !data.vent.includes(data.me) && data.role !== 'tank';
-      },
+      condition: (data) => data.vent.length === 2 && !data.vent.includes(data.me) && data.role !== 'tank',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -441,9 +435,7 @@ export default {
         // Everybody is in first stack, but tanks not in the second.
         return parseFloat(matches.duration) > 15 || data.role !== 'tank';
       },
-      delaySeconds: (_data, matches) => {
-        return parseFloat(matches.duration) - 3;
-      },
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       suppressSeconds: 1,
       response: Responses.stackMarker(),
     },
@@ -483,9 +475,7 @@ export default {
     {
       id: 'E3S Sweeping Waters',
       netRegex: NetRegexes.gainsEffect({ effectId: '73F' }),
-      condition: (data, matches) => {
-        return data.me === matches.target || data.role === 'tank';
-      },
+      condition: (data, matches) => data.me === matches.target || data.role === 'tank',
       delaySeconds: 13,
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text(),
@@ -564,9 +554,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3FEA', source: 'リヴァイアサン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3FEA', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FEA', source: '리바이어선', capture: false }),
-      condition: (data) => {
-        return data.refreshed;
-      },
+      condition: (data) => data.refreshed,
       delaySeconds: 6.2,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -588,9 +576,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3FEB', source: 'リヴァイアサン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3FEB', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FEB', source: '리바이어선', capture: false }),
-      condition: (data) => {
-        return data.refreshed;
-      },
+      condition: (data) => data.refreshed,
       delaySeconds: 6.2,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {

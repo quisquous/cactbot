@@ -27,9 +27,7 @@ export default {
       netRegexJa: NetRegexes.tether({ source: 'ダークアイドル', id: '0025' }),
       netRegexCn: NetRegexes.tether({ source: '暗黑心象', id: '0025' }),
       netRegexKo: NetRegexes.tether({ source: '어둠의 우상', id: '0025' }),
-      condition: (data) => {
-        return data.role === 'tank' || data.role === 'healer';
-      },
+      condition: (data) => data.role === 'tank' || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {
@@ -52,9 +50,7 @@ export default {
       netRegexJa: NetRegexes.tether({ source: 'ダークアイドル', id: '0011' }),
       netRegexCn: NetRegexes.tether({ source: '暗黑心象', id: '0011' }),
       netRegexKo: NetRegexes.tether({ source: '어둠의 우상', id: '0011' }),
-      condition: (data) => {
-        return data.phase === 'betwixtWorlds';
-      },
+      condition: (data) => data.phase === 'betwixtWorlds',
       preRun: (data, matches) => {
         data.betwixtWorldsTethers = data.betwixtWorldsTethers || [];
         data.betwixtWorldsTethers.push(matches.target);
@@ -77,9 +73,7 @@ export default {
     {
       id: 'E7S Betwixt Worlds Stack',
       netRegex: NetRegexes.headMarker({ id: '0064' }),
-      condition: (data) => {
-        return data.phase === 'betwixtWorlds';
-      },
+      condition: (data) => data.phase === 'betwixtWorlds',
       preRun: (data, matches) => {
         data.betwixtWorldsStack = data.betwixtWorldsStack || [];
         data.betwixtWorldsStack.push(matches.target);
@@ -187,9 +181,7 @@ export default {
     {
       id: 'E7S Silver Shot',
       netRegex: NetRegexes.headMarker({ id: '0065' }),
-      condition: (data) => {
-        return data.phase === 'falseMidnight';
-      },
+      condition: (data) => data.phase === 'falseMidnight',
       preRun: (data, matches) => {
         data.falseMidnightSpread = data.falseMidnightSpread || [];
         data.falseMidnightSpread.push(matches.target);
@@ -205,9 +197,7 @@ export default {
     {
       id: 'E7S Silver Sledge',
       netRegex: NetRegexes.headMarker({ id: '0064' }),
-      condition: (data) => {
-        return data.phase === 'falseMidnight';
-      },
+      condition: (data) => data.phase === 'falseMidnight',
       // The stack marker is in the middle of spreads,
       // so delay a tiny bit to call out stack so that
       // it is not called out on spreads.
@@ -254,9 +244,7 @@ export default {
     {
       id: 'E7S Insatiable Light Stack',
       netRegex: NetRegexes.headMarker({ id: '0064' }),
-      condition: (data) => {
-        return data.phase === 'adds';
-      },
+      condition: (data) => data.phase === 'adds',
       preRun: (data, matches) => {
         data.insatiableLightStack = data.insatiableLightStack || [];
         data.insatiableLightStack.push(matches.target);
@@ -323,9 +311,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ブラスヒーム', id: '4C74', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '亵渎', id: '4C74', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '신성 모독', id: '4C74', capture: false }),
-      condition: (data) => {
-        return data.role === 'healer' || data.role === 'tank' || data.CanAddle();
-      },
+      condition: (data) => data.role === 'healer' || data.role === 'tank' || data.CanAddle(),
       durationSeconds: 7,
       suppressSeconds: 15,
       response: Responses.aoe(),
@@ -338,9 +324,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '(?:4C8[BC]|4E5[56])', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '(?:4C8[BC]|4E5[56])', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '(?:4C8[BC]|4E5[56])', capture: false }),
-      condition: (data) => {
-        return data.role === 'healer' || data.role === 'tank' || data.CanAddle();
-      },
+      condition: (data) => data.role === 'healer' || data.role === 'tank' || data.CanAddle(),
       suppressSeconds: 1,
       response: Responses.aoe(),
     },

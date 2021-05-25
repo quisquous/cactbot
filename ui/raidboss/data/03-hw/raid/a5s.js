@@ -265,12 +265,8 @@ export default {
     {
       id: 'A5S Prey Healer',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
-      condition: (data) => {
-        return data.role === 'healer';
-      },
-      infoText: (data, matches, output) => {
-        return output.text({ player: data.ShortName(matches.target) });
-      },
+      condition: (data) => data.role === 'healer',
+      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
           en: 'Shield ${player}',
@@ -317,9 +313,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ドーピング・コブラ', id: '16A2' }),
       netRegexKo: NetRegexes.startsUsing({ source: '약에 찌든 코브라', id: '16A2' }),
       netRegexCn: NetRegexes.startsUsing({ source: '兴奋眼镜蛇', id: '16A2' }),
-      condition: (data) => {
-        return data.CanStun();
-      },
+      condition: (data) => data.CanStun(),
       suppressSeconds: 60,
       response: Responses.stun(),
     },

@@ -15,9 +15,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4769', source: '宮殿の隠者' }),
       netRegexCn: NetRegexes.startsUsing({ id: '4769', source: '宫殿的隐者' }),
       netRegexKo: NetRegexes.startsUsing({ id: '4769', source: '궁전의 은자' }),
-      condition: (data, matches) => {
-        return matches.target === data.me || data.role === 'healer';
-      },
+      condition: (data, matches) => matches.target === data.me || data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {
@@ -125,9 +123,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4931', source: '幻影騎士ハモンス' }),
       netRegexCn: NetRegexes.startsUsing({ id: '4931', source: '幻影骑士哈蒙斯' }),
       netRegexKo: NetRegexes.startsUsing({ id: '4931', source: '환영기사 하몬스' }),
-      condition: (data) => {
-        return data.CanStun();
-      },
+      condition: (data) => data.CanStun(),
       response: Responses.stun('info'),
     },
     {

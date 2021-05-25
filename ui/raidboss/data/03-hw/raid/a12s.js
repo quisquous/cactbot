@@ -145,9 +145,7 @@ export default {
     {
       id: 'A12S House Arrest',
       netRegex: NetRegexes.tether({ id: '001C' }),
-      condition: (data, matches) => {
-        return matches.source === data.me || matches.target === data.me;
-      },
+      condition: (data, matches) => matches.source === data.me || matches.target === data.me,
       infoText: (data, matches, output) => {
         const partner = matches.source === data.me ? matches.target : matches.source;
         return output.text({ player: data.ShortName(partner) });
@@ -166,9 +164,7 @@ export default {
     {
       id: 'A12S Restraining Order',
       netRegex: NetRegexes.tether({ id: '001D' }),
-      condition: (data, matches) => {
-        return matches.source === data.me || matches.target === data.me;
-      },
+      condition: (data, matches) => matches.source === data.me || matches.target === data.me,
       alertText: (data, matches, output) => {
         const partner = matches.source === data.me ? matches.target : matches.source;
         return output.text({ player: data.ShortName(partner) });

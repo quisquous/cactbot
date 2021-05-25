@@ -208,9 +208,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '4161', source: 'ハーデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4161', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4161', source: '하데스', capture: false }),
-      condition: (data) => {
-        return data.role === 'healer';
-      },
+      condition: (data) => data.role === 'healer',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: Outputs.tankBusters,
@@ -219,9 +217,7 @@ export default {
     {
       id: 'Hades Dual Strike',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
-      condition: (data, matches) => {
-        return data.neoHades && data.me === matches.target;
-      },
+      condition: (data, matches) => data.neoHades && data.me === matches.target,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -313,9 +309,7 @@ export default {
     {
       id: 'Hades Ancient Darkness',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
-      condition: (data, matches) => {
-        return !data.neoHades && data.me === matches.target;
-      },
+      condition: (data, matches) => !data.neoHades && data.me === matches.target,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -337,9 +331,7 @@ export default {
     {
       id: 'Hades Ancient Collect',
       netRegex: NetRegexes.headMarker({ id: ['0060', '003E'] }),
-      condition: (data) => {
-        return !data.neoHades;
-      },
+      condition: (data) => !data.neoHades,
       run: (data, matches) => {
         data.ancient = data.ancient || {};
         data.ancient[matches.target] = matches.id;

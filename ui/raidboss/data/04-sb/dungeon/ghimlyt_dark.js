@@ -63,9 +63,7 @@ export default {
       // 00A7 is the orange clockwise indicator. 00A8 is the blue counterclockwise one.
       id: 'Ghimlyt Dark Magitek Slash',
       netRegex: NetRegexes.headMarker({ id: ['00A7', '00A8'] }),
-      infoText: (_data, matches, output) => {
-        return matches.id === '00A7' ? output.left() : output.right();
-      },
+      infoText: (_data, matches, output) => matches.id === '00A7' ? output.left() : output.right(),
       outputStrings: {
         left: {
           en: 'Rotate left',

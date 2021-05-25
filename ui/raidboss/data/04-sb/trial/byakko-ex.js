@@ -16,9 +16,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '27DA', source: '白虎' }),
       netRegexCn: NetRegexes.startsUsing({ id: '27DA', source: '白虎' }),
       netRegexKo: NetRegexes.startsUsing({ id: '27DA', source: '백호' }),
-      condition: (data) => {
-        return data.role === 'healer';
-      },
+      condition: (data) => data.role === 'healer',
       response: Responses.tankBuster(),
     },
     {
@@ -79,9 +77,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '27E0', source: '白虎' }),
       netRegexCn: NetRegexes.startsUsing({ id: '27E0', source: '白虎' }),
       netRegexKo: NetRegexes.startsUsing({ id: '27E0', source: '백호' }),
-      condition: (data, matches) => {
-        return data.role === 'tank' && matches.target !== data.me;
-      },
+      condition: (data, matches) => data.role === 'tank' && matches.target !== data.me,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -102,9 +98,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '27E0', source: '白虎' }),
       netRegexCn: NetRegexes.startsUsing({ id: '27E0', source: '白虎' }),
       netRegexKo: NetRegexes.startsUsing({ id: '27E0', source: '백호' }),
-      condition: (data, matches) => {
-        return data.role === 'tank' && matches.target === data.me;
-      },
+      condition: (data, matches) => data.role === 'tank' && matches.target === data.me,
       delaySeconds: 12,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -277,9 +271,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
-      infoText: (data, _matches, output) => {
-        return output.text({ num: data.stakeCount });
-      },
+      infoText: (data, _matches, output) => output.text({ num: data.stakeCount }),
       outputStrings: {
         text: {
           en: 'Stack #${num}',

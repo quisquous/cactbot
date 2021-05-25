@@ -122,9 +122,7 @@ export default {
       // accumulate logs instead of counting marks.  Instantly print if
       // anything is on you.  The 6 triggers will all have condition=true
       // and run, but only the first one will print.
-      delaySeconds: (data, matches) => {
-        return matches.target === data.me ? 0 : 0.5;
-      },
+      delaySeconds: (data, matches) => matches.target === data.me ? 0 : 0.5,
       alertText: (data, _matches, output) => {
         if (data.librarySpellbladePrinted)
           return;

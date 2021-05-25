@@ -879,9 +879,7 @@ export default {
       id: 'O4S Neo Acceleration Bomb',
       netRegex: NetRegexes.gainsEffect({ effectId: '568' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => {
-        return parseFloat(matches.duration) - 4;
-      }, // 4 second warning.
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4, // 4 second warning.
       alarmText: (data, _matches, output) => {
         if (data.phase === 'omega')
           return output.lookAwayAndStop();
@@ -910,9 +908,7 @@ export default {
     {
       id: 'O4S Neo Acceleration Bomb Delta',
       netRegex: NetRegexes.gainsEffect({ effectId: '568' }),
-      condition: (data, matches) => {
-        return matches.target === data.me && data.phase === 'delta';
-      },
+      condition: (data, matches) => matches.target === data.me && data.phase === 'delta',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -928,12 +924,8 @@ export default {
     {
       id: 'O4S Neo Omega Shriek',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      condition: (data, matches) => {
-        return matches.target === data.me && data.phase === 'omega';
-      },
-      delaySeconds: (_data, matches) => {
-        return parseFloat(matches.duration) - 5;
-      },
+      condition: (data, matches) => matches.target === data.me && data.phase === 'omega',
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -989,9 +981,7 @@ export default {
       // Beyond Death Tank (Delta)
       id: 'O4S Neo Beyond Death Delta Tank',
       netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
-      condition: (data, matches) => {
-        return data.phase === 'delta' && matches.target === data.me && data.role === 'tank';
-      },
+      condition: (data, matches) => data.phase === 'delta' && matches.target === data.me && data.role === 'tank',
       delaySeconds: 0.5,
       infoText: (data, _matches, output) => {
         // Something went awry, or maybe healers dead.  Just say stack on water anyway,
@@ -1017,9 +1007,7 @@ export default {
       // Beyond Death (Delta)
       id: 'O4S Neo Beyond Death Delta Initial',
       netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
-      condition: (data, matches) => {
-        return data.phase === 'delta' && matches.target === data.me && data.role !== 'tank';
-      },
+      condition: (data, matches) => data.phase === 'delta' && matches.target === data.me && data.role !== 'tank',
       infoText: (_data, _matches, output) => output.beyondDeath(),
       outputStrings: {
         beyondDeath: {
@@ -1036,9 +1024,7 @@ export default {
       // Off Balance (Omega)
       id: 'O4S Neo Off Balance Omega',
       netRegex: NetRegexes.gainsEffect({ effectId: '569' }),
-      condition: (data, matches) => {
-        return data.phase === 'omega' && matches.target === data.me;
-      },
+      condition: (data, matches) => data.phase === 'omega' && matches.target === data.me,
       delaySeconds: 0.5,
       infoText: (data, _matches, output) => {
         // Good for both dps and tanks.
@@ -1069,17 +1055,13 @@ export default {
     {
       id: 'O4S Neo Earthshaker on Tank',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
-      condition: (data, matches) => {
-        return matches.target === data.me && data.role === 'tank';
-      },
+      condition: (data, matches) => matches.target === data.me && data.role === 'tank',
       response: Responses.earthshaker('info'),
     },
     {
       id: 'O4S Neo Earthshaker on not Tank',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
-      condition: (data, matches) => {
-        return matches.target === data.me && data.role !== 'tank';
-      },
+      condition: (data, matches) => matches.target === data.me && data.role !== 'tank',
       response: Responses.earthshaker('alarm'),
     },
     {

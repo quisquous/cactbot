@@ -59,9 +59,7 @@ export default {
     {
       id: 'SusEx Churning Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '4F6', capture: false }),
-      condition: (data) => {
-        return !data.churning;
-      },
+      condition: (data) => !data.churning,
       run: (data) => {
         data.churning = true;
       },
@@ -72,9 +70,7 @@ export default {
       // while having churning, but is probably ok in most cases.
       id: 'SusEx Churning Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '4F6', capture: false }),
-      condition: (data) => {
-        return data.churning;
-      },
+      condition: (data) => data.churning,
       run: (data) => {
         data.churning = false;
       },
@@ -231,9 +227,7 @@ export default {
       id: 'SusEx Churning',
       netRegex: NetRegexes.gainsEffect({ effectId: '4F6' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => {
-        return parseFloat(matches.duration) - 3;
-      },
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       response: Responses.stopEverything('alert'),
     },
   ],

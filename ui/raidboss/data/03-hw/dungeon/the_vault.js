@@ -41,9 +41,7 @@ export default {
       id: 'The Vault Altar Candle',
       regex: /Altar Candle/,
       beforeSeconds: 5,
-      condition: (data) => {
-        return data.role !== 'dps';
-      },
+      condition: (data) => data.role !== 'dps',
       response: Responses.tankBuster(),
     },
   ],
@@ -95,9 +93,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '1042', source: 'フェイス・オブ・ヒーロー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '1042', source: '英雄之相' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1042', source: '영웅의 형상' }),
-      condition: (data) => {
-        return data.CanStun();
-      },
+      condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
     {
@@ -153,9 +149,7 @@ export default {
       // This prevents out-of-combat activation for the March trigger during Charibert's spawn-in.
       id: 'The Vault Knights Activation',
       netRegex: NetRegexes.headMarker({ id: '0061', capture: false }),
-      condition: (data) => {
-        return !data.knightsActive;
-      },
+      condition: (data) => !data.knightsActive,
       run: (data) => {
         data.knightsActive = true;
       },
@@ -168,9 +162,7 @@ export default {
       netRegexJa: NetRegexes.addedCombatant({ name: ['ドーン・オートナイト', 'ダスク・オートナイト'], capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: ['拂晓骑士', '黄昏骑士'], capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: ['여명의 자동기사', '황혼의 자동기사'], capture: false }),
-      condition: (data) => {
-        return data.knightsActive;
-      },
+      condition: (data) => data.knightsActive,
       suppressSeconds: 4,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {

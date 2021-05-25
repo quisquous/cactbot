@@ -212,9 +212,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['オメガ', 'オメガM'] }),
       netRegexCn: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['欧米茄', '欧米茄M'] }),
       netRegexKo: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['오메가', '오메가 M'] }),
-      condition: (data, matches) => {
-        return data.me === matches.target || data.role === 'healer';
-      },
+      condition: (data, matches) => data.me === matches.target || data.role === 'healer',
       suppressSeconds: 1,
       response: Responses.tankBuster(),
     },
@@ -707,9 +705,7 @@ export default {
       // Critical Synchronization Bug
       id: 'O12S Hello World Stack',
       netRegex: NetRegexes.gainsEffect({ effectId: '680' }),
-      delaySeconds: (data, matches) => {
-        return matches.target === data.me ? 0 : 1;
-      },
+      delaySeconds: (data, matches) => matches.target === data.me ? 0 : 1,
       alertText: (data, matches, output) => {
         const t = parseFloat(matches.duration);
         if (data.me !== matches.target)
@@ -823,9 +819,7 @@ export default {
     {
       id: 'O12S Archive All Marker Tracking',
       netRegex: NetRegexes.headMarker({ id: ['003E', '0060'] }),
-      condition: (data) => {
-        return data.isFinalOmega;
-      },
+      condition: (data) => data.isFinalOmega,
       run: (data, matches) => {
         data.archiveMarkers[matches.target] = matches.id;
       },
@@ -853,17 +847,13 @@ export default {
     {
       id: 'O12S Archive All Stack Marker',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      condition: (data, matches) => {
-        return data.isFinalOmega && matches.target === data.me;
-      },
+      condition: (data, matches) => data.isFinalOmega && matches.target === data.me,
       response: Responses.stackMarkerOn('info'),
     },
     {
       id: 'O12S Archive All Spread Marker',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
-      condition: (data, matches) => {
-        return data.isFinalOmega && matches.target === data.me;
-      },
+      condition: (data, matches) => data.isFinalOmega && matches.target === data.me,
       response: Responses.spread(),
     },
     {
@@ -931,9 +921,7 @@ export default {
       netRegexJa: NetRegexes.headMarker({ target: 'ライトアームユニット', id: ['009C', '009D'], capture: false }),
       netRegexCn: NetRegexes.headMarker({ target: '右臂组', id: ['009C', '009D'], capture: false }),
       netRegexKo: NetRegexes.headMarker({ target: '오른팔 유닛', id: ['009C', '009D'], capture: false }),
-      condition: (data) => {
-        return data.numArms === 3;
-      },
+      condition: (data) => data.numArms === 3,
       alertText: (data, _matches, output) => {
         const v = parseInt(data.armValue);
         if (!(v >= 0) || v > 7)
