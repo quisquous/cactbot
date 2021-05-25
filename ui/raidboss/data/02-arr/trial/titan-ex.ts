@@ -7,6 +7,8 @@ import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
+export { RaidbossData as Data } from '../../../../../types/data';
+
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheNavelExtreme,
   timelineFile: 'titan-ex.txt',

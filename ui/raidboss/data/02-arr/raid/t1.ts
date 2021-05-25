@@ -6,7 +6,7 @@ import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
-interface Data extends RaidbossData {
+export interface Data extends RaidbossData {
   started?: boolean;
 }
 
