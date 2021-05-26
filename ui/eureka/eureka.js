@@ -173,6 +173,7 @@ const Options = {
 
     // Bozja
     // Southern Front: https://xivapi.com/search?indexes=Fate&filters=ID%3E=1597,ID%3C=1628&columns=Description,Name,Url
+    // Zadnor: https://xivapi.com/search?indexes=Fate&filters=ID%3E=1717,ID%3C=1742&columns=Description,Name,Url
     [ZoneId.TheForbiddenLandEurekaAnemos]: {
       mapImage: 'anemos.png',
       mapWidth: 1300,
@@ -2387,7 +2388,216 @@ const Options = {
       mapToPixelXConstant: 10.03,
       mapToPixelYScalar: 39.247,
       mapToPixelYConstant: -202.55,
-      nms: {},
+      nms: {
+        ofbeastsandbraggadocio: {
+          label: {
+            en: 'Beasts',
+          },
+          x: 24.1,
+          y: 37.4,
+          fateID: 1717,
+        },
+        partsandparcel: {
+          label: {
+            en: 'Parcel',
+          },
+          x: 22.8,
+          y: 34.2,
+          fateID: 1718,
+        },
+        animmoraldilemna: {
+          label: {
+            en: 'Dilemna',
+          },
+          x: 0.0,
+          y: 0.0,
+          fateID: 1719,
+        },
+        deadlydivination: {
+          label: {
+            en: 'Divination',
+          },
+          x: 24.8,
+          y: 31.4,
+          fateID: 1720,
+        },
+        awrenchinthereconnaissanceeffort: {
+          label: {
+            en: 'Wrench',
+          },
+          x: 29.4,
+          y: 35.4,
+          fateID: 1721,
+        },
+        anotherpilotepisode: {
+          label: {
+            en: 'Pilot',
+          },
+          x: 28.0,
+          y: 29.2,
+          fateID: 1722,
+        },
+        breakingtheice: {
+          label: {
+            en: 'Ice',
+          },
+          x: 24.8,
+          y: 31.1,
+          fateID: 1723,
+        },
+        meetthepuppetmaster: {
+          label: {
+            en: 'Puppet',
+          },
+          x: 24.1,
+          y: 37.4,
+          fateID: 1724,
+        },
+        challengeaccepted: {
+          label: {
+            en: 'Challenge',
+          },
+          x: 7.2,
+          y: 28.8,
+          fateID: 1725,
+        },
+        thubantheterrible: {
+          label: {
+            en: 'Th\'uban',
+          },
+          x: 8.6,
+          y: 24.5,
+          fateID: 1726,
+        },
+        anendtoatrocities: {
+          label: {
+            en: 'Atrocities',
+          },
+          x: 0.0,
+          y: 0.0,
+          fateID: 1727,
+        },
+        ajustpursuit: {
+          label: {
+            en: 'Pursuit',
+          },
+          x: 11.6,
+          y: 27.6,
+          fateID: 1728,
+        },
+        tankingup: {
+          label: {
+            en: 'Tanking Up',
+          },
+          x: 8.1,
+          y: 24.0,
+          fateID: 1729,
+        },
+        supersolderrising: {
+          label: {
+            en: 'Supersoldier',
+          },
+          x: 0.0,
+          y: 0.0,
+          fateID: 1730,
+        },
+        dementedmentor: {
+          label: {
+            en: 'Demented',
+          },
+          x: 7.2,
+          y: 28.8,
+          fateID: 1731,
+        },
+        severthestrings: {
+          label: {
+            en: 'Sever',
+          },
+          x: 11.6,
+          y: 27.6,
+          fateID: 1732,
+        },
+        thebeastsareback: {
+          label: {
+            en: 'Back',
+          },
+          x: 0.0,
+          y: 0.0,
+          fateID: 1733,
+        },
+        stillonlycountsasone: {
+          label: {
+            en: 'Still',
+          },
+          x: 14.5,
+          y: 10.4,
+          fateID: 1734,
+        },
+        seeqandyouwillfind: {
+          label: {
+            en: 'Seeq',
+          },
+          x: 20.3,
+          y: 16.5,
+          fateID: 1735,
+        },
+        meanspirited: {
+          label: {
+            en: 'Mean',
+          },
+          x: 25.4,
+          y: 14.3,
+          fateID: 1736,
+        },
+        arelicunleashed: {
+          label: {
+            en: 'Relic',
+          },
+          x: 25.4,
+          y: 14.3,
+          fateID: 1737,
+        },
+        whenmagesrage: {
+          label: {
+            en: 'Mages Rage',
+          },
+          x: 20.3,
+          y: 16.5,
+          fateID: 1738,
+        },
+        hypertunedhavoc: {
+          label: {
+            en: 'Hypertuned',
+          },
+          x: 0.0,
+          y: 0.0,
+          fateID: 1739,
+        },
+        attackofthesupersoldiers: {
+          label: {
+            en: 'Super Soldiers',
+          },
+          x: 0.0,
+          y: 0.0,
+          fateID: 1740,
+        },
+        thestudentbecalmsthemaster: {
+          label: {
+            en: 'Student',
+          },
+          x: 14.5,
+          y: 10.4,
+          fateID: 1741,
+        },
+        attackofthemachines: {
+          label: {
+            en: 'Machines',
+          },
+          x: 12.1,
+          y: 13.6,
+          fateID: 1742,
+        },
+      },
     },
   },
 };
