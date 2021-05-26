@@ -2466,7 +2466,7 @@ const Options = {
             en: 'Th\'uban',
           },
           x: 8.6,
-          y: 24.5,
+          y: 34.4,
           fateID: 1726,
         },
         anendtoatrocities: {
@@ -2596,6 +2596,151 @@ const Options = {
           x: 12.1,
           y: 13.6,
           fateID: 1742,
+        },
+        dalriada: {
+          label: {
+            en: 'Dalriada',
+          },
+          x: 25.9,
+          y: 8.2,
+          isCritical: true,
+          ceKey: 0,
+          respawnMinutes: 60,
+        },
+        onserpentswings: {
+          label: {
+            en: 'Serpents Wings',
+          },
+          x: 31.4,
+          y: 37.4,
+          isCritical: true,
+          ceKey: 1,
+        },
+        feelingtheburn: {
+          label: {
+            en: 'Feeling the Burn',
+          },
+          x: 20.0,
+          y: 25.0,
+          isCritical: true,
+          ceKey: 2,
+        },
+        thebrokenblade: {
+          label: {
+            en: 'Broken Blade',
+          },
+          x: 20.0,
+          y: 25.0,
+          isCritical: true,
+          ceKey: 3,
+        },
+        frombeyondthegrave: {
+          label: {
+            en: 'Beyond',
+          },
+          x: 20.0,
+          y: 25.0,
+          isCritical: true,
+          ceKey: 4,
+        },
+        withdiremiteandmain: {
+          label: {
+            en: 'Diremite',
+          },
+          x: 17.0,
+          y: 32.1,
+          isCritical: true,
+          ceKey: 5,
+        },
+        herecomesthecavalry: {
+          label: {
+            en: 'Cavalry',
+          },
+          x: 6.4,
+          y: 37.2,
+          isCritical: true,
+          ceKey: 6,
+        },
+        headofthesnake: {
+          label: {
+            en: 'Snake',
+          },
+          x: 20.0,
+          y: 25.0,
+          isCritical: true,
+          ceKey: 7,
+        },
+        therewouldbeblood: {
+          label: {
+            en: 'Blood',
+          },
+          x: 20.0,
+          y: 25.0,
+          isCritical: true,
+          ceKey: 8,
+        },
+        nevercrywolf: {
+          label: {
+            en: 'Cry Wolf',
+          },
+          x: 20.0,
+          y: 25.0,
+          isCritical: true,
+          ceKey: 9,
+        },
+        timetoburn: {
+          label: {
+            en: 'Time to Burn',
+          },
+          x: 20.0,
+          y: 25.0,
+          isCritical: true,
+          ceKey: 10,
+        },
+        leanmeanmagitekmachines: {
+          label: {
+            en: 'Lean, Mean',
+          },
+          x: 15.2,
+          y: 13.0,
+          isCritical: true,
+          ceKey: 11,
+        },
+        worntoashadow: {
+          label: {
+            en: 'Shadow',
+          },
+          x: 20.0,
+          y: 25.0,
+          isCritical: true,
+          ceKey: 12,
+        },
+        afamiliarface: {
+          label: {
+            en: 'Familiar Face',
+          },
+          x: 28.0,
+          y: 29.2,
+          isCritical: true,
+          ceKey: 13,
+        },
+        lookstodiefor: {
+          label: {
+            en: 'Looks',
+          },
+          x: 20.0,
+          y: 25.0,
+          isCritical: true,
+          ceKey: 14,
+        },
+        takingthelyonsshare: {
+          label: {
+            en: 'Lyon\'s Share',
+          },
+          x: 20.0,
+          y: 25.0,
+          isCritical: true,
+          ceKey: 15,
         },
       },
     },
