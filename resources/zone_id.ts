@@ -95,6 +95,7 @@ const data = {
   'CuriousGorgeMeetsHisMatch': 717,
   'CuttersCry': 170,
   'DarkAsTheNightSky': 713,
+  'DeathUntoDawn': 977,
   'DefeatAnOccupiedTarget': 545,
   'DeltascapeV10': 691,
   'DeltascapeV10Savage': 695,
@@ -462,6 +463,7 @@ const data = {
   'WolvesDenPier': 250,
   'Xelphatol': 572,
   'Yanxia': 614,
+  'Zadnor': 975,
 } as const;
 
 export default data;
