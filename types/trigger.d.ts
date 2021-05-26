@@ -72,21 +72,11 @@ type OptionalUnlessVoid<T> = T extends void ? void : T | undefined;
 export type TriggerField<Data, Return> =
     TriggerFunc<Data, MatchesAny, OptionalUnlessVoid<Return>> | OptionalUnlessVoid<Return>;
 
-// TODO: I am not sure that it is possible to type triggers such that we have some gigantic union
-// of Trigger<TetherParams> | Trigger<AbilityParams> | Trigger<AddedCombatantParams> | etc etc
-// and so the idea is that individual files would use a narrower type for Matches if they wanted to
-// and that's something we (maybe?) could enforce via tests rather than via TypeScript.  This
-// approach would not preclude some TypeScript gigabrain solution that can figure out how to do
-// the same thing at the TypeScript level.
-//
-// TODO: I think there are two types of TriggerSets.  There is the "cactbot + user defined triggers"
-// and also the "cactbot built-in only" triggers, which can be more strict.  For example,
-// * is `id` required, and `regex` for timeline triggers? (yes for built-in, no for user triggers)
-// * should we handle nonsense like `condition` returning non-booleans?
-// We could have one type that built-in triggers define themselves as more strictly and then a
-// second type that popup-text.js uses and needs to do more narrowing for.
+// This trigger type is what we expect cactbot triggers to be written as,
+// in other words `id` is not technically required for triggers but for
+// built-in triggers it is.
 export type BaseTrigger<Data> = {
-  id?: string;
+  id: string;
   disabled?: boolean;
   condition?: TriggerField<Data, boolean>;
   preRun?: TriggerField<Data, void>;
@@ -126,25 +116,21 @@ export type RegexTrigger<Data> = BaseTrigger<Data> & {
 }
 
 export type TimelineTrigger<Data> = BaseTrigger<Data> & {
-  regex?: RegExp;
-  // TODO: can this also be a function?
-  beforeSeconds?: number;
+  regex: RegExp;
+  beforeSeconds: number;
 };
-
-export type Trigger<Data> = RegexTrigger<Data> | NetRegexTrigger<Data>;
 
 // Because timeline functions run during loading, they only support the base RaidbossData.
 export type TimelineFunc = string | string[] | ((data: RaidbossData) => TimelineFunc);
 
 export type TriggerSet<Data> = {
   // ZoneId.MatchAll (aka null) is not supported in array form.
-  zoneId?: ZoneId | number[];
-  zoneRegex?: RegExp | { [lang in Lang]?: RegExp };
+  zoneId: ZoneId | number[];
   resetWhenOutOfCombat?: boolean;
   overrideTimelineFile?: boolean;
   timelineFile?: string;
   timeline?: TimelineFunc;
-  triggers?: Trigger<Data>[];
+  triggers?: NetRegexTrigger<Data>[];
   timelineTriggers?: TimelineTrigger<Data>[];
   timelineReplace?: {
     locale: Lang;
@@ -152,4 +138,17 @@ export type TriggerSet<Data> = {
     replaceText?: { [regex: string]: string };
     replaceSync?: { [regex: string]: string };
   }[];
+}
+
+// Less strict type for user triggers + built-in triggers, including deprecated fields.
+export type LooseTimelineTrigger = Partial<TimelineTrigger<RaidbossData>>;
+
+export type LooseTrigger =
+    Partial<RegexTrigger<RaidbossData>> | Partial<NetRegexTrigger<RaidbossData>>;
+
+export type LooseTriggerSet = Exclude<Partial<TriggerSet<RaidbossData>>, 'triggers' | 'timelineTriggers'> & {
+    /** @deprecated Use zoneId instead */
+    zoneRegex?: RegExp | { [lang in Lang]?: RegExp };
+    triggers?: LooseTrigger[];
+    timelineTriggers?: LooseTimelineTrigger[];
 }
