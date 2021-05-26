@@ -6,7 +6,7 @@ import { LineEvent0x01 } from './network_log_converter/LineEvent0x01';
 export default class LogEventHandler extends EventBus {
   public currentFight: LineEvent[] = [];
   public currentZoneName = 'Unknown';
-  public currentZoneId = -1;
+  public currentZoneId = '-1';
 
   parseLogs(logs: LineEvent[]): void {
     for (const lineObj of logs) {
@@ -18,7 +18,7 @@ export default class LogEventHandler extends EventBus {
       if (res) {
         this.endFight();
       } else if (lineObj instanceof LineEvent0x01) {
-        this.currentZoneId = parseInt(lineObj.zoneId);
+        this.currentZoneId = lineObj.zoneId;
         this.currentZoneName = lineObj.zoneName;
         this.endFight();
       }
