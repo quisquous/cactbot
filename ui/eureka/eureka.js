@@ -2409,8 +2409,8 @@ const Options = {
           label: {
             en: 'Dilemna',
           },
-          x: 0.0,
-          y: 0.0,
+          x: 22.7,
+          y: 34.2,
           fateID: 1719,
         },
         deadlydivination: {
