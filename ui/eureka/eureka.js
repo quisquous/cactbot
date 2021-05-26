@@ -2521,8 +2521,8 @@ const Options = {
           label: {
             en: 'Back',
           },
-          x: 0.0,
-          y: 0.0,
+          x: 25.4,
+          y: 14.3,
           fateID: 1733,
         },
         stillonlycountsasone: {
@@ -2569,16 +2569,16 @@ const Options = {
           label: {
             en: 'Hypertuned',
           },
-          x: 0.0,
-          y: 0.0,
+          x: 16.6,
+          y: 16.8,
           fateID: 1739,
         },
         attackofthesupersoldiers: {
           label: {
             en: 'Super Soldiers',
           },
-          x: 0.0,
-          y: 0.0,
+          x: 16.6,
+          y: 16.8,
           fateID: 1740,
         },
         thestudentbecalmsthemaster: {
@@ -2620,8 +2620,8 @@ const Options = {
           label: {
             en: 'Feeling the Burn',
           },
-          x: 20.0,
-          y: 25.0,
+          x: 16.6,
+          y: 16.8,
           isCritical: true,
           ceKey: 2,
         },
@@ -2710,8 +2710,8 @@ const Options = {
           label: {
             en: 'Shadow',
           },
-          x: 20.0,
-          y: 25.0,
+          x: 11.8,
+          y: 7.6,
           isCritical: true,
           ceKey: 12,
         },
