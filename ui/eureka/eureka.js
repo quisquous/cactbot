@@ -2497,8 +2497,8 @@ const Options = {
           label: {
             en: 'Supersoldier',
           },
-          x: 0.0,
-          y: 0.0,
+          x: 8.1,
+          y: 24.0,
           fateID: 1730,
         },
         dementedmentor: {
@@ -2629,8 +2629,8 @@ const Options = {
           label: {
             en: 'Broken Blade',
           },
-          x: 20.0,
-          y: 25.0,
+          x: 26.5,
+          y: 35.6,
           isCritical: true,
           ceKey: 3,
         },
@@ -2737,8 +2737,8 @@ const Options = {
           label: {
             en: 'Lyon\'s Share',
           },
-          x: 20.0,
-          y: 25.0,
+          x: 22.5,
+          y: 13.2,
           isCritical: true,
           ceKey: 15,
         },
