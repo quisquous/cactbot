@@ -6,14 +6,14 @@ on:
       - 'resources/**'
       - 'ui/raidboss/**'
       - 'ui/oopsyraidsy/**'
-      - 'util/**
+      - 'util/**'
       - '.github/workflows/post-process.yml'
   pull_request:
     paths:
       - 'resources/**'
       - 'ui/raidboss/**'
       - 'ui/oopsyraidsy/**'
-      - 'util/**
+      - 'util/**'
       - '.github/workflows/post-process.yml'
 
 jobs:
