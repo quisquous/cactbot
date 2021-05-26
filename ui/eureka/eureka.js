@@ -2473,8 +2473,8 @@ const Options = {
           label: {
             en: 'Atrocities',
           },
-          x: 0.0,
-          y: 0.0,
+          x: 4.9,
+          y: 25.3,
           fateID: 1727,
         },
         ajustpursuit: {
@@ -2665,8 +2665,8 @@ const Options = {
           label: {
             en: 'Snake',
           },
-          x: 20.0,
-          y: 25.0,
+          x: 5.3,
+          y: 31.9,
           isCritical: true,
           ceKey: 7,
         },
@@ -2683,8 +2683,8 @@ const Options = {
           label: {
             en: 'Cry Wolf',
           },
-          x: 20.0,
-          y: 25.0,
+          x: 4.9,
+          y: 25.3,
           isCritical: true,
           ceKey: 9,
         },
@@ -2692,8 +2692,8 @@ const Options = {
           label: {
             en: 'Time to Burn',
           },
-          x: 20.0,
-          y: 25.0,
+          x: 10.5,
+          y: 21.5,
           isCritical: true,
           ceKey: 10,
         },
@@ -2728,8 +2728,8 @@ const Options = {
           label: {
             en: 'Looks',
           },
-          x: 20.0,
-          y: 25.0,
+          x: 17.4,
+          y: 9.8,
           isCritical: true,
           ceKey: 14,
         },
