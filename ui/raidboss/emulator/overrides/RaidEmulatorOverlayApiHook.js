@@ -3,7 +3,7 @@ import { callOverlayHandler, addOverlayListener, removeOverlayListener, setCallO
 export default class RaidEmulatorOverlayApiHook {
   constructor(emulator) {
     this.emulator = emulator;
-    this.originalCall = setCallOverlayHandlerOverride(this.call.bind(this)),
+    this.originalCall = setCallOverlayHandlerOverride(this.call.bind(this));
     this.timestampOffset = 0;
 
     emulator.on('tick', (timestampOffset) => {
