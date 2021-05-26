@@ -78,6 +78,19 @@ class UserConfig {
     };
   }
 
+  evalUserFile(content: string, options: BaseOptions): void {
+    const Options = options;
+    console.assert(Options); // Used by eval.
+
+    // This is the one eval cactbot should ever need, which is for handling user files.
+    // Because user files can be located anywhere on disk and there's backwards compat
+    // issues, it's unlikely that these will be able to be anything but eval forever.
+    //
+    /* eslint-disable no-eval */
+    eval(content);
+    /* eslint-enable no-eval */
+  }
+
   registerOptions(overlayName: string, optionTemplate: OptionsTemplate,
       userFileCallback?: UserFileCallback) {
     this.optionTemplates[overlayName] = optionTemplate;
@@ -286,16 +299,7 @@ class UserConfig {
         for (const jsFile of jsFiles) {
           try {
             printUserFile(`local user file: ${basePath}${jsFile}`);
-            const Options = options;
-            console.assert(Options); // Used by eval.
-
-            // This is the one eval cactbot should ever need, which is for handling user files.
-            // Because user files can be located anywhere on disk and there's backwards compat
-            // issues, it's unlikely that these will be able to be anything but eval forever.
-            //
-            /* eslint-disable no-eval */
-            eval(localFiles[jsFile] ?? '');
-            /* eslint-enable no-eval */
+            this.evalUserFile(localFiles[jsFile] ?? '', options);
 
             for (const field of warnOnVariableResetMap[overlayName] ?? []) {
               if (variableTracker[field] && variableTracker[field] !== options[field]) {
