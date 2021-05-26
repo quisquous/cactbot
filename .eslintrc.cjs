@@ -15,13 +15,13 @@ module.exports = {
   },
   'overrides': [
     {
-      'files': ['**/*.cjs'],
+      'files': ['*.cjs'],
       'parserOptions': {
         'sourceType': 'script',
       },
     },
     {
-      'files': ['**/*.ts'],
+      'files': ['*.ts'],
       'parser': '@typescript-eslint/parser',
       'plugins': ['@typescript-eslint', 'prefer-arrow'],
       'parserOptions': {
@@ -72,6 +72,7 @@ module.exports = {
   'ignorePatterns': [
     // Do not ignore dot files.  /o\
     '!.*',
+    '.git/',
     'dist/',
     'plugin/',
     'publish/',
