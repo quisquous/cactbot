@@ -2638,8 +2638,8 @@ const Options = {
           label: {
             en: 'Beyond',
           },
-          x: 20.0,
-          y: 25.0,
+          x: 20.2,
+          y: 37.4,
           isCritical: true,
           ceKey: 4,
         },
@@ -2674,8 +2674,8 @@ const Options = {
           label: {
             en: 'Blood',
           },
-          x: 20.0,
-          y: 25.0,
+          x: 13.7,
+          y: 26.0,
           isCritical: true,
           ceKey: 8,
         },
