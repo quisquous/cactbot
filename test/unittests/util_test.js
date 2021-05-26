@@ -8,8 +8,8 @@ const { assert } = chai;
 const jobs = (() => {
   class Job {
     constructor(name, role, actions = []) {
-      this.name = name,
-      this.role = role,
+      this.name = name;
+      this.role = role;
       this.actions = actions;
     }
   }
