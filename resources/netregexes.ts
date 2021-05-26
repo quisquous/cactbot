@@ -1,10 +1,12 @@
-import { NetRegex } from 'types/trigger';
+import { BaseRegExp } from '../types/trigger';
 import Regexes, { Params } from './regexes';
 
 interface Fields {
   field: string;
   value?: string;
 }
+
+export type NetRegex<T extends string> = BaseRegExp<Exclude<T, 'capture'>>;
 
 // Differences from Regexes:
 // * may have more fields

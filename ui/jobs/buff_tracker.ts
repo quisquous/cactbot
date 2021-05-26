@@ -1,9 +1,8 @@
-import { BaseRegExp, Matches } from '../../types/trigger';
 import { JobsOptions } from './types';
 
 import WidgetList from '../../resources/widget_list';
 import EffectId from '../../resources/effect_id';
-import { AbilityParams, GainsEffectParams, LosesEffectParams } from '../../resources/netregexes';
+import { MatchesAbility, MatchesGainsEffect, MatchesLosesEffect } from '../../resources/matches';
 
 import { kAbility } from './constants';
 import { makeAuraTimerIcon } from './utils';
@@ -564,7 +563,7 @@ export class BuffTracker {
     // }
   }
 
-  onUseAbility(id: string, matches: Matches<BaseRegExp<AbilityParams>>): void {
+  onUseAbility(id: string, matches: MatchesAbility): void {
     const buffs = this.gainAbilityMap[id];
     if (!buffs)
       return;
@@ -575,7 +574,7 @@ export class BuffTracker {
 
   onGainEffect(
       buffs: BuffInfo[] | undefined,
-      matches: Matches<BaseRegExp<GainsEffectParams>>,
+      matches: MatchesGainsEffect,
   ): void {
     if (!buffs)
       return;
@@ -592,7 +591,7 @@ export class BuffTracker {
 
   onLoseEffect(
       buffs: BuffInfo[] | undefined,
-      _matches: Matches<BaseRegExp<LosesEffectParams>>,
+      _matches: MatchesLosesEffect,
   ): void {
     if (!buffs)
       return;
@@ -600,19 +599,19 @@ export class BuffTracker {
       this.onLoseBigBuff(b.name);
   }
 
-  onYouGainEffect(name: string, matches: Matches<BaseRegExp<GainsEffectParams>>): void {
+  onYouGainEffect(name: string, matches: MatchesGainsEffect): void {
     this.onGainEffect(this.gainEffectMap[name], matches);
   }
 
-  onYouLoseEffect(name: string, matches: Matches<BaseRegExp<LosesEffectParams>>): void {
+  onYouLoseEffect(name: string, matches: MatchesLosesEffect): void {
     this.onLoseEffect(this.loseEffectMap[name], matches);
   }
 
-  onMobGainsEffect(name: string, matches: Matches<BaseRegExp<GainsEffectParams>>): void {
+  onMobGainsEffect(name: string, matches: MatchesGainsEffect): void {
     this.onGainEffect(this.mobGainsEffectMap[name], matches);
   }
 
-  onMobLosesEffect(name: string, matches: Matches<BaseRegExp<LosesEffectParams>>): void {
+  onMobLosesEffect(name: string, matches: MatchesLosesEffect): void {
     this.onLoseEffect(this.mobLosesEffectMap[name], matches);
   }
 
