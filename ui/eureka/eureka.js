@@ -144,7 +144,7 @@ const Options = {
     // de, fr, ja languages all share the English regexes here.
     // If you ever need to add another language, include all of the regexes for it.
     en: {
-      'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)\ue0bb(?:Eureka (?:Anemos|Pagos|Pyros|Hydatos)|Bozjan Southern Front) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)\ue0bb(?:Eureka (?:Anemos|Pagos|Pyros|Hydatos)|Bozjan Southern Front|Zadnor) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/([\w-]{6})(?:[^\w-]|$)/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)NMs on cooldown: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)m\)/),
@@ -2374,6 +2374,19 @@ const Options = {
           ceKey: 15,
         },
       },
+    },
+    [ZoneId.Zadnor]: {
+      mapImage: 'zadnor.png',
+      mapWidth: 1600,
+      mapHeight: 1400,
+      shortName: 'Zadnor',
+      hasTracker: false,
+      dontShowInactive: true,
+      treatNMsAsSkirmishes: true,
+      mapToPixelXScalar: 39.067,
+      mapToPixelXConstant: 10.03,
+      mapToPixelYScalar: 39.247,
+      mapToPixelYConstant: -202.55,
     },
   },
 };
