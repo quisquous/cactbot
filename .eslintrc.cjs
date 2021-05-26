@@ -103,6 +103,7 @@ module.exports = {
     },
   },
   'rules': {
+    'no-sequences': 'error',
     'arrow-spacing': [
       'error',
       {

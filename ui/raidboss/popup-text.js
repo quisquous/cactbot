@@ -753,7 +753,7 @@ export class PopupText {
       if (typeof result !== 'object' || result === null)
         return result;
       return triggerHelper.valueOrFunction(result[this.displayLang] || result['en']);
-    },
+    };
 
     this._onTriggerInternalHelperDefaults(triggerHelper);
 
