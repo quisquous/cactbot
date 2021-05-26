@@ -2387,6 +2387,7 @@ const Options = {
       mapToPixelXConstant: 10.03,
       mapToPixelYScalar: 39.247,
       mapToPixelYConstant: -202.55,
+      nms: {},
     },
   },
 };
