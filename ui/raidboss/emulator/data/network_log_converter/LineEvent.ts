@@ -61,3 +61,70 @@ export default class LineEvent {
       ).toString(16), 16);
   }
 }
+
+// Type guards for these interfaces require their own descriptor property
+// because we don't want every line event with an id/name
+// to update combatant state, for example
+export interface LineEventSource {
+  readonly isSource: true;
+  readonly id: string;
+  readonly name: string;
+  readonly x?: number;
+  readonly y?: number;
+  readonly z?: number;
+  readonly heading?: number;
+  readonly targetable?: boolean;
+  readonly hp?: number;
+  readonly maxHp?: number;
+  readonly mp?: number;
+  readonly maxMp?: number;
+}
+
+export const isLineEventSource =
+  (line: LineEventSource | LineEvent): line is LineEventSource => {
+    return 'isSource' in line;
+  };
+
+export interface LineEventTarget {
+  readonly isTarget: true;
+  readonly targetId: string;
+  readonly targetName: string;
+  readonly targetX?: number;
+  readonly targetY?: number;
+  readonly targetZ?: number;
+  readonly targetHeading?: number;
+  readonly targetHp?: number;
+  readonly targetMaxHp?: number;
+  readonly targetMp?: number;
+  readonly targetMaxMp?: number;
+}
+
+export const isLineEventTarget =
+  (line: LineEventTarget | LineEvent): line is LineEventTarget => {
+    return 'isTarget' in line;
+  };
+
+export interface LineEventJobLevel {
+  readonly isJobLevel: true;
+  readonly job?: string;
+  readonly jobId?: number;
+  readonly level?: number;
+}
+
+export const isLineEventJobLevel =
+  (line: LineEvent | LineEventSource | LineEventTarget | LineEventJobLevel):
+  line is LineEventJobLevel => {
+    return 'isJobLevel' in line;
+  };
+
+export interface LineEventAbility {
+  readonly isAbility: true;
+  readonly abilityId?: number;
+  readonly abilityName?: string;
+}
+
+export const isLineEventAbility =
+  (line: LineEvent | LineEventSource | LineEventTarget | LineEventAbility):
+  line is LineEventAbility => {
+    return 'isAbility' in line;
+  };

@@ -1,4 +1,4 @@
-import LineEvent from './LineEvent';
+import LineEvent, { LineEventSource } from './LineEvent';
 import LogRepository from './LogRepository';
 
 const fields = {
@@ -10,12 +10,13 @@ const fields = {
 } as const;
 
 // Nameplate toggle
-export class LineEvent0x22 extends LineEvent {
+export class LineEvent0x22 extends LineEvent implements LineEventSource {
   public readonly id: string;
   public readonly name: string;
   public readonly targetId: string;
   public readonly targetName: string;
   public readonly targetable: boolean;
+  public readonly isSource = true;
 
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
