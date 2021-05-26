@@ -1,30 +1,30 @@
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
+const fields = {
+  id: 2,
+  name: 3,
+  targetId: 4,
+  targetName: 5,
+  targetable: 6,
+} as const;
+
 // Nameplate toggle
 export class LineEvent0x22 extends LineEvent {
+  public readonly id: string;
+  public readonly name: string;
+  public readonly targetId: string;
+  public readonly targetName: string;
+  public readonly targetable: boolean;
+
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
-  }
 
-  public get id(): string {
-    return this.parts[2]?.toUpperCase() ?? '';
-  }
-
-  public get name(): string {
-    return this.parts[3] ?? '';
-  }
-
-  public get targetId(): string {
-    return this.parts[4]?.toUpperCase() ?? '';
-  }
-
-  public get targetName(): string {
-    return this.parts[5] ?? '';
-  }
-
-  public get targetable(): boolean {
-    return !!parseInt(this.parts[6] ?? '', 16);
+    this.id = parts[fields.id]?.toUpperCase() ?? '';
+    this.name = parts[fields.name] ?? '';
+    this.targetId = parts[fields.targetId]?.toUpperCase() ?? '';
+    this.targetName = parts[fields.targetName] ?? '';
+    this.targetable = !!parseInt(parts[fields.targetable] ?? '', 16);
   }
 }
 

@@ -1,79 +1,66 @@
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
+const fields = {
+  class: 2,
+  strength: 3,
+  dexterity: 4,
+  vitality: 5,
+  intelligence: 6,
+  mind: 7,
+  piety: 8,
+  attackPower: 9,
+  directHit: 10,
+  criticalHit: 11,
+  attackMagicPotency: 12,
+  healMagicPotency: 13,
+  determination: 14,
+  skillSpeed: 15,
+  spellSpeed: 16,
+  tenacity: 18,
+} as const;
+
 // Player stats event
 export class LineEvent0x0C extends LineEvent {
+  public readonly class: string;
+  public readonly strength: string;
+  public readonly dexterity: string;
+  public readonly vitality: string;
+  public readonly intelligence: string;
+  public readonly mind: string;
+  public readonly piety: string;
+  public readonly attackPower: string;
+  public readonly directHit: string;
+  public readonly criticalHit: string;
+  public readonly attackMagicPotency: string;
+  public readonly healMagicPotency: string;
+  public readonly determination: string;
+  public readonly skillSpeed: string;
+  public readonly spellSpeed: string;
+  public readonly tenacity: string;
+
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
-  }
 
-  public get class(): string {
-    return this.parts[2] ?? '';
-  }
+    this.class = parts[fields.class] ?? '';
+    this.strength = parts[fields.strength] ?? '';
+    this.dexterity = parts[fields.dexterity] ?? '';
+    this.vitality = parts[fields.vitality] ?? '';
+    this.intelligence = parts[fields.intelligence] ?? '';
+    this.mind = parts[fields.mind] ?? '';
+    this.piety = parts[fields.piety] ?? '';
+    this.attackPower = parts[fields.attackPower] ?? '';
+    this.directHit = parts[fields.directHit] ?? '';
+    this.criticalHit = parts[fields.criticalHit] ?? '';
+    this.attackMagicPotency = parts[fields.attackMagicPotency] ?? '';
+    this.healMagicPotency = parts[fields.healMagicPotency] ?? '';
+    this.determination = parts[fields.determination] ?? '';
+    this.skillSpeed = parts[fields.skillSpeed] ?? '';
+    this.spellSpeed = parts[fields.spellSpeed] ?? '';
+    this.tenacity = parts[fields.tenacity] ?? '';
 
-  public get strength(): string {
-    return this.parts[3] ?? '';
-  }
-
-  public get dexterity(): string {
-    return this.parts[4] ?? '';
-  }
-
-  public get vitality(): string {
-    return this.parts[5] ?? '';
-  }
-
-  public get intelligence(): string {
-    return this.parts[6] ?? '';
-  }
-
-  public get mind(): string {
-    return this.parts[7] ?? '';
-  }
-
-  public get piety(): string {
-    return this.parts[8] ?? '';
-  }
-
-  public get attackPower(): string {
-    return this.parts[9] ?? '';
-  }
-
-  public get directHit(): string {
-    return this.parts[10] ?? '';
-  }
-
-  public get criticalHit(): string {
-    return this.parts[11] ?? '';
-  }
-
-  public get attackMagicPotency(): string {
-    return this.parts[12] ?? '';
-  }
-
-  public get healMagicPotency(): string {
-    return this.parts[13] ?? '';
-  }
-
-  public get determination(): string {
-    return this.parts[14] ?? '';
-  }
-
-  public get skillSpeed(): string {
-    return this.parts[15] ?? '';
-  }
-
-  public get spellSpeed(): string {
-    return this.parts[16] ?? '';
-  }
-
-  public get tenacity(): string {
-    return this.parts[18] ?? '';
-  }
-
-  convert(_: LogRepository): void {
     this.convertedLine = this.prefix() +
-      'Player Stats: ' + this.parts.slice(2, this.parts.length - 1).join(':').replace(/\|/g, ':');
+      'Player Stats: ' + parts.slice(2, parts.length - 1).join(':').replace(/\|/g, ':');
   }
 }
 

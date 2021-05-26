@@ -1,30 +1,30 @@
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
+const fields = {
+  id: 2,
+  name: 3,
+  targetId: 4,
+  targetName: 5,
+  tetherId: 8,
+} as const;
+
 // Tether event
 export class LineEvent0x23 extends LineEvent {
+  public readonly id: string;
+  public readonly name: string;
+  public readonly targetId: string;
+  public readonly targetName: string;
+  public readonly tetherId: string;
+
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
-  }
 
-  public get id(): string {
-    return this.parts[2]?.toUpperCase() ?? '';
-  }
-
-  public get name(): string {
-    return this.parts[3] ?? '';
-  }
-
-  public get targetId(): string {
-    return this.parts[4]?.toUpperCase() ?? '';
-  }
-
-  public get targetName(): string {
-    return this.parts[5] ?? '';
-  }
-
-  public get tetherId(): string {
-    return this.parts[8] ?? '';
+    this.id = parts[fields.id]?.toUpperCase() ?? '';
+    this.name = parts[fields.name] ?? '';
+    this.targetId = parts[fields.targetId]?.toUpperCase() ?? '';
+    this.targetName = parts[fields.targetName] ?? '';
+    this.tetherId = parts[fields.tetherId] ?? '';
   }
 }
 

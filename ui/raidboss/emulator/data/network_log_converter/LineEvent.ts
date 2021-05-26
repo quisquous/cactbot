@@ -1,37 +1,31 @@
 import EmulatorCommon from '../../EmulatorCommon';
 import LogRepository from './LogRepository';
 
+const fields = {
+  event: 0,
+  timestamp: 1,
+} as const;
+
 /**
  * Generic class to track an FFXIV log line
  */
 export default class LineEvent {
   public offset = 0;
-  public convertedLine = '';
+  public convertedLine: string;
   public invalid = false;
   public index = 0;
+  public readonly decEvent: number;
+  public readonly hexEvent: string;
+  public readonly timestamp: number;
+  public readonly checksum: string;
 
-  constructor(repo: LogRepository, public networkLine: string, protected parts: string[]) {
+  constructor(repo: LogRepository, public networkLine: string, parts: string[]) {
+    this.decEvent = parseInt(parts[fields.event] ?? '0');
+    this.hexEvent = EmulatorCommon.zeroPad(this.decEvent.toString(16).toUpperCase());
+    this.timestamp = new Date(parts[fields.timestamp] ?? '0').getTime();
+    this.checksum = parts.slice(-1)[0] ?? '';
     repo.updateTimestamp(this.timestamp);
-  }
-
-  public get decEvent(): number {
-    return parseInt(this.parts[0] ?? '0');
-  }
-
-  public get hexEvent(): string {
-    return EmulatorCommon.zeroPad(this.decEvent.toString(16).toUpperCase());
-  }
-
-  public get timestamp(): number {
-    return new Date(this.parts[1] ?? '0').getTime();
-  }
-
-  public get checksum(): string {
-    return this.parts.slice(-1)[0] ?? '';
-  }
-
-  convert(_: LogRepository): void {
-    this.convertedLine = this.prefix() + (this.parts.join(':')).replace('|', ':');
+    this.convertedLine = this.prefix() + (parts.join(':')).replace('|', ':');
   }
 
   prefix(): string {

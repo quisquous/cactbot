@@ -1,30 +1,30 @@
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
+const fields = {
+  id: 2,
+  name: 3,
+  abilityId: 4,
+  abilityName: 5,
+  reason: 6,
+} as const;
+
 // Cancel ability event
 export class LineEvent0x17 extends LineEvent {
+  public readonly id: string;
+  public readonly name: string;
+  public readonly abilityId: string;
+  public readonly abilityName: string;
+  public readonly reason: string;
+
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
-  }
 
-  public get id(): string {
-    return this.parts[2]?.toUpperCase() ?? '';
-  }
-
-  public get name(): string {
-    return this.parts[3] ?? '';
-  }
-
-  public get abilityId(): string {
-    return this.parts[4]?.toUpperCase() ?? '';
-  }
-
-  public get abilityName(): string {
-    return this.parts[5] ?? '';
-  }
-
-  public get reason(): string {
-    return this.parts[6] ?? '';
+    this.id = parts[fields.id]?.toUpperCase() ?? '';
+    this.name = parts[fields.name] ?? '';
+    this.abilityId = parts[fields.abilityId]?.toUpperCase() ?? '';
+    this.abilityName = parts[fields.abilityName] ?? '';
+    this.reason = parts[fields.reason] ?? '';
   }
 }
 

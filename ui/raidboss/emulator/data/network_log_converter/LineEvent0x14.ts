@@ -2,12 +2,38 @@ import LineEvent from './LineEvent';
 import EmulatorCommon from '../../EmulatorCommon';
 import LogRepository from './LogRepository';
 
+const fields = {
+  id: 2,
+  name: 3,
+  abilityId: 4,
+  abilityName: 5,
+  targetId: 6,
+  targetName: 7,
+  duration: 8,
+} as const;
+
 // Ability use event
 export class LineEvent0x14 extends LineEvent {
-  public properCaseConvertedLine = '';
+  public readonly properCaseConvertedLine: string;
+
+  public readonly id: string;
+  public readonly name: string;
+  public readonly abilityId: string;
+  public readonly abilityName: string;
+  public readonly targetId: string;
+  public readonly targetName: string;
+  public readonly duration: string;
 
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
+
+    this.id = parts[fields.id]?.toUpperCase() ?? '';
+    this.name = parts[fields.name] ?? '';
+    this.abilityId = parts[fields.abilityId]?.toUpperCase() ?? '';
+    this.abilityName = parts[fields.abilityName] ?? '';
+    this.targetId = parts[fields.targetId]?.toUpperCase() ?? '';
+    this.targetName = parts[fields.targetName] ?? '';
+    this.duration = parts[fields.duration] ?? '';
 
     repo.updateCombatant(this.id, {
       job: undefined,
@@ -22,44 +48,14 @@ export class LineEvent0x14 extends LineEvent {
       spawn: this.timestamp,
       despawn: this.timestamp,
     });
-  }
 
-  public get id(): string {
-    return this.parts[2]?.toUpperCase() ?? '';
-  }
-
-  public get name(): string {
-    return this.parts[3] ?? '';
-  }
-
-  public get abilityId(): string {
-    return this.parts[4]?.toUpperCase() ?? '';
-  }
-
-  public get abilityName(): string {
-    return this.parts[5] ?? '';
-  }
-
-  public get targetId(): string {
-    return this.parts[6]?.toUpperCase() ?? '';
-  }
-
-  public get targetName(): string {
-    return this.parts[7] ?? '';
-  }
-
-  public get duration(): string {
-    return this.parts[8] ?? '';
-  }
-
-  convert(_: LogRepository): void {
     const target = this.targetName.length === 0 ? 'Unknown' : this.targetName;
 
     this.convertedLine = this.prefix() + this.abilityId +
       ':' + this.name +
       ' starts using ' + this.abilityName +
       ' on ' + target + '.';
-    this.convertedLine = this.prefix() + this.abilityId +
+    this.properCaseConvertedLine = this.prefix() + this.abilityId +
       ':' + EmulatorCommon.properCase(this.name) +
       ' starts using ' + this.abilityName +
       ' on ' + EmulatorCommon.properCase(target) + '.';
