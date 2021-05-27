@@ -32,8 +32,9 @@ export default class Encounter {
       if (res) {
         this.firstLineIndex = i;
         this.startStatus.add(res.groups.StartType);
-        if (res.groups.StartIn >= 0)
-          this.engageAt = Math.min(line.timestamp + res.groups.StartIn, this.engageAt);
+        const startIn = parseInt(res.groups.StartIn);
+        if (startIn >= 0)
+          this.engageAt = Math.min(line.timestamp + startIn, this.engageAt);
       } else {
         res = EmulatorCommon.matchEnd(line.networkLine);
         if (res) {
