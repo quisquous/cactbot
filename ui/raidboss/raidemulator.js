@@ -123,25 +123,27 @@ import './raidemulator.css';
     });
 
     // Wait for the DB to be ready before doing anything that might invoke the DB
-    persistor.on('ready', async () => {
-      // Give the websocket 500ms to connect, then abort.
-      const websocketConnected = await Promise.race([
-        new Promise((res) => {
-          callOverlayHandler({ call: 'cactbotRequestState' }).then(() => {
-            res(true);
+    persistor.initializeDB().then(async () => {
+      if (window.location.href.indexOf('OVERLAY_WS') > 0) {
+        // Give the websocket 500ms to connect, then abort.
+        const websocketConnected = await Promise.race([
+          new Promise((res) => {
+            callOverlayHandler({ call: 'cactbotRequestState' }).then(() => {
+              res(true);
+            });
+          }),
+          new Promise((res) => {
+            window.setTimeout(() => {
+              res(false);
+            }, 500);
+          }),
+        ]);
+        if (websocketConnected) {
+          await UserConfig.getUserConfigLocation('raidboss', Options, (e) => {
+            document.querySelector('.websocketConnected').classList.remove('d-none');
+            document.querySelector('.websocketDisconnected').classList.add('d-none');
           });
-        }),
-        new Promise((res) => {
-          window.setTimeout(() => {
-            res(false);
-          }, 500);
-        }),
-      ]);
-      if (websocketConnected) {
-        await UserConfig.getUserConfigLocation('raidboss', Options, (e) => {
-          document.querySelector('.websocketConnected').classList.remove('d-none');
-          document.querySelector('.websocketDisconnected').classList.add('d-none');
-        });
+        }
       }
 
       // Initialize the Raidboss components, bind them to the emulator for event listeners
@@ -384,7 +386,6 @@ import './raidemulator.css';
         timelineUI: timelineUI,
       };
     });
-    persistor.initializeDB();
   });
 })();
 
