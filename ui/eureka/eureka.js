@@ -2392,6 +2392,7 @@ const Options = {
         ofbeastsandbraggadocio: {
           label: {
             en: 'Beasts',
+            de: 'Bestienbändigerin',
           },
           x: 24.1,
           y: 37.4,
@@ -2400,6 +2401,7 @@ const Options = {
         partsandparcel: {
           label: {
             en: 'Parcel',
+            de: 'Oboro',
           },
           x: 22.8,
           y: 34.2,
@@ -2408,6 +2410,7 @@ const Options = {
         animmoraldilemna: {
           label: {
             en: 'Dilemna',
+            de: 'Ketzer Fabineau',
           },
           x: 22.7,
           y: 34.2,
@@ -2416,6 +2419,7 @@ const Options = {
         deadlydivination: {
           label: {
             en: 'Divination',
+            de: 'Mörderischer Onmyoji',
           },
           x: 24.8,
           y: 31.4,
@@ -2424,6 +2428,7 @@ const Options = {
         awrenchinthereconnaissanceeffort: {
           label: {
             en: 'Wrench',
+            de: 'Beobachten verboten',
           },
           x: 29.4,
           y: 35.4,
@@ -2432,6 +2437,7 @@ const Options = {
         anotherpilotepisode: {
           label: {
             en: 'Pilot',
+            de: 'Magitek-Soldaten',
           },
           x: 28.0,
           y: 29.2,
@@ -2440,6 +2446,7 @@ const Options = {
         breakingtheice: {
           label: {
             en: 'Ice',
+            de: 'Eiskalt',
           },
           x: 24.8,
           y: 31.1,
@@ -2448,6 +2455,7 @@ const Options = {
         meetthepuppetmaster: {
           label: {
             en: 'Puppet',
+            de: 'Puppen',
           },
           x: 24.1,
           y: 37.4,
@@ -2456,6 +2464,7 @@ const Options = {
         challengeaccepted: {
           label: {
             en: 'Challenge',
+            de: 'Größtmöglicher',
           },
           x: 7.2,
           y: 28.8,
@@ -2464,6 +2473,7 @@ const Options = {
         thubantheterrible: {
           label: {
             en: 'Th\'uban',
+            de: 'Bestien',
           },
           x: 8.6,
           y: 34.4,
@@ -2472,6 +2482,7 @@ const Options = {
         anendtoatrocities: {
           label: {
             en: 'Atrocities',
+            de: 'Endkampf (Ketzer)',
           },
           x: 4.9,
           y: 25.3,
@@ -2480,6 +2491,7 @@ const Options = {
         ajustpursuit: {
           label: {
             en: 'Pursuit',
+            de: 'mörderische Meister',
           },
           x: 11.6,
           y: 27.6,
@@ -2488,6 +2500,7 @@ const Options = {
         tankingup: {
           label: {
             en: 'Tanking Up',
+            de: 'Seiryu Zwo',
           },
           x: 8.1,
           y: 24.0,
@@ -2496,6 +2509,7 @@ const Options = {
         supersolderrising: {
           label: {
             en: 'Supersoldier',
+            de: 'Magitek-Soldat',
           },
           x: 8.1,
           y: 24.0,
@@ -2504,6 +2518,7 @@ const Options = {
         dementedmentor: {
           label: {
             en: 'Demented',
+            de: 'Rettende Hiebe',
           },
           x: 7.2,
           y: 28.8,
@@ -2512,6 +2527,7 @@ const Options = {
         severthestrings: {
           label: {
             en: 'Sever',
+            de: 'Endkampf (Puppenspieler)',
           },
           x: 11.6,
           y: 27.6,
@@ -2520,6 +2536,7 @@ const Options = {
         thebeastsareback: {
           label: {
             en: 'Back',
+            de: 'Allergrößte gibt nicht auf',
           },
           x: 25.4,
           y: 14.3,
@@ -2528,6 +2545,7 @@ const Options = {
         stillonlycountsasone: {
           label: {
             en: 'Still',
+            de: 'Schillernde ',
           },
           x: 14.5,
           y: 10.4,
@@ -2536,6 +2554,7 @@ const Options = {
         seeqandyouwillfind: {
           label: {
             en: 'Seeq',
+            de: 'Farbe des Blutes',
           },
           x: 20.3,
           y: 16.5,
@@ -2544,6 +2563,7 @@ const Options = {
         meanspirited: {
           label: {
             en: 'Mean',
+            de: 'Onmyoji!',
           },
           x: 25.4,
           y: 14.3,
@@ -2552,6 +2572,7 @@ const Options = {
         arelicunleashed: {
           label: {
             en: 'Relic',
+            de: 'Famfrit',
           },
           x: 25.4,
           y: 14.3,
@@ -2560,6 +2581,7 @@ const Options = {
         whenmagesrage: {
           label: {
             en: 'Mages Rage',
+            de: 'Was du heute kannst besorgen',
           },
           x: 20.3,
           y: 16.5,
@@ -2568,6 +2590,7 @@ const Options = {
         hypertunedhavoc: {
           label: {
             en: 'Hypertuned',
+            de: 'goldene Gelegenheit',
           },
           x: 16.6,
           y: 16.8,
@@ -2576,6 +2599,7 @@ const Options = {
         attackofthesupersoldiers: {
           label: {
             en: 'Super Soldiers',
+            de: 'Verstärkung .. Mech-Einheit',
           },
           x: 16.6,
           y: 16.8,
@@ -2584,6 +2608,7 @@ const Options = {
         thestudentbecalmsthemaster: {
           label: {
             en: 'Student',
+            de: 'Rettende Hiebe 2',
           },
           x: 14.5,
           y: 10.4,
@@ -2592,6 +2617,7 @@ const Options = {
         attackofthemachines: {
           label: {
             en: 'Machines',
+            de: 'Magitek-Maschinen en masse',
           },
           x: 12.1,
           y: 13.6,
@@ -2600,6 +2626,7 @@ const Options = {
         dalriada: {
           label: {
             en: 'Dalriada',
+            de: 'Dalriada',
           },
           x: 25.9,
           y: 8.2,
@@ -2610,6 +2637,7 @@ const Options = {
         onserpentswings: {
           label: {
             en: 'Serpents Wings',
+            de: 'Geistertrupp',
           },
           x: 31.4,
           y: 37.4,
@@ -2619,6 +2647,7 @@ const Options = {
         feelingtheburn: {
           label: {
             en: 'Feeling the Burn',
+            de: 'Schwarzbrands',
           },
           x: 16.6,
           y: 16.8,
@@ -2628,6 +2657,7 @@ const Options = {
         thebrokenblade: {
           label: {
             en: 'Broken Blade',
+            de: 'Hyper-Dabog',
           },
           x: 26.5,
           y: 35.6,
@@ -2637,6 +2667,7 @@ const Options = {
         frombeyondthegrave: {
           label: {
             en: 'Beyond',
+            de: 'Shemhazai ',
           },
           x: 20.2,
           y: 37.4,
@@ -2646,6 +2677,7 @@ const Options = {
         withdiremiteandmain: {
           label: {
             en: 'Diremite',
+            de: 'Hedetet',
           },
           x: 17.0,
           y: 32.1,
@@ -2655,6 +2687,7 @@ const Options = {
         herecomesthecavalry: {
           label: {
             en: 'Cavalry',
+            de: 'Halb Pferd',
           },
           x: 6.4,
           y: 37.2,
@@ -2664,6 +2697,7 @@ const Options = {
         headofthesnake: {
           label: {
             en: 'Snake',
+            de: 'Menenius',
           },
           x: 5.3,
           y: 31.9,
@@ -2673,6 +2707,7 @@ const Options = {
         therewouldbeblood: {
           label: {
             en: 'Blood',
+            de: 'Hanbi',
           },
           x: 13.7,
           y: 26.0,
@@ -2682,6 +2717,7 @@ const Options = {
         nevercrywolf: {
           label: {
             en: 'Cry Wolf',
+            de: 'Hrodvitnir',
           },
           x: 4.9,
           y: 25.3,
@@ -2691,6 +2727,7 @@ const Options = {
         timetoburn: {
           label: {
             en: 'Time to Burn',
+            de: 'Belias',
           },
           x: 10.5,
           y: 21.5,
@@ -2700,6 +2737,7 @@ const Options = {
         leanmeanmagitekmachines: {
           label: {
             en: 'Lean, Mean',
+            de: 'Gepanzerte Zenturie',
           },
           x: 15.2,
           y: 13.0,
@@ -2709,6 +2747,7 @@ const Options = {
         worntoashadow: {
           label: {
             en: 'Shadow',
+            de: 'Alkonost',
           },
           x: 11.8,
           y: 7.6,
@@ -2718,6 +2757,7 @@ const Options = {
         afamiliarface: {
           label: {
             en: 'Familiar Face',
+            de: 'Hashmallim',
           },
           x: 28.0,
           y: 29.2,
@@ -2727,6 +2767,7 @@ const Options = {
         lookstodiefor: {
           label: {
             en: 'Looks',
+            de: 'Ayda',
           },
           x: 17.4,
           y: 9.8,
@@ -2736,6 +2777,7 @@ const Options = {
         takingthelyonsshare: {
           label: {
             en: 'Lyon\'s Share',
+            de: 'Revanche: Lyon',
           },
           x: 22.5,
           y: 13.2,
