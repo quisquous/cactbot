@@ -11,6 +11,10 @@ export default class Persistor extends EventBus {
   }
 
   initializeDB() {
+    if (this.DB !== null) {
+      this.dispatch('ready');
+      return;
+    }
     const request = window.indexedDB.open('RaidEmulatorEncounters', Persistor.dbVersion);
     request.addEventListener('success', (ev) => {
       this.DB = ev.target.result;
