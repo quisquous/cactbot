@@ -144,7 +144,7 @@ const Options = {
     // de, fr, ja languages all share the English regexes here.
     // If you ever need to add another language, include all of the regexes for it.
     en: {
-      'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)\ue0bb(?:Eureka (?:Anemos|Pagos|Pyros|Hydatos)|Bozjan Southern Front) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)\ue0bb(?:Eureka (?:Anemos|Pagos|Pyros|Hydatos)|Bozjan Southern Front|Zadnor) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/([\w-]{6})(?:[^\w-]|$)/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)NMs on cooldown: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)m\)/),
@@ -173,6 +173,7 @@ const Options = {
 
     // Bozja
     // Southern Front: https://xivapi.com/search?indexes=Fate&filters=ID%3E=1597,ID%3C=1628&columns=Description,Name,Url
+    // Zadnor: https://xivapi.com/search?indexes=Fate&filters=ID%3E=1717,ID%3C=1742&columns=Description,Name,Url
     [ZoneId.TheForbiddenLandEurekaAnemos]: {
       mapImage: 'anemos.png',
       mapWidth: 1300,
@@ -2370,6 +2371,374 @@ const Options = {
           },
           x: 24.2,
           y: 14.9,
+          isCritical: true,
+          ceKey: 15,
+        },
+      },
+    },
+    [ZoneId.Zadnor]: {
+      mapImage: 'zadnor.png',
+      mapWidth: 1600,
+      mapHeight: 1400,
+      shortName: 'Zadnor',
+      hasTracker: false,
+      dontShowInactive: true,
+      treatNMsAsSkirmishes: true,
+      mapToPixelXScalar: 39.067,
+      mapToPixelXConstant: 10.03,
+      mapToPixelYScalar: 39.247,
+      mapToPixelYConstant: -202.55,
+      nms: {
+        ofbeastsandbraggadocio: {
+          label: {
+            en: 'Beasts',
+          },
+          x: 24.1,
+          y: 37.4,
+          fateID: 1717,
+        },
+        partsandparcel: {
+          label: {
+            en: 'Parcel',
+          },
+          x: 22.8,
+          y: 34.2,
+          fateID: 1718,
+        },
+        animmoraldilemna: {
+          label: {
+            en: 'Dilemna',
+          },
+          x: 22.7,
+          y: 34.2,
+          fateID: 1719,
+        },
+        deadlydivination: {
+          label: {
+            en: 'Divination',
+          },
+          x: 24.8,
+          y: 31.4,
+          fateID: 1720,
+        },
+        awrenchinthereconnaissanceeffort: {
+          label: {
+            en: 'Wrench',
+          },
+          x: 29.4,
+          y: 35.4,
+          fateID: 1721,
+        },
+        anotherpilotepisode: {
+          label: {
+            en: 'Pilot',
+          },
+          x: 28.0,
+          y: 29.2,
+          fateID: 1722,
+        },
+        breakingtheice: {
+          label: {
+            en: 'Ice',
+          },
+          x: 24.8,
+          y: 31.1,
+          fateID: 1723,
+        },
+        meetthepuppetmaster: {
+          label: {
+            en: 'Puppet',
+          },
+          x: 24.1,
+          y: 37.4,
+          fateID: 1724,
+        },
+        challengeaccepted: {
+          label: {
+            en: 'Challenge',
+          },
+          x: 7.2,
+          y: 28.8,
+          fateID: 1725,
+        },
+        thubantheterrible: {
+          label: {
+            en: 'Th\'uban',
+          },
+          x: 8.6,
+          y: 34.4,
+          fateID: 1726,
+        },
+        anendtoatrocities: {
+          label: {
+            en: 'Atrocities',
+          },
+          x: 4.9,
+          y: 25.3,
+          fateID: 1727,
+        },
+        ajustpursuit: {
+          label: {
+            en: 'Pursuit',
+          },
+          x: 11.6,
+          y: 27.6,
+          fateID: 1728,
+        },
+        tankingup: {
+          label: {
+            en: 'Tanking Up',
+          },
+          x: 8.1,
+          y: 24.0,
+          fateID: 1729,
+        },
+        supersolderrising: {
+          label: {
+            en: 'Supersoldier',
+          },
+          x: 8.1,
+          y: 24.0,
+          fateID: 1730,
+        },
+        dementedmentor: {
+          label: {
+            en: 'Demented',
+          },
+          x: 7.2,
+          y: 28.8,
+          fateID: 1731,
+        },
+        severthestrings: {
+          label: {
+            en: 'Sever',
+          },
+          x: 11.6,
+          y: 27.6,
+          fateID: 1732,
+        },
+        thebeastsareback: {
+          label: {
+            en: 'Back',
+          },
+          x: 25.4,
+          y: 14.3,
+          fateID: 1733,
+        },
+        stillonlycountsasone: {
+          label: {
+            en: 'Still',
+          },
+          x: 14.5,
+          y: 10.4,
+          fateID: 1734,
+        },
+        seeqandyouwillfind: {
+          label: {
+            en: 'Seeq',
+          },
+          x: 20.3,
+          y: 16.5,
+          fateID: 1735,
+        },
+        meanspirited: {
+          label: {
+            en: 'Mean',
+          },
+          x: 25.4,
+          y: 14.3,
+          fateID: 1736,
+        },
+        arelicunleashed: {
+          label: {
+            en: 'Relic',
+          },
+          x: 25.4,
+          y: 14.3,
+          fateID: 1737,
+        },
+        whenmagesrage: {
+          label: {
+            en: 'Mages Rage',
+          },
+          x: 20.3,
+          y: 16.5,
+          fateID: 1738,
+        },
+        hypertunedhavoc: {
+          label: {
+            en: 'Hypertuned',
+          },
+          x: 16.6,
+          y: 16.8,
+          fateID: 1739,
+        },
+        attackofthesupersoldiers: {
+          label: {
+            en: 'Super Soldiers',
+          },
+          x: 16.6,
+          y: 16.8,
+          fateID: 1740,
+        },
+        thestudentbecalmsthemaster: {
+          label: {
+            en: 'Student',
+          },
+          x: 14.5,
+          y: 10.4,
+          fateID: 1741,
+        },
+        attackofthemachines: {
+          label: {
+            en: 'Machines',
+          },
+          x: 12.1,
+          y: 13.6,
+          fateID: 1742,
+        },
+        dalriada: {
+          label: {
+            en: 'Dalriada',
+          },
+          x: 25.9,
+          y: 8.2,
+          isCritical: true,
+          ceKey: 0,
+          respawnMinutes: 60,
+        },
+        onserpentswings: {
+          label: {
+            en: 'Serpents Wings',
+          },
+          x: 31.4,
+          y: 37.4,
+          isCritical: true,
+          ceKey: 1,
+        },
+        feelingtheburn: {
+          label: {
+            en: 'Feeling the Burn',
+          },
+          x: 16.6,
+          y: 16.8,
+          isCritical: true,
+          ceKey: 2,
+        },
+        thebrokenblade: {
+          label: {
+            en: 'Broken Blade',
+          },
+          x: 26.5,
+          y: 35.6,
+          isCritical: true,
+          ceKey: 3,
+        },
+        frombeyondthegrave: {
+          label: {
+            en: 'Beyond',
+          },
+          x: 20.2,
+          y: 37.4,
+          isCritical: true,
+          ceKey: 4,
+        },
+        withdiremiteandmain: {
+          label: {
+            en: 'Diremite',
+          },
+          x: 17.0,
+          y: 32.1,
+          isCritical: true,
+          ceKey: 5,
+        },
+        herecomesthecavalry: {
+          label: {
+            en: 'Cavalry',
+          },
+          x: 6.4,
+          y: 37.2,
+          isCritical: true,
+          ceKey: 6,
+        },
+        headofthesnake: {
+          label: {
+            en: 'Snake',
+          },
+          x: 5.3,
+          y: 31.9,
+          isCritical: true,
+          ceKey: 7,
+        },
+        therewouldbeblood: {
+          label: {
+            en: 'Blood',
+          },
+          x: 13.7,
+          y: 26.0,
+          isCritical: true,
+          ceKey: 8,
+        },
+        nevercrywolf: {
+          label: {
+            en: 'Cry Wolf',
+          },
+          x: 4.9,
+          y: 25.3,
+          isCritical: true,
+          ceKey: 9,
+        },
+        timetoburn: {
+          label: {
+            en: 'Time to Burn',
+          },
+          x: 10.5,
+          y: 21.5,
+          isCritical: true,
+          ceKey: 10,
+        },
+        leanmeanmagitekmachines: {
+          label: {
+            en: 'Lean, Mean',
+          },
+          x: 15.2,
+          y: 13.0,
+          isCritical: true,
+          ceKey: 11,
+        },
+        worntoashadow: {
+          label: {
+            en: 'Shadow',
+          },
+          x: 11.8,
+          y: 7.6,
+          isCritical: true,
+          ceKey: 12,
+        },
+        afamiliarface: {
+          label: {
+            en: 'Familiar Face',
+          },
+          x: 28.0,
+          y: 29.2,
+          isCritical: true,
+          ceKey: 13,
+        },
+        lookstodiefor: {
+          label: {
+            en: 'Looks',
+          },
+          x: 17.4,
+          y: 9.8,
+          isCritical: true,
+          ceKey: 14,
+        },
+        takingthelyonsshare: {
+          label: {
+            en: 'Lyon\'s Share',
+          },
+          x: 22.5,
+          y: 13.2,
           isCritical: true,
           ceKey: 15,
         },
