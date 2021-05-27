@@ -197,7 +197,7 @@ const data = {
   'LovmTournament': 590,
   'LowerLaNoscea': 135,
   'MalikahsWell': 836,
-  'MatchAll': null as null,
+  'MatchAll': null,
   'MatoyasRelict': 933,
   'MatsubaMayhem': 710,
   'MemoriaMiseraExtreme': 913,
