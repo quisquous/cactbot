@@ -4,12 +4,12 @@ import Util from './util';
 
 const emptyRoleToPartyNames = () => {
   return {
-    tank: [],
-    healer: [],
-    dps: [],
-    crafter: [],
-    gatherer: [],
-    none: [],
+    tank: [] as string[],
+    healer: [] as string[],
+    dps: [] as string[],
+    crafter: [] as string[],
+    gatherer: [] as string[],
+    none: [] as string[],
   };
 };
 
