@@ -362,7 +362,8 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '561[23]', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '561[23]', source: '어둠의 구름', capture: false }),
       delaySeconds: 7,
-      alertText: (data, _matches, output) => output[data.phaserOutputs.shift()](),
+      alertText: (data, _, output) => output[data.phaserOutputs[0]](),
+      run: (data) => data.phaserOutputs.shift(),
       outputStrings: phaserOutputStrings,
     },
     {
@@ -374,7 +375,8 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '561[23]', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '561[23]', source: '어둠의 구름', capture: false }),
       delaySeconds: 12,
-      alertText: (data, _matches, output) => output[data.phaserOutputs.shift()](),
+      alertText: (data, _, output) => output[data.phaserOutputs[0]](),
+      run: (data) => data.phaserOutputs.shift(),
       outputStrings: phaserOutputStrings,
     },
     {
@@ -405,7 +407,8 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '560[DE]', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '560[DE]', source: '어둠의 구름', capture: false }),
       delaySeconds: 8,
-      alertText: (data, _matches, output) => output[data.phaserOutputs.shift()](),
+      alertText: (data, _, output) => output[data.phaserOutputs[0]](),
+      run: (data) => data.phaserOutputs.shift(),
       outputStrings: phaserOutputStrings,
     },
     {
@@ -417,7 +420,8 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '560[DE]', source: '暗黑之云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '560[DE]', source: '어둠의 구름', capture: false }),
       delaySeconds: 12,
-      alertText: (data, _matches, output) => output[data.phaserOutputs.shift()](),
+      alertText: (data, _, output) => output[data.phaserOutputs[0]](),
+      run: (data) => data.phaserOutputs.shift(),
       outputStrings: phaserOutputStrings,
     },
     {
@@ -541,9 +545,10 @@ export default {
       durationSeconds: (data) => data.finalArtOfDarkness ? 16 : 9,
       alertText: (data, _matches, output) => {
         // Perform the callout now, regardless if it's The Second or Third Art Of Darkness
+        callout = data.artOfDarkness.slice();
         if (data.finalArtOfDarkness)
-          data.artOfDarkness.push(data.finalArtOfDarkness);
-        return data.artOfDarkness.map((key) => output[key]()).join(' -> ');
+          callout.push(data.finalArtOfDarkness);
+        return callout.map((key) => output[key]()).join(' -> ');
       },
       run: (data) => delete data.artOfDarkness,
       outputStrings: artOfDarknessOutputStrings,
