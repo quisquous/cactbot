@@ -4,26 +4,25 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
   constructor(options) {
     super(options);
     this.emulatedTimerBars = [];
-    this.emulatedTimeOffset = 0;
     this.emulatedStatus = 'pause';
     this.$barContainer = document.querySelector('.timer-bar-container');
     this.$progressTemplate = document.querySelector('template.progress').content.firstElementChild;
   }
 
   bindTo(emulator) {
-    emulator.on('tick', (timestampOffset, lastLogTimestamp) => {
-      this.emulatedTimeOffset = timestampOffset;
+    emulator.on('tick', (currentTimestamp, lastLogTimestamp) => {
       for (const i in this.emulatedTimerBars) {
         const bar = this.emulatedTimerBars[i];
-        this.updateBar(bar, timestampOffset);
+        this.updateBar(bar, currentTimestamp);
       }
-      const toRemove = this.emulatedTimerBars.filter((bar) => bar.forceRemoveAt <= timestampOffset);
+      const toRemove = this.emulatedTimerBars
+        .filter((bar) => bar.forceRemoveAt <= currentTimestamp);
       for (const i in toRemove) {
         const bar = toRemove[i];
         bar.$progress.remove();
       }
       this.emulatedTimerBars = this.emulatedTimerBars.filter((bar) => {
-        return bar.forceRemoveAt > timestampOffset;
+        return bar.forceRemoveAt > currentTimestamp;
       });
       this.timeline && this.timeline.timebase && this.timeline._OnUpdateTimer(lastLogTimestamp);
     });
@@ -37,7 +36,6 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
     let tmpPopupText;
     emulator.on('preSeek', (time) => {
       this.timeline && this.timeline.Stop();
-      this.emulatedTimeOffset = time;
       for (const i in this.emulatedTimerBars) {
         const bar = this.emulatedTimerBars[i];
         bar.$progress.remove();
@@ -46,12 +44,12 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
       this.timeline && (tmpPopupText = this.timeline.popupText);
       this.timeline && (this.timeline.popupText = null);
     });
-    emulator.on('postSeek', (time) => {
+    emulator.on('postSeek', (currentTimestamp) => {
       this.timeline && (this.timeline.popupText = tmpPopupText);
-      this.timeline && this.timeline.emulatedSync(time);
+      this.timeline && this.timeline.emulatedSync(currentTimestamp);
       for (const i in this.emulatedTimerBars) {
         const bar = this.emulatedTimerBars[i];
-        this.updateBar(bar, time);
+        this.updateBar(bar, currentTimestamp);
       }
     });
     emulator.on('currentEncounterChanged', this.stop.bind(this));
@@ -59,7 +57,6 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
 
   stop() {
     this.timeline && this.timeline.Stop();
-    this.emulatedTimeOffset = 0;
     for (const i in this.emulatedTimerBars) {
       const bar = this.emulatedTimerBars[i];
       bar.$progress.remove();
@@ -67,8 +64,8 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
     this.emulatedTimerBars = [];
   }
 
-  updateBar(bar, timestampOffset) {
-    const barElapsed = timestampOffset - bar.start;
+  updateBar(bar, currentTimestamp) {
+    const barElapsed = currentTimestamp - bar.start;
     let barProg = Math.min((barElapsed / bar.duration) * 100, 100);
     if (bar.style === 'empty')
       barProg = 100 - barProg;
@@ -101,10 +98,7 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
 
   // Override
   OnAddTimer(fightNow, e, channeling) {
-    if (this.emulatedTimerBars.filter((bar) => bar.event.id === e.id).length)
-      return;
-
-    const end = (e.time - fightNow) * 1000;
+    const end = this.timeline.timebase + (e.time * 1000);
     const start = end - (this.options.ShowTimerBarsAtSeconds * 1000);
     const $progress = this.$progressTemplate.cloneNode(true);
     const bar = {
@@ -112,7 +106,7 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
       $bar: $progress.querySelector('.progress-bar'),
       $leftLabel: $progress.querySelector('.timer-bar-left-label'),
       $rightLabel: $progress.querySelector('.timer-bar-right-label'),
-      start: this.emulatedTimeOffset + start,
+      start: start,
       style: !channeling ? 'fill' : 'empty',
       duration: (channeling ? e.time - fightNow : this.options.ShowTimerBarsAtSeconds) * 1000,
       event: e,
@@ -127,19 +121,18 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
     bar.$bar.ariaValueMax = bar.duration;
     this.emulatedTimerBars.push(bar);
     this.$barContainer.append(bar.$progress);
-    this.updateBar(bar, this.emulatedTimeOffset);
+    this.updateBar(bar);
   }
 
   // Override
   OnRemoveTimer(e, expired) {
     const bars = this.emulatedTimerBars.filter((bar) => bar.event.id === e.id);
-    if (bars.length < 1)
-      return;
 
-    if (expired) {
-      bars[0].forceRemoveAt = this.emulatedTimeOffset;
-      if (this.options.KeepExpiredTimerBarsForSeconds)
-        bars[0].forceRemoveAt += this.options.KeepExpiredTimerBarsForSeconds * 1000;
-    }
+    bars.forEach((bar) => {
+      bar.forceRemoveAt = this.timeline.timebase;
+
+      if (expired && this.options.KeepExpiredTimerBarsForSeconds)
+        bar.forceRemoveAt += this.options.KeepExpiredTimerBarsForSeconds * 1000;
+    });
   }
 }
