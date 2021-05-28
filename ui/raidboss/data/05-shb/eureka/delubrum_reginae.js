@@ -407,7 +407,7 @@ export default {
       // There's a 3s slow windup on the first, then a 1s opposite cast.
       suppressSeconds: 10,
       alertText: (_data, matches, output) => {
-        if (matches.id === '5761')
+        if (matches.id === '5761' || matches.id === '5763')
           return output.leftThenRight();
         return output.rightThenLeft();
       },
