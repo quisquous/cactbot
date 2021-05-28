@@ -203,6 +203,9 @@ export default {
             return;
           }
         }
+
+        if (data.options.Debug)
+          console.log(`Unknown CE: ${ceId}`);
       },
     },
     {
