@@ -11,7 +11,7 @@ hideall "--sync--"
 # The idea with each of them is that you have at most two minutes of standing
 # around, so start each timeline at +200 from the initial 0x21 sync line.
 # e.g. Kill It With Fire would start at 1200 with "Start" and then boss
-# abilities form there.
+# abilities from there.
 
 ### Kill It with Fire
 1000.0 "--sync--" sync / 21:........:80000014:1D4:/ window 100000,0

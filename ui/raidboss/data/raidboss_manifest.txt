@@ -237,6 +237,8 @@
 05-shb/eureka/delubrum_reginae_savage.txt
 05-shb/eureka/delubrum_reginae.js
 05-shb/eureka/delubrum_reginae.txt
+05-shb/eureka/zadnor.js
+05-shb/eureka/zadnor.txt
 05-shb/etc/the_diadem.js
 05-shb/raid/e1n.js
 05-shb/raid/e1n.txt
