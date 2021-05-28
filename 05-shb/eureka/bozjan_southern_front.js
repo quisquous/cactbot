@@ -191,6 +191,8 @@ Options.Triggers.push({
             return;
           }
         }
+        if (data.options.Debug)
+          console.log(`Unknown CE: ${ceId}`);
       },
     },
     {
