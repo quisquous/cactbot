@@ -552,6 +552,9 @@ Options.Triggers.push({
         'The Third Demiurge': 'Dritt(?:e|er|es|en) Demiurg',
       },
       'replaceText': {
+        '\\(Meteor Detonate\\)': '(Meteor Explosion)',
+        '\\(Snapshot\\)': '(Meteor Positionen)',
+        '\\(Tilt\\)': '(Neigung)',
         'Aero III': 'Windga',
         'Arms of Wisdom': 'Arme der Weisheit',
         'Cintamani': 'Chintamani',
@@ -567,6 +570,7 @@ Options.Triggers.push({
         'Quasar': 'Quasar',
         'Ring of Pain': 'Ring des Schmerzes',
         'The Scales Of Wisdom': 'Waage der Weisheit',
+        'Tethers': 'Verbindungen',
         'Thunder II\\/III': 'Blitzra/Blitzga',
         'Thunder II(?!(?:I|\\/))': 'Blitzra',
         'Thunder III': 'Blitzga',

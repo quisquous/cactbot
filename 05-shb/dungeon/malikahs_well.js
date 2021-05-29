@@ -106,6 +106,7 @@ Options.Triggers.push({
         'Rhapsodic Nail': 'Keil der Liebe',
       },
       'replaceText': {
+        'Pack Armadillo': 'Rudel-Gürteltier',
         'Stone Flail': 'Steindresche',
         'Head Toss': 'Kopfwurf',
         'Right Round': 'Rotation',
@@ -121,7 +122,7 @@ Options.Triggers.push({
         'Breaking Wheel': 'Radbruch',
         'Crystal Nail': 'Kristallnagel',
         'Censure': 'Tadel',
-        'Armadillo': 'Armadillo',
+        '(?!<Pack )Armadillo': 'Armadillo',
       },
     },
     {

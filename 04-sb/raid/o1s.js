@@ -166,9 +166,9 @@ Options.Triggers.push({
         'Wyrm Tail': '太古龙尾',
       },
       'replaceText': {
-        '(safe)': '(安全)',
-        '(spread)': '(分散)',
-        '(stack)': '(分摊)',
+        '\\(safe\\)': '(安全)',
+        '\\(spread\\)': '(分散)',
+        '\\(stack\\)': '(分摊)',
         'Blaze': '冰焰',
         'Breath Wing': '风息之翼',
         'Charybdis': '大漩涡',

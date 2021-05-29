@@ -347,6 +347,11 @@ Options.Triggers.push({
         'Soul Reaper': 'Seelenschnitter',
       },
       'replaceText': {
+        '\\(avoid\\)': '(ausweichen)',
+        '\\(Starry End\\)': '(Sternhimmel Ende)',
+        '\\(symbols\\)': '(Symbole)',
+        '\\(take\\)': '(drin stehen)',
+        '\\(toad\\)': '(Frosch)',
         'Aetherial Pull': 'Einsaugen',
         'Aetherial Tear': 'Ätherspalt',
         'Cross Reaper': 'Sensenschwung',

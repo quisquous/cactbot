@@ -1019,6 +1019,7 @@ Options.Triggers.push({
         'Relative Virtue gains the effect of Umbral Essence': 'Die Relative Tugend erhält den Effekt von.*?Arm der Dunkelheit',
       },
       'replaceText': {
+        '\\(Stack\\)': '(Sammeln)',
         'Acallam Na Senorach': 'Legendärer Lanzenwirbel',
         'Acceleration Bomb': 'Beschleunigungsbombe',
         'Adds': 'Adds',

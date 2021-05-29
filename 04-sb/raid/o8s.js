@@ -662,6 +662,8 @@ Options.Triggers.push({
         'The limit gauge resets!': 'Der Limitrausch-Balken wurde geleert.',
       },
       'replaceText': {
+        '\\(small\\)': '(klein)',
+        '\\(big\\)': '(groß)',
         'Aero Assault': 'Wallendes Windga',
         'All Things Ending': 'Ende aller Dinge',
         'Blizzard Blitz': 'Erstarrendes Eisga',

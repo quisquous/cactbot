@@ -18,6 +18,7 @@ Options.Triggers.push({
         knockback: Outputs.knockback,
         knockbackAndAvoid: {
           en: 'Knockback F + Avoid M',
+          de: 'Rückstoß W + Weiche M aus',
           fr: 'Poussée F + Évitez M',
           ja: 'Fのノックバック + Mに避ける',
           cn: '女性击退 + 远离男性',
@@ -115,6 +116,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Behind => Spread',
+          de: 'Hinter => Verteilen',
           fr: 'Derrière -> Dispersez-vous',
           ja: '後ろ -> 散開',
           cn: '背后 => 分散',
@@ -241,6 +243,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Bring Bosses Middle, Face Eye',
+          de: 'Zieh Bosse zur Mitte, zum Auge drehen',
           fr: 'Placez les boss au centre, face à l\'œil',
           ja: 'ボスを中央に、目を見る',
           cn: '把BOSS拉到中间，面向眼睛',
@@ -261,6 +264,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Get Middle (Blades)',
+          de: 'Zur Mitte (Schwerter)',
           fr: 'Allez au centre (Lames)',
           ja: '中へ (剣)',
           cn: '去中间 (剑)',
@@ -280,6 +284,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Intercards + Stack',
+          de: 'Interkardinal + Sammeln',
           fr: 'Intercardinal + Package',
           ja: '斜め + 頭割り',
           cn: '躲十字AoE + 分摊',
@@ -299,6 +304,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Behind => Out + Spread',
+          de: 'Hinter => Raus + Verteilen',
           fr: 'Derrière -> Extérieur + Dispersion',
           ja: '後ろ => 外へ + 散開',
           cn: '去背后 => 远离 + 分散',
@@ -319,6 +325,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Intercards + Spread (Shield)',
+          de: 'Interkardinal + Verteilen (Schild)',
           fr: 'Intercardinal + Dispersion (Bouclier)',
           ja: '斜め + 散開 (盾)',
           cn: '躲十字AoE + 分散 (盾)',
@@ -341,6 +348,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Spread => Follow M',
+          de: 'Verteilen => Folge M',
           fr: 'Dispersion -> Suivez M',
           ja: '散開 -> Mを追う',
           cn: '分散 => 去男性脚下',
@@ -362,6 +370,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Away from M',
+          de: 'Weg von M',
           fr: 'Éloignez-vous de M',
           ja: 'Mから離れる',
           cn: '远离男性',
@@ -428,6 +437,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Stack Groups',
+          de: 'Gruppen-Sammeln',
           fr: 'Package en groupe',
           ja: '組み分け頭割り',
           cn: '分组分摊',
@@ -448,6 +458,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Arrow on YOU',
+          de: 'Pfeil auf DIR',
           fr: 'Flèche sur VOUS',
           ja: '自分にアロー',
           cn: '天箭点名',

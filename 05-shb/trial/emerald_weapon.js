@@ -27,11 +27,11 @@ Options.Triggers.push({
     {
       id: 'Emerald Magitek Magnetism',
       netRegex: NetRegexes.startsUsing({ source: 'The Emerald Weapon', id: '5B0[56]', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '5594', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '5594', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '5594', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '5594', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '5594', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Smaragd-Waffe', id: '5B0[56]', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Émeraude', id: '5B0[56]', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'エメラルドウェポン', id: '5B0[56]', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '绿宝石神兵', id: '5B0[56]', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '에메랄드 웨폰', id: '5B0[56]', capture: false }),
       condition: (data) => data.seenMines || data.role !== 'tank',
       delaySeconds: 9,
       durationSeconds: 6,
@@ -93,6 +93,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Knockback Arrow on YOU',
+          de: 'Rückstoß-Pfeil auf DIR',
           ja: '自分に吹き飛ばし矢印',
           cn: '击退箭头点名',
           ko: '넉백 화살표 대상자',
@@ -107,6 +108,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Go Cardinal With Sword',
+          de: 'Geh mit dem Schwert zu Kardinalen',
           ja: '辺の中心に捨てる',
           cn: '四边放刀',
           ko: '동서남북으로 이동',
@@ -121,6 +123,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Go Intercardinal With Sword',
+          de: 'Geh mit dem Schwert zu Interkardinalen',
           ja: '四隅に捨てる',
           cn: '四角放刀',
           ko: '대각위치로 이동',
