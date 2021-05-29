@@ -293,7 +293,8 @@ export default {
         'The General\'s Wing': 'Arrhidaios (?:der|die|das) Überwältigend(?:e|er|es|en)',
       },
       'replaceText': {
-        '(?<!Radiant )Sacrament': 'Sakrament',
+        '(?<! )Sacrament': 'Sakrament',
+        '\\(Radiant\\?\\) Sacrament': '(Brennendes?) Sakrament',
         'Almost Holy': 'Semi-Sanctus',
         'Arrhidaeus\'s Lanner': 'Arrhidaios der Bote',
         'Blazing Scourge': 'Peitschendes Licht',

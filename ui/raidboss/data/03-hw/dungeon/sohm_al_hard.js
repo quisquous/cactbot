@@ -209,6 +209,10 @@ export default {
         'Lava Scorpion': 'Lavaskorpion',
       },
       'replaceText': {
+        '\\(Back\\)': '(Hinten)',
+        '\\(Front\\)': '(Vorne)',
+        '\\(Readies\\)': '(Vorbereitung)',
+        '\\(Ring\\)': '(Ring)',
         'Wild Horn': 'Wildes Horn',
         'Spore Sac': 'Sporensack',
         'Realm Shaker': 'Erderschütterer',

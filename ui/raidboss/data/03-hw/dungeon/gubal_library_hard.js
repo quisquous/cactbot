@@ -286,6 +286,7 @@ export default {
         'Top Shelf Tome': 'Prachtband',
       },
       'replaceText': {
+        '\\(buster\\)': '(Tankbuster)',
         'Bibliocide': 'Bibliozid',
         'Book Drop': 'Buch fällt',
         'Check Out': 'Anthologie',

@@ -362,7 +362,7 @@ export default {
       },
       'replaceText': {
         'The Path of Light': 'Pfad des Lichts',
-        'Twin Stillness': 'Zwillingsschwerter der Stille',
+        'Twin Stillness/Twin Silence': 'Zwillingsschwerter der Stille/Ruhe',
         'Stoneskin': 'Steinhaut',
         'Spiteful Dance': 'Kalter Tanz',
         'Skyfall': 'Vernichtung der Welt',
@@ -378,6 +378,7 @@ export default {
         'Holy': 'Sanctus',
         'Heavenly Strike': 'Elysischer Schlag',
         'Heart Asunder': 'Herzensbrecher',
+        'Embittered Dance': 'Strenger Tanz',
         'Frost Armor(?! )': 'Frostrüstung',
         'Frigid Water': 'Eisfrost',
         'Frigid Stone': 'Eisstein',

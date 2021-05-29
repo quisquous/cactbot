@@ -73,6 +73,7 @@ export default {
         tankBuster: Outputs.tankBuster,
         avoidTether: {
           en: 'Avoid ${player} and tethers',
+          de: 'Weiche ${player} und Verbindungen aus',
           ja: '${player}と線から離れる',
           cn: '远离${player}及其连线',
           ko: '${player}와 선 피하기',
@@ -205,7 +206,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ id: '4E34', source: 'Windhöhlen-Exergon', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4E34', source: 'élémentaire des cavernes venteuses', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '4E34', source: 'ウィンドケイブ・スプライト', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '4E34', source: '风洞元精', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4E34', source: '洞窟风元精', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4E34', source: '바람 동굴 정령', capture: false }),
       delaySeconds: 5,
       alertText: (_data, _matches, output) => output.goBoss(),

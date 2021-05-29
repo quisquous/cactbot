@@ -862,6 +862,9 @@ export default {
         'Time Eruption': 'Zeiteruption',
         'Towerfall': 'Turmsturz',
         'Ultimate Illusion': 'Ultimative Illusion',
+        'Marks': 'Markierungen',
+        '(?<!Sword )In/Out': 'Rein/Raus',
+        '(?<!Sword )Out/In': 'Raus/Rein',
       },
     },
     {

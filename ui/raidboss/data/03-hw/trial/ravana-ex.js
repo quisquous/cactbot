@@ -12,6 +12,10 @@ export default {
         'Ravana': 'Ravana',
       },
       'replaceText': {
+        '\\(1st Double Prey\\)': '(1. Doppel-Markierung)',
+        '\\(2nd Double Prey\\)': '(2. Doppel-Markierung)',
+        '\\(Circles\\)': '(Kreise)',
+        '\\(Flames\\)': '(Flammen) ',
         'Atma-Linga': 'Atma-Linga',
         'Beetle Avatar': 'Käfer-Inkarnation',
         'Blades of Carnage and Liberation': 'Klingen des Gemetzels und der Befreiung',
