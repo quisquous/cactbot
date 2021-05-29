@@ -5,7 +5,7 @@ import { LocaleObject } from '../types/trigger';
 
 type LocaleTextOrArray = LocaleObject<string | string[]>;
 
-export type Rank = 'S' | 'SS+' | 'SS-' | 'A' | 'B';
+export type Rank = 'S' | 'SS+' | 'SS-' | 'A' | 'B' | 'C';
 
 // Optional values are supported in `Options.CustomMonsters`.
 export type HuntEntry = {
