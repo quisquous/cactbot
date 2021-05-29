@@ -325,6 +325,7 @@ export default {
         'The heavens tremble in my wake': 'Mein Streitwagen donnert empor in luftige Höhen',
       },
       'replaceText': {
+        '\\(misdirect\\)': '(fehlgeleitet)',
         '--face--': '--Gesicht--',
         '--ice disappears--': '--Eis verschwindet--',
         '--invulnerable--': '--unverwundbar--',

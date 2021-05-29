@@ -69,6 +69,7 @@ export default {
       outputStrings: {
         text: {
           en: 'USE VRIL OR DIE',
+          de: 'BENUTZT VRIL ODER STIRB',
           fr: 'UTILISEZ VRIL OU MOURREZ',
           ja: 'エーテル使って！！',
           cn: '快用元气啊！！',
@@ -138,6 +139,7 @@ export default {
       outputStrings: {
         dontStack: {
           en: 'Don\'t Stack!',
+          de: 'Nicht Sammeln!',
           fr: 'Ne vous packez pas !',
           ja: '重ならないで！',
           cn: '不要重叠！',
@@ -183,6 +185,7 @@ export default {
       outputStrings: {
         powerFlower: {
           en: 'Expanding Flower Marker',
+          de: 'Ausdehnender Blumen-Marker',
           ja: '自分に左手 (拡大する)',
           cn: '大花点名',
         },
@@ -210,16 +213,23 @@ export default {
     },
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Dreaming Kshatriya': 'verträumt(?:e|er|es|en) Kshatriya',
         'Lakshmi': 'Lakshmi',
+        'Vril': 'Vril',
       },
       'replaceText': {
+        '--chanchala start--': '--Chanchala startet--',
+        '--chanchala end--': '--Chanchala endet--',
+        '--vril spawn--': '--Vril erscheint--',
+        '--vril despawn--': '--Vril verschwindet--',
         'Adds Appear': 'Adds erscheinen',
+        'Aether Drain': 'Ätherabsorption',
         'Alluring Arm': 'Anziehender Arm',
+        'Alluring Embrace': 'Lockende Umarmung',
+        'Blissful Arrow': 'Heiliger Pfeil',
         'Blissful Spear': 'Speer der Gnade',
-        'Chanchala': 'Chanchala',
+        '(?<!-)Chanchala': 'Chanchala',
         'Divine Denial': 'Göttliche Leugnung',
         'Divine Desire': 'Göttliche Lockung',
         'Divine Doubt': 'Göttliche Bestürzung',
@@ -227,10 +237,14 @@ export default {
         'Hand Of Grace': 'Hand der Anmut',
         'Hands Of Grace/Beauty': 'Hand Der Anmut/Schönheit',
         'Inner Demons': 'Dämonen in dir',
+        'Jagadishwari': 'Jagadishwari',
         'Stotram': 'Stotram',
+        '\/Spear': '/Speer',
+        'Tail Slap': 'Schwanzklapser',
         'The Pall Of Light': 'Flut des Lichts',
         'The Path Of Light': 'Pfad des Lichts',
         'The Pull Of Light': 'Strom des Lichts',
+        '(?<!-)Vril': 'Vril',
       },
     },
     {

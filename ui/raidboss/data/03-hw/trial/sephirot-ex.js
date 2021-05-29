@@ -14,6 +14,8 @@ export default {
         'Storm Of Words': 'Wörtersturm',
       },
       'replaceText': {
+        'Tethers': 'Verbindungen',
+        'spread': 'verteilen',
         'Adds Spawn': 'Adds erscheinen',
         'Ascension': 'Himmelfahrt',
         'Chesed': 'Chesed',

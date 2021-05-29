@@ -167,6 +167,7 @@ export default {
         'Brazen Bull': 'Garotte',
         'Chain Down': 'Schneidende Fesseln',
         'Exorcise': 'Ikonenschreck',
+        'Center': 'Mitte',
         'Fevered Flagellation': 'Grimmige Geißelung',
         'Fierce Beating': 'Gnadenlose Geißel',
         'Gibbet Cage': 'Eiserne Jungfrau',
