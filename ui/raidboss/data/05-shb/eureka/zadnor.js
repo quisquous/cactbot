@@ -4,6 +4,11 @@ import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
+// TODO: serpents has a "get knocked into first fire" thing on the first one, wrong
+
+// Tested:
+// * shadow
+
 // https://www.youtube.com/watch?v=L4lXAV_OD-0
 
 // TODO: wolf or grave has a east/west cleave???
@@ -66,11 +71,11 @@ const ceIds = {
   // Taking the Lyon's Share
   lyon: '???',
   // The Dalriada
-  dalriada1: '213',
-  dalriada2: '214',
-  dalriada3: '215',
-  dalriada4: '216',
-  dalriada5: '217',
+  dalriada: '213',
+  dalriadaCuchulainn: '214',
+  dalriadaHallway: '215',
+  dalriadaSaunion: '216',
+  dalriadaDiablo: '217',
 };
 
 const limitCutHeadmarkers = ['004F', '0050', '0051', '0052'];
@@ -88,14 +93,14 @@ const numberOutputStrings = [0, 1, 2, 3, 4].map((n) => {
 });
 
 // TODO: promote something like this to Conditions?
-const tankBusterOnParty = (ceName) => (data) => {
+const tankBusterOnParty = (ceName) => (data, matches) => {
   if (ceName && data.ce !== ceName)
     return false;
-  if (data.target === data.me)
+  if (matches.target === data.me)
     return true;
   if (data.role !== 'healer')
     return false;
-  return data.party.inParty(data.target);
+  return data.party.inParty(matches.target);
 };
 
 export default {
@@ -197,28 +202,103 @@ export default {
       },
     },
     // ***** Feeling the Burn *****
+    {
+      id: 'Zadnor Feeling Suppressive Magitek Rays',
+      netRegex: NetRegexes.startsUsing({ source: 'Blackburn', id: '5C40', capture: false }),
+      condition: (data) => data.ce === 'feeling',
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Zadnor Feeling Chain Cannon You',
+      netRegex: NetRegexes.headMarker({ id: '00A4' }),
+      condition: (data, matches) => data.ce === 'feeling' && data.me === matches.target,
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Chain Cannon on YOU',
+        },
+      },
+    },
+    {
+      id: 'Zadnor Feeling Chain Cannon Not You',
+      netRegex: NetRegexes.headMarker({ id: '00A4', capture: false }),
+      condition: (data) => data.ce === 'feeling',
+      delaySeconds: 3,
+      suppressSeconds: 1,
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stay Out of Lasers',
+        },
+      },
+    },
+    {
+      id: 'Zadnor Feeling Analysis',
+      netRegex: NetRegexes.startsUsing({ source: 'Blackburn', id: '5C37', capture: false }),
+      condition: (data) => data.ce === 'feeling',
+      run: (data) => data.feelingAnalysis = true,
+    },
+    {
+      id: 'Zadnor Feeling Read Orders Coordinated Assault',
+      netRegex: NetRegexes.startsUsing({ source: 'Blackburn', id: '5C34', capture: false }),
+      condition: (data) => data.ce === 'feeling',
+      alertText: (data, _matches, output) => {
+        if (data.feelingAnalysis)
+          return output.point();
+        return output.dodge();
+      },
+      run: (data) => delete data.feelingAnalysis,
+      outputStrings: {
+        dodge: {
+          en: 'Dodge 4 Charges',
+        },
+        point: {
+          en: 'Point at 4 Charges',
+        },
+      },
+    },
     // ***** The Broken Blade *****
     // ***** From Beyond the Grave *****
     {
-      id: 'Zadnor Grave Soul Purge Out First',
-      netRegex: NetRegexes.startsUsing({ source: '4th-Make Shemhazai', id: '5E23', capture: false }),
+      id: 'Zadnor Grave Soul Purge',
+      // 5E23 = get out first
+      // 5E25 = get in first
+      netRegex: NetRegexes.startsUsing({ source: '4th-Make Shemhazai', id: ['5E23', '5E25'] }),
       condition: (data) => data.ce === 'grave',
       durationSeconds: 7,
       suppressSeconds: 10,
-      response: Responses.getOutThenIn(),
+      alertText: (_data, matches, output) => {
+        if (matches.id === '5E23')
+          return output.outThenIn();
+        return output.inThenOut();
+      },
+      outputStrings: {
+        outThenIn: Outputs.outThenIn,
+        inThenOut: Outputs.inThenOut,
+      },
     },
     {
-      id: 'Zadnor Grave Soul Purge In First',
-      netRegex: NetRegexes.startsUsing({ source: '4th-Make Shemhazai', id: '5E25', capture: false }),
+      id: 'Zadnor Grave Soul Purge Second',
+      // 5E23 = get out first (so get in second)
+      // 5E25 = get in first (so get out second)
+      netRegex: NetRegexes.startsUsing({ source: '4th-Make Shemhazai', id: ['5E23', '5E25'] }),
       condition: (data) => data.ce === 'grave',
-      durationSeconds: 7,
+      delaySeconds: 5,
       suppressSeconds: 10,
-      response: Responses.getOutThenIn(),
+      alertText: (_data, matches, output) => {
+        if (matches.id === '5E23')
+          return output.in();
+        return output.out();
+      },
+      outputStrings: {
+        out: Outputs.out,
+        in: Outputs.in,
+      },
     },
     {
       id: 'Zadnor Grave Devour Soul',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Shemhazai', id: '5E20' }),
-      condition: tankBusterOnParty(ceIds.grave),
+      condition: tankBusterOnParty('grave'),
       response: Responses.tankBuster(),
     },
     {
@@ -252,7 +332,7 @@ export default {
       // 873 = Left Face
       // 874 = Right Face
       netRegex: NetRegexes.gainsEffect({ source: '4th-Make Shemhazai', effectId: ['871', '872', '873', '874'] }),
-      condition: (data) => data.ce === 'grave',
+      condition: (data) => data.ce === 'grave' && data.me === matches.target,
       alertText: (_data, matches, output) => {
         const effectId = matches.effectId.toUpperCase();
         if (effectId === '871')
@@ -505,6 +585,48 @@ export default {
       },
     },
     // ***** A Familiar Face *****
+    {
+      id: 'Zadnor Face Ancient Quake IV',
+      netRegex: NetRegexes.startsUsing({ source: '4th-Make Hashmal', id: '5D14', capture: false }),
+      condition: (data) => data.ce === 'face',
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Zadnor Face Rock Cutter',
+      netRegex: NetRegexes.startsUsing({ source: '4th-Make Hashmal', id: '5D13' }),
+      condition: tankBusterOnParty('face'),
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'Zadnor Face Extreme Edge Left',
+      netRegex: NetRegexes.startsUsing({ source: 'Phantom Hashmal', id: '5D0E', capture: false }),
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Find Phantom; Dodge Left',
+        },
+      },
+    },
+    {
+      id: 'Zadnor Face Extreme Edge Right',
+      netRegex: NetRegexes.startsUsing({ source: 'Phantom Hashmal', id: '5D0D', capture: false }),
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Find Phantom; Dodge Right',
+        },
+      },
+    },
+    {
+      id: 'Zadnor Face Hammer Round',
+      netRegex: NetRegexes.startsUsing({ source: '4th-Make Hashmal', id: '5D10', capture: false }),
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away From Hammer; Rotate Outside',
+        },
+      },
+    },
     // ***** Looks to Die For *****
     {
       id: 'Zadnor Looks Forelash',
@@ -601,11 +723,12 @@ export default {
     {
       id: 'Zadnor Blackburn Augur Sanctified Quake III',
       netRegex: NetRegexes.startsUsing({ id: '5F20', capture: false }),
+      suppressSeconds: 1,
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Augur Pyroplexy',
-      netRegex: NetRegexes.startsUsing({ source: '4th Legion Augur', id: '5F1B', capture: false }),
+      netRegex: NetRegexes.ability({ source: '4th Legion Augur', id: '5F1B', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -617,53 +740,31 @@ export default {
       id: 'Zadnor Augur Turbine',
       netRegex: NetRegexes.startsUsing({ source: 'Flameborne Zirnitra', id: '5F14' }),
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
-      response: Responses.knockback(),
-    },
-    {
-      id: 'Zadnor Augur 74 Degrees You',
-      // TODO: combine this with the `serpents` version above??
-      netRegex: NetRegexes.startsUsing({ source: 'Waveborne Zirnitra', id: '5F17' }),
-      preRun: (data, matches) => {
-        data.serpentsDonut = data.serpentsDonut || [];
-        data.serpentsDonut.push(matches.target);
-      },
-      alarmText: (data, matches, output) => {
-        if (data.me === matches.target)
-          return output.text();
-      },
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Stack Your Donut',
+          en: 'Stack + Knockback Together',
         },
-      },
-    },
-    {
-      id: 'Zadnor Augur 74 Degrees Not You',
-      netRegex: NetRegexes.startsUsing({ source: 'Waveborne Zirnitra', id: '5F17', capture: false }),
-      delaySeconds: 0.5,
-      suppressSeconds: 1,
-      infoText: (data, _matches, output) => {
-        if (!data.serpentsDonut.includes(data.me))
-          return output.getTogether();
-      },
-      run: (data) => delete data.serpentsDonut,
-      outputStrings: {
-        getTogether: Outputs.getTogether,
       },
     },
     {
       id: 'Zadnor Alkonost Stormcall',
       netRegex: NetRegexes.startsUsing({ source: 'Tamed Alkonost', id: '5F26', capture: false }),
+      delaySeconds: 2,
+      durationSeconds: 5,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Go North of Fast Orb',
+          // TODO: we could figure out where this orb is and say go north/south.
+          en: 'Go Opposite Fast Orb',
         },
       },
     },
     {
-      id: 'Zadnor Alkonost North Wind',
-      netRegex: NetRegexes.startsUsing({ source: 'Tamed Carrion Crow', id: '5F21' }),
+      id: 'Zadnor Alkonost Wind',
+      // 5F21 = North Wind
+      // 5F22 = South Wind
+      netRegex: NetRegexes.startsUsing({ source: 'Tamed Carrion Crow', id: ['5F21', '5F22'] }),
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       response: Responses.knockback(),
     },
@@ -690,6 +791,7 @@ export default {
       // 873 = Left Face
       // 874 = Right Face
       netRegex: NetRegexes.gainsEffect({ source: '4th-Make Cuchulainn', effectId: ['871', '872', '873', '874'] }),
+      condition: Conditions.targetIsYou(),
       alertText: (_data, matches, output) => {
         const effectId = matches.effectId.toUpperCase();
         if (effectId === '871')
@@ -763,14 +865,13 @@ export default {
     {
       id: 'Zadnor Cuchulainn Fell Flow',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
-      condition: Conditions.targetIsYou(),
+      condition: (data, matches) => data.ce === 'dalriadaCuchulainn' && data.me === matches.target,
       response: Responses.earthshaker(),
     },
     {
       id: 'Zadnor Saunion High-Powered Magitek Ray',
       netRegex: NetRegexes.startsUsing({ source: 'Saunion', id: '5DC5' }),
-      condition: tankBusterOnParty(),
-      response: Responses.tankBuster(),
+      response: Responses.tankCleave(),
     },
     {
       id: 'Zadnor Saunion Magitek Halo',
@@ -789,7 +890,7 @@ export default {
     },
     {
       id: 'Zadnor Saunion Mobile Halo',
-      netRegex: NetRegexes.startsUsing({ source: 'Saunion', id: '5DBB', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Saunion', id: '5DB9', capture: false }),
       alertText: (_data, _, outputs) => outputs.text(),
       outputStrings: {
         text: {
@@ -837,10 +938,19 @@ export default {
       },
     },
     {
+      id: 'Zadnor Saunion Tooth and Talon',
+      netRegex: NetRegexes.startsUsing({ source: 'Dawon The Younger', id: '5DD4' }),
+      response: Responses.tankBuster(),
+    },
+    {
       id: 'Zadnor Saunion Swooping Frenzy',
       netRegex: NetRegexes.startsUsing({ source: 'Dawon The Younger', id: '5DD0', capture: false }),
-      suppressSeconds: 9999,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (data, _matches, output) => {
+        // Every other Swooping Frenzy is followed by a Frigid Pulse, starting with the first.
+        data.saunionSwoopingCount = (data.saunionSwoopingCount || 0) + 1;
+        if (data.saunionSwoopingCount % 2)
+          return output.text();
+      },
       outputStrings: {
         text: {
           en: 'Follow Boss',
@@ -855,6 +965,7 @@ export default {
     {
       id: 'Zadnor Diablo Advanced Death Ray',
       netRegex: NetRegexes.headMarker({ id: '00E6' }),
+      condition: (data) => data.ce === 'dalriadaDiablo',
       // TODO: this is maybe worth promoting to responses?
       response: (data, matches, output) => {
         // cactbot-builtin-response
@@ -869,7 +980,7 @@ export default {
 
         if (data.me === matches.target)
           return { alarmText: output.tankLaserOnYou() };
-        return { infoText: avoidTankLaser() };
+        return { infoText: output.avoidTankLaser() };
       },
     },
     {
@@ -913,7 +1024,7 @@ export default {
       netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CB3', capture: false }),
       // Don't warn people to preposition here, because they probably need
       // heals after the initial hit before popping these.
-      delaySeconds: 5,
+      delaySeconds: 5.5,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -924,6 +1035,7 @@ export default {
     {
       id: 'Zadnor Diablo Deadly Dealing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CC2' }),
+      // TODO: these feel really late with 5 seconds, should they call instantly at 7?
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       alertText: (data, _matches, output) => {
         // TODO: how does this loop?
@@ -944,13 +1056,13 @@ export default {
     {
       id: 'Zadnor Diablo Void Systems Overload',
       netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CB7', capture: false }),
-      response: Responses.aoe(),
+      response: Responses.bigAoe(),
     },
     {
       id: 'Zadnor Diablo Pillar Of Shamash Spread',
       // 5CBC damage
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      // TODO: probably need a condition here as 0017 probably used elsehwere in zone.
+      condition: (data) => data.ce === 'dalriadaDiablo',
       preRun: (data, matches) => {
         data.diabloPillar = data.diabloPillar || [];
         data.diabloPillar.push(matches.target);
@@ -969,8 +1081,8 @@ export default {
       id: 'Zadnor Diablo Pillar Of Shamash Stack',
       // 5CBE damage (no headmarker???)
       netRegex: NetRegexes.headMarker({ id: '0017', capture: false }),
-      // TODO: probably need a condition here as 0017 probably used elsewhere in zone.
-      delaySeconds: 0.5,
+      condition: (data) => data.ce === 'dalriadaDiablo',
+      delaySeconds: 1.5,
       suppressSeconds: 5,
       infoText: (data, _matches, output) => {
         if (!data.diabloPillar || !data.diabloPillar.includes(data.me))
@@ -987,8 +1099,8 @@ export default {
       id: 'Zadnor Diablo Acceleration Bomb Dodge',
       netRegex: NetRegexes.gainsEffect({ effectId: 'A61' }),
       condition: Conditions.targetIsYou(),
-      durationSeconds: (_data, matches) => parseFloat(matches.duration) - 3.5,
-      alertText: (_data, matches, output) => {
+      durationSeconds: (_data, matches) => parseFloat(matches.duration) - 4,
+      infoText: (_data, matches, output) => {
         // Durations are 7 and 12.
         const duration = parseFloat(matches.duration);
         if (duration > 10)
@@ -997,10 +1109,10 @@ export default {
       },
       outputStrings: {
         dodgeFirst: {
-          en: 'Dodge -> Stop',
+          en: '(Dodge -> Stop)',
         },
         dodgeSecond: {
-          en: 'Stop -> Dodge',
+          en: '(Stop -> Dodge)',
         },
       },
     },
@@ -1008,7 +1120,7 @@ export default {
       id: 'Zadnor Diablo Acceleration Bomb Stop',
       netRegex: NetRegexes.gainsEffect({ effectId: 'A61' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3.5,
       response: Responses.stopEverything(),
     },
   ],
