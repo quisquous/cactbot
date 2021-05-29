@@ -68,10 +68,14 @@ const ruleModule = {
       const outputTemplateKey = {};
       for (const outputString of
         node.properties.filter((s) => !t.isSpreadElement(s) && !t.isMemberExpression(s.value))) {
-        // each outputString
-        const values = outputString.value.properties
-          .map((x) => x.value.value)
-          .filter((x) => x !== undefined);
+        // For each outputString...
+        const properties = outputString.value.properties;
+        // This could just be a literal, e.g. `outputStrings: { text: 'string' }`.
+        if (!properties)
+          return;
+
+        const values = properties.map((x) => x.value.value)
+          .filter((x) => x !== undefined) || [];
 
         const templateIds = values
           .map((x) => Array.from(x.matchAll(/\${\s*([^}\s]+)\s*}/g)))
