@@ -1,44 +1,103 @@
+const hideEvents = [
+  'mouseleave',
+  'blur',
+] as const;
+
+const validDirections = [
+  'top',
+  'right',
+  'bottom',
+  'left',
+] as const;
+type ValidDirection = typeof validDirections[number];
+
+abstract class HTMLTemplateElement extends HTMLElement {
+  abstract get content(): DocumentFragment;
+}
+
+const showEvents = [
+  'mouseenter',
+  'focus',
+] as const;
+
+type TemplatesType = {[Property in ValidDirection]: HTMLTemplateElement};
+
+const toPx = (px: number): string => `${px}px`;
+
 export default class Tooltip {
-  constructor(target, direction, text, autoShow = true, autoHide = true) {
-    if (!Tooltip.validDirections.includes(direction))
-      throw new Error('Invalid direction for tooltip: ' + direction);
+  private offset = {
+    x: 0,
+    y: 0,
+  };
+  private target: HTMLElement;
+  private direction: ValidDirection;
+  private tooltip: HTMLElement;
+  private inner: HTMLElement;
+  private arrow: HTMLElement;
 
-    if (typeof target === 'string')
-      target = document.querySelector(target);
+  private static templates: TemplatesType;
 
-    this.offset = {
-      x: 0,
-      y: 0,
-    };
+  constructor(
+      targetRef: string | HTMLElement,
+      direction: ValidDirection,
+      text: string,
+      autoShow = true,
+      autoHide = true) {
+    Tooltip.initializeTemplates();
+
+    let target: HTMLElement | null;
+
+    if (typeof targetRef === 'string')
+      target = document.querySelector<HTMLElement>(targetRef);
+    else
+      target = targetRef;
+
+    if (!target) {
+      const msg = 'Invalid selector or element passed to Tooltip';
+      console.error(msg);
+      throw new Error(msg);
+    }
+
     this.target = target;
     this.direction = direction;
-    // Technically, templates should use querySelector, but this gets called so often
-    // on trigger-heavy encounters that we should hack its performance a bit
-    this.tooltip = document.getElementById(`${direction}TooltipTemplate`)
-      .content.firstElementChild.cloneNode(true);
+    this.tooltip = Tooltip.cloneTemplate(direction);
+    const innerElem = this.tooltip.querySelector<HTMLElement>('.tooltip-inner');
+    if (!innerElem) {
+      const msg = `Tooltip template direction ${direction} missing .tooltip-inner`;
+      console.error(msg);
+      throw new Error(msg);
+    }
+    this.inner = innerElem;
+    const arrowElem = this.tooltip.querySelector<HTMLElement>('.arrow');
+    if (!arrowElem) {
+      const msg = `Tooltip template direction ${direction} missing .arrow`;
+      console.error(msg);
+      throw new Error(msg);
+    }
+    this.arrow = arrowElem;
     this.setText(text);
     document.body.append(this.tooltip);
     if (autoShow) {
-      Tooltip.showEvents.forEach((e) => {
-        target.addEventListener(e, () => {
+      showEvents.forEach((e) => {
+        this.target.addEventListener(e, () => {
           this.show();
         });
       });
     }
     if (autoHide) {
-      Tooltip.hideEvents.forEach((e) => {
-        target.addEventListener(e, () => {
+      hideEvents.forEach((e) => {
+        this.target.addEventListener(e, () => {
           this.hide();
         });
       });
     }
   }
 
-  setText(text) {
-    this.tooltip.querySelector('.tooltip-inner').textContent = text;
+  setText(text: string): void {
+    this.inner.textContent = text;
   }
 
-  show() {
+  show(): void {
     const targetRect = this.target.getBoundingClientRect();
     const targetMiddle = {
       x: targetRect.x + (targetRect.width / 2),
@@ -47,48 +106,62 @@ export default class Tooltip {
     const tooltipRect = this.tooltip.getBoundingClientRect();
     // Middle of tooltip - half of arrow height
     const lrArrowHeight = (tooltipRect.height / 2) -
-      (this.tooltip.querySelector('.arrow').getBoundingClientRect().height / 2);
+      (this.arrow.getBoundingClientRect().height / 2);
     switch (this.direction) {
     case 'top':
-      this.tooltip.style.left = (targetMiddle.x - (tooltipRect.width / 2)) + this.offset.x;
-      this.tooltip.style.bottom = (targetRect.y - tooltipRect.height) + this.offset.y;
+      this.tooltip.style.left = toPx((targetMiddle.x - (tooltipRect.width / 2)) + this.offset.x);
+      this.tooltip.style.bottom = toPx((targetRect.y - tooltipRect.height) + this.offset.y);
       break;
     case 'right':
-      this.tooltip.style.left = targetRect.right + this.offset.x;
-      this.tooltip.style.top = (targetMiddle.y - (tooltipRect.height / 2)) + this.offset.y;
-      this.tooltip.querySelector('.arrow').style.top = lrArrowHeight;
+      this.tooltip.style.left = toPx(targetRect.right + this.offset.x);
+      this.tooltip.style.top = toPx((targetMiddle.y - (tooltipRect.height / 2)) + this.offset.y);
+      this.arrow.style.top = toPx(lrArrowHeight);
       break;
     case 'bottom':
-      this.tooltip.style.left = (targetMiddle.x - (tooltipRect.width / 2)) + this.offset.x;
-      this.tooltip.style.top = targetRect.bottom + this.offset.y;
+      this.tooltip.style.left = toPx((targetMiddle.x - (tooltipRect.width / 2)) + this.offset.x);
+      this.tooltip.style.top = toPx(targetRect.bottom + this.offset.y);
       break;
     case 'left':
-      this.tooltip.style.left = (targetRect.left - tooltipRect.width) + this.offset.x;
-      this.tooltip.style.top = (targetMiddle.y - (tooltipRect.height / 2)) + this.offset.y;
-      this.tooltip.querySelector('.arrow').style.top = lrArrowHeight;
+      this.tooltip.style.left = toPx((targetRect.left - tooltipRect.width) + this.offset.x);
+      this.tooltip.style.top = toPx((targetMiddle.y - (tooltipRect.height / 2)) + this.offset.y);
+      this.arrow.style.top = toPx(lrArrowHeight);
       break;
     }
     this.tooltip.classList.add('show');
     this.tooltip.setAttribute('data-show', '');
   }
 
-  hide() {
+  hide(): void {
     this.tooltip.classList.remove('show');
     this.tooltip.removeAttribute('data-show');
   }
+
+  static initializeTemplates(): void {
+    if (Tooltip.templates)
+      return;
+
+    Tooltip.templates = {
+      top: Tooltip.getTemplate('top'),
+      right: Tooltip.getTemplate('right'),
+      bottom: Tooltip.getTemplate('bottom'),
+      left: Tooltip.getTemplate('left'),
+    };
+  }
+
+  static getTemplate(dir: string): HTMLTemplateElement {
+    const elemName = `${dir}TooltipTemplate`;
+    const ret = document.getElementById(elemName);
+    if (ret === null) {
+      const msg = `Missing element ${elemName}`;
+      console.error(msg);
+      throw new Error(msg);
+    }
+    return ret as HTMLTemplateElement;
+  }
+
+  static cloneTemplate(direction: ValidDirection): HTMLElement {
+    const template = Tooltip.templates[direction];
+    return template.content.firstElementChild?.cloneNode(true) as HTMLElement;
+  }
 }
 
-Tooltip.validDirections = [
-  'top',
-  'right',
-  'bottom',
-  'left',
-];
-Tooltip.showEvents = [
-  'mouseenter',
-  'focus',
-];
-Tooltip.hideEvents = [
-  'mouseleave',
-  'blur',
-];
