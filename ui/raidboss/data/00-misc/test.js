@@ -53,11 +53,11 @@ export default {
       tts: (_data, _matches, output) => output.stackTTS(),
       outputStrings: {
         stack: {
-          en: 'Stack for Angry Dummy',
+          en: 'Stack for Angry Dummy any change',
           de: 'Sammeln für Wütender Dummy',
           fr: 'Packez-vous pour Mannequin en colère',
           ja: '怒る木人に集合',
-          cn: '木人处集合',
+          cn: '木人处集合 乱改',
           ko: '화난 나무인형에 집합',
         },
         stackTTS: {
