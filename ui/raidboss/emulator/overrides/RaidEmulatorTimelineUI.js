@@ -10,25 +10,25 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
   }
 
   bindTo(emulator) {
-    emulator.on('tick', (currentTimestamp, lastLogTimestamp) => {
+    emulator.on('tick', (currentLogTime, lastLogTimestamp) => {
       for (const i in this.emulatedTimerBars) {
         const bar = this.emulatedTimerBars[i];
-        this.updateBar(bar, currentTimestamp);
+        this.updateBar(bar, currentLogTime);
       }
       const toRemove = this.emulatedTimerBars
-        .filter((bar) => bar.forceRemoveAt <= currentTimestamp);
+        .filter((bar) => bar.forceRemoveAt <= currentLogTime);
       for (const i in toRemove) {
         const bar = toRemove[i];
         bar.$progress.remove();
       }
       this.emulatedTimerBars = this.emulatedTimerBars.filter((bar) => {
-        return bar.forceRemoveAt > currentTimestamp;
+        return bar.forceRemoveAt > currentLogTime;
       });
       this.timeline && this.timeline.timebase && this.timeline._OnUpdateTimer(lastLogTimestamp);
     });
     emulator.on('play', () => {
       this.emulatedStatus = 'play';
-      this.timeline && this.timeline.emulatedSync(emulator.currentTimestamp);
+      this.timeline && this.timeline.emulatedSync(emulator.currentLogTime);
     });
     emulator.on('pause', () => {
       this.emulatedStatus = 'pause';
@@ -44,12 +44,12 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
       this.timeline && (tmpPopupText = this.timeline.popupText);
       this.timeline && (this.timeline.popupText = null);
     });
-    emulator.on('postSeek', (currentTimestamp) => {
+    emulator.on('postSeek', (currentLogTime) => {
       this.timeline && (this.timeline.popupText = tmpPopupText);
-      this.timeline && this.timeline.emulatedSync(currentTimestamp);
+      this.timeline && this.timeline.emulatedSync(currentLogTime);
       for (const i in this.emulatedTimerBars) {
         const bar = this.emulatedTimerBars[i];
-        this.updateBar(bar, currentTimestamp);
+        this.updateBar(bar, currentLogTime);
       }
     });
     emulator.on('currentEncounterChanged', this.stop.bind(this));
@@ -64,8 +64,8 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
     this.emulatedTimerBars = [];
   }
 
-  updateBar(bar, currentTimestamp) {
-    const barElapsed = currentTimestamp - bar.start;
+  updateBar(bar, currentLogTime) {
+    const barElapsed = currentLogTime - bar.start;
     let barProg = Math.min((barElapsed / bar.duration) * 100, 100);
     if (bar.style === 'empty')
       barProg = 100 - barProg;

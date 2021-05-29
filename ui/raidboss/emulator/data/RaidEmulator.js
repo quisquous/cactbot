@@ -10,7 +10,7 @@ export default class RaidEmulator extends EventBus {
     this.playingInterval = null;
     this.currentLogLineIndex = null;
     this.lastLogTimestamp = null;
-    this.emulatedTimestamp = null;
+    this.lastTickTime = null;
   }
   addEncounter(encounter) {
     this.encounters.push(encounter);
@@ -33,7 +33,7 @@ export default class RaidEmulator extends EventBus {
 
   selectPerspective(ID) {
     this.currentEncounter.selectPerspective(ID);
-    this.seekTo(this.currentTimestamp);
+    this.seekTo(this.currentLogTime);
   }
 
   play() {
@@ -42,11 +42,10 @@ export default class RaidEmulator extends EventBus {
 
     const firstIndex = this.currentEncounter.encounter.firstLineIndex;
 
-    this.currentTimestamp = this.currentTimestamp ||
+    this.currentLogTime = this.currentLogTime ||
       this.currentEncounter.encounter.logLines[firstIndex].timestamp;
     this.currentLogLineIndex = this.currentLogLineIndex || firstIndex - 1;
-    this.emulatedTimestamp = Date.now();
-    // Use setInterval since it should account for differences in execution time automagically
+    this.lastTickTime = Date.now();
     this.playingInterval = window.setInterval(this.tick.bind(this), RaidEmulator.playbackSpeed);
     this.dispatch('play');
     return true;
@@ -54,7 +53,7 @@ export default class RaidEmulator extends EventBus {
 
   pause() {
     window.clearInterval(this.playingInterval);
-    this.emulatedTimestamp = null;
+    this.lastTickTime = null;
     this.playingInterval = null;
     this.dispatch('pause');
     return true;
@@ -83,7 +82,7 @@ export default class RaidEmulator extends EventBus {
           await this.dispatch('emitLogs', { logs: logs });
           logs = [];
         }
-        this.currentTimestamp = this.lastLogTimestamp = line.timestamp;
+        this.currentLogTime = this.lastLogTimestamp = line.timestamp;
         ++this.currentLogLineIndex;
         await this.dispatch('midSeek', line);
         continue;
@@ -98,7 +97,7 @@ export default class RaidEmulator extends EventBus {
     }
 
     await this.dispatch('postSeek', seekTimestamp);
-    await this.dispatch('tick', this.currentTimestamp, this.lastLogTimestamp);
+    await this.dispatch('tick', this.currentLogTime, this.lastLogTimestamp);
     if (playing)
       this.play();
   }
@@ -111,8 +110,8 @@ export default class RaidEmulator extends EventBus {
     if (this.playingInterval === null)
       return;
     const logs = [];
-    const timeDiff = Date.now() - this.emulatedTimestamp;
-    const lastTimestamp = this.currentTimestamp + timeDiff;
+    const timeDiff = Date.now() - this.lastTickTime;
+    const lastTimestamp = this.currentLogTime + timeDiff;
     for (let i = this.currentLogLineIndex + 1;
       i < this.currentEncounter.encounter.logLines.length;
       ++i) {
@@ -124,12 +123,12 @@ export default class RaidEmulator extends EventBus {
       }
       break;
     }
-    this.currentTimestamp += timeDiff;
-    this.emulatedTimestamp += timeDiff;
+    this.currentLogTime += timeDiff;
+    this.lastTickTime += timeDiff;
     if (logs.length)
       await this.dispatch('emitLogs', { logs: logs });
 
-    await this.dispatch('tick', this.currentTimestamp, this.lastLogTimestamp);
+    await this.dispatch('tick', this.currentLogTime, this.lastLogTimestamp);
   }
 
   setPopupText(popupText) {

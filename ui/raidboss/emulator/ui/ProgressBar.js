@@ -44,10 +44,10 @@ export default class ProgressBar {
         this.$engageIndicator.style.left = initialPercent + '%';
       }
     });
-    emulator.on('tick', (currentTimestamp) => {
-      const currentOffset = currentTimestamp - emulator.currentEncounter.encounter.startTimestamp;
+    emulator.on('tick', (currentLogTime) => {
+      const currentOffset = currentLogTime - emulator.currentEncounter.encounter.startTimestamp;
       const progPercent = (currentOffset / emulator.currentEncounter.encounter.duration) * 100;
-      const progValue = currentTimestamp - emulator.currentEncounter.encounter.engageAt;
+      const progValue = currentLogTime - emulator.currentEncounter.encounter.engageAt;
       this.$progressBarCurrent.textContent = EmulatorCommon.timeToString(progValue, false);
       this.$progressBar.setAttribute('ariaValueNow', progValue);
       this.$progressBar.style.width = progPercent + '%';

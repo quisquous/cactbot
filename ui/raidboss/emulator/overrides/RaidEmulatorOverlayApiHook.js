@@ -4,18 +4,18 @@ export default class RaidEmulatorOverlayApiHook {
   constructor(emulator) {
     this.emulator = emulator;
     this.originalCall = setCallOverlayHandlerOverride(this.call.bind(this));
-    this.currentTimestamp = 0;
+    this.currentLogTime = 0;
 
-    emulator.on('tick', (currentTimestamp) => {
-      this.currentTimestamp = currentTimestamp;
+    emulator.on('tick', (currentLogTime) => {
+      this.currentLogTime = currentLogTime;
     });
-    emulator.on('preSeek', (currentTimestamp) => {
-      this.currentTimestamp = 0;
+    emulator.on('preSeek', (currentLogTime) => {
+      this.currentLogTime = 0;
     });
     emulator.on('preCurrentEncounterChanged', (encounter) => {
-      this.currentTimestamp = 0;
+      this.currentLogTime = 0;
       encounter.on('analyzeLine', (log) => {
-        this.currentTimestamp = log.offset;
+        this.currentLogTime = log.timestamp;
       });
     });
   }
@@ -23,7 +23,7 @@ export default class RaidEmulatorOverlayApiHook {
   call(msg) {
     if (msg.call === 'getCombatants') {
       const tracker = this.emulator.currentEncounter.encounter.combatantTracker;
-      const timestamp = this.currentTimestamp;
+      const timestamp = this.currentLogTime;
       return new Promise((res) => {
         const combatants = [];
         const hasIds = msg.ids !== undefined && msg.ids.length > 0;
