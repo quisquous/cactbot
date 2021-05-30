@@ -270,7 +270,7 @@ export default {
         'Cardinals': 'Cardinaux',
         'Cauterize': 'Cautérisation',
         'Corners': 'Coins',
-        'Crimson Breath': 'Souffle écarlate',
+        'Crimson Breath': 'Souffle carlate',
         'Dry Ice': 'Poussière glaçante',
         'Earth Shaker': 'Secousse',
         'Exaflare': 'ExaBrasier',
