@@ -8,6 +8,8 @@ import TimerBar from 'resources/timerbar';
 import { LogEvent } from 'types/event';
 import { TimelineTrigger, TriggerAutoConfig } from 'types/trigger';
 
+const kBig = 1000000000; // Something bigger than any fight length in seconds.
+
 const timelineInstructions = {
   en: [
     'These lines are',
@@ -728,7 +730,6 @@ export class Timeline {
   protected _ScheduleUpdate(fightNow: number): void {
     console.assert(this.timebase, '_ScheduleUpdate called while stopped');
 
-    const kBig = 1000000000; // Something bigger than any fight length in seconds.
     let nextEventStarting = kBig;
     let nextTextOccurs = kBig;
     let nextEventEnding = kBig;
@@ -1065,7 +1066,7 @@ export class TimelineUI {
       this.debugFightTimer = document.createElement('timer-bar') as TimerBar;
       this.debugFightTimer.width = '100px';
       this.debugFightTimer.height = '17px';
-      this.debugFightTimer.duration = '10000'; // anything big
+      this.debugFightTimer.duration = `${kBig}`;
       this.debugFightTimer.lefttext = 'elapsed';
       this.debugFightTimer.toward = 'right';
       this.debugFightTimer.stylefill = 'fill';
