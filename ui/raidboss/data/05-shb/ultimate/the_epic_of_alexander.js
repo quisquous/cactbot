@@ -2561,14 +2561,7 @@ export default {
         return output.opticalStackPlayers({ players: names.join(', ') });
       },
       outputStrings: {
-        unknown: {
-          en: '???',
-          de: '???',
-          fr: '???',
-          ja: '???',
-          cn: '???',
-          ko: '???',
-        },
+        unknown: Outputs.unknown,
         opticalStack: {
           en: 'Optical Stack',
           de: 'Visier sammeln',

@@ -69,14 +69,7 @@ const orbNpcNameIdToOutputString = {
 };
 
 const orbOutputStrings = {
-  unknown: {
-    en: '???',
-    de: '???',
-    fr: '???',
-    ja: '???',
-    cn: '???',
-    ko: '???',
-  },
+  unknown: Outputs.unknown,
   knockback: Outputs.knockback,
   stop: {
     en: 'Stop',

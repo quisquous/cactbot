@@ -567,7 +567,7 @@ export default {
     cn: '远离连线 (${player})',
     ko: '상대와 떨어지기 (${player})',
   },
-  unknownTarget: {
+  unknown: {
     en: '???',
     de: '???',
     fr: '???',
