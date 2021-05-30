@@ -61,9 +61,7 @@ Options.Triggers.push({
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
       // If the user is targeted for Assault, we need to ensure the stack trigger knows.
-      run: (data) => {
-        data.assault = true;
-      },
+      run: (data) => data.assault = true,
       outputStrings: {
         text: {
           en: 'Spread (Don\'t Stack!)',
@@ -90,9 +88,7 @@ Options.Triggers.push({
           return output.stackOnYou();
         return output.stackOn({ player: data.ShortName(matches.target) });
       },
-      run: (data) => {
-        delete data.assault;
-      },
+      run: (data) => delete data.assault,
       outputStrings: {
         stackOnYou: Outputs.stackOnYou,
         stackOn: Outputs.stackOnPlayer,

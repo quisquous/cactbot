@@ -30,9 +30,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.addedCombatant({ name: '雷雲', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '雷云', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '번개구름', capture: false }),
-      run: (data) => {
-        data.cloud = true;
-      },
+      run: (data) => data.cloud = true,
     },
     {
       // Stop tracking the cloud after it casts lightning instead of
@@ -46,17 +44,13 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2041', source: '雷雲', target: '雷雲', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2041', source: '雷云', target: '雷云', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2041', source: '번개구름', target: '번개구름', capture: false }),
-      run: (data) => {
-        data.cloud = false;
-      },
+      run: (data) => data.cloud = false,
     },
     {
       id: 'SusEx Churning Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '4F6', capture: false }),
       condition: (data) => !data.churning,
-      run: (data) => {
-        data.churning = true;
-      },
+      run: (data) => data.churning = true,
     },
     {
       // We could track the number of people with churning here, but
@@ -65,9 +59,7 @@ Options.Triggers.push({
       id: 'SusEx Churning Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '4F6', capture: false }),
       condition: (data) => data.churning,
-      run: (data) => {
-        data.churning = false;
-      },
+      run: (data) => data.churning = false,
     },
     {
       id: 'SusEx Stormsplitter',

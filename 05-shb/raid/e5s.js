@@ -6,9 +6,7 @@ Options.Triggers.push({
       id: 'E5S Stepped Leader Next',
       regex: /^Stepped Leader$/,
       beforeSeconds: 15,
-      run: (data) => {
-        data.steppedLeaderNext = true;
-      },
+      run: (data) => data.steppedLeaderNext = true,
     },
   ],
   triggers: [
@@ -16,17 +14,13 @@ Options.Triggers.push({
       id: 'E5S Surge Protection Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '8B4' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.surgeProtection = true;
-      },
+      run: (data) => data.surgeProtection = true,
     },
     {
       id: 'E5S Surge Protection Loss',
       netRegex: NetRegexes.losesEffect({ effectId: '8B4' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.surgeProtection = false;
-      },
+      run: (data) => data.surgeProtection = false,
     },
     {
       id: 'E5S Stratospear Summons',
@@ -39,9 +33,7 @@ Options.Triggers.push({
       condition: (data) => !data.seenFirstSpear,
       delaySeconds: 5,
       infoText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.seenFirstSpear = true;
-      },
+      run: (data) => data.seenFirstSpear = true,
       outputStrings: {
         text: {
           en: 'Look for small spear',
@@ -68,9 +60,7 @@ Options.Triggers.push({
           return output.bigKnockback();
         return output.shortKnockback();
       },
-      run: (data) => {
-        data.seenFirstAdd = true;
-      },
+      run: (data) => data.seenFirstAdd = true,
       outputStrings: {
         lookForAdds: {
           en: 'Look for adds',
@@ -125,16 +115,12 @@ Options.Triggers.push({
     {
       id: 'E5S Fury\'s Bolt Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '8B7', capture: false }),
-      run: (data) => {
-        data.furysBoltActive = true;
-      },
+      run: (data) => data.furysBoltActive = true,
     },
     {
       id: 'E5S Fury\'s Bolt Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '8B7', capture: false }),
-      run: (data) => {
-        data.furysBoltActive = false;
-      },
+      run: (data) => data.furysBoltActive = false,
     },
     {
       id: 'E5S Fury\'s Fourteen',
@@ -228,9 +214,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '4BC6', source: 'ラムウ', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '4BC6', source: '라무', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '4BC6', source: '拉姆', capture: false }),
-      run: (data) => {
-        data.steppedLeaderNext = false;
-      },
+      run: (data) => data.steppedLeaderNext = false,
     },
     {
       id: 'E5S Crippling Blow',

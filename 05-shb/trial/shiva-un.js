@@ -72,9 +72,7 @@ Options.Triggers.push({
         }
         return { infoText: output.staff() };
       },
-      run: (data) => {
-        data.soonAfterWeaponChange = true;
-      },
+      run: (data) => data.soonAfterWeaponChange = true,
     },
     {
       id: 'ShivaUn Sword Phase',
@@ -110,9 +108,7 @@ Options.Triggers.push({
         }
         return { infoText: output.sword() };
       },
-      run: (data) => {
-        data.soonAfterWeaponChange = true;
-      },
+      run: (data) => data.soonAfterWeaponChange = true,
     },
     {
       id: 'ShivaUn Weapon Change Delayed',
@@ -123,9 +119,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.ability({ source: '시바', id: ['5366', '5367'], capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: ['5366', '5367'], capture: false }),
       delaySeconds: 30,
-      run: (data) => {
-        data.soonAfterWeaponChange = false;
-      },
+      run: (data) => data.soonAfterWeaponChange = false,
     },
     {
       id: 'ShivaUn Slashing Resistance Down Gain',
@@ -167,9 +161,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '5365' }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '5365' }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '5365' }),
-      run: (data, matches) => {
-        data.currentTank = matches.target;
-      },
+      run: (data, matches) => data.currentTank = matches.target,
     },
     {
       id: 'ShivaUn Hailstorm Marker',
@@ -195,9 +187,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '536C', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '536C', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '536C', capture: false }),
-      run: (data) => {
-        data.seenDiamondDust = true;
-      },
+      run: (data) => data.seenDiamondDust = true,
     },
     {
       id: 'ShivaUn Frost Bow',

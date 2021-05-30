@@ -234,9 +234,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '1FF4', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FF4', source: '신룡', capture: false }),
       condition: (data) => !data.finalPhase,
-      run: (data) => {
-        data.finalPhase = true;
-      },
+      run: (data) => data.finalPhase = true,
     },
     {
       id: 'Shinryu Normal Divebomb',

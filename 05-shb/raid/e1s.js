@@ -84,9 +84,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.gainsEffect({ target: 'エデン・プライム', effectId: '7B6', capture: false }),
       netRegexCn: NetRegexes.gainsEffect({ target: '至尊伊甸', effectId: '7B6', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '에덴 프라임', effectId: '7B6', capture: false }),
-      run: (data) => {
-        data.paradise = true;
-      },
+      run: (data) => data.paradise = true,
     },
     {
       id: 'E1S Paradise Regained But Lost',
@@ -96,9 +94,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.losesEffect({ target: 'エデン・プライム', effectId: '7B6', capture: false }),
       netRegexCn: NetRegexes.losesEffect({ target: '至尊伊甸', effectId: '7B6', capture: false }),
       netRegexKo: NetRegexes.losesEffect({ target: '에덴 프라임', effectId: '7B6', capture: false }),
-      run: (data) => {
-        data.paradise = false;
-      },
+      run: (data) => data.paradise = false,
     },
     {
       id: 'E1S Eden\'s Gravity',
@@ -249,9 +245,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3D7A', source: 'エデン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D7A', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D7A', source: '에덴 프라임', capture: false }),
-      run: (data) => {
-        data.vice = 'dps';
-      },
+      run: (data) => data.vice = 'dps',
     },
     {
       id: 'E1S Vice and Virtue Tank 1',
@@ -261,9 +255,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '44EE', source: 'エデン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '44EE', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '44EE', source: '에덴 프라임', capture: false }),
-      run: (data) => {
-        data.vice = 'healer';
-      },
+      run: (data) => data.vice = 'healer',
     },
     {
       id: 'E1S Vice and Virtue Tank 2',
@@ -273,9 +265,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3D78', source: 'エデン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D78', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D78', source: '에덴 프라임', capture: false }),
-      run: (data) => {
-        data.vice = 'dps';
-      },
+      run: (data) => data.vice = 'dps',
     },
     {
       id: 'E1S Vice and Virtue Healer 1',
@@ -285,9 +275,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '44F0', source: 'エデン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '44F0', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '44F0', source: '에덴 프라임', capture: false }),
-      run: (data) => {
-        data.vice = 'tank';
-      },
+      run: (data) => data.vice = 'tank',
     },
     {
       id: 'E1S Vice and Virtue Healer 2',
@@ -297,9 +285,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '3D7D', source: 'エデン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D7D', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D7D', source: '에덴 프라임', capture: false }),
-      run: (data) => {
-        data.vice = 'tank';
-      },
+      run: (data) => data.vice = 'tank',
     },
     {
       id: 'E1S Vice and Virtue DPS 1',

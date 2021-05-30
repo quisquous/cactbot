@@ -329,9 +329,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '5151', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '5151', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '5151', capture: false }),
-      run: (data) => {
-        data.isAddPhase = true;
-      },
+      run: (data) => data.isAddPhase = true,
     },
     {
       id: 'WOLEx Fatal Cleave / Blade Of Shadow',
@@ -520,9 +518,7 @@ Options.Triggers.push({
       condition: (data) => data.ultimateSeen && !data.calledSpectral,
       preRun: (data) => data.calledSpectral = true,
       alertText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.ninja = true;
-      },
+      run: (data) => data.ninja = true,
       outputStrings: {
         text: {
           en: 'Ninja',
@@ -543,9 +539,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'ウォーリア・オブ・ライト', id: '4F45', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '光之战士', id: '4F45', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '빛의 전사', id: '4F45', capture: false }),
-      run: (data) => {
-        data.calledSpectral = false;
-      },
+      run: (data) => data.calledSpectral = false,
     },
     {
       // Katon: San and Absolute Holy share markers
@@ -557,9 +551,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: ['光之战士', '幻光忍者'], id: '4EFD', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: ['빛의 전사', '환상빛의 닌자'], id: '4EFD', capture: false }),
       delaySeconds: 30,
-      run: (data) => {
-        delete data.ninja;
-      },
+      run: (data) => delete data.ninja,
     },
     {
       id: 'WOLEx Suiton: San',
@@ -618,9 +610,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: (data, matches) => data.ultimateSeen && data.me === matches.target,
       alarmText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.deluge = true;
-      },
+      run: (data) => data.deluge = true,
       outputStrings: {
         text: {
           en: 'Flare on YOU',
@@ -713,9 +703,7 @@ Options.Triggers.push({
       durationSeconds: 2,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => `(${output.blizzard().toLowerCase()})`,
-      run: (data) => {
-        data.quintuplecasts.push('blizzard');
-      },
+      run: (data) => data.quintuplecasts.push('blizzard'),
       outputStrings: {
         blizzard: quintupleOutputStrings.blizzard,
       },
@@ -727,9 +715,7 @@ Options.Triggers.push({
       durationSeconds: 2,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => `(${output.holy().toLowerCase()})`,
-      run: (data) => {
-        data.quintuplecasts.push('holy');
-      },
+      run: (data) => data.quintuplecasts.push('holy'),
       outputStrings: {
         holy: quintupleOutputStrings.holy,
       },
@@ -741,9 +727,7 @@ Options.Triggers.push({
       durationSeconds: 2,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => `(${output.stone().toLowerCase()})`,
-      run: (data) => {
-        data.quintuplecasts.push('stone');
-      },
+      run: (data) => data.quintuplecasts.push('stone'),
       outputStrings: {
         stone: quintupleOutputStrings.stone,
       },
@@ -755,9 +739,7 @@ Options.Triggers.push({
       durationSeconds: 2,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => `(${output.fire().toLowerCase()})`,
-      run: (data) => {
-        data.quintuplecasts.push('fire');
-      },
+      run: (data) => data.quintuplecasts.push('fire'),
       outputStrings: {
         fire: quintupleOutputStrings.fire,
       },
@@ -769,9 +751,7 @@ Options.Triggers.push({
       durationSeconds: 2,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => `(${output.flash().toLowerCase()})`,
-      run: (data) => {
-        data.quintuplecasts.push('flash');
-      },
+      run: (data) => data.quintuplecasts.push('flash'),
       outputStrings: {
         flash: quintupleOutputStrings.flash,
       },

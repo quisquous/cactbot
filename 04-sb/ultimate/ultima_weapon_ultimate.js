@@ -93,9 +93,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'アルテマウェポン', id: '2D4D', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2D4D', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2D4D', capture: false }),
-      run: (data) => {
-        data.phase = 'suppression';
-      },
+      run: (data) => data.phase = 'suppression',
     },
     {
       // Wait after suppression for primal triggers at the end.
@@ -107,9 +105,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2D4D', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2D4D', capture: false }),
       delaySeconds: 74,
-      run: (data) => {
-        data.phase = 'finale';
-      },
+      run: (data) => data.phase = 'finale',
     },
     {
       id: 'UWU Garuda Slipstream',
@@ -355,9 +351,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['ガルーダ', 'タイタン'], capture: false }),
       netRegexKo: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['가루다', '타이탄'], capture: false }),
       delaySeconds: 15,
-      run: (data) => {
-        delete data.titanGaols;
-      },
+      run: (data) => delete data.titanGaols,
     },
     {
       id: 'UWU Suppression Gaol',

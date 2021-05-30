@@ -109,9 +109,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F13', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F13', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F13', capture: false }),
-      run: (data) => {
-        data.imbued = 'blizzard';
-      },
+      run: (data) => data.imbued = 'blizzard',
     },
     {
       id: 'WOL Imbued Absolute Fire III',
@@ -121,9 +119,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F12', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '光之战士', id: '4F12', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '빛의 전사', id: '4F12', capture: false }),
-      run: (data) => {
-        data.imbued = 'fire';
-      },
+      run: (data) => data.imbued = 'fire',
     },
     {
       id: 'WOL Imbued Coruscance Out',
@@ -280,9 +276,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
-      run: (data, matches) => {
-        data.deluge = matches.target;
-      },
+      run: (data, matches) => data.deluge = matches.target,
       outputStrings: {
         text: {
           en: 'GTFO',

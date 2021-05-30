@@ -47,9 +47,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.gainsEffect({ target: 'ヴォイドウォーカー', effectId: '710', capture: false }),
       netRegexCn: NetRegexes.gainsEffect({ target: '虚无行者', effectId: '710', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '보이드워커', effectId: '710', capture: false }),
-      run: (data) => {
-        data.waiting = true;
-      },
+      run: (data) => data.waiting = true,
     },
     {
       id: 'E2S Spell In Waiting Lose',
@@ -59,9 +57,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.losesEffect({ target: 'ヴォイドウォーカー', effectId: '710', capture: false }),
       netRegexCn: NetRegexes.losesEffect({ target: '虚无行者', effectId: '710', capture: false }),
       netRegexKo: NetRegexes.losesEffect({ target: '보이드워커', effectId: '710', capture: false }),
-      run: (data) => {
-        data.waiting = false;
-      },
+      run: (data) => data.waiting = false,
     },
     {
       id: 'E2S Entropy',
@@ -416,9 +412,7 @@ Options.Triggers.push({
       condition: (data, matches) => !data.waiting && data.me === matches.target,
       // The "no waiting" version comes paired with a stack.
       alarmText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.hellWind = true;
-      },
+      run: (data) => data.hellWind = true,
       outputStrings: {
         text: {
           en: 'Hell Wind: Get Out',
@@ -435,9 +429,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       condition: (data, matches) => !data.waiting && data.me === matches.target,
       delaySeconds: 15,
-      run: (data) => {
-        delete data.hellWind;
-      },
+      run: (data) => delete data.hellWind,
     },
     {
       id: 'E2S Hell Wind Collect',
@@ -509,9 +501,7 @@ Options.Triggers.push({
       id: 'E2S Countdown Marker Cleanup',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
       delaySeconds: 10,
-      run: (data, matches) => {
-        delete data.spell[matches.target];
-      },
+      run: (data, matches) => delete data.spell[matches.target],
     },
     {
       // TODO: add callouts for each of these

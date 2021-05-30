@@ -210,9 +210,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.waterDarkMarker = true;
-      },
+      run: (data) => data.waterDarkMarker = true,
       outputStrings: {
         text: {
           en: 'Healer Stacks',
@@ -229,9 +227,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.waterDarkMarker = true;
-      },
+      run: (data) => data.waterDarkMarker = true,
       outputStrings: {
         text: {
           en: 'Tank Spread',
@@ -330,9 +326,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.gainsEffect({ effectId: '850' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.brand = 'fire';
-      },
+      run: (data) => data.brand = 'fire',
       outputStrings: {
         text: {
           en: 'Attack Igeyorhm',
@@ -349,9 +343,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.gainsEffect({ effectId: '851' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.brand = 'ice';
-      },
+      run: (data) => data.brand = 'ice',
       outputStrings: {
         text: {
           en: 'Attack Lahabrea',
@@ -588,9 +580,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '0064' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.flame = true;
-      },
+      run: (data) => data.flame = true,
       outputStrings: {
         text: {
           en: 'Knockback + Stack on YOU',
@@ -607,9 +597,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '00C1' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.freeze = true;
-      },
+      run: (data) => data.freeze = true,
       outputStrings: {
         text: {
           en: 'Knockback + Ice on YOU',
@@ -647,9 +635,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.netherBlast = true;
-      },
+      run: (data) => data.netherBlast = true,
       outputStrings: {
         text: {
           en: 'Puddles on YOU',

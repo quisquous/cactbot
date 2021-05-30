@@ -150,9 +150,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.message({ line: '壁面のライトアームが稼働を始めた……！.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '벽면의 오른팔이 움직이기 시작합니다……!.*?', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.alliance = data.alliance || 'A';
-      },
+      run: (data) => data.alliance = data.alliance || 'A',
       outputStrings: {
         text: {
           en: 'Dodge Moving Circle',
@@ -173,9 +171,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.message({ line: '壁面の火炎放射器が稼働を始めた……！.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '벽면의 화염 방사기가 가동되었습니다……!.*?', capture: false }),
       alertText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.alliance = data.alliance || 'B';
-      },
+      run: (data) => data.alliance = data.alliance || 'B',
       outputStrings: {
         text: {
           en: 'Look Behind For Flamethrowers',
@@ -197,9 +193,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.message({ line: '벽면의 왼팔이 움직이기 시작합니다……!.*?', capture: false }),
       durationSeconds: 6,
       response: Responses.getOut('info'),
-      run: (data) => {
-        data.alliance = data.alliance || 'C';
-      },
+      run: (data) => data.alliance = data.alliance || 'C',
     },
     {
       id: 'Copied Hobbes Left Arm 2',

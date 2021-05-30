@@ -303,9 +303,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ id: '19AB', source: '아이온 소피아', capture: false }),
       delaySeconds: 1,
       suppressSeconds: 5,
-      run: (data) => {
-        data.seenThunder = true;
-      },
+      run: (data) => data.seenThunder = true,
     },
     {
       // Quasar can either be meteor baits or a platform tilt,
@@ -319,9 +317,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.addedCombatant({ name: 'アイオーン・ソフィア', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '移涌', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '아이온 소피아', capture: false }),
-      run: (data) => {
-        data.clonesActive = true;
-      },
+      run: (data) => data.clonesActive = true,
     },
     {
       // During the first post-intermission clones sequence,

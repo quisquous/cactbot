@@ -88,9 +88,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.message({ line: '$1の封鎖まであと', capture: false }),
       netRegexCn: NetRegexes.message({ line: '距$1被封锁还有.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '15초 후에 $1(?:이|가) 봉쇄됩니다.*?', capture: false }),
-      run: (data) => {
-        data.sealed = true;
-      },
+      run: (data) => data.sealed = true,
     },
     {
       id: 'BA Clear Data',
@@ -119,9 +117,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.abilityFull({ id: '3956', source: '亚特', target: '[^:]+', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ id: '3956', source: '아르트', target: '[^:]+', capture: false }),
       suppressSeconds: 1000,
-      run: (data) => {
-        data.side = 'west';
-      },
+      run: (data) => data.side = 'west',
     },
     {
       id: 'BA East Side',
@@ -132,9 +128,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.abilityFull({ id: '3957', source: '欧文', target: '[^:]+', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ id: '3957', source: '오와인', target: '[^:]+', capture: false }),
       suppressSeconds: 1000,
-      run: (data) => {
-        data.side = 'east';
-      },
+      run: (data) => data.side = 'east',
     },
     {
       id: 'BA Art Mythcall',
@@ -145,9 +139,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '3927', source: '亚特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3927', source: '아르트', capture: false }),
       condition: (data) => data.side === 'west',
-      run: (data) => {
-        data.mythcall = true;
-      },
+      run: (data) => data.mythcall = true,
     },
     {
       id: 'BA Art Tankbuster',
@@ -462,9 +454,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ id: '3787', source: '절대미덕', capture: false }),
       condition: (data) => data.sealed,
       infoText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.bracelets = 'dark';
-      },
+      run: (data) => data.bracelets = 'dark',
       outputStrings: {
         text: {
           en: 'Dark Bracelets',
@@ -486,9 +476,7 @@ Options.Triggers.push({
       netRegexKo: NetRegexes.startsUsing({ id: '3786', source: '절대미덕', capture: false }),
       condition: (data) => data.sealed,
       infoText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.bracelets = 'light';
-      },
+      run: (data) => data.bracelets = 'light',
       outputStrings: {
         text: {
           en: 'Light Bracelets',
@@ -522,9 +510,7 @@ Options.Triggers.push({
         if (data.bracelets === 'dark')
           return output.standByLightCircles();
       },
-      run: (data) => {
-        data.seenHostile = true;
-      },
+      run: (data) => data.seenHostile = true,
       outputStrings: {
         awayFromLightCircles: {
           en: 'Away From Light Circles',

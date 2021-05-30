@@ -145,9 +145,7 @@ Options.Triggers.push({
       id: 'The Vault Knights Activation',
       netRegex: NetRegexes.headMarker({ id: '0061', capture: false }),
       condition: (data) => !data.knightsActive,
-      run: (data) => {
-        data.knightsActive = true;
-      },
+      run: (data) => data.knightsActive = true,
     },
     {
       id: 'The Vault Knights March',

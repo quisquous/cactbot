@@ -255,9 +255,7 @@ Options.Triggers.push({
       // This is probably a problem for all timeline triggers (whoops)
       // and needs to be fixed more generally rather than adding a
       // suppression.
-      preRun: (data) => {
-        data.swingCount = (data.swingCount || 0) + 1;
-      },
+      preRun: (data) => data.swingCount = (data.swingCount || 0) + 1,
       suppressSeconds: 1,
       alertText: (data, _matches, output) => {
         const multipleSwings = data.swingCount === 2 || data.swingCount === 3;
@@ -525,9 +523,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.abilityFull({ source: 'liquide vivant', id: '4978' }),
       netRegexJa: NetRegexes.abilityFull({ source: 'リビングリキッド', id: '4978' }),
       netRegexKo: NetRegexes.abilityFull({ source: '살아있는 액체', id: '4978' }),
-      run: (data, matches) => {
-        data.liquidTank = matches.target;
-      },
+      run: (data, matches) => data.liquidTank = matches.target,
     },
     {
       id: 'TEA Hand Tank',
@@ -537,9 +533,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.abilityFull({ source: 'membre liquide', id: '4979' }),
       netRegexJa: NetRegexes.abilityFull({ source: 'リキッドハンド', id: '4979' }),
       netRegexKo: NetRegexes.abilityFull({ source: '액체 손', id: '4979' }),
-      run: (data, matches) => {
-        data.handTank = matches.target;
-      },
+      run: (data, matches) => data.handTank = matches.target,
     },
     {
       id: 'TEA Cruise Chaser Tank',
@@ -549,9 +543,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.abilityFull({ source: 'Croiseur-chasseur', id: '497A' }),
       netRegexJa: NetRegexes.abilityFull({ source: 'クルーズチェイサー', id: '497A' }),
       netRegexKo: NetRegexes.abilityFull({ source: '순항추격기', id: '497A' }),
-      run: (data, matches) => {
-        data.cruiseTank = matches.target;
-      },
+      run: (data, matches) => data.cruiseTank = matches.target,
     },
     {
       id: 'TEA Brute Tank',
@@ -561,9 +553,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.abilityFull({ source: 'Justicier', id: '497B' }),
       netRegexJa: NetRegexes.abilityFull({ source: 'ブルートジャスティス', id: '497B' }),
       netRegexKo: NetRegexes.abilityFull({ source: '포악한 심판자', id: '497B' }),
-      run: (data, matches) => {
-        data.bruteTank = matches.target;
-      },
+      run: (data, matches) => data.bruteTank = matches.target,
     },
     {
       id: 'TEA Cascade',
@@ -1147,9 +1137,7 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '483C', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '483C', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '483C', capture: false }),
-      run: (data) => {
-        data.seenGavel = true;
-      },
+      run: (data) => data.seenGavel = true,
     },
     {
       id: 'TEA Double Rocket Punch',
@@ -1432,9 +1420,7 @@ Options.Triggers.push({
       id: 'TEA Inception Vuln Collection',
       netRegex: NetRegexes.gainsEffect({ effectId: '2B7' }),
       condition: (data) => data.phase === 'inception',
-      run: (data, matches) => {
-        data.vuln[matches.target] = true;
-      },
+      run: (data, matches) => data.vuln[matches.target] = true,
     },
     {
       id: 'TEA Inception Alpha Sword',
@@ -2042,9 +2028,7 @@ Options.Triggers.push({
       durationSeconds: 8,
       suppressSeconds: 20,
       infoText: (_data, _matches, output) => output.motionFirst(),
-      run: (data) => {
-        data.firstAlphaOrdainedText = 'motionFirst';
-      },
+      run: (data) => data.firstAlphaOrdainedText = 'motionFirst',
       outputStrings: {
         motionFirst: ordainedOutputStrings.motionFirst,
       },
@@ -2444,9 +2428,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '48A0', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '48A0', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.betaIsOpticalStack = false;
-      },
+      run: (data) => data.betaIsOpticalStack = false,
       outputStrings: {
         text: {
           en: 'Optical Spread',
@@ -2467,9 +2449,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '48A1', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '48A1', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.betaIsOpticalStack = true;
-      },
+      run: (data) => data.betaIsOpticalStack = true,
       outputStrings: {
         text: {
           en: 'Optical Stack',

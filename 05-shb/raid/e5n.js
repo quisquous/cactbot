@@ -6,17 +6,13 @@ Options.Triggers.push({
       id: 'E5N Surge Protection Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '8B4' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.surgeProtection = true;
-      },
+      run: (data) => data.surgeProtection = true,
     },
     {
       id: 'E5N Surge Protection Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '8B4' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.surgeProtection = false;
-      },
+      run: (data) => data.surgeProtection = false,
     },
     {
       id: 'E5N Crippling Blow',

@@ -99,9 +99,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.addedCombatant({ name: 'ゴルディオス・ソルジャー', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '戈耳狄士兵', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '고르디우스 병사', capture: false }),
-      run: (data) => {
-        delete data.bangyzoom;
-      },
+      run: (data) => delete data.bangyzoom,
     },
     {
       id: 'A2S Bangyzoom',
@@ -114,9 +112,7 @@ Options.Triggers.push({
       condition: (data) => !data.bangyzoom,
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.bangyzoom = true;
-      },
+      run: (data) => data.bangyzoom = true,
       outputStrings: {
         text: {
           en: 'Stun Soldier',

@@ -6,17 +6,13 @@ Options.Triggers.push({
       id: 'A6S Magic Vulnerability Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '292' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.magicVulnerability = true;
-      },
+      run: (data) => data.magicVulnerability = true,
     },
     {
       id: 'A6S Magic Vulnerability Loss',
       netRegex: NetRegexes.losesEffect({ effectId: '292' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.magicVulnerability = false;
-      },
+      run: (data) => data.magicVulnerability = false,
     },
     {
       id: 'A6S Mind Blast',
@@ -277,9 +273,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.haveWater = true;
-      },
+      run: (data) => data.haveWater = true,
       outputStrings: {
         text: {
           en: 'Water on YOU',
@@ -295,9 +289,7 @@ Options.Triggers.push({
       id: 'A6S Compressed Water Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '3FF' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.haveWater = false;
-      },
+      run: (data) => data.haveWater = false,
     },
     {
       id: 'A6S Compressed Water Explode',
@@ -328,9 +320,7 @@ Options.Triggers.push({
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
       condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.haveLightning = true;
-      },
+      run: (data) => data.haveLightning = true,
       outputStrings: {
         text: {
           en: 'Lightning on YOU',
@@ -346,9 +336,7 @@ Options.Triggers.push({
       id: 'A6S Compressed Lightning Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '400' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.haveLightning = false;
-      },
+      run: (data) => data.haveLightning = false,
     },
     {
       id: 'A6S Compressed Lightning Explode',

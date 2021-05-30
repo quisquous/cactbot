@@ -72,9 +72,7 @@ Options.Triggers.push({
             return output.othersStackOnHoly({ holyTargets: data.holyTargets[1] });
         }
       },
-      run: (data) => {
-        delete data.holyTargets;
-      },
+      run: (data) => delete data.holyTargets,
       outputStrings: {
         othersStackOnHoly: {
           en: 'others stack on ${holyTargets}',

@@ -90,9 +90,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4CFE', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4CFE', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: ['이프리트', '락타팍샤'], id: '4CFE', capture: false }),
-      preRun: (data) => {
-        data.handsOfFlame = true;
-      },
+      preRun: (data) => data.handsOfFlame = true,
     },
     {
       // Tank swap if you're not the target
@@ -127,9 +125,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: ['イフリート', 'ラクタパクシャ'], id: '4BE9', capture: false }),
       netRegexCn: NetRegexes.ability({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4BE9', capture: false }),
       netRegexKo: NetRegexes.ability({ source: ['이프리트', '락타팍샤'], id: '4BE9', capture: false }),
-      preRun: (data) => {
-        data.handsOfFlame = false;
-      },
+      preRun: (data) => data.handsOfFlame = false,
       suppressSeconds: 1,
     },
     {
@@ -170,9 +166,7 @@ Options.Triggers.push({
       // Run only once, because Ifrit's other jumps are not important.
       condition: (data) => !data.seenSpark,
       alertText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.seenSpark = true;
-      },
+      run: (data) => data.seenSpark = true,
       outputStrings: {
         text: {
           en: 'Move to Ifrit',

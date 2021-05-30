@@ -10,9 +10,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '4180', source: 'ハーデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4180', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4180', source: '하데스', capture: false }),
-      run: (data) => {
-        data.neoHades = true;
-      },
+      run: (data) => data.neoHades = true,
     },
     {
       id: 'Hades Ravenous Assault',
@@ -263,9 +261,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '4175', source: 'ハーデス', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '4175', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '4175', source: '하데스', capture: false }),
-      run: (data) => {
-        data.seenLifeInCaptivity = true;
-      },
+      run: (data) => data.seenLifeInCaptivity = true,
     },
     {
       id: 'Hades Gaol',
@@ -348,9 +344,7 @@ Options.Triggers.push({
       id: 'Hades Ancient Cleanup',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       delaySeconds: 10,
-      run: (data) => {
-        delete data.ancient;
-      },
+      run: (data) => delete data.ancient,
     },
   ],
   timelineReplace: [

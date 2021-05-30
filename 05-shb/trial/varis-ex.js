@@ -92,9 +92,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CCC', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CCC', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CCC', capture: false }),
-      run: (data) => {
-        data.phase = 2;
-      },
+      run: (data) => data.phase = 2,
     },
     {
       id: 'VarisEx Phase 5',
@@ -104,9 +102,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CE2', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CE2', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CE2', capture: false }),
-      run: (data) => {
-        data.phase = 5;
-      },
+      run: (data) => data.phase = 5,
     },
     {
       id: 'VarisEx Clones',
@@ -116,9 +112,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ source: 'ヴァリスの幻影', id: '4CB3', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯的幻影', id: '4CB3', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '바리스의 환영', id: '4CB3', capture: false }),
-      run: (data) => {
-        data.clonesActive = true;
-      },
+      run: (data) => data.clonesActive = true,
     },
     {
       id: 'VarisEx Altius',
@@ -309,9 +303,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CC9', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '바리스 예 갈부스', id: '4CC9', capture: false }),
       delaySeconds: 10,
-      run: (data) => {
-        delete data.suppressDodgeCloneCall;
-      },
+      run: (data) => delete data.suppressDodgeCloneCall,
     },
     {
       id: 'VarisEx Terminus Est Clones',

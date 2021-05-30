@@ -157,9 +157,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D66', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D66', capture: false }),
       response: Responses.getBehind(),
-      run: (data) => {
-        data.firstFrost = data.firstFrost || 'biting';
-      },
+      run: (data) => data.firstFrost = data.firstFrost || 'biting',
     },
     {
       id: 'E8S Driving Frost',
@@ -425,9 +423,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ source: ['希瓦', '圣龙'], id: ['4D98', '4D79'], capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: ['시바', '성룡'], id: ['4D98', '4D79'], capture: false }),
       delaySeconds: 15,
-      run: (data) => {
-        delete data.akhMornTargets;
-      },
+      run: (data) => delete data.akhMornTargets,
     },
     {
       id: 'E8S Morn Afah',

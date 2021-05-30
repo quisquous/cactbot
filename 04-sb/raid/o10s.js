@@ -96,9 +96,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.ability({ id: '31B[2345]', source: ['ミドガルズオルム', ''], capture: false }),
       netRegexCn: NetRegexes.ability({ id: '31B[2345]', source: ['尘世幻龙', ''], capture: false }),
       netRegexKo: NetRegexes.ability({ id: '31B[2345]', source: ['미드가르드오름', ''], capture: false }),
-      run: (data) => {
-        delete data.lastSpinWasHorizontal;
-      },
+      run: (data) => delete data.lastSpinWasHorizontal,
     },
     {
       id: 'O10S Horizontal Spin 1',
@@ -109,9 +107,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.ability({ id: '31AC', source: '尘世幻龙', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '31AC', source: '미드가르드오름', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.lastSpinWasHorizontal = true;
-      },
+      run: (data) => data.lastSpinWasHorizontal = true,
       outputStrings: {
         text: {
           en: 'Next Spin: In or Out',
@@ -132,9 +128,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.ability({ id: '31AD', source: '尘世幻龙', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '31AD', source: '미드가르드오름', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.lastSpinWasHorizontal = false;
-      },
+      run: (data) => data.lastSpinWasHorizontal = false,
       outputStrings: {
         text: {
           en: 'Next Spin: Cardinals or Corners',

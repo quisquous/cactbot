@@ -179,9 +179,7 @@ Options.Triggers.push({
         if (data.flareTargets.includes(data.me))
           return output.text();
       },
-      run: (data) => {
-        delete data.flareTargets;
-      },
+      run: (data) => delete data.flareTargets,
       outputStrings: {
         text: {
           en: 'Flare on you',
@@ -256,73 +254,55 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2426', source: 'ネオエクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2426', source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2426', source: '네오 엑스데스', capture: false }),
-      run: (data) => {
-        data.finalphase = true;
-      },
+      run: (data) => data.finalphase = true,
     },
     {
       id: 'O4S Neo White Wound Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '564' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.whiteWound = true;
-      },
+      run: (data) => data.whiteWound = true,
     },
     {
       id: 'O4S Neo White Wound Lost',
       netRegex: NetRegexes.losesEffect({ effectId: '564' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.whiteWound = false;
-      },
+      run: (data) => data.whiteWound = false,
     },
     {
       id: 'O4S Neo Black Wound Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '565' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.blackWound = true;
-      },
+      run: (data) => data.blackWound = true,
     },
     {
       id: 'O4S Neo Black Wound Lost',
       netRegex: NetRegexes.losesEffect({ effectId: '565' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.blackWound = false;
-      },
+      run: (data) => data.blackWound = false,
     },
     {
       id: 'O4S Neo Beyond Death Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.beyondDeath = true;
-      },
+      run: (data) => data.beyondDeath = true,
     },
     {
       id: 'O4S Neo Beyond Death Lost',
       netRegex: NetRegexes.losesEffect({ effectId: '566' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.beyondDeath = false;
-      },
+      run: (data) => data.beyondDeath = false,
     },
     {
       id: 'O4S Neo Allagan Field Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C6' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.allaganField = true;
-      },
+      run: (data) => data.allaganField = true,
     },
     {
       id: 'O4S Neo Allagan Field Lost',
       netRegex: NetRegexes.losesEffect({ effectId: '1C6' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.allaganField = false;
-      },
+      run: (data) => data.allaganField = false,
     },
     {
       id: 'O4S Neo Flood of Naught: Inside',
@@ -911,9 +891,7 @@ Options.Triggers.push({
     {
       id: 'O4S Neo Water Tracker',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
-      run: (data, matches) => {
-        data.waterHealer = matches.target;
-      },
+      run: (data, matches) => data.waterHealer = matches.target,
     },
     {
       // Water Me (Delta/Omega)
@@ -1091,9 +1069,7 @@ Options.Triggers.push({
           return output.flareOnYou();
         return output.stackTTS();
       },
-      run: (data) => {
-        delete data.flareTargets;
-      },
+      run: (data) => delete data.flareTargets,
       outputStrings: {
         stack: {
           en: 'Light and Darkness: Stack',

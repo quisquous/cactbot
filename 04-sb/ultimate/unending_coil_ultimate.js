@@ -21,33 +21,25 @@ Options.Triggers.push({
       id: 'UCU Firescorched Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '1D0' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.fireDebuff = true;
-      },
+      run: (data) => data.fireDebuff = true,
     },
     {
       id: 'UCU Firescorched Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '1D0' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.fireDebuff = false;
-      },
+      run: (data) => data.fireDebuff = false,
     },
     {
       id: 'UCU Icebitten Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '1D1' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.iceDebuff = true;
-      },
+      run: (data) => data.iceDebuff = true,
     },
     {
       id: 'UCU Icebitten Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '1D1' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.iceDebuff = false;
-      },
+      run: (data) => data.iceDebuff = false,
     },
     {
       id: 'UCU Fireball Counter',
@@ -249,9 +241,7 @@ Options.Triggers.push({
       id: 'UCU Hatch Cleanup',
       netRegex: NetRegexes.headMarker({ id: '0076', capture: false }),
       delaySeconds: 5,
-      run: (data) => {
-        delete data.hatch;
-      },
+      run: (data) => delete data.hatch,
     },
     {
       id: 'UCU Twintania P2',
@@ -766,9 +756,7 @@ Options.Triggers.push({
       delaySeconds: 35,
       suppressSeconds: 99999,
       infoText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.naelFireballCount = 1;
-      },
+      run: (data) => data.naelFireballCount = 1,
       outputStrings: {
         text: {
           en: 'Fire IN',
@@ -803,9 +791,7 @@ Options.Triggers.push({
         if (data.fireballs[1].includes(data.me))
           return output.fireOut();
       },
-      run: (data) => {
-        data.naelFireballCount = 2;
-      },
+      run: (data) => data.naelFireballCount = 2,
       outputStrings: {
         fireOut: {
           en: 'Fire OUT',
@@ -853,9 +839,7 @@ Options.Triggers.push({
         }
         return output.fireIn();
       },
-      run: (data) => {
-        data.naelFireballCount = 3;
-      },
+      run: (data) => data.naelFireballCount = 3,
       outputStrings: {
         fireIn: {
           en: 'Fire IN',
@@ -913,9 +897,7 @@ Options.Triggers.push({
         if (!data.tookThreeFireballs)
           return output.fireIn();
       },
-      run: (data) => {
-        data.naelFireballCount = 4;
-      },
+      run: (data) => data.naelFireballCount = 4,
       outputStrings: {
         fireIn: {
           en: 'Fire IN',
@@ -1082,9 +1064,7 @@ Options.Triggers.push({
       id: 'UCU Nael Dragon Dive Marker Counter',
       netRegex: NetRegexes.headMarker({ id: '0014', capture: false }),
       condition: (data) => !data.trio,
-      run: (data) => {
-        data.naelDiveMarkerCount++;
-      },
+      run: (data) => data.naelDiveMarkerCount++,
     },
     {
       // Octet marker tracking (77=nael, 14=dragon, 29=baha, 2A=twin)
@@ -1299,9 +1279,7 @@ Options.Triggers.push({
     {
       id: 'UCU Megaflare Stack Tracking',
       netRegex: NetRegexes.headMarker({ id: '0027' }),
-      run: (data, matches) => {
-        data.megaStack.push(matches.target);
-      },
+      run: (data, matches) => data.megaStack.push(matches.target),
     },
     {
       id: 'UCU Megaflare Tower',
@@ -1400,9 +1378,7 @@ Options.Triggers.push({
     {
       id: 'UCU Earthshaker Tracking',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
-      run: (data, matches) => {
-        data.shakers.push(matches.target);
-      },
+      run: (data, matches) => data.shakers.push(matches.target),
     },
     {
       id: 'UCU Earthshaker Not Me',

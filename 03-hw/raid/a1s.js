@@ -77,9 +77,7 @@ Options.Triggers.push({
       id: 'A1S Hydrothermal Cleanup',
       netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
       delaySeconds: 10,
-      run: (data) => {
-        delete data.hydro;
-      },
+      run: (data) => delete data.hydro,
     },
     {
       id: 'A1S Resin Bomb',
@@ -159,9 +157,7 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: 'E4A', source: ['压迫者', '压迫者零号'], capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'], capture: false }),
       delaySeconds: 10,
-      run: (data) => {
-        delete data.hyper;
-      },
+      run: (data) => delete data.hyper,
     },
   ],
   timelineReplace: [

@@ -53,9 +53,7 @@ Options.Triggers.push({
     {
       id: 'O6S Last Kiss Tracker',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      run: (data, matches) => {
-        data.lastKiss = matches.target;
-      },
+      run: (data, matches) => data.lastKiss = matches.target,
     },
     {
       id: 'O6S Last Kiss Marker',

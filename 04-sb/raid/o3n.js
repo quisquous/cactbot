@@ -36,9 +36,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2304', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2304', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2304', source: '할리카르나소스', capture: false }),
-      run: (data) => {
-        data.phaseNumber += 1;
-      },
+      run: (data) => data.phaseNumber += 1,
     },
     {
       // Normal spellblade holy with one stack point.
@@ -66,9 +64,7 @@ Options.Triggers.push({
         }
         return output.stackOnHolytargets({ player: data.holyTargets[0] });
       },
-      run: (data) => {
-        delete data.holyTargets;
-      },
+      run: (data) => delete data.holyTargets,
       outputStrings: {
         stackOnYou: Outputs.stackOnYou,
         out: {
@@ -161,9 +157,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '2304', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2304', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2304', source: '할리카르나소스', capture: false }),
-      run: (data) => {
-        data.gameCount = data.gameCount || 1;
-      },
+      run: (data) => data.gameCount = data.gameCount || 1,
     },
     {
       id: 'O3N Good Ribbit',
@@ -218,9 +212,7 @@ Options.Triggers.push({
         if (data.role === 'dps')
           return output.standOnSword();
       },
-      run: (data) => {
-        data.gameCount += 1;
-      },
+      run: (data) => data.gameCount += 1,
       outputStrings: {
         standOnFrogTile: {
           en: 'Stand on frog tile',
