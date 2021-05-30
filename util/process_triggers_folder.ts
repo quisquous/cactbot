@@ -68,15 +68,28 @@ const processFile = async (filename: string) => {
     process.exit(2);
   }
 
-  if (lintResult.errorCount > 0) {
-    console.error(`${filename}: Lint ran with errors: ${JSON.stringify(lintResult.messages)}`);
-    process.exit(3);
-  }
+  const ignoreRules = [
+    // ES2020 -> ES2019 rewriting of optional chaining (i.e. `?.`) turns into this.
+    'no-cond-assign',
+    // Often tsc will combine lines (even across existing linebreaks) violating this.
+    'max-len',
+  ];
+  const messages = lintResult.messages.filter((message) => {
+    if (!message.ruleId)
+      return true;
+    return !ignoreRules.includes(message.ruleId);
+  });
 
-  if (lintResult.warningCount > 0) {
-    // Warnings aren't great, but tsc can create unfixable line length warnings.
-    // Print them, but don't stop.
-    console.error(`${filename}: Lint ran with warnings: ${JSON.stringify(lintResult.messages)}`);
+  // lintResult.errorCount exists, but we need a recount after ignoring some rules.
+  const numErrors = messages.filter((x) => x.severity === 2).length;
+  const numWarnings = messages.filter((x) => x.severity === 1).length;
+
+  if (numErrors > 0) {
+    console.error(`${filename}: Lint ran with errors: ${JSON.stringify(messages)}`);
+    process.exit(3);
+  } else if (numWarnings > 0) {
+    // Print warnings, but don't stop.
+    console.error(`${filename}: Lint ran with warnings: ${JSON.stringify(messages)}`);
   }
 
   const contents = lintResult.output;
