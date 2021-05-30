@@ -4,10 +4,7 @@ import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
-// TODO: there is a bug where data.ce appears to get cleared sometimes???
-//       this prevents all triggers from firing for a particular ce @_@;;;
-
-// https://www.youtube.com/watch?v=L4lXAV_OD-0
+// CE explainer: https://www.youtube.com/watch?v=L4lXAV_OD-0
 
 // TODO: snake: everything
 // TODO: blade: everything
@@ -15,9 +12,12 @@ import ZoneId from '../../../../../resources/zone_id';
 // TODO: blood: Flight of the Malefic cleaves
 // TODO: blood: gaze vs line attack from adds
 // TODO: wolf: 6x Imaginifers cast thermal gust hitting east/west (only seen east at -828...-808)
-// TODO: calvary: knockbacks from direction
+// TODO: cavalry: early call for knockback direction?
+// TODO: calalry: is Ride Down explainable??
 // TODO: time: is it possible to find where slow clocks are?
-// TODO: machines: can dodges even be explained?? "do mechanics <se.6>"
+// TODO: machines: can describe initial safe quadrant from first charges?
+// TODO: machines: can describe "diagonal line bomb" safe spot
+// TODO: machines: can determine rotating corner to go to
 // TODO: alkonost: foreshadowing (both in CE and Dalraida)
 // TODO: sartavoir: everything
 // TODO: hallway: left/right lasers (check getCombatants???)
@@ -436,6 +436,13 @@ export default {
     },
     // ***** Here Comes the Cavalry *****
     {
+      id: 'Zadnor Cavalry Gust Slash',
+      netRegex: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D7D' }),
+      condition: (data) => data.ce === 'cavalry',
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
+      response: Responses.knockback(),
+    },
+    {
       id: 'Zadnor Cavalry Raw Steel',
       netRegex: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D87' }),
       condition: (data) => data.ce === 'cavalry',
@@ -459,6 +466,12 @@ export default {
           return { alertText: output.runAway() };
         return { infoText: output.avoidCharge() };
       },
+    },
+    {
+      id: 'Zadnor Cavalry Call Raze',
+      netRegex: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D8C', capture: false }),
+      condition: (data) => data.ce === 'cavalry',
+      response: Responses.aoe(),
     },
     {
       id: 'Zadnor Cavalry Magitek Blaster',
@@ -553,19 +566,19 @@ export default {
     {
       id: 'Zadnor Time Fire IV',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Belias', id: '5D9A' }),
-      condition: (data) => data.ce === 'fire',
+      condition: (data) => data.ce === 'time',
       response: Responses.tankBuster(),
     },
     {
       id: 'Zadnor Time Fire',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Belias', id: '5D99' }),
-      condition: tankBusterOnParty('fire'),
+      condition: tankBusterOnParty('time'),
       response: Responses.tankBuster(),
     },
     {
       id: 'Zadnor Time Reproduce',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Belias', id: '60E9', capture: false }),
-      condition: (data) => data.ce === 'fire',
+      condition: (data) => data.ce === 'time',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -576,7 +589,7 @@ export default {
     {
       id: 'Zadnor Time Time Bomb',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Belias', id: '5D95', capture: false }),
-      condition: (data) => data.ce === 'fire',
+      condition: (data) => data.ce === 'time',
       infoText: (data, _matches, output) => {
         data.timeBombCount = (data.timeBombCount || 0) + 1;
         // Belias alternates 2 and 3 Time Bombs, starting with 2.
@@ -594,6 +607,7 @@ export default {
         },
       },
     },
+    // ***** Lean, Mean, Magitek Machines *****
     {
       id: 'Zadnor Machines Magnetic Field',
       netRegex: NetRegexes.startsUsing({ source: 'Kampe', id: '5CFE', capture: false }),
@@ -602,7 +616,7 @@ export default {
     {
       id: 'Zadnor Machines Fore-Hind Cannons',
       netRegex: NetRegexes.startsUsing({ source: 'Kampe', id: '5CFF', capture: false }),
-      response: Responses.aoe(),
+      response: Responses.goSides(),
     },
     // ***** Worn to a Shadow *****
     {
