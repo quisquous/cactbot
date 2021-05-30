@@ -16,7 +16,7 @@ hideall "--sync--"
 1000.0 "--sync--" sync / 21:........:80000014:211:/ window 100000,0
 
 ### Feeling the Burn
-2000.0 "--sync--" sync / 21:........:80000014:XXX:/ window 100000,0
+2000.0 "--sync--" sync / 21:........:80000014:20E:/ window 100000,0
 
 ### The Broken Blade
 3000.0 "--sync--" sync / 21:........:80000014:XXX:/ window 100000,0
@@ -40,10 +40,10 @@ hideall "--sync--"
 9000.0 "--sync--" sync / 21:........:80000014:20F:/ window 100000,0
 
 ### Time To Burn
-10000.0 "--sync--" sync / 21:........:80000014:XXX:/ window 100000,0
+10000.0 "--sync--" sync / 21:........:80000014:21D:/ window 100000,0
 
 ### Lean, Mean, Magitek Machines
-11000.0 "--sync--" sync / 21:........:80000014:XXX:/ window 100000,0
+11000.0 "--sync--" sync / 21:........:80000014:218:/ window 100000,0
 
 ### Worn to a Shadow
 12000.0 "--sync--" sync / 21:........:80000014:222:/ window 100000,0
@@ -52,10 +52,10 @@ hideall "--sync--"
 13000.0 "--sync--" sync / 21:........:80000014:212:/ window 100000,0
 
 ### Looks to Die For
-14000.0 "--sync--" sync / 21:........:80000014:XXX:/ window 100000,0
+14000.0 "--sync--" sync / 21:........:80000014:207:/ window 100000,0
 
 ### Taking the Lyon's Share
 15000.0 "--sync--" sync / 21:........:80000014:XXX:/ window 100000,0
 
 ### The Dalriada
-#20000.0 "--sync--" sync / 21:........:80000014:XXX:/ window 100000,0
+#20000.0 "--sync--" sync / 21:........:80000014:213:/ window 100000,0
