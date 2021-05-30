@@ -1,9 +1,14 @@
-type CallbackFunction = () => void;
+// EventBus by definition requires generic parameters.
+// Map our stand-in generics to actual generics here.
+// eslint-disable-next-line @typescript-eslint/ban-types
+type Scope = object;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Param = any;
+
+type CallbackFunction = (...args: Param) => void;
 type EventMapEntry = {
   event: string;
-  // Disable ban-types due to scope being any object type
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  scope: object;
+  scope: Scope;
   callback: CallbackFunction;
 };
 type EventMap = {[event: string]: EventMapEntry[]};
@@ -23,12 +28,7 @@ export default class EventBus {
    * @param scope Optional. The scope to apply the function against
    * @returns The callbacks registered to the event(s)
    */
-  on(event: string,
-      callback: CallbackFunction | undefined = undefined,
-      // Disable ban-types due to scope being any object type
-      // eslint-disable-next-line @typescript-eslint/ban-types
-      scope: object | undefined = undefined,
-  ): EventMapEntry[] | undefined {
+  on(event: string, callback?: CallbackFunction, scope?: Scope): EventMapEntry[] {
     const events = event.split(' ');
     const ret: EventMapEntry[] = [];
     scope = scope ?? (typeof window === 'undefined' ? {} : window);
@@ -48,12 +48,7 @@ export default class EventBus {
    * @param eventArguments The event arguments to pass to listeners
    * @returns A promise that can be await'd or ignored
    */
-  // Disable no-expicit-any and explicit-module-boundary-types for eventArguments since it's
-  // deliberately any-type/generic. Also disable max-len for the eslint syntax line because it's
-  // too long.
-  // eslint-disable-next-line max-len
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
-  async dispatch(event: string, ...eventArguments: any): Promise<undefined> {
+  async dispatch(event: string, ...eventArguments: Param): Promise<void> {
     if (this.listeners[event] === undefined)
       return;
 
