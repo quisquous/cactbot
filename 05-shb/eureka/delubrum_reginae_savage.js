@@ -345,7 +345,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5A97', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5A97', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5A97', capture: false }),
-      alertText: (_data, _, outputs) => outputs.text(),
+      alertText: (_data, _matches, outputs) => outputs.text(),
       outputStrings: {
         text: {
           // "Intercardinals" may confuse people between absolute and relative,
@@ -365,7 +365,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Trinität Der Sucher', id: '5A99', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Trinité Soudée', id: '5A99', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'トリニティ・シーカー', id: '5A99', capture: false }),
-      alertText: (_data, _, outputs) => outputs.text(),
+      alertText: (_data, _matches, outputs) => outputs.text(),
       outputStrings: {
         text: {
           en: 'Get Behind For Line Stack',
