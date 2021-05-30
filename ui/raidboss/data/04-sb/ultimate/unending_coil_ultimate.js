@@ -1,6 +1,7 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Regexes from '../../../../../resources/regexes';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -1072,14 +1073,7 @@ export default {
           cn: '带着点名去${dir}',
           ko: '${dir}으로 이동',
         },
-        unknownDir: {
-          en: '???',
-          de: '???',
-          fr: '???',
-          ja: '???',
-          cn: '???',
-          ko: '???',
-        },
+        unknownDir: Outputs.unknown,
       },
     },
     {
