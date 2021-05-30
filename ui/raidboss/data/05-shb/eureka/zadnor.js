@@ -1251,7 +1251,7 @@ export default {
       },
       outputStrings: {
         text: {
-          en: 'Laser Spread on YOU',
+          en: 'Laser on YOU',
         },
       },
     },
