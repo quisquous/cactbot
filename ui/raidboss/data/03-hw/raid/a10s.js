@@ -8,14 +8,7 @@ import ZoneId from '../../../../../resources/zone_id';
 // Ignoring Gobsway Rumblerocks (1AA0) aoe trigger, as it is small and frequent.
 
 const chargeOutputStrings = {
-  getIn: {
-    en: 'In',
-    de: 'Rein',
-    fr: 'Intérieur',
-    ja: '中へ',
-    cn: '靠近',
-    ko: '안으로',
-  },
+  getIn: Outputs.in,
   getOut: {
     en: 'Out',
     de: 'Raus',

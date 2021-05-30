@@ -96,14 +96,7 @@ const orbOutputStrings = {
     cn: '动动动',
     ko: '움직이기',
   },
-  in: {
-    en: 'In',
-    de: 'Rein',
-    fr: 'Intérieur',
-    ja: '中へ',
-    cn: '靠近',
-    ko: '안으로',
-  },
+  in: Outputs.in,
   out: {
     en: 'Out',
     de: 'Raus',
