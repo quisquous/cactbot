@@ -128,6 +128,11 @@ const gBossFightTriggers = [
     countdownStarts: false,
     preventAutoStart: true,
   },
+  {
+    zoneId: ZoneId.Zadnor,
+    countdownStarts: false,
+    preventAutoStart: true,
+  },
 ];
 
 
