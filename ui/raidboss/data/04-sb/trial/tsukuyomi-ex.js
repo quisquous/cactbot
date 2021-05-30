@@ -78,9 +78,7 @@ export default {
       netRegexJa: NetRegexes.gainsEffect({ target: 'ツクヨミ', effectId: '5FF', capture: false }),
       netRegexCn: NetRegexes.gainsEffect({ target: '月读', effectId: '5FF', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '츠쿠요미', effectId: '5FF', capture: false }),
-      run: (data) => {
-        data.moonIsOut = true;
-      },
+      run: (data) => data.moonIsOut = true,
     },
     {
       id: 'Tsukuyomi New Moon',
@@ -90,9 +88,7 @@ export default {
       netRegexJa: NetRegexes.gainsEffect({ target: 'ツクヨミ', effectId: '600', capture: false }),
       netRegexCn: NetRegexes.gainsEffect({ target: '月读', effectId: '600', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '츠쿠요미', effectId: '600', capture: false }),
-      run: (data) => {
-        data.moonIsOut = false;
-      },
+      run: (data) => data.moonIsOut = false,
     },
     {
       id: 'Tsukuyomi Dark Blade',

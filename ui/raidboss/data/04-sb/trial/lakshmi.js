@@ -17,9 +17,7 @@ export default {
       netRegexJa: NetRegexes.gainsEffect({ target: 'ラクシュミ', effectId: '582', capture: false }),
       netRegexCn: NetRegexes.gainsEffect({ target: '吉祥天女', effectId: '582', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '락슈미', effectId: '582', capture: false }),
-      run: (data) => {
-        data.chanchala = true;
-      },
+      run: (data) => data.chanchala = true,
     },
     {
       id: 'Lakshmi Chanchala Lose',
@@ -29,9 +27,7 @@ export default {
       netRegexJa: NetRegexes.losesEffect({ target: 'ラクシュミ', effectId: '582', capture: false }),
       netRegexCn: NetRegexes.losesEffect({ target: '吉祥天女', effectId: '582', capture: false }),
       netRegexKo: NetRegexes.losesEffect({ target: '락슈미', effectId: '582', capture: false }),
-      run: (data) => {
-        data.chanchala = false;
-      },
+      run: (data) => data.chanchala = false,
     },
     {
       // 2492 is normal, 2493 is under Chanchala

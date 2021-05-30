@@ -38,9 +38,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4CFD', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4CFD', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4CFD', capture: false }),
-      run: (data) => {
-        data.phase = 'betwixtWorlds';
-      },
+      run: (data) => data.phase = 'betwixtWorlds',
     },
     {
       id: 'E7S Betwixt Worlds Tether',
@@ -174,9 +172,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C99', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C99', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C99', capture: false }),
-      run: (data) => {
-        data.phase = 'falseMidnight';
-      },
+      run: (data) => data.phase = 'falseMidnight',
     },
     {
       id: 'E7S Silver Shot',
@@ -225,9 +221,7 @@ export default {
       netRegexCn: NetRegexes.addedCombatant({ name: '亵渎', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '신성 모독', capture: false }),
       suppressSeconds: 1,
-      run: (data) => {
-        data.phase = 'adds';
-      },
+      run: (data) => data.phase = 'adds',
     },
     {
       id: 'E7S Advent Of Light',
@@ -278,9 +272,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'アイドラトリー', id: '4C6D', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '盲崇', id: '4C6D', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '숭배', id: '4C6D', capture: false }),
-      run: (data) => {
-        data.insatiableLightStack = [];
-      },
+      run: (data) => data.insatiableLightStack = [],
     },
     {
       id: 'E7S Strength in Numbers',
@@ -360,17 +352,13 @@ export default {
       id: 'E7S Astral Effect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.color = 'light';
-      },
+      run: (data) => data.color = 'light',
     },
     {
       id: 'E7S Umbral Effect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.color = 'dark';
-      },
+      run: (data) => data.color = 'dark',
     },
     {
       id: 'E7S Boundless Tracker',
@@ -433,9 +421,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '4C5[CD]', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '4C5[CD]', capture: false }),
       delaySeconds: 20,
-      run: (data) => {
-        delete data.boundless;
-      },
+      run: (data) => delete data.boundless,
     },
     {
       id: 'E7S Words of Night',

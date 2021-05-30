@@ -11,9 +11,7 @@ export default {
       id: 'Amaurot Meteor',
       netRegex: NetRegexes.headMarker({ id: '0039' }),
       condition: Conditions.targetIsYou(),
-      preRun: (data) => {
-        data.meteor = (data.meteor || 0) + 1;
-      },
+      preRun: (data) => data.meteor = (data.meteor || 0) + 1,
       infoText: (data, _matches, output) => {
         if (data.meteor === 1)
           return output.dropMeteorWest();

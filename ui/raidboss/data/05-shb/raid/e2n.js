@@ -249,9 +249,7 @@ export default {
       id: 'E2N Countdown Marker Cleanup',
       netRegex: NetRegexes.headMarker({ id: '00B8' }),
       delaySeconds: 10,
-      run: (data, matches) => {
-        delete data.spell[matches.target];
-      },
+      run: (data, matches) => delete data.spell[matches.target],
     },
   ],
   timelineReplace: [

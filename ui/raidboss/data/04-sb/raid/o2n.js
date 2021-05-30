@@ -21,17 +21,13 @@ export default {
       id: 'O2N Levitation Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '556' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.levitating = true;
-      },
+      run: (data) => data.levitating = true,
     },
     {
       id: 'O2N Levitation Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '556' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.levitating = false;
-      },
+      run: (data) => data.levitating = false,
     },
     {
       id: 'O2N Gravitational Manipulation Stack',
@@ -207,9 +203,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '2502', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2502', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2502', source: '카타스트로피', capture: false }),
-      preRun: (data) => {
-        data.antiCounter = data.antiCounter || 0;
-      },
+      preRun: (data) => data.antiCounter = data.antiCounter || 0,
       durationSeconds: (data) => {
         if (data.antiCounter === 0 && data.levitating)
           return 3;
@@ -234,9 +228,7 @@ export default {
         if (data.antiCounter === 0 && data.levitating)
           return output.antilight();
       },
-      run: (data) => {
-        data.antiCounter += 1;
-      },
+      run: (data) => data.antiCounter += 1,
       outputStrings: {
         antilight: {
           en: 'Antilight',

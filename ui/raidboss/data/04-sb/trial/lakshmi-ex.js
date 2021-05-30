@@ -26,9 +26,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '2148', source: 'ラクシュミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2148', source: '吉祥天女', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2148', source: '락슈미', capture: false }),
-      run: (data) => {
-        data.chanchala = true;
-      },
+      run: (data) => data.chanchala = true,
     },
     {
       id: 'LakshmiEx Chanchala Lose',
@@ -38,9 +36,7 @@ export default {
       netRegexJa: NetRegexes.losesEffect({ target: 'ラクシュミ', effectId: '582', capture: false }),
       netRegexCn: NetRegexes.losesEffect({ target: '吉祥天女', effectId: '582', capture: false }),
       netRegexKo: NetRegexes.losesEffect({ target: '락슈미', effectId: '582', capture: false }),
-      run: (data) => {
-        data.chanchala = false;
-      },
+      run: (data) => data.chanchala = false,
     },
     {
       id: 'LakshmiEx Pull of Light Tank',

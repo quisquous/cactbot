@@ -272,9 +272,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '용병 레임브릭스', id: '1AA9', capture: false }),
       delaySeconds: 20,
       suppressSeconds: 20,
-      run: (data) => {
-        delete data.seenBrighteyes;
-      },
+      run: (data) => delete data.seenBrighteyes,
     },
     {
       id: 'A10S Brighteyes Prey Marker',

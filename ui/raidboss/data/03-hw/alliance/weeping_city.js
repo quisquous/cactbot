@@ -83,9 +83,7 @@ export default {
       netRegexJa: NetRegexes.message({ line: '蜘蛛女の狩場 will be sealed off.*?', capture: false }),
       netRegexCn: NetRegexes.message({ line: '女王蛛猎场 will be sealed off.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '거미 여왕의 사냥터 will be sealed off.*?', capture: false }),
-      run: (data) => {
-        data.arachneStarted = true;
-      },
+      run: (data) => data.arachneStarted = true,
     },
     {
       id: 'Weeping City HeadMarker Ozma',

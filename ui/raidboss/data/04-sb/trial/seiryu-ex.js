@@ -68,9 +68,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '37E4', source: '青龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '37E4', source: '青龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '37E4', source: '청룡', capture: false }),
-      run: (data) => {
-        data.blazing = true;
-      },
+      run: (data) => data.blazing = true,
     },
     {
       id: 'SeiryuEx Cursekeeper',
@@ -133,9 +131,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3C25', source: '青龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3C25', source: '青龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3C25', source: '청룡', capture: false }),
-      run: (data) => {
-        data.markers = [];
-      },
+      run: (data) => data.markers = [],
     },
     {
       id: 'SeiryuEx Ascending Stack',
@@ -162,9 +158,7 @@ export default {
       id: 'SeiryuEx Ascending Marker Tracking',
       netRegex: NetRegexes.headMarker({ id: '00A9' }),
       condition: (data) => data.blazing,
-      run: (data, matches) => {
-        data.markers.push(matches.target);
-      },
+      run: (data, matches) => data.markers.push(matches.target),
     },
     {
       id: 'SeiryuEx Ascending Marker You',
@@ -262,9 +256,7 @@ export default {
 
         return output.outOfMiddleTowardSnakes();
       },
-      run: (data) => {
-        data.withForce = true;
-      },
+      run: (data) => data.withForce = true,
       outputStrings: {
         goToSnakes: {
           en: 'Go To Snakes',

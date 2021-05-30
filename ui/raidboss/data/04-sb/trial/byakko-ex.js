@@ -259,9 +259,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
       delaySeconds: 20,
-      run: (data) => {
-        delete data.stakeCount;
-      },
+      run: (data) => delete data.stakeCount,
     },
     {
       id: 'ByaEx Highest Stakes',

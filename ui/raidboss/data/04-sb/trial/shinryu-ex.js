@@ -29,9 +29,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '25DE', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '25DE', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25DE', source: '신룡', capture: false }),
-      run: (data) => {
-        data.phase = 1;
-      },
+      run: (data) => data.phase = 1,
     },
     {
       id: 'ShinryuEx Phase 2',
@@ -41,9 +39,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '25E7', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '25E7', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25E7', source: '신룡', capture: false }),
-      run: (data) => {
-        data.phase = 2;
-      },
+      run: (data) => data.phase = 2,
     },
     {
       id: 'ShinryuEx Phase 3',
@@ -53,9 +49,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '25E4', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '25E4', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25E4', source: '신룡', capture: false }),
-      run: (data) => {
-        data.phase = 3;
-      },
+      run: (data) => data.phase = 3,
     },
     {
       id: 'ShinryuEx Phase 4',
@@ -65,9 +59,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '264E', source: '神龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '264E', source: '神龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '264E', source: '신룡', capture: false }),
-      run: (data) => {
-        data.phase = 4;
-      },
+      run: (data) => data.phase = 4,
     },
     {
       id: 'ShinryuEx Akh Morn',
@@ -527,9 +519,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '2718', source: '왼쪽 날개', capture: false }),
       condition: (data) => !data.finalWing,
       alertText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.finalWing = true;
-      },
+      run: (data) => data.finalWing = true,
       outputStrings: {
         text: {
           en: 'kill left first',
@@ -551,9 +541,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '2719', source: '오른쪽 날개', capture: false }),
       condition: (data) => !data.finalWing,
       alertText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.finalWing = true;
-      },
+      run: (data) => data.finalWing = true,
       outputStrings: {
         text: {
           en: 'kill right first',
@@ -627,9 +615,7 @@ export default {
         if (!data.shakerTargets.includes(data.me))
           return output.avoidEarthshakers();
       },
-      run: (data) => {
-        delete data.shakerTargets;
-      },
+      run: (data) => delete data.shakerTargets,
       outputStrings: {
         avoidEarthshakers: {
           en: 'avoid earthshakers',

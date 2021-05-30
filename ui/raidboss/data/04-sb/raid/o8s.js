@@ -533,9 +533,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: ['28CD', '2B31'], source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['28CD', '2B31'], source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['28CD', '2B31'], source: '케프카', capture: false }),
-      preRun: (data) => {
-        data.lastThunder = 'trueThunder';
-      },
+      preRun: (data) => data.lastThunder = 'trueThunder',
       suppressSeconds: 40,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -553,9 +551,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: ['28CC', '2B30'], source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['28CC', '2B30'], source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['28CC', '2B30'], source: '케프카', capture: false }),
-      preRun: (data) => {
-        data.lastThunder = 'fakeThunder';
-      },
+      preRun: (data) => data.lastThunder = 'fakeThunder',
       suppressSeconds: 40,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -573,9 +569,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: ['28C5', '2B2B'], source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['28C5', '2B2B'], source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['28C5', '2B2B'], source: '케프카', capture: false }),
-      preRun: (data) => {
-        data.lastIceDir = 'getOut';
-      },
+      preRun: (data) => data.lastIceDir = 'getOut',
       suppressSeconds: 40,
       infoText: (_data, _matches, output) => {
         return output.text({ type: output.type(), dir: output.dir() });
@@ -598,9 +592,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: ['28C9', '2B2E'], source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['28C9', '2B2E'], source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['28C9', '2B2E'], source: '케프카', capture: false }),
-      preRun: (data) => {
-        data.lastIceDir = 'getIn';
-      },
+      preRun: (data) => data.lastIceDir = 'getIn',
       suppressSeconds: 40,
       infoText: (_data, _matches, output) => {
         return output.text({ type: output.type(), dir: output.dir() });
@@ -623,9 +615,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: ['28C4', '2B2A'], source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['28C4', '2B2A'], source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['28C4', '2B2A'], source: '케프카', capture: false }),
-      preRun: (data) => {
-        data.lastIceDir = 'getIn';
-      },
+      preRun: (data) => data.lastIceDir = 'getIn',
       suppressSeconds: 40,
       infoText: (_data, _matches, output) => {
         return output.text({ type: output.type(), dir: output.dir() });
@@ -648,9 +638,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: ['28C8', '2B2D'], source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['28C8', '2B2D'], source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['28C8', '2B2D'], source: '케프카', capture: false }),
-      preRun: (data) => {
-        data.lastIceDir = 'getOut';
-      },
+      preRun: (data) => data.lastIceDir = 'getOut',
       suppressSeconds: 40,
       infoText: (_data, _matches, output) => {
         return output.text({ type: output.type(), dir: output.dir() });

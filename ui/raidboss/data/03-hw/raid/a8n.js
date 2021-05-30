@@ -201,9 +201,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '174C' }),
       netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '174C' }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '174C' }),
-      run: (data, matches) => {
-        data.bruteTank = matches.target;
-      },
+      run: (data, matches) => data.bruteTank = matches.target,
     },
     {
       // The only dangerous Flarethrower is the first one in any rotation.
@@ -221,9 +219,7 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: ['1750', '1756'] }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: ['1750', '1756'] }),
       suppressSeconds: 5,
-      run: (data, matches) => {
-        data.bruteTankOut = matches.id === '1756';
-      },
+      run: (data, matches) => data.bruteTankOut = matches.id === '1756',
     },
     {
       id: 'A8N Long Needle Party',

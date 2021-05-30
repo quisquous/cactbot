@@ -44,17 +44,13 @@ export default {
       id: 'O2S Levitation Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '556' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.levitating = true;
-      },
+      run: (data) => data.levitating = true,
     },
     {
       id: 'O2S Levitation Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '556' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.levitating = false;
-      },
+      run: (data) => data.levitating = false,
     },
     {
       id: 'O2S -100Gs',
@@ -288,9 +284,7 @@ export default {
           return output.sixFulmsUnder();
       },
       tts: (_data, _matches, output) => output.float(),
-      run: (data) => {
-        data.under = true;
-      },
+      run: (data) => data.under = true,
       outputStrings: {
         sixFulmsUnder: {
           en: '6 Fulms Under',
@@ -322,9 +316,7 @@ export default {
       id: 'O2S 6 Fulms Under Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '237' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.under = false;
-      },
+      run: (data) => data.under = false,
     },
   ],
   timelineReplace: [

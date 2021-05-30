@@ -17,9 +17,7 @@ export default {
       netRegexJa: NetRegexes.removingCombatant({ name: '魔列車', capture: false }),
       netRegexCn: NetRegexes.removingCombatant({ name: '魔列车', capture: false }),
       netRegexKo: NetRegexes.removingCombatant({ name: '마열차', capture: false }),
-      run: (data) => {
-        data.StopCombat();
-      },
+      run: (data) => data.StopCombat(),
     },
     {
       id: 'O5S Doom Strike',
