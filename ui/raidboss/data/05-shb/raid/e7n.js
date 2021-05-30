@@ -186,9 +186,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C39', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C39', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C39', capture: false }),
-      run: (data) => {
-        delete data.colorCount;
-      },
+      run: (data) => delete data.colorCount,
     },
   ],
   timelineReplace: [

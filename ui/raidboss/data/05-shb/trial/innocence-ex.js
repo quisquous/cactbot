@@ -382,9 +382,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3EEA', source: 'イノセンス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3EEA', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EEA', source: '이노센스', capture: false }),
-      run: (data) => {
-        delete data.starbirthActive;
-      },
+      run: (data) => delete data.starbirthActive,
     },
     {
       id: 'InnoEx Starbirth End 2',
@@ -394,9 +392,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3EEE', source: 'イノセンス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3EEE', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EEE', source: '이노센스', capture: false }),
-      run: (data) => {
-        delete data.starbirthActive;
-      },
+      run: (data) => delete data.starbirthActive,
     },
     {
       id: 'InnoEx Soul And Body Left',

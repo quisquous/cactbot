@@ -232,9 +232,7 @@ export default {
       netRegexJa: NetRegexes.addedCombatant({ name: 'パズズ', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '帕祖祖', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '파주주', capture: false }),
-      run: (data) => {
-        data.wraithCount = 0;
-      },
+      run: (data) => data.wraithCount = 0,
     },
     {
       id: 'Eureka Falling Asleep',

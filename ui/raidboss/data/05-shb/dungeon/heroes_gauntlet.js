@@ -170,9 +170,7 @@ export default {
 
         return output.stackOn({ player: data.ShortName(matches.target) });
       },
-      run: (data) => {
-        delete data.anguish;
-      },
+      run: (data) => delete data.anguish,
       outputStrings: {
         stackOnYourRock: {
           en: 'Stack on your rock',

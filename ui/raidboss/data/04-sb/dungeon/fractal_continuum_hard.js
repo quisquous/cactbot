@@ -218,9 +218,7 @@ export default {
     {
       id: 'Fractal Hard Dischord Collect',
       netRegex: NetRegexes.headMarker({ id: ['004D', '004E'] }),
-      run: (data, matches) => {
-        data[matches.id] = matches.target;
-      },
+      run: (data, matches) => data[matches.id] = matches.target,
     },
     {
       id: 'Fractal Hard Dischord Resolve',

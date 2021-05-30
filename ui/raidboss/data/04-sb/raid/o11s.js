@@ -34,9 +34,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '326[24]', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '326[24]', source: '오메가', capture: false }),
       delaySeconds: 15,
-      run: (data) => {
-        delete data.lastWasStarboard;
-      },
+      run: (data) => delete data.lastWasStarboard,
     },
     {
       id: 'O11S Starboard Cannon 1',
@@ -48,9 +46,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '326[23]', source: '오메가', capture: false }),
       condition: (data) => data.lastWasStarboard === undefined,
       response: Responses.goLeft(),
-      run: (data) => {
-        data.lastWasStarboard = true;
-      },
+      run: (data) => data.lastWasStarboard = true,
     },
     {
       id: 'O11S Larboard Cannon 1',
@@ -62,9 +58,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ id: '326[45]', source: '오메가', capture: false }),
       condition: (data) => data.lastWasStarboard === undefined,
       response: Responses.goRight(),
-      run: (data) => {
-        data.lastWasStarboard = false;
-      },
+      run: (data) => data.lastWasStarboard = false,
     },
     {
       id: 'O11S Starboard Cannon 2',

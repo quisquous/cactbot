@@ -110,9 +110,7 @@ export default {
       netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人をつついた.*?', capture: false }),
       netRegexCn: NetRegexes.gameNameLog({ line: '.*用手指戳向木人.*?', capture: false }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 쿡쿡 찌릅니다.*?', capture: false }),
-      preRun: (data) => {
-        data.pokes = (data.pokes || 0) + 1;
-      },
+      preRun: (data) => data.pokes = (data.pokes || 0) + 1,
       infoText: (data, _matches, output) => output.poke({ numPokes: data.pokes }),
       outputStrings: {
         poke: {

@@ -53,9 +53,7 @@ export default {
       netRegexJa: NetRegexes.message({ line: '.*物言わぬ語り部 will be sealed off.*?', capture: false }),
       netRegexCn: NetRegexes.message({ line: '.*无声的叙事者 will be sealed off.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '.*말 없는 이야기꾼 will be sealed off.*?', capture: false }),
-      run: (data) => {
-        data.deadBardam = true;
-      },
+      run: (data) => data.deadBardam = true,
     },
     {
       id: 'Bardam\'s Mettle Empty Gaze',

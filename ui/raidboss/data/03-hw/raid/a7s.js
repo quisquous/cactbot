@@ -207,9 +207,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'VII号ゴブリウォーカーL型', id: '16F2' }),
       netRegexKo: NetRegexes.ability({ source: 'VII호 고블린워커 L형', id: '16F2' }),
       netRegexCn: NetRegexes.ability({ source: '7号哥布林战车L型', id: '16F2' }),
-      run: (data, matches) => {
-        data.stickyloom = matches.target;
-      },
+      run: (data, matches) => data.stickyloom = matches.target,
     },
     {
       id: 'A7S Padlock',

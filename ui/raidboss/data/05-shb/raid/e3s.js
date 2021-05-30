@@ -498,9 +498,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '400F', source: 'リヴァイアサン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '400F', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '400F', source: '리바이어선', capture: false }),
-      run: (data) => {
-        data.refreshed = true;
-      },
+      run: (data) => data.refreshed = true,
     },
     {
       id: 'E3S Front Left Temporary Current',

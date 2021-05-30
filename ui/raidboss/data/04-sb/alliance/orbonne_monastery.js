@@ -149,21 +149,15 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3854', source: '聖騎士アグリアス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3854', source: '圣骑士阿格莉亚丝', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3854', source: '성기사 아그리아스', capture: false }),
-      preRun: (data) => {
-        data.halidom = [];
-      },
+      preRun: (data) => data.halidom = [],
       delaySeconds: 50,
-      run: (data) => {
-        delete data.agriasGhostCleanse;
-      },
+      run: (data) => delete data.agriasGhostCleanse,
     },
     {
       id: 'Orbonne Agrias Vacuum',
       netRegex: NetRegexes.headMarker({ id: '00A5' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.agriasGhostCleanse = true;
-      },
+      run: (data) => data.agriasGhostCleanse = true,
     },
     {
       id: 'Orbonne Agrias Consecration',
@@ -194,9 +188,7 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '3851', source: '模造聖域' }),
       netRegexCn: NetRegexes.ability({ id: '3851', source: '仿制圣域' }),
       netRegexKo: NetRegexes.ability({ id: '3851', source: '모조 성역' }),
-      run: (data, matches) => {
-        data.halidom.push(matches.target);
-      },
+      run: (data, matches) => data.halidom.push(matches.target),
     },
     {
       id: 'Orbonne Agrias Halidom Outside',

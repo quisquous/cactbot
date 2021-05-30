@@ -137,9 +137,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '가루다', id: '4BF7', capture: false }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
-      run: (data) => {
-        data.phase = 'garuda';
-      },
+      run: (data) => data.phase = 'garuda',
     },
     {
       id: 'E6S Ferostorm',
@@ -198,9 +196,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'イフリート', id: '4C09', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '伊弗利特', id: '4C09', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '이프리트', id: '4C09', capture: false }),
-      run: (data) => {
-        data.phase = 'ifrit';
-      },
+      run: (data) => data.phase = 'ifrit',
     },
     {
       id: 'E6S Inferno Howl',
@@ -222,9 +218,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4D00', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4D00', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: ['이프리트', '락타팍샤'], id: '4D00', capture: false }),
-      preRun: (data) => {
-        data.handsOfFlame = true;
-      },
+      preRun: (data) => data.handsOfFlame = true,
     },
     {
       // Tank swap if you're not the target
@@ -260,9 +254,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: ['イフリート', 'ラクタパクシャ'], id: '4D00', capture: false }),
       netRegexCn: NetRegexes.ability({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4D00', capture: false }),
       netRegexKo: NetRegexes.ability({ source: ['이프리트', '락타팍샤'], id: '4D00', capture: false }),
-      preRun: (data) => {
-        data.handsOfFlame = false;
-      },
+      preRun: (data) => data.handsOfFlame = false,
       suppressSeconds: 1,
     },
     {
@@ -310,9 +302,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'ガルーダ', id: '4F9F', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '迦楼罗', id: '4F9F', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '가루다', id: '4F9F', capture: false }),
-      run: (data) => {
-        data.phase = 'both';
-      },
+      run: (data) => data.phase = 'both',
     },
     {
       id: 'E6S Hated of the Vortex Effect',
@@ -354,9 +344,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ラクタパクシャ', id: '4D55', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '赤翼罗羯坨博叉', id: '4D55', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '락타팍샤', id: '4D55', capture: false }),
-      run: (data) => {
-        data.phase = 'raktapaksa';
-      },
+      run: (data) => data.phase = 'raktapaksa',
     },
     {
       id: 'E6S Downburst Knockback 1',

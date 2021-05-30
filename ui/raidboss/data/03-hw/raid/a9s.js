@@ -239,9 +239,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'リファビッシャー', id: '1AFE' }),
       netRegexCn: NetRegexes.ability({ source: '废品翻新装置', id: '1AFE' }),
       netRegexKo: NetRegexes.ability({ source: '재생자', id: '1AFE' }),
-      run: (data, matches) => {
-        data.mainTank = matches.target;
-      },
+      run: (data, matches) => data.mainTank = matches.target,
     },
     {
       id: 'A9S Power Generator Add Tether',

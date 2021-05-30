@@ -82,9 +82,7 @@ export default {
       id: 'Rab Mateus Breathless Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '595' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.breathless = 0;
-      },
+      run: (data) => data.breathless = 0,
     },
     {
       id: 'Rab Mateus Blizzard IV',
@@ -232,9 +230,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: '冷血剣アルガス', id: '261A', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '冷血剑阿加斯', id: '261A', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '냉혈검 아르가스', id: '261A', capture: false }),
-      run: (data) => {
-        data.maskValue = true;
-      },
+      run: (data) => data.maskValue = true,
     },
     {
       id: 'Rab Argath Mask of Lies',
@@ -244,9 +240,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: '冷血剣アルガス', id: '2619', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '冷血剑阿加斯', id: '2619', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '냉혈검 아르가스', id: '2619', capture: false }),
-      run: (data) => {
-        data.maskValue = false;
-      },
+      run: (data) => data.maskValue = false,
     },
     {
       id: 'Rab Argath Command Scatter',

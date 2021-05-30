@@ -64,9 +64,7 @@ export default {
 
         return output.waterPositions();
       },
-      run: (data) => {
-        data.seenMistRune = true;
-      },
+      run: (data) => data.seenMistRune = true,
       outputStrings: {
         inOutThenWaterPositions: {
           en: 'In/Out, then Water Positions',
@@ -102,9 +100,7 @@ export default {
 
         return output.stackPositions();
       },
-      run: (data) => {
-        data.seenFlameRune = true;
-      },
+      run: (data) => data.seenFlameRune = true,
       outputStrings: {
         stackMaybeRotate: {
           en: 'Stack (maybe rotate?)',
@@ -329,9 +325,7 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '3D3F', source: 'ピーズブロッサム', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '3D3F', source: '豌豆花', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3D3F', source: '콩나무', capture: false }),
-      run: (data) => {
-        delete data.bomb;
-      },
+      run: (data) => delete data.bomb,
     },
     {
       id: 'TitaniaEx Adds Stack',
@@ -381,14 +375,10 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '3D29', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '3D29', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3D29', source: '티타니아', capture: false }),
-      preRun: (data) => {
-        data.thunderCount = data.thunderCount || 1;
-      },
+      preRun: (data) => data.thunderCount = data.thunderCount || 1,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => output.text({ num: data.thunderCount }),
-      run: (data) => {
-        data.thunderCount++;
-      },
+      run: (data) => data.thunderCount++,
       outputStrings: {
         text: {
           en: 'Thunder ${num}',
@@ -408,9 +398,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3D32', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D32', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D32', source: '티타니아', capture: false }),
-      run: (data) => {
-        delete data.thunderCount;
-      },
+      run: (data) => delete data.thunderCount,
     },
   ],
   timelineReplace: [

@@ -355,17 +355,13 @@ export default {
       id: 'O9S Headwind',
       netRegex: NetRegexes.gainsEffect({ effectId: '642' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.wind = 'head';
-      },
+      run: (data) => data.wind = 'head',
     },
     {
       id: 'O9S Tailwind',
       netRegex: NetRegexes.gainsEffect({ effectId: '643' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.wind = 'tail';
-      },
+      run: (data) => data.wind = 'tail',
     },
     {
       id: 'O9S Cyclone Knockback',
@@ -382,9 +378,7 @@ export default {
         if (data.wind === 'tail')
           return output.faceTheTornado();
       },
-      run: (data) => {
-        delete data.wind;
-      },
+      run: (data) => delete data.wind,
       outputStrings: {
         backToTornado: {
           en: 'Back to Tornado',
@@ -453,9 +447,7 @@ export default {
       netRegex: NetRegexes.gainsEffect({ effectId: '645' }),
       condition: (data, matches) => data.me === matches.target && data.phaseType !== 'orb',
       infoText: (_data, _matches, output) => output.text(),
-      run: (data) => {
-        data.primordialCrust = true;
-      },
+      run: (data) => data.primordialCrust = true,
       outputStrings: {
         text: {
           en: 'Die on next mechanic',
@@ -472,9 +464,7 @@ export default {
       netRegex: NetRegexes.gainsEffect({ effectId: '645' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 30,
-      run: (data) => {
-        delete data.primordialCrust;
-      },
+      run: (data) => delete data.primordialCrust,
     },
     {
       id: 'O9S Earth Stack Marker',
@@ -502,9 +492,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '318A', source: 'カオス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '318A', source: '卡奥斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '318A', source: '카오스', capture: false }),
-      preRun: (data) => {
-        data.phaseType = 'orb';
-      },
+      preRun: (data) => data.phaseType = 'orb',
     },
     {
       id: 'O9S Orb Entropy',
@@ -516,9 +504,7 @@ export default {
         if (data.head === 'wind')
           return output.text();
       },
-      run: (data) => {
-        delete data.wind;
-      },
+      run: (data) => delete data.wind,
       outputStrings: {
         text: {
           en: 'Back to DPS',

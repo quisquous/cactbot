@@ -23,9 +23,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4DD4', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4DD4', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4DD4', capture: false }),
-      run: (data) => {
-        data.mirrorsActive = true;
-      },
+      run: (data) => data.mirrorsActive = true,
     },
     {
       id: 'E8N Biting Frost',
@@ -164,9 +162,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '얼음 거울', id: ['4DFE', '4DFF', '4E00', '4E01'], capture: false }),
       // Maybe not necessary to delay here, but just to be safe.
       delaySeconds: 5,
-      run: (data) => {
-        data.mirrorsActive = false;
-      },
+      run: (data) => data.mirrorsActive = false,
     },
     {
       id: 'E8N Absolute Zero',
@@ -294,9 +290,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '4E0B', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '4E0B', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '4E0B', capture: false }),
-      run: (data) => {
-        delete data.rampant;
-      },
+      run: (data) => delete data.rampant,
     },
     {
       id: 'E8N Heavenly Strike',

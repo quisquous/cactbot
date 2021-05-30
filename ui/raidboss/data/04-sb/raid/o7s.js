@@ -13,17 +13,13 @@ export default {
       id: 'O7S Aether Rot Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '5C3' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.rot = true;
-      },
+      run: (data) => data.rot = true,
     },
     {
       id: 'O7S Aether Rot Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '5C3' }),
       condition: Conditions.targetIsYou(),
-      run: (data) => {
-        data.rot = false;
-      },
+      run: (data) => data.rot = false,
     },
     {
       id: 'O7S Dadaluma Simulation',
@@ -65,9 +61,7 @@ export default {
       netRegexJa: NetRegexes.gainsEffect({ target: 'ガーディアン', effectId: '5D5', capture: false }),
       netRegexCn: NetRegexes.gainsEffect({ target: '守护者', effectId: '5D5', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '가디언', effectId: '5D5', capture: false }),
-      run: (data) => {
-        data.seenVirus = true;
-      },
+      run: (data) => data.seenVirus = true,
     },
     {
       id: 'O7S Magitek Ray',

@@ -271,9 +271,7 @@ export default {
         if (data.me !== matches.target)
           return output.thunderOn({ player: data.ShortName(matches.target) });
       },
-      run: (data, matches) => {
-        data.lightning = matches.target;
-      },
+      run: (data, matches) => data.lightning = matches.target,
       outputStrings: {
         thunderOn: {
           en: 'Thunder on ${player}',
@@ -296,9 +294,7 @@ export default {
     {
       id: 'A8S Compressed Lightning Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '400', capture: false }),
-      run: (data) => {
-        delete data.lightning;
-      },
+      run: (data) => delete data.lightning,
     },
     {
       id: 'A8S Compressed Lightning Soon',
@@ -377,9 +373,7 @@ export default {
     {
       id: 'A8S Long Needle Stack Collect',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      run: (data, matches) => {
-        data.longNeedleStack = matches.target;
-      },
+      run: (data, matches) => data.longNeedleStack = matches.target,
     },
     {
       id: 'A8S Long Needle Prey Collect',
@@ -583,9 +577,7 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '1673', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '1673', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '1673', capture: false }),
-      run: (data) => {
-        data.seenLinkUp = true;
-      },
+      run: (data) => data.seenLinkUp = true,
     },
     {
       id: 'A8S Verdict Min HP',
@@ -607,9 +599,7 @@ export default {
     {
       id: 'A8S Verdict Min HP Collect',
       netRegex: NetRegexes.gainsEffect({ effectId: '408' }),
-      run: (data, matches) => {
-        data.verdictMin = matches.target;
-      },
+      run: (data, matches) => data.verdictMin = matches.target,
     },
     {
       id: 'A8S Verdict Min HP Tornado',
@@ -631,9 +621,7 @@ export default {
     {
       id: 'A8S Verdict Max HP Collect',
       netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
-      run: (data, matches) => {
-        data.verdictMax = matches.target;
-      },
+      run: (data, matches) => data.verdictMax = matches.target,
     },
     {
       id: 'A8S Verdict Max HP',
@@ -803,9 +791,7 @@ export default {
         if (data.me !== matches.target)
           return output.waterOn({ player: data.ShortName(matches.target) });
       },
-      run: (data, matches) => {
-        data.water = matches.target;
-      },
+      run: (data, matches) => data.water = matches.target,
       outputStrings: {
         waterOn: {
           en: 'Water on ${player}',
