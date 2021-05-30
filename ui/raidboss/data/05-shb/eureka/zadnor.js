@@ -397,7 +397,12 @@ export default {
       run: (data) => delete data.diremiteHailfire,
       outputStrings: {
         text: {
-          en: 'Avoid Hailfire Lasers',
+          en: 'Avoid Lasers',
+          de: 'Laser ausweichen',
+          fr: 'Évitez les lasers',
+          ja: 'レーザーを避ける',
+          cn: '躲避激光',
+          ko: '레이저 피하기',
         },
       },
     },
@@ -451,6 +456,11 @@ export default {
         output.responseOutputStrings = {
           avoidCharge: {
             en: 'Avoid Charge',
+            de: 'ausweichen',
+            fr: 'Évitez les charges',
+            ja: '突進避けて',
+            cn: '躲避冲锋',
+            ko: '돌진 피하기',
           },
           runAway: {
             en: 'Run Away From Boss',
@@ -583,6 +593,11 @@ export default {
       outputStrings: {
         text: {
           en: 'Avoid Dashes',
+          de: 'Sprint ausweichen',
+          fr: 'Évitez les charges',
+          ja: 'ブレードを避ける',
+          cn: '躲开冲锋',
+          ko: '돌진 피하기',
         },
       },
     },
@@ -813,6 +828,11 @@ export default {
       outputStrings: {
         text: {
           en: 'Get Towers',
+          de: 'Türme nehmen',
+          fr: 'Prenez les tours',
+          ja: '塔を踏む',
+          cn: '踩塔',
+          ko: '장판 하나씩 들어가기',
         },
       },
     },
@@ -895,6 +915,11 @@ export default {
       outputStrings: {
         text: {
           en: 'Get Towers',
+          de: 'Türme nehmen',
+          fr: 'Prenez les tours',
+          ja: '塔を踏む',
+          cn: '踩塔',
+          ko: '장판 하나씩 들어가기',
         },
       },
     },
@@ -1130,6 +1155,11 @@ export default {
         output.responseOutputStrings = {
           tankLaserOnYou: {
             en: 'Tank Laser on YOU',
+            de: 'Tank Laser auf DIR',
+            fr: 'Tank laser sur VOUS',
+            ja: '自分にタンクレーザー',
+            cn: '坦克射线点名',
+            ko: '탱 레이저 대상자',
           },
           avoidTankLaser: {
             en: 'Avoid Tank Laser',
@@ -1250,6 +1280,11 @@ export default {
       outputStrings: {
         text: {
           en: 'Line Stack',
+          de: 'In einer Linie sammeln',
+          fr: 'Package en ligne',
+          ja: '直線頭割り',
+          cn: '直线分摊',
+          ko: '직선 쉐어',
         },
       },
     },
