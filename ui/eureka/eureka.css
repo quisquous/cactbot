@@ -119,6 +119,10 @@
   color: #d25454;
 }
 
+.duel .nm-time {
+  color: #e7baba;
+}
+
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -185,10 +189,6 @@
   display: none;
 }
 
-.duel.nm-down .nm-time {
-  color: #e7baba;
-}
-
 .nm-pop .nm-progress {
   color: #8686ff;
   font-size: 12px;
@@ -199,16 +199,20 @@
 }
 
 /* non-critical bozja fates are less important, so make smaller */
-.bozjasouthern > .nm {
+.bozjasouthern > .nm,
+.zadnor > .nm {
   font-size: 10px;
 }
 
-.bozjasouthern > .nm-pop .nm-name {
+.bozjasouthern > .nm-pop .nm-name,
+.zadnor > .nm-pop .nm-name {
   font-size: 12px;
 }
 
 .bozjasouthern > .nm-down .nm-name,
-.bozjasouthern > .nm-down .nm-time {
+.bozjasouthern > .nm-down .nm-time,
+.zadnor > .nm-down .nm-name,
+.zadnor > .nm-down .nm-time {
   font-size: 8px;
 }
 

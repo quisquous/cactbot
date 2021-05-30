@@ -2159,7 +2159,8 @@ const Options = {
           y: 12.6,
           isCritical: true,
           ceKey: 0,
-          respawnMinutes: 60,
+          // TODO: this needs a 60 minute respawn *after* it finishes.
+          // respawnMinutes: 60,
         },
         killitwithfire: {
           label: {
@@ -2457,6 +2458,9 @@ const Options = {
           x: 24.8,
           y: 31.1,
           fateID: 1723,
+          isCritical: true,
+          isDuel: true,
+          respawnMinutes: 60,
         },
         meetthepuppetmaster: {
           label: {
@@ -2638,7 +2642,8 @@ const Options = {
           y: 8.2,
           isCritical: true,
           ceKey: 0,
-          respawnMinutes: 60,
+          // TODO: this needs a 60 minute respawn *after* it finishes.
+          // respawnMinutes: 60,
         },
         onserpentswings: {
           label: {
@@ -3018,16 +3023,15 @@ class EurekaTracker {
 
   OnFatePop(fate) {
     this.DebugPrint(`OnFatePop: ${this.TransByDispLang(fate.label)}`);
-    if (fate.element.classList.contains('nm-hidden'))
-      fate.element.classList.remove('nm-hidden');
-
+    const classList = fate.element.classList;
     if (fate.isCritical)
-      fate.element.classList.add('critical-pop');
+      classList.add('critical-pop');
     else
-      fate.element.classList.add('nm-pop');
+      classList.add('nm-pop');
 
-    fate.element.classList.remove('nm-down');
-    fate.lastPopTimeMsLocal = +new Date();
+    classList.remove('nm-hidden');
+    classList.remove('nm-down');
+    classList.remove('critical-down');
     fate.respawnTimeMsLocal = this.RespawnTime(fate);
 
     if (fate.bunny) {
@@ -3223,8 +3227,8 @@ class EurekaTracker {
         const remainingMinutes = Math.ceil(remainingMs / 1000 / 60);
         const nmString = respawnIcon + remainingMinutes +
           this.TransByDispLang(this.options.timeStrings.minute);
-        nm.timeElement.innerHTML = nmString;
-        nm.element.classList.add('nm-down');
+        if (nm.timeElement.innerHTML !== nmString)
+          nm.timeElement.innerHTML = nmString;
       }
     }
   }
