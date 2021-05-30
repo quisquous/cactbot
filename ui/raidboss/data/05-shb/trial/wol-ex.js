@@ -43,14 +43,7 @@ const sharedOutputStrings = {
 // Only for imbued.
 const imbuedOutputStrings = {
   ...sharedOutputStrings,
-  swordIn: {
-    en: 'In',
-    de: 'Rein',
-    fr: 'Intérieur',
-    ja: '中へ',
-    cn: '月环',
-    ko: '안으로',
-  },
+  swordIn: Outputs.in,
   swordOut: {
     en: 'Out',
     de: 'Raus',
