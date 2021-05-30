@@ -535,7 +535,7 @@ export class PopupText {
     if (this.inCombat === inCombat)
       return;
 
-    if (inCombat || this.resetWhenOutOfCombat)
+    if (this.resetWhenOutOfCombat)
       this.SetInCombat(inCombat);
   }
 
