@@ -13,10 +13,6 @@ const validDirections = [
 ] as const;
 type ValidDirection = typeof validDirections[number];
 
-abstract class HTMLTemplateElement extends HTMLElement {
-  abstract get content(): DocumentFragment;
-}
-
 const showEvents = [
   'mouseenter',
   'focus',
@@ -150,8 +146,8 @@ export default class Tooltip {
   static getTemplate(dir: string): HTMLTemplateElement {
     const elemName = `${dir}TooltipTemplate`;
     const ret = document.getElementById(elemName);
-    if (ret instanceof HTMLTemplateElement)
-      return ret;
+    if (ret instanceof HTMLElement)
+      return ret as HTMLTemplateElement;
     throw new UnreachableCode();
   }
 
@@ -159,8 +155,7 @@ export default class Tooltip {
     const template = Tooltip.templates[direction];
     const node = template.content.querySelector('.tooltip');
     if (node instanceof HTMLElement)
-      return node;
+      return node.cloneNode(true) as HTMLElement;
     throw new UnreachableCode();
   }
 }
-
