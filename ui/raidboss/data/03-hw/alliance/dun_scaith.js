@@ -1108,7 +1108,7 @@ export default {
         'Scathach': '스카하크',
         'Shadow Limb': '그림자 손',
         'Shadowcourt Jester': '여왕의 어릿광대',
-        'Shadows gather on the floor': '影之力正在向地面聚集',
+        'Shadows gather on the floor': '影之力正在向地面聚集 乱改',
         'The Queen\'s Graces': '여왕의 방',
         'The Queen\'s Pride': '여왕의 사열 광장',
         'The Rostrum': '광대의 무대',
