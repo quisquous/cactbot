@@ -186,7 +186,7 @@ export default class WidgetList extends HTMLElement {
     this._yinc2 = y2inc;
   }
 
-  attributeChangedCallback(name: string, _: string, newValue: string): void {
+  attributeChangedCallback(name: string, _oldValue: string, newValue: string): void {
     if (name === 'toward') {
       this.parseToward(newValue);
       this.layout();
