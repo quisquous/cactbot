@@ -148,9 +148,9 @@ export default {
       id: 'Zadnor Serpents Turbine',
       netRegex: NetRegexes.startsUsing({ source: 'Stormborne Zirnitra', id: '5E54' }),
       condition: (data) => data.ce === 'serpents',
+      preRun: (data) => data.serpentsTurbineCount = (data.serpentsTurbineCount || 0) + 1,
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       alertText: (data, _matches, output) => {
-        data.serpentsTurbineCount = (data.serpentsTurbineCount || 0) + 1;
         // TODO: how does this loop?
         if (data.serpentsTurbineCount === 1)
           return output.knockbackDonut();
@@ -222,9 +222,7 @@ export default {
       netRegex: NetRegexes.startsUsing({ source: 'Blackburn', id: '5C34', capture: false }),
       condition: (data) => data.ce === 'feeling',
       alertText: (data, _matches, output) => {
-        if (data.feelingAnalysis)
-          return output.point();
-        return output.dodge();
+        return data.feelingAnalysis ? output.point() : output.dodge();
       },
       run: (data) => delete data.feelingAnalysis,
       outputStrings: {
@@ -246,9 +244,7 @@ export default {
       condition: (data) => data.ce === 'grave',
       suppressSeconds: 10,
       alertText: (_data, matches, output) => {
-        if (matches.id === '5E23')
-          return output.outThenIn();
-        return output.inThenOut();
+        return matches.id === '5E23' ? output.outThenIn() : output.inThenOut();
       },
       outputStrings: {
         outThenIn: Outputs.outThenIn,
@@ -264,9 +260,7 @@ export default {
       delaySeconds: 5,
       suppressSeconds: 10,
       alertText: (_data, matches, output) => {
-        if (matches.id === '5E23')
-          return output.in();
-        return output.out();
+        return matches.id === '5E23' ? output.in() : output.out();
       },
       outputStrings: {
         out: Outputs.out,
@@ -605,12 +599,10 @@ export default {
       id: 'Zadnor Time Time Bomb',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Belias', id: '5D95', capture: false }),
       condition: (data) => data.ce === 'time',
+      preRun: (data) => data.timeBombCount = (data.timeBombCount || 0) + 1,
       infoText: (data, _matches, output) => {
-        data.timeBombCount = (data.timeBombCount || 0) + 1;
         // Belias alternates 2 and 3 Time Bombs, starting with 2.
-        if (data.timeBombCount % 2)
-          return output.twoClocks();
-        return output.threeClocks();
+        return data.timeBombCount % 2 ? output.twoClocks() : output.threeClocks();
       },
       outputStrings: {
         twoClocks: {
@@ -1227,9 +1219,7 @@ export default {
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       alertText: (data, _matches, output) => {
         // TODO: how does this loop?
-        if (data.diabloSeenDealing)
-          return output.knockbackNox();
-        return output.knockbackBits();
+        return data.diabloSeenDealing ? output.knockbackNox() : output.knockbackBits();
       },
       run: (data) => data.diabloSeenDealing = true,
       outputStrings: {
@@ -1296,9 +1286,7 @@ export default {
       infoText: (_data, matches, output) => {
         // Durations are 7 and 12.
         const duration = parseFloat(matches.duration);
-        if (duration > 10)
-          return output.dodgeFirst();
-        return output.dodgeSecond();
+        return duration > 10 ? output.dodgeFirst() : output.dodgeSecond();
       },
       outputStrings: {
         dodgeFirst: {
