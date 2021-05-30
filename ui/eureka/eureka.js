@@ -2407,9 +2407,9 @@ const Options = {
           y: 34.2,
           fateID: 1718,
         },
-        animmoraldilemna: {
+        animmoraldilemma: {
           label: {
-            en: 'Dilemna',
+            en: 'Dilemma',
             de: 'Ketzer Fabineau',
           },
           x: 22.7,
@@ -2499,7 +2499,7 @@ const Options = {
         },
         tankingup: {
           label: {
-            en: 'Tanking Up',
+            en: 'Tanking',
             de: 'Seiryu Zwo',
           },
           x: 8.1,
@@ -2580,7 +2580,7 @@ const Options = {
         },
         whenmagesrage: {
           label: {
-            en: 'Mages Rage',
+            en: 'Mages',
             de: 'Was du heute kannst besorgen',
           },
           x: 20.3,
@@ -2589,7 +2589,7 @@ const Options = {
         },
         hypertunedhavoc: {
           label: {
-            en: 'Hypertuned',
+            en: 'Hyper',
             de: 'goldene Gelegenheit',
           },
           x: 16.6,
@@ -2598,7 +2598,7 @@ const Options = {
         },
         attackofthesupersoldiers: {
           label: {
-            en: 'Super Soldiers',
+            en: 'Soldiers',
             de: 'Verstärkung .. Mech-Einheit',
           },
           x: 16.6,
@@ -2636,7 +2636,7 @@ const Options = {
         },
         onserpentswings: {
           label: {
-            en: 'Serpents Wings',
+            en: 'Serpents',
             de: 'Geistertrupp',
           },
           x: 31.4,
@@ -2646,7 +2646,7 @@ const Options = {
         },
         feelingtheburn: {
           label: {
-            en: 'Feeling the Burn',
+            en: 'Feeling',
             de: 'Schwarzbrands',
           },
           x: 16.6,
@@ -2656,7 +2656,7 @@ const Options = {
         },
         thebrokenblade: {
           label: {
-            en: 'Broken Blade',
+            en: 'Blade',
             de: 'Hyper-Dabog',
           },
           x: 26.5,
@@ -2666,7 +2666,7 @@ const Options = {
         },
         frombeyondthegrave: {
           label: {
-            en: 'Beyond',
+            en: 'Grave',
             de: 'Shemhazai ',
           },
           x: 20.2,
@@ -2716,7 +2716,7 @@ const Options = {
         },
         nevercrywolf: {
           label: {
-            en: 'Cry Wolf',
+            en: 'Wolf',
             de: 'Hrodvitnir',
           },
           x: 4.9,
@@ -2726,7 +2726,7 @@ const Options = {
         },
         timetoburn: {
           label: {
-            en: 'Time to Burn',
+            en: 'Time',
             de: 'Belias',
           },
           x: 10.5,
@@ -2736,7 +2736,7 @@ const Options = {
         },
         leanmeanmagitekmachines: {
           label: {
-            en: 'Lean, Mean',
+            en: 'Magitek',
             de: 'Gepanzerte Zenturie',
           },
           x: 15.2,
@@ -2756,7 +2756,7 @@ const Options = {
         },
         afamiliarface: {
           label: {
-            en: 'Familiar Face',
+            en: 'Familiar',
             de: 'Hashmallim',
           },
           x: 28.0,
@@ -2776,7 +2776,7 @@ const Options = {
         },
         takingthelyonsshare: {
           label: {
-            en: 'Lyon\'s Share',
+            en: 'Lyon\'s',
             de: 'Revanche: Lyon',
           },
           x: 22.5,
