@@ -1760,7 +1760,7 @@ export default {
       'replaceSync': {
         'Beastly Sculpture': 'création léonine',
         'Bomb Boulder': 'bombo rocher',
-        'Chiseled Sculpture': 'création masculine',
+        'Chiseled Sculpture': 'création msculine',
         'Eden\'s Promise': 'Promesse d\'Éden',
         'Guardian Of Eden': 'Gardien d\'Éden',
         'Ice Pillar': 'Pilier de glace',
