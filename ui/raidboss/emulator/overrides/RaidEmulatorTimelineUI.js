@@ -10,7 +10,7 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
   }
 
   bindTo(emulator) {
-    emulator.on('tick', (currentLogTime, lastLogTimestamp) => {
+    emulator.on('tick', (currentLogTime, lastLogLineTime) => {
       for (const i in this.emulatedTimerBars) {
         const bar = this.emulatedTimerBars[i];
         this.updateBar(bar, currentLogTime);
@@ -24,7 +24,7 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
       this.emulatedTimerBars = this.emulatedTimerBars.filter((bar) => {
         return bar.forceRemoveAt > currentLogTime;
       });
-      this.timeline && this.timeline.timebase && this.timeline._OnUpdateTimer(lastLogTimestamp);
+      this.timeline && this.timeline.timebase && this.timeline._OnUpdateTimer(lastLogLineTime);
     });
     emulator.on('play', () => {
       this.emulatedStatus = 'play';

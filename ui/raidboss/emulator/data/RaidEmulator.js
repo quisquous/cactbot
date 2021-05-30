@@ -9,7 +9,7 @@ export default class RaidEmulator extends EventBus {
     this.currentEncounter = null;
     this.playingInterval = null;
     this.currentLogLineIndex = null;
-    this.lastLogTimestamp = null;
+    this.lastLogLineTime = null;
     this.lastTickTime = null;
   }
   addEncounter(encounter) {
@@ -82,7 +82,7 @@ export default class RaidEmulator extends EventBus {
           await this.dispatch('emitLogs', { logs: logs });
           logs = [];
         }
-        this.currentLogTime = this.lastLogTimestamp = line.timestamp;
+        this.currentLogTime = this.lastLogLineTime = line.timestamp;
         ++this.currentLogLineIndex;
         await this.dispatch('midSeek', line);
         continue;
@@ -97,7 +97,7 @@ export default class RaidEmulator extends EventBus {
     }
 
     await this.dispatch('postSeek', seekTimestamp);
-    await this.dispatch('tick', this.currentLogTime, this.lastLogTimestamp);
+    await this.dispatch('tick', this.currentLogTime, this.lastLogLineTime);
     if (playing)
       this.play();
   }
@@ -117,7 +117,7 @@ export default class RaidEmulator extends EventBus {
       ++i) {
       if (this.currentEncounter.encounter.logLines[i].timestamp <= lastTimestamp) {
         logs.push(this.currentEncounter.encounter.logLines[i]);
-        this.lastLogTimestamp = this.currentEncounter.encounter.logLines[i].timestamp;
+        this.lastLogLineTime = this.currentEncounter.encounter.logLines[i].timestamp;
         ++this.currentLogLineIndex;
         continue;
       }
@@ -128,7 +128,7 @@ export default class RaidEmulator extends EventBus {
     if (logs.length)
       await this.dispatch('emitLogs', { logs: logs });
 
-    await this.dispatch('tick', this.currentLogTime, this.lastLogTimestamp);
+    await this.dispatch('tick', this.currentLogTime, this.lastLogLineTime);
   }
 
   setPopupText(popupText) {
