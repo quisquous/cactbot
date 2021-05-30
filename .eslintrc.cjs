@@ -45,7 +45,7 @@ module.exports = {
             'requireLast': false,
           },
         }],
-        '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
+        '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_\\w+' }],
         'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
         'object-shorthand': ['error', 'consistent'],
         '@typescript-eslint/method-signature-style': ['error', 'property'],
@@ -61,7 +61,7 @@ module.exports = {
     {
       'files': ['**/raidboss/data/**/*'],
       'rules': {
-        'no-unused-vars': ['error', { 'args': 'all', 'argsIgnorePattern': '^_' }],
+        'no-unused-vars': ['error', { 'args': 'all', 'argsIgnorePattern': '^_\\w+' }],
         'prefer-arrow/prefer-arrow-functions': 'warn',
         'rulesdir/cactbot-output-strings': 'error',
         'rulesdir/cactbot-timeline-triggers': 'error',
