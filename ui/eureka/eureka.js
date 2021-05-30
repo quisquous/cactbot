@@ -2589,7 +2589,7 @@ const Options = {
         },
         hypertunedhavoc: {
           label: {
-            en: 'Hypertuned',
+            en: 'Hyper',
             de: 'goldene Gelegenheit',
           },
           x: 16.6,
@@ -2756,7 +2756,7 @@ const Options = {
         },
         afamiliarface: {
           label: {
-            en: 'Face',
+            en: 'Familiar',
             de: 'Hashmallim',
           },
           x: 28.0,
