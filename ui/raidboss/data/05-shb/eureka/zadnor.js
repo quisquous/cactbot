@@ -772,6 +772,102 @@ export default {
     // ***** Taking the Lyon's Share *****
     // ***** The Dalriada *****
     {
+      id: 'Zadnor Sartauvoir Pyrokinesis',
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E7D', capture: false }),
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Zadnor Sartauvoir Time Eruption',
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E6C', capture: false }),
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go to Slow Clocks',
+        },
+      },
+    },
+    {
+      id: 'Zadnor Sartauvoir Reverse Time Eruption',
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E6D', capture: false }),
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go to Fast Clocks',
+        },
+      },
+    },
+    {
+      id: 'Zadnor Sartauvoir Phenex',
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E72', capture: false }),
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bird Dashes',
+        },
+      },
+    },
+    {
+      id: 'Zadnor Sartauvoir Hyperpyroplexy',
+      netRegex: NetRegexes.ability({ source: 'Sartauvoir The Inferno', id: '5E76', capture: false }),
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Towers',
+        },
+      },
+    },
+    {
+      id: 'Zadnor Sartauvoir Burning Blade',
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E90' }),
+      condition: tankBusterOnParty(),
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'Zadnor Sartauvoir Mannatheihwon Flame Warning',
+      // Triggered after Burning Blade.
+      // TODO: does this ever happen again??
+      netRegex: NetRegexes.ability({ source: 'Sartauvoir The Inferno', id: '5E90', capture: false }),
+      suppressSeconds: 999999,
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack together to bait Ignis Est',
+        },
+      },
+    },
+    {
+      id: 'Zadnor Sartauvoir Mannatheihwon Flame',
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E87', capture: false }),
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Zadnor Sartauvoir Mannatheihwon Flame Away',
+      netRegex: NetRegexes.ability({ source: 'Sartauvoir The Inferno', id: '5E87', capture: false }),
+      suppressSeconds: 1,
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get far away from X charges',
+        },
+      },
+    },
+    {
+      id: 'Zadnor Sartauvoir Pyrocrysis',
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E8F' }),
+      condition: Conditions.targetIsYou(),
+      response: Responses.spread(),
+    },
+    {
+      id: 'Zadnor Sartauvoir Left Brand',
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E8C', capture: false }),
+      response: Responses.goRight(),
+    },
+    {
+      id: 'Zadnor Sartauvoir Right Brand',
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E8B', capture: false }),
+      response: Responses.goLeft(),
+    },
+    {
       id: 'Zadnor Blackburn Magitek Rays',
       netRegex: NetRegexes.startsUsing({ source: '4th Legion Blackburn', id: '5F12', capture: false }),
       response: Responses.aoe(),
@@ -989,7 +1085,7 @@ export default {
     {
       id: 'Zadnor Saunion Wildfire Winds',
       netRegex: NetRegexes.startsUsing({ source: 'Dawon The Younger', id: '5DCD', capture: false }),
-      delaySeconds: 9, // TODO: check this for other uses
+      delaySeconds: 10,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
