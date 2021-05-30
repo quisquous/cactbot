@@ -642,7 +642,7 @@ Options.Triggers.push({
         return output.text({ dir: output[initialDir](), rotate: rotateStr });
       },
       outputStrings: {
-        unknown: Outputs.unknownTarget,
+        unknown: Outputs.unknown,
         north: Outputs.north,
         northeast: Outputs.northeast,
         east: Outputs.east,
@@ -1924,14 +1924,7 @@ Options.Triggers.push({
           ja: '${dir}に安置',
           cn: '去${dir}方安全点',
         },
-        unknown: {
-          en: '???',
-          de: '???',
-          fr: '???',
-          ja: '???',
-          cn: '???',
-          ko: '???',
-        },
+        unknown: Outputs.unknown,
         north: Outputs.north,
         northeast: Outputs.northeast,
         east: Outputs.east,

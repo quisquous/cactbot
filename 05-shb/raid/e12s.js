@@ -1104,14 +1104,7 @@ Options.Triggers.push({
       },
       infoText: (data, _matches, output) => !data.safeZone ? output.unknown() : data.safeZone,
       outputStrings: {
-        unknown: {
-          en: '???',
-          de: '???',
-          fr: '???',
-          ja: '???',
-          cn: '???',
-          ko: '???',
-        },
+        unknown: Outputs.unknown,
         north: Outputs.north,
         east: Outputs.east,
         south: Outputs.south,

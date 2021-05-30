@@ -60,14 +60,7 @@ const orbNpcNameIdToOutputString = {
   '9448': 'rings',
 };
 const orbOutputStrings = {
-  unknown: {
-    en: '???',
-    de: '???',
-    fr: '???',
-    ja: '???',
-    cn: '???',
-    ko: '???',
-  },
+  unknown: Outputs.unknown,
   knockback: Outputs.knockback,
   stop: {
     en: 'Stop',

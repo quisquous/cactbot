@@ -112,14 +112,7 @@ const summonDirectionOutputStrings = {
     cn: '上偏左(北偏西)',
     ko: '11시',
   },
-  unknown: {
-    en: '???',
-    de: '???',
-    fr: '???',
-    ja: '???',
-    cn: '???',
-    ko: '???',
-  },
+  unknown: Outputs.unknown,
 };
 const convertBossHeadingToClonePosition = (boss) => {
   // Snap heading to closest card/intercard (aka PI/4).  N = PI, E = PI/2.

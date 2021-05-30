@@ -1053,14 +1053,7 @@ Options.Triggers.push({
           cn: '带着点名去${dir}',
           ko: '${dir}으로 이동',
         },
-        unknownDir: {
-          en: '???',
-          de: '???',
-          fr: '???',
-          ja: '???',
-          cn: '???',
-          ko: '???',
-        },
+        unknownDir: Outputs.unknown,
       },
     },
     {

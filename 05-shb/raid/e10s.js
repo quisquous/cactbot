@@ -432,7 +432,7 @@ Options.Triggers.push({
         '1': Outputs.num1,
         '2': Outputs.num2,
         '3': Outputs.num3,
-        'unknown': Outputs.unknownTarget,
+        'unknown': Outputs.unknown,
       },
     },
     {

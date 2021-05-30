@@ -15,7 +15,7 @@ const boundOfFaithFireTetherResponse = (data, _matches, output) => {
   output.responseOutputStrings = {
     stackOnYou: Outputs.stackOnYou,
     stackOnPlayer: Outputs.stackOnPlayer,
-    unknownTarget: Outputs.unknownTarget,
+    unknownTarget: Outputs.unknown,
   };
   const targets = Object.keys(data.tethers || {});
   if (targets.includes(data.me))
@@ -43,7 +43,7 @@ const boundOfFaithLightningTetherResponse = (data, _matches, output) => {
       cn: '雷点${player}',
       ko: '"${player}" 번개징 대상자',
     },
-    unknownTarget: Outputs.unknownTarget,
+    unknownTarget: Outputs.unknown,
   };
   const targets = Object.keys(data.tethers || {});
   if (targets.includes(data.me))
@@ -56,7 +56,7 @@ const boundOfFaithHolyTetherResponse = (data, _matches, output) => {
   output.responseOutputStrings = {
     awayFromGroup: Outputs.awayFromGroup,
     awayFromPlayer: Outputs.awayFromPlayer,
-    unknownTarget: Outputs.unknownTarget,
+    unknownTarget: Outputs.unknown,
   };
   const targets = Object.keys(data.tethers || {});
   if (targets.includes(data.me))
