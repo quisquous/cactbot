@@ -81,7 +81,7 @@ type Style = {
   regex: RegExp;
 }
 
-type Event = {
+export type Event = {
   id: number;
   time: number;
   name: string;
@@ -100,7 +100,7 @@ type Error = {
   error: string;
 }
 
-type Sync = {
+export type Sync = {
   id: number;
   origRegexStr: string;
   regex: RegExp;

@@ -19,11 +19,12 @@
     "lint-staged": "node_modules/.bin/lint-staged",
     "coverage-report": "node --loader ts-node/esm util/gen_coverage_report.js",
     "find-translations": "node --loader ts-node/esm util/find_missing_translations.js",
-    "translate-timeline": "node --loader ts-node/esm util/translate_timeline.js",
+    "translate-timeline": "node --loader ts-node/esm util/translate_timeline.ts",
     "process-triggers": "node --loader ts-node/esm util/process_triggers_folder.js"
   },
   "devDependencies": {
     "@babel/types": "7.12.*",
+    "@types/argparse": "^1.0.10",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.1",
     "@zoltu/typescript-transformer-append-js-extension": "^1.0.1",
