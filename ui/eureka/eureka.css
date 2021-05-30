@@ -149,15 +149,22 @@
   color: #d25454;
 }
 
+.duel .nm-name {
+  color: #e7baba;
+}
+
 .critical-pop .nm-name {
-  color: #c84123;
   font-size: 18px;
   animation: pulse 1s infinite alternate;
 }
 
-.critical-pop .nm-progress {
+.critical .nm-progress {
   color: #c84123;
   font-size: 12px;
+}
+
+.duel .nm-progress {
+  color: #e7baba;
 }
 
 .critical-pop .nm-icon {
@@ -176,6 +183,10 @@
 
 .nm-pop .nm-time {
   display: none;
+}
+
+.duel.nm-down .nm-time {
+  color: #e7baba;
 }
 
 .nm-pop .nm-progress {
