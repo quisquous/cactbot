@@ -113,14 +113,14 @@ const orbOutputStrings = {
   },
 };
 // TODO: promote something like this to Conditions?
-const tankBusterOnParty = (ceId) => (data) => {
-  if (ceId && data.ce !== ceId)
+const tankBusterOnParty = (ceName) => (data, matches) => {
+  if (ceName && data.ce !== ceName)
     return false;
-  if (data.target === data.me)
+  if (matches.target === data.me)
     return true;
   if (data.role !== 'healer')
     return false;
-  return data.party.inParty(data.target);
+  return data.party.inParty(matches.target);
 };
 Options.Triggers.push({
   zoneId: ZoneId.TheBozjanSouthernFront,
@@ -179,13 +179,13 @@ Options.Triggers.push({
         for (const key in ceIds) {
           if (ceIds[key] === ceId) {
             if (data.options.Debug)
-              console.log(`Start CE: ${ceId} (${key})`);
-            data.ce = ceId;
+              console.log(`Start CE: ${key} (${ceId})`);
+            data.ce = key;
             return;
           }
         }
         if (data.options.Debug)
-          console.log(`Unknown CE: ${ceId}`);
+          console.log(`Start CE: ??? (${ceId})`);
       },
     },
     {
@@ -196,7 +196,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ source: 'レッドコメット', id: '506C' }),
       netRegexCn: NetRegexes.startsUsing({ source: '红色彗星', id: '506C' }),
       netRegexKo: NetRegexes.startsUsing({ source: '붉은 혜성', id: '506C' }),
-      condition: tankBusterOnParty(ceIds.choctober),
+      condition: tankBusterOnParty('choctober'),
       response: Responses.tankBuster(),
     },
     {
