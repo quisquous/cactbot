@@ -1,3 +1,5 @@
+import { UnreachableCode } from '../../../../resources/not_reached';
+
 const hideEvents = [
   'mouseleave',
   'blur',
@@ -38,6 +40,7 @@ export default class Tooltip {
   private static templates: TemplatesType;
 
   constructor(
+      // @TODO: Refactor this to only accept HTMLElement after upstream classes are converted
       targetRef: string | HTMLElement,
       direction: ValidDirection,
       text: string,
@@ -48,11 +51,11 @@ export default class Tooltip {
     let target: HTMLElement | null;
 
     if (typeof targetRef === 'string')
-      target = document.querySelector<HTMLElement>(targetRef);
+      target = document.querySelector(targetRef);
     else
       target = targetRef;
 
-    if (!target) {
+    if (!(target instanceof HTMLElement)) {
       const msg = 'Invalid selector or element passed to Tooltip';
       console.error(msg);
       throw new Error(msg);
@@ -61,19 +64,15 @@ export default class Tooltip {
     this.target = target;
     this.direction = direction;
     this.tooltip = Tooltip.cloneTemplate(direction);
-    const innerElem = this.tooltip.querySelector<HTMLElement>('.tooltip-inner');
-    if (!innerElem) {
-      const msg = `Tooltip template direction ${direction} missing .tooltip-inner`;
-      console.error(msg);
-      throw new Error(msg);
-    }
+    const innerElem = this.tooltip.querySelector('.tooltip-inner');
+    if (!(innerElem instanceof HTMLElement))
+      throw new UnreachableCode();
+
     this.inner = innerElem;
-    const arrowElem = this.tooltip.querySelector<HTMLElement>('.arrow');
-    if (!arrowElem) {
-      const msg = `Tooltip template direction ${direction} missing .arrow`;
-      console.error(msg);
-      throw new Error(msg);
-    }
+    const arrowElem = this.tooltip.querySelector('.arrow');
+    if (!(arrowElem instanceof HTMLElement))
+      throw new UnreachableCode();
+
     this.arrow = arrowElem;
     this.setText(text);
     document.body.append(this.tooltip);
@@ -151,17 +150,17 @@ export default class Tooltip {
   static getTemplate(dir: string): HTMLTemplateElement {
     const elemName = `${dir}TooltipTemplate`;
     const ret = document.getElementById(elemName);
-    if (ret === null) {
-      const msg = `Missing element ${elemName}`;
-      console.error(msg);
-      throw new Error(msg);
-    }
-    return ret as HTMLTemplateElement;
+    if (ret instanceof HTMLTemplateElement)
+      return ret;
+    throw new UnreachableCode();
   }
 
   static cloneTemplate(direction: ValidDirection): HTMLElement {
     const template = Tooltip.templates[direction];
-    return template.content.firstElementChild?.cloneNode(true) as HTMLElement;
+    const node = template.content.querySelector('.tooltip');
+    if (node instanceof HTMLElement)
+      return node;
+    throw new UnreachableCode();
   }
 }
 
