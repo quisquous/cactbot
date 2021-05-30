@@ -18,20 +18,20 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
     this.audioDebugTextDuration = 2000;
   }
 
-  async doUpdate(timestampOffset) {
-    this.emulatedOffset = timestampOffset;
+  async doUpdate(currentLogTime) {
+    this.emulatedOffset = currentLogTime;
     for (const t of this.scheduledTriggers) {
-      const remaining = t.expires - timestampOffset;
+      const remaining = t.expires - currentLogTime;
       if (remaining <= 0) {
         t.resolver();
         await t.promise;
       }
     }
     this.scheduledTriggers = this.scheduledTriggers.filter((t) => {
-      return t.expires - timestampOffset > 0;
+      return t.expires - currentLogTime > 0;
     });
     this.displayedText = this.displayedText.filter((t) => {
-      const remaining = t.expires - timestampOffset;
+      const remaining = t.expires - currentLogTime;
       if (remaining > 0) {
         t.element.querySelector('.popup-text-remaining').textContent = '(' + (remaining / 1000).toFixed(1) + ')';
         return true;
@@ -74,11 +74,11 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
       this.OnLog(event.logs);
       this.OnNetLog(event.logs);
     });
-    emulator.on('tick', async (timestampOffset) => {
-      await this.doUpdate(timestampOffset);
+    emulator.on('tick', async (currentLogTime) => {
+      await this.doUpdate(currentLogTime);
     });
     emulator.on('midSeek', async (line) => {
-      await this.doUpdate(line.offset);
+      await this.doUpdate(line.timestamp);
     });
     emulator.on('preSeek', (time) => {
       this.seeking = true;

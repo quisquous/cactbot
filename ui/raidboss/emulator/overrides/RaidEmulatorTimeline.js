@@ -3,16 +3,11 @@ import { Timeline } from '../../timeline';
 export default class RaidEmulatorTimeline extends Timeline {
   constructor(text, replacements, triggers, styles, options) {
     super(text, replacements, triggers, styles, options);
-    this.emulatedTimeOffset = 0;
-    this.emulatedFightSync = 0;
-    this.emulatedFightSyncLastOffset = 0;
     this.emulatedStatus = 'pause';
   }
 
   bindTo(emulator) {
-    emulator.on('tick', (timestampOffset, lastLogTimestamp) => {
-      this.emulatedTimeOffset = timestampOffset;
-    });
+    this.emulator = emulator;
     emulator.on('play', () => {
       this.emulatedStatus = 'play';
     });
@@ -21,24 +16,21 @@ export default class RaidEmulatorTimeline extends Timeline {
     });
   }
 
-  emulatedSync(timestampOffset) {
-    if (!this.emulatedFightSyncLastOffset)
+  emulatedSync(currentLogTime) {
+    if (!currentLogTime)
       return;
 
-    this.SyncTo(this.emulatedFightSync +
-      ((timestampOffset - this.emulatedFightSyncLastOffset) / 1000), timestampOffset);
-    this._OnUpdateTimer(timestampOffset);
+    // This is a bit complicated due to jumps in timelines. If we've already got a timebase,
+    // fightNow needs to be calculated based off of that instead of engageAt
+    // timebase = 0 when not set
+    const baseTimestamp = this.timebase || this.emulator.currentEncounter.encounter.engageAt;
+    const fightNow = (currentLogTime - baseTimestamp) / 1000;
+
+    this.SyncTo(fightNow, currentLogTime);
+    this._OnUpdateTimer(currentLogTime);
   }
 
   // Override
   _ScheduleUpdate(fightNow) {
-  }
-
-  // Override
-  SyncTo(fightNow, currentTime) {
-    super.SyncTo(fightNow, currentTime);
-
-    this.emulatedFightSync = fightNow;
-    this.emulatedFightSyncLastOffset = this.emulatedTimeOffset;
   }
 }

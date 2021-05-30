@@ -20,10 +20,10 @@ export default class EmulatedPartyInfo extends EventBus {
     for (let i = 0; i < 8; ++i)
       this.triggerBars[i] = this.$triggerBar.querySelector('.player' + i);
 
-    emulator.on('tick', (timestampOffset, lastLogTimestamp) => {
-      if (lastLogTimestamp) {
-        this.updatePartyInfo(emulator, lastLogTimestamp);
-        this.latestDisplayedState = Math.max(this.latestDisplayedState, lastLogTimestamp);
+    emulator.on('tick', (currentLogTime, lastLogLineTime) => {
+      if (lastLogLineTime) {
+        this.updatePartyInfo(emulator, lastLogLineTime);
+        this.latestDisplayedState = Math.max(this.latestDisplayedState, lastLogLineTime);
       }
     });
     emulator.on('currentEncounterChanged', (encounter) => {
