@@ -153,9 +153,9 @@ export default class Tooltip {
 
   static cloneTemplate(direction: ValidDirection): HTMLElement {
     const template = Tooltip.templates[direction];
-    const node = template.content.querySelector('.tooltip');
+    const node = template.content.querySelector('.tooltip')?.cloneNode(true);
     if (node instanceof HTMLElement)
-      return node.cloneNode(true) as HTMLElement;
+      return node;
     throw new UnreachableCode();
   }
 }
