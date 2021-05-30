@@ -28,7 +28,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '2304', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2304', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2304', source: '할리카르나소스', capture: false }),
-      run: function(e, data) {
+      run: (_e, data) => {
         data.phaseNumber += 1;
       },
     },
@@ -42,10 +42,8 @@ export default {
       netRegexJa: NetRegexes.ability({ id: '367', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '367', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '367', source: '할리카르나소스', capture: false }),
-      condition: function(e, data) {
-        return !data.initialized;
-      },
-      run: function(e, data) {
+      condition: (_e, data) => !data.initialized,
+      run: (_e, data) => {
         data.gameCount = 0;
         // Indexing phases at 1 so as to make phases match what humans expect.
         // 1: We start here.
@@ -58,12 +56,12 @@ export default {
     {
       id: 'O3N Ribbit',
       abilityRegex: '2466',
-      condition: function(e, data) {
+      condition: (e, data) => {
         // We DO want to be hit by Toad/Ribbit if the next cast of The Game
         // is 4x toad panels.
         return !(data.phaseNumber === 3 && data.gameCount % 2 === 0) && e.targetId !== 'E0000000';
       },
-      mistake: function(e) {
+      mistake: (e) => {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
@@ -73,14 +71,14 @@ export default {
       id: 'O3N The Game',
       // Guess what you just lost?
       abilityRegex: '246D',
-      condition: function(e, data) {
+      condition: (e) => {
         // If the player takes no damage, they did the mechanic correctly.
         return e.damage > 0;
       },
-      mistake: function(e) {
+      mistake: (e) => {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
-      run: function(e, data) {
+      run: (_e, data) => {
         data.gameCount += 1;
       },
     },

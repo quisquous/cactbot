@@ -13,11 +13,11 @@ export default {
       id: 'General Food Buff',
       // Well Fed
       netRegex: NetRegexes.losesEffect({ effectId: '48' }),
-      condition: function(e, data, matches) {
+      condition: (_e, _data, matches) => {
         // Prevent "Eos loses the effect of Well Fed from Critlo Mcgee"
         return matches.target === matches.source;
       },
-      mistake: function(e, data, matches) {
+      mistake: (_e, data, matches) => {
         data.lostFood = data.lostFood || {};
         // Well Fed buff happens repeatedly when it falls off (WHY),
         // so suppress multiple occurrences.
@@ -41,7 +41,7 @@ export default {
     {
       id: 'General Well Fed',
       netRegex: NetRegexes.gainsEffect({ effectId: '48' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         if (!data.lostFood)
           return;
         delete data.lostFood[matches.target];
@@ -50,10 +50,8 @@ export default {
     {
       id: 'General Rabbit Medium',
       abilityRegex: '8E0',
-      condition: function(e, data) {
-        return data.IsPlayerId(e.attackerId);
-      },
-      mistake: function(e, data) {
+      condition: (e, data) => data.IsPlayerId(e.attackerId),
+      mistake: (e) => {
         return {
           type: 'warn',
           blame: e.attackerName,

@@ -15,7 +15,7 @@ export default {
     {
       id: 'E2N Nyx',
       damageRegex: '3E3D',
-      mistake: function(e, data) {
+      mistake: (e) => {
         return {
           type: 'warn',
           blame: e.targetName,

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 

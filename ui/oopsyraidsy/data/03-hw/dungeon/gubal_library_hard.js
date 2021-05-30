@@ -40,7 +40,7 @@ export default {
       // Fire gate in hallway to boss 2, magnet failure on boss 2
       id: 'GubalHm Burns',
       netRegex: NetRegexes.gainsEffect({ effectId: '10B' }),
-      mistake: function(e, data, matches) {
+      mistake: (e) => {
         return { type: 'warn', blame: e.target, text: e.effect };
       },
     },
@@ -48,7 +48,7 @@ export default {
       // Helper for Thunder 3 failures
       id: 'GubalHm Imp Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '46E' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.hasImp = data.hasImp || {};
         data.hasImp[matches.target] = true;
       },
@@ -56,7 +56,7 @@ export default {
     {
       id: 'GubalHm Imp Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '46E' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.hasImp = data.hasImp || {};
         data.hasImp[matches.target] = false;
       },
@@ -65,10 +65,8 @@ export default {
       // Targets with Imp when Thunder III resolves receive a vulnerability stack and brief stun
       id: 'GubalHm Imp Thunder',
       damageRegex: '195[AB]',
-      condition: function(e, data) {
-        return data.hasImp[e.targetName];
-      },
-      mistake: function(e) {
+      condition: (e, data) => data.hasImp[e.targetName],
+      mistake: (e) => {
         return {
           type: 'warn',
           blame: e.targetName,
@@ -84,22 +82,22 @@ export default {
     {
       id: 'GubalHm Quake',
       damageRegex: '1956',
-      condition: function(e) {
+      condition: (e) => {
         // Always hits target, but if correctly resolved will deal 0 damage
         return e.damage > 0;
       },
-      mistake: function(e) {
+      mistake: (e) => {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
       id: 'GubalHm Tornado',
       damageRegex: '195[78]',
-      condition: function(e) {
+      condition: (e) => {
         // Always hits target, but if correctly resolved will deal 0 damage
         return e.damage > 0;
       },
-      mistake: function(e) {
+      mistake: (e) => {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },

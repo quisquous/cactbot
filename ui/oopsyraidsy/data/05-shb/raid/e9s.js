@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
 // TODO: 561D Evil Seed hits everyone, hard to know if there's a double tap
@@ -43,7 +42,7 @@ export default {
       id: 'E9S Multi-Pronged Particle Beam',
       damageRegex: '5600',
       condition: (e) => e.type === '15',
-      mistake: function(e, data, matches) {
+      mistake: (_e, _data, matches) => {
         return {
           type: 'warn',
           blame: matches.target,
@@ -66,7 +65,7 @@ export default {
       id: 'E9S Condensed Anti-Air Particle Beam',
       damageRegex: '5615',
       condition: (e) => e.type !== '15' && e.damage > 0,
-      mistake: (e, data, matches) => {
+      mistake: (_e, _data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.ability };
       },
     },
@@ -75,7 +74,7 @@ export default {
       id: 'E9S Anti-Air Phaser Unlimited',
       damageRegex: '5612',
       condition: (e) => e.damage > 0,
-      mistake: (e, data, matches) => {
+      mistake: (_e, _data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },
     },

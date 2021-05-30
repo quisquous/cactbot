@@ -18,7 +18,7 @@ export default {
       // This happens when a player gets 4+ stacks of orbs. Don't be greedy!
       id: 'E5N Static Condensation',
       netRegex: NetRegexes.gainsEffect({ effectId: '8B5' }),
-      mistake: function(e, data, matches) {
+      mistake: (_e, _data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },
@@ -26,7 +26,7 @@ export default {
       // Helper for orb pickup failures
       id: 'E5N Orb Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '8B4' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.hasOrb = data.hasOrb || {};
         data.hasOrb[matches.target] = true;
       },
@@ -34,7 +34,7 @@ export default {
     {
       id: 'E5N Orb Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '8B4' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.hasOrb = data.hasOrb || {};
         data.hasOrb[matches.target] = false;
       },
@@ -42,10 +42,8 @@ export default {
     {
       id: 'E5N Divine Judgement Volts',
       damageRegex: '4B9A',
-      condition: function(e, data) {
-        return !data.hasOrb[e.targetName];
-      },
-      mistake: function(e) {
+      condition: (e, data) => !data.hasOrb[e.targetName],
+      mistake: (e) => {
         return {
           type: 'fail',
           blame: e.targetName,
@@ -62,7 +60,7 @@ export default {
     {
       id: 'E5N Stormcloud Target Tracking',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.cloudMarkers = data.cloudMarkers || [];
         data.cloudMarkers.push(matches.target);
       },
@@ -72,7 +70,7 @@ export default {
       id: 'E5N The Parting Clouds',
       damageRegex: '4B9D',
       suppressSeconds: 30,
-      mistake: function(e, data) {
+      mistake: (e, data) => {
         for (const m of data.cloudMarkers) {
           return {
             type: 'fail',
@@ -92,7 +90,7 @@ export default {
       id: 'E5N Stormcloud cleanup',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
       delaySeconds: 30, // Stormclouds resolve well before this.
-      run: function(e, data) {
+      run: (_e, data) => {
         delete data.cloudMarkers;
       },
     },

@@ -39,12 +39,12 @@ export default {
     {
       id: 'E6S Air Bump',
       damageRegex: '4BF9',
-      condition: function(e, data) {
+      condition: (e) => {
         // Needs to be taken with friends.
         // This can't tell if you have 2 or >2.
         return e.type === '15';
       },
-      mistake: function(e, data) {
+      mistake: (e) => {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };
       },
     },

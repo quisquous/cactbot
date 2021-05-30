@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
 export default {
@@ -37,7 +36,7 @@ export default {
       id: 'St Mocianne Hard Fault Warren',
       damageRegex: '2E4A',
       condition: (e) => e.type === '15', // Taking the stack solo is *probably* a mistake.
-      mistake: function(e, data, matches) {
+      mistake: (_e, _data, matches) => {
         return {
           type: 'fail',
           blame: matches.target,

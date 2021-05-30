@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
 export default {

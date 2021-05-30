@@ -22,7 +22,7 @@ export default {
       id: 'UWU Windburn',
       netRegex: NetRegexes.gainsEffect({ effectId: 'EB' }),
       suppressSeconds: 2,
-      mistake: function(e, data, matches) {
+      mistake: (e) => {
         return { type: 'warn', blame: e.target, text: e.effect };
       },
     },
@@ -33,7 +33,7 @@ export default {
       damageRegex: '2B43',
       collectSeconds: 0.5,
       suppressSeconds: 5,
-      mistake: function(e) {
+      mistake: (e) => {
         return { type: 'fail', blame: e[0].targetName, text: e[0].attackerName };
       },
     },

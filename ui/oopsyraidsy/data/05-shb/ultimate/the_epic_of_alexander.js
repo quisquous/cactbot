@@ -57,7 +57,7 @@ export default {
       damageRegex: '482A',
       collectSeconds: 0.5,
       suppressSeconds: 5,
-      mistake: function(e, data) {
+      mistake: (e) => {
         return { type: 'fail', blame: e[0].targetName, text: e[0].attackerName };
       },
     },
@@ -67,10 +67,8 @@ export default {
       // but also themselves.
       id: 'TEA Exhaust',
       damageRegex: '481F',
-      condition: function(e, data) {
-        return e.targetName === e.attackerName;
-      },
-      mistake: function(e, data) {
+      condition: (e) => e.targetName === e.attackerName,
+      mistake: (e) => {
         return {
           type: 'fail',
           blame: e.targetName,
@@ -87,14 +85,14 @@ export default {
     {
       id: 'TEA Dropsy',
       netRegex: NetRegexes.gainsEffect({ effectId: '121' }),
-      mistake: function(e, data, matches) {
+      mistake: (_e, _data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },
     {
       id: 'TEA Tether Tracking',
       netRegex: NetRegexes.tether({ source: 'Jagd Doll', id: '0011' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.jagdTether = data.jagdTether || {};
         data.jagdTether[matches.sourceId] = matches.target;
       },
@@ -102,7 +100,7 @@ export default {
     {
       id: 'TEA Reducible Complexity',
       damageRegex: '4821',
-      mistake: function(e, data) {
+      mistake: (e, data) => {
         return {
           type: 'fail',
           // This may be undefined, which is fine.
@@ -120,21 +118,21 @@ export default {
     {
       id: 'TEA Drainage',
       damageRegex: '4827',
-      condition: function(e, data) {
+      condition: (e, data) => {
         // TODO: remove this when ngld overlayplugin is the default
         if (!data.party.partyNames.length)
           return false;
 
         return data.IsPlayerId(e.targetId) && !data.party.isTank(e.targetName);
       },
-      mistake: function(e, data) {
+      mistake: (e) => {
         return { type: 'fail', name: e.targetName, text: e.abilityName };
       },
     },
     {
       id: 'TEA Throttle Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '2BC' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.hasThrottle = data.hasThrottle || {};
         data.hasThrottle[matches.target] = true;
       },
@@ -142,7 +140,7 @@ export default {
     {
       id: 'TEA Throttle Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '2BC' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.hasThrottle = data.hasThrottle || {};
         data.hasThrottle[matches.target] = false;
       },
@@ -150,10 +148,8 @@ export default {
     {
       id: 'TEA Throttle',
       netRegex: NetRegexes.gainsEffect({ effectId: '2BC' }),
-      delaySeconds: function(e, data, matches) {
-        return parseFloat(matches.duration) - 0.5;
-      },
-      deathReason: function(e, data, matches) {
+      delaySeconds: (_e, _data, matches) => parseFloat(matches.duration) - 0.5,
+      deathReason: (_e, data, matches) => {
         if (!data.hasThrottle)
           return;
         if (!data.hasThrottle[matches.target])
@@ -168,11 +164,11 @@ export default {
       // Optical Stack
       id: 'TEA Collective Reprobation',
       damageRegex: '488D',
-      condition: function(e, data) {
+      condition: (e) => {
         // Single Tap
         return e.type === '15';
       },
-      mistake: function(e, data) {
+      mistake: (e) => {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };
       },
     },

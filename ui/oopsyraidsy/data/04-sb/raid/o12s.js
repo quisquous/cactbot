@@ -41,7 +41,7 @@ export default {
     {
       id: 'O12S1 Discharger Knocked Off',
       netRegex: NetRegexes.ability({ id: '3327' }),
-      deathReason: (e, data, matches) => {
+      deathReason: (_e, _data, matches) => {
         return {
           type: 'fail',
           name: matches.target,
@@ -59,7 +59,7 @@ export default {
     {
       id: 'O12S1 Magic Vulnerability Up Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '472' }),
-      run: (e, data, matches) => {
+      run: (_e, data, matches) => {
         data.vuln = data.vuln || {};
         data.vuln[matches.target] = true;
       },
@@ -67,7 +67,7 @@ export default {
     {
       id: 'O12S1 Magic Vulnerability Up Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '472' }),
-      run: (e, data, matches) => {
+      run: (_e, data, matches) => {
         data.vuln = data.vuln || {};
         data.vuln[matches.target] = false;
       },
@@ -78,8 +78,8 @@ export default {
       // 333E = Electric Slide (Omega-M square 1-4 dashes)
       // 333F = Electric Slide (Omega-F triangle 1-4 dashes)
       damageRegex: ['332E', '333E', '333F'],
-      condition: (e, data, matches) => data.vuln && data.vuln[matches.target],
-      mistake: (e, data, matches) => {
+      condition: (_e, data, matches) => data.vuln && data.vuln[matches.target],
+      mistake: (_e, _data, matches) => {
         return {
           type: 'fail',
           blame: matches.target,

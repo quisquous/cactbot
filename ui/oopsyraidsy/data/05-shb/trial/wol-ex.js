@@ -32,10 +32,8 @@ export default {
     {
       id: 'WOLEx True Walking Dead',
       netRegex: NetRegexes.gainsEffect({ effectId: '8FF' }),
-      delaySeconds: function(e, data, matches) {
-        return parseFloat(matches.duration) - 0.5;
-      },
-      deathReason: function(e, data, matches) {
+      delaySeconds: (_e, _data, matches) => parseFloat(matches.duration) - 0.5,
+      deathReason: (e, _data, matches) => {
         return { type: 'fail', name: e.target, reason: matches.effect };
       },
     },
@@ -57,7 +55,7 @@ export default {
     {
       id: 'WOLEx True Hallowed Ground',
       netRegex: NetRegexes.ability({ id: '4F44' }),
-      mistake: function(e, data, matches) {
+      mistake: (_e, _data, matches) => {
         return { type: 'fail', reason: matches.ability };
       },
     },
@@ -65,7 +63,7 @@ export default {
       // For Berserk and Deep Darkside
       id: 'WOLEx Missed Interrupt',
       netRegex: NetRegexes.ability({ id: ['5156', '5158'] }),
-      mistake: function(e, data, matches) {
+      mistake: (_e, _data, matches) => {
         return { type: 'fail', reason: matches.ability };
       },
     },
@@ -73,7 +71,7 @@ export default {
       id: 'WolEx Katon San Share',
       netRegex: NetRegexes.ability({ id: '4EFE' }),
       condition: (e) => e.type === '15',
-      mistake: function(e, data, matches) {
+      mistake: (_e, _data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },
     },

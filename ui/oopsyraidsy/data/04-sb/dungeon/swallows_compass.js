@@ -43,7 +43,7 @@ export default {
       // Standing in the lake, Diadarabotchi, boss 2
       id: 'Swallows Compass Six Fulms Under',
       netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
-      deathReason: (e, data, matches) => {
+      deathReason: (_e, _data, matches) => {
         return {
           type: 'fail',
           name: matches.target,
@@ -55,8 +55,8 @@ export default {
       // Stack marker, boss 3
       id: 'Swallows Compass Five Fingered Punishment',
       netRegex: NetRegexes.ability({ id: ['2BAB', '2BB0'], source: ['Qitian Dasheng', 'Shadow Of The Sage'] }),
-      condition: (data, matches) => matches.type === '21', // Taking the stack solo is *probably* a mistake.
-      mistake: function(e, data, matches) {
+      condition: (_data, matches) => matches.type === '21', // Taking the stack solo is *probably* a mistake.
+      mistake: (_e, _data, matches) => {
         return {
           type: 'fail',
           blame: matches.target,

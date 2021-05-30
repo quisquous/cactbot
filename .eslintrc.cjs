@@ -59,7 +59,7 @@ module.exports = {
       },
     },
     {
-      'files': ['**/raidboss/data/**/*'],
+      'files': ['**/oopsyraidsy/data/**/*', '**/raidboss/data/**/*'],
       'rules': {
         'no-unused-vars': ['error', { 'args': 'all', 'argsIgnorePattern': '^_\\w+' }],
         'prefer-arrow/prefer-arrow-functions': 'warn',

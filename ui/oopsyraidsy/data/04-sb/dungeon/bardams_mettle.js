@@ -10,20 +10,18 @@ import ZoneId from '../../../../../resources/zone_id';
 // we can't use damageWarn or gainsEffect helpers on the Bardam fight.
 // Instead, we use this helper function to look for failure flags.
 // If the flag is present,a full trigger object is returned that drops in seamlessly.
-function abilityWarn(args) {
+const abilityWarn = (args) => {
   if (!args.abilityId)
     console.error('Missing ability ' + JSON.stringify(args));
   return {
     id: args.id,
     netRegex: NetRegexes.abilityFull({ id: args.abilityId }),
-    condition: function(e, data, matches) {
-      return matches.flags.substr(-2) === '0E';
-    },
-    mistake: function(e, data, matches) {
+    condition: (_e, _data, matches) => matches.flags.substr(-2) === '0E',
+    mistake: (_e, _data, matches) => {
       return { type: 'warn', blame: matches.target, text: matches.ability };
     },
   };
-}
+};
 
 export default {
   zoneId: ZoneId.BardamsMettle,
