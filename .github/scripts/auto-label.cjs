@@ -109,7 +109,7 @@ const getLabels = async (github, owner, repo, pullNumber) => {
 };
 
 /**
- * @param github
+ * @param {GitHub} github
  * @param {identifier} identifier
  * @returns {Promise<{ sha: string }>}
  */
@@ -120,7 +120,7 @@ const getPRBaseCommit = async (github, identifier) => {
 };
 
 /**
- * @param github
+ * @param {GitHub} github
  * @param {identifier} identifier
  * @returns {Promise<File[]>}
  */
