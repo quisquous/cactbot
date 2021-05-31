@@ -79,26 +79,23 @@ const getLabels = async (github, owner, repo, pullNumber) => {
    * @typedef {{ filename: string, from: string, to: string }} ChangedFileContent
    * @type {ChangedFileContent[]}
    */
-  const changedFilesContent = await Promise.all(
-      changedFiles.map((f) => async () => {
-        const from = await httpClient.get(rawUrl(owner, repo, fromSha, f.filename),
-        );
-        const to = await httpClient.get(rawUrl(owner, repo, toSha, f.filename));
-        return {
-          filename: f.filename,
-          from: await from.readBody(),
-          to: await to.readBody(),
-        };
-      }).map((f) => f()),
-  );
+  const changedFilesContent = await Promise.all(changedFiles.map((f) => async () => {
+    const from = await httpClient.get(rawUrl(owner, repo, fromSha, f.filename),
+    );
+    const to = await httpClient.get(rawUrl(owner, repo, toSha, f.filename));
+    return {
+      filename: f.filename,
+      from: await from.readBody(),
+      to: await to.readBody(),
+    };
+  }).map((f) => f()));
 
   const changedLang = getTimelineReplaceChanges(changedFilesContent);
   console.log(`changed timelineReplace ${changedLang}`);
   changedLang.push(...nonNullUnique(lodash.flatten(changedFiles.map((f) => {
     if (['.js', '.ts'].includes(path.extname(f.filename)))
       return parseChangedLang(f.patch);
-  }),
-  )));
+  }))));
 
   // by file path
   const changedModule = nonNullUnique(changedFiles.map((f) => {
@@ -106,8 +103,7 @@ const getLabels = async (github, owner, repo, pullNumber) => {
       if (f.filename.startsWith(prefix))
         return label;
     }
-  }),
-  );
+  }));
 
   return [...changedModule, ...changedLang.map((v) => `💬${v.toUpperCase()}`)];
 };
