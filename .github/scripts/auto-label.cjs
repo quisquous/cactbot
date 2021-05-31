@@ -34,6 +34,7 @@ const prefixLabelMap = {
   'ui/test/': 'test',
   'ui/raidboss/raidemulator': 'raidemulator',
   'ui/raidboss/emulator': 'raidemulator',
+  // other raidboss change will match this, don't put this before raidemulator
   'ui/raidboss/': 'raidboss',
 };
 
