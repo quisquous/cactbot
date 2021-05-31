@@ -242,13 +242,10 @@ Options.Triggers.push({
     {
       id: 'HadesEx Ancient Water Unmarked',
       netRegex: NetRegexes.headMarker({ id: ['0030', '0060'], capture: false }),
+      condition: (data) => !data.waterDarkMarker,
       delaySeconds: 0.5,
       suppressSeconds: 5,
-      infoText: (data, _matches, output) => {
-        if (data.waterDarkMarker)
-          return;
-        return output.text();
-      },
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Healer Stacks',

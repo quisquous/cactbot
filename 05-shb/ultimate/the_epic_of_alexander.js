@@ -2523,11 +2523,9 @@ Options.Triggers.push({
       netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '4B14', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B14', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '4B14', capture: false }),
+      condition: (data) => data.radiantOutputStringKey,
       delaySeconds: 16,
-      alertText: (data, _matches, output) => {
-        if (data.radiantOutputStringKey)
-          return output[data.radiantOutputStringKey]();
-      },
+      alertText: (data, _matches, output) => output[data.radiantOutputStringKey](),
       outputStrings: radiantOutputStrings,
     },
     {

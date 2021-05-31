@@ -259,11 +259,8 @@ Options.Triggers.push({
     {
       id: 'E2S Shadoweye No Waiting You',
       netRegex: NetRegexes.headMarker({ id: '00B3' }),
-      condition: (data) => !data.waiting,
-      infoText: (data, matches, output) => {
-        if (data.me === matches.target)
-          return output.text();
-      },
+      condition: (data, matches) => !data.waiting && data.me === matches.target,
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Eye on YOU',
