@@ -31,8 +31,10 @@ const prefixLabelMap = {
   'ui/oopsyraidsy/': 'oopsy',
   'ui/pullcounter/': 'pullcounter',
   'ui/radar/': 'radar',
-  'ui/raidboss/': 'raidboss',
   'ui/test/': 'test',
+  'ui/raidboss/raidemulator': 'raidemulator',
+  'ui/raidboss/emulator': 'raidemulator',
+  'ui/raidboss/': 'raidboss',
 };
 
 /**
