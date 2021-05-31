@@ -74,8 +74,6 @@ Options.Triggers.push({
         'Spinner-rook': 'Drehturm',
       },
       'replaceText': {
-        '\\(center\\)': '(mitte)',
-        '\\(outside\\)': '(draußen)',
         'Bug': 'Wanze',
         'Dreadnaught': 'Brummonaut',
         'Emergency Override': 'Not-Übersteuerung',
@@ -94,8 +92,6 @@ Options.Triggers.push({
         'Spinner-rook': 'Drone-Drille',
       },
       'replaceText': {
-        '\\(center\\)': '(centre)',
-        '\\(outside\\)': '(à l\'extérieur)',
         'Bug': 'Insecte',
         'Dreadnaught': 'Cuirassé',
         'Emergency Override': 'Annulation d\'urgence',
@@ -114,8 +110,6 @@ Options.Triggers.push({
         'Spinner-rook': 'ルークスピナー',
       },
       'replaceText': {
-        '\\(center\\)': '(中央)',
-        '\\(outside\\)': '(外)',
         'Bug': 'アラガンワーク・バグ',
         'Dreadnaught': 'ドレッドノート',
         'Emergency Override': 'エマージェンシー・オーバーライド',
@@ -134,8 +128,6 @@ Options.Triggers.push({
         'Spinner-rook': '转盘堡',
       },
       'replaceText': {
-        '\\(center\\)': '(中央)',
-        '\\(outside\\)': '(外面)',
         'Bug': '故障虫',
         'Dreadnaught': '恐慌装甲',
         'Emergency Override': '紧急超驰控制',
@@ -154,8 +146,6 @@ Options.Triggers.push({
         'Spinner-rook': '보루형 회전전차',
       },
       'replaceText': {
-        '\\(center\\)': '(중앙)',
-        '\\(outside\\)': '(바깥)',
         'Bug': '버그',
         'Dreadnaught': '드레드노트',
         'Emergency Override': '긴급 체제 변환',

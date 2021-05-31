@@ -63,7 +63,6 @@ Options.Triggers.push({
       'replaceText': {
         '\\(circle\\)': '(Kreis)',
         '\\(cross\\)': '(Kreuz)',
-        '--frozen--': '--eingefroren--',
         'Absolute Zero': 'Absoluter Nullpunkt',
         'Diamond Dust': 'Diamantenstaub',
         'Dreams Of Ice': 'Eisige Träume',
@@ -88,7 +87,6 @@ Options.Triggers.push({
         '\\?': ' ?',
         '\\(circle\\)': '(cercle)',
         '\\(cross\\)': '(croix)',
-        '--frozen--': '--gelé--',
         'Absolute Zero': 'Zéro absolu',
         'Diamond Dust': 'Poussière de diamant',
         'Dreams Of Ice': 'Illusions glacées',
@@ -112,7 +110,6 @@ Options.Triggers.push({
       'replaceText': {
         '\\(circle\\)': '(輪)',
         '\\(cross\\)': '(十字)',
-        '--frozen--': '--凍結--',
         'Absolute Zero': '絶対零度',
         'Diamond Dust': 'ダイアモンドダスト',
         'Dreams Of Ice': '氷結の幻想',
@@ -136,7 +133,6 @@ Options.Triggers.push({
       'replaceText': {
         '\\(circle\\)': '(圆)',
         '\\(cross\\)': '(十字)',
-        '--frozen--': '--冻结--',
         'Absolute Zero': '绝对零度',
         'Diamond Dust': '钻石星尘',
         'Dreams Of Ice': '寒冰的幻想',
@@ -160,7 +156,6 @@ Options.Triggers.push({
       'replaceText': {
         '\\(circle\\)': '(원형)',
         '\\(cross\\)': '(십자)',
-        '--frozen--': '--동결--',
         'Absolute Zero': '절대영도',
         'Diamond Dust': '다이아몬드 더스트',
         'Dreams Of Ice': '빙결의 환상',

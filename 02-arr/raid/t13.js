@@ -164,7 +164,6 @@ Options.Triggers.push({
         'The Storm of Meracydia': 'Sturm von Meracydia',
       },
       'replaceText': {
-        '\\(center\\)': '(mitte)',
         'Akh Morn': 'Akh Morn',
         'Blood': 'Blut',
         'Dark Aether': 'Dunkeläther',
@@ -197,7 +196,6 @@ Options.Triggers.push({
         'The Storm of Meracydia': 'Tempête De Méracydia',
       },
       'replaceText': {
-        '\\(center\\)': '(centre)',
         'Akh Morn': 'Akh Morn',
         '(?<! )Blood Add': 'Add Sang',
         'Blood, Pain Adds': 'Adds Sang, Douleur',
@@ -236,7 +234,6 @@ Options.Triggers.push({
         'The Storm of Meracydia': 'メラシディアン・ストーム',
       },
       'replaceText': {
-        '\\(center\\)': '(中)',
         'Akh Morn': 'アク・モーン',
         '(?<! )Blood Add': '雑魚: ブラッド',
         'Blood, Pain Adds': '雑魚: ブラッド + ペイン',
@@ -274,7 +271,6 @@ Options.Triggers.push({
         'The Storm of Meracydia': '美拉西迪亚的怒雨',
       },
       'replaceText': {
-        '\\(center\\)': '(中央)',
         'Akh Morn': '死亡轮回',
         '(?<! )Blood Add': '血仇出现',
         'Blood, Pain Adds': '血仇, 苦痛出现',
