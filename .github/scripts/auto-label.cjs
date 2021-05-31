@@ -94,7 +94,6 @@ const getLabels = async (github, owner, repo, pullNumber) => {
   }).map((f) => f()));
 
   const changedLang = getTimelineReplaceChanges(changedFilesContent);
-  console.log(`changed timelineReplace ${changedLang}`);
   changedLang.push(...nonNullUnique(lodash.flatten(changedFiles.map((f) => {
     if (['.js', '.ts'].includes(path.extname(f.filename)))
       return parseChangedLang(f.patch);
@@ -103,8 +102,10 @@ const getLabels = async (github, owner, repo, pullNumber) => {
   // by file path
   const changedModule = nonNullUnique(changedFiles.map((f) => {
     for (const [prefix, label] of Object.entries(prefixLabelMap)) {
-      if (f.filename.startsWith(prefix))
+      if (f.filename.startsWith(prefix)) {
+        console.log(`label: ${label} [filename] (${f.filename})`);
         return label;
+      }
     }
   }));
 
@@ -140,8 +141,12 @@ const parseChangedLang = (patch) => {
   for (const lang of ['cn', 'de', 'ja', 'fr']) {
     const pattern = new RegExp(`^\s*[+].*(?:${lang}|'${lang}'): `);
     for (const line of patch.split('\n')) {
-      if (pattern.test(line))
+      if (pattern.test(line)) {
+        // TODO: it'd be nice to add the file/line number here.
+        if (!set.has(lang))
+          console.log(`label: ${lang} [translation]`);
         set.add(lang);
+      }
     }
   }
   return Array.from(set.values());
@@ -181,11 +186,13 @@ const getTimelineReplaceChanges = (changedFiles) => {
       return;
 
     if (path.extname(file.filename) === '.js') {
-      const from = getTimelineReplace(file.from);
-      const to = getTimelineReplace(file.to);
-      for (const lang of lodash.uniq([...Object.keys(from || {}), ...Object.keys(to || {})])) {
-        if (!lodash.isEqual(from[lang], to[lang]))
+      const from = getTimelineReplace(file.from) || {};
+      const to = getTimelineReplace(file.to) || {};
+      for (const lang of lodash.uniq([...Object.keys(from), ...Object.keys(to)])) {
+        if (!lodash.isEqual(from[lang], to[lang])) {
+          console.log(`label: ${lang} [timelineReplace] (${file.filename})`);
           s.add(lang);
+        }
       }
     }
   });
@@ -228,7 +235,7 @@ const run = async () => {
 
   const labels = await getLabels(octokit, owner, repo, pullNumber);
   if (labels && labels.length) {
-    console.log(`set ${labels}`);
+    console.log(`apply: ${JSON.stringify(labels)}`);
     const res = await octokit.request(`PUT /repos/${owner}/${repo}/issues/${pullNumber}/labels`, { labels });
     if (res.status !== 200)
       console.log(res);
