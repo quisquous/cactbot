@@ -12,7 +12,7 @@ export default {
       netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人にお辞儀した.*?' }),
       netRegexCn: NetRegexes.gameNameLog({ line: '.*恭敬地对木人行礼.*?' }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 공손하게 인사합니다.*?' }),
-      mistake: function(e, data) {
+      mistake: (_e, data) => {
         return {
           type: 'pull',
           blame: data.me,
@@ -34,7 +34,7 @@ export default {
       netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人に別れの挨拶をした.*?' }),
       netRegexCn: NetRegexes.gameNameLog({ line: '.*向木人告别.*?' }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 작별 인사를 합니다.*?' }),
-      mistake: function(e, data) {
+      mistake: (_e, data) => {
         return {
           type: 'wipe',
           blame: data.me,
@@ -52,7 +52,7 @@ export default {
     {
       id: 'Test Bootshine',
       damageRegex: '35',
-      condition: function(e, data) {
+      condition: (e, data) => {
         if (e.attackerName !== data.me)
           return false;
         const strikingDummyNames = [
@@ -64,7 +64,7 @@ export default {
         ];
         return strikingDummyNames.includes(e.targetName);
       },
-      mistake: function(e, data) {
+      mistake: (e, data) => {
         data.bootCount = data.bootCount || 0;
         data.bootCount++;
         const text = e.abilityName + ' (' + data.bootCount + '): ' + e.damageStr;
@@ -74,10 +74,8 @@ export default {
     {
       id: 'Test Leaden Fist',
       netRegex: NetRegexes.gainsEffect({ effectId: '745' }),
-      condition: function(e, data, matches) {
-        return matches.source === data.me;
-      },
-      mistake: function(e, data, matches) {
+      condition: (_e, data, matches) => matches.source === data.me,
+      mistake: (_e, data, matches) => {
         return { type: 'good', blame: data.me, text: matches.effect };
       },
     },
@@ -85,7 +83,7 @@ export default {
       id: 'Test Oops',
       netRegex: NetRegexes.echo({ line: '.*oops.*' }),
       suppressSeconds: 10,
-      mistake: function(e, data, matches) {
+      mistake: (_e, data, matches) => {
         return { type: 'fail', blame: data.me, text: matches.line };
       },
     },
@@ -97,7 +95,7 @@ export default {
       netRegexCn: NetRegexes.gameNameLog({ line: '.*用手指戳向木人.*?' }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 쿡쿡 찌릅니다.*?' }),
       collectSeconds: 5,
-      mistake: function(events, data) {
+      mistake: (events, data) => {
         // When collectSeconds is specified, events are passed as an array.
         const pokes = events.length;
 

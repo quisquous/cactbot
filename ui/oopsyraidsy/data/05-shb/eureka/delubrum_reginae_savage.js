@@ -133,21 +133,21 @@ export default {
       id: 'DelubrumSav Guard Lots Cast',
       damageRegex: ['5827', '5828', '5B6C', '5B6D', '5BB6', '5BB7', '5B88', '5B89'],
       condition: (e) => e.flags.slice(-2) === '03',
-      mistake: (e, data, matches) => {
+      mistake: (_e, _data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },
     },
     {
       id: 'DelubrumSav Golem Compaction',
       abilityRegex: '5746',
-      mistake: (e, data, matches) => {
+      mistake: (_e, _data, matches) => {
         return { type: 'fail', fullText: `${matches.source}: ${matches.ability}` };
       },
     },
     {
       id: 'DelubrumSav Slime Sanguine Fusion',
       abilityRegex: '554D',
-      mistake: (e, data, matches) => {
+      mistake: (_e, _data, matches) => {
         return { type: 'fail', fullText: `${matches.source}: ${matches.ability}` };
       },
     },

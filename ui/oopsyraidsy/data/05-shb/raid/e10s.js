@@ -42,7 +42,7 @@ export default {
       netRegexDe: NetRegexes.gainsEffect({ source: 'Schattenflamme', effectId: '82C' }),
       netRegexFr: NetRegexes.gainsEffect({ source: 'Flamme ombrale', effectId: '82C' }),
       netRegexJa: NetRegexes.gainsEffect({ source: 'シャドウフレイム', effectId: '82C' }),
-      mistake: (e, data, matches) => {
+      mistake: (_e, _data, matches) => {
         return { type: 'damage', blame: matches.target, text: `${matches.effect} (partial stack)` };
       },
     },
@@ -56,7 +56,7 @@ export default {
       netRegexDe: NetRegexes.gainsEffect({ source: 'Schattenkönig', effectId: '82C' }),
       netRegexFr: NetRegexes.gainsEffect({ source: 'Roi De L\'Ombre', effectId: '82C' }),
       netRegexJa: NetRegexes.gainsEffect({ source: '影の王', effectId: '82C' }),
-      mistake: (e, data, matches) => {
+      mistake: (_e, _data, matches) => {
         return { type: 'damage', blame: matches.target, text: `${matches.effect}` };
       },
     },
@@ -66,7 +66,7 @@ export default {
       id: 'E10S Barbs Of Agony',
       damageRegex: ['572A', '5B27'],
       condition: (e) => e.damage > 0,
-      mistake: (e, data, matches) => {
+      mistake: (_e, _data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },
     },

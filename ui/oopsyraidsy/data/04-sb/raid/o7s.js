@@ -14,7 +14,7 @@ export default {
     {
       id: 'O7S Stoneskin',
       abilityRegex: '2AB5',
-      mistake: function(e, data) {
+      mistake: (e) => {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };
       },
     },

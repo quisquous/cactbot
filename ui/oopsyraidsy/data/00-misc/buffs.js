@@ -12,7 +12,7 @@ const missedFunc = (args) => {
     // Sure, not all of these are "buffs" per se, but they're all in the buffs file.
     id: 'Buff ' + args.triggerId,
     netRegex: args.netRegex,
-    condition: function(evt, data, matches) {
+    condition: (_evt, data, matches) => {
       const sourceId = matches.sourceId.toUpperCase();
       if (data.party.partyIds.includes(sourceId))
         return true;
@@ -26,7 +26,7 @@ const missedFunc = (args) => {
       return false;
     },
     collectSeconds: args.collectSeconds,
-    mistake: function(allEvents, data, allMatches) {
+    mistake: (_allEvents, data, allMatches) => {
       const partyNames = data.party.partyNames;
 
       // TODO: consider dead people somehow
@@ -114,19 +114,6 @@ const missedMitigationBuff = (args) => {
   });
 };
 
-const missedDamageBuff = (args) => {
-  if (!args.effectId)
-    console.error('Missing effectId: ' + JSON.stringify(args));
-  return missedFunc({
-    triggerId: args.id,
-    netRegex: NetRegexes.gainsEffect({ effectId: args.effectId }),
-    field: 'effect',
-    type: 'damage',
-    ignoreSelf: args.ignoreSelf,
-    collectSeconds: args.collectSeconds ? args.collectSeconds : effectCollectSeconds,
-  });
-};
-
 const missedDamageAbility = (args) => {
   if (!args.abilityId)
     console.error('Missing abilityId: ' + JSON.stringify(args));
@@ -160,7 +147,7 @@ export default {
     {
       id: 'Buff Pet To Owner Mapper',
       netRegex: NetRegexes.addedCombatantFull(),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         if (matches.ownerId === '0')
           return;
 
@@ -172,7 +159,7 @@ export default {
     {
       id: 'Buff Pet To Owner Clearer',
       netRegex: NetRegexes.changeZone(),
-      run: function(e, data, matches) {
+      run: (_e, data) => {
         // Clear this hash periodically so it doesn't have false positives.
         data.petIdToOwnerId = {};
       },

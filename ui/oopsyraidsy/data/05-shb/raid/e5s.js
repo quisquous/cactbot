@@ -39,7 +39,7 @@ export default {
       // Helper for orb pickup failures
       id: 'E5S Orb Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '8B4' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.hasOrb = data.hasOrb || {};
         data.hasOrb[matches.target] = true;
       },
@@ -47,7 +47,7 @@ export default {
     {
       id: 'E5S Orb Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '8B4' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.hasOrb = data.hasOrb || {};
         data.hasOrb[matches.target] = false;
       },
@@ -55,37 +55,31 @@ export default {
     {
       id: 'E5S Divine Judgement Volts',
       damageRegex: '4BB7',
-      condition: function(e, data) {
-        return !data.hasOrb || !data.hasOrb[e.targetName];
-      },
-      mistake: function(e) {
+      condition: (e, data) => !data.hasOrb || !data.hasOrb[e.targetName],
+      mistake: (e) => {
         return { type: 'fail', blame: e.targetName, text: noOrb(e.abilityName) };
       },
     },
     {
       id: 'E5S Volt Strike Orb',
       damageRegex: '4BC3',
-      condition: function(e, data) {
-        return !data.hasOrb || !data.hasOrb[e.targetName];
-      },
-      mistake: function(e) {
+      condition: (e, data) => !data.hasOrb || !data.hasOrb[e.targetName],
+      mistake: (e) => {
         return { type: 'fail', blame: e.targetName, text: noOrb(e.abilityName) };
       },
     },
     {
       id: 'E5S Deadly Discharge Big Knockback',
       damageRegex: '4BB2',
-      condition: function(e, data) {
-        return !data.hasOrb || !data.hasOrb[e.targetName];
-      },
-      mistake: function(e) {
+      condition: (e, data) => !data.hasOrb || !data.hasOrb[e.targetName],
+      mistake: (e) => {
         return { type: 'fail', blame: e.targetName, text: noOrb(e.abilityName) };
       },
     },
     {
       id: 'E5S Lightning Bolt',
       damageRegex: '4BB9',
-      condition: function(e, data) {
+      condition: (e, data) => {
         // Having a non-idempotent condition function is a bit <_<
         // Only consider lightning bolt damage if you have a debuff to clear.
         if (!data.hated || !data.hated[e.targetName])
@@ -94,14 +88,14 @@ export default {
         delete data.hated[e.targetName];
         return false;
       },
-      mistake: function(e, data) {
+      mistake: (e) => {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
       id: 'E5S Hated of Levin',
       netRegex: NetRegexes.headMarker({ id: '00D2' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.hated = data.hated || {};
         data.hated[matches.target] = true;
       },
@@ -109,7 +103,7 @@ export default {
     {
       id: 'E5S Stormcloud Target Tracking',
       netRegex: NetRegexes.headMarker({ id: '006E' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.cloudMarkers = data.cloudMarkers || [];
         data.cloudMarkers.push(matches.target);
       },
@@ -119,7 +113,7 @@ export default {
       id: 'E5S The Parting Clouds',
       damageRegex: '4BBA',
       suppressSeconds: 30,
-      mistake: function(e, data) {
+      mistake: (e, data) => {
         for (const m of data.cloudMarkers) {
           return {
             type: 'fail',
@@ -140,7 +134,7 @@ export default {
       netRegex: NetRegexes.headMarker({ id: '006E' }),
       // Stormclouds resolve well before this.
       delaySeconds: 30,
-      run: function(e, data) {
+      run: (_e, data) => {
         delete data.cloudMarkers;
         delete data.hated;
       },

@@ -65,7 +65,7 @@ export default {
     {
       id: 'RubyEx Screech',
       netRegex: NetRegexes.ability({ id: '4AEE' }),
-      deathReason: (e, data, matches) => {
+      deathReason: (_e, _data, matches) => {
         return {
           type: 'fail',
           name: matches.target,

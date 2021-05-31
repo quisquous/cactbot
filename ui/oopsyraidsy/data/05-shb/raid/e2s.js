@@ -21,14 +21,14 @@ export default {
       id: 'E2S Shadoweye',
       // Stone Curse
       netRegex: NetRegexes.gainsEffect({ effectId: '589' }),
-      mistake: function(e, data, matches) {
+      mistake: (_e, _data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.effect };
       },
     },
     {
       id: 'E2S Nyx',
       damageRegex: '3E51',
-      mistake: function(e, data) {
+      mistake: (e) => {
         return {
           type: 'warn',
           blame: e.targetName,

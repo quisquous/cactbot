@@ -52,7 +52,7 @@ export default {
       // TODO: on the 2nd and 3rd time this should only be shared with a rock.
       // TODO: alternatively warn on taking one of these with a 472 Magic Vulnerability Up effect
       condition: (e) => e.type === '15',
-      mistake: function(e, data, matches) {
+      mistake: (_e, _data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },
     },
@@ -61,7 +61,7 @@ export default {
       damageRegex: '5207',
       // This is zero damage if you are in the crater.
       condition: (e) => e.damage > 0,
-      mistake: function(e, data, matches) {
+      mistake: (_e, _data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.ability };
       },
     },

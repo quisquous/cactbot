@@ -12,10 +12,8 @@ export default {
       // Small spread circles
       id: 'O1N Levinbolt',
       damageRegex: '23DA',
-      condition: function(e) {
-        return e.type !== '15';
-      },
-      mistake: function(e) {
+      condition: (e) => e.type !== '15',
+      mistake: (e) => {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },

@@ -29,11 +29,11 @@ export default {
       // Party shared tank buster.
       id: 'ShivaEx Icebrand',
       damageRegex: '5373',
-      condition: function(e) {
+      condition: (e) => {
         // Should be shared with friends.
         return e.type === '15';
       },
-      mistake: function(e) {
+      mistake: (e) => {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
@@ -42,11 +42,11 @@ export default {
       // Shiva also uses ability 537A on you, but it has an unknown name.
       // So, use the effect instead for free translation.
       netRegex: NetRegexes.gainsEffect({ effectId: '1E7' }),
-      condition: function(e, data, matches) {
+      condition: (_e, _data, matches) => {
         // The intermission also gets this effect, but for a shorter duration.
         return parseFloat(matches.duration) > 20;
       },
-      mistake: function(e, data, matches) {
+      mistake: (_e, _data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.effect };
       },
     },

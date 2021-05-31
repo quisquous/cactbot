@@ -49,7 +49,7 @@ export default {
       id: 'E11S Holy Sinsight Group Share',
       damageRegex: '5669',
       condition: (e) => e.type === '15',
-      mistake: function(e, data, matches) {
+      mistake: (_e, _data, matches) => {
         return {
           type: 'fail',
           blame: matches.target,
@@ -70,7 +70,7 @@ export default {
       // 567A = same thing, but from Fatebreaker's Image
       // 568F = same thing, but during Cycle of Faith
       netRegex: NetRegexes.ability({ id: ['5653', '567A', '568F'] }),
-      deathReason: (e, data, matches) => {
+      deathReason: (_e, _data, matches) => {
         return {
           type: 'fail',
           name: matches.target,

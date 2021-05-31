@@ -22,14 +22,14 @@ export default {
     {
       id: 'E8N Shining Armor',
       netRegex: NetRegexes.gainsEffect({ effectId: '95' }),
-      mistake: function(e, data, matches) {
+      mistake: (_e, _data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },
     {
       id: 'E8N Heavenly Strike',
       damageRegex: '4DD8',
-      deathReason: function(e) {
+      deathReason: (e) => {
         return {
           type: 'fail',
           name: e.targetName,
@@ -48,7 +48,7 @@ export default {
       id: 'E8N Frost Armor',
       // Thin Ice
       netRegex: NetRegexes.gainsEffect({ effectId: '38F' }),
-      deathReason: function(e, data, matches) {
+      deathReason: (_e, _data, matches) => {
         return {
           type: 'fail',
           name: matches.target,

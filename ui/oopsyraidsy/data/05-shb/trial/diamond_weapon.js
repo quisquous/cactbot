@@ -25,7 +25,7 @@ export default {
     {
       id: 'Diamond Weapon Vertical Cleave Knocked Off',
       netRegex: NetRegexes.ability({ id: '5FE5' }),
-      deathReason: (e, data, matches) => {
+      deathReason: (_e, _data, matches) => {
         return {
           type: 'fail',
           name: matches.target,

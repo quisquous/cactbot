@@ -36,27 +36,23 @@ export default {
     {
       id: 'E7N Stygian Stake', // Laser tank buster, outside intermission phase
       damageRegex: '4C33',
-      condition: function(e) {
-        return e.type !== '15';
-      },
-      mistake: function(e) {
+      condition: (e) => e.type !== '15',
+      mistake: (e) => {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
       id: 'E5N Silver Shot', // Spread markers, intermission
       damageRegex: '4E7D',
-      condition: function(e) {
-        return e.type !== '15';
-      },
-      mistake: function(e) {
+      condition: (e) => e.type !== '15',
+      mistake: (e) => {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
       id: 'E7N Astral Effect Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.hasAstral = data.hasAstral || {};
         data.hasAstral[matches.target] = true;
       },
@@ -64,7 +60,7 @@ export default {
     {
       id: 'E7N Astral Effect Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '8BE' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.hasAstral = data.hasAstral || {};
         data.hasAstral[matches.target] = false;
       },
@@ -72,7 +68,7 @@ export default {
     {
       id: 'E7N Umbral Effect Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.hasUmbral = data.hasUmbral || {};
         data.hasUmbral[matches.target] = true;
       },
@@ -80,7 +76,7 @@ export default {
     {
       id: 'E7N Umbral Effect Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '8BF' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.hasUmbral = data.hasUmbral || {};
         data.hasUmbral[matches.target] = false;
       },
@@ -88,10 +84,10 @@ export default {
     {
       id: 'E7N Light\'s Course',
       damageRegex: ['4C3E', '4C40', '4C22', '4C3C', '4E63'],
-      condition: function(e, data) {
+      condition: (e, data) => {
         return !data.hasUmbral || !data.hasUmbral[e.targetName];
       },
-      mistake: function(e, data) {
+      mistake: (e, data) => {
         if (data.hasAstral && data.hasAstral[e.targetName])
           return { type: 'fail', blame: e.targetName, text: wrongBuff(e.abilityName) };
         return { type: 'warn', blame: e.targetName, text: noBuff(e.abilityName) };
@@ -100,10 +96,10 @@ export default {
     {
       id: 'E7N Darks\'s Course',
       damageRegex: ['4C3D', '4C23', '4C41', '4C43'],
-      condition: function(e, data) {
+      condition: (e, data) => {
         return !data.hasAstral || !data.hasAstral[e.targetName];
       },
-      mistake: function(e, data) {
+      mistake: (e, data) => {
         if (data.hasUmbral && data.hasUmbral[e.targetName])
           return { type: 'fail', blame: e.targetName, text: wrongBuff(e.abilityName) };
         // This case is probably impossible, as the debuff ticks after death,

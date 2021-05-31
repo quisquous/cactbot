@@ -20,18 +20,18 @@ export default {
       // The user might get hit by another petrifying ability before the effect ends.
       // There's no point in notifying for that.
       suppressSeconds: 10,
-      mistake: function(e, data, matches) {
+      mistake: (e) => {
         return { type: 'warn', blame: e.target, text: e.effect };
       },
     },
     {
       id: 'O2N Earthquake',
       damageRegex: '2515',
-      condition: function(e) {
+      condition: (e) => {
         // This deals damage only to non-floating targets.
         return e.damage > 0;
       },
-      mistake: function(e) {
+      mistake: (e) => {
         return { type: 'warn', name: e.targetName, text: e.abilityName };
       },
     },

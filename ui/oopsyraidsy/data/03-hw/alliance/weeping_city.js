@@ -51,7 +51,7 @@ export default {
     {
       id: 'Weeping Forgall Gradual Zombification Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '415' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.zombie = data.zombie || {};
         data.zombie[matches.target] = true;
       },
@@ -59,7 +59,7 @@ export default {
     {
       id: 'Weeping Forgall Gradual Zombification Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '415' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.zombie = data.zombie || {};
         data.zombie[matches.target] = false;
       },
@@ -67,17 +67,15 @@ export default {
     {
       id: 'Weeping Forgall Mega Death',
       netRegex: NetRegexes.ability({ id: '17CA' }),
-      condition: function(e, data, matches) {
-        return data.zombie && !data.zombie[matches.target];
-      },
-      mistake: function(e, data, matches) {
+      condition: (_e, data, matches) => data.zombie && !data.zombie[matches.target],
+      mistake: (_e, _data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.ability };
       },
     },
     {
       id: 'Weeping Headstone Shield Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '15E' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.shield = data.shield || {};
         data.shield[matches.target] = true;
       },
@@ -85,7 +83,7 @@ export default {
     {
       id: 'Weeping Headstone Shield Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '15E' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.shield = data.shield || {};
         data.shield[matches.target] = false;
       },
@@ -93,10 +91,8 @@ export default {
     {
       id: 'Weeping Flaring Epigraph',
       netRegex: NetRegexes.ability({ id: '1856' }),
-      condition: function(e, data, matches) {
-        return data.shield && !data.shield[matches.target];
-      },
-      mistake: function(e, data, matches) {
+      condition: (_e, data, matches) => data.shield && !data.shield[matches.target],
+      mistake: (_e, _data, matches) => {
         return { type: 'fail', blame: matches.target, text: matches.ability };
       },
     },
@@ -105,7 +101,7 @@ export default {
       id: 'Weeping Ozma Tank Laser',
       netRegex: NetRegexes.ability({ id: '1831' }),
       condition: (e) => e.type !== '15',
-      mistake: function(e, data, matches) {
+      mistake: (_e, _data, matches) => {
         return {
           type: 'warn',
           blame: matches.target,
@@ -123,7 +119,7 @@ export default {
     {
       id: 'Weeping Ozma Holy',
       netRegex: NetRegexes.ability({ id: '182E' }),
-      deathReason: function(e, data, matches) {
+      deathReason: (_e, _data, matches) => {
         return {
           type: 'fail',
           name: matches.target,

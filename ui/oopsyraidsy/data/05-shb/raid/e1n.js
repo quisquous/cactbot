@@ -17,10 +17,8 @@ export default {
     {
       id: 'E1N Fire III',
       damageRegex: '44EB',
-      condition: function(e, data) {
-        return e.type !== '15';
-      },
-      mistake: function(e, data) {
+      condition: (e) => e.type !== '15',
+      mistake: (e) => {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };
       },
     },
@@ -28,10 +26,8 @@ export default {
       id: 'E1N Tank Lasers',
       // Vice Of Vanity
       damageRegex: '44E7',
-      condition: function(e, data) {
-        return e.type !== '15';
-      },
-      mistake: function(e, data) {
+      condition: (e) => e.type !== '15',
+      mistake: (e) => {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };
       },
     },
@@ -39,10 +35,8 @@ export default {
       id: 'E1N DPS Puddles',
       // Vice Of Apathy
       damageRegex: '44E8',
-      condition: function(e, data) {
-        return e.type !== '15';
-      },
-      mistake: function(e, data) {
+      condition: (e) => e.type !== '15',
+      mistake: (e) => {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };
       },
     },

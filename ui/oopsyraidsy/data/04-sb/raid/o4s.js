@@ -16,50 +16,50 @@ export default {
     {
       id: 'O4S2 Decisive Battle',
       abilityRegex: '2408',
-      run: function(e, data) {
+      run: (_e, data) => {
         data.isDecisiveBattleElement = true;
       },
     },
     {
       id: 'O4S1 Vacuum Wave',
       abilityRegex: '23FE',
-      run: function(e, data) {
+      run: (_e, data) => {
         data.isDecisiveBattleElement = false;
       },
     },
     {
       id: 'O4S2 Almagest',
       abilityRegex: '2417',
-      run: function(e, data) {
+      run: (_e, data) => {
         data.isNeoExdeath = true;
       },
     },
     {
       id: 'O4S2 Blizzard III',
       damageRegex: '23F8',
-      condition: function(e, data) {
+      condition: (e, data) => {
         // Ignore unavoidable raid aoe Blizzard III.
         return data.IsPlayerId(e.targetId) && !data.isDecisiveBattleElement;
       },
-      mistake: function(e, data) {
+      mistake: (e) => {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
       id: 'O4S2 Thunder III',
       damageRegex: '23FD',
-      condition: function(e, data) {
+      condition: (e, data) => {
         // Only consider this during random mechanic after decisive battle.
         return data.IsPlayerId(e.targetId) && data.isDecisiveBattleElement;
       },
-      mistake: function(e) {
+      mistake: (e) => {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
       id: 'O4S2 Petrified',
       netRegex: NetRegexes.gainsEffect({ effectId: '262' }),
-      mistake: function(e, data, matches) {
+      mistake: (_e, data, matches) => {
         // On Neo, being petrified is because you looked at Shriek, so your fault.
         if (data.isNeoExdeath)
           return { type: 'fail', blame: matches.target, text: matches.effect };
@@ -70,10 +70,8 @@ export default {
     {
       id: 'O4S2 Forked Lightning',
       damageRegex: '242E',
-      condition: function(e, data) {
-        return data.IsPlayerId(e.targetId);
-      },
-      mistake: function(e, data) {
+      condition: (e, data) => data.IsPlayerId(e.targetId),
+      mistake: (e, data) => {
         const text = e.abilityName + ' => ' + data.ShortName(e.targetName);
         return { type: 'fail', blame: e.attackerName, text: text };
       },
@@ -81,11 +79,9 @@ export default {
     {
       id: 'O4S2 Double Attack',
       damageRegex: '241C',
-      condition: function(e, data) {
-        return data.IsPlayerId(e.targetId);
-      },
+      condition: (e, data) => data.IsPlayerId(e.targetId),
       collectSeconds: 0.5,
-      mistake: function(e) {
+      mistake: (e) => {
         if (e.length <= 2)
           return;
         // Hard to know who should be in this and who shouldn't, but
@@ -96,7 +92,7 @@ export default {
     {
       id: 'O4S2 Beyond Death Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.hasBeyondDeath = data.hasBeyondDeath || {};
         data.hasBeyondDeath[matches.target] = true;
       },
@@ -104,7 +100,7 @@ export default {
     {
       id: 'O4S2 Beyond Death Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '566' }),
-      run: function(e, data, matches) {
+      run: (_e, data, matches) => {
         data.hasBeyondDeath = data.hasBeyondDeath || {};
         data.hasBeyondDeath[matches.target] = false;
       },
@@ -112,10 +108,8 @@ export default {
     {
       id: 'O4S2 Beyond Death',
       netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
-      delaySeconds: function(e, data, matches) {
-        return parseFloat(matches.duration) - 0.5;
-      },
-      deathReason: function(e, data, matches) {
+      delaySeconds: (_e, _data, matches) => parseFloat(matches.duration) - 0.5,
+      deathReason: (_e, data, matches) => {
         if (!data.hasBeyondDeath)
           return;
         if (!data.hasBeyondDeath[matches.target])

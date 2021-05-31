@@ -78,7 +78,7 @@ export default {
       id: 'Delubrum Lots Cast',
       damageRegex: ['565A', '565B', '57FD', '57FE', '5B86', '5B87', '59D2', '5D93'],
       condition: (e) => e.flags.slice(-2) === '03',
-      mistake: (e, data, matches) => {
+      mistake: (_e, _data, matches) => {
         return { type: 'warn', blame: matches.target, text: matches.ability };
       },
     },

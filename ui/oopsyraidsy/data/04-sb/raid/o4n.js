@@ -24,7 +24,7 @@ export default {
     {
       id: 'O4N Doom', // Kills target if not cleansed
       netRegex: NetRegexes.gainsEffect({ effectId: '38E' }),
-      deathReason: function(e, data, matches) {
+      deathReason: (e) => {
         return {
           type: 'fail',
           name: e.target,
@@ -41,7 +41,7 @@ export default {
     {
       id: 'O4N Vacuum Wave', // Short knockback from Exdeath
       damageRegex: '24B8',
-      deathReason: function(e) {
+      deathReason: (e) => {
         return {
           type: 'fail',
           name: e.targetName,
@@ -58,7 +58,7 @@ export default {
     {
       id: 'O4N Empowered Blizzard', // Room-wide AoE, freezes non-moving targets
       netRegex: NetRegexes.gainsEffect({ effectId: '4E6' }),
-      mistake: function(e, data, matches) {
+      mistake: (e) => {
         return { type: 'warn', blame: e.target, text: e.effect };
       },
     },
