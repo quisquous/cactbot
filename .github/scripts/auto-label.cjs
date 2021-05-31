@@ -7,11 +7,11 @@
 'use strict';
 const path = require('path');
 
-const babelParser = require('recast/parsers/babel');
 const json5 = require('json5');
 const lodash = require('lodash');
 const recast = require('recast');
 const github = require('@actions/github');
+const babelParser = require('recast/parsers/babel');
 const { HttpClient } = require('@actions/http-client');
 
 const prefixLabelMap = {
