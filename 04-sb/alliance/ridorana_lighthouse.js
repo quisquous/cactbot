@@ -506,6 +506,12 @@ Options.Triggers.push({
         'Yiazmat': 'Yiasmat',
       },
       'replaceText': {
+        '\\(close\\)': '(Nahe)',
+        '\\(cross\\)': '(Kreuz)',
+        '\\(combo\\)': '(Kombo)',
+        '\\(orbit\\)': '(Orbit)',
+        '\\(far\\)': '(Entfernt)',
+        '\\(single\\)': '(Einzeln)',
         'Accelerate': 'Beschleunigen',
         'Annihilation Mode': 'Auslöschungsmodul',
         'Archaeodemon spawn': 'Archaeodämon erscheint',

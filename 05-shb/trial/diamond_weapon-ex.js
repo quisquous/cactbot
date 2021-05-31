@@ -384,6 +384,7 @@ Options.Triggers.push({
         'The Diamond Weapon': 'Diamant-Waffe',
       },
       'replaceText': {
+        '\\(Jump\\)': '(Sprung)',
         'Adamant Purge': 'Diamantpanzer',
         'Aetherial Bullet': 'Ätherreigen',
         'Articulated Bits': 'Satellitenarme',

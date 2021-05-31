@@ -319,6 +319,7 @@ Options.Triggers.push({
         'Fleshy Member': 'Tentakel',
       },
       'replaceText': {
+        '\\(ground\\)': '(Boden)',
         '-100 Gs': 'Minus 100 G',
         '(?<!-)100 Gs': '100 G',
         'Antilight': 'Dunkellicht',
