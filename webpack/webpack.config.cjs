@@ -149,7 +149,15 @@ module.exports = function(env, argv) {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, '../dist'),
     },
-    devServer: { writeToDisk: true },
+    devServer: {
+      proxy: {
+        '/dist': {
+          target: 'http://localhost:8080',
+          pathRewrite: { '^/dist': '' },
+        },
+      },
+      writeToDisk: true,
+    },
     resolve: {
       extensions: ['.ts', '.js'],
     },
