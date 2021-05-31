@@ -987,10 +987,7 @@ export default {
       id: 'TEA Compressed Water Explode',
       netRegex: NetRegexes.gainsEffect({ effectId: '85E' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => {
-        // 5 second warning.
-        return parseFloat(matches.duration) - 5;
-      },
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       alertText: (data, _matches, output) => {
         if (data.seenGavel)
           return;
@@ -1027,10 +1024,7 @@ export default {
       id: 'TEA Compressed Lightning Explode',
       netRegex: NetRegexes.gainsEffect({ effectId: '85F' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => {
-        // 5 second warning.
-        return parseFloat(matches.duration) - 5;
-      },
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       alertText: (data, _matches, output) => {
         if (data.seenGavel)
           return;
