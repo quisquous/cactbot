@@ -88,8 +88,8 @@ const getLabels = async (github, owner, repo, pullNumber) => {
     const to = await httpClient.get(rawUrl(owner, repo, toSha, f.filename));
     return {
       filename: f.filename,
-      from: await from.readBody(),
-      to: await to.readBody(),
+      from: await readBody(from),
+      to: await readBody(to),
     };
   }).map((f) => f()));
 
@@ -138,7 +138,7 @@ const getChangedFiles = async (github, identifier) => {
  */
 const parseChangedLang = (patch) => {
   const set = new Set();
-  for (const lang of ['cn', 'de', 'ja', 'fr']) {
+  for (const lang of ['cn', 'de', 'ja', 'fr', 'ko']) {
     const pattern = new RegExp(`^\s*[+].*(?:${lang}|'${lang}'): `);
     for (const line of patch.split('\n')) {
       if (pattern.test(line)) {
@@ -224,6 +224,12 @@ const getTimelineReplace = (fileContent) => {
     ret[r.locale] = r;
   });
   return ret;
+};
+
+const readBody = async (res) => {
+  if (res.message.statusCode !== 404)
+    return await res.readBody();
+  return '';
 };
 
 const run = async () => {
