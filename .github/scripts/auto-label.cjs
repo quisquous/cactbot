@@ -36,8 +36,6 @@ const prefixLabelMap = {
 };
 
 /**
- * Looks like jsdoc doesn't support util like `ReturnType`
- *
  * @typedef {ReturnType<typeof import("@actions/github").getOctokit>} GitHub
  */
 
@@ -96,21 +94,19 @@ const getLabels = async (github, owner, repo, pullNumber) => {
 
   const changedLang = getTimelineReplaceChanges(changedFilesContent);
   console.log(`changed timelineReplace ${changedLang}`);
-  changedLang.push(...nonNullUnique(lodash.flatten(
-      changedFiles.map((f) => {
-        if (['.js', '.ts'].includes(path.extname(f.filename)))
-          return parseChangedLang(f.patch);
-      }),
+  changedLang.push(...nonNullUnique(lodash.flatten(changedFiles.map((f) => {
+    if (['.js', '.ts'].includes(path.extname(f.filename)))
+      return parseChangedLang(f.patch);
+  }),
   )));
 
   // by file path
-  const changedModule = nonNullUnique(
-      changedFiles.map((f) => {
-        for (const [prefix, label] of Object.entries(prefixLabelMap)) {
-          if (f.filename.startsWith(prefix))
-            return label;
-        }
-      }),
+  const changedModule = nonNullUnique(changedFiles.map((f) => {
+    for (const [prefix, label] of Object.entries(prefixLabelMap)) {
+      if (f.filename.startsWith(prefix))
+        return label;
+    }
+  }),
   );
 
   return [...changedModule, ...changedLang.map((v) => `💬${v.toUpperCase()}`)];
