@@ -114,20 +114,6 @@ const missedMitigationBuff = (args) => {
   });
 };
 
-// eslint-disable-next-line no-unused-vars
-const missedDamageBuff = (args) => {
-  if (!args.effectId)
-    console.error('Missing effectId: ' + JSON.stringify(args));
-  return missedFunc({
-    triggerId: args.id,
-    netRegex: NetRegexes.gainsEffect({ effectId: args.effectId }),
-    field: 'effect',
-    type: 'damage',
-    ignoreSelf: args.ignoreSelf,
-    collectSeconds: args.collectSeconds ? args.collectSeconds : effectCollectSeconds,
-  });
-};
-
 const missedDamageAbility = (args) => {
   if (!args.abilityId)
     console.error('Missing abilityId: ' + JSON.stringify(args));
