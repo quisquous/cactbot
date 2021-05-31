@@ -16,7 +16,14 @@ export default class RaidEmulator extends EventBus {
     this.encounters.push(encounter);
   }
   setCurrent(index) {
-    this.currentEncounter = new AnalyzedEncounter(this.options, this.encounters[index], this);
+    const enc = this.encounters[index];
+
+    // If language was autodetected from the encounter, set the current ParserLanguage
+    // appropriately
+    if (enc.language)
+      this.options.ParserLanguage = enc.language;
+
+    this.currentEncounter = new AnalyzedEncounter(this.options, enc, this);
     this.dispatch('preCurrentEncounterChanged', this.currentEncounter);
     this.currentEncounter.analyze(this.popupText).then(() => {
       this.dispatch('currentEncounterChanged', this.currentEncounter);

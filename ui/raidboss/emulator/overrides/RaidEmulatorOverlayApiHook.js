@@ -51,9 +51,9 @@ export default class RaidEmulatorOverlayApiHook {
           const lines = this.emulator.currentEncounter.encounter.logLines
             .filter((l) => l.decEvent === 3 && l.id === c.ID);
           if (lines.length > 0) {
-            c.OwnerID = parseInt(lines[0].parts[6]);
-            c.BNpcNameID = parseInt(lines[0].parts[9]);
-            c.BNpcID = parseInt(lines[0].parts[10]);
+            c.OwnerID = parseInt(lines[0].ownerId);
+            c.BNpcNameID = parseInt(lines[0].npcNameId);
+            c.BNpcID = parseInt(lines[0].npcBaseId);
           }
         });
         res({
