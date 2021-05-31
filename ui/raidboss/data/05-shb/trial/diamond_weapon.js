@@ -201,6 +201,7 @@ export default {
         'The Diamond Weapon': 'Diamant-Waffe',
       },
       'replaceText': {
+        '\\(Jump\\)': '(Sprung)',
         'Adamant Purge': 'Diamantpanzer',
         'Adamant Sphere': 'Diamantsphäre',
         'Aetherial Bullet': 'Ätherreigen',
