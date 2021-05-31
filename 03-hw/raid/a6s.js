@@ -295,10 +295,7 @@ Options.Triggers.push({
       id: 'A6S Compressed Water Explode',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => {
-        // 5 second warning.
-        return parseFloat(matches.duration) - 5;
-      },
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       alertText: (data, _matches, output) => {
         if (!data.haveWater)
           return;
@@ -342,10 +339,7 @@ Options.Triggers.push({
       id: 'A6S Compressed Lightning Explode',
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
       condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => {
-        // 5 second warning.
-        return parseFloat(matches.duration) - 5;
-      },
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       alertText: (data, _matches, output) => {
         if (!data.haveLightning)
           return;
