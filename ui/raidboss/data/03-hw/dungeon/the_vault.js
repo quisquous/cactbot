@@ -65,9 +65,9 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '101F', source: '聖騎士アデルフェル' }),
       netRegexCn: NetRegexes.startsUsing({ id: '101F', source: '圣骑士阿代尔斐尔' }),
       netRegexKo: NetRegexes.startsUsing({ id: '101F', source: '성기사 아델펠' }),
+      condition: (data) => data.role === 'healer',
       alertText: (data, matches, output) => {
-        if (data.role === 'healer')
-          return output.text({ player: data.ShortName(matches.target) });
+        return output.text({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         text: {

@@ -299,10 +299,9 @@ export default {
     {
       id: 'A8S Compressed Lightning Soon',
       netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
+      condition: (data) => data.lightning,
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       infoText: (data, _matches, output) => {
-        if (!data.lightning)
-          return;
         return output.text({ player: data.ShortName(data.lightning) });
       },
       outputStrings: {
@@ -822,10 +821,9 @@ export default {
     {
       id: 'A8S Compressed Water Soon',
       netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
+      condition: (data) => data.water,
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       infoText: (data, _matches, output) => {
-        if (!data.water)
-          return;
         return output.text({ player: data.ShortName(data.water) });
       },
       outputStrings: {

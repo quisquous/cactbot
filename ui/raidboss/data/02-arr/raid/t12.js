@@ -25,13 +25,10 @@ export default {
       netRegexJa: NetRegexes.addedCombatant({ name: 'ベンヌ', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '贝努鸟', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '벤누', capture: false }),
+      condition: (data) => data.phase <= 2,
       delaySeconds: 55,
       durationSeconds: 4.5,
-      infoText: (data, _matches, output) => {
-        if (data.phase >= 3)
-          return;
-        return output.text();
-      },
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Bennu Soon',
