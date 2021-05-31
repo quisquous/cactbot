@@ -74,10 +74,7 @@ const run = async (args: { locale: Lang; timeline: string }) => {
   // TODO: Fix dynamic imports in TypeScript
   // eslint-disable-next-line max-len
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-  const triggerSet = (await import(importPath)).default;
-  // eslint-disable-next-line max-len
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-  const replacements = triggerSet.timelineReplace;
+  const replacements = (await import(importPath)).default?.timelineReplace;
   const timelineText = fs.readFileSync(timelineFile).toString();
 
   // Use Timeline to figure out what the replacements will look like in game.
