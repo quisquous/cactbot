@@ -2458,9 +2458,6 @@ const Options = {
           x: 24.8,
           y: 31.1,
           fateID: 1723,
-          isCritical: true,
-          isDuel: true,
-          respawnMinutes: 60,
         },
         meetthepuppetmaster: {
           label: {
