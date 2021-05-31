@@ -150,11 +150,7 @@ module.exports = function(env, argv) {
       path: path.resolve(__dirname, '../dist'),
     },
     devServer: {
-      proxy: {
-        '/dist': {
-          pathRewrite: { '^/dist': '' },
-        },
-      },
+      contentBase: path.join(__dirname, '../dist'),
       writeToDisk: true,
     },
     resolve: {
