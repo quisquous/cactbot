@@ -107,7 +107,7 @@ const run = async (args: { locale: Lang; timeline: string }) => {
     if (textErrors[lineNumber])
       line += ' #MISSINGTEXT';
     console.log(line);
-  }
+  });
 };
 
 const args = parser.parseArgs() as { locale: Lang; timeline: string };
