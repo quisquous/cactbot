@@ -236,8 +236,6 @@ export default {
         'Withered Belladonna': 'verwittert(?:e|er|es|en) Belladonna',
       },
       'replaceText': {
-        '\\(inner\\)': '(innen)',
-        '\\(outer\\)': '(außen)',
         'Bog Bequest': 'Maliziöser Modder',
         'Devour': 'Verschlingen',
         'Earth Shaker': 'Erdstoß',
@@ -275,8 +273,6 @@ export default {
       },
       'replaceText': {
         '\\?': ' ?',
-        '\\(inner\\)': '(intérieur)',
-        '\\(outer\\)': '(extérieur)',
         'Bog Bequest': 'Sotomusô-gadoue',
         'Devour': 'Dévoration',
         'Earth Shaker': 'Secousse',
@@ -313,8 +309,6 @@ export default {
         'Withered Belladonna': 'ウィザード・ベラドンナ',
       },
       'replaceText': {
-        '\\(inner\\)': '(中)',
-        '\\(outer\\)': '(外)',
         'Bog Bequest': 'ドロドロ外無双',
         'Devour': '捕食',
         'Earth Shaker': 'アースシェイカー',
@@ -351,8 +345,6 @@ export default {
         'Withered Belladonna': '枯萎剧毒美人',
       },
       'replaceText': {
-        '\\(inner\\)': '(内)',
-        '\\(outer\\)': '(外)',
         'Bog Bequest': '污泥外无双',
         'Devour': '捕食',
         'Earth Shaker': '大地摇动',

@@ -884,9 +884,7 @@ export default {
         'The passage': 'Korridor',
       },
       'replaceText': {
-        '\\(In': '(Rein',
-        'Out\\)': 'Raus)',
-        '\\(Behind\\)': '(Hinter)',
+        '(?<=\\(|/)Behind(?=\\))': 'Hinter',
         'Aerial Support: Bombardment': 'Luftunterstützung: Bombardement',
         'Aerial Support: Swoop': 'Luftunterstützung: Sturmangriff',
         'Anti-Personnel Missile': 'Abwehrraketen',
@@ -980,11 +978,7 @@ export default {
       },
       'replaceText': {
         '\\?': ' ?',
-        '\\(In\\)': '(Intérieur)',
-        '\\(In/Out\\)': '(Intérieur/Extérieur)',
-        '\\(Out\\)': '(Extérieur)',
-        '\\(Out/Behind\\)': '(Extérieur/Derrière)',
-        '\\(Behind\\)': '(Derrière)',
+        '(?<=\\(|/)Behind(?=\\))': 'Derrière',
         'Aerial Support: Bombardment': 'Soutien aérien : pilonnage',
         'Aerial Support: Swoop': 'Soutien aérien : assaut',
         'Anti-Personnel Missile': 'Missile antipersonnel',
@@ -1077,8 +1071,6 @@ export default {
         'The passage': '通路',
       },
       'replaceText': {
-        '(?<=\\()In': '中',
-        'Out(?=\\)|/)': '外',
         '(?<=\\(|/)Behind(?=\\))': '後ろに',
         'Aerial Support: Bombardment': '航空支援：爆撃',
         'Aerial Support: Swoop': '航空支援：突撃',
@@ -1174,8 +1166,6 @@ export default {
         'The passage': '通道',
       },
       'replaceText': {
-        '(?<=\\()In': '内',
-        'Out(?=\\)|/)': '外',
         '(?<=\\(|/)Behind(?=\\))': '后',
         'Aerial Support: Bombardment': '航空支援：轰炸',
         'Aerial Support: Swoop': '航空支援：突击',
@@ -1271,8 +1261,6 @@ export default {
         'The passage': '통로',
       },
       'replaceText': {
-        '(?<=\\()In': '안',
-        'Out(?=\\)|/)': '밖',
         '(?<=\\(|/)Behind(?=\\))': '뒤',
         'Aerial Support: Bombardment': '항공 지원: 폭격',
         'Aerial Support: Swoop': '항공 지원: 돌격',
