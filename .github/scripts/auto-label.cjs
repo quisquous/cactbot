@@ -1,8 +1,8 @@
 /**
- * this Script can be tested locally with
+ * This Script can be tested locally with
  *
  * export GH_TOKEN=**** GITHUB_REPOSITORY=quisquous/cactbot PR_NUMBER=$NUM
- * node .github/scripts/auto-label.cjs
+ * node ./.github/scripts/auto-label.cjs
  */
 'use strict';
 const path = require('path');
@@ -35,7 +35,31 @@ const prefixLabelMap = {
   'ui/test/': 'test',
 };
 
+/**
+ * Looks like jsdoc doesn't support util like `ReturnType`
+ *
+ * @typedef {ReturnType<typeof import("@actions/github").getOctokit>} GitHub
+ */
+
+/**
+ * @typedef {{ filename: string, patch: string }} File
+ */
+
+/**
+ * @param {GitHub} github
+ * @param {string} owner
+ * @param {string} repo
+ * @param {number} pullNumber
+ * @returns {string[]}
+ */
 const getLabels = async (github, owner, repo, pullNumber) => {
+  /**
+   * @typedef {{ owner: string, repo: string, pull_number: number }} identifier
+   */
+
+  /**
+   * @type identifier
+   */
   const prIdentifier = { owner, repo, 'pull_number': pullNumber };
   const httpClient = new HttpClient();
 
@@ -49,49 +73,73 @@ const getLabels = async (github, owner, repo, pullNumber) => {
     fromSha = pullRequest.base.sha;
     toSha = pullRequest.merge_commit_sha;
   } else {
-    fromSha = getPRBaseCommit(github, prIdentifier).sha;
+    fromSha = (await getPRBaseCommit(github, prIdentifier)).sha;
     toSha = pullRequest.head.sha;
   }
 
-  const changedFilesContent = await Promise.all(changedFiles.map((f) => async () => {
-    const from = await httpClient.get(rawUrl(owner, repo, fromSha, f.filename));
-    const to = await httpClient.get(rawUrl(owner, repo, toSha, f.filename));
-    return {
-      filepath: f.filename,
-      from: await from.readBody(),
-      to: await to.readBody(),
-    };
-  }).map((f) => f()));
+  /**
+   * @typedef {{ filename: string, from: string, to: string }} ChangedFileContent
+   * @type {ChangedFileContent[]}
+   */
+  const changedFilesContent = await Promise.all(
+      changedFiles.map((f) => async () => {
+        const from = await httpClient.get(rawUrl(owner, repo, fromSha, f.filename),
+        );
+        const to = await httpClient.get(rawUrl(owner, repo, toSha, f.filename));
+        return {
+          filename: f.filename,
+          from: await from.readBody(),
+          to: await to.readBody(),
+        };
+      }).map((f) => f()),
+  );
 
   const changedLang = getTimelineReplaceChanges(changedFilesContent);
   console.log(`changed timelineReplace ${changedLang}`);
-  changedLang.push(...nonNullUnique(lodash.flatten(changedFiles.map((f) => {
-    if (['.js', '.ts'].includes(path.extname(f.filename)))
-      return parseChangedLang(f.patch);
-  }))));
+  changedLang.push(...nonNullUnique(lodash.flatten(
+      changedFiles.map((f) => {
+        if (['.js', '.ts'].includes(path.extname(f.filename)))
+          return parseChangedLang(f.patch);
+      }),
+  )));
 
   // by file path
-  const changedModule = nonNullUnique(changedFiles.map((f) => {
-    for (const [prefix, label] of Object.entries(prefixLabelMap)) {
-      if (f.filename.startsWith(prefix))
-        return label;
-    }
-  }));
+  const changedModule = nonNullUnique(
+      changedFiles.map((f) => {
+        for (const [prefix, label] of Object.entries(prefixLabelMap)) {
+          if (f.filename.startsWith(prefix))
+            return label;
+        }
+      }),
+  );
 
   return [...changedModule, ...changedLang.map((v) => `💬${v.toUpperCase()}`)];
 };
 
+/**
+ * @param github
+ * @param {identifier} identifier
+ * @returns {Promise<{ sha: string }>}
+ */
 const getPRBaseCommit = async (github, identifier) => {
   const listFilesOptions = github.rest.pulls.listCommits.endpoint.merge(identifier);
   const commits = await github.paginate(listFilesOptions);
   return commits[0].parents[0];
 };
 
+/**
+ * @param github
+ * @param {identifier} identifier
+ * @returns {Promise<File[]>}
+ */
 const getChangedFiles = async (github, identifier) => {
   const listFilesOptions = github.rest.pulls.listFiles.endpoint.merge(identifier);
   return await github.paginate(listFilesOptions);
 };
 
+/**
+ * @param {string} patch
+ */
 const parseChangedLang = (patch) => {
   const set = new Set();
   for (const lang of ['cn', 'de', 'ja', 'fr']) {
@@ -104,25 +152,43 @@ const parseChangedLang = (patch) => {
   return Array.from(set.values());
 };
 
+/**
+ * @template T
+ * @param {T[]} s
+ * @returns {T[]}
+ */
 const nonNullUnique = (s) => {
   return lodash.uniq(s).filter(Boolean);
 };
 
+/**
+ * @param {string} owner
+ * @param {string} repo
+ * @param {string} sha
+ * @param {string} path
+ */
 const rawUrl = (owner, repo, sha, path) => {
   return `https://github.com/${owner}/${repo}/raw/${sha}/${path}`;
 };
 
+/**
+ * @param {ChangedFileContent[]} changedFiles
+ * @returns {string[]}
+ */
 const getTimelineReplaceChanges = (changedFiles) => {
+  /**
+   * @type {Set<string>}
+   */
   const s = new Set();
 
   changedFiles.forEach((file) => {
-    if (!file.filepath.startsWith('ui/raidboss/data/'))
+    if (!file.filename.startsWith('ui/raidboss/data/'))
       return;
 
-    if (path.extname(file.filepath) === '.js') {
+    if (path.extname(file.filename) === '.js') {
       const from = getTimelineReplace(file.from);
       const to = getTimelineReplace(file.to);
-      for (const lang of lodash.uniq([...Object.keys(from), ...Object.keys(to)])) {
+      for (const lang of lodash.uniq([...Object.keys(from || {}), ...Object.keys(to || {})])) {
         if (!lodash.isEqual(from[lang], to[lang]))
           s.add(lang);
       }
@@ -131,12 +197,17 @@ const getTimelineReplaceChanges = (changedFiles) => {
   return Array.from(s.values());
 };
 
+/**
+ * @param {string} fileContent
+ * @returns {undefined | Record<string, any>}
+ */
 const getTimelineReplace = (fileContent) => {
   const ast = recast.parse(fileContent, {
     parser: babelParser,
   });
 
-  const exportDefault = ast.program.body.filter((body) => body.type === 'ExportDefaultDeclaration')[0];
+  const exportDefault = ast.program.body
+    .filter((body) => body.type === 'ExportDefaultDeclaration')[0];
   if (!exportDefault)
     return;
 
@@ -156,7 +227,7 @@ const getTimelineReplace = (fileContent) => {
 const run = async () => {
   const owner = github.context.repo.owner;
   const repo = github.context.repo.repo;
-  const pullNumber = process.env.PR_NUMBER;
+  const pullNumber = parseInt(process.env.PR_NUMBER, 10);
 
   const octokit = github.getOctokit(process.env.GH_TOKEN);
 
