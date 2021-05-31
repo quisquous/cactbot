@@ -95,9 +95,7 @@ const run = async (args: { locale: Lang; timeline: string }) => {
 
   // Combine replaced lines with errors.
   const timelineLines = timelineText.split(/\n/);
-  let lineNumber = 0;
-  for (const timelineLine of timelineLines) {
-    lineNumber++;
+  timelineLines.forEach((timelineLine, lineNumber) => {
     let line = timelineLine.trim();
 
     const lineText = lineToText[lineNumber];
