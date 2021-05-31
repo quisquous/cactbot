@@ -110,8 +110,6 @@ export default {
         'Zuiko-Maru': 'Zuiko-Maru',
       },
       'replaceText': {
-        '\\(inner\\)': '(innen)',
-        '\\(outer\\)': '(außen)',
         'Clearout': 'Kreisfeger',
         'Clockwork Medium': 'Mechanik-Medium',
         'Clockwork Raiton': 'Mechanik-Raiton',
@@ -149,8 +147,6 @@ export default {
       },
       'replaceText': {
         '\\?': ' ?',
-        '\\(inner\\)': '(intérieur)',
-        '\\(outer\\)': '(extérieur)',
         'Clearout': 'Fauchage',
         'Clockwork Medium': 'Kuchiyose mécanique',
         'Clockwork Raiton': 'Raiton mécanique',
@@ -187,8 +183,6 @@ export default {
         'Zuiko-Maru': 'ズイコウ丸',
       },
       'replaceText': {
-        '\\(inner\\)': '(中)',
-        '\\(outer\\)': '(外)',
         'Clearout': 'なぎ払い',
         'Clockwork Medium': 'からくり口寄せ',
         'Clockwork Raiton': 'からくり雷遁',
