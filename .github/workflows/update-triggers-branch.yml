@@ -30,9 +30,18 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
+      - name: Cache Dependencies
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: ./node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          npm ci --ignore-scripts
       - name: Build
         run: |
-          npm install
           npm run process-triggers
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

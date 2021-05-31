@@ -22,20 +22,21 @@ jobs:
         with:
           node-version: '14'
 
-      - uses: actions/cache@v2
+      - name: Cache Dependencies
+        id: cache
+        uses: actions/cache@v2
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          path: ./node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
 
       - name: Add Custom Problem Matcher
         run: |
           echo "::add-matcher::.github/matchers/${{ github.job }}.json"
 
       - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          npm ci
+          npm ci --ignore-scripts
 
       - name: npm run markdownlint
         run: |
