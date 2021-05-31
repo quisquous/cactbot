@@ -1,3 +1,9 @@
+/**
+ * this Script can be tested locally with
+ *
+ * export GH_TOKEN=**** GITHUB_REPOSITORY=quisquous/cactbot PR_NUMBER=$NUM
+ * node .github/scripts/auto-label.cjs
+ */
 'use strict';
 const path = require('path');
 
