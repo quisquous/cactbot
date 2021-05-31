@@ -1,8 +1,7 @@
 name: Auto Label
 
 on:
-  pull_request:
-    types: [ opened, synchronize ]
+  pull_request_target
 
 jobs:
   main:
