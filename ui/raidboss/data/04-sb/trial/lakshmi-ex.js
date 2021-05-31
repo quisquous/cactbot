@@ -306,6 +306,8 @@ export default {
         'Lakshmi': 'Lakshmi',
       },
       'replaceText': {
+        '--chanchala end--': '--Chanchala endet--',
+        '\\(mid\\)': '(Mitte)',
         '/dance': '/tanz',
         'Adds Appear': 'Adds erscheinen',
         'Alluring Arm': 'Anziehender Arm',

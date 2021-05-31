@@ -147,6 +147,11 @@ export default {
     {
       id: 'Zadnor Serpents Turbine',
       netRegex: NetRegexes.startsUsing({ source: 'Stormborne Zirnitra', id: '5E54' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Sturm-Zirnitra', id: '5E54' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Zirnitra Des Tempêtes', id: '5E54' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ストーム・ジルニトラ', id: '5E54' }),
+      netRegexCn: NetRegexes.startsUsing({ source: 'Stormborne Zirnitra', id: '5E54' }),
+      netRegexKo: NetRegexes.startsUsing({ source: 'Stormborne Zirnitra', id: '5E54' }),
       condition: (data) => data.ce === 'serpents',
       preRun: (data) => data.serpentsTurbineCount = (data.serpentsTurbineCount || 0) + 1,
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
@@ -166,17 +171,21 @@ export default {
       outputStrings: {
         knockbackDonut: {
           en: 'Knockback + Stack Donuts Middle',
+          de: 'Rückstoß + Donuts mittig sammeln',
         },
         knockbackIntoCircle: {
           en: 'Knockback (towards first circles)',
+          de: 'Rückstoß (zu den ersten Kreisen)',
         },
         knockbackIntoSafe: {
           en: 'Knockback (towards open spots)',
+          de: 'Rückstoß (zum offenen Bereich)',
         },
         knockbackExplosion: {
           // Can't trust people to make a safe spot,
           // so using knockback prevention is probably the best advice.
           en: 'Knockback (prevent)',
+          de: 'Rückstoß (verhindern)',
         },
       },
     },
@@ -184,6 +193,9 @@ export default {
     {
       id: 'Zadnor Feeling Suppressive Magitek Rays',
       netRegex: NetRegexes.startsUsing({ source: 'Blackburn', id: '5C40', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schwarzbrand', id: '5C40', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Escarre', id: '5C40', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ブラックバーン', id: '5C40', capture: false }),
       condition: (data) => data.ce === 'feeling',
       response: Responses.aoe(),
     },
@@ -195,6 +207,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Chain Cannon on YOU',
+          de: 'Kettenkanone auf DIR',
         },
       },
     },
@@ -208,18 +221,25 @@ export default {
       outputStrings: {
         text: {
           en: 'Stay Out of Lasers',
+          de: 'Aus den Lasern gehen',
         },
       },
     },
     {
       id: 'Zadnor Feeling Analysis',
       netRegex: NetRegexes.startsUsing({ source: 'Blackburn', id: '5C37', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schwarzbrand', id: '5C37', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Escarre', id: '5C37', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ブラックバーン', id: '5C37', capture: false }),
       condition: (data) => data.ce === 'feeling',
       run: (data) => data.feelingAnalysis = true,
     },
     {
       id: 'Zadnor Feeling Read Orders Coordinated Assault',
       netRegex: NetRegexes.startsUsing({ source: 'Blackburn', id: '5C34', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schwarzbrand', id: '5C34', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Escarre', id: '5C34', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ブラックバーン', id: '5C34', capture: false }),
       condition: (data) => data.ce === 'feeling',
       alertText: (data, _matches, output) => {
         return data.feelingAnalysis ? output.point() : output.dodge();
@@ -228,9 +248,11 @@ export default {
       outputStrings: {
         dodge: {
           en: 'Dodge 4 Charges',
+          de: 'Weiche 4 Anstürmen aus',
         },
         point: {
           en: 'Point at 4 Charges',
+          de: 'Zeige auf dir 4 Anstürmen',
         },
       },
     },
@@ -241,6 +263,9 @@ export default {
       // 5E23 = get out first
       // 5E25 = get in first
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Shemhazai', id: ['5E23', '5E25'] }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Shemhazai Der Iv\\. Legion', id: ['5E23', '5E25'] }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Shemhazai De La 4E Légion', id: ['5E23', '5E25'] }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・シュミハザ', id: ['5E23', '5E25'] }),
       condition: (data) => data.ce === 'grave',
       suppressSeconds: 10,
       alertText: (_data, matches, output) => {
@@ -256,6 +281,9 @@ export default {
       // 5E23 = get out first (so get in second)
       // 5E25 = get in first (so get out second)
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Shemhazai', id: ['5E23', '5E25'] }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Shemhazai Der Iv\\. Legion', id: ['5E23', '5E25'] }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Shemhazai De La 4E Légion', id: ['5E23', '5E25'] }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・シュミハザ', id: ['5E23', '5E25'] }),
       condition: (data) => data.ce === 'grave',
       delaySeconds: 5,
       suppressSeconds: 10,
@@ -270,12 +298,18 @@ export default {
     {
       id: 'Zadnor Grave Devour Soul',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Shemhazai', id: '5E20' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Shemhazai Der Iv\\. Legion', id: '5E20' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Shemhazai De La 4E Légion', id: '5E20' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・シュミハザ', id: '5E20' }),
       condition: tankBusterOnParty('grave'),
       response: Responses.tankBuster(),
     },
     {
       id: 'Zadnor Grave Blight',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Shemhazai', id: '5E1E', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Shemhazai Der Iv\\. Legion', id: '5E1E', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Shemhazai De La 4E Légion', id: '5E1E', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・シュミハザ', id: '5E1E', capture: false }),
       condition: (data) => data.ce === 'grave',
       response: Responses.aoe(),
     },
@@ -287,6 +321,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Get Behind Hernais',
+          de: 'Geh hinter Hernais',
         },
       },
     },
@@ -302,6 +337,9 @@ export default {
     {
       id: 'Zadnor Grave Aethertide',
       netRegex: NetRegexes.startsUsing({ source: 'Dyunbu The Accursed', id: '5E2A' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Dyunbu (?:der|die|das) Unlauter(?:e|er|es|en)', id: '5E2A' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Dyunbu L\'Impure', id: '5E2A' }),
+      netRegexJa: NetRegexes.startsUsing({ source: '不浄のユンブ', id: '5E2A' }),
       condition: (data, matches) => data.ce === 'grave' && data.me === matches.target,
       response: Responses.spread(),
     },
@@ -312,6 +350,9 @@ export default {
       // 873 = Left Face
       // 874 = Right Face
       netRegex: NetRegexes.gainsEffect({ source: '4th-Make Shemhazai', effectId: ['871', '872', '873', '874'] }),
+      netRegexDe: NetRegexes.gainsEffect({ source: 'Shemhazai Der Iv\\. Legion', effectId: ['871', '872', '873', '874'] }),
+      netRegexFr: NetRegexes.gainsEffect({ source: 'Shemhazai De La 4E Légion', effectId: ['871', '872', '873', '874'] }),
+      netRegexJa: NetRegexes.gainsEffect({ source: 'Ivレギオン・シュミハザ', effectId: ['871', '872', '873', '874'] }),
       condition: (data, matches) => data.ce === 'grave' && data.me === matches.target,
       alertText: (_data, matches, output) => {
         const effectId = matches.effectId.toUpperCase();
@@ -327,15 +368,19 @@ export default {
       outputStrings: {
         forward: {
           en: 'March Forward Into Middle',
+          de: 'Marchiere Vorwärts in die Mitte',
         },
         backward: {
           en: 'March Backward Into Middle',
+          de: 'Marchiere Rückwärts in die Mitte',
         },
         left: {
           en: 'March Left Into Middle',
+          de: 'Marchiere Links in die Mitte',
         },
         right: {
           en: 'March Right Into Middle',
+          de: 'Marchiere Rechts in die Mitte',
         },
       },
     },
@@ -343,12 +388,22 @@ export default {
     {
       id: 'Zadnor Diremite Crystal Needle',
       netRegex: NetRegexes.startsUsing({ source: 'Hedetet', id: '5E15' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Hedetet', id: '5E15' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Hededèt', id: '5E15' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ヘデテト', id: '5E15' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '赫德提特', id: '5E15' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '헤데테트', id: '5E15' }),
       condition: tankBusterOnParty('diremite'),
       response: Responses.tankBuster(),
     },
     {
       id: 'Zadnor Diremite Shardstrike',
       netRegex: NetRegexes.startsUsing({ source: 'Hedetet', id: '5E17' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Hedetet', id: '5E17' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Hededèt', id: '5E17' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ヘデテト', id: '5E17' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '赫德提特', id: '5E17' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '헤데테트', id: '5E17' }),
       condition: (data, matches) => data.ce === 'diremite' && data.me === matches.target,
       response: Responses.spread(),
     },
@@ -375,6 +430,7 @@ export default {
         num4: numberOutputStrings[4],
         text: {
           en: '${num} (spread for laser)',
+          de: '${num} (verteile für Laser)',
         },
       },
     },
@@ -403,33 +459,51 @@ export default {
     {
       id: 'Zadnor Diremite Crystaline Stingers',
       netRegex: NetRegexes.startsUsing({ source: 'Hedetet', id: '5E0D', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Hedetet', id: '5E0D', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Hededèt', id: '5E0D', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ヘデテト', id: '5E0D', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '赫德提特', id: '5E0D', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '헤데테트', id: '5E0D', capture: false }),
       condition: (data) => data.ce === 'diremite',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hide Behind Silver Shard',
+          de: 'Hinter Silber-Splitter verstecken',
         },
       },
     },
     {
       id: 'Zadnor Diremite Aetherial Stingers',
       netRegex: NetRegexes.startsUsing({ source: 'Hedetet', id: '5E0E', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Hedetet', id: '5E0E', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Hededèt', id: '5E0E', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ヘデテト', id: '5E0E', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '赫德提特', id: '5E0E', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '헤데테트', id: '5E0E', capture: false }),
       condition: (data) => data.ce === 'diremite',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Hide Behind Gold Shard',
+          de: 'Hinter Gold-Splitter verstecken',
         },
       },
     },
     {
       id: 'Zadnor Diremite Sand Sphere',
       netRegex: NetRegexes.startsUsing({ source: 'Hedetet', id: '5E0F', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Hedetet', id: '5E0F', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Hededèt', id: '5E0F', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ヘデテト', id: '5E0F', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '赫德提特', id: '5E0F', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '헤데테트', id: '5E0F', capture: false }),
       condition: (data) => data.ce === 'diremite',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away From Orbs',
+          de: 'Weg von den Orbs',
         },
       },
     },
@@ -437,6 +511,9 @@ export default {
     {
       id: 'Zadnor Cavalry Gust Slash',
       netRegex: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D7D' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D7D' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D7D' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クリバナリウス', id: '5D7D' }),
       condition: (data) => data.ce === 'cavalry',
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       response: Responses.knockback(),
@@ -444,6 +521,9 @@ export default {
     {
       id: 'Zadnor Cavalry Raw Steel',
       netRegex: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D87' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D87' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D87' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クリバナリウス', id: '5D87' }),
       condition: (data) => data.ce === 'cavalry',
       response: (data, matches, output) => {
         // cactbot-builtin-response
@@ -474,12 +554,18 @@ export default {
     {
       id: 'Zadnor Cavalry Call Raze',
       netRegex: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D8C', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D8C', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D8C', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クリバナリウス', id: '5D8C', capture: false }),
       condition: (data) => data.ce === 'cavalry',
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Cavalry Magitek Blaster',
       netRegex: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D90' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D90' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Clibanarius', id: '5D90' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クリバナリウス', id: '5D90' }),
       condition: (data) => data.ce === 'cavalry',
       response: Responses.stackMarkerOn(),
     },
@@ -488,36 +574,52 @@ export default {
     {
       id: 'Zadnor Blood Cloud Of Locusts',
       netRegex: NetRegexes.startsUsing({ source: 'Hanbi', id: '5C10', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Hanbi', id: '5C10', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Hanbi', id: '5C10', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ハンビ', id: '5C10', capture: false }),
       condition: (data) => data.ce === 'blood',
       response: Responses.getOut(),
     },
     {
       id: 'Zadnor Blood Plague Of Locusts',
       netRegex: NetRegexes.startsUsing({ source: 'Hanbi', id: '5C11', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Hanbi', id: '5C11', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Hanbi', id: '5C11', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ハンビ', id: '5C11', capture: false }),
       condition: (data) => data.ce === 'blood',
       response: Responses.getIn(),
     },
     {
       id: 'Zadnor Blood Dread Wind',
       netRegex: NetRegexes.startsUsing({ source: 'Hanbi', id: '5BAE', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Hanbi', id: '5BAE', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Hanbi', id: '5BAE', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ハンビ', id: '5BAE', capture: false }),
       condition: (data) => data.ce === 'blood',
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Blood Gale Cannon',
       netRegex: NetRegexes.startsUsing({ source: 'Hanbi', id: '53E3', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Hanbi', id: '53E3', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Hanbi', id: '53E3', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ハンビ', id: '53E3', capture: false }),
       condition: (data) => data.ce === 'blood',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           // TODO: should this be a response/output?
           en: 'Out of Front',
+          de: 'Weg von Vorne',
         },
       },
     },
     {
       id: 'Zadnor Blood Camisado',
       netRegex: NetRegexes.startsUsing({ source: 'Hanbi', id: '5BAE' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Hanbi', id: '5BAE' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Hanbi', id: '5BAE' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ハンビ', id: '5BAE' }),
       condition: tankBusterOnParty('blood'),
       response: Responses.tankBuster(),
     },
@@ -525,24 +627,36 @@ export default {
     {
       id: 'Zadnor Wolf Glaciation',
       netRegex: NetRegexes.startsUsing({ source: 'Hrodvitnir', id: '5C32', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Hrodvitnir', id: '5C32', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Hródvitnir', id: '5C32', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'フローズヴィトニル', id: '5C32', capture: false }),
       condition: (data) => data.ce === 'wolf',
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Wolf Storm Without',
       netRegex: NetRegexes.startsUsing({ source: 'Hrodvitnir', id: '5C2A', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Hrodvitnir', id: '5C2A', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Hródvitnir', id: '5C2A', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'フローズヴィトニル', id: '5C2A', capture: false }),
       condition: (data) => data.ce === 'wolf',
       response: Responses.getUnder(),
     },
     {
       id: 'Zadnor Wolf Storm Within',
       netRegex: NetRegexes.startsUsing({ source: 'Hrodvitnir', id: '5C2C', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Hrodvitnir', id: '5C2C', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Hródvitnir', id: '5C2C', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'フローズヴィトニル', id: '5C2C', capture: false }),
       condition: (data) => data.ce === 'wolf',
       response: Responses.getOut(),
     },
     {
       id: 'Zadnor Wolf Bracing Wind',
       netRegex: NetRegexes.startsUsing({ source: 'Ice Sprite', id: '5C22' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Eis-Exergon', id: '5C22' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Élémentaire De Glace', id: '5C22' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アイススプライト', id: '5C22' }),
       condition: (data) => data.ce === 'wolf',
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       suppressSeconds: 5,
@@ -550,12 +664,16 @@ export default {
       outputStrings: {
         text: {
           en: 'Knockback (behind pillar)',
+          de: 'Rückstoß (hinter dem Eissplitter)',
         },
       },
     },
     {
       id: 'Zadnor Wolf Lunar Cry',
       netRegex: NetRegexes.startsUsing({ source: 'Hrodvitnir', id: '5C24', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Hrodvitnir', id: '5C24', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Hródvitnir', id: '5C24', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'フローズヴィトニル', id: '5C24', capture: false }),
       condition: (data) => data.ce === 'wolf',
       // Call this out after Bracing Wind.
       delaySeconds: 9,
@@ -563,6 +681,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Hide Behind Pillar',
+          de: 'Hinter dem Eissplitter verstecken',
         },
       },
     },
@@ -570,18 +689,27 @@ export default {
     {
       id: 'Zadnor Time Fire IV',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Belias', id: '5D9A' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Belias Der Iv\\. Legion', id: '5D9A' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Bélias De La 4E Légion', id: '5D9A' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・ベリアス', id: '5D9A' }),
       condition: (data) => data.ce === 'time',
       response: Responses.tankBuster(),
     },
     {
       id: 'Zadnor Time Fire',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Belias', id: '5D99' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Belias Der Iv\\. Legion', id: '5D99' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Bélias De La 4E Légion', id: '5D99' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・ベリアス', id: '5D99' }),
       condition: tankBusterOnParty('time'),
       response: Responses.tankBuster(),
     },
     {
       id: 'Zadnor Time Reproduce',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Belias', id: '60E9', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Belias Der Iv\\. Legion', id: '60E9', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Bélias De La 4E Légion', id: '60E9', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・ベリアス', id: '60E9', capture: false }),
       condition: (data) => data.ce === 'time',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -598,6 +726,9 @@ export default {
     {
       id: 'Zadnor Time Time Bomb',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Belias', id: '5D95', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Belias Der Iv\\. Legion', id: '5D95', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Bélias De La 4E Légion', id: '5D95', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・ベリアス', id: '5D95', capture: false }),
       condition: (data) => data.ce === 'time',
       preRun: (data) => data.timeBombCount = (data.timeBombCount || 0) + 1,
       infoText: (data, _matches, output) => {
@@ -607,10 +738,12 @@ export default {
       outputStrings: {
         twoClocks: {
           en: 'Go Perpendicular To Clock Hands',
+          de: 'Geh Senkrecht von den Uhrzeigern',
         },
         threeClocks: {
           // This is...not the best instruction.
           en: 'Go Opposite All Clock Hands',
+          de: 'Geh gegnüber von allen Uhrzeigern',
         },
       },
     },
@@ -618,11 +751,17 @@ export default {
     {
       id: 'Zadnor Machines Magnetic Field',
       netRegex: NetRegexes.startsUsing({ source: 'Kampe', id: '5CFE', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kampe', id: '5CFE', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Campé', id: '5CFE', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'カンペ', id: '5CFE', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Machines Fore-Hind Cannons',
       netRegex: NetRegexes.startsUsing({ source: 'Kampe', id: '5CFF', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Kampe', id: '5CFF', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Campé', id: '5CFF', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'カンペ', id: '5CFF', capture: false }),
       response: Responses.goSides(),
     },
     // ***** Worn to a Shadow *****
@@ -630,35 +769,49 @@ export default {
       id: 'Zadnor Shadow Bladed Beak',
       // Not a cleave.
       netRegex: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E3B' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E3B' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E3B' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アルコノスト', id: '5E3B' }),
       condition: tankBusterOnParty('shadow'),
       response: Responses.tankBuster(),
     },
     {
       id: 'Zadnor Shadow Nihility\'s Song',
       netRegex: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E3C', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E3C', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E3C', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アルコノスト', id: '5E3C', capture: false }),
       condition: (data) => data.ce === 'shadow',
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Shadow Stormcall',
       netRegex: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E39', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E39', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E39', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アルコノスト', id: '5E39', capture: false }),
       condition: (data) => data.ce === 'shadow',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Follow Slow Orb',
+          de: 'Folge dem langsamen Orb',
         },
       },
     },
     {
       id: 'Zadnor Shadow Stormcall Away',
       netRegex: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E39', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E39', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Alkonost', id: '5E39', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アルコノスト', id: '5E39', capture: false }),
       condition: (data) => data.ce === 'shadow',
       delaySeconds: 15,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away From Orb',
+          de: 'Weg vom Orb',
         },
       },
     },
@@ -666,42 +819,60 @@ export default {
     {
       id: 'Zadnor Face Ancient Quake IV',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Hashmal', id: '5D14', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Hashmallim Der Iv\\. Legion', id: '5D14', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Hashmal De La 4E Légion', id: '5D14', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・ハシュマリム', id: '5D14', capture: false }),
       condition: (data) => data.ce === 'face',
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Face Rock Cutter',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Hashmal', id: '5D13' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Hashmallim Der Iv\\. Legion', id: '5D13' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Hashmal De La 4E Légion', id: '5D13' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・ハシュマリム', id: '5D13' }),
       condition: tankBusterOnParty('face'),
       response: Responses.tankBuster(),
     },
     {
       id: 'Zadnor Face Extreme Edge Left',
       netRegex: NetRegexes.startsUsing({ source: 'Phantom Hashmal', id: '5D0E', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Hashmallims Abbild', id: '5D0E', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Double Du Hashmal', id: '5D0E', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ハシュマリムの幻影', id: '5D0E', capture: false }),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Find Phantom; Dodge Left',
+          de: 'Finde das Abbild; weiche Links aus',
         },
       },
     },
     {
       id: 'Zadnor Face Extreme Edge Right',
       netRegex: NetRegexes.startsUsing({ source: 'Phantom Hashmal', id: '5D0D', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Hashmallims Abbild', id: '5D0D', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Double Du Hashmal', id: '5D0D', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ハシュマリムの幻影', id: '5D0D', capture: false }),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Find Phantom; Dodge Right',
+          de: 'Finde das Abbild; weiche Rechts aus',
         },
       },
     },
     {
       id: 'Zadnor Face Hammer Round',
       netRegex: NetRegexes.ability({ source: '4th-Make Hashmal', id: '5D10', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Hashmallim Der Iv\\. Legion', id: '5D10', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Hashmal De La 4E Légion', id: '5D10', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'Ivレギオン・ハシュマリム', id: '5D10', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away From Hammer; Rotate Outside',
+          de: 'Weg vom Hammer; nach Außen rotieren',
         },
       },
     },
@@ -709,12 +880,18 @@ export default {
     {
       id: 'Zadnor Looks Forelash',
       netRegex: NetRegexes.startsUsing({ source: 'Ayida', id: '5DA9', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ayida', id: '5DA9', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Ayida', id: '5DA9', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アイダ', id: '5DA9', capture: false }),
       condition: (data) => data.ce === 'looks',
       response: Responses.getBehind(),
     },
     {
       id: 'Zadnor Looks Backlash',
       netRegex: NetRegexes.startsUsing({ source: 'Ayida', id: '5DAA', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ayida', id: '5DAA', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Ayida', id: '5DAA', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アイダ', id: '5DAA', capture: false }),
       condition: (data) => data.ce === 'looks',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -732,47 +909,67 @@ export default {
     {
       id: 'Zadnor Looks Twisting Winds',
       netRegex: NetRegexes.startsUsing({ source: 'Ayida', id: '5DA2', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ayida', id: '5DA2', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Ayida', id: '5DA2', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アイダ', id: '5DA2', capture: false }),
       condition: (data) => data.ce === 'looks',
       response: Responses.goSides(),
     },
     {
       id: 'Zadnor Looks Roar',
       netRegex: NetRegexes.startsUsing({ source: 'Ayida', id: '5DAD', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ayida', id: '5DAD', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Ayida', id: '5DAD', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アイダ', id: '5DAD', capture: false }),
       condition: (data) => data.ce === 'looks',
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Looks Serpent\'s Edge',
       netRegex: NetRegexes.startsUsing({ source: 'Ayida', id: '5DB1' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ayida', id: '5DB1' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Ayida', id: '5DB1' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アイダ', id: '5DB1' }),
       condition: tankBusterOnParty('looks'),
       response: Responses.tankBuster(),
     },
     {
       id: 'Zadnor Looks Levinbolt',
       netRegex: NetRegexes.startsUsing({ source: 'Ayida', id: '5DB0' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ayida', id: '5DB0' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Ayida', id: '5DB0' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アイダ', id: '5DB0' }),
       condition: (data, matches) => data.ce === 'looks' && data.me === matches.target,
       response: Responses.spread(),
     },
     {
       id: 'Zadnor Looks Thundercall',
       netRegex: NetRegexes.startsUsing({ source: 'Ayida', id: '5D9C', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ayida', id: '5D9C', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Ayida', id: '5D9C', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アイダ', id: '5D9C', capture: false }),
       condition: (data) => data.ce === 'looks',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid Orbs -> Under Orbs',
+          de: 'Weiche Orbs aus -> Unter die Orbs',
         },
       },
     },
     {
       id: 'Zadnor Looks Flame',
       netRegex: NetRegexes.startsUsing({ source: 'Ayida', id: '5DA6', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ayida', id: '5DA6', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Ayida', id: '5DA6', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アイダ', id: '5DA6', capture: false }),
       condition: (data) => data.ce === 'looks',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           // TODO: this is also an aoe, and this is a pretty poor description.
           en: 'Go to small orb',
+          de: 'Geh zum kleinen Orb',
         },
       },
     },
@@ -781,41 +978,69 @@ export default {
     {
       id: 'Zadnor Sartauvoir Pyrokinesis',
       netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E7D', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E7D', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E7D', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '鉄火のサルトヴォアール', id: '5E7D', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '铁胆狱火 萨托瓦尔', id: '5E7D', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '쇳불의 사르토부아르', id: '5E7D', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Sartauvoir Time Eruption',
       netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E6C', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E6C', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E6C', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '鉄火のサルトヴォアール', id: '5E6C', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '铁胆狱火 萨托瓦尔', id: '5E6C', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '쇳불의 사르토부아르', id: '5E6C', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go to Slow Clocks',
+          de: 'Geh zu den langsamen Uhren',
         },
       },
     },
     {
       id: 'Zadnor Sartauvoir Reverse Time Eruption',
       netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E6D', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E6D', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E6D', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '鉄火のサルトヴォアール', id: '5E6D', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '铁胆狱火 萨托瓦尔', id: '5E6D', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '쇳불의 사르토부아르', id: '5E6D', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Go to Fast Clocks',
+          de: 'Geh zu den schnellen Uhren',
         },
       },
     },
     {
       id: 'Zadnor Sartauvoir Phenex',
       netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E72', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E72', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E72', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '鉄火のサルトヴォアール', id: '5E72', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '铁胆狱火 萨托瓦尔', id: '5E72', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '쇳불의 사르토부아르', id: '5E72', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Bird Dashes',
+          de: 'Vogel-Anstürme',
         },
       },
     },
     {
       id: 'Zadnor Sartauvoir Hyperpyroplexy',
       netRegex: NetRegexes.ability({ source: 'Sartauvoir The Inferno', id: '5E76', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Sartauvoir Eisenfeuer', id: '5E76', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Sartauvoir Le Fer Rouge', id: '5E76', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '鉄火のサルトヴォアール', id: '5E76', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '铁胆狱火 萨托瓦尔', id: '5E76', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '쇳불의 사르토부아르', id: '5E76', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -831,6 +1056,11 @@ export default {
     {
       id: 'Zadnor Sartauvoir Burning Blade',
       netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E90' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E90' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E90' }),
+      netRegexJa: NetRegexes.startsUsing({ source: '鉄火のサルトヴォアール', id: '5E90' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '铁胆狱火 萨托瓦尔', id: '5E90' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '쇳불의 사르토부아르', id: '5E90' }),
       condition: tankBusterOnParty(),
       response: Responses.tankBuster(),
     },
@@ -839,58 +1069,97 @@ export default {
       // Triggered after Burning Blade.
       // TODO: does this ever happen again??
       netRegex: NetRegexes.ability({ source: 'Sartauvoir The Inferno', id: '5E90', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Sartauvoir Eisenfeuer', id: '5E90', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Sartauvoir Le Fer Rouge', id: '5E90', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '鉄火のサルトヴォアール', id: '5E90', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '铁胆狱火 萨托瓦尔', id: '5E90', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '쇳불의 사르토부아르', id: '5E90', capture: false }),
       suppressSeconds: 999999,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stack together to bait Ignis Est',
+          de: 'Versammeln um Ignis Est zu ködern',
         },
       },
     },
     {
       id: 'Zadnor Sartauvoir Mannatheihwon Flame',
       netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E87', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E87', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E87', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '鉄火のサルトヴォアール', id: '5E87', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '铁胆狱火 萨托瓦尔', id: '5E87', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '쇳불의 사르토부아르', id: '5E87', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Sartauvoir Mannatheihwon Flame Away',
       netRegex: NetRegexes.ability({ source: 'Sartauvoir The Inferno', id: '5E87', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Sartauvoir Eisenfeuer', id: '5E87', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Sartauvoir Le Fer Rouge', id: '5E87', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '鉄火のサルトヴォアール', id: '5E87', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '铁胆狱火 萨托瓦尔', id: '5E87', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '쇳불의 사르토부아르', id: '5E87', capture: false }),
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get far away from X charges',
+          de: 'Weit weg von den X Anstürmen',
         },
       },
     },
     {
       id: 'Zadnor Sartauvoir Pyrocrysis',
       netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E8F' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E8F' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E8F' }),
+      netRegexJa: NetRegexes.startsUsing({ source: '鉄火のサルトヴォアール', id: '5E8F' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '铁胆狱火 萨托瓦尔', id: '5E8F' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '쇳불의 사르토부아르', id: '5E8F' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Zadnor Sartauvoir Left Brand',
       netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E8C', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E8C', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E8C', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '鉄火のサルトヴォアール', id: '5E8C', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '铁胆狱火 萨托瓦尔', id: '5E8C', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '쇳불의 사르토부아르', id: '5E8C', capture: false }),
       response: Responses.goRight(),
     },
     {
       id: 'Zadnor Sartauvoir Right Brand',
       netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E8B', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E8B', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E8B', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '鉄火のサルトヴォアール', id: '5E8B', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '铁胆狱火 萨托瓦尔', id: '5E8B', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '쇳불의 사르토부아르', id: '5E8B', capture: false }),
       response: Responses.goLeft(),
     },
     {
       id: 'Zadnor Blackburn Magitek Rays',
       netRegex: NetRegexes.startsUsing({ source: '4th Legion Blackburn', id: '5F12', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schwarzbrand Der Iv\\. Legion', id: '5F12', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Escarre De La 4E Légion', id: '5F12', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・ブラックバーン', id: '5F12', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Blackburn Analysis',
       netRegex: NetRegexes.startsUsing({ source: '4th Legion Blackburn', id: '5F0F', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schwarzbrand Der Iv\\. Legion', id: '5F0F', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Escarre De La 4E Légion', id: '5F0F', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・ブラックバーン', id: '5F0F', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Opening Toward Undodgeable Line',
+          de: 'Öffnen in Richtung der nicht ausweichbaren Linie',
         },
       },
     },
@@ -903,6 +1172,11 @@ export default {
     {
       id: 'Zadnor Augur Pyroplexy',
       netRegex: NetRegexes.ability({ source: '4th Legion Augur', id: '5F1B', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Augur Der Iv\\. Legion', id: '5F1B', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Augure De La 4E Légion', id: '5F1B', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'Ivレギオン・アウグル', id: '5F1B', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '第四军团先知', id: '5F1B', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: 'Iv군단 점쟁이', id: '5F1B', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -918,17 +1192,26 @@ export default {
     {
       id: 'Zadnor Augur Turbine',
       netRegex: NetRegexes.startsUsing({ source: 'Flameborne Zirnitra', id: '5F14' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Flammen-Zirnitra', id: '5F14' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Zirnitra Des Flammes', id: '5F14' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'フレイム・ジルニトラ', id: '5F14' }),
+      netRegexCn: NetRegexes.startsUsing({ source: 'Flameborne Zirnitra', id: '5F14' }),
+      netRegexKo: NetRegexes.startsUsing({ source: 'Flameborne Zirnitra', id: '5F14' }),
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Stack + Knockback to Safe Spot',
+          de: 'Sammeln + Rückstoß in den sicheren Bereich',
         },
       },
     },
     {
       id: 'Zadnor Alkonost Stormcall',
       netRegex: NetRegexes.startsUsing({ source: 'Tamed Alkonost', id: '5F26', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Gebändigt(?:e|er|es|en) Alkonost', id: '5F26', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Alkonost Dressé', id: '5F26', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'テイムド・アルコノスト', id: '5F26', capture: false }),
       delaySeconds: 2,
       durationSeconds: 5,
       alertText: (_data, _matches, output) => output.text(),
@@ -936,6 +1219,7 @@ export default {
         text: {
           // TODO: we could figure out where this orb is and say go north/south.
           en: 'Go Opposite Fast Orb',
+          de: 'Geh entgegengesetzt zum schnellen Orb',
         },
       },
     },
@@ -944,23 +1228,35 @@ export default {
       // 5F21 = North Wind
       // 5F22 = South Wind
       netRegex: NetRegexes.startsUsing({ source: 'Tamed Carrion Crow', id: ['5F21', '5F22'] }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Gebändigt(?:e|er|es|en) Aaskrähe', id: ['5F21', '5F22'] }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Corneille Noire Dressée', id: ['5F21', '5F22'] }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'テイムド・キャリオンクロウ', id: ['5F21', '5F22'] }),
+      netRegexCn: NetRegexes.startsUsing({ source: '驯服食腐鸦', id: ['5F21', '5F22'] }),
+      netRegexKo: NetRegexes.startsUsing({ source: '길들여진 송장까마귀', id: ['5F21', '5F22'] }),
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       response: Responses.knockback(),
     },
     {
       id: 'Zadnor Alkonost Stormcall Away',
       netRegex: NetRegexes.startsUsing({ source: 'Tamed Alkonost', id: '5F26', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Gebändigt(?:e|er|es|en) Alkonost', id: '5F26', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Alkonost Dressé', id: '5F26', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'テイムド・アルコノスト', id: '5F26', capture: false }),
       delaySeconds: 18,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Away From Orb',
+          de: 'Weg vom Orb',
         },
       },
     },
     {
       id: 'Zadnor Alkonost Nihility\'s Song',
       netRegex: NetRegexes.startsUsing({ source: 'Alkonost', id: '5F28', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Alkonost', id: '5F28', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Alkonost', id: '5F28', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アルコノスト', id: '5F28', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -970,6 +1266,9 @@ export default {
       // 873 = Left Face
       // 874 = Right Face
       netRegex: NetRegexes.gainsEffect({ source: '4th-Make Cuchulainn', effectId: ['871', '872', '873', '874'] }),
+      netRegexDe: NetRegexes.gainsEffect({ source: 'Cuchulainn Der Iv\\. Legion', effectId: ['871', '872', '873', '874'] }),
+      netRegexFr: NetRegexes.gainsEffect({ source: 'Cúchulainn De La 4E Légion', effectId: ['871', '872', '873', '874'] }),
+      netRegexJa: NetRegexes.gainsEffect({ source: 'Ivレギオン・キュクレイン', effectId: ['871', '872', '873', '874'] }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, matches, output) => {
         const effectId = matches.effectId.toUpperCase();
@@ -985,59 +1284,81 @@ export default {
       outputStrings: {
         forward: {
           en: 'March Forward (avoid puddles)',
+          de: 'Marchiere Vorwärts (weiche den Flächen aus)',
         },
         backward: {
           en: 'March Backward (avoid puddles)',
+          de: 'Marchiere Rückwärts (weiche den Flächen aus)',
         },
         left: {
           en: 'March Left (avoid puddles)',
+          de: 'Marchiere Links (weiche den Flächen aus)',
         },
         right: {
           en: 'March Right (avoid puddles)',
+          de: 'Marchiere Rehts (weiche den Flächen aus)',
         },
       },
     },
     {
       id: 'Zadnor Cuchulainn Might Of Malice',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Cuchulainn', id: '5C92' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Cuchulainn Der Iv\\. Legion', id: '5C92' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Cúchulainn De La 4E Légion', id: '5C92' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・キュクレイン', id: '5C92' }),
       condition: tankBusterOnParty(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Zadnor Cuchulainn Putrified Soul',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Cuchulainn', id: '5C8F', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Cuchulainn Der Iv\\. Legion', id: '5C8F', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Cúchulainn De La 4E Légion', id: '5C8F', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・キュクレイン', id: '5C8F', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Cuchulainn Fleshy Necromass',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Cuchulainn', id: '5C82', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Cuchulainn Der Iv\\. Legion', id: '5C82', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Cúchulainn De La 4E Légion', id: '5C82', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・キュクレイン', id: '5C82', capture: false }),
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Get In Puddle',
+          de: 'Geh in die Flächen',
         },
       },
     },
     {
       id: 'Zadnor Cuchulainn Necrotic Billow',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Cuchulainn', id: '5C86', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Cuchulainn Der Iv\\. Legion', id: '5C86', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Cúchulainn De La 4E Légion', id: '5C86', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・キュクレイン', id: '5C86', capture: false }),
       // Normally wouldn't call out ground markers, but this can look a lot like Ambient Pulsation.
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid Chasing AOEs',
+          de: 'Weiche den verfolgenden AoEs aus',
         },
       },
     },
     {
       id: 'Zadnor Cuchulainn Ambient Pulsation',
       netRegex: NetRegexes.startsUsing({ source: '4th-Make Cuchulainn', id: '5C8E', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Cuchulainn Der Iv\\. Legion', id: '5C8E', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Cúchulainn De La 4E Légion', id: '5C8E', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'Ivレギオン・キュクレイン', id: '5C8E', capture: false }),
       suppressSeconds: 10,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           // TODO: this is "titan line bombs".  Is there a better wording here?
           en: 'Go to third line',
+          de: 'Geh zur 3. Linie',
         },
       },
     },
@@ -1050,58 +1371,85 @@ export default {
     {
       id: 'Zadnor Saunion High-Powered Magitek Ray',
       netRegex: NetRegexes.startsUsing({ source: 'Saunion', id: '5DC5' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Saunion', id: '5DC5' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Saunion', id: '5DC5' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'サウニオン', id: '5DC5' }),
       response: Responses.tankCleave(),
     },
     {
       id: 'Zadnor Saunion Magitek Halo',
       netRegex: NetRegexes.startsUsing({ source: 'Saunion', id: '5DB5', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Saunion', id: '5DB5', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Saunion', id: '5DB5', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'サウニオン', id: '5DB5', capture: false }),
       response: Responses.getUnder(),
     },
     {
       id: 'Zadnor Saunion Magitek Crossray',
       netRegex: NetRegexes.startsUsing({ source: 'Saunion', id: '5DB7', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Saunion', id: '5DB7', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Saunion', id: '5DB7', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'サウニオン', id: '5DB7', capture: false }),
       alertText: (_data, _matches, outputs) => outputs.text(),
       outputStrings: {
         text: {
           en: 'Go Intercardinals',
+          de: 'Geh zu Interkardinalen Richtungen',
         },
       },
     },
     {
       id: 'Zadnor Saunion Mobile Halo',
       netRegex: NetRegexes.startsUsing({ source: 'Saunion', id: ['5DB9', '5DBA', '5DBB', '5DBC'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Saunion', id: ['5DB9', '5DBA', '5DBB', '5DBC'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Saunion', id: ['5DB9', '5DBA', '5DBB', '5DBC'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'サウニオン', id: ['5DB9', '5DBA', '5DBB', '5DBC'], capture: false }),
       alertText: (_data, _matches, outputs) => outputs.text(),
       outputStrings: {
         text: {
           en: 'Get Under (towards charge)',
+          de: 'Geh unter den Boss (zum Ansturm hin)',
         },
       },
     },
     {
       id: 'Zadnor Saunion Mobile Crossray',
       netRegex: NetRegexes.startsUsing({ source: 'Saunion', id: ['5DBD', '5DBE', '5DBF', '5DC0'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Saunion', id: ['5DBD', '5DBE', '5DBF', '5DC0'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Saunion', id: ['5DBD', '5DBE', '5DBF', '5DC0'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'サウニオン', id: ['5DBD', '5DBE', '5DBF', '5DC0'], capture: false }),
       suppressSeconds: 5,
       alertText: (_data, _matches, outputs) => outputs.text(),
       outputStrings: {
         text: {
           en: 'Go Intercards (away from charge)',
+          de: 'Geh zu Interkardinalen Richtungen (weg vom Ansturm)',
         },
       },
     },
     {
       id: 'Zadnor Saunion Anti-Personnel Missile',
       netRegex: NetRegexes.startsUsing({ source: 'Saunion', id: '5DC2' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Saunion', id: '5DC2' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Saunion', id: '5DC2' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'サウニオン', id: '5DC2' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Zadnor Saunion Missile Salvo',
       netRegex: NetRegexes.startsUsing({ source: 'Saunion', id: '5DC3' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Saunion', id: '5DC3' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Saunion', id: '5DC3' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'サウニオン', id: '5DC3' }),
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Zadnor Saunion Wildfire Winds',
       netRegex: NetRegexes.startsUsing({ source: 'Dawon The Younger', id: '5DCD', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Dawon Junior', id: '5DCD', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Dawon Junior', id: '5DCD', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ドゥンJr\\.', id: '5DCD', capture: false }),
       delaySeconds: 10,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -1119,12 +1467,18 @@ export default {
     {
       id: 'Zadnor Saunion Tooth and Talon',
       netRegex: NetRegexes.startsUsing({ source: 'Dawon The Younger', id: '5DD4' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Dawon Junior', id: '5DD4' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Dawon Junior', id: '5DD4' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ドゥンJr\\.', id: '5DD4' }),
       condition: tankBusterOnParty(),
       response: Responses.tankBuster(),
     },
     {
       id: 'Zadnor Saunion Swooping Frenzy',
       netRegex: NetRegexes.startsUsing({ source: 'Dawon The Younger', id: '5DD0', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Dawon Junior', id: '5DD0', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Dawon Junior', id: '5DD0', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ドゥンJr\\.', id: '5DD0', capture: false }),
       infoText: (data, _matches, output) => {
         // Every other Swooping Frenzy is followed by a Frigid Pulse, starting with the first.
         data.saunionSwoopingCount = (data.saunionSwoopingCount || 0) + 1;
@@ -1134,6 +1488,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Follow Dawon',
+          de: 'Folge Dawon',
         },
       },
     },
@@ -1155,6 +1510,7 @@ export default {
           },
           avoidTankLaser: {
             en: 'Avoid Tank Laser',
+            de: 'Weiche dem Tanklaser aus',
           },
         };
 
@@ -1166,30 +1522,43 @@ export default {
     {
       id: 'Zadnor Diablo Aetheric Explosion',
       netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CC6', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Diablo-Armament', id: '5CC6', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Batterie D\'Artillerie Diablo', id: '5CC6', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ディアブロ・アーマメント', id: '5CC6', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Diablo Ultimate Psuedoterror',
       // This is triggered on Diabolic Gate with a delay, so it gives an extra +4 seconds.
       netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5C9F', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Diablo-Armament', id: '5C9F', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Batterie D\'Artillerie Diablo', id: '5C9F', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ディアブロ・アーマメント', id: '5C9F', capture: false }),
       delaySeconds: 35,
       response: Responses.getUnder(),
     },
     {
       id: 'Zadnor Diablo Advanced Death IV',
       netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CAF', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Diablo-Armament', id: '5CAF', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Batterie D\'Artillerie Diablo', id: '5CAF', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ディアブロ・アーマメント', id: '5CAF', capture: false }),
       // Circles appear at the end of the cast.
       delaySeconds: 4,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Avoid Growing Circles',
+          de: 'Weiche den wachsenden Kreisen aus',
         },
       },
     },
     {
       id: 'Zadnor Diablo Advanced Death IV Followup',
       netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CAF', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Diablo-Armament', id: '5CAF', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Batterie D\'Artillerie Diablo', id: '5CAF', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ディアブロ・アーマメント', id: '5CAF', capture: false }),
       delaySeconds: 12,
       // TODO: or "Avoid Growing Circles (again lol)"?
       response: Responses.moveAway(),
@@ -1197,11 +1566,17 @@ export default {
     {
       id: 'Zadnor Diablo Aetheric Boom Raidwide',
       netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CB3', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Diablo-Armament', id: '5CB3', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Batterie D\'Artillerie Diablo', id: '5CB3', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ディアブロ・アーマメント', id: '5CB3', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Zadnor Diablo Aetheric Boom Balloons',
       netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CB3', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Diablo-Armament', id: '5CB3', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Batterie D\'Artillerie Diablo', id: '5CB3', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ディアブロ・アーマメント', id: '5CB3', capture: false }),
       // Don't warn people to preposition here, because they probably need
       // heals after the initial hit before popping these.
       delaySeconds: 5.5,
@@ -1209,12 +1584,16 @@ export default {
       outputStrings: {
         text: {
           en: 'Pop Balloons',
+          de: 'Orbs nehmen',
         },
       },
     },
     {
       id: 'Zadnor Diablo Deadly Dealing',
       netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CC2' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Diablo-Armament', id: '5CC2' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Batterie D\'Artillerie Diablo', id: '5CC2' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ディアブロ・アーマメント', id: '5CC2' }),
       // TODO: these feel really late with 5 seconds, should they call instantly at 7?
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       alertText: (data, _matches, output) => {
@@ -1225,15 +1604,20 @@ export default {
       outputStrings: {
         knockbackBits: {
           en: 'Knockback (away from bits)',
+          de: 'Rückstoß (Weg von den Magiteks)',
         },
         knockbackNox: {
           en: 'Knockback (into empty corner)',
+          de: 'Rückstoß (in die leere Ecke)',
         },
       },
     },
     {
       id: 'Zadnor Diablo Void Systems Overload',
       netRegex: NetRegexes.startsUsing({ source: 'The Diablo Armament', id: '5CB7', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Diablo-Armament', id: '5CB7', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Batterie D\'Artillerie Diablo', id: '5CB7', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ディアブロ・アーマメント', id: '5CB7', capture: false }),
       response: Responses.bigAoe(),
     },
     {
@@ -1252,6 +1636,7 @@ export default {
       outputStrings: {
         text: {
           en: 'Laser on YOU',
+          de: 'Laser auf DIR',
         },
       },
     },
@@ -1291,9 +1676,11 @@ export default {
       outputStrings: {
         dodgeFirst: {
           en: '(Dodge -> Stop)',
+          de: '(Ausweichen -> Stop)',
         },
         dodgeSecond: {
           en: '(Stop -> Dodge)',
+          de: '(Stop -> Ausweichen)',
         },
       },
     },
