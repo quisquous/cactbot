@@ -152,7 +152,6 @@ module.exports = function(env, argv) {
     devServer: {
       proxy: {
         '/dist': {
-          target: 'http://localhost:8080',
           pathRewrite: { '^/dist': '' },
         },
       },
