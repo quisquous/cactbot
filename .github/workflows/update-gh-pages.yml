@@ -54,4 +54,3 @@ jobs:
           user_email: "github-actions@github.com"
           commit_message: "gh-pages build: ${{ github.event.head_commit.message }}"
           enable_jekyll: true # Don't commit the .nojekyll file
-
