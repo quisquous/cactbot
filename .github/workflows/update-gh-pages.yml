@@ -31,18 +31,26 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
+      - name: Cache Dependencies
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: ./node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          npm ci --ignore-scripts
       - name: Build
         run: |
-          npm install
           npm run coverage-report
           npm run build
-      - name: git setup
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-      - name: git commit and push
-        run: |
-          git checkout -B gh-pages
-          git add dist resources --force
-          git commit -m "gh-pages build"
-          git push origin gh-pages --force
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          user_name: "github-actions"
+          user_email: "github-actions@github.com"
+          commit_message: "gh-pages build: ${{ github.event.head_commit.message }}"
+          enable_jekyll: true # Don't commit the .nojekyll file

@@ -3,6 +3,18 @@ import LogEventHandler from './LogEventHandler';
 import PetNamesByLang from '../../../../resources/pet_names';
 import EmulatorCommon from '../EmulatorCommon';
 
+const isPetName = (name, language = undefined) => {
+  if (language)
+    return PetNamesByLang[language].includes(name);
+
+  for (const lang in PetNamesByLang) {
+    if (PetNamesByLang[lang].includes(name))
+      return true;
+  }
+
+  return false;
+};
+
 export default class Encounter {
   constructor(encounterDay, encounterZoneId, encounterZoneName, logLines) {
     this.id = null;
@@ -14,15 +26,12 @@ export default class Encounter {
   }
 
   initialize() {
-    this.language = 'en';
     this.initialOffset = Number.MAX_SAFE_INTEGER;
     this.endStatus = 'Unknown';
     this.startStatus = new Set();
     this.engageAt = Number.MAX_SAFE_INTEGER;
     this.firstPlayerAbility = Number.MAX_SAFE_INTEGER;
     this.firstEnemyAbility = Number.MAX_SAFE_INTEGER;
-
-    const petNames = PetNamesByLang[this.language];
 
     this.firstLineIndex = 0;
 
@@ -41,15 +50,15 @@ export default class Encounter {
           this.endStatus = res.groups.EndType;
         } else if (line.id && line.targetId) {
           if (line.id.startsWith('1') ||
-            (line.id.startsWith('4') && petNames.includes(line.name))) {
+            (line.id.startsWith('4') && isPetName(line.name, this.language))) {
             // Player or pet ability
-            if (line.targetId.startsWith('4') && !petNames.includes(line.targetName)) {
+            if (line.targetId.startsWith('4') && !isPetName(line.targetName, this.language)) {
               // Targetting non player or pet
               this.firstPlayerAbility = Math.min(this.firstPlayerAbility, line.timestamp);
             }
-          } else if (line.id.startsWith('4') && !petNames.includes(line.name)) {
+          } else if (line.id.startsWith('4') && !isPetName(line.name, this.language)) {
             // Non-player ability
-            if (line.targetId.startsWith('1') || petNames.includes(line.targetName)) {
+            if (line.targetId.startsWith('1') || isPetName(line.targetName, this.language)) {
               // Targetting player or pet
               this.firstEnemyAbility = Math.min(this.firstEnemyAbility, line.timestamp);
             }
@@ -60,6 +69,7 @@ export default class Encounter {
         this.language = res.groups.language || this.language;
     }
 
+    this.language = this.language || 'en';
 
     if (this.firstPlayerAbility === Number.MAX_SAFE_INTEGER)
       this.firstPlayerAbility = null;

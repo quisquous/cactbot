@@ -177,8 +177,12 @@ namespace Cactbot {
       var initDone = false;
 
       var configFile = "ui/config/config.html";
+      var distFolder = "dist/";
       var dir = new VersionChecker(this).GetCactbotDirectory();
-      var url = Path.GetFullPath(Path.Combine(dir, configFile));
+      var url = Path.GetFullPath(Path.Combine(dir, distFolder, configFile));
+      // Attempt to use the local webpack override, otherwise fall back to default path
+      if (!File.Exists(url))
+        url = Path.GetFullPath(Path.Combine(dir, configFile));
 
       control.VisibleChanged += (o, e) => {
         if (initDone)

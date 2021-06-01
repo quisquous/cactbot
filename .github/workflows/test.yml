@@ -28,20 +28,21 @@ jobs:
         with:
           node-version: '14'
 
-      - uses: actions/cache@v2
+      - name: Cache Dependencies
+        id: cache
+        uses: actions/cache@v2
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          path: ./node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
 
       - uses: actions/setup-python@v2
         with:
           python-version: '3.7'
 
       - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          npm ci
+          npm ci --ignore-scripts
 
       - name: npm test
         run: |

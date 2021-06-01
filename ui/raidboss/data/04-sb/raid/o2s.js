@@ -358,7 +358,6 @@ export default {
         'Fleshy Member': 'tentacule',
       },
       'replaceText': {
-        '\\(center\\)': '(centre)',
         '\\(ground\\)': 'sol',
         '-100 Gs': 'Gravité -100',
         '(?<!-)100 Gs': 'Gravité 100',
@@ -389,7 +388,6 @@ export default {
         'Fleshy Member': '触手',
       },
       'replaceText': {
-        '\\(center\\)': '(中央)',
         '\\(T/H\\)': '(タンク/ヒラ)',
         '-100 Gs': '重力マイナス100',
         '(?<!-)100 Gs': '重力100',
@@ -421,7 +419,6 @@ export default {
         'Fleshy Member': '触手',
       },
       'replaceText': {
-        '\\(center\\)': '(中央)',
         '\\(T/H\\)': '(T/奶)',
         '-100 Gs': '重力-100',
         '(?<!-)100 Gs': '重力100',

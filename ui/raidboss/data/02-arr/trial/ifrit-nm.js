@@ -43,8 +43,6 @@ export default {
         'Ifrit': 'Ifrit',
       },
       'replaceText': {
-        '\\(inner\\)': '(innen)',
-        '\\(outer\\)': '(außen)',
         'Eruption': 'Eruption',
         'Hellfire': 'Höllenfeuer',
         'Incinerate': 'Einäschern',
@@ -59,8 +57,6 @@ export default {
         'Ifrit': 'Ifrit',
       },
       'replaceText': {
-        '\\(inner\\)': '(intérieur)',
-        '\\(outer\\)': '(extérieur)',
         'Eruption': 'Éruption',
         'Hellfire': 'Flammes de l\'enfer',
         'Incinerate': 'Incinération',
@@ -75,8 +71,6 @@ export default {
         'Ifrit': 'イフリート',
       },
       'replaceText': {
-        '\\(inner\\)': '(中)',
-        '\\(outer\\)': '(外)',
         'Eruption': 'エラプション',
         'Hellfire': '地獄の火炎',
         'Incinerate': 'インシネレート',
@@ -91,8 +85,6 @@ export default {
         'Ifrit': '伊弗利特',
       },
       'replaceText': {
-        '\\(inner\\)': '(内)',
-        '\\(outer\\)': '(外)',
         'Eruption': '地火喷发',
         'Hellfire': '地狱之火炎',
         'Incinerate': '烈焰焚烧',
@@ -107,8 +99,6 @@ export default {
         'Ifrit': '이프리트',
       },
       'replaceText': {
-        '\\(inner\\)': '(안)',
-        '\\(outer\\)': '(밖)',
         'Eruption': '용암 분출',
         'Hellfire': '지옥의 화염',
         'Incinerate': '소각',
