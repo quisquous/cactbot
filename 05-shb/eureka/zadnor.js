@@ -12,7 +12,7 @@
 // TODO: machines: can describe "diagonal line bomb" safe spot
 // TODO: machines: can determine rotating corner to go to
 // TODO: alkonost: foreshadowing (both in CE and Dalraida)
-// TODO: sartavoir: everything
+// TODO: alkonost: :Tamed Alkonost:5F26:Stormcall: can be knockback to/away fast/slow orbs
 // TODO: hallway: left/right lasers (check getCombatants???)
 // TODO: saunion: are the mobile halo / crossray abilities corresponding to directions?
 // TODO: diablo: diabolic gate directional callouts???
@@ -1050,6 +1050,47 @@ Options.Triggers.push({
       response: Responses.tankBuster(),
     },
     {
+      id: 'Zadnor Sartauvoir Pyrocrisis',
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E8F' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E8F' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E8F' }),
+      netRegexJa: NetRegexes.startsUsing({ source: '鉄火のサルトヴォアール', id: '5E8F' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '铁胆狱火 萨托瓦尔', id: '5E8F' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '쇳불의 사르토부아르', id: '5E8F' }),
+      preRun: (data, matches) => {
+        data.sartauvoirPyrocrisis = data.sartauvoirPyrocrisis || [];
+        data.sartauvoirPyrocrisis.push(matches.target);
+      },
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.text();
+      },
+      outputStrings: {
+        text: Outputs.spread,
+      },
+    },
+    {
+      id: 'Zadnor Sartauvoir Pyrodoxy',
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E8E' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E8E' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E8E' }),
+      netRegexJa: NetRegexes.startsUsing({ source: '鉄火のサルトヴォアール', id: '5E8E' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '铁胆狱火 萨托瓦尔', id: '5E8E' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '쇳불의 사르토부아르', id: '5E8E' }),
+      delaySeconds: 0.5,
+      infoText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.stackOnYou();
+        if (data.sartauvoirPyrocrisis && !data.sartauvoirPyrocrisis.includes(data.me))
+          return output.stackOnTarget({ player: data.ShortName(matches.target) });
+      },
+      run: (data) => delete data.sartauvoirPyrocrisis,
+      outputStrings: {
+        stackOnYou: Outputs.stackOnYou,
+        stackOnTarget: Outputs.stackOnPlayer,
+      },
+    },
+    {
       id: 'Zadnor Sartauvoir Mannatheihwon Flame Warning',
       // Triggered after Burning Blade.
       // TODO: does this ever happen again??
@@ -1188,23 +1229,6 @@ Options.Triggers.push({
         text: {
           en: 'Stack + Knockback to Safe Spot',
           de: 'Sammeln + Rückstoß in den sicheren Bereich',
-        },
-      },
-    },
-    {
-      id: 'Zadnor Alkonost Stormcall',
-      netRegex: NetRegexes.startsUsing({ source: 'Tamed Alkonost', id: '5F26', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Gebändigt(?:e|er|es|en) Alkonost', id: '5F26', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Alkonost Dressé', id: '5F26', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'テイムド・アルコノスト', id: '5F26', capture: false }),
-      delaySeconds: 2,
-      durationSeconds: 5,
-      alertText: (_data, _matches, output) => output.text(),
-      outputStrings: {
-        text: {
-          // TODO: we could figure out where this orb is and say go north/south.
-          en: 'Go Opposite Fast Orb',
-          de: 'Geh entgegengesetzt zum schnellen Orb',
         },
       },
     },
@@ -1518,7 +1542,7 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Diablo-Armament', id: '5C9F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Batterie D\'Artillerie Diablo', id: '5C9F', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ディアブロ・アーマメント', id: '5C9F', capture: false }),
-      delaySeconds: 35,
+      delaySeconds: 37,
       response: Responses.getUnder(),
     },
     {
@@ -1629,7 +1653,7 @@ Options.Triggers.push({
       // 5CBE damage (no headmarker???)
       netRegex: NetRegexes.headMarker({ id: '0017', capture: false }),
       condition: (data) => data.ce === 'dalriadaDiablo',
-      delaySeconds: 1.5,
+      delaySeconds: 3,
       suppressSeconds: 5,
       infoText: (data, _matches, output) => {
         if (!data.diabloPillar || !data.diabloPillar.includes(data.me))
