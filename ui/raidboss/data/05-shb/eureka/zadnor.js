@@ -172,20 +172,24 @@ export default {
         knockbackDonut: {
           en: 'Knockback + Stack Donuts Middle',
           de: 'Rückstoß + Donuts mittig sammeln',
+          ko: '넉백 + 도넛장판 피하기',
         },
         knockbackIntoCircle: {
           en: 'Knockback (towards first circles)',
           de: 'Rückstoß (zu den ersten Kreisen)',
+          ko: '먼저 뜬 장판으로 넉백',
         },
         knockbackIntoSafe: {
           en: 'Knockback (towards open spots)',
           de: 'Rückstoß (zum offenen Bereich)',
+          ko: '안전지대로 넉백',
         },
         knockbackExplosion: {
           // Can't trust people to make a safe spot,
           // so using knockback prevention is probably the best advice.
           en: 'Knockback (prevent)',
           de: 'Rückstoß (verhindern)',
+          ko: '넉백 (거리유지 추천)',
         },
       },
     },
@@ -208,6 +212,7 @@ export default {
         text: {
           en: 'Chain Cannon on YOU',
           de: 'Kettenkanone auf DIR',
+          ko: '체인 캐논 대상자',
         },
       },
     },
@@ -222,6 +227,7 @@ export default {
         text: {
           en: 'Stay Out of Lasers',
           de: 'Aus den Lasern gehen',
+          ko: '레이저 피하기',
         },
       },
     },
@@ -249,10 +255,12 @@ export default {
         dodge: {
           en: 'Dodge 4 Charges',
           de: 'Weiche 4 Anstürmen aus',
+          ko: '4방향 돌진 피하기',
         },
         point: {
           en: 'Point at 4 Charges',
           de: 'Zeige auf dir 4 Anstürmen',
+          ko: '4방향 돌진 피하기',
         },
       },
     },
