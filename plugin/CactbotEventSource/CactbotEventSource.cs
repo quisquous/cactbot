@@ -180,7 +180,7 @@ namespace Cactbot {
       var distFolder = "dist/";
       var dir = new VersionChecker(this).GetCactbotDirectory();
       var url = Path.GetFullPath(Path.Combine(dir, distFolder, configFile));
-      // Attempt to use the local webpack override, otherwise fallback to default path
+      // Attempt to use the local webpack override, otherwise fall back to default path
       if (!File.Exists(url))
         url = Path.GetFullPath(Path.Combine(dir, configFile));
 
