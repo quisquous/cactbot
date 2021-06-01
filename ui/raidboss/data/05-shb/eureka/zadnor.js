@@ -884,7 +884,7 @@ export default {
         text: {
           en: 'Find Phantom; Dodge Right',
           de: 'Finde das Abbild; weiche Rechts aus',
-          ko: '분신 찾고, 오른쪽으로 피하기'
+          ko: '분신 찾고, 오른쪽으로 피하기',
         },
       },
     },
@@ -1559,7 +1559,7 @@ export default {
         text: {
           en: 'Follow Dawon',
           de: 'Folge Dawon',
-          ko: "다우언 따라가기",
+          ko: '다우언 따라가기',
         },
       },
     },
