@@ -172,20 +172,24 @@ export default {
         knockbackDonut: {
           en: 'Knockback + Stack Donuts Middle',
           de: 'Rückstoß + Donuts mittig sammeln',
+          ko: '넉백 + 도넛장판 피하기',
         },
         knockbackIntoCircle: {
           en: 'Knockback (towards first circles)',
           de: 'Rückstoß (zu den ersten Kreisen)',
+          ko: '먼저 뜬 장판으로 넉백',
         },
         knockbackIntoSafe: {
           en: 'Knockback (towards open spots)',
           de: 'Rückstoß (zum offenen Bereich)',
+          ko: '안전지대로 넉백',
         },
         knockbackExplosion: {
           // Can't trust people to make a safe spot,
           // so using knockback prevention is probably the best advice.
           en: 'Knockback (prevent)',
           de: 'Rückstoß (verhindern)',
+          ko: '넉백 (거리유지 추천)',
         },
       },
     },
@@ -208,6 +212,7 @@ export default {
         text: {
           en: 'Chain Cannon on YOU',
           de: 'Kettenkanone auf DIR',
+          ko: '체인 캐논 대상자',
         },
       },
     },
@@ -222,6 +227,7 @@ export default {
         text: {
           en: 'Stay Out of Lasers',
           de: 'Aus den Lasern gehen',
+          ko: '레이저 피하기',
         },
       },
     },
@@ -249,10 +255,12 @@ export default {
         dodge: {
           en: 'Dodge 4 Charges',
           de: 'Weiche 4 Anstürmen aus',
+          ko: '4방향 돌진 피하기',
         },
         point: {
           en: 'Point at 4 Charges',
           de: 'Zeige auf dir 4 Anstürmen',
+          ko: '4방향 돌진 피하기',
         },
       },
     },
@@ -322,6 +330,7 @@ export default {
         text: {
           en: 'Get Behind Hernais',
           de: 'Geh hinter Hernais',
+          ko: 'Hernais 뒤로',
         },
       },
     },
@@ -369,18 +378,22 @@ export default {
         forward: {
           en: 'March Forward Into Middle',
           de: 'Marchiere Vorwärts in die Mitte',
+          ko: '정신장악: 앞, 가운데로',
         },
         backward: {
           en: 'March Backward Into Middle',
           de: 'Marchiere Rückwärts in die Mitte',
+          ko: '정신장악: 뒤, 가운데로',
         },
         left: {
           en: 'March Left Into Middle',
           de: 'Marchiere Links in die Mitte',
+          ko: '정신장악: 왼쪽, 가운데로',
         },
         right: {
           en: 'March Right Into Middle',
           de: 'Marchiere Rechts in die Mitte',
+          ko: '정신장악: 오른쪽, 가운데로',
         },
       },
     },
@@ -431,6 +444,7 @@ export default {
         text: {
           en: '${num} (spread for laser)',
           de: '${num} (verteile für Laser)',
+          ko: '${num} (레이저 대비 산개)',
         },
       },
     },
@@ -470,6 +484,7 @@ export default {
         text: {
           en: 'Hide Behind Silver Shard',
           de: 'Hinter Silber-Splitter verstecken',
+          ko: '은색 샤드 뒤로',
         },
       },
     },
@@ -487,6 +502,7 @@ export default {
         text: {
           en: 'Hide Behind Gold Shard',
           de: 'Hinter Gold-Splitter verstecken',
+          ko: '금색 샤드 뒤로',
         },
       },
     },
@@ -504,6 +520,7 @@ export default {
         text: {
           en: 'Away From Orbs',
           de: 'Weg von den Orbs',
+          ko: '구체 피하기',
         },
       },
     },
@@ -611,6 +628,7 @@ export default {
           // TODO: should this be a response/output?
           en: 'Out of Front',
           de: 'Weg von Vorne',
+          ko: '정면 피하기',
         },
       },
     },
@@ -665,6 +683,7 @@ export default {
         text: {
           en: 'Knockback (behind pillar)',
           de: 'Rückstoß (hinter dem Eissplitter)',
+          ko: '기둥 뒤로 넉백',
         },
       },
     },
@@ -682,6 +701,7 @@ export default {
         text: {
           en: 'Hide Behind Pillar',
           de: 'Hinter dem Eissplitter verstecken',
+          ko: '기둥 뒤로',
         },
       },
     },
@@ -739,11 +759,13 @@ export default {
         twoClocks: {
           en: 'Go Perpendicular To Clock Hands',
           de: 'Geh Senkrecht von den Uhrzeigern',
+          ko: '시계바늘 직각으로 이동',
         },
         threeClocks: {
           // This is...not the best instruction.
           en: 'Go Opposite All Clock Hands',
           de: 'Geh gegnüber von allen Uhrzeigern',
+          ko: '모든 시계바늘의 반대쪽으로',
         },
       },
     },
@@ -796,6 +818,7 @@ export default {
         text: {
           en: 'Follow Slow Orb',
           de: 'Folge dem langsamen Orb',
+          ko: '느린 구체 따라가기',
         },
       },
     },
@@ -812,6 +835,7 @@ export default {
         text: {
           en: 'Away From Orb',
           de: 'Weg vom Orb',
+          ko: '구체 피하기',
         },
       },
     },
@@ -845,6 +869,7 @@ export default {
         text: {
           en: 'Find Phantom; Dodge Left',
           de: 'Finde das Abbild; weiche Links aus',
+          ko: '분신 찾고, 왼쪽으로 피하기',
         },
       },
     },
@@ -859,6 +884,7 @@ export default {
         text: {
           en: 'Find Phantom; Dodge Right',
           de: 'Finde das Abbild; weiche Rechts aus',
+          ko: '분신 찾고, 오른쪽으로 피하기',
         },
       },
     },
@@ -873,6 +899,7 @@ export default {
         text: {
           en: 'Away From Hammer; Rotate Outside',
           de: 'Weg vom Hammer; nach Außen rotieren',
+          ko: '기둥으로부터 피하고, 계속 돌기',
         },
       },
     },
@@ -954,6 +981,7 @@ export default {
         text: {
           en: 'Avoid Orbs -> Under Orbs',
           de: 'Weiche Orbs aus -> Unter die Orbs',
+          ko: '구체 피하기 -> 구체 밑으로',
         },
       },
     },
@@ -970,6 +998,7 @@ export default {
           // TODO: this is also an aoe, and this is a pretty poor description.
           en: 'Go to small orb',
           de: 'Geh zum kleinen Orb',
+          ko: '작은 구체쪽으로',
         },
       },
     },
@@ -998,6 +1027,7 @@ export default {
         text: {
           en: 'Go to Slow Clocks',
           de: 'Geh zu den langsamen Uhren',
+          ko: '느린 시계로',
         },
       },
     },
@@ -1014,6 +1044,7 @@ export default {
         text: {
           en: 'Go to Fast Clocks',
           de: 'Geh zu den schnellen Uhren',
+          ko: '빠른 시계로',
         },
       },
     },
@@ -1030,6 +1061,7 @@ export default {
         text: {
           en: 'Bird Dashes',
           de: 'Vogel-Anstürme',
+          ko: '붉은새 피하기',
         },
       },
     },
@@ -1121,6 +1153,7 @@ export default {
         text: {
           en: 'Stack together to bait Ignis Est',
           de: 'Versammeln um Ignis Est zu ködern',
+          ko: '보스 앞으로 집합',
         },
       },
     },
@@ -1148,6 +1181,7 @@ export default {
         text: {
           en: 'Get far away from X charges',
           de: 'Weit weg von den X Anstürmen',
+          ko: 'X자에서 멀리 떨어지기',
         },
       },
     },
@@ -1244,6 +1278,7 @@ export default {
         text: {
           en: 'Stack + Knockback to Safe Spot',
           de: 'Sammeln + Rückstoß in den sicheren Bereich',
+          ko: '집합 + 안전장소로 넉백',
         },
       },
     },
@@ -1272,6 +1307,7 @@ export default {
         text: {
           en: 'Away From Orb',
           de: 'Weg vom Orb',
+          ko: '오브 피하기',
         },
       },
     },
@@ -1309,18 +1345,22 @@ export default {
         forward: {
           en: 'March Forward (avoid puddles)',
           de: 'Marchiere Vorwärts (weiche den Flächen aus)',
+          ko: '정신장악: 앞, 장판 피하기',
         },
         backward: {
           en: 'March Backward (avoid puddles)',
           de: 'Marchiere Rückwärts (weiche den Flächen aus)',
+          ko: '정신장악: 뒤, 장판 피하기',
         },
         left: {
           en: 'March Left (avoid puddles)',
           de: 'Marchiere Links (weiche den Flächen aus)',
+          ko: '정신장악: 왼쪽, 장판 피하기',
         },
         right: {
           en: 'March Right (avoid puddles)',
           de: 'Marchiere Rehts (weiche den Flächen aus)',
+          ko: '정신장악: 오른쪽, 장판 피하기',
         },
       },
     },
@@ -1352,6 +1392,7 @@ export default {
         text: {
           en: 'Get In Puddle',
           de: 'Geh in die Flächen',
+          ko: '검은 장판으로',
         },
       },
     },
@@ -1367,6 +1408,7 @@ export default {
         text: {
           en: 'Avoid Chasing AOEs',
           de: 'Weiche den verfolgenden AoEs aus',
+          ko: '장판 피하기',
         },
       },
     },
@@ -1383,6 +1425,7 @@ export default {
           // TODO: this is "titan line bombs".  Is there a better wording here?
           en: 'Go to third line',
           de: 'Geh zur 3. Linie',
+          ko: '세번째 장판으로',
         },
       },
     },
@@ -1419,6 +1462,7 @@ export default {
         text: {
           en: 'Go Intercardinals',
           de: 'Geh zu Interkardinalen Richtungen',
+          ko: '대각선으로',
         },
       },
     },
@@ -1433,6 +1477,7 @@ export default {
         text: {
           en: 'Get Under (towards charge)',
           de: 'Geh unter den Boss (zum Ansturm hin)',
+          ko: '보스 밑으로 (방향 확인)',
         },
       },
     },
@@ -1448,6 +1493,7 @@ export default {
         text: {
           en: 'Go Intercards (away from charge)',
           de: 'Geh zu Interkardinalen Richtungen (weg vom Ansturm)',
+          ko: '대각선으로 (방향 확인)',
         },
       },
     },
@@ -1513,6 +1559,7 @@ export default {
         text: {
           en: 'Follow Dawon',
           de: 'Folge Dawon',
+          ko: '다우언 따라가기',
         },
       },
     },
@@ -1535,6 +1582,7 @@ export default {
           avoidTankLaser: {
             en: 'Avoid Tank Laser',
             de: 'Weiche dem Tanklaser aus',
+            ko: '탱 레이저 피하기',
           },
         };
 
@@ -1574,6 +1622,7 @@ export default {
         text: {
           en: 'Avoid Growing Circles',
           de: 'Weiche den wachsenden Kreisen aus',
+          ko: '커지는 장판 피하기',
         },
       },
     },
@@ -1609,6 +1658,7 @@ export default {
         text: {
           en: 'Pop Balloons',
           de: 'Orbs nehmen',
+          ko: '구체 부딪히기',
         },
       },
     },
@@ -1629,10 +1679,12 @@ export default {
         knockbackBits: {
           en: 'Knockback (away from bits)',
           de: 'Rückstoß (Weg von den Magiteks)',
+          ko: '넉백 (비트 피하기)',
         },
         knockbackNox: {
           en: 'Knockback (into empty corner)',
           de: 'Rückstoß (in die leere Ecke)',
+          ko: '안전지대로 넉백',
         },
       },
     },
@@ -1661,6 +1713,7 @@ export default {
         text: {
           en: 'Laser on YOU',
           de: 'Laser auf DIR',
+          ko: '레이저 대상자',
         },
       },
     },
@@ -1701,10 +1754,12 @@ export default {
         dodgeFirst: {
           en: '(Dodge -> Stop)',
           de: '(Ausweichen -> Stop)',
+          ko: '(피하기 -> 멈추기)',
         },
         dodgeSecond: {
           en: '(Stop -> Dodge)',
           de: '(Stop -> Ausweichen)',
+          ko: '(멈추기 -> 피하기)',
         },
       },
     },
