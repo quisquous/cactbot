@@ -14,32 +14,32 @@ const github = require('@actions/github');
 const babelParser = require('recast/parsers/babel');
 const { HttpClient } = require('@actions/http-client');
 
-const prefixLabelMap = {
-  'resources/': 'resources',
-  'util/': 'util',
-  'test/': 'test',
-  '.mocharc.cjs': 'test',
-  'eslint/': 'style',
-  '.eslintrc.js': 'style',
-  '.github/workflows/': 'ci',
-  '.github/scripts/': 'ci',
-  'plugin/': 'plugin',
-  'docs/': 'docs',
-  'screenshots/': 'docs',
-  'README.md': 'docs',
-  'ui/config/': 'config',
-  'ui/dps/': 'dps',
-  'ui/eureka/': 'eureka',
-  'ui/fisher/': 'fishing🎣',
-  'ui/jobs/': 'jobs',
-  'ui/oopsyraidsy/': 'oopsy',
-  'ui/pullcounter/': 'pullcounter',
-  'ui/radar/': 'radar',
-  'ui/test/': 'test',
-  'ui/raidboss/raidemulator': 'raidemulator',
-  'ui/raidboss/emulator': 'raidemulator',
+const regexLabelMap = {
+  '.*\\.md': 'docs',
+  '^resources/': 'resources',
+  '^util/': 'util',
+  '^test/': 'test',
+  '^\\.mocharc.cjs': 'test',
+  '^eslint/': 'style',
+  '^\\.eslintrc\\.js': 'style',
+  '^\\.github/workflows/': 'ci',
+  '^\\.github/scripts/': 'ci',
+  '^plugin/': 'plugin',
+  '^docs/': 'docs',
+  '^screenshots/': 'docs',
+  '^ui/config/': 'config',
+  '^ui/dps/': 'dps',
+  '^ui/eureka/': 'eureka',
+  '^ui/fisher/': 'fishing🎣',
+  '^ui/jobs/': 'jobs',
+  '^ui/oopsyraidsy/': 'oopsy',
+  '^ui/pullcounter/': 'pullcounter',
+  '^ui/radar/': 'radar',
+  '^ui/test/': 'test',
+  '^ui/raidboss/raidemulator': 'raidemulator',
+  '^ui/raidboss/emulator': 'raidemulator',
   // other raidboss change will match this, don't put this before raidemulator
-  'ui/raidboss/': 'raidboss',
+  '^ui/raidboss/': 'raidboss',
 };
 
 /**
@@ -105,8 +105,9 @@ const getLabels = async (github, owner, repo, pullNumber) => {
 
   // by file path
   const changedModule = nonNullUnique(changedFiles.map((f) => {
-    for (const [prefix, label] of Object.entries(prefixLabelMap)) {
-      if (f.filename.startsWith(prefix)) {
+    for (const [regexStr, label] of Object.entries(regexLabelMap)) {
+      const regex = new RegExp(regexStr);
+      if (regex.exec(f.filename)) {
         console.log(`label: ${label} [filename] (${f.filename})`);
         return label;
       }
