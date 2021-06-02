@@ -608,8 +608,8 @@ class RaidbossConfigurator {
           // 02-arr/raids/t1.js
           urlFilepath = `${path[0]}-${path[1]}/${path[2]}/${[...path].slice(3).join('-')}`;
         }
-        const uriComponent = encodeURIComponent(`id: ${trig.id}`).replace(/\'/g, '%5C%27'); // Hack to force encoding for \'
-        const urlString = `${baseUrl}/${urlFilepath}.js#:~:text=${uriComponent}`;
+        const uriComponent = escape(`id: '${trig.id}'`);
+        const urlString = `${baseUrl}/${urlFilepath}.js#ref-for-fragment-directive:~:text=${uriComponent}`;
         div.innerHTML = `<a href="${urlString}" target="_blank">(${this.base.translate(kMiscTranslations.viewTriggerSource)})</a>`;
 
         triggerDetails.appendChild(div);
@@ -686,7 +686,6 @@ class RaidbossConfigurator {
     for (let i = 0; i < kFakeData.length; ++i)
       kFakeData[i] = Object.assign({}, kFakeData[i], kBaseFakeData);
 
-
     const kFakeMatches = {
       // TODO: really should convert all triggers to use regexes.js.
       // Mooooost triggers use matches[1] to be a name.
@@ -711,7 +710,6 @@ class RaidbossConfigurator {
       name: 'Name',
       capture: true,
     };
-
 
     const output = {};
     const keys = ['alarmText', 'alertText', 'infoText', 'tts', 'sound'];
