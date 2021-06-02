@@ -228,7 +228,7 @@ export const commonReplacement: CommonReplacement = {
     },
     '--out--': {
       de: '--Raus--',
-      fr: '--Zxtérieur--',
+      fr: '--Extérieur--',
       ja: '--外--',
       cn: '--外--',
       ko: '--밖--',
