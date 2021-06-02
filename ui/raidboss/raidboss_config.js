@@ -610,7 +610,7 @@ class RaidbossConfigurator {
         }
         const escapedTriggerId = trig.id.replaceAll(/'/g, '\\\'');
         const uriComponent = encodeURIComponent(`id: '${escapedTriggerId}'`).replaceAll(/'/g, '%27');
-        const urlString = `${baseUrl}/${urlFilepath}.js#ref-for-fragment-directive:~:text=${uriComponent}`;
+        const urlString = `${baseUrl}/${urlFilepath}.js#:~:text=${uriComponent}`;
         div.innerHTML = `<a href="${urlString}" target="_blank">(${this.base.translate(kMiscTranslations.viewTriggerSource)})</a>`;
 
         triggerDetails.appendChild(div);
