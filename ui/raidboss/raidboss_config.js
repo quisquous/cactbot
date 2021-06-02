@@ -686,6 +686,7 @@ class RaidbossConfigurator {
     for (let i = 0; i < kFakeData.length; ++i)
       kFakeData[i] = Object.assign({}, kFakeData[i], kBaseFakeData);
 
+
     const kFakeMatches = {
       // TODO: really should convert all triggers to use regexes.js.
       // Mooooost triggers use matches[1] to be a name.
@@ -710,6 +711,7 @@ class RaidbossConfigurator {
       name: 'Name',
       capture: true,
     };
+
 
     const output = {};
     const keys = ['alarmText', 'alertText', 'infoText', 'tts', 'sound'];
