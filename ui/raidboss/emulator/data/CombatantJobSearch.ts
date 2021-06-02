@@ -1,14 +1,14 @@
 export default class CombatantJobSearch {
-  static getJob(abilityID: number): string | undefined {
-    for (const Job in CombatantJobSearch.abilities) {
-      if (CombatantJobSearch.abilities[Job]?.includes(abilityID))
-        return Job;
+  static getJob(abilityId: number): string | undefined {
+    for (const job in CombatantJobSearch.abilities) {
+      if (CombatantJobSearch.abilities[job]?.includes(abilityId))
+        return job;
     }
   }
 
   static readonly abilityMatchRegex = /[a-fA-F0-9]{1,4}/i;
 
-  static readonly abilities: Record<string, number[]> = {
+  static readonly abilities: { [job: string]: number[] } = {
     PLD: [
       12959, 12961, 12964, 12967, 12968, 12969, 12970, 12971, 12972, 12973, 12974, 12975,
       12976, 12978, 12980, 12981, 12982, 12983, 12984, 12985, 12986, 12987, 12988, 12989,
