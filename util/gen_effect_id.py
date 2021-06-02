@@ -51,6 +51,8 @@ known_mapping = {
     "Flourishing Fan Dance": "1820",
     "Higanbana": "1228",
     "Wildfire": "861",
+    "Chain Stratagem": "1221",
+    "Vulnerability Up": "638",
 }
 
 
