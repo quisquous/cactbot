@@ -1,4 +1,4 @@
-import PartyTracker from '../resources/party.js';
+import PartyTracker from '../resources/party';
 import { Lang } from './global';
 import { Job, Role } from './job';
 

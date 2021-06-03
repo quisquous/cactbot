@@ -1,5 +1,5 @@
 import { kAbility } from '../constants';
-import { computeBackgroundColorFrom } from '../utils.js';
+import { computeBackgroundColorFrom } from '../utils';
 
 let resetFunc = null;
 let tid1;
