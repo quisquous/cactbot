@@ -1,4 +1,4 @@
-import LineEvent from './LineEvent';
+import LineEvent, { LineEventJobLevel, LineEventSource } from './LineEvent';
 import EmulatorCommon from '../../EmulatorCommon';
 import Util from '../../../../../resources/util';
 import LogRepository from './LogRepository';
@@ -20,24 +20,26 @@ const fields = {
 } as const;
 
 // Network status effect event
-export class LineEvent0x26 extends LineEvent {
+export class LineEvent0x26 extends LineEvent implements LineEventSource, LineEventJobLevel {
   public readonly jobIdHex: string;
-  public readonly jobIdDec: number;
-  public readonly jobName: string;
+  public readonly jobId: number;
+  public readonly job: string;
   public readonly level: number;
   public readonly id: string;
   public readonly name: string;
   public readonly jobLevelData: string;
-  public readonly currentHp: string;
-  public readonly maxHp: string;
-  public readonly currentMp: string;
-  public readonly maxMp: string;
-  public readonly currentTp: string;
-  public readonly maxTp: string;
-  public readonly x: string;
-  public readonly y: string;
-  public readonly z: string;
-  public readonly heading: string;
+  public readonly hp: number;
+  public readonly maxHp: number;
+  public readonly mp: number;
+  public readonly maxMp: number;
+  public readonly tp: number;
+  public readonly maxTp: number;
+  public readonly x: number;
+  public readonly y: number;
+  public readonly z: number;
+  public readonly heading: number;
+  public readonly isSource = true;
+  public readonly isJobLevel = true;
 
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
@@ -47,22 +49,22 @@ export class LineEvent0x26 extends LineEvent {
 
     this.jobLevelData = parts[fields.jobLevelData] ?? '';
 
-    this.currentHp = parts[fields.currentHp] ?? '';
-    this.maxHp = parts[fields.maxHp] ?? '';
-    this.currentMp = parts[fields.currentMp] ?? '';
-    this.maxMp = parts[fields.maxMp] ?? '';
-    this.currentTp = parts[fields.currentTp] ?? '';
-    this.maxTp = parts[fields.maxTp] ?? '';
-    this.x = parts[fields.x] ?? '';
-    this.y = parts[fields.y] ?? '';
-    this.z = parts[fields.z] ?? '';
-    this.heading = parts[fields.heading] ?? '';
+    this.hp = parseInt(parts[fields.currentHp] ?? '');
+    this.maxHp = parseInt(parts[fields.maxHp] ?? '');
+    this.mp = parseInt(parts[fields.currentMp] ?? '');
+    this.maxMp = parseInt(parts[fields.maxMp] ?? '');
+    this.tp = parseInt(parts[fields.currentTp] ?? '');
+    this.maxTp = parseInt(parts[fields.maxTp] ?? '');
+    this.x = parseFloat(parts[fields.x] ?? '');
+    this.y = parseFloat(parts[fields.y] ?? '');
+    this.z = parseFloat(parts[fields.z] ?? '');
+    this.heading = parseFloat(parts[fields.heading] ?? '');
 
     const padded = EmulatorCommon.zeroPad(this.jobLevelData, 8);
 
     this.jobIdHex = padded.substr(6, 2).toUpperCase();
-    this.jobIdDec = parseInt(this.jobIdHex, 16);
-    this.jobName = Util.jobEnumToJob(this.jobIdDec);
+    this.jobId = parseInt(this.jobIdHex, 16);
+    this.job = Util.jobEnumToJob(this.jobId);
 
     this.level = parseInt(padded.substr(4, 2), 16);
   }

@@ -1,6 +1,7 @@
 import Combatant from './Combatant';
 import CombatantJobSearch from './CombatantJobSearch';
 import CombatantState from './CombatantState';
+import { isLineEventJobLevel, isLineEventAbility, isLineEventSource, isLineEventTarget } from './network_log_converter/LineEvent';
 import PetNamesByLang from '../../../../resources/pet_names';
 
 export default class CombatantTracker {
@@ -22,33 +23,15 @@ export default class CombatantTracker {
   initialize(logLines) {
     // First pass: Get list of combatants, figure out where they
     // start at if possible
-    for (let i = 0; i < logLines.length; ++i) {
-      const line = logLines[i];
+    for (const line of logLines) {
       this.firstTimestamp = Math.min(this.firstTimestamp, line.timestamp);
       this.lastTimestamp = Math.max(this.lastTimestamp, line.timestamp);
 
-      switch (line.hexEvent) {
-      // Source/target events
-      case '14':
-      case '15':
-      case '16':
-      case '19':
-      case '1A':
-      case '1B':
-      case '1E':
-      case '22':
-      case '23':
+      if (isLineEventSource(line))
         this.addCombatantFromLine(line);
-        this.addCombatantFromTargetLine(line);
-        break;
-      case '00':
-        // For 00 chat lines, don't ever generate combatant data from them
-        break;
 
-      default:
-        this.addCombatantFromLine(line);
-        break;
-      }
+      if (isLineEventTarget(line))
+        this.addCombatantFromTargetLine(line);
     }
 
     // Between passes: Create our initial combatant states
@@ -129,11 +112,15 @@ export default class CombatantTracker {
     initState.MP = initState.MP || extractedState.MP || null;
     initState.maxMP = initState.maxMP || extractedState.maxMP || null;
 
-    this.combatants[line.id].job = this.combatants[line.id].job || extractedState.job || null;
-    this.combatants[line.id].level = this.combatants[line.id].level || extractedState.level || null;
+    if (isLineEventJobLevel(line)) {
+      this.combatants[line.id].job = this.combatants[line.id].job || line.job;
+      this.combatants[line.id].level = this.combatants[line.id].level || line.level;
+    }
 
-    if (line.abilityId && !this.combatants[line.id].job && !line.id.startsWith('4'))
-      this.combatants[line.id].job = CombatantJobSearch.getJob(parseInt(line.abilityId));
+    if (isLineEventAbility(line)) {
+      if (!this.combatants[line.id].job && !line.id.startsWith('4') && line.abilityId !== undefined)
+        this.combatants[line.id].job = CombatantJobSearch.getJob(line.abilityId);
+    }
 
     if (this.combatants[line.id].job)
       this.combatants[line.id].job = this.combatants[line.id].job.toUpperCase();
@@ -182,10 +169,6 @@ export default class CombatantTracker {
       state.MP = line.mp;
     if (line.maxMp !== undefined)
       state.maxMP = line.maxMp;
-    if (line.jobName !== undefined)
-      state.job = line.jobName;
-    if (line.level !== undefined)
-      state.level = line.level;
 
     return state;
   }
