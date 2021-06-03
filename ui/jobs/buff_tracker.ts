@@ -563,35 +563,35 @@ export class BuffTracker {
     // }
   }
 
-  onUseAbility(id: string, matches: MatchesAbility): void {
+  onUseAbility(id: string, matches: NonNullable<Required<MatchesAbility>>): void {
     const buffs = this.gainAbilityMap[id];
     if (!buffs)
       return;
 
     for (const b of buffs)
-      this.onBigBuff(b.name, b.durationSeconds, b, matches?.source);
+      this.onBigBuff(b.name, b.durationSeconds, b, matches.source);
   }
 
   onGainEffect(
       buffs: BuffInfo[] | undefined,
-      matches: MatchesGainsEffect,
+      matches: NonNullable<Required<MatchesGainsEffect>>,
   ): void {
     if (!buffs)
       return;
     for (const b of buffs) {
       let seconds = -1;
       if (b.useEffectDuration)
-        seconds = parseFloat(matches?.duration ?? '0');
+        seconds = parseFloat(matches.duration);
       else if ('durationSeconds' in b)
         seconds = b.durationSeconds ?? seconds;
 
-      this.onBigBuff(b.name, seconds, b, matches?.source);
+      this.onBigBuff(b.name, seconds, b, matches.source);
     }
   }
 
   onLoseEffect(
       buffs: BuffInfo[] | undefined,
-      _matches: MatchesLosesEffect,
+      _matches: Required<MatchesLosesEffect>,
   ): void {
     if (!buffs)
       return;
@@ -599,19 +599,19 @@ export class BuffTracker {
       this.onLoseBigBuff(b.name);
   }
 
-  onYouGainEffect(name: string, matches: MatchesGainsEffect): void {
+  onYouGainEffect(name: string, matches: NonNullable<Required<MatchesGainsEffect>>): void {
     this.onGainEffect(this.gainEffectMap[name], matches);
   }
 
-  onYouLoseEffect(name: string, matches: MatchesLosesEffect): void {
+  onYouLoseEffect(name: string, matches: NonNullable<Required<MatchesLosesEffect>>): void {
     this.onLoseEffect(this.loseEffectMap[name], matches);
   }
 
-  onMobGainsEffect(name: string, matches: MatchesGainsEffect): void {
+  onMobGainsEffect(name: string, matches: NonNullable<Required<MatchesGainsEffect>>): void {
     this.onGainEffect(this.mobGainsEffectMap[name], matches);
   }
 
-  onMobLosesEffect(name: string, matches: MatchesLosesEffect): void {
+  onMobLosesEffect(name: string, matches: NonNullable<Required<MatchesLosesEffect>>): void {
     this.onLoseEffect(this.mobLosesEffectMap[name], matches);
   }
 
