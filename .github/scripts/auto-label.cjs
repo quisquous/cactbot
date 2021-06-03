@@ -14,7 +14,7 @@ const github = require('@actions/github');
 const babelParser = require('recast/parsers/babel');
 const { HttpClient } = require('@actions/http-client');
 
-const langToLabel = (lang) => `💬${lang.toLowerCase()}`;
+const langToLabel = (lang) => `💬${lang}`;
 
 // Only the first match applies.
 const regexLabelMap = {
