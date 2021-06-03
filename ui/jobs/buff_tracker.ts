@@ -304,7 +304,7 @@ export class BuffTracker {
       },
       peculiarmiss: {
         gainAbility: kAbility.PeculiarLight,
-        durationSeconds: 0,
+        durationSeconds: 0.001,
         icon: '../../resources/ffxiv/status/peculiar-light.png',
         borderColor: '#F28F7B',
         sortKey: 1,
@@ -324,7 +324,7 @@ export class BuffTracker {
       },
       trickmiss: {
         gainAbility: kAbility.TrickAttack,
-        durationSeconds: 0,
+        durationSeconds: 0.001,
         icon: '../../resources/ffxiv/status/trick-attack.png',
         // Magenta.
         borderColor: '#FC4AE6',
@@ -345,7 +345,7 @@ export class BuffTracker {
       },
       litanymissyou: {
         gainAbility: kAbility.BattleLitany,
-        durationSeconds: 0,
+        durationSeconds: 0.001,
         partyonly: true,
         icon: '../../resources/ffxiv/status/battle-litany.png',
         // Cyan.
@@ -360,7 +360,7 @@ export class BuffTracker {
         // So using stack to identify the first log.
         gainEffect: EffectId.Embolden,
         loseEffect: EffectId.Embolden,
-        durationSeconds: 20,
+        useEffectDuration: true,
         stack: 5,
         icon: '../../resources/ffxiv/status/embolden.png',
         // Lime.
@@ -371,7 +371,7 @@ export class BuffTracker {
       },
       emboldenmissyou: {
         gainAbility: kAbility.Embolden,
-        durationSeconds: 0,
+        durationSeconds: 0.001,
         partyonly: true,
         icon: '../../resources/ffxiv/status/embolden.png',
         // Lime.
@@ -385,7 +385,7 @@ export class BuffTracker {
         // This makes RDM himself can also track embolden cooldown.
         gainEffect: EffectId.EmboldenSelf,
         loseEffect: EffectId.EmboldenSelf,
-        durationSeconds: 20,
+        useEffectDuration: true,
         stack: 5,
         icon: '../../resources/ffxiv/status/embolden.png',
         // Lime.
@@ -468,7 +468,7 @@ export class BuffTracker {
       devilment: {
         gainEffect: EffectId.Devilment,
         loseEffect: EffectId.Devilment,
-        durationSeconds: 20,
+        useEffectDuration: true,
         icon: '../../resources/ffxiv/status/devilment.png',
         // Dark Green.
         borderColor: '#006400',
@@ -478,7 +478,7 @@ export class BuffTracker {
       standardFinish: {
         gainEffect: EffectId.StandardFinish,
         loseEffect: EffectId.StandardFinish,
-        durationSeconds: 60,
+        useEffectDuration: true,
         icon: '../../resources/ffxiv/status/standard-finish.png',
         // Green.
         borderColor: '#32CD32',
@@ -487,7 +487,7 @@ export class BuffTracker {
       technicalFinish: {
         gainEffect: EffectId.TechnicalFinish,
         loseEffect: EffectId.TechnicalFinish,
-        durationSeconds: 20,
+        useEffectDuration: true,
         icon: '../../resources/ffxiv/status/technical-finish.png',
         // Dark Peach.
         borderColor: '#E0757C',
@@ -500,7 +500,7 @@ export class BuffTracker {
         // and I think it meaningless to trace a poor DNC
         // who can perform 0-3 step Technical Finish and miss you at the same time.
         gainAbility: kAbility.QuadrupleTechnicalFinish,
-        durationSeconds: 0,
+        durationSeconds: 0.001,
         partyonly: true,
         icon: '../../resources/ffxiv/status/technical-finish.png',
         // Dark Peach.
@@ -522,7 +522,7 @@ export class BuffTracker {
       },
       battlevoicemissyou: {
         gainAbility: kAbility.BattleVoice,
-        durationSeconds: 0,
+        durationSeconds: 0.001,
         partyonly: true,
         icon: '../../resources/ffxiv/status/battlevoice.png',
         // Red.
@@ -574,7 +574,7 @@ export class BuffTracker {
       },
       brotherhoodmissyou: {
         gainAbility: kAbility.Brotherhood,
-        durationSeconds: 0,
+        durationSeconds: 0.001,
         partyonly: true,
         icon: '../../resources/ffxiv/status/brotherhood.png',
         // Dark Orange.
@@ -596,7 +596,7 @@ export class BuffTracker {
       },
       devotionmissyou: {
         gainAbility: kAbility.Devotion,
-        durationSeconds: 0,
+        durationSeconds: 0.001,
         partyonly: true,
         icon: '../../resources/ffxiv/status/devotion.png',
         // Yellow.
@@ -618,7 +618,7 @@ export class BuffTracker {
       },
       divinationmissyou: {
         gainAbility: kAbility.Divination,
-        durationSeconds: 0,
+        durationSeconds: 0.001,
         partyonly: true,
         icon: '../../resources/ffxiv/status/divination.png',
         // Dark purple.

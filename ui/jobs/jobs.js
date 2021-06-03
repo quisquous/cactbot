@@ -778,6 +778,11 @@ class Bars {
       container.classList.add('hide');
   }
 
+  _onPartyChanged(e) {
+    if (this.buffTracker)
+      this.buffTracker.partyTracker.onPartyChanged(e);
+  }
+
   _onPlayerChanged(e) {
     if (this.me !== e.detail.name) {
       this.me = e.detail.name;
@@ -787,7 +792,6 @@ class Bars {
 
     if (!this.init) {
       this.combo = ComboTracker.setup(this._onComboChange.bind(this));
-      this.buffTracker.partyTracker.onPartyChanged(e);
       this.init = true;
     }
 
@@ -1064,6 +1068,9 @@ UserConfig.getUserConfigLocation('jobs', Options, () => {
   });
   addOverlayListener('LogLine', (e) => {
     gBars._onNetLog(e);
+  });
+  addOverlayListener('PartyChanged', (e) => {
+    gBars._onPartyChanged(e);
   });
 
   gBars = new Bars(Options);
