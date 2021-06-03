@@ -608,8 +608,8 @@ class RaidbossConfigurator {
           // 02-arr/raids/t1.js
           urlFilepath = `${path[0]}-${path[1]}/${path[2]}/${[...path].slice(3).join('-')}`;
         }
-        const escapedTriggerId = trig.id.replaceAll(/'/g, '\\\'');
-        const uriComponent = encodeURIComponent(`id: '${escapedTriggerId}'`).replaceAll(/'/g, '%27');
+        const escapedTriggerId = trig.id.replace(/'/g, '\\\'');
+        const uriComponent = encodeURIComponent(`id: '${escapedTriggerId}'`).replace(/'/g, '%27');
         const urlString = `${baseUrl}/${urlFilepath}.js#:~:text=${uriComponent}`;
         div.innerHTML = `<a href="${urlString}" target="_blank">(${this.base.translate(kMiscTranslations.viewTriggerSource)})</a>`;
 
