@@ -136,13 +136,10 @@ export default class TimerBox extends HTMLElement {
 
   // When the timer reaches 0, it is big if this is true.
   set bigatzero(big: boolean) {
-    if (big)
-      this.setAttribute('bigatzero', '');
-    else
-      this.removeAttribute('bigatzero');
+    this.setAttribute('bigatzero', String(big));
   }
   get bigatzero(): boolean {
-    return this.hasAttribute('bigatzero');
+    return this.getAttribute('bigatzero') === 'true';
   }
 
   // The length remaining in the count down.
