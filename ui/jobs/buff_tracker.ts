@@ -5,6 +5,7 @@ import EffectId from '../../resources/effect_id';
 import { MatchesAbility, MatchesGainsEffect, MatchesLosesEffect } from '../../resources/matches';
 import PartyTracker from '../../resources/party';
 
+import { kAbility } from './constants';
 import { makeAuraTimerIcon } from './utils';
 
 export interface BuffInfo {
@@ -24,6 +25,7 @@ export interface BuffInfo {
   sharesCooldownWith?: string[];
   hide?: boolean;
   stack?: number;
+  partyonly?: boolean;
 }
 
 export interface Aura {
@@ -288,7 +290,7 @@ export class BuffTracker {
         borderColor: '#47bf41',
         sortKey: 1,
         cooldown: 60,
-        sharesCooldownWith: ['peculiar'],
+        sharesCooldownWith: ['peculiar', 'peculiarmiss'],
       },
       peculiar: {
         mobGainsEffect: EffectId.PeculiarLight,
@@ -298,7 +300,16 @@ export class BuffTracker {
         borderColor: '#F28F7B',
         sortKey: 1,
         cooldown: 60,
-        sharesCooldownWith: ['offguard'],
+        sharesCooldownWith: ['offguard', 'peculiarmiss'],
+      },
+      peculiarmiss: {
+        gainAbility: kAbility.PeculiarLight,
+        durationSeconds: 0,
+        icon: '../../resources/ffxiv/status/peculiar-light.png',
+        borderColor: '#F28F7B',
+        sortKey: 1,
+        cooldown: 60,
+        sharesCooldownWith: ['offguard', 'peculiar'],
       },
       trick: {
         mobGainsEffect: EffectId.VulnerabilityUp,
@@ -309,6 +320,17 @@ export class BuffTracker {
         borderColor: '#FC4AE6',
         sortKey: 1,
         cooldown: 60,
+        sharesCooldownWith: ['trickmiss'],
+      },
+      trickmiss: {
+        gainAbility: kAbility.TrickAttack,
+        durationSeconds: 0,
+        icon: '../../resources/ffxiv/status/trick-attack.png',
+        // Magenta.
+        borderColor: '#FC4AE6',
+        sortKey: 1,
+        cooldown: 60,
+        sharesCooldownWith: ['trick'],
       },
       litany: {
         gainEffect: EffectId.BattleLitany,
@@ -319,6 +341,18 @@ export class BuffTracker {
         borderColor: '#099',
         sortKey: 2,
         cooldown: 180,
+        sharesCooldownWith: ['litanymissyou'],
+      },
+      litanymissyou: {
+        gainAbility: kAbility.BattleLitany,
+        durationSeconds: 0,
+        partyonly: true,
+        icon: '../../resources/ffxiv/status/battle-litany.png',
+        // Cyan.
+        borderColor: '#099',
+        sortKey: 2,
+        cooldown: 180,
+        sharesCooldownWith: ['litany'],
       },
       embolden: {
         // On each embolden stack changes,
@@ -333,6 +367,18 @@ export class BuffTracker {
         borderColor: '#57FC4A',
         sortKey: 3,
         cooldown: 120,
+        sharesCooldownWith: ['emboldenmissyou'],
+      },
+      emboldenmissyou: {
+        gainAbility: kAbility.Embolden,
+        durationSeconds: 0,
+        partyonly: true,
+        icon: '../../resources/ffxiv/status/embolden.png',
+        // Lime.
+        borderColor: '#57FC4A',
+        sortKey: 3,
+        cooldown: 120,
+        sharesCooldownWith: ['embolden'],
       },
       emboldenself: {
         // RDM himself gains a different buff.
@@ -447,6 +493,21 @@ export class BuffTracker {
         borderColor: '#E0757C',
         sortKey: 6,
         cooldown: 120,
+        sharesCooldownWith: ['technicalFinishmissyou'],
+      },
+      technicalFinishmissyou: {
+        // Sorry, but 0-3 step Technical Finish will not trigger this.
+        // and I think it meaningless to trace a poor DNC
+        // who can perform 0-3 step Technical Finish and miss you at the same time.
+        gainAbility: kAbility.QuadrupleTechnicalFinish,
+        durationSeconds: 0,
+        partyonly: true,
+        icon: '../../resources/ffxiv/status/technical-finish.png',
+        // Dark Peach.
+        borderColor: '#E0757C',
+        sortKey: 6,
+        cooldown: 120,
+        sharesCooldownWith: ['technicalFinish'],
       },
       battlevoice: {
         gainEffect: EffectId.BattleVoice,
@@ -457,6 +518,18 @@ export class BuffTracker {
         borderColor: '#D6371E',
         sortKey: 7,
         cooldown: 180,
+        sharesCooldownWith: ['battlevoicemissyou'],
+      },
+      battlevoicemissyou: {
+        gainAbility: kAbility.BattleVoice,
+        durationSeconds: 0,
+        partyonly: true,
+        icon: '../../resources/ffxiv/status/battlevoice.png',
+        // Red.
+        borderColor: '#D6371E',
+        sortKey: 7,
+        cooldown: 180,
+        sharesCooldownWith: ['battlevoice'],
       },
       chain: {
         mobGainsEffect: EffectId.ChainStratagem,
@@ -497,6 +570,18 @@ export class BuffTracker {
         borderColor: '#994200',
         sortKey: 11,
         cooldown: 90,
+        sharesCooldownWith: ['brotherhoodmissyou'],
+      },
+      brotherhoodmissyou: {
+        gainAbility: kAbility.Brotherhood,
+        durationSeconds: 0,
+        partyonly: true,
+        icon: '../../resources/ffxiv/status/brotherhood.png',
+        // Dark Orange.
+        borderColor: '#994200',
+        sortKey: 11,
+        cooldown: 90,
+        sharesCooldownWith: ['brotherhood'],
       },
       devotion: {
         gainEffect: EffectId.Devotion,
@@ -507,6 +592,18 @@ export class BuffTracker {
         borderColor: '#ffbf00',
         sortKey: 12,
         cooldown: 180,
+        sharesCooldownWith: ['devotionmissyou'],
+      },
+      devotionmissyou: {
+        gainAbility: kAbility.Devotion,
+        durationSeconds: 0,
+        partyonly: true,
+        icon: '../../resources/ffxiv/status/devotion.png',
+        // Yellow.
+        borderColor: '#ffbf00',
+        sortKey: 12,
+        cooldown: 180,
+        sharesCooldownWith: ['devotion'],
       },
       divination: {
         gainEffect: EffectId.Divination,
@@ -517,6 +614,18 @@ export class BuffTracker {
         borderColor: '#5C1F58',
         sortKey: 13,
         cooldown: 120,
+        sharesCooldownWith: ['divinationmissyou'],
+      },
+      divinationmissyou: {
+        gainAbility: kAbility.Divination,
+        durationSeconds: 0,
+        partyonly: true,
+        icon: '../../resources/ffxiv/status/divination.png',
+        // Dark purple.
+        borderColor: '#5C1F58',
+        sortKey: 13,
+        cooldown: 120,
+        sharesCooldownWith: ['divination'],
       },
     };
 
@@ -589,8 +698,12 @@ export class BuffTracker {
     if (!buffs)
       return;
 
-    for (const b of buffs)
+    for (const b of buffs) {
+      if (b.partyonly && !this.partyTracker.inParty(matches?.source ?? ''))
+        return;
+
       this.onBigBuff(b.name, b.durationSeconds, b, matches?.source);
+    }
   }
 
   onGainEffect(
@@ -607,10 +720,6 @@ export class BuffTracker {
         seconds = b.durationSeconds ?? seconds;
       if ('stack' in b && b.stack !== parseInt(matches?.count ?? '0'))
         return;
-
-      if (this.partyTracker.inParty(matches?.source ?? '')) {
-        // when the actor is in your party.
-      }
 
       this.onBigBuff(b.name, seconds, b, matches?.source);
     }
