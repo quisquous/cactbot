@@ -787,6 +787,7 @@ class Bars {
 
     if (!this.init) {
       this.combo = ComboTracker.setup(this._onComboChange.bind(this));
+      this.buffTracker.partyTracker.onPartyChanged(e);
       this.init = true;
     }
 

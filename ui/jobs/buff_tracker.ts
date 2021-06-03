@@ -3,6 +3,7 @@ import { JobsOptions } from './types';
 import WidgetList from '../../resources/widget_list';
 import EffectId from '../../resources/effect_id';
 import { MatchesAbility, MatchesGainsEffect, MatchesLosesEffect } from '../../resources/matches';
+import PartyTracker from '../../resources/party';
 
 import { makeAuraTimerIcon } from './utils';
 
@@ -204,6 +205,7 @@ export class Buff {
 export class BuffTracker {
   buffInfo: { [s: string]: Omit<BuffInfo, 'name'> };
   options: JobsOptions;
+  partyTracker: PartyTracker;
   playerName: string;
   leftBuffDiv: WidgetList;
   rightBuffDiv: WidgetList;
@@ -225,6 +227,8 @@ export class BuffTracker {
     this.leftBuffDiv = leftBuffDiv;
     this.rightBuffDiv = rightBuffDiv;
     this.buffs = {};
+
+    this.partyTracker = new PartyTracker();
 
     this.buffInfo = {
       potion: {
@@ -603,6 +607,10 @@ export class BuffTracker {
         seconds = b.durationSeconds ?? seconds;
       if ('stack' in b && b.stack !== parseInt(matches?.count ?? '0'))
         return;
+
+      if (this.partyTracker.inParty(matches?.source ?? '')) {
+        // when the actor is in your party.
+      }
 
       this.onBigBuff(b.name, seconds, b, matches?.source);
     }
