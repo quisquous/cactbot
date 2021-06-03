@@ -615,7 +615,7 @@ export class BuffTracker {
     this.onLoseEffect(this.mobLosesEffectMap[name], matches);
   }
 
-  onBigBuff(name: string, seconds = 0, info: BuffInfo, source = ''): void {
+  onBigBuff(name: string, seconds = 0, info: BuffInfo, source: string): void {
     if (seconds <= 0)
       return;
 
