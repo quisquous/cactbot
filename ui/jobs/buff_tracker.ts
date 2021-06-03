@@ -331,11 +331,10 @@ export class BuffTracker {
         cooldown: 120,
       },
       emboldenself: {
-        // RDM himself gains a different buff with a same name.
-        // EffectId forbids a name to have two ids,
-        // so hard code here.
-        gainEffect: '4D7',
-        loseEffect: '4D7',
+        // RDM himself gains a different buff.
+        // This makes RDM himself can also track embolden cooldown.
+        gainEffect: EffectId.EmboldenSelf,
+        loseEffect: EffectId.EmboldenSelf,
         durationSeconds: 20,
         stack: 5,
         icon: '../../resources/ffxiv/status/embolden.png',

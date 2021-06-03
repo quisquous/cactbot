@@ -409,6 +409,7 @@ const data = {
   'ElementalHarmony': '633',
   'Elevated': '54E',
   'Embolden': '511',
+  'EmboldenSelf': '4D7',
   'EmergencyTactics': '318',
   'EmpoweredKetu': '502',
   'EmpoweredRahu': '501',

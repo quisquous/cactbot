@@ -55,6 +55,12 @@ known_mapping = {
     "Vulnerability Up": "638",
 }
 
+# These costom name of effect will not be checked.
+# Use this only when you need to handle different effects with a same name.
+costom_mapping = {
+    "Embolden (Self)": "1239",
+}
+
 
 def print_error(header, what, map, key):
     print("%s %s: %s" % (header, what, json.dumps(map[key])))
@@ -92,6 +98,11 @@ def make_effect_map(table):
         name = csv_util.clean_name(raw_name)
         if name not in found_names:
             print_error("missing", name, known_mapping, raw_name)
+
+    # Add costom effect name for necessary duplicates.
+    for raw_name, id in costom_mapping.items():
+        name = csv_util.clean_name(raw_name)
+        map[name] = id
 
     # Store ids as hex.
     return {k: format(int(v), "X") for k, v in map.items()}
