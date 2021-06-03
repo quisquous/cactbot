@@ -223,7 +223,7 @@ The easiest approach to modify triggers is to copy and paste the block of code
 above for each trigger.
 Modify the `zoneId` line to have the zone id for the zone you care about,
 usually from the top of the cactbot trigger file.
-[This file](../resources/zone_id.js) has a list of all the zone ids.
+[This file](../resources/zone_id.ts) has a list of all the zone ids.
 If you specify one incorrectly, you will get a warning in the OverlayPlugin log window.
 Then, [copy the trigger text](https://github.com/quisquous/cactbot/tree/triggers) into this block.
 Edit as needed.
@@ -435,14 +435,14 @@ and thus cannot `import` in the same way that built-in trigger files do.
 User javascript files have access to the following globals:
 
 - [Conditions](../resources/conditions.ts)
-- [ContentType](../resources/content_type.js)
+- [ContentType](../resources/content_type.ts)
 - [NetRegexes](../resources/netregexes.ts)
 - [Regexes](../resources/regexes.ts)
-- [Responses](../resources/responses.js)
+- [Responses](../resources/responses.ts)
 - [Outputs](../resources/outputs.ts)
 - [Util](../resources/util.ts)
-- [ZoneId](../resources/zone_id.js)
-- [ZoneInfo](../resources/zone_info.js)
+- [ZoneId](../resources/zone_id.ts)
+- [ZoneInfo](../resources/zone_info.ts)
 
 ## Debugging User Files
 
@@ -479,8 +479,8 @@ Check the OverlayPlugin log for errors when loading.
 Here's an example:
 
 ```log
-[10/19/2020 6:18:27 PM] Info: raidbossy: BrowserConsole: local user file: C:\Users\tinipoutini\cactbot\user\raidboss.js (Source: file:///C:/Users/tinipoutini/cactbot/resources/user_config.js, Line: 83)
-[10/19/2020 6:18:27 PM] Info: raidbossy: BrowserConsole: *** ERROR IN USER FILE *** (Source: file:///C:/Users/tinipoutini/cactbot/resources/user_config.js, Line: 95)
+[10/19/2020 6:18:27 PM] Info: raidbossy: BrowserConsole: local user file: C:\Users\tinipoutini\cactbot\user\raidboss.js (Source: file:///C:/Users/tinipoutini/cactbot/resources/user_config.ts, Line: 83)
+[10/19/2020 6:18:27 PM] Info: raidbossy: BrowserConsole: *** ERROR IN USER FILE *** (Source: file:///C:/Users/tinipoutini/cactbot/resources/user_config.ts, Line: 95)
 [10/19/2020 6:18:27 PM] Info: raidbossy: BrowserConsole: SyntaxError: Unexpected token :
-    at loadUser (file:///C:/Users/tinipoutini/cactbot/resources/user_config.js:92:28) (Source: file:///C:/Users/tinipoutini/cactbot/resources/user_config.js, Line: 96)
+    at loadUser (file:///C:/Users/tinipoutini/cactbot/resources/user_config.ts:92:28) (Source: file:///C:/Users/tinipoutini/cactbot/resources/user_config.ts, Line: 96)
 ```
