@@ -14,28 +14,43 @@ const github = require('@actions/github');
 const babelParser = require('recast/parsers/babel');
 const { HttpClient } = require('@actions/http-client');
 
-const prefixLabelMap = {
-  'resources/': 'resources',
-  'util/': 'util',
-  'test/': 'test',
-  '.mocharc.cjs': 'test',
-  'eslint/': 'style',
-  '.eslintrc.js': 'style',
-  '.github/workflows/': 'ci',
-  '.github/scripts/': 'ci',
-  'ui/config/': 'config',
-  'ui/dps/': 'dps',
-  'ui/eureka/': 'eureka',
-  'ui/fisher/': 'fishing🎣',
-  'ui/jobs/': 'jobs',
-  'ui/oopsyraidsy/': 'oopsy',
-  'ui/pullcounter/': 'pullcounter',
-  'ui/radar/': 'radar',
-  'ui/test/': 'test',
-  'ui/raidboss/raidemulator': 'raidemulator',
-  'ui/raidboss/emulator': 'raidemulator',
+const langToLabel = (lang) => `💬${lang.toUpperCase()}`;
+
+// Only the first match applies.
+const regexLabelMap = {
+  '^docs/ko-KR/': ['docs', langToLabel('ko')],
+  '^docs/zh-CN/': ['docs', langToLabel('cn')],
+  '^docs/zh-TW/': ['docs', langToLabel('cn')],
+  '.*\\.md$': ['docs'],
+  '^docs/': ['docs'],
+  '^screenshots/': ['docs'],
+  '^resources/': ['resources'],
+  '^util/': ['util'],
+  '^test/': ['test'],
+  '^\\.mocharc.cjs$': ['test'],
+  '^eslint/': ['style'],
+  '^\\.eslintrc\\.js$': ['style'],
+  '^\\.github/workflows/': ['ci'],
+  '^\\.github/scripts/': ['ci'],
+  '^plugin/': ['plugin'],
+  '^ui/config/': ['config'],
+  '^ui/eureka/eureka_config': ['config', 'eureka'],
+  '^ui/jobs/jobs_config': ['config', 'jobs'],
+  '^ui/oopsyraidsy/oopsyraidsy_config': ['config', 'oopsy'],
+  '^ui/radar/radar_config': ['config', 'radar'],
+  '^ui/raidboss/raidboss_config': ['config', 'raidboss'],
+  '^ui/dps/': ['dps'],
+  '^ui/eureka/': ['eureka'],
+  '^ui/fisher/': ['fishing🎣'],
+  '^ui/jobs/': ['jobs'],
+  '^ui/oopsyraidsy/': ['oopsy'],
+  '^ui/pullcounter/': ['pullcounter'],
+  '^ui/radar/': ['radar'],
+  '^ui/test/': ['test'],
+  '^ui/raidboss/raidemulator': ['raidemulator'],
+  '^ui/raidboss/emulator': ['raidemulator'],
   // other raidboss change will match this, don't put this before raidemulator
-  'ui/raidboss/': 'raidboss',
+  '^ui/raidboss/': ['raidboss'],
 };
 
 /**
@@ -100,16 +115,18 @@ const getLabels = async (github, owner, repo, pullNumber) => {
   }))));
 
   // by file path
-  const changedModule = nonNullUnique(changedFiles.map((f) => {
-    for (const [prefix, label] of Object.entries(prefixLabelMap)) {
-      if (f.filename.startsWith(prefix)) {
-        console.log(`label: ${label} [filename] (${f.filename})`);
-        return label;
+  const changedModule = nonNullUnique(lodash.flatten(changedFiles.map((f) => {
+    for (const [regexStr, labels] of Object.entries(regexLabelMap)) {
+      const regex = new RegExp(regexStr);
+      if (regex.exec(f.filename)) {
+        for (const label of labels)
+          console.log(`label: ${label} [filename] (${f.filename})`);
+        return labels;
       }
     }
-  }));
+  })));
 
-  return [...changedModule, ...changedLang.map((v) => `💬${v.toUpperCase()}`)];
+  return [...changedModule, ...changedLang.map((v) => langToLabel(v))];
 };
 
 /**
