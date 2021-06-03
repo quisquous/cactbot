@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <style>
+      body>div {
+        vertical-align: top;
+      }
+      div.test {
+        width: 300px;
+        height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="display: inline-block; ">
+    1. This starts from 2s and doesn't disappear.
+    <div class="test" id=d1></div>
+
+    2/13. These 2 start from 2s and do disappear after 1/2s.
+    <div class="test" id=d2></div>
+    <div class="test" id=d13></div>
+
+    3. This starts from 2s and does disappear after 0s.
+    <div class="test" id=d3></div>
+
+    4. This starts from 2s repeatedly with a 1s break in between.
+    <div class="test" id=d4></div>
+
+    11/12. These 2 start from 2s, then restart from 2s half-way.
+    <div class="test" id=d11></div>
+    <div class="test" id=d12></div>
+
+    5/6. These 2 start start from 2s and disappear after 0s.
+    <div class="test" id=d5></div>
+    <div class="test" id=d6></div>
+
+    7/8. These 2 start from 1/3 left with 2s remaining.
+    <div class="test" id=d7></div>
+    <div class="test" id=d8></div>
+
+    9. This is already finished but doesn't hide.
+    <div class="test" id=d9></div>
+    10. This is already finished but does hide.
+    <div class="test" id=d10></div>
+    </div>
+
+    <div style="display: inline-block; margin-left: 2em; border-left: 1px solid grey; padding-left: 2em; ">
+    b1. This starts from 2s and doesn't disappear.
+    <div class="test" id=b1></div>
+
+    b2/b13. These 2 start from 2s and do disappear after 1/2s.
+    <div class="test" id=b2></div>
+    <div class="test" id=b13></div>
+
+    b3. This starts from 2s and does disappear after 0s.
+    <div class="test" id=b3></div>
+
+    b4. This starts from 2s repeatedly with a 1s break in between.
+    <div class="test" id=b4></div>
+
+    b11/b12. These 2 start from 2s, then restart from 2s half-way.
+    <div class="test" id=b11></div>
+    <div class="test" id=b12></div>
+
+    b5/b6. These 2 start start from 2s and disappear after 0s.
+    <div class="test" id=b5></div>
+    <div class="test" id=b6></div>
+
+    b7/b8. These 2 start from 1/3 left with 2s remaining.
+    <div class="test" id=b7></div>
+    <div class="test" id=b8></div>
+
+    b9. This is already finished but doesn't hide.
+    <div class="test" id=b9></div>
+    b10. This is already finished but does hide.
+    <div class="test" id=b10></div>
+    </div>
+
+    <div style="display: inline-block; margin-left: 2em; border-left: 1px solid grey; padding-left: 2em; ">
+    c1. Green foreground
+    <div class="test" id=c1></div>
+    c2. Green background
+    <div class="test" id=c2></div>
+    c3. Left remain / Centre elapsed / Right percent / - duration / - fixed
+    <div class="test" id=c3></div>
+    c4. Left elapsed / Centre percent / Right duration / - fixed / - remain
+    <div class="test" id=c4></div>
+    c5. Left percent / Centre duration / Right fixed / - remain / - elapsed
+    <div class="test" id=c5></div>
+    c6. Left duration / Centre fixed / Right remain / - elapsed / - percent
+    <div class="test" id=c6></div>
+    c7. Left fixed / Centre remain / Right elapsed / - percent / - duration
+    <div class="test" id=c7></div>
+    c8. Height/Width fixed.
+    <div class="test" id=c8></div>
+    c9. Height/Width percentage.
+    <div class="test" id=c9></div>
+    c10. Style empty / Toward left.
+    <div class="test" id=c10></div>
+    c11. Style fill / Toward left.
+    <div class="test" id=c11></div>
+    c12. Style empty / Toward right.
+    <div class="test" id=c12></div>
+    c13. Style fill / Toward right.
+    <div class="test" id=c13></div>
+  </body>
+</html>
