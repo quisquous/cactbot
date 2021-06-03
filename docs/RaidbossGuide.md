@@ -7,7 +7,7 @@
 Each trigger file is a module that exports a single trigger set.
 
 ```javascript
-import ZoneId from '../path/to/resources/zone_id.ts';
+import ZoneId from '../path/to/resources/zone_id';
 // Other imports here.
 
 export default {
