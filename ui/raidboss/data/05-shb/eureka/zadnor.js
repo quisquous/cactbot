@@ -1016,12 +1016,12 @@ export default {
     },
     {
       id: 'Zadnor Sartauvoir Time Eruption',
-      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E6C', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E6C', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E6C', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '鉄火のサルトヴォアール', id: '5E6C', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '铁胆狱火 萨托瓦尔', id: '5E6C', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '쇳불의 사르토부아르', id: '5E6C', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: ['5E6C', '5E83'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: ['5E6C', '5E83'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: ['5E6C', '5E83'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '鉄火のサルトヴォアール', id: ['5E6C', '5E83'], capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '铁胆狱火 萨托瓦尔', id: ['5E6C', '5E83'], capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '쇳불의 사르토부아르', id: ['5E6C', '5E83'], capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -1050,12 +1050,12 @@ export default {
     },
     {
       id: 'Zadnor Sartauvoir Phenex',
-      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E72', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E72', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E72', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '鉄火のサルトヴォアール', id: '5E72', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '铁胆狱火 萨托瓦尔', id: '5E72', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '쇳불의 사르토부아르', id: '5E72', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: ['5E72', '5E85'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: ['5E72', '5E85'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: ['5E72', '5E85'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '鉄火のサルトヴォアール', id: ['5E72', '5E85'], capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '铁胆狱火 萨托瓦尔', id: ['5E72', '5E85'], capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '쇳불의 사르토부아르', id: ['5E72', '5E85'], capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -1184,17 +1184,6 @@ export default {
           ko: 'X자에서 멀리 떨어지기',
         },
       },
-    },
-    {
-      id: 'Zadnor Sartauvoir Pyrocrysis',
-      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E8F' }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E8F' }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E8F' }),
-      netRegexJa: NetRegexes.startsUsing({ source: '鉄火のサルトヴォアール', id: '5E8F' }),
-      netRegexCn: NetRegexes.startsUsing({ source: '铁胆狱火 萨托瓦尔', id: '5E8F' }),
-      netRegexKo: NetRegexes.startsUsing({ source: '쇳불의 사르토부아르', id: '5E8F' }),
-      condition: Conditions.targetIsYou(),
-      response: Responses.spread(),
     },
     {
       id: 'Zadnor Sartauvoir Left Brand',
