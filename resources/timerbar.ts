@@ -22,9 +22,6 @@ export default class TimerBar extends HTMLElement {
   private _hideTimer: number | null;
   private _animationFrame: number | null;
 
-  // FIXME: 'toward' appears to have been broken for some time.
-  // empty is always towards left and fill always towards right until this is fixed.
-  // See: https://github.com/quisquous/cactbot/issues/2707
   static get observedAttributes(): string[] {
     return ['duration', 'value', 'elapsed', 'hideafter', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'stylefill', 'toward', 'loop'];
   }
