@@ -1,5 +1,9 @@
 const findTriggerIdFromSiblingProperty = (node) => {
-  return node.parent.parent.properties.find((property) => property.key.name === 'id').value.value;
+  const currentProperty = node.parent;
+  const currentTrigger = currentProperty.parent;
+  // Value refers to the value in the [key, value] pair for 'id'
+  // return the value's value, eg the actual trigger id string
+  return currentTrigger.properties.find((property) => property.key.name === 'id').value.value;
 };
 
 module.exports = {
@@ -17,29 +21,35 @@ module.exports = {
 
   create: (context) => {
     const netRegexTypeByTriggerId = {};
-    const matchesTypeToNetRegexType = {
-      'MatchesStartsUsing': 'startsUsing',
-      'MatchesAbility': 'ability',
-      'MatchesAbilityFull': 'abilityFull',
-      'MatchesHeadMarker': 'headMarker',
-      'MatchesAddedCombatant': 'addedCombatant',
-      'MatchesAddedCombatantFull': 'addedCombatantFull',
-      'MatchesRemovingCombatant': 'removingCombatant',
-      'MatchesGainsEffect': 'gainsEffect',
-      'MatchesStatusEffectExplicit': 'statusEffectExplicit',
-      'MatchesLosesEffect': 'losesEffect',
-      'MatchesTether': 'tether',
-      'MatchesWasDefeated': 'wasDefeated',
-      'MatchesEcho': 'echo',
-      'MatchesDialog': 'dialog',
-      'MatchesMessage': 'message',
-      'MatchesGameLog': 'gameLog',
-      'MatchesGameNameLog': 'gameNameLog',
-      'MatchesStatChange': 'statChange',
-      'MatchesChangeZone': 'changeZone',
-      'MatchesNetwork6d': 'network6d',
-      'MatchesNameToggle': 'nameToggle',
-    };
+    const matchesTypes = [
+      'MatchesStartsUsing',
+      'MatchesAbility',
+      'MatchesAbilityFull',
+      'MatchesHeadMarker',
+      'MatchesAddedCombatant',
+      'MatchesAddedCombatantFull',
+      'MatchesRemovingCombatant',
+      'MatchesGainsEffect',
+      'MatchesStatusEffectExplicit',
+      'MatchesLosesEffect',
+      'MatchesTether',
+      'MatchesWasDefeated',
+      'MatchesEcho',
+      'MatchesDialog',
+      'MatchesMessage',
+      'MatchesGameLog',
+      'MatchesGameNameLog',
+      'MatchesStatChange',
+      'MatchesChangeZone',
+      'MatchesNetwork6d',
+      'MatchesNameToggle',
+    ];
+    const matchesTypeToNetRegexType = {};
+    matchesTypes.forEach((matchesType) => {
+      const noPrefix = matchesType.slice(7);
+      const netRegexType = noPrefix.charAt(0).toLowerCase() + noPrefix.slice(1);
+      matchesTypeToNetRegexType[matchesType] = netRegexType;
+    });
     return {
       'Property[key.name=\'netRegex\'] > CallExpression[callee.object.name=\'NetRegexes\']': (node) => {
         const netRegexType = node.callee.property.name;
