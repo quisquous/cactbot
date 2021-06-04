@@ -105,12 +105,22 @@ const cactbotHtmlChunksMap = {
 module.exports = function(env, argv) {
   const dev = argv.mode === 'development';
 
+  // Add timerbar_test.html
+  if (dev) {
+    cactbotModules['timerbarTest'] = 'ui/test/timerbar_test';
+    cactbotHtmlChunksMap['ui/test/timerbar_test.html'] = {
+      chunks: [
+        cactbotModules.timerbarTest,
+      ],
+    };
+  }
+
   const entries = {};
   Object.entries(cactbotModules).forEach(([key, module]) => {
     // TDOO: Remove when everything is TypeScript, convert to:
     // entries[module] = `./${module}.ts`;
     let extension = 'js';
-    if (['radar', 'raidboss', 'test'].includes(key))
+    if (['radar', 'raidboss', 'test', 'timerbarTest'].includes(key))
       extension = 'ts';
     entries[module] = `./${module}.${extension}`;
   });
@@ -124,10 +134,7 @@ module.exports = function(env, argv) {
   });
 
   return {
-    entry: {
-      ...entries,
-      ...(() => dev ? ({ timerbar: './resources/timerbar.ts' }) : ({}))(),
-    },
+    entry: entries,
     optimization: {
       splitChunks: {
         cacheGroups: {
