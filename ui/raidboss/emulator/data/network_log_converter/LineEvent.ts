@@ -65,7 +65,7 @@ export default class LineEvent {
 // Type guards for these interfaces require their own descriptor property
 // because we don't want every line event with an id/name
 // to update combatant state, for example
-export interface LineEventSource {
+export interface LineEventSource extends LineEvent {
   readonly isSource: true;
   readonly id: string;
   readonly name: string;
@@ -80,12 +80,11 @@ export interface LineEventSource {
   readonly maxMp?: number;
 }
 
-export const isLineEventSource =
-  (line: LineEventSource | LineEvent): line is LineEventSource => {
-    return 'isSource' in line;
-  };
+export const isLineEventSource = (line: LineEvent): line is LineEventSource => {
+  return 'isSource' in line;
+};
 
-export interface LineEventTarget {
+export interface LineEventTarget extends LineEvent {
   readonly isTarget: true;
   readonly targetId: string;
   readonly targetName: string;
@@ -99,32 +98,27 @@ export interface LineEventTarget {
   readonly targetMaxMp?: number;
 }
 
-export const isLineEventTarget =
-  (line: LineEventTarget | LineEvent): line is LineEventTarget => {
-    return 'isTarget' in line;
-  };
+export const isLineEventTarget = (line: LineEvent): line is LineEventTarget => {
+  return 'isTarget' in line;
+};
 
-export interface LineEventJobLevel {
+export interface LineEventJobLevel extends LineEvent {
   readonly isJobLevel: true;
-  readonly job?: string;
-  readonly jobId?: number;
-  readonly level?: number;
+  readonly job: string;
+  readonly jobId: number;
+  readonly level: number;
 }
 
-export const isLineEventJobLevel =
-  (line: LineEvent | LineEventSource | LineEventTarget | LineEventJobLevel):
-  line is LineEventJobLevel => {
-    return 'isJobLevel' in line;
-  };
+export const isLineEventJobLevel = (line: LineEvent): line is LineEventJobLevel => {
+  return 'isJobLevel' in line;
+};
 
-export interface LineEventAbility {
+export interface LineEventAbility extends LineEvent {
   readonly isAbility: true;
-  readonly abilityId?: number;
-  readonly abilityName?: string;
+  readonly abilityId: number;
+  readonly abilityName: string;
 }
 
-export const isLineEventAbility =
-  (line: LineEvent | LineEventSource | LineEventTarget | LineEventAbility):
-  line is LineEventAbility => {
-    return 'isAbility' in line;
-  };
+export const isLineEventAbility = (line: LineEvent): line is LineEventAbility => {
+  return 'isAbility' in line;
+};
