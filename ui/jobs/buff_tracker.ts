@@ -304,8 +304,8 @@ export class BuffTracker {
       },
       peculiarmiss: {
         gainAbility: kAbility.PeculiarLight,
-        // durationSeconds: 0 will not trigger the cooldown calculation, so use 0.001
-        // you can see a icon flashes if you gaze at bufftracker.
+        // durationSeconds: 0 can not trigger the cooldown timer, so use 0.001
+        // you may see a icon flashes by if you gaze at bufftracker.
         durationSeconds: 0.001,
         icon: '../../resources/ffxiv/status/peculiar-light.png',
         borderColor: '#F28F7B',
