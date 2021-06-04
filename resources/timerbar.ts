@@ -548,6 +548,7 @@ export default class TimerBar extends HTMLElement {
   }
 }
 
+
 window.customElements.define('timer-bar', TimerBar);
 
 declare global {
