@@ -5,7 +5,7 @@
 Each file is a module that exports a single trigger set, and should be listed in **oopsy_manifest.txt**.
 
 ```javascript
-import ZoneId from '../path/to/resources/zone_id.js';
+import ZoneId from '../path/to/resources/zone_id';
 // Other imports here.
 
 export default {
@@ -46,7 +46,7 @@ export default {
 
 **zoneId**:
 A shortened name for the zone to use these triggers in.
-The set of id names can be found in [zone_id.js](../resources/zone_id.js).
+The set of id names can be found in [zone_id.ts](../resources/zone_id.ts).
 Prefer using this over zoneRegex.
 A trigger set must have one of zoneId or zoneRegex to specify the zone
 (but not both).

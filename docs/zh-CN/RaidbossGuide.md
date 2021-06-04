@@ -40,7 +40,7 @@
 
 ### 元素
 
-**zoneId** 区域名缩写，用于规定触发器的适用范围。 这些区域名缩写可以在 [zone_id.js](../resources/zone_id.js) 文件中找到。 我们倾向于使用该属性，而非zoneRegex。 每个触发器集合都必须包含zoneId或zoneRegex(但二者不能并存)。
+**zoneId** 区域名缩写，用于规定触发器的适用范围。 这些区域名缩写可以在 [zone_id.ts](../resources/zone_id.ts) 文件中找到。 我们倾向于使用该属性，而非zoneRegex。 每个触发器集合都必须包含zoneId或zoneRegex(但二者不能并存)。
 
 **zoneRegex** 用于匹配区域名称的正则表达式(匹配ACT读取的区域名)。 当正则表达式匹配到当前的区域名，则该集合中的触发器会应用于该区域。
 
@@ -122,7 +122,7 @@
 
 **soundVolume** 从0到1的音量数值，触发器激活时播放的音量大小。
 
-**response** 用于返回 infoText/alertText/alarmText/tts 的快捷方法。 这些函数定义于 `resources/responses.js`。 Response 的优先级比直接指定的文字或TTS低，因此可以被覆盖。 (如同 `regex` 和 `condition` 一样，[responses.js](https://github.com/quisquous/cactbot/blob/main/resources/responses.js) 中定义了一些便于使用的高阶函数。)
+**response** 用于返回 infoText/alertText/alarmText/tts 的快捷方法。 这些函数定义于 `resources/responses.ts`。 Response 的优先级比直接指定的文字或TTS低，因此可以被覆盖。 (如同 `regex` 和 `condition` 一样，[responses.ts](https://github.com/quisquous/cactbot/blob/main/resources/responses.ts) 中定义了一些便于使用的高阶函数。)
 
 **alarmText** 当触发器激活时显示“警报”级别的文本。 该属性一般用于高危事件，如处理失败必死无疑的机制、会导致团灭的机制，或处理失败会导致通关变得更加困难的机制等。 (例如T2的亚拉戈病毒，T7的诅咒之嚎，或是O7s里奥尔特罗斯先生的石肤等。 ) 其值可以是字符串或返回字符串的 `function(data, matches)`。
 
@@ -180,7 +180,7 @@
 
 为统一触发器构造，以及减轻翻译时的手动负担， cactbot的触发器元素广泛运用了高阶函数。 诸如此类的工具函数使自动化测试更为简单， 并让人们在审查拉取更改时更容易捕获错误及不一致。
 
-目前我们对于元素的独立预定义结构有3种： [Condition](https://github.com/quisquous/cactbot/blob/main/resources/conditions.ts)、[Regex](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts) 以及 [Response](https://github.com/quisquous/cactbot/blob/main/resources/responses.js)。 `Condition` 函数不接受参数。 几乎所有的 `Response` 函数都接受 `severity`参数， 用于定义触发器被激活时输出的警报文本的等级。 `Regex` 函数根据匹配的日志行，接受若干参数 [(例如 `gainsEffect()`)](https://github.com/quisquous/cactbot/blob/dcdf3ee4cd1b6d5bdfb9a8052cc9e4c9b10844d8/resources/regexes.js#L176)， 不管哪种日志行一般都接受 `source` 属性 (技能的咏唱者/释放者的名称)， `id` 属性 (十六进制的技能ID，例如 `2478`)， 以及正则表达式匹配时是否启用捕获组 (`capture: false`)。 `Regex` 函数默认开启捕获组，但按惯例应当仅对依赖捕获数据的触发器开启捕获。
+目前我们对于元素的独立预定义结构有3种： [Condition](https://github.com/quisquous/cactbot/blob/main/resources/conditions.ts)、[Regex](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts) 以及 [Response](https://github.com/quisquous/cactbot/blob/main/resources/responses.ts)。 `Condition` 函数不接受参数。 几乎所有的 `Response` 函数都接受 `severity`参数， 用于定义触发器被激活时输出的警报文本的等级。 `Regex` 函数根据匹配的日志行，接受若干参数 [(例如 `gainsEffect()`)](https://github.com/quisquous/cactbot/blob/0bd9095682ec15b35f880d2241be365f4bdf6a87/resources/regexes.ts#L348)， 不管哪种日志行一般都接受 `source` 属性 (技能的咏唱者/释放者的名称)， `id` 属性 (十六进制的技能ID，例如 `2478`)， 以及正则表达式匹配时是否启用捕获组 (`capture: false`)。 `Regex` 函数默认开启捕获组，但按惯例应当仅对依赖捕获数据的触发器开启捕获。
 
 以下是使用了这三种元素的示例触发器：
 
