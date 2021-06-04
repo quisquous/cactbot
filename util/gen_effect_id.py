@@ -57,8 +57,9 @@ known_mapping = {
 
 # These custom name of effect will not be checked.
 # Use this only when you need to handle different effects with a same name.
+# The name should be clean.
 custom_mapping = {
-    "EmboldenSelf": "1239",
+    "Emboldenself": "1239",
 }
 
 
@@ -101,8 +102,10 @@ def make_effect_map(table):
 
     # Add custom effect name for necessary duplicates.
     for raw_name, id in custom_mapping.items():
-        name = csv_util.clean_name(raw_name)
-        map[name] = id
+        if csv_util.clean_name(raw_name) != raw_name:
+            print_error("uncleaned custom name", raw_name, custom_mapping, raw_name)
+        else:
+            map[raw_name] = id
 
     # Store ids as hex.
     return {k: format(int(v), "X") for k, v in map.items()}
