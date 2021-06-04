@@ -849,7 +849,7 @@ class Bars {
       this._updateOpacity();
       // Set up the buff tracker after the job bars are created.
       this.buffTracker = new BuffTracker(
-          this.options, this.me, this.o.leftBuffsList, this.o.rightBuffsList);
+          this.options, this.me, this.o.leftBuffsList, this.o.rightBuffsList, this.partyTracker);
     }
     if (updateHp)
       this._updateHealth();
