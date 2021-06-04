@@ -888,7 +888,9 @@ export default {
       netRegexJa: NetRegexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
-      preRun: (data) => {
+      delaySeconds: 98,
+      suppressSeconds: 99999,
+      alertText: (data, _matches, output) => {
         const tookTwo = data.fireballs[1].filter((p) => {
           return data.fireballs[2].includes(p);
         });
@@ -896,10 +898,6 @@ export default {
           return data.fireballs[3].includes(p);
         });
         data.tookThreeFireballs = tookThree.includes(data.me);
-      },
-      delaySeconds: 98,
-      suppressSeconds: 99999,
-      alertText: (data, _matches, output) => {
         // It's possible that you can take 1, 2, and 3 even if nobody dies with
         // careful ice debuff luck.  However, this means you probably shouldn't
         // take 4.
