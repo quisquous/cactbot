@@ -66,7 +66,7 @@ export type NameToggleParams = typeof nameToggleParams[number];
 // a pretty straightforward way to mark regexes for translations.
 // If issue #1306 is ever resolved, we can remove this.
 const magicTranslationString = `^^`;
-const magicStringRegex = new RegExp('^\\^\\^');
+const magicStringRegex = /^\^\^/;
 const keysThatRequireTranslation = [
   'ability',
   'name',

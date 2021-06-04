@@ -211,6 +211,7 @@ module.exports = {
     'operator-linebreak': 'error',
     'prefer-arrow-callback': 'error',
     'prefer-const': 'error',
+    'prefer-regex-literals': 'error',
     'prefer-rest-params': 'off',
     'quotes': [
       'error',

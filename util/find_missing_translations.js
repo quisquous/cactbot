@@ -76,8 +76,8 @@ const parseJavascriptFile = (file, locales) => {
   let keys = [];
   let openMatch = null;
 
-  const openObjRe = new RegExp('^(\\s*)(.*{)\\s*$');
-  const keyRe = new RegExp('^\\s*(\\w{2}):');
+  const openObjRe = /^(\s*)(.*{)\s*$/;
+  const keyRe = /^\s*(\w{2}):/;
 
   lineReader.on('line', (line, idx = lineCounter()) => {
     // Immediately exit if the file is auto-generated
