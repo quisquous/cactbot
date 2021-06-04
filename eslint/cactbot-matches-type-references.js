@@ -60,7 +60,9 @@ module.exports = {
         if (!Object.keys(matchesTypeToNetRegexType).includes(node.typeName.name))
           return;
 
-        const triggerId = findTriggerIdFromSiblingProperty(node.parent.parent.parent);
+        // Property > Function > Parameter > TypeReference
+        const currentProperty = node.parent.parent.parent;
+        const triggerId = findTriggerIdFromSiblingProperty(currentProperty);
         const netRegexType = matchesTypeToNetRegexType[node.typeName.name];
         const expectedNetRegexType = netRegexTypeByTriggerId[triggerId];
         if (!expectedNetRegexType || expectedNetRegexType !== netRegexType) {
