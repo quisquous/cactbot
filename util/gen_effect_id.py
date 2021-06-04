@@ -55,10 +55,10 @@ known_mapping = {
     "Vulnerability Up": "638",
 }
 
-# These costom name of effect will not be checked.
+# These custom name of effect will not be checked.
 # Use this only when you need to handle different effects with a same name.
-costom_mapping = {
-    "Embolden (Self)": "1239",
+custom_mapping = {
+    "EmboldenSelf": "1239",
 }
 
 
@@ -99,8 +99,8 @@ def make_effect_map(table):
         if name not in found_names:
             print_error("missing", name, known_mapping, raw_name)
 
-    # Add costom effect name for necessary duplicates.
-    for raw_name, id in costom_mapping.items():
+    # Add custom effect name for necessary duplicates.
+    for raw_name, id in custom_mapping.items():
         name = csv_util.clean_name(raw_name)
         map[name] = id
 

@@ -333,8 +333,8 @@ export class BuffTracker {
       emboldenself: {
         // RDM himself gains a different buff.
         // This makes RDM himself can also track embolden cooldown.
-        gainEffect: EffectId.EmboldenSelf,
-        loseEffect: EffectId.EmboldenSelf,
+        gainEffect: EffectId.Emboldenself,
+        loseEffect: EffectId.Emboldenself,
         durationSeconds: 20,
         stack: 5,
         icon: '../../resources/ffxiv/status/embolden.png',
