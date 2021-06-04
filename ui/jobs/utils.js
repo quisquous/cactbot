@@ -41,12 +41,12 @@ export class RegexesHolder {
   }
 }
 
-export function doesJobNeedMPBar(job) {
+export const doesJobNeedMPBar = (job) => {
   return Util.isCasterDpsJob(job) || Util.isHealerJob(job) || kMeleeWithMpJobs.includes(job);
-}
+};
 
 // Source: http://theoryjerks.akhmorning.com/guide/speed/
-export function calcGCDFromStat(bars, stat, actionDelay) {
+export const calcGCDFromStat = (bars, stat, actionDelay) => {
   // default calculates for a 2.50s recast
   actionDelay = actionDelay || 2500;
 
@@ -100,60 +100,59 @@ export function calcGCDFromStat(bars, stat, actionDelay) {
   const b = (100 - type2Buffs) / 100;
   const gcdC = Math.floor(Math.floor((a * b) * gcdMs / 10) * astralUmbralMod / 100);
   return gcdC / 100;
-}
+};
 
-export function computeBackgroundColorFrom(element, classList) {
+export const computeBackgroundColorFrom = (element, classList) => {
   const div = document.createElement('div');
   const classes = classList.split('.');
-  for (let i = 0; i < classes.length; ++i)
-    div.classList.add(classes[i]);
+  classes.forEach((className) => div.classList.add(className));
   element.appendChild(div);
   const color = window.getComputedStyle(div).backgroundColor;
   element.removeChild(div);
   return color;
-}
+};
 
-export function makeAuraTimerIcon(name, seconds, opacity, iconWidth, iconHeight, iconText,
-    barHeight, textHeight, textColor, borderSize, borderColor, barColor, auraIcon) {
+export const makeAuraTimerIcon = (name, seconds, opacity, iconWidth, iconHeight, iconText,
+    barHeight, textHeight, textColor, borderSize, borderColor, barColor, auraIcon) => {
   const div = document.createElement('div');
   div.style.opacity = opacity;
 
   const icon = document.createElement('timer-icon');
-  icon.width = iconWidth;
-  icon.height = iconHeight;
-  icon.bordersize = borderSize;
+  icon.width = iconWidth.toString();
+  icon.height = iconHeight.toString();
+  icon.bordersize = borderSize.toString();
   icon.textcolor = textColor;
   div.appendChild(icon);
 
   const barDiv = document.createElement('div');
   barDiv.style.position = 'relative';
-  barDiv.style.top = iconHeight;
+  barDiv.style.top = iconHeight.toString();
   div.appendChild(barDiv);
 
   if (seconds >= 0) {
     const bar = document.createElement('timer-bar');
-    bar.width = iconWidth;
-    bar.height = barHeight;
+    bar.width = iconWidth.toString();
+    bar.height = barHeight.toString();
     bar.fg = barColor;
-    bar.duration = seconds;
+    bar.duration = seconds.toString();
     barDiv.appendChild(bar);
   }
 
   if (textHeight > 0) {
     const text = document.createElement('div');
     text.classList.add('text');
-    text.style.width = iconWidth;
-    text.style.height = textHeight;
+    text.style.width = iconWidth.toString();
+    text.style.height = textHeight.toString();
     text.style.overflow = 'hidden';
-    text.style.fontSize = textHeight - 1;
+    text.style.fontSize = (textHeight - 1).toString();
     text.style.whiteSpace = 'pre';
     text.style.position = 'relative';
-    text.style.top = iconHeight;
+    text.style.top = iconHeight.toString();
     text.style.fontFamily = 'arial';
     text.style.fontWeight = 'bold';
     text.style.color = textColor;
     text.style.textShadow = '-1px 0 3px black, 0 1px 3px black, 1px 0 3px black, 0 -1px 3px black';
-    text.style.paddingBottom = textHeight / 4;
+    text.style.paddingBottom = (textHeight / 4).toString();
 
     text.innerText = name;
     div.appendChild(text);
@@ -163,7 +162,7 @@ export function makeAuraTimerIcon(name, seconds, opacity, iconWidth, iconHeight,
     icon.text = iconText;
   icon.bordercolor = borderColor;
   icon.icon = auraIcon;
-  icon.duration = seconds;
+  icon.duration = seconds.toString();
 
   return div;
-}
+};
