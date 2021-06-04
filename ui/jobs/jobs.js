@@ -10,6 +10,7 @@ import ZoneId from '../../resources/zone_id';
 import { kWellFedContentTypes, kMPCombatRate, kMPNormalRate, kMPUI1Rate, kMPUI2Rate, kMPUI3Rate, kMPTickInterval } from './constants';
 import { BuffTracker } from './buff_tracker';
 import ComboTracker from './combo_tracker';
+import PartyTracker from '../../resources/party';
 import { RegexesHolder, computeBackgroundColorFrom, calcGCDFromStat, doesJobNeedMPBar, makeAuraTimerIcon } from './utils';
 
 import { getSetup, getReset } from './components/index';
@@ -83,7 +84,7 @@ class Bars {
     this.combo = null;
     this.comboTimer = null;
     this.regexes = null;
-    this.partyTracker = null;
+    this.partyTracker = new PartyTracker();
 
     this.skillSpeed = 0;
     this.spellSpeed = 0;

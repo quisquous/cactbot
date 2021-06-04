@@ -229,7 +229,6 @@ export class BuffTracker {
       playerName: string,
       leftBuffDiv: WidgetList,
       rightBuffDiv: WidgetList,
-      partyTracker: PartyTracker,
   ) {
     this.options = options;
     this.playerName = playerName;
@@ -237,7 +236,7 @@ export class BuffTracker {
     this.rightBuffDiv = rightBuffDiv;
     this.buffs = {};
 
-    this.partyTracker = partyTracker;
+    this.partyTracker = new PartyTracker();
 
     this.buffInfo = {
       potion: {
