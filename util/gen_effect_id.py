@@ -51,6 +51,14 @@ known_mapping = {
     "Flourishing Fan Dance": "1820",
     "Higanbana": "1228",
     "Wildfire": "861",
+    "Chain Stratagem": "1221",
+    "Vulnerability Up": "638",
+}
+
+# These custom name of effect will not be checked, but you'd better make it clean.
+# Use this only when you need to handle different effects with a same name.
+custom_mapping = {
+    "EmboldenSelf": "1239",
 }
 
 
@@ -90,6 +98,10 @@ def make_effect_map(table):
         name = csv_util.clean_name(raw_name)
         if name not in found_names:
             print_error("missing", name, known_mapping, raw_name)
+
+    # Add custom effect name for necessary duplicates.
+    for raw_name, id in custom_mapping.items():
+        map[raw_name] = id
 
     # Store ids as hex.
     return {k: format(int(v), "X") for k, v in map.items()}

@@ -4,7 +4,6 @@ import WidgetList from '../../resources/widget_list';
 import EffectId from '../../resources/effect_id';
 import { MatchesAbility, MatchesGainsEffect, MatchesLosesEffect } from '../../resources/matches';
 
-import { kAbility } from './constants';
 import { makeAuraTimerIcon } from './utils';
 
 export interface BuffInfo {
@@ -23,6 +22,7 @@ export interface BuffInfo {
   cooldown?: number;
   sharesCooldownWith?: string[];
   hide?: boolean;
+  stack?: number;
 }
 
 export interface Aura {
@@ -277,8 +277,9 @@ export class BuffTracker {
         sortKey: 0,
       },
       offguard: {
-        gainAbility: kAbility.OffGuard,
-        durationSeconds: 15,
+        mobGainsEffect: EffectId.OffGuard,
+        mobLosesEffect: EffectId.OffGuard,
+        useEffectDuration: true,
         icon: '../../resources/ffxiv/status/offguard.png',
         borderColor: '#47bf41',
         sortKey: 1,
@@ -286,8 +287,9 @@ export class BuffTracker {
         sharesCooldownWith: ['peculiar'],
       },
       peculiar: {
-        gainAbility: kAbility.PeculiarLight,
-        durationSeconds: 15,
+        mobGainsEffect: EffectId.PeculiarLight,
+        mobLosesEffect: EffectId.PeculiarLight,
+        useEffectDuration: true,
         icon: '../../resources/ffxiv/status/peculiar-light.png',
         borderColor: '#F28F7B',
         sortKey: 1,
@@ -295,8 +297,9 @@ export class BuffTracker {
         sharesCooldownWith: ['offguard'],
       },
       trick: {
-        gainAbility: kAbility.TrickAttack,
-        durationSeconds: 15,
+        mobGainsEffect: EffectId.VulnerabilityUp,
+        mobLosesEffect: EffectId.VulnerabilityUp,
+        useEffectDuration: true,
         icon: '../../resources/ffxiv/status/trick-attack.png',
         // Magenta.
         borderColor: '#FC4AE6',
@@ -314,13 +317,26 @@ export class BuffTracker {
         cooldown: 180,
       },
       embolden: {
-        // Embolden is special and has some extra text at the end, depending on embolden stage:
-        // Potato Chippy gains the effect of Embolden from Tater Tot for 20.00 Seconds. (5)
-        // Instead, use somebody using the effect on you:
-        //   16:106C22EF:Tater Tot:1D60:Embolden:106C22EF:Potato Chippy:500020F:4D7: etc etc
-        gainAbility: kAbility.Embolden,
+        // On each embolden stack changes,
+        // there will be a gain effect log with a wrong duration (always 20).
+        // So using stack to identify the first log.
+        gainEffect: EffectId.Embolden,
         loseEffect: EffectId.Embolden,
         durationSeconds: 20,
+        stack: 5,
+        icon: '../../resources/ffxiv/status/embolden.png',
+        // Lime.
+        borderColor: '#57FC4A',
+        sortKey: 3,
+        cooldown: 120,
+      },
+      emboldenself: {
+        // RDM himself gains a different buff.
+        // This makes RDM himself can also track embolden cooldown.
+        gainEffect: EffectId.EmboldenSelf,
+        loseEffect: EffectId.EmboldenSelf,
+        durationSeconds: 20,
+        stack: 5,
         icon: '../../resources/ffxiv/status/embolden.png',
         // Lime.
         borderColor: '#57FC4A',
@@ -439,8 +455,9 @@ export class BuffTracker {
         cooldown: 180,
       },
       chain: {
-        gainAbility: kAbility.ChainStratagem,
-        durationSeconds: 15,
+        mobGainsEffect: EffectId.ChainStratagem,
+        mobLosesEffect: EffectId.ChainStratagem,
+        useEffectDuration: true,
         icon: '../../resources/ffxiv/status/chain-stratagem.png',
         // Blue.
         borderColor: '#4674E5',
@@ -584,6 +601,8 @@ export class BuffTracker {
         seconds = parseFloat(matches?.duration ?? '0');
       else if ('durationSeconds' in b)
         seconds = b.durationSeconds ?? seconds;
+      if ('stack' in b && b.stack !== parseInt(matches?.count ?? '0'))
+        return;
 
       this.onBigBuff(b.name, seconds, b, matches?.source);
     }
