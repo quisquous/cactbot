@@ -156,7 +156,7 @@ const getChangedFiles = async (github, identifier) => {
 const parseChangedLang = (patch) => {
   const set = new Set();
   for (const lang of ['cn', 'de', 'ja', 'fr', 'ko']) {
-    const pattern = new RegExp(`^\s*[+] *(?:${lang}|'${lang}'): `);
+    const pattern = new RegExp(`^\s*[+]\s*(?:${lang}|'${lang}'): `);
     for (const line of patch.split('\n')) {
       if (pattern.test(line)) {
         // TODO: it'd be nice to add the file/line number here.
