@@ -53,6 +53,7 @@ const Options = {
 const kPullText = {
   en: 'Pull',
   de: 'Start',
+  fr: 'Attaque',
   ja: 'タゲ取る',
   cn: '开怪',
   ko: '풀링',

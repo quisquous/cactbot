@@ -7,7 +7,7 @@
 Each trigger file is a module that exports a single trigger set.
 
 ```javascript
-import ZoneId from '../path/to/resources/zone_id.js';
+import ZoneId from '../path/to/resources/zone_id';
 // Other imports here.
 
 export default {
@@ -39,7 +39,7 @@ export default {
 
 **zoneId**
 A shortened name for the zone to use these triggers in.
-The set of id names can be found in [zone_id.js](../resources/zone_id.js).
+The set of id names can be found in [zone_id.ts](../resources/zone_id.ts).
 Prefer using this over zoneRegex.
 A trigger set must have one of zoneId or zoneRegex to specify the zone
 (but not both).
@@ -226,10 +226,10 @@ Volume between 0 and 1 to play the sound associated with the trigger.
 
 **response**
 A way to return infoText/alertText/alarmText/tts all from a single entrypoint.
-Also used by `resources/responses.js`.
+Also used by `resources/responses.ts`.
 Response has less priority than an explicitly specified text or tts,
 and so can be overridden.
-(As with `regex` and `condition`, "canned" responses are available within [responses.js](https://github.com/quisquous/cactbot/blob/main/resources/responses.js).)
+(As with `regex` and `condition`, "canned" responses are available within [responses.ts](https://github.com/quisquous/cactbot/blob/main/resources/responses.ts).)
 
 **alarmText**
 Displays a text popup with Alarm importance when the trigger activates.
@@ -321,7 +321,7 @@ and instead `response` should return a function that calls
 `output.responseOutputStrings = {};`
 where `{}` is the outputStrings object you would have returned from the trigger `outputStrings` field.
 This is a bit awkward, but allows response to both return and use `outputStrings`,
-and keeps [resources/responses.js](../resources/responses.js) more encapsulated.
+and keeps [resources/responses.ts](../resources/responses.ts) more encapsulated.
 
 For example:
 
@@ -394,10 +394,10 @@ Use of these helpers makes automated testing significantly easier,
 and allows humans to catch errors and inconsistencies more easily when reviewing pull requests.
 
 Currently, three separate elements have pre-made structures defined:
-[Condition](https://github.com/quisquous/cactbot/blob/main/resources/conditions.ts), [Regex](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts), [NetRegex](https://github.com/quisquous/cactbot/blob/main/resources/netregexes.ts), and [Response](https://github.com/quisquous/cactbot/blob/main/resources/responses.js).
+[Condition](https://github.com/quisquous/cactbot/blob/main/resources/conditions.ts), [Regex](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts), [NetRegex](https://github.com/quisquous/cactbot/blob/main/resources/netregexes.ts), and [Response](https://github.com/quisquous/cactbot/blob/main/resources/responses.ts).
 `Condition` functions take no arguments. Almost all `Response` functions take one optional argument, `severity`,
 used to determine what level of popup text to display to the user when the trigger activates.
-`Regex`(`NetRegex`) functions can take several arguments [(`gainsEffect()` is a good example)](https://github.com/quisquous/cactbot/blob/dcdf3ee4cd1b6d5bdfb9a8052cc9e4c9b10844d8/resources/regexes.js#L176) depending on which log line is being matched against,
+`Regex`(`NetRegex`) functions can take several arguments [(`gainsEffect()` is a good example)](https://github.com/quisquous/cactbot/blob/0bd9095682ec15b35f880d2241be365f4bdf6a87/resources/regexes.ts#L348) depending on which log line is being matched against,
 but generally a contributor would include the `source`, (name of the caster/user of the ability to match,)
 the `id`, (the hex ability ID, such as `2478`,) and whether or not the regex should capture the matches (`capture: false`.)
 `Regex`(`NetRegex`) functions capture by default, but standard practice is to specify non-capturing unless a trigger element requires captures.

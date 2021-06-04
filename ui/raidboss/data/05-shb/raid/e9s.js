@@ -538,7 +538,7 @@ export default {
       durationSeconds: (data) => data.finalArtOfDarkness ? 16 : 9,
       alertText: (data, _matches, output) => {
         // Perform the callout now, regardless if it's The Second or Third Art Of Darkness
-        callout = data.artOfDarkness.slice();
+        const callout = data.artOfDarkness.slice();
         if (data.finalArtOfDarkness)
           callout.push(data.finalArtOfDarkness);
         return callout.map((key) => output[key]()).join(' -> ');

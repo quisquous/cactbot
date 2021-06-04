@@ -1,5 +1,5 @@
 import { Party } from '../types/event';
-import { Job, Role } from '../types/job.js';
+import { Job, Role } from '../types/job';
 import Util from './util';
 
 const emptyRoleToPartyNames = () => {
