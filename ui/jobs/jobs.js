@@ -83,6 +83,7 @@ class Bars {
     this.combo = null;
     this.comboTimer = null;
     this.regexes = null;
+    this.partyTracker = null;
 
     this.skillSpeed = 0;
     this.spellSpeed = 0;
@@ -780,8 +781,7 @@ class Bars {
   }
 
   _onPartyChanged(e) {
-    if (this.buffTracker)
-      this.buffTracker.partyTracker.onPartyChanged(e);
+    this.partyTracker.onPartyChanged(e);
   }
 
   _onPlayerChanged(e) {
