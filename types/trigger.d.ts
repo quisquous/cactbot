@@ -7,7 +7,7 @@ export interface BaseRegExp<T> extends RegExp {
   };
 }
 
-export type Matches<Params> = { [s in Params]?: string } | undefined;
+export type Matches<Params> = { [s in Params]?: string };
 
 // TargetedMatches can be used for generic functions in responses or conditions
 // that use matches from any number of Regex or NetRegex functions.
@@ -64,7 +64,7 @@ export type TriggerAutoConfig = {
   OutputStrings?: { [outputKey: string]: Lang };
 }
 
-export type MatchesAny = { [s in T]?: string } | undefined;
+export type MatchesAny = { [s in T]?: string };
 
 // Note: functions like run or preRun need to be defined as void-only as (confusingly)
 // it is not possible to assign `(d: Data) => boolean` to a void | undefined, only to void.

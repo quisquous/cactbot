@@ -74,11 +74,11 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: NetRegexes.tether({ id: '0007' }),
       suppressSeconds: 1,
       alertText: (data, matches: MatchesTether, output) => {
-        if (matches?.source === data.me || matches?.target === data.me)
+        if (matches.source === data.me || matches.target === data.me)
           return output.jailOnYou?.();
       },
       infoText: (data, matches: MatchesTether, output) => {
-        if (matches?.source !== data.me && matches?.target !== data.me)
+        if (matches.source !== data.me && matches.target !== data.me)
           return output.jails?.();
       },
       outputStrings: {
