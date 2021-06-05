@@ -10,7 +10,7 @@ import { makeAuraTimerIcon } from './utils';
 
 export interface BuffInfo {
   name: string;
-  gainAbility?: string;
+  cooldownAbility?: string;
   gainEffect?: string;
   loseEffect?: string;
   mobGainsEffect?: string;
@@ -195,11 +195,9 @@ export class Buff {
       cooldown.removeCallback();
   }
 
-  onGain(seconds: number, source: string): void {
+  onGain(seconds: number): void {
     this.onLose();
-    this.clearCooldown(source);
     this.active = this.makeAura(this.name, this.activeList, seconds, 0, 0, 'white', '', 1);
-    this.addCooldown(source, seconds);
   }
 
   onLose(): void {
@@ -207,6 +205,11 @@ export class Buff {
       return;
     this.active.removeCallback();
     this.active = null;
+  }
+
+  onCooldown(seconds: number, source: string): void {
+    this.clearCooldown(source);
+    this.addCooldown(source, seconds);
   }
 }
 
@@ -220,7 +223,7 @@ export class BuffTracker {
   buffs: { [s: string]: Buff };
   gainEffectMap: { [s: string]: BuffInfo[] };
   loseEffectMap: { [s: string]: BuffInfo[] };
-  gainAbilityMap: { [s: string]: BuffInfo[] };
+  cooldownAbilityMap: { [s: string]: BuffInfo[] };
   mobGainsEffectMap: { [s: string]: BuffInfo[] };
   mobLosesEffectMap: { [s: string]: BuffInfo[] };
 
@@ -290,108 +293,69 @@ export class BuffTracker {
         sortKey: 0,
       },
       offguard: {
+        cooldownAbility: kAbility.OffGuard,
         mobGainsEffect: EffectId.OffGuard,
         mobLosesEffect: EffectId.OffGuard,
-        useEffectDuration: true,
+        durationSeconds: 15,
         icon: '../../resources/ffxiv/status/offguard.png',
         borderColor: '#47bf41',
         sortKey: 1,
         cooldown: 60,
-        sharesCooldownWith: ['peculiar', 'peculiarmiss'],
+        sharesCooldownWith: ['peculiar'],
       },
       peculiar: {
+        cooldownAbility: kAbility.PeculiarLight,
         mobGainsEffect: EffectId.PeculiarLight,
         mobLosesEffect: EffectId.PeculiarLight,
-        useEffectDuration: true,
+        durationSeconds: 15,
         icon: '../../resources/ffxiv/status/peculiar-light.png',
         borderColor: '#F28F7B',
         sortKey: 1,
         cooldown: 60,
-        sharesCooldownWith: ['offguard', 'peculiarmiss'],
-      },
-      peculiarmiss: {
-        gainAbility: kAbility.PeculiarLight,
-        // durationSeconds: 0 can not trigger the cooldown timer, so use 0.001
-        // you may see an icon flashes by if you gaze at bufftracker.
-        durationSeconds: 0.001,
-        icon: '../../resources/ffxiv/status/peculiar-light.png',
-        borderColor: '#F28F7B',
-        sortKey: 1,
-        cooldown: 60,
-        sharesCooldownWith: ['offguard', 'peculiar'],
+        sharesCooldownWith: ['offguard'],
       },
       trick: {
+        cooldownAbility: kAbility.TrickAttack,
         mobGainsEffect: EffectId.VulnerabilityUp,
         mobLosesEffect: EffectId.VulnerabilityUp,
-        useEffectDuration: true,
+        durationSeconds: 15,
         icon: '../../resources/ffxiv/status/trick-attack.png',
         // Magenta.
         borderColor: '#FC4AE6',
         sortKey: 1,
         cooldown: 60,
-        sharesCooldownWith: ['trickmiss'],
-      },
-      trickmiss: {
-        gainAbility: kAbility.TrickAttack,
-        durationSeconds: 0.001,
-        icon: '../../resources/ffxiv/status/trick-attack.png',
-        // Magenta.
-        borderColor: '#FC4AE6',
-        sortKey: 1,
-        cooldown: 60,
-        sharesCooldownWith: ['trick'],
       },
       litany: {
+        cooldownAbility: kAbility.BattleLitany,
         gainEffect: EffectId.BattleLitany,
         loseEffect: EffectId.BattleLitany,
-        useEffectDuration: true,
-        icon: '../../resources/ffxiv/status/battle-litany.png',
-        // Cyan.
-        borderColor: '#099',
-        sortKey: 2,
-        cooldown: 180,
-        sharesCooldownWith: ['litanymissyou'],
-      },
-      litanymissyou: {
-        gainAbility: kAbility.BattleLitany,
-        durationSeconds: 0.001,
+        durationSeconds: 20,
         partyonly: true,
         icon: '../../resources/ffxiv/status/battle-litany.png',
         // Cyan.
         borderColor: '#099',
         sortKey: 2,
         cooldown: 180,
-        sharesCooldownWith: ['litany'],
       },
       embolden: {
         // On each embolden stack changes,
         // there will be a gain effect log with a wrong duration (always 20).
         // So using stack to identify the first log.
+        cooldownAbility: kAbility.Embolden,
         gainEffect: EffectId.Embolden,
         loseEffect: EffectId.Embolden,
-        useEffectDuration: true,
+        durationSeconds: 20,
+        partyonly: true,
         stack: 5,
         icon: '../../resources/ffxiv/status/embolden.png',
         // Lime.
         borderColor: '#57FC4A',
         sortKey: 3,
         cooldown: 120,
-        sharesCooldownWith: ['emboldenmissyou'],
-      },
-      emboldenmissyou: {
-        gainAbility: kAbility.Embolden,
-        durationSeconds: 0.001,
-        partyonly: true,
-        icon: '../../resources/ffxiv/status/embolden.png',
-        // Lime.
-        borderColor: '#57FC4A',
-        sortKey: 3,
-        cooldown: 120,
-        sharesCooldownWith: ['embolden'],
       },
       emboldenself: {
         // RDM himself gains a different buff.
-        // This makes RDM himself can also track embolden cooldown.
+        // This makes RDM himself can also trace embolden.
         gainEffect: EffectId.EmboldenSelf,
         loseEffect: EffectId.EmboldenSelf,
         useEffectDuration: true,
@@ -400,7 +364,6 @@ export class BuffTracker {
         // Lime.
         borderColor: '#57FC4A',
         sortKey: 3,
-        cooldown: 120,
       },
       arrow: {
         gainEffect: EffectId.TheArrow,
@@ -494,56 +457,37 @@ export class BuffTracker {
         sortKey: 6,
       },
       technicalFinish: {
-        gainEffect: EffectId.TechnicalFinish,
-        loseEffect: EffectId.TechnicalFinish,
-        useEffectDuration: true,
-        icon: '../../resources/ffxiv/status/technical-finish.png',
-        // Dark Peach.
-        borderColor: '#E0757C',
-        sortKey: 6,
-        cooldown: 120,
-        sharesCooldownWith: ['technicalFinishmissyou'],
-      },
-      technicalFinishmissyou: {
-        // Sorry, but 0-3 step Technical Finish will not trigger this.
+        // Sorry, but 0-3 step Technical Finish will not trigger this if it misses you.
         // and I think it meaningless to trace a poor DNC
         // who can perform 0-3 step Technical Finish and miss you at the same time.
-        gainAbility: kAbility.QuadrupleTechnicalFinish,
-        durationSeconds: 0.001,
+        cooldownAbility: kAbility.QuadrupleTechnicalFinish,
+        gainEffect: EffectId.TechnicalFinish,
+        loseEffect: EffectId.TechnicalFinish,
+        durationSeconds: 20,
         partyonly: true,
         icon: '../../resources/ffxiv/status/technical-finish.png',
         // Dark Peach.
         borderColor: '#E0757C',
         sortKey: 6,
         cooldown: 120,
-        sharesCooldownWith: ['technicalFinish'],
       },
       battlevoice: {
+        cooldownAbility: kAbility.BattleVoice,
         gainEffect: EffectId.BattleVoice,
         loseEffect: EffectId.BattleVoice,
-        useEffectDuration: true,
-        icon: '../../resources/ffxiv/status/battlevoice.png',
-        // Red.
-        borderColor: '#D6371E',
-        sortKey: 7,
-        cooldown: 180,
-        sharesCooldownWith: ['battlevoicemissyou'],
-      },
-      battlevoicemissyou: {
-        gainAbility: kAbility.BattleVoice,
-        durationSeconds: 0.001,
+        durationSeconds: 20,
         partyonly: true,
         icon: '../../resources/ffxiv/status/battlevoice.png',
         // Red.
         borderColor: '#D6371E',
         sortKey: 7,
         cooldown: 180,
-        sharesCooldownWith: ['battlevoice'],
       },
       chain: {
+        cooldownAbility: kAbility.ChainStratagem,
         mobGainsEffect: EffectId.ChainStratagem,
         mobLosesEffect: EffectId.ChainStratagem,
-        useEffectDuration: true,
+        durationSeconds: 15,
         icon: '../../resources/ffxiv/status/chain-stratagem.png',
         // Blue.
         borderColor: '#4674E5',
@@ -571,83 +515,53 @@ export class BuffTracker {
         cooldown: 120,
       },
       brotherhood: {
+        cooldownAbility: kAbility.Brotherhood,
         gainEffect: EffectId.Brotherhood,
         loseEffect: EffectId.Brotherhood,
-        useEffectDuration: true,
-        icon: '../../resources/ffxiv/status/brotherhood.png',
-        // Dark Orange.
-        borderColor: '#994200',
-        sortKey: 11,
-        cooldown: 90,
-        sharesCooldownWith: ['brotherhoodmissyou'],
-      },
-      brotherhoodmissyou: {
-        gainAbility: kAbility.Brotherhood,
-        durationSeconds: 0.001,
+        durationSeconds: 15,
         partyonly: true,
         icon: '../../resources/ffxiv/status/brotherhood.png',
         // Dark Orange.
         borderColor: '#994200',
         sortKey: 11,
         cooldown: 90,
-        sharesCooldownWith: ['brotherhood'],
       },
       devotion: {
+        cooldownAbility: kAbility.Devotion,
         gainEffect: EffectId.Devotion,
         loseEffect: EffectId.Devotion,
-        useEffectDuration: true,
-        icon: '../../resources/ffxiv/status/devotion.png',
-        // Yellow.
-        borderColor: '#ffbf00',
-        sortKey: 12,
-        cooldown: 180,
-        sharesCooldownWith: ['devotionmissyou'],
-      },
-      devotionmissyou: {
-        gainAbility: kAbility.Devotion,
-        durationSeconds: 0.001,
+        durationSeconds: 15,
         partyonly: true,
         icon: '../../resources/ffxiv/status/devotion.png',
         // Yellow.
         borderColor: '#ffbf00',
         sortKey: 12,
         cooldown: 180,
-        sharesCooldownWith: ['devotion'],
       },
       divination: {
+        cooldownAbility: kAbility.Divination,
         gainEffect: EffectId.Divination,
         loseEffect: EffectId.Divination,
-        useEffectDuration: true,
-        icon: '../../resources/ffxiv/status/divination.png',
-        // Dark purple.
-        borderColor: '#5C1F58',
-        sortKey: 13,
-        cooldown: 120,
-        sharesCooldownWith: ['divinationmissyou'],
-      },
-      divinationmissyou: {
-        gainAbility: kAbility.Divination,
-        durationSeconds: 0.001,
+        durationSeconds: 15,
         partyonly: true,
         icon: '../../resources/ffxiv/status/divination.png',
         // Dark purple.
         borderColor: '#5C1F58',
         sortKey: 13,
         cooldown: 120,
-        sharesCooldownWith: ['divination'],
       },
     };
 
     this.gainEffectMap = {};
     this.loseEffectMap = {};
-    this.gainAbilityMap = {};
+    this.cooldownAbilityMap = {};
     this.mobGainsEffectMap = {};
     this.mobLosesEffectMap = {};
 
     const propToMapMap = {
       gainEffect: this.gainEffectMap,
       loseEffect: this.loseEffectMap,
-      gainAbility: this.gainAbilityMap,
+      cooldownAbility: this.cooldownAbilityMap,
       mobGainsEffect: this.mobGainsEffectMap,
       mobLosesEffect: this.mobLosesEffectMap,
     } as const;
@@ -703,7 +617,7 @@ export class BuffTracker {
   }
 
   onUseAbility(id: string, matches: MatchesAbility): void {
-    const buffs = this.gainAbilityMap[id];
+    const buffs = this.cooldownAbilityMap[id];
     if (!buffs)
       return;
 
@@ -711,7 +625,7 @@ export class BuffTracker {
       if (b.partyonly && !this.partyTracker.inParty(matches?.source ?? ''))
         return;
 
-      this.onBigBuff(b.name, b.durationSeconds, b, matches?.source);
+      this.onBigBuff(b.name, b.durationSeconds, b, matches?.source, 'cooldown');
     }
   }
 
@@ -730,7 +644,9 @@ export class BuffTracker {
       if ('stack' in b && b.stack !== parseInt(matches?.count ?? '0'))
         return;
 
-      this.onBigBuff(b.name, seconds, b, matches?.source);
+      this.onBigBuff(b.name, seconds, b, matches?.source, 'active');
+      // some cooldown cannot be handled by action, so also cooldown them here.
+      this.onBigBuff(b.name, seconds, b, matches?.source, 'cooldown');
     }
   }
 
@@ -760,7 +676,7 @@ export class BuffTracker {
     this.onLoseEffect(this.mobLosesEffectMap[name], matches);
   }
 
-  onBigBuff(name: string, seconds = 0, info: BuffInfo, source = ''): void {
+  onBigBuff(name: string, seconds = 0, info: BuffInfo, source = '', option: 'active' | 'cooldown'): void {
     if (seconds <= 0)
       return;
 
@@ -781,7 +697,10 @@ export class BuffTracker {
         existingBuff.clearCooldown(source);
     }
 
-    buff?.onGain(seconds, source);
+    if (option === 'active')
+      buff?.onGain(seconds);
+    else if (option === 'cooldown')
+      buff?.onCooldown(seconds, source);
   }
 
   onLoseBigBuff(name: string): void {
