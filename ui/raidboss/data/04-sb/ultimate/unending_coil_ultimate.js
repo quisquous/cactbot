@@ -18,7 +18,7 @@ export default {
       // It's tough to track who this is on, especially for the first one.
       // Both tanks should care about the tankbuster because they can throw
       // mitigation on the other, so just always play this for both tanks.
-      conditions: Conditions.caresAboutPhysical(),
+      condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
   ],
