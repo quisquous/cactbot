@@ -252,6 +252,14 @@ export class BuffTracker {
         borderColor: '#e0cb5c',
         sortKey: 0,
       },
+      astralAttenuationFire: {
+        mobGainsEffect: EffectId.AstralAttenuation,
+        mobLosesEffect: EffectId.AstralAttenuation,
+        useEffectDuration: true,
+        icon: '../../resources/ffxiv/status/fire.png',
+        borderColor: '#9a2222',
+        sortKey: 0,
+      },
       umbralAttenuationEarth: {
         mobGainsEffect: EffectId.UmbralAttenuation,
         mobLosesEffect: EffectId.UmbralAttenuation,
@@ -266,6 +274,14 @@ export class BuffTracker {
         useEffectDuration: true,
         icon: '../../resources/ffxiv/status/water.png',
         borderColor: '#4d8bc9',
+        sortKey: 0,
+      },
+      umbralAttenuationIce: {
+        mobGainsEffect: EffectId.UmbralAttenuation,
+        mobLosesEffect: EffectId.UmbralAttenuation,
+        useEffectDuration: true,
+        icon: '../../resources/ffxiv/status/ice.png',
+        borderColor: '#37ccee',
         sortKey: 0,
       },
       physicalAttenuation: {
