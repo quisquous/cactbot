@@ -521,7 +521,7 @@ export class BuffTracker {
         sortKey: 9,
         cooldown: 120,
       },
-      righteye: { // bug(unknown)
+      righteye: {
         gainEffect: EffectId.RightEye,
         loseEffect: EffectId.RightEye,
         useEffectDuration: true,
