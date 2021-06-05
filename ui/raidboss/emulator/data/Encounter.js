@@ -115,8 +115,8 @@ export default class Encounter {
     const repo = new LogRepository();
     const converter = new NetworkLogConverter();
     this.logLines = converter.convertLines(
-      this.logLines.map((l) => l.networkLine),
-      repo
+        this.logLines.map((l) => l.networkLine),
+        repo,
     );
     this.version = Encounter.encounterVersion;
     this.initialize();
