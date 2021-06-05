@@ -268,6 +268,14 @@ export class BuffTracker {
         borderColor: '#e0cb5c',
         sortKey: 0,
       },
+      astralAttenuationFire: {
+        mobGainsEffect: EffectId.AstralAttenuation,
+        mobLosesEffect: EffectId.AstralAttenuation,
+        useEffectDuration: true,
+        icon: '../../resources/ffxiv/status/fire.png',
+        borderColor: '#9a2222',
+        sortKey: 0,
+      },
       umbralAttenuationEarth: {
         mobGainsEffect: EffectId.UmbralAttenuation,
         mobLosesEffect: EffectId.UmbralAttenuation,
@@ -282,6 +290,14 @@ export class BuffTracker {
         useEffectDuration: true,
         icon: '../../resources/ffxiv/status/water.png',
         borderColor: '#4d8bc9',
+        sortKey: 0,
+      },
+      umbralAttenuationIce: {
+        mobGainsEffect: EffectId.UmbralAttenuation,
+        mobLosesEffect: EffectId.UmbralAttenuation,
+        useEffectDuration: true,
+        icon: '../../resources/ffxiv/status/ice.png',
+        borderColor: '#37ccee',
         sortKey: 0,
       },
       physicalAttenuation: {
@@ -345,6 +361,7 @@ export class BuffTracker {
         gainEffect: EffectId.Embolden,
         loseEffect: EffectId.Embolden,
         useEffectDuration: true,
+        durationSeconds: 20 + 1, // for self tracing use, not actual time
         partyonly: true,
         stack: 5,
         icon: '../../resources/ffxiv/status/embolden.png',
@@ -504,7 +521,7 @@ export class BuffTracker {
         sortKey: 9,
         cooldown: 120,
       },
-      righteye: {
+      righteye: { // bug(unknown)
         gainEffect: EffectId.RightEye,
         loseEffect: EffectId.RightEye,
         useEffectDuration: true,
@@ -526,7 +543,7 @@ export class BuffTracker {
         sortKey: 11,
         cooldown: 90,
       },
-      devotion: {
+      devotion: { // bug(miss: pet not in party)
         cooldownAbility: kAbility.Devotion,
         gainEffect: EffectId.Devotion,
         loseEffect: EffectId.Devotion,
@@ -622,10 +639,17 @@ export class BuffTracker {
       return;
 
     for (const b of buffs) {
-      if (b.partyonly && !this.partyTracker.inParty(matches?.source ?? ''))
-        return;
+      if (b.partyonly && !this.partyTracker.inParty(matches?.source ?? '')) {
+        // when solo, you are not inParty.
+        if (matches?.source !== this.playerName)
+          return;
+      }
 
-      this.onBigBuff(b.name, b, matches?.source, 'cooldown');
+      let seconds = 0;
+      if (b.durationSeconds)
+        seconds = b.durationSeconds;
+
+      this.onBigBuff(b.name, seconds, b, matches?.source, 'cooldown');
     }
   }
 
@@ -644,9 +668,9 @@ export class BuffTracker {
       if ('stack' in b && b.stack !== parseInt(matches?.count ?? '0'))
         return;
 
-      this.onBigBuff(b.name, b, matches?.source, 'active', seconds);
+      this.onBigBuff(b.name, seconds, b, matches?.source, 'active');
       // some cooldown cannot be handled by action, so also cooldown them here.
-      this.onBigBuff(b.name, b, matches?.source, 'cooldown', seconds);
+      this.onBigBuff(b.name, seconds, b, matches?.source, 'cooldown');
     }
   }
 
@@ -676,7 +700,7 @@ export class BuffTracker {
     this.onLoseEffect(this.mobLosesEffectMap[name], matches);
   }
 
-  onBigBuff(name: string, info: BuffInfo, source = '', option: 'active' | 'cooldown', seconds = 0): void {
+  onBigBuff(name: string, seconds = 0, info: BuffInfo, source = '', option: 'active' | 'cooldown'): void {
     let list = this.rightBuffDiv;
     if (info.side === 'left' && this.leftBuffDiv)
       list = this.leftBuffDiv;
