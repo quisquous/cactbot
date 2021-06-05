@@ -182,19 +182,19 @@ export default class EmulatedPartyInfo extends EventBus {
     if (State === undefined)
       return;
 
-    const hpProg = (State.HP / State.maxHP) * 100;
-    let hpLabel = State.HP + '/' + State.maxHP;
-    hpLabel = EmulatorCommon.spacePadLeft(hpLabel, (State.maxHP.toString().length * 2) + 1);
-    this.displayedParty[id].$hpProgElem.ariaValueNow = State.HP;
-    this.displayedParty[id].$hpProgElem.ariaValueMax = State.maxHP;
+    const hpProg = (State.hp / State.maxHp) * 100;
+    let hpLabel = State.hp + '/' + State.maxHp;
+    hpLabel = EmulatorCommon.spacePadLeft(hpLabel, (State.maxHp.toString().length * 2) + 1);
+    this.displayedParty[id].$hpProgElem.ariaValueNow = State.hp;
+    this.displayedParty[id].$hpProgElem.ariaValueMax = State.maxHp;
     this.displayedParty[id].$hpProgElem.style.width = hpProg + '%';
     this.displayedParty[id].$hpLabelElem.textContent = hpLabel;
 
-    const mpProg = (State.MP / State.maxMP) * 100;
-    let mpLabel = State.MP + '/' + State.maxMP;
-    mpLabel = EmulatorCommon.spacePadLeft(mpLabel, (State.maxMP.toString().length * 2) + 1);
-    this.displayedParty[id].$mpProgElem.ariaValueNow = State.MP;
-    this.displayedParty[id].$mpProgElem.ariaValueMax = State.maxMP;
+    const mpProg = (State.mp / State.maxMp) * 100;
+    let mpLabel = State.mp + '/' + State.maxMp;
+    mpLabel = EmulatorCommon.spacePadLeft(mpLabel, (State.maxMp.toString().length * 2) + 1);
+    this.displayedParty[id].$mpProgElem.ariaValueNow = State.mp;
+    this.displayedParty[id].$mpProgElem.ariaValueMax = State.maxMp;
     this.displayedParty[id].$mpProgElem.style.width = mpProg + '%';
     this.displayedParty[id].$mpLabelElem.textContent = mpLabel;
   }

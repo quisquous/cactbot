@@ -1,18 +1,6 @@
-export interface ICombatantState {
-  posX?: number;
-  posY?: number;
-  posZ?: number;
-  heading?: number;
-  targetable?: boolean;
-  HP?: number;
-  maxHP?: number;
-  MP?: number;
-  maxMP?: number;
-}
-
 // Member names taken from OverlayPlugin's MiniParse.cs
 // Types taken from FFXIV parser plugin
-export interface IPluginState {
+export interface PluginState {
   CurrentWorldID?: number;
   WorldID?: number;
   WorldName?: string;
@@ -35,54 +23,54 @@ export interface IPluginState {
   Heading: number;
 }
 
-export default class CombatantState implements ICombatantState {
+export default class CombatantState {
   posX: number;
   posY: number;
   posZ: number;
   heading: number;
   targetable: boolean;
-  HP: number;
-  maxHP: number;
-  MP: number;
-  maxMP: number;
+  hp: number;
+  maxHp: number;
+  mp: number;
+  maxMp: number;
 
   constructor(posX: number, posY: number, posZ: number, heading: number,
       targetable: boolean,
-      HP: number, maxHP: number, MP: number, maxMP: number) {
+      hp: number, maxHp: number, mp: number, maxMp: number) {
     this.posX = posX;
     this.posY = posY;
     this.posZ = posZ;
     this.heading = heading;
     this.targetable = targetable;
-    this.HP = HP;
-    this.maxHP = maxHP;
-    this.MP = MP;
-    this.maxMP = maxMP;
+    this.hp = hp;
+    this.maxHp = maxHp;
+    this.mp = mp;
+    this.maxMp = maxMp;
   }
 
-  partialClone(props: ICombatantState): CombatantState {
+  partialClone(props: Partial<CombatantState>): CombatantState {
     return new CombatantState(
         props.posX ?? this.posX,
         props.posY ?? this.posY,
         props.posZ ?? this.posZ,
         props.heading ?? this.heading,
         props.targetable ?? this.targetable,
-        props.HP ?? this.HP,
-        props.maxHP ?? this.maxHP,
-        props.MP ?? this.MP,
-        props.maxMP ?? this.maxMP);
+        props.hp ?? this.hp,
+        props.maxHp ?? this.maxHp,
+        props.mp ?? this.mp,
+        props.maxMp ?? this.maxMp);
   }
 
-  toPluginState(): IPluginState {
+  toPluginState(): PluginState {
     return {
       PosX: this.posX,
       PosY: this.posY,
       PosZ: this.posZ,
       Heading: this.heading,
-      CurrentHP: this.HP,
-      MaxHP: this.maxHP,
-      CurrentMP: this.MP,
-      MaxMP: this.maxMP,
+      CurrentHP: this.hp,
+      MaxHP: this.maxHp,
+      CurrentMP: this.mp,
+      MaxMP: this.maxMp,
     };
   }
 }
