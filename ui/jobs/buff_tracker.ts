@@ -543,7 +543,11 @@ export class BuffTracker {
         sortKey: 11,
         cooldown: 90,
       },
-      devotion: { // bug(miss: pet not in party)
+      devotion: {
+        // FIXME: pet is not be considered as inParty, so cannot trace it if missing you.
+        // By the way, pet can delay using devotion after been ordered
+        // and if you order it to continue moving, it can greatly delay upto 30s,
+        // so it may not be accurate.
         cooldownAbility: kAbility.Devotion,
         gainEffect: EffectId.Devotion,
         loseEffect: EffectId.Devotion,
