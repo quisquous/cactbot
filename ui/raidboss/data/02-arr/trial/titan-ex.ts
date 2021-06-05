@@ -38,7 +38,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TitanEx Gaoler Adds',
       regex: /Gaoler Adds/,
       beforeSeconds: 1,
-      infoText: (_data, _matches, output) => output.text?.(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Gaoler Adds',
@@ -54,7 +54,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TitanEx Double Weight',
       regex: /Weight Of The Land 1/,
       beforeSeconds: 4,
-      infoText: (_data, _matches, output) => output.text?.(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Double Weight',
@@ -75,11 +75,11 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 1,
       alertText: (data, matches: MatchesTether, output) => {
         if (matches.source === data.me || matches.target === data.me)
-          return output.jailOnYou?.();
+          return output.jailOnYou!();
       },
       infoText: (data, matches: MatchesTether, output) => {
         if (matches.source !== data.me && matches.target !== data.me)
-          return output.jails?.();
+          return output.jails!();
       },
       outputStrings: {
         jailOnYou: {
