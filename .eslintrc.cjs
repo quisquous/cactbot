@@ -33,8 +33,8 @@ module.exports = {
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
       ],
       'rules': {
-        '@typescript-eslint/no-non-null-assertion': 2,
-        '@typescript-eslint/no-explicit-any': 2,
+        '@typescript-eslint/no-non-null-assertion': 'error',
+        '@typescript-eslint/no-explicit-any': 'error',
         '@typescript-eslint/member-delimiter-style': ['error', {
           'multiline': {
             'delimiter': 'semi',
@@ -56,6 +56,7 @@ module.exports = {
             objectLiteralTypeAssertions: 'never',
           },
         ],
+        '@typescript-eslint/object-curly-spacing': ['error', 'always'],
       },
     },
     {
