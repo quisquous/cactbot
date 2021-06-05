@@ -241,11 +241,14 @@ export class PopupText {
     if (this.options.IsRemoteRaidboss) {
       this.ttsEngine = new BrowserTTSEngine(this.displayLang);
       this.ttsSay = (text) => {
-        this.ttsEngine.play(text);
+        this.ttsEngine.play(this.options.TransformTts(text));
       };
     } else {
-      this.ttsSay = function(text) {
-        const cmd = { 'call': 'cactbotSay', 'text': text };
+      this.ttsSay = (text) => {
+        const cmd = {
+          'call': 'cactbotSay',
+          'text': this.options.TransformTts(text),
+        };
         callOverlayHandler(cmd);
       };
     }
