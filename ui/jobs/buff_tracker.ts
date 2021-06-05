@@ -104,6 +104,12 @@ export class Buff {
     const readyKey = 'r:' + this.name + ':' + source;
     this.ready[source] = this.makeAura(readyKey, this.readyList, -1, 0,
         this.readySortKeyBase, color, txt, 0.6);
+
+    // if a readied raidbuff not be used in 3min, we can assume that
+    // this player has left the battlefield, or at least his raidbuff is unexpectable.
+    setTimeout(() => {
+      this.ready[source]?.removeCallback();
+    }, 3 * 60 * 1000);
   }
 
   makeAura(
