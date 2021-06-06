@@ -1,56 +1,78 @@
 import CombatantTracker from './CombatantTracker';
-import LogEventHandler from './LogEventHandler';
 import PetNamesByLang from '../../../../resources/pet_names';
 import EmulatorCommon from '../EmulatorCommon';
 import LogRepository from './network_log_converter/LogRepository';
 import NetworkLogConverter from './NetworkLogConverter';
+import { Lang } from 'types/global';
+import LineEvent, { isLineEventSource, isLineEventTarget } from './network_log_converter/LineEvent';
+import { UnreachableCode } from '../../../../resources/not_reached';
 
-const isPetName = (name, language = undefined) => {
+const isPetName = (name: string, language: Lang | undefined = undefined) => {
   if (language)
     return PetNamesByLang[language].includes(name);
 
   for (const lang in PetNamesByLang) {
-    if (PetNamesByLang[lang].includes(name))
+    if (PetNamesByLang[lang as Lang].includes(name))
       return true;
   }
 
   return false;
 };
 
+const validTimestamp = (timestamp: number) => {
+  return timestamp > 0 && timestamp < Number.MAX_SAFE_INTEGER;
+};
+
 export default class Encounter {
-  constructor(encounterDay, encounterZoneId, encounterZoneName, logLines) {
+  private static readonly encounterVersion = 1;
+  public id?: number;
+  version: number;
+  initialOffset = Number.MAX_SAFE_INTEGER;
+  endStatus = 'Unknown';
+  startStatus: string = 'Unknown';
+  private engageAt = Number.MAX_SAFE_INTEGER;
+  private firstPlayerAbility = Number.MAX_SAFE_INTEGER;
+  private firstEnemyAbility = Number.MAX_SAFE_INTEGER;
+  firstLineIndex = 0;
+  combatantTracker?: CombatantTracker;
+  startTimestamp = 0;
+  endTimestamp = 0;
+  duration = 0;
+  playbackOffset: number = 0;
+  language: Lang = 'en';
+
+  constructor(
+    public encounterDay: string,
+    public encounterZoneId: string,
+    public encounterZoneName: string,
+    public logLines: LineEvent[]) {
     this.version = Encounter.encounterVersion;
-    this.id = null;
-    this.encounterZoneId = encounterZoneId;
-    this.encounterZoneName = encounterZoneName;
-    this.encounterDay = encounterDay;
-    this.logLines = logLines;
   }
 
   initialize() {
-    this.initialOffset = Number.MAX_SAFE_INTEGER;
-    this.endStatus = 'Unknown';
-    this.startStatus = new Set();
-    this.engageAt = Number.MAX_SAFE_INTEGER;
-    this.firstPlayerAbility = Number.MAX_SAFE_INTEGER;
-    this.firstEnemyAbility = Number.MAX_SAFE_INTEGER;
-
-    this.firstLineIndex = 0;
+    const startStatuses = new Set<string>();
 
     for (let i = 0; i < this.logLines.length; ++i) {
       const line = this.logLines[i];
+      if (!line)
+        throw new UnreachableCode();
+
       let res = EmulatorCommon.matchStart(line.networkLine);
       if (res) {
         this.firstLineIndex = i;
-        this.startStatus.add(res.groups.StartType);
-        const startIn = parseInt(res.groups.StartIn);
-        if (startIn >= 0)
-          this.engageAt = Math.min(line.timestamp + startIn, this.engageAt);
+        if (res.groups?.StartType)
+          startStatuses.add(res.groups.StartType);
+        if (res.groups?.StartIn) {
+          const startIn = parseInt(res.groups.StartIn);
+          if (startIn >= 0)
+            this.engageAt = Math.min(line.timestamp + startIn, this.engageAt);
+        }
       } else {
         res = EmulatorCommon.matchEnd(line.networkLine);
         if (res) {
-          this.endStatus = res.groups.EndType;
-        } else if (line.id && line.targetId) {
+          if (res.groups?.EndType)
+            this.endStatus = res.groups.EndType;
+        } else if (isLineEventSource(line) && isLineEventTarget(line)) {
           if (line.id.startsWith('1') ||
             (line.id.startsWith('4') && isPetName(line.name, this.language))) {
             // Player or pet ability
@@ -68,19 +90,8 @@ export default class Encounter {
         }
       }
       if (res && res.groups && res.groups.language)
-        this.language = res.groups.language || this.language;
+        this.language = res.groups.language as Lang || this.language;
     }
-
-    this.language = this.language || 'en';
-
-    if (this.firstPlayerAbility === Number.MAX_SAFE_INTEGER)
-      this.firstPlayerAbility = null;
-
-    if (this.firstEnemyAbility === Number.MAX_SAFE_INTEGER)
-      this.firstEnemyAbility = null;
-
-    if (this.engageAt === Number.MAX_SAFE_INTEGER)
-      this.engageAt = null;
 
     this.combatantTracker = new CombatantTracker(this.logLines, this.language);
     this.startTimestamp = this.combatantTracker.firstTimestamp;
@@ -88,26 +99,29 @@ export default class Encounter {
     this.duration = this.endTimestamp - this.startTimestamp;
 
     if (this.initialOffset === Number.MAX_SAFE_INTEGER) {
-      if (this.engageAt !== null)
+      if (this.engageAt < Number.MAX_SAFE_INTEGER)
         this.initialOffset = this.engageAt - this.startTimestamp;
-      else if (this.firstPlayerAbility !== null)
+      else if (this.firstPlayerAbility < Number.MAX_SAFE_INTEGER)
         this.initialOffset = this.firstPlayerAbility - this.startTimestamp;
-      else if (this.firstEnemyAbility !== null)
+      else if (this.firstEnemyAbility < Number.MAX_SAFE_INTEGER)
         this.initialOffset = this.firstEnemyAbility - this.startTimestamp;
       else
         this.initialOffset = 0;
     }
 
-    this.playbackOffset = this.logLines[this.firstLineIndex].offset;
+    const firstLine = this.logLines[this.firstLineIndex];
 
-    this.startStatus = [...this.startStatus].sort().join(', ');
+    if (firstLine && firstLine.offset)
+      this.playbackOffset = firstLine.offset;
+
+    this.startStatus = [...startStatuses].sort().join(', ');
   }
 
   shouldPersistFight() {
-    return this.firstPlayerAbility > 0 && this.firstEnemyAbility > 0;
+    return validTimestamp(this.firstPlayerAbility) && validTimestamp(this.firstEnemyAbility);
   }
 
-  upgrade(version) {
+  upgrade(version: number) {
     if (Encounter.encounterVersion <= version)
       return false;
 
@@ -123,5 +137,3 @@ export default class Encounter {
     return true;
   }
 }
-
-Encounter.encounterVersion = 1;

@@ -21,9 +21,9 @@ export default class RaidEmulatorTimeline extends Timeline {
       return;
 
     // This is a bit complicated due to jumps in timelines. If we've already got a timebase,
-    // fightNow needs to be calculated based off of that instead of engageAt
+    // fightNow needs to be calculated based off of that instead of initialOffset
     // timebase = 0 when not set
-    const baseTimestamp = this.timebase || this.emulator.currentEncounter.encounter.engageAt;
+    const baseTimestamp = this.timebase || this.emulator.currentEncounter.encounter.initialOffset;
     const fightNow = (currentLogTime - baseTimestamp) / 1000;
 
     this.SyncTo(fightNow, currentLogTime);
