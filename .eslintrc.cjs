@@ -8,72 +8,14 @@ const rulesDirPlugin = require('eslint-plugin-rulesdir');
 rulesDirPlugin.RULES_DIR = path.join(__dirname, 'eslint');
 
 module.exports = {
-  'root': true,
-  'parserOptions': {
-    'ecmaVersion': 2020,
-    'sourceType': 'module',
+  'env': {
+    'browser': true,
+    'es6': true,
   },
-  'overrides': [
-    {
-      'files': ['*.cjs'],
-      'parserOptions': {
-        'sourceType': 'script',
-      },
-    },
-    {
-      'files': ['*.ts'],
-      'parser': '@typescript-eslint/parser',
-      'plugins': ['@typescript-eslint', 'prefer-arrow'],
-      'parserOptions': {
-        'tsconfigRootDir': __dirname,
-        'project': ['./tsconfig.json'],
-      },
-      'extends': [
-        'plugin:@typescript-eslint/recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
-      ],
-      'rules': {
-        '@typescript-eslint/no-non-null-assertion': 'error',
-        '@typescript-eslint/no-explicit-any': 'error',
-        '@typescript-eslint/member-delimiter-style': ['error', {
-          'multiline': {
-            'delimiter': 'semi',
-            'requireLast': true,
-          },
-          'singleline': {
-            'delimiter': 'semi',
-            'requireLast': false,
-          },
-        }],
-        '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_\\w+' }],
-        'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
-        'object-shorthand': ['error', 'consistent'],
-        '@typescript-eslint/method-signature-style': ['error', 'property'],
-        '@typescript-eslint/explicit-module-boundary-types': ['error', { 'allowHigherOrderFunctions': false }],
-        '@typescript-eslint/consistent-type-assertions': [
-          'error', {
-            assertionStyle: 'as',
-            objectLiteralTypeAssertions: 'never',
-          },
-        ],
-        '@typescript-eslint/object-curly-spacing': ['error', 'always'],
-      },
-    },
-    {
-      'files': ['**/oopsyraidsy/data/**/*', '**/raidboss/data/**/*'],
-      'rules': {
-        'no-unused-vars': ['error', { 'args': 'all', 'argsIgnorePattern': '^_\\w+' }],
-        'prefer-arrow/prefer-arrow-functions': 'warn',
-        'rulesdir/cactbot-matches-type-references': 'error',
-        'rulesdir/cactbot-output-strings': 'error',
-        // Only meant to be used for `output` parameters!
-        '@typescript-eslint/no-non-null-assertion': 'off',
-        'rulesdir/cactbot-timeline-triggers': 'error',
-        'rulesdir/cactbot-response-default-severities': 'error',
-        // Raidboss data files always export a trigger set, and explicit types are noisy.
-        '@typescript-eslint/explicit-module-boundary-types': 'off',
-      },
-    },
+  'extends': [
+    'eslint:recommended',
+    'google',
+    'plugin:import/errors',
   ],
   'ignorePatterns': [
     // Do not ignore dot files.  /o\
@@ -86,37 +28,90 @@ module.exports = {
     'resources/lib/',
     'ui/dps/rdmty/',
   ],
-  'env': {
-    'browser': true,
-    'es6': true,
-  },
-  'extends': [
-    'eslint:recommended',
-    'google',
-    'plugin:import/errors',
+  'overrides': [
+    {
+      'files': ['*.cjs'],
+      'parserOptions': {
+        'sourceType': 'script',
+      },
+    },
+    {
+      'files': ['.eslintrc.cjs'],
+      'rules': {
+        'sort-keys': ['warn', 'asc', { caseSensitive: false, natural: true }],
+      },
+    },
+    {
+      'extends': [
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+      ],
+      'files': ['*.ts'],
+      'parser': '@typescript-eslint/parser',
+      'parserOptions': {
+        'project': ['./tsconfig.json'],
+        'tsconfigRootDir': __dirname,
+      },
+      'plugins': ['@typescript-eslint', 'prefer-arrow'],
+      'rules': {
+        '@typescript-eslint/consistent-type-assertions': [
+          'error', {
+            assertionStyle: 'as',
+            objectLiteralTypeAssertions: 'never',
+          },
+        ],
+        '@typescript-eslint/explicit-module-boundary-types': ['error', { 'allowHigherOrderFunctions': false }],
+        '@typescript-eslint/member-delimiter-style': ['error', {
+          'multiline': {
+            'delimiter': 'semi',
+            'requireLast': true,
+          },
+          'singleline': {
+            'delimiter': 'semi',
+            'requireLast': false,
+          },
+        }],
+        '@typescript-eslint/method-signature-style': ['error', 'property'],
+        '@typescript-eslint/no-explicit-any': 'error',
+        '@typescript-eslint/no-non-null-assertion': 'error',
+        '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_\\w+' }],
+        '@typescript-eslint/object-curly-spacing': ['error', 'always'],
+        'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
+        'object-shorthand': ['error', 'consistent'],
+      },
+    },
+    {
+      'files': ['**/oopsyraidsy/data/**/*', '**/raidboss/data/**/*'],
+      'rules': {
+        'no-unused-vars': ['error', { 'args': 'all', 'argsIgnorePattern': '^_\\w+' }],
+        'prefer-arrow/prefer-arrow-functions': 'warn',
+        'rulesdir/cactbot-matches-type-references': 'error',
+        'rulesdir/cactbot-output-strings': 'error',
+        'rulesdir/cactbot-timeline-triggers': 'error',
+        'rulesdir/cactbot-response-default-severities': 'error',
+        'rulesdir/cactbot-timeline-triggers': 'error',
+        // Raidboss data files always export a trigger set, and explicit types are noisy.
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        // Only meant to be used for `output` parameters!
+        '@typescript-eslint/no-non-null-assertion': 'off',
+      },
+    },
   ],
+  'parserOptions': {
+    'ecmaVersion': 2020,
+    'sourceType': 'module',
+  },
   'plugins': [
     'import',
     'rulesdir',
   ],
-  'settings': {
-    'import/resolver': {
-      'node': {
-        'extensions': ['.d.ts', '.ts', '.js'],
-      },
-      'typescript': {
-        'alwaysTryTypes': true,
-        'project': './tsconfig.json',
-      },
-    },
-  },
+  'root': true,
   'rules': {
-    'no-sequences': 'error',
     'arrow-spacing': [
       'error',
       {
-        'before': true,
         'after': true,
+        'before': true,
       },
     ],
     'camelcase': [
@@ -194,6 +189,7 @@ module.exports = {
     'no-else-return': 'error',
     'no-eval': 'error',
     'no-implied-eval': 'error',
+    'no-sequences': 'error',
     'no-undef': 'off',
     'no-unused-vars': 'off',
     'no-useless-escape': 'off',
@@ -228,6 +224,10 @@ module.exports = {
       },
     ],
     'require-jsdoc': 'off',
+    'rulesdir/cactbot-locale-order': [
+      'warn',
+      ['en', 'de', 'fr', 'ja', 'cn', 'ko'],
+    ],
     'space-in-parens': [
       'error',
       'never',
@@ -236,8 +236,8 @@ module.exports = {
     'space-unary-ops': [
       'error',
       {
-        'words': true,
         'nonwords': false,
+        'words': true,
       },
     ],
     'strict': [
@@ -250,9 +250,16 @@ module.exports = {
       'never',
     ],
     'valid-jsdoc': 'off',
-    'rulesdir/cactbot-locale-order': [
-      'warn',
-      ['en', 'de', 'fr', 'ja', 'cn', 'ko'],
-    ],
+  },
+  'settings': {
+    'import/resolver': {
+      'node': {
+        'extensions': ['.d.ts', '.ts', '.js'],
+      },
+      'typescript': {
+        'alwaysTryTypes': true,
+        'project': './tsconfig.json',
+      },
+    },
   },
 };
