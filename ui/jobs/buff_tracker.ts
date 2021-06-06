@@ -590,7 +590,7 @@ export class BuffTracker {
 
         const map = propToMapMap[prop];
         if (Array.isArray(key)) {
-          key.forEach((k) => map[k] ? map[k]?.push(buff) : [buff]);
+          key.forEach((k) => map[k] = [buff, ...map[k] ?? []]);
         } else {
           map[key] = map[key] || [];
           map[key]?.push(buff);
