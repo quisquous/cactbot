@@ -94,33 +94,35 @@ export default class AnalyzedEncounter extends EventBus {
       zoneID: parseInt(this.encounter.encounterZoneId, 16),
     });
 
-    timelineController.activeTimeline.SetTrigger(async (trigger, matches) => {
-      // Some async magic here, force waiting for the entirety of
-      // the trigger execution before continuing
-      const delayPromise = new Promise((res) => {
-        popupText.delayResolver = res;
+    if (timelineController.activeTimeline) {
+      timelineController.activeTimeline.SetTrigger(async (trigger, matches) => {
+        // Some async magic here, force waiting for the entirety of
+        // the trigger execution before continuing
+        const delayPromise = new Promise((res) => {
+          popupText.delayResolver = res;
+        });
+        const promisePromise = new Promise((res) => {
+          popupText.promiseResolver = res;
+        });
+        const runPromise = new Promise((res) => {
+          popupText.runResolver = res;
+        });
+
+        const currentLine = this.encounter.logLines[currentLogIndex];
+
+        popupText.OnTrigger(trigger, matches, currentLine.timestamp);
+
+        await delayPromise;
+        await promisePromise;
+        const triggerHelper = await runPromise;
+
+        triggerHelper.resolver.status.finalData = EmulatorCommon.cloneData(popupText.data);
+
+        popupText.callback(
+            currentLine,
+            triggerHelper, triggerHelper.resolver.status);
       });
-      const promisePromise = new Promise((res) => {
-        popupText.promiseResolver = res;
-      });
-      const runPromise = new Promise((res) => {
-        popupText.runResolver = res;
-      });
-
-      const currentLine = this.encounter.logLines[currentLogIndex];
-
-      popupText.OnTrigger(trigger, matches, currentLine.timestamp);
-
-      await delayPromise;
-      await promisePromise;
-      const triggerHelper = await runPromise;
-
-      triggerHelper.resolver.status.finalData = EmulatorCommon.cloneData(popupText.data);
-
-      popupText.callback(
-          currentLine,
-          triggerHelper, triggerHelper.resolver.status);
-    });
+    }
 
     popupText.callback = (log, triggerHelper, currentTriggerStatus, finalData) => {
       this.perspectives[ID].triggers.push({
