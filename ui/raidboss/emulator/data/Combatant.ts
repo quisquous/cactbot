@@ -1,3 +1,4 @@
+import { UnreachableCode } from '../../../../resources/not_reached';
 import CombatantState from './CombatantState';
 
 export default class Combatant {
@@ -48,24 +49,22 @@ export default class Combatant {
     // Shortcut out if this is significant or if there's no higher significant state
     const index = this.significantStates.indexOf(timestamp);
     const lastSignificantStateIndex = this.significantStates.length - 1;
-    // This is a bit ugly but despite checking that the state exists in the `if` conditions,
-    // typescript doesn't infer that these indexed values exist.
-    if (index >= 0 && index < lastSignificantStateIndex) {
-      const nextStateIndex = this.significantStates[index + 1] as number;
-      return this.states[nextStateIndex] as CombatantState;
-    } else if (index === lastSignificantStateIndex ||
-        timestamp > (this.significantStates[lastSignificantStateIndex] ?? 0)) {
-      const nextStateIndex = this.significantStates[lastSignificantStateIndex] as number;
-      return this.states[nextStateIndex] as CombatantState;
-    }
+    // If timestamp is a significant state already, and it's not the last one, return the next
+    if (index >= 0 && index < lastSignificantStateIndex)
+      return this.getStateByIndex(index + 1);
+    // If timestamp is the last significant state or the timestamp is past the last significant
+    // state, return the last significant state
+    else if (index === lastSignificantStateIndex ||
+        timestamp > (this.significantStates[lastSignificantStateIndex] ?? 0))
+      return this.getStateByIndex(lastSignificantStateIndex);
 
     for (let i = 0; i < this.significantStates.length; ++i) {
-      if (this.significantStates[i] as number > timestamp)
-        return this.states[this.significantStates[i] as number] as CombatantState;
+      const stateIndex = this.significantStates[i];
+      if (stateIndex && stateIndex > timestamp)
+        return this.getStateByIndex(i);
     }
 
-    const nextState = this.significantStates[this.significantStates.length - 1] as number;
-    return this.states[nextState] as CombatantState;
+    return this.getStateByIndex(this.significantStates.length - 1);
   }
 
   pushPartialState(timestamp: number, props: Partial<CombatantState>): void {
@@ -73,35 +72,63 @@ export default class Combatant {
       // Clone the last state before this timestamp
       const stateTimestamp = this.significantStates
         .filter((s) => s < timestamp)
-        .sort((a, b) => b - a)[0] ?? this.significantStates[0] as number;
-      this.states[timestamp] = (this.states[stateTimestamp] as CombatantState).partialClone(props);
+        .sort((a, b) => b - a)[0] ?? this.significantStates[0];
+      if (stateTimestamp === undefined)
+        throw new UnreachableCode();
+      const state = this.states[stateTimestamp];
+      if (!state)
+        throw new UnreachableCode();
+      this.states[timestamp] = state.partialClone(props);
     } else {
-      this.states[timestamp] = (this.states[timestamp] as CombatantState).partialClone(props);
+      const state = this.states[timestamp];
+      if (!state)
+        throw new UnreachableCode();
+      this.states[timestamp] = state.partialClone(props);
     }
     this.latestTimestamp = Math.max(this.latestTimestamp, timestamp);
 
-    const lastSignificantStatetimestamp =
-      this.significantStates[this.significantStates.length - 1] as number;
-    const oldStateJSON = JSON.stringify(this.states[lastSignificantStatetimestamp]);
+    const lastSignificantStateTimestamp =
+      this.significantStates[this.significantStates.length - 1];
+    if (!lastSignificantStateTimestamp)
+      throw new UnreachableCode();
+    const oldStateJSON = JSON.stringify(this.states[lastSignificantStateTimestamp]);
     const newStateJSON = JSON.stringify(this.states[timestamp]);
 
-    if (lastSignificantStatetimestamp !== timestamp && newStateJSON !== oldStateJSON)
+    if (lastSignificantStateTimestamp !== timestamp && newStateJSON !== oldStateJSON)
       this.significantStates.push(timestamp);
   }
 
   getState(timestamp: number): CombatantState {
-    if (this.states[timestamp] !== undefined)
-      return this.states[timestamp] as CombatantState;
+    const stateByTimestamp = this.states[timestamp];
+    if (stateByTimestamp)
+      return stateByTimestamp;
 
-    if (timestamp < (this.significantStates[0] as number))
-      return this.states[this.significantStates[0] as number] as CombatantState;
+    const initialTimestamp = this.significantStates[0];
+    if (initialTimestamp === undefined)
+      throw new UnreachableCode();
+    if (timestamp < initialTimestamp)
+      return this.getStateByIndex(0);
 
     let i = 0;
     for (; i < this.significantStates.length; ++i) {
-      if ((this.significantStates[i] as number) > timestamp)
-        return this.states[this.significantStates[i - 1] as number] as CombatantState;
+      const prevTimestamp = this.significantStates[i];
+      if (prevTimestamp === undefined)
+        throw new UnreachableCode();
+      if (prevTimestamp > timestamp)
+        return this.getStateByIndex(i - 1);
     }
 
-    return this.states[this.significantStates[i - 1] as number] as CombatantState;
+    return this.getStateByIndex(i - 1);
+  }
+
+  // Should only be called when `index` is valid.
+  private getStateByIndex(index: number): CombatantState {
+    const stateIndex = this.significantStates[index];
+    if (stateIndex === undefined)
+      throw new UnreachableCode();
+    const state = this.states[stateIndex];
+    if (state === undefined)
+      throw new UnreachableCode();
+    return state;
   }
 }

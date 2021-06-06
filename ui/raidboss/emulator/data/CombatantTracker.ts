@@ -101,7 +101,7 @@ export default class CombatantTracker {
   }
 
   addCombatantFromLine(line: LineEventSource): void {
-    this.initCombatant(line.id, line.name);
+    const combatant = this.initCombatant(line.id, line.name);
     const initState = this.initialStates[line.id] ?? {};
 
     const extractedState = this.extractStateFromLine(line) ?? {};
@@ -115,8 +115,6 @@ export default class CombatantTracker {
     initState.maxHp = initState.maxHp ?? extractedState.maxHp;
     initState.mp = initState.mp ?? extractedState.mp;
     initState.maxMp = initState.maxMp ?? extractedState.maxMp;
-
-    const combatant = this.combatants[line.id] as Combatant;
 
     if (isLineEventJobLevel(line)) {
       combatant.job = this.combatants[line.id]?.job ?? line.job;
@@ -196,16 +194,18 @@ export default class CombatantTracker {
     return state;
   }
 
-  initCombatant(ID: string, name: string): void {
-    if (this.combatants[ID] === undefined) {
-      this.combatants[ID] = new Combatant(ID, name);
-      this.others.push(ID);
-      this.initialStates[ID] = {
+  initCombatant(id: string, name: string): Combatant {
+    let combatant = this.combatants[id];
+    if (combatant === undefined) {
+      combatant = this.combatants[id] = new Combatant(id, name);
+      this.others.push(id);
+      this.initialStates[id] = {
         targetable: true,
       };
-    } else if (this.combatants[ID]?.name === '') {
-      (this.combatants[ID] as Combatant).name = name;
+    } else if (combatant.name === '') {
+      combatant.setName(name);
     }
+    return combatant;
   }
 
   getMainCombatantName(): string {
