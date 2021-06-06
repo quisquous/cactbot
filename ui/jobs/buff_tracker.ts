@@ -694,10 +694,8 @@ export class BuffTracker {
       list = this.leftBuffDiv;
 
     let buff = this.buffs[name];
-    if (!buff) {
-      this.buffs[name] = new Buff(name, info, list, this.options);
-      buff = this.buffs[name];
-    }
+    if (!buff)
+      buff = this.buffs[name] = new Buff(name, info, list, this.options);
 
     const shareList = info.sharesCooldownWith || [];
     for (const share of shareList) {
@@ -707,9 +705,9 @@ export class BuffTracker {
     }
 
     if (option === 'active' && seconds > 0)
-      buff?.onGain(seconds);
+      buff.onGain(seconds);
     else if (option === 'cooldown')
-      buff?.onCooldown(seconds, source);
+      buff.onCooldown(seconds, source);
   }
 
   onLoseBigBuff(name: string): void {
