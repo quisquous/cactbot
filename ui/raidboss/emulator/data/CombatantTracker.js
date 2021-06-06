@@ -168,7 +168,7 @@ export default class CombatantTracker {
     if (line.mp !== undefined)
       state.mp = line.mp;
     if (line.maxMp !== undefined)
-      state.maxMP = line.maxMp;
+      state.maxMp = line.maxMp;
 
     return state;
   }
