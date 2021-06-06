@@ -7379,7 +7379,7 @@ const data: ZoneInfoType = {
     'exVersion': 3,
     'name': {
       'de': 'Traumprüfung - Leviathan',
-      'en': 'The Whorleater (Unreal)',
+      'en': 'The <Emphasis>Whorleater</Emphasis> (Unreal)',
       'fr': 'Le Briseur de marées (irréel)',
       'ja': '幻リヴァイアサン討滅戦',
     },
