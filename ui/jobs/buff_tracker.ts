@@ -25,7 +25,7 @@ export interface BuffInfo {
   sharesCooldownWith?: string[];
   hide?: boolean;
   stack?: number;
-  partyonly?: boolean;
+  partyOnly?: boolean;
 }
 
 export interface Aura {
@@ -330,7 +330,7 @@ export class BuffTracker {
         gainEffect: EffectId.BattleLitany,
         loseEffect: EffectId.BattleLitany,
         useEffectDuration: true,
-        partyonly: true,
+        partyOnly: true,
         icon: '../../resources/ffxiv/status/battle-litany.png',
         // Cyan.
         borderColor: '#099',
@@ -346,7 +346,7 @@ export class BuffTracker {
         loseEffect: EffectId.Embolden,
         useEffectDuration: true,
         durationSeconds: 20 + 1, // for self tracing use, not actual time
-        partyonly: true,
+        partyOnly: true,
         stack: 5,
         icon: '../../resources/ffxiv/status/embolden.png',
         // Lime.
@@ -465,7 +465,7 @@ export class BuffTracker {
         gainEffect: EffectId.TechnicalFinish,
         loseEffect: EffectId.TechnicalFinish,
         useEffectDuration: true,
-        partyonly: true,
+        partyOnly: true,
         icon: '../../resources/ffxiv/status/technical-finish.png',
         // Dark Peach.
         borderColor: '#E0757C',
@@ -477,7 +477,7 @@ export class BuffTracker {
         gainEffect: EffectId.BattleVoice,
         loseEffect: EffectId.BattleVoice,
         useEffectDuration: true,
-        partyonly: true,
+        partyOnly: true,
         icon: '../../resources/ffxiv/status/battlevoice.png',
         // Red.
         borderColor: '#D6371E',
@@ -520,7 +520,7 @@ export class BuffTracker {
         gainEffect: EffectId.Brotherhood,
         loseEffect: EffectId.Brotherhood,
         useEffectDuration: true,
-        partyonly: true,
+        partyOnly: true,
         icon: '../../resources/ffxiv/status/brotherhood.png',
         // Dark Orange.
         borderColor: '#994200',
@@ -536,7 +536,7 @@ export class BuffTracker {
         gainEffect: EffectId.Devotion,
         loseEffect: EffectId.Devotion,
         useEffectDuration: true,
-        partyonly: true,
+        partyOnly: true,
         icon: '../../resources/ffxiv/status/devotion.png',
         // Yellow.
         borderColor: '#ffbf00',
@@ -548,7 +548,7 @@ export class BuffTracker {
         gainEffect: EffectId.Divination,
         loseEffect: EffectId.Divination,
         useEffectDuration: true,
-        partyonly: true,
+        partyOnly: true,
         icon: '../../resources/ffxiv/status/divination.png',
         // Dark purple.
         borderColor: '#5C1F58',
@@ -627,7 +627,7 @@ export class BuffTracker {
       return;
 
     for (const b of buffs) {
-      if (b.partyonly && !this.partyTracker.inParty(matches?.source ?? '')) {
+      if (b.partyOnly && !this.partyTracker.inParty(matches?.source ?? '')) {
         // when solo, you are not inParty.
         if (matches?.source !== this.playerName)
           return;
