@@ -528,7 +528,7 @@ export class BuffTracker {
         cooldown: 90,
       },
       devotion: {
-        // FIXME: pet is not be considered as inParty, so cannot trace it if missing you.
+        // FIXME: pet is not considered inParty, so this cannot track it if it misses you.
         // By the way, pet can delay using devotion after been ordered
         // and if you order it to continue moving, it can greatly delay upto 30s,
         // so it may not be accurate.
