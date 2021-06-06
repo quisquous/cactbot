@@ -43,10 +43,10 @@ export default class CombatantTracker {
           Number(state.posZ),
           Number(state.heading),
           state.targetable,
-          Number(state.HP),
-          Number(state.maxHP),
-          Number(state.MP),
-          Number(state.maxMP),
+          Number(state.hp),
+          Number(state.maxHp),
+          Number(state.mp),
+          Number(state.maxMp),
       ));
     }
 
@@ -107,10 +107,10 @@ export default class CombatantTracker {
     initState.posZ = initState.posZ || extractedState.posZ || null;
     initState.heading = initState.heading || extractedState.heading || null;
     initState.targetable = initState.targetable || extractedState.targetable || false;
-    initState.HP = initState.HP || extractedState.HP || null;
-    initState.maxHP = initState.maxHP || extractedState.maxHP || null;
-    initState.MP = initState.MP || extractedState.MP || null;
-    initState.maxMP = initState.maxMP || extractedState.maxMP || null;
+    initState.hp = initState.hp || extractedState.hp || null;
+    initState.maxHp = initState.maxHp || extractedState.maxHp || null;
+    initState.mp = initState.mp || extractedState.mp || null;
+    initState.maxMp = initState.maxMp || extractedState.maxMp || null;
 
     if (isLineEventJobLevel(line)) {
       this.combatants[line.id].job = this.combatants[line.id].job || line.job;
@@ -139,10 +139,10 @@ export default class CombatantTracker {
     initState.posY = initState.posY || extractedState.posY || null;
     initState.posZ = initState.posZ || extractedState.posZ || null;
     initState.heading = initState.heading || extractedState.heading || null;
-    initState.HP = initState.HP || extractedState.HP || null;
-    initState.maxHP = initState.maxHP || extractedState.maxHP || null;
-    initState.MP = initState.MP || extractedState.MP || null;
-    initState.maxMP = initState.maxMP || extractedState.maxMP || null;
+    initState.hp = initState.hp || extractedState.hp || null;
+    initState.maxHp = initState.maxHp || extractedState.maxHp || null;
+    initState.mp = initState.mp || extractedState.mp || null;
+    initState.maxMp = initState.maxMp || extractedState.maxMp || null;
   }
 
   extractStateFromLine(line) {
@@ -162,13 +162,13 @@ export default class CombatantTracker {
     if (line.targetable !== undefined)
       state.targetable = line.targetable;
     if (line.hp !== undefined)
-      state.HP = line.hp;
+      state.hp = line.hp;
     if (line.maxHp !== undefined)
-      state.maxHP = line.maxHp;
+      state.maxHp = line.maxHp;
     if (line.mp !== undefined)
-      state.MP = line.mp;
+      state.mp = line.mp;
     if (line.maxMp !== undefined)
-      state.maxMP = line.maxMp;
+      state.maxMp = line.maxMp;
 
     return state;
   }
@@ -188,13 +188,13 @@ export default class CombatantTracker {
     if (line.targetHeading !== undefined)
       state.heading = line.targetHeading;
     if (line.targetHp !== undefined)
-      state.HP = line.targetHp;
+      state.hp = line.targetHp;
     if (line.targetMaxHp !== undefined)
-      state.maxHP = line.targetMaxHp;
+      state.maxHp = line.targetMaxHp;
     if (line.targetMp !== undefined)
-      state.MP = line.targetMp;
+      state.mp = line.targetMp;
     if (line.targetMaxMp !== undefined)
-      state.maxMP = line.targetMaxMp;
+      state.maxMp = line.targetMaxMp;
 
     return state;
   }
@@ -210,10 +210,10 @@ export default class CombatantTracker {
         posZ: null,
         heading: null,
         targetable: true,
-        HP: null,
-        maxHP: null,
-        MP: null,
-        maxMP: null,
+        hp: null,
+        maxHp: null,
+        mp: null,
+        maxMp: null,
       };
     } else if (this.combatants[ID].name === '') {
       this.combatants[ID].name = name;
