@@ -25,7 +25,6 @@ export default class Encounter {
     this.encounterZoneName = encounterZoneName;
     this.encounterDay = encounterDay;
     this.logLines = logLines;
-    this.initialize();
   }
 
   initialize() {
