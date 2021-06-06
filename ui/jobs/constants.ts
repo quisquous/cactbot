@@ -198,6 +198,7 @@ export const kAbility = {
   TripleTechnicalFinish: '3F43',
   DoubleTechnicalFinish: '3F42',
   SingleTechnicalFinish: '3F41',
+  TechnicalFinish: '3E84',
   StandardStep: '3E7D',
   TechnicalStep: '3E7E',
   Flourish: '3E8D',

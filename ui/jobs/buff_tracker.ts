@@ -10,9 +10,9 @@ import { makeAuraTimerIcon } from './utils';
 
 export interface BuffInfo {
   name: string;
-  cooldownAbility?: string;
-  gainEffect?: string;
-  loseEffect?: string;
+  cooldownAbility?: string[];
+  gainEffect?: string[];
+  loseEffect?: string[];
   mobGainsEffect?: string;
   mobLosesEffect?: string;
   durationSeconds?: number;
@@ -244,8 +244,8 @@ export class BuffTracker {
 
     this.buffInfo = {
       potion: {
-        gainEffect: EffectId.Medicated,
-        loseEffect: EffectId.Medicated,
+        gainEffect: [EffectId.Medicated],
+        loseEffect: [EffectId.Medicated],
         useEffectDuration: true,
         icon: '../../resources/ffxiv/status/potion.png',
         borderColor: '#AA41B2',
@@ -293,7 +293,7 @@ export class BuffTracker {
         sortKey: 0,
       },
       offguard: {
-        cooldownAbility: kAbility.OffGuard,
+        cooldownAbility: [kAbility.OffGuard],
         mobGainsEffect: EffectId.OffGuard,
         mobLosesEffect: EffectId.OffGuard,
         useEffectDuration: true,
@@ -304,7 +304,7 @@ export class BuffTracker {
         sharesCooldownWith: ['peculiar'],
       },
       peculiar: {
-        cooldownAbility: kAbility.PeculiarLight,
+        cooldownAbility: [kAbility.PeculiarLight],
         mobGainsEffect: EffectId.PeculiarLight,
         mobLosesEffect: EffectId.PeculiarLight,
         useEffectDuration: true,
@@ -315,7 +315,7 @@ export class BuffTracker {
         sharesCooldownWith: ['offguard'],
       },
       trick: {
-        cooldownAbility: kAbility.TrickAttack,
+        cooldownAbility: [kAbility.TrickAttack],
         mobGainsEffect: EffectId.VulnerabilityUp,
         mobLosesEffect: EffectId.VulnerabilityUp,
         useEffectDuration: true,
@@ -326,9 +326,9 @@ export class BuffTracker {
         cooldown: 60,
       },
       litany: {
-        cooldownAbility: kAbility.BattleLitany,
-        gainEffect: EffectId.BattleLitany,
-        loseEffect: EffectId.BattleLitany,
+        cooldownAbility: [kAbility.BattleLitany],
+        gainEffect: [EffectId.BattleLitany],
+        loseEffect: [EffectId.BattleLitany],
         useEffectDuration: true,
         partyOnly: true,
         icon: '../../resources/ffxiv/status/battle-litany.png',
@@ -341,9 +341,9 @@ export class BuffTracker {
         // On each embolden stack changes,
         // there will be a gain effect log with a wrong duration (always 20).
         // So using stack to identify the first log.
-        cooldownAbility: kAbility.Embolden,
-        gainEffect: EffectId.Embolden,
-        loseEffect: EffectId.Embolden,
+        cooldownAbility: [kAbility.Embolden],
+        gainEffect: [EffectId.Embolden, EffectId.EmboldenSelf],
+        loseEffect: [EffectId.Embolden, EffectId.EmboldenSelf],
         useEffectDuration: true,
         durationSeconds: 20 + 1, // for self tracking use, not actual time
         partyOnly: true,
@@ -354,21 +354,9 @@ export class BuffTracker {
         sortKey: 3,
         cooldown: 120,
       },
-      emboldenself: {
-        // RDM himself gains a different buff.
-        // This makes RDM himself can also see the embolden buff.
-        gainEffect: EffectId.EmboldenSelf,
-        loseEffect: EffectId.EmboldenSelf,
-        useEffectDuration: true,
-        stack: 5,
-        icon: '../../resources/ffxiv/status/embolden.png',
-        // Lime.
-        borderColor: '#57FC4A',
-        sortKey: 3,
-      },
       arrow: {
-        gainEffect: EffectId.TheArrow,
-        loseEffect: EffectId.TheArrow,
+        gainEffect: [EffectId.TheArrow],
+        loseEffect: [EffectId.TheArrow],
         useEffectDuration: true,
         icon: '../../resources/ffxiv/status/arrow.png',
         // Light Blue.
@@ -376,8 +364,8 @@ export class BuffTracker {
         sortKey: 4,
       },
       balance: {
-        gainEffect: EffectId.TheBalance,
-        loseEffect: EffectId.TheBalance,
+        gainEffect: [EffectId.TheBalance],
+        loseEffect: [EffectId.TheBalance],
         useEffectDuration: true,
         icon: '../../resources/ffxiv/status/balance.png',
         // Orange.
@@ -385,8 +373,8 @@ export class BuffTracker {
         sortKey: 4,
       },
       bole: {
-        gainEffect: EffectId.TheBole,
-        loseEffect: EffectId.TheBole,
+        gainEffect: [EffectId.TheBole],
+        loseEffect: [EffectId.TheBole],
         useEffectDuration: true,
         icon: '../../resources/ffxiv/status/bole.png',
         // Green.
@@ -394,8 +382,8 @@ export class BuffTracker {
         sortKey: 4,
       },
       ewer: {
-        gainEffect: EffectId.TheEwer,
-        loseEffect: EffectId.TheEwer,
+        gainEffect: [EffectId.TheEwer],
+        loseEffect: [EffectId.TheEwer],
         useEffectDuration: true,
         icon: '../../resources/ffxiv/status/ewer.png',
         // Light Blue.
@@ -403,8 +391,8 @@ export class BuffTracker {
         sortKey: 4,
       },
       spear: {
-        gainEffect: EffectId.TheSpear,
-        loseEffect: EffectId.TheSpear,
+        gainEffect: [EffectId.TheSpear],
+        loseEffect: [EffectId.TheSpear],
         useEffectDuration: true,
         icon: '../../resources/ffxiv/status/spear.png',
         // Dark Blue.
@@ -412,8 +400,8 @@ export class BuffTracker {
         sortKey: 4,
       },
       spire: {
-        gainEffect: EffectId.TheSpire,
-        loseEffect: EffectId.TheSpire,
+        gainEffect: [EffectId.TheSpire],
+        loseEffect: [EffectId.TheSpire],
         useEffectDuration: true,
         icon: '../../resources/ffxiv/status/spire.png',
         // Yellow.
@@ -421,8 +409,8 @@ export class BuffTracker {
         sortKey: 4,
       },
       ladyOfCrowns: {
-        gainEffect: EffectId.LadyOfCrowns,
-        loseEffect: EffectId.LadyOfCrowns,
+        gainEffect: [EffectId.LadyOfCrowns],
+        loseEffect: [EffectId.LadyOfCrowns],
         useEffectDuration: true,
         icon: '../../resources/ffxiv/status/lady-of-crowns.png',
         // Purple.
@@ -430,8 +418,8 @@ export class BuffTracker {
         sortKey: 4,
       },
       lordOfCrowns: {
-        gainEffect: EffectId.LordOfCrowns,
-        loseEffect: EffectId.LordOfCrowns,
+        gainEffect: [EffectId.LordOfCrowns],
+        loseEffect: [EffectId.LordOfCrowns],
         useEffectDuration: true,
         icon: '../../resources/ffxiv/status/lord-of-crowns.png',
         // Dark Red.
@@ -439,8 +427,8 @@ export class BuffTracker {
         sortKey: 4,
       },
       devilment: {
-        gainEffect: EffectId.Devilment,
-        loseEffect: EffectId.Devilment,
+        gainEffect: [EffectId.Devilment],
+        loseEffect: [EffectId.Devilment],
         useEffectDuration: true,
         icon: '../../resources/ffxiv/status/devilment.png',
         // Dark Green.
@@ -449,8 +437,8 @@ export class BuffTracker {
         cooldown: 120,
       },
       standardFinish: {
-        gainEffect: EffectId.StandardFinish,
-        loseEffect: EffectId.StandardFinish,
+        gainEffect: [EffectId.StandardFinish],
+        loseEffect: [EffectId.StandardFinish],
         useEffectDuration: true,
         icon: '../../resources/ffxiv/status/standard-finish.png',
         // Green.
@@ -458,12 +446,17 @@ export class BuffTracker {
         sortKey: 6,
       },
       technicalFinish: {
-        // Sorry, but 0-3 step Technical Finish will not trigger this if it misses you.
-        // and I think it meaningless to track a poor DNC
-        // who can perform 0-3 step Technical Finish and miss you at the same time.
-        cooldownAbility: kAbility.QuadrupleTechnicalFinish,
-        gainEffect: EffectId.TechnicalFinish,
-        loseEffect: EffectId.TechnicalFinish,
+        // This tracker may not be accurate.
+        // Technical Step cooldown when start dancing,
+        // but raidbuff take effects on finish.
+        cooldownAbility: [kAbility.QuadrupleTechnicalFinish,
+          kAbility.TripleTechnicalFinish,
+          kAbility.DoubleTechnicalFinish,
+          kAbility.SingleTechnicalFinish,
+          kAbility.TechnicalFinish,
+        ],
+        gainEffect: [EffectId.TechnicalFinish],
+        loseEffect: [EffectId.TechnicalFinish],
         useEffectDuration: true,
         partyOnly: true,
         icon: '../../resources/ffxiv/status/technical-finish.png',
@@ -473,9 +466,9 @@ export class BuffTracker {
         cooldown: 120,
       },
       battlevoice: {
-        cooldownAbility: kAbility.BattleVoice,
-        gainEffect: EffectId.BattleVoice,
-        loseEffect: EffectId.BattleVoice,
+        cooldownAbility: [kAbility.BattleVoice],
+        gainEffect: [EffectId.BattleVoice],
+        loseEffect: [EffectId.BattleVoice],
         useEffectDuration: true,
         partyOnly: true,
         icon: '../../resources/ffxiv/status/battlevoice.png',
@@ -485,7 +478,7 @@ export class BuffTracker {
         cooldown: 180,
       },
       chain: {
-        cooldownAbility: kAbility.ChainStratagem,
+        cooldownAbility: [kAbility.ChainStratagem],
         mobGainsEffect: EffectId.ChainStratagem,
         mobLosesEffect: EffectId.ChainStratagem,
         useEffectDuration: true,
@@ -496,8 +489,8 @@ export class BuffTracker {
         cooldown: 120,
       },
       lefteye: {
-        gainEffect: EffectId.LeftEye,
-        loseEffect: EffectId.LeftEye,
+        gainEffect: [EffectId.LeftEye],
+        loseEffect: [EffectId.LeftEye],
         useEffectDuration: true,
         icon: '../../resources/ffxiv/status/dragon-sight.png',
         // Orange.
@@ -506,8 +499,8 @@ export class BuffTracker {
         cooldown: 120,
       },
       righteye: {
-        gainEffect: EffectId.RightEye,
-        loseEffect: EffectId.RightEye,
+        gainEffect: [EffectId.RightEye],
+        loseEffect: [EffectId.RightEye],
         useEffectDuration: true,
         icon: '../../resources/ffxiv/status/dragon-sight.png',
         // Orange.
@@ -516,9 +509,9 @@ export class BuffTracker {
         cooldown: 120,
       },
       brotherhood: {
-        cooldownAbility: kAbility.Brotherhood,
-        gainEffect: EffectId.Brotherhood,
-        loseEffect: EffectId.Brotherhood,
+        cooldownAbility: [kAbility.Brotherhood],
+        gainEffect: [EffectId.Brotherhood],
+        loseEffect: [EffectId.Brotherhood],
         useEffectDuration: true,
         partyOnly: true,
         icon: '../../resources/ffxiv/status/brotherhood.png',
@@ -532,9 +525,9 @@ export class BuffTracker {
         // By the way, pet can delay using devotion after been ordered
         // and if you order it to continue moving, it can greatly delay up to 30s,
         // so it may not be accurate.
-        cooldownAbility: kAbility.Devotion,
-        gainEffect: EffectId.Devotion,
-        loseEffect: EffectId.Devotion,
+        cooldownAbility: [kAbility.Devotion],
+        gainEffect: [EffectId.Devotion],
+        loseEffect: [EffectId.Devotion],
         useEffectDuration: true,
         partyOnly: true,
         icon: '../../resources/ffxiv/status/devotion.png',
@@ -544,9 +537,9 @@ export class BuffTracker {
         cooldown: 180,
       },
       divination: {
-        cooldownAbility: kAbility.Divination,
-        gainEffect: EffectId.Divination,
-        loseEffect: EffectId.Divination,
+        cooldownAbility: [kAbility.Divination],
+        gainEffect: [EffectId.Divination],
+        loseEffect: [EffectId.Divination],
         useEffectDuration: true,
         partyOnly: true,
         icon: '../../resources/ffxiv/status/divination.png',
@@ -596,8 +589,12 @@ export class BuffTracker {
         }
 
         const map = propToMapMap[prop];
-        map[key] = map[key] || [];
-        map[key]?.push(buff);
+        if (Array.isArray(key)) {
+          key.forEach((k) => map[k] ? map[k]?.push(buff) : [buff]);
+        } else {
+          map[key] = map[key] || [];
+          map[key]?.push(buff);
+        }
       }
     }
 
