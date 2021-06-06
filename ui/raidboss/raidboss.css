@@ -1,3 +1,7 @@
+:root {
+  --transition-time: 500ms;
+}
+
 #popup-text-container {
   position: absolute;
   width: 100%;
@@ -88,6 +92,22 @@
   100% { transform: scale(1); }
 }
 
+.animate-timer-bar-removed {
+  animation: timer-bar-removed var(--transition-time);
+}
+
+@keyframes timer-bar-removed {
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+    height: 0;
+    margin-bottom: 0;
+  }
+}
+
 /* Show only when unlocked for move/resize. */
 .resize-helper {
   display: none;
@@ -117,13 +137,18 @@
   grid-auto-rows: 0;
   overflow-y: hidden;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-rows: repeat(6, min-content);
+  overflow: hidden;
 }
 
 .timer-bar {
   width: calc(100% - 2px);
   height: 18px;
   margin-bottom: 2;
+}
+
+.timeline-grid .timer-bar {
+  transition: all var(--transition-time);
 }
 
 .lang-ko .timer-bar {

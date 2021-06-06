@@ -883,7 +883,7 @@ export class TimelineUI {
 
     this.timerlist = document.getElementById('timeline');
     if (this.timerlist)
-      this.timerlist.style.gridTemplateRows = `repeat(${this.options.MaxNumberOfTimerBars}, 1fr)`;
+      this.timerlist.style.gridTemplateRows = `repeat(${this.options.MaxNumberOfTimerBars}, min-content)`;
 
     this.activeBars = {};
     this.expireTimers = {};
@@ -1019,10 +1019,24 @@ export class TimelineUI {
     }
 
     const bar = this.activeBars[e.id];
-    if (bar) {
-      const div = bar.parentNode;
+    if (!bar)
+      return;
+
+    const div = bar.parentNode;
+    const element = document.getElementById(e.id.toString());
+    if (!element)
+      return;
+
+    const removeBar = () => {
       div?.parentNode?.removeChild(div);
       delete this.activeBars[e.id];
+    };
+    element.classList.add('animate-timer-bar-removed');
+    if (window.getComputedStyle(element).animationName !== 'none') {
+      // Wait for animation to finish
+      element.addEventListener('animationend', removeBar);
+    } else {
+      removeBar();
     }
   }
 
