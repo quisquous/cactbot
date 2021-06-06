@@ -345,7 +345,6 @@ export class BuffTracker {
         gainEffect: [EffectId.Embolden, EffectId.EmboldenSelf],
         loseEffect: [EffectId.Embolden, EffectId.EmboldenSelf],
         useEffectDuration: true,
-        durationSeconds: 20 + 1, // for self tracking use, not actual time
         partyOnly: true,
         stack: 5,
         icon: '../../resources/ffxiv/status/embolden.png',
@@ -449,7 +448,8 @@ export class BuffTracker {
         // This tracker may not be accurate.
         // Technical Step cooldown when start dancing,
         // but raidbuff take effects on finish.
-        cooldownAbility: [kAbility.QuadrupleTechnicalFinish,
+        cooldownAbility: [
+          kAbility.QuadrupleTechnicalFinish,
           kAbility.TripleTechnicalFinish,
           kAbility.DoubleTechnicalFinish,
           kAbility.SingleTechnicalFinish,
