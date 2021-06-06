@@ -1,9 +1,15 @@
+import { RaidbossData as Data } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
 import Conditions from '../../../../../resources/conditions';
+import { MatchesTether } from '../../../../../resources/matches';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
-export default {
+export { RaidbossData as Data } from '../../../../../types/data';
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheNavelExtreme,
   timelineFile: 'titan-ex.txt',
   timelineTriggers: [
@@ -32,7 +38,7 @@ export default {
       id: 'TitanEx Gaoler Adds',
       regex: /Gaoler Adds/,
       beforeSeconds: 1,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Gaoler Adds',
@@ -48,7 +54,7 @@ export default {
       id: 'TitanEx Double Weight',
       regex: /Weight Of The Land 1/,
       beforeSeconds: 4,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Double Weight',
@@ -67,13 +73,13 @@ export default {
       id: 'TitanEx Rock Throw',
       netRegex: NetRegexes.tether({ id: '0007' }),
       suppressSeconds: 1,
-      alertText: (data, matches, output) => {
+      alertText: (data, matches: MatchesTether, output) => {
         if (matches.source === data.me || matches.target === data.me)
-          return output.jailOnYou();
+          return output.jailOnYou!();
       },
-      infoText: (data, matches, output) => {
+      infoText: (data, matches: MatchesTether, output) => {
         if (matches.source !== data.me && matches.target !== data.me)
-          return output.jails();
+          return output.jails!();
       },
       outputStrings: {
         jailOnYou: {
@@ -255,3 +261,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
