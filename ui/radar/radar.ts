@@ -11,6 +11,9 @@ import UserConfig from '../../resources/user_config';
 
 import './radar_config';
 
+import '../../resources/defaults.css';
+import './radar.css';
+
 type RadarType = 'mob' | 'any';
 
 // TODO: how to avoid copying these from ./radar_config?

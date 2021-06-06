@@ -5,6 +5,9 @@ import Regexes from '../../resources/regexes';
 import UserConfig from '../../resources/user_config';
 import ZoneId from '../../resources/zone_id';
 
+import '../../resources/defaults.css';
+import './pullcounter.css';
+
 const Options = {
   Language: 'en',
 };

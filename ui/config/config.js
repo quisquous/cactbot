@@ -12,6 +12,9 @@ import '../oopsyraidsy/oopsyraidsy_config';
 import '../radar/radar_config';
 import '../raidboss/raidboss_config';
 
+import '../../resources/defaults.css';
+import './config.css';
+
 const Options = {};
 let gConfig = null;
 

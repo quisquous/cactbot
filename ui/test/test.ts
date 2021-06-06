@@ -1,5 +1,7 @@
 import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
 
+import '../../resources/defaults.css';
+
 addOverlayListener('ChangeZone', (e) => {
   const currentZone = document.getElementById('currentZone');
   if (currentZone)
