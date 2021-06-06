@@ -14,6 +14,7 @@ const github = require('@actions/github');
 const babelParser = require('recast/parsers/babel');
 const { HttpClient } = require('@actions/http-client');
 
+const validLanguages = ['cn', 'de', 'ja', 'fr', 'ko'];
 const langToLabel = (lang) => `💬${lang}`;
 
 // Only the first match applies.
@@ -155,7 +156,7 @@ const getChangedFiles = async (github, identifier) => {
  */
 const parseChangedLang = (patch) => {
   const set = new Set();
-  for (const lang of ['cn', 'de', 'ja', 'fr', 'ko']) {
+  for (const lang of validLanguages) {
     const pattern = new RegExp(String.raw`^\+\s*(?:${lang}|'${lang}'): `);
     for (const line of patch.split('\n')) {
       if (pattern.test(line)) {
@@ -206,6 +207,8 @@ const getTimelineReplaceChanges = (changedFiles) => {
       const from = getTimelineReplace(file.from) || {};
       const to = getTimelineReplace(file.to) || {};
       for (const lang of lodash.uniq([...Object.keys(from), ...Object.keys(to)])) {
+        if (!validLanguages.includes(lang))
+          continue;
         if (!lodash.isEqual(from[lang], to[lang])) {
           console.log(`label: ${lang} [timelineReplace] (${file.filename})`);
           s.add(lang);
