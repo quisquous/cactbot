@@ -356,7 +356,7 @@ export class BuffTracker {
       },
       emboldenself: {
         // RDM himself gains a different buff.
-        // This makes RDM himself can also trace embolden.
+        // This makes RDM himself can also see the embolden buff.
         gainEffect: EffectId.EmboldenSelf,
         loseEffect: EffectId.EmboldenSelf,
         useEffectDuration: true,
