@@ -29,7 +29,7 @@ export default class Encounter {
   version: number;
   initialOffset = Number.MAX_SAFE_INTEGER;
   endStatus = 'Unknown';
-  startStatus: string = 'Unknown';
+  startStatus = 'Unknown';
   private engageAt = Number.MAX_SAFE_INTEGER;
   private firstPlayerAbility = Number.MAX_SAFE_INTEGER;
   private firstEnemyAbility = Number.MAX_SAFE_INTEGER;
@@ -38,7 +38,7 @@ export default class Encounter {
   startTimestamp = 0;
   endTimestamp = 0;
   duration = 0;
-  playbackOffset: number = 0;
+  playbackOffset = 0;
   language: Lang = 'en';
 
   constructor(
@@ -49,7 +49,7 @@ export default class Encounter {
     this.version = Encounter.encounterVersion;
   }
 
-  initialize() {
+  initialize(): void {
     const startStatuses = new Set<string>();
 
     for (let i = 0; i < this.logLines.length; ++i) {
@@ -117,11 +117,11 @@ export default class Encounter {
     this.startStatus = [...startStatuses].sort().join(', ');
   }
 
-  shouldPersistFight() {
+  shouldPersistFight(): boolean {
     return validTimestamp(this.firstPlayerAbility) && validTimestamp(this.firstEnemyAbility);
   }
 
-  upgrade(version: number) {
+  upgrade(version: number): boolean {
     if (Encounter.encounterVersion <= version)
       return false;
 
