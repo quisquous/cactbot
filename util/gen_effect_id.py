@@ -21,7 +21,7 @@ _EFFECTS_OUTPUT_FILE = "effect_id.ts"
 known_mapping = {
     "Thundercloud": "164",
     "Battle Litany": "786",
-    "Right Eye": "1453",
+    "Right Eye": "1910",
     "Left Eye": "1454",
     "Meditative Brotherhood": "1182",
     "Brotherhood": "1185",
