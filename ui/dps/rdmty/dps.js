@@ -1,6 +1,9 @@
 import { InitDpsModule, Options } from '../dps_common';
 import UserConfig from '../../../resources/user_config';
 
+import '../../../resources/defaults.css';
+import './dps.css';
+
 // fiddle: http://jsfiddle.net/v1ddnsvh/8/
 /* global window */
 

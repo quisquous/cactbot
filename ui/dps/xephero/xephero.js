@@ -4,6 +4,9 @@ import DpsPhaseTracker from './dps_phase_tracker';
 import { InitDpsModule, Options } from '../dps_common';
 import UserConfig from '../../../resources/user_config';
 
+import '../../../resources/defaults.css';
+import './xephero.css';
+
 const rows = 10;
 let rdpsMax = 0;
 

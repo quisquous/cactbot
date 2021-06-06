@@ -24,6 +24,9 @@ import NetworkLogConverterWorker from './emulator/data/NetworkLogConverterWorker
 
 import Options from './raidboss_options';
 
+import '../../resources/defaults.css';
+import './raidemulator.css';
+
 (() => {
   let emulator;
   let progressBar;
