@@ -97,7 +97,11 @@
 }
 
 @keyframes timer-bar-removed {
-  to {
+  50% {
+    opacity: 0;
+  }
+
+  100% {
     opacity: 0;
     height: 0;
     margin-bottom: 0;
