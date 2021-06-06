@@ -24,7 +24,7 @@ export default class PartyTracker {
   roleToPartyNames_: Record<Role, string[]> = emptyRoleToPartyNames();
 
   // Bind this to PartyChanged events.
-  onPartyChanged(e: { party: Party[]}): void {
+  onPartyChanged(e: { party: Party[] }): void {
     if (!e || !e.party)
       return;
 

@@ -12,6 +12,7 @@ onmessage = async (msg) => {
   // Listen for LogEventHandler to dispatch fights and persist them
   localLogHandler.on('fight', async (day, zoneId, zoneName, lines) => {
     const enc = new Encounter(day, zoneId, zoneName, lines);
+    enc.initialize();
     if (enc.shouldPersistFight()) {
       postMessage({
         type: 'encounter',

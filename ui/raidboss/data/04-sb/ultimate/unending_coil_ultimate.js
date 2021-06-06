@@ -14,11 +14,11 @@ export default {
       id: 'UCU Bahamut\'s Claw',
       regex: /Bahamut's Claw x5/,
       beforeSeconds: 5,
-      suppressSeconds: 1,
       // It's tough to track who this is on, especially for the first one.
       // Both tanks should care about the tankbuster because they can throw
       // mitigation on the other, so just always play this for both tanks.
-      conditions: Conditions.caresAboutPhysical(),
+      condition: Conditions.caresAboutPhysical(),
+      suppressSeconds: 1,
       response: Responses.tankBuster(),
     },
   ],

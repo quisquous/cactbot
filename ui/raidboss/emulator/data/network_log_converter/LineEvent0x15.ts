@@ -1,4 +1,4 @@
-import LineEvent from './LineEvent';
+import LineEvent, { LineEventAbility, LineEventSource, LineEventTarget } from './LineEvent';
 import LogRepository from './LogRepository';
 
 const fields = {
@@ -29,31 +29,35 @@ const fields = {
 } as const;
 
 // Ability hit single target event
-export class LineEvent0x15 extends LineEvent {
+export class LineEvent0x15 extends LineEvent
+  implements LineEventSource, LineEventTarget, LineEventAbility {
   public readonly damage: number;
   public readonly id: string;
   public readonly name: string;
-  public readonly abilityId: string;
+  public readonly abilityId: number;
   public readonly abilityName: string;
   public readonly targetId: string;
   public readonly targetName: string;
   public readonly flags: string;
-  public readonly targetHp: string;
-  public readonly targetMaxHp: string;
-  public readonly targetMp: string;
-  public readonly targetMaxMp: string;
-  public readonly targetX: string;
-  public readonly targetY: string;
-  public readonly targetZ: string;
-  public readonly targetHeading: string;
-  public readonly sourceHp: string;
-  public readonly sourceMaxHp: string;
-  public readonly sourceMp: string;
-  public readonly sourceMaxMp: string;
-  public readonly x: string;
-  public readonly y: string;
-  public readonly z: string;
-  public readonly heading: string;
+  public readonly targetHp: number;
+  public readonly targetMaxHp: number;
+  public readonly targetMp: number;
+  public readonly targetMaxMp: number;
+  public readonly targetX: number;
+  public readonly targetY: number;
+  public readonly targetZ: number;
+  public readonly targetHeading: number;
+  public readonly hp: number;
+  public readonly maxHp: number;
+  public readonly mp: number;
+  public readonly maxMp: number;
+  public readonly x: number;
+  public readonly y: number;
+  public readonly z: number;
+  public readonly heading: number;
+  public readonly isSource = true;
+  public readonly isTarget = true;
+  public readonly isAbility = true;
 
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
@@ -66,28 +70,28 @@ export class LineEvent0x15 extends LineEvent {
     const fieldOffset = this.flags === '3F' ? 2 : 0;
 
     this.damage = LineEvent.calculateDamage(parts[fields.damage + fieldOffset] ?? '');
-    this.abilityId = parts[fields.abilityId]?.toUpperCase() ?? '';
+    this.abilityId = parseInt(parts[fields.abilityId]?.toUpperCase() ?? '');
     this.abilityName = parts[fields.abilityName] ?? '';
     this.targetId = parts[fields.targetId]?.toUpperCase() ?? '';
     this.targetName = parts[fields.targetName] ?? '';
 
-    this.targetHp = parts[fields.targetHp + fieldOffset] ?? '';
-    this.targetMaxHp = parts[fields.targetMaxHp + fieldOffset] ?? '';
-    this.targetMp = parts[fields.targetMp + fieldOffset] ?? '';
-    this.targetMaxMp = parts[fields.targetMaxMp + fieldOffset] ?? '';
-    this.targetX = parts[fields.targetX + fieldOffset] ?? '';
-    this.targetY = parts[fields.targetY + fieldOffset] ?? '';
-    this.targetZ = parts[fields.targetZ + fieldOffset] ?? '';
-    this.targetHeading = parts[fields.targetHeading + fieldOffset] ?? '';
+    this.targetHp = parseInt(parts[fields.targetHp + fieldOffset] ?? '');
+    this.targetMaxHp = parseInt(parts[fields.targetMaxHp + fieldOffset] ?? '');
+    this.targetMp = parseInt(parts[fields.targetMp + fieldOffset] ?? '');
+    this.targetMaxMp = parseInt(parts[fields.targetMaxMp + fieldOffset] ?? '');
+    this.targetX = parseFloat(parts[fields.targetX + fieldOffset] ?? '');
+    this.targetY = parseFloat(parts[fields.targetY + fieldOffset] ?? '');
+    this.targetZ = parseFloat(parts[fields.targetZ + fieldOffset] ?? '');
+    this.targetHeading = parseFloat(parts[fields.targetHeading + fieldOffset] ?? '');
 
-    this.sourceHp = parts[fields.sourceHp + fieldOffset] ?? '';
-    this.sourceMaxHp = parts[fields.sourceMaxHp + fieldOffset] ?? '';
-    this.sourceMp = parts[fields.sourceMp + fieldOffset] ?? '';
-    this.sourceMaxMp = parts[fields.sourceMaxMp + fieldOffset] ?? '';
-    this.x = parts[fields.x + fieldOffset] ?? '';
-    this.y = parts[fields.y + fieldOffset] ?? '';
-    this.z = parts[fields.z + fieldOffset] ?? '';
-    this.heading = parts[fields.heading + fieldOffset] ?? '';
+    this.hp = parseInt(parts[fields.sourceHp + fieldOffset] ?? '');
+    this.maxHp = parseInt(parts[fields.sourceMaxHp + fieldOffset] ?? '');
+    this.mp = parseInt(parts[fields.sourceMp + fieldOffset] ?? '');
+    this.maxMp = parseInt(parts[fields.sourceMaxMp + fieldOffset] ?? '');
+    this.x = parseFloat(parts[fields.x + fieldOffset] ?? '');
+    this.y = parseFloat(parts[fields.y + fieldOffset] ?? '');
+    this.z = parseFloat(parts[fields.z + fieldOffset] ?? '');
+    this.heading = parseFloat(parts[fields.heading + fieldOffset] ?? '');
 
 
     repo.updateCombatant(this.id, {

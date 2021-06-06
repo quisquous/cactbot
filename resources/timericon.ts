@@ -395,3 +395,9 @@ export default class TimerIcon extends HTMLElement {
 }
 
 window.customElements.define('timer-icon', TimerIcon);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'timer-icon': TimerIcon;
+  }
+}

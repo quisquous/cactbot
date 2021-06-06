@@ -485,7 +485,7 @@ export default class TimerBar extends HTMLElement {
   }
 
   // Apply all styles from an object where keys are CSS properties
-  applyStyles(styles: { [s: string]: string}): void {
+  applyStyles(styles: { [s: string]: string }): void {
     const s = Object.keys(styles).map((k) => {
       return `${k}:${styles?.[k] ?? ''};`;
     }).join('');
@@ -550,3 +550,9 @@ export default class TimerBar extends HTMLElement {
 
 
 window.customElements.define('timer-bar', TimerBar);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'timer-bar': TimerBar;
+  }
+}

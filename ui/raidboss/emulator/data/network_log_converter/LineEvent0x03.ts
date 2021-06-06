@@ -1,4 +1,4 @@
-import LineEvent from './LineEvent';
+import LineEvent, { LineEventJobLevel, LineEventSource } from './LineEvent';
 import EmulatorCommon from '../../EmulatorCommon';
 import Util from '../../../../../resources/util';
 import LogRepository from './LogRepository';
@@ -26,12 +26,12 @@ const fields = {
 } as const;
 
 // Added combatant event
-export class LineEvent0x03 extends LineEvent {
+export class LineEvent0x03 extends LineEvent implements LineEventSource, LineEventJobLevel {
   public readonly id: string;
   public readonly name: string;
   public readonly jobIdHex: string;
-  public readonly jobIdDec: number;
-  public readonly jobName: string;
+  public readonly jobId: number;
+  public readonly job: string;
   public readonly levelString: string;
   public readonly level: number;
   public readonly ownerId: string;
@@ -39,13 +39,13 @@ export class LineEvent0x03 extends LineEvent {
   public readonly worldName: string;
   public readonly npcNameId: string;
   public readonly npcBaseId: string;
-  public readonly currentHp: number;
+  public readonly hp: number;
   public readonly maxHpString: string;
   public readonly maxHp: number;
-  public readonly currentMp: number;
+  public readonly mp: number;
   public readonly maxMpString: string;
   public readonly maxMp: number;
-  public readonly currentTp: number;
+  public readonly tp: number;
   public readonly maxTp: number;
   public readonly xString: string;
   public readonly x: number;
@@ -54,6 +54,8 @@ export class LineEvent0x03 extends LineEvent {
   public readonly zString: string;
   public readonly z: number;
   public readonly heading: number;
+  public readonly isSource = true;
+  public readonly isJobLevel = true;
 
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
@@ -61,8 +63,8 @@ export class LineEvent0x03 extends LineEvent {
     this.id = parts[fields.id]?.toUpperCase() ?? '';
     this.name = parts[fields.name] ?? '';
     this.jobIdHex = parts[fields.jobIdHex]?.toUpperCase() ?? '';
-    this.jobIdDec = parseInt(this.jobIdHex, 16);
-    this.jobName = Util.jobEnumToJob(this.jobIdDec);
+    this.jobId = parseInt(this.jobIdHex, 16);
+    this.job = Util.jobEnumToJob(this.jobId);
     this.levelString = parts[fields.levelString] ?? '';
     this.level = parseFloat(this.levelString);
     this.ownerId = parts[fields.ownerId]?.toUpperCase() ?? '';
@@ -70,13 +72,13 @@ export class LineEvent0x03 extends LineEvent {
     this.worldName = parts[fields.worldName] ?? '';
     this.npcNameId = parts[fields.npcNameId] ?? '';
     this.npcBaseId = parts[fields.npcBaseId] ?? '';
-    this.currentHp = parseFloat(parts[fields.currentHp] ?? '');
+    this.hp = parseFloat(parts[fields.currentHp] ?? '');
     this.maxHpString = parts[fields.maxHpString] ?? '';
     this.maxHp = parseFloat(this.maxHpString);
-    this.currentMp = parseFloat(parts[fields.currentMp] ?? '');
+    this.mp = parseFloat(parts[fields.currentMp] ?? '');
     this.maxMpString = parts[fields.maxMpString] ?? '';
     this.maxMp = parseFloat(this.maxMpString);
-    this.currentTp = parseFloat(parts[fields.currentTp] ?? '');
+    this.tp = parseFloat(parts[fields.currentTp] ?? '');
     this.maxTp = parseFloat(parts[fields.maxTp] ?? '');
     this.xString = parts[fields.xString] ?? '';
     this.x = parseFloat(this.xString);
@@ -99,7 +101,7 @@ export class LineEvent0x03 extends LineEvent {
 
     this.convertedLine = this.prefix() + this.id.toUpperCase() +
       ':Added new combatant ' + combatantName +
-      '.  Job: ' + this.jobName +
+      '.  Job: ' + this.job +
       ' Level: ' + this.levelString +
       ' Max HP: ' + this.maxHpString +
       ' Max MP: ' + this.maxMpString +

@@ -198,7 +198,7 @@ export const init = (): void => {
 
         ws.addEventListener('message', (_msg) => {
           try {
-            const msg = JSON.parse(_msg.data) as EventParameter & {rseq?: number};
+            const msg = JSON.parse(_msg.data) as EventParameter & { rseq?: number };
 
             if (msg.rseq !== undefined && responsePromises[msg.rseq]) {
               responsePromises[msg.rseq]?.(msg);

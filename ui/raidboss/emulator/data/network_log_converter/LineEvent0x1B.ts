@@ -1,4 +1,4 @@
-import LineEvent from './LineEvent';
+import LineEvent, { LineEventSource } from './LineEvent';
 import LogRepository from './LogRepository';
 
 const fields = {
@@ -8,16 +8,17 @@ const fields = {
 } as const;
 
 // Head marker event
-export class LineEvent0x1B extends LineEvent {
-  public readonly targetId: string;
-  public readonly targetName: string;
+export class LineEvent0x1B extends LineEvent implements LineEventSource {
+  public readonly id: string;
+  public readonly name: string;
   public readonly headmarkerId: string;
+  public readonly isSource = true;
 
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
 
-    this.targetId = parts[fields.targetId]?.toUpperCase() ?? '';
-    this.targetName = parts[fields.targetName] ?? '';
+    this.id = parts[fields.targetId]?.toUpperCase() ?? '';
+    this.name = parts[fields.targetName] ?? '';
     this.headmarkerId = parts[fields.headmarkerId] ?? '';
   }
 }

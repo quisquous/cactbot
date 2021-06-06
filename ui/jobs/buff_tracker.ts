@@ -104,6 +104,12 @@ export class Buff {
     const readyKey = 'r:' + this.name + ':' + source;
     this.ready[source] = this.makeAura(readyKey, this.readyList, -1, 0,
         this.readySortKeyBase, color, txt, 0.6);
+
+    // if a readied raidbuff not be used in 3min, we can assume that
+    // this player has left the battlefield, or at least his raidbuff is unexpectable.
+    setTimeout(() => {
+      this.ready[source]?.removeCallback();
+    }, 3 * 60 * 1000);
   }
 
   makeAura(
@@ -236,35 +242,19 @@ export class BuffTracker {
         sortKey: 0,
         cooldown: 270,
       },
-      astralAttenuationWind: {
+      astralAttenuation: {
         mobGainsEffect: EffectId.AstralAttenuation,
         mobLosesEffect: EffectId.AstralAttenuation,
         useEffectDuration: true,
-        icon: '../../resources/ffxiv/status/wind.png',
+        icon: '../../resources/ffxiv/status/astral.png',
         borderColor: '#9bdec0',
         sortKey: 0,
       },
-      astralAttenuationLightning: {
-        mobGainsEffect: EffectId.AstralAttenuation,
-        mobLosesEffect: EffectId.AstralAttenuation,
-        useEffectDuration: true,
-        icon: '../../resources/ffxiv/status/lightning.png',
-        borderColor: '#e0cb5c',
-        sortKey: 0,
-      },
-      umbralAttenuationEarth: {
+      umbralAttenuation: {
         mobGainsEffect: EffectId.UmbralAttenuation,
         mobLosesEffect: EffectId.UmbralAttenuation,
         useEffectDuration: true,
-        icon: '../../resources/ffxiv/status/earth.png',
-        borderColor: '#96855a',
-        sortKey: 0,
-      },
-      umbralAttenuationWater: {
-        mobGainsEffect: EffectId.UmbralAttenuation,
-        mobLosesEffect: EffectId.UmbralAttenuation,
-        useEffectDuration: true,
-        icon: '../../resources/ffxiv/status/water.png',
+        icon: '../../resources/ffxiv/status/umbral.png',
         borderColor: '#4d8bc9',
         sortKey: 0,
       },
