@@ -80,7 +80,7 @@ export class Buff {
     const cooldownKey = 'c:' + this.name + ':' + source;
 
     let secondsUntilShow = this.info.cooldown - this.options.BigBuffShowCooldownSeconds;
-    secondsUntilShow = Math.min(Math.max(effectSeconds, secondsUntilShow), this.info.cooldown);
+    secondsUntilShow = Math.min(Math.max(effectSeconds, secondsUntilShow, 1), this.info.cooldown);
     const showSeconds = this.info.cooldown - secondsUntilShow;
     const addReadyCallback = () => {
       this.addReady(source);
