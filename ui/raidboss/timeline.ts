@@ -1023,19 +1023,20 @@ export class TimelineUI {
       return;
 
     const div = bar.parentNode;
+    const element = document.getElementById(e.id.toString());
+    if (!element)
+      return;
+
     const removeBar = () => {
       div?.parentNode?.removeChild(div);
       delete this.activeBars[e.id];
     };
-    const element = document.getElementById(e.id.toString());
-    if (element) {
-      element.classList.add('animate-timer-bar-removed');
-      if (window.getComputedStyle(element).animationName !== 'none') {
-        // Wait for animation to finish
-        element.addEventListener('animationend', removeBar);
-      } else {
-        removeBar();
-      }
+    element.classList.add('animate-timer-bar-removed');
+    if (window.getComputedStyle(element).animationName !== 'none') {
+      // Wait for animation to finish
+      element.addEventListener('animationend', removeBar);
+    } else {
+      removeBar();
     }
   }
 
