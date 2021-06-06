@@ -345,7 +345,7 @@ export class BuffTracker {
         gainEffect: EffectId.Embolden,
         loseEffect: EffectId.Embolden,
         useEffectDuration: true,
-        durationSeconds: 20 + 1, // for self tracing use, not actual time
+        durationSeconds: 20 + 1, // for self tracking use, not actual time
         partyOnly: true,
         stack: 5,
         icon: '../../resources/ffxiv/status/embolden.png',
@@ -459,7 +459,7 @@ export class BuffTracker {
       },
       technicalFinish: {
         // Sorry, but 0-3 step Technical Finish will not trigger this if it misses you.
-        // and I think it meaningless to trace a poor DNC
+        // and I think it meaningless to track a poor DNC
         // who can perform 0-3 step Technical Finish and miss you at the same time.
         cooldownAbility: kAbility.QuadrupleTechnicalFinish,
         gainEffect: EffectId.TechnicalFinish,
