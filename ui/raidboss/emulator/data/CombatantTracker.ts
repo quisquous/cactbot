@@ -1,26 +1,31 @@
 import Combatant from './Combatant';
 import CombatantJobSearch from './CombatantJobSearch';
 import CombatantState from './CombatantState';
-import { isLineEventJobLevel, isLineEventAbility, isLineEventSource, isLineEventTarget } from './network_log_converter/LineEvent';
 import PetNamesByLang from '../../../../resources/pet_names';
+import LineEvent, { isLineEventJobLevel, isLineEventAbility, isLineEventSource, isLineEventTarget, LineEventSource, LineEventTarget } from './network_log_converter/LineEvent';
+import { Lang } from 'types/global';
 
 export default class CombatantTracker {
-  constructor(logLines, language) {
+  language: Lang;
+  firstTimestamp: number;
+  lastTimestamp: number;
+  combatants: { [id: string]: Combatant } = {};
+  partyMembers: string[] = [];
+  enemies: string[] = [];
+  others: string[] = [];
+  pets: string[] = [];
+  mainCombatantID?: string;
+  initialStates: { [id: string]: Partial<CombatantState> } = {};
+  constructor(logLines: LineEvent[], language: Lang) {
     this.language = language;
     this.firstTimestamp = Number.MAX_SAFE_INTEGER;
     this.lastTimestamp = 0;
-    this.combatants = {};
-    this.partyMembers = [];
-    this.enemies = [];
-    this.others = [];
-    this.pets = [];
-    this.mainCombatantID = null;
-    this.initialStates = {};
     this.initialize(logLines);
-    delete this.initialStates;
+    // Clear initialStates after we initialize, we don't need it anymore
+    this.initialStates = {};
   }
 
-  initialize(logLines) {
+  initialize(logLines: LineEvent[]): void {
     // First pass: Get list of combatants, figure out where they
     // start at if possible
     for (const line of logLines) {
@@ -36,13 +41,13 @@ export default class CombatantTracker {
 
     // Between passes: Create our initial combatant states
     for (const id in this.initialStates) {
-      const state = this.initialStates[id];
-      this.combatants[id].pushState(this.firstTimestamp, new CombatantState(
+      const state = this.initialStates[id] ?? {};
+      this.combatants[id]?.pushState(this.firstTimestamp, new CombatantState(
           Number(state.posX),
           Number(state.posY),
           Number(state.posZ),
           Number(state.heading),
-          state.targetable,
+          state.targetable ?? false,
           Number(state.hp),
           Number(state.maxHp),
           Number(state.mp),
@@ -51,35 +56,38 @@ export default class CombatantTracker {
     }
 
     // Second pass: Analyze combatant information for tracking
-    const eventTracker = {};
-    for (let i = 0; i < logLines.length; ++i) {
-      const line = logLines[i];
-      let state = this.extractStateFromLine(line);
-      if (state) {
-        eventTracker[line.id] = eventTracker[line.id] || 0;
-        ++eventTracker[line.id];
-        this.combatants[line.id].pushPartialState(line.timestamp, state);
+    const eventTracker: { [key: string]: number } = {};
+    for (const line of logLines) {
+      if (isLineEventSource(line)) {
+        const state = this.extractStateFromLine(line);
+        if (state) {
+          eventTracker[line.id] = eventTracker[line.id] ?? 0;
+          ++eventTracker[line.id];
+          this.combatants[line.id]?.pushPartialState(line.timestamp, state);
+        }
       }
-      state = this.extractStateFromTargetLine(line);
-      if (state) {
-        eventTracker[line.targetId] = eventTracker[line.targetId] || 0;
-        ++eventTracker[line.targetId];
-        this.combatants[line.targetId].pushPartialState(line.timestamp, state);
+      if (isLineEventTarget(line)) {
+        const state = this.extractStateFromTargetLine(line);
+        if (state) {
+          eventTracker[line.targetId] = eventTracker[line.targetId] ?? 0;
+          ++eventTracker[line.targetId];
+          this.combatants[line.targetId]?.pushPartialState(line.timestamp, state);
+        }
       }
     }
 
     // Figure out party/enemy/other status
     const petNames = PetNamesByLang[this.language];
     this.others = this.others.filter((ID) => {
-      if (this.combatants[ID].job !== null &&
-        this.combatants[ID].job !== 'NONE' &&
+      if (this.combatants[ID]?.job !== undefined &&
+        this.combatants[ID]?.job !== 'NONE' &&
         ID.startsWith('1')) {
         this.partyMembers.push(ID);
         return false;
-      } else if (petNames.includes(this.combatants[ID].name)) {
+      } else if (petNames.includes(this.combatants[ID]?.name ?? '')) {
         this.pets.push(ID);
         return false;
-      } else if (eventTracker[ID] > 0) {
+      } else if ((eventTracker[ID] ?? 0) > 0) {
         this.enemies.push(ID);
         return false;
       }
@@ -88,68 +96,60 @@ export default class CombatantTracker {
 
     // Main combatant is the one that took the most actions
     this.mainCombatantID = this.enemies.sort((l, r) => {
-      return eventTracker[r] - eventTracker[l];
-    })[0] || null;
+      return (eventTracker[r] ?? 0) - (eventTracker[l] ?? 0);
+    })[0];
   }
 
-  addCombatantFromLine(line) {
-    if (!line.id)
-      return;
+  addCombatantFromLine(line: LineEventSource): void {
+    this.initCombatant(line.id, line.name);
+    const initState = this.initialStates[line.id] ?? {};
 
-    this.initCombatant(line.id, line.name, line.timestamp);
-    const initState = this.initialStates[line.id];
+    const extractedState = this.extractStateFromLine(line) ?? {};
 
-    const extractedState = this.extractStateFromLine(line);
+    initState.posX = initState.posX ?? extractedState.posX;
+    initState.posY = initState.posY ?? extractedState.posY;
+    initState.posZ = initState.posZ ?? extractedState.posZ;
+    initState.heading = initState.heading ?? extractedState.heading;
+    initState.targetable = initState.targetable ?? extractedState.targetable;
+    initState.hp = initState.hp ?? extractedState.hp;
+    initState.maxHp = initState.maxHp ?? extractedState.maxHp;
+    initState.mp = initState.mp ?? extractedState.mp;
+    initState.maxMp = initState.maxMp ?? extractedState.maxMp;
 
-    initState.timestamp = Math.min(initState.timestamp, line.timestamp);
-    initState.posX = initState.posX || extractedState.posX || null;
-    initState.posY = initState.posY || extractedState.posY || null;
-    initState.posZ = initState.posZ || extractedState.posZ || null;
-    initState.heading = initState.heading || extractedState.heading || null;
-    initState.targetable = initState.targetable || extractedState.targetable || false;
-    initState.hp = initState.hp || extractedState.hp || null;
-    initState.maxHp = initState.maxHp || extractedState.maxHp || null;
-    initState.mp = initState.mp || extractedState.mp || null;
-    initState.maxMp = initState.maxMp || extractedState.maxMp || null;
+    const combatant = this.combatants[line.id] as Combatant;
 
     if (isLineEventJobLevel(line)) {
-      this.combatants[line.id].job = this.combatants[line.id].job || line.job;
-      this.combatants[line.id].level = this.combatants[line.id].level || line.level;
+      combatant.job = this.combatants[line.id]?.job ?? line.job;
+      combatant.level = this.combatants[line.id]?.level ?? line.level;
     }
 
     if (isLineEventAbility(line)) {
-      if (!this.combatants[line.id].job && !line.id.startsWith('4') && line.abilityId !== undefined)
-        this.combatants[line.id].job = CombatantJobSearch.getJob(line.abilityId);
+      if (!combatant.job && !line.id.startsWith('4') && line.abilityId !== undefined)
+        combatant.job = CombatantJobSearch.getJob(line.abilityId);
     }
 
-    if (this.combatants[line.id].job)
-      this.combatants[line.id].job = this.combatants[line.id].job.toUpperCase();
+    if (combatant.job)
+      combatant.job = combatant.job.toUpperCase();
   }
 
-  addCombatantFromTargetLine(line) {
-    if (!line.targetId)
-      return;
+  addCombatantFromTargetLine(line: LineEventTarget): void {
+    this.initCombatant(line.targetId, line.targetName);
+    const initState = this.initialStates[line.targetId] ?? {};
 
-    this.initCombatant(line.targetId, line.targetName, line.timestamp);
-    const initState = this.initialStates[line.targetId];
+    const extractedState = this.extractStateFromTargetLine(line) ?? {};
 
-    const extractedState = this.extractStateFromTargetLine(line);
-
-    initState.posX = initState.posX || extractedState.posX || null;
-    initState.posY = initState.posY || extractedState.posY || null;
-    initState.posZ = initState.posZ || extractedState.posZ || null;
-    initState.heading = initState.heading || extractedState.heading || null;
-    initState.hp = initState.hp || extractedState.hp || null;
-    initState.maxHp = initState.maxHp || extractedState.maxHp || null;
-    initState.mp = initState.mp || extractedState.mp || null;
-    initState.maxMp = initState.maxMp || extractedState.maxMp || null;
+    initState.posX = initState.posX ?? extractedState.posX;
+    initState.posY = initState.posY ?? extractedState.posY;
+    initState.posZ = initState.posZ ?? extractedState.posZ;
+    initState.heading = initState.heading ?? extractedState.heading;
+    initState.hp = initState.hp ?? extractedState.hp;
+    initState.maxHp = initState.maxHp ?? extractedState.maxHp;
+    initState.mp = initState.mp ?? extractedState.mp;
+    initState.maxMp = initState.maxMp ?? extractedState.maxMp;
   }
 
-  extractStateFromLine(line) {
-    if (!line.id)
-      return false;
-
-    const state = {};
+  extractStateFromLine(line: LineEventSource): Partial<CombatantState> {
+    const state: Partial<CombatantState> = {};
 
     if (line.x !== undefined)
       state.posX = line.x;
@@ -173,11 +173,8 @@ export default class CombatantTracker {
     return state;
   }
 
-  extractStateFromTargetLine(line) {
-    if (!line.targetId)
-      return false;
-
-    const state = {};
+  extractStateFromTargetLine(line: LineEventTarget): Partial<CombatantState> {
+    const state: Partial<CombatantState> = {};
 
     if (line.targetX !== undefined)
       state.posX = line.targetX;
@@ -199,30 +196,21 @@ export default class CombatantTracker {
     return state;
   }
 
-  initCombatant(ID, name, timestamp) {
+  initCombatant(ID: string, name: string): void {
     if (this.combatants[ID] === undefined) {
       this.combatants[ID] = new Combatant(ID, name);
       this.others.push(ID);
       this.initialStates[ID] = {
-        timestamp: timestamp,
-        posX: null,
-        posY: null,
-        posZ: null,
-        heading: null,
         targetable: true,
-        hp: null,
-        maxHp: null,
-        mp: null,
-        maxMp: null,
       };
-    } else if (this.combatants[ID].name === '') {
-      this.combatants[ID].name = name;
+    } else if (this.combatants[ID]?.name === '') {
+      (this.combatants[ID] as Combatant).name = name;
     }
   }
 
-  getMainCombatantName() {
+  getMainCombatantName(): string {
     if (this.mainCombatantID)
-      return this.combatants[this.mainCombatantID].name;
+      return this.combatants[this.mainCombatantID]?.name ?? 'Unknown';
     return 'Unknown';
   }
 }
