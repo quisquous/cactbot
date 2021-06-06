@@ -2,6 +2,8 @@ import CombatantTracker from './CombatantTracker';
 import LogEventHandler from './LogEventHandler';
 import PetNamesByLang from '../../../../resources/pet_names';
 import EmulatorCommon from '../EmulatorCommon';
+import LogRepository from './network_log_converter/LogRepository';
+import NetworkLogConverter from './NetworkLogConverter';
 
 const isPetName = (name, language = undefined) => {
   if (language)
@@ -17,6 +19,7 @@ const isPetName = (name, language = undefined) => {
 
 export default class Encounter {
   constructor(encounterDay, encounterZoneId, encounterZoneName, logLines) {
+    this.version = Encounter.encounterVersion;
     this.id = null;
     this.encounterZoneId = encounterZoneId;
     this.encounterZoneName = encounterZoneName;
@@ -104,4 +107,22 @@ export default class Encounter {
   shouldPersistFight() {
     return this.firstPlayerAbility > 0 && this.firstEnemyAbility > 0;
   }
+
+  upgrade(version) {
+    if (Encounter.encounterVersion <= version)
+      return false;
+
+    const repo = new LogRepository();
+    const converter = new NetworkLogConverter();
+    this.logLines = converter.convertLines(
+        this.logLines.map((l) => l.networkLine),
+        repo,
+    );
+    this.version = Encounter.encounterVersion;
+    this.initialize();
+
+    return true;
+  }
 }
+
+Encounter.encounterVersion = 1;

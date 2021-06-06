@@ -1,4 +1,4 @@
-import LineEvent from './LineEvent';
+import LineEvent, { LineEventAbility } from './LineEvent';
 import EmulatorCommon from '../../EmulatorCommon';
 import LogRepository from './LogRepository';
 
@@ -16,13 +16,15 @@ const fields = {
 } as const;
 
 // Gain status effect event
-export class LineEvent0x1A extends LineEvent {
+// Deliberately don't flag this as LineEventSource or LineEventTarget
+// because 0x1A line values aren't accurate
+export class LineEvent0x1A extends LineEvent implements LineEventAbility {
   public readonly resolvedName: string;
   public readonly resolvedTargetName: string;
   public readonly fallbackResolvedTargetName: string;
   public readonly properCaseConvertedLine: string;
 
-  public readonly abilityId: string;
+  public readonly abilityId: number;
   public readonly abilityName: string;
   public readonly durationFloat: number;
   public readonly durationString: string;
@@ -31,13 +33,14 @@ export class LineEvent0x1A extends LineEvent {
   public readonly targetId: string;
   public readonly targetName: string;
   public readonly stacks: number;
-  public readonly targetHp: string;
-  public readonly sourceHp: string;
+  public readonly targetHp: number;
+  public readonly hp: number;
+  public readonly isAbility = true;
 
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
 
-    this.abilityId = parts[fields.abilityId]?.toUpperCase() ?? '';
+    this.abilityId = parseInt(parts[fields.abilityId]?.toUpperCase() ?? '');
     this.abilityName = parts[fields.abilityName] ?? '';
     this.durationString = parts[fields.durationString] ?? '';
     this.durationFloat = parseFloat(this.durationString);
@@ -46,8 +49,8 @@ export class LineEvent0x1A extends LineEvent {
     this.targetId = parts[fields.targetId]?.toUpperCase() ?? '';
     this.targetName = parts[fields.targetName] ?? '';
     this.stacks = parseInt(parts[fields.stacks] ?? '0');
-    this.targetHp = parts[fields.targetHp] ?? '';
-    this.sourceHp = parts[fields.sourceHp] ?? '';
+    this.targetHp = parseInt(parts[fields.targetHp] ?? '');
+    this.hp = parseInt(parts[fields.sourceHp] ?? '');
 
     repo.updateCombatant(this.id, {
       name: this.name,
@@ -87,14 +90,14 @@ export class LineEvent0x1A extends LineEvent {
       ' for ' + this.durationString + ' Seconds.' + stackCountText;
   }
 
-  static showStackCountFor: readonly string[] = [
-    '130', // Aetherflow
-    '196', // Vulnerability Down
-    '15e', // Vulnerability Down
-    '2ca', // Vulnerability Up
-    '1f9', // Damage Up
-    '4d7', // Embolden
-    '511', // Embolden
+  static showStackCountFor: readonly number[] = [
+    304, // Aetherflow
+    406, // Vulnerability Down
+    350, // Vulnerability Down
+    714, // Vulnerability Up
+    505, // Damage Up
+    1239, // Embolden
+    1297, // Embolden
   ] as const;
 }
 

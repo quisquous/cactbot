@@ -5,7 +5,7 @@ const only = 0;
 let bar;
 
 if (!only || only === 1) {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   bar.duration = '2';
@@ -16,7 +16,7 @@ if (!only || only === 1) {
 }
 
 if (!only || only === 2) {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   bar.duration = '2';
@@ -25,7 +25,7 @@ if (!only || only === 2) {
 }
 
 if (!only || only === 13) {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   bar.duration = '2';
@@ -39,7 +39,7 @@ if (!only || only === 13) {
 }
 
 if (!only || only === 3) {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   bar.duration = '2';
@@ -57,7 +57,7 @@ if (!only || only === 3) {
 }
 
 if (!only || only === 4) {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   document.getElementById('d4')?.appendChild(bar);
@@ -72,7 +72,7 @@ if (!only || only === 4) {
 }
 
 if (!only || only === 5) {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   bar.hideafter = '0';
@@ -82,7 +82,7 @@ if (!only || only === 5) {
 }
 
 if (!only || only === 6) {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   bar.hideafter = '0';
@@ -92,7 +92,7 @@ if (!only || only === 6) {
 }
 
 if (!only || only === 7) {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   bar.hideafter = '0';
@@ -102,7 +102,7 @@ if (!only || only === 7) {
 }
 
 if (!only || only === 8) {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   bar.hideafter = '0';
@@ -112,7 +112,7 @@ if (!only || only === 8) {
 }
 
 if (!only || only === 9) {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'empty';
   bar.duration = '0';
@@ -120,7 +120,7 @@ if (!only || only === 9) {
 }
 
 if (!only || only === 10) {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'empty';
   bar.hideafter = '0';
@@ -130,7 +130,7 @@ if (!only || only === 10) {
 }
 
 if (!only || only === 11) {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   bar.hideafter = '0';
@@ -145,7 +145,7 @@ if (!only || only === 11) {
 }
 
 if (!only || only === 12) {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   bar.hideafter = '0';
@@ -160,7 +160,7 @@ if (!only || only === 12) {
 }
 
 if (!only || only === 'b1') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   bar.duration = '2';
@@ -168,7 +168,7 @@ if (!only || only === 'b1') {
 }
 
 if (!only || only === 'b2') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   bar.duration = '2';
@@ -177,7 +177,7 @@ if (!only || only === 'b2') {
 }
 
 if (!only || only === 'b13') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   bar.duration = '2';
@@ -191,7 +191,7 @@ if (!only || only === 'b13') {
 }
 
 if (!only || only === 'b3') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   bar.duration = '2';
@@ -209,7 +209,7 @@ if (!only || only === 'b3') {
 }
 
 if (!only || only === 'b4') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   document.getElementById('b4')?.appendChild(bar);
@@ -224,7 +224,7 @@ if (!only || only === 'b4') {
 }
 
 if (!only || only === 'b5') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   bar.hideafter = '0';
@@ -234,7 +234,7 @@ if (!only || only === 'b5') {
 }
 
 if (!only || only === 'b6') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   bar.hideafter = '0';
@@ -244,7 +244,7 @@ if (!only || only === 'b6') {
 }
 
 if (!only || only === 'b7') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   bar.hideafter = '0';
@@ -254,7 +254,7 @@ if (!only || only === 'b7') {
 }
 
 if (!only || only === 'b8') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   bar.hideafter = '0';
@@ -264,7 +264,7 @@ if (!only || only === 'b8') {
 }
 
 if (!only || only === 'b9') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'empty';
   bar.duration = '0';
@@ -272,7 +272,7 @@ if (!only || only === 'b9') {
 }
 
 if (!only || only === 'b10') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'empty';
   bar.hideafter = '0';
@@ -282,7 +282,7 @@ if (!only || only === 'b10') {
 }
 
 if (!only || only === 'b11') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   bar.hideafter = '0';
@@ -297,7 +297,7 @@ if (!only || only === 'b11') {
 }
 
 if (!only || only === 'b12') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.lefttext = 'remain';
   bar.stylefill = 'fill';
   bar.hideafter = '0';
@@ -312,7 +312,7 @@ if (!only || only === 'b12') {
 }
 
 if (!only || only === 'c1') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.duration = '10000';
   bar.value = '9000';
   document.getElementById('c1')?.appendChild(bar);
@@ -320,7 +320,7 @@ if (!only || only === 'c1') {
 }
 
 if (!only || only === 'c2') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.duration = '10000';
   bar.value = '9000';
   document.getElementById('c2')?.appendChild(bar);
@@ -329,7 +329,7 @@ if (!only || only === 'c2') {
 }
 
 if (!only || only === 'c3') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.duration = '10000';
   bar.value = '9000';
   document.getElementById('c3')?.appendChild(bar);
@@ -339,7 +339,7 @@ if (!only || only === 'c3') {
 }
 
 if (!only || only === 'c4') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.duration = '10000';
   bar.value = '9000';
   document.getElementById('c4')?.appendChild(bar);
@@ -349,7 +349,7 @@ if (!only || only === 'c4') {
 }
 
 if (!only || only === 'c5') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.duration = '10000';
   bar.value = '9000';
   document.getElementById('c5')?.appendChild(bar);
@@ -359,7 +359,7 @@ if (!only || only === 'c5') {
 }
 
 if (!only || only === 'c6') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.duration = '10000';
   bar.value = '9000';
   document.getElementById('c6')?.appendChild(bar);
@@ -369,7 +369,7 @@ if (!only || only === 'c6') {
 }
 
 if (!only || only === 'c7') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.duration = '10000';
   bar.value = '9000';
   document.getElementById('c7')?.appendChild(bar);
@@ -379,7 +379,7 @@ if (!only || only === 'c7') {
 }
 
 if (!only || only === 'c8') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.duration = '10000';
   bar.value = '9000';
   document.getElementById('c8')?.appendChild(bar);
@@ -388,7 +388,7 @@ if (!only || only === 'c8') {
 }
 
 if (!only || only === 'c9') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.duration = '10000';
   bar.value = '9000';
   document.getElementById('c9')?.appendChild(bar);
@@ -397,7 +397,7 @@ if (!only || only === 'c9') {
 }
 
 if (!only || only === 'c10') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.duration = '100';
   bar.value = '90';
   document.getElementById('c10')?.appendChild(bar);
@@ -406,7 +406,7 @@ if (!only || only === 'c10') {
 }
 
 if (!only || only === 'c11') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.duration = '100';
   bar.value = '90';
   document.getElementById('c11')?.appendChild(bar);
@@ -415,7 +415,7 @@ if (!only || only === 'c11') {
 }
 
 if (!only || only === 'c12') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.duration = '100';
   bar.value = '90';
   document.getElementById('c12')?.appendChild(bar);
@@ -424,7 +424,7 @@ if (!only || only === 'c12') {
 }
 
 if (!only || only === 'c13') {
-  bar = document.createElement('timer-bar') as TimerBar;
+  bar = document.createElement('timer-bar');
   bar.duration = '100';
   bar.value = '90';
   document.getElementById('c13')?.appendChild(bar);

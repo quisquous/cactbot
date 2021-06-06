@@ -35,6 +35,8 @@ type RaidbossNonConfigOptions = {
   Triggers: unknown; // one giant TODO
   PlayerNameOverride: string | null;
   IsRemoteRaidboss: boolean;
+  // Transforms text before passing it to TTS.
+  TransformTts: (text: string) => string;
 };
 
 // These options are ones that are not auto-defined by raidboss_config.js.
@@ -58,6 +60,8 @@ const defaultRaidbossNonConfigOptions: RaidbossNonConfigOptions = {
 
   PlayerNameOverride: null,
   IsRemoteRaidboss: false,
+
+  TransformTts: (t) => t,
 };
 
 // TODO: figure out how to get this type from raidboss_config??

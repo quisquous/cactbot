@@ -104,7 +104,14 @@ export default class Persistor extends EventBus {
               enc.encounterZoneName,
               enc.logLines);
           ret.id = enc.id;
-          res(ret);
+          // Check for encounter upgrade, re-save encounter if it's upgraded.
+          if (ret.upgrade(enc.version)) {
+            this.persistEncounter(ret).then(() => {
+              res(ret);
+            });
+          } else {
+            res(ret);
+          }
         });
       } else {
         res(null);

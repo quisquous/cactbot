@@ -1,4 +1,4 @@
-import LineEvent from './LineEvent';
+import LineEvent, { LineEventSource } from './LineEvent';
 import LogRepository from './LogRepository';
 
 const fields = {
@@ -17,30 +17,31 @@ const fields = {
 } as const;
 
 // Network update hp event
-export class LineEvent0x27 extends LineEvent {
+export class LineEvent0x27 extends LineEvent implements LineEventSource {
   public readonly id: string;
   public readonly name: string;
-  public readonly currentHp: number;
+  public readonly hp: number;
   public readonly maxHp: number;
-  public readonly currentMp: number;
+  public readonly mp: number;
   public readonly maxMp: number;
-  public readonly currentTp: number;
+  public readonly tp: number;
   public readonly maxTp: number;
   public readonly x: number;
   public readonly y: number;
   public readonly z: number;
   public readonly heading: number;
+  public readonly isSource = true;
 
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
 
     this.id = parts[fields.id]?.toUpperCase() ?? '';
     this.name = parts[fields.name] ?? '';
-    this.currentHp = parseInt(parts[fields.currentHp] ?? '');
+    this.hp = parseInt(parts[fields.currentHp] ?? '');
     this.maxHp = parseInt(parts[fields.maxHp] ?? '');
-    this.currentMp = parseInt(parts[fields.currentMp] ?? '');
+    this.mp = parseInt(parts[fields.currentMp] ?? '');
     this.maxMp = parseInt(parts[fields.maxMp] ?? '');
-    this.currentTp = parseInt(parts[fields.currentTp] ?? '');
+    this.tp = parseInt(parts[fields.currentTp] ?? '');
     this.maxTp = parseInt(parts[fields.maxTp] ?? '');
     this.x = parseFloat(parts[fields.x] ?? '');
     this.y = parseFloat(parts[fields.y] ?? '');
