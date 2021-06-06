@@ -657,7 +657,8 @@ export class BuffTracker {
         return;
 
       this.onBigBuff(b.name, seconds, b, matches?.source, 'active');
-      // some cooldown cannot be handled by action, so also cooldown them here.
+      // Some cooldowns (like potions) have no cooldownAbility, so also track them here.
+      // Also preventing user with a high BigBuffShowCooldownSeconds see duplicated icons.
       this.onBigBuff(b.name, seconds, b, matches?.source, 'cooldown');
     }
   }
