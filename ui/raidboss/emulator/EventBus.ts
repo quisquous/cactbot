@@ -11,7 +11,7 @@ type EventMapEntry = {
   scope: Scope;
   callback: CallbackFunction;
 };
-type EventMap = {[event: string]: EventMapEntry[]};
+type EventMap = { [event: string]: EventMapEntry[] };
 
 /**
  * This is a base class that classes can extend to inherit event bus capabilities.
