@@ -1,5 +1,5 @@
 import { Party, PlayerChangedRet } from 'types/event';
-import { Lang } from 'types/global';
+import { Lang } from 'resources/languages';
 import { Job } from 'types/job';
 
 import { addOverlayListener } from './overlay_plugin_api';

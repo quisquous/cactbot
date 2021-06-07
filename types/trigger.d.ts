@@ -1,4 +1,4 @@
-import { Lang, NonEnLang } from './global';
+import { Lang, NonEnLang } from '../resources/languages';
 import { RaidbossData } from './data';
 
 export interface BaseRegExp<T> extends RegExp {

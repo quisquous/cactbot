@@ -4,7 +4,7 @@ import { ArgumentParser } from 'argparse';
 import { findMissing } from './find_missing_timeline_translations';
 import { Event, Sync, Timeline } from '../ui/raidboss/timeline';
 import { walkDirSync } from './file_utils';
-import { Lang } from 'types/global';
+import { Lang } from 'resources/languages';
 import Options from '../ui/raidboss/raidboss_options';
 
 const parser = new ArgumentParser({

@@ -1,4 +1,4 @@
-import { Lang } from '../types/global';
+import { Lang } from './languages';
 import Regexes from './regexes';
 import NetRegexes from './netregexes';
 
