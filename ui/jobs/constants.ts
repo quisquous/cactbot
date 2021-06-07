@@ -124,6 +124,7 @@ export const kAbility = {
   Demolish: '42',
   Bootshine: '35',
   FourPointFury: '4059',
+  Brotherhood: '1CE4',
   // DRG
   TrueThrust: '4B',
   RaidenThrust: '405F',
@@ -141,6 +142,7 @@ export const kAbility = {
   Jump: '5C',
   LanceCharge: '55',
   DragonSight: '1CE6',
+  BattleLitany: 'DE5',
   // NIN
   SpinningEdge: '8C0',
   GustSlash: '8C2',
@@ -171,6 +173,7 @@ export const kAbility = {
   HissatsuGuren: '1D48',
   HissatsuSenei: '4061',
   // BRD
+  BattleVoice: '76',
   // MCH
   SplitShot: 'B32',
   SlugShot: 'B34',
@@ -195,6 +198,7 @@ export const kAbility = {
   TripleTechnicalFinish: '3F43',
   DoubleTechnicalFinish: '3F42',
   SingleTechnicalFinish: '3F41',
+  TechnicalFinish: '3E84',
   StandardStep: '3E7D',
   TechnicalStep: '3E7E',
   Flourish: '3E8D',
@@ -214,6 +218,7 @@ export const kAbility = {
   EnergySiphon: '407E',
   DreadwyrmTrance: 'DFD',
   FirebirdTrance: '40A5',
+  Devotion: '1D1A',
   // RDM
   Verstone: '1D57',
   Verfire: '1D56',

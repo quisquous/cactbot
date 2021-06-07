@@ -10,6 +10,7 @@ import ZoneId from '../../resources/zone_id';
 import { kWellFedContentTypes, kMPCombatRate, kMPNormalRate, kMPUI1Rate, kMPUI2Rate, kMPUI3Rate, kMPTickInterval } from './constants';
 import { BuffTracker } from './buff_tracker';
 import ComboTracker from './combo_tracker';
+import PartyTracker from '../../resources/party';
 import { RegexesHolder, computeBackgroundColorFrom, calcGCDFromStat, doesJobNeedMPBar, makeAuraTimerIcon } from './utils';
 
 import { getSetup, getReset } from './components/index';
@@ -86,6 +87,7 @@ class Bars {
     this.combo = undefined;
     this.comboTimer = undefined;
     this.regexes = undefined;
+    this.partyTracker = new PartyTracker();
 
     this.skillSpeed = 0;
     this.spellSpeed = 0;
@@ -800,6 +802,10 @@ class Bars {
       container.classList.add('hide');
   }
 
+  _onPartyChanged(e) {
+    this.partyTracker.onPartyChanged(e);
+  }
+
   _onPlayerChanged(e) {
     if (this.me !== e.detail.name) {
       this.me = e.detail.name;
@@ -864,7 +870,7 @@ class Bars {
       this._updateOpacity();
       // Set up the buff tracker after the job bars are created.
       this.buffTracker = new BuffTracker(
-          this.options, this.me, this.o.leftBuffsList, this.o.rightBuffsList);
+          this.options, this.me, this.o.leftBuffsList, this.o.rightBuffsList, this.partyTracker);
     }
     if (updateHp)
       this._updateHealth();
@@ -1081,6 +1087,9 @@ UserConfig.getUserConfigLocation('jobs', Options, () => {
   });
   addOverlayListener('LogLine', (e) => {
     gBars._onNetLog(e);
+  });
+  addOverlayListener('PartyChanged', (e) => {
+    gBars._onPartyChanged(e);
   });
 
   gBars = new Bars(Options);
