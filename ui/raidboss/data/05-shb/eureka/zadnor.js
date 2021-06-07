@@ -40,7 +40,7 @@ const ceIds = {
   // Feeling the Burn
   feeling: '20E',
   // The Broken Blade
-  blade: '???',
+  blade: '21F',
   // From Beyond the Grave
   grave: '21B',
   // With Diremite and Main
@@ -48,7 +48,7 @@ const ceIds = {
   // Here Comes the Cavalry
   cavalry: '21C',
   // Head of the Snake
-  snake: '???',
+  snake: '21E',
   // There Would Be Blood
   blood: '210',
   // Never Cry Wolf
@@ -64,7 +64,7 @@ const ceIds = {
   // Looks to Die For
   looks: '207',
   // Taking the Lyon's Share
-  lyon: '???',
+  lyon: '220',
   // The Dalriada
   dalriada: '213',
   dalriadaCuchulainn: '214',
@@ -1033,12 +1033,12 @@ export default {
     },
     {
       id: 'Zadnor Sartauvoir Reverse Time Eruption',
-      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: '5E6D', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: '5E6D', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: '5E6D', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '鉄火のサルトヴォアール', id: '5E6D', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '铁胆狱火 萨托瓦尔', id: '5E6D', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '쇳불의 사르토부아르', id: '5E6D', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Sartauvoir The Inferno', id: ['5E6D', '5E84'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Sartauvoir Eisenfeuer', id: ['5E6D', '5E84'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Sartauvoir Le Fer Rouge', id: ['5E6D', '5E84'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '鉄火のサルトヴォアール', id: ['5E6D', '5E84'], capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '铁胆狱火 萨托瓦尔', id: ['5E6D', '5E84'], capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '쇳불의 사르토부아르', id: ['5E6D', '5E84'], capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -1760,6 +1760,20 @@ export default {
       // for the stop -> dodge.
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3.5,
       response: Responses.stopEverything(),
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'en',
+      'replaceText': {
+        'Left Brand/Right Brand': 'Left/Right Brand',
+        'Time Eruption/Reverse Time Eruption': '(Reverse?) Time Eruption',
+        'North Wind/South Wind': 'North/South Wind',
+        'Magitek Halo/Magitek Crossray': 'Magitek Halo/Crossray',
+        'Magitek Crossray/Magitek Halo': 'Magitek Crossray/Halo',
+        'Mobile Halo/Mobile Crossray': 'Mobile Halo/Crossray',
+        'Mobile Crossray/Mobile Halo': 'Mobile Crossray/Halo',
+      },
     },
   ],
 };
