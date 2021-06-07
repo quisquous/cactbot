@@ -281,6 +281,7 @@ export class BuffTracker {
         mobGainsEffect: EffectId.OffGuard,
         mobLosesEffect: EffectId.OffGuard,
         useEffectDuration: true,
+        durationSeconds: 15,
         icon: '../../resources/ffxiv/status/offguard.png',
         borderColor: '#47bf41',
         sortKey: 1,
@@ -292,6 +293,7 @@ export class BuffTracker {
         mobGainsEffect: EffectId.PeculiarLight,
         mobLosesEffect: EffectId.PeculiarLight,
         useEffectDuration: true,
+        durationSeconds: 15,
         icon: '../../resources/ffxiv/status/peculiar-light.png',
         borderColor: '#F28F7B',
         sortKey: 1,
@@ -303,6 +305,7 @@ export class BuffTracker {
         mobGainsEffect: EffectId.VulnerabilityUp,
         mobLosesEffect: EffectId.VulnerabilityUp,
         useEffectDuration: true,
+        durationSeconds: 15,
         icon: '../../resources/ffxiv/status/trick-attack.png',
         // Magenta.
         borderColor: '#FC4AE6',
@@ -314,6 +317,7 @@ export class BuffTracker {
         gainEffect: [EffectId.BattleLitany],
         loseEffect: [EffectId.BattleLitany],
         useEffectDuration: true,
+        durationSeconds: 20,
         partyOnly: true,
         icon: '../../resources/ffxiv/status/battle-litany.png',
         // Cyan.
@@ -329,6 +333,7 @@ export class BuffTracker {
         gainEffect: [EffectId.Embolden, EffectId.EmboldenSelf],
         loseEffect: [EffectId.Embolden, EffectId.EmboldenSelf],
         useEffectDuration: true,
+        durationSeconds: 20,
         partyOnly: true,
         stack: 5,
         icon: '../../resources/ffxiv/status/embolden.png',
@@ -442,6 +447,7 @@ export class BuffTracker {
         gainEffect: [EffectId.TechnicalFinish],
         loseEffect: [EffectId.TechnicalFinish],
         useEffectDuration: true,
+        durationSeconds: 20,
         partyOnly: true,
         icon: '../../resources/ffxiv/status/technical-finish.png',
         // Dark Peach.
@@ -454,6 +460,7 @@ export class BuffTracker {
         gainEffect: [EffectId.BattleVoice],
         loseEffect: [EffectId.BattleVoice],
         useEffectDuration: true,
+        durationSeconds: 20,
         partyOnly: true,
         icon: '../../resources/ffxiv/status/battlevoice.png',
         // Red.
@@ -466,6 +473,7 @@ export class BuffTracker {
         mobGainsEffect: EffectId.ChainStratagem,
         mobLosesEffect: EffectId.ChainStratagem,
         useEffectDuration: true,
+        durationSeconds: 15,
         icon: '../../resources/ffxiv/status/chain-stratagem.png',
         // Blue.
         borderColor: '#4674E5',
@@ -497,6 +505,7 @@ export class BuffTracker {
         gainEffect: [EffectId.Brotherhood],
         loseEffect: [EffectId.Brotherhood],
         useEffectDuration: true,
+        durationSeconds: 15,
         partyOnly: true,
         icon: '../../resources/ffxiv/status/brotherhood.png',
         // Dark Orange.
@@ -513,6 +522,7 @@ export class BuffTracker {
         gainEffect: [EffectId.Devotion],
         loseEffect: [EffectId.Devotion],
         useEffectDuration: true,
+        durationSeconds: 15,
         partyOnly: true,
         icon: '../../resources/ffxiv/status/devotion.png',
         // Yellow.
@@ -525,6 +535,7 @@ export class BuffTracker {
         gainEffect: [EffectId.Divination],
         loseEffect: [EffectId.Divination],
         useEffectDuration: true,
+        durationSeconds: 15,
         partyOnly: true,
         icon: '../../resources/ffxiv/status/divination.png',
         // Dark purple.
@@ -614,9 +625,12 @@ export class BuffTracker {
           return;
       }
 
+      // This durationSeconds is no not used for countdown active time,
+      // but for prevent cooldown icon appear when effect is still active and duplicated.
+      // +1 for delay between ability and effect.
       let seconds = 0;
       if (b.durationSeconds)
-        seconds = b.durationSeconds;
+        seconds = b.durationSeconds + 1;
 
       this.onBigBuff(b.name, seconds, b, matches?.source, 'cooldown');
     }
@@ -639,8 +653,8 @@ export class BuffTracker {
 
       this.onBigBuff(b.name, seconds, b, matches?.source, 'active');
       // Some cooldowns (like potions) have no cooldownAbility, so also track them here.
-      // Also preventing user with a high BigBuffShowCooldownSeconds see duplicated icons.
-      this.onBigBuff(b.name, seconds, b, matches?.source, 'cooldown');
+      if (!b.cooldownAbility)
+        this.onBigBuff(b.name, seconds, b, matches?.source, 'cooldown');
     }
   }
 
