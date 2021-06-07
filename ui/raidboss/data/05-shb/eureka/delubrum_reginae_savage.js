@@ -3313,7 +3313,6 @@ export default {
         'Bozjan Soldier': '博兹雅士兵',
         'Crowned Marchosias': '首领马可西亚斯',
         'Dahu': '大兀',
-        'Dahu was defeated by': '将大兀打倒了',
         'Grim Reaper': '死亡收割者',
         'Gun Turret': '射击炮台',
         'Immolating Flame': '大火焰',
