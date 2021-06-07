@@ -592,7 +592,7 @@ export class BuffTracker {
         if (Array.isArray(key)) {
           key.forEach((k) => map[k] = [buff, ...map[k] ?? []]);
         } else {
-          map[key] = map[key] || [];
+          map[key] ??= [];
           map[key]?.push(buff);
         }
       }
