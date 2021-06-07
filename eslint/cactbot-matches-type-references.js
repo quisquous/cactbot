@@ -3,7 +3,7 @@ const findTriggerIdFromSiblingProperty = (node) => {
   const currentTrigger = currentProperty.parent;
   // Value refers to the value in the [key, value] pair for 'id'
   // return the value's value, eg the actual trigger id string
-  return currentTrigger.properties.find((property) => property.key.name === 'id').value.value;
+  return currentTrigger.properties.find((property) => property.key.name === 'id')?.value.value;
 };
 
 module.exports = {
