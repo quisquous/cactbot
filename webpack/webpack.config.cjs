@@ -154,6 +154,7 @@ module.exports = function(env, argv) {
     optimization: {
       minimize: true,
       minimizer: [
+        // Apply option overrides to Webpack v5's native TerserPlugin
         () => ({
           extractComments: false,
         }),
