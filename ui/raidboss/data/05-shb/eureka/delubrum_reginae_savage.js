@@ -1265,7 +1265,6 @@ export default {
           fr: 'Pointez sur le Fusiller',
           ja: '切り目をガンナーに向く',
           cn: '将缺口对准枪手',
-
         },
       },
     },
