@@ -625,9 +625,10 @@ export class BuffTracker {
           return;
       }
 
-      // This durationSeconds is no not used for countdown active time,
-      // but for prevent cooldown icon appear when effect is still active and duplicated.
+      // This durationSeconds is not used for countdown active time,
+      // but for preventing cooldown icon appear when effect is still active and duplicated.
       // +1 for delay between ability and effect.
+      // FIXME: if you miss the buff, cooldown will appear at least after normal duration end.
       let seconds = 0;
       if (b.durationSeconds)
         seconds = b.durationSeconds + 1;
