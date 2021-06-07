@@ -110,6 +110,7 @@ export default class Persistor extends EventBus {
               res(ret);
             });
           } else {
+            ret.initialize();
             res(ret);
           }
         });

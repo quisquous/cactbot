@@ -22,6 +22,9 @@ import '../../resources/timerbox';
 import '../../resources/timericon';
 import '../../resources/widget_list';
 
+import '../../resources/defaults.css';
+import './jobs.css';
+
 // See user/jobs-example.js for documentation.
 const Options = {
   ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'WHM', 'SCH', 'AST', 'BLU'],

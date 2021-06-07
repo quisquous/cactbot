@@ -45,3 +45,8 @@
   will-change: transform;
   text-transform: uppercase;
 }
+
+.animate-timer-bar-removed {
+  /* disable timer-bar-removed animation */
+  animation: none;
+}

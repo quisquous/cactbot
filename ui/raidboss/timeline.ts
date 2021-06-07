@@ -6,7 +6,7 @@ import { RaidbossOptions } from './raidboss_options';
 import { Lang } from 'types/global';
 import TimerBar from 'resources/timerbar';
 import { LogEvent } from 'types/event';
-import { TimelineTrigger, TriggerAutoConfig } from 'types/trigger';
+import { LooseTimelineTrigger, TriggerAutoConfig } from 'types/trigger';
 
 const kBig = 1000000000; // Something bigger than any fight length in seconds.
 
@@ -122,7 +122,7 @@ type ParsedTriggerText = {
   secondsBefore?: number;
   text?: string;
   matches: RegExpExecArray | null;
-  trigger: TimelineTrigger;
+  trigger: LooseTimelineTrigger;
 }
 
 type ParsedText = ParsedPopupText | ParsedTriggerText;
@@ -131,7 +131,8 @@ type Text = ParsedText & { time: number };
 
 type AddTimerCallback = (fightNow: number, durationEvent: Event, channeling: boolean) => void;
 type PopupTextCallback = (text: string) => void;
-type TriggerCallback = (trigger: TimelineTrigger, matches: RegExpExecArray | null) => void;
+type TriggerCallback =
+    (trigger: LooseTimelineTrigger, matches: RegExpExecArray | null) => void;
 
 // TODO: Duplicated in 'jobs'
 const computeBackgroundColorFrom = (element: HTMLElement, classList: string): string => {
@@ -180,7 +181,7 @@ export class Timeline {
 
   private updateTimer = 0;
 
-  constructor(text: string, replacements: Replacement[], triggers: TimelineTrigger[],
+  constructor(text: string, replacements: Replacement[], triggers: LooseTimelineTrigger[],
       styles: Style[], options: RaidbossOptions) {
     this.options = options || {};
     this.perTriggerAutoConfig = this.options['PerTriggerAutoConfig'] || {};
@@ -266,7 +267,7 @@ export class Timeline {
     ].map((x) => Regexes.parse(x));
   }
 
-  private LoadFile(text: string, triggers: TimelineTrigger[], styles: Style[]): void {
+  private LoadFile(text: string, triggers: LooseTimelineTrigger[], styles: Style[]): void {
     this.events = [];
     this.syncStarts = [];
     this.syncEnds = [];
@@ -458,7 +459,7 @@ export class Timeline {
         }
       }
       if (!found) {
-        const text = `No match for timeline trigger ${trigger.regex.source} in ${trigger.id}`;
+        const text = `No match for timeline trigger ${trigger.regex?.source ?? ''} in ${trigger.id ?? ''}`;
         this.errors.push({ error: text });
         console.error(`*** ERROR: ${text}`);
       }
@@ -479,7 +480,7 @@ export class Timeline {
       // Rather than matching triggers at run time, pre-match all the triggers
       // against timeline text and insert them as text events to run.
       for (const trigger of triggers ?? []) {
-        const m = trigger.regex.exec(e.name);
+        const m = trigger.regex?.exec(e.name);
         if (!m)
           continue;
 
@@ -883,7 +884,7 @@ export class TimelineUI {
 
     this.timerlist = document.getElementById('timeline');
     if (this.timerlist)
-      this.timerlist.style.gridTemplateRows = `repeat(${this.options.MaxNumberOfTimerBars}, 1fr)`;
+      this.timerlist.style.gridTemplateRows = `repeat(${this.options.MaxNumberOfTimerBars}, min-content)`;
 
     this.activeBars = {};
     this.expireTimers = {};
@@ -1019,10 +1020,24 @@ export class TimelineUI {
     }
 
     const bar = this.activeBars[e.id];
-    if (bar) {
-      const div = bar.parentNode;
+    if (!bar)
+      return;
+
+    const div = bar.parentNode;
+    const element = document.getElementById(e.id.toString());
+    if (!element)
+      return;
+
+    const removeBar = () => {
       div?.parentNode?.removeChild(div);
       delete this.activeBars[e.id];
+    };
+    element.classList.add('animate-timer-bar-removed');
+    if (window.getComputedStyle(element).animationName !== 'none') {
+      // Wait for animation to finish
+      element.addEventListener('animationend', removeBar);
+    } else {
+      removeBar();
     }
   }
 
@@ -1046,7 +1061,7 @@ export class TimelineUI {
       this.popupText.TTS(text);
   }
 
-  private OnTrigger(trigger: TimelineTrigger, matches: RegExpExecArray | null): void {
+  private OnTrigger(trigger: LooseTimelineTrigger, matches: RegExpExecArray | null): void {
     if (this.popupText)
       this.popupText.Trigger(trigger, matches);
   }
@@ -1144,7 +1159,7 @@ export class TimelineController {
   }
 
   public SetActiveTimeline(timelineFiles: string[], timelines: string[],
-      replacements: Replacement[], triggers: TimelineTrigger[], styles: Style[]): void {
+      replacements: Replacement[], triggers: LooseTimelineTrigger[], styles: Style[]): void {
     this.activeTimeline = null;
 
     let text = '';
@@ -1177,7 +1192,7 @@ export class TimelineLoader {
   }
 
   public SetTimelines(timelineFiles: string[], timelines: string[], replacements: Replacement[],
-      triggers: TimelineTrigger[], styles: Style[]): void {
+      triggers: LooseTimelineTrigger[], styles: Style[]): void {
     this.timelineController.SetActiveTimeline(
         timelineFiles,
         timelines,

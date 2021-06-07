@@ -977,7 +977,7 @@ const data = {
   'Reverse': '3F5',
   'RightArmOperational': '46A',
   'RightArmReassembly': '467',
-  'RightEye': '5AD',
+  'RightEye': '776',
   'RightUnseen': '6AB',
   'RightWithThee': '8C3',
   'Riled': '47A',

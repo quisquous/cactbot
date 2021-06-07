@@ -157,7 +157,7 @@ export const addRemotePlayerSelectUI = (lang: Lang): void => {
 
     // Preserve existing parameters.
     const currentParams = new URLSearchParams(window.location.search);
-    const paramMap: { [value: string]: number | string} = {};
+    const paramMap: { [value: string]: number | string } = {};
     // Yes, this is (v, k) and not (k, v).
     currentParams.forEach((v, k) => paramMap[k] = decodeURIComponent(v));
 

@@ -2,8 +2,11 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 const cactbotModules = {
@@ -14,7 +17,8 @@ const cactbotModules = {
   eureka: 'ui/eureka/eureka',
   fisher: 'ui/fisher/fisher',
   jobs: 'ui/jobs/jobs',
-  oopsyraidsy: 'ui/oopsyraidsy/oopsyraidsy',
+  oopsyraidsyLive: 'ui/oopsyraidsy/oopsy_live',
+  oopsyraidsySummary: 'ui/oopsyraidsy/oopsy_summary',
   pullcounter: 'ui/pullcounter/pullcounter',
   radar: 'ui/radar/radar',
   raidboss: 'ui/raidboss/raidboss',
@@ -67,10 +71,16 @@ const cactbotHtmlChunksMap = {
       cactbotModules.jobs,
     ],
   },
+  'ui/oopsyraidsy/oopsy_summary.html': {
+    chunks: [
+      cactbotChunks.oopsyraidsyData,
+      cactbotModules.oopsyraidsySummary,
+    ],
+  },
   'ui/oopsyraidsy/oopsyraidsy.html': {
     chunks: [
       cactbotChunks.oopsyraidsyData,
-      cactbotModules.oopsyraidsy,
+      cactbotModules.oopsyraidsyLive,
     ],
   },
   'ui/pullcounter/pullcounter.html': {
@@ -120,7 +130,14 @@ module.exports = function(env, argv) {
     // TDOO: Remove when everything is TypeScript, convert to:
     // entries[module] = `./${module}.ts`;
     let extension = 'js';
-    if (['radar', 'raidboss', 'test', 'timerbarTest'].includes(key))
+    if ([
+      'oopsyraidsyLive',
+      'oopsyraidsySummary',
+      'radar',
+      'raidboss',
+      'test',
+      'timerbarTest',
+    ].includes(key))
       extension = 'ts';
     entries[module] = `./${module}.${extension}`;
   });
@@ -136,6 +153,13 @@ module.exports = function(env, argv) {
   return {
     entry: entries,
     optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserWebpackPlugin({
+          extractComments: false,
+        }),
+        new CssMinimizerPlugin(),
+      ],
       splitChunks: {
         cacheGroups: {
           'raidboss_data': {
@@ -197,7 +221,18 @@ module.exports = function(env, argv) {
         },
         {
           test: /\.css$/,
-          use: ['style-loader', 'css-loader'],
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                // TODO: Migrate to url-loader
+                url: false,
+              },
+            },
+          ],
         },
         {
           test: /data[\\\/]\w*_manifest\.txt$/,
@@ -223,26 +258,10 @@ module.exports = function(env, argv) {
     plugins: [
       new webpack.ProgressPlugin({}),
       new CleanWebpackPlugin(),
+      new MiniCssExtractPlugin(),
       ...htmlPluginRules,
       new CopyPlugin({
         patterns: [
-          // All the css have to be individually listed, otherwise webpack-dev-server
-          // continually recompiles. TODO: Remove css from copy plugin.
-          {
-            // copy ui css
-            from: 'ui/**/*.css',
-            to: '[path][name].css',
-          },
-          {
-            // copy util css
-            from: 'util/**/*.css',
-            to: '[path][name].css',
-          },
-          {
-            // copy defaults css
-            from: 'resources/*.css',
-            to: '[path][name].css',
-          },
           {
             // copy sounds and images
             from: 'resources/@(ffxiv|sounds)/**/*',

@@ -5469,6 +5469,33 @@ const data: FisherData = {
         'Aromafisch',
         'Aromafische',
       ],
+      '33239': [
+        'Listracanthus',
+        'Listracanthi',
+      ],
+      '33240': [
+        'Aquamaton',
+        'Aquamatons',
+      ],
+      '33241': [
+        'Überraschungsei',
+        'Überraschungseier',
+      ],
+      '33242': 'Ealad Skaan',
+      '33243': [
+        'Zweitgrößte Schlange von Ronka',
+        'Zweitgrößten Schlange von Ronka',
+        'Zweitgrößtes Schlange von Ronka',
+        'Zweitgrößter Schlange von Ronka',
+        'Zweitgrößte Schlangen von Ronka',
+        'Zweitgrößten Schlangen von Ronka',
+        'Zweitgrößtes Schlangen von Ronka',
+        'Zweitgrößter Schlangen von Ronka',
+      ],
+      '33244': [
+        'Lanzenfisch',
+        'Lanzenfische',
+      ],
       '33316': 'Aster Trivi',
       '33317': [
         'Pythonscheibe',
@@ -6238,7 +6265,10 @@ const data: FisherData = {
         'Nepto Dragon',
         'Nepto Dragons',
       ],
-      '8755': 'coelacanthus',
+      '8755': [
+        'coelacanthus',
+        'coelacanthi',
+      ],
       '8756': 'endoceras',
       '8757': [
         'seahag',
@@ -8587,6 +8617,24 @@ const data: FisherData = {
         'white clams',
       ],
       '33223': 'fragrant sweetfish',
+      '33239': [
+        'listracanthus',
+        'listracanthi',
+      ],
+      '33240': [
+        'aquamaton',
+        'aquamata',
+      ],
+      '33241': [
+        'cinder surprise',
+        'cinder surprises',
+      ],
+      '33242': 'ealad skaan',
+      '33243': [
+        'Greater Serpent of Ronka',
+        'Greater Serpents of Ronka',
+      ],
+      '33244': 'lancetfish',
       '33316': 'aster trivi',
       '33317': 'python discus',
       '33318': [
@@ -12599,6 +12647,24 @@ const data: FisherData = {
         'poisson-sucre parfumé',
         'poissons-sucre parfumés',
       ],
+      '33239': 'Listracanthus',
+      '33240': [
+        'aquamate',
+        'aquamates',
+      ],
+      '33241': [
+        'mystériœuf',
+        'mystériœufs',
+      ],
+      '33242': 'Ealad Skaan',
+      '33243': [
+        'Grand Serpent marin de Ronka?',
+        'Grands Serpents marins de Ronka?',
+      ],
+      '33244': [
+        'cavalo féroce',
+        'cavalos féroces',
+      ],
       '33316': 'Aster Trivi',
       '33317': [
         'discus python',
@@ -13710,6 +13776,12 @@ const data: FisherData = {
       '33221': 'スカーレットフロッグ',
       '33222': '白蜃蛤',
       '33223': '薫香魚',
+      '33239': 'リストラカントゥス',
+      '33240': 'アクアマトン',
+      '33241': 'サプライズエッグ',
+      '33242': 'イラッド・スカーン',
+      '33243': 'ロンカの大水蛇？',
+      '33244': 'ミズウオ',
       '33316': 'アスタートリヴィ',
       '33317': 'パイソンディスカス',
       '33318': 'スチールレイザーフィッシュ',
@@ -17062,6 +17134,7 @@ const data: FisherData = {
       27436,
       27437,
       28925,
+      33239,
     ],
     '3297': [
       27438,
@@ -17108,6 +17181,7 @@ const data: FisherData = {
       27449,
       27452,
       27453,
+      33240,
       33319,
     ],
     '3303': [
@@ -17136,6 +17210,7 @@ const data: FisherData = {
       27461,
       27462,
       28069,
+      33241,
     ],
     '3306': [
       27458,
@@ -17171,6 +17246,7 @@ const data: FisherData = {
       27479,
       28070,
       30593,
+      33242,
     ],
     '3310': [
       27469,
@@ -17215,6 +17291,7 @@ const data: FisherData = {
       27490,
       27491,
       28071,
+      33243,
     ],
     '3316': [
       27482,
@@ -17271,6 +17348,7 @@ const data: FisherData = {
       27500,
       27505,
       28719,
+      33244,
       33325,
     ],
     '3323': [
@@ -18769,12 +18847,30 @@ const data: FisherData = {
         'Sturmwind-Wolkengipfel',
         'am Sturmwind-Wolkengipfel',
       ],
-      '3621': 'Cieldaläen - Hochsee',
-      '3622': 'Cieldaläen - Phantomströmung',
-      '3623': 'Schwerblütiges Meer - Hochsee',
-      '3624': 'Schwerblütiges Meer - Phantomströmung',
-      '3625': 'Rothlyt-Meerbusen - Hochsee',
-      '3626': 'Rothlyt-Meerbusen - Phantomströmung',
+      '3621': [
+        'Cieldaläen - Hochsee',
+        'in den Cieldaläen - Hochsee',
+      ],
+      '3622': [
+        'Cieldaläen - Phantomströmung',
+        'in den Cieldaläen - Phantomströmung',
+      ],
+      '3623': [
+        'Schwerblütiges Meer - Hochsee',
+        'im Schwerblütigen Meer - Hochsee',
+      ],
+      '3624': [
+        'Schwerblütiges Meer - Phantomströmung',
+        'im Schwerblütigen Meer - Phantomströmung',
+      ],
+      '3625': [
+        'Rothlyt-Meerbusen - Hochsee',
+        'in den Rothlyt-Meerbusen - Hochsee',
+      ],
+      '3626': [
+        'Rothlyt-Meerbusen - Phantomströmung',
+        'im Rothlyt-Meerbusen - Phantomströmung',
+      ],
     },
     'en': {
       '28': 'Limsa Lominsa upper decks',
@@ -20512,10 +20608,16 @@ const data: FisherData = {
     '4919': 3,
     '4924': 3,
     '4927': 1,
+    '4945': 1,
     '4948': 1,
+    '4953': 2,
+    '4958': 2,
     '4978': 1,
+    '4985': 2,
     '4991': 2,
+    '4994': 2,
     '4995': 1,
+    '4999': 1,
     '5002': 2,
     '5008': 2,
     '5011': 1,
@@ -20695,6 +20797,7 @@ const data: FisherData = {
     '20051': 3,
     '20054': 2,
     '20064': 1,
+    '20073': 2,
     '20074': 3,
     '20084': 1,
     '20085': 1,

@@ -33,8 +33,8 @@ module.exports = {
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
       ],
       'rules': {
-        '@typescript-eslint/no-non-null-assertion': 2,
-        '@typescript-eslint/no-explicit-any': 2,
+        '@typescript-eslint/no-non-null-assertion': 'error',
+        '@typescript-eslint/no-explicit-any': 'error',
         '@typescript-eslint/member-delimiter-style': ['error', {
           'multiline': {
             'delimiter': 'semi',
@@ -56,6 +56,7 @@ module.exports = {
             objectLiteralTypeAssertions: 'never',
           },
         ],
+        '@typescript-eslint/object-curly-spacing': ['error', 'always'],
       },
     },
     {
@@ -63,9 +64,14 @@ module.exports = {
       'rules': {
         'no-unused-vars': ['error', { 'args': 'all', 'argsIgnorePattern': '^_\\w+' }],
         'prefer-arrow/prefer-arrow-functions': 'warn',
+        'rulesdir/cactbot-matches-type-references': 'error',
         'rulesdir/cactbot-output-strings': 'error',
+        // Only meant to be used for `output` parameters!
+        '@typescript-eslint/no-non-null-assertion': 'off',
         'rulesdir/cactbot-timeline-triggers': 'error',
         'rulesdir/cactbot-response-default-severities': 'error',
+        // Raidboss data files always export a trigger set, and explicit types are noisy.
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
       },
     },
   ],

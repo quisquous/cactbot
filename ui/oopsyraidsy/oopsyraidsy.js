@@ -13,6 +13,9 @@ import './oopsyraidsy_config';
 
 import oopsyFileData from './data/oopsy_manifest.txt';
 
+import '../../resources/defaults.css';
+import './oopsy_common.css';
+
 const Options = {
   Triggers: [],
   PlayerNicks: {},
@@ -20,6 +23,12 @@ const Options = {
   IgnoreContentTypes: [
     ContentType.Pvp,
     ContentType.Eureka,
+  ],
+  IgnoreZoneIds: [
+    // Bozja zones have an (unnamed) content type of 29 which also applies
+    // to Delubrum Reginae (which we want oopsy on).  So, ignore by zone.
+    ZoneId.TheBozjanSouthernFront,
+    ZoneId.Zadnor,
   ],
 
   AbilityIdNameMap: {
@@ -1121,7 +1130,8 @@ class DamageTracker {
     this.healTriggers = [];
     this.netTriggers = [];
 
-    this.ignoreZone = Options.IgnoreContentTypes.includes(this.contentType);
+    this.ignoreZone = Options.IgnoreContentTypes.includes(this.contentType) ||
+      Options.IgnoreZoneIds.includes(this.zoneId);
     if (this.ignoreZone)
       return;
 
