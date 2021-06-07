@@ -155,7 +155,7 @@ module.exports = function(env, argv) {
     optimization: {
       minimize: true,
       minimizer: [
-        new TerserWebpackPlugin({
+        () => ({
           extractComments: false,
         }),
         new CssMinimizerPlugin(),
