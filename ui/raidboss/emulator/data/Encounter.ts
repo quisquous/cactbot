@@ -3,23 +3,25 @@ import PetNamesByLang from '../../../../resources/pet_names';
 import EmulatorCommon from '../EmulatorCommon';
 import LogRepository from './network_log_converter/LogRepository';
 import NetworkLogConverter from './NetworkLogConverter';
-import { Lang } from 'types/global';
+import { Lang, isLang } from '../../../../resources/languages';
 import LineEvent, { isLineEventSource, isLineEventTarget } from './network_log_converter/LineEvent';
 import { UnreachableCode } from '../../../../resources/not_reached';
 
-const isPetName = (name: string, language: Lang | undefined = undefined) => {
+const isPetName = (name: string, language?: Lang) => {
   if (language)
     return PetNamesByLang[language].includes(name);
 
   for (const lang in PetNamesByLang) {
-    if (PetNamesByLang[lang as Lang].includes(name))
+    if (!isLang(lang))
+      throw new UnreachableCode();
+    if (PetNamesByLang[lang].includes(name))
       return true;
   }
 
   return false;
 };
 
-const validTimestamp = (timestamp: number) => {
+const isValidTimestamp = (timestamp: number) => {
   return timestamp > 0 && timestamp < Number.MAX_SAFE_INTEGER;
 };
 
@@ -52,8 +54,7 @@ export default class Encounter {
   initialize(): void {
     const startStatuses = new Set<string>();
 
-    for (let i = 0; i < this.logLines.length; ++i) {
-      const line = this.logLines[i];
+    this.logLines.forEach((line, i) => {
       if (!line)
         throw new UnreachableCode();
 
@@ -89,9 +90,10 @@ export default class Encounter {
           }
         }
       }
-      if (res && res.groups && res.groups.language)
-        this.language = res.groups.language as Lang || this.language;
-    }
+      const matchedLang = res?.groups?.language;
+      if (matchedLang && isLang(matchedLang))
+        this.language = matchedLang;
+    });
 
     this.combatantTracker = new CombatantTracker(this.logLines, this.language);
     this.startTimestamp = this.combatantTracker.firstTimestamp;
@@ -118,7 +120,7 @@ export default class Encounter {
   }
 
   shouldPersistFight(): boolean {
-    return validTimestamp(this.firstPlayerAbility) && validTimestamp(this.firstEnemyAbility);
+    return isValidTimestamp(this.firstPlayerAbility) && isValidTimestamp(this.firstEnemyAbility);
   }
 
   upgrade(version: number): boolean {
