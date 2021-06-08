@@ -15,7 +15,7 @@ type Meta = {
   'url': string;
   'dest': string;
   'strip': number;
-  'hash': [string, string];
+  'hash': [algorithm: string, hash: string];
 }
 
 const projectRoot = path.resolve(); // path of git repo
