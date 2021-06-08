@@ -88,7 +88,7 @@ export class LineEvent0x18 extends LineEvent implements LineEventSource {
       ' for ' + this.damage.toString() + ' damage.';
   }
 
-  static showEffectNamesFor: Record<string, string> = {
+  static showEffectNamesFor: { [effectId: string]: string } = {
     '4C4': 'Excognition',
     '35D': 'Wildfire',
     '1F5': 'Doton',
