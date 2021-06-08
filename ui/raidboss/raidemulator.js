@@ -56,33 +56,24 @@ import './raidemulator.css';
       emulator.selectPerspective(id);
     });
 
+    emulator.on('currentEncounterChanged', (enc) => {
+      // Store our current loaded encounter to auto-load next time
+      window.localStorage.setItem('currentEncounter', enc.encounter.id);
+      // Once we've loaded the encounter, seek to the start of the encounter
+      if (!isNaN(enc.encounter.initialOffset))
+        emulator.seek(enc.encounter.initialOffset);
+    });
+
     // Listen for the user to attempt to load an encounter from the encounters pane
     encounterTab.on('load', (id) => {
-      let p;
       // Attempt to set the current emulated encounter
       if (!emulator.setCurrentByID(id)) {
-        let resolver;
-        p = new Promise((res) => {
-          resolver = res;
-        });
         // If that encounter isn't loaded, load it
         persistor.loadEncounter(id).then((enc) => {
           emulator.addEncounter(enc);
           emulator.setCurrentByID(id);
-          resolver();
-        });
-      } else {
-        p = new Promise((res) => {
-          res();
         });
       }
-      // Once we've loaded the encounter, seek to the start of the encounter
-      p.then(() => {
-        // Store our current loaded encounter to auto-load next time
-        window.localStorage.setItem('currentEncounter', id);
-        if (!isNaN(emulator.currentEncounter.encounter.initialOffset))
-          emulator.seek(emulator.currentEncounter.encounter.initialOffset);
-      });
     });
 
     // Listen for the user to select re-parse on the encounters tab, then refresh it in the DB

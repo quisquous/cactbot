@@ -2,11 +2,11 @@ import EmulatorCommon from '../EmulatorCommon';
 import EventBus from '../EventBus';
 import { PopupTextGenerator } from '../../popup-text';
 import RaidEmulatorTimelineController from '../overrides/RaidEmulatorTimelineController';
-import RaidEmulatorTimelineUI from '../overrides/RaidEmulatorTimelineUI';
 import PopupTextAnalysis from '../data/PopupTextAnalysis';
 import { TimelineLoader } from '../../timeline';
 import Util from '../../../../resources/util';
 import raidbossFileData from '../../data/raidboss_manifest.txt';
+import RaidEmulatorAnalysisTimelineUI from '../overrides/RaidEmulatorAnalysisTimelineUI';
 
 export default class AnalyzedEncounter extends EventBus {
   constructor(options, encounter, emulator) {
@@ -63,7 +63,7 @@ export default class AnalyzedEncounter extends EventBus {
       return;
     }
 
-    const timelineUI = new RaidEmulatorTimelineUI(this.options);
+    const timelineUI = new RaidEmulatorAnalysisTimelineUI(this.options);
     const timelineController =
         new RaidEmulatorTimelineController(this.options, timelineUI, raidbossFileData);
     timelineController.bindTo(this.emulator);
