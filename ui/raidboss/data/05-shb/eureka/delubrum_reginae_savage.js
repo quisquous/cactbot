@@ -1834,7 +1834,7 @@ export default {
           en: 'Go to ${meteor} (watch clones)',
           de: 'Gehe zum ${meteor} (beachte die Klone)',
           fr: 'Allez au ${meteor} (regardez les clones)',
-          ja: '${meteor}へ (クローンを見る)',
+          ja: '${meteor}へ (分体を見る)',
           cn: '去${meteor}，观察分身',
         },
         marchToMeteor: {
