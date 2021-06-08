@@ -7,7 +7,7 @@ type StartMap = {
   };
 };
 
-type ComboCallback = (id?: string) => void;
+export type ComboCallback = (id?: string) => void;
 
 export default class ComboTracker {
   comboTimer?: number;
