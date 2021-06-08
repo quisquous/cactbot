@@ -11,7 +11,6 @@ export interface Box extends HTMLElement {
   threshold: number;
   valuescale: number;
   fg: string;
-  // parentNode: { classList: ()};
 }
 
 type Selector = {
