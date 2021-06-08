@@ -201,7 +201,7 @@ export default {
       netRegexDe: NetRegexes.gainsEffect({ target: ['Trinität Der Sucher', 'Spaltteil Der Sucher'], effectId: '808' }),
       netRegexFr: NetRegexes.gainsEffect({ target: ['Trinité Soudée', 'Clone De La Trinité Soudée'], effectId: '808' }),
       netRegexJa: NetRegexes.gainsEffect({ target: ['トリニティ・シーカー', 'シーカーの分体'], effectId: '808' }),
-      netRegexCn: NetRegexes.gainsEffect({ source: ['求道之三位一体', '求道之分身'], effectId: '808' }),
+      netRegexCn: NetRegexes.gainsEffect({ target: ['求道之三位一体', '求道之分身'], effectId: '808' }),
       condition: (data) => !data.calledSeekerSwords,
       durationSeconds: 10,
       alertText: (data, matches, output) => {
@@ -959,7 +959,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ source: ['Schütze Der Königin', 'Soldat Der Königin'], id: ['5854', '5841'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Fusilier De La Reine', 'Soldat De La Reine'], id: ['5854', '5841'], capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: ['クイーンズ・ガンナー', 'クイーンズ・ソルジャー'], id: ['5854', '5841'], capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: ['女王战士', '女王骑士'], id: ['5854', '5841'], capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: ['女王枪手', '女王士兵'], id: ['5854', '5841'], capture: false }),
       condition: Conditions.caresAboutAOE(),
       suppressSeconds: 1,
       response: Responses.aoe(),
@@ -1128,7 +1128,7 @@ export default {
       netRegexDe: NetRegexes.tether({ target: 'Kriegerin Der Königin', id: '0010', capture: false }),
       netRegexFr: NetRegexes.tether({ target: 'Guerrière De La Reine', id: '0010', capture: false }),
       netRegexJa: NetRegexes.tether({ target: 'クイーンズ・ウォリアー', id: '0010', capture: false }),
-      netRegexCn: NetRegexes.tether({ source: '女王战士', id: '0010', capture: false }),
+      netRegexCn: NetRegexes.tether({ target: '女王战士', id: '0010', capture: false }),
       suppressSeconds: 1,
       run: (data) => data.tetherOnBomb = true,
     },
@@ -1863,7 +1863,7 @@ export default {
       netRegexDe: NetRegexes.gainsEffect({ target: 'Spaltteil der Eingeschworenen', effectId: ['8F9', '8FA', '8FB', '8FC'], capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'Clone De La Trinité Féale', effectId: ['8F9', '8FA', '8FB', '8FC'], capture: false }),
       netRegexJa: NetRegexes.gainsEffect({ target: 'アヴァウドの分体', effectId: ['8F9', '8FA', '8FB', '8FC'], capture: false }),
-      netRegexCn: NetRegexes.gainsEffect({ source: '誓约之分体', effectId: ['8F9', '8FA', '8FB', '8FC'], capture: false }),
+      netRegexCn: NetRegexes.gainsEffect({ target: '誓约之分身', effectId: ['8F9', '8FA', '8FB', '8FC'], capture: false }),
       delaySeconds: 0.5,
       durationSeconds: 9.5,
       suppressSeconds: 1,
@@ -2480,7 +2480,7 @@ export default {
       netRegexDe: NetRegexes.gainsEffect({ target: 'Kriegsgöttin', effectId: '705', capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'Garde-La-Reine', effectId: '705', capture: false }),
       netRegexJa: NetRegexes.gainsEffect({ target: 'セイブ・ザ・クイーン', effectId: '705', capture: false }),
-      netRegexCn: NetRegexes.gainsEffect({ source: '天佑女王', effectId: '705', capture: false }),
+      netRegexCn: NetRegexes.gainsEffect({ target: '天佑女王', effectId: '705', capture: false }),
       condition: (data) => {
         data.queenDispelCount = (data.queenDispelCount || 0) + 1;
         // The third time she gains this effect is the enrage, and there's no need to dispel.
