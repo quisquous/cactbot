@@ -17,6 +17,7 @@ import RaidEmulatorTimelineUI from './emulator/overrides/RaidEmulatorTimelineUI'
 import { TimelineLoader } from './timeline';
 import Tooltip from './emulator/ui/Tooltip';
 import UserConfig from '../../resources/user_config';
+import { isLang, Lang } from '../../resources/languages';
 import raidbossFileData from './data/raidboss_manifest.txt';
 // eslint can't detect the custom loader for the worker
 // eslint-disable-next-line import/default
@@ -124,9 +125,10 @@ import './raidemulator.css';
 
     // Wait for the DB to be ready before doing anything that might invoke the DB
     persistor.initializeDB().then(async () => {
+      let websocketConnected = false;
       if (window.location.href.indexOf('OVERLAY_WS') > 0) {
         // Give the websocket 500ms to connect, then abort.
-        const websocketConnected = await Promise.race([
+        websocketConnected = await Promise.race([
           new Promise((res) => {
             callOverlayHandler({ call: 'cactbotRequestState' }).then(() => {
               res(true);
@@ -138,11 +140,32 @@ import './raidemulator.css';
             }, 500);
           }),
         ]);
+        emulatedWebSocket.connected = websocketConnected;
         if (websocketConnected) {
           await UserConfig.getUserConfigLocation('raidboss', Options, (e) => {
             document.querySelector('.websocketConnected').classList.remove('d-none');
+            document.querySelector('.websocketCached').classList.add('d-none');
             document.querySelector('.websocketDisconnected').classList.add('d-none');
           });
+        }
+      }
+
+      if (!websocketConnected) {
+        if (emulatedWebSocket.hasCachedCactbotCall({ 'call': 'cactbotLoadData', 'overlay': 'options' })) {
+          await UserConfig.getUserConfigLocation('raidboss', Options, (e) => {
+            document.querySelector('.websocketConnected').classList.add('d-none');
+            document.querySelector('.websocketCached').classList.remove('d-none');
+            document.querySelector('.websocketDisconnected').classList.add('d-none');
+          });
+        } else {
+          const browserLang = navigator.language.split('-')[0];
+          Options.ParserLanguage = isLang(browserLang) ? browserLang : 'en';
+          // Default options
+          Options.IsRemoteRaidboss = true;
+          Options.TextAlertsEnabled = true;
+          Options.SoundAlertsEnabled = true;
+          Options.SpokenAlertsEnabled = false;
+          Options.GroupSpokenAlertsEnabled = false;
         }
       }
 
