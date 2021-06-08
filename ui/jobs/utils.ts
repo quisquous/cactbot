@@ -7,8 +7,6 @@ import { Bars } from './bar';
 
 import { Lang } from '../../types/global';
 import { Job } from '../../types/job';
-import TimerIcon from '../../resources/timericon';
-import TimerBar from '../../resources/timerbar';
 
 const getLocaleRegex = (locale: string, regexes: {
   'en': RegExp;
