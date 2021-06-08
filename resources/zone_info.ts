@@ -7073,6 +7073,7 @@ const data: ZoneInfoType = {
     'contentType': 29,
     'exVersion': 3,
     'name': {
+      'cn': '女王古殿',
       'de': 'Delubrum Reginae',
       'en': 'Delubrum Reginae',
       'fr': 'Delubrum Reginae',
@@ -7087,6 +7088,7 @@ const data: ZoneInfoType = {
     'contentType': 29,
     'exVersion': 3,
     'name': {
+      'cn': '零式女王古殿',
       'de': 'Delubrum Reginae (episch)',
       'en': 'Delubrum Reginae (Savage)',
       'fr': 'Delubrum Reginae (sadique)',
@@ -7335,6 +7337,7 @@ const data: ZoneInfoType = {
     'contentType': 7,
     'exVersion': 3,
     'name': {
+      'cn': '神佑女王',
       'de': 'Hinab in die Ruinen',
       'en': 'Fit for a Queen',
       'fr': 'Que les Dieux gardent la Reine',
