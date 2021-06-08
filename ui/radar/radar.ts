@@ -1,6 +1,6 @@
 import { BaseOptions } from '../../types/data';
 import { EventMap } from '../../types/event';
-import { Lang } from '../../types/global';
+import { Lang } from '../../resources/languages';
 
 import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
 import HuntData, { HuntEntry, HuntMap, Rank } from '../../resources/hunt';

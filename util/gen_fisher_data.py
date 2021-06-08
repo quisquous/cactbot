@@ -366,7 +366,7 @@ if __name__ == "__main__":
     filename = Path(__file__).resolve().parent.parent / "ui" / "fisher" / "static-data.ts"
     writer = coinach.CoinachWriter()
 
-    header = """import { Lang } from '../../types/global';
+    header = """import { Lang } from '../../resources/languages';
 
 type LangMapping = {
   [lang in Lang]: {

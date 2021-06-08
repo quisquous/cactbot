@@ -3,7 +3,7 @@ import Regexes, { Regex, Network6dParams } from '../../resources/regexes';
 import { LocaleRegex } from '../../resources/translations';
 import { UnreachableCode } from '../../resources/not_reached';
 import { RaidbossOptions } from './raidboss_options';
-import { Lang } from 'types/global';
+import { Lang } from 'resources/languages';
 import TimerBar from 'resources/timerbar';
 import { LogEvent } from 'types/event';
 import { LooseTimelineTrigger, TriggerAutoConfig } from 'types/trigger';

@@ -1,4 +1,4 @@
-import { Lang } from 'types/global';
+import { Lang } from 'resources/languages';
 
 class TTSItem {
   readonly text: string;

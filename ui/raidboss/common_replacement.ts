@@ -1,6 +1,6 @@
 // TODO: maybe this should be structured identically to a timelineReplace section.
 
-import { Lang, NonEnLang } from 'types/global';
+import { Lang, NonEnLang } from 'resources/languages';
 
 // It's awkward to refer to these string keys, so name them as replaceSync[keys.sealKey].
 export const syncKeys = {
