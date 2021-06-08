@@ -1,7 +1,7 @@
 import { BaseOptions } from '../../types/data';
 import UserConfig from '../../resources/user_config';
-import { Lang } from 'resources/languages';
-import { TriggerAutoConfig } from 'types/trigger';
+import { Lang } from '../../resources/languages';
+import { TriggerAutoConfig } from '../../types/trigger';
 
 // This file defines the base options that raidboss expects to see.
 

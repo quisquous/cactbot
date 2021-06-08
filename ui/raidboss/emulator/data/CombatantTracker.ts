@@ -3,7 +3,7 @@ import CombatantJobSearch from './CombatantJobSearch';
 import CombatantState from './CombatantState';
 import PetNamesByLang from '../../../../resources/pet_names';
 import LineEvent, { isLineEventJobLevel, isLineEventAbility, isLineEventSource, isLineEventTarget, LineEventSource, LineEventTarget } from './network_log_converter/LineEvent';
-import { Lang } from 'resources/languages';
+import { Lang } from '../../../../resources/languages';
 
 export default class CombatantTracker {
   language: Lang;
