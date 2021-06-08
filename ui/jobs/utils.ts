@@ -162,7 +162,7 @@ export const makeAuraTimerIcon = (
   const div = document.createElement('div');
   div.style.opacity = opacity.toString();
 
-  const icon = document.createElement('timer-icon') as TimerIcon;
+  const icon = document.createElement('timer-icon');
   icon.width = iconWidth.toString();
   icon.height = iconHeight.toString();
   icon.bordersize = borderSize.toString();
@@ -175,7 +175,7 @@ export const makeAuraTimerIcon = (
   div.appendChild(barDiv);
 
   if (seconds >= 0) {
-    const bar = document.createElement('timer-bar') as TimerBar;
+    const bar = document.createElement('timer-bar');
     bar.width = iconWidth.toString();
     bar.height = barHeight.toString();
     bar.fg = barColor;
