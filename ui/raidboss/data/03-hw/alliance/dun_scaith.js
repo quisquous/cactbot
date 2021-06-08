@@ -192,7 +192,8 @@ export default {
       run: (data, matches) => {
         data.cursing = data.cursing || [];
         data.wailing = data.wailing || [];
-        matches.npcNameId === '5510' ? data.wailing.push(matches.id) : data.cursing.push(matches.id);
+        const id = matches.id.toUpperCase();
+        matches.npcNameId === '5510' ? data.wailing.push(id) : data.cursing.push(id);
       },
     },
     {
