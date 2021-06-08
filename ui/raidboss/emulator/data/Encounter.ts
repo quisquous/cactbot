@@ -91,7 +91,7 @@ export default class Encounter {
         }
       }
       const matchedLang = res?.groups?.language;
-      if (matchedLang && isLang(matchedLang))
+      if (isLang(matchedLang))
         this.language = matchedLang;
     });
 
