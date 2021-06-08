@@ -63,7 +63,7 @@ jobs:
     - name: Fetch dependencies
       if: steps.cache-dependencies.outputs.cache-hit != 'true'
       run: |
-        npm run fetch_deps
+        npm run fetch-deps
 
     - name: Set up msbuild
       uses: microsoft/setup-msbuild@v1.0.2

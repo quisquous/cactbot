@@ -10,7 +10,7 @@
   "scripts": {
     "build": "node_modules/.bin/webpack --config webpack/webpack.config.cjs --mode production",
     "start": "node_modules/.bin/webpack-dev-server --config webpack/webpack.config.cjs --mode development",
-    "fetch_deps": "node --loader ts-node/esm ./util/fetch_deps.ts",
+    "fetch-deps": "node --loader ts-node/esm ./util/fetch_deps.ts",
     "tsc-no-emit": "node_modules/.bin/tsc --noEmit",
     "lint": "node_modules/.bin/eslint --max-warnings=0 ./",
     "lintfix": "node_modules/.bin/eslint --max-warnings=0 --fix ./",

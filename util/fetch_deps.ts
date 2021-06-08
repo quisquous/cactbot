@@ -1,4 +1,4 @@
-// execute this script with `npm run fetch_deps`
+// execute this script with `npm run fetch-deps`
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';

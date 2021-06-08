@@ -49,7 +49,7 @@ jobs:
       - name: Fetch Dependencies
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: |
-          npm run fetch_deps
+          npm run fetch-deps
         shell: bash
       - name: Build Cactbot Plugin
         run: |
