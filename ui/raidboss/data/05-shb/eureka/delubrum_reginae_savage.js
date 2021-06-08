@@ -1303,7 +1303,7 @@ export default {
           en: 'Point at the Turret',
           de: 'Auf den Geschützturm zeigen',
           fr: 'Pointez sur la Tourelle',
-          ja: '切り目を砲台に向く',
+          ja: '切り目をタレットに向く',
           cn: '将缺口对准炮台',
         },
       },
