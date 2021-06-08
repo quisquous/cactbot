@@ -6,8 +6,8 @@ on:
       - '.github/workflows/build-artifact.yml'
       - 'plugin/**'
       - 'util/publish.sh'
-      - 'util/DEPS.py'
-      - 'util/fetch_deps.py'
+      - 'util/DEPS.json5'
+      - 'util/fetch_deps.ts'
   pull_request:
     types:
       - opened
@@ -17,8 +17,8 @@ on:
       - '.github/workflows/build-artifact.yml'
       - 'plugin/**'
       - 'util/publish.sh'
-      - 'util/DEPS.py'
-      - 'util/fetch_deps.py'
+      - 'util/DEPS.json5'
+      - 'util/fetch_deps.ts'
   workflow_dispatch:
 
 jobs:
