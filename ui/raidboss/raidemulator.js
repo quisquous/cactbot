@@ -214,7 +214,7 @@ import './raidemulator.css';
                   Start: ${new Date(enc.startTimestamp)}
                   End: ${new Date(enc.endTimestamp)}
                   Duration: ${EmulatorCommon.msToDuration(enc.endTimestamp - enc.startTimestamp)}
-                  Pull Duration: ${EmulatorCommon.msToDuration(enc.endTimestamp - enc.initialOffset)}
+                  Pull Duration: ${EmulatorCommon.msToDuration(enc.endTimestamp - enc.initialTimestamp)}
                   Started By: ${enc.startStatus}
                   End Status: ${enc.endStatus}
                   Line Count: ${enc.logLines.length}
