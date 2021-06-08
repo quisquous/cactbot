@@ -1863,7 +1863,7 @@ export default {
       netRegexDe: NetRegexes.gainsEffect({ target: 'Spaltteil der Eingeschworenen', effectId: ['8F9', '8FA', '8FB', '8FC'], capture: false }),
       netRegexFr: NetRegexes.gainsEffect({ target: 'Clone De La Trinité Féale', effectId: ['8F9', '8FA', '8FB', '8FC'], capture: false }),
       netRegexJa: NetRegexes.gainsEffect({ target: 'アヴァウドの分体', effectId: ['8F9', '8FA', '8FB', '8FC'], capture: false }),
-      netRegexCn: NetRegexes.gainsEffect({ target: '誓约之分体', effectId: ['8F9', '8FA', '8FB', '8FC'], capture: false }),
+      netRegexCn: NetRegexes.gainsEffect({ target: '誓约之分身', effectId: ['8F9', '8FA', '8FB', '8FC'], capture: false }),
       delaySeconds: 0.5,
       durationSeconds: 9.5,
       suppressSeconds: 1,
