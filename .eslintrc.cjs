@@ -79,6 +79,7 @@ module.exports = {
     // Do not ignore dot files.  /o\
     '!.*',
     '.git/',
+    '.venv/',
     'dist/',
     'plugin/',
     'publish/',
