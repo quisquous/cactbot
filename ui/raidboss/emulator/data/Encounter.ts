@@ -119,6 +119,10 @@ export default class Encounter {
     this.startStatus = [...startStatuses].sort().join(', ');
   }
 
+  public get initialTimestamp() : number {
+    return this.startTimestamp + this.initialOffset;
+  }
+
   shouldPersistFight(): boolean {
     return isValidTimestamp(this.firstPlayerAbility) && isValidTimestamp(this.firstEnemyAbility);
   }
