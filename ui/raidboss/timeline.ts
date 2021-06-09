@@ -855,11 +855,11 @@ export class TimelineUI {
   private debugElement: HTMLElement | null = null;
   private debugFightTimer: TimerBar | null = null;
 
-  private timeline: Timeline | null = null;
+  protected timeline: Timeline | null = null;
 
   private popupText?: PopupText;
 
-  constructor(private options: RaidbossOptions) {
+  constructor(protected options: RaidbossOptions) {
     this.options = options;
     this.init = false;
     this.lang = this.options.TimelineLanguage || this.options.ParserLanguage || 'en';
