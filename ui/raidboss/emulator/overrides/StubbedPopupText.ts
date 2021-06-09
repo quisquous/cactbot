@@ -1,5 +1,5 @@
-import { RaidbossOptions } from 'ui/raidboss/raidboss_options';
-import { TimelineLoader } from 'ui/raidboss/timeline';
+import { RaidbossOptions } from '../../raidboss_options';
+import { TimelineLoader } from '../../timeline';
 import { PopupText } from '../../popup-text';
 import { RaidbossFileData } from '../../data/raidboss_manifest.txt';
 
