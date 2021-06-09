@@ -1,4 +1,4 @@
-import { Lang } from 'resources/languages';
+import { Lang } from '../../resources/languages';
 
 class TTSItem {
   readonly text: string;
