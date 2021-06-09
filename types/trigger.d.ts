@@ -26,12 +26,12 @@ export type LocaleText = LocaleObject<string>;
 
 export type ZoneId = number | null;
 
+export type OutputStrings = { [outputKey: string]: LocaleText };
+
 // TODO: is it awkward to have Outputs the static class and Output the unrelated type?
 // This type corresponds to TriggerOutputProxy.
 export type Output = {
-  responseOutputStrings: {
-    [outputKey: string]: LocaleText;
-  };
+  responseOutputStrings: OutputStrings | string;
 } & {
   [key: string]: (params?: { [param: string]: string | undefined }) => string;
 };
@@ -61,7 +61,7 @@ export type TriggerAutoConfig = {
   Output?: Output;
   Duration?: number;
   BeforeSeconds?: number;
-  OutputStrings?: { [outputKey: string]: Lang };
+  OutputStrings?: OutputStrings;
 }
 
 export type MatchesAny = { [s in T]?: string };
