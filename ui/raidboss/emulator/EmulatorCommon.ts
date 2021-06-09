@@ -4,7 +4,7 @@ import { Lang } from '../../../resources/languages';
 
 // Disable no-explicit-any for cloneData as it needs to work on raw objects for performance reasons.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type DataType = { [key: string]: any } | null;
+export type DataType = { [key: string]: any } | null;
 
 export default class EmulatorCommon {
   static cloneData(data: DataType, exclude = ['options', 'party']): DataType {
