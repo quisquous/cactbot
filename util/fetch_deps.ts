@@ -153,7 +153,9 @@ export const main = async (updateHashes = false): Promise<void> => {
 
       for (const [i, key] of Array.from(obsolete.values()).entries()) {
         console.log(`[${pad(i + 1)}/${pad(count)}]: ${key}`);
-        const meta = cache[key] as Meta;
+        const meta = cache[key];
+        if (!meta)
+          return;
         const dest = path.join(projectRoot, meta['dest']);
         if (isDir(dest))
           await safeRmDir(dest);
