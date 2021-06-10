@@ -661,7 +661,7 @@ export default {
           de: 'Mehrfache Vergeltung: Blitz',
           fr: 'Multi-taillade magique: Foudre',
           ja: '魔装連続剣：いなずま',
-          cn: '八方 -> 分散 -> 直线 -> 远离直线 -> T接雷',
+          cn: '魔装连续剑: 雷',
           ko: '연속검: 번개',
         },
       },
