@@ -1,3 +1,4 @@
+// TODO: remove this when ui/jobs/jobs.js is converted to typescript
 import { Job } from '../../types/job';
 import { JobDetail } from '../../types/event';
 import ComboTracker, { ComboCallback } from './combo_tracker';
