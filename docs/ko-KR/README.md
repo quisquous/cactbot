@@ -259,7 +259,7 @@ Webpack에 대해 더 자세히 알고 싶다면
 
 [ui/](../../ui/) 디렉토리는 cactbot의 ui 모듈을 가지고 있습니다.
 만약 cactbot을 상기 설명에 따라 설치했다면,
-이 디렉토리는 `%APPDATA%Advanced Combat Tracker\Plugins\cactbot-version\cactbot\ui\`에 있을 것입니다.
+이 디렉토리는 `%APPDATA%\Advanced Combat Tracker\Plugins\cactbot-version\cactbot\ui\`에 있을 것입니다.
 
 각각의 cactbot ui 모듈은 분리된 오버레이로 따로 추가되어야 합니다.
 더욱 자세한 오버레이 설치 방법을 확인하려면 [오버레이 모듈 추가하기](#오버레이-모듈-추가하기) 문단을 확인하세요.
@@ -291,42 +291,42 @@ cactbot에서는 [약간의 확장 기능](../TimelineGuide.md)을 추가했습�
 
 ### raidboss emulator
 
-If you are writing triggers or timelines and want to test them, you can use the raidboss emulator:
+만약 트리거나 타임라인을 작성하는 중이고 그 결과를 테스트하고 싶다면, raidboss emulator를 사용할 수 있습니다:
 **ui/raidboss/raidemulator.html**.
 
-This currently can only be loaded in a browser and not as an overlay.
-This will work in current version of Chrome,
-and should work in other browsers as well but this is less tested.
+이 기능은 현재 오버레이로 제공되지 않고, 브라우저에서 불러와야 합니다.
+이 페이지는 최신 크롬에서 작동하고,
+다른 브라우저에서도 작동하겠지만 별로 테스트되지 않았습니다.
 
-Instructions:
+방법:
 
-1. Start ACT.
-1. Make sure the WS Server is started via Plugins -> OverlayPlugin WSServer -> Stream/Local Overlay.
-1. Select `Cactbot Raidboss (Combined Alerts and Timelines)` from the URL Generator list.
-1. Edit the url to say `raidemulator.html` instead of `raidboss.html`.
-1. Copy and paste this edited url into Chrome.
-1. Drag and drop a [network log](../FAQ-Troubleshooting.md#how-to-find-a-network-log) onto the page.
-1. Select the zone and encounter, and then click `Load Encounter`.
+1. ACT를 실행하세요.
+1. 웹소켓 서버가 실행되고 있는지 확인하세요. Plugins -> OverlayPlugin WSServer -> Stream/Local Overlay에서 확인할 수 있습니다.
+1. URL 생성 리스트에서 `Cactbot Raidboss (Combined Alerts and Timelines)`를 선택하세요.
+1. URL에서 `raidboss.html` 부분을 `raidemulator.html`로 바꾸세요.
+1. 편집된 URL을 크롬에서 여세요.
+1. [네트워크 로그](../FAQ-Troubleshooting.md#how-to-find-a-network-log)를 페이지에 드래그 앤 드롭하세요.
+1. 지역명과 적을 선택하고, `Load Encounter`를 클릭하세요.
 
-If the emulator is not working, check the console log in the inspector for errors.
-No buttons will work until it is connected to ACT via websocket.
+만약 에뮬레이터가 작동하지 않는다면, 개발자 도구 Console 로그에서 에러를 확인하세요.
+웹소켓으로 ACT와 연결되기 전까지는 어떤 버튼도 작동하지 않습니다.
 
-![raidboss emulator screenshot](../../screenshots/raidboss_emulator.png)
+![raidboss emulator 스크린샷](../../screenshots/raidboss_emulator.png)
 
 ### [oopsyraidsy](../../ui/oopsyraidsy) 모듈
 
 To use this module,
 point cactbot at **ui/oopsyraidsy/oopsyraidsy.html** or use the `Cactbot OopsyRaidsy` preset.
 
-This module provides mistake tracking and death reporting.  Oopsy raidsy is meant to reduce the time wasted understanding what went wrong on fights and how people died.  During the fight, only a limited number of mistakes are shown (to avoid clutter), but afterwards a full scrollable list is displayed.
+이 모듈은 실수 추적과 사망 리포트를 제공합니다. Oopsy raidsy는 전투에서 어떤 문제가 있었는지, 왜 죽었는지 이해하는데 낭비되는 시간을 줄이는 목적으로 제작되었습니다. 전투동안은 혼란을 피하기 위해 제한된 수의 실수가 표시되지만, 전투가 종료되면 스크롤이 가능한 전체 실수 리스트를 보여줍니다.
 
-When somebody dies, the last thing they took damage from is listed in the log.  For example, if the log specifies: ":skull: Poutine: Iron Chariot (82173/23703)" this means that Poutine most likely died to Iron Chariot, taking 82173 damage and having 23703 health at the time.  The health value itself is not perfect and may be slightly out of date by a ~second due to a hot tick or multiple simultaneous damage sources.
+누군가 죽는다면, 마지막에 받은 데미지가 로그에 님습니다. 예를 들어, 다음과 같은 로그가 나왔다면: ":skull: 아무개: 강철 전차 (82173/23703)" 아무개가 강철 전차에 죽었을 가능성이 아주 높고, 체력이 23703 남았을 때 82173의 데미지를 받았다는 뜻입니다. 체력 값은 완벽하지 않습니다. 서버틱 문제와 동시에 많은 갯수의 데미지가 들어온 경우에 최대 1초 정도의 지연이 있을 수 있습니다.
 
-When mistakes are made that are avoidable, oopsy logs warning (:warning:) and failure (:no_entry_sign:) messages, explaining what went wrong.
+피할 수 있는 실수를 했을 경우에는, oopsy에 경고(:warning:)나 실패(:no_entry_sign:) 로그가 찍혀서 무엇을 실수했는지 알려주게 됩니다.
 
-Mistake triggers are specified for individual fights in the [ui/oopsyraidsy/data](../../ui/oopsyraidsy/data) folder.
+실수 트리거들은 [ui/oopsyraidsy/data](../../ui/oopsyraidsy/data) 폴더의 각 개별 전투 파일에 자세히 나열되어 있습니다.
 
-![oopsy screenshot](../../screenshots/promo_oopsy.png)
+![oopsy 스크린샷](../../screenshots/promo_oopsy.png)
 
 ### [jobs](../../ui/jobs) 모듈
 
