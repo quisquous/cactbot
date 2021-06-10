@@ -702,7 +702,7 @@ export default {
           de: 'Mehrfache Vergeltung: Sanctus',
           fr: 'Multi-taillade magique: Miracle',
           ja: '魔装連続剣：ホーリー',
-          cn: '八方 -> 光三向分摊 -> 直线 -> 放光点名 -> 离开',
+          cn: '魔装连续剑: 光',
           ko: '연속검: 홀리',
         },
       },
