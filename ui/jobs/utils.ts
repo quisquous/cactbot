@@ -5,7 +5,7 @@ import { LocaleRegex } from '../../resources/translations';
 import { kMeleeWithMpJobs, kLevelMod } from './constants';
 import { Bars } from './bar';
 
-import { Lang } from '../../types/global';
+import { Lang } from '../../resources/languages';
 import { Job } from '../../types/job';
 import { UnreachableCode } from '../../resources/not_reached';
 
