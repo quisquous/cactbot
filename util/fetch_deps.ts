@@ -44,15 +44,9 @@ const endsWith = (s: string, suffix: Iterable<string>): boolean => {
   return false;
 };
 
-const sleep = (time: number): void => {
-  const stop = new Date().getTime();
-  while (new Date().getTime() < stop + time)
-    ;
+const sleep = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms));
 
-  return;
-};
-
-export const safeRmDir = (path: string): void => {
+export const safeRmDir = async (path: string): Promise<void> => {
   let tries = 30;
   while (tries > 0) {
     tries--;
@@ -62,7 +56,7 @@ export const safeRmDir = (path: string): void => {
     } catch (e) {
       if (tries <= 0)
         throw e;
-      sleep(0.3);
+      await sleep(300);
     }
   }
 };
@@ -99,7 +93,7 @@ export const main = async (updateHashes = false): Promise<void> => {
 
   if (isDir(dlPath)) {
     console.log('Removing left overs...');
-    safeRmDir(dlPath);
+    await safeRmDir(dlPath);
   }
 
   fs.mkdirSync(dlPath, { recursive: true });
@@ -144,7 +138,7 @@ export const main = async (updateHashes = false): Promise<void> => {
         }
         if (isDir(dest)) {
           console.log('Removing old files...');
-          safeRmDir(dest);
+          await safeRmDir(dest);
         }
         console.log('Extracting...');
 
@@ -157,14 +151,14 @@ export const main = async (updateHashes = false): Promise<void> => {
       console.log('Removing old dependencies...');
       const count = obsolete.size;
 
-      Array.from(obsolete.values()).forEach((key, i) => {
+      for (const [i, key] of Array.from(obsolete.values()).entries()) {
         console.log(`[${pad(i + 1)}/${pad(count)}]: ${key}`);
         const meta = cache[key] as Meta;
         const dest = path.join(projectRoot, meta['dest']);
         if (isDir(dest))
-          safeRmDir(dest);
+          await safeRmDir(dest);
         _.unset(cache, key);
-      });
+      }
     }
 
     if (!(missing.size + outdated.size + obsolete.size))
@@ -184,7 +178,7 @@ export const main = async (updateHashes = false): Promise<void> => {
       fs.writeFileSync(depsPath, data);
     }
     console.log('Cleaning up...');
-    safeRmDir(dlPath);
+    await safeRmDir(dlPath);
   }
 };
 
