@@ -19,6 +19,7 @@ export interface NonConfigOptions extends BaseOptions {
   BigBuffBorderSize: number;
   GpAlarmPoint: number;
   GpAlarmSoundVolume: number;
+  FlashExpiredProcsInCombat: boolean;
 }
 
 export interface ConfigOptions {

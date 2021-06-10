@@ -16,11 +16,13 @@ export function setup(bars) {
   const miasmaBox = bars.addProcBox({
     id: 'smn-procs-miasma',
     fgColor: 'smn-color-miasma',
+    flashWhenExpired: true,
   });
 
   const bioSmnBox = bars.addProcBox({
     id: 'smn-procs-biosmn',
     fgColor: 'smn-color-biosmn',
+    flashWhenExpired: true,
   });
 
   const energyDrainBox = bars.addProcBox({

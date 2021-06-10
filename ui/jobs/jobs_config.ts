@@ -210,5 +210,18 @@ UserConfig.registerOptions('jobs', {
       type: 'float',
       default: 0.8,
     },
+    {
+      id: 'FlashExpiredProcsInCombat',
+      name: {
+        en: 'Flash procs boxes of inactive dots/etc. while in combat.',
+        de: 'Dot/etc. boxen blinken when im Kampf und dot ist nicht aktiv.',
+        fr: 'Flash procs boxes of inactive dots/etc. while in combat.',
+        ja: 'Flash procs boxes of inactive dots/etc. while in combat.',
+        cn: 'Flash procs boxes of inactive dots/etc. while in combat.',
+        ko: 'Flash procs boxes of inactive dots/etc. while in combat.',
+      },
+      type: 'checkbox',
+      default: false,
+    },
   ],
 });
