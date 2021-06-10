@@ -333,28 +333,28 @@ point cactbot at **ui/oopsyraidsy/oopsyraidsy.html** or use the `Cactbot OopsyRa
 To use this module,
 point cactbot at **ui/jobs/jobs.html** or use the `Cactbot Jobs` preset.
 
-This module provides health, mana, and tp bars, as well as icons and timer bars for big raid buffs such as
-The Balance and Trick Attack. It also features a food buff warning to keep up your food buff when leveling
-or raiding, and a visual pull countdown.
+이 모듈은 체력, 마나와 함께 속임수 공격이나 전투 기도 같은 전투 버프 타이머를 제공합니다.
+레벨링이나 레이드를 할 때 음식 시간 부족 경고도 보여주고,
+시각적인 초읽기 기능도 제공합니다.
 
-It has more fleshed out support for some jobs but is *strongly* a Work In Progress for others.
+일부 직업에 대해서는 구체적인 지원을 하지만 대부분의 직업은 기능을 만드는 중입니다.
 
 <details>
 <summary>지원하는 잡 (클릭해서 확장)</summary>
 
 |잡|기능|
 |:-:|:-:|
-|<img src="../../resources/ffxiv/jobs/pld-large.png" width="30px"/><br> 나이트|Shows current Oath amount, and atonement stacks. Also tracks Goring Blade DoT. |
-|<img src="../../resources/ffxiv/jobs/war-large.png" width="30px"/><br> 전사|Shows the beast amount, and tracks the remaining Storm's Eye buff time in gcds, and shows combo time remaining.|
-|<img src="../../resources/ffxiv/jobs/drk-large.png" width="30px"/><br> 암흑기사|Shows the blood amount and darkside time, BloodWeapon&Delirium&LivingShadow duration and cooldown, and shows combo time remaining.|
-|<img src="../../resources/ffxiv/jobs/gnb-large.png" width="30px"/><br> 건브레이커|Shows No Mercy duration&cooldown, Bloodfest&Gnashing Fang cooldown, Cartridge amount, and shows combo time remaining.|
-|<img src="../../resources/ffxiv/jobs/whm-large.png" width="30px"/><br> 백마도사|Shows Heal&Blood Lily amount, time to next Lily, DoTs remaining time, and shows Assize&Lucid Dreaming cooldown.|
-|<img src="../../resources/ffxiv/jobs/sch-large.png" width="30px"/><br> 학자|Shows Aetherflow stacks, Fairy gauge amount/time remaining, DoTs remaining time, and shows Aetherflow&Lucid Dreaming cooldown.|
-|<img src="../../resources/ffxiv/jobs/ast-large.png" width="30px"/><br> 점성술사|Shows Seals amount, notify who or whether to play the current card, DoTs remaining time, and shows Draw&Lucid Dreaming cooldown.|
-|<img src="../../resources/ffxiv/jobs/mnk-large.png" width="30px"/><br> 몽크|Shows chakra count, <del>remaining greased lightning time</del> and form time, and tracks monk buffs and debuffs.|
+|<img src="../../resources/ffxiv/jobs/pld-large.png" width="30px"/><br> 나이트|현재 충의 수치와 회한의 검 스택을 보여줍니다. 꿰뚫는 검격의 도트도 추적해줍니다. |
+|<img src="../../resources/ffxiv/jobs/war-large.png" width="30px"/><br> 전사|원초 수치, 폭풍의 눈 버프 남은 시간, 그리고 콤보 유지 시간을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/drk-large.png" width="30px"/><br> 암흑기사|흑혈 수치와 암흑 시간, 피의 칼날/열광검/환영 구현 지속 시간과 쿨, 그리고 콤보 유지 시간을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/gnb-large.png" width="30px"/><br> 건브레이커|무자비 지속 시간과 쿨, 피의 소일/난폭한 송곳니 쿨, 소일 양, 그리고 콤보 유지 시간을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/whm-large.png" width="30px"/><br> 백마도사|Shows Heal&Blood Lily amount, time to next Lily, 도트 남은 시간, 그리고 심판/자각몽 쿨을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/sch-large.png" width="30px"/><br> 학자|에테르 순환 스택, 요정 게이지 양/남은 시간, 도트 남은 시간, 그리고 에테르 순환/자각몽 쿨을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/ast-large.png" width="30px"/><br> 점성술사|Shows Seals amount, notify who or whether to play the current card, 도트 남은 시간, 그리고 점지/자각몽 쿨을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/mnk-large.png" width="30px"/><br> 몽크|투기량<del>, 남은 질풍번개 시간</del>을 보여주고, 품새 시간, 몽크 버프와 디버프를 추적해줍니다.|
 |<img src="../../resources/ffxiv/jobs/drg-large.png" width="30px"/><br> 용기사|용혈과 용눈 갯수, 몸통 가르기 버프 남은 시간, 점프 쿨, 돌격하는 창과 용의 시선 지속 시간/쿨타임을 보여줍니다.|
-|<img src="../../resources/ffxiv/jobs/nin-large.png" width="30px"/><br> 닌자|Shows Ninki amount, Huton remaining time, Trick Attack duration&cooldown, Bunshin&Mudras cooldown, and shows combo time remaining.|
-|<img src="../../resources/ffxiv/jobs/sam-large.png" width="30px"/><br> 사무라이|Shows Kenki amount, Meditation stacks, Shifu&Jinpu&Higanbana duration, Tsubame-gaeshi cooldown, and shows combo time remaining.|
+|<img src="../../resources/ffxiv/jobs/nin-large.png" width="30px"/><br> 닌자|인법 수치, 풍둔술 지속 시간, 속임수 공격 지속시간/쿨, 분신술/삼인술 쿨, 그리고 콤보 유지 시간을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/sam-large.png" width="30px"/><br> 사무라이|검기 수치, 투기 스택, 사풍/진풍/피안화 지속시간, 제비반전 쿨, 그리고 콤보 유지시간을 보여줍니다.|
 |<img src="../../resources/ffxiv/jobs/brd-large.png" width="30px"/><br> 음유시인|Shows songs playing and remaining time, Repertoire stack, Soul Voice amount, StraightShotReady track, DoT remaining time, and a bar that show when your DoTs will tick.|
 |<img src="../../resources/ffxiv/jobs/mch-large.png" width="30px"/><br> 기공사|Shows Heat gauge, Battery gauge, Combo Timer, Drill/Bioblaster&Air Anchor Cooldown, Wild Fire Cooldown&Duration. When Wild Fire is active, there will be a gauge to show how many GCD you have landed.|
 |<img src="../../resources/ffxiv/jobs/dnc-large.png" width="30px"/><br> 무도가|Shows Combo Timer, Feather Guage, Esprit Guage, Standard Step Cooldown, Technical Step&Flourish Cooldown & Duration.|
@@ -365,12 +365,11 @@ It has more fleshed out support for some jobs but is *strongly* a Work In Progre
 
 </details>
 
-In this screenshot, the jobs module is highlighted for the Red Mage job. The health and mana bars, as well
-as Red Mage white/black mana tracking is circled in purple, with the large raid buff tracking pointed to
-beside it in orange. <del>The first step of the melee combo has been executed, which is displayed as the yellow
-box above the health bar.</del> The proc tracking is circled below in green.
+스크린샷을 보시면, job 모듈은 적마도사에 맞춰져 있습니다. 보라색 원이 되어 있는 곳을 보면, 체력과 마나 바와 함께
+적마도사의 흰/붉은 마나를 추적 해주고 있습니다. 주황색 화살표를 보면 파티 버프도 추ch적되고 있습니다.
+<del>체력바 위에 있는 노란색 박스가 첫 근접 콤보를 실행했다는 것을 보여줍니다.</del> 프록 트래커는 초록색 원으로 표시된 곳에 나타나고 있습니다.
 
-![jobs screenshot](../../screenshots/Jobs.png)
+![jobs 스크린샷](../../screenshots/Jobs.png)
 
 ### [eureka](../../ui/eureka) 모듈
 
