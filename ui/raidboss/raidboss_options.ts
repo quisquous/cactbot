@@ -14,11 +14,11 @@ export type PerTriggerOption = Partial<{
   GroupSpeechAlert: boolean; // TODO: we should remove this
   SoundOverride: string;
   VolumeOverride: number;
-  Condition?: TriggerField<RaidbossData, boolean>; // TODO: trigger condition function
-  InfoText: TriggerOutput<RaidbossData, MatchesAny>; // TODO: trigger function
-  AlertText: TriggerOutput<RaidbossData, MatchesAny>; // TODO: trigger function
-  AlarmText: TriggerOutput<RaidbossData, MatchesAny>; // TODO: trigger function
-  TTSText: TriggerOutput<RaidbossData, MatchesAny>; // TODO: trigger function
+  Condition: TriggerField<RaidbossData, boolean>;
+  InfoText: TriggerOutput<RaidbossData, MatchesAny>;
+  AlertText: TriggerOutput<RaidbossData, MatchesAny>;
+  AlarmText: TriggerOutput<RaidbossData, MatchesAny>;
+  TTSText: TriggerOutput<RaidbossData, MatchesAny>;
 }>;
 
 export type PerTriggerAutoConfig = { [triggerId: string]: TriggerAutoConfig };
@@ -36,7 +36,7 @@ type RaidbossNonConfigOptions = {
   DisabledTriggers: DisabledTriggers;
   PerTriggerAutoConfig: PerTriggerAutoConfig;
   PerTriggerOptions: PerTriggerOptions;
-  Triggers: LooseTrigger[]; // one giant TODO
+  Triggers: LooseTrigger[];
   PlayerNameOverride: string | null;
   IsRemoteRaidboss: boolean;
   // Transforms text before passing it to TTS.

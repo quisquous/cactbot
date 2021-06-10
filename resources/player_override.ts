@@ -18,6 +18,7 @@ import Util from './util';
 export type PlayerChangedDetail = { detail: PlayerChangedRet };
 type PlayerChangedFunc = (e: PlayerChangedDetail) => void;
 
+// @TODO: Swap the order of these arguments, make playerName optional instead
 export const addPlayerChangedOverrideListener = (playerName: string | null,
     func: PlayerChangedFunc): void => {
   if (!func)
