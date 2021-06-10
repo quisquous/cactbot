@@ -124,6 +124,28 @@ class Bars {
     this.contentType = 0;
     this.isPVPZone = false;
     this.crafting = false;
+
+    this.addProcFlashCSS();
+  }
+
+  addProcFlashCSS() {
+    console.log(`Add css, repeat: ${this.options.FlashExpiredProcsInCombat}`);
+    if (this.options.FlashExpiredProcsInCombat >= 0) {
+      const repeats = this.options.FlashExpiredProcsInCombat === 0 ? 'infinite' : this.options.FlashExpiredProcsInCombat;
+      const animationRule = `.proc-box.in-combat .flash-when-expired.expired {
+  display: block;
+  animation: flash 1s ${repeats};
+}
+
+@keyframes flash {
+  50% {
+    opacity: 0;
+  }
+}`;
+      const animationStyle = document.createElement('style');
+      animationStyle.innerHTML = animationRule;
+      document.head.appendChild(animationStyle);
+    }
   }
 
   get gcdSkill() {
@@ -570,13 +592,13 @@ class Bars {
   }
 
   _updateProcBoxFlashState() {
-    if (this.options.FlashExpiredProcsInCombat) {
+    if (this.options.FlashExpiredProcsInCombat >= 0) {
       const boxes = document.getElementsByClassName('proc-box');
       for (const box of boxes) {
         if (this.inCombat)
-          box.setAttribute('incombat', '');
+          box.classList.add('in-combat');
         else
-          box.removeAttribute('incombat');
+          box.classList.remove('in-combat');
       }
     }
   }

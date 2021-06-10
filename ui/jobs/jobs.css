@@ -1141,14 +1141,3 @@
 .blu-color-lucid {
   background-color: rgb(227, 148, 210);
 }
-
-.proc-box[incombat] .flash-when-expired.expired {
-  display: block;
-  animation: flash 1s infinite;
-}
-
-@keyframes flash {
-  50% {
-    opacity: 0%;
-  }
-}
