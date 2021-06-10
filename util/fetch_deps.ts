@@ -110,10 +110,7 @@ export const main = async (updateHashes = false): Promise<void> => {
         const meta = deps[key];
         if (_.isEmpty(meta) || !meta)
           continue;
-        const baseFileName = path.basename(meta['url']).split('.', 1)[0];
-        if (!baseFileName)
-          // this value won't be null, not TypeScript require this
-          return;
+        const baseFileName = path.basename(meta['url']).split('.', 1)[0] ?? '';
         const dlname = path.join(dlPath, baseFileName);
         const dest = path.join(projectRoot, meta['dest']);
         // TODO: replace with http client in nodejs
