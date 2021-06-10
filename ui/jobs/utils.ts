@@ -7,6 +7,7 @@ import { Bars } from './bar';
 
 import { Lang } from '../../types/global';
 import { Job } from '../../types/job';
+import { UnreachableCode } from '../../resources/not_reached';
 
 const getLocaleRegex = (locale: string, regexes: {
   'en': RegExp;
@@ -122,9 +123,10 @@ export const calcGCDFromStat = (bars: Bars, stat: number, actionDelay = 2500): n
   // TODO: this probably isn't useful to track
   const astralUmbralMod = 100;
 
-  const gcdMs = Math.floor(1000 - Math.floor(
-      130 * (stat - kLevelMod[bars.level][0]) / kLevelMod[bars.level][1],
-  )) * actionDelay / 1000;
+  const mod = kLevelMod[bars.level];
+  if (!mod)
+    throw new UnreachableCode();
+  const gcdMs = Math.floor(1000 - Math.floor(130 * (stat - mod[0]) / mod[1])) * actionDelay / 1000;
   const a = (100 - type1Buffs) / 100;
   const b = (100 - type2Buffs) / 100;
   const gcdC = Math.floor(Math.floor((a * b) * gcdMs / 10) * astralUmbralMod / 100);

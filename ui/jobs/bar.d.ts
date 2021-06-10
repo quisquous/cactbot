@@ -3,7 +3,6 @@ import { Job } from '../../types/job';
 import { JobDetail } from '../../types/event';
 import ComboTracker, { ComboCallback } from './combo_tracker';
 import TimerBox from '../../resources/timerbox';
-import { kLevelMod } from './constants';
 
 
 export interface Box extends HTMLElement {
@@ -36,7 +35,7 @@ export interface Bars {
     shifu: boolean;
     museStacks: 1 | 2 | 3 | 4;
   };
-  level: Exclude<Partial<typeof kLevelMod>['length'], (typeof kLevelMod)['length']>;
+  level: number;
   gcdSkill: number;
   combo: ComboTracker;
   skillSpeed: number;
