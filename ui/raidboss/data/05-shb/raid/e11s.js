@@ -620,7 +620,7 @@ export default {
           de: 'Mehrfache Vergeltung: Feuer',
           fr: 'Multi-taillade magique: Feu',
           ja: '魔装連続剣：ファイア',
-          cn: '八方 -> 分摊 -> 直线 -> 击退 -> 集合',
+          cn: '魔装连续剑: 火',
           ko: '연속검: 화염',
         },
       },
