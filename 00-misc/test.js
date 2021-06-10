@@ -225,10 +225,10 @@ Options.Triggers.push({
       response: (_data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
-          alarmOne: '1',
-          alertTwo: '2',
-          infoThree: '3',
-          ttsFour: '4',
+          alarmOne: outputs.num1,
+          alertTwo: outputs.num2,
+          infoThree: outputs.num3,
+          ttsFour: outputs.num4,
         };
         return {
           alarmText: output.alarmOne(),
