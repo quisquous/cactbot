@@ -1,11 +1,11 @@
 // TODO: maybe this should be structured identically to a timelineReplace section.
 
-import { Lang, NonEnLang } from 'types/global';
+import { Lang, NonEnLang } from '../../resources/languages';
 
 // It's awkward to refer to these string keys, so name them as replaceSync[keys.sealKey].
 export const syncKeys = {
   // Match Regexes, NetRegexes, and timeline constructions of seal log lines.
-  seal: '(?<=00:0839:|00.*0839.*\\\\\|)(.*) will be sealed off(?: in (?:[0-9]+ seconds)?)?',
+  seal: '(?<=00:0839:|00\\|[^|]*\\|0839\\|\\|)(.*) will be sealed off(?: in (?:[0-9]+ seconds)?)?',
   unseal: 'is no longer sealed',
   engage: 'Engage!',
 };

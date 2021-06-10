@@ -3,10 +3,10 @@ import Regexes, { Regex, Network6dParams } from '../../resources/regexes';
 import { LocaleRegex } from '../../resources/translations';
 import { UnreachableCode } from '../../resources/not_reached';
 import { RaidbossOptions } from './raidboss_options';
-import { Lang } from 'types/global';
-import TimerBar from 'resources/timerbar';
-import { LogEvent } from 'types/event';
-import { LooseTimelineTrigger, TriggerAutoConfig } from 'types/trigger';
+import { Lang } from '../../resources/languages';
+import TimerBar from '../../resources/timerbar';
+import { LogEvent } from '../../types/event';
+import { LooseTimelineTrigger, TriggerAutoConfig } from '../../types/trigger';
 
 const kBig = 1000000000; // Something bigger than any fight length in seconds.
 
@@ -855,11 +855,11 @@ export class TimelineUI {
   private debugElement: HTMLElement | null = null;
   private debugFightTimer: TimerBar | null = null;
 
-  private timeline: Timeline | null = null;
+  protected timeline: Timeline | null = null;
 
   private popupText?: PopupText;
 
-  constructor(private options: RaidbossOptions) {
+  constructor(protected options: RaidbossOptions) {
     this.options = options;
     this.init = false;
     this.lang = this.options.TimelineLanguage || this.options.ParserLanguage || 'en';

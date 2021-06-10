@@ -2,7 +2,6 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const TerserWebpackPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -155,7 +154,8 @@ module.exports = function(env, argv) {
     optimization: {
       minimize: true,
       minimizer: [
-        new TerserWebpackPlugin({
+        // Apply option overrides to Webpack v5's native TerserPlugin
+        () => ({
           extractComments: false,
         }),
         new CssMinimizerPlugin(),

@@ -1,4 +1,4 @@
-import { Lang } from '../types/global';
+import { Lang } from './languages';
 import { BaseOptions } from '../types/data';
 import { CactbotLoadUserRet, SavedConfig, SavedConfigEntry } from '../types/event';
 import { LocaleText } from '../types/trigger';

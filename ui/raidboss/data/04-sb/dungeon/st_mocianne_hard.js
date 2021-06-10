@@ -125,7 +125,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '3132', source: 'シルトゴーレム' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3132', source: '淤泥巨像' }),
       netRegexKo: NetRegexes.startsUsing({ id: '3132', source: '실트 골렘' }),
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6,
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

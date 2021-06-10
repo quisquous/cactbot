@@ -21,7 +21,7 @@ if __name__ == "__main__":
     tables = {lang: [name for name in table.keys() if name] for lang, table in tables.items()}
 
     writer = coinach.CoinachWriter(verbose=True)
-    header = """import { Lang } from '../types/global';
+    header = """import { Lang } from '../../resources/languages';
 
 type PetData = {
   [name in Lang]: readonly string[];

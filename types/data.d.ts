@@ -1,5 +1,5 @@
 import PartyTracker from '../resources/party';
-import { Lang } from './global';
+import { Lang } from '../resources/languages';
 import { Job, Role } from './job';
 
 export interface BaseOptions {

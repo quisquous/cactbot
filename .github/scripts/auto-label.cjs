@@ -221,7 +221,7 @@ const getTimelineReplaceChanges = (changedFiles) => {
 
 /**
  * @param {string} fileContent
- * @returns {undefined | Record<string, any>}
+ * @returns {undefined | { [lang: string]: any }}
  */
 const getTimelineReplace = (fileContent) => {
   const ast = recast.parse(fileContent, {

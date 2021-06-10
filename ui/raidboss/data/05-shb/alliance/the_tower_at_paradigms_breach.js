@@ -163,7 +163,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ id: '5EB1', source: 'Herzbube' }),
       netRegexFr: NetRegexes.startsUsing({ id: '5EB1', source: 'Jack' }),
       netRegexJa: NetRegexes.startsUsing({ id: '5EB1', source: 'ジャック' }),
-      delaySeconds: (_data, matches) => matches.duration - 6,
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6,
       durationSeconds: 5,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -184,7 +184,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ id: '5EB1', source: 'Réplique De Jack' }),
       netRegexJa: NetRegexes.startsUsing({ id: '5EB1', source: '複製サレタジャック' }),
       condition: (data) => !data.cloneLunge,
-      delaySeconds: (_data, matches) => matches.duration - 6,
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6,
       durationSeconds: 5,
       infoText: (_data, _matches, output) => output.text(),
       run: (data) => data.cloneLunge = true,
@@ -206,7 +206,7 @@ export default {
       netRegexFr: NetRegexes.startsUsing({ id: '60C7', source: 'Jack' }),
       netRegexJa: NetRegexes.startsUsing({ id: '60C7', source: 'ジャック' }),
       // Half a second longer cast time than the Lunge itself
-      delaySeconds: (_data, matches) => matches.duration - 6.5,
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6.5,
       durationSeconds: 5,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -226,7 +226,7 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ id: '60C8', source: 'Herzbube' }),
       netRegexFr: NetRegexes.startsUsing({ id: '60C8', source: 'Jack' }),
       netRegexJa: NetRegexes.startsUsing({ id: '60C8', source: 'ジャック' }),
-      delaySeconds: (_data, matches) => matches.duration - 6.5,
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 6.5,
       durationSeconds: 5,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
