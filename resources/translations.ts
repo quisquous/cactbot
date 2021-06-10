@@ -112,9 +112,9 @@ const localeLines = {
   },
 } as const;
 
-type LocaleLine = { en: string } & Partial<Record<Exclude<Lang, 'en'>, string>>;
+type LocaleLine = { en: string } & Partial<{ [key in Exclude<Lang, 'en'>]: string }>;
 
-type LocaleRegexesObj = Record<keyof typeof localeLines, Record<Lang, RegExp>>;
+type LocaleRegexesObj = { [key in keyof typeof localeLines]: { [key in Lang]: RegExp } };
 
 class RegexSet {
   regexes?: LocaleRegexesObj;
@@ -145,7 +145,7 @@ class RegexSet {
     ) as LocaleRegexesObj;
   }
 
-  buildLocaleRegex(lines: LocaleLine, builder: (s: string) => RegExp): Record<Lang, RegExp> {
+  buildLocaleRegex(lines: LocaleLine, builder: (s: string) => RegExp): { [key in Lang]: RegExp } {
     const regexEn = builder(lines.en);
     return {
       en: regexEn,

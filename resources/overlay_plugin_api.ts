@@ -54,9 +54,9 @@ let ws: WebSocket | null = null;
 let queue: (
   { [s: string]: unknown } |
   [{ [s: string]: unknown }, ((value: string | null) => unknown) | undefined]
-)[] | null = [];
+  )[] | null = [];
 let rseqCounter = 0;
-const responsePromises: Record<number, (value: unknown) => void> = {};
+const responsePromises: { [key: number]: (value: unknown) => void } = {};
 
 const subscribers: Subscriber<VoidFunc<unknown>> = {};
 

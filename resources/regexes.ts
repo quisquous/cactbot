@@ -1,8 +1,8 @@
 import { BaseRegExp } from '../types/trigger';
 
 export type Params<T extends string> =
-  Partial<Record<Exclude<T, 'timestamp' | 'capture'>, string | string[]> &
-  { 'timestamp': string; 'capture': boolean }>;
+  Partial<{ [key in Exclude<T, 'timestamp' | 'capture'>]: string | string[] } &
+    { 'timestamp': string; 'capture': boolean }>;
 
 export type Regex<T extends string> = BaseRegExp<Exclude<T, 'capture'>>;
 
@@ -336,9 +336,9 @@ export default class Regexes {
       Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.' +
       '.*?Max HP: ' + Regexes.maybeCapture(capture, 'hp', f.hp, '[0-9]+') + '\.' +
       Regexes.optional('.*?Pos: \\(' +
-      Regexes.maybeCapture(capture, 'x', f.x, '\\y{Float}') + ',' +
-      Regexes.maybeCapture(capture, 'y', f.y, '\\y{Float}') + ',' +
-      Regexes.maybeCapture(capture, 'z', f.z, '\\y{Float}') + '\\)');
+        Regexes.maybeCapture(capture, 'x', f.x, '\\y{Float}') + ',' +
+        Regexes.maybeCapture(capture, 'y', f.y, '\\y{Float}') + ',' +
+        Regexes.maybeCapture(capture, 'z', f.z, '\\y{Float}') + '\\)');
     return Regexes.parse(str);
   }
 
@@ -676,11 +676,11 @@ export default class Regexes {
    * args may be strings or RegExp, although any additional markers to RegExp
    * like /insensitive/i are dropped.
    */
-  static anyOf(...args: (string|string[]|RegExp)[]): string {
-    const anyOfArray = (array: (string|RegExp)[]): string => {
+  static anyOf(...args: (string | string[] | RegExp)[]): string {
+    const anyOfArray = (array: (string | RegExp)[]): string => {
       return `(?:${array.map((elem) => elem instanceof RegExp ? elem.source : elem).join('|')})`;
     };
-    let array: (string|RegExp)[] = [];
+    let array: (string | RegExp)[] = [];
     if (args.length === 1) {
       if (Array.isArray(args[0]))
         array = args[0];
@@ -717,7 +717,7 @@ export default class Regexes {
     let modifiers = 'i';
     if (regexpString instanceof RegExp) {
       modifiers += (regexpString.global ? 'g' : '') +
-                    (regexpString.multiline ? 'm' : '');
+        (regexpString.multiline ? 'm' : '');
       regexpString = regexpString.source;
     }
     regexpString = regexpString.replace(/\\y\{(.*?)\}/g, (match, group) => {
@@ -755,7 +755,7 @@ export default class Regexes {
       const key = keys[k];
       if (key && !params.includes(key)) {
         throw new Error(`${funcName}: invalid parameter '${key}'.  ` +
-            `Valid params: ${JSON.stringify(params)}`);
+          `Valid params: ${JSON.stringify(params)}`);
       }
     }
   }

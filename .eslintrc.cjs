@@ -211,6 +211,15 @@ const tsOverrides = {
   },
   'plugins': ['@typescript-eslint', 'prefer-arrow'],
   'rules': {
+    '@typescript-eslint/ban-types': [
+      'error',
+      {
+        'types': {
+          // see https://github.com/quisquous/cactbot/pull/2981#discussion_r643714216
+          'Record': 'use index accessor instead',
+        },
+      },
+    ],
     '@typescript-eslint/consistent-type-assertions': [
       'error', {
         assertionStyle: 'as',

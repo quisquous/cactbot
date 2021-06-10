@@ -114,7 +114,7 @@ export default class EmulatorCommon {
   }
 
   static doesLineMatch(line: string,
-      regexes: Record<Lang, RegExp> | RegExp): RegExpExecArray | null {
+      regexes: { [key in Lang]: RegExp } | RegExp): RegExpExecArray | null {
     if (regexes instanceof RegExp)
       return regexes.exec(line);
 

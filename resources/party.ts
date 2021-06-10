@@ -2,7 +2,7 @@ import { Party } from '../types/event';
 import { Job, Role } from '../types/job';
 import Util from './util';
 
-const emptyRoleToPartyNames = () => {
+const emptyRoleToPartyNames = (): { [key in Role]: string[] } => {
   return {
     tank: [],
     healer: [],
@@ -21,7 +21,7 @@ export default class PartyTracker {
   allianceIds_: string[] = [];
   nameToRole_: { [name: string]: Role } = {};
   idToName_: { [id: string]: string } = {};
-  roleToPartyNames_: Record<Role, string[]> = emptyRoleToPartyNames();
+  roleToPartyNames_ = emptyRoleToPartyNames();
 
   // Bind this to PartyChanged events.
   onPartyChanged(e: { party: Party[] }): void {

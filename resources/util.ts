@@ -1,7 +1,7 @@
 import { Job, Role } from '../types/job';
 
 // TODO: it'd be nice to not repeat job names, but at least Record enforces that all are set.
-const nameToJobEnum: Record<Job, number> = {
+const nameToJobEnum: { [key in Job]: number } = {
   NONE: 0,
   GLA: 1,
   PGL: 2,
