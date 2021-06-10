@@ -83,11 +83,7 @@ export const main = async (updateHashes = false): Promise<void> => {
   for (const [key, meta] of Object.entries(deps)) {
     if (!isDir(path.join(projectRoot, meta['dest'])))
       missing.add(key);
-    else if (
-      ('hash' in meta) &&
-      (key in oldCache) &&
-      _.isEqual(_.get(cache, [key, 'hash'], [null, null]), meta['hash'][1])
-    )
+    else if (oldCache.has(key) && cache[key]?.['hash'][1] !== meta['hash'][1])
       outdated.add(key);
   }
 
