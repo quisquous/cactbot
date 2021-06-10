@@ -467,7 +467,6 @@ class Bars {
     }
     if (flashWhenExpired)
       timerBox.classList.add('flash-when-expired');
-    timerBox.classList.add('expired');
     return timerBox;
   }
 
