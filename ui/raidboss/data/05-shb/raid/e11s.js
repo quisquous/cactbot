@@ -616,7 +616,7 @@ export default {
           ko: '8산개 -> 파트너 쉐어뎀 -> 직선 장판 -> 넉백 -> 모이기',
         },
         ttsText: {
-          en: 'Cycle of Faith: Fire',
+          en: 'Fire Cycle',
           de: 'Mehrfache Vergeltung: Feuer',
           fr: 'Multi-taillade magique: Feu',
           ja: '魔装連続剣：ファイア',
@@ -657,7 +657,7 @@ export default {
           ko: '8산개 -> 산개 -> 직선 장판 -> 밖으로 -> 광역 탱버',
         },
         ttsText: {
-          en: 'Cycle of Faith: Lightning',
+          en: 'Lightning Cycle',
           de: 'Mehrfache Vergeltung: Blitz',
           fr: 'Multi-taillade magique: Foudre',
           ja: '魔装連続剣：いなずま',
@@ -698,7 +698,7 @@ export default {
           ko: '8산개 -> 홀리 그룹 쉐어 -> 직선 장판 -> 장판 유도 -> 피하기',
         },
         ttsText: {
-          en: 'Cycle of Faith: Holy',
+          en: 'Holy Cycle',
           de: 'Mehrfache Vergeltung: Sanctus',
           fr: 'Multi-taillade magique: Miracle',
           ja: '魔装連続剣：ホーリー',
