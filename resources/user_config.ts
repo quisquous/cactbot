@@ -75,6 +75,10 @@ class UserConfig {
       ParserLanguage: 'en',
       ShortLocale: 'en',
       DisplayLanguage: 'en',
+      TextAlertsEnabled: true,
+      SoundAlertsEnabled: true,
+      SpokenAlertsEnabled: false,
+      GroupSpokenAlertsEnabled: false,
     };
   }
 

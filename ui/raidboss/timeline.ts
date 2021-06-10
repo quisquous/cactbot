@@ -7,6 +7,7 @@ import { Lang } from '../../resources/languages';
 import TimerBar from '../../resources/timerbar';
 import { LogEvent } from '../../types/event';
 import { LooseTimelineTrigger, TriggerAutoConfig } from '../../types/trigger';
+import { PopupTextGenerator } from './popup-text';
 
 const kBig = 1000000000; // Something bigger than any fight length in seconds.
 
@@ -70,10 +71,11 @@ const activeText = {
   ko: '시전중:',
 };
 
-type Replacement = {
+export type Replacement = {
   locale: string;
-  replaceSync: { [key: string]: string };
-  replaceText: { [key: string]: string };
+  missingTranslations?: boolean;
+  replaceSync?: { [key: string]: string };
+  replaceText?: { [key: string]: string };
 };
 
 type Style = {
@@ -217,9 +219,10 @@ export class Timeline {
     for (const r of this.replacements) {
       if (r.locale && r.locale !== replaceLang)
         continue;
-      if (!r[replaceKey])
+      const reps = r[replaceKey];
+      if (!reps)
         continue;
-      for (const [key, value] of Object.entries(r[replaceKey]))
+      for (const [key, value] of Object.entries(reps))
         text = text.replace(Regexes.parse(key), value);
     }
     // Common Replacements
@@ -832,14 +835,6 @@ export class Timeline {
   }
 }
 
-interface PopupText {
-  Info: PopupTextCallback;
-  Alert: PopupTextCallback;
-  Alarm: PopupTextCallback;
-  TTS: PopupTextCallback;
-  Trigger: TriggerCallback;
-}
-
 export class TimelineUI {
   private init: boolean;
   private lang: Lang;
@@ -857,7 +852,7 @@ export class TimelineUI {
 
   protected timeline: Timeline | null = null;
 
-  private popupText?: PopupText;
+  private popupText?: PopupTextGenerator;
 
   constructor(protected options: RaidbossOptions) {
     this.options = options;
@@ -924,7 +919,7 @@ export class TimelineUI {
       this.debugElement = document.createElement('div');
   }
 
-  public SetPopupTextInterface(popupText: PopupText): void {
+  public SetPopupTextInterface(popupText: PopupTextGenerator): void {
     this.popupText = popupText;
   }
 
@@ -1120,7 +1115,7 @@ export class TimelineController {
     this.wipeRegex = Regexes.network6d({ command: '40000010' });
   }
 
-  public SetPopupTextInterface(popupText: PopupText): void {
+  public SetPopupTextInterface(popupText: PopupTextGenerator): void {
     this.ui.SetPopupTextInterface(popupText);
   }
 

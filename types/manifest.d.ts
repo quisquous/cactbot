@@ -1,6 +1,6 @@
 declare module '*/raidboss_manifest.txt' {
   export interface RaidbossFileData {
-    [filename: string]: string;
+    [filename: string]: TriggerSet;
   }
   const raidbossFileData: RaidbossFileData;
   export default raidbossFileData;

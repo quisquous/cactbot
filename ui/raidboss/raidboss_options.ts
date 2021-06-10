@@ -1,25 +1,29 @@
-import { BaseOptions } from '../../types/data';
+import { BaseOptions, RaidbossData } from '../../types/data';
 import UserConfig from '../../resources/user_config';
 import { Lang } from '../../resources/languages';
-import { TriggerAutoConfig } from '../../types/trigger';
+import { LooseTrigger, MatchesAny, TriggerAutoConfig, TriggerField, TriggerOutput } from '../../types/trigger';
 
 // This file defines the base options that raidboss expects to see.
 
 // Backwards compat for this old style of overriding triggers.
 // TODO: we should probably deprecate and remove this.
-type PerTriggerOption = Partial<{
+export type PerTriggerOption = Partial<{
   TextAlert: boolean;
   SoundAlert: boolean;
   SpeechAlert: boolean;
   GroupSpeechAlert: boolean; // TODO: we should remove this
   SoundOverride: string;
   VolumeOverride: number;
-  Condition: unknown; // TODO: trigger condition function
-  InfoText: unknown; // TODO: trigger function
-  AlertText: unknown; // TODO: trigger function
-  AlarmText: unknown; // TODO: trigger function
-  TTSText: unknown; // TODO: trigger function
+  Condition?: TriggerField<RaidbossData, boolean>; // TODO: trigger condition function
+  InfoText: TriggerOutput<RaidbossData, MatchesAny>; // TODO: trigger function
+  AlertText: TriggerOutput<RaidbossData, MatchesAny>; // TODO: trigger function
+  AlarmText: TriggerOutput<RaidbossData, MatchesAny>; // TODO: trigger function
+  TTSText: TriggerOutput<RaidbossData, MatchesAny>; // TODO: trigger function
 }>;
+
+export type PerTriggerAutoConfig = { [triggerId: string]: TriggerAutoConfig };
+export type PerTriggerOptions = { [triggerId: string]: PerTriggerOption };
+export type DisabledTriggers = { [triggerId: string]: boolean };
 
 type RaidbossNonConfigOptions = {
   PlayerNicks: { [gameName: string]: string };
@@ -29,10 +33,10 @@ type RaidbossNonConfigOptions = {
   LongSound: string;
   PullSound: string;
   AudioAllowed: boolean;
-  DisabledTriggers: { [triggerId: string]: boolean };
-  PerTriggerAutoConfig: { [triggerId: string]: TriggerAutoConfig };
-  PerTriggerOptions: { [triggerId: string]: PerTriggerOption };
-  Triggers: unknown; // one giant TODO
+  DisabledTriggers: DisabledTriggers;
+  PerTriggerAutoConfig: PerTriggerAutoConfig;
+  PerTriggerOptions: PerTriggerOptions;
+  Triggers: LooseTrigger[]; // one giant TODO
   PlayerNameOverride: string | null;
   IsRemoteRaidboss: boolean;
   // Transforms text before passing it to TTS.
