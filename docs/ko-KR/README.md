@@ -437,18 +437,17 @@ for Stormblood jobs and recolored to match [fflogs](http://fflogs.com).
 
 ### [pull counter](../../ui/pullcounter) 모듈
 
-This small module sticks the current pull count for raiding bosses on screen.
-This is primarily for folks who stream a lot and want to review video footage.
-Having a number on screen makes it easy to scrub through video and find
-particular pulls to review.
+이 작은 모듈은 레이드 보스를 지금 몇 번째 트라이하고 있는지 보여줍니다.
+이 기능은 주로 스트리밍을 많이 하고 영상을 되돌려 보고 싶은 사람들을 위한 것입니다.
+화면에 숫자가 표시되면 영상을 정리하기 쉬고 원하는 부분을
+찾아가기가 쉬워질 것입니다.
 
-In most cases, you can reset the count for the current boss/zone by typing
-`/echo pullcounter reset`.
-You can also edit the counts directly in your
+대부분의 경우에는, `/echo pullcounter reset`을 채팅창에 입력해서 현재 보스/지역의 트라이 횟수를 초기화할 수 있습니다.
+또한
 `%APPDATA%\Advanced Combat Tracker\Config\RainbowMage.OverlayPlugin.config.json`
-file.
+파일에서 카운트를 직접 수정할 수 있습니다.
 
-![pull counter screenshot](../../screenshots/pullcounter.png)
+![pull counter 스크린샷](../../screenshots/pullcounter.png)
 
 ### [test](../../ui/test) 모듈
 
