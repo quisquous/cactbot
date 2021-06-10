@@ -31,7 +31,7 @@ export type OutputStrings = { [outputKey: string]: LocaleText };
 // TODO: is it awkward to have Outputs the static class and Output the unrelated type?
 // This type corresponds to TriggerOutputProxy.
 export type Output = {
-  responseOutputStrings: OutputStrings | string;
+  responseOutputStrings: OutputStrings;
 } & {
   [key: string]: (params?: { [param: string]: string | undefined }) => string;
 };
@@ -92,9 +92,7 @@ export type BaseTrigger<Data> = {
   infoText?: TriggerField<Data, TriggerOutput>;
   tts?: TriggerField<Data, TriggerOutput>;
   run?: TriggerField<Data, void>;
-  outputStrings?: {
-    [key: string]: LocaleText;
-  };
+  outputStrings?: OutputStrings;
 }
 
 export type NetRegexTrigger<Data> = BaseTrigger<Data> & {
