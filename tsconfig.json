@@ -5,8 +5,8 @@
   },
   "compilerOptions": {
     "checkJs": false,
-    "declaration": true,
-    "declarationMap": true,
+    "declaration": false,
+    "declarationMap": false,
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "outDir": "./dist",
