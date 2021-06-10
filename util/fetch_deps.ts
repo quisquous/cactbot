@@ -64,14 +64,14 @@ export const safeRmDir = async (path: string): Promise<void> => {
 export const main = async (updateHashes = false): Promise<void> => {
   const depsPath = path.join(projectRoot, 'util/DEPS.json5');
 
-  const deps: Record<string, Meta> = json5.parse(fs.readFileSync(depsPath).toString());
+  const deps = json5.parse<{ [depName: string]: Meta }>(fs.readFileSync(depsPath).toString());
+  let cache: typeof deps = {};
 
-  let cache: Record<string, Meta> = {};
   const cachePath = path.join(projectRoot, 'util/DEPS.cache');
   const dlPath = path.join(projectRoot, 'util/.deps_dl');
 
   if (isFile(cachePath))
-    cache = JSON.parse(fs.readFileSync(cachePath).toString()) as Record<string, Meta>;
+    cache = json5.parse<typeof cache>(fs.readFileSync(cachePath).toString());
 
   const oldCache = new Set(Object.keys(cache));
   const newCache = new Set(Object.keys(deps));
@@ -94,7 +94,7 @@ export const main = async (updateHashes = false): Promise<void> => {
 
   fs.mkdirSync(dlPath, { recursive: true });
 
-  const repMap: Record<string, string> = {};
+  const repMap: { [key: string]: string } = {};
 
   try {
     const tmp = new Set([...missing, ...outdated]);
@@ -167,8 +167,8 @@ export const main = async (updateHashes = false): Promise<void> => {
       console.log(repMap);
       const data = fs.readFileSync(depsPath).toString();
 
-      for (const [old, pyNew] of Object.entries(repMap))
-        data.replace(old, pyNew);
+      for (const [oldCache, newCache] of Object.entries(repMap))
+        data.replace(oldCache, newCache);
 
       fs.writeFileSync(depsPath, data);
     }
