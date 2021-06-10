@@ -618,7 +618,7 @@ export default {
         ttsText: {
           en: 'Fire Cycle',
           de: 'Mehrfache Vergeltung: Feuer',
-          fr: 'Multi-taillade magique: Feu',
+          fr: 'Multi-taillade: Feu',
           ja: '魔装連続剣：ファイア',
           cn: '火连续剑',
           ko: '연속검: 화염',
@@ -659,7 +659,7 @@ export default {
         ttsText: {
           en: 'Lightning Cycle',
           de: 'Mehrfache Vergeltung: Blitz',
-          fr: 'Multi-taillade magique: Foudre',
+          fr: 'Multi-taillade: Foudre',
           ja: '魔装連続剣：いなずま',
           cn: '雷连续剑',
           ko: '연속검: 번개',
@@ -700,7 +700,7 @@ export default {
         ttsText: {
           en: 'Holy Cycle',
           de: 'Mehrfache Vergeltung: Sanctus',
-          fr: 'Multi-taillade magique: Miracle',
+          fr: 'Multi-taillade: Lumière',
           ja: '魔装連続剣：ホーリー',
           cn: '光连续剑',
           ko: '연속검: 홀리',
