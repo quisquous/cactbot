@@ -4,15 +4,6 @@ import { JobDetail } from '../../types/event';
 import ComboTracker, { ComboCallback } from './combo_tracker';
 import TimerBox from '../../resources/timerbox';
 
-
-export interface Box extends HTMLElement {
-  elapsed: number;
-  duration: number;
-  threshold: number;
-  valuescale: number;
-  fg: string;
-}
-
 type Selector = {
   id?: string;
   fgColor?: string;
