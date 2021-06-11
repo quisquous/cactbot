@@ -23,6 +23,7 @@ export default {
       id: 'ShivaEx Icebrand',
       regex: /Icebrand/,
       beforeSeconds: 5,
+      suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -40,6 +41,7 @@ export default {
       id: 'ShivaEx Heavenly Strike',
       regex: /Heavenly Strike/,
       beforeSeconds: 5,
+      suppressSeconds: 1,
       response: Responses.knockback('info'),
     },
   ],
