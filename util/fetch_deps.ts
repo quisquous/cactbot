@@ -2,14 +2,13 @@
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
-import { promisify } from 'util';
-import { exec as _exec } from 'child_process';
 
 import _ from 'lodash';
 import tar from 'tar-fs';
 import JSZip from 'jszip';
 import json5 from 'json5';
-
+import fetch, { RequestInit } from 'node-fetch';
+import HttpsProxyAgent from 'https-proxy-agent';
 
 type Meta = {
   'url': string;
@@ -19,8 +18,6 @@ type Meta = {
 }
 
 const projectRoot = path.resolve(); // path of git repo
-
-const exec = promisify(_exec);
 
 const isFile = (p: string): boolean => {
   if (!fs.existsSync(p))
@@ -113,8 +110,7 @@ export const main = async (updateHashes = false): Promise<void> => {
         const baseFileName = path.basename(meta['url']).split('.', 1)[0] ?? '';
         const dlname = path.join(dlPath, baseFileName);
         const dest = path.join(projectRoot, meta['dest']);
-        // TODO: replace with http client in nodejs
-        await exec(`curl -Lo ${dlname} ${meta['url']}`);
+        await downloadFile(meta['url'], dlname);
         if (_.has(meta, 'hash')) {
           console.log('Hashing...');
           const content = fs.readFileSync(dlname).slice(0, 16 * 1024);
@@ -201,6 +197,17 @@ const extractFile = async (dlname: string, meta: Meta): Promise<void> => {
     console.log(`ERROR: ${meta['url']} has an unknown archive type!`);
     return;
   }
+};
+
+
+const downloadFile = async (url: string, localPath: string): Promise<void> => {
+  const option: RequestInit = {};
+  const proxy = process.env.HTTPS_PROXY ?? process.env.HTTP_PROXY ?? process.env.ALL_PROXY;
+  if (proxy)
+    option.agent = HttpsProxyAgent(proxy);
+
+  const res = await fetch(url, option);
+  fs.writeFileSync(localPath, await res.buffer());
 };
 
 const waitStream = (stream: { on: (event: 'finish', cb: VoidFunction) => void }): Promise<void> => {
