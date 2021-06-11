@@ -173,7 +173,8 @@ export class Timeline {
   private nextSyncEnd = 0;
 
   private addTimerCallback: AddTimerCallback | null = null;
-  private removeTimerCallback: ((e: Event, expired: boolean) => void) | null = null;
+  private removeTimerCallback: |
+    ((e: Event, expired: boolean, force?: boolean) => void) | null = null;
   private showInfoTextCallback: PopupTextCallback | null = null;
   private showAlertTextCallback: PopupTextCallback | null = null;
   private showAlarmTextCallback: PopupTextCallback | null = null;
@@ -637,7 +638,7 @@ export class Timeline {
         continue;
       }
       if (this.removeTimerCallback)
-        this.removeTimerCallback(event, false);
+        this.removeTimerCallback(event, false, true);
     }
 
     this.activeEvents = durationEvents;
@@ -812,7 +813,7 @@ export class Timeline {
   public SetAddTimer(c: AddTimerCallback | null): void {
     this.addTimerCallback = c;
   }
-  public SetRemoveTimer(c: ((e: Event, expired: boolean) => void) | null): void {
+  public SetRemoveTimer(c: ((e: Event, expired: boolean, force?: boolean) => void) | null): void {
     this.removeTimerCallback = c;
   }
   public SetShowInfoText(c: PopupTextCallback | null): void {
@@ -1003,8 +1004,8 @@ export class TimelineUI {
       bar.fg = this.barExpiresSoonColor;
   }
 
-  protected OnRemoveTimer(e: Event, expired: boolean): void {
-    if (expired && this.options.KeepExpiredTimerBarsForSeconds) {
+  protected OnRemoveTimer(e: Event, expired: boolean, force = false): void {
+    if (!force && expired && this.options.KeepExpiredTimerBarsForSeconds) {
       this.expireTimers[e.id] = window.setTimeout(
           this.OnRemoveTimer.bind(this, e, false),
           this.options.KeepExpiredTimerBarsForSeconds * 1000);
@@ -1027,7 +1028,9 @@ export class TimelineUI {
       div?.parentNode?.removeChild(div);
       delete this.activeBars[e.id];
     };
-    element.classList.add('animate-timer-bar-removed');
+
+    if (!force)
+      element.classList.add('animate-timer-bar-removed');
     if (window.getComputedStyle(element).animationName !== 'none') {
       // Wait for animation to finish
       element.addEventListener('animationend', removeBar);
