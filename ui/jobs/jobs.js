@@ -125,26 +125,14 @@ class Bars {
     this.isPVPZone = false;
     this.crafting = false;
 
-    this.addProcFlashCSS();
+    this.updateProcBoxFlashRepeat();
   }
 
-  addProcFlashCSS() {
-    console.log(`Add css, repeat: ${this.options.FlashExpiredProcsInCombat}`);
+  updateProcBoxFlashRepeat() {
     if (this.options.FlashExpiredProcsInCombat >= 0) {
       const repeats = this.options.FlashExpiredProcsInCombat === 0 ? 'infinite' : this.options.FlashExpiredProcsInCombat;
-      const animationRule = `.proc-box.in-combat .flash-when-expired.expired {
-  display: block;
-  animation: flash 1s ${repeats};
-}
 
-@keyframes flash {
-  50% {
-    opacity: 0;
-  }
-}`;
-      const animationStyle = document.createElement('style');
-      animationStyle.innerHTML = animationRule;
-      document.head.appendChild(animationStyle);
+      document.documentElement.style.setProperty('--proc-box-flash-repeat', repeats);
     }
   }
 

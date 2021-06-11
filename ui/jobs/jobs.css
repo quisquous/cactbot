@@ -1,3 +1,7 @@
+:root {
+  --proc-box-flash-repeat: infinite;
+}
+
 #jobs {
   position: relative;
 }
@@ -1140,4 +1144,16 @@
 
 .blu-color-lucid {
   background-color: rgb(227, 148, 210);
+}
+
+/* Proc box animation */
+.proc-box.in-combat .flash-when-expired.expired {
+  display: block;
+  animation: var(--proc-box-flash-animation, proc-box-flash) var(--proc-box-flash-duration, 1s) var(--proc-box-flash-repeat);
+}
+
+@keyframes proc-box-flash {
+  50% {
+    opacity: 0;
+  }
 }
