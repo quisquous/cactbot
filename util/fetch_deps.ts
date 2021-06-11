@@ -199,8 +199,7 @@ const extractFile = async (dlname: string, meta: Meta): Promise<void> => {
 
 
 const downloadFile = async (url: string, localPath: string): Promise<void> => {
-  const proxy = process.env.HTTPS_PROXY ?? process.env.HTTP_PROXY ?? process.env.ALL_PROXY;
-  const res = await fetch(url, { agent: ProxyAgent(proxy) });
+  const res = await fetch(url, { agent: ProxyAgent() });
   fs.writeFileSync(localPath, await res.buffer());
 };
 
