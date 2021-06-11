@@ -100,9 +100,7 @@ export const main = async (updateHashes = false): Promise<void> => {
     if (count) {
       console.log('Fetching missing or outdated dependencies...');
 
-      for (const key of Array.from(tmp.values())) {
-        const i = Array.from(tmp.values()).indexOf(key);
-        // for (const [i, key] of enumerate(missing | outdated)) {
+      for (const [i, key] of Array.from(tmp.values()).entries()) {
         console.log(`[${pad(i + 1)}/${pad(count)}]: ${key}`);
         const meta = deps[key];
         if (_.isEmpty(meta) || !meta)
