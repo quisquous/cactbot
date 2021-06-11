@@ -21,14 +21,15 @@ import { RaidbossData } from '../../types/data';
 import { Job, Role } from '../../types/job';
 import { EventResponses, LogEvent } from '../../types/event';
 
-export const isNetRegexTrigger =
-  (trigger?: LooseTrigger): trigger is NetRegexTrigger<RaidbossData> => {
-    if (trigger)
-      return 'netRegex' in trigger;
-    return false;
-  };
+export const isNetRegexTrigger = (trigger?: LooseTrigger):
+    trigger is Partial<NetRegexTrigger<RaidbossData>> => {
+  if (trigger)
+    return 'netRegex' in trigger;
+  return false;
+};
 
-export const isRegexTrigger = (trigger?: LooseTrigger): trigger is RegexTrigger<RaidbossData> => {
+export const isRegexTrigger = (trigger?: LooseTrigger):
+    trigger is Partial<RegexTrigger<RaidbossData>> => {
   if (trigger)
     return 'regex' in trigger;
   return false;
@@ -37,25 +38,25 @@ export const isRegexTrigger = (trigger?: LooseTrigger): trigger is RegexTrigger<
 type RegexParserLang = `regex${Capitalize<Lowercase<NonEnLang>>}` | 'regex';
 type NetRegexParserLang = `netRegex${Capitalize<Lowercase<NonEnLang>>}` | 'netRegex';
 
-export type RaidbossLooseTrigger = LooseTrigger & {
+export type ProcessedTrigger = LooseTrigger & {
   filename?: string;
   localRegex?: RegExp;
   localNetRegex?: RegExp;
   output?: Output;
 };
 
-type RaidbossLooseTimelineTrigger = RaidbossLooseTrigger & {
+type ProcessedTimelineTrigger = ProcessedTrigger & {
   isTimelineTrigger?: true;
 };
 
-type RaidbossTriggerSet = LooseTriggerSet & {
+type ProcessedTriggerSet = LooseTriggerSet & {
   filename?: string;
-  timelineTriggers?: RaidbossLooseTimelineTrigger[];
-  triggers?: RaidbossLooseTrigger[];
+  timelineTriggers?: ProcessedTimelineTrigger[];
+  triggers?: ProcessedTrigger[];
 };
 
 const isRaidbossLooseTimelineTrigger =
-  (trigger: LooseTrigger): trigger is RaidbossLooseTimelineTrigger => {
+  (trigger: LooseTrigger): trigger is ProcessedTimelineTrigger => {
     return 'isTimelineTrigger' in trigger;
   };
 
@@ -136,7 +137,7 @@ const triggerUpperCase = (str: string): string => {
 
 // Disable no-explicit-any due to catch clauses requiring any
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const onTriggerException = (trigger: RaidbossLooseTrigger, e: any) => {
+const onTriggerException = (trigger: ProcessedTrigger, e: any) => {
   // When a fight ends and there are open promises, from delaySeconds or promise itself,
   // all promises will be rejected.  In this case there is no error; simply return without logging.
   if (!e)
@@ -209,10 +210,10 @@ const textMap: TextMap = {
 // JavaScript dictionaries are *almost* ordered automatically as we would want,
 // but want to handle missing ids and integer ids (you shouldn't, but just in case).
 class OrderedTriggerList {
-  triggers: RaidbossLooseTrigger[] = [];
+  triggers: ProcessedTrigger[] = [];
   idToIndex: { [id: string]: number } = {};
 
-  push(trigger: RaidbossLooseTrigger) {
+  push(trigger: ProcessedTrigger) {
     const idx = trigger.id ? this.idToIndex[trigger.id] : undefined;
     if (idx && trigger.id) {
       const oldTrigger = this.triggers[idx];
@@ -222,7 +223,7 @@ class OrderedTriggerList {
 
       // TODO: be verbose now while this is fresh, but hide this output behind debug flags later.
       const triggerFile =
-        (trigger: RaidbossLooseTrigger) => trigger.filename ? `'${trigger.filename}'` : 'user override';
+        (trigger: ProcessedTrigger) => trigger.filename ? `'${trigger.filename}'` : 'user override';
       const oldFile = triggerFile(oldTrigger);
       const newFile = triggerFile(trigger);
       console.log(`Overriding '${trigger.id}' from ${oldFile} with ${newFile}.`);
@@ -250,7 +251,7 @@ class TriggerOutputProxy {
   public responseOutputStrings: OutputStrings = {};
   public unknownValue = '???';
   constructor(
-      public trigger: RaidbossLooseTrigger,
+      public trigger: ProcessedTrigger,
       public displayLang: Lang,
       public perTriggerAutoConfig?: PerTriggerAutoConfig) {
     this.outputStrings = trigger.outputStrings ?? {};
@@ -283,9 +284,13 @@ class TriggerOutputProxy {
       // the config ui, the response should return the exact same set of
       // outputStrings every time.  Thank you for coming to my TED talk.
       set(target, property, value): boolean {
-        if (property === 'responseOutputStrings' && isOutputStrings(value)) {
-          target[property] = value;
-          return true;
+        if (property === 'responseOutputStrings') {
+          if (isOutputStrings(value)) {
+            target[property] = value;
+            return true;
+          }
+          console.error(`Invalid responseOutputStrings on trigger ${target.trigger.id ?? 'Unknown'}`);
+          return false;
         }
 
         // Be kind to user triggers that do weird things, and just console error this
@@ -331,17 +336,8 @@ class TriggerOutputProxy {
       id: string): string | undefined {
     if (!template)
       return;
-    let value;
-    if (typeof template === 'object') {
-      if (this.displayLang in template)
-        value = template[this.displayLang];
-      else
-        value = template['en'];
-    }
-    if (typeof value !== 'string') {
-      console.error(`Trigger ${id} has invalid outputString ${name}.`);
-      return;
-    }
+
+    const value = template[this.displayLang] ?? template['en'];
 
     return value.replace(/\${\s*([^}\s]+)\s*}/g, (_fullMatch: string, key: string) => {
       if (params && key in params) {
@@ -364,7 +360,7 @@ export type RaidbossTriggerOutput = TriggerOutput<RaidbossData, MatchesAny>;
 
 export interface TriggerHelper {
   valueOrFunction: (f: RaidbossTriggerField) => RaidbossTriggerOutput;
-  trigger: RaidbossLooseTrigger;
+  trigger: ProcessedTrigger;
   now: number;
   triggerOptions: PerTriggerOption;
   triggerAutoConfig: TriggerAutoConfig;
@@ -373,8 +369,8 @@ export interface TriggerHelper {
   matches: MatchesAny;
   response?: ResponseOutput<RaidbossData, MatchesAny>;
   // Default options
-  soundUrl?: string | undefined;
-  soundVol?: number | undefined;
+  soundUrl?: string;
+  soundVol?: number;
   triggerSoundVol?: number;
   defaultTTSText?: string;
   textAlertsEnabled: boolean;
@@ -382,8 +378,8 @@ export interface TriggerHelper {
   spokenAlertsEnabled: boolean;
   groupSpokenAlertsEnabled: boolean;
   duration?: {
-    fromConfig: number | undefined;
-    fromTrigger: number | undefined;
+    fromConfig?: number;
+    fromTrigger?: number;
     alarmText: number;
     alertText: number;
     infoText: number;
@@ -392,8 +388,8 @@ export interface TriggerHelper {
 }
 
 export class PopupText {
-  protected triggers: RaidbossLooseTrigger[] = [];
-  protected netTriggers: RaidbossLooseTrigger[] = [];
+  protected triggers: ProcessedTrigger[] = [];
+  protected netTriggers: ProcessedTrigger[] = [];
   protected timers: { [triggerId: number]: boolean } = {};
   protected triggerSuppress: { [triggerId: string]: number } = {};
   protected currentTriggerID = 0;
@@ -413,7 +409,7 @@ export class PopupText {
   protected me = '';
   protected job: Job = 'NONE';
   protected role: Role = 'none';
-  protected triggerSets: RaidbossTriggerSet[] = [];
+  protected triggerSets: ProcessedTriggerSet[] = [];
   protected zoneName = '';
   protected zoneId = -1;
 
@@ -714,7 +710,7 @@ export class PopupText {
     );
   }
 
-  ProcessTrigger(trigger: RaidbossLooseTrigger | RaidbossLooseTimelineTrigger): void {
+  ProcessTrigger(trigger: ProcessedTrigger | ProcessedTimelineTrigger): void {
     // These properties are used internally by ReloadTimelines only and should
     // not exist on user triggers.  However, the trigger objects themselves are
     // reused when reloading pages, and so it is impossible to verify that
@@ -817,7 +813,7 @@ export class PopupText {
   }
 
   OnTrigger(
-      trigger: RaidbossLooseTrigger,
+      trigger: ProcessedTrigger,
       matches: RegExpExecArray | null,
       currentTime: number): void {
     try {
@@ -828,7 +824,7 @@ export class PopupText {
   }
 
   OnTriggerInternal(
-      trigger: RaidbossLooseTrigger,
+      trigger: ProcessedTrigger,
       matches: RegExpExecArray | null,
       currentTime: number): void {
     if (this._onTriggerInternalCheckSuppressed(trigger, currentTime))
@@ -906,7 +902,7 @@ export class PopupText {
 
   // Build a default triggerHelper object for this trigger
   _onTriggerInternalGetHelper(
-      trigger: RaidbossLooseTrigger,
+      trigger: ProcessedTrigger,
       matches: MatchesAny,
       now: number): TriggerHelper {
     const id = trigger.id;
@@ -952,7 +948,7 @@ export class PopupText {
     return triggerHelper;
   }
 
-  _onTriggerInternalCheckSuppressed(trigger: RaidbossLooseTrigger, when: number): boolean {
+  _onTriggerInternalCheckSuppressed(trigger: ProcessedTrigger, when: number): boolean {
     const id = trigger.id;
     if (id !== undefined) {
       const suppress = this.triggerSuppress[id];
@@ -1145,8 +1141,7 @@ export class PopupText {
 
       result ??= triggerHelper.defaultTTSText;
 
-      if (typeof result === 'string')
-        triggerHelper.ttsText = result;
+      triggerHelper.ttsText = result?.toString();
     }
   }
 
@@ -1371,7 +1366,7 @@ export class PopupTextGenerator {
     Date.now());
   }
 
-  Trigger(trigger: RaidbossLooseTrigger, matches: RegExpExecArray | null): void {
+  Trigger(trigger: ProcessedTrigger, matches: RegExpExecArray | null): void {
     const currentTime = +new Date();
     this.popupText.OnTrigger(trigger, matches, currentTime);
   }

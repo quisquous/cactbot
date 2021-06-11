@@ -73,9 +73,9 @@ export type MatchesAny = { [s in T]?: string };
 
 // Note: functions like run or preRun need to be defined as void-only as (confusingly)
 // it is not possible to assign `(d: Data) => boolean` to a void | undefined, only to void.
-type OptionalUnlessVoid<T> = T extends void ? void : T | undefined;
 export type TriggerField<Data, Return> =
-    TriggerFunc<Data, MatchesAny, OptionalUnlessVoid<Return>> | OptionalUnlessVoid<Return>;
+  [Return] extends [void] ? TriggerFunc<Data, MatchesAny, void> :
+  TriggerFunc<Data, MatchesAny, Return | undefined> | Return | undefined;
 
 // This trigger type is what we expect cactbot triggers to be written as,
 // in other words `id` is not technically required for triggers but for
