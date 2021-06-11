@@ -10,7 +10,7 @@ import ZoneId from '../../resources/zone_id';
 import {
   LooseTrigger, OutputStrings, LocaleText, TriggerSet, TimelineFunc, LooseTriggerSet,
   ResponseField, TriggerAutoConfig, MatchesAny, TriggerField, TriggerOutput,
-  TriggerFunc, OptionalUnlessVoid, Output, ResponseOutput, NetRegexTrigger, RegexTrigger,
+  Output, ResponseOutput, NetRegexTrigger, RegexTrigger,
 } from '../../types/trigger';
 import { UnreachableCode } from '../../resources/not_reached';
 import { Lang, NonEnLang } from '../../resources/languages';
@@ -34,7 +34,6 @@ export const isRegexTrigger = (trigger?: LooseTrigger): trigger is RegexTrigger<
   return false;
 };
 
-// @TODO: Maybe there's a better way to define this?
 type RegexParserLang = `regex${Capitalize<Lowercase<NonEnLang>>}` | 'regex';
 type NetRegexParserLang = `netRegex${Capitalize<Lowercase<NonEnLang>>}` | 'netRegex';
 
@@ -45,11 +44,11 @@ export type RaidbossLooseTrigger = LooseTrigger & {
   output?: Output;
 };
 
-export type RaidbossLooseTimelineTrigger = RaidbossLooseTrigger & {
-  isTimelineTrigger?: boolean;
+type RaidbossLooseTimelineTrigger = RaidbossLooseTrigger & {
+  isTimelineTrigger?: true;
 };
 
-export type RaidbossTriggerSet = LooseTriggerSet & {
+type RaidbossTriggerSet = LooseTriggerSet & {
   filename?: string;
   timelineTriggers?: RaidbossLooseTimelineTrigger[];
   triggers?: RaidbossLooseTrigger[];
@@ -61,27 +60,24 @@ const isRaidbossLooseTimelineTrigger =
   };
 
 // Due to the nature of OutputStrings, there's no simple way to check that an object is actually
-// correct. Have to accept an any type (since that's what Proxy receives) and loop over objects
-// to ensure they have an 'en' key
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types */
-const isOutputStrings = (check: any): check is OutputStrings => {
+// correct. Have to loop over objects to ensure they have the proper structure
+const isOutputStrings = (check: unknown): check is OutputStrings => {
   if (!(check instanceof Object))
     return false;
-  const obj = check as Object;
-  for (const propCheck of Object.values(obj)) {
+  for (const propCheck of Object.values(check)) {
     if (!(propCheck instanceof Object))
       return false;
-    const prop = propCheck as Object;
+    const prop = propCheck as unknown;
+    if (!(prop instanceof Object))
+      return false;
     if (!('en' in prop))
       return false;
   }
   return true;
 };
-/* eslint-enable @typescript-eslint/no-explicit-any,  @typescript-eslint/ban-types */
 
 // There should be (at most) six lines of instructions.
-// @TODO: Missing fr?
-const raidbossInstructions: { [lang in Lang]?: string[] } = {
+const raidbossInstructions: { [lang in Lang]: string[] } = {
   en: [
     'Instructions as follows:',
     'This is debug text for resizing.',
@@ -97,6 +93,14 @@ const raidbossInstructions: { [lang in Lang]?: string[] } = {
     'zusammen mit dem blauen Hintergrund.',
     'Timeline und Trigger werden in den unterstützten Zonen angezeigt.',
     'Testen Sie Raidboss mit einem /countdown in Sommerfurt-Höfe.',
+  ],
+  fr: [
+    'Instructions :',
+    'Ceci est un texte de test pour redimensionner.',
+    'Il disparaitra \(ainsi que le fond bleu\) quand',
+    'l\'overlay sera bloqué.',
+    'Les timelines et triggers seront affichés dans les zones supportées.',
+    'Testez raidboss avec un /countdown aux Vergers d\'Estival',
   ],
   ja: [
     '操作手順：',
@@ -126,11 +130,7 @@ const raidbossInstructions: { [lang in Lang]?: string[] } = {
 
 // Because apparently people don't understand uppercase greek letters,
 // add a special case to not uppercase them.
-const triggerUpperCase = (str: string | number | undefined): string | number | undefined => {
-  if (!str)
-    return str;
-  if (typeof str === 'number')
-    return str;
+const triggerUpperCase = (str: string): string => {
   return str.replace(/[^αβγδ]/g, (x) => x.toUpperCase());
 };
 
@@ -178,7 +178,6 @@ type TextMap = {
   }
 };
 
-// @TODO: There's probably a better way to map this out?
 const textMap: TextMap = {
   info: {
     text: 'infoText',
@@ -214,12 +213,8 @@ class OrderedTriggerList {
   idToIndex: { [id: string]: number } = {};
 
   push(trigger: RaidbossLooseTrigger) {
-    if (trigger.id && trigger.id in this.idToIndex) {
-      const idx = this.idToIndex[trigger.id];
-
-      if (idx === undefined)
-        throw new UnreachableCode();
-
+    const idx = trigger.id ? this.idToIndex[trigger.id] : undefined;
+    if (idx && trigger.id) {
       const oldTrigger = this.triggers[idx];
 
       if (oldTrigger === undefined)
@@ -313,8 +308,7 @@ class TriggerOutputProxy {
           // Ideally, response provides everything and trigger provides nothing,
           // or there's no response and trigger provides everything.  Having
           // this well-defined smooths out the collision edge cases.
-          let str =
-            target.getReplacement(target.overrideStrings[name], params, name, id);
+          let str = target.getReplacement(target.overrideStrings[name], params, name, id);
           if (str === undefined)
             str = target.getReplacement(target.responseOutputStrings[name], params, name, id);
           if (str === undefined)
@@ -323,7 +317,7 @@ class TriggerOutputProxy {
             console.error(`Trigger ${target.trigger.id ?? ''} has missing outputString ${name}.`);
             return target.unknownValue;
           }
-          return str ?? '';
+          return str;
         };
       },
     });
@@ -397,10 +391,6 @@ export interface TriggerHelper {
   ttsText?: string;
 }
 
-export type ValueOrFunctionType = {
-  [lang in Lang]: string | TriggerFunc<RaidbossData, MatchesAny, OptionalUnlessVoid<string>>
-} | string;
-
 export class PopupText {
   protected triggers: RaidbossLooseTrigger[] = [];
   protected netTriggers: RaidbossLooseTrigger[] = [];
@@ -469,17 +459,12 @@ export class PopupText {
   }
 
   AddDebugInstructions(): void {
-    const lang: Lang = this.displayLang in raidbossInstructions ? this.displayLang : 'en';
-    const instructions = raidbossInstructions[lang];
-    // @TODO: Once fr is defined, this if can be removed
-    if (instructions) {
-      instructions.forEach((line, i) => {
-        const elem = document.getElementById(`instructions-${i}`);
-        if (!elem)
-          return;
-        elem.innerHTML = line;
-      });
-    }
+    raidbossInstructions[this.displayLang].forEach((line, i) => {
+      const elem = document.getElementById(`instructions-${i}`);
+      if (!elem)
+        return;
+      elem.innerHTML = line;
+    });
   }
 
   HookOverlays(): void {
@@ -718,11 +703,7 @@ export class PopupText {
 
     this.triggers = allTriggers.filter(isRegexTrigger);
     this.netTriggers = allTriggers.filter(isNetRegexTrigger);
-    const timelineTriggers = allTriggers.filter((trigger: LooseTrigger) => {
-      if (isRaidbossLooseTimelineTrigger(trigger))
-        return trigger.isTimelineTrigger;
-      return false;
-    });
+    const timelineTriggers = allTriggers.filter(isRaidbossLooseTimelineTrigger);
 
     this.timelineLoader.SetTimelines(
         timelineFiles,
@@ -835,7 +816,10 @@ export class PopupText {
     }
   }
 
-  OnTrigger(trigger: RaidbossLooseTrigger, matches: RegExpExecArray, currentTime: number): void {
+  OnTrigger(
+      trigger: RaidbossLooseTrigger,
+      matches: RegExpExecArray | null,
+      currentTime: number): void {
     try {
       this.OnTriggerInternal(trigger, matches, currentTime);
     } catch (e) {
@@ -845,7 +829,7 @@ export class PopupText {
 
   OnTriggerInternal(
       trigger: RaidbossLooseTrigger,
-      matches: RegExpExecArray,
+      matches: RegExpExecArray | null,
       currentTime: number): void {
     if (this._onTriggerInternalCheckSuppressed(trigger, currentTime))
       return;
@@ -929,16 +913,10 @@ export class PopupText {
     let options: PerTriggerOption = {};
     let config: TriggerAutoConfig = {};
     let suppressed = false;
-    if (id !== undefined) {
-      const tmpOptions = this.options.PerTriggerOptions[id];
-      if (tmpOptions)
-        options = tmpOptions;
-      const tmpConfig = this.options.PerTriggerAutoConfig[id];
-      if (tmpConfig)
-        config = tmpConfig;
-      const tmpSuppressed = this.options.DisabledTriggers[id];
-      if (tmpSuppressed)
-        suppressed = tmpSuppressed;
+    if (id) {
+      options = this.options.PerTriggerOptions[id] ?? options;
+      config = this.options.PerTriggerAutoConfig[id] ?? config;
+      suppressed = this.options.DisabledTriggers[id] ?? suppressed;
     }
 
     const triggerHelper: TriggerHelper = {
@@ -1003,28 +981,30 @@ export class PopupText {
   // other trigger functions running)
   _onTriggerInternalHelperDefaults(triggerHelper: TriggerHelper): void {
     if (triggerHelper.triggerAutoConfig) {
-      if ('TextAlertsEnabled' in triggerHelper.triggerAutoConfig &&
-        triggerHelper.triggerAutoConfig.TextAlertsEnabled)
-        triggerHelper.textAlertsEnabled = triggerHelper.triggerAutoConfig.TextAlertsEnabled;
-      if ('SoundAlertsEnabled' in triggerHelper.triggerAutoConfig &&
-        triggerHelper.triggerAutoConfig.SoundAlertsEnabled)
-        triggerHelper.soundAlertsEnabled = triggerHelper.triggerAutoConfig.SoundAlertsEnabled;
-      if ('SpokenAlertsEnabled' in triggerHelper.triggerAutoConfig &&
-        triggerHelper.triggerAutoConfig.SpokenAlertsEnabled)
-        triggerHelper.spokenAlertsEnabled = triggerHelper.triggerAutoConfig.SpokenAlertsEnabled;
+      const textAlertsEnabled = triggerHelper.triggerAutoConfig.TextAlertsEnabled;
+      if (textAlertsEnabled !== undefined)
+        triggerHelper.textAlertsEnabled = textAlertsEnabled;
+      const soundAlertsEnabled = triggerHelper.triggerAutoConfig.SoundAlertsEnabled;
+      if (soundAlertsEnabled !== undefined)
+        triggerHelper.soundAlertsEnabled = soundAlertsEnabled;
+      const spokenAlertsEnabled = triggerHelper.triggerAutoConfig.SpokenAlertsEnabled;
+      if (spokenAlertsEnabled !== undefined)
+        triggerHelper.spokenAlertsEnabled = spokenAlertsEnabled;
     }
 
     if (triggerHelper.triggerOptions) {
-      if ('TextAlert' in triggerHelper.triggerOptions && triggerHelper.triggerOptions.TextAlert)
-        triggerHelper.textAlertsEnabled = triggerHelper.triggerOptions.TextAlert;
-      if ('SoundAlert' in triggerHelper.triggerOptions && triggerHelper.triggerOptions.SoundAlert)
-        triggerHelper.soundAlertsEnabled = triggerHelper.triggerOptions.SoundAlert;
-      if ('SpeechAlert' in triggerHelper.triggerOptions &&
-        triggerHelper.triggerOptions.SpeechAlert)
-        triggerHelper.spokenAlertsEnabled = triggerHelper.triggerOptions.SpeechAlert;
-      if ('GroupSpeechAlert' in triggerHelper.triggerOptions &&
-        triggerHelper.triggerOptions.GroupSpeechAlert)
-        triggerHelper.groupSpokenAlertsEnabled = triggerHelper.triggerOptions.GroupSpeechAlert;
+      const textAlertsEnabled = triggerHelper.triggerOptions.TextAlert;
+      if (textAlertsEnabled !== undefined)
+        triggerHelper.textAlertsEnabled = textAlertsEnabled;
+      const soundAlertsEnabled = triggerHelper.triggerOptions.SoundAlert;
+      if (soundAlertsEnabled !== undefined)
+        triggerHelper.soundAlertsEnabled = soundAlertsEnabled;
+      const spokenAlertsEnabled = triggerHelper.triggerOptions.SpeechAlert;
+      if (spokenAlertsEnabled !== undefined)
+        triggerHelper.spokenAlertsEnabled = spokenAlertsEnabled;
+      const groupSpokenAlertsEnabled = triggerHelper.triggerOptions.GroupSpeechAlert;
+      if (groupSpokenAlertsEnabled !== undefined)
+        triggerHelper.groupSpokenAlertsEnabled = groupSpokenAlertsEnabled;
     }
 
     if (triggerHelper.userSuppressedOutput) {
@@ -1172,8 +1152,8 @@ export class PopupText {
 
   _onTriggerInternalPlayAudio(triggerHelper: TriggerHelper): void {
     if (triggerHelper.trigger.sound &&
-      triggerHelper.soundUrl &&
-      soundStrs.includes(triggerHelper.soundUrl)) {
+        triggerHelper.soundUrl &&
+        soundStrs.includes(triggerHelper.soundUrl)) {
       const namedSound = triggerHelper.soundUrl + 'Sound' as SoundType;
       const namedSoundVolume = triggerHelper.soundUrl + 'SoundVolume' as SoundTypeVolume;
       const sound = this.options[namedSound];
@@ -1239,7 +1219,7 @@ export class PopupText {
 
   _createTextFor(
       triggerHelper: TriggerHelper,
-      text: string | number | undefined,
+      text: string,
       textType: Text,
       lowerTextKey: TextText,
       duration: number): void {
@@ -1247,12 +1227,6 @@ export class PopupText {
     const textElementClass = textType + '-text';
     if (textType !== 'info')
       text = triggerUpperCase(text);
-
-    if (!text)
-      return;
-
-    if (typeof text === 'number')
-      text = text.toString();
 
     const holder = this[lowerTextKey]?.getElementsByClassName('holder')[0];
     const div = this._makeTextElement(triggerHelper, text, textElementClass);
@@ -1262,7 +1236,7 @@ export class PopupText {
 
     holder.appendChild(div);
     if (holder.children.length > this.kMaxRowsOfText)
-      holder.removeChild(holder.children[0] as Element);
+      holder.firstChild?.remove();
 
     window.setTimeout(() => {
       if (holder.contains(div))
@@ -1357,11 +1331,6 @@ export class PopupText {
   }
 }
 
-const dummyMatchesTmp = /./.exec('.');
-if (!dummyMatchesTmp)
-  throw new UnreachableCode();
-const dummyMatches = dummyMatchesTmp;
-
 export class PopupTextGenerator {
   constructor(private popupText: PopupText) {
   }
@@ -1371,7 +1340,7 @@ export class PopupTextGenerator {
       infoText: text,
       tts: text,
     },
-    dummyMatches,
+    null,
     Date.now());
   }
 
@@ -1380,7 +1349,7 @@ export class PopupTextGenerator {
       alertText: text,
       tts: text,
     },
-    dummyMatches,
+    null,
     Date.now());
   }
 
@@ -1389,7 +1358,7 @@ export class PopupTextGenerator {
       alarmText: text,
       tts: text,
     },
-    dummyMatches,
+    null,
     Date.now());
   }
 
@@ -1398,14 +1367,12 @@ export class PopupTextGenerator {
       infoText: text,
       tts: text,
     },
-    dummyMatches,
+    null,
     Date.now());
   }
 
   Trigger(trigger: RaidbossLooseTrigger, matches: RegExpExecArray | null): void {
     const currentTime = +new Date();
-    if (!matches)
-      matches = dummyMatches;
     this.popupText.OnTrigger(trigger, matches, currentTime);
   }
 }
