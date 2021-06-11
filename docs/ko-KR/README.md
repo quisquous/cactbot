@@ -266,8 +266,8 @@ Webpack에 대해 더 자세히 알고 싶다면
 
 ### [raidboss](../../ui/raidboss) 모듈
 
-To use this module,
-point cactbot at **ui/raidboss/raidboss.html** or use the `Cactbot Raidboss` preset.
+이 모듈을 사용하려면,
+**ui/raidboss/raidboss.html** 파일을 URL 부분에서 선택하거나 `Cactbot Raidboss` 프리셋을 사용하세요.
 
 이 모듈은 레이드의 타임라인과 레이드에서 놓칠만한 정보들을 알려주는 텍스트/사운드 알림을 제공합니다. 텍스트와 사운드 알람은 ACT의 "커스텀 트리거" 기능과 비슷한 방식으로, 전투 타임라인이나 게임에서 찍히는 로그 메시지를 기반으로 제공됩니다.
 이 모듈은 월드 오브 워크래프트의 [BigWigs Bossmods](https://www.curseforge.com/wow/addons/big-wigs) 애드온과 비슷하게 보이고 느껴지도록 디자인 되었습니다.
@@ -315,8 +315,8 @@ cactbot에서는 [약간의 확장 기능](../TimelineGuide.md)을 추가했습�
 
 ### [oopsyraidsy](../../ui/oopsyraidsy) 모듈
 
-To use this module,
-point cactbot at **ui/oopsyraidsy/oopsyraidsy.html** or use the `Cactbot OopsyRaidsy` preset.
+이 모듈을 사용하려면,
+**ui/oopsyraidsy/oopsyraidsy.html** 파일을 URL 부분에서 선택하거나 `Cactbot OopsyRaidsy` 프리셋을 사용하세요.
 
 이 모듈은 실수 추적과 사망 리포트를 제공합니다. Oopsy raidsy는 전투에서 어떤 문제가 있었는지, 왜 죽었는지 이해하는데 낭비되는 시간을 줄이는 목적으로 제작되었습니다. 전투동안은 혼란을 피하기 위해 제한된 수의 실수가 표시되지만, 전투가 종료되면 스크롤이 가능한 전체 실수 리스트를 보여줍니다.
 
@@ -330,8 +330,8 @@ point cactbot at **ui/oopsyraidsy/oopsyraidsy.html** or use the `Cactbot OopsyRa
 
 ### [jobs](../../ui/jobs) 모듈
 
-To use this module,
-point cactbot at **ui/jobs/jobs.html** or use the `Cactbot Jobs` preset.
+이 모듈을 사용하려면,
+**ui/jobs/jobs.html** 파일을 URL 부분에서 선택하거나 `Cactbot Jobs` 프리셋을 사용하세요.
 
 이 모듈은 체력, 마나와 함께 속임수 공격이나 전투 기도 같은 전투 버프 타이머를 제공합니다.
 레벨링이나 레이드를 할 때 음식 시간 부족 경고도 보여주고,
@@ -373,8 +373,8 @@ point cactbot at **ui/jobs/jobs.html** or use the `Cactbot Jobs` preset.
 
 ### [eureka](../../ui/eureka) 모듈
 
-To use this module,
-point cactbot at **ui/eureka/eureka.html** or use the `Cactbot Eureka` preset.
+이 모듈을 사용하려면,
+**ui/eureka/eureka.html** 파일을 URL 부분에서 선택하거나 `Cactbot Eureka` 프리셋을 사용하세요.
 
 이 모듈은 자동으로 소환되었거나 죽은 NM을 기록하는 트래커를 제공합니다. 폭풍/밤 타이머를 보여주고, 채팅창에 올라온 에우레카 트래커 링크를 보여줍니다.
 채팅창에 올라온 깃발(\<flag\>)도 지도에 표시해 주고 있습니다.
@@ -389,8 +389,8 @@ point cactbot at **ui/eureka/eureka.html** or use the `Cactbot Eureka` preset.
 
 ### [radar](../../ui/radar) 모듈
 
-To use this module,
-point cactbot at **ui/radar/radar.html** or use the `Cactbot Radar` preset.
+이 모듈을 사용하려면,
+**ui/radar/radar.html** 파일을 URL 부분에서 선택하거나 `Cactbot Radar` 프리셋을 사용하세요.
 
 이 모듈은 주위 마물(S급, A급, 등)을 알 수 있게 해줍니다.
 하나를 발견하면, 대상으로의 화살표(캐릭터의 전방 기준)나 거리를 알려줍니다.
@@ -404,8 +404,8 @@ point cactbot at **ui/radar/radar.html** or use the `Cactbot Radar` preset.
 
 ### [fisher](../../ui/fisher) 모듈
 
-To use this module,
-point cactbot at **ui/fisher/fisher.html** or use the `Cactbot Fisher` preset.
+이 모듈을 사용하려면,
+**ui/fisher/fisher.html** 파일을 URL 부분에서 선택하거나 `Cactbot Fisher` 프리셋을 사용하세요.
 
 낚싯터에서 낚시를 시작하면, 이 모듈이 사용자가 물고기를 낚는 것을 추적합니다. 이를 통해 사용자가 물고기를 낚을 때 어떤 물고기를 낚게 되는지 알 수 있게 될 것입니다.
 
@@ -420,17 +420,17 @@ point cactbot at **ui/fisher/fisher.html** or use the `Cactbot Fisher` preset.
 
 ### [dps](../../ui/dps) 미터기
 
-cactbot은 오버레이 플러그인의 mini parse 애드온에 맞게 제작된 그 어떤 미터기 오버레이와 함께 사용할 수 있습니다.
+cactbot은 오버레이 플러그인의 MiniParse의 애드온에 맞게 제작된 그 어떤 미터기 오버레이와 함께 사용할 수 있습니다.
 cactbot의 추가적인 자바스크립트 API를 이용해 더 많은 기능을 사용할 수 있는 옵션을 제공할 수도 있습니다.
 cactbot은 전멸시에 자동으로 전투 종료를 실행해줍니다. 따라서 ACT 전투 시간을 `infinity`(무제한)로 설정해도 괜찮습니다.
 
-[xephero](../../ui/dps/xephero) 미터기는 mini parse의 미터기와 같은 기반을 사용하였는데,
+[xephero](../../ui/dps/xephero) 미터기는 MiniParse의 미터기와 같은 기반을 사용하였는데,
 페이즈별 미터기 기록을 나눠볼 수 있는 기능이 추가되어 있습니다.
 아래 스크린샷을 보면, B1, B2, B3 페이즈가 나와있습니다.  이는 던전 보스로부터 자동 생성되지만, 레이드 보스 페이즈를 구분하는데도 사용할 수 있습니다.
 
 ![xephero 스크린샷](../../screenshots/xephero.png)
 
-[rdmty](../../ui/dps/rdmty) 미터기는 mini parse의 미터기와 같은 기반을 사용하였는데,
+[rdmty](../../ui/dps/rdmty) 미터기는 MiniParse의 미터기와 같은 기반을 사용하였는데,
 직업의 색깔이 [fflogs](http://ko.fflogs.com)의 색깔에 맞도록 색깔을 조정했습니다.
 
 ![rdmty 스크린샷](../../screenshots/rdmty.png)
@@ -451,8 +451,8 @@ cactbot은 전멸시에 자동으로 전투 종료를 실행해줍니다. 따라
 
 ### [test](../../ui/test) 모듈
 
-To use this module,
-point cactbot at **ui/test/test.html** or use the `Cactbot Test` preset.
+이 모듈을 사용하려면,
+**ui/test/test.html** 파일을 URL 부분에서 선택하거나 `Cactbot Test` 프리셋을 사용하세요.
 
 이 모듈은 cactbot 변수들을 화면에 보여주는 테스트용 모듈입니다. 게임을 플레이 하는 도중에 사용하도록 만들어지지 않았습니다.
 모든 것들이 제대로 작동하고 있는지 확인하거나 오버레이 문제를 디버그할 때 유용합니다.
