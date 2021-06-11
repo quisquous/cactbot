@@ -6,8 +6,8 @@ on:
       - '.github/workflows/build-artifact.yml'
       - 'plugin/**'
       - 'util/publish.sh'
-      - 'util/DEPS.py'
-      - 'util/fetch_deps.py'
+      - 'util/DEPS.json5'
+      - 'util/fetch_deps.ts'
   pull_request:
     types:
       - opened
@@ -17,8 +17,8 @@ on:
       - '.github/workflows/build-artifact.yml'
       - 'plugin/**'
       - 'util/publish.sh'
-      - 'util/DEPS.py'
-      - 'util/fetch_deps.py'
+      - 'util/DEPS.json5'
+      - 'util/fetch_deps.ts'
   workflow_dispatch:
 
 jobs:
@@ -39,32 +39,14 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ./plugin/ThirdParty
-        key: ${{ runner.os }}-cactbot-${{ hashFiles('./util/fetch_deps.py', './util/DEPS.py') }}
+        key: ${{ runner.os }}-cactbot-${{ hashFiles('./util/fetch_deps.ts', './util/DEPS.json5') }}
         restore-keys: |
           ${{ runner.os }}-cactbot-
 
     # Fetch dependencies only if cache-hit is false
-    - name: Set up Python 3.8
-      if: steps.cache-dependencies.outputs.cache-hit != 'true'
-      uses: actions/setup-python@v2
+    - uses: actions/setup-node@v2
       with:
-        python-version: 3.8
-
-    - name: Fetch dependencies
-      if: steps.cache-dependencies.outputs.cache-hit != 'true'
-      run: |
-        python .\util\fetch_deps.py
-
-    - name: Set up msbuild
-      uses: microsoft/setup-msbuild@v1.0.2
-
-    - name: Add Custom Problem Matcher
-      run: |
-        echo "::add-matcher::.github/matchers/${{ github.job }}.json"
-
-    - name: MSBuild
-      run: msbuild /p:Configuration=Release /p:Platform=x64 plugin/Cactbot.sln
-      shell: cmd
+        node-version: '14'
 
     - name: Cache Dependencies
       id: cache
@@ -77,6 +59,23 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
         npm ci --ignore-scripts
+
+    - name: Fetch dependencies
+      if: steps.cache-dependencies.outputs.cache-hit != 'true'
+      run: |
+        npm run fetch-deps
+
+    - name: Set up msbuild
+      uses: microsoft/setup-msbuild@v1.0.2
+
+    - name: Add Custom Problem Matcher
+      run: |
+        echo "::add-matcher::.github/matchers/${{ github.job }}.json"
+
+    - name: MSBuild
+      run: msbuild /p:Configuration=Release /p:Platform=x64 plugin/Cactbot.sln
+      shell: cmd
+
 
     - name: Build JavaScript UI Module Bundles
       run: |

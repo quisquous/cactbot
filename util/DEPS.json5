@@ -1,8 +1,7 @@
-# If you're familiar with Chromium or other Google projects:
-#   Sorry, this file actually has nothing to do with gclient.
-#   I just borrowed the basic concept and naming scheme.
-
-deps = {
+// If you're familiar with Chromium or other Google projects:
+//   Sorry, this file actually has nothing to do with gclient.
+//   I just borrowed the basic concept and naming scheme.
+{
     "ACT": {
         "url": "https://github.com/EQAditu/AdvancedCombatTracker/releases/download/3.4.6.267/ACTv3.zip",
         "dest": "plugin/ThirdParty/ACT",

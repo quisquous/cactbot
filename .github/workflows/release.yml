@@ -3,7 +3,7 @@ name: Create Release Artifact
 on:
   push:
     tags:
-    - 'v*'
+      - 'v*'
 
 jobs:
   create-release:
@@ -18,10 +18,21 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '3.1.x'
-      - name: Setup Python
-        uses: actions/setup-python@v2
+      - uses: actions/setup-node@v2
         with:
-          python-version: '3.7'
+          node-version: '14'
+
+      - uses: actions/cache@v2
+        id: npm-cache
+        with:
+          path: ~/.npm
+          key: modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Fetch NPM Dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: |
+          npm ci --ignore-scripts
+
       # Gets the numerical output of the git tag and assigns it to an environment variable
       - name: Get Tag Version
         run: |
@@ -32,28 +43,18 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ./plugin/ThirdParty
-          key: ${{ runner.os }}-cactbot-${{ hashFiles('./util/fetch_deps.py', './util/DEPS.py') }}
+          key: ${{ runner.os }}-cactbot-${{ hashFiles('./util/fetch_deps.ts', './util/DEPS.json5') }}
           restore-keys: |
             ${{ runner.os }}-cactbot-
       - name: Fetch Dependencies
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: |
-          ./util/fetch_deps.py
+          npm run fetch-deps
         shell: bash
       - name: Build Cactbot Plugin
         run: |
           dotnet build plugin/Cactbot.sln /p:Configuration=Release /p:Platform=x64
 
-      - name: Cache Dependencies
-        id: cache
-        uses: actions/cache@v2
-        with:
-          path: ./node_modules
-          key: modules-${{ hashFiles('package-lock.json') }}
-      - name: Install Node Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          npm ci --ignore-scripts
       - name: Build JavaScript UI Module Bundles
         run: |
           npm run build
