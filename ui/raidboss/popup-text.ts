@@ -486,9 +486,9 @@ export class PopupText {
     addOverlayListener('PartyChanged', (e) => {
       this.partyTracker.onPartyChanged(e);
     });
-    addPlayerChangedOverrideListener(this.options.PlayerNameOverride, (e) => {
+    addPlayerChangedOverrideListener((e: PlayerChangedDetail) => {
       this.OnPlayerChange(e);
-    });
+    }, this.options.PlayerNameOverride);
     addOverlayListener('ChangeZone', (e) => {
       this.OnChangeZone(e);
     });
