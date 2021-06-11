@@ -7,8 +7,8 @@ import _ from 'lodash';
 import tar from 'tar-fs';
 import JSZip from 'jszip';
 import json5 from 'json5';
-import fetch, { RequestInit } from 'node-fetch';
-import HttpsProxyAgent from 'https-proxy-agent';
+import fetch from 'node-fetch';
+import ProxyAgent from 'proxy-agent';
 
 type Meta = {
   'url': string;
@@ -201,12 +201,8 @@ const extractFile = async (dlname: string, meta: Meta): Promise<void> => {
 
 
 const downloadFile = async (url: string, localPath: string): Promise<void> => {
-  const option: RequestInit = {};
   const proxy = process.env.HTTPS_PROXY ?? process.env.HTTP_PROXY ?? process.env.ALL_PROXY;
-  if (proxy)
-    option.agent = HttpsProxyAgent(proxy);
-
-  const res = await fetch(url, option);
+  const res = await fetch(url, { agent: ProxyAgent(proxy) });
   fs.writeFileSync(localPath, await res.buffer());
 };
 
