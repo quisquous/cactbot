@@ -407,13 +407,14 @@ point cactbot at **ui/radar/radar.html** or use the `Cactbot Radar` preset.
 To use this module,
 point cactbot at **ui/fisher/fisher.html** or use the `Cactbot Fisher` preset.
 
-When you cast your line at a fishing hole, this module keeps track of when you reel in particular fish so that you know what you might be getting when you hook it.
+낚싯터에서 낚시를 시작하면, 이 모듈이 사용자가 물고기를 낚는 것을 추적합니다. 이를 통해 사용자가 물고기를 낚을 때 어떤 물고기를 낚게 되는지 알 수 있게 될 것입니다.
 
-![fishing screenshot](../../screenshots/promo_fishing.png)
+![fishing 스크린샷](../../screenshots/promo_fishing.png)
 
-Cast times are currently only logged as you fish, so there won't be any data until you've caught each fish. Green bars represent light tugs, yellow is a medium tug and red bars are legendary/heavy tugs.
+물고기가 잡히는 낚시 캐스팅 시간 정보는 사용자가 직접 물고기를 낚을 때 기록됩니다. 따라서 각 물고기를 낚기 전에는
+아무런 데이터가 없을 것입니다. 초록색 바는 입질이 약한 물고기(섬세한 낚아채기 사용)를 의미하며, 노란색 바는 입질이 중간인 물고기를 의미하고, 빨간색 바는 전설 물고기 또는 입질이 강한 물고기를 의미합니다. *번역자가 낚시에 대해 잘 알지 못해 물고기 종류에 대해 번역을 잘못했을 수 있음*
 
-[See here](https://www.youtube.com/watch?v=GHgWIA-Zhug) for examples of the different tug types.
+여러 종류의 물고기의 예시를 보려면 [여기](https://www.youtube.com/watch?v=GHgWIA-Zhug)를 확인하세요.
 
 일반적인 문제 해결 팁은 [여기](../FAQ-Troubleshooting.md#fisher-module)를 확인하세요.
 
