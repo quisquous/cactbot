@@ -15,10 +15,11 @@ import Util from './util';
 // jobs remotely due to gauge data being local and many bits of information
 // loaded from memory.
 
-type PlayerChangedDetail = { detail: PlayerChangedRet };
+export type PlayerChangedDetail = { detail: PlayerChangedRet };
 type PlayerChangedFunc = (e: PlayerChangedDetail) => void;
 
-export const addPlayerChangedOverrideListener = (playerName: string,
+// @TODO: Swap the order of these arguments, make playerName optional instead
+export const addPlayerChangedOverrideListener = (playerName: string | null,
     func: PlayerChangedFunc): void => {
   if (!func)
     return;

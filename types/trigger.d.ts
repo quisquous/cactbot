@@ -1,4 +1,5 @@
 import { Lang, NonEnLang } from '../resources/languages';
+import { TimelineReplacement, TimelineStyle } from '../ui/raidboss/timeline';
 import { RaidbossData } from './data';
 
 export interface BaseRegExp<T> extends RegExp {
@@ -37,8 +38,9 @@ export type Output = {
 };
 
 // The output of any non-response raidboss trigger function.
-export type TriggerOutput =
-    undefined | null | LocaleText | string | number | boolean | (() => TriggerOutput);
+export type TriggerOutput<Data, Matches> =
+    undefined | null | LocaleText | string | number | boolean |
+    ((d: Data, m: Matches, o: Output) => TriggerOutput<Data, Matches>);
 
 // The type of a non-response trigger field.
 export type TriggerFunc<Data, Matches, Return> =
@@ -49,7 +51,7 @@ type ResponseFields = 'infoText' | 'alertText' | 'alarmText' | 'tts';
 
 // The output from a response function (different from other TriggerOutput functions).
 export type ResponseOutput<Data, Matches> = {
-  [text in ResponseFields]?: TriggerFunc<Data, Matches, TriggerOutput>;
+  [text in ResponseFields]?: TriggerFunc<Data, Matches, TriggerOutput<Data, Matches>>;
 };
 // The type of a response trigger field.
 export type ResponseFunc<Data, Matches> =
@@ -62,6 +64,9 @@ export type TriggerAutoConfig = {
   Duration?: number;
   BeforeSeconds?: number;
   OutputStrings?: OutputStrings;
+  TextAlertsEnabled?: boolean;
+  SoundAlertsEnabled?: boolean;
+  SpokenAlertsEnabled?: boolean;
 }
 
 export type MatchesAny = { [s in T]?: string };
@@ -83,14 +88,14 @@ export type BaseTrigger<Data> = {
   delaySeconds?: TriggerField<Data, number>;
   durationSeconds?: TriggerField<Data, number>;
   suppressSeconds?: TriggerField<Data, number>;
-  promise?: TriggerField<Promise<Data, void>>;
+  promise?: TriggerField<Data, Promise<void>>;
   sound?: TriggerField<Data, string>;
   soundVolume?: TriggerField<Data, number>;
   response?: ResponseField<Data>;
-  alarmText?: TriggerField<Data, TriggerOutput>;
-  alertText?: TriggerField<Data, TriggerOutput>;
-  infoText?: TriggerField<Data, TriggerOutput>;
-  tts?: TriggerField<Data, TriggerOutput>;
+  alarmText?: TriggerField<Data, TriggerOutput<Data, MatchesAny>>;
+  alertText?: TriggerField<Data, TriggerOutput<Data, MatchesAny>>;
+  infoText?: TriggerField<Data, TriggerOutput<Data, MatchesAny>>;
+  tts?: TriggerField<Data, TriggerOutput<Data, MatchesAny>>;
   run?: TriggerField<Data, void>;
   outputStrings?: OutputStrings;
 }
@@ -130,12 +135,8 @@ export type TriggerSet<Data> = {
   timeline?: TimelineFunc;
   triggers?: NetRegexTrigger<Data>[];
   timelineTriggers?: TimelineTrigger<Data>[];
-  timelineReplace?: {
-    locale: Lang;
-    missingTranslations?: boolean;
-    replaceText?: { [regex: string]: string };
-    replaceSync?: { [regex: string]: string };
-  }[];
+  timelineReplace?: TimelineReplacement[];
+  timelineStyles?: TimelineStyle[];
 }
 
 // Less strict type for user triggers + built-in triggers, including deprecated fields.

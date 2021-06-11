@@ -286,6 +286,7 @@ module.exports = function(env, argv) {
     ],
     stats: {
       children: true,
+      errorDetails: true,
     },
   };
 };

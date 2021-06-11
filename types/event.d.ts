@@ -263,6 +263,10 @@ export interface EventMap {
   // #endregion
 }
 
+export type EventResponses = {
+  [event in keyof EventMap]: Parameters<EventMap[event]>[0];
+};
+
 export type LogEvent = {
   type: 'onLogEvent';
   detail: {

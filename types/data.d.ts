@@ -6,6 +6,10 @@ export interface BaseOptions {
   ParserLanguage: Lang;
   ShortLocale: string;
   DisplayLanguage: Lang;
+  TextAlertsEnabled: boolean;
+  SoundAlertsEnabled: boolean;
+  SpokenAlertsEnabled: boolean;
+  GroupSpokenAlertsEnabled: boolean;
   Skin?: string;
   [key: string]: unknown;
   // todo: complete this type
@@ -16,7 +20,9 @@ export interface RaidbossData {
   me: string;
   role: Role;
   party: PartyTracker;
-  lang: string;
+  lang: Lang;
+  parserLang: Lang;
+  displayLang: Lang;
   currentHP: number;
   options: BaseOptions;
   ShortName: (x?: string) => string;

@@ -25,7 +25,7 @@ import Outputs from './outputs';
 
 type TargetedResponseOutput = ResponseOutput<Data, TargetedMatches>;
 type TargetedResponseFunc = ResponseFunc<Data, TargetedMatches>;
-type TargetedFunc = TriggerFunc<Data, TargetedMatches, TriggerOutput>;
+type TargetedFunc = TriggerFunc<Data, TargetedMatches, TriggerOutput<Data, TargetedMatches>>;
 type StaticResponseFunc = ResponseFunc<Data, unknown>;
 
 type Severity = 'info' | 'alert' | 'alarm';

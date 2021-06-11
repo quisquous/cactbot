@@ -7,6 +7,7 @@ import { Lang } from '../../resources/languages';
 import TimerBar from '../../resources/timerbar';
 import { LogEvent } from '../../types/event';
 import { LooseTimelineTrigger, TriggerAutoConfig } from '../../types/trigger';
+import { PopupTextGenerator } from './popup-text';
 
 const kBig = 1000000000; // Something bigger than any fight length in seconds.
 
@@ -70,13 +71,14 @@ const activeText = {
   ko: '시전중:',
 };
 
-type Replacement = {
+export type TimelineReplacement = {
   locale: string;
-  replaceSync: { [key: string]: string };
-  replaceText: { [key: string]: string };
+  missingTranslations?: boolean;
+  replaceSync?: { [regexString: string]: string };
+  replaceText?: { [timelineText: string]: string };
 };
 
-type Style = {
+type TimelineStyle = {
   style: { [key: string]: string };
   regex: RegExp;
 }
@@ -152,7 +154,7 @@ export class Timeline {
   private options: RaidbossOptions;
   private perTriggerAutoConfig: { [triggerId: string]: TriggerAutoConfig };
   private activeText: string;
-  private replacements: Replacement[];
+  private replacements: TimelineReplacement[];
 
   private ignores: { [ignoreId: string]: boolean };
   public events: Event[];
@@ -181,8 +183,8 @@ export class Timeline {
 
   private updateTimer = 0;
 
-  constructor(text: string, replacements: Replacement[], triggers: LooseTimelineTrigger[],
-      styles: Style[], options: RaidbossOptions) {
+  constructor(text: string, replacements: TimelineReplacement[], triggers: LooseTimelineTrigger[],
+      styles: TimelineStyle[], options: RaidbossOptions) {
     this.options = options || {};
     this.perTriggerAutoConfig = this.options['PerTriggerAutoConfig'] || {};
     this.replacements = replacements;
@@ -217,9 +219,10 @@ export class Timeline {
     for (const r of this.replacements) {
       if (r.locale && r.locale !== replaceLang)
         continue;
-      if (!r[replaceKey])
+      const reps = r[replaceKey];
+      if (!reps)
         continue;
-      for (const [key, value] of Object.entries(r[replaceKey]))
+      for (const [key, value] of Object.entries(reps))
         text = text.replace(Regexes.parse(key), value);
     }
     // Common Replacements
@@ -267,7 +270,7 @@ export class Timeline {
     ].map((x) => Regexes.parse(x));
   }
 
-  private LoadFile(text: string, triggers: LooseTimelineTrigger[], styles: Style[]): void {
+  private LoadFile(text: string, triggers: LooseTimelineTrigger[], styles: TimelineStyle[]): void {
     this.events = [];
     this.syncStarts = [];
     this.syncEnds = [];
@@ -832,14 +835,6 @@ export class Timeline {
   }
 }
 
-interface PopupText {
-  Info: PopupTextCallback;
-  Alert: PopupTextCallback;
-  Alarm: PopupTextCallback;
-  TTS: PopupTextCallback;
-  Trigger: TriggerCallback;
-}
-
 export class TimelineUI {
   private init: boolean;
   private lang: Lang;
@@ -857,7 +852,7 @@ export class TimelineUI {
 
   protected timeline: Timeline | null = null;
 
-  private popupText?: PopupText;
+  private popupText?: PopupTextGenerator;
 
   constructor(protected options: RaidbossOptions) {
     this.options = options;
@@ -924,7 +919,7 @@ export class TimelineUI {
       this.debugElement = document.createElement('div');
   }
 
-  public SetPopupTextInterface(popupText: PopupText): void {
+  public SetPopupTextInterface(popupText: PopupTextGenerator): void {
     this.popupText = popupText;
   }
 
@@ -1120,7 +1115,7 @@ export class TimelineController {
     this.wipeRegex = Regexes.network6d({ command: '40000010' });
   }
 
-  public SetPopupTextInterface(popupText: PopupText): void {
+  public SetPopupTextInterface(popupText: PopupTextGenerator): void {
     this.ui.SetPopupTextInterface(popupText);
   }
 
@@ -1159,7 +1154,8 @@ export class TimelineController {
   }
 
   public SetActiveTimeline(timelineFiles: string[], timelines: string[],
-      replacements: Replacement[], triggers: LooseTimelineTrigger[], styles: Style[]): void {
+      replacements: TimelineReplacement[], triggers: LooseTimelineTrigger[],
+      styles: TimelineStyle[]): void {
     this.activeTimeline = null;
 
     let text = '';
@@ -1191,8 +1187,9 @@ export class TimelineLoader {
     this.timelineController = timelineController;
   }
 
-  public SetTimelines(timelineFiles: string[], timelines: string[], replacements: Replacement[],
-      triggers: LooseTimelineTrigger[], styles: Style[]): void {
+  public SetTimelines(timelineFiles: string[], timelines: string[],
+      replacements: TimelineReplacement[], triggers: LooseTimelineTrigger[],
+      styles: TimelineStyle[]): void {
     this.timelineController.SetActiveTimeline(
         timelineFiles,
         timelines,
