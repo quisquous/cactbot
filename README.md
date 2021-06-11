@@ -440,8 +440,8 @@ In the screenshot below the phases are named B1, B2, B3.  These autogenerate fro
 
 ![xephero screenshot](screenshots/xephero.png)
 
-The [rdmty](ui/dps/rdmty) dps meter is based on the same dps meter for miniparse, and updated
-for Stormblood jobs and recolored to match [fflogs](http://fflogs.com).
+The [rdmty](ui/dps/rdmty) dps meter is based on the same dps meter for miniparse, and
+recolored to match [fflogs](http://fflogs.com).
 
 ![rdmty screenshot](screenshots/rdmty.png)
 

@@ -415,25 +415,24 @@ Cast times are currently only logged as you fish, so there won't be any data unt
 
 [See here](https://www.youtube.com/watch?v=GHgWIA-Zhug) for examples of the different tug types.
 
-Check [here](../FAQ-Troubleshooting.md#fisher-module) for common troubleshooting tips.
+일반적인 문제 해결 팁은 [여기](../FAQ-Troubleshooting.md#fisher-module)를 확인하세요.
 
 ### [dps](../../ui/dps) 미터기
 
-cactbot can be used with any dps meter overlay designed for OverlayPlugin's miniparse
-addon, with the option to build out more features through cactbot's additional Javascript
-APIs.  cactbot also auto-stops fights on wipes, so you can configure ACT's fight time to
-infinity.
+cactbot은 오버레이 플러그인의 mini parse 애드온에 맞게 제작된 그 어떤 미터기 오버레이와 함께 사용할 수 있습니다.
+cactbot의 추가적인 자바스크립트 API를 이용해 더 많은 기능을 사용할 수 있는 옵션을 제공할 수도 있습니다.
+cactbot은 전멸시에 자동으로 전투 종료를 실행해줍니다. 따라서 ACT 전투 시간을 `infinity`(무제한)로 설정해도 괜찮습니다.
 
-The [xephero](../../ui/dps/xephero) dps meter is based on the same dps meter built for miniparse,
-with the additional ability to do per-phase dps tracking, displayed in additional columns.
-In the screenshot below the phases are named B1, B2, B3.  These autogenerate from dungeon bosses, but could be used to differentiate raid fight phases.
+[xephero](../../ui/dps/xephero) 미터기는 mini parse의 미터기와 같은 기반을 사용하였는데,
+페이즈별 미터기 기록을 나눠볼 수 있는 기능이 추가되어 있습니다.
+아래 스크린샷을 보면, B1, B2, B3 페이즈가 나와있습니다.  이는 던전 보스로부터 자동 생성되지만, 레이드 보스 페이즈를 구분하는데도 사용할 수 있습니다.
 
-![xephero screenshot](../../screenshots/xephero.png)
+![xephero 스크린샷](../../screenshots/xephero.png)
 
-The [rdmty](../../ui/dps/rdmty) dps meter is based on the same dps meter for miniparse, and updated
-for Stormblood jobs and recolored to match [fflogs](http://fflogs.com).
+[rdmty](../../ui/dps/rdmty) 미터기는 mini parse의 미터기와 같은 기반을 사용하였는데,
+직업의 색깔이 [fflogs](http://ko.fflogs.com)의 색깔에 맞도록 색깔을 조정했습니다.
 
-![rdmty screenshot](../../screenshots/rdmty.png)
+![rdmty 스크린샷](../../screenshots/rdmty.png)
 
 ### [pull counter](../../ui/pullcounter) 모듈
 
