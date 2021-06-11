@@ -1,7 +1,3 @@
-:root {
-  --proc-box-flash-repeat: infinite;
-}
-
 #jobs {
   position: relative;
 }
@@ -1147,9 +1143,9 @@
 }
 
 /* Proc box animation */
-.proc-box.in-combat .flash-when-expired.expired {
+.proc-box.in-combat .notify-when-expired.expired {
   display: block;
-  animation: var(--proc-box-flash-animation, proc-box-flash) var(--proc-box-flash-duration, 1s) var(--proc-box-flash-repeat);
+  animation: var(--proc-box-notfy-animation, proc-box-flash) var(--proc-box-notify-duration, 1s) var(--proc-box-notify-repeat, infinite);
 }
 
 @keyframes proc-box-flash {

@@ -125,14 +125,14 @@ class Bars {
     this.isPVPZone = false;
     this.crafting = false;
 
-    this.updateProcBoxFlashRepeat();
+    this.updateProcBoxNotifyRepeat();
   }
 
-  updateProcBoxFlashRepeat() {
-    if (this.options.FlashExpiredProcsInCombat >= 0) {
-      const repeats = this.options.FlashExpiredProcsInCombat === 0 ? 'infinite' : this.options.FlashExpiredProcsInCombat;
+  updateProcBoxNotifyRepeat() {
+    if (this.options.NotifyExpiredProcsInCombat >= 0) {
+      const repeats = this.options.NotifyExpiredProcsInCombat === 0 ? 'infinite' : this.options.NotifyExpiredProcsInCombat;
 
-      document.documentElement.style.setProperty('--proc-box-flash-repeat', repeats);
+      document.documentElement.style.setProperty('--proc-box-notify-repeat', repeats);
     }
   }
 
@@ -426,7 +426,7 @@ class Bars {
     fgColor,
     threshold,
     scale,
-    flashWhenExpired,
+    notifyWhenExpired,
   }) {
     const elementId = this.job.toLowerCase() + '-procs';
 
@@ -453,8 +453,8 @@ class Bars {
       timerBox.id = id;
       timerBox.classList.add('timer-box');
     }
-    if (flashWhenExpired)
-      timerBox.classList.add('flash-when-expired');
+    if (notifyWhenExpired)
+      timerBox.classList.add('notify-when-expired');
     return timerBox;
   }
 
@@ -578,8 +578,8 @@ class Bars {
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color');
   }
 
-  _updateProcBoxFlashState() {
-    if (this.options.FlashExpiredProcsInCombat >= 0) {
+  _updateProcBoxNotifyState() {
+    if (this.options.NotifyExpiredProcsInCombat >= 0) {
       const boxes = document.getElementsByClassName('proc-box');
       for (const box of boxes) {
         if (this.inCombat)
@@ -760,7 +760,7 @@ class Bars {
     this._updateOpacity();
     this._updateFoodBuff();
     this._updateMPTicker();
-    this._updateProcBoxFlashState();
+    this._updateProcBoxNotifyState();
   }
 
   _onChangeZone(e) {
@@ -894,7 +894,7 @@ class Bars {
       this._updateJob();
       // On reload, we need to set the opacity after setting up the job bars.
       this._updateOpacity();
-      this._updateProcBoxFlashState();
+      this._updateProcBoxNotifyState();
       // Set up the buff tracker after the job bars are created.
       this.buffTracker = new BuffTracker(
           this.options, this.me, this.o.leftBuffsList, this.o.rightBuffsList, this.partyTracker);

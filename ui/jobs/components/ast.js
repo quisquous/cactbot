@@ -14,7 +14,7 @@ export function setup(bars) {
   const combustBox = bars.addProcBox({
     id: 'ast-procs-combust',
     fgColor: 'ast-color-combust',
-    flashWhenExpired: true,
+    notifyWhenExpired: true,
   });
 
   const drawBox = bars.addProcBox({

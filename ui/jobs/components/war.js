@@ -28,7 +28,7 @@ export function setup(bars) {
 
   const eyeBox = bars.addProcBox({
     fgColor: 'war-color-eye',
-    flashWhenExpired: true,
+    notifyWhenExpired: true,
   });
 
   const comboTimer = bars.addTimerBar({

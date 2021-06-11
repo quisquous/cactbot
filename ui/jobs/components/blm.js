@@ -8,7 +8,7 @@ export function setup(bars) {
     id: 'blm-dot-thunder',
     fgColor: 'blm-color-dot',
     threshold: 4,
-    flashWhenExpired: true,
+    notifyWhenExpired: true,
   });
   const thunderProc = bars.addProcBox({
     id: 'blm-procs-thunder',
