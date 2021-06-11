@@ -1,5 +1,5 @@
 import { Lang, NonEnLang } from '../resources/languages';
-import { Replacement } from '../ui/raidboss/timeline';
+import { TimelineReplacement, TimelineStyle } from '../ui/raidboss/timeline';
 import { RaidbossData } from './data';
 
 export interface BaseRegExp<T> extends RegExp {
@@ -135,8 +135,8 @@ export type TriggerSet<Data> = {
   timeline?: TimelineFunc;
   triggers?: NetRegexTrigger<Data>[];
   timelineTriggers?: TimelineTrigger<Data>[];
-  timelineReplace?: Replacement[];
-  timelineStyles?: Style[];
+  timelineReplace?: TimelineReplacement[];
+  timelineStyles?: TimelineStyle[];
 }
 
 // Less strict type for user triggers + built-in triggers, including deprecated fields.

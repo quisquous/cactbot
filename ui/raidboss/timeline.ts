@@ -71,14 +71,14 @@ const activeText = {
   ko: '시전중:',
 };
 
-export type Replacement = {
+export type TimelineReplacement = {
   locale: string;
   missingTranslations?: boolean;
-  replaceSync?: { [key: string]: string };
-  replaceText?: { [key: string]: string };
+  replaceSync?: { [regexString: string]: string };
+  replaceText?: { [timelineText: string]: string };
 };
 
-type Style = {
+type TimelineStyle = {
   style: { [key: string]: string };
   regex: RegExp;
 }
@@ -154,7 +154,7 @@ export class Timeline {
   private options: RaidbossOptions;
   private perTriggerAutoConfig: { [triggerId: string]: TriggerAutoConfig };
   private activeText: string;
-  private replacements: Replacement[];
+  private replacements: TimelineReplacement[];
 
   private ignores: { [ignoreId: string]: boolean };
   public events: Event[];
@@ -183,8 +183,8 @@ export class Timeline {
 
   private updateTimer = 0;
 
-  constructor(text: string, replacements: Replacement[], triggers: LooseTimelineTrigger[],
-      styles: Style[], options: RaidbossOptions) {
+  constructor(text: string, replacements: TimelineReplacement[], triggers: LooseTimelineTrigger[],
+      styles: TimelineStyle[], options: RaidbossOptions) {
     this.options = options || {};
     this.perTriggerAutoConfig = this.options['PerTriggerAutoConfig'] || {};
     this.replacements = replacements;
@@ -270,7 +270,7 @@ export class Timeline {
     ].map((x) => Regexes.parse(x));
   }
 
-  private LoadFile(text: string, triggers: LooseTimelineTrigger[], styles: Style[]): void {
+  private LoadFile(text: string, triggers: LooseTimelineTrigger[], styles: TimelineStyle[]): void {
     this.events = [];
     this.syncStarts = [];
     this.syncEnds = [];
@@ -1154,7 +1154,8 @@ export class TimelineController {
   }
 
   public SetActiveTimeline(timelineFiles: string[], timelines: string[],
-      replacements: Replacement[], triggers: LooseTimelineTrigger[], styles: Style[]): void {
+      replacements: TimelineReplacement[], triggers: LooseTimelineTrigger[],
+      styles: TimelineStyle[]): void {
     this.activeTimeline = null;
 
     let text = '';
@@ -1186,8 +1187,9 @@ export class TimelineLoader {
     this.timelineController = timelineController;
   }
 
-  public SetTimelines(timelineFiles: string[], timelines: string[], replacements: Replacement[],
-      triggers: LooseTimelineTrigger[], styles: Style[]): void {
+  public SetTimelines(timelineFiles: string[], timelines: string[],
+      replacements: TimelineReplacement[], triggers: LooseTimelineTrigger[],
+      styles: TimelineStyle[]): void {
     this.timelineController.SetActiveTimeline(
         timelineFiles,
         timelines,
