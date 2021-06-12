@@ -582,10 +582,13 @@ class Bars {
     if (this.options.NotifyExpiredProcsInCombat >= 0) {
       const boxes = document.getElementsByClassName('proc-box');
       for (const box of boxes) {
-        if (this.inCombat)
+        if (this.inCombat) {
           box.classList.add('in-combat');
-        else
+          for (const child of box.children)
+            child.classList.remove('expired');
+        } else {
           box.classList.remove('in-combat');
+        }
       }
     }
   }
