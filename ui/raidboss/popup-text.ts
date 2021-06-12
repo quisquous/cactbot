@@ -362,25 +362,25 @@ export type RaidbossTriggerOutput = TriggerOutput<RaidbossData, MatchesAny>;
 
 const defaultOutput = TriggerOutputProxy.makeOutput({}, 'en');
 
-export abstract class TriggerHelper {
-  abstract valueOrFunction: (f: RaidbossTriggerField) => RaidbossTriggerOutput;
-  abstract trigger: ProcessedTrigger;
-  abstract now: number;
-  abstract triggerOptions: PerTriggerOption;
-  abstract triggerAutoConfig: TriggerAutoConfig;
+export interface TriggerHelper {
+  valueOrFunction: (f: RaidbossTriggerField) => RaidbossTriggerOutput;
+  trigger: ProcessedTrigger;
+  now: number;
+  triggerOptions: PerTriggerOption;
+  triggerAutoConfig: TriggerAutoConfig;
   // This setting only suppresses output, trigger still runs for data/logic purposes
-  abstract userSuppressedOutput: boolean;
-  abstract matches: MatchesAny;
+  userSuppressedOutput: boolean;
+  matches: MatchesAny;
   response?: ResponseOutput<RaidbossData, MatchesAny>;
   // Default options
   soundUrl?: string;
   soundVol?: number;
   triggerSoundVol?: number;
   defaultTTSText?: string;
-  abstract textAlertsEnabled: boolean;
-  abstract soundAlertsEnabled: boolean;
-  abstract spokenAlertsEnabled: boolean;
-  abstract groupSpokenAlertsEnabled: boolean;
+  textAlertsEnabled: boolean;
+  soundAlertsEnabled: boolean;
+  spokenAlertsEnabled: boolean;
+  groupSpokenAlertsEnabled: boolean;
   duration?: {
     fromConfig?: number;
     fromTrigger?: number;
@@ -390,7 +390,7 @@ export abstract class TriggerHelper {
   };
   ttsText?: string;
 
-  abstract get output(): Output;
+  output: Output;
 }
 
 export class PopupText {
@@ -625,7 +625,7 @@ export class PopupText {
           trigger.filename = set.filename ?? 'Unknown';
           const id = trigger.id;
 
-          if (!('regex' in trigger) && !('netRegex' in trigger)) {
+          if (!isRegexTrigger(trigger) && !isNetRegexTrigger(trigger)) {
             console.error(`Trigger ${id}: has no regex property specified`);
             continue;
           }
