@@ -1,14 +1,14 @@
 import fs from 'fs';
 import { ArgumentParser } from 'argparse';
 
-const timeRe = /^\s*#?\s*([0-9]+(?:\.[0-9]+)?)\s+"/g;
+const timeRe = /^\s*#?\s*([0-9]+(?:\.[0-9]+)?)\s+"/;
 const firstNumRe = /([0-9]+(?:\.[0-9]+)?)/;
 
 const adjustLines = (lines, adjust) => {
   for (const line of lines) {
     const match = timeRe.exec(line);
     if (match) {
-      const time = parseFloat(match[1] ?? '0') + adjust;
+      const time = parseFloat(match[1]) + adjust;
       console.log(line.replace(firstNumRe, time.toFixed(1)));
     } else {
       console.log(line);
