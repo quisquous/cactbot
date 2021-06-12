@@ -259,15 +259,15 @@ Webpack에 대해 더 자세히 알고 싶다면
 
 [ui/](../../ui/) 디렉토리는 cactbot의 ui 모듈을 가지고 있습니다.
 만약 cactbot을 상기 설명에 따라 설치했다면,
-이 디렉토리는 `%APPDATA%Advanced Combat Tracker\Plugins\cactbot-version\cactbot\ui\`에 있을 것입니다.
+이 디렉토리는 `%APPDATA%\Advanced Combat Tracker\Plugins\cactbot-version\cactbot\ui\`에 있을 것입니다.
 
 각각의 cactbot ui 모듈은 분리된 오버레이로 따로 추가되어야 합니다.
 더욱 자세한 오버레이 설치 방법을 확인하려면 [오버레이 모듈 추가하기](#오버레이-모듈-추가하기) 문단을 확인하세요.
 
 ### [raidboss](../../ui/raidboss) 모듈
 
-To use this module,
-point cactbot at **ui/raidboss/raidboss.html** or use the `Cactbot Raidboss` preset.
+이 모듈을 사용하려면,
+**ui/raidboss/raidboss.html** 파일을 URL 부분에서 선택하거나 `Cactbot Raidboss` 프리셋을 사용하세요.
 
 이 모듈은 레이드의 타임라인과 레이드에서 놓칠만한 정보들을 알려주는 텍스트/사운드 알림을 제공합니다. 텍스트와 사운드 알람은 ACT의 "커스텀 트리거" 기능과 비슷한 방식으로, 전투 타임라인이나 게임에서 찍히는 로그 메시지를 기반으로 제공됩니다.
 이 모듈은 월드 오브 워크래프트의 [BigWigs Bossmods](https://www.curseforge.com/wow/addons/big-wigs) 애드온과 비슷하게 보이고 느껴지도록 디자인 되었습니다.
@@ -291,70 +291,70 @@ cactbot에서는 [약간의 확장 기능](../TimelineGuide.md)을 추가했습�
 
 ### raidboss emulator
 
-If you are writing triggers or timelines and want to test them, you can use the raidboss emulator:
+만약 트리거나 타임라인을 작성하는 중이고 그 결과를 테스트하고 싶다면, raidboss emulator를 사용할 수 있습니다:
 **ui/raidboss/raidemulator.html**.
 
-This currently can only be loaded in a browser and not as an overlay.
-This will work in current version of Chrome,
-and should work in other browsers as well but this is less tested.
+이 기능은 현재 오버레이로 제공되지 않고, 브라우저에서 불러와야 합니다.
+이 페이지는 최신 크롬에서 작동하고,
+다른 브라우저에서도 작동하겠지만 별로 테스트되지 않았습니다.
 
-Instructions:
+방법:
 
-1. Start ACT.
-1. Make sure the WS Server is started via Plugins -> OverlayPlugin WSServer -> Stream/Local Overlay.
-1. Select `Cactbot Raidboss (Combined Alerts and Timelines)` from the URL Generator list.
-1. Edit the url to say `raidemulator.html` instead of `raidboss.html`.
-1. Copy and paste this edited url into Chrome.
-1. Drag and drop a [network log](../FAQ-Troubleshooting.md#how-to-find-a-network-log) onto the page.
-1. Select the zone and encounter, and then click `Load Encounter`.
+1. ACT를 실행하세요.
+1. 웹소켓 서버가 실행되고 있는지 확인하세요. Plugins -> OverlayPlugin WSServer -> Stream/Local Overlay에서 확인할 수 있습니다.
+1. URL 생성 리스트에서 `Cactbot Raidboss (Combined Alerts and Timelines)`를 선택하세요.
+1. URL에서 `raidboss.html` 부분을 `raidemulator.html`로 바꾸세요.
+1. 편집된 URL을 크롬에서 여세요.
+1. [네트워크 로그](../FAQ-Troubleshooting.md#how-to-find-a-network-log)를 페이지에 드래그 앤 드롭하세요.
+1. 지역명과 적을 선택하고, `Load Encounter`를 클릭하세요.
 
-If the emulator is not working, check the console log in the inspector for errors.
-No buttons will work until it is connected to ACT via websocket.
+만약 에뮬레이터가 작동하지 않는다면, 개발자 도구 Console 로그에서 에러를 확인하세요.
+웹소켓으로 ACT와 연결되기 전까지는 어떤 버튼도 작동하지 않습니다.
 
-![raidboss emulator screenshot](../../screenshots/raidboss_emulator.png)
+![raidboss emulator 스크린샷](../../screenshots/raidboss_emulator.png)
 
 ### [oopsyraidsy](../../ui/oopsyraidsy) 모듈
 
-To use this module,
-point cactbot at **ui/oopsyraidsy/oopsyraidsy.html** or use the `Cactbot OopsyRaidsy` preset.
+이 모듈을 사용하려면,
+**ui/oopsyraidsy/oopsyraidsy.html** 파일을 URL 부분에서 선택하거나 `Cactbot OopsyRaidsy` 프리셋을 사용하세요.
 
-This module provides mistake tracking and death reporting.  Oopsy raidsy is meant to reduce the time wasted understanding what went wrong on fights and how people died.  During the fight, only a limited number of mistakes are shown (to avoid clutter), but afterwards a full scrollable list is displayed.
+이 모듈은 실수 추적과 사망 리포트를 제공합니다. Oopsy raidsy는 전투에서 어떤 문제가 있었는지, 왜 죽었는지 이해하는데 낭비되는 시간을 줄이는 목적으로 제작되었습니다. 전투동안은 혼란을 피하기 위해 제한된 수의 실수가 표시되지만, 전투가 종료되면 스크롤이 가능한 전체 실수 리스트를 보여줍니다.
 
-When somebody dies, the last thing they took damage from is listed in the log.  For example, if the log specifies: ":skull: Poutine: Iron Chariot (82173/23703)" this means that Poutine most likely died to Iron Chariot, taking 82173 damage and having 23703 health at the time.  The health value itself is not perfect and may be slightly out of date by a ~second due to a hot tick or multiple simultaneous damage sources.
+누군가 죽는다면, 마지막에 받은 데미지가 로그에 님습니다. 예를 들어, 다음과 같은 로그가 나왔다면: ":skull: 아무개: 강철 전차 (82173/23703)" 아무개가 강철 전차에 죽었을 가능성이 아주 높고, 체력이 23703 남았을 때 82173의 데미지를 받았다는 뜻입니다. 체력 값은 완벽하지 않습니다. 서버틱 문제와 동시에 많은 갯수의 데미지가 들어온 경우에 최대 1초 정도의 지연이 있을 수 있습니다.
 
-When mistakes are made that are avoidable, oopsy logs warning (:warning:) and failure (:no_entry_sign:) messages, explaining what went wrong.
+피할 수 있는 실수를 했을 경우에는, oopsy에 경고(:warning:)나 실패(:no_entry_sign:) 로그가 찍혀서 무엇을 실수했는지 알려주게 됩니다.
 
-Mistake triggers are specified for individual fights in the [ui/oopsyraidsy/data](../../ui/oopsyraidsy/data) folder.
+실수 트리거들은 [ui/oopsyraidsy/data](../../ui/oopsyraidsy/data) 폴더의 각 개별 전투 파일에 자세히 나열되어 있습니다.
 
-![oopsy screenshot](../../screenshots/promo_oopsy.png)
+![oopsy 스크린샷](../../screenshots/promo_oopsy.png)
 
 ### [jobs](../../ui/jobs) 모듈
 
-To use this module,
-point cactbot at **ui/jobs/jobs.html** or use the `Cactbot Jobs` preset.
+이 모듈을 사용하려면,
+**ui/jobs/jobs.html** 파일을 URL 부분에서 선택하거나 `Cactbot Jobs` 프리셋을 사용하세요.
 
-This module provides health, mana, and tp bars, as well as icons and timer bars for big raid buffs such as
-The Balance and Trick Attack. It also features a food buff warning to keep up your food buff when leveling
-or raiding, and a visual pull countdown.
+이 모듈은 체력, 마나와 함께 속임수 공격이나 전투 기도 같은 전투 버프 타이머를 제공합니다.
+레벨링이나 레이드를 할 때 음식 시간 부족 경고도 보여주고,
+시각적인 초읽기 기능도 제공합니다.
 
-It has more fleshed out support for some jobs but is *strongly* a Work In Progress for others.
+일부 직업에 대해서는 구체적인 지원을 하지만 대부분의 직업은 기능을 만드는 중입니다.
 
 <details>
 <summary>지원하는 잡 (클릭해서 확장)</summary>
 
 |잡|기능|
 |:-:|:-:|
-|<img src="../../resources/ffxiv/jobs/pld-large.png" width="30px"/><br> 나이트|Shows current Oath amount, and atonement stacks. Also tracks Goring Blade DoT. |
-|<img src="../../resources/ffxiv/jobs/war-large.png" width="30px"/><br> 전사|Shows the beast amount, and tracks the remaining Storm's Eye buff time in gcds, and shows combo time remaining.|
-|<img src="../../resources/ffxiv/jobs/drk-large.png" width="30px"/><br> 암흑기사|Shows the blood amount and darkside time, BloodWeapon&Delirium&LivingShadow duration and cooldown, and shows combo time remaining.|
-|<img src="../../resources/ffxiv/jobs/gnb-large.png" width="30px"/><br> 건브레이커|Shows No Mercy duration&cooldown, Bloodfest&Gnashing Fang cooldown, Cartridge amount, and shows combo time remaining.|
-|<img src="../../resources/ffxiv/jobs/whm-large.png" width="30px"/><br> 백마도사|Shows Heal&Blood Lily amount, time to next Lily, DoTs remaining time, and shows Assize&Lucid Dreaming cooldown.|
-|<img src="../../resources/ffxiv/jobs/sch-large.png" width="30px"/><br> 학자|Shows Aetherflow stacks, Fairy gauge amount/time remaining, DoTs remaining time, and shows Aetherflow&Lucid Dreaming cooldown.|
-|<img src="../../resources/ffxiv/jobs/ast-large.png" width="30px"/><br> 점성술사|Shows Seals amount, notify who or whether to play the current card, DoTs remaining time, and shows Draw&Lucid Dreaming cooldown.|
-|<img src="../../resources/ffxiv/jobs/mnk-large.png" width="30px"/><br> 몽크|Shows chakra count, <del>remaining greased lightning time</del> and form time, and tracks monk buffs and debuffs.|
+|<img src="../../resources/ffxiv/jobs/pld-large.png" width="30px"/><br> 나이트|현재 충의 수치와 회한의 검 스택을 보여줍니다. 꿰뚫는 검격의 도트도 추적해줍니다. |
+|<img src="../../resources/ffxiv/jobs/war-large.png" width="30px"/><br> 전사|원초 수치, 폭풍의 눈 버프 남은 시간, 그리고 콤보 유지 시간을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/drk-large.png" width="30px"/><br> 암흑기사|흑혈 수치와 암흑 시간, 피의 칼날/열광검/환영 구현 지속 시간과 쿨, 그리고 콤보 유지 시간을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/gnb-large.png" width="30px"/><br> 건브레이커|무자비 지속 시간과 쿨, 피의 소일/난폭한 송곳니 쿨, 소일 양, 그리고 콤보 유지 시간을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/whm-large.png" width="30px"/><br> 백마도사|Shows Heal&Blood Lily amount, time to next Lily, 도트 남은 시간, 그리고 심판/자각몽 쿨을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/sch-large.png" width="30px"/><br> 학자|에테르 순환 스택, 요정 게이지 양/남은 시간, 도트 남은 시간, 그리고 에테르 순환/자각몽 쿨을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/ast-large.png" width="30px"/><br> 점성술사|Shows Seals amount, notify who or whether to play the current card, 도트 남은 시간, 그리고 점지/자각몽 쿨을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/mnk-large.png" width="30px"/><br> 몽크|투기량을 보여주고, 품새 시간, 몽크 버프와 디버프를 추적해줍니다.|
 |<img src="../../resources/ffxiv/jobs/drg-large.png" width="30px"/><br> 용기사|용혈과 용눈 갯수, 몸통 가르기 버프 남은 시간, 점프 쿨, 돌격하는 창과 용의 시선 지속 시간/쿨타임을 보여줍니다.|
-|<img src="../../resources/ffxiv/jobs/nin-large.png" width="30px"/><br> 닌자|Shows Ninki amount, Huton remaining time, Trick Attack duration&cooldown, Bunshin&Mudras cooldown, and shows combo time remaining.|
-|<img src="../../resources/ffxiv/jobs/sam-large.png" width="30px"/><br> 사무라이|Shows Kenki amount, Meditation stacks, Shifu&Jinpu&Higanbana duration, Tsubame-gaeshi cooldown, and shows combo time remaining.|
+|<img src="../../resources/ffxiv/jobs/nin-large.png" width="30px"/><br> 닌자|인법 수치, 풍둔술 지속 시간, 속임수 공격 지속시간/쿨, 분신술/삼인술 쿨, 그리고 콤보 유지 시간을 보여줍니다.|
+|<img src="../../resources/ffxiv/jobs/sam-large.png" width="30px"/><br> 사무라이|검기 수치, 투기 스택, 사풍/진풍/피안화 지속시간, 제비반전 쿨, 그리고 콤보 유지시간을 보여줍니다.|
 |<img src="../../resources/ffxiv/jobs/brd-large.png" width="30px"/><br> 음유시인|Shows songs playing and remaining time, Repertoire stack, Soul Voice amount, StraightShotReady track, DoT remaining time, and a bar that show when your DoTs will tick.|
 |<img src="../../resources/ffxiv/jobs/mch-large.png" width="30px"/><br> 기공사|Shows Heat gauge, Battery gauge, Combo Timer, Drill/Bioblaster&Air Anchor Cooldown, Wild Fire Cooldown&Duration. When Wild Fire is active, there will be a gauge to show how many GCD you have landed.|
 |<img src="../../resources/ffxiv/jobs/dnc-large.png" width="30px"/><br> 무도가|Shows Combo Timer, Feather Guage, Esprit Guage, Standard Step Cooldown, Technical Step&Flourish Cooldown & Duration.|
@@ -365,17 +365,16 @@ It has more fleshed out support for some jobs but is *strongly* a Work In Progre
 
 </details>
 
-In this screenshot, the jobs module is highlighted for the Red Mage job. The health and mana bars, as well
-as Red Mage white/black mana tracking is circled in purple, with the large raid buff tracking pointed to
-beside it in orange. <del>The first step of the melee combo has been executed, which is displayed as the yellow
-box above the health bar.</del> The proc tracking is circled below in green.
+스크린샷을 보시면, job 모듈은 적마도사에 맞춰져 있습니다. 보라색 원이 되어 있는 곳을 보면, 체력과 마나 바와 함께
+적마도사의 흰/붉은 마나를 추적 해주고 있습니다. 주황색 화살표를 보면 파티 버프도 추적되고 있습니다.
+<del>체력바 위에 있는 노란색 박스가 첫 근접 콤보를 실행했다는 것을 보여줍니다.</del> 프록 트래커는 초록색 원으로 표시된 곳에 나타나고 있습니다.
 
-![jobs screenshot](../../screenshots/Jobs.png)
+![jobs 스크린샷](../../screenshots/Jobs.png)
 
 ### [eureka](../../ui/eureka) 모듈
 
-To use this module,
-point cactbot at **ui/eureka/eureka.html** or use the `Cactbot Eureka` preset.
+이 모듈을 사용하려면,
+**ui/eureka/eureka.html** 파일을 URL 부분에서 선택하거나 `Cactbot Eureka` 프리셋을 사용하세요.
 
 이 모듈은 자동으로 소환되었거나 죽은 NM을 기록하는 트래커를 제공합니다. 폭풍/밤 타이머를 보여주고, 채팅창에 올라온 에우레카 트래커 링크를 보여줍니다.
 채팅창에 올라온 깃발(\<flag\>)도 지도에 표시해 주고 있습니다.
@@ -390,8 +389,8 @@ point cactbot at **ui/eureka/eureka.html** or use the `Cactbot Eureka` preset.
 
 ### [radar](../../ui/radar) 모듈
 
-To use this module,
-point cactbot at **ui/radar/radar.html** or use the `Cactbot Radar` preset.
+이 모듈을 사용하려면,
+**ui/radar/radar.html** 파일을 URL 부분에서 선택하거나 `Cactbot Radar` 프리셋을 사용하세요.
 
 이 모듈은 주위 마물(S급, A급, 등)을 알 수 있게 해줍니다.
 하나를 발견하면, 대상으로의 화살표(캐릭터의 전방 기준)나 거리를 알려줍니다.
@@ -405,56 +404,55 @@ point cactbot at **ui/radar/radar.html** or use the `Cactbot Radar` preset.
 
 ### [fisher](../../ui/fisher) 모듈
 
-To use this module,
-point cactbot at **ui/fisher/fisher.html** or use the `Cactbot Fisher` preset.
+이 모듈을 사용하려면,
+**ui/fisher/fisher.html** 파일을 URL 부분에서 선택하거나 `Cactbot Fisher` 프리셋을 사용하세요.
 
-When you cast your line at a fishing hole, this module keeps track of when you reel in particular fish so that you know what you might be getting when you hook it.
+낚싯터에서 낚시를 시작하면, 이 모듈이 사용자가 물고기를 낚는 것을 추적합니다. 이를 통해 사용자가 물고기를 낚을 때 어떤 물고기를 낚게 되는지 알 수 있게 될 것입니다.
 
-![fishing screenshot](../../screenshots/promo_fishing.png)
+![fishing 스크린샷](../../screenshots/promo_fishing.png)
 
-Cast times are currently only logged as you fish, so there won't be any data until you've caught each fish. Green bars represent light tugs, yellow is a medium tug and red bars are legendary/heavy tugs.
+물고기가 잡히는 낚시 캐스팅 시간 정보는 사용자가 직접 물고기를 낚을 때 기록됩니다. 따라서 각 물고기를 낚기 전에는
+아무런 데이터가 없을 것입니다. 초록색 바는 입질이 약한 물고기(섬세한 낚아채기 사용)를 의미하며, 노란색 바는 입질이 중간인 물고기를 의미하고, 빨간색 바는 전설 물고기 또는 입질이 강한 물고기를 의미합니다. *번역자가 낚시에 대해 잘 알지 못해 물고기 종류에 대해 번역을 잘못했을 수 있음*
 
-[See here](https://www.youtube.com/watch?v=GHgWIA-Zhug) for examples of the different tug types.
+여러 종류의 물고기의 예시를 보려면 [여기](https://www.youtube.com/watch?v=GHgWIA-Zhug)를 확인하세요.
 
-Check [here](../FAQ-Troubleshooting.md#fisher-module) for common troubleshooting tips.
+일반적인 문제 해결 팁은 [여기](../FAQ-Troubleshooting.md#fisher-module)를 확인하세요.
 
 ### [dps](../../ui/dps) 미터기
 
-cactbot can be used with any dps meter overlay designed for OverlayPlugin's miniparse
-addon, with the option to build out more features through cactbot's additional Javascript
-APIs.  cactbot also auto-stops fights on wipes, so you can configure ACT's fight time to
-infinity.
+cactbot은 오버레이 플러그인의 MiniParse의 애드온에 맞게 제작된 그 어떤 미터기 오버레이와 함께 사용할 수 있습니다.
+cactbot의 추가적인 자바스크립트 API를 이용해 더 많은 기능을 사용할 수 있는 옵션을 제공할 수도 있습니다.
+cactbot은 전멸시에 자동으로 전투 종료를 실행해줍니다. 따라서 ACT 전투 시간을 `infinity`(무제한)로 설정해도 괜찮습니다.
 
-The [xephero](../../ui/dps/xephero) dps meter is based on the same dps meter built for miniparse,
-with the additional ability to do per-phase dps tracking, displayed in additional columns.
-In the screenshot below the phases are named B1, B2, B3.  These autogenerate from dungeon bosses, but could be used to differentiate raid fight phases.
+[xephero](../../ui/dps/xephero) 미터기는 MiniParse의 미터기와 같은 기반을 사용하였는데,
+페이즈별 미터기 기록을 나눠볼 수 있는 기능이 추가되어 있습니다.
+아래 스크린샷을 보면, B1, B2, B3 페이즈가 나와있습니다.  이는 던전 보스로부터 자동 생성되지만, 레이드 보스 페이즈를 구분하는데도 사용할 수 있습니다.
 
-![xephero screenshot](../../screenshots/xephero.png)
+![xephero 스크린샷](../../screenshots/xephero.png)
 
-The [rdmty](../../ui/dps/rdmty) dps meter is based on the same dps meter for miniparse, and updated
-for Stormblood jobs and recolored to match [fflogs](http://fflogs.com).
+[rdmty](../../ui/dps/rdmty) 미터기는 MiniParse의 미터기와 같은 기반을 사용하였는데,
+직업의 색깔이 [fflogs](http://ko.fflogs.com)의 색깔에 맞도록 색깔을 조정했습니다.
 
-![rdmty screenshot](../../screenshots/rdmty.png)
+![rdmty 스크린샷](../../screenshots/rdmty.png)
 
 ### [pull counter](../../ui/pullcounter) 모듈
 
-This small module sticks the current pull count for raiding bosses on screen.
-This is primarily for folks who stream a lot and want to review video footage.
-Having a number on screen makes it easy to scrub through video and find
-particular pulls to review.
+이 작은 모듈은 레이드 보스를 지금 몇 번째 트라이하고 있는지 보여줍니다.
+이 기능은 주로 스트리밍을 많이 하고 영상을 되돌려 보고 싶은 사람들을 위한 것입니다.
+화면에 숫자가 표시되면 영상을 정리하기 쉬고 원하는 부분을
+찾아가기가 쉬워질 것입니다.
 
-In most cases, you can reset the count for the current boss/zone by typing
-`/echo pullcounter reset`.
-You can also edit the counts directly in your
+대부분의 경우에는, `/echo pullcounter reset`을 채팅창에 입력해서 현재 보스/지역의 트라이 횟수를 초기화할 수 있습니다.
+또한
 `%APPDATA%\Advanced Combat Tracker\Config\RainbowMage.OverlayPlugin.config.json`
-file.
+파일에서 카운트를 직접 수정할 수 있습니다.
 
-![pull counter screenshot](../../screenshots/pullcounter.png)
+![pull counter 스크린샷](../../screenshots/pullcounter.png)
 
 ### [test](../../ui/test) 모듈
 
-To use this module,
-point cactbot at **ui/test/test.html** or use the `Cactbot Test` preset.
+이 모듈을 사용하려면,
+**ui/test/test.html** 파일을 URL 부분에서 선택하거나 `Cactbot Test` 프리셋을 사용하세요.
 
 이 모듈은 cactbot 변수들을 화면에 보여주는 테스트용 모듈입니다. 게임을 플레이 하는 도중에 사용하도록 만들어지지 않았습니다.
 모든 것들이 제대로 작동하고 있는지 확인하거나 오버레이 문제를 디버그할 때 유용합니다.
