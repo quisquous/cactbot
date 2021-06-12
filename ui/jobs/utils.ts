@@ -12,7 +12,7 @@ import { UnreachableCode } from '../../resources/not_reached';
 const getLocaleRegex = (locale: string, regexes: {
   'en': RegExp;
   [x: string]: RegExp;
-}): RegExp => regexes[locale] || regexes['en'];
+}): RegExp => regexes[locale] ?? regexes['en'];
 
 export class RegexesHolder {
   StatsRegex: Regex<StatChangeParams>;
