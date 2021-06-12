@@ -35,7 +35,7 @@ export const setup = (bars: Bars): void => {
       p.classList.remove('mid');
     }
 
-    const oldSeconds = parseFloat(darksideBox.duration || '0') - parseFloat(darksideBox.elapsed);
+    const oldSeconds = parseFloat(darksideBox.duration ?? '0') - parseFloat(darksideBox.elapsed);
     const seconds = jobDetail.darksideMilliseconds / 1000.0;
     if (!darksideBox.duration || seconds > oldSeconds) {
       darksideBox.duration = '0';
