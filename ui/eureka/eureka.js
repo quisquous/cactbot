@@ -3229,6 +3229,9 @@ class EurekaTracker {
           this.TransByDispLang(this.options.timeStrings.minute);
         if (nm.timeElement.innerHTML !== nmString)
           nm.timeElement.innerHTML = nmString;
+
+        if (!this.zoneInfo.treatNMsAsSkirmishes)
+          nm.element.classList.add('nm-down');
       }
     }
   }
