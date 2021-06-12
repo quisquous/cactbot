@@ -8,12 +8,12 @@ import Regexes from '../../resources/regexes';
 import Util from '../../resources/util';
 import ZoneId from '../../resources/zone_id';
 import {
-  LooseTrigger, OutputStrings, LocaleText, TriggerSet, TimelineFunc, LooseTriggerSet,
+  LooseTrigger, OutputStrings, TriggerSet, TimelineFunc, LooseTriggerSet,
   ResponseField, TriggerAutoConfig, MatchesAny, TriggerField, TriggerOutput,
   Output, ResponseOutput, NetRegexTrigger, RegexTrigger,
 } from '../../types/trigger';
 import { UnreachableCode } from '../../resources/not_reached';
-import { Lang, NonEnLang } from '../../resources/languages';
+import { Lang } from '../../resources/languages';
 import { PerTriggerAutoConfig, PerTriggerOption, RaidbossOptions } from './raidboss_options';
 import { TimelineReplacement, TimelineLoader } from './timeline';
 import { RaidbossFileData } from './data/raidboss_manifest.txt';
@@ -34,9 +34,6 @@ export const isRegexTrigger = (trigger?: LooseTrigger):
     return 'regex' in trigger;
   return false;
 };
-
-type RegexParserLang = `regex${Capitalize<Lowercase<NonEnLang>>}` | 'regex';
-type NetRegexParserLang = `netRegex${Capitalize<Lowercase<NonEnLang>>}` | 'netRegex';
 
 export type ProcessedTrigger = LooseTrigger & {
   filename?: string;
@@ -59,23 +56,6 @@ const isRaidbossLooseTimelineTrigger =
   (trigger: LooseTrigger): trigger is ProcessedTimelineTrigger => {
     return 'isTimelineTrigger' in trigger;
   };
-
-// Due to the nature of OutputStrings, there's no simple way to check that an object is actually
-// correct. Have to loop over objects to ensure they have the proper structure
-const isOutputStrings = (check: unknown): check is OutputStrings => {
-  if (!(check instanceof Object))
-    return false;
-  for (const propCheck of Object.values(check)) {
-    if (!(propCheck instanceof Object))
-      return false;
-    const prop = propCheck as unknown;
-    if (!(prop instanceof Object))
-      return false;
-    if (!('en' in prop))
-      return false;
-  }
-  return true;
-};
 
 // There should be (at most) six lines of instructions.
 const raidbossInstructions: { [lang in Lang]: string[] } = {
@@ -243,14 +223,17 @@ class OrderedTriggerList {
   }
 }
 
+const isObject = (x: unknown): x is { [key: string]: unknown } => x instanceof Object;
+
 type TriggerParams = { [key: string]: string };
 
 class TriggerOutputProxy {
   public outputStrings: OutputStrings;
   public overrideStrings: OutputStrings = {};
-  public responseOutputStrings: OutputStrings = {};
+  public responseOutputStrings: { [outputName: string]: unknown } = {};
   public unknownValue = '???';
-  constructor(
+
+  private constructor(
       public trigger: ProcessedTrigger,
       public displayLang: Lang,
       public perTriggerAutoConfig?: PerTriggerAutoConfig) {
@@ -285,7 +268,7 @@ class TriggerOutputProxy {
       // outputStrings every time.  Thank you for coming to my TED talk.
       set(target, property, value): boolean {
         if (property === 'responseOutputStrings') {
-          if (isOutputStrings(value)) {
+          if (isObject(value)) {
             target[property] = value;
             return true;
           }
@@ -314,8 +297,11 @@ class TriggerOutputProxy {
           // or there's no response and trigger provides everything.  Having
           // this well-defined smooths out the collision edge cases.
           let str = target.getReplacement(target.overrideStrings[name], params, name, id);
-          if (str === undefined)
-            str = target.getReplacement(target.responseOutputStrings[name], params, name, id);
+          if (str === undefined) {
+            const responseString = target.responseOutputStrings[name];
+            if (isObject(responseString))
+              str = target.getReplacement(responseString, params, name, id);
+          }
           if (str === undefined)
             str = target.getReplacement(target.outputStrings[name], params, name, id);
           if (str === undefined) {
@@ -330,7 +316,7 @@ class TriggerOutputProxy {
 
   getReplacement(
       // Can't use optional modifier for this arg since the others aren't optional
-      template: LocaleText | undefined,
+      template: { [lang: string]: unknown } | undefined,
       params: TriggerParams,
       name: string,
       id: string): string | undefined {
@@ -338,6 +324,11 @@ class TriggerOutputProxy {
       return;
 
     const value = template[this.displayLang] ?? template['en'];
+
+    if (typeof value !== 'string') {
+      console.error(`Trigger ${id} has invalid outputString ${name}.`);
+      return;
+    }
 
     return value.replace(/\${\s*([^}\s]+)\s*}/g, (_fullMatch: string, key: string) => {
       if (params && key in params) {
@@ -352,31 +343,44 @@ class TriggerOutputProxy {
       return this.unknownValue;
     });
   }
+
+  static makeOutput(
+      trigger: ProcessedTrigger,
+      displayLang: Lang,
+      perTriggerAutoConfig?: PerTriggerAutoConfig): Output {
+    // `Output` is the common type used for the trigger data interface to support arbitrary
+    // string keys and always returns a string. However, TypeScript doesn't have good support
+    // for the Proxy representing this structure so we need to cast Proxy => unknown => Output
+    return new TriggerOutputProxy(trigger, displayLang,
+        perTriggerAutoConfig) as unknown as Output;
+  }
 }
 
 export type RaidbossTriggerField =
   TriggerField<RaidbossData, TriggerOutput<RaidbossData, MatchesAny>>;
 export type RaidbossTriggerOutput = TriggerOutput<RaidbossData, MatchesAny>;
 
-export interface TriggerHelper {
-  valueOrFunction: (f: RaidbossTriggerField) => RaidbossTriggerOutput;
-  trigger: ProcessedTrigger;
-  now: number;
-  triggerOptions: PerTriggerOption;
-  triggerAutoConfig: TriggerAutoConfig;
+const defaultOutput = TriggerOutputProxy.makeOutput({}, 'en');
+
+export abstract class TriggerHelper {
+  abstract valueOrFunction: (f: RaidbossTriggerField) => RaidbossTriggerOutput;
+  abstract trigger: ProcessedTrigger;
+  abstract now: number;
+  abstract triggerOptions: PerTriggerOption;
+  abstract triggerAutoConfig: TriggerAutoConfig;
   // This setting only suppresses output, trigger still runs for data/logic purposes
-  userSuppressedOutput: boolean;
-  matches: MatchesAny;
+  abstract userSuppressedOutput: boolean;
+  abstract matches: MatchesAny;
   response?: ResponseOutput<RaidbossData, MatchesAny>;
   // Default options
   soundUrl?: string;
   soundVol?: number;
   triggerSoundVol?: number;
   defaultTTSText?: string;
-  textAlertsEnabled: boolean;
-  soundAlertsEnabled: boolean;
-  spokenAlertsEnabled: boolean;
-  groupSpokenAlertsEnabled: boolean;
+  abstract textAlertsEnabled: boolean;
+  abstract soundAlertsEnabled: boolean;
+  abstract spokenAlertsEnabled: boolean;
+  abstract groupSpokenAlertsEnabled: boolean;
   duration?: {
     fromConfig?: number;
     fromTrigger?: number;
@@ -385,6 +389,8 @@ export interface TriggerHelper {
     infoText: number;
   };
   ttsText?: string;
+
+  abstract get output(): Output;
 }
 
 export class PopupText {
@@ -500,7 +506,7 @@ export class PopupText {
         console.log('Unexpected JSON from ' + filename + ', expected an array');
         continue;
       }
-      if (!('triggers' in json)) {
+      if (!json.triggers) {
         console.log('Unexpected JSON from ' + filename + ', expected a triggers');
         continue;
       }
@@ -558,8 +564,8 @@ export class PopupText {
 
     // construct something like regexDe or regexFr.
     const langSuffix = this.parserLang.charAt(0).toUpperCase() + this.parserLang.slice(1);
-    const regexParserLang = ('regex' + langSuffix) as RegexParserLang;
-    const netRegexParserLang = ('netRegex' + langSuffix) as NetRegexParserLang;
+    const regexParserLang = 'regex' + langSuffix;
+    const netRegexParserLang = 'netRegex' + langSuffix;
 
     for (const set of this.triggerSets) {
       // zoneRegex can be undefined, a regex, or translatable object of regex.
@@ -588,7 +594,7 @@ export class PopupText {
           const parserLangRegex = zoneRegex[this.parserLang];
           if (parserLangRegex) {
             zoneRegex = parserLangRegex;
-          } else if ('en' in zoneRegex && zoneRegex['en']) {
+          } else if (zoneRegex['en']) {
             zoneRegex = zoneRegex['en'];
           } else {
             console.error('unknown zoneRegex parser language: ' + JSON.stringify(set.zoneRegex));
@@ -628,10 +634,12 @@ export class PopupText {
 
           let found = false;
 
+          const triggerObject: { [key: string]: unknown } = trigger;
+
           // parser-language-based regex takes precedence.
           if (isRegexTrigger(trigger)) {
-            const regex: RegExp | undefined = trigger[regexParserLang] ?? trigger.regex;
-            if (regex) {
+            const regex = triggerObject[regexParserLang] ?? trigger.regex;
+            if (regex instanceof RegExp) {
               trigger.localRegex = Regexes.parse(regex);
               orderedTriggers.push(trigger);
               found = true;
@@ -639,8 +647,8 @@ export class PopupText {
           }
 
           if (isNetRegexTrigger(trigger)) {
-            const netRegex = trigger[netRegexParserLang] || trigger.netRegex;
-            if (netRegex) {
+            const netRegex = triggerObject[netRegexParserLang] ?? trigger.netRegex;
+            if (netRegex instanceof RegExp) {
               trigger.localNetRegex = Regexes.parse(netRegex);
               orderedTriggers.push(trigger);
               found = true;
@@ -721,8 +729,8 @@ export class PopupText {
     delete trigger.localRegex;
     delete trigger.localNetRegex;
 
-    trigger.output = new TriggerOutputProxy(trigger, this.options.DisplayLanguage,
-        this.options.PerTriggerAutoConfig) as unknown as Output;
+    trigger.output = TriggerOutputProxy.makeOutput(trigger, this.options.DisplayLanguage,
+        this.options.PerTriggerAutoConfig);
   }
 
   OnJobChange(e: PlayerChangedDetail): void {
@@ -931,15 +939,18 @@ export class PopupText {
       valueOrFunction: (f: RaidbossTriggerField): RaidbossTriggerOutput => {
         let result = f;
         if (typeof result === 'function')
-          result = result(this.data, triggerHelper.matches, trigger.output as Output);
+          result = result(this.data, triggerHelper.matches, triggerHelper.output);
         // All triggers return either a string directly, or an object
         // whose keys are different parser language based names.  For simplicity,
         // this is valid to do for any trigger entry that can handle a function.
         // In case anybody wants to encapsulate any fancy grammar, the values
         // in this object can also be functions.
         if (typeof result !== 'object' || result === null)
-          return result as RaidbossTriggerOutput;
-        return triggerHelper.valueOrFunction(result[this.displayLang] || result['en']);
+          return result;
+        return triggerHelper.valueOrFunction(result[this.displayLang] ?? result['en']);
+      },
+      get output(): Output {
+        return this.trigger.output ?? defaultOutput;
       },
     };
 
@@ -963,11 +974,11 @@ export class PopupText {
   }
 
   _onTriggerInternalCondition(triggerHelper: TriggerHelper): boolean {
-    const condition = triggerHelper.triggerOptions.Condition || triggerHelper.trigger.condition;
+    const condition = triggerHelper.triggerOptions.Condition ?? triggerHelper.trigger.condition;
     if (condition) {
       if (condition === true)
         return true;
-      if (!condition(this.data, triggerHelper.matches, triggerHelper.trigger.output as Output))
+      if (!condition(this.data, triggerHelper.matches, triggerHelper.output))
         return false;
     }
     return true;
@@ -1017,12 +1028,10 @@ export class PopupText {
   }
 
   _onTriggerInternalPreRun(triggerHelper: TriggerHelper): void {
-    if ('preRun' in triggerHelper.trigger && triggerHelper.trigger.preRun) {
-      triggerHelper.trigger.preRun(
-          this.data,
-          triggerHelper.matches,
-          triggerHelper.trigger.output as Output);
-    }
+    triggerHelper.trigger?.preRun?.(
+        this.data,
+        triggerHelper.matches,
+        triggerHelper.output);
   }
 
   _onTriggerInternalDelaySeconds(triggerHelper: TriggerHelper): Promise<void> | undefined {
@@ -1072,7 +1081,7 @@ export class PopupText {
         promise = triggerHelper.trigger.promise(
             this.data,
             triggerHelper.matches,
-            triggerHelper.trigger.output as Output);
+            triggerHelper.output);
 
         // Make sure we actually get a Promise back from the function
         if (Promise.resolve(promise) !== promise) {
@@ -1105,7 +1114,7 @@ export class PopupText {
       // Can't use ValueOrFunction here as r returns a non-localizable object.
       response = trigger.response;
       while (typeof response === 'function')
-        response = response(this.data, triggerHelper.matches, trigger.output as Output);
+        response = response(this.data, triggerHelper.matches, triggerHelper.output);
 
       // Turn falsy values into a default no-op response.
       if (!response)
@@ -1135,7 +1144,7 @@ export class PopupText {
         result = triggerHelper.valueOrFunction(triggerHelper.trigger.tts);
       } else if (triggerHelper.response) {
         const resp: ResponseField<RaidbossData> = triggerHelper.response;
-        if ('tts' in resp && resp.tts)
+        if (resp.tts)
           result = triggerHelper.valueOrFunction(resp.tts);
       }
 
@@ -1149,13 +1158,13 @@ export class PopupText {
     if (triggerHelper.trigger.sound &&
         triggerHelper.soundUrl &&
         soundStrs.includes(triggerHelper.soundUrl)) {
-      const namedSound = triggerHelper.soundUrl + 'Sound' as SoundType;
-      const namedSoundVolume = triggerHelper.soundUrl + 'SoundVolume' as SoundTypeVolume;
+      const namedSound = triggerHelper.soundUrl + 'Sound';
+      const namedSoundVolume = triggerHelper.soundUrl + 'SoundVolume';
       const sound = this.options[namedSound];
-      if (sound) {
+      if (typeof sound === 'string') {
         triggerHelper.soundUrl = sound;
         const soundVol = this.options[namedSoundVolume];
-        if (soundVol)
+        if (typeof soundVol === 'number')
           triggerHelper.soundVol = soundVol;
       }
     }
@@ -1199,17 +1208,15 @@ export class PopupText {
           arrowReplacement[this.displayLang]);
       this.ttsSay(triggerHelper.ttsText);
     } else if (triggerHelper.soundUrl && triggerHelper.soundAlertsEnabled) {
-      this._playAudioFile(triggerHelper, triggerHelper.soundUrl, triggerHelper.soundVol ?? 0);
+      this._playAudioFile(triggerHelper, triggerHelper.soundUrl, triggerHelper.soundVol);
     }
   }
 
   _onTriggerInternalRun(triggerHelper: TriggerHelper): void {
-    if ('run' in triggerHelper.trigger && triggerHelper.trigger.run) {
-      triggerHelper.trigger.run(
-          this.data,
-          triggerHelper.matches,
-          triggerHelper.trigger.output as Output);
-    }
+    triggerHelper.trigger?.run?.(
+        this.data,
+        triggerHelper.matches,
+        triggerHelper.output);
   }
 
   _createTextFor(
@@ -1252,7 +1259,7 @@ export class PopupText {
     let textObj: RaidbossTriggerOutput =
       triggerHelper.triggerOptions[upperTextKey];
     if (!textObj && triggerHelper.trigger[lowerTextKey])
-      textObj = triggerHelper.trigger[lowerTextKey] as RaidbossTriggerOutput;
+      textObj = triggerHelper.trigger[lowerTextKey];
     if (!textObj && triggerHelper.response)
       textObj = triggerHelper.response[lowerTextKey];
     if (textObj) {
@@ -1266,8 +1273,7 @@ export class PopupText {
       triggerHelper.defaultTTSText = triggerHelper.defaultTTSText ?? text;
       if (text && typeof text === 'string' && triggerHelper.textAlertsEnabled) {
         // per-trigger option > trigger field > option duration by text type
-        let duration = triggerHelper.duration?.fromConfig ||
-          triggerHelper.duration?.fromTrigger;
+        let duration = triggerHelper.duration?.fromConfig ?? triggerHelper.duration?.fromTrigger;
         if (duration === undefined && triggerHelper.duration)
           duration = triggerHelper.duration[lowerTextKey];
         if (duration === undefined)
@@ -1290,9 +1296,9 @@ export class PopupText {
     return div;
   }
 
-  _playAudioFile(triggerHelper: TriggerHelper, url: string, volume: number): void {
+  _playAudioFile(triggerHelper: TriggerHelper, url: string, volume?: number): void {
     const audio = new Audio(url);
-    audio.volume = volume || 1;
+    audio.volume = volume ?? 1;
     void audio.play();
   }
 
