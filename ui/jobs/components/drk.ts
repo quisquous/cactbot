@@ -1,12 +1,14 @@
+import { Bars } from '../bar';
 import { kAbility } from '../constants';
 import { computeBackgroundColorFrom } from '../utils';
+import { JobDetail } from '../../../types/event';
 
-let resetFunc = null;
-let tid1;
-let tid2;
-let tid3;
+let resetFunc: ((bars: Bars) => void) = (_bars: Bars) => undefined;
+let tid1: ReturnType<typeof setTimeout>;
+let tid2: ReturnType<typeof setTimeout>;
+let tid3: ReturnType<typeof setTimeout>;
 
-export function setup(bars) {
+export const setup = (bars: Bars): void => {
   const bloodBox = bars.addResourceBox({
     classList: ['drk-color-blood'],
   });
@@ -16,11 +18,11 @@ export function setup(bars) {
     threshold: 10,
   });
 
-  bars.onJobDetailUpdate((jobDetail) => {
+  bars.onJobDetailUpdate((jobDetail: JobDetail['DRK']) => {
     const blood = jobDetail.blood;
-    if (bloodBox.innerText === blood)
+    if (bloodBox.innerText === blood.toString())
       return;
-    bloodBox.innerText = blood;
+    bloodBox.innerText = blood.toString();
     const p = bloodBox.parentNode;
     if (blood < 50) {
       p.classList.add('low');
@@ -33,11 +35,11 @@ export function setup(bars) {
       p.classList.remove('mid');
     }
 
-    const oldSeconds = parseFloat(darksideBox.duration) - parseFloat(darksideBox.elapsed);
+    const oldSeconds = parseFloat(darksideBox.duration ?? '0') - parseFloat(darksideBox.elapsed);
     const seconds = jobDetail.darksideMilliseconds / 1000.0;
-    if (!darksideBox.duration || seconds > oldSeconds) {
-      darksideBox.duration = 0;
-      darksideBox.duration = seconds;
+    if (!darksideBox.duration ?? seconds > oldSeconds) {
+      darksideBox.duration = '0';
+      darksideBox.duration = seconds.toString();
     }
   });
 
@@ -47,11 +49,11 @@ export function setup(bars) {
   });
 
   bars.onCombo((skill) => {
-    comboTimer.duration = 0;
+    comboTimer.duration = '0';
     if (bars.combo.isFinalSkill)
       return;
     if (skill)
-      comboTimer.duration = 15;
+      comboTimer.duration = '15';
   });
 
   const bloodWeapon = bars.addProcBox({
@@ -59,13 +61,13 @@ export function setup(bars) {
     fgColor: 'drk-color-bloodweapon',
   });
   bars.onUseAbility(kAbility.BloodWeapon, () => {
-    bloodWeapon.duration = 0;
-    bloodWeapon.duration = 10;
-    bloodWeapon.threshold = 10;
+    bloodWeapon.duration = '0';
+    bloodWeapon.duration = '10';
+    bloodWeapon.threshold = '10';
     bloodWeapon.fg = computeBackgroundColorFrom(bloodWeapon, 'drk-color-bloodweapon.active');
     tid1 = setTimeout(() => {
-      bloodWeapon.duration = 50;
-      bloodWeapon.threshold = bars.gcdSkill * 2;
+      bloodWeapon.duration = '50';
+      bloodWeapon.threshold = (bars.gcdSkill * 2).toString();
       bloodWeapon.fg = computeBackgroundColorFrom(bloodWeapon, 'drk-color-bloodweapon');
     }, 10000);
   });
@@ -75,13 +77,13 @@ export function setup(bars) {
     fgColor: 'drk-color-delirium',
   });
   bars.onUseAbility(kAbility.Delirium, () => {
-    delirium.duration = 0;
-    delirium.duration = 10 + 0.5;
-    delirium.threshold = 20;
+    delirium.duration = '0';
+    delirium.duration = '10.5';
+    delirium.threshold = '20';
     delirium.fg = computeBackgroundColorFrom(delirium, 'drk-color-delirium.active');
     tid2 = setTimeout(() => {
-      delirium.duration = 80 - 0.5;
-      delirium.threshold = bars.gcdSkill * 2;
+      delirium.duration = '79.5';
+      delirium.threshold = (bars.gcdSkill * 2).toString();
       delirium.fg = computeBackgroundColorFrom(delirium, 'drk-color-delirium');
     }, 10000);
   });
@@ -91,36 +93,35 @@ export function setup(bars) {
     fgColor: 'drk-color-livingshadow',
   });
   bars.onUseAbility(kAbility.LivingShadow, () => {
-    livingShadow.duration = 0;
-    livingShadow.duration = 24;
-    livingShadow.threshold = 24;
+    livingShadow.duration = '0';
+    livingShadow.duration = '24';
+    livingShadow.threshold = '24';
     livingShadow.fg = computeBackgroundColorFrom(livingShadow, 'drk-color-livingshadow.active');
     tid3 = setTimeout(() => {
-      livingShadow.duration = 96;
-      livingShadow.threshold = bars.gcdSkill * 4;
+      livingShadow.duration = '96';
+      livingShadow.threshold = (bars.gcdSkill * 4).toString();
       livingShadow.fg = computeBackgroundColorFrom(livingShadow, 'drk-color-livingshadow');
     }, 24000);
   });
 
-  resetFunc = (bars) => {
-    comboTimer.duration = 0;
-    bloodWeapon.duration = 0;
-    bloodWeapon.threshold = bars.gcdSkill * 2;
+  resetFunc = (bars: { gcdSkill: number }) => {
+    comboTimer.duration = '0';
+    bloodWeapon.duration = '0';
+    bloodWeapon.threshold = (bars.gcdSkill * 2).toString();
     bloodWeapon.fg = computeBackgroundColorFrom(bloodWeapon, 'drk-color-bloodweapon');
-    delirium.duration = 0;
-    delirium.threshold = bars.gcdSkill * 2;
+    delirium.duration = '0';
+    delirium.threshold = (bars.gcdSkill * 2).toString();
     delirium.fg = computeBackgroundColorFrom(delirium, 'drk-color-delirium');
-    livingShadow.duration = 0;
-    livingShadow.threshold = bars.gcdSkill * 4;
+    livingShadow.duration = '0';
+    livingShadow.threshold = (bars.gcdSkill * 4).toString();
     livingShadow.fg = computeBackgroundColorFrom(livingShadow, 'drk-color-livingshadow');
-    darksideBox.duration = 0;
+    darksideBox.duration = '0';
     clearTimeout(tid1);
     clearTimeout(tid2);
     clearTimeout(tid3);
   };
-}
+};
 
-export function reset(bars) {
-  if (resetFunc)
-    resetFunc(bars);
-}
+export const reset = (bars: Bars): void => {
+  resetFunc(bars);
+};
