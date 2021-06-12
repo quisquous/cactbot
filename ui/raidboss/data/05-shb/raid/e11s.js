@@ -605,6 +605,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '568A', capture: false }),
       durationSeconds: 12,
       infoText: (_data, _matches, output) => output.text(),
+      tts: (_data, _matches, output) => output.ttsText(),
       outputStrings: {
         text: {
           en: 'Protean -> Partner Stacks -> Line Cleave -> Knockback -> Stack',
@@ -613,6 +614,14 @@ export default {
           ja: '8方向散開 -> 2人頭割り -> 直線範囲 -> ノックバック -> 頭割り',
           cn: '八方 -> 分摊 -> 直线 -> 击退 -> 集合',
           ko: '8산개 -> 파트너 쉐어뎀 -> 직선 장판 -> 넉백 -> 모이기',
+        },
+        ttsText: {
+          en: 'Fire Cycle',
+          de: 'Mehrfache Vergeltung: Feuer',
+          fr: 'Multi-taillade : Feu',
+          ja: '魔装連続剣：ファイア',
+          cn: '火连续剑',
+          ko: '연속검: 화염',
         },
       },
     },
@@ -637,6 +646,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '5692', capture: false }),
       durationSeconds: 12,
       infoText: (_data, _matches, output) => output.text(),
+      tts: (_data, _matches, output) => output.ttsText(),
       outputStrings: {
         text: {
           en: 'Protean -> Spread -> Line Cleave -> Out -> Tank Cleaves',
@@ -645,6 +655,14 @@ export default {
           ja: '8方向散開 -> 散開 -> 直線範囲 -> 離れる -> タンクに雷範囲',
           cn: '八方 -> 分散 -> 直线 -> 远离直线 -> T接雷',
           ko: '8산개 -> 산개 -> 직선 장판 -> 밖으로 -> 광역 탱버',
+        },
+        ttsText: {
+          en: 'Lightning Cycle',
+          de: 'Mehrfache Vergeltung : Blitz',
+          fr: 'Multi-taillade: Foudre',
+          ja: '魔装連続剣：いなずま',
+          cn: '雷连续剑',
+          ko: '연속검: 번개',
         },
       },
     },
@@ -669,6 +687,7 @@ export default {
       netRegexKo: NetRegexes.startsUsing({ source: '페이트브레이커', id: '569A', capture: false }),
       durationSeconds: 12,
       infoText: (_data, _matches, output) => output.text(),
+      tts: (_data, _matches, output) => output.ttsText(),
       outputStrings: {
         text: {
           en: 'Protean -> Holy Groups -> Line Cleave -> Bait -> Away',
@@ -677,6 +696,14 @@ export default {
           ja: '8方向散開 -> 3方向頭割り -> 直線範囲 -> AoE誘導 -> 離れる',
           cn: '八方 -> 光三向分摊 -> 直线 -> 放光点名 -> 离开',
           ko: '8산개 -> 홀리 그룹 쉐어 -> 직선 장판 -> 장판 유도 -> 피하기',
+        },
+        ttsText: {
+          en: 'Holy Cycle',
+          de: 'Mehrfache Vergeltung: Sanctus',
+          fr: 'Multi-taillade : Lumière',
+          ja: '魔装連続剣：ホーリー',
+          cn: '光连续剑',
+          ko: '연속검: 홀리',
         },
       },
     },
