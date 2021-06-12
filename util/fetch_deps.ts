@@ -55,7 +55,7 @@ export const safeRmDir = async (path: string): Promise<void> => {
   while (tries > 0) {
     tries--;
     try {
-      await fs.rmdir(path, { recursive: true });
+      await fs.rm(path, { recursive: true, force: true });
       break;
     } catch (e) {
       if (tries <= 0)
