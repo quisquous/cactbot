@@ -58,9 +58,7 @@ const downloadFile = async (url: string, localPath: string): Promise<void> => {
 
 const waitStream = (stream: { on: (event: 'finish', cb: VoidFunction) => void }): Promise<void> => {
   return new Promise((resolve) => {
-    stream.on('finish', () => {
-      resolve();
-    });
+    stream.on('finish', resolve);
   });
 };
 
