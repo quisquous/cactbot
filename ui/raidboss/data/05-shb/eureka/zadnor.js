@@ -762,10 +762,12 @@ export default {
           ko: '시계바늘 직각으로 이동',
         },
         threeClocks: {
-          // This is...not the best instruction.
-          en: 'Go Opposite All Clock Hands',
-          de: 'Geh gegnüber von allen Uhrzeigern',
-          ko: '모든 시계바늘의 반대쪽으로',
+          // This is...not the best instruction.  The real instruction is "if all clock hands are
+          // parallel then go perpendicular, HOWEVER if exactly one clock hand is perpendicular
+          // to the other two, then go where it points", which is several novels too long for
+          // trigger text.  However, given that we explain two clocks, it feels wrong to not
+          // have a trigger for three clocks.  "Mechanics Are Happening <se.6>"
+          en: 'Dodge Three Clocks',
         },
       },
     },
