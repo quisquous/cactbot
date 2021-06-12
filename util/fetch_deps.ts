@@ -6,6 +6,7 @@ import crypto from 'crypto';
 
 import _ from 'lodash';
 import tar from 'tar-fs';
+import chalk from 'chalk';
 import JSZip from 'jszip';
 import json5 from 'json5';
 import fetch from 'node-fetch';
@@ -110,7 +111,7 @@ export const main = async (updateHashes = false): Promise<void> => {
         const meta = deps[key];
         if (_.isEmpty(meta) || !meta)
           return;
-        const log = (...args: unknown[]) => console.log(`${key}:`, ...args);
+        const log = (...args: unknown[]) => console.log(chalk.red(`${key}:`), ...args);
         const baseFileName = path.basename(meta['url']).split('.', 1)[0] ?? '';
         const dlname = path.join(dlPath, baseFileName);
         const dest = path.join(projectRoot, meta['dest']);

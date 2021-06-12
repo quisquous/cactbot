@@ -10,7 +10,7 @@
   "scripts": {
     "build": "node_modules/.bin/webpack --config webpack/webpack.config.cjs --mode production",
     "start": "node_modules/.bin/webpack-dev-server --config webpack/webpack.config.cjs --mode development",
-    "fetch-deps": "node --loader ts-node/esm ./util/fetch_deps.ts",
+    "fetch-deps": "FORCE_COLOR=true node --loader ts-node/esm ./util/fetch_deps.ts",
     "tsc-no-emit": "node_modules/.bin/tsc --noEmit",
     "lint": "node_modules/.bin/eslint --max-warnings=0 ./",
     "lintfix": "node_modules/.bin/eslint --max-warnings=0 --fix ./",
@@ -93,6 +93,7 @@
     "ui/(raidboss|oopsyraidsy)/data/**": "node --loader ts-node/esm test/test_raidboss_data.js"
   },
   "dependencies": {
-    "argparse": "^1.0.10"
+    "argparse": "^1.0.10",
+    "chalk": "^2.4.2"
   }
 }
