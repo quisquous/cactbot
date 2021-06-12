@@ -24,7 +24,7 @@ const main = () => {
   });
   parser.addArgument(['-a', '--adjust'], {
     type: Number,
-    help: 'foo bar',
+    help: 'The amount of time to adjust each entry by',
   });
 
   const args = parser.parseArgs();
