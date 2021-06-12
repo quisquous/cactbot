@@ -156,7 +156,7 @@ export const main = async (updateHashes = false): Promise<void> => {
     const count = tmp.size;
     if (count) {
       console.log('Fetching missing or outdated dependencies...');
-      await Promise.all(Array.from(tmp.values()).map((key) => async () => {
+      await Promise.all(Array.from(tmp, (key) => async () => {
         const meta = deps[key];
         if (_.isEmpty(meta) || !meta)
           return;
