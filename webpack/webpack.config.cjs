@@ -218,6 +218,9 @@ module.exports = function(env, argv) {
         {
           test: /\.ts$/,
           loader: 'ts-loader',
+          options: {
+            compilerOptions: dev ? { declaration: true, declarationMap: true } : {},
+          },
         },
         {
           test: /\.css$/,
