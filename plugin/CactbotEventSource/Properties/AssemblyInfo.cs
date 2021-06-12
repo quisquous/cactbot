@@ -21,5 +21,5 @@ using System.Runtime.InteropServices;
 // - Revision
 // GitHub has only 3 version components, so Revision should always be 0.
 // CactbotOverlay and CactbotEventSource version should match.
-[assembly: AssemblyVersion("0.22.10.0")]
-[assembly: AssemblyFileVersion("0.22.10.0")]
+[assembly: AssemblyVersion("0.22.11.0")]
+[assembly: AssemblyFileVersion("0.22.11.0")]
