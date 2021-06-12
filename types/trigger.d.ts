@@ -8,7 +8,7 @@ export interface BaseRegExp<T> extends RegExp {
   };
 }
 
-export type Matches<Params> = { [s in Params]?: string };
+export type Matches<Params> = { [s in Params]: string } | MatchesAny;
 
 // TargetedMatches can be used for generic functions in responses or conditions
 // that use matches from any number of Regex or NetRegex functions.
