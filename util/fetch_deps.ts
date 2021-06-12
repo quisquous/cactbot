@@ -22,6 +22,9 @@ type Meta = {
 
 const projectRoot = path.resolve(); // path of git repo
 
+/** utils **/
+const sleep = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms));
+
 const isFile = async (p: string): Promise<boolean> => {
   try {
     return (await fs.stat(p)).isFile();
@@ -38,7 +41,6 @@ const isDir = async (p: string): Promise<boolean> => {
   }
 };
 
-const pad = (x: number) => x.toString().padStart(3, '0');
 
 const endsWith = (s: string, suffix: Iterable<string>): boolean => {
   for (const ext of suffix) {
@@ -48,7 +50,23 @@ const endsWith = (s: string, suffix: Iterable<string>): boolean => {
   return false;
 };
 
-const sleep = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms));
+const downloadFile = async (url: string, localPath: string): Promise<void> => {
+  const res = await fetch(url, { agent: ProxyAgent() });
+  await fs.writeFile(localPath, await res.buffer());
+};
+
+const waitStream = (stream: { on: (event: 'finish', cb: VoidFunction) => void }): Promise<void> => {
+  return new Promise((resolve) => {
+    stream.on('finish', () => {
+      resolve();
+    });
+  });
+};
+
+const hash = (algorithm: string, content: string | NodeJS.ArrayBufferView): string => {
+  return crypto.createHash(algorithm).update(content).digest('hex');
+};
+
 
 export const safeRmDir = async (path: string): Promise<void> => {
   let tries = 30;
@@ -64,6 +82,36 @@ export const safeRmDir = async (path: string): Promise<void> => {
     }
   }
 };
+
+const extractFile = async (dlname: string, meta: Meta): Promise<void> => {
+  const dest = path.join(projectRoot, meta.dest);
+  await fs.mkdir(dest, { recursive: true });
+
+  if (meta['url'].endsWith('.zip')) {
+    const zip = await JSZip.loadAsync(await fs.readFile(dlname));
+    for (const [relativePath, entry] of Object.entries(zip.files)) {
+      const distPath = path.join(dest, relativePath.split('/').slice(meta.strip).join('/'));
+      const dir = path.dirname(distPath);
+      if (entry.dir) {
+        await fs.mkdir(distPath, { recursive: true });
+      } else {
+        if (!await isDir(dir))
+          await fs.mkdir(dir, { recursive: true });
+        const buffer = await zip.file(entry.name)?.async('nodebuffer');
+        if (!buffer)
+          throw new UnreachableCode();
+        await fs.writeFile(distPath, buffer);
+      }
+    }
+  } else if (endsWith(meta['url'], ['.tar.gz', '.tar.xz', '.tgz', '.txz', '.tar'])) {
+    await waitStream(createReadStream(dlname).pipe(tar.extract(dest, { strip: meta.strip })));
+  } else {
+    console.log(`ERROR: ${meta['url']} has an unknown archive type!`);
+    return;
+  }
+};
+
+/** end utils **/
 
 export const main = async (updateHashes = false): Promise<void> => {
   console.log('=======');
@@ -143,11 +191,12 @@ export const main = async (updateHashes = false): Promise<void> => {
       console.log('Removing old dependencies...');
       const count = obsolete.size;
 
+      const pad = (x: number) => x.toString().padStart(3, '0');
       for (const [i, key] of Array.from(obsolete.values()).entries()) {
         console.log(`[${pad(i + 1)}/${pad(count)}]: ${key}`);
         const meta = cache[key];
         if (!meta)
-          return;
+          break;
         const dest = path.join(projectRoot, meta['dest']);
         if (await isDir(dest))
           await safeRmDir(dest);
@@ -176,50 +225,5 @@ export const main = async (updateHashes = false): Promise<void> => {
   }
 };
 
-const extractFile = async (dlname: string, meta: Meta): Promise<void> => {
-  const dest = path.join(projectRoot, meta.dest);
-  await fs.mkdir(dest, { recursive: true });
-
-  if (meta['url'].endsWith('.zip')) {
-    const zip = await JSZip.loadAsync(await fs.readFile(dlname));
-    for (const [relativePath, entry] of Object.entries(zip.files)) {
-      const distPath = path.join(dest, relativePath.split('/').slice(meta.strip).join('/'));
-      const dir = path.dirname(distPath);
-      if (entry.dir) {
-        await fs.mkdir(distPath, { recursive: true });
-      } else {
-        if (!await isDir(dir))
-          await fs.mkdir(dir, { recursive: true });
-        const buffer = await zip.file(entry.name)?.async('nodebuffer');
-        if (!buffer)
-          throw new UnreachableCode();
-        await fs.writeFile(distPath, buffer);
-      }
-    }
-  } else if (endsWith(meta['url'], ['.tar.gz', '.tar.xz', '.tgz', '.txz', '.tar'])) {
-    await waitStream(createReadStream(dlname).pipe(tar.extract(dest, { strip: meta.strip })));
-  } else {
-    console.log(`ERROR: ${meta['url']} has an unknown archive type!`);
-    return;
-  }
-};
-
-
-const downloadFile = async (url: string, localPath: string): Promise<void> => {
-  const res = await fetch(url, { agent: ProxyAgent() });
-  await fs.writeFile(localPath, await res.buffer());
-};
-
-const waitStream = (stream: { on: (event: 'finish', cb: VoidFunction) => void }): Promise<void> => {
-  return new Promise((resolve) => {
-    stream.on('finish', () => {
-      resolve();
-    });
-  });
-};
-
-const hash = (algorithm: string, content: string | NodeJS.ArrayBufferView): string => {
-  return crypto.createHash(algorithm).update(content).digest('hex');
-};
 
 void main(process.argv.includes('--update-hashes'));
