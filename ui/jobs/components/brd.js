@@ -19,10 +19,12 @@ export function setup(bars) {
   const causticBiteBox = bars.addProcBox({
     id: 'brd-procs-causticbite',
     fgColor: 'brd-color-causticbite',
+    notifyWhenExpired: true,
   });
   const stormBiteBox = bars.addProcBox({
     id: 'brd-procs-stormbite',
     fgColor: 'brd-color-stormbite',
+    notifyWhenExpired: true,
   });
   // Iron jaws just refreshes these effects by gain once more,
   // so it doesn't need to be handled separately.

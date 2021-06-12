@@ -40,6 +40,7 @@ export function setup(bars) {
 
   const goreBox = bars.addProcBox({
     fgColor: 'pld-color-gore',
+    notifyWhenExpired: true,
   });
 
   bars.onCombo((skill) => {

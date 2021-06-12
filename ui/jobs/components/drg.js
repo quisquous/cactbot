@@ -23,6 +23,7 @@ export function setup(bars) {
   const disembowelBox = bars.addProcBox({
     id: 'drg-procs-disembowel',
     fgColor: 'drg-color-disembowel',
+    notifyWhenExpired: true,
   });
   bars.onCombo((skill) => {
     if (skill === kAbility.Disembowel) {

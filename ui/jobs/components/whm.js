@@ -14,6 +14,7 @@ export function setup(bars) {
   const diaBox = bars.addProcBox({
     id: 'whm-procs-dia',
     fgColor: 'whm-color-dia',
+    notifyWhenExpired: true,
   });
   const assizeBox = bars.addProcBox({
     id: 'whm-procs-assize',

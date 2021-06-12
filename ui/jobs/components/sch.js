@@ -14,6 +14,7 @@ export function setup(bars) {
   const bioBox = bars.addProcBox({
     id: 'sch-procs-bio',
     fgColor: 'sch-color-bio',
+    notifyWhenExpired: true,
   });
 
   const aetherflowBox = bars.addProcBox({

@@ -124,6 +124,16 @@ class Bars {
     this.contentType = 0;
     this.isPVPZone = false;
     this.crafting = false;
+
+    this.updateProcBoxNotifyRepeat();
+  }
+
+  updateProcBoxNotifyRepeat() {
+    if (this.options.NotifyExpiredProcsInCombat >= 0) {
+      const repeats = this.options.NotifyExpiredProcsInCombat === 0 ? 'infinite' : this.options.NotifyExpiredProcsInCombat;
+
+      document.documentElement.style.setProperty('--proc-box-notify-repeat', repeats);
+    }
   }
 
   get gcdSkill() {
@@ -416,6 +426,7 @@ class Bars {
     fgColor,
     threshold,
     scale,
+    notifyWhenExpired,
   }) {
     const elementId = this.job.toLowerCase() + '-procs';
 
@@ -442,6 +453,8 @@ class Bars {
       timerBox.id = id;
       timerBox.classList.add('timer-box');
     }
+    if (notifyWhenExpired)
+      timerBox.classList.add('notify-when-expired');
     return timerBox;
   }
 
@@ -563,6 +576,21 @@ class Bars {
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color.mid');
     else
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color');
+  }
+
+  _updateProcBoxNotifyState() {
+    if (this.options.NotifyExpiredProcsInCombat >= 0) {
+      const boxes = document.getElementsByClassName('proc-box');
+      for (const box of boxes) {
+        if (this.inCombat) {
+          box.classList.add('in-combat');
+          for (const child of box.children)
+            child.classList.remove('expired');
+        } else {
+          box.classList.remove('in-combat');
+        }
+      }
+    }
   }
 
   _updateMPTicker() {
@@ -735,6 +763,7 @@ class Bars {
     this._updateOpacity();
     this._updateFoodBuff();
     this._updateMPTicker();
+    this._updateProcBoxNotifyState();
   }
 
   _onChangeZone(e) {
@@ -868,6 +897,7 @@ class Bars {
       this._updateJob();
       // On reload, we need to set the opacity after setting up the job bars.
       this._updateOpacity();
+      this._updateProcBoxNotifyState();
       // Set up the buff tracker after the job bars are created.
       this.buffTracker = new BuffTracker(
           this.options, this.me, this.o.leftBuffsList, this.o.rightBuffsList, this.partyTracker);

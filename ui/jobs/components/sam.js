@@ -65,6 +65,7 @@ export function setup(bars) {
   const shifu = bars.addProcBox({
     id: 'sam-procs-shifu',
     fgColor: 'sam-color-shifu',
+    notifyWhenExpired: true,
   });
   bars.onYouGainEffect(EffectId.Shifu, (id, matches) => {
     shifu.duration = 0;
@@ -79,6 +80,7 @@ export function setup(bars) {
   const jinpu = bars.addProcBox({
     id: 'sam-procs-jinpu',
     fgColor: 'sam-color-jinpu',
+    notifyWhenExpired: true,
   });
   bars.onYouGainEffect(EffectId.Jinpu, (id, matches) => {
     jinpu.duration = 0;
@@ -104,6 +106,7 @@ export function setup(bars) {
   const higanbana = bars.addProcBox({
     id: 'sam-procs-higanbana',
     fgColor: 'sam-color-higanbana',
+    notifyWhenExpired: true,
   });
   bars.onMobGainsEffectFromYou(EffectId.Higanbana, () => {
     higanbana.duration = 0;

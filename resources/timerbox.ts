@@ -407,6 +407,7 @@ export default class TimerBox extends HTMLElement {
     this._hideTimer = null;
     clearTimeout(this._timer ?? 0);
     this._timer = null;
+    this.classList.remove('expired');
 
     this._start = new Date().getTime();
     this.advance();
@@ -418,6 +419,7 @@ export default class TimerBox extends HTMLElement {
       // Sets the attribute to 0 so users can see the counter is done, and
       // if they set the same duration again it will count.
       this._duration = 0;
+      this.classList.add('expired');
       if (this._hideAfter > 0)
         this._hideTimer = window.setTimeout(this.hide.bind(this), this._hideAfter);
       else if (this._hideAfter === 0)
