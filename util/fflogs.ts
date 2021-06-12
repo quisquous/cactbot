@@ -6,6 +6,8 @@ import { HttpClient } from '@actions/http-client';
 type Response = {
   events: unknown[];
   nextPageTimestamp: number;
+  // FIXME: this should be optional, but ts didn't narrow down after `'error' in data` check
+  error: string;
 }
 
 const httpClient = new HttpClient();
@@ -14,12 +16,13 @@ export const _fetch = async (apiUrl: string, options: Record<string, string | nu
 ): Promise<Response> => {
   const res = await httpClient.get(apiUrl + '?' + querystring.stringify(options));
   const body = await res.readBody();
-  let data;
+  let data: Response;
   try {
     data = JSON.parse(body) as Response;
   } catch (e) {
     throw new Error('Could not parse response: ' + body);
   }
+
   if (res.message.statusCode !== 200) {
     if ('error' in data)
       throw new Error(`FFLogs error: ${data['error']}`);
@@ -33,7 +36,7 @@ export const api = async (
     report: string,
     prefix: string,
     options: Record<string, string | number>,
-) => {
+): Promise<unknown> => {
   if (!['fights', 'events'].includes(call))
     return {};
 
