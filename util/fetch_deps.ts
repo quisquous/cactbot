@@ -1,5 +1,6 @@
 // execute this script with `npm run fetch-deps`
-import fs from 'fs';
+import { createReadStream } from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 import crypto from 'crypto';
 
@@ -9,6 +10,7 @@ import JSZip from 'jszip';
 import json5 from 'json5';
 import fetch from 'node-fetch';
 import ProxyAgent from 'proxy-agent';
+import { UnreachableCode } from '../resources/not_reached';
 
 type Meta = {
   'url': string;
@@ -19,16 +21,20 @@ type Meta = {
 
 const projectRoot = path.resolve(); // path of git repo
 
-const isFile = (p: string): boolean => {
-  if (!fs.existsSync(p))
+const isFile = async (p: string): Promise<boolean> => {
+  try {
+    return (await fs.stat(p)).isFile();
+  } catch {
     return false;
-  return fs.statSync(p).isFile();
+  }
 };
 
-const isDir = (p: string): boolean => {
-  if (!fs.existsSync(p))
+const isDir = async (p: string): Promise<boolean> => {
+  try {
+    return (await fs.stat(p)).isDirectory();
+  } catch {
     return false;
-  return fs.statSync(p).isDirectory();
+  }
 };
 
 const pad = (x: number) => x.toString().padStart(3, '0');
@@ -48,7 +54,7 @@ export const safeRmDir = async (path: string): Promise<void> => {
   while (tries > 0) {
     tries--;
     try {
-      fs.rmdirSync(path, { recursive: true });
+      await fs.rmdir(path, { recursive: true });
       break;
     } catch (e) {
       if (tries <= 0)
@@ -61,14 +67,14 @@ export const safeRmDir = async (path: string): Promise<void> => {
 export const main = async (updateHashes = false): Promise<void> => {
   const depsPath = path.join(projectRoot, 'util/DEPS.json5');
 
-  const deps = json5.parse<{ [depName: string]: Meta }>(fs.readFileSync(depsPath).toString());
+  const deps = json5.parse<{ [depName: string]: Meta }>((await fs.readFile(depsPath)).toString());
   let cache: typeof deps = {};
 
   const cachePath = path.join(projectRoot, 'util/DEPS.cache');
   const dlPath = path.join(projectRoot, 'util/.deps_dl');
 
-  if (isFile(cachePath))
-    cache = json5.parse<typeof cache>(fs.readFileSync(cachePath).toString());
+  if (await isFile(cachePath))
+    cache = json5.parse<typeof cache>((await fs.readFile(cachePath)).toString());
 
   const oldCache = new Set(Object.keys(cache));
   const newCache = new Set(Object.keys(deps));
@@ -78,18 +84,18 @@ export const main = async (updateHashes = false): Promise<void> => {
   const outdated: Set<string> = new Set();
 
   for (const [key, meta] of Object.entries(deps)) {
-    if (!isDir(path.join(projectRoot, meta['dest'])))
+    if (!await isDir(path.join(projectRoot, meta['dest'])))
       missing.add(key);
     else if (oldCache.has(key) && cache[key]?.['hash'][1] !== meta['hash'][1])
       outdated.add(key);
   }
 
-  if (isDir(dlPath)) {
+  if (await isDir(dlPath)) {
     console.log('Removing left overs...');
     await safeRmDir(dlPath);
   }
 
-  fs.mkdirSync(dlPath, { recursive: true });
+  await fs.mkdir(dlPath, { recursive: true });
 
   const repMap: { [key: string]: string } = {};
 
@@ -100,18 +106,18 @@ export const main = async (updateHashes = false): Promise<void> => {
     if (count) {
       console.log('Fetching missing or outdated dependencies...');
 
-      for (const [i, key] of Array.from(tmp.values()).entries()) {
+      await Promise.all(Array.from(tmp.values()).map((key, i) => async () => {
         console.log(`[${pad(i + 1)}/${pad(count)}]: ${key}`);
         const meta = deps[key];
         if (_.isEmpty(meta) || !meta)
-          continue;
+          return;
         const baseFileName = path.basename(meta['url']).split('.', 1)[0] ?? '';
         const dlname = path.join(dlPath, baseFileName);
         const dest = path.join(projectRoot, meta['dest']);
         await downloadFile(meta['url'], dlname);
         if (_.has(meta, 'hash')) {
           console.log('Hashing...');
-          const content = fs.readFileSync(dlname).slice(0, 16 * 1024);
+          const content = (await fs.readFile(dlname)).slice(0, 16 * 1024);
           const h = hash(meta['hash'][0], content);
           if (updateHashes) {
             repMap[meta['hash'][1]] = h;
@@ -120,10 +126,10 @@ export const main = async (updateHashes = false): Promise<void> => {
             console.log(`ERROR: ${key} failed the hash check.`);
             console.log('Expected hash: ', meta['hash'][1]);
             console.log(`Actual hash: ${h}`);
-            break;
+            return;
           }
         }
-        if (isDir(dest)) {
+        if (await isDir(dest)) {
           console.log('Removing old files...');
           await safeRmDir(dest);
         }
@@ -132,7 +138,7 @@ export const main = async (updateHashes = false): Promise<void> => {
         await extractFile(dlname, meta);
 
         cache[key] = meta;
-      }
+      }).map((f) => f()));
     }
     if (obsolete.size) {
       console.log('Removing old dependencies...');
@@ -144,7 +150,7 @@ export const main = async (updateHashes = false): Promise<void> => {
         if (!meta)
           return;
         const dest = path.join(projectRoot, meta['dest']);
-        if (isDir(dest))
+        if (await isDir(dest))
           await safeRmDir(dest);
         _.unset(cache, key);
       }
@@ -154,17 +160,17 @@ export const main = async (updateHashes = false): Promise<void> => {
       console.log('Nothing to do.');
   } finally {
     console.log('Saving dependency cache...');
-    fs.writeFileSync(cachePath, JSON.stringify(cache, null, 2));
+    await fs.writeFile(cachePath, JSON.stringify(cache, null, 2));
 
     if (repMap) {
       console.log('Updating hashes...');
       console.log(repMap);
-      const data = fs.readFileSync(depsPath).toString();
+      const data = (await fs.readFile(depsPath)).toString();
 
       for (const [oldCache, newCache] of Object.entries(repMap))
         data.replace(oldCache, newCache);
 
-      fs.writeFileSync(depsPath, data);
+      await fs.writeFile(depsPath, data);
     }
     console.log('Cleaning up...');
     await safeRmDir(dlPath);
@@ -173,24 +179,26 @@ export const main = async (updateHashes = false): Promise<void> => {
 
 const extractFile = async (dlname: string, meta: Meta): Promise<void> => {
   const dest = path.join(projectRoot, meta.dest);
-  fs.mkdirSync(dest, { recursive: true });
+  await fs.mkdir(dest, { recursive: true });
 
   if (meta['url'].endsWith('.zip')) {
-    const zip = await JSZip.loadAsync(fs.readFileSync(dlname));
+    const zip = await JSZip.loadAsync(await fs.readFile(dlname));
     for (const [relativePath, entry] of Object.entries(zip.files)) {
       const distPath = path.join(dest, relativePath.split('/').slice(meta.strip).join('/'));
       const dir = path.dirname(distPath);
       if (entry.dir) {
-        fs.mkdirSync(distPath, { recursive: true });
+        await fs.mkdir(distPath, { recursive: true });
       } else {
-        if (!isDir(dir))
-          fs.mkdirSync(dir, { recursive: true });
-        fs.writeFileSync(distPath, await zip.file(entry.name)?.async('nodebuffer'));
+        if (!await isDir(dir))
+          await fs.mkdir(dir, { recursive: true });
+        const buffer = await zip.file(entry.name)?.async('nodebuffer');
+        if (!buffer)
+          throw new UnreachableCode();
+        await fs.writeFile(distPath, buffer);
       }
     }
   } else if (endsWith(meta['url'], ['.tar.gz', '.tar.xz', '.tgz', '.txz', '.tar'])) {
-    await waitStream(fs.createReadStream(dlname)
-      .pipe(tar.extract(dest, { strip: meta.strip })));
+    await waitStream(createReadStream(dlname).pipe(tar.extract(dest, { strip: meta.strip })));
   } else {
     console.log(`ERROR: ${meta['url']} has an unknown archive type!`);
     return;
@@ -200,7 +208,7 @@ const extractFile = async (dlname: string, meta: Meta): Promise<void> => {
 
 const downloadFile = async (url: string, localPath: string): Promise<void> => {
   const res = await fetch(url, { agent: ProxyAgent() });
-  fs.writeFileSync(localPath, await res.buffer());
+  await fs.writeFile(localPath, await res.buffer());
 };
 
 const waitStream = (stream: { on: (event: 'finish', cb: VoidFunction) => void }): Promise<void> => {
