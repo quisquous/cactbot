@@ -65,6 +65,7 @@ export const safeRmDir = async (path: string): Promise<void> => {
 };
 
 export const main = async (updateHashes = false): Promise<void> => {
+  console.log('=======');
   const depsPath = path.join(projectRoot, 'util/DEPS.json5');
 
   const deps = json5.parse<{ [depName: string]: Meta }>((await fs.readFile(depsPath)).toString());
@@ -105,27 +106,26 @@ export const main = async (updateHashes = false): Promise<void> => {
     const count = tmp.size;
     if (count) {
       console.log('Fetching missing or outdated dependencies...');
-
-      await Promise.all(Array.from(tmp.values()).map((key, i) => async () => {
-        console.log(`[${pad(i + 1)}/${pad(count)}]: ${key}`);
+      await Promise.all(Array.from(tmp.values()).map((key) => async () => {
         const meta = deps[key];
         if (_.isEmpty(meta) || !meta)
           return;
+        const log = (...args: unknown[]) => console.log(`${key}:`, ...args);
         const baseFileName = path.basename(meta['url']).split('.', 1)[0] ?? '';
         const dlname = path.join(dlPath, baseFileName);
         const dest = path.join(projectRoot, meta['dest']);
         await downloadFile(meta['url'], dlname);
         if (_.has(meta, 'hash')) {
-          console.log('Hashing...');
+          log('Hashing...');
           const content = (await fs.readFile(dlname)).slice(0, 16 * 1024);
           const h = hash(meta['hash'][0], content);
           if (updateHashes) {
             repMap[meta['hash'][1]] = h;
             meta['hash'][1] = h;
           } else if (h !== meta['hash'][1]) {
-            console.log(`ERROR: ${key} failed the hash check.`);
-            console.log('Expected hash: ', meta['hash'][1]);
-            console.log(`Actual hash: ${h}`);
+            log(`ERROR: ${key} failed the hash check.`);
+            log('Expected hash: ', meta['hash'][1]);
+            log(`Actual hash: ${h}`);
             return;
           }
         }
@@ -133,10 +133,8 @@ export const main = async (updateHashes = false): Promise<void> => {
           console.log('Removing old files...');
           await safeRmDir(dest);
         }
-        console.log('Extracting...');
-
+        log('Extracting...');
         await extractFile(dlname, meta);
-
         cache[key] = meta;
       }).map((f) => f()));
     }
