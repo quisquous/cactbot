@@ -22,8 +22,9 @@ type Meta = {
 
 const projectRoot = path.resolve(); // path of git repo
 
-/** utils **/
+/* utils */
 const sleep = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms));
+const readTextFile = async (path: string) => (await fs.readFile(path)).toString();
 
 const isFile = async (p: string): Promise<boolean> => {
   try {
@@ -111,20 +112,20 @@ const extractFile = async (dlname: string, meta: Meta): Promise<void> => {
   }
 };
 
-/** end utils **/
+/* end utils */
 
 export const main = async (updateHashes = false): Promise<void> => {
   console.log('=======');
   const depsPath = path.join(projectRoot, 'util/DEPS.json5');
 
-  const deps = json5.parse<{ [depName: string]: Meta }>((await fs.readFile(depsPath)).toString());
+  const deps = json5.parse<{ [depName: string]: Meta }>(await readTextFile(depsPath));
   let cache: typeof deps = {};
 
   const cachePath = path.join(projectRoot, 'util/DEPS.cache');
   const dlPath = path.join(projectRoot, 'util/.deps_dl');
 
   if (await isFile(cachePath))
-    cache = json5.parse<typeof cache>((await fs.readFile(cachePath)).toString());
+    cache = json5.parse<typeof cache>(await readTextFile(cachePath));
 
   const oldCache = new Set(Object.keys(cache));
   const newCache = new Set(Object.keys(deps));
@@ -147,7 +148,7 @@ export const main = async (updateHashes = false): Promise<void> => {
 
   await fs.mkdir(dlPath, { recursive: true });
 
-  const repMap: { [key: string]: string } = {};
+  const hashUpdateMap: { [key: string]: string } = {};
 
   try {
     const tmp = new Set([...missing, ...outdated]);
@@ -169,7 +170,7 @@ export const main = async (updateHashes = false): Promise<void> => {
           const content = (await fs.readFile(dlname)).slice(0, 16 * 1024);
           const h = hash(meta['hash'][0], content);
           if (updateHashes) {
-            repMap[meta['hash'][1]] = h;
+            hashUpdateMap[meta['hash'][1]] = h;
             meta['hash'][1] = h;
           } else if (h !== meta['hash'][1]) {
             log(`ERROR: ${key} failed the hash check.`);
@@ -210,12 +211,12 @@ export const main = async (updateHashes = false): Promise<void> => {
     console.log('Saving dependency cache...');
     await fs.writeFile(cachePath, JSON.stringify(cache, null, 2));
 
-    if (repMap) {
+    if (hashUpdateMap) {
       console.log('Updating hashes...');
-      console.log(repMap);
-      const data = (await fs.readFile(depsPath)).toString();
+      console.log(hashUpdateMap);
+      const data = await readTextFile(depsPath);
 
-      for (const [oldCache, newCache] of Object.entries(repMap))
+      for (const [oldCache, newCache] of Object.entries(hashUpdateMap))
         data.replace(oldCache, newCache);
 
       await fs.writeFile(depsPath, data);
