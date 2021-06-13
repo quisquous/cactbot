@@ -347,7 +347,7 @@ export default {
       condition: Conditions.targetIsYou(),
       run: (data, matches) => {
         data.gigaSlashCleaveDebuffId = matches.effectId;
-        data.gigaSlashCleaveDebuffDuration = matches.duration;
+        data.gigaSlashCleaveDebuffDuration = parseFloat(matches.duration);
       },
     },
     {

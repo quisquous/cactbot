@@ -545,7 +545,7 @@ export default {
           }[Math.ceil(matches.duration)];
         }
       },
-      durationSeconds: (_data, matches) => matches.duration,
+      durationSeconds: (_data, matches) => parseFloat(matches.duration),
       alertText: (data, _matches, output) => output.text({ num: data.wyrmclawNumber }),
       outputStrings: {
         text: {
@@ -577,7 +577,7 @@ export default {
           }[Math.ceil(matches.duration)];
         }
       },
-      durationSeconds: (_data, matches) => matches.duration,
+      durationSeconds: (_data, matches) => parseFloat(matches.duration),
       alertText: (data, _matches, output) => output.text({ num: data.wyrmfangNumber }),
       outputStrings: {
         text: {
