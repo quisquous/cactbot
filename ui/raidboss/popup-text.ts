@@ -801,9 +801,14 @@ export class PopupText {
 
     for (const init of this.dataInitializers) {
       const data = init(this.data);
-      if (data && data.me)
+      if (data)
         this.data = data;
     }
+
+    this.data = {
+      ...this.data,
+      ...this.getDataObject(),
+    };
   }
 
   StopTimers(): void {
