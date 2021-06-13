@@ -2,14 +2,63 @@ import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_
 
 import AutoplayHelper from './autoplay_helper';
 import BrowserTTSEngine from './browser_tts_engine';
-import { addPlayerChangedOverrideListener } from '../../resources/player_override';
+import { addPlayerChangedOverrideListener, PlayerChangedDetail } from '../../resources/player_override';
 import PartyTracker from '../../resources/party';
 import Regexes from '../../resources/regexes';
 import Util from '../../resources/util';
 import ZoneId from '../../resources/zone_id';
+import {
+  LooseTrigger, OutputStrings, TriggerSet, TimelineFunc, LooseTriggerSet,
+  ResponseField, TriggerAutoConfig, MatchesAny, TriggerField, TriggerOutput,
+  Output, ResponseOutput, NetRegexTrigger, RegexTrigger,
+} from '../../types/trigger';
+import { UnreachableCode } from '../../resources/not_reached';
+import { Lang } from '../../resources/languages';
+import { PerTriggerAutoConfig, PerTriggerOption, RaidbossOptions } from './raidboss_options';
+import { TimelineReplacement, TimelineLoader } from './timeline';
+import { RaidbossFileData } from './data/raidboss_manifest.txt';
+import { RaidbossData } from '../../types/data';
+import { Job, Role } from '../../types/job';
+import { EventResponses, LogEvent } from '../../types/event';
+
+export const isNetRegexTrigger = (trigger?: LooseTrigger):
+    trigger is Partial<NetRegexTrigger<RaidbossData>> => {
+  if (trigger)
+    return 'netRegex' in trigger;
+  return false;
+};
+
+export const isRegexTrigger = (trigger?: LooseTrigger):
+    trigger is Partial<RegexTrigger<RaidbossData>> => {
+  if (trigger)
+    return 'regex' in trigger;
+  return false;
+};
+
+export type ProcessedTrigger = LooseTrigger & {
+  filename?: string;
+  localRegex?: RegExp;
+  localNetRegex?: RegExp;
+  output?: Output;
+};
+
+type ProcessedTimelineTrigger = ProcessedTrigger & {
+  isTimelineTrigger?: true;
+};
+
+type ProcessedTriggerSet = LooseTriggerSet & {
+  filename?: string;
+  timelineTriggers?: ProcessedTimelineTrigger[];
+  triggers?: ProcessedTrigger[];
+};
+
+const isRaidbossLooseTimelineTrigger =
+  (trigger: LooseTrigger): trigger is ProcessedTimelineTrigger => {
+    return 'isTimelineTrigger' in trigger;
+  };
 
 // There should be (at most) six lines of instructions.
-const raidbossInstructions = {
+const raidbossInstructions: { [lang in Lang]: string[] } = {
   en: [
     'Instructions as follows:',
     'This is debug text for resizing.',
@@ -25,6 +74,14 @@ const raidbossInstructions = {
     'zusammen mit dem blauen Hintergrund.',
     'Timeline und Trigger werden in den unterstützten Zonen angezeigt.',
     'Testen Sie Raidboss mit einem /countdown in Sommerfurt-Höfe.',
+  ],
+  fr: [
+    'Instructions :',
+    'Ceci est un texte de test pour redimensionner.',
+    'Il disparaitra \(ainsi que le fond bleu\) quand',
+    'l\'overlay sera bloqué.',
+    'Les timelines et triggers seront affichés dans les zones supportées.',
+    'Testez raidboss avec un /countdown aux Vergers d\'Estival',
   ],
   ja: [
     '操作手順：',
@@ -54,15 +111,13 @@ const raidbossInstructions = {
 
 // Because apparently people don't understand uppercase greek letters,
 // add a special case to not uppercase them.
-function triggerUpperCase(str) {
-  if (!str)
-    return str;
-  if (typeof str === 'number')
-    return str;
+const triggerUpperCase = (str: string): string => {
   return str.replace(/[^αβγδ]/g, (x) => x.toUpperCase());
-}
+};
 
-function onTriggerException(trigger, e) {
+// Disable no-explicit-any due to catch clauses requiring any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const onTriggerException = (trigger: ProcessedTrigger, e: any) => {
   // When a fight ends and there are open promises, from delaySeconds or promise itself,
   // all promises will be rejected.  In this case there is no error; simply return without logging.
   if (!e)
@@ -74,10 +129,56 @@ function onTriggerException(trigger, e) {
     str += ' (' + trigger.filename + ')';
   console.error(str);
 
-  const lines = e.stack.split('\n');
-  for (let i = 0; i < lines.length; ++i)
-    console.error(lines[i]);
-}
+  if (e instanceof Error) {
+    const lines = e.stack?.split('\n') ?? [];
+    for (let i = 0; i < lines.length; ++i)
+      console.error(lines[i]);
+  }
+};
+
+const sounds = ['Alarm', 'Alert', 'Info', 'Long', 'Pull'] as const;
+const soundStrs: readonly string[] = sounds;
+
+type Sound = typeof sounds[number];
+type SoundType = `${Sound}Sound`;
+type SoundTypeVolume = `${SoundType}Volume`;
+
+const texts = ['info', 'alert', 'alarm'] as const;
+
+type Text = typeof texts[number];
+type TextUpper = `${Capitalize<Text>}`;
+type TextText = `${Text}Text`;
+type TextUpperText = `${TextUpper}Text`;
+
+type TextMap = {
+  [text in Text]: {
+    text: TextText;
+    upperText: TextUpperText;
+    upperSound: SoundType;
+    upperSoundVolume: SoundTypeVolume;
+  }
+};
+
+const textMap: TextMap = {
+  info: {
+    text: 'infoText',
+    upperText: 'InfoText',
+    upperSound: 'InfoSound',
+    upperSoundVolume: 'InfoSoundVolume',
+  },
+  alert: {
+    text: 'alertText',
+    upperText: 'AlertText',
+    upperSound: 'AlertSound',
+    upperSoundVolume: 'AlertSoundVolume',
+  },
+  alarm: {
+    text: 'alarmText',
+    upperText: 'AlarmText',
+    upperSound: 'AlarmSound',
+    upperSoundVolume: 'AlarmSoundVolume',
+  },
+};
 
 // Helper for handling trigger overrides.
 //
@@ -89,18 +190,21 @@ function onTriggerException(trigger, e) {
 // JavaScript dictionaries are *almost* ordered automatically as we would want,
 // but want to handle missing ids and integer ids (you shouldn't, but just in case).
 class OrderedTriggerList {
-  constructor() {
-    this.idToIndex = {};
-    this.triggers = [];
-  }
+  triggers: ProcessedTrigger[] = [];
+  idToIndex: { [id: string]: number } = {};
 
-  push(trigger) {
-    if (trigger.id && trigger.id in this.idToIndex) {
-      const idx = this.idToIndex[trigger.id];
+  push(trigger: ProcessedTrigger) {
+    const idx = trigger.id ? this.idToIndex[trigger.id] : undefined;
+    if (idx && trigger.id) {
+      const oldTrigger = this.triggers[idx];
+
+      if (oldTrigger === undefined)
+        throw new UnreachableCode();
 
       // TODO: be verbose now while this is fresh, but hide this output behind debug flags later.
-      const triggerFile = (trigger) => trigger.filename ? `'${trigger.filename}'` : 'user override';
-      const oldFile = triggerFile(this.triggers[idx]);
+      const triggerFile =
+        (trigger: ProcessedTrigger) => trigger.filename ? `'${trigger.filename}'` : 'user override';
+      const oldFile = triggerFile(oldTrigger);
       const newFile = triggerFile(trigger);
       console.log(`Overriding '${trigger.id}' from ${oldFile} with ${newFile}.`);
 
@@ -119,17 +223,27 @@ class OrderedTriggerList {
   }
 }
 
-class TriggerOutputProxy {
-  constructor(trigger, displayLang, perTriggerAutoConfig) {
-    this.trigger = trigger;
-    this.outputStrings = trigger.outputStrings || {};
-    this.responseOutputStrings = {};
-    this.displayLang = displayLang;
-    this.unknownValue = '???';
-    this.overrideStrings = {};
+const isObject = (x: unknown): x is { [key: string]: unknown } => x instanceof Object;
 
-    if (this.trigger.id && perTriggerAutoConfig && perTriggerAutoConfig[trigger.id])
-      this.overrideStrings = perTriggerAutoConfig[trigger.id]['OutputStrings'] || {};
+type TriggerParams = { [key: string]: string };
+
+class TriggerOutputProxy {
+  public outputStrings: OutputStrings;
+  public overrideStrings: OutputStrings = {};
+  public responseOutputStrings: { [outputName: string]: unknown } = {};
+  public unknownValue = '???';
+
+  private constructor(
+      public trigger: ProcessedTrigger,
+      public displayLang: Lang,
+      public perTriggerAutoConfig?: PerTriggerAutoConfig) {
+    this.outputStrings = trigger.outputStrings ?? {};
+
+    if (trigger.id && perTriggerAutoConfig) {
+      const config = perTriggerAutoConfig[trigger.id];
+      if (config && config.OutputStrings)
+        this.overrideStrings = config.OutputStrings;
+    }
 
     return new Proxy(this, {
       // Response output string subtlety:
@@ -152,36 +266,46 @@ class TriggerOutputProxy {
       // instance evaluates that set of triggers.  Finally, for ease of automating
       // the config ui, the response should return the exact same set of
       // outputStrings every time.  Thank you for coming to my TED talk.
-      set(target, property, value) {
+      set(target, property, value): boolean {
         if (property === 'responseOutputStrings') {
-          target[property] = value;
-          return true;
+          if (isObject(value)) {
+            target[property] = value;
+            return true;
+          }
+          console.error(`Invalid responseOutputStrings on trigger ${target.trigger.id ?? 'Unknown'}`);
+          return false;
         }
 
         // Be kind to user triggers that do weird things, and just console error this
         // instead of throwing an exception.
-        console.error(`Invalid property '${property}' on output.`);
+        console.error(`Invalid property '${String(property)}' on output.`);
+        return false;
       },
 
       get(target, name) {
         // TODO: add a test that verifies nobody does this.
-        if (name === 'toJSON')
+        if (name === 'toJSON' || typeof name !== 'string')
           return '{}';
 
         // Because output.func() must exist at the time of trigger eval,
         // always provide a function even before we know which keys are valid.
-        return (params) => {
+        return (params: TriggerParams) => {
+          const id = target.trigger.id ?? 'Unknown Trigger';
+
           // Priority: per-trigger config from ui > response > built-in trigger
           // Ideally, response provides everything and trigger provides nothing,
           // or there's no response and trigger provides everything.  Having
           // this well-defined smooths out the collision edge cases.
-          let str = target.getReplacement(target.overrideStrings[name], params, name);
-          if (str === null)
-            str = target.getReplacement(target.responseOutputStrings[name], params, name);
-          if (str === null)
-            str = target.getReplacement(target.outputStrings[name], params, name);
-          if (str === null) {
-            console.error(`Trigger ${target.trigger.id} has missing outputString ${name}.`);
+          let str = target.getReplacement(target.overrideStrings[name], params, name, id);
+          if (str === undefined) {
+            const responseString = target.responseOutputStrings[name];
+            if (isObject(responseString))
+              str = target.getReplacement(responseString, params, name, id);
+          }
+          if (str === undefined)
+            str = target.getReplacement(target.outputStrings[name], params, name, id);
+          if (str === undefined) {
+            console.error(`Trigger ${target.trigger.id ?? ''} has missing outputString ${name}.`);
             return target.unknownValue;
           }
           return str;
@@ -190,101 +314,168 @@ class TriggerOutputProxy {
     });
   }
 
-  getReplacement(template, params, name) {
+  getReplacement(
+      // Can't use optional modifier for this arg since the others aren't optional
+      template: { [lang: string]: unknown } | undefined,
+      params: TriggerParams,
+      name: string,
+      id: string): string | undefined {
     if (!template)
-      return null;
-    if (typeof template === 'object') {
-      if (this.displayLang in template)
-        template = template[this.displayLang];
-      else
-        template = template['en'];
-    }
-    if (typeof template !== 'string') {
-      console.error(`Trigger ${this.trigger.id} has invalid outputString ${name}.`);
-      return null;
+      return;
+
+    const value = template[this.displayLang] ?? template['en'];
+
+    if (typeof value !== 'string') {
+      console.error(`Trigger ${id} has invalid outputString ${name}.`);
+      return;
     }
 
-    return template.replace(/\${\s*([^}\s]+)\s*}/g, (fullMatch, key) => {
+    return value.replace(/\${\s*([^}\s]+)\s*}/g, (_fullMatch: string, key: string) => {
       if (params && key in params) {
         const str = params[key];
         if (typeof str !== 'string' && typeof str !== 'number') {
-          console.error(`Trigger ${this.trigger.id} has non-string param value ${key}.`);
+          console.error(`Trigger ${id} has non-string param value ${key}.`);
           return this.unknownValue;
         }
         return str;
       }
-      console.error(`Trigger ${this.trigger.id} can't replace ${key} in ${template}.`);
+      console.error(`Trigger ${id} can't replace ${key} in ${JSON.stringify(template)}.`);
       return this.unknownValue;
     });
   }
+
+  static makeOutput(
+      trigger: ProcessedTrigger,
+      displayLang: Lang,
+      perTriggerAutoConfig?: PerTriggerAutoConfig): Output {
+    // `Output` is the common type used for the trigger data interface to support arbitrary
+    // string keys and always returns a string. However, TypeScript doesn't have good support
+    // for the Proxy representing this structure so we need to cast Proxy => unknown => Output
+    return new TriggerOutputProxy(trigger, displayLang,
+        perTriggerAutoConfig) as unknown as Output;
+  }
+}
+
+export type RaidbossTriggerField =
+  TriggerField<RaidbossData, TriggerOutput<RaidbossData, MatchesAny>>;
+export type RaidbossTriggerOutput = TriggerOutput<RaidbossData, MatchesAny>;
+
+const defaultOutput = TriggerOutputProxy.makeOutput({}, 'en');
+
+export interface TriggerHelper {
+  valueOrFunction: (f: RaidbossTriggerField) => RaidbossTriggerOutput;
+  trigger: ProcessedTrigger;
+  now: number;
+  triggerOptions: PerTriggerOption;
+  triggerAutoConfig: TriggerAutoConfig;
+  // This setting only suppresses output, trigger still runs for data/logic purposes
+  userSuppressedOutput: boolean;
+  matches: MatchesAny;
+  response?: ResponseOutput<RaidbossData, MatchesAny>;
+  // Default options
+  soundUrl?: string;
+  soundVol?: number;
+  triggerSoundVol?: number;
+  defaultTTSText?: string;
+  textAlertsEnabled: boolean;
+  soundAlertsEnabled: boolean;
+  spokenAlertsEnabled: boolean;
+  groupSpokenAlertsEnabled: boolean;
+  duration?: {
+    fromConfig?: number;
+    fromTrigger?: number;
+    alarmText: number;
+    alertText: number;
+    infoText: number;
+  };
+  ttsText?: string;
+
+  output: Output;
 }
 
 export class PopupText {
-  constructor(options, timelineLoader, raidbossDataFiles) {
+  protected triggers: ProcessedTrigger[] = [];
+  protected netTriggers: ProcessedTrigger[] = [];
+  protected timers: { [triggerId: number]: boolean } = {};
+  protected triggerSuppress: { [triggerId: string]: number } = {};
+  protected currentTriggerID = 0;
+  protected inCombat = false;
+  protected resetWhenOutOfCombat = true;
+  // These are deliberately `| null` for raidemulator extendability reasons
+  protected infoText: HTMLElement | null;
+  protected alertText: HTMLElement | null;
+  protected alarmText: HTMLElement | null;
+  protected parserLang: Lang;
+  protected displayLang: Lang;
+  protected ttsEngine?: BrowserTTSEngine;
+  protected ttsSay: (text: string) => void;
+  protected partyTracker = new PartyTracker();
+  protected readonly kMaxRowsOfText = 2;
+  protected data: RaidbossData;
+  protected me = '';
+  protected job: Job = 'NONE';
+  protected role: Role = 'none';
+  protected triggerSets: ProcessedTriggerSet[] = [];
+  protected zoneName = '';
+  protected zoneId = -1;
+
+  constructor(
+      protected options: RaidbossOptions,
+      protected timelineLoader: TimelineLoader,
+      protected raidbossDataFiles: RaidbossFileData) {
     this.options = options;
     this.timelineLoader = timelineLoader;
     this.ProcessDataFiles(raidbossDataFiles);
 
-    this.triggers = [];
-    this.netTriggers = [];
-    this.timers = {};
-    this.currentTriggerID = 0;
-    this.inCombat = false;
-    this.resetWhenOutOfCombat = true;
     this.infoText = document.getElementById('popup-text-info');
     this.alertText = document.getElementById('popup-text-alert');
     this.alarmText = document.getElementById('popup-text-alarm');
 
-    this.parserLang = this.options.ParserLanguage || 'en';
-    this.displayLang = this.options.AlertsLanguage || this.options.DisplayLanguage || this.options.ParserLanguage || 'en';
+    this.parserLang = this.options.ParserLanguage ?? 'en';
+    this.displayLang = this.options.AlertsLanguage ?? this.options.DisplayLanguage ?? this.options.ParserLanguage ?? 'en';
 
     if (this.options.IsRemoteRaidboss) {
       this.ttsEngine = new BrowserTTSEngine(this.displayLang);
       this.ttsSay = (text) => {
-        this.ttsEngine.play(this.options.TransformTts(text));
+        this.ttsEngine?.play(this.options.TransformTts(text));
       };
     } else {
       this.ttsSay = (text) => {
-        const cmd = {
-          'call': 'cactbotSay',
-          'text': this.options.TransformTts(text),
-        };
-        callOverlayHandler(cmd);
+        void callOverlayHandler({
+          call: 'cactbotSay',
+          text: this.options.TransformTts(text),
+        });
       };
     }
+
+    this.data = this.getDataObject();
 
     // check to see if we need user interaction to play audio
     // only if audio is enabled in options
     if (this.options.AudioAllowed)
       AutoplayHelper.CheckAndPrompt();
 
-    this.partyTracker = new PartyTracker();
-
-    this.kMaxRowsOfText = 2;
-
     this.Reset();
     this.AddDebugInstructions();
     this.HookOverlays();
   }
 
-  AddDebugInstructions() {
-    const lang = this.displayLang in raidbossInstructions ? this.displayLang : 'en';
-    const instructions = raidbossInstructions[lang];
-    for (let i = 0; i < instructions.length; ++i) {
+  AddDebugInstructions(): void {
+    raidbossInstructions[this.displayLang].forEach((line, i) => {
       const elem = document.getElementById(`instructions-${i}`);
       if (!elem)
         return;
-      elem.innerHTML = instructions[i];
-    }
+      elem.innerHTML = line;
+    });
   }
 
-  HookOverlays() {
+  HookOverlays(): void {
     addOverlayListener('PartyChanged', (e) => {
       this.partyTracker.onPartyChanged(e);
     });
-    addPlayerChangedOverrideListener(this.options.PlayerNameOverride, (e) => {
+    addPlayerChangedOverrideListener((e: PlayerChangedDetail) => {
       this.OnPlayerChange(e);
-    });
+    }, this.options.PlayerNameOverride);
     addOverlayListener('ChangeZone', (e) => {
       this.OnChangeZone(e);
     });
@@ -299,24 +490,23 @@ export class PopupText {
     });
   }
 
-  OnPlayerChange(e) {
+  OnPlayerChange(e: PlayerChangedDetail): void {
     if (this.job !== e.detail.job || this.me !== e.detail.name)
       this.OnJobChange(e);
     this.data.currentHP = e.detail.currentHP;
   }
 
-  ProcessDataFiles(files) {
+  ProcessDataFiles(files: RaidbossFileData): void {
     this.triggerSets = [];
-    for (const filename in files) {
+    for (const [filename, json] of Object.entries<TriggerSet<RaidbossData>>(files)) {
       if (!filename.endsWith('.js') && !filename.endsWith('.ts'))
         continue;
 
-      const json = files[filename];
       if (typeof json !== 'object') {
         console.log('Unexpected JSON from ' + filename + ', expected an array');
         continue;
       }
-      if (!('triggers' in json)) {
+      if (!json.triggers) {
         console.log('Unexpected JSON from ' + filename + ', expected a triggers');
         continue;
       }
@@ -324,15 +514,17 @@ export class PopupText {
         console.log('Unexpected JSON from ' + filename + ', expected triggers to be an array');
         continue;
       }
-      json.filename = filename;
-      this.triggerSets.push(json);
+      this.triggerSets.push({
+        filename: filename,
+        ...json,
+      });
     }
 
     // User triggers must come last so that they override built-in files.
     Array.prototype.push.apply(this.triggerSets, this.options.Triggers);
   }
 
-  OnChangeZone(e) {
+  OnChangeZone(e: EventResponses['ChangeZone']): void {
     if (this.zoneName !== e.zoneName) {
       this.zoneName = e.zoneName;
       this.zoneId = e.zoneID;
@@ -340,7 +532,7 @@ export class PopupText {
     }
   }
 
-  ReloadTimelines() {
+  ReloadTimelines(): void {
     if (!this.triggerSets || !this.me || !this.zoneName || !this.timelineLoader.IsReady())
       return;
 
@@ -350,8 +542,8 @@ export class PopupText {
     this.triggers = [];
     this.netTriggers = [];
     let timelineFiles = [];
-    let timelines = [];
-    const replacements = [];
+    let timelines: string[] = [];
+    const replacements: TimelineReplacement[] = [];
     const timelineStyles = [];
     this.resetWhenOutOfCombat = true;
 
@@ -359,10 +551,10 @@ export class PopupText {
 
     // Recursively/iteratively process timeline entries for triggers.
     // Functions get called with data, arrays get iterated, strings get appended.
-    const addTimeline = (function(obj) {
+    const addTimeline = (function(this: PopupText, obj: TimelineFunc) {
       if (Array.isArray(obj)) {
-        for (let i = 0; i < obj.length; ++i)
-          addTimeline(obj[i]);
+        for (const objVal of obj)
+          addTimeline(objVal);
       } else if (typeof obj === 'function') {
         addTimeline(obj(this.data));
       } else if (obj) {
@@ -370,7 +562,7 @@ export class PopupText {
       }
     }).bind(this);
 
-    // construct something like regexEn or regexFr.
+    // construct something like regexDe or regexFr.
     const langSuffix = this.parserLang.charAt(0).toUpperCase() + this.parserLang.slice(1);
     const regexParserLang = 'regex' + langSuffix;
     const netRegexParserLang = 'netRegex' + langSuffix;
@@ -399,9 +591,10 @@ export class PopupText {
           console.error('zoneRegex must be translatable object or regexp: ' + JSON.stringify(set.zoneRegex));
           continue;
         } else if (!(zoneRegex instanceof RegExp)) {
-          if (this.parserLang in zoneRegex) {
-            zoneRegex = zoneRegex[this.parserLang];
-          } else if ('en' in zoneRegex) {
+          const parserLangRegex = zoneRegex[this.parserLang];
+          if (parserLangRegex) {
+            zoneRegex = parserLangRegex;
+          } else if (zoneRegex['en']) {
             zoneRegex = zoneRegex['en'];
           } else {
             console.error('unknown zoneRegex parser language: ' + JSON.stringify(set.zoneRegex));
@@ -429,29 +622,40 @@ export class PopupText {
           // Add an additional resolved regex here to save
           // time later.  This will clobber each time we
           // load this, but that's ok.
-          trigger.filename = set.filename;
+          trigger.filename = set.filename ?? 'Unknown';
+          const id = trigger.id;
 
-          if (!trigger.regex && !trigger.netRegex) {
-            console.error('Trigger ' + trigger.id + ': has no regex property specified');
+          if (!isRegexTrigger(trigger) && !isNetRegexTrigger(trigger)) {
+            console.error(`Trigger ${id}: has no regex property specified`);
             continue;
           }
 
           this.ProcessTrigger(trigger);
 
+          let found = false;
+
+          const triggerObject: { [key: string]: unknown } = trigger;
+
           // parser-language-based regex takes precedence.
-          const regex = trigger[regexParserLang] || trigger.regex;
-          if (regex) {
-            trigger.localRegex = Regexes.parse(regex);
-            orderedTriggers.push(trigger);
+          if (isRegexTrigger(trigger)) {
+            const regex = triggerObject[regexParserLang] ?? trigger.regex;
+            if (regex instanceof RegExp) {
+              trigger.localRegex = Regexes.parse(regex);
+              orderedTriggers.push(trigger);
+              found = true;
+            }
           }
 
-          const netRegex = trigger[netRegexParserLang] || trigger.netRegex;
-          if (netRegex) {
-            trigger.localNetRegex = Regexes.parse(netRegex);
-            orderedTriggers.push(trigger);
+          if (isNetRegexTrigger(trigger)) {
+            const netRegex = triggerObject[netRegexParserLang] ?? trigger.netRegex;
+            if (netRegex instanceof RegExp) {
+              trigger.localNetRegex = Regexes.parse(netRegex);
+              orderedTriggers.push(trigger);
+              found = true;
+            }
           }
 
-          if (!regex && !netRegex) {
+          if (!found) {
             console.error('Trigger ' + trigger.id + ': missing regex and netRegex');
             continue;
           }
@@ -494,16 +698,16 @@ export class PopupText {
       if (set.timelineStyles)
         timelineStyles.push(...set.timelineStyles);
       if (set.resetWhenOutOfCombat !== undefined)
-        this.resetWhenOutOfCombat &= set.resetWhenOutOfCombat;
+        this.resetWhenOutOfCombat &&= set.resetWhenOutOfCombat;
     }
 
     // Store all the collected triggers in order, and filter out disabled triggers.
-    const filterEnabled = (trigger) => !('disabled' in trigger && trigger.disabled);
+    const filterEnabled = (trigger: LooseTrigger) => !('disabled' in trigger && trigger.disabled);
     const allTriggers = orderedTriggers.asList().filter(filterEnabled);
 
-    this.triggers = allTriggers.filter((trigger) => trigger.localRegex);
-    this.netTriggers = allTriggers.filter((trigger) => trigger.localNetRegex);
-    const timelineTriggers = allTriggers.filter((trigger) => trigger.isTimelineTrigger);
+    this.triggers = allTriggers.filter(isRegexTrigger);
+    this.netTriggers = allTriggers.filter(isNetRegexTrigger);
+    const timelineTriggers = allTriggers.filter(isRaidbossLooseTimelineTrigger);
 
     this.timelineLoader.SetTimelines(
         timelineFiles,
@@ -514,27 +718,29 @@ export class PopupText {
     );
   }
 
-  ProcessTrigger(trigger) {
+  ProcessTrigger(trigger: ProcessedTrigger | ProcessedTimelineTrigger): void {
     // These properties are used internally by ReloadTimelines only and should
     // not exist on user triggers.  However, the trigger objects themselves are
     // reused when reloading pages, and so it is impossible to verify that
     // these properties don't exist.  Therefore, just delete them silently.
+    if (isRaidbossLooseTimelineTrigger(trigger))
+      delete trigger.isTimelineTrigger;
+
     delete trigger.localRegex;
     delete trigger.localNetRegex;
-    delete trigger.isTimelineTrigger;
 
-    trigger.output = new TriggerOutputProxy(trigger, this.options.DisplayLanguage,
+    trigger.output = TriggerOutputProxy.makeOutput(trigger, this.options.DisplayLanguage,
         this.options.PerTriggerAutoConfig);
   }
 
-  OnJobChange(e) {
+  OnJobChange(e: PlayerChangedDetail): void {
     this.me = e.detail.name;
     this.job = e.detail.job;
     this.role = Util.jobToRole(this.job);
     this.ReloadTimelines();
   }
 
-  OnInCombatChange(inCombat) {
+  OnInCombatChange(inCombat: boolean): void {
     if (this.inCombat === inCombat)
       return;
 
@@ -542,7 +748,7 @@ export class PopupText {
       this.SetInCombat(inCombat);
   }
 
-  SetInCombat(inCombat) {
+  SetInCombat(inCombat: boolean): void {
     if (this.inCombat === inCombat)
       return;
 
@@ -559,7 +765,7 @@ export class PopupText {
       this.Reset();
   }
 
-  ShortNamify(name) {
+  ShortNamify(name?: string): string {
     // TODO: make this unique among the party in case of first name collisions.
     // TODO: probably this should be a general cactbot utility.
     if (typeof name !== 'string') {
@@ -567,49 +773,26 @@ export class PopupText {
       return '???';
     }
 
-    if (name in this.options.PlayerNicks)
-      return this.options.PlayerNicks[name];
+    const nick = this.options.PlayerNicks[name];
+
+    if (nick)
+      return nick;
 
     const idx = name.indexOf(' ');
     return idx < 0 ? name : name.substr(0, idx);
   }
 
-  Reset() {
-    let preserveHP = 0;
-    if (this.data && this.data.currentHP)
-      preserveHP = this.data.currentHP;
-
-    // TODO: make a breaking change at some point and
-    // make all this style consistent, sorry.
-    this.data = {
-      me: this.me,
-      job: this.job,
-      role: this.role,
-      party: this.partyTracker,
-      lang: this.parserLang,
-      parserLang: this.parserLang,
-      displayLang: this.displayLang,
-      currentHP: preserveHP,
-      options: this.options,
-      ShortName: this.ShortNamify,
-      StopCombat: () => this.SetInCombat(false),
-      ParseLocaleFloat: parseFloat,
-      CanStun: () => Util.canStun(this.job),
-      CanSilence: () => Util.canSilence(this.job),
-      CanSleep: () => Util.canSleep(this.job),
-      CanCleanse: () => Util.canCleanse(this.job),
-      CanFeint: () => Util.canFeint(this.job),
-      CanAddle: () => Util.canAddle(this.job),
-    };
+  Reset(): void {
+    this.data = this.getDataObject();
     this.StopTimers();
     this.triggerSuppress = {};
   }
 
-  StopTimers() {
+  StopTimers(): void {
     this.timers = {};
   }
 
-  OnLog(e) {
+  OnLog(e: LogEvent): void {
     // This could conceivably be determined based on the line's contents as well, but
     // not sure if that's worth the effort
     const currentTime = +new Date();
@@ -618,26 +801,29 @@ export class PopupText {
         this.SetInCombat(false);
 
       for (const trigger of this.triggers) {
-        const r = log.match(trigger.localRegex);
+        const r = trigger.localRegex?.exec(log);
         if (r)
           this.OnTrigger(trigger, r, currentTime);
       }
     }
   }
 
-  OnNetLog(e) {
+  OnNetLog(e: EventResponses['LogLine']): void {
     const log = e.rawLine;
     // This could conceivably be determined based on `new Date(e.line[1])` as well, but
     // not sure if that's worth the effort
     const currentTime = +new Date();
     for (const trigger of this.netTriggers) {
-      const r = log.match(trigger.localNetRegex);
+      const r = trigger.localNetRegex?.exec(log);
       if (r)
         this.OnTrigger(trigger, r, currentTime);
     }
   }
 
-  OnTrigger(trigger, matches, currentTime) {
+  OnTrigger(
+      trigger: ProcessedTrigger,
+      matches: RegExpExecArray | null,
+      currentTime: number): void {
     try {
       this.OnTriggerInternal(trigger, matches, currentTime);
     } catch (e) {
@@ -645,18 +831,22 @@ export class PopupText {
     }
   }
 
-  OnTriggerInternal(trigger, matches, currentTime) {
+  OnTriggerInternal(
+      trigger: ProcessedTrigger,
+      matches: RegExpExecArray | null,
+      currentTime: number): void {
     if (this._onTriggerInternalCheckSuppressed(trigger, currentTime))
       return;
 
+    let groups: MatchesAny = {};
     // If using named groups, treat matches.groups as matches
     // so triggers can do things like matches.target.
     if (matches && matches.groups)
-      matches = matches.groups;
+      groups = matches.groups;
 
     // Set up a helper object so we don't have to throw
     // a ton of info back and forth between subfunctions
-    const triggerHelper = this._onTriggerInternalGetHelper(trigger, matches, currentTime);
+    const triggerHelper = this._onTriggerInternalGetHelper(trigger, groups, currentTime);
 
     if (!this._onTriggerInternalCondition(triggerHelper))
       return;
@@ -719,43 +909,53 @@ export class PopupText {
   }
 
   // Build a default triggerHelper object for this trigger
-  _onTriggerInternalGetHelper(trigger, matches, now) {
-    const triggerHelper = {
+  _onTriggerInternalGetHelper(
+      trigger: ProcessedTrigger,
+      matches: MatchesAny,
+      now: number): TriggerHelper {
+    const id = trigger.id;
+    let options: PerTriggerOption = {};
+    let config: TriggerAutoConfig = {};
+    let suppressed = false;
+    if (id) {
+      options = this.options.PerTriggerOptions[id] ?? options;
+      config = this.options.PerTriggerAutoConfig[id] ?? config;
+      suppressed = this.options.DisabledTriggers[id] ?? suppressed;
+    }
+
+    const triggerHelper: TriggerHelper = {
       trigger: trigger,
       now: now,
-      triggerOptions: trigger.id && this.options.PerTriggerOptions[trigger.id] || {},
-      triggerAutoConfig: trigger.id && this.options.PerTriggerAutoConfig[trigger.id] || {},
+      triggerOptions: options,
+      triggerAutoConfig: config,
       // This setting only suppresses output, trigger still runs for data/logic purposes
-      userSuppressedOutput: trigger.id && this.options.DisabledTriggers[trigger.id],
+      userSuppressedOutput: suppressed,
       matches: matches,
-      response: undefined,
       // Default options
-      soundUrl: undefined,
-      soundVol: undefined,
-      triggerSoundVol: undefined,
-      defaultTTSText: undefined,
       textAlertsEnabled: this.options.TextAlertsEnabled,
       soundAlertsEnabled: this.options.SoundAlertsEnabled,
       spokenAlertsEnabled: this.options.SpokenAlertsEnabled,
-      GroupSpokenAlertsEnabled: this.options.GroupSpokenAlertsEnabled,
-      duration: undefined,
-      ttsText: undefined,
-    };
+      groupSpokenAlertsEnabled: this.options.GroupSpokenAlertsEnabled,
+      valueOrFunction: (f: RaidbossTriggerField): RaidbossTriggerOutput => {
+        let result = f;
+        if (typeof result === 'function')
+          result = result(this.data, triggerHelper.matches, triggerHelper.output);
+        // All triggers return either a string directly, or an object
+        // whose keys are different parser language based names.  For simplicity,
+        // this is valid to do for any trigger entry that can handle a function.
+        // In case anybody wants to encapsulate any fancy grammar, the values
+        // in this object can also be functions.
+        if (typeof result !== 'object' || result === null)
+          return result;
+        return triggerHelper.valueOrFunction(result[this.displayLang] ?? result['en']);
+      },
+      get output(): Output {
+        if (this.trigger.output)
+          return this.trigger.output;
 
-    // Separate the creation of triggerHelper and creation of valueOrFunction
-    // method so ValueOrFunction can execute properly
-    triggerHelper.valueOrFunction = (f) => {
-      let result = f;
-      if (typeof result === 'function')
-        result = result(this.data, triggerHelper.matches, trigger.output);
-      // All triggers return either a string directly, or an object
-      // whose keys are different parser language based names.  For simplicity,
-      // this is valid to do for any trigger entry that can handle a function.
-      // In case anybody wants to encapsulate any fancy grammar, the values
-      // in this object can also be functions.
-      if (typeof result !== 'object' || result === null)
-        return result;
-      return triggerHelper.valueOrFunction(result[this.displayLang] || result['en']);
+        console.log(`Missing trigger.output for trigger ${trigger.id ?? 'Unknown'}`);
+        return defaultOutput;
+      },
     };
 
     this._onTriggerInternalHelperDefaults(triggerHelper);
@@ -763,20 +963,26 @@ export class PopupText {
     return triggerHelper;
   }
 
-  _onTriggerInternalCheckSuppressed(trigger, when) {
-    if (trigger.id && trigger.id in this.triggerSuppress) {
-      if (this.triggerSuppress[trigger.id] > when)
-        return true;
+  _onTriggerInternalCheckSuppressed(trigger: ProcessedTrigger, when: number): boolean {
+    const id = trigger.id;
+    if (id !== undefined) {
+      const suppress = this.triggerSuppress[id];
+      if (suppress !== undefined) {
+        if (suppress > when)
+          return true;
 
-      delete this.triggerSuppress[trigger.id];
+        delete this.triggerSuppress[id];
+      }
     }
     return false;
   }
 
-  _onTriggerInternalCondition(triggerHelper) {
-    const condition = triggerHelper.triggerOptions.Condition || triggerHelper.trigger.condition;
+  _onTriggerInternalCondition(triggerHelper: TriggerHelper): boolean {
+    const condition = triggerHelper.triggerOptions.Condition ?? triggerHelper.trigger.condition;
     if (condition) {
-      if (!condition(this.data, triggerHelper.matches))
+      if (condition === true)
+        return true;
+      if (!condition(this.data, triggerHelper.matches, triggerHelper.output))
         return false;
     }
     return true;
@@ -784,25 +990,32 @@ export class PopupText {
 
   // Set defaults for triggerHelper object (anything that won't change based on
   // other trigger functions running)
-  _onTriggerInternalHelperDefaults(triggerHelper) {
+  _onTriggerInternalHelperDefaults(triggerHelper: TriggerHelper): void {
     if (triggerHelper.triggerAutoConfig) {
-      if ('TextAlertsEnabled' in triggerHelper.triggerAutoConfig)
-        triggerHelper.textAlertsEnabled = triggerHelper.triggerAutoConfig.TextAlertsEnabled;
-      if ('SoundAlertsEnabled' in triggerHelper.triggerAutoConfig)
-        triggerHelper.soundAlertsEnabled = triggerHelper.triggerAutoConfig.SoundAlertsEnabled;
-      if ('SpokenAlertsEnabled' in triggerHelper.triggerAutoConfig)
-        triggerHelper.spokenAlertsEnabled = triggerHelper.triggerAutoConfig.SpokenAlertsEnabled;
+      const textAlertsEnabled = triggerHelper.triggerAutoConfig.TextAlertsEnabled;
+      if (textAlertsEnabled !== undefined)
+        triggerHelper.textAlertsEnabled = textAlertsEnabled;
+      const soundAlertsEnabled = triggerHelper.triggerAutoConfig.SoundAlertsEnabled;
+      if (soundAlertsEnabled !== undefined)
+        triggerHelper.soundAlertsEnabled = soundAlertsEnabled;
+      const spokenAlertsEnabled = triggerHelper.triggerAutoConfig.SpokenAlertsEnabled;
+      if (spokenAlertsEnabled !== undefined)
+        triggerHelper.spokenAlertsEnabled = spokenAlertsEnabled;
     }
 
     if (triggerHelper.triggerOptions) {
-      if ('TextAlert' in triggerHelper.triggerOptions)
-        triggerHelper.textAlertsEnabled = triggerHelper.triggerOptions.TextAlert;
-      if ('SoundAlert' in triggerHelper.triggerOptions)
-        triggerHelper.soundAlertsEnabled = triggerHelper.triggerOptions.SoundAlert;
-      if ('SpeechAlert' in triggerHelper.triggerOptions)
-        triggerHelper.spokenAlertsEnabled = triggerHelper.triggerOptions.SpeechAlert;
-      if ('GroupSpeechAlert' in triggerHelper.triggerOptions)
-        triggerHelper.groupSpokenAlertsEnabled = triggerHelper.triggerOptions.GroupSpeechAlert;
+      const textAlertsEnabled = triggerHelper.triggerOptions.TextAlert;
+      if (textAlertsEnabled !== undefined)
+        triggerHelper.textAlertsEnabled = textAlertsEnabled;
+      const soundAlertsEnabled = triggerHelper.triggerOptions.SoundAlert;
+      if (soundAlertsEnabled !== undefined)
+        triggerHelper.soundAlertsEnabled = soundAlertsEnabled;
+      const spokenAlertsEnabled = triggerHelper.triggerOptions.SpeechAlert;
+      if (spokenAlertsEnabled !== undefined)
+        triggerHelper.spokenAlertsEnabled = spokenAlertsEnabled;
+      const groupSpokenAlertsEnabled = triggerHelper.triggerOptions.GroupSpeechAlert;
+      if (groupSpokenAlertsEnabled !== undefined)
+        triggerHelper.groupSpokenAlertsEnabled = groupSpokenAlertsEnabled;
     }
 
     if (triggerHelper.userSuppressedOutput) {
@@ -818,15 +1031,17 @@ export class PopupText {
     }
   }
 
-  _onTriggerInternalPreRun(triggerHelper) {
-    if ('preRun' in triggerHelper.trigger)
-      triggerHelper.trigger.preRun(this.data, triggerHelper.matches, triggerHelper.trigger.output);
+  _onTriggerInternalPreRun(triggerHelper: TriggerHelper): void {
+    triggerHelper.trigger?.preRun?.(
+        this.data,
+        triggerHelper.matches,
+        triggerHelper.output);
   }
 
-  _onTriggerInternalDelaySeconds(triggerHelper) {
+  _onTriggerInternalDelaySeconds(triggerHelper: TriggerHelper): Promise<void> | undefined {
     const delay = 'delaySeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds) : 0;
-    if (!delay || delay <= 0)
-      return null;
+    if (!delay || delay <= 0 || typeof delay !== 'number')
+      return;
 
     const triggerID = this.currentTriggerID++;
     this.timers[triggerID] = true;
@@ -841,60 +1056,69 @@ export class PopupText {
     });
   }
 
-  _onTriggerInternalDurationSeconds(triggerHelper) {
+  _onTriggerInternalDurationSeconds(triggerHelper: TriggerHelper): void {
+    let valueDuration = triggerHelper.valueOrFunction(triggerHelper.trigger.durationSeconds);
+    if (typeof valueDuration !== 'number')
+      valueDuration = undefined;
     triggerHelper.duration = {
-      fromConfig: triggerHelper.triggerAutoConfig['Duration'],
-      fromTrigger: triggerHelper.valueOrFunction(triggerHelper.trigger.durationSeconds),
+      fromConfig: triggerHelper.triggerAutoConfig.Duration,
+      fromTrigger: valueDuration,
       alarmText: this.options.DisplayAlarmTextForSeconds,
       alertText: this.options.DisplayAlertTextForSeconds,
       infoText: this.options.DisplayInfoTextForSeconds,
     };
   }
 
-  _onTriggerInternalSuppressSeconds(triggerHelper) {
+  _onTriggerInternalSuppressSeconds(triggerHelper: TriggerHelper): void {
     const suppress = 'suppressSeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.suppressSeconds) : 0;
+    if (typeof suppress !== 'number')
+      return;
     if (triggerHelper.trigger.id && suppress > 0)
       this.triggerSuppress[triggerHelper.trigger.id] = triggerHelper.now + (suppress * 1000);
   }
 
-  _onTriggerInternalPromise(triggerHelper) {
-    let promise = null;
+  _onTriggerInternalPromise(triggerHelper: TriggerHelper): Promise<void> | undefined {
+    let promise: Promise<void> | undefined;
     if ('promise' in triggerHelper.trigger) {
+      const id = triggerHelper.trigger.id ?? 'Unknown';
       if (typeof triggerHelper.trigger.promise === 'function') {
         promise = triggerHelper.trigger.promise(
             this.data,
             triggerHelper.matches,
-            triggerHelper.trigger.output);
+            triggerHelper.output);
 
         // Make sure we actually get a Promise back from the function
         if (Promise.resolve(promise) !== promise) {
-          console.error('Trigger ' + triggerHelper.trigger.id + ': promise function did not return a promise');
-          promise = null;
+          console.error(`Trigger ${id}: promise function did not return a promise`);
+          promise = undefined;
         }
       } else {
-        console.error('Trigger ' + triggerHelper.trigger.id + ': promise defined but not a function');
+        console.error(`Trigger ${id}: promise defined but not a function`);
       }
     }
     return promise;
   }
 
-  _onTriggerInternalSound(triggerHelper) {
-    triggerHelper.soundUrl = triggerHelper.valueOrFunction(triggerHelper.trigger.sound);
+  _onTriggerInternalSound(triggerHelper: TriggerHelper): void {
+    const result = triggerHelper.valueOrFunction(triggerHelper.trigger.sound);
+    if (typeof result === 'string')
+      triggerHelper.soundUrl = result;
   }
 
-  _onTriggerInternalSoundVolume(triggerHelper) {
-    triggerHelper.triggerSoundVol =
-      triggerHelper.valueOrFunction(triggerHelper.trigger.soundVolume);
+  _onTriggerInternalSoundVolume(triggerHelper: TriggerHelper): void {
+    const result = triggerHelper.valueOrFunction(triggerHelper.trigger.soundVolume);
+    if (typeof result === 'number')
+      triggerHelper.triggerSoundVol = result;
   }
 
-  _onTriggerInternalResponse(triggerHelper) {
-    let response = {};
+  _onTriggerInternalResponse(triggerHelper: TriggerHelper): void {
+    let response: ResponseField<RaidbossData> = {};
     const trigger = triggerHelper.trigger;
     if (trigger.response) {
       // Can't use ValueOrFunction here as r returns a non-localizable object.
       response = trigger.response;
       while (typeof response === 'function')
-        response = response(this.data, triggerHelper.matches, trigger.output);
+        response = response(this.data, triggerHelper.matches, triggerHelper.output);
 
       // Turn falsy values into a default no-op response.
       if (!response)
@@ -903,45 +1127,55 @@ export class PopupText {
     triggerHelper.response = response;
   }
 
-  _onTriggerInternalAlarmText(triggerHelper) {
+  _onTriggerInternalAlarmText(triggerHelper: TriggerHelper): void {
     this._addTextFor('alarm', triggerHelper);
   }
 
-  _onTriggerInternalAlertText(triggerHelper) {
+  _onTriggerInternalAlertText(triggerHelper: TriggerHelper): void {
     this._addTextFor('alert', triggerHelper);
   }
 
-  _onTriggerInternalInfoText(triggerHelper) {
+  _onTriggerInternalInfoText(triggerHelper: TriggerHelper): void {
     this._addTextFor('info', triggerHelper);
   }
 
-  _onTriggerInternalTTS(triggerHelper) {
+  _onTriggerInternalTTS(triggerHelper: TriggerHelper): void {
     if (!triggerHelper.groupSpokenAlertsEnabled || typeof triggerHelper.ttsText === 'undefined') {
-      if ('TTSText' in triggerHelper.triggerOptions)
-        triggerHelper.ttsText = triggerHelper.valueOrFunction(triggerHelper.triggerOptions.TTSText);
-      else if ('tts' in triggerHelper.trigger)
-        triggerHelper.ttsText = triggerHelper.valueOrFunction(triggerHelper.trigger.tts);
-      else if ('tts' in triggerHelper.response)
-        triggerHelper.ttsText = triggerHelper.valueOrFunction(triggerHelper.response.TTSText);
-      else
-        triggerHelper.ttsText = triggerHelper.defaultTTSText;
+      let result = undefined;
+      if (triggerHelper.triggerOptions.TTSText) {
+        result = triggerHelper.valueOrFunction(triggerHelper.triggerOptions.TTSText);
+      } else if (triggerHelper.trigger.tts) {
+        result = triggerHelper.valueOrFunction(triggerHelper.trigger.tts);
+      } else if (triggerHelper.response) {
+        const resp: ResponseField<RaidbossData> = triggerHelper.response;
+        if (resp.tts)
+          result = triggerHelper.valueOrFunction(resp.tts);
+      }
+
+      result ??= triggerHelper.defaultTTSText;
+
+      triggerHelper.ttsText = result?.toString();
     }
   }
 
-  _onTriggerInternalPlayAudio(triggerHelper) {
-    if (triggerHelper.trigger.sound && triggerHelper.soundUrl) {
+  _onTriggerInternalPlayAudio(triggerHelper: TriggerHelper): void {
+    if (triggerHelper.trigger.sound &&
+        triggerHelper.soundUrl &&
+        soundStrs.includes(triggerHelper.soundUrl)) {
       const namedSound = triggerHelper.soundUrl + 'Sound';
       const namedSoundVolume = triggerHelper.soundUrl + 'SoundVolume';
-      if (namedSound in this.options) {
-        triggerHelper.soundUrl = this.options[namedSound];
-        if (namedSoundVolume in this.options)
-          triggerHelper.soundVol = this.options[namedSoundVolume];
+      const sound = this.options[namedSound];
+      if (typeof sound === 'string') {
+        triggerHelper.soundUrl = sound;
+        const soundVol = this.options[namedSoundVolume];
+        if (typeof soundVol === 'number')
+          triggerHelper.soundVol = soundVol;
       }
     }
 
-    triggerHelper.soundUrl = triggerHelper.triggerOptions.SoundOverride || triggerHelper.soundUrl;
-    triggerHelper.soundVol = triggerHelper.triggerOptions.VolumeOverride ||
-      triggerHelper.triggerSoundVol || triggerHelper.soundVol;
+    triggerHelper.soundUrl = triggerHelper.triggerOptions.SoundOverride ?? triggerHelper.soundUrl;
+    triggerHelper.soundVol = triggerHelper.triggerOptions.VolumeOverride ??
+      triggerHelper.triggerSoundVol ?? triggerHelper.soundVol;
 
     // Text to speech overrides all other sounds.  This is so
     // that a user who prefers tts can still get the benefit
@@ -982,22 +1216,33 @@ export class PopupText {
     }
   }
 
-  _onTriggerInternalRun(triggerHelper) {
-    if ('run' in triggerHelper.trigger)
-      triggerHelper.trigger.run(this.data, triggerHelper.matches, triggerHelper.trigger.output);
+  _onTriggerInternalRun(triggerHelper: TriggerHelper): void {
+    triggerHelper.trigger?.run?.(
+        this.data,
+        triggerHelper.matches,
+        triggerHelper.output);
   }
 
-  _createTextFor(triggerHelper, text, textType, lowerTextKey, duration) {
+  _createTextFor(
+      triggerHelper: TriggerHelper,
+      text: string,
+      textType: Text,
+      lowerTextKey: TextText,
+      duration: number): void {
     // info-text
     const textElementClass = textType + '-text';
     if (textType !== 'info')
       text = triggerUpperCase(text);
-    const holder = this[lowerTextKey].getElementsByClassName('holder')[0];
+
+    const holder = this[lowerTextKey]?.getElementsByClassName('holder')[0];
     const div = this._makeTextElement(triggerHelper, text, textElementClass);
+
+    if (!holder)
+      throw new UnreachableCode();
 
     holder.appendChild(div);
     if (holder.children.length > this.kMaxRowsOfText)
-      holder.removeChild(holder.children[0]);
+      holder.firstChild?.remove();
 
     window.setTimeout(() => {
       if (holder.contains(div))
@@ -1005,32 +1250,49 @@ export class PopupText {
     }, duration * 1000);
   }
 
-  _addTextFor(textType, triggerHelper) {
-    // Info
-    const textTypeUpper = textType[0].toUpperCase() + textType.slice(1);
+  _addTextFor(textType: Text, triggerHelper: TriggerHelper): void {
     // infoText
-    const lowerTextKey = textType + 'Text';
+    const lowerTextKey = textMap[textType].text;
     // InfoText
-    const upperTextKey = textTypeUpper + 'Text';
-    const textObj = triggerHelper.triggerOptions[upperTextKey] ||
-      triggerHelper.trigger[lowerTextKey] || triggerHelper.response[lowerTextKey];
+    const upperTextKey = textMap[textType].upperText;
+    // InfoSound
+    const upperSound = textMap[textType].upperSound;
+    // InfoSoundVolume
+    const upperSoundVolume = textMap[textType].upperSoundVolume;
+
+    let textObj: RaidbossTriggerOutput =
+      triggerHelper.triggerOptions[upperTextKey];
+    if (!textObj && triggerHelper.trigger[lowerTextKey])
+      textObj = triggerHelper.trigger[lowerTextKey];
+    if (!textObj && triggerHelper.response)
+      textObj = triggerHelper.response[lowerTextKey];
     if (textObj) {
-      const text = triggerHelper.valueOrFunction(textObj);
-      triggerHelper.defaultTTSText = triggerHelper.defaultTTSText || text;
-      if (text && triggerHelper.textAlertsEnabled) {
+      let text = triggerHelper.valueOrFunction(textObj);
+      if (!text)
+        return;
+      if (typeof text === 'number')
+        text = text.toString();
+      if (typeof text !== 'string')
+        text = String(text);
+      triggerHelper.defaultTTSText = triggerHelper.defaultTTSText ?? text;
+      if (text && typeof text === 'string' && triggerHelper.textAlertsEnabled) {
         // per-trigger option > trigger field > option duration by text type
-        const duration = triggerHelper.duration.fromConfig ||
-          triggerHelper.duration.fromTrigger || triggerHelper.duration[lowerTextKey];
+        let duration = triggerHelper.duration?.fromConfig ?? triggerHelper.duration?.fromTrigger;
+        if (duration === undefined && triggerHelper.duration)
+          duration = triggerHelper.duration[lowerTextKey];
+        if (duration === undefined)
+          duration = 0;
+
         this._createTextFor(triggerHelper, text, textType, lowerTextKey, duration);
         if (!triggerHelper.soundUrl) {
-          triggerHelper.soundUrl = this.options[textTypeUpper + 'Sound'];
-          triggerHelper.soundVol = this.options[textTypeUpper + 'SoundVolume'];
+          triggerHelper.soundUrl = this.options[upperSound];
+          triggerHelper.soundVol = this.options[upperSoundVolume];
         }
       }
     }
   }
 
-  _makeTextElement(triggerHelper, text, className) {
+  _makeTextElement(_triggerHelper: TriggerHelper, text: string, className: string): HTMLElement {
     const div = document.createElement('div');
     div.classList.add(className);
     div.classList.add('animate-text');
@@ -1038,53 +1300,83 @@ export class PopupText {
     return div;
   }
 
-  _playAudioFile(triggerHelper, url, volume) {
+  _playAudioFile(triggerHelper: TriggerHelper, url: string, volume?: number): void {
     const audio = new Audio(url);
-    audio.volume = volume || 1;
-    audio.play();
+    audio.volume = volume ?? 1;
+    void audio.play();
   }
 
-  Test(zone, log) {
-    this.OnPlayerChange({ detail: { name: 'ME' } });
-    this.OnChangeZone({ zoneName: zone });
-    this.OnLog({ detail: { logs: ['abcdefgh', log, 'hgfedcba'] } });
+  getDataObject(): RaidbossData {
+    let preserveHP = 0;
+    if (this.data && this.data.currentHP)
+      preserveHP = this.data.currentHP;
+
+    // TODO: make a breaking change at some point and
+    // make all this style consistent, sorry.
+    return {
+      me: this.me,
+      job: this.job,
+      role: this.role,
+      party: this.partyTracker,
+      lang: this.parserLang,
+      parserLang: this.parserLang,
+      displayLang: this.displayLang,
+      currentHP: preserveHP,
+      options: this.options,
+      ShortName: this.ShortNamify.bind(this),
+      StopCombat: () => this.SetInCombat(false),
+      ParseLocaleFloat: parseFloat,
+      CanStun: () => Util.canStun(this.job),
+      CanSilence: () => Util.canSilence(this.job),
+      CanSleep: () => Util.canSleep(this.job),
+      CanCleanse: () => Util.canCleanse(this.job),
+      CanFeint: () => Util.canFeint(this.job),
+      CanAddle: () => Util.canAddle(this.job),
+    };
   }
 }
 
 export class PopupTextGenerator {
-  constructor(popupText) {
-    this.popupText = popupText;
+  constructor(private popupText: PopupText) {
   }
 
-  Info(text) {
+  Info(text: string): void {
     this.popupText.OnTrigger({
       infoText: text,
       tts: text,
-    });
+    },
+    null,
+    Date.now());
   }
 
-  Alert(text) {
+  Alert(text: string): void {
     this.popupText.OnTrigger({
       alertText: text,
       tts: text,
-    });
+    },
+    null,
+    Date.now());
   }
 
-  Alarm(text) {
+  Alarm(text: string): void {
     this.popupText.OnTrigger({
       alarmText: text,
       tts: text,
-    });
+    },
+    null,
+    Date.now());
   }
 
-  TTS(text) {
+  TTS(text: string): void {
     this.popupText.OnTrigger({
       infoText: text,
       tts: text,
-    });
+    },
+    null,
+    Date.now());
   }
 
-  Trigger(trigger, matches) {
+  Trigger(trigger: ProcessedTrigger, matches: RegExpExecArray | null): void {
     const currentTime = +new Date();
     this.popupText.OnTrigger(trigger, matches, currentTime);
   }

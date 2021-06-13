@@ -37,7 +37,7 @@ type RaidbossNonConfigOptions = {
   PerTriggerAutoConfig: PerTriggerAutoConfig;
   PerTriggerOptions: PerTriggerOptions;
   Triggers: LooseTrigger[];
-  PlayerNameOverride: string | null;
+  PlayerNameOverride?: string;
   IsRemoteRaidboss: boolean;
   // Transforms text before passing it to TTS.
   TransformTts: (text: string) => string;
@@ -62,7 +62,6 @@ const defaultRaidbossNonConfigOptions: RaidbossNonConfigOptions = {
 
   Triggers: [],
 
-  PlayerNameOverride: null,
   IsRemoteRaidboss: false,
 
   TransformTts: (t) => t,

@@ -27,5 +27,6 @@
       * unfortunately `black` does not support "Format Selection"
       */
     "editor.formatOnSaveMode": "file"
-  }
+  },
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }
