@@ -2403,6 +2403,7 @@ const Options = {
           label: {
             en: 'Beasts',
             de: 'Bestienbändigerin',
+            fr: 'Un jour, je serai la meilleure dresseuse',
           },
           x: 24.1,
           y: 37.4,
@@ -2412,6 +2413,7 @@ const Options = {
           label: {
             en: 'Parcel',
             de: 'Oboro',
+            fr: 'Les astres du jour et de la nuit',
           },
           x: 22.8,
           y: 34.2,
@@ -2421,6 +2423,7 @@ const Options = {
           label: {
             en: 'Dilemma',
             de: 'Ketzer Fabineau',
+            fr: 'Malheureuses retrouvailles',
           },
           x: 22.7,
           y: 34.2,
@@ -2430,6 +2433,7 @@ const Options = {
           label: {
             en: 'Divination',
             de: 'Mörderischer Onmyoji',
+            fr: 'Prêtre pernicieux',
           },
           x: 24.8,
           y: 31.4,
@@ -2439,6 +2443,7 @@ const Options = {
           label: {
             en: 'Wrench',
             de: 'Beobachten verboten',
+            fr: 'Ni vu ni connu',
           },
           x: 29.4,
           y: 35.4,
@@ -2448,6 +2453,7 @@ const Options = {
           label: {
             en: 'Pilot',
             de: 'Magitek-Soldaten',
+            fr: 'Dabog, soldat augmenté',
           },
           x: 28.0,
           y: 29.2,
@@ -2457,6 +2463,7 @@ const Options = {
           label: {
             en: 'Ice',
             de: 'Eiskalt',
+            fr: 'Qui s\'y frotte s\'y pique',
           },
           x: 24.8,
           y: 31.1,
@@ -2466,6 +2473,7 @@ const Options = {
           label: {
             en: 'Puppet',
             de: 'Puppen',
+            fr: 'Celui qui tire les ficelles',
           },
           x: 24.1,
           y: 37.4,
@@ -2475,6 +2483,7 @@ const Options = {
           label: {
             en: 'Challenge',
             de: 'Größtmöglicher',
+            fr: 'Un problème de taille',
           },
           x: 7.2,
           y: 28.8,
@@ -2484,6 +2493,7 @@ const Options = {
           label: {
             en: 'Th\'uban',
             de: 'Bestien',
+            fr: 'Le dernier dinosaure',
           },
           x: 8.6,
           y: 34.4,
@@ -2493,6 +2503,7 @@ const Options = {
           label: {
             en: 'Atrocities',
             de: 'Endkampf (Ketzer)',
+            fr: 'L\'immaculée contre le malsain',
           },
           x: 4.9,
           y: 25.3,
@@ -2502,6 +2513,7 @@ const Options = {
           label: {
             en: 'Pursuit',
             de: 'mörderische Meister',
+            fr: 'Recherché dans deux pays',
           },
           x: 11.6,
           y: 27.6,
@@ -2511,6 +2523,7 @@ const Options = {
           label: {
             en: 'Tanking',
             de: 'Seiryu Zwo',
+            fr: 'Y\'a qu\'à se baisser',
           },
           x: 8.1,
           y: 24.0,
@@ -2520,6 +2533,7 @@ const Options = {
           label: {
             en: 'Supersoldier',
             de: 'Magitek-Soldat',
+            fr: 'Guet-apens magitek',
           },
           x: 8.1,
           y: 24.0,
@@ -2529,6 +2543,7 @@ const Options = {
           label: {
             en: 'Demented',
             de: 'Rettende Hiebe',
+            fr: 'Magie couleur sang',
           },
           x: 7.2,
           y: 28.8,
@@ -2538,6 +2553,7 @@ const Options = {
           label: {
             en: 'Sever',
             de: 'Endkampf (Puppenspieler)',
+            fr: 'Ainsi font les petites marionnettes',
           },
           x: 11.6,
           y: 27.6,
@@ -2547,6 +2563,7 @@ const Options = {
           label: {
             en: 'Back',
             de: 'Allergrößte gibt nicht auf',
+            fr: 'Des bêtes en pagagaille',
           },
           x: 25.4,
           y: 14.3,
@@ -2556,6 +2573,7 @@ const Options = {
           label: {
             en: 'Still',
             de: 'Schillernde ',
+            fr: 'Clarricie, sans défense ou presque',
           },
           x: 14.5,
           y: 10.4,
@@ -2565,6 +2583,7 @@ const Options = {
           label: {
             en: 'Seeq',
             de: 'Farbe des Blutes',
+            fr: 'Non, c\'est non !',
           },
           x: 20.3,
           y: 16.5,
@@ -2574,6 +2593,7 @@ const Options = {
           label: {
             en: 'Mean',
             de: 'Onmyoji!',
+            fr: 'Le trésor du clan Urabe',
           },
           x: 25.4,
           y: 14.3,
@@ -2583,6 +2603,7 @@ const Options = {
           label: {
             en: 'Relic',
             de: 'Famfrit',
+            fr: 'Sans issue',
           },
           x: 25.4,
           y: 14.3,
@@ -2592,6 +2613,7 @@ const Options = {
           label: {
             en: 'Mages',
             de: 'Was du heute kannst besorgen',
+            fr: 'Des cailloux, des cailloux, des cailloux !',
           },
           x: 20.3,
           y: 16.5,
@@ -2601,6 +2623,7 @@ const Options = {
           label: {
             en: 'Hyper',
             de: 'goldene Gelegenheit',
+            fr: 'Une opportunité en or',
           },
           x: 16.6,
           y: 16.8,
@@ -2610,6 +2633,7 @@ const Options = {
           label: {
             en: 'Soldiers',
             de: 'Verstärkung .. Mech-Einheit',
+            fr: 'Il est plus d\'un',
           },
           x: 16.6,
           y: 16.8,
@@ -2619,6 +2643,7 @@ const Options = {
           label: {
             en: 'Student',
             de: 'Rettende Hiebe 2',
+            fr: 'L\'élève dépasse le maître',
           },
           x: 14.5,
           y: 10.4,
@@ -2628,6 +2653,7 @@ const Options = {
           label: {
             en: 'Machines',
             de: 'Magitek-Maschinen en masse',
+            fr: 'Fabrication en série',
           },
           x: 12.1,
           y: 13.6,
@@ -2637,6 +2663,7 @@ const Options = {
           label: {
             en: 'Dalriada',
             de: 'Dalriada',
+            fr: 'Dal\'riada',
           },
           x: 25.9,
           y: 8.2,
@@ -2649,6 +2676,7 @@ const Options = {
           label: {
             en: 'Serpents',
             de: 'Geistertrupp',
+            fr: 'Zirnitrop',
           },
           x: 31.4,
           y: 37.4,
@@ -2659,6 +2687,7 @@ const Options = {
           label: {
             en: 'Feeling',
             de: 'Schwarzbrands',
+            fr: 'On arrête le progrès',
           },
           x: 16.6,
           y: 16.8,
@@ -2670,6 +2699,7 @@ const Options = {
           label: {
             en: 'Blade',
             de: 'Hyper-Dabog',
+            fr: 'Dabog, l\'hyper-renforcé',
           },
           x: 26.5,
           y: 35.6,
@@ -2681,7 +2711,8 @@ const Options = {
         frombeyondthegrave: {
           label: {
             en: 'Grave',
-            de: 'Shemhazai ',
+            de: 'Shemhazai',
+            fr: 'Le Sycophante',
           },
           x: 20.2,
           y: 37.4,
@@ -2692,6 +2723,7 @@ const Options = {
           label: {
             en: 'Diremite',
             de: 'Hedetet',
+            fr: 'C\'est dans ma nature',
           },
           x: 17.0,
           y: 32.1,
@@ -2702,6 +2734,7 @@ const Options = {
           label: {
             en: 'Cavalry',
             de: 'Halb Pferd',
+            fr: 'Un cavalier qui surgit hors de la nuit',
           },
           x: 6.4,
           y: 37.2,
@@ -2712,6 +2745,7 @@ const Options = {
           label: {
             en: 'Snake',
             de: 'Menenius',
+            fr: 'Mener par l\'exemple',
           },
           x: 5.3,
           y: 31.9,
@@ -2724,6 +2758,7 @@ const Options = {
           label: {
             en: 'Blood',
             de: 'Hanbi',
+            fr: 'Le Roi des Cendres',
           },
           x: 13.7,
           y: 26.0,
@@ -2734,6 +2769,7 @@ const Options = {
           label: {
             en: 'Wolf',
             de: 'Hrodvitnir',
+            fr: 'Et n\'y Hród\'viens plus !',
           },
           x: 4.9,
           y: 25.3,
@@ -2745,6 +2781,7 @@ const Options = {
           label: {
             en: 'Time',
             de: 'Belias',
+            fr: 'Le Titan',
           },
           x: 10.5,
           y: 21.5,
@@ -2755,6 +2792,7 @@ const Options = {
           label: {
             en: 'Magitek',
             de: 'Gepanzerte Zenturie',
+            fr: 'Réusinage de code',
           },
           x: 15.2,
           y: 13.0,
@@ -2765,6 +2803,7 @@ const Options = {
           label: {
             en: 'Shadow',
             de: 'Alkonost',
+            fr: 'Oiseau d\'enfer',
           },
           x: 11.8,
           y: 7.6,
@@ -2775,6 +2814,7 @@ const Options = {
           label: {
             en: 'Familiar',
             de: 'Hashmallim',
+            fr: 'Le Grand Ordonnateur',
           },
           x: 28.0,
           y: 29.2,
@@ -2786,6 +2826,7 @@ const Options = {
           label: {
             en: 'Looks',
             de: 'Ayda',
+            fr: 'Écaillage en règle',
           },
           x: 17.4,
           y: 9.8,
@@ -2796,6 +2837,7 @@ const Options = {
           label: {
             en: 'Lyon\'s',
             de: 'Revanche: Lyon',
+            fr: 'La revanche de Lyon',
           },
           x: 22.5,
           y: 13.2,
