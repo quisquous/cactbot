@@ -950,7 +950,11 @@ export class PopupText {
         return triggerHelper.valueOrFunction(result[this.displayLang] ?? result['en']);
       },
       get output(): Output {
-        return this.trigger.output ?? defaultOutput;
+        if (this.trigger.output)
+          return this.trigger.output;
+
+        console.log(`Missing trigger.output for trigger ${trigger.id ?? 'Unknown'}`);
+        return defaultOutput;
       },
     };
 
