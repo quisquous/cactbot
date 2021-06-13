@@ -37,14 +37,6 @@ module.exports = function({ cactbotModules, cactbotChunks, cactbotHtmlChunksMap 
   return {
     entry: entries,
     optimization: {
-      minimize: true,
-      minimizer: [
-        // Apply option overrides to Webpack v5's native TerserPlugin
-        () => ({
-          extractComments: false,
-        }),
-        new CssMinimizerPlugin(),
-      ],
       splitChunks: {
         cacheGroups: {
           'raidboss_data': {
