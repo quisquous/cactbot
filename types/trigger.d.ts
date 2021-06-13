@@ -42,6 +42,11 @@ export type TriggerOutput<Data, Matches> =
     undefined | null | LocaleText | string | number | boolean |
     ((d: Data, m: Matches, o: Output) => TriggerOutput<Data, Matches>);
 
+// Used if the function doesn't need to return an en key
+export type PartialTriggerOutput<Data, Matches> =
+    undefined | null | Partial<LocaleText> | string | number | boolean |
+    ((d: Data, m: Matches, o: Output) => PartialTriggerOutput<Data, Matches>);
+
 // The type of a non-response trigger field.
 export type TriggerFunc<Data, Matches, Return> =
     (data: Data, matches: Matches, output: Output) => Return;
@@ -95,7 +100,7 @@ export type BaseTrigger<Data> = {
   alarmText?: TriggerField<Data, TriggerOutput<Data, MatchesAny>>;
   alertText?: TriggerField<Data, TriggerOutput<Data, MatchesAny>>;
   infoText?: TriggerField<Data, TriggerOutput<Data, MatchesAny>>;
-  tts?: TriggerField<Data, TriggerOutput<Data, MatchesAny>>;
+  tts?: TriggerField<Data, PartialTriggerOutput<Data, MatchesAny>>;
   run?: TriggerField<Data, void>;
   outputStrings?: OutputStrings;
 }

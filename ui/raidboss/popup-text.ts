@@ -10,7 +10,7 @@ import ZoneId from '../../resources/zone_id';
 import {
   LooseTrigger, OutputStrings, TriggerSet, TimelineFunc, LooseTriggerSet,
   ResponseField, TriggerAutoConfig, MatchesAny, TriggerField, TriggerOutput,
-  Output, ResponseOutput, NetRegexTrigger, RegexTrigger,
+  Output, ResponseOutput, NetRegexTrigger, RegexTrigger, PartialTriggerOutput,
 } from '../../types/trigger';
 import { UnreachableCode } from '../../resources/not_reached';
 import { Lang } from '../../resources/languages';
@@ -357,8 +357,10 @@ class TriggerOutputProxy {
 }
 
 export type RaidbossTriggerField =
-  TriggerField<RaidbossData, TriggerOutput<RaidbossData, MatchesAny>>;
-export type RaidbossTriggerOutput = TriggerOutput<RaidbossData, MatchesAny>;
+  TriggerField<RaidbossData, TriggerOutput<RaidbossData, MatchesAny>> |
+  TriggerField<RaidbossData, PartialTriggerOutput<RaidbossData, MatchesAny>>;
+export type RaidbossTriggerOutput = TriggerOutput<RaidbossData, MatchesAny> |
+  PartialTriggerOutput<RaidbossData, MatchesAny>;
 
 const defaultOutput = TriggerOutputProxy.makeOutput({}, 'en');
 
@@ -1152,9 +1154,8 @@ export class PopupText {
           result = triggerHelper.valueOrFunction(resp.tts);
       }
 
-      result ??= triggerHelper.defaultTTSText;
-
-      triggerHelper.ttsText = result?.toString();
+      if (result)
+        triggerHelper.ttsText = result?.toString();
     }
   }
 
