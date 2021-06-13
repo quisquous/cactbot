@@ -799,8 +799,11 @@ export class PopupText {
     this.StopTimers();
     this.triggerSuppress = {};
 
-    for (const init of this.dataInitializers)
-      this.data = init(this.data);
+    for (const init of this.dataInitializers) {
+      const data = init(this.data);
+      if (data && data.me)
+        this.data = data;
+    }
   }
 
   StopTimers(): void {

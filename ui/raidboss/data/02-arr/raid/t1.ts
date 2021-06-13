@@ -12,6 +12,12 @@ export interface Data extends RaidbossData {
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheBindingCoilOfBahamutTurn1,
+  initData: (data: RaidbossData): Data => {
+    return {
+      started: false,
+      ...data,
+    };
+  },
   triggers: [
     {
       id: 'T1 High Voltage',

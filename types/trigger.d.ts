@@ -133,7 +133,7 @@ export type TimelineFunc = string | string[] | ((data: RaidbossData) => Timeline
 
 export type DataInitializeFunc<Data extends RaidbossData> = (data: RaidbossData) => Data;
 
-export type TriggerSet<Data> = {
+export type TriggerSet<Data extends RaidbossData> = {
   // ZoneId.MatchAll (aka null) is not supported in array form.
   zoneId: ZoneId | number[];
   resetWhenOutOfCombat?: boolean;
@@ -144,7 +144,7 @@ export type TriggerSet<Data> = {
   timelineTriggers?: TimelineTrigger<Data>[];
   timelineReplace?: TimelineReplacement[];
   timelineStyles?: TimelineStyle[];
-  initData?: DataInitializeFunc;
+  initData?: DataInitializeFunc<Data>;
 }
 
 // Less strict type for user triggers + built-in triggers, including deprecated fields.
