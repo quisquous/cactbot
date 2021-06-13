@@ -1156,6 +1156,8 @@ export class PopupText {
 
       if (result)
         triggerHelper.ttsText = result?.toString();
+      else
+        triggerHelper.ttsText = triggerHelper.defaultTTSText;
     }
   }
 

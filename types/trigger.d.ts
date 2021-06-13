@@ -51,12 +51,12 @@ export type PartialTriggerOutput<Data, Matches> =
 export type TriggerFunc<Data, Matches, Return> =
     (data: Data, matches: Matches, output: Output) => Return;
 
-// Valid fields to return from a ResponseFunc.
-type ResponseFields = 'infoText' | 'alertText' | 'alarmText' | 'tts';
-
 // The output from a response function (different from other TriggerOutput functions).
 export type ResponseOutput<Data, Matches> = {
-  [text in ResponseFields]?: TriggerFunc<Data, Matches, TriggerOutput<Data, Matches>>;
+  infoText?: TriggerFunc<Data, Matches, TriggerOutput<Data, Matches>>;
+  alertText?: TriggerFunc<Data, Matches, TriggerOutput<Data, Matches>>;
+  alarmText?: TriggerFunc<Data, Matches, TriggerOutput<Data, Matches>>;
+  tts?: TriggerFunc<Data, Matches, PartialTriggerOutput<Data, Matches>>;
 };
 // The type of a response trigger field.
 export type ResponseFunc<Data, Matches> =
