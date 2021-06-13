@@ -8,8 +8,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
-const { cactbotModules, cactbotChunks, cactbotHtmlChunksMap } = require(__dirname + '/constants.cjs');
-
 module.exports = function({ cactbotModules, cactbotChunks, cactbotHtmlChunksMap }) {
   const entries = {};
   Object.entries(cactbotModules).forEach(([key, module]) => {
