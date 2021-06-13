@@ -10,7 +10,7 @@ import ZoneId from '../../resources/zone_id';
 import {
   LooseTrigger, OutputStrings, TriggerSet, TimelineFunc, LooseTriggerSet,
   ResponseField, TriggerAutoConfig, MatchesAny, TriggerField, TriggerOutput,
-  Output, ResponseOutput, NetRegexTrigger, RegexTrigger, PartialTriggerOutput,
+  Output, ResponseOutput, NetRegexTrigger, RegexTrigger, PartialTriggerOutput, DataInitializeFunc,
 } from '../../types/trigger';
 import { UnreachableCode } from '../../resources/not_reached';
 import { Lang } from '../../resources/languages';
@@ -425,6 +425,7 @@ export class PopupText {
   protected triggerSets: ProcessedTriggerSet[] = [];
   protected zoneName = '';
   protected zoneId = -1;
+  protected dataInitializers: DataInitializeFunc<RaidbossData>[] = [];
 
   constructor(
       protected options: RaidbossOptions,
@@ -543,8 +544,6 @@ export class PopupText {
     if (!this.triggerSets || !this.me || !this.zoneName || !this.timelineLoader.IsReady())
       return;
 
-    this.Reset();
-
     // Drop the triggers and timelines from the previous zone, so we can add new ones.
     this.triggers = [];
     this.netTriggers = [];
@@ -623,6 +622,10 @@ export class PopupText {
         else
           console.log('Loading user triggers for zone');
       }
+
+      if (set.initData)
+        this.dataInitializers.push(set.initData);
+
       // Adjust triggers for the parser language.
       if (set.triggers && this.options.AlertsEnabled) {
         for (const trigger of set.triggers) {
@@ -716,6 +719,8 @@ export class PopupText {
     this.netTriggers = allTriggers.filter(isNetRegexTrigger);
     const timelineTriggers = allTriggers.filter(isRaidbossLooseTimelineTrigger);
 
+    this.Reset();
+
     this.timelineLoader.SetTimelines(
         timelineFiles,
         timelines,
@@ -793,6 +798,9 @@ export class PopupText {
     this.data = this.getDataObject();
     this.StopTimers();
     this.triggerSuppress = {};
+
+    for (const init of this.dataInitializers)
+      this.data = init(this.data);
   }
 
   StopTimers(): void {

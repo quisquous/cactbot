@@ -131,6 +131,8 @@ export type TimelineTrigger<Data> = BaseTrigger<Data> & {
 // Because timeline functions run during loading, they only support the base RaidbossData.
 export type TimelineFunc = string | string[] | ((data: RaidbossData) => TimelineFunc);
 
+export type DataInitializeFunc<Data extends RaidbossData> = (data: RaidbossData) => Data;
+
 export type TriggerSet<Data> = {
   // ZoneId.MatchAll (aka null) is not supported in array form.
   zoneId: ZoneId | number[];
@@ -142,6 +144,7 @@ export type TriggerSet<Data> = {
   timelineTriggers?: TimelineTrigger<Data>[];
   timelineReplace?: TimelineReplacement[];
   timelineStyles?: TimelineStyle[];
+  initData?: DataInitializeFunc;
 }
 
 // Less strict type for user triggers + built-in triggers, including deprecated fields.
