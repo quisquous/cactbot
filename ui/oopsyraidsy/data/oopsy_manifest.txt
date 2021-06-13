@@ -2,6 +2,7 @@
 00-misc/general.js
 00-misc/test.js
 02-arr/trial/ifrit-nm.js
+02-arr/trial/titan-nm.js
 02-arr/trial/levi-ex.js
 02-arr/trial/shiva-hm.js
 02-arr/trial/shiva-ex.js
