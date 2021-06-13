@@ -1340,44 +1340,43 @@ export class PopupTextGenerator {
   constructor(private popupText: PopupText) {
   }
 
-  Info(text: string): void {
+  Info(text: string, currentTime: number): void {
     this.popupText.OnTrigger({
       infoText: text,
       tts: text,
     },
     null,
-    Date.now());
+    currentTime);
   }
 
-  Alert(text: string): void {
+  Alert(text: string, currentTime: number): void {
     this.popupText.OnTrigger({
       alertText: text,
       tts: text,
     },
     null,
-    Date.now());
+    currentTime);
   }
 
-  Alarm(text: string): void {
+  Alarm(text: string, currentTime: number): void {
     this.popupText.OnTrigger({
       alarmText: text,
       tts: text,
     },
     null,
-    Date.now());
+    currentTime);
   }
 
-  TTS(text: string): void {
+  TTS(text: string, currentTime: number): void {
     this.popupText.OnTrigger({
       infoText: text,
       tts: text,
     },
     null,
-    Date.now());
+    currentTime);
   }
 
-  Trigger(trigger: ProcessedTrigger, matches: RegExpExecArray | null): void {
-    const currentTime = +new Date();
+  Trigger(trigger: ProcessedTrigger, matches: RegExpExecArray | null, currentTime: number): void {
     this.popupText.OnTrigger(trigger, matches, currentTime);
   }
 }
