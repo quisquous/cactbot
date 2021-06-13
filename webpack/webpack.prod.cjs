@@ -4,8 +4,8 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { mergeWithRules } = require('webpack-merge');
 
-const generateConfig = require(__dirname + '/webpack.config.cjs');
-const constants = require(__dirname + '/constants.cjs');
+const generateConfig = require('./webpack.config.cjs');
+const constants = require('./constants.cjs');
 
 const baseConfig = generateConfig(constants);
 

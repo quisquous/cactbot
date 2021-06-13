@@ -2,8 +2,8 @@
 
 const { mergeWithRules } = require('webpack-merge');
 
-const generateConfig = require(__dirname + '/webpack.config.cjs');
-const constants = require(__dirname + '/constants.cjs');
+const generateConfig = require('./webpack.config.cjs');
+const constants = require('./constants.cjs');
 
 // Add timerbar_test.html
 constants.cactbotModules['timerbarTest'] = 'ui/test/timerbar_test';
