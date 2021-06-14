@@ -176,7 +176,7 @@ module.exports = function(env, argv) {
       },
     },
     cache: {
-      type: 'filesystem',
+      type: dev ? 'memory' : 'filesystem',
     },
     devtool: dev ? 'source-map' : undefined,
     output: {
