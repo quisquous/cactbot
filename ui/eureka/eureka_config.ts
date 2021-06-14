@@ -46,7 +46,7 @@ UserConfig.registerOptions('eureka', {
     {
       id: 'EnrichedSTQ',
       name: {
-        en: 'Add information about BSF and Zadnor\'s Fields Notes',
+        en: 'Add information about Field Notes',
         fr: 'Ajouter les informations relatives aux Rapports du Front Bozjien dans Bozja/Zadnor',
       },
       type: 'checkbox',
