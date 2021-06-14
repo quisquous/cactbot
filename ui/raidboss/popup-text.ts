@@ -325,6 +325,7 @@ class TriggerOutputProxy {
 
     let value: unknown;
     if (typeof template === 'string')
+      // user config
       value = template;
     else
       value = template[this.displayLang] ?? template['en'];
