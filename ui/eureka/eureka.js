@@ -1732,110 +1732,110 @@ const Options = {
       mapToPixelXConstant: -292.56,
       mapToPixelYScalar: 48.938,
       mapToPixelYConstant: -349.22,
-      fieldNotes: {
-      	bajsaljen: {
+      fieldNotes: [
+      	{
       		id: 1,
       		name: "Bajsaljen Ulgasch",
       		shortname: "Bajsalen",
       		rarity: 1,
       	},
-      	marsak: {
+      	{
       		id: 2,
       		name: "Marsak Apella",
       		shortname: "Marsak",
       		rarity: 1,
       	},
-      	xeven: {
+      	{
       		id: 3,
       		name: "Xeven Scanasch",
       		shortname: "Xeven",
       		rarity: 1,
       	},
-      	isolde: {
+      	{
       		id: 4,
       		name: "Isolde Covey",
       		shortname: "Isolde",
       		rarity: 2,
       	},
-      	stanik: {
+      	{
       		id: 5,
       		name: "Stanik Alubov",
       		shortname: "Stanik",
       		rarity: 1,
       	},
-      	blaz: {
+      	{
       		id: 6,
       		name: "Blaz Azetina",
       		shortname: "Blaz",
       		rarity: 3,
       	},
-      	velibor: {
+      	{
       		id: 7,
       		name: "Velibor Azetina",
       		shortname: "Velibor",
       		rarity: 3,
       	},
-      	aggie: {
+      	{
       		id: 8,
       		name: "Aggie Glover",
       		shortname: "Aggie",
       		rarity: 1,
       	},
-      	llofii: {
+      	{
       		id: 9,
       		name: "Llofii pyr Potitus",
       		shortname: "Llofii",
       		rarity: 2,
       	},
-      	hernais: {
+        {
       		id: 10,
       		name: "Hernais pyr Longus",
       		shortname: "Hernais",
       		rarity: 3,
       	},
-      	dabog: {
+      	{
       		id: 11,
       		name: "Dabog aan Inivisch",
       		shortname: "Dabog",
       		rarity: 5,
       	},
-      	dyunbu: {
+      	{
       		id: 12,
       		name: "Dyunbu pyr Potitus",
       		shortname: "Dyunbu",
       		rarity: 4,
       	},
-      	clarricie: {
+      	{
       		id: 13,
       		name: "Clarricie quo Priscus",
       		shortname: "Clarricie",
       		rarity: 2,
       	},
-      	sartauvoir: {
+      	{
       		id: 14,
       		name: "Sartauvoir quo Soranus",
       		shortname: "Sartauvoir",
       		rarity: 5,
       	},
-      	sicinius: {
+      	{
       		id: 15,
       		name: "Sicinius mal Vellutus",
       		shortname: "Sicinius",
       		rarity: 3,
       	},
-      	albeleo: {
+      	{
       		id: 16,
       		name: "Sadr rem Albeleo",
       		shortname: "Albeleo",
       		rarity: 3,
       	},
-      	lyon: {
+      	{
       		id: 17,
       		name: "Lyon rem Helsos",
       		shortname: "Lyon",
       		rarity: 5,
       	},
-      },
+      ],
       nms: {
         sneak: {
           label: {
@@ -2779,104 +2779,104 @@ const Options = {
       mapToPixelXConstant: 10.03,
       mapToPixelYScalar: 39.247,
       mapToPixelYConstant: -202.55,
-      fieldNotes:{
-      	atori: {
+      fieldNotes:[
+      	{
       		id: 31,
       		name: "Atori Moribe",
       		shortname: "Atori",
       		rarity: 1,
       	},
-      	kosyu: {
+      	{
       		id: 32,
       		name: "Kosyu",
       		shortname: "Kosyu",
       		rarity: 2,
       	},
-      	oboro: {
+      	{
       		id: 33,
       		name: "Oboro Torioi",
       		shortname: "Oboro",
       		rarity: 1,
       	},
-      	tsubame: {
+      	{
       		id: 34,
       		name: "Tsubame",
       		shortname: "Tsubame Oshidari",
       		rarity: 3,
       	},
-      	meryall: {
+      	{
       		id: 35,
       		name: "Meryall Miller",
       		shortname: "Meryall",
       		rarity: 2,
       	},
-      	lovro: {
+      	{
       		id: 36,
       		name: "Lovro aan Slanasch",
       		shortname: "Lovro",
       		rarity: 3,
       	},
-      	llofii: {
+      	{
       		id: 37,
       		name: "Llofii pyr Potitus",
       		shortname: "Llofii",
       		rarity: 4,
       	},
-      	fabineau: {
+      	{
       		id: 38,
       		name: "Fabineau quo Soranus",
       		shortname: "Fabineau",
       		rarity: 2,
       	},
-      	yamatsumi: {
+      	{
       		id: 39,
       		name: "Yamatsumi pyr Urabe",
       		shortname: "Yamatsumi",
       		rarity: 3,
       	},
-      	pagaga: {
+      	{
       		id: 40,
       		name: "Pagaga quo Vochstein",
       		shortname: "Pagaga",
       		rarity: 1,
       	},
-      	daguza: {
+      	{
       		id: 41,
       		name: "Daguza oen Sus",
       		shortname: "Daguza",
       		rarity: 1,
       	},
-      	gilbrisbert: {
+      	{
       		id: 42,
       		name: "Gilbrisbert quo Buteo",
       		shortname: "Gilbrisbert",
       		rarity: 2,
       	},
-      	dabog: {
+      	{
       		id: 43,
       		name: "Dabog aan Inivisch",
       		shortname: "Dabog",
       		rarity: 5,
       	},
-      	lyon: {
+      	{
       		id: 44,
       		name: "Lyon quo Helsos",
       		shortname: "Lyon",
       		rarity: 5,
       	},
-      	menenius: {
+      	{
       		id: 45,
       		name: "Menenius sas Lanatus",
       		shortname: "Menenius",
       		rarity: 5,
       	},
-      	diablo: {
+      	{
       		id: 46,
       		name: "Diablo",
       		shortname: "Diablo",
       		rarity: 3,
       	},
-      },
+      ],
       nms: {
         ofbeastsandbraggadocio: {
           label: {
