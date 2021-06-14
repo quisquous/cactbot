@@ -800,17 +800,16 @@ export class PopupText {
     this.triggerSuppress = {};
 
     for (const init of this.dataInitializers) {
-      const data = init(this.data);
-      if (data)
-        this.data = data;
-      else
+      const data = init();
+      if (data) {
+        this.data = {
+          ...data,
+          ...this.data,
+        };
+      } else {
         console.log(`Data initializer returned invalid object:\n${init.toString()}`);
+      }
     }
-
-    this.data = {
-      ...this.data,
-      ...this.getDataObject(),
-    };
   }
 
   StopTimers(): void {
