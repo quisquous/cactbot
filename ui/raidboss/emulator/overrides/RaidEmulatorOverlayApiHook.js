@@ -102,6 +102,7 @@ export default class RaidEmulatorOverlayApiHook {
       this.originalCall(msg).then((data) => {
         this.cachedData[key] = toCache(data);
         window.localStorage.setItem('raidEmulatorCachedCalls', JSON.stringify(this.cachedData));
+        window.localStorage.setItem('raidEmulatorCacheTime', new Date().toString());
         res(data);
       });
     });

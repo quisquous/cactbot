@@ -126,6 +126,7 @@ import './raidemulator.css';
     // Wait for the DB to be ready before doing anything that might invoke the DB
     persistor.initializeDB().then(async () => {
       let websocketConnected = false;
+      let cached = false;
       if (window.location.href.indexOf('OVERLAY_WS') > 0) {
         // Give the websocket 500ms to connect, then abort.
         websocketConnected = await Promise.race([
@@ -151,7 +152,8 @@ import './raidemulator.css';
       }
 
       if (!websocketConnected) {
-        if (emulatedWebSocket.hasCachedCactbotCall({ 'call': 'cactbotLoadData', 'overlay': 'options' })) {
+        cached = emulatedWebSocket.hasCachedCactbotCall({ 'call': 'cactbotLoadData', 'overlay': 'options' });
+        if (cached) {
           await UserConfig.getUserConfigLocation('raidboss', Options, (e) => {
             document.querySelector('.websocketConnected').classList.add('d-none');
             document.querySelector('.websocketCached').classList.remove('d-none');
@@ -197,6 +199,21 @@ import './raidemulator.css';
             const matchedEncounters = encounters.filter((e) => e.id === lastEncounter);
             if (matchedEncounters.length)
               encounterTab.dispatch('load', lastEncounter);
+          }
+          if (!websocketConnected) {
+            const discModal = showModal('.disconnectedModal');
+            const indicator = document.querySelector('.connectionIndicator');
+            indicator.querySelector('.connectedIndicator').classList.add('d-none');
+            if (cached) {
+              discModal.querySelector('.cachedWarning').classList.remove('d-none');
+              discModal.querySelector('.disconnectedWarning').classList.add('d-none');
+              const cacheTime = window.localStorage.getItem('raidEmulatorCacheTime') || 'Unknown';
+              discModal.querySelector('.cachedTime').innerText = cacheTime;
+              indicator.querySelector('.cachedIndicator').classList.remove('d-none');
+              indicator.querySelector('.cachedTime').innerText = cacheTime;
+            } else {
+              indicator.querySelector('.disconnectedIndicator').classList.remove('d-none');
+            }
           }
         }
       });

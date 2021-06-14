@@ -96,6 +96,38 @@
         </div>
       </div>
     </div>
+    <div class="modal disconnectedModal text-dark" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Currently Disconnected</h5>
+            <button type="button" class="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Raid Emulator is currently disconnected from ACT.</p>
+            <div class="d-none cachedWarning">
+              <p>You are using cached data from a previous connection to ACT.</p>
+              <p>The date of the cached data is: <span class="cachedTime"></span></p>
+              <p>Any changes to settings in ACT or to user configuration files since this date will not be reflected in Raid Emulator.</p>
+            </div>
+            <div class="disconnectedWarning">
+              <p>Raid Emulator will use the default settings for raidboss. These are:</p>
+              <ul>
+                <li>Display language: English</li>
+                <li>Default alert output: Text and Sound</li>
+                <li>Alerts language: English</li>
+                <li>Timeline language: English</li>
+              </ul>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="container-fluid d-flex flex-column flex-fill h-100">
       <div class="row my-3 progressBarRow">
         <div class="col-auto">
@@ -138,6 +170,19 @@
           <div class="d-inline progress-bar-timestamp current-timestamp">00:00</div>
           <div class="d-inline progress-bar-timestamp divider-timestamp">/</div>
           <div class="d-inline progress-bar-timestamp duration-timestamp">00:00</div>
+        </div>
+        <div class="col-auto">
+          <span class="connectionIndicator">
+            <i
+              class="connectedIndicator fa fa-plug text-success" data-toggle="tooltip"
+              title="Connected to websocket"></i>
+            <i
+              class="cachedIndicator fa fa-plug text-warning d-none" data-toggle="tooltip"
+              title="Using cached data"></i>
+            <i
+              class="disconnectedIndicator fa fa-plug text-danger d-none" data-toggle="tooltip"
+              title="Disconnected from websocket"></i>
+          </span>
         </div>
       </div>
       <div class="row mainContentRow flex-fill">
