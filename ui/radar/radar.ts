@@ -9,6 +9,8 @@ import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import UserConfig from '../../resources/user_config';
 
+import arrowImage from './arrow.png';
+
 import './radar_config';
 
 import '../../resources/defaults.css';
@@ -283,7 +285,7 @@ class Radar {
       let th = document.createElement('th');
       const img = document.createElement('img');
       img.setAttribute('id', arrowId);
-      img.setAttribute('src', 'arrow.png');
+      img.setAttribute('src', arrowImage);
       img.setAttribute('class', 'radar-image-40');
       th.appendChild(img);
       th.setAttribute('style', 'max-width: 100px');

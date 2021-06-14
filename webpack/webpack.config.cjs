@@ -183,6 +183,7 @@ module.exports = function(env, argv) {
     output: {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, '../dist'),
+      assetModuleFilename: '[file][query]',
     },
     devServer: {
       contentBase: path.join(__dirname, '../dist'),
@@ -242,6 +243,10 @@ module.exports = function(env, argv) {
           ],
         },
         {
+          test: /\.(png|jpe?g)/,
+          type: 'asset/resource',
+        },
+        {
           test: /data[\\\/]\w*_manifest\.txt$/,
           use: [
             {
@@ -269,18 +274,13 @@ module.exports = function(env, argv) {
       ...htmlPluginRules,
       new CopyPlugin({
         patterns: [
-          {
-            // copy sounds and images
-            from: 'resources/@(ffxiv|sounds)/**/*',
-          },
+          // {
+          //   // copy sounds and images
+          //   from: 'resources/@(ffxiv|sounds)/**/*',
+          // },
           {
             // copy more html in raidboss module
             from: 'ui/raidboss/raidboss_*.html',
-          },
-          {
-            // copy images under radar and eureka
-            // TODO: directly `import` images into js code
-            from: 'ui/@(radar|eureka)/*.png',
           },
           {
             // copy all the skins folder under modules,
