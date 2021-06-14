@@ -35,6 +35,24 @@ UserConfig.registerOptions('eureka', {
       },
     },
     {
+      id: 'CompleteNamesSTQ',
+      name: {
+        en: 'Prefer complete names for BSF and Zadnor\'s Skirmishes/Critical Engagements',
+        fr: 'Préférer les noms complet pour les escarmouches/Affrontements Cruciaux dans Bozja/Zadnor',
+      },
+      type: 'checkbox',
+      default: false,
+    },
+    {
+      id: 'EnrichedSTQ',
+      name: {
+        en: 'Add information about BSF and Zadnor\'s Fields Notes',
+        fr: 'Ajouter les informations relatives aux Notes ',
+      },
+      type: 'checkbox',
+      default: false,
+    },
+    {
       id: 'PopNoiseForNM',
       name: {
         en: 'Play pop sound for NMs',
