@@ -3705,20 +3705,15 @@ class EurekaTracker {
     // Enriched options for Save-The-Queen content
     // Adds field note drops, name, id & rarity of those
     if (this.zoneInfo.treatNMsAsSkirmishes && this.options.EnrichedSTQ && nm.dropsFieldNotes) {
-      for (let i = 0; i < Object.keys(fieldNotesList).length; i++) {
-        if (fieldNotesList[i].id === nm.fieldNotes) {
-          enriched.innerText = ('#' + fieldNotesList[i].id + ' : ' + fieldNotesList[i].shortName + ' - ');
-          for (let i2 = 0; i2 !== fieldNotesList[i].rarity; i2++)
-            enriched.innerHTML += (gRarityIcon);
-        }
+      for (const note of fieldNotesList) {
+        if (note.id === nm.FieldNotes)
+          enriched.innerHTML = `#${note.id}: ${note.shortName} ${gRarityIcon.repeat(note.rarity)}`;
       }
     }
 
     label.appendChild(icon);
     label.appendChild(name);
-    // We don't need an extra empty span if not in Bozja or if user doesn't need it
-    if (this.options.EnrichedSTQ && this.zoneInfo.treatNMsAsSkirmishes)
-      label.appendChild(enriched);
+    label.appendChild(enriched);
     label.appendChild(progress);
     label.appendChild(time);
     container.appendChild(label);
