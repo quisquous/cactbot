@@ -1154,10 +1154,14 @@ export class PopupText {
           result = triggerHelper.valueOrFunction(resp.tts);
       }
 
-      if (result)
-        triggerHelper.ttsText = result?.toString();
-      else
+      // Allow false or null to disable tts entirely
+      // Undefined will fall back to defaultTTSText
+      if (result !== undefined) {
+        if (result)
+          triggerHelper.ttsText = result?.toString();
+      } else {
         triggerHelper.ttsText = triggerHelper.defaultTTSText;
+      }
     }
   }
 
