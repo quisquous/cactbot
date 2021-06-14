@@ -1732,110 +1732,110 @@ const Options = {
       mapToPixelXConstant: -292.56,
       mapToPixelYScalar: 48.938,
       mapToPixelYConstant: -349.22,
-      fieldNotes: {
-      	bajsaljen: {
-      		id: 1,
-      		name: "Bajsaljen Ulgasch",
-      		shortname: "Bajsalen",
-      		rarity: 1,
-      	},
-      	marsak: {
-      		id: 2,
-      		name: "Marsak Apella",
-      		shortname: "Marsak",
-      		rarity: 1,
-      	},
-      	xeven: {
-      		id: 3,
-      		name: "Xeven Scanasch",
-      		shortname: "Xeven",
-      		rarity: 1,
-      	},
-      	isolde: {
-      		id: 4,
-      		name: "Isolde Covey",
-      		shortname: "Isolde",
-      		rarity: 2,
-      	},
-      	stanik: {
-      		id: 5,
-      		name: "Stanik Alubov",
-      		shortname: "Stanik",
-      		rarity: 1,
-      	},
-      	blaz: {
-      		id: 6,
-      		name: "Blaz Azetina",
-      		shortname: "Blaz",
-      		rarity: 3,
-      	},
-      	velibor: {
-      		id: 7,
-      		name: "Velibor Azetina",
-      		shortname: "Velibor",
-      		rarity: 3,
-      	},
-      	aggie: {
-      		id: 8,
-      		name: "Aggie Glover",
-      		shortname: "Aggie",
-      		rarity: 1,
-      	},
-      	llofii: {
-      		id: 9,
-      		name: "Llofii pyr Potitus",
-      		shortname: "Llofii",
-      		rarity: 2,
-      	},
-      	hernais: {
-      		id: 10,
-      		name: "Hernais pyr Longus",
-      		shortname: "Hernais",
-      		rarity: 3,
-      	},
-      	dabog: {
-      		id: 11,
-      		name: "Dabog aan Inivisch",
-      		shortname: "Dabog",
-      		rarity: 5,
-      	},
-      	dyunbu: {
-      		id: 12,
-      		name: "Dyunbu pyr Potitus",
-      		shortname: "Dyunbu",
-      		rarity: 4,
-      	},
-      	clarricie: {
-      		id: 13,
-      		name: "Clarricie quo Priscus",
-      		shortname: "Clarricie",
-      		rarity: 2,
-      	},
-      	sartauvoir: {
-      		id: 14,
-      		name: "Sartauvoir quo Soranus",
-      		shortname: "Sartauvoir",
-      		rarity: 5,
-      	},
-      	sicinius: {
-      		id: 15,
-      		name: "Sicinius mal Vellutus",
-      		shortname: "Sicinius",
-      		rarity: 3,
-      	},
-      	albeleo: {
-      		id: 16,
-      		name: "Sadr rem Albeleo",
-      		shortname: "Albeleo",
-      		rarity: 3,
-      	},
-      	lyon: {
-      		id: 17,
-      		name: "Lyon rem Helsos",
-      		shortname: "Lyon",
-      		rarity: 5,
-      	},
-      },
+      fieldNotes: [
+        {
+          id: 1,
+          name: 'Bajsaljen Ulgasch',
+          shortname: 'Bajsalen',
+          rarity: 1,
+        },
+        {
+          id: 2,
+          name: 'Marsak Apella',
+          shortname: 'Marsak',
+          rarity: 1,
+        },
+        {
+          id: 3,
+          name: 'Xeven Scanasch',
+          shortname: 'Xeven',
+          rarity: 1,
+        },
+        {
+          id: 4,
+          name: 'Isolde Covey',
+          shortname: 'Isolde',
+          rarity: 2,
+        },
+        {
+          id: 5,
+          name: 'Stanik Alubov',
+          shortname: 'Stanik',
+          rarity: 1,
+        },
+        {
+          id: 6,
+          name: 'Blaz Azetina',
+          shortname: 'Blaz',
+          rarity: 3,
+        },
+        {
+          id: 7,
+          name: 'Velibor Azetina',
+          shortname: 'Velibor',
+          rarity: 3,
+        },
+        {
+          id: 8,
+          name: 'Aggie Glover',
+          shortname: 'Aggie',
+          rarity: 1,
+        },
+        {
+          id: 9,
+          name: 'Llofii pyr Potitus',
+          shortname: 'Llofii',
+          rarity: 2,
+        },
+        {
+          id: 10,
+          name: 'Hernais pyr Longus',
+          shortname: 'Hernais',
+          rarity: 3,
+        },
+        {
+          id: 11,
+          name: 'Dabog aan Inivisch',
+          shortname: 'Dabog',
+          rarity: 5,
+        },
+        {
+          id: 12,
+          name: 'Dyunbu pyr Potitus',
+          shortname: 'Dyunbu',
+          rarity: 4,
+        },
+        {
+          id: 13,
+          name: 'Clarricie quo Priscus',
+          shortname: 'Clarricie',
+          rarity: 2,
+        },
+        {
+          id: 14,
+          name: 'Sartauvoir quo Soranus',
+          shortname: 'Sartauvoir',
+          rarity: 5,
+        },
+        {
+          id: 15,
+          name: 'Sicinius mal Vellutus',
+          shortname: 'Sicinius',
+          rarity: 3,
+        },
+        {
+          id: 16,
+          name: 'Sadr rem Albeleo',
+          shortname: 'Albeleo',
+          rarity: 3,
+        },
+        {
+          id: 17,
+          name: 'Lyon rem Helsos',
+          shortname: 'Lyon',
+          rarity: 5,
+        },
+      ],
       nms: {
         sneak: {
           label: {
@@ -1848,8 +1848,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Sneak',
-          	fr: 'Yeux',
+            en: 'Sneak',
+            fr: 'Yeux',
           },
           x: 20.3,
           y: 26.8,
@@ -1867,8 +1867,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 8,
           shortLabel: {
-          	en: 'Robots',
-          	fr: 'Araignées',
+            en: 'Robots',
+            fr: 'Araignées',
           },
           x: 24.8,
           y: 27.5,
@@ -1886,8 +1886,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 3,
           shortLabel: {
-          	en: 'Beasts',
-          	fr: 'Museler',
+            en: 'Beasts',
+            fr: 'Museler',
           },
           x: 20.3,
           y: 26.8,
@@ -1904,8 +1904,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Unrest',
-          	fr: 'Pas de quartier',
+            en: 'Unrest',
+            fr: 'Pas de quartier',
           },
           x: 24.8,
           y: 27.5,
@@ -1924,8 +1924,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 1,
           shortLabel: {
-          	en: 'Machine',
-          	fr: 'Machine',
+            en: 'Machine',
+            fr: 'Machine',
           },
           x: 28.4,
           y: 29.3,
@@ -1943,8 +1943,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 5,
           shortLabel: {
-          	en: 'Plants',
-          	fr: 'Racines',
+            en: 'Plants',
+            fr: 'Racines',
           },
           x: 34.4,
           y: 29.3,
@@ -1961,8 +1961,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Seeq',
-          	fr: 'Ménagerie',
+            en: 'Seeq',
+            fr: 'Ménagerie',
           },
           x: 28.9,
           y: 26.1,
@@ -1981,8 +1981,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 2,
           shortLabel: {
-          	en: 'Pets',
-          	fr: 'Plantes',
+            en: 'Pets',
+            fr: 'Plantes',
           },
           x: 17.3,
           y: 26.6,
@@ -2000,8 +2000,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 4,
           shortLabel: {
-          	en: 'First Law',
-          	fr: 'Numéros dix',
+            en: 'First Law',
+            fr: 'Numéros dix',
           },
           x: 34.4,
           y: 29.3,
@@ -2018,8 +2018,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Heal',
-          	fr: 'Miséricorde',
+            en: 'Heal',
+            fr: 'Miséricorde',
           },
           x: 28.9,
           y: 26.1,
@@ -2037,8 +2037,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 10,
           shortLabel: {
-          	en: 'Mash',
-          	fr: 'Retour du chien',
+            en: 'Mash',
+            fr: 'Retour du chien',
           },
           x: 31.3,
           y: 22.0,
@@ -2056,8 +2056,8 @@ const Options = {
           isCEPrecursor: true,
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Alert',
-          	fr: 'Chocobos',
+            en: 'Alert',
+            fr: 'Chocobos',
           },
           x: 27.3,
           y: 17.7,
@@ -2076,8 +2076,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 13,
           shortLabel: {
-          	en: 'Unicorn',
-          	fr: 'Licorne',
+            en: 'Unicorn',
+            fr: 'Licorne',
           },
           x: 32.3,
           y: 17.0,
@@ -2094,8 +2094,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Recreation',
-          	fr: 'Innovation',
+            en: 'Recreation',
+            fr: 'Innovation',
           },
           x: 25.6,
           y: 22.6,
@@ -2112,8 +2112,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Supplies',
-          	fr: 'Vivres',
+            en: 'Supplies',
+            fr: 'Vivres',
           },
           x: 17.5,
           y: 23.4,
@@ -2131,8 +2131,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 15,
           shortLabel: {
-          	en: 'Boots',
-          	fr: 'Force',
+            en: 'Boots',
+            fr: 'Force',
           },
           x: 31.3,
           y: 22.0,
@@ -2150,8 +2150,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 6,
           shortLabel: {
-          	en: 'Camping',
-          	fr: 'Idéaux',
+            en: 'Camping',
+            fr: 'Idéaux',
           },
           x: 17.5,
           y: 23.4,
@@ -2169,8 +2169,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 7,
           shortLabel: {
-          	en: 'Scavengers',
-          	fr: 'Dévoreurs',
+            en: 'Scavengers',
+            fr: 'Dévoreurs',
           },
           x: 25.6,
           y: 22.6,
@@ -2187,8 +2187,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Help',
-          	fr: 'Résister',
+            en: 'Help',
+            fr: 'Résister',
           },
           x: 18.3,
           y: 20.7,
@@ -2206,8 +2206,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 7,
           shortLabel: {
-          	en: 'Pyromancer',
-          	fr: 'Brûlant',
+            en: 'Pyromancer',
+            fr: 'Brûlant',
           },
           x: 18.3,
           y: 20.7,
@@ -2225,8 +2225,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 13,
           shortLabel: {
-          	en: 'Rainbow',
-          	fr: 'Couleurs',
+            en: 'Rainbow',
+            fr: 'Couleurs',
           },
           x: 25.1,
           y: 15.0,
@@ -2243,8 +2243,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Wild Bunch',
-          	fr: 'Sans maîtres',
+            en: 'Wild Bunch',
+            fr: 'Sans maîtres',
           },
           x: 21.0,
           y: 14.3,
@@ -2261,8 +2261,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Family',
-          	fr: 'Incorruptible',
+            en: 'Family',
+            fr: 'Incorruptible',
           },
           x: 11.0,
           y: 14.6,
@@ -2280,8 +2280,8 @@ const Options = {
           isCEPrecursor: true,
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Mechanical',
-          	fr: 'Plan B',
+            en: 'Mechanical',
+            fr: 'Plan B',
           },
           x: 20.8,
           y: 17.7,
@@ -2299,8 +2299,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 11,
           shortLabel: {
-          	en: 'Murder',
-          	fr: 'Des Machines',
+            en: 'Murder',
+            fr: 'Des Machines',
           },
           x: 14.0,
           y: 15.3,
@@ -2317,8 +2317,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Seeking',
-          	fr: 'Creusent',
+            en: 'Seeking',
+            fr: 'Creusent',
           },
           x: 24.8,
           y: 17.1,
@@ -2336,8 +2336,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 5,
           shortLabel: {
-          	en: 'Supplies',
-          	fr: 'Casser',
+            en: 'Supplies',
+            fr: 'Casser',
           },
           x: 21.0,
           y: 14.3,
@@ -2354,8 +2354,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Demonic',
-          	fr: 'Hémoglobine',
+            en: 'Demonic',
+            fr: 'Hémoglobine',
           },
           x: 11.1,
           y: 20.2,
@@ -2373,8 +2373,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 12,
           shortLabel: {
-          	en: 'Absent',
-          	fr: 'Vengeresse',
+            en: 'Absent',
+            fr: 'Vengeresse',
           },
           isCEPrecursor: true,
           x: 13.8,
@@ -2394,8 +2394,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 14,
           shortLabel: {
-          	en: 'Steel',
-          	fr: 'Fer & Feu',
+            en: 'Steel',
+            fr: 'Fer & Feu',
           },
           x: 13.8,
           y: 18.3,
@@ -2413,8 +2413,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 4,
           shortLabel: {
-          	en: 'Dogs',
-          	fr: 'Brigade',
+            en: 'Dogs',
+            fr: 'Brigade',
           },
           x: 14.0,
           y: 15.3,
@@ -2432,8 +2432,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 3,
           shortLabel: {
-          	en: 'War',
-          	fr: 'Cent Mille',
+            en: 'War',
+            fr: 'Cent Mille',
           },
           x: 11.1,
           y: 20.2,
@@ -2476,8 +2476,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 13,
           shortLabel: {
-          	en: 'Kill it',
-          	fr: 'Pestilence',
+            en: 'Kill it',
+            fr: 'Pestilence',
           },
           x: 17.4,
           y: 26.9,
@@ -2495,8 +2495,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Hounds',
-          	fr: 'Chien',
+            en: 'Hounds',
+            fr: 'Chien',
           },
           x: 22.8,
           y: 28.8,
@@ -2514,8 +2514,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Vigil',
-          	fr: 'Vigile',
+            en: 'Vigil',
+            fr: 'Vigile',
           },
           x: 28.4,
           y: 29.5,
@@ -2535,8 +2535,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 11,
           shortLabel: {
-          	en: 'Aces High',
-          	fr: 'Force divine',
+            en: 'Aces High',
+            fr: 'Force divine',
           },
           x: 32.3,
           y: 26.8,
@@ -2557,8 +2557,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 3,
           shortLabel: {
-          	en: 'Shadow',
-          	fr: 'Ailes noires',
+            en: 'Shadow',
+            fr: 'Ailes noires',
           },
           x: 36.5,
           y: 25.8,
@@ -2577,8 +2577,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 9,
           shortLabel: {
-          	en: 'Furlong',
-          	fr: 'Menace',
+            en: 'Furlong',
+            fr: 'Menace',
           },
           x: 33.3,
           y: 17.5,
@@ -2596,8 +2596,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Choctober',
-          	fr: 'Ruée en Rouge',
+            en: 'Choctober',
+            fr: 'Ruée en Rouge',
           },
           x: 27.3,
           y: 17.7,
@@ -2617,8 +2617,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 17,
           shortLabel: {
-          	en: 'Beast of Man',
-          	fr: 'Roi Bestial',
+            en: 'Beast of Man',
+            fr: 'Roi Bestial',
           },
           x: 23.3,
           y: 20.4,
@@ -2638,8 +2638,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Fires of War',
-          	fr: 'Brasier',
+            en: 'Fires of War',
+            fr: 'Brasier',
           },
           x: 20.8,
           y: 23.9,
@@ -2657,8 +2657,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Patriot',
-          	fr: 'Patriote',
+            en: 'Patriot',
+            fr: 'Patriote',
           },
           x: 14.2,
           y: 21.2,
@@ -2676,8 +2676,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Trampled',
-          	fr: 'Œil du malin',
+            en: 'Trampled',
+            fr: 'Œil du malin',
           },
           x: 9.9,
           y: 18.1,
@@ -2696,8 +2696,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 14,
           shortLabel: {
-          	en: 'Flames',
-          	fr: 'Phénix',
+            en: 'Flames',
+            fr: 'Phénix',
           },
           x: 18.8,
           y: 15.9,
@@ -2717,8 +2717,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Metal Fox',
-          	fr: 'Guerrier de Métal',
+            en: 'Metal Fox',
+            fr: 'Guerrier de Métal',
           },
           x: 13.8,
           y: 18.3,
@@ -2738,8 +2738,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 15,
           shortLabel: {
-          	en: 'Rise',
-          	fr: 'Soulèvement',
+            en: 'Rise',
+            fr: 'Soulèvement',
           },
           x: 21.2,
           y: 17.6,
@@ -2757,8 +2757,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Behemoth',
-          	fr: 'Mastodonte',
+            en: 'Behemoth',
+            fr: 'Mastodonte',
           },
           x: 24.2,
           y: 14.9,
@@ -2779,104 +2779,104 @@ const Options = {
       mapToPixelXConstant: 10.03,
       mapToPixelYScalar: 39.247,
       mapToPixelYConstant: -202.55,
-      fieldNotes:{
-      	atori: {
-      		id: 31,
-      		name: "Atori Moribe",
-      		shortname: "Atori",
-      		rarity: 1,
-      	},
-      	kosyu: {
-      		id: 32,
-      		name: "Kosyu",
-      		shortname: "Kosyu",
-      		rarity: 2,
-      	},
-      	oboro: {
-      		id: 33,
-      		name: "Oboro Torioi",
-      		shortname: "Oboro",
-      		rarity: 1,
-      	},
-      	tsubame: {
-      		id: 34,
-      		name: "Tsubame",
-      		shortname: "Tsubame Oshidari",
-      		rarity: 3,
-      	},
-      	meryall: {
-      		id: 35,
-      		name: "Meryall Miller",
-      		shortname: "Meryall",
-      		rarity: 2,
-      	},
-      	lovro: {
-      		id: 36,
-      		name: "Lovro aan Slanasch",
-      		shortname: "Lovro",
-      		rarity: 3,
-      	},
-      	llofii: {
-      		id: 37,
-      		name: "Llofii pyr Potitus",
-      		shortname: "Llofii",
-      		rarity: 4,
-      	},
-      	fabineau: {
-      		id: 38,
-      		name: "Fabineau quo Soranus",
-      		shortname: "Fabineau",
-      		rarity: 2,
-      	},
-      	yamatsumi: {
-      		id: 39,
-      		name: "Yamatsumi pyr Urabe",
-      		shortname: "Yamatsumi",
-      		rarity: 3,
-      	},
-      	pagaga: {
-      		id: 40,
-      		name: "Pagaga quo Vochstein",
-      		shortname: "Pagaga",
-      		rarity: 1,
-      	},
-      	daguza: {
-      		id: 41,
-      		name: "Daguza oen Sus",
-      		shortname: "Daguza",
-      		rarity: 1,
-      	},
-      	gilbrisbert: {
-      		id: 42,
-      		name: "Gilbrisbert quo Buteo",
-      		shortname: "Gilbrisbert",
-      		rarity: 2,
-      	},
-      	dabog: {
-      		id: 43,
-      		name: "Dabog aan Inivisch",
-      		shortname: "Dabog",
-      		rarity: 5,
-      	},
-      	lyon: {
-      		id: 44,
-      		name: "Lyon quo Helsos",
-      		shortname: "Lyon",
-      		rarity: 5,
-      	},
-      	menenius: {
-      		id: 45,
-      		name: "Menenius sas Lanatus",
-      		shortname: "Menenius",
-      		rarity: 5,
-      	},
-      	diablo: {
-      		id: 46,
-      		name: "Diablo",
-      		shortname: "Diablo",
-      		rarity: 3,
-      	},
-      },
+      fieldNotes: [
+        {
+          id: 31,
+          name: 'Atori Moribe',
+          shortname: 'Atori',
+          rarity: 1,
+        },
+        {
+          id: 32,
+          name: 'Kosyu',
+          shortname: 'Kosyu',
+          rarity: 2,
+        },
+        {
+          id: 33,
+          name: 'Oboro Torioi',
+          shortname: 'Oboro',
+          rarity: 1,
+        },
+        {
+          id: 34,
+          name: 'Tsubame',
+          shortname: 'Tsubame Oshidari',
+          rarity: 3,
+        },
+        {
+          id: 35,
+          name: 'Meryall Miller',
+          shortname: 'Meryall',
+          rarity: 2,
+        },
+        {
+          id: 36,
+          name: 'Lovro aan Slanasch',
+          shortname: 'Lovro',
+          rarity: 3,
+        },
+        {
+          id: 37,
+          name: 'Llofii pyr Potitus',
+          shortname: 'Llofii',
+          rarity: 4,
+        },
+        {
+          id: 38,
+          name: 'Fabineau quo Soranus',
+          shortname: 'Fabineau',
+          rarity: 2,
+        },
+        {
+          id: 39,
+          name: 'Yamatsumi pyr Urabe',
+          shortname: 'Yamatsumi',
+          rarity: 3,
+        },
+        {
+          id: 40,
+          name: 'Pagaga quo Vochstein',
+          shortname: 'Pagaga',
+          rarity: 1,
+        },
+        {
+          id: 41,
+          name: 'Daguza oen Sus',
+          shortname: 'Daguza',
+          rarity: 1,
+        },
+        {
+          id: 42,
+          name: 'Gilbrisbert quo Buteo',
+          shortname: 'Gilbrisbert',
+          rarity: 2,
+        },
+        {
+          id: 43,
+          name: 'Dabog aan Inivisch',
+          shortname: 'Dabog',
+          rarity: 5,
+        },
+        {
+          id: 44,
+          name: 'Lyon quo Helsos',
+          shortname: 'Lyon',
+          rarity: 5,
+        },
+        {
+          id: 45,
+          name: 'Menenius sas Lanatus',
+          shortname: 'Menenius',
+          rarity: 5,
+        },
+        {
+          id: 46,
+          name: 'Diablo',
+          shortname: 'Diablo',
+          rarity: 3,
+        },
+      ],
       nms: {
         ofbeastsandbraggadocio: {
           label: {
@@ -2887,8 +2887,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 31,
           shortLabel: {
-          	en: 'Beasts',
-          	fr: 'Dresseuse',
+            en: 'Beasts',
+            fr: 'Dresseuse',
           },
           x: 24.1,
           y: 37.4,
@@ -2903,8 +2903,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 33,
           shortLabel: {
-          	en: 'Parcel',
-          	fr: 'Astres',
+            en: 'Parcel',
+            fr: 'Astres',
           },
           x: 22.8,
           y: 34.2,
@@ -2920,8 +2920,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 37,
           shortLabel: {
-          	en: 'Dilemma',
-          	fr: 'Retrouvailles',
+            en: 'Dilemma',
+            fr: 'Retrouvailles',
           },
           x: 22.7,
           y: 34.2,
@@ -2935,8 +2935,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Divination',
-          	fr: 'Prêtre',
+            en: 'Divination',
+            fr: 'Prêtre',
           },
           x: 24.8,
           y: 31.4,
@@ -2950,8 +2950,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Wrench',
-          	fr: 'Ni vu ni connu',
+            en: 'Wrench',
+            fr: 'Ni vu ni connu',
           },
           x: 29.4,
           y: 35.4,
@@ -2966,8 +2966,8 @@ const Options = {
           isCEPrecursor: true,
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Pilot',
-          	fr: 'Dabog',
+            en: 'Pilot',
+            fr: 'Dabog',
           },
           x: 28.0,
           y: 29.2,
@@ -2981,8 +2981,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Ice',
-          	fr: 'Pique',
+            en: 'Ice',
+            fr: 'Pique',
           },
           x: 24.8,
           y: 31.1,
@@ -2997,8 +2997,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 42,
           shortLabel: {
-          	en: 'Puppet',
-          	fr: 'Ficelles',
+            en: 'Puppet',
+            fr: 'Ficelles',
           },
           x: 24.1,
           y: 37.4,
@@ -3013,8 +3013,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 40,
           shortLabel: {
-          	en: 'Challenge',
-          	fr: 'Problème',
+            en: 'Challenge',
+            fr: 'Problème',
           },
           x: 7.2,
           y: 28.8,
@@ -3028,8 +3028,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'T\'huban',
-          	fr: 'Dinosaure',
+            en: 'T\'huban',
+            fr: 'Dinosaure',
           },
           x: 8.6,
           y: 34.4,
@@ -3045,8 +3045,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 38,
           shortLabel: {
-          	en: 'Atrocities',
-          	fr: 'Le malsain',
+            en: 'Atrocities',
+            fr: 'Le malsain',
           },
           x: 4.9,
           y: 25.3,
@@ -3061,8 +3061,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 34,
           shortLabel: {
-          	en: 'Pursuit',
-          	fr: 'Recherché',
+            en: 'Pursuit',
+            fr: 'Recherché',
           },
           x: 11.6,
           y: 27.6,
@@ -3077,8 +3077,8 @@ const Options = {
           isCEPrecursor: true,
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Tanking',
-          	fr: 'Se baisser',
+            en: 'Tanking',
+            fr: 'Se baisser',
           },
           x: 8.1,
           y: 24.0,
@@ -3093,8 +3093,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 43,
           shortLabel: {
-          	en: 'Supersoldier',
-          	fr: 'Guet-apens',
+            en: 'Supersoldier',
+            fr: 'Guet-apens',
           },
           x: 8.1,
           y: 24.0,
@@ -3109,8 +3109,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 36,
           shortLabel: {
-          	en: 'Demented',
-          	fr: 'Magie',
+            en: 'Demented',
+            fr: 'Magie',
           },
           x: 7.2,
           y: 28.8,
@@ -3125,8 +3125,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 32,
           shortLabel: {
-          	en: 'Sever',
-          	fr: 'Marionnettes',
+            en: 'Sever',
+            fr: 'Marionnettes',
           },
           x: 11.6,
           y: 27.6,
@@ -3141,8 +3141,8 @@ const Options = {
           isCEPrecursor: true,
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Beasts',
-          	fr: 'Pagagaille',
+            en: 'Beasts',
+            fr: 'Pagagaille',
           },
           x: 25.4,
           y: 14.3,
@@ -3156,8 +3156,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Still',
-          	fr: 'Sans défense',
+            en: 'Still',
+            fr: 'Sans défense',
           },
           x: 14.5,
           y: 10.4,
@@ -3172,8 +3172,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 41,
           shortLabel: {
-          	en: 'Seeq',
-          	fr: 'Non !',
+            en: 'Seeq',
+            fr: 'Non !',
           },
           x: 20.3,
           y: 16.5,
@@ -3188,8 +3188,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 39,
           shortLabel: {
-          	en: 'Mean',
-          	fr: 'Trésor',
+            en: 'Mean',
+            fr: 'Trésor',
           },
           x: 25.4,
           y: 14.3,
@@ -3204,8 +3204,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 32,
           shortLabel: {
-          	en: 'Relic',
-          	fr: 'Sans issue',
+            en: 'Relic',
+            fr: 'Sans issue',
           },
           x: 25.4,
           y: 14.3,
@@ -3219,8 +3219,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Mages',
-          	fr: 'Cailloux',
+            en: 'Mages',
+            fr: 'Cailloux',
           },
           x: 20.3,
           y: 16.5,
@@ -3236,8 +3236,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 43,
           shortLabel: {
-          	en: 'Hyper',
-          	fr: 'Opportunité',
+            en: 'Hyper',
+            fr: 'Opportunité',
           },
           x: 16.6,
           y: 16.8,
@@ -3253,8 +3253,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 35,
           shortLabel: {
-          	en: 'Supersoldiers',
-          	fr: 'Plus d\'un',
+            en: 'Supersoldiers',
+            fr: 'Plus d\'un',
           },
           x: 16.6,
           y: 16.8,
@@ -3269,8 +3269,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 36,
           shortLabel: {
-          	en: 'Student',
-          	fr: 'Élève',
+            en: 'Student',
+            fr: 'Élève',
           },
           x: 14.5,
           y: 10.4,
@@ -3284,8 +3284,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Machines',
-          	fr: 'En série',
+            en: 'Machines',
+            fr: 'En série',
           },
           x: 12.1,
           y: 13.6,
@@ -3299,8 +3299,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Dalriada',
-          	fr: 'Dal\'riada',
+            en: 'Dalriada',
+            fr: 'Dal\'riada',
           },
           x: 25.9,
           y: 8.2,
@@ -3317,8 +3317,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Serpents',
-          	fr: 'Zirnitrop',
+            en: 'Serpents',
+            fr: 'Zirnitrop',
           },
           x: 31.4,
           y: 37.4,
@@ -3334,8 +3334,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 35,
           shortLabel: {
-          	en: 'Burn',
-          	fr: 'Progrès',
+            en: 'Burn',
+            fr: 'Progrès',
           },
           x: 16.6,
           y: 16.8,
@@ -3352,8 +3352,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 43,
           shortLabel: {
-          	en: 'Blade',
-          	fr: 'Dabog',
+            en: 'Blade',
+            fr: 'Dabog',
           },
           x: 26.5,
           y: 35.6,
@@ -3371,8 +3371,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 37,
           shortLabel: {
-          	en: 'Grave',
-          	fr: 'Sycophante',
+            en: 'Grave',
+            fr: 'Sycophante',
           },
           x: 20.2,
           y: 37.4,
@@ -3387,8 +3387,8 @@ const Options = {
           },
           dropsFieldNotes: true,
           shortLabel: {
-          	en: 'Diremite',
-          	fr: 'Ma nature',
+            en: 'Diremite',
+            fr: 'Ma nature',
           },
           x: 17.0,
           y: 32.1,
@@ -3403,8 +3403,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Cavalry',
-          	fr: 'Cavalier',
+            en: 'Cavalry',
+            fr: 'Cavalier',
           },
           x: 6.4,
           y: 37.2,
@@ -3420,8 +3420,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 45,
           shortLabel: {
-          	en: 'Snake',
-          	fr: 'Par l\'exemple',
+            en: 'Snake',
+            fr: 'Par l\'exemple',
           },
           x: 5.3,
           y: 31.9,
@@ -3438,8 +3438,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Blood',
-          	fr: 'Cendres',
+            en: 'Blood',
+            fr: 'Cendres',
           },
           x: 13.7,
           y: 26.0,
@@ -3454,8 +3454,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Wolf',
-          	fr: 'Hród\'vnir',
+            en: 'Wolf',
+            fr: 'Hród\'vnir',
           },
           x: 4.9,
           y: 25.3,
@@ -3471,8 +3471,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Time',
-          	fr: 'Titan',
+            en: 'Time',
+            fr: 'Titan',
           },
           x: 10.5,
           y: 21.5,
@@ -3487,8 +3487,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Lean, Mean',
-          	fr: 'Réusinage',
+            en: 'Lean, Mean',
+            fr: 'Réusinage',
           },
           x: 15.2,
           y: 13.0,
@@ -3503,8 +3503,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Shadow',
-          	fr: 'Oiseau',
+            en: 'Shadow',
+            fr: 'Oiseau',
           },
           x: 11.8,
           y: 7.6,
@@ -3519,8 +3519,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Familiar',
-          	fr: 'Ordonnateur',
+            en: 'Familiar',
+            fr: 'Ordonnateur',
           },
           x: 28.0,
           y: 29.2,
@@ -3536,8 +3536,8 @@ const Options = {
           },
           dropsFieldNotes: false,
           shortLabel: {
-          	en: 'Looks',
-          	fr: 'Écaillage',
+            en: 'Looks',
+            fr: 'Écaillage',
           },
           x: 17.4,
           y: 9.8,
@@ -3553,8 +3553,8 @@ const Options = {
           dropsFieldNotes: true,
           fieldNotes: 44,
           shortLabel: {
-          	en: 'Lyon\'s',
-          	fr: 'Lyon',
+            en: 'Lyon\'s',
+            fr: 'Lyon',
           },
           x: 22.5,
           y: 13.2,
@@ -3679,15 +3679,14 @@ class EurekaTracker {
     // Short labels only exist for Save-The-Queen content
     // Changes names' length depending on users options
     // If no strings are available, the english short ones will be the default ones
-    if(this.zoneInfo.treatNMsAsSkirmishes)
-    {
-        if (this.options.CompleteNamesSTQ)
-            name.innerText = this.TransByDispLang(nm.label);
-        if(!name.innerText)
-            name.innerText = this.TransByDispLang(nm.shortLabel);
-    }
-    else
+    if (this.zoneInfo.treatNMsAsSkirmishes) {
+      if (this.options.CompleteNamesSTQ)
         name.innerText = this.TransByDispLang(nm.label);
+      if (!name.innerText)
+        name.innerText = this.TransByDispLang(nm.shortLabel);
+    } else {
+      name.innerText = this.TransByDispLang(nm.label);
+    }
 
     const progress = document.createElement('span');
     progress.innerText = '';
@@ -3705,22 +3704,21 @@ class EurekaTracker {
 
     // Enriched options for Save-The-Queen content
     // Adds field note drops, name, id & rarity of those
-    if(this.zoneInfo.treatNMsAsSkirmishes && this.options.EnrichedSTQ && nm.dropsFieldNotes) {
-        for (var i=0; i < Object.keys(fieldNotesList).length; i++) {
-            if (fieldNotesList[i].id === nm.fieldNotes) {
-                enriched.innerText = ("#" + fieldNotesList[i].id + " : " + fieldNotesList[i].shortname + " - ");
-                for (var i2 = 0; i2 != fieldNotesList[i].rarity; i2++) {
-                    enriched.innerText += (gRarityIcon);
-                }
-            }
+    if (this.zoneInfo.treatNMsAsSkirmishes && this.options.EnrichedSTQ && nm.dropsFieldNotes) {
+      for (let i = 0; i < Object.keys(fieldNotesList).length; i++) {
+        if (fieldNotesList[i].id === nm.fieldNotes) {
+          enriched.innerText = ('#' + fieldNotesList[i].id + ' : ' + fieldNotesList[i].shortname + ' - ');
+          for (let i2 = 0; i2 !== fieldNotesList[i].rarity; i2++)
+            enriched.innerText += (gRarityIcon);
         }
+      }
     }
 
     label.appendChild(icon);
     label.appendChild(name);
     // We don't need an extra empty span if not in Bozja or if user doesn't need it
     if (this.options.EnrichedSTQ && this.zoneInfo.treatNMsAsSkirmishes)
-        label.appendChild(enriched);
+      label.appendChild(enriched);
     label.appendChild(progress);
     label.appendChild(time);
     container.appendChild(label);
@@ -3834,12 +3832,12 @@ class EurekaTracker {
         this.PlaySound(this.options.BunnyPopSound, this.options.BunnyPopVolume);
     } else if (fate.isCritical) {
       const shouldPlay = fate.isDuelPrecursor && this.options.PopNoiseForDuel ||
-          this.options.PopNoiseForCriticalEngagement;
+        this.options.PopNoiseForCriticalEngagement;
       if (shouldPlay && this.options.CriticalPopSound && this.options.CriticalPopVolume)
         this.PlaySound(this.options.CriticalPopSound, this.options.CriticalPopVolume);
     } else {
       const shouldPlay = this.zoneInfo.treatNMsAsSkirmishes && this.options.PopNoiseForSkirmish ||
-          !this.zoneInfo.treatNMsAsSkirmishes && this.options.PopNoiseForNM;
+        !this.zoneInfo.treatNMsAsSkirmishes && this.options.PopNoiseForNM;
       if (shouldPlay && this.options.PopSound && this.options.PopVolume)
         this.PlaySound(this.options.PopSound, this.options.PopVolume);
     }
