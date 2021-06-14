@@ -86,6 +86,20 @@ module.exports = function({ cactbotModules, cactbotChunks, cactbotHtmlChunksMap 
         {
           // this will allow importing without extension in js files.
           test: /\.m?js$/,
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    targets: { chrome: '75' },
+                  },
+                ],
+              ],
+            },
+          },
           resolve: {
             fullySpecified: false,
           },
