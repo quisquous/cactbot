@@ -37,7 +37,7 @@ UserConfig.registerOptions('eureka', {
     {
       id: 'CompleteNamesSTQ',
       name: {
-        en: 'Prefer complete names for BSF and Zadnor\'s Skirmishes/Critical Engagements',
+        en: 'Prefer complete names for Skirmishes/Critical Engagements',
         fr: 'Préférer les noms complet pour les escarmouches/Affrontements Cruciaux dans Bozja/Zadnor',
       },
       type: 'checkbox',
