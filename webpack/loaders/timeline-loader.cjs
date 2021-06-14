@@ -3,6 +3,7 @@
 const commentRegex = /(?<=^(?:[^"/]*(?:|"[^"]*"))[^"/]*(?:|sync\s*\/[^/]*\/[^"/]*))#.*$/i;
 
 module.exports = function(content, map, meta) {
+  this.cacheable(true);
   let ret = '';
 
   content.split(/\r?\n/).forEach((_line) => {
