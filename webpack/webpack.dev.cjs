@@ -39,8 +39,13 @@ module.exports = mergeWithRules({
       options: 'replace',
     },
   },
+  cache: 'replace',
 })(baseConfig, {
   mode: 'development',
   devtool: 'source-map',
+  cache: {
+    type: 'memory',
+    name: 'cactbot',
+  },
   ...tsConfigOverride,
 });

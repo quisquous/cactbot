@@ -52,8 +52,13 @@ module.exports = mergeWithRules({
       use: 'replace',
     },
   },
+  cache: 'replace',
 })(baseConfig, {
   mode: 'production',
+  cache: {
+    type: 'filesystem',
+    name: 'cactbot',
+  },
   ...optimizationOverride,
   ...cssMinifyConfigOverride,
 });

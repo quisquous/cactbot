@@ -255,6 +255,27 @@ May be a string or a `function(data, matches, output)` that returns a string.
 **tts**
 An alternative text string for the chosen TTS option to use for callouts.
 This can be a localized object just like the text popups.
+If this is set, but there is no key matching your current language,
+Raidboss will default to the text from the text popups.
+
+For example, consider this configuration:
+
+```typescript
+{
+  ...
+  infoText: {
+    en: 'Tank Buster',
+    de: 'AoE',
+    fr: 'Cleave',
+  },
+  tts: {
+    de: 'Spread',
+  },
+}
+```
+
+If your language is `en`, you will receive the `Tank Buster` message.
+If your language is `de`, you will receive the `Spread` message.
 
 **run: function(data, matches, output)**
 If the trigger activates, the function will run as the last action before the trigger ends.
