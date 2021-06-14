@@ -145,9 +145,9 @@ type SoundTypeVolume = `${SoundType}Volume`;
 
 const texts = ['info', 'alert', 'alarm'] as const;
 
-type Text = typeof texts[number];
+export type Text = typeof texts[number];
 type TextUpper = `${Capitalize<Text>}`;
-type TextText = `${Text}Text`;
+export type TextText = `${Text}Text`;
 type TextUpperText = `${TextUpper}Text`;
 
 type TextMap = {

@@ -18,6 +18,7 @@ export default class LineEvent {
   public readonly hexEvent: string;
   public readonly timestamp: number;
   public readonly checksum: string;
+  public readonly properCaseConvertedLine?: string;
 
   constructor(repo: LogRepository, public networkLine: string, parts: string[]) {
     this.decEvent = parseInt(parts[fields.event] ?? '0');
