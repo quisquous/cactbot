@@ -707,8 +707,12 @@ export class PopupText {
     const filterEnabled = (trigger: LooseTrigger) => !('disabled' in trigger && trigger.disabled);
     const allTriggers = orderedTriggers.asList().filter(filterEnabled);
 
-    this.triggers = allTriggers.filter(isRegexTrigger);
-    this.netTriggers = allTriggers.filter(isNetRegexTrigger);
+    this.triggers = allTriggers.filter(
+        (t) => isRegexTrigger(t) && !isRaidbossLooseTimelineTrigger(t),
+    );
+    this.netTriggers = allTriggers.filter(
+        (t) => isNetRegexTrigger(t) && !isRaidbossLooseTimelineTrigger(t),
+    );
     const timelineTriggers = allTriggers.filter(isRaidbossLooseTimelineTrigger);
 
     this.timelineLoader.SetTimelines(
