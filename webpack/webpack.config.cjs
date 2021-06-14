@@ -177,7 +177,6 @@ module.exports = function(env, argv) {
     },
     cache: {
       type: 'filesystem',
-      allowCollectingMemory: true,
     },
     devtool: dev ? 'source-map' : undefined,
     output: {
