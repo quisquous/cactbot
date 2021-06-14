@@ -3716,9 +3716,7 @@ class EurekaTracker {
 
     label.appendChild(icon);
     label.appendChild(name);
-    // We don't need an extra empty span if not in Bozja or if user doesn't need it
-    if (this.options.EnrichedSTQ && this.zoneInfo.treatNMsAsSkirmishes)
-      label.appendChild(enriched);
+    label.appendChild(enriched);
     label.appendChild(progress);
     label.appendChild(time);
     container.appendChild(label);
