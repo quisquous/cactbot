@@ -3827,12 +3827,12 @@ class EurekaTracker {
         this.PlaySound(this.options.BunnyPopSound, this.options.BunnyPopVolume);
     } else if (fate.isCritical) {
       const shouldPlay = fate.isDuelPrecursor && this.options.PopNoiseForDuel ||
-        this.options.PopNoiseForCriticalEngagement;
+          this.options.PopNoiseForCriticalEngagement;
       if (shouldPlay && this.options.CriticalPopSound && this.options.CriticalPopVolume)
         this.PlaySound(this.options.CriticalPopSound, this.options.CriticalPopVolume);
     } else {
       const shouldPlay = this.zoneInfo.treatNMsAsSkirmishes && this.options.PopNoiseForSkirmish ||
-        !this.zoneInfo.treatNMsAsSkirmishes && this.options.PopNoiseForNM;
+          !this.zoneInfo.treatNMsAsSkirmishes && this.options.PopNoiseForNM;
       if (shouldPlay && this.options.PopSound && this.options.PopVolume)
         this.PlaySound(this.options.PopSound, this.options.PopVolume);
     }
