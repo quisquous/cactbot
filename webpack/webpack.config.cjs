@@ -175,8 +175,8 @@ module.exports = function(env, argv) {
         },
       },
     },
-    cache: {
-      type: dev ? 'memory' : 'filesystem',
+    cache: dev ? true : {
+      type: 'filesystem',
       name: 'cactbot',
     },
     devtool: dev ? 'source-map' : undefined,
