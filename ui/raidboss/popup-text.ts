@@ -331,7 +331,7 @@ class TriggerOutputProxy {
       value = template[this.displayLang] ?? template['en'];
 
     if (typeof value !== 'string') {
-      console.error(`Trigger ${id} has invalid outputString ${name}.`, template);
+      console.error(`Trigger ${id} has invalid outputString ${name}.`, JSON.stringify(template));
       return;
     }
 
