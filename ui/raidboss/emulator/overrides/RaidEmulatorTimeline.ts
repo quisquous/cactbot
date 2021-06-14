@@ -1,12 +1,17 @@
-import { Timeline } from '../../timeline';
+import { LooseTimelineTrigger } from '../../../../types/trigger';
+import { RaidbossOptions } from '../../raidboss_options';
+import { Timeline, TimelineReplacement, TimelineStyle } from '../../timeline';
+import RaidEmulator from '../data/RaidEmulator';
 
 export default class RaidEmulatorTimeline extends Timeline {
-  constructor(text, replacements, triggers, styles, options) {
+  emulatedStatus = 'pause';
+  emulator?: RaidEmulator;
+  constructor(text: string, replacements: TimelineReplacement[], triggers: LooseTimelineTrigger[],
+      styles: TimelineStyle[], options: RaidbossOptions) {
     super(text, replacements, triggers, styles, options);
-    this.emulatedStatus = 'pause';
   }
 
-  bindTo(emulator) {
+  bindTo(emulator: RaidEmulator): void {
     this.emulator = emulator;
     emulator.on('play', () => {
       this.emulatedStatus = 'play';
@@ -16,7 +21,7 @@ export default class RaidEmulatorTimeline extends Timeline {
     });
   }
 
-  emulatedSync(currentLogTime) {
+  emulatedSync(currentLogTime: number): void {
     if (!currentLogTime)
       return;
 
@@ -24,14 +29,15 @@ export default class RaidEmulatorTimeline extends Timeline {
     // fightNow needs to be calculated based off of that instead of initialOffset
     // timebase = 0 when not set
     const baseTimestamp = this.timebase ||
-      this.emulator.currentEncounter.encounter.initialTimestamp;
+      this.emulator?.currentEncounter?.encounter?.initialTimestamp ||
+      currentLogTime;
     const fightNow = (currentLogTime - baseTimestamp) / 1000;
 
     this.SyncTo(fightNow, currentLogTime);
     this._OnUpdateTimer(currentLogTime);
   }
 
-  // Override
-  _ScheduleUpdate(fightNow) {
+  _ScheduleUpdate(_fightNow: number): void {
+    // Override
   }
 }

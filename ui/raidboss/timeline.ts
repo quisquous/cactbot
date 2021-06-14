@@ -78,7 +78,7 @@ export type TimelineReplacement = {
   replaceText?: { [timelineText: string]: string };
 };
 
-type TimelineStyle = {
+export type TimelineStyle = {
   style: { [key: string]: string };
   regex: RegExp;
 }

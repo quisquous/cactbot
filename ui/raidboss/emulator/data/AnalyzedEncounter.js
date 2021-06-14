@@ -7,8 +7,12 @@ import { TimelineLoader } from '../../timeline';
 import Util from '../../../../resources/util';
 import raidbossFileData from '../../data/raidboss_manifest.txt';
 import RaidEmulatorAnalysisTimelineUI from '../overrides/RaidEmulatorAnalysisTimelineUI';
+import Encounter from './Encounter';
 
 export default class AnalyzedEncounter extends EventBus {
+  /**
+   * @param {Encounter} encounter
+   */
   constructor(options, encounter, emulator) {
     super();
     this.options = options;
