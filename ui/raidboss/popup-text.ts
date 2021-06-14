@@ -803,6 +803,8 @@ export class PopupText {
       const data = init(this.data);
       if (data)
         this.data = data;
+      else
+        console.log(`Data initializer returned invalid object:\n${init.toString()}`);
     }
 
     this.data = {
