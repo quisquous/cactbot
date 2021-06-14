@@ -2,7 +2,6 @@ import EmulatorCommon, { DataType } from '../EmulatorCommon';
 import StubbedPopupText from '../overrides/StubbedPopupText';
 import LineEvent from './network_log_converter/LineEvent';
 import { LooseTrigger, MatchesAny } from '../../../../types/trigger';
-import { UnreachableCode } from '../../../../resources/not_reached';
 import { TriggerHelper, Text, TextText, ProcessedTrigger } from '../../popup-text';
 import { EventResponses, LogEvent } from '../../../../types/event';
 
@@ -44,7 +43,7 @@ class Resolver {
   private delayUntil?: number;
   private final?: ResolverFunc;
   private delayPromise?: Promise<void>;
-  private delayResolver?: (value: void | PromiseLike<void>) => void;
+  private delayResolver?: ResolverFunc;
   public triggerHelper?: EmulatorTriggerHelper;
 
   constructor(public status: ResolverStatus) {}
@@ -113,28 +112,25 @@ export default class PopupTextAnalysis extends StubbedPopupText {
         this.SetInCombat(false);
 
       for (const trigger of this.triggers) {
-        // partial commit, make sure you amend!
         const r = trigger.localRegex?.exec(log);
-        if (r) {
-          if (!this.data)
-            throw new UnreachableCode();
+        if (!r)
+          continue;
 
-          const resolver = this.currentResolver = new Resolver({
-            initialData: EmulatorCommon.cloneData(this.data),
-            suppressed: false,
-            executed: false,
-          });
-          this.triggerResolvers.push(resolver);
+        const resolver = this.currentResolver = new Resolver({
+          initialData: EmulatorCommon.cloneData(this.data),
+          suppressed: false,
+          executed: false,
+        });
+        this.triggerResolvers.push(resolver);
 
-          this.OnTrigger(trigger, r, logObj.timestamp);
+        this.OnTrigger(trigger, r, logObj.timestamp);
 
-          resolver.setFinal(() => {
-            resolver.status.finalData = EmulatorCommon.cloneData(this.data);
-            delete resolver.triggerHelper?.resolver;
-            if (this.callback)
-              this.callback(logObj, resolver.triggerHelper, resolver.status, this.data);
-          });
-        }
+        resolver.setFinal(() => {
+          resolver.status.finalData = EmulatorCommon.cloneData(this.data);
+          delete resolver.triggerHelper?.resolver;
+          if (this.callback)
+            this.callback(logObj, resolver.triggerHelper, resolver.status, this.data);
+        });
       }
 
       await this.checkResolved(logObj);
@@ -223,20 +219,18 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   }
 
   _onTriggerInternalRun(triggerHelper: EmulatorTriggerHelper): void {
-    if (triggerHelper.resolver) {
-      triggerHelper.resolver.setRun(() => {
-        if (triggerHelper.resolver)
-          triggerHelper.resolver.status.executed = true;
-        super._onTriggerInternalRun(triggerHelper);
-      });
-    }
+    triggerHelper.resolver?.setRun(() => {
+      if (triggerHelper.resolver)
+        triggerHelper.resolver.status.executed = true;
+      super._onTriggerInternalRun(triggerHelper);
+    });
   }
 
   _makeTextElement(triggerHelper: EmulatorTriggerHelper,
       text: string,
       _className: string): HTMLElement {
     if (triggerHelper.resolver)
-      triggerHelper.resolver.status.result = triggerHelper.resolver.status.result || text;
+      triggerHelper.resolver.status.result ??= text;
     return document.createElement('div');
   }
 
