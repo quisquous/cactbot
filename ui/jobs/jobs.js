@@ -453,8 +453,10 @@ class Bars {
       timerBox.id = id;
       timerBox.classList.add('timer-box');
     }
-    if (notifyWhenExpired)
+    if (notifyWhenExpired) {
       timerBox.classList.add('notify-when-expired');
+      timerBox.soundnotification = this.options.NotifyExpiredProcsInCombatSound;
+    }
     return timerBox;
   }
 
