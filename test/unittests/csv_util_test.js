@@ -7,6 +7,7 @@ describe('util/csv_util tests', () => {
   it('cleanName', () => {
     [
       ['', '', 'should return empty string'],
+      [undefined, undefined, 'should return undefined'],
       [null, null, 'should return null'],
       ['Sastasha', 'Sastasha', 'should return the same'],
       ['The Tam-Tara Deepcroft', 'TheTamTaraDeepcroft', 'should remove space and dash'],

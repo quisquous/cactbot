@@ -40,7 +40,7 @@ export const cleanName = (str: string): string => {
 
   // Common case hyphen: TheSecondCoilOfBahamutTurn1
   // Special case hyphen: ThePalaceOfTheDeadFloors1_10
-  str = str.replace(/([0-9])-([0-9])/, '_');
+  str = str.replace(/([0-9])-([0-9])/, '$1_$2');
   str = str.replace(/[-]/, '');
 
   // Of course capitalization isn't consistent, that'd be ridiculous.
