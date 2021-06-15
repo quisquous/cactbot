@@ -317,7 +317,8 @@ class TriggerOutputProxy {
   getReplacement(
       // Can't use optional modifier for this arg since the others aren't optional
       template: { [lang: string]: unknown } | string | undefined,
-      params: TriggerParams,
+      // User trigger may pass unknown value as parameters
+      params: { [key: string]: unknown },
       name: string,
       id: string): string | undefined {
     if (!template)
@@ -338,11 +339,14 @@ class TriggerOutputProxy {
     return value.replace(/\${\s*([^}\s]+)\s*}/g, (_fullMatch: string, key: string) => {
       if (params && key in params) {
         const str = params[key];
-        if (typeof str !== 'string' && typeof str !== 'number') {
-          console.error(`Trigger ${id} has non-string param value ${key}.`);
-          return this.unknownValue;
+        switch (typeof str) {
+        case 'string':
+          return str;
+        case 'number':
+          return str.toString();
         }
-        return str;
+        console.error(`Trigger ${id} has non-string param value ${key}.`);
+        return this.unknownValue;
       }
       console.error(`Trigger ${id} can't replace ${key} in ${JSON.stringify(template)}.`);
       return this.unknownValue;
