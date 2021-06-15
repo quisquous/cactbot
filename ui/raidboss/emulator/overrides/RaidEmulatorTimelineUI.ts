@@ -4,7 +4,7 @@ import { TimelineUI, Event } from '../../timeline';
 import RaidEmulator from '../data/RaidEmulator';
 import RaidEmulatorTimeline from './RaidEmulatorTimeline';
 
-interface EmulatorTimerBar {
+export interface EmulatorTimerBar {
   $progress: HTMLElement;
   $bar: HTMLDivElement;
   $leftLabel: HTMLElement;
