@@ -3614,9 +3614,9 @@ class EurekaTracker {
 
     // Enriched options for Save-The-Queen content
     // Adds field note drops, name, id & rarity of those
-    if (this.zoneInfo.treatNMsAsSkirmishes && this.options.EnrichedSTQ && nm.dropsFieldNotes) {
+    if (this.zoneInfo.treatNMsAsSkirmishes && this.options.EnrichedSTQ && nm.fieldNotes) {
       for (const note of fieldNotesList) {
-        if (note.id === nm.FieldNotes)
+        if (note.id === nm.fieldNotes)
           enriched.innerHTML = `#${note.id}: ${note.shortName} ${gRarityIcon.repeat(note.rarity)}`;
       }
     }
