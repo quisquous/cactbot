@@ -2,8 +2,8 @@
 
 const { merge } = require('webpack-merge');
 
-const ProdConfig = require('./webpack.prod.cjs');
+const prodConfig = require('./webpack.prod.cjs');
 
-module.exports = merge(ProdConfig, {
+module.exports = merge(prodConfig, {
   devtool: 'inline-source-map',
 });
