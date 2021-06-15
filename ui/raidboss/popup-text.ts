@@ -21,16 +21,21 @@ import { RaidbossData } from '../../types/data';
 import { Job, Role } from '../../types/job';
 import { EventResponses, LogEvent } from '../../types/event';
 
+const isRaidbossLooseTimelineTrigger =
+  (trigger: LooseTrigger): trigger is ProcessedTimelineTrigger => {
+    return 'isTimelineTrigger' in trigger;
+  };
+
 export const isNetRegexTrigger = (trigger?: LooseTrigger):
     trigger is Partial<NetRegexTrigger<RaidbossData>> => {
-  if (trigger)
+  if (trigger && !isRaidbossLooseTimelineTrigger(trigger))
     return 'netRegex' in trigger;
   return false;
 };
 
 export const isRegexTrigger = (trigger?: LooseTrigger):
     trigger is Partial<RegexTrigger<RaidbossData>> => {
-  if (trigger)
+  if (trigger && !isRaidbossLooseTimelineTrigger(trigger))
     return 'regex' in trigger;
   return false;
 };
@@ -51,11 +56,6 @@ type ProcessedTriggerSet = LooseTriggerSet & {
   timelineTriggers?: ProcessedTimelineTrigger[];
   triggers?: ProcessedTrigger[];
 };
-
-const isRaidbossLooseTimelineTrigger =
-  (trigger: LooseTrigger): trigger is ProcessedTimelineTrigger => {
-    return 'isTimelineTrigger' in trigger;
-  };
 
 // There should be (at most) six lines of instructions.
 const raidbossInstructions: { [lang in Lang]: string[] } = {
