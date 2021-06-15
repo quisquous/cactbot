@@ -306,10 +306,6 @@ type PlayerChangedRet = Job extends infer T ? T extends Job ? {
   currentGP: number;
   maxGP: number;
   currentShield: number;
-  // TODO: Is there a cleaner way to do this? It would be better if there were a way to
-  // determine which job was passed in with the event and explicitly use that JobDetail
-  // Potentially add the job to the jobDetail passed back from the C# plugin, and use
-  // that information to decide the type
   jobDetail: JobDetail[T];
   pos: {
     x: number;
