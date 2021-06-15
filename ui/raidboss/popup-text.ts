@@ -425,7 +425,10 @@ export class PopupText {
   protected triggerSets: ProcessedTriggerSet[] = [];
   protected zoneName = '';
   protected zoneId = -1;
-  protected dataInitializers: DataInitializeFunc<RaidbossData>[] = [];
+  protected dataInitializers: {
+    file: string;
+    func: DataInitializeFunc<RaidbossData>;
+  }[] = [];
 
   constructor(
       protected options: RaidbossOptions,
@@ -623,8 +626,14 @@ export class PopupText {
           console.log('Loading user triggers for zone');
       }
 
-      if (set.initData)
-        this.dataInitializers.push(set.initData);
+      const setFilename = set.filename ?? 'Unknown';
+
+      if (set.initData) {
+        this.dataInitializers.push({
+          file: setFilename,
+          func: set.initData,
+        });
+      }
 
       // Adjust triggers for the parser language.
       if (set.triggers && this.options.AlertsEnabled) {
@@ -632,7 +641,7 @@ export class PopupText {
           // Add an additional resolved regex here to save
           // time later.  This will clobber each time we
           // load this, but that's ok.
-          trigger.filename = set.filename ?? 'Unknown';
+          trigger.filename = setFilename;
           const id = trigger.id;
 
           if (!isRegexTrigger(trigger) && !isNetRegexTrigger(trigger)) {
@@ -799,15 +808,17 @@ export class PopupText {
     this.StopTimers();
     this.triggerSuppress = {};
 
-    for (const init of this.dataInitializers) {
+    for (const initObj of this.dataInitializers) {
+      const init = initObj.func;
       const data = init();
-      if (data) {
+      if (typeof data === 'object') {
         this.data = {
           ...data,
           ...this.data,
         };
       } else {
-        console.log(`Data initializer returned invalid object:\n${init.toString()}`);
+        console.log(`Error in file: ${initObj.file}: these triggers may not work;
+        initData function returned invalid object: ${init.toString()}`);
       }
     }
   }
