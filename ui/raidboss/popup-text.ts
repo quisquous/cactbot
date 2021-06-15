@@ -2,7 +2,10 @@ import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_
 
 import AutoplayHelper from './autoplay_helper';
 import BrowserTTSEngine from './browser_tts_engine';
-import { addPlayerChangedOverrideListener, PlayerChangedDetail } from '../../resources/player_override';
+import {
+  addPlayerChangedOverrideListener,
+  PlayerChangedDetail,
+} from '../../resources/player_override';
 import PartyTracker from '../../resources/party';
 import Regexes from '../../resources/regexes';
 import Util from '../../resources/util';
@@ -27,14 +30,14 @@ const isRaidbossLooseTimelineTrigger =
   };
 
 export const isNetRegexTrigger = (trigger?: LooseTrigger):
-    trigger is Partial<NetRegexTrigger<RaidbossData>> => {
+  trigger is Partial<NetRegexTrigger<RaidbossData>> => {
   if (trigger && !isRaidbossLooseTimelineTrigger(trigger))
     return 'netRegex' in trigger;
   return false;
 };
 
 export const isRegexTrigger = (trigger?: LooseTrigger):
-    trigger is Partial<RegexTrigger<RaidbossData>> => {
+  trigger is Partial<RegexTrigger<RaidbossData>> => {
   if (trigger && !isRaidbossLooseTimelineTrigger(trigger))
     return 'regex' in trigger;
   return false;
@@ -365,7 +368,7 @@ export type RaidbossTriggerField =
   TriggerField<RaidbossData, TriggerOutput<RaidbossData, MatchesAny>> |
   TriggerField<RaidbossData, PartialTriggerOutput<RaidbossData, MatchesAny>>;
 export type RaidbossTriggerOutput = TriggerOutput<RaidbossData, MatchesAny> |
-  PartialTriggerOutput<RaidbossData, MatchesAny>;
+PartialTriggerOutput<RaidbossData, MatchesAny>;
 
 const defaultOutput = TriggerOutputProxy.makeOutput({}, 'en');
 
@@ -585,7 +588,7 @@ export class PopupText {
       if (haveZoneId && set.zoneId === undefined) {
         const filename = set.filename ? `'${set.filename}'` : '(user file)';
         console.error(`Trigger set has zoneId, but with nothing specified in ${filename}.  ` +
-                      `Did you misspell the ZoneId.ZoneName?`);
+          `Did you misspell the ZoneId.ZoneName?`);
         continue;
       }
 
@@ -1172,8 +1175,8 @@ export class PopupText {
 
   _onTriggerInternalPlayAudio(triggerHelper: TriggerHelper): void {
     if (triggerHelper.trigger.sound &&
-        triggerHelper.soundUrl &&
-        soundStrs.includes(triggerHelper.soundUrl)) {
+      triggerHelper.soundUrl &&
+      soundStrs.includes(triggerHelper.soundUrl)) {
       const namedSound = triggerHelper.soundUrl + 'Sound';
       const namedSoundVolume = triggerHelper.soundUrl + 'SoundVolume';
       const sound = this.options[namedSound];

@@ -39,17 +39,17 @@ export type Output = {
 
 // The output of any non-response raidboss trigger function.
 export type TriggerOutput<Data, Matches> =
-    undefined | null | LocaleText | string | number | boolean |
-    ((d: Data, m: Matches, o: Output) => TriggerOutput<Data, Matches>);
+  undefined | null | LocaleText | string | number | boolean |
+  ((d: Data, m: Matches, o: Output) => TriggerOutput<Data, Matches>);
 
 // Used if the function doesn't need to return an en key
 export type PartialTriggerOutput<Data, Matches> =
-    undefined | null | Partial<LocaleText> | string | number | boolean |
-    ((d: Data, m: Matches, o: Output) => PartialTriggerOutput<Data, Matches>);
+  undefined | null | Partial<LocaleText> | string | number | boolean |
+  ((d: Data, m: Matches, o: Output) => PartialTriggerOutput<Data, Matches>);
 
 // The type of a non-response trigger field.
 export type TriggerFunc<Data, Matches, Return> =
-    (data: Data, matches: Matches, output: Output) => Return;
+  (data: Data, matches: Matches, output: Output) => Return;
 
 // The output from a response function (different from other TriggerOutput functions).
 export type ResponseOutput<Data, Matches> = {
@@ -60,7 +60,7 @@ export type ResponseOutput<Data, Matches> = {
 };
 // The type of a response trigger field.
 export type ResponseFunc<Data, Matches> =
-    (data: Data, matches: Matches, output: Output) => ResponseOutput<Data, Matches>;
+  (data: Data, matches: Matches, output: Output) => ResponseOutput<Data, Matches>;
 
 export type ResponseField<Data> = ResponseFunc<Data, MatchesAny> | ResponseOutput<Data, MatchesAny>;
 
@@ -80,7 +80,7 @@ export type MatchesAny = { [s in T]?: string };
 // it is not possible to assign `(d: Data) => boolean` to a void | undefined, only to void.
 export type TriggerField<Data, Return> =
   [Return] extends [void] ? TriggerFunc<Data, MatchesAny, void> :
-  TriggerFunc<Data, MatchesAny, Return | undefined> | Return | undefined;
+    TriggerFunc<Data, MatchesAny, Return | undefined> | Return | undefined;
 
 // This trigger type is what we expect cactbot triggers to be written as,
 // in other words `id` is not technically required for triggers but for
@@ -148,11 +148,11 @@ export type TriggerSet<Data> = {
 export type LooseTimelineTrigger = Partial<TimelineTrigger<RaidbossData>>;
 
 export type LooseTrigger =
-    Partial<RegexTrigger<RaidbossData>> | Partial<NetRegexTrigger<RaidbossData>>;
+     Partial<RegexTrigger<RaidbossData>> | Partial<NetRegexTrigger<RaidbossData>>;
 
 export type LooseTriggerSet = Exclude<Partial<TriggerSet<RaidbossData>>, 'triggers' | 'timelineTriggers'> & {
-    /** @deprecated Use zoneId instead */
-    zoneRegex?: RegExp | { [lang in Lang]?: RegExp };
-    triggers?: LooseTrigger[];
-    timelineTriggers?: LooseTimelineTrigger[];
+  /** @deprecated Use zoneId instead */
+  zoneRegex?: RegExp | { [lang in Lang]?: RegExp };
+  triggers?: LooseTrigger[];
+  timelineTriggers?: LooseTimelineTrigger[];
 }

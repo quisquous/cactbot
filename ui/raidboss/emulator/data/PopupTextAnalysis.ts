@@ -91,9 +91,9 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   triggerResolvers: Resolver[] = [];
   currentResolver?: Resolver;
   public callback?: (log: LineEvent,
-      triggerHelper: EmulatorTriggerHelper | undefined,
-      currentTriggerStatus: ResolverStatus,
-      finalData: DataType) => void;
+    triggerHelper: EmulatorTriggerHelper | undefined,
+    currentTriggerStatus: ResolverStatus,
+    finalData: DataType) => void;
 
   // Override `OnTrigger` so we can use our own exception handler
   OnTrigger(trigger: LooseTrigger, matches: RegExpExecArray | null, currentTime: number): void {

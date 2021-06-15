@@ -135,8 +135,8 @@ type AddTimerCallback = (fightNow: number, durationEvent: Event, channeling: boo
 type PopupTextCallback = (text: string, currentTime: number) => void;
 type TriggerCallback =
     (trigger: LooseTimelineTrigger,
-    matches: RegExpExecArray | null,
-    currentTime: number) => void;
+      matches: RegExpExecArray | null,
+      currentTime: number) => void;
 
 // TODO: Duplicated in 'jobs'
 const computeBackgroundColorFrom = (element: HTMLElement, classList: string): string => {
@@ -176,7 +176,7 @@ export class Timeline {
 
   private addTimerCallback: AddTimerCallback | null = null;
   private removeTimerCallback: |
-    ((e: Event, expired: boolean, force?: boolean) => void) | null = null;
+  ((e: Event, expired: boolean, force?: boolean) => void) | null = null;
   private showInfoTextCallback: PopupTextCallback | null = null;
   private showAlertTextCallback: PopupTextCallback | null = null;
   private showAlarmTextCallback: PopupTextCallback | null = null;

@@ -288,7 +288,7 @@ interface CactbotLoadUserRet {
 
 // Structured JSON data saved in OverlayPlugin config files.
 export type SavedConfigEntry = string | number | boolean | [ SavedConfigEntry] |
-   { [nestedName: string]: SavedConfigEntry };
+{ [nestedName: string]: SavedConfigEntry };
 export type SavedConfig = {
   [overlayName: string]: SavedConfigEntry;
 };
@@ -311,9 +311,9 @@ interface PlayerChangedRet {
   // Potentially add the job to the jobDetail passed back from the C# plugin, and use
   // that information to decide the type
   jobDetail: JobDetail['PLD'] & JobDetail['WAR'] & JobDetail['DRK'] & JobDetail['GNB'] & JobDetail['WHM'] &
-    JobDetail['SCH'] & JobDetail['AST'] & JobDetail['PGL'] & JobDetail['MNK'] & JobDetail['DRG'] &
-    JobDetail['NIN'] & JobDetail['SAM'] & JobDetail['BRD'] & JobDetail['MCH'] & JobDetail['DNC'] &
-    JobDetail['THM'] & JobDetail['BLM'] & JobDetail['ACN'] & JobDetail['SMN'] & JobDetail['RDM'];
+  JobDetail['SCH'] & JobDetail['AST'] & JobDetail['PGL'] & JobDetail['MNK'] & JobDetail['DRG'] &
+  JobDetail['NIN'] & JobDetail['SAM'] & JobDetail['BRD'] & JobDetail['MCH'] & JobDetail['DNC'] &
+  JobDetail['THM'] & JobDetail['BLM'] & JobDetail['ACN'] & JobDetail['SMN'] & JobDetail['RDM'];
   pos: {
     x: number;
     y: number;

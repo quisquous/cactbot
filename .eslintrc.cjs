@@ -217,7 +217,10 @@ const tsOverrides = {
         objectLiteralTypeAssertions: 'never',
       },
     ],
-    '@typescript-eslint/explicit-module-boundary-types': ['error', { 'allowHigherOrderFunctions': false }],
+    '@typescript-eslint/explicit-module-boundary-types': ['error', {
+      'allowHigherOrderFunctions': false,
+    }],
+    '@typescript-eslint/indent': rules.indent,
     '@typescript-eslint/member-delimiter-style': ['error', {
       'multiline': {
         'delimiter': 'semi',
@@ -234,6 +237,7 @@ const tsOverrides = {
     '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_\\w+' }],
     '@typescript-eslint/object-curly-spacing': ['error', 'always'],
     'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
+    'indent': 'off',
     'object-shorthand': ['error', 'consistent'],
   },
 };

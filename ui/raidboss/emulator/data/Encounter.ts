@@ -44,10 +44,10 @@ export default class Encounter {
   language: Lang = 'en';
 
   constructor(
-    public encounterDay: string,
-    public encounterZoneId: string,
-    public encounterZoneName: string,
-    public logLines: LineEvent[]) {
+      public encounterDay: string,
+      public encounterZoneId: string,
+      public encounterZoneName: string,
+      public logLines: LineEvent[]) {
     this.version = Encounter.encounterVersion;
   }
 
