@@ -1,3 +1,4 @@
+import { Job } from '../../../../../types/job';
 import EmulatorCommon from '../../EmulatorCommon';
 import LogRepository from './LogRepository';
 
@@ -105,7 +106,7 @@ export const isLineEventTarget = (line: LineEvent): line is LineEventTarget => {
 
 export interface LineEventJobLevel extends LineEvent {
   readonly isJobLevel: true;
-  readonly job: string;
+  readonly job: Job;
   readonly jobId: number;
   readonly level: number;
 }
