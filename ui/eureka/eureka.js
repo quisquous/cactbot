@@ -1846,7 +1846,6 @@ const Options = {
             cn: '遭遇术师大队',
             ko: '술사대대 발견',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Sneak',
             fr: 'Yeux',
@@ -1864,7 +1863,6 @@ const Options = {
             cn: '遭遇无人魔导兵器',
             ko: '무인 마도 병기 발견',
           },
-          dropsFieldNotes: true,
           fieldNotes: 8,
           shortLabel: {
             en: 'Robots',
@@ -1883,7 +1881,6 @@ const Options = {
             cn: '发现忠犬',
             ko: '충견과 조우하다',
           },
-          dropsFieldNotes: true,
           fieldNotes: 3,
           shortLabel: {
             en: 'Beasts',
@@ -1902,7 +1899,6 @@ const Options = {
             cn: '奇袭术师大队',
             ko: '술사대대 기습',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Unrest',
             fr: 'Pas de quartier',
@@ -1921,7 +1917,6 @@ const Options = {
             ko: '유인 마도 병기 요격',
           },
           isCEPrecursor: true,
-          dropsFieldNotes: true,
           fieldNotes: 1,
           shortLabel: {
             en: 'Machine',
@@ -1940,7 +1935,6 @@ const Options = {
             cn: '排除野生生物',
             ko: '야생 생물을 제거하라',
           },
-          dropsFieldNotes: true,
           fieldNotes: 5,
           shortLabel: {
             en: 'Plants',
@@ -1959,7 +1953,6 @@ const Options = {
             cn: '兽性兽心的驯兽师',
             ko: '시크족 마수 조련사',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Seeq',
             fr: 'Ménagerie',
@@ -1978,7 +1971,6 @@ const Options = {
             ko: '화려한 희귀마수 조련사',
           },
           isCEPrecursor: true,
-          dropsFieldNotes: true,
           fieldNotes: 2,
           shortLabel: {
             en: 'Pets',
@@ -1997,7 +1989,6 @@ const Options = {
             cn: '破坏劳动十号',
             ko: '노동 10호 파괴 명령',
           },
-          dropsFieldNotes: true,
           fieldNotes: 4,
           shortLabel: {
             en: 'First Law',
@@ -2016,7 +2007,6 @@ const Options = {
             cn: '施恩布德的术师队',
             ko: '은덕의 술사들',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Heal',
             fr: 'Miséricorde',
@@ -2034,7 +2024,6 @@ const Options = {
             cn: '忠犬的逆袭',
             ko: '충견의 역습',
           },
-          dropsFieldNotes: true,
           fieldNotes: 10,
           shortLabel: {
             en: 'Mash',
@@ -2054,7 +2043,6 @@ const Options = {
             ko: '시크족과 붉은 초코보',
           },
           isCEPrecursor: true,
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Alert',
             fr: 'Chocobos',
@@ -2073,7 +2061,6 @@ const Options = {
             ko: '결백한 탈주병',
           },
           isCEPrecursor: true,
-          dropsFieldNotes: true,
           fieldNotes: 13,
           shortLabel: {
             en: 'Unicorn',
@@ -2092,7 +2079,6 @@ const Options = {
             cn: '调查敌方新兵器',
             ko: '적의 신병기를 조사하라',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Recreation',
             fr: 'Innovation',
@@ -2110,7 +2096,6 @@ const Options = {
             cn: '奇袭整备场',
             ko: '정비소 기습 작전',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Supplies',
             fr: 'Vivres',
@@ -2128,7 +2113,6 @@ const Options = {
             cn: '破坏魔导劳工',
             ko: '마도 노동자 파괴 명령',
           },
-          dropsFieldNotes: true,
           fieldNotes: 15,
           shortLabel: {
             en: 'Boots',
@@ -2147,7 +2131,6 @@ const Options = {
             cn: '进攻野营地',
             ko: '야영지 선제 공격',
           },
-          dropsFieldNotes: true,
           fieldNotes: 6,
           shortLabel: {
             en: 'Camping',
@@ -2166,7 +2149,6 @@ const Options = {
             cn: '噬魂的妖异',
             ko: '혼을 먹는 요마들',
           },
-          dropsFieldNotes: true,
           fieldNotes: 7,
           shortLabel: {
             en: 'Scavengers',
@@ -2185,7 +2167,6 @@ const Options = {
             cn: '术师大队的猛攻',
             ko: '술사대대의 맹공격',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Help',
             fr: 'Résister',
@@ -2203,7 +2184,6 @@ const Options = {
             cn: '最强的火焰法师',
             ko: '최강의 불꽃술사',
           },
-          dropsFieldNotes: true,
           fieldNotes: 7,
           shortLabel: {
             en: 'Pyromancer',
@@ -2222,7 +2202,6 @@ const Options = {
             cn: '华丽魔女与心爱珍兽',
             ko: '화려한 애완마수',
           },
-          dropsFieldNotes: true,
           fieldNotes: 13,
           shortLabel: {
             en: 'Rainbow',
@@ -2241,7 +2220,6 @@ const Options = {
             cn: '排除失控魔兽',
             ko: '폭주 마수 처리',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Wild Bunch',
             fr: 'Sans maîtres',
@@ -2259,7 +2237,6 @@ const Options = {
             cn: '兽性兽心的劝诱',
             ko: '포섭하는 시크족',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Family',
             fr: 'Incorruptible',
@@ -2278,7 +2255,6 @@ const Options = {
             ko: '마도 노동자 B형 파괴 명령',
           },
           isCEPrecursor: true,
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Mechanical',
             fr: 'Plan B',
@@ -2296,7 +2272,6 @@ const Options = {
             cn: '袭击强化兵部队',
             ko: '강화병 부대의 습격',
           },
-          dropsFieldNotes: true,
           fieldNotes: 11,
           shortLabel: {
             en: 'Murder',
@@ -2315,7 +2290,6 @@ const Options = {
             cn: '战场的偷盗者',
             ko: '전장의 도굴자',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Seeking',
             fr: 'Creusent',
@@ -2333,7 +2307,6 @@ const Options = {
             cn: '补给物资夺取战',
             ko: '보급 물자 강탈 작전',
           },
-          dropsFieldNotes: true,
           fieldNotes: 5,
           shortLabel: {
             en: 'Supplies',
@@ -2352,7 +2325,6 @@ const Options = {
             cn: '闻血而来',
             ko: '피비린내에 이끌려',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Demonic',
             fr: 'Hémoglobine',
@@ -2370,7 +2342,6 @@ const Options = {
             cn: '南方战线的激战',
             ko: '타오르는 남부 전선',
           },
-          dropsFieldNotes: true,
           fieldNotes: 12,
           shortLabel: {
             en: 'Absent',
@@ -2391,7 +2362,6 @@ const Options = {
             ko: '타오르는 남부 전선 속편',
           },
           isCEPrecursor: true,
-          dropsFieldNotes: true,
           fieldNotes: 14,
           shortLabel: {
             en: 'Steel',
@@ -2410,7 +2380,6 @@ const Options = {
             cn: '释放战场之犬',
             ko: '전장에 개를 풀어라',
           },
-          dropsFieldNotes: true,
           fieldNotes: 4,
           shortLabel: {
             en: 'Dogs',
@@ -2429,7 +2398,6 @@ const Options = {
             cn: '西西尼乌斯的实验场',
             ko: '시시니우스의 실험장',
           },
-          dropsFieldNotes: true,
           fieldNotes: 3,
           shortLabel: {
             en: 'War',
@@ -2448,7 +2416,6 @@ const Options = {
             cn: '湖岸堡',
             ko: '공성전',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Castrum',
             de: 'Castrum',
@@ -2473,7 +2440,6 @@ const Options = {
             cn: '皮里福尔',
             ko: '피어리풀',
           },
-          dropsFieldNotes: true,
           fieldNotes: 13,
           shortLabel: {
             en: 'Kill it',
@@ -2493,7 +2459,6 @@ const Options = {
             cn: '恐惧妖犬',
             ko: '카니스 디루스',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Hounds',
             fr: 'Chien',
@@ -2512,7 +2477,6 @@ const Options = {
             cn: '守夜',
             ko: '비질',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Vigil',
             fr: 'Vigile',
@@ -2532,7 +2496,6 @@ const Options = {
             cn: '加百列',
             ko: '가브리엘',
           },
-          dropsFieldNotes: true,
           fieldNotes: 11,
           shortLabel: {
             en: 'Aces High',
@@ -2554,7 +2517,6 @@ const Options = {
             cn: '阿库巴巴',
             ko: '아크바바',
           },
-          dropsFieldNotes: true,
           fieldNotes: 3,
           shortLabel: {
             en: 'Shadow',
@@ -2574,7 +2536,6 @@ const Options = {
             cn: '地生人',
             ko: '스파르토이',
           },
-          dropsFieldNotes: true,
           fieldNotes: 9,
           shortLabel: {
             en: 'Furlong',
@@ -2594,7 +2555,6 @@ const Options = {
             cn: '红色彗星',
             ko: '붉은 혜성',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Choctober',
             fr: 'Ruée en Rouge',
@@ -2614,7 +2574,6 @@ const Options = {
             cn: '兽王莱昂',
             ko: '마수왕 라이언',
           },
-          dropsFieldNotes: true,
           fieldNotes: 17,
           shortLabel: {
             en: 'Beast of Man',
@@ -2636,7 +2595,6 @@ const Options = {
             cn: '火焰百夫队',
             ko: '화염백인대',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Fires of War',
             fr: 'Brasier',
@@ -2655,7 +2613,6 @@ const Options = {
             cn: '爱国者',
             ko: '패트리어트',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Patriot',
             fr: 'Patriote',
@@ -2674,7 +2631,6 @@ const Options = {
             cn: '耶鲁',
             ko: '에알레',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Trampled',
             fr: 'Œil du malin',
@@ -2693,7 +2649,6 @@ const Options = {
             cn: '萨托瓦尔',
             ko: '사르토부아르',
           },
-          dropsFieldNotes: true,
           fieldNotes: 14,
           shortLabel: {
             en: 'Flames',
@@ -2715,7 +2670,6 @@ const Options = {
             cn: '达因斯莱瓦',
             ko: '다인슬라이프',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Metal Fox',
             fr: 'Guerrier de Métal',
@@ -2735,7 +2689,6 @@ const Options = {
             cn: '魔导劳工X式',
             ko: '마도 노동자 X형',
           },
-          dropsFieldNotes: true,
           fieldNotes: 15,
           shortLabel: {
             en: 'Rise',
@@ -2755,7 +2708,6 @@ const Options = {
             cn: '奇尔维尼克',
             ko: '칠레브니크',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Behemoth',
             fr: 'Mastodonte',
@@ -2884,7 +2836,6 @@ const Options = {
             de: 'Bestienbändigerin',
             fr: 'Un jour, je serai la meilleure dresseuse',
           },
-          dropsFieldNotes: true,
           fieldNotes: 31,
           shortLabel: {
             en: 'Beasts',
@@ -2900,7 +2851,6 @@ const Options = {
             de: 'Oboro',
             fr: 'Les astres du jour et de la nuit',
           },
-          dropsFieldNotes: true,
           fieldNotes: 33,
           shortLabel: {
             en: 'Parcel',
@@ -2917,7 +2867,6 @@ const Options = {
             fr: 'Malheureuses retrouvailles',
           },
           isCEPrecursor: true,
-          dropsFieldNotes: true,
           fieldNotes: 37,
           shortLabel: {
             en: 'Dilemma',
@@ -2933,7 +2882,6 @@ const Options = {
             de: 'Mörderischer Onmyoji',
             fr: 'Prêtre pernicieux',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Divination',
             fr: 'Prêtre',
@@ -2948,7 +2896,6 @@ const Options = {
             de: 'Beobachten verboten',
             fr: 'Ni vu ni connu',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Wrench',
             fr: 'Ni vu ni connu',
@@ -2964,7 +2911,6 @@ const Options = {
             fr: 'Dabog, soldat augmenté',
           },
           isCEPrecursor: true,
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Pilot',
             fr: 'Dabog',
@@ -2979,7 +2925,6 @@ const Options = {
             de: 'Eiskalt',
             fr: 'Qui s\'y frotte s\'y pique',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Ice',
             fr: 'Pique',
@@ -2994,7 +2939,6 @@ const Options = {
             de: 'Puppen',
             fr: 'Celui qui tire les ficelles',
           },
-          dropsFieldNotes: true,
           fieldNotes: 42,
           shortLabel: {
             en: 'Puppet',
@@ -3010,7 +2954,6 @@ const Options = {
             de: 'Größtmöglicher',
             fr: 'Un problème de taille',
           },
-          dropsFieldNotes: true,
           fieldNotes: 40,
           shortLabel: {
             en: 'Challenge',
@@ -3026,7 +2969,6 @@ const Options = {
             de: 'Bestien',
             fr: 'Le dernier dinosaure',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'T\'huban',
             fr: 'Dinosaure',
@@ -3042,7 +2984,6 @@ const Options = {
             fr: 'L\'immaculée contre le malsain',
           },
           isCEPrecursor: true,
-          dropsFieldNotes: true,
           fieldNotes: 38,
           shortLabel: {
             en: 'Atrocities',
@@ -3058,7 +2999,6 @@ const Options = {
             de: 'mörderische Meister',
             fr: 'Recherché dans deux pays',
           },
-          dropsFieldNotes: true,
           fieldNotes: 34,
           shortLabel: {
             en: 'Pursuit',
@@ -3075,7 +3015,6 @@ const Options = {
             fr: 'Y\'a qu\'à se baisser',
           },
           isCEPrecursor: true,
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Tanking',
             fr: 'Se baisser',
@@ -3090,7 +3029,6 @@ const Options = {
             de: 'Magitek-Soldat',
             fr: 'Guet-apens magitek',
           },
-          dropsFieldNotes: true,
           fieldNotes: 43,
           shortLabel: {
             en: 'Supersoldier',
@@ -3106,7 +3044,6 @@ const Options = {
             de: 'Rettende Hiebe',
             fr: 'Magie couleur sang',
           },
-          dropsFieldNotes: true,
           fieldNotes: 36,
           shortLabel: {
             en: 'Demented',
@@ -3122,7 +3059,6 @@ const Options = {
             de: 'Endkampf (Puppenspieler)',
             fr: 'Ainsi font les petites marionnettes',
           },
-          dropsFieldNotes: true,
           fieldNotes: 32,
           shortLabel: {
             en: 'Sever',
@@ -3139,7 +3075,6 @@ const Options = {
             fr: 'Des bêtes en pagagaille',
           },
           isCEPrecursor: true,
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Beasts',
             fr: 'Pagagaille',
@@ -3154,7 +3089,6 @@ const Options = {
             de: 'Schillernde ',
             fr: 'Clarricie, sans défense ou presque',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Still',
             fr: 'Sans défense',
@@ -3169,7 +3103,6 @@ const Options = {
             de: 'Farbe des Blutes',
             fr: 'Non, c\'est non !',
           },
-          dropsFieldNotes: true,
           fieldNotes: 41,
           shortLabel: {
             en: 'Seeq',
@@ -3185,7 +3118,6 @@ const Options = {
             de: 'Onmyoji!',
             fr: 'Le trésor du clan Urabe',
           },
-          dropsFieldNotes: true,
           fieldNotes: 39,
           shortLabel: {
             en: 'Mean',
@@ -3201,7 +3133,6 @@ const Options = {
             de: 'Famfrit',
             fr: 'Sans issue',
           },
-          dropsFieldNotes: true,
           fieldNotes: 32,
           shortLabel: {
             en: 'Relic',
@@ -3217,7 +3148,6 @@ const Options = {
             de: 'Was du heute kannst besorgen',
             fr: 'Des cailloux, des cailloux, des cailloux !',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Mages',
             fr: 'Cailloux',
@@ -3233,7 +3163,6 @@ const Options = {
             fr: 'Une opportunité en or',
           },
           isCEPrecursor: true,
-          dropsFieldNotes: true,
           fieldNotes: 43,
           shortLabel: {
             en: 'Hyper',
@@ -3250,7 +3179,6 @@ const Options = {
             fr: 'Il est plus d\'un',
           },
           isCEPrecursor: true,
-          dropsFieldNotes: true,
           fieldNotes: 35,
           shortLabel: {
             en: 'Supersoldiers',
@@ -3266,7 +3194,6 @@ const Options = {
             de: 'Rettende Hiebe 2',
             fr: 'L\'élève dépasse le maître',
           },
-          dropsFieldNotes: true,
           fieldNotes: 36,
           shortLabel: {
             en: 'Student',
@@ -3282,7 +3209,6 @@ const Options = {
             de: 'Magitek-Maschinen en masse',
             fr: 'Fabrication en série',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Machines',
             fr: 'En série',
@@ -3297,7 +3223,6 @@ const Options = {
             de: 'The Dalriada',
             fr: 'Le Dal\'riada',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Dalriada',
             fr: 'Dal\'riada',
@@ -3315,7 +3240,6 @@ const Options = {
             de: 'Geistertrupp',
             fr: 'Zirnitrop',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Serpents',
             fr: 'Zirnitrop',
@@ -3331,7 +3255,6 @@ const Options = {
             de: 'Schwarzbrands',
             fr: 'On arrête le progrès',
           },
-          dropsFieldNotes: true,
           fieldNotes: 35,
           shortLabel: {
             en: 'Burn',
@@ -3349,7 +3272,6 @@ const Options = {
             de: 'Hyper-Dabog',
             fr: 'Dabog, l\'hyper-renforcé',
           },
-          dropsFieldNotes: true,
           fieldNotes: 43,
           shortLabel: {
             en: 'Blade',
@@ -3368,7 +3290,6 @@ const Options = {
             de: 'Shemhazai',
             fr: 'Le Sycophante',
           },
-          dropsFieldNotes: true,
           fieldNotes: 37,
           shortLabel: {
             en: 'Grave',
@@ -3385,7 +3306,6 @@ const Options = {
             de: 'Hedetet',
             fr: 'C\'est dans ma nature',
           },
-          dropsFieldNotes: true,
           shortLabel: {
             en: 'Diremite',
             fr: 'Ma nature',
@@ -3401,7 +3321,6 @@ const Options = {
             de: 'Halb Pferd',
             fr: 'Un cavalier qui surgit hors de la nuit',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Cavalry',
             fr: 'Cavalier',
@@ -3417,7 +3336,6 @@ const Options = {
             de: 'Menenius',
             fr: 'Mener par l\'exemple',
           },
-          dropsFieldNotes: true,
           fieldNotes: 45,
           shortLabel: {
             en: 'Snake',
@@ -3436,7 +3354,6 @@ const Options = {
             de: 'Hanbi',
             fr: 'Le Roi des Cendres',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Blood',
             fr: 'Cendres',
@@ -3452,7 +3369,6 @@ const Options = {
             de: 'Hrodvitnir',
             fr: 'Et n\'y Hród\'viens plus !',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Wolf',
             fr: 'Hród\'vnir',
@@ -3469,7 +3385,6 @@ const Options = {
             de: 'Belias',
             fr: 'Le Titan',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Time',
             fr: 'Titan',
@@ -3485,7 +3400,6 @@ const Options = {
             de: 'Gepanzerte Zenturie',
             fr: 'Réusinage de code',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Lean, Mean',
             fr: 'Réusinage',
@@ -3501,7 +3415,6 @@ const Options = {
             de: 'Alkonost',
             fr: 'Oiseau d\'enfer',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Shadow',
             fr: 'Oiseau',
@@ -3517,7 +3430,6 @@ const Options = {
             de: 'Hashmallim',
             fr: 'Le Grand Ordonnateur',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Familiar',
             fr: 'Ordonnateur',
@@ -3534,7 +3446,6 @@ const Options = {
             de: 'Ayda',
             fr: 'Écaillage en règle',
           },
-          dropsFieldNotes: false,
           shortLabel: {
             en: 'Looks',
             fr: 'Écaillage',
@@ -3550,7 +3461,6 @@ const Options = {
             de: 'Revanche: Lyon',
             fr: 'La revanche de Lyon',
           },
-          dropsFieldNotes: true,
           fieldNotes: 44,
           shortLabel: {
             en: 'Lyon\'s',
