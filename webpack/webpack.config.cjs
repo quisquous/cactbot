@@ -244,7 +244,12 @@ module.exports = function(env, argv) {
         },
         {
           test: /\.(png|jpe?g)/,
-          type: 'asset/resource',
+          type: 'asset',
+          parser: {
+            dataUrlCondition: {
+              maxSize: 50 * 1024, // 50 KiB
+            },
+          },
         },
         {
           test: /data[\\\/]\w*_manifest\.txt$/,
