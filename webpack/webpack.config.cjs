@@ -107,7 +107,6 @@ module.exports = function({ cactbotModules, cactbotChunks, cactbotHtmlChunksMap 
         {
           test: /\.ts$/,
           loader: 'ts-loader',
-          options: {},
         },
         {
           test: /\.css$/,
