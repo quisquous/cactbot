@@ -36,47 +36,47 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
 
   const jobInfo = document.getElementById('jobinfo');
   if (jobInfo) {
-    const jobDetail = e.detail.jobDetail;
-    if (e.detail.job === 'RDM')
-      jobInfo.innerText = `${jobDetail.whiteMana} | ${jobDetail.blackMana}`;
-    else if (e.detail.job === 'WAR')
-      jobInfo.innerText = jobDetail.beast.toString();
-    else if (e.detail.job === 'DRK')
-      jobInfo.innerText = `${jobDetail.blood} | ${jobDetail.darksideMilliseconds} | ${jobDetail.darkArts.toString()} | ${jobDetail.livingShadowMilliseconds}`;
-    else if (e.detail.job === 'GNB')
-      jobInfo.innerText = `${jobDetail.cartridges}${jobDetail.continuationState}`;
-    else if (e.detail.job === 'PLD')
-      jobInfo.innerText = jobDetail.oath.toString();
-    else if (e.detail.job === 'BRD')
-      jobInfo.innerText = `${jobDetail.songName} | ${jobDetail.songProcs} | ${jobDetail.soulGauge} | ${jobDetail.songMilliseconds}`;
-    else if (e.detail.job === 'DNC')
-      jobInfo.innerText = `${jobDetail.feathers} | ${jobDetail.esprit} | (${jobDetail.steps}) | ${jobDetail.currentStep}`;
-    else if (e.detail.job === 'NIN')
-      jobInfo.innerText = `${jobDetail.hutonMilliseconds} | ${jobDetail.ninkiAmount}`;
-    else if (e.detail.job === 'DRG')
-      jobInfo.innerText = `${jobDetail.bloodMilliseconds} | ${jobDetail.lifeMilliseconds} | ${jobDetail.eyesAmount}`;
-    else if (e.detail.job === 'BLM')
-      jobInfo.innerText = `${jobDetail.umbralStacks} (${jobDetail.umbralMilliseconds}) | ${jobDetail.umbralHearts} | ${jobDetail.foulCount} ${jobDetail.enochian.toString()} (${jobDetail.nextPolyglotMilliseconds})`;
-    else if (e.detail.job === 'THM')
-      jobInfo.innerText = `${jobDetail.umbralStacks} (${jobDetail.umbralMilliseconds})`;
-    else if (e.detail.job === 'WHM')
-      jobInfo.innerText = `${jobDetail.lilyStacks} (${jobDetail.lilyMilliseconds}) | ${jobDetail.bloodlilyStacks}`;
-    else if (e.detail.job === 'SMN')
-      jobInfo.innerText = `${jobDetail.aetherflowStacks} | ${jobDetail.dreadwyrmStacks} | ${jobDetail.bahamutStance} | ${jobDetail.bahamutSummoned} (${jobDetail.stanceMilliseconds}) | ${jobDetail.phoenixReady}`;
-    else if (e.detail.job === 'SCH')
-      jobInfo.innerText = `${jobDetail.aetherflowStacks} | ${jobDetail.fairyGauge} | ${jobDetail.fairyStatus} (${jobDetail.fairyMilliseconds})`;
-    else if (e.detail.job === 'ACN')
-      jobInfo.innerText = jobDetail.aetherflowStacks.toString();
-    else if (e.detail.job === 'AST')
-      jobInfo.innerText = `${jobDetail.heldCard} (${jobDetail.arcanums})`;
-    else if (e.detail.job === 'MNK')
-      jobInfo.innerText = `${jobDetail.lightningStacks} (${jobDetail.lightningMilliseconds}) | ${jobDetail.chakraStacks} | ${jobDetail.lightningTimerFrozen.toString()}`;
-    else if (e.detail.job === 'PGL')
-      jobInfo.innerText = `${jobDetail.lightningStacks} (${jobDetail.lightningMilliseconds})`;
-    else if (e.detail.job === 'MCH')
-      jobInfo.innerText = `${jobDetail.heat} (${jobDetail.overheatMilliseconds}) | ${jobDetail.battery} (${jobDetail.batteryMilliseconds}) | last: ${jobDetail.lastBatteryAmount} | ${jobDetail.overheatActive.toString()} | ${jobDetail.robotActive.toString()}`;
-    else if (e.detail.job === 'SAM')
-      jobInfo.innerText = `${jobDetail.kenki} | ${jobDetail.meditationStacks}(${jobDetail.setsu.toString()},${jobDetail.getsu.toString()},${jobDetail.ka.toString()})`;
+    const detail = e.detail;
+    if (detail.job === 'RDM')
+      jobInfo.innerText = `${detail.jobDetail.whiteMana} | ${detail.jobDetail.blackMana}`;
+    else if (detail.job === 'WAR')
+      jobInfo.innerText = detail.jobDetail.beast.toString();
+    else if (detail.job === 'DRK')
+      jobInfo.innerText = `${detail.jobDetail.blood} | ${detail.jobDetail.darksideMilliseconds} | ${detail.jobDetail.darkArts.toString()} | ${detail.jobDetail.livingShadowMilliseconds}`;
+    else if (detail.job === 'GNB')
+      jobInfo.innerText = `${detail.jobDetail.cartridges}${detail.jobDetail.continuationState}`;
+    else if (detail.job === 'PLD')
+      jobInfo.innerText = detail.jobDetail.oath.toString();
+    else if (detail.job === 'BRD')
+      jobInfo.innerText = `${detail.jobDetail.songName} | ${detail.jobDetail.songProcs} | ${detail.jobDetail.soulGauge} | ${detail.jobDetail.songMilliseconds}`;
+    else if (detail.job === 'DNC')
+      jobInfo.innerText = `${detail.jobDetail.feathers} | ${detail.jobDetail.esprit} | (${detail.jobDetail.steps}) | ${detail.jobDetail.currentStep}`;
+    else if (detail.job === 'NIN')
+      jobInfo.innerText = `${detail.jobDetail.hutonMilliseconds} | ${detail.jobDetail.ninkiAmount}`;
+    else if (detail.job === 'DRG')
+      jobInfo.innerText = `${detail.jobDetail.bloodMilliseconds} | ${detail.jobDetail.lifeMilliseconds} | ${detail.jobDetail.eyesAmount}`;
+    else if (detail.job === 'BLM')
+      jobInfo.innerText = `${detail.jobDetail.umbralStacks} (${detail.jobDetail.umbralMilliseconds}) | ${detail.jobDetail.umbralHearts} | ${detail.jobDetail.foulCount} ${detail.jobDetail.enochian.toString()} (${detail.jobDetail.nextPolyglotMilliseconds})`;
+    else if (detail.job === 'THM')
+      jobInfo.innerText = `${detail.jobDetail.umbralStacks} (${detail.jobDetail.umbralMilliseconds})`;
+    else if (detail.job === 'WHM')
+      jobInfo.innerText = `${detail.jobDetail.lilyStacks} (${detail.jobDetail.lilyMilliseconds}) | ${detail.jobDetail.bloodlilyStacks}`;
+    else if (detail.job === 'SMN')
+      jobInfo.innerText = `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.dreadwyrmStacks} | ${detail.jobDetail.bahamutStance} | ${detail.jobDetail.bahamutSummoned} (${detail.jobDetail.stanceMilliseconds}) | ${detail.jobDetail.phoenixReady}`;
+    else if (detail.job === 'SCH')
+      jobInfo.innerText = `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.fairyGauge} | ${detail.jobDetail.fairyStatus} (${detail.jobDetail.fairyMilliseconds})`;
+    else if (detail.job === 'ACN')
+      jobInfo.innerText = detail.jobDetail.aetherflowStacks.toString();
+    else if (detail.job === 'AST')
+      jobInfo.innerText = `${detail.jobDetail.heldCard} (${detail.jobDetail.arcanums})`;
+    else if (detail.job === 'MNK')
+      jobInfo.innerText = `${detail.jobDetail.lightningStacks} (${detail.jobDetail.lightningMilliseconds}) | ${detail.jobDetail.chakraStacks} | ${detail.jobDetail.lightningTimerFrozen.toString()}`;
+    else if (detail.job === 'PGL')
+      jobInfo.innerText = `${detail.jobDetail.lightningStacks} (${detail.jobDetail.lightningMilliseconds})`;
+    else if (detail.job === 'MCH')
+      jobInfo.innerText = `${detail.jobDetail.heat} (${detail.jobDetail.overheatMilliseconds}) | ${detail.jobDetail.battery} (${detail.jobDetail.batteryMilliseconds}) | last: ${detail.jobDetail.lastBatteryAmount} | ${detail.jobDetail.overheatActive.toString()} | ${detail.jobDetail.robotActive.toString()}`;
+    else if (detail.job === 'SAM')
+      jobInfo.innerText = `${detail.jobDetail.kenki} | ${detail.jobDetail.meditationStacks}(${detail.jobDetail.setsu.toString()},${detail.jobDetail.getsu.toString()},${detail.jobDetail.ka.toString()})`;
     else
       jobInfo.innerText = '';
   }

@@ -293,9 +293,9 @@ export type SavedConfig = {
   [overlayName: string]: SavedConfigEntry;
 };
 
-interface PlayerChangedRet {
+type PlayerChangedRet = Job extends infer T ? T extends Job ? {
   name: string;
-  job: Job;
+  job: T;
   level: number;
   currentHP: number;
   maxHP: number;
@@ -310,10 +310,7 @@ interface PlayerChangedRet {
   // determine which job was passed in with the event and explicitly use that JobDetail
   // Potentially add the job to the jobDetail passed back from the C# plugin, and use
   // that information to decide the type
-  jobDetail: JobDetail['PLD'] & JobDetail['WAR'] & JobDetail['DRK'] & JobDetail['GNB'] & JobDetail['WHM'] &
-    JobDetail['SCH'] & JobDetail['AST'] & JobDetail['PGL'] & JobDetail['MNK'] & JobDetail['DRG'] &
-    JobDetail['NIN'] & JobDetail['SAM'] & JobDetail['BRD'] & JobDetail['MCH'] & JobDetail['DNC'] &
-    JobDetail['THM'] & JobDetail['BLM'] & JobDetail['ACN'] & JobDetail['SMN'] & JobDetail['RDM'];
+  jobDetail: JobDetail[T];
   pos: {
     x: number;
     y: number;
@@ -322,7 +319,7 @@ interface PlayerChangedRet {
   rotation: number;
   bait: number;
   debugJob: string;
-}
+} : never : never;
 
 export type IOverlayHandler = {
   // OutputPlugin build-in
