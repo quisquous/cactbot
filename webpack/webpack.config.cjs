@@ -274,10 +274,10 @@ module.exports = function(env, argv) {
       ...htmlPluginRules,
       new CopyPlugin({
         patterns: [
-          // {
-          //   // copy sounds and images
-          //   from: 'resources/@(ffxiv|sounds)/**/*',
-          // },
+          {
+            // copy sounds and images
+            from: 'resources/@(ffxiv|sounds)/**/*',
+          },
           {
             // copy more html in raidboss module
             from: 'ui/raidboss/raidboss_*.html',
