@@ -1,17 +1,11 @@
-import EmulatorCommon, { DataType } from '../EmulatorCommon';
+import EmulatorCommon, { DataType, EmulatorLogEvent } from '../EmulatorCommon';
 import StubbedPopupText from '../overrides/StubbedPopupText';
 import LineEvent from './network_log_converter/LineEvent';
 import { LooseTrigger, MatchesAny } from '../../../../types/trigger';
 import { TriggerHelper, Text, TextText, ProcessedTrigger } from '../../popup-text';
-import { EventResponses, LogEvent } from '../../../../types/event';
+import { EventResponses } from '../../../../types/event';
 
 type ResolverFunc = () => void;
-
-export type EmulatorLogEvent = LogEvent & {
-  detail: {
-    logs: LineEvent[];
-  };
-}
 
 export type EmulatorNetworkLogEvent = EventResponses['LogLine'] & {
   detail: {
