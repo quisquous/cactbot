@@ -229,13 +229,13 @@ UserConfig.registerOptions('jobs', {
       options: {
         en: {
           'Disabled': 'disabled',
-          'When counter reaches 0': 'expired',
-          'When counter reaches threshold': 'threshold',
+          'When counter reaches 0.': 'expired',
+          'When counter is close to 0.': 'threshold',
         },
         de: {
           'Deaktiviert': 'disabled',
-          'Wenn Countdown 0 erreicht': 'expired',
-          'Wenn Countdown den Schwellenwert erreicht': 'threshold',
+          'Wenn der Countdown 0 erreicht.': 'expired',
+          'Wenn der Countdown nahe 0 ist.': 'threshold',
         },
       },
       default: 'disabled',
