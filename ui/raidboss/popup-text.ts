@@ -316,17 +316,22 @@ class TriggerOutputProxy {
 
   getReplacement(
       // Can't use optional modifier for this arg since the others aren't optional
-      template: { [lang: string]: unknown } | undefined,
+      template: { [lang: string]: unknown } | string | undefined,
       params: TriggerParams,
       name: string,
       id: string): string | undefined {
     if (!template)
       return;
 
-    const value = template[this.displayLang] ?? template['en'];
+    let value: unknown;
+    if (typeof template === 'string')
+      // user config
+      value = template;
+    else
+      value = template[this.displayLang] ?? template['en'];
 
     if (typeof value !== 'string') {
-      console.error(`Trigger ${id} has invalid outputString ${name}.`);
+      console.error(`Trigger ${id} has invalid outputString ${name}.`, JSON.stringify(template));
       return;
     }
 
