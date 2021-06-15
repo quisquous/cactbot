@@ -317,7 +317,7 @@ class TriggerOutputProxy {
   getReplacement(
       // Can't use optional modifier for this arg since the others aren't optional
       template: { [lang: string]: unknown } | string | undefined,
-      // User trigger may pass unknown value as parameters
+      // User trigger may pass anything as parameters
       params: { [key: string]: unknown },
       name: string,
       id: string): string | undefined {
