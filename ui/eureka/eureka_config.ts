@@ -35,6 +35,24 @@ UserConfig.registerOptions('eureka', {
       },
     },
     {
+      id: 'CompleteNamesSTQ',
+      name: {
+        en: 'Prefer complete names for Skirmishes/Critical Engagements',
+        fr: 'Préférer les noms complet pour les escarmouches/Affrontements Cruciaux dans Bozja/Zadnor',
+      },
+      type: 'checkbox',
+      default: false,
+    },
+    {
+      id: 'EnrichedSTQ',
+      name: {
+        en: 'Add information about Field Notes',
+        fr: 'Ajouter les informations relatives aux Rapports du Front Bozjien dans Bozja/Zadnor',
+      },
+      type: 'checkbox',
+      default: false,
+    },
+    {
       id: 'PopNoiseForNM',
       name: {
         en: 'Play pop sound for NMs',
