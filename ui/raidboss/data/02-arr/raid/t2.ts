@@ -1,9 +1,17 @@
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
 import Conditions from '../../../../../resources/conditions';
+import { MatchesGainsEffect } from '../../../../../resources/matches';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
-export default {
+export interface Data extends RaidbossData {
+  rot?: boolean;
+}
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheBindingCoilOfBahamutTurn2,
   triggers: [
     {
@@ -22,13 +30,13 @@ export default {
       // Allagan Rot
       id: 'T2 Rot',
       netRegex: NetRegexes.gainsEffect({ effectId: '14D' }),
-      alarmText: (data, matches, output) => {
+      alarmText: (data, matches: MatchesGainsEffect, output) => {
         if (data.me === matches.target)
-          return output.rotOnYou();
+          return output.rotOnYou!();
       },
-      infoText: (data, matches, output) => {
+      infoText: (data, matches: MatchesGainsEffect, output) => {
         if (data.me !== matches.target)
-          return output.rotOn({ player: data.ShortName(matches.target) });
+          return output.rotOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         rotOn: {
@@ -56,7 +64,7 @@ export default {
       alertText: (data, _matches, output) => {
         if (!data.rot)
           return;
-        return output.text();
+        return output.text!();
       },
       outputStrings: {
         text: {
@@ -108,3 +116,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

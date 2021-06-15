@@ -1,11 +1,24 @@
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
 import Conditions from '../../../../../resources/conditions';
+import { MatchesStartsUsing, MatchesTether } from '../../../../../resources/matches';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
-export default {
+export interface Data extends RaidbossData {
+  gigaflare: number;
+}
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheFinalCoilOfBahamutTurn4,
   timelineFile: 't13.txt',
+  initData: () => {
+    return {
+      gigaflare: 0,
+    };
+  },
   timelineTriggers: [
     {
       id: 'T13 Dive Warning',
@@ -24,16 +37,13 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: 'BB9', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: 'BB9', source: '바하무트 프라임', capture: false }),
       // Only the first two gigas are phase changes, the rest are in final phase.
-      condition: (data) => !(data.gigaflare > 1),
+      condition: (data) => data.gigaflare <= 2,
       sound: 'Long',
       infoText: (data, _matches, output) => {
-        if (data.gigaflare)
-          return output.text();
+        if (data.gigaflare !== 0)
+          return output.text!();
       },
-      run: (data) => {
-        data.gigaflare = data.gigaflare || 0;
-        data.gigaflare++;
-      },
+      run: (data) => data.gigaflare++,
       outputStrings: {
         text: {
           en: 'Stack Center for Dives',
@@ -53,15 +63,15 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: 'BAE', source: 'バハムート・プライム' }),
       netRegexCn: NetRegexes.startsUsing({ id: 'BAE', source: '至尊巴哈姆特' }),
       netRegexKo: NetRegexes.startsUsing({ id: 'BAE', source: '바하무트 프라임' }),
-      alertText: (data, matches, output) => {
+      alertText: (data, matches: MatchesStartsUsing, output) => {
         if (matches.target === data.me)
-          return output.flattenOnYou();
+          return output.flattenOnYou!();
       },
-      infoText: (data, matches, output) => {
+      infoText: (data, matches: MatchesStartsUsing, output) => {
         if (matches.target === data.me)
           return;
         if (data.role === 'healer' || data.job === 'BLU')
-          return output.flattenOn({ player: data.ShortName(matches.target) });
+          return output.flattenOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         flattenOn: {
@@ -86,7 +96,7 @@ export default {
       id: 'T13 Megaflare Share',
       netRegex: NetRegexes.headMarker({ id: '0027' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Megaflare Stack',
@@ -112,8 +122,8 @@ export default {
       netRegexJa: NetRegexes.tether({ id: '0004', target: 'バハムート・プライム' }),
       netRegexCn: NetRegexes.tether({ id: '0004', target: '至尊巴哈姆特' }),
       netRegexKo: NetRegexes.tether({ id: '0004', target: '바하무트 프라임' }),
-      condition: (data, matches) => data.me === matches.source,
-      infoText: (_data, _matches, output) => output.text(),
+      condition: (data, matches: MatchesTether) => data.me === matches.source,
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Tempest Tether on YOU',
@@ -133,13 +143,13 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: 'BC2', source: 'バハムート・プライム' }),
       netRegexCn: NetRegexes.startsUsing({ id: 'BC2', source: '至尊巴哈姆特' }),
       netRegexKo: NetRegexes.startsUsing({ id: 'BC2', source: '바하무트 프라임' }),
-      alertText: (data, matches, output) => {
+      alertText: (data, matches: MatchesStartsUsing, output) => {
         if (matches.target === data.me)
-          return output.akhMornOnYou();
+          return output.akhMornOnYou!();
       },
-      infoText: (data, matches, output) => {
+      infoText: (data, matches: MatchesStartsUsing, output) => {
         if (matches.target !== data.me)
-          return output.akhMornOn({ player: data.ShortName(matches.target) });
+          return output.akhMornOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         akhMornOn: {
@@ -344,3 +354,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

@@ -1,10 +1,23 @@
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
 import Conditions from '../../../../../resources/conditions';
+import { MatchesGainsEffect, MatchesStartsUsing } from '../../../../../resources/matches';
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
-export default {
+export interface Data extends RaidbossData {
+  phase: number;
+}
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheFinalCoilOfBahamutTurn3,
   timelineFile: 't12.txt',
+  initData: () => {
+    return {
+      phase: 0,
+    };
+  },
   triggers: [
     {
       id: 'T12 Phase 3',
@@ -28,7 +41,7 @@ export default {
       condition: (data) => data.phase <= 2,
       delaySeconds: 55,
       durationSeconds: 4.5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Bennu Soon',
@@ -48,13 +61,13 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: 'B87', source: 'フェニックス' }),
       netRegexCn: NetRegexes.startsUsing({ id: 'B87', source: '不死鸟' }),
       netRegexKo: NetRegexes.startsUsing({ id: 'B87', source: '피닉스' }),
-      alertText: (data, matches, output) => {
+      alertText: (data, matches: MatchesStartsUsing, output) => {
         if (matches.target === data.me)
-          return output.revelationOnYou();
+          return output.revelationOnYou!();
       },
-      infoText: (data, matches, output) => {
+      infoText: (data, matches: MatchesStartsUsing, output) => {
         if (matches.target !== data.me)
-          return output.awayFromPlayer({ player: data.ShortName(matches.target) });
+          return output.awayFromPlayer!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         awayFromPlayer: {
@@ -83,7 +96,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: 'B8C', source: 'フェニックス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: 'B8C', source: '不死鸟', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: 'B8C', source: '피닉스', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Blackfire Spread',
@@ -99,7 +112,7 @@ export default {
       id: 'T12 Whitefire',
       netRegex: NetRegexes.headMarker({ id: '0020' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Whitefire on YOU',
@@ -115,7 +128,7 @@ export default {
       id: 'T12 Bluefire',
       netRegex: NetRegexes.headMarker({ id: '0021' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Bluefire Away',
@@ -131,13 +144,13 @@ export default {
       // Chain Of Purgatory
       id: 'T12 Chain',
       netRegex: NetRegexes.gainsEffect({ effectId: '24D' }),
-      alertText: (data, matches, output) => {
+      alertText: (data, matches: MatchesGainsEffect, output) => {
         if (matches.target === data.me)
-          return output.chainOnYou();
+          return output.chainOnYou!();
       },
-      infoText: (data, matches, output) => {
+      infoText: (data, matches: MatchesGainsEffect, output) => {
         if (matches.target !== data.me)
-          return output.chainOn({ player: data.ShortName(matches.target) });
+          return output.chainOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         chainOn: {
@@ -287,3 +300,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;

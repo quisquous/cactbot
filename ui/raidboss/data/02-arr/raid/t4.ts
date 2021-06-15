@@ -1,8 +1,13 @@
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheBindingCoilOfBahamutTurn4,
   timelineFile: 't4.txt',
   triggers: [
@@ -15,7 +20,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '转盘堡', id: '4D4' }),
       netRegexKo: NetRegexes.startsUsing({ source: '보루형 회전전차', id: '4D4' }),
       condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'LOS Thrust',
@@ -35,7 +40,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '转盘堡', id: '4D5' }),
       netRegexKo: NetRegexes.startsUsing({ source: '보루형 회전전차', id: '4D5' }),
       condition: Conditions.targetIsYou(),
-      alarmText: (_data, _matches, output) => output.text(),
+      alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'LOS Pox',
@@ -55,7 +60,7 @@ export default {
       netRegexCn: NetRegexes.addedCombatant({ name: '亚拉戈发条骑士', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '알라그 태엽기사', capture: false }),
       suppressSeconds: 100000,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Magic on Soldier, Physical on Knights',
@@ -160,3 +165,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
