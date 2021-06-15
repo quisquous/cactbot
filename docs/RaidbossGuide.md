@@ -46,6 +46,7 @@ A trigger set must have one of zoneId or zoneRegex to specify the zone
 
 **initData**
 A function that can be used to initialize the data this trigger set uses.
+It should return an object that sets values for any fields in `data` that need to be initialized.
 This function is called any time the fight is reset, mainly on zone change or wipe.
 See [t1.ts](../ui/raidboss/data/02-arr/raid/t1.ts) for an example implementation.
 
