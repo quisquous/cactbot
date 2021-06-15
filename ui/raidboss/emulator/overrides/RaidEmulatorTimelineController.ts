@@ -1,30 +1,38 @@
-import { TimelineController } from '../../timeline';
+import { LooseTimelineTrigger } from '../../../../types/trigger';
+import { TimelineController, TimelineReplacement, TimelineStyle } from '../../timeline';
+import RaidEmulator from '../data/RaidEmulator';
+import { EmulatorLogEvent } from '../EmulatorCommon';
 import RaidEmulatorTimeline from './RaidEmulatorTimeline';
 
 export default class RaidEmulatorTimelineController extends TimelineController {
-  bindTo(emulator) {
+  public emulator?: RaidEmulator;
+  protected activeTimeline: RaidEmulatorTimeline | null = null;
+
+  bindTo(emulator: RaidEmulator): void {
     this.emulator = emulator;
     if (this.activeTimeline)
       this.activeTimeline.bindTo(emulator);
   }
 
   // Override
-  SetActiveTimeline(timelineFiles, timelines, replacements, triggers, styles) {
+  public SetActiveTimeline(timelineFiles: string[], timelines: string[],
+      replacements: TimelineReplacement[], triggers: LooseTimelineTrigger[],
+      styles: TimelineStyle[]): void {
     this.activeTimeline = null;
 
     let text = '';
 
     // Get the text from each file in |timelineFiles|.
-    for (let i = 0; i < timelineFiles.length; ++i) {
-      const name = timelineFiles[i];
-      if (name in this.timelines)
-        text = text + '\n' + this.timelines[name];
+    for (const timelineFile of timelineFiles) {
+      const name = this.timelines[timelineFile];
+      if (name)
+        text = `${text}\n${name}`;
       else
-        console.warn('Timeline file not found: ' + name);
+        console.log(`Timeline file not found: ${timelineFile}`);
     }
     // Append text from each block in |timelines|.
-    for (let i = 0; i < timelines.length; ++i)
-      text = text + '\n' + timelines[i];
+    for (const timeline of timelines)
+      text = `${text}\n${timeline}`;
 
     if (text) {
       this.activeTimeline =
@@ -36,13 +44,11 @@ export default class RaidEmulatorTimelineController extends TimelineController {
   }
 
   // Override
-  OnLogEvent(e) {
+  public OnLogEvent(e: EmulatorLogEvent): void {
     if (!this.activeTimeline)
       return;
 
-    e.detail.logs.forEach((line) => {
-      this.activeTimeline.emulatedTimeOffset = line.offset;
-      this.ui.emulatedTimeOffset = line.offset;
+    for (const line of e.detail.logs) {
       this.activeTimeline.OnLogLine(
           line.properCaseConvertedLine || line.convertedLine,
           line.timestamp);
@@ -50,6 +56,6 @@ export default class RaidEmulatorTimelineController extends TimelineController {
       // This avoids spamming the console with a ton of messages
       if (this.activeTimeline.timebase)
         this.activeTimeline._OnUpdateTimer(line.timestamp);
-    });
+    }
   }
 }
