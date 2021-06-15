@@ -198,6 +198,12 @@
   display: none;
 }
 
+.nm-enriched {
+  display: block;
+  text-align: center;
+  color: #cfcfcf;
+}
+
 /* non-critical bozja fates are less important, so make smaller */
 .bozjasouthern > .nm,
 .zadnor > .nm {
