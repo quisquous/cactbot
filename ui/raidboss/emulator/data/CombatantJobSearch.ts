@@ -3,10 +3,8 @@ import { Job } from '../../../../types/job';
 export default class CombatantJobSearch {
   static getJob(abilityId: number): Job | undefined {
     for (const [key, value] of Object.entries(CombatantJobSearch.abilities)) {
-      if (value) {
-        if (value.includes(abilityId))
-          return key as Job;
-      }
+      if (value?.includes(abilityId))
+        return key as Job;
     }
   }
 
