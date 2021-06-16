@@ -10,14 +10,6 @@ module.exports = {
       url: 'https://github.com/quisquous/cactbot/blob/main/docs/RaidbossGuide.md#trigger-elements',
     },
     fixable: 'code',
-    schema: [
-      {
-        'type': 'array',
-        'items': {
-          'type': 'string',
-        },
-      },
-    ],
     messages: {
       sortKeys: 'Expected triggerSet properties ordered like {{expectedOrder}} (\'{{beforeKey}}\' should be before \'{{nextKey}}\')',
     },
