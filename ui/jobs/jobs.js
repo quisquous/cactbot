@@ -510,7 +510,6 @@ class Bars {
   }
 
   playNotification() {
-    console.log('playing sound');
     const audio = new Audio('../../resources/sounds/freesound/alarm.ogg');
     audio.volume = 0.3;
     void audio.play();
