@@ -225,7 +225,8 @@ class OrderedTriggerList {
 
 const isObject = (x: unknown): x is { [key: string]: unknown } => x instanceof Object;
 
-type TriggerParams = { [key: string]: string };
+// User trigger may pass anything as parameters
+type TriggerParams = { [key: string]: unknown };
 
 class TriggerOutputProxy {
   public outputStrings: OutputStrings;
@@ -317,8 +318,7 @@ class TriggerOutputProxy {
   getReplacement(
       // Can't use optional modifier for this arg since the others aren't optional
       template: { [lang: string]: unknown } | string | undefined,
-      // User trigger may pass anything as parameters
-      params: { [key: string]: unknown },
+      params: TriggerParams,
       name: string,
       id: string): string | undefined {
     if (!template)
