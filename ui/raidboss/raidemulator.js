@@ -17,7 +17,7 @@ import RaidEmulatorTimelineUI from './emulator/overrides/RaidEmulatorTimelineUI'
 import { TimelineLoader } from './timeline';
 import Tooltip from './emulator/ui/Tooltip';
 import UserConfig from '../../resources/user_config';
-import { isLang, Lang, LangMap } from '../../resources/languages';
+import { isLang, Lang, langMap } from '../../resources/languages';
 import raidbossFileData from './data/raidboss_manifest.txt';
 // eslint can't detect the custom loader for the worker
 // eslint-disable-next-line import/default
@@ -196,7 +196,7 @@ import './raidemulator.css';
               encounterTab.dispatch('load', lastEncounter);
           }
           if (!websocketConnected) {
-            const dispLang = LangMap[Options.ParserLanguage][Options.ParserLanguage];
+            const dispLang = langMap[Options.ParserLanguage][Options.ParserLanguage];
             const discModal = showModal('.disconnectedModal');
             const indicator = document.querySelector('.connectionIndicator');
             indicator.querySelector('.connectedIndicator').classList.add('d-none');

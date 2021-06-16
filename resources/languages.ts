@@ -4,7 +4,7 @@ export type Lang = typeof languages[number];
 
 export type NonEnLang = Exclude<Lang, 'en'>;
 
-export const LangMap: { [lang in Lang]: { [lang in Lang]: string } } = {
+export const langMap: { [lang in Lang]: { [lang in Lang]: string } } = {
   en: {
     en: 'English',
     de: 'German',
