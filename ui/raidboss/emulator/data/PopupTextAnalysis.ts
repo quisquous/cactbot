@@ -13,7 +13,7 @@ export type EmulatorNetworkLogEvent = EventResponses['LogLine'] & {
   };
 }
 
-interface ResolverStatus {
+export interface ResolverStatus {
   responseType?: string;
   responseLabel?: string;
   initialData: DataType;

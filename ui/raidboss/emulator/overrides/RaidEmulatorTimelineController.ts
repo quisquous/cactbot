@@ -6,7 +6,7 @@ import RaidEmulatorTimeline from './RaidEmulatorTimeline';
 
 export default class RaidEmulatorTimelineController extends TimelineController {
   public emulator?: RaidEmulator;
-  protected activeTimeline: RaidEmulatorTimeline | null = null;
+  public activeTimeline: RaidEmulatorTimeline | null = null;
 
   bindTo(emulator: RaidEmulator): void {
     this.emulator = emulator;

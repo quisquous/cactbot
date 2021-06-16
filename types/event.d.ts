@@ -306,7 +306,7 @@ type PlayerChangedRet = Job extends infer T ? T extends Job ? {
   currentGP: number;
   maxGP: number;
   currentShield: number;
-  jobDetail: JobDetail[T];
+  jobDetail: JobDetail[T] | null;
   pos: {
     x: number;
     y: number;

@@ -1,66 +1,132 @@
-import EmulatorCommon from '../EmulatorCommon';
+import EmulatorCommon, { DataType, EmulatorLogEvent } from '../EmulatorCommon';
 import EventBus from '../EventBus';
-import { PopupTextGenerator } from '../../popup-text';
+import { PopupTextGenerator, TriggerHelper } from '../../popup-text';
 import RaidEmulatorTimelineController from '../overrides/RaidEmulatorTimelineController';
-import PopupTextAnalysis, { Resolver } from '../data/PopupTextAnalysis';
+import PopupTextAnalysis, { EmulatorNetworkLogEvent, ResolverStatus, Resolver } from './PopupTextAnalysis';
 import { TimelineLoader } from '../../timeline';
 import Util from '../../../../resources/util';
 import raidbossFileData from '../../data/raidboss_manifest.txt';
 import RaidEmulatorAnalysisTimelineUI from '../overrides/RaidEmulatorAnalysisTimelineUI';
+import { RaidbossOptions } from '../../raidboss_options';
 import Encounter from './Encounter';
+import RaidEmulator from './RaidEmulator';
+import LineEvent from './network_log_converter/LineEvent';
+import { UnreachableCode } from '../../../../resources/not_reached';
+import { LooseTrigger } from '../../../../types/trigger';
+import Combatant from './Combatant';
+import { PlayerChangedDetail } from '../../../../resources/player_override';
+
+type PerspectiveTrigger = {
+  triggerHelper: TriggerHelper;
+  status: ResolverStatus;
+  logLine: LineEvent;
+  resolvedOffset: number;
+};
+type Perspective = {
+  initialData: DataType;
+  triggers: PerspectiveTrigger[];
+  finalData?: DataType;
+};
+type Perspectives = { [id: string]: Perspective };
 
 export default class AnalyzedEncounter extends EventBus {
-  /**
-   * @param {Encounter} encounter
-   */
-  constructor(options, encounter, emulator) {
+  popupText?: PopupTextAnalysis;
+  perspectives: Perspectives = {};
+  constructor(
+    public options: RaidbossOptions,
+    public encounter: Encounter,
+    public emulator: RaidEmulator) {
     super();
-    this.options = options;
-    this.popupText = null;
-    this.perspectives = {};
-    this.encounter = encounter;
-    this.emulator = emulator;
   }
 
-  selectPerspective(ID) {
-    const partyMember = this.encounter.combatantTracker.combatants[ID];
-    this.popupText.partyTracker.onPartyChanged({
-      party: this.encounter.combatantTracker.partyMembers.map((ID) => {
-        return {
-          name: this.encounter.combatantTracker.combatants[ID].name,
-          job: Util.jobToJobEnum(this.encounter.combatantTracker.combatants[ID].job),
-          inParty: true,
-        };
-      }),
-    });
-    this.popupText.OnPlayerChange({
+  selectPerspective(ID: string): void {
+    if (this.encounter && this.encounter.combatantTracker) {
+      const selectedPartyMember = this.encounter.combatantTracker.combatants[ID];
+      if (!selectedPartyMember)
+        return;
+
+      this.popupText?.getPartyTracker().onPartyChanged({
+        party: this.encounter.combatantTracker.partyMembers.map((ID) => {
+          const partyMember = this.encounter?.combatantTracker?.combatants[ID];
+          if (!partyMember)
+            throw new UnreachableCode();
+          return {
+            id: ID,
+            worldId: 0,
+            name: partyMember.name,
+            job: Util.jobToJobEnum(partyMember.job ?? 'NONE'),
+            inParty: true,
+          };
+        }),
+      });
+      this.updateState(selectedPartyMember, this.encounter.startTimestamp);
+      this.popupText?.OnChangeZone({
+        type: 'ChangeZone',
+        zoneName: this.encounter.encounterZoneName,
+        zoneID: parseInt(this.encounter.encounterZoneId, 16),
+      });
+    }
+  }
+
+  updateState(combatant: Combatant, timestamp: number): void {
+    const job = combatant.job;
+    if (!job)
+      throw new UnreachableCode();
+    const state = combatant.getState(timestamp);
+    const eventCast = {
       detail: {
-        name: partyMember.name,
-        job: partyMember.job,
-        currentHP: partyMember.getState(this.encounter.logLines[0].timestamp).HP,
+        name: combatant.name,
+        job: job,
+        level: combatant.level ?? 0,
+        currentHP: state.hp,
+        maxHP: state.maxHp,
+        currentMP: state.mp,
+        maxMP: state.maxMp,
+        currentCP: 0,
+        maxCP: 0,
+        currentGP: 0,
+        maxGP: 0,
+        currentShield: 0,
+        jobDetail: null,
+        pos: {
+          x: state.posX,
+          y: state.posY,
+          z: state.posZ,
+        },
+        rotation: state.heading,
+        bait: 0,
+        debugJob: '',
       },
-    });
-    this.popupText.OnChangeZone({
-      zoneName: this.encounter.encounterZoneName,
-      zoneID: parseInt(this.encounter.encounterZoneId, 16),
-    });
+    };
+    // For emulator purposes, jobDetail is always null, but typescript really doesn't like that
+    // So we need to hard cast the event details
+    const event = eventCast as PlayerChangedDetail;
+    this.popupText?.OnPlayerChange(event);
   }
 
-  async analyze(popupText) {
+  async analyze(popupText: PopupTextAnalysis): Promise<void> {
     this.popupText = popupText;
     // @TODO: Make this run in parallel sometime in the future, since it could be really slow?
-    for (const index in this.encounter.combatantTracker.partyMembers)
-      await this.analyzeFor(this.encounter.combatantTracker.partyMembers[index]);
+    if (this.encounter.combatantTracker) {
+      for (const id of this.encounter.combatantTracker.partyMembers)
+        await this.analyzeFor(id);
+    }
 
-    this.dispatch('analyzed');
+    return this.dispatch('analyzed');
   }
 
-  async analyzeFor(ID) {
+  async analyzeFor(id: string): Promise<void> {
+    if (!this.encounter.combatantTracker ||
+        !this.popupText)
+      return;
     let currentLogIndex = 0;
-    const partyMember = this.encounter.combatantTracker.combatants[ID];
+    const partyMember = this.encounter.combatantTracker.combatants[id];
+
+    if (!partyMember)
+      return;
 
     if (!partyMember.job) {
-      this.perspectives[ID] = {
+      this.perspectives[id] = {
         initialData: {},
         triggers: [],
       };
@@ -72,95 +138,85 @@ export default class AnalyzedEncounter extends EventBus {
         new RaidEmulatorTimelineController(this.options, timelineUI, raidbossFileData);
     timelineController.bindTo(this.emulator);
     const popupText = new PopupTextAnalysis(
-        this.popupText.options, new TimelineLoader(timelineController), raidbossFileData);
-    timelineUI.popupText = popupText;
+        this.options, new TimelineLoader(timelineController), raidbossFileData);
 
-    timelineController.SetPopupTextInterface(new PopupTextGenerator(popupText));
+    const generator = new PopupTextGenerator(popupText);
+    timelineUI.SetPopupTextInterface(generator);
 
-    popupText.partyTracker.onPartyChanged({
-      party: this.encounter.combatantTracker.partyMembers.map((ID) => {
-        return {
-          name: this.encounter.combatantTracker.combatants[ID].name,
-          job: Util.jobToJobEnum(this.encounter.combatantTracker.combatants[ID].job),
-          inParty: true,
-        };
-      }),
-    });
-    popupText.OnPlayerChange({
-      detail: {
-        name: partyMember.name,
-        job: partyMember.job,
-        currentHP: partyMember.getState(this.encounter.logLines[0].timestamp).HP,
-      },
-    });
-    popupText.OnChangeZone({
-      zoneName: this.encounter.encounterZoneName,
-      zoneID: parseInt(this.encounter.encounterZoneId, 16),
-    });
+    timelineController.SetPopupTextInterface(generator);
+
+    this.selectPerspective(id);
 
     if (timelineController.activeTimeline) {
-      timelineController.activeTimeline.SetTrigger(async (trigger, matches) => {
+      timelineController.activeTimeline.SetTrigger((trigger: LooseTrigger, matches) => {
         const currentLine = this.encounter.logLines[currentLogIndex];
         const resolver = popupText.currentResolver = new Resolver({
-          initialData: EmulatorCommon.cloneData(popupText.data),
+          initialData: EmulatorCommon.cloneData(popupText.getData()),
           suppressed: false,
           executed: false,
         });
         popupText.triggerResolvers.push(resolver);
 
+        if (!currentLine)
+          throw new UnreachableCode();
+
         popupText.OnTrigger(trigger, matches, currentLine.timestamp);
 
         resolver.setFinal(() => {
-          resolver.status.finalData = EmulatorCommon.cloneData(popupText.data);
+          resolver.status.finalData = EmulatorCommon.cloneData(popupText.getData());
           delete resolver.triggerHelper?.resolver;
           if (popupText.callback) {
             popupText.callback(currentLine, resolver.triggerHelper,
-                resolver.status, popupText.data);
+                resolver.status, popupText.getData());
           }
         });
       });
     }
 
-    popupText.callback = (log, triggerHelper, currentTriggerStatus, finalData) => {
-      this.perspectives[ID].triggers.push({
+    popupText.callback = (log, triggerHelper, currentTriggerStatus) => {
+      const perspective = this.perspectives[id];
+      if (!perspective || !triggerHelper)
+        throw new UnreachableCode();
+
+      const delay = currentTriggerStatus.delay ?? 0;
+
+      perspective.triggers.push({
         triggerHelper: triggerHelper,
         status: currentTriggerStatus,
         logLine: log,
         resolvedOffset: (log.timestamp - this.encounter.startTimestamp) +
-          (currentTriggerStatus.delay * 1000),
+          (delay * 1000),
       });
     };
     popupText.triggerResolvers = [];
 
-    this.perspectives[ID] = {
-      initialData: EmulatorCommon.cloneData(popupText.data, []),
+    this.perspectives[id] = {
+      initialData: EmulatorCommon.cloneData(popupText.getData(), []),
       triggers: [],
-      finalData: popupText.data,
+      finalData: popupText.getData(),
     };
 
     for (; currentLogIndex < this.encounter.logLines.length; ++currentLogIndex) {
       const log = this.encounter.logLines[currentLogIndex];
+      if (!log)
+        throw new UnreachableCode();
       await this.dispatch('analyzeLine', log);
 
-      if (this.encounter.combatantTracker.combatants[ID].hasState(log.timestamp)) {
-        popupText.OnPlayerChange({
-          detail: {
-            name: this.encounter.combatantTracker.combatants[ID].name,
-            job: this.encounter.combatantTracker.combatants[ID].job,
-            currentHP: this.encounter.combatantTracker.combatants[ID].getState(log.timestamp).HP,
-          },
-        });
-      }
+      const combatant = this.encounter?.combatantTracker?.combatants[id];
+
+      if (combatant && combatant.hasState(log.timestamp))
+        this.updateState(combatant, log.timestamp);
 
       const event = {
+        type: 'onLogEvent',
         detail: {
           logs: [log],
         },
       };
 
-      await popupText.OnLog(event);
-      await popupText.OnNetLog(event);
-      timelineController.OnLogEvent(event);
+      await popupText.OnLog(event as EmulatorLogEvent);
+      await popupText.OnNetLog(event as EmulatorNetworkLogEvent);
+      timelineController.OnLogEvent(event as EmulatorLogEvent);
     }
     timelineUI.stop();
   }
