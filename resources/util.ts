@@ -79,14 +79,36 @@ const jobToRoleMap: Map<Job, Role> = (() => {
   return map;
 })();
 
-type WatchCombatantFunc = (params: {
+type WatchCombatantParams = {
   ids?: number[];
   names?: string[];
   props?: string[];
   delay?: number;
-}, func: (ret: GetCombatantsRet) => boolean) => Promise<boolean>;
+  maxRetries?: number;
+  maxDuration?: number;
+};
 
-const watchCombatantMap: { cancel: boolean }[] = [];
+type WatchCombatantFunc = (params: WatchCombatantParams,
+  func: (ret: GetCombatantsRet) => boolean) => Promise<boolean>;
+
+type WatchCombatantMapEntry = {
+  cancel: boolean;
+  tries: number;
+  start: number;
+};
+
+const watchCombatantMap: WatchCombatantMapEntry[] = [];
+
+const shouldCancelWatch =
+  (params: WatchCombatantParams, entry: WatchCombatantMapEntry): boolean => {
+    if (entry.cancel)
+      return true;
+    if (params.maxRetries !== undefined && entry.tries > params.maxRetries)
+      return true;
+    if (params.maxDuration !== undefined && Date.now() - entry.start > params.maxDuration)
+      return true;
+    return false;
+  };
 
 const watchCombatant: WatchCombatantFunc = (params, func) => {
   return new Promise<boolean>((res, rej) => {
@@ -105,14 +127,17 @@ const watchCombatant: WatchCombatantFunc = (params, func) => {
     if (params.props)
       call.props = params.props;
 
-    const entry = {
+    const entry: WatchCombatantMapEntry = {
       cancel: false,
+      tries: 0,
+      start: Date.now(),
     };
 
     watchCombatantMap.push(entry);
 
     const checkFunc = () => {
-      if (entry.cancel) {
+      ++entry.tries;
+      if (shouldCancelWatch(params, entry)) {
         rej();
         return;
       }

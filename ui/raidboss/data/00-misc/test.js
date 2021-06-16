@@ -255,6 +255,10 @@ export default {
           data.me,
           strikingDummyNames[data.lang] || strikingDummyNames['en'],
         ],
+        // 100 retries
+        maxRetries: 100,
+        // 50 seconds
+        maxDuration: 50000,
       },
       (ret) => {
         const me = ret.combatants.find((c) => c.Name === data.me);
