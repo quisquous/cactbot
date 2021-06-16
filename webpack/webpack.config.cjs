@@ -112,6 +112,9 @@ module.exports = function({ cactbotModules, cactbotChunks, cactbotHtmlChunksMap 
           test: /\.css$/,
           use: [
             {
+              loader: 'style-loader',
+            },
+            {
               loader: 'css-loader',
               options: {
                 // TODO: Migrate to url-loader
