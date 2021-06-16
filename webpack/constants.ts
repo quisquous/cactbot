@@ -1,6 +1,4 @@
-'use strict';
-
-const cactbotModules = {
+export const cactbotModules = {
   config: 'ui/config/config',
   coverage: 'util/coverage/coverage',
   rdmty: 'ui/dps/rdmty/dps',
@@ -17,12 +15,12 @@ const cactbotModules = {
   test: 'ui/test/test',
 };
 
-const cactbotChunks = {
+export const cactbotChunks = {
   raidbossData: 'ui/common/raidboss_data',
   oopsyraidsyData: 'ui/common/oopsyraidsy_data',
 };
 
-const cactbotHtmlChunksMap = {
+export const cactbotHtmlChunksMap = {
   'ui/config/config.html': {
     chunks: [
       cactbotChunks.raidbossData,
@@ -101,10 +99,4 @@ const cactbotHtmlChunksMap = {
       cactbotModules.test,
     ],
   },
-};
-
-module.exports = {
-  cactbotModules,
-  cactbotChunks,
-  cactbotHtmlChunksMap,
 };
