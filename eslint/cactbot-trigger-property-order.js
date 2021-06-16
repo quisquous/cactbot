@@ -12,10 +12,13 @@ module.exports = {
     fixable: 'code',
     schema: [
       {
-        'type': 'array',
-        'items': {
-          'type': 'string',
+        'type': 'object',
+        'properties': {
+          'module': {
+            'enum': ['oopsyraidsy', 'raidboss'],
+          },
         },
+        'additionalProperties': false,
       },
     ],
     messages: {
@@ -23,7 +26,7 @@ module.exports = {
     },
   },
   create: (context) => {
-    const orderList = [
+    const raidbossOrderList = [
       'id',
       'disabled',
       'netRegex',
@@ -51,6 +54,29 @@ module.exports = {
       'run',
       'outputStrings',
     ];
+    const oopsyraidsyOrderList = [
+      'id',
+      'netRegex',
+      'netRegexDe',
+      'netRegexFr',
+      'netRegexJa',
+      'netRegexCn',
+      'netRegexKo',
+      'regex',
+      'damageRegex',
+      'healRegex',
+      'gainsEffectRegex',
+      'losesEffectRegex',
+      'abilityRegex',
+      'condition',
+      'collectSeconds',
+      'delaySeconds',
+      'suppressSeconds',
+      'deathReason',
+      'mistake',
+      'run',
+    ];
+    const orderList = context.options[0]?.module === 'oopsyraidsy' ? oopsyraidsyOrderList : raidbossOrderList;
     return {
       'Property[key.name=\'triggers\'] > ArrayExpression > ObjectExpression': (node) => {
         const properties = node.properties;
