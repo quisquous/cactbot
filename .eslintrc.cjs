@@ -271,6 +271,7 @@ const overrides = [
     'files': ['**/oopsyraidsy/data/**/*.ts', '**/raidboss/data/**/*.ts'],
     'rules': {
       'rulesdir/cactbot-matches-type-references': 'error',
+      'rulesdir/cactbot-triggerset-property-order': 'error',
     },
   },
 ];
