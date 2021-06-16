@@ -15,10 +15,10 @@ type Table<RowKey extends string, SubKey extends string | number> =
 
 type GetTableFunc = {
   <T extends (string | number), K extends string>(
-    contents: string, inputs: [key: K, ...indices: T[]],
+    table: string, inputs: [key: K, ...indices: T[]],
   ): Promise<Table<K, T>>;
   <T extends (string | number), K extends string>(
-    contents: string, inputs: (string | number)[], outputs?: [key: K, ...indices: T[]],
+    table: string, inputs: (string | number)[], outputs?: [key: K, ...indices: T[]],
   ): Promise<Table<K, T>>;
 };
 
