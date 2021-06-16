@@ -125,9 +125,6 @@ export default class CombatantTracker {
       if (!combatant.job && !line.id.startsWith('4') && line.abilityId !== undefined)
         combatant.job = CombatantJobSearch.getJob(line.abilityId);
     }
-
-    if (combatant.job)
-      combatant.job = combatant.job.toUpperCase();
   }
 
   addCombatantFromTargetLine(line: LineEventTarget): void {

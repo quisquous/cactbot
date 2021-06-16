@@ -2,6 +2,7 @@ import LineEvent, { LineEventJobLevel, LineEventSource } from './LineEvent';
 import EmulatorCommon from '../../EmulatorCommon';
 import Util from '../../../../../resources/util';
 import LogRepository from './LogRepository';
+import { Job } from '../../../../../types/job';
 
 const fields = {
   id: 2,
@@ -23,7 +24,7 @@ const fields = {
 export class LineEvent0x26 extends LineEvent implements LineEventSource, LineEventJobLevel {
   public readonly jobIdHex: string;
   public readonly jobId: number;
-  public readonly job: string;
+  public readonly job: Job;
   public readonly level: number;
   public readonly id: string;
   public readonly name: string;
