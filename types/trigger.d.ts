@@ -27,7 +27,7 @@ export type LocaleText = LocaleObject<string>;
 
 export type ZoneId = number | null;
 
-export type OutputStrings = { [outputKey: string]: LocaleText };
+export type OutputStrings = { [outputKey: string]: LocaleText | string };
 
 // TODO: is it awkward to have Outputs the static class and Output the unrelated type?
 // This type corresponds to TriggerOutputProxy.
