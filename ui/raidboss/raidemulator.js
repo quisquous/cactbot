@@ -17,7 +17,7 @@ import RaidEmulatorTimelineUI from './emulator/overrides/RaidEmulatorTimelineUI'
 import { TimelineLoader } from './timeline';
 import Tooltip from './emulator/ui/Tooltip';
 import UserConfig from '../../resources/user_config';
-import { isLang, Lang } from '../../resources/languages';
+import { isLang, Lang, LangMap } from '../../resources/languages';
 import raidbossFileData from './data/raidboss_manifest.txt';
 // eslint can't detect the custom loader for the worker
 // eslint-disable-next-line import/default
@@ -126,7 +126,6 @@ import './raidemulator.css';
     // Wait for the DB to be ready before doing anything that might invoke the DB
     persistor.initializeDB().then(async () => {
       let websocketConnected = false;
-      let cached = false;
       if (window.location.href.indexOf('OVERLAY_WS') > 0) {
         // Give the websocket 500ms to connect, then abort.
         websocketConnected = await Promise.race([
@@ -145,30 +144,26 @@ import './raidemulator.css';
         if (websocketConnected) {
           await UserConfig.getUserConfigLocation('raidboss', Options, (e) => {
             document.querySelector('.websocketConnected').classList.remove('d-none');
-            document.querySelector('.websocketCached').classList.add('d-none');
             document.querySelector('.websocketDisconnected').classList.add('d-none');
           });
         }
       }
 
       if (!websocketConnected) {
-        cached = emulatedWebSocket.hasCachedCactbotCall({ 'call': 'cactbotLoadData', 'overlay': 'options' });
-        if (cached) {
-          await UserConfig.getUserConfigLocation('raidboss', Options, (e) => {
-            document.querySelector('.websocketConnected').classList.add('d-none');
-            document.querySelector('.websocketCached').classList.remove('d-none');
-            document.querySelector('.websocketDisconnected').classList.add('d-none');
-          });
-        } else {
-          const browserLang = navigator.language.split('-')[0];
-          Options.ParserLanguage = isLang(browserLang) ? browserLang : 'en';
-          // Default options
-          Options.IsRemoteRaidboss = true;
-          Options.TextAlertsEnabled = true;
-          Options.SoundAlertsEnabled = true;
-          Options.SpokenAlertsEnabled = false;
-          Options.GroupSpokenAlertsEnabled = false;
-        }
+        // Find the most appropriate lang code to use based on browser language priority
+        const browserLang = [...navigator.languages, 'en']
+          .map((l) => l.split('-')[0].toLowerCase())
+          // Remap `zh` to `cn` to match cactbot languages
+          .map((l) => l === 'zh' ? 'cn' : l)
+          .filter((l) => ['en', 'de', 'fr', 'ja', 'cn', 'ko'].includes(l))[0];
+        Options.ParserLanguage = isLang(browserLang) ? browserLang : 'en';
+        Options.DisplayLanguage = isLang(browserLang) ? browserLang : 'en';
+        // Default options
+        Options.IsRemoteRaidboss = true;
+        Options.TextAlertsEnabled = true;
+        Options.SoundAlertsEnabled = true;
+        Options.SpokenAlertsEnabled = false;
+        Options.GroupSpokenAlertsEnabled = false;
       }
 
       // Initialize the Raidboss components, bind them to the emulator for event listeners
@@ -201,19 +196,14 @@ import './raidemulator.css';
               encounterTab.dispatch('load', lastEncounter);
           }
           if (!websocketConnected) {
+            const dispLang = LangMap[Options.ParserLanguage][Options.ParserLanguage];
             const discModal = showModal('.disconnectedModal');
             const indicator = document.querySelector('.connectionIndicator');
             indicator.querySelector('.connectedIndicator').classList.add('d-none');
-            if (cached) {
-              discModal.querySelector('.cachedWarning').classList.remove('d-none');
-              discModal.querySelector('.disconnectedWarning').classList.add('d-none');
-              const cacheTime = window.localStorage.getItem('raidEmulatorCacheTime') || 'Unknown';
-              discModal.querySelector('.cachedTime').innerText = cacheTime;
-              indicator.querySelector('.cachedIndicator').classList.remove('d-none');
-              indicator.querySelector('.cachedTime').innerText = cacheTime;
-            } else {
-              indicator.querySelector('.disconnectedIndicator').classList.remove('d-none');
-            }
+            indicator.querySelector('.disconnectedIndicator').classList.remove('d-none');
+            discModal.querySelector('.discLangDisplay').innerText = dispLang;
+            discModal.querySelector('.discLangAlerts').innerText = dispLang;
+            discModal.querySelector('.discLangTimeline').innerText = dispLang;
           }
         }
       });

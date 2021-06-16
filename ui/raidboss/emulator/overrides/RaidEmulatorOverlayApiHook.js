@@ -1,6 +1,5 @@
 import { callOverlayHandler, addOverlayListener, removeOverlayListener, setCallOverlayHandlerOverride } from '../../../../resources/overlay_plugin_api';
 
-const cachedCactbotCalls = ['cactbotLoadUser', 'cactbotLoadData'];
 const excludedReqProps = ['source'];
 const excludedRespProps = ['rseq'];
 
@@ -25,8 +24,6 @@ export default class RaidEmulatorOverlayApiHook {
     this.currentLogTime = 0;
     this.connected = false;
 
-    this.cachedData = JSON.parse(window.localStorage.getItem('raidEmulatorCachedCalls')) || {};
-
     emulator.on('tick', (currentLogTime) => {
       this.currentLogTime = currentLogTime;
     });
@@ -42,16 +39,8 @@ export default class RaidEmulatorOverlayApiHook {
   }
 
   async call(msg) {
-    if (msg.call === 'getCombatants') {
+    if (msg.call === 'getCombatants')
       return await this._getCombatantsOverride(msg);
-    } else if (cachedCactbotCalls.includes(msg.call)) {
-      if (!this.connected) {
-        if (this.hasCachedCactbotCall(msg))
-          return await this._cactbotCachedCall(msg);
-      } else {
-        return await this._cacheCall(msg);
-      }
-    }
 
     return await this.originalCall(msg);
   }
@@ -94,27 +83,5 @@ export default class RaidEmulatorOverlayApiHook {
     return {
       combatants: combatants,
     };
-  }
-
-  async _cacheCall(msg) {
-    const key = getKey(msg);
-    return new Promise((res) => {
-      this.originalCall(msg).then((data) => {
-        this.cachedData[key] = toCache(data);
-        window.localStorage.setItem('raidEmulatorCachedCalls', JSON.stringify(this.cachedData));
-        window.localStorage.setItem('raidEmulatorCacheTime', new Date().toString());
-        res(data);
-      });
-    });
-  }
-
-  hasCachedCactbotCall(msg) {
-    const key = getKey(msg);
-    return key in this.cachedData;
-  }
-
-  async _cactbotCachedCall(msg) {
-    const key = getKey(msg);
-    return this.cachedData[key];
   }
 }
