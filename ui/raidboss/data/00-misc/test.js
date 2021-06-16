@@ -1,5 +1,6 @@
 import NetRegexes from '../../../../resources/netregexes';
 import outputs from '../../../../resources/outputs';
+import Util from '../../../../resources/util';
 import ZoneId from '../../../../resources/zone_id';
 
 export default {
@@ -240,6 +241,33 @@ export default {
           infoText: output.infoThree(),
           tts: output.ttsFour(),
         };
+      },
+    },
+    {
+      id: 'Test Watch',
+      netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
+      promise: (data) => Util.watchCombatant({ names: [data.me, 'Striking Dummy'] }, (ret) => {
+        const me = ret.combatants.filter((c) => c.Name === data.me)[0];
+        const dummies = ret.combatants.filter((c) => c.Name === 'Striking Dummy');
+        if (me && dummies) {
+          for (const dummy of dummies) {
+            const distX = Math.abs(me.PosX - dummy.PosX);
+            const distY = Math.abs(me.PosY - dummy.PosY);
+            const dist = Math.hypot(distX, distY);
+            console.log(`test watch: distX = ${distX}; distY = ${distY}; dist = ${dist}`);
+            if (dist < 5)
+              return true;
+          }
+          return false;
+        }
+        console.log(`test watch: me = ${me ? 'true' : 'false'}; ${dummy ? 'true' : 'false'}`);
+        return false;
+      }),
+      infoText: (_data, _matches, output) => output.close(),
+      outputStrings: {
+        close: {
+          en: 'Dummy close!',
+        },
       },
     },
   ],

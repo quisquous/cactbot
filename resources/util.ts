@@ -1,4 +1,6 @@
+import { GetCombatantsCall, GetCombatantsRet } from '../types/event';
 import { Job, Role } from '../types/job';
+import { callOverlayHandler } from './overlay_plugin_api';
 
 // TODO: it'd be nice to not repeat job names, but at least Record enforces that all are set.
 const nameToJobEnum: Record<Job, number> = {
@@ -77,6 +79,66 @@ const jobToRoleMap: Map<Job, Role> = (() => {
   return map;
 })();
 
+type WatchCombatantFunc = (params: {
+  ids?: number[];
+  names?: string[];
+  props?: string[];
+  delay?: number;
+}, func: (ret: GetCombatantsRet) => boolean) => Promise<boolean>;
+
+const watchCombatantMap: { cancel: boolean }[] = [];
+
+const watchCombatant: WatchCombatantFunc = (params, func) => {
+  let resolver: (value: boolean) => void;
+  let rejecter: () => void;
+  const promise = new Promise<boolean>((res, rej) => {
+    resolver = res;
+    rejecter = rej;
+  });
+
+  const delay = params.delay ?? 1000;
+
+  const call: GetCombatantsCall = {
+    call: 'getCombatants',
+  };
+
+  if (params.ids)
+    call.ids = params.ids;
+
+  if (params.names)
+    call.names = params.names;
+
+  if (params.props)
+    call.props = params.props;
+
+  const entry = {
+    cancel: false,
+  };
+
+  watchCombatantMap.push(entry);
+
+  const checkFunc = () => {
+    if (entry.cancel) {
+      rejecter();
+      return;
+    }
+    void callOverlayHandler(call).then((response) => {
+      if (entry.cancel) {
+        rejecter();
+        return;
+      }
+      if (func(response))
+        resolver(true);
+      else
+        window.setTimeout(checkFunc, delay);
+    });
+  };
+
+  window.setTimeout(checkFunc, delay);
+
+  return promise;
+};
+
 const Util = {
   jobEnumToJob: (id: number) => {
     const job = allJobs.find((job: Job) => nameToJobEnum[job] === id);
@@ -105,6 +167,14 @@ const Util = {
   canCleanse: (job: Job) => cleanseJobs.includes(job),
   canFeint: (job: Job) => feintJobs.includes(job),
   canAddle: (job: Job) => addleJobs.includes(job),
+  watchCombatant: watchCombatant,
+  clearWatchCombatants: () => {
+    while (watchCombatantMap.length > 0) {
+      const watch = watchCombatantMap.pop();
+      if (watch)
+        watch.cancel = true;
+    }
+  },
 } as const;
 
 export default Util;
