@@ -453,8 +453,13 @@ class Bars {
       timerBox.id = id;
       timerBox.classList.add('timer-box');
     }
-    if (notifyWhenExpired)
+    if (notifyWhenExpired) {
       timerBox.classList.add('notify-when-expired');
+      if (this.options.NotifyExpiredProcsInCombatSound === 'threshold')
+        timerBox.onThresholdReached(this.playNotification);
+      else if (this.options.NotifyExpiredProcsInCombatSound === 'expired')
+        timerBox.onExpired(this.playNotification);
+    }
     return timerBox;
   }
 
@@ -502,6 +507,12 @@ class Bars {
     bar.maxvalue = maxvalue;
 
     return bar;
+  }
+
+  playNotification() {
+    const audio = new Audio('../../resources/sounds/freesound/alarm.ogg');
+    audio.volume = 0.3;
+    void audio.play();
   }
 
   onCombo(callback) {

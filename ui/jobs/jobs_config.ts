@@ -219,5 +219,26 @@ UserConfig.registerOptions('jobs', {
       type: 'integer',
       default: -1,
     },
+    {
+      id: 'NotifyExpiredProcsInCombatSound',
+      name: {
+        en: 'Play a sound notification if a proc box for dots/etc. expires while in combat.',
+        de: 'Spiele einen Alarm Sound wenn eine dot/etc. box im Kampf inaktiv wird.',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'When counter reaches 0.': 'expired',
+          'When counter is close to 0.': 'threshold',
+        },
+        de: {
+          'Deaktiviert': 'disabled',
+          'Wenn der Countdown 0 erreicht.': 'expired',
+          'Wenn der Countdown nahe 0 ist.': 'threshold',
+        },
+      },
+      default: 'disabled',
+    },
   ],
 });
