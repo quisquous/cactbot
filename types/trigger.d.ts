@@ -34,7 +34,7 @@ export type OutputStrings = { [outputKey: string]: LocaleText | string };
 export type Output = {
   responseOutputStrings: OutputStrings;
 } & {
-  [key: string]: (params?: { [param: string]: string | undefined }) => string;
+  [key: string]: (params?: { [param: string]: string | number | undefined }) => string;
 };
 
 // The output of any non-response raidboss trigger function.
