@@ -225,7 +225,8 @@ class OrderedTriggerList {
 
 const isObject = (x: unknown): x is { [key: string]: unknown } => x instanceof Object;
 
-type TriggerParams = { [key: string]: string };
+// User trigger may pass anything as parameters
+type TriggerParams = { [key: string]: unknown };
 
 class TriggerOutputProxy {
   public outputStrings: OutputStrings;
@@ -338,11 +339,14 @@ class TriggerOutputProxy {
     return value.replace(/\${\s*([^}\s]+)\s*}/g, (_fullMatch: string, key: string) => {
       if (params && key in params) {
         const str = params[key];
-        if (typeof str !== 'string' && typeof str !== 'number') {
-          console.error(`Trigger ${id} has non-string param value ${key}.`);
-          return this.unknownValue;
+        switch (typeof str) {
+        case 'string':
+          return str;
+        case 'number':
+          return str.toString();
         }
-        return str;
+        console.error(`Trigger ${id} has non-string param value ${key}.`);
+        return this.unknownValue;
       }
       console.error(`Trigger ${id} can't replace ${key} in ${JSON.stringify(template)}.`);
       return this.unknownValue;
