@@ -1,8 +1,14 @@
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+import { MatchesHeadMarker, MatchesTether } from '../../../../../resources/matches';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
-export default {
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheFinalCoilOfBahamutTurn1,
   timelineFile: 't10.txt',
   triggers: [
@@ -29,13 +35,13 @@ export default {
     {
       id: 'T10 Wild Charge',
       netRegex: NetRegexes.headMarker({ id: '001F' }),
-      alarmText: (data, matches, output) => {
+      alarmText: (data, matches: MatchesHeadMarker, output) => {
         if (data.me === matches.target)
-          return output.chargeOnYou();
+          return output.chargeOnYou!();
       },
-      infoText: (data, matches, output) => {
+      infoText: (data, matches: MatchesHeadMarker, output) => {
         if (data.me !== matches.target)
-          return output.chargeOn({ player: data.ShortName(matches.target) });
+          return output.chargeOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         chargeOn: {
@@ -69,13 +75,13 @@ export default {
       netRegexJa: NetRegexes.tether({ id: '0015', source: 'イムドゥグド' }),
       netRegexCn: NetRegexes.tether({ id: '0015', source: '伊姆都古德' }),
       netRegexKo: NetRegexes.tether({ id: '0015', source: '임두구드' }),
-      alarmText: (data, matches, output) => {
+      alarmText: (data, matches: MatchesTether, output) => {
         if (data.me === matches.target)
-          return output.cyclonicOnYou();
+          return output.cyclonicOnYou!();
       },
-      infoText: (data, matches, output) => {
+      infoText: (data, matches: MatchesTether, output) => {
         if (data.me !== matches.target)
-          return output.cyclonicOn({ player: data.ShortName(matches.target) });
+          return output.cyclonicOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         cyclonicOn: {
@@ -199,3 +205,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
