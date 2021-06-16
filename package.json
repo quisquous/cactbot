@@ -8,9 +8,9 @@
     "url": "https://github.com/quisquous/cactbot"
   },
   "scripts": {
-    "build": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack --config webpack/webpack.prod.ts",
-    "build-gh-pages": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack --config webpack/webpack.ghpages.ts",
-    "start": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack-dev-server --config webpack/webpack.dev.ts",
+    "build": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack --config webpack/webpack.prod.ts",
+    "build-gh-pages": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack --config webpack/webpack.ghpages.ts",
+    "start": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack-dev-server --config webpack/webpack.dev.ts",
     "fetch-deps": "node --loader ts-node/esm ./util/fetch_deps.ts",
     "tsc-no-emit": "node_modules/.bin/tsc --noEmit",
     "lint": "node_modules/.bin/eslint --max-warnings=0 ./",
