@@ -1,6 +1,7 @@
 #!/usr/bin/env ts-node-script
 
 import { parseString } from '@fast-csv/parse';
+import fetch from 'node-fetch';
 import { Lang } from '../resources/languages';
 
 const _BASE_GITHUB = 'https://raw.githubusercontent.com/';
@@ -61,15 +62,15 @@ export const makeMap = async (
   const { keys, rows } = await
   new Promise<{ keys: string[]; rows: string[][] }>((resolve, reject) => {
     const rows: string[][] = [];
-    parseString(contents, { skipRows: 1 })
+    parseString(contents, { headers: false, skipLines: 1, ignoreEmpty: false })
       .on('error', (err) => reject(err))
       .on('data', (row: string[]) => rows.push(row))
       .on('end', (rowCount: number) => {
         if (rowCount === 0)
           reject(`csv reads no data`);
 
-        const keys = rows.pop() ?? [];
-        rows.pop();
+        const keys = rows.shift() ?? [];
+        rows.shift();
 
         resolve({
           keys,
@@ -156,3 +157,7 @@ export const getRawCsv = async (table: string, locale: Lang): Promise<string> =>
 
   return await (await fetch(url)).text();
 };
+
+getIntlTable('Status', ['#', 'Name']).then((value) => {
+  console.log(value);
+}).catch(console.log);
