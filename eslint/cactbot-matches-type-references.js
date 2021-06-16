@@ -51,11 +51,32 @@ module.exports = {
       matchesTypeToNetRegexType[matchesType] = netRegexType;
     });
     return {
+      // Collect expected type annotation
       'Property[key.name=\'netRegex\'] > CallExpression[callee.object.name=\'NetRegexes\']': (node) => {
         const netRegexType = node.callee.property.name;
         const triggerId = findTriggerIdFromSiblingProperty(node);
         netRegexTypeByTriggerId[triggerId] = netRegexType;
       },
+      // Check if there is a type annotation at all
+      'Property[key.name=\'id\'] ~ Property > ArrowFunctionExpression > Identifier[name=\'matches\']': (node) => {
+        if (Object.keys(node).includes('typeAnnotation'))
+          return;
+
+        const triggerId = findTriggerIdFromSiblingProperty(node.parent);
+        const expectedNetRegexType = netRegexTypeByTriggerId[triggerId];
+        const expectedType = Object.entries(matchesTypeToNetRegexType).find(([_key, value]) => {
+          return value === expectedNetRegexType;
+        })[0];
+        context.report({
+          node,
+          message: `Missing type declaration for parameter 'matches'.`,
+
+          fix: (fixer) => {
+            return fixer.insertTextAfter(node, `: ${expectedType}`);
+          },
+        });
+      },
+      // Report if expected type annotation does not match actual annotation
       'Property[key.name=\'id\'] ~ Property TSTypeReference[typeName.name=/Matches.*/]': (node) => {
         if (!Object.keys(matchesTypeToNetRegexType).includes(node.typeName.name))
           return;
