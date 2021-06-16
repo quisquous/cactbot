@@ -788,6 +788,7 @@ export default {
       netRegexCn: NetRegexes.ability({ id: '47F6', source: '哈迪斯', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '47F6', source: '하데스', capture: false }),
       condition: (data) => data.role === 'tank' || data.role === 'healer',
+      // After tanks take tower damage
       delaySeconds: 2,
       suppressSeconds: 2,
       infoText: (_data, _matches, output) => output.text(),
