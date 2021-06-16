@@ -7,11 +7,16 @@ import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
 export interface Data extends RaidbossData {
-  started?: boolean;
+  started: boolean;
 }
 
 const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheBindingCoilOfBahamutTurn1,
+  initData: () => {
+    return {
+      started: false,
+    };
+  },
   triggers: [
     {
       id: 'T1 High Voltage',

@@ -78,7 +78,7 @@ export type TimelineReplacement = {
   replaceText?: { [timelineText: string]: string };
 };
 
-type TimelineStyle = {
+export type TimelineStyle = {
   style: { [key: string]: string };
   regex: RegExp;
 }
@@ -1100,13 +1100,13 @@ export class TimelineUI {
 }
 
 export class TimelineController {
-  private timelines: { [filename: string]: string };
+  protected timelines: { [filename: string]: string };
 
   private suppressNextEngage: boolean;
   private wipeRegex: Regex<Network6dParams>;
-  private activeTimeline: Timeline | null = null;
+  protected activeTimeline: Timeline | null = null;
 
-  constructor(private options: RaidbossOptions, private ui: TimelineUI,
+  constructor(protected options: RaidbossOptions, protected ui: TimelineUI,
       raidbossDataFiles: { [filename: string]: string }) {
     this.options = options;
     this.ui = ui;

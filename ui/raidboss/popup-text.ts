@@ -10,7 +10,7 @@ import ZoneId from '../../resources/zone_id';
 import {
   LooseTrigger, OutputStrings, TriggerSet, TimelineFunc, LooseTriggerSet,
   ResponseField, TriggerAutoConfig, MatchesAny, TriggerField, TriggerOutput,
-  Output, ResponseOutput, NetRegexTrigger, RegexTrigger, PartialTriggerOutput,
+  Output, ResponseOutput, NetRegexTrigger, RegexTrigger, PartialTriggerOutput, DataInitializeFunc,
 } from '../../types/trigger';
 import { UnreachableCode } from '../../resources/not_reached';
 import { Lang } from '../../resources/languages';
@@ -21,16 +21,21 @@ import { RaidbossData } from '../../types/data';
 import { Job, Role } from '../../types/job';
 import { EventResponses, LogEvent } from '../../types/event';
 
+const isRaidbossLooseTimelineTrigger =
+  (trigger: LooseTrigger): trigger is ProcessedTimelineTrigger => {
+    return 'isTimelineTrigger' in trigger;
+  };
+
 export const isNetRegexTrigger = (trigger?: LooseTrigger):
     trigger is Partial<NetRegexTrigger<RaidbossData>> => {
-  if (trigger)
+  if (trigger && !isRaidbossLooseTimelineTrigger(trigger))
     return 'netRegex' in trigger;
   return false;
 };
 
 export const isRegexTrigger = (trigger?: LooseTrigger):
     trigger is Partial<RegexTrigger<RaidbossData>> => {
-  if (trigger)
+  if (trigger && !isRaidbossLooseTimelineTrigger(trigger))
     return 'regex' in trigger;
   return false;
 };
@@ -51,11 +56,6 @@ type ProcessedTriggerSet = LooseTriggerSet & {
   timelineTriggers?: ProcessedTimelineTrigger[];
   triggers?: ProcessedTrigger[];
 };
-
-const isRaidbossLooseTimelineTrigger =
-  (trigger: LooseTrigger): trigger is ProcessedTimelineTrigger => {
-    return 'isTimelineTrigger' in trigger;
-  };
 
 // There should be (at most) six lines of instructions.
 const raidbossInstructions: { [lang in Lang]: string[] } = {
@@ -425,6 +425,10 @@ export class PopupText {
   protected triggerSets: ProcessedTriggerSet[] = [];
   protected zoneName = '';
   protected zoneId = -1;
+  protected dataInitializers: {
+    file: string;
+    func: DataInitializeFunc<RaidbossData>;
+  }[] = [];
 
   constructor(
       protected options: RaidbossOptions,
@@ -543,8 +547,6 @@ export class PopupText {
     if (!this.triggerSets || !this.me || !this.zoneName || !this.timelineLoader.IsReady())
       return;
 
-    this.Reset();
-
     // Drop the triggers and timelines from the previous zone, so we can add new ones.
     this.triggers = [];
     this.netTriggers = [];
@@ -623,13 +625,23 @@ export class PopupText {
         else
           console.log('Loading user triggers for zone');
       }
+
+      const setFilename = set.filename ?? 'Unknown';
+
+      if (set.initData) {
+        this.dataInitializers.push({
+          file: setFilename,
+          func: set.initData,
+        });
+      }
+
       // Adjust triggers for the parser language.
       if (set.triggers && this.options.AlertsEnabled) {
         for (const trigger of set.triggers) {
           // Add an additional resolved regex here to save
           // time later.  This will clobber each time we
           // load this, but that's ok.
-          trigger.filename = set.filename ?? 'Unknown';
+          trigger.filename = setFilename;
           const id = trigger.id;
 
           if (!isRegexTrigger(trigger) && !isNetRegexTrigger(trigger)) {
@@ -716,6 +728,8 @@ export class PopupText {
     this.netTriggers = allTriggers.filter(isNetRegexTrigger);
     const timelineTriggers = allTriggers.filter(isRaidbossLooseTimelineTrigger);
 
+    this.Reset();
+
     this.timelineLoader.SetTimelines(
         timelineFiles,
         timelines,
@@ -793,6 +807,20 @@ export class PopupText {
     this.data = this.getDataObject();
     this.StopTimers();
     this.triggerSuppress = {};
+
+    for (const initObj of this.dataInitializers) {
+      const init = initObj.func;
+      const data = init();
+      if (typeof data === 'object') {
+        this.data = {
+          ...data,
+          ...this.data,
+        };
+      } else {
+        console.log(`Error in file: ${initObj.file}: these triggers may not work;
+        initData function returned invalid object: ${init.toString()}`);
+      }
+    }
   }
 
   StopTimers(): void {
