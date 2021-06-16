@@ -89,54 +89,47 @@ type WatchCombatantFunc = (params: {
 const watchCombatantMap: { cancel: boolean }[] = [];
 
 const watchCombatant: WatchCombatantFunc = (params, func) => {
-  let resolver: (value: boolean) => void;
-  let rejecter: () => void;
-  const promise = new Promise<boolean>((res, rej) => {
-    resolver = res;
-    rejecter = rej;
-  });
+  return new Promise<boolean>((res, rej) => {
+    const delay = params.delay ?? 1000;
 
-  const delay = params.delay ?? 1000;
+    const call: GetCombatantsCall = {
+      call: 'getCombatants',
+    };
 
-  const call: GetCombatantsCall = {
-    call: 'getCombatants',
-  };
+    if (params.ids)
+      call.ids = params.ids;
 
-  if (params.ids)
-    call.ids = params.ids;
+    if (params.names)
+      call.names = params.names;
 
-  if (params.names)
-    call.names = params.names;
+    if (params.props)
+      call.props = params.props;
 
-  if (params.props)
-    call.props = params.props;
+    const entry = {
+      cancel: false,
+    };
 
-  const entry = {
-    cancel: false,
-  };
+    watchCombatantMap.push(entry);
 
-  watchCombatantMap.push(entry);
-
-  const checkFunc = () => {
-    if (entry.cancel) {
-      rejecter();
-      return;
-    }
-    void callOverlayHandler(call).then((response) => {
+    const checkFunc = () => {
       if (entry.cancel) {
-        rejecter();
+        rej();
         return;
       }
-      if (func(response))
-        resolver(true);
-      else
-        window.setTimeout(checkFunc, delay);
-    });
-  };
+      void callOverlayHandler(call).then((response) => {
+        if (entry.cancel) {
+          rej();
+          return;
+        }
+        if (func(response))
+          res(true);
+        else
+          window.setTimeout(checkFunc, delay);
+      });
+    };
 
-  window.setTimeout(checkFunc, delay);
-
-  return promise;
+    window.setTimeout(checkFunc, delay);
+  });
 };
 
 const Util = {
