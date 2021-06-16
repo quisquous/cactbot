@@ -1,3 +1,5 @@
+const { generateValidList, generateValidObject } = require('./eslint-utils');
+
 const defaultOrderList = [
   'en',
   'de',
@@ -8,22 +10,6 @@ const defaultOrderList = [
 ];
 
 let orderList = [];
-
-function compareOrder(a, b) {
-  const orderA = orderList.indexOf(a);
-  const orderB = orderList.indexOf(b);
-
-  // All keys are known to be in `orderList` by the `isLocaleObject` check below.
-  return orderA - orderB;
-}
-
-function generateValidObject(props, sourceCode) {
-  const sortedPropsText = [...props]
-    .sort((a, b) => compareOrder(a.key.name, b.key.name))
-    .map((prop) => ' '.repeat(prop.loc.start.column) + sourceCode.getText(prop))
-    .join(',\n');
-  return `{\n${sortedPropsText},\n${' '.repeat(props[0].loc.start.column - 2)}}`;
-}
 
 // ------------------------------------------------------------------------------
 // Rule Definition
@@ -64,22 +50,7 @@ const ruleModule = {
       ObjectExpression(node) {
         const properties = node.properties;
 
-        const isLocaleObject = properties.every((prop) => {
-          return prop.key && orderList.includes(prop.key.name);
-        });
-        if (!isLocaleObject)
-          return;
-
-        const validList = [];
-
-        for (let i = 1; i < properties.length; i++) {
-          if (compareOrder(properties[i - 1].key.name, properties[i].key.name) > 0) {
-            validList.push({
-              nextKey: properties[i - 1].key.name,
-              beforeKey: properties[i].key.name,
-            });
-          }
-        }
+        const validList = generateValidList(orderList, properties);
 
         if (validList.length >= 1) {
           const sourceCode = context.getSourceCode();
@@ -93,8 +64,12 @@ const ruleModule = {
                 beforeKey: valid.beforeKey,
                 nextKey: valid.nextKey,
               },
-              fix: (fixer) =>
-                fixer.replaceTextRange(node.range, generateValidObject(properties, sourceCode)),
+              fix: (fixer) => {
+                return fixer.replaceTextRange(
+                    node.range,
+                    generateValidObject(orderList, properties, sourceCode),
+                );
+              },
             });
           });
         }
