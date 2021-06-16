@@ -157,7 +157,3 @@ export const getRawCsv = async (table: string, locale: Lang): Promise<string> =>
 
   return await (await fetch(url)).text();
 };
-
-getIntlTable('Status', ['#', 'Name']).then((value) => {
-  console.log(value);
-}).catch(console.log);
