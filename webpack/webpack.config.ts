@@ -1,12 +1,16 @@
 import path from 'path';
-import webpack from 'webpack';
+import webpack, { Configuration as WebpackConfiguration } from 'webpack';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 
-// in case you run into any typescript error when configuring `devServer`
-import 'webpack-dev-server';
+import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
+
+interface Configuration extends WebpackConfiguration {
+  devServer?: WebpackDevServerConfiguration;
+}
+
 
 export default (
     { cactbotModules, cactbotChunks, cactbotHtmlChunksMap }: {
@@ -14,7 +18,7 @@ export default (
       cactbotChunks: { [module: string]: string };
       cactbotHtmlChunksMap: { [html: string]: HtmlWebpackPlugin.Options };
     },
-): webpack.Configuration => {
+): Configuration => {
   const entries: { [module: string]: string } = {};
   Object.entries(cactbotModules).forEach(([key, module]) => {
     // TDOO: Remove when everything is TypeScript, convert to:
