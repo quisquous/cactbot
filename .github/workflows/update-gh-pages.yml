@@ -44,7 +44,7 @@ jobs:
       - name: Build
         run: |
           npm run coverage-report
-          npm run build
+          npm run build-gh-pages
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:

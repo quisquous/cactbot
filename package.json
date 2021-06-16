@@ -8,8 +8,9 @@
     "url": "https://github.com/quisquous/cactbot"
   },
   "scripts": {
-    "build": "node_modules/.bin/webpack --config webpack/webpack.config.cjs --mode production",
-    "start": "node_modules/.bin/webpack-dev-server --config webpack/webpack.config.cjs --mode development",
+    "build": "node_modules/.bin/webpack --config webpack/webpack.prod.cjs",
+    "build-gh-pages": "node_modules/.bin/webpack --config webpack/webpack.ghpages.cjs",
+    "start": "node_modules/.bin/webpack-dev-server --config webpack/webpack.dev.cjs",
     "fetch-deps": "node --loader ts-node/esm ./util/fetch_deps.ts",
     "tsc-no-emit": "node_modules/.bin/tsc --noEmit",
     "lint": "node_modules/.bin/eslint --max-warnings=0 ./",
@@ -75,6 +76,7 @@
     "webpack": "^5.21.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.8.0",
     "worker-loader": "^3.0.8"
   },
   "engines": {
