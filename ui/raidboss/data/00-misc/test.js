@@ -247,7 +247,7 @@ export default {
       id: 'Test Watch',
       netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
       promise: (data) => Util.watchCombatant({ names: [data.me, 'Striking Dummy'] }, (ret) => {
-        const me = ret.combatants.filter((c) => c.Name === data.me)[0];
+        const me = ret.combatants.find((c) => c.Name === data.me);
         const dummies = ret.combatants.filter((c) => c.Name === 'Striking Dummy');
         if (me && dummies) {
           for (const dummy of dummies) {
