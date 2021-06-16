@@ -5,7 +5,7 @@ import { Lang } from '../../resources/languages';
 import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
 import HuntData, { HuntEntry, HuntMap, Rank } from '../../resources/hunt';
 import { MatchesAddedCombatantFull } from '../../resources/matches';
-import NetRegexes from '../../resources/netregexes';
+import NetRegexes, { AbilityFullParams, AddedCombatantFullParams, GameLogParams, NetRegex, WasDefeatedParams } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import UserConfig from '../../resources/user_config';
 
@@ -171,10 +171,10 @@ class Radar {
   private lang: Lang;
   private nameToHuntEntry: HuntMap;
   private regexes: {
-    abilityFull: RegExp;
-    addedCombatantFull: RegExp;
-    instanceChanged: RegExp;
-    wasDefeated: RegExp;
+    abilityFull: NetRegex<AbilityFullParams>;
+    addedCombatantFull: NetRegex<AddedCombatantFullParams>;
+    instanceChanged: NetRegex<GameLogParams>;
+    wasDefeated: NetRegex<WasDefeatedParams>;
   };
 
   constructor(element: HTMLElement) {

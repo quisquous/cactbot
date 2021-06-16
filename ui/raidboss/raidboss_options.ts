@@ -14,7 +14,7 @@ export type PerTriggerOption = Partial<{
   GroupSpeechAlert: boolean; // TODO: we should remove this
   SoundOverride: string;
   VolumeOverride: number;
-  Condition: TriggerField<RaidbossData, boolean>;
+  Condition: TriggerField<RaidbossData, boolean, MatchesAny>;
   InfoText: TriggerOutput<RaidbossData, MatchesAny>;
   AlertText: TriggerOutput<RaidbossData, MatchesAny>;
   AlarmText: TriggerOutput<RaidbossData, MatchesAny>;

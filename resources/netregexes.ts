@@ -60,6 +60,32 @@ export type ChangeZoneParams = typeof changeZoneParams[number];
 export type Network6dParams = typeof network6dParams[number];
 export type NameToggleParams = typeof nameToggleParams[number];
 
+export interface ParamsAll {
+  'StartsUsingParams': StartsUsingParams;
+  'AbilityParams': AbilityParams;
+  'AbilityFullParams': AbilityFullParams;
+  'HeadMarkerParams': HeadMarkerParams;
+  'AddedCombatantParams': AddedCombatantParams;
+  'AddedCombatantFullParams': AddedCombatantFullParams;
+  'RemovingCombatantParams': RemovingCombatantParams;
+  'GainsEffectParams': GainsEffectParams;
+  'StatusEffectExplicitParams': StatusEffectExplicitParams;
+  'LosesEffectParams': LosesEffectParams;
+  'TetherParams': TetherParams;
+  'WasDefeatedParams': WasDefeatedParams;
+  'EchoParams': EchoParams;
+  'DialogParams': DialogParams;
+  'MessageParams': MessageParams;
+  'GameLogParams': GameLogParams;
+  'GameNameLogParams': GameNameLogParams;
+  'StatChangeParams': StatChangeParams;
+  'ChangeZoneParams': ChangeZoneParams;
+  'Network6dParams': Network6dParams;
+  'NameToggleParams': NameToggleParams;
+}
+
+export type ParamsAllTypes = keyof ParamsAll;
+
 // If NetRegexes.setFlagTranslationsNeeded is set to true, then any
 // regex created that requires a translation will begin with this string
 // and match the magicStringRegex.  This is maybe a bit goofy, but is
@@ -75,11 +101,11 @@ const keysThatRequireTranslation = [
   'line',
 ];
 
-const parseHelper = (
-    params: { timestamp?: string; capture?: boolean } | undefined,
-    funcName: string,
-    fields: { [s: string]: Fields },
-): RegExp => {
+const parseHelper = <T extends ParamsAllTypes>(
+  params: Params<T> | undefined,
+  funcName: string,
+  fields: { [s: string]: Fields },
+): NetRegex<ParamsAll[T]> => {
   params = params ?? {};
   const validFields: string[] = [];
   for (const value of Object.values(fields)) {
@@ -151,7 +177,7 @@ const parseHelper = (
     if (key >= (maxKey ?? 0 as number))
       break;
   }
-  return Regexes.parse(str);
+  return NetRegexes.parse(str);
 };
 
 export default class NetRegexes {
@@ -521,5 +547,36 @@ export default class NetRegexes {
       3: { field: 'name' },
       6: { field: 'toggle' },
     });
+  }
+
+  static parse<T extends ParamsAllTypes>(regexpString: RegExp | string): NetRegex<ParamsAll[T]> {
+    const kCactbotCategories = {
+      Timestamp: '^.{14}',
+      NetTimestamp: '.{33}',
+      NetField: '(?:[^|]*\\|)',
+      LogType: '[0-9A-Fa-f]{2}',
+      AbilityCode: '[0-9A-Fa-f]{1,8}',
+      ObjectId: '[0-9A-F]{8}',
+      // Matches any character name (including empty strings which the FFXIV
+      // ACT plugin can generate when unknown).
+      Name: '(?:[^\\s:|]+(?: [^\\s:|]+)?|)',
+      // Floats can have comma as separator in FFXIV plugin output: https://github.com/ravahn/FFXIV_ACT_Plugin/issues/137
+      Float: '-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?',
+    };
+
+    // All regexes in cactbot are case insensitive.
+    // This avoids headaches as things like `Vice and Vanity` turns into
+    // `Vice And Vanity`, especially for French and German.  It appears to
+    // have a ~20% regex parsing overhead, but at least they work.
+    let modifiers = 'i';
+    if (regexpString instanceof RegExp) {
+      modifiers += (regexpString.global ? 'g' : '') +
+                    (regexpString.multiline ? 'm' : '');
+      regexpString = regexpString.source;
+    }
+    regexpString = regexpString.replace(/\\y\{(.*?)\}/g, (match, group) => {
+      return kCactbotCategories[group as keyof typeof kCactbotCategories] || match;
+    });
+    return new RegExp(regexpString, modifiers) as NetRegex<ParamsAll[T]>;
   }
 }

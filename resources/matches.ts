@@ -44,3 +44,29 @@ export type MatchesStatChange = Matches<StatChangeParams>;
 export type MatchesChangeZone = Matches<ChangeZoneParams>;
 export type MatchesNetwork6d = Matches<Network6dParams>;
 export type MatchesNameToggle = Matches<NameToggleParams>;
+
+export interface MatchesAll {
+  'StartsUsingParams': MatchesStartsUsing;
+  'AbilityParams': MatchesAbility;
+  'AbilityFullParams': MatchesAbilityFull;
+  'HeadMarkerParams': MatchesHeadMarker;
+  'AddedCombatantParams': MatchesAddedCombatant;
+  'AddedCombatantFullParams': MatchesAddedCombatantFull;
+  'RemovingCombatantParams': MatchesRemovingCombatant;
+  'GainsEffectParams': MatchesGainsEffect;
+  'StatusEffectExplicitParams': MatchesStatusEffectExplicit;
+  'LosesEffectParams': MatchesLosesEffect;
+  'TetherParams': MatchesTether;
+  'WasDefeatedParams': MatchesWasDefeated;
+  'EchoParams': MatchesEcho;
+  'DialogParams': MatchesDialog;
+  'MessageParams': MatchesMessage;
+  'GameLogParams': MatchesGameLog;
+  'GameNameLogParams': MatchesGameNameLog;
+  'StatChangeParams': MatchesStatChange;
+  'ChangeZoneParams': MatchesChangeZone;
+  'Network6dParams': MatchesNetwork6d;
+  'NameToggleParams': MatchesNameToggle;
+}
+
+export type MatchesAllTypes = keyof MatchesAll;

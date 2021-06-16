@@ -1,19 +1,30 @@
 import { Lang, NonEnLang } from '../resources/languages';
 import { TimelineReplacement, TimelineStyle } from '../ui/raidboss/timeline';
 import { RaidbossData } from './data';
+import { MatchesAllTypes, MatchesAbilityFull, MatchesAbility, MatchesGainsEffect, MatchesLosesEffect, MatchesStartsUsing, MatchesTether, MatchesWasDefeated } from '../resources/matches';
+import { Regex } from '../resources/regexes';
+import { NetRegex } from '../resources/netregexes';
 
-export interface BaseRegExp<T> extends RegExp {
+export interface BaseRegExpExecArray<T> extends RegExpExecArray {
   groups?: {
-    [s in T]?: string;
+    [s in T]: string;
   };
 }
 
-export type Matches<Params> = { [s in Params]: string } | MatchesAny;
+export interface BaseRegExp<T> extends RegExp {
+  exec: (string: string) => BaseRegExpExecArray<T> | null;
+}
+
+export type Matches<Params> = { [s in Params]: string };
 
 // TargetedMatches can be used for generic functions in responses or conditions
 // that use matches from any number of Regex or NetRegex functions.
-export type TargetedParams = 'sourceId' | 'source' | 'targetId' | 'target';
-export type TargetedMatches = Matches<TargetedParams>;
+export type TargetedMatches =
+  MatchesStartsUsing | MatchesAbility | MatchesAbilityFull | MatchesGainsEffect |
+  MatchesLosesEffect | MatchesTether | MatchesWasDefeated;
+
+export type MatchesAny = (MatchesAllTypes extends infer T ? T extends MatchesAllTypes ?
+  Matches<T> : never : never) | { [k: string]: string };
 
 export type FullLocaleText = Record<Lang, string>;
 
@@ -38,18 +49,18 @@ export type Output = {
 };
 
 // The output of any non-response raidboss trigger function.
-export type TriggerOutput<Data, Matches> =
+export type TriggerOutput<Data, Matches extends MatchesAny> =
     undefined | null | LocaleText | string | number | boolean |
-    ((d: Data, m: Matches, o: Output) => TriggerOutput<Data, Matches>);
+    ((d: Data, m: MatchesAll<Matches>, o: Output) => TriggerOutput<Data, Matches>);
 
 // Used if the function doesn't need to return an en key
-export type PartialTriggerOutput<Data, Matches> =
+export type PartialTriggerOutput<Data, Matches extends MatchesAny> =
     undefined | null | Partial<LocaleText> | string | number | boolean |
-    ((d: Data, m: Matches, o: Output) => PartialTriggerOutput<Data, Matches>);
+    ((d: Data, m: MatchesAll<Matches>, o: Output) => PartialTriggerOutput<Data, Matches>);
 
 // The type of a non-response trigger field.
 export type TriggerFunc<Data, Matches, Return> =
-    (data: Data, matches: Matches, output: Output) => Return;
+    (data: Data, matches: MatchesAll<Matches>, output: Output) => Return;
 
 // The output from a response function (different from other TriggerOutput functions).
 export type ResponseOutput<Data, Matches> = {
@@ -59,10 +70,11 @@ export type ResponseOutput<Data, Matches> = {
   tts?: TriggerFunc<Data, Matches, PartialTriggerOutput<Data, Matches>>;
 };
 // The type of a response trigger field.
-export type ResponseFunc<Data, Matches> =
-    (data: Data, matches: Matches, output: Output) => ResponseOutput<Data, Matches>;
+export type ResponseFunc<Data, Matches extends MatchesAny> =
+    (data: Data, matches: MatchesAll<Matches>, output: Output) => ResponseOutput<Data, Matches>;
 
-export type ResponseField<Data> = ResponseFunc<Data, MatchesAny> | ResponseOutput<Data, MatchesAny>;
+export type ResponseField<Data, Matches> =
+    ResponseFunc<Data, Matches> | ResponseOutput<Data, Matches>;
 
 export type TriggerAutoConfig = {
   Output?: Output;
@@ -74,56 +86,58 @@ export type TriggerAutoConfig = {
   SpokenAlertsEnabled?: boolean;
 }
 
-export type MatchesAny = { [s in T]?: string };
-
 // Note: functions like run or preRun need to be defined as void-only as (confusingly)
 // it is not possible to assign `(d: Data) => boolean` to a void | undefined, only to void.
-export type TriggerField<Data, Return> =
-  [Return] extends [void] ? TriggerFunc<Data, MatchesAny, void> :
-  TriggerFunc<Data, MatchesAny, Return | undefined> | Return | undefined;
+export type TriggerField<Data, Return, Matches> =
+  [Return] extends [void] ? TriggerFunc<Data, Matches, void> :
+  TriggerFunc<Data, Matches, Return | undefined> | Return | undefined;
 
 // This trigger type is what we expect cactbot triggers to be written as,
 // in other words `id` is not technically required for triggers but for
 // built-in triggers it is.
-export type BaseTrigger<Data> = {
+export type BaseTrigger<Data, Matches> = {
   id: string;
   disabled?: boolean;
-  condition?: TriggerField<Data, boolean>;
-  preRun?: TriggerField<Data, void>;
-  delaySeconds?: TriggerField<Data, number>;
-  durationSeconds?: TriggerField<Data, number>;
-  suppressSeconds?: TriggerField<Data, number>;
-  promise?: TriggerField<Data, Promise<void>>;
-  sound?: TriggerField<Data, string>;
-  soundVolume?: TriggerField<Data, number>;
-  response?: ResponseField<Data>;
-  alarmText?: TriggerField<Data, TriggerOutput<Data, MatchesAny>>;
-  alertText?: TriggerField<Data, TriggerOutput<Data, MatchesAny>>;
-  infoText?: TriggerField<Data, TriggerOutput<Data, MatchesAny>>;
-  tts?: TriggerField<Data, PartialTriggerOutput<Data, MatchesAny>>;
-  run?: TriggerField<Data, void>;
+  condition?: TriggerField<Data, boolean, Matches>;
+  preRun?: TriggerField<Data, void, Matches>;
+  delaySeconds?: TriggerField<Data, number, Matches>;
+  durationSeconds?: TriggerField<Data, number, Matches>;
+  suppressSeconds?: TriggerField<Data, number, Matches>;
+  promise?: TriggerField<Data, Promise<void>, Matches>;
+  sound?: TriggerField<Data, string, Matches>;
+  soundVolume?: TriggerField<Data, number, Matches>;
+  response?: ResponseField<Data, Matches>;
+  alarmText?: TriggerField<Data, TriggerOutput<Data, Matches>, Matches>;
+  alertText?: TriggerField<Data, TriggerOutput<Data, Matches>, Matches>;
+  infoText?: TriggerField<Data, TriggerOutput<Data, Matches>, Matches>;
+  tts?: TriggerField<Data, PartialTriggerOutput<Data, Matches>, Matches>;
+  run?: TriggerField<Data, void, Matches>;
   outputStrings?: OutputStrings;
 }
 
-export type NetRegexTrigger<Data> = BaseTrigger<Data> & {
-  netRegex: RegExp;
-  netRegexDe?: RegExp;
-  netRegexFr?: RegExp;
-  netRegexJa?: RegExp;
-  netRegexCn?: RegExp;
-  netRegexKo?: RegExp;
-}
+export type NetRegexTrigger<Data> =
+  MatchesAllTypes extends infer T ? [T] extends [MatchesAllTypes] ?
+(BaseTrigger<Data, Matches<T>> & {
+  netRegex: NetRegex<Matches<T>>;
+  netRegexDe?: NetRegex<Matches<T>>;
+  netRegexFr?: NetRegex<Matches<T>>;
+  netRegexJa?: NetRegex<Matches<T>>;
+  netRegexCn?: NetRegex<Matches<T>>;
+  netRegexKo?: NetRegex<Matches<T>>;
+}) : never : never;
 
-export type RegexTrigger<Data> = BaseTrigger<Data> & {
-  regex: RegExp;
-  regexDe?: RegExp;
-  regexFr?: RegExp;
-  regexJa?: RegExp;
-  regexCn?: RegExp;
-  regexKo?: RegExp;
-}
+export type RegexTrigger<Data> =
+  MatchesAllTypes extends infer T ? [T] extends [MatchesAllTypes] ?
+(BaseTrigger<Data, Matches<T>> & {
+  regex: Regex<Matches<T>>;
+  regexDe?: Regex<Matches<T>>;
+  regexFr?: Regex<Matches<T>>;
+  regexJa?: Regex<Matches<T>>;
+  regexCn?: Regex<Matches<T>>;
+  regexKo?: Regex<Matches<T>>;
+}) : never : never;
 
-export type TimelineTrigger<Data> = BaseTrigger<Data> & {
+export type TimelineTrigger<Data> = BaseTrigger<Data, MatchesAny> & {
   regex: RegExp;
   beforeSeconds: number;
 };

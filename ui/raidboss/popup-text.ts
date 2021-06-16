@@ -362,8 +362,8 @@ class TriggerOutputProxy {
 }
 
 export type RaidbossTriggerField =
-  TriggerField<RaidbossData, TriggerOutput<RaidbossData, MatchesAny>> |
-  TriggerField<RaidbossData, PartialTriggerOutput<RaidbossData, MatchesAny>>;
+  TriggerField<RaidbossData, TriggerOutput<RaidbossData, MatchesAny>, MatchesAny> |
+  TriggerField<RaidbossData, PartialTriggerOutput<RaidbossData, MatchesAny>, MatchesAny>;
 export type RaidbossTriggerOutput = TriggerOutput<RaidbossData, MatchesAny> |
   PartialTriggerOutput<RaidbossData, MatchesAny>;
 
@@ -1147,7 +1147,7 @@ export class PopupText {
   }
 
   _onTriggerInternalResponse(triggerHelper: TriggerHelper): void {
-    let response: ResponseField<RaidbossData> = {};
+    let response: ResponseField<RaidbossData, MatchesAny> = {};
     const trigger = triggerHelper.trigger;
     if (trigger.response) {
       // Can't use ValueOrFunction here as r returns a non-localizable object.
@@ -1182,7 +1182,7 @@ export class PopupText {
       } else if (triggerHelper.trigger.tts) {
         result = triggerHelper.valueOrFunction(triggerHelper.trigger.tts);
       } else if (triggerHelper.response) {
-        const resp: ResponseField<RaidbossData> = triggerHelper.response;
+        const resp: ResponseField<RaidbossData, MatchesAny> = triggerHelper.response;
         if (resp.tts)
           result = triggerHelper.valueOrFunction(resp.tts);
       }
