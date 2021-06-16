@@ -4,7 +4,7 @@ export default class CombatantJobSearch {
   static getJob(abilityId: number): Job | undefined {
     for (const [key, value] of Object.entries(CombatantJobSearch.abilities)) {
       if (value?.includes(abilityId))
-        return key as Job;
+        return key as keyof typeof CombatantJobSearch.abilities;
     }
   }
 
