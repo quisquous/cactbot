@@ -114,7 +114,6 @@ export function setup(bars) {
     kAbility.Miasma,
     kAbility.Miasma3,
   ], () => {
-    miasmaBox.duration = 0;
     miasmaBox.duration = 30;
   });
   bars.onUseAbility([
@@ -122,22 +121,18 @@ export function setup(bars) {
     kAbility.BioSmn2,
     kAbility.Bio3,
   ], () => {
-    bioSmnBox.duration = 0;
     bioSmnBox.duration = 30;
   });
   // Tridisaster refresh miasma and bio both, so repeat below.
   // TODO: remake onXxx like node's EventEmitter
   bars.onUseAbility(kAbility.Tridisaster, () => {
-    miasmaBox.duration = 0;
     miasmaBox.duration = 30;
-    bioSmnBox.duration = 0;
     bioSmnBox.duration = 30;
   });
   bars.onUseAbility([
     kAbility.EnergyDrain,
     kAbility.EnergySiphon,
   ], () => {
-    energyDrainBox.duration = 0;
     energyDrainBox.duration = 30;
     aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
   });
@@ -148,7 +143,6 @@ export function setup(bars) {
     kAbility.DreadwyrmTrance,
     kAbility.FirebirdTrance,
   ], () => {
-    tranceBox.duration = 0;
     tranceBox.duration = 60;
   });
 

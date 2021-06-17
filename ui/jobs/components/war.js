@@ -71,7 +71,6 @@ export function setup(bars) {
   });
 
   bars.onYouGainEffect(EffectId.StormsEye, (id, e) => {
-    eyeBox.duration = 0;
     eyeBox.duration = e.duration;
   });
   bars.onYouLoseEffect(EffectId.StormsEye, () => {
