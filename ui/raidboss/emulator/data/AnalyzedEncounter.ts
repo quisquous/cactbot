@@ -38,19 +38,19 @@ export default class AnalyzedEncounter extends EventBus {
     super();
   }
 
-  selectPerspective(ID: string): void {
+  selectPerspective(id: string): void {
     if (this.encounter && this.encounter.combatantTracker) {
-      const selectedPartyMember = this.encounter.combatantTracker.combatants[ID];
+      const selectedPartyMember = this.encounter.combatantTracker.combatants[id];
       if (!selectedPartyMember)
         return;
 
       this.popupText?.getPartyTracker().onPartyChanged({
-        party: this.encounter.combatantTracker.partyMembers.map((ID) => {
-          const partyMember = this.encounter?.combatantTracker?.combatants[ID];
+        party: this.encounter.combatantTracker.partyMembers.map((id) => {
+          const partyMember = this.encounter?.combatantTracker?.combatants[id];
           if (!partyMember)
             throw new UnreachableCode();
           return {
-            id: ID,
+            id: id,
             worldId: 0,
             name: partyMember.name,
             job: Util.jobToJobEnum(partyMember.job ?? 'NONE'),
