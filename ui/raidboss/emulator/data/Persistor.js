@@ -7,56 +7,53 @@ export default class Persistor extends EventBus {
   constructor() {
     super();
     this.DB = null;
-    this.initializeDB();
   }
 
   initializeDB() {
-    const request = window.indexedDB.open('RaidEmulatorEncounters', Persistor.dbVersion);
-    request.addEventListener('success', (ev) => {
-      this.DB = ev.target.result;
-      this.dispatch('ready');
-    });
-    request.addEventListener('upgradeneeded', (ev) => {
-      const promises = [];
-      let encountersStorage;
-      let encounterSummariesStorage;
-      // We deliberately avoid using breaks for this switch/case to allow
-      // incremental upgrades to apply in sequence
-      switch (ev.oldVersion) {
-      case 0:
-        encountersStorage = ev.target.result.createObjectStore('Encounters', {
-          keyPath: 'id',
-          autoIncrement: true,
-        });
-        encounterSummariesStorage = ev.target.result.createObjectStore('EncounterSummaries', {
-          keyPath: 'id',
-          autoIncrement: true,
-        });
-        encounterSummariesStorage.createIndex('zoneName', 'zoneName');
-        encounterSummariesStorage.createIndex('start', 'start');
-        encounterSummariesStorage.createIndex('zoneName_start', ['zoneName', 'start']);
-      }
-      promises.push(new Promise((res) => {
-        encountersStorage.transaction.addEventListener('complete', (tev) => {
-          res();
-        });
-      }));
-      promises.push(new Promise((res) => {
-        encounterSummariesStorage.transaction.addEventListener('complete', (tev) => {
-          res();
-        });
-      }));
+    return new Promise((resolver) => {
+      const request = window.indexedDB.open('RaidEmulatorEncounters', Persistor.dbVersion);
+      request.addEventListener('success', (ev) => {
+        this.DB = ev.target.result;
+        resolver();
+      });
+      request.addEventListener('upgradeneeded', (ev) => {
+        const promises = [];
+        let encountersStorage;
+        let encounterSummariesStorage;
+        // We deliberately avoid using breaks for this switch/case to allow
+        // incremental upgrades to apply in sequence
+        switch (ev.oldVersion) {
+        case 0:
+          encountersStorage = ev.target.result.createObjectStore('Encounters', {
+            keyPath: 'id',
+            autoIncrement: true,
+          });
+          encounterSummariesStorage = ev.target.result.createObjectStore('EncounterSummaries', {
+            keyPath: 'id',
+            autoIncrement: true,
+          });
+          encounterSummariesStorage.createIndex('zoneName', 'zoneName');
+          encounterSummariesStorage.createIndex('start', 'start');
+          encounterSummariesStorage.createIndex('zoneName_start', ['zoneName', 'start']);
+        }
+        promises.push(new Promise((res) => {
+          encountersStorage.transaction.addEventListener('complete', (tev) => {
+            res();
+          });
+        }));
+        promises.push(new Promise((res) => {
+          encounterSummariesStorage.transaction.addEventListener('complete', (tev) => {
+            res();
+          });
+        }));
 
-      let completed = 0;
-      for (const i in promises) {
-        promises[i].then(() => {
-          ++completed;
-          if (completed === promises.length) {
+        for (const i in promises) {
+          Promise.all(promises).then(() => {
             this.DB = ev.target.result;
-            this.dispatch('ready');
-          }
-        });
-      }
+            resolver();
+          });
+        }
+      });
     });
   }
 
