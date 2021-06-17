@@ -2,7 +2,7 @@ import EmulatorCommon from '../EmulatorCommon';
 import EventBus from '../EventBus';
 import { PopupTextGenerator } from '../../popup-text';
 import RaidEmulatorTimelineController from '../overrides/RaidEmulatorTimelineController';
-import PopupTextAnalysis from '../data/PopupTextAnalysis';
+import PopupTextAnalysis, { Resolver } from '../data/PopupTextAnalysis';
 import { TimelineLoader } from '../../timeline';
 import Util from '../../../../resources/util';
 import raidbossFileData from '../../data/raidboss_manifest.txt';
@@ -100,31 +100,24 @@ export default class AnalyzedEncounter extends EventBus {
 
     if (timelineController.activeTimeline) {
       timelineController.activeTimeline.SetTrigger(async (trigger, matches) => {
-        // Some async magic here, force waiting for the entirety of
-        // the trigger execution before continuing
-        const delayPromise = new Promise((res) => {
-          popupText.delayResolver = res;
-        });
-        const promisePromise = new Promise((res) => {
-          popupText.promiseResolver = res;
-        });
-        const runPromise = new Promise((res) => {
-          popupText.runResolver = res;
-        });
-
         const currentLine = this.encounter.logLines[currentLogIndex];
+        const resolver = popupText.currentResolver = new Resolver({
+          initialData: EmulatorCommon.cloneData(popupText.data),
+          suppressed: false,
+          executed: false,
+        });
+        popupText.triggerResolvers.push(resolver);
 
         popupText.OnTrigger(trigger, matches, currentLine.timestamp);
 
-        await delayPromise;
-        await promisePromise;
-        const triggerHelper = await runPromise;
-
-        triggerHelper.resolver.status.finalData = EmulatorCommon.cloneData(popupText.data);
-
-        popupText.callback(
-            currentLine,
-            triggerHelper, triggerHelper.resolver.status);
+        resolver.setFinal(() => {
+          resolver.status.finalData = EmulatorCommon.cloneData(popupText.data);
+          delete resolver.triggerHelper?.resolver;
+          if (popupText.callback) {
+            popupText.callback(currentLine, resolver.triggerHelper,
+                resolver.status, popupText.data);
+          }
+        });
       });
     }
 

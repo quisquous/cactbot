@@ -31,7 +31,7 @@ type EmulatorTriggerHelper = TriggerHelper & {
   resolver?: Resolver;
 };
 
-class Resolver {
+export class Resolver {
   private promise?: Promise<void>;
   private run?: ResolverFunc;
   private delayUntil?: number;
