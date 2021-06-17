@@ -14,7 +14,6 @@ import LineEvent from './network_log_converter/LineEvent';
 import { UnreachableCode } from '../../../../resources/not_reached';
 import { LooseTrigger } from '../../../../types/trigger';
 import Combatant from './Combatant';
-import { PlayerChangedDetail } from '../../../../resources/player_override';
 
 type PerspectiveTrigger = {
   triggerHelper: TriggerHelper;
@@ -73,7 +72,7 @@ export default class AnalyzedEncounter extends EventBus {
     if (!job)
       throw new UnreachableCode();
     const state = combatant.getState(timestamp);
-    const eventCast = {
+    this.popupText?.OnPlayerChange({
       detail: {
         name: combatant.name,
         job: job,
@@ -97,11 +96,7 @@ export default class AnalyzedEncounter extends EventBus {
         bait: 0,
         debugJob: '',
       },
-    };
-    // For emulator purposes, jobDetail is always null, but typescript really doesn't like that
-    // So we need to hard cast the event details
-    const event = eventCast as PlayerChangedDetail;
-    this.popupText?.OnPlayerChange(event);
+    });
   }
 
   async analyze(popupText: PopupTextAnalysis): Promise<void> {
