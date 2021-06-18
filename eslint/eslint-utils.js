@@ -25,7 +25,18 @@ const generateValidList = (orderList, properties) => {
 const generateValidObject = (orderList, properties, sourceCode) => {
   const sortedPropertiesText = [...properties]
     .sort((a, b) => compareOrder(orderList, a.key.name, b.key.name))
-    .map((property) => ' '.repeat(property.loc.start.column) + sourceCode.getText(property))
+    .map((property) => {
+      const whitespace = ' '.repeat(property.loc.start.column);
+      let str = '';
+      sourceCode.getCommentsBefore(property).forEach((comment) => {
+        if (comment.type === 'Line')
+          str += `${whitespace}//${comment.value}\n`;
+        else if (comment.type === 'Block')
+          str += `${whitespace}/*${comment.value}*/\n`;
+      });
+      str += whitespace + sourceCode.getText(property);
+      return str;
+    })
     .join(',\n');
   return `{\n${sortedPropertiesText},\n${' '.repeat(properties[0].loc.start.column - 2)}}`;
 };
