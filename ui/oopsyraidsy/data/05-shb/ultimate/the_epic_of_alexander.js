@@ -51,11 +51,11 @@ export default {
   },
   triggers: [
     {
+      damageRegex: '482A',
+      id: 'TEA Outburst',
+      collectSeconds: 0.5,
       // Balloon Popping.  It seems like the person who pops it is the
       // first person listed damage-wise, so they are likely the culprit.
-      id: 'TEA Outburst',
-      damageRegex: '482A',
-      collectSeconds: 0.5,
       suppressSeconds: 5,
       mistake: (e) => {
         return { type: 'fail', blame: e[0].targetName, text: e[0].attackerName };

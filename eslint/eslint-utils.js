@@ -34,7 +34,7 @@ const generateValidObject = (orderList, properties, sourceCode) => {
         else if (comment.type === 'Block')
           str += `${whitespace}/*${comment.value}*/\n`;
       });
-      str += whitespace + sourceCode.getText(property);
+      str += `${whitespace}${sourceCode.getText(property)}`;
       return str;
     })
     .join(',\n');
