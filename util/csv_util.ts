@@ -4,10 +4,10 @@ import { parseString } from '@fast-csv/parse';
 import fetch from 'node-fetch';
 import { Lang } from '../resources/languages';
 
-const _BASE_GITHUB = 'https://raw.githubusercontent.com/';
-const _INTL_GITHUB = 'xivapi/ffxiv-datamining/master/csv/';
-const _CN_GITHUB = 'thewakingsands/ffxiv-datamining-cn/master/';
-const _KO_GITHUB = 'Ra-Workspace/ffxiv-datamining-ko/master/csv/';
+const baseGithub = 'https://raw.githubusercontent.com/';
+const intlGithub = 'xivapi/ffxiv-datamining/master/csv/';
+const cnGithub = 'thewakingsands/ffxiv-datamining-cn/master/';
+const koGithub = 'Ra-Workspace/ffxiv-datamining-ko/master/csv/';
 
 
 type Table<RowKey extends string, SubKey extends string | number> =
@@ -96,7 +96,7 @@ export const makeMap = async (
   return map;
 };
 
-const __getRemoteTable = async (
+const getRemoteTable = async (
     url: string, inputs: (string | number)[], outputs: string[] | undefined = undefined,
 ) => {
   const response = await fetch(url);
@@ -107,22 +107,22 @@ const __getRemoteTable = async (
 export const getIntlTable: GetTableFunc = async (
     table: string, inputs: (string | number)[], outputs?: string[],
 ) => {
-  const url = `${_BASE_GITHUB}${_INTL_GITHUB}${table}.csv`;
-  return __getRemoteTable(url, inputs, outputs);
+  const url = `${baseGithub}${intlGithub}${table}.csv`;
+  return getRemoteTable(url, inputs, outputs);
 };
 
 export const getKoTable: GetTableFunc = (
     table: string, inputs: (string | number)[], outputs?: string[],
 ) => {
-  const url = `${_BASE_GITHUB}${_KO_GITHUB}${table}.csv`;
-  return __getRemoteTable(url, inputs, outputs);
+  const url = `${baseGithub}${koGithub}${table}.csv`;
+  return getRemoteTable(url, inputs, outputs);
 };
 
 export const getCnTable: GetTableFunc = (
     table: string, inputs: (string | number)[], outputs?: string[],
 ) => {
-  const url = `${_BASE_GITHUB}${_CN_GITHUB}${table}.csv`;
-  return __getRemoteTable(url, inputs, outputs);
+  const url = `${baseGithub}${cnGithub}${table}.csv`;
+  return getRemoteTable(url, inputs, outputs);
 };
 
 
@@ -149,9 +149,9 @@ export const getLocaleTable: {
 export const getRawCsv = async (table: string, locale: Lang): Promise<string> => {
   let url = '';
   if (locale === 'cn')
-    url = `${_BASE_GITHUB}${_CN_GITHUB}${table}.csv`;
+    url = `${baseGithub}${cnGithub}${table}.csv`;
   else if (locale === 'ko')
-    url = `${_BASE_GITHUB}${_KO_GITHUB}${table}.csv`;
+    url = `${baseGithub}${koGithub}${table}.csv`;
   else
     throw new Error(`Invalid locale: ${locale}`);
 
