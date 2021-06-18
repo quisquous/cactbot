@@ -265,7 +265,12 @@ const overrides = [
       'rulesdir/cactbot-output-strings': 'error',
       'rulesdir/cactbot-response-default-severities': 'error',
       'rulesdir/cactbot-timeline-triggers': 'error',
-      'rulesdir/cactbot-trigger-property-order': 'error',
+    },
+  },
+  {
+    'files': ['**/raidboss/data/**/*'],
+    'rules': {
+      'rulesdir/cactbot-trigger-property-order': ['error', { 'module': 'raidboss' }],
     },
   },
   {

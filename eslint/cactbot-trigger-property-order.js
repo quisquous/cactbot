@@ -36,7 +36,6 @@ module.exports = {
       'netRegexCn',
       'netRegexKo',
       'regex',
-      'condition',
       'beforeSeconds',
       'condition',
       'preRun',
@@ -76,9 +75,12 @@ module.exports = {
       'mistake',
       'run',
     ];
-    const orderList = context.options[0]?.module === 'oopsyraidsy' ? oopsyraidsyOrderList : raidbossOrderList;
+    const optionModule = context.options[0] ? context.options[0].module : undefined;
+    if (!optionModule || (optionModule !== 'oopsyraidsy' && optionModule !== 'raidboss'))
+      return;
+    const orderList = optionModule === 'oopsyraidsy' ? oopsyraidsyOrderList : raidbossOrderList;
     return {
-      'Property[key.name=\'triggers\'] > ArrayExpression > ObjectExpression': (node) => {
+      'Property[key.name=/(timelineTriggers|triggers)/] > ArrayExpression > ObjectExpression': (node) => {
         const properties = node.properties;
 
         const validList = generateValidList(orderList, properties);
