@@ -56,9 +56,9 @@ export const cleanName = (str: string): string => {
 };
 
 // inputs[0] is the key column for the returned map
-export const makeMap = async (
+export const makeMap: GetTableFunc = async (
     contents: string, inputs: (string | number)[], _outputs?: (string | number)[],
-): Promise<Record<string, Record<string, string | undefined>>> => {
+) => {
   const { keys, rows } = await
   new Promise<{ keys: string[]; rows: string[][] }>((resolve, reject) => {
     const rows: string[][] = [];
@@ -97,11 +97,11 @@ export const makeMap = async (
 };
 
 const getRemoteTable = async (
-    url: string, inputs: (string | number)[], outputs: string[] | undefined = undefined,
+    url: string, inputs: (string | number)[], outputs?: string[],
 ) => {
   const response = await fetch(url);
   const contents = await response.text();
-  return await makeMap(contents, inputs, outputs);
+  return await makeMap(contents, inputs, outputs as [key: string, ...indices: string[]]);
 };
 
 export const getIntlTable: GetTableFunc = async (
