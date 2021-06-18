@@ -62,7 +62,7 @@ export const makeMap: GetTableFunc = async (
   const { keys, rows } = await
   new Promise<{ keys: string[]; rows: string[][] }>((resolve, reject) => {
     const rows: string[][] = [];
-    parseString(contents, { headers: false, skipLines: 1, ignoreEmpty: false })
+    parseString(contents, { skipLines: 1, ignoreEmpty: false })
       .on('error', (err) => reject(err))
       .on('data', (row: string[]) => rows.push(row))
       .on('end', (rowCount: number) => {
@@ -88,8 +88,8 @@ export const makeMap: GetTableFunc = async (
   const outputs = _outputs ?? inputs;
 
   const map = Object.fromEntries(rows.map((row) => {
-    const output = Object.fromEntries(indices.map((indice) => {
-      return [outputs[indice] ?? '', row[indice]];
+    const output = Object.fromEntries(indices.map((indice, index) => {
+      return [outputs[index] ?? '', row[indice]];
     }));
     return [row[indices[0] ?? 0] ?? '', output];
   }));
