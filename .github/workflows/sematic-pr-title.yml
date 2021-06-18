@@ -26,6 +26,7 @@ jobs:
             style
             perf
             test
+            i18n
           scopes: |
             resources
             ui
