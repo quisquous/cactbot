@@ -293,9 +293,16 @@ export type SavedConfig = {
   [overlayName: string]: SavedConfigEntry;
 };
 
-type PlayerChangedRet = Job extends infer T ? T extends Job ? {
-  name: string;
+type PlayerChangedJobDetails<T> = {
   job: T;
+  jobDetail: JobDetail[T];
+} | {
+  job: Job;
+  jobDetail: null;
+}
+
+type PlayerChangedBase = {
+  name: string;
   level: number;
   currentHP: number;
   maxHP: number;
@@ -306,7 +313,6 @@ type PlayerChangedRet = Job extends infer T ? T extends Job ? {
   currentGP: number;
   maxGP: number;
   currentShield: number;
-  jobDetail: JobDetail[T];
   pos: {
     x: number;
     y: number;
@@ -315,7 +321,10 @@ type PlayerChangedRet = Job extends infer T ? T extends Job ? {
   rotation: number;
   bait: number;
   debugJob: string;
-} : never : never;
+};
+
+type PlayerChangedRet = Job extends infer T ? T extends Job ?
+  PlayerChangedJobDetails<T> & PlayerChangedBase : never : never;
 
 export type IOverlayHandler = {
   // OutputPlugin build-in
