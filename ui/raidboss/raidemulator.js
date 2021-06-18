@@ -116,11 +116,8 @@ import './raidemulator.css';
 
     // Listen for the emulator to event log lines, then dispatch them to the timeline controller
     // @TODO: Probably a better place to listen for this?
-    emulator.on('emitLogs', (logs) => {
-      timelineController.OnLogEvent({
-        type: 'onLogEvent',
-        detail: logs,
-      });
+    emulator.on('emitLogs', (e) => {
+      timelineController.onEmulatorLogEvent(e.logs);
     });
 
     // Wait for the DB to be ready before doing anything that might invoke the DB

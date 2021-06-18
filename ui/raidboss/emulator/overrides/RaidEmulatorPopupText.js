@@ -1,3 +1,4 @@
+import { UnreachableCode } from '../../../../resources/not_reached';
 import StubbedPopupText from '../overrides/StubbedPopupText';
 
 export default class RaidEmulatorPopupText extends StubbedPopupText {
@@ -41,7 +42,11 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
     });
   }
 
-  OnLog(logs) {
+  OnLog(_logs) {
+    throw new UnreachableCode();
+  }
+
+  onEmulatorLog(logs) {
     for (const l of logs) {
       const log = l.properCaseConvertedLine || l.convertedLine;
       const currentTime = l.timestamp;
@@ -53,26 +58,22 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
         if (r)
           this.OnTrigger(trigger, r, currentTime);
       }
-    }
-  }
-
-  OnNetLog(logs) {
-    for (const l of logs) {
-      const log = l.networkLine;
-      const currentTime = l.timestamp;
       for (const trigger of this.netTriggers) {
-        const r = log.match(trigger.localNetRegex);
+        const r = l.networkLine.match(trigger.localNetRegex);
         if (r)
           this.OnTrigger(trigger, r, currentTime);
       }
     }
   }
 
+  OnNetLog(_logs) {
+    throw new UnreachableCode();
+  }
+
   bindTo(emulator) {
     this.emulator = emulator;
     emulator.on('emitLogs', (event) => {
-      this.OnLog(event.logs);
-      this.OnNetLog(event.logs);
+      this.onEmulatorLog(event.logs);
     });
     emulator.on('tick', async (currentLogTime) => {
       await this.doUpdate(currentLogTime);

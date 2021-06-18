@@ -1,9 +1,8 @@
-import EmulatorCommon, { DataType, EmulatorLogEvent } from '../EmulatorCommon';
+import EmulatorCommon, { DataType } from '../EmulatorCommon';
 import EventBus from '../EventBus';
 import { PopupTextGenerator, TriggerHelper } from '../../popup-text';
 import RaidEmulatorTimelineController from '../overrides/RaidEmulatorTimelineController';
-import PopupTextAnalysis, { EmulatorNetworkLogEvent, ResolverStatus, Resolver } from './PopupTextAnalysis';
-import { TimelineLoader } from '../../timeline';
+import PopupTextAnalysis, { ResolverStatus, Resolver } from './PopupTextAnalysis';
 import Util from '../../../../resources/util';
 import raidbossFileData from '../../data/raidboss_manifest.txt';
 import RaidEmulatorAnalysisTimelineUI from '../overrides/RaidEmulatorAnalysisTimelineUI';
@@ -14,6 +13,7 @@ import LineEvent from './network_log_converter/LineEvent';
 import { UnreachableCode } from '../../../../resources/not_reached';
 import { LooseTrigger } from '../../../../types/trigger';
 import Combatant from './Combatant';
+import { TimelineLoader } from '../../timeline';
 
 type PerspectiveTrigger = {
   triggerHelper: TriggerHelper;
@@ -29,7 +29,6 @@ type Perspective = {
 type Perspectives = { [id: string]: Perspective };
 
 export default class AnalyzedEncounter extends EventBus {
-  popupText?: PopupTextAnalysis;
   perspectives: Perspectives = {};
   constructor(
     public options: RaidbossOptions,
@@ -38,13 +37,13 @@ export default class AnalyzedEncounter extends EventBus {
     super();
   }
 
-  selectPerspective(id: string): void {
+  selectPerspective(id: string, popupText: PopupTextAnalysis): void {
     if (this.encounter && this.encounter.combatantTracker) {
       const selectedPartyMember = this.encounter.combatantTracker.combatants[id];
       if (!selectedPartyMember)
         return;
 
-      this.popupText?.getPartyTracker().onPartyChanged({
+      popupText?.getPartyTracker().onPartyChanged({
         party: this.encounter.combatantTracker.partyMembers.map((id) => {
           const partyMember = this.encounter?.combatantTracker?.combatants[id];
           if (!partyMember)
@@ -58,8 +57,8 @@ export default class AnalyzedEncounter extends EventBus {
           };
         }),
       });
-      this.updateState(selectedPartyMember, this.encounter.startTimestamp);
-      this.popupText?.OnChangeZone({
+      this.updateState(selectedPartyMember, this.encounter.startTimestamp, popupText);
+      popupText?.OnChangeZone({
         type: 'ChangeZone',
         zoneName: this.encounter.encounterZoneName,
         zoneID: parseInt(this.encounter.encounterZoneId, 16),
@@ -67,12 +66,12 @@ export default class AnalyzedEncounter extends EventBus {
     }
   }
 
-  updateState(combatant: Combatant, timestamp: number): void {
+  updateState(combatant: Combatant, timestamp: number, popupText: PopupTextAnalysis): void {
     const job = combatant.job;
     if (!job)
       throw new UnreachableCode();
     const state = combatant.getState(timestamp);
-    this.popupText?.OnPlayerChange({
+    popupText?.OnPlayerChange({
       detail: {
         name: combatant.name,
         job: job,
@@ -99,8 +98,7 @@ export default class AnalyzedEncounter extends EventBus {
     });
   }
 
-  async analyze(popupText: PopupTextAnalysis): Promise<void> {
-    this.popupText = popupText;
+  async analyze(): Promise<void> {
     // @TODO: Make this run in parallel sometime in the future, since it could be really slow?
     if (this.encounter.combatantTracker) {
       for (const id of this.encounter.combatantTracker.partyMembers)
@@ -111,8 +109,7 @@ export default class AnalyzedEncounter extends EventBus {
   }
 
   async analyzeFor(id: string): Promise<void> {
-    if (!this.encounter.combatantTracker ||
-        !this.popupText)
+    if (!this.encounter.combatantTracker)
       return;
     let currentLogIndex = 0;
     const partyMember = this.encounter.combatantTracker.combatants[id];
@@ -132,6 +129,7 @@ export default class AnalyzedEncounter extends EventBus {
     const timelineController =
         new RaidEmulatorTimelineController(this.options, timelineUI, raidbossFileData);
     timelineController.bindTo(this.emulator);
+
     const popupText = new PopupTextAnalysis(
         this.options, new TimelineLoader(timelineController), raidbossFileData);
 
@@ -140,7 +138,7 @@ export default class AnalyzedEncounter extends EventBus {
 
     timelineController.SetPopupTextInterface(generator);
 
-    this.selectPerspective(id);
+    this.selectPerspective(id, popupText);
 
     if (timelineController.activeTimeline) {
       timelineController.activeTimeline.SetTrigger((trigger: LooseTrigger, matches) => {
@@ -200,18 +198,10 @@ export default class AnalyzedEncounter extends EventBus {
       const combatant = this.encounter?.combatantTracker?.combatants[id];
 
       if (combatant && combatant.hasState(log.timestamp))
-        this.updateState(combatant, log.timestamp);
+        this.updateState(combatant, log.timestamp, popupText);
 
-      const event = {
-        type: 'onLogEvent',
-        detail: {
-          logs: [log],
-        },
-      };
-
-      await popupText.OnLog(event as EmulatorLogEvent);
-      await popupText.OnNetLog(event as EmulatorNetworkLogEvent);
-      timelineController.OnLogEvent(event as EmulatorLogEvent);
+      await popupText.onEmulatorLog([log]);
+      timelineController.onEmulatorLogEvent([log]);
     }
     timelineUI.stop();
   }

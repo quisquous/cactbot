@@ -1,7 +1,9 @@
+import { UnreachableCode } from '../../../../resources/not_reached';
+import { LogEvent } from '../../../../types/event';
 import { LooseTimelineTrigger } from '../../../../types/trigger';
 import { TimelineController, TimelineReplacement, TimelineStyle } from '../../timeline';
+import LineEvent from '../data/network_log_converter/LineEvent';
 import RaidEmulator from '../data/RaidEmulator';
-import { EmulatorLogEvent } from '../EmulatorCommon';
 import RaidEmulatorTimeline from './RaidEmulatorTimeline';
 
 export default class RaidEmulatorTimelineController extends TimelineController {
@@ -44,11 +46,15 @@ export default class RaidEmulatorTimelineController extends TimelineController {
   }
 
   // Override
-  public OnLogEvent(e: EmulatorLogEvent): void {
+  public OnLogEvent(_e: LogEvent): void {
+    throw new UnreachableCode();
+  }
+
+  public onEmulatorLogEvent(logs: LineEvent[]): void {
     if (!this.activeTimeline)
       return;
 
-    for (const line of e.detail.logs) {
+    for (const line of logs) {
       this.activeTimeline.OnLogLine(
           line.properCaseConvertedLine || line.convertedLine,
           line.timestamp);
