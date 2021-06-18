@@ -28,30 +28,30 @@ export const cleanName = (str?: string | null): string | undefined | null => {
     return str;
 
   // The Tam\u2013Tara Deepcroft
-  str = str.replace(/\u2013/, '-');
+  str = str.replace(/\u2013/g, '-');
 
   // The <Emphasis>Whorleater</Emphasis> Extreme
-  str = str.replace(/<\/?Emphasis>/, '');
+  str = str.replace(/<\/?Emphasis>/g, '');
 
   // Various symbols to get rid of.
-  str = str.replace(/[':(),]/, '');
+  str = str.replace(/[':(),]/g, '');
 
   // Sigmascape V4.0 (Savage)
-  str = str.replace(/\./, '');
+  str = str.replace(/\./g, '');
 
   // Common case hyphen: TheSecondCoilOfBahamutTurn1
   // Special case hyphen: ThePalaceOfTheDeadFloors1_10
-  str = str.replace(/([0-9])-([0-9])/, '$1_$2');
-  str = str.replace(/[-]/, ' ');
+  str = str.replace(/([0-9])-([0-9])/g, '$1_$2');
+  str = str.replace(/[-]/g, ' ');
 
   // Of course capitalization isn't consistent, that'd be ridiculous.
   str = str.toLowerCase().split(' ').map((s) => `${s[0]?.toUpperCase() ?? ''}${s.substring(1)}`).join('');
 
   // collapse remaining whitespace
-  str = str.replace(/\s+/, '');
+  str = str.replace(/\s+/g, '');
 
   // remove non-ascii characters
-  str = str.replace(/[^0-9A-z_]/, '');
+  str = str.replace(/[^0-9A-z_]/g, '');
   return str;
 };
 
