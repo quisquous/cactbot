@@ -141,7 +141,7 @@ export default class AnalyzedEncounter extends EventBus {
     this.selectPerspective(id, popupText);
 
     if (timelineController.activeTimeline) {
-      timelineController.activeTimeline.SetTrigger((trigger: LooseTrigger, matches) => {
+      timelineController.activeTimeline.triggerCallback = (trigger: LooseTrigger, matches) => {
         const currentLine = this.encounter.logLines[currentLogIndex];
         const resolver = popupText.currentResolver = new Resolver({
           initialData: EmulatorCommon.cloneData(popupText.getData()),
@@ -163,7 +163,7 @@ export default class AnalyzedEncounter extends EventBus {
                 resolver.status, popupText.getData());
           }
         });
-      });
+      };
     }
 
     popupText.callback = (log, triggerHelper, currentTriggerStatus) => {

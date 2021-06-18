@@ -132,11 +132,13 @@ type ParsedText = ParsedPopupText | ParsedTriggerText;
 type Text = ParsedText & { time: number };
 
 type AddTimerCallback = (fightNow: number, durationEvent: Event, channeling: boolean) => void;
+type RemoveTimerCallback = (e: Event, expired: boolean, force?: boolean) => void;
 type PopupTextCallback = (text: string, currentTime: number) => void;
 type TriggerCallback =
     (trigger: LooseTimelineTrigger,
     matches: RegExpExecArray | null,
     currentTime: number) => void;
+type SyncTimeCallback = (fightNow: number, running: boolean) => void;
 
 // TODO: Duplicated in 'jobs'
 const computeBackgroundColorFrom = (element: HTMLElement, classList: string): string => {
@@ -174,15 +176,14 @@ export class Timeline {
   private nextSyncStart = 0;
   private nextSyncEnd = 0;
 
-  private addTimerCallback: AddTimerCallback | null = null;
-  private removeTimerCallback: |
-    ((e: Event, expired: boolean, force?: boolean) => void) | null = null;
-  private showInfoTextCallback: PopupTextCallback | null = null;
-  private showAlertTextCallback: PopupTextCallback | null = null;
-  private showAlarmTextCallback: PopupTextCallback | null = null;
-  private speakTTSCallback: PopupTextCallback | null = null;
-  private triggerCallback: TriggerCallback | null = null;
-  private syncTimeCallback: ((fightNow: number, running: boolean) => void) | null = null;
+  public addTimerCallback?: AddTimerCallback;
+  public removeTimerCallback?: RemoveTimerCallback;
+  public showInfoTextCallback?: PopupTextCallback;
+  public showAlertTextCallback?: PopupTextCallback;
+  public showAlarmTextCallback?: PopupTextCallback;
+  public speakTTSCallback?: PopupTextCallback;
+  public triggerCallback?: TriggerCallback;
+  public syncTimeCallback?: SyncTimeCallback;
 
   private updateTimer = 0;
 
@@ -811,31 +812,6 @@ export class Timeline {
     this._AddUpcomingTimers(fightNow);
     this._ScheduleUpdate(fightNow);
   }
-
-  public SetAddTimer(c: AddTimerCallback | null): void {
-    this.addTimerCallback = c;
-  }
-  public SetRemoveTimer(c: ((e: Event, expired: boolean, force?: boolean) => void) | null): void {
-    this.removeTimerCallback = c;
-  }
-  public SetShowInfoText(c: PopupTextCallback | null): void {
-    this.showInfoTextCallback = c;
-  }
-  public SetShowAlertText(c: PopupTextCallback | null): void {
-    this.showAlertTextCallback = c;
-  }
-  public SetShowAlarmText(c: PopupTextCallback | null): void {
-    this.showAlarmTextCallback = c;
-  }
-  public SetSpeakTTS(c: PopupTextCallback | null): void {
-    this.speakTTSCallback = c;
-  }
-  public SetTrigger(c: TriggerCallback | null): void {
-    this.triggerCallback = c;
-  }
-  public SetSyncTime(c: ((fightNow: number, running: boolean) => void) | null): void {
-    this.syncTimeCallback = c;
-  }
 }
 
 export class TimelineUI {
@@ -929,14 +905,14 @@ export class TimelineUI {
   public SetTimeline(timeline: Timeline | null): void {
     this.Init();
     if (this.timeline) {
-      this.timeline.SetAddTimer(null);
-      this.timeline.SetRemoveTimer(null);
-      this.timeline.SetShowInfoText(null);
-      this.timeline.SetShowAlertText(null);
-      this.timeline.SetShowAlarmText(null);
-      this.timeline.SetSpeakTTS(null);
-      this.timeline.SetTrigger(null);
-      this.timeline.SetSyncTime(null);
+      delete this.timeline.addTimerCallback;
+      delete this.timeline.removeTimerCallback;
+      delete this.timeline.showInfoTextCallback;
+      delete this.timeline.showAlertTextCallback;
+      delete this.timeline.showAlarmTextCallback;
+      delete this.timeline.speakTTSCallback;
+      delete this.timeline.triggerCallback;
+      delete this.timeline.syncTimeCallback;
       while (this.timerlist && this.timerlist.lastChild)
         this.timerlist.removeChild(this.timerlist.lastChild);
       if (this.debugElement)
@@ -947,14 +923,14 @@ export class TimelineUI {
 
     this.timeline = timeline;
     if (this.timeline) {
-      this.timeline.SetAddTimer(this.OnAddTimer.bind(this));
-      this.timeline.SetRemoveTimer(this.OnRemoveTimer.bind(this));
-      this.timeline.SetShowInfoText(this.OnShowInfoText.bind(this));
-      this.timeline.SetShowAlertText(this.OnShowAlertText.bind(this));
-      this.timeline.SetShowAlarmText(this.OnShowAlarmText.bind(this));
-      this.timeline.SetSpeakTTS(this.OnSpeakTTS.bind(this));
-      this.timeline.SetTrigger(this.OnTrigger.bind(this));
-      this.timeline.SetSyncTime(this.OnSyncTime.bind(this));
+      this.timeline.addTimerCallback = this.OnAddTimer.bind(this);
+      this.timeline.removeTimerCallback = this.OnRemoveTimer.bind(this);
+      this.timeline.showInfoTextCallback = this.OnShowInfoText.bind(this);
+      this.timeline.showAlertTextCallback = this.OnShowAlertText.bind(this);
+      this.timeline.showAlarmTextCallback = this.OnShowAlarmText.bind(this);
+      this.timeline.speakTTSCallback = this.OnSpeakTTS.bind(this);
+      this.timeline.triggerCallback = this.OnTrigger.bind(this);
+      this.timeline.syncTimeCallback = this.OnSyncTime.bind(this);
     }
   }
 
