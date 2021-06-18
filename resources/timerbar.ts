@@ -236,7 +236,6 @@ export default class TimerBar extends HTMLElement {
           width: 100%;
           height: 100%;
           opacity: 1.0;
-          will-change: transform;
         }
         .text {
           position: absolute;
@@ -421,9 +420,11 @@ export default class TimerBar extends HTMLElement {
     if (this._towardRight !== this._fill) {
       this.foregroundElement.style.left = '';
       this.foregroundElement.style.right = '0px';
+      this.foregroundElement.style.transformOrigin = 'right center';
     } else {
       this.foregroundElement.style.left = '0px';
       this.foregroundElement.style.right = '';
+      this.foregroundElement.style.transformOrigin = 'left center';
     }
   }
 
@@ -451,7 +452,7 @@ export default class TimerBar extends HTMLElement {
     const displayElapsed = elapsedSec.toFixed(1);
     if (this._fill)
       percent = 1.0 - percent;
-    this.foregroundElement.style.width = `${percent * 100}%`;
+    this.foregroundElement.style.transform = `scaleX(${percent.toFixed(3)})`;
     if (this._leftText !== '') {
       if (this._leftText === 'remain')
         this.leftTextElement.innerHTML = displayRemain;
