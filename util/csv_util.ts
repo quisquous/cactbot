@@ -45,7 +45,7 @@ export const cleanName = (str?: string | null): string | undefined | null => {
   str = str.replace(/[-]/g, ' ');
 
   // Of course capitalization isn't consistent, that'd be ridiculous.
-  str = str.toLowerCase().split(' ').map((s) => `${s[0]?.toUpperCase() ?? ''}${s.substring(1)}`).join('');
+  str = str.toLowerCase().replace(/(^\w{1})|(\s{1}[^0-9A-z_]*\w{1})/g, (match) => match.toUpperCase());
 
   // collapse remaining whitespace
   str = str.replace(/\s+/g, '');
