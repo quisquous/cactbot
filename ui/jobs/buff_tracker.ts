@@ -25,7 +25,7 @@ import lordOfCrownsImage from '../../resources/ffxiv/status/lord-of-crowns.png';
 import devilmentImage from '../../resources/ffxiv/status/devilment.png';
 import standardFinishImage from '../../resources/ffxiv/status/standard-finish.png';
 import technicalFinishImage from '../../resources/ffxiv/status/technical-finish.png';
-import battlevoiceImage from '../../resources/ffxiv/status/battlevoice.png';
+import battleVoiceImage from '../../resources/ffxiv/status/battlevoice.png';
 import chainStratagemImage from '../../resources/ffxiv/status/chain-stratagem.png';
 import dragonSightImage from '../../resources/ffxiv/status/dragon-sight.png';
 import brotherhoodImage from '../../resources/ffxiv/status/brotherhood.png';
@@ -489,7 +489,7 @@ export class BuffTracker {
         useEffectDuration: true,
         durationSeconds: 20,
         partyOnly: true,
-        icon: battlevoiceImage,
+        icon: battleVoiceImage,
         // Red.
         borderColor: '#D6371E',
         sortKey: 7,
