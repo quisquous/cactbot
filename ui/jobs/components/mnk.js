@@ -63,21 +63,18 @@ export function setup(bars) {
   });
 
   bars.onYouGainEffect(EffectId.TwinSnakes, (name, matches) => {
-    twinSnakesBox.duration = 0;
     // -0.5 for logline delay
     twinSnakesBox.duration = (parseFloat(matches.duration) - 0.5).toString();
   });
   bars.onYouLoseEffect(EffectId.TwinSnakes, () => twinSnakesBox.duration = 0);
 
   bars.onUseAbility(kAbility.Demolish, () => {
-    demolishBox.duration = 0;
     // it start counting down when you cast demolish
     // but DOT appears on target about 1 second later
     demolishBox.duration = 18 + 1;
   });
 
   bars.onYouGainEffect(EffectId.LeadenFist, () => {
-    dragonKickBox.duration = 0;
     dragonKickBox.duration = 30;
   });
   bars.onYouLoseEffect(EffectId.LeadenFist, () => dragonKickBox.duration = 0);
