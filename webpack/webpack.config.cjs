@@ -54,6 +54,7 @@ module.exports = function({ cactbotModules, cactbotChunks, cactbotHtmlChunksMap 
     output: {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, '../dist'),
+      assetModuleFilename: '[file][query]',
     },
     devServer: {
       contentBase: path.join(__dirname, '../dist'),
@@ -124,6 +125,15 @@ module.exports = function({ cactbotModules, cactbotChunks, cactbotHtmlChunksMap 
           ],
         },
         {
+          test: /\.(png|jpe?g)/,
+          type: 'asset',
+          parser: {
+            dataUrlCondition: {
+              maxSize: 50 * 1024, // 50 KiB
+            },
+          },
+        },
+        {
           test: /data[\\\/]\w*_manifest\.txt$/,
           use: [
             {
@@ -158,11 +168,6 @@ module.exports = function({ cactbotModules, cactbotChunks, cactbotHtmlChunksMap 
           {
             // copy more html in raidboss module
             from: 'ui/raidboss/raidboss_*.html',
-          },
-          {
-            // copy images under radar and eureka
-            // TODO: directly `import` images into js code
-            from: 'ui/@(radar|eureka)/*.png',
           },
           {
             // copy all the skins folder under modules,

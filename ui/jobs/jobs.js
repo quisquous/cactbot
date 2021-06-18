@@ -11,8 +11,10 @@ import { kWellFedContentTypes, kMPCombatRate, kMPNormalRate, kMPUI1Rate, kMPUI2R
 import { BuffTracker } from './buff_tracker';
 import ComboTracker from './combo_tracker';
 import PartyTracker from '../../resources/party';
-import { RegexesHolder, computeBackgroundColorFrom, calcGCDFromStat, doesJobNeedMPBar, makeAuraTimerIcon } from './utils';
 
+import foodImage from '../../resources/ffxiv/status/food.png';
+
+import { RegexesHolder, computeBackgroundColorFrom, calcGCDFromStat, doesJobNeedMPBar, makeAuraTimerIcon } from './utils';
 import { getSetup, getReset } from './components/index';
 
 import './jobs_config';
@@ -749,7 +751,7 @@ class Bars {
           'white',
           this.options.BigBuffBorderSize,
           'yellow', 'yellow',
-          '../../resources/ffxiv/status/food.png');
+          foodImage);
       this.o.leftBuffsList.addElement('foodbuff', div, -1);
     }
   }
