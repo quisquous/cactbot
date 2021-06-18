@@ -428,7 +428,7 @@ export default {
           fr: 'Évitez la bombe plongeante',
           ja: 'ダイブボムに避け',
           cn: '前方顺劈',
-          ko: '급강하 폭격 피하기',
+          ko: '회전 돌진 피하기',
         },
       },
     },
