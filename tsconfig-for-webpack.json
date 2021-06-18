@@ -2,6 +2,14 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es5",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    ​"​strict​"​: ​true​,
+    ​"​noImplicitAny​"​: ​true​,
+    ​"​noImplicitThis​"​: ​true​,
+    ​"​alwaysStrict​"​: ​true​,
+    ​"​noUnusedLocals​"​: ​true​,
+    ​"​noUnusedParameters​"​: ​false​,
+    ​"​noFallthroughCasesInSwitch​"​: ​true​,
+    ​"​noUncheckedIndexedAccess​"​: ​true​
   }
 }
