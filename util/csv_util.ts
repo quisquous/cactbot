@@ -10,10 +10,10 @@ const cnGithub = 'thewakingsands/ffxiv-datamining-cn/master/';
 const koGithub = 'Ra-Workspace/ffxiv-datamining-ko/master/csv/';
 
 
-type Table<RowKey extends string, SubKey extends string | number> =
+export type Table<RowKey extends string, SubKey extends string | number> =
   Record<RowKey extends '#' ? number : string, Record<RowKey | SubKey, string | undefined>>;
 
-type GetTableFunc = {
+export type GetTableFunc = {
   <T extends (string | number), K extends string>(
     table: string, inputs: [key: K, ...indices: T[]],
   ): Promise<Table<K, T>>;
@@ -23,7 +23,7 @@ type GetTableFunc = {
 };
 
 // Turn names from tables into JavaScript-safe ascii string keys.
-export const cleanName = (str: string): string => {
+export const cleanName = (str?: string | null): string | undefined | null => {
   if (!str || str === '')
     return str;
 
