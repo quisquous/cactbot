@@ -11,7 +11,7 @@ const koGithub = 'Ra-Workspace/ffxiv-datamining-ko/master/csv/';
 
 
 type Table<RowKey extends string, SubKey extends string | number> =
-  Record<RowKey extends '#' ? number : string, Record<SubKey, string | undefined>>;
+  Record<RowKey extends '#' ? number : string, Record<RowKey | SubKey, string | undefined>>;
 
 type GetTableFunc = {
   <T extends (string | number), K extends string>(
