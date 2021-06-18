@@ -31,7 +31,7 @@ type EmulatorTriggerHelper = TriggerHelper & {
   resolver?: Resolver;
 };
 
-class Resolver {
+export class Resolver {
   private promise?: Promise<void>;
   private run?: ResolverFunc;
   private delayUntil?: number;
@@ -42,7 +42,7 @@ class Resolver {
 
   constructor(public status: ResolverStatus) {}
 
-  async isResolved(log: LineEvent) {
+  async isResolved(log: LineEvent): Promise<boolean> {
     if (this.delayUntil) {
       if (this.delayUntil < log.timestamp) {
         delete this.delayUntil;
@@ -67,16 +67,16 @@ class Resolver {
       this.delayResolver = res;
     });
   }
-  setPromise(promise: Promise<void>) {
+  setPromise(promise: Promise<void>): void {
     this.promise = promise;
   }
-  setRun(run: ResolverFunc) {
+  setRun(run: ResolverFunc): void {
     this.run = run;
   }
-  setFinal(final: ResolverFunc) {
+  setFinal(final: ResolverFunc): void {
     this.final = final;
   }
-  setHelper(triggerHelper: EmulatorTriggerHelper) {
+  setHelper(triggerHelper: EmulatorTriggerHelper): void {
     this.triggerHelper = triggerHelper;
   }
 }
