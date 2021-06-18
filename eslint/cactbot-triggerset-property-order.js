@@ -10,12 +10,23 @@ module.exports = {
       url: 'https://github.com/quisquous/cactbot/blob/main/docs/RaidbossGuide.md#trigger-elements',
     },
     fixable: 'code',
+    schema: [
+      {
+        'type': 'object',
+        'properties': {
+          'module': {
+            'enum': ['oopsyraidsy', 'raidboss'],
+          },
+        },
+        'additionalProperties': false,
+      },
+    ],
     messages: {
       sortKeys: 'Expected triggerSet properties ordered like {{expectedOrder}} (\'{{beforeKey}}\' should be before \'{{nextKey}}\')',
     },
   },
   create: (context) => {
-    const orderList = [
+    const raidbossOrderList = [
       'zoneId',
       'overrideTimelineFile',
       'timelineFile',
@@ -27,6 +38,20 @@ module.exports = {
       'triggers',
       'timelineReplace',
     ];
+    const oopsyraidsyOrderList = [
+      'zoneId',
+      'damageWarn',
+      'damageFail',
+      'gainsEffectWarn',
+      'gainsEffectFail',
+      'shareWarn',
+      'shareFail',
+      'triggers',
+    ];
+    const optionModule = context.options[0] ? context.options[0].module : undefined;
+    if (!optionModule || (optionModule !== 'oopsyraidsy' && optionModule !== 'raidboss'))
+      return;
+    const orderList = optionModule === 'oopsyraidsy' ? oopsyraidsyOrderList : raidbossOrderList;
     return {
       'VariableDeclarator[id.name=\'triggerSet\'] > ObjectExpression': (node) => {
         const properties = node.properties;
