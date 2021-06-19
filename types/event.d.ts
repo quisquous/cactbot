@@ -293,9 +293,16 @@ export type SavedConfig = {
   [overlayName: string]: SavedConfigEntry;
 };
 
-type PlayerChangedRet = Job extends infer T ? T extends Job ? {
-  name: string;
+type PlayerChangedJobDetails<T> = {
   job: T;
+  jobDetail: JobDetail[T];
+} | {
+  job: Job;
+  jobDetail: null;
+}
+
+type PlayerChangedBase = {
+  name: string;
   level: number;
   currentHP: number;
   maxHP: number;
@@ -306,7 +313,6 @@ type PlayerChangedRet = Job extends infer T ? T extends Job ? {
   currentGP: number;
   maxGP: number;
   currentShield: number;
-  jobDetail: JobDetail[T];
   pos: {
     x: number;
     y: number;
@@ -315,7 +321,44 @@ type PlayerChangedRet = Job extends infer T ? T extends Job ? {
   rotation: number;
   bait: number;
   debugJob: string;
-} : never : never;
+};
+
+type PlayerChangedRet = Job extends infer T ? T extends Job ?
+  PlayerChangedJobDetails<T> & PlayerChangedBase : never : never;
+
+// Member names taken from OverlayPlugin's MiniParse.cs
+// Types taken from FFXIV parser plugin
+export interface PluginCombatantState {
+  CurrentWorldID?: number;
+  WorldID?: number;
+  WorldName?: string;
+  BNpcID?: number;
+  BNpcNameID?: number;
+  PartyType?: number;
+  ID?: number;
+  OwnerID?: number;
+  type?: number;
+  Job?: number;
+  Level?: number;
+  Name?: string;
+  CurrentHP: number;
+  MaxHP: number;
+  CurrentMP: number;
+  MaxMP: number;
+  PosX: number;
+  PosY: number;
+  PosZ: number;
+  Heading: number;
+}
+
+export type GetCombatantsCall = {
+  call: 'getCombatants';
+  ids?: number[];
+  names?: string[];
+  props?: string[];
+};
+
+export type GetCombatantsRet = { combatants: PluginCombatantState[] };
 
 export type IOverlayHandler = {
   // OutputPlugin build-in
@@ -323,6 +366,7 @@ export type IOverlayHandler = {
     call: 'subscribe';
     events: string[];
   }): Promise<null>;
+  (msg: GetCombatantsCall): Promise<GetCombatantsRet>;
   // TODO: add OverlayPlugin build-in handlers
   // Cactbot
   // TODO: fill up all handler types

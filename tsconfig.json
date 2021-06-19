@@ -5,12 +5,9 @@
   },
   "compilerOptions": {
     "checkJs": false,
-    "declaration": false,
-    "declarationMap": false,
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "outDir": "./dist",
-    "strict": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
@@ -26,12 +23,12 @@
     "./types",
     "./resources",
     "./util",
-    "./test"
+    "./test",
+    "./webpack"
   ],
   "exclude": [
     "./eslint",
     "./.eslintrc.cjs",
-    "./webpack",
     "./dist",
     "**/*.spec.ts"
   ]

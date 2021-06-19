@@ -45,7 +45,6 @@ export function setup(bars) {
 
   bars.onCombo((skill) => {
     if (skill === kAbility.GoringBlade) {
-      goreBox.duration = 0;
       // Technically, goring blade is 21, but 2.43 * 9 = 21.87, so if you
       // have the box show 21, it looks like you're awfully late with
       // your goring blade and just feels really bad.  So, lie to the

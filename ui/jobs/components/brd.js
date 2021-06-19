@@ -11,7 +11,6 @@ export function setup(bars) {
   });
   straightShotProc.bigatzero = false;
   bars.onYouGainEffect(EffectId.StraightShotReady, () => {
-    straightShotProc.duration = 0;
     straightShotProc.duration = 10;
   });
   bars.onYouLoseEffect(EffectId.StraightShotReady, () => straightShotProc.duration = 0);
@@ -34,14 +33,12 @@ export function setup(bars) {
     EffectId.Stormbite,
     EffectId.Windbite,
   ], () => {
-    stormBiteBox.duration = 0;
     stormBiteBox.duration = 30 - 0.5;
   });
   bars.onMobGainsEffectFromYou([
     EffectId.CausticBite,
     EffectId.VenomousBite,
   ], () => {
-    causticBiteBox.duration = 0;
     causticBiteBox.duration = 30 - 0.5;
   });
   bars.onStatChange('BRD', () => {
@@ -99,10 +96,8 @@ export function setup(bars) {
 
     const oldSeconds = parseFloat(songBox.duration) - parseFloat(songBox.elapsed);
     const seconds = jobDetail.songMilliseconds / 1000.0;
-    if (!songBox.duration || seconds > oldSeconds) {
-      songBox.duration = 0;
+    if (!songBox.duration || seconds > oldSeconds)
       songBox.duration = seconds;
-    }
 
     // Soul Voice
     if (jobDetail.soulGauge !== soulVoiceBox.innerText) {

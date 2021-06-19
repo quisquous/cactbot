@@ -1,19 +1,14 @@
-import EmulatorCommon, { DataType, EmulatorLogEvent } from '../EmulatorCommon';
+import EmulatorCommon, { DataType } from '../EmulatorCommon';
 import StubbedPopupText from '../overrides/StubbedPopupText';
 import LineEvent from './network_log_converter/LineEvent';
 import { LooseTrigger, MatchesAny } from '../../../../types/trigger';
 import { TriggerHelper, Text, TextText, ProcessedTrigger } from '../../popup-text';
-import { EventResponses } from '../../../../types/event';
+import { EventResponses, LogEvent } from '../../../../types/event';
+import { UnreachableCode } from '../../../../resources/not_reached';
 
 type ResolverFunc = () => void;
 
-export type EmulatorNetworkLogEvent = EventResponses['LogLine'] & {
-  detail: {
-    logs: LineEvent[];
-  };
-}
-
-interface ResolverStatus {
+export interface ResolverStatus {
   responseType?: string;
   responseLabel?: string;
   initialData: DataType;
@@ -31,7 +26,7 @@ type EmulatorTriggerHelper = TriggerHelper & {
   resolver?: Resolver;
 };
 
-class Resolver {
+export class Resolver {
   private promise?: Promise<void>;
   private run?: ResolverFunc;
   private delayUntil?: number;
@@ -42,7 +37,7 @@ class Resolver {
 
   constructor(public status: ResolverStatus) {}
 
-  async isResolved(log: LineEvent) {
+  async isResolved(log: LineEvent): Promise<boolean> {
     if (this.delayUntil) {
       if (this.delayUntil < log.timestamp) {
         delete this.delayUntil;
@@ -67,16 +62,16 @@ class Resolver {
       this.delayResolver = res;
     });
   }
-  setPromise(promise: Promise<void>) {
+  setPromise(promise: Promise<void>): void {
     this.promise = promise;
   }
-  setRun(run: ResolverFunc) {
+  setRun(run: ResolverFunc): void {
     this.run = run;
   }
-  setFinal(final: ResolverFunc) {
+  setFinal(final: ResolverFunc): void {
     this.final = final;
   }
-  setHelper(triggerHelper: EmulatorTriggerHelper) {
+  setHelper(triggerHelper: EmulatorTriggerHelper): void {
     this.triggerHelper = triggerHelper;
   }
 }
@@ -98,8 +93,12 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     }
   }
 
-  async OnLog(e: EmulatorLogEvent): Promise<void> {
-    for (const logObj of e.detail.logs) {
+  OnLog(_e: LogEvent): void {
+    throw new UnreachableCode();
+  }
+
+  async onEmulatorLog(logs: LineEvent[]): Promise<void> {
+    for (const logObj of logs) {
       const log = logObj.properCaseConvertedLine ?? logObj.convertedLine;
 
       if (log.includes('00:0038:cactbot wipe'))
@@ -128,15 +127,9 @@ export default class PopupTextAnalysis extends StubbedPopupText {
       }
 
       await this.checkResolved(logObj);
-    }
-  }
-
-  async OnNetLog(e: EmulatorNetworkLogEvent): Promise<void> {
-    for (const logObj of e.detail.logs) {
-      const log = logObj.networkLine;
 
       for (const trigger of this.netTriggers) {
-        const r = trigger.localNetRegex?.exec(log);
+        const r = trigger.localNetRegex?.exec(logObj.networkLine);
         if (r) {
           const resolver = this.currentResolver = new Resolver({
             initialData: EmulatorCommon.cloneData(this.data),
@@ -161,6 +154,10 @@ export default class PopupTextAnalysis extends StubbedPopupText {
 
       await this.checkResolved(logObj);
     }
+  }
+
+  OnNetLog(_e: EventResponses['LogLine']): void {
+    throw new UnreachableCode();
   }
 
   async checkResolved(logObj: LineEvent): Promise<void> {

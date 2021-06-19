@@ -11,8 +11,10 @@ import { kWellFedContentTypes, kMPCombatRate, kMPNormalRate, kMPUI1Rate, kMPUI2R
 import { BuffTracker } from './buff_tracker';
 import ComboTracker from './combo_tracker';
 import PartyTracker from '../../resources/party';
-import { RegexesHolder, computeBackgroundColorFrom, calcGCDFromStat, doesJobNeedMPBar, makeAuraTimerIcon } from './utils';
 
+import foodImage from '../../resources/ffxiv/status/food.png';
+
+import { RegexesHolder, computeBackgroundColorFrom, calcGCDFromStat, doesJobNeedMPBar, makeAuraTimerIcon } from './utils';
 import { getSetup, getReset } from './components/index';
 
 import './jobs_config';
@@ -453,8 +455,13 @@ class Bars {
       timerBox.id = id;
       timerBox.classList.add('timer-box');
     }
-    if (notifyWhenExpired)
+    if (notifyWhenExpired) {
       timerBox.classList.add('notify-when-expired');
+      if (this.options.NotifyExpiredProcsInCombatSound === 'threshold')
+        timerBox.onThresholdReached(this.playNotification);
+      else if (this.options.NotifyExpiredProcsInCombatSound === 'expired')
+        timerBox.onExpired(this.playNotification);
+    }
     return timerBox;
   }
 
@@ -502,6 +509,12 @@ class Bars {
     bar.maxvalue = maxvalue;
 
     return bar;
+  }
+
+  playNotification() {
+    const audio = new Audio('../../resources/sounds/freesound/alarm.ogg');
+    audio.volume = 0.3;
+    void audio.play();
   }
 
   onCombo(callback) {
@@ -738,7 +751,7 @@ class Bars {
           'white',
           this.options.BigBuffBorderSize,
           'yellow', 'yellow',
-          '../../resources/ffxiv/status/food.png');
+          foodImage);
       this.o.leftBuffsList.addElement('foodbuff', div, -1);
     }
   }

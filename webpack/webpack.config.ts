@@ -1,14 +1,25 @@
-'use strict';
+import path from 'path';
+import webpack, { Configuration as WebpackConfiguration } from 'webpack';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
 
-const path = require('path');
-const webpack = require('webpack');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
+import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 
-module.exports = function({ cactbotModules, cactbotChunks, cactbotHtmlChunksMap }) {
-  const entries = {};
+interface Configuration extends WebpackConfiguration {
+  devServer?: WebpackDevServerConfiguration;
+}
+
+
+export default (
+    { cactbotModules, cactbotChunks, cactbotHtmlChunksMap }: {
+      cactbotModules: { [module: string]: string };
+      cactbotChunks: { [module: string]: string };
+      cactbotHtmlChunksMap: { [html: string]: HtmlWebpackPlugin.Options };
+    },
+): Configuration => {
+  const entries: { [module: string]: string } = {};
   Object.entries(cactbotModules).forEach(([key, module]) => {
     // TDOO: Remove when everything is TypeScript, convert to:
     // entries[module] = `./${module}.ts`;
@@ -54,6 +65,7 @@ module.exports = function({ cactbotModules, cactbotChunks, cactbotHtmlChunksMap 
     output: {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, '../dist'),
+      assetModuleFilename: '[file][query]',
     },
     devServer: {
       contentBase: path.join(__dirname, '../dist'),
@@ -124,6 +136,15 @@ module.exports = function({ cactbotModules, cactbotChunks, cactbotHtmlChunksMap 
           ],
         },
         {
+          test: /\.(png|jpe?g)/,
+          type: 'asset',
+          parser: {
+            dataUrlCondition: {
+              maxSize: 50 * 1024, // 50 KiB
+            },
+          },
+        },
+        {
           test: /data[\\\/]\w*_manifest\.txt$/,
           use: [
             {
@@ -158,11 +179,6 @@ module.exports = function({ cactbotModules, cactbotChunks, cactbotHtmlChunksMap 
           {
             // copy more html in raidboss module
             from: 'ui/raidboss/raidboss_*.html',
-          },
-          {
-            // copy images under radar and eureka
-            // TODO: directly `import` images into js code
-            from: 'ui/@(radar|eureka)/*.png',
           },
           {
             // copy all the skins folder under modules,
