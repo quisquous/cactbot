@@ -228,12 +228,12 @@ Examples:
 
 /* eslint-enable */
 
-function ShortNamify(name, options) {
+function ShortNamify(name, playerNicks) {
   // TODO: make this unique among the party in case of first name collisions.
   // TODO: probably this should be a general cactbot utility.
 
-  if (name in options.PlayerNicks)
-    return options.PlayerNicks[name];
+  if (name in playerNicks)
+    return playerNicks[name];
 
   const idx = name.indexOf(' ');
   return idx < 0 ? name : name.substr(0, idx);
@@ -566,7 +566,7 @@ class MistakeCollector {
   OnMistakeText(type, blame, text, time) {
     if (!text)
       return;
-    const blameText = blame ? ShortNamify(blame, this.options) + ': ' : '';
+    const blameText = blame ? ShortNamify(blame, options.PlayerNicks) + ': ' : '';
     this.listView.AddLine(type, blameText + text, this.GetFormattedTime(time));
   }
 
@@ -729,7 +729,7 @@ class DamageTracker {
       role: this.role,
       party: this.partyTracker,
       inCombat: this.inCombat,
-      ShortName: (name) => ShortNamify(name, this.options),
+      ShortName: (name) => ShortNamify(name, options.PlayerNicks),
       IsPlayerId: IsPlayerId,
 
       // Deprecated.
