@@ -100,6 +100,7 @@
     "ui/(raidboss|oopsyraidsy)/data/**": "node --loader ts-node/esm test/test_raidboss_data.js"
   },
   "dependencies": {
+    "@fast-csv/parse": "^4.3.6",
     "argparse": "^1.0.10"
   }
 }
