@@ -84,7 +84,6 @@ type WatchCombatantParams = {
   names?: string[];
   props?: string[];
   delay?: number;
-  maxRetries?: number;
   maxDuration?: number;
 };
 
@@ -93,7 +92,6 @@ type WatchCombatantFunc = (params: WatchCombatantParams,
 
 type WatchCombatantMapEntry = {
   cancel: boolean;
-  tries: number;
   start: number;
 };
 
@@ -102,8 +100,6 @@ const watchCombatantMap: WatchCombatantMapEntry[] = [];
 const shouldCancelWatch =
   (params: WatchCombatantParams, entry: WatchCombatantMapEntry): boolean => {
     if (entry.cancel)
-      return true;
-    if (params.maxRetries !== undefined && entry.tries > params.maxRetries)
       return true;
     if (params.maxDuration !== undefined && Date.now() - entry.start > params.maxDuration)
       return true;
@@ -129,14 +125,12 @@ const watchCombatant: WatchCombatantFunc = (params, func) => {
 
     const entry: WatchCombatantMapEntry = {
       cancel: false,
-      tries: 0,
       start: Date.now(),
     };
 
     watchCombatantMap.push(entry);
 
     const checkFunc = () => {
-      ++entry.tries;
       if (shouldCancelWatch(params, entry)) {
         rej();
         return;
