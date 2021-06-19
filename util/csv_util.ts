@@ -45,7 +45,7 @@ export const cleanName = (str?: string | null): string | undefined | null => {
   str = str.replace(/[-]/g, ' ');
 
   // Of course capitalization isn't consistent, that'd be ridiculous.
-  str = str.toLowerCase().replace(/(^\w{1})|(\s{1}[^0-9A-z_]*\w{1})/g, (match) => match.toUpperCase());
+  str = str.toLowerCase().replace(/(^[a-z])|([\s_]+[^a-z]*[a-z])/g, (match) => match.toUpperCase());
 
   // collapse remaining whitespace
   str = str.replace(/\s+/g, '');
@@ -157,3 +157,5 @@ export const getRawCsv = async (table: string, locale: Lang): Promise<string> =>
 
   return await (await fetch(url)).text();
 };
+
+cleanName('_rsv_1379_-1_1_C0_0Status');
