@@ -25,8 +25,8 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ id: '4BA3', source: 'Ramuh' }),
       netRegexFr: NetRegexes.startsUsing({ id: '4BA3', source: 'Ramuh' }),
       netRegexJa: NetRegexes.startsUsing({ id: '4BA3', source: 'ラムウ' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '4BA3', source: '라무' }),
       netRegexCn: NetRegexes.startsUsing({ id: '4BA3', source: '拉姆' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4BA3', source: '라무' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
@@ -36,8 +36,8 @@ export default {
       netRegexDe: NetRegexes.ability({ id: '4B8D', source: 'Ramuh', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '4B8D', source: 'Ramuh', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '4B8D', source: 'ラムウ', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '4B8D', source: '라무', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '4B8D', source: '拉姆', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '4B8D', source: '라무', capture: false }),
       delaySeconds: 5,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -57,8 +57,8 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ id: '4B91', source: 'Ramuh', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4B91', source: 'Ramuh', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '4B91', source: 'ラムウ', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '4B91', source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4B91', source: '拉姆', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4B91', source: '라무', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -77,8 +77,8 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ id: '4B90', source: 'Ramuh', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4B90', source: 'Ramuh', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '4B90', source: 'ラムウ', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '4B90', source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4B90', source: '拉姆', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4B90', source: '라무', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -97,8 +97,8 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ id: ['4B98', '4B9A'], source: 'Ramuh', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: ['4B98', '4B9A'], source: 'Ramuh', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: ['4B98', '4B9A'], source: 'ラムウ', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: ['4B98', '4B9A'], source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['4B98', '4B9A'], source: '拉姆', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['4B98', '4B9A'], source: '라무', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -108,8 +108,8 @@ export default {
       netRegexDe: NetRegexes.startsUsing({ id: '4B9A', source: 'Ramuh', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '4B9A', source: 'Ramuh', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '4B9A', source: 'ラムウ', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '4B9A', source: '라무', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4B9A', source: '拉姆', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4B9A', source: '라무', capture: false }),
       condition: (data) => !data.surgeProtection,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
