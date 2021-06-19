@@ -199,7 +199,7 @@ import './raidemulator.css';
               encounterTab.dispatch('load', lastEncounter);
           }
           if (!websocketConnected) {
-            const dispLang = langMap[Options.ParserLanguage][Options.ParserLanguage];
+            const dispLang = langMap[options.ParserLanguage][options.ParserLanguage];
             const discModal = showModal('.disconnectedModal');
             const indicator = document.querySelector('.connectionIndicator');
             indicator.querySelector('.connectedIndicator').classList.add('d-none');
