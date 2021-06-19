@@ -53,7 +53,6 @@ export function setup(bars) {
     kAbility.Drill,
     kAbility.Bioblaster,
   ], () => {
-    drillBox.duration = 0;
     drillBox.duration = calcGCDFromStat(bars, bars.skillSpeed, 20000);
   });
 
@@ -65,7 +64,6 @@ export function setup(bars) {
     kAbility.AirAnchor,
     kAbility.HotShot,
   ], () => {
-    airAnchorBox.duration = 0;
     airAnchorBox.duration = calcGCDFromStat(bars, bars.skillSpeed, 40000);
   });
 
@@ -112,7 +110,6 @@ export function setup(bars) {
     fgColor: 'mch-color-wildfire',
   });
   bars.onUseAbility(kAbility.WildFire, () => {
-    wildFireBox.duration = 0;
     wildFireBox.duration = 10 + 0.9; // animation delay
     wildFireBox.threshold = 1000;
     wildFireBox.fg = computeBackgroundColorFrom(wildFireBox, 'mch-color-wildfire.active');

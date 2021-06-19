@@ -25,7 +25,7 @@ export default class RaidEmulator extends EventBus {
 
     this.currentEncounter = new AnalyzedEncounter(this.options, enc, this);
     this.dispatch('preCurrentEncounterChanged', this.currentEncounter);
-    this.currentEncounter.analyze(this.popupText).then(() => {
+    this.currentEncounter.analyze().then(() => {
       this.dispatch('currentEncounterChanged', this.currentEncounter);
     });
   }
@@ -39,7 +39,7 @@ export default class RaidEmulator extends EventBus {
   }
 
   selectPerspective(ID) {
-    this.currentEncounter.selectPerspective(ID);
+    this.currentEncounter.selectPerspective(ID, this.popupText);
     this.seekTo(this.currentLogTime);
   }
 

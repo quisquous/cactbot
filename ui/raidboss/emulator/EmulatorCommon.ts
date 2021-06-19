@@ -1,18 +1,10 @@
 import { LocaleNetRegex } from '../../../resources/translations';
 import NetRegexes from '../../../resources/netregexes';
 import { Lang } from '../../../resources/languages';
-import { LogEvent } from '../../../types/event';
-import LineEvent from './data/network_log_converter/LineEvent';
 
 // Disable no-explicit-any for cloneData as it needs to work on raw objects for performance reasons.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type DataType = { [key: string]: any } | null;
-
-export type EmulatorLogEvent = LogEvent & {
-  detail: {
-    logs: LineEvent[];
-  };
-}
 
 export default class EmulatorCommon {
   static cloneData(data: DataType, exclude = ['options', 'party']): DataType {

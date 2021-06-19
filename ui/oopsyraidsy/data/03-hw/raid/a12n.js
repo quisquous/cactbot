@@ -44,8 +44,8 @@ export default {
     {
       id: 'A12N Assault Cleanup',
       netRegex: NetRegexes.gainsEffect({ effectId: '461' }),
-      suppressSeconds: 5,
       delaySeconds: 20,
+      suppressSeconds: 5,
       run: (_e, data) => {
         delete data.assault;
       },

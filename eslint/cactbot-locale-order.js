@@ -65,10 +65,9 @@ const ruleModule = {
                 nextKey: valid.nextKey,
               },
               fix: (fixer) => {
-                return fixer.replaceTextRange(
-                    node.range,
-                    generateValidObject(orderList, properties, sourceCode),
-                );
+                const replacementText = generateValidObject(orderList, properties, sourceCode);
+                if (replacementText)
+                  return fixer.replaceTextRange(node.range, replacementText);
               },
             });
           });

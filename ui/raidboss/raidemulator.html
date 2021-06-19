@@ -68,9 +68,10 @@
           <div class="modal-body">
             <p>Welcome to the Raid Emulator.</p>
             <p>This tool replays encounters and shows what triggers were fired when, and allows you to view the encounter from any player's perspective.</p>
-            <p>This tool requires that ACT be running in the background with both ngld's OverlayPlugin and the Cactbot plugin loaded.</p>
+            <p>This tool optionally accepts an <strong>OVERLAY_WS</strong> parameter to connect to an ACT web socket with both ngld's OverlayPlugin and the Cactbot plugin loaded.</p>
+            <p>If connected to a web socket, this tool will load and respect user configuration files for cactbot/raidboss.</p>
             <p>No overlays need to be created.</p>
-            <p>Current WebSocket status: <span class="d-none websocketConnected text-success">Connected</span><span class="websocketDisconnected text-error">Disconnected</span>.</p>
+            <p>Current WebSocket status: <span class="d-none websocketConnected text-success">Connected</span><span class="websocketDisconnected text-warning">Disconnected</span>.</p>
             <p>To get started, you need to import an encounter via one of the following options:</p>
             <p>
               <ul>
@@ -88,6 +89,31 @@
                 <li>See detailed information about triggers fired by clicking their button</li>
               </ul>
             </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal disconnectedModal text-dark" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Currently Disconnected</h5>
+            <button type="button" class="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Raid Emulator is currently disconnected from ACT.</p>
+            <p>Raid Emulator will use the default settings for raidboss. These are:</p>
+            <ul>
+              <li>Display language: <span class="discLangDisplay"></span></li>
+              <li>Default alert output: Text and Sound</li>
+              <li>Alerts language: <span class="discLangAlerts"></span></li>
+              <li>Timeline language: <span class="discLangTimeline"></span></li>
+            </ul>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">Close</button>
@@ -137,6 +163,16 @@
           <div class="d-inline progress-bar-timestamp current-timestamp">00:00</div>
           <div class="d-inline progress-bar-timestamp divider-timestamp">/</div>
           <div class="d-inline progress-bar-timestamp duration-timestamp">00:00</div>
+        </div>
+        <div class="col-auto">
+          <span class="connectionIndicator">
+            <i
+              class="connectedIndicator fa fa-plug text-success" data-toggle="tooltip"
+              title="Connected to websocket"></i>
+            <i
+              class="disconnectedIndicator fa fa-ban text-danger d-none" data-toggle="tooltip"
+              title="Disconnected from websocket"></i>
+          </span>
         </div>
       </div>
       <div class="row mainContentRow flex-fill">

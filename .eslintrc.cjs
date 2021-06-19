@@ -268,10 +268,23 @@ const overrides = [
     },
   },
   {
-    'files': ['**/raidboss/data/**/*.ts'],
+    'files': ['**/raidboss/data/**/*'],
+    'rules': {
+      'rulesdir/cactbot-trigger-property-order': ['error', { 'module': 'raidboss' }],
+      'rulesdir/cactbot-triggerset-property-order': ['error', { 'module': 'raidboss' }],
+    },
+  },
+  {
+    'files': ['**/oopsyraidsy/data/**/*'],
+    'rules': {
+      'rulesdir/cactbot-trigger-property-order': ['error', { 'module': 'oopsyraidsy' }],
+      'rulesdir/cactbot-triggerset-property-order': ['error', { 'module': 'oopsyraidsy' }],
+    },
+  },
+  {
+    'files': ['**/oopsyraidsy/data/**/*.ts', '**/raidboss/data/**/*.ts'],
     'rules': {
       'rulesdir/cactbot-matches-type-references': 'error',
-      'rulesdir/cactbot-triggerset-property-order': ['error', { 'module': 'raidboss' }],
     },
   },
 ];

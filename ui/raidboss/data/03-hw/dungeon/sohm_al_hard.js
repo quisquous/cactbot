@@ -21,10 +21,10 @@ export default {
       // occurs between 1C30 and 1C31.
       id: 'Sohm Al Hard Inflammable Fumes',
       netRegex: NetRegexes.ability({ id: '1C30', source: 'The Leightonward', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '1C30', source: '莱顿瓦德', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '1C30', source: 'Hortigolem', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '1C30', source: 'Chortocyon', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '1C30', source: 'レイトンワード', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '1C30', source: '莱顿瓦德', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '1C30', source: '레이튼워드', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
@@ -34,10 +34,10 @@ export default {
       // However, it's not the same ability.
       id: 'Sohm Al Hard Glorious Blaze',
       netRegex: NetRegexes.startsUsing({ id: '1C32', source: 'Spore Sac', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1C32', source: '孢囊', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '1C32', source: 'Sporensack', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1C32', source: 'Sac de spores', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '1C32', source: 'スポアサック', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1C32', source: '孢囊', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1C32', source: '포자 주머니', capture: false }),
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text(),

@@ -7,6 +7,12 @@ import ZoneInfo from '../../resources/zone_info';
 import { getWeather, findNextWeather, findNextWeatherNot, findNextNight, findNextDay, isNightTime } from '../../resources/weather';
 
 import './eureka_config';
+import anemosMap from './anemos.png';
+import pagosMap from './pagos.png';
+import pyrosMap from './pyros.png';
+import hydatosMap from './hydatos.png';
+import bozjaSouthernMap from './bozjasouthern.png';
+import zadnorMap from './zadnor.png';
 
 import '../../resources/defaults.css';
 import './eureka.css';
@@ -178,7 +184,7 @@ const Options = {
     // Southern Front: https://xivapi.com/search?indexes=Fate&filters=ID%3E=1597,ID%3C=1628&columns=Description,Name,Url
     // Zadnor: https://xivapi.com/search?indexes=Fate&filters=ID%3E=1717,ID%3C=1742&columns=Description,Name,Url
     [ZoneId.TheForbiddenLandEurekaAnemos]: {
-      mapImage: 'anemos.png',
+      mapImage: anemosMap,
       mapWidth: 1300,
       mapHeight: 950,
       shortName: 'anemos',
@@ -630,7 +636,7 @@ const Options = {
       },
     },
     [ZoneId.TheForbiddenLandEurekaPagos]: {
-      mapImage: 'pagos.png',
+      mapImage: pagosMap,
       mapWidth: 1500,
       mapHeight: 950,
       shortName: 'pagos',
@@ -1031,7 +1037,7 @@ const Options = {
       },
     },
     [ZoneId.TheForbiddenLandEurekaPyros]: {
-      mapImage: 'pyros.png',
+      mapImage: pyrosMap,
       mapWidth: 1350,
       mapHeight: 1450,
       shortName: 'pyros',
@@ -1432,7 +1438,7 @@ const Options = {
       },
     },
     [ZoneId.TheForbiddenLandEurekaHydatos]: {
-      mapImage: 'hydatos.png',
+      mapImage: hydatosMap,
       mapWidth: 1500,
       mapHeight: 800,
       shortName: 'hydatos',
@@ -1721,7 +1727,7 @@ const Options = {
       },
     },
     [ZoneId.TheBozjanSouthernFront]: {
-      mapImage: 'bozjasouthern.png',
+      mapImage: bozjaSouthernMap,
       mapWidth: 1600,
       mapHeight: 1400,
       shortName: 'bozjasouthern',
@@ -2720,7 +2726,7 @@ const Options = {
       },
     },
     [ZoneId.Zadnor]: {
-      mapImage: 'zadnor.png',
+      mapImage: zadnorMap,
       mapWidth: 1600,
       mapHeight: 1400,
       shortName: 'zadnor',

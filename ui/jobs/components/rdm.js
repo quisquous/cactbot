@@ -54,7 +54,6 @@ export function setup(bars) {
     fgColor: 'rdm-color-lucid',
   });
   bars.onUseAbility(kAbility.LucidDreaming, () => {
-    lucidBox.duration = 0;
     lucidBox.duration = 60;
   });
   bars.onStatChange('RDM', () => {
@@ -88,7 +87,6 @@ export function setup(bars) {
   });
 
   bars.onYouGainEffect(EffectId.VerstoneReady, (name, matches) => {
-    whiteProc.duration = 0;
     whiteProc.duration = parseFloat(matches.duration) - bars.gcdSpell;
   });
   bars.onYouLoseEffect(EffectId.VerstoneReady, () => whiteProc.duration = 0);

@@ -111,8 +111,8 @@ export default {
     {
       id: 'E12S Promise Blade Of Flame Counter',
       netRegex: NetRegexes.ability({ source: 'Chiseled Sculpture', id: '58B3' }),
-      suppressSeconds: 1,
       delaySeconds: 1,
+      suppressSeconds: 1,
       run: (_e, data) => {
         data.bladeOfFlameCount = data.bladeOfFlameCount || 0;
         data.bladeOfFlameCount++;
