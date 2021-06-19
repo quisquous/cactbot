@@ -38,6 +38,15 @@ const generateValidObject = (orderList, properties, sourceCode) => {
       return str;
     })
     .join(',\n');
+
+  // Check after the last property for any additional comments
+  const possibleComma = sourceCode.getTokenAfter(properties[properties.length - 1]);
+  if (possibleComma.value === ',') {
+    const nextNode = sourceCode.getTokenAfter(possibleComma, { includeComments: true });
+    if (nextNode.type === 'Line' || nextNode.type === 'Block')
+      return undefined;
+  }
+
   return `{\n${sortedPropertiesText},\n${' '.repeat(properties[0].loc.start.column - 2)}}`;
 };
 
