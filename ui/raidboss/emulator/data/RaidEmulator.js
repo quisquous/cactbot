@@ -2,19 +2,15 @@ import EventBus from '../EventBus';
 import AnalyzedEncounter from './AnalyzedEncounter';
 
 export default class RaidEmulator extends EventBus {
-  constructor() {
+  constructor(options) {
     super();
-    // Set later via setOptions.
-    this.options = undefined;
+    this.options = options;
     this.encounters = [];
     this.currentEncounter = null;
     this.playingInterval = null;
     this.currentLogLineIndex = null;
     this.lastLogLineTime = null;
     this.lastTickTime = null;
-  }
-  setOptions(options) {
-    this.options = options;
   }
   addEncounter(encounter) {
     this.encounters.push(encounter);

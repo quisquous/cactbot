@@ -45,10 +45,11 @@ import './raidemulator.css';
 
   document.addEventListener('DOMContentLoaded', () => {
     persistor = new Persistor();
+    let websocketConnected = undefined;
+    let options = { ...defaultOptions };
 
     // Wait for the DB to be ready before doing anything that might invoke the DB
     persistor.initializeDB().then(async () => {
-      let websocketConnected = false;
       if (window.location.href.indexOf('OVERLAY_WS') > 0) {
         // Give the websocket 500ms to connect, then abort.
         websocketConnected = await Promise.race([
@@ -63,8 +64,6 @@ import './raidemulator.css';
             }, 500);
           }),
         ]);
-        emulatedWebSocket.connected = websocketConnected;
-        let options = { ...defaultOptions };
         if (websocketConnected) {
           await UserConfig.getUserConfigLocation('raidboss', defaultOptions, (e) => {
             // Update options from anything changed via getUserConfigLocation.
@@ -98,6 +97,7 @@ import './raidemulator.css';
       emulatedPartyInfo = new EmulatedPartyInfo(emulator);
       emulatedMap = new EmulatedMap(emulator);
       emulatedWebSocket = new RaidEmulatorOverlayApiHook(emulator);
+      emulatedWebSocket.connected = websocketConnected;
       logConverterWorker = new NetworkLogConverterWorker();
 
       // Listen for the user to click a player in the party list on the right
