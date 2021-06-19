@@ -8,9 +8,9 @@
     "url": "https://github.com/quisquous/cactbot"
   },
   "scripts": {
-    "build": "node_modules/.bin/webpack --config webpack/webpack.prod.cjs",
-    "build-gh-pages": "node_modules/.bin/webpack --config webpack/webpack.ghpages.cjs",
-    "start": "node_modules/.bin/webpack-dev-server --config webpack/webpack.dev.cjs",
+    "build": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack --config webpack/webpack.prod.ts",
+    "build-gh-pages": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack --config webpack/webpack.ghpages.ts",
+    "start": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack-dev-server --config webpack/webpack.dev.ts",
     "fetch-deps": "node --loader ts-node/esm ./util/fetch_deps.ts",
     "tsc-no-emit": "node_modules/.bin/tsc --noEmit",
     "lint": "node_modules/.bin/eslint --max-warnings=0 ./",
@@ -31,18 +31,24 @@
     "@babel/preset-env": "^7.14.5",
     "@babel/types": "7.12.*",
     "@types/argparse": "^1.0.10",
+    "@types/copy-webpack-plugin": "^8.0.0",
+    "@types/css-minimizer-webpack-plugin": "^3.0.1",
     "@types/lodash": "^4.14.170",
+    "@types/mini-css-extract-plugin": "^1.4.3",
     "@types/node": "^15.12.2",
     "@types/node-fetch": "^2.5.10",
     "@types/tar-fs": "^2.0.0",
+    "@types/webpack": "^5.28.0",
+    "@types/webpack-dev-server": "^3.11.4",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.1",
     "@zoltu/typescript-transformer-append-js-extension": "^1.0.1",
     "babel-loader": "^8.2.2",
     "chai": "^4.2.0",
     "chalk": "^2.4.2",
-    "clean-webpack-plugin": "^3.0.0",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
     "copy-webpack-plugin": "^7.0.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^4.3.0",
     "css-minimizer-webpack-plugin": "^3.0.1",
     "eslint": "^7.14.0",
@@ -72,6 +78,7 @@
     "tar-fs": "^2.1.1",
     "ts-loader": "^8.0.17",
     "ts-node": "^9.1.1",
+    "tsconfig-paths": "^3.9.0",
     "ttypescript": "^1.5.12",
     "typescript": "^4.1.5",
     "webpack": "^5.21.0",
@@ -100,6 +107,7 @@
     "ui/(raidboss|oopsyraidsy)/data/**": "node --loader ts-node/esm test/test_raidboss_data.js"
   },
   "dependencies": {
+    "@fast-csv/parse": "^4.3.6",
     "argparse": "^1.0.10"
   }
 }

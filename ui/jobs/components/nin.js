@@ -23,7 +23,6 @@ export function setup(bars) {
     fgColor: 'nin-color-bunshin',
   });
   bars.onUseAbility(kAbility.Bunshin, () => {
-    bunshin.duration = 0;
     bunshin.duration = 90;
   });
   const ninjutsu = bars.addProcBox({
@@ -37,13 +36,10 @@ export function setup(bars) {
     if (!mudraTriggerCd)
       return;
     const old = parseFloat(ninjutsu.duration) - parseFloat(ninjutsu.elapsed);
-    if (old > 0) {
-      ninjutsu.duration = 0;
+    if (old > 0)
       ninjutsu.duration = old + 20;
-    } else {
-      ninjutsu.duration = 0;
+    else
       ninjutsu.duration = 20 - 0.5;
-    }
     mudraTriggerCd = false;
   });
   // On each mudra, Mudra effect will be gain once,
@@ -53,7 +49,6 @@ export function setup(bars) {
   bars.onYouLoseEffect(EffectId.Kassatsu, () => mudraTriggerCd = true);
   bars.onUseAbility(kAbility.Hide, () => ninjutsu.duration = 0);
   bars.onUseAbility(kAbility.TrickAttack, () => {
-    trickAttack.duration = 0;
     trickAttack.duration = 15;
     trickAttack.threshold = 1000;
     trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack.active');
@@ -86,10 +81,8 @@ export function setup(bars) {
       ninki.parentNode.classList.add('high');
     const oldSeconds = parseFloat(hutonBox.duration) - parseFloat(hutonBox.elapsed);
     const seconds = jobDetail.hutonMilliseconds / 1000.0;
-    if (!hutonBox.duration || seconds > oldSeconds) {
-      hutonBox.duration = 0;
+    if (!hutonBox.duration || seconds > oldSeconds)
       hutonBox.duration = seconds;
-    }
   });
   const comboTimer = bars.addTimerBar({
     id: 'nin-timers-combo',

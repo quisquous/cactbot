@@ -11,6 +11,9 @@
     "target": "ES2019",
     "module": "ES2020",
     "allowJs": true,
+    "strict": true,
+    "declaration": false,
+    "declarationMap": false,
     "types": [
       "node"
     ],

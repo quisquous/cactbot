@@ -26,28 +26,22 @@ export function setup(bars) {
   });
 
   bars.onUseAbility(kAbility.OffGuard, () => {
-    offguardBox.duration = 0;
     offguardBox.duration = calcGCDFromStat(bars, bars.spellSpeed, 60000);
   });
   bars.onUseAbility(kAbility.PeculiarLight, () => {
-    offguardBox.duration = 0;
     offguardBox.duration = calcGCDFromStat(bars, bars.spellSpeed, 60000);
   });
   bars.onUseAbility(kAbility.SongOfTorment, () => {
-    tormentBox.duration = 0;
     tormentBox.duration = 30;
   });
   // +0.5&0.8 for animation delay
   bars.onUseAbility(kAbility.AetherialSpark, () => {
-    tormentBox.duration = 0;
     tormentBox.duration = 15 + 0.5;
   });
   bars.onUseAbility(kAbility.Nightbloom, () => {
-    tormentBox.duration = 0;
     tormentBox.duration = 60 + 0.8;
   });
   bars.onUseAbility(kAbility.LucidDreaming, () => {
-    lucidBox.duration = 0;
     lucidBox.duration = 60;
   });
 

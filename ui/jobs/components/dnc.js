@@ -24,7 +24,6 @@ export function setup(bars) {
     fgColor: 'dnc-color-standardstep',
   });
   bars.onUseAbility(kAbility.StandardStep, () => {
-    standardStep.duration = 0;
     standardStep.duration = 30;
   });
 
@@ -34,7 +33,6 @@ export function setup(bars) {
     fgColor: 'dnc-color-technicalstep',
   });
   bars.onUseAbility(kAbility.TechnicalStep, () => {
-    technicalStep.duration = 0;
     technicalStep.duration = 120;
   });
   let technicalIsActive = false;
@@ -70,7 +68,6 @@ export function setup(bars) {
   let flourishEffect = [];
   let flourishIsActive = false;
   bars.onUseAbility(kAbility.Flourish, () => {
-    flourish.duration = 0;
     flourish.duration = 20;
     flourishEffect = [];
     flourishIsActive = true;
