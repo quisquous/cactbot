@@ -5,7 +5,6 @@ import fs from 'fs';
 import path from 'path';
 import { exec } from 'child_process';
 import eslint from 'eslint';
-import { isMain } from './utils';
 
 
 const coinachExe = 'SaintCoinach.Cmd.exe';
@@ -236,10 +235,4 @@ export default data;`;
     if (this.verbose)
       console.log(`wrote: ${filename}`);
   }
-}
-if (isMain(import.meta)) {
-  const reader = new CoinachReader(null, null, true);
-  reader.exd(process.argv[2] ?? '', 'en').then((lines) => {
-    console.log(lines);
-  }).catch((e) => console.error(e));
 }
