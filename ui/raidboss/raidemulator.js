@@ -29,22 +29,10 @@ import defaultOptions from './raidboss_options';
 import '../../resources/defaults.css';
 import './raidemulator.css';
 
-// TODO: why is this IIFE, and why are these lets not just consts in the addEventListener?
+// TODO: why is this IIFE
 (() => {
-  let emulator;
-  let progressBar;
-  let timelineController;
-  let popupText;
-  let persistor;
-  let encounterTab;
-  let emulatedPartyInfo;
-  let emulatedMap;
-  let emulatedWebSocket;
-  let timelineUI;
-  let logConverterWorker;
-
   document.addEventListener('DOMContentLoaded', () => {
-    persistor = new Persistor();
+    const persistor = new Persistor();
     let websocketConnected = undefined;
     let options = { ...defaultOptions };
 
@@ -94,14 +82,28 @@ import './raidemulator.css';
         options.GroupSpokenAlertsEnabled = false;
       }
 
-      emulator = new RaidEmulator(options);
-      progressBar = new ProgressBar(emulator);
-      encounterTab = new EncounterTab(persistor);
-      emulatedPartyInfo = new EmulatedPartyInfo(emulator);
-      emulatedMap = new EmulatedMap(emulator);
-      emulatedWebSocket = new RaidEmulatorOverlayApiHook(emulator);
+      const emulator = new RaidEmulator(options);
+      const progressBar = new ProgressBar(emulator);
+      const encounterTab = new EncounterTab(persistor);
+      const emulatedPartyInfo = new EmulatedPartyInfo(emulator);
+      const emulatedMap = new EmulatedMap(emulator);
+      const emulatedWebSocket = new RaidEmulatorOverlayApiHook(emulator);
       emulatedWebSocket.connected = websocketConnected;
-      logConverterWorker = new NetworkLogConverterWorker();
+      const logConverterWorker = new NetworkLogConverterWorker();
+
+      // Initialize the Raidboss components, bind them to the emulator for event listeners
+      const timelineUI = new RaidEmulatorTimelineUI(options);
+      timelineUI.bindTo(emulator);
+      const timelineController =
+          new RaidEmulatorTimelineController(options, timelineUI, raidbossFileData);
+      timelineController.bindTo(emulator);
+      const popupText = new RaidEmulatorPopupText(
+          options, new TimelineLoader(timelineController), raidbossFileData);
+      popupText.bindTo(emulator);
+
+      timelineController.SetPopupTextInterface(new PopupTextGenerator(popupText));
+
+      emulator.setPopupText(popupText);
 
       // Listen for the user to click a player in the party list on the right
       // and persist that over to the emulator
@@ -170,21 +172,6 @@ import './raidemulator.css';
       emulator.on('emitLogs', (e) => {
         timelineController.onEmulatorLogEvent(e.logs);
       });
-
-
-      // Initialize the Raidboss components, bind them to the emulator for event listeners
-      timelineUI = new RaidEmulatorTimelineUI(options);
-      timelineUI.bindTo(emulator);
-      timelineController =
-          new RaidEmulatorTimelineController(options, timelineUI, raidbossFileData);
-      timelineController.bindTo(emulator);
-      popupText = new RaidEmulatorPopupText(
-          options, new TimelineLoader(timelineController), raidbossFileData);
-      popupText.bindTo(emulator);
-
-      timelineController.SetPopupTextInterface(new PopupTextGenerator(popupText));
-
-      emulator.setPopupText(popupText);
 
       // Load the encounter metadata from the DB
       encounterTab.refresh();
