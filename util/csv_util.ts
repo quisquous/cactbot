@@ -23,7 +23,7 @@ export type GetTableFunc = {
 };
 
 // Turn names from tables into JavaScript-safe ascii string keys.
-export const cleanName = (str?: string | null): string | undefined | null => {
+export const cleanName = (str: string): string => {
   if (!str || str === '')
     return str;
 
