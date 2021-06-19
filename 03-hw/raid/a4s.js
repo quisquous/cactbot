@@ -64,8 +64,8 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Manipulator', id: '13E7', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Manipulateur', id: '13E7', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'マニピュレーター', id: '13E7', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: '13E7', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '操纵者', id: '13E7', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: '13E7', capture: false }),
       response: Responses.aoe('alert'),
     },
     {
@@ -76,8 +76,8 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Manipulator', id: 'F5E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Manipulateur', id: 'F5E', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'マニピュレーター', id: 'F5E', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: 'F5E', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '操纵者', id: 'F5E', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: 'F5E', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -96,8 +96,8 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Manipulator', id: 'F64' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Manipulateur', id: 'F64' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'マニピュレーター', id: 'F64' }),
-      netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: 'F64' }),
       netRegexCn: NetRegexes.startsUsing({ source: '操纵者', id: 'F64' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: 'F64' }),
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -117,8 +117,8 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Manipulator', id: 'F65' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Manipulateur', id: 'F65' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'マニピュレーター', id: 'F65' }),
-      netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: 'F65' }),
       netRegexCn: NetRegexes.startsUsing({ source: '操纵者', id: 'F65' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: 'F65' }),
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -138,8 +138,8 @@ Options.Triggers.push({
       netRegexDe: NetRegexes.startsUsing({ source: 'Manipulator', id: 'F5E', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Manipulateur', id: 'F5E', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'マニピュレーター', id: 'F5E', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: 'F5E', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '操纵者', id: 'F5E', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: 'F5E', capture: false }),
       response: Responses.spread('alert'),
     },
   ],
