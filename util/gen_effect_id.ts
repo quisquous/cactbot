@@ -73,9 +73,9 @@ const makeEffectMap = (table: Table<'#', 'Name'>) => {
   const map: { [s: string]: string } = {};
   for (const [id, effect] of Object.entries(table)) {
     const rawName = effect['Name'];
-    const name = cleanName(rawName);
-    if (!name)
+    if (!rawName)
       continue;
+    const name = cleanName(rawName);
 
     if (rawName && rawName in knownMapping) {
       if (id !== knownMapping[rawName as keyof typeof knownMapping]) {
