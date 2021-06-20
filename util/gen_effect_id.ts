@@ -103,7 +103,7 @@ const makeEffectMap = (table: Table<'#', 'Name'>) => {
   for (const entry of Object.entries(knownMapping)) {
     const name = cleanName(entry[0]);
     if (name && !(name in foundNames))
-      printError('missing', name, knownMapping, rawName);
+      printError('missing', name, knownMapping, entry[0]);
   }
 
   // Add custom effect name for necessary duplicates.
