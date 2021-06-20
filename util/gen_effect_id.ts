@@ -76,8 +76,11 @@ const makeEffectMap = (table: Table<'#', 'Name'>) => {
     if (!rawName)
       continue;
     const name = cleanName(rawName);
+    // Skip empty strings.
+    if (!name)
+      continue;
 
-    if (rawName && rawName in knownMapping) {
+    if (rawName in knownMapping) {
       if (id !== knownMapping[rawName as keyof typeof knownMapping]) {
         printError('skipping', rawName, table, id);
         continue;
@@ -100,19 +103,19 @@ const makeEffectMap = (table: Table<'#', 'Name'>) => {
   }
 
   // Make sure everything specified in known_mapping was found in the above loop.
-  for (const entry of Object.entries(knownMapping)) {
-    const name = cleanName(entry[0]);
+  for (const rawName of Object.keys(knownMapping)) {
+    const name = cleanName(rawName);
     if (name && !(name in foundNames))
-      printError('missing', name, knownMapping, entry[0]);
+      printError('missing', name, knownMapping, rawName);
   }
 
   // Add custom effect name for necessary duplicates.
-  for (const [rawName, id] of Object.entries(customMapping))
-    map[rawName] = id;
+  for (const [name, id] of Object.entries(customMapping))
+    map[name] = id;
 
   // Store ids as hex.
   return Object.fromEntries(
-      Object.entries(map).map(([key, value]) => [key, parseInt(value).toString(16).toUpperCase()]),
+      Object.entries(map).map(([name, id]) => [name, parseInt(id).toString(16).toUpperCase()]),
   );
 };
 
