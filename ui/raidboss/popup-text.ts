@@ -1184,7 +1184,8 @@ export class PopupText {
       let result = undefined;
       if (triggerHelper.triggerOptions.TTSText) {
         result = triggerHelper.valueOrFunction(triggerHelper.triggerOptions.TTSText);
-      } else if (triggerHelper.trigger.tts) {
+      } else if (triggerHelper.trigger.tts !== undefined) {
+        // Allow null/false/NaN/0/'' in this branch.
         result = triggerHelper.valueOrFunction(triggerHelper.trigger.tts);
       } else if (triggerHelper.response) {
         const resp: ResponseField<RaidbossData> = triggerHelper.response;
@@ -1192,7 +1193,7 @@ export class PopupText {
           result = triggerHelper.valueOrFunction(resp.tts);
       }
 
-      // Allow false or null to disable tts entirely
+      // Allow falsey values to disable tts entirely
       // Undefined will fall back to defaultTTSText
       if (result !== undefined) {
         if (result)
