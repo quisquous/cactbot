@@ -78,19 +78,8 @@ export default (
       rules: [
         {
           // Worker has to go before normal js
-          test: /NetworkLogConverterWorker\.(?:c|m)?js$/,
+          test: /\.worker\.ts$/,
           loader: 'worker-loader',
-          options: {
-            esModule: true,
-            inline: 'fallback',
-            worker: {
-              type: 'Worker',
-              options: {
-                type: 'classic',
-                name: 'NetworkLogConverterWorker',
-              },
-            },
-          },
           resolve: {
             fullySpecified: false,
           },

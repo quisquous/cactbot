@@ -20,7 +20,7 @@ import { isLang, Lang, langMap } from '../../resources/languages';
 import raidbossFileData from './data/raidboss_manifest.txt';
 // eslint can't detect the custom loader for the worker
 // eslint-disable-next-line import/default
-import NetworkLogConverterWorker from './emulator/data/NetworkLogConverterWorker';
+import NetworkLogConverterWorker from './emulator/data/NetworkLogConverter.worker';
 import { callOverlayHandler } from '../../resources/overlay_plugin_api';
 
 import defaultOptions from './raidboss_options';
