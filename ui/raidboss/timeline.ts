@@ -699,6 +699,7 @@ export class Timeline {
       ++this.nextEvent;
     }
   }
+
   private _AddPassedTexts(fightNow: number, currentTime: number): void {
     while (this.nextText < this.texts.length) {
       const t = this.texts[this.nextText];
