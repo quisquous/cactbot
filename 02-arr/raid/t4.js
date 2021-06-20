@@ -4,6 +4,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'T4 Gravity Thrust',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Spinner-Rook', id: '4D4' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Drehturm', id: '4D4' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Drone-Drille', id: '4D4' }),
@@ -24,6 +25,7 @@ Options.Triggers.push({
     },
     {
       id: 'T4 Pox',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Spinner-Rook', id: '4D5' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Drehturm', id: '4D5' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Drone-Drille', id: '4D5' }),
@@ -44,6 +46,7 @@ Options.Triggers.push({
     },
     {
       id: 'T4 Reminder',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Clockwork Knight', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Uhrwerk-Ritter', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Chevalier Mécanique', capture: false }),

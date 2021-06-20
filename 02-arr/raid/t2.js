@@ -3,12 +3,14 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'T2 High Voltage',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4C0' }),
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
     {
       id: 'T2 Ballast',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4C5', capture: false }),
       suppressSeconds: 3,
       response: Responses.getBehind(),
@@ -16,6 +18,7 @@ Options.Triggers.push({
     {
       // Allagan Rot
       id: 'T2 Rot',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '14D' }),
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -44,6 +47,7 @@ Options.Triggers.push({
     },
     {
       id: 'T2 Pass Rot',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '14D' }),
       condition: Conditions.targetIsYou(),
       preRun: (data) => data.rot = true,
@@ -65,6 +69,7 @@ Options.Triggers.push({
     },
     {
       id: 'T2 Lost Rot',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '14D' }),
       condition: Conditions.targetIsYou(),
       run: (data) => delete data.rot,

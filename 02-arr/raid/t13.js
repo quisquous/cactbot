@@ -17,6 +17,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'T13 Gigaflare Phase Change',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'BB9', source: 'Bahamut Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'BB9', source: 'Prim-Bahamut', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: 'BB9', source: 'Primo-Bahamut', capture: false }),
@@ -44,6 +45,7 @@ Options.Triggers.push({
     },
     {
       id: 'T13 Flatten',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'BAE', source: 'Bahamut Prime' }),
       netRegexDe: NetRegexes.startsUsing({ id: 'BAE', source: 'Prim-Bahamut' }),
       netRegexFr: NetRegexes.startsUsing({ id: 'BAE', source: 'Primo-Bahamut' }),
@@ -81,6 +83,7 @@ Options.Triggers.push({
     },
     {
       id: 'T13 Megaflare Share',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0027' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -103,6 +106,7 @@ Options.Triggers.push({
     },
     {
       id: 'T13 Tempest Wing',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0004', target: 'Bahamut Prime' }),
       netRegexDe: NetRegexes.tether({ id: '0004', target: 'Prim-Bahamut' }),
       netRegexFr: NetRegexes.tether({ id: '0004', target: 'Primo-Bahamut' }),
@@ -124,6 +128,7 @@ Options.Triggers.push({
     },
     {
       id: 'T13 Akh Morn',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'BC2', source: 'Bahamut Prime' }),
       netRegexDe: NetRegexes.startsUsing({ id: 'BC2', source: 'Prim-Bahamut' }),
       netRegexFr: NetRegexes.startsUsing({ id: 'BC2', source: 'Primo-Bahamut' }),

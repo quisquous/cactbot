@@ -9,11 +9,13 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'T8 Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0011' }),
       response: Responses.stackMarkerOn('info'),
     },
     {
       id: 'T8 Landmine Start',
+      type: 'GameLog',
       netRegex: NetRegexes.message({ line: 'Landmines have been scattered.*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Die Landminen haben sich verteilt.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Des mines ont été répandues.*?', capture: false }),
@@ -35,6 +37,7 @@ Options.Triggers.push({
     },
     {
       id: 'T8 Landmine Explosion',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7D1', source: 'Allagan Mine' }),
       netRegexDe: NetRegexes.ability({ id: '7D1', source: 'Allagisch(?:e|er|es|en) Mine' }),
       netRegexFr: NetRegexes.ability({ id: '7D1', source: 'Mine Allagoise' }),
@@ -78,6 +81,7 @@ Options.Triggers.push({
     },
     {
       id: 'T8 Homing Missile Warning',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0005', target: 'The Avatar' }),
       netRegexDe: NetRegexes.tether({ id: '0005', target: 'Avatar' }),
       netRegexFr: NetRegexes.tether({ id: '0005', target: 'Bio-Tréant' }),
@@ -101,6 +105,7 @@ Options.Triggers.push({
     },
     {
       id: 'T8 Brainjack',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7C3', source: 'The Avatar' }),
       netRegexDe: NetRegexes.startsUsing({ id: '7C3', source: 'Avatar' }),
       netRegexFr: NetRegexes.startsUsing({ id: '7C3', source: 'Bio-Tréant' }),
@@ -136,6 +141,7 @@ Options.Triggers.push({
     },
     {
       id: 'T8 Allagan Field',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7C4', source: 'The Avatar' }),
       netRegexDe: NetRegexes.startsUsing({ id: '7C4', source: 'Avatar' }),
       netRegexFr: NetRegexes.startsUsing({ id: '7C4', source: 'Bio-Tréant' }),
@@ -171,6 +177,7 @@ Options.Triggers.push({
     },
     {
       id: 'T8 Dreadnaught',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Clockwork Dreadnaught', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Brummonaut', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Cuirassé Dreadnaught', capture: false }),

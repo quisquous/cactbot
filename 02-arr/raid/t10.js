@@ -4,6 +4,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'T10 Phase Change',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
@@ -14,6 +15,7 @@ Options.Triggers.push({
     },
     {
       id: 'T10 Heat Lightning',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
@@ -24,6 +26,7 @@ Options.Triggers.push({
     },
     {
       id: 'T10 Wild Charge',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001F' }),
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
@@ -54,11 +57,13 @@ Options.Triggers.push({
     },
     {
       id: 'T10 Prey',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       response: Responses.preyOn(),
     },
     {
       id: 'T10 Cyclonic Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0015', source: 'Imdugud' }),
       netRegexDe: NetRegexes.tether({ id: '0015', source: 'Imdugud' }),
       netRegexFr: NetRegexes.tether({ id: '0015', source: 'Imdugud' }),

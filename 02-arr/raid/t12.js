@@ -9,6 +9,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'T12 Phase 3',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: 'B96', source: 'Phoenix', capture: false }),
       netRegexDe: NetRegexes.ability({ id: 'B96', source: 'Phönix', capture: false }),
       netRegexFr: NetRegexes.ability({ id: 'B96', source: 'Phénix', capture: false }),
@@ -20,6 +21,7 @@ Options.Triggers.push({
     },
     {
       id: 'T12 Bennu',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Bennu', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Bennu', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Bénou', capture: false }),
@@ -43,6 +45,7 @@ Options.Triggers.push({
     },
     {
       id: 'T12 Revelation',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'B87', source: 'Phoenix' }),
       netRegexDe: NetRegexes.startsUsing({ id: 'B87', source: 'Phönix' }),
       netRegexFr: NetRegexes.startsUsing({ id: 'B87', source: 'Phénix' }),
@@ -78,6 +81,7 @@ Options.Triggers.push({
     },
     {
       id: 'T12 Blackfire',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'B8C', source: 'Phoenix', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'B8C', source: 'Phönix', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: 'B8C', source: 'Phénix', capture: false }),
@@ -98,6 +102,7 @@ Options.Triggers.push({
     },
     {
       id: 'T12 Whitefire',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0020' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -114,6 +119,7 @@ Options.Triggers.push({
     },
     {
       id: 'T12 Bluefire',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0021' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text(),
@@ -131,6 +137,7 @@ Options.Triggers.push({
     {
       // Chain Of Purgatory
       id: 'T12 Chain',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '24D' }),
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
