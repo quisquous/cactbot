@@ -1,4 +1,5 @@
 import path from 'path';
+
 import { CoinachWriter } from './coinach';
 import { Table, cleanName, getIntlTable } from './csv_util';
 
