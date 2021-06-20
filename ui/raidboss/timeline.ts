@@ -699,8 +699,7 @@ export class Timeline {
       ++this.nextEvent;
     }
   }
-
-  private _AddPassedTexts(fightNow: number): void {
+  private _AddPassedTexts(fightNow: number, currentTime: number): void {
     while (this.nextText < this.texts.length) {
       const t = this.texts[this.nextText];
       if (!t)
@@ -721,7 +720,7 @@ export class Timeline {
           this.speakTTSCallback(t.text, this.timebase);
       } else if (t.type === 'trigger') {
         if (this.triggerCallback)
-          this.triggerCallback(t.trigger, t.matches, this.timebase);
+          this.triggerCallback(t.trigger, t.matches, currentTime);
       }
       ++this.nextText;
     }
@@ -802,7 +801,7 @@ export class Timeline {
     // This is the number of seconds into the fight (subtracting Dates gives milliseconds).
     const fightNow = (currentTime - this.timebase) / 1000;
     // Send text events now or they'd be skipped by _AdvanceTimeTo().
-    this._AddPassedTexts(fightNow);
+    this._AddPassedTexts(fightNow, currentTime);
     this._AdvanceTimeTo(fightNow);
     this._CollectActiveSyncs(fightNow);
 
