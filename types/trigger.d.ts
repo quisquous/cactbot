@@ -2,14 +2,14 @@ import { Lang, NonEnLang } from '../resources/languages';
 import { TimelineReplacement, TimelineStyle } from '../ui/raidboss/timeline';
 import { RaidbossData } from './data';
 import { CactbotBaseRegExp, TriggerTypes } from './net_trigger';
-import { NetAllMatches, Matches } from '../types/net_matches';
+import { NetMatches, Matches } from '../types/net_matches';
 
 // TargetedMatches can be used for generic functions in responses or conditions
 // that use matches from any number of Regex or NetRegex functions.
 export type TargetedParams = 'sourceId' | 'source' | 'targetId' | 'target';
-export type TargetedMatches = NetAllMatches['StartsUsing'] | NetAllMatches['Ability'] |
-    NetAllMatches['GainsEffect'] | NetAllMatches['LosesEffect'] | NetAllMatches['Tether'] |
-    NetAllMatches['WasDefeated'] | NetAllMatches['None'];
+export type TargetedMatches = NetMatches['StartsUsing'] | NetMatches['Ability'] |
+    NetMatches['GainsEffect'] | NetMatches['LosesEffect'] | NetMatches['Tether'] |
+    NetMatches['WasDefeated'] | NetMatches['None'];
 
 export type FullLocaleText = Record<Lang, string>;
 
@@ -83,20 +83,20 @@ export type TriggerField<Data extends RaidbossData, MatchType extends Matches, R
 export type BaseTrigger<Data extends RaidbossData, Type extends TriggerTypes> = {
   id: string;
   disabled?: boolean;
-  condition?: TriggerField<Data, NetAllMatches[Type], boolean>;
-  preRun?: TriggerField<Data, NetAllMatches[Type], void>;
-  delaySeconds?: TriggerField<Data, NetAllMatches[Type], number>;
-  durationSeconds?: TriggerField<Data, NetAllMatches[Type], number>;
-  suppressSeconds?: TriggerField<Data, NetAllMatches[Type], number>;
-  promise?: TriggerField<Data, NetAllMatches[Type], Promise<void>>;
-  sound?: TriggerField<Data, NetAllMatches[Type], string>;
-  soundVolume?: TriggerField<Data, NetAllMatches[Type], number>;
-  response?: ResponseField<Data, NetAllMatches[Type]>;
-  alarmText?: TriggerField<Data, NetAllMatches[Type], TriggerOutput<Data, NetAllMatches[Type]>>;
-  alertText?: TriggerField<Data, NetAllMatches[Type], TriggerOutput<Data, NetAllMatches[Type]>>;
-  infoText?: TriggerField<Data, NetAllMatches[Type], TriggerOutput<Data, NetAllMatches[Type]>>;
-  tts?: TriggerField<Data, NetAllMatches[Type], PartialTriggerOutput<Data, NetAllMatches[Type]>>;
-  run?: TriggerField<Data, NetAllMatches[Type], void>;
+  condition?: TriggerField<Data, NetMatches[Type], boolean>;
+  preRun?: TriggerField<Data, NetMatches[Type], void>;
+  delaySeconds?: TriggerField<Data, NetMatches[Type], number>;
+  durationSeconds?: TriggerField<Data, NetMatches[Type], number>;
+  suppressSeconds?: TriggerField<Data, NetMatches[Type], number>;
+  promise?: TriggerField<Data, NetMatches[Type], Promise<void>>;
+  sound?: TriggerField<Data, NetMatches[Type], string>;
+  soundVolume?: TriggerField<Data, NetMatches[Type], number>;
+  response?: ResponseField<Data, NetMatches[Type]>;
+  alarmText?: TriggerField<Data, NetMatches[Type], TriggerOutput<Data, NetMatches[Type]>>;
+  alertText?: TriggerField<Data, NetMatches[Type], TriggerOutput<Data, NetMatches[Type]>>;
+  infoText?: TriggerField<Data, NetMatches[Type], TriggerOutput<Data, NetMatches[Type]>>;
+  tts?: TriggerField<Data, NetMatches[Type], PartialTriggerOutput<Data, NetMatches[Type]>>;
+  run?: TriggerField<Data, NetMatches[Type], void>;
   outputStrings?: OutputStrings;
 }
 

@@ -15,7 +15,7 @@ import './radar_config';
 
 import '../../resources/defaults.css';
 import './radar.css';
-import { NetAllMatches } from '../../types/net_matches';
+import { NetMatches } from '../../types/net_matches';
 
 type RadarType = 'mob' | 'any';
 
@@ -207,7 +207,7 @@ class Radar {
   }
 
   AddMonster(log: string, hunt: HuntEntry,
-      matches: NetAllMatches['AddedCombatant']) {
+      matches: NetMatches['AddedCombatant']) {
     if (!this.playerPos)
       return;
     if (!matches)

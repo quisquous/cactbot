@@ -33,7 +33,7 @@ import divinationImage from '../../resources/ffxiv/status/divination.png';
 
 import { kAbility } from './constants';
 import { makeAuraTimerIcon } from './utils';
-import { NetAllMatches } from '../../types/net_matches';
+import { NetMatches } from '../../types/net_matches';
 
 export interface BuffInfo {
   name: string;
@@ -640,7 +640,7 @@ export class BuffTracker {
     // }
   }
 
-  onUseAbility(id: string, matches: NetAllMatches['Ability']): void {
+  onUseAbility(id: string, matches: NetMatches['Ability']): void {
     const buffs = this.cooldownAbilityMap[id];
     if (!buffs)
       return;
@@ -666,7 +666,7 @@ export class BuffTracker {
 
   onGainEffect(
       buffs: BuffInfo[] | undefined,
-      matches: NetAllMatches['GainsEffect'],
+      matches: NetMatches['GainsEffect'],
   ): void {
     if (!buffs)
       return;
@@ -688,7 +688,7 @@ export class BuffTracker {
 
   onLoseEffect(
       buffs: BuffInfo[] | undefined,
-      _matches: NetAllMatches['LosesEffect'],
+      _matches: NetMatches['LosesEffect'],
   ): void {
     if (!buffs)
       return;
@@ -696,19 +696,19 @@ export class BuffTracker {
       this.onLoseBigBuff(b.name);
   }
 
-  onYouGainEffect(name: string, matches: NetAllMatches['GainsEffect']): void {
+  onYouGainEffect(name: string, matches: NetMatches['GainsEffect']): void {
     this.onGainEffect(this.gainEffectMap[name], matches);
   }
 
-  onYouLoseEffect(name: string, matches: NetAllMatches['LosesEffect']): void {
+  onYouLoseEffect(name: string, matches: NetMatches['LosesEffect']): void {
     this.onLoseEffect(this.loseEffectMap[name], matches);
   }
 
-  onMobGainsEffect(name: string, matches: NetAllMatches['GainsEffect']): void {
+  onMobGainsEffect(name: string, matches: NetMatches['GainsEffect']): void {
     this.onGainEffect(this.mobGainsEffectMap[name], matches);
   }
 
-  onMobLosesEffect(name: string, matches: NetAllMatches['LosesEffect']): void {
+  onMobLosesEffect(name: string, matches: NetMatches['LosesEffect']): void {
     this.onLoseEffect(this.mobLosesEffectMap[name], matches);
   }
 
