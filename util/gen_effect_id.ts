@@ -70,7 +70,7 @@ const printError = (
 const makeEffectMap = (table: Table<'#', 'Name'>) => {
   const foundNames = new Set();
 
-  const map: { [s: string]: string } = {};
+  const map = new Map<string, string>();
   for (const [id, effect] of Object.entries(table)) {
     const rawName = effect['Name'];
     if (!rawName)
@@ -87,19 +87,19 @@ const makeEffectMap = (table: Table<'#', 'Name'>) => {
       }
     }
 
-    if (name in map) {
+    if (map.has(name)) {
       printError('collision', name, table, id);
-      printError('collision', name, table, map[name] ?? '');
-      delete map[name];
+      printError('collision', name, table, map.get(name) ?? '');
+      map.delete(name);
       continue;
     }
-    if (name in foundNames) {
+    if (foundNames.has(name)) {
       printError('collision', name, table, id);
       continue;
     }
 
     foundNames.add(name);
-    map[name] = id;
+    map.set(name, id);
   }
 
   // Make sure everything specified in known_mapping was found in the above loop.
@@ -111,12 +111,12 @@ const makeEffectMap = (table: Table<'#', 'Name'>) => {
 
   // Add custom effect name for necessary duplicates.
   for (const [name, id] of Object.entries(customMapping))
-    map[name] = id;
+    map.set(name, id);
 
   // Store ids as hex.
-  return Object.fromEntries(
-      Object.entries(map).map(([name, id]) => [name, parseInt(id).toString(16).toUpperCase()]),
-  );
+  map.forEach((value, key, map) => map.set(key, parseInt(value).toString(16).toUpperCase()));
+
+  return Object.fromEntries(map);
 };
 
 
