@@ -1,6 +1,5 @@
 import './raidboss_config';
 
-import EmulatedMap from './emulator/ui/EmulatedMap';
 import EmulatedPartyInfo from './emulator/ui/EmulatedPartyInfo';
 import EmulatorCommon from './emulator/EmulatorCommon';
 import Encounter from './emulator/data/Encounter';
@@ -21,7 +20,7 @@ import { isLang, Lang, langMap } from '../../resources/languages';
 import raidbossFileData from './data/raidboss_manifest.txt';
 // eslint can't detect the custom loader for the worker
 // eslint-disable-next-line import/default
-import NetworkLogConverterWorker from './emulator/data/NetworkLogConverterWorker';
+import NetworkLogConverterWorker from './emulator/data/NetworkLogConverter.worker';
 import { callOverlayHandler } from '../../resources/overlay_plugin_api';
 
 import defaultOptions from './raidboss_options';
@@ -110,7 +109,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const progressBar = new ProgressBar(emulator);
   const encounterTab = new EncounterTab(persistor);
   const emulatedPartyInfo = new EmulatedPartyInfo(emulator);
-  const emulatedMap = new EmulatedMap(emulator);
   const emulatedWebSocket = new RaidEmulatorOverlayApiHook(emulator);
   emulatedWebSocket.connected = websocketConnected;
   const logConverterWorker = new NetworkLogConverterWorker();
@@ -428,7 +426,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     persistor: persistor,
     encounterTab: encounterTab,
     emulatedPartyInfo: emulatedPartyInfo,
-    emulatedMap: emulatedMap,
     emulatedWebSocket: emulatedWebSocket,
     timelineUI: timelineUI,
   };

@@ -1,30 +1,31 @@
-import EmulatorCommon from '../EmulatorCommon';
 import Encounter from './Encounter';
 import LogEventHandler from './LogEventHandler';
 import NetworkLogConverter from './NetworkLogConverter';
 import LogRepository from './network_log_converter/LogRepository';
 
-onmessage = async (msg) => {
+const ctx: Worker = self as unknown as Worker;
+
+ctx.addEventListener('message', (msg) => {
   const logConverter = new NetworkLogConverter();
   const localLogHandler = new LogEventHandler();
   const repo = new LogRepository();
 
   // Listen for LogEventHandler to dispatch fights and persist them
-  localLogHandler.on('fight', async (day, zoneId, zoneName, lines) => {
+  localLogHandler.on('fight', (day, zoneId, zoneName, lines) => {
     const enc = new Encounter(day, zoneId, zoneName, lines);
     enc.initialize();
     if (enc.shouldPersistFight()) {
-      postMessage({
+      ctx.postMessage({
         type: 'encounter',
         encounter: enc,
-        name: enc.combatantTracker.getMainCombatantName(),
+        name: enc.combatantTracker?.getMainCombatantName(),
       });
     }
   });
 
   // Convert the message manually due to memory issues with extremely large files
   const decoder = new TextDecoder('UTF-8');
-  let buf = new Uint8Array(msg.data);
+  let buf: Uint8Array | undefined = new Uint8Array(msg.data);
   let nextOffset = 0;
   let lines = [];
   let lineCount = 0;
@@ -41,7 +42,7 @@ onmessage = async (msg) => {
     if (lines.length >= 1000) {
       lines = logConverter.convertLines(lines, repo);
       localLogHandler.parseLogs(lines);
-      postMessage({
+      ctx.postMessage({
         type: 'progress',
         lines: lineCount,
         bytes: nextOffset,
@@ -55,17 +56,19 @@ onmessage = async (msg) => {
     localLogHandler.parseLogs(lines);
     lines = [];
   }
-  postMessage({
+  ctx.postMessage({
     type: 'progress',
     lines: lineCount,
     bytes: buf.length,
     totalBytes: buf.length,
   });
-  buf = null;
+
+  // Unset the buffer to free memory before passing message back to main window
+  buf = undefined;
 
   localLogHandler.endFight();
 
-  postMessage({
+  ctx.postMessage({
     type: 'done',
   });
-};
+});
