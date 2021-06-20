@@ -5,6 +5,9 @@ import { LooseTrigger, MatchesAny } from '../../../../types/trigger';
 import { TriggerHelper, Text, TextText, ProcessedTrigger } from '../../popup-text';
 import { EventResponses, LogEvent } from '../../../../types/event';
 import { UnreachableCode } from '../../../../resources/not_reached';
+import { RaidbossFileData } from '../../data/raidboss_manifest.txt';
+import { RaidbossOptions } from '../../raidboss_options';
+import { TimelineLoader } from '../../timeline';
 
 type ResolverFunc = () => void;
 
@@ -83,6 +86,16 @@ export default class PopupTextAnalysis extends StubbedPopupText {
       triggerHelper: EmulatorTriggerHelper | undefined,
       currentTriggerStatus: ResolverStatus,
       finalData: DataType) => void;
+
+  constructor(
+      options: RaidbossOptions,
+      timelineLoader: TimelineLoader,
+      raidbossFileData: RaidbossFileData) {
+    super(options, timelineLoader, raidbossFileData);
+    this.ttsSay = (_text: string) => {
+      return;
+    };
+  }
 
   // Override `OnTrigger` so we can use our own exception handler
   OnTrigger(trigger: LooseTrigger, matches: RegExpExecArray | null, currentTime: number): void {
