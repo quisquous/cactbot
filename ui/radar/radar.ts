@@ -8,6 +8,7 @@ import { MatchesAddedCombatantFull } from '../../resources/matches';
 import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import UserConfig from '../../resources/user_config';
+import { CactbotBaseRegExp } from '../../types/net_trigger';
 
 import arrowImage from './arrow.png';
 
@@ -173,10 +174,10 @@ class Radar {
   private lang: Lang;
   private nameToHuntEntry: HuntMap;
   private regexes: {
-    abilityFull: RegExp;
-    addedCombatantFull: RegExp;
-    instanceChanged: RegExp;
-    wasDefeated: RegExp;
+    abilityFull: CactbotBaseRegExp<'Ability'>;
+    addedCombatantFull: CactbotBaseRegExp<'AddedCombatant'>;
+    instanceChanged: CactbotBaseRegExp<'GameLog'>;
+    wasDefeated: CactbotBaseRegExp<'WasDefeated'>;
   };
 
   constructor(element: HTMLElement) {
@@ -403,9 +404,7 @@ class Radar {
       const matches = m?.groups;
       if (!matches)
         return;
-      const name = matches.name?.toLowerCase();
-      if (!name)
-        return;
+      const name = matches.name.toLowerCase();
       const hunt = this.nameToHuntEntry[name];
       if (!hunt)
         return;
@@ -418,9 +417,7 @@ class Radar {
       const matches = m?.groups;
       if (!matches)
         return;
-      const name = matches.target?.toLowerCase();
-      if (!name)
-        return;
+      const name = matches.target.toLowerCase();
       const monster = this.targetMonsters[name];
       if (!monster)
         return;
@@ -449,9 +446,8 @@ class Radar {
       const matches = m?.groups;
       if (!matches)
         return;
-      const name = matches.target?.toLowerCase();
-      if (name)
-        this.RemoveMonster(name);
+      const name = matches.target.toLowerCase();
+      this.RemoveMonster(name);
     }
   }
 

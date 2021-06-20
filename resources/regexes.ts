@@ -1,4 +1,8 @@
-import { BaseRegExp } from '../types/trigger';
+export interface BaseRegExp<T extends string> extends RegExp {
+  groups?: {
+    [s in T]?: string;
+  };
+}
 
 export type Params<T extends string> =
   Partial<Record<Exclude<T, 'timestamp' | 'capture'>, string | string[]> &
@@ -151,6 +155,31 @@ export type GameLogParams = typeof gameLogParams[number];
 export type GameNameLogParams = typeof gameNameLogParams[number];
 export type ChangeZoneParams = typeof changeZoneParams[number];
 export type Network6dParams = typeof network6dParams[number];
+
+export interface ParamsAll {
+  'StartsUsingParams': StartsUsingParams;
+  'AbilityParams': AbilityParams;
+  'AbilityFullParams': AbilityFullParams;
+  'HeadMarkerParams': HeadMarkerParams;
+  'AddedCombatantParams': AddedCombatantParams;
+  'AddedCombatantFullParams': AddedCombatantFullParams;
+  'RemovingCombatantParams': RemovingCombatantParams;
+  'GainsEffectParams': GainsEffectParams;
+  'StatusEffectExplicitParams': StatusEffectExplicitParams;
+  'LosesEffectParams': LosesEffectParams;
+  'TetherParams': TetherParams;
+  'WasDefeatedParams': WasDefeatedParams;
+  'EchoParams': EchoParams;
+  'DialogParams': DialogParams;
+  'MessageParams': MessageParams;
+  'GameLogParams': GameLogParams;
+  'GameNameLogParams': GameNameLogParams;
+  'StatChangeParams': StatChangeParams;
+  'ChangeZoneParams': ChangeZoneParams;
+  'Network6dParams': Network6dParams;
+}
+
+export type ParamsAllTypes = keyof ParamsAll;
 
 export default class Regexes {
   /**
@@ -695,7 +724,7 @@ export default class Regexes {
     return anyOfArray(array);
   }
 
-  static parse(regexpString: RegExp | string): RegExp {
+  static parse<T extends ParamsAllTypes>(regexpString: RegExp | string): Regex<ParamsAll[T]> {
     const kCactbotCategories = {
       Timestamp: '^.{14}',
       NetTimestamp: '.{33}',
@@ -723,7 +752,7 @@ export default class Regexes {
     regexpString = regexpString.replace(/\\y\{(.*?)\}/g, (match, group) => {
       return kCactbotCategories[group as keyof typeof kCactbotCategories] || match;
     });
-    return new RegExp(regexpString, modifiers);
+    return new RegExp(regexpString, modifiers) as Regex<ParamsAll[T]>;
   }
 
   // Like Regex.Regexes.parse, but force global flag.

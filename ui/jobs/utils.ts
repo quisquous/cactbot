@@ -1,6 +1,6 @@
 import Util from '../../resources/util';
-import NetRegexes, { StatChangeParams } from '../../resources/netregexes';
-import Regexes, { Regex } from '../../resources/regexes';
+import NetRegexes from '../../resources/netregexes';
+import Regexes, { Regex, StatChangeParams } from '../../resources/regexes';
 import { LocaleRegex } from '../../resources/translations';
 import { kMeleeWithMpJobs, kLevelMod } from './constants';
 import { Bars } from './bar';
@@ -8,6 +8,7 @@ import { Bars } from './bar';
 import { Lang } from '../../resources/languages';
 import { Job } from '../../types/job';
 import { UnreachableCode } from '../../resources/not_reached';
+import { CactbotBaseRegExp } from '../../types/net_trigger';
 
 const getLocaleRegex = (locale: string, regexes: {
   'en': RegExp;
@@ -16,14 +17,14 @@ const getLocaleRegex = (locale: string, regexes: {
 
 export class RegexesHolder {
   StatsRegex: Regex<StatChangeParams>;
-  YouGainEffectRegex: RegExp;
-  YouLoseEffectRegex: RegExp;
-  YouUseAbilityRegex: RegExp;
-  AnybodyAbilityRegex: RegExp;
-  MobGainsEffectRegex: RegExp;
-  MobLosesEffectRegex: RegExp;
-  MobGainsEffectFromYouRegex: RegExp;
-  MobLosesEffectFromYouRegex: RegExp;
+  YouGainEffectRegex: CactbotBaseRegExp<'GainsEffect'>;
+  YouLoseEffectRegex: CactbotBaseRegExp<'LosesEffect'>;
+  YouUseAbilityRegex: CactbotBaseRegExp<'Ability'>;
+  AnybodyAbilityRegex: CactbotBaseRegExp<'Ability'>;
+  MobGainsEffectRegex: CactbotBaseRegExp<'GainsEffect'>;
+  MobLosesEffectRegex: CactbotBaseRegExp<'LosesEffect'>;
+  MobGainsEffectFromYouRegex: CactbotBaseRegExp<'GainsEffect'>;
+  MobLosesEffectFromYouRegex: CactbotBaseRegExp<'LosesEffect'>;
   cordialRegex: RegExp;
   countdownStartRegex: RegExp;
   countdownCancelRegex: RegExp;
