@@ -14,6 +14,7 @@ import { UnreachableCode } from '../../../../resources/not_reached';
 import { LooseTrigger } from '../../../../types/trigger';
 import Combatant from './Combatant';
 import { TimelineLoader } from '../../timeline';
+import RaidEmulatorPopupText from '../overrides/RaidEmulatorPopupText';
 
 type PerspectiveTrigger = {
   triggerHelper: TriggerHelper;
@@ -37,7 +38,7 @@ export default class AnalyzedEncounter extends EventBus {
     super();
   }
 
-  selectPerspective(id: string, popupText: PopupTextAnalysis): void {
+  selectPerspective(id: string, popupText: PopupTextAnalysis | RaidEmulatorPopupText): void {
     if (this.encounter && this.encounter.combatantTracker) {
       const selectedPartyMember = this.encounter.combatantTracker.combatants[id];
       if (!selectedPartyMember)
@@ -66,7 +67,10 @@ export default class AnalyzedEncounter extends EventBus {
     }
   }
 
-  updateState(combatant: Combatant, timestamp: number, popupText: PopupTextAnalysis): void {
+  updateState(
+      combatant: Combatant,
+      timestamp: number,
+      popupText: PopupTextAnalysis | RaidEmulatorPopupText): void {
     const job = combatant.job;
     if (!job)
       throw new UnreachableCode();
