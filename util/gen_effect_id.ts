@@ -115,7 +115,7 @@ const makeEffectMap = (table: Table<'#', 'Name'>) => {
     map.set(name, id);
 
   // Store ids as hex.
-  map.forEach((value, key, map) => map.set(key, parseInt(value).toString(16).toUpperCase()));
+  map.forEach((id, name) => map.set(name, parseInt(id).toString(16).toUpperCase()));
 
   return Object.fromEntries(map);
 };
