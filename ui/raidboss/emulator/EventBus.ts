@@ -5,7 +5,7 @@ type Scope = object;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Param = any;
 
-type CallbackFunction = (...args: Param) => void;
+type CallbackFunction = (...args: Param) => (void | Promise<void>);
 type EventMapEntry = {
   event: string;
   scope: Scope;
