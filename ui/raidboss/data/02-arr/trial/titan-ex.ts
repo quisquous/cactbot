@@ -2,10 +2,10 @@ import { RaidbossData as Data } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 import Conditions from '../../../../../resources/conditions';
-import { MatchesTether } from '../../../../../resources/matches';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { NetAllMatches } from '../../../../../types/net_matches';
 
 export { RaidbossData as Data } from '../../../../../types/data';
 
@@ -74,11 +74,11 @@ const triggerSet: TriggerSet<Data> = {
       id: 'TitanEx Rock Throw',
       netRegex: NetRegexes.tether({ id: '0007' }),
       suppressSeconds: 1,
-      alertText: (data, matches: MatchesTether, output) => {
+      alertText: (data, matches: NetAllMatches['Tether'], output) => {
         if (matches.source === data.me || matches.target === data.me)
           return output.jailOnYou!();
       },
-      infoText: (data, matches: MatchesTether, output) => {
+      infoText: (data, matches: NetAllMatches['Tether'], output) => {
         if (matches.source !== data.me && matches.target !== data.me)
           return output.jails!();
       },

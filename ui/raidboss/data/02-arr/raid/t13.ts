@@ -2,10 +2,10 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 import Conditions from '../../../../../resources/conditions';
-import { MatchesStartsUsing, MatchesTether } from '../../../../../resources/matches';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { NetAllMatches } from '../../../../../types/net_matches';
 
 export interface Data extends RaidbossData {
   gigaflare: number;
@@ -65,11 +65,11 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: 'BAE', source: 'バハムート・プライム' }),
       netRegexCn: NetRegexes.startsUsing({ id: 'BAE', source: '至尊巴哈姆特' }),
       netRegexKo: NetRegexes.startsUsing({ id: 'BAE', source: '바하무트 프라임' }),
-      alertText: (data, matches: MatchesStartsUsing, output) => {
+      alertText: (data, matches: NetAllMatches['StartsUsing'], output) => {
         if (matches.target === data.me)
           return output.flattenOnYou!();
       },
-      infoText: (data, matches: MatchesStartsUsing, output) => {
+      infoText: (data, matches: NetAllMatches['StartsUsing'], output) => {
         if (matches.target === data.me)
           return;
         if (data.role === 'healer' || data.job === 'BLU')
@@ -126,7 +126,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.tether({ id: '0004', target: 'バハムート・プライム' }),
       netRegexCn: NetRegexes.tether({ id: '0004', target: '至尊巴哈姆特' }),
       netRegexKo: NetRegexes.tether({ id: '0004', target: '바하무트 프라임' }),
-      condition: (data, matches: MatchesTether) => data.me === matches.source,
+      condition: (data, matches: NetAllMatches['Tether']) => data.me === matches.source,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -148,11 +148,11 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: 'BC2', source: 'バハムート・プライム' }),
       netRegexCn: NetRegexes.startsUsing({ id: 'BC2', source: '至尊巴哈姆特' }),
       netRegexKo: NetRegexes.startsUsing({ id: 'BC2', source: '바하무트 프라임' }),
-      alertText: (data, matches: MatchesStartsUsing, output) => {
+      alertText: (data, matches: NetAllMatches['StartsUsing'], output) => {
         if (matches.target === data.me)
           return output.akhMornOnYou!();
       },
-      infoText: (data, matches: MatchesStartsUsing, output) => {
+      infoText: (data, matches: NetAllMatches['StartsUsing'], output) => {
         if (matches.target !== data.me)
           return output.akhMornOn!({ player: data.ShortName(matches.target) });
       },

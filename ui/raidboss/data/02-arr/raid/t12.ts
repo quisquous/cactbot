@@ -2,9 +2,9 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 import Conditions from '../../../../../resources/conditions';
-import { MatchesGainsEffect, MatchesStartsUsing } from '../../../../../resources/matches';
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
+import { NetAllMatches } from '../../../../../types/net_matches';
 
 export interface Data extends RaidbossData {
   phase: number;
@@ -64,11 +64,11 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.startsUsing({ id: 'B87', source: 'フェニックス' }),
       netRegexCn: NetRegexes.startsUsing({ id: 'B87', source: '不死鸟' }),
       netRegexKo: NetRegexes.startsUsing({ id: 'B87', source: '피닉스' }),
-      alertText: (data, matches: MatchesStartsUsing, output) => {
+      alertText: (data, matches: NetAllMatches['StartsUsing'], output) => {
         if (matches.target === data.me)
           return output.revelationOnYou!();
       },
-      infoText: (data, matches: MatchesStartsUsing, output) => {
+      infoText: (data, matches: NetAllMatches['StartsUsing'], output) => {
         if (matches.target !== data.me)
           return output.awayFromPlayer!({ player: data.ShortName(matches.target) });
       },
@@ -151,11 +151,11 @@ const triggerSet: TriggerSet<Data> = {
       netType: 'GainsEffect',
       id: 'T12 Chain',
       netRegex: NetRegexes.gainsEffect({ effectId: '24D' }),
-      alertText: (data, matches: MatchesGainsEffect, output) => {
+      alertText: (data, matches: NetAllMatches['GainsEffect'], output) => {
         if (matches.target === data.me)
           return output.chainOnYou!();
       },
-      infoText: (data, matches: MatchesGainsEffect, output) => {
+      infoText: (data, matches: NetAllMatches['GainsEffect'], output) => {
         if (matches.target !== data.me)
           return output.chainOn!({ player: data.ShortName(matches.target) });
       },

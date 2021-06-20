@@ -1,10 +1,10 @@
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-import { MatchesHeadMarker, MatchesTether } from '../../../../../resources/matches';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { NetAllMatches } from '../../../../../types/net_matches';
 
 export type Data = RaidbossData;
 
@@ -38,11 +38,11 @@ const triggerSet: TriggerSet<Data> = {
       netType: 'HeadMarker',
       id: 'T10 Wild Charge',
       netRegex: NetRegexes.headMarker({ id: '001F' }),
-      alarmText: (data, matches: MatchesHeadMarker, output) => {
+      alarmText: (data, matches: NetAllMatches['HeadMarker'], output) => {
         if (data.me === matches.target)
           return output.chargeOnYou!();
       },
-      infoText: (data, matches: MatchesHeadMarker, output) => {
+      infoText: (data, matches: NetAllMatches['HeadMarker'], output) => {
         if (data.me !== matches.target)
           return output.chargeOn!({ player: data.ShortName(matches.target) });
       },
@@ -80,11 +80,11 @@ const triggerSet: TriggerSet<Data> = {
       netRegexJa: NetRegexes.tether({ id: '0015', source: 'イムドゥグド' }),
       netRegexCn: NetRegexes.tether({ id: '0015', source: '伊姆都古德' }),
       netRegexKo: NetRegexes.tether({ id: '0015', source: '임두구드' }),
-      alarmText: (data, matches: MatchesTether, output) => {
+      alarmText: (data, matches: NetAllMatches['Tether'], output) => {
         if (data.me === matches.target)
           return output.cyclonicOnYou!();
       },
-      infoText: (data, matches: MatchesTether, output) => {
+      infoText: (data, matches: NetAllMatches['Tether'], output) => {
         if (data.me !== matches.target)
           return output.cyclonicOn!({ player: data.ShortName(matches.target) });
       },

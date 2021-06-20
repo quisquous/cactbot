@@ -2,10 +2,10 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 import Conditions from '../../../../../resources/conditions';
-import { MatchesGainsEffect } from '../../../../../resources/matches';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
+import { NetAllMatches } from '../../../../../types/net_matches';
 
 export interface Data extends RaidbossData {
   rot?: boolean;
@@ -33,11 +33,11 @@ const triggerSet: TriggerSet<Data> = {
       netType: 'GainsEffect',
       id: 'T2 Rot',
       netRegex: NetRegexes.gainsEffect({ effectId: '14D' }),
-      alarmText: (data, matches: MatchesGainsEffect, output) => {
+      alarmText: (data, matches: NetAllMatches['GainsEffect'], output) => {
         if (data.me === matches.target)
           return output.rotOnYou!();
       },
-      infoText: (data, matches: MatchesGainsEffect, output) => {
+      infoText: (data, matches: NetAllMatches['GainsEffect'], output) => {
         if (data.me !== matches.target)
           return output.rotOn!({ player: data.ShortName(matches.target) });
       },
