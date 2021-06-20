@@ -92,7 +92,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
         const elem = t.element.querySelector('.popup-text-remaining');
         if (!elem)
           throw new UnreachableCode();
-        elem.textContent = '(' + (remaining / 1000).toFixed(1) + ')';
+        elem.textContent = `(${(remaining / 1000).toFixed(1)})`;
         return true;
       }
       t.element.remove();
@@ -161,8 +161,8 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
       this._emulatorReset();
       this.OnChangeZone({
         type: 'ChangeZone',
-        zoneName: enc.encounterZoneName ?? 'Unknown',
-        zoneID: parseInt(enc.encounterZoneId ?? '', 16),
+        zoneName: enc.encounterZoneName,
+        zoneID: parseInt(enc.encounterZoneId, 16),
       });
     });
   }
@@ -238,7 +238,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
     const container = $e.querySelector('.popup-text-remaining');
     if (!(container instanceof HTMLElement))
       throw new UnreachableCode();
-    container.textContent = '(' + remaining.toFixed(1) + ')';
+    container.textContent = `(${remaining.toFixed(1)})`;
     this.$popupTextContainerWrapper.append($e);
     this.displayedText.push({
       element: $e,
