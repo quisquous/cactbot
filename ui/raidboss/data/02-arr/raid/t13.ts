@@ -29,6 +29,7 @@ const triggerSet: TriggerSet<Data> = {
   ],
   triggers: [
     {
+      netType: 'StartsUsing',
       id: 'T13 Gigaflare Phase Change',
       netRegex: NetRegexes.startsUsing({ id: 'BB9', source: 'Bahamut Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'BB9', source: 'Prim-Bahamut', capture: false }),
@@ -56,6 +57,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'StartsUsing',
       id: 'T13 Flatten',
       netRegex: NetRegexes.startsUsing({ id: 'BAE', source: 'Bahamut Prime' }),
       netRegexDe: NetRegexes.startsUsing({ id: 'BAE', source: 'Prim-Bahamut' }),
@@ -93,6 +95,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'HeadMarker',
       id: 'T13 Megaflare Share',
       netRegex: NetRegexes.headMarker({ id: '0027' }),
       condition: Conditions.targetIsYou(),
@@ -115,6 +118,7 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.earthshaker(),
     },
     {
+      netType: 'Tether',
       id: 'T13 Tempest Wing',
       netRegex: NetRegexes.tether({ id: '0004', target: 'Bahamut Prime' }),
       netRegexDe: NetRegexes.tether({ id: '0004', target: 'Prim-Bahamut' }),
@@ -136,6 +140,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'StartsUsing',
       id: 'T13 Akh Morn',
       netRegex: NetRegexes.startsUsing({ id: 'BC2', source: 'Bahamut Prime' }),
       netRegexDe: NetRegexes.startsUsing({ id: 'BC2', source: 'Prim-Bahamut' }),

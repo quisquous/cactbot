@@ -20,6 +20,7 @@ const triggerSet: TriggerSet<Data> = {
   },
   triggers: [
     {
+      netType: 'Ability',
       id: 'T12 Phase 3',
       netRegex: NetRegexes.ability({ id: 'B96', source: 'Phoenix', capture: false }),
       netRegexDe: NetRegexes.ability({ id: 'B96', source: 'Phönix', capture: false }),
@@ -31,6 +32,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => data.phase = 3,
     },
     {
+      netType: 'AddedCombatant',
       id: 'T12 Bennu',
       netRegex: NetRegexes.addedCombatant({ name: 'Bennu', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Bennu', capture: false }),
@@ -54,6 +56,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'StartsUsing',
       id: 'T12 Revelation',
       netRegex: NetRegexes.startsUsing({ id: 'B87', source: 'Phoenix' }),
       netRegexDe: NetRegexes.startsUsing({ id: 'B87', source: 'Phönix' }),
@@ -89,6 +92,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'StartsUsing',
       id: 'T12 Blackfire',
       netRegex: NetRegexes.startsUsing({ id: 'B8C', source: 'Phoenix', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'B8C', source: 'Phönix', capture: false }),
@@ -109,6 +113,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'HeadMarker',
       id: 'T12 Whitefire',
       netRegex: NetRegexes.headMarker({ id: '0020' }),
       condition: Conditions.targetIsYou(),
@@ -125,6 +130,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'HeadMarker',
       id: 'T12 Bluefire',
       netRegex: NetRegexes.headMarker({ id: '0021' }),
       condition: Conditions.targetIsYou(),
@@ -142,6 +148,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       // Chain Of Purgatory
+      netType: 'GainsEffect',
       id: 'T12 Chain',
       netRegex: NetRegexes.gainsEffect({ effectId: '24D' }),
       alertText: (data, matches: MatchesGainsEffect, output) => {

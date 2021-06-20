@@ -70,6 +70,7 @@ const triggerSet: TriggerSet<Data> = {
   triggers: [
     {
       // Doesn't seem like this happens twice, but let's be safe.
+      netType: 'Tether',
       id: 'TitanEx Rock Throw',
       netRegex: NetRegexes.tether({ id: '0007' }),
       suppressSeconds: 1,

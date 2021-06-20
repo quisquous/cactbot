@@ -19,6 +19,7 @@ const triggerSet: TriggerSet<Data> = {
   },
   triggers: [
     {
+      netType: 'StartsUsing',
       id: 'T1 High Voltage',
       netRegex: NetRegexes.startsUsing({ source: 'Ads', id: '5A7' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Abwehrsystem', id: '5A7' }),
@@ -31,6 +32,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       // Indiscriminate Hood Swing
+      netType: 'Ability',
       id: 'T1 Initiated',
       netRegex: NetRegexes.ability({ source: 'Caduceus', id: '4B8.*?', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Caduceus', id: '4B8.*?', capture: false }),
@@ -41,6 +43,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => data.started = true,
     },
     {
+      netType: 'Ability',
       id: 'T1 Regorge',
       netRegex: NetRegexes.ability({ source: 'Caduceus', id: '4BA' }),
       netRegexDe: NetRegexes.ability({ source: 'Caduceus', id: '4BA' }),
@@ -61,6 +64,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'AddedCombatant',
       id: 'T1 Split',
       netRegex: NetRegexes.addedCombatant({ name: 'Caduceus.*?', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Caduceus.*?', capture: false }),
@@ -82,6 +86,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'Ability',
       id: 'T1 Hood Swing',
       netRegex: NetRegexes.ability({ source: 'Caduceus', id: '4B8' }),
       netRegexDe: NetRegexes.ability({ source: 'Caduceus', id: '4B8' }),
@@ -104,6 +109,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'GameLog',
       id: 'T1 Slime Timer First',
       netRegex: NetRegexes.message({ line: 'The Allagan megastructure will be sealed off.*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Allagische Superstruktur will be sealed off.*?', capture: false }),
@@ -125,6 +131,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'AddedCombatant',
       id: 'T1 Slime Timer',
       netRegex: NetRegexes.addedCombatant({ name: 'Dark Matter Slime.*?', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Dunkelmaterien-Schleim.*?', capture: false }),

@@ -20,11 +20,13 @@ const triggerSet: TriggerSet<Data> = {
   },
   triggers: [
     {
+      netType: 'HeadMarker',
       id: 'T8 Stack',
       netRegex: NetRegexes.headMarker({ id: '0011' }),
       response: Responses.stackMarkerOn('info'),
     },
     {
+      netType: 'GameLog',
       id: 'T8 Landmine Start',
       netRegex: NetRegexes.message({ line: 'Landmines have been scattered.*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Die Landminen haben sich verteilt.*?', capture: false }),
@@ -46,6 +48,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'Ability',
       id: 'T8 Landmine Explosion',
       netRegex: NetRegexes.ability({ id: '7D1', source: 'Allagan Mine' }),
       netRegexDe: NetRegexes.ability({ id: '7D1', source: 'Allagisch(?:e|er|es|en) Mine' }),
@@ -89,6 +92,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'Tether',
       id: 'T8 Homing Missile Warning',
       netRegex: NetRegexes.tether({ id: '0005', target: 'The Avatar' }),
       netRegexDe: NetRegexes.tether({ id: '0005', target: 'Avatar' }),
@@ -112,6 +116,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'StartsUsing',
       id: 'T8 Brainjack',
       netRegex: NetRegexes.startsUsing({ id: '7C3', source: 'The Avatar' }),
       netRegexDe: NetRegexes.startsUsing({ id: '7C3', source: 'Avatar' }),
@@ -147,6 +152,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'StartsUsing',
       id: 'T8 Allagan Field',
       netRegex: NetRegexes.startsUsing({ id: '7C4', source: 'The Avatar' }),
       netRegexDe: NetRegexes.startsUsing({ id: '7C4', source: 'Avatar' }),
@@ -182,6 +188,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'AddedCombatant',
       id: 'T8 Dreadnaught',
       netRegex: NetRegexes.addedCombatant({ name: 'Clockwork Dreadnaught', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Brummonaut', capture: false }),

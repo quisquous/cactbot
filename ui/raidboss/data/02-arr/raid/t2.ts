@@ -15,12 +15,14 @@ const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheBindingCoilOfBahamutTurn2,
   triggers: [
     {
+      netType: 'StartsUsing',
       id: 'T2 High Voltage',
       netRegex: NetRegexes.startsUsing({ id: '4C0' }),
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
     {
+      netType: 'StartsUsing',
       id: 'T2 Ballast',
       netRegex: NetRegexes.startsUsing({ id: '4C5', capture: false }),
       suppressSeconds: 3,
@@ -28,6 +30,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       // Allagan Rot
+      netType: 'GainsEffect',
       id: 'T2 Rot',
       netRegex: NetRegexes.gainsEffect({ effectId: '14D' }),
       alarmText: (data, matches: MatchesGainsEffect, output) => {
@@ -56,6 +59,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'GainsEffect',
       id: 'T2 Pass Rot',
       netRegex: NetRegexes.gainsEffect({ effectId: '14D' }),
       condition: Conditions.targetIsYou(),
@@ -77,6 +81,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'LosesEffect',
       id: 'T2 Lost Rot',
       netRegex: NetRegexes.losesEffect({ effectId: '14D' }),
       condition: Conditions.targetIsYou(),

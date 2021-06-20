@@ -13,6 +13,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 't10.txt',
   triggers: [
     {
+      netType: 'StartsUsing',
       id: 'T10 Phase Change',
       netRegex: NetRegexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
@@ -23,6 +24,7 @@ const triggerSet: TriggerSet<Data> = {
       sound: 'Long',
     },
     {
+      netType: 'StartsUsing',
       id: 'T10 Heat Lightning',
       netRegex: NetRegexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
@@ -33,6 +35,7 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.spread(),
     },
     {
+      netType: 'HeadMarker',
       id: 'T10 Wild Charge',
       netRegex: NetRegexes.headMarker({ id: '001F' }),
       alarmText: (data, matches: MatchesHeadMarker, output) => {
@@ -63,11 +66,13 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'HeadMarker',
       id: 'T10 Prey',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       response: Responses.preyOn(),
     },
     {
+      netType: 'Tether',
       id: 'T10 Cyclonic Tether',
       netRegex: NetRegexes.tether({ id: '0015', source: 'Imdugud' }),
       netRegexDe: NetRegexes.tether({ id: '0015', source: 'Imdugud' }),

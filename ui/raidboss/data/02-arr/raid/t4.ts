@@ -12,6 +12,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 't4.txt',
   triggers: [
     {
+      netType: 'StartsUsing',
       id: 'T4 Gravity Thrust',
       netRegex: NetRegexes.startsUsing({ source: 'Spinner-Rook', id: '4D4' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Drehturm', id: '4D4' }),
@@ -32,6 +33,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'StartsUsing',
       id: 'T4 Pox',
       netRegex: NetRegexes.startsUsing({ source: 'Spinner-Rook', id: '4D5' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Drehturm', id: '4D5' }),
@@ -52,6 +54,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      netType: 'AddedCombatant',
       id: 'T4 Reminder',
       netRegex: NetRegexes.addedCombatant({ name: 'Clockwork Knight', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Uhrwerk-Ritter', capture: false }),
