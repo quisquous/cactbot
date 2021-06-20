@@ -29,6 +29,31 @@ import defaultOptions from './raidboss_options';
 import '../../resources/defaults.css';
 import './raidemulator.css';
 
+
+function showModal(selector) {
+  const modal = document.querySelector(selector);
+  const body = document.body;
+  const backdrop = document.querySelector('.modal-backdrop');
+  body.classList.add('modal-open');
+  backdrop.classList.add('show');
+  backdrop.classList.remove('hide');
+  modal.classList.add('show');
+  modal.style.display = 'block';
+  return modal;
+}
+
+function hideModal(selector = '.modal.show') {
+  const modal = document.querySelector(selector);
+  const body = document.body;
+  const backdrop = document.querySelector('.modal-backdrop');
+  body.classList.remove('modal-open');
+  backdrop.classList.remove('show');
+  backdrop.classList.add('hide');
+  modal.classList.remove('show');
+  modal.style.display = '';
+  return modal;
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   const persistor = new Persistor();
   let websocketConnected = undefined;
@@ -408,27 +433,3 @@ document.addEventListener('DOMContentLoaded', async () => {
     timelineUI: timelineUI,
   };
 });
-
-function showModal(selector) {
-  const modal = document.querySelector(selector);
-  const body = document.body;
-  const backdrop = document.querySelector('.modal-backdrop');
-  body.classList.add('modal-open');
-  backdrop.classList.add('show');
-  backdrop.classList.remove('hide');
-  modal.classList.add('show');
-  modal.style.display = 'block';
-  return modal;
-}
-
-function hideModal(selector = '.modal.show') {
-  const modal = document.querySelector(selector);
-  const body = document.body;
-  const backdrop = document.querySelector('.modal-backdrop');
-  body.classList.remove('modal-open');
-  backdrop.classList.remove('show');
-  backdrop.classList.add('hide');
-  modal.classList.remove('show');
-  modal.style.display = '';
-  return modal;
-}
