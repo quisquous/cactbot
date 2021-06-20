@@ -10,33 +10,35 @@ import UserConfig from '../../resources/user_config';
 import { addRemotePlayerSelectUI } from '../../resources/player_override';
 import raidbossFileData from './data/raidboss_manifest.txt';
 
-import Options from './raidboss_options';
+import defaultOptions from './raidboss_options';
 
 import '../../resources/defaults.css';
 import './raidboss.css';
 
-UserConfig.getUserConfigLocation('raidboss', Options, () => {
+UserConfig.getUserConfigLocation('raidboss', defaultOptions, () => {
+  const options = { ...defaultOptions };
+
   // Query params override default and user options.
   // This allows for html files that say "timeline only" or "alerts only".
   const params = new URLSearchParams(window.location.search);
 
-  Options.IsRemoteRaidboss = false;
+  options.IsRemoteRaidboss = false;
   const overlayWsParam = params.get('OVERLAY_WS');
   if (overlayWsParam) {
     const wsParam = decodeURIComponent(overlayWsParam);
     // TODO: is there a better way to do this?? This seems better than looking for ngrok.
     const isLocal = wsParam.includes('localhost') || wsParam.includes('127.0.0.1');
-    Options.IsRemoteRaidboss = !isLocal;
+    options.IsRemoteRaidboss = !isLocal;
   }
 
   const playerNameParam = params.get('player');
   if (playerNameParam) {
-    Options.PlayerNameOverride = playerNameParam;
+    options.PlayerNameOverride = playerNameParam;
     console.log('Enabling player name override via query parameter, name: ' + playerNameParam);
   }
 
-  if (Options.IsRemoteRaidboss && playerNameParam === null) {
-    const lang = Options.DisplayLanguage || Options.ParserLanguage || 'en';
+  if (options.IsRemoteRaidboss && playerNameParam === null) {
+    const lang = options.DisplayLanguage || options.ParserLanguage || 'en';
     addRemotePlayerSelectUI(lang);
 
     // Page will reload once player selected.
@@ -47,48 +49,48 @@ UserConfig.getUserConfigLocation('raidboss', Options, () => {
   if (ttsParam) {
     const forceEnable = !!parseInt(ttsParam);
     if (forceEnable) {
-      Options.SpokenAlertsEnabled = true;
+      options.SpokenAlertsEnabled = true;
       console.log('Force enabling TTS via query parameter');
     }
   }
 
   const alertsParam = params.get('alerts');
   if (alertsParam !== null) {
-    const previous = Options.AlertsEnabled;
-    Options.AlertsEnabled = !!parseInt(alertsParam);
-    if (!previous && Options.AlertsEnabled)
+    const previous = options.AlertsEnabled;
+    options.AlertsEnabled = !!parseInt(alertsParam);
+    if (!previous && options.AlertsEnabled)
       console.log('Enabling alerts via query parameter');
   }
   const timelineParam = params.get('timeline');
   if (timelineParam !== null) {
-    const previous = Options.TimelineEnabled;
-    Options.TimelineEnabled = !!parseInt(timelineParam);
-    if (!previous && Options.TimelineEnabled)
+    const previous = options.TimelineEnabled;
+    options.TimelineEnabled = !!parseInt(timelineParam);
+    if (!previous && options.TimelineEnabled)
       console.log('Enabling timeline via query parameter');
   }
   const audioParam = params.get('audio');
   if (audioParam !== null) {
-    const previous = Options.AudioAllowed;
-    Options.AudioAllowed = !!parseInt(audioParam);
-    if (!previous && Options.AudioAllowed)
+    const previous = options.AudioAllowed;
+    options.AudioAllowed = !!parseInt(audioParam);
+    if (!previous && options.AudioAllowed)
       console.log('Enabling audio via query parameter');
   }
 
   const container = document.getElementById('container');
   if (!container)
     throw new Error('Unable to find container element');
-  if (!Options.AlertsEnabled)
+  if (!options.AlertsEnabled)
     container.classList.add('hide-alerts');
-  if (!Options.TimelineEnabled)
+  if (!options.TimelineEnabled)
     container.classList.add('hide-timeline');
 
-  const timelineUI = new TimelineUI(Options);
-  const timelineController = new TimelineController(Options, timelineUI, raidbossFileData);
+  const timelineUI = new TimelineUI(options);
+  const timelineController = new TimelineController(options, timelineUI, raidbossFileData);
   const timelineLoader = new TimelineLoader(timelineController);
-  const popupText = new PopupText(Options, timelineLoader, raidbossFileData);
+  const popupText = new PopupText(options, timelineLoader, raidbossFileData);
 
   // Connect the timelines to the popup text, if alerts are desired.
-  if (Options.AlertsEnabled)
+  if (options.AlertsEnabled)
     timelineController.SetPopupTextInterface(new PopupTextGenerator(popupText));
 
   addOverlayListener('onLogEvent', (e) => {

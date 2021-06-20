@@ -65,7 +65,7 @@ type Monster = {
   skipPuller: boolean;
 }
 
-const Options: RadarOptions = {
+const defaultOptions: RadarOptions = {
   ...UserConfig.getDefaultBaseOptions(),
   ...defaultRadarConfigOptions,
   PopSound: '../../resources/sounds/freesound/sonar.ogg',
@@ -168,8 +168,6 @@ class Radar {
   private targetMonsters: { [mobKey: string]: Monster };
   private playerPos: Point2DWithZ | null;
   private playerRotation: number;
-  private table: HTMLElement;
-  private options: RadarOptions;
   private hunts: HuntMap;
   private lang: Lang;
   private nameToHuntEntry: HuntMap;
@@ -180,13 +178,11 @@ class Radar {
     wasDefeated: CactbotBaseRegExp<'WasDefeated'>;
   };
 
-  constructor(element: HTMLElement) {
+  constructor(private options: RadarOptions, private table: HTMLElement) {
     this.targetMonsters = {};
     this.playerPos = null;
     this.playerRotation = 0;
-    this.table = element;
-    this.options = Options;
-    this.hunts = Object.assign({}, HuntData, Options.CustomMonsters);
+    this.hunts = Object.assign({}, HuntData, this.options.CustomMonsters);
     this.lang = this.options.ParserLanguage ?? 'en';
     this.nameToHuntEntry = {};
     this.regexes = {
@@ -485,11 +481,12 @@ class Radar {
   }
 }
 
-UserConfig.getUserConfigLocation('radar', Options, () => {
+UserConfig.getUserConfigLocation('radar', defaultOptions, () => {
+  const options = { ...defaultOptions };
   const elem = document.getElementById('radar-table');
   if (!elem)
     throw new Error('missing radar element');
-  const radar = new Radar(elem);
+  const radar = new Radar(options, elem);
 
   addOverlayListener('LogLine', (e) => {
     radar.OnNetLog(e);

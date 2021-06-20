@@ -52,7 +52,7 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
     });
     emulator.on('play', () => {
       this.emulatedStatus = 'play';
-      if (this.timeline instanceof RaidEmulatorTimeline)
+      if (this.timeline instanceof RaidEmulatorTimeline && emulator.currentLogTime !== undefined)
         this.timeline.emulatedSync(emulator.currentLogTime);
     });
     emulator.on('pause', () => {

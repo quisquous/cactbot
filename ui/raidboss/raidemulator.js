@@ -24,11 +24,12 @@ import raidbossFileData from './data/raidboss_manifest.txt';
 import NetworkLogConverterWorker from './emulator/data/NetworkLogConverterWorker';
 import { callOverlayHandler } from '../../resources/overlay_plugin_api';
 
-import Options from './raidboss_options';
+import defaultOptions from './raidboss_options';
 
 import '../../resources/defaults.css';
 import './raidemulator.css';
 
+// TODO: why is this IIFE, and why are these lets not just consts in the addEventListener?
 (() => {
   let emulator;
   let progressBar;
@@ -43,86 +44,12 @@ import './raidemulator.css';
   let logConverterWorker;
 
   document.addEventListener('DOMContentLoaded', () => {
-    emulator = new RaidEmulator(Options);
-    progressBar = new ProgressBar(emulator);
     persistor = new Persistor();
-    encounterTab = new EncounterTab(persistor);
-    emulatedPartyInfo = new EmulatedPartyInfo(emulator);
-    emulatedMap = new EmulatedMap(emulator);
-    emulatedWebSocket = new RaidEmulatorOverlayApiHook(emulator);
-    logConverterWorker = new NetworkLogConverterWorker();
-
-    // Listen for the user to click a player in the party list on the right
-    // and persist that over to the emulator
-    emulatedPartyInfo.on('selectPerspective', (id) => {
-      emulator.selectPerspective(id);
-    });
-
-    emulator.on('currentEncounterChanged', (enc) => {
-      // Store our current loaded encounter to auto-load next time
-      window.localStorage.setItem('currentEncounter', enc.encounter.id);
-      // Once we've loaded the encounter, seek to the start of the encounter
-      if (!isNaN(enc.encounter.initialOffset))
-        emulator.seek(enc.encounter.initialOffset);
-    });
-
-    // Listen for the user to attempt to load an encounter from the encounters pane
-    encounterTab.on('load', (id) => {
-      // Attempt to set the current emulated encounter
-      if (!emulator.setCurrentByID(id)) {
-        // If that encounter isn't loaded, load it
-        persistor.loadEncounter(id).then((enc) => {
-          emulator.addEncounter(enc);
-          emulator.setCurrentByID(id);
-        });
-      }
-    });
-
-    // Listen for the user to select re-parse on the encounters tab, then refresh it in the DB
-    encounterTab.on('parse', (id) => {
-      persistor.loadEncounter(id).then(async (enc) => {
-        enc.initialize();
-        await persistor.persistEncounter(enc);
-        encounterTab.refresh();
-      });
-    });
-
-    // Listen for the user to select prune on the encounters tab
-    encounterTab.on('prune', (id) => {
-      persistor.loadEncounter(id).then(async (enc) => {
-        // Trim log lines
-        enc.logLines = enc.logLines.slice(enc.firstLineIndex - 1);
-
-        // Update precalculated offsets
-        const firstTimestamp = enc.logLines[0].timestamp;
-        for (let i = 0; i < enc.logLines.length; ++i)
-          enc.logLines[i].offset = enc.logLines[i].timestamp - firstTimestamp;
-
-
-        enc.firstLineIndex = 0;
-
-        enc.initialize();
-        await persistor.persistEncounter(enc);
-        encounterTab.refresh();
-      });
-    });
-
-    // Listen for the user to select delete on the encounters tab, then do it.
-    encounterTab.on('delete', (id) => {
-      persistor.deleteEncounter(id).then(() => {
-        encounterTab.refresh();
-      });
-    });
-
-    // Listen for the emulator to event log lines, then dispatch them to the timeline controller
-    // @TODO: Probably a better place to listen for this?
-    emulator.on('emitLogs', (e) => {
-      timelineController.onEmulatorLogEvent(e.logs);
-    });
+    let websocketConnected = undefined;
+    let options = { ...defaultOptions };
 
     // Wait for the DB to be ready before doing anything that might invoke the DB
     persistor.initializeDB().then(async () => {
-      let websocketConnected = false;
       if (window.location.href.indexOf('OVERLAY_WS') > 0) {
         // Give the websocket 500ms to connect, then abort.
         websocketConnected = await Promise.race([
@@ -137,11 +64,15 @@ import './raidemulator.css';
             }, 500);
           }),
         ]);
-        emulatedWebSocket.connected = websocketConnected;
         if (websocketConnected) {
-          await UserConfig.getUserConfigLocation('raidboss', Options, (e) => {
-            document.querySelector('.websocketConnected').classList.remove('d-none');
-            document.querySelector('.websocketDisconnected').classList.add('d-none');
+          await new Promise((res) => {
+            UserConfig.getUserConfigLocation('raidboss', defaultOptions, (e) => {
+              // Update options from anything changed via getUserConfigLocation.
+              options = { ...defaultOptions };
+              document.querySelector('.websocketConnected').classList.remove('d-none');
+              document.querySelector('.websocketDisconnected').classList.add('d-none');
+              res();
+            });
           });
         }
       }
@@ -153,24 +84,102 @@ import './raidemulator.css';
           // Remap `zh` to `cn` to match cactbot languages
           .map((l) => l === 'zh' ? 'cn' : l)
           .filter((l) => ['en', 'de', 'fr', 'ja', 'cn', 'ko'].includes(l))[0];
-        Options.ParserLanguage = isLang(browserLang) ? browserLang : 'en';
-        Options.DisplayLanguage = isLang(browserLang) ? browserLang : 'en';
+        options.ParserLanguage = isLang(browserLang) ? browserLang : 'en';
+        options.DisplayLanguage = isLang(browserLang) ? browserLang : 'en';
         // Default options
-        Options.IsRemoteRaidboss = true;
-        Options.TextAlertsEnabled = true;
-        Options.SoundAlertsEnabled = true;
-        Options.SpokenAlertsEnabled = false;
-        Options.GroupSpokenAlertsEnabled = false;
+        options.IsRemoteRaidboss = true;
+        options.TextAlertsEnabled = true;
+        options.SoundAlertsEnabled = true;
+        options.SpokenAlertsEnabled = false;
+        options.GroupSpokenAlertsEnabled = false;
       }
 
+      emulator = new RaidEmulator(options);
+      progressBar = new ProgressBar(emulator);
+      encounterTab = new EncounterTab(persistor);
+      emulatedPartyInfo = new EmulatedPartyInfo(emulator);
+      emulatedMap = new EmulatedMap(emulator);
+      emulatedWebSocket = new RaidEmulatorOverlayApiHook(emulator);
+      emulatedWebSocket.connected = websocketConnected;
+      logConverterWorker = new NetworkLogConverterWorker();
+
+      // Listen for the user to click a player in the party list on the right
+      // and persist that over to the emulator
+      emulatedPartyInfo.on('selectPerspective', (id) => {
+        emulator.selectPerspective(id);
+      });
+
+      emulator.on('currentEncounterChanged', (enc) => {
+        // Store our current loaded encounter to auto-load next time
+        window.localStorage.setItem('currentEncounter', enc.encounter.id);
+        // Once we've loaded the encounter, seek to the start of the encounter
+        if (!isNaN(enc.encounter.initialOffset))
+          emulator.seek(enc.encounter.initialOffset);
+      });
+
+      // Listen for the user to attempt to load an encounter from the encounters pane
+      encounterTab.on('load', (id) => {
+        // Attempt to set the current emulated encounter
+        if (!emulator.setCurrentByID(id)) {
+          // If that encounter isn't loaded, load it
+          persistor.loadEncounter(id).then((enc) => {
+            emulator.addEncounter(enc);
+            emulator.setCurrentByID(id);
+          });
+        }
+      });
+
+      // Listen for the user to select re-parse on the encounters tab, then refresh it in the DB
+      encounterTab.on('parse', (id) => {
+        persistor.loadEncounter(id).then(async (enc) => {
+          enc.initialize();
+          await persistor.persistEncounter(enc);
+          encounterTab.refresh();
+        });
+      });
+
+      // Listen for the user to select prune on the encounters tab
+      encounterTab.on('prune', (id) => {
+        persistor.loadEncounter(id).then(async (enc) => {
+          // Trim log lines
+          enc.logLines = enc.logLines.slice(enc.firstLineIndex - 1);
+
+          // Update precalculated offsets
+          const firstTimestamp = enc.logLines[0].timestamp;
+          for (let i = 0; i < enc.logLines.length; ++i)
+            enc.logLines[i].offset = enc.logLines[i].timestamp - firstTimestamp;
+
+
+          enc.firstLineIndex = 0;
+
+          enc.initialize();
+          await persistor.persistEncounter(enc);
+          encounterTab.refresh();
+        });
+      });
+
+      // Listen for the user to select delete on the encounters tab, then do it.
+      encounterTab.on('delete', (id) => {
+        persistor.deleteEncounter(id).then(() => {
+          encounterTab.refresh();
+        });
+      });
+
+      // Listen for the emulator to event log lines, then dispatch them to the timeline controller
+      // @TODO: Probably a better place to listen for this?
+      emulator.on('emitLogs', (e) => {
+        timelineController.onEmulatorLogEvent(e.logs);
+      });
+
+
       // Initialize the Raidboss components, bind them to the emulator for event listeners
-      timelineUI = new RaidEmulatorTimelineUI(Options);
+      timelineUI = new RaidEmulatorTimelineUI(options);
       timelineUI.bindTo(emulator);
       timelineController =
-          new RaidEmulatorTimelineController(Options, timelineUI, raidbossFileData);
+          new RaidEmulatorTimelineController(options, timelineUI, raidbossFileData);
       timelineController.bindTo(emulator);
       popupText = new RaidEmulatorPopupText(
-          Options, new TimelineLoader(timelineController), raidbossFileData);
+          options, new TimelineLoader(timelineController), raidbossFileData);
       popupText.bindTo(emulator);
 
       timelineController.SetPopupTextInterface(new PopupTextGenerator(popupText));
@@ -193,7 +202,7 @@ import './raidemulator.css';
               encounterTab.dispatch('load', lastEncounter);
           }
           if (!websocketConnected) {
-            const dispLang = langMap[Options.ParserLanguage][Options.ParserLanguage];
+            const dispLang = langMap[options.ParserLanguage][options.ParserLanguage];
             const discModal = showModal('.disconnectedModal');
             const indicator = document.querySelector('.connectionIndicator');
             indicator.querySelector('.connectedIndicator').classList.add('d-none');

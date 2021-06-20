@@ -1,4 +1,6 @@
+import { GetCombatantsCall, GetCombatantsRet } from '../types/event';
 import { Job, Role } from '../types/job';
+import { callOverlayHandler } from './overlay_plugin_api';
 
 // TODO: it'd be nice to not repeat job names, but at least Record enforces that all are set.
 const nameToJobEnum: Record<Job, number> = {
@@ -77,6 +79,78 @@ const jobToRoleMap: Map<Job, Role> = (() => {
   return map;
 })();
 
+type WatchCombatantParams = {
+  ids?: number[];
+  names?: string[];
+  props?: string[];
+  delay?: number;
+  maxDuration?: number;
+};
+
+type WatchCombatantFunc = (params: WatchCombatantParams,
+  func: (ret: GetCombatantsRet) => boolean) => Promise<boolean>;
+
+type WatchCombatantMapEntry = {
+  cancel: boolean;
+  start: number;
+};
+
+const watchCombatantMap: WatchCombatantMapEntry[] = [];
+
+const shouldCancelWatch =
+  (params: WatchCombatantParams, entry: WatchCombatantMapEntry): boolean => {
+    if (entry.cancel)
+      return true;
+    if (params.maxDuration !== undefined && Date.now() - entry.start > params.maxDuration)
+      return true;
+    return false;
+  };
+
+const watchCombatant: WatchCombatantFunc = (params, func) => {
+  return new Promise<boolean>((res, rej) => {
+    const delay = params.delay ?? 1000;
+
+    const call: GetCombatantsCall = {
+      call: 'getCombatants',
+    };
+
+    if (params.ids)
+      call.ids = params.ids;
+
+    if (params.names)
+      call.names = params.names;
+
+    if (params.props)
+      call.props = params.props;
+
+    const entry: WatchCombatantMapEntry = {
+      cancel: false,
+      start: Date.now(),
+    };
+
+    watchCombatantMap.push(entry);
+
+    const checkFunc = () => {
+      if (shouldCancelWatch(params, entry)) {
+        rej();
+        return;
+      }
+      void callOverlayHandler(call).then((response) => {
+        if (entry.cancel) {
+          rej();
+          return;
+        }
+        if (func(response))
+          res(true);
+        else
+          window.setTimeout(checkFunc, delay);
+      });
+    };
+
+    window.setTimeout(checkFunc, delay);
+  });
+};
+
 const Util = {
   jobEnumToJob: (id: number) => {
     const job = allJobs.find((job: Job) => nameToJobEnum[job] === id);
@@ -105,6 +179,14 @@ const Util = {
   canCleanse: (job: Job) => cleanseJobs.includes(job),
   canFeint: (job: Job) => feintJobs.includes(job),
   canAddle: (job: Job) => addleJobs.includes(job),
+  watchCombatant: watchCombatant,
+  clearWatchCombatants: () => {
+    while (watchCombatantMap.length > 0) {
+      const watch = watchCombatantMap.pop();
+      if (watch)
+        watch.cancel = true;
+    }
+  },
 } as const;
 
 export default Util;

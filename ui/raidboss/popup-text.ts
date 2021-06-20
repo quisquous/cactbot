@@ -811,6 +811,7 @@ export class PopupText {
   }
 
   Reset(): void {
+    Util.clearWatchCombatants();
     this.data = this.getDataObject();
     this.StopTimers();
     this.triggerSuppress = {};

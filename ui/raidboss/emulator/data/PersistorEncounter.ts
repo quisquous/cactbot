@@ -1,6 +1,21 @@
+import { UnreachableCode } from '../../../../resources/not_reached';
+import Encounter from './Encounter';
+
 export default class PersistorEncounter {
-  constructor(encounter) {
-    this.id = encounter.id;
+  id: number;
+  name: string;
+  start: number;
+  offset: number;
+  startStatus: string;
+  endStatus: string;
+  zoneId: string;
+  zoneName: string;
+  duration: number;
+
+  constructor(encounter: Encounter) {
+    if (!encounter.combatantTracker)
+      throw new UnreachableCode();
+    this.id = encounter.id ?? 0;
     this.name = encounter.combatantTracker.getMainCombatantName();
     this.start = encounter.startTimestamp;
     this.offset = encounter.initialOffset;

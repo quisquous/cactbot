@@ -26,7 +26,6 @@ const settings = {
     'plugin/',
     'publish/',
     'resources/lib/',
-    'ui/dps/rdmty/',
   ],
   'parserOptions': {
     'ecmaVersion': 2020,
