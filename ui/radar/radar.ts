@@ -4,7 +4,6 @@ import { Lang } from '../../resources/languages';
 
 import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
 import HuntData, { HuntEntry, HuntMap, Rank } from '../../resources/hunt';
-import { MatchesAddedCombatantFull } from '../../resources/matches';
 import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import UserConfig from '../../resources/user_config';
@@ -16,6 +15,7 @@ import './radar_config';
 
 import '../../resources/defaults.css';
 import './radar.css';
+import { NetAllMatches } from '../../types/net_matches';
 
 type RadarType = 'mob' | 'any';
 
@@ -211,7 +211,7 @@ class Radar {
   }
 
   AddMonster(log: string, hunt: HuntEntry,
-      matches: MatchesAddedCombatantFull) {
+      matches: NetAllMatches['AddedCombatant']) {
     if (!this.playerPos)
       return;
     if (!matches)
@@ -404,7 +404,9 @@ class Radar {
       const matches = m?.groups;
       if (!matches)
         return;
-      const name = matches.name.toLowerCase();
+      const name = matches.name?.toLowerCase();
+      if (!name)
+        return;
       const hunt = this.nameToHuntEntry[name];
       if (!hunt)
         return;
@@ -417,7 +419,9 @@ class Radar {
       const matches = m?.groups;
       if (!matches)
         return;
-      const name = matches.target.toLowerCase();
+      const name = matches.target?.toLowerCase();
+      if (!name)
+        return;
       const monster = this.targetMonsters[name];
       if (!monster)
         return;
@@ -446,8 +450,9 @@ class Radar {
       const matches = m?.groups;
       if (!matches)
         return;
-      const name = matches.target.toLowerCase();
-      this.RemoveMonster(name);
+      const name = matches.target?.toLowerCase();
+      if (name)
+        this.RemoveMonster(name);
     }
   }
 

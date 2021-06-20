@@ -1,32 +1,29 @@
-export type Fields = {
-};
-
-export type NetFields = Fields & {
+type NetFields = {
   event: 0;
   timestamp: 1;
 };
 
 // 0x00
-export type NetGameLogFields = NetFields & {
+type NetGameLogFields = NetFields & {
   code: 2;
   name: 3;
   line: 4;
 };
 
 // 0x01
-export type NetChangeZoneFields = NetFields & {
+type NetChangeZoneFields = NetFields & {
   id: 2;
   name: 3;
 };
 
 // 0x02, copied from emulator
-export type NetChangedPlayerFields = NetFields & {
+type NetChangedPlayerFields = NetFields & {
   id: 2;
   name: 3;
 };
 
 // 0x03
-export type NetAddedCombatantFields = NetFields & {
+type NetAddedCombatantFields = NetFields & {
   id: 2;
   name: 3;
   job: 4;
@@ -49,10 +46,10 @@ export type NetAddedCombatantFields = NetFields & {
 };
 
 // 0x04, identical to 0x03 for fields
-export type NetRemovedCombatantFields = NetAddedCombatantFields;
+type NetRemovedCombatantFields = NetAddedCombatantFields;
 
 // 0x0C
-export type NetPlayerStatsFields = NetFields & {
+type NetPlayerStatsFields = NetFields & {
   job: 2;
   strength: 3;
   dexterity: 4;
@@ -71,14 +68,8 @@ export type NetPlayerStatsFields = NetFields & {
   tenacity: 18;
 };
 
-// 0x0D, non-net-log only
-export type NetHasHPFields = NetFields & {
-  name: 2;
-  hp: 3;
-};
-
 // 0x14
-export type NetStartsUsingFields = NetFields & {
+type NetStartsUsingFields = NetFields & {
   sourceId: 2;
   source: 3;
   id: 4;
@@ -89,7 +80,7 @@ export type NetStartsUsingFields = NetFields & {
 };
 
 // 0x15
-export type NetAbilityFields = NetFields & {
+type NetAbilityFields = NetFields & {
   sourceId: 2;
   source: 3;
   id: 4;
@@ -121,10 +112,10 @@ export type NetAbilityFields = NetFields & {
 };
 
 // 0x16, identical to 0x15 for fields
-export type NetAOEAbilityFields = NetAbilityFields;
+type NetAOEAbilityFields = NetAbilityFields;
 
 // 0x17, copied from emulator
-export type NetCancelAbilityFields = NetFields & {
+type NetCancelAbilityFields = NetFields & {
   sourceId: 2;
   source: 3;
   id: 4;
@@ -133,7 +124,7 @@ export type NetCancelAbilityFields = NetFields & {
 };
 
 // 0x18, copied from emulator
-export type NetDoTHoTFields = NetFields & {
+type NetDoTHoTFields = NetFields & {
   id: 2;
   name: 3;
   type: 4;
@@ -152,7 +143,7 @@ export type NetDoTHoTFields = NetFields & {
 };
 
 // 0x19
-export type NetWasDefeatedFields = NetFields & {
+type NetWasDefeatedFields = NetFields & {
   targetId: 2;
   target: 3;
   sourceId: 4;
@@ -160,7 +151,7 @@ export type NetWasDefeatedFields = NetFields & {
 };
 
 // 0x1A
-export type NetGainsEffectFields = NetFields & {
+type NetGainsEffectFields = NetFields & {
   effectId: 2;
   effect: 3;
   duration: 4;
@@ -174,14 +165,14 @@ export type NetGainsEffectFields = NetFields & {
 };
 
 // 0x1B
-export type NetHeadMarkerFields = NetFields & {
+type NetHeadMarkerFields = NetFields & {
   targetId: 2;
   target: 3;
   id: 6;
 };
 
 // 0x1C, copied from emulator
-export type NetFloorWaymarkerFields = NetFields & {
+type NetFloorWaymarkerFields = NetFields & {
   operation: 2;
   waymark: 3;
   id: 4;
@@ -192,7 +183,7 @@ export type NetFloorWaymarkerFields = NetFields & {
 };
 
 // 0x1D, copied from emulator
-export type NetCombatantWaymarkerFields = NetFields & {
+type NetCombatantWaymarkerFields = NetFields & {
   operation: 2;
   waymark: 3;
   id: 4;
@@ -202,7 +193,7 @@ export type NetCombatantWaymarkerFields = NetFields & {
 };
 
 // 0x1E
-export type NetLosesEffectFields = NetFields & {
+type NetLosesEffectFields = NetFields & {
   effectId: 2;
   effect: 3;
   sourceId: 5;
@@ -213,7 +204,7 @@ export type NetLosesEffectFields = NetFields & {
 };
 
 // 0x1F, copied from emulator
-export type NetJobGaugeFields = NetFields & {
+type NetJobGaugeFields = NetFields & {
   id: 2;
   dataBytes1: 3;
   dataBytes2: 4;
@@ -222,7 +213,7 @@ export type NetJobGaugeFields = NetFields & {
 };
 
 // 0x21
-export type NetActorControlFields = NetFields & {
+type NetActorControlFields = NetFields & {
   instance: 2;
   command: 3;
   data0: 4;
@@ -232,7 +223,7 @@ export type NetActorControlFields = NetFields & {
 };
 
 // 0x22
-export type NetNameToggleFields = NetFields & {
+type NetNameToggleFields = NetFields & {
   id: 2;
   name: 3;
   targetId: 4;
@@ -241,7 +232,7 @@ export type NetNameToggleFields = NetFields & {
 };
 
 // 0x23
-export type NetTetherFields = NetFields & {
+type NetTetherFields = NetFields & {
   sourceId: 2;
   source: 3;
   targetId: 4;
@@ -250,13 +241,13 @@ export type NetTetherFields = NetFields & {
 };
 
 // 0x24, copied from emulator
-export type NetLimitGaugeFields = NetFields & {
+type NetLimitGaugeFields = NetFields & {
   valueHex: 2;
   bars: 3;
 };
 
 // 0x25, copied from emulator
-export type NetActionSyncFields = NetFields & {
+type NetActionSyncFields = NetFields & {
   id: 2;
   name: 3;
   sequenceId: 4;
@@ -273,7 +264,7 @@ export type NetActionSyncFields = NetFields & {
 };
 
 // 0x26
-export type NetStatusEffectFields = NetFields & {
+type NetStatusEffectFields = NetFields & {
   targetId: 2;
   target: 3;
   hp: 5;
@@ -296,7 +287,6 @@ export type NetAllFields = {
   'AddedCombatant': NetAddedCombatantFields;
   'RemovedCombatant': NetRemovedCombatantFields;
   'PlayerStats': NetPlayerStatsFields;
-  'HasHP': NetHasHPFields;
   'StartsUsing': NetStartsUsingFields;
   'Ability': NetAbilityFields;
   'AOEAbility': NetAOEAbilityFields;

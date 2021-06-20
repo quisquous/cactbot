@@ -43,6 +43,7 @@ export const triggerFunctions = [
   'disabled',
   'durationSeconds',
   'id',
+  'type',
   'infoText',
   'preRun',
   'promise',

@@ -4,7 +4,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { NetAllMatches } from '../../../../../types/net_matches';
 
 export interface Data extends RaidbossData {
   landmines: { [playerName: string]: boolean };
@@ -20,14 +19,14 @@ const triggerSet: TriggerSet<Data> = {
   },
   triggers: [
     {
-      netType: 'HeadMarker',
       id: 'T8 Stack',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0011' }),
       response: Responses.stackMarkerOn('info'),
     },
     {
-      netType: 'GameLog',
       id: 'T8 Landmine Start',
+      type: 'GameLog',
       netRegex: NetRegexes.message({ line: 'Landmines have been scattered.*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Die Landminen haben sich verteilt.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Des mines ont été répandues.*?', capture: false }),
@@ -48,27 +47,27 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      netType: 'Ability',
       id: 'T8 Landmine Explosion',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7D1', source: 'Allagan Mine' }),
       netRegexDe: NetRegexes.ability({ id: '7D1', source: 'Allagisch(?:e|er|es|en) Mine' }),
       netRegexFr: NetRegexes.ability({ id: '7D1', source: 'Mine Allagoise' }),
       netRegexJa: NetRegexes.ability({ id: '7D1', source: 'アラガンマイン' }),
       netRegexCn: NetRegexes.ability({ id: '7D1', source: '亚拉戈机雷' }),
       netRegexKo: NetRegexes.ability({ id: '7D1', source: '알라그 지뢰' }),
-      infoText: (data, matches: NetAllMatches['Ability'], output) => {
+      infoText: (data, matches, output) => {
         if (matches.target && matches.target in data.landmines)
           return;
         const num = Object.keys(data.landmines).length + 1;
         return output.landmine!({ num: `${num}` });
       },
-      tts: (data, matches: NetAllMatches['Ability'], output) => {
+      tts: (data, matches, output) => {
         if (matches.target && matches.target in data.landmines)
           return;
         const num = Object.keys(data.landmines).length + 1;
         return output.landmineTTS!({ num: `${num}` });
       },
-      run: (data, matches: NetAllMatches['Ability']) => {
+      run: (data, matches) => {
         if (matches.target)
           data.landmines[matches.target] = true;
       },
@@ -92,8 +91,8 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      netType: 'Tether',
       id: 'T8 Homing Missile Warning',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0005', target: 'The Avatar' }),
       netRegexDe: NetRegexes.tether({ id: '0005', target: 'Avatar' }),
       netRegexFr: NetRegexes.tether({ id: '0005', target: 'Bio-Tréant' }),
@@ -101,7 +100,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegexCn: NetRegexes.tether({ id: '0005', target: '降世化身' }),
       netRegexKo: NetRegexes.tether({ id: '0005', target: '아바타' }),
       suppressSeconds: 6,
-      infoText: (data, matches: NetAllMatches['Tether'], output) => {
+      infoText: (data, matches, output) => {
         return output.text!({ player: data.ShortName(matches.source) });
       },
       outputStrings: {
@@ -116,19 +115,19 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      netType: 'StartsUsing',
       id: 'T8 Brainjack',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7C3', source: 'The Avatar' }),
       netRegexDe: NetRegexes.startsUsing({ id: '7C3', source: 'Avatar' }),
       netRegexFr: NetRegexes.startsUsing({ id: '7C3', source: 'Bio-Tréant' }),
       netRegexJa: NetRegexes.startsUsing({ id: '7C3', source: 'アバター' }),
       netRegexCn: NetRegexes.startsUsing({ id: '7C3', source: '降世化身' }),
       netRegexKo: NetRegexes.startsUsing({ id: '7C3', source: '아바타' }),
-      alertText: (data, matches: NetAllMatches['StartsUsing'], output) => {
+      alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.brainjackOnYou!();
       },
-      infoText: (data, matches: NetAllMatches['StartsUsing'], output) => {
+      infoText: (data, matches, output) => {
         if (data.me !== matches.target)
           return output.brainjackOn!({ player: data.ShortName(matches.target) });
       },
@@ -152,19 +151,19 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      netType: 'StartsUsing',
       id: 'T8 Allagan Field',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '7C4', source: 'The Avatar' }),
       netRegexDe: NetRegexes.startsUsing({ id: '7C4', source: 'Avatar' }),
       netRegexFr: NetRegexes.startsUsing({ id: '7C4', source: 'Bio-Tréant' }),
       netRegexJa: NetRegexes.startsUsing({ id: '7C4', source: 'アバター' }),
       netRegexCn: NetRegexes.startsUsing({ id: '7C4', source: '降世化身' }),
       netRegexKo: NetRegexes.startsUsing({ id: '7C4', source: '아바타' }),
-      alertText: (data, matches: NetAllMatches['StartsUsing'], output) => {
+      alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.allaganFieldOnYou!();
       },
-      infoText: (data, matches: NetAllMatches['StartsUsing'], output) => {
+      infoText: (data, matches, output) => {
         if (data.me !== matches.target)
           return output.allaganFieldOn!({ player: data.ShortName(matches.target) });
       },
@@ -188,8 +187,8 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      netType: 'AddedCombatant',
       id: 'T8 Dreadnaught',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Clockwork Dreadnaught', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Brummonaut', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Cuirassé Dreadnaught', capture: false }),

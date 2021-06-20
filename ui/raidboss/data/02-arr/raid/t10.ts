@@ -4,7 +4,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { NetAllMatches } from '../../../../../types/net_matches';
 
 export type Data = RaidbossData;
 
@@ -13,8 +12,8 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 't10.txt',
   triggers: [
     {
-      netType: 'StartsUsing',
       id: 'T10 Phase Change',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
@@ -24,8 +23,8 @@ const triggerSet: TriggerSet<Data> = {
       sound: 'Long',
     },
     {
-      netType: 'StartsUsing',
       id: 'T10 Heat Lightning',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
@@ -35,14 +34,14 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.spread(),
     },
     {
-      netType: 'HeadMarker',
       id: 'T10 Wild Charge',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001F' }),
-      alarmText: (data, matches: NetAllMatches['HeadMarker'], output) => {
+      alarmText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.chargeOnYou!();
       },
-      infoText: (data, matches: NetAllMatches['HeadMarker'], output) => {
+      infoText: (data, matches, output) => {
         if (data.me !== matches.target)
           return output.chargeOn!({ player: data.ShortName(matches.target) });
       },
@@ -66,25 +65,25 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      netType: 'HeadMarker',
       id: 'T10 Prey',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       response: Responses.preyOn(),
     },
     {
-      netType: 'Tether',
       id: 'T10 Cyclonic Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0015', source: 'Imdugud' }),
       netRegexDe: NetRegexes.tether({ id: '0015', source: 'Imdugud' }),
       netRegexFr: NetRegexes.tether({ id: '0015', source: 'Imdugud' }),
       netRegexJa: NetRegexes.tether({ id: '0015', source: 'イムドゥグド' }),
       netRegexCn: NetRegexes.tether({ id: '0015', source: '伊姆都古德' }),
       netRegexKo: NetRegexes.tether({ id: '0015', source: '임두구드' }),
-      alarmText: (data, matches: NetAllMatches['Tether'], output) => {
+      alarmText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.cyclonicOnYou!();
       },
-      infoText: (data, matches: NetAllMatches['Tether'], output) => {
+      infoText: (data, matches, output) => {
         if (data.me !== matches.target)
           return output.cyclonicOn!({ player: data.ShortName(matches.target) });
       },

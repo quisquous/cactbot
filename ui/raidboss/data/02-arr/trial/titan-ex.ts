@@ -5,7 +5,6 @@ import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
-import { NetAllMatches } from '../../../../../types/net_matches';
 
 export { RaidbossData as Data } from '../../../../../types/data';
 
@@ -69,16 +68,16 @@ const triggerSet: TriggerSet<Data> = {
   ],
   triggers: [
     {
-      // Doesn't seem like this happens twice, but let's be safe.
-      netType: 'Tether',
       id: 'TitanEx Rock Throw',
+      // Doesn't seem like this happens twice, but let's be safe.
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0007' }),
       suppressSeconds: 1,
-      alertText: (data, matches: NetAllMatches['Tether'], output) => {
+      alertText: (data, matches, output) => {
         if (matches.source === data.me || matches.target === data.me)
           return output.jailOnYou!();
       },
-      infoText: (data, matches: NetAllMatches['Tether'], output) => {
+      infoText: (data, matches, output) => {
         if (matches.source !== data.me && matches.target !== data.me)
           return output.jails!();
       },

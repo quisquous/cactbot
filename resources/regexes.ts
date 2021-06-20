@@ -134,52 +134,27 @@ const gameNameLogParams = ['timestamp', 'code', 'name', 'line', 'capture'] as co
 const changeZoneParams = ['timestamp', 'name', 'capture'] as const;
 const network6dParams = ['timestamp', 'instance', 'command', 'data0', 'data1', 'data2', 'data3', 'capture'] as const;
 
-export type StartsUsingParams = typeof startsUsingParams[number];
-export type AbilityParams = typeof abilityParams[number];
-export type AbilityFullParams = typeof abilityFullParams[number];
-export type HeadMarkerParams = typeof headMarkerParams[number];
-export type AddedCombatantParams = typeof addedCombatantParams[number];
-export type AddedCombatantFullParams = typeof addedCombatantFullParams[number];
-export type RemovingCombatantParams = typeof removingCombatantParams[number];
-export type GainsEffectParams = typeof gainsEffectParams[number];
-export type StatusEffectExplicitParams = typeof statusEffectExplicitParams[number];
-export type LosesEffectParams = typeof losesEffectParams[number];
-export type StatChangeParams = typeof statChangeParams[number];
-export type TetherParams = typeof tetherParams[number];
-export type WasDefeatedParams = typeof wasDefeatedParams[number];
-export type HasHPParams = typeof hasHPParams[number];
-export type EchoParams = typeof echoParams[number];
-export type DialogParams = typeof dialogParams[number];
-export type MessageParams = typeof messageParams[number];
-export type GameLogParams = typeof gameLogParams[number];
-export type GameNameLogParams = typeof gameNameLogParams[number];
-export type ChangeZoneParams = typeof changeZoneParams[number];
-export type Network6dParams = typeof network6dParams[number];
-
-export interface ParamsAll {
-  'StartsUsingParams': StartsUsingParams;
-  'AbilityParams': AbilityParams;
-  'AbilityFullParams': AbilityFullParams;
-  'HeadMarkerParams': HeadMarkerParams;
-  'AddedCombatantParams': AddedCombatantParams;
-  'AddedCombatantFullParams': AddedCombatantFullParams;
-  'RemovingCombatantParams': RemovingCombatantParams;
-  'GainsEffectParams': GainsEffectParams;
-  'StatusEffectExplicitParams': StatusEffectExplicitParams;
-  'LosesEffectParams': LosesEffectParams;
-  'TetherParams': TetherParams;
-  'WasDefeatedParams': WasDefeatedParams;
-  'EchoParams': EchoParams;
-  'DialogParams': DialogParams;
-  'MessageParams': MessageParams;
-  'GameLogParams': GameLogParams;
-  'GameNameLogParams': GameNameLogParams;
-  'StatChangeParams': StatChangeParams;
-  'ChangeZoneParams': ChangeZoneParams;
-  'Network6dParams': Network6dParams;
-}
-
-export type ParamsAllTypes = keyof ParamsAll;
+type StartsUsingParams = typeof startsUsingParams[number];
+type AbilityParams = typeof abilityParams[number];
+type AbilityFullParams = typeof abilityFullParams[number];
+type HeadMarkerParams = typeof headMarkerParams[number];
+type AddedCombatantParams = typeof addedCombatantParams[number];
+type AddedCombatantFullParams = typeof addedCombatantFullParams[number];
+type RemovingCombatantParams = typeof removingCombatantParams[number];
+type GainsEffectParams = typeof gainsEffectParams[number];
+type StatusEffectExplicitParams = typeof statusEffectExplicitParams[number];
+type LosesEffectParams = typeof losesEffectParams[number];
+type StatChangeParams = typeof statChangeParams[number];
+type TetherParams = typeof tetherParams[number];
+type WasDefeatedParams = typeof wasDefeatedParams[number];
+type HasHPParams = typeof hasHPParams[number];
+type EchoParams = typeof echoParams[number];
+type DialogParams = typeof dialogParams[number];
+type MessageParams = typeof messageParams[number];
+type GameLogParams = typeof gameLogParams[number];
+type GameNameLogParams = typeof gameNameLogParams[number];
+type ChangeZoneParams = typeof changeZoneParams[number];
+type Network6dParams = typeof network6dParams[number];
 
 export default class Regexes {
   /**
@@ -724,7 +699,7 @@ export default class Regexes {
     return anyOfArray(array);
   }
 
-  static parse<T extends ParamsAllTypes>(regexpString: RegExp | string): Regex<ParamsAll[T]> {
+  static parse(regexpString: RegExp | string): RegExp {
     const kCactbotCategories = {
       Timestamp: '^.{14}',
       NetTimestamp: '.{33}',
@@ -752,7 +727,7 @@ export default class Regexes {
     regexpString = regexpString.replace(/\\y\{(.*?)\}/g, (match, group) => {
       return kCactbotCategories[group as keyof typeof kCactbotCategories] || match;
     });
-    return new RegExp(regexpString, modifiers) as Regex<ParamsAll[T]>;
+    return new RegExp(regexpString, modifiers);
   }
 
   // Like Regex.Regexes.parse, but force global flag.

@@ -1,5 +1,5 @@
 import { commonReplacement } from './common_replacement';
-import Regexes, { Regex, Network6dParams } from '../../resources/regexes';
+import Regexes from '../../resources/regexes';
 import { LocaleRegex } from '../../resources/translations';
 import { UnreachableCode } from '../../resources/not_reached';
 import { RaidbossOptions } from './raidboss_options';
@@ -8,6 +8,8 @@ import TimerBar from '../../resources/timerbar';
 import { LogEvent } from '../../types/event';
 import { LooseTimelineTrigger, TriggerAutoConfig } from '../../types/trigger';
 import { PopupTextGenerator } from './popup-text';
+import NetRegexes from '../../resources/netregexes';
+import { CactbotBaseRegExp } from '../../types/net_trigger';
 
 const kBig = 1000000000; // Something bigger than any fight length in seconds.
 
@@ -1103,7 +1105,7 @@ export class TimelineController {
   protected timelines: { [filename: string]: string };
 
   private suppressNextEngage: boolean;
-  private wipeRegex: Regex<Network6dParams>;
+  private wipeRegex: CactbotBaseRegExp<'ActorControl'>;
   protected activeTimeline: Timeline | null = null;
 
   constructor(protected options: RaidbossOptions, protected ui: TimelineUI,
@@ -1120,7 +1122,7 @@ export class TimelineController {
 
     // Used to suppress any Engage! if there's a wipe between /countdown and Engage!.
     this.suppressNextEngage = false;
-    this.wipeRegex = Regexes.network6d({ command: '40000010' });
+    this.wipeRegex = NetRegexes.network6d({ command: '40000010' });
   }
 
   public SetPopupTextInterface(popupText: PopupTextGenerator): void {

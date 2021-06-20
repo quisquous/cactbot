@@ -328,6 +328,7 @@ const testTriggerFile = (file) => {
     // This is the order in which they are run.
     const triggerOrder = [
       'id',
+      'type',
       'disabled',
       'netRegex',
       // Other netRegexes are not important in ordering.

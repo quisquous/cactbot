@@ -2,9 +2,7 @@ import { Lang, NonEnLang } from '../resources/languages';
 import { TimelineReplacement, TimelineStyle } from '../ui/raidboss/timeline';
 import { RaidbossData } from './data';
 import { CactbotBaseRegExp, TriggerTypes } from './net_trigger';
-import { NetAllMatches, Matches as MatchesAny } from '../types/net_matches';
-
-export type Matches<Params> = { [s in Params]: string } | MatchesAny;
+import { NetAllMatches, Matches } from '../types/net_matches';
 
 // TargetedMatches can be used for generic functions in responses or conditions
 // that use matches from any number of Regex or NetRegex functions.
@@ -103,7 +101,7 @@ export type BaseTrigger<Data extends RaidbossData, Type extends TriggerTypes> = 
 }
 
 type PartialNetRegexTrigger<T extends TriggerTypes> = {
-  netType?: T;
+  type?: T;
   netRegex: CactbotBaseRegExp<T>;
   netRegexDe?: CactbotBaseRegExp<T>;
   netRegexFr?: CactbotBaseRegExp<T>;
@@ -119,8 +117,7 @@ export type NetRegexTrigger<Data extends RaidbossData> =
 export type GeneralNetRegexTrigger<Data extends RaidbossData, T extends TriggerTypes> =
   BaseTrigger<Data, T> & PartialNetRegexTrigger<T>;
 
-type PartialRegexTrigger<T extends TriggerTypes> = {
-  type?: T;
+type PartialRegexTrigger = {
   regex: RegExp;
   regexDe?: RegExp;
   regexFr?: RegExp;
@@ -130,7 +127,7 @@ type PartialRegexTrigger<T extends TriggerTypes> = {
 };
 
 export type RegexTrigger<Data extends RaidbossData> =
-    BaseTrigger<Data, 'None'> & PartialRegexTrigger<'None'>;
+    BaseTrigger<Data, 'None'> & PartialRegexTrigger;
 
 export type TimelineTrigger<Data extends RaidbossData> = BaseTrigger<Data, 'None'> & {
   regex: RegExp;
@@ -149,7 +146,7 @@ export type TriggerSet<Data extends RaidbossData> = {
   overrideTimelineFile?: boolean;
   timelineFile?: string;
   timeline?: TimelineFunc;
-  triggers?: (NetRegexTrigger<Data> | RegexTrigger<Data>)[];
+  triggers?: NetRegexTrigger<Data>[];
   timelineTriggers?: TimelineTrigger<Data>[];
   timelineReplace?: TimelineReplacement[];
   timelineStyles?: TimelineStyle[];
@@ -161,7 +158,7 @@ export type LooseTimelineTrigger = Partial<TimelineTrigger<RaidbossData>>;
 
 export type LooseTrigger = Partial<
     BaseTrigger<RaidbossData, 'None'> &
-    PartialRegexTrigger<'None'> &
+    PartialRegexTrigger &
     PartialNetRegexTrigger<'None'>
 >;
 
