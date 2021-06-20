@@ -92,10 +92,12 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
 ```javascript
 {
   id: 'id string',
+  // Note: netRegex only, see `NetFields` from [net_fields.d.ts](https://github.com/quisquous/cactbot/blob/main/types/net_fields.d.ts)
+  type: 'StartsUsing',
   disabled: false,
-  // Note: prefer to use the regex helpers from [netregexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/netregexes.ts)
-  netRegex: /trigger-regex-for-network-log-lines/,
-  netRegexFr: /trigger-regex-for-network-log-lines-but-in-French/
+  // Note: use the regex helpers from [netregexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/netregexes.ts)
+  netRegex: NetRegexes.startsUsing({ id: 'some-id', source: 'some-name' }),
+  netRegexFr: NetRegexes.startsUsing({ id: 'some-id', source: 'some-name-but-in-french' }),
   // Note: prefer to use the regex helpers from [regexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts)
   regex: /trigger-regex-for-act-log-lines/,
   regexFr: /trigger-regex-for-act-log-lines-but-in-French/,

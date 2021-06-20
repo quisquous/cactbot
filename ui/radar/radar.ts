@@ -4,10 +4,10 @@ import { Lang } from '../../resources/languages';
 
 import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
 import HuntData, { HuntEntry, HuntMap, Rank } from '../../resources/hunt';
-import { MatchesAddedCombatantFull } from '../../resources/matches';
 import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import UserConfig from '../../resources/user_config';
+import { CactbotBaseRegExp } from '../../types/net_trigger';
 
 import arrowImage from './arrow.png';
 
@@ -15,6 +15,7 @@ import './radar_config';
 
 import '../../resources/defaults.css';
 import './radar.css';
+import { NetMatches } from '../../types/net_matches';
 
 type RadarType = 'mob' | 'any';
 
@@ -171,10 +172,10 @@ class Radar {
   private lang: Lang;
   private nameToHuntEntry: HuntMap;
   private regexes: {
-    abilityFull: RegExp;
-    addedCombatantFull: RegExp;
-    instanceChanged: RegExp;
-    wasDefeated: RegExp;
+    abilityFull: CactbotBaseRegExp<'Ability'>;
+    addedCombatantFull: CactbotBaseRegExp<'AddedCombatant'>;
+    instanceChanged: CactbotBaseRegExp<'GameLog'>;
+    wasDefeated: CactbotBaseRegExp<'WasDefeated'>;
   };
 
   constructor(private options: RadarOptions, private table: HTMLElement) {
@@ -206,7 +207,7 @@ class Radar {
   }
 
   AddMonster(log: string, hunt: HuntEntry,
-      matches: MatchesAddedCombatantFull) {
+      matches: NetMatches['AddedCombatant']) {
     if (!this.playerPos)
       return;
     if (!matches)

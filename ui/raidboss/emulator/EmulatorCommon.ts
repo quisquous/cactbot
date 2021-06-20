@@ -1,10 +1,22 @@
 import { LocaleNetRegex } from '../../../resources/translations';
 import NetRegexes from '../../../resources/netregexes';
 import { Lang } from '../../../resources/languages';
+import { CactbotBaseRegExp, CactbotRegExpExecArray, TriggerTypes } from '../../../types/net_trigger';
 
 // Disable no-explicit-any for cloneData as it needs to work on raw objects for performance reasons.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type DataType = { [key: string]: any } | null;
+
+export type MatchStartInfo = {
+  StartIn: string;
+  StartType: string;
+  language?: string | undefined;
+};
+
+export type MatchEndInfo = {
+  EndType: string;
+  language?: string | undefined;
+};
 
 export default class EmulatorCommon {
   static cloneData(data: DataType, exclude = ['options', 'party']): DataType {
@@ -113,8 +125,9 @@ export default class EmulatorCommon {
     return str.padStart(len, ' ');
   }
 
-  static doesLineMatch(line: string,
-      regexes: Record<Lang, RegExp> | RegExp): RegExpExecArray | null {
+  static doesLineMatch<T extends TriggerTypes>(line: string,
+      regexes: Record<Lang, RegExp> | RegExp | CactbotBaseRegExp<T>):
+      RegExpExecArray | CactbotRegExpExecArray<T> | null {
     if (regexes instanceof RegExp)
       return regexes.exec(line);
 
@@ -130,60 +143,67 @@ export default class EmulatorCommon {
     return null;
   }
 
-  static matchStart(line: string): RegExpMatchArray | undefined {
+  static matchStart(line: string): MatchStartInfo | undefined {
     let res;
     // Currently all of these regexes have groups if they match at all,
     // but be robust to that changing in the future.
     res = EmulatorCommon.doesLineMatch(line, EmulatorCommon.countdownRegexes);
     if (res) {
-      res.groups ??= {};
-      res.groups.StartIn = (parseInt(res.groups.time ?? '0') * 1000).toString();
-      res.groups.StartType = 'Countdown';
-      return res;
+      return {
+        StartIn: (parseInt(res.groups?.time ?? '0') * 1000).toString(),
+        StartType: 'Countdown',
+        language: res.groups?.language ?? undefined,
+      };
     }
     res = EmulatorCommon.doesLineMatch(line, EmulatorCommon.sealRegexes);
     if (res) {
-      res.groups ??= {};
-      res.groups.StartIn = '0';
-      res.groups.StartType = 'Seal';
-      return res;
+      return {
+        StartIn: '0',
+        StartType: 'Seal',
+        language: res.groups?.language ?? undefined,
+      };
     }
     res = EmulatorCommon.doesLineMatch(line, EmulatorCommon.engageRegexes);
     if (res) {
-      res.groups ??= {};
-      res.groups.StartIn = '0';
-      res.groups.StartType = 'Engage';
-      return res;
+      return {
+        StartIn: '0',
+        StartType: 'Engage',
+        language: res.groups?.language ?? undefined,
+      };
     }
   }
 
-  static matchEnd(line: string): RegExpMatchArray | undefined {
+  static matchEnd(line: string): MatchEndInfo | undefined {
     let res;
     // Currently all of these regexes have groups if they match at all,
     // but be robust to that changing in the future.
     res = EmulatorCommon.doesLineMatch(line, EmulatorCommon.winRegex);
     if (res) {
-      res.groups ??= {};
-      res.groups.EndType = 'Win';
-      return res;
+      return {
+        EndType: 'Win',
+        language: res.groups?.language ?? undefined,
+      };
     }
     res = EmulatorCommon.doesLineMatch(line, EmulatorCommon.wipeRegex);
     if (res) {
-      res.groups ??= {};
-      res.groups.EndType = 'Wipe';
-      return res;
+      return {
+        EndType: 'Wipe',
+        language: res.groups?.language ?? undefined,
+      };
     }
     res = EmulatorCommon.doesLineMatch(line, EmulatorCommon.cactbotWipeRegex);
     if (res) {
-      res.groups ??= {};
-      res.groups.EndType = 'Cactbot Wipe';
-      return res;
+      return {
+        EndType: 'Cactbot Wipe',
+        language: res.groups?.language ?? undefined,
+      };
     }
     res = EmulatorCommon.doesLineMatch(line, EmulatorCommon.unsealRegexes);
     if (res) {
-      res.groups ??= {};
-      res.groups.EndType = 'Unseal';
-      return res;
+      return {
+        EndType: 'Unseal',
+        language: res.groups?.language ?? undefined,
+      };
     }
   }
 

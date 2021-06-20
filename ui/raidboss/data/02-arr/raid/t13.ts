@@ -2,7 +2,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 import Conditions from '../../../../../resources/conditions';
-import { MatchesStartsUsing, MatchesTether } from '../../../../../resources/matches';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -30,6 +29,7 @@ const triggerSet: TriggerSet<Data> = {
   triggers: [
     {
       id: 'T13 Gigaflare Phase Change',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'BB9', source: 'Bahamut Prime', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'BB9', source: 'Prim-Bahamut', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: 'BB9', source: 'Primo-Bahamut', capture: false }),
@@ -57,17 +57,18 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T13 Flatten',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'BAE', source: 'Bahamut Prime' }),
       netRegexDe: NetRegexes.startsUsing({ id: 'BAE', source: 'Prim-Bahamut' }),
       netRegexFr: NetRegexes.startsUsing({ id: 'BAE', source: 'Primo-Bahamut' }),
       netRegexJa: NetRegexes.startsUsing({ id: 'BAE', source: 'バハムート・プライム' }),
       netRegexCn: NetRegexes.startsUsing({ id: 'BAE', source: '至尊巴哈姆特' }),
       netRegexKo: NetRegexes.startsUsing({ id: 'BAE', source: '바하무트 프라임' }),
-      alertText: (data, matches: MatchesStartsUsing, output) => {
+      alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.flattenOnYou!();
       },
-      infoText: (data, matches: MatchesStartsUsing, output) => {
+      infoText: (data, matches, output) => {
         if (matches.target === data.me)
           return;
         if (data.role === 'healer' || data.job === 'BLU')
@@ -94,6 +95,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T13 Megaflare Share',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '0027' }),
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
@@ -116,13 +118,14 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T13 Tempest Wing',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0004', target: 'Bahamut Prime' }),
       netRegexDe: NetRegexes.tether({ id: '0004', target: 'Prim-Bahamut' }),
       netRegexFr: NetRegexes.tether({ id: '0004', target: 'Primo-Bahamut' }),
       netRegexJa: NetRegexes.tether({ id: '0004', target: 'バハムート・プライム' }),
       netRegexCn: NetRegexes.tether({ id: '0004', target: '至尊巴哈姆特' }),
       netRegexKo: NetRegexes.tether({ id: '0004', target: '바하무트 프라임' }),
-      condition: (data, matches: MatchesTether) => data.me === matches.source,
+      condition: (data, matches) => data.me === matches.source,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -137,17 +140,18 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T13 Akh Morn',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'BC2', source: 'Bahamut Prime' }),
       netRegexDe: NetRegexes.startsUsing({ id: 'BC2', source: 'Prim-Bahamut' }),
       netRegexFr: NetRegexes.startsUsing({ id: 'BC2', source: 'Primo-Bahamut' }),
       netRegexJa: NetRegexes.startsUsing({ id: 'BC2', source: 'バハムート・プライム' }),
       netRegexCn: NetRegexes.startsUsing({ id: 'BC2', source: '至尊巴哈姆特' }),
       netRegexKo: NetRegexes.startsUsing({ id: 'BC2', source: '바하무트 프라임' }),
-      alertText: (data, matches: MatchesStartsUsing, output) => {
+      alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.akhMornOnYou!();
       },
-      infoText: (data, matches: MatchesStartsUsing, output) => {
+      infoText: (data, matches, output) => {
         if (matches.target !== data.me)
           return output.akhMornOn!({ player: data.ShortName(matches.target) });
       },

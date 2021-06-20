@@ -2,7 +2,6 @@ import { JobsOptions } from './types';
 
 import WidgetList from '../../resources/widget_list';
 import EffectId from '../../resources/effect_id';
-import { MatchesAbility, MatchesGainsEffect, MatchesLosesEffect } from '../../resources/matches';
 import PartyTracker from '../../resources/party';
 
 import potionImage from '../../resources/ffxiv/status/potion.png';
@@ -34,6 +33,7 @@ import divinationImage from '../../resources/ffxiv/status/divination.png';
 
 import { kAbility } from './constants';
 import { makeAuraTimerIcon } from './utils';
+import { NetMatches } from '../../types/net_matches';
 
 export interface BuffInfo {
   name: string;
@@ -640,7 +640,7 @@ export class BuffTracker {
     // }
   }
 
-  onUseAbility(id: string, matches: MatchesAbility): void {
+  onUseAbility(id: string, matches: NetMatches['Ability']): void {
     const buffs = this.cooldownAbilityMap[id];
     if (!buffs)
       return;
@@ -666,7 +666,7 @@ export class BuffTracker {
 
   onGainEffect(
       buffs: BuffInfo[] | undefined,
-      matches: MatchesGainsEffect,
+      matches: NetMatches['GainsEffect'],
   ): void {
     if (!buffs)
       return;
@@ -688,7 +688,7 @@ export class BuffTracker {
 
   onLoseEffect(
       buffs: BuffInfo[] | undefined,
-      _matches: MatchesLosesEffect,
+      _matches: NetMatches['LosesEffect'],
   ): void {
     if (!buffs)
       return;
@@ -696,19 +696,19 @@ export class BuffTracker {
       this.onLoseBigBuff(b.name);
   }
 
-  onYouGainEffect(name: string, matches: MatchesGainsEffect): void {
+  onYouGainEffect(name: string, matches: NetMatches['GainsEffect']): void {
     this.onGainEffect(this.gainEffectMap[name], matches);
   }
 
-  onYouLoseEffect(name: string, matches: MatchesLosesEffect): void {
+  onYouLoseEffect(name: string, matches: NetMatches['LosesEffect']): void {
     this.onLoseEffect(this.loseEffectMap[name], matches);
   }
 
-  onMobGainsEffect(name: string, matches: MatchesGainsEffect): void {
+  onMobGainsEffect(name: string, matches: NetMatches['GainsEffect']): void {
     this.onGainEffect(this.mobGainsEffectMap[name], matches);
   }
 
-  onMobLosesEffect(name: string, matches: MatchesLosesEffect): void {
+  onMobLosesEffect(name: string, matches: NetMatches['LosesEffect']): void {
     this.onLoseEffect(this.mobLosesEffectMap[name], matches);
   }
 

@@ -1,6 +1,5 @@
 import Util from '../../resources/util';
-import NetRegexes, { StatChangeParams } from '../../resources/netregexes';
-import Regexes, { Regex } from '../../resources/regexes';
+import NetRegexes from '../../resources/netregexes';
 import { LocaleRegex } from '../../resources/translations';
 import { kMeleeWithMpJobs, kLevelMod } from './constants';
 import { Bars } from './bar';
@@ -8,6 +7,7 @@ import { Bars } from './bar';
 import { Lang } from '../../resources/languages';
 import { Job } from '../../types/job';
 import { UnreachableCode } from '../../resources/not_reached';
+import { CactbotBaseRegExp } from '../../types/net_trigger';
 
 const getLocaleRegex = (locale: string, regexes: {
   'en': RegExp;
@@ -15,16 +15,16 @@ const getLocaleRegex = (locale: string, regexes: {
 }): RegExp => regexes[locale] ?? regexes['en'];
 
 export class RegexesHolder {
-  StatsRegex: Regex<StatChangeParams>;
-  YouGainEffectRegex: RegExp;
-  YouLoseEffectRegex: RegExp;
-  YouUseAbilityRegex: RegExp;
-  AnybodyAbilityRegex: RegExp;
-  MobGainsEffectRegex: RegExp;
-  MobLosesEffectRegex: RegExp;
-  MobGainsEffectFromYouRegex: RegExp;
-  MobLosesEffectFromYouRegex: RegExp;
-  cordialRegex: RegExp;
+  StatsRegex: CactbotBaseRegExp<'PlayerStats'>;
+  YouGainEffectRegex: CactbotBaseRegExp<'GainsEffect'>;
+  YouLoseEffectRegex: CactbotBaseRegExp<'LosesEffect'>;
+  YouUseAbilityRegex: CactbotBaseRegExp<'Ability'>;
+  AnybodyAbilityRegex: CactbotBaseRegExp<'Ability'>;
+  MobGainsEffectRegex: CactbotBaseRegExp<'GainsEffect'>;
+  MobLosesEffectRegex: CactbotBaseRegExp<'LosesEffect'>;
+  MobGainsEffectFromYouRegex: CactbotBaseRegExp<'GainsEffect'>;
+  MobLosesEffectFromYouRegex: CactbotBaseRegExp<'LosesEffect'>;
+  cordialRegex: CactbotBaseRegExp<'Ability'>;
   countdownStartRegex: RegExp;
   countdownCancelRegex: RegExp;
   craftingStartRegexes: RegExp[];
@@ -32,7 +32,7 @@ export class RegexesHolder {
   craftingStopRegexes: RegExp[];
 
   constructor(lang: Lang, playerName: string) {
-    this.StatsRegex = Regexes.statChange();
+    this.StatsRegex = NetRegexes.statChange();
 
     this.YouGainEffectRegex = NetRegexes.gainsEffect({ target: playerName });
     this.YouLoseEffectRegex = NetRegexes.losesEffect({ target: playerName });
@@ -49,7 +49,7 @@ export class RegexesHolder {
       source: playerName,
     });
     // use of GP Potion
-    this.cordialRegex = Regexes.ability({
+    this.cordialRegex = NetRegexes.ability({
       source: playerName,
       id: '20(017FD|F5A3D|F844F|0420F|0317D)',
     });

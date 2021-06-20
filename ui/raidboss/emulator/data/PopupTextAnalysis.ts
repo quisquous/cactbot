@@ -1,10 +1,11 @@
 import EmulatorCommon, { DataType } from '../EmulatorCommon';
 import StubbedPopupText from '../overrides/StubbedPopupText';
 import LineEvent from './network_log_converter/LineEvent';
-import { LooseTrigger, MatchesAny } from '../../../../types/trigger';
+import { LooseTrigger } from '../../../../types/trigger';
 import { TriggerHelper, Text, TextText, ProcessedTrigger } from '../../popup-text';
 import { EventResponses, LogEvent } from '../../../../types/event';
 import { UnreachableCode } from '../../../../resources/not_reached';
+import { Matches } from '../../../../types/net_matches';
 import { RaidbossFileData } from '../../data/raidboss_manifest.txt';
 import { RaidbossOptions } from '../../raidboss_options';
 import { TimelineLoader } from '../../timeline';
@@ -275,7 +276,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
 
   _onTriggerInternalGetHelper(
       trigger: ProcessedTrigger,
-      matches: MatchesAny,
+      matches: Matches,
       now: number): EmulatorTriggerHelper {
     const ret: EmulatorTriggerHelper = {
       ...super._onTriggerInternalGetHelper(trigger, matches, now),

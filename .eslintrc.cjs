@@ -278,12 +278,6 @@ const overrides = [
       'rulesdir/cactbot-trigger-property-order': ['error', { 'module': 'oopsyraidsy' }],
     },
   },
-  {
-    'files': ['**/oopsyraidsy/data/**/*.ts', '**/raidboss/data/**/*.ts'],
-    'rules': {
-      'rulesdir/cactbot-matches-type-references': 'error',
-    },
-  },
 ];
 
 module.exports = {

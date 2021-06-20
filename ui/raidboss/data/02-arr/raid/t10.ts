@@ -1,7 +1,6 @@
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-import { MatchesHeadMarker, MatchesTether } from '../../../../../resources/matches';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -14,6 +13,7 @@ const triggerSet: TriggerSet<Data> = {
   triggers: [
     {
       id: 'T10 Phase Change',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
@@ -24,6 +24,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T10 Heat Lightning',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
@@ -34,12 +35,13 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T10 Wild Charge',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001F' }),
-      alarmText: (data, matches: MatchesHeadMarker, output) => {
+      alarmText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.chargeOnYou!();
       },
-      infoText: (data, matches: MatchesHeadMarker, output) => {
+      infoText: (data, matches, output) => {
         if (data.me !== matches.target)
           return output.chargeOn!({ player: data.ShortName(matches.target) });
       },
@@ -64,22 +66,24 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T10 Prey',
+      type: 'HeadMarker',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       response: Responses.preyOn(),
     },
     {
       id: 'T10 Cyclonic Tether',
+      type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0015', source: 'Imdugud' }),
       netRegexDe: NetRegexes.tether({ id: '0015', source: 'Imdugud' }),
       netRegexFr: NetRegexes.tether({ id: '0015', source: 'Imdugud' }),
       netRegexJa: NetRegexes.tether({ id: '0015', source: 'イムドゥグド' }),
       netRegexCn: NetRegexes.tether({ id: '0015', source: '伊姆都古德' }),
       netRegexKo: NetRegexes.tether({ id: '0015', source: '임두구드' }),
-      alarmText: (data, matches: MatchesTether, output) => {
+      alarmText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.cyclonicOnYou!();
       },
-      infoText: (data, matches: MatchesTether, output) => {
+      infoText: (data, matches, output) => {
         if (data.me !== matches.target)
           return output.cyclonicOn!({ player: data.ShortName(matches.target) });
       },

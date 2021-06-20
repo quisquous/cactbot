@@ -2,7 +2,6 @@ import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
 import Conditions from '../../../../../resources/conditions';
-import { MatchesGainsEffect } from '../../../../../resources/matches';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -16,12 +15,14 @@ const triggerSet: TriggerSet<Data> = {
   triggers: [
     {
       id: 'T2 High Voltage',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4C0' }),
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt(),
     },
     {
       id: 'T2 Ballast',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '4C5', capture: false }),
       suppressSeconds: 3,
       response: Responses.getBehind(),
@@ -29,12 +30,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       // Allagan Rot
       id: 'T2 Rot',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '14D' }),
-      alarmText: (data, matches: MatchesGainsEffect, output) => {
+      alarmText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.rotOnYou!();
       },
-      infoText: (data, matches: MatchesGainsEffect, output) => {
+      infoText: (data, matches, output) => {
         if (data.me !== matches.target)
           return output.rotOn!({ player: data.ShortName(matches.target) });
       },
@@ -57,6 +59,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T2 Pass Rot',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '14D' }),
       condition: Conditions.targetIsYou(),
       preRun: (data) => data.rot = true,
@@ -78,6 +81,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T2 Lost Rot',
+      type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '14D' }),
       condition: Conditions.targetIsYou(),
       run: (data) => delete data.rot,

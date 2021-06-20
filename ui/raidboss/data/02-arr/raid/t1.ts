@@ -20,6 +20,7 @@ const triggerSet: TriggerSet<Data> = {
   triggers: [
     {
       id: 'T1 High Voltage',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Ads', id: '5A7' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Abwehrsystem', id: '5A7' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Sphère De Contrôle', id: '5A7' }),
@@ -32,6 +33,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       // Indiscriminate Hood Swing
       id: 'T1 Initiated',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Caduceus', id: '4B8.*?', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Caduceus', id: '4B8.*?', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Caducée', id: '4B8.*?', capture: false }),
@@ -42,6 +44,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T1 Regorge',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Caduceus', id: '4BA' }),
       netRegexDe: NetRegexes.ability({ source: 'Caduceus', id: '4BA' }),
       netRegexFr: NetRegexes.ability({ source: 'Caducée', id: '4BA' }),
@@ -62,6 +65,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T1 Split',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Caduceus.*?', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Caduceus.*?', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Caducée.*?', capture: false }),
@@ -83,6 +87,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T1 Hood Swing',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Caduceus', id: '4B8' }),
       netRegexDe: NetRegexes.ability({ source: 'Caduceus', id: '4B8' }),
       netRegexFr: NetRegexes.ability({ source: 'Caducée', id: '4B8' }),
@@ -105,6 +110,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T1 Slime Timer First',
+      type: 'GameLog',
       netRegex: NetRegexes.message({ line: 'The Allagan megastructure will be sealed off.*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Allagische Superstruktur will be sealed off.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Mégastructure allagoise will be sealed off.*?', capture: false }),
@@ -126,6 +132,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T1 Slime Timer',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatant({ name: 'Dark Matter Slime.*?', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Dunkelmaterien-Schleim.*?', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Gluant De Matière Sombre.*?', capture: false }),

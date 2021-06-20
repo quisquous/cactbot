@@ -1,7 +1,8 @@
 import { BaseOptions, RaidbossData } from '../../types/data';
 import UserConfig from '../../resources/user_config';
 import { Lang } from '../../resources/languages';
-import { LooseTrigger, MatchesAny, TriggerAutoConfig, TriggerField, TriggerOutput } from '../../types/trigger';
+import { LooseTrigger, TriggerAutoConfig, TriggerField, TriggerOutput } from '../../types/trigger';
+import { Matches } from '../../types/net_matches';
 
 // This file defines the base options that raidboss expects to see.
 
@@ -14,11 +15,11 @@ export type PerTriggerOption = Partial<{
   GroupSpeechAlert: boolean; // TODO: we should remove this
   SoundOverride: string;
   VolumeOverride: number;
-  Condition: TriggerField<RaidbossData, boolean>;
-  InfoText: TriggerOutput<RaidbossData, MatchesAny>;
-  AlertText: TriggerOutput<RaidbossData, MatchesAny>;
-  AlarmText: TriggerOutput<RaidbossData, MatchesAny>;
-  TTSText: TriggerOutput<RaidbossData, MatchesAny>;
+  Condition: TriggerField<RaidbossData, Matches, boolean>;
+  InfoText: TriggerOutput<RaidbossData, Matches>;
+  AlertText: TriggerOutput<RaidbossData, Matches>;
+  AlarmText: TriggerOutput<RaidbossData, Matches>;
+  TTSText: TriggerOutput<RaidbossData, Matches>;
 }>;
 
 export type PerTriggerAutoConfig = { [triggerId: string]: TriggerAutoConfig };
