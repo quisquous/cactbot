@@ -316,6 +316,7 @@ export default class CactbotConfigurator {
             continue;
           const buildFunc = {
             checkbox: this.buildCheckbox,
+            html: this.buildHtml,
             select: this.buildSelect,
             float: this.buildFloat,
             integer: this.buildInteger,
@@ -378,6 +379,15 @@ export default class CactbotConfigurator {
     input.type = 'checkbox';
     input.checked = this.getOption(group, opt.id, opt.default);
     input.onchange = () => this.setOption(group, opt.id, input.checked);
+
+    parent.appendChild(this.buildNameDiv(opt));
+    parent.appendChild(div);
+  }
+
+  buildHtml(parent, opt, group) {
+    const div = document.createElement('div');
+    div.classList.add('option-input-container');
+    div.innerHTML = this.translate(opt.html);
 
     parent.appendChild(this.buildNameDiv(opt));
     parent.appendChild(div);
