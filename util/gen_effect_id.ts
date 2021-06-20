@@ -105,7 +105,7 @@ const makeEffectMap = (table: Table<'#', 'Name'>) => {
   // Make sure everything specified in known_mapping was found in the above loop.
   for (const rawName of Object.keys(knownMapping)) {
     const name = cleanName(rawName);
-    if (name && !(name in foundNames))
+    if (name && !(foundNames.has(name)))
       printError('missing', name, knownMapping, rawName);
   }
 
