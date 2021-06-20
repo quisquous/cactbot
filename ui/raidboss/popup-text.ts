@@ -1184,7 +1184,9 @@ export class PopupText {
       let result = undefined;
       if (triggerHelper.triggerOptions.TTSText) {
         result = triggerHelper.valueOrFunction(triggerHelper.triggerOptions.TTSText);
-      } else if (triggerHelper.trigger.tts) {
+      } else if (triggerHelper.trigger.tts ||
+          triggerHelper.trigger.tts === null ||
+          triggerHelper.trigger.tts === '') {
         result = triggerHelper.valueOrFunction(triggerHelper.trigger.tts);
       } else if (triggerHelper.response) {
         const resp: ResponseField<RaidbossData> = triggerHelper.response;
