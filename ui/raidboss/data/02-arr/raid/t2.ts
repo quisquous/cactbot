@@ -28,8 +28,8 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getBehind(),
     },
     {
-      id: 'T2 Rot',
       // Allagan Rot
+      id: 'T2 Rot',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '14D' }),
       alarmText: (data, matches, output) => {

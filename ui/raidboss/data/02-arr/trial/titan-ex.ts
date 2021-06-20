@@ -68,8 +68,8 @@ const triggerSet: TriggerSet<Data> = {
   ],
   triggers: [
     {
-      id: 'TitanEx Rock Throw',
       // Doesn't seem like this happens twice, but let's be safe.
+      id: 'TitanEx Rock Throw',
       type: 'Tether',
       netRegex: NetRegexes.tether({ id: '0007' }),
       suppressSeconds: 1,

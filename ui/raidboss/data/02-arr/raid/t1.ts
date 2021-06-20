@@ -31,8 +31,8 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.interrupt(),
     },
     {
-      id: 'T1 Initiated',
       // Indiscriminate Hood Swing
+      id: 'T1 Initiated',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Caduceus', id: '4B8.*?', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Caduceus', id: '4B8.*?', capture: false }),

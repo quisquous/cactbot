@@ -146,8 +146,8 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'T12 Chain',
       // Chain Of Purgatory
+      id: 'T12 Chain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '24D' }),
       alertText: (data, matches, output) => {
