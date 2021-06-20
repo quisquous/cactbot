@@ -709,16 +709,16 @@ export class Timeline {
         break;
       if (t.type === 'info') {
         if (this.showInfoTextCallback)
-          this.showInfoTextCallback(t.text, this.timebase);
+          this.showInfoTextCallback(t.text, currentTime);
       } else if (t.type === 'alert') {
         if (this.showAlertTextCallback)
-          this.showAlertTextCallback(t.text, this.timebase);
+          this.showAlertTextCallback(t.text, currentTime);
       } else if (t.type === 'alarm') {
         if (this.showAlarmTextCallback)
-          this.showAlarmTextCallback(t.text, this.timebase);
+          this.showAlarmTextCallback(t.text, currentTime);
       } else if (t.type === 'tts') {
         if (this.speakTTSCallback)
-          this.speakTTSCallback(t.text, this.timebase);
+          this.speakTTSCallback(t.text, currentTime);
       } else if (t.type === 'trigger') {
         if (this.triggerCallback)
           this.triggerCallback(t.trigger, t.matches, currentTime);
