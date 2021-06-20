@@ -65,11 +65,14 @@ import './raidemulator.css';
           }),
         ]);
         if (websocketConnected) {
-          await UserConfig.getUserConfigLocation('raidboss', defaultOptions, (e) => {
-            // Update options from anything changed via getUserConfigLocation.
-            options = { ...defaultOptions };
-            document.querySelector('.websocketConnected').classList.remove('d-none');
-            document.querySelector('.websocketDisconnected').classList.add('d-none');
+          await new Promise((res) => {
+            UserConfig.getUserConfigLocation('raidboss', defaultOptions, (e) => {
+              // Update options from anything changed via getUserConfigLocation.
+              options = { ...defaultOptions };
+              document.querySelector('.websocketConnected').classList.remove('d-none');
+              document.querySelector('.websocketDisconnected').classList.add('d-none');
+              res();
+            });
           });
         }
       }
