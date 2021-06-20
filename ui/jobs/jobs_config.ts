@@ -217,7 +217,7 @@ UserConfig.registerOptions('jobs', {
         de: 'Dot/etc. boxen blinken bis zu n mal wenn im Kampf und dot ist nicht aktiv. (-1: deaktiviert, 0: ohne Limit)',
       },
       type: 'integer',
-      default: -1,
+      default: 5,
     },
     {
       id: 'NotifyExpiredProcsInCombatSound',
@@ -238,7 +238,7 @@ UserConfig.registerOptions('jobs', {
           'Wenn der Countdown nahe 0 ist.': 'threshold',
         },
       },
-      default: 'disabled',
+      default: 'expired',
     },
   ],
 });
