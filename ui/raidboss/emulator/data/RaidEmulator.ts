@@ -50,10 +50,11 @@ export default class RaidEmulator extends EventBus {
   }
 
   selectPerspective(id: string): void {
-    if (!this.currentEncounter || !this.popupText || this.currentLogTime === undefined)
+    if (!this.currentEncounter || !this.popupText)
       throw new UnreachableCode();
     this.currentEncounter.selectPerspective(id, this.popupText);
-    void this.seekTo(this.currentLogTime);
+    if (this.currentLogTime !== undefined)
+      void this.seekTo(this.currentLogTime);
   }
 
   play(): boolean {
@@ -98,7 +99,7 @@ export default class RaidEmulator extends EventBus {
     await this.dispatch('preSeek', seekTimestamp);
     this.currentLogLineIndex = -1;
     let logs = [];
-    const playing = this.playingInterval !== null;
+    const playing = this.playingInterval !== undefined;
     if (playing)
       this.pause();
     for (let i = this.currentLogLineIndex + 1;
@@ -144,7 +145,7 @@ export default class RaidEmulator extends EventBus {
       this.pause();
       return;
     }
-    if (this.playingInterval === null)
+    if (this.playingInterval === undefined)
       return;
     const logs = [];
     const timeDiff = Date.now() - this.lastTickTime;
