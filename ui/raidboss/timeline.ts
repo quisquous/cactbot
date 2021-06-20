@@ -700,7 +700,7 @@ export class Timeline {
     }
   }
 
-  private _AddPassedTexts(fightNow: number): void {
+  private _AddPassedTexts(fightNow: number, currentTime: number): void {
     while (this.nextText < this.texts.length) {
       const t = this.texts[this.nextText];
       if (!t)
@@ -709,19 +709,19 @@ export class Timeline {
         break;
       if (t.type === 'info') {
         if (this.showInfoTextCallback)
-          this.showInfoTextCallback(t.text, this.timebase);
+          this.showInfoTextCallback(t.text, currentTime);
       } else if (t.type === 'alert') {
         if (this.showAlertTextCallback)
-          this.showAlertTextCallback(t.text, this.timebase);
+          this.showAlertTextCallback(t.text, currentTime);
       } else if (t.type === 'alarm') {
         if (this.showAlarmTextCallback)
-          this.showAlarmTextCallback(t.text, this.timebase);
+          this.showAlarmTextCallback(t.text, currentTime);
       } else if (t.type === 'tts') {
         if (this.speakTTSCallback)
-          this.speakTTSCallback(t.text, this.timebase);
+          this.speakTTSCallback(t.text, currentTime);
       } else if (t.type === 'trigger') {
         if (this.triggerCallback)
-          this.triggerCallback(t.trigger, t.matches, this.timebase);
+          this.triggerCallback(t.trigger, t.matches, currentTime);
       }
       ++this.nextText;
     }
@@ -802,7 +802,7 @@ export class Timeline {
     // This is the number of seconds into the fight (subtracting Dates gives milliseconds).
     const fightNow = (currentTime - this.timebase) / 1000;
     // Send text events now or they'd be skipped by _AdvanceTimeTo().
-    this._AddPassedTexts(fightNow);
+    this._AddPassedTexts(fightNow, currentTime);
     this._AdvanceTimeTo(fightNow);
     this._CollectActiveSyncs(fightNow);
 
