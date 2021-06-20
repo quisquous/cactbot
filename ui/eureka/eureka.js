@@ -26,7 +26,7 @@ const bunnyLabel = {
   ko: '토끼',
 };
 
-const Options = {
+const defaultOptions = {
   Debug: false,
   PopSound: '../../resources/sounds/freesound/sonar.ogg',
   BunnyPopSound: '../../resources/sounds/freesound/water_drop.ogg',
@@ -3502,7 +3502,6 @@ const gDayIcon = '&#x263C;';
 // ✭ for rarity for field notes listing
 const gRarityIcon = '&#x272D;';
 
-let gTracker;
 class EurekaTracker {
   constructor(options) {
     this.options = options;
@@ -4165,22 +4164,22 @@ class EurekaTracker {
   }
 }
 
-UserConfig.getUserConfigLocation('eureka', Options, (e) => {
+UserConfig.getUserConfigLocation('eureka', defaultOptions, () => {
+  const options = { ...defaultOptions };
+  const tracker = new EurekaTracker(options);
   addOverlayListener('onPlayerChangedEvent', (e) => {
-    gTracker.OnPlayerChange(e);
+    tracker.OnPlayerChange(e);
   });
   addOverlayListener('ChangeZone', (e) => {
-    gTracker.OnChangeZone(e);
+    tracker.OnChangeZone(e);
   });
   addOverlayListener('onLogEvent', (e) => {
-    gTracker.OnLog(e);
+    tracker.OnLog(e);
   });
   addOverlayListener('onFateEvent', (e) => {
-    gTracker.OnFate(e);
+    tracker.OnFate(e);
   });
   addOverlayListener('onCEEvent', (e) => {
-    gTracker.OnCE(e);
+    tracker.OnCE(e);
   });
-
-  gTracker = new EurekaTracker(Options);
 });

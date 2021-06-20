@@ -15,9 +15,6 @@ import '../raidboss/raidboss_config';
 import '../../resources/defaults.css';
 import './config.css';
 
-const Options = {};
-let gConfig = null;
-
 // Text in the butter bar, to prompt the user to reload after a config change.
 const kReloadText = {
   en: 'To apply configuration changes, reload cactbot overlays.',
@@ -620,8 +617,10 @@ export default class CactbotConfigurator {
   }
 }
 
-UserConfig.getUserConfigLocation('config', Options, async (e) => {
-  gConfig = new CactbotConfigurator(
-      Options,
+const defaultOptions = {};
+UserConfig.getUserConfigLocation('config', defaultOptions, () => {
+  const options = { ...defaultOptions };
+  const configurator = new CactbotConfigurator(
+      options,
       UserConfig.savedConfig);
 });

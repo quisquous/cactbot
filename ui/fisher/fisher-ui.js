@@ -17,7 +17,7 @@ if (window.customElements) {
 }
 
 export default class FisherUI {
-  constructor(element, options) {
+  constructor(options, element) {
     this.element = element;
     this.options = options;
     this.baitEl = element.querySelector('#bait-name');
