@@ -215,6 +215,7 @@ UserConfig.registerOptions('jobs', {
       name: {
         en: 'Flash procs boxes of inactive dots/etc. up to n times while in combat. (-1: disabled, 0: infinite)',
         de: 'Dot/etc. boxen blinken bis zu n mal wenn im Kampf und dot ist nicht aktiv. (-1: deaktiviert, 0: ohne Limit)',
+        ko: '도트가 꺼지면 프록 박스를 n회 깜빡하게 합니다. (-1: 비활성화, 0: 무한)',
       },
       type: 'integer',
       default: -1,
@@ -224,6 +225,7 @@ UserConfig.registerOptions('jobs', {
       name: {
         en: 'Play a sound notification if a proc box for dots/etc. expires while in combat.',
         de: 'Spiele einen Alarm Sound wenn eine dot/etc. box im Kampf inaktiv wird.',
+        ko: '도트가 꺼지면 소리로 알림을 줍니다.',
       },
       type: 'select',
       options: {
@@ -236,6 +238,11 @@ UserConfig.registerOptions('jobs', {
           'Deaktiviert': 'disabled',
           'Wenn der Countdown 0 erreicht.': 'expired',
           'Wenn der Countdown nahe 0 ist.': 'threshold',
+        },
+        ko: {
+          '비활성화': 'disabled',
+          '카운트 다운이 0초일 때': 'expired',
+          '카운트 다운이 0초에 가까워 질때': 'threshold',
         },
       },
       default: 'disabled',
