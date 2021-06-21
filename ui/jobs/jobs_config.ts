@@ -215,6 +215,7 @@ UserConfig.registerOptions('jobs', {
       name: {
         en: 'Flash procs boxes of inactive dots/etc. up to n times while in combat. (-1: disabled, 0: infinite)',
         de: 'Dot/etc. boxen blinken bis zu n mal wenn im Kampf und dot ist nicht aktiv. (-1: deaktiviert, 0: ohne Limit)',
+        cn: '战斗中模块监控的重要DoT/Buff中断时令对应计时器闪烁N次（-1：禁用，0：无限闪烁）',
       },
       type: 'integer',
       default: -1,
@@ -224,6 +225,7 @@ UserConfig.registerOptions('jobs', {
       name: {
         en: 'Play a sound notification if a proc box for dots/etc. expires while in combat.',
         de: 'Spiele einen Alarm Sound wenn eine dot/etc. box im Kampf inaktiv wird.',
+        cn: '战斗中模块监控的重要DoT/Buff中断时播放提示音',
       },
       type: 'select',
       options: {
@@ -236,6 +238,11 @@ UserConfig.registerOptions('jobs', {
           'Deaktiviert': 'disabled',
           'Wenn der Countdown 0 erreicht.': 'expired',
           'Wenn der Countdown nahe 0 ist.': 'threshold',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '计时器归零时': 'expired',
+          '计时器到达提示阈值时': 'threshold',
         },
       },
       default: 'disabled',
