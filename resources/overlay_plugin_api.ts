@@ -1,6 +1,6 @@
 // OverlayPlugin API setup
 
-import { EventMap, EventType, IOverlayHandler } from '../types/event';
+import { EventMap, EventType, IOverlayHandler, OverlayHandlerFuncs } from '../types/event';
 
 declare global {
   interface Window {
@@ -145,24 +145,43 @@ const callOverlayHandlerInternal: IOverlayHandler = (
   return p;
 };
 
-let callOverlayHandlerOverride: IOverlayHandler | undefined;
+type OverrideMap = {
+  subscribe?: OverlayHandlerFuncs['subscribe'];
+  getCombatants?: OverlayHandlerFuncs['getCombatants'];
+  cactbotReloadOverlays?: OverlayHandlerFuncs['cactbotReloadOverlays'];
+  cactbotLoadUser?: OverlayHandlerFuncs['cactbotLoadUser'];
+  cactbotRequestPlayerUpdate?: OverlayHandlerFuncs['cactbotRequestPlayerUpdate'];
+  cactbotRequestState?: OverlayHandlerFuncs['cactbotRequestState'];
+  cactbotSay?: OverlayHandlerFuncs['cactbotSay'];
+  cactbotSaveData?: OverlayHandlerFuncs['cactbotSaveData'];
+  cactbotLoadData?: OverlayHandlerFuncs['cactbotLoadData'];
+  cactbotChooseDirectory?: OverlayHandlerFuncs['cactbotChooseDirectory'];
+}
+const callOverlayHandlerOverrideMap: OverrideMap = {};
 
 export const callOverlayHandler: IOverlayHandler = (
     _msg: { [s: string]: unknown },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> => {
   init();
-  if (callOverlayHandlerOverride) {
-    return callOverlayHandlerOverride(
-        _msg as Parameters<IOverlayHandler>[0],
-    ) as Promise<unknown>;
-  }
-  return callOverlayHandlerInternal(_msg as Parameters<IOverlayHandler>[0]);
+  // If this `as` is incorrect, then `override` will be undefined.
+  // TODO: we could also replace this with a type guard.
+  const type = _msg.call as keyof OverrideMap;
+  const override = callOverlayHandlerOverrideMap[type];
+  if (!override)
+    return callOverlayHandlerInternal(_msg as Parameters<IOverlayHandler>[0]);
+  // eslint-disable-next-line max-len
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-argument
+  return override(_msg as any);
 };
 
-export const setCallOverlayHandlerOverride = (override?: IOverlayHandler): IOverlayHandler => {
-  callOverlayHandlerOverride = override;
-  return callOverlayHandlerInternal;
+export const setOverlayHandlerOverride = <T extends keyof OverlayHandlerFuncs>(
+  type: T, override?: OverlayHandlerFuncs[T]): void => {
+  if (!override) {
+    delete callOverlayHandlerOverrideMap[type];
+    return;
+  }
+  callOverlayHandlerOverrideMap[type] = override;
 };
 
 export const init = (): void => {
