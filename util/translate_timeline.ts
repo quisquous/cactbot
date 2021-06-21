@@ -36,7 +36,7 @@ const findTriggersFile = (shortName: string): string | undefined => {
   return found;
 };
 
-export const run = async (args: { locale: Lang; timeline: string }) => {
+export default async (args: { locale: Lang; timeline: string }): Promise<void> => {
   if (!process.argv[1]) {
     console.error('Unable to determine current process filepath, aborting.');
     process.exit(-2);

@@ -121,7 +121,7 @@ const makeEffectMap = (table: Table<'#', 'Name'>) => {
 };
 
 
-export const generate = async (): Promise<void> => {
+export default async (): Promise<void> => {
   const table = await getIntlTable('Status', ['#', 'Name', 'Icon', 'PartyListPriority']);
 
   const writer = new CoinachWriter(null, true);
