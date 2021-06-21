@@ -210,7 +210,7 @@ export default class PopupTextAnalysis extends StubbedPopupText {
       return ret;
     if (triggerHelper.resolver)
       triggerHelper.resolver.setPromise(ret);
-    return;
+    return ret;
   }
 
   _onTriggerInternalTTS(triggerHelper: EmulatorTriggerHelper): void {
