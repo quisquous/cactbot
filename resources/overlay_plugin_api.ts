@@ -1,6 +1,6 @@
 // OverlayPlugin API setup
 
-import { EventMap, EventType, IOverlayHandler } from '../types/event';
+import { EventMap, EventType, IOverlayHandler, OverlayHandlerRequests, OverlayHandlerResponseTypes, OverlayHandlerTypes } from '../types/event';
 
 declare global {
   interface Window {
@@ -145,24 +145,32 @@ const callOverlayHandlerInternal: IOverlayHandler = (
   return p;
 };
 
-let callOverlayHandlerOverride: IOverlayHandler | undefined;
+type OverrideType<T extends OverlayHandlerTypes> =
+    (msg: OverlayHandlerRequests[T]) => Promise<OverlayHandlerResponseTypes[T]>;
+
+const callOverlayHandlerOverrides: {
+  [call in OverlayHandlerTypes]?: OverrideType<call>;
+} = {};
 
 export const callOverlayHandler: IOverlayHandler = (
     _msg: { [s: string]: unknown },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> => {
   init();
-  if (callOverlayHandlerOverride) {
-    return callOverlayHandlerOverride(
-      _msg as Parameters<IOverlayHandler>[0],
-    ) as Promise<unknown>;
+  if (typeof _msg.call === 'string') {
+    const call = _msg.call as OverlayHandlerTypes;
+    const callFunc = callOverlayHandlerOverrides[call];
+    if (callFunc)
+      return callFunc(_msg as never);
   }
   return callOverlayHandlerInternal(_msg as Parameters<IOverlayHandler>[0]);
 };
 
-export const setCallOverlayHandlerOverride = (override?: IOverlayHandler): IOverlayHandler => {
-  callOverlayHandlerOverride = override;
-  return callOverlayHandlerInternal;
+export const setCallOverlayHandlerOverride =
+<T extends OverlayHandlerTypes>(call: T, override: OverrideType<T>): void => {
+  // Some weird promise issues assinging here for some reason
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  callOverlayHandlerOverrides[call] = override as never;
 };
 
 export const init = (): void => {

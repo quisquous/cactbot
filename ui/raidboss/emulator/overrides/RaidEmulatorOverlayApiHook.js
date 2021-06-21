@@ -20,7 +20,7 @@ const toCache = (data) => {
 export default class RaidEmulatorOverlayApiHook {
   constructor(emulator) {
     this.emulator = emulator;
-    this.originalCall = setCallOverlayHandlerOverride(this.call.bind(this));
+    setCallOverlayHandlerOverride('getCombatants', this.call.bind(this));
     this.currentLogTime = 0;
     this.connected = false;
 
@@ -39,10 +39,7 @@ export default class RaidEmulatorOverlayApiHook {
   }
 
   async call(msg) {
-    if (msg.call === 'getCombatants')
-      return await this._getCombatantsOverride(msg);
-
-    return await this.originalCall(msg);
+    return await this._getCombatantsOverride(msg);
   }
 
   async _getCombatantsOverride(msg) {
