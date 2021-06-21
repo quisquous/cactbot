@@ -274,7 +274,7 @@ input[type=text] {
 }
 
 .trigger-duration > input[type=text] {
-  width: 60px;
+  width: 90px;
   text-align: left;
 }
 
