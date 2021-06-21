@@ -554,7 +554,7 @@ class RaidbossConfigurator {
           div.appendChild(input);
           input.type = 'text';
           input.step = 'any';
-          input.placeholder = this.base.translate(kMiscTranslations.valueDefault);
+          input.placeholder = trig.durationSeconds || 3;
           input.value = this.base.getOption('raidboss', 'triggers', trig.id, optionKey, '');
           const setFunc = () => {
             const val = validDurationOrUndefined(input.value) || '';
