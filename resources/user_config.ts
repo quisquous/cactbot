@@ -213,7 +213,7 @@ class UserConfig {
   }
 
   loadUserFiles(overlayName: string, options: BaseOptions, callback: () => void) {
-    const readOptions = callOverlayHandler({
+    const readOptions = callOverlayHandler<'cactbotLoadData'>({
       call: 'cactbotLoadData',
       overlay: 'options',
     });
@@ -347,7 +347,7 @@ class UserConfig {
       void callOverlayHandler({ call: 'cactbotRequestState' });
     };
 
-    void callOverlayHandler({
+    void callOverlayHandler<'cactbotLoadUser'>({
       call: 'cactbotLoadUser',
       source: location.href,
       overlayName: overlayName,
