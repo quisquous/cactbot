@@ -566,7 +566,7 @@ class MistakeCollector {
   OnMistakeText(type, blame, text, time) {
     if (!text)
       return;
-    const blameText = blame ? ShortNamify(blame, options.PlayerNicks) + ': ' : '';
+    const blameText = blame ? ShortNamify(blame, this.options.PlayerNicks) + ': ' : '';
     this.listView.AddLine(type, blameText + text, this.GetFormattedTime(time));
   }
 
@@ -729,7 +729,7 @@ class DamageTracker {
       role: this.role,
       party: this.partyTracker,
       inCombat: this.inCombat,
-      ShortName: (name) => ShortNamify(name, options.PlayerNicks),
+      ShortName: (name) => ShortNamify(name, this.options.PlayerNicks),
       IsPlayerId: IsPlayerId,
 
       // Deprecated.
@@ -1130,8 +1130,8 @@ class DamageTracker {
     this.healTriggers = [];
     this.netTriggers = [];
 
-    this.ignoreZone = Options.IgnoreContentTypes.includes(this.contentType) ||
-      Options.IgnoreZoneIds.includes(this.zoneId);
+    this.ignoreZone = this.options.IgnoreContentTypes.includes(this.contentType) ||
+      this.options.IgnoreZoneIds.includes(this.zoneId);
     if (this.ignoreZone)
       return;
 
@@ -1238,7 +1238,7 @@ class DamageTracker {
     if (!this.me)
       return;
 
-    this.triggerSets = Options.Triggers;
+    this.triggerSets = this.options.Triggers;
     for (const filename in this.dataFiles) {
       const json = this.dataFiles[filename];
       if (typeof json !== 'object') {
