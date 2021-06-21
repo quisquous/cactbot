@@ -991,7 +991,7 @@ const templateOptions = {
     {
       id: 'Coverage',
       name: {
-        en: 'Supported content',
+        en: 'Supported content (latest version)',
       },
       type: 'html',
       html: {
