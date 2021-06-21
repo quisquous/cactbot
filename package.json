@@ -22,7 +22,8 @@
     "coverage-report": "node --loader ts-node/esm util/gen_coverage_report.js",
     "find-translations": "node --loader ts-node/esm util/find_missing_translations.js",
     "translate-timeline": "node --loader ts-node/esm util/translate_timeline.ts",
-    "process-triggers": "node --loader ts-node/esm util/process_triggers_folder.js"
+    "process-triggers": "node --loader ts-node/esm util/process_triggers_folder.js",
+    "util": "node --loader ts-node/esm util/index.ts"
   },
   "devDependencies": {
     "@actions/github": "^5.0.0",
@@ -33,6 +34,8 @@
     "@types/argparse": "^1.0.10",
     "@types/copy-webpack-plugin": "^8.0.0",
     "@types/css-minimizer-webpack-plugin": "^3.0.1",
+    "@types/inquirer": "^7.3.2",
+    "@types/inquirer-fuzzy-path": "^2.3.0",
     "@types/lodash": "^4.14.170",
     "@types/mini-css-extract-plugin": "^1.4.3",
     "@types/node": "^15.12.2",
@@ -108,6 +111,10 @@
   },
   "dependencies": {
     "@fast-csv/parse": "^4.3.6",
-    "argparse": "^1.0.10"
+    "@types/js-yaml": "^4.0.1",
+    "argparse": "^1.0.10",
+    "inquirer": "^8.1.1",
+    "inquirer-fuzzy-path": "^2.3.0",
+    "js-yaml": "^4.1.0"
   }
 }

@@ -36,7 +36,7 @@ const findTriggersFile = (shortName: string): string | undefined => {
   return found;
 };
 
-const run = async (args: { locale: Lang; timeline: string }) => {
+export const run = async (args: { locale: Lang; timeline: string }) => {
   if (!process.argv[1]) {
     console.error('Unable to determine current process filepath, aborting.');
     process.exit(-2);
@@ -111,5 +111,5 @@ const run = async (args: { locale: Lang; timeline: string }) => {
   });
 };
 
-const args = parser.parseArgs() as { locale: Lang; timeline: string };
-void run(args);
+// const args = parser.parseArgs() as { locale: Lang; timeline: string };
+// void run(args);
