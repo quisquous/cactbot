@@ -21,7 +21,6 @@
     "lint-staged": "node_modules/.bin/lint-staged",
     "coverage-report": "node --loader ts-node/esm util/gen_coverage_report.js",
     "find-translations": "node --loader ts-node/esm util/find_missing_translations.js",
-    "translate-timeline": "node --loader ts-node/esm util/translate_timeline.ts",
     "process-triggers": "node --loader ts-node/esm util/process_triggers_folder.js",
     "util": "node --loader ts-node/esm util/index.ts"
   },
