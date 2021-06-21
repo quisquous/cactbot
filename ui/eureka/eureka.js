@@ -1746,7 +1746,11 @@ const defaultOptions = {
             ja: 'バイシャーエン・ウルガッシュ',
             ko: '바이샤엔 울가쉬',
           },
-          shortName: 'Bajsalen',
+          shortName: {
+            en: 'Bajsalen',
+            ja: 'バイシャーエン',
+            ko: '바이샤엔',
+          },
           rarity: 1,
         },
         {
@@ -1756,7 +1760,11 @@ const defaultOptions = {
             ja: 'マルシャーク・アペッラ',
             ko: '마르샤크 아펠라',
           },
-          shortName: 'Marsak',
+          shortName: {
+            en: 'Marsak',
+            ja: 'マルシャーク',
+            ko: '마르샤크',
+          },
           rarity: 1,
         },
         {
@@ -1766,7 +1774,11 @@ const defaultOptions = {
             ja: 'ゼヴェン・スヴァナシュ',
             ko: '제벤 스바나쉬',
           },
-          shortName: 'Xeven',
+          shortName: {
+            en: 'Xeven',
+            ja: 'ゼヴェン',
+            ko: '제벤',
+          },
           rarity: 1,
         },
         {
@@ -1776,7 +1788,11 @@ const defaultOptions = {
             ja: 'イソルデ・コヴィー',
             ko: '이솔데 코비',
           },
-          shortName: 'Isolde',
+          shortName: {
+            en: 'Isolde',
+            ja: 'イソルデ',
+            ko: '이솔데',
+          },
           rarity: 2,
         },
         {
@@ -1786,7 +1802,11 @@ const defaultOptions = {
             ja: 'スタニック・アルボフ',
             ko: '스타니크 알루보프',
           },
-          shortName: 'Stanik',
+          shortName: {
+            en: 'Stanik',
+            ja: 'スタニック',
+            ko: '스타니크',
+          },
           rarity: 1,
         },
         {
@@ -1796,7 +1816,11 @@ const defaultOptions = {
             ja: 'ブラズ・アゼティナ',
             ko: '블라즈 아제티나',
           },
-          shortName: 'Blaz',
+          shortName: {
+            en: 'Blaz',
+            ja: 'ブラズ',
+            ko: '블라즈',
+          },
           rarity: 3,
         },
         {
@@ -1806,7 +1830,11 @@ const defaultOptions = {
             ja: 'ヴェリボル・アゼティナ',
             ko: '벨리보르 아제티나',
           },
-          shortName: 'Velibor',
+          shortName: {
+            en: 'Velibor',
+            ja: 'ヴェリボル',
+            ko: '벨리보르',
+          },
           rarity: 3,
         },
         {
@@ -1816,7 +1844,11 @@ const defaultOptions = {
             ja: 'アギー・グローヴァー',
             ko: '애지 글러버',
           },
-          shortName: 'Aggie',
+          shortName: {
+            en: 'Aggie',
+            ja: 'アギー',
+            ko: '애지',
+          },
           rarity: 1,
         },
         {
@@ -1826,7 +1858,11 @@ const defaultOptions = {
             ja: 'ロフィー・ピル・ポティトゥス',
             ko: '로피 피르 포티투스',
           },
-          shortName: 'Llofii',
+          shortName: {
+            en: 'Llofii',
+            ja: 'ロフィー',
+            ko: '로피',
+          },
           rarity: 2,
         },
         {
@@ -1836,7 +1872,11 @@ const defaultOptions = {
             ja: 'エルネイス・ピル・ロングス',
             ko: '에르네이스 피르 롱구스',
           },
-          shortName: 'Hernais',
+          shortName: {
+            en: 'Hernais',
+            ja: 'エルネイス',
+            ko: '에르네이스',
+          },
           rarity: 3,
         },
         {
@@ -1846,7 +1886,11 @@ const defaultOptions = {
             ja: 'ダボグ・アン・イニヴァシュ',
             ko: '다보그 안 이니비쉬',
           },
-          shortName: 'Dabog',
+          shortName: {
+            en: 'Dabog',
+            ja: 'ダボグ',
+            ko: '다보그',
+          },
           rarity: 5,
         },
         {
@@ -1856,7 +1900,11 @@ const defaultOptions = {
             ja: 'ユンブ・ピル・ポティトゥス',
             ko: '윤부 피르 포티투스',
           },
-          shortName: 'Dyunbu',
+          shortName: {
+            en: 'Dyunbu',
+            ja: 'ユンブ',
+            ko: '윤부',
+          },
           rarity: 4,
         },
         {
@@ -1866,7 +1914,11 @@ const defaultOptions = {
             ja: 'クラリシー・クォ・プリスクス',
             ko: '클라리시 쿠오 프리스쿠스',
           },
-          shortName: 'Clarricie',
+          shortName: {
+            en: 'Clarricie',
+            ja: 'クラリシー',
+            ko: '클라리시',
+          },
           rarity: 2,
         },
         {
@@ -1876,7 +1928,11 @@ const defaultOptions = {
             ja: 'サルトヴォアール・クォ・ソラノス',
             ko: '사르토부아르 쿠오 소라누스',
           },
-          shortName: 'Sartauvoir',
+          shortName: {
+            en: 'Sartauvoir',
+            ja: 'サルトヴォアール',
+            ko: '사르토부아르',
+          },
           rarity: 5,
         },
         {
@@ -1886,7 +1942,11 @@ const defaultOptions = {
             ja: 'シシニアス・マル・ヴェリュータス',
             ko: '시시니우스 말 벨루투스',
           },
-          shortName: 'Sicinius',
+          shortName: {
+            en: 'Sicinius',
+            ja: 'シシニアス',
+            ko: '시시니우스',
+          },
           rarity: 3,
         },
         {
@@ -1896,7 +1956,11 @@ const defaultOptions = {
             ja: 'サドル・レム・アルビレオ',
             ko: '사드르 렘 알비레오',
           },
-          shortName: 'Albeleo',
+          shortName: {
+            en: 'Albeleo',
+            ja: 'サドル・レム・アルビレオ',
+            ko: '사드르 렘 알비레오',
+          },
           rarity: 3,
         },
         {
@@ -1906,7 +1970,11 @@ const defaultOptions = {
             ja: 'ライアン・レム・ヘルソス',
             ko: '라이언 렘 헬소스',
           },
-          shortName: 'Lyon',
+          shortName: {
+            en: 'Lyon',
+            ja: 'ライアン',
+            ko: '라이언',
+          },
           rarity: 5,
         },
         {
@@ -1916,7 +1984,11 @@ const defaultOptions = {
             ja: 'メネニウス・サス・ラナトゥス',
             ko: '메네니우스 사스 라나투스',
           },
-          shortName: 'Menenius', // FIX-ME
+          shortName: {
+            en: 'Menenius', // FIX-ME
+            ja: 'メネニウス・サス・ラナトゥス',
+            ko: '메네니우스 사스 라나투스',
+          },
           rarity: 3,
         },
         {
@@ -1926,7 +1998,11 @@ const defaultOptions = {
             ja: 'ミーシィヤ・ヴォートヤシュ',
             ko: '미시야 보트야쉬',
           },
-          shortName: 'Misija', // FIX-ME
+          shortName: {
+            en: 'Misija', // FIX-ME
+            ja: 'ミーシィヤ・ヴォートヤシュ',
+            ko: '미시야 보트야쉬',
+          },
           rarity: 3,
         },
         {
@@ -1936,7 +2012,11 @@ const defaultOptions = {
             ja: 'グンヒルド',
             ko: '군힐드',
           },
-          shortName: 'Gunnhildr',
+          shortName: {
+            en: 'Gunnhildr',
+            ja: 'グンヒルド',
+            ko: '군힐드',
+          },
           rarity: 3,
         },
         {
@@ -1945,7 +2025,10 @@ const defaultOptions = {
             en: 'Lilja Sjasaris',
             ja: 'リリヤ・シアサリス',
           },
-          shortName: 'Lilja Sjasaris', // FIX-ME
+          shortName: {
+            en: 'Lilja Sjasaris', // FIX-ME
+            ja: 'リリヤ・シアサリス', // FIX-ME
+          },
           rarity: 3,
         },
         {
@@ -1954,7 +2037,10 @@ const defaultOptions = {
             en: 'Bwagi Ennze Panca',
             ja: 'ブワジ・エンゼ・パンチャ',
           },
-          shortName: 'Bwagi Ennze Panca', // FIX-ME
+          shortName: {
+            en: 'Bwagi Ennze Panca', // FIX-ME
+            ja: 'ブワジ・エンゼ・パンチャ', // FIX-ME
+          },
           rarity: 3,
         },
         {
@@ -1963,7 +2049,10 @@ const defaultOptions = {
             en: 'Rostik Liubasch',
             ja: 'ロスティック・リュバシュ',
           },
-          shortName: 'Rostik Liubasch', // FIX-ME
+          shortName: {
+            en: 'Rostik Liubasch', // FIX-ME
+            ja: 'ロスティック・リュバシュ', // FIX-ME
+          },
           rarity: 3,
         },
         {
@@ -1972,7 +2061,10 @@ const defaultOptions = {
             en: 'Mikoto Jinba',
             ja: 'ミコト・ジンバ',
           },
-          shortName: 'Mikoto Jinba', // FIX-ME
+          shortName: {
+            en: 'Mikoto Jinba', // FIX-ME
+            ja: 'ミコト・ジンバ', // FIX-ME
+          },
           rarity: 3,
         },
         {
@@ -1981,7 +2073,10 @@ const defaultOptions = {
             en: 'Misija Votyasch',
             ja: 'ミーシィヤ・ヴォートヤシュ',
           },
-          shortName: 'Misija Votyasch', // FIX-ME
+          shortName: {
+            en: 'Misija Votyasch', // FIX-ME
+            ja: 'ミーシィヤ・ヴォートヤシュ', // FIX-ME
+          },
           rarity: 3,
         },
         {
@@ -1989,8 +2084,13 @@ const defaultOptions = {
           name: {
             en: 'Gunnhildr',
             ja: 'グンヒルド',
+            ko: '군힐드',
           },
-          shortName: 'Gunnhildr',
+          shortName: {
+            en: 'Gunnhildr',
+            ja: 'グンヒルド', // FIX-ME
+            ko: '군힐드',
+          },
           rarity: 3,
         },
         {
@@ -1999,7 +2099,10 @@ const defaultOptions = {
             en: 'Trinity Seeker',
             ja: 'トリニティ・シーカー',
           },
-          shortName: 'Seeker', // FIX-ME
+          shortName: {
+            en: 'Seeker', // FIX-ME
+            ja: 'トリニティ・シーカー', // FIX-ME
+          },
           rarity: 4,
         },
         {
@@ -2008,7 +2111,10 @@ const defaultOptions = {
             en: 'Queen\'s Guard',
             ja: 'クイーンズ・ガード',
           },
-          shortName: 'Guard', // FIX-ME
+          shortName: {
+            en: 'Guard', // FIX-ME
+            ja: 'クイーンズ・ガード', // FIX-ME
+          },
           rarity: 4,
         },
         {
@@ -2017,7 +2123,10 @@ const defaultOptions = {
             en: 'Trinity Avowed',
             ja: 'トリニティ・アヴァウド',
           },
-          shortName: 'Trinity Avowed', // FIX-ME
+          shortName: {
+            en: 'Trinity Avowed', // FIX-ME
+            ja: 'トリニティ・アヴァウド', // FIX-ME
+          },
           rarity: 4,
         },
         {
@@ -2026,7 +2135,10 @@ const defaultOptions = {
             en: 'Save the Queen',
             ja: 'セイブ・ザ・クイーン',
           },
-          shortName: 'Save the Queen', // FIX-ME
+          shortName: {
+            en: 'Save the Queen', // FIX-ME
+            ja: 'セイブ・ザ・クイーン', // FIX-ME
+          },
           rarity: 5,
         },
       ],
@@ -3810,7 +3922,7 @@ class EurekaTracker {
     if (this.zoneInfo.treatNMsAsSkirmishes && this.options.EnrichedSTQ && nm.fieldNotes) {
       for (const note of fieldNotesList) {
         if (note.id === nm.fieldNotes)
-          enriched.innerHTML = `#${note.id}: ${note.shortName} ${gRarityIcon.repeat(note.rarity)}`;
+          enriched.innerHTML = `#${note.id}: ${this.TransByDispLang(note.shortName)} ${gRarityIcon.repeat(note.rarity)}`;
       }
     }
 
