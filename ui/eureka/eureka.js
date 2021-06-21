@@ -1958,8 +1958,8 @@ const defaultOptions = {
           },
           shortName: {
             en: 'Albeleo',
-            ja: 'サドル・レム・アルビレオ',
-            ko: '사드르 렘 알비레오',
+            ja: 'サドル・レム・アルビレオ', // FIX-ME
+            ko: '사드르 렘 알비레오', // FIX-ME
           },
           rarity: 3,
         },
@@ -1986,8 +1986,8 @@ const defaultOptions = {
           },
           shortName: {
             en: 'Menenius', // FIX-ME
-            ja: 'メネニウス・サス・ラナトゥス',
-            ko: '메네니우스 사스 라나투스',
+            ja: 'メネニウス・サス・ラナトゥス', // FIX-ME
+            ko: '메네니우스 사스 라나투스', // FIX-ME
           },
           rarity: 3,
         },
@@ -2000,8 +2000,8 @@ const defaultOptions = {
           },
           shortName: {
             en: 'Misija', // FIX-ME
-            ja: 'ミーシィヤ・ヴォートヤシュ',
-            ko: '미시야 보트야쉬',
+            ja: 'ミーシィヤ・ヴォートヤシュ', // FIX-ME
+            ko: '미시야 보트야쉬', // FIX-ME
           },
           rarity: 3,
         },
