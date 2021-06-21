@@ -1741,104 +1741,292 @@ const defaultOptions = {
       fieldNotes: [
         {
           id: 1,
-          name: 'Bajsaljen Ulgasch',
+          name: {
+            en: 'Bajsaljen Ulgasch',
+            ja: 'バイシャーエン・ウルガッシュ',
+            ko: '바이샤엔 울가쉬',
+          },
           shortName: 'Bajsalen',
           rarity: 1,
         },
         {
           id: 2,
-          name: 'Marsak Apella',
+          name: {
+            en: 'Marsak Apella',
+            ja: 'マルシャーク・アペッラ',
+            ko: '마르샤크 아펠라',
+          },
           shortName: 'Marsak',
           rarity: 1,
         },
         {
           id: 3,
-          name: 'Xeven Scanasch',
+          name: {
+            en: 'Xeven Scanasch',
+            ja: 'ゼヴェン・スヴァナシュ',
+            ko: '제벤 스바나쉬',
+          },
           shortName: 'Xeven',
           rarity: 1,
         },
         {
           id: 4,
-          name: 'Isolde Covey',
+          name: {
+            en: 'Isolde Covey',
+            ja: 'イソルデ・コヴィー',
+            ko: '이솔데 코비',
+          },
           shortName: 'Isolde',
           rarity: 2,
         },
         {
           id: 5,
-          name: 'Stanik Alubov',
+          name: {
+            en: 'Stanik Alubov',
+            ja: 'スタニック・アルボフ',
+            ko: '스타니크 알루보프',
+          },
           shortName: 'Stanik',
           rarity: 1,
         },
         {
           id: 6,
-          name: 'Blaz Azetina',
+          name: {
+            en: 'Blaz Azetina',
+            ja: 'ブラズ・アゼティナ',
+            ko: '블라즈 아제티나',
+          },
           shortName: 'Blaz',
           rarity: 3,
         },
         {
           id: 7,
-          name: 'Velibor Azetina',
+          name: {
+            en: 'Velibor Azetina',
+            ja: 'ヴェリボル・アゼティナ',
+            ko: '벨리보르 아제티나',
+          },
           shortName: 'Velibor',
           rarity: 3,
         },
         {
           id: 8,
-          name: 'Aggie Glover',
+          name: {
+            en: 'Aggie Glover',
+            ja: 'アギー・グローヴァー',
+            ko: '애지 글러버',
+          },
           shortName: 'Aggie',
           rarity: 1,
         },
         {
           id: 9,
-          name: 'Llofii pyr Potitus',
+          name: {
+            en: 'Llofii pyr Potitus',
+            ja: 'ロフィー・ピル・ポティトゥス',
+            ko: '로피 피르 포티투스',
+          },
           shortName: 'Llofii',
           rarity: 2,
         },
         {
           id: 10,
-          name: 'Hernais pyr Longus',
+          name: {
+            en: 'Hernais pyr Longus',
+            ja: 'エルネイス・ピル・ロングス',
+            ko: '에르네이스 피르 롱구스',
+          },
           shortName: 'Hernais',
           rarity: 3,
         },
         {
           id: 11,
-          name: 'Dabog aan Inivisch',
+          name: {
+            en: 'Dabog aan Inivisch',
+            ja: 'ダボグ・アン・イニヴァシュ',
+            ko: '다보그 안 이니비쉬',
+          },
           shortName: 'Dabog',
           rarity: 5,
         },
         {
           id: 12,
-          name: 'Dyunbu pyr Potitus',
+          name: {
+            en: 'Dyunbu pyr Potitus',
+            ja: 'ユンブ・ピル・ポティトゥス',
+            ko: '윤부 피르 포티투스',
+          },
           shortName: 'Dyunbu',
           rarity: 4,
         },
         {
           id: 13,
-          name: 'Clarricie quo Priscus',
+          name: {
+            en: 'Clarricie quo Priscus',
+            ja: 'クラリシー・クォ・プリスクス',
+            ko: '클라리시 쿠오 프리스쿠스',
+          },
           shortName: 'Clarricie',
           rarity: 2,
         },
         {
           id: 14,
-          name: 'Sartauvoir quo Soranus',
+          name: {
+            en: 'Sartauvoir quo Soranus',
+            ja: 'サルトヴォアール・クォ・ソラノス',
+            ko: '사르토부아르 쿠오 소라누스',
+          },
           shortName: 'Sartauvoir',
           rarity: 5,
         },
         {
           id: 15,
-          name: 'Sicinius mal Vellutus',
+          name: {
+            en: 'Sicinius mal Vellutus',
+            ja: 'シシニアス・マル・ヴェリュータス',
+            ko: '시시니우스 말 벨루투스',
+          },
           shortName: 'Sicinius',
           rarity: 3,
         },
         {
           id: 16,
-          name: 'Sadr rem Albeleo',
+          name: {
+            en: 'Sadr rem Albeleo',
+            ja: 'サドル・レム・アルビレオ',
+            ko: '사드르 렘 알비레오',
+          },
           shortName: 'Albeleo',
           rarity: 3,
         },
         {
           id: 17,
-          name: 'Lyon rem Helsos',
+          name: {
+            en: 'Lyon rem Helsos',
+            ja: 'ライアン・レム・ヘルソス',
+            ko: '라이언 렘 헬소스',
+          },
           shortName: 'Lyon',
+          rarity: 5,
+        },
+        {
+          id: 18,
+          name: {
+            en: 'Menenius sas Lanatus',
+            ja: 'メネニウス・サス・ラナトゥス',
+            ko: '메네니우스 사스 라나투스',
+          },
+          shortName: 'Menenius', // FIX-ME
+          rarity: 3,
+        },
+        {
+          id: 19,
+          name: {
+            en: 'Misija Votyasch',
+            ja: 'ミーシィヤ・ヴォートヤシュ',
+            ko: '미시야 보트야쉬',
+          },
+          shortName: 'Misija', // FIX-ME
+          rarity: 3,
+        },
+        {
+          id: 20,
+          name: {
+            en: 'Gunnhildr',
+            ja: 'グンヒルド',
+            ko: '군힐드',
+          },
+          shortName: 'Gunnhildr',
+          rarity: 3,
+        },
+        {
+          id: 21,
+          name: {
+            en: 'Lilja Sjasaris',
+            ja: 'リリヤ・シアサリス',
+          },
+          shortName: 'Lilja Sjasaris', // FIX-ME
+          rarity: 3,
+        },
+        {
+          id: 22,
+          name: {
+            en: 'Bwagi Ennze Panca',
+            ja: 'ブワジ・エンゼ・パンチャ',
+          },
+          shortName: 'Bwagi Ennze Panca', // FIX-ME
+          rarity: 3,
+        },
+        {
+          id: 23,
+          name: {
+            en: 'Rostik Liubasch',
+            ja: 'ロスティック・リュバシュ',
+          },
+          shortName: 'Rostik Liubasch', // FIX-ME
+          rarity: 3,
+        },
+        {
+          id: 24,
+          name: {
+            en: 'Mikoto Jinba',
+            ja: 'ミコト・ジンバ',
+          },
+          shortName: 'Mikoto Jinba', // FIX-ME
+          rarity: 3,
+        },
+        {
+          id: 25,
+          name: {
+            en: 'Misija Votyasch',
+            ja: 'ミーシィヤ・ヴォートヤシュ',
+          },
+          shortName: 'Misija Votyasch', // FIX-ME
+          rarity: 3,
+        },
+        {
+          id: 26,
+          name: {
+            en: 'Gunnhildr',
+            ja: 'グンヒルド',
+          },
+          shortName: 'Gunnhildr',
+          rarity: 3,
+        },
+        {
+          id: 27,
+          name: {
+            en: 'Trinity Seeker',
+            ja: 'トリニティ・シーカー',
+          },
+          shortName: 'Seeker', // FIX-ME
+          rarity: 4,
+        },
+        {
+          id: 28,
+          name: {
+            en: 'Queen\'s Guard',
+            ja: 'クイーンズ・ガード',
+          },
+          shortName: 'Guard', // FIX-ME
+          rarity: 4,
+        },
+        {
+          id: 29,
+          name: {
+            en: 'Trinity Avowed',
+            ja: 'トリニティ・アヴァウド',
+          },
+          shortName: 'Trinity Avowed', // FIX-ME
+          rarity: 4,
+        },
+        {
+          id: 30,
+          name: {
+            en: 'Save the Queen',
+            ja: 'セイブ・ザ・クイーン',
+          },
+          shortName: 'Save the Queen', // FIX-ME
           rarity: 5,
         },
       ],
