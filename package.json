@@ -110,10 +110,8 @@
   },
   "dependencies": {
     "@fast-csv/parse": "^4.3.6",
-    "@types/js-yaml": "^4.0.1",
     "argparse": "^1.0.10",
     "inquirer": "^8.1.1",
-    "inquirer-fuzzy-path": "^2.3.0",
-    "js-yaml": "^4.1.0"
+    "inquirer-fuzzy-path": "^2.3.0"
   }
 }
