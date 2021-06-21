@@ -1048,9 +1048,9 @@ class Bars {
     e.detail.logs.forEach((log) => {
       // TODO: only consider this when not in battle.
       if (log[15] === '0') {
-        const r = this.regexes.countdownStartRegex.exec(log);
-        if (r) {
-          const seconds = parseFloat(r.groups.time);
+        const m = this.regexes.countdownStartRegex.exec(log);
+        if (m) {
+          const seconds = parseFloat(m.groups.time);
           this._setPullCountdown(seconds);
           return;
         }
@@ -1063,11 +1063,14 @@ class Bars {
           return;
         }
         if (log[16] === 'C') {
-          const stats = this.regexes.StatsRegex.exec(log).groups;
-          this.skillSpeed = parseInt(stats.skillSpeed);
-          this.spellSpeed = parseInt(stats.spellSpeed);
-          this._updateJobBarGCDs();
-          return;
+          const m = this.regexes.StatsRegex.exec(log);
+          if (m) {
+            const stats = m.groups;
+            this.skillSpeed = parseInt(stats.skillSpeed);
+            this.spellSpeed = parseInt(stats.spellSpeed);
+            this._updateJobBarGCDs();
+            return;
+          }
         }
         if (Util.isCraftingJob(this.job))
           this._onCraftingLog(log);
