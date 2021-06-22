@@ -42,7 +42,7 @@ namespace Cactbot {
     private CactbotEventSource client_;
     private IDataSubscription subscription;
 
-    private static readonly string remoteOpcodeURL = "http://127.0.0.1:8080/FATEOpcodes.json";
+    private static readonly string remoteOpcodeURL = "https://katttails.github.io/TestRepo/FATEOpcodes.json";
 
     bool opcodesLoaded = false;
     private Region OpCodes;
