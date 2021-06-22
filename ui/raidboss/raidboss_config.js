@@ -997,6 +997,7 @@ const templateOptions = {
         en: 'Supported content (latest version)',
         ja: '対応コンテンツ一覧 (最新バージョン)',
         cn: '支持副本一览 (最新版本)',
+        ko: '지원하는 컨텐츠 (릴리즈버전보다 최신)',
       },
       type: 'html',
       html: {
