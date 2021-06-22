@@ -86,12 +86,9 @@ export default {
 
         data.holyTargets = data.holyTargets || [];
         data.holyTargets.push(matches.target);
-        // TEMP workaround for #3156
-        // return true;
-        return data.holyTargets.length === 2;
+        return true;
       },
-      // TEMP workaround for #3156
-      // delaySeconds: 0.3;
+      delaySeconds: 0.3,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
