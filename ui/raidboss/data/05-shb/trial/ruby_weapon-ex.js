@@ -174,26 +174,6 @@ export default {
       response: Responses.stackMarker(),
     },
     {
-      id: 'RubyEx Raven\'s Image',
-      netRegex: NetRegexes.addedCombatantFull({ name: 'Raven\'s Image' }),
-      netRegexDe: NetRegexes.addedCombatantFull({ name: 'Naels Trugbild' }),
-      netRegexFr: NetRegexes.addedCombatantFull({ name: 'Spectre De Nael' }),
-      netRegexJa: NetRegexes.addedCombatantFull({ name: 'ネールの幻影' }),
-      netRegexCn: NetRegexes.addedCombatantFull({ name: '奈尔的幻影' }),
-      netRegexKo: NetRegexes.addedCombatantFull({ name: '넬의 환영' }),
-      run: (data, matches) => {
-        // 112,108 (east)
-        // 88,108 (west)
-        // TODO: it's impossible to do anything with this now,
-        // as there's no actor id in the startsUsing line.  T_T
-        data.ravens = data.ravens || {};
-        if (matches.x < 100)
-          data.ravens.red = matches.id;
-        else
-          data.ravens.blue = matches.id;
-      },
-    },
-    {
       // Enrage can start casting before Ruby Weapon has finished their rotation
       // Give a friendly reminder to pop LB3 if you haven't already
       id: 'RubyEx Optimized Ultima Enrage',
@@ -216,14 +196,34 @@ export default {
       },
     },
     {
+      id: 'RubyEx Raven\'s Image',
+      netRegex: NetRegexes.addedCombatantFull({ name: 'Raven\'s Image' }),
+      netRegexDe: NetRegexes.addedCombatantFull({ name: 'Naels Trugbild' }),
+      netRegexFr: NetRegexes.addedCombatantFull({ name: 'Spectre De Nael' }),
+      netRegexJa: NetRegexes.addedCombatantFull({ name: 'ネールの幻影' }),
+      netRegexCn: NetRegexes.addedCombatantFull({ name: '奈尔的幻影' }),
+      netRegexKo: NetRegexes.addedCombatantFull({ name: '넬의 환영' }),
+      run: (data, matches) => {
+        // 112,108 (east)
+        // 88,108 (west)
+        // TODO: it's impossible to do anything with this now,
+        // as there's no actor id in the startsUsing line.  T_T
+        data.ravens = data.ravens || {};
+        if (matches.x < 100)
+          data.ravens.red = matches.id;
+        else
+          data.ravens.blue = matches.id;
+      },
+    },
+    {
       id: 'RubyEx Pall of Rage',
       netRegex: NetRegexes.gainsEffect({ effectId: '8A2' }),
       infoText: (data, matches, output) => {
-        if (data.me !== matches.target)
-          return;
-        return output.text();
+        if (data.me === matches.target)
+          return output.text();
       },
       run: (data, matches) => {
+        // data.colors is the color of the add you are attacking (this debuff is red).
         data.colors = data.colors || {};
         data.colors[matches.target] = 'blue';
       },
@@ -242,11 +242,11 @@ export default {
       id: 'RubyEx Pall of Grief',
       netRegex: NetRegexes.gainsEffect({ effectId: '8A3' }),
       infoText: (data, matches, output) => {
-        if (data.me !== matches.target)
-          return;
-        return output.text();
+        if (data.me === matches.target)
+          return output.text();
       },
       run: (data, matches) => {
+        // data.colors is the color of the add you are attacking (this debuff is blue).
         data.colors = data.colors || {};
         data.colors[matches.target] = 'red';
       },
@@ -404,9 +404,6 @@ export default {
       netRegexCn: NetRegexes.ability({ source: '红宝石神兵', id: '4AFC', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '루비 웨폰', id: '4AFC', capture: false }),
       preRun: (data) => {
-        data.colors = data.colors || {};
-        for (const name in data.colors)
-          data.colors[name] = data.colors[name] === 'red' ? 'blue' : 'red';
         data.ravens = data.ravens || {};
 
         const tmp = data.ravens.red;
@@ -419,7 +416,7 @@ export default {
         // TODO: it'd be nice to call out which raven was alive?
         if (data.ravenDead)
           return;
-        if (data.colors[data.me] === 'blue')
+        if (data.colors[data.me] === 'red')
           return output.attackRedEast();
 
         return output.attackBlueWest();
