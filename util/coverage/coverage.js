@@ -209,7 +209,7 @@ const miscStrings = {
   },
   // Description about release and latest version differences.
   description: {
-    en: 'This list contains contents that are not yet included in the latest cactbot release version.<br>So, you may see some contents are not covered by the release version although this list says cactbot covers that content.',
+    en: 'This list may contain content that is in development and is not yet included in the latest cactbot release. Anything that is listed as covered here will be included in the next release of cactbot.  If you are using the quisquous.github.io version as the url for your overlays, this list will be up to date.',
     ja: 'このリストは最新バージョンに公開されていないコンテンツを含まれています。<br>そのため、リストに含まれているコンテンツは実際に公開されているリリースに存在はしないかもしれぬことをご理解してください。',
     cn: '该列表中可能存在未发布在cactbot最新发行版中的更新内容。<br>也就是说，即便某些副本支持在列表中已显示为支持状态，也可能暂未存在于您下载的版本中。',
     ko: '이 목록에는 아직 cactbot 최신 릴리즈에 포함되지 않은 개발 버전이 포함되어 있습니다.<br>따라서, 이 목록에는 지원한다고 표시되어 있음에도 릴리즈 버전에서는 지원하지 않는 컨텐츠가 있을 수 있습니다.',
