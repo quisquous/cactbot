@@ -4193,10 +4193,16 @@ class EurekaTracker {
     // Changes names' length depending on users options
     // If no strings are available, the english short ones will be the default ones
     if (this.zoneInfo.treatNMsAsSkirmishes) {
-      if (this.options.CompleteNamesSTQ)
+      if (this.options.CompleteNamesSTQ) {
         name.innerText = this.TransByDispLang(nm.label);
-      if (!name.innerText)
-        name.innerText = this.TransByDispLang(nm.shortLabel);
+      } else {
+        const shortLabel = nm.shortLabel[this.DisplayLanguage];
+        if (shortLabel !== undefined)
+          name.innerText = shortLabel;
+        // If the short label is not set, fall back to the full label.
+        else
+          name.innerText = this.TransByDispLang(nm.label);
+      }
     } else {
       name.innerText = this.TransByDispLang(nm.label);
     }
