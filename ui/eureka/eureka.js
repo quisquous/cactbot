@@ -2076,7 +2076,7 @@ const defaultOptions = {
           },
           shortName: {
             en: 'Misija Votyasch', // FIX-ME
-            ja: 'ミーシィヤ・ヴォートヤシュ', // FIX-ME
+            ja: 'ミーシィヤ',
             ko: '미시야 보트야쉬',
           },
           rarity: 3,
