@@ -2090,7 +2090,7 @@ const defaultOptions = {
           },
           shortName: {
             en: 'Gunnhildr',
-            ja: 'グンヒルド', // FIX-ME
+            ja: 'グンヒルド',
             ko: '군힐드',
           },
           rarity: 3,
