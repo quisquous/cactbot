@@ -3623,7 +3623,7 @@ class EurekaTracker {
     if (this.zoneInfo.treatNMsAsSkirmishes && this.options.EnrichedSTQ && nm.fieldNotes) {
       for (const note of fieldNotesList) {
         if (typeof nm.fieldNotes === 'string')
-          let nmNote = [note];
+          nmNote = [note];
         if (note.id in nmNote)
           enriched.innerHTML = `#${note.id}: ${note.shortName} ${gRarityIcon.repeat(note.rarity)}`;
       }
