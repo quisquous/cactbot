@@ -2013,6 +2013,7 @@ const defaultOptions = {
             cn: '施恩布德的术师队',
             ko: '은덕의 술사들',
           },
+          fieldNotes: 12,
           shortLabel: {
             en: 'Heal',
             fr: 'Miséricorde',
@@ -2137,7 +2138,7 @@ const defaultOptions = {
             cn: '进攻野营地',
             ko: '야영지 선제 공격',
           },
-          fieldNotes: 6,
+          fieldNotes: [6, 12],
           shortLabel: {
             en: 'Camping',
             fr: 'Idéaux',
@@ -3621,7 +3622,9 @@ class EurekaTracker {
     // Adds field note drops, name, id & rarity of those
     if (this.zoneInfo.treatNMsAsSkirmishes && this.options.EnrichedSTQ && nm.fieldNotes) {
       for (const note of fieldNotesList) {
-        if (note.id === nm.fieldNotes)
+        if (typeof nm.fieldNotes === 'string')
+          nmNote = [note];
+        if (note.id in nmNote)
           enriched.innerHTML = `#${note.id}: ${note.shortName} ${gRarityIcon.repeat(note.rarity)}`;
       }
     }
