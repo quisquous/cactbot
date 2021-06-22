@@ -256,7 +256,7 @@ UserConfig.registerOptions('jobs', {
         ko: {
           '비활성화': 'disabled',
           '카운트 다운이 0초일 때': 'expired',
-          '카운트 다운이 0초에 가까워 질때': 'threshold',
+          '리필하기 적절한 때에 알려주기': 'threshold',
         },
       },
       default: 'threshold',
