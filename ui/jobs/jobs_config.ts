@@ -238,7 +238,7 @@ UserConfig.registerOptions('jobs', {
           'Wenn der Countdown nahe 0 ist.': 'threshold',
         },
       },
-      default: 'expired',
+      default: 'threshold',
     },
   ],
 });
