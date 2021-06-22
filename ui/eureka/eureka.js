@@ -3044,98 +3044,162 @@ const defaultOptions = {
       fieldNotes: [
         {
           id: 31,
-          name: 'Atori Moribe',
-          shortName: 'Atori',
+          name: {
+            en: 'Atori Moribe',
+          },
+          shortName: {
+            en: 'Atori',
+          },
           rarity: 1,
         },
         {
           id: 32,
-          name: 'Kosyu',
-          shortName: 'Kosyu',
+          name: {
+            en: 'Kosyu',
+          },
+          shortName: {
+            en: 'Kosyu',
+          },
           rarity: 2,
         },
         {
           id: 33,
-          name: 'Oboro Torioi',
-          shortName: 'Oboro',
+          name: {
+            en: 'Oboro Torioi',
+          },
+          shortName: {
+            en: 'Oboro',
+          },
           rarity: 1,
         },
         {
           id: 34,
-          name: 'Tsubame',
-          shortName: 'Tsubame Oshidari',
+          name: {
+            en: 'Tsubame',
+          },
+          shortName: {
+            en: 'Tsubame Oshidari',
+          },
           rarity: 3,
         },
         {
           id: 35,
-          name: 'Meryall Miller',
-          shortName: 'Meryall',
+          name: {
+            en: 'Meryall Miller',
+          },
+          shortName: {
+            en: 'Meryall',
+          },
           rarity: 2,
         },
         {
           id: 36,
-          name: 'Lovro aan Slanasch',
-          shortName: 'Lovro',
+          name: {
+            en: 'Lovro aan Slanasch',
+          },
+          shortName: {
+            en: 'Lovro',
+          },
           rarity: 3,
         },
         {
           id: 37,
-          name: 'Llofii pyr Potitus',
-          shortName: 'Llofii',
+          name: {
+            en: 'Llofii pyr Potitus',
+          },
+          shortName: {
+            en: 'Llofii',
+          },
           rarity: 4,
         },
         {
           id: 38,
-          name: 'Fabineau quo Soranus',
-          shortName: 'Fabineau',
+          name: {
+            en: 'Fabineau quo Soranus',
+          },
+          shortName: {
+            en: 'Fabineau',
+          },
           rarity: 2,
         },
         {
           id: 39,
-          name: 'Yamatsumi pyr Urabe',
-          shortName: 'Yamatsumi',
+          name: {
+            en: 'Yamatsumi pyr Urabe',
+          },
+          shortName: {
+            en: 'Yamatsumi',
+          },
           rarity: 3,
         },
         {
           id: 40,
-          name: 'Pagaga quo Vochstein',
-          shortName: 'Pagaga',
+          name: {
+            en: 'Pagaga quo Vochstein',
+          },
+          shortName: {
+            en: 'Pagaga',
+          },
           rarity: 1,
         },
         {
           id: 41,
-          name: 'Daguza oen Sus',
-          shortName: 'Daguza',
+          name: {
+            en: 'Daguza oen Sus',
+          },
+          shortName: {
+            en: 'Daguza',
+          },
           rarity: 1,
         },
         {
           id: 42,
-          name: 'Gilbrisbert quo Buteo',
-          shortName: 'Gilbrisbert',
+          name: {
+            en: 'Gilbrisbert quo Buteo',
+          },
+          shortName: {
+            en: 'Gilbrisbert',
+          },
           rarity: 2,
         },
         {
           id: 43,
-          name: 'Dabog aan Inivisch',
-          shortName: 'Dabog',
+          name: {
+            en: 'Dabog aan Inivisch',
+          },
+          shortName: {
+            en: 'Dabog',
+          },
           rarity: 5,
         },
         {
           id: 44,
-          name: 'Lyon quo Helsos',
-          shortName: 'Lyon',
+          name: {
+            en: 'Lyon quo Helsos',
+          },
+          shortName: {
+            en: 'Lyon',
+          },
           rarity: 5,
         },
         {
           id: 45,
-          name: 'Menenius sas Lanatus',
-          shortName: 'Menenius',
+          name: {
+            en: 'Menenius sas Lanatus',
+          },
+          shortName: {
+            en: 'Menenius',
+          },
           rarity: 5,
         },
         {
           id: 46,
-          name: 'Diablo',
-          shortName: 'Diablo',
+          name: {
+            en: 'Diablo',
+          },
+          shortName: {
+            en: 'Diablo',
+          },
           rarity: 3,
         },
       ],
