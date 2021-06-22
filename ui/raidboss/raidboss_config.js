@@ -555,7 +555,7 @@ class RaidbossConfigurator {
           input.type = 'text';
           input.step = 'any';
           if (typeof trig.durationSeconds === 'number')
-            input.placeholder = `${trig.durationSeconds} ${this.base.translate(kMiscTranslations.valueDefault)}`;
+            input.placeholder = `${trig.durationSeconds}`;
           else
             input.placeholder = this.base.translate(kMiscTranslations.valueDefault);
           input.value = this.base.getOption('raidboss', 'triggers', trig.id, optionKey, '');
