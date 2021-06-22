@@ -2103,7 +2103,7 @@ const defaultOptions = {
           },
           shortName: {
             en: 'Seeker', // FIX-ME
-            ja: 'トリニティ・シーカー', // FIX-ME
+            ja: 'シーカー',
           },
           rarity: 4,
         },
