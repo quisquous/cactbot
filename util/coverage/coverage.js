@@ -209,7 +209,7 @@ const miscStrings = {
   },
   // Description about release and latest version differences.
   description: {
-    en: 'This list contains contents that are not included in the cactbot release version. So, you may see some contents are not covered by the release version although this list says cactbot covers that content.',
+    en: 'This list contains contents that are not yet included in the latest cactbot release version. So, you may see some contents are not covered by the release version although this list says cactbot covers that content.',
     ko: '이 목록에는 아직 cactbot 최신 릴리즈에 포함되지 않은 개발 버전이 포함되어 있습니다. 따라서, 이 목록에는 지원한다고 표시되어 있음에도 릴리즈 버전에서는 지원하지 않는 컨텐츠가 있을 수 있습니다.',
   },
   // Warning when generator hasn't been run.
