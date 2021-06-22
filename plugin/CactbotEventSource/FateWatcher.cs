@@ -7,12 +7,45 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
 using System.Threading;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace Cactbot {
+  //Converts uints to hex formatted strings and vice versa
+  public sealed class HexStringJsonConverter : JsonConverter
+  {
+    public override bool CanConvert(Type objectType)
+    {
+      return typeof(uint).Equals(objectType);
+    }
+
+    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    {
+      writer.WriteValue($"0x{value:x}");
+    }
+
+    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    {
+      if (reader.ValueType.FullName == typeof(string).FullName)
+      {
+        string str = (string)reader.Value;
+        if (str == null || !str.StartsWith("0x"))
+          throw new JsonSerializationException();
+        return Convert.ToUInt32(str.Substring("0x".Length), 16);
+      }
+      else
+        throw new JsonSerializationException();
+    }
+  }
+
   public class FateWatcher {
     private CactbotEventSource client_;
-    private string region_;
     private IDataSubscription subscription;
+
+    private static readonly string remoteOpcodeURL = "http://127.0.0.1:8080/FATEOpcodes.json";
+
+    bool opcodesLoaded = false;
+    private Region OpCodes;
 
     // Fate start
     // param1: fateID
@@ -24,23 +57,33 @@ namespace Cactbot {
     // Fate update
     // param1: fateID
     // param2: progress (0-100)
-    private struct AC143OPCodes {
-      public AC143OPCodes(int add_, int remove_, int update_) { this.add = add_; this.remove = remove_; this.update = update_; }
-      public int add;
-      public int remove;
-      public int update;
-    };
-    private static readonly AC143OPCodes ac143_v5_2 = new AC143OPCodes(
-      0x935,
-      0x936,
-      0x93E
-    );
 
-    private struct CEDirectorOPCodes {
-      public CEDirectorOPCodes(int size_, int opcode_) { this.size = size_; this.opcode = opcode_; }
-      public int size;
-      public int opcode;
+    public struct AC143Category {
+      [JsonConverter(typeof(HexStringJsonConverter))]
+      public uint add;
+      [JsonConverter(typeof(HexStringJsonConverter))]
+      public uint remove;
+      [JsonConverter(typeof(HexStringJsonConverter))]
+      public uint update;
     }
+
+    public struct CEOpcode {
+      [JsonConverter(typeof(HexStringJsonConverter))]
+      public uint opcode;
+      public uint size;
+    }
+
+    public struct Region {
+      public AC143Category ac143category;
+      public CEOpcode ce;
+    }
+
+    public struct CEOpcodeList {
+      public Region intl;
+      public Region cn;
+      public Region ko;
+    }
+
     //
     // CE Opcode History
     // Intl
@@ -67,38 +110,6 @@ namespace Cactbot {
     // v5.4             0x1d1
     // v5.41            0x341
 
-    private static readonly CEDirectorOPCodes cedirector_ko = new CEDirectorOPCodes(
-      0x30,
-      0x341
-    );
-
-    private static readonly CEDirectorOPCodes cedirector_cn = new CEDirectorOPCodes(
-      0x30,
-      0x009e
-    );
-
-    private static readonly CEDirectorOPCodes cedirector_intl = new CEDirectorOPCodes(
-      0x30,
-      0x248
-    );
-
-    private struct ActorControl143{
-      public ActorControl143(Type messagetype_, Assembly assembly_) {
-        packetType = assembly_.GetType("Machina.FFXIV.Headers.Server_ActorControl143");
-        size = Marshal.SizeOf(packetType);
-        categoryOffset = GetOffset(packetType, "category");
-        param1Offset = GetOffset(packetType, "param1");
-        param2Offset = GetOffset(packetType, "param2");
-        opCode = GetOpcode(messagetype_, "ActorControl143");
-      }
-      public Type packetType;
-      public int size;
-      public int categoryOffset;
-      public int param1Offset;
-      public int param2Offset;
-      public int opCode;
-    };
-
     [Serializable]
     [StructLayout(LayoutKind.Explicit)]
     public struct CEDirectorData {
@@ -119,8 +130,24 @@ namespace Cactbot {
 
     private static SemaphoreSlim fateSemaphore;
     private static SemaphoreSlim ceSemaphore;
-    private Dictionary<string, AC143OPCodes> ac143opcodes = null;
-    private Dictionary<string, CEDirectorOPCodes> cedirectoropcodes = null;
+
+    //ActorControl143 parameters are read from FFXIV_ACT_Plugin
+    private struct ActorControl143 {
+      public ActorControl143(Type messagetype_, Assembly assembly_) {
+        packetType = assembly_.GetType("Machina.FFXIV.Headers.Server_ActorControl143");
+        size = Marshal.SizeOf(packetType);
+        categoryOffset = GetOffset(packetType, "category");
+        param1Offset = GetOffset(packetType, "param1");
+        param2Offset = GetOffset(packetType, "param2");
+        opCode = GetOpcode(messagetype_, "ActorControl143");
+      }
+      public Type packetType;
+      public int size;
+      public int categoryOffset;
+      public int param1Offset;
+      public int param2Offset;
+      public int opCode;
+    };
 
     private Type MessageType = null;
     private Type messageHeader = null;
@@ -132,26 +159,40 @@ namespace Cactbot {
     private static Dictionary<int, int> fates;
     private static Dictionary<int, CEDirectorData> ces;
 
+    private static bool GetRemoteOpcodes(out CEOpcodeList OpCodeList) {
+      using (HttpClient http = new HttpClient()) {
+        string json = null;
+        var opcodeTask = http.GetStringAsync(remoteOpcodeURL);
+        json = opcodeTask.GetAwaiter().GetResult();
+
+        OpCodeList = JsonConvert.DeserializeObject<CEOpcodeList>(json);
+        return true;
+      }
+    }
+
     public FateWatcher(CactbotEventSource client, string language) {
       client_ = client;
+      CEOpcodeList OpCodeList = new CEOpcodeList();
+
+      try {
+        opcodesLoaded = GetRemoteOpcodes(out OpCodeList);
+      } catch (HttpRequestException) {
+        client_.LogError("Error fetching remote opcodes, FATE/CE detection will not work for this session.");
+
+        return;
+      }
+
       if (language == "ko")
-        region_ = "ko";
+        OpCodes = OpCodeList.ko;
       else if (language == "cn")
-        region_ = "cn";
+        OpCodes = OpCodeList.cn;
       else
-        region_ = "intl";
+        OpCodes = OpCodeList.intl;
+
+      client_.LogInfo("Successfully fetched remote opcodes.");
 
       fateSemaphore = new SemaphoreSlim(0, 1);
       ceSemaphore = new SemaphoreSlim(0, 1);
-      ac143opcodes = new Dictionary<string, AC143OPCodes>();
-      ac143opcodes.Add("ko", ac143_v5_2);
-      ac143opcodes.Add("cn", ac143_v5_2);
-      ac143opcodes.Add("intl", ac143_v5_2);
-
-      cedirectoropcodes = new Dictionary<string, CEDirectorOPCodes>();
-      cedirectoropcodes.Add("ko", cedirector_ko);
-      cedirectoropcodes.Add("cn", cedirector_cn);
-      cedirectoropcodes.Add("intl", cedirector_intl);
 
       fates = new Dictionary<int, int>();
       ces = new Dictionary<int, CEDirectorData>();
@@ -175,13 +216,13 @@ namespace Cactbot {
     }
 
     public void Start() {
-      if (subscription != null) {
+      if (subscription != null && opcodesLoaded == true) {
         subscription.NetworkReceived += new NetworkReceivedDelegate(MessageReceived);
       }
     }
 
     public void Stop() {
-      if (subscription != null)
+      if (subscription != null && opcodesLoaded == true)
         subscription.NetworkReceived -= new NetworkReceivedDelegate(MessageReceived);
     }
 
@@ -230,7 +271,7 @@ namespace Cactbot {
     }
 
     private unsafe void MessageReceived(string id, long epoch, byte[] message) {
-      if (message.Length < actorControl143.size && message.Length < cedirectoropcodes[region_].size)
+      if (message.Length < actorControl143.size && message.Length < OpCodes.ce.size)
         return;
 
       fixed (byte* buffer = message) {
@@ -238,11 +279,9 @@ namespace Cactbot {
           ProcessActorControl143(buffer, message);
           return;
         }
-        if (cedirectoropcodes.ContainsKey(region_)) {
-          if (*(ushort*)&buffer[messageTypeOffset] == cedirectoropcodes[region_].opcode) {
-            ProcessCEDirector(buffer, message);
-            return;
-          }
+        if (*(ushort*)&buffer[messageTypeOffset] == OpCodes.ce.opcode) {
+          ProcessCEDirector(buffer, message);
+          return;
         }
       }
     }
@@ -252,11 +291,11 @@ namespace Cactbot {
 
       fateSemaphore.WaitAsync();
       try {
-        if (a == ac143opcodes[region_].add) {
+        if (a == OpCodes.ac143category.add) {
           AddFate(*(int*)&buffer[actorControl143.param1Offset]);
-        } else if (a == ac143opcodes[region_].remove) {
+        } else if (a == OpCodes.ac143category.remove) {
           RemoveFate(*(int*)&buffer[actorControl143.param1Offset]);
-        } else if (a == ac143opcodes[region_].update) {
+        } else if (a == OpCodes.ac143category.update) {
           int param1 = *(int*)&buffer[actorControl143.param1Offset];
           int param2 = *(int*)&buffer[actorControl143.param2Offset];
           if (!fates.ContainsKey(param1)) {
@@ -316,10 +355,12 @@ namespace Cactbot {
     }
 
     public void RemoveAndClearCEs() {
-      foreach (int ceKey in ces.Keys) {
-        client_.DoCEEvent(new JSEvents.CEEvent("remove", JObject.FromObject(ces[ceKey])));
+      if (ces != null) {
+        foreach (int ceKey in ces.Keys) {
+          client_.DoCEEvent(new JSEvents.CEEvent("remove", JObject.FromObject(ces[ceKey])));
+        }
+        ces.Clear();
       }
-      ces.Clear();
     }
 
     private void AddFate(int fateID) {
@@ -342,10 +383,12 @@ namespace Cactbot {
     }
 
     public void RemoveAndClearFates() {
-      foreach (int fateID in fates.Keys) {
-        client_.DoFateEvent(new JSEvents.FateEvent("remove", fateID, fates[fateID]));
+      if (fates != null) {
+        foreach (int fateID in fates.Keys) {
+          client_.DoFateEvent(new JSEvents.FateEvent("remove", fateID, fates[fateID]));
+        }
+        fates.Clear();
       }
-      fates.Clear();
     }
   }
 }
