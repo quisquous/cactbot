@@ -4,13 +4,17 @@ import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
+// TODO: White Flame (separate from boss, tankbusters)
+// TODO: dragon add
+// TODO: other adds
+
 // O3S - Deltascape 3.0 Savage
 export default {
   zoneId: ZoneId.DeltascapeV30Savage,
   timelineFile: 'o3s.txt',
   triggers: [
     {
-      id: 'O3S Phase Counter',
+      id: 'O3S Panel Swap Phase Counter',
       netRegex: NetRegexes.startsUsing({ id: '2304', source: 'Halicarnassus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2304', source: 'Halikarnassos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2304', source: 'Halicarnasse', capture: false }),
@@ -21,6 +25,29 @@ export default {
         data.phase = (data.phase || 0) + 1;
         delete data.seenHolyThisPhase;
       },
+    },
+    {
+      id: 'O3S Critical Hit',
+      netRegex: NetRegexes.startsUsing({ id: '22EB', source: 'Halicarnassus' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '22EB', source: 'Halikarnassos' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '22EB', source: 'Halicarnasse' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '22EB', source: 'ハリカルナッソス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '22EB', source: '哈利卡纳苏斯' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '22EB', source: '할리카르나소스' }),
+      condition: Conditions.caresAboutPhysical(),
+      // "Use Awareness!! <se.6>"
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'O3S Dimensional Wave',
+      netRegex: NetRegexes.startsUsing({ id: '22F6', source: 'Halicarnassus', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '22F6', source: 'Halikarnassos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '22F6', source: 'Halicarnasse', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '22F6', source: 'ハリカルナッソス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '22F6', source: '哈利卡纳苏斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '22F6', source: '할리카르나소스', capture: false }),
+      condition: Conditions.caresAboutMagical(),
+      response: Responses.aoe(),
     },
     {
       // Look for spellblade holy so that the last noisy waltz
@@ -36,6 +63,7 @@ export default {
         // In case something went awry, clean up any holy targets
         // so the next spellblade holy can start afresh.
         delete data.holyTargets;
+        delete data.holyTethers;
         data.seenHolyThisPhase = true;
       },
     },
@@ -43,6 +71,7 @@ export default {
       // Normal spellblade holy with tethers and one stack point.
       // "64" is a stack marker.  "65" is the prey marker.
       // The debuff order in the logs is:
+      //   (0) tethers go out
       //   (1) stack marker (tethered to #2)
       //   (2) prey marker (tethered to #1)
       //   (3) prey marker (tethered to #4)
@@ -57,49 +86,57 @@ export default {
 
         data.holyTargets = data.holyTargets || [];
         data.holyTargets.push(matches.target);
-        return data.holyTargets.length === 4;
+        // TEMP workaround for #3156
+        // return true;
+        return data.holyTargets.length === 2;
       },
-      alarmText: (data, _matches, output) => {
-        if (data.holyTargets[1] !== data.me)
-          return '';
-        return output.stackOnYou();
-      },
-      alertText: (data, _matches, output) => {
-        if (data.holyTargets[1] === data.me)
+      // TEMP workaround for #3156
+      // delaySeconds: 0.3;
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          othersStackOnHoly: {
+            en: '(others stack on ${player})',
+            de: 'andere stacken auf ${player}',
+            fr: 'Les autres se packent sur ${player}',
+            ja: '他は${player}と頭割り',
+            cn: '其他分摊${player}',
+            ko: '${player} 다른 쉐어징',
+          },
+          getOut: {
+            en: 'Get out',
+            de: 'Raus da',
+            fr: 'À l\'extérieur',
+            ja: '出て',
+            cn: '出去',
+            ko: '밖으로',
+          },
+          stackOnHoly: Outputs.stackOnPlayer,
+          stackOnYou: Outputs.stackOnYou,
+        };
+
+        // If already run, abort.
+        if (!data.holyTargets || data.holyTargets.length < 2)
           return;
 
-        for (let i = 0; i < 4; ++i) {
-          if (data.holyTargets[i] === data.me)
-            return output.getOut();
+        const stackTarget = data.holyTargets[1];
+
+        const ret = {};
+        if (data.me === stackTarget) {
+          ret.alarmText = output.stackOnYou();
+        } else {
+          if (data.holyTargets.includes(data.me)) {
+            ret.alertText = output.getOut();
+            ret.infoText = output.othersStackOnHoly({ player: data.ShortName(stackTarget) });
+          } else {
+            ret.infoText = output.stackOnHoly({ player: data.ShortName(stackTarget) });
+          }
         }
-        return output.stackOnHoly({ player: data.holyTargets[1] });
+        return ret;
       },
-      infoText: (data, _matches, output) => {
-        for (let i = 0; i < 4; ++i) {
-          if (data.holyTargets[i] === data.me)
-            return output.othersStackOnHoly({ holyTargets: data.holyTargets[1] });
-        }
-      },
-      run: (data) => delete data.holyTargets,
-      outputStrings: {
-        othersStackOnHoly: {
-          en: 'others stack on ${holyTargets}',
-          de: 'andere stacken auf ${holyTargets}',
-          fr: 'Les autres se packent sur ${holyTargets}',
-          ja: '他は${holyTargets}と頭割り',
-          cn: '其他分摊${holyTargets}',
-          ko: '${holyTargets} 다른 쉐어징',
-        },
-        getOut: {
-          en: 'Get out',
-          de: 'Raus da',
-          fr: 'À l\'extérieur',
-          ja: '出て',
-          cn: '出去',
-          ko: '밖으로',
-        },
-        stackOnHoly: Outputs.stackOnPlayer,
-        stackOnYou: Outputs.stackOnYou,
+      run: (data) => {
+        delete data.holyTargets;
+        delete data.holyTethers;
       },
     },
     {
@@ -284,7 +321,7 @@ export default {
       netRegexJa: NetRegexes.startsUsing({ id: '22F9', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '22F9', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '22F9', source: '할리카르나소스', capture: false }),
-      response: Responses.getTogether(),
+      response: Responses.doritoStack(),
     },
     {
       id: 'O3S Squelch',
@@ -313,7 +350,7 @@ export default {
       tts: (_data, _matches, output) => output.tts(),
       outputStrings: {
         text: {
-          en: 'The Queen\'s Waltz: Books',
+          en: 'Queen\'s Waltz: Books',
           de: 'Tanz der Königin: Bücher',
           fr: 'Danse de la reine : Livres',
           ja: '女王の舞い: 本',
@@ -342,7 +379,7 @@ export default {
       tts: (_data, _matches, output) => output.tts(),
       outputStrings: {
         text: {
-          en: 'The Queen\'s Waltz: Clock',
+          en: 'Queen\'s Waltz: Clock',
           de: 'Tanz der Königin: Uhr',
           fr: 'Danse de la reine : Position',
           ja: '女王の舞い: 散開',
@@ -371,7 +408,7 @@ export default {
       tts: (_data, _matches, output) => output.tts(),
       outputStrings: {
         text: {
-          en: 'The Queen\'s Waltz: Crystal Square',
+          en: 'Queen\'s Waltz: Crystal Square',
           de: 'Tanz der Königin: Kristallfeld',
           fr: 'Danse de la reine : Carré de cristal',
           ja: '女王の舞い: 床',
@@ -400,7 +437,7 @@ export default {
       tts: (_data, _matches, output) => output.tts(),
       outputStrings: {
         text: {
-          en: 'The Queen\'s Waltz: Tethers',
+          en: 'Queen\'s Waltz: Tethers',
           de: 'Tanz der Königin: Ranken',
           fr: 'Danse de la reine : Liens',
           ja: '女王の舞い: 茨',
@@ -414,6 +451,21 @@ export default {
           ja: '茨を引く',
           cn: '扯线',
           ko: '가시',
+        },
+      },
+    },
+    {
+      id: 'O3S The Queen\'s Waltz: Tethers You',
+      netRegex: NetRegexes.tether({ id: '0012' }),
+      infoText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.breakTether({ player: data.ShortName(matches.source) });
+        else if (data.me === matches.source)
+          return output.breakTether({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        breakTether: {
+          en: 'Break Tether (${player})',
         },
       },
     },
