@@ -217,7 +217,7 @@ UserConfig.registerOptions('jobs', {
         de: 'Dot/etc. boxen blinken bis zu n mal wenn im Kampf und dot ist nicht aktiv. (-1: deaktiviert, 0: ohne Limit)',
         ja: '戦闘中でDoT/バフが切ったらprocボックスをｎ回点滅させる(-1：無効、0：無限回数)',
         cn: '战斗中模块监控的重要DoT/Buff中断时令对应计时器闪烁N次（-1：禁用，0：无限闪烁）',
-        ko: '도트가 꺼지면 프록 박스를 n번 깜빡하게 합니다. (-1: 비활성화, 0: 무한)',
+        ko: '도트나 버프가 꺼지면 프록 박스를 n번 깜빡하게 합니다. (-1: 비활성화, 0: 무한)',
       },
       type: 'integer',
       default: 5,
@@ -229,7 +229,7 @@ UserConfig.registerOptions('jobs', {
         de: 'Spiele einen Alarm Sound wenn eine dot/etc. box im Kampf inaktiv wird.',
         ja: '戦闘中でDoT/バフが切ったら音を鳴らす',
         cn: '战斗中模块监控的重要DoT/Buff中断时播放提示音',
-        ko: '도트가 꺼지면 소리로 알림을 줍니다.',
+        ko: '도트나 버프가 꺼지면 소리로 알림을 줍니다.',
       },
       type: 'select',
       options: {
