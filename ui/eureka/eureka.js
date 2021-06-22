@@ -2139,7 +2139,7 @@ const defaultOptions = {
           },
           shortName: {
             en: 'Save the Queen', // FIX-ME
-            ja: 'セイブ・ザ・クイーン', // FIX-ME
+            ja: 'セイブ・ザ・クイーン',
           },
           rarity: 5,
         },
