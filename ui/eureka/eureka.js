@@ -1958,7 +1958,7 @@ const defaultOptions = {
           },
           shortName: {
             en: 'Albeleo',
-            ja: 'サドル・レム・アルビレオ', // FIX-ME
+            ja: 'アルビレオ',
             ko: '사드르 렘 알비레오', // FIX-ME
           },
           rarity: 3,
