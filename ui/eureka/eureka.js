@@ -1986,7 +1986,7 @@ const defaultOptions = {
           },
           shortName: {
             en: 'Menenius', // FIX-ME
-            ja: 'メネニウス・サス・ラナトゥス', // FIX-ME
+            ja: 'メネニウス',
             ko: '메네니우스 사스 라나투스', // FIX-ME
           },
           rarity: 3,
