@@ -46,7 +46,7 @@ type ConfigValue = string | number | boolean;
 type ConfigEntry = {
   id: string;
   name: LocaleText;
-  type: 'checkbox' | 'select' | 'float' | 'integer' | 'directory';
+  type: 'checkbox' | 'select' | 'float' | 'integer' | 'directory' | 'html';
   default: ConfigValue;
   debug?: boolean;
   debugOnly?: boolean;
