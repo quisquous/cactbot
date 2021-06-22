@@ -2039,7 +2039,7 @@ const defaultOptions = {
           },
           shortName: {
             en: 'Bwagi Ennze Panca', // FIX-ME
-            ja: 'ブワジ・エンゼ・パンチャ', // FIX-ME
+            ja: 'ブワジ',
           },
           rarity: 3,
         },
