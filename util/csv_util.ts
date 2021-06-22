@@ -55,29 +55,36 @@ export const cleanName = (str: string): string => {
   return str;
 };
 
+export const readCsvContent =
+  async (content: string | string[]): Promise<{ keys: string[]; rows: string[][] }> => {
+    return await new Promise<{ keys: string[]; rows: string[][] }>((resolve, reject) => {
+      const rows: string[][] = [];
+      parseString(Array.isArray(content) ? content.join('\n') : content, {
+        skipLines: 1,
+        ignoreEmpty: false,
+      })
+        .on('error', (err) => reject(err))
+        .on('data', (row: string[]) => rows.push(row))
+        .on('end', (rowCount: number) => {
+          if (rowCount === 0)
+            reject(`csv reads no data`);
+
+          const keys = rows.shift() ?? [];
+          rows.shift();
+
+          resolve({
+            keys,
+            rows,
+          });
+        });
+    });
+  };
+
 // inputs[0] is the key column for the returned map
 export const makeMap: GetTableFunc = async (
     contents: string, inputs: (string | number)[], _outputs?: (string | number)[],
 ) => {
-  const { keys, rows } = await
-  new Promise<{ keys: string[]; rows: string[][] }>((resolve, reject) => {
-    const rows: string[][] = [];
-    parseString(contents, { skipLines: 1, ignoreEmpty: false })
-      .on('error', (err) => reject(err))
-      .on('data', (row: string[]) => rows.push(row))
-      .on('end', (rowCount: number) => {
-        if (rowCount === 0)
-          reject(`csv reads no data`);
-
-        const keys = rows.shift() ?? [];
-        rows.shift();
-
-        resolve({
-          keys,
-          rows,
-        });
-      });
-  });
+  const { keys, rows } = await readCsvContent(contents);
 
   const indices = inputs.map((input) => {
     if (typeof input === 'number')
