@@ -2063,7 +2063,7 @@ const defaultOptions = {
           },
           shortName: {
             en: 'Mikoto Jinba', // FIX-ME
-            ja: 'ミコト・ジンバ', // FIX-ME
+            ja: 'ミコト',
           },
           rarity: 3,
         },
