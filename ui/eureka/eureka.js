@@ -2051,7 +2051,7 @@ const defaultOptions = {
           },
           shortName: {
             en: 'Rostik Liubasch', // FIX-ME
-            ja: 'ロスティック・リュバシュ', // FIX-ME
+            ja: 'ロスティック',
           },
           rarity: 3,
         },
