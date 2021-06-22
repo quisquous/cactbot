@@ -25,6 +25,15 @@ body > div {
   align-items: end;
 }
 
+#description-emoji {
+  float: left;
+  margin-right: 5px;
+}
+
+#description-text {
+  display: inline-block;
+}
+
 #warning {
   font-size: 30px;
   color: red;
