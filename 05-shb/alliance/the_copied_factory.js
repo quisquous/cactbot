@@ -786,7 +786,6 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         '9S-Operated Flight Unit': '9S\' Flugeinheit',
         '9S-Operated Walking Fortress': '9S\' mehrbeinig(?:e|er|es|en) Panzer',
@@ -943,8 +942,6 @@ Options.Triggers.push({
         'Marx Crush': 'Pinçage de Marx',
         'Marx Impact': 'Chute de Marx',
         'Marx Smash(?! )': 'Coup de Marx',
-        'Marx Smash Back': 'Coup de Marx Der',
-        'Marx Smash Front': 'Coup de Marx Dev',
         'Marx Smash B/F': 'Coup de Marx Der/Dev',
         'Marx Smash F/B': 'Coup de Marx Dev/Der',
         'Marx Smash L/R': 'Coup de Marx G/D',
@@ -994,8 +991,6 @@ Options.Triggers.push({
         'Warehouse C': '倉庫C',
       },
       'replaceText': {
-        'Front(?!al)': '前',
-        'Back': '後',
         '360-Degree Bombing Maneuver': '攻撃：ミサイル円射',
         '(?<! )Adds': '雑魚',
         'Anti-Personnel Missile': '対人ミサイル乱射',
@@ -1130,8 +1125,6 @@ Options.Triggers.push({
         'Marx Impact': '麦喀士冲击',
         'Marx Smash L/R': '麦喀士打击左/右',
         'Marx Smash R/L': '麦喀士打击右/左',
-        'Marx Smash Back': '麦喀士打击后',
-        'Marx Smash Front': '麦喀士打击前',
         'Marx Smash F/B': '麦喀士打击前/后',
         'Marx Smash B/F': '麦喀士打击后/前',
         'Marx Smash(?! )': '麦喀士打击',
@@ -1178,8 +1171,6 @@ Options.Triggers.push({
         'Warehouse C': '창고 C',
       },
       'replaceText': {
-        'Front(?!al)': '앞',
-        'Back': '뒤',
         'F/B': '앞/뒤',
         'B/F': '뒤/앞',
         'L/R': '좌/우',
