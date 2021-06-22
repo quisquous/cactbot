@@ -1,0 +1,35 @@
+{
+  "intl": {
+    "ac143category": {
+      "add": "0x935",
+      "remove": "0x936",
+      "update": "0x93e"
+    },
+    "ce": {
+      "opcode": "0x3ce",
+      "size": 30
+    }
+  },
+  "cn": {
+    "ac143category": {
+      "add": "0x935",
+      "remove": "0x936",
+      "update": "0x93e"
+    },
+    "ce": {
+      "opcode": "0x9e",
+      "size": 30
+    }
+  },
+  "ko": {
+    "ac143category": {
+      "add": "0x935",
+      "remove": "0x936",
+      "update": "0x93e"
+    },
+    "ce": {
+      "opcode": "0x341",
+      "size": 30
+    }
+  }
+}
