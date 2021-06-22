@@ -2127,7 +2127,7 @@ const defaultOptions = {
           },
           shortName: {
             en: 'Trinity Avowed', // FIX-ME
-            ja: 'トリニティ・アヴァウド', // FIX-ME
+            ja: 'トリニティ',
           },
           rarity: 4,
         },
