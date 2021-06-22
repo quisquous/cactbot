@@ -1741,104 +1741,408 @@ const defaultOptions = {
       fieldNotes: [
         {
           id: 1,
-          name: 'Bajsaljen Ulgasch',
-          shortName: 'Bajsalen',
+          name: {
+            en: 'Bajsaljen Ulgasch',
+            ja: 'バイシャーエン・ウルガッシュ',
+            ko: '바이샤엔 울가쉬',
+          },
+          shortName: {
+            en: 'Bajsalen',
+            ja: 'バイシャーエン',
+            ko: '바이샤엔',
+          },
           rarity: 1,
         },
         {
           id: 2,
-          name: 'Marsak Apella',
-          shortName: 'Marsak',
+          name: {
+            en: 'Marsak Apella',
+            ja: 'マルシャーク・アペッラ',
+            ko: '마르샤크 아펠라',
+          },
+          shortName: {
+            en: 'Marsak',
+            ja: 'マルシャーク',
+            ko: '마르샤크',
+          },
           rarity: 1,
         },
         {
           id: 3,
-          name: 'Xeven Scanasch',
-          shortName: 'Xeven',
+          name: {
+            en: 'Xeven Scanasch',
+            ja: 'ゼヴェン・スヴァナシュ',
+            ko: '제벤 스바나쉬',
+          },
+          shortName: {
+            en: 'Xeven',
+            ja: 'ゼヴェン',
+            ko: '제벤',
+          },
           rarity: 1,
         },
         {
           id: 4,
-          name: 'Isolde Covey',
-          shortName: 'Isolde',
+          name: {
+            en: 'Isolde Covey',
+            ja: 'イソルデ・コヴィー',
+            ko: '이솔데 코비',
+          },
+          shortName: {
+            en: 'Isolde',
+            ja: 'イソルデ',
+            ko: '이솔데',
+          },
           rarity: 2,
         },
         {
           id: 5,
-          name: 'Stanik Alubov',
-          shortName: 'Stanik',
+          name: {
+            en: 'Stanik Alubov',
+            ja: 'スタニック・アルボフ',
+            ko: '스타니크 알루보프',
+          },
+          shortName: {
+            en: 'Stanik',
+            ja: 'スタニック',
+            ko: '스타니크',
+          },
           rarity: 1,
         },
         {
           id: 6,
-          name: 'Blaz Azetina',
-          shortName: 'Blaz',
+          name: {
+            en: 'Blaz Azetina',
+            ja: 'ブラズ・アゼティナ',
+            ko: '블라즈 아제티나',
+          },
+          shortName: {
+            en: 'Blaz',
+            ja: 'ブラズ',
+            ko: '블라즈',
+          },
           rarity: 3,
         },
         {
           id: 7,
-          name: 'Velibor Azetina',
-          shortName: 'Velibor',
+          name: {
+            en: 'Velibor Azetina',
+            ja: 'ヴェリボル・アゼティナ',
+            ko: '벨리보르 아제티나',
+          },
+          shortName: {
+            en: 'Velibor',
+            ja: 'ヴェリボル',
+            ko: '벨리보르',
+          },
           rarity: 3,
         },
         {
           id: 8,
-          name: 'Aggie Glover',
-          shortName: 'Aggie',
+          name: {
+            en: 'Aggie Glover',
+            ja: 'アギー・グローヴァー',
+            ko: '애지 글러버',
+          },
+          shortName: {
+            en: 'Aggie',
+            ja: 'アギー',
+            ko: '애지',
+          },
           rarity: 1,
         },
         {
           id: 9,
-          name: 'Llofii pyr Potitus',
-          shortName: 'Llofii',
+          name: {
+            en: 'Llofii pyr Potitus',
+            ja: 'ロフィー・ピル・ポティトゥス',
+            ko: '로피 피르 포티투스',
+          },
+          shortName: {
+            en: 'Llofii',
+            ja: 'ロフィー',
+            ko: '로피',
+          },
           rarity: 2,
         },
         {
           id: 10,
-          name: 'Hernais pyr Longus',
-          shortName: 'Hernais',
+          name: {
+            en: 'Hernais pyr Longus',
+            ja: 'エルネイス・ピル・ロングス',
+            ko: '에르네이스 피르 롱구스',
+          },
+          shortName: {
+            en: 'Hernais',
+            ja: 'エルネイス',
+            ko: '에르네이스',
+          },
           rarity: 3,
         },
         {
           id: 11,
-          name: 'Dabog aan Inivisch',
-          shortName: 'Dabog',
+          name: {
+            en: 'Dabog aan Inivisch',
+            ja: 'ダボグ・アン・イニヴァシュ',
+            ko: '다보그 안 이니비쉬',
+          },
+          shortName: {
+            en: 'Dabog',
+            ja: 'ダボグ',
+            ko: '다보그',
+          },
           rarity: 5,
         },
         {
           id: 12,
-          name: 'Dyunbu pyr Potitus',
-          shortName: 'Dyunbu',
+          name: {
+            en: 'Dyunbu pyr Potitus',
+            ja: 'ユンブ・ピル・ポティトゥス',
+            ko: '윤부 피르 포티투스',
+          },
+          shortName: {
+            en: 'Dyunbu',
+            ja: 'ユンブ',
+            ko: '윤부',
+          },
           rarity: 4,
         },
         {
           id: 13,
-          name: 'Clarricie quo Priscus',
-          shortName: 'Clarricie',
+          name: {
+            en: 'Clarricie quo Priscus',
+            ja: 'クラリシー・クォ・プリスクス',
+            ko: '클라리시 쿠오 프리스쿠스',
+          },
+          shortName: {
+            en: 'Clarricie',
+            ja: 'クラリシー',
+            ko: '클라리시',
+          },
           rarity: 2,
         },
         {
           id: 14,
-          name: 'Sartauvoir quo Soranus',
-          shortName: 'Sartauvoir',
+          name: {
+            en: 'Sartauvoir quo Soranus',
+            ja: 'サルトヴォアール・クォ・ソラノス',
+            ko: '사르토부아르 쿠오 소라누스',
+          },
+          shortName: {
+            en: 'Sartauvoir',
+            ja: 'サルトヴォアール',
+            ko: '사르토부아르',
+          },
           rarity: 5,
         },
         {
           id: 15,
-          name: 'Sicinius mal Vellutus',
-          shortName: 'Sicinius',
+          name: {
+            en: 'Sicinius mal Vellutus',
+            ja: 'シシニアス・マル・ヴェリュータス',
+            ko: '시시니우스 말 벨루투스',
+          },
+          shortName: {
+            en: 'Sicinius',
+            ja: 'シシニアス',
+            ko: '시시니우스',
+          },
           rarity: 3,
         },
         {
           id: 16,
-          name: 'Sadr rem Albeleo',
-          shortName: 'Albeleo',
+          name: {
+            en: 'Sadr rem Albeleo',
+            ja: 'サドル・レム・アルビレオ',
+            ko: '사드르 렘 알비레오',
+          },
+          shortName: {
+            en: 'Albeleo',
+            ja: 'アルビレオ',
+            ko: '사드르 렘 알비레오', // FIX-ME
+          },
           rarity: 3,
         },
         {
           id: 17,
-          name: 'Lyon rem Helsos',
-          shortName: 'Lyon',
+          name: {
+            en: 'Lyon rem Helsos',
+            ja: 'ライアン・レム・ヘルソス',
+            ko: '라이언 렘 헬소스',
+          },
+          shortName: {
+            en: 'Lyon',
+            ja: 'ライアン',
+            ko: '라이언',
+          },
+          rarity: 5,
+        },
+        {
+          id: 18,
+          name: {
+            en: 'Menenius sas Lanatus',
+            ja: 'メネニウス・サス・ラナトゥス',
+            ko: '메네니우스 사스 라나투스',
+          },
+          shortName: {
+            en: 'Menenius', // FIX-ME
+            ja: 'メネニウス',
+            ko: '메네니우스 사스 라나투스', // FIX-ME
+          },
+          rarity: 3,
+        },
+        {
+          id: 19,
+          name: {
+            en: 'Misija Votyasch',
+            ja: 'ミーシィヤ・ヴォートヤシュ',
+            ko: '미시야 보트야쉬',
+          },
+          shortName: {
+            en: 'Misija', // FIX-ME
+            ja: 'ミーシィヤ',
+            ko: '미시야 보트야쉬', // FIX-ME
+          },
+          rarity: 3,
+        },
+        {
+          id: 20,
+          name: {
+            en: 'Gunnhildr',
+            ja: 'グンヒルド',
+            ko: '군힐드',
+          },
+          shortName: {
+            en: 'Gunnhildr',
+            ja: 'グンヒルド',
+            ko: '군힐드',
+          },
+          rarity: 3,
+        },
+        {
+          id: 21,
+          name: {
+            en: 'Lilja Sjasaris',
+            ja: 'リリヤ・シアサリス',
+          },
+          shortName: {
+            en: 'Lilja Sjasaris', // FIX-ME
+            ja: 'リリヤ',
+          },
+          rarity: 3,
+        },
+        {
+          id: 22,
+          name: {
+            en: 'Bwagi Ennze Panca',
+            ja: 'ブワジ・エンゼ・パンチャ',
+          },
+          shortName: {
+            en: 'Bwagi Ennze Panca', // FIX-ME
+            ja: 'ブワジ',
+          },
+          rarity: 3,
+        },
+        {
+          id: 23,
+          name: {
+            en: 'Rostik Liubasch',
+            ja: 'ロスティック・リュバシュ',
+          },
+          shortName: {
+            en: 'Rostik Liubasch', // FIX-ME
+            ja: 'ロスティック',
+          },
+          rarity: 3,
+        },
+        {
+          id: 24,
+          name: {
+            en: 'Mikoto Jinba',
+            ja: 'ミコト・ジンバ',
+          },
+          shortName: {
+            en: 'Mikoto Jinba', // FIX-ME
+            ja: 'ミコト',
+          },
+          rarity: 3,
+        },
+        {
+          id: 25,
+          name: {
+            en: 'Misija Votyasch',
+            ja: 'ミーシィヤ・ヴォートヤシュ',
+            ko: '미시야 보트야쉬',
+          },
+          shortName: {
+            en: 'Misija Votyasch', // FIX-ME
+            ja: 'ミーシィヤ',
+            ko: '미시야 보트야쉬',
+          },
+          rarity: 3,
+        },
+        {
+          id: 26,
+          name: {
+            en: 'Gunnhildr',
+            ja: 'グンヒルド',
+            ko: '군힐드',
+          },
+          shortName: {
+            en: 'Gunnhildr',
+            ja: 'グンヒルド',
+            ko: '군힐드',
+          },
+          rarity: 3,
+        },
+        {
+          id: 27,
+          name: {
+            en: 'Trinity Seeker',
+            ja: 'トリニティ・シーカー',
+          },
+          shortName: {
+            en: 'Seeker', // FIX-ME
+            ja: 'シーカー',
+          },
+          rarity: 4,
+        },
+        {
+          id: 28,
+          name: {
+            en: 'Queen\'s Guard',
+            ja: 'クイーンズ・ガード',
+          },
+          shortName: {
+            en: 'Guard', // FIX-ME
+            ja: 'ガード',
+          },
+          rarity: 4,
+        },
+        {
+          id: 29,
+          name: {
+            en: 'Trinity Avowed',
+            ja: 'トリニティ・アヴァウド',
+          },
+          shortName: {
+            en: 'Trinity Avowed', // FIX-ME
+            ja: 'トリニティ',
+          },
+          rarity: 4,
+        },
+        {
+          id: 30,
+          name: {
+            en: 'Save the Queen',
+            ja: 'セイブ・ザ・クイーン',
+            ko: '세이브 더 퀸',
+          },
+          shortName: {
+            en: 'Save the Queen', // FIX-ME
+            ja: 'セイブ・ザ・クイーン',
+            ko: '세이브 더 퀸',
+          },
           rarity: 5,
         },
       ],
@@ -2740,98 +3044,162 @@ const defaultOptions = {
       fieldNotes: [
         {
           id: 31,
-          name: 'Atori Moribe',
-          shortName: 'Atori',
+          name: {
+            en: 'Atori Moribe',
+          },
+          shortName: {
+            en: 'Atori',
+          },
           rarity: 1,
         },
         {
           id: 32,
-          name: 'Kosyu',
-          shortName: 'Kosyu',
+          name: {
+            en: 'Kosyu',
+          },
+          shortName: {
+            en: 'Kosyu',
+          },
           rarity: 2,
         },
         {
           id: 33,
-          name: 'Oboro Torioi',
-          shortName: 'Oboro',
+          name: {
+            en: 'Oboro Torioi',
+          },
+          shortName: {
+            en: 'Oboro',
+          },
           rarity: 1,
         },
         {
           id: 34,
-          name: 'Tsubame',
-          shortName: 'Tsubame Oshidari',
+          name: {
+            en: 'Tsubame',
+          },
+          shortName: {
+            en: 'Tsubame Oshidari',
+          },
           rarity: 3,
         },
         {
           id: 35,
-          name: 'Meryall Miller',
-          shortName: 'Meryall',
+          name: {
+            en: 'Meryall Miller',
+          },
+          shortName: {
+            en: 'Meryall',
+          },
           rarity: 2,
         },
         {
           id: 36,
-          name: 'Lovro aan Slanasch',
-          shortName: 'Lovro',
+          name: {
+            en: 'Lovro aan Slanasch',
+          },
+          shortName: {
+            en: 'Lovro',
+          },
           rarity: 3,
         },
         {
           id: 37,
-          name: 'Llofii pyr Potitus',
-          shortName: 'Llofii',
+          name: {
+            en: 'Llofii pyr Potitus',
+          },
+          shortName: {
+            en: 'Llofii',
+          },
           rarity: 4,
         },
         {
           id: 38,
-          name: 'Fabineau quo Soranus',
-          shortName: 'Fabineau',
+          name: {
+            en: 'Fabineau quo Soranus',
+          },
+          shortName: {
+            en: 'Fabineau',
+          },
           rarity: 2,
         },
         {
           id: 39,
-          name: 'Yamatsumi pyr Urabe',
-          shortName: 'Yamatsumi',
+          name: {
+            en: 'Yamatsumi pyr Urabe',
+          },
+          shortName: {
+            en: 'Yamatsumi',
+          },
           rarity: 3,
         },
         {
           id: 40,
-          name: 'Pagaga quo Vochstein',
-          shortName: 'Pagaga',
+          name: {
+            en: 'Pagaga quo Vochstein',
+          },
+          shortName: {
+            en: 'Pagaga',
+          },
           rarity: 1,
         },
         {
           id: 41,
-          name: 'Daguza oen Sus',
-          shortName: 'Daguza',
+          name: {
+            en: 'Daguza oen Sus',
+          },
+          shortName: {
+            en: 'Daguza',
+          },
           rarity: 1,
         },
         {
           id: 42,
-          name: 'Gilbrisbert quo Buteo',
-          shortName: 'Gilbrisbert',
+          name: {
+            en: 'Gilbrisbert quo Buteo',
+          },
+          shortName: {
+            en: 'Gilbrisbert',
+          },
           rarity: 2,
         },
         {
           id: 43,
-          name: 'Dabog aan Inivisch',
-          shortName: 'Dabog',
+          name: {
+            en: 'Dabog aan Inivisch',
+          },
+          shortName: {
+            en: 'Dabog',
+          },
           rarity: 5,
         },
         {
           id: 44,
-          name: 'Lyon quo Helsos',
-          shortName: 'Lyon',
+          name: {
+            en: 'Lyon quo Helsos',
+          },
+          shortName: {
+            en: 'Lyon',
+          },
           rarity: 5,
         },
         {
           id: 45,
-          name: 'Menenius sas Lanatus',
-          shortName: 'Menenius',
+          name: {
+            en: 'Menenius sas Lanatus',
+          },
+          shortName: {
+            en: 'Menenius',
+          },
           rarity: 5,
         },
         {
           id: 46,
-          name: 'Diablo',
-          shortName: 'Diablo',
+          name: {
+            en: 'Diablo',
+          },
+          shortName: {
+            en: 'Diablo',
+          },
           rarity: 3,
         },
       ],
@@ -3595,10 +3963,16 @@ class EurekaTracker {
     // Changes names' length depending on users options
     // If no strings are available, the english short ones will be the default ones
     if (this.zoneInfo.treatNMsAsSkirmishes) {
-      if (this.options.CompleteNamesSTQ)
+      if (this.options.CompleteNamesSTQ) {
         name.innerText = this.TransByDispLang(nm.label);
-      if (!name.innerText)
-        name.innerText = this.TransByDispLang(nm.shortLabel);
+      } else {
+        const shortLabel = nm.shortLabel[this.options.DisplayLanguage];
+        if (shortLabel !== undefined)
+          name.innerText = shortLabel;
+        // If the short label is not set, fall back to the full label.
+        else
+          name.innerText = this.TransByDispLang(nm.label);
+      }
     } else {
       name.innerText = this.TransByDispLang(nm.label);
     }
@@ -3622,7 +3996,7 @@ class EurekaTracker {
     if (this.zoneInfo.treatNMsAsSkirmishes && this.options.EnrichedSTQ && nm.fieldNotes) {
       for (const note of fieldNotesList) {
         if (note.id === nm.fieldNotes)
-          enriched.innerHTML = `#${note.id}: ${note.shortName} ${gRarityIcon.repeat(note.rarity)}`;
+          enriched.innerHTML = `#${note.id}: ${this.TransByDispLang(note.shortName)} ${gRarityIcon.repeat(note.rarity)}`;
       }
     }
 
