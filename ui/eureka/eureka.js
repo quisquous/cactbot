@@ -2115,7 +2115,7 @@ const defaultOptions = {
           },
           shortName: {
             en: 'Guard', // FIX-ME
-            ja: 'クイーンズ・ガード', // FIX-ME
+            ja: 'ガード',
           },
           rarity: 4,
         },
