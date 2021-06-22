@@ -212,7 +212,7 @@ const miscStrings = {
     en: 'This list contains contents that are not yet included in the latest cactbot release version.<br>So, you may see some contents are not covered by the release version although this list says cactbot covers that content.',
     ja: 'このリストは最新バージョンに公開されていないコンテンツを含まれています。<br>そのため、リストに含まれているコンテンツは実際に公開されているリリースに存在はしないかもしれぬことをご理解してください。',
     cn: '该列表中可能存在未发布在cactbot最新发行版中的更新内容。<br>也就是说，即便某些副本支持在列表中已显示为支持状态，也可能暂未存在于您下载的版本中。',
-    ko: '이 목록에는 아직 cactbot 최신 릴리즈에 포함되지 않은 개발 버전이 포함되어 있습니다.<br>따라서, 이 목록에는 지원한다고 표시되어 있음에도 릴리즈 버전에서는 지원하지 않는 컨텐츠가 있을 수 있습니다.',
+    ko: '이 목록에는 아직 개발 중인 컨텐츠가 포함되어 있을 수 있고 최신 cactbot 릴리즈에 포함되어 있지 않을 수 있습니다. 여기에 나열된 컨텐츠 목록은 최소한 다음 릴리즈에는 포함되게 됩니다. 만약 quisquous.github.io 버전을 오버레이 url로 연결해서 사용하고 계시다면, 이 목록이 오버레이의 컨텐츠 커버리지와 일치합니다.',
   },
   // Warning when generator hasn't been run.
   runGenerator: {
