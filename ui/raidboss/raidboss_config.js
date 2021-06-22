@@ -996,7 +996,7 @@ const templateOptions = {
       name: {
         en: 'Supported content (latest version)',
         ja: 'コンテンツ完成度一覧 (最新バージョン)',
-        cn: '副本覆盖度 (最新版本)',
+        cn: '支持副本一览 (最新版本)',
       },
       type: 'html',
       html: {
