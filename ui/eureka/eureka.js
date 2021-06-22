@@ -2027,7 +2027,7 @@ const defaultOptions = {
           },
           shortName: {
             en: 'Lilja Sjasaris', // FIX-ME
-            ja: 'リリヤ・シアサリス', // FIX-ME
+            ja: 'リリヤ',
           },
           rarity: 3,
         },
