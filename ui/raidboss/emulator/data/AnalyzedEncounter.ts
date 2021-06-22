@@ -32,9 +32,9 @@ type Perspectives = { [id: string]: Perspective };
 export default class AnalyzedEncounter extends EventBus {
   perspectives: Perspectives = {};
   constructor(
-    public options: RaidbossOptions,
-    public encounter: Encounter,
-    public emulator: RaidEmulator) {
+      public options: RaidbossOptions,
+      public encounter: Encounter,
+      public emulator: RaidEmulator) {
     super();
   }
 
