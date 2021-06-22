@@ -2000,7 +2000,7 @@ const defaultOptions = {
           },
           shortName: {
             en: 'Misija', // FIX-ME
-            ja: 'ミーシィヤ・ヴォートヤシュ', // FIX-ME
+            ja: 'ミーシィヤ',
             ko: '미시야 보트야쉬', // FIX-ME
           },
           rarity: 3,
