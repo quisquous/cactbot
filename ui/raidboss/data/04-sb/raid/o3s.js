@@ -463,6 +463,7 @@ export default {
       outputStrings: {
         breakTether: {
           en: 'Break Tether (${player})',
+          ko: '가시줄 끊기 ("${player}")',
         },
       },
     },
