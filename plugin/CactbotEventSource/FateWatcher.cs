@@ -47,17 +47,6 @@ namespace Cactbot {
     bool opcodesLoaded = false;
     private Region OpCodes;
 
-    // Fate start
-    // param1: fateID
-    // param2: unknown
-    //
-    // Fate end
-    // param1: fateID
-    //
-    // Fate update
-    // param1: fateID
-    // param2: progress (0-100)
-
     public struct AC143Category {
       [JsonConverter(typeof(HexStringJsonConverter))]
       public uint add;
@@ -83,32 +72,6 @@ namespace Cactbot {
       public Region cn;
       public Region ko;
     }
-
-    //
-    // CE Opcode History
-    // Intl
-    // v5.35            0x299
-    // v5.35h           0x143
-    // v5.40            0x3c1
-    // v5.40h           0x31b
-    // v5.41            0x31B
-    // v5.45            0x3e1
-    // v5.45h           0x1f5
-    // v5.5             0x2e7
-    // v5.5h            0x160
-    // v5.55            0x1ac
-    // v5.55h           0x248
-    //
-    // CN
-    // v5.35            0x144
-    // v5.40            0x129
-    // v5.41            0x0120
-    // v5.45            0x009e
-    //
-    // KR
-    // v5.35            0x347
-    // v5.4             0x1d1
-    // v5.41            0x341
 
     [Serializable]
     [StructLayout(LayoutKind.Explicit)]
@@ -288,6 +251,17 @@ namespace Cactbot {
 
     public unsafe void ProcessActorControl143(byte* buffer, byte[] message) {
       int a = *(ushort*)&buffer[actorControl143.categoryOffset];
+
+      // Fate start
+      // param1: fateID
+      // param2: unknown
+      //
+      // Fate end
+      // param1: fateID
+      //
+      // Fate update
+      // param1: fateID
+      // param2: progress (0-100)
 
       fateSemaphore.WaitAsync();
       try {
