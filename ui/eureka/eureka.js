@@ -3966,7 +3966,7 @@ class EurekaTracker {
       if (this.options.CompleteNamesSTQ) {
         name.innerText = this.TransByDispLang(nm.label);
       } else {
-        const shortLabel = nm.shortLabel[this.DisplayLanguage];
+        const shortLabel = nm.shortLabel[this.options.DisplayLanguage];
         if (shortLabel !== undefined)
           name.innerText = shortLabel;
         // If the short label is not set, fall back to the full label.
