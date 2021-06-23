@@ -6,6 +6,7 @@ import { Event, Sync, Timeline } from '../ui/raidboss/timeline';
 import { walkDirSync } from './file_utils';
 import { Lang } from '../resources/languages';
 import Options from '../ui/raidboss/raidboss_options';
+import { fileURLToPath } from 'url';
 
 const parser = new ArgumentParser({
   addHelp: true,
@@ -36,7 +37,7 @@ const findTriggersFile = (shortName: string): string | undefined => {
   return found;
 };
 
-export default async (args: { locale: Lang; timeline: string }): Promise<void> => {
+export const run = async (args: { locale: Lang; timeline: string }): Promise<void> => {
   if (!process.argv[1]) {
     console.error('Unable to determine current process filepath, aborting.');
     process.exit(-2);
@@ -111,5 +112,7 @@ export default async (args: { locale: Lang; timeline: string }): Promise<void> =
   });
 };
 
-// const args = parser.parseArgs() as { locale: Lang; timeline: string };
-// void run(args);
+if (fileURLToPath(import.meta.url) === process.argv[1]) {
+  const args = parser.parseArgs() as { locale: Lang; timeline: string };
+  void run(args);
+}

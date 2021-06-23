@@ -2,7 +2,7 @@ import inquirer, { Answers } from 'inquirer';
 import inquirerFuzzyPath, { FuzzyPathQuestionOptions } from 'inquirer-fuzzy-path';
 import { Lang } from '../resources/languages';
 import { default as generateEffectIds } from './gen_effect_id';
-import { default as translateTimeline } from './translate_timeline';
+import { run as translateTimeline } from './translate_timeline';
 
 declare module 'inquirer' {
   interface QuestionMap<T> {
