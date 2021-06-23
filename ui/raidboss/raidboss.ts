@@ -1,4 +1,4 @@
-import { addOverlayListener } from '../../resources/overlay_plugin_api';
+import { overlayApi } from '../../resources/overlay_api';
 
 import './raidboss_config';
 import '../../resources/timerbar';
@@ -93,7 +93,7 @@ UserConfig.getUserConfigLocation('raidboss', defaultOptions, () => {
   if (options.AlertsEnabled)
     timelineController.SetPopupTextInterface(new PopupTextGenerator(popupText));
 
-  addOverlayListener('onLogEvent', (e) => {
+  overlayApi.on('onLogEvent', (e) => {
     timelineController.OnLogEvent(e);
   });
 });

@@ -1,4 +1,4 @@
-import { callOverlayHandler } from '../../resources/overlay_plugin_api';
+import { overlayApi } from '../../resources/overlay_api';
 import Regexes from '../../resources/regexes';
 import UserConfig from '../../resources/user_config';
 import ZoneInfo from '../../resources/zone_info';
@@ -215,8 +215,7 @@ export default class CactbotConfigurator {
 
   async saveConfigData() {
     // TODO: rate limit this?
-    await callOverlayHandler({
-      call: 'cactbotSaveData',
+    await overlayApi.call('cactbotSaveData', {
       overlay: 'options',
       data: this.savedConfig,
     });
@@ -291,7 +290,7 @@ export default class CactbotConfigurator {
     buttonInput.classList.add('reload-button');
     buttonInput.type = 'button';
     buttonInput.onclick = () => {
-      callOverlayHandler({ call: 'cactbotReloadOverlays' });
+      overlayApi.call('cactbotReloadOverlays', {});
     };
     buttonInput.value = this.translate(kReloadButtonText);
     container.appendChild(buttonInput);
@@ -411,16 +410,14 @@ export default class CactbotConfigurator {
 
     input.onclick = async () => {
       // Prevent repeated clicks on the folder chooser.
-      // callOverlayHandler is not synchronous.
+      // overlayApi.call is not synchronous.
       // FIXME: do we need some clearer UI here (like pretending to be modal?)
       input.disabled = true;
 
       const prevValue = label.innerText;
       label.innerText = '';
 
-      const result = await callOverlayHandler({
-        call: 'cactbotChooseDirectory',
-      });
+      const result = await overlayApi.call('cactbotChooseDirectory', {});
 
       input.disabled = false;
       const dir = result.data ? result.data : '';

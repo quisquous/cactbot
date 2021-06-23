@@ -1,7 +1,7 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
-import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
+import { overlayApi } from '../../../../../resources/overlay_api';
 import Outputs from '../../../../../resources/outputs';
 
 // TODO: we could consider a timeline trigger for the Tidal Roar raidwide,
@@ -74,8 +74,7 @@ export default {
       // Actor moves between 4.6s and 4.7s; add a tiny bit of time for certainty.
       delaySeconds: 5,
       promise: async (data) => {
-        const callData = await callOverlayHandler({
-          call: 'getCombatants',
+        const callData = await overlayApi.call('getCombatants', {
         });
         if (!callData || !callData.combatants || !callData.combatants.length) {
           console.error('Dive: failed to get combatants: ${JSON.stringify(callData)}');

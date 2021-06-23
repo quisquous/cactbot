@@ -1,7 +1,7 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
-import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
+import { overlayApi } from '../../../../../resources/overlay_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -427,8 +427,7 @@ export default {
         data.statueDir = 'unknown';
 
         // Calculate distance to center to determine inner vs outer
-        const statueData = await callOverlayHandler({
-          call: 'getCombatants',
+        const statueData = await overlayApi.call('getCombatants', {
           ids: data.statueIds,
         });
 
@@ -1123,8 +1122,7 @@ export default {
       promise: async (data, matches, output) => {
         // select the Oracle Of Darkness with same source id
         let oracleData = null;
-        oracleData = await callOverlayHandler({
-          call: 'getCombatants',
+        oracleData = await overlayApi.call('getCombatants', {
           ids: [parseInt(matches.sourceId, 16)],
         });
 

@@ -1,4 +1,4 @@
-import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
+import { overlayApi } from '../../resources/overlay_api';
 import ContentType from '../../resources/content_type';
 import { LocaleNetRegex } from '../../resources/translations';
 import NetRegexes from '../../resources/netregexes';
@@ -703,7 +703,7 @@ class DamageTracker {
     this.netTriggers = [];
 
     this.partyTracker = new PartyTracker();
-    addOverlayListener('PartyChanged', (e) => {
+    overlayApi.on('PartyChanged', (e) => {
       this.partyTracker.onPartyChanged(e);
     });
 
@@ -1285,19 +1285,19 @@ UserConfig.getUserConfigLocation('oopsyraidsy', defaultOptions, () => {
 
   const damageTracker = new DamageTracker(options, mistakeCollector, oopsyFileData);
 
-  addOverlayListener('onLogEvent', (e) => damageTracker.OnLogEvent(e));
-  addOverlayListener('LogLine', (e) => damageTracker.OnNetLog(e));
-  addOverlayListener('onPartyWipe', (e) => damageTracker.OnPartyWipeEvent(e));
-  addOverlayListener('onPlayerChangedEvent', (e) => damageTracker.OnPlayerChange(e));
-  addOverlayListener('ChangeZone', (e) => {
+  overlayApi.on('onLogEvent', (e) => damageTracker.OnLogEvent(e));
+  overlayApi.on('LogLine', (e) => damageTracker.OnNetLog(e));
+  overlayApi.on('onPartyWipe', (e) => damageTracker.OnPartyWipeEvent(e));
+  overlayApi.on('onPlayerChangedEvent', (e) => damageTracker.OnPlayerChange(e));
+  overlayApi.on('ChangeZone', (e) => {
     damageTracker.OnChangeZone(e);
     mistakeCollector.OnChangeZone(e);
     listView.OnChangeZone(e);
   });
-  addOverlayListener('onInCombatChangedEvent', (e) => {
+  overlayApi.on('onInCombatChangedEvent', (e) => {
     damageTracker.OnInCombatChangedEvent(e);
     mistakeCollector.OnInCombatChangedEvent(e);
   });
 
-  callOverlayHandler({ call: 'cactbotRequestPlayerUpdate' });
+  overlayApi.call('cactbotRequestPlayerUpdate', {});
 });

@@ -1,4 +1,4 @@
-import { addOverlayListener } from '../../resources/overlay_plugin_api';
+import { overlayApi } from '../../resources/overlay_api';
 
 import FisherUI from './fisher-ui';
 import SeaBase from './seabase';
@@ -389,15 +389,15 @@ UserConfig.getUserConfigLocation('fisher', defaultOptions, () => {
   const options = { ...defaultOptions };
   const fisher = new Fisher(options, document.getElementById('fisher'));
 
-  addOverlayListener('onLogEvent', (e) => {
+  overlayApi.on('onLogEvent', (e) => {
     fisher.OnLogEvent(e);
   });
 
-  addOverlayListener('ChangeZone', (e) => {
+  overlayApi.on('ChangeZone', (e) => {
     fisher.OnChangeZone(e);
   });
 
-  addOverlayListener('onPlayerChangedEvent', (e) => {
+  overlayApi.on('onPlayerChangedEvent', (e) => {
     fisher.OnPlayerChange(e);
   });
 });

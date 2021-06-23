@@ -2,7 +2,7 @@ import { Party, PlayerChangedRet } from '../types/event';
 import { Lang } from '../resources/languages';
 import { Job } from '../types/job';
 
-import { addOverlayListener } from './overlay_plugin_api';
+import { overlayApi } from './overlay_api';
 import Util from './util';
 
 // Will redirect calls from `onPlayerChangedEvent` to |func| overriding with
@@ -40,11 +40,11 @@ export const addPlayerChangedOverrideListener = (func: PlayerChangedFunc,
     func(e);
   };
 
-  addOverlayListener('onPlayerChangedEvent', onPlayerChanged);
+  overlayApi.on('onPlayerChangedEvent', onPlayerChanged);
   if (!playerName)
     return;
 
-  addOverlayListener('PartyChanged', (e) => {
+  overlayApi.on('PartyChanged', (e) => {
     const player = e.party.find((p) => p.name === playerName);
     if (!player)
       return;
@@ -166,7 +166,7 @@ export const addRemotePlayerSelectUI = (lang: Lang): void => {
     // Use 1/0 to be consistent with other query parameters rather than string true/false.
     paramMap.forceTTS = forceTTS ? 1 : 0;
 
-    // TODO: overlay_plugin_api.js doesn't support uri encoded OVERLAY_WS parameters.
+    // TODO: overlay_api.js doesn't support uri encoded OVERLAY_WS parameters.
     // So this can't use URLSearchParams.toString yet.  Manually build string.
     let search = '?';
     for (const [k, v] of Object.entries(paramMap))
@@ -226,7 +226,7 @@ export const addRemotePlayerSelectUI = (lang: Lang): void => {
     for (const name of allianceNames)
       addRadio(name, name, 'player-radio-alliance');
   };
-  addOverlayListener('PartyChanged', (e) => {
+  overlayApi.on('PartyChanged', (e) => {
     buildList(e.party);
   });
   buildList([]);

@@ -1,7 +1,7 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
-import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
+import { overlayApi } from '../../../../../resources/overlay_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -568,8 +568,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: ['求道之三位一体', '求道之分身'], id: '5AC0' }),
       preRun: (data) => delete data.ironSplitter,
       promise: async (data, matches) => {
-        const seekerData = await callOverlayHandler({
-          call: 'getCombatants',
+        const seekerData = await overlayApi.call('getCombatants', {
           ids: [parseInt(matches.sourceId, 16)],
         });
 
@@ -644,8 +643,7 @@ export default {
       promise: async (data) => {
         // The avatars get moved right before the comets, and the position data
         // is stale in the combat log.  :C
-        const cometData = await callOverlayHandler({
-          call: 'getCombatants',
+        const cometData = await overlayApi.call('getCombatants', {
           ids: data.seekerCometIds.slice(0, 2),
         });
 
@@ -1893,14 +1891,12 @@ export default {
         let combatantDataBoss = null;
         let combatantDataAvatars = null;
         if (combatantNameBoss) {
-          combatantDataBoss = await callOverlayHandler({
-            call: 'getCombatants',
+          combatantDataBoss = await overlayApi.call('getCombatants', {
             names: [combatantNameBoss],
           });
         }
         if (combatantNameAvatar) {
-          combatantDataAvatars = await callOverlayHandler({
-            call: 'getCombatants',
+          combatantDataAvatars = await overlayApi.call('getCombatants', {
             names: [combatantNameAvatar],
           });
         }
@@ -2145,8 +2141,7 @@ export default {
       suppressSeconds: 10,
       promise: async (data) => {
         const unseenIds = data.unseenIds;
-        const unseenData = await callOverlayHandler({
-          call: 'getCombatants',
+        const unseenData = await overlayApi.call('getCombatants', {
           ids: unseenIds,
         });
         if (unseenData && unseenData.combatants)

@@ -1,20 +1,20 @@
-import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
+import { overlayApi } from '../../resources/overlay_api';
 
 import '../../resources/defaults.css';
 
-addOverlayListener('ChangeZone', (e) => {
+overlayApi.on('ChangeZone', (e) => {
   const currentZone = document.getElementById('currentZone');
   if (currentZone)
     currentZone.innerText = `currentZone: ${e.zoneName} (${e.zoneID})`;
 });
 
-addOverlayListener('onInCombatChangedEvent', (e) => {
+overlayApi.on('onInCombatChangedEvent', (e) => {
   const inCombat = document.getElementById('inCombat');
   if (inCombat)
     inCombat.innerText = `inCombat: act: ${e.detail.inACTCombat ? 'yes' : 'no'} game: ${(e.detail.inGameCombat ? 'yes' : 'no')}`;
 });
 
-addOverlayListener('onPlayerChangedEvent', (e) => {
+overlayApi.on('onPlayerChangedEvent', (e) => {
   const hp = document.getElementById('hp');
   if (hp)
     hp.innerText = `${e.detail.currentHP}/${e.detail.maxHP} (${e.detail.currentShield})`;
@@ -92,7 +92,7 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
     bait.innerText = e.detail.bait.toString();
 });
 
-addOverlayListener('EnmityTargetData', (e) => {
+overlayApi.on('EnmityTargetData', (e) => {
   const target = document.getElementById('target');
   if (target)
     target.innerText = e.Target ? e.Target.Name : '--';
@@ -104,33 +104,32 @@ addOverlayListener('EnmityTargetData', (e) => {
     tdistance.innerText = e.Target ? e.Target.Distance.toString() : '';
 });
 
-addOverlayListener('onGameExistsEvent', (_e) => {
+overlayApi.on('onGameExistsEvent', (_e) => {
   // console.log("Game exists: " + e.detail.exists);
 });
 
-addOverlayListener('onGameActiveChangedEvent', (_e) => {
+overlayApi.on('onGameActiveChangedEvent', (_e) => {
   // console.log("Game active: " + e.detail.active);
 });
 
-addOverlayListener('onLogEvent', (e) => {
+overlayApi.on('onLogEvent', (e) => {
   e.detail.logs.forEach((log) => {
     // Match "/echo tts:<stuff>"
     const r = /00:0038:tts:(.*)/.exec(log);
     if (r && r[1]) {
-      void callOverlayHandler({
-        call: 'cactbotSay',
+      void overlayApi.call('cactbotSay', {
         text: r[1],
       });
     }
   });
 });
 
-addOverlayListener('onUserFileChanged', (e) => {
+overlayApi.on('onUserFileChanged', (e) => {
   console.log(`User file ${e.file} changed!`);
 });
 
-addOverlayListener('FileChanged', (e) => {
+overlayApi.on('FileChanged', (e) => {
   console.log(`File ${e.file} changed!`);
 });
 
-void callOverlayHandler({ call: 'cactbotRequestState' });
+void overlayApi.call('cactbotRequestState', {});

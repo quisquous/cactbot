@@ -2,7 +2,7 @@ import { BaseOptions } from '../../types/data';
 import { EventMap } from '../../types/event';
 import { Lang } from '../../resources/languages';
 
-import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
+import { overlayApi } from '../../resources/overlay_api';
 import HuntData, { HuntEntry, HuntMap, Rank } from '../../resources/hunt';
 import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
@@ -153,8 +153,7 @@ const posToMap = (h: number) => {
 
 const PlaySound = (monster: Monster, options: RadarOptions) => {
   if (options.TTS) {
-    void callOverlayHandler({
-      call: 'cactbotSay',
+    void overlayApi.call('cactbotSay', {
       text: `${monster.rank ?? ''} ${monster.name}`,
     });
   } else if (options.PopSoundAlert && options.PopSound && options.PopVolume) {
@@ -488,15 +487,15 @@ UserConfig.getUserConfigLocation('radar', defaultOptions, () => {
     throw new Error('missing radar element');
   const radar = new Radar(options, elem);
 
-  addOverlayListener('LogLine', (e) => {
+  overlayApi.on('LogLine', (e) => {
     radar.OnNetLog(e);
   });
 
-  addOverlayListener('onPlayerChangedEvent', (e) => {
+  overlayApi.on('onPlayerChangedEvent', (e) => {
     radar.OnPlayerChange(e);
   });
 
-  addOverlayListener('ChangeZone', () => {
+  overlayApi.on('ChangeZone', () => {
     radar.OnChangeZone();
   });
 });

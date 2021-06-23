@@ -1,6 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
-import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
+import { overlayApi } from '../../../../../resources/overlay_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
@@ -276,8 +276,7 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ source: '求道之三位一体', id: '5AA3' }),
       preRun: (data) => delete data.ironSplitter,
       promise: async (data, matches) => {
-        const seekerData = await callOverlayHandler({
-          call: 'getCombatants',
+        const seekerData = await overlayApi.call('getCombatants', {
           ids: [parseInt(matches.sourceId, 16)],
         });
 
@@ -1076,8 +1075,7 @@ export default {
       suppressSeconds: 10,
       promise: async (data) => {
         const unseenIds = data.unseenIds;
-        const unseenData = await callOverlayHandler({
-          call: 'getCombatants',
+        const unseenData = await overlayApi.call('getCombatants', {
           ids: unseenIds,
         });
 

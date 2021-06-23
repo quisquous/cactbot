@@ -1,4 +1,4 @@
-import { addOverlayListener } from '../../resources/overlay_plugin_api';
+import { overlayApi } from '../../resources/overlay_api';
 
 import ContentType from '../../resources/content_type';
 import Util from '../../resources/util';
@@ -19,7 +19,7 @@ let gCurrentZone = null;
 let gInCombat = false;
 
 export const InitDpsModule = function(options, updateFunc, hideFunc) {
-  addOverlayListener('CombatData', (e) => {
+  overlayApi.on('CombatData', (e) => {
     // DPS numbers in large pvp is not useful and hella noisy.
     if (gIgnoreCurrentZone || gIgnoreCurrentJob)
       return;
@@ -39,7 +39,7 @@ export const InitDpsModule = function(options, updateFunc, hideFunc) {
     updateFunc({ detail: e });
   });
 
-  addOverlayListener('ChangeZone', (e) => {
+  overlayApi.on('ChangeZone', (e) => {
     const newZone = e.zoneName;
     if (gCurrentZone === newZone)
       return;
@@ -52,11 +52,11 @@ export const InitDpsModule = function(options, updateFunc, hideFunc) {
     gIgnoreCurrentZone = options.IgnoreContentTypes.includes(contentType);
   });
 
-  addOverlayListener('onInCombatChangedEvent', (e) => {
+  overlayApi.on('onInCombatChangedEvent', (e) => {
     gInCombat = e.detail.inACTCombat;
   });
 
-  addOverlayListener('onPlayerChangedEvent', (e) => {
+  overlayApi.on('onPlayerChangedEvent', (e) => {
     const job = e.detail.job;
     if (job === gCurrentJob)
       return;

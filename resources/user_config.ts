@@ -2,7 +2,7 @@ import { Lang } from './languages';
 import { BaseOptions } from '../types/data';
 import { CactbotLoadUserRet, SavedConfig, SavedConfigEntry } from '../types/event';
 import { LocaleText } from '../types/trigger';
-import { addOverlayListener, callOverlayHandler } from './overlay_plugin_api';
+import { overlayApi } from './overlay_api';
 import { UnreachableCode } from './not_reached';
 
 // TODO:
@@ -202,10 +202,10 @@ class UserConfig {
       window.location.reload();
     };
 
-    addOverlayListener('onUserFileChanged', () => {
+    overlayApi.on('onUserFileChanged', () => {
       reloadOnce();
     });
-    addOverlayListener('onForceReload', () => {
+    overlayApi.on('onForceReload', () => {
       reloadOnce();
     });
 
@@ -213,8 +213,7 @@ class UserConfig {
   }
 
   loadUserFiles(overlayName: string, options: BaseOptions, callback: () => void) {
-    const readOptions = callOverlayHandler({
-      call: 'cactbotLoadData',
+    const readOptions = overlayApi.call('cactbotLoadData', {
       overlay: 'options',
     });
 
@@ -344,11 +343,10 @@ class UserConfig {
       if (callback)
         callback();
 
-      void callOverlayHandler({ call: 'cactbotRequestState' });
+      void overlayApi.call('cactbotRequestState', {});
     };
 
-    void callOverlayHandler({
-      call: 'cactbotLoadUser',
+    void overlayApi.call('cactbotLoadUser', {
       source: location.href,
       overlayName: overlayName,
     }).then((e: { detail: CactbotLoadUserRet }) => {

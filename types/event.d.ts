@@ -5,8 +5,48 @@ declare global {
   interface DocumentEventMap {
     'onOverlayStateUpdate': CustomEvent<{ isLocked: boolean }>;
   }
+
+  interface Window {
+    __OverlayCallback: (msg: AnyEventResponse) => void;
+    dispatchOverlayEvent?: (msg: AnyEventResponse) => void;
+    OverlayPluginApi: {
+      ready: boolean;
+      callHandler: (msg: string, cb?: (value: string) => unknown) => void;
+    };
+    /**
+     * @deprecated This is for backward compatibility.
+     *
+     * It is recommended to import from this file:
+     *
+     * `import { overlayApi } from '/path/to/overlay_api';`
+     *
+     * and use `overlayApi.on`
+     */
+    addOverlayListener: (event: EventType, cb: AnyListenerCallback) => void;
+    /**
+     * @deprecated This is for backward compatibility.
+     *
+     * It is recommended to import from this file:
+     *
+     * `import { overlayApi } from '/path/to/overlay_api';`
+     *
+     * and use `overlayApi.off`
+     */
+    removeOverlayListener: (event: EventType, cb: AnyListenerCallback) => void;
+    /**
+     * @deprecated This is for backward compatibility.
+     *
+     * It is recommended to import from this file:
+     *
+     * `import { overlayApi } from '/path/to/overlay_api';`
+     *
+     * and use `overlayApi.call`
+     */
+    callOverlayHandler: (msg: AnyHandlerRequest) => Promise<unknown>;
+  }
 }
-export interface Party {
+
+interface Party {
   id: string;
   name: string;
   worldId: number;
@@ -14,7 +54,7 @@ export interface Party {
   inParty: boolean;
 }
 
-export interface JobDetail {
+interface JobDetail {
   'PLD': { oath: number };
   'WAR': { beast: number };
   'DRK': {
@@ -118,7 +158,14 @@ export interface JobDetail {
   };
 }
 
-export interface EventMap {
+type LogEvent = {
+  type: 'onLogEvent';
+  detail: {
+    logs: string[];
+  };
+};
+
+interface EventMap {
   // #region OverlayPlugin built-in Event
   'CombatData': (ev: {
     type: 'CombatData';
@@ -263,18 +310,11 @@ export interface EventMap {
   // #endregion
 }
 
-export type EventResponses = {
+type EventResponses = {
   [event in keyof EventMap]: Parameters<EventMap[event]>[0];
 };
 
-export type LogEvent = {
-  type: 'onLogEvent';
-  detail: {
-    logs: string[];
-  };
-};
-
-export type EventType = keyof EventMap;
+type EventType = keyof EventMap;
 
 interface CactbotLoadUserRet {
   userLocation: string;
@@ -287,9 +327,9 @@ interface CactbotLoadUserRet {
 }
 
 // Structured JSON data saved in OverlayPlugin config files.
-export type SavedConfigEntry = string | number | boolean | [ SavedConfigEntry] |
+type SavedConfigEntry = string | number | boolean | [ SavedConfigEntry] |
    { [nestedName: string]: SavedConfigEntry };
-export type SavedConfig = {
+type SavedConfig = {
   [overlayName: string]: SavedConfigEntry;
 };
 
@@ -328,7 +368,7 @@ type PlayerChangedRet = Job extends infer T ? T extends Job ?
 
 // Member names taken from OverlayPlugin's MiniParse.cs
 // Types taken from FFXIV parser plugin
-export interface PluginCombatantState {
+interface PluginCombatantState {
   CurrentWorldID?: number;
   WorldID?: number;
   WorldName?: string;
@@ -351,51 +391,113 @@ export interface PluginCombatantState {
   Heading: number;
 }
 
-export type GetCombatantsCall = {
-  call: 'getCombatants';
-  ids?: number[];
-  names?: string[];
-  props?: string[];
+// #region Listeners
+
+type EventCallback = {
+  [type in EventType]: (msg: EventResponses[type]) => void;
 };
 
-export type GetCombatantsRet = { combatants: PluginCombatantState[] };
+type AnyEventResponse = {
+  type: EventType;
+  rseq?: number;
+} & EventResponses[EventType];
 
-export type IOverlayHandler = {
-  // OutputPlugin build-in
-  (msg: {
-    call: 'subscribe';
+// #endregion
+
+// #region Handlers
+
+type HandlerRequest = {
+  'subscribe': {
+    call?: 'subscribe';
+    rseq?: number;
     events: string[];
-  }): Promise<null>;
-  (msg: GetCombatantsCall): Promise<GetCombatantsRet>;
+  };
+  'getCombatants': {
+    call?: 'getCombatants';
+    rseq?: number;
+    ids?: number[];
+    names?: string[];
+    props?: string[];
+  };
   // TODO: add OverlayPlugin build-in handlers
   // Cactbot
   // TODO: fill up all handler types
-  (msg: {
-    call: 'cactbotReloadOverlays';
-  }): Promise<null>;
-  (msg: {
-    call: 'cactbotLoadUser';
+  'cactbotReloadOverlays': {
+    call?: 'cactbotReloadOverlays';
+    rseq?: number;
+  };
+  'cactbotLoadUser': {
+    call?: 'cactbotLoadUser';
+    rseq?: number;
     source: string;
     overlayName: string;
-  }): Promise<{ detail: CactbotLoadUserRet }>;
-  (msg: {
-    call: 'cactbotRequestPlayerUpdate';
-  }): Promise<null>;
-  (msg: {
-    call: 'cactbotRequestState';
-  }): Promise<null>;
-  (msg: {
-    call: 'cactbotSay';
+  };
+  'cactbotRequestPlayerUpdate': {
+    call?: 'cactbotRequestPlayerUpdate';
+    rseq?: number;
+  };
+  'cactbotRequestState': {
+    call?: 'cactbotRequestState';
+    rseq?: number;
+  };
+  'cactbotSay': {
+    call?: 'cactbotSay';
+    rseq?: number;
     text: string;
-  }): Promise<null>;
-  (msg: {
-    call: 'cactbotSaveData';
-  }): Promise<null>;
-  (msg: {
-    call: 'cactbotLoadData';
+  };
+  'cactbotSaveData': {
+    call?: 'cactbotSaveData';
+    rseq?: number;
+  };
+  'cactbotLoadData': {
+    call?: 'cactbotLoadData';
+    rseq?: number;
     overlay: string;
-  }): Promise<{ data: SavedConfig } | null>;
-  <T>(msg: {
-    call: 'cactbotChooseDirectory';
-  }): Promise<{ data: T } | null>;
+  };
+  'cactbotChooseDirectory': {
+    call?: 'cactbotChooseDirectory';
+    rseq?: number;
+  };
 };
+
+type HandlerResponse = {
+  'subscribe': null;
+  'getCombatants': { combatants: PluginCombatantState[] };
+  'cactbotReloadOverlays': null;
+  'cactbotLoadUser': { detail: CactbotLoadUserRet };
+  'cactbotRequestPlayerUpdate': null;
+  'cactbotRequestState': null;
+  'cactbotSay': null;
+  'cactbotSaveData': null;
+  'cactbotLoadData': { data: SavedConfig } | null;
+  'cactbotChooseDirectory': { data?: string };
+};
+
+type HandlerType = keyof HandlerRequest;
+
+type HandlerFunc = {
+  [type in HandlerType]: (msg: HandlerRequest[type]) => Promise<HandlerResponse[type]>;
+};
+
+type AnyHandlerRequest = {
+  call: HandlerType;
+};
+
+type AnyHandlerResponse = {
+  type: HandlerType;
+  rseq?: number;
+} & HandlerResponse[HandlerType];
+
+type AnyCallObj = {
+  type: HandlerType | EventType;
+};
+
+type AnyResponse = (AnyHandlerResponse & AnyCallObj) | (AnyEventResponse & AnyCallObj);
+
+// #region Window declaration
+
+type AnyListenerCallback = EventCallback[EventType];
+
+// #endregion
+
+// #endregion

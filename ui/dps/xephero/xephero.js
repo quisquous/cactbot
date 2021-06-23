@@ -1,4 +1,4 @@
-import { addOverlayListener } from '../../../resources/overlay_plugin_api';
+import { overlayApi } from '../../../resources/overlay_api';
 
 import DpsPhaseTracker from './dps_phase_tracker';
 import { InitDpsModule, defaultOptions } from '../dps_common';
@@ -167,14 +167,14 @@ UserConfig.getUserConfigLocation('xephero', defaultOptions, () => {
 
   InitDpsModule(options, onOverlayDataUpdateEvent, hideOverlay);
 
-  addOverlayListener('ChangeZone', (e) => {
+  overlayApi.on('ChangeZone', (e) => {
     const currentZone = e.zoneName;
     tracker.onChangeZone(currentZone);
   });
-  addOverlayListener('onLogEvent', (e) => {
+  overlayApi.on('onLogEvent', (e) => {
     tracker.onLogEvent(e.detail.logs);
   });
-  addOverlayListener('onInCombatChangedEvent', (e) => {
+  overlayApi.on('onInCombatChangedEvent', (e) => {
     // Only clear phases when ACT starts a new encounter for consistency.
     tracker.inCombatChanged(e.detail.inACTCombat);
   });

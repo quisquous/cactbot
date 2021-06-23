@@ -1,4 +1,4 @@
-import { addOverlayListener } from '../../resources/overlay_plugin_api';
+import { overlayApi } from '../../resources/overlay_api';
 
 import Regexes from '../../resources/regexes';
 import UserConfig from '../../resources/user_config';
@@ -4167,19 +4167,19 @@ class EurekaTracker {
 UserConfig.getUserConfigLocation('eureka', defaultOptions, () => {
   const options = { ...defaultOptions };
   const tracker = new EurekaTracker(options);
-  addOverlayListener('onPlayerChangedEvent', (e) => {
+  overlayApi.on('onPlayerChangedEvent', (e) => {
     tracker.OnPlayerChange(e);
   });
-  addOverlayListener('ChangeZone', (e) => {
+  overlayApi.on('ChangeZone', (e) => {
     tracker.OnChangeZone(e);
   });
-  addOverlayListener('onLogEvent', (e) => {
+  overlayApi.on('onLogEvent', (e) => {
     tracker.OnLog(e);
   });
-  addOverlayListener('onFateEvent', (e) => {
+  overlayApi.on('onFateEvent', (e) => {
     tracker.OnFate(e);
   });
-  addOverlayListener('onCEEvent', (e) => {
+  overlayApi.on('onCEEvent', (e) => {
     tracker.OnCE(e);
   });
 });

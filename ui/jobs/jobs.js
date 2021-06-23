@@ -1,4 +1,4 @@
-import { addOverlayListener } from '../../resources/overlay_plugin_api';
+import { overlayApi } from '../../resources/overlay_api';
 
 import EffectId from '../../resources/effect_id';
 import ContentType from '../../resources/content_type';
@@ -1114,28 +1114,28 @@ UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
   const options = { ...defaultOptions };
   const bars = new Bars(options);
 
-  addOverlayListener('onPlayerChangedEvent', (e) => {
+  overlayApi.on('onPlayerChangedEvent', (e) => {
     bars._onPlayerChanged(e);
   });
-  addOverlayListener('EnmityTargetData', (e) => {
+  overlayApi.on('EnmityTargetData', (e) => {
     bars._updateEnmityTargetData(e);
   });
-  addOverlayListener('onPartyWipe', (e) => {
+  overlayApi.on('onPartyWipe', (e) => {
     bars._onPartyWipe(e);
   });
-  addOverlayListener('onInCombatChangedEvent', (e) => {
+  overlayApi.on('onInCombatChangedEvent', (e) => {
     bars._onInCombatChanged(e);
   });
-  addOverlayListener('ChangeZone', (e) => {
+  overlayApi.on('ChangeZone', (e) => {
     bars._onChangeZone(e);
   });
-  addOverlayListener('onLogEvent', (e) => {
+  overlayApi.on('onLogEvent', (e) => {
     bars._onLogEvent(e);
   });
-  addOverlayListener('LogLine', (e) => {
+  overlayApi.on('LogLine', (e) => {
     bars._onNetLog(e);
   });
-  addOverlayListener('PartyChanged', (e) => {
+  overlayApi.on('PartyChanged', (e) => {
     bars._onPartyChanged(e);
   });
 });

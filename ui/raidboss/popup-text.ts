@@ -1,4 +1,4 @@
-import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
+import { overlayApi } from '../../resources/overlay_api';
 
 import AutoplayHelper from './autoplay_helper';
 import BrowserTTSEngine from './browser_tts_engine';
@@ -458,8 +458,7 @@ export class PopupText {
       };
     } else {
       this.ttsSay = (text) => {
-        void callOverlayHandler({
-          call: 'cactbotSay',
+        void overlayApi.call('cactbotSay', {
           text: this.options.TransformTts(text),
         });
       };
@@ -487,22 +486,22 @@ export class PopupText {
   }
 
   HookOverlays(): void {
-    addOverlayListener('PartyChanged', (e) => {
+    overlayApi.on('PartyChanged', (e) => {
       this.partyTracker.onPartyChanged(e);
     });
     addPlayerChangedOverrideListener((e: PlayerChangedDetail) => {
       this.OnPlayerChange(e);
     }, this.options.PlayerNameOverride);
-    addOverlayListener('ChangeZone', (e) => {
+    overlayApi.on('ChangeZone', (e) => {
       this.OnChangeZone(e);
     });
-    addOverlayListener('onInCombatChangedEvent', (e) => {
+    overlayApi.on('onInCombatChangedEvent', (e) => {
       this.OnInCombatChange(e.detail.inGameCombat);
     });
-    addOverlayListener('onLogEvent', (e) => {
+    overlayApi.on('onLogEvent', (e) => {
       this.OnLog(e);
     });
-    addOverlayListener('LogLine', (e) => {
+    overlayApi.on('LogLine', (e) => {
       this.OnNetLog(e);
     });
   }

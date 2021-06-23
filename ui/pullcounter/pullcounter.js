@@ -1,4 +1,4 @@
-import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
+import { overlayApi } from '../../resources/overlay_api';
 
 import { LocaleRegex } from '../../resources/translations';
 import Regexes from '../../resources/regexes';
@@ -151,8 +151,7 @@ class PullCounter {
     this.countdownEngageRegex = LocaleRegex.countdownEngage[this.options.ParserLanguage] ||
       LocaleRegex.countdownEngage['en'];
 
-    callOverlayHandler({
-      call: 'cactbotLoadData',
+    overlayApi.call('cactbotLoadData', {
       overlay: 'pullcounter',
     }).then((data) => this.SetSaveData(data));
 
@@ -173,8 +172,7 @@ class PullCounter {
   }
 
   SaveData() {
-    callOverlayHandler({
-      call: 'cactbotSaveData',
+    overlayApi.call('cactbotSaveData', {
       overlay: 'pullcounter',
       data: JSON.stringify(this.pullCounts),
     });
@@ -318,9 +316,9 @@ UserConfig.getUserConfigLocation('pullcounter', defaultOptions, () => {
   const options = { ...defaultOptions };
   const pullcounter = new PullCounter(options, document.getElementById('pullcounttext'));
 
-  addOverlayListener('onLogEvent', (e) => pullcounter.OnLogEvent(e));
-  addOverlayListener('ChangeZone', (e) => pullcounter.OnChangeZone(e));
-  addOverlayListener('onInCombatChangedEvent', (e) => pullcounter.OnInCombatChange(e));
-  addOverlayListener('onPartyWipe', () => pullcounter.OnPartyWipe());
-  addOverlayListener('PartyChanged', (e) => pullcounter.OnPartyChange(e));
+  overlayApi.on('onLogEvent', (e) => pullcounter.OnLogEvent(e));
+  overlayApi.on('ChangeZone', (e) => pullcounter.OnChangeZone(e));
+  overlayApi.on('onInCombatChangedEvent', (e) => pullcounter.OnInCombatChange(e));
+  overlayApi.on('onPartyWipe', () => pullcounter.OnPartyWipe());
+  overlayApi.on('PartyChanged', (e) => pullcounter.OnPartyChange(e));
 });
