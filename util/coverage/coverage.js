@@ -209,7 +209,7 @@ const miscStrings = {
   },
   // Description about release and latest version differences.
   description: {
-    en: 'This list may contain content that is in development and is not yet included in the latest cactbot release. Anything that is listed as covered here will be included in the next release of cactbot.  If you are using the quisquous.github.io version as the url for your overlays, this list will be up to date.',
+    en: 'This list may contain content that is in development and is not yet included in the latest cactbot release. Anything that is listed as covered here will be included in the next release of cactbot.  If you are using the <a href="https://github.com/quisquous/cactbot/blob/main/CONTRIBUTING.md#validating-changes-via-remote-urls">quisquous.github.io version</a> as the url for your overlays, this list will be up to date',
     ja: 'このリストは開発中機能や最新リリースバージョンに公開されていないコンテンツを含まれています。リストに含まれているコンテンツは次バージョンに公開される予定があります。また、OverlayPluginのURL欄に「quisquous.github.io」のページのURLを入力している場合はこのリストに含まれているコンテンツと一致し、すべてのコンテンツを使えるになります。',
     cn: '该列表中可能存在正在开发中的功能及未发布在cactbot最新发行版中的更新内容。该列表中显示的更新将会在下一个版本的cactbot发行版中发布。若您在OverlayPlugin中使用的是「quisquous.github.io」开头的URL，则更新进度与该列表一致，即该列表中的所有内容均可用。',
     ko: '이 목록에는 아직 개발 중인 컨텐츠가 포함되어 있을 수 있고 최신 cactbot 릴리즈에 포함되어 있지 않을 수 있습니다. 여기에 나열된 컨텐츠 목록은 최소한 다음 릴리즈에는 포함되게 됩니다. 만약 quisquous.github.io 버전을 오버레이 url로 연결해서 사용하고 계시다면, 이 목록이 오버레이의 컨텐츠 커버리지와 일치합니다.',
