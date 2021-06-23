@@ -147,11 +147,19 @@ export default class AnalyzedEncounter extends EventBus {
     if (timelineController.activeTimeline) {
       timelineController.activeTimeline.SetTrigger((trigger: LooseTrigger, matches) => {
         const currentLine = this.encounter.logLines[currentLogIndex];
+        if (!currentLine)
+          throw new UnreachableCode();
+
         const resolver = popupText.currentResolver = new Resolver({
           initialData: EmulatorCommon.cloneData(popupText.getData()),
           suppressed: false,
           executed: false,
         });
+        resolver.triggerHelper =
+          popupText._onTriggerInternalGetHelper(
+              trigger,
+              matches?.groups as never,
+              currentLine?.timestamp);
         popupText.triggerResolvers.push(resolver);
 
         if (!currentLine)
