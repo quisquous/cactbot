@@ -196,7 +196,11 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
     if (!delay || delay <= 0 || typeof delay !== 'number')
       return;
 
-    const ret = new Promise<void>((res, rej) => {
+    let ret: Promise<void>;
+
+    // Disable prefer-const due to needing `ret` defined before using it in promise
+    // eslint-disable-next-line prefer-const
+    ret = new Promise<void>((res, rej) => {
       this.scheduledTriggers.push({
         expires: this.emulatedOffset + (delay * 1000),
         promise: ret,
