@@ -158,7 +158,7 @@ export default class AnalyzedEncounter extends EventBus {
         resolver.triggerHelper =
           popupText._onTriggerInternalGetHelper(
               trigger,
-              matches?.groups as never,
+              matches?.groups ?? {},
               currentLine?.timestamp);
         popupText.triggerResolvers.push(resolver);
 
