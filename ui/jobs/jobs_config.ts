@@ -215,15 +215,21 @@ UserConfig.registerOptions('jobs', {
       name: {
         en: 'Flash procs boxes of inactive dots/etc. up to n times while in combat. (-1: disabled, 0: infinite)',
         de: 'Dot/etc. boxen blinken bis zu n mal wenn im Kampf und dot ist nicht aktiv. (-1: deaktiviert, 0: ohne Limit)',
+        ja: '戦闘中でDoT/バフが切ったらprocボックスをｎ回点滅させる(-1：無効、0：無限回数)',
+        cn: '战斗中模块监控的重要DoT/Buff中断时令对应计时器闪烁N次（-1：禁用，0：无限闪烁）',
+        ko: '도트나 버프가 꺼지면 프록 박스를 n번 깜빡하게 합니다. (-1: 비활성화, 0: 무한)',
       },
       type: 'integer',
-      default: -1,
+      default: 5,
     },
     {
       id: 'NotifyExpiredProcsInCombatSound',
       name: {
         en: 'Play a sound notification if a proc box for dots/etc. expires while in combat.',
         de: 'Spiele einen Alarm Sound wenn eine dot/etc. box im Kampf inaktiv wird.',
+        ja: '戦闘中でDoT/バフが切ったら音を鳴らす',
+        cn: '战斗中模块监控的重要DoT/Buff中断时播放提示音',
+        ko: '도트나 버프가 꺼지면 소리로 알림을 줍니다.',
       },
       type: 'select',
       options: {
@@ -237,8 +243,23 @@ UserConfig.registerOptions('jobs', {
           'Wenn der Countdown 0 erreicht.': 'expired',
           'Wenn der Countdown nahe 0 ist.': 'threshold',
         },
+        ja: {
+          '無効': 'disabled',
+          '残り時間 → 0': 'expired',
+          '残り時間 → しきい値': 'threshold',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '计时器归零时': 'expired',
+          '计时器到达提示阈值时': 'threshold',
+        },
+        ko: {
+          '비활성화': 'disabled',
+          '카운트 다운이 0초일 때': 'expired',
+          '리필하기 적절한 때에 알려주기': 'threshold',
+        },
       },
-      default: 'disabled',
+      default: 'threshold',
     },
   ],
 });

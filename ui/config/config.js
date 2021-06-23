@@ -125,12 +125,12 @@ const kDirectoryToCategory = {
     ko: '던전',
   },
   eureka: {
-    en: 'Eureka',
-    de: 'Eureka',
-    fr: 'Eurêka',
-    ja: '禁断の地エウレカ',
-    cn: '禁地优雷卡',
-    ko: '에우레카',
+    en: 'Adventuring Forays',
+    de: 'Feldexkursion',
+    fr: 'Missions d\'exploration',
+    ja: '特殊フィールド探索',
+    cn: '特殊场景探索',
+    ko: '특수 필드 탐색',
   },
   raid: {
     en: 'Raid',
@@ -316,6 +316,7 @@ export default class CactbotConfigurator {
             continue;
           const buildFunc = {
             checkbox: this.buildCheckbox,
+            html: this.buildHtml,
             select: this.buildSelect,
             float: this.buildFloat,
             integer: this.buildInteger,
@@ -378,6 +379,15 @@ export default class CactbotConfigurator {
     input.type = 'checkbox';
     input.checked = this.getOption(group, opt.id, opt.default);
     input.onchange = () => this.setOption(group, opt.id, input.checked);
+
+    parent.appendChild(this.buildNameDiv(opt));
+    parent.appendChild(div);
+  }
+
+  buildHtml(parent, opt, group) {
+    const div = document.createElement('div');
+    div.classList.add('option-input-container');
+    div.innerHTML = this.translate(opt.html);
 
     parent.appendChild(this.buildNameDiv(opt));
     parent.appendChild(div);

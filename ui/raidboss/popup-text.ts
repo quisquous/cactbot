@@ -797,7 +797,8 @@ export class PopupText {
     // TODO: make this unique among the party in case of first name collisions.
     // TODO: probably this should be a general cactbot utility.
     if (typeof name !== 'string') {
-      console.error('called ShortNamify with non-string');
+      if (typeof name !== 'undefined')
+        console.error('called ShortNamify with non-string');
       return '???';
     }
 
