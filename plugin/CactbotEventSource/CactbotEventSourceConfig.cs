@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using CactbotEventSource.loc;
 
 namespace Cactbot {
   [Serializable]
@@ -21,7 +22,7 @@ namespace Cactbot {
           try {
             result.OverlayData = value.ToObject<Dictionary<string, JToken>>();
           } catch (Exception e) {
-            logger.Log(LogLevel.Error, "Failed to load OverlayData setting: {0}", e.ToString());
+            logger.Log(LogLevel.Error, Strings.LoadOverlayDataSettingsFailed, e.ToString());
           }
         }
 
@@ -29,7 +30,7 @@ namespace Cactbot {
           try {
             result.LastUpdateCheck = value.ToObject<DateTime>();
           } catch (Exception e) {
-            logger.Log(LogLevel.Error, "Failed to load LastUpdateCheck setting: {0}", e.ToString());
+            logger.Log(LogLevel.Error, Strings.LoadLastUpdateCheckSettingsFailed, e.ToString());
           }
         }
       }

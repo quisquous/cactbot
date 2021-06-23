@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ACTBaseInfo" xml:space="preserve">
+    <value>ACT: {0} {1}</value>
+  </data>
+  <data name="BaitSignatureFoundMultipleMatchesErrorMessage" xml:space="preserve">
+    <value>Bait signature found {0} matches</value>
+  </data>
+  <data name="CactbotBaseInfo" xml:space="preserve">
+    <value>cactbot: {0} {1} (dir: {2})</value>
+  </data>
+  <data name="CactbotUserDirectory" xml:space="preserve">
+    <value>cactbot user directory: {0}</value>
+  </data>
+  <data name="CharmapSignatureConflictingMatchErrorMessage" xml:space="preserve">
+    <value>Charmap signature found, but conflicting match</value>
+  </data>
+  <data name="CharmapSignatureFoundMultipleMatchesErrorMessage" xml:space="preserve">
+    <value>Charmap signature found {0} matches</value>
+  </data>
+  <data name="CheckDirectoryErrorMessage" xml:space="preserve">
+    <value>Error checking directory: {0}</value>
+  </data>
+  <data name="CheckingDllRelDirErrorMessage" xml:space="preserve">
+    <value>Error checking dll rel dir: {0}: {1}</value>
+  </data>
+  <data name="CheckingHtmlRelDirErrorMessage" xml:space="preserve">
+    <value>Error checking html rel dir: {0}: {1}</value>
+  </data>
+  <data name="DeterminingLanguageErrorMessage" xml:space="preserve">
+    <value>Error while determining language: {0}</value>
+  </data>
+  <data name="FFXIVPluginBaseInfo" xml:space="preserve">
+    <value>FFXIV Plugin: {0} {1}</value>
+  </data>
+  <data name="FoundDX9FFXIVErrorMessage" xml:space="preserve">
+    <value>Found DirectX9 FFXIV process. Requires DirectX11.</value>
+  </data>
+  <data name="IgnoreUpdateDueToDotGitDirectoryMessage" xml:space="preserve">
+    <value>Ignoring auto-update due to cactbot directory being a .git repo.</value>
+  </data>
+  <data name="InCombatOffsetSignatureFoundMultipleMatchesErrorMessage" xml:space="preserve">
+    <value>In combat offset signature found {0} matches</value>
+  </data>
+  <data name="InCombatSignatureFoundMultipleMatchesErrorMessage" xml:space="preserve">
+    <value>In combat signature found {0} matches</value>
+  </data>
+  <data name="InvalidSignaturePatternErrorMessage" xml:space="preserve">
+    <value>Invalid signature pattern: {0}</value>
+  </data>
+  <data name="JobSignatureFoundMultipleMatchesErrorMessage" xml:space="preserve">
+    <value>Job signature found {0} matches</value>
+  </data>
+  <data name="LoadLastUpdateCheckSettingsFailed" xml:space="preserve">
+    <value>Failed to load LastUpdateCheck setting: {0}</value>
+  </data>
+  <data name="LoadOverlayDataSettingsFailed" xml:space="preserve">
+    <value>Failed to load OverlayData setting: {0}</value>
+  </data>
+  <data name="MultiplePluginsLoadedErrorMessage" xml:space="preserve">
+    <value>Multiple FFXIV_ACT_Plugin.dll plugins loaded</value>
+  </data>
+  <data name="NoFFXIVACTPluginFoundErrorMessage" xml:space="preserve">
+    <value>No FFXIV_ACT_Plugin.dll found? Can't set language automatically.</value>
+  </data>
+  <data name="OverlayPluginBaseInfo" xml:space="preserve">
+    <value>OverlayPlugin: {0} {1}</value>
+  </data>
+  <data name="ParsingPluginLanguage" xml:space="preserve">
+    <value>Parsing Plugin Language: {0}</value>
+  </data>
+  <data name="PresetEureka" xml:space="preserve">
+    <value>Eureka</value>
+  </data>
+  <data name="PresetFisher" xml:space="preserve">
+    <value>Fisher</value>
+  </data>
+  <data name="PresetJobs" xml:space="preserve">
+    <value>Jobs</value>
+  </data>
+  <data name="PresetOopsyRaidsy" xml:space="preserve">
+    <value>OopsyRaidsy</value>
+  </data>
+  <data name="PresetPullCounter" xml:space="preserve">
+    <value>PullCounter</value>
+  </data>
+  <data name="PresetRadar" xml:space="preserve">
+    <value>Radar</value>
+  </data>
+  <data name="PresetRaidbossAlertOnly" xml:space="preserve">
+    <value>Raidboss Alerts Only</value>
+  </data>
+  <data name="PresetRaidbossCombined" xml:space="preserve">
+    <value>Raidboss (Combined Alerts &amp; Timeline)</value>
+  </data>
+  <data name="PresetRaidbossTimelineOnly" xml:space="preserve">
+    <value>Raidboss Timeline Only</value>
+  </data>
+  <data name="PresetRdmty" xml:space="preserve">
+    <value>Rdmty</value>
+  </data>
+  <data name="PresetTest" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="PresetXephero" xml:space="preserve">
+    <value>Xephero</value>
+  </data>
+  <data name="PresetZeffUI" xml:space="preserve">
+    <value>ZeffUI</value>
+  </data>
+  <data name="RequireDotNetVersion" xml:space="preserve">
+    <value>Requires .NET 4.6 or above. Using {0}</value>
+  </data>
+  <data name="SendFastRateEventsException" xml:space="preserve">
+    <value>Exception in SendFastRateEvents: {0}</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Source: {0}</value>
+  </data>
+  <data name="Stack" xml:space="preserve">
+    <value>Stack: {0}</value>
+  </data>
+  <data name="SystemLocale" xml:space="preserve">
+    <value>System Locale: {0}</value>
+  </data>
+  <data name="UnableUpdateDueToUnknownDirectoryErrorMessage" xml:space="preserve">
+    <value>Unable to auto-update due to unknown cactbot directory</value>
+  </data>
+  <data name="UserErrorFileException" xml:space="preserve">
+    <value>User error file exception: {0}</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version: {0}</value>
+  </data>
+</root>
