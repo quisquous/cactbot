@@ -130,7 +130,7 @@ const kDirectoryToCategory = {
     fr: 'Eurêka', // FIXME
     ja: '特殊フィールド探索',
     cn: '特殊场景探索',
-    ko: '에우레카',
+    ko: '에우레카', // FIXME
   },
   raid: {
     en: 'Raid',
