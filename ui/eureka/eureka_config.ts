@@ -39,6 +39,7 @@ UserConfig.registerOptions('eureka', {
       name: {
         en: 'Prefer complete names for Skirmishes/Critical Engagements',
         fr: 'Préférer les noms complet pour les escarmouches/Affrontements Cruciaux dans Bozja/Zadnor',
+        cn: '显示冲突战/紧急遭遇战全名',
         ko: '돌발 임무/긴급 교전 줄임말 쓰지 않기 (한국어 버전은 차이 없음)',
       },
       type: 'checkbox',
@@ -49,6 +50,7 @@ UserConfig.registerOptions('eureka', {
       name: {
         en: 'Add information about Field Notes',
         fr: 'Ajouter les informations relatives aux Rapports du Front Bozjien dans Bozja/Zadnor',
+        cn: '显示可能掉落的战果记录',
         ko: '전과기록 정보 보여주기',
       },
       type: 'checkbox',
