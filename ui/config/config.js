@@ -126,8 +126,8 @@ const kDirectoryToCategory = {
   },
   eureka: {
     en: 'Adventuring Forays',
-    de: 'Eureka',
-    fr: 'Eurêka',
+    de: 'Eureka', // FIXME
+    fr: 'Eurêka', // FIXME
     ja: '特殊フィールド探索',
     cn: '特殊场景探索',
     ko: '에우레카',
