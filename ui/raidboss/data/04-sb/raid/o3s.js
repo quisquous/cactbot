@@ -344,23 +344,14 @@ export default {
         return data.phase !== 3 || !data.seenHolyThisPhase;
       },
       alertText: (_data, _matches, output) => output.text(),
-      tts: (_data, _matches, output) => output.tts(),
       outputStrings: {
         text: {
-          en: 'Queen\'s Waltz: Books',
-          de: 'Tanz der Königin: Bücher',
-          fr: 'Danse de la reine : Livres',
-          ja: '女王の舞い: 本',
-          cn: '中间两排分格站位',
-          ko: '여왕의 춤: 책',
-        },
-        tts: {
-          en: 'books',
-          de: 'bücher',
-          fr: 'livres',
-          ja: '本',
-          cn: '书',
-          ko: '책',
+          en: 'Books (One Per Square)',
+          de: 'Tanz der Königin: Bücher', // FIXME
+          fr: 'Danse de la reine : Livres', // FIXME
+          ja: '女王の舞い: 本', // FIXME
+          cn: '中间两排分格站位', // FIXME
+          ko: '여왕의 춤: 책', // FIXME
         },
       },
     },
@@ -373,23 +364,14 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '2306', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2306', source: '할리카르나소스', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
-      tts: (_data, _matches, output) => output.tts(),
       outputStrings: {
         text: {
-          en: 'Queen\'s Waltz: Clock',
-          de: 'Tanz der Königin: Uhr',
-          fr: 'Danse de la reine : Position',
-          ja: '女王の舞い: 散開',
-          cn: '万变水波站位',
-          ko: '여왕의 춤: 산개',
-        },
-        tts: {
-          en: 'clock',
-          de: 'uhr',
-          fr: 'position',
-          ja: '散開',
-          cn: '万变水波',
-          ko: '산개',
+          en: 'Clock',
+          de: 'Tanz der Königin: Uhr', // FIXME
+          fr: 'Danse de la reine : Position', // FIXME
+          ja: '女王の舞い: 散開', // FIXME
+          cn: '万变水波站位', // FIXME
+          ko: '여왕의 춤: 산개', // FIXME
         },
       },
     },
@@ -402,23 +384,14 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '230A', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '230A', source: '할리카르나소스', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
-      tts: (_data, _matches, output) => output.tts(),
       outputStrings: {
         text: {
-          en: 'Queen\'s Waltz: Crystal Square',
-          de: 'Tanz der Königin: Kristallfeld',
-          fr: 'Danse de la reine : Carré de cristal',
-          ja: '女王の舞い: 床',
-          cn: '站在蓝地板',
-          ko: '여왕의 춤: 대지',
-        },
-        tts: {
-          en: 'blue square',
-          de: 'blaues feld',
-          fr: 'carré bleu',
-          ja: '青い床',
-          cn: '蓝地板',
-          ko: '파란 장판',
+          en: 'Be On Blue Square',
+          de: 'Tanz der Königin: Kristallfeld', // FIXME
+          fr: 'Danse de la reine : Carré de cristal', // FIXME
+          ja: '女王の舞い: 床', // FIXME
+          cn: '站在蓝地板', // FIXME
+          ko: '여왕의 춤: 대지', // FIXME
         },
       },
     },
@@ -431,23 +404,14 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '2308', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2308', source: '할리카르나소스', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
-      tts: (_data, _matches, output) => output.tts(),
       outputStrings: {
         text: {
-          en: 'Queen\'s Waltz: Tethers',
-          de: 'Tanz der Königin: Ranken',
-          fr: 'Danse de la reine : Liens',
-          ja: '女王の舞い: 茨',
-          cn: '先集中后扯线',
-          ko: '여왕의 춤: 가시',
-        },
-        tts: {
-          en: 'tethers',
-          de: 'ranken',
-          fr: 'liens',
-          ja: '茨を引く',
-          cn: '扯线',
-          ko: '가시',
+          en: 'Tethers',
+          de: 'Tanz der Königin: Ranken', // FIXME
+          fr: 'Danse de la reine : Liens', // FIXME
+          ja: '女王の舞い: 茨', // FIXME
+          cn: '先集中后扯线', // FIXME
+          ko: '여왕의 춤: 가시', // FIXME
         },
       },
     },
@@ -464,6 +428,56 @@ export default {
         breakTether: {
           en: 'Break Tether (${player})',
           ko: '가시줄 끊기 ("${player}")',
+        },
+      },
+    },
+    {
+      id: 'O3S Soul Reaper',
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '46' }),
+      alertText: (data, matches, output) => {
+        data.reapers = data.reapers || [];
+        data.reapers.push(matches);
+        // The first three reapers are the line aoes.
+        if (data.reapers.length !== 3)
+          return;
+
+        // Safe spots on diagonal, so this counts for both.
+        const safeSpots = new Set([0, 1, 2, 3]);
+
+        // x, y coordinates -15, 5, 5, 15 on rows/columns.
+        // x, y coordinates -19 or 19 if outside.
+        const mapPosToIndex = (coord) => Math.round((coord + 15) / 10);
+        for (const reaper of data.reapers) {
+          if (Math.abs(reaper.x) < 17)
+            safeSpots.delete(mapPosToIndex(reaper.x));
+          if (Math.abs(reaper.y) < 17)
+            safeSpots.delete(mapPosToIndex(reaper.y));
+        }
+
+        const spots = safeSpots.values();
+        if (spots.length !== 1)
+          return output.unknown();
+
+        return {
+          0: output.nwOutside(),
+          1: output.nwInside(),
+          2: output.seInside(),
+          3: output.seOutside(),
+        }[spots[0]];
+      },
+      outputStrings: {
+        unknown: Outputs.unknown,
+        nwOutside: {
+          en: 'NW Outside',
+        },
+        nwInside: {
+          en: 'NW Inside',
+        },
+        seInside: {
+          en: 'SE Inside',
+        },
+        seOutside: {
+          en: 'SE Outside',
         },
       },
     },
