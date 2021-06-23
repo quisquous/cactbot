@@ -2388,7 +2388,11 @@ const defaultOptions = {
         mash: {
           label: {
             en: 'The Monster Mash',
+            de: 'Rache ist Blutwurst',
             fr: 'Le retour du chien fidèle',
+            ja: '忠犬の逆襲',
+            cn: '忠犬的逆袭',
+            ko: '충견의 역습',
           },
           fieldNotes: 10,
           shortLabel: {
@@ -3011,7 +3015,6 @@ const defaultOptions = {
             en: 'Trampled',
             fr: 'Œil du malin',
             cn: '耶鲁',
-
           },
           x: 9.9,
           y: 18.1,
@@ -3073,7 +3076,7 @@ const defaultOptions = {
           shortLabel: {
             en: 'Rise',
             fr: 'Soulèvement',
-            cn: '劳动十号',
+            cn: '劳动X号',
           },
           x: 21.2,
           y: 17.6,
