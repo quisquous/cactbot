@@ -25,6 +25,10 @@ body > div {
   align-items: end;
 }
 
+#description {
+  white-space: nowrap;
+}
+
 #description-emoji {
   float: left;
   margin-right: 5px;
@@ -32,6 +36,8 @@ body > div {
 
 #description-text {
   display: inline-block;
+  white-space; normal;
+  max-width: 800px;
 }
 
 #warning {
