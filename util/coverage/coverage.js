@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
   buildLanguageSelect(languageSelect, lang);
 
   const description = document.getElementById('description-text');
-  description.innerText = translate(miscStrings.description, lang);
+  description.innerHTML = translate(miscStrings.description, lang);
 
   if (Object.keys(coverageTotals).length === 0) {
     const warning = document.getElementById('warning');
