@@ -109,14 +109,7 @@ export default {
             cn: '其他分摊${player}',
             ko: '${player} 다른 쉐어징',
           },
-          getOut: {
-            en: 'Get out',
-            de: 'Raus da',
-            fr: 'À l\'extérieur',
-            ja: '出て',
-            cn: '出去',
-            ko: '밖으로',
-          },
+          spread: Outputs.spread,
           stackOnHoly: Outputs.stackOnPlayer,
           stackOnYou: Outputs.stackOnYou,
         };
@@ -132,7 +125,7 @@ export default {
           ret.alarmText = output.stackOnYou();
         } else {
           if (data.holyTargets.includes(data.me)) {
-            ret.alertText = output.getOut();
+            ret.alertText = output.spread();
             ret.infoText = output.othersStackOnHoly({ player: data.ShortName(stackTarget) });
           } else {
             ret.infoText = output.stackOnHoly({ player: data.ShortName(stackTarget) });
