@@ -4,14 +4,25 @@ import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
-// TODO: White Flame (separate from boss, tankbusters)
-// TODO: dragon add
 // TODO: other adds
 
 // O3S - Deltascape 3.0 Savage
 export default {
   zoneId: ZoneId.DeltascapeV30Savage,
   timelineFile: 'o3s.txt',
+  timelineTriggers: [
+    {
+      id: 'O3S Great Dragon Frost Breath',
+      regex: /Frost Breath/,
+      beforeSeconds: 5,
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dragon Cleave',
+        },
+      },
+    },
+  ],
   triggers: [
     {
       id: 'O3S Panel Swap Phase Counter',
@@ -331,6 +342,21 @@ export default {
       response: Responses.lookAway(),
     },
     {
+      id: 'O3S Adds',
+      // 5626 = White Flame
+      // 6724 = Great Dragon
+      // 6056 = Apanda
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['5626', '6724', '6056'] }),
+      // Multiple Apandas in the log.
+      suppressSeconds: 1,
+      infoText: (_data, matches, output) => output.kill({ name: matches.name }),
+      outputStrings: {
+        kill: {
+          en: 'Kill ${name}',
+        },
+      },
+    },
+    {
       id: 'O3S The Queen\'s Waltz: Books',
       netRegex: NetRegexes.startsUsing({ id: '230E', source: 'Halicarnassus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '230E', source: 'Halikarnassos', capture: false }),
@@ -433,28 +459,36 @@ export default {
     },
     {
       id: 'O3S Soul Reaper',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '46' }),
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5634' }),
       alertText: (data, matches, output) => {
         data.reapers = data.reapers || [];
         data.reapers.push(matches);
-        // The first three reapers are the line aoes.
-        if (data.reapers.length !== 3)
+
+        if (data.reapers.length !== 4)
           return;
 
-        // Safe spots on diagonal, so this counts for both.
+        // Everything is symmetrical and safe spots are on the diagonal,
+        // so treat this as a linear problem.
         const safeSpots = new Set([0, 1, 2, 3]);
 
-        // x, y coordinates -15, 5, 5, 15 on rows/columns.
-        // x, y coordinates -19 or 19 if outside.
+        // x, y coordinates: -15, 5, 5, 15 on rows/columns.
+        // x, y coordinates: -19 or 19 if outside.
         const mapPosToIndex = (coord) => Math.round((coord + 15) / 10);
         for (const reaper of data.reapers) {
-          if (Math.abs(reaper.x) < 17)
-            safeSpots.delete(mapPosToIndex(reaper.x));
-          if (Math.abs(reaper.y) < 17)
-            safeSpots.delete(mapPosToIndex(reaper.y));
+          const x = parseFloat(reaper.x);
+          const y = parseFloat(reaper.y);
+
+          // Skip the ~center one.
+          if (Math.abs(x) < 1 && Math.abs(y) < 1)
+            continue;
+
+          if (Math.abs(x) < 17)
+            safeSpots.delete(mapPosToIndex(x));
+          if (Math.abs(y) < 17)
+            safeSpots.delete(mapPosToIndex(y));
         }
 
-        const spots = safeSpots.values();
+        const spots = Array.from(safeSpots);
         if (spots.length !== 1)
           return output.unknown();
 
