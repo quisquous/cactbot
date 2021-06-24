@@ -4,8 +4,6 @@ import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 
-// TODO: other adds
-
 // O3S - Deltascape 3.0 Savage
 export default {
   zoneId: ZoneId.DeltascapeV30Savage,
@@ -342,17 +340,28 @@ export default {
       response: Responses.lookAway(),
     },
     {
-      id: 'O3S Adds',
-      // 5626 = White Flame
-      // 6724 = Great Dragon
-      // 6056 = Apanda
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['5626', '6724', '6056'] }),
-      // Multiple Apandas in the log.
-      suppressSeconds: 1,
+      id: 'O3S Individual Adds',
+      // npcNameId, npcBaseId
+      // 5626, 7399 = White Flame
+      // 6724, 7400 = Great Dragon
+      // 6056, 7401 = Apanda
+      // There are a bunch of 6056, 7404 Apandas that get added at the beginning.
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['5626', '6724', '6056'], npcBaseId: ['7399', '7400', '7401'] }),
       infoText: (_data, matches, output) => output.kill({ name: matches.name }),
       outputStrings: {
         kill: {
           en: 'Kill ${name}',
+        },
+      },
+    },
+    {
+      id: 'O3S Iron Giant',
+      // 5636 = Iron Giant
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5636', capture: false }),
+      infoText: (_data, _matches, output) => output.kill(),
+      outputStrings: {
+        kill: {
+          en: 'Kill Giant + Ninjas',
         },
       },
     },
@@ -369,15 +378,21 @@ export default {
         // spellblade holy -> waltz that ends the library phase.
         return data.phase !== 3 || !data.seenHolyThisPhase;
       },
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (data, _matches, output) => {
+        data.bookCount = (data.bookCount || 0) + 1;
+        return data.bookCount !== 1 ? output.books() : output.magicHammer();
+      },
       outputStrings: {
-        text: {
+        books: {
           en: 'Books (One Per Square)',
           de: 'Tanz der Königin: Bücher', // FIXME
           fr: 'Danse de la reine : Livres', // FIXME
           ja: '女王の舞い: 本', // FIXME
           cn: '中间两排分格站位', // FIXME
           ko: '여왕의 춤: 책', // FIXME
+        },
+        magicHammer: {
+          en: 'Books + Magic Hammer',
         },
       },
     },
