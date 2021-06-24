@@ -453,8 +453,10 @@ export default {
       id: 'O3S The Queen\'s Waltz: Tethers You',
       netRegex: NetRegexes.tether({ id: '0012' }),
       infoText: (data, matches, output) => {
-        const otherPlayer = data.me === matches.target ? matches.source : matches.target;
-        return output.breakTether({ player: data.ShortName(otherPlayer) });
+        if (data.me === matches.target)
+          return output.breakTether({ player: data.ShortName(matches.source) });
+        else if (data.me === matches.source)
+          return output.breakTether({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         breakTether: {
