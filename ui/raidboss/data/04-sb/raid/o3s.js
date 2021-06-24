@@ -170,22 +170,9 @@ export default {
 
         return output.goSouthStackOnFriend();
       },
-      tts: (data, _matches, output) => {
-        if (data.librarySpellbladePrinted)
-          return;
-
-        data.librarySpellbladePrinted = true;
-        if (data.librarySpellbladeMe === '0064')
-          return output.stackOutside();
-
-        if (data.librarySpellbladeMe === '0065')
-          return output.goNorth2();
-
-        return output.stackInside();
-      },
       outputStrings: {
         goSouthStackOnYou: {
-          en: 'Go south: stack on YOU',
+          en: 'Go South: Stack on YOU',
           de: 'Nach Süden: stack auf DIR',
           fr: 'Allez au sud : Package sur VOUS',
           ja: '南へ: 自分に頭割り',
@@ -193,7 +180,7 @@ export default {
           ko: '남쪽으로: 쉐어징 대상자',
         },
         goNorth: {
-          en: 'go north',
+          en: 'Go North',
           de: 'nach norden',
           fr: 'Allez au nord',
           ja: '南へ',
@@ -201,36 +188,12 @@ export default {
           ko: '북쪽으로',
         },
         goSouthStackOnFriend: {
-          en: 'go south: stack on friend',
+          en: 'Go South: Stack on Friend',
           de: 'nach süden: stack auf freund',
           fr: 'Allez au sud : Package sur un ami',
           ja: '南へ: 頭割り',
           cn: '去南边分摊',
           ko: '남쪽으로: 쉐어징',
-        },
-        stackOutside: {
-          en: 'stack outside',
-          de: 'außen stacken',
-          fr: 'Packez-vous à l\'extérieur',
-          ja: '外へ: 頭割り',
-          cn: '去外面分摊',
-          ko: '밖으로: 쉐어징',
-        },
-        goNorth2: {
-          en: 'go north',
-          de: 'nach norden',
-          fr: 'Allez au nord',
-          ja: '南へ',
-          cn: '去南边',
-          ko: '북쪽으로',
-        },
-        stackInside: {
-          en: 'stack inside',
-          de: 'innen stacken',
-          fr: 'Packez-vous à l\'intérieur',
-          ja: '中へ: 頭割り',
-          cn: '去里面分摊',
-          ko: '안으로: 쉐어징',
         },
       },
     },
@@ -373,7 +336,9 @@ export default {
       },
       alertText: (data, _matches, output) => {
         data.bookCount = (data.bookCount || 0) + 1;
-        return data.bookCount !== 1 ? output.books() : output.magicHammer();
+        // The second books (with the Apanda) has big magic hammer circles.
+        // Usually folks handle this by going to the inner corners.
+        return data.bookCount !== 2 ? output.books() : output.magicHammer();
       },
       outputStrings: {
         books: {
