@@ -1,7 +1,7 @@
 import Encounter from './Encounter';
 import LogEventHandler from './LogEventHandler';
-import NetworkLogConverter from './NetworkLogConverter';
 import LogRepository from './network_log_converter/LogRepository';
+import NetworkLogConverter from './NetworkLogConverter';
 
 const ctx: Worker = self as unknown as Worker;
 

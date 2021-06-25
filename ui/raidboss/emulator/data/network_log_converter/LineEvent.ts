@@ -1,5 +1,6 @@
 import { Job } from '../../../../../types/job';
 import EmulatorCommon from '../../EmulatorCommon';
+
 import LogRepository from './LogRepository';
 
 const fields = {

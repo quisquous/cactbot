@@ -1,6 +1,7 @@
 import { RaidbossOptions } from '../../raidboss_options';
-import RaidEmulatorTimelineUI, { EmulatorTimerBar } from './RaidEmulatorTimelineUI';
 import { Event } from '../../timeline';
+
+import RaidEmulatorTimelineUI, { EmulatorTimerBar } from './RaidEmulatorTimelineUI';
 
 export default class RaidEmulatorAnalysisTimelineUI extends RaidEmulatorTimelineUI {
   constructor(options: RaidbossOptions) {

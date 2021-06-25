@@ -1,5 +1,6 @@
 import { BaseOptions } from '../../types/data';
 import { Job } from '../../types/job';
+
 import { BuffInfo } from './buff_tracker';
 
 export interface NonConfigOptions extends BaseOptions {

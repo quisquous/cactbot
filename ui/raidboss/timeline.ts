@@ -1,15 +1,16 @@
-import { commonReplacement } from './common_replacement';
-import Regexes from '../../resources/regexes';
-import { LocaleRegex } from '../../resources/translations';
-import { UnreachableCode } from '../../resources/not_reached';
-import { RaidbossOptions } from './raidboss_options';
 import { Lang } from '../../resources/languages';
-import TimerBar from '../../resources/timerbar';
-import { LogEvent } from '../../types/event';
-import { LooseTimelineTrigger, TriggerAutoConfig } from '../../types/trigger';
-import { PopupTextGenerator } from './popup-text';
 import NetRegexes from '../../resources/netregexes';
+import { UnreachableCode } from '../../resources/not_reached';
+import Regexes from '../../resources/regexes';
+import TimerBar from '../../resources/timerbar';
+import { LocaleRegex } from '../../resources/translations';
+import { LogEvent } from '../../types/event';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
+import { LooseTimelineTrigger, TriggerAutoConfig } from '../../types/trigger';
+
+import { commonReplacement } from './common_replacement';
+import { PopupTextGenerator } from './popup-text';
+import { RaidbossOptions } from './raidboss_options';
 
 const kBig = 1000000000; // Something bigger than any fight length in seconds.
 

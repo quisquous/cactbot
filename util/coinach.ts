@@ -1,11 +1,11 @@
 // Helper for automating SaintCoinach -- https://github.com/ufx/SaintCoinach
 
-import { promisify } from 'util';
+import { exec } from 'child_process';
 import fs from 'fs';
 import path from 'path';
-import { exec } from 'child_process';
-import eslint from 'eslint';
+import { promisify } from 'util';
 
+import eslint from 'eslint';
 
 const coinachExe = 'SaintCoinach.Cmd.exe';
 const defaultCoinachPaths = ['C:\\SaintCoinach\\', 'D:\\SaintCoinach\\'];

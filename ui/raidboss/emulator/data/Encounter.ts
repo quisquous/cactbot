@@ -1,11 +1,12 @@
-import CombatantTracker from './CombatantTracker';
+import { Lang, isLang } from '../../../../resources/languages';
+import { UnreachableCode } from '../../../../resources/not_reached';
 import PetNamesByLang from '../../../../resources/pet_names';
 import EmulatorCommon, { MatchEndInfo, MatchStartInfo } from '../EmulatorCommon';
+
+import CombatantTracker from './CombatantTracker';
+import LineEvent, { isLineEventSource, isLineEventTarget } from './network_log_converter/LineEvent';
 import LogRepository from './network_log_converter/LogRepository';
 import NetworkLogConverter from './NetworkLogConverter';
-import { Lang, isLang } from '../../../../resources/languages';
-import LineEvent, { isLineEventSource, isLineEventTarget } from './network_log_converter/LineEvent';
-import { UnreachableCode } from '../../../../resources/not_reached';
 
 const isPetName = (name: string, language?: Lang) => {
   if (language)

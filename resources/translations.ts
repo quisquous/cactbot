@@ -1,7 +1,8 @@
-import { Lang } from './languages';
-import Regexes from './regexes';
-import NetRegexes from './netregexes';
 import { CactbotBaseRegExp } from '../types/net_trigger';
+
+import { Lang } from './languages';
+import NetRegexes from './netregexes';
+import Regexes from './regexes';
 
 // Fill in LocaleRegex so that things like LocaleRegex.countdownStart.de is a valid regex.
 const localeLines = {

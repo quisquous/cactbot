@@ -1,27 +1,27 @@
+import { Lang } from '../../resources/languages';
+import { UnreachableCode } from '../../resources/not_reached';
 import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';
-
-import AutoplayHelper from './autoplay_helper';
-import BrowserTTSEngine from './browser_tts_engine';
-import { addPlayerChangedOverrideListener, PlayerChangedDetail } from '../../resources/player_override';
 import PartyTracker from '../../resources/party';
+import { addPlayerChangedOverrideListener, PlayerChangedDetail } from '../../resources/player_override';
 import Regexes from '../../resources/regexes';
 import Util from '../../resources/util';
 import ZoneId from '../../resources/zone_id';
+import { RaidbossData } from '../../types/data';
+import { EventResponses, LogEvent } from '../../types/event';
+import { Job, Role } from '../../types/job';
+import { Matches } from '../../types/net_matches';
 import {
   LooseTrigger, OutputStrings, TriggerSet, TimelineFunc, LooseTriggerSet,
   ResponseField, TriggerAutoConfig, TriggerField, TriggerOutput,
   Output, ResponseOutput, PartialTriggerOutput, DataInitializeFunc,
   GeneralNetRegexTrigger, RegexTrigger,
 } from '../../types/trigger';
-import { UnreachableCode } from '../../resources/not_reached';
-import { Lang } from '../../resources/languages';
+
+import AutoplayHelper from './autoplay_helper';
+import BrowserTTSEngine from './browser_tts_engine';
+import { RaidbossFileData } from './data/raidboss_manifest.txt';
 import { PerTriggerAutoConfig, PerTriggerOption, RaidbossOptions } from './raidboss_options';
 import { TimelineReplacement, TimelineLoader } from './timeline';
-import { RaidbossFileData } from './data/raidboss_manifest.txt';
-import { RaidbossData } from '../../types/data';
-import { Job, Role } from '../../types/job';
-import { EventResponses, LogEvent } from '../../types/event';
-import { Matches } from '../../types/net_matches';
 
 const isRaidbossLooseTimelineTrigger =
   (trigger: LooseTrigger): trigger is ProcessedTimelineTrigger => {

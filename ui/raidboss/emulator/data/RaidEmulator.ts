@@ -2,6 +2,7 @@ import { UnreachableCode } from '../../../../resources/not_reached';
 import { RaidbossOptions } from '../../raidboss_options';
 import EventBus from '../EventBus';
 import RaidEmulatorPopupText from '../overrides/RaidEmulatorPopupText';
+
 import AnalyzedEncounter from './AnalyzedEncounter';
 import Encounter from './Encounter';
 
