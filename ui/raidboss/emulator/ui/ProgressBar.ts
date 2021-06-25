@@ -1,67 +1,93 @@
 import Tooltip from './Tooltip';
 import EmulatorCommon from '../EmulatorCommon';
+import RaidEmulator from '../data/RaidEmulator';
+import { UnreachableCode } from '../../../../resources/not_reached';
+import AnalyzedEncounter from '../data/AnalyzedEncounter';
+
+const querySelectorSafe = (node: ParentNode, sel: string): HTMLElement => {
+  const ret = node.querySelector(sel);
+  if (!(ret instanceof HTMLElement))
+    throw new UnreachableCode();
+  return ret;
+};
 
 export default class ProgressBar {
-  constructor(emulator) {
-    this.$progressBarTooltip = new Tooltip('.encounterProgressBar', 'bottom', '', false);
-    this.$progressBarCurrent = document.querySelector('.current-timestamp');
-    this.$progressBarDuration = document.querySelector('.duration-timestamp');
-    this.$progress = document.querySelector('.encounterProgressBar');
-    this.$progressBar = document.querySelector('.encounterProgressBar .progress-bar');
-    this.$engageIndicator = document.querySelector('.progressBarRow .engageIndicator');
+  $progressBarTooltip: Tooltip;
+  $progressBarCurrent: HTMLElement;
+  $progressBarDuration: HTMLElement;
+  $progress: HTMLElement;
+  $progressBar: HTMLElement;
+  $engageIndicator: HTMLElement;
+
+  constructor(emulator: RaidEmulator) {
+    const progBarContainer = querySelectorSafe(document, '.encounterProgressBar');
+    this.$progressBarTooltip = new Tooltip(progBarContainer, 'bottom', '', false);
+
+    this.$progressBarCurrent = querySelectorSafe(document, '.current-timestamp');
+    this.$progressBarDuration = querySelectorSafe(document, '.duration-timestamp');
+    this.$progress = querySelectorSafe(document, '.encounterProgressBar');
+    this.$progressBar = querySelectorSafe(document, '.encounterProgressBar .progress-bar');
+    this.$engageIndicator = querySelectorSafe(document, '.progressBarRow .engageIndicator');
     new Tooltip(this.$engageIndicator, 'bottom', 'Fight Begins');
-    this.emulator = emulator;
     this.$progress.addEventListener('mousemove', (e) => {
-      if (this.emulator.currentEncounter) {
-        const percent = e.offsetX / e.currentTarget.offsetWidth;
-        const time = Math.floor(this.emulator.currentEncounter.encounter.duration * percent) -
-          this.emulator.currentEncounter.encounter.initialOffset;
-        this.$progressBarTooltip.offset.x = e.offsetX - (e.currentTarget.offsetWidth / 2);
+      if (emulator.currentEncounter) {
+        const target = e.currentTarget;
+        if (!(target instanceof HTMLElement))
+          throw new UnreachableCode();
+        const percent = e.offsetX / target.offsetWidth;
+        const time = Math.floor(emulator.currentEncounter.encounter.duration * percent) -
+          emulator.currentEncounter.encounter.initialOffset;
+        this.$progressBarTooltip.offset.x = e.offsetX - (target.offsetWidth / 2);
         this.$progressBarTooltip.setText(EmulatorCommon.timeToString(time));
         this.$progressBarTooltip.show();
       }
     });
     this.$progress.addEventListener('click', (e) => {
-      if (this.emulator.currentEncounter) {
-        const percent = e.offsetX / e.currentTarget.offsetWidth;
-        const time = Math.floor(this.emulator.currentEncounter.encounter.duration * percent);
-        this.emulator.seek(time);
+      if (emulator.currentEncounter) {
+        const target = e.currentTarget;
+        if (!(target instanceof HTMLElement))
+          throw new UnreachableCode();
+        const percent = e.offsetX / target.offsetWidth;
+        const time = Math.floor(emulator.currentEncounter.encounter.duration * percent);
+        void emulator.seek(time);
       }
     });
-    emulator.on('currentEncounterChanged', (encounter) => {
+    emulator.on('currentEncounterChanged', (encounter: AnalyzedEncounter) => {
       this.$progressBarCurrent.textContent = EmulatorCommon.timeToString(0, false);
       this.$progressBarDuration.textContent = EmulatorCommon.timeToString(
           encounter.encounter.duration - encounter.encounter.initialOffset,
           false);
       this.$progressBar.style.width = '0%';
-      this.$progressBar.setAttribute('ariaValueMax', encounter.encounter.duration);
+      this.$progressBar.setAttribute('ariaValueMax', encounter.encounter.duration.toString());
       if (isNaN(encounter.encounter.initialOffset)) {
         this.$engageIndicator.classList.add('d-none');
       } else {
         const initialPercent =
-          (encounter.encounter.initialOffset / emulator.currentEncounter.encounter.duration) * 100;
+          (encounter.encounter.initialOffset / encounter.encounter.duration) * 100;
         this.$engageIndicator.classList.remove('d-none');
-        this.$engageIndicator.style.left = initialPercent + '%';
+        this.$engageIndicator.style.left = `${initialPercent}%`;
       }
     });
     emulator.on('tick', (currentLogTime) => {
-      const currentOffset = currentLogTime - emulator.currentEncounter.encounter.startTimestamp;
-      const progPercent = (currentOffset / emulator.currentEncounter.encounter.duration) * 100;
-      const progValue = currentLogTime - emulator.currentEncounter.encounter.initialTimestamp;
+      const curEnc = emulator.currentEncounter;
+      if (!curEnc)
+        throw new UnreachableCode();
+      const currentOffset = currentLogTime - curEnc.encounter.startTimestamp;
+      const progPercent = (currentOffset / curEnc.encounter.duration) * 100;
+      const progValue = currentLogTime - curEnc.encounter.initialTimestamp;
       this.$progressBarCurrent.textContent = EmulatorCommon.timeToString(progValue, false);
-      this.$progressBar.setAttribute('ariaValueNow', progValue);
-      this.$progressBar.style.width = progPercent + '%';
+      this.$progressBar.style.width = `${progPercent}%`;
     });
-    const $play = document.querySelector('.progressBarRow button.play');
-    const $pause = document.querySelector('.progressBarRow button.pause');
+    const $play = querySelectorSafe(document, '.progressBarRow button.play');
+    const $pause = querySelectorSafe(document, '.progressBarRow button.pause');
     $play.addEventListener('click', () => {
-      if (this.emulator.play()) {
+      if (emulator.play()) {
         $play.classList.add('d-none');
         $pause.classList.remove('d-none');
       }
     });
     $pause.addEventListener('click', () => {
-      if (this.emulator.pause()) {
+      if (emulator.pause()) {
         $pause.classList.add('d-none');
         $play.classList.remove('d-none');
       }
