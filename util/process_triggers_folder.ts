@@ -1,11 +1,14 @@
 import { execSync } from 'child_process';
-import eslint from 'eslint';
 import fs from 'fs';
 import path from 'path';
 import process from 'process';
-import { walkDirAsync } from './file_utils';
+
+import eslint from 'eslint';
+
 import UserConfig from '../resources/user_config';
 import defaultRaidbossOptions from '../ui/raidboss/raidboss_options';
+
+import { walkDirAsync } from './file_utils';
 
 const root = '../dist/triggers/ui/raidboss/data/';
 const tscCmd = `${['..', 'node_modules', '.bin', 'tsc'].join(path.sep)} --build ${['..', 'tsconfig.triggers.json'].join(path.sep)}`;

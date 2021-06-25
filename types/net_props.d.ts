@@ -1,6 +1,5 @@
 import { NetFields } from './net_fields';
 
-
 type Params<T extends string> =
     Partial<Record<Exclude<T, 'timestamp' | 'capture'>, string | string[]> &
     { 'timestamp': string; 'capture': boolean }>;

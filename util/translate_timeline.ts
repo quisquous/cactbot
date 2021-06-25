@@ -1,11 +1,14 @@
 import fs from 'fs';
 import path from 'path';
+
 import { ArgumentParser } from 'argparse';
-import { findMissing } from './find_missing_timeline_translations';
-import { Event, Sync, Timeline } from '../ui/raidboss/timeline';
-import { walkDirSync } from './file_utils';
+
 import { Lang } from '../resources/languages';
 import Options from '../ui/raidboss/raidboss_options';
+import { Event, Sync, Timeline } from '../ui/raidboss/timeline';
+
+import { walkDirSync } from './file_utils';
+import { findMissing } from './find_missing_timeline_translations';
 
 const parser = new ArgumentParser({
   addHelp: true,

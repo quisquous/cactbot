@@ -1,14 +1,15 @@
-import EmulatorCommon, { DataType } from '../EmulatorCommon';
-import StubbedPopupText from '../overrides/StubbedPopupText';
-import LineEvent from './network_log_converter/LineEvent';
-import { LooseTrigger } from '../../../../types/trigger';
-import { TriggerHelper, Text, TextText, ProcessedTrigger } from '../../popup-text';
-import { EventResponses, LogEvent } from '../../../../types/event';
 import { UnreachableCode } from '../../../../resources/not_reached';
+import { EventResponses, LogEvent } from '../../../../types/event';
 import { Matches } from '../../../../types/net_matches';
+import { LooseTrigger } from '../../../../types/trigger';
 import { RaidbossFileData } from '../../data/raidboss_manifest.txt';
+import { TriggerHelper, Text, TextText, ProcessedTrigger } from '../../popup-text';
 import { RaidbossOptions } from '../../raidboss_options';
 import { TimelineLoader } from '../../timeline';
+import EmulatorCommon, { DataType } from '../EmulatorCommon';
+import StubbedPopupText from '../overrides/StubbedPopupText';
+
+import LineEvent from './network_log_converter/LineEvent';
 
 type ResolverFunc = () => void;
 

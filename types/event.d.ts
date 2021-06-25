@@ -1,4 +1,5 @@
 import { Lang } from '../resources/languages';
+
 import { Job } from './job';
 
 declare global {

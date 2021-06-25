@@ -1,3 +1,5 @@
+// TODO: Fix import/order
+/* eslint-disable import/order */
 import { Lang } from './languages';
 import { BaseOptions } from '../types/data';
 import { CactbotLoadUserRet, SavedConfig, SavedConfigEntry } from '../types/event';

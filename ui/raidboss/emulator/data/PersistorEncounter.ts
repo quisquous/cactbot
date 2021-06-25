@@ -1,4 +1,5 @@
 import { UnreachableCode } from '../../../../resources/not_reached';
+
 import Encounter from './Encounter';
 
 export default class PersistorEncounter {

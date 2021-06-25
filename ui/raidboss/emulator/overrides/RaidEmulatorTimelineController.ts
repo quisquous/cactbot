@@ -4,6 +4,7 @@ import { LooseTimelineTrigger } from '../../../../types/trigger';
 import { TimelineController, TimelineReplacement, TimelineStyle } from '../../timeline';
 import LineEvent from '../data/network_log_converter/LineEvent';
 import RaidEmulator from '../data/RaidEmulator';
+
 import RaidEmulatorTimeline from './RaidEmulatorTimeline';
 
 export default class RaidEmulatorTimelineController extends TimelineController {

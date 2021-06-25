@@ -2,6 +2,7 @@
 
 import { parseString } from '@fast-csv/parse';
 import fetch from 'node-fetch';
+
 import { Lang } from '../resources/languages';
 
 const baseGithub = 'https://raw.githubusercontent.com/';

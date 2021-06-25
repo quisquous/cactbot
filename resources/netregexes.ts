@@ -1,5 +1,6 @@
 import { NetParams } from '../types/net_props';
 import { CactbotBaseRegExp, TriggerTypes } from '../types/net_trigger';
+
 import Regexes from './regexes';
 
 interface Fields {

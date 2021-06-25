@@ -1,8 +1,8 @@
-import { BaseOptions, RaidbossData } from '../../types/data';
-import UserConfig from '../../resources/user_config';
 import { Lang } from '../../resources/languages';
-import { LooseTrigger, TriggerAutoConfig, TriggerField, TriggerOutput } from '../../types/trigger';
+import UserConfig from '../../resources/user_config';
+import { BaseOptions, RaidbossData } from '../../types/data';
 import { Matches } from '../../types/net_matches';
+import { LooseTrigger, TriggerAutoConfig, TriggerField, TriggerOutput } from '../../types/trigger';
 
 // This file defines the base options that raidboss expects to see.
 
