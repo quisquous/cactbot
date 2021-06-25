@@ -2,23 +2,112 @@ import EmulatorCommon from '../EmulatorCommon';
 import EventBus from '../EventBus';
 import Tooltip from './Tooltip';
 import Util from '../../../../resources/util';
+import RaidEmulator from '../data/RaidEmulator';
+import { UnreachableCode } from '../../../../resources/not_reached';
+import AnalyzedEncounter, { PerspectiveTrigger } from '../data/AnalyzedEncounter';
+
+const jobOrder = [
+  'PLD', 'WAR', 'DRK', 'GNB',
+  'WHM', 'SCH', 'AST',
+  'MNK', 'DRG', 'NIN', 'SAM',
+  'BRD', 'MCH', 'DNC',
+  'BLM', 'SMN', 'RDM',
+  'BLU'] as const;
+
+type JobOrderType = typeof jobOrder[number];
+
+const isJobOrder = (job?: string): job is JobOrderType => {
+  return jobOrder.includes(job as JobOrderType);
+};
+
+type PartyInfo = {
+  $rootElem: HTMLElement;
+  $iconElem: HTMLElement;
+  $hpElem: HTMLElement;
+  $hpLabelElem: HTMLElement;
+  $hpProgElem: HTMLElement;
+  $mpElem: HTMLElement;
+  $mpLabelElem: HTMLElement;
+  $mpProgElem: HTMLElement;
+  $nameElem: HTMLElement;
+  id: string;
+  $triggerElem: HTMLElement;
+};
+
+type PartyInfoMap = {
+  [id: string]: PartyInfo;
+};
+
+type CollapseParams = {
+  time: string;
+  name?: string;
+  classes: string[];
+  $obj: HTMLElement;
+  icon?: string;
+  text?: string;
+  onclick?: CallableFunction;
+};
+
+const querySelectorSafe = (node: ParentNode, sel: string): HTMLElement => {
+  const ret = node.querySelector(sel);
+  if (!(ret instanceof HTMLElement))
+    throw new UnreachableCode();
+  return ret;
+};
+
+const getTemplateChild = (node: ParentNode, sel: string): HTMLElement => {
+  const template = querySelectorSafe(node, sel);
+  if (!(template instanceof HTMLTemplateElement))
+    throw new UnreachableCode();
+  const ret = template.content.firstElementChild;
+  if (!ret)
+    throw new UnreachableCode();
+  if (!(ret instanceof HTMLElement))
+    throw new UnreachableCode();
+  return ret;
+};
+
+const cloneSafe = (node: HTMLElement): HTMLElement => {
+  const cloned = node.cloneNode(true);
+  if (!(cloned instanceof HTMLElement))
+    throw new UnreachableCode();
+  return cloned;
+};
 
 export default class EmulatedPartyInfo extends EventBus {
-  constructor(emulator) {
+  private $partyInfo: HTMLElement;
+  private $triggerInfo: HTMLElement;
+  private $triggerHideSkippedCheckbox: HTMLInputElement;
+  private $triggerHideCollectCheckbox: HTMLInputElement;
+  private $triggerBar: HTMLElement;
+  private latestDisplayedState: number;
+  private currentPerspective?: string;
+  private updateTriggerState: () => void;
+  private $triggerItemTemplate: HTMLElement;
+  private $playerInfoRowTemplate: HTMLElement;
+  private $playerTriggerInfoTemplate: HTMLElement;
+  private $jsonViewerTemplate: HTMLElement;
+  private $wrapCollapseTemplate: HTMLElement;
+  private tooltips: Tooltip[] = [];
+  private triggerBars: HTMLElement[] = [];
+  private displayedParty: PartyInfoMap = {};
+
+  constructor(private emulator: RaidEmulator) {
     super();
-    this.tooltips = [];
-    this.emulator = emulator;
-    this.$partyInfo = document.querySelector('.partyInfoColumn .party');
-    this.$triggerInfo = document.querySelector('.triggerInfoColumn');
-    this.$triggerHideSkippedCheckbox = document.querySelector('.triggerHideSkipped');
-    this.$triggerHideCollectCheckbox = document.querySelector('.triggerHideCollector');
-    this.$triggerBar = document.querySelector('.playerTriggers');
-    this.triggerBars = [];
+    this.$partyInfo = querySelectorSafe(document, '.partyInfoColumn .party');
+    this.$triggerInfo = querySelectorSafe(document, '.triggerInfoColumn');
+    const skipped = querySelectorSafe(document, '.triggerHideSkipped');
+    if (!(skipped instanceof HTMLInputElement))
+      throw new UnreachableCode();
+    this.$triggerHideSkippedCheckbox = skipped;
+    const collector = querySelectorSafe(document, '.triggerHideCollector');
+    if (!(collector instanceof HTMLInputElement))
+      throw new UnreachableCode();
+    this.$triggerHideCollectCheckbox = collector;
+    this.$triggerBar = querySelectorSafe(document, '.playerTriggers');
     this.latestDisplayedState = 0;
-    this.displayedParty = {};
-    this.currentPerspective = null;
     for (let i = 0; i < 8; ++i)
-      this.triggerBars[i] = this.$triggerBar.querySelector('.player' + i);
+      this.triggerBars[i] = querySelectorSafe(this.$triggerBar, '.player' + i.toString());
 
     emulator.on('tick', (currentLogTime, lastLogLineTime) => {
       if (lastLogLineTime) {
@@ -30,7 +119,7 @@ export default class EmulatedPartyInfo extends EventBus {
       this.resetPartyInfo(encounter);
     });
 
-    emulator.on('preSeek', (time) => {
+    emulator.on('preSeek', () => {
       this.latestDisplayedState = 0;
     });
     emulator.on('postSeek', (time) => {
@@ -50,192 +139,214 @@ export default class EmulatedPartyInfo extends EventBus {
     this.$triggerHideSkippedCheckbox.addEventListener('change', this.updateTriggerState);
     this.$triggerHideCollectCheckbox.addEventListener('change', this.updateTriggerState);
 
-    this.$triggerItemTemplate = document.querySelector('template.triggerItem').content.firstElementChild;
-    this.$playerInfoRowTemplate = document.querySelector('template.playerInfoRow').content.firstElementChild;
-    this.$playerTriggerInfoTemplate = document.querySelector('template.playerTriggerInfo').content.firstElementChild;
-    this.$jsonViewerTemplate = document.querySelector('template.jsonViewer').content.firstElementChild;
-    this.$triggerLabelTemplate = document.querySelector('template.triggerLabel').content.firstElementChild;
-    this.$wrapCollapseTemplate = document.querySelector('template.wrapCollapse').content.firstElementChild;
+    this.$triggerItemTemplate = getTemplateChild(document, 'template.triggerItem');
+    this.$playerInfoRowTemplate = getTemplateChild(document, 'template.playerInfoRow');
+    this.$playerTriggerInfoTemplate = getTemplateChild(document, 'template.playerTriggerInfo');
+    this.$jsonViewerTemplate = getTemplateChild(document, 'template.jsonViewer');
+    this.$wrapCollapseTemplate = getTemplateChild(document, 'template.wrapCollapse');
   }
 
-  hideNonExecutedTriggers() {
+  hideNonExecutedTriggers(): void {
     this.$triggerInfo.querySelectorAll('.trigger-not-executed').forEach((n) => {
       n.classList.add('d-none');
     });
   }
 
-  showNonExecutedTriggers() {
+  showNonExecutedTriggers(): void {
     this.$triggerInfo.querySelectorAll('.trigger-not-executed').forEach((n) => {
       n.classList.remove('d-none');
     });
   }
 
-  hideCollectorTriggers() {
+  hideCollectorTriggers(): void {
     this.$triggerInfo.querySelectorAll('.trigger-no-output').forEach((n) => {
       n.classList.add('d-none');
     });
   }
 
-  showCollectorTriggers() {
+  showCollectorTriggers(): void {
     this.$triggerInfo.querySelectorAll('.trigger-no-output').forEach((n) => {
       n.classList.remove('d-none');
     });
   }
 
 
-  /**
-   * @param {RaidEmulator} emulator
-   * @param {string} timestamp
-   */
-  updatePartyInfo(emulator, timestamp) {
+  updatePartyInfo(emulator: RaidEmulator, timestamp: number): void {
+    const enc = emulator.currentEncounter;
+    if (!enc)
+      throw new UnreachableCode();
     for (const id in this.displayedParty)
-      this.updateCombatantInfo(emulator.currentEncounter, id, timestamp);
+      this.updateCombatantInfo(enc, id, timestamp);
   }
 
-  /**
-   * @param {AnalyzedEncounter} encounter
-   */
-  resetPartyInfo(encounter) {
+  resetPartyInfo(encounter: AnalyzedEncounter): void {
+    const enc = encounter.encounter;
+    const tracker = enc.combatantTracker;
+    if (!enc || !tracker)
+      throw new UnreachableCode();
     this.tooltips.map((tt) => {
-      tt.tooltip.remove();
+      tt.delete();
       return null;
     });
     this.tooltips = [];
-    this.currentPerspective = null;
+    this.currentPerspective = undefined;
     this.displayedParty = {};
     this.latestDisplayedState = 0;
     this.$partyInfo.innerHTML = '';
     this.$triggerBar.querySelectorAll('.triggerItem').forEach((n) => {
       n.remove();
     });
-    const membersToDisplay = encounter.encounter.combatantTracker.partyMembers.sort((l, r) => {
-      const a = encounter.encounter.combatantTracker.combatants[l];
-      const b = encounter.encounter.combatantTracker.combatants[r];
+    const membersToDisplay = tracker.partyMembers.sort((l, r) => {
+      const a = enc.combatantTracker?.combatants[l];
+      const b = enc.combatantTracker?.combatants[r];
+      if (!a || !b)
+        return 0;
+
+      if (!isJobOrder(a.job) || !isJobOrder(b.job))
+        return 0;
       return EmulatedPartyInfo.jobOrder.indexOf(a.job) - EmulatedPartyInfo.jobOrder.indexOf(b.job);
     }).slice(0, 8);
     document.querySelectorAll('.playerTriggerInfo').forEach((n) => {
       n.remove();
     });
 
-    for (let i = 0; i < membersToDisplay.length; ++i) {
-      const id = membersToDisplay[i];
+    for (const [i, id] of membersToDisplay.entries()) {
       const obj = this.getPartyInfoObjectFor(encounter, id);
+      const bar = this.triggerBars[i];
+      const combatant = tracker.combatants[id];
+      const perspective = encounter.perspectives[id];
+      if (!bar || !combatant || !perspective)
+        throw new UnreachableCode();
       this.displayedParty[id] = obj;
       this.updateCombatantInfo(encounter, id);
       this.$partyInfo.append(obj.$rootElem);
       this.$triggerInfo.append(obj.$triggerElem);
-      this.triggerBars[i].classList.remove('tank');
-      this.triggerBars[i].classList.remove('healer');
-      this.triggerBars[i].classList.remove('dps');
-      if (encounter.encounter.combatantTracker.combatants[id].job) {
-        this.triggerBars[i].classList.add(
-            Util.jobToRole(encounter.encounter.combatantTracker.combatants[id].job),
+      bar.classList.remove('tank');
+      bar.classList.remove('healer');
+      bar.classList.remove('dps');
+      if (combatant.job) {
+        bar.classList.add(
+            Util.jobToRole(combatant.job),
         );
       }
 
-      for (const triggerIndex in encounter.perspectives[id].triggers) {
-        const trigger = encounter.perspectives[id].triggers[triggerIndex];
+      for (const trigger of perspective.triggers) {
         if (!trigger.status.executed || trigger.resolvedOffset > encounter.encounter.duration)
           continue;
 
-        const $e = this.$triggerItemTemplate.cloneNode(true);
-        $e.style.left = ((trigger.resolvedOffset / encounter.encounter.duration) * 100) + '%';
-        this.tooltips.push(new Tooltip($e, 'bottom', trigger.triggerHelper.trigger.id));
-        this.triggerBars[i].append($e);
+        const $e = cloneSafe(this.$triggerItemTemplate);
+        $e.style.left = ((trigger.resolvedOffset / encounter.encounter.duration) * 100).toString() + '%';
+        const triggerId = trigger.triggerHelper.trigger.id ?? 'Unknown Trigger';
+        this.tooltips.push(new Tooltip($e, 'bottom', triggerId));
+        bar.append($e);
       }
     }
 
     this.updateTriggerState();
 
-    this.selectPerspective(membersToDisplay[0]);
+    const toDisplay = membersToDisplay[0];
+    if (!toDisplay)
+      throw new UnreachableCode();
+
+    this.selectPerspective(toDisplay);
   }
 
-  selectPerspective(id) {
+  selectPerspective(id: string): void {
     if (id === this.currentPerspective)
       return;
 
-    if (!this.emulator.currentEncounter.encounter.combatantTracker.combatants[id].job)
+    if (!this.emulator.currentEncounter?.encounter.combatantTracker?.combatants[id]?.job)
       return;
+
+    const display = this.displayedParty[id];
+
+    if (!display)
+      throw new UnreachableCode();
 
     this.currentPerspective = id;
     this.$triggerInfo.querySelectorAll('.playerTriggerInfo').forEach((r) => r.classList.add('d-none'));
-    this.displayedParty[id].$triggerElem.classList.remove('d-none');
+    display.$triggerElem.classList.remove('d-none');
     this.$partyInfo.querySelectorAll('.playerInfoRow').forEach((r) => {
       r.classList.remove('border');
       r.classList.remove('border-success');
     });
-    this.displayedParty[id].$rootElem.classList.add('border');
-    this.displayedParty[id].$rootElem.classList.add('border-success');
-    this.dispatch('selectPerspective', id);
+    display.$rootElem.classList.add('border');
+    display.$rootElem.classList.add('border-success');
+    void this.dispatch('selectPerspective', id);
   }
 
-  updateCombatantInfo(encounter, id, stateID = null) {
-    if (stateID <= this.latestDisplayedState)
+  updateCombatantInfo(encounter: AnalyzedEncounter, id: string, stateID = 0): void {
+    if (!stateID || stateID <= this.latestDisplayedState)
       return;
 
-    const combatant = encounter.encounter.combatantTracker.combatants[id];
+    const combatant = encounter.encounter.combatantTracker?.combatants[id];
     if (!combatant)
       return;
-    stateID = stateID || combatant.getState(0);
 
     const State = combatant.getState(stateID);
     if (State === undefined)
       return;
 
+    const display = this.displayedParty[id];
+
+    if (!display)
+      throw new UnreachableCode();
+
     const hpProg = (State.hp / State.maxHp) * 100;
-    let hpLabel = State.hp + '/' + State.maxHp;
+    let hpLabel = `${State.hp}/${State.maxHp}`;
     hpLabel = EmulatorCommon.spacePadLeft(hpLabel, (State.maxHp.toString().length * 2) + 1);
-    this.displayedParty[id].$hpProgElem.ariaValueNow = State.hp;
-    this.displayedParty[id].$hpProgElem.ariaValueMax = State.maxHp;
-    this.displayedParty[id].$hpProgElem.style.width = hpProg + '%';
-    this.displayedParty[id].$hpLabelElem.textContent = hpLabel;
+    display.$hpProgElem.style.width = `${hpProg}%`;
+    display.$hpLabelElem.textContent = hpLabel;
 
     const mpProg = (State.mp / State.maxMp) * 100;
-    let mpLabel = State.mp + '/' + State.maxMp;
+    let mpLabel = `${State.mp}/${State.maxMp}`;
     mpLabel = EmulatorCommon.spacePadLeft(mpLabel, (State.maxMp.toString().length * 2) + 1);
-    this.displayedParty[id].$mpProgElem.ariaValueNow = State.mp;
-    this.displayedParty[id].$mpProgElem.ariaValueMax = State.maxMp;
-    this.displayedParty[id].$mpProgElem.style.width = mpProg + '%';
-    this.displayedParty[id].$mpLabelElem.textContent = mpLabel;
+    display.$mpProgElem.style.width = `${mpProg}%`;
+    display.$mpLabelElem.textContent = mpLabel;
   }
 
-  getPartyInfoObjectFor(encounter, id) {
-    const $e = this.$playerInfoRowTemplate.cloneNode(true);
-    const $hp = $e.querySelector('.hp');
-    const $mp = $e.querySelector('.mp');
-    const $name = $e.querySelector('.playerName');
+  getPartyInfoObjectFor(encounter: AnalyzedEncounter, id: string): PartyInfo {
+    const $e = cloneSafe(this.$playerInfoRowTemplate);
+    const $hp = querySelectorSafe($e, '.hp');
+    const $mp = querySelectorSafe($e, '.mp');
+    const $name = querySelectorSafe($e, '.playerName');
     const ret = {
       $rootElem: $e,
-      $iconElem: $e.querySelector('jobicon'),
+      $iconElem: querySelectorSafe($e, '.jobicon'),
       $hpElem: $hp,
-      $hpLabelElem: $hp.querySelector('.label'),
-      $hpProgElem: $hp.querySelector('.progress-bar'),
+      $hpLabelElem: querySelectorSafe($hp, '.label'),
+      $hpProgElem: querySelectorSafe($hp, '.progress-bar'),
       $mpElem: $mp,
-      $mpLabelElem: $mp.querySelector('.label'),
-      $mpProgElem: $mp.querySelector('.progress-bar'),
+      $mpLabelElem: querySelectorSafe($mp, '.label'),
+      $mpProgElem: querySelectorSafe($mp, '.progress-bar'),
       $nameElem: $name,
       id: id,
       $triggerElem: this.getTriggerInfoObjectFor(encounter, id),
     };
 
-    const combatant = encounter.encounter.combatantTracker.combatants[id];
+    const combatant = encounter.encounter.combatantTracker?.combatants[id];
+    if (!combatant)
+      throw new UnreachableCode();
     ret.$rootElem.classList.add((combatant.job || '').toUpperCase());
     this.tooltips.push(new Tooltip(ret.$rootElem, 'left', combatant.name));
     $name.innerHTML = combatant.name;
-    ret.$rootElem.addEventListener('click', (e) => {
+    ret.$rootElem.addEventListener('click', () => {
       this.selectPerspective(id);
     });
     ret.$triggerElem.setAttribute('data-id', id);
     return ret;
   }
 
-  getTriggerInfoObjectFor(encounter, id) {
-    const $ret = this.$playerTriggerInfoTemplate.cloneNode(true);
-    const $container = $ret.querySelector('.d-flex.flex-column');
+  getTriggerInfoObjectFor(encounter: AnalyzedEncounter, id: string): HTMLElement {
+    const $ret = cloneSafe(this.$playerTriggerInfoTemplate);
+    const $container = querySelectorSafe($ret, '.d-flex.flex-column');
 
     const per = encounter.perspectives[id];
 
-    const $initDataViewer = this.$jsonViewerTemplate.cloneNode(true);
+    if (!per)
+      throw new UnreachableCode();
+
+    const $initDataViewer = cloneSafe(this.$jsonViewerTemplate);
     $initDataViewer.textContent = JSON.stringify(per.initialData, null, 2);
 
     $container.append(this._wrapCollapse({
@@ -245,21 +356,22 @@ export default class EmulatedPartyInfo extends EventBus {
       $obj: $initDataViewer,
     }));
 
-    const $triggerContainer = $container.querySelector('.d-flex.flex-column');
+    const $triggerContainer = querySelectorSafe($container, '.d-flex.flex-column');
 
-    for (const i in per.triggers.sort((l, r) => l.resolvedOffset - r.resolvedOffset)) {
-      const $triggerDataViewer = this.$jsonViewerTemplate.cloneNode(true);
-      $triggerDataViewer.textContent = JSON.stringify(per.triggers[i], null, 2);
-      const triggerText = this.getTriggerLabelText(per.triggers[i]);
+    for (const trigger of per.triggers.sort((l, r) => l.resolvedOffset - r.resolvedOffset)) {
+      const $triggerDataViewer = cloneSafe(this.$jsonViewerTemplate);
+      $triggerDataViewer.textContent = JSON.stringify(trigger, null, 2);
+      const triggerText = trigger.status.responseLabel;
+      const type = trigger.status.responseType;
       const $trigger = this._wrapCollapse({
-        time: this.getTriggerResolvedLabelTime(per.triggers[i]),
-        name: per.triggers[i].triggerHelper.trigger.id,
-        icon: this.getTriggerLabelIcon(per.triggers[i]),
+        time: this.getTriggerResolvedLabelTime(trigger),
+        name: trigger.triggerHelper.trigger.id,
+        icon: this.getTriggerLabelIcon(trigger),
         text: triggerText,
-        classes: [per.triggers[i].status.responseType],
+        classes: type ? [type] : [],
         $obj: $triggerDataViewer,
       });
-      if (per.triggers[i].status.executed)
+      if (trigger.status.executed)
         $trigger.classList.add('trigger-executed');
       else
         $trigger.classList.add('trigger-not-executed');
@@ -274,7 +386,8 @@ export default class EmulatedPartyInfo extends EventBus {
 
     $container.append($triggerContainer);
 
-    const $finalDataViewer = this.$jsonViewerTemplate.cloneNode(true);
+    const $finalDataViewer = cloneSafe(this.$jsonViewerTemplate);
+
     $finalDataViewer.textContent = JSON.stringify(per.finalData, null, 2);
 
     $container.append(this._wrapCollapse({
@@ -289,26 +402,7 @@ export default class EmulatedPartyInfo extends EventBus {
     return $ret;
   }
 
-  getTriggerLabelText(trigger) {
-    let ret = trigger.status.responseLabel;
-
-    if (typeof (ret) === 'object')
-      ret = trigger.triggerHelper.valueOrFunction(ret);
-
-    if (typeof (ret) === 'boolean')
-      ret = undefined;
-    else if (typeof (ret) === 'undefined')
-      ret = undefined;
-    else if (typeof (ret) !== 'string')
-      ret = 'Invalid Result?';
-
-    if (ret === '')
-      ret = undefined;
-
-    return ret;
-  }
-
-  getTriggerLabelIcon(trigger) {
+  getTriggerLabelIcon(trigger: PerspectiveTrigger): string | undefined {
     const type = trigger.status.responseType;
 
     switch (type) {
@@ -327,59 +421,50 @@ export default class EmulatedPartyInfo extends EventBus {
     return undefined;
   }
 
-  getTriggerFiredLabelTime(Trigger) {
+  getTriggerFiredLabelTime(trigger: PerspectiveTrigger): string {
     return EmulatorCommon.timeToString(
-        Trigger.logLine.offset - this.emulator.currentEncounter.encounter.initialOffset,
+        trigger.logLine.offset - (this.emulator.currentEncounter?.encounter.initialOffset ?? 0),
         false);
   }
 
-  getTriggerResolvedLabelTime(Trigger) {
+  getTriggerResolvedLabelTime(trigger: PerspectiveTrigger): string {
     return EmulatorCommon.timeToString(
-        Trigger.resolvedOffset - this.emulator.currentEncounter.encounter.initialOffset,
+        trigger.resolvedOffset - (this.emulator.currentEncounter?.encounter.initialOffset ?? 0),
         false);
   }
 
-  /**
-   * @param {object} params Parameters to use for the wrapper.
-   * @param {Element} params.$obj Object to wrap in a collapseable button
-   * @param {string} [params.time] Time to display
-   * @param {string} [params.name] Name/label of the button
-   * @param {string} [params.icon] FontAwesome icon to display
-   * @param {[string]} [params.classes] Array of classes to add to the button
-   * @param {CallableFunction} [params.onclick] Callback to trigger when clicking the button
-   */
-  _wrapCollapse(params) {
-    const $ret = this.$wrapCollapseTemplate.cloneNode(true);
-    const $button = $ret.querySelector('.btn');
-    const $time = $ret.querySelector('.trigger-label-time');
-    const $name = $ret.querySelector('.trigger-label-name');
-    const $icon = $ret.querySelector('.trigger-label-icon');
-    const $text = $ret.querySelector('.trigger-label-text');
+  _wrapCollapse(params: CollapseParams): HTMLElement {
+    const $ret = cloneSafe(this.$wrapCollapseTemplate);
+    const $button = querySelectorSafe($ret, '.btn');
+    const $time = querySelectorSafe($ret, '.trigger-label-time');
+    const $name = querySelectorSafe($ret, '.trigger-label-name');
+    const $icon = querySelectorSafe($ret, '.trigger-label-icon');
+    const $text = querySelectorSafe($ret, '.trigger-label-text');
 
     if (params.name === undefined)
-      $name.parentNode.removeChild($name);
+      $name.parentNode?.removeChild($name);
     else
       $name.textContent = params.name;
 
     if (params.time === undefined)
-      $time.parentNode.removeChild($time);
+      $time.parentNode?.removeChild($time);
     else
       $time.textContent = params.time;
 
     if (params.text === undefined)
-      $text.parentNode.removeChild($text);
+      $text.parentNode?.removeChild($text);
     else
       $text.textContent = params.text;
 
     if (params.icon === undefined)
-      $icon.parentNode.removeChild($icon);
+      $icon.parentNode?.removeChild($icon);
     else
       $icon.innerHTML = `<i class="fa fa-${params.icon}" aria-hidden="true"></i>`;
 
     if (Array.isArray(params.classes))
       params.classes.forEach((c) => $button.classList.add('triggertype-' + c));
 
-    const $wrapper = $ret.querySelector('.wrap-collapse-wrapper');
+    const $wrapper = querySelectorSafe($ret, '.wrap-collapse-wrapper');
     $button.addEventListener('click', () => {
       if ($wrapper.classList.contains('d-none'))
         $wrapper.classList.remove('d-none');
@@ -390,12 +475,7 @@ export default class EmulatedPartyInfo extends EventBus {
     $wrapper.append(params.$obj);
     return $ret;
   }
+
+  static jobOrder = jobOrder;
 }
 
-EmulatedPartyInfo.jobOrder = [
-  'PLD', 'WAR', 'DRK', 'GNB',
-  'WHM', 'SCH', 'AST',
-  'MNK', 'DRG', 'NIN', 'SAM',
-  'BRD', 'MCH', 'DNC',
-  'BLM', 'SMN', 'RDM',
-  'BLU'];
