@@ -1121,8 +1121,8 @@ export class PopupText {
       this.triggerSuppress[triggerHelper.trigger.id] = triggerHelper.now + (suppress * 1000);
   }
 
-  _onTriggerInternalPromise(triggerHelper: TriggerHelper): Promise<void> | undefined {
-    let promise: Promise<void> | undefined;
+  _onTriggerInternalPromise(triggerHelper: TriggerHelper): Promise<void | boolean> | undefined {
+    let promise: Promise<void | boolean> | undefined;
     if ('promise' in triggerHelper.trigger) {
       const id = triggerHelper.trigger.id ?? 'Unknown';
       if (typeof triggerHelper.trigger.promise === 'function') {

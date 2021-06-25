@@ -24,7 +24,7 @@ export interface ResolverStatus {
   delay?: number;
   suppressed: boolean;
   executed: boolean;
-  promise?: Promise<void>;
+  promise?: Promise<void | boolean>;
 }
 
 type EmulatorTriggerHelper = TriggerHelper & {
@@ -32,7 +32,7 @@ type EmulatorTriggerHelper = TriggerHelper & {
 };
 
 export class Resolver {
-  private promise?: Promise<void>;
+  private promise?: Promise<void | boolean>;
   private run?: ResolverFunc;
   private delayUntil?: number;
   private final?: ResolverFunc;
@@ -67,7 +67,7 @@ export class Resolver {
       this.delayResolver = res;
     });
   }
-  setPromise(promise: Promise<void>): void {
+  setPromise(promise: Promise<void | boolean>): void {
     this.promise = promise;
   }
   setRun(run: ResolverFunc): void {
@@ -203,7 +203,8 @@ export default class PopupTextAnalysis extends StubbedPopupText {
     }
   }
 
-  _onTriggerInternalPromise(triggerHelper: EmulatorTriggerHelper): Promise<void> | undefined {
+  _onTriggerInternalPromise(
+      triggerHelper: EmulatorTriggerHelper): Promise<void | boolean> | undefined {
     const ret = super._onTriggerInternalPromise(triggerHelper);
     if (triggerHelper.resolver)
       triggerHelper.resolver.status.promise = ret;
