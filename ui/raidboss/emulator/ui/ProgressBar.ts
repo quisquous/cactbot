@@ -1,8 +1,9 @@
-import Tooltip from './Tooltip';
-import EmulatorCommon from '../EmulatorCommon';
-import RaidEmulator from '../data/RaidEmulator';
 import { UnreachableCode } from '../../../../resources/not_reached';
 import AnalyzedEncounter from '../data/AnalyzedEncounter';
+import RaidEmulator from '../data/RaidEmulator';
+import EmulatorCommon from '../EmulatorCommon';
+
+import Tooltip from './Tooltip';
 
 const querySelectorSafe = (node: ParentNode, sel: string): HTMLElement => {
   const ret = node.querySelector(sel);
