@@ -1,10 +1,11 @@
+import { UnreachableCode } from '../../../../resources/not_reached';
+import Util from '../../../../resources/util';
+import AnalyzedEncounter, { PerspectiveTrigger } from '../data/AnalyzedEncounter';
+import RaidEmulator from '../data/RaidEmulator';
 import EmulatorCommon from '../EmulatorCommon';
 import EventBus from '../EventBus';
+
 import Tooltip from './Tooltip';
-import Util from '../../../../resources/util';
-import RaidEmulator from '../data/RaidEmulator';
-import { UnreachableCode } from '../../../../resources/not_reached';
-import AnalyzedEncounter, { PerspectiveTrigger } from '../data/AnalyzedEncounter';
 
 const jobOrder = [
   'PLD', 'WAR', 'DRK', 'GNB',
