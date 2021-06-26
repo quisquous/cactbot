@@ -18,13 +18,6 @@
     //    "noPropertyAccessFromIndexSignature": false, // used by trigger output strings
     "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "./ui",
-    "./types",
-    "./resources",
-    "./util",
-    "./test",
-    "./webpack"
-  ],
+  "include": ["./ui", "./types", "./resources", "./util", "./test", "./webpack"],
   "exclude": ["./eslint", "./.eslintrc.cjs", "./dist", "**/*.spec.ts"]
 }

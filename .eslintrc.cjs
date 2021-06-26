@@ -134,10 +134,7 @@ const rules = {
     },
   ],
   'require-jsdoc': 'off',
-  'rulesdir/cactbot-locale-order': [
-    'warn',
-    ['en', 'de', 'fr', 'ja', 'cn', 'ko'],
-  ],
+  'rulesdir/cactbot-locale-order': ['warn', ['en', 'de', 'fr', 'ja', 'cn', 'ko']],
   // enable this after all file is formatted by prettier
   'space-before-function-paren': 'off',
   'space-in-parens': ['error', 'never'],
@@ -196,10 +193,7 @@ const tsOverrides = {
     '@typescript-eslint/method-signature-style': ['error', 'property'],
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/no-non-null-assertion': 'error',
-    '@typescript-eslint/no-unused-vars': [
-      'error',
-      { 'argsIgnorePattern': '^_\\w+' },
-    ],
+    '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_\\w+' }],
     '@typescript-eslint/object-curly-spacing': ['error', 'always'],
     'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
     'import/order': [
@@ -235,10 +229,7 @@ const overrides = [
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       // Only meant to be used for `output` parameters!
       '@typescript-eslint/no-non-null-assertion': 'off',
-      'no-unused-vars': [
-        'error',
-        { 'args': 'all', 'argsIgnorePattern': '^_\\w+' },
-      ],
+      'no-unused-vars': ['error', { 'args': 'all', 'argsIgnorePattern': '^_\\w+' }],
       'prefer-arrow/prefer-arrow-functions': 'warn',
       'rulesdir/cactbot-output-strings': 'error',
       'rulesdir/cactbot-response-default-severities': 'error',
@@ -248,27 +239,15 @@ const overrides = [
   {
     'files': ['**/raidboss/data/**/*'],
     'rules': {
-      'rulesdir/cactbot-trigger-property-order': [
-        'error',
-        { 'module': 'raidboss' },
-      ],
-      'rulesdir/cactbot-triggerset-property-order': [
-        'error',
-        { 'module': 'raidboss' },
-      ],
+      'rulesdir/cactbot-trigger-property-order': ['error', { 'module': 'raidboss' }],
+      'rulesdir/cactbot-triggerset-property-order': ['error', { 'module': 'raidboss' }],
     },
   },
   {
     'files': ['**/oopsyraidsy/data/**/*'],
     'rules': {
-      'rulesdir/cactbot-trigger-property-order': [
-        'error',
-        { 'module': 'oopsyraidsy' },
-      ],
-      'rulesdir/cactbot-triggerset-property-order': [
-        'error',
-        { 'module': 'oopsyraidsy' },
-      ],
+      'rulesdir/cactbot-trigger-property-order': ['error', { 'module': 'oopsyraidsy' }],
+      'rulesdir/cactbot-triggerset-property-order': ['error', { 'module': 'oopsyraidsy' }],
     },
   },
 ];

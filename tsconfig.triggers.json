@@ -1,3 +1,6 @@
+/**
+ * @prettier
+ */
 {
   "extends": "./tsconfig.base.json",
   "ts-node": {

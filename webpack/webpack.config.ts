@@ -43,15 +43,13 @@ export default ({
     entries[module] = `./${module}.${extension}`;
   });
 
-  const htmlPluginRules = Object.entries(cactbotHtmlChunksMap).map(
-    ([file, config]) => {
-      return new HtmlWebpackPlugin({
-        template: file,
-        filename: file,
-        ...config,
-      });
-    },
-  );
+  const htmlPluginRules = Object.entries(cactbotHtmlChunksMap).map(([file, config]) => {
+    return new HtmlWebpackPlugin({
+      template: file,
+      filename: file,
+      ...config,
+    });
+  });
 
   return {
     entry: entries,

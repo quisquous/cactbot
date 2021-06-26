@@ -25,18 +25,10 @@ export const cactbotChunks = {
 
 export const cactbotHtmlChunksMap = {
   'ui/config/config.html': {
-    chunks: [
-      cactbotChunks.raidbossData,
-      cactbotChunks.oopsyraidsyData,
-      cactbotModules.config,
-    ],
+    chunks: [cactbotChunks.raidbossData, cactbotChunks.oopsyraidsyData, cactbotModules.config],
   },
   'util/coverage/coverage.html': {
-    chunks: [
-      cactbotChunks.raidbossData,
-      cactbotChunks.oopsyraidsyData,
-      cactbotModules.coverage,
-    ],
+    chunks: [cactbotChunks.raidbossData, cactbotChunks.oopsyraidsyData, cactbotModules.coverage],
   },
   'ui/dps/rdmty/dps.html': {
     chunks: [cactbotModules.rdmty],

@@ -1,5 +1,6 @@
 {
   "endOfLine": "crlf",
+  "printWidth": 100,
   "requirePragma": true,
   "quoteProps": "preserve",
   "trailingComma": "all",

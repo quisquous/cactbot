@@ -3,8 +3,7 @@
  */
 'use strict';
 
-const commentRegex =
-  /(?<=^(?:[^"/]*(?:|"[^"]*"))[^"/]*(?:|sync\s*\/[^/]*\/[^"/]*))#.*$/i;
+const commentRegex = /(?<=^(?:[^"/]*(?:|"[^"]*"))[^"/]*(?:|sync\s*\/[^/]*\/[^"/]*))#.*$/i;
 
 module.exports = function (content, map, meta) {
   this.cacheable(true);

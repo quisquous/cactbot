@@ -3,11 +3,7 @@
  */
 import { mergeWithRules } from 'webpack-merge';
 
-import {
-  cactbotModules,
-  cactbotChunks,
-  cactbotHtmlChunksMap,
-} from './constants';
+import { cactbotModules, cactbotChunks, cactbotHtmlChunksMap } from './constants';
 import generateConfig from './webpack.config';
 
 // Add timerbar_test.html
