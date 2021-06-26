@@ -43,6 +43,7 @@ export default class Encounter {
   duration = 0;
   playbackOffset = 0;
   language: Lang = 'en';
+  initialTimestamp = Number.MAX_SAFE_INTEGER;
 
   constructor(
     public encounterDay: string,
@@ -111,16 +112,14 @@ export default class Encounter {
         this.initialOffset = 0;
     }
 
+    this.initialTimestamp = this.startTimestamp + this.initialOffset;
+
     const firstLine = this.logLines[this.firstLineIndex];
 
     if (firstLine && firstLine.offset)
       this.playbackOffset = firstLine.offset;
 
     this.startStatus = [...startStatuses].sort().join(', ');
-  }
-
-  public get initialTimestamp() : number {
-    return this.startTimestamp + this.initialOffset;
   }
 
   shouldPersistFight(): boolean {
