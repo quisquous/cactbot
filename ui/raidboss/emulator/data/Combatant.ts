@@ -1,5 +1,6 @@
 import { UnreachableCode } from '../../../../resources/not_reached';
 import { Job } from '../../../../types/job';
+
 import CombatantState from './CombatantState';
 
 export default class Combatant {

@@ -1,8 +1,9 @@
-import LineEvent, { LineEventJobLevel, LineEventSource } from './LineEvent';
-import EmulatorCommon from '../../EmulatorCommon';
 import Util from '../../../../../resources/util';
-import LogRepository from './LogRepository';
 import { Job } from '../../../../../types/job';
+import EmulatorCommon from '../../EmulatorCommon';
+
+import LineEvent, { LineEventJobLevel, LineEventSource } from './LineEvent';
+import LogRepository from './LogRepository';
 
 const fields = {
   id: 2,

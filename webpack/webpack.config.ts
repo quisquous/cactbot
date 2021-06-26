@@ -1,10 +1,10 @@
 import path from 'path';
-import webpack, { Configuration as WebpackConfiguration } from 'webpack';
+
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import CopyPlugin from 'copy-webpack-plugin';
-
+import webpack, { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 
 interface Configuration extends WebpackConfiguration {

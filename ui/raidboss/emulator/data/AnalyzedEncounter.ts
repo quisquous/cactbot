@@ -1,20 +1,21 @@
+import { UnreachableCode } from '../../../../resources/not_reached';
+import Util from '../../../../resources/util';
+import { LooseTrigger } from '../../../../types/trigger';
+import raidbossFileData from '../../data/raidboss_manifest.txt';
+import { PopupTextGenerator, TriggerHelper } from '../../popup-text';
+import { RaidbossOptions } from '../../raidboss_options';
+import { TimelineLoader } from '../../timeline';
 import EmulatorCommon, { DataType } from '../EmulatorCommon';
 import EventBus from '../EventBus';
-import { PopupTextGenerator, TriggerHelper } from '../../popup-text';
-import RaidEmulatorTimelineController from '../overrides/RaidEmulatorTimelineController';
-import PopupTextAnalysis, { ResolverStatus, Resolver } from './PopupTextAnalysis';
-import Util from '../../../../resources/util';
-import raidbossFileData from '../../data/raidboss_manifest.txt';
 import RaidEmulatorAnalysisTimelineUI from '../overrides/RaidEmulatorAnalysisTimelineUI';
-import { RaidbossOptions } from '../../raidboss_options';
-import Encounter from './Encounter';
-import RaidEmulator from './RaidEmulator';
-import LineEvent from './network_log_converter/LineEvent';
-import { UnreachableCode } from '../../../../resources/not_reached';
-import { LooseTrigger } from '../../../../types/trigger';
-import Combatant from './Combatant';
-import { TimelineLoader } from '../../timeline';
 import RaidEmulatorPopupText from '../overrides/RaidEmulatorPopupText';
+import RaidEmulatorTimelineController from '../overrides/RaidEmulatorTimelineController';
+
+import Combatant from './Combatant';
+import Encounter from './Encounter';
+import LineEvent from './network_log_converter/LineEvent';
+import PopupTextAnalysis, { ResolverStatus, Resolver } from './PopupTextAnalysis';
+import RaidEmulator from './RaidEmulator';
 
 type PerspectiveTrigger = {
   triggerHelper: TriggerHelper;
@@ -147,11 +148,19 @@ export default class AnalyzedEncounter extends EventBus {
     if (timelineController.activeTimeline) {
       timelineController.activeTimeline.SetTrigger((trigger: LooseTrigger, matches) => {
         const currentLine = this.encounter.logLines[currentLogIndex];
+        if (!currentLine)
+          throw new UnreachableCode();
+
         const resolver = popupText.currentResolver = new Resolver({
           initialData: EmulatorCommon.cloneData(popupText.getData()),
           suppressed: false,
           executed: false,
         });
+        resolver.triggerHelper =
+          popupText._onTriggerInternalGetHelper(
+              trigger,
+              matches?.groups ?? {},
+              currentLine?.timestamp);
         popupText.triggerResolvers.push(resolver);
 
         if (!currentLine)

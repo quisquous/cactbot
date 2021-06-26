@@ -1,5 +1,6 @@
 import { GetCombatantsCall, GetCombatantsRet } from '../types/event';
 import { Job, Role } from '../types/job';
+
 import { callOverlayHandler } from './overlay_plugin_api';
 
 // TODO: it'd be nice to not repeat job names, but at least Record enforces that all are set.

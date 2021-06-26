@@ -1,5 +1,6 @@
-import { LineEvent0x1A } from './LineEvent0x1A';
 import EmulatorCommon from '../../EmulatorCommon';
+
+import { LineEvent0x1A } from './LineEvent0x1A';
 import LogRepository from './LogRepository';
 
 // Lose status effect event

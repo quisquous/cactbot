@@ -1,5 +1,6 @@
 import EmulatorCommon from '../EmulatorCommon';
 import EventBus from '../EventBus';
+
 import LineEvent from './network_log_converter/LineEvent';
 import { LineEvent0x01 } from './network_log_converter/LineEvent0x01';
 

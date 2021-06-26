@@ -1,13 +1,13 @@
-import Util from '../../resources/util';
-import NetRegexes from '../../resources/netregexes';
-import { LocaleRegex } from '../../resources/translations';
-import { kMeleeWithMpJobs, kLevelMod } from './constants';
-import { Bars } from './bar';
-
 import { Lang } from '../../resources/languages';
-import { Job } from '../../types/job';
+import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
+import { LocaleRegex } from '../../resources/translations';
+import Util from '../../resources/util';
+import { Job } from '../../types/job';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
+
+import { Bars } from './bar';
+import { kMeleeWithMpJobs, kLevelMod } from './constants';
 
 const getLocaleRegex = (locale: string, regexes: {
   'en': RegExp;

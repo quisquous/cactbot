@@ -1,12 +1,12 @@
-import { RaidbossFileData } from '../../data/raidboss_manifest.txt';
 import { UnreachableCode } from '../../../../resources/not_reached';
+import { EventResponses, LogEvent } from '../../../../types/event';
+import { RaidbossFileData } from '../../data/raidboss_manifest.txt';
+import { Text, TextText, TriggerHelper } from '../../popup-text';
 import { RaidbossOptions } from '../../raidboss_options';
 import { TimelineLoader } from '../../timeline';
-import StubbedPopupText from '../overrides/StubbedPopupText';
-import RaidEmulator from '../data/RaidEmulator';
-import { EventResponses, LogEvent } from '../../../../types/event';
 import LineEvent from '../data/network_log_converter/LineEvent';
-import { Text, TextText, TriggerHelper } from '../../popup-text';
+import RaidEmulator from '../data/RaidEmulator';
+import StubbedPopupText from '../overrides/StubbedPopupText';
 
 type DisplayedText = {
   element: HTMLElement;
@@ -196,7 +196,11 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
     if (!delay || delay <= 0 || typeof delay !== 'number')
       return;
 
-    const ret = new Promise<void>((res, rej) => {
+    let ret: Promise<void>;
+
+    // Disable prefer-const due to needing `ret` defined before using it in promise
+    // eslint-disable-next-line prefer-const
+    ret = new Promise<void>((res, rej) => {
       this.scheduledTriggers.push({
         expires: this.emulatedOffset + (delay * 1000),
         promise: ret,

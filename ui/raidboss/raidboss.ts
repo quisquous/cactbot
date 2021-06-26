@@ -1,16 +1,14 @@
 import { addOverlayListener } from '../../resources/overlay_plugin_api';
+import { addRemotePlayerSelectUI } from '../../resources/player_override';
+import UserConfig from '../../resources/user_config';
 
-import './raidboss_config';
-import '../../resources/timerbar';
-
+import raidbossFileData from './data/raidboss_manifest.txt';
 import { PopupText, PopupTextGenerator } from './popup-text';
+import defaultOptions from './raidboss_options';
 import { TimelineController, TimelineLoader, TimelineUI } from './timeline';
 
-import UserConfig from '../../resources/user_config';
-import { addRemotePlayerSelectUI } from '../../resources/player_override';
-import raidbossFileData from './data/raidboss_manifest.txt';
-
-import defaultOptions from './raidboss_options';
+import '../../resources/timerbar';
+import './raidboss_config';
 
 import '../../resources/defaults.css';
 import './raidboss.css';

@@ -1,4 +1,5 @@
 import EventBus from '../EventBus';
+
 import LineEvent from './network_log_converter/LineEvent';
 import LogRepository from './network_log_converter/LogRepository';
 import ParseLine from './network_log_converter/ParseLine';

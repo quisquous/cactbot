@@ -558,7 +558,10 @@ class RaidbossConfigurator {
           div.appendChild(input);
           input.type = 'text';
           input.step = 'any';
-          input.placeholder = this.base.translate(kMiscTranslations.valueDefault);
+          if (typeof trig.durationSeconds === 'number')
+            input.placeholder = `${trig.durationSeconds}`;
+          else
+            input.placeholder = this.base.translate(kMiscTranslations.valueDefault);
           input.value = this.base.getOption('raidboss', 'triggers', trig.id, optionKey, '');
           const setFunc = () => {
             const val = validDurationOrUndefined(input.value) || '';
@@ -992,6 +995,9 @@ const templateOptions = {
       id: 'Coverage',
       name: {
         en: 'Supported content (latest version)',
+        ja: '対応コンテンツ一覧 (最新バージョン)',
+        cn: '支持副本一览 (含未发布更新)',
+        ko: '지원하는 컨텐츠 (릴리즈버전보다 최신)',
       },
       type: 'html',
       html: {

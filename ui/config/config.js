@@ -125,12 +125,12 @@ const kDirectoryToCategory = {
     ko: '던전',
   },
   eureka: {
-    en: 'Eureka',
-    de: 'Eureka',
-    fr: 'Eurêka',
-    ja: '禁断の地エウレカ',
-    cn: '禁地优雷卡',
-    ko: '에우레카',
+    en: 'Adventuring Forays',
+    de: 'Feldexkursion',
+    fr: 'Missions d\'exploration',
+    ja: '特殊フィールド探索',
+    cn: '特殊场景探索',
+    ko: '특수 필드 임무',
   },
   raid: {
     en: 'Raid',

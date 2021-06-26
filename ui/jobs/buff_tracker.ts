@@ -1,39 +1,37 @@
-import { JobsOptions } from './types';
-
-import WidgetList from '../../resources/widget_list';
 import EffectId from '../../resources/effect_id';
-import PartyTracker from '../../resources/party';
-
-import potionImage from '../../resources/ffxiv/status/potion.png';
-import astralImage from '../../resources/ffxiv/status/astral.png';
-import umbralImage from '../../resources/ffxiv/status/umbral.png';
-import physicalImage from '../../resources/ffxiv/status/physical.png';
-import offguardImage from '../../resources/ffxiv/status/offguard.png';
-import peculiarLightImage from '../../resources/ffxiv/status/peculiar-light.png';
-import trickAttackImage from '../../resources/ffxiv/status/trick-attack.png';
-import battleLitanyImage from '../../resources/ffxiv/status/battle-litany.png';
-import emboldenImage from '../../resources/ffxiv/status/embolden.png';
 import arrowImage from '../../resources/ffxiv/status/arrow.png';
+import astralImage from '../../resources/ffxiv/status/astral.png';
 import balanceImage from '../../resources/ffxiv/status/balance.png';
-import boleImage from '../../resources/ffxiv/status/bole.png';
-import ewerImage from '../../resources/ffxiv/status/ewer.png';
-import spearImage from '../../resources/ffxiv/status/spear.png';
-import spireImage from '../../resources/ffxiv/status/spire.png';
-import ladyOfCrownsImage from '../../resources/ffxiv/status/lady-of-crowns.png';
-import lordOfCrownsImage from '../../resources/ffxiv/status/lord-of-crowns.png';
-import devilmentImage from '../../resources/ffxiv/status/devilment.png';
-import standardFinishImage from '../../resources/ffxiv/status/standard-finish.png';
-import technicalFinishImage from '../../resources/ffxiv/status/technical-finish.png';
+import battleLitanyImage from '../../resources/ffxiv/status/battle-litany.png';
 import battleVoiceImage from '../../resources/ffxiv/status/battlevoice.png';
-import chainStratagemImage from '../../resources/ffxiv/status/chain-stratagem.png';
-import dragonSightImage from '../../resources/ffxiv/status/dragon-sight.png';
+import boleImage from '../../resources/ffxiv/status/bole.png';
 import brotherhoodImage from '../../resources/ffxiv/status/brotherhood.png';
+import chainStratagemImage from '../../resources/ffxiv/status/chain-stratagem.png';
+import devilmentImage from '../../resources/ffxiv/status/devilment.png';
 import devotionImage from '../../resources/ffxiv/status/devotion.png';
 import divinationImage from '../../resources/ffxiv/status/divination.png';
+import dragonSightImage from '../../resources/ffxiv/status/dragon-sight.png';
+import emboldenImage from '../../resources/ffxiv/status/embolden.png';
+import ewerImage from '../../resources/ffxiv/status/ewer.png';
+import ladyOfCrownsImage from '../../resources/ffxiv/status/lady-of-crowns.png';
+import lordOfCrownsImage from '../../resources/ffxiv/status/lord-of-crowns.png';
+import offguardImage from '../../resources/ffxiv/status/offguard.png';
+import peculiarLightImage from '../../resources/ffxiv/status/peculiar-light.png';
+import physicalImage from '../../resources/ffxiv/status/physical.png';
+import potionImage from '../../resources/ffxiv/status/potion.png';
+import spearImage from '../../resources/ffxiv/status/spear.png';
+import spireImage from '../../resources/ffxiv/status/spire.png';
+import standardFinishImage from '../../resources/ffxiv/status/standard-finish.png';
+import technicalFinishImage from '../../resources/ffxiv/status/technical-finish.png';
+import trickAttackImage from '../../resources/ffxiv/status/trick-attack.png';
+import umbralImage from '../../resources/ffxiv/status/umbral.png';
+import PartyTracker from '../../resources/party';
+import WidgetList from '../../resources/widget_list';
+import { NetMatches } from '../../types/net_matches';
 
 import { kAbility } from './constants';
+import { JobsOptions } from './types';
 import { makeAuraTimerIcon } from './utils';
-import { NetMatches } from '../../types/net_matches';
 
 export interface BuffInfo {
   name: string;
