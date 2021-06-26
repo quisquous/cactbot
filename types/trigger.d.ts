@@ -1,5 +1,5 @@
 import { Lang, NonEnLang } from '../resources/languages';
-import { NetMatches, Matches } from '../types/net_matches';
+import { NetMatches, NetAnyMatches } from '../types/net_matches';
 import { TimelineReplacement, TimelineStyle } from '../ui/raidboss/timeline';
 
 import { RaidbossData } from './data';
@@ -35,31 +35,31 @@ export type Output = {
 };
 
 // The output of any non-response raidboss trigger function.
-export type TriggerOutput<Data extends RaidbossData, MatchType extends Matches> =
+export type TriggerOutput<Data extends RaidbossData, MatchType extends NetAnyMatches> =
     undefined | null | LocaleText | string | number | boolean |
     ((d: Data, m: MatchType, o: Output) => TriggerOutput<Data, MatchType>);
 
 // Used if the function doesn't need to return an en key
-export type PartialTriggerOutput<Data extends RaidbossData, MatchType extends Matches> =
+export type PartialTriggerOutput<Data extends RaidbossData, MatchType extends NetAnyMatches> =
     undefined | null | Partial<LocaleText> | string | number | boolean |
     ((d: Data, m: MatchType, o: Output) => PartialTriggerOutput<Data, MatchType>);
 
 // The type of a non-response trigger field.
-export type TriggerFunc<Data extends RaidbossData, MatchType extends Matches, Return> =
+export type TriggerFunc<Data extends RaidbossData, MatchType extends NetAnyMatches, Return> =
     (data: Data, matches: MatchType, output: Output) => Return;
 
 // The output from a response function (different from other TriggerOutput functions).
-export type ResponseOutput<Data extends RaidbossData, MatchType extends Matches> = {
+export type ResponseOutput<Data extends RaidbossData, MatchType extends NetAnyMatches> = {
   infoText?: TriggerField<Data, MatchType, TriggerOutput<Data, MatchType>>;
   alertText?: TriggerField<Data, MatchType, TriggerOutput<Data, MatchType>>;
   alarmText?: TriggerField<Data, MatchType, TriggerOutput<Data, MatchType>>;
   tts?: TriggerField<Data, MatchType, PartialTriggerOutput<Data, MatchType>>;
 } | undefined;
 // The type of a response trigger field.
-export type ResponseFunc<Data extends RaidbossData, MatchType extends Matches> =
+export type ResponseFunc<Data extends RaidbossData, MatchType extends NetAnyMatches> =
     (data: Data, matches: MatchType, output: Output) => ResponseOutput<Data, MatchType>;
 
-export type ResponseField<Data extends RaidbossData, MatchType extends Matches> =
+export type ResponseField<Data extends RaidbossData, MatchType extends NetAnyMatches> =
     ResponseFunc<Data, MatchType> | ResponseOutput<Data, MatchType>;
 
 export type TriggerAutoConfig = {
@@ -74,7 +74,7 @@ export type TriggerAutoConfig = {
 
 // Note: functions like run or preRun need to be defined as void-only as (confusingly)
 // it is not possible to assign `(d: Data) => boolean` to a void | undefined, only to void.
-export type TriggerField<Data extends RaidbossData, MatchType extends Matches, Return> =
+export type TriggerField<Data extends RaidbossData, MatchType extends NetAnyMatches, Return> =
   [Return] extends [void] ? TriggerFunc<Data, MatchType, void> :
   TriggerFunc<Data, MatchType, Return | undefined> | Return | undefined;
 
