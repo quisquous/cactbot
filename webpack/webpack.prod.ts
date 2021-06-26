@@ -1,3 +1,6 @@
+/**
+ * @prettier
+ */
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { mergeWithRules } from 'webpack-merge';

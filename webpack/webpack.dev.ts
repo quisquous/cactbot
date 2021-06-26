@@ -1,6 +1,13 @@
+/**
+ * @prettier
+ */
 import { mergeWithRules } from 'webpack-merge';
 
-import { cactbotModules, cactbotChunks, cactbotHtmlChunksMap } from './constants';
+import {
+  cactbotModules,
+  cactbotChunks,
+  cactbotHtmlChunksMap,
+} from './constants';
 import generateConfig from './webpack.config';
 
 // Add timerbar_test.html
@@ -11,9 +18,7 @@ const cactbotModulesOverride = {
 
 const cactbotHtmlChunksMapOverride = {
   'ui/test/timerbar_test.html': {
-    chunks: [
-      cactbotModulesOverride.timerbarTest,
-    ],
+    chunks: [cactbotModulesOverride.timerbarTest],
   },
   ...cactbotHtmlChunksMap,
 };

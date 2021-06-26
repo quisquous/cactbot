@@ -1,0 +1,7 @@
+{
+  "endOfLine": "crlf",
+  "requirePragma": true,
+  "quoteProps": "preserve",
+  "trailingComma": "all",
+  "singleQuote": true
+}

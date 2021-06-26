@@ -13,7 +13,9 @@
     "start": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack-dev-server --config webpack/webpack.dev.ts",
     "fetch-deps": "node --loader ts-node/esm ./util/fetch_deps.ts",
     "tsc-no-emit": "node_modules/.bin/tsc --noEmit",
+    "prelint": "prettier --check '**/*.{js,cjs,mjs,ts,html,yml,yaml}'",
     "lint": "node_modules/.bin/eslint --max-warnings=0 ./",
+    "format": "prettier --write '**/*.{js,cjs,mjs,ts,html,yml,yaml}'",
     "lintfix": "node_modules/.bin/eslint --max-warnings=0 --fix ./",
     "stylelint": "node_modules/.bin/stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
     "markdownlint": "node_modules/.bin/markdownlint . --ignore node_modules --ignore publish --ignore CactbotOverlay/ThirdParty",
@@ -69,6 +71,7 @@
     "mocha": "^8.2.1",
     "node-fetch": "^2.6.1",
     "postcss": "^8.3.5",
+    "prettier": "2.3.2",
     "proxy-agent": "^4.0.1",
     "raw-loader": "^4.0.2",
     "recast": "^0.20.4",
@@ -99,6 +102,7 @@
     }
   },
   "lint-staged": {
+    "*.{js,cjs,mjs,ts,html,json,yml,yaml}": "prettier --write",
     "*.css": "stylelint",
     "*.{js,cjs,mjs}": "eslint --max-warnings=0",
     "*.ts": "eslint --max-warnings=0 --plugin tsc --rule 'tsc/config: [2, {configFile: \"./tsconfig.json\"}]'",

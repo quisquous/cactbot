@@ -1,3 +1,6 @@
+/**
+ * @prettier
+ */
 export const cactbotModules = {
   config: 'ui/config/config',
   coverage: 'util/coverage/coverage',
@@ -36,67 +39,39 @@ export const cactbotHtmlChunksMap = {
     ],
   },
   'ui/dps/rdmty/dps.html': {
-    chunks: [
-      cactbotModules.rdmty,
-    ],
+    chunks: [cactbotModules.rdmty],
   },
   'ui/dps/xephero/xephero-cactbot.html': {
-    chunks: [
-      cactbotModules.xephero,
-    ],
+    chunks: [cactbotModules.xephero],
   },
   'ui/eureka/eureka.html': {
-    chunks: [
-      cactbotModules.eureka,
-    ],
+    chunks: [cactbotModules.eureka],
   },
   'ui/fisher/fisher.html': {
-    chunks: [
-      cactbotModules.fisher,
-    ],
+    chunks: [cactbotModules.fisher],
   },
   'ui/jobs/jobs.html': {
-    chunks: [
-      cactbotModules.jobs,
-    ],
+    chunks: [cactbotModules.jobs],
   },
   'ui/oopsyraidsy/oopsy_summary.html': {
-    chunks: [
-      cactbotChunks.oopsyraidsyData,
-      cactbotModules.oopsyraidsySummary,
-    ],
+    chunks: [cactbotChunks.oopsyraidsyData, cactbotModules.oopsyraidsySummary],
   },
   'ui/oopsyraidsy/oopsyraidsy.html': {
-    chunks: [
-      cactbotChunks.oopsyraidsyData,
-      cactbotModules.oopsyraidsyLive,
-    ],
+    chunks: [cactbotChunks.oopsyraidsyData, cactbotModules.oopsyraidsyLive],
   },
   'ui/pullcounter/pullcounter.html': {
-    chunks: [
-      cactbotModules.pullcounter,
-    ],
+    chunks: [cactbotModules.pullcounter],
   },
   'ui/radar/radar.html': {
-    chunks: [
-      cactbotModules.radar,
-    ],
+    chunks: [cactbotModules.radar],
   },
   'ui/raidboss/raidboss.html': {
-    chunks: [
-      cactbotChunks.raidbossData,
-      cactbotModules.raidboss,
-    ],
+    chunks: [cactbotChunks.raidbossData, cactbotModules.raidboss],
   },
   'ui/raidboss/raidemulator.html': {
-    chunks: [
-      cactbotChunks.raidbossData,
-      cactbotModules.raidemulator,
-    ],
+    chunks: [cactbotChunks.raidbossData, cactbotModules.raidemulator],
   },
   'ui/test/test.html': {
-    chunks: [
-      cactbotModules.test,
-    ],
+    chunks: [cactbotModules.test],
   },
 };

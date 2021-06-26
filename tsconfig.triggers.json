@@ -6,8 +6,5 @@
   "compilerOptions": {
     "outDir": "./dist/triggers"
   },
-  "include": [
-    "./ui/raidboss/data/",
-    "./types/manifest.d.ts"
-  ]
+  "include": ["./ui/raidboss/data/", "./types/manifest.d.ts"]
 }

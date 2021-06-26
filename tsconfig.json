@@ -26,10 +26,5 @@
     "./test",
     "./webpack"
   ],
-  "exclude": [
-    "./eslint",
-    "./.eslintrc.cjs",
-    "./dist",
-    "**/*.spec.ts"
-  ]
+  "exclude": ["./eslint", "./.eslintrc.cjs", "./dist", "**/*.spec.ts"]
 }
