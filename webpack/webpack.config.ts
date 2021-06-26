@@ -1,6 +1,3 @@
-/**
- * @prettier
- */
 import path from 'path';
 
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
@@ -14,32 +11,28 @@ interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration;
 }
 
-export default ({
-  cactbotModules,
-  cactbotChunks,
-  cactbotHtmlChunksMap,
-}: {
-  cactbotModules: { [module: string]: string };
-  cactbotChunks: { [module: string]: string };
-  cactbotHtmlChunksMap: { [html: string]: HtmlWebpackPlugin.Options };
-}): Configuration => {
+
+export default (
+    { cactbotModules, cactbotChunks, cactbotHtmlChunksMap }: {
+      cactbotModules: { [module: string]: string };
+      cactbotChunks: { [module: string]: string };
+      cactbotHtmlChunksMap: { [html: string]: HtmlWebpackPlugin.Options };
+    },
+): Configuration => {
   const entries: { [module: string]: string } = {};
   Object.entries(cactbotModules).forEach(([key, module]) => {
     // TDOO: Remove when everything is TypeScript, convert to:
     // entries[module] = `./${module}.ts`;
     let extension = 'js';
-    if (
-      [
-        'oopsyraidsyLive',
-        'oopsyraidsySummary',
-        'radar',
-        'raidboss',
-        'test',
-        'timerbarTest',
-      ].includes(key)
-    ) {
+    if ([
+      'oopsyraidsyLive',
+      'oopsyraidsySummary',
+      'radar',
+      'raidboss',
+      'test',
+      'timerbarTest',
+    ].includes(key))
       extension = 'ts';
-    }
     entries[module] = `./${module}.${extension}`;
   });
 

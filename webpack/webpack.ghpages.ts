@@ -1,6 +1,3 @@
-/**
- * @prettier
- */
 import { merge } from 'webpack-merge';
 
 import prodConfig from './webpack.prod';
