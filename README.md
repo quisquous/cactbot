@@ -306,9 +306,16 @@ you will need to enable the OverlayPlugin WS Server via the following instructio
 1. Start ACT.
 1. Start the WS Server via Plugins -> OverlayPlugin WSServer -> Stream/Local Overlay.
 
-If you're developing triggers for the cactbot repository, you can start a local development server via `npm run start` and load the overlay in Chrome via `http://127.0.0.1:8080/ui/raidboss/raidemulator.html?OVERLAY_WS=ws://127.0.0.1:10501/ws`
+If you're developing triggers for the cactbot repository,
+you can start a local development server via `npm run start`
+and load the overlay in Chrome via `http://127.0.0.1:8080/ui/raidboss/raidemulator.html?OVERLAY_WS=ws://127.0.0.1:10501/ws`
 
-If you're developing user triggers, you can load the overlay in Chrome via `https://quisquous.github.io/cactbot/ui/raidboss/raidemulator.html?OVERLAY_WS=ws://127.0.0.1:10501/ws`
+If you're developing user triggers,
+you can load the overlay in Chrome via `https://quisquous.github.io/cactbot/ui/raidboss/raidemulator.html?OVERLAY_WS=ws://127.0.0.1:10501/ws`
+
+If you're trying to reproduce an issue,
+you can load the overlay in Chrome via `https://quisquous.github.io/cactbot/ui/raidboss/raidemulator.html`.
+You don't need the WS Server running in this case.
 
 Once you've got the overlay loaded, you can follow these instructions to use the emulator.
 
