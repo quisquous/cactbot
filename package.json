@@ -13,7 +13,7 @@
     "start": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack-dev-server --config webpack/webpack.dev.ts",
     "fetch-deps": "node --loader ts-node/esm ./util/fetch_deps.ts",
     "tsc-no-emit": "node_modules/.bin/tsc --noEmit",
-    "prelint": "prettier --check '**/*.{js,cjs,mjs,ts,html,yml,yaml}'",
+    "prelint": "prettier --check '**/*.{js,cjs,mjs,ts,html,json,yml,yaml}'",
     "lint": "node_modules/.bin/eslint --max-warnings=0 ./",
     "format": "prettier --write '**/*.{js,cjs,mjs,ts,html,yml,yaml}'",
     "lintfix": "node_modules/.bin/eslint --max-warnings=0 --fix ./",
