@@ -219,7 +219,6 @@ export default class EmulatedPartyInfo extends EventBus {
       if (!bar || !combatant || !perspective)
         throw new UnreachableCode();
       this.displayedParty[id] = obj;
-      this.updateCombatantInfo(encounter, id);
       this.$partyInfo.append(obj.$rootElem);
       this.$triggerInfo.append(obj.$triggerElem);
       bar.classList.remove('tank');
@@ -276,17 +275,17 @@ export default class EmulatedPartyInfo extends EventBus {
     void this.dispatch('selectPerspective', id);
   }
 
-  updateCombatantInfo(encounter: AnalyzedEncounter, id: string, stateID = 0): void {
+  updateCombatantInfo(encounter: AnalyzedEncounter, id: string, stateID: number): void {
     if (!stateID || stateID <= this.latestDisplayedState)
       return;
 
     const combatant = encounter.encounter.combatantTracker?.combatants[id];
     if (!combatant)
-      return;
+      throw new UnreachableCode();
 
     const State = combatant.getState(stateID);
     if (State === undefined)
-      return;
+      throw new UnreachableCode();
 
     const display = this.displayedParty[id];
 
