@@ -15,7 +15,7 @@
     "tsc-no-emit": "node_modules/.bin/tsc --noEmit",
     "prelint": "prettier --check '**/*.{js,cjs,mjs,ts,html,json,yml,yaml}'",
     "lint": "node_modules/.bin/eslint --max-warnings=0 ./",
-    "format": "prettier --write '**/*.{js,cjs,mjs,ts,html,yml,yaml}'",
+    "format": "prettier --write '**/*.{js,cjs,mjs,ts,html,json,yml,yaml}'",
     "lintfix": "node_modules/.bin/eslint --max-warnings=0 --fix ./",
     "stylelint": "node_modules/.bin/stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css util/**/*.css",
     "markdownlint": "node_modules/.bin/markdownlint . --ignore node_modules --ignore publish --ignore CactbotOverlay/ThirdParty",

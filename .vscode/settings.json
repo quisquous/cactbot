@@ -23,9 +23,9 @@
     "editor.tabSize": 4,
     "editor.formatOnSave": true,
     /**
-      * Although format mode could be set as "modification",
-      * unfortunately `black` does not support "Format Selection"
-      */
+     * Although format mode could be set as "modification",
+     * unfortunately `black` does not support "Format Selection"
+     */
     "editor.formatOnSaveMode": "file"
   },
   "typescript.tsdk": "node_modules\\typescript\\lib"
