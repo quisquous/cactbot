@@ -9,16 +9,16 @@ import { CactbotBaseRegExp, TriggerTypes } from './net_trigger';
 // that use matches from any number of Regex or NetRegex functions.
 export type TargetedParams = 'sourceId' | 'source' | 'targetId' | 'target';
 export type TargetedMatches = NetMatches['StartsUsing'] | NetMatches['Ability'] |
-  NetMatches['GainsEffect'] | NetMatches['LosesEffect'] | NetMatches['Tether'] |
-  NetMatches['WasDefeated'] | NetMatches['None'];
+    NetMatches['GainsEffect'] | NetMatches['LosesEffect'] | NetMatches['Tether'] |
+    NetMatches['WasDefeated'] | NetMatches['None'];
 
 export type FullLocaleText = Record<Lang, string>;
 
 export type LocaleObject<T> = {
   en: T;
 } & {
-    [s in NonEnLang]?: T;
-  };
+  [s in NonEnLang]?: T;
+};
 
 export type LocaleText = LocaleObject<string>;
 
@@ -36,17 +36,17 @@ export type Output = {
 
 // The output of any non-response raidboss trigger function.
 export type TriggerOutput<Data extends RaidbossData, MatchType extends Matches> =
-  undefined | null | LocaleText | string | number | boolean |
-  ((d: Data, m: MatchType, o: Output) => TriggerOutput<Data, MatchType>);
+    undefined | null | LocaleText | string | number | boolean |
+    ((d: Data, m: MatchType, o: Output) => TriggerOutput<Data, MatchType>);
 
 // Used if the function doesn't need to return an en key
 export type PartialTriggerOutput<Data extends RaidbossData, MatchType extends Matches> =
-  undefined | null | Partial<LocaleText> | string | number | boolean |
-  ((d: Data, m: MatchType, o: Output) => PartialTriggerOutput<Data, MatchType>);
+    undefined | null | Partial<LocaleText> | string | number | boolean |
+    ((d: Data, m: MatchType, o: Output) => PartialTriggerOutput<Data, MatchType>);
 
 // The type of a non-response trigger field.
 export type TriggerFunc<Data extends RaidbossData, MatchType extends Matches, Return> =
-  (data: Data, matches: MatchType, output: Output) => Return;
+    (data: Data, matches: MatchType, output: Output) => Return;
 
 // The output from a response function (different from other TriggerOutput functions).
 export type ResponseOutput<Data extends RaidbossData, MatchType extends Matches> = {
@@ -57,10 +57,10 @@ export type ResponseOutput<Data extends RaidbossData, MatchType extends Matches>
 } | undefined;
 // The type of a response trigger field.
 export type ResponseFunc<Data extends RaidbossData, MatchType extends Matches> =
-  (data: Data, matches: MatchType, output: Output) => ResponseOutput<Data, MatchType>;
+    (data: Data, matches: MatchType, output: Output) => ResponseOutput<Data, MatchType>;
 
 export type ResponseField<Data extends RaidbossData, MatchType extends Matches> =
-  ResponseFunc<Data, MatchType> | ResponseOutput<Data, MatchType>;
+    ResponseFunc<Data, MatchType> | ResponseOutput<Data, MatchType>;
 
 export type TriggerAutoConfig = {
   Output?: Output;
@@ -128,7 +128,7 @@ type PartialRegexTrigger = {
 };
 
 export type RegexTrigger<Data extends RaidbossData> =
-  BaseTrigger<Data, 'None'> & PartialRegexTrigger;
+    BaseTrigger<Data, 'None'> & PartialRegexTrigger;
 
 export type TimelineTrigger<Data extends RaidbossData> = BaseTrigger<Data, 'None'> & {
   regex: RegExp;
@@ -157,16 +157,15 @@ export type TriggerSet<Data extends RaidbossData> = {
 // Less strict type for user triggers + built-in triggers, including deprecated fields.
 export type LooseTimelineTrigger = Partial<TimelineTrigger<RaidbossData>>;
 
-export type LooseTrigger = Partial<BaseTrigger<RaidbossData, 'None'> &
-  PartialRegexTrigger &
-  PartialNetRegexTrigger<'None'>
+export type LooseTrigger = Partial<
+    BaseTrigger<RaidbossData, 'None'> &
+    PartialRegexTrigger &
+    PartialNetRegexTrigger<'None'>
 >;
 
-export type LooseTriggerSet =
-  Exclude<Partial<TriggerSet<RaidbossData>>, 'triggers' | 'timelineTriggers'>
-  & {
+export type LooseTriggerSet = Exclude<Partial<TriggerSet<RaidbossData>>, 'triggers' | 'timelineTriggers'> & {
     /** @deprecated Use zoneId instead */
     zoneRegex?: RegExp | { [lang in Lang]?: RegExp };
     triggers?: LooseTrigger[];
     timelineTriggers?: LooseTimelineTrigger[];
-  }
+}
