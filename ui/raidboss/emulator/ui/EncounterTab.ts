@@ -184,13 +184,14 @@ export default class EncounterTab extends EventBus {
 
     let clear = true;
 
-    const zoneMap = this.currentZone ? this.encounters[this.currentZone] : undefined;
-
-    if (!zoneMap)
+    if (!this.currentZone || !this.currentDate)
       return;
 
-    const dateMap = this.currentDate ? zoneMap[this.currentDate] : undefined;
-
+    const zoneMap = this.encounters[this.currentZone];
+    if (!zoneMap)
+      return;
+  
+    const dateMap = zoneMap[this.currentDate];
     if (!dateMap)
       return;
 
