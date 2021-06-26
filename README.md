@@ -300,7 +300,8 @@ This currently can only be loaded in a browser and not as an overlay.
 This will work in current version of Chrome,
 and should work in other browsers as well but this is less tested.
 
-If you want the emulator to use your ACT settings and user triggers, you will need to enable the OverlayPlugin WS Server via the following instructions:
+If you want the emulator to use your ACT settings and user triggers,
+you will need to enable the OverlayPlugin WS Server via the following instructions:
 
 1. Start ACT.
 1. Start the WS Server via Plugins -> OverlayPlugin WSServer -> Stream/Local Overlay.
