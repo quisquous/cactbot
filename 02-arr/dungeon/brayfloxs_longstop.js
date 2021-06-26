@@ -1,8 +1,14 @@
 Options.Triggers.push({
   zoneId: ZoneId.BrayfloxsLongstop,
+  initData: () => {
+    return {
+      pelicanPoisons: [],
+    };
+  },
   triggers: [
     {
       id: 'Brayflox Normal Numbing Breath',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '1FA', source: 'Great Yellow Pelican' }),
       netRegexDe: NetRegexes.startsUsing({ id: '1FA', source: 'Groß(?:e|er|es|en) Gelbpelikan' }),
       netRegexFr: NetRegexes.startsUsing({ id: '1FA', source: 'Grand Pélican Jaune' }),
@@ -14,28 +20,27 @@ Options.Triggers.push({
     },
     {
       id: 'Brayflox Normal Pelican Poison Collect',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '12' }),
-      condition: (data) => data.role === 'healer',
-      run: (data, matches) => {
-        data.pelicanPoisons = data.pelicanPoisons || [];
-        data.pelicanPoisons.push(matches.target);
-      },
+      condition: (data) => data.CanCleanse(),
+      run: (data, matches) => data.pelicanPoisons.push(matches.target),
     },
     {
       id: 'Brayflox Normal Pelican Poison Healer',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '12', capture: false }),
-      condition: (data) => data.role === 'healer',
+      condition: (data) => data.CanCleanse(),
       delaySeconds: 1,
       suppressSeconds: 2,
       alertText: (data, _matches, output) => {
         if (!data.pelicanPoisons)
           return;
         const names = data.pelicanPoisons.sort();
-        data.pelicanPoisons = [];
         if (names.length === 1 && names[0] === data.me)
           return output.esunaYourPoison();
         return output.esunaPoisonOn({ players: names.map((x) => data.ShortName(x)).join(', ') });
       },
+      run: (data) => data.pelicanPoisons = [],
       outputStrings: {
         esunaYourPoison: {
           en: 'Esuna Your Poison',
@@ -61,12 +66,14 @@ Options.Triggers.push({
       // The pack with the boss is 3 Violet Backs, not parsing for them prevents the trigger
       // from activating early when you pick up the Headgate Key and the boss and adds spawn.
       id: 'Brayflox Normal Pelican Adds',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '1283', capture: false }),
       suppressSeconds: 2,
       response: Responses.killAdds(),
     },
     {
       id: 'Brayflox Normal Ashdrake Burning Cyclone',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '205', source: 'Ashdrake' }),
       netRegexDe: NetRegexes.startsUsing({ id: '205', source: 'Asch-Drakon' }),
       netRegexFr: NetRegexes.startsUsing({ id: '205', source: 'Draconide Des Cendres' }),
@@ -79,11 +86,13 @@ Options.Triggers.push({
     {
       // Tempest Biast Spawn
       id: 'Brayflox Normal Tempest Biast',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '1285', capture: false }),
       response: Responses.killAdds(),
     },
     {
       id: 'Brayflox Normal Inferno Drake Burning Cyclone',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '3D8', source: 'Inferno Drake' }),
       netRegexDe: NetRegexes.startsUsing({ id: '3D8', source: 'Sonnen-Drakon' }),
       netRegexFr: NetRegexes.startsUsing({ id: '3D8', source: 'Draconide Des Brasiers' }),
@@ -96,6 +105,7 @@ Options.Triggers.push({
     {
       // Hellbender Bubble
       id: 'Brayflox Normal Hellbender Effluvium',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ id: '3D3', source: 'Hellbender' }),
       netRegexDe: NetRegexes.ability({ id: '3D3', source: 'Höllenkrümmer' }),
       netRegexFr: NetRegexes.ability({ id: '3D3', source: 'Ménopome' }),
@@ -130,6 +140,7 @@ Options.Triggers.push({
     {
       // Stunnable Line Attack
       id: 'Brayflox Normal Aiatar Dragon Breath',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '22F', source: 'Aiatar' }),
       netRegexDe: NetRegexes.startsUsing({ id: '22F', source: 'Aiatar' }),
       netRegexFr: NetRegexes.startsUsing({ id: '22F', source: 'Aiatar' }),
@@ -142,6 +153,7 @@ Options.Triggers.push({
     {
       // Move Aiatar out of Puddles
       id: 'Brayflox Normal Aiatar Toxic Vomit Tank',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '117', capture: false }),
       condition: (data) => data.role === 'tank',
       alertText: (_data, _matches, output) => output.text(),
@@ -160,8 +172,9 @@ Options.Triggers.push({
       // Healer Esuna Poison.
       // This triggers on both Salivous Snap and Puddle Poison Application
       id: 'Brayflox Normal Aiatar Poison Healer',
+      type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '113' }),
-      condition: (data) => data.role === 'healer',
+      condition: (data) => data.CanCleanse(),
       alertText: (data, matches, output) => {
         if (matches.target !== data.me)
           return output.esunaPoisonOn({ player: data.ShortName(matches.target) });

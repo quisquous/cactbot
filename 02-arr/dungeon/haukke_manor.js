@@ -3,6 +3,7 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Haukke Normal Dark Mist Stun',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2C1', source: ['Manor Maidservant', 'Manor Claviger', 'Lady Amandine'] }),
       netRegexDe: NetRegexes.startsUsing({ id: '2C1', source: ['Hausmädchen', 'Herrenhaus-Schlüsselträgerin', 'Lady Amandine'] }),
       netRegexFr: NetRegexes.startsUsing({ id: '2C1', source: ['Soubrette Du Manoir', 'Clavière Du Manoir', 'Dame Amandine'] }),
@@ -15,6 +16,7 @@ Options.Triggers.push({
     },
     {
       id: 'Haukke Normal Steward Soul Drain Stun',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '35C', source: 'Manor Steward' }),
       netRegexDe: NetRegexes.startsUsing({ id: '35C', source: 'Seneschall' }),
       netRegexFr: NetRegexes.startsUsing({ id: '35C', source: 'Intendant Du Manoir' }),
@@ -27,6 +29,7 @@ Options.Triggers.push({
     {
       // Particle and spell effects make this particular Dark Mist hard to see.
       id: 'Haukke Normal Amandine Dark Mist Dodge',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2C1', source: 'Dame Amandine', capture: false }),
@@ -38,6 +41,7 @@ Options.Triggers.push({
     },
     {
       id: 'Haukke Normal Amandine Void Fire III',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '356', source: 'Lady Amandine' }),
       netRegexDe: NetRegexes.startsUsing({ id: '356', source: 'Lady Amandine' }),
       netRegexFr: NetRegexes.startsUsing({ id: '356', source: 'Dame Amandine' }),
@@ -49,6 +53,7 @@ Options.Triggers.push({
     },
     {
       id: 'Haukke Normal Amandine Void Thunder III',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '358', source: 'Lady Amandine' }),
       netRegexDe: NetRegexes.startsUsing({ id: '358', source: 'Lady Amandine' }),
       netRegexFr: NetRegexes.startsUsing({ id: '358', source: 'Dame Amandine' }),
@@ -61,6 +66,7 @@ Options.Triggers.push({
     {
       // Void Lamp Spawn
       id: 'Haukke Normal Void Lamps',
+      type: 'GameLog',
       netRegex: NetRegexes.message({ line: 'The void lamps have begun emitting an eerie glow.', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Die düsteren Lampen flackern unheilvoll auf.', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'La lanterne sinistre luit d\'un éclat lugubre!', capture: false }),
@@ -82,6 +88,7 @@ Options.Triggers.push({
     {
       // Lady's Candle Spawn
       id: 'Haukke Normal Ladys Candle',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '425', capture: false }),
       response: Responses.killAdds(),
     },
@@ -91,6 +98,7 @@ Options.Triggers.push({
       // This causes the trigger to go off early, parsing for the Handmaiden fixes the problem.
       // Suppression included since 2 Handmaiden's spawn at the same time
       id: 'Haukke Normal Ladys Handmaiden',
+      type: 'AddedCombatant',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '424', capture: false }),
       suppressSeconds: 2,
       alertText: (_data, _matches, output) => output.text(),
