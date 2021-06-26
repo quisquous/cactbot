@@ -130,10 +130,10 @@ type PartialRegexTrigger = {
 export type RegexTrigger<Data extends RaidbossData> =
     BaseTrigger<Data, 'None'> & PartialRegexTrigger;
 
-export type TimelineTrigger<Data extends RaidbossData> = BaseTrigger<Data, 'None'> & {
+export type TimelineTrigger<Data extends RaidbossData> = (BaseTrigger<Data, 'None'> & {
   regex: RegExp;
   beforeSeconds?: number;
-};
+}) | { id: string, disabled: true };
 
 // Because timeline functions run during loading, they only support the base RaidbossData.
 export type TimelineFunc = string | string[] | ((data: RaidbossData) => TimelineFunc);
