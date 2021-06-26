@@ -50,11 +50,15 @@ export type TriggerFunc<Data extends RaidbossData, MatchType extends Matches, Re
 
 // The output from a response function (different from other TriggerOutput functions).
 export type ResponseOutput<Data extends RaidbossData, MatchType extends Matches> = {
-  infoText?: TriggerFunc<Data, MatchType, TriggerOutput<Data, MatchType>>;
-  alertText?: TriggerFunc<Data, MatchType, TriggerOutput<Data, MatchType>>;
-  alarmText?: TriggerFunc<Data, MatchType, TriggerOutput<Data, MatchType>>;
-  tts?: TriggerFunc<Data, MatchType, PartialTriggerOutput<Data, MatchType>>;
-};
+  infoText?: TriggerFunc<Data, MatchType, TriggerOutput<Data, MatchType>> |
+    TriggerOutput<Data, MatchType>;
+  alertText?: TriggerFunc<Data, MatchType, TriggerOutput<Data, MatchType>> |
+    TriggerOutput<Data, MatchType>;
+  alarmText?: TriggerFunc<Data, MatchType, TriggerOutput<Data, MatchType>> |
+    TriggerOutput<Data, MatchType>;
+  tts?: TriggerFunc<Data, MatchType, PartialTriggerOutput<Data, MatchType>> |
+    TriggerOutput<Data, MatchType>;
+} | undefined;
 // The type of a response trigger field.
 export type ResponseFunc<Data extends RaidbossData, MatchType extends Matches> =
     (data: Data, matches: MatchType, output: Output) => ResponseOutput<Data, MatchType>;
@@ -157,15 +161,15 @@ export type TriggerSet<Data extends RaidbossData> = {
 // Less strict type for user triggers + built-in triggers, including deprecated fields.
 export type LooseTimelineTrigger = Partial<TimelineTrigger<RaidbossData>>;
 
-export type LooseTrigger = Partial<
-    BaseTrigger<RaidbossData, 'None'> &
-    PartialRegexTrigger &
-    PartialNetRegexTrigger<'None'>
->;
+export type LooseTrigger = Partial<BaseTrigger<RaidbossData, 'None'> &
+  PartialRegexTrigger &
+  PartialNetRegexTrigger<'None'>>;
 
-export type LooseTriggerSet = Exclude<Partial<TriggerSet<RaidbossData>>, 'triggers' | 'timelineTriggers'> & {
-    /** @deprecated Use zoneId instead */
-    zoneRegex?: RegExp | { [lang in Lang]?: RegExp };
-    triggers?: LooseTrigger[];
-    timelineTriggers?: LooseTimelineTrigger[];
+export type LooseTriggerSet =
+  Exclude<Partial<TriggerSet<RaidbossData>>, 'triggers' | 'timelineTriggers'>
+  & {
+  /** @deprecated Use zoneId instead */
+  zoneRegex?: RegExp | { [lang in Lang]?: RegExp };
+  triggers?: LooseTrigger[];
+  timelineTriggers?: LooseTimelineTrigger[];
 }
