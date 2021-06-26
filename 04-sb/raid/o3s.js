@@ -2,9 +2,22 @@
 Options.Triggers.push({
   zoneId: ZoneId.DeltascapeV30Savage,
   timelineFile: 'o3s.txt',
+  timelineTriggers: [
+    {
+      id: 'O3S Great Dragon Frost Breath',
+      regex: /Frost Breath/,
+      beforeSeconds: 5,
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dragon Cleave',
+        },
+      },
+    },
+  ],
   triggers: [
     {
-      id: 'O3S Phase Counter',
+      id: 'O3S Panel Swap Phase Counter',
       netRegex: NetRegexes.startsUsing({ id: '2304', source: 'Halicarnassus', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2304', source: 'Halikarnassos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2304', source: 'Halicarnasse', capture: false }),
@@ -15,6 +28,29 @@ Options.Triggers.push({
         data.phase = (data.phase || 0) + 1;
         delete data.seenHolyThisPhase;
       },
+    },
+    {
+      id: 'O3S Critical Hit',
+      netRegex: NetRegexes.startsUsing({ id: '22EB', source: 'Halicarnassus' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '22EB', source: 'Halikarnassos' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '22EB', source: 'Halicarnasse' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '22EB', source: 'ハリカルナッソス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '22EB', source: '哈利卡纳苏斯' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '22EB', source: '할리카르나소스' }),
+      condition: Conditions.caresAboutPhysical(),
+      // "Use Awareness!! <se.6>"
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'O3S Dimensional Wave',
+      netRegex: NetRegexes.startsUsing({ id: '22F6', source: 'Halicarnassus', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '22F6', source: 'Halikarnassos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '22F6', source: 'Halicarnasse', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '22F6', source: 'ハリカルナッソス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '22F6', source: '哈利卡纳苏斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '22F6', source: '할리카르나소스', capture: false }),
+      condition: Conditions.caresAboutMagical(),
+      response: Responses.aoe(),
     },
     {
       // Look for spellblade holy so that the last noisy waltz
@@ -30,6 +66,7 @@ Options.Triggers.push({
         // In case something went awry, clean up any holy targets
         // so the next spellblade holy can start afresh.
         delete data.holyTargets;
+        delete data.holyTethers;
         data.seenHolyThisPhase = true;
       },
     },
@@ -37,6 +74,7 @@ Options.Triggers.push({
       // Normal spellblade holy with tethers and one stack point.
       // "64" is a stack marker.  "65" is the prey marker.
       // The debuff order in the logs is:
+      //   (0) tethers go out
       //   (1) stack marker (tethered to #2)
       //   (2) prey marker (tethered to #1)
       //   (3) prey marker (tethered to #4)
@@ -50,48 +88,44 @@ Options.Triggers.push({
           return false;
         data.holyTargets = data.holyTargets || [];
         data.holyTargets.push(matches.target);
-        return data.holyTargets.length === 4;
+        return true;
       },
-      alarmText: (data, _matches, output) => {
-        if (data.holyTargets[1] !== data.me)
-          return '';
-        return output.stackOnYou();
-      },
-      alertText: (data, _matches, output) => {
-        if (data.holyTargets[1] === data.me)
+      delaySeconds: 0.3,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          othersStackOnHoly: {
+            en: '(others stack on ${player})',
+            de: 'andere stacken auf ${player}',
+            fr: 'Les autres se packent sur ${player}',
+            ja: '他は${player}と頭割り',
+            cn: '其他分摊${player}',
+            ko: '${player} 다른 쉐어징',
+          },
+          spread: Outputs.spread,
+          stackOnHoly: Outputs.stackOnPlayer,
+          stackOnYou: Outputs.stackOnYou,
+        };
+        // If already run, abort.
+        if (!data.holyTargets || data.holyTargets.length < 2)
           return;
-        for (let i = 0; i < 4; ++i) {
-          if (data.holyTargets[i] === data.me)
-            return output.getOut();
+        const stackTarget = data.holyTargets[1];
+        const ret = {};
+        if (data.me === stackTarget) {
+          ret.alarmText = output.stackOnYou();
+        } else {
+          if (data.holyTargets.includes(data.me)) {
+            ret.alertText = output.spread();
+            ret.infoText = output.othersStackOnHoly({ player: data.ShortName(stackTarget) });
+          } else {
+            ret.infoText = output.stackOnHoly({ player: data.ShortName(stackTarget) });
+          }
         }
-        return output.stackOnHoly({ player: data.holyTargets[1] });
+        return ret;
       },
-      infoText: (data, _matches, output) => {
-        for (let i = 0; i < 4; ++i) {
-          if (data.holyTargets[i] === data.me)
-            return output.othersStackOnHoly({ holyTargets: data.holyTargets[1] });
-        }
-      },
-      run: (data) => delete data.holyTargets,
-      outputStrings: {
-        othersStackOnHoly: {
-          en: 'others stack on ${holyTargets}',
-          de: 'andere stacken auf ${holyTargets}',
-          fr: 'Les autres se packent sur ${holyTargets}',
-          ja: '他は${holyTargets}と頭割り',
-          cn: '其他分摊${holyTargets}',
-          ko: '${holyTargets} 다른 쉐어징',
-        },
-        getOut: {
-          en: 'Get out',
-          de: 'Raus da',
-          fr: 'À l\'extérieur',
-          ja: '出て',
-          cn: '出去',
-          ko: '밖으로',
-        },
-        stackOnHoly: Outputs.stackOnPlayer,
-        stackOnYou: Outputs.stackOnYou,
+      run: (data) => {
+        delete data.holyTargets;
+        delete data.holyTethers;
       },
     },
     {
@@ -121,19 +155,9 @@ Options.Triggers.push({
           return output.goNorth();
         return output.goSouthStackOnFriend();
       },
-      tts: (data, _matches, output) => {
-        if (data.librarySpellbladePrinted)
-          return;
-        data.librarySpellbladePrinted = true;
-        if (data.librarySpellbladeMe === '0064')
-          return output.stackOutside();
-        if (data.librarySpellbladeMe === '0065')
-          return output.goNorth2();
-        return output.stackInside();
-      },
       outputStrings: {
         goSouthStackOnYou: {
-          en: 'Go south: stack on YOU',
+          en: 'Go South: Stack on YOU',
           de: 'Nach Süden: stack auf DIR',
           fr: 'Allez au sud : Package sur VOUS',
           ja: '南へ: 自分に頭割り',
@@ -141,7 +165,7 @@ Options.Triggers.push({
           ko: '남쪽으로: 쉐어징 대상자',
         },
         goNorth: {
-          en: 'go north',
+          en: 'Go North',
           de: 'nach norden',
           fr: 'Allez au nord',
           ja: '南へ',
@@ -149,36 +173,12 @@ Options.Triggers.push({
           ko: '북쪽으로',
         },
         goSouthStackOnFriend: {
-          en: 'go south: stack on friend',
+          en: 'Go South: Stack on Friend',
           de: 'nach süden: stack auf freund',
           fr: 'Allez au sud : Package sur un ami',
           ja: '南へ: 頭割り',
           cn: '去南边分摊',
           ko: '남쪽으로: 쉐어징',
-        },
-        stackOutside: {
-          en: 'stack outside',
-          de: 'außen stacken',
-          fr: 'Packez-vous à l\'extérieur',
-          ja: '外へ: 頭割り',
-          cn: '去外面分摊',
-          ko: '밖으로: 쉐어징',
-        },
-        goNorth2: {
-          en: 'go north',
-          de: 'nach norden',
-          fr: 'Allez au nord',
-          ja: '南へ',
-          cn: '去南边',
-          ko: '북쪽으로',
-        },
-        stackInside: {
-          en: 'stack inside',
-          de: 'innen stacken',
-          fr: 'Packez-vous à l\'intérieur',
-          ja: '中へ: 頭割り',
-          cn: '去里面分摊',
-          ko: '안으로: 쉐어징',
         },
       },
     },
@@ -268,7 +268,7 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '22F9', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '22F9', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '22F9', source: '할리카르나소스', capture: false }),
-      response: Responses.getTogether(),
+      response: Responses.doritoStack(),
     },
     {
       id: 'O3S Squelch',
@@ -279,6 +279,32 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '22F8', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '22F8', source: '할리카르나소스', capture: false }),
       response: Responses.lookAway(),
+    },
+    {
+      id: 'O3S Individual Adds',
+      // npcNameId, npcBaseId
+      // 5626, 7399 = White Flame
+      // 6724, 7400 = Great Dragon
+      // 6056, 7401 = Apanda
+      // There are a bunch of 6056, 7404 Apandas that get added at the beginning.
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['5626', '6724', '6056'], npcBaseId: ['7399', '7400', '7401'] }),
+      infoText: (_data, matches, output) => output.kill({ name: matches.name }),
+      outputStrings: {
+        kill: {
+          en: 'Kill ${name}',
+        },
+      },
+    },
+    {
+      id: 'O3S Iron Giant',
+      // 5636 = Iron Giant
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5636', capture: false }),
+      infoText: (_data, _matches, output) => output.kill(),
+      outputStrings: {
+        kill: {
+          en: 'Kill Giant + Ninjas',
+        },
+      },
     },
     {
       id: 'O3S The Queen\'s Waltz: Books',
@@ -293,24 +319,23 @@ Options.Triggers.push({
         // spellblade holy -> waltz that ends the library phase.
         return data.phase !== 3 || !data.seenHolyThisPhase;
       },
-      alertText: (_data, _matches, output) => output.text(),
-      tts: (_data, _matches, output) => output.tts(),
+      alertText: (data, _matches, output) => {
+        data.bookCount = (data.bookCount || 0) + 1;
+        // The second books (with the Apanda) has big magic hammer circles.
+        // Usually folks handle this by going to the inner corners.
+        return data.bookCount !== 2 ? output.books() : output.magicHammer();
+      },
       outputStrings: {
-        text: {
-          en: 'The Queen\'s Waltz: Books',
+        books: {
+          en: 'Books (One Per Square)',
           de: 'Tanz der Königin: Bücher',
           fr: 'Danse de la reine : Livres',
           ja: '女王の舞い: 本',
           cn: '中间两排分格站位',
           ko: '여왕의 춤: 책',
         },
-        tts: {
-          en: 'books',
-          de: 'bücher',
-          fr: 'livres',
-          ja: '本',
-          cn: '书',
-          ko: '책',
+        magicHammer: {
+          en: 'Books + Magic Hammer',
         },
       },
     },
@@ -323,23 +348,14 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '2306', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2306', source: '할리카르나소스', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
-      tts: (_data, _matches, output) => output.tts(),
       outputStrings: {
         text: {
-          en: 'The Queen\'s Waltz: Clock',
+          en: 'Clock',
           de: 'Tanz der Königin: Uhr',
           fr: 'Danse de la reine : Position',
           ja: '女王の舞い: 散開',
           cn: '万变水波站位',
           ko: '여왕의 춤: 산개',
-        },
-        tts: {
-          en: 'clock',
-          de: 'uhr',
-          fr: 'position',
-          ja: '散開',
-          cn: '万变水波',
-          ko: '산개',
         },
       },
     },
@@ -351,24 +367,15 @@ Options.Triggers.push({
       netRegexJa: NetRegexes.startsUsing({ id: '230A', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '230A', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '230A', source: '할리카르나소스', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
-      tts: (_data, _matches, output) => output.tts(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'The Queen\'s Waltz: Crystal Square',
+          en: 'Be On Blue Square',
           de: 'Tanz der Königin: Kristallfeld',
           fr: 'Danse de la reine : Carré de cristal',
           ja: '女王の舞い: 床',
           cn: '站在蓝地板',
           ko: '여왕의 춤: 대지',
-        },
-        tts: {
-          en: 'blue square',
-          de: 'blaues feld',
-          fr: 'carré bleu',
-          ja: '青い床',
-          cn: '蓝地板',
-          ko: '파란 장판',
         },
       },
     },
@@ -381,23 +388,81 @@ Options.Triggers.push({
       netRegexCn: NetRegexes.startsUsing({ id: '2308', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2308', source: '할리카르나소스', capture: false }),
       infoText: (_data, _matches, output) => output.text(),
-      tts: (_data, _matches, output) => output.tts(),
       outputStrings: {
         text: {
-          en: 'The Queen\'s Waltz: Tethers',
+          en: 'Tethers',
           de: 'Tanz der Königin: Ranken',
           fr: 'Danse de la reine : Liens',
           ja: '女王の舞い: 茨',
           cn: '先集中后扯线',
           ko: '여왕의 춤: 가시',
         },
-        tts: {
-          en: 'tethers',
-          de: 'ranken',
-          fr: 'liens',
-          ja: '茨を引く',
-          cn: '扯线',
-          ko: '가시',
+      },
+    },
+    {
+      id: 'O3S The Queen\'s Waltz: Tethers You',
+      netRegex: NetRegexes.tether({ id: '0012' }),
+      infoText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.breakTether({ player: data.ShortName(matches.source) });
+        else if (data.me === matches.source)
+          return output.breakTether({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        breakTether: {
+          en: 'Break Tether (${player})',
+          ko: '가시줄 끊기 ("${player}")',
+        },
+      },
+    },
+    {
+      id: 'O3S Soul Reaper',
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5634' }),
+      alertText: (data, matches, output) => {
+        data.reapers = data.reapers || [];
+        data.reapers.push(matches);
+        if (data.reapers.length !== 4)
+          return;
+        // Everything is symmetrical and safe spots are on the diagonal,
+        // so treat this as a linear problem.
+        const safeSpots = new Set([0, 1, 2, 3]);
+        // x, y coordinates: -15, 5, 5, 15 on rows/columns.
+        // x, y coordinates: -19 or 19 if outside.
+        const mapPosToIndex = (coord) => Math.round((coord + 15) / 10);
+        for (const reaper of data.reapers) {
+          const x = parseFloat(reaper.x);
+          const y = parseFloat(reaper.y);
+          // Skip the ~center one.
+          if (Math.abs(x) < 1 && Math.abs(y) < 1)
+            continue;
+          if (Math.abs(x) < 17)
+            safeSpots.delete(mapPosToIndex(x));
+          if (Math.abs(y) < 17)
+            safeSpots.delete(mapPosToIndex(y));
+        }
+        const spots = Array.from(safeSpots);
+        if (spots.length !== 1)
+          return output.unknown();
+        return {
+          0: output.nwOutside(),
+          1: output.nwInside(),
+          2: output.seInside(),
+          3: output.seOutside(),
+        }[spots[0]];
+      },
+      outputStrings: {
+        unknown: Outputs.unknown,
+        nwOutside: {
+          en: 'NW Outside',
+        },
+        nwInside: {
+          en: 'NW Inside',
+        },
+        seInside: {
+          en: 'SE Inside',
+        },
+        seOutside: {
+          en: 'SE Outside',
         },
       },
     },
