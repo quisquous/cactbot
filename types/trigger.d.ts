@@ -50,11 +50,11 @@ export type TriggerFunc<Data extends RaidbossData, MatchType extends Matches, Re
 
 // The output from a response function (different from other TriggerOutput functions).
 export type ResponseOutput<Data extends RaidbossData, MatchType extends Matches> = {
-  infoText?: TriggerFunc<Data, MatchType, TriggerOutput<Data, MatchType>>;
-  alertText?: TriggerFunc<Data, MatchType, TriggerOutput<Data, MatchType>>;
-  alarmText?: TriggerFunc<Data, MatchType, TriggerOutput<Data, MatchType>>;
-  tts?: TriggerFunc<Data, MatchType, PartialTriggerOutput<Data, MatchType>>;
-};
+  infoText?: TriggerField<Data, MatchType, TriggerOutput<Data, MatchType>>;
+  alertText?: TriggerField<Data, MatchType, TriggerOutput<Data, MatchType>>;
+  alarmText?: TriggerField<Data, MatchType, TriggerOutput<Data, MatchType>>;
+  tts?: TriggerField<Data, MatchType, PartialTriggerOutput<Data, MatchType>>;
+} | undefined;
 // The type of a response trigger field.
 export type ResponseFunc<Data extends RaidbossData, MatchType extends Matches> =
     (data: Data, matches: MatchType, output: Output) => ResponseOutput<Data, MatchType>;
