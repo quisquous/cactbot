@@ -161,13 +161,13 @@ export type TriggerSet<Data extends RaidbossData> = {
 // Less strict type for user triggers + built-in triggers, including deprecated fields.
 export type LooseTimelineTrigger = Partial<TimelineTrigger<RaidbossData>>;
 
-export type LooseTrigger = Partial<BaseTrigger<RaidbossData, 'None'> &
+export type LooseTrigger = Partial<
+  BaseTrigger<RaidbossData, 'None'> &
   PartialRegexTrigger &
-  PartialNetRegexTrigger<'None'>>;
+  PartialNetRegexTrigger<'None'>
+>;
 
-export type LooseTriggerSet =
-  Exclude<Partial<TriggerSet<RaidbossData>>, 'triggers' | 'timelineTriggers'>
-  & {
+export type LooseTriggerSet = Exclude<Partial<TriggerSet<RaidbossData>>, 'triggers' | 'timelineTriggers'> & {
   /** @deprecated Use zoneId instead */
   zoneRegex?: RegExp | { [lang in Lang]?: RegExp };
   triggers?: LooseTrigger[];
