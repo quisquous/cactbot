@@ -1,6 +1,8 @@
 import inquirer, { Answers } from 'inquirer';
 import inquirerFuzzyPath, { FuzzyPathQuestionOptions } from 'inquirer-fuzzy-path';
+
 import { Lang } from '../resources/languages';
+
 import { default as generateEffectIds } from './gen_effect_id';
 import { run as translateTimeline } from './translate_timeline';
 
