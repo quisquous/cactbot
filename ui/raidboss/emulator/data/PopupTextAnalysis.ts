@@ -85,9 +85,9 @@ export default class PopupTextAnalysis extends StubbedPopupText {
   triggerResolvers: Resolver[] = [];
   currentResolver?: Resolver;
   public callback?: (log: LineEvent,
-      triggerHelper: EmulatorTriggerHelper | undefined,
-      currentTriggerStatus: ResolverStatus,
-      finalData: DataType) => void;
+    triggerHelper: EmulatorTriggerHelper | undefined,
+    currentTriggerStatus: ResolverStatus,
+    finalData: DataType) => void;
 
   constructor(
       options: RaidbossOptions,

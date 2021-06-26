@@ -46,10 +46,10 @@ export default class Encounter {
   initialTimestamp = Number.MAX_SAFE_INTEGER;
 
   constructor(
-    public encounterDay: string,
-    public encounterZoneId: string,
-    public encounterZoneName: string,
-    public logLines: LineEvent[]) {
+      public encounterDay: string,
+      public encounterZoneId: string,
+      public encounterZoneName: string,
+      public logLines: LineEvent[]) {
     this.version = Encounter.encounterVersion;
   }
 

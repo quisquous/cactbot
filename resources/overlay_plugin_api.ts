@@ -154,7 +154,7 @@ export const callOverlayHandler: IOverlayHandler = (
   init();
   if (callOverlayHandlerOverride) {
     return callOverlayHandlerOverride(
-      _msg as Parameters<IOverlayHandler>[0],
+        _msg as Parameters<IOverlayHandler>[0],
     ) as Promise<unknown>;
   }
   return callOverlayHandlerInternal(_msg as Parameters<IOverlayHandler>[0]);
