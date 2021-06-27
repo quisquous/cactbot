@@ -1,5 +1,5 @@
 import { DamageTracker } from './damage_tracker';
-import { ShortNamify, UnscrambleDamage, IsPlayerId, IsTriggerEnabled } from './oopsy_common';
+import { ShortNamify, UnscrambleDamage, IsPlayerId, IsTriggerEnabled, kFlagInstantDeath } from './oopsy_common';
 
 const kEarlyPullText = {
   en: 'early pull',
