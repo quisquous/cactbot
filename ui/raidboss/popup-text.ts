@@ -1,6 +1,4 @@
-/**
- * @prettier
- */
+/** @prettier */
 import { Lang } from '../../resources/languages';
 import { UnreachableCode } from '../../resources/not_reached';
 import { callOverlayHandler, addOverlayListener } from '../../resources/overlay_plugin_api';

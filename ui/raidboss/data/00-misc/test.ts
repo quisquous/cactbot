@@ -1,6 +1,4 @@
-/**
- * @prettier
- */
+/** @prettier */
 import NetRegexes from '../../../../resources/netregexes';
 import outputs from '../../../../resources/outputs';
 import Util from '../../../../resources/util';

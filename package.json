@@ -70,6 +70,7 @@
     "node-fetch": "^2.6.1",
     "postcss": "^8.3.5",
     "prettier": "^2.3.2",
+    "prettier-plugin-jsdoc": "^0.3.23",
     "proxy-agent": "^4.0.1",
     "raw-loader": "^4.0.2",
     "recast": "^0.20.4",

@@ -1,6 +1,4 @@
-/**
- * @prettier
- */
+/** @prettier */
 'use strict';
 const fs = require('fs');
 const path = require('path');
@@ -10,7 +8,6 @@ const eslint = require('eslint');
 const prettier = require('prettier');
 
 /**
- *
  * @param {string} code
  * @param {string} filepath
  * @returns {Promise<string>}
@@ -31,7 +28,6 @@ const linter = new eslint.ESLint({
 });
 
 /**
- *
  * @param {string} code
  * @param {string} filePath
  * @returns {Promise<ESLint.LintResult>}
@@ -80,7 +76,6 @@ const processFile = async (filename, check) => {
 };
 
 /**
- *
  * @param {string[]} files
  * @param {boolean} check
  * @returns {Promise<void>}
