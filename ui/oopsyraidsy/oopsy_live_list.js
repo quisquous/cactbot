@@ -1,3 +1,12 @@
+const kCopiedMessage = {
+  en: 'Copied!',
+  de: 'Kopiert!',
+  fr: 'Copié !',
+  ja: 'コピーした！',
+  cn: '已复制！',
+  ko: '복사 완료!',
+};
+
 export class OopsyLiveList {
   constructor(options, element) {
     this.options = options;

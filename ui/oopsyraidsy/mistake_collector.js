@@ -28,15 +28,6 @@ const kPartyWipeText = {
   ko: '파티 전멸',
 };
 
-const kCopiedMessage = {
-  en: 'Copied!',
-  de: 'Kopiert!',
-  fr: 'Copié !',
-  ja: 'コピーした！',
-  cn: '已复制！',
-  ko: '복사 완료!',
-};
-
 // Internal trigger id for early pull
 const kEarlyPullId = 'General Early Pull';
 
