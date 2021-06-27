@@ -887,6 +887,10 @@ export class PopupText {
     // so triggers can do things like matches.target.
     if (matches && matches.groups)
       groups = matches.groups;
+    // If there are no matching groups, reproduce the old js logic where
+    // groups ended up as the original RegExpExecArray object
+    else if (matches)
+      groups = { 0: matches.input };
 
     // Set up a helper object so we don't have to throw
     // a ton of info back and forth between subfunctions
