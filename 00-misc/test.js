@@ -18,7 +18,7 @@ Options.Triggers.push({
       return 'alarmtext "Super Tankbuster" before 2';
     },
     (data) => {
-      if (!data.role.startsWith('dps'))
+      if (data.role !== 'dps')
         return 'hideall "Pentacle Sac (DPS)"';
     },
     (data) => {
@@ -27,14 +27,19 @@ Options.Triggers.push({
       return 'alarmtext "Almagest" before 0';
     },
     (data) => {
-      // <_<
-      const shortName = data.me.indexOf(' ') >= 0 ? data.me.substring(0, data.me.indexOf(' ')) : data.me;
       return [
-        '40 "Death To ' + shortName + '!!"',
+        '40 "Death To ' + data.ShortName(data.me) + '!!"',
         'hideall "Death"',
       ];
     },
   ],
+  initData: () => {
+    return {
+      delayedDummyTimestampBefore: 0,
+      delayedDummyTimestampAfter: 0,
+      pokes: 0,
+    };
+  },
   timelineStyles: [
     {
       regex: /^Death To/,
@@ -73,6 +78,7 @@ Options.Triggers.push({
     {
       id: 'Test Delayed Dummy',
       regex: /Angry Dummy/,
+      beforeSeconds: 0,
       // Add in a huge delay to make it obvious the delay runs before promise.
       delaySeconds: 10,
       promise: (data) => {
@@ -104,13 +110,14 @@ Options.Triggers.push({
   triggers: [
     {
       id: 'Test Poke',
+      type: 'GameLog',
       netRegex: NetRegexes.gameNameLog({ line: 'You poke the striking dummy.*?', capture: false }),
       netRegexDe: NetRegexes.gameNameLog({ line: 'Du stupst die Trainingspuppe an.*?', capture: false }),
       netRegexFr: NetRegexes.gameNameLog({ line: 'Vous touchez légèrement le mannequin d\'entraînement du doigt.*?', capture: false }),
       netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人をつついた.*?', capture: false }),
       netRegexCn: NetRegexes.gameNameLog({ line: '.*用手指戳向木人.*?', capture: false }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 쿡쿡 찌릅니다.*?', capture: false }),
-      preRun: (data) => data.pokes = (data.pokes || 0) + 1,
+      preRun: (data) => ++data.pokes,
       infoText: (data, _matches, output) => output.poke({ numPokes: data.pokes }),
       outputStrings: {
         poke: {
@@ -125,6 +132,7 @@ Options.Triggers.push({
     },
     {
       id: 'Test Psych',
+      type: 'GameLog',
       netRegex: NetRegexes.gameNameLog({ line: 'You psych yourself up alongside the striking dummy.*?', capture: false }),
       netRegexDe: NetRegexes.gameNameLog({ line: 'Du willst wahren Kampfgeist in der Trainingspuppe entfachen.*?', capture: false }),
       netRegexFr: NetRegexes.gameNameLog({ line: 'Vous vous motivez devant le mannequin d\'entraînement.*?', capture: false }),
@@ -153,6 +161,7 @@ Options.Triggers.push({
     },
     {
       id: 'Test Laugh',
+      type: 'GameLog',
       netRegex: NetRegexes.gameNameLog({ line: 'You burst out laughing at the striking dummy.*?', capture: false }),
       netRegexDe: NetRegexes.gameNameLog({ line: 'Du lachst herzlich mit der Trainingspuppe.*?', capture: false }),
       netRegexFr: NetRegexes.gameNameLog({ line: 'Vous vous esclaffez devant le mannequin d\'entraînement.*?', capture: false }),
@@ -182,6 +191,7 @@ Options.Triggers.push({
     },
     {
       id: 'Test Clap',
+      type: 'GameLog',
       netRegex: NetRegexes.gameNameLog({ line: 'You clap for the striking dummy.*?', capture: false }),
       netRegexDe: NetRegexes.gameNameLog({ line: 'Du klatschst begeistert Beifall für die Trainingspuppe.*?', capture: false }),
       netRegexFr: NetRegexes.gameNameLog({ line: 'Vous applaudissez le mannequin d\'entraînement.*?', capture: false }),
@@ -204,6 +214,7 @@ Options.Triggers.push({
     },
     {
       id: 'Test Lang',
+      type: 'GameLog',
       // In game: /echo cactbot lang
       netRegex: NetRegexes.echo({ line: 'cactbot lang.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot sprache.*?', capture: false }),
@@ -223,6 +234,7 @@ Options.Triggers.push({
     },
     {
       id: 'Test Response',
+      type: 'GameLog',
       netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot test antwort.*?', capture: false }),
       response: (_data, _matches, output) => {
@@ -243,32 +255,37 @@ Options.Triggers.push({
     },
     {
       id: 'Test Watch',
+      type: 'GameLog',
       netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
-      promise: (data) => Util.watchCombatant({
-        names: [
-          data.me,
-          strikingDummyNames[data.lang] || strikingDummyNames['en'],
-        ],
-        // 50 seconds
-        maxDuration: 50000,
-      }, (ret) => {
-        const me = ret.combatants.find((c) => c.Name === data.me);
-        const dummyName = strikingDummyNames[data.lang] || strikingDummyNames['en'];
-        const dummies = ret.combatants.filter((c) => c.Name === dummyName);
-        if (me && dummies) {
-          for (const dummy of dummies) {
-            const distX = Math.abs(me.PosX - dummy.PosX);
-            const distY = Math.abs(me.PosY - dummy.PosY);
-            const dist = Math.hypot(distX, distY);
-            console.log(`test watch: distX = ${distX}; distY = ${distY}; dist = ${dist}`);
-            if (dist < 5)
-              return true;
+      promise: (data) => {
+        let _a;
+        return Util.watchCombatant({
+          names: [
+            data.me,
+            (_a = strikingDummyNames[data.lang]) !== null && _a !== void 0 ? _a : strikingDummyNames['en'],
+          ],
+          // 50 seconds
+          maxDuration: 50000,
+        }, (ret) => {
+          let _a;
+          const me = ret.combatants.find((c) => c.Name === data.me);
+          const dummyName = (_a = strikingDummyNames[data.lang]) !== null && _a !== void 0 ? _a : strikingDummyNames['en'];
+          const dummies = ret.combatants.filter((c) => c.Name === dummyName);
+          if (me && dummies) {
+            for (const dummy of dummies) {
+              const distX = Math.abs(me.PosX - dummy.PosX);
+              const distY = Math.abs(me.PosY - dummy.PosY);
+              const dist = Math.hypot(distX, distY);
+              console.log(`test watch: distX = ${distX}; distY = ${distY}; dist = ${dist}`);
+              if (dist < 5)
+                return true;
+            }
+            return false;
           }
+          console.log(`test watch: me = ${me ? 'true' : 'false'}; no dummies`);
           return false;
-        }
-        console.log(`test watch: me = ${me ? 'true' : 'false'}; ${dummy ? 'true' : 'false'}`);
-        return false;
-      }),
+        });
+      },
       infoText: (_data, _matches, output) => output.close(),
       outputStrings: {
         close: {
