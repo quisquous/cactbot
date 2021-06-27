@@ -11,7 +11,7 @@ import { EventResponses, LogEvent } from '../../types/event';
 import { Job, Role } from '../../types/job';
 import { Matches } from '../../types/net_matches';
 import {
-  LooseTrigger, OutputStrings, TriggerSet, TimelineFunc, LooseTriggerSet,
+  LooseTrigger, OutputStrings, TriggerSet, TimelineField, TimelineFunc, LooseTriggerSet,
   ResponseField, TriggerAutoConfig, TriggerField, TriggerOutput,
   Output, ResponseOutput, PartialTriggerOutput, DataInitializeFunc,
   GeneralNetRegexTrigger, RegexTrigger,
@@ -567,7 +567,7 @@ export class PopupText {
 
     // Recursively/iteratively process timeline entries for triggers.
     // Functions get called with data, arrays get iterated, strings get appended.
-    const addTimeline = (function(this: PopupText, obj: TimelineFunc) {
+    const addTimeline = (function(this: PopupText, obj: TimelineField | TimelineFunc | undefined) {
       if (Array.isArray(obj)) {
         for (const objVal of obj)
           addTimeline(objVal);

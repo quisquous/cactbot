@@ -136,7 +136,8 @@ export type TimelineTrigger<Data extends RaidbossData> = BaseTrigger<Data, 'None
 };
 
 // Because timeline functions run during loading, they only support the base RaidbossData.
-export type TimelineFunc = string | string[] | ((data: RaidbossData) => TimelineFunc);
+export type TimelineFunc = (data: RaidbossData) => TimelineField | undefined;
+export type TimelineField = string | (string | TimelineFunc)[];
 
 export type DataInitializeFunc<Data extends RaidbossData> = () => Omit<Data, keyof RaidbossData>;
 
@@ -146,7 +147,7 @@ export type TriggerSet<Data extends RaidbossData> = {
   resetWhenOutOfCombat?: boolean;
   overrideTimelineFile?: boolean;
   timelineFile?: string;
-  timeline?: TimelineFunc;
+  timeline?: TimelineField;
   triggers?: NetRegexTrigger<Data>[];
   timelineTriggers?: TimelineTrigger<Data>[];
   timelineReplace?: TimelineReplacement[];
