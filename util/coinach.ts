@@ -167,6 +167,7 @@ export class CoinachWriter {
 
 export default ${str}`;
 
+    // TODO: update this to prettier-eslint
     const linter = new eslint.ESLint({ fix: true });
     const results = await linter.lintText(f, { filePath: fullPath });
 
@@ -212,6 +213,7 @@ const data${type ? ':' + type : ' '} = ${str}${asConst ? ' as const' : ''};
 
 export default data;`;
 
+    // TODO: update this to prettier-eslint
     const linter = new eslint.ESLint({ fix: true });
     const results = await linter.lintText(f, { filePath: fullPath });
 

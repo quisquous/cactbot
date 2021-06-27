@@ -1,0 +1,11 @@
+.idea
+.git/
+.venv/
+bin/
+dist/
+docs/
+node_modules/
+plugin/
+publish/
+ui/dps/rdmty/
+user/

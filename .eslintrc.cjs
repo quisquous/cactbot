@@ -275,6 +275,17 @@ const overrides = [
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       // Only meant to be used for `output` parameters!
       '@typescript-eslint/no-non-null-assertion': 'off',
+      'max-len': [
+        'warn',
+        {
+          'code': 250,
+          'ignoreRegExpLiterals': true,
+          'ignoreStrings': true,
+          'ignoreTemplateLiterals': true,
+          'ignoreUrls': true,
+          'tabWidth': 2,
+        },
+      ],
       'no-unused-vars': ['error', { 'args': 'all', 'argsIgnorePattern': '^_\\w+' }],
       'prefer-arrow/prefer-arrow-functions': 'warn',
       'rulesdir/cactbot-output-strings': 'error',

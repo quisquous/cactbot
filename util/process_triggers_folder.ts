@@ -56,6 +56,7 @@ const changeExportToPush = (lines: string[]) => {
 };
 
 const lint = async (lines: string[]) => {
+  // TODO: update this to prettier-eslint
   const linter = new eslint.ESLint({ fix: true });
   const contents = lines.join('\n');
   // Deliberately don't pass filename here, as dist/ is ignored in eslint.

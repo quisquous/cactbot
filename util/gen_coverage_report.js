@@ -227,6 +227,7 @@ const writeCoverageReport = async (outputFileName, coverage, totals) => {
     `export const coverage = ${JSON.stringify(coverage, undefined, 2)};\n\n` +
     `export const coverageTotals = ${JSON.stringify(totals, undefined, 2)};\n`;
 
+  // TODO: update this to prettier-eslint
   const linter = new eslint.ESLint({ fix: true });
   const results = await linter.lintText(str, { filePath: outputFileName });
 
