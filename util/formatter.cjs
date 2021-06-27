@@ -9,6 +9,12 @@ const { ArgumentParser } = require('argparse');
 const eslint = require('eslint');
 const prettier = require('prettier');
 
+/**
+ *
+ * @param {string} code
+ * @param {string} filepath
+ * @returns {Promise<string>}
+ */
 const format = async (code, filepath) => {
   const options = await prettier.resolveConfig(filepath);
   return prettier.format(code, { filepath, ...options });
@@ -24,6 +30,12 @@ const linter = new eslint.ESLint({
   },
 });
 
+/**
+ *
+ * @param {string} code
+ * @param {string} filePath
+ * @returns {Promise<ESLint.LintResult>}
+ */
 const lint = async (code, filePath) => {
   // Deliberately don't pass filename here, as dist/ is ignored in eslint.
   const results = await linter.lintText(code, { filePath });
@@ -32,6 +44,10 @@ const lint = async (code, filePath) => {
   return results[0];
 };
 
+/**
+ * @param {string} filename
+ * @param {boolean} check
+ */
 const processFile = async (filename, check) => {
   // const ignore = fs.readFileSync(.toString().split('\n');
   const ignorePath = path.join(path.dirname(__dirname), '.prettierignore');
@@ -63,11 +79,18 @@ const processFile = async (filename, check) => {
   return 0;
 };
 
+/**
+ *
+ * @param {string[]} files
+ * @param {boolean} check
+ * @returns {Promise<void>}
+ */
 const processAllFiles = async (files, check) => {
   const ret = await Promise.all(files.map((f) => processFile(f, check)));
   if (ret.filter((x) => x !== 0).length)
     process.exit(1);
 };
+
 const main = async () => {
   const parser = new ArgumentParser({
     description: 'Argparse example',
