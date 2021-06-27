@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let options = { ...defaultOptions };
 
   // Wait for the DB to be ready before doing anything that might invoke the DB
-  await persistor.initializeDB();
+  await persistor.open();
 
   if (window.location.href.indexOf('OVERLAY_WS') > 0) {
     // Give the websocket 500ms to connect, then abort.
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Attempt to set the current emulated encounter
     if (!emulator.setCurrentByID(id)) {
       // If that encounter isn't loaded, load it
-      persistor.loadEncounter(id).then((enc) => {
+      persistor.encounters.get(id).then((enc) => {
         emulator.addEncounter(enc);
         emulator.setCurrentByID(id);
       });
@@ -155,16 +155,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Listen for the user to select re-parse on the encounters tab, then refresh it in the DB
   encounterTab.on('parse', (id) => {
-    persistor.loadEncounter(id).then(async (enc) => {
+    persistor.encounters.get(id).then(async (enc) => {
       enc.initialize();
-      await persistor.persistEncounter(enc);
+      await persistor.encounters.put(enc, enc.id);
       encounterTab.refresh();
     });
   });
 
   // Listen for the user to select prune on the encounters tab
   encounterTab.on('prune', (id) => {
-    persistor.loadEncounter(id).then(async (enc) => {
+    persistor.encounters.get(id).then(async (enc) => {
       // Trim log lines
       enc.logLines = enc.logLines.slice(enc.firstLineIndex - 1);
 
@@ -177,14 +177,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       enc.firstLineIndex = 0;
 
       enc.initialize();
-      await persistor.persistEncounter(enc);
+      await persistor.encounters.put(enc, enc.id);
       encounterTab.refresh();
     });
   });
 
   // Listen for the user to select delete on the encounters tab, then do it.
   encounterTab.on('delete', (id) => {
-    persistor.deleteEncounter(id).then(() => {
+    persistor.encounters.delete(id).then(() => {
       encounterTab.refresh();
     });
   });
@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   encounterTab.refresh();
 
   // If we don't have any encounters stored, show the intro modal
-  persistor.listEncounters().then((encounters) => {
+  persistor.encounterSummaries.toArray().then((encounters) => {
     if (encounters.length === 0) {
       showModal('.introModal');
     } else {
@@ -224,84 +224,79 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   const checkFile = async (file) => {
-    if (file.type === 'application/json') {
-      // Import a DB file by passing it to Persistor
-      // DB files are just json representations of the DB
-      file.text().then((txt) => {
-        const DB = JSON.parse(txt);
-        persistor.importDB(DB).then(() => {
-          encounterTab.refresh();
-        });
-      });
-    } else {
-      // Assume it's a log file?
-      const importModal = showModal('.importProgressModal');
-      const bar = importModal.querySelector('.progress-bar');
-      bar.style.width = '0px';
-      const label = importModal.querySelector('.label');
-      label.innerText = '';
-      const encLabel = importModal.querySelector('.encounterLabel');
-      encLabel.innerText = 'N/A';
+    // Assume it's a log file
+    const importModal = showModal('.importProgressModal');
+    const bar = importModal.querySelector('.progress-bar');
+    bar.style.width = '0px';
+    const label = importModal.querySelector('.label');
+    label.innerText = '';
+    const encLabel = importModal.querySelector('.encounterLabel');
+    encLabel.innerText = 'N/A';
 
-      const doneButton = importModal.querySelector('.btn');
-      doneButton.disabled = true;
+    const doneButton = importModal.querySelector('.btn');
+    doneButton.disabled = true;
 
-      const doneButtonTimeout = doneButton.querySelector('.doneBtnTimeout');
+    const doneButtonTimeout = doneButton.querySelector('.doneBtnTimeout');
 
-      const promises = [];
+    let promise = undefined;
 
-      logConverterWorker.onmessage = (msg) => {
-        switch (msg.data.type) {
-        case 'progress':
-          {
-            const percent = ((msg.data.bytes / msg.data.totalBytes) * 100).toFixed(2);
-            bar.style.width = percent + '%';
-            label.innerText = `${msg.data.bytes}/${msg.data.totalBytes} bytes, ${msg.data.lines} lines (${percent}%)`;
-          }
-          break;
-        case 'encounter':
-          {
-            const enc = msg.data.encounter;
-
-            encLabel.innerText = `
-            Zone: ${enc.encounterZoneName}
-            Encounter: ${msg.data.name}
-            Start: ${new Date(enc.startTimestamp)}
-            End: ${new Date(enc.endTimestamp)}
-            Duration: ${EmulatorCommon.msToDuration(enc.endTimestamp - enc.startTimestamp)}
-            Pull Duration: ${EmulatorCommon.msToDuration(enc.endTimestamp - enc.initialTimestamp)}
-            Started By: ${enc.startStatus}
-            End Status: ${enc.endStatus}
-            Line Count: ${enc.logLines.length}
-            `;
-            // Objects sent via message are raw objects, not typed.
-            // Need to get the name another way and override for Persistor.
-            enc.combatantTracker.getMainCombatantName = () => msg.data.name;
-            promises.push(persistor.persistEncounter(enc));
-          }
-          break;
-        case 'done':
-          Promise.all(promises).then(() => {
-            encounterTab.refresh();
-            doneButton.disabled = false;
-            let seconds = 5;
-            doneButtonTimeout.innerText = ` (${seconds})`;
-            const interval = window.setInterval(() => {
-              --seconds;
-              doneButtonTimeout.innerText = ` (${seconds})`;
-              if (seconds === 0) {
-                window.clearInterval(interval);
-                hideModal('.importProgressModal');
-              }
-            }, 1000);
-          });
-          break;
+    logConverterWorker.onmessage = (msg) => {
+      switch (msg.data.type) {
+      case 'progress':
+        {
+          const percent = ((msg.data.bytes / msg.data.totalBytes) * 100).toFixed(2);
+          bar.style.width = percent + '%';
+          label.innerText = `${msg.data.bytes}/${msg.data.totalBytes} bytes, ${msg.data.lines} lines (${percent}%)`;
         }
-      };
-      file.arrayBuffer().then((b) => {
-        logConverterWorker.postMessage(b, [b]);
-      });
-    }
+        break;
+      case 'encounter':
+        {
+          const enc = msg.data.encounter;
+
+          encLabel.innerText = `
+          Zone: ${enc.encounterZoneName}
+          Encounter: ${msg.data.name}
+          Start: ${new Date(enc.startTimestamp)}
+          End: ${new Date(enc.endTimestamp)}
+          Duration: ${EmulatorCommon.msToDuration(enc.endTimestamp - enc.startTimestamp)}
+          Pull Duration: ${EmulatorCommon.msToDuration(enc.endTimestamp - enc.initialTimestamp)}
+          Started By: ${enc.startStatus}
+          End Status: ${enc.endStatus}
+          Line Count: ${enc.logLines.length}
+          `;
+          // Objects sent via message are raw objects, not typed.
+          // Need to get the name another way and override for Persistor.
+          enc.combatantTracker.getMainCombatantName = () => msg.data.name;
+          if (promise) {
+            promise.then(() => {
+              promise = persistor.persistEncounter(enc);
+            });
+          } else {
+            promise = persistor.persistEncounter(enc);
+          }
+        }
+        break;
+      case 'done':
+        Promise.all([promise]).then(() => {
+          encounterTab.refresh();
+          doneButton.disabled = false;
+          let seconds = 5;
+          doneButtonTimeout.innerText = ` (${seconds})`;
+          const interval = window.setInterval(() => {
+            --seconds;
+            doneButtonTimeout.innerText = ` (${seconds})`;
+            if (seconds === 0) {
+              window.clearInterval(interval);
+              hideModal('.importProgressModal');
+            }
+          }, 1000);
+        });
+        break;
+      }
+    };
+    file.arrayBuffer().then((b) => {
+      logConverterWorker.postMessage(b, [b]);
+    });
   };
 
   const ignoreEvent = (e) => {
@@ -326,8 +321,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const $exportButton = document.querySelector('.exportDBButton');
 
-  new Tooltip($exportButton, 'bottom',
-      'Export DB is very slow and shows a 0 byte download, but it does work eventually.');
+  new Tooltip($exportButton, 'bottom', 'Export the DB as a network log file.');
 
   // Auto initialize all collapse elements on the page
   document.querySelectorAll('[data-toggle="collapse"]').forEach((n) => {
@@ -345,21 +339,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Handle DB export
   $exportButton.addEventListener('click', (e) => {
-    persistor.exportDB().then((obj) => {
+    persistor.exportDB().then((lines) => {
       // Convert encounter DB to json, then base64 encode it
       // Encounters can have unicode, can't use btoa for base64 encode
-      const blob = new Blob([JSON.stringify(obj)], { type: 'application/json' });
-      obj = null;
+      const blob = new Blob([lines], { type: 'text/plain' });
+      lines = null;
       // Offer download to user
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.setAttribute('download', 'RaidEmulator_DBExport_' + (+new Date()) + '.json');
+      a.setAttribute('download', 'RaidEmulator_DBExport_' + (+new Date()) + '.txt');
       a.click();
-      // After a second (so after user accepts/declines)
-      // remove the object URL to avoid memory issues
-      window.setTimeout(() => {
-        URL.revokeObjectURL(a.href);
-      }, 1000);
+      URL.revokeObjectURL(a.href);
     });
   });
 
@@ -373,9 +363,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  // Prompt user to select files if they click the `Load Network Log` or `Import DB` buttons.
-  // These buttons really do the same thing.
-  document.querySelectorAll('.importDBButton, .loadNetworkLogButton').forEach((n) => {
+  // Prompt user to select files if they click the `Load Network Log` button.
+  document.querySelectorAll('.loadNetworkLogButton').forEach((n) => {
     n.addEventListener('click', (e) => {
       $fileInput.click();
     });

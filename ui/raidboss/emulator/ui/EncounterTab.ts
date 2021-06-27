@@ -74,7 +74,7 @@ export default class EncounterTab extends EventBus {
 
   refresh(): void {
     this.encounters = {};
-    void this.persistor.listEncounters().then((encounters: PersistorEncounter[]) => {
+    void this.persistor.encounterSummaries.toArray().then((encounters: PersistorEncounter[]) => {
       for (const enc of encounters) {
         const zone = enc.zoneName;
         const encDate = EmulatorCommon.timeToDateString(enc.start);
