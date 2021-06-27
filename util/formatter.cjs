@@ -3,11 +3,10 @@
  */
 'use strict';
 const fs = require('fs');
+const path = require('path');
 
 const eslint = require('eslint');
 const prettier = require('prettier');
-
-const path = require('path');
 
 const format = async (code, filepath) => {
   const options = await prettier.resolveConfig(filepath);
@@ -57,14 +56,6 @@ const processFile = async (filename) => {
     return 1;
   }
   return 0;
-};
-
-const isChildOf = (child, parent) => {
-  if (child === parent) {
-    return false;
-  }
-  const parentTokens = parent.split('/').filter((i) => i.length);
-  return parentTokens.every((t, i) => child.split('/')[i] === t);
 };
 
 const processAllFiles = async (filename) => {
