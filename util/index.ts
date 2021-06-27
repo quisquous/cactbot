@@ -3,6 +3,7 @@ import inquirerFuzzyPath, { FuzzyPathQuestionOptions } from 'inquirer-fuzzy-path
 
 import { Lang } from '../resources/languages';
 
+import { run as findMissingTranslations } from './find_missing_translations';
 import { default as generateEffectIds } from './gen_effect_id';
 import { run as translateTimeline } from './translate_timeline';
 
@@ -24,18 +25,21 @@ const run = () => {
     name: 'action',
     message: 'What do you want to do?',
     choices: [
-      'Generate data files',
-      'Translate timeline',
+      'Generate common data files',
+      'Translate Raidboss timeline',
+      'Find Raidboss missing translations',
     ],
   }]).then((answer: Answers) => {
-    if (answer.action === 'Generate data files')
+    if (answer.action === 'Generate common data files')
       return generateDataFiles();
-    if (answer.action === 'Translate timeline')
+    if (answer.action === 'Translate Raidboss timeline')
       return translateTimelineFunc();
+    if (answer.action == 'Find Raidboss missing translations')
+      return findMissingTranslationsFunc();
   }).catch(console.error);
 };
 
-const generateDataFiles = async () => {
+const generateDataFiles = () => {
   return inquirer.prompt([{
     type: 'list',
     name: 'choice',
@@ -47,7 +51,7 @@ const generateDataFiles = async () => {
   });
 };
 
-const translateTimelineFunc = async () => {
+const translateTimelineFunc = () => {
   return inquirer.prompt([
     {
       type: 'fuzzypath',
@@ -70,6 +74,34 @@ const translateTimelineFunc = async () => {
   ]).then((answers: Answers) => {
     if (answers.timeline && answers.locale)
       return translateTimeline(answers as { timeline: string; locale: Lang });
+  });
+};
+
+const findMissingTranslationsFunc = () => {
+  return inquirer.prompt([
+    {
+      type: 'fuzzypath',
+      name: 'filter',
+      message: 'Input a valid trigger JavaScript filename: ',
+      rootPath: 'ui/raidboss/data',
+    },
+    {
+      type: 'list',
+      name: 'locale',
+      message: 'Select a locale: ',
+      choices: [
+        'en',
+        'de',
+        'fr',
+        'ja',
+        'cn',
+        'ko',
+      ],
+    },
+  ]).then((answers: Answers) => {
+    if (answers.filter && answers.locale) {
+      return findMissingTranslations(answers);
+    }
   });
 };
 

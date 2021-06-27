@@ -143,7 +143,7 @@ const parseJavascriptFile = (file, locales) => {
   });
 };
 
-const run = async (args) => {
+export const run = async (args) => {
   const files = findAllJavascriptFiles(args['filter']);
   for (const file of files) {
     await findMissing(file, args['locale'], (file, line, label, message) => {
@@ -160,5 +160,7 @@ const run = async (args) => {
   }
 };
 
-const args = parser.parseArgs();
-run(args);
+if (fileURLToPath(import.meta.url) === process.argv[1]) {
+  const args = parser.parseArgs();
+  run(args);
+}
