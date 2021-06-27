@@ -7,6 +7,7 @@ import { LocaleText, TriggerSet } from '../../../../types/trigger';
 
 const strikingDummyNames: LocaleText = {
   en: 'Striking Dummy',
+  de: 'Trainingspuppe',
 };
 
 export interface Data extends RaidbossData {
@@ -271,6 +272,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Test Watch',
       type: 'GameLog',
       netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
+      netRegexDe: NetRegexes.echo({ line: 'cactbot test beobachten.*?', capture: false }),
       promise: (data) => Util.watchCombatant({
         names: [
           data.me,
@@ -301,6 +303,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         close: {
           en: 'Dummy close!',
+          de: 'Puppe beendet!',
         },
       },
     },
