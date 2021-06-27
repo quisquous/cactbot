@@ -1,14 +1,58 @@
+import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
-import Regexes from '../../../../../resources/regexes';
 import { Responses } from '../../../../../resources/responses';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
 
-export default {
+export interface Data extends RaidbossData {
+  monitoringHP: boolean;
+  hpThresholds: number[];
+  currentPhase: number;
+}
+
+const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheBindingCoilOfBahamutTurn5,
   timelineFile: 't5.txt',
+  initData: () => {
+    return {
+      monitoringHP: false,
+      hpThresholds: [0.85, 0.55, 0.29],
+      currentPhase: 0,
+    };
+  },
   triggers: [
     {
+      id: 'T5 Twintania Phase Change Watcher',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ source: 'Twintania' }),
+      netRegexDe: NetRegexes.ability({ source: 'Twintania' }),
+      netRegexFr: NetRegexes.ability({ source: 'Gémellia' }),
+      netRegexJa: NetRegexes.ability({ source: 'ツインタニア' }),
+      netRegexCn: NetRegexes.ability({ source: '双塔尼亚' }),
+      netRegexKo: NetRegexes.ability({ source: '트윈타니아' }),
+      condition: (data) => !data.monitoringHP && data.currentPhase < 3,
+      preRun: (data) => data.monitoringHP = true,
+      promise: (data, matches) => Util.watchCombatant({
+        ids: [parseInt(matches.sourceId, 16)],
+      },
+      (ret) => {
+        const twintaniaBelowGivenHP = ret.combatants.some((c) => {
+          const currentHPCheck = data.hpThresholds[data.currentPhase] ?? -1;
+          return currentHPCheck >= (c.CurrentHP / c.MaxHP);
+        });
+        return twintaniaBelowGivenHP;
+      }),
+      sound: 'Long',
+      run: (data) => {
+        data.currentPhase++;
+        data.monitoringHP = false;
+      },
+    },
+    {
       id: 'T5 Death Sentence',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Twintania', id: '5B2' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Twintania', id: '5B2' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Gémellia', id: '5B2' }),
@@ -20,16 +64,17 @@ export default {
     },
     {
       id: 'T5 Death Sentence Warning',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Twintania', id: '5B2', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Twintania', id: '5B2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Gémellia', id: '5B2', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ツインタニア', id: '5B2', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '双塔尼亚', id: '5B2', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '트윈타니아', id: '5B2', capture: false }),
-      condition: (data) => data.role === 'tank' || data.role === 'healer' || data.job === 'BLU',
+      condition: Conditions.caresAboutPhysical(),
       delaySeconds: 30,
       suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Death Sentence Soon',
@@ -43,13 +88,14 @@ export default {
     },
     {
       id: 'T5 Liquid Hell',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'The Scourge Of Meracydia', id: '4DB', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Fackel Von Meracydia', id: '4DB', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Fléau De Méracydia', id: '4DB', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'メラシディアン・ワイバーン', id: '4DB', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '美拉西迪亚祸龙', id: '4DB', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '메라시디아 와이번', id: '4DB', capture: false }),
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Liquid Hell',
@@ -62,17 +108,8 @@ export default {
       },
     },
     {
-      id: 'T5 Phase 2',
-      regex: Regexes.hasHP({ name: 'Twintania', hp: '85', capture: false }),
-      regexDe: Regexes.hasHP({ name: 'Twintania', hp: '85', capture: false }),
-      regexFr: Regexes.hasHP({ name: 'Gémellia', hp: '85', capture: false }),
-      regexJa: Regexes.hasHP({ name: 'ツインタニア', hp: '85', capture: false }),
-      regexCn: Regexes.hasHP({ name: '双塔尼亚', hp: '85', capture: false }),
-      regexKo: Regexes.hasHP({ name: '트윈타니아', hp: '85', capture: false }),
-      sound: 'Long',
-    },
-    {
       id: 'T5 Fireball',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Twintania', id: '5AC' }),
       netRegexDe: NetRegexes.ability({ source: 'Twintania', id: '5AC' }),
       netRegexFr: NetRegexes.ability({ source: 'Gémellia', id: '5AC' }),
@@ -81,11 +118,11 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5AC' }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.fireballOnYou();
+          return output.fireballOnYou!();
       },
       infoText: (data, matches, output) => {
         if (data.me !== matches.target)
-          return output.fireballOn({ player: data.ShortName(matches.target) });
+          return output.fireballOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         fireballOn: {
@@ -108,6 +145,7 @@ export default {
     },
     {
       id: 'T5 Conflagration',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Twintania', id: '5AB' }),
       netRegexDe: NetRegexes.ability({ source: 'Twintania', id: '5AB' }),
       netRegexFr: NetRegexes.ability({ source: 'Gémellia', id: '5AB' }),
@@ -116,11 +154,11 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5AB' }),
       alarmText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.conflagOnYou();
+          return output.conflagOnYou!();
       },
       infoText: (data, matches, output) => {
         if (data.me !== matches.target)
-          return output.conflagOn({ player: data.ShortName(matches.target) });
+          return output.conflagOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         conflagOn: {
@@ -142,24 +180,15 @@ export default {
       },
     },
     {
-      id: 'T5 Phase 3',
-      regex: Regexes.hasHP({ name: 'Twintania', hp: '55', capture: false }),
-      regexDe: Regexes.hasHP({ name: 'Twintania', hp: '55', capture: false }),
-      regexFr: Regexes.hasHP({ name: 'Gémellia', hp: '55', capture: false }),
-      regexJa: Regexes.hasHP({ name: 'ツインタニア', hp: '55', capture: false }),
-      regexCn: Regexes.hasHP({ name: '双塔尼亚', hp: '55', capture: false }),
-      regexKo: Regexes.hasHP({ name: '트윈타니아', hp: '55', capture: false }),
-      sound: 'Long',
-    },
-    {
       id: 'T5 Divebomb',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Gémellia', id: '5B0', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '5B0', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '5B0', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5B0', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'DIVEBOMB',
@@ -173,6 +202,7 @@ export default {
     },
     {
       id: 'T5 Divebomb Set Two',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Gémellia', id: '5B0', capture: false }),
@@ -181,7 +211,7 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5B0', capture: false }),
       delaySeconds: 60,
       suppressSeconds: 5000,
-      infoText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Divebombs Soon',
@@ -196,6 +226,7 @@ export default {
     {
       // Unwoven Will
       id: 'T5 Dreadknight',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Twintania', id: '4E3' }),
       netRegexDe: NetRegexes.ability({ source: 'Twintania', id: '4E3' }),
       netRegexFr: NetRegexes.ability({ source: 'Gémellia', id: '4E3' }),
@@ -204,9 +235,9 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '4E3' }),
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.knightOnYou();
+          return output.knightOnYou!();
 
-        return output.knightOn({ player: data.ShortName(matches.target) });
+        return output.knightOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         knightOnYou: {
@@ -229,13 +260,14 @@ export default {
     },
     {
       id: 'T5 Twister',
+      type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ source: 'Twintania', id: '4E1', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Twintania', id: '4E1', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Gémellia', id: '4E1', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ツインタニア', id: '4E1', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '双塔尼亚', id: '4E1', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '트윈타니아', id: '4E1', capture: false }),
-      alertText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Twister!',
@@ -248,17 +280,8 @@ export default {
       },
     },
     {
-      id: 'T5 Phase 4',
-      regex: Regexes.hasHP({ name: 'Twintania', hp: '29', capture: false }),
-      regexDe: Regexes.hasHP({ name: 'Twintania', hp: '29', capture: false }),
-      regexFr: Regexes.hasHP({ name: 'Gémellia', hp: '29', capture: false }),
-      regexJa: Regexes.hasHP({ name: 'ツインタニア', hp: '29', capture: false }),
-      regexCn: Regexes.hasHP({ name: '双塔尼亚', hp: '29', capture: false }),
-      regexKo: Regexes.hasHP({ name: '트윈타니아', hp: '29', capture: false }),
-      sound: 'Long',
-    },
-    {
       id: 'T5 Hatch',
+      type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Twintania', id: '5AD' }),
       netRegexDe: NetRegexes.ability({ source: 'Twintania', id: '5AD' }),
       netRegexFr: NetRegexes.ability({ source: 'Gémellia', id: '5AD' }),
@@ -267,11 +290,11 @@ export default {
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5AD' }),
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
-          return output.hatchOnYou();
+          return output.hatchOnYou!();
       },
       infoText: (data, matches, output) => {
         if (data.me !== matches.target)
-          return output.hatchOn({ player: data.ShortName(matches.target) });
+          return output.hatchOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         hatchOn: {
@@ -406,3 +429,5 @@ export default {
     },
   ],
 };
+
+export default triggerSet;
