@@ -17,16 +17,7 @@ const linter = new eslint.ESLint({
   fix: true,
   overrideConfig: {
     rules: {
-      'indent': ['error', 2],
       'max-len': 'off',
-      'no-extra-parens': [
-        'error',
-        'all',
-        {
-          'conditionalAssign': false,
-          'nestedBinaryExpressions': false,
-        },
-      ],
     },
   },
 });

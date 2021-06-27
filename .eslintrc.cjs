@@ -79,7 +79,28 @@ const rules = {
     },
   ],
   'import/no-webpack-loader-syntax': 'error',
-  'indent': 'off',
+  'indent': [
+    'error', 2, {
+      'ArrayExpression': 1,
+      'CallExpression': {
+        'arguments': 1,
+      },
+      'FunctionDeclaration': {
+        'parameters': 1,
+      },
+      'FunctionExpression': {
+        'parameters': 1,
+      },
+      'ignoreComments': false,
+      'ignoredNodes': [
+        // The indent rule does a poor job with TypeScript type declarations, so disable.
+        'TSIntersectionType *',
+        'TSTypeAliasDeclaration *',
+        'TSUnionType *',
+      ],
+      'ObjectExpression': 1,
+    },
+  ],
   'linebreak-style': ['error', 'windows'],
   'max-len': [
     'warn',
@@ -204,7 +225,6 @@ const tsOverrides = {
       'alphabetize': { 'caseInsensitive': true, 'order': 'asc' },
       'newlines-between': 'always',
     }],
-    'indent': 'off',
     'object-shorthand': ['error', 'consistent'],
   },
 };
