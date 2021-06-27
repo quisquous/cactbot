@@ -60,7 +60,11 @@ const rules = {
       'properties': 'always',
     },
   ],
-  'curly': 'off', // enable this after all file is formatted by prettier
+  'curly': [
+    'error',
+    'multi-or-nest',
+    'consistent',
+  ],
   'eqeqeq': 'error',
   'guard-for-in': 'off',
   'import/export': 'error',
@@ -196,7 +200,10 @@ const tsOverrides = {
     '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_\\w+' }],
     '@typescript-eslint/object-curly-spacing': ['error', 'always'],
     'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
-    'import/order': ['error', { 'alphabetize': { 'caseInsensitive': true, 'order': 'asc' }, 'newlines-between': 'always' }],
+    'import/order': ['error', {
+      'alphabetize': { 'caseInsensitive': true, 'order': 'asc' },
+      'newlines-between': 'always',
+    }],
     'indent': 'off',
     'object-shorthand': ['error', 'consistent'],
   },

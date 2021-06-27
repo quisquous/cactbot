@@ -19,12 +19,14 @@ const linter = new eslint.ESLint({
     rules: {
       'indent': ['error', 2],
       'max-len': 'off',
-      'curly': 'error',
-      'brace-style': ['error'],
-      'no-extra-parens': ['error', 'all', {
-        'conditionalAssign': false,
-        'nestedBinaryExpressions': false,
-      }],
+      'no-extra-parens': [
+        'error',
+        'all',
+        {
+          'conditionalAssign': false,
+          'nestedBinaryExpressions': false,
+        },
+      ],
     },
   },
 });
@@ -42,14 +44,23 @@ const processFile = async (filename) => {
   const ignorePath = path.join(path.dirname(__dirname), '.prettierignore');
   const info = await prettier.getFileInfo(filename, { ignorePath });
   if (info.ignored) {
+    console.log('skip formatting', filename);
     return 0;
   }
+
   const originalContents = fs.readFileSync(filename).toString();
-  if (!originalContents.includes('@prettier')) {
-    console.log('to enable formatting, add this at the head of the file\n\n/**\n * @prettier\n */');
+
+  if (!filename.endsWith('.json') && !originalContents.includes('@prettier')) {
+    console.log('skip formatting', filename);
     return 0;
   }
-  const lintResult = await lint(await format(originalContents, filename), filename);
+
+  const formatted = await format(originalContents, filename);
+
+  let lintResult = formatted;
+
+  if (!filename.endsWith('.json'))
+    lintResult = await lint(formatted, filename);
 
   if (lintResult.output && lintResult.output !== originalContents) {
     fs.writeFileSync(filename, lintResult.output);
@@ -58,8 +69,10 @@ const processFile = async (filename) => {
   return 0;
 };
 
-const processAllFiles = async (filename) => {
-  process.exit(await processFile(filename));
+const processAllFiles = async () => {
+  const ret = await Promise.all(process.argv.slice(2).map(processFile));
+  if (ret.filter((x) => x !== 0).length)
+    process.exit(1);
 };
 
-void processAllFiles(process.argv[2]);
+void processAllFiles();
