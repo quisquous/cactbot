@@ -132,7 +132,7 @@ export type RegexTrigger<Data extends RaidbossData> =
 
 export type TimelineTrigger<Data extends RaidbossData> = BaseTrigger<Data, 'None'> & {
   regex: RegExp;
-  beforeSeconds: number;
+  beforeSeconds?: number;
 };
 
 // Because timeline functions run during loading, they only support the base RaidbossData.
