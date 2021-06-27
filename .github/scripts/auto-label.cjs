@@ -156,6 +156,9 @@ const getChangedFiles = async (github, identifier) => {
  */
 const parseChangedLang = (patch) => {
   const set = new Set();
+  // For pure renames, there is no patch.
+  if (!patch)
+    return set;
   for (const lang of validLanguages) {
     const pattern = new RegExp(String.raw`^\+\s*(?:${lang}|'${lang}'): `);
     for (const line of patch.split('\n')) {
