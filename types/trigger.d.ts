@@ -140,6 +140,8 @@ export type TimelineFunc = string | string[] | ((data: RaidbossData) => Timeline
 
 export type DataInitializeFunc<Data extends RaidbossData> = () => Omit<Data, keyof RaidbossData>;
 
+export type DisabledTrigger = { id: string; disabled: true };
+
 export type TriggerSet<Data extends RaidbossData> = {
   // ZoneId.MatchAll (aka null) is not supported in array form.
   zoneId: ZoneId | number[];
@@ -147,8 +149,8 @@ export type TriggerSet<Data extends RaidbossData> = {
   overrideTimelineFile?: boolean;
   timelineFile?: string;
   timeline?: TimelineFunc;
-  triggers?: (NetRegexTrigger<Data> | { id: string; disabled: true })[];
-  timelineTriggers?: (TimelineTrigger<Data> | { id: string; disabled: true })[];
+  triggers?: (NetRegexTrigger<Data> | DisabledTrigger)[];
+  timelineTriggers?: (TimelineTrigger<Data> | DisabledTrigger)[];
   timelineReplace?: TimelineReplacement[];
   timelineStyles?: TimelineStyle[];
   initData?: DataInitializeFunc<Data>;
