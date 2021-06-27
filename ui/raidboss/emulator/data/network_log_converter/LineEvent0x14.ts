@@ -14,7 +14,8 @@ const fields = {
 } as const;
 
 // Ability use event
-export class LineEvent0x14 extends LineEvent
+export class LineEvent0x14
+  extends LineEvent
   implements LineEventSource, LineEventTarget, LineEventAbility {
   public readonly properCaseConvertedLine: string;
 
@@ -58,15 +59,27 @@ export class LineEvent0x14 extends LineEvent
 
     const target = this.targetName.length === 0 ? 'Unknown' : this.targetName;
 
-    this.convertedLine = this.prefix() + this.abilityIdHex +
-      ':' + this.name +
-      ' starts using ' + this.abilityName +
-      ' on ' + target + '.';
-    this.properCaseConvertedLine = this.prefix() + this.abilityIdHex +
-      ':' + EmulatorCommon.properCase(this.name) +
-      ' starts using ' + this.abilityName +
-      ' on ' + EmulatorCommon.properCase(target) + '.';
+    this.convertedLine =
+      this.prefix() +
+      this.abilityIdHex +
+      ':' +
+      this.name +
+      ' starts using ' +
+      this.abilityName +
+      ' on ' +
+      target +
+      '.';
+    this.properCaseConvertedLine =
+      this.prefix() +
+      this.abilityIdHex +
+      ':' +
+      EmulatorCommon.properCase(this.name) +
+      ' starts using ' +
+      this.abilityName +
+      ' on ' +
+      EmulatorCommon.properCase(target) +
+      '.';
   }
 }
 
-export class LineEvent20 extends LineEvent0x14 { }
+export class LineEvent20 extends LineEvent0x14 {}

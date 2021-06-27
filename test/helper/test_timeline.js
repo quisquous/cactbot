@@ -2,7 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import chai from 'chai';
 import { Timeline } from '../../ui/raidboss/timeline';
-import { commonReplacement, partialCommonReplacementKeys } from '../../ui/raidboss/common_replacement';
+import {
+  commonReplacement,
+  partialCommonReplacementKeys,
+} from '../../ui/raidboss/common_replacement';
 import Regexes from '../../resources/regexes';
 
 const { assert } = chai;
@@ -35,8 +38,11 @@ const setup = (timelineFiles) => {
       throw new Error(`Error: Timeline file ${timelineFile} found without matching trigger file`);
 
     const timelineFileFromFile = parseTimelineFileFromTriggerFile(triggerFile);
-    if (filename !== timelineFileFromFile)
-      throw new Error(`Error: Trigger file ${triggerFile} has \`triggerFile: '${timelineFileFromFile}'\`, but was expecting \`triggerFile: '${filename}'\``);
+    if (filename !== timelineFileFromFile) {
+      throw new Error(
+          `Error: Trigger file ${triggerFile} has \`triggerFile: '${timelineFileFromFile}'\`, but was expecting \`triggerFile: '${filename}'\``,
+      );
+    }
 
     testFiles.push({
       timelineFile: timelineFile,
@@ -79,8 +85,11 @@ function getTestCases(triggersFile, timeline, trans, skipPartialCommon) {
         testCase.replace.set(regexKey, key);
         continue;
       }
-      if (testCase.replace.has(regexKey))
-        assert.fail(`${triggersFile}:locale ${trans.locale}:common replacement '${key}' found in ${testCase.type}`);
+      if (testCase.replace.has(regexKey)) {
+        assert.fail(
+            `${triggersFile}:locale ${trans.locale}:common replacement '${key}' found in ${testCase.type}`,
+        );
+      }
       testCase.replace.set(regexKey, common[key][trans.locale]);
     }
   }
@@ -108,7 +117,8 @@ const testTimelineFiles = (timelineFiles) => {
 
         before(async () => {
           // Normalize path
-          const importPath = '../../' + path.relative(process.cwd(), triggersFile).replace('.ts', '.js');
+          const importPath =
+            '../../' + path.relative(process.cwd(), triggersFile).replace('.ts', '.js');
           timelineText = String(fs.readFileSync(timelineFile));
           triggerSet = (await import(importPath)).default;
           timeline = new Timeline(timelineText, null, triggerSet.timelineTriggers);
@@ -175,7 +185,11 @@ const testTimelineFiles = (timelineFiles) => {
                     const otherFirst = otherReplaced.replace(regex, replaceText);
                     const otherSecond = replaced.replace(otherRegex, otherReplaceText);
 
-                    assert.equal(otherFirst, otherSecond, `${triggersFile}:locale ${locale}: pre-translation collision on ${testCase.type} '${orig}' for '${regex}' and '${otherRegex}'`);
+                    assert.equal(
+                        otherFirst,
+                        otherSecond,
+                        `${triggersFile}:locale ${locale}: pre-translation collision on ${testCase.type} '${orig}' for '${regex}' and '${otherRegex}'`,
+                    );
                   }
 
                   // (2) Verify that there is no post-replacement collision with this text,
@@ -196,7 +210,11 @@ const testTimelineFiles = (timelineFiles) => {
                     let otherFirst = orig.replace(otherRegex, otherReplaceText);
                     otherFirst = otherFirst.replace(regex, replaceText);
 
-                    assert.equal(otherFirst, otherSecond, `${triggersFile}:locale ${locale}: post-translation collision on ${testCase.type} '${orig}' for '${regex}' => '${testCase.replace[regex]}', then '${otherRegex}'`);
+                    assert.equal(
+                        otherFirst,
+                        otherSecond,
+                        `${triggersFile}:locale ${locale}: post-translation collision on ${testCase.type} '${orig}' for '${regex}' => '${testCase.replace[regex]}', then '${otherRegex}'`,
+                    );
                   }
                 }
               }
@@ -229,6 +247,8 @@ const testTimelineFiles = (timelineFiles) => {
                 if (ig.test(x))
                   return true;
               }
+
+
               return false;
             };
 
@@ -243,7 +263,10 @@ const testTimelineFiles = (timelineFiles) => {
                     break;
                   }
                 }
-                assert(matched, `${triggersFile}:locale ${locale}:no translation for ${testCase.type} '${item}'`);
+                assert(
+                    matched,
+                    `${triggersFile}:locale ${locale}:no translation for ${testCase.type} '${item}'`,
+                );
               }
             }
           }
@@ -261,14 +284,16 @@ const testTimelineFiles = (timelineFiles) => {
             const testCases = getTestCases(triggersFile, timeline, trans);
 
             // Text should not include ^ or $, unless preceded by \ or [
-            const badRegex = [
-              /(?<![\\[])[\^\$]/,
-            ].map((x) => Regexes.parse(x));
+            const badRegex = [/(?<![\\[])[\^\$]/].map((x) => Regexes.parse(x));
 
             for (const testCase of testCases) {
               for (const regex of testCase.replace.keys()) {
-                for (const bad of badRegex)
-                  assert.isNull(regex.source.match(bad), `${triggersFile}:locale ${locale}:invalid character in ${testCase.type} '${regex}'`);
+                for (const bad of badRegex) {
+                  assert.isNull(
+                      regex.source.match(bad),
+                      `${triggersFile}:locale ${locale}:invalid character in ${testCase.type} '${regex}'`,
+                  );
+                }
               }
             }
           }
@@ -276,10 +301,17 @@ const testTimelineFiles = (timelineFiles) => {
         it('should have proper sealed sync', () => {
           for (const sync of timeline.syncStarts) {
             const regex = sync.regex.source;
-            if (regex.includes('is no longer sealed'))
-              assert(regex.includes('00:0839:.*is no longer sealed'), `${timelineFile}:${sync.lineNumber} 'is no longer sealed' sync must be exactly '00:0839:.*is no longer sealed'`);
-            else if (regex.includes('will be sealed'))
-              assert(regex.match('00:0839:.*will be sealed'), `${timelineFile}:${sync.lineNumber} 'will be sealed' sync must be preceded by '00:0839:'`);
+            if (regex.includes('is no longer sealed')) {
+              assert(
+                  regex.includes('00:0839:.*is no longer sealed'),
+                  `${timelineFile}:${sync.lineNumber} 'is no longer sealed' sync must be exactly '00:0839:.*is no longer sealed'`,
+              );
+            } else if (regex.includes('will be sealed')) {
+              assert(
+                  regex.match('00:0839:.*will be sealed'),
+                  `${timelineFile}:${sync.lineNumber} 'will be sealed' sync must be preceded by '00:0839:'`,
+              );
+            }
           }
         });
       });

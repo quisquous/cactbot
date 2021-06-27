@@ -70,25 +70,48 @@ export class LineEvent0x1A extends LineEvent implements LineEventAbility {
     this.resolvedName = repo.resolveName(this.id, this.name);
     this.resolvedTargetName = repo.resolveName(this.targetId, this.targetName);
 
-    this.fallbackResolvedTargetName =
-      repo.resolveName(this.id, this.name, this.targetId, this.targetName);
+    this.fallbackResolvedTargetName = repo.resolveName(
+        this.id,
+        this.name,
+        this.targetId,
+        this.targetName,
+    );
 
     let stackCountText = '';
-    if (this.stacks > 0 && this.stacks < 20 &&
-      LineEvent0x1A.showStackCountFor.includes(this.abilityId))
+    if (
+      this.stacks > 0 &&
+      this.stacks < 20 &&
+      LineEvent0x1A.showStackCountFor.includes(this.abilityId)
+    )
       stackCountText = ' (' + this.stacks.toString() + ')';
 
-    this.convertedLine = this.prefix() + this.targetId +
-      ':' + this.targetName +
-      ' gains the effect of ' + this.abilityName +
-      ' from ' + this.fallbackResolvedTargetName +
-      ' for ' + this.durationString + ' Seconds.' + stackCountText;
+    this.convertedLine =
+      this.prefix() +
+      this.targetId +
+      ':' +
+      this.targetName +
+      ' gains the effect of ' +
+      this.abilityName +
+      ' from ' +
+      this.fallbackResolvedTargetName +
+      ' for ' +
+      this.durationString +
+      ' Seconds.' +
+      stackCountText;
 
-    this.properCaseConvertedLine = this.prefix() + this.targetId +
-      ':' + EmulatorCommon.properCase(this.targetName) +
-      ' gains the effect of ' + this.abilityName +
-      ' from ' + EmulatorCommon.properCase(this.fallbackResolvedTargetName) +
-      ' for ' + this.durationString + ' Seconds.' + stackCountText;
+    this.properCaseConvertedLine =
+      this.prefix() +
+      this.targetId +
+      ':' +
+      EmulatorCommon.properCase(this.targetName) +
+      ' gains the effect of ' +
+      this.abilityName +
+      ' from ' +
+      EmulatorCommon.properCase(this.fallbackResolvedTargetName) +
+      ' for ' +
+      this.durationString +
+      ' Seconds.' +
+      stackCountText;
   }
 
   static showStackCountFor: readonly number[] = [

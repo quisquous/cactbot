@@ -4,7 +4,14 @@ import Regexes from '../../resources/regexes';
 import UserConfig from '../../resources/user_config';
 import ZoneId from '../../resources/zone_id';
 import ZoneInfo from '../../resources/zone_info';
-import { getWeather, findNextWeather, findNextWeatherNot, findNextNight, findNextDay, isNightTime } from '../../resources/weather';
+import {
+  getWeather,
+  findNextWeather,
+  findNextWeatherNot,
+  findNextNight,
+  findNextDay,
+  isNightTime,
+} from '../../resources/weather';
 
 import './eureka_config';
 import anemosMap from './anemos.png';
@@ -153,19 +160,25 @@ const defaultOptions = {
     // de, fr, ja languages all share the English regexes here.
     // If you ever need to add another language, include all of the regexes for it.
     en: {
-      'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)\ue0bb(?:Eureka (?:Anemos|Pagos|Pyros|Hydatos)|Bozjan Southern Front|Zadnor) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gFlagRegex': Regexes.parse(
+          /00:00(?:38:|..:[^:]*:)(.*)\ue0bb(?:Eureka (?:Anemos|Pagos|Pyros|Hydatos)|Bozjan Southern Front|Zadnor) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/,
+      ),
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/([\w-]{6})(?:[^\w-]|$)/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)NMs on cooldown: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)m\)/),
     },
     cn: {
-      'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)\ue0bb(?:常风之地|恒冰之地|涌火之地|丰水之地) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gFlagRegex': Regexes.parse(
+          /00:00(?:38:|..:[^:]*:)(.*)\ue0bb(?:常风之地|恒冰之地|涌火之地|丰水之地) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/,
+      ),
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/([\w-]{6})(?:[^\w-]|$)/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)冷却中的NM: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)分(钟*)\)/),
     },
     ko: {
-      'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)\ue0bb(?:에우레카: (?:아네모스|파고스|피로스|히다토스) 지대|남부 보즈야 전선) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gFlagRegex': Regexes.parse(
+          /00:00(?:38:|..:[^:]*:)(.*)\ue0bb(?:에우레카: (?:아네모스|파고스|피로스|히다토스) 지대|남부 보즈야 전선) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/,
+      ),
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/([\w-]{6})(?:[^\w-]|$)/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)토벌한 마물: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)분\)/),
@@ -1444,7 +1457,7 @@ const defaultOptions = {
       shortName: 'hydatos',
       hasTracker: true,
       mapToPixelXScalar: 37.523,
-      mapToPixelXConstant: -48.160,
+      mapToPixelXConstant: -48.16,
       mapToPixelYScalar: 37.419,
       mapToPixelYConstant: -414.761,
       fairy: {
@@ -3979,8 +3992,8 @@ class EurekaTracker {
     const px = zi.mapToPixelXScalar * mx + zi.mapToPixelXConstant;
     const py = zi.mapToPixelYScalar * my + zi.mapToPixelYConstant;
 
-    style.left = (px / zi.mapWidth * 100) + '%';
-    style.top = (py / zi.mapHeight * 100) + '%';
+    style.left = (px / zi.mapWidth) * 100 + '%';
+    style.top = (py / zi.mapHeight) * 100 + '%';
   }
 
   // TODO: maybe this should be in a more shared location.
@@ -3990,7 +4003,7 @@ class EurekaTracker {
 
     const scale = sizeFactor / 100;
     const val = (coord + offset) * scale;
-    return ((41 / scale) * ((val + 1024) / 2048)) + 1;
+    return (41 / scale) * ((val + 1024) / 2048) + 1;
   }
 
   EntityToMapX(x) {
@@ -4070,8 +4083,11 @@ class EurekaTracker {
     // Adds field note drops, name, id & rarity of those
     if (this.zoneInfo.treatNMsAsSkirmishes && this.options.EnrichedSTQ && nm.fieldNotes) {
       for (const note of fieldNotesList) {
-        if (note.id === nm.fieldNotes)
-          enriched.innerHTML = `#${note.id}: ${this.TransByDispLang(note.shortName)} ${gRarityIcon.repeat(note.rarity)}`;
+        if (note.id === nm.fieldNotes) {
+          enriched.innerHTML = `#${note.id}: ${this.TransByDispLang(
+              note.shortName,
+          )} ${gRarityIcon.repeat(note.rarity)}`;
+        }
       }
     }
 
@@ -4099,7 +4115,6 @@ class EurekaTracker {
 
     for (const key of this.nmKeys)
       this.AddElement(container, key);
-
 
     this.fairy = this.zoneInfo.fairy;
     if (this.fairy) {
@@ -4140,8 +4155,10 @@ class EurekaTracker {
       if (this.zoneInfo.mapImage) {
         document.getElementById('map-image').src = this.zoneInfo.mapImage;
         window.clearInterval(this.updateTimesHandle);
-        this.updateTimesHandle = window.setInterval(() => this.UpdateTimes(),
-            this.options.RefreshRateMs);
+        this.updateTimesHandle = window.setInterval(
+            () => this.UpdateTimes(),
+            this.options.RefreshRateMs,
+        );
         container.classList.remove('hide');
       }
       this.InitNMs();
@@ -4190,13 +4207,15 @@ class EurekaTracker {
       if (shouldPlay && this.options.BunnyPopSound && this.options.BunnyPopVolume)
         this.PlaySound(this.options.BunnyPopSound, this.options.BunnyPopVolume);
     } else if (fate.isCritical) {
-      const shouldPlay = fate.isDuelPrecursor && this.options.PopNoiseForDuel ||
-          this.options.PopNoiseForCriticalEngagement;
+      const shouldPlay =
+        (fate.isDuelPrecursor && this.options.PopNoiseForDuel) ||
+        this.options.PopNoiseForCriticalEngagement;
       if (shouldPlay && this.options.CriticalPopSound && this.options.CriticalPopVolume)
         this.PlaySound(this.options.CriticalPopSound, this.options.CriticalPopVolume);
     } else {
-      const shouldPlay = this.zoneInfo.treatNMsAsSkirmishes && this.options.PopNoiseForSkirmish ||
-          !this.zoneInfo.treatNMsAsSkirmishes && this.options.PopNoiseForNM;
+      const shouldPlay =
+        (this.zoneInfo.treatNMsAsSkirmishes && this.options.PopNoiseForSkirmish) ||
+        (!this.zoneInfo.treatNMsAsSkirmishes && this.options.PopNoiseForNM);
       if (shouldPlay && this.options.PopSound && this.options.PopVolume)
         this.PlaySound(this.options.PopSound, this.options.PopVolume);
     }
@@ -4210,7 +4229,10 @@ class EurekaTracker {
 
   OnFateUpdate(fate, percent) {
     this.DebugPrint(`OnFateUpdate: ${this.TransByDispLang(fate.label)}: ${percent}%`);
-    if (fate.element.classList.contains('nm-pop') || fate.element.classList.contains('critical-pop'))
+    if (
+      fate.element.classList.contains('nm-pop') ||
+      fate.element.classList.contains('critical-pop')
+    )
       fate.progressElement.innerText = percent + '%';
   }
 
@@ -4318,7 +4340,6 @@ class EurekaTracker {
       else if (nm.respawnTimeMsTracker)
         respawnMs = nm.respawnTimeMsTracker;
 
-
       const popRespawnMs = respawnMs;
 
       // Ignore respawns in the past.
@@ -4328,8 +4349,7 @@ class EurekaTracker {
       if (nm.weather) {
         const respawnWeather = getWeather(respawnMs, this.zoneId);
         if (respawnWeather !== nm.weather) {
-          const weatherStartTime =
-            findNextWeather(respawnMs, this.zoneId, nm.weather);
+          const weatherStartTime = findNextWeather(respawnMs, this.zoneId, nm.weather);
           if (weatherStartTime > respawnMs) {
             respawnIcon = gWeatherIcons[nm.weather];
             respawnMs = weatherStartTime;
@@ -4363,7 +4383,9 @@ class EurekaTracker {
 
         if (openUntil) {
           const openMin = (openUntil - nowMs) / 1000 / 60;
-          const nmString = respawnIcon + Math.ceil(openMin) +
+          const nmString =
+            respawnIcon +
+            Math.ceil(openMin) +
             this.TransByDispLang(this.options.timeStrings.minute);
           nm.timeElement.innerHTML = nmString;
         } else {
@@ -4376,8 +4398,8 @@ class EurekaTracker {
           respawnIcon = '';
 
         const remainingMinutes = Math.ceil(remainingMs / 1000 / 60);
-        const nmString = respawnIcon + remainingMinutes +
-          this.TransByDispLang(this.options.timeStrings.minute);
+        const nmString =
+          respawnIcon + remainingMinutes + this.TransByDispLang(this.options.timeStrings.minute);
         if (nm.timeElement.innerHTML !== nmString)
           nm.timeElement.innerHTML = nmString;
 
@@ -4409,7 +4431,7 @@ class EurekaTracker {
       const time = m[2];
       const nm = trackerToNM[name.toLowerCase()];
       if (nm)
-        nm.respawnTimeMsTracker = (time * 60 * 1000) + Date.now();
+        nm.respawnTimeMsTracker = time * 60 * 1000 + Date.now();
       else
         console.error('Invalid NM Import: ' + name);
     }
@@ -4529,38 +4551,10 @@ class EurekaTracker {
     const str = (beforeText + ' ' + afterText).toLowerCase();
 
     const dict = {
-      'train': [
-        'train',
-        'tren',
-        'trian',
-        'tran',
-        'choo choo',
-        'train location',
-      ],
-      'fairy': [
-        'fairy',
-        'elemental',
-        'faerie',
-        'fary',
-        '元灵',
-        '凉粉',
-        '辣条',
-        '冰粉',
-        '酸辣粉',
-      ],
-      'raise': [
-        'raise',
-        'rez',
-        'res ',
-        ' res',
-        'raise plz',
-      ],
-      '999': [
-        '999',
-        '救命',
-        '救救',
-        '狗狗',
-      ],
+      'train': ['train', 'tren', 'trian', 'tran', 'choo choo', 'train location'],
+      'fairy': ['fairy', 'elemental', 'faerie', 'fary', '元灵', '凉粉', '辣条', '冰粉', '酸辣粉'],
+      'raise': ['raise', 'rez', 'res ', ' res', 'raise plz'],
+      '999': ['999', '救命', '救救', '狗狗'],
     };
     const keys = Object.keys(dict);
     for (let i = 0; i < keys.length; ++i) {

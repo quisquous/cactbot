@@ -37,7 +37,6 @@ declare global {
   }
 }
 
-
 type IAddOverlayListener = <T extends EventType>(event: T, cb: EventMap[T]) => void;
 type IRemoveOverlayListener = <T extends EventType>(event: T, cb: EventMap[T]) => void;
 
@@ -51,10 +50,12 @@ let inited = false;
 
 let wsUrl: RegExpExecArray | null = null;
 let ws: WebSocket | null = null;
-let queue: (
-  { [s: string]: unknown } |
-  [{ [s: string]: unknown }, ((value: string | null) => unknown) | undefined]
-)[] | null = [];
+let queue:
+| (
+      | { [s: string]: unknown }
+      | [{ [s: string]: unknown }, ((value: string | null) => unknown) | undefined]
+    )[]
+| null = [];
 let rseqCounter = 0;
 const responsePromises: Record<number, (value: unknown) => void> = {};
 
@@ -152,11 +153,9 @@ export const callOverlayHandler: IOverlayHandler = (
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> => {
   init();
-  if (callOverlayHandlerOverride) {
-    return callOverlayHandlerOverride(
-        _msg as Parameters<IOverlayHandler>[0],
-    ) as Promise<unknown>;
-  }
+  if (callOverlayHandlerOverride)
+    return callOverlayHandlerOverride(_msg as Parameters<IOverlayHandler>[0]) as Promise<unknown>;
+
   return callOverlayHandlerInternal(_msg as Parameters<IOverlayHandler>[0]);
 };
 

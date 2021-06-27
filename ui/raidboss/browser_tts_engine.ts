@@ -20,7 +20,7 @@ class TTSItem {
 
 type TTSItemDictionary = {
   [key: string]: TTSItem;
-}
+};
 
 export default class BrowserTTSEngine {
   readonly ttsItems: TTSItemDictionary = {};

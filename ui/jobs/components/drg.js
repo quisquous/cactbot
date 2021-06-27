@@ -12,10 +12,7 @@ export function setup(bars) {
     fgColor: 'drg-color-highjump',
   });
 
-  bars.onUseAbility([
-    kAbility.HighJump,
-    kAbility.Jump,
-  ], () => {
+  bars.onUseAbility([kAbility.HighJump, kAbility.Jump], () => {
     highJumpBox.duration = 30;
   });
 

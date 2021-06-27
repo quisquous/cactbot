@@ -59,9 +59,9 @@ export default class LineEvent {
       return parseInt(parts.slice(0, 2).reverse().join(''), 16);
 
     return parseInt(
-        (parts[3] + parts[0]) +
-      (parseInt(parts[1], 16) - parseInt(parts[3], 16)
-      ).toString(16), 16);
+        parts[3] + parts[0] + (parseInt(parts[1], 16) - parseInt(parts[3], 16)).toString(16),
+        16,
+    );
   }
 }
 

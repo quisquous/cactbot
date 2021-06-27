@@ -45,30 +45,47 @@ const jobs = (() => {
 describe('util tests', () => {
   // Check test job values match actual values from util.js and return their expected values
   it('jobs should support Util.canX if it can', () => {
-    [['Addle', Util.canAddle], ['Cleanse', Util.canCleanse], ['Feint', Util.canFeint], ['Silence', Util.canSilence], ['Sleep', Util.canSleep], ['Stun', Util.canStun]]
-      .forEach(([action, functionCall]) => {
-        // If job can do X, assert canX returns true
-        jobs.filter((job) => job.actions.includes(action))
-          .forEach((job) => assert(functionCall(job.name)));
-        // If job can't do X, assert canX returns false
-        jobs.filter((job) => !job.actions.includes(action))
-          .forEach((job) => assert(!functionCall(job.name)));
-      });
+    [
+      ['Addle', Util.canAddle],
+      ['Cleanse', Util.canCleanse],
+      ['Feint', Util.canFeint],
+      ['Silence', Util.canSilence],
+      ['Sleep', Util.canSleep],
+      ['Stun', Util.canStun],
+    ].forEach(([action, functionCall]) => {
+      // If job can do X, assert canX returns true
+      jobs
+        .filter((job) => job.actions.includes(action))
+        .forEach((job) => assert(functionCall(job.name)));
+      // If job can't do X, assert canX returns false
+      jobs
+        .filter((job) => !job.actions.includes(action))
+        .forEach((job) => assert(!functionCall(job.name)));
+    });
   });
   it('jobs should have the correct roles', () => {
-    [['crafter', Util.isCraftingJob], ['dps', Util.isDpsJob], ['gatherer', Util.isGatheringJob], ['healer', Util.isHealerJob], ['tank', Util.isTankJob]]
-      .forEach(([role, functionCall]) => {
-        // If job is a role, assert isRole returns true
-        jobs.filter((job) => job.role === role).forEach((job) => assert(functionCall(job.name)));
-        // If job is not a role, assert isRole returns false
-        jobs.filter((job) => job.role !== role).forEach((job) => assert(!functionCall(job.name)));
-      });
+    [
+      ['crafter', Util.isCraftingJob],
+      ['dps', Util.isDpsJob],
+      ['gatherer', Util.isGatheringJob],
+      ['healer', Util.isHealerJob],
+      ['tank', Util.isTankJob],
+    ].forEach(([role, functionCall]) => {
+      // If job is a role, assert isRole returns true
+      jobs.filter((job) => job.role === role).forEach((job) => assert(functionCall(job.name)));
+      // If job is not a role, assert isRole returns false
+      jobs.filter((job) => job.role !== role).forEach((job) => assert(!functionCall(job.name)));
+    });
   });
   it('jobs should be in the role map correctly', () => {
     jobs.forEach((job) => assert.deepEqual(job.role, Util.jobToRole(job.name)));
   });
   it('jobs should be set as combat roles correctly', () => {
-    jobs.filter((job) => ['tank', 'healer', 'dps'].includes(job.role)).forEach((job) => assert(Util.isCombatJob(job.name)));
-    jobs.filter((job) => ['crafter', 'gatherer'].includes(job.role)).forEach((job) => assert(!Util.isCombatJob(job.name)));
+    jobs
+      .filter((job) => ['tank', 'healer', 'dps'].includes(job.role))
+      .forEach((job) => assert(Util.isCombatJob(job.name)));
+    jobs
+      .filter((job) => ['crafter', 'gatherer'].includes(job.role))
+      .forEach((job) => assert(!Util.isCombatJob(job.name)));
   });
 });

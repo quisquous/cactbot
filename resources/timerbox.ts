@@ -34,7 +34,17 @@ export default class TimerBox extends HTMLElement {
   private _onResetCallbacks: Array<() => void> = [];
 
   static get observedAttributes(): string[] {
-    return ['duration', 'threshold', 'bg', 'fg', 'toward', 'stylefill', 'hideafter', 'bigatzero', 'roundupthreshold'];
+    return [
+      'duration',
+      'threshold',
+      'bg',
+      'fg',
+      'toward',
+      'stylefill',
+      'hideafter',
+      'bigatzero',
+      'roundupthreshold',
+    ];
   }
 
   // The full duration of the current countdown. When this is changed,
@@ -151,7 +161,7 @@ export default class TimerBox extends HTMLElement {
     if (!this._start)
       return this._duration.toString();
     const elapsedMs = new Date().getTime() - this._start;
-    return Math.max(0, this._duration - (elapsedMs / 1000)).toString();
+    return Math.max(0, this._duration - elapsedMs / 1000).toString();
   }
 
   // The elapsed time.
@@ -182,11 +192,19 @@ export default class TimerBox extends HTMLElement {
 
     this.rootElement = this.shadowRoot?.getElementById('root') as HTMLDivElement;
     this.largeBoxElement = this.shadowRoot?.getElementById('large') as HTMLDivElement;
-    this.largeBoxBackgroundElement = this.largeBoxElement.getElementsByClassName('bg')[0] as HTMLDivElement;
-    this.largeBoxForegroundElement = this.largeBoxElement.getElementsByClassName('fg')[0] as HTMLDivElement;
+    this.largeBoxBackgroundElement = this.largeBoxElement.getElementsByClassName(
+        'bg',
+    )[0] as HTMLDivElement;
+    this.largeBoxForegroundElement = this.largeBoxElement.getElementsByClassName(
+        'fg',
+    )[0] as HTMLDivElement;
     this.smallBoxElement = this.shadowRoot?.getElementById('small') as HTMLDivElement;
-    this.smallBoxBackgroundElement = this.smallBoxElement.getElementsByClassName('bg')[0] as HTMLDivElement;
-    this.smallBoxForegroundElement = this.smallBoxElement.getElementsByClassName('fg')[0] as HTMLDivElement;
+    this.smallBoxBackgroundElement = this.smallBoxElement.getElementsByClassName(
+        'bg',
+    )[0] as HTMLDivElement;
+    this.smallBoxForegroundElement = this.smallBoxElement.getElementsByClassName(
+        'fg',
+    )[0] as HTMLDivElement;
     this.timerElement = this.shadowRoot?.getElementById('timer') as HTMLDivElement;
 
     // Constants.
@@ -343,28 +361,40 @@ export default class TimerBox extends HTMLElement {
     smallForegroundStyle.backgroundColor = this._fg;
     largeForegroundStyle.backgroundColor = this._fg;
 
-    largeBackgroundStyle.width =
-      largeBackgroundStyle.height = (this.kLargeSize * this._scale).toString();
-    smallBackgroundStyle.width =
-      smallBackgroundStyle.height = (this.kSmallSize * this._scale).toString();
-    largeForegroundStyle.width =
-      largeForegroundStyle.height =
-        ((this.kLargeSize - this.kBorderSize * 2) * this._scale).toString();
-    smallForegroundStyle.width =
-      smallForegroundStyle.height =
-        ((this.kSmallSize - this.kBorderSize * 2) * this._scale).toString();
+    largeBackgroundStyle.width = largeBackgroundStyle.height = (
+      this.kLargeSize * this._scale
+    ).toString();
+    smallBackgroundStyle.width = smallBackgroundStyle.height = (
+      this.kSmallSize * this._scale
+    ).toString();
+    largeForegroundStyle.width = largeForegroundStyle.height = (
+      (this.kLargeSize - this.kBorderSize * 2) *
+      this._scale
+    ).toString();
+    smallForegroundStyle.width = smallForegroundStyle.height = (
+      (this.kSmallSize - this.kBorderSize * 2) *
+      this._scale
+    ).toString();
 
     const sizeDiff = this.kLargeSize - this.kSmallSize;
-    smallBackgroundStyle.left = smallBackgroundStyle.top =
-        (sizeDiff * this._scale / 2).toString();
-    smallForegroundStyle.left = smallForegroundStyle.top =
-      (sizeDiff * this._scale / 2 + this.kBorderSize * this._scale).toString();
-    largeForegroundStyle.left = largeForegroundStyle.top =
-      (this.kBorderSize * this._scale).toString();
+    smallBackgroundStyle.left = smallBackgroundStyle.top = (
+      (sizeDiff * this._scale) /
+      2
+    ).toString();
+    smallForegroundStyle.left = smallForegroundStyle.top = (
+      (sizeDiff * this._scale) / 2 +
+      this.kBorderSize * this._scale
+    ).toString();
+    largeForegroundStyle.left = largeForegroundStyle.top = (
+      this.kBorderSize * this._scale
+    ).toString();
 
     this.timerElement.style.width = (this.kLargeSize * this._scale).toString();
     this.timerElement.style.fontSize = `${this.kFontSize * this._scale}px`;
-    this.timerElement.style.top = ((this.kLargeSize - this.kFontSize) * this._scale / 2).toString();
+    this.timerElement.style.top = (
+      ((this.kLargeSize - this.kFontSize) * this._scale) /
+      2
+    ).toString();
 
     if (towardTop)
       largeForegroundStyle.transformOrigin = '0% 0%';
@@ -383,7 +413,6 @@ export default class TimerBox extends HTMLElement {
       rounded = Math.ceil(remainingSec);
     else
       rounded = remainingSec;
-
 
     if (rounded <= 0.000000001 || this._duration === 0) {
       if (this._bigAtZero) {
@@ -444,6 +473,8 @@ export default class TimerBox extends HTMLElement {
         for (const f of this._onExpiredCallbacks)
           setTimeout(f, 0);
       }
+
+
       // Sets the attribute to 0 so users can see the counter is done, and
       // if they set the same duration again it will count.
       this._duration = 0;

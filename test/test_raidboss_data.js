@@ -68,7 +68,8 @@ if (insideMocha) {
   global.triggerFiles = triggerFiles;
   mocha.addFile(path.posix.join(path.relative(process.cwd(), './test/helper/test_data_runner.js')));
 
-  mocha.loadFilesAsync()
+  mocha
+    .loadFilesAsync()
     .then(() => mocha.run((failures) => process.exitCode = failures ? 1 : 0))
     .catch((error) => {
       console.error(error);

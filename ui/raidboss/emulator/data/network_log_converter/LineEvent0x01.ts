@@ -23,10 +23,9 @@ export class LineEvent0x01 extends LineEvent {
     this.zoneName = parts[fields.zoneName] ?? '';
     this.zoneNameProperCase = EmulatorCommon.properCase(this.zoneName);
 
-    this.convertedLine = this.prefix() +
-      'Changed Zone to ' + this.zoneName + '.';
-    this.properCaseConvertedLine = this.prefix() +
-      'Changed Zone to ' + this.zoneNameProperCase + '.';
+    this.convertedLine = this.prefix() + 'Changed Zone to ' + this.zoneName + '.';
+    this.properCaseConvertedLine =
+      this.prefix() + 'Changed Zone to ' + this.zoneNameProperCase + '.';
   }
 }
 

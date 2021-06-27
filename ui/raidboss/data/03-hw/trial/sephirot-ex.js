@@ -3,8 +3,7 @@ import ZoneId from '../../../../../resources/zone_id';
 export default {
   zoneId: ZoneId.ContainmentBayS1T7Extreme,
   timelineFile: 'sephirot-ex.txt',
-  triggers: [
-  ],
+  triggers: [],
   timelineReplace: [
     {
       'locale': 'de',

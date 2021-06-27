@@ -14,7 +14,7 @@ export type HuntEntry = {
   rank?: Rank;
   regex?: RegExp;
   hp?: number;
-}
+};
 
 export type HuntMap = {
   [huntName: string]: HuntEntry;
@@ -313,11 +313,7 @@ const data: HuntMap = {
     'id': '2944',
     'name': {
       'cn': '菲兰德的遗火',
-      'de': [
-        'Letzte Flamme Dalvags',
-        'Letzter Flamme Dalvags',
-        'Letztes Flamme Dalvags',
-      ],
+      'de': ['Letzte Flamme Dalvags', 'Letzter Flamme Dalvags', 'Letztes Flamme Dalvags'],
       'en': 'Dalvag\'s Final Flame',
       'fr': 'dernière flamme de Dalvag',
       'ja': 'ファイナルフレイム',
@@ -797,11 +793,7 @@ const data: HuntMap = {
     'id': '8911',
     'name': {
       'cn': '小小杀手',
-      'de': [
-        'Kleine Mörder',
-        'Kleiner Mörder',
-        'Kleines Mörder',
-      ],
+      'de': ['Kleine Mörder', 'Kleiner Mörder', 'Kleines Mörder'],
       'en': 'Li\'l Murderer',
       'fr': 'Traître',
       'ja': 'リルマーダー',
@@ -1077,11 +1069,7 @@ const data: HuntMap = {
     'id': '8655',
     'name': {
       'cn': '保尔迪雅',
-      'de': [
-        'gepeinigte Pauldia',
-        'gepeinigter Pauldia',
-        'gepeinigtes Pauldia',
-      ],
+      'de': ['gepeinigte Pauldia', 'gepeinigter Pauldia', 'gepeinigtes Pauldia'],
       'en': 'O Poorest Pauldia',
       'fr': 'Pauldia',
       'ja': 'ポールディア',
@@ -1391,11 +1379,7 @@ const data: HuntMap = {
     'id': '2920',
     'name': {
       'cn': '击刺魔蜂索菲',
-      'de': [
-        'Stinkige Sophie',
-        'Stinkiger Sophie',
-        'Stinkiges Sophie',
-      ],
+      'de': ['Stinkige Sophie', 'Stinkiger Sophie', 'Stinkiges Sophie'],
       'en': 'Stinging Sophie',
       'fr': 'Sophie la dardante',
       'ja': 'スティンギング・ソフィー',
@@ -1575,11 +1559,7 @@ const data: HuntMap = {
     'id': '2919',
     'name': {
       'cn': '白鬼鼠王',
-      'de': [
-        'Weiße Joker',
-        'Weißer Joker',
-        'Weißes Joker',
-      ],
+      'de': ['Weiße Joker', 'Weißer Joker', 'Weißes Joker'],
       'en': 'White Joker',
       'fr': 'joker blanc',
       'ja': 'ホワイトジョーカー',
@@ -1651,11 +1631,7 @@ const data: HuntMap = {
     'id': '8916',
     'name': {
       'cn': '得到宽恕的流言',
-      'de': [
-        'geläuterte Lästerei',
-        'geläuterter Lästerei',
-        'geläutertes Lästerei',
-      ],
+      'de': ['geläuterte Lästerei', 'geläuterter Lästerei', 'geläutertes Lästerei'],
       'en': 'forgiven gossip',
       'fr': 'médisance pardonnée',
       'ja': 'フォーギヴン・ゴシップ',
@@ -1667,11 +1643,7 @@ const data: HuntMap = {
     'id': '8910',
     'name': {
       'cn': '得到宽恕的炫学',
-      'de': [
-        'geläuterte Pedanterie',
-        'geläuterter Pedanterie',
-        'geläutertes Pedanterie',
-      ],
+      'de': ['geläuterte Pedanterie', 'geläuterter Pedanterie', 'geläutertes Pedanterie'],
       'en': 'forgiven pedantry',
       'fr': 'pédanterie pardonnée',
       'ja': 'フォーギヴン・ペダントリー',
@@ -1683,11 +1655,7 @@ const data: HuntMap = {
     'id': '8915',
     'name': {
       'cn': '得到宽恕的叛乱',
-      'de': [
-        'geläuterte Rebellion',
-        'geläuterter Rebellion',
-        'geläutertes Rebellion',
-      ],
+      'de': ['geläuterte Rebellion', 'geläuterter Rebellion', 'geläutertes Rebellion'],
       'en': 'forgiven rebellion',
       'fr': 'rébellion pardonnée',
       'ja': 'フォーギヴン・リベリオン',
@@ -1747,11 +1715,7 @@ const data: HuntMap = {
     'id': '4376',
     'name': {
       'cn': '苍白骑士',
-      'de': [
-        'Bleiche Reiter',
-        'Bleicher Reiter',
-        'Bleiches Reiter',
-      ],
+      'de': ['Bleiche Reiter', 'Bleicher Reiter', 'Bleiches Reiter'],
       'en': 'the Pale Rider',
       'fr': 'Cavalier pâle',
       'ja': 'ペイルライダー',

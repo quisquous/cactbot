@@ -4,7 +4,11 @@
 // TODO: Remove ` ?` before each hex value once global prefix `^.{14} ` is added.
 // JavaScript doesn't allow for possessive operators in regular expressions.
 
-import { triggerFunctions, triggerTextOutputFunctions, builtInResponseStr } from '../../resources/responses';
+import {
+  triggerFunctions,
+  triggerTextOutputFunctions,
+  builtInResponseStr,
+} from '../../resources/responses';
 import fs from 'fs';
 import path from 'path';
 import chai from 'chai';
@@ -15,14 +19,7 @@ const exitCode = 0;
 
 const inputFilename = String(process.argv.slice(2));
 
-const regexLanguages = [
-  'regex',
-  'regexCn',
-  'regexDe',
-  'regexFr',
-  'regexJa',
-  'regexKo',
-];
+const regexLanguages = ['regex', 'regexCn', 'regexDe', 'regexFr', 'regexJa', 'regexKo'];
 
 const netRegexLanguages = [
   'netRegex',
@@ -62,11 +59,16 @@ const testTriggerFile = (file) => {
 
   it('has well-formed new combatant trigger regex', () => {
     // Escape the escapes so they can escape the escape in the parsed regex.
-    const newCombatantRegex = createTriggerRegexString('(?! ?03:\\\\y{ObjectId}:)(.*:)?Added new combatant.*');
+    const newCombatantRegex = createTriggerRegexString(
+        '(?! ?03:\\\\y{ObjectId}:)(.*:)?Added new combatant.*',
+    );
     const results = contents.match(newCombatantRegex);
     if (results) {
-      for (const result of results)
-        assert.fail(`'Added new combatant' regex should begin with '03:\\y{ObjectId}:', found '${result}'`);
+      for (const result of results) {
+        assert.fail(
+            `'Added new combatant' regex should begin with '03:\\y{ObjectId}:', found '${result}'`,
+        );
+      }
     }
   });
 
@@ -82,20 +84,30 @@ const testTriggerFile = (file) => {
   it('has well-formed gains effect trigger', () => {
     // There are some weird Eureka "gains effect" messages with 00:332e.
     // But everything else is 1A.
-    const gainsEffectRegex = createTriggerRegexString('(?! (?:1A:\\\\y{ObjectId}|00:332e):)(.* )?gains the effect of.*');
+    const gainsEffectRegex = createTriggerRegexString(
+        '(?! (?:1A:\\\\y{ObjectId}|00:332e):)(.* )?gains the effect of.*',
+    );
     const results = contents.match(gainsEffectRegex);
     if (results) {
-      for (const result of results)
-        assert.fail(`'gains the effect of' regex should begin with '1A:\\y{ObjectId}:', found '${result}'`);
+      for (const result of results) {
+        assert.fail(
+            `'gains the effect of' regex should begin with '1A:\\y{ObjectId}:', found '${result}'`,
+        );
+      }
     }
   });
 
   it('has well-formed loses effect trigger', () => {
-    const losesEffectRegex = createTriggerRegexString('(?! ?1E:\\\\y{ObjectId}:)(.* )?loses the effect of.*');
+    const losesEffectRegex = createTriggerRegexString(
+        '(?! ?1E:\\\\y{ObjectId}:)(.* )?loses the effect of.*',
+    );
     const results = contents.match(losesEffectRegex);
     if (results) {
-      for (const result of results)
-        assert.fail(`'loses the effect of' regex should begin with '1E:\\y{ObjectId}:', found '${result}'`);
+      for (const result of results) {
+        assert.fail(
+            `'loses the effect of' regex should begin with '1E:\\y{ObjectId}:', found '${result}'`,
+        );
+      }
     }
   });
 
@@ -113,8 +125,11 @@ const testTriggerFile = (file) => {
     const objectIdRegex = createTriggerRegexString('.*:\\.{8}:.*');
     const results = contents.match(objectIdRegex);
     if (results) {
-      for (const result of results)
-        assert.fail(`${file}: ObjectId should be used in favor of literal '........', found '${result}'`);
+      for (const result of results) {
+        assert.fail(
+            `${file}: ObjectId should be used in favor of literal '........', found '${result}'`,
+        );
+      }
     }
   });
 
@@ -122,22 +137,27 @@ const testTriggerFile = (file) => {
     const unnecessaryGroupRegex = createTriggerRegexString('.*\\(\\?:.\\|.\\).*');
     const results = contents.match(unnecessaryGroupRegex);
     if (results) {
-      for (const result of results)
-        assert.fail(`${file}: Match single character from set '[ab]' should be used in favor of group matching '(?:a|b)' for single characters, found '${result}'`);
+      for (const result of results) {
+        assert.fail(
+            `${file}: Match single character from set '[ab]' should be used in favor of group matching '(?:a|b)' for single characters, found '${result}'`,
+        );
+      }
     }
   });
 
   // https://stackoverflow.com/questions/1007981/
   // Parsing code with regular expressions is always a great idea.
   const getParamNames = function(func) {
-    return func.toString()
-      .replace(/[/][/].*$/mg, '') // strip single-line comments
+    return func
+      .toString()
+      .replace(/[/][/].*$/gm, '') // strip single-line comments
       .replace(/\s+/g, '') // strip white space
       .replace(/[/][*][^/*]*[*][/]/g, '') // strip multi-line comments
       .replace(/\)(?:{|=>).*$/, '') // remove trailing paren
       .replace(/^[^(]*[(]/, '') // remove leading paren
       .replace(/=[^,]+/g, '') // strip any ES6 defaults
-      .split(/,(?![^{]*})/g).filter(Boolean); // split & filter [""]
+      .split(/,(?![^{]*})/g)
+      .filter(Boolean); // split & filter [""]
   };
 
   it('has valid matches and output parameters', () => {
@@ -160,18 +180,21 @@ const testTriggerFile = (file) => {
           if (containsOutput && !containsOutputParam)
             assert.fail(`Missing 'output' param for '${currentTrigger.id}'.`);
 
-
           containsMatches |= /(?<!_)matches/.test(funcStr);
           containsMatchesParam |= /(?<!_)matches/.test(getParamNames(currentTriggerFunction));
 
           const builtInResponse = 'cactbot-builtin-response';
           if (funcStr.includes(builtInResponse)) {
             if (typeof currentTriggerFunction !== 'function') {
-              assert.fail(`${currentTrigger.id} field '${func}' has ${builtinResponse} but is not a function.`);
+              assert.fail(
+                  `${currentTrigger.id} field '${func}' has ${builtinResponse} but is not a function.`,
+              );
               continue;
             }
             if (func !== 'response') {
-              assert.fail(`${currentTrigger.id} field '${func}' has ${builtinResponse} but is not a response.`);
+              assert.fail(
+                  `${currentTrigger.id} field '${func}' has ${builtinResponse} but is not a response.`,
+              );
               continue;
             }
             // Built-in response functions can be safely called once.
@@ -192,10 +215,13 @@ const testTriggerFile = (file) => {
       for (const regexLang of regexLanguages) {
         const currentRegex = currentTrigger[regexLang];
         if (typeof currentRegex !== 'undefined') {
-          const currentCaptures = new RegExp('(?:' + currentRegex.toString() + ')?').exec('').length - 1;
+          const currentCaptures =
+            new RegExp('(?:' + currentRegex.toString() + ')?').exec('').length - 1;
           // Ignore first pass
           if (captures !== -1 && captures !== currentCaptures) {
-            assert.fail(`Found inconsistent capturing groups between languages for trigger id '${currentTrigger.id}'.`);
+            assert.fail(
+                `Found inconsistent capturing groups between languages for trigger id '${currentTrigger.id}'.`,
+            );
             break;
           }
           captures = Math.max(captures, currentCaptures);
@@ -206,10 +232,13 @@ const testTriggerFile = (file) => {
       for (const netRegexLang of netRegexLanguages) {
         const currentRegex = currentTrigger[netRegexLang];
         if (typeof currentRegex !== 'undefined') {
-          const currentCaptures = new RegExp('(?:' + currentRegex.toString() + ')?').exec('').length - 1;
+          const currentCaptures =
+            new RegExp('(?:' + currentRegex.toString() + ')?').exec('').length - 1;
           // Ignore first pass
           if (captures !== -1 && captures !== currentCaptures) {
-            assert.fail(`Found inconsistent capturing groups between languages for trigger id '${currentTrigger.id}'.`);
+            assert.fail(
+                `Found inconsistent capturing groups between languages for trigger id '${currentTrigger.id}'.`,
+            );
             break;
           }
           captures = Math.max(captures, currentCaptures);
@@ -217,13 +246,19 @@ const testTriggerFile = (file) => {
       }
 
       if (captures > 0) {
-        if (!containsMatches)
-          assert.fail(`Found unnecessary regex capturing group for trigger id '${currentTrigger.id}'.`);
-        else if (!containsMatchesParam)
+        if (!containsMatches) {
+          assert.fail(
+              `Found unnecessary regex capturing group for trigger id '${currentTrigger.id}'.`,
+          );
+        } else if (!containsMatchesParam) {
           assert.fail(`Missing matches param for '${currentTrigger.id}'.`);
+        }
       } else {
-        if (containsMatches)
-          assert.fail(`Found 'matches' as a function parameter without regex capturing group for trigger id '${currentTrigger.id}'.`);
+        if (containsMatches) {
+          assert.fail(
+              `Found 'matches' as a function parameter without regex capturing group for trigger id '${currentTrigger.id}'.`,
+          );
+        }
       }
     }
   });
@@ -279,6 +314,8 @@ const testTriggerFile = (file) => {
           if (prefix[idx] !== trigger.id[idx])
             break;
         }
+
+
         if (idx === 0) {
           errorFunc(`${file}: No common id prefix in '${prefix}' and '${trigger.id}'`);
           brokenPrefixes = true;
@@ -303,12 +340,7 @@ const testTriggerFile = (file) => {
   });
 
   it('does not combine response with texts', () => {
-    const bannedItems = [
-      'alarmText',
-      'alertText',
-      'infoText',
-      'tts',
-    ];
+    const bannedItems = ['alarmText', 'alertText', 'infoText', 'tts'];
 
     for (const set of [triggerSet.triggers, triggerSet.timelineTriggers]) {
       if (!set)
@@ -369,8 +401,11 @@ const testTriggerFile = (file) => {
           const thisIdx = keys.indexOf(field);
           if (thisIdx === -1)
             continue;
-          if (thisIdx <= lastIdx)
-            assert.fail(`in ${trigger.id}, field '${keys[lastIdx]}' must precede '${keys[thisIdx]}'`);
+          if (thisIdx <= lastIdx) {
+            assert.fail(
+                `in ${trigger.id}, field '${keys[lastIdx]}' must precede '${keys[thisIdx]}'`,
+            );
+          }
 
           lastIdx = thisIdx;
         }
@@ -446,7 +481,9 @@ const testTriggerFile = (file) => {
             continue;
           const funcStr = trigger.response.toString();
           if (!funcStr.includes(builtInResponseStr)) {
-            assert.fail(`'${trigger.id}' built-in response does not include "${builtInResponseStr}".`);
+            assert.fail(
+                `'${trigger.id}' built-in response does not include "${builtInResponseStr}".`,
+            );
             continue;
           }
           const output = new TestOutputProxy(trigger, outputStrings);
@@ -502,7 +539,9 @@ const testTriggerFile = (file) => {
           for (const lang in templateObj) {
             const template = templateObj[lang];
             if (typeof template !== 'string') {
-              assert.fail(`'${key}' in '${trigger.id}' outputStrings for lang ${lang} is not a string`);
+              assert.fail(
+                  `'${key}' in '${trigger.id}' outputStrings for lang ${lang} is not a string`,
+              );
               continue;
             }
 
@@ -522,7 +561,9 @@ const testTriggerFile = (file) => {
                 ok = prevParams.every((key) => params.has(key));
 
               if (!ok) {
-                assert.fail(`'${key}' in '${trigger.id}' outputStrings has inconsistent params among languages`);
+                assert.fail(
+                    `'${key}' in '${trigger.id}' outputStrings has inconsistent params among languages`,
+                );
                 continue;
               }
             }
@@ -530,7 +571,9 @@ const testTriggerFile = (file) => {
 
             // Verify that there's no dangling ${
             if (/\${/.test(template.replace(paramRegex, ''))) {
-              assert.fail(`'${key}' in '${trigger.id}' outputStrings has an open \${ without a closing }`);
+              assert.fail(
+                  `'${key}' in '${trigger.id}' outputStrings has an open \${ without a closing }`,
+              );
               continue;
             }
           }
@@ -567,8 +610,11 @@ const testTriggerFile = (file) => {
 
           for (const key of keys) {
             for (const param of outputStringsParams[key]) {
-              if (!funcStr.match(`\\b${param}\\s*:`))
-                assert.fail(`'${trigger.id}' does not define param '${param}' for outputStrings entry '${key}'`);
+              if (!funcStr.match(`\\b${param}\\s*:`)) {
+                assert.fail(
+                    `'${trigger.id}' does not define param '${param}' for outputStrings entry '${key}'`,
+                );
+              }
             }
           }
         }

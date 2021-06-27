@@ -1,7 +1,11 @@
 import { Lang } from '../../../resources/languages';
 import NetRegexes from '../../../resources/netregexes';
 import { LocaleNetRegex } from '../../../resources/translations';
-import { CactbotBaseRegExp, CactbotRegExpExecArray, TriggerTypes } from '../../../types/net_trigger';
+import {
+  CactbotBaseRegExp,
+  CactbotRegExpExecArray,
+  TriggerTypes,
+} from '../../../types/net_trigger';
 
 // Disable no-explicit-any for cloneData as it needs to work on raw objects for performance reasons.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -30,9 +34,9 @@ export default class EmulatorCommon {
 
       if (typeof data[i] === 'object')
         ret[i] = EmulatorCommon._cloneData(data[i]);
+      // Assignment of any to any. See DataType definition above for reasoning.
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       else
-        // Assignment of any to any. See DataType definition above for reasoning.
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         ret[i] = data[i];
     }
     return ret;
@@ -71,7 +75,7 @@ export default class EmulatorCommon {
     // Milliseconds
     const millis = `00${millisNum}`.substr(-3);
     const secs = `0${secsNum}`.substr(-2);
-    const mins = `0${((((time % (60 * 60 * 1000)) - millisNum) / 1000) - secsNum) / 60}`.substr(-2);
+    const mins = `0${(((time % (60 * 60 * 1000)) - millisNum) / 1000 - secsNum) / 60}`.substr(-2);
     return negative + mins + ':' + secs + (includeMillis ? '.' + millis : '');
   }
 
@@ -108,7 +112,10 @@ export default class EmulatorCommon {
 
   static dateTimeToString(time: number, includeMillis = false): string {
     const date = new Date(time);
-    return `${this.dateObjectToDateString(date)} ${this.dateObjectToTimeString(date, includeMillis)}`;
+    return `${this.dateObjectToDateString(date)} ${this.dateObjectToTimeString(
+        date,
+        includeMillis,
+    )}`;
   }
 
   static zeroPad(str: string, len = 2): string {
@@ -125,9 +132,10 @@ export default class EmulatorCommon {
     return str.padStart(len, ' ');
   }
 
-  static doesLineMatch<T extends TriggerTypes>(line: string,
-      regexes: Record<Lang, RegExp> | RegExp | CactbotBaseRegExp<T>):
-      RegExpExecArray | CactbotRegExpExecArray<T> | null {
+  static doesLineMatch<T extends TriggerTypes>(
+      line: string,
+      regexes: Record<Lang, RegExp> | RegExp | CactbotBaseRegExp<T>,
+  ): RegExpExecArray | CactbotRegExpExecArray<T> | null {
     if (regexes instanceof RegExp)
       return regexes.exec(line);
 

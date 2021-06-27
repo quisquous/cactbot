@@ -3,12 +3,7 @@ import EmulatorCommon from '../../EmulatorCommon';
 import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
-const splitFunc = (s: string) => [
-  s.substr(6, 2),
-  s.substr(4, 2),
-  s.substr(2, 2),
-  s.substr(0, 2),
-];
+const splitFunc = (s: string) => [s.substr(6, 2), s.substr(4, 2), s.substr(2, 2), s.substr(0, 2)];
 
 const fields = {
   id: 2,
@@ -55,18 +50,32 @@ export class LineEvent0x1F extends LineEvent {
       job: this.jobGaugeBytes[0]?.toUpperCase(),
     });
 
-    this.convertedLine = this.prefix() +
-      this.id + ':' + this.name +
-      ':' + this.dataBytes1 +
-      ':' + this.dataBytes2 +
-      ':' + this.dataBytes3 +
-      ':' + this.dataBytes4;
-    this.properCaseConvertedLine = this.prefix() +
-      this.id + ':' + EmulatorCommon.properCase(this.name) +
-      ':' + this.dataBytes1 +
-      ':' + this.dataBytes2 +
-      ':' + this.dataBytes3 +
-      ':' + this.dataBytes4;
+    this.convertedLine =
+      this.prefix() +
+      this.id +
+      ':' +
+      this.name +
+      ':' +
+      this.dataBytes1 +
+      ':' +
+      this.dataBytes2 +
+      ':' +
+      this.dataBytes3 +
+      ':' +
+      this.dataBytes4;
+    this.properCaseConvertedLine =
+      this.prefix() +
+      this.id +
+      ':' +
+      EmulatorCommon.properCase(this.name) +
+      ':' +
+      this.dataBytes1 +
+      ':' +
+      this.dataBytes2 +
+      ':' +
+      this.dataBytes3 +
+      ':' +
+      this.dataBytes4;
   }
 }
 

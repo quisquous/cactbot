@@ -409,13 +409,7 @@ export default {
       netRegexKo: NetRegexes.ability({ id: '19AA', source: '소피아', capture: false }),
       delaySeconds: 5,
       run: (data) => {
-        const cloneData = [
-          'aeroClones',
-          'clonesActive',
-          'cloneSpots',
-          'thunderClones',
-          'seenThunder',
-        ];
+        const cloneData = ['aeroClones', 'clonesActive', 'cloneSpots', 'thunderClones', 'seenThunder'];
         for (const element of cloneData)
           delete data[element];
       },
@@ -493,7 +487,7 @@ export default {
         return !data.clonesActive;
       },
       // We let the storage triggers catch up before calling.
-      delaySeconds: .5,
+      delaySeconds: 0.5,
       durationSeconds: 12, // Ensuring that forgetful people aren't forgotten.
       suppressSeconds: 5,
       alertText: (data, _matches, output) => {

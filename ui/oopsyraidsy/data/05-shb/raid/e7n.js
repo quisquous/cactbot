@@ -30,8 +30,7 @@ export default {
     'E7N Strength In Numbers Donut': '4C4C', // Large donut ground AoEs, intermission
     'E7N Strength In Numbers 2': '4C4D', // Large circle ground AoEs, intermission
   },
-  damageFail: {
-  },
+  damageFail: {},
   triggers: [
     {
       id: 'E7N Stygian Stake', // Laser tank buster, outside intermission phase

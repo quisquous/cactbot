@@ -622,14 +622,12 @@ export default {
         if (data.phase !== 'omega')
           return;
 
-
         // See comments in shouldDieOnLaser.  Beyond Death
         // doesn't get removed until after the 2nd laser
         // appears.  However, colors (THANKFULLY) apply
         // before the next laser appears.
         if (data.shouldDieOnLaser())
           data.omegaProbablyDiedOnLaser = true;
-
 
         data.omegaLaserCount++;
       },
@@ -732,7 +730,8 @@ export default {
         },
       },
     },
-    { // Grand Cross Alpha.
+    {
+      // Grand Cross Alpha.
       id: 'O4S Neo Grand Cross Alpha',
       netRegex: NetRegexes.startsUsing({ id: '242B', source: 'Neo Exdeath', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '242B', source: 'Neo Exdeath', capture: false }),

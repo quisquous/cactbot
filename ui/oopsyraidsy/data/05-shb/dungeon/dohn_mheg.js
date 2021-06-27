@@ -18,7 +18,6 @@ export default {
     'Dohn Mheg Bile Bombardment': '34EE', // Ground AoE marker, boss 3
     'Dohn Mheg Corrosive Bile': '34EC', // Frontal cone, boss 3
     'Dohn Mheg Flailing Tentacles': '3681',
-
   },
   triggers: [
     {

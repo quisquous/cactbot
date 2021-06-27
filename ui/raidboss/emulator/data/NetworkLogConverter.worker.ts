@@ -29,10 +29,12 @@ ctx.addEventListener('message', (msg) => {
   let nextOffset = 0;
   let lines = [];
   let lineCount = 0;
-  for (let currentOffset = nextOffset;
+  for (
+    let currentOffset = nextOffset;
     nextOffset < buf.length && nextOffset !== -1;
-    currentOffset = nextOffset) {
-    nextOffset = buf.indexOf(0x0A, nextOffset + 1);
+    currentOffset = nextOffset
+  ) {
+    nextOffset = buf.indexOf(0x0a, nextOffset + 1);
     const line = decoder.decode(buf.slice(currentOffset, nextOffset)).trim();
     if (line.length) {
       ++lineCount;

@@ -50,12 +50,19 @@ export default class EmulatedPartyInfo extends EventBus {
     this.$triggerHideSkippedCheckbox.addEventListener('change', this.updateTriggerState);
     this.$triggerHideCollectCheckbox.addEventListener('change', this.updateTriggerState);
 
-    this.$triggerItemTemplate = document.querySelector('template.triggerItem').content.firstElementChild;
-    this.$playerInfoRowTemplate = document.querySelector('template.playerInfoRow').content.firstElementChild;
-    this.$playerTriggerInfoTemplate = document.querySelector('template.playerTriggerInfo').content.firstElementChild;
-    this.$jsonViewerTemplate = document.querySelector('template.jsonViewer').content.firstElementChild;
-    this.$triggerLabelTemplate = document.querySelector('template.triggerLabel').content.firstElementChild;
-    this.$wrapCollapseTemplate = document.querySelector('template.wrapCollapse').content.firstElementChild;
+    this.$triggerItemTemplate =
+      document.querySelector('template.triggerItem').content.firstElementChild;
+    this.$playerInfoRowTemplate =
+      document.querySelector('template.playerInfoRow').content.firstElementChild;
+    this.$playerTriggerInfoTemplate = document.querySelector(
+        'template.playerTriggerInfo',
+    ).content.firstElementChild;
+    this.$jsonViewerTemplate =
+      document.querySelector('template.jsonViewer').content.firstElementChild;
+    this.$triggerLabelTemplate =
+      document.querySelector('template.triggerLabel').content.firstElementChild;
+    this.$wrapCollapseTemplate =
+      document.querySelector('template.wrapCollapse').content.firstElementChild;
   }
 
   hideNonExecutedTriggers() {
@@ -82,7 +89,6 @@ export default class EmulatedPartyInfo extends EventBus {
     });
   }
 
-
   /**
    * @param {RaidEmulator} emulator
    * @param {string} timestamp
@@ -108,11 +114,15 @@ export default class EmulatedPartyInfo extends EventBus {
     this.$triggerBar.querySelectorAll('.triggerItem').forEach((n) => {
       n.remove();
     });
-    const membersToDisplay = encounter.encounter.combatantTracker.partyMembers.sort((l, r) => {
-      const a = encounter.encounter.combatantTracker.combatants[l];
-      const b = encounter.encounter.combatantTracker.combatants[r];
-      return EmulatedPartyInfo.jobOrder.indexOf(a.job) - EmulatedPartyInfo.jobOrder.indexOf(b.job);
-    }).slice(0, 8);
+    const membersToDisplay = encounter.encounter.combatantTracker.partyMembers
+      .sort((l, r) => {
+        const a = encounter.encounter.combatantTracker.combatants[l];
+        const b = encounter.encounter.combatantTracker.combatants[r];
+        return (
+          EmulatedPartyInfo.jobOrder.indexOf(a.job) - EmulatedPartyInfo.jobOrder.indexOf(b.job)
+        );
+      })
+      .slice(0, 8);
     document.querySelectorAll('.playerTriggerInfo').forEach((n) => {
       n.remove();
     });
@@ -139,7 +149,7 @@ export default class EmulatedPartyInfo extends EventBus {
           continue;
 
         const $e = this.$triggerItemTemplate.cloneNode(true);
-        $e.style.left = ((trigger.resolvedOffset / encounter.encounter.duration) * 100) + '%';
+        $e.style.left = (trigger.resolvedOffset / encounter.encounter.duration) * 100 + '%';
         this.tooltips.push(new Tooltip($e, 'bottom', trigger.triggerHelper.trigger.id));
         this.triggerBars[i].append($e);
       }
@@ -158,7 +168,9 @@ export default class EmulatedPartyInfo extends EventBus {
       return;
 
     this.currentPerspective = id;
-    this.$triggerInfo.querySelectorAll('.playerTriggerInfo').forEach((r) => r.classList.add('d-none'));
+    this.$triggerInfo
+      .querySelectorAll('.playerTriggerInfo')
+      .forEach((r) => r.classList.add('d-none'));
     this.displayedParty[id].$triggerElem.classList.remove('d-none');
     this.$partyInfo.querySelectorAll('.playerInfoRow').forEach((r) => {
       r.classList.remove('border');
@@ -184,7 +196,7 @@ export default class EmulatedPartyInfo extends EventBus {
 
     const hpProg = (State.hp / State.maxHp) * 100;
     let hpLabel = State.hp + '/' + State.maxHp;
-    hpLabel = EmulatorCommon.spacePadLeft(hpLabel, (State.maxHp.toString().length * 2) + 1);
+    hpLabel = EmulatorCommon.spacePadLeft(hpLabel, State.maxHp.toString().length * 2 + 1);
     this.displayedParty[id].$hpProgElem.ariaValueNow = State.hp;
     this.displayedParty[id].$hpProgElem.ariaValueMax = State.maxHp;
     this.displayedParty[id].$hpProgElem.style.width = hpProg + '%';
@@ -192,7 +204,7 @@ export default class EmulatedPartyInfo extends EventBus {
 
     const mpProg = (State.mp / State.maxMp) * 100;
     let mpLabel = State.mp + '/' + State.maxMp;
-    mpLabel = EmulatorCommon.spacePadLeft(mpLabel, (State.maxMp.toString().length * 2) + 1);
+    mpLabel = EmulatorCommon.spacePadLeft(mpLabel, State.maxMp.toString().length * 2 + 1);
     this.displayedParty[id].$mpProgElem.ariaValueNow = State.mp;
     this.displayedParty[id].$mpProgElem.ariaValueMax = State.maxMp;
     this.displayedParty[id].$mpProgElem.style.width = mpProg + '%';
@@ -238,12 +250,14 @@ export default class EmulatedPartyInfo extends EventBus {
     const $initDataViewer = this.$jsonViewerTemplate.cloneNode(true);
     $initDataViewer.textContent = JSON.stringify(per.initialData, null, 2);
 
-    $container.append(this._wrapCollapse({
-      time: '00:00',
-      name: 'Initial Data',
-      classes: ['data'],
-      $obj: $initDataViewer,
-    }));
+    $container.append(
+        this._wrapCollapse({
+          time: '00:00',
+          name: 'Initial Data',
+          classes: ['data'],
+          $obj: $initDataViewer,
+        }),
+    );
 
     const $triggerContainer = $container.querySelector('.d-flex.flex-column');
 
@@ -277,14 +291,17 @@ export default class EmulatedPartyInfo extends EventBus {
     const $finalDataViewer = this.$jsonViewerTemplate.cloneNode(true);
     $finalDataViewer.textContent = JSON.stringify(per.finalData, null, 2);
 
-    $container.append(this._wrapCollapse({
-      time: EmulatorCommon.timeToString(
-          encounter.encounter.duration - encounter.encounter.initialOffset,
-          false),
-      name: 'Final Data',
-      classes: ['data'],
-      $obj: $finalDataViewer,
-    }));
+    $container.append(
+        this._wrapCollapse({
+          time: EmulatorCommon.timeToString(
+              encounter.encounter.duration - encounter.encounter.initialOffset,
+              false,
+          ),
+          name: 'Final Data',
+          classes: ['data'],
+          $obj: $finalDataViewer,
+        }),
+    );
 
     return $ret;
   }
@@ -330,13 +347,15 @@ export default class EmulatedPartyInfo extends EventBus {
   getTriggerFiredLabelTime(Trigger) {
     return EmulatorCommon.timeToString(
         Trigger.logLine.offset - this.emulator.currentEncounter.encounter.initialOffset,
-        false);
+        false,
+    );
   }
 
   getTriggerResolvedLabelTime(Trigger) {
     return EmulatorCommon.timeToString(
         Trigger.resolvedOffset - this.emulator.currentEncounter.encounter.initialOffset,
-        false);
+        false,
+    );
   }
 
   /**
@@ -393,9 +412,22 @@ export default class EmulatedPartyInfo extends EventBus {
 }
 
 EmulatedPartyInfo.jobOrder = [
-  'PLD', 'WAR', 'DRK', 'GNB',
-  'WHM', 'SCH', 'AST',
-  'MNK', 'DRG', 'NIN', 'SAM',
-  'BRD', 'MCH', 'DNC',
-  'BLM', 'SMN', 'RDM',
-  'BLU'];
+  'PLD',
+  'WAR',
+  'DRK',
+  'GNB',
+  'WHM',
+  'SCH',
+  'AST',
+  'MNK',
+  'DRG',
+  'NIN',
+  'SAM',
+  'BRD',
+  'MCH',
+  'DNC',
+  'BLM',
+  'SMN',
+  'RDM',
+  'BLU',
+];

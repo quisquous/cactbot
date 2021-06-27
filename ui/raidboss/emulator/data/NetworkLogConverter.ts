@@ -27,7 +27,9 @@ export default class NetworkLogConverter extends EventBus {
     });
     // Sort the lines based on `${timestamp}_${index}` to handle out-of-order lines properly
     // @TODO: Remove this once underlying CombatantTracker update issues are resolved
-    return lineEvents.sort((l, r) => `${l.timestamp}_${l.index}`.localeCompare(`${r.timestamp}_${r.index}`));
+    return lineEvents.sort((l, r) =>
+      `${l.timestamp}_${l.index}`.localeCompare(`${r.timestamp}_${r.index}`),
+    );
   }
 
   static lineSplitRegex = /\r?\n/gm;

@@ -236,7 +236,7 @@ const matchedPositionToDir = (matches) => {
   // Advanced Relativity party splits.
   // Map NW = 0, N = 1, ..., W = 7
 
-  return Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+  return Math.round(5 - (4 * Math.atan2(x, y)) / Math.PI) % 8;
 };
 
 // Convert dir to Output
@@ -1150,7 +1150,7 @@ export default {
 
         // Snap heading to closest card and add 2 for opposite direction
         // N = 0, E = 1, S = 2, W = 3
-        const cardinal = ((2 - Math.round(oracle.Heading * 4 / Math.PI) / 2) + 2) % 4;
+        const cardinal = (2 - Math.round((oracle.Heading * 4) / Math.PI) / 2 + 2) % 4;
 
         const dirs = {
           0: output.north(),
@@ -1340,16 +1340,19 @@ export default {
       condition: Conditions.targetIsYou(),
       response: (data, _matches, output) => {
         // cactbot-builtin-response
-        output.responseOutputStrings = Object.assign({
-          moveAway: {
-            en: 'Move!',
-            de: 'Bewegen!',
-            fr: 'Bougez !',
-            ja: '避けて！',
-            cn: '快移动！',
-            ko: '이동하기!',
-          },
-        }, intermediateRelativityOutputStrings);
+        output.responseOutputStrings = Object.assign(
+            {
+              moveAway: {
+                en: 'Move!',
+                de: 'Bewegen!',
+                fr: 'Bougez !',
+                ja: '避けて！',
+                cn: '快移动！',
+                ko: '이동하기!',
+              },
+            },
+            intermediateRelativityOutputStrings,
+        );
 
         if (data.phase !== 'intermediate')
           return { infoText: output.moveAway() };

@@ -88,8 +88,10 @@ type WatchCombatantParams = {
   maxDuration?: number;
 };
 
-type WatchCombatantFunc = (params: WatchCombatantParams,
-  func: (ret: GetCombatantsRet) => boolean) => Promise<void>;
+type WatchCombatantFunc = (
+  params: WatchCombatantParams,
+  func: (ret: GetCombatantsRet) => boolean,
+) => Promise<void>;
 
 type WatchCombatantMapEntry = {
   cancel: boolean;
@@ -98,14 +100,16 @@ type WatchCombatantMapEntry = {
 
 const watchCombatantMap: WatchCombatantMapEntry[] = [];
 
-const shouldCancelWatch =
-  (params: WatchCombatantParams, entry: WatchCombatantMapEntry): boolean => {
-    if (entry.cancel)
-      return true;
-    if (params.maxDuration !== undefined && Date.now() - entry.start > params.maxDuration)
-      return true;
-    return false;
-  };
+const shouldCancelWatch = (
+    params: WatchCombatantParams,
+    entry: WatchCombatantMapEntry,
+): boolean => {
+  if (entry.cancel)
+    return true;
+  if (params.maxDuration !== undefined && Date.now() - entry.start > params.maxDuration)
+    return true;
+  return false;
+};
 
 const watchCombatant: WatchCombatantFunc = (params, func) => {
   return new Promise<void>((res, rej) => {

@@ -125,14 +125,18 @@ class RegexSet {
   get localeRegex(): LocaleRegexesObj {
     if (this.regexes)
       return this.regexes;
-    this.regexes = this.buildLocaleRegexes(localeLines, (s: string) => Regexes.gameLog({ line: s + '.*?' }));
+    this.regexes = this.buildLocaleRegexes(localeLines, (s: string) =>
+      Regexes.gameLog({ line: s + '.*?' }),
+    );
     return this.regexes;
   }
 
   get localeNetRegex(): LocaleRegexesObj {
     if (this.netRegexes)
       return this.netRegexes;
-    this.netRegexes = this.buildLocaleRegexes(localeLines, (s: string) => NetRegexes.gameLog({ line: s + '[^|]*?' }));
+    this.netRegexes = this.buildLocaleRegexes(localeLines, (s: string) =>
+      NetRegexes.gameLog({ line: s + '[^|]*?' }),
+    );
     return this.netRegexes;
   }
 
@@ -141,13 +145,12 @@ class RegexSet {
       builder: (s: string) => CactbotBaseRegExp<'GameLog'> | RegExp,
   ): LocaleRegexesObj {
     return Object.fromEntries(
-        Object
-          .entries(locales)
-          .map(([key, lines]) => [key, this.buildLocaleRegex(lines, builder)]),
+        Object.entries(locales).map(([key, lines]) => [key, this.buildLocaleRegex(lines, builder)]),
     ) as LocaleRegexesObj;
   }
 
-  buildLocaleRegex(lines: LocaleLine,
+  buildLocaleRegex(
+      lines: LocaleLine,
       builder: (s: string) => CactbotBaseRegExp<'GameLog'> | RegExp,
   ): Record<Lang, CactbotBaseRegExp<'GameLog'> | RegExp> {
     const regexEn = builder(lines.en);

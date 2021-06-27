@@ -66,39 +66,31 @@ module.exports = {
         'awayFrom',
         'earthshaker',
       ],
-      'alarm': [
-        'tankBusterSwap',
-        'meteorOnYou',
-        'stopMoving',
-        'stopEverything',
-        'wakeUp',
-      ],
-      'info, info': [
-        'knockbackOn',
-      ],
-      'alert, info': [
-        'tankBuster',
-        'preyOn',
-      ],
-      'alarm, alert': [
-        'tankBusterSwap',
-      ],
+      'alarm': ['tankBusterSwap', 'meteorOnYou', 'stopMoving', 'stopEverything', 'wakeUp'],
+      'info, info': ['knockbackOn'],
+      'alert, info': ['tankBuster', 'preyOn'],
+      'alarm, alert': ['tankBusterSwap'],
     };
     return {
-      'Property[key.name=\'response\'] > CallExpression[callee.object.name=\'Responses\'][arguments.length!=0]': (node) => {
-        const responseSeverity = node.arguments.map((arg) => arg.value).join(', ');
-        const defaultSeverity = defaultSeverityResponseMap[responseSeverity];
-        if (defaultSeverity && defaultSeverity.includes(node.callee.property.name)) {
-          context.report({
-            node,
-            message: 'Use default severity in cases where the severity override matches the response default',
+      'Property[key.name=\'response\'] > CallExpression[callee.object.name=\'Responses\'][arguments.length!=0]':
+        (node) => {
+          const responseSeverity = node.arguments.map((arg) => arg.value).join(', ');
+          const defaultSeverity = defaultSeverityResponseMap[responseSeverity];
+          if (defaultSeverity && defaultSeverity.includes(node.callee.property.name)) {
+            context.report({
+              node,
+              message:
+                'Use default severity in cases where the severity override matches the response default',
 
-            fix: (fixer) => {
-              return fixer.replaceTextRange([node.arguments[0].start, node.arguments[node.arguments.length - 1].end], '');
-            },
-          });
-        }
-      },
+              fix: (fixer) => {
+                return fixer.replaceTextRange(
+                    [node.arguments[0].start, node.arguments[node.arguments.length - 1].end],
+                    '',
+                );
+              },
+            });
+          }
+        },
     };
   },
 };

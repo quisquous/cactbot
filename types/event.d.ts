@@ -121,21 +121,11 @@ export interface JobDetail {
 
 export interface EventMap {
   // #region OverlayPlugin built-in Event
-  'CombatData': (ev: {
-    type: 'CombatData';
-  }) => void;
+  'CombatData': (ev: { type: 'CombatData' }) => void;
 
-  'LogLine': (ev: {
-    type: 'LogLine';
-    line: string[];
-    rawLine: string;
-  }) => void;
+  'LogLine': (ev: { type: 'LogLine'; line: string[]; rawLine: string }) => void;
 
-  'ChangeZone': (ev: {
-    type: 'ChangeZone';
-    zoneID: number;
-    zoneName: string;
-  }) => void;
+  'ChangeZone': (ev: { type: 'ChangeZone'; zoneID: number; zoneName: string }) => void;
 
   'ChangePrimaryPlayer': (ev: {
     type: 'ChangePrimaryPlayer';
@@ -143,27 +133,18 @@ export interface EventMap {
     charName: string;
   }) => void;
 
-  'FileChanged': (ev: {
-    type: 'FileChanged';
-    file: string;
-  }) => void;
+  'FileChanged': (ev: { type: 'FileChanged'; file: string }) => void;
 
   'OnlineStatusChanged': (ev: {
     type: 'OnlineStatusChanged';
-    target: string; rawStatus:
-    number; status: string;
+    target: string;
+    rawStatus: number;
+    status: string;
   }) => void;
 
-  'PartyChanged': (ev: {
-    type: 'PartyChanged';
-    party: Party[];
-  }) => void;
+  'PartyChanged': (ev: { type: 'PartyChanged'; party: Party[] }) => void;
 
-  'BroadcastMessage': (ev: {
-    type: 'BroadcastMessage';
-    source: string;
-    msg: unknown;
-  }) => void;
+  'BroadcastMessage': (ev: { type: 'BroadcastMessage'; source: string; msg: unknown }) => void;
 
   'EnmityTargetData': (ev: {
     type: 'EnmityTargetData';
@@ -178,9 +159,7 @@ export interface EventMap {
 
   // #region Cactbot Event
   // Fill up all event types
-  'onForceReload': (ev: {
-    type: 'onForceReload';
-  }) => void;
+  'onForceReload': (ev: { type: 'onForceReload' }) => void;
 
   'onGameExistsEvent': (ev: {
     type: 'onGameExistsEvent';
@@ -244,23 +223,13 @@ export interface EventMap {
     };
   }) => void;
 
-  'onPlayerDied': (ev: {
-    type: 'onPlayerDied';
-  }) => void;
+  'onPlayerDied': (ev: { type: 'onPlayerDied' }) => void;
 
-  'onPartyWipe': (ev: {
-    type: 'onPartyWipe';
-  }) => void;
+  'onPartyWipe': (ev: { type: 'onPartyWipe' }) => void;
 
-  'onPlayerChangedEvent': (ev: {
-    type: 'onPlayerChangedEvent';
-    detail: PlayerChangedRet;
-  }) => void;
+  'onPlayerChangedEvent': (ev: { type: 'onPlayerChangedEvent'; detail: PlayerChangedRet }) => void;
 
-  'onUserFileChanged': (ev: {
-    type: 'onUserFileChanged';
-    file: string;
-  }) => void;
+  'onUserFileChanged': (ev: { type: 'onUserFileChanged'; file: string }) => void;
   // #endregion
 }
 
@@ -288,19 +257,25 @@ interface CactbotLoadUserRet {
 }
 
 // Structured JSON data saved in OverlayPlugin config files.
-export type SavedConfigEntry = string | number | boolean | [ SavedConfigEntry] |
-   { [nestedName: string]: SavedConfigEntry };
+export type SavedConfigEntry =
+  | string
+  | number
+  | boolean
+  | [SavedConfigEntry]
+  | { [nestedName: string]: SavedConfigEntry };
 export type SavedConfig = {
   [overlayName: string]: SavedConfigEntry;
 };
 
-type PlayerChangedJobDetails<T> = {
-  job: T;
-  jobDetail: JobDetail[T];
-} | {
-  job: Job;
-  jobDetail: null;
-}
+type PlayerChangedJobDetails<T> =
+  | {
+      job: T;
+      jobDetail: JobDetail[T];
+  }
+  | {
+      job: Job;
+      jobDetail: null;
+  };
 
 type PlayerChangedBase = {
   name: string;
@@ -324,8 +299,11 @@ type PlayerChangedBase = {
   debugJob: string;
 };
 
-type PlayerChangedRet = Job extends infer T ? T extends Job ?
-  PlayerChangedJobDetails<T> & PlayerChangedBase : never : never;
+type PlayerChangedRet = Job extends infer T
+  ? T extends Job
+    ? PlayerChangedJobDetails<T> & PlayerChangedBase
+    : never
+  : never;
 
 // Member names taken from OverlayPlugin's MiniParse.cs
 // Types taken from FFXIV parser plugin
@@ -363,40 +341,19 @@ export type GetCombatantsRet = { combatants: PluginCombatantState[] };
 
 export type IOverlayHandler = {
   // OutputPlugin build-in
-  (msg: {
-    call: 'subscribe';
-    events: string[];
-  }): Promise<null>;
+  (msg: { call: 'subscribe'; events: string[] }): Promise<null>;
   (msg: GetCombatantsCall): Promise<GetCombatantsRet>;
   // TODO: add OverlayPlugin build-in handlers
   // Cactbot
   // TODO: fill up all handler types
-  (msg: {
-    call: 'cactbotReloadOverlays';
-  }): Promise<null>;
-  (msg: {
-    call: 'cactbotLoadUser';
-    source: string;
-    overlayName: string;
-  }): Promise<{ detail: CactbotLoadUserRet }>;
-  (msg: {
-    call: 'cactbotRequestPlayerUpdate';
-  }): Promise<null>;
-  (msg: {
-    call: 'cactbotRequestState';
-  }): Promise<null>;
-  (msg: {
-    call: 'cactbotSay';
-    text: string;
-  }): Promise<null>;
-  (msg: {
-    call: 'cactbotSaveData';
-  }): Promise<null>;
-  (msg: {
-    call: 'cactbotLoadData';
-    overlay: string;
-  }): Promise<{ data: SavedConfig } | null>;
-  <T>(msg: {
-    call: 'cactbotChooseDirectory';
-  }): Promise<{ data: T } | null>;
+  (msg: { call: 'cactbotReloadOverlays' }): Promise<null>;
+  (msg: { call: 'cactbotLoadUser'; source: string; overlayName: string }): Promise<{
+    detail: CactbotLoadUserRet;
+  }>;
+  (msg: { call: 'cactbotRequestPlayerUpdate' }): Promise<null>;
+  (msg: { call: 'cactbotRequestState' }): Promise<null>;
+  (msg: { call: 'cactbotSay'; text: string }): Promise<null>;
+  (msg: { call: 'cactbotSaveData' }): Promise<null>;
+  (msg: { call: 'cactbotLoadData'; overlay: string }): Promise<{ data: SavedConfig } | null>;
+  <T>(msg: { call: 'cactbotChooseDirectory' }): Promise<{ data: T } | null>;
 };

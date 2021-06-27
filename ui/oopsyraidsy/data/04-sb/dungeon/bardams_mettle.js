@@ -3,7 +3,6 @@ import ZoneId from '../../../../../resources/zone_id';
 
 // Bardam's Mettle
 
-
 // For reasons not completely understood at the time this was merged,
 // but likely related to the fact that no nameplates are visible during the encounter,
 // and that nothing in the encounter actually does damage,

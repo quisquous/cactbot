@@ -1,4 +1,9 @@
-import { callOverlayHandler, addOverlayListener, removeOverlayListener, setCallOverlayHandlerOverride } from '../../../../resources/overlay_plugin_api';
+import {
+  callOverlayHandler,
+  addOverlayListener,
+  removeOverlayListener,
+  setCallOverlayHandlerOverride,
+} from '../../../../resources/overlay_plugin_api';
 
 const excludedReqProps = ['source'];
 const excludedRespProps = ['rseq'];
@@ -72,8 +77,9 @@ export default class RaidEmulatorOverlayApiHook {
     }
     // @TODO: Move this to track properly on the Combatant object
     combatants.forEach((c) => {
-      const lines = this.emulator.currentEncounter.encounter.logLines
-        .filter((l) => l.decEvent === 3 && l.id === c.ID);
+      const lines = this.emulator.currentEncounter.encounter.logLines.filter(
+          (l) => l.decEvent === 3 && l.id === c.ID,
+      );
       if (lines.length > 0) {
         c.OwnerID = parseInt(lines[0].ownerId);
         c.BNpcNameID = parseInt(lines[0].npcNameId);

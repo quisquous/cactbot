@@ -15,7 +15,6 @@ export default {
       beforeSeconds: 5,
       response: Responses.knockback('info'),
     },
-
   ],
   triggers: [
     {

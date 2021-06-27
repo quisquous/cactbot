@@ -221,8 +221,8 @@ export default {
 
         const isClone = Math.hypot(posX, posY) > 10;
         // 0 = N, 1 = E, etc
-        const pos = Math.round(2 - 2 * Math.atan2(posX, posY) / Math.PI) % 4;
-        const heading = Math.round(2 - 2 * data.seekerFirstMercy.heading / Math.PI) % 4;
+        const pos = Math.round(2 - (2 * Math.atan2(posX, posY)) / Math.PI) % 4;
+        const heading = Math.round(2 - (2 * data.seekerFirstMercy.heading) / Math.PI) % 4;
         const cleaves = data.seekerSwords;
 
         // For boss, rotate so that front = cardinal north.
@@ -292,7 +292,6 @@ export default {
           return;
         }
 
-
         // Find the cleave we're missing and add it to the list.
         const finalCleaveList = ['F7', 'F8', 'F9', 'FA'].filter((id) => !cleaves.includes(id));
         if (finalCleaveList.length !== 1) {
@@ -332,8 +331,7 @@ export default {
           [offsetDir.frontLeft]: output.dirSE(),
         };
 
-        const offsetCleaveToDirection = isClone
-          ? cloneOffsetCleaveToDirection : bossOffsetCleaveToDirection;
+        const offsetCleaveToDirection = isClone ? cloneOffsetCleaveToDirection : bossOffsetCleaveToDirection;
 
         data.calledSeekerSwords = true;
         const dirs = offsetCleaves.map((dir) => offsetCleaveToDirection[dir]);
@@ -678,7 +676,7 @@ export default {
         const [firstDir, secondDir] = data.seekerCometData.map((comet) => {
           const x = comet.PosX - seekerCenterX;
           const y = comet.PosY - seekerCenterY;
-          const dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+          const dir = Math.round(4 - (4 * Math.atan2(x, y)) / Math.PI) % 8;
           return dir;
         });
 
@@ -693,16 +691,7 @@ export default {
           safeDir = firstDir === 7 ? safeDir = 6 : safeDir = 1;
         }
 
-        const initialDir = [
-          'north',
-          'northeast',
-          'east',
-          'southeast',
-          'south',
-          'southwest',
-          'west',
-          'northwest',
-        ][safeDir];
+        const initialDir = ['north', 'northeast', 'east', 'southeast', 'south', 'southwest', 'west', 'northwest'][safeDir];
 
         return output.text({ dir: output[initialDir](), rotate: rotateStr });
       },
@@ -1631,8 +1620,7 @@ export default {
           '1': output.minusOne(),
           '2': output.minusTwo(),
         };
-        const arrowStr = effectiveTemperature in tempToOutput
-          ? tempToOutput[effectiveTemperature] : output.unknownTemperature();
+        const arrowStr = effectiveTemperature in tempToOutput ? tempToOutput[effectiveTemperature] : output.unknownTemperature();
 
         const marchStr = {
           '50D': output.forwards(),
@@ -1752,8 +1740,7 @@ export default {
           '1': output.minusOne(),
           '2': output.minusTwo(),
         };
-        const meteorStr = effectiveTemperature in tempToOutput
-          ? tempToOutput[effectiveTemperature] : output.unknownTemperature();
+        const meteorStr = effectiveTemperature in tempToOutput ? tempToOutput[effectiveTemperature] : output.unknownTemperature();
 
         const marchStr = {
           '50D': output.forwards(),
@@ -1936,7 +1923,7 @@ export default {
         const getFacing = (combatant) => {
           // Snap heading to closest card.
           // N = 0, E = 1, S = 2, W = 3
-          return (2 - Math.round(combatant.Heading * 4 / Math.PI) / 2) % 4;
+          return (2 - Math.round((combatant.Heading * 4) / Math.PI) / 2) % 4;
         };
 
         const getUnwaveringPosition = (combatant) => {
@@ -1944,14 +1931,13 @@ export default {
           const y = combatant.PosY + 87;
           const x = combatant.PosX + 277;
           // N = 0, E = 1, S = 2, W = 3
-          return Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4;
+          return Math.round(2 - (2 * Math.atan2(x, y)) / Math.PI) % 4;
         };
 
         // we need to filter for the Trinity Avowed with the lowest ID
         // that one is always cleaving on one of the cardinals
         // Trinity Avowed is always East (-267, -87)
-        const eastCombatant =
-          combatantDataBoss.combatants.sort((a, b) => b.ID - a.ID).pop();
+        const eastCombatant = combatantDataBoss.combatants.sort((a, b) => b.ID - a.ID).pop();
 
         // we need to filter for the three Avowed Avatars with the lowest IDs
         // as they cast cleave at the different cardinals
@@ -2018,8 +2004,7 @@ export default {
         // clone and the middle square is safe
         let safeZone = null;
         let adjacentZones = {};
-        if ((northCombatantFacing === dirNum.north && bladeSides[northCombatantBlade]) ||
-          (northCombatantFacing === dirNum.south && !bladeSides[northCombatantBlade])) {
+        if ((northCombatantFacing === dirNum.north && bladeSides[northCombatantBlade]) || (northCombatantFacing === dirNum.south && !bladeSides[northCombatantBlade])) {
           // North clone cleaving inside east (and therefore east clone cleaving north).
           safeZone = output.southwest();
           adjacentZones = {
@@ -2028,8 +2013,7 @@ export default {
             [dirNum.south]: bladeValues[southCombatantBlade],
             [dirNum.west]: bladeValues[westCombatantBlade],
           };
-        } else if ((northCombatantFacing === dirNum.north && !bladeSides[northCombatantBlade]) ||
-          (northCombatantFacing === dirNum.south && bladeSides[northCombatantBlade])) {
+        } else if ((northCombatantFacing === dirNum.north && !bladeSides[northCombatantBlade]) || (northCombatantFacing === dirNum.south && bladeSides[northCombatantBlade])) {
           // North clone cleaving inside west (and therefore west clone cleaving north).
           safeZone = output.southeast();
           adjacentZones = {
@@ -2038,8 +2022,7 @@ export default {
             [dirNum.south]: bladeValues[southCombatantBlade],
             [dirNum.west]: bladeValues[northCombatantBlade],
           };
-        } else if ((southCombatantFacing === dirNum.south && bladeSides[southCombatantBlade]) ||
-          (southCombatantFacing === dirNum.north && !bladeSides[southCombatantBlade])) {
+        } else if ((southCombatantFacing === dirNum.south && bladeSides[southCombatantBlade]) || (southCombatantFacing === dirNum.north && !bladeSides[southCombatantBlade])) {
           // South clone cleaving inside west (and therefore west clone cleaving south).
           safeZone = output.northeast();
           adjacentZones = {
@@ -2048,8 +2031,7 @@ export default {
             [dirNum.south]: bladeValues[westCombatantBlade],
             [dirNum.west]: bladeValues[southCombatantBlade],
           };
-        } else if ((southCombatantFacing === dirNum.north && bladeSides[southCombatantBlade]) ||
-          (southCombatantFacing === dirNum.south && !bladeSides[southCombatantBlade])) {
+        } else if ((southCombatantFacing === dirNum.north && bladeSides[southCombatantBlade]) || (southCombatantFacing === dirNum.south && !bladeSides[southCombatantBlade])) {
           // South clone cleaving inside east (and therefore east clone cleaving south).
           safeZone = output.northwest();
           adjacentZones = {
@@ -2072,8 +2054,7 @@ export default {
         let adjacentZone = null;
         if (effectiveTemperature && adjacentZones) {
           // Find the adjacent zone that gets closest to 0
-          const calculatedZones = Object.values(adjacentZones).map((i) =>
-            Math.abs(effectiveTemperature + i));
+          const calculatedZones = Object.values(adjacentZones).map((i) => Math.abs(effectiveTemperature + i));
 
           // Use zone closest to zero as output
           const dirs = {
@@ -2082,8 +2063,7 @@ export default {
             [dirNum.south]: output.south(),
             [dirNum.west]: output.west(),
           };
-          adjacentZone = dirs[Object.values(calculatedZones).indexOf(calculatedZones.sort((a, b) =>
-            b - a).pop())];
+          adjacentZone = dirs[Object.values(calculatedZones).indexOf(calculatedZones.sort((a, b) => b - a).pop())];
         }
 
         // Callout safe spot and get cleaved spot if both are known

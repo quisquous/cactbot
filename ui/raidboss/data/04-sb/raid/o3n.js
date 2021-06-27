@@ -69,6 +69,8 @@ export default {
           if (data.holyTargets[i] === data.me)
             return output.out();
         }
+
+
         return output.stackOnHolytargets({ player: data.holyTargets[0] });
       },
       run: (data) => delete data.holyTargets,

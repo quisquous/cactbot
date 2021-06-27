@@ -27,7 +27,21 @@ export default class ResourceBar extends HTMLElement {
   private _connected: boolean;
 
   static get observedAttributes(): string[] {
-    return ['value', 'maxvalue', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'toward', 'stylefill', 'extravalue', 'extracolor'];
+    return [
+      'value',
+      'maxvalue',
+      'lefttext',
+      'centertext',
+      'righttext',
+      'width',
+      'height',
+      'bg',
+      'fg',
+      'toward',
+      'stylefill',
+      'extravalue',
+      'extracolor',
+    ];
   }
 
   // All visual dimensions are scaled by this.
@@ -413,14 +427,16 @@ export default class ResourceBar extends HTMLElement {
 
     const halfHeight = (this._height - this.kBorderSize * 2) * this._scale * 0.5;
     extraOverStyle.height = halfHeight.toString();
-    extraOverStyle.top = (halfHeight + (this.kBorderSize * this._scale)).toString();
+    extraOverStyle.top = (halfHeight + this.kBorderSize * this._scale).toString();
 
     const widthPadding = this.kBorderSize * 4 + this.kTextLeftRightEdgePadding * 2;
     lTextStyle.width = ((this._width - widthPadding) * this._scale).toString();
     const heightPadding = this.kBorderSize * 4 + this.kTextTopBottomEdgePadding * 2;
     lTextStyle.height = ((this._height - heightPadding) * this._scale).toString();
-    lTextStyle.left =
-      ((this.kBorderSize + this.kTextLeftRightEdgePadding) * this._scale).toString();
+    lTextStyle.left = (
+      (this.kBorderSize + this.kTextLeftRightEdgePadding) *
+      this._scale
+    ).toString();
     lTextStyle.top = ((this.kBorderSize + this.kTextTopBottomEdgePadding) * this._scale).toString();
     lTextStyle.fontSize = lTextStyle.height;
 
@@ -433,17 +449,26 @@ export default class ResourceBar extends HTMLElement {
 
   updateText(): void {
     // These values are filled in during draw() when the values change.
-    if (this._leftText !== 'value' && this._leftText !== 'maxvalue' &&
-        this._leftText !== 'percent') {
+    if (
+      this._leftText !== 'value' &&
+      this._leftText !== 'maxvalue' &&
+      this._leftText !== 'percent'
+    ) {
       // Otherwise the value is fixed so it can be set here.
       this.leftTextElement.innerHTML = this._leftText;
     }
-    if (this._centerText !== 'value' && this._centerText !== 'maxvalue' &&
-        this._centerText !== 'percent')
+    if (
+      this._centerText !== 'value' &&
+      this._centerText !== 'maxvalue' &&
+      this._centerText !== 'percent'
+    )
       this.centerTextElement.innerHTML = this._centerText;
 
-    if (this._rightText !== 'value' && this._rightText !== 'maxvalue' &&
-        this._rightText !== 'percent')
+    if (
+      this._rightText !== 'value' &&
+      this._rightText !== 'maxvalue' &&
+      this._rightText !== 'percent'
+    )
       this.rightTextElement.innerHTML = this._rightText;
   }
 

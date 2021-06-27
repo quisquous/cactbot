@@ -3,7 +3,7 @@ import { Bars } from '../bar';
 import { kAbility } from '../constants';
 import { computeBackgroundColorFrom } from '../utils';
 
-let resetFunc: ((bars: Bars) => void) = (_bars: Bars) => undefined;
+let resetFunc: (bars: Bars) => void = (_bars: Bars) => undefined;
 let tid1: ReturnType<typeof setTimeout>;
 let tid2: ReturnType<typeof setTimeout>;
 let tid3: ReturnType<typeof setTimeout>;

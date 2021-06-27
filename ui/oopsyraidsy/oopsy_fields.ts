@@ -11,8 +11,4 @@ export const oopsyTriggerSetOutputFields = [
 
 // TODO: use this for testing validity of oopsy trigger sets in the event
 // that we eventually get oopsy unit tests.  /o\
-export const oopsyTriggerSetFields = [
-  'zoneId',
-  'zoneRegex',
-  ...oopsyTriggerSetOutputFields,
-];
+export const oopsyTriggerSetFields = ['zoneId', 'zoneRegex', ...oopsyTriggerSetOutputFields];

@@ -13,22 +13,41 @@ export class LineEvent0x1E extends LineEvent0x1A {
     super(repo, line, parts);
 
     let stackCountText = '';
-    if (this.stacks > 0 && this.stacks < 20 &&
-      LineEvent0x1A.showStackCountFor.includes(this.abilityId))
+    if (
+      this.stacks > 0 &&
+      this.stacks < 20 &&
+      LineEvent0x1A.showStackCountFor.includes(this.abilityId)
+    )
       stackCountText = ' (' + this.stacks.toString() + ')';
 
-    this.convertedLine = this.prefix() + this.targetId +
-      ':' + this.targetName +
-      ' loses the effect of ' + this.abilityName +
-      ' from ' + this.fallbackResolvedTargetName +
-      ' for ' + this.durationString + ' Seconds.' + stackCountText;
+    this.convertedLine =
+      this.prefix() +
+      this.targetId +
+      ':' +
+      this.targetName +
+      ' loses the effect of ' +
+      this.abilityName +
+      ' from ' +
+      this.fallbackResolvedTargetName +
+      ' for ' +
+      this.durationString +
+      ' Seconds.' +
+      stackCountText;
 
-    this.properCaseConvertedLine = this.prefix() + this.targetId +
-      ':' + EmulatorCommon.properCase(this.targetName) +
-      ' loses the effect of ' + this.abilityName +
-      ' from ' + EmulatorCommon.properCase(this.fallbackResolvedTargetName) +
-      ' for ' + this.durationString + ' Seconds.' + stackCountText;
+    this.properCaseConvertedLine =
+      this.prefix() +
+      this.targetId +
+      ':' +
+      EmulatorCommon.properCase(this.targetName) +
+      ' loses the effect of ' +
+      this.abilityName +
+      ' from ' +
+      EmulatorCommon.properCase(this.fallbackResolvedTargetName) +
+      ' for ' +
+      this.durationString +
+      ' Seconds.' +
+      stackCountText;
   }
 }
 
-export class LineEvent30 extends LineEvent0x1E { }
+export class LineEvent30 extends LineEvent0x1E {}

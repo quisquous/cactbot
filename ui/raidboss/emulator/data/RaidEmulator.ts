@@ -64,8 +64,8 @@ export default class RaidEmulator extends EventBus {
 
     const firstIndex = this.currentEncounter.encounter.firstLineIndex;
 
-    this.currentLogTime = this.currentLogTime ??
-      this.currentEncounter.encounter.logLines[firstIndex]?.timestamp;
+    this.currentLogTime =
+      this.currentLogTime ?? this.currentEncounter.encounter.logLines[firstIndex]?.timestamp;
     this.currentLogLineIndex = this.currentLogLineIndex || firstIndex - 1;
     this.lastTickTime = Date.now();
     // Need to use a local function make eslint happy, or ignore the eslint rule here?
@@ -103,9 +103,11 @@ export default class RaidEmulator extends EventBus {
     const playing = this.playingInterval !== undefined;
     if (playing)
       this.pause();
-    for (let i = this.currentLogLineIndex + 1;
+    for (
+      let i = this.currentLogLineIndex + 1;
       i < this.currentEncounter.encounter.logLines.length;
-      ++i) {
+      ++i
+    ) {
       const line = this.currentEncounter.encounter.logLines[i];
       if (!line)
         throw new UnreachableCode();
@@ -138,9 +140,13 @@ export default class RaidEmulator extends EventBus {
   }
 
   async tick(): Promise<void> {
-    if (this.currentLogLineIndex === undefined || !this.currentEncounter ||
-      this.lastTickTime === undefined || this.currentLogTime === undefined ||
-      !this.currentEncounter.encounter)
+    if (
+      this.currentLogLineIndex === undefined ||
+      !this.currentEncounter ||
+      this.lastTickTime === undefined ||
+      this.currentLogTime === undefined ||
+      !this.currentEncounter.encounter
+    )
       throw new UnreachableCode();
     if (this.currentLogLineIndex + 1 >= this.currentEncounter.encounter.logLines.length) {
       this.pause();
@@ -151,9 +157,11 @@ export default class RaidEmulator extends EventBus {
     const logs = [];
     const timeDiff = Date.now() - this.lastTickTime;
     const lastTimestamp = this.currentLogTime + timeDiff;
-    for (let i = this.currentLogLineIndex + 1;
+    for (
+      let i = this.currentLogLineIndex + 1;
       i < this.currentEncounter.encounter.logLines.length;
-      ++i) {
+      ++i
+    ) {
       const line = this.currentEncounter.encounter.logLines[i];
       if (!line)
         throw new UnreachableCode();

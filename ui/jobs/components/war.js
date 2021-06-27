@@ -57,8 +57,7 @@ export function setup(bars) {
 
     // Because thresholds are nonmonotonic (when finishing a combo)
     // be careful about setting them in ways that are visually poor.
-    if (eyeBox.value >= oldThreshold &&
-      eyeBox.value >= newThreshold)
+    if (eyeBox.value >= oldThreshold && eyeBox.value >= newThreshold)
       eyeBox.threshold = newThreshold;
     else
       eyeBox.threshold = oldThreshold;

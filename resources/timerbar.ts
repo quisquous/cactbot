@@ -25,7 +25,22 @@ export default class TimerBar extends HTMLElement {
   private _animationFrame: number | null;
 
   static get observedAttributes(): string[] {
-    return ['duration', 'value', 'elapsed', 'hideafter', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'stylefill', 'toward', 'loop'];
+    return [
+      'duration',
+      'value',
+      'elapsed',
+      'hideafter',
+      'lefttext',
+      'centertext',
+      'righttext',
+      'width',
+      'height',
+      'bg',
+      'fg',
+      'stylefill',
+      'toward',
+      'loop',
+    ];
   }
 
   // Background color.
@@ -88,7 +103,7 @@ export default class TimerBar extends HTMLElement {
     if (!this._start)
       return this._duration.toString();
     const elapsedMs = new Date().getTime() - this._start;
-    return Math.max(0, this._duration - (elapsedMs / 1000)).toString();
+    return Math.max(0, this._duration - elapsedMs / 1000).toString();
   }
 
   // The elapsed time.
@@ -489,9 +504,11 @@ export default class TimerBar extends HTMLElement {
 
   // Apply all styles from an object where keys are CSS properties
   applyStyles(styles: { [s: string]: string }): void {
-    const s = Object.keys(styles).map((k) => {
-      return `${k}:${styles?.[k] ?? ''};`;
-    }).join('');
+    const s = Object.keys(styles)
+      .map((k) => {
+        return `${k}:${styles?.[k] ?? ''};`;
+      })
+      .join('');
 
     const left = this.shadowRoot?.getElementById('lefttext');
     const center = this.shadowRoot?.getElementById('centertext');
@@ -505,7 +522,7 @@ export default class TimerBar extends HTMLElement {
 
   setvalue(remainSec: number): void {
     const elapsedSec = Math.max(0, this._duration - remainSec);
-    this._start = new Date().getTime() - (elapsedSec * 1000);
+    this._start = new Date().getTime() - elapsedSec * 1000;
 
     if (!this._connected)
       return;
@@ -523,7 +540,7 @@ export default class TimerBar extends HTMLElement {
       // Timer completed
       if (this._loop && this._duration > 0) {
         // Sets the remaining time to include any extra elapsed seconds past the duration
-        this.setvalue(this._duration + (this._duration - elapsedSec) % this._duration);
+        this.setvalue(this._duration + ((this._duration - elapsedSec) % this._duration));
         return;
       }
 
@@ -555,7 +572,6 @@ export default class TimerBar extends HTMLElement {
       this.rootElement.style.display = 'none';
   }
 }
-
 
 window.customElements.define('timer-bar', TimerBar);
 

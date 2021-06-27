@@ -18,8 +18,10 @@ export const walkDirSync = (dir: string, callback: (filename: string) => void): 
 
 // Allows for an asynchronous callback, but still serializes them all
 // and does not run them in parallel.
-export const walkDirAsync = async (dir: string,
-    callback: (filename: string) => Promise<void>): Promise<void> => {
+export const walkDirAsync = async (
+    dir: string,
+    callback: (filename: string) => Promise<void>,
+): Promise<void> => {
   if (fs.statSync(dir).isFile()) {
     await callback(path.posix.join(dir));
     return;

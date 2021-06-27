@@ -22,7 +22,8 @@ module.exports = {
       },
     ],
     messages: {
-      sortKeys: 'Expected trigger properties ordered like {{expectedOrder}} (\'{{beforeKey}}\' should be before \'{{nextKey}}\')',
+      sortKeys:
+        'Expected trigger properties ordered like {{expectedOrder}} (\'{{beforeKey}}\' should be before \'{{nextKey}}\')',
     },
   },
   create: (context) => {
@@ -81,7 +82,9 @@ module.exports = {
       return;
     const orderList = optionModule === 'oopsyraidsy' ? oopsyraidsyOrderList : raidbossOrderList;
     return {
-      'Property[key.name=/(timelineTriggers|triggers)/] > ArrayExpression > ObjectExpression': (node) => {
+      'Property[key.name=/(timelineTriggers|triggers)/] > ArrayExpression > ObjectExpression': (
+          node,
+      ) => {
         const properties = node.properties;
 
         const validList = generateValidList(orderList, properties);

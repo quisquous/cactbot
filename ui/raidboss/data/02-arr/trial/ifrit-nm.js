@@ -34,8 +34,7 @@ export default {
       },
     },
   ],
-  triggers: [
-  ],
+  triggers: [],
   timelineReplace: [
     {
       'locale': 'de',

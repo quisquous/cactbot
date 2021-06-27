@@ -41,8 +41,7 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
       for (const bar of this.emulatedTimerBars)
         this.updateBar(bar, currentLogTime);
 
-      const toRemove = this.emulatedTimerBars
-        .filter((bar) => bar.forceRemoveAt <= currentLogTime);
+      const toRemove = this.emulatedTimerBars.filter((bar) => bar.forceRemoveAt <= currentLogTime);
       for (const bar of toRemove)
         bar.$progress.remove();
 
@@ -112,8 +111,8 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
     if (!this.timeline)
       throw new UnreachableCode();
 
-    const end = this.timeline.timebase + (e.time * 1000);
-    const start = end - (this.options.ShowTimerBarsAtSeconds * 1000);
+    const end = this.timeline.timebase + e.time * 1000;
+    const start = end - this.options.ShowTimerBarsAtSeconds * 1000;
     const $progress = this.$progressTemplate.cloneNode(true);
     if (!($progress instanceof HTMLElement))
       throw new UnreachableCode();
@@ -122,10 +121,13 @@ export default class RaidEmulatorTimelineUI extends TimelineUI {
     const $progLeft = $progress.querySelector('.timer-bar-left-label');
     const $progRight = $progress.querySelector('.timer-bar-right-label');
 
-    if (!(
-      $progBar instanceof HTMLDivElement &&
-      $progLeft instanceof HTMLElement &&
-      $progRight instanceof HTMLElement))
+    if (
+      !(
+        $progBar instanceof HTMLDivElement &&
+        $progLeft instanceof HTMLElement &&
+        $progRight instanceof HTMLElement
+      )
+    )
       throw new UnreachableCode();
 
     const bar: EmulatorTimerBar = {

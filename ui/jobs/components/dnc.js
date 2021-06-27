@@ -38,27 +38,33 @@ export function setup(bars) {
   let technicalIsActive = false;
   let elapsed = 0;
 
-  bars.onUseAbility([
-    kAbility.QuadrupleTechnicalFinish,
-    kAbility.TripleTechnicalFinish,
-    kAbility.DoubleTechnicalFinish,
-    kAbility.SingleTechnicalFinish,
-  ], () => {
-    // Avoid multiple call in one TechnicalFinish.
-    if (technicalIsActive)
-      return;
-    elapsed = technicalStep.elapsed;
-    technicalIsActive = true;
-    technicalStep.duration = 20;
-    technicalStep.threshold = 1000;
-    technicalStep.fg = computeBackgroundColorFrom(technicalStep, 'dnc-color-technicalstep.active');
-    tid1 = setTimeout(() => {
-      technicalIsActive = false;
-      technicalStep.duration = 100 - elapsed;
-      technicalStep.threshold = bars.gcdSkill + 1;
-      technicalStep.fg = computeBackgroundColorFrom(technicalStep, 'dnc-color-technicalstep');
-    }, technicalStep.duration * 1000);
-  });
+  bars.onUseAbility(
+      [
+        kAbility.QuadrupleTechnicalFinish,
+        kAbility.TripleTechnicalFinish,
+        kAbility.DoubleTechnicalFinish,
+        kAbility.SingleTechnicalFinish,
+      ],
+      () => {
+      // Avoid multiple call in one TechnicalFinish.
+        if (technicalIsActive)
+          return;
+        elapsed = technicalStep.elapsed;
+        technicalIsActive = true;
+        technicalStep.duration = 20;
+        technicalStep.threshold = 1000;
+        technicalStep.fg = computeBackgroundColorFrom(
+            technicalStep,
+            'dnc-color-technicalstep.active',
+        );
+        tid1 = setTimeout(() => {
+          technicalIsActive = false;
+          technicalStep.duration = 100 - elapsed;
+          technicalStep.threshold = bars.gcdSkill + 1;
+          technicalStep.fg = computeBackgroundColorFrom(technicalStep, 'dnc-color-technicalstep');
+        }, technicalStep.duration * 1000);
+      },
+  );
 
   // When cast Flourish, show proc remain time until all procs have been used.
   const flourish = bars.addProcBox({
@@ -80,23 +86,25 @@ export function setup(bars) {
       flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
     }, flourish.duration * 1000);
   });
-  bars.onYouLoseEffect([
-    EffectId.FlourishingCascade,
-    EffectId.FlourishingFountain,
-    EffectId.FlourishingShower,
-    EffectId.FlourishingWindmill,
-    EffectId.FlourishingFanDance,
-  ], (effect) => {
-    if (!flourishEffect.includes(effect))
-      flourishEffect.push(effect);
-    if (flourishEffect.length === 5 && flourishIsActive) {
-      flourish.duration = 60 - flourish.elapsed;
-      flourishIsActive = false;
-      flourish.threshold = bars.gcdSkill + 1;
-      flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
-    }
-  });
-
+  bars.onYouLoseEffect(
+      [
+        EffectId.FlourishingCascade,
+        EffectId.FlourishingFountain,
+        EffectId.FlourishingShower,
+        EffectId.FlourishingWindmill,
+        EffectId.FlourishingFanDance,
+      ],
+      (effect) => {
+        if (!flourishEffect.includes(effect))
+          flourishEffect.push(effect);
+        if (flourishEffect.length === 5 && flourishIsActive) {
+          flourish.duration = 60 - flourish.elapsed;
+          flourishIsActive = false;
+          flourish.threshold = bars.gcdSkill + 1;
+          flourish.fg = computeBackgroundColorFrom(flourish, 'dnc-color-flourish');
+        }
+      },
+  );
 
   const featherGauge = bars.addResourceBox({
     classList: ['dnc-color-feather'],

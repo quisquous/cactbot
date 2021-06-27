@@ -92,13 +92,12 @@ export function setup(bars) {
     id: 'sam-procs-tsubamegaeshi',
     fgColor: 'sam-color-tsubamegaeshi',
   });
-  bars.onUseAbility([
-    kAbility.KaeshiHiganbana,
-    kAbility.KaeshiGoken,
-    kAbility.KaeshiSetsugekka,
-  ], () => {
-    tsubameGaeshi.duration = 60;
-  });
+  bars.onUseAbility(
+      [kAbility.KaeshiHiganbana, kAbility.KaeshiGoken, kAbility.KaeshiSetsugekka],
+      () => {
+        tsubameGaeshi.duration = 60;
+      },
+  );
 
   const higanbana = bars.addProcBox({
     id: 'sam-procs-higanbana',

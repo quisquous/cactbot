@@ -28,7 +28,6 @@ import defaultOptions from './raidboss_options';
 import '../../resources/defaults.css';
 import './raidemulator.css';
 
-
 function showModal(selector) {
   const modal = document.querySelector(selector);
   const body = document.body;
@@ -116,11 +115,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Initialize the Raidboss components, bind them to the emulator for event listeners
   const timelineUI = new RaidEmulatorTimelineUI(options);
   timelineUI.bindTo(emulator);
-  const timelineController =
-      new RaidEmulatorTimelineController(options, timelineUI, raidbossFileData);
+  const timelineController = new RaidEmulatorTimelineController(
+      options,
+      timelineUI,
+      raidbossFileData,
+  );
   timelineController.bindTo(emulator);
   const popupText = new RaidEmulatorPopupText(
-      options, new TimelineLoader(timelineController), raidbossFileData);
+      options,
+      new TimelineLoader(timelineController),
+      raidbossFileData,
+  );
   popupText.bindTo(emulator);
 
   timelineController.SetPopupTextInterface(new PopupTextGenerator(popupText));
@@ -172,7 +177,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       const firstTimestamp = enc.logLines[0].timestamp;
       for (let i = 0; i < enc.logLines.length; ++i)
         enc.logLines[i].offset = enc.logLines[i].timestamp - firstTimestamp;
-
 
       enc.firstLineIndex = 0;
 
@@ -326,8 +330,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const $exportButton = document.querySelector('.exportDBButton');
 
-  new Tooltip($exportButton, 'bottom',
-      'Export DB is very slow and shows a 0 byte download, but it does work eventually.');
+  new Tooltip(
+      $exportButton,
+      'bottom',
+      'Export DB is very slow and shows a 0 byte download, but it does work eventually.',
+  );
 
   // Auto initialize all collapse elements on the page
   document.querySelectorAll('[data-toggle="collapse"]').forEach((n) => {

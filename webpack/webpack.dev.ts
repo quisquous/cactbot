@@ -11,9 +11,7 @@ const cactbotModulesOverride = {
 
 const cactbotHtmlChunksMapOverride = {
   'ui/test/timerbar_test.html': {
-    chunks: [
-      cactbotModulesOverride.timerbarTest,
-    ],
+    chunks: [cactbotModulesOverride.timerbarTest],
   },
   ...cactbotHtmlChunksMap,
 };

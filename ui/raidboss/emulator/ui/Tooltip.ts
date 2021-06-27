@@ -1,24 +1,13 @@
 import { UnreachableCode } from '../../../../resources/not_reached';
 
-const hideEvents = [
-  'mouseleave',
-  'blur',
-] as const;
+const hideEvents = ['mouseleave', 'blur'] as const;
 
-const validDirections = [
-  'top',
-  'right',
-  'bottom',
-  'left',
-] as const;
+const validDirections = ['top', 'right', 'bottom', 'left'] as const;
 type ValidDirection = typeof validDirections[number];
 
-const showEvents = [
-  'mouseenter',
-  'focus',
-] as const;
+const showEvents = ['mouseenter', 'focus'] as const;
 
-type TemplatesType = {[Property in ValidDirection]: HTMLTemplateElement};
+type TemplatesType = { [Property in ValidDirection]: HTMLTemplateElement };
 
 const toPx = (px: number): string => `${px}px`;
 
@@ -38,7 +27,8 @@ export default class Tooltip {
       private direction: ValidDirection,
       text: string,
       autoShow = true,
-      autoHide = true) {
+      autoHide = true,
+  ) {
     Tooltip.initializeTemplates();
 
     if (!(target instanceof HTMLElement)) {
@@ -83,30 +73,29 @@ export default class Tooltip {
   show(): void {
     const targetRect = this.target.getBoundingClientRect();
     const targetMiddle = {
-      x: targetRect.x + (targetRect.width / 2),
-      y: targetRect.y + (targetRect.height / 2),
+      x: targetRect.x + targetRect.width / 2,
+      y: targetRect.y + targetRect.height / 2,
     };
     const tooltipRect = this.tooltip.getBoundingClientRect();
     // Middle of tooltip - half of arrow height
-    const lrArrowHeight = (tooltipRect.height / 2) -
-      (this.arrow.getBoundingClientRect().height / 2);
+    const lrArrowHeight = tooltipRect.height / 2 - this.arrow.getBoundingClientRect().height / 2;
     switch (this.direction) {
     case 'top':
-      this.tooltip.style.left = toPx((targetMiddle.x - (tooltipRect.width / 2)) + this.offset.x);
-      this.tooltip.style.bottom = toPx((targetRect.y - tooltipRect.height) + this.offset.y);
+      this.tooltip.style.left = toPx(targetMiddle.x - tooltipRect.width / 2 + this.offset.x);
+      this.tooltip.style.bottom = toPx(targetRect.y - tooltipRect.height + this.offset.y);
       break;
     case 'right':
       this.tooltip.style.left = toPx(targetRect.right + this.offset.x);
-      this.tooltip.style.top = toPx((targetMiddle.y - (tooltipRect.height / 2)) + this.offset.y);
+      this.tooltip.style.top = toPx(targetMiddle.y - tooltipRect.height / 2 + this.offset.y);
       this.arrow.style.top = toPx(lrArrowHeight);
       break;
     case 'bottom':
-      this.tooltip.style.left = toPx((targetMiddle.x - (tooltipRect.width / 2)) + this.offset.x);
+      this.tooltip.style.left = toPx(targetMiddle.x - tooltipRect.width / 2 + this.offset.x);
       this.tooltip.style.top = toPx(targetRect.bottom + this.offset.y);
       break;
     case 'left':
-      this.tooltip.style.left = toPx((targetRect.left - tooltipRect.width) + this.offset.x);
-      this.tooltip.style.top = toPx((targetMiddle.y - (tooltipRect.height / 2)) + this.offset.y);
+      this.tooltip.style.left = toPx(targetRect.left - tooltipRect.width + this.offset.x);
+      this.tooltip.style.top = toPx(targetMiddle.y - tooltipRect.height / 2 + this.offset.y);
       this.arrow.style.top = toPx(lrArrowHeight);
       break;
     }

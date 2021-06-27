@@ -6,10 +6,7 @@ import ZoneInfo from '../../resources/zone_info';
 
 export const defaultOptions = {
   Language: 'en',
-  IgnoreContentTypes: [
-    ContentType.Pvp,
-    ContentType.Eureka,
-  ],
+  IgnoreContentTypes: [ContentType.Pvp, ContentType.Eureka],
 };
 
 let gIgnoreCurrentZone = false;

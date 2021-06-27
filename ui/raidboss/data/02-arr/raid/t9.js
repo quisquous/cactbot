@@ -279,7 +279,7 @@ export default {
         // Positions are the 8 cardinals + numerical slop on a radius=28 circle.
         // N = (0, -28), E = (28, 0), S = (0, 28), W = (-28, 0)
         // Map N = 0, NE = 1, ..., NW = 7
-        const dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+        const dir = Math.round(4 - (4 * Math.atan2(x, y)) / Math.PI) % 8;
 
         data.dragons = data.dragons || [0, 0, 0];
         data.dragons[idx] = dir;
@@ -309,16 +309,7 @@ export default {
         // The last one is single, so B is the last dragon + 1.
 
         const dragons = data.dragons.sort();
-        const dirNames = [
-          'north',
-          'northeast',
-          'east',
-          'southeast',
-          'south',
-          'southwest',
-          'west',
-          'northwest',
-        ];
+        const dirNames = ['north', 'northeast', 'east', 'southeast', 'south', 'southwest', 'west', 'northwest'];
         data.naelMarks = [dragons[0], dragons[2]].map((i) => dirNames[(i + 1) % 8]);
 
         // Safe zone is one to the left of the first dragon, unless
@@ -339,10 +330,11 @@ export default {
       netRegexCn: NetRegexes.startsUsing({ id: '7E6', source: '奈尔·神·达纳斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '7E6', source: '넬 데우스 다르누스', capture: false }),
       durationSeconds: 12,
-      infoText: (data, _matches, output) => output.marks({
-        dir1: output[data.naelMarks[0]](),
-        dir2: output[data.naelMarks[1]](),
-      }),
+      infoText: (data, _matches, output) =>
+        output.marks({
+          dir1: output[data.naelMarks[0]](),
+          dir2: output[data.naelMarks[1]](),
+        }),
       outputStrings: {
         ...diveDirections,
         marks: {

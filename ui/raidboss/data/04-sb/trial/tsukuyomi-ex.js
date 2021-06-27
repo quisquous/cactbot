@@ -176,12 +176,12 @@ export default {
       // There's no "starts using" here.  She pushes at 35% to this ability.
       // This happens after 2nd meteors naturally, but if dps is good
       // then this could push unexpectedly earlier (or paired with buster).
-      netRegex: NetRegexes.dialog({ line: '[^:]*:No\. No\.\.\. Not yet\. Not\. Yet\..*?', capture: false }),
-      netRegexDe: NetRegexes.dialog({ line: '[^:]*:Meine Rache \.\.\. Ich will\.\.\. meine Rache\.\.\..*?', capture: false }),
-      netRegexFr: NetRegexes.dialog({ line: '[^:]*:Non\, je ne peux pas\.\.\. échouer\.\.\..*?', capture: false }),
+      netRegex: NetRegexes.dialog({ line: '[^:]*:No. No... Not yet. Not. Yet..*?', capture: false }),
+      netRegexDe: NetRegexes.dialog({ line: '[^:]*:Meine Rache ... Ich will... meine Rache....*?', capture: false }),
+      netRegexFr: NetRegexes.dialog({ line: '[^:]*:Non, je ne peux pas... échouer....*?', capture: false }),
       netRegexJa: NetRegexes.dialog({ line: '[^:]*:嗚呼、まだ、あたしは…………。.*?', capture: false }),
       netRegexCn: NetRegexes.dialog({ line: '[^:]*:我不能输.*我还没有.*.*?', capture: false }),
-      netRegexKo: NetRegexes.dialog({ line: '[^:]*:아아, 나는 아직……\..*?', capture: false }),
+      netRegexKo: NetRegexes.dialog({ line: '[^:]*:아아, 나는 아직……..*?', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -267,7 +267,7 @@ export default {
     {
       'locale': 'de',
       'replaceSync': {
-        'No\. No\.\.\. Not yet\. Not\. Yet\.': 'Meine Rache ... Ich will... meine Rache...',
+        'No. No... Not yet. Not. Yet.': 'Meine Rache ... Ich will... meine Rache...',
         'Moondust': 'Mondfragment',
         'Moonlight': 'Mondlicht',
         'Specter(?! )': 'Trugbild',
@@ -316,7 +316,7 @@ export default {
     {
       'locale': 'fr',
       'replaceSync': {
-        'No\. No\.\.\. Not yet\. Not\. Yet\.': 'Non, je ne peux pas... échouer...',
+        'No. No... Not yet. Not. Yet.': 'Non, je ne peux pas... échouer...',
         'Moondust': 'fragment de lune',
         'Moonlight': 'Clair de lune',
         'Specter(?! )': 'Illusion protectrice',
@@ -362,7 +362,7 @@ export default {
     {
       'locale': 'ja',
       'replaceSync': {
-        'No\. No\.\.\. Not yet\. Not\. Yet\.': '嗚呼、まだ、あたしは…………。',
+        'No. No... Not yet. Not. Yet.': '嗚呼、まだ、あたしは…………。',
         'Moondust': '月の欠片',
         'Moonlight': '月光',
         'Specter(?! )': '幻影',
@@ -408,7 +408,7 @@ export default {
     {
       'locale': 'cn',
       'replaceSync': {
-        'No\. No\.\.\. Not yet\. Not\. Yet\.': '我不能输.*我还没有.*',
+        'No. No... Not yet. Not. Yet.': '我不能输.*我还没有.*',
         'Moondust': '月之碎片',
         'Moonlight': '月光',
         'Specter(?! )': '幻影',
@@ -453,7 +453,7 @@ export default {
     {
       'locale': 'ko',
       'replaceSync': {
-        'No\. No\.\.\. Not yet\. Not\. Yet\.': '아아, 나는 아직…….',
+        'No. No... Not yet. Not. Yet.': '아아, 나는 아직…….',
         'Moondust': '달조각',
         'Moonlight': '월광',
         'Specter(?! )': '환영',

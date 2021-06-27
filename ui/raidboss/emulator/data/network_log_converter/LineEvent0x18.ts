@@ -80,13 +80,25 @@ export class LineEvent0x18 extends LineEvent implements LineEventSource {
     if (effectName)
       effectPart = effectName + ' ';
 
-    this.convertedLine = this.prefix() + effectPart + this.type +
-      ' Tick on ' + resolvedName +
-      ' for ' + this.damage.toString() + ' damage.';
+    this.convertedLine =
+      this.prefix() +
+      effectPart +
+      this.type +
+      ' Tick on ' +
+      resolvedName +
+      ' for ' +
+      this.damage.toString() +
+      ' damage.';
 
-    this.properCaseConvertedLine = this.prefix() + effectPart + this.type +
-      ' Tick on ' + EmulatorCommon.properCase(resolvedName) +
-      ' for ' + this.damage.toString() + ' damage.';
+    this.properCaseConvertedLine =
+      this.prefix() +
+      effectPart +
+      this.type +
+      ' Tick on ' +
+      EmulatorCommon.properCase(resolvedName) +
+      ' for ' +
+      this.damage.toString() +
+      ' damage.';
   }
 
   static showEffectNamesFor: { [effectId: string]: string } = {
@@ -103,4 +115,4 @@ export class LineEvent0x18 extends LineEvent implements LineEventSource {
   };
 }
 
-export class LineEvent24 extends LineEvent0x18 { }
+export class LineEvent24 extends LineEvent0x18 {}

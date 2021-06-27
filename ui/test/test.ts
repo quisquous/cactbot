@@ -10,8 +10,11 @@ addOverlayListener('ChangeZone', (e) => {
 
 addOverlayListener('onInCombatChangedEvent', (e) => {
   const inCombat = document.getElementById('inCombat');
-  if (inCombat)
-    inCombat.innerText = `inCombat: act: ${e.detail.inACTCombat ? 'yes' : 'no'} game: ${e.detail.inGameCombat ? 'yes' : 'no'}`;
+  if (inCombat) {
+    inCombat.innerText = `inCombat: act: ${e.detail.inACTCombat ? 'yes' : 'no'} game: ${
+      e.detail.inGameCombat ? 'yes' : 'no'
+    }`;
+  }
 });
 
 addOverlayListener('onPlayerChangedEvent', (e) => {
@@ -37,53 +40,71 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
   const jobInfo = document.getElementById('jobinfo');
   if (jobInfo) {
     const detail = e.detail;
-    if (detail.job === 'RDM' && detail.jobDetail)
+    if (detail.job === 'RDM' && detail.jobDetail) {
       jobInfo.innerText = `${detail.jobDetail.whiteMana} | ${detail.jobDetail.blackMana}`;
-    else if (detail.job === 'WAR' && detail.jobDetail)
+    } else if (detail.job === 'WAR' && detail.jobDetail) {
       jobInfo.innerText = detail.jobDetail.beast.toString();
-    else if (detail.job === 'DRK' && detail.jobDetail)
-      jobInfo.innerText = `${detail.jobDetail.blood} | ${detail.jobDetail.darksideMilliseconds} | ${detail.jobDetail.darkArts.toString()} | ${detail.jobDetail.livingShadowMilliseconds}`;
-    else if (detail.job === 'GNB' && detail.jobDetail)
+    } else if (detail.job === 'DRK' && detail.jobDetail) {
+      jobInfo.innerText = `${detail.jobDetail.blood} | ${
+        detail.jobDetail.darksideMilliseconds
+      } | ${detail.jobDetail.darkArts.toString()} | ${detail.jobDetail.livingShadowMilliseconds}`;
+    } else if (detail.job === 'GNB' && detail.jobDetail) {
       jobInfo.innerText = `${detail.jobDetail.cartridges}${detail.jobDetail.continuationState}`;
-    else if (detail.job === 'PLD' && detail.jobDetail)
+    } else if (detail.job === 'PLD' && detail.jobDetail) {
       jobInfo.innerText = detail.jobDetail.oath.toString();
-    else if (detail.job === 'BRD' && detail.jobDetail)
+    } else if (detail.job === 'BRD' && detail.jobDetail) {
       jobInfo.innerText = `${detail.jobDetail.songName} | ${detail.jobDetail.songProcs} | ${detail.jobDetail.soulGauge} | ${detail.jobDetail.songMilliseconds}`;
-    else if (detail.job === 'DNC' && detail.jobDetail)
+    } else if (detail.job === 'DNC' && detail.jobDetail) {
       jobInfo.innerText = `${detail.jobDetail.feathers} | ${detail.jobDetail.esprit} | (${detail.jobDetail.steps}) | ${detail.jobDetail.currentStep}`;
-    else if (detail.job === 'NIN' && detail.jobDetail)
+    } else if (detail.job === 'NIN' && detail.jobDetail) {
       jobInfo.innerText = `${detail.jobDetail.hutonMilliseconds} | ${detail.jobDetail.ninkiAmount}`;
-    else if (detail.job === 'DRG' && detail.jobDetail)
+    } else if (detail.job === 'DRG' && detail.jobDetail) {
       jobInfo.innerText = `${detail.jobDetail.bloodMilliseconds} | ${detail.jobDetail.lifeMilliseconds} | ${detail.jobDetail.eyesAmount}`;
-    else if (detail.job === 'BLM' && detail.jobDetail)
-      jobInfo.innerText = `${detail.jobDetail.umbralStacks} (${detail.jobDetail.umbralMilliseconds}) | ${detail.jobDetail.umbralHearts} | ${detail.jobDetail.foulCount} ${detail.jobDetail.enochian.toString()} (${detail.jobDetail.nextPolyglotMilliseconds})`;
-    else if (detail.job === 'THM' && detail.jobDetail)
+    } else if (detail.job === 'BLM' && detail.jobDetail) {
+      jobInfo.innerText = `${detail.jobDetail.umbralStacks} (${
+        detail.jobDetail.umbralMilliseconds
+      }) | ${detail.jobDetail.umbralHearts} | ${
+        detail.jobDetail.foulCount
+      } ${detail.jobDetail.enochian.toString()} (${detail.jobDetail.nextPolyglotMilliseconds})`;
+    } else if (detail.job === 'THM' && detail.jobDetail) {
       jobInfo.innerText = `${detail.jobDetail.umbralStacks} (${detail.jobDetail.umbralMilliseconds})`;
-    else if (detail.job === 'WHM' && detail.jobDetail)
+    } else if (detail.job === 'WHM' && detail.jobDetail) {
       jobInfo.innerText = `${detail.jobDetail.lilyStacks} (${detail.jobDetail.lilyMilliseconds}) | ${detail.jobDetail.bloodlilyStacks}`;
-    else if (detail.job === 'SMN' && detail.jobDetail)
+    } else if (detail.job === 'SMN' && detail.jobDetail) {
       jobInfo.innerText = `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.dreadwyrmStacks} | ${detail.jobDetail.bahamutStance} | ${detail.jobDetail.bahamutSummoned} (${detail.jobDetail.stanceMilliseconds}) | ${detail.jobDetail.phoenixReady}`;
-    else if (detail.job === 'SCH' && detail.jobDetail)
+    } else if (detail.job === 'SCH' && detail.jobDetail) {
       jobInfo.innerText = `${detail.jobDetail.aetherflowStacks} | ${detail.jobDetail.fairyGauge} | ${detail.jobDetail.fairyStatus} (${detail.jobDetail.fairyMilliseconds})`;
-    else if (detail.job === 'ACN' && detail.jobDetail)
+    } else if (detail.job === 'ACN' && detail.jobDetail) {
       jobInfo.innerText = detail.jobDetail.aetherflowStacks.toString();
-    else if (detail.job === 'AST' && detail.jobDetail)
+    } else if (detail.job === 'AST' && detail.jobDetail) {
       jobInfo.innerText = `${detail.jobDetail.heldCard} (${detail.jobDetail.arcanums})`;
-    else if (detail.job === 'MNK' && detail.jobDetail)
-      jobInfo.innerText = `${detail.jobDetail.lightningStacks} (${detail.jobDetail.lightningMilliseconds}) | ${detail.jobDetail.chakraStacks} | ${detail.jobDetail.lightningTimerFrozen.toString()}`;
-    else if (detail.job === 'PGL' && detail.jobDetail)
+    } else if (detail.job === 'MNK' && detail.jobDetail) {
+      jobInfo.innerText = `${detail.jobDetail.lightningStacks} (${
+        detail.jobDetail.lightningMilliseconds
+      }) | ${detail.jobDetail.chakraStacks} | ${detail.jobDetail.lightningTimerFrozen.toString()}`;
+    } else if (detail.job === 'PGL' && detail.jobDetail) {
       jobInfo.innerText = `${detail.jobDetail.lightningStacks} (${detail.jobDetail.lightningMilliseconds})`;
-    else if (detail.job === 'MCH' && detail.jobDetail)
-      jobInfo.innerText = `${detail.jobDetail.heat} (${detail.jobDetail.overheatMilliseconds}) | ${detail.jobDetail.battery} (${detail.jobDetail.batteryMilliseconds}) | last: ${detail.jobDetail.lastBatteryAmount} | ${detail.jobDetail.overheatActive.toString()} | ${detail.jobDetail.robotActive.toString()}`;
-    else if (detail.job === 'SAM' && detail.jobDetail)
-      jobInfo.innerText = `${detail.jobDetail.kenki} | ${detail.jobDetail.meditationStacks}(${detail.jobDetail.setsu.toString()},${detail.jobDetail.getsu.toString()},${detail.jobDetail.ka.toString()})`;
-    else
+    } else if (detail.job === 'MCH' && detail.jobDetail) {
+      jobInfo.innerText = `${detail.jobDetail.heat} (${detail.jobDetail.overheatMilliseconds}) | ${
+        detail.jobDetail.battery
+      } (${detail.jobDetail.batteryMilliseconds}) | last: ${
+        detail.jobDetail.lastBatteryAmount
+      } | ${detail.jobDetail.overheatActive.toString()} | ${detail.jobDetail.robotActive.toString()}`;
+    } else if (detail.job === 'SAM' && detail.jobDetail) {
+      jobInfo.innerText = `${detail.jobDetail.kenki} | ${
+        detail.jobDetail.meditationStacks
+      }(${detail.jobDetail.setsu.toString()},${detail.jobDetail.getsu.toString()},${detail.jobDetail.ka.toString()})`;
+    } else {
       jobInfo.innerText = '';
+    }
   }
 
   const pos = document.getElementById('pos');
-  if (pos)
-    pos.innerText = `${e.detail.pos.x.toFixed(2)},${e.detail.pos.y.toFixed(2)},${e.detail.pos.z.toFixed(2)}`;
+  if (pos) {
+    pos.innerText = `${e.detail.pos.x.toFixed(2)},${e.detail.pos.y.toFixed(
+        2,
+    )},${e.detail.pos.z.toFixed(2)}`;
+  }
   const rotation = document.getElementById('rotation');
   if (rotation)
     rotation.innerText = e.detail.rotation.toString();

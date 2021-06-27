@@ -80,6 +80,7 @@ export default {
             return { alertText: output.staffTankSwap() };
         }
 
+
         return { infoText: output.staff() };
       },
       run: (data) => data.soonAfterWeaponChange = true,
@@ -116,6 +117,7 @@ export default {
           if (data.currentTank && data.slashing && data.slashing[data.currentTank])
             return { alertText: output.swordTankSwap() };
         }
+
 
         return { infoText: output.sword() };
       },

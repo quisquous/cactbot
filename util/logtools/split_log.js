@@ -22,15 +22,13 @@ parser.addArgument(['-lf', '--search-fights'], {
   nargs: '?',
   defaultValue: -1,
   type: 'int',
-  help: 'Fight in log to use, e.g. \'1\'. ' +
-    'If no number is specified, returns a list of fights.',
+  help: 'Fight in log to use, e.g. \'1\'. ' + 'If no number is specified, returns a list of fights.',
 });
 parser.addArgument(['-lz', '--search-zones'], {
   nargs: '?',
   defaultValue: -1,
   type: 'int',
-  help: 'Zone in log to use, e.g. \'1\'. ' +
-    'If no number is specified, returns a list of zones.',
+  help: 'Zone in log to use, e.g. \'1\'. ' + 'If no number is specified, returns a list of zones.',
 });
 parser.addArgument(['-fr', '--fight-regex'], {
   nargs: '?',
@@ -52,6 +50,8 @@ for (const opt of ['search_fights', 'search_zones', 'fight_regex', 'zone_regex']
   if (args[opt] !== -1)
     numExclusiveArgs++;
 }
+
+
 if (numExclusiveArgs !== 1) {
   console.error('Error: Must specify exactly one of -lf, -lz, -fr\n');
   parser.printHelp();
@@ -97,9 +97,12 @@ const durationFromDates = (start, end) => {
 };
 
 const toProperCase = (str) => {
-  return str.split(' ').map((str) => {
-    return str[0].toUpperCase() + str.slice(1);
-  }).join(' ');
+  return str
+    .split(' ')
+    .map((str) => {
+      return str[0].toUpperCase() + str.slice(1);
+    })
+    .join(' ');
 };
 
 const generateFileName = (fightOrZone) => {
@@ -172,11 +175,16 @@ const printCollectedZones = (collector) => {
       console.log(lastDate);
     }
 
-    console.log('  ' +
-      leftExtendStr(row, lengths, 0) + ') ' +
-      leftExtendStr(row, lengths, 2) + ' ' +
-      leftExtendStr(row, lengths, 3) + ' ' +
-      rightExtendStr(row, lengths, 4));
+    console.log(
+        '  ' +
+        leftExtendStr(row, lengths, 0) +
+        ') ' +
+        leftExtendStr(row, lengths, 2) +
+        ' ' +
+        leftExtendStr(row, lengths, 3) +
+        ' ' +
+        rightExtendStr(row, lengths, 4),
+    );
   }
 };
 
@@ -220,12 +228,17 @@ const printCollectedFights = (collector) => {
       console.log(lastDate);
     }
 
-    console.log('  ' +
-      leftExtendStr(row, lengths, 0) + (row[0] ? ') ' : '  ') +
-      leftExtendStr(row, lengths, 2) + ' ' +
-      leftExtendStr(row, lengths, 3) + ' ' +
-      rightExtendStr(row, lengths, 4) +
-      (row[5] ? ' ' + '[' + row[5] + ']' : ''));
+    console.log(
+        '  ' +
+        leftExtendStr(row, lengths, 0) +
+        (row[0] ? ') ' : '  ') +
+        leftExtendStr(row, lengths, 2) +
+        ' ' +
+        leftExtendStr(row, lengths, 3) +
+        ' ' +
+        rightExtendStr(row, lengths, 4) +
+        (row[5] ? ' ' + '[' + row[5] + ']' : ''),
+    );
   }
 };
 
@@ -352,4 +365,4 @@ const writeFile = (outputFile, startLine, endLine) => {
     console.error('Internal error');
     process.exit(-1);
   }
-}());
+})();

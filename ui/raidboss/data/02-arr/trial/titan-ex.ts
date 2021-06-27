@@ -123,7 +123,7 @@ const triggerSet: TriggerSet<Data> = {
         '\\(all\\)': '(alle)',
         '\\(clock\\)': '(Uhrzeiger)',
         '\\(one side\\)': '(eine Seite)',
-        '\\(row (\\\d)\\)': '(Reihe $1)',
+        '\\(row (\\d)\\)': '(Reihe $1)',
         'Burst': 'Einschlag',
         'Bury': 'Begraben',
         'Earthen Fury': 'Gaias Zorn',

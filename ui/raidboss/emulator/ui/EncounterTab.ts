@@ -68,7 +68,10 @@ export default class EncounterTab extends EventBus {
     this.$infoColumn = querySelectorSafe(document, '#encountersTab .encounterInfo');
 
     this.$encounterTabRowTemplate = getTemplateChild(document, 'template.encounterTabRow');
-    this.$encounterTabEncounterRowTemplate = getTemplateChild(document, 'template.encounterTabEncounterRow');
+    this.$encounterTabEncounterRowTemplate = getTemplateChild(
+        document,
+        'template.encounterTabEncounterRow',
+    );
     this.$encounterInfoTemplate = getTemplateChild(document, 'template.encounterInfo');
   }
 
@@ -274,8 +277,12 @@ export default class EncounterTab extends EventBus {
       void this.dispatch('delete', enc.id);
     });
     querySelectorSafe($info, '.encounterZone .label').textContent = enc.zoneName;
-    querySelectorSafe($info, '.encounterStart .label').textContent = EmulatorCommon.dateTimeToString(enc.start);
-    querySelectorSafe($info, '.encounterDuration .label').textContent = EmulatorCommon.timeToString(enc.duration, false);
+    querySelectorSafe($info, '.encounterStart .label').textContent =
+      EmulatorCommon.dateTimeToString(enc.start);
+    querySelectorSafe($info, '.encounterDuration .label').textContent = EmulatorCommon.timeToString(
+        enc.duration,
+        false,
+    );
     querySelectorSafe($info, '.encounterOffset .label').textContent = pullAt;
     querySelectorSafe($info, '.encounterName .label').textContent = enc.name;
     querySelectorSafe($info, '.encounterStartStatus .label').textContent = enc.startStatus;

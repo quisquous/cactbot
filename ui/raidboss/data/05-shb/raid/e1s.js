@@ -15,51 +15,11 @@ export default {
         return;
 
       const goofs = {
-        en: [
-          'brb',
-          ':zzz:',
-          'LA HEE',
-          'Quick Powernap',
-          'brb making coffee',
-          'Eden\'s Snoozefest',
-          'rip enochian',
-        ],
-        de: [
-          'brb',
-          ':zzz:',
-          'LA HEE',
-          'Kurzer Powernap',
-          'brb Kafee machen',
-          'Eden\'s Schlaffest',
-          'tschüss Henochisch',
-        ],
-        fr: [
-          'Brb',
-          ':zzz:',
-          'LA HEE',
-          'Courte sieste',
-          'brb faire du café',
-          'Eden\'s Dormez bien',
-          'Rip énochien',
-        ],
-        ja: [
-          'ちょっと待ってください',
-          '眠い :zzz:',
-          'LAHEE~',
-          '居眠りでもしましょうか',
-          'コーヒー飲むにいこう',
-          'ほらエデンも眠った',
-          'エノキアンにRIP',
-        ],
-        cn: [
-          '马上回来',
-          '困了睡会儿',
-          'LAHEE~',
-          '冲杯咖啡',
-          '圣诞快乐',
-          '我柜子动了等下再玩',
-          'CG',
-        ],
+        en: ['brb', ':zzz:', 'LA HEE', 'Quick Powernap', 'brb making coffee', 'Eden\'s Snoozefest', 'rip enochian'],
+        de: ['brb', ':zzz:', 'LA HEE', 'Kurzer Powernap', 'brb Kafee machen', 'Eden\'s Schlaffest', 'tschüss Henochisch'],
+        fr: ['Brb', ':zzz:', 'LA HEE', 'Courte sieste', 'brb faire du café', 'Eden\'s Dormez bien', 'Rip énochien'],
+        ja: ['ちょっと待ってください', '眠い :zzz:', 'LAHEE~', '居眠りでもしましょうか', 'コーヒー飲むにいこう', 'ほらエデンも眠った', 'エノキアンにRIP'],
+        cn: ['马上回来', '困了睡会儿', 'LAHEE~', '冲杯咖啡', '圣诞快乐', '我柜子动了等下再玩', 'CG'],
       }[data.displayLang];
       if (!goofs)
         return;

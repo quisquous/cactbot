@@ -38,7 +38,7 @@ export default class FisherUI {
     const time = (timeMs / 1000).toFixed(1);
 
     this.timeEl.innerHTML = time;
-    this.arrowEl.style.top = (timeMs / 600) + '%';
+    this.arrowEl.style.top = timeMs / 600 + '%';
 
     this.animationFrame = requestAnimationFrame(this.draw.bind(this));
   }
@@ -75,20 +75,24 @@ export default class FisherUI {
       bar.centertext = row.getAttribute('data-fish');
 
       // Step one: fill until the minimum time
-      if ((min && min !== 'undefined') && (max && max !== 'undefined')) {
+      if (min && min !== 'undefined' && max && max !== 'undefined') {
         row.opacity = 0.8;
         bar.duration = min / 1000;
         bar.stylefill = 'fill';
         // Step two: empty until the maximum time
-        timeouts.push(setTimeout(() => {
-          row.style.opacity = 1;
-          bar.stylefill = 'empty';
-          bar.value = 0;
-          bar.duration = (max - min) / 1000;
-          timeouts.push(setTimeout(() => {
-            row.style.opacity = 0.5;
-          }, max - min));
-        }, min));
+        timeouts.push(
+            setTimeout(() => {
+              row.style.opacity = 1;
+              bar.stylefill = 'empty';
+              bar.value = 0;
+              bar.duration = (max - min) / 1000;
+              timeouts.push(
+                  setTimeout(() => {
+                    row.style.opacity = 0.5;
+                  }, max - min),
+              );
+            }, min),
+        );
       } else {
         bar.duration = 0;
         timeouts = [];
@@ -97,10 +101,8 @@ export default class FisherUI {
       if (row.getAttribute('data-tug'))
         bar.fg = this.options.Colors[this.tugNames[row.getAttribute('data-tug')]];
 
-
       while (row.lastChild)
         row.removeChild(row.lastChild);
-
 
       row.appendChild(bar);
 
@@ -146,9 +148,12 @@ export default class FisherUI {
     });
 
     // Remove current values from all wells
-    Array.prototype.forEach.call(this.element.querySelectorAll('.well-entry, .table-row'), (node) => {
-      node.parentNode.removeChild(node);
-    });
+    Array.prototype.forEach.call(
+        this.element.querySelectorAll('.well-entry, .table-row'),
+        (node) => {
+          node.parentNode.removeChild(node);
+        },
+    );
 
     for (let i = 0; i < sortedKeys.length; i++) {
       // First, draw on the well

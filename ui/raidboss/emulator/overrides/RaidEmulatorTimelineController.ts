@@ -18,9 +18,13 @@ export default class RaidEmulatorTimelineController extends TimelineController {
   }
 
   // Override
-  public SetActiveTimeline(timelineFiles: string[], timelines: string[],
-      replacements: TimelineReplacement[], triggers: LooseTimelineTrigger[],
-      styles: TimelineStyle[]): void {
+  public SetActiveTimeline(
+      timelineFiles: string[],
+      timelines: string[],
+      replacements: TimelineReplacement[],
+      triggers: LooseTimelineTrigger[],
+      styles: TimelineStyle[],
+  ): void {
     this.activeTimeline = null;
 
     let text = '';
@@ -38,8 +42,13 @@ export default class RaidEmulatorTimelineController extends TimelineController {
       text = `${text}\n${timeline}`;
 
     if (text) {
-      this.activeTimeline =
-        new RaidEmulatorTimeline(text, replacements, triggers, styles, this.options);
+      this.activeTimeline = new RaidEmulatorTimeline(
+          text,
+          replacements,
+          triggers,
+          styles,
+          this.options,
+      );
       if (this.emulator)
         this.activeTimeline.bindTo(this.emulator);
     }
@@ -58,7 +67,8 @@ export default class RaidEmulatorTimelineController extends TimelineController {
     for (const line of logs) {
       this.activeTimeline.OnLogLine(
           line.properCaseConvertedLine || line.convertedLine,
-          line.timestamp);
+          line.timestamp,
+      );
       // Only call _OnUpdateTimer if we have a timebase from the previous call to OnLogLine
       // This avoids spamming the console with a ton of messages
       if (this.activeTimeline.timebase)

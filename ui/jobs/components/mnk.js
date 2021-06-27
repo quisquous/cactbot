@@ -25,7 +25,6 @@ export function setup(bars) {
     return 4;
   };
 
-
   bars.onJobDetailUpdate((jobDetail) => {
     const chakra = jobDetail.chakraStacks;
     if (textBox.innerText !== chakra) {
@@ -99,11 +98,10 @@ export function setup(bars) {
     formTimer.duration = parseFloat(matches.duration);
     formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
   };
-  bars.onYouGainEffect([
-    EffectId.OpoOpoForm,
-    EffectId.RaptorForm,
-    EffectId.CoeurlForm,
-  ], changeFormFunc);
+  bars.onYouGainEffect(
+      [EffectId.OpoOpoForm, EffectId.RaptorForm, EffectId.CoeurlForm],
+      changeFormFunc,
+  );
 
   resetFunc = (bars) => {
     twinSnakesBox.duration = 0;

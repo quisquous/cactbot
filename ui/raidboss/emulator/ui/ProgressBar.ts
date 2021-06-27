@@ -36,9 +36,10 @@ export default class ProgressBar {
         if (!(target instanceof HTMLElement))
           throw new UnreachableCode();
         const percent = e.offsetX / target.offsetWidth;
-        const time = Math.floor(emulator.currentEncounter.encounter.duration * percent) -
+        const time =
+          Math.floor(emulator.currentEncounter.encounter.duration * percent) -
           emulator.currentEncounter.encounter.initialOffset;
-        this.$progressBarTooltip.offset.x = e.offsetX - (target.offsetWidth / 2);
+        this.$progressBarTooltip.offset.x = e.offsetX - target.offsetWidth / 2;
         this.$progressBarTooltip.setText(EmulatorCommon.timeToString(time));
         this.$progressBarTooltip.show();
       }
@@ -57,7 +58,8 @@ export default class ProgressBar {
       this.$progressBarCurrent.textContent = EmulatorCommon.timeToString(0, false);
       this.$progressBarDuration.textContent = EmulatorCommon.timeToString(
           encounter.encounter.duration - encounter.encounter.initialOffset,
-          false);
+          false,
+      );
       this.$progressBar.style.width = '0%';
       this.$progressBar.setAttribute('ariaValueMax', encounter.encounter.duration.toString());
       if (isNaN(encounter.encounter.initialOffset)) {

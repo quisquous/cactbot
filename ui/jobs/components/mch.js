@@ -49,10 +49,7 @@ export function setup(bars) {
     id: 'mch-procs-drill',
     fgColor: 'mch-color-drill',
   });
-  bars.onUseAbility([
-    kAbility.Drill,
-    kAbility.Bioblaster,
-  ], () => {
+  bars.onUseAbility([kAbility.Drill, kAbility.Bioblaster], () => {
     drillBox.duration = calcGCDFromStat(bars, bars.skillSpeed, 20000);
   });
 
@@ -60,10 +57,7 @@ export function setup(bars) {
     id: 'mch-procs-airanchor',
     fgColor: 'mch-color-airanchor',
   });
-  bars.onUseAbility([
-    kAbility.AirAnchor,
-    kAbility.HotShot,
-  ], () => {
+  bars.onUseAbility([kAbility.AirAnchor, kAbility.HotShot], () => {
     airAnchorBox.duration = calcGCDFromStat(bars, bars.skillSpeed, 40000);
   });
 
